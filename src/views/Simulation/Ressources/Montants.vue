@@ -116,7 +116,7 @@ export default {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
-        this.$store.getters.situation
+        this.$store.state.answers
       )
 
       const answers = getAnswer(

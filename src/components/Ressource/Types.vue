@@ -63,8 +63,8 @@ export default {
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
           ressourceType,
-          this.$store.getters.situation,
-          this.individu
+          this.$store.state.answers,
+          this.individu.id
         )
       )
     })
@@ -102,7 +102,7 @@ export default {
     individu: function () {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.$store.getters.situation
+        this.$store.state.answers
       )
     },
   },

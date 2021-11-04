@@ -148,8 +148,8 @@ const store = new Vuex.Store({
         return items.length ? items[0] : null
       }
     },
-    getAllSteps: function (state, getters) {
-      return generateAllSteps(getters.situation, state.openFiscaParameters)
+    getAllSteps: function (state) {
+      return generateAllSteps(state.answers, state.openFiscaParameters)
     },
     progress: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(
@@ -159,14 +159,7 @@ const store = new Vuex.Store({
           step.isActive
       )
       const answeredSteps = allSteps.filter((step) => {
-        // dirty hack for loyer...
-        if (step.substeps && step.substeps.length > 0) {
-          return step.substeps.some(
-            (step) => !isStepAnswered(state.answers.all, step)
-          )
-        }
-
-        return !isStepAnswered(state.answers.all, step)
+        return isStepAnswered(state.answers.all, step)
       })
       return answeredSteps.length / allSteps.length
     },

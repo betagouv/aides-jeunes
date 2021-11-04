@@ -67,8 +67,8 @@ function get(individus, role, id) {
 }
 
 const Individu = {
-  age: function (individu, dateDeReference) {
-    return moment(dateDeReference).diff(individu.date_naissance, "years")
+  age: function (date_naissance, dateDeReference) {
+    return moment(dateDeReference).diff(date_naissance, "years")
   },
 
   label: function (individu, type) {

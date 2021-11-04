@@ -10,7 +10,7 @@ import {
   ressourceTypes,
 } from "../../lib/constants/resources"
 import Logement from "@/lib/Logement"
-import { getStepAnswer } from "../../lib/answers"
+import { getAnswer, getStepAnswer } from "../../lib/answers"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
@@ -93,20 +93,17 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      return (
-        this.$store.state.answers.enfants &&
-        step.key.match(/\/simulation\/enfants$/)
-      )
+      if (step.key.match(/\/simulation\/enfants$/)) {
+        return getAnswer(this.$store.state.answers.all, "enfants") !== undefined
+      }
+      return false
     },
     fn() {
-      const enfants = this.$store.state.answers.enfants
+      const answer = getAnswer(this.$store.state.answers.all, "enfants")
       return [
         {
           label: "Mes enfants à charge",
-          value:
-            enfants && enfants.length
-              ? `${enfants.length} enfant(s)`
-              : `Aucun enfant`,
+          value: answer ? `${answer} enfant(s)` : `Aucun enfant`,
         },
       ]
     },
@@ -117,7 +114,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(this.$store.answers.all)
+      const loyerData = Logement.getLoyerData(this.$store.state.answers.all)
       return [
         {
           label: loyerData.loyerQuestion.label,
@@ -147,7 +144,7 @@ export const COMPLEX_STEPS = {
       const categoryId = key_split[key_split.length - 1]
       const ressources = Ressource.getIndividuRessourceTypes(
         individu,
-        this.$store.getters.situation
+        this.$store.state.answers
       )
       const category = ressourceCategories.find(
         (category) => category.id === categoryId

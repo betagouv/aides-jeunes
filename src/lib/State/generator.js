@@ -1,10 +1,7 @@
 var { Step } = require("./steps")
 var { generateBlocks } = require("./blocks")
 
-function processBlock(
-  { journey, subject, situation, isActive, parameters },
-  block
-) {
+function processBlock({ journey, answers, isActive }, block) {
   if (block instanceof Step) {
     block.isActive = isActive
     journey.push(block)
@@ -15,20 +12,12 @@ function processBlock(
     if (!block.steps) {
       throw Error(`${block} (${block instanceof Array ? "array" : "?"})`)
     }
-    let blockSubject = block.subject
-      ? block.subject(subject, situation)
-      : subject || situation
-    const localActive =
-      isActive &&
-      (!block.isActive ||
-        (blockSubject && block.isActive(blockSubject, situation, parameters)))
+    const localActive = isActive && block.isActive
     block.steps.forEach((step) =>
       processBlock(
         {
           journey,
-          subject: blockSubject,
-          situation,
-          parameters,
+          answers,
           isActive: localActive,
         },
         step
@@ -37,28 +26,25 @@ function processBlock(
   }
 }
 
-function generateJourney(situation, parameters) {
-  const blocks = generateBlocks(situation)
+function generateJourney(answers, parameters) {
+  const blocks = generateBlocks(answers, parameters)
 
-  function processBlocks({ situation, parameters }) {
+  function processBlocks({ answers, parameters }) {
     let journey = []
     blocks.forEach((b) => {
-      processBlock(
-        { journey, subject: situation, situation, isActive: true, parameters },
-        b
-      )
+      processBlock({ journey, answers, isActive: true, parameters }, b)
     })
     return journey
   }
   try {
-    return processBlocks({ situation, parameters })
+    return processBlocks({ answers, parameters })
   } catch (e) {
     console.log("error", e)
   }
 }
 
-function generateAllSteps(situation, parameters) {
-  const fullSteps = generateJourney(situation, parameters)
+function generateAllSteps(answers, parameters) {
+  const fullSteps = generateJourney(answers, parameters)
   fullSteps.pop()
   let lastChapter
   return fullSteps.map((s) => {

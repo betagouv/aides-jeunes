@@ -3,19 +3,35 @@ const { ACTIVITES_ACTIF } = require("../../../lib/Activite")
 const Ressource = require("../../../lib/ressource")
 const { datesGenerator } = require("../../../backend/lib/mes-aides")
 const { Step, ComplexStep } = require("./steps")
+const { getAnswer } = require("../../../lib/answers")
 
-function individuBlockFactory(id, chapter) {
+function individuBlockFactory(answers, parameters, id, chapter) {
   const r = (variable, chapter) =>
     new Step({ entity: "individu", id, variable, chapter })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
+
+  const getIndividuAnswer = (variable) =>
+    getAnswer(answers.all, "individu", variable, id)
+
+  const activite = getIndividuAnswer("activite")
+  const anneeEtude = getIndividuAnswer("annee_etude")
+  const scolarite = getIndividuAnswer("scolarite")
+  const age = Individu.age(
+    getIndividuAnswer("date_naissance"),
+    datesGenerator(answers.dateDeValeur).today.value
+  )
+  const jeune_actif =
+    activite === "salarie" &&
+    age <= parameters["prestations.carte_des_metiers.age_maximal"]
+  const alternant = getIndividuAnswer("alternant")
+  const handicap = getIndividuAnswer("handicap")
+  const enfant_a_charge = getIndividuAnswer("enfant_a_charge")
+
+  const continuite_etudes = getIndividuAnswer("_continuite_etudes")
   return {
-    subject: (situation) =>
-      situation[id] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === id)) ||
-      {},
+    isActive: true,
     steps: [
       ...(enfant ? [r("_firstName")] : []),
       r("date_naissance", demandeur ? "profil" : chapter),
@@ -26,50 +42,38 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == "etudiant",
+              isActive: activite === "etudiant",
               steps: [
                 r("scolarite"),
                 {
-                  isActive: (subject) =>
-                    subject.scolarite == "lycee" ||
-                    subject.scolarite == "enseignement_superieur",
+                  isActive:
+                    scolarite === "lycee" ||
+                    scolarite === "enseignement_superieur",
                   steps: [r("annee_etude")],
                 },
                 {
-                  isActive: (subject) =>
-                    subject.annee_etude == "licence_1" ||
-                    subject.annee_etude == "licence_2",
+                  isActive:
+                    anneeEtude === "licence_1" || anneeEtude === "licence_2",
                   steps: [r("mention_baccalaureat")],
                 },
                 {
-                  isActive: (subject) =>
-                    subject.scolarite == "enseignement_superieur",
+                  isActive: scolarite === "enseignement_superieur",
                   steps: [r("statuts_etablissement_scolaire")],
                 },
               ],
             },
             {
-              isActive: (subject, situation, parameters) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const jeune_actif =
-                  subject.activite === "salarie" &&
-                  age <= parameters["prestations.carte_des_metiers.age_maximal"]
-                return subject.activite === "etudiant" || jeune_actif
-              },
+              isActive: activite === "etudiant" || jeune_actif,
               steps: [
                 r("alternant"),
                 {
-                  isActive: (subject) => subject.alternant,
+                  isActive: alternant,
                   steps: [r("_contrat_alternant")],
                 },
               ],
             },
             {
-              isActive: (subject) =>
-                subject.activite === "salarie" || subject.alternant,
+              isActive: activite === "salarie" || alternant,
               steps: [r("_nombreMoisDebutContratDeTravail")],
             },
           ]
@@ -77,27 +81,30 @@ function individuBlockFactory(id, chapter) {
       ...(!enfant
         ? [
             {
-              isActive: (subject) => subject.activite == "chomeur",
+              isActive: activite === "chomeur",
               steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
             },
             {
-              isActive: (subject) =>
-                !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
+              isActive: !["etudiant", ...ACTIVITES_ACTIF].includes(activite),
               steps: [r("inapte_travail")],
             },
           ]
         : []),
       r("handicap"),
       {
-        isActive: (subject) => subject.handicap,
+        isActive: handicap,
         steps: [
           r("taux_incapacite"),
           {
-            isActive: (subject, situation, parameters) =>
-              !enfant &&
-              0.5 <= subject.taux_incapacite &&
-              subject.taux_incapacite <
-                parameters["prestations.minima_sociaux.aah.taux_incapacite"],
+            isActive: (parameters) => {
+              const tauxIncapacite = getIndividuAnswer("taux_incapacite")
+              return (
+                !enfant &&
+                0.5 <= tauxIncapacite &&
+                tauxIncapacite <
+                  parameters["prestations.minima_sociaux.aah.taux_incapacite"]
+              )
+            },
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],
@@ -105,25 +112,19 @@ function individuBlockFactory(id, chapter) {
       ...(enfant
         ? [
             {
-              isActive: (subject) => subject.handicap,
+              isActive: handicap,
               steps: [r("enfant_place")],
             },
           ]
         : []),
       {
-        isActive: () => false,
+        isActive: false,
         steps: [r("bourse_criteres_sociaux_echelon")],
       },
       ...(demandeur
         ? [
             {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
+              isActive: 8 < age && age <= 25,
               steps: [r("enfant_a_charge")],
             },
           ]
@@ -131,13 +132,7 @@ function individuBlockFactory(id, chapter) {
       ...(enfant
         ? [
             {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
+              isActive: 8 < age && age <= 25,
               steps: [r("scolarite")],
             },
           ]
@@ -145,25 +140,12 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const thisYear = datesGenerator(situation.dateDeValeur).thisYear
-                  .id
-                const enfant_a_charge =
-                  subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
-                return (
-                  20 <= age &&
-                  age < 25 &&
-                  !["etudiant", ...ACTIVITES_ACTIF].includes(
-                    subject.activite
-                  ) &&
-                  !subject.ass_precondition_remplie &&
-                  !enfant_a_charge
-                )
-              },
+              isActive:
+                20 <= age &&
+                age < 25 &&
+                !["etudiant", ...ACTIVITES_ACTIF].includes(activite) &&
+                !getIndividuAnswer("ass_precondition_remplie") &&
+                !enfant_a_charge,
               steps: [r("rsa_jeune_condition_heures_travail_remplie")],
             },
           ]
@@ -172,12 +154,7 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject, situation) =>
-                60 <=
-                Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                ),
+              isActive: 60 <= age,
               steps: [r("gir")],
             },
           ]
@@ -185,31 +162,34 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == "etudiant",
+              isActive: activite === "etudiant",
               steps: [r("_continuite_etudes")],
             },
             {
-              isActive: (subject) =>
-                !subject._continuite_etudes &&
-                ["etudiant", "chomeur", "inactif"].includes(subject.activite),
+              isActive:
+                !continuite_etudes &&
+                ["etudiant", "chomeur", "inactif"].includes(activite),
               steps: [
                 r("plus_haut_diplome_niveau"),
                 {
-                  isActive: (subject) =>
-                    ["niveau_5", "niveau_6", "niveau_7", "niveau_8"].includes(
-                      subject.plus_haut_diplome_niveau
-                    ),
+                  isActive: [
+                    "niveau_5",
+                    "niveau_6",
+                    "niveau_7",
+                    "niveau_8",
+                  ].includes(getIndividuAnswer("plus_haut_diplome_niveau")),
                   steps: [
                     r("plus_haut_diplome_date_obtention"),
                     {
-                      isActive: (subject) =>
-                        subject.plus_haut_diplome_date_obtention >=
+                      isActive:
+                        getIndividuAnswer("plus_haut_diplome_date_obtention") >=
                         new Date("2019-12-31 00:00:00"),
                       steps: [
                         r("_boursier_derniere_annee_etudes"),
                         {
-                          isActive: (subject) =>
-                            subject._boursier_derniere_annee_etudes,
+                          isActive: getIndividuAnswer(
+                            "_boursier_derniere_annee_etudes"
+                          ),
                           steps: [
                             r(
                               "aide_jeunes_diplomes_anciens_boursiers_base_ressources"
@@ -223,13 +203,7 @@ function individuBlockFactory(id, chapter) {
               ],
             },
             {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return age <= 25
-              },
+              isActive: age <= 25,
               steps: [r("regime_securite_sociale")],
             },
           ]
@@ -239,56 +213,51 @@ function individuBlockFactory(id, chapter) {
   }
 }
 
-function extraBlock() {
+function extraBlock(answers) {
   const id = "demandeur"
   const s = (variable, chapter) =>
     new Step({ entity: "individu", id, variable, chapter })
 
+  const getIndividuAnswer = (variable) =>
+    getAnswer(answers.all, "individu", variable, "demandeur")
+  const anneEtude = getIndividuAnswer("annee_etude")
+
   return {
-    subject: (situation) =>
-      situation[id] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === id)) ||
-      {},
+    isActive: true,
     steps: [
       s("_interetPermisDeConduire", "projets"),
       {
-        isActive: (subject) => subject.annee_etude == "terminale",
+        isActive: getIndividuAnswer("annee_etude") == "terminale",
         steps: [
           s("sortie_academie"),
           {
-            isActive: (subject) => {
-              return (
-                subject.sortie_academie &&
-                typeof subject.bourse_lycee !== "object"
-              )
-            },
+            isActive:
+              getIndividuAnswer("sortie_academie") &&
+              typeof getIndividuAnswer("bourse_lycee") !== "object",
             steps: [new Step({ entity: "famille", variable: "bourse_lycee" })],
           },
         ],
       },
       {
-        isActive: (subject) =>
-          subject.annee_etude == "licence_3" ||
-          subject.annee_etude == "master_1",
+        isActive: anneEtude == "licence_3" || anneEtude == "master_1",
         steps: [
           s("sortie_region_academique"),
           {
-            isActive: (subject) => subject.sortie_region_academique,
+            isActive: getIndividuAnswer("sortie_region_academique"),
             steps: [s("boursier")],
           },
         ],
       },
       {
-        isActive: (subject) =>
-          subject.scolarite == "enseignement_superieur" &&
+        isActive:
+          getIndividuAnswer("scolarite") == "enseignement_superieur" &&
           ["public", "prive_sous_contrat"].includes(
-            subject.statuts_etablissement_scolaire
+            getIndividuAnswer("statuts_etablissement_scolaire")
           ),
         steps: [
           s("_interetEtudesEtranger"),
           {
-            isActive: (subject) => subject._interetEtudesEtranger,
+            isActive: getIndividuAnswer("_interetEtudesEtranger"),
             steps: [s("_dureeMoisEtudesEtranger")],
           },
         ],
@@ -297,13 +266,22 @@ function extraBlock() {
   }
 }
 
-function kidBlock(situation) {
+function kidBlock(answers, parameters) {
   return {
+    isActive: true,
     steps: [
-      ...(situation.enfants && situation.enfants.length
-        ? situation.enfants.map((e) => {
+      ...(answers.enfants && answers.enfants.length
+        ? answers.enfants.map((id) => {
             return {
-              steps: [individuBlockFactory(e.id, "foyer")],
+              isActive: true,
+              steps: [
+                individuBlockFactory(
+                  answers,
+                  parameters,
+                  `enfant_${id}`,
+                  "foyer"
+                ),
+              ],
             }
           })
         : []),
@@ -312,9 +290,24 @@ function kidBlock(situation) {
   }
 }
 
-function housingBlock() {
+function housingBlock(answers) {
+  const getMenageAnswers = (variable) =>
+    getAnswer(answers.all, "menage", variable)
+  const status = getMenageAnswers("statut_occupation_logement")
+  const locataire = !status || status.startsWith("locataire")
+  const proprietaire =
+    status && (status === "primo_accedant" || status === "proprietaire")
+  const depcom = getMenageAnswers("depcom")
+  const activite = getAnswer(answers.all, "individu", "activite", "demandeur")
+  const habiteChezParents = getAnswer(
+    answers.all,
+    "individu",
+    "habite_chez_parents",
+    "demandeur"
+  )
+  const parentsSituation = getAnswer(answers.all, "parents", "_situation")
   return {
-    subject: (situation) => situation.menage,
+    isActive: true,
     steps: [
       new Step({
         entity: "menage",
@@ -322,9 +315,7 @@ function housingBlock() {
         variable: "statut_occupation_logement",
       }),
       {
-        isActive: (subject) =>
-          subject.statut_occupation_logement !== "proprietaire" &&
-          subject.statut_occupation_logement !== "primo_accedant",
+        isActive: status !== "proprietaire" && status !== "primo_accedant",
         steps: [
           new Step({
             entity: "menage",
@@ -333,9 +324,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) =>
-          !subject.statut_occupation_logement ||
-          subject.statut_occupation_logement.startsWith("locataire"),
+        isActive: !status || status.startsWith("locataire"),
         steps: [
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
@@ -346,16 +335,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) => {
-          const locataire =
-            !subject.statut_occupation_logement ||
-            subject.statut_occupation_logement.startsWith("locataire")
-          const proprietaire =
-            subject.statut_occupation_logement &&
-            (subject.statut_occupation_logement === "primo_accedant" ||
-              subject.statut_occupation_logement === "proprietaire")
-          return locataire || proprietaire
-        },
+        isActive: locataire || proprietaire,
         steps: [
           new ComplexStep({
             route: "menage/loyer",
@@ -369,8 +349,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) =>
-          subject.statut_occupation_logement == "loge_gratuitement",
+        isActive: status == "loge_gratuitement",
         steps: [
           new Step({ entity: "menage", variable: "participation_frais" }),
           new Step({
@@ -382,29 +361,22 @@ function housingBlock() {
       },
       new Step({ entity: "menage", variable: "depcom" }),
       {
-        isActive: (subject) =>
-          subject.depcom &&
-          subject.depcom.startsWith("75") &&
-          subject.statut_occupation_logement != "sans_domicile",
+        isActive:
+          depcom &&
+          depcom._codePostal &&
+          depcom._codePostal.startsWith("75") &&
+          status != "sans_domicile",
         steps: [new Step({ entity: "famille", variable: "parisien" })],
       },
       {
-        subject: (menage, situation) => situation.demandeur,
-        isActive: (demandeur, situation) => {
-          return (
-            demandeur.activite == "etudiant" &&
-            !demandeur.habite_chez_parents &&
-            (!situation.parents ||
-              ["decedes", "sans_autorite"].indexOf(
-                situation.parents._situation
-              ) < 0)
-          )
-        },
+        isActive:
+          activite == "etudiant" &&
+          !habiteChezParents &&
+          ["decedes", "sans_autorite"].indexOf(parentsSituation) < 0,
         steps: [
           new Step({ entity: "parents", variable: "_en_france" }),
           {
-            subject: (menage, situation) => situation.parents,
-            isActive: (parents) => !parents || parents._en_france,
+            isActive: getAnswer(answers.all, "parents", "_en_france"),
             steps: [
               new Step({
                 entity: "individu",
@@ -419,14 +391,10 @@ function housingBlock() {
   }
 }
 
-function resourceBlocks(situation) {
+function resourceBlocks(answers) {
   const individuResourceBlock = (individuId) => {
-    const individu =
-      situation[individuId] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === individuId)) ||
-      {}
     return {
+      isActive: true,
       steps: [
         new ComplexStep({
           route: `individu/${individuId}/ressources/types`,
@@ -436,7 +404,7 @@ function resourceBlocks(situation) {
           id: individuId,
         }),
       ].concat(
-        Ressource.getIndividuRessourceCategories(individu, situation).map(
+        Ressource.getIndividuRessourceCategories(answers, individuId).map(
           (category) =>
             new ComplexStep({
               route: `individu/${individuId}/ressources/montants/${category}`,
@@ -448,11 +416,14 @@ function resourceBlocks(situation) {
       ),
     }
   }
+  const enCouple = getAnswer(answers.all, "famille", "en_couple")
+
   return {
+    isActive: true,
     steps: [
       individuResourceBlock("demandeur"),
-      ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants && situation.enfants.length
+      ...(enCouple ? [individuResourceBlock("conjoint")] : []),
+      ...(answers.enfants && answers.enfants.length
         ? [
             new Step({
               entity: "individu",
@@ -462,10 +433,25 @@ function resourceBlocks(situation) {
           ]
         : []),
       {
-        steps: situation.enfants
-          ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
+        isActive: true,
+        steps: answers.enfants
+          ? answers.enfants.map((e) => {
+              const enfantId = `enfant_${e}`
+              const childWithRessources = getAnswer(
+                answers.all,
+                "individu",
+                "_hasRessources",
+                "enfants"
+              )
+              const hasRessources =
+                childWithRessources &&
+                childWithRessources.find((response) => {
+                  console.log(response.id, enfantId)
+                  return response.id === enfantId
+                })
+
+              return hasRessources && hasRessources.value
+                ? individuResourceBlock(enfantId)
                 : { steps: [] }
             })
           : [],
@@ -474,56 +460,52 @@ function resourceBlocks(situation) {
   }
 }
 
-function generateBlocks(situation) {
+function generateBlocks(answers, parameters) {
+  const enfant_a_charge = getAnswer(
+    answers.all,
+    "individu",
+    "enfant_a_charge",
+    "demandeur"
+  )
+
+  const activite = getAnswer(answers.all, "individu", "activite", "demandeur")
+  const alternant = getAnswer(answers.all, "individu", "alternant", "demandeur")
+
+  const parentsSituation = getAnswer(answers.all, "parents", "_situation")
+  const enCouple = getAnswer(answers.all, "famille", "en_couple")
   return [
-    { steps: [new Step({})] },
-    individuBlockFactory("demandeur"),
-    kidBlock(situation),
+    { isActive: true, steps: [new Step({})] },
+    individuBlockFactory(answers, parameters, "demandeur"),
+    kidBlock(answers),
     {
+      isActive: true,
       steps: [
         new Step({ entity: "famille", variable: "en_couple" }),
         {
-          isActive: (situation) =>
-            situation.enfants &&
-            situation.enfants.length &&
-            !situation.famille.en_couple,
+          isActive: answers.enfants && answers.enfants.length && !enCouple,
           steps: [
             new Step({ entity: "famille", variable: "rsa_isolement_recent" }),
           ],
         },
-        ...(situation.conjoint ? [individuBlockFactory("conjoint")] : []),
+        ...(enCouple
+          ? [individuBlockFactory(answers, parameters, "conjoint")]
+          : []),
       ],
     },
     {
-      subject: (situation) => situation.demandeur,
-      isActive: (subject, situation) => {
-        const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-        const enfant_a_charge =
-          subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
-
-        return (
-          enfant_a_charge ||
-          (subject.activite == "etudiant" &&
-            !subject.alternant &&
-            !(situation.enfants && situation.enfants.length))
-        )
-      },
+      isActive:
+        enfant_a_charge ||
+        (activite === "etudiant" &&
+          !alternant &&
+          !(answers.enfants && answers.enfants.length)),
       steps: [
         new Step({ entity: "parents", variable: "_situation" }),
         {
-          subject: (demandeur, situation) => situation.parents,
-          isActive: (parents, situation) => {
-            const parents_ok =
-              !parents ||
-              ["decedes", "sans_autorite"].indexOf(parents._situation) < 0
-
-            const demandeur_ok =
-              situation.demandeur.activite == "etudiant" &&
-              !situation.demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
-
-            return parents_ok && demandeur_ok
-          },
+          isActive:
+            ["decedes", "sans_autorite"].indexOf(parentsSituation) < 0 &&
+            activite == "etudiant" &&
+            !alternant &&
+            !(answers.enfants && answers.enfants.length),
           steps: [
             new Step({
               entity: "famille",
@@ -538,26 +520,16 @@ function generateBlocks(situation) {
         },
       ],
     },
-    housingBlock(situation),
-    resourceBlocks(situation),
+    housingBlock(answers),
+    resourceBlocks(answers),
     {
-      isActive: (situation) => {
-        const parents_ok =
-          !situation.parents ||
-          ["decedes", "sans_autorite"].indexOf(situation.parents._situation) < 0
-        return parents_ok
-      },
+      isActive: ["decedes", "sans_autorite"].indexOf(parentsSituation) < 0,
       steps: [
         {
-          isActive: (situation) => {
-            const demandeur = situation.demandeur
-            const demandeur_ok =
-              demandeur &&
-              demandeur.activite == "etudiant" &&
-              !demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
-            return demandeur_ok
-          },
+          isActive:
+            activite == "etudiant" &&
+            !alternant &&
+            !(answers.enfants && answers.enfants.length),
           steps: [
             new Step({
               entity: "individu",
@@ -567,19 +539,11 @@ function generateBlocks(situation) {
           ],
         },
         {
-          subject: (situation) => situation.demandeur,
-          isActive: (demandeur, situation) => {
-            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-            const enfant_a_charge =
-              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
-
-            const demandeur_ok_bcs =
-              demandeur &&
-              demandeur.activite == "etudiant" &&
-              !demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
-            return enfant_a_charge && !demandeur_ok_bcs
-          },
+          isActive:
+            enfant_a_charge &&
+            (activite !== "etudiant" ||
+              alternant ||
+              (answers.enfants && answers.enfants.length)),
           steps: [
             new Step({
               entity: "parents",
@@ -588,13 +552,7 @@ function generateBlocks(situation) {
           ],
         },
         {
-          subject: (situation) => situation.demandeur,
-          isActive: (demandeur, situation) => {
-            const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-            return (
-              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
-            )
-          },
+          isActive: enfant_a_charge,
           steps: [
             new Step({
               entity: "parents",
@@ -604,8 +562,9 @@ function generateBlocks(situation) {
         },
       ],
     },
-    extraBlock(),
+    extraBlock(answers),
     {
+      isActive: true,
       steps: [new Step({ entity: "resultats", chapter: "resultats" })],
     },
     new Step({ entity: "resultats" }),

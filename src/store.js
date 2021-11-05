@@ -465,7 +465,7 @@ const store = new Vuex.Store({
 
       answers.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/answers", store.state.answers)
+        .post("/api/answers", answers)
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))

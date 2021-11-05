@@ -1,5 +1,5 @@
 const init = () => {
-  cy.intercept("GET", "/api/situations/*/openfisca-response").as("results")
+  cy.intercept("GET", "/api/answers/*/openfisca-response").as("results")
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.visit("http://localhost:8080/init-ci")
 }

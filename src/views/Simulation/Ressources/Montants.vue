@@ -66,6 +66,7 @@ import RessourceProcessor from "@/mixins/RessourceProcessor"
 import { ressourceTypes } from "@/../lib/Resources"
 import Ressource from "@/../lib/ressource"
 import Individu from "@/../lib/Individu"
+import { getAnswer } from "../../../../lib/answers"
 
 export default {
   name: "ressources-montants",
@@ -118,10 +119,11 @@ export default {
         this.$store.getters.situation
       )
 
-      const answers = this.$store.getters.getAnswer(
-        this.$route.params.id,
+      const answers = getAnswer(
+        this.$store.state.answers.all,
         "individu",
-        this.$route.params.category
+        this.$route.params.category,
+        this.$route.params.id
       )
 
       return ressourceTypes.reduce((result, type) => {

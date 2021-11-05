@@ -36,6 +36,7 @@ import WarningMessage from "@/components/WarningMessage"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Warning from "@/lib/Warnings"
 import DepcomMixin from "@/mixins/DepcomMixin"
+import { getAnswer } from "../../../../lib/answers"
 
 export default {
   name: "SimulationMenageDepcom",
@@ -46,7 +47,7 @@ export default {
     EnSavoirPlus,
   },
   data: function () {
-    const answer = this.$store.getters.getAnswer("menage", "menage", "depcom")
+    const answer = getAnswer(this.$store.state.answers.all, "menage", "depcom")
     return {
       retrievingCommunes: false,
       codePostal: answer ? answer._codePostal : undefined,
@@ -76,7 +77,6 @@ export default {
       )
       if (communeMatches.length) {
         this.$store.dispatch("answer", {
-          id: "menage",
           entityName: "menage",
           fieldName: "depcom",
           value: {

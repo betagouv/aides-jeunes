@@ -19,8 +19,8 @@ const fill_habite_chez_parents = (situation) => {
   fillRadio("habite_chez_parents", situation)
 }
 
-const fill_depcom = (department) => {
-  cy.url().should("includes", "depcom")
+const fill_depcom = (department, name = "depcom") => {
+  cy.url().should("includes", name)
   cy.get("#cp").type(department)
   cy.wait("@communes")
   submit()

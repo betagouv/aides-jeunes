@@ -1,4 +1,5 @@
 import Individu from "@/../lib/Individu"
+import { getAnswer } from "../../lib/answers"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props
@@ -8,7 +9,12 @@ export const createIndividuMixin = (props) => {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const value = this.$store.getters.getAnswer(id, entityName, fieldName)
+      const value = getAnswer(
+        this.$store.state.answers.all,
+        entityName,
+        fieldName,
+        id
+      )
       return {
         error: false,
         fieldName,

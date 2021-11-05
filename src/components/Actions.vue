@@ -4,6 +4,7 @@
       {{ error }}
     </div>
     <div class="aj-actions">
+      <BackButton @click.native="goBack"></BackButton>
       <button
         class="button"
         type="submit"
@@ -11,8 +12,6 @@
         v-on:click="localOnSubmit($event)"
         >Suivant</button
       >
-      <slot></slot>
-      <BackButton @click.native="goBack"></BackButton>
     </div>
   </div>
 </template>

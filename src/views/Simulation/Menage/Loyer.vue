@@ -41,24 +41,20 @@ export default {
     Actions,
   },
   data: function () {
-    return Logement.getLoyerData(this.$store.getters.getAnswer)
+    return Logement.getLoyerData(this.$store.state.answers.all)
   },
   methods: {
     onSubmit: function () {
       this.$store.dispatch("answer", {
-        id: "menage",
         entityName: "menage",
         fieldName: "loyer",
-        value: this.loyerQuestion.selectedValue || 0,
+        value: {
+          loyer: this.loyerQuestion.selectedValue || 0,
+          charges_locatives: this.captureCharges
+            ? this.chargesQuestion.selectedValue || 0
+            : undefined,
+        },
       })
-      if (this.captureCharges) {
-        this.$store.dispatch("answer", {
-          id: "menage",
-          entityName: "menage",
-          fieldName: "charges_locatives",
-          value: this.chargesQuestion.selectedValue || 0,
-        })
-      }
       this.$push()
     },
   },

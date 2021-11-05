@@ -17,5 +17,5 @@ type: bool
 computesLocally: true
 regions:
   - "76"
-statuts:
-  - lyceen
+profils:
+  - type: lyceen

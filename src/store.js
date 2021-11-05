@@ -8,14 +8,13 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import { generateSituation } from "../lib/situations"
-
-import { computeAides, datesGenerator } from "../backend/lib/mes-aides"
-import { categoriesRnc, patrimoineTypes } from "../lib/constants/resources"
+import { computeAides, datesGenerator } from "../lib/Benefits/Compute"
+import { categoriesRnc, patrimoineTypes } from "../lib/Resources"
 import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
+import { generateSituation } from "../lib/situations"
 
 function defaultCalculs() {
   return {

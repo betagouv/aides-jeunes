@@ -3,7 +3,7 @@ var mapping = require("./mapping")
 var forEach = require("lodash/forEach")
 var assign = require("lodash/assign")
 var pick = require("lodash/pick")
-var benefits = require("../../../app/js/constants/benefits/back")
+var benefits = require("../../../data/js/benefits/back")
 
 function toStringOf(obj) {
   return obj.toString()
@@ -51,7 +51,7 @@ var EXTENSION_VARIABLES = {
 }
 
 benefits.forEach((benefit, benefitId, institution) => {
-  if (institution.repository) {
+  if (!benefit.computesLocally && institution.repository) {
     const repository = "openfisca-" + institution.repository
     const entity = benefit.entity
 

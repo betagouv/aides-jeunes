@@ -259,7 +259,7 @@ const router = new Router({
           path: "resultat/inattendu/:id",
           component: () =>
             import(
-              /* webpackChunkName: "resultat-inattendu" */ "./views/Foyer/ResultatInattendu.vue"
+              /* webpackChunkName: "resultat-inattendu" */ "./views/Simulation/ResultatInattendu.vue"
             ),
           meta: {
             title: "Resultats Attendus ",
@@ -270,7 +270,7 @@ const router = new Router({
           path: "ressources/fiscales",
           component: () =>
             import(
-              /* webpackChunkName: "ressources-fiscales" */ "./views/Foyer/Ressources/Fiscales.vue"
+              /* webpackChunkName: "ressources-fiscales" */ "./views/Simulation/Ressources/Fiscales.vue"
             ),
           meta: {
             title: function () {
@@ -283,7 +283,7 @@ const router = new Router({
           path: "ressources/patrimoine",
           component: () =>
             import(
-              /* webpackChunkName: "ressources-patrimoine" */ "./views/Foyer/Ressources/Patrimoine.vue"
+              /* webpackChunkName: "ressources-patrimoine" */ "./views/Simulation/Ressources/Patrimoine.vue"
             ),
           meta: {
             title: "Votre patrimoine",
@@ -303,24 +303,6 @@ const router = new Router({
             import(
               /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
             ),
-        },
-      ],
-    },
-    {
-      path: "/foyer",
-      name: "foyer",
-      component: () =>
-        import(/* webpackChunkName: "demandeur" */ "./views/Foyer.vue"),
-      children: [
-        {
-          path: "recapitulatif",
-          component: () =>
-            import(
-              /* webpackChunkName: "recapitulatif" */ "./views/Foyer/Recapitulatif.vue"
-            ),
-          meta: {
-            title: "Vos informations",
-          },
         },
       ],
     },
@@ -360,14 +342,6 @@ const router = new Router({
       name: "redirection",
       component: () =>
         import(/* webpackChunkName: "redirection" */ "./views/Redirection.vue"),
-    },
-    {
-      path: "/start",
-      name: "start",
-      beforeEnter: (to, from, next) => {
-        store.dispatch("clear")
-        next({ path: "/foyer/demandeur", replace: true })
-      },
     },
     {
       path: "/stats",

@@ -10,7 +10,7 @@ const Scolarite = {
     },
     {
       value: "enseignement_superieur",
-      label: "Dans un établissement de l'enseignement supérieur",
+      label: "Dans l'enseignement supérieur",
     },
     {
       value: "grande_ecole_du_numerique",

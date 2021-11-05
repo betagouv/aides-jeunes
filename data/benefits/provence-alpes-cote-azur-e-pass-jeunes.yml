@@ -13,8 +13,8 @@ regions:
   - "93"
 age_min: 15
 age_max: 25
-statuts:
-  - lyceen
-  - etudiant
-  - service_civique
-  - apprenti
+profils:
+  - type: lyceen
+  - type: etudiant
+  - type: service_civique
+  - type: apprenti

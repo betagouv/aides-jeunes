@@ -1,4 +1,4 @@
-import Individu from "@/lib/Individu"
+import Individu from "@/../lib/Individu"
 import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
 import Scolarite from "@/lib/Scolarite"
 
@@ -107,6 +107,16 @@ const STEPS = {
           value: "terminale",
           label: "Terminale",
           only: "lycee",
+        },
+        {
+          label: "BTS",
+          value: "bts_1",
+          only: "enseignement_superieur",
+        },
+        {
+          label: "CPGE",
+          value: "cpge_1",
+          only: "enseignement_superieur",
         },
         {
           label: "Licence - 1ère année",

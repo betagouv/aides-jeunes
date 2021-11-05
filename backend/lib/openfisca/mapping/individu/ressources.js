@@ -12,7 +12,10 @@ function salaireNetToBrut(value) {
 function salaireNetToImposable(value, period, individu) {
   const result =
     value + (TAUX_CSG_CRDS * ASSIETTE_COTIS * value) / RATIO_NET_BRUT
-  if (individu.apprenti) {
+  if (individu.alternant) {
+    // Dirty dirty ! should be done in open fisca
+    // Big approximation because we don't know which 12 periods to take in account
+    // Moreover if the individu is an "apprenti" it should be annualy deducted
     const date = new Date(period)
     const hours = getParameter(
       "marche_travail.salaire_minimum.nb_heure_travail_mensuel",

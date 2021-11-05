@@ -70,8 +70,8 @@
 import sum from "lodash/sum"
 import some from "lodash/some"
 import isNaN from "lodash/isNaN"
-import Individu from "@/lib/Individu"
-import { categoriesRnc } from "../../../../lib/constants/resources"
+import Individu from "@/../lib/Individu"
+import { categoriesRnc } from "@/../lib/Resources"
 import Actions from "@/components/Actions"
 
 function getDefaultValue(months, individu, rnc) {

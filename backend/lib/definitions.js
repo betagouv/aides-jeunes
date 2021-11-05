@@ -1,6 +1,6 @@
 var concat = require("lodash/concat")
 
-var ressources = require("../../lib/constants/resources")
+var ressources = require("../../lib/Resources")
 
 var famille = {
   bourse_lycee: Boolean,
@@ -52,6 +52,8 @@ var individu = Object.assign(
         "seconde",
         "premiere",
         "terminale",
+        "bts_1",
+        "cpge_1",
         "licence_1",
         "licence_2",
         "licence_3",

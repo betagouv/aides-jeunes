@@ -52,7 +52,7 @@
 
 <script>
 import Etablissement from "@/components/Etablissement"
-import Individu from "@/lib/Individu.js"
+import Individu from "@/../lib/Individu.js"
 import ResultatsMixin from "@/mixins/Resultats"
 
 const list = [

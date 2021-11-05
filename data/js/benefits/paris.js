@@ -1,7 +1,7 @@
 const {
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
-} = require("../../../../lib/benefits")
+} = require("../../../lib/Benefits/Details")
 
 module.exports = {
   imgSrc: "logo_paris.png",
@@ -23,6 +23,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-familles",
       form: "https://cdn.paris.fr/paris/2019/07/24/736d309a8cdbf436475f7514f443a08b.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_forfait_familles: {
       periodicite: PERIODICITE_ANNUELLE,
@@ -34,6 +35,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-forfait-familles",
       form: "https://cdn.paris.fr/paris/2019/07/24/8fa764ddcfa7659c447e2b383b8cb986.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_logement_psol: {
       label: "Paris Solidarité",
@@ -49,6 +51,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-solidarite",
       form: "https://cdn.paris.fr/paris/2019/07/24/44a441e89f01b513b678ecde6e088ce4.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_logement: {
       label: "Paris Logement",
@@ -64,6 +67,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/aides-au-logement-3827/#paris-logement",
       form: "https://cdn.paris.fr/paris/2020/01/13/9951415db06e3d73e54625d5972c7229.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_logement_aspeh: {
       label: "Allocation de Soutien aux Parents d’Enfants Handicapés",
@@ -79,6 +83,7 @@ module.exports = {
       form: "https://cdn.paris.fr/paris/2019/07/24/3c8e229bd25b112eaf9227769873a230.pdf",
       isBaseRessourcesYearMoins2: false,
       prefix: "l’",
+      entity: "familles",
     },
     paris_logement_plfm: {
       label: "Paris Logement Familles Monoparentales",
@@ -94,6 +99,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-logement-famille-monoparentale",
       form: "https://cdn.paris.fr/paris/2019/07/24/75686b9338b397db4b05069015762d8b.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_energie_familles: {
       periodicite: PERIODICITE_ANNUELLE,
@@ -105,6 +111,7 @@ module.exports = {
       link: "https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-energie-familles",
       form: "https://cdn.paris.fr/paris/2019/07/24/ef5b3f1bcd3a62ec75576748e88a0dd7.pdf",
       isBaseRessourcesYearMoins2: false,
+      entity: "familles",
     },
     paris_complement_sante: {
       periodicite: PERIODICITE_ANNUELLE,
@@ -121,6 +128,7 @@ module.exports = {
       form: "https://cdn.paris.fr/paris/2019/07/24/c3175c019a067ac0b1bf2714742f0bbc.pdf",
       isBaseRessourcesYearMoins2: false,
       prefix: "le",
+      entity: "familles",
     },
     paris_pass_seniors: {
       label: "Pass Paris Seniors",

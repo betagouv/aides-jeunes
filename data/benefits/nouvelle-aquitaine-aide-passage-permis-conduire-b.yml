@@ -22,8 +22,8 @@ regions:
   - "75"
 age_min: 17
 age_max: 25
-statuts:
-  - etudiant
-  - service_civique
-  - chomeur
-  - inactif
+profils:
+  - type: etudiant
+  - type: service_civique
+  - type: chomeur
+  - type: inactif

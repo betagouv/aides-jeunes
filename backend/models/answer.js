@@ -1,8 +1,8 @@
 var mongoose = require("mongoose")
 var utils = require("../lib/utils")
 var openfisca = require("../lib/openfisca")
-var mesAides = require("../lib/mes-aides")
-var benefits = require("../../app/js/constants/benefits/back")
+var benefits = require("../../data/js/benefits/back")
+var mesAides = require("../../lib/Benefits/Compute")
 const { generateSituation } = require("../../lib/situations")
 
 var computeAides = mesAides.computeAides.bind(benefits)

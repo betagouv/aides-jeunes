@@ -100,7 +100,6 @@ function extractExperimentations(institutions) {
 function setDefaults(benefit, top) {
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
-  benefit.entity = benefit.entity || "familles"
 }
 
 var topLevels = {

@@ -5,7 +5,7 @@ html {
       flex-direction: column;
       background: white;
       padding: 2.5rem 2rem;
-      align-items: start;
+      align-items: flex-start;
       border-right: 0.0625rem solid #e6e6e6;
       width: 32%;
 
@@ -19,7 +19,7 @@ html {
       display: flex;
       flex-direction: column;
       padding: 2.5rem 2rem;
-      align-items: start;
+      align-items: flex-start;
 
       .aj-sommaire-content {
         width: 100%;

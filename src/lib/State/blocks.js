@@ -1,7 +1,7 @@
-const Individu = require("@/lib/Individu")
-const { ACTIVITES_ACTIF } = require("../../../lib/Activite")
-const Ressource = require("../../../lib/ressource")
-const { datesGenerator } = require("../../../backend/lib/mes-aides")
+const Individu = require("@/../lib/Individu")
+const { ACTIVITES_ACTIF } = require("@/../lib/Activite")
+const Ressource = require("@/../lib/ressource")
+const { datesGenerator } = require("../../../lib/Benefits/Compute")
 const { Step, ComplexStep } = require("./steps")
 
 function individuBlockFactory(id) {
@@ -43,7 +43,9 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
-                    subject.scolarite == "enseignement_superieur",
+                    ["college", "lycee", "enseignement_superieur"].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("statuts_etablissement_scolaire")],
                 },
               ],

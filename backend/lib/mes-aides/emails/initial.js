@@ -7,7 +7,7 @@ const assign = require("lodash/assign")
 const mustache = require("consolidate").mustache
 const config = require("../../../config")
 const openfiscaController = require("../../openfisca/parameters")
-const { formatDroitEstime } = require("../../../../lib/benefits")
+const { formatDroitEstime } = require("../../../../lib/Benefits/Details")
 const { mjml } = require(".")
 
 function basicBenefitText(droit, parameters) {

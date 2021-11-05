@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-var Promise = require("bluebird")
-var omit = require("lodash/omit")
-var fs = Promise.promisifyAll(require("fs"))
-var mongodb = require("./mongodb")
+const Promise = require("bluebird")
+const omit = require("lodash/omit")
+const fs = Promise.promisifyAll(require("fs"))
+const mongodb = require("./mongodb")
 
 mongodb
   .connect()
@@ -14,7 +14,7 @@ mongodb
           if (err) {
             return reject(err)
           }
-          var rows = []
+          const rows = []
           items.forEach((i) => {
             const b = {
               situation: i.situation,
@@ -32,7 +32,7 @@ mongodb
     return p
   })
   .then((r) => {
-    var csv = r.map((i) =>
+    const csv = r.map((i) =>
       Object.values(i)
         .map((s) => `"${s}"`)
         .join(";")

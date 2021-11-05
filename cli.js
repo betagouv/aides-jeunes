@@ -1,11 +1,11 @@
-var {
+const {
   findCommuneByInseeCode,
   computeDistanceCommunes,
 } = require("./backend/lib/mes-aides/distance.js")
-var origin = findCommuneByInseeCode(process.argv[2])
-var destination = findCommuneByInseeCode(process.argv[3])
+const origin = findCommuneByInseeCode(process.argv[2])
+const destination = findCommuneByInseeCode(process.argv[3])
 
 console.log(origin)
 console.log(destination)
-var distance = computeDistanceCommunes(origin, destination)
+const distance = computeDistanceCommunes(origin, destination)
 console.log(distance)

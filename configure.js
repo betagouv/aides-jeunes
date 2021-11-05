@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var bodyParser = require("body-parser")
-var morgan = require("morgan")
-var utils = require("./backend/lib/utils")
-var Sentry = require("@sentry/node")
+const bodyParser = require("body-parser")
+const morgan = require("morgan")
+const utils = require("./backend/lib/utils")
+const Sentry = require("@sentry/node")
 
 module.exports = function (devServer) {
   Sentry.init({
@@ -38,9 +38,9 @@ module.exports = function (devServer) {
   devServer.app.set("trust proxy", true)
 
   devServer.app.route("/foyer/resultat").post(function (req, res) {
-    var html = Buffer.from(req.body.base64, "base64").toString("utf-8")
+    const html = Buffer.from(req.body.base64, "base64").toString("utf-8")
 
-    var pdfOptions = {
+    const pdfOptions = {
       format: "A4",
       margin: {
         top: "0.5cm",
@@ -50,7 +50,7 @@ module.exports = function (devServer) {
       },
     }
 
-    var callback = function (pdf) {
+    const callback = function (pdf) {
       res.writeHead(200, {
         "Content-Type": "application/pdf",
         "Content-Disposition":

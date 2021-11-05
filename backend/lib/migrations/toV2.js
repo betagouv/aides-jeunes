@@ -1,9 +1,9 @@
 /*
  * Rename echelon_bourse in bourse_criteres_sociaux_echelon
  */
-var _ = require("lodash")
+const _ = require("lodash")
 
-var VERSION = 2
+const VERSION = 2
 
 function updatePerson(p) {
   if (!p) {

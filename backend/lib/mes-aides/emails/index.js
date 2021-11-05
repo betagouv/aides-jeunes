@@ -1,6 +1,6 @@
-var fs = require("fs")
-var mjml = require("mjml")
-var path = require("path")
+const fs = require("fs")
+const mjml = require("mjml")
+const path = require("path")
 
 function toBase64(file) {
   return fs.readFileSync(file, "base64")

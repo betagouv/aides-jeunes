@@ -1,14 +1,14 @@
-var concat = require("lodash/concat")
-var isNumber = require("lodash/isNumber")
-var some = require("lodash/some")
+const concat = require("lodash/concat")
+const isNumber = require("lodash/isNumber")
+const some = require("lodash/some")
 
-var moment = require("moment")
+const moment = require("moment")
 
-var common = require("../common")
-var individuRessources = require("./ressources")
-var ressources = require("../../../../../lib/Resources")
+const common = require("../common")
+const individuRessources = require("./ressources")
+const ressources = require("../../../../../lib/Resources")
 
-var ressourcesToDuplicate = concat(
+const ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),
   ressources.ressourceTypes.map(function (ressourceType) {
     return ressourceType.id
@@ -16,15 +16,15 @@ var ressourcesToDuplicate = concat(
 )
 
 function proxyWithCurrentResources(individu, dateDeValeur) {
-  var periods = common.getPeriods(dateDeValeur)
+  const periods = common.getPeriods(dateDeValeur)
   ressourcesToDuplicate.forEach(function (ressourceTypeName) {
-    var result = individu[ressourceTypeName]
+    const result = individu[ressourceTypeName]
     if (!result) return
     // Variables can be defined on a yearly or a monthly basis
     if (isNumber(result[periods.lastYear])) {
       result[periods.fiscalYear] = result[periods.lastYear]
     } else {
-      var sumOverLast12Months = periods.last12Months.reduce(function (
+      const sumOverLast12Months = periods.last12Months.reduce(function (
         sum,
         periodObject
       ) {
@@ -32,7 +32,7 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
       },
       0)
       if (sumOverLast12Months) {
-        var months = [].concat(
+        const months = [].concat(
           periods.fiscalYear12Months,
           periods.previousFiscalYear12Months
         )
@@ -45,9 +45,9 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
 }
 
 function extendFiscalDataBackward(individu, dateDeValeur) {
-  var periods = common.getPeriods(dateDeValeur)
-  var fy = periods.fiscalYear
-  var pfy = periods.previousFiscalYear
+  const periods = common.getPeriods(dateDeValeur)
+  const fy = periods.fiscalYear
+  const pfy = periods.previousFiscalYear
 
   ressources.categoriesRnc.forEach(function (ressource) {
     if (!individu[ressource.id]) {
@@ -61,10 +61,10 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
     if (ressource.yearly) {
       individu[ressource.id][pfy] = individu[ressource.id][fy]
     } else {
-      var result = individu[ressource.id]
-      var monthlyValue = result[fy] / 12
+      const result = individu[ressource.id]
+      const monthlyValue = result[fy] / 12
 
-      var months = [].concat(
+      const months = [].concat(
         periods.fiscalYear12Months,
         periods.previousFiscalYear12Months
       )
@@ -78,13 +78,13 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
 }
 
 function ressourcesYearMoins2Captured(situation) {
-  var yearMoins2 = moment(situation.dateDeValeur)
+  const yearMoins2 = moment(situation.dateDeValeur)
     .subtract(2, "years")
     .format("YYYY")
-  var januaryYearMoins2 = yearMoins2 + "-01"
-  var hasRfr =
+  const januaryYearMoins2 = yearMoins2 + "-01"
+  const hasRfr =
     situation.foyer_fiscal && some(situation.foyer_fiscal.rfr, isNumber)
-  var hasYm2Ressources = common
+  const hasYm2Ressources = common
     .getIndividusSortedParentsFirst(situation)
     .some(function (individu) {
       return some(ressources.categoriesRnc, function (categorieRnc) {

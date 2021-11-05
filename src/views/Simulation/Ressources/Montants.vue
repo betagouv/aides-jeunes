@@ -64,7 +64,7 @@ import RessourceMontants from "@/components/Ressource/Montants"
 
 import RessourceProcessor from "@/mixins/RessourceProcessor"
 import { ressourceTypes } from "@/../lib/Resources"
-import Ressource from "@/lib/Ressource"
+import Ressource from "@/../lib/ressource"
 import Individu from "@/../lib/Individu"
 
 export default {

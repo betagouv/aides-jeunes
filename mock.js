@@ -25,7 +25,7 @@ function sendToOpenfisca(situation, callback) {
     .catch(callback)
 }
 
-var ID = function () {
+const ID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
@@ -37,17 +37,17 @@ function mock(app) {
 
   let cache = {}
   app.route("/api/outils/communes/:codePostal").get(outils.communes)
-  app.post("/api/situations", function (req, res) {
+  app.post("/api/answers", function (req, res) {
     const data = Object.assign({ _id: ID() }, req.body)
     cache[data._id] = data
     res.send(data)
   })
 
-  app.get("/api/situations/:id", function (req, res) {
+  app.get("/api/answers/:id", function (req, res) {
     res.send(cache[req.params.id])
   })
 
-  app.get("/api/situations/:id/openfisca-response", function (req, res, next) {
+  app.get("/api/answers/:id/openfisca-response", function (req, res, next) {
     sendToOpenfisca(cache[req.params.id], function (err, result) {
       if (err) {
         return next(err)
@@ -57,7 +57,7 @@ function mock(app) {
     })
   })
 
-  app.get("/api/situations/:id/openfisca-request", function (req, res) {
+  app.get("/api/answers/:id/openfisca-request", function (req, res) {
     res.send(buildOpenFiscaRequest(cache[req.params.id]))
   })
 

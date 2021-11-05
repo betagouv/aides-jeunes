@@ -24,17 +24,17 @@ function basicBenefitText(droit, parameters) {
   return `${droitEstime.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }
 
-var textTemplate = fs.readFileSync(
+const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/initial.txt"),
   "utf8"
 )
-var mjmlTemplate = fs.readFileSync(
+const mjmlTemplate = fs.readFileSync(
   path.join(__dirname, "templates/initial.mjml"),
   "utf8"
 )
 
 function renderAsText(followup, benefits, parameters) {
-  var data = {
+  const data = {
     benefitTexts: benefits.map(basicBenefitText, parameters),
     returnURL: `${config.baseURL}${followup.returnPath}`,
   }
@@ -51,8 +51,8 @@ function renderAsHtml(followup, benefits, parameters) {
       value = `${droitEstime.value} ${droitEstime.legend}`
     }
 
-    var ctaLink = ""
-    var ctaLabel = ""
+    let ctaLink = ""
+    let ctaLabel = ""
     if (droit.teleservice) {
       ctaLink = droit.teleservice
       ctaLabel = "Faire une demande en ligne"
@@ -91,15 +91,15 @@ function renderAsHtml(followup, benefits, parameters) {
 }
 
 async function render(followup) {
-  var populated = followup.populated("situation")
-    ? await followup
-    : followup.populate("situation").execPopulate()
+  const populated = await (followup.populated("answers")
+    ? Promise.resolve(followup)
+    : followup.populate("answers").execPopulate())
 
   const parameters = await openfiscaController.getParameters(
-    populated.situation.dateDeValeur
+    populated.answers.dateDeValeur
   )
 
-  const situationResults = await populated.situation.compute()
+  const situationResults = await populated.answers.compute()
   const droitsEligibles = situationResults.droitsEligibles
   followup.benefits = droitsEligibles.map((benefit) => ({
     id: benefit.id,
@@ -113,7 +113,7 @@ async function render(followup) {
     renderAsHtml(followup, droitsEligibles, parameters),
   ]).then(function (values) {
     return {
-      subject: `[${followup.situation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+      subject: `[${followup.answers._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
       text: values[0],
       html: values[1].html,
       attachments: values[1].attachments,

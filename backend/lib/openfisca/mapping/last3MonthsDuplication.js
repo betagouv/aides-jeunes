@@ -1,10 +1,10 @@
-var forEach = require("lodash/forEach")
-var uniq = require("lodash/uniq")
+const forEach = require("lodash/forEach")
+const uniq = require("lodash/uniq")
 
-var common = require("./common")
+const common = require("./common")
 
-var { additionalProps } = require("./individu")
-var definitions = require("../../definitions")
+const { additionalProps } = require("./individu")
+const definitions = require("../../definitions")
 
 function determinePropsToReplicate(entityTypeName, entityDefinition) {
   let keyList = Object.keys(entityDefinition)
@@ -32,27 +32,27 @@ const types = [
   "individu",
   "menage",
 ]
-var forDuplication = types.reduce((accum, type) => {
-  var plural = type.type ? type.plural : type + "s"
+const forDuplication = types.reduce((accum, type) => {
+  const plural = type.type ? type.plural : type + "s"
   type = type.type ? type.type : type
   accum[plural] = determinePropsToReplicate(type, definitions[type])
   return accum
 }, {})
 
 function copyTo3PreviousMonths(testCase, dateDeValeur) {
-  var periodKeys = [
+  const periodKeys = [
     "thisMonth",
     "oneMonthAgo",
     "twoMonthsAgo",
     "threeMonthsAgo",
   ]
-  var periods = common.getPeriods(dateDeValeur)
+  const periods = common.getPeriods(dateDeValeur)
 
   Object.keys(forDuplication).forEach(function (entityName) {
     forDuplication[entityName].forEach(function (entityPropertyName) {
       forEach(testCase[entityName], function (entity) {
-        var value = entity[entityPropertyName]
-        var result = {}
+        const value = entity[entityPropertyName]
+        const result = {}
         if (value !== undefined && typeof value !== "object") {
           periodKeys.forEach(function (periodKey) {
             result[periods[periodKey]] = value

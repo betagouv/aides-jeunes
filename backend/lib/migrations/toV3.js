@@ -1,9 +1,9 @@
 /*
  * Rename echelon_bourse in bourse_criteres_sociaux_echelon
  */
-var _ = require("lodash")
+const _ = require("lodash")
 
-var VERSION = 3
+const VERSION = 3
 
 const renames = {
   aide_mobilite_master_sortie_region_academique: "sortie_region_academique",
@@ -32,7 +32,7 @@ function updatePerson(p) {
     bnc: "rpns_auto_entrepreneur_CA_bnc",
   }
   if (p.tns_auto_entrepreneur_chiffre_affaires) {
-    var dest_field = AE_map[p.tns_auto_entrepreneur_type_activite]
+    const dest_field = AE_map[p.tns_auto_entrepreneur_type_activite]
     if (dest_field) {
       p[dest_field] = p.tns_auto_entrepreneur_chiffre_affaires
     }

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
-var Promise = require("bluebird")
-var crypto = Promise.promisifyAll(require("crypto"))
-var puppeteer = require("puppeteer")
+const Promise = require("bluebird")
+const crypto = Promise.promisifyAll(require("crypto"))
+const puppeteer = require("puppeteer")
 
 exports.generateToken = function (lengthInBytes) {
   if (!lengthInBytes) {

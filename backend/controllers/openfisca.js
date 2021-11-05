@@ -1,3 +1,3 @@
-var openfiscaParameters = require("../lib/openfisca/parameters")
+const openfiscaParameters = require("../lib/openfisca/parameters")
 
 module.exports.getParameters = openfiscaParameters.getParameters

@@ -10,10 +10,11 @@ import some from "lodash/some"
 
 import { computeAides, datesGenerator } from "../lib/Benefits/Compute"
 import { categoriesRnc, patrimoineTypes } from "../lib/Resources"
-import { generateAllSteps, generateSituation } from "./lib/State/generator"
+import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
+import { generateSituation } from "../lib/situations"
 
 function defaultCalculs() {
   return {
@@ -206,9 +207,7 @@ const store = new Vuex.Store({
       return function (representation, situationId) {
         return axios
           .get(
-            `api/situations/${
-              situationId || state.situationId
-            }/${representation}`
+            `api/answers/${situationId || state.situationId}/${representation}`
           )
           .then((response) => response.data)
       }
@@ -232,7 +231,7 @@ const store = new Vuex.Store({
       return answer ? answer.value : undefined
     },
     situation: (state) => {
-      return generateSituation(state.answers, state.dates)
+      return generateSituation(state.answers)
     },
   },
   mutations: {
@@ -302,7 +301,7 @@ const store = new Vuex.Store({
       const currentLastIndex = state.answers.current.findIndex(
         (answer) =>
           answer.entityName === "individu" &&
-          answer.id === "demandeur" &&
+          answer.id === "nombre_enfants" &&
           answer.fieldName === "nombre_enfants"
       )
 
@@ -323,7 +322,7 @@ const store = new Vuex.Store({
       const currentLastIndex = state.answers.current.findIndex(
         (answer) =>
           answer.entityName === "individu" &&
-          answer.id === "demandeur" &&
+          answer.id === "nombre_enfants" &&
           answer.fieldName === "nombre_enfants"
       )
 
@@ -458,14 +457,14 @@ const store = new Vuex.Store({
       commit("setDirty")
     },
     save: function (store) {
-      let situation = { ...store.getters.situation }
+      let answers = { ...store.state.answers, _id: undefined }
       if (store.situationId) {
-        situation.modifiedFrom = store.state.situationId
+        answers.modifiedFrom = store.state.situationId
       }
 
-      situation.abtesting = ABTestingService.getEnvironment()
+      answers.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/situations", { answers: store.state.answers, situation })
+        .post("/api/answers", answers)
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))
@@ -473,7 +472,7 @@ const store = new Vuex.Store({
     fetch: function (state, id) {
       state.commit("fetching")
       return axios
-        .get(`/api/situations/${id}`)
+        .get(`/api/answers/${id}`)
         .then((result) => result.data)
         .then((payload) => state.commit("reset", payload))
         .then(() => store.commit("setId", id))
@@ -488,9 +487,7 @@ const store = new Vuex.Store({
     compute: function (store, showPrivate) {
       store.commit("startComputation")
       return axios
-        .get(
-          "api/situations/" + store.state.situationId + "/openfisca-response"
-        )
+        .get("api/answers/" + store.state.situationId + "/openfisca-response")
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })

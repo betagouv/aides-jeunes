@@ -1,5 +1,5 @@
-var axios = require("axios")
-var config = require("../../config")
+const axios = require("axios")
+const config = require("../../config")
 
 exports.get = function (item, callback) {
   axios

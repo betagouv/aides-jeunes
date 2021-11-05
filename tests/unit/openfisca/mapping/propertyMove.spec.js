@@ -1,10 +1,10 @@
-var subject = require("../../../../backend/lib/openfisca/mapping/propertyMove")
-var expect = require("expect")
+const subject = require("../../../../backend/lib/openfisca/mapping/propertyMove")
+const expect = require("expect")
 
 describe("openfisca mapping property move", function () {
   describe("movePropertyValuesToGroupEntity", function () {
     describe("situation with data", function () {
-      var testCase = {
+      const testCase = {
         individus: {
           bob: {
             aide_logement: {
@@ -33,7 +33,7 @@ describe("openfisca mapping property move", function () {
       })
     })
     describe("situation without data", function () {
-      var testCase = {
+      const testCase = {
         individus: {},
         familles: { _: {} },
         foyers_fiscaux: {},

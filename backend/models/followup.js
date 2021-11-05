@@ -1,14 +1,14 @@
-var mongoose = require("mongoose")
-var find = require("lodash/find")
-var validator = require("validator")
+const mongoose = require("mongoose")
+const find = require("lodash/find")
+const validator = require("validator")
 
-var { SendSmtpEmail, sendEmail } = require("../lib/send-in-blue")
-var utils = require("../lib/utils")
+const { SendSmtpEmail, sendEmail } = require("../lib/send-in-blue")
+const utils = require("../lib/utils")
 
-var renderInitial = require("../lib/mes-aides/emails/initial").render
-var renderSurvey = require("../lib/mes-aides/emails/survey").render
+const renderInitial = require("../lib/mes-aides/emails/initial").render
+const renderSurvey = require("../lib/mes-aides/emails/survey").render
 
-var SurveySchema = new mongoose.Schema(
+const SurveySchema = new mongoose.Schema(
   {
     _id: { type: String },
     createdAt: { type: Date, default: Date.now },
@@ -31,11 +31,11 @@ SurveySchema.virtual("returnPath").get(function () {
   return "/suivi?token=" + this._id
 })
 
-var FollowupSchema = new mongoose.Schema(
+const FollowupSchema = new mongoose.Schema(
   {
-    situation: {
+    answers: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Situation",
+      ref: "Answer",
     },
     email: {
       type: String,
@@ -76,10 +76,10 @@ FollowupSchema.methods.renderInitialEmail = function () {
 }
 
 FollowupSchema.methods.sendInitialEmail = function () {
-  var followup = this
+  const followup = this
   return this.renderInitialEmail()
     .then((render) => {
-      var email = new SendSmtpEmail()
+      const email = new SendSmtpEmail()
       email.to = [{ email: followup.email }]
       email.subject = render.subject
       email.textContent = render.text
@@ -102,7 +102,7 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 }
 
 FollowupSchema.methods.createSurvey = function (type) {
-  var followup = this
+  const followup = this
   return utils.generateToken().then(function (token) {
     return followup.surveys.create({
       _id: token,
@@ -112,11 +112,11 @@ FollowupSchema.methods.createSurvey = function (type) {
 }
 
 FollowupSchema.methods.sendSurvey = function () {
-  var followup = this
+  const followup = this
   return this.createSurvey("initial").then((survey) => {
     return this.renderSurveyEmail(survey)
       .then((render) => {
-        var email = new SendSmtpEmail()
+        const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]
         email.subject = render.subject
         email.textContent = render.text
@@ -137,7 +137,7 @@ FollowupSchema.methods.sendSurvey = function () {
         return survey
       })
       .then((survey) => {
-        var surveys = Array.from(followup.surveys)
+        const surveys = Array.from(followup.surveys)
         surveys.push(survey)
 
         followup.surveys = surveys
@@ -147,9 +147,9 @@ FollowupSchema.methods.sendSurvey = function () {
 }
 
 FollowupSchema.methods.mock = function () {
-  var followup = this
+  const followup = this
   return this.createSurvey("initial").then((survey) => {
-    var surveys = Array.from(followup.surveys)
+    const surveys = Array.from(followup.surveys)
     surveys.push(survey)
     followup.surveys = surveys
     return followup.save()
@@ -157,8 +157,8 @@ FollowupSchema.methods.mock = function () {
 }
 
 FollowupSchema.methods.updateSurvey = function (id, answers) {
-  var surveys = Array.from(this.surveys)
-  var survey = find(surveys, function (s) {
+  const surveys = Array.from(this.surveys)
+  const survey = find(surveys, function (s) {
     return s._id === id
   })
 
@@ -171,7 +171,7 @@ FollowupSchema.pre("save", function (next) {
   if (!this.isNew) {
     return next()
   }
-  var followup = this
+  const followup = this
   utils
     .generateToken()
     .then(function (token) {

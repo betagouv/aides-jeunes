@@ -1,12 +1,12 @@
-var expect = require("expect")
-var { values } = require("lodash")
-var Promise = require("bluebird")
-var fs = Promise.promisifyAll(require("fs"))
-var subject = require("../../../backend/lib/openfisca/test")
-var resources = require("../../../lib/Resources")
-var tmp = require("tmp")
+const expect = require("expect")
+const { values } = require("lodash")
+const Promise = require("bluebird")
+const fs = Promise.promisifyAll(require("fs"))
+const subject = require("../../../backend/lib/openfisca/test")
+const resources = require("../../../lib/Resources")
+const tmp = require("tmp")
 
-var details = {
+const details = {
   name: "Ideal name",
   description: "Thorough description",
   output: {
@@ -15,8 +15,8 @@ var details = {
   absolute_error_margin: 0.1,
 }
 
-var currentPeriod = "2018-01"
-var situation = {
+const currentPeriod = "2018-01"
+const situation = {
   dateDeValeur: new Date(currentPeriod),
   famille: {},
   demandeur: {
@@ -31,7 +31,7 @@ var situation = {
 }
 
 describe("openfisca generateTest", function () {
-  var result = subject.generateTest(details, situation)
+  const result = subject.generateTest(details, situation)
 
   it("does not add rsa_non_calculable", function () {
     expect(
@@ -42,10 +42,10 @@ describe("openfisca generateTest", function () {
 
 function run_cmd(cmd, args) {
   return new Promise(function (resolve, reject) {
-    var spawn = require("child_process").spawn
-    var child = spawn(cmd, args)
-    var respErr = ""
-    var respOut = ""
+    const spawn = require("child_process").spawn
+    const child = spawn(cmd, args)
+    let respErr = ""
+    let respOut = ""
 
     child.stdout.on("data", function (buffer) {
       respOut += buffer.toString()
@@ -54,7 +54,7 @@ function run_cmd(cmd, args) {
       respErr += buffer.toString()
     })
     child.on("exit", function (code) {
-      var result = {
+      const result = {
         stdout: respOut,
         stderr: respErr,
       }
@@ -72,9 +72,9 @@ function run_cmd(cmd, args) {
 }
 
 function runOpenFiscaTest(yaml, extension) {
-  var tmpobj = tmp.fileSync({ postfix: ".yaml" })
+  const tmpobj = tmp.fileSync({ postfix: ".yaml" })
   return fs.writeFileAsync(tmpobj.fd, yaml, "utf8").then(function () {
-    var args = extension
+    const args = extension
       ? ["test", tmpobj.name, "--extensions", extension]
       : ["test", tmpobj.name]
 
@@ -83,7 +83,7 @@ function runOpenFiscaTest(yaml, extension) {
 }
 
 describe("openfisca generateYAMLTest", function () {
-  var result = subject.generateYAMLTest(details, situation)
+  const result = subject.generateYAMLTest(details, situation)
 
   it("generates a non empty string", function () {
     expect(result).toBeTruthy()
@@ -112,16 +112,16 @@ describe("openfisca generateYAMLTest", function () {
   if (process.env.VIRTUAL_ENV) {
     describe("generates processable YAML files", function () {
       it("passes OpenFisca test without extension", function () {
-        var info = Object.assign({}, details)
-        var yamlContent = subject.generateYAMLTest(info, situation)
+        const info = Object.assign({}, details)
+        const yamlContent = subject.generateYAMLTest(info, situation)
 
         return validateYAMLRun(yamlContent)
       })
 
       describe("with all possible resources", function () {
         it("passes OpenFisca test without extension", function () {
-          var info = Object.assign({}, details, { output: { rsa: 0 } })
-          var resourceSituation = Object.assign({}, situation, {
+          const info = Object.assign({}, details, { output: { rsa: 0 } })
+          const resourceSituation = Object.assign({}, situation, {
             demandeur: Object.assign({}, situation.demandeur),
           })
           resources.ressourceTypes.forEach((resource) => {
@@ -133,7 +133,7 @@ describe("openfisca generateYAMLTest", function () {
             }
           })
 
-          var yamlContent = subject.generateYAMLTest(info, resourceSituation)
+          const yamlContent = subject.generateYAMLTest(info, resourceSituation)
 
           return validateYAMLRun(yamlContent)
         })
@@ -145,10 +145,10 @@ describe("openfisca generateYAMLTest", function () {
         it(
           "passes OpenFisca test with " + extensionName + " extension",
           function () {
-            var info = Object.assign({ extension: extensionName }, details)
-            var yamlContent = subject.generateYAMLTest(info, situation)
+            const info = Object.assign({ extension: extensionName }, details)
+            const yamlContent = subject.generateYAMLTest(info, situation)
 
-            var variableListRegex = values(
+            const variableListRegex = values(
               subject.EXTENSION_VARIABLES[extensionName]
             )
               .map(function (variableList) {

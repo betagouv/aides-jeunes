@@ -1,4 +1,4 @@
-var openfisca = require("./getter")
+const openfisca = require("./getter")
 
 const parametersList = {
   "prestations.carte_des_metiers.age_maximal": 26,

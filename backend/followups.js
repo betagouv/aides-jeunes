@@ -1,10 +1,10 @@
-var express = require("express")
-var followups = require("./controllers/followups")
+const express = require("express")
+const followups = require("./controllers/followups")
 
 // Setup Express
-var app = express()
+const app = express()
 
-var router = new express.Router()
+const router = new express.Router()
 
 router.param("followupId", followups.followup)
 router.get("/:followupId", followups.resultRedirect)

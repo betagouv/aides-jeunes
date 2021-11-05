@@ -1,19 +1,19 @@
-var auth = require("basic-auth")
-var situations = require("../situations")
-var jwt = require("jsonwebtoken")
-var moment = require("moment")
-var Mustache = require("mustache")
+const auth = require("basic-auth")
+const situations = require("../answers")
+const jwt = require("jsonwebtoken")
+const moment = require("moment")
+const Mustache = require("mustache")
 
-var config = require("../../config")
-var Loiret = require("../../lib/teleservices/loiret")
-var OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
-var OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
-var OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
-var PNDS = require("../../lib/teleservices/pnds")
+const config = require("../../config")
+const Loiret = require("../../lib/teleservices/loiret")
+const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
+const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
+const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
+const PNDS = require("../../lib/teleservices/pnds")
 
 moment.locale("fr")
 
-var teleservices = [
+const teleservices = [
   {
     name: "loiret_APA_test",
     class: Loiret,
@@ -67,7 +67,7 @@ var teleservices = [
 
 function createClass(teleservice, situation) {
   // Create object dynamically, and apply constructor
-  var ts = Object.create(teleservice.class.prototype)
+  const ts = Object.create(teleservice.class.prototype)
   teleservice.class.apply(ts, [situation])
 
   return ts
@@ -84,7 +84,7 @@ exports.list = function (req, res) {
   res.json(teleservices)
 }
 
-var teleserviceMap = teleservices.reduce(function (obj, ts) {
+const teleserviceMap = teleservices.reduce(function (obj, ts) {
   obj[ts.name] = ts
   return obj
 }, {})
@@ -102,13 +102,13 @@ function fail(res, msg) {
  */
 exports.metadataResponseGenerator = function (teleservice) {
   return function (req, res) {
-    var payload = {
-      id: req.situation._id,
+    const payload = {
+      id: req.answers._id,
       scope: teleservice.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }
 
-    var token = jwt.sign(payload, req.situation.token)
+    const token = jwt.sign(payload, req.answers.token)
 
     return res.json({
       fields: createClass(teleservice, req.situation).toInternal(),
@@ -143,7 +143,7 @@ exports.decodePayload = function (req, res, next, token) {
   next()
 }
 
-var tokens = config.teleserviceAccessTokens || {}
+const tokens = config.teleserviceAccessTokens || {}
 /*
  * This callback validates the basic authorization cookie content
  */
@@ -153,7 +153,7 @@ exports.checkCredentials = function (req, res, next) {
     return
   }
 
-  var credentials = auth(req)
+  const credentials = auth(req)
   if (
     !credentials ||
     !tokens[credentials.name] ||
@@ -182,7 +182,7 @@ exports.attachPayloadSituation = function (req, res, next) {
  * It requires a situation
  */
 exports.verifyRequest = function (req, res, next) {
-  jwt.verify(req.token, req.situation.token, function (err) {
+  jwt.verify(req.token, req.answers.token, function (err) {
     if (err) {
       return fail(res, err)
     }
@@ -202,6 +202,6 @@ exports.exportRepresentation = function (req, res) {
   })
 }
 
-for (var i = 0; i < teleservices.length; i++) {
+for (let i = 0; i < teleservices.length; i++) {
   exports[teleservices[i].name] = teleservices[i]
 }

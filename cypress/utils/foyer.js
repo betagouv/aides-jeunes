@@ -2,7 +2,7 @@ import { fillRadio, submit } from "./form"
 import profil from "./profil"
 
 const children = (numberOfChildren) => {
-  for (var i = 0; i < numberOfChildren; i++) {
+  for (let i = 0; i < numberOfChildren; i++) {
     cy.url().should("includes", "enfants")
     cy.get("button#add-pac").click()
     profil.defaultChildren()

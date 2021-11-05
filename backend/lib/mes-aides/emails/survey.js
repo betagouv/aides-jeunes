@@ -1,21 +1,21 @@
-var fs = require("fs")
-var path = require("path")
-var mustache = require("consolidate").mustache
-var config = require("../../../config")
+const fs = require("fs")
+const path = require("path")
+const mustache = require("consolidate").mustache
+const config = require("../../../config")
 
-var { mjml } = require(".")
+const { mjml } = require(".")
 
-var textTemplate = fs.readFileSync(
+const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/survey.txt"),
   "utf8"
 )
-var mjmlTemplate = fs.readFileSync(
+const mjmlTemplate = fs.readFileSync(
   path.join(__dirname, "templates/survey.mjml"),
   "utf8"
 )
 
 function renderAsText(followup, survey) {
-  var data = {
+  const data = {
     ctaLink: `${config.baseURL}${survey.returnPath}`,
     returnURL: `${config.baseURL}${followup.surveyPath}`,
   }
@@ -24,7 +24,7 @@ function renderAsText(followup, survey) {
 }
 
 function renderAsHtml(followup, survey) {
-  var data = {
+  const data = {
     ctaLink: `${config.baseURL}${survey.returnPath}`,
     baseURL: config.baseURL,
     returnURL: `${config.baseURL}${followup.returnPath}`,
@@ -45,7 +45,7 @@ function render(followup, survey) {
   ]).then(function (values) {
     return {
       subject: `[${
-        followup.situation._id || followup.situation
+        followup.answers._id || followup.answers
       }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
       text: values[0],
       html: values[1].html,

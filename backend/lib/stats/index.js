@@ -1,25 +1,25 @@
 /* eslint-disable no-console */
-var Promise = require("bluebird")
-var fs = Promise.promisifyAll(require("fs"))
-var mkdirp = require("mkdirp")
-var path = require("path")
+const Promise = require("bluebird")
+const fs = Promise.promisifyAll(require("fs"))
+const mkdirp = require("mkdirp")
+const path = require("path")
 
-var piwik = require("./piwik")
-var mongodb = require("./mongodb")
+const piwik = require("./piwik")
+const mongodb = require("./mongodb")
 
 function dateDaysAgo(nb_days) {
-  var date = new Date()
+  let date = new Date()
   date = new Date(date.toISOString().slice(0, 10))
   date.setDate(date.getDate() - nb_days)
   return date
 }
 
-var nineWeeksAgo = dateDaysAgo(7 * 9)
-var yesterday = dateDaysAgo(1)
-var today = dateDaysAgo(0)
+const nineWeeksAgo = dateDaysAgo(7 * 9)
+const yesterday = dateDaysAgo(1)
+const today = dateDaysAgo(0)
 
 // ./documents/ allow CORS access thank to an NGINX rule
-var relative_path = __dirname + "/../../../dist/documents/stats.json"
+const relative_path = __dirname + "/../../../dist/documents/stats.json"
 
 mkdirp(path.dirname(relative_path)).then(() => {
   Promise.all([

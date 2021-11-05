@@ -1,10 +1,10 @@
 import { computeAides } from "../../lib/Benefits/Compute"
 import droitsDescription from "@/../data/js/benefits/back"
 
-var compute = computeAides.bind(droitsDescription)
+const compute = computeAides.bind(droitsDescription)
 
 describe("computeAides", function () {
-  var droits, situation, openfiscaResult
+  let droits, situation, openfiscaResult
 
   beforeEach(function () {
     situation = {
@@ -63,7 +63,7 @@ describe("computeAides", function () {
   })
 
   describe("computeAides injected values", function () {
-    var ids
+    let ids
 
     beforeEach(function () {
       droits = compute(situation, "id", openfiscaResult)
@@ -91,14 +91,14 @@ describe("computeAides", function () {
     })
 
     it("should extract droits from openfisca result", function () {
-      var css = droits.droitsEligibles.find(function (element) {
+      const css = droits.droitsEligibles.find(function (element) {
         return element.id === "css_participation_forfaitaire"
       })
       expect(css).toBeTruthy()
       expect(css.montant).toEqual(10)
       expect(css.provider.label).toEqual("Assurance maladie")
 
-      var plf = droits.droitsEligibles.find(function (element) {
+      const plf = droits.droitsEligibles.find(function (element) {
         return element.id === "paris_logement_familles"
       })
       expect(plf).toBeTruthy()
@@ -116,7 +116,7 @@ describe("computeAides", function () {
     })
 
     it("should extract eligibles droits from openfisca result", function () {
-      var logement_social = droits.droitsEligibles.find(function (element) {
+      const logement_social = droits.droitsEligibles.find(function (element) {
         return element.id === "logement_social_eligible"
       })
       expect(logement_social).toBeTruthy()
@@ -130,7 +130,7 @@ describe("computeAides", function () {
     })
 
     it("should extract reason of uncomputability", function () {
-      var rsa = droits.droitsEligibles.find(function (element) {
+      const rsa = droits.droitsEligibles.find(function (element) {
         return element.id === "rsa"
       })
       expect(rsa.montant).toEqual("error")
@@ -157,7 +157,7 @@ describe("computeAides", function () {
     })
 
     it("should exclude private aid", function () {
-      var private_aid = droits.droitsEligibles.find(function (element) {
+      const private_aid = droits.droitsEligibles.find(function (element) {
         return element.id === "alfortville_noel_enfants"
       })
       expect(private_aid).toBeFalsy()

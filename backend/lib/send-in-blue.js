@@ -1,15 +1,15 @@
-var SibApiV3Sdk = require("sib-api-v3-sdk")
-var defaultClient = SibApiV3Sdk.ApiClient.instance
-var config = require("../config")
+const SibApiV3Sdk = require("sib-api-v3-sdk")
+const defaultClient = SibApiV3Sdk.ApiClient.instance
+const config = require("../config")
 
 exports.SendSmtpEmail = SibApiV3Sdk.SendSmtpEmail
 exports.sendEmail = function (sendSmtpEmail) {
-  var apiKey = defaultClient.authentications["api-key"]
+  const apiKey = defaultClient.authentications["api-key"]
   apiKey.apiKey = config.sendInBlue.apiKey
-  var partnerKey = defaultClient.authentications["partner-key"]
+  const partnerKey = defaultClient.authentications["partner-key"]
   partnerKey.apiKey = config.sendInBlue.apiKey
 
-  var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
+  const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
 
   sendSmtpEmail.sender = {
     name: "Équipe du simulateur 1jeune1solution.gouv.fr",

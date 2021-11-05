@@ -1,13 +1,13 @@
-var expect = require("expect")
+const expect = require("expect")
 
 describe("benefit descriptions", function () {
-  var subject = require("../../data/js/benefits/back")
+  const subject = require("../../data/js/benefits/back")
 
   const levels = ["prestationsNationales", "partenairesLocaux"]
   levels.forEach((level) => {
     Object.keys(subject[level]).forEach(function (providerName) {
       describe(providerName, function () {
-        var provider = subject[level][providerName]
+        const provider = subject[level][providerName]
 
         it("should have a correct id", function () {
           expect(Boolean(providerName.match(/[a-z A-Z \-_]*/))).toBe(true)
@@ -20,7 +20,7 @@ describe("benefit descriptions", function () {
 
         Object.keys(provider.prestations).forEach(function (aideName) {
           describe(aideName, function () {
-            var aide = provider.prestations[aideName]
+            const aide = provider.prestations[aideName]
 
             it("should have a correct id", function () {
               expect(Boolean(aideName.match(/[a-z A-Z \-_]*/))).toBe(true)

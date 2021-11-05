@@ -1,9 +1,9 @@
 /* global emit: true */
-var Promise = require("bluebird")
-var MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
-var config = require("../../config")
+const Promise = require("bluebird")
+const MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
+const config = require("../../config")
 
-var client
+let client
 function saveClient(refDb) {
   client = refDb
   return client
@@ -63,7 +63,7 @@ function extractSurveySummary(db) {
     .collection("followups")
     .mapReduce(
       function () {
-        var m = {
+        const m = {
           asked: 1,
           failed: 2,
           nothing: 3,
@@ -106,7 +106,7 @@ function extractSurveyDetails(db) {
     .collection("followups")
     .mapReduce(
       function () {
-        var obj = {}
+        const obj = {}
         this.benefits.forEach(function (b) {
           obj[b.id] = b.amount
         })
@@ -127,17 +127,17 @@ function extractSurveyDetails(db) {
     )
     .then((r) => r.results || r)
     .then((results) => {
-      var groupMap = results.reduce(function (total, p) {
-        var fields = p._id.split(";")
-        var id = fields[0]
-        var state = fields[1]
+      const groupMap = results.reduce(function (total, p) {
+        const fields = p._id.split(";")
+        const id = fields[0]
+        const state = fields[1]
         total[id] = total[id] || { total: 0 }
         total[id][state] = p.value
         total[id].total += p.value
         return total
       }, {})
 
-      var groups = Object.keys(groupMap).map((g) => {
+      const groups = Object.keys(groupMap).map((g) => {
         return Object.assign({ id: g }, groupMap[g])
       })
 

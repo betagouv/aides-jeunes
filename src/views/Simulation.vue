@@ -1,5 +1,8 @@
 <template>
   <div class="aj-simulation">
+    <div class="aj-complete-progress-bar" v-if="showProgress">
+      <div :style="currentProgressStyle" />
+    </div>
     <div
       class="container aj-layout-container"
       :class="{ 'aj-debug-container': debug }"
@@ -19,7 +22,6 @@
         </div>
       </div>
       <Progress v-if="debug" />
-      <Sommaire v-else-if="showSummary" />
     </div>
   </div>
 </template>
@@ -27,14 +29,12 @@
 <script>
 import TitreChapitre from "@/components/TitreChapitre"
 import Progress from "@/components/Progress"
-import Sommaire from "@/components/Sommaire"
 
 export default {
   name: "Simulation",
   components: {
     TitreChapitre,
     Progress,
-    Sommaire,
   },
   data() {
     return {
@@ -47,6 +47,18 @@ export default {
     },
     debug() {
       return this.$store.getters.getDebug
+    },
+    showProgress() {
+      return (
+        this.$route.name !== "recapitulatif" &&
+        this.$route.name !== "resultats" &&
+        this.$route.name !== "resultatsDetails"
+      )
+    },
+    currentProgressStyle() {
+      return {
+        width: `${this.$store.getters.progress * 100}%`,
+      }
     },
   },
   methods: {

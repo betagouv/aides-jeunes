@@ -18,8 +18,8 @@ const ENTITIES_PROPERTIES = {
   parents: require("@/lib/ParentsProperties").default,
 }
 
-function ComplexStep({ route, variables, chapter }) {
-  Step.call(this, { key: route, chapter: chapter })
+function ComplexStep({ route, variables, chapter, entity, variable, id }) {
+  Step.call(this, { key: route, chapter: chapter, entity, variable, id })
   this.path = `/simulation/${route}`
   this.substeps = variables ? variables.map((v) => new Step(v)) : []
 }

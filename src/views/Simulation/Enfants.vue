@@ -104,9 +104,7 @@ export default {
     },
     onSubmit: function () {
       this.$store.dispatch("answer", {
-        id: "nombre_enfants",
-        entityName: "individu",
-        fieldName: "nombre_enfants",
+        entityName: "enfants",
         value: this.$store.state.answers.enfants
           ? this.$store.state.answers.enfants.length
           : 0,

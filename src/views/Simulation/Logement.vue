@@ -92,7 +92,8 @@
 <script>
 import Actions from "@/components/Actions"
 import Logement from "@/lib/Logement"
-import Individu from "@/../lib/Individu"
+import Individu from "@/../lib/Individu.js"
+import { getAnswer } from "../../../lib/answers"
 
 export default {
   name: "SimulationLogement",
@@ -100,8 +101,8 @@ export default {
     Actions,
   },
   data: function () {
-    const logementStatut = this.$store.getters.getAnswer(
-      "menage",
+    const logementStatut = getAnswer(
+      this.$store.state.answers.all,
       "menage",
       "statut_occupation_logement"
     )
@@ -212,7 +213,6 @@ export default {
         )
       } else {
         this.$store.dispatch("answer", {
-          id: "menage",
           entityName: "menage",
           fieldName: "statut_occupation_logement",
           value: Logement.getStatutOccupationLogement({

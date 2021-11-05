@@ -1,2 +1,12 @@
-@media (max-width: 768px) {
+html {
+  body {
+    .aj-main-container {
+      .aj-category-title-wrapper {
+        padding: 16px 32px;
+      }
+      .aj-box-wrapper {
+        margin-bottom: 78px;
+      }
+    }
+  }
 }

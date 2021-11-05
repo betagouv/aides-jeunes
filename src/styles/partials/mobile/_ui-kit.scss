@@ -1,23 +1,31 @@
 html {
   body {
     .aj-main-container {
-      padding: 0 10px 10px 10px;
-
+      margin: 0 0 16px 0;
       .aj-category-title-wrapper {
+        padding: 16px 0;
+      }
+
+      .aj-category-title {
+        flex-direction: row-reverse;
+        justify-content: center;
+        h1 {
+          font-size: 2em;
+          line-height: 1.125em;
+        }
+      }
+
+      .aj-category-title-button-desktop {
         display: none;
       }
 
-      .aj-category-title-wrapper-mobile {
+      .aj-category-title-button-mobile {
         $menu-button-size: 40px;
 
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-
-        &.has-menu-button {
-          padding: 0 $menu-button-size;
-        }
 
         .menu-button {
           flex-shrink: 0;
@@ -50,11 +58,6 @@ html {
           margin-right: 10px;
           padding: 0;
         }
-
-        h1 {
-          text-align: center;
-          margin: 16px 0;
-        }
       }
 
       .aj-box-wrapper {
@@ -62,7 +65,8 @@ html {
         & > div:not(.aj-unbox),
         & > form:not(.aj-unbox),
         & .aj-box {
-          padding: 1.5rem;
+          padding: 16px;
+          border-radius: 0;
         }
 
         .aj-actions {

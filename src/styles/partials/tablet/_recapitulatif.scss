@@ -1,9 +1,5 @@
 .recapitulatif {
   .recapitulatif-row {
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-
     &:not(.recapitulatif-row-wrap) {
       flex-direction: column;
       .question-col,

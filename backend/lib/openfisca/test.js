@@ -1,15 +1,15 @@
-var common = require("./mapping/common")
-var mapping = require("./mapping")
-var forEach = require("lodash/forEach")
-var assign = require("lodash/assign")
-var pick = require("lodash/pick")
-var benefits = require("../../../data/js/benefits/back")
+const common = require("./mapping/common")
+const mapping = require("./mapping")
+const forEach = require("lodash/forEach")
+const assign = require("lodash/assign")
+const pick = require("lodash/pick")
+const benefits = require("../../../data/js/benefits/back")
 
 function toStringOf(obj) {
   return obj.toString()
 }
 
-var ID_PROPERTIES = {
+const ID_PROPERTIES = {
   familles: ["enfants", "parents"],
   foyers_fiscaux: ["declarants", "personnes_a_charge"],
   individus: ["id"],
@@ -38,7 +38,7 @@ function toYAML(test) {
   return require("js-yaml").dump(test)
 }
 
-var EXTENSION_VARIABLES = {
+const EXTENSION_VARIABLES = {
   "openfisca-paris": {
     familles: ["parisien"],
     individus: [],
@@ -78,7 +78,7 @@ function prepareTestSituationForSpecificExtension(situation, extension) {
   return situation
 }
 
-var TEST_ATTRIBUTES = [
+const TEST_ATTRIBUTES = [
   "name",
   "description",
   "output",
@@ -87,11 +87,11 @@ var TEST_ATTRIBUTES = [
 ]
 
 exports.generateTest = function generateYAMLTest(details, situation) {
-  var openfiscaRequest = mapping.buildOpenFiscaRequest(
+  const openfiscaRequest = mapping.buildOpenFiscaRequest(
     situation.toObject ? situation.toObject() : situation
   )
-  var periods = common.getPeriods(situation.dateDeValeur)
-  var dropPeriods = [periods.thisMonth].concat(periods.last3Months)
+  const periods = common.getPeriods(situation.dateDeValeur)
+  const dropPeriods = [periods.thisMonth].concat(periods.last3Months)
 
   mapping.giveValueToRequestedVariables(
     openfiscaRequest,
@@ -99,17 +99,17 @@ exports.generateTest = function generateYAMLTest(details, situation) {
     undefined,
     situation.demandeur
   )
-  var testInputs = prepareTestSituationForSpecificExtension(
+  const testInputs = prepareTestSituationForSpecificExtension(
     openfiscaRequest,
     details.extension
   )
 
-  var testCase = {
+  const testCase = {
     period: periods.thisMonth,
     input: testInputs,
   }
 
-  var result = assign(pick(details, TEST_ATTRIBUTES), testCase)
+  const result = assign(pick(details, TEST_ATTRIBUTES), testCase)
   return result
 }
 

@@ -1,9 +1,9 @@
-var expect = require("expect")
-var moment = require("moment")
+const expect = require("expect")
+const moment = require("moment")
 
 moment.locale("fr")
 
-var situation = {
+const situation = {
   dateDeValeur: "2018-07-14",
   individus: [
     {
@@ -59,12 +59,12 @@ var situation = {
   ],
 }
 
-var Loiret = require("../../../backend/lib/teleservices/loiret")
+const Loiret = require("../../../backend/lib/teleservices/loiret")
 
 describe("Loiret Teleservice", function () {
   it("returns expected values for internal purpose", function () {
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toInternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toInternal()
 
     expect(formatted).toBeInstanceOf(Array)
     expect(formatted).toMatchObject([
@@ -89,14 +89,14 @@ describe("Loiret Teleservice", function () {
   })
 
   it("returns expected values for date de naissance", function () {
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("date_naissance_dem")
     expect(formatted.date_naissance_dem).toEqual("05/06/1983")
   })
 
   it("returns expected values for statut marital", function () {
-    var expectations = [
+    const expectations = [
       {
         statut_marital: "celibataire",
         situationfam_dem: 0,
@@ -111,7 +111,7 @@ describe("Loiret Teleservice", function () {
       },
     ]
     expectations.forEach(function (expectation) {
-      var situation = {
+      const situation = {
         dateDeValeur: "2018-07-14",
         individus: [
           {
@@ -120,22 +120,22 @@ describe("Loiret Teleservice", function () {
           },
         ],
       }
-      var loiret = new Loiret(situation)
-      var formatted = loiret.toExternal()
+      const loiret = new Loiret(situation)
+      const formatted = loiret.toExternal()
       expect(formatted).toHaveProperty("situationfam_dem")
       expect(formatted.situationfam_dem).toEqual(expectation.situationfam_dem)
     })
   })
 
   it("returns expected values for date de naissance", function () {
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("date_naissance_dem")
     expect(formatted.date_naissance_dem).toEqual("05/06/1983")
   })
 
   it("returns expected values for retraite nette", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -174,14 +174,14 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("montantRetraite_dem")
     expect(formatted.montantRetraite_dem).toEqual(2400)
   })
 
   it("returns expected values for salaire net", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -205,14 +205,14 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("salaire_dem")
     expect(formatted.salaire_dem).toEqual(24000)
   })
 
   it("returns expected values for pensions alimentaires", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -236,14 +236,14 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("pension_dem")
     expect(formatted.pension_dem).toEqual(1200)
   })
 
   it("returns expected values for revenus locatifs", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -267,14 +267,14 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("rev_loca_dem")
     expect(formatted.rev_loca_dem).toEqual(6000)
   })
 
   it("returns expected values for revenus du capital", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -298,14 +298,14 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("rev_biens_dem")
     expect(formatted.rev_biens_dem).toEqual(6000)
   })
 
   it("returns expected values for allocations", function () {
-    var situation = {
+    const situation = {
       dateDeValeur: "2018-07-14",
       individus: [
         {
@@ -359,8 +359,8 @@ describe("Loiret Teleservice", function () {
       ],
     }
 
-    var loiret = new Loiret(situation)
-    var formatted = loiret.toExternal()
+    const loiret = new Loiret(situation)
+    const formatted = loiret.toExternal()
     expect(formatted).toHaveProperty("allocations_dem")
     expect(formatted.allocations_dem).toEqual(3600)
   })

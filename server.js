@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-var express = require("express")
-var app = express()
-var path = require("path")
+const express = require("express")
+const app = express()
+const path = require("path")
 
-var port = process.env.PORT || 8080
+const port = process.env.PORT || 8080
 
 process.env.MES_AIDES_ROOT_URL =
   process.env.MES_AIDES_ROOT_URL || "http://localhost:" + port

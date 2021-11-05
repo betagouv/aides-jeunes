@@ -1,15 +1,15 @@
-var express = require("express")
-var cookieParser = require("cookie-parser")
-var cors = require("cors")
+const express = require("express")
+const cookieParser = require("cookie-parser")
+const cors = require("cors")
 
-var followups = require("../controllers/followups")
-var answers = require("../controllers/answers")
-var teleservices = require("../controllers/teleservices")
+const followups = require("../controllers/followups")
+const answers = require("../controllers/answers")
+const teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
   api.route("/answers").post(cookieParser(), answers.create)
 
-  var route = new express.Router({ mergeParams: true })
+  const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
   route.use(answers.validateAccess)
 

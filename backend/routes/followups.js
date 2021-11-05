@@ -1,4 +1,4 @@
-var followups = require("../controllers/followups")
+const followups = require("../controllers/followups")
 
 module.exports = function (api) {
   api.route("/followups/surveys/:surveyId").get(followups.showFromSurvey)

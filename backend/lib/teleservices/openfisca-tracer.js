@@ -1,4 +1,4 @@
-var openfisca = require("../openfisca")
+const openfisca = require("../openfisca")
 
 function OpenFiscaTracer(situation) {
   this.situation = situation

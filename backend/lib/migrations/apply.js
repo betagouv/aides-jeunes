@@ -1,24 +1,24 @@
 /* eslint-disable no-console */
-var ArgumentParser = require("argparse").ArgumentParser
+const ArgumentParser = require("argparse").ArgumentParser
 
-var es = require("event-stream")
+const es = require("event-stream")
 
 // Loads
 require("../../../backend")
 require("expect")
-var mongoose = require("mongoose")
-var migrations = require(".")
-var latestVersion = migrations.list[migrations.list.length - 1].version
+const mongoose = require("mongoose")
+const migrations = require(".")
+const latestVersion = migrations.list[migrations.list.length - 1].version
 
 // Setup mongoose
-var Situation = mongoose.model("Situation")
+const Situation = mongoose.model("Situation")
 
-var counter = 0
-var errors = 0
-var limit = 50000
-var startDate = new Date().toISOString()
+let counter = 0
+let errors = 0
+const limit = 50000
+const startDate = new Date().toISOString()
 
-var parser = new ArgumentParser({
+const parser = new ArgumentParser({
   addHelp: true,
   description: "Outil de migration des situations en base de données",
 })
@@ -72,7 +72,7 @@ function migrateSituations(conditions) {
 }
 
 function main() {
-  var args = parser.parseArgs()
+  const args = parser.parseArgs()
   if (args.id) {
     migrateSituations({ _id: args.id })
   } else if (args.all) {

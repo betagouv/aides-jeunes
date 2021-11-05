@@ -1,6 +1,6 @@
-var fs = require("fs")
+const fs = require("fs")
 
-var migrations = fs
+const migrations = fs
   .readdirSync(__dirname)
   .filter(function (file) {
     return file.match(/^toV\d+\.js$/)

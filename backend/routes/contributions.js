@@ -1,4 +1,4 @@
-var cors = require("cors")
+const cors = require("cors")
 const AuthContribution = require("../controllers/contributions")
 const { urlencoded } = require("body-parser")
 const config = require("../config/index")

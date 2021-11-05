@@ -1,31 +1,31 @@
-var ArgumentParser = require("argparse").ArgumentParser
+const ArgumentParser = require("argparse").ArgumentParser
 
-var config = require("../config")
-var mongoose = require("mongoose")
+const config = require("../config")
+const mongoose = require("mongoose")
 require("../config/mongoose")(mongoose, config)
 
-var Followup = mongoose.model("Followup")
+const Followup = mongoose.model("Followup")
 
-var parser = new ArgumentParser({
+const parser = new ArgumentParser({
   add_help: true,
   description: "Outil d'envoi des emails de suivi",
 })
 
-var subparsers = parser.add_subparsers({
+const subparsers = parser.add_subparsers({
   title: "Commandes",
   dest: "command",
 })
 
-var send = subparsers.add_parser("send")
+const send = subparsers.add_parser("send")
 
-var send_types = send.add_subparsers({
+const send_types = send.add_subparsers({
   title: "Type",
   dest: "type",
 })
 
-var send_initial = send_types.add_parser("initial")
-var send_survey = send_types.add_parser("survey")
-var senders = [send_initial, send_survey]
+const send_initial = send_types.add_parser("initial")
+const send_survey = send_types.add_parser("survey")
+const senders = [send_initial, send_survey]
 senders.forEach((send) => {
   send.add_argument("--id", {
     help: "Followup Id",
@@ -44,7 +44,7 @@ senders.forEach((send) => {
   })
 })
 
-var reply = subparsers.add_parser("reply")
+const reply = subparsers.add_parser("reply")
 reply.add_argument("--id", {
   help: "Survey Id",
 })
@@ -123,7 +123,7 @@ function processSend(args) {
 }
 
 function main() {
-  var args = parser.parse_args()
+  const args = parser.parse_args()
   switch (args.command) {
     case "send":
       processSend(args)

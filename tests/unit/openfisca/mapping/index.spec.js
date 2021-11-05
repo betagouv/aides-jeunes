@@ -1,4 +1,4 @@
-var situation = {
+const situation = {
   dateDeValeur: new Date("2017-10-02"),
   demandeur: {},
   famille: {},
@@ -8,11 +8,11 @@ var situation = {
   },
 }
 
-var subject = require("../../../../backend/lib/openfisca/mapping")
-var expect = require("expect")
+const subject = require("../../../../backend/lib/openfisca/mapping")
+const expect = require("expect")
 
 describe("openfisca buildOpenFiscaRequest", function () {
-  var result = subject.buildOpenFiscaRequest(situation)
+  const result = subject.buildOpenFiscaRequest(situation)
 
   it("writes null for css_participation_forfaitaire in 2017-10", function () {
     expect(result.familles._.css_participation_forfaitaire["2017-10"]).toBe(
@@ -21,7 +21,7 @@ describe("openfisca buildOpenFiscaRequest", function () {
   })
 
   it("not overrides resources with 3 month replication", function () {
-    var result = subject.buildOpenFiscaRequest(
+    const result = subject.buildOpenFiscaRequest(
       Object.assign({}, situation, {
         demandeur: {
           id: "demandeur",
@@ -39,7 +39,7 @@ describe("openfisca buildOpenFiscaRequest", function () {
   })
 
   it("allows resource overrides with 3 month replication", function () {
-    var result = subject.buildOpenFiscaRequest(
+    const result = subject.buildOpenFiscaRequest(
       Object.assign({}, situation, {
         famille: {
           bourse_lycee: true,

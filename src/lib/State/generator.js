@@ -1,5 +1,5 @@
-var { Step } = require("./steps")
-var { generateBlocks } = require("./blocks")
+const { Step } = require("./steps")
+const { generateBlocks } = require("./blocks")
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },

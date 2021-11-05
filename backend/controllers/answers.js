@@ -1,12 +1,12 @@
-var omit = require("lodash/omit")
-var filter = require("lodash/filter")
-var pick = require("lodash/pick")
-var assign = require("lodash/assign")
+const omit = require("lodash/omit")
+const filter = require("lodash/filter")
+const pick = require("lodash/pick")
+const assign = require("lodash/assign")
 
-var { generateSituation } = require("../../lib/situations")
-var openfisca = require("../lib/openfisca")
-var openfiscaTest = require("../lib/openfisca/test")
-var Answers = require("mongoose").model("Answer")
+const { generateSituation } = require("../../lib/situations")
+const openfisca = require("../lib/openfisca")
+const openfiscaTest = require("../lib/openfisca/test")
+const Answers = require("mongoose").model("Answer")
 
 exports.answers = function (req, res, next, answersId) {
   if (answersId && answersId._id) {
@@ -42,16 +42,16 @@ exports.show = function (req, res) {
 }
 
 function clearCookies(req, res) {
-  var limit = 10
+  const limit = 10
 
-  var keys = Object.keys(req.cookies)
-  var situationCookies = filter(keys, function (k) {
+  const keys = Object.keys(req.cookies)
+  const situationCookies = filter(keys, function (k) {
     return k.startsWith(Answers.cookiePrefix)
   })
   situationCookies.sort()
 
   if (situationCookies.length - limit >= 0) {
-    var cookieToClear = situationCookies.slice(
+    const cookieToClear = situationCookies.slice(
       0,
       situationCookies.length - limit
     )
@@ -111,12 +111,12 @@ exports.openfiscaRequestFromLegacy = function (req, res) {
   res.send(openfisca.buildOpenFiscaRequestFromLegacySituation(req.situation))
 }
 
-var DETAILS_DEFAULT_ATTRIBUTES = {
+const DETAILS_DEFAULT_ATTRIBUTES = {
   absolute_error_margin: 10,
 }
 
 // Attributes are sorted as they should appear in the YAML test file
-var DETAILS_ATTRIBUTES = [
+const DETAILS_ATTRIBUTES = [
   "name",
   "description",
   "extension",
@@ -126,7 +126,7 @@ var DETAILS_ATTRIBUTES = [
 ]
 
 exports.openfiscaTest = function (req, res) {
-  var details = assign(
+  const details = assign(
     {},
     DETAILS_DEFAULT_ATTRIBUTES,
     pick(req.body, DETAILS_ATTRIBUTES)
@@ -137,7 +137,7 @@ exports.openfiscaTest = function (req, res) {
       .send({ error: "You must provide a name, description and output." })
   }
 
-  var situation = req.situation.toObject
+  const situation = req.situation.toObject
     ? req.situation.toObject()
     : req.situation
   res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))

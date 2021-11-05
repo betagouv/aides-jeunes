@@ -102,7 +102,7 @@ function setDefaults(benefit, top) {
   benefit.floorAt = benefit.floorAt || 1
 }
 
-var topLevels = {
+const topLevels = {
   prestationsNationales: 1,
   partenairesLocaux: 5,
 }
@@ -146,7 +146,7 @@ function generate(collections, base) {
       Object.keys(result[levelId][providerId].prestations).forEach(function (
         benefitId
       ) {
-        var benefit = result[levelId][providerId].prestations[benefitId]
+        const benefit = result[levelId][providerId].prestations[benefitId]
         setDefaults(benefit, topLevels[levelId])
       })
     })

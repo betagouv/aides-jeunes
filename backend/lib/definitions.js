@@ -1,8 +1,8 @@
-var concat = require("lodash/concat")
+const concat = require("lodash/concat")
 
-var ressources = require("../../lib/Resources")
+const ressources = require("../../lib/Resources")
 
-var famille = {
+const famille = {
   bourse_lycee: Boolean,
   en_couple: Boolean,
   parisien: Boolean,
@@ -13,11 +13,11 @@ var famille = {
     Number,
 }
 
-var foyerFiscal = {
+const foyerFiscal = {
   rfr: Object,
 }
 
-var allRessources = concat(
+const allRessources = concat(
   ressources.ressourceTypes,
   ressources.categoriesRnc,
   ressources.patrimoineTypes
@@ -26,7 +26,9 @@ var allRessources = concat(
   return result
 }, {})
 
-var individu = Object.assign(
+const statutMaritalValues = ["marie", "pacse", "celibataire"]
+
+const individu = Object.assign(
   {
     _id: false,
     id: String,
@@ -157,9 +159,7 @@ var individu = Object.assign(
   allRessources
 )
 
-var statutMaritalValues = ["marie", "pacse", "celibataire"]
-
-var statutOccupationLogementValues = [
+const statutOccupationLogementValues = [
   "primo_accedant",
   "proprietaire",
   "locataire_vide",
@@ -169,7 +169,7 @@ var statutOccupationLogementValues = [
   "sans_domicile",
 ]
 
-var menage = {
+const menage = {
   aide_logement_date_pret_conventionne: String,
   charges_locatives: Number,
   _codePostal: String,
@@ -187,7 +187,7 @@ var menage = {
   },
 }
 
-var parents = {
+const parents = {
   _situation: {
     type: String,
     enum: ["en_couple", "separes", "decedes", "sans_autorite", "veuve"],
@@ -197,7 +197,7 @@ var parents = {
   rfr: Number,
 }
 
-var situation = {
+const situation = {
   abtesting: Object,
   createdAt: { type: Date, default: Date.now },
   dateDeValeur: Date,

@@ -1,7 +1,7 @@
-var forEach = require("lodash/forEach")
+const forEach = require("lodash/forEach")
 const { getParameter } = require("../../../../lib/openfisca/parameters")
 
-var TAUX_CSG_CRDS = 0.029,
+const TAUX_CSG_CRDS = 0.029,
   ASSIETTE_COTIS = 0.9825,
   RATIO_NET_BRUT = 0.78
 
@@ -27,7 +27,7 @@ function salaireNetToImposable(value, period, individu) {
   return result
 }
 
-var individuRessources = {
+const individuRessources = {
   chomage_brut: [
     {
       src: "chomage_net",
@@ -62,10 +62,10 @@ var individuRessources = {
 function computeRessources(mesAidesIndividu, openFiscaIndividu) {
   forEach(individuRessources, function (sourceDefinitions, outputKey) {
     openFiscaIndividu[outputKey] = openFiscaIndividu[outputKey] || {}
-    var result = openFiscaIndividu[outputKey]
+    const result = openFiscaIndividu[outputKey]
     forEach(sourceDefinitions, function (definition) {
-      var srcKey = definition.src || definition
-      var fn =
+      const srcKey = definition.src || definition
+      const fn =
         definition.fn ||
         function (x) {
           return x

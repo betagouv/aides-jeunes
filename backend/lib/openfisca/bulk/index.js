@@ -1,8 +1,8 @@
-var Promise = require("bluebird")
-var openfisca = Promise.promisifyAll(require(".."))
-var common = require("../mapping/common")
+const Promise = require("bluebird")
+const openfisca = Promise.promisifyAll(require(".."))
+const common = require("../mapping/common")
 
-var entityGroups = {
+const entityGroups = {
   individus: [],
   familles: ["parents", "enfants"],
   foyers_fiscaux: ["declarants", "personnes_a_charge"],
@@ -10,7 +10,7 @@ var entityGroups = {
 }
 
 function init() {
-  var result = Object.keys(entityGroups).reduce((accum, entityName) => {
+  const result = Object.keys(entityGroups).reduce((accum, entityName) => {
     accum[entityName] = {}
     return accum
   }, {})
@@ -21,7 +21,7 @@ function init() {
 
 function prefix(prefix, situation) {
   Object.keys(entityGroups).forEach((entityName) => {
-    var oldKeys = Object.keys(situation[entityName])
+    const oldKeys = Object.keys(situation[entityName])
     oldKeys.forEach((name) => {
       situation[entityName][prefix + name] = situation[entityName][name]
       delete situation[entityName][name]
@@ -51,46 +51,46 @@ function append(acummulator, situation) {
   return acummulator
 }
 
-var defaultValues = []
-var max = 3500
-var base = 25
-var steps = max / base + 1
-for (var i = 0; i < steps; i = i + 1) {
+const defaultValues = []
+const max = 3500
+const base = 25
+const steps = max / base + 1
+for (let i = 0; i < steps; i = i + 1) {
   defaultValues.push((i * max) / (steps - 1))
 }
 
 function build(situation, variable, values) {
   values = values || defaultValues
-  var periods = common.getPeriods(situation.dateDeValeur)
+  const periods = common.getPeriods(situation.dateDeValeur)
 
-  var fullTimePeriodLength = 12 * 4
-  var fullTimePeriod =
+  const fullTimePeriodLength = 12 * 4
+  const fullTimePeriod =
     "month:" + periods["threeYearsAgo"] + ":" + fullTimePeriodLength.toString()
 
   return values.reduce((a, v) => {
     situation.demandeur[variable] = {}
     situation.demandeur[variable][fullTimePeriod] = fullTimePeriodLength * v
-    var ss = openfisca.buildOpenFiscaRequest(situation)
+    const ss = openfisca.buildOpenFiscaRequest(situation)
 
     ss.foyers_fiscaux._.irpp = { [periods.thisYear]: null }
 
-    var prefixed = prefix(v.toString() + "_", ss)
+    const prefixed = prefix(v.toString() + "_", ss)
     return append(a, prefixed)
   }, init())
 }
 
 function extractResults({ source, response }, benefitIds) {
-  var periods = common.getPeriods(source.dateDeValeur)
-  var entities = ["familles", "individus", "foyers_fiscaux", "menages"]
+  const periods = common.getPeriods(source.dateDeValeur)
+  const entities = ["familles", "individus", "foyers_fiscaux", "menages"]
 
   return entities.reduce((groupAccum, group) => {
-    var entityNames = Object.keys(response[group])
+    const entityNames = Object.keys(response[group])
     return entityNames.reduce((entityAccum, id) => {
-      var prefix = id.split("_")[0]
+      const prefix = id.split("_")[0]
       entityAccum[prefix] = entityAccum[prefix] || {}
 
       return benefitIds.reduce((benefitAccum, variable) => {
-        var base = response[group][id][variable]
+        const base = response[group][id][variable]
         if (base) {
           benefitAccum[prefix][variable] = benefitAccum[prefix][variable] || 0
           benefitAccum[prefix][variable] +=

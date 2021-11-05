@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-var env = process.env.NODE_ENV || "development"
+const env = process.env.NODE_ENV || "development"
 
-var all = {
+const all = {
   env: env,
   animation: {
     delay: process.env.ANIMATION_DELAY || 300,
@@ -31,7 +31,7 @@ var all = {
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
 }
 
-var override = {}
+let override = {}
 try {
   override = require("./" + env)
   console.info("Using specific configuration for " + env + ".")

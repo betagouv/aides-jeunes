@@ -1,17 +1,17 @@
-var { matomo } = require("../../config")
+const { matomo } = require("../../config")
 
-var axios = require("axios")
+const axios = require("axios")
 
 function formatPiwik(data) {
-  var metrics = [
+  const metrics = [
     {
       source: "nb_visits",
       name: "visit",
     },
   ]
-  var dates = Object.keys(data)
+  const dates = Object.keys(data)
   return metrics.map(function (metric) {
-    var datapoints = dates.map(function (date) {
+    const datapoints = dates.map(function (date) {
       return {
         date: date,
         value: data[date][metric.source],

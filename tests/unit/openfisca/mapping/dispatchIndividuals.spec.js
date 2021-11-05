@@ -1,5 +1,5 @@
-var subject = require("../../../../backend/lib/openfisca/mapping")
-var expect = require("expect")
+const subject = require("../../../../backend/lib/openfisca/mapping")
+const expect = require("expect")
 
 describe("openfisca dispatchIndividuals", function () {
   function buildSituation(props) {
@@ -11,10 +11,10 @@ describe("openfisca dispatchIndividuals", function () {
   }
 
   describe("single adult", function () {
-    var situation = buildSituation({
+    const situation = buildSituation({
       demandeur: { id: "demandeur" },
     })
-    var result = subject.dispatchIndividuals(situation)
+    const result = subject.dispatchIndividuals(situation)
 
     it("sets a single parent", function () {
       expect(result.familles._.parents).toEqual(["demandeur"])
@@ -22,11 +22,11 @@ describe("openfisca dispatchIndividuals", function () {
   })
 
   describe("single parent with one kid", function () {
-    var situation = buildSituation({
+    const situation = buildSituation({
       demandeur: { id: "demandeur" },
       enfants: [{ id: "e1" }],
     })
-    var result = subject.dispatchIndividuals(situation)
+    const result = subject.dispatchIndividuals(situation)
 
     it("sets a single parent", function () {
       expect(result.familles._.parents).toEqual([situation.demandeur.id])
@@ -38,13 +38,13 @@ describe("openfisca dispatchIndividuals", function () {
   })
 
   describe("single adult within parental fiscal unit", function () {
-    var situation = buildSituation({
+    const situation = buildSituation({
       demandeur: {
         id: "demandeur",
         enfant_a_charge: { 2013: true },
       },
     })
-    var result = subject.dispatchIndividuals(situation)
+    const result = subject.dispatchIndividuals(situation)
 
     it("adds a parent without", function () {
       expect(result.individus.parent1).toEqual({})
@@ -60,7 +60,7 @@ describe("openfisca dispatchIndividuals", function () {
   })
 
   describe("young adult in a couple fiscal unit", function () {
-    var situation = buildSituation({
+    const situation = buildSituation({
       demandeur: {
         id: "demandeur",
         enfant_a_charge: { 2013: true },
@@ -69,7 +69,7 @@ describe("openfisca dispatchIndividuals", function () {
         id: "conjoint",
       },
     })
-    var result = subject.dispatchIndividuals(situation)
+    const result = subject.dispatchIndividuals(situation)
 
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])

@@ -1,5 +1,5 @@
-var path = require("path")
-var fs = require("fs")
+const path = require("path")
+const fs = require("fs")
 
 module.exports = function (mongoose, config) {
   mongoose.Promise = require("bluebird")
@@ -7,7 +7,7 @@ module.exports = function (mongoose, config) {
   mongoose.connect(config.mongo.uri, config.mongo.options)
 
   // Bootstrap models
-  var modelsPath = path.join(__dirname, "../models")
+  const modelsPath = path.join(__dirname, "../models")
   fs.readdirSync(modelsPath).forEach(function (file) {
     if (/(.*)\.(js$|coffee$)/.test(file)) {
       require(modelsPath + "/" + file)

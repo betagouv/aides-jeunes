@@ -17,19 +17,19 @@ const {
 } = require("../../../../lib/Benefits/FilterInterestFlag")
 
 function dispatchIndividuals(situation) {
-  var individus = mapIndividus(situation)
+  const individus = mapIndividus(situation)
 
-  var familles = { _: situation.famille }
-  var foyers_fiscaux = {
+  const familles = { _: situation.famille }
+  const foyers_fiscaux = {
     _: {
       declarants: [],
       personnes_a_charge: [],
     },
   }
-  var menages = { _: buildOpenFiscaMenage(situation) }
+  const menages = { _: buildOpenFiscaMenage(situation) }
 
-  var demandeur = common.getDemandeur(situation)
-  var demandeurId = demandeur && demandeur.id
+  const demandeur = common.getDemandeur(situation)
+  const demandeurId = demandeur && demandeur.id
 
   familles._.parents = [demandeurId]
   menages._.personne_de_reference = [demandeurId]
@@ -40,7 +40,7 @@ function dispatchIndividuals(situation) {
     demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
 
   if (aCharge) {
-    var parent1 = {
+    const parent1 = {
       id: "parent1",
     }
     individus[parent1.id] = { ...parent1, id: undefined }
@@ -52,7 +52,7 @@ function dispatchIndividuals(situation) {
     }
 
     if (situation.parents && situation.parents._situation == "en_couple") {
-      var parent2 = {
+      const parent2 = {
         id: "parent2",
       }
       individus[parent2.id] = { ...parent2, id: undefined }
@@ -66,8 +66,8 @@ function dispatchIndividuals(situation) {
     foyers_fiscaux._.declarants.push(demandeurId)
   }
 
-  var conjoint = common.getConjoint(situation)
-  var conjointId = conjoint && conjoint.id
+  const conjoint = common.getConjoint(situation)
+  const conjointId = conjoint && conjoint.id
   if (conjointId) {
     familles._.parents.push(conjointId)
     menages._.conjoint = [conjointId]
@@ -81,11 +81,11 @@ function dispatchIndividuals(situation) {
     }
   }
 
-  var enfants = common.getEnfants(situation)
-  var validEnfants = filter(enfants, function (enfant) {
+  const enfants = common.getEnfants(situation)
+  const validEnfants = filter(enfants, function (enfant) {
     return common.isIndividuValid(enfant, situation)
   })
-  var enfantIds = validEnfants.map(function (enfant) {
+  const enfantIds = validEnfants.map(function (enfant) {
     return enfant.id
   })
   familles._.enfants = enfantIds
@@ -119,7 +119,7 @@ function setNonInjected(testCase, prestations, periods, value) {
 }
 
 function mapIndividus(situation) {
-  var individus = filter(
+  const individus = filter(
     common.getIndividusSortedParentsFirst(situation),
     function (individu) {
       return common.isIndividuValid(individu, situation)
@@ -137,7 +137,7 @@ function mapIndividus(situation) {
 }
 
 function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
-  var prestationsWithInterest = pickBy(
+  const prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, demandeur)
@@ -177,9 +177,9 @@ exports.dispatchIndividuals = dispatchIndividuals
 // logement_conventionne needs to be true when the loan in fully paid
 // to avoid a benefit from appearing
 function applyHeuristicsAndFix(testCase, sourceSituation) {
-  var periods = common.getPeriods(sourceSituation.dateDeValeur)
+  const periods = common.getPeriods(sourceSituation.dateDeValeur)
 
-  var menage = assign(
+  const menage = assign(
     {},
     {
       logement_conventionne: {},
@@ -223,11 +223,11 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
 exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 exports.buildOpenFiscaRequest = function (sourceSituation) {
-  var situation = sourceSituation.toObject
+  const situation = sourceSituation.toObject
     ? migrations.apply(sourceSituation).toObject()
     : cloneDeep(sourceSituation)
 
-  var testCase = dispatchIndividuals(situation)
+  const testCase = dispatchIndividuals(situation)
 
   // Variables stored to properly restore UI should not be sent to OpenFisca
   forEach(testCase, (items) => {
@@ -242,9 +242,9 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   // Move properties to its group (familles, foyers_fiscaux) define in definition.js
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
-  var periods = common.getPeriods(situation.dateDeValeur)
+  const periods = common.getPeriods(situation.dateDeValeur)
 
-  var prestationsFinancieres = pickBy(
+  const prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
       return !definition.type || definition.type === "float"
@@ -257,7 +257,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     0
   )
 
-  var prestationsFinancieresAtZeroRecently = pickBy(
+  const prestationsFinancieresAtZeroRecently = pickBy(
     common.requestedVariables,
     function (definition) {
       return (

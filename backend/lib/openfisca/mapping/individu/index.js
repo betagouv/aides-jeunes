@@ -60,8 +60,8 @@ const individuSchema = {
         return 260
       }
 
-      var jeuneCommune = findCommuneByInseeCode(situation.menage.depcom)
-      var parentCommune = findCommuneByInseeCode(
+      const jeuneCommune = findCommuneByInseeCode(situation.menage.depcom)
+      const parentCommune = findCommuneByInseeCode(
         individu._bourseCriteresSociauxCommuneDomicileFamilial
       )
       return computeDistanceCommunes(jeuneCommune, parentCommune)
@@ -151,9 +151,9 @@ function isNotValidValue(value) {
 }
 
 function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
-  var openFiscaIndividu = cloneDeep(mesAidesIndividu)
+  const openFiscaIndividu = cloneDeep(mesAidesIndividu)
   forEach(individuSchema, function (definition, openfiscaKey) {
-    var params = isString(definition) ? { src: definition } : definition
+    const params = isString(definition) ? { src: definition } : definition
 
     openFiscaIndividu[openfiscaKey] = params.src
       ? params.fn(mesAidesIndividu[params.src], mesAidesIndividu, situation)

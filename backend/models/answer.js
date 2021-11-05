@@ -1,11 +1,11 @@
-var mongoose = require("mongoose")
-var utils = require("../lib/utils")
-var openfisca = require("../lib/openfisca")
-var benefits = require("../../data/js/benefits/back")
-var mesAides = require("../../lib/Benefits/Compute")
+const mongoose = require("mongoose")
+const utils = require("../lib/utils")
+const openfisca = require("../lib/openfisca")
+const benefits = require("../../data/js/benefits/back")
+const mesAides = require("../../lib/Benefits/Compute")
 const { generateSituation } = require("../../lib/situations")
 
-var computeAides = mesAides.computeAides.bind(benefits)
+const computeAides = mesAides.computeAides.bind(benefits)
 
 const answer = {
   entityName: String,
@@ -14,7 +14,7 @@ const answer = {
   value: Object,
 }
 
-var AnswerSchema = new mongoose.Schema(
+const AnswerSchema = new mongoose.Schema(
   {
     all: [answer],
     current: [answer],
@@ -54,7 +54,7 @@ AnswerSchema.pre("save", function (next) {
   if (!this.isNew) {
     return next()
   }
-  var answers = this
+  const answers = this
   utils
     .generateToken()
     .then(function (token) {
@@ -64,14 +64,14 @@ AnswerSchema.pre("save", function (next) {
     .catch(next)
 })
 AnswerSchema.methods.compute = function () {
-  var situation = generateSituation(this)
+  const situation = generateSituation(this)
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
       if (err) {
         return reject(err)
       }
 
-      var aides = computeAides(situation, this._id, openfiscaResponse, false)
+      const aides = computeAides(situation, this._id, openfiscaResponse, false)
       resolve(aides)
     })
   })

@@ -1,11 +1,11 @@
-var Promise = require("bluebird")
-var openfisca = Promise.promisifyAll(require("../openfisca"))
-var request = Promise.promisify(
+const Promise = require("bluebird")
+const openfisca = Promise.promisifyAll(require("../openfisca"))
+const request = Promise.promisify(
   openfisca.sendToOpenfisca("calculate", (s) => s)
 )
 
-var { base, build, extractResults } = require("../openfisca/bulk")
-var droitsDescription = require("../../../data/js/benefits")
+const { base, build, extractResults } = require("../openfisca/bulk")
+const droitsDescription = require("../../../data/js/benefits")
 
 function OpenFiscaAxe(situation) {
   this.situation = situation
@@ -15,10 +15,10 @@ OpenFiscaAxe.prototype.toInternal = function () {
   return {}
 }
 
-var benefits = []
-for (var level in droitsDescription) {
-  for (var provider in droitsDescription[level]) {
-    for (var prestation in droitsDescription[level][provider].prestations) {
+const benefits = []
+for (const level in droitsDescription) {
+  for (const provider in droitsDescription[level]) {
+    for (const prestation in droitsDescription[level][provider].prestations) {
       benefits.push(
         Object.assign(
           {
@@ -35,14 +35,14 @@ for (var level in droitsDescription) {
   }
 }
 
-var benefitIds = ["irpp"].concat(benefits.map((b) => b.id))
-var variable = "salaire_net"
+const benefitIds = ["irpp"].concat(benefits.map((b) => b.id))
+const variable = "salaire_net"
 
 function fetch(s) {
-  var fs = Promise.promisifyAll(require("fs"))
-  var os = require("os")
-  var path = require("path")
-  var cachePath = path.join(
+  const fs = Promise.promisifyAll(require("fs"))
+  const os = require("os")
+  const path = require("path")
+  const cachePath = path.join(
     os.tmpdir(),
     "situation_" + s.source._id + "_" + base
   )
@@ -66,14 +66,14 @@ function fetch(s) {
 }
 
 OpenFiscaAxe.prototype.toExternal = function () {
-  var s = {
+  const s = {
     source: this.situation,
     request: build(this.situation, variable),
   }
 
   return fetch(s).then((s) => {
-    var results = extractResults(s, benefitIds)
-    var jsonResults = Object.keys(results).map((k) => {
+    const results = extractResults(s, benefitIds)
+    const jsonResults = Object.keys(results).map((k) => {
       return Object.assign({ name: k }, results[k], { [variable]: parseInt(k) })
     })
     return {

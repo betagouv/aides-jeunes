@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-var express = require("express")
+const express = require("express")
 
 require("./backend/api")
-var Followup = require("mongoose").model("Followup")
-var renderInitial = require("./backend/lib/mes-aides/emails/initial").render
+const Followup = require("mongoose").model("Followup")
+const renderInitial = require("./backend/lib/mes-aides/emails/initial").render
 // eslint-disable-next-line no-unused-vars
-var renderSurvey = require("./backend/lib/mes-aides/emails/survey").render
+const renderSurvey = require("./backend/lib/mes-aides/emails/survey").render
 
-var port = process.env.PORT || 9001
+const port = process.env.PORT || 9001
 
 // Setup Express
-var app = express()
+const app = express()
 
 const typeKeys = ["initial", "survey"]
 

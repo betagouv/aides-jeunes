@@ -1,6 +1,6 @@
-var { forEach } = require("../../data/js/benefits/back")
+const { forEach } = require("../../data/js/benefits/back")
 
-var data = []
+const data = []
 forEach((b, id) => {
   data.push(Object.assign({ id }, b))
 })

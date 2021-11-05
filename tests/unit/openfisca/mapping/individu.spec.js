@@ -1,13 +1,13 @@
-var situation = {
+const situation = {
   demandeur: { _bourseCriteresSociauxCommuneDomicileFamilial: "38185" },
   menage: { depcom: "33090" },
 }
 
-var subject = require("../../../../backend/lib/openfisca/mapping/individu")
-var expect = require("expect")
+const subject = require("../../../../backend/lib/openfisca/mapping/individu")
+const expect = require("expect")
 
 describe("distance computation", function () {
-  var result =
+  const result =
     subject.additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situation.demandeur,
       situation

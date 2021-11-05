@@ -1,9 +1,9 @@
-var forEach = require("lodash/forEach")
-var pickBy = require("lodash/pickBy")
+const forEach = require("lodash/forEach")
+const pickBy = require("lodash/pickBy")
 
-var common = require("./common")
+const common = require("./common")
 
-var famillePropertiesGivenToIndividu = Object.keys(
+const famillePropertiesGivenToIndividu = Object.keys(
   pickBy(common.requestedVariables, function (definition) {
     return (
       (!definition.type || definition.type == "float") &&
@@ -12,7 +12,7 @@ var famillePropertiesGivenToIndividu = Object.keys(
   })
 ).concat(["aeeh", "paje_prepare", "paje_clca"])
 
-var movedProperties = {
+const movedProperties = {
   familles: {
     properties: famillePropertiesGivenToIndividu.map(function (id) {
       return { name: id }
@@ -27,10 +27,10 @@ var movedProperties = {
 
 exports.movePropertyValuesToGroupEntity = function (testCase) {
   Object.keys(movedProperties).forEach(function (testCasePropertyName) {
-    var moveDetails = movedProperties[testCasePropertyName]
+    const moveDetails = movedProperties[testCasePropertyName]
 
     forEach(testCase[testCasePropertyName], function (entity) {
-      var entityIndividuIds = moveDetails.sourceKeys.reduce(function (
+      const entityIndividuIds = moveDetails.sourceKeys.reduce(function (
         accum,
         key
       ) {
@@ -39,11 +39,11 @@ exports.movePropertyValuesToGroupEntity = function (testCase) {
       [])
 
       moveDetails.properties.forEach(function (property) {
-        var sign = property.sign || 1
-        var accum = entityIndividuIds.reduce(function (accum, id) {
-          var individu = testCase.individus[id]
-          var individuRessource = individu[property.name]
-          for (var period in individu[property.name]) {
+        const sign = property.sign || 1
+        const accum = entityIndividuIds.reduce(function (accum, id) {
+          const individu = testCase.individus[id]
+          const individuRessource = individu[property.name]
+          for (const period in individu[property.name]) {
             if (!accum[period]) accum[period] = 0
             accum[period] = accum[period] + sign * individuRessource[period]
           }

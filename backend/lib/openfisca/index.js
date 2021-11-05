@@ -1,8 +1,8 @@
-var config = require("../../config")
-var mapping = require("./mapping")
-var axios = require("axios")
+const config = require("../../config")
+const mapping = require("./mapping")
+const axios = require("axios")
 
-var buildOpenFiscaRequest = (exports.buildOpenFiscaRequest =
+const buildOpenFiscaRequest = (exports.buildOpenFiscaRequest =
   mapping.buildOpenFiscaRequest)
 function sendToOpenfisca(endpoint, transform) {
   if (!transform) {
@@ -10,7 +10,7 @@ function sendToOpenfisca(endpoint, transform) {
   }
 
   return function (situation, callback) {
-    var request
+    let request
     try {
       request = transform(situation)
     } catch (e) {

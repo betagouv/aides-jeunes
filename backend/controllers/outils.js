@@ -1,6 +1,6 @@
-var communes = require("@etalab/decoupage-administratif/data/communes.json")
-var communeCode98 = require("./communeCode98.json")
-var index = {}
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const communeCode98 = require("./communeCode98.json")
+const index = {}
 
 communes.forEach(function (commune) {
   if (!commune.codesPostaux) {

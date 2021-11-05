@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-var Followup = require("mongoose").model("Followup")
+const Followup = require("mongoose").model("Followup")
 
-var situation = require("./answers")
+const situation = require("./answers")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)

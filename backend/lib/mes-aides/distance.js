@@ -1,4 +1,4 @@
-var haversine = require("haversine")
+const haversine = require("haversine")
 
 const processArrondissements = (inseeCode) => {
   if (inseeCode) {

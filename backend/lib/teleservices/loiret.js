@@ -11,11 +11,11 @@ const situationsFamiliales = require("../../../lib/SituationsFamiliales.js")
 const getPeriods = require("../openfisca/mapping/common").getPeriods
 
 function reduce(demandeur, dateDeValeur, field) {
-  var resources = Array.isArray(field.resources)
+  const resources = Array.isArray(field.resources)
     ? field.resources
     : [field.resources]
-  var total = 0
-  var last12Months = getPeriods(dateDeValeur).last12Months
+  let total = 0
+  const last12Months = getPeriods(dateDeValeur).last12Months
   each(resources, function (resource) {
     if (demandeur[resource]) {
       total += sum(
@@ -37,7 +37,7 @@ function reduceToAmount(demandeur, dateDeValeur, field) {
   })
 }
 
-var fields = {
+const fields = {
   date_naissance_dem: {
     label: "votre date de naissance",
     toInternal: function (demandeur) {
@@ -50,7 +50,7 @@ var fields = {
   situationfam_dem: {
     label: "votre situation familiale",
     toInternal: function (demandeur) {
-      var situationFamiliale = find(
+      const situationFamiliale = find(
         situationsFamiliales,
         function (situationFamiliale) {
           return situationFamiliale.value === demandeur.statut_marital
@@ -112,13 +112,13 @@ function Loiret(situation) {
 }
 
 Loiret.prototype.toInternal = function () {
-  var demandeur = find(this.situation.individus, function (individu) {
+  const demandeur = find(this.situation.individus, function (individu) {
     return individu._role === "demandeur"
   })
-  var dateDeValeur = this.situation.dateDeValeur
+  const dateDeValeur = this.situation.dateDeValeur
 
   return Object.keys(fields).map(function (key) {
-    var field = fields[key]
+    const field = fields[key]
     return {
       label: field.label,
       formattedValue: field.toInternal.apply(null, [
@@ -131,10 +131,10 @@ Loiret.prototype.toInternal = function () {
 }
 
 Loiret.prototype.toExternal = function () {
-  var demandeur = find(this.situation.individus, function (individu) {
+  const demandeur = find(this.situation.individus, function (individu) {
     return individu._role === "demandeur"
   })
-  var dateDeValeur = this.situation.dateDeValeur
+  const dateDeValeur = this.situation.dateDeValeur
 
   return {
     date_naissance_dem: fields.date_naissance_dem.toExternal(demandeur),

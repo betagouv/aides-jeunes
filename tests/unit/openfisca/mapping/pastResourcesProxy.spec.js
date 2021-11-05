@@ -1,12 +1,12 @@
-var subject = require("../../../../backend/lib/openfisca/mapping/individu/pastResourcesProxy")
-var expect = require("expect")
+const subject = require("../../../../backend/lib/openfisca/mapping/individu/pastResourcesProxy")
+const expect = require("expect")
 
 describe("openfisca past resource proxy", function () {
-  var date = new Date("2019-02-14")
+  const date = new Date("2019-02-14")
 
   describe("proxyWithCurrentResources", function () {
     describe("situation with 12 month rolling data", function () {
-      var individu = {
+      const individu = {
         salaire_net: {
           "2019-01": 12000,
         },
@@ -26,7 +26,7 @@ describe("openfisca past resource proxy", function () {
     })
 
     describe("situation with fiscal data", function () {
-      var individu = {
+      const individu = {
         salaire_imposable: {
           2017: 12120,
         },

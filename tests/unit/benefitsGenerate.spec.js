@@ -1,7 +1,7 @@
-var expect = require("expect")
+const expect = require("expect")
 
 describe("benefit descriptions", function () {
-  var subject = require("../../data/js/benefits/utils").generate
+  const subject = require("../../data/js/benefits/utils").generate
 
   it("exists", function () {
     const collections = {

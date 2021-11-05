@@ -48,7 +48,10 @@ const fillChildrenRessources = (childrenRessource) => {
   submit()
 }
 
+const ignore = submit
+
 export default {
+  ignore,
   fill_ressources_types,
   fillConstantRevenu,
   fillInconstantRevenu,

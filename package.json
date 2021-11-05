@@ -144,6 +144,7 @@
     "ie >= 11"
   ],
   "jest": {
+    "testEnvironment": "jsdom",
     "moduleFileExtensions": [
       "js",
       "jsx",

@@ -6,7 +6,7 @@ var assign = require("lodash/assign")
 var { generateSituation } = require("../../lib/situations")
 var openfisca = require("../lib/openfisca")
 var openfiscaTest = require("../lib/openfisca/test")
-var Answer = require("mongoose").model("Answer")
+var Answers = require("mongoose").model("Answer")
 
 exports.answers = function (req, res, next, answersId) {
   if (answersId && answersId._id) {
@@ -15,7 +15,7 @@ exports.answers = function (req, res, next, answersId) {
     return next()
   }
 
-  Answer.findById(answersId, (err, answers) => {
+  Answers.findById(answersId, (err, answers) => {
     if (err) return next(err)
     req.answers = answers
     req.situation = generateSituation(answers)
@@ -46,7 +46,7 @@ function clearCookies(req, res) {
 
   var keys = Object.keys(req.cookies)
   var situationCookies = filter(keys, function (k) {
-    return k.startsWith(Answer.cookiePrefix)
+    return k.startsWith(Answers.cookiePrefix)
   })
   situationCookies.sort()
 
@@ -68,7 +68,7 @@ exports.create = function (req, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  return Answer.create(
+  return Answers.create(
     omit(req.body, "createdAt", "status", "token"),
     (err, persistedAnswers) => {
       if (err) return next(err)

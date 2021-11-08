@@ -24,8 +24,12 @@ context("Full simulation", () => {
     logement.fill__nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
 
-    revenu.fill_ressources_types(["salaire_net"])
+    revenu.fill_ressources_types([
+      "salaire_net",
+      "rpns_auto_entrepreneur_CA_bnc",
+    ])
     revenu.fillConstantRevenu(1101.42)
+    revenu.ignore()
 
     projet.fill__interetPermisDeConduire(false)
 

@@ -1,7 +1,6 @@
 "use strict"
 
 const {
-  PERIODICITE_PONCTUELLE,
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
 } = require("../../../lib/Benefits/Details")

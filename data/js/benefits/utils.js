@@ -74,12 +74,12 @@ function generate(collections, base) {
   )
 
   const localInstitutions = {
-    ...base.partenairesLocaux,
     ...fileBasedInstitutions.local,
+    ...base.partenairesLocaux,
   }
   const nationalInstitutions = {
-    ...base.prestationsNationales,
     ...fileBasedInstitutions.national,
+    ...base.prestationsNationales,
   }
 
   const fileBasedBenefits = collections.benefits.items

@@ -1,5 +1,12 @@
 html {
   body {
+    & > .aj-website {
+      .aj-website-content {
+        .aj-text-container {
+          padding: 2rem 1rem;
+        }
+      }
+    }
     .aj-main-container {
       .aj-category-title-wrapper {
         padding: 16px 32px;

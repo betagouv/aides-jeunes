@@ -1,7 +1,7 @@
 html {
   body {
     .aj-main-container {
-      margin: 0 0 16px 0;
+      margin: 0;
       .aj-category-title-wrapper {
         padding: 16px 0;
       }
@@ -67,6 +67,7 @@ html {
         & .aj-box {
           padding: 16px;
           border-radius: 0;
+          box-shadow: none;
         }
 
         .aj-actions {

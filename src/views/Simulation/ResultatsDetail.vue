@@ -11,6 +11,7 @@
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
       v-on:click="goBack($event)"
+      data-testid="back"
     >
       <svg
         width="12"

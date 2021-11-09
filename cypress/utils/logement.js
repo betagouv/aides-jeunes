@@ -26,6 +26,10 @@ const fill_depcom = (department) => {
   submit()
 }
 
+const fill_parisien = (parisien) => {
+  fillRadio("parisien", parisien)
+}
+
 const fill_coloc = (coloc) => {
   fillRadio("coloc", coloc)
 }
@@ -55,6 +59,7 @@ export default {
   fill_logement,
   fill__nombreMoisEntreeLogement,
   fill_depcom,
+  fill_parisien,
   fill_coloc,
   fill_logement_chambre,
   fill_proprietaire_proche_famille,

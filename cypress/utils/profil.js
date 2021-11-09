@@ -30,6 +30,10 @@ const fill_annee_etude = (level) => {
   fillRadio("annee_etude", level)
 }
 
+const fill_mention_baccalaureat = (mention) => {
+  fillRadio("mention_baccalaureat", mention)
+}
+
 const fill_statuts_etablissement_scolaire = (type) => {
   fillRadio("statuts_etablissement_scolaire", type)
 }
@@ -117,8 +121,9 @@ const publicStudent = () => {
   fill_nationalite("FR")
   fill_activite("etudiant")
   fill_scolarite("enseignement_superieur")
-  fill_annee_etude("master_1")
+  fill_annee_etude("licence_1")
   fill_statuts_etablissement_scolaire("public")
+  fill_mention_baccalaureat("mention_tres_bien")
   fill_alternant(false)
   fillHandicap(false)
   fill_enfant_a_charge(false)

@@ -7,6 +7,8 @@ const wait = () => {
 
 const getBenefitSummary = (id) => cy.get(`@${id}-summary`)
 
+const back = () => cy.get('button[data-testid="back"]').click()
+
 const IdentifyBenefit = (position, id, name) => {
   cy.get(
     `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${position})`,
@@ -144,12 +146,24 @@ const hasBourseCriteresSociaux = (position) => {
     .should("be.visible")
 }
 
+const hasIleDeFranceAideBachelierMeritants = (position) => {
+  const name = /Aide aux bacheliers méritants/
+  const id = "ile-de-france-aide-aux-bacheliers-meritants"
+  IdentifyBenefit(position, id, name)
+  getBenefitSummary(id)
+    .find(".aj-droit-estime-value")
+    .invoke("text")
+    .should("match", /(\d+)[\S\n\r\s]+€/)
+}
+
 export default {
   wait,
+  back,
   hasPrimeActivite,
   hasHousingBenefit,
   hasCSS,
   hasAAH,
   hasBourseCriteresSociaux,
   captureFiscalResources,
+  hasIleDeFranceAideBachelierMeritants,
 }

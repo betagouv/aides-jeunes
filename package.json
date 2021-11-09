@@ -2,6 +2,9 @@
   "name": "mes-aides-jeunes",
   "version": "12.1.3",
   "description": "Simulateur de prestations sociales pour les jeunes",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",

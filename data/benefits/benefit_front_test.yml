@@ -7,7 +7,6 @@ prefix: l’
 type: float
 unit: "€"
 floorAt: 1
-legend: ""
 montant: 200
 departements:
   - "64"
@@ -29,5 +28,5 @@ profils:
   - type: independant
   - type: service_civique
 computesLocally: true
-periodicite: mensuelle
+periodicite: ponctuelle
 private: true

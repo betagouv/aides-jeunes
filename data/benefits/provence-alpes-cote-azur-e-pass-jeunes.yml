@@ -11,8 +11,13 @@ type: bool
 computesLocally: true
 regions:
   - "93"
-age_min: 15
-age_max: 25
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
 profils:
   - type: lyceen
   - type: etudiant

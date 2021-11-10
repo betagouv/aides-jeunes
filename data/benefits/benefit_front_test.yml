@@ -13,23 +13,17 @@ departements:
   - "45"
   - "12"
   - "55"
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
 profils:
   - type: chomeur
-    conditions:
-      - type: age
-        operator: ">="
-        value: 16
-      - type: age
-        operator: <=
-        value: 25
   - type: etudiant
     conditions:
-      - type: age
-        operator: ">="
-        value: 16
-      - type: age
-        operator: <=
-        value: 25
       - type: boursier
         value: true
       - type: mention_baccalaureat

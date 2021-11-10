@@ -6,7 +6,6 @@ conditions:
   - Avoir travaillé au moins 5 ans au cours des 10 ans avant la fin de votre dernier contrat de travail.
 link: https://www.service-public.fr/particuliers/vosdroits/F12484
 instructions: https://www.service-public.fr/particuliers/vosdroits/F12484
-isBaseRessourcesYearMinusTwo: true
 prefix: l'
 type: float
 unit: "€"

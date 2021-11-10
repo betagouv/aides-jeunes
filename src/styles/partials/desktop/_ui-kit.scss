@@ -143,8 +143,12 @@ html {
           bottom: -60px;
           left: 32px;
 
-          button:not(:first-child) {
+          .next-button {
+            order: 2;
             margin-left: 24px;
+          }
+          .previous {
+            order: 1;
           }
         }
       }

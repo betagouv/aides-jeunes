@@ -273,7 +273,7 @@ collections:
       - label: Conditions générales à satisfaire simultanément
         label_singular: Condition générale à satisfaire
         name: conditions_generales
-        default: [ ]
+        default: []
         widget: list
         collapsed: false
         types:
@@ -319,7 +319,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:
@@ -332,7 +332,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:
@@ -344,7 +344,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:
@@ -356,7 +356,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:
@@ -368,7 +368,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:
@@ -380,7 +380,7 @@ collections:
               - label: Conditions à satisfaire simultanément
                 label_singular: Condition à satisfaire
                 name: conditions
-                default: [ ]
+                default: []
                 widget: list
                 collapsed: false
                 types:

@@ -41,7 +41,7 @@ export const SIMPLE_STEPS = {
     ]
   },
   depcom() {
-    const answer = getStepAnswer(
+    const answer = getAnswer(
       this.$store.state.answers.current,
       "menage",
       "depcom",
@@ -58,14 +58,19 @@ export const SIMPLE_STEPS = {
     ]
   },
 
-  _bourseCriteresSociauxCommuneDomicileFamilial(step) {
-    const individu = getIndividuByStep(step, this)
+  _bourseCriteresSociauxCommuneDomicileFamilial() {
+    const answer = getAnswer(
+      this.$store.state.answers.current,
+      "individu",
+      "_bourseCriteresSociauxCommuneDomicileFamilial",
+      "demandeur"
+    )
     return [
       {
         label: "Quel est le code postal de la commune de vos parents ?",
         value: displayDepcomValue(
-          individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
-          individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
+          answer._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
+          answer._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
         ),
       },
     ]

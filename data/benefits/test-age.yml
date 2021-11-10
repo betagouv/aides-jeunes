@@ -1,0 +1,11 @@
+label: test age
+institution: departement_eure_et_loir
+description: Test age ssafasf
+type: bool
+unit: €
+profils:
+  - type: etudiant
+    conditions:
+      - type: age
+        op: <=
+        value: 10

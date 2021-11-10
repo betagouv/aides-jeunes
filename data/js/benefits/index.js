@@ -283,11 +283,10 @@ const droitsDescription = {
     },
   },
   partenairesLocaux: {
-    occitanie_region: {
+    region_occitanie: {
       imgSrc: "logo_occitanie.png",
       repository: "france-local",
-      label: "Région Occitanie",
-      prefix: "La",
+      label: "Occitanie",
       prestations: {
         occitanie_carte_transport_scolaire_lio: require("./occitanie_carte_transport_scolaire_lio"),
       },

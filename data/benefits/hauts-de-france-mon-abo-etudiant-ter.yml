@@ -20,7 +20,7 @@ profils:
   - type: etudiant
     conditions:
       - type: age
-        op: <
+        operator: <
         value: 26
   - type: etudiant
     conditions:

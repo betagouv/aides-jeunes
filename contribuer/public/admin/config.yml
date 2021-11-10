@@ -28,9 +28,19 @@ fields:
     widget: object
     fields:
       - label: Opérateur
-        name: op
+        name: operator
         widget: select
-        options: ["<"]
+        options:
+          - label: Supérieur à
+            value: ">"
+          - label: Supérieur ou égal à
+            value: ">="
+          - label: Égal à
+            value: "==="
+          - label: Inférieur à
+            value: "<"
+          - label: Inférieur ou égal à
+            value: "<="
       - label: Valeur
         name: value
         widget: number
@@ -260,16 +270,6 @@ collections:
         required: false
         widget: list
         hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
-      - label: Age minimal inclus
-        name: age_min
-        widget: number
-        required: false
-        min: 0
-      - label: Age maximal inclus
-        name: age_max
-        widget: number
-        required: false
-        min: 0
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils
@@ -307,38 +307,74 @@ collections:
             name: apprenti
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: En contrat de professionnalisation
             name: professionnalisation
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: En recherche d'emploi
             name: chomeur
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: Salarié
             name: salarie
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: Travailleur indépendant
             name: independant
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
           - label: En service civique
             name: service_civique
             widget: object
             fields:
-              - name: flag
-                widget: hidden
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: [ ]
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
   - name: institutions
     label: Institutions
     label_singular: institution

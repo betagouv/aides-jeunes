@@ -7,5 +7,5 @@ profils:
   - type: etudiant
     conditions:
       - type: age
-        operator: <=
+        operator: '"<"'
         value: 22

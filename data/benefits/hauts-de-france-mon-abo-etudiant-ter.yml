@@ -17,6 +17,14 @@ regions:
   - "11"
 profils:
   - type: apprenti
+    conditions:
+      - type: age
+        operator: <
+        value: 26
+  - type: apprenti
+    conditions:
+      - type: boursier
+        value: true
   - type: etudiant
     conditions:
       - type: age

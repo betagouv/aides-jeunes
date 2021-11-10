@@ -15,6 +15,9 @@ interestFlag: _interetEtudesEtranger
 computesLocally: true
 regions:
   - "44"
-age_max: 29
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 29
 profils:
   - type: etudiant

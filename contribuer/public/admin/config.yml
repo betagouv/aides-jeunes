@@ -297,6 +297,7 @@ collections:
                 collapsed: false
                 types:
                   - *field_age
+                  - *field_boursier
           - label: Étudiant
             name: etudiant
             widget: object
@@ -323,6 +324,7 @@ collections:
                 collapsed: false
                 types:
                   - *field_age
+                  - *field_boursier
           - label: En contrat de professionnalisation
             name: professionnalisation
             widget: object

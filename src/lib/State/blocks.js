@@ -44,7 +44,7 @@ function individuBlockFactory(id) {
                 },
                 {
                   isActive: (subject) =>
-                    ["bts_1", "cpge_1", "licence_1"].includes(
+                    ["bts_1", "cpge_1", "licence_1", "licence_2"].includes(
                       subject.annee_etude
                     ),
                   steps: [r("mention_baccalaureat")],

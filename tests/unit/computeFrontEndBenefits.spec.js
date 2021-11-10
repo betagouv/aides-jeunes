@@ -63,46 +63,65 @@ describe("computeAides", function () {
   })
 
   it("test when no profile are required", function () {
-    expect(testProfileEligibility(studentSituation, {})).toBe(true)
+    expect(testProfileEligibility({}, { situation: {} })).toBe(true)
   })
 
   it("test an situation with ineligible profile", function () {
-    expect(testProfileEligibility(situation, benefit)).toBe(false)
+    expect(testProfileEligibility(benefit, { situation })).toBe(false)
   })
 
   it("test an eligible situation", function () {
-    expect(testProfileEligibility(studentSituation, benefit)).toBe(true)
+    const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
+    expect(
+      testProfileEligibility(benefit, {
+        situation: studentSituation,
+        openfiscaResponse: openfiscaRequest,
+      })
+    ).toBe(true)
   })
 
   it("test situation that not respect conditions of profile", function () {
     studentSituation.demandeur.mention_baccalaureat = "mention_bien"
-    expect(testProfileEligibility(studentSituation, benefit)).toBe(false)
-  })
+    const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
 
-  it("verify the result when commune is undefined", function () {
     expect(
-      testGeographicalEligibility(null, {
-        departements: ["64", "45", "12"],
+      testProfileEligibility(benefit, {
+        situation: studentSituation,
+        openfiscaResponse: openfiscaRequest,
       })
     ).toBe(false)
   })
 
+  it("verify the result when commune is undefined", function () {
+    expect(
+      testGeographicalEligibility(
+        {
+          departements: ["64", "45", "12"],
+        },
+        null
+      )
+    ).toBe(false)
+  })
+
   it("verify the result when no test are provided", function () {
-    expect(testGeographicalEligibility(null, {})).toBe(true)
+    expect(testGeographicalEligibility({}, null)).toBe(true)
   })
 
   it("verify the result when a commune is not in benefit's department", function () {
-    expect(testGeographicalEligibility(commune, { departements: ["45"] })).toBe(
+    expect(testGeographicalEligibility({ departements: ["45"] }, commune)).toBe(
       false
     )
   })
 
   it("verify the result when a commune is in benefit's region", function () {
     expect(
-      testGeographicalEligibility(commune, {
-        departements: ["45"],
-        regions: ["32"],
-      })
+      testGeographicalEligibility(
+        {
+          departements: ["45"],
+          regions: ["32"],
+        },
+        commune
+      )
     ).toBe(true)
   })
 
@@ -141,7 +160,7 @@ describe("computeAides", function () {
     ).toBe(0)
   })
 
-  it("verify an ineligible situation to benefit_front_test", function () {
+  it("verify an eligibile situation to benefit_front_test", function () {
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
     computeFrontEndBenefits(
       droitsDescription,
@@ -153,7 +172,7 @@ describe("computeAides", function () {
     ).toBe(200)
   })
 
-  it("verify an eligible situation to benefit_front_test", function () {
+  it("verify an ineligible situation to benefit_front_test", function () {
     studentSituation.demandeur.boursier = false
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
     computeFrontEndBenefits(

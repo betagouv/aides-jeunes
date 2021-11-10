@@ -25,24 +25,29 @@ context("Full simulation", () => {
       1
     )
 
-    logement.fill_logement("heberge")
+    logement.fill_logement("locataire", "nonmeuble")
     logement.fill__nombreMoisEntreeLogement(12)
-    logement.fill_participation_frais(false)
-    logement.fill_habite_chez_parents(true)
-    logement.fill_depcom("45200")
+    logement.fill_coloc(false)
+    logement.fill_logement_chambre(false)
+    logement.fill_proprietaire_proche_famille(false)
+    logement.fill_loyer(600, 100)
+    logement.fill_depcom("75001")
+    logement.fill_parisien(true)
+    logement.fill__en_france(false)
 
     revenu.fill_ressources_types(["salaire_net"])
-    revenu.fillConstantRevenu(17860.35)
+    revenu.fillConstantRevenu(1101.42)
     revenu.fillRevenuBrut(1)
 
     projet.fill__interetPermisDeConduire(false)
-    projet.fill_sortie_region_academique(true)
-    projet.fill_boursier(false)
     projet.fill__interetEtudesEtranger(true)
     projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
 
-    results.hasBourseCriteresSociaux(3)
+    results.hasIleDeFranceAideBachelierMeritants(15)
+    results.hasBourseCriteresSociaux(5)
+    results.back()
+    results.hasHousingBenefit(4)
   })
 })

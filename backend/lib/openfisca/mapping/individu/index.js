@@ -67,16 +67,6 @@ const individuSchema = {
       return computeDistanceCommunes(jeuneCommune, parentCommune)
     },
   },
-  boursier: {
-    src: "boursier",
-    fn: function (boursier, individu) {
-      if (boursier !== undefined) {
-        return boursier
-      }
-
-      return Boolean(individu.bourse_enseignement_sup) || undefined
-    },
-  },
   contrat_de_travail_debut: {
     src: "_nombreMoisDebutContratDeTravail",
     fn: function (_nombreMoisDebutContratDeTravail, _, situation) {

@@ -3,6 +3,9 @@ const assign = require("lodash/assign")
 
 const { forEach } = require("../../../../data/js/benefits/back")
 const { generator } = require("../../../../lib/Dates")
+const {
+  CONDITION_STATEGY,
+} = require("../../../../lib/Benefits/ComputeFrontEnd")
 
 exports.isIndividuValid = function (individu, situation) {
   const age = moment(situation.dateDeValeur).diff(
@@ -49,6 +52,13 @@ exports.getPeriods = function (dateDeValeur) {
   }, {})
 }
 
+function appendExtraVariables(requestedVariables, extraVariables) {
+  extraVariables.forEach(function (extra) {
+    requestedVariables[extra.id] =
+      requestedVariables[extra.id] || assign({}, extra)
+  })
+}
+
 let requestedVariables = {}
 forEach((aide, aideId) => {
   if (aide.computesLocally) {
@@ -63,11 +73,16 @@ forEach((aide, aideId) => {
     })
   }
 
+  // Ajoute des variables dans la liste des paramètres à retourner par openfisca
   if (aide.extra) {
-    aide.extra.forEach(function (extra) {
-      requestedVariables[extra.id] =
-        requestedVariables[extra.id] || assign({}, extra)
-    })
+    appendExtraVariables(requestedVariables, aide.extra)
+  }
+})
+
+// Ajoute des variables dans la liste des paramètres à retourner par openfisca
+Object.values(CONDITION_STATEGY).forEach((condition) => {
+  if (condition.extra) {
+    appendExtraVariables(requestedVariables, condition.extra)
   }
 })
 

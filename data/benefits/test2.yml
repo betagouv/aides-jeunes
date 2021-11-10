@@ -1,0 +1,11 @@
+label: test2
+institution: departement_eure_et_loir
+description: asdsadasdasdsadadasdsad
+type: bool
+unit: €
+profils:
+  - type: etudiant
+    conditions:
+      - type: age
+        operator: <
+        value: 20

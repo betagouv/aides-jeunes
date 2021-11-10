@@ -49,9 +49,12 @@ export default {
       return this.$store.getters.getDebug
     },
     showProgress() {
-      return !["recapitulatif", "resultats", "resultatsDetails"].includes(
-        this.$route.name
-      )
+      return ![
+        "recapitulatif",
+        "resultats",
+        "resultatsDetails",
+        "resultatsAttendus",
+      ].includes(this.$route.name)
     },
     currentProgressStyle() {
       return {

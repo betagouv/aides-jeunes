@@ -114,6 +114,11 @@ const STEPS = {
           only: "enseignement_superieur",
         },
         {
+          label: "BUT",
+          value: "but_1",
+          only: "enseignement_superieur",
+        },
+        {
           label: "CPGE",
           value: "cpge_1",
           only: "enseignement_superieur",

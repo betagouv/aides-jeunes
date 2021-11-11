@@ -1,16 +1,16 @@
-function transformInstitutions(collection) {
-  const processBenefits = (result, data) => {
-    const item = {
-      label: data.name,
-      imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
-      prestations: [],
-      national: data.national,
-      repository: data.repository || (data.national ? null : "france-local"),
-    }
-    result[data.slug] = item
-    return result
+function processBenefits(result, data) {
+  const item = {
+    label: data.name,
+    imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
+    prestations: [],
+    national: data.national,
+    repository: data.repository || (data.national ? null : "france-local"),
   }
+  result[data.slug] = item
+  return result
+}
 
+function transformInstitutions(collection) {
   return {
     national: collection.filter((i) => i.national).reduce(processBenefits, {}),
     /* eslint-disable */

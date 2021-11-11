@@ -3,6 +3,7 @@ function transformInstitutions(collection) {
     const item = {
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
+      prestations: [],
       national: data.national,
       repository: data.repository || (data.national ? null : "france-local"),
     }

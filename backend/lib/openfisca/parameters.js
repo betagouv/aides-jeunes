@@ -27,7 +27,7 @@ const computeParameters = async () => {
 }
 
 const computeParameter = (parameter, date) => {
-  const values = parameters[parameter]
+  const values = parameters && parameters[parameter]
   if (values) {
     const closestDate = Object.keys(values).find(
       (valueDate) => new Date(valueDate) < date

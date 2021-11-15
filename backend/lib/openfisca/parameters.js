@@ -37,7 +37,11 @@ const computeParameter = (parameter, date) => {
       return values[closestDate]
     }
   }
-  Sentry.captureMessage("Openfisca parameters are not loaded")
+  Sentry.captureMessage("Openfisca parameters are not loaded", (scope) => {
+    scope.setTag("date", date)
+    scope.setTag("parameters", parameters)
+    scope.setTag("parameter", parameter)
+  })
   return parametersList[parameter]
 }
 

@@ -1,35 +1,16 @@
-function generateTestingBenefits(slug, list) {
-  const items = list.map((item, index) => {
-    const description =
-      "Ceci est une aide de test, une première étape à la contribution. Elle <strong>n'est affichée que</strong> pour les bénéficiaires du RSA."
-    const value = {
-      label: `${item.name} 🥁`,
-      description,
-      link: item.link,
-      type: "bool",
-      test: true,
-    }
-    return { [`${slug}_${index}`]: value }
-  })
-  return Object.assign({}, ...items)
+function processBenefits(result, data) {
+  const item = {
+    label: data.name,
+    imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
+    prestations: [],
+    national: data.national,
+    repository: data.repository || (data.national ? null : "france-local"),
+  }
+  result[data.slug] = item
+  return result
 }
 
 function transformInstitutions(collection) {
-  const processBenefits = (result, data) => {
-    const item = {
-      label: data.name,
-      imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
-      prestations: generateTestingBenefits(
-        data.slug,
-        data.testing_benefits || []
-      ),
-      national: data.national,
-      repository: data.repository || (data.national ? null : "france-local"),
-    }
-    result[data.slug] = item
-    return result
-  }
-
   return {
     national: collection.filter((i) => i.national).reduce(processBenefits, {}),
     /* eslint-disable */
@@ -77,26 +58,6 @@ function forEachFactory(obj) {
   }
 }
 
-function extractExperimentations(institutions) {
-  return Object.keys(institutions)
-    .filter((pid) => {
-      const benefits = institutions[pid].prestations
-      return Object.keys(benefits).filter((id) => benefits[id].test).length
-    })
-    .map((pid) => {
-      let provider = institutions[pid]
-      return {
-        ...provider,
-        prestations: Object.keys(provider.prestations)
-          .filter((id) => provider.prestations[id].test)
-          .reduce((accum, id) => {
-            accum[id] = provider.prestations[id]
-            return accum
-          }, {}),
-      }
-    })
-}
-
 function setDefaults(benefit, top) {
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
@@ -138,7 +99,6 @@ function generate(collections, base) {
     prestationsNationales: nationalInstitutions,
     partenairesLocaux: localInstitutions,
   }
-  result.experimentations = extractExperimentations(result.partenairesLocaux)
 
   const levels = ["prestationsNationales", "partenairesLocaux"]
   levels.forEach(function (levelId) {

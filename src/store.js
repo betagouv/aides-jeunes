@@ -499,27 +499,6 @@ const store = new Vuex.Store({
             showPrivate
           )
         })
-        .then((results) => {
-          const hasRsa =
-            some(results.droitsEligibles, (i) => i.id === "rsa") ||
-            some(results.droitsInjectes, (i) => i.id === "rsa" && i.montant)
-          if (hasRsa) {
-            Institution.forEachBenefit((benefit, id, provider) => {
-              if (!benefit.test) {
-                return
-              }
-              results.droitsEligibles.unshift({
-                ...benefit,
-                id,
-                provider,
-                montant: true,
-                top: 0,
-              })
-            })
-          }
-
-          return results
-        })
         .then((results) => store.commit("setResults", results))
         .catch((error) => store.commit("saveComputationFailure", error))
     },

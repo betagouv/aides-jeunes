@@ -1,5 +1,5 @@
 const auth = require("basic-auth")
-const situations = require("../answers")
+const answers = require("../answers")
 const jwt = require("jsonwebtoken")
 const moment = require("moment")
 const Mustache = require("mustache")
@@ -45,7 +45,7 @@ const teleservices = [
     public: true,
     destination: {
       label: "en ligne",
-      url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/situations/via/{{token}}&host={{&openFiscaURL}}",
+      url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/answers/via/{{token}}&host={{&openFiscaURL}}",
     },
   },
   {
@@ -53,7 +53,7 @@ const teleservices = [
     class: OpenFiscaAxe,
     public: true,
     destination: {
-      url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/situations/via/{{token}}",
+      url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/answers/via/{{token}}",
     },
   },
   {
@@ -169,11 +169,11 @@ exports.checkCredentials = function (req, res, next) {
 }
 
 /*
- * This callback attachs the appropriate situations
+ * This callback attachs the appropriate answers
  * It requires a payload with an identifier
  */
 exports.attachPayloadSituation = function (req, res, next) {
-  situations.situation(req, res, next, req.payload.id)
+  answers.answers(req, res, next, req.payload.id)
 }
 
 /*

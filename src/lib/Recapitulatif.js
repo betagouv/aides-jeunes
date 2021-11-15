@@ -150,7 +150,7 @@ export const COMPLEX_STEPS = {
                 (accum, [key, value]) => {
                   const date = type.isMontantAnnuel
                     ? key
-                    : moment(key, "YYYY-MM").format("MMMM YYYY")
+                    : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
                   accum[date] = displayCurrencyValue(value)
                   return accum
                 },

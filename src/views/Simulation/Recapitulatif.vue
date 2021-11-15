@@ -46,7 +46,7 @@
                     v-for="(value, name) in question.value"
                     :key="name"
                   >
-                    <div style="font-style: italic">{{ name }} :</div>
+                    <div style="font-style: italic">{{ name }} :</div>
                     <div>{{ value }}</div>
                   </div>
                 </div>

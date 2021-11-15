@@ -7,6 +7,7 @@ import {
 import Ressource from "@/../lib/ressource"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Logement from "@/lib/Logement"
+import moment from "moment"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
@@ -147,7 +148,10 @@ export const COMPLEX_STEPS = {
               label: capitalize(type.label),
               value: Object.entries(individu[type.id]).reduce(
                 (accum, [key, value]) => {
-                  accum[key] = displayCurrencyValue(value)
+                  const date = type.isMontantAnnuel
+                    ? key
+                    : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
+                  accum[date] = displayCurrencyValue(value)
                   return accum
                 },
                 {}

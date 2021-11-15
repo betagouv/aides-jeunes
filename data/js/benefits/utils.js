@@ -58,26 +58,6 @@ function forEachFactory(obj) {
   }
 }
 
-function extractExperimentations(institutions) {
-  return Object.keys(institutions)
-    .filter((pid) => {
-      const benefits = institutions[pid].prestations
-      return Object.keys(benefits).filter((id) => benefits[id].test).length
-    })
-    .map((pid) => {
-      let provider = institutions[pid]
-      return {
-        ...provider,
-        prestations: Object.keys(provider.prestations)
-          .filter((id) => provider.prestations[id].test)
-          .reduce((accum, id) => {
-            accum[id] = provider.prestations[id]
-            return accum
-          }, {}),
-      }
-    })
-}
-
 function setDefaults(benefit, top) {
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
@@ -119,7 +99,6 @@ function generate(collections, base) {
     prestationsNationales: nationalInstitutions,
     partenairesLocaux: localInstitutions,
   }
-  result.experimentations = extractExperimentations(result.partenairesLocaux)
 
   const levels = ["prestationsNationales", "partenairesLocaux"]
   levels.forEach(function (levelId) {

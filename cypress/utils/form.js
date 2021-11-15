@@ -38,8 +38,23 @@ const fillNumber = (url, value, { noSubmit, optional } = {}) => {
   }
 }
 
+const fillDate = (url, get, value, { noSubmit, optional } = {}) => {
+  cy.url().should("include", url)
+
+  if (!noSubmit) {
+    submitTest(url, optional)
+  }
+
+  cy.get(get).type(value)
+
+  if (!noSubmit) {
+    submit()
+  }
+}
+
 export default {
   submit,
   fillRadio,
   fillNumber,
+  fillDate,
 }

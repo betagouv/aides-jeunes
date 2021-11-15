@@ -1,4 +1,4 @@
-import { fillRadio, submit } from "./form"
+import { fillRadio, submit, fillDate } from "./form"
 
 const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
@@ -9,9 +9,7 @@ const fill_first_name = (prenom) => {
 }
 
 const fill_date_naissance = (birthDate) => {
-  cy.url().should("include", "date_naissance")
-  cy.get("#date_naissance").type(birthDate)
-  submit()
+  fillDate("date_naissance", "#date_naissance", birthDate)
 }
 
 const fill_nationalite = (nationality) => {
@@ -94,8 +92,7 @@ const fill_statut_marital = (maritalStatus) => {
 const fill_conjoint_activite = (activity) => {
   cy.get("legend").invoke("text").should("contain", "est-il/elle")
   cy.get("label").invoke("text").should("contain", "Salarié")
-  cy.get('input[type="radio"]').check(activity)
-  submit()
+  fill_activite(activity)
 }
 
 const defaultIndivu = () => {

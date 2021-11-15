@@ -1,3 +1,4 @@
+const Sentry = require("@sentry/browser")
 const openfisca = require("./getter")
 
 const parametersList = {
@@ -36,6 +37,7 @@ const computeParameter = (parameter, date) => {
       return values[closestDate]
     }
   }
+  Sentry.captureMessage("Openfisca parameters are not loaded")
   return parametersList[parameter]
 }
 

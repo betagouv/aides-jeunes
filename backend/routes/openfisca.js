@@ -16,7 +16,7 @@ module.exports = function (api) {
       let missingValues = []
       forEach((benefit, benefitId) => {
         const source = benefit.openfisca_eligibility_source || benefitId
-        if (!benefit.test && !benefit.computesLocally && !payload[source]) {
+        if (!benefit.computesLocally && !payload[source]) {
           missingValues.push(benefitId)
         }
       })

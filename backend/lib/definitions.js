@@ -55,6 +55,7 @@ const individu = Object.assign(
         "premiere",
         "terminale",
         "bts_1",
+        "but_1",
         "cpge_1",
         "licence_1",
         "licence_2",

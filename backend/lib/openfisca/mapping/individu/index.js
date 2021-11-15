@@ -97,11 +97,6 @@ const individuSchema = {
         .format("YYYY-MM-DD")
     },
   },
-  mobili_jeune_eligibilite_employeur: {
-    fn: function () {
-      return true
-    },
-  },
   niveau_diplome_formation: {
     fn: function (individu) {
       if (individu._continuite_etudes) {
@@ -109,6 +104,11 @@ const individuSchema = {
       } else {
         return "non_renseigne"
       }
+    },
+  },
+  peec_employeur: {
+    fn: function () {
+      return true
     },
   },
   plus_haut_diplome_date_obtention: {
@@ -127,6 +127,14 @@ const individuSchema = {
       return regime_securite_sociale !== "inconnu"
         ? regime_securite_sociale
         : "regime_general"
+    },
+  },
+  secteur_activite_employeur: {
+    src: "regime_securite_sociale",
+    fn: function (regime_securite_sociale) {
+      return regime_securite_sociale === "regime_agricole"
+        ? "agricole"
+        : "non_agricole"
     },
   },
 }

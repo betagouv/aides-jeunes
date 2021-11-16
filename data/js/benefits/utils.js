@@ -1,37 +1,17 @@
-function processBenefits(result, data) {
-  const item = {
-    label: data.name,
-    imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
-    prestations: [],
-    national: data.national,
-    repository: data.repository || (data.national ? null : "france-local"),
-  }
-  result[data.slug] = item
-  return result
-}
+const LEVELS = ["prestationsNationales", "partenairesLocaux"]
 
 function transformInstitutions(collection) {
-  return {
-    national: collection.filter((i) => i.national).reduce(processBenefits, {}),
-    /* eslint-disable */
-    local: collection.filter((i) => !i.national).reduce(processBenefits, {}),
-  }
-}
-
-function append(institutions, benefits) {
-  const remaining = []
-
-  benefits.forEach((benefit) => {
-    const institution = institutions[benefit.institution]
-    /* eslint-disable */
-    if (!institution) {
-      remaining.push(benefit)
-      return
+  return collection.reduce((result, data) => {
+    const item = {
+      label: data.name,
+      imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
+      prestations: {},
+      national: data.national,
+      repository: data.repository || (data.national ? null : "france-local"),
     }
-    institution.prestations[benefit.slug] = benefit
-  })
-
-  return remaining
+    result[data.slug] = item
+    return result
+  }, {})
 }
 
 /**
@@ -44,8 +24,7 @@ function append(institutions, benefits) {
  */
 function forEachFactory(obj) {
   return function forEach(cb) {
-    const levels = ["prestationsNationales", "partenairesLocaux"]
-    levels.map((aidesProviderLevel) => {
+    LEVELS.map((aidesProviderLevel) => {
       let aidesProviders = obj[aidesProviderLevel]
       Object.keys(aidesProviders).map((aidesProviderId) => {
         let aidesProvider = aidesProviders[aidesProviderId]
@@ -61,55 +40,31 @@ function forEachFactory(obj) {
 function setDefaults(benefit, top) {
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
+  return benefit
 }
 
-const topLevels = {
-  prestationsNationales: 1,
-  partenairesLocaux: 5,
-}
+function generate(collections, customBenefits) {
+  const institutions = transformInstitutions(collections.institutions.items)
 
-function generate(collections, base) {
-  const fileBasedInstitutions = transformInstitutions(
-    collections.institutions.items
-  )
+  const benefits = [...collections.benefits.items, ...customBenefits]
 
-  const localInstitutions = {
-    ...fileBasedInstitutions.local,
-    ...base.partenairesLocaux,
-  }
-  const nationalInstitutions = {
-    ...fileBasedInstitutions.national,
-    ...base.prestationsNationales,
-  }
-
-  const fileBasedBenefits = collections.benefits.items
-  const notLocalTextBasedBenefits = append(localInstitutions, fileBasedBenefits)
-  const remainingBenefits = append(
-    nationalInstitutions,
-    notLocalTextBasedBenefits
-  )
-
-  if (remainingBenefits.length) {
-    throw `Some benefits cannot be processed, their related entity is missing (${remainingBenefits
-      .map((b) => b.institution)
-      .join(", ")}).`
-  }
+  benefits.forEach((benefit) => {
+    const institution = institutions[benefit.institution]
+    institution.prestations[benefit.slug] = setDefaults(
+      benefit,
+      institution.national ? 1 : 5
+    )
+  })
 
   const result = {
-    prestationsNationales: nationalInstitutions,
-    partenairesLocaux: localInstitutions,
+    prestationsNationales: {},
+    partenairesLocaux: {},
   }
-
-  const levels = ["prestationsNationales", "partenairesLocaux"]
-  levels.forEach(function (levelId) {
-    Object.keys(result[levelId]).forEach(function (providerId) {
-      Object.keys(result[levelId][providerId].prestations).forEach(function (
-        benefitId
-      ) {
-        const benefit = result[levelId][providerId].prestations[benefitId]
-        setDefaults(benefit, topLevels[levelId])
-      })
-    })
+  Object.entries(institutions).forEach(([institutionId, institution]) => {
+    const level = institution.national
+      ? "prestationsNationales"
+      : "partenairesLocaux"
+    result[level][institutionId] = institution
   })
 
   result.forEach = forEachFactory(result)

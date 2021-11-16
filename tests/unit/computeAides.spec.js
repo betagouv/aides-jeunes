@@ -1,7 +1,7 @@
 import { computeAides } from "../../lib/Benefits/Compute"
-import droitsDescription from "@/../data/js/benefits/back"
+import BenefitsData from "@/../data/js/benefits/back"
 
-const compute = computeAides.bind(droitsDescription)
+const compute = computeAides.bind(BenefitsData)
 
 describe("computeAides", function () {
   let droits, situation, openfiscaResult

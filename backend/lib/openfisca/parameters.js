@@ -1,3 +1,4 @@
+const Sentry = require("@sentry/node")
 const openfisca = require("./getter")
 
 const parametersList = {
@@ -27,7 +28,7 @@ const computeParameters = async () => {
 }
 
 const computeParameter = (parameter, date) => {
-  const values = parameters[parameter]
+  const values = parameters && parameters[parameter]
   if (values) {
     const closestDate = Object.keys(values).find(
       (valueDate) => new Date(valueDate) < date
@@ -36,6 +37,13 @@ const computeParameter = (parameter, date) => {
       return values[closestDate]
     }
   }
+  Sentry.captureMessage("Openfisca parameters are not loaded", (scope) => {
+    scope.setContext("parameters", {
+      date,
+      parameter,
+      parameters,
+    })
+  })
   return parametersList[parameter]
 }
 

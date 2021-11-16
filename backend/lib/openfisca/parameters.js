@@ -1,4 +1,4 @@
-const Sentry = require("@sentry/browser")
+const Sentry = require("@sentry/node")
 const openfisca = require("./getter")
 
 const parametersList = {

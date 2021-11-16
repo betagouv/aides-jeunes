@@ -1,22 +1,12 @@
 const submit = () => cy.get('button[type="submit"]').click()
 
-const previous = () => cy.get('button[data-testid="previous"]').click()
-
-const submitTest = (url, optional) => {
-  submit()
-  if (optional) {
-    previous()
-  }
+const trySubmitWithoutAnswer = (url) => {
   cy.url().should("include", url)
+  submit()
 }
 
-const fillRadio = (url, value, { noSubmit, optional } = {}) => {
+const fillRadio = (url, value, noSubmit) => {
   cy.url().should("include", url)
-
-  if (!noSubmit) {
-    submitTest(url, optional)
-  }
-
   cy.get('input[type="radio"]').check(value.toString())
 
   if (!noSubmit) {
@@ -24,36 +14,22 @@ const fillRadio = (url, value, { noSubmit, optional } = {}) => {
   }
 }
 
-const fillNumber = (url, value, { noSubmit, optional } = {}) => {
+const fillNumber = (url, value) => {
   cy.url().should("include", url)
-
-  if (!noSubmit) {
-    submitTest(url, optional)
-  }
-
   cy.get("form").find('input[type="number"]').type(value)
-
-  if (!noSubmit) {
-    submit()
-  }
+  submit()
 }
 
-const fillDate = (url, get, value, { noSubmit, optional } = {}) => {
+const fillDate = (url, get, value) => {
   cy.url().should("include", url)
-
-  if (!noSubmit) {
-    submitTest(url, optional)
-  }
-
   cy.get(get).type(value)
 
-  if (!noSubmit) {
-    submit()
-  }
+  submit()
 }
 
 export default {
   submit,
+  trySubmitWithoutAnswer,
   fillRadio,
   fillNumber,
   fillDate,

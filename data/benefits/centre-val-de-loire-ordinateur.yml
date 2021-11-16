@@ -18,9 +18,10 @@ montant: 50
 periodicite: ponctuelle
 regions:
   - "24"
-conditions_generales:
-  - type: age
-    operator: <
-    value: 26
+conditions_generales: []
 profils:
   - type: lyceen
+    conditions:
+      - type: age
+        operator: <
+        value: 26

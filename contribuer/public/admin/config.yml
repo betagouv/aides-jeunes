@@ -36,7 +36,7 @@ fields:
           - label: Supérieur ou égal à
             value: ">="
           - label: Égal à
-            value: "==="
+            value: "="
           - label: Inférieur à
             value: "<"
           - label: Inférieur ou égal à

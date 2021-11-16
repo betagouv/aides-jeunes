@@ -1,4 +1,4 @@
-import { fillRadio, submit, fillDate, trySubmitWithoutAnswer } from "./form"
+import { fillRadio, submit } from "./form"
 
 const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
@@ -9,8 +9,11 @@ const fill_first_name = (prenom) => {
 }
 
 const fill_date_naissance = (birthDate) => {
-  trySubmitWithoutAnswer("date_naissance")
-  fillDate("date_naissance", "#date_naissance", birthDate)
+  cy.url().should("include", "date_naissance")
+  submit()
+  cy.url().should("include", "date_naissance") // Stay on the same page as the answer is required
+  cy.get("#date_naissance").type(birthDate)
+  submit()
 }
 
 const fill_nationalite = (nationality) => {

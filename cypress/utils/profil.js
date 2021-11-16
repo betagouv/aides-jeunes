@@ -10,6 +10,8 @@ const fill_first_name = (prenom) => {
 
 const fill_date_naissance = (birthDate) => {
   cy.url().should("include", "date_naissance")
+  submit()
+  cy.url().should("include", "date_naissance") // Stay on the same page as an answer is required
   cy.get("#date_naissance").type(birthDate)
   submit()
 }
@@ -94,8 +96,7 @@ const fill_statut_marital = (maritalStatus) => {
 const fill_conjoint_activite = (activity) => {
   cy.get("legend").invoke("text").should("contain", "est-il/elle")
   cy.get("label").invoke("text").should("contain", "Salarié")
-  cy.get('input[type="radio"]').check(activity)
-  submit()
+  fill_activite(activity)
 }
 
 const defaultIndivu = () => {

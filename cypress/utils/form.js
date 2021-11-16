@@ -9,7 +9,14 @@ const fillRadio = (url, value, noSubmit) => {
   }
 }
 
+const fillNumber = (url, value) => {
+  cy.url().should("include", url)
+  cy.get("form").find('input[type="number"]').type(value)
+  submit()
+}
+
 export default {
   submit,
   fillRadio,
+  fillNumber,
 }

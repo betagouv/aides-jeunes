@@ -2,4 +2,3 @@ name: Assurance maladie
 imgSrc: img/logo_assurance_maladie.png
 national: true
 etablissements: ["cpam"]
-testing_benefits: []

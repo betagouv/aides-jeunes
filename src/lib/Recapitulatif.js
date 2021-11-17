@@ -98,20 +98,15 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      return (
-        this.$store.state.answers.enfants &&
-        step.key.match(/\/simulation\/enfants$/)
-      )
+      const answer = getAnswer(this.$store.state.answers.current, "enfants")
+      return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const enfants = this.$store.state.answers.enfants
+      const answer = getAnswer(this.$store.state.answers.current, "enfants")
       return [
         {
           label: "Mes enfants à charge",
-          value:
-            enfants && enfants.length
-              ? `${enfants.length} enfant(s)`
-              : `Aucun enfant`,
+          value: answer ? `${answer} enfant(s)` : `Aucun enfant`,
         },
       ]
     },

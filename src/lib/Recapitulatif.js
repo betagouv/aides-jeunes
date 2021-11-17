@@ -23,20 +23,24 @@ export const getIndividuByStep = (step, component) => {
 export const SIMPLE_STEPS = {
   ressources(step) {
     const answer = getStepAnswer(this.$store.state.answers.all, step)
+    let value
+    if (answer) {
+      value =
+        answer.length > 0
+          ? answer
+              .map(
+                (ressourceId) =>
+                  ressourceTypes.find(
+                    (ressource) => ressource.id === ressourceId
+                  ).label
+              )
+              .join(", ")
+          : "Aucuns revenus"
+    }
     return [
       {
         label: "Vos types de revenus ?",
-        value:
-          answer && answer.length > 0
-            ? answer
-                .map(
-                  (ressourceId) =>
-                    ressourceTypes.find(
-                      (ressource) => ressource.id === ressourceId
-                    ).label
-                )
-                .join(", ")
-            : "Aucuns revenus",
+        value,
       },
     ]
   },

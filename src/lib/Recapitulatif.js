@@ -36,9 +36,14 @@ export const SIMPLE_STEPS = {
               .join(", ")
           : "Aucuns revenus"
     }
+
+    const individu = getIndividuByStep(
+      { id: step.id, role: step.id.split("_")[0] },
+      this
+    )
     return [
       {
-        label: "Vos types de revenus ?",
+        label: `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`,
         value,
       },
     ]

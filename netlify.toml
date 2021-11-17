@@ -7,3 +7,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[context.production]
+  environment = { NODE_VERSION = "17.1.0" }

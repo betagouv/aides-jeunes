@@ -36,7 +36,7 @@ export const SIMPLE_STEPS = {
                     ).label
                 )
                 .join(", ")
-            : "Aucuns",
+            : "Aucuns revenus",
       },
     ]
   },

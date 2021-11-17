@@ -5,7 +5,7 @@ const {
   testGeographicalEligibility,
   computeFrontEndBenefits,
 } = require("../../lib/Benefits/ComputeFrontEnd")
-import BenefitsData from "@/../data/js/benefits/back"
+import benefits from "@/../data/js/benefits/back"
 
 describe("computeAides", function () {
   let commune
@@ -127,7 +127,7 @@ describe("computeAides", function () {
 
   it("adds the benefit amount when eligible", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
-    computeFrontEndBenefits(BenefitsData, situation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(200)
@@ -136,7 +136,7 @@ describe("computeAides", function () {
   it("adds 0 when ineligible profile", function () {
     situation.demandeur.activite = "salarie"
     const openfiscaRequest = buildOpenFiscaRequest(situation)
-    computeFrontEndBenefits(BenefitsData, situation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(0)
@@ -145,7 +145,7 @@ describe("computeAides", function () {
   it("adds 0 when ineligible city", function () {
     situation.menage.depcom = "95201"
     const openfiscaRequest = buildOpenFiscaRequest(situation)
-    computeFrontEndBenefits(BenefitsData, situation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(0)
@@ -154,7 +154,7 @@ describe("computeAides", function () {
   it("adds 0 when ineligible age", function () {
     situation.demandeur.date_naissance = "1988-01-01"
     const openfiscaRequest = buildOpenFiscaRequest(situation)
-    computeFrontEndBenefits(BenefitsData, situation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(0)
@@ -162,7 +162,7 @@ describe("computeAides", function () {
 
   it("verify an eligibile situation to benefit_front_test", function () {
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
-    computeFrontEndBenefits(BenefitsData, studentSituation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, studentSituation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(200)
@@ -171,7 +171,7 @@ describe("computeAides", function () {
   it("verify an ineligible situation to benefit_front_test", function () {
     studentSituation.demandeur.boursier = false
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
-    computeFrontEndBenefits(BenefitsData, studentSituation, openfiscaRequest)
+    computeFrontEndBenefits(benefits, studentSituation, openfiscaRequest)
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
     ).toBe(0)

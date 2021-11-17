@@ -6,7 +6,7 @@ const {
 } = require("../../../lib/Benefits/Details")
 const moment = require("moment")
 
-const customBenefits = Object.entries({
+const customBenefits = {
   assurance_maladie: {
     css_participation_forfaitaire: {
       label: "complémentaire santé solidaire",
@@ -250,21 +250,30 @@ const customBenefits = Object.entries({
   region_occitanie: {
     occitanie_carte_transport_scolaire_lio: require("./occitanie_carte_transport_scolaire_lio"),
   },
-}).reduce((result, [institutionId, benefits]) => {
-  result.push(
-    ...Object.entries(benefits).map(([benefitId, benefit]) => {
-      return {
-        ...benefit,
-        slug: benefitId,
-        institution: institutionId,
-      }
-    })
+}
+
+function formatCustomBenefits(customBenefits) {
+  return Object.entries(customBenefits).reduce(
+    (result, [institutionId, benefits]) => {
+      result.push(
+        ...Object.entries(benefits).map(([benefitId, benefit]) => {
+          return {
+            ...benefit,
+            slug: benefitId,
+            institution: institutionId,
+          }
+        })
+      )
+      return result
+    },
+    []
   )
-  return result
-}, [])
+}
+
+const benefits = formatCustomBenefits(customBenefits)
 
 const { generate } = require("./utils")
 module.exports = {
-  customBenefits,
-  generate: (jam) => generate(jam.collections, customBenefits),
+  customBenefits: benefits,
+  generate: (jam) => generate(jam.collections, benefits),
 }

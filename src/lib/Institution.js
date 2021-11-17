@@ -1,8 +1,8 @@
 import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-import * as benefitsData from "@/../data/js/benefits"
+import * as benefits from "@/../data/js/benefits"
 import BenefitsCategories from "@/lib/BenefitsCategories"
 
-const Institution = benefitsData.generate(jamstack)
+const Institution = benefits.generate(jamstack)
 Institution.forEachBenefit = Institution.forEach
 
 Institution.mockResults = function (sublist) {

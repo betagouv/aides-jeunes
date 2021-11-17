@@ -5,7 +5,7 @@ const request = Promise.promisify(
 )
 
 const { base, build, extractResults } = require("../openfisca/bulk")
-const benefitsData = require("../../../data/js/benefits")
+const benefits = require("../../../data/js/benefits")
 
 function OpenFiscaAxe(situation) {
   this.situation = situation
@@ -15,9 +15,7 @@ OpenFiscaAxe.prototype.toInternal = function () {
   return {}
 }
 
-const benefitIds = ["irpp"].concat(
-  benefitsData.customBenefits.map((b) => b.slug)
-)
+const benefitIds = ["irpp"].concat(benefits.customBenefits.map((b) => b.slug))
 const variable = "salaire_net"
 
 function fetch(s) {

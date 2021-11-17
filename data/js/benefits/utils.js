@@ -8,6 +8,7 @@ function transformInstitutions(collection) {
       prestations: {},
       national: data.national,
       repository: data.repository || (data.national ? null : "france-local"),
+      etablissements: data.etablissements,
     }
     result[data.slug] = item
     return result

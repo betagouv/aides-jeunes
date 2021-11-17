@@ -4,7 +4,6 @@ import {
   displayCurrencyValue,
   displayDepcomValue,
 } from "@/lib/Utils"
-import Ressource from "@/../lib/ressource"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Logement from "@/lib/Logement"
 import moment from "moment"
@@ -146,37 +145,40 @@ export const COMPLEX_STEPS = {
       return step.key.match(/ressources\/montants\/(\w)*/)
     },
     fn(step) {
-      const key_split = step.key.split("/")
-      const id = key_split[1]
-      const individu = getIndividuByStep({ id, role: id.split("_")[0] }, this)
-
-      const categoryId = key_split[key_split.length - 1]
-      const ressources = Ressource.getIndividuRessourceTypes(
-        individu,
-        this.$store.getters.situation
-      )
-      const category = ressourceCategories.find(
-        (category) => category.id === categoryId
-      )
-      const categoryRessources = ressourceTypes.filter(
-        (type) =>
-          type.category === categoryId &&
-          ressources[type.id] &&
-          Object.values(individu[type.id]).every((value) => value !== null)
-      )
+      const answer = (
+        getAnswer(
+          this.$store.state.answers.current,
+          step.entity,
+          step.variable,
+          step.id
+        ) || []
+      ).map((ressource) => {
+        return {
+          ...ressource,
+          label: ressourceTypes.find((r) => r.id === ressource.id).label,
+        }
+      })
 
       let result = []
-      if (categoryRessources.length) {
+      if (answer.length) {
+        const category = ressourceCategories.find(
+          (category) => category.id === step.variable
+        )
+        const individu = getIndividuByStep(
+          { id: step.id, role: step.id.split("_")[0] },
+          this
+        )
+
         result = [
           {
             isChapterSubtitle: true,
             label: category && capitalize(category.label(individu)),
             value: "",
           },
-          ...categoryRessources.map((type) => {
+          ...answer.map((ressource) => {
             return {
-              label: capitalize(type.label),
-              value: Object.entries(individu[type.id]).reduce(
+              label: capitalize(ressource.label),
+              value: Object.entries(ressource.amounts).reduce(
                 (accum, [key, value]) => {
                   const date = type.isMontantAnnuel
                     ? key

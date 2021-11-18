@@ -48,14 +48,13 @@ fields:
     <<: *field_number
     label: Age
     name: age
-  field_geographique: &field_geographique
-    label: Condition géographique
-    name: geographical
+  field_regions: &field_regions
+    label: Condition géographique régionale
+    name: regions
     widget: object
     fields:
       - label: Régions
-        name: regions
-        required: false
+        name: values
         widget: select
         multiple: true
         options:
@@ -83,14 +82,22 @@ fields:
             value: "52"
           - label: Provence-Alpes-Côte d'Azur
             value: "93"
+  field_departements: &field_departements
+    label: Condition géographique départementale
+    name: departements
+    widget: object
+    fields:
       - label: Code des départements
-        name: departements
-        required: false
+        name: values
         widget: list
         hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
+  field_communes: &field_communes
+    label: Condition géographique communale
+    name: communes
+    widget: object
+    fields:
       - label: Code INSEE des communes
-        name: communes
-        required: false
+        name: values
         widget: list
         hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
   field_boursier: &field_boursier
@@ -283,7 +290,9 @@ collections:
         collapsed: false
         types:
           - *field_age
-          - *field_geographique
+          - *field_regions
+          - *field_departements
+          - *field_communes
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils

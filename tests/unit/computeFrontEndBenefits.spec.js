@@ -35,7 +35,7 @@ describe("computeAides", function () {
       ],
     }
     situation = {
-      dateDeValeur: "2014-11-01",
+      dateDeValeur: "2019-11-01",
       demandeur: {
         id: "demandeur",
         date_naissance: "2000-01-01",
@@ -47,7 +47,7 @@ describe("computeAides", function () {
       },
     }
     studentSituation = {
-      dateDeValeur: "2014-11-01",
+      dateDeValeur: "2019-11-01",
       demandeur: {
         id: "demandeur",
         date_naissance: "2000-01-01",
@@ -129,7 +129,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(200)
   })
 
@@ -138,7 +140,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(0)
   })
 
@@ -147,7 +151,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(0)
   })
 
@@ -156,7 +162,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeFrontEndBenefits(benefits, situation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(0)
   })
 
@@ -164,7 +172,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
     computeFrontEndBenefits(benefits, studentSituation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(200)
   })
 
@@ -173,7 +183,9 @@ describe("computeAides", function () {
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
     computeFrontEndBenefits(benefits, studentSituation, openfiscaRequest)
     expect(
-      openfiscaRequest.individus.demandeur.benefit_front_test["2014-11"]
+      openfiscaRequest.individus.demandeur.benefit_front_test[
+        situation.dateDeValeur.slice(0, 7)
+      ]
     ).toBe(0)
   })
 })

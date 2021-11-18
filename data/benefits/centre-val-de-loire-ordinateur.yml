@@ -11,13 +11,17 @@ teleservice: ""
 prefix: l'
 type: float
 unit: "%"
-montant: 50
-periodicite: ponctuelle
 legend: du prix d'achat
 floorAt: 10
 computesLocally: true
+montant: 50
+periodicite: ponctuelle
 regions:
   - "24"
-age_max: 26
+conditions_generales: []
 profils:
   - type: lyceen
+    conditions:
+      - type: age
+        operator: <
+        value: 26

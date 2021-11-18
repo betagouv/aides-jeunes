@@ -1,8 +1,10 @@
 label: aide au passage du permis de conduire B
 institution: region_nouvelle_aquitaine
-description: Cette aide favorise l'accès à l'emploi en
-  proposant une aide au financement du <a target="_blank" rel="noopener" href="https://www.service-public.fr/particuliers/vosdroits/F2828">permis de conduire B</a> pour les jeunes et les
-  plus précaires qui s’engagent vers une insertion professionnelle.
+description: Cette aide favorise l'accès à l'emploi en proposant une aide au
+  financement du <a target="_blank" rel="noopener"
+  href="https://www.service-public.fr/particuliers/vosdroits/F2828">permis de
+  conduire B</a> pour les jeunes et les plus précaires qui s’engagent vers une
+  insertion professionnelle.
 conditions:
   - Être diplômé de la filière professionnelle ou agricole.
   - Ou être en insertion professionnelle suivi par une mission locale.
@@ -12,16 +14,22 @@ link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-
 instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 prefix: l’
 type: float
-floorAt: 10
-montant: 1200
-unit: "€"
-computesLocally: true
-periodicite: ponctuelle
+unit: €
 legend: maximum
+floorAt: 10
+interestFlag: _interetPermisDeConduire
+computesLocally: true
+montant: 1200
+periodicite: ponctuelle
 regions:
   - "75"
-age_min: 17
-age_max: 25
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 26
 profils:
   - type: etudiant
   - type: service_civique

@@ -1,0 +1,4 @@
+name: Caisse d’allocations familiales
+imgSrc: img/logo_caf.png
+national: true
+etablissements: ["caf"]

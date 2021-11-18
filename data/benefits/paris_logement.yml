@@ -1,0 +1,13 @@
+label: Paris Logement
+institution: paris
+description: >
+  L’allocation Paris Logement est destinée aux foyers modestes pour leur permettre de mieux supporter leurs dépenses de logement. Ils doivent être locataires en titre et titulaires du bail du logement occupé à titre principal. L’aide est accordée pour une durée maximale d’un an. À partir du 2<sup>e</sup> renouvellement, Paris Logement peut être accordée pour une durée maximale de deux ans.
+conditions:
+  - Avoir demandé le versement des aides logement auxquelles vous avez droit auprès de la CAF.
+  - Ne toucher aucune autre prestation logement de la part de la mairie de Paris ou du département.
+link: https://www.paris.fr/pages/aides-au-logement-3827/#paris-logement
+form: https://cdn.paris.fr/paris/2020/01/13/9951415db06e3d73e54625d5972c7229.pdf
+type: float
+unit: "€"
+entity: familles
+periodicite: mensuelle

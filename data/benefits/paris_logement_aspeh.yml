@@ -1,0 +1,13 @@
+label: Allocation de Soutien aux Parents d’Enfants Handicapés
+institution: paris
+description: >
+  L’Allocation de Soutien aux Parents d’Enfants Handicapés est réservée aux familles ayant à charge un ou plusieurs enfants handicapés. Elle est accordée pour un an et renouvelable. Si l’enfant handicapé vit au domicile, l’aide est versée tous les mois.
+conditions:
+  - Indiquer le nombre de jours passés par l’enfant handicapé au domicile, lorsqu’il est placé dans un établissement spécialisé.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#allocation-de-soutien-aux-parents-d-enfants-handicapes
+form: https://cdn.paris.fr/paris/2019/07/24/3c8e229bd25b112eaf9227769873a230.pdf
+prefix: l’
+type: float
+unit: "€"
+entity: familles
+periodicite: mensuelle

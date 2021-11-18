@@ -1,0 +1,18 @@
+label: bourse de lycée
+institution: education_nationale
+description: >
+  La bourse de lycée est accordée aux responsables d’un lycéen qui ont de faibles ressources. Si l’élève entre au lycée ou s’il n’a jamais touché de bourse de lycée, il pourra y prétendre selon les ressources et les charges de sa famille. Une nouvelle demande doit être effectuée en cas de redoublement ou réorientation.
+conditions:
+  - Déposer votre dossier avant le 20 juin 2022 pour l’année scolaire 2022-2023.
+  - Pour les élèves scolarisés en lycée public, la demande se fait en ligne sur le portail Scolarité-Services.
+link: https://www.service-public.fr/particuliers/vosdroits/F616
+form: https://www.service-public.fr/simulateur/calcul/11319
+forms:
+  2017-18: https://www.service-public.fr/simulateur/calcul/11319
+  2018-19: https://www.service-public.fr/simulateur/calcul/11319
+isBaseRessourcesYearMinusTwo: true
+prefix: la
+type: float
+unit: "€"
+entity: familles
+periodicite: annuelle

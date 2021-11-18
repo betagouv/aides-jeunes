@@ -5,16 +5,28 @@ describe("benefit descriptions", function () {
 
   it("exists", function () {
     const collections = {
-      institutions: { items: [] },
-      benefits: { items: [{ slug: "id", institution: "etat" }] },
+      institutions: {
+        items: [{ slug: "etat", national: true }, { slug: "region" }],
+      },
+      benefits: {
+        items: [
+          { slug: "etat_benefit2", institution: "etat" },
+          { slug: "region_benefit", institution: "region" },
+        ],
+      },
     }
 
-    const base = {
-      prestationsNationales: { etat: { prestations: {} } },
-      partenairesLocaux: {},
-    }
+    const customBenefits = [{ slug: "etat_benefit", institution: "etat" }]
 
-    subject(collections, base)
-    expect(base.prestationsNationales.etat.prestations.id).toBeTruthy()
+    const result = subject(collections, customBenefits)
+    expect(
+      result.prestationsNationales.etat.prestations.etat_benefit
+    ).toBeTruthy()
+    expect(
+      result.prestationsNationales.etat.prestations.etat_benefit2
+    ).toBeTruthy()
+    expect(
+      result.partenairesLocaux.region.prestations.region_benefit
+    ).toBeTruthy()
   })
 })

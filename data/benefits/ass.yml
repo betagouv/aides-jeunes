@@ -1,0 +1,14 @@
+label: allocation de solidarité spécifique
+institution: pole_emploi
+description: >
+  L’allocation de solidarité spécifique (ASS) est une aide financière attribuée aux personnes ayant épuisé leurs droits au chômage. Elle peut être versée à taux plein ou à taux réduit. En cas de reprise d’activité, elle peut être maintenue.
+conditions:
+  - Avoir travaillé au moins 5 ans au cours des 10 ans avant la fin de votre dernier contrat de travail.
+link: https://www.service-public.fr/particuliers/vosdroits/F12484
+instructions: https://www.service-public.fr/particuliers/vosdroits/F12484
+prefix: l'
+type: float
+unit: "€"
+floorAt: 10
+entity: individus
+periodicite: mensuelle

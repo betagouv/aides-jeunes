@@ -1,0 +1,9 @@
+label: Pass Paris Access’
+institution: paris
+description: >
+  Le Pass Paris Access’ est destiné aux personnes en situation de handicap. Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).
+link: https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-access
+form: https://cdn.paris.fr/paris/2019/11/18/ec559b1825e317b94c547d813dd1fd7d.pdf
+prefix: le
+type: bool
+entity: individus

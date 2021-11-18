@@ -1,0 +1,11 @@
+label: Paris Énergie Familles
+institution: paris
+description: >
+  L’allocation Paris Énergie Familles est réservée aux familles ayant un ou plusieurs enfants à charge, sous condition d’imposition. Cette aide permet de les soutenir dans leurs dépenses d’électricité et/ou de gaz. Paris Énergie Famille est directement versée aux fournisseurs d’énergie. L’aide est accordée pour un an. Elle peut être renouvelée en présentant un nouveau dossier.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-energie-familles
+form: https://cdn.paris.fr/paris/2019/07/24/ef5b3f1bcd3a62ec75576748e88a0dd7.pdf
+prefix: l’
+type: float
+unit: "€"
+entity: familles
+periodicite: annuelle

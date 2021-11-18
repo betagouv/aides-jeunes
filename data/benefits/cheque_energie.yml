@@ -1,0 +1,17 @@
+label: chèque Énergie
+institution: etat
+description: >
+  Le Chèque Énergie peut être utilisé pour toutes les dépenses d’énergie (électricité, gaz, fioul, bois, etc.) et les travaux de rénovation énergétique. Il est envoyé automatiquement chaque année en fonction de votre situation fiscale et de votre ménage.
+conditions:
+  - Résider en France au 1er janvier de l‘année.
+  - Effectuer chaque année votre déclaration auprès des impôts.
+  - Utiliser votre Chèque Énergie reçu en avril avant le 31 mars de l’année suivante.
+link: https://www.chequeenergie.gouv.fr/beneficiaire/informations
+instructions: https://www.chequeenergie.gouv.fr/beneficiaire/cheque/paiement-en-ligne
+isBaseRessourcesYearMinusTwo: true
+prefix: le
+type: float
+unit: "€"
+entity: menages
+periodicite: annuelle
+private: true

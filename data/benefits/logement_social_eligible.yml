@@ -1,0 +1,16 @@
+label: logement social
+institution: cohesion_territoires
+description: >
+  Le logement social est destiné aux personnes et familles dont les ressources ne dépassent pas un certain seuil et répondant à certaines conditions d’accès. Aucun frais de dossier n’est réclamé lors de la demande, ni lors de la signature du bail. Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.
+conditions:
+  - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou Réunion">en France</abbr> plus de <abbr title="180 jours, potentiellement discontinus">6 mois</abbr> cette année.
+  - Vous adresser aux organismes HLM du département où vous souhaiter résider à travers le téléservice que nous présentons ou bien auprès de la préfecture du département, à la mairie de la ville ou encore des organismes collecteurs du 1% logement.
+  - Renouveler chaque année votre demande jusqu’à obtention d’un logement.
+link: https://www.service-public.fr/particuliers/vosdroits/F869
+teleservice: https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do
+isBaseRessourcesYearMinusTwo: true
+top: 10
+prefix: le
+type: bool
+entity: familles
+private: true

@@ -1,0 +1,14 @@
+label: Complément Santé Paris
+institution: paris
+description: >
+  Le Complément Santé Paris est destiné aux personnes âgées de 65 ans ou plus et aux personnes en situation de handicap. L’aide peut être versée à partir de 60 ans pour les personnes reconnues inaptes au travail. Elle a pour but d’aider les foyers modestes à régler leurs frais de mutuelle. L’aide est accordée pour une durée maximale d’un an.
+conditions:
+  - Percevoir les avantages légaux auxquels vous pouvez prétendre (Couverture Maladie Universelle Complémentaire, Aide à la Complémentaire Santé).
+  - Adhérer à titre payant à un organism e de protection complémentaire.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#complement-sante-paris
+form: https://cdn.paris.fr/paris/2019/07/24/c3175c019a067ac0b1bf2714742f0bbc.pdf
+prefix: le
+type: float
+unit: "€"
+entity: familles
+periodicite: annuelle

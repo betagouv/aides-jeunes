@@ -1,0 +1,10 @@
+label: Paris Forfait Familles
+institution: paris
+description: >
+  Paris Forfait Familles est une aide destinée aux familles nombreuses avec au moins trois enfants à charge. Elle peut se cumuler avec l’Allocation de Soutien aux Parents d’Enfants Handicapés. L’aide est accordée pour une durée maximale d’un an. Elle peut être renouvelée en présentant un nouveau dossier.
+link: https://www.paris.fr/pages/simulateur-mes-aides-gouv-fr-pour-la-ville-de-paris-3626/#paris-forfait-familles
+form: https://cdn.paris.fr/paris/2019/07/24/8fa764ddcfa7659c447e2b383b8cb986.pdf
+type: float
+unit: "€"
+entity: familles
+periodicite: annuelle

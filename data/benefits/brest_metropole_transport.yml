@@ -1,0 +1,16 @@
+label: tarification solidaire transports
+institution: brest_metropole
+description: >
+  Les familles aux ressources modestes bénéficient de forfaits mensuels à tarif réduit pour les transports : les forfaits Tempo, Tango et Rythmo. Tous les membres du foyer peuvent en bénéficier.
+conditions:
+  - Présenter un <a target="_blank" rel="noopener" href="http://www.caf.fr/allocataires/vies-de-famille/changement-de-situation/changement-familial/le-quotient-familial-c-est-quoi">justificatif de votre quotient familial</a> délivré par votre Caf.
+link: https://www.bibus.fr/fr/titres-tarifs/titres/forfait-solidaire-mensuel-tempo
+instructions: https://www.bibus.fr/fr/titres-tarifs/titres/forfait-solidaire-mensuel-tempo
+prefix: la
+floorAt: 0.01
+type: float
+unit: "€"
+entity: individus
+legend: au lieu de 38.50 € / mois
+periodicite: mensuelle
+participation: true

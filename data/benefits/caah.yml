@@ -1,0 +1,14 @@
+label: majoration pour la vie autonome
+institution: caf
+description: >
+  La majoration pour la vie autonome (MVA) est une aide financière qui peut s’ajouter à l’allocation aux adultes handicapés (AAH). Elle permet de faire face aux dépenses liées à votre handicap (par exemple, adaptation de votre logement).
+link: https://www.service-public.fr/particuliers/vosdroits/F12903
+instructions: https://www.service-public.fr/particuliers/vosdroits/F12903
+isBaseRessourcesYearMinusTwo: true
+prefix: la
+type: float
+unit: "€"
+floorAt: 1
+entity: individus
+periodicite: mensuelle
+msa: true

@@ -1,0 +1,9 @@
+label: Pass Paris Seniors
+institution: paris
+description: >
+  Le Pass Paris Seniors est destiné aux personnes âgées de 65 ans ou plus (et à partir de 60 ans pour les personnes reconnues inaptes au travail). Il permet de voyager gratuitement sur l’ensemble du réseau des transports en commun d’Île-de-France (zones 1 à 5).
+link: https://www.paris.fr/pages/aides-aux-transports-3848/#pass-paris-seniors
+form: https://cdn.paris.fr/paris/2020/01/10/03d74c0a9d051a5736302fc861d66ef5.pdf
+prefix: le
+type: bool
+entity: individus

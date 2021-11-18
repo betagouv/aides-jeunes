@@ -96,31 +96,35 @@ describe("computeAides", function () {
     expect(
       testGeographicalEligibility(
         {
-          departements: ["64", "45", "12"],
+          type: "departements",
+          values: ["64", "45", "12"],
         },
-        null
+        { commune: null }
       )
     ).toBe(false)
   })
 
   it("verify the result when no test are provided", function () {
-    expect(testGeographicalEligibility({}, null)).toBe(true)
+    expect(testGeographicalEligibility({}, { commune: null })).toBe(true)
   })
 
   it("verify the result when a commune is not in benefit's department", function () {
-    expect(testGeographicalEligibility({ departements: ["45"] }, commune)).toBe(
-      false
-    )
+    expect(
+      testGeographicalEligibility(
+        { type: "departements", values: ["45"] },
+        { commune }
+      )
+    ).toBe(false)
   })
 
   it("verify the result when a commune is in benefit's region", function () {
     expect(
       testGeographicalEligibility(
         {
-          departements: ["45"],
-          regions: ["32"],
+          type: "regions",
+          values: ["32"],
         },
-        commune
+        { commune }
       )
     ).toBe(true)
   })

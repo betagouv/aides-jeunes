@@ -15,7 +15,9 @@ instructions: https://www.laregion.fr/Premier-equipement-professionnel
 prefix: l’aide
 type: bool
 computesLocally: true
-regions:
-  - "76"
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
 profils:
   - type: lyceen

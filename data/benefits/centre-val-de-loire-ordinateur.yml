@@ -16,9 +16,10 @@ floorAt: 10
 computesLocally: true
 montant: 50
 periodicite: ponctuelle
-regions:
-  - "24"
-conditions_generales: []
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
 profils:
   - type: lyceen
     conditions:

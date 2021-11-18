@@ -21,9 +21,10 @@ interestFlag: _interetPermisDeConduire
 computesLocally: true
 montant: 1200
 periodicite: ponctuelle
-regions:
-  - "75"
 conditions_generales:
+  - type: regions
+    values:
+      - "75"
   - type: age
     operator: ">="
     value: 17

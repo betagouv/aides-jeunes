@@ -11,8 +11,10 @@ prefix: le
 type: bool
 interestFlag: _interetEtudesEtranger
 computesLocally: true
-regions:
-  - "28"
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
 profils:
   - type: etudiant
   - type: apprenti

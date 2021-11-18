@@ -13,7 +13,9 @@ prefix: la
 type: bool
 interestFlag: _interetEtudesEtranger
 computesLocally: true
-regions:
-  - "53"
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
 profils:
   - type: etudiant

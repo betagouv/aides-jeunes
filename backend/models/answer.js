@@ -47,7 +47,7 @@ AnswerSchema.virtual("returnPath").get(function () {
 AnswerSchema.methods.isAccessible = function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||
-    (keychain && keychain[this.cookieName] === this.token)
+    keychain?.[this.cookieName] === this.token
   )
 }
 AnswerSchema.pre("save", function (next) {

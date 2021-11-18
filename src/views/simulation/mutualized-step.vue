@@ -89,9 +89,7 @@ export default {
       this.$route.params.fieldName,
       id
     )
-    const entity =
-      ENTITIES_PROPERTIES[entityName].loadEntity &&
-      ENTITIES_PROPERTIES[entityName].loadEntity(this)
+    const entity = ENTITIES_PROPERTIES[entityName].loadEntity?.(this)
 
     return {
       id,

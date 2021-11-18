@@ -13,8 +13,7 @@ function individuBlockFactory(id, chapter) {
   return {
     subject: (situation) =>
       situation[id] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === id)) ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),

@@ -1,13 +1,11 @@
 export default {
   computed: {
     droits: function () {
-      return this.resultats && this.resultats.droitsEligibles
+      return this.resultats?.droitsEligibles
     },
     droitsNonEligibles: function () {
       return (
-        (this.droitsNonEligiblesShow &&
-          this.resultats &&
-          this.resultats.droitsNonEligibles) ||
+        (this.droitsNonEligiblesShow && this.resultats?.droitsNonEligibles) ||
         []
       )
     },
@@ -20,7 +18,7 @@ export default {
       return this.$store.state.ameliNoticationDone
     },
     resultatsId: function () {
-      return (this.resultats && this.resultats._id) || "???"
+      return this.resultats?._id || "???"
     },
     accessStatus: function () {
       return this.$store.state.access
@@ -57,15 +55,13 @@ export default {
           return accum
         }, {}).lastestSituation
       if (!lastestSituation) {
-        this.$matomo &&
-          this.$matomo.trackEvent("General", "redirection", this.$route.path)
+        this.$matomo?.trackEvent("General", "redirection", this.$route.path)
         return this.$store.dispatch("redirection", (route) =>
           this.$router.push(route)
         )
       }
 
-      this.$matomo &&
-        this.$matomo.trackEvent("General", "compute", this.$route.path)
+      this.$matomo?.trackEvent("General", "compute", this.$route.path)
       this.$store
         .dispatch("fetch", lastestSituation)
         .then(() => this.$store.dispatch("compute"))

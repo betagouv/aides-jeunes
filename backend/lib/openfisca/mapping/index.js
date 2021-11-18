@@ -29,7 +29,7 @@ function dispatchIndividuals(situation) {
   const menages = { _: buildOpenFiscaMenage(situation) }
 
   const demandeur = common.getDemandeur(situation)
-  const demandeurId = demandeur && demandeur.id
+  const demandeurId = demandeur?.id
 
   familles._.parents = [demandeurId]
   menages._.personne_de_reference = [demandeurId]
@@ -51,7 +51,7 @@ function dispatchIndividuals(situation) {
       enfants: [],
     }
 
-    if (situation.parents && situation.parents._situation == "en_couple") {
+    if (situation.parents?._situation == "en_couple") {
       const parent2 = {
         id: "parent2",
       }
@@ -67,7 +67,7 @@ function dispatchIndividuals(situation) {
   }
 
   const conjoint = common.getConjoint(situation)
-  const conjointId = conjoint && conjoint.id
+  const conjointId = conjoint?.id
   if (conjointId) {
     familles._.parents.push(conjointId)
     menages._.conjoint = [conjointId]
@@ -187,16 +187,13 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
     testCase.menages._
   )
   menage.logement_conventionne[periods.thisMonth] =
-    menage.statut_occupation_logement &&
-    menage.statut_occupation_logement[periods.thisMonth] == "primo_accedant" &&
-    menage.loyer &&
-    menage.loyer[periods.thisMonth] == 0
+    menage.statut_occupation_logement?.[periods.thisMonth] ==
+      "primo_accedant" && menage.loyer?.[periods.thisMonth] == 0
 
   const demandeur = sourceSituation.demandeur
   const parents = sourceSituation.parents
 
-  const aCharge =
-    demandeur.enfant_a_charge && demandeur.enfant_a_charge[periods.thisYear]
+  const aCharge = demandeur.enfant_a_charge?.[periods.thisYear]
 
   if (aCharge) {
     if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {

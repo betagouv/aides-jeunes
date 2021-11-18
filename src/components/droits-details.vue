@@ -194,12 +194,11 @@ export default {
     alertBrokenLink() {
       this.brokenLinkButtonState = "showThanksMessage"
       setTimeout(() => (this.brokenLinkButtonState = null), 5000)
-      this.$matomo &&
-        this.$matomo.trackEvent(
-          "General",
-          "Erreur lien aide invalide",
-          this.droit.label
-        )
+      this.$matomo?.trackEvent(
+        "General",
+        "Erreur lien aide invalide",
+        this.droit.label
+      )
     },
   },
 }

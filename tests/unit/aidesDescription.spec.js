@@ -1,7 +1,7 @@
 const expect = require("expect")
 
 describe("benefit descriptions", function () {
-  const subject = require("../../data/js/benefits/back")
+  const subject = require("../../data/back")
 
   const levels = ["prestationsNationales", "partenairesLocaux"]
   levels.forEach((level) => {

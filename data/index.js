@@ -1,3 +1,7 @@
+"use strict"
+
+const customBenefits = require("./custom-benefits/index")
+
 const LEVELS = ["prestationsNationales", "partenairesLocaux"]
 
 function transformInstitutions(collection) {
@@ -73,5 +77,6 @@ function generate(collections, customBenefits) {
 }
 
 module.exports = {
-  generate,
+  fn: generate,
+  generate: (jam) => generate(jam.collections, customBenefits),
 }

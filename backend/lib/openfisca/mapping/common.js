@@ -1,7 +1,7 @@
 const moment = require("moment")
 const assign = require("lodash/assign")
 
-const { forEach } = require("../../../../data/js/benefits/back")
+const { forEach } = require("../../../../data/back")
 const { generator } = require("../../../../lib/Dates")
 const {
   CONDITION_STATEGY,

@@ -1,7 +1,7 @@
 const { check, validationResult } = require("express-validator")
 const openfisca = require("../lib/openfisca/getter")
 const openfiscaController = require("../controllers/openfisca")
-const { forEach } = require("../../data/js/benefits/back")
+const { forEach } = require("../../data/back")
 
 let missingBenefits
 

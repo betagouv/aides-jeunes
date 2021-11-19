@@ -25,4 +25,9 @@ conditions_generales:
       - "84"
 profils:
   - type: etudiant
+    conditions:
+      - type: mention_baccalaureat
+        values:
+          - mention_tres_bien
+          - mention_tres_bien_felicitations_jury
   - type: apprenti

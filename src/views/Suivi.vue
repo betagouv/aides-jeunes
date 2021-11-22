@@ -109,9 +109,9 @@
 import axios from "axios"
 import moment from "moment"
 
-import Institution from "@/lib/Institution"
 import LoadingModal from "@/components/LoadingModal"
 import DroitEstime from "../components/DroitEstime"
+const benefits = require("@/../data/js/benefits/back")
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -185,30 +185,24 @@ export default {
       .then((response) => {
         this.followup = response.data
         let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
-        let benefitsNormalized = []
 
-        Institution.forEachBenefit(
-          (benefit, benefitId, provider, providerId) => {
-            if (!benefitsIds.includes(benefitId)) {
-              return
-            }
-
+        const benefitsNormalized = benefits.all
+          .filter((benefit) => benefitsIds.includes(benefit.id))
+          .map((benefit) => {
             let montant = this.followup.benefits.find(
-              (benefit) => benefit.id === benefitId
+              (followupBenefit) => followupBenefit.id === benefit.id
             ).amount
 
-            benefitsNormalized.push({
+            return {
               ...benefit,
-              id: benefitId,
               montant: montant,
-              provider: provider,
-              providerId: providerId,
+              provider: benefit.institution,
+              providerId: benefit.institution.id,
               choices: choices,
               choiceValue: null,
               choiceComments: "",
-            })
-          }
-        )
+            }
+          })
 
         this.droits = benefitsNormalized
       })

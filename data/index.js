@@ -10,6 +10,7 @@ function transformInstitutions(collection) {
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
       prestations: {},
       national: data.national,
+      level: data.national ? "prestationsNationales" : "partenairesLocaux",
       repository: data.repository || (data.national ? null : "france-local"),
       etablissements: data.etablissements,
     }

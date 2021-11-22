@@ -203,6 +203,7 @@ import {
   reduceContributions,
   getGithubPRFiles,
 } from "@/lib/Contributions"
+const rawBenefits = require("@/../data/js/benefits/back")
 
 export default {
   name: "attendu",
@@ -210,21 +211,21 @@ export default {
   data: function () {
     let benefitKeyed = {}
     let benefits = []
-    Institution.forEachBenefit(
-      (benefit, benefitId, provider, providerId, level) => {
-        const b = Object.assign(
-          { id: benefitId, provider: { ...provider, id: providerId }, level },
-          benefit
-        )
-        b.label = capitalize(benefit.label)
 
-        if (b.label === "Tarification solidaire transports") {
-          b.label = `${b.label} - ${provider.label}`
-        }
-        benefits.push(b)
-        benefitKeyed[b.id] = b
+    rawBenefits.all.forEach((benefit) => {
+      const b = Object.assign(
+        { provider: benefit.institution, level: benefit.institution.level },
+        benefit
+      )
+      b.label = capitalize(benefit.label)
+
+      if (b.label === "Tarification solidaire transports") {
+        b.label = `${b.label} - ${benefit.institution.label}`
       }
-    )
+      benefits.push(b)
+      benefitKeyed[b.id] = b
+    })
+
     benefits = sortBy(benefits, "label")
     return {
       benefits,

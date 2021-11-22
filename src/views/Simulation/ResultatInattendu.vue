@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import Institution from "@/lib/Institution"
 import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
 import ResultatInattenduGarantieJeune from "@/components/ResultatInattendu/GarantieJeune"
 import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"
 import ResultatInattenduYearMinusTwo from "@/components/ResultatInattendu/YearMinusTwo"
+const benefits = require("@/../data/js/benefits/back")
 
 const RESULTATS_INATTENDUS = {
   aide_logement: ResultatInattenduAideLogement,
@@ -42,18 +42,17 @@ export default {
   },
   data: function () {
     let benefitKeyed = {}
-    Institution.forEachBenefit(
-      (benefit, benefitId, provider, providerId, level) => {
-        const benefit_temp = Object.assign(
-          { id: benefitId, provider: { ...provider, id: providerId }, level },
-          benefit
-        )
-        if (benefit_temp.label === "Tarification solidaire transports") {
-          benefit_temp.label = `${benefit_temp.label} - ${provider.label}`
-        }
-        benefitKeyed[benefit_temp.id] = benefit_temp
+    benefits.all.forEach((benefit) => {
+      const benefit_temp = Object.assign(
+        { provider: benefit.institution, level: benefit.institution.level },
+        benefit
+      )
+      if (benefit_temp.label === "Tarification solidaire transports") {
+        benefit_temp.label = `${benefit_temp.label} - ${benefit.institution.label}`
       }
-    )
+      benefitKeyed[benefit_temp.id] = benefit_temp
+    })
+
     return {
       benefitKeyed,
       resultatsInattendus: RESULTATS_INATTENDUS,

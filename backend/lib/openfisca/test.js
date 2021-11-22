@@ -50,8 +50,11 @@ const EXTENSION_VARIABLES = {
   },
 }
 
-benefits.all.forEach((benefit) => {
-  if (!benefit.computesLocally && benefit.institution.repository) {
+benefits.all
+  .filter(
+    (benefit) => !benefit.computesLocally && benefit.institution.repository
+  )
+  .forEach((benefit) => {
     const repository = "openfisca-" + benefit.institution.repository
     const entity = benefit.entity
 
@@ -60,8 +63,7 @@ benefits.all.forEach((benefit) => {
     }
 
     EXTENSION_VARIABLES[repository][entity].push(benefit.slug)
-  }
-})
+  })
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
   forEach(EXTENSION_VARIABLES, function (specificVariables, extensionName) {

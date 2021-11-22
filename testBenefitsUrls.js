@@ -3,23 +3,21 @@ const subject = require("./data/all")
 
 let links = []
 let done = 0
-const levels = ["prestationsNationales", "partenairesLocaux"]
-levels.forEach((level) => {
-  Object.keys(subject[level]).forEach(function (providerName) {
-    const provider = subject[level][providerName]
-    Object.keys(provider.prestations).forEach(function (aideName) {
-      const aide = provider.prestations[aideName]
-      links = links.concat(
-        [aide.link, aide.instructions, aide.form, aide.teleservice]
-          .filter((link) => link)
-          .map((link) => {
-            return {
-              aideName: aideName,
-              url: link,
-            }
-          })
-      )
-    })
+
+Object.keys(subject.groupByInstitution).forEach(function (providerName) {
+  const provider = subject[providerName]
+  Object.keys(provider.prestations).forEach(function (aideName) {
+    const aide = provider.prestations[aideName]
+    links = links.concat(
+      [aide.link, aide.instructions, aide.form, aide.teleservice]
+        .filter((link) => link)
+        .map((link) => {
+          return {
+            aideName: aideName,
+            url: link,
+          }
+        })
+    )
   })
 })
 

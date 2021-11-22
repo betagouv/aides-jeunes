@@ -6,13 +6,9 @@ const mock = require("./mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front_only" ? mock : configureAPI
 const parseArgs = require("minimist")
-const { forEach } = require("./data/all")
+const benefits = require("./data/all")
 
-let count = 0
-forEach(() => {
-  count = count + 1
-})
-process.env.VUE_APP_BENEFIT_COUNT = count
+process.env.VUE_APP_BENEFIT_COUNT = benefits.all.length
 process.env.VUE_APP_MATOMO_ID = matomo.id
 process.env.VUE_APP_VALIDATION_DELAY = (animation && animation.delay) || 0
 process.env.VUE_APP_BASE_URL = baseURL

@@ -15,8 +15,8 @@ OpenFiscaAxe.prototype.toInternal = function () {
   return {}
 }
 const benefitIds = ["irpp"]
-benefits.forEach((_, benefitId) => {
-  benefitIds.push(benefitId)
+benefits.all.forEach((benefit) => {
+  benefitIds.push(benefit.id)
 })
 const variable = "salaire_net"
 

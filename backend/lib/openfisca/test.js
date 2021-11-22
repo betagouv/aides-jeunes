@@ -50,16 +50,16 @@ const EXTENSION_VARIABLES = {
   },
 }
 
-benefits.forEach((benefit, benefitId, institution) => {
-  if (!benefit.computesLocally && institution.repository) {
-    const repository = "openfisca-" + institution.repository
+benefits.all.forEach((benefit) => {
+  if (!benefit.computesLocally && benefit.institution.repository) {
+    const repository = "openfisca-" + benefit.institution.repository
     const entity = benefit.entity
 
     if (!EXTENSION_VARIABLES[repository][entity]) {
-      throw `Missing mapping for ${benefitId} in ${repository}/${entity}.`
+      throw `Missing mapping for ${benefit.slug} in ${repository}/${entity}.`
     }
 
-    EXTENSION_VARIABLES[repository][entity].push(benefitId)
+    EXTENSION_VARIABLES[repository][entity].push(benefit.slug)
   }
 })
 

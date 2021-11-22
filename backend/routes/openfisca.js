@@ -1,7 +1,7 @@
 const { check, validationResult } = require("express-validator")
 const openfisca = require("../lib/openfisca/getter")
 const openfiscaController = require("../controllers/openfisca")
-const { forEach } = require("../../data/all")
+const benefits = require("../../data/all")
 
 let missingBenefits
 
@@ -13,13 +13,14 @@ module.exports = function (api) {
     }
 
     openfisca.get("/variables", (payload) => {
-      let missingValues = []
-      forEach((benefit, benefitId) => {
-        const source = benefit.openfisca_eligibility_source || benefitId
-        if (!benefit.computesLocally && !payload[source]) {
-          missingValues.push(benefitId)
-        }
-      })
+      let missingValues = benefits.all
+        .filter((benefit) => {
+          const source = benefit.openfisca_eligibility_source || benefit.id
+          return !benefit.computesLocally && !payload[source]
+        })
+        .map((benefit) => {
+          return benefit.id
+        })
       res.json(missingValues)
       missingBenefits = missingValues
     })

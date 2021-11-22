@@ -5,7 +5,7 @@ const {
   testGeographicalEligibility,
   computeFrontEndBenefits,
 } = require("../../lib/Benefits/ComputeFrontEnd")
-import benefits from "@/../data/back"
+import benefits from "@/../data/all"
 
 describe("computeAides", function () {
   let commune

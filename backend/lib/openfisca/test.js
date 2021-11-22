@@ -3,7 +3,7 @@ const mapping = require("./mapping")
 const forEach = require("lodash/forEach")
 const assign = require("lodash/assign")
 const pick = require("lodash/pick")
-const benefits = require("../../../data/back")
+const benefits = require("../../../data/all")
 
 function toStringOf(obj) {
   return obj.toString()

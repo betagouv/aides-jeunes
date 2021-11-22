@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const utils = require("../lib/utils")
 const openfisca = require("../lib/openfisca")
-const benefits = require("../../data/back")
+const benefits = require("../../data/all")
 const mesAides = require("../../lib/Benefits/Compute")
 const { generateSituation } = require("../../lib/situations")
 

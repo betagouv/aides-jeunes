@@ -5,7 +5,7 @@ const request = Promise.promisify(
 )
 
 const { base, build, extractResults } = require("../openfisca/bulk")
-const benefits = require("../../../data/back")
+const benefits = require("../../../data/all")
 
 function OpenFiscaAxe(situation) {
   this.situation = situation

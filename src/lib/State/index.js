@@ -1,9 +1,3 @@
-const {
-  getAnswer,
-  getStepAnswer,
-  isStepAnswered,
-} = require("../../../lib/answers")
-const { ressourceTypes } = require("../../../lib/Resources")
 var Chapters = require("../Chapters")
 
 function chapters(currentPath, journey) {
@@ -50,52 +44,8 @@ function next(current, journey) {
     .filter((step) => step.isActive)[0]
 }
 
-const nextUnansweredStep = (state, getters) => {
-  return getters.getAllSteps.find((step) => {
-    if (!step.isActive || step.path === "/") {
-      return false
-    }
-
-    if (step.key.match(/ressources\/montants\/(\w)*/)) {
-      const keySplit = step.key.split("/")
-      const categoryId = keySplit[keySplit.length - 1]
-      const declaredRessources = getAnswer(
-        state.answers.all,
-        step.entity,
-        "ressources",
-        step.id
-      )
-      const expectedDeclaredAmounts = declaredRessources.filter(
-        (ressourceId) =>
-          ressourceTypes.find(
-            (ressourceType) => ressourceType.id === ressourceId
-          ).category === categoryId
-      )
-      const declaredAmounts = getStepAnswer(state.answers.all, step)
-      return (
-        !expectedDeclaredAmounts ||
-        !declaredAmounts ||
-        expectedDeclaredAmounts.some((expectedDeclaredAmounts) => {
-          const declaredAmount = declaredAmounts.find(
-            (declaredAmount) => declaredAmount.id === expectedDeclaredAmounts
-          )
-          return (
-            !declaredAmount ||
-            Object.values(declaredAmount.amounts).some(
-              (amount) => amount === null
-            )
-          )
-        })
-      )
-    }
-
-    return !isStepAnswered(state.answers.all, step)
-  })
-}
-
 module.exports = {
   next,
-  nextUnansweredStep,
   chapters,
   current,
 }

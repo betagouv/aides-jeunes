@@ -40,52 +40,30 @@
 
 <script>
 import Institution from "../lib/Institution"
-import reduce from "lodash/reduce"
-import size from "lodash/size"
-import filter from "lodash/filter"
-import mapValues from "lodash/mapValues"
-
 export default {
   name: "home",
-  data: () => {
-    let value = {}
-    const types = ["prestationsNationales", "partenairesLocaux"]
-    types.forEach(function (type) {
-      let providersWithoutPrivatePrestations = mapValues(
-        Institution[type],
-        function (provider) {
-          provider = { ...provider }
-          provider.prestations = reduce(
-            provider.prestations,
-            function (prestations, prestation, name) {
-              if (!prestation.private) {
-                prestations[name] = prestation
-              }
-
-              return prestations
-            },
-            {}
-          )
-          return provider
-        }
-      )
-
-      value[type] = filter(
-        providersWithoutPrivatePrestations,
-        function (provider) {
-          return size(provider.prestations)
-        }
-      )
-      value[type + "Count"] = Object.keys(value[type]).reduce(function (
-        total,
-        provider
-      ) {
-        return total + size(value[type][provider].prestations)
-      },
-      0)
-    })
-
-    return value
+  mounted() {
+    const notPrivateBenefit = Institution.benefits.all.filter(
+      (benefit) => !benefit.private
+    )
+    const count = {
+      total: notPrivateBenefit.length,
+      openfisca: notPrivateBenefit.filter((benefit) => !benefit.computesLocally)
+        .length,
+      frontend: notPrivateBenefit.filter((benefit) => benefit.computesLocally)
+        .length,
+      national: notPrivateBenefit.filter(
+        (benefit) => benefit.institution.national
+      ).length,
+      local: notPrivateBenefit.filter(
+        (benefit) => !benefit.institution.national
+      ).length,
+    }
+    console.log(`Nombre d'aide : ${count.total}`)
+    console.log(`Nombre d'aide openfisca : ${count.openfisca}`)
+    console.log(`Nombre d'aide frontend: ${count.frontend}`)
+    console.log(`Nombre d'aide national : ${count.national}`)
+    console.log(`Nombre d'aide local : ${count.local}`)
   },
   computed: {
     hasExistingSituation: function () {

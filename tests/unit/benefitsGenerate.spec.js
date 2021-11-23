@@ -28,5 +28,6 @@ describe("benefit descriptions", function () {
     expect(
       result.groupByInstitution.region.prestations.region_benefit
     ).toBeTruthy()
+    expect(result.all.length).toBe(3)
   })
 })

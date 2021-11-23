@@ -153,9 +153,10 @@ export const COMPLEX_STEPS = {
           step.id
         ) || []
       ).map((ressource) => {
+        const ressourceType = ressourceTypes.find((r) => r.id === ressource.id)
         return {
+          ...ressourceType,
           ...ressource,
-          label: ressourceTypes.find((r) => r.id === ressource.id).label,
         }
       })
 
@@ -180,7 +181,7 @@ export const COMPLEX_STEPS = {
               label: capitalize(ressource.label),
               value: Object.entries(ressource.amounts).reduce(
                 (accum, [key, value]) => {
-                  const date = type.isMontantAnnuel
+                  const date = ressource.isMontantAnnuel
                     ? key
                     : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
                   accum[date] = displayCurrencyValue(value)

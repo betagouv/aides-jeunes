@@ -59,10 +59,10 @@ benefits.all
     const entity = benefit.entity
 
     if (!EXTENSION_VARIABLES[repository][entity]) {
-      throw `Missing mapping for ${benefit.slug} in ${repository}/${entity}.`
+      throw `Missing mapping for ${benefit.id} in ${repository}/${entity}.`
     }
 
-    EXTENSION_VARIABLES[repository][entity].push(benefit.slug)
+    EXTENSION_VARIABLES[repository][entity].push(benefit.id)
   })
 
 function prepareTestSituationForSpecificExtension(situation, extension) {

@@ -48,9 +48,9 @@
 <script>
 import axios from "axios"
 
+import Institution from "@/lib/Institution"
 import Etablissement from "@/components/Etablissement"
 import EtablissementLib from "@/lib/Etablissement"
-const benefits = require("@/../data/js/benefits/back")
 
 export default {
   name: "lieux",
@@ -66,7 +66,7 @@ export default {
   },
   mounted: function () {
     const city = this.$store.getters.situation.menage.depcom
-    const benefit = benefits.all
+    const benefit = Institution.benefits.all
       .filter(
         (benefit) =>
           benefit.institution.etablissements &&

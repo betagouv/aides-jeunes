@@ -1,7 +1,10 @@
 import BenefitsCategories from "@/lib/BenefitsCategories"
-const benefits = require("../../data/all.js")
+import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
+import { generate } from "@/../data/js/benefits"
 
-const Institution = {}
+const Institution = {
+  benefits: generate(jamstack),
+}
 
 Institution.mockResults = function (sublist) {
   let filterSublist
@@ -14,7 +17,7 @@ Institution.mockResults = function (sublist) {
     float: 1,
   }
 
-  const list = benefits.all
+  const list = Institution.benefits.all
     .filter((benefit) => !filterSublist || filterSublist.includes(benefit.id))
     .map((benefit) => {
       return Object.assign({}, benefit, {

@@ -194,6 +194,7 @@ import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
 
 import axios from "axios"
+import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "@/lib/Utils"
@@ -202,7 +203,6 @@ import {
   reduceContributions,
   getGithubPRFiles,
 } from "@/lib/Contributions"
-const rawBenefits = require("@/../data/js/benefits/back")
 
 export default {
   name: "attendu",
@@ -211,7 +211,7 @@ export default {
     let benefitKeyed = {}
     let benefits = []
 
-    rawBenefits.all.forEach((benefit) => {
+    Institution.benefits.all.forEach((benefit) => {
       const b = Object.assign(
         { provider: benefit.institution, level: benefit.institution.level },
         benefit

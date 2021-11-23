@@ -194,7 +194,6 @@ import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
 
 import axios from "axios"
-import Institution from "@/lib/Institution"
 import ResultatsMixin from "@/mixins/Resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "@/lib/Utils"
@@ -241,10 +240,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: {
-        ...Institution.partenairesLocaux,
-        ...Institution.prestationsNationales,
-      },
+      institutions: benefits.groupByInstitution,
     }
   },
   computed: {

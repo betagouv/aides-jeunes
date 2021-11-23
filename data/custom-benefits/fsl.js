@@ -1,7 +1,7 @@
 function build({ codeImg, label, resources }) {
   return {
     label: `Aide au maintien dans votre logement ${label}`,
-    provider: {
+    institution: {
       imgSrc: `logo_${codeImg}.png`,
     },
     conditions: [

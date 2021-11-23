@@ -22,8 +22,6 @@ Institution.mockResults = function (sublist) {
     .map((benefit) => {
       return Object.assign({}, benefit, {
         montant: benefit.montant || defaults[benefit.type || "float"],
-        provider: benefit.institution,
-        providerId: benefit.institution.id,
         mock: true,
       })
     })

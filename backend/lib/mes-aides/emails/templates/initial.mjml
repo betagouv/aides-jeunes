@@ -51,7 +51,7 @@
             <mj-group padding="0px">
               <mj-column width="20%" vertical-align="middle">
                 <mj-image
-                  alt="{{provider.label}}"
+                  alt="{{institution.label}}"
                   width="60px"
                   align="left"
                   padding="0px"

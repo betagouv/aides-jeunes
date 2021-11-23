@@ -36,7 +36,7 @@
                   <img
                     class="aj-droit-illustration"
                     v-bind:src="
-                      require(`./../../public/img/${droit.provider.imgSrc}`)
+                      require(`./../../public/img/${droit.institution.imgSrc}`)
                     "
                     v-bind:alt="droit.label"
                   />
@@ -196,8 +196,6 @@ export default {
             return {
               ...benefit,
               montant: montant,
-              provider: benefit.institution,
-              providerId: benefit.institution.id,
               choices: choices,
               choiceValue: null,
               choiceComments: "",

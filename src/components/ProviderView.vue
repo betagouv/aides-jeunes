@@ -1,5 +1,5 @@
 <template>
-  <div class="provider" itemscope itemtype="http://schema.org/Organization">
+  <div class="institution" itemscope itemtype="http://schema.org/Organization">
     <link
       itemprop="additionalType"
       href="https://schema.org/GovernmentOrganization"
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: "ProviderView",
+  name: "institutionView",
   props: {
     item: Object,
   },
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.provider {
+.institution {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -61,13 +61,13 @@ export default {
   }
 }
 
-.provider img {
+.institution img {
   flex-shrink: 0;
   width: 250px;
 }
 
 .list,
-.provider img {
+.institution img {
   margin: 1em;
 }
 

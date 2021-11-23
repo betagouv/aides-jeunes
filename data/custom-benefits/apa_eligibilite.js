@@ -15,7 +15,7 @@ module.exports = {
   top: 6,
   customization: {
     D05: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd05.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -24,7 +24,7 @@ module.exports = {
       link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
     },
     D06: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd06.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -34,7 +34,7 @@ module.exports = {
       link: "https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html",
     },
     D13: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd13.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -43,7 +43,7 @@ module.exports = {
       link: "https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/",
     },
     D14: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd14.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -52,7 +52,7 @@ module.exports = {
       link: "https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html",
     },
     D28: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd28.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -61,7 +61,7 @@ module.exports = {
       link: "https://eurelien.fr/guide/autonomie",
     },
     D29: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd29.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -70,7 +70,7 @@ module.exports = {
       link: "https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie",
     },
     D31: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd31.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -79,7 +79,7 @@ module.exports = {
       link: "https://www.haute-garonne.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa",
     },
     D33: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd33.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -88,7 +88,7 @@ module.exports = {
       link: "https://www.gironde.fr/handicap-grand-age/aides-et-prestations-apa-pch-et-cmi#apa",
     },
     D34: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd34.png",
       },
       instructions:
@@ -98,7 +98,7 @@ module.exports = {
       link: undefined,
     },
     D35: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd35.png",
       },
       instructions: undefined, // Prevent default form recycling
@@ -107,7 +107,7 @@ module.exports = {
       link: "http://www.ille-et-vilaine.fr/fr/demande-apa",
     },
     D38: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd38.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -117,7 +117,7 @@ module.exports = {
       link: "https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx",
     },
     D42: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd42.png",
       },
       instructions: undefined, // Prevent default form recycling
@@ -126,7 +126,7 @@ module.exports = {
       link: "http://www.loire.fr/jcms/c_308179/comment-beneficier-de-l-apa-a-domicile",
     },
     D44: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd44.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -135,7 +135,7 @@ module.exports = {
       link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421",
     },
     D45: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd45.jpg",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -146,7 +146,7 @@ module.exports = {
       },
     },
     D57: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd57.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -155,7 +155,7 @@ module.exports = {
       link: "http://www.moselle.fr/moselleetvous/pages/fiche_senior_apa.aspx",
     },
     D59: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd59.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -164,7 +164,7 @@ module.exports = {
       link: "https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa",
     },
     D62: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd62.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -173,7 +173,7 @@ module.exports = {
       link: "http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
     },
     D64: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd64.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -182,7 +182,7 @@ module.exports = {
       link: "http://www.le64.fr/solidarite/autonomie/soutien-a-domicile/compenser-la-dependance-par-lapa.html",
     },
     D67: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd67.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -191,7 +191,7 @@ module.exports = {
       link: "http://www.bas-rhin.fr/acces-direct/guide-aides/detail-guide-aides/381/Allocation-personnalisee-d-autonomie--APA--a-domicile",
     },
     D75: {
-      provider: {
+      institution: {
         imgSrc: "logo_paris.png",
       },
       instructions: "https://apa.paris.fr/portailAPA/",
@@ -200,7 +200,7 @@ module.exports = {
       link: "https://www.paris.fr/aides_soutien_a_domicile#allocation-personnalisee-d-autonomie-a-domicile-apa_21",
     },
     D76: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd76.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -209,7 +209,7 @@ module.exports = {
       link: "https://www.seinemaritime.fr/vos-services/personnes-agees-1/beneficier-daides/lallocation-aux-personnes-agees.html",
     },
     D77: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd77.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -218,7 +218,7 @@ module.exports = {
       link: "http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA",
     },
     D83: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd83.png",
       },
       instructions: "https://www.var.fr/social/autonomie-personnes-agees/apa",
@@ -226,7 +226,7 @@ module.exports = {
       teleservice: undefined, // Prevent default instructions recycling
     },
     D92: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd92.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -235,7 +235,7 @@ module.exports = {
       link: "http://www.hauts-de-seine.fr/solidarites/personnes-agees/maintien-a-domicile/comment-beneficier-de-lapa/",
     },
     D93: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd93.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -244,7 +244,7 @@ module.exports = {
       link: "https://seinesaintdenis.fr/Allocation-Departementale-Personnalisee-d-Autonomie.html",
     },
     D94: {
-      provider: {
+      institution: {
         imgSrc: "logo_cd94.png",
       },
       instructions: undefined, // Prevent default instructions recycling
@@ -253,7 +253,7 @@ module.exports = {
       link: "https://www.valdemarne.fr/a-votre-service/personnes-agees/allocation-personnalisee-dautonomie-a-domicile-apad",
     },
     M200046977: {
-      provider: {
+      institution: {
         imgSrc: "logo_lyon_metropole.png",
       },
       instructions: undefined, // Prevent default form recycling

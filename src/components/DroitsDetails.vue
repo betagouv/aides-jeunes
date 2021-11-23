@@ -7,7 +7,7 @@
     <div class="aj-droit-identity">
       <img
         class="aj-droit-illustration"
-        v-bind:src="require(`./../../public/img/${droit.provider.imgSrc}`)"
+        v-bind:src="require(`./../../public/img/${droit.institution.imgSrc}`)"
         v-bind:alt="'Image pour ' + droit.label"
       />
       <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>

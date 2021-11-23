@@ -68,7 +68,7 @@ function renderAsHtml(followup, benefits, parameters) {
     }
 
     return assign({}, droit, {
-      imgSrc: "/img/" + droit.provider.imgSrc,
+      imgSrc: "/img/" + droit.institution.imgSrc,
       montant: value,
       ctaLink: ctaLink,
       ctaLabel: ctaLabel,

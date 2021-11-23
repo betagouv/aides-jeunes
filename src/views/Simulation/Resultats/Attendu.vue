@@ -212,10 +212,7 @@ export default {
     let benefits = []
 
     Institution.benefits.all.forEach((benefit) => {
-      const b = Object.assign(
-        { provider: benefit.institution, level: benefit.institution.level },
-        benefit
-      )
+      const b = Object.assign({ level: benefit.institution.level }, benefit)
       b.label = capitalize(benefit.label)
 
       if (b.label === "Tarification solidaire transports") {
@@ -331,9 +328,9 @@ export default {
     },
     async fetchBenefit(fileAttribute) {
       const benefit = await getGithubPRFiles(fileAttribute)
-      const provider = this.institutions[benefit.institution]
-      if (provider) {
-        benefit.provider = Object.assign({}, provider)
+      const institution = this.institutions[benefit.institution]
+      if (institution) {
+        benefit.institution = Object.assign({}, institution)
         this.benefits.push(benefit)
         this.benefitKeyed[benefit.id] = benefit
       }

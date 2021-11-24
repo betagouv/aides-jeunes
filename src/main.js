@@ -63,8 +63,8 @@ Vue.config.productionTip = false
 moment.locale("fr")
 
 Vue.createApp({
-  store,
   render: (h) => h(App),
 })
+.use(store)
 .use(router)
 .mount("#app")

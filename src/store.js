@@ -1,7 +1,7 @@
-import Vue from "vue"
-import Vuex from "vuex"
-
-Vue.use(Vuex)
+//import Vue from "vue"
+//import Vuex from "vuex"
+import { createStore } from 'vuex'
+//Vue.use(Vuex)
 
 import axios from "axios"
 import moment from "moment"
@@ -119,7 +119,7 @@ const storeAnswer = (answers, newAnswer, clean) => {
   return results
 }
 
-const store = new Vuex.Store({
+const store = createStore({
   state: defaultStore(),
   getters: {
     passSanityCheck: function (state, getters) {

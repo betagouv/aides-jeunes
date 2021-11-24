@@ -76,7 +76,7 @@
     "vue-matomo": "^4.1.0",
     "vue-router": "^3.5.3",
     "vuelidate": "^0.7.6",
-    "vuex": "^3.6.2"
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",

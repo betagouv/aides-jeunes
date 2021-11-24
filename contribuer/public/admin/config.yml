@@ -130,7 +130,7 @@ collections:
     label: Aides avec critères
     label_singular: Aide
     identifier_field: label
-    folder: "data/benefits/custom"
+    folder: "data/benefits/computed"
     create: true
     delete: false
     editor:
@@ -263,6 +263,7 @@ collections:
         hint: Il faut cocher cette case si les critères sont explicités (âge, montant, statut, localisation, etc)
         name: computesLocally
         widget: boolean
+        default: true
         required: false
       - label: Montant maximal de l'aide
         name: montant
@@ -568,11 +569,6 @@ collections:
             value: individus
           - label: Ménage
             value: menages
-      - label: Règles de calcul explicitées ?
-        hint: Il faut cocher cette case si les critères sont explicités (âge, montant, statut, localisation, etc)
-        name: computesLocally
-        widget: boolean
-        required: false
       - label: Montant maximal de l'aide
         name: montant
         widget: number

@@ -6,22 +6,22 @@
           class="rf"
           alt="Logo République Française"
           src="@/../public/img/logo_rf.svg"
-        />
+        >
         <img
           class="fr"
           alt="Logo 1 jeune 1 solution France relance"
           src="@/../public/img/logo1j1s-france-relance.svg"
-        />
+        >
       </div>
       <div
         v-for="(item, index) in menu"
+        :key="index"
         class="aj-1j1s-footer-col"
         :class="{ show: item.show }"
-        :key="index"
       >
         <h2
-          @click="toggleShowItem(item)"
           :class="{ last: index === menu.length - 1 }"
+          @click="toggleShowItem(item)"
         >
           {{ item.label }}
           <svg
@@ -40,15 +40,26 @@
               stroke-width="1.5"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ></path>
+            />
           </svg>
         </h2>
         <ul>
-          <li v-for="(child, childIndex) in item.children" :key="childIndex">
-            <a v-if="child.href" :href="child.href">{{ child.label }}</a>
-            <router-link v-else :to="child.route">{{
-              child.label
-            }}</router-link>
+          <li
+            v-for="(child, childIndex) in item.children"
+            :key="childIndex"
+          >
+            <a
+              v-if="child.href"
+              :href="child.href"
+            >{{ child.label }}</a>
+            <router-link
+              v-else
+              :to="child.route"
+            >
+              {{
+                child.label
+              }}
+            </router-link>
           </li>
         </ul>
       </div>

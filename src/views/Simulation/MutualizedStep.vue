@@ -3,25 +3,28 @@
     <fieldset v-if="questionType === 'enum'">
       <legend>
         <h2 class="aj-question">
-          <span v-html="question"></span>
+          <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" />
         </h2>
-        <p v-if="step.help" v-html="step.help"></p>
+        <p
+          v-if="step.help"
+          v-html="step.help"
+        />
       </legend>
       <div class="aj-selections">
         <div
-          class="aj-selection-wrapper"
           v-for="(item, index) in items"
           :key="`${item.value}`"
+          class="aj-selection-wrapper"
         >
           <input
             :id="`${item.value}`"
+            v-model="value"
             type="radio"
             :name="fieldName"
             :value="item.value"
-            v-model="value"
             :autofocus="index === 0"
-          />
+          >
           <label :for="`${item.value}`">
             {{ item.label }}
           </label>
@@ -34,28 +37,42 @@
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
-      <p v-if="step.help" v-html="step.help"></p>
+      <p
+        v-if="step.help"
+        v-html="step.help"
+      />
       <label>
-        <InputNumber :min="step.min" v-model="value"></InputNumber>
+        <InputNumber
+          v-model="value"
+          :min="step.min"
+        />
       </label>
     </div>
 
     <div v-else-if="questionType === 'date'">
-      <label :for="fieldName"
-        ><h2 class="aj-question">
-          <span v-html="question"></span>
-          <EnSavoirPlus v-if="showMoreInfo" /> </h2
-      ></label>
-      <InputDate required :id="fieldName" v-model="value" />
+      <label :for="fieldName"><h2 class="aj-question">
+        <span v-html="question" />
+        <EnSavoirPlus v-if="showMoreInfo" /> </h2></label>
+      <InputDate
+        :id="fieldName"
+        v-model="value"
+        required
+      />
     </div>
 
-    <YesNoQuestion v-else v-model="value">
-      <span v-html="question"></span><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-slot:help v-if="step.help"
-        ><p v-html="step.help"></p
-      ></template>
+    <YesNoQuestion
+      v-else
+      v-model="value"
+    >
+      <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
+      <template
+        v-if="step.help"
+        #help
+      >
+        <p v-html="step.help" />
+      </template>
     </YesNoQuestion>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 

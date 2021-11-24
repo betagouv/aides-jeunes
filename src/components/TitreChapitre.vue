@@ -8,9 +8,9 @@
       :class="{ 'has-menu-button': showMenuButton }"
     >
       <MenuButton
-        @click.native="goToRecapitulatifPage"
         v-show="showMenuButton"
-      ></MenuButton>
+        @click.native="goToRecapitulatifPage"
+      />
       <h1>{{ title }}</h1>
     </div>
   </div>

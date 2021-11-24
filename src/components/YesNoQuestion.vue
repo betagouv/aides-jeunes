@@ -1,30 +1,33 @@
 <template>
   <fieldset>
     <legend>
-      <component :is="htmlHeading" class="aj-question">
-        <slot></slot>
+      <component
+        :is="htmlHeading"
+        class="aj-question"
+      >
+        <slot />
       </component>
-      <slot name="help"></slot>
+      <slot name="help" />
     </legend>
     <div class="aj-selections">
       <div class="aj-selection-wrapper">
         <input
           :id="'yes-' + uniqueFieldName"
-          type="radio"
-          v-bind:value="true"
-          v-bind:name="uniqueFieldName"
           v-model="model"
-        />
+          type="radio"
+          :value="true"
+          :name="uniqueFieldName"
+        >
         <label :for="'yes-' + uniqueFieldName">Oui</label>
       </div>
       <div class="aj-selection-wrapper">
         <input
           :id="'no-' + uniqueFieldName"
-          type="radio"
-          v-bind:value="false"
-          v-bind:name="uniqueFieldName"
           v-model="model"
-        />
+          type="radio"
+          :value="false"
+          :name="uniqueFieldName"
+        >
         <label :for="'no-' + uniqueFieldName">Non</label>
       </div>
     </div>

@@ -8,8 +8,8 @@
       </label>
       <InputMonth
         id="mois-fin-contrat"
-        v-bind:value="individu.date_debut_chomage"
-        v-on:input="$emit('updateDate', $event)"
+        :value="individu.date_debut_chomage"
+        @input="$emit('updateDate', $event)"
       />
       <div>
         {{
@@ -21,16 +21,15 @@
 
     <div class="form__group">
       <YesNoQuestion
-        v-bind:value="individu.ass_precondition_remplie"
-        v-on:input="$emit('updateAssPrecondition', $event)"
         v-if="capturePreconditionAss"
+        :value="individu.ass_precondition_remplie"
+        @input="$emit('updateAssPrecondition', $event)"
       >
         {{ individu._role == "demandeur" ? "Avez-vous" : "A-t-il/elle" }}
         travaillé
         <abbr
           title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
-          >au moins 5 ans</abbr
-        >
+        >au moins 5 ans</abbr>
         entre {{ yearsAgo(10) }} et {{ yearsAgo(0) }} ?
       </YesNoQuestion>
     </div>

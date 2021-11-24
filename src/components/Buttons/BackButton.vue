@@ -1,5 +1,9 @@
 <template>
-  <button class="button outline with-icon" :class="[size]" type="button">
+  <button
+    class="button outline with-icon"
+    :class="[size]"
+    type="button"
+  >
     <svg
       width="12"
       height="12"

@@ -2,7 +2,11 @@
   <div>
     <div class="aj-progressBar-container">
       <div class="aj-step-container">
-        <div v-for="(chapter, index) in chapters" :key="index" class="aj-step">
+        <div
+          v-for="(chapter, index) in chapters"
+          :key="index"
+          class="aj-step"
+        >
           <div
             class="aj-step-icon"
             :class="{
@@ -15,7 +19,7 @@
               src="../assets/images/done.svg"
               class="aj-check-icon"
               alt="Logo validé"
-            />
+            >
           </div>
           <router-link
             :to="chapter.root"
@@ -30,13 +34,19 @@
           </router-link>
         </div>
       </div>
-      <div class="aj-progressBar"></div>
+      <div class="aj-progressBar" />
     </div>
 
-    <div class="aj-btn-container" v-if="$store.getters.passSanityCheck">
-      <router-link class="button outline" :to="{ name: 'recapitulatif' }"
-        >Récapitulatif</router-link
+    <div
+      v-if="$store.getters.passSanityCheck"
+      class="aj-btn-container"
+    >
+      <router-link
+        class="button outline"
+        :to="{ name: 'recapitulatif' }"
       >
+        Récapitulatif
+      </router-link>
     </div>
   </div>
 </template>

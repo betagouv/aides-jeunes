@@ -1,40 +1,55 @@
 <template>
   <div class="recapitulatif">
     <BackButton
-      @click.native="goBack()"
       class="recapitulatif-back-button"
       size="small"
-      >Retour</BackButton
+      @click.native="goBack()"
     >
+      Retour
+    </BackButton>
     <div>
-      <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
+      <template
+        v-for="(chapter, chapterIndex) in chapters"
+        :key="chapter.name"
+      >
         <div class="chapter-block">
-          <h2 class="aj-question">{{ chapter.label }}</h2>
+          <h2 class="aj-question">
+            {{ chapter.label }}
+          </h2>
           <template v-for="(question, questionIndex) in chapter.questions">
             <template v-if="question.isChapterSubtitle">
               <div
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
               >
-                <div v-html="question.label" class="subtitle"></div>
+                <div
+                  class="subtitle"
+                  v-html="question.label"
+                />
               </div>
             </template>
             <template v-else>
               <div
+                v-if="question.value !== undefined"
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
-                v-if="question.value !== undefined"
               >
-                <div class="question-col" v-html="question.label"></div>
+                <div
+                  class="question-col"
+                  v-html="question.label"
+                />
 
                 <div
-                  class="value-col"
                   v-if="typeof question.value !== 'object'"
-                  >{{ question.value }}</div
+                  class="value-col"
                 >
-                <div class="edit-col"
-                  ><router-link :to="question.path">Modifier</router-link></div
-                >
+                  {{ question.value }}
+                </div>
+                <div class="edit-col">
+                  <router-link :to="question.path">
+                    Modifier
+                  </router-link>
+                </div>
               </div>
               <template v-if="typeof question.value === 'object'">
                 <div
@@ -42,11 +57,13 @@
                   class="recapitulatif-row recapitulatif-row-wrap"
                 >
                   <div
-                    class="value-cell"
                     v-for="(value, name) in question.value"
                     :key="name"
+                    class="value-cell"
                   >
-                    <div style="font-style: italic">{{ name }} :</div>
+                    <div style="font-style: italic">
+                      {{ name }} :
+                    </div>
                     <div>{{ value }}</div>
                   </div>
                 </div>
@@ -57,8 +74,8 @@
       </template>
     </div>
     <div class="aj-actions">
-      <div></div>
-      <BackButton @click.native="goBack"></BackButton>
+      <div />
+      <BackButton @click.native="goBack" />
     </div>
   </div>
 </template>

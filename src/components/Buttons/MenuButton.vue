@@ -1,5 +1,8 @@
 <template>
-  <button class="menu-button button outline small" type="button">
+  <button
+    class="menu-button button outline small"
+    type="button"
+  >
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -21,9 +24,21 @@
         <path
           d="M57.124,14.231H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,14.231,57.124,14.231z"
         />
-        <circle cx="4.029" cy="11.463" r="4.029" />
-        <circle cx="4.029" cy="30.062" r="4.029" />
-        <circle cx="4.029" cy="48.661" r="4.029" />
+        <circle
+          cx="4.029"
+          cy="11.463"
+          r="4.029"
+        />
+        <circle
+          cx="4.029"
+          cy="30.062"
+          r="4.029"
+        />
+        <circle
+          cx="4.029"
+          cy="48.661"
+          r="4.029"
+        />
       </g>
     </svg>
   </button>

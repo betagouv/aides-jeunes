@@ -1,11 +1,14 @@
 <template>
-  <div class="aj-droit-estime" v-if="droit.type">
+  <div
+    v-if="droit.type"
+    class="aj-droit-estime"
+  >
     <span>
       <span v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
         <span class="aj-droit-estime-label font-normal font-base">
           {{ droitEstime.label }}
         </span>
-        <br />
+        <br>
         <span class="aj-droit-estime-value font-bold">
           {{ droitEstime.value }}
         </span>
@@ -15,21 +18,23 @@
           :data-testid="`aj-droit-estime-icon-${
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           }`"
-          v-bind:class="`fa ${
+          :class="`fa ${
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           } fa-2x`"
-        >
-        </i>
+        />
       </span>
-      <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
+      <span
+        v-if="droitEstime.legend"
+        class="aj-droit-estime-legend"
+      >
         {{ droitEstime.legend }}
       </span>
     </span>
     <span class="aj-droit-estime-inattendu">
       <router-link
-        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
         v-if="showUnexpected"
-        >Montant inattendu ?
+        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+      >Montant inattendu ?
       </router-link>
     </span>
   </div>

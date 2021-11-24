@@ -27,14 +27,14 @@
         </p>
         <p>Plusieurs situations sont possibles&nbsp;:</p>
         <ul>
-          <li
-            >vous souhaitez <strong>confirmer</strong> que le résultat obtenu
-            est correct ou</li
-          >
-          <li
-            >vous souhaitez indiquer que résultat obtenu est
-            <strong>incorrect</strong>.</li
-          >
+          <li>
+            vous souhaitez <strong>confirmer</strong> que le résultat obtenu
+            est correct ou
+          </li>
+          <li>
+            vous souhaitez indiquer que résultat obtenu est
+            <strong>incorrect</strong>.
+          </li>
         </ul>
         <p>
           Dans tous les cas, il est important d'expliciter les intentions
@@ -44,101 +44,126 @@
 
         <fieldset
           v-for="(item, index) in selection"
-          v-bind:key="index"
+          :key="index"
           class="form__group"
         >
-          <legend v-if="item.ref"
-            ><h2>{{ getTitle(item.ref) }}</h2></legend
-          >
+          <legend v-if="item.ref">
+            <h2>{{ getTitle(item.ref) }}</h2>
+          </legend>
           <div class="form__group">
-            <label for="de"
-              >Quelle est la prestation pour laquelle vous connaissez le
-              résultat&nbsp;?</label
-            >
+            <label for="de">Quelle est la prestation pour laquelle vous connaissez le
+              résultat&nbsp;?</label>
             <select v-model="item.ref">
               <option
                 v-for="(benefit, bIndex) in benefits"
-                v-bind:key="bIndex"
-                v-bind:value="benefit"
-                >{{ benefit.label }}</option
+                :key="bIndex"
+                :value="benefit"
               >
+                {{ benefit.label }}
+              </option>
             </select>
           </div>
 
-          <div class="form__group" v-if="item.ref">
+          <div
+            v-if="item.ref"
+            class="form__group"
+          >
             <label for="de">La valeur obtenue</label>
-            <input disabled v-bind:value="getActual(item.ref)" />
+            <input
+              disabled
+              :value="getActual(item.ref)"
+            >
           </div>
 
-          <div class="form__group" v-if="item.ref">
-            <label for="expected"
-              >Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label
+          <div
+            v-if="item.ref"
+            class="form__group"
+          >
+            <label for="expected">Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label>
+            <input
+              id="expected"
+              v-model="item.expected"
             >
-            <input id="expected" v-model="item.expected" />
           </div>
           <div>
             <button
               class="button small warning"
-              v-on:click.prevent="remove(index)"
-              >Supprimer cette prestation</button
+              @click.prevent="remove(index)"
             >
+              Supprimer cette prestation
+            </button>
           </div>
         </fieldset>
 
-        <button class="form__group button secondary" v-on:click.prevent="add"
-          >Ajouter une autre prestation pour laquelle vous connaissez le
-          résultat</button
+        <button
+          class="form__group button secondary"
+          @click.prevent="add"
         >
+          Ajouter une autre prestation pour laquelle vous connaissez le
+          résultat
+        </button>
 
-        <label class="form__group"
-          >Description courte
+        <label class="form__group">Description courte
           <input
-            placeholder="Les AL ne sont pas prises en compte dans le RSA"
             v-model="shortDescription"
+            placeholder="Les AL ne sont pas prises en compte dans le RSA"
+          >
+        </label>
+
+        <label class="form__group">Description détaillée
+          <textarea
+            v-model="details"
+            rows="9"
+            :placeholder="detailed"
           />
         </label>
 
-        <label class="form__group"
-          >Description détaillée
-          <textarea
-            rows="9"
-            v-bind:placeholder="detailed"
-            v-model="details"
-          ></textarea>
-        </label>
-
         <label class="form__group">
-          <input type="checkbox" v-model="consentGiven" />
+          <input
+            v-model="consentGiven"
+            type="checkbox"
+          >
           J'accepte que les données de cette simulation soient visibles en
           ligne. Si les informations correspondent à une situation réelle, vous
           devriez
           <router-link to="/foyer/recapitulatif">les modifier</router-link>.
         </label>
 
-        <p class="notification warning inline" v-if="showConsentNotice">
+        <p
+          v-if="showConsentNotice"
+          class="notification warning inline"
+        >
           Vous devez accepter la publication des données.
-          <router-link to="/foyer/recapitulatif"
-            >Vous pouvez les anonymiser si nécessaire.</router-link
-          >
+          <router-link to="/foyer/recapitulatif">
+            Vous pouvez les anonymiser si nécessaire.
+          </router-link>
         </p>
 
-        <p class="notification warning" v-if="message">
+        <p
+          v-if="message"
+          class="notification warning"
+        >
           {{ message }}
         </p>
 
-        <p class="notification warning" v-if="error">
+        <p
+          v-if="error"
+          class="notification warning"
+        >
           {{ error }}
         </p>
 
         <div>
           <button
-            v-bind:class="`button large ${this.submitting ? 'secondary' : ''}`"
-            >Enregistrer</button
+            :class="`button large ${submitting ? 'secondary' : ''}`"
           >
-          <span v-show="submitting"
-            ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-            Enregistrement en cours…</span
-          >
+            Enregistrer
+          </button>
+          <span v-show="submitting"><i
+            class="fa fa-spinner fa-spin"
+            aria-hidden="true"
+          />
+            Enregistrement en cours…</span>
         </div>
       </div>
 
@@ -146,11 +171,11 @@
         <label class="form__group">
           <textarea
             ref="aj-textarea-results"
-            class="aj-textarea-results"
-            @click="copyToClipboard"
-            readonly
             v-model="result"
+            class="aj-textarea-results"
+            readonly
             rows="9"
+            @click="copyToClipboard"
           />
         </label>
 
@@ -163,7 +188,7 @@
           <ul>
             <li>
               le contenu du formulaire et en indiquant l'identifiant suivant :
-              <span class="bold">{{ this.$store.state.situationId }} .</span>
+              <span class="bold">{{ $store.state.situationId }} .</span>
             </li>
             <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
           </ul>
@@ -171,9 +196,9 @@
         <div>
           <a
             class="button large"
-            @click="trackMontantAttendu('Téléchargement données')"
             :download="filename"
             :href="resultToBase64"
+            @click="trackMontantAttendu('Téléchargement données')"
           >
             Télécharger le fichier de données
           </a>
@@ -205,7 +230,7 @@ import {
 } from "@/lib/Contributions"
 
 export default {
-  name: "attendu",
+  name: "Attendu",
   mixins: [ResultatsMixin],
   data: function () {
     let benefitKeyed = {}
@@ -303,6 +328,9 @@ export default {
     sendMail() {
       return sendMontantsAttendus(this.$store.state.situationId)
     },
+  },
+  mounted() {
+    this.getContributions()
   },
   methods: {
     add: function () {
@@ -404,9 +432,6 @@ export default {
           this.trackMontantAttendu("Sauvegarde des données")
         })
     },
-  },
-  mounted() {
-    this.getContributions()
   },
 }
 </script>

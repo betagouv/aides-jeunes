@@ -2,7 +2,7 @@
   <div class="aj-sommaire-container">
     <div class="aj-sommaire-content">
       <h4>Ma simulation</h4>
-      <SommaireContent></SommaireContent>
+      <SommaireContent />
     </div>
   </div>
 </template>

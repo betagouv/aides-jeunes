@@ -1,31 +1,35 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="field-group">
-      <label for="loyer" class="aj-question"
-        >{{ loyerQuestion.label }}
+      <label
+        for="loyer"
+        class="aj-question"
+      >{{ loyerQuestion.label }}
         <span class="help">{{ loyerQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
         <InputNumber
           id="loyer"
-          class="aj-input-euros"
           v-model="loyerQuestion.selectedValue"
-        ></InputNumber>
+          class="aj-input-euros"
+        />
       </div>
     </div>
     <div v-if="captureCharges">
-      <label for="charges" class="aj-question"
-        >{{ chargesQuestion.label }}
+      <label
+        for="charges"
+        class="aj-question"
+      >{{ chargesQuestion.label }}
         <span class="help">{{ chargesQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
         <InputNumber
           id="charges"
           v-model="chargesQuestion.selectedValue"
-        ></InputNumber>
+        />
       </div>
     </div>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 

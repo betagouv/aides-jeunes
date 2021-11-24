@@ -4,14 +4,16 @@
       <p v-show="accessStatus.fetching">
         Récupération de la situation en cours…
       </p>
-      <p v-show="resultatStatus.updating">Récupération de vos droits…</p>
+      <p v-show="resultatStatus.updating">
+        Récupération de vos droits…
+      </p>
     </LoadingModal>
 
     <button
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
-      v-on:click="goBack($event)"
       data-testid="back"
+      @click="goBack($event)"
     >
       <svg
         width="12"
@@ -57,22 +59,6 @@ export default {
     LoadingModal,
   },
   mixins: [ResultatsMixin],
-  mounted: function () {
-    if (this.mock(this.$route.params.droitId)) {
-      return
-    } else if (!this.droits) {
-      this.restoreLatest()
-    } else {
-      const droitId = this.$route.params.droitId
-      const droit = this.droits.find(function (droit) {
-        return droit.id === droitId
-      })
-
-      droit &&
-        this.$matomo &&
-        this.$matomo.trackEvent("General", "showDetails", droit.label)
-    }
-  },
   computed: {
     situation: function () {
       return this.$store.getters.situation
@@ -90,6 +76,22 @@ export default {
     ressourcesYearMinusTwoCaptured: function () {
       return this.$store.getters.ressourcesYearMinusTwoCaptured
     },
+  },
+  mounted: function () {
+    if (this.mock(this.$route.params.droitId)) {
+      return
+    } else if (!this.droits) {
+      this.restoreLatest()
+    } else {
+      const droitId = this.$route.params.droitId
+      const droit = this.droits.find(function (droit) {
+        return droit.id === droitId
+      })
+
+      droit &&
+        this.$matomo &&
+        this.$matomo.trackEvent("General", "showDetails", droit.label)
+    }
   },
   methods: {
     goBack: function (event) {

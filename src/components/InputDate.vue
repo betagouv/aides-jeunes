@@ -1,45 +1,48 @@
 <template>
   <div class="aj-input-date">
-    <div v-if="showDay" class="aj-input-date-component day">
+    <div
+      v-if="showDay"
+      class="aj-input-date-component day"
+    >
       <label class="aj-date-label">jour</label>
       <input
+        :id="firstId"
+        ref="day"
+        v-model="day"
+        v-select-on-click
         type="number"
         autofocus
-        v-bind:id="firstId"
-        ref="day"
         aria-label="Jour"
-        v-model="day"
         placeholder="JJ"
-        v-select-on-click
         min="1"
         max="31"
-      />
+      >
     </div>
     <div class="aj-input-date-component month">
       <label class="aj-date-label">mois</label>
       <input
-        type="number"
         ref="month"
-        aria-label="Mois"
         v-model="month"
-        placeholder="MM"
         v-select-on-click
+        type="number"
+        aria-label="Mois"
+        placeholder="MM"
         min="1"
         max="12"
-      />
+      >
     </div>
     <div class="aj-input-date-component year">
       <label class="aj-date-label">année</label>
       <input
-        type="number"
         ref="year"
+        v-model="year"
+        v-select-on-click
+        type="number"
         class="year"
         aria-label="Année"
-        v-model="year"
         placeholder="AAAA"
-        v-select-on-click
         min="1900"
-      />
+      >
     </div>
   </div>
 </template>
@@ -125,6 +128,26 @@ export default {
       return this.dateType === "date"
     },
   },
+  watch: {
+    day: function (to) {
+      if (to && to.length == 2 && this.auto) {
+        this.$refs.month.focus()
+      }
+      this.update("day")
+    },
+    month: function (to) {
+      if (to && to.length == 2 && this.auto) {
+        this.$refs.year.focus()
+      }
+      this.update("month")
+    },
+    year: function (to) {
+      if (to && to.length == 4 && this.auto) {
+        this.$refs.year.focus()
+      }
+      this.update("year")
+    },
+  },
   methods: {
     emit: function ($event) {
       let value = new Date($event.target.value)
@@ -144,26 +167,6 @@ export default {
       } else {
         this.$emit("input", undefined)
       }
-    },
-  },
-  watch: {
-    day: function (to) {
-      if (to && to.length == 2 && this.auto) {
-        this.$refs.month.focus()
-      }
-      this.update("day")
-    },
-    month: function (to) {
-      if (to && to.length == 2 && this.auto) {
-        this.$refs.year.focus()
-      }
-      this.update("month")
-    },
-    year: function (to) {
-      if (to && to.length == 4 && this.auto) {
-        this.$refs.year.focus()
-      }
-      this.update("year")
     },
   },
 }

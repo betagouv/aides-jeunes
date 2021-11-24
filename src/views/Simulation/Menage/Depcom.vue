@@ -1,32 +1,52 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="field-group">
-      <label for="cp" class="aj-question"
-        >Quel est votre code postal&nbsp;?
+      <label
+        for="cp"
+        class="aj-question"
+      >Quel est votre code postal&nbsp;?
         <EnSavoirPlus />
       </label>
-      <input id="cp" type="number" v-model="codePostal" />
+      <input
+        id="cp"
+        v-model="codePostal"
+        type="number"
+      >
     </div>
 
-    <p v-if="retrievingCommunes"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
-    ></p>
-    <div class="field-group" v-show="communes && communes.length">
-      <label for="commune" class="aj-question"
-        >Veuillez sélectionner la ville qui correspond
+    <p v-if="retrievingCommunes">
+      <i
+        class="fa fa-spinner fa-spin"
+        aria-hidden="true"
+      />
+    </p>
+    <div
+      v-show="communes && communes.length"
+      class="field-group"
+    >
+      <label
+        for="commune"
+        class="aj-question"
+      >Veuillez sélectionner la ville qui correspond
       </label>
-      <select v-model="nomCommune" id="commune">
+      <select
+        id="commune"
+        v-model="nomCommune"
+      >
         <option
           v-for="(commune, index) in communes"
-          v-bind:value="commune.nom"
-          v-bind:key="`commune_${index}`"
+          :key="`commune_${index}`"
+          :value="commune.nom"
         >
           {{ commune.nom }}
         </option>
       </select>
     </div>
-    <WarningMessage v-if="warningMessage" :text="warningMessage" />
-    <Actions v-bind:onSubmit="onSubmit" />
+    <WarningMessage
+      v-if="warningMessage"
+      :text="warningMessage"
+    />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -39,12 +59,12 @@ import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationMenageDepcom",
-  mixins: [DepcomMixin],
   components: {
     Actions,
     WarningMessage,
     EnSavoirPlus,
   },
+  mixins: [DepcomMixin],
   data: function () {
     const answer = this.$store.getters.getAnswer("menage", "menage", "depcom")
     return {

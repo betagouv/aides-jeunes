@@ -1,6 +1,14 @@
 <template>
-  <div class="bandeau-demo-wrapper" v-if="afficheBandeau">
-    <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
+  <div
+    v-if="afficheBandeau"
+    class="bandeau-demo-wrapper"
+  >
+    <a
+      class="bandeau-demo"
+      target="_blank"
+      rel="noopener"
+      :href="link"
+    >
       Démo
     </a>
   </div>

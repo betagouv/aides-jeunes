@@ -4,27 +4,26 @@
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
           <h1>
-            <span class="hightlight"
-              >Évaluez vos droits à<br />plus de 20 aides
+            <span class="hightlight">Évaluez vos droits à<br>plus de 20 aides
             </span>
-            <br />en moins de 5 minutes.
+            <br>en moins de 5 minutes.
           </h1>
           <div class="aj-home-hero-buttons-wrapper">
             <button
-              v-bind:class="`button ${ctaSize} secondary`"
-              v-on:click="next()"
+              v-if="hasExistingSituation"
               v-analytics="{
                 action: 'Reprendre ma simulation',
                 category: 'Home',
               }"
-              v-if="hasExistingSituation"
+              :class="`button ${ctaSize} secondary`"
+              @click="next()"
             >
               Reprendre ma simulation
             </button>
             <button
-              v-bind:class="`button ${ctaSize} primary`"
-              v-on:click="newSituation()"
               v-analytics="{ action: ctaLabel, category: 'Home' }"
+              :class="`button ${ctaSize} primary`"
+              @click="newSituation()"
             >
               {{ ctaLabel }}
             </button>
@@ -32,7 +31,10 @@
         </div>
       </div>
       <div class="aj-home-illustration">
-        <img src="@/assets/images/home_illustration.png" alt="Portrait jeune" />
+        <img
+          src="@/assets/images/home_illustration.png"
+          alt="Portrait jeune"
+        >
       </div>
     </div>
   </div>
@@ -46,7 +48,7 @@ import filter from "lodash/filter"
 import mapValues from "lodash/mapValues"
 
 export default {
-  name: "home",
+  name: "Home",
   data: () => {
     let value = {}
     const types = ["prestationsNationales", "partenairesLocaux"]

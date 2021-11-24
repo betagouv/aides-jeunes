@@ -1,16 +1,19 @@
 <template>
   <div>
     <input
-      type="number"
-      v-select-on-click
-      v-model.number="result"
       :id="id"
+      v-model.number="result"
+      v-select-on-click
+      type="number"
       :name="name"
       :min="min"
       :max="max"
       :step="step"
-    />
-    <div class="text-red input-number-error" v-if="error">
+    >
+    <div
+      v-if="error"
+      class="text-red input-number-error"
+    >
       Ce champ n'est pas valide.
     </div>
   </div>

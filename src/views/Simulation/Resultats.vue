@@ -1,25 +1,35 @@
 <template>
   <div class="aj-unbox">
     <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-      <p v-show="accessStatus.fetching"
-        >Récupération de la situation en cours…</p
-      >
-      <p v-show="resultatStatus.updating">Calcul en cours de vos droits…</p>
+      <p v-show="accessStatus.fetching">
+        Récupération de la situation en cours…
+      </p>
+      <p v-show="resultatStatus.updating">
+        Calcul en cours de vos droits…
+      </p>
     </LoadingModal>
 
-    <div class="notification warning" v-if="hasWarning">
+    <div
+      v-if="hasWarning"
+      class="notification warning"
+    >
       <div>
-        <h2
-          ><i class="fa fa-warning" aria-hidden="true"></i> Aucun résultat
-          disponible</h2
-        >
-        <h3
-          >La simulation à laquelle vous souhaitez accéder n‘est pas
-          accessible.</h3
-        >
+        <h2>
+          <i
+            class="fa fa-warning"
+            aria-hidden="true"
+          /> Aucun résultat
+          disponible
+        </h2>
+        <h3>
+          La simulation à laquelle vous souhaitez accéder n‘est pas
+          accessible.
+        </h3>
         <p class="aj-results-intro">
           Pour commencer votre simulation, rendez-vous sur la
-          <router-link to="home">page d'accueil</router-link>.
+          <router-link to="home">
+            page d'accueil
+          </router-link>.
         </p>
       </div>
     </div>
@@ -32,27 +42,30 @@
         <p class="aj-results-intro">
           D'après la situation que vous avez décrite, vous êtes a priori
           éligible à ces aides.
-          <span id="print-disclaimer"
-            >Ces résultats sont fondés sur les seules informations que vous avez
+          <span id="print-disclaimer">Ces résultats sont fondés sur les seules informations que vous avez
             indiquées et ne constituent en aucune façon un engagement de la part
-            des organismes cités.</span
-          >
+            des organismes cités.</span>
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
-        <div class="notification warning" v-if="isOldSituation">
+        <div
+          v-if="isOldSituation"
+          class="notification warning"
+        >
           <div class="aj-results-intro">
-            <h3
-              >Attention, la simulation que vous voyez ne peut plus être
+            <h3>
+              Attention, la simulation que vous voyez ne peut plus être
               modifiée
             </h3>
             <p>
               Si vous voulez apporter une modification à votre situation,
               veuillez recommencer une simulation depuis la
-              <router-link to="home">page d'accueil</router-link>.
+              <router-link to="home">
+                page d'accueil
+              </router-link>.
             </p>
           </div>
         </div>
-        <DroitsList v-bind:droits="droits"></DroitsList>
+        <DroitsList :droits="droits" />
       </div>
       <div v-if="!isEmpty(droitsNonEligiblesShown)">
         <p>
@@ -61,26 +74,29 @@
         </p>
         <DroitsList
           ineligible
-          v-bind:droits="droitsNonEligiblesShown"
-        ></DroitsList>
+          :droits="droitsNonEligiblesShown"
+        />
       </div>
 
-      <div class="frame-resultats" v-show="isEmpty(droits)">
-        <h2
-          >Votre simulation n'a pas permis de découvrir de nouveaux droits.</h2
-        >
-        <p class="aj-results-intro"
-          >Si vous êtes dans une situation difficile, d'<router-link to="/sos"
-            >autres solutions existent</router-link
-          >.</p
-        >
+      <div
+        v-show="isEmpty(droits)"
+        class="frame-resultats"
+      >
+        <h2>
+          Votre simulation n'a pas permis de découvrir de nouveaux droits.
+        </h2>
+        <p class="aj-results-intro">
+          Si vous êtes dans une situation difficile, d'<router-link to="/sos">
+            autres solutions existent
+          </router-link>.
+        </p>
       </div>
 
       <div class="aj-results-tools">
         <TrouverInterlocuteur />
         <OfflineResults
           v-if="!resultatStatus.updating && !isEmpty(droits)"
-          v-bind:id="resultatsId"
+          :id="resultatsId"
         />
         <Feedback />
       </div>
@@ -110,11 +126,6 @@ export default {
     TrouverInterlocuteur,
   },
   mixins: [ResultatsMixin],
-  methods: {
-    isEmpty: function (array) {
-      return !array || array.length === 0
-    },
-  },
   computed: {
     isOldSituation() {
       return !this.$store.state.answers
@@ -173,8 +184,13 @@ export default {
       }
     })
   },
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     this.stopSubscription && this.stopSubscription()
+  },
+  methods: {
+    isEmpty: function (array) {
+      return !array || array.length === 0
+    },
   },
 }
 </script>

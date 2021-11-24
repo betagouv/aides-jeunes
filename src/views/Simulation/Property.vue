@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <h1
-      >Quelle est la valeur de {{ property
+    <h1>
+      Quelle est la valeur de {{ property
       }}{{ subproperty ? "/" + subproperty : "" }} pour
-      {{ individu._firstName || individu.id }}&nbsp;?</h1
-    >
-    <Actions v-bind:onSubmit="onSubmit" />
+      {{ individu._firstName || individu.id }}&nbsp;?
+    </h1>
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 

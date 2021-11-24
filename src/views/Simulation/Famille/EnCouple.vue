@@ -1,31 +1,33 @@
 <template>
   <form @submit.prevent="onSubmit">
     <fieldset>
-      <legend
-        ><h2 class="aj-question">Vivez-vous seul·e ou en couple ?</h2></legend
-      >
+      <legend>
+        <h2 class="aj-question">
+          Vivez-vous seul·e ou en couple ?
+        </h2>
+      </legend>
       <div class="aj-selection-wrapper">
         <input
           id="seul"
-          type="radio"
-          v-bind:value="false"
-          name="en_couple"
           v-model="value"
-        />
+          type="radio"
+          :value="false"
+          name="en_couple"
+        >
         <label for="seul">Je vis seul·e</label>
       </div>
       <div class="aj-selection-wrapper">
         <input
           id="en-couple"
-          type="radio"
-          v-bind:value="true"
-          name="en_couple"
           v-model="value"
-        />
+          type="radio"
+          :value="true"
+          name="en_couple"
+        >
         <label for="en-couple">Je vis en couple</label>
       </div>
     </fieldset>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 

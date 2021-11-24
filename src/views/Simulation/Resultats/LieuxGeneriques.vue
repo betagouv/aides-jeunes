@@ -20,10 +20,12 @@
       Retour aux résultats
     </router-link>
 
-    <p v-show="updating"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
-      cours…</p
-    >
+    <p v-show="updating">
+      <i
+        class="fa fa-spinner fa-spin"
+        aria-hidden="true"
+      /> Récupération en cours…
+    </p>
     <div v-if="etablissements && etablissements.length">
       <p class="aj-etablissements-intro">
         Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
@@ -32,19 +34,25 @@
 
       <div
         v-for="(etablissement, index) in etablissements"
+        :key="index"
         class="aj-etablissement-container"
-        v-bind:key="index"
       >
-        <Etablissement v-bind:etablissement="etablissement" />
+        <Etablissement :etablissement="etablissement" />
       </div>
     </div>
     <div v-else>
-      <p class="aj-etablissements-intro" :v-if="error">
+      <p
+        class="aj-etablissements-intro"
+        :v-if="error"
+      >
         {{ error }}
       </p>
       Revenir aux résultats
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        <i
+          class="fa fa-arrow-circle-left"
+          aria-hidden="true"
+        />
       </router-link>
     </div>
   </div>
@@ -119,7 +127,7 @@ export default {
       this.loadEtablissements()
     }
   },
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     this.stopSubscription && this.stopSubscription()
   },
   methods: {

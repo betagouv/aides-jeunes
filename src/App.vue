@@ -1,6 +1,6 @@
 <template>
-  <component v-bind:is="layout">
-    <BandeauDemo></BandeauDemo>
+  <component :is="layout">
+    <BandeauDemo />
     <router-view />
   </component>
 </template>
@@ -11,7 +11,7 @@ import iFrameLayout from "@/components/iFrameLayout.vue"
 import BandeauDemo from "@/components/BandeauDemo"
 
 export default {
-  name: "app",
+  name: "App",
   components: {
     BandeauDemo,
     BaseLayout,

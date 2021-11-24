@@ -3,7 +3,7 @@
     <BackButton
       class="recapitulatif-back-button"
       size="small"
-      @click.native="goBack()"
+      @click="goBack()"
     >
       Retour
     </BackButton>
@@ -75,7 +75,7 @@
     </div>
     <div class="aj-actions">
       <div />
-      <BackButton @click.native="goBack" />
+      <BackButton @click="goBack" />
     </div>
   </div>
 </template>

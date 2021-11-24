@@ -9,7 +9,7 @@
     >
       <MenuButton
         v-show="showMenuButton"
-        @click.native="goToRecapitulatifPage"
+        @click="goToRecapitulatifPage"
       />
       <h1>{{ title }}</h1>
     </div>

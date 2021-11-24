@@ -18,7 +18,7 @@
         for="autoAmountLastMonth"
         class="aj-question"
       >Chiffre d'affaires pour
-        {{ $store.state.dates.thisMonth.label | capitalize }}</label>
+        {{ capitalize($store.state.dates.thisMonth.label) }}</label>
       <InputNumber
         id="autoAmountLastMonth"
         :value="ressource.amounts[$store.state.dates.thisMonth.id]"
@@ -34,7 +34,7 @@
         :for="'autoAmount' + month.label"
         class="aj-question"
       >
-        Chiffre d'affaires pour {{ month.label | capitalize }}
+        Chiffre d'affaires pour {{ capitalize(month.label) }}
       </label>
       <InputNumber
         :id="'autoAmount' + month.label"

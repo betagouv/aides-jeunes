@@ -6,7 +6,7 @@
       v-model="enfant._hasRessources"
       class="form__group"
     >
-      {{ enfant._firstName | capitalize }} a-t-il/elle perçu des ressources
+      {{ capitalize(enfant._firstName) }} a-t-il/elle perçu des ressources
       <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
     <Actions :on-submit="onSubmit" />

@@ -7,8 +7,8 @@
       >Retour</BackButton
     >
     <div>
-      <template v-for="(chapter, chapterIndex) in chapters">
-        <div class="chapter-block" :key="chapter.name">
+      <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
+        <div class="chapter-block">
           <h2 class="aj-question">{{ chapter.label }}</h2>
           <template v-for="(question, questionIndex) in chapter.questions">
             <template v-if="question.isChapterSubtitle">

@@ -62,8 +62,9 @@ Vue.filter("capitalize", function (value) {
 Vue.config.productionTip = false
 moment.locale("fr")
 
-new Vue({
-  router,
+Vue.createApp({
   store,
   render: (h) => h(App),
-}).$mount("#app")
+})
+.use(router)
+.mount("#app")

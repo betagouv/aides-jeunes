@@ -13,7 +13,7 @@
     >
       <MenuButton
         v-show="showMenuButton"
-        @click.native="goToRecapitulatifPage"
+        @click="goToRecapitulatifPage"
       />
 >>>>>>> 32501319 (chore: eslint auto fix for Vue3)
       <h1>{{ title }}</h1>

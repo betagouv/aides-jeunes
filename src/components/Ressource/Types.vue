@@ -13,7 +13,7 @@
       class="form__group"
     >
       <h2 class="aj-question">
-        {{ category.label(individu) | capitalize }}
+        {{ capitalize(category.label(individu)) }}
       </h2>
       <div class="aj-selections">
         <div

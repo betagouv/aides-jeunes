@@ -1,15 +1,5 @@
 <template>
   <div class="recapitulatif">
-<<<<<<< HEAD
-=======
-    <BackButton
-      class="recapitulatif-back-button"
-      size="small"
-      @click.native="goBack()"
-    >
-      Retour
-    </BackButton>
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
     <div>
       <template
         v-for="(chapter, chapterIndex) in chapters"
@@ -77,12 +67,7 @@
       </template>
     </div>
     <div class="aj-actions">
-<<<<<<< HEAD
-      <BackButton @click.native="goBack"></BackButton>
-=======
-      <div />
       <BackButton @click.native="goBack" />
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
     </div>
   </div>
 </template>

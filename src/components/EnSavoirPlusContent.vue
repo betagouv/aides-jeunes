@@ -32,7 +32,7 @@
         <BackButton
           class="aj-help-modal-back-button"
           size="small"
-          @click.native="window && window.history.back()"
+          @click="window && window.history.back()"
         >
           Retour
         </BackButton>

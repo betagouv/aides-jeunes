@@ -51,7 +51,7 @@ function setDefaults(benefit, top) {
 function generate(collections, customBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
-  const benefits = [...collections.benefits.items, ...customBenefits]
+  const benefits = [...collections.benefits.items, ...collections.benefits_openfisca.items, ...customBenefits]
 
   benefits.forEach((benefit) => {
     const institution = institutions[benefit.institution]

@@ -4,7 +4,6 @@ import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
-Vue.use(Router)
 
 const router = new Router({
   mode: "history",

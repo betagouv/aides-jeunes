@@ -108,7 +108,8 @@ export default {
     next: function () {
       this.$store.dispatch("openFiscaParameters")
       this.$store.dispatch("verifyBenefitVariables")
-      this.$push()
+      //FIXME: should be initiated with a default path
+      this.$router.push("/simulation")
     },
   },
 }

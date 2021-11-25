@@ -27,15 +27,15 @@
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ birthDate(enfant.date_naissance) }}</span>
+          <span>{{ $filters.birthDate(enfant.date_naissance) }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ nationality(enfant.nationalite) }}</span>
+          <span>{{ $filters.nationality(enfant.nationalite) }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ scolarite(enfant.scolarite) }}</span>
+          <span>{{ $filters.scolarite(enfant.scolarite) }}</span>
         </div>
         <div class="aj-children-delete" />
       </div>

@@ -40,6 +40,8 @@ module.exports = {
     }
   },
   chainWebpack(config) {
+    config.resolve.alias.set('vue', '@vue/compat')
+
     config.module
       .rule("file")
       .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
@@ -54,6 +56,9 @@ module.exports = {
         compilerOptions: {
           ...options.compilerOptions,
           whitespace: "preserve",
+          compatConfig: {
+            MODE: 2
+          }
         },
       }))
   },

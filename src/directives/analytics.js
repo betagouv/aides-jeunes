@@ -1,7 +1,6 @@
-const MailDirective = (Vue) => {
-  Vue.directive("analytics", {
-    bind: function (el, binding, vnode) {
-      el.myAnalyticsHandler = () => {
+const MailDirective = {
+  beforeMount(el, binding, vnode) {
+    el.myAnalyticsHandler = () => {
         const matomo = vnode.context.$matomo
         if (!matomo) {
           return
@@ -16,11 +15,11 @@ const MailDirective = (Vue) => {
         )
       }
       el.addEventListener("click", el.myAnalyticsHandler)
-    },
-    unbind: function (el) {
-      el.removeEventListener("click", el.myAnalyticsHandler)
-    },
-  })
+  },
+  unmounted(el) {
+    el.removeEventListener("click", el.myAnalyticsHandler)
+  }
 }
+
 
 export default MailDirective

@@ -1,6 +1,9 @@
 import "core-js/stable"
-import Vue from "vue"
+//import Vue from "vue"
+import { Vue, createApp } from "vue"
+
 import App from "./App.vue"
+
 import router from "./router"
 import store from "./store"
 
@@ -29,42 +32,55 @@ const Resizer = {
     iframeResizerContentWindow
   },
 }
-AnalyticsDirective(Vue)
-MailDirective(Vue)
-SelectOnClickDirective(Vue)
 
-if (process.env.NODE_ENV === "production") {
-  Sentry.init({
-    Vue,
-    dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
-  })
+
+const app = createApp({
+  //render: (h) => h(App),
+})
+
+
+app.directive('analytics', AnalyticsDirective);
+app.directive('mail', MailDirective);
+app.directive('selectOnClick', SelectOnClickDirective);
+
+// if (process.env.NODE_ENV === "production") {
+//   Sentry.init({
+//     Vue,
+//     dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
+//   })
+// }
+
+
+
+// Vue.use(AsyncComputed)
+// Vue.use(Resizer)
+// Vue.use(ScrollService)
+// Vue.use(StateService)
+// Vue.use(Vuelidate)
+
+// Vue.use(VueMatomo, {
+//   host: "https://stats.data.gouv.fr",
+//   trackerFileName: "piwik",
+//   siteId: process.env.VUE_APP_MATOMO_ID,
+//   router: router,
+// })
+
+// Vue.filter("capitalize", function (value) {
+//   if (!value) return ""
+//   value = value.toString()
+//   return value.charAt(0).toUpperCase() + value.slice(1)
+// })
+
+app.config.globalProperties.$filters = {
+  capitalize(value) {
+    if (!value) return ""
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
 }
+// Vue.config.productionTip = false
+// moment.locale("fr")
 
-Vue.use(AsyncComputed)
-Vue.use(Resizer)
-Vue.use(ScrollService)
-Vue.use(StateService)
-Vue.use(Vuelidate)
-
-Vue.use(VueMatomo, {
-  host: "https://stats.data.gouv.fr",
-  trackerFileName: "piwik",
-  siteId: process.env.VUE_APP_MATOMO_ID,
-  router: router,
-})
-
-Vue.filter("capitalize", function (value) {
-  if (!value) return ""
-  value = value.toString()
-  return value.charAt(0).toUpperCase() + value.slice(1)
-})
-
-Vue.config.productionTip = false
-moment.locale("fr")
-
-Vue.createApp({
-  render: (h) => h(App),
-})
-.use(store)
-.use(router)
-.mount("#app")
+app.use(store)
+app.use(router)
+app.mount("#app")

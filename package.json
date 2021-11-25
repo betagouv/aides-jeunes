@@ -76,7 +76,7 @@
     "vue": "^3.2.22",
     "vue-async-computed": "^3.9.0",
     "vue-matomo": "^4.1.0",
-    "vue-router": "^3.5.3",
+    "vue-router": "^4.0.12",
     "vuelidate": "^0.7.6",
     "vuex": "^4.0.2"
   },
@@ -109,7 +109,9 @@
     "sass-loader": "^10.1.1",
     "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.14",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "webpack": "^5.64.3",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-dev-server": "^4.5.0"
   },
   "eslintConfig": {
     "root": true,

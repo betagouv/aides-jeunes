@@ -1,12 +1,16 @@
 import Vue from "vue"
-import Router from "vue-router"
+//import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
 
-const router = new Router({
-  mode: "history",
+import { createWebHistory, createRouter } from "vue-router";
+
+console.warn(typeof createWebHistory)
+
+const router = createRouter({
+  history: createWebHistory(),
   base: process.env.BASE_URL,
   routes: [
     {

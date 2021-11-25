@@ -1,7 +1,6 @@
 import "core-js/stable"
 //import Vue from "vue"
-import { Vue, createApp } from "vue"
-
+import { h, createApp } from "vue"
 import App from "./App.vue"
 
 import router from "./router"
@@ -9,8 +8,8 @@ import store from "./store"
 
 import moment from "moment"
 
-import ScrollService from "./plugins/ScrollService"
-import StateService from "./plugins/StateService"
+// import ScrollService from "./plugins/ScrollService"
+// import StateService from "./plugins/StateService"
 
 import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
@@ -34,9 +33,14 @@ const Resizer = {
 }
 
 
-const app = createApp({
+const app = createApp(App)
+//const app = createApp({
+  // render() {
+  //   console.log("rendering", App)
+  //   h(App)
+  // }
   //render: (h) => h(App),
-})
+//})
 
 
 app.directive('analytics', AnalyticsDirective);

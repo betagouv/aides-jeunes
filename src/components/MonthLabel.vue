@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ capitalize(month.label) }}
+    {{ $filters.capitalize(month.label) }}
     <span v-if="month.id === $store.state.dates.thisMonth.id">
       - estimation jusqu'à la fin du mois</span>
   </div>

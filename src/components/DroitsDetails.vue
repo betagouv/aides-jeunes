@@ -14,7 +14,7 @@
         class="aj-question"
         itemprop="name"
       >
-        {{ capitalize(droit.label) }}
+        {{ $filters.capitalize(droit.label) }}
       </h2>
     </div>
 

@@ -20,7 +20,7 @@
             :value="logementType.value"
           >
           <label :for="logementType.value">
-            {{ capitalize(logementType.label) }}
+            {{ $filters.capitalize(logementType.label) }}
             <span
               v-if="logementType.hint"
               class="help"
@@ -58,7 +58,7 @@
             :value="response.value"
           >
           <label :for="response.label">
-            {{ capitalize(response.label) }}
+            {{ $filters.capitalize(response.label) }}
             <span
               v-if="response.hint"
               class="help"
@@ -93,7 +93,7 @@
           :value="response.value"
         >
         <label :for="response.value">
-          {{ capitalize(response.label) }}
+          {{ $filters.capitalize(response.label) }}
           <span
             v-if="response.hint"
             class="help"

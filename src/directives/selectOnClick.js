@@ -1,15 +1,13 @@
-const SelectOnClickDirective = (Vue) => {
-  Vue.directive("selectOnClick", {
-    bind: function (el) {
-      el.myClickHandler = () => {
-        el.select()
-      }
-      el.addEventListener("click", el.myClickHandler)
-    },
-    unbind: function (el) {
-      el.removeEventListener("click", el.myClickHandler)
-    },
-  })
+const SelectOnClickDirective = {
+  beforeMount(el, binding, vnode) {
+    el.myClickHandler = () => {
+      el.select()
+    }
+    el.addEventListener("click", el.myClickHandler)
+  },
+  unmounted(el) {
+    el.removeEventListener("click", el.myClickHandler)
+  }
 }
 
 export default SelectOnClickDirective

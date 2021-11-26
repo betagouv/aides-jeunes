@@ -1,6 +1,6 @@
 import "core-js/stable"
 //import Vue from "vue"
-import { createApp } from "vue"
+import { createApp, h, configureCompat } from "vue"
 import App from "./App.vue"
 
 import router from "./router"
@@ -33,7 +33,9 @@ const Resizer = {
 }
 
 
-const app = createApp(App)
+const app = createApp({
+  render: () => h(App)
+})
 
 app.directive('analytics', AnalyticsDirective);
 app.directive('mail', MailDirective);
@@ -52,7 +54,7 @@ app.use(AsyncComputed)
 app.use(Resizer)
 app.use(ScrollService)
 app.use(StateService)
-//app.use(Vuelidate)
+app.use(Vuelidate)
 
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",
@@ -71,6 +73,12 @@ app.config.globalProperties.$filters = {
 // Outdated: https://v3.vuejs.org/guide/migration/global-api.html#config-productiontip-removed
 //app.config.productionTip = false
 moment.locale("fr")
+
+configureCompat({
+  // default everything to Vue 2 behavior
+  MODE: 2
+});
+
 
 app.use(store)
 app.use(router)

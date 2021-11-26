@@ -27,15 +27,15 @@
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ $filters.birthDate(enfant.date_naissance) }}</span>
+          <span>{{ birthDate) }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ $filters.nationality(enfant.nationalite) }}</span>
+          <span>{{ nationality }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ $filters.scolarite(enfant.scolarite) }}</span>
+          <span>{{ scolarite }}</span>
         </div>
         <div class="aj-children-delete" />
       </div>
@@ -75,11 +75,15 @@ export default {
     EnSavoirPlus,
     Actions,
   },
-  filters: {
-    birthDate: function (date) {
-      if (date) {
+  computed: {
+    enfants: function () {
+      return this.$store.getters.situation.enfants || []
+    },
+
+    birthDate: function() {
+      if (enfant && enfant.date_naissance) {
         return (
-          typeof date === "string" ? new Date(date) : date
+          typeof enfant.date_naissance === "string" ? new Date(enfant.date_naissance) : enfant.date_naissance
         ).toLocaleDateString("FR-fr", {
           day: "numeric",
           month: "numeric",
@@ -89,16 +93,20 @@ export default {
         return "Non renseigné"
       }
     },
-    nationality: Nationality.getNationalityFromCountryCode,
-    scolarite: function (value) {
-      const s = Scolarite.types.find((s) => s.value === value)
-      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
+
+    scolarite: function() {
+      if(enfant && enfant.scolarite) {
+        const s = Scolarite.types.find((s) => s.value === enfant.scolarite)
+        return s ? Scolarite.types.find((s) => s.value === enfant.scolarite).label : "-"
+      }
     },
-  },
-  computed: {
-    enfants: function () {
-      return this.$store.getters.situation.enfants || []
-    },
+
+    nationality: function() {
+      if(enfant && enfant.nationalite) {
+        return Nationality.getNationalityFromCountryCode(enfant.nationalite);
+      }
+    }
+
   },
   methods: {
     addPAC: function () {

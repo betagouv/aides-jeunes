@@ -16,7 +16,7 @@ export default {
     InputDate,
   },
   props: {
-    value: Date,
+    modelValue: Date,
   },
   data: function () {
     let date = this.value

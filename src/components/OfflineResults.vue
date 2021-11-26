@@ -100,7 +100,7 @@
 
 <script>
 import axios from "axios"
-import { required, email } from "vuelidate/lib/validators"
+import { required, email } from '@vuelidate/validators'
 
 import Modal from "@/components/Modal"
 

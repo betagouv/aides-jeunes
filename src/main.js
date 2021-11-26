@@ -1,5 +1,4 @@
 import "core-js/stable"
-//import Vue from "vue"
 import { createApp, h, configureCompat } from "vue"
 import App from "./App.vue"
 
@@ -13,7 +12,7 @@ import StateService from "./plugins/StateService"
 
 import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
-import Vuelidate from "vuelidate"
+import useVuelidate from '@vuelidate/core'
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
@@ -54,7 +53,7 @@ app.use(AsyncComputed)
 app.use(Resizer)
 app.use(ScrollService)
 app.use(StateService)
-app.use(Vuelidate)
+app.use(useVuelidate)
 
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",

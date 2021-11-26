@@ -1,4 +1,5 @@
 const SelectOnClickDirective = {
+  // eslint-disable-next-line
   beforeMount(el, binding, vnode) {
     el.myClickHandler = () => {
       el.select()

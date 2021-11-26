@@ -20,6 +20,7 @@ function buildHref({ to, subject, body }) {
 // }
 
 const MailDirective = {
+  // eslint-disable-next-line
   beforeMount(el, binding, vnode) {
     el.setAttribute("href", buildHref(binding.value))
   },

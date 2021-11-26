@@ -111,14 +111,14 @@ const router = createRouter({
                   /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
-            {
-              name: "property",
-              path: ":property/:subproperty?",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
-                ),
-            },
+            // {
+            //   name: "property",
+            //   path: ":property/:subproperty?",
+            //   component: () =>
+            //     import(
+            //       /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
+            //     ),
+            // },
           ],
         },
         {

@@ -1,6 +1,6 @@
 import "core-js/stable"
 //import Vue from "vue"
-import { h, createApp } from "vue"
+import { createApp } from "vue"
 import App from "./App.vue"
 
 import router from "./router"
@@ -33,26 +33,18 @@ const Resizer = {
 }
 
 
-//const app = createApp(App)
-const app = createApp({
-  // render() {
-  //   console.log("rendering", App)
-  //   h(App)
-  // }
-  render: () => h(App),
-})
-
+const app = createApp(App)
 
 app.directive('analytics', AnalyticsDirective);
 app.directive('mail', MailDirective);
 app.directive('selectOnClick', SelectOnClickDirective);
 
-// if (process.env.NODE_ENV === "production") {
-//   Sentry.init({
-//     Vue,
-//     dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
-//   })
-// }
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    app,
+    dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
+  })
+}
 
 
 
@@ -62,12 +54,12 @@ app.use(ScrollService)
 app.use(StateService)
 //app.use(Vuelidate)
 
-// Vue.use(VueMatomo, {
-//   host: "https://stats.data.gouv.fr",
-//   trackerFileName: "piwik",
-//   siteId: process.env.VUE_APP_MATOMO_ID,
-//   router: router,
-// })
+app.use(VueMatomo, {
+  host: "https://stats.data.gouv.fr",
+  trackerFileName: "piwik",
+  siteId: process.env.VUE_APP_MATOMO_ID,
+  router: router,
+})
 
 app.config.globalProperties.$filters = {
   capitalize(value) {

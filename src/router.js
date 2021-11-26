@@ -9,8 +9,7 @@ import store from "./store"
 import { createWebHistory, createRouter } from "vue-router";
 
 const router = createRouter({
-  history: createWebHistory(),
-  base: process.env.BASE_URL,
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -372,7 +371,7 @@ const router = createRouter({
         selector: to.hash,
       }
     }
-    return { x: 0, y: 0 }
+    return { left: 0, top: 0 }
   },
 })
 

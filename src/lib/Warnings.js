@@ -4,6 +4,7 @@ const AJ_NOT_RELIABLE =
 const texts = {
   aj_not_reliable(variation) {
     if (variation) {
+      variation = `${variation}`
       if (variation.startsWith("976")) {
         return `${AJ_NOT_RELIABLE} Mayotte.`
       }

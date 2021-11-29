@@ -82,12 +82,11 @@ export default {
 
     enfants_filtered: function() {
       if(this.enfants) {
-        this.enfants = this.enfants.map((enfant) => {
-          enfant.date_naissance = birthDate(enfant);
-          enfant.scolarite = scolarite(enfant)
-          enfant.nationality = nationality(enfant)
+        return this.enfants.map((enfant) => {
+          enfant.date_naissance = this.birthDate(enfant);
+          enfant.scolarite = this.scolarite(enfant)
+          enfant.nationality = this.nationality(enfant)
         })
-        return enfants
       } else {
         return []
       }
@@ -108,16 +107,12 @@ export default {
     },
 
     scolarite: function(enfant) {
-      if(enfant && enfant.scolarite) {
-        const s = Scolarite.types.find((s) => s.value === enfant.scolarite)
-        return s ? Scolarite.types.find((s) => s.value === enfant.scolarite).label : "-"
-      }
+      const s = Scolarite.types.find((s) => s.value === enfant.scolarite)
+      return s ? Scolarite.types.find((s) => s.value === enfant.scolarite).label : "-"
     },
 
     nationality: function(enfant) {
-      if(enfant && enfant.nationalite) {
-        return Nationality.getNationalityFromCountryCode(enfant.nationalite);
-      }
+      return Nationality.getNationalityFromCountryCode(enfant.nationalite);
     }
 
   },

@@ -371,7 +371,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
-  if (from.name === null) {
+  if (typeof from.name === "undefined" || from.name === null) {
     store.commit("initialize")
     store.dispatch("openFiscaParameters")
     store.dispatch("verifyBenefitVariables")

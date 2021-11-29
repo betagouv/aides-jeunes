@@ -27,15 +27,15 @@
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ enfant.date_naissance }}</span>
+          <span>{{ birthDate(enfant.date_naissance) }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ enfant.nationalite }}</span>
+          <span>{{ nationality(enfant.nationalite) }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ enfant.scolarite }}</span>
+          <span>{{ scolarite(enfant.scolarite) }}</span>
         </div>
         <div class="aj-children-delete" />
       </div>
@@ -77,45 +77,12 @@ export default {
   },
   computed: {
     enfants: function () {
+      console.log("GET ENFANTS", this.$store.getters.situation.enfants);
       return this.$store.getters.situation.enfants || []
     },
 
-    enfants_filtered: function() {
-      if(this.enfants) {
-        return this.enfants.map((enfant) => {
-          enfant.date_naissance = this.birthDate(enfant);
-          enfant.scolarite = this.scolarite(enfant)
-          enfant.nationality = this.nationality(enfant)
-        })
-      } else {
-        return []
-      }
-    },
-
-    birthDate: function(enfant) {
-      if (enfant && enfant.date_naissance) {
-        return (
-          typeof enfant.date_naissance === "string" ? new Date(enfant.date_naissance) : enfant.date_naissance
-        ).toLocaleDateString("FR-fr", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        }) //).format('DD/MM/YYYY')
-      } else {
-        return "Non renseigné"
-      }
-    },
-
-    scolarite: function(enfant) {
-      const s = Scolarite.types.find((s) => s.value === enfant.scolarite)
-      return s ? Scolarite.types.find((s) => s.value === enfant.scolarite).label : "-"
-    },
-
-    nationality: function(enfant) {
-      return Nationality.getNationalityFromCountryCode(enfant.nationalite);
-    }
-
   },
+  
   methods: {
     addPAC: function () {
       const children = this.$store.state.answers.enfants || []
@@ -141,6 +108,26 @@ export default {
       })
       this.$push()
     },
+    birthDate: function(date) {
+      if (date) {
+        return (
+          typeof date === "string" ? new Date(date) : date
+        ).toLocaleDateString("FR-fr", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        }) //).format('DD/MM/YYYY')
+      } else {
+        return "Non renseigné"
+      }
+    },
+    nationality: Nationality.getNationalityFromCountryCode,
+    scolarite: function(value) {
+      const s = Scolarite.types.find((s) => s.value === value)
+      console.log("==>", s);
+      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
+    },
+    
   },
 }
 </script>

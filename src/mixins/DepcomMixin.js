@@ -21,6 +21,7 @@ export default {
             if (!communes.map((c) => c.nom).includes(this.nomCommune)) {
               this.nomCommune = Commune.getMostPopulated(communes).nom
             }
+            this.communes = communes
             return communes
           })
           .catch(() => {

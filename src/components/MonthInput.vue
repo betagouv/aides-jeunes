@@ -8,7 +8,7 @@ import moment from "moment"
 export default {
   name: "MonthInput",
   props: {
-    modelValue: Date,
+    value: Date,
   },
   computed: {
     item: {

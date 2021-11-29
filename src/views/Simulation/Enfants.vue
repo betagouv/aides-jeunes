@@ -27,15 +27,15 @@
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ birthDate) }}</span>
+          <span>{{ enfant.date_naissance }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ nationality }}</span>
+          <span>{{ enfant.nationalite }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ scolarite }}</span>
+          <span>{{ enfant.scolarite }}</span>
         </div>
         <div class="aj-children-delete" />
       </div>
@@ -80,7 +80,20 @@ export default {
       return this.$store.getters.situation.enfants || []
     },
 
-    birthDate: function() {
+    enfants_filtered: function() {
+      if(this.enfants) {
+        this.enfants = this.enfants.map((enfant) => {
+          enfant.date_naissance = birthDate(enfant);
+          enfant.scolarite = scolarite(enfant)
+          enfant.nationality = nationality(enfant)
+        })
+        return enfants
+      } else {
+        return []
+      }
+    },
+
+    birthDate: function(enfant) {
       if (enfant && enfant.date_naissance) {
         return (
           typeof enfant.date_naissance === "string" ? new Date(enfant.date_naissance) : enfant.date_naissance
@@ -94,14 +107,14 @@ export default {
       }
     },
 
-    scolarite: function() {
+    scolarite: function(enfant) {
       if(enfant && enfant.scolarite) {
         const s = Scolarite.types.find((s) => s.value === enfant.scolarite)
         return s ? Scolarite.types.find((s) => s.value === enfant.scolarite).label : "-"
       }
     },
 
-    nationality: function() {
+    nationality: function(enfant) {
       if(enfant && enfant.nationalite) {
         return Nationality.getNationalityFromCountryCode(enfant.nationalite);
       }

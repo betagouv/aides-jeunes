@@ -84,7 +84,7 @@ export default {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+      if (!this.codePostal.toString().match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
         this.$store.dispatch(
           "updateError",
           "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."

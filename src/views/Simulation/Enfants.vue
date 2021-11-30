@@ -77,7 +77,6 @@ export default {
   },
   computed: {
     enfants: function () {
-      console.log("GET ENFANTS", this.$store.getters.situation.enfants);
       return this.$store.getters.situation.enfants || []
     },
 
@@ -124,7 +123,6 @@ export default {
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function(value) {
       const s = Scolarite.types.find((s) => s.value === value)
-      console.log("==>", s);
       return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },
     

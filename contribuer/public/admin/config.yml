@@ -173,17 +173,17 @@ collections:
         name: link
         widget: string
         required: false
-      - label: Lien vers des instructions à suivre
-        name: instructions
+      - label: Lien vers un téléservice
+        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
+        name: teleservice
         widget: string
         required: false
       - label: Lien vers un formulaire à imprimer
         name: form
         widget: string
         required: false
-      - label: Lien vers un téléservice
-        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
-        name: teleservice
+      - label: Lien vers des instructions à suivre
+        name: instructions
         widget: string
         required: false
       - label: Article défini
@@ -200,9 +200,9 @@ collections:
         default: "bool"
         widget: select
         options:
-          - label: Montant
+          - label: Valeur numérique
             value: float
-          - label: Eligibilité (Oui / Non)
+          - label: Éligibilité (Oui / Non)
             value: bool
       - label: Unité lorsque le type de résultat est un montant
         hint: Il s'agit de spécifier l'unité du montant.
@@ -217,6 +217,20 @@ collections:
             value: "%"
           - label: séances
             value: séances
+      - label: "Périodicité du montant de l'aide"
+        name: periodicite
+        widget: select
+        hint: Cette variable permet de définir la période de versement du montant de l'aide.
+        required: false
+        options:
+          - label: Ponctuelle
+            value: ponctuelle
+          - label: Mensuelle (/ mois)
+            value: mensuelle
+          - label: Annuelle (/ an)
+            value: annuelle
+          - label: Autre
+            value: autre
       - label: Légende asssociée au montant
         hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Cette légende correspond à « séances » dans l'affichage « N séances » et à « au lieu x de 0,5% dans « 1% au lieu de 0,5% ».
         name: legend
@@ -268,20 +282,6 @@ collections:
         name: montant
         widget: number
         required: false
-      - label: "Périodicité du montant de l'aide"
-        name: periodicite
-        widget: select
-        hint: Cette variable permet de définir la période de versement du montant de l'aide.
-        required: false
-        options:
-          - label: Ponctuelle
-            value: ponctuelle
-          - label: Mensuelle (/ mois)
-            value: mensuelle
-          - label: Annuelle (/ an)
-            value: annuelle
-          - label: Autre
-            value: autre
       - label: Conditions générales à satisfaire simultanément
         label_singular: Condition générale à satisfaire
         name: conditions_generales

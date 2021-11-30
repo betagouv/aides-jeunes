@@ -1,5 +1,5 @@
 import "core-js/stable"
-import { createApp, h, configureCompat } from "vue"
+import { createApp, h } from "vue"
 import App from "./App.vue"
 
 import router from "./router"
@@ -48,7 +48,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-
 app.use(AsyncComputed)
 app.use(Resizer)
 app.use(ScrollService)
@@ -69,15 +68,8 @@ app.config.globalProperties.$filters = {
     return value.charAt(0).toUpperCase() + value.slice(1)
   }
 }
-// Outdated: https://v3.vuejs.org/guide/migration/global-api.html#config-productiontip-removed
-//app.config.productionTip = false
+
 moment.locale("fr")
-
-configureCompat({
-  // default everything to Vue 2 behavior
-  MODE: 2
-});
-
 
 app.use(store)
 app.use(router)

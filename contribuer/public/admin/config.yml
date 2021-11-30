@@ -128,6 +128,8 @@ fields:
 collections:
   - name: benefits_openfisca
     label: Aides simples
+    label_singular: Aide simple
+    identifier_field: label
     folder: "data/benefits/openfisca"
     create: true
     delete: false
@@ -393,9 +395,9 @@ collections:
                 collapsed: false
                 types:
                   - *field_age
-  - name: benefits
+  - name: benefits_javascript
     label: Aides complexes
-    label_singular: Aide
+    label_singular: Aide complexe
     identifier_field: label
     folder: "data/benefits/javascript"
     create: true

@@ -52,7 +52,7 @@ function generate(collections, customBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   const benefits = [
-    ...collections.benefits.items,
+    ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...customBenefits,
   ]

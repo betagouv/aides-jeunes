@@ -12,9 +12,11 @@ prefix: l’aide
 type: bool
 floorAt: 10
 computesLocally: true
-regions:
-  - "32"
-  - "11"
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+      - "11"
 profils:
   - type: apprenti
     conditions:

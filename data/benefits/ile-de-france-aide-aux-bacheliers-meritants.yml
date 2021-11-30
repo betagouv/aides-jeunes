@@ -13,8 +13,10 @@ floorAt: 10
 computesLocally: true
 montant: 1000
 periodicite: ponctuelle
-regions:
-  - "11"
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
 profils:
   - type: etudiant
     conditions:

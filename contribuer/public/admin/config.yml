@@ -48,6 +48,58 @@ fields:
     <<: *field_number
     label: Age
     name: age
+  field_regions: &field_regions
+    label: Condition géographique régionale
+    name: regions
+    widget: object
+    fields:
+      - label: Régions
+        name: values
+        widget: select
+        multiple: true
+        options:
+          - label: Auvergne-Rhône-Alpes
+            value: "84"
+          - label: Bourgogne-Franche-Comté
+            value: "27"
+          - label: Bretagne
+            value: "53"
+          - label: Centre-Val de Loire
+            value: "24"
+          - label: Grand Est
+            value: "44"
+          - label: Hauts-de-France
+            value: "32"
+          - label: Île-de-France
+            value: "11"
+          - label: Normandie
+            value: "28"
+          - label: Nouvelle-Aquitaine
+            value: "75"
+          - label: Occitanie
+            value: "76"
+          - label: Pays de la Loire
+            value: "52"
+          - label: Provence-Alpes-Côte d'Azur
+            value: "93"
+  field_departements: &field_departements
+    label: Condition géographique départementale
+    name: departements
+    widget: object
+    fields:
+      - label: Code des départements
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
+  field_communes: &field_communes
+    label: Condition géographique communale
+    name: communes
+    widget: object
+    fields:
+      - label: Code INSEE des communes
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
   field_boursier: &field_boursier
     <<: *field_boolean
     label: Boursier
@@ -230,46 +282,6 @@ collections:
             value: annuelle
           - label: Autre
             value: autre
-      - label: Régions
-        name: regions
-        required: false
-        widget: select
-        multiple: true
-        options:
-          - label: Auvergne-Rhône-Alpes
-            value: "84"
-          - label: Bourgogne-Franche-Comté
-            value: "27"
-          - label: Bretagne
-            value: "53"
-          - label: Centre-Val de Loire
-            value: "24"
-          - label: Grand Est
-            value: "44"
-          - label: Hauts-de-France
-            value: "32"
-          - label: Île-de-France
-            value: "11"
-          - label: Normandie
-            value: "28"
-          - label: Nouvelle-Aquitaine
-            value: "75"
-          - label: Occitanie
-            value: "76"
-          - label: Pays de la Loire
-            value: "52"
-          - label: Provence-Alpes-Côte d'Azur
-            value: "93"
-      - label: Code des départements
-        name: departements
-        required: false
-        widget: list
-        hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
-      - label: Code INSEE des communes
-        name: communes
-        required: false
-        widget: list
-        hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
       - label: Conditions générales à satisfaire simultanément
         label_singular: Condition générale à satisfaire
         name: conditions_generales
@@ -278,6 +290,9 @@ collections:
         collapsed: false
         types:
           - *field_age
+          - *field_regions
+          - *field_departements
+          - *field_communes
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils

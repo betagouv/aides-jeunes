@@ -10,8 +10,10 @@ prefix: la
 type: bool
 floorAt: 10
 computesLocally: true
-regions:
-  - "52"
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
 profils:
   - type: etudiant
     conditions:

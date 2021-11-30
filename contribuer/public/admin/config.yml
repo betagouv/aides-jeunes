@@ -397,7 +397,7 @@ collections:
     label: Aides complexes
     label_singular: Aide
     identifier_field: label
-    folder: "data/benefits/computed"
+    folder: "data/benefits/javascript"
     create: true
     delete: false
     editor:

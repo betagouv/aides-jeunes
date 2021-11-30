@@ -18,7 +18,6 @@ unit: €
 legend: maximum
 floorAt: 10
 interestFlag: _interetPermisDeConduire
-computesLocally: true
 montant: 1200
 periodicite: ponctuelle
 conditions_generales:

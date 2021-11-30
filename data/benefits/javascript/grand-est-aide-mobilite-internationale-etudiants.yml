@@ -12,7 +12,6 @@ instructions: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-inter
 prefix: l’
 type: bool
 interestFlag: _interetEtudesEtranger
-computesLocally: true
 conditions_generales:
   - type: regions
     values:

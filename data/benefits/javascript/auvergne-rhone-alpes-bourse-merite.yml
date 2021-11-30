@@ -16,7 +16,6 @@ prefix: la
 type: float
 unit: €
 floorAt: 10
-computesLocally: true
 montant: 500
 periodicite: ponctuelle
 conditions_generales:

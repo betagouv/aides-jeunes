@@ -8,7 +8,6 @@ link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
 prefix: l'
 type: bool
-computesLocally: true
 conditions_generales:
   - type: regions
     values:

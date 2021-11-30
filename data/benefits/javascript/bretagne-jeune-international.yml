@@ -12,7 +12,6 @@ teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauConte
 prefix: la
 type: bool
 interestFlag: _interetEtudesEtranger
-computesLocally: true
 conditions_generales:
   - type: regions
     values:

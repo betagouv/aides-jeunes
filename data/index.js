@@ -51,6 +51,11 @@ function setDefaults(benefit, top) {
 function generate(collections, customBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
+  collections.benefits_javascript.items.map((benefit) => {
+    benefit.computesLocally = true
+    return benefit
+  })
+
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,

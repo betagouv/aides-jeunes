@@ -1,5 +1,15 @@
 <template>
   <div class="recapitulatif">
+<<<<<<< HEAD
+=======
+    <BackButton
+      class="recapitulatif-back-button"
+      size="small"
+      @click.native="goBack"
+    >
+      Retour
+    </BackButton>
+>>>>>>> 9269e057 (fix: back button weren't working)
     <div>
       <template
         v-for="(chapter, chapterIndex) in chapters"

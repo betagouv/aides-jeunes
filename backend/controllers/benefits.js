@@ -1,4 +1,4 @@
-const { forEach } = require("../../data/js/benefits/back")
+const { forEach } = require("../../data/all")
 
 const data = []
 forEach((b, id) => {

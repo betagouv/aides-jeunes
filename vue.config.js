@@ -6,7 +6,7 @@ const mock = require("./mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front_only" ? mock : configureAPI
 const parseArgs = require("minimist")
-const { forEach } = require("./data/js/benefits/back")
+const { forEach } = require("./data/all")
 
 let count = 0
 forEach(() => {

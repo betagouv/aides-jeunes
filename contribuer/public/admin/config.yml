@@ -126,8 +126,275 @@ fields:
             value: non_renseignee
 
 collections:
+  - name: benefits_openfisca
+    label: Aides simples
+    folder: "data/benefits/openfisca"
+    create: true
+    delete: false
+    editor:
+      preview: true
+    slug: "{{label}}"
+    extension: yml
+    fields:
+      - label: Nom de l'aide
+        name: label
+        widget: string
+      - label: Institution
+        name: institution
+        widget: relation
+        collection: institutions
+        value_field: "{{slug}}"
+        display_fields: ["{{name}}"]
+        search_fields: [slug, displayFields]
+        allow_multiple: false
+      - label: Courte description
+        name: description
+        widget: description
+        pattern: ["", ""]
+      - label: Conditions non prises ne comptent par le simulateur
+        label_singular: Condition non prise ne compte par le simulateur
+        hint: |
+          Certains critères d'éligibilité ne peuvent pas être demandés (trop précis)
+          ni pris en compte (trop complexe) dans le cadre d'un simulateur grand public.
+          Cette liste permet d'informer les usagers sur ces critères supplémentaires.
+          Par exemple : Signer un contrat d’engagement réciproque (CER) avec votre département
+          ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec Pôle emploi.
+        name: conditions
+        widget: list
+        collapsed: false
+        field:
+          label: Texte
+          name: text
+          widget: text
+      - label: Lien vers la page d'informations de référence
+        hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
+        name: link
+        widget: string
+        required: false
+      - label: Lien vers des instructions à suivre
+        name: instructions
+        widget: string
+        required: false
+      - label: Lien vers un formulaire à imprimer
+        name: form
+        widget: string
+        required: false
+      - label: Lien vers un téléservice
+        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
+        name: teleservice
+        widget: string
+        required: false
+      - label: Article défini
+        name: prefix
+        hint: |
+          Pour permet la formation de phrase grammaticalement correcte.
+          Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
+          Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
+        widget: select
+        required: false
+        options: [le, la, les, l’, une, l’aide]
+      - label: Type du résultat
+        name: type
+        default: "bool"
+        widget: select
+        options:
+          - label: Montant
+            value: float
+          - label: Eligibilité (Oui / Non)
+            value: bool
+      - label: Unité lorsque le type de résultat est un montant
+        hint: Il s'agit de spécifier l'unité du montant.
+        name: unit
+        widget: select
+        default: €
+        required: false
+        options:
+          - label: €
+            value: €
+          - label: "%"
+            value: "%"
+          - label: séances
+            value: séances
+      - label: Légende asssociée au montant
+        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Cette légende correspond à « séances » dans l'affichage « N séances » et à « au lieu x de 0,5% dans « 1% au lieu de 0,5% ».
+        name: legend
+        widget: string
+        required: false
+      - label: Niveau de fiabilité lorsque le résultat est un montant
+        name: floorAt
+        widget: select
+        required: false
+        options:
+          - label: 10 (pour arrondir à la dizaine inférieure)
+            value: 10
+          - label: 1 (pour l'euro inférieur)
+            value: 1
+          - label: 0.01 (pour éviter l'arrondi)
+            value: 0.01
+      - label: Faut-il limiter l'affichage de l'aide en fonction d'un intérêt particulier ?
+        name: interestFlag
+        hint: |
+          En fin de parcours, des questions sont posées pour connaitre certains intérêts des usagers.
+          Cela permet d'éviter d'afficher certaines aides qui ne seraient pas pertinentes pour les usagers.
+        widget: select
+        required: false
+        options:
+          - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
+            value: _interetPermisDeConduire
+          - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
+            value: _interetEtudesEtranger
+      - label: Entité de rattachement de la variable dans OpenFisca
+        name: entity
+        widget: select
+        hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
+        required: false
+        options:
+          - label: Famille
+            value: familles
+          - label: Foyer Fiscal
+            value: foyers_fiscaux
+          - label: Individu
+            value: individus
+          - label: Ménage
+            value: menages
+      - label: Montant maximal de l'aide
+        name: montant
+        widget: number
+        required: false
+      - label: "Périodicité du montant de l'aide"
+        name: periodicite
+        widget: select
+        hint: Cette variable permet de définir la période de versement du montant de l'aide.
+        required: false
+        options:
+          - label: Ponctuelle
+            value: ponctuelle
+          - label: Mensuelle (/ mois)
+            value: mensuelle
+          - label: Annuelle (/ an)
+            value: annuelle
+          - label: Autre
+            value: autre
+      - label: Conditions générales à satisfaire simultanément
+        label_singular: Condition générale à satisfaire
+        name: conditions_generales
+        default: []
+        widget: list
+        collapsed: false
+        types:
+          - *field_age
+          - *field_regions
+          - *field_departements
+          - *field_communes
+      - label: Profils d'éligibilité
+        label_singular: profil d'éligibilité
+        name: profils
+        widget: list
+        collapsed: false
+        default: []
+        types:
+          - label: Lycéen
+            name: lyceen
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+                  - *field_boursier
+          - label: Étudiant
+            name: etudiant
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+                  - *field_boursier
+                  - *field_mention_baccalaureat
+          - label: Apprenti
+            name: apprenti
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+                  - *field_boursier
+          - label: En contrat de professionnalisation
+            name: professionnalisation
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+          - label: En recherche d'emploi
+            name: chomeur
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+          - label: Salarié
+            name: salarie
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+          - label: Travailleur indépendant
+            name: independant
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
+          - label: En service civique
+            name: service_civique
+            widget: object
+            fields:
+              - label: Conditions à satisfaire simultanément
+                label_singular: Condition à satisfaire
+                name: conditions
+                default: []
+                widget: list
+                collapsed: false
+                types:
+                  - *field_age
   - name: benefits
-    label: Aides avec critères
+    label: Aides complexes
     label_singular: Aide
     identifier_field: label
     folder: "data/benefits/computed"
@@ -331,273 +598,6 @@ collections:
         collapsed: false
         types:
           - *field_age
-      - label: Profils d'éligibilité
-        label_singular: profil d'éligibilité
-        name: profils
-        widget: list
-        collapsed: false
-        default: []
-        types:
-          - label: Lycéen
-            name: lyceen
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-                  - *field_boursier
-          - label: Étudiant
-            name: etudiant
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-                  - *field_boursier
-                  - *field_mention_baccalaureat
-          - label: Apprenti
-            name: apprenti
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-                  - *field_boursier
-          - label: En contrat de professionnalisation
-            name: professionnalisation
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-          - label: En recherche d'emploi
-            name: chomeur
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-          - label: Salarié
-            name: salarie
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-          - label: Travailleur indépendant
-            name: independant
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-          - label: En service civique
-            name: service_civique
-            widget: object
-            fields:
-              - label: Conditions à satisfaire simultanément
-                label_singular: Condition à satisfaire
-                name: conditions
-                default: []
-                widget: list
-                collapsed: false
-                types:
-                  - *field_age
-  - name: benefits_openfisca
-    label: Aides avec OpenFisca
-    folder: "data/benefits/openfisca"
-    create: true
-    delete: false
-    editor:
-      preview: true
-    slug: "{{label}}"
-    extension: yml
-    fields:
-      - label: Nom de l'aide
-        name: label
-        widget: string
-      - label: Institution
-        name: institution
-        widget: relation
-        collection: institutions
-        value_field: "{{slug}}"
-        display_fields: ["{{name}}"]
-        search_fields: [slug, displayFields]
-        allow_multiple: false
-      - label: Courte description
-        name: description
-        widget: description
-        pattern: ["", ""]
-      - label: Conditions non prises ne comptent par le simulateur
-        label_singular: Condition non prise ne compte par le simulateur
-        hint: |
-          Certains critères d'éligibilité ne peuvent pas être demandés (trop précis)
-          ni pris en compte (trop complexe) dans le cadre d'un simulateur grand public.
-          Cette liste permet d'informer les usagers sur ces critères supplémentaires.
-          Par exemple : Signer un contrat d’engagement réciproque (CER) avec votre département
-          ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec Pôle emploi.
-        name: conditions
-        widget: list
-        collapsed: false
-        field:
-          label: Texte
-          name: text
-          widget: text
-      - label: Lien vers la page d'informations de référence
-        hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
-        name: link
-        widget: string
-        required: false
-      - label: Lien vers des instructions à suivre
-        name: instructions
-        widget: string
-        required: false
-      - label: Lien vers un formulaire à imprimer
-        name: form
-        widget: string
-        required: false
-      - label: Lien vers un téléservice
-        hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
-        name: teleservice
-        widget: string
-        required: false
-      - label: Article défini
-        name: prefix
-        hint: |
-          Pour permet la formation de phrase grammaticalement correcte.
-          Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
-          Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
-        widget: select
-        required: false
-        options: [le, la, les, l’, une, l’aide]
-      - label: Type du résultat
-        name: type
-        default: "bool"
-        widget: select
-        options:
-          - label: Montant
-            value: float
-          - label: Eligibilité (Oui / Non)
-            value: bool
-      - label: Unité lorsque le type de résultat est un montant
-        hint: Il s'agit de spécifier l'unité du montant.
-        name: unit
-        widget: select
-        default: €
-        required: false
-        options:
-          - label: €
-            value: €
-          - label: "%"
-            value: "%"
-          - label: séances
-            value: séances
-      - label: Légende asssociée au montant
-        hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Cette légende correspond à « séances » dans l'affichage « N séances » et à « au lieu x de 0,5% dans « 1% au lieu de 0,5% ».
-        name: legend
-        widget: string
-        required: false
-      - label: Niveau de fiabilité lorsque le résultat est un montant
-        name: floorAt
-        widget: select
-        required: false
-        options:
-          - label: 10 (pour arrondir à la dizaine inférieure)
-            value: 10
-          - label: 1 (pour l'euro inférieur)
-            value: 1
-          - label: 0.01 (pour éviter l'arrondi)
-            value: 0.01
-      - label: Faut-il limiter l'affichage de l'aide en fonction d'un intérêt particulier ?
-        name: interestFlag
-        hint: |
-          En fin de parcours, des questions sont posées pour connaitre certains intérêts des usagers.
-          Cela permet d'éviter d'afficher certaines aides qui ne seraient pas pertinentes pour les usagers.
-        widget: select
-        required: false
-        options:
-          - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
-            value: _interetPermisDeConduire
-          - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
-            value: _interetEtudesEtranger
-      - label: Entité de rattachement de la variable dans OpenFisca
-        name: entity
-        widget: select
-        hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
-        required: false
-        options:
-          - label: Famille
-            value: familles
-          - label: Foyer Fiscal
-            value: foyers_fiscaux
-          - label: Individu
-            value: individus
-          - label: Ménage
-            value: menages
-      - label: Montant maximal de l'aide
-        name: montant
-        widget: number
-        required: false
-      - label: "Périodicité du montant de l'aide"
-        name: periodicite
-        widget: select
-        hint: Cette variable permet de définir la période de versement du montant de l'aide.
-        required: false
-        options:
-          - label: Ponctuelle
-            value: ponctuelle
-          - label: Mensuelle (/ mois)
-            value: mensuelle
-          - label: Annuelle (/ an)
-            value: annuelle
-          - label: Autre
-            value: autre
-      - label: Conditions générales à satisfaire simultanément
-        label_singular: Condition générale à satisfaire
-        name: conditions_generales
-        default: []
-        widget: list
-        collapsed: false
-        types:
-          - *field_age
-          - *field_regions
-          - *field_departements
-          - *field_communes
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils

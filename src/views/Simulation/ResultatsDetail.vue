@@ -13,7 +13,7 @@
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
       data-testid="back"
-      @click="goBack($event)"
+      @click.native="goBack($event)"
     >
       <svg
         width="12"

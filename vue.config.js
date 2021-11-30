@@ -53,10 +53,7 @@ module.exports = {
         ...options,
         compilerOptions: {
           ...options.compilerOptions,
-          whitespace: "preserve",
-          compatConfig: {
-            MODE: 2
-          }
+          whitespace: "preserve"
         },
       }))
   },

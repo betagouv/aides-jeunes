@@ -1,0 +1,32 @@
+label: Aide nationale au Brevet d'aptitude aux fonctions d'animateur (Bafa)
+institution: caf
+description: >+
+  Le Bafa permet d’encadrer enfants et adolescents en accueils de loisirs et
+  séjours de vacances.
+
+  Les étapes de la formation du Bafa sont les suivantes : 1) la session de formation générale, 2) le stage pratique, 3) la session d’approfondissement ou de qualification.
+
+conditions:
+  - >
+    Avoir réalisé la session de formation générale et le stage pratique dans un
+    délai maximum de 18 mois
+  - Suivre la session d'approfondissement et de qualification dans la limite de
+    30 mois à compter de l'inscription
+  - Cette aide est accessible aux non-allocataires et allocataires de la CAF
+link: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
+instructions: ""
+form: https://www.caf.fr/sites/default/files/caf/121/Documents/demande_daide_bafa.pdf
+teleservice: ""
+prefix: l’
+type: float
+unit: €
+legend: ""
+floorAt: 0.01
+entity: familles
+montant: 106
+periodicite: ponctuelle
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+profils: []

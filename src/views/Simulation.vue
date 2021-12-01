@@ -7,6 +7,8 @@
       class="container aj-layout-container"
       :class="{ 'aj-debug-container': debug }"
     >
+      <Progress v-if="debug" />
+      <Sommaire v-else-if="showSummary" />
       <div class="aj-main-container">
         <TitreChapitre />
         <div

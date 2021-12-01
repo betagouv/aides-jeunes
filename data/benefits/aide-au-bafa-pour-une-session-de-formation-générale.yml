@@ -1,0 +1,31 @@
+label: Aide au Bafa pour une session de formation générale
+institution: caf
+description: La Caf du Val-de-Marne peut prendre en charge une partie des frais
+  de formation sous la forme de cette aide complémentaire à l’aide nationale.
+conditions:
+  - >
+    Vous vous engagez à achever votre formation dans les délais prévus par la
+    réglementation (30 mois).
+  - Vous devez dépendre d’un régime de sécurité sociale autre que le régime
+    agricole.
+link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
+form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/BAFA%201%20Lettre%20d%27engagement%20-RAS%2001.09.2019.pdf
+prefix: l’
+type: float
+unit: €
+legend: ""
+entity: familles
+computesLocally: true
+montant: 200
+periodicite: ponctuelle
+conditions_generales:
+  - type: departements
+    values:
+      - "94"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+profils: []

@@ -1,0 +1,34 @@
+label: Aide locale au Bafa (CAF de la Savoie)
+institution: caf
+description: L'aide locale de la Savoie vient en complément de l'aide nationale.
+  Elle permet de financer à hauteur de 350 euros maximum la session de stage de
+  formation générale.
+conditions:
+  - |
+    dépendre du régime général de la sécurité sociale.
+  - >
+    suivre une formation assurée par un organisme de formation à but non
+    lucratif habilité par le ministère de la Jeunesse, des Sports et de la Vie
+    Associative.
+  - être allocataire de la Caf de la Savoie.
+instructions: https://www.caf.fr/allocataires/caf-de-la-savoie/offre-de-service-0/enfance-et-jeunesse/les-aides-a-la-formation-au-bafa-bafd
+form: https://www.caf.fr/sites/default/files/caf/731/Documents/bafa_bafd/BAFA%20convention%202017.pdf
+prefix: l’
+type: float
+unit: €
+legend: ""
+floorAt: 0.01
+entity: familles
+montant: 350
+periodicite: ponctuelle
+conditions_generales:
+  - type: departements
+    values:
+      - "73"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+profils: []

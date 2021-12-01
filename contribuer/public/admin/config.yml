@@ -12,7 +12,7 @@ backend:
 media_folder: public/img
 public_folder: img
 
-#local_backend: true
+# local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -285,9 +285,6 @@ collections:
         collapsed: false
         types:
           - *field_age
-          - *field_regions
-          - *field_departements
-          - *field_communes
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils
@@ -528,12 +525,6 @@ collections:
             value: individus
           - label: Ménage
             value: menages
-      - label: Règles de calcul explicitées ?
-        hint: Il faut cocher cette case si les critères sont explicités (âge, montant, statut, localisation, etc)
-        name: computesLocally
-        widget: boolean
-        default: true
-        required: false
       - label: Montant maximal de l'aide
         name: montant
         widget: number
@@ -600,6 +591,9 @@ collections:
         collapsed: false
         types:
           - *field_age
+          - *field_regions
+          - *field_departements
+          - *field_communes
       - label: Profils d'éligibilité
         label_singular: profil d'éligibilité
         name: profils

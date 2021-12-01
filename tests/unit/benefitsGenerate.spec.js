@@ -9,7 +9,9 @@ describe("benefit descriptions", function () {
         items: [{ slug: "etat", national: true }, { slug: "region" }],
       },
       benefits_javascript: {
-        items: [{ slug: "etat_benefit2", institution: "etat", computesLocally: true}],
+        items: [
+          { slug: "etat_benefit2", institution: "etat", computesLocally: true },
+        ],
       },
       benefits_openfisca: {
         items: [{ slug: "region_benefit", institution: "region" }],

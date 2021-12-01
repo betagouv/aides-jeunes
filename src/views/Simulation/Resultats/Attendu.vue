@@ -237,7 +237,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: benefits.groupByInstitution,
+      institutions: Institution.benefits.groupByInstitution,
     }
   },
   computed: {

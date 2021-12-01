@@ -37,7 +37,7 @@
         </div>
       </router-link>
     </div>
-    <div v-if="ineligible">
+    <div v-else>
       <a
         v-for="(droit, index) in list"
         class="droits-list-item"

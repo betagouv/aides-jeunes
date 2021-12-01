@@ -51,9 +51,8 @@ function setDefaults(benefit, top) {
 function generate(collections, customBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
-  collections.benefits_javascript.items.map((benefit) => {
+  collections.benefits_javascript.items.forEach((benefit) => {
     benefit.computesLocally = true
-    return benefit
   })
 
   const benefits = [

@@ -13,6 +13,8 @@ conditions:
   - Suivre la session d'approfondissement et de qualification dans la limite de
     30 mois à compter de l'inscription
   - Cette aide est accessible aux non-allocataires et allocataires de la CAF
+  - "Si votre formation est centrée sur l'accueil du jeune enfant, l'aide
+    s'élève à 106 euros. "
 link: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
 instructions: ""
 form: https://www.caf.fr/sites/default/files/caf/121/Documents/demande_daide_bafa.pdf
@@ -23,7 +25,7 @@ unit: €
 legend: ""
 floorAt: 0.01
 entity: familles
-montant: 106
+montant: 91
 periodicite: ponctuelle
 conditions_generales:
   - type: age

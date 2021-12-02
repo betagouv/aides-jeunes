@@ -390,47 +390,9 @@ fields:
             types:
               - *field_age
 collections:
-  - name: benefits_openfisca
-    label: Aides simples
-    label_singular: Aide simple
-    identifier_field: label
-    folder: "data/benefits/openfisca"
-    create: true
-    delete: false
-    editor:
-      preview: true
-    slug: "{{label}}"
-    extension: yml
-    fields:
-      - *field_nom_aide
-      - *field_institution
-      - *field_description
-      - *field_conditions_non_prise_en_compte
-      - *field_page_info_reference
-      - *field_lien_teleservice
-      - *field_formulaire_imprimer
-      - *field_instructions
-      - *field_article_defini
-      - *field_type_resultat
-      - *field_unite_resultat
-      - *field_periodicite_montant_aide
-      - *field_legende_montant
-      - *field_fiabilite_montant
-      - *field_interet_particulier
-      - *field_entite_rattachement_openfisca
-      - *field_montant_maximal_aide
-      - label: Conditions générales à satisfaire simultanément
-        label_singular: Condition générale à satisfaire
-        name: conditions_generales
-        default: []
-        widget: list
-        collapsed: false
-        types:
-          - *field_age
-      - *field_profil_eligibilite
   - name: benefits_javascript
-    label: Aides complexes
-    label_singular: Aide complexe
+    label: Aides avec critères d'éligibilités
+    label_singular: Aide avec critères d'éligibilités
     identifier_field: label
     folder: "data/benefits/javascript"
     create: true
@@ -508,6 +470,44 @@ collections:
           - *field_regions
           - *field_departements
           - *field_communes
+      - *field_profil_eligibilite
+  - name: benefits_openfisca
+    label: Aides complexes
+    label_singular: Aide complexe
+    identifier_field: label
+    folder: "data/benefits/openfisca"
+    create: true
+    delete: false
+    editor:
+      preview: true
+    slug: "{{label}}"
+    extension: yml
+    fields:
+      - *field_nom_aide
+      - *field_institution
+      - *field_description
+      - *field_conditions_non_prise_en_compte
+      - *field_page_info_reference
+      - *field_lien_teleservice
+      - *field_formulaire_imprimer
+      - *field_instructions
+      - *field_article_defini
+      - *field_type_resultat
+      - *field_unite_resultat
+      - *field_periodicite_montant_aide
+      - *field_legende_montant
+      - *field_fiabilite_montant
+      - *field_interet_particulier
+      - *field_entite_rattachement_openfisca
+      - *field_montant_maximal_aide
+      - label: Conditions générales à satisfaire simultanément
+        label_singular: Condition générale à satisfaire
+        name: conditions_generales
+        default: []
+        widget: list
+        collapsed: false
+        types:
+          - *field_age
       - *field_profil_eligibilite
   - name: institutions
     label: Institutions

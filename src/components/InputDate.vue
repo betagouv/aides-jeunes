@@ -7,7 +7,9 @@
         ref="day"
         v-model="day"
         v-select-on-click
-        type="number"
+        type="text"
+        data-type="number"
+        pattern="[0-9]*"
         autofocus
         aria-label="Jour"
         placeholder="JJ"
@@ -21,7 +23,9 @@
         ref="month"
         v-model="month"
         v-select-on-click
-        type="number"
+        type="text"
+        data-type="number"
+        pattern="[0-9]*"
         aria-label="Mois"
         placeholder="MM"
         min="1"
@@ -34,7 +38,9 @@
         ref="year"
         v-model="year"
         v-select-on-click
-        type="number"
+        type="text"
+        data-type="number"
+        pattern="[0-9]*"
         class="year"
         aria-label="Année"
         placeholder="AAAA"
@@ -92,6 +98,7 @@ export default {
       default: "date",
     },
   },
+  emits: ["input"],
   data: function () {
     const captureFullDate = this.dateType === "date"
 
@@ -127,19 +134,19 @@ export default {
   },
   watch: {
     day: function (to) {
-      if (to && to.toString().length == 2 && this.auto) {
+      if (to && to.length == 2 && this.auto) {
         this.$refs.month.focus()
       }
       this.update("day")
     },
     month: function (to) {
-      if (to && to.toString().length == 2 && this.auto) {
+      if (to && to.length == 2 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("month")
     },
     year: function (to) {
-      if (to && to.toString().length == 4 && this.auto) {
+      if (to && to.length == 4 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("year")
@@ -155,7 +162,7 @@ export default {
     update: function (name) {
       this.currentState = stateManager(this.currentState, {
         element: name,
-        length: (this[name] && this[name].toString().length) || 0,
+        length: (this[name] && this[name].length) || 0,
       })
 
       const dt = moment(this.date, "YYYY-MM-DD", true)

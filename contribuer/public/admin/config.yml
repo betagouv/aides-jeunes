@@ -159,18 +159,18 @@ fields:
       label: Texte
       name: text
       widget: text
-  field_page_info_reference: &field_page_info_reference
+  field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
     name: link
     widget: string
     required: false
-  field_instructions: &field_instructions
+  field_lien_instructions: &field_lien_instructions
     label: Lien vers des instructions à suivre
     name: instructions
     widget: string
     required: false
-  field_formulaire_imprimer: &field_formulaire_imprimer
+  field_lien_formulaire: &field_lien_formulaire
     label: Lien vers un formulaire à imprimer
     name: form
     widget: string
@@ -251,7 +251,6 @@ fields:
     name: entity
     widget: select
     hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Ménage.
-    required: false
     options:
       - label: Famille
         value: familles
@@ -389,6 +388,20 @@ fields:
             collapsed: false
             types:
               - *field_age
+  # champs propre aux aides javascript
+  field_conditions_generales: &field_conditions_generales
+    label: Conditions générales à satisfaire simultanément
+    label_singular: Condition générale à satisfaire
+    name: conditions_generales
+    default: []
+    widget: list
+    collapsed: false
+    types:
+      - *field_age
+      - *field_regions
+      - *field_departements
+      - *field_communes
+
 collections:
   - name: benefits_javascript
     label: Aides avec critères d'éligibilités
@@ -406,70 +419,14 @@ collections:
       - *field_institution
       - *field_description
       - *field_conditions_non_prise_en_compte
-      - *field_page_info_reference
+      - *field_lien_plus_informations
       - *field_lien_teleservice
-      - *field_formulaire_imprimer
-      - *field_instructions
+      - *field_lien_formulaire
+      - *field_lien_instructions
       - *field_article_defini
       - *field_type_resultat
-      - *field_unite_resultat
-      - *field_periodicite_montant_aide
-      - *field_legende_montant
-      - *field_fiabilite_montant
-      - *field_interet_particulier
-      - *field_entite_rattachement_openfisca
       - *field_montant_maximal_aide
-      - label: Régions
-        name: regions
-        required: false
-        widget: select
-        multiple: true
-        options:
-          - label: Auvergne-Rhône-Alpes
-            value: "84"
-          - label: Bourgogne-Franche-Comté
-            value: "27"
-          - label: Bretagne
-            value: "53"
-          - label: Centre-Val de Loire
-            value: "24"
-          - label: Grand Est
-            value: "44"
-          - label: Hauts-de-France
-            value: "32"
-          - label: Île-de-France
-            value: "11"
-          - label: Normandie
-            value: "28"
-          - label: Nouvelle-Aquitaine
-            value: "75"
-          - label: Occitanie
-            value: "76"
-          - label: Pays de la Loire
-            value: "52"
-          - label: Provence-Alpes-Côte d'Azur
-            value: "93"
-      - label: Code des départements
-        name: departements
-        required: false
-        widget: list
-        hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
-      - label: Code INSEE des communes
-        name: communes
-        required: false
-        widget: list
-        hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
-      - label: Conditions générales à satisfaire simultanément
-        label_singular: Condition générale à satisfaire
-        name: conditions_generales
-        default: []
-        widget: list
-        collapsed: false
-        types:
-          - *field_age
-          - *field_regions
-          - *field_departements
-          - *field_communes
+      - *field_conditions_generales
       - *field_profil_eligibilite
   - name: benefits_openfisca
     label: Aides complexes
@@ -487,10 +444,10 @@ collections:
       - *field_institution
       - *field_description
       - *field_conditions_non_prise_en_compte
-      - *field_page_info_reference
+      - *field_lien_plus_informations
       - *field_lien_teleservice
-      - *field_formulaire_imprimer
-      - *field_instructions
+      - *field_lien_formulaire
+      - *field_lien_instructions
       - *field_article_defini
       - *field_type_resultat
       - *field_unite_resultat
@@ -500,14 +457,6 @@ collections:
       - *field_interet_particulier
       - *field_entite_rattachement_openfisca
       - *field_montant_maximal_aide
-      - label: Conditions générales à satisfaire simultanément
-        label_singular: Condition générale à satisfaire
-        name: conditions_generales
-        default: []
-        widget: list
-        collapsed: false
-        types:
-          - *field_age
       - *field_profil_eligibilite
   - name: institutions
     label: Institutions

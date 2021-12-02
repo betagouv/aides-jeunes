@@ -127,8 +127,6 @@ export default {
   },
   watch: {
     day: function (to) {
-      console.log("//", to, to.toString().length, this.auto)
-      console.log("//", this.$refs.month)
       if (to && to.toString().length == 2 && this.auto) {
         this.$refs.month.focus()
       }
@@ -157,7 +155,7 @@ export default {
     update: function (name) {
       this.currentState = stateManager(this.currentState, {
         element: name,
-        length: (this[name] && this[name].length) || 0,
+        length: (this[name] && this[name].toString().length) || 0,
       })
 
       const dt = moment(this.date, "YYYY-MM-DD", true)

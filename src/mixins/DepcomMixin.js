@@ -1,14 +1,13 @@
 import Commune from "../lib/Commune"
 
 export default {
-  asyncComputed: {
-    communes: {
-      get: function () {
-        if (!this.codePostal || this.codePostal.toString().length !== 5) {
-          return []
-        }
-        this.retrievingCommunes = true
-        return Commune.get(this.codePostal)
+  methods: {
+    fetchCommune: async function() {
+      if (!this.codePostal || this.codePostal.toString().length !== 5) {
+        return []
+      }
+      this.retrievingCommunes = true
+      return Commune.get(this.codePostal)
           .then((communes) => {
             if (communes.length <= 0) {
               this.$matomo &&
@@ -30,9 +29,6 @@ export default {
           .finally(() => {
             this.retrievingCommunes = false
           })
-      },
-      default: [],
-    },
-  },
-  methods: {},
+      }
+    }
 }

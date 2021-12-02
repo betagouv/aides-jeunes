@@ -77,7 +77,6 @@
     "tmp": "^0.2.1",
     "validator": "^13.7.0",
     "vue": "^3.2.22",
-    "vue-async-computed": "^3.9.0",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"

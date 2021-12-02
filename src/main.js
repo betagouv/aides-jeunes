@@ -10,7 +10,6 @@ import moment from "moment"
 import ScrollService from "./plugins/ScrollService"
 import StateService from "./plugins/StateService"
 
-import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
 import useVuelidate from "@vuelidate/core"
 import VueMatomo from "vue-matomo"
@@ -46,7 +45,6 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-app.use(AsyncComputed)
 app.use(Resizer)
 app.use(ScrollService)
 app.use(StateService)

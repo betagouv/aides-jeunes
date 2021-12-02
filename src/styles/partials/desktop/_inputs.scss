@@ -132,6 +132,7 @@ html {
 
       input[type="text"],
       input[type="number"],
+      input[data-type="number"],
       select {
         border: 1px solid #e6e7f3;
         border-radius: var(--theme-border-radius);
@@ -144,7 +145,8 @@ html {
         }
       }
 
-      input[type="number"] {
+      input[type="number"],
+      input[data-type="number"] {
         -moz-appearance: textfield;
 
         &::-webkit-outer-spin-button,
@@ -251,7 +253,8 @@ html {
           }
         }
 
-        input[type="number"] {
+        input[type="number"],
+        input[data-type="number"] {
           min-width: 0;
           -moz-appearance: button;
 
@@ -277,7 +280,8 @@ html {
           font-size: 1.3rem;
         }
 
-        input[type="number"] {
+        input[type="number"],
+        input[data-type="number"] {
           padding-right: 2.2rem;
         }
       }

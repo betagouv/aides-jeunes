@@ -19,7 +19,8 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["id", "name", "value", "min", "max", "step"],
+  props: ["id", "name", "modelValue", "min", "max", "step"],
+  emits: ["update:modelValue"],
   data() {
     return {
       error: false,
@@ -28,15 +29,15 @@ export default {
   computed: {
     result: {
       get: function () {
-        return this.value
+        return this.modelValue
       },
       set: function (value) {
         this.error = false
         if (value || value === 0) {
-          this.$emit("input", value)
+          this.$emit("update:modelValue", value)
         } else {
           this.error = true
-          this.$emit("input", undefined)
+          this.$emit("update:modelValue", undefined)
         }
       },
     },

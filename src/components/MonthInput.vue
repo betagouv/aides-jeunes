@@ -8,25 +8,26 @@ import moment from "moment"
 export default {
   name: "MonthInput",
   props: {
-    value: Date,
+    modelValue: Date,
   },
+  emits: ["update:modelValue"],
   computed: {
     item: {
       get: function () {
-        if (!this.value) {
+        if (!this.modelValue) {
           return
         } else {
-          return moment(this.value).format("MM/YYYY")
+          return moment(this.modelValue).format("MM/YYYY")
         }
       },
       set: function (value) {
         if (!value) {
-          return this.$emit("input", undefined)
+          return this.$emit("update:modelValue", undefined)
         }
 
         let result = moment(value, "MM/YYYY", true)
         if (result.isValid()) {
-          this.$emit("input", result.toDate())
+          this.$emit("update:modelValue", result.toDate())
         }
       },
     },

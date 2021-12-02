@@ -16,7 +16,7 @@
         >
           <input
             :id="`${item.value}`"
-            v-model="value"
+            v-model="modelValue"
             type="radio"
             :name="fieldName"
             :value="item.value"
@@ -36,7 +36,7 @@
       </h2>
       <p v-if="step.help" v-html="step.help" />
       <label>
-        <InputNumber v-model="value" :min="step.min" />
+        <InputNumber v-model="modelValue" :min="step.min" />
       </label>
     </div>
 
@@ -46,10 +46,10 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" /> </h2
       ></label>
-      <InputDate :id="fieldName" v-model="value" required />
+      <InputDate :id="fieldName" v-model="modelValue" required />
     </div>
 
-    <YesNoQuestion v-else v-model="value">
+    <YesNoQuestion v-else v-model="modelValue">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
       <template v-if="step.help" #help>
         <p v-html="step.help" />
@@ -135,12 +135,12 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
-        value: this.value,
+        value: this.modelValue,
       })
       this.$push()
     },
     requiredValueMissing() {
-      const hasError = this.value === undefined
+      const hasError = this.modelValue === undefined
       this.$store.dispatch(
         "updateError",
         hasError && "Ce champ est obligatoire."

@@ -35,12 +35,13 @@
 export default {
   name: "YesNoQuestion",
   props: {
-    value: [Boolean, Number],
+    modelValue: [Boolean, Number],
     htmlHeading: {
       type: String,
       default: "h2",
     },
   },
+  emits: ["update:modelValue"],
   data: function () {
     const uniqueFieldName = "field." + Math.random().toString(36).slice(2)
     return {
@@ -50,10 +51,10 @@ export default {
   computed: {
     model: {
       get: function () {
-        return this.value
+        return this.modelValue
       },
       set: function (value) {
-        this.$emit("input", value)
+        this.$emit("update:modelValue", value)
       },
     },
   },

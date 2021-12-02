@@ -29,7 +29,8 @@
         travaillé
         <abbr
           title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
-        >au moins 5 ans</abbr>
+          >au moins 5 ans</abbr
+        >
         entre {{ yearsAgo(10) }} et {{ yearsAgo(0) }} ?
       </YesNoQuestion>
     </div>

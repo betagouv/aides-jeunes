@@ -6,10 +6,7 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" />
         </h2>
-        <p
-          v-if="step.help"
-          v-html="step.help"
-        />
+        <p v-if="step.help" v-html="step.help" />
       </legend>
       <div class="aj-selections">
         <div
@@ -24,7 +21,7 @@
             :name="fieldName"
             :value="item.value"
             :autofocus="index === 0"
-          >
+          />
           <label :for="`${item.value}`">
             {{ item.label }}
           </label>
@@ -37,38 +34,24 @@
         <span v-html="question" />
         <EnSavoirPlus v-if="showMoreInfo" />
       </h2>
-      <p
-        v-if="step.help"
-        v-html="step.help"
-      />
+      <p v-if="step.help" v-html="step.help" />
       <label>
-        <InputNumber
-          v-model="value"
-          :min="step.min"
-        />
+        <InputNumber v-model="value" :min="step.min" />
       </label>
     </div>
 
     <div v-else-if="questionType === 'date'">
-      <label :for="fieldName"><h2 class="aj-question">
-        <span v-html="question" />
-        <EnSavoirPlus v-if="showMoreInfo" /> </h2></label>
-      <InputDate
-        :id="fieldName"
-        v-model="value"
-        required
-      />
+      <label :for="fieldName"
+        ><h2 class="aj-question">
+          <span v-html="question" />
+          <EnSavoirPlus v-if="showMoreInfo" /> </h2
+      ></label>
+      <InputDate :id="fieldName" v-model="value" required />
     </div>
 
-    <YesNoQuestion
-      v-else
-      v-model="value"
-    >
+    <YesNoQuestion v-else v-model="value">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
-      <template
-        v-if="step.help"
-        #help
-      >
+      <template v-if="step.help" #help>
         <p v-html="step.help" />
       </template>
     </YesNoQuestion>

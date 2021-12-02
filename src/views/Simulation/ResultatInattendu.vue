@@ -3,10 +3,7 @@
     <div>
       <router-link to="/simulation/resultats/">
         <h2 aria-label="Retour aux résultats">
-          <i
-            class="fa fa-arrow-circle-left"
-            aria-hidden="true"
-          /> Retour aux
+          <i class="fa fa-arrow-circle-left" aria-hidden="true" /> Retour aux
           résultats
         </h2>
       </router-link>
@@ -18,10 +15,7 @@
       :is="resultatsInattendus[droit.id]"
       v-if="resultatsInattendus[droit.id]"
     />
-    <ResultatInattenduYearMinusTwo
-      v-else
-      :droit="droit"
-    />
+    <ResultatInattenduYearMinusTwo v-else :droit="droit" />
   </form>
 </template>
 

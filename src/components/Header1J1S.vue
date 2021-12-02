@@ -53,7 +53,7 @@
               class="rf"
               alt="Logo République Française"
               src="@/../public/img/logo_rf.svg"
-            >
+            />
           </a>
           <a
             href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
@@ -63,7 +63,7 @@
               class="fr"
               alt="Logo 1 jeune 1 solution France Relance"
               src="@/../public/img/logo1j1s-france-relance.svg"
-            >
+            />
           </a>
         </div>
 
@@ -85,10 +85,7 @@
         </div>
       </div>
     </div>
-    <nav
-      class="aj-1j1s-header-menu"
-      :class="{ show: showMenu }"
-    >
+    <nav class="aj-1j1s-header-menu" :class="{ show: showMenu }">
       <div class="container">
         <svg
           width="18"

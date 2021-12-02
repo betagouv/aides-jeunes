@@ -4,12 +4,9 @@
       :is="tag || 'a'"
       v-analytics="{ action: 'Affiché', category: analyticsCategory }"
       @click="show"
-    ><slot name="message" /></component>
-    <div
-      v-if="displayed"
-      class="modal__backdrop"
-      @click.self.prevent="hide"
-    >
+      ><slot name="message"
+    /></component>
+    <div v-if="displayed" class="modal__backdrop" @click.self.prevent="hide">
       <div class="modal">
         <span
           v-analytics="{ action: 'Fermé bouton', category: analyticsCategory }"
@@ -22,10 +19,7 @@
             viewBox="0 0 24 24"
             width="24"
           >
-            <path
-              d="M0 0h24v24H0V0z"
-              fill="none"
-            />
+            <path d="M0 0h24v24H0V0z" fill="none" />
             <path
               d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
             />

@@ -24,10 +24,7 @@
       vos questions.
     </p>
     <p v-show="updating">
-      <i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      /> Récupération en
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
     </p>
     <div v-if="list && list.length">
@@ -41,10 +38,7 @@
     </div>
     <div v-else>
       <router-link to="/simulation/resultats">
-        <i
-          class="fa fa-arrow-circle-left"
-          aria-hidden="true"
-        /> Revenir aux
+        <i class="fa fa-arrow-circle-left" aria-hidden="true" /> Revenir aux
         résultats
       </router-link>
     </div>

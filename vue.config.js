@@ -40,7 +40,6 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    
     config.module
       .rule("file")
       .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
@@ -54,7 +53,7 @@ module.exports = {
         ...options,
         compilerOptions: {
           ...options.compilerOptions,
-          whitespace: "preserve"
+          whitespace: "preserve",
         },
       }))
   },

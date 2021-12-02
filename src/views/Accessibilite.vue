@@ -24,8 +24,7 @@
     <div>
       <p>
         >Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
-        un contenu ou une fonctionnalité du site, merci de nous en faire
-        part.
+        un contenu ou une fonctionnalité du site, merci de nous en faire part.
       </p>
       <ul>
         <li>
@@ -34,7 +33,8 @@
               to: 'aides-jeunes@beta.gouv.fr',
               subject: 'Problème d\'accessibilité',
             }"
-          >aides-jeunes@beta.gouv.fr</a>
+            >aides-jeunes@beta.gouv.fr</a
+          >
         </li>
       </ul>
     </div>

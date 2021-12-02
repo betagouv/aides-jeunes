@@ -5,9 +5,7 @@
       :data-text="text"
       class="aj-help-popup aj-tooltip a-unstyled"
     >
-      <div class="aj-help-icon">
-        i
-      </div>
+      <div class="aj-help-icon"> i </div>
       en savoir plus
     </router-link>
   </div>

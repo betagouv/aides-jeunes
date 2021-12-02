@@ -1,10 +1,7 @@
 <template>
   <article class="text container">
     <p v-if="updating">
-      <i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      /> Récupération en
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
     </p>
     <div v-else>
@@ -23,7 +20,8 @@
         Erreur : ${error}
         ————`,
             }"
-          >Signalez ce problème</a>
+            >Signalez ce problème</a
+          >
         </p>
         <pre>{{ error }}</pre>
       </div>
@@ -37,10 +35,7 @@
         </p>
 
         <ul>
-          <li
-            v-for="variable in teleservice.fields"
-            :key="variable.label"
-          >
+          <li v-for="variable in teleservice.fields" :key="variable.label">
             {{ variable.label }} :
             {{ variable.formattedValue || variable.value }}
           </li>
@@ -58,10 +53,9 @@
           adresser, en justifiant de votre identité.
         </p>
 
-        <a
-          class="btn btn-primary btn-lg"
-          :href="teleservice.destination.url"
-        >{{ teleservice.destination.label }}</a>
+        <a class="btn btn-primary btn-lg" :href="teleservice.destination.url">{{
+          teleservice.destination.label
+        }}</a>
       </div>
     </div>
   </article>

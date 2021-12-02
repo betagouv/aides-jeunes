@@ -9,11 +9,8 @@
         class="aj-droit-illustration"
         :src="require(`./../../public/img/${droit.provider.imgSrc}`)"
         :alt="'Image pour ' + droit.label"
-      >
-      <h2
-        class="aj-question"
-        itemprop="name"
-      >
+      />
+      <h2 class="aj-question" itemprop="name">
         {{ $filters.capitalize(droit.label) }}
       </h2>
     </div>
@@ -21,19 +18,13 @@
     <DroitEstime :droit="droit" />
 
     <div class="aj-droit-content">
-      <h2
-        class="aj-question"
-        itemprop="name"
-      >
+      <h2 class="aj-question" itemprop="name">
         {{ droit.label }}
       </h2>
       <div class="aj-droit-content-heading">
         <div class="aj-droit-content-description">
           <p>
-            <span
-              itemprop="description"
-              v-html="droit.description"
-            />
+            <span itemprop="description" v-html="droit.description" />
             <BenefitCtaLink
               v-if="droit.link"
               :analytics-name="droit.label"
@@ -44,19 +35,13 @@
               itemprop="termsOfService"
             />
           </p>
-          <div
-            v-if="droit.conditions"
-            class="aj-droit-conditions"
-          >
+          <div v-if="droit.conditions" class="aj-droit-conditions">
             <p class="aj-droit-conditions-title">
               Pour en bénéficier, vous devez également :
             </p>
             <ul class="list-unstyled">
-              <li
-                v-for="(condition, index) in droit.conditions"
-                :key="index"
-              >
-                <img src="@/assets/images/doigt.svg">
+              <li v-for="(condition, index) in droit.conditions" :key="index">
+                <img src="@/assets/images/doigt.svg" />
                 <span v-html="condition" />
               </li>
             </ul>
@@ -66,17 +51,14 @@
           <div
             v-if="
               droit.isBaseRessourcesYearMinusTwo &&
-                !ressourcesYearMinusTwoCaptured &&
-                !isString(droit.montant)
+              !ressourcesYearMinusTwoCaptured &&
+              !isString(droit.montant)
             "
             class="notification warning print-hidden"
           >
             <span>
-              <i
-                class="fa fa-warning"
-                aria-hidden="true"
-              />  Cette aide se
-              base sur vos ressources de l'année
+              <i class="fa fa-warning" aria-hidden="true" />  Cette aide se base
+              sur vos ressources de l'année
               {{ $store.state.dates.fiscalYear.label }}
             </span>
             <router-link
@@ -91,17 +73,14 @@
           <div
             v-if="
               droit.isBaseRessourcesPatrimoine &&
-                !patrimoineCaptured &&
-                !isString(droit.montant)
+              !patrimoineCaptured &&
+              !isString(droit.montant)
             "
             class="notification warning print-hidden"
           >
             <span>
-              <i
-                class="fa fa-warning"
-                aria-hidden="true"
-              /> Cette aide se
-              base sur votre patrimoine. Vous avez un patrimoine immobilier,
+              <i class="fa fa-warning" aria-hidden="true" /> Cette aide se base
+              sur votre patrimoine. Vous avez un patrimoine immobilier,
               d'épargne, des revenus fonciers et/ou du capital ? Vous devez
               renseigner des informations complémentaires.
             </span>
@@ -123,17 +102,14 @@
               L'application Mes Aides ne peut pas calculer le montant de cette
               prestation, car
               <span v-html="droit.uncomputability[droit.montant].reason.user" />
-              <br>
+              <br />
               <strong
                 v-if="droit.uncomputability[droit.montant].solution"
                 v-html="droit.uncomputability[droit.montant].solution"
               />
             </p>
           </div>
-          <BenefitCta
-            class="aj-droit-content-buttons-cta"
-            :benefit="droit"
-          />
+          <BenefitCta class="aj-droit-content-buttons-cta" :benefit="droit" />
 
           <a
             v-if="droit.msa"
@@ -147,7 +123,7 @@
             class="aj-droit-pro-agricole"
             href="https://www.msa.fr/lfy/espace-prive"
           >
-            <img src="@/assets/images/doigt.svg"> Démarches pour les
+            <img src="@/assets/images/doigt.svg" /> Démarches pour les
             professions agricoles
           </a>
 
@@ -156,12 +132,14 @@
               v-if="brokenLinkButtonState === 'show'"
               class="text-center"
               @click="alertBrokenLink()"
-            >Lien invalide ?</a>
+              >Lien invalide ?</a
+            >
             <span
               v-else-if="brokenLinkButtonState === 'showThanksMessage'"
               class="text-center"
-            >Merci pour votre aide ! Nous réglerons ce problème très
-              prochainement.</span>
+              >Merci pour votre aide ! Nous réglerons ce problème très
+              prochainement.</span
+            >
           </div>
         </div>
       </div>

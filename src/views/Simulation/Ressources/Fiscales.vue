@@ -1,10 +1,6 @@
 <template>
   <form>
-    <div
-      v-for="individu in individus"
-      :key="individu.id"
-      class="form__group"
-    >
+    <div v-for="individu in individus" :key="individu.id" class="form__group">
       <button
         v-if="!individu.display"
         class="button outline with-icon m-auto"
@@ -27,19 +23,19 @@
       <div v-if="individu.display">
         <h2>
           Indiquez toutes les ressources <strong>nettes versées</strong> perçues
-          <span v-if="individu._role !== 'demandeur'"><strong>par {{ individu.label }}</strong></span>
+          <span v-if="individu._role !== 'demandeur'"
+            ><strong>par {{ individu.label }}</strong></span
+          >
           en France comme à l'étranger.
         </h2>
         <p>
           Ces informations se trouvent sur votre avis d'imposition
           {{ $store.state.dates.lastYear.label }} sur les revenus
-          {{ $store.state.dates.fiscalYear.label }}. <br>Vous pouvez le
+          {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le
           retrouver en ligne sur
-          <a
-            target="_blank"
-            rel="noopener"
-            href="http://www.impots.gouv.fr/"
-          >impots.gouv.fr</a>.
+          <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/"
+            >impots.gouv.fr</a
+          >.
         </p>
         <label
           v-for="ressource in categoriesRnc"
@@ -53,10 +49,11 @@
             "
             v-select-on-click
             type="number"
-          >
+          />
           <span v-if="individu.default[ressource.id]">
             Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
-            derniers mois.</span>
+            derniers mois.</span
+          >
         </label>
       </div>
     </div>

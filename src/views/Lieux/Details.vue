@@ -6,17 +6,11 @@
       vos questions.
     </p>
     <p v-show="updating">
-      <i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      /> Récupération en
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
     </p>
     <div v-if="list && list.length">
-      <div
-        v-for="(etablissement, index) in list"
-        :key="index"
-      >
+      <div v-for="(etablissement, index) in list" :key="index">
         <Etablissement :etablissement="etablissement" />
       </div>
     </div>

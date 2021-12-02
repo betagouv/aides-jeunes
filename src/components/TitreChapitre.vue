@@ -7,10 +7,7 @@
       class="aj-category-title-wrapper-mobile"
       :class="{ 'has-menu-button': showMenuButton }"
     >
-      <MenuButton
-        v-show="showMenuButton"
-        @click="goToRecapitulatifPage"
-      />
+      <MenuButton v-show="showMenuButton" @click="goToRecapitulatifPage" />
       <h1>{{ title }}</h1>
     </div>
   </div>

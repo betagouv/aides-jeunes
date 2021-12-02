@@ -8,18 +8,18 @@
       MES-AIDES JEUNES est réalisé dans le cadre du Plan gouvernemental
       1jeune1solution, par les équipes de l’incubateur des services numériques
       de la Direction interministérielle du Numérique (DINUM) et par la
-      Délégation générale à l’emploi et à la formation professionnelle
-      (DGEFP).
+      Délégation générale à l’emploi et à la formation professionnelle (DGEFP).
     </p>
 
     <p>
-      Le responsable de traitements des données à caractère personnel
-      collectées par le présent service est le même que
+      Le responsable de traitements des données à caractère personnel collectées
+      par le présent service est le même que
       <a
         target="_blank"
         rel="noopener"
         href="https://www.1jeune1solution.gouv.fr/confidentialite"
-      >la plateforme 1jeune1solution.</a>
+        >la plateforme 1jeune1solution.</a
+      >
     </p>
 
     <h3>Pour quelles raisons nous utilisons des informations sur vous ?</h3>
@@ -31,8 +31,8 @@
       </p>
       <ul>
         <li>
-          Vous informer des différentes aides et accompagnements que vous
-          pouvez demander ;
+          Vous informer des différentes aides et accompagnements que vous pouvez
+          demander ;
         </li>
         <li>
           Vous aider à avoir une idée sur le montant des aides que vous pouvez
@@ -61,15 +61,15 @@
       </p>
       <ul>
         <li>
-          Les informations que vous nous communiquez pour répondre aux
-          questions du simulateur (date de naissance, nationalité, nombre
-          d’enfants à charge, prénom de l’enfant, mode de garde de l’enfant,
-          données financières, situation socio-professionnelle, situation
-          patrimoniale, ville d’habitation) ;
+          Les informations que vous nous communiquez pour répondre aux questions
+          du simulateur (date de naissance, nationalité, nombre d’enfants à
+          charge, prénom de l’enfant, mode de garde de l’enfant, données
+          financières, situation socio-professionnelle, situation patrimoniale,
+          ville d’habitation) ;
         </li>
         <li>
-          Des informations sensibles que vous nous communiquez pour répondre
-          aux questions du simulateur (handicap et taux d’incapacité) ;
+          Des informations sensibles que vous nous communiquez pour répondre aux
+          questions du simulateur (handicap et taux d’incapacité) ;
         </li>
         <li>Votre adresse e-mail ;</li>
         <li>
@@ -171,10 +171,10 @@
     </div>
 
     <p>
-      Pour les exercer, faites-nous parvenir une demande en précisant la date
-      et l’heure précise de la requête – ces éléments sont indispensables pour
-      nous permettre de retrouver votre recherche – par voie électronique à
-      l’adresse suivante :
+      Pour les exercer, faites-nous parvenir une demande en précisant la date et
+      l’heure précise de la requête – ces éléments sont indispensables pour nous
+      permettre de retrouver votre recherche – par voie électronique à l’adresse
+      suivante :
     </p>
 
     <p>
@@ -184,7 +184,8 @@
           subject: 'Mes données',
           body: emailBody,
         }"
-      >aides-jeunes@beta.gouv.fr</a>
+        >aides-jeunes@beta.gouv.fr</a
+      >
     </p>
 
     <p>
@@ -200,7 +201,8 @@
         target="_blank"
         rel="noopener"
         href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces"
-      >ici</a>, un modèle de courrier élaboré par la CNIL.
+        >ici</a
+      >, un modèle de courrier élaboré par la CNIL.
     </p>
 
     <p>
@@ -243,7 +245,8 @@
               target="_blank"
               rel="noopener"
               href="https://www.ovh.com/fr/protection-donnees-personnelles"
-            >https://www.ovh.com/fr/protection-donnees-personnelles</a>
+              >https://www.ovh.com/fr/protection-donnees-personnelles</a
+            >
           </td>
         </tr>
       </tbody>
@@ -280,8 +283,7 @@
       <p>Il convient d’indiquer que :</p>
       <ul>
         <li>
-          Les données collectées ne sont pas recoupées avec d’autres
-          traitements
+          Les données collectées ne sont pas recoupées avec d’autres traitements
         </li>
         <li>
           Les cookies ne permettent pas de suivre la navigation de l’internaute
@@ -296,8 +298,8 @@
     >
       Vous pouvez choisir de
       <a
-      href="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
-      >refuser ce suivi</a
+        href="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
+        >refuser ce suivi</a
       >.
     </iframe>
   </article>

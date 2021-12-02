@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      v-if="error"
-      class="notification warning aj-actions-error"
-    >
+    <div v-if="error" class="notification warning aj-actions-error">
       {{ error }}
     </div>
     <div class="aj-actions">

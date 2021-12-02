@@ -1,17 +1,13 @@
 <template>
-  <div
-    class="provider"
-    itemscope
-    itemtype="http://schema.org/Organization"
-  >
+  <div class="provider" itemscope itemtype="http://schema.org/Organization">
     <link
       itemprop="additionalType"
       href="https://schema.org/GovernmentOrganization"
-    >
+    />
     <img
       :src="require(`./../../public/img/${item.imgSrc}`)"
       :alt="item.label"
-    >
+    />
     <div class="list">
       <dl
         v-for="(droit, key) in item.prestations"
@@ -30,11 +26,8 @@
             target="_blank"
             rel="noopener"
             :aria-label="getLongLabel(droit)"
-          >En savoir plus
-            <i
-              class="fa fa-external-link"
-              aria-hidden="true"
-            /></a>
+            >En savoir plus <i class="fa fa-external-link" aria-hidden="true"
+          /></a>
         </dd>
       </dl>
     </div>

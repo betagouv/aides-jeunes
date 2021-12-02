@@ -2,9 +2,7 @@
   <form @submit.prevent="onSubmit">
     <fieldset>
       <legend>
-        <h2 class="aj-question">
-          Vivez-vous seul·e ou en couple ?
-        </h2>
+        <h2 class="aj-question"> Vivez-vous seul·e ou en couple ? </h2>
       </legend>
       <div class="aj-selection-wrapper">
         <input
@@ -13,7 +11,7 @@
           type="radio"
           :value="false"
           name="en_couple"
-        >
+        />
         <label for="seul">Je vis seul·e</label>
       </div>
       <div class="aj-selection-wrapper">
@@ -23,7 +21,7 @@
           type="radio"
           :value="true"
           name="en_couple"
-        >
+        />
         <label for="en-couple">Je vis en couple</label>
       </div>
     </fieldset>

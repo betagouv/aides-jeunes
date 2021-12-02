@@ -7,21 +7,17 @@
       <div class="aj-box-wrapper">
         <div class="aj-unbox">
           <LoadingModal v-if="!droits">
-            <p v-show="!droits">
-              Récupération de la situation en cours…
-            </p>
+            <p v-show="!droits"> Récupération de la situation en cours… </p>
           </LoadingModal>
-          <div
-            v-if="submitted"
-            class="alert alert-success"
-          >
+          <div v-if="submitted" class="alert alert-success">
             Merci d'avoir rempli ce questionnaire !
           </div>
 
           <form v-if="droits && !submitted">
             <p>
               Vous avez effectué une simulation le
-              <strong>{{ createdAt }}</strong>.
+              <strong>{{ createdAt }}</strong
+              >.
             </p>
             <p>
               Répondez à ce questionnaire afin de nous aider à améliorer la
@@ -43,11 +39,8 @@
                       require(`./../../public/img/${droit.provider.imgSrc}`)
                     "
                     :alt="droit.label"
-                  >
-                  <h2
-                    class="aj-question"
-                    itemprop="name"
-                  >
+                  />
+                  <h2 class="aj-question" itemprop="name">
                     {{ droit.label }}
                   </h2>
                 </div>
@@ -73,7 +66,7 @@
                         type="radio"
                         :name="`choices_${droit.id}_${choice.value}`"
                         :value="choice.value"
-                      >
+                      />
                       <label :for="`choices_${droit.id}_${choice.value}`">
                         {{ choice.label }}
                       </label>
@@ -83,12 +76,14 @@
                     v-show="isNegative(droit.choiceValue)"
                     class="form__group"
                   >
-                    <label><h3
-                      :for="`choiceComments_${droit.id}`"
-                      class="aj-question"
+                    <label
+                      ><h3
+                        :for="`choiceComments_${droit.id}`"
+                        class="aj-question"
+                      >
+                        Pour quelles raisons&nbsp;?
+                      </h3></label
                     >
-                      Pour quelles raisons&nbsp;?
-                    </h3></label>
                     <textarea
                       :id="`choiceComments_${droit.id}`"
                       v-model="droit.choiceComments"

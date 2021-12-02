@@ -13,37 +13,27 @@
           class="aj-aide-illustration"
           :src="require(`./../../public/img/${droit.provider.imgSrc}`)"
           :alt="'Logo ' + droit.label"
-        >
+        />
         <div class="aj-aide-text">
-          <h2
-            class="aj-question"
-            itemprop="name"
-          >
-            {{
-              capitalize(droit.label)
-            }}
+          <h2 class="aj-question" itemprop="name">
+            {{ capitalize(droit.label) }}
           </h2>
-          <p
-            class="aj-aide-description"
-            v-html="droit.description"
-          />
+          <p class="aj-aide-description" v-html="droit.description" />
           <div
             v-if="
               droit.montant &&
-                isBoolean(droit.montant) &&
-                droit.icon === 'fa-exclamation-triangle'
+              isBoolean(droit.montant) &&
+              droit.icon === 'fa-exclamation-triangle'
             "
             class="aj-aide-warning"
           >
-            <img src="@/assets/images/warning.svg"> Attention, cette aide vous
+            <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
             est accessible sous certaines conditions supplémentaires.
           </div>
         </div>
         <DroitEstime :droit="droit" />
         <div class="aj-aide-cta">
-          <button class="button primary">
-            Demander cette aide
-          </button>
+          <button class="button primary"> Demander cette aide </button>
         </div>
       </router-link>
     </div>
@@ -66,17 +56,15 @@
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
             <img
-              :src="
-                require(`./../../public/img/${droit.provider.imgSrc}`)
-              "
+              :src="require(`./../../public/img/${droit.provider.imgSrc}`)"
               :alt="'Icone pour' + droit.label"
-            >
+            />
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>
-                <small
-                  :aria-label="`Plus d'informations sur ${droit.label}`"
-                >Plus d'informations</small>
+                <small :aria-label="`Plus d'informations sur ${droit.label}`"
+                  >Plus d'informations</small
+                >
               </h2>
             </div>
           </div>

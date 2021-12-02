@@ -10,10 +10,12 @@
     </p>
 
     <p>
-      <small>L'estimation que nous avons fait à partir de vos ressources sur les 12
+      <small
+        >L'estimation que nous avons fait à partir de vos ressources sur les 12
         derniers mois est peut-être incorrecte.
       </small>
-      <small v-if="!aCharge">Vous pouvez améliorer les résultats affichés en indiquant vos
+      <small v-if="!aCharge"
+        >Vous pouvez améliorer les résultats affichés en indiquant vos
         ressources sur l'année {{ $store.state.dates.fiscalYear.label }}.
       </small>
     </p>

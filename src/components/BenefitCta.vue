@@ -12,7 +12,7 @@
     <router-link
       v-if="
         benefit.provider.etablissements &&
-          benefit.provider.etablissements.length > 0
+        benefit.provider.etablissements.length > 0
       "
       v-analytics="{
         name: benefit.label,

@@ -5,10 +5,7 @@
       :class="{ open: open }"
       @click="window && window.history.back()"
     >
-      <div
-        class="aj-help-modal-container"
-        @click.stop
-      >
+      <div class="aj-help-modal-container" @click.stop>
         <span class="aj-help-modal-header">
           <h4>En savoir plus</h4>
           <svg

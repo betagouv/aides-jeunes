@@ -4,17 +4,11 @@
     <div class="form__group city">
       <div>
         <label for="postal-code">Votre code postal</label>
-        <input
-          id="postal-code"
-          v-model="codePostal"
-        >
+        <input id="postal-code" v-model="codePostal" />
       </div>
       <div v-if="communes.length">
         <label for="commune">Ville</label>
-        <select
-          id="commune"
-          v-model="depcom"
-        >
+        <select id="commune" v-model="depcom">
           <option
             v-for="commune in communes"
             :key="commune.code"
@@ -25,35 +19,24 @@
         </select>
       </div>
     </div>
-    <div
-      v-if="depcom"
-      class="form__group types"
-    >
-      <div
-        v-for="type in types"
-        :key="type.code"
-        class="type"
-      >
+    <div v-if="depcom" class="form__group types">
+      <div v-for="type in types" :key="type.code" class="type">
         <label :for="`type-${type.code}`">{{ type.name }}</label>
         <input
           :id="`type-${type.code}`"
           v-model="type.selected"
           type="checkbox"
           :name="`type-${type.code}`"
-        >
+        />
       </div>
-      <span v-show="updating"><i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      /> Récupération
-        en cours…</span>
+      <span v-show="updating"
+        ><i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
+        cours…</span
+      >
     </div>
     <div>
       <div v-if="places && places.length">
-        <div
-          v-for="(etablissement, index) in places"
-          :key="index"
-        >
+        <div v-for="(etablissement, index) in places" :key="index">
           <Etablissement :etablissement="etablissement" />
         </div>
       </div>

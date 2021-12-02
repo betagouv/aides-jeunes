@@ -26,7 +26,7 @@ const MailDirective = {
   },
   unmounted(el) {
     el.removeEventListener("click", el.myAnalyticsHandler)
-  }
+  },
 }
 
 export default MailDirective

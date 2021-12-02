@@ -1,15 +1,7 @@
 <template>
-  <div
-    id="error"
-    class="alert alert-danger"
-    role="alert"
-  >
+  <div id="error" class="alert alert-danger" role="alert">
     <h2>
-      <i
-        class="fa fa-warning"
-        aria-hidden="true"
-      /> Une erreur est
-      survenue.
+      <i class="fa fa-warning" aria-hidden="true" /> Une erreur est survenue.
     </h2>
     <p>
       <a
@@ -25,7 +17,8 @@
   Erreur : ${error}
   ————`,
         }"
-      >Signalez ce problème</a>
+        >Signalez ce problème</a
+      >
       en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et
       en joignant si possible une capture d'écran. Nous vous répondrons au plus
       vite et corrigerons le problème dès que possible.

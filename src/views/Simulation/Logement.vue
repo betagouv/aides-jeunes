@@ -18,13 +18,10 @@
             type="radio"
             name="logementType"
             :value="logementType.value"
-          >
+          />
           <label :for="logementType.value">
             {{ $filters.capitalize(logementType.label) }}
-            <span
-              v-if="logementType.hint"
-              class="help"
-            >{{
+            <span v-if="logementType.hint" class="help">{{
               logementType.hint
             }}</span>
           </label>
@@ -36,10 +33,7 @@
       <legend>
         <h2 class="aj-question">
           {{ primoAccedantQuestion.label
-          }}<span
-            v-if="primoAccedantQuestion.hint"
-            class="help"
-          >{{
+          }}<span v-if="primoAccedantQuestion.hint" class="help">{{
             primoAccedantQuestion.hint
           }}</span>
         </h2>
@@ -56,13 +50,10 @@
             type="radio"
             :name="primoAccedantQuestion.label"
             :value="response.value"
-          >
+          />
           <label :for="response.label">
             {{ $filters.capitalize(response.label) }}
-            <span
-              v-if="response.hint"
-              class="help"
-            >{{ response.hint }}</span>
+            <span v-if="response.hint" class="help">{{ response.hint }}</span>
           </label>
         </div>
       </div>
@@ -72,10 +63,7 @@
       <legend>
         <h2 class="aj-question">
           {{ locataireTypesQuestion.label
-          }}<span
-            v-if="locataireTypesQuestion.hint"
-            class="help"
-          >{{
+          }}<span v-if="locataireTypesQuestion.hint" class="help">{{
             locataireTypesQuestion.hint
           }}</span>
         </h2>
@@ -91,13 +79,10 @@
           type="radio"
           :name="logementTypesQuestion.label"
           :value="response.value"
-        >
+        />
         <label :for="response.value">
           {{ $filters.capitalize(response.label) }}
-          <span
-            v-if="response.hint"
-            class="help"
-          >{{ response.hint }}</span>
+          <span v-if="response.hint" class="help">{{ response.hint }}</span>
         </label>
       </div>
     </fieldset>

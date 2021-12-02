@@ -91,28 +91,28 @@ export default {
   name: "InputDate",
   props: {
     id: String,
-    value: [Date, String],
+    modelValue: [Date, String],
     //dateType should be "date" for a DD-MM-YYY date input and "month" for MM-YYYY
     dateType: {
       type: String,
       default: "date",
     },
   },
-  emits: ["input"],
+  emits: ["update:modelValue"],
   data: function () {
     const captureFullDate = this.dateType === "date"
 
     return {
-      currentState: this.value
+      currentState: this.modelValue
         ? 0
         : captureFullDate
         ? { element: "day", length: 0 }
         : { element: "day", length: 2 },
       day: captureFullDate
-        ? this.value && moment(this.value).format("DD")
+        ? this.modelValue && moment(this.modelValue).format("DD")
         : "01",
-      month: this.value && moment(this.value).format("MM"),
-      year: this.value && moment(this.value).format("YYYY"),
+      month: this.modelValue && moment(this.modelValue).format("MM"),
+      year: this.modelValue && moment(this.modelValue).format("YYYY"),
     }
   },
   computed: {
@@ -156,7 +156,7 @@ export default {
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {
-        this.$emit("input", value)
+        this.$emit("update:modelValue", value)
       }
     },
     update: function (name) {
@@ -167,9 +167,9 @@ export default {
 
       const dt = moment(this.date, "YYYY-MM-DD", true)
       if (dt.isValid()) {
-        this.$emit("input", dt.toDate())
+        this.$emit("update:modelValue", dt.toDate())
       } else {
-        this.$emit("input", undefined)
+        this.$emit("update:modelValue", undefined)
       }
     },
   },

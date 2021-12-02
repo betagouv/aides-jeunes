@@ -1,5 +1,5 @@
 <template>
-  <InputDate v-model="date" date-type="month" @input="$emit('input', date)" />
+  <InputDate v-model="date" date-type="month" @input="$emit('update:modelValue', date)" />
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   components: {
     InputDate,
   },
+  emits: ["update:modelValue"],
   props: {
     modelValue: Date,
   },
@@ -20,7 +21,7 @@ export default {
   },
   methods: {
     updateDate: function (date) {
-      this.$emit("input", date)
+      this.$emit("update:modelValue", date)
     },
   },
 }

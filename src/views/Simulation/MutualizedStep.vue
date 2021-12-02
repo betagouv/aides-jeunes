@@ -82,7 +82,7 @@ export default {
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
-    const value = this.$store.getters.getAnswer(
+    const modelValue = this.$store.getters.getAnswer(
       id,
       entityName,
       this.$route.params.fieldName
@@ -93,7 +93,7 @@ export default {
 
     return {
       id,
-      value,
+      modelValue,
       entityName,
       entity,
     }

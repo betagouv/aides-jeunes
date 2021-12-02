@@ -49,16 +49,30 @@ export default {
       return this.$store.getters.getDebug
     },
     showProgress() {
-      return ![
-        "recapitulatif",
-        "resultats",
-        "resultatsDetails",
-        "resultatsAttendus",
-      ].includes(this.$route.name)
+      return "resultatsAttendus" !== this.$route.name
+    },
+    progress() {
+      const cleanPath = this.$route.path.replace(/\/en_savoir_plus$/, "")
+      const allSteps = this.$store.getters.getAllSteps.filter(
+        (step) => step.path !== "/" && step.path !== "/simulation/resultats"
+      )
+
+      if (!allSteps.some((step) => step.path === cleanPath)) {
+        return this.$store.getters.progress
+      } else {
+        const stepIndex = allSteps.findIndex((item) => item.path === cleanPath)
+        const previousStep = allSteps
+          .slice(0, stepIndex)
+          .filter((step) => step.isActive)
+
+        return (
+          previousStep.length / allSteps.filter((step) => step.isActive).length
+        )
+      }
     },
     currentProgressStyle() {
       return {
-        width: `${this.$store.getters.progress * 100}%`,
+        width: `${this.progress * 100}%`,
       }
     },
   },

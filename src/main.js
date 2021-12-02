@@ -12,7 +12,7 @@ import StateService from "./plugins/StateService"
 
 import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
-import useVuelidate from '@vuelidate/core'
+import useVuelidate from "@vuelidate/core"
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
@@ -31,14 +31,13 @@ const Resizer = {
   },
 }
 
-
 const app = createApp({
-  render: () => h(App)
+  render: () => h(App),
 })
 
-app.directive('analytics', AnalyticsDirective);
-app.directive('mail', MailDirective);
-app.directive('selectOnClick', SelectOnClickDirective);
+app.directive("analytics", AnalyticsDirective)
+app.directive("mail", MailDirective)
+app.directive("selectOnClick", SelectOnClickDirective)
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
@@ -46,7 +45,6 @@ if (process.env.NODE_ENV === "production") {
     dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
   })
 }
-
 
 app.use(AsyncComputed)
 app.use(Resizer)
@@ -66,7 +64,7 @@ app.config.globalProperties.$filters = {
     if (!value) return ""
     value = value.toString()
     return value.charAt(0).toUpperCase() + value.slice(1)
-  }
+  },
 }
 
 moment.locale("fr")

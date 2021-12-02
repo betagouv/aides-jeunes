@@ -1,9 +1,9 @@
 <template>
   <div class="aj-unbox">
-    <router-link
-      :to="{ name: 'resultats' }"
-    >
-      <button class="aj-etablissements-back-button button outline small with-icon">
+    <router-link :to="{ name: 'resultats' }">
+      <button
+        class="aj-etablissements-back-button button outline small with-icon"
+      >
         <svg
           width="12"
           height="12"
@@ -21,10 +21,8 @@
     </router-link>
 
     <p v-show="updating">
-      <i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      /> Récupération en cours…
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
+      cours…
     </p>
     <div v-if="etablissements && etablissements.length">
       <p class="aj-etablissements-intro">
@@ -41,18 +39,12 @@
       </div>
     </div>
     <div v-else>
-      <p
-        class="aj-etablissements-intro"
-        :v-if="error"
-      >
+      <p class="aj-etablissements-intro" :v-if="error">
         {{ error }}
       </p>
       Revenir aux résultats
       <router-link to="/simulation/resultats">
-        <i
-          class="fa fa-arrow-circle-left"
-          aria-hidden="true"
-        />
+        <i class="fa fa-arrow-circle-left" aria-hidden="true" />
       </router-link>
     </div>
   </div>

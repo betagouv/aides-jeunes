@@ -1,10 +1,10 @@
 <template>
   <div class="aj-main-container aj-resultats-attendus">
     <form @submit.prevent="submit">
-      <router-link
-        :to="{ name: 'resultats' }"
-      >
-        <button class="aj-etablissements-back-button button outline small with-icon">
+      <router-link :to="{ name: 'resultats' }">
+        <button
+          class="aj-etablissements-back-button button outline small with-icon"
+        >
           <svg
             width="12"
             height="12"
@@ -28,8 +28,8 @@
         <p>Plusieurs situations sont possibles&nbsp;:</p>
         <ul>
           <li>
-            vous souhaitez <strong>confirmer</strong> que le résultat obtenu
-            est correct ou
+            vous souhaitez <strong>confirmer</strong> que le résultat obtenu est
+            correct ou
           </li>
           <li>
             vous souhaitez indiquer que résultat obtenu est
@@ -51,8 +51,10 @@
             <h2>{{ getTitle(item.ref) }}</h2>
           </legend>
           <div class="form__group">
-            <label for="de">Quelle est la prestation pour laquelle vous connaissez le
-              résultat&nbsp;?</label>
+            <label for="de"
+              >Quelle est la prestation pour laquelle vous connaissez le
+              résultat&nbsp;?</label
+            >
             <select v-model="item.ref">
               <option
                 v-for="(benefit, bIndex) in benefits"
@@ -64,106 +66,72 @@
             </select>
           </div>
 
-          <div
-            v-if="item.ref"
-            class="form__group"
-          >
+          <div v-if="item.ref" class="form__group">
             <label for="de">La valeur obtenue</label>
-            <input
-              disabled
-              :value="getActual(item.ref)"
-            >
+            <input disabled :value="getActual(item.ref)" />
           </div>
 
-          <div
-            v-if="item.ref"
-            class="form__group"
-          >
-            <label for="expected">Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label>
-            <input
-              id="expected"
-              v-model="item.expected"
+          <div v-if="item.ref" class="form__group">
+            <label for="expected"
+              >Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label
             >
+            <input id="expected" v-model="item.expected" />
           </div>
           <div>
-            <button
-              class="button small warning"
-              @click.prevent="remove(index)"
-            >
+            <button class="button small warning" @click.prevent="remove(index)">
               Supprimer cette prestation
             </button>
           </div>
         </fieldset>
 
-        <button
-          class="form__group button secondary"
-          @click.prevent="add"
-        >
-          Ajouter une autre prestation pour laquelle vous connaissez le
-          résultat
+        <button class="form__group button secondary" @click.prevent="add">
+          Ajouter une autre prestation pour laquelle vous connaissez le résultat
         </button>
 
-        <label class="form__group">Description courte
+        <label class="form__group"
+          >Description courte
           <input
             v-model="shortDescription"
             placeholder="Les AL ne sont pas prises en compte dans le RSA"
-          >
-        </label>
-
-        <label class="form__group">Description détaillée
-          <textarea
-            v-model="details"
-            rows="9"
-            :placeholder="detailed"
           />
         </label>
 
+        <label class="form__group"
+          >Description détaillée
+          <textarea v-model="details" rows="9" :placeholder="detailed" />
+        </label>
+
         <label class="form__group">
-          <input
-            v-model="consentGiven"
-            type="checkbox"
-          >
+          <input v-model="consentGiven" type="checkbox" />
           J'accepte que les données de cette simulation soient visibles en
           ligne. Si les informations correspondent à une situation réelle, vous
           devriez
           <router-link to="/foyer/recapitulatif">les modifier</router-link>.
         </label>
 
-        <p
-          v-if="showConsentNotice"
-          class="notification warning inline"
-        >
+        <p v-if="showConsentNotice" class="notification warning inline">
           Vous devez accepter la publication des données.
           <router-link to="/foyer/recapitulatif">
             Vous pouvez les anonymiser si nécessaire.
           </router-link>
         </p>
 
-        <p
-          v-if="message"
-          class="notification warning"
-        >
+        <p v-if="message" class="notification warning">
           {{ message }}
         </p>
 
-        <p
-          v-if="error"
-          class="notification warning"
-        >
+        <p v-if="error" class="notification warning">
           {{ error }}
         </p>
 
         <div>
-          <button
-            :class="`button large ${submitting ? 'secondary' : ''}`"
-          >
+          <button :class="`button large ${submitting ? 'secondary' : ''}`">
             Enregistrer
           </button>
-          <span v-show="submitting"><i
-            class="fa fa-spinner fa-spin"
-            aria-hidden="true"
-          />
-            Enregistrement en cours…</span>
+          <span v-show="submitting"
+            ><i class="fa fa-spinner fa-spin" aria-hidden="true" />
+            Enregistrement en cours…</span
+          >
         </div>
       </div>
 

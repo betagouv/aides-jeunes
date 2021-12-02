@@ -4,9 +4,7 @@
       <p v-show="accessStatus.fetching">
         Récupération de la situation en cours…
       </p>
-      <p v-show="resultatStatus.updating">
-        Récupération de vos droits…
-      </p>
+      <p v-show="resultatStatus.updating"> Récupération de vos droits… </p>
     </LoadingModal>
 
     <button

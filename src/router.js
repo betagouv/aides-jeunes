@@ -5,8 +5,7 @@ import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
-
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

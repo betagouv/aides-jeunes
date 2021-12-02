@@ -1,10 +1,7 @@
 <template>
   <fieldset>
     <legend>
-      <component
-        :is="htmlHeading"
-        class="aj-question"
-      >
+      <component :is="htmlHeading" class="aj-question">
         <slot />
       </component>
       <slot name="help" />
@@ -17,7 +14,7 @@
           type="radio"
           :value="true"
           :name="uniqueFieldName"
-        >
+        />
         <label :for="'yes-' + uniqueFieldName">Oui</label>
       </div>
       <div class="aj-selection-wrapper">
@@ -27,7 +24,7 @@
           type="radio"
           :value="false"
           :name="uniqueFieldName"
-        >
+        />
         <label :for="'no-' + uniqueFieldName">Non</label>
       </div>
     </div>

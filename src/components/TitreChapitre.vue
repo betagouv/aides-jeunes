@@ -1,21 +1,6 @@
 <template>
-<<<<<<< HEAD
   <div class="aj-category-title-wrapper">
     <div class="aj-category-title">
-=======
-  <div>
-    <div class="aj-category-title-wrapper">
-      <h1>{{ title }}</h1>
-    </div>
-    <div
-      class="aj-category-title-wrapper-mobile"
-      :class="{ 'has-menu-button': showMenuButton }"
-    >
-      <MenuButton
-        v-show="showMenuButton"
-        @click="goToRecapitulatifPage"
-      />
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
       <h1>{{ title }}</h1>
       <div class="aj-category-title-button-mobile">
         <MenuButton

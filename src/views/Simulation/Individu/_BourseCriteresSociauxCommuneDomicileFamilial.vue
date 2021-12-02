@@ -4,33 +4,17 @@
       <label class="aj-question">
         Quel est le code postal de la commune de vos parents ?
       </label>
-<<<<<<< HEAD
       <input id="cp" type="number" v-model="codePostal" />
-=======
-      <input
-        v-model="codePostal"
-        type="number"
-      >
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
     </div>
 
     <p v-if="retrievingCommunes">
-      <i
-        class="fa fa-spinner fa-spin"
-        aria-hidden="true"
-      />
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" />
     </p>
-    <div
-      v-show="communes && communes.length"
-      class="form__group"
-    >
+    <div v-show="communes && communes.length" class="form__group">
       <label class="aj-question">
         Veuillez sélectionner la ville qui correspond
       </label>
-      <select
-        id="commune"
-        v-model="nomCommune"
-      >
+      <select id="commune" v-model="nomCommune">
         <option
           v-for="commune in communes"
           :key="commune.code"

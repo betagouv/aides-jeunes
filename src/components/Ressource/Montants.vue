@@ -1,16 +1,9 @@
 <template>
-  <div
-    :key="type.meta.id"
-    class="form__group"
-  >
+  <div :key="type.meta.id" class="form__group">
     <h2 v-if="!withoutHeader">
       {{ type.meta.label }}
     </h2>
-    <YesNoQuestion
-      v-model="singleValue"
-      class="form__group"
-      html-heading="h3"
-    >
+    <YesNoQuestion v-model="singleValue" class="form__group" html-heading="h3">
       <span
         v-html="
           getQuestionLabel(
@@ -22,10 +15,7 @@
       />
     </YesNoQuestion>
 
-    <label
-      v-if="type.displayMonthly === true"
-      class="form__group"
-    >
+    <label v-if="type.displayMonthly === true" class="form__group">
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
         step="any"
@@ -34,18 +24,12 @@
       />
     </label>
 
-    <div
-      v-if="type.displayMonthly === false"
-      class="form__group"
-    >
+    <div v-if="type.displayMonthly === false" class="form__group">
       <div>
         Indiquez les montants <strong>nets mensuels</strong> que
         {{ getLongLabel(individu, type.meta) }}
       </div>
-      <div
-        v-for="(month, monthIndex) in type.months"
-        :key="month.id"
-      >
+      <div v-for="(month, monthIndex) in type.months" :key="month.id">
         <label>
           <MonthLabel :month="month" />
           <InputNumber

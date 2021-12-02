@@ -11,25 +11,13 @@
       <Sommaire v-else-if="showSummary" />
       <div class="aj-main-container">
         <TitreChapitre />
-        <div
-          v-if="debug"
-          class="aj-debug-switch"
-        >
-          <button
-            class="button small"
-            @click="disableDebug"
-          >
+        <div v-if="debug" class="aj-debug-switch">
+          <button class="button small" @click="disableDebug">
             Quitter le mode debug
           </button>
         </div>
-        <div
-          v-if="$store.state.message.text"
-          class="notification warning"
-        >
-          <div
-            class="message"
-            v-html="$store.state.message.text"
-          />
+        <div v-if="$store.state.message.text" class="notification warning">
+          <div class="message" v-html="$store.state.message.text" />
         </div>
         <div class="aj-box-wrapper">
           <router-view :key="$route.path" />

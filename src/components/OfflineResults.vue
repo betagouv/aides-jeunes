@@ -1,20 +1,12 @@
 <template>
-  <div
-    v-if="!submitResult.ok"
-    class="aj-offline-results"
-  >
-    <h2 class="aj-question">
-      Je garde ces informations&nbsp;!
-    </h2>
+  <div v-if="!submitResult.ok" class="aj-offline-results">
+    <h2 class="aj-question"> Je garde ces informations&nbsp;! </h2>
     <span>
       Vous pouvez enregistrer les résultats de votre simulation pour les
       consulter plus tard.
     </span>
 
-    <Modal
-      tag="span"
-      analytics-category="Email"
-    >
+    <Modal tag="span" analytics-category="Email">
       <template #message>
         <div class="aj-offline-results-button">
           <button
@@ -22,17 +14,12 @@
             class="button primary text-center"
             @click="reset"
           >
-            <i
-              class="fa fa-envelope-o"
-              aria-hidden="true"
-            />
+            <i class="fa fa-envelope-o" aria-hidden="true" />
             Recevoir par email
           </button>
         </div>
       </template>
-      <h2 class="aj-question">
-        Recevoir un récapitulatif par email
-      </h2>
+      <h2 class="aj-question"> Recevoir un récapitulatif par email </h2>
       <p>
         Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
         faire le point sur les démarches que vous avez faites et les blocages
@@ -49,32 +36,18 @@
       </div>
 
       <div v-if="submitResult && submitResult.waiting">
-        <i
-          class="fa fa-spinner fa-spin"
-          aria-hidden="true"
-        />
+        <i class="fa fa-spinner fa-spin" aria-hidden="true" />
       </div>
 
       <form
         v-if="
           submitResult &&
-            !(submitResult.ok || submitResult.waiting || submitResult.error)
+          !(submitResult.ok || submitResult.waiting || submitResult.error)
         "
       >
-        <label
-          for="email"
-          class="form__group"
-        >Votre email</label>
-        <input
-          id="email"
-          v-model="email"
-          type="text"
-          name="email"
-        >
-        <p
-          v-if="$v.email.$error"
-          class="notification warning"
-        >
+        <label for="email" class="form__group">Votre email</label>
+        <input id="email" v-model="email" type="text" name="email" />
+        <p v-if="$v.email.$error" class="notification warning">
           Un email doit être indiqué.
         </p>
         <div class="aj-feedback-buttons">
@@ -100,7 +73,7 @@
 
 <script>
 import axios from "axios"
-import { required, email } from '@vuelidate/validators'
+import { required, email } from "@vuelidate/validators"
 
 import Modal from "@/components/Modal"
 

@@ -1,45 +1,25 @@
 <template>
   <div class="main">
-    <div
-      class="progress"
-      :style="style"
-    />
+    <div class="progress" :style="style" />
     <div
       v-if="$store.state.message"
       class="main notification warning full-width"
     >
-      <div
-        class="message"
-        v-html="$store.state.message"
-      />
+      <div class="message" v-html="$store.state.message" />
     </div>
     <div class="foyer">
       <div class="title">
         <div>
-          <router-link
-            v-if="isRecapitulatif"
-            :to="stepRoute"
-          >
+          <router-link v-if="isRecapitulatif" :to="stepRoute">
             <h2 aria-label="Retour à la page précédente">
-              <i
-                class="fa fa-arrow-circle-left"
-                aria-hidden="true"
-              />
+              <i class="fa fa-arrow-circle-left" aria-hidden="true" />
               Retour
             </h2>
           </router-link>
           <h1 v-html="title" />
         </div>
-        <router-link
-          v-if="!isRecapitulatif"
-          :to="recapitulatifLink"
-        >
-          <h2
-            class="editor"
-            aria-label="Modifier vos réponses"
-          >
-            📝
-          </h2>
+        <router-link v-if="!isRecapitulatif" :to="recapitulatifLink">
+          <h2 class="editor" aria-label="Modifier vos réponses"> 📝 </h2>
         </router-link>
       </div>
       <router-view />

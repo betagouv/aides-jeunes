@@ -2,7 +2,9 @@
   <form>
     <p>
       Indiquez toutes les ressources <strong>nettes versées</strong> perçues
-      <span v-if="individu._role !== 'demandeur'"><strong>par {{ getIndividuNom() }}</strong></span>
+      <span v-if="individu._role !== 'demandeur'"
+        ><strong>par {{ getIndividuNom() }}</strong></span
+      >
       en France comme à l'étranger.
     </p>
     <div

@@ -1,9 +1,6 @@
 <template>
   <div class="aj-input-date">
-    <div
-      v-if="showDay"
-      class="aj-input-date-component day"
-    >
+    <div v-if="showDay" class="aj-input-date-component day">
       <label class="aj-date-label">jour</label>
       <input
         :id="firstId"
@@ -16,7 +13,7 @@
         placeholder="JJ"
         min="1"
         max="31"
-      >
+      />
     </div>
     <div class="aj-input-date-component month">
       <label class="aj-date-label">mois</label>
@@ -29,7 +26,7 @@
         placeholder="MM"
         min="1"
         max="12"
-      >
+      />
     </div>
     <div class="aj-input-date-component year">
       <label class="aj-date-label">année</label>
@@ -42,7 +39,7 @@
         aria-label="Année"
         placeholder="AAAA"
         min="1900"
-      >
+      />
     </div>
   </div>
 </template>
@@ -130,19 +127,21 @@ export default {
   },
   watch: {
     day: function (to) {
-      if (to && to.length == 2 && this.auto) {
+      console.log("//", to, to.toString().length, this.auto)
+      console.log("//", this.$refs.month)
+      if (to && to.toString().length == 2 && this.auto) {
         this.$refs.month.focus()
       }
       this.update("day")
     },
     month: function (to) {
-      if (to && to.length == 2 && this.auto) {
+      if (to && to.toString().length == 2 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("month")
     },
     year: function (to) {
-      if (to && to.length == 4 && this.auto) {
+      if (to && to.toString().length == 4 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("year")

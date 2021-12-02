@@ -4,14 +4,13 @@
       Sélectionnez les types de ressources perçues
       <strong>
         <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
-        <span v-else-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span>
-        depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>. Vous pourrez ensuite saisir les montants.
+        <span v-else-if="individu._role !== 'demandeur'"
+          >par {{ individu._firstName }}</span
+        >
+        depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+      >. Vous pourrez ensuite saisir les montants.
     </p>
-    <div
-      v-for="category in categories"
-      :key="category.id"
-      class="form__group"
-    >
+    <div v-for="category in categories" :key="category.id" class="form__group">
       <h2 class="aj-question">
         {{ $filters.capitalize(category.label(individu)) }}
       </h2>
@@ -25,7 +24,7 @@
             :id="type.id"
             v-model="selectedTypes[type.id]"
             type="checkbox"
-          >
+          />
           <label :for="type.id">
             {{ type.label }}
           </label>

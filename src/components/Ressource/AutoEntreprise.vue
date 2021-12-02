@@ -2,10 +2,9 @@
   <div>
     <h3>{{ ressource.meta.label }}</h3>
     <div class="form__group">
-      <label
-        for="autoAmount"
-        class="aj-question"
-      >Chiffre d’affaires {{ $store.state.dates.lastYear.label }}</label>
+      <label for="autoAmount" class="aj-question"
+        >Chiffre d’affaires {{ $store.state.dates.lastYear.label }}</label
+      >
       <InputNumber
         id="autoAmount"
         :value="ressource.amounts[$store.state.dates.lastYear.id]"
@@ -14,11 +13,10 @@
     </div>
 
     <div class="form__group">
-      <label
-        for="autoAmountLastMonth"
-        class="aj-question"
-      >Chiffre d'affaires pour
-        {{ $filters.capitalize($store.state.dates.thisMonth.label) }}</label>
+      <label for="autoAmountLastMonth" class="aj-question"
+        >Chiffre d'affaires pour
+        {{ $filters.capitalize($store.state.dates.thisMonth.label) }}</label
+      >
       <InputNumber
         id="autoAmountLastMonth"
         :value="ressource.amounts[$store.state.dates.thisMonth.id]"
@@ -30,10 +28,7 @@
       :key="month.id"
       class="form__group"
     >
-      <label
-        :for="'autoAmount' + month.label"
-        class="aj-question"
-      >
+      <label :for="'autoAmount' + month.label" class="aj-question">
         Chiffre d'affaires pour {{ $filters.capitalize(month.label) }}
       </label>
       <InputNumber

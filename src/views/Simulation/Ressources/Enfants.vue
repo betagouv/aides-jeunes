@@ -6,8 +6,10 @@
       v-model="enfant._hasRessources"
       class="form__group"
     >
-      {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des ressources
-      <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
+      {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des
+      ressources
+      <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+      > ?
     </YesNoQuestion>
     <Actions :on-submit="onSubmit" />
   </form>

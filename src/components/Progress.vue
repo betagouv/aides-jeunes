@@ -1,8 +1,6 @@
 <template>
   <div class="aj-debug-progress">
-    <h3 class="aj-question">
-      Parcours complet
-    </h3>
+    <h3 class="aj-question"> Parcours complet </h3>
     <button
       v-if="!showInactiveRoutes"
       class="button small"
@@ -35,7 +33,8 @@
         <abbr
           v-if="step.missing"
           title="Cette page n'existe pas encore dans le router."
-        >🚧</abbr>
+          >🚧</abbr
+        >
       </li>
     </ul>
   </div>

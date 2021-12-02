@@ -6,12 +6,12 @@
           class="rf"
           alt="Logo République Française"
           src="@/../public/img/logo_rf.svg"
-        >
+        />
         <img
           class="fr"
           alt="Logo 1 jeune 1 solution France relance"
           src="@/../public/img/logo1j1s-france-relance.svg"
-        >
+        />
       </div>
       <div
         v-for="(item, index) in menu"
@@ -44,21 +44,10 @@
           </svg>
         </h2>
         <ul>
-          <li
-            v-for="(child, childIndex) in item.children"
-            :key="childIndex"
-          >
-            <a
-              v-if="child.href"
-              :href="child.href"
-            >{{ child.label }}</a>
-            <router-link
-              v-else
-              :to="child.route"
-            >
-              {{
-                child.label
-              }}
+          <li v-for="(child, childIndex) in item.children" :key="childIndex">
+            <a v-if="child.href" :href="child.href">{{ child.label }}</a>
+            <router-link v-else :to="child.route">
+              {{ child.label }}
             </router-link>
           </li>
         </ul>

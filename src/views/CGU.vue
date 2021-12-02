@@ -3,8 +3,8 @@
     <h1>Conditions générales d'utilisation</h1>
 
     <p>
-      Les présentes conditions générales d’utilisation (dites « CGU ») fixent
-      le cadre juridique de “Mes-Aides Jeunes” et définissent les conditions
+      Les présentes conditions générales d’utilisation (dites « CGU ») fixent le
+      cadre juridique de “Mes-Aides Jeunes” et définissent les conditions
       d’accès et d’utilisation des services par l’Utilisateur.
     </p>
 
@@ -29,8 +29,8 @@
     <div>
       <ul>
         <li>
-          « L'Utilisateur » est toute personne utilisant la plateforme
-          Mes-Aides Jeunes. Il ne peut s’agir que d’une personne physique.
+          « L'Utilisateur » est toute personne utilisant la plateforme Mes-Aides
+          Jeunes. Il ne peut s’agir que d’une personne physique.
         </li>
         <li>
           Les « Services » sont les fonctionnalités offertes par la plateforme
@@ -129,9 +129,7 @@
       nécessaire.
     </p>
 
-    <h1 id="mentions-legales">
-      Mentions légales
-    </h1>
+    <h1 id="mentions-legales"> Mentions légales </h1>
 
     <h2>Éditeur</h2>
     <div>
@@ -142,9 +140,8 @@
           (DGEFP) - 10-18 place des 5-Martyrs-du-Lycée-Buffon 75015 Paris et
         </li>
         <li>
-          l'incubateur de services numériques de la Direction
-          interministérielle du numérique (DINUM) - 20, avenue de Ségur - 75007
-          Paris.
+          l'incubateur de services numériques de la Direction interministérielle
+          du numérique (DINUM) - 20, avenue de Ségur - 75007 Paris.
         </li>
       </ul>
     </div>
@@ -159,9 +156,9 @@
     <h2>Hébergement du site</h2>
 
     <p>
-      Ce site est hébergé par OVH SAS<br>
-      2 rue Kellermann,<br>
-      59100 Roubaix<br><br>
+      Ce site est hébergé par OVH SAS<br />
+      2 rue Kellermann,<br />
+      59100 Roubaix<br /><br />
       Téléphone : +339 72 10 10 0
     </p>
 
@@ -185,8 +182,7 @@
 
     <p>
       En aucun cas les services associés à la plateforme ne seront à l’origine
-      d’envoi de courriels pour demander la saisie d’informations
-      personnelles.
+      d’envoi de courriels pour demander la saisie d’informations personnelles.
     </p>
   </article>
 </template>

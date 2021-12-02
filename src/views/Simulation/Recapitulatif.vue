@@ -11,10 +11,7 @@
     </BackButton>
 >>>>>>> 9269e057 (fix: back button weren't working)
     <div>
-      <template
-        v-for="(chapter, chapterIndex) in chapters"
-        :key="chapter.name"
-      >
+      <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
         <div class="chapter-block">
           <h2 class="aj-question">
             {{ chapter.label }}
@@ -25,10 +22,7 @@
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
               >
-                <div
-                  class="subtitle"
-                  v-html="question.label"
-                />
+                <div class="subtitle" v-html="question.label" />
               </div>
             </template>
             <template v-else>
@@ -37,10 +31,7 @@
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
               >
-                <div
-                  class="question-col"
-                  v-html="question.label"
-                />
+                <div class="question-col" v-html="question.label" />
 
                 <div
                   v-if="typeof question.value !== 'object'"
@@ -49,9 +40,7 @@
                   {{ question.value }}
                 </div>
                 <div class="edit-col">
-                  <router-link :to="question.path">
-                    Modifier
-                  </router-link>
+                  <router-link :to="question.path"> Modifier </router-link>
                 </div>
               </div>
               <template v-if="typeof question.value === 'object'">
@@ -64,9 +53,7 @@
                     :key="name"
                     class="value-cell"
                   >
-                    <div style="font-style: italic">
-                      {{ name }} :
-                    </div>
+                    <div style="font-style: italic"> {{ name }} : </div>
                     <div>{{ value }}</div>
                   </div>
                 </div>
@@ -161,13 +148,13 @@ export default {
           ENTITIES_PROPERTIES[step.entity].loadEntity &&
           ENTITIES_PROPERTIES[step.entity].loadEntity({
             ...this,
-            "$store": this.$store,
+            $store: this.$store,
             params: step,
           })
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
           value: answer,
-          component: { ...this, "$store": this.$store, entity },
+          component: { ...this, $store: this.$store, entity },
         })
       }
       return []

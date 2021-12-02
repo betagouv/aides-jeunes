@@ -1,29 +1,18 @@
 <template>
   <form>
     <h2 data-testid="immobilier-title">
-      <i
-        class="fa fa-home"
-        aria-hidden="true"
-      />
+      <i class="fa fa-home" aria-hidden="true" />
       Immobilier
     </h2>
 
-    <YesNoQuestion
-      v-model="hasTerrainsNonLoues"
-      class="form__group"
-    >
+    <YesNoQuestion v-model="hasTerrainsNonLoues" class="form__group">
       Avez-vous des terrains <b>non loués</b> ?
     </YesNoQuestion>
 
-    <div
-      v-if="hasTerrainsNonLoues"
-      class="form__group"
-    >
+    <div v-if="hasTerrainsNonLoues" class="form__group">
       <label class="form__group">
         Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_terrains_non_loues[periodKey]"
-        />
+        <InputNumber v-model="demandeur.valeur_terrains_non_loues[periodKey]" />
       </label>
 
       <label class="form__group">
@@ -38,10 +27,7 @@
       </p>
     </div>
 
-    <YesNoQuestion
-      v-model="hasBatisNonLoues"
-      class="form__group"
-    >
+    <YesNoQuestion v-model="hasBatisNonLoues" class="form__group">
       Avez-vous des appartements/immeubles <b>non loués</b> ?
       <template #help>
         <p>
@@ -50,16 +36,11 @@
       </template>
     </YesNoQuestion>
 
-    <div
-      v-if="hasBatisNonLoues"
-      class="form__group"
-    >
+    <div v-if="hasBatisNonLoues" class="form__group">
       <label class="form__group">
         Valeur <b>patrimoniale</b> de vos appartements/immeubles
         <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_immo_non_loue[periodKey]"
-        />
+        <InputNumber v-model="demandeur.valeur_immo_non_loue[periodKey]" />
       </label>
 
       <label class="form__group">
@@ -75,20 +56,13 @@
       </p>
     </div>
 
-    <label
-      v-if="hasBiensLoues"
-      class="form__group"
-    >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-      <InputNumber
-        v-model="demandeur.valeur_patrimoine_loue[periodKey]"
-      />
+    <label v-if="hasBiensLoues" class="form__group"
+      >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
+      <InputNumber v-model="demandeur.valeur_patrimoine_loue[periodKey]" />
     </label>
 
     <h2>
-      <i
-        class="fa fa-money"
-        aria-hidden="true"
-      />
+      <i class="fa fa-money" aria-hidden="true" />
       Épargne
     </h2>
 
@@ -116,9 +90,7 @@
 
     <label class="form__group">
       Total de l'épargne produisant des revenus <b>imposables</b>
-      <InputNumber
-        v-model="demandeur.epargne_revenus_imposables[periodKey]"
-      />
+      <InputNumber v-model="demandeur.epargne_revenus_imposables[periodKey]" />
       <span>
         Actions, comptes à terme,
         <abbr title="Fonds communs de placement">FCP</abbr>, obligations, parts

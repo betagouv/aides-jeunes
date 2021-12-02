@@ -8,7 +8,7 @@ const SelectOnClickDirective = {
   },
   unmounted(el) {
     el.removeEventListener("click", el.myClickHandler)
-  }
+  },
 }
 
 export default SelectOnClickDirective

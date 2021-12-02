@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h2 class="aj-question">
-      Mes enfants à charge <EnSavoirPlus />
-    </h2>
+    <h2 class="aj-question"> Mes enfants à charge <EnSavoirPlus /> </h2>
     <div
       v-for="enfant in enfants"
       :key="enfant.id"
@@ -13,17 +11,11 @@
           {{ enfant._firstName }}
         </div>
         <div class="aj-child-actions">
-          <a
-            class="edit-link"
-            @click="editPAC(enfant.id)"
-          >éditer</a>
-          <a
-            class="delete-link"
-            @click="removePAC(enfant.id)"
-          >supprimer</a>
+          <a class="edit-link" @click="editPAC(enfant.id)">éditer</a>
+          <a class="delete-link" @click="removePAC(enfant.id)">supprimer</a>
         </div>
       </div>
-      <hr class="aj-hr">
+      <hr class="aj-hr" />
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
@@ -40,11 +32,7 @@
         <div class="aj-children-delete" />
       </div>
     </div>
-    <button
-      id="add-pac"
-      class="button outline with-icon"
-      @click="addPAC()"
-    >
+    <button id="add-pac" class="button outline with-icon" @click="addPAC()">
       <svg
         width="16"
         height="16"
@@ -79,9 +67,8 @@ export default {
     enfants: function () {
       return this.$store.getters.situation.enfants || []
     },
-
   },
-  
+
   methods: {
     addPAC: function () {
       const children = this.$store.state.answers.enfants || []
@@ -105,7 +92,7 @@ export default {
       })
       this.$push()
     },
-    birthDate: function(date) {
+    birthDate: function (date) {
       if (date) {
         return (
           typeof date === "string" ? new Date(date) : date
@@ -119,11 +106,10 @@ export default {
       }
     },
     nationality: Nationality.getNationalityFromCountryCode,
-    scolarite: function(value) {
+    scolarite: function (value) {
       const s = Scolarite.types.find((s) => s.value === value)
       return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },
-    
   },
 }
 </script>

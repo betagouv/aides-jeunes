@@ -95,7 +95,7 @@ export default {
 
     return {
       id,
-      value,
+      modelValue,
       entityName,
       entity,
     }

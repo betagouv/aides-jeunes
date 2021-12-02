@@ -22,6 +22,7 @@
         </div>
       </div>
       <Progress v-if="debug" />
+      <Summary v-else />
     </div>
   </div>
 </template>
@@ -29,12 +30,14 @@
 <script>
 import TitreChapitre from "@/components/TitreChapitre"
 import Progress from "@/components/Progress"
+import Summary from "@/components/Summary"
 
 export default {
   name: "Simulation",
   components: {
     TitreChapitre,
     Progress,
+    Summary,
   },
   data() {
     return {

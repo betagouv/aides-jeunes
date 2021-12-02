@@ -150,6 +150,15 @@ const store = new Vuex.Store({
     getAllSteps: function (state, getters) {
       return generateAllSteps(getters.situation, state.openFiscaParameters)
     },
+    lastUnansweredStep: function (state, getters) {
+      const allSteps = getters.getAllSteps.filter(
+        (step) =>
+          step.path !== "/" &&
+          step.path !== "/simulation/resultats" &&
+          step.isActive
+      )
+      return allSteps.find((step) => !isStepAnswered(state.answers.all, step))
+    },
     progress: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(
         (step) =>

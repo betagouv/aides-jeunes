@@ -31,6 +31,7 @@
 import TitreChapitre from "@/components/TitreChapitre"
 import Progress from "@/components/Progress"
 import Summary from "@/components/Summary"
+import { isStepAnswered } from "../../lib/answers"
 
 export default {
   name: "Simulation",
@@ -59,19 +60,21 @@ export default {
       const allSteps = this.$store.getters.getAllSteps.filter(
         (step) => step.path !== "/" && step.path !== "/simulation/resultats"
       )
+      const activeSteps = allSteps.filter((step) => step.isActive)
 
       // Use anwers as basis when you are not in journey
       if (!allSteps.some((step) => step.path === cleanPath)) {
-        return this.$store.getters.progress
+        const answeredSteps = activeSteps.filter((step) =>
+          isStepAnswered(this.$store.state.answers.all, step)
+        )
+        return answeredSteps.length / activeSteps.length
       } else {
         const stepIndex = allSteps.findIndex((item) => item.path === cleanPath)
         const previousStep = allSteps
           .slice(0, stepIndex)
           .filter((step) => step.isActive)
 
-        return (
-          previousStep.length / allSteps.filter((step) => step.isActive).length
-        )
+        return previousStep.length / activeSteps.length
       }
     },
     currentProgressStyle() {

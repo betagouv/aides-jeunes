@@ -159,18 +159,6 @@ const store = new Vuex.Store({
       )
       return allSteps.find((step) => !isStepAnswered(state.answers.all, step))
     },
-    progress: function (state, getters) {
-      const allSteps = getters.getAllSteps.filter(
-        (step) =>
-          step.path !== "/" &&
-          step.path !== "/simulation/resultats" &&
-          step.isActive
-      )
-      const answeredSteps = allSteps.filter((step) =>
-        isStepAnswered(state.answers.all, step)
-      )
-      return answeredSteps.length / allSteps.length
-    },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
       const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id

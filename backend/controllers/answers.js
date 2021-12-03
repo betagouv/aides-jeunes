@@ -89,7 +89,6 @@ exports.openfiscaResponse = function (req, res, next) {
           _id: req.situationId,
         })
       )
-
     res.send(Object.assign(result, { _id: req.situationId }))
   })
 }

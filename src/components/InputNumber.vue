@@ -24,7 +24,7 @@ export default {
   emits: ["update:modelValue"],
   data: function() {
     return {
-      result: this.result || undefined,
+      result: this.result || 0,
       error: false,
     }
   },

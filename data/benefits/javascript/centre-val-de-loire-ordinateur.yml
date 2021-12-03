@@ -13,7 +13,6 @@ type: float
 unit: "%"
 legend: du prix d'achat
 floorAt: 10
-computesLocally: true
 montant: 50
 periodicite: ponctuelle
 conditions_generales:

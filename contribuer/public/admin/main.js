@@ -111,7 +111,6 @@ const CTA = ({ droit }) => {
 
 const DroitPreviewTemplate = ({ entry }) => {
   const droit = entry.get("data").toJS()
-
   return (
     <div className="aj-main-container">
       <div className="aj-results-details">
@@ -137,4 +136,5 @@ const DroitPreviewTemplate = ({ entry }) => {
   )
 }
 
-CMS.registerPreviewTemplate("benefits", DroitPreviewTemplate)
+CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
+CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)

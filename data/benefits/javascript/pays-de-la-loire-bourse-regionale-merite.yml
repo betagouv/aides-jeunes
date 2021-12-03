@@ -9,7 +9,6 @@ instructions: https://www.paysdelaloire.fr/les-aides/bourse-regionale-au-merite
 prefix: la
 type: bool
 floorAt: 10
-computesLocally: true
 conditions_generales:
   - type: regions
     values:

@@ -13,7 +13,6 @@ type: float
 unit: €
 legend: maximum
 interestFlag: _interetEtudesEtranger
-computesLocally: true
 montant: 2280
 periodicite: autre
 conditions_generales:

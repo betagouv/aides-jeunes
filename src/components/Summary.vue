@@ -41,9 +41,15 @@
         </div>
 
         <div class="aj-btn-container" v-if="$store.getters.passSanityCheck">
-          <router-link class="button outline" :to="{ name: 'recapitulatif' }"
-            >Récapitulatif</router-link
+          <router-link
+            class="button outline"
+            :to="{ name: 'recapitulatif' }"
+            v-if="!isRecapitulatif"
+            >{{
+              isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
+            }}</router-link
           >
+          <BackButton v-else @click.native="goBack()">Retour</BackButton>
         </div>
       </div>
     </div>
@@ -51,8 +57,11 @@
 </template>
 
 <script>
+import BackButton from "@/components/Buttons/BackButton"
+
 export default {
   name: "Summary",
+  components: { BackButton },
   computed: {
     chapters() {
       return this.$state.chapters(
@@ -65,6 +74,15 @@ export default {
     isOldSituation() {
       return !this.$store.state.answers
     },
+    isRecapitulatif() {
+      return this.$route.name === "recapitulatif"
+    },
+    isResultsPage() {
+      return (
+        this.$route.name === "resultats" ||
+        this.$route.name === "resultatsDetails"
+      )
+    },
   },
   methods: {
     disabledLink(chapter, index) {
@@ -74,6 +92,9 @@ export default {
       return index === 0
         ? false
         : !chapter.done && !this.chapters[index - 1].done
+    },
+    goBack() {
+      window && window.history.back()
     },
   },
 }

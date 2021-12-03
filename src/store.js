@@ -500,7 +500,9 @@ const store = createStore({
           )
         })
         .then((results) => store.commit("setResults", results))
-        .catch((error) => store.commit("saveComputationFailure", error))
+        .catch((error) => {
+          store.commit("saveComputationFailure", error)
+        })
     },
     redirection: function (state, next) {
       state.commit(

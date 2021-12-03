@@ -172,17 +172,17 @@ export default {
       return complex.indexOf(type) === -1
     },
     onSubmit: function () {
-      this.types.map((type) => ({
-          id: type.meta.id,
-          amounts: type.amounts,
-        }))
+      
       this.$store.dispatch("answer", {
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: this.$route.params.category,
-        value: this.types,
+        value: this.types.map((type) => ({
+          id: type.meta.id,
+          amounts: type.amounts,
+        })),
       })
-      
+
       this.$push()
     },
     updateTNSAmount: function (type, period, value) {

@@ -60,6 +60,7 @@ export default {
         (step) => step.path !== "/" && step.path !== "/simulation/resultats"
       )
 
+      // Use anwers as basis when you are not in journey
       if (!allSteps.some((step) => step.path === cleanPath)) {
         return this.$store.getters.progress
       } else {

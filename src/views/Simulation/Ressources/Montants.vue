@@ -172,7 +172,6 @@ export default {
       return complex.indexOf(type) === -1
     },
     onSubmit: function () {
-      
       this.$store.dispatch("answer", {
         id: this.$route.params.id,
         entityName: "individu",

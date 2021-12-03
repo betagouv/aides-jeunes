@@ -5,7 +5,13 @@
         >Quel est votre code postal&nbsp;?
         <EnSavoirPlus />
       </label>
-      <input id="cp" v-model="codePostal" type="text" data-type="number" pattern="[0-9]*" />
+      <input
+        id="cp"
+        v-model="codePostal"
+        type="text"
+        data-type="number"
+        pattern="[0-9]*"
+      />
     </div>
 
     <p v-if="retrievingCommunes">
@@ -43,7 +49,7 @@ export default {
   components: {
     Actions,
     WarningMessage,
-    EnSavoirPlus
+    EnSavoirPlus,
   },
   mixins: [DepcomMixin],
   data: function () {
@@ -52,7 +58,7 @@ export default {
       retrievingCommunes: false,
       codePostal: answer ? answer._codePostal : undefined,
       nomCommune: answer ? answer._nomCommune : undefined,
-      communes: []
+      communes: [],
     }
   },
   computed: {
@@ -97,8 +103,7 @@ export default {
       }
       this.$push()
     },
-  
-  }
+  },
 }
 </script>
 

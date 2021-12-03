@@ -58,6 +58,13 @@ export default {
       retrievingCommunes: false,
     }
   },
+  watch: {
+    codePostal: function (cp) {
+      if (cp && cp.length == 5) {
+        this.fetchCommune()
+      }
+    },
+  },
   methods: {
     onSubmit: function () {
       if (!this.nomCommune || !this.codePostal) {

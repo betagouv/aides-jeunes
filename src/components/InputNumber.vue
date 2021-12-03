@@ -3,6 +3,7 @@
     <input
       :id="id"
       v-model.number="result"
+      ref="result"
       v-select-on-click
       type="number"
       :name="name"
@@ -19,21 +20,26 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["id", "name", "modelValue", "min", "max", "step"],
+  props: ["id", "name", "min", "max", "step"],
   emits: ["update:modelValue"],
-  data() {
+  data: function() {
     return {
+      result: this.result || undefined,
       error: false,
     }
   },
+  /*
   computed: {
     result: {
       get: function () {
-        return this.modelValue
+        if (this.modelValue) {
+          return this.modelValue
+        }
+        return undefined
       },
       set: function (value) {
         this.error = false
-        if (value || value === 0) {
+        if (value && value >= 0) {
           this.$emit("update:modelValue", value)
         } else {
           this.error = true
@@ -42,6 +48,18 @@ export default {
       },
     },
   },
+  */
+ watch: {
+   result: function (value) {
+      this.error = false
+      if (value && value >= 0) {
+        this.$emit("update:modelValue", value)
+      } else {
+        this.error = true
+        this.$emit("update:modelValue", 0)
+      }
+    },
+ }
 }
 </script>
 

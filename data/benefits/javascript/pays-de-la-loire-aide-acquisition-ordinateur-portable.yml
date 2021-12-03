@@ -1,0 +1,23 @@
+label: Aide à l'acquisition d'un ordinateur portable
+institution: region_pays_de_la_loire
+description: Pour la rentrée 2021, la Région des Pays de la Loire fournit un
+  ordinateur portable à chaque élève de seconde et de première année de CAP des
+  lycées régionaux publics et privés. Cet outil de travail numérique individuel
+  accompagnera les jeunes tout au long de leur scolarité, puis dans la poursuite
+  de leurs études.
+link: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
+instructions: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
+type: bool
+computesLocally: true
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_1
+          - seconde
+private: true

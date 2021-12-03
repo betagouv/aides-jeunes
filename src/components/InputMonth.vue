@@ -1,5 +1,9 @@
 <template>
-  <InputDate v-model="date" date-type="month" @input="$emit('update:modelValue', date)" />
+  <InputDate
+    v-model="date"
+    date-type="month"
+    @input="$emit('update:modelValue', date)"
+  />
 </template>
 
 <script>

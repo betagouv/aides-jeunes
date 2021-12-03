@@ -22,15 +22,15 @@ export default {
   name: "InputNumber",
   props: ["id", "name", "min", "max", "step", "value"],
   emits: ["update:modelValue"],
-  data: function() {
+  data: function () {
     return {
       result: this.result,
       error: false,
     }
   },
 
- watch: {
-   result: function (value) {
+  watch: {
+    result: function (value) {
       this.error = false
       if (value && value >= 0) {
         this.$emit("update:modelValue", value)
@@ -39,7 +39,7 @@ export default {
         this.$emit("update:modelValue", 0)
       }
     },
- }
+  },
 }
 </script>
 

@@ -1,6 +1,6 @@
 import Individu from "@/../lib/Individu"
 import { capitalize, isRelevant, yearsAgo } from "@/lib/Utils"
-import Scolarite from "./Scolarite"
+import Scolarite from "@/lib/Scolarite"
 
 const loadEntity = (component) => {
   const params = component.params || component.$route.params

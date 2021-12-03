@@ -8,25 +8,6 @@
           v-show="showMenuButton"
         ></MenuButton>
       </div>
-      <div
-        class="aj-category-title-button-desktop"
-        v-if="$store.getters.passSanityCheck"
-      >
-        <button
-          v-if="showMenuButton"
-          class="button outline"
-          v-on:click="goToRecapitulatifPage"
-          >{{
-            isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
-          }}</button
-        >
-        <BackButton
-          v-else
-          @click.native="goBack()"
-          class="recapitulatif-back-button"
-          >Retour</BackButton
-        >
-      </div>
     </div>
   </div>
 </template>
@@ -34,11 +15,10 @@
 <script>
 import Chapters from "@/lib/Chapters"
 import MenuButton from "@/components/Buttons/MenuButton"
-import BackButton from "@/components/Buttons/BackButton"
 
 export default {
   name: "TitreChapitre",
-  components: { MenuButton, BackButton },
+  components: { MenuButton },
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
@@ -69,9 +49,6 @@ export default {
     },
     goToRecapitulatifPage() {
       this.$router.push({ name: "recapitulatif" })
-    },
-    goBack() {
-      window && window.history.back()
     },
   },
 }

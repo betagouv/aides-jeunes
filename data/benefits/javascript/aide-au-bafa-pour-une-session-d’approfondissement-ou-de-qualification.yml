@@ -1,0 +1,18 @@
+label: aide au Bafa pour une session d’approfondissement ou de qualification
+institution: caf_val_de_marne
+description: |-
+  L'aide locale du Val-de-Marne pour une session d’approfondissement
+    ou de qualification vient en complément de l'aide nationale.
+conditions:
+  - |-
+    Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+        d’animateur de centre de vacances et de loisirs (BAFA).
+link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
+teleservice: ""
+form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/demande_daide_bafa.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 100
+conditions_generales: []
+profils: []

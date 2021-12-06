@@ -51,7 +51,7 @@ commands:
     steps:
       - run:
           title: "<< parameters.title >>"
-          command: 'npm run cypress -- --spec cypress/integration/<< parameters.path >>"'
+          command: 'npm run cypress -- --spec "cypress/integration/<< parameters.path >>"'
       - store_artifacts:
           path: cypress/videos
 

@@ -17,9 +17,12 @@ periodicite: null
 legend: ""
 montant: 200
 conditions_generales:
+  - type: regions
+    values:
+      - "84"
   - type: age
     operator: ">="
-    value: 3
+    value: 17
 profils:
   - type: lyceen
     conditions: []

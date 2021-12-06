@@ -19,7 +19,7 @@ prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
-legend: ""
+legend: maximum
 montant: 350
 conditions_generales:
   - type: departements

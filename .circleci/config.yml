@@ -44,18 +44,16 @@ commands:
   cypress:
     description: "Commande pour exécuter un fichier de test cypress et sauvegarder la vidéo."
     parameters:
-      name:
+      title:
         type: string
-        default: ""
       path:
         type: string
-        default: ""
     steps:
       - run:
-        name: "<< parameters.name >>"
-        command: 'npm run cypress -- --spec cypress/integration/<< parameters.path >>"'
+          title: "<< parameters.title >>"
+          command: 'npm run cypress -- --spec cypress/integration/<< parameters.path >>"'
       - store_artifacts:
-        path: cypress/videos
+          path: cypress/videos
 
 jobs:
   install:
@@ -167,39 +165,17 @@ jobs:
             Xvfb :99
           background: true
       - cypress:
-          name: "Test un scénario simple"
+          title: "Test un scénario simple"
           path: "base.spec.js"
       - cypress:
-          name: "Test un scénario d'une personne en situation de handicap"
+          title: "Test un scénario d'une personne en situation de handicap"
           path: "handicap.spec.js"
       - cypress:
-          name: "Test un scénario familial"
+          title: "Test un scénario familial"
           path: "family.spec.js"
       - cypress:
-          name: "Test un scénario d'une personne étudiante"
+          title: "Test un scénario d'une personne étudiante"
           path: "student.spec.js"
-      
-      # - run:
-      #     name: Test un scénario simple
-      #     command: 'npm run cypress -- --spec "cypress/integration/base.spec.js"'
-      # - store_artifacts:
-      #     path: cypress/videos
-      # - run:
-      #     name: Test un scénario d'une personne en situation de handicap
-      #     command: 'npm run cypress -- --spec "cypress/integration/handicap.spec.js"'
-      # - store_artifacts:
-      #     path: cypress/videos
-      # - run:
-      #     name: Test un scénario familial
-      #     command: 'npm run cypress -- --spec "cypress/integration/family.spec.js"'
-      # - store_artifacts:
-      #     path: cypress/videos
-      # - run:
-      #     name: Test un scénario d'une personne étudiante
-      #     command: 'npm run cypress -- --spec "cypress/integration/student.spec.js"'
-      # - store_artifacts:
-      #     path: cypress/videos
-          
       - run:
           name: Stop Xvfb
           command: |

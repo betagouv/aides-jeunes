@@ -1,0 +1,21 @@
+label: aide au Bafa
+institution: region_auvergne_rhone_alpes
+description: Avec le dispositif Pass’Région, la région Auvergne-Rhône-Alpes
+  propose une aide pour financer le Bafa en contrepartie d'heures de bénévolat
+  dans certaines associations. <br>dzadza
+conditions:
+  - être lycéen ou apprenti
+  - s’engager à 35 h de bénévolat dans certaines associations (Restaurants du
+    Cœur, Habitat et Humanisme, ADMR, APF, le Secours Populaire, le Secours
+    Catholique, la ligue Handisport et la ligue Sport adapté, la Croix
+    Rouge,...)
+link: ""
+teleservice: ""
+instructions: https://jeunes.auvergnerhonealpes.fr/223-permis-de-conduire-b-et-bafa-bafd-bnssa.htm
+type: float
+unit: €
+periodicite: null
+legend: ""
+montant: 300
+conditions_generales: []
+profils: []

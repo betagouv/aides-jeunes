@@ -42,29 +42,6 @@
 import Institution from "../lib/Institution"
 export default {
   name: "home",
-  mounted() {
-    const notPrivateBenefit = Institution.benefits.all.filter(
-      (benefit) => !benefit.private
-    )
-    const count = {
-      total: notPrivateBenefit.length,
-      openfisca: notPrivateBenefit.filter((benefit) => !benefit.computesLocally)
-        .length,
-      frontend: notPrivateBenefit.filter((benefit) => benefit.computesLocally)
-        .length,
-      national: notPrivateBenefit.filter(
-        (benefit) => benefit.institution.national
-      ).length,
-      local: notPrivateBenefit.filter(
-        (benefit) => !benefit.institution.national
-      ).length,
-    }
-    console.log(`Nombre d'aide : ${count.total}`)
-    console.log(`Nombre d'aide openfisca : ${count.openfisca}`)
-    console.log(`Nombre d'aide frontend: ${count.frontend}`)
-    console.log(`Nombre d'aide national : ${count.national}`)
-    console.log(`Nombre d'aide local : ${count.local}`)
-  },
   computed: {
     hasExistingSituation: function () {
       return this.$store.getters.passSanityCheck

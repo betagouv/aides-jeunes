@@ -1,6 +1,4 @@
-//import Vue from "vue"
 import { nextTick } from "vue"
-//import Router from "vue-router"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
@@ -102,14 +100,6 @@ const router = createRouter({
                   /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
                 ),
             },
-            // {
-            //   name: "property",
-            //   path: ":property/:subproperty?",
-            //   component: () =>
-            //     import(
-            //       /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
-            //     ),
-            // },
           ],
         },
         {

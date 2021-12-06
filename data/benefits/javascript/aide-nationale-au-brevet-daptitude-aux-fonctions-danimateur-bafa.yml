@@ -20,6 +20,7 @@ form: https://www.caf.fr/sites/default/files/caf/121/Documents/demande_daide_baf
 prefix: l’
 type: float
 unit: €
+periodicite: ponctuelle
 montant: 91
 conditions_generales:
   - type: age

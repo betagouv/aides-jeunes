@@ -1,7 +1,4 @@
-//import Vue from "vue"
-//import Vuex from "vuex"
 import { createStore } from "vuex"
-//Vue.use(Vuex)
 
 import axios from "axios"
 import moment from "moment"
@@ -599,16 +596,3 @@ store.subscribe(
     )
   }
 )
-
-// Replicate strict mode
-// store._vm.$watch(
-//   function () {
-//     return this._data.$$state
-//   },
-//   () => {
-//     if (!store._committing) {
-//       throw "Do not mutate vuex store state outside mutation handlers."
-//     }
-//   },
-//   { deep: true, sync: true }
-// )

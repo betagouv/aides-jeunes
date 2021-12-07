@@ -1,0 +1,26 @@
+label: aide pour une session d’approfondissement ou de qualification au Bafa
+  (CAF de la Loire)
+institution: caf
+description: >
+  L'aide au Bafa pour une session d'approfondissement ou de qualification est
+  une aide locale mise à disposition par la CAF de la Loire pour vous aider à
+  financer votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+    d’animateur de centre de vacances et de loisirs (Bafa).
+teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
+instructions: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
+type: float
+unit: €
+legend: maximum
+montant: 250
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "42"
+profils: []

@@ -1,4 +1,4 @@
-## Cette documentation est technique. Pour plus d'informations sur le [simulateur d'aides pour les jeunes](https://mes-aides.1jeune1solution.beta.gouv.fr), regardez notre [wiki](https://betagouv/aides-jeunes/wiki).
+## Cette documentation est technique. Pour plus d'informations sur le [simulateur d'aides pour les jeunes](https://mes-aides.1jeune1solution.beta.gouv.fr), regardez notre [wiki](https://github.com/betagouv/aides-jeunes/wiki).
 
 > L'interface utilisateur (et le serveur principal) du [simulateur d'aides et de prestations sociales pour les jeunes](https://mes-aides.1jeune1solution.beta.gouv.fr). Il est basé sur simulateur socio-fiscal libre [Openfisca](https://www.openfisca.fr/).
 

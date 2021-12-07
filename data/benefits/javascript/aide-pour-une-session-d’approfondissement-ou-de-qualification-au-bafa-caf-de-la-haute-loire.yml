@@ -1,15 +1,18 @@
 label: aide pour une session d’approfondissement ou de qualification au Bafa
   (CAF de la Haute-Loire)
 institution: caf
-description: >
-  L'aide au Bafa pour une session d'approfondissement ou de qualification est
-  une aide locale mise à disposition par la CAF du Val-de-Marne pour vous aider
-  à financer votre session en complément de  <a target="_blank" rel="noopener"
+description: L'aide au Bafa pour une session d'approfondissement ou de
+  qualification est une aide locale mise à disposition par la CAF du
+  Val-de-Marne pour vous aider à financer votre session en complément de  <a
+  target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  nationale apportée par la CAF</a>.<br><br>
 conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
     d’animateur de centre de vacances et de loisirs (Bafa).
+link: https://www.caf.fr/allocataires/caf-de-la-haute-loire/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa-et-bafd
+form: https://www.caf.fr/sites/default/files/caf/431/FORMULAIRES_ACSO/BAFA-Cerfa11381-02.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-la-haute-loire/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa-et-bafd
 type: float
 unit: €
 periodicite: ponctuelle

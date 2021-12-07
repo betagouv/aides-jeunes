@@ -9,7 +9,7 @@ description: L'aide au Bafa pour une session d'approfondissement ou de
   nationale apportée par la CAF</a>.
 conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
-    d’animateur de centre de vacances et de loisirs (Bafa)
+    d’animateur de centre de vacances et de loisirs (Bafa).
 form: https://www.caf.fr/sites/default/files/caf/031/Enfance%20et%20jeunesse/BAFA/formulaire_demande_bafa_bafd.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 type: float

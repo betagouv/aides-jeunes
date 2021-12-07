@@ -1,0 +1,24 @@
+label: aide au Bafa pour une session d'approfondissement ou de qualification
+  (CAF de la Haute-Savoie)
+institution: caf
+description: L'aide au Bafa pour une session de formation générale est une aide
+  locale mise à disposition par la CAF de la Haute-Savoie pour vous aider à
+  financer votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - >
+    Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+    d’animateur de centre de vacances et de loisirs (Bafa).
+type: float
+unit: €
+legend: maximum
+montant: 108
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "74"
+profils: []

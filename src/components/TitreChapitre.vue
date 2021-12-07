@@ -26,12 +26,6 @@ export default {
     showMenuButton() {
       return this.$route.name !== "recapitulatif"
     },
-    isResultsPage() {
-      return (
-        this.$route.name === "resultats" ||
-        this.$route.name === "resultatsDetails"
-      )
-    },
   },
   methods: {
     getTitleByRoute(route) {

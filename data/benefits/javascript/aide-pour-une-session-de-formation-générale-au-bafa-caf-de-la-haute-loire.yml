@@ -1,0 +1,23 @@
+label: aide pour une session de formation générale au Bafa (CAF de la Haute-Loire)
+institution: caf
+description: L'aide au Bafa pour une session de formation générale est une aide
+  locale mise à disposition par la CAF de la Haute-Loire pour vous aider à
+  financer votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - Dépendre du régime général de la sécurité sociale.
+form: https://www.caf.fr/sites/default/files/caf/431/Offre%20de%20service/FORMULAIRE_%20BAFA%201_CAF43.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-la-haute-loire/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa-et-bafd
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 100
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "43"
+profils: []

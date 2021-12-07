@@ -84,8 +84,6 @@ npm run install-openfisca  # install dependencies
 
 Then, to start the OpenFisca server, simply run `source .venv/bin/activate` followed by `npm run openfisca`.
 
-In order to start a single worker for OpenFisca, you can run `OPENFISCA_WORKERS=1 npm run openfisca`.
-
 OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
 
 ### Development mode

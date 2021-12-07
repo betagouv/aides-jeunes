@@ -13,3 +13,4 @@ unit: €
 floorAt: 1
 entity: individus
 periodicite: mensuelle
+private: true

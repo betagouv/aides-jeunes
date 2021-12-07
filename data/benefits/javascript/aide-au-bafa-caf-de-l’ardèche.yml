@@ -6,9 +6,9 @@ description: La CAF de l'Ardèche peut financer une partie de la session
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.
 conditions:
-  - Avoir déjà suivi la session de formation générale au BAFA
+  - Avoir déjà suivi la session de formation générale au BAFA.
   - |
-    Avoir déjà effectué le stage pratique d'animation
+    Avoir déjà effectué le stage pratique d'animation.
 form: https://www.caf.fr/sites/default/files/caf/078/Documents/demande_daide_bafa.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-ardeche/offre-de-service/enfance-et-jeunesse/le-bafa
 type: float

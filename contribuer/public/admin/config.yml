@@ -164,7 +164,6 @@ fields:
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
     name: link
     widget: string
-    required: false
   field_lien_instructions: &field_lien_instructions
     label: Lien vers des instructions à suivre
     name: instructions

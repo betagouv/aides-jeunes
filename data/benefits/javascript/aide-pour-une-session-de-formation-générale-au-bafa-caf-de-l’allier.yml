@@ -5,11 +5,12 @@ description: >
   à disposition par la CAF de l'Allier pour vous aider à financer votre session
   en complément de <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  nationale apportée par la CAF</a>.<br><br>
 conditions:
   - Etre allocataire de la CAF.
   - |
     Avoir un quotient familial inférieur à 900 €.
+link: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 form: https://www.caf.fr/sites/default/files/caf/031/Enfance%20et%20jeunesse/BAFA/DBAFA.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 type: float

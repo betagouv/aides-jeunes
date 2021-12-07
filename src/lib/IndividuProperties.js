@@ -207,6 +207,21 @@ const STEPS = {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   },
 
+  categorie_salarie: {
+    question: "Êtes-vous alternant dans le secteur public ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Oui",
+        value: "public_non_titulaire",
+      },
+      {
+        label: "Non",
+        value: "prive_non_cadre",
+      },
+    ],
+  },
+
   date_debut_chomage: {
     question: (component) => {
       return `Quand ${Individu.label(

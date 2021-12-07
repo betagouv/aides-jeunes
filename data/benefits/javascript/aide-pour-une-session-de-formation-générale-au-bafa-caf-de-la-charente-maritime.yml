@@ -1,0 +1,43 @@
+label: aide pour une session de formation générale au Bafa (CAF de la
+  Charente-Maritime)
+institution: caf
+description: >
+  L'aide au Bafa pour une session de formation générale est une aide locale mise
+  à disposition par la CAF de la Charente-Maritime pour vous aider à financer
+  votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+
+  <br>
+
+  </br>
+
+  <a target="_blank" rel="noopener" href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf"> Liste des établissements conventionnés
+conditions:
+  - Etre allocataire ou rattaché au dossier allocataire de ses parents.
+  - |
+    Avoir un quotient familial égal ou inférieur à 760 €.
+  - |
+    Effectuer la session de formation auprès d’un organisme conventionné
+  - >
+    Signer la charte d’engagement pour le suivi intégral de la formation (voir
+    avec l'organisme de formation).
+  - |
+    Ne pas être pris en charge à 100 % par un employeur.
+link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
+instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
+type: float
+unit: €
+legend: ""
+montant: 150
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "17"
+profils: []

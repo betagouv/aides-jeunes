@@ -6,10 +6,9 @@ description: >-
   session en complément de  <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.
-
    <br> <br> Pour bénéficier de cette aide, contactez directement la CAF de la Haute-Savoie pour connaître les démarches à suivre. 
 conditions: []
-link: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
+link: ""
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 type: float
 unit: €

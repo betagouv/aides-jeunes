@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import Institution from "../lib/Institution"
 export default {
   name: "home",
   computed: {

@@ -9,9 +9,9 @@ description: >
   nationale apportée par la CAF</a>.
 conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
-    d’animateur de centre de vacances et de loisirs (Bafa)
+    d’animateur de centre de vacances et de loisirs (Bafa).
   - |
-    Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes
+    Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 type: float

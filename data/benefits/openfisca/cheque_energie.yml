@@ -14,4 +14,3 @@ type: float
 unit: "€"
 entity: menages
 periodicite: annuelle
-private: true

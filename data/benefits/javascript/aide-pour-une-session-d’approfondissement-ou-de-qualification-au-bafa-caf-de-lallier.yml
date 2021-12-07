@@ -6,10 +6,11 @@ description: L'aide au Bafa pour une session d'approfondissement ou de
   pour vous aider à financer votre session en complément de  <a target="_blank"
   rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  nationale apportée par la CAF</a>.<br><br>
 conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
     d’animateur de centre de vacances et de loisirs (Bafa).
+link: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 form: https://www.caf.fr/sites/default/files/caf/031/Enfance%20et%20jeunesse/BAFA/formulaire_demande_bafa_bafd.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 type: float

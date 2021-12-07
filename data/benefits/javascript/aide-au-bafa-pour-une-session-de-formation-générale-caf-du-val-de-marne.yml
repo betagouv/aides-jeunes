@@ -4,13 +4,12 @@ description: L'aide au Bafa pour une session de formation générale est une aid
   locale mise à disposition par la CAF du Val-de-Marne pour vous aider à
   financer votre session en complément de <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  nationale apportée par la CAF</a>.<br><br>
 conditions:
-  - |-
-    Vous engagez à achever votre formation dans les délais prévus par la
-        réglementation (30 mois).
+  - Vous engagez à achever votre formation dans les délais prévus par la
+    réglementation (30 mois).
   - Dépendre d’un régime de sécurité sociale autre que le régime agricole.
-link: ""
+link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/BAFA%201%20Lettre%20d%27engagement%20-RAS%2001.09.2019.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 prefix: l’

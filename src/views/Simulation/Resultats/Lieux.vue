@@ -66,16 +66,15 @@ export default {
   },
   mounted: function () {
     const city = this.$store.getters.situation.menage.depcom
-    let types = []
-    Institution.forEachBenefit((benefit, benefitId, provider) => {
-      if (
-        provider.etablissements &&
-        provider.etablissements.length > 0 &&
-        benefitId === this.$route.params.benefit_id
-      ) {
-        types = provider.etablissements
-      }
-    })
+    const benefit = Institution.benefits.all
+      .filter(
+        (benefit) =>
+          benefit.institution.etablissements &&
+          benefit.institution.etablissements.length > 0
+      )
+      .find((benefit) => benefit.id === this.$route.params.benefit_id)
+    const types = benefit ? benefit.institution.etablissements : []
+
     axios
       .get(
         `https://etablissements-publics.api.gouv.fr/v3/communes/${city}/${types.join(

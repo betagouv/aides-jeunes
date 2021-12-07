@@ -42,18 +42,17 @@ export default {
   },
   data: function () {
     let benefitKeyed = {}
-    Institution.forEachBenefit(
-      (benefit, benefitId, provider, providerId, level) => {
-        const benefit_temp = Object.assign(
-          { id: benefitId, provider: { ...provider, id: providerId }, level },
-          benefit
-        )
-        if (benefit_temp.label === "Tarification solidaire transports") {
-          benefit_temp.label = `${benefit_temp.label} - ${provider.label}`
-        }
-        benefitKeyed[benefit_temp.id] = benefit_temp
+    Institution.benefits.all.forEach((benefit) => {
+      const benefit_temp = Object.assign(
+        { level: benefit.institution.level },
+        benefit
+      )
+      if (benefit_temp.label === "Tarification solidaire transports") {
+        benefit_temp.label = `${benefit_temp.label} - ${benefit.institution.label}`
       }
-    )
+      benefitKeyed[benefit_temp.id] = benefit_temp
+    })
+
     return {
       benefitKeyed,
       resultatsInattendus: RESULTATS_INATTENDUS,

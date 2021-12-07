@@ -210,21 +210,18 @@ export default {
   data: function () {
     let benefitKeyed = {}
     let benefits = []
-    Institution.forEachBenefit(
-      (benefit, benefitId, provider, providerId, level) => {
-        const b = Object.assign(
-          { id: benefitId, provider: { ...provider, id: providerId }, level },
-          benefit
-        )
-        b.label = capitalize(benefit.label)
 
-        if (b.label === "Tarification solidaire transports") {
-          b.label = `${b.label} - ${provider.label}`
-        }
-        benefits.push(b)
-        benefitKeyed[b.id] = b
+    Institution.benefits.all.forEach((benefit) => {
+      const b = Object.assign({ level: benefit.institution.level }, benefit)
+      b.label = capitalize(benefit.label)
+
+      if (b.label === "Tarification solidaire transports") {
+        b.label = `${b.label} - ${benefit.institution.label}`
       }
-    )
+      benefits.push(b)
+      benefitKeyed[b.id] = b
+    })
+
     benefits = sortBy(benefits, "label")
     return {
       benefits,
@@ -240,10 +237,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: {
-        ...Institution.partenairesLocaux,
-        ...Institution.prestationsNationales,
-      },
+      institutions: Institution.benefits.groupByInstitution,
     }
   },
   computed: {
@@ -334,9 +328,9 @@ export default {
     },
     async fetchBenefit(fileAttribute) {
       const benefit = await getGithubPRFiles(fileAttribute)
-      const provider = this.institutions[benefit.institution]
-      if (provider) {
-        benefit.provider = Object.assign({}, provider)
+      const institution = this.institutions[benefit.institution]
+      if (institution) {
+        benefit.institution = Object.assign({}, institution)
         this.benefits.push(benefit)
         this.benefitKeyed[benefit.id] = benefit
       }

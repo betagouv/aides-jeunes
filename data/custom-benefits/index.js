@@ -89,7 +89,7 @@ const customBenefits = {
             "https://www.paris.fr/rsa#ou-et-comment-faire-une-demande-de-rsa_6",
         },
         M200046977: {
-          provider: {
+          institution: {
             imgSrc: "logo_lyon_metropole.png",
           },
           link: "https://www.grandlyon.com/services/rsa-mode-d-emploi.html",

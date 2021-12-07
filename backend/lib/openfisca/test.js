@@ -50,18 +50,20 @@ const EXTENSION_VARIABLES = {
   },
 }
 
-benefits.forEach((benefit, benefitId, institution) => {
-  if (!benefit.computesLocally && institution.repository) {
-    const repository = "openfisca-" + institution.repository
+benefits.all
+  .filter(
+    (benefit) => !benefit.computesLocally && benefit.institution.repository
+  )
+  .forEach((benefit) => {
+    const repository = "openfisca-" + benefit.institution.repository
     const entity = benefit.entity
 
     if (!EXTENSION_VARIABLES[repository][entity]) {
-      throw `Missing mapping for ${benefitId} in ${repository}/${entity}.`
+      throw `Missing mapping for ${benefit.id} in ${repository}/${entity}.`
     }
 
-    EXTENSION_VARIABLES[repository][entity].push(benefitId)
-  }
-})
+    EXTENSION_VARIABLES[repository][entity].push(benefit.id)
+  })
 
 function prepareTestSituationForSpecificExtension(situation, extension) {
   forEach(EXTENSION_VARIABLES, function (specificVariables, extensionName) {

@@ -96,13 +96,13 @@ describe("computeAides", function () {
       })
       expect(css).toBeTruthy()
       expect(css.montant).toEqual(10)
-      expect(css.provider.label).toEqual("Assurance maladie")
+      expect(css.institution.label).toEqual("Assurance maladie")
 
       const plf = droits.droitsEligibles.find(function (element) {
         return element.id === "paris_logement_familles"
       })
       expect(plf).toBeTruthy()
-      expect(plf.provider.label).toEqual("Ville de Paris")
+      expect(plf.institution.label).toEqual("Ville de Paris")
       expect(plf.montant).toEqual(10)
     })
   })
@@ -145,7 +145,7 @@ describe("computeAides", function () {
     it("should exclude local partenaire without prestation", function () {
       expect(
         droits.droitsEligibles.filter(function (p) {
-          return p.provider.label == "Rennes Métropole"
+          return p.institution.label == "Rennes Métropole"
         }).length
       ).toBeFalsy()
     })

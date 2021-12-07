@@ -11,7 +11,7 @@
       >
         <img
           class="aj-aide-illustration"
-          v-bind:src="require(`./../../public/img/${droit.provider.imgSrc}`)"
+          v-bind:src="require(`./../../public/img/${droit.institution.imgSrc}`)"
           v-bind:alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
@@ -37,7 +37,7 @@
         </div>
       </router-link>
     </div>
-    <div v-if="ineligible">
+    <div v-else>
       <a
         v-for="(droit, index) in list"
         class="droits-list-item"
@@ -57,7 +57,7 @@
           <div class="droits-list-item-cell-left">
             <img
               v-bind:src="
-                require(`./../../public/img/${droit.provider.imgSrc}`)
+                require(`./../../public/img/${droit.institution.imgSrc}`)
               "
               v-bind:alt="'Icone pour' + droit.label"
             />

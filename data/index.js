@@ -2,15 +2,15 @@
 
 const customBenefits = require("./custom-benefits/index")
 
-const LEVELS = ["prestationsNationales", "partenairesLocaux"]
-
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
     const item = {
+      id: data.slug,
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
       prestations: {},
       national: data.national,
+      level: data.national ? "prestationsNationales" : "partenairesLocaux",
       repository: data.repository || (data.national ? null : "france-local"),
       etablissements: data.etablissements,
     }
@@ -19,30 +19,10 @@ function transformInstitutions(collection) {
   }, {})
 }
 
-/**
- * This function iterates over the nested benefits, and executes a callback.
- * The callback is called with 4 parameters:
- * - benefit: the benefit object
- * - benefitId: the benefit id
- * - provider: the benefit provider id
- * - providerId: the benefit provider id
- */
-function forEachFactory(obj) {
-  return function forEach(cb) {
-    LEVELS.map((aidesProviderLevel) => {
-      let aidesProviders = obj[aidesProviderLevel]
-      Object.keys(aidesProviders).map((aidesProviderId) => {
-        let aidesProvider = aidesProviders[aidesProviderId]
-        Object.keys(aidesProvider.prestations).map((aideId) => {
-          let aide = aidesProvider.prestations[aideId]
-          cb(aide, aideId, aidesProvider, aidesProviderId, aidesProviderLevel)
-        })
-      })
-    })
-  }
-}
+function setDefaults(benefit, national) {
+  const top = national ? 1 : 5
 
-function setDefaults(benefit, top) {
+  benefit.id = benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
   return benefit
@@ -63,24 +43,16 @@ function generate(collections, customBenefits) {
 
   benefits.forEach((benefit) => {
     const institution = institutions[benefit.institution]
-    institution.prestations[benefit.slug] = setDefaults(
-      benefit,
-      institution.national ? 1 : 5
-    )
+    benefit = setDefaults(benefit, institution.national)
+    institution.prestations[benefit.slug] = { ...benefit }
+    benefit.institution = institution
   })
 
   const result = {
-    prestationsNationales: {},
-    partenairesLocaux: {},
+    all: benefits,
+    groupByInstitution: institutions,
   }
-  Object.entries(institutions).forEach(([institutionId, institution]) => {
-    const level = institution.national
-      ? "prestationsNationales"
-      : "partenairesLocaux"
-    result[level][institutionId] = institution
-  })
 
-  result.forEach = forEachFactory(result)
   return result
 }
 

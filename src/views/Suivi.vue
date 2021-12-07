@@ -36,7 +36,7 @@
                   <img
                     class="aj-droit-illustration"
                     v-bind:src="
-                      require(`./../../public/img/${droit.provider.imgSrc}`)
+                      require(`./../../public/img/${droit.institution.imgSrc}`)
                     "
                     v-bind:alt="droit.label"
                   />
@@ -185,30 +185,22 @@ export default {
       .then((response) => {
         this.followup = response.data
         let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
-        let benefitsNormalized = []
 
-        Institution.forEachBenefit(
-          (benefit, benefitId, provider, providerId) => {
-            if (!benefitsIds.includes(benefitId)) {
-              return
-            }
-
+        const benefitsNormalized = Institution.benefits.all
+          .filter((benefit) => benefitsIds.includes(benefit.id))
+          .map((benefit) => {
             let montant = this.followup.benefits.find(
-              (benefit) => benefit.id === benefitId
+              (followupBenefit) => followupBenefit.id === benefit.id
             ).amount
 
-            benefitsNormalized.push({
+            return {
               ...benefit,
-              id: benefitId,
               montant: montant,
-              provider: provider,
-              providerId: providerId,
               choices: choices,
               choiceValue: null,
               choiceComments: "",
-            })
-          }
-        )
+            }
+          })
 
         this.droits = benefitsNormalized
       })

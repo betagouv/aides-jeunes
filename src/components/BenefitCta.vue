@@ -12,8 +12,8 @@
     <router-link
       class="button primary"
       v-if="
-        benefit.provider.etablissements &&
-        benefit.provider.etablissements.length > 0
+        benefit.institution.etablissements &&
+        benefit.institution.etablissements.length > 0
       "
       v-analytics="{
         name: benefit.label,

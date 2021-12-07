@@ -95,6 +95,15 @@ cd (...)/openfisca-france
 pip install --editable .
 ```
 
+## Test in production mode
+
+If you want to test locally the app in production mode:
+
+```sh
+npm run build
+npm run start
+```
+
 ## Usage
 
 First, start a Mongo server:

@@ -39,54 +39,8 @@
 </template>
 
 <script>
-import Institution from "../lib/Institution"
-import reduce from "lodash/reduce"
-import size from "lodash/size"
-import filter from "lodash/filter"
-import mapValues from "lodash/mapValues"
-
 export default {
   name: "home",
-  data: () => {
-    let value = {}
-    const types = ["prestationsNationales", "partenairesLocaux"]
-    types.forEach(function (type) {
-      let providersWithoutPrivatePrestations = mapValues(
-        Institution[type],
-        function (provider) {
-          provider = { ...provider }
-          provider.prestations = reduce(
-            provider.prestations,
-            function (prestations, prestation, name) {
-              if (!prestation.private) {
-                prestations[name] = prestation
-              }
-
-              return prestations
-            },
-            {}
-          )
-          return provider
-        }
-      )
-
-      value[type] = filter(
-        providersWithoutPrivatePrestations,
-        function (provider) {
-          return size(provider.prestations)
-        }
-      )
-      value[type + "Count"] = Object.keys(value[type]).reduce(function (
-        total,
-        provider
-      ) {
-        return total + size(value[type][provider].prestations)
-      },
-      0)
-    })
-
-    return value
-  },
   computed: {
     hasExistingSituation: function () {
       return this.$store.getters.passSanityCheck

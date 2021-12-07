@@ -492,7 +492,7 @@ const store = new Vuex.Store({
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
-          return computeAides.bind(Institution)(
+          return computeAides.bind(Institution.benefits)(
             store.getters.situation,
             store.state.situationId,
             openfiscaResponse,

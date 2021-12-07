@@ -1,35 +1,30 @@
-import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-import * as benefits from "@/../data"
 import BenefitsCategories from "@/lib/BenefitsCategories"
+import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
+import { generate } from "@/../data"
 
-const Institution = benefits.generate(jamstack)
-Institution.forEachBenefit = Institution.forEach
+const Institution = {
+  benefits: generate(jamstack),
+}
 
 Institution.mockResults = function (sublist) {
   let filterSublist
   if (sublist) {
     filterSublist = BenefitsCategories[sublist] || sublist.split(",")
   }
-  const list = []
 
   const defaults = {
     bool: true,
     float: 1,
   }
 
-  Institution.forEachBenefit((aide, aideId, aidesProvider, aidesProviderId) => {
-    const addition = Object.assign({}, aide, {
-      id: aideId,
-      montant: aide.montant || defaults[aide.type || "float"],
-      provider: aidesProvider,
-      providerId: aidesProviderId,
-      mock: true,
+  const list = Institution.benefits.all
+    .filter((benefit) => !filterSublist || filterSublist.includes(benefit.id))
+    .map((benefit) => {
+      return Object.assign({}, benefit, {
+        montant: benefit.montant || defaults[benefit.type || "float"],
+        mock: true,
+      })
     })
-
-    if (!filterSublist || filterSublist.includes(aideId)) {
-      list.push(addition)
-    }
-  })
 
   return {
     droitsEligibles: list,

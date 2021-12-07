@@ -1,7 +1,7 @@
 const moment = require("moment")
 const assign = require("lodash/assign")
 
-const { forEach } = require("../../../../data/all")
+const benefits = require("../../../../data/all")
 const { generator } = require("../../../../lib/Dates")
 const {
   CONDITION_STATEGY,
@@ -60,24 +60,22 @@ function appendExtraVariables(requestedVariables, extraVariables) {
 }
 
 let requestedVariables = {}
-forEach((aide, aideId) => {
-  if (aide.computesLocally) {
-    return
-  }
+benefits.all
+  .filter((benefit) => !benefit.computesLocally)
+  .forEach((benefit) => {
+    const item = benefit.openfisca_eligibility_source || benefit.id
+    requestedVariables[item] = requestedVariables[item] || assign({}, benefit)
+    if (benefit.uncomputability) {
+      requestedVariables[benefit.id + "_non_calculable"] = assign({}, benefit, {
+        type: "string",
+      })
+    }
 
-  const item = aide.openfisca_eligibility_source || aideId
-  requestedVariables[item] = requestedVariables[item] || assign({}, aide)
-  if (aide.uncomputability) {
-    requestedVariables[aideId + "_non_calculable"] = assign({}, aide, {
-      type: "string",
-    })
-  }
-
-  // Ajoute des variables dans la liste des paramètres à retourner par openfisca
-  if (aide.extra) {
-    appendExtraVariables(requestedVariables, aide.extra)
-  }
-})
+    // Ajoute des variables dans la liste des paramètres à retourner par openfisca
+    if (benefit.extra) {
+      appendExtraVariables(requestedVariables, benefit.extra)
+    }
+  })
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
 Object.values(CONDITION_STATEGY).forEach((condition) => {

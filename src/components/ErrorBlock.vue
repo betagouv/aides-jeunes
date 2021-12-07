@@ -37,6 +37,7 @@
         Afficher les détails techniques
       </button>
     </div>
+    <pre v-html="errorText"></pre>
     <small v-if="showDetails">
       Informations techniques :
       <pre v-html="errorText"></pre>
@@ -65,7 +66,9 @@ export default {
         : JSON.stringify(value, null, 2)
     },
     isTimeoutError: function () {
-      return this.errorText && this.errorText.match(/time.?out/i)
+      return (
+        this.errorText instanceof String && this.errorText.match(/time.?out/i)
+      )
     },
     resultats: function () {
       return this.$store.state.calculs.resultats

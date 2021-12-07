@@ -1,0 +1,17 @@
+label: aide pour une session de formation générale au Bafa (CAF du Puy-de-Dôme)
+institution: caf
+description: L'aide au Bafa pour une session de formation générale est une aide
+  locale mise à disposition par la CAF du Puy-de-Dôme pour vous aider à financer
+  votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - Etre inscrit à la session de formation générale BAFA.
+form: https://www.caf.fr/sites/default/files/caf/631/Documents/Partenaires/BAFA_mai%20_2021.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-puy-de-dome/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 100
+conditions_generales: []
+profils: []

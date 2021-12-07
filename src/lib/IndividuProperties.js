@@ -208,7 +208,7 @@ const STEPS = {
   },
 
   categorie_salarie: {
-    question: "Êtes-vous alternant dans le secteur publique ?",
+    question: "Êtes-vous alternant dans le secteur public ?",
     questionType: "enum",
     items: [
       {

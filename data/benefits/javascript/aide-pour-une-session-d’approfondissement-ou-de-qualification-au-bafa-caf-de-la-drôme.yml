@@ -6,12 +6,13 @@ description: >
   une aide locale mise à disposition par la CAF de la Drôme pour vous aider à
   financer votre session en complément de  <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  nationale apportée par la CAF</a>.<br><br>
 conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
     d’animateur de centre de vacances et de loisirs (Bafa).
   - |
     Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
+link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 type: float

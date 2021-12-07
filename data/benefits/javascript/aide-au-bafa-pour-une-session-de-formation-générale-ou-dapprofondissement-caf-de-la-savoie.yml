@@ -1,0 +1,33 @@
+label: aide au Bafa pour une session de formation générale ou
+  d'approfondissement (CAF de la Savoie)
+institution: caf
+description: L'aide au Bafa pour une session de formation générale ou
+  d'approfondissement est une aide locale mise à disposition par la CAF de la
+  Savoie pour vous aider à financer votre session en complément de  <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - "être allocataire de la CAF ou être la ou le conjoint.e d'un.e allocataire
+    de la CAF. "
+  - suivre une formation assurée par un organisme de formation à but non
+    lucratif habilité par le ministère de la Jeunesse, des Sports et de la Vie
+    Associative.
+link: https://www.caf.fr/allocataires/caf-de-la-savoie/offre-de-service-0/enfance-et-jeunesse/les-aides-a-la-formation-au-bafa-bafd
+form: https://www.caf.fr/sites/default/files/caf/731/Documents/bafa_bafd/BAFA%20convention%202017.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-la-savoie/offre-de-service-0/enfance-et-jeunesse/les-aides-a-la-formation-au-bafa-bafd
+type: float
+unit: €
+legend: maximum
+montant: 350
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "73"
+profils: []

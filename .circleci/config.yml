@@ -123,6 +123,7 @@ jobs:
           command: npm run test
   test_e2e:
     <<: *defaults
+    parallelism: 4
     steps:
       - checkout
       - attach_workspace:

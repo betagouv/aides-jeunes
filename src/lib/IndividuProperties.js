@@ -594,7 +594,7 @@ const STEPS = {
   },
 
   _interetBafa: {
-    question: "Prévoyez-vous de passer le BAFA ou le BAFD ?",
+    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   },
 
   _interetEtudesEtranger: {

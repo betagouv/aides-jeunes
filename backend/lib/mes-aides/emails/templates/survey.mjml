@@ -9,13 +9,13 @@
       <mj-column width="40%">
         <mj-image
           alt="Logo Marianne de la République Française"
-          src="{{&baseURL}}/img/logo_rf.svg"
+          src="{{&baseURL}}/img/logo_rf.png"
         />
       </mj-column>
       <mj-column width="40%">
         <mj-image
           alt="Logo de 1jeune1solution.gouv.fr"
-          src="{{&baseURL}}/img/logo1j1s-france-relance.svg"
+          src="{{&baseURL}}/img/logo1j1s-france-relance.png"
         />
       </mj-column>
     </mj-section>

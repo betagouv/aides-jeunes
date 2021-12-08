@@ -11,14 +11,14 @@
           <mj-image
             padding-left="0px"
             alt="Logo Marianne de la République Française"
-            src="{{&baseURL}}/img/logo_rf.svg"
+            src="{{&baseURL}}/img/logo_rf.png"
           />
         </mj-column>
         <mj-column>
           <mj-image
             padding-right="0px"
             alt="Logo de 1jeune1solution.gouv.fr"
-            src="{{&baseURL}}/img/logo1j1s-france-relance.svg"
+            src="{{&baseURL}}/img/logo1j1s-france-relance.png"
           />
         </mj-column>
       </mj-group>

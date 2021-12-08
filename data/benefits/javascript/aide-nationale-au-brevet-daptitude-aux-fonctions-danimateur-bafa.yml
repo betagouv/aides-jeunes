@@ -19,6 +19,7 @@ instructions: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/
 prefix: l’
 type: float
 unit: €
+periodicite: ponctuelle
 legend: maximum
 montant: 106
 conditions_generales:

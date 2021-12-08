@@ -180,18 +180,14 @@ jobs:
           keys:
             - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - *start_xvfb
-      - cypress:
-          title: "Test un scénario simple"
-          path: "base.spec.js"
-      - cypress:
-          title: "Test un scénario d'une personne en situation de handicap"
-          path: "handicap.spec.js"
-      - cypress:
-          title: "Test un scénario familial"
-          path: "family.spec.js"
-      - cypress:
-          title: "Test un scénario d'une personne étudiante"
-          path: "student.spec.js"
+      - run:
+          name: Run Cypress tests
+          requires: start_xvfb
+          command: |
+            set -e
+            TEST_FILES=$(circleci tests glob "cypress/integration/**/*.spec.js" | circleci tests split --split-by=timings)
+            mkdir -p test-results
+            npm run cypress -- --spec "$TEST_FILES"
       - store_artifacts:
           requires: cypress
           path: cypress/videos

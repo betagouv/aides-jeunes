@@ -21,6 +21,7 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 350
+interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:

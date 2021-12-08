@@ -32,6 +32,7 @@
       <DroitsDetails
         v-if="droit"
         :droit="droit"
+        :droits="droits"
         :city="situation.menage.depcom"
         :patrimoine-captured="patrimoineCaptured"
         :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"

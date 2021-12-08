@@ -33,6 +33,7 @@
               v-bind:analytics-name="droit.label"
               v-bind:link="droit.link"
               v-bind:benefit="droit"
+              v-bind:benefitsTotal="droits.length"
               type="link"
               level="'inline'"
               itemprop="termsOfService"
@@ -119,6 +120,7 @@
           <BenefitCta
             class="aj-droit-content-buttons-cta"
             v-bind:benefit="droit"
+            v-bind:benefitsTotal="droits.length"
           ></BenefitCta>
 
           <a
@@ -168,6 +170,7 @@ export default {
   name: "DroitsDetails",
   props: {
     droit: Object,
+    droits: Array,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },

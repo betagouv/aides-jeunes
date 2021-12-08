@@ -2,7 +2,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (benefits, event = "displayed") {
+    sendStatistics: function (benefits, event = "displayed", benefitsTotal) {
       const id = this && this.$matomo ? this.$matomo.getVisitorId() : undefined
       if (benefits && benefits.length) {
         const benefitsStats = []
@@ -12,7 +12,7 @@ export default {
             benefit_id: droit.id,
             hash_id: id || uuid,
             benefit_index: i + 1,
-            page_total: totalResults,
+            page_total: benefitsTotal || totalResults,
             event_type: event,
           })
         })

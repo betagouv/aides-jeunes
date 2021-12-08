@@ -5,6 +5,7 @@
       v-bind:key="index"
       v-bind:analytics-name="benefit.label"
       v-bind:benefit="benefit"
+      v-bind:benefitsTotal="benefitsTotal"
       v-bind:link="cta.link"
       v-bind:type="cta.type"
       v-bind:level="levels[index]"
@@ -38,6 +39,7 @@ export default {
   name: "BenefitCta",
   props: {
     benefit: Object,
+    benefitsTotal: Number
   },
   components: {
     BenefitCtaLink,

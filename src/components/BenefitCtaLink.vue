@@ -64,7 +64,7 @@ export default {
       return link
     },
     onClick: function (link) {
-      const id = this.matomo ? this.$matomo.getVisitorId() : undefined
+      const id = this.$matomo ? this.$matomo.getVisitorId() : undefined
       this.sendStatistics([this.benefit], id, "clicked")
       if (typeof link === "object") {
         window.localStorage.setItem(

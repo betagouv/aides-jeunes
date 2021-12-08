@@ -593,6 +593,10 @@ const STEPS = {
     unit: "mois",
   },
 
+  _interetBafa: {
+    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
+  },
+
   _interetEtudesEtranger: {
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",

@@ -94,6 +94,7 @@ const individu = Object.assign(
     enfant_a_charge: Object,
     enfant_place: Boolean,
     _firstName: String,
+    _interetBafa: Boolean,
     _interetEtudesEtranger: Boolean,
     _interetPermisDeConduire: Boolean,
     garde_alternee: Boolean,

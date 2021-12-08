@@ -16,6 +16,7 @@ type: float
 unit: €
 periodicite: ponctuelle
 montant: 100
+interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:

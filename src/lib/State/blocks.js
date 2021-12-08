@@ -258,6 +258,7 @@ function extraBlock() {
         situation.enfants.find((enfant) => enfant.id === id)) ||
       {},
     steps: [
+      s("_interetBafa", "projets"),
       s("_interetPermisDeConduire", "projets"),
       {
         isActive: (subject) => subject.annee_etude == "terminale",

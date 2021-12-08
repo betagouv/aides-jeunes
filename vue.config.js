@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-const { animation, baseURL, matomo } = require("./backend/config")
+const { animation, baseURL, matomo, statistics } = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")
@@ -14,6 +14,8 @@ process.env.VUE_APP_VALIDATION_DELAY = (animation && animation.delay) || 0
 process.env.VUE_APP_BASE_URL = baseURL
 process.env.VUE_APP_CONTEXT = process.env.CONTEXT
 process.env.VUE_APP_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
+process.env.VUE_APP_STATS_URL = statistics.url
+;("")
 
 module.exports = {
   configureWebpack: (config) => {

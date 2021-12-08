@@ -21,6 +21,11 @@ const all = {
   matomo: {
     id: 165,
   },
+  statistics: {
+    url:
+      process.env.VUE_APP_STATS_URL ||
+      "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
+  },
   mongo: {
     uri: process.env.MONGODB_URL || "mongodb://localhost/dds",
     options: {

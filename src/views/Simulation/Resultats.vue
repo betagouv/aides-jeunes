@@ -175,8 +175,6 @@ export default {
         }
       }
     })
-
-    
   },
   beforeDestroy: function () {
     this.stopSubscription && this.stopSubscription()

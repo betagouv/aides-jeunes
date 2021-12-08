@@ -66,6 +66,17 @@ describe("computeAides", function () {
     expect(testProfileEligibility({}, { situation: {} })).toBe(true)
   })
 
+  it("test when profils are empty ", function () {
+    expect(
+      testProfileEligibility(
+        {
+          profils: [],
+        },
+        { situation: {} }
+      )
+    ).toBe(true)
+  })
+
   it("test an situation with ineligible profile", function () {
     expect(testProfileEligibility(benefit, { situation })).toBe(false)
   })

@@ -1,4 +1,8 @@
 const uuid = `uid_${Math.random().toString(12).slice(2)}`
+const url =
+  process.env.VUE_APP_STATS_URL ||
+  "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits"
+
 export default {
   methods: {
     sendStatistics: (benefits, id, event = "display") => {
@@ -14,14 +18,11 @@ export default {
             event_type: event,
           })
         })
-        fetch(
-          "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(benefitsStats),
-          }
-        ).catch((error) => console.error(error))
+        fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(benefitsStats),
+        }).catch((error) => console.error(error))
       }
     },
   },

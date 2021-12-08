@@ -26,26 +26,9 @@ install_virtualenv: &install_virtualenv
       python3 get-pip.py
       pip3 install virtualenv
 
-start_openfisca: &start_openfisca
-  run:
-    name: Start OpenFisca
-    requires: install_virtualenv
-    command: |
-      source .venv/bin/activate
-      gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
-      deactivate
-    background: true
-
-wait_for_openfisca: &wait_for_openfisca
-  run:
-    name: Wait for OpenFisca
-    requires: install_virtualenv
-    command: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
-
 start_mes_aides: &start_mes_aides
   run:
     name: Start Mes Aides
-    requires: wait_for_openfisca
     command: |
       cp backend/config/continuous_integration.js backend/config/production.js
       npm start
@@ -54,32 +37,9 @@ start_mes_aides: &start_mes_aides
 wait_for_mes_aides: &wait_for_mes_aides
   run:
     name: Wait for Mes Aides
-    requires: start_mes_aides
     command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
 
-start_xvfb: &start_xvfb
-  run:
-    name: Start Xvfb
-    requires: wait_for_mes_aides
-    command: |
-      Xvfb :99
-    background: true
-
 version: 2.1
-commands:
-  cypress:
-    description: "Commande pour exécuter un fichier de test cypress et sauvegarder la vidéo."
-    parameters:
-      title:
-        type: string
-      path:
-        type: string
-    steps:
-      - run:
-          title: "<< parameters.title >>"
-          requires: start_xvfb
-          command: 'npm run cypress -- --spec "cypress/integration/<< parameters.path >>"'
-
 jobs:
   install:
     <<: *defaults
@@ -163,37 +123,43 @@ jobs:
           command: npm run test
   test_e2e:
     <<: *defaults
-    parallelism: 4
     steps:
       - checkout
       - attach_workspace:
-          requires: checkout
           at: ~/mes-aides-ui
       - *install_virtualenv
-      - *start_openfisca
-      - *wait_for_openfisca
+      - run:
+          name: Start OpenFisca
+          command: |
+            source .venv/bin/activate
+            gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+            deactivate
+          background: true
+      - run:
+          name: Wait for OpenFisca
+          command: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
       - *start_mes_aides
       - *wait_for_mes_aides
       - restore_cache:
           name: Restoring node_modules
-          requires: wait_for_mes_aides
           keys:
             - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - *start_xvfb
+      - run:
+          name: Start Xvfb
+          command: |
+            Xvfb :99
+          background: true
       - run:
           name: Run Cypress tests
-          requires: start_xvfb
           command: |
             set -e
             TEST_FILES=$(circleci tests glob "cypress/integration/**/*.spec.js" | circleci tests split --split-by=timings)
             mkdir -p test-results
             npm run cypress -- --spec "$TEST_FILES"
       - store_artifacts:
-          requires: cypress
           path: cypress/videos
       - run:
           name: Stop Xvfb
-          requires: store_artifacts
           command: |
             pkill Xvfb
   test_openfisca_test_generation:

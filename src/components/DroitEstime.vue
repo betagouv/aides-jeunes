@@ -41,7 +41,7 @@ import { formatDroitEstime } from "@/../lib/Benefits/Details"
 export default {
   name: "DroitEstime",
   props: {
-    droit: Object
+    droit: Object,
   },
   computed: {
     droitEstime: function () {

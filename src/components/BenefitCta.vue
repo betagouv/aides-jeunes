@@ -39,7 +39,7 @@ export default {
   name: "BenefitCta",
   props: {
     benefit: Object,
-    benefitsTotal: Number
+    benefitsTotal: Number,
   },
   components: {
     BenefitCtaLink,

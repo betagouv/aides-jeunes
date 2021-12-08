@@ -302,6 +302,27 @@ fields:
             types:
               - *field_age
               - *field_boursier
+              - label: Année d'étude
+                name: annee_etude
+                widget: object
+                fields:
+                  - label: Valeurs
+                    name: values
+                    widget: select
+                    multiple: true
+                    options:
+                      - label: CAP - 1ère année
+                        value: cap_1
+                      - label: CAP - 2ème année
+                        value: cap_2
+                      - label: Seconde
+                        value: seconde
+                      - label: Première
+                        value: premiere
+                      - label: Terminale
+                        value: terminale
+                      - label: Autre
+                        value: autre
       - label: Étudiant
         name: etudiant
         widget: object
@@ -316,6 +337,49 @@ fields:
               - *field_age
               - *field_boursier
               - *field_mention_baccalaureat
+              - label: Année d'étude
+                name: annee_etude
+                widget: object
+                fields:
+                  - label: Valeurs
+                    name: values
+                    widget: select
+                    multiple: true
+                    options:
+                      - label: CAP - 1ère année
+                        value: cap_1
+                      - label: CAP - 2ème année
+                        value: cap_2
+                      - label: Seconde
+                        value: seconde
+                      - label: Première
+                        value: premiere
+                      - label: Terminale
+                        value: terminale
+                      - label: BTS
+                        value: bts_1
+                      - label: BUT
+                        value: but_1
+                      - label: CPGE
+                        value: cpge_1
+                      - label: Licence - 1ère année
+                        value: licence_1
+                      - label: Licence - 2ème année
+                        value: licence_2
+                      - label: Licence - 3ème année
+                        value: licence_3
+                      - label: Master - 1ère année
+                        value: master_1
+                      - label: Master - 2ème année
+                        value: master_2
+                      - label: Doctorat - 1ère année
+                        value: doctorat_1
+                      - label: Doctorat - 2ème année
+                        value: doctorat_2
+                      - label: Doctorat - 3ème année
+                        value: doctorat_3
+                      - label: Autre
+                        value: autre
       - label: Apprenti
         name: apprenti
         widget: object

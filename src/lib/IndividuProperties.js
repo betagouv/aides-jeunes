@@ -94,18 +94,28 @@ const STEPS = {
     items: (component) => {
       return [
         {
-          value: "seconde",
+          label: "CAP - 1ère année",
+          value: "cap_1",
+          only: "lycee",
+        },
+        {
+          label: "CAP - 2ème année",
+          value: "cap_2",
+          only: "lycee",
+        },
+        {
           label: "Seconde",
+          value: "seconde",
           only: "lycee",
         },
         {
-          value: "premiere",
           label: "Première",
+          value: "premiere",
           only: "lycee",
         },
         {
-          value: "terminale",
           label: "Terminale",
+          value: "terminale",
           only: "lycee",
         },
         {
@@ -167,7 +177,7 @@ const STEPS = {
           label: "Autre",
           value: "autre",
         },
-      ].filter((item) => !item.only || item.only == component.entity.scolarite)
+      ].filter((item) => !item.only || item.only === component.entity.scolarite)
     },
   },
 

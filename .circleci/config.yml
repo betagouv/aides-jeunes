@@ -26,9 +26,26 @@ install_virtualenv: &install_virtualenv
       python3 get-pip.py
       pip3 install virtualenv
 
+start_openfisca: &start_openfisca
+  run:
+    name: Start OpenFisca
+    requires: install_virtualenv
+    command: |
+      source .venv/bin/activate
+      gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+      deactivate
+    background: true
+
+wait_for_openfisca: &wait_for_openfisca
+  run:
+    name: Wait for OpenFisca
+    requires: install_virtualenv
+    command: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
+
 start_mes_aides: &start_mes_aides
   run:
     name: Start Mes Aides
+    requires: wait_for_openfisca
     command: |
       cp backend/config/continuous_integration.js backend/config/production.js
       npm start
@@ -37,7 +54,16 @@ start_mes_aides: &start_mes_aides
 wait_for_mes_aides: &wait_for_mes_aides
   run:
     name: Wait for Mes Aides
+    requires: start_mes_aides
     command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
+
+start_xvfb: &start_xvfb
+  run:
+    name: Start Xvfb
+    requires: wait_for_mes_aides
+    command: |
+      Xvfb :99
+    background: true
 
 version: 2.1
 commands:
@@ -51,9 +77,8 @@ commands:
     steps:
       - run:
           title: "<< parameters.title >>"
+          requires: start_xvfb
           command: 'npm run cypress -- --spec "cypress/integration/<< parameters.path >>"'
-      - store_artifacts:
-          path: cypress/videos
 
 jobs:
   install:
@@ -138,32 +163,23 @@ jobs:
           command: npm run test
   test_e2e:
     <<: *defaults
+    parallelism: 4
     steps:
       - checkout
       - attach_workspace:
+          requires: checkout
           at: ~/mes-aides-ui
       - *install_virtualenv
-      - run:
-          name: Start OpenFisca
-          command: |
-            source .venv/bin/activate
-            gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
-            deactivate
-          background: true
-      - run:
-          name: Wait for OpenFisca
-          command: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
+      - *start_openfisca
+      - *wait_for_openfisca
       - *start_mes_aides
       - *wait_for_mes_aides
       - restore_cache:
           name: Restoring node_modules
+          requires: wait_for_mes_aides
           keys:
             - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - run:
-          name: Start Xvfb
-          command: |
-            Xvfb :99
-          background: true
+      - *start_xvfb
       - cypress:
           title: "Test un scénario simple"
           path: "base.spec.js"
@@ -176,6 +192,9 @@ jobs:
       - cypress:
           title: "Test un scénario d'une personne étudiante"
           path: "student.spec.js"
+      - store_artifacts:
+          requires: cypress
+          path: cypress/videos
       - run:
           name: Stop Xvfb
           command: |

@@ -8,7 +8,6 @@ description: Pour la rentrée 2021, la Région des Pays de la Loire fournit un
 link: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
 instructions: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
 type: bool
-computesLocally: true
 conditions_generales:
   - type: regions
     values:

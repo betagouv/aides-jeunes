@@ -14,8 +14,10 @@ form: https://www.caf.fr/sites/default/files/caf/011/Images/Offres%20de%20servic
 instructions: https://www.caf.fr/allocataires/caf-de-l-ain/offre-de-service/enfance-et-jeunesse/le-bafa
 type: float
 unit: €
+periodicite: ponctuelle
 legend: maximum
 montant: 156
+interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="

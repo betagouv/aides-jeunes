@@ -97,6 +97,7 @@ import OfflineResults from "./../../components/OfflineResults"
 import TrouverInterlocuteur from "@/components/TrouverInterlocuteur"
 import LoadingModal from "@/components/LoadingModal"
 import ResultatsMixin from "@/mixins/Resultats"
+import StatisticsMixin from "@/mixins/Statistics"
 
 export default {
   name: "SimulationResultats",
@@ -109,7 +110,7 @@ export default {
     OfflineResults,
     TrouverInterlocuteur,
   },
-  mixins: [ResultatsMixin],
+  mixins: [ResultatsMixin, StatisticsMixin],
   methods: {
     isEmpty: function (array) {
       return !array || array.length === 0
@@ -172,6 +173,8 @@ export default {
         }
       }
     })
+
+    this.sendStatistics(this.droits)
   },
   beforeDestroy: function () {
     this.stopSubscription && this.stopSubscription()

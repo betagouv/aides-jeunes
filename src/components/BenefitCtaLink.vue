@@ -64,8 +64,7 @@ export default {
       return link
     },
     onClick: function (link) {
-      const id = this.$matomo ? this.$matomo.getVisitorId() : undefined
-      this.sendStatistics([this.benefit], id, "clicked")
+      this.sendStatistics([this.benefit], "clicked")
       if (typeof link === "object") {
         window.localStorage.setItem(
           "trampoline",

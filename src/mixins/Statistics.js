@@ -2,7 +2,8 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: (benefits, id, event = "displayed") => {
+    sendStatistics: function (benefits, event = "displayed") {
+      const id = this && this.$matomo ? this.$matomo.getVisitorId() : undefined
       if (benefits && benefits.length) {
         const benefitsStats = []
         const totalResults = benefits.length

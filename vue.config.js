@@ -15,7 +15,6 @@ process.env.VUE_APP_BASE_URL = baseURL
 process.env.VUE_APP_CONTEXT = process.env.CONTEXT
 process.env.VUE_APP_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
 process.env.VUE_APP_STATS_URL = statistics.url
-;("")
 
 module.exports = {
   configureWebpack: (config) => {

@@ -13,6 +13,7 @@ unit: €
 periodicite: ponctuelle
 legend: ""
 montant: 160
+interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="

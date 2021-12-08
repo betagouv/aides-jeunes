@@ -241,6 +241,8 @@ fields:
     widget: select
     required: false
     options:
+      - label: Oui, l'afficher en cas d'intérêt pour le BAFA ou le BAFD.
+        value: _interetBafa
       - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
         value: _interetPermisDeConduire
       - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.

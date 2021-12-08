@@ -1,4 +1,4 @@
-label: aide au Bafa pour une session de formation générale (CAF du Val-de-Marne)
+label: aide au Bafa pour une session de formation générale
 institution: caf_val_de_marne
 description: L'aide au Bafa pour une session de formation générale est une aide
   locale mise à disposition par la CAF du Val-de-Marne pour vous aider à
@@ -18,7 +18,7 @@ unit: €
 periodicite: ponctuelle
 legend: ""
 montant: 200
-interestFlag: null
+interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:

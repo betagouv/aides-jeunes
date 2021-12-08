@@ -1,13 +1,14 @@
+const uuid = `uid_${Math.random().toString(12).slice(2)}`
 export default {
   methods: {
-    sendStatistics: (benefits, event = "display") => {
+    sendStatistics: (benefits, id, event = "display") => {
       if (benefits && benefits.length) {
         const benefitsStats = []
         const totalResults = benefits.length
         benefits.forEach(function (droit, i) {
           benefitsStats.push({
             benefit_id: droit.id,
-            hash_id: droit.id,
+            hash_id: id || uuid,
             benefit_index: i + 1,
             page_total: totalResults,
             event_type: event,

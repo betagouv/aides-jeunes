@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import StatisticsMixin from "@/mixins/Statistics"
+
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
   form: "Accéder au formulaire papier",
@@ -38,6 +40,7 @@ export default {
     type: String,
     link: [String, Object],
   },
+  mixins: [StatisticsMixin],
   components: {},
   data: function () {
     return {}
@@ -61,6 +64,8 @@ export default {
       return link
     },
     onClick: function (link) {
+      const id = this.matomo ? this.$matomo.getVisitorId() : undefined
+      this.sendStatistics([this.benefit], id, "clicked")
       if (typeof link === "object") {
         window.localStorage.setItem(
           "trampoline",

@@ -165,6 +165,8 @@ export default {
           calculs.resultats.droitsEligibles.forEach(function (d) {
             vm.$matomo && vm.$matomo.trackEvent("General", "show", d.label)
           })
+          const id = this.matomo ? this.$matomo.getVisitorId() : undefined
+          this.sendStatistics(this.droits, id)
           break
         }
         case "saveComputationFailure": {
@@ -174,7 +176,7 @@ export default {
       }
     })
 
-    this.sendStatistics(this.droits)
+    
   },
   beforeDestroy: function () {
     this.stopSubscription && this.stopSubscription()

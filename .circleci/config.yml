@@ -197,6 +197,7 @@ jobs:
           path: cypress/videos
       - run:
           name: Stop Xvfb
+          requires: store_artifacts
           command: |
             pkill Xvfb
   test_openfisca_test_generation:

@@ -15,9 +15,12 @@
           v-bind:alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
-          <h2 class="aj-question" itemprop="name">{{
+          <h2 class="aj-question aj-benefit-label" itemprop="name">{{
             capitalize(droit.label)
           }}</h2>
+          <div class="aj-institution-label">{{
+            capitalize(droit.institution.label)
+          }}</div>
           <p class="aj-aide-description" v-html="droit.description"></p>
           <div
             class="aj-aide-warning"

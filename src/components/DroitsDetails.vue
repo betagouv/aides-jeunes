@@ -10,7 +10,14 @@
         v-bind:src="require(`./../../public/img/${droit.institution.imgSrc}`)"
         v-bind:alt="'Image pour ' + droit.label"
       />
-      <h2 class="aj-question" itemprop="name">{{ capitalize(droit.label) }}</h2>
+      <div>
+        <h2 class="aj-question aj-benefit-label" itemprop="name">{{
+          capitalize(droit.label)
+        }}</h2>
+        <div class="aj-institution-label">{{
+          capitalize(droit.institution.label)
+        }}</div>
+      </div>
     </div>
 
     <DroitEstime v-bind:droit="droit" />

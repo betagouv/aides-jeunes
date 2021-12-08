@@ -28,6 +28,17 @@ html {
       }
     }
 
+    .aj-benefit-label {
+      margin-bottom: 8px;
+    }
+
+    .aj-institution-label {
+      font-weight: 700;
+      color: #8393a7;
+      color: var(--dark-grey);
+      font-style: italic;
+    }
+
     .aj-aide-box {
       border-radius: var(--theme-border-radius);
       background-color: var(--white);

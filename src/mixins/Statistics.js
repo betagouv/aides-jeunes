@@ -2,7 +2,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: (benefits, id, event = "display") => {
+    sendStatistics: (benefits, id, event = "displayed") => {
       if (benefits && benefits.length) {
         const benefitsStats = []
         const totalResults = benefits.length

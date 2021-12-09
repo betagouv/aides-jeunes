@@ -1,4 +1,4 @@
-label: aide au Bafa pour une session de formation générale (CAF de la Drôme)
+label: aide locale au Bafa pour une session générale
 institution: caf_drome
 description: >
   L'aide au Bafa pour une session de formation générale est une aide locale mise
@@ -8,10 +8,10 @@ description: >
   nationale apportée par la CAF</a>.
 conditions:
   - Etre allocataire de la Caf de la Drôme au moment du stage (ou enfant d'un
-    allocataire drômois)
-  - Avoir un quotient familial inférieur ou égal à 750€
+    allocataire drômois).
+  - Avoir un quotient familial inférieur ou égal à 750€.
   - Ne pas avoir déjà obtenu la totalité du financement du Bafa par d'autres
-    organismes
+    organismes.
 link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 form: https://www.caf.fr/sites/default/files/caf/261/offre-de-service/enfance-jeunesse/aides-projets-jeunes-bafa/demande-aide-session-formation-generale-bafa2021.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa

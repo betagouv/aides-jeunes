@@ -165,6 +165,7 @@ import BenefitCtaLink from "./BenefitCtaLink"
 import DroitEstime from "./DroitEstime"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
+import StatisticsMixin from "../mixins/Statistics"
 
 export default {
   name: "DroitsDetails",
@@ -179,11 +180,14 @@ export default {
     BenefitCtaLink,
     DroitEstime,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, StatisticsMixin],
   data() {
     return {
       brokenLinkButtonState: "show",
     }
+  },
+  mounted() {
+    this.sendStatistics([this.droit], "showDetails", this.droits.length)
   },
   computed: {
     aCharge() {

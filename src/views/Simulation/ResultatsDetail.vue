@@ -49,6 +49,7 @@ import DroitsDetails from "../../components/DroitsDetails.vue"
 import Feedback from "@/components/Feedback"
 import LoadingModal from "@/components/LoadingModal"
 import ResultatsMixin from "@/mixins/Resultats"
+import StatisticsMixin from "@/mixins/Statistics"
 
 export default {
   name: "SimulationResultatsDetail",
@@ -57,7 +58,7 @@ export default {
     Feedback,
     LoadingModal,
   },
-  mixins: [ResultatsMixin],
+  mixins: [ResultatsMixin, StatisticsMixin],
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {
       return
@@ -71,7 +72,7 @@ export default {
 
       droit &&
         this.$matomo &&
-        this.$matomo.trackEvent("General", "showDetails", droit.label)
+      this.$matomo.trackEvent("General", "showDetails", droit.label)
     }
   },
   computed: {

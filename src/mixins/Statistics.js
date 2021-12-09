@@ -3,9 +3,13 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 export default {
   methods: {
     sendStatistics: function (benefits, event = "displayed", benefitsTotal) {
-      console.log("stats")
-      const id = this && this.$matomo ? this.$matomo.getVisitorId() : undefined
-      if (benefits && benefits.length) {
+      if (
+        process.env.NODE_ENV === "production" &&
+        benefits &&
+        benefits.length
+      ) {
+        const id =
+          this && this.$matomo ? this.$matomo.getVisitorId() : undefined
         const benefitsStats = []
         const totalResults = benefits.length
         benefits.forEach(function (droit, i) {

@@ -10,8 +10,7 @@ conditions:
   - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
     d’animateur de centre de vacances et de loisirs (BAFA).
   - Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
-link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
-teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
+link: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 type: float
 unit: €

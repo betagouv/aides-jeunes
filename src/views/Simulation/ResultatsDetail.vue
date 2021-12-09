@@ -72,7 +72,7 @@ export default {
 
       droit &&
         this.$matomo &&
-      this.$matomo.trackEvent("General", "showDetails", droit.label)
+        this.$matomo.trackEvent("General", "showDetails", droit.label)
     }
   },
   computed: {

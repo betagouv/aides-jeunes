@@ -1,4 +1,4 @@
-label: aide au BAFA pour une session de formation d'approfondissement
+label: aide au BAFA pour une session de formation d'approfondissement ou de qualification
 institution: caf_ardeche
 description: La CAF de l'Ardèche peut financer une partie de la session
   d'approfondissement au BAFA. Cette aide n'est pas cumulable avec <a
@@ -16,6 +16,7 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 300
+interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="

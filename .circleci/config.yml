@@ -40,21 +40,6 @@ wait_for_mes_aides: &wait_for_mes_aides
     command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
 
 version: 2.1
-commands:
-  cypress:
-    description: "Commande pour exécuter un fichier de test cypress et sauvegarder la vidéo."
-    parameters:
-      title:
-        type: string
-      path:
-        type: string
-    steps:
-      - run:
-          title: "<< parameters.title >>"
-          command: 'npm run cypress -- --spec "cypress/integration/<< parameters.path >>"'
-      - store_artifacts:
-          path: cypress/videos
-
 jobs:
   install:
     <<: *defaults
@@ -138,6 +123,7 @@ jobs:
           command: npm run test
   test_e2e:
     <<: *defaults
+    parallelism: 4
     steps:
       - checkout
       - attach_workspace:
@@ -164,18 +150,15 @@ jobs:
           command: |
             Xvfb :99
           background: true
-      - cypress:
-          title: "Test un scénario simple"
-          path: "base.spec.js"
-      - cypress:
-          title: "Test un scénario d'une personne en situation de handicap"
-          path: "handicap.spec.js"
-      - cypress:
-          title: "Test un scénario familial"
-          path: "family.spec.js"
-      - cypress:
-          title: "Test un scénario d'une personne étudiante"
-          path: "student.spec.js"
+      - run:
+          name: Run Cypress tests
+          command: |
+            set -e
+            TEST_FILES=$(circleci tests glob "cypress/integration/**/*.spec.js" | circleci tests split --split-by=timings)
+            mkdir -p test-results
+            npm run cypress -- --spec "$TEST_FILES"
+      - store_artifacts:
+          path: cypress/videos
       - run:
           name: Stop Xvfb
           command: |

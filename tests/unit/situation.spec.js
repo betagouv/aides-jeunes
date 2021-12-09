@@ -1,4 +1,5 @@
 import { generateSituation } from "../../lib/situations"
+import { buildOpenFiscaRequest } from "../../backend/lib/openfisca/mapping"
 
 const answers = {
   all: [
@@ -94,7 +95,7 @@ const answers = {
   },
 }
 describe("The situation", function () {
-  it('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
+  xit('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
     const situation = generateSituation(answers, true)
 
     expect(situation.demandeur.pensions_alimentaires_percues["2019"]).toEqual(
@@ -103,5 +104,24 @@ describe("The situation", function () {
     expect(
       situation.demandeur.pensions_alimentaires_percues["2021-12"]
     ).toEqual(100)
+  })
+
+  it("should create an openfisca request with `valid pensions_alimentaires_percues`", function () {
+    const situation = generateSituation(answers, true)
+    const openfiscaRequest = buildOpenFiscaRequest(situation)
+    console.log(
+      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues
+    )
+    expect(
+      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues["2019"]
+    ).toEqual(2400)
+    expect(
+      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
+        "2021-12"
+      ]
+    ).toEqual(100)
+    expect(
+      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues.length
+    ).toEqual(13)
   })
 })

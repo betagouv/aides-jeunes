@@ -1,0 +1,27 @@
+label: aide au BAFA pour une session de formation d'approfondissement ou de qualification
+institution: caf_ardeche
+description: La CAF de l'Ardèche peut financer une partie de la session
+  d'approfondissement au BAFA. Cette aide n'est pas cumulable avec <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.
+conditions:
+  - Avoir déjà suivi la session de formation générale au BAFA.
+  - Avoir déjà effectué le stage pratique d'animation.
+link: https://www.caf.fr/allocataires/caf-de-l-ardeche/offre-de-service/enfance-et-jeunesse/le-bafa
+form: https://www.caf.fr/sites/default/files/caf/078/Documents/demande_daide_bafa.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-l-ardeche/offre-de-service/enfance-et-jeunesse/le-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "07"
+profils: []

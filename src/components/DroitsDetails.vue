@@ -33,7 +33,6 @@
               v-bind:analytics-name="droit.label"
               v-bind:link="droit.link"
               v-bind:benefit="droit"
-              v-bind:benefitsTotal="droits.length"
               type="link"
               level="'inline'"
               itemprop="termsOfService"

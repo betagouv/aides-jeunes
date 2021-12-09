@@ -36,7 +36,6 @@ export default {
   props: {
     analyticsName: String,
     benefit: Object,
-    benefitsTotal: Number,
     level: String,
     type: String,
     link: [String, Object],
@@ -65,7 +64,6 @@ export default {
       return link
     },
     onClick: function (link) {
-      this.sendStatistics([this.benefit], "clicked", this.benefitsTotal)
       if (typeof link === "object") {
         window.localStorage.setItem(
           "trampoline",

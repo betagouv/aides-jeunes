@@ -2,7 +2,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (benefits, event = "displayed", benefitsTotal) {
+    sendStatistics: function (benefits, event = "show", benefitsTotal) {
       if (
         process.env.NODE_ENV === "production" &&
         benefits &&

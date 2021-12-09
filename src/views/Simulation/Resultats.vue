@@ -165,7 +165,7 @@ export default {
           calculs.resultats.droitsEligibles.forEach(function (d) {
             vm.$matomo && vm.$matomo.trackEvent("General", "show", d.label)
           })
-          this.sendStatistics(this.droits)
+          this.sendStatistics(this.droits, "show")
           break
         }
         case "saveComputationFailure": {

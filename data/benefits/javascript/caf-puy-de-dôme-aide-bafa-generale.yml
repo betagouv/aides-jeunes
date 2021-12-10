@@ -15,5 +15,11 @@ unit: €
 periodicite: ponctuelle
 montant: 100
 interestFlag: _interetBafa
-conditions_generales: []
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "63"
 profils: []

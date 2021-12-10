@@ -1,0 +1,36 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_correze
+description: L'aide au BAFA pour une session de formation générale est une aide
+  locale mise à disposition par la CAF de la Corrèze pour vous aider à financer
+  votre session en complément de  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.<br><br>
+conditions:
+  - Etre allocataire ou rattaché(e) au dossier allocataire de ses parents.
+  - Avoir un quotient familial égal ou inférieur à 1 200 €.
+  - >-
+    Effectuer son stage auprès d’un 
+
+    <a target="_blank" rel="noopener" href="https://www.caf.fr/sites/default/files/caf/191/Documents/Action%20sociale/BAFA_liste%20org%20conv%20caf.fr%202021.pdf">organisme conventionné</a>.
+  - Signer un contrat d’engagement pour le suivi intégral de la formation (voir
+    avec l'organisme de formation).
+  - Ne pas être pris en charge à 100 % par un employeur.
+link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "19"
+profils: []

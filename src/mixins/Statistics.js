@@ -4,6 +4,8 @@ export default {
   methods: {
     sendStatistics: function (benefits, event = "show", benefitsTotal) {
       if (
+        window.navigator.doNotTrack !== "1" &&
+        document.cookie.indexOf("piwik_ignore") < 0 &&
         process.env.NODE_ENV === "production" &&
         benefits &&
         benefits.length

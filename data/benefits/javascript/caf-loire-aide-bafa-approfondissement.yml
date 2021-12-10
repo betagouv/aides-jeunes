@@ -17,6 +17,7 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 250
+periodicite: ponctuelle
 interestFlag: _interetBafa
 conditions_generales:
   - type: age

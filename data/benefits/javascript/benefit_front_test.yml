@@ -26,7 +26,7 @@ conditions_generales:
       - "55"
 profils:
   - type: chomeur
-  - type: enseignement_superieur
+  - type: etudiant
     conditions:
       - type: boursier
         value: true

@@ -352,7 +352,7 @@ fields:
           - label: Conditions à satisfaire simultanément
             label_singular: Condition à satisfaire
             name: conditions
-            default: [ ]
+            default: []
             widget: list
             collapsed: false
             types:

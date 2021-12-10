@@ -17,7 +17,7 @@ conditions_generales:
     values:
       - "11"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: boursier
         value: true

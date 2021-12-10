@@ -17,4 +17,4 @@ conditions_generales:
     values:
       - "53"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur

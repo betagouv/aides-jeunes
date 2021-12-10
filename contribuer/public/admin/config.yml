@@ -345,6 +345,53 @@ fields:
                         value: terminale
                       - label: Autre
                         value: autre
+      - label: Enseignement supérieur
+        name: enseignement_superieur
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: [ ]
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
+              - *field_boursier
+              - *field_mention_baccalaureat
+              - label: Année d'étude
+                name: annee_etude
+                widget: object
+                fields:
+                  - label: Valeurs
+                    name: values
+                    widget: select
+                    multiple: true
+                    options:
+                      - label: BTS
+                        value: bts_1
+                      - label: BUT
+                        value: but_1
+                      - label: CPGE
+                        value: cpge_1
+                      - label: Licence - 1ère année
+                        value: licence_1
+                      - label: Licence - 2ème année
+                        value: licence_2
+                      - label: Licence - 3ème année
+                        value: licence_3
+                      - label: Master - 1ère année
+                        value: master_1
+                      - label: Master - 2ème année
+                        value: master_2
+                      - label: Doctorat - 1ère année
+                        value: doctorat_1
+                      - label: Doctorat - 2ème année
+                        value: doctorat_2
+                      - label: Doctorat - 3ème année
+                        value: doctorat_3
+                      - label: Autre
+                        value: autre
       - label: Étudiant
         name: etudiant
         widget: object

@@ -6,10 +6,6 @@ description: >
   votre session en complément de  <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.
-
-  <br>
-
-  </br>
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - |
@@ -28,6 +24,7 @@ link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-servi
 instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
 type: float
 unit: €
+periodicite: ponctuelle
 legend: ""
 montant: 150
 interestFlag: _interetBafa

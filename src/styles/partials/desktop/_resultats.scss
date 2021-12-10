@@ -28,6 +28,16 @@ html {
       }
     }
 
+    .aj-benefit-label {
+      margin-bottom: 8px;
+    }
+
+    .aj-institution-label {
+      font-weight: 700;
+      color: var(--dark-grey);
+      font-style: italic;
+    }
+
     .aj-aide-box {
       border-radius: var(--theme-border-radius);
       background-color: var(--white);
@@ -157,7 +167,7 @@ html {
 
       .aj-droit-identity {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start;
         max-width: 70%;
 

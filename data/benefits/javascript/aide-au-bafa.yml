@@ -13,7 +13,7 @@ teleservice: ""
 instructions: https://jeunes.auvergnerhonealpes.fr/223-permis-de-conduire-b-et-bafa-bafd-bnssa.htm
 type: float
 unit: €
-periodicite: null
+periodicite: ponctuelle
 legend: ""
 montant: 200
 interestFlag: _interetBafa

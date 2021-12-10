@@ -27,7 +27,8 @@
     "stats": "node backend/lib/stats",
     "serve-mail": "node mjml.js",
     "test": "jest --testTimeout=20000",
-    "test-benefits-urls": "node testBenefitsUrls.js"
+    "test-benefits-urls": "node testBenefitsUrls.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@babel/runtime": "^7.16.0",
@@ -96,11 +97,13 @@
     "eslint-plugin-prettier-vue": "^3.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "file-loader": "^6.2.0",
+    "husky": "^7.0.4",
     "memory-fs": "^0.5.0",
     "minimist": "^1.2.5",
     "mustache": "^4.2.0",
     "postcss": "^8.3.11",
     "prettier": "2.4.1",
+    "pretty-quick": "^3.1.2",
     "sass": "^1.43.4",
     "sass-loader": "^10.1.1",
     "vue-jest": "^3.0.7",

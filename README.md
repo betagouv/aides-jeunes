@@ -141,7 +141,7 @@ The development server for emails can be easily start with:
 `node mjml.js` or `npm run serve-mail`
 
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
-You can create a free account(here)[https://app.sendinblue.com/account/register/profile] or request one on the mattermost channel.
+You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.
 
 ## Linting and format
 

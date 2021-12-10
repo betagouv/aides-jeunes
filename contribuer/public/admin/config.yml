@@ -477,7 +477,7 @@ collections:
     delete: false
     editor:
       preview: true
-    slug: "{{label}}"
+    slug: "{{fields.institution}}-{{label}}"
     summary: "{{label}} ({{fields.institution}})"
     extension: yml
     fields:

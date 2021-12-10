@@ -19,7 +19,6 @@ conditions_generales:
     operator: <=
     value: 25
 profils:
-  - type: lyceen
   - type: etudiant
   - type: service_civique
   - type: apprenti

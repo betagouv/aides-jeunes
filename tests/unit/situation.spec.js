@@ -86,7 +86,7 @@ const answers = {
     demandeur: {
       salaire_imposable: undefined,
       chomage_imposable: undefined,
-      retraite_imposable: undefined,
+      retraite_imposable: 1200,
       frais_reels: undefined,
       pensions_alimentaires_percues: 2400,
       pensions_alimentaires_versees: undefined,
@@ -95,7 +95,7 @@ const answers = {
   },
 }
 describe("The situation", function () {
-  xit('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
+  it('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
     const situation = generateSituation(answers, true)
 
     expect(situation.demandeur.pensions_alimentaires_percues["2019"]).toEqual(
@@ -106,7 +106,7 @@ describe("The situation", function () {
     ).toEqual(100)
   })
 
-  it("should create an openfisca request with `valid pensions_alimentaires_percues`", function () {
+  it("should create an openfisca request with valid ressources`", function () {
     const situation = generateSituation(answers, true)
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     expect(
@@ -118,6 +118,9 @@ describe("The situation", function () {
       openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
         "2021-12"
       ]
+    ).toEqual(100)
+    expect(
+      openfiscaRequest.individus.demandeur.retraite_imposable["2019-12"]
     ).toEqual(100)
   })
 })

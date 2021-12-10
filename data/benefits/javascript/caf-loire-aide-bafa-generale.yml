@@ -10,6 +10,7 @@ form: https://www.caf.fr/sites/default/files/caf/428/Documents/Bafa/51%2060%20A%
 instructions: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
 type: float
 unit: €
+periodicite: ponctuelle
 legend: maximum
 montant: 150
 interestFlag: _interetBafa

@@ -18,6 +18,11 @@ publish_mode: editorial_workflow
 root: ../../..
 
 fields:
+  field_not: &field_not
+    label: Exclusion
+    name: not
+    widget: boolean
+    required: false
   field_boolean: &field_boolean
     widget: object
     fields:
@@ -124,6 +129,20 @@ fields:
             value: mention_tres_bien_felicitations_jury
           - label: Autre
             value: non_renseignee
+  field_regime_securite_sociale: &field_regime_securite_sociale
+    label: Régime de sécurité sociale
+    name: regime_securite_sociale
+    widget: object
+    fields:
+      - *field_not
+      - label: Value
+        name: value
+        widget: select
+        options:
+          - label: Régime général
+            value: regime_general
+          - label: Régime agricole
+            value: regime_agricole
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -466,6 +485,7 @@ fields:
       - *field_regions
       - *field_departements
       - *field_communes
+      - *field_regime_securite_sociale
 
 collections:
   - name: benefits_javascript

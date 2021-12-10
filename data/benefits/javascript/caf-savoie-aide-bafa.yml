@@ -3,11 +3,10 @@ institution: caf_savoie
 description: >
   L'aide à la formation du BAFA est une aide locale mise à disposition par la
   CAF de la Savoie pour vous aider à financer votre session de formation
-  générale en complément de 
+  générale en complément de
 
   <a target="_blank" rel="noopener" href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide nationale apportée par la CAF</a>.<br><br>
 conditions:
-  - Dépendre du régime général de la sécurité sociale.
   - Suivre une formation assurée par un organisme de formation à but non
     lucratif habilité par le ministère de la Jeunesse, des Sports et de la Vie
     Associative.
@@ -32,4 +31,6 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
+  - type: regime_securite_sociale
+    value: regime_general
 profils: []

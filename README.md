@@ -141,7 +141,7 @@ The development server for emails can be easily start with:
 `node mjml.js` or `npm run serve-mail`
 
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
-You can create a free account(here)[https://app.sendinblue.com/account/register/profile] or request one on the mattermost channel.
+You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.
 
 ## Linting and format
 
@@ -167,6 +167,8 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 # Other tools scripts & tips
 
 - `npm run test-benefits-urls` validate links to 3rd parties.
+
+- `npm run prepare` will install git hooks used to facilitate development and reduce the CI running time.
 
 - [Locally](http://localhost:8080/simulation/resultats?debug) or on [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats?debug), it is possible to visualize all the available benefits of the simulator. It is done by adding `debug` as a parameter. It is also possible to set `debug=ppa,rsa` to choose which benefits are listed.
 

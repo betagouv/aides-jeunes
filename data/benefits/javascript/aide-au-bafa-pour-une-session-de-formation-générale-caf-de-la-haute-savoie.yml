@@ -13,6 +13,7 @@ link: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 type: float
 unit: €
+periodicite: ponctuelle
 montant: 200
 interestFlag: _interetBafa
 conditions_generales:

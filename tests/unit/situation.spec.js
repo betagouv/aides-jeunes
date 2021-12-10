@@ -109,19 +109,15 @@ describe("The situation", function () {
   it("should create an openfisca request with `valid pensions_alimentaires_percues`", function () {
     const situation = generateSituation(answers, true)
     const openfiscaRequest = buildOpenFiscaRequest(situation)
-    console.log(
-      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues
-    )
     expect(
-      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues["2019"]
-    ).toEqual(2400)
+      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
+        "2019-01"
+      ]
+    ).toEqual(200)
     expect(
       openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
         "2021-12"
       ]
     ).toEqual(100)
-    expect(
-      openfiscaRequest.individus.demandeur.pensions_alimentaires_percues.length
-    ).toEqual(13)
   })
 })

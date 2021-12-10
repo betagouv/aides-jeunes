@@ -19,7 +19,7 @@ const AnswerSchema = new mongoose.Schema(
     all: [answer],
     current: [answer],
     enfants: [Number],
-    ressourceFiscales: Object,
+    ressourcesFiscales: Object,
     patrimoine: Object,
     dateDeValeur: Date,
     version: Number,

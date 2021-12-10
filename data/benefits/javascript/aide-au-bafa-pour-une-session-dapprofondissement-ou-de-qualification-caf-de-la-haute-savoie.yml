@@ -16,6 +16,7 @@ link: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 type: float
 unit: €
+periodicite: ponctuelle
 legend: maximum
 montant: 109
 interestFlag: _interetBafa

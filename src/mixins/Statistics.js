@@ -13,9 +13,9 @@ export default {
         const id = this && this.$matomo ? this.$matomo.getVisitorId() : uuid
         const benefitsStats = []
         const totalResults = benefits.length
-        benefits.forEach(function (droit, i) {
+        benefits.forEach(function (benefit, i) {
           benefitsStats.push({
-            benefit_id: droit.id,
+            benefit_id: benefit.id,
             hash_id: id,
             benefit_index: i + 1,
             page_total: benefitsTotal || totalResults,

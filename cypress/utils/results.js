@@ -53,7 +53,7 @@ const captureFiscalResources = (position) => {
   getBenefitSummary(id).click()
   cy.get(".notification.warning").invoke("text").should("contain", "ressources")
   cy.get(".button.outline.red").click()
-  cy.get('input[type="number"]', { withinSubject: null }).first().type("50000")
+  cy.get('input[type="number"]').first().type("50000")
   submit()
   cy.get(id + "-summary").should("not.exist")
 }

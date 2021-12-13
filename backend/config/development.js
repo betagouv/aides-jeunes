@@ -13,4 +13,5 @@ module.exports = {
   matomo: {
     id: 170,
   },
+  statistics: {},
 }

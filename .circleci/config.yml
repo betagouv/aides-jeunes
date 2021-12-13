@@ -17,6 +17,7 @@ defaults: &defaults
     LC_ALL: C.UTF-8
     LANG: C.UTF-8
     PUPPETEER_ARGS: '{"args":["--no-sandbox","--disable-dev-shm-usage"]}'
+    VUE_APP_STATS_URL: ''
 
 install_virtualenv: &install_virtualenv
   run:

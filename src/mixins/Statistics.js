@@ -7,6 +7,7 @@ export default {
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
         process.env.NODE_ENV === "production" &&
+        process.env.VUE_APP_STATS_URL != "" &&
         benefits &&
         benefits.length
       ) {

@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import StatisticsMixin from "@/mixins/Statistics"
+
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
   form: "Accéder au formulaire papier",
@@ -38,6 +40,7 @@ export default {
     type: String,
     link: [String, Object],
   },
+  mixins: [StatisticsMixin],
   components: {},
   data: function () {
     return {}

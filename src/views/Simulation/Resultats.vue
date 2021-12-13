@@ -97,6 +97,7 @@ import OfflineResults from "./../../components/OfflineResults"
 import TrouverInterlocuteur from "@/components/TrouverInterlocuteur"
 import LoadingModal from "@/components/LoadingModal"
 import ResultatsMixin from "@/mixins/Resultats"
+import StatisticsMixin from "@/mixins/Statistics"
 
 export default {
   name: "SimulationResultats",
@@ -109,7 +110,7 @@ export default {
     OfflineResults,
     TrouverInterlocuteur,
   },
-  mixins: [ResultatsMixin],
+  mixins: [ResultatsMixin, StatisticsMixin],
   methods: {
     isEmpty: function (array) {
       return !array || array.length === 0
@@ -164,6 +165,7 @@ export default {
           calculs.resultats.droitsEligibles.forEach(function (d) {
             vm.$matomo && vm.$matomo.trackEvent("General", "show", d.label)
           })
+          this.sendStatistics(this.droits, "show")
           break
         }
         case "saveComputationFailure": {

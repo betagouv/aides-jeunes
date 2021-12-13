@@ -119,6 +119,7 @@
           <BenefitCta
             class="aj-droit-content-buttons-cta"
             v-bind:benefit="droit"
+            v-bind:benefitsTotal="droits.length"
           ></BenefitCta>
 
           <a
@@ -163,11 +164,13 @@ import BenefitCtaLink from "./BenefitCtaLink"
 import DroitEstime from "./DroitEstime"
 import Situation from "../lib/Situation"
 import DroitMixin from "../mixins/DroitMixin"
+import StatisticsMixin from "../mixins/Statistics"
 
 export default {
   name: "DroitsDetails",
   props: {
     droit: Object,
+    droits: Array,
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
@@ -176,11 +179,14 @@ export default {
     BenefitCtaLink,
     DroitEstime,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, StatisticsMixin],
   data() {
     return {
       brokenLinkButtonState: "show",
     }
+  },
+  mounted() {
+    this.sendStatistics([this.droit], "showDetails", this.droits.length)
   },
   computed: {
     aCharge() {

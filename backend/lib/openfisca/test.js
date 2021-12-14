@@ -52,7 +52,8 @@ const EXTENSION_VARIABLES = {
 
 benefits.all
   .filter(
-    (benefit) => benefit.source === "openfisca" && benefit.institution.repository
+    (benefit) =>
+      benefit.source === "openfisca" && benefit.institution.repository
   )
   .forEach((benefit) => {
     const repository = "openfisca-" + benefit.institution.repository

@@ -21,7 +21,7 @@ describe("benefit descriptions", function () {
       },
     }
 
-    const customBenefits = [{ slug: "etat_benefit", institution: "etat" }]
+    const customBenefits = [{ id: "etat_benefit", institution: "etat" }]
 
     const result = subject(collections, customBenefits)
     expect(

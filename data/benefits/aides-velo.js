@@ -6,5 +6,8 @@ module.exports = [
     description: "La ville de Colmar ",
     institution: "etat",
     type: "float",
-  }
+    periodicite: "ponctuelle",
+    montant: 1,
+    link: "https://mock",
+  },
 ]

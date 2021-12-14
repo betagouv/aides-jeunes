@@ -634,10 +634,18 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
-      - label: Institution nationale
-        name: national
-        widget: boolean
-        required: false
+      - label: Level
+        name: level
+        widget: select
+        options:
+          - label: National
+            value: national
+          - label: Régional
+            value: regional
+          - label: Départemental
+            value: departemental
+          - label: Communal
+            value: communal
   - name: contribution-pages
     label: Pages
     label_singular: page

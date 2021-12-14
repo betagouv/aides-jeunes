@@ -9,9 +9,9 @@ function transformInstitutions(collection) {
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
       prestations: {},
-      national: data.national,
-      level: data.national ? "prestationsNationales" : "partenairesLocaux",
-      repository: data.repository || (data.national ? null : "france-local"),
+      level: data.level,
+      repository:
+        data.repository || (data.level === "national" ? null : "france-local"),
       etablissements: data.etablissements,
     }
     result[data.slug] = item
@@ -19,8 +19,8 @@ function transformInstitutions(collection) {
   }, {})
 }
 
-function setDefaults(benefit, national) {
-  const top = national ? 1 : 5
+function setDefaults(benefit, institution) {
+  const top = institution.level === "national" ? 1 : 5
 
   benefit.id = benefit.slug
   benefit.top = benefit.top || top
@@ -43,7 +43,7 @@ function generate(collections, customBenefits) {
 
   benefits.forEach((benefit) => {
     const institution = institutions[benefit.institution]
-    benefit = setDefaults(benefit, institution.national)
+    benefit = setDefaults(benefit, institution)
     institution.prestations[benefit.slug] = { ...benefit }
     benefit.institution = institution
   })

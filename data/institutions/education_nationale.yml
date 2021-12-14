@@ -1,3 +1,4 @@
 name: Éducation nationale
 imgSrc: img/logo_education_nationale.png
 national: true
+level: national

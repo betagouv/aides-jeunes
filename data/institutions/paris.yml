@@ -1,4 +1,5 @@
 name: Ville de Paris
 imgSrc: img/logo_paris.png
 prefix: de la
-repository: "paris"
+repository: paris
+level: communal

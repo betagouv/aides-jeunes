@@ -1,4 +1,9 @@
 name: Les conseils départementaux
 imgSrc: img/logo_cd_generique.png
-etablissements: ["mds", "cdas", "centre_social", "edas", "sdsei"]
-national: true
+etablissements:
+  - mds
+  - cdas
+  - centre_social
+  - edas
+  - sdsei
+level: national

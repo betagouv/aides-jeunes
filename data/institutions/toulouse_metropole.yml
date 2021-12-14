@@ -1,4 +1,5 @@
 name: Toulouse Métropole
 imgSrc: img/logo_toulouse_metropole.png
 prefix: de
-repository: "france-local"
+repository: france-local
+level: communal

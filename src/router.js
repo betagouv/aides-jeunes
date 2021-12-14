@@ -333,6 +333,9 @@ const router = createRouter({
         import(
           /* webpackChunkName: "geographie-aides" */ "./views/geographie-aides.vue"
         ),
+      meta: {
+        headTitle: "Répartition géographique des aides",
+      },
     },
     {
       path: "/suivi",

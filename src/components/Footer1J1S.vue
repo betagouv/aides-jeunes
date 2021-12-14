@@ -87,7 +87,7 @@ export default {
               href: "/stats",
             },
             {
-              label: "Répartitions des aides",
+              label: "Répartition des aides",
               route: "/geographie-aides",
             },
           ],

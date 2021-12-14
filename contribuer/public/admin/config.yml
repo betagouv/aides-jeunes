@@ -166,7 +166,7 @@ fields:
     widget: description
     pattern: ["", ""]
   field_conditions_non_prise_en_compte: &field_conditions_non_prise_en_compte
-    label: Conditions non prises en comptent par le simulateur
+    label: Conditions non prises en compte par le simulateur
     label_singular: Condition non prise en compte par le simulateur
     hint: |
       Certains critères d'éligibilité ne peuvent pas être demandés (trop précis)

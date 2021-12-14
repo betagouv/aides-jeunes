@@ -494,6 +494,7 @@ fields:
       name: references
       widget: list
       hint: Pour saisir plusieurs références, séparez les références par une virgule.
+      required: false
 
 collections:
   - name: benefits_javascript

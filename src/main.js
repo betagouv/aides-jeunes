@@ -8,8 +8,8 @@ import store from "./store"
 
 import moment from "moment"
 
-// import ScrollService from "./plugins/ScrollService"
-// import StateService from "./plugins/StateService"
+import ScrollService from "./plugins/ScrollService"
+import StateService from "./plugins/StateService"
 
 import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
@@ -33,14 +33,14 @@ const Resizer = {
 }
 
 
-const app = createApp(App)
-//const app = createApp({
+//const app = createApp(App)
+const app = createApp({
   // render() {
   //   console.log("rendering", App)
   //   h(App)
   // }
-  //render: (h) => h(App),
-//})
+  render: () => h(App),
+})
 
 
 app.directive('analytics', AnalyticsDirective);
@@ -56,23 +56,17 @@ app.directive('selectOnClick', SelectOnClickDirective);
 
 
 
-// Vue.use(AsyncComputed)
-// Vue.use(Resizer)
-// Vue.use(ScrollService)
-// Vue.use(StateService)
-// Vue.use(Vuelidate)
+app.use(AsyncComputed)
+app.use(Resizer)
+app.use(ScrollService)
+app.use(StateService)
+//app.use(Vuelidate)
 
 // Vue.use(VueMatomo, {
 //   host: "https://stats.data.gouv.fr",
 //   trackerFileName: "piwik",
 //   siteId: process.env.VUE_APP_MATOMO_ID,
 //   router: router,
-// })
-
-// Vue.filter("capitalize", function (value) {
-//   if (!value) return ""
-//   value = value.toString()
-//   return value.charAt(0).toUpperCase() + value.slice(1)
 // })
 
 app.config.globalProperties.$filters = {
@@ -82,8 +76,9 @@ app.config.globalProperties.$filters = {
     return value.charAt(0).toUpperCase() + value.slice(1)
   }
 }
-// Vue.config.productionTip = false
-// moment.locale("fr")
+// Outdated: https://v3.vuejs.org/guide/migration/global-api.html#config-productiontip-removed
+//app.config.productionTip = false
+moment.locale("fr")
 
 app.use(store)
 app.use(router)

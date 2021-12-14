@@ -31,7 +31,7 @@ function setDefaults(benefit, institution) {
   return benefit
 }
 
-function generate(collections, additionalBenefitAttributes, aidesVelo) {
+function generate(collections, additionalBenefitAttributes, aidesVeloBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
@@ -43,14 +43,14 @@ function generate(collections, additionalBenefitAttributes, aidesVelo) {
   customBenefits.forEach((benefit) => {
     benefit.source = "openfisca"
   })
-  aidesVelo.forEach((benefit) => {
+  aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
   })
 
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
-    ...aidesVelo,
+    ...aidesVeloBenefits,
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })
@@ -76,5 +76,5 @@ function generate(collections, additionalBenefitAttributes, aidesVelo) {
 
 module.exports = {
   fn: generate,
-  generate: (jam) => generate(jam.collections, additionalBenefitAttributes),
+  generate: (jam) => generate(jam.collections, additionalBenefitAttributes, aidesVelo),
 }

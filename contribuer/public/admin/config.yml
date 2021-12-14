@@ -124,6 +124,28 @@ fields:
             value: mention_tres_bien_felicitations_jury
           - label: Autre
             value: non_renseignee
+  field_select_regime_securite_sociale: &field_select_regime_securite_sociale
+    widget: select
+    multiple: true
+    required: false
+    options:
+      - label: Régime général
+        value: regime_general
+      - label: Régime agricole
+        value: regime_agricole
+      - label: Autres régimes
+        value: autres_regimes
+  field_regime_securite_sociale: &field_regime_securite_sociale
+    label: Régime de sécurité sociale
+    name: regime_securite_sociale
+    widget: object
+    fields:
+      - <<: *field_select_regime_securite_sociale
+        label: Inclus
+        name: includes
+      - <<: *field_select_regime_securite_sociale
+        label: Exclus
+        name: excludes
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -466,6 +488,7 @@ fields:
       - *field_regions
       - *field_departements
       - *field_communes
+      - *field_regime_securite_sociale
 
 collections:
   - name: benefits_javascript

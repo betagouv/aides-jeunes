@@ -230,7 +230,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: Institution.benefits.groupByInstitution,
+      institutions: Institution.benefits.institutionsMap,
     }
   },
   computed: {

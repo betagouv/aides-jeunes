@@ -327,6 +327,14 @@ const router = createRouter({
         import(/* webpackChunkName: "stats" */ "./views/Stats.vue"),
     },
     {
+      path: "/geographie-aides",
+      name: "geographie-aides",
+      component: () =>
+        import(
+          /* webpackChunkName: "geographie-aides" */ "./views/geographie-aides.vue"
+        ),
+    },
+    {
       path: "/suivi",
       name: "suivi",
       component: () =>

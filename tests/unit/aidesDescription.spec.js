@@ -4,9 +4,9 @@ const fs = require("fs")
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
 
-  Object.keys(subject.groupByInstitution).forEach(function (institutionId) {
+  Object.keys(subject.institutionsMap).forEach(function (institutionId) {
     describe(institutionId, function () {
-      const institution = subject.groupByInstitution[institutionId]
+      const institution = subject.institutionsMap[institutionId]
 
       it("should have a correct id", function () {
         expect(Boolean(institutionId.match(/[a-z A-Z \-_]*/))).toBe(true)
@@ -22,9 +22,9 @@ describe("benefit descriptions", function () {
         expect(fs.existsSync(path)).toBe(true)
       })
 
-      Object.keys(institution.prestations).forEach(function (benefitId) {
+      institution.benefitsIds.forEach(function (benefitId) {
         describe(benefitId, function () {
-          const benefit = institution.prestations[benefitId]
+          const benefit = subject.benefitsMap[benefitId]
 
           it("should have a correct id", function () {
             expect(Boolean(benefitId.match(/[a-z A-Z \-_]*/))).toBe(true)

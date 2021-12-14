@@ -8,7 +8,7 @@ function transformInstitutions(collection) {
       id: data.slug,
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
-      prestations: {},
+      benefitsIds: [],
       level: data.level,
       repository:
         data.repository || (data.level === "national" ? null : "france-local"),
@@ -41,16 +41,20 @@ function generate(collections, customBenefits) {
     ...customBenefits,
   ]
 
+  const benefitsMap = {}
+
   benefits.forEach((benefit) => {
     const institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
-    institution.prestations[benefit.slug] = { ...benefit }
+    institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
+    benefitsMap[benefit.id] = benefit
   })
 
   const result = {
     all: benefits,
-    groupByInstitution: institutions,
+    institutionsMap: institutions,
+    benefitsMap: benefitsMap,
   }
 
   return result

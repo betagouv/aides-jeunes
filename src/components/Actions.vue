@@ -12,7 +12,7 @@
         Suivant
       </button>
       <slot />
-      <BackButton @click.native="goBack"  class="previous-button"/>
+      <BackButton @click.native="goBack" class="previous-button" />
     </div>
   </div>
 </template>

@@ -83,7 +83,7 @@ export default {
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
-    const value = getAnswer(
+    const modelValue = getAnswer(
       this.$store.state.answers.all,
       entityName,
       this.$route.params.fieldName,

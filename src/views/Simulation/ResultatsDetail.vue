@@ -58,7 +58,27 @@ export default {
     Feedback,
     LoadingModal,
   },
+<<<<<<< HEAD
   mixins: [ResultatsMixin],
+=======
+  mixins: [ResultatsMixin, StatisticsMixin],
+  mounted: function () {
+    if (this.mock(this.$route.params.droitId)) {
+      return
+    } else if (!this.droits) {
+      this.restoreLatest()
+    } else {
+      const droitId = this.$route.params.droitId
+      const droit = this.droits.find(function (droit) {
+        return droit.id === droitId
+      })
+
+      droit &&
+        this.$matomo &&
+        this.$matomo.trackEvent("General", "showDetails", droit.label)
+    }
+  },
+>>>>>>> 8d03442f (update: conflits)
   computed: {
     situation: function () {
       return this.$store.getters.situation
@@ -76,22 +96,6 @@ export default {
     ressourcesYearMinusTwoCaptured: function () {
       return this.$store.getters.ressourcesYearMinusTwoCaptured
     },
-  },
-  mounted: function () {
-    if (this.mock(this.$route.params.droitId)) {
-      return
-    } else if (!this.droits) {
-      this.restoreLatest()
-    } else {
-      const droitId = this.$route.params.droitId
-      const droit = this.droits.find(function (droit) {
-        return droit.id === droitId
-      })
-
-      droit &&
-        this.$matomo &&
-        this.$matomo.trackEvent("General", "showDetails", droit.label)
-    }
   },
   methods: {
     goBack: function (event) {

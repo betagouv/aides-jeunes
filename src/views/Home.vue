@@ -40,51 +40,7 @@
 
 <script>
 export default {
-<<<<<<< HEAD
   name: "home",
-=======
-  name: "Home",
-  data: () => {
-    let value = {}
-    const types = ["prestationsNationales", "partenairesLocaux"]
-    types.forEach(function (type) {
-      let providersWithoutPrivatePrestations = mapValues(
-        Institution[type],
-        function (provider) {
-          provider = { ...provider }
-          provider.prestations = reduce(
-            provider.prestations,
-            function (prestations, prestation, name) {
-              if (!prestation.private) {
-                prestations[name] = prestation
-              }
-
-              return prestations
-            },
-            {}
-          )
-          return provider
-        }
-      )
-
-      value[type] = filter(
-        providersWithoutPrivatePrestations,
-        function (provider) {
-          return size(provider.prestations)
-        }
-      )
-      value[type + "Count"] = Object.keys(value[type]).reduce(function (
-        total,
-        provider
-      ) {
-        return total + size(value[type][provider].prestations)
-      },
-      0)
-    })
-
-    return value
-  },
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
   computed: {
     hasExistingSituation: function () {
       return this.$store.getters.passSanityCheck

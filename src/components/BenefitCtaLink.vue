@@ -33,6 +33,7 @@ let longLabels = {
 export default {
   name: "BenefitCtaLink",
   components: {},
+  mixins: [StatisticsMixin],
   props: {
     analyticsName: String,
     benefit: Object,
@@ -40,8 +41,6 @@ export default {
     type: String,
     link: [String, Object],
   },
-  mixins: [StatisticsMixin],
-  components: {},
   data: function () {
     return {}
   },

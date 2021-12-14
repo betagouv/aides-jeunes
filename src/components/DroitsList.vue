@@ -22,10 +22,7 @@
           <div class="aj-institution-label">{{
             capitalize(droit.institution.label)
           }}</div>
-          <p
-            class="aj-aide-description"
-            v-html="droit.description"
-          />
+          <p class="aj-aide-description" v-html="droit.description" />
           <div
             v-if="
               droit.montant &&
@@ -63,9 +60,7 @@
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
             <img
-              :src="
-                require(`./../../public/img/${droit.institution.imgSrc}`)
-              "
+              :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
               :alt="'Icone pour' + droit.label"
             />
             <div>

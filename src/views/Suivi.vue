@@ -35,13 +35,8 @@
                 <div class="aj-droit-identity">
                   <img
                     class="aj-droit-illustration"
-<<<<<<< HEAD
-                    v-bind:src="
-                      require(`./../../public/img/${droit.institution.imgSrc}`)
-=======
                     :src="
-                      require(`./../../public/img/${droit.provider.imgSrc}`)
->>>>>>> 32501319 (chore: eslint auto fix for Vue3)
+                      require(`./../../public/img/${droit.institution.imgSrc}`)
                     "
                     :alt="droit.label"
                   />

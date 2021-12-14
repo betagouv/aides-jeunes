@@ -9,7 +9,7 @@
         class="aj-droit-illustration"
         :src="require(`./../../public/img/${droit.provider.imgSrc}`)"
         :alt="'Image pour ' + droit.label"
-      >
+      />
       <div>
         <h2 class="aj-question aj-benefit-label" itemprop="name">{{
           $filters.capitalize(droit.label)

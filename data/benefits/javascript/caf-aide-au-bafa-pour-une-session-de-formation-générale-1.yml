@@ -1,0 +1,25 @@
+label: Aide au BAFA pour une session de formation générale
+institution: caf
+description: >
+  L'aide à la formation du BAFA est une aide locale mise à disposition par la
+  caf des Alpes-Maritimes pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de l’aide nationale  <a
+  target="_blank"
+  rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/le-financement-du-bafa
+form: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2021/Demande%20bourse%20BAFA_200421.pdf
+instructions: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/le-financement-du-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 250
+interestFlag: _interetBafa
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "06"
+profils: []

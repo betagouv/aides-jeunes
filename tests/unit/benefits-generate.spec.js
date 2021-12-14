@@ -23,7 +23,7 @@ describe("benefit descriptions", function () {
 
     const customBenefits = [{ id: "etat_benefit", institution: "etat" }]
 
-    const result = subject(collections, customBenefits)
+    const result = subject(collections, customBenefits, [])
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()

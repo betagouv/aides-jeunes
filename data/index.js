@@ -31,7 +31,7 @@ function setDefaults(benefit, institution) {
   return benefit
 }
 
-function generate(collections, additionalBenefitAttributes) {
+function generate(collections, additionalBenefitAttributes, aidesVelo) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {

@@ -21,5 +21,6 @@ conditions_generales:
     values:
       - "43"
   - type: regime_securite_sociale
-    values: regime_general
+    includes:
+      - regime_general
 profils: []

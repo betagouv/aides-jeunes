@@ -29,6 +29,6 @@ conditions_generales:
     operator: <=
     value: 25
   - type: regime_securite_sociale
-    not: true
-    values: regime_agricole
+    excludes:
+      - regime_agricole
 profils: []

@@ -87,7 +87,7 @@ describe("benefit descriptions", function () {
             })
           }
 
-          if (benefit.computesLocally) {
+          if (benefit.source !== "openfisca") {
             it("should not have an entity", function () {
               expect(benefit.entity).toBe(undefined)
             })

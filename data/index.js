@@ -1,6 +1,7 @@
 "use strict"
 
-const customBenefits = require("./benefits/custom/index")
+const customBenefits = require("./custom-benefits")
+const aidesVelo = require("./benefits/aides-velo")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
@@ -23,7 +24,7 @@ function transformInstitutions(collection) {
 function setDefaults(benefit, institution) {
   const top = institution.type === "national" ? 1 : 5
 
-  benefit.id = benefit.slug
+  benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
   return benefit
@@ -33,13 +34,23 @@ function generate(collections, customBenefits) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
-    benefit.computesLocally = true
+    benefit.source = "javascript"
+  })
+  collections.benefits_openfisca.items.forEach((benefit) => {
+    benefit.source = "openfisca"
+  })
+  customBenefits.forEach((benefit) => {
+    benefit.source = "openfisca"
+  })
+  aidesVelo.forEach((benefit) => {
+    benefit.source = "aides-velo"
   })
 
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...customBenefits,
+    ...aidesVelo,
   ]
 
   const benefitsMap = {}

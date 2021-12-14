@@ -16,7 +16,7 @@ module.exports = function (api) {
       let missingValues = benefits.all
         .filter((benefit) => {
           const source = benefit.openfisca_eligibility_source || benefit.id
-          return !benefit.computesLocally && !payload[source]
+          return benefit.source === "openfisca" && !payload[source]
         })
         .map((benefit) => {
           return benefit.id

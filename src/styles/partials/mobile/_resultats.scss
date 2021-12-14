@@ -25,7 +25,7 @@ html {
         order: 3;
         margin-left: 0;
         margin-top: 1.5rem;
-        padding: 0 0.5rem;
+        padding: 0;
         width: 100%;
 
         h2 {
@@ -62,6 +62,15 @@ html {
       .aj-feedback-buttons {
         height: 11rem;
       }
+    }
+
+    .aj-droit-details-back-button,
+    .aj-etablissements-back-button {
+      margin-left: 1rem;
+    }
+
+    .aj-etablissements-intro {
+      margin: 2rem 1rem;
     }
 
     .aj-etablissement-container {

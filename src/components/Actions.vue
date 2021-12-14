@@ -5,14 +5,13 @@
     </div>
     <div class="aj-actions">
       <button
-        class="button"
+        class="button next-button"
         type="submit"
         v-show="onSubmit"
         v-on:click="localOnSubmit($event)"
         >Suivant</button
       >
-      <slot></slot>
-      <BackButton @click.native="goBack"></BackButton>
+      <BackButton @click.native="goBack" class="previous-button"></BackButton>
     </div>
   </div>
 </template>

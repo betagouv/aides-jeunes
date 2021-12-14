@@ -23,6 +23,17 @@ html {
       display: flex;
       flex-direction: column;
 
+      .aj-complete-progress-bar {
+        height: 16px;
+        background-color: var(--light-grey);
+        div {
+          height: 100%;
+          border-radius: 0 4px 4px 0;
+          background-color: var(--light-green);
+          transition: all 0.5s;
+        }
+      }
+
       .aj-website-content {
         position: relative;
         display: flex;
@@ -37,7 +48,7 @@ html {
 
         .aj-text-container {
           width: 100%;
-          padding: 2rem 0;
+          padding: 2rem 0.625rem;
         }
       }
 
@@ -102,12 +113,12 @@ html {
     }
 
     .aj-main-container {
-      padding: 1.5rem 4%;
+      padding: 0 32px;
       background-color: #f2f5f9;
       width: 100%;
 
       .aj-box-wrapper {
-        margin-bottom: 80px;
+        margin-bottom: 94px;
         & > div:not(.aj-unbox),
         & > form:not(.aj-unbox),
         & .aj-box {
@@ -128,27 +139,35 @@ html {
 
         .aj-actions {
           display: flex;
-          flex-direction: row-reverse;
           justify-content: flex-end;
           position: absolute;
-          bottom: 0;
+          bottom: -60px;
           left: 32px;
-          transform: translateY(150%);
 
-          button:first-child {
-            margin-left: 20px;
+          .next-button {
+            order: 2;
+            margin-left: 24px;
+          }
+          .previous {
+            order: 1;
           }
         }
       }
 
       .aj-category-title-wrapper {
+        padding: 32px;
+      }
+
+      .aj-category-title {
+        display: flex;
+        justify-content: space-between;
         h1 {
           font-size: 2.75rem;
-          margin: 0 0 8px 32px;
+          margin: 0;
         }
       }
 
-      .aj-category-title-wrapper-mobile {
+      .aj-category-title-button-mobile {
         display: none;
       }
 

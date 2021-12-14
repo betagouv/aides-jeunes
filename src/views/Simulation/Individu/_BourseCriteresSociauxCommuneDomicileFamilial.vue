@@ -4,7 +4,7 @@
       <label class="aj-question">
         Quel est le code postal de la commune de vos parents ?
       </label>
-      <input type="number" v-model="codePostal" />
+      <input id="cp" type="number" v-model="codePostal" />
     </div>
 
     <p v-if="retrievingCommunes"
@@ -78,7 +78,7 @@ export default {
         this.$store.dispatch("answer", {
           id: "demandeur",
           entityName: "individu",
-          fieldName: "depcom",
+          fieldName: "_bourseCriteresSociauxCommuneDomicileFamilial",
           value: {
             _bourseCriteresSociauxCommuneDomicileFamilial:
               communeMatches[0].code,

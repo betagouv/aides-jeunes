@@ -33,7 +33,11 @@ context("Full simulation", () => {
     logement.fill_loyer(600, 100)
     logement.fill_depcom("75001")
     logement.fill_parisien(true)
-    logement.fill__en_france(false)
+    logement.fill__en_france(true)
+    logement.fill_depcom(
+      "75001",
+      "_bourseCriteresSociauxCommuneDomicileFamilial"
+    )
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)

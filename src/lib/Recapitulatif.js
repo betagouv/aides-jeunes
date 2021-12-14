@@ -4,10 +4,10 @@ import {
   displayCurrencyValue,
   displayDepcomValue,
 } from "@/lib/Utils"
-import Ressource from "@/../lib/ressource"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Logement from "@/lib/Logement"
 import moment from "moment"
+import { getAnswer, getStepAnswer } from "../../lib/answers"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
@@ -20,13 +20,42 @@ export const getIndividuByStep = (step, component) => {
 }
 
 export const SIMPLE_STEPS = {
+  ressources(step) {
+    const answer = getStepAnswer(this.$store.state.answers.all, step)
+    let value
+    if (answer) {
+      value =
+        answer.length > 0
+          ? answer
+              .map(
+                (ressourceId) =>
+                  ressourceTypes.find(
+                    (ressource) => ressource.id === ressourceId
+                  ).label
+              )
+              .join(", ")
+          : "Aucuns revenus"
+    }
+
+    const individu = getIndividuByStep(
+      { id: step.id, role: step.id.split("_")[0] },
+      this
+    )
+    return [
+      {
+        label: `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`,
+        value,
+      },
+    ]
+  },
   depcom() {
-    const answer = this.$store.getters.getAnswer(
-      "menage",
+    const answer = getAnswer(
+      this.$store.state.answers.current,
       "menage",
       "depcom",
-      true
+      undefined
     )
+
     return [
       {
         label: "Quel est votre code postal ?",
@@ -37,15 +66,35 @@ export const SIMPLE_STEPS = {
     ]
   },
 
-  _bourseCriteresSociauxCommuneDomicileFamilial(step) {
-    const individu = getIndividuByStep(step, this)
+  _bourseCriteresSociauxCommuneDomicileFamilial() {
+    const answer = getAnswer(
+      this.$store.state.answers.current,
+      "individu",
+      "_bourseCriteresSociauxCommuneDomicileFamilial",
+      "demandeur"
+    )
     return [
       {
         label: "Quel est le code postal de la commune de vos parents ?",
         value: displayDepcomValue(
-          individu._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
-          individu._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
+          answer._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
+          answer._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
         ),
+      },
+    ]
+  },
+
+  statut_occupation_logement() {
+    const answer = getAnswer(
+      this.$store.state.answers.current,
+      "menage",
+      "statut_occupation_logement"
+    )
+
+    return [
+      {
+        label: "Êtes-vous ?",
+        value: Logement.getStatutOccupationLabel(answer),
       },
     ]
   },
@@ -54,42 +103,15 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = this.$store.getters.getAnswer(
-        "nombre_enfants",
-        "individu",
-        "nombre_enfants",
-        true
-      )
-
-      return answer && step.key.match(/\/simulation\/enfants$/)
+      const answer = getAnswer(this.$store.state.answers.current, "enfants")
+      return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const enfants = this.$store.getters.situation.enfants
-      let value = undefined
-      if (enfants) {
-        value = enfants.length ? `${enfants.length} enfant(s)` : `Aucun enfant`
-      }
+      const answer = getAnswer(this.$store.state.answers.current, "enfants")
       return [
         {
           label: "Mes enfants à charge",
-          value,
-        },
-      ]
-    },
-  },
-
-  logement: {
-    matcher(step) {
-      return step.key.match(/\/logement$/)
-    },
-    fn() {
-      const menage = this.$store.getters.situation.menage
-      return [
-        {
-          label: "Êtes-vous ?",
-          value: Logement.getStatutOccupationLabel(
-            menage.statut_occupation_logement
-          ),
+          value: answer ? `${answer} enfant(s)` : `Aucun enfant`,
         },
       ]
     },
@@ -100,7 +122,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(this.$store.getters.getAnswer)
+      const loyerData = Logement.getLoyerData(this.$store.state.answers.all)
       return [
         {
           label: loyerData.loyerQuestion.label,
@@ -123,32 +145,43 @@ export const COMPLEX_STEPS = {
       return step.key.match(/ressources\/montants\/(\w)*/)
     },
     fn(step) {
-      const key_split = step.key.split("/")
-      const id = key_split[1]
-      const individu = getIndividuByStep({ id, role: id.split("_")[0] }, this)
+      const answer = (
+        getAnswer(
+          this.$store.state.answers.current,
+          step.entity,
+          step.variable,
+          step.id
+        ) || []
+      ).map((ressource) => {
+        const ressourceType = ressourceTypes.find((r) => r.id === ressource.id)
+        return {
+          ...ressourceType,
+          ...ressource,
+        }
+      })
 
-      const categoryId = key_split[key_split.length - 1]
-      const ressources = Ressource.getIndividuRessourceTypes(
-        individu,
-        this.$store.getters.situation
-      )
-      const category = ressourceCategories.find(
-        (category) => category.id === categoryId
-      )
-      const result = [
-        {
-          isChapterSubtitle: true,
-          label: category && capitalize(category.label(individu)),
-          value: "",
-        },
-        ...ressourceTypes
-          .filter((type) => type.category === categoryId && ressources[type.id])
-          .map((type) => {
+      let result = []
+      if (answer.length) {
+        const category = ressourceCategories.find(
+          (category) => category.id === step.variable
+        )
+        const individu = getIndividuByStep(
+          { id: step.id, role: step.id.split("_")[0] },
+          this
+        )
+
+        result = [
+          {
+            isChapterSubtitle: true,
+            label: category && capitalize(category.label(individu)),
+            value: "",
+          },
+          ...answer.map((ressource) => {
             return {
-              label: capitalize(type.label),
-              value: Object.entries(individu[type.id]).reduce(
+              label: capitalize(ressource.label),
+              value: Object.entries(ressource.amounts).reduce(
                 (accum, [key, value]) => {
-                  const date = type.isMontantAnnuel
+                  const date = ressource.isMontantAnnuel
                     ? key
                     : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
                   accum[date] = displayCurrencyValue(value)
@@ -158,7 +191,9 @@ export const COMPLEX_STEPS = {
               ),
             }
           }),
-      ]
+        ]
+      }
+
       return result
     },
   },

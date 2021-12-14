@@ -1,11 +1,5 @@
 <template>
   <div class="recapitulatif">
-    <BackButton
-      @click.native="goBack()"
-      class="recapitulatif-back-button"
-      size="small"
-      >Retour</BackButton
-    >
     <div>
       <template v-for="(chapter, chapterIndex) in chapters">
         <div class="chapter-block" :key="chapter.name">
@@ -57,7 +51,6 @@
       </template>
     </div>
     <div class="aj-actions">
-      <div></div>
       <BackButton @click.native="goBack"></BackButton>
     </div>
   </div>
@@ -72,6 +65,7 @@ import {
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/Recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
 import BackButton from "@/components/Buttons/BackButton"
+import { getStepAnswer } from "../../../lib/answers"
 
 export default {
   name: "Recapitulatif",
@@ -126,22 +120,17 @@ export default {
       if (SIMPLE_STEPS[step.variable]) {
         return SIMPLE_STEPS[step.variable].bind(this)(step)
       }
-      if (step.variable === undefined) {
-        const match = Object.keys(COMPLEX_STEPS).find((key) =>
-          COMPLEX_STEPS[key].matcher.bind(this)(step)
-        )
-        if (match) {
-          return COMPLEX_STEPS[match].fn.bind(this)(step)
-        }
+
+      const match = Object.keys(COMPLEX_STEPS).find((key) =>
+        COMPLEX_STEPS[key].matcher.bind(this)(step)
+      )
+      if (match) {
+        return COMPLEX_STEPS[match].fn.bind(this)(step)
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = this.$store.getters.getAnswer(
-          step.id,
-          step.entity,
-          step.variable,
-          true
-        )
+        const answer = getStepAnswer(this.$store.state.answers.all, step)
+
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&
           ENTITIES_PROPERTIES[step.entity].loadEntity({

@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <div class="aj-category-title-wrapper">
+  <div class="aj-category-title-wrapper">
+    <div class="aj-category-title">
       <h1>{{ title }}</h1>
-    </div>
-    <div
-      class="aj-category-title-wrapper-mobile"
-      :class="{ 'has-menu-button': showMenuButton }"
-    >
-      <MenuButton
-        @click.native="goToRecapitulatifPage"
-        v-show="showMenuButton"
-      ></MenuButton>
-      <h1>{{ title }}</h1>
+      <div class="aj-category-title-button-mobile">
+        <MenuButton
+          @click.native="goToRecapitulatifPage"
+          v-show="showMenuButton"
+        ></MenuButton>
+      </div>
     </div>
   </div>
 </template>

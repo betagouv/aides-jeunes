@@ -44,6 +44,7 @@ import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
 import Ressource from "@/../lib/ressource"
+import { getAnswer } from "../../../lib/answers"
 
 export default {
   name: "RessourceTypes",
@@ -65,10 +66,11 @@ export default {
       )
     })
 
-    const selectedRessources = this.$store.getters.getAnswer(
-      this.$route.params.id,
+    const selectedRessources = getAnswer(
+      this.$store.state.answers.all,
       "individu",
-      "ressources"
+      "ressources",
+      this.$route.params.id
     )
 
     const selectedTypes = {}

@@ -1,3 +1,5 @@
+import { getAnswer } from "../../lib/answers"
+
 function getStatutOccupationLogement(logement) {
   let statusOccupationMap = {
     proprietaireprimoaccedant: "primo_accedant",
@@ -57,15 +59,14 @@ function captureCharges(logementStatut) {
   )
 }
 
-function getLoyerData(getAnswer) {
+function getLoyerData(answers) {
   const logementStatut = getAnswer(
-    "menage",
+    answers,
     "menage",
     "statut_occupation_logement"
   )
-  const coloc = getAnswer("menage", "menage", "coloc")
-  const loyer = getAnswer("menage", "menage", "loyer")
-  const chargesLocatives = getAnswer("menage", "menage", "charges_locatives")
+  const coloc = getAnswer(answers, "menage", "coloc")
+  const loyer = getAnswer(answers, "menage", "loyer") || {}
 
   const isLocataire = !Logement.isOwner(logementStatut)
   const captureCharges = Logement.captureCharges(logementStatut)
@@ -78,12 +79,12 @@ function getLoyerData(getAnswer) {
       captureCharges,
       loyerQuestion: {
         label: loyerLabel,
-        selectedValue: loyer,
+        selectedValue: loyer.loyer,
         hint: "Sans déduire vos aides au logement si vous en avez.",
       },
       chargesQuestion: {
         label: "Quel est le montant de vos charges locatives ?",
-        selectedValue: chargesLocatives,
+        selectedValue: loyer.charges_locatives,
         hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
       },
     }
@@ -93,7 +94,7 @@ function getLoyerData(getAnswer) {
       loyerQuestion: {
         label: "Quelles sont vos mensualités ?",
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
-        selectedValue: loyer,
+        selectedValue: loyer.loyer,
       },
     }
   }

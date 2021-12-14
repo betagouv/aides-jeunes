@@ -14,6 +14,7 @@ import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/Institution"
 import ABTestingService from "./plugins/ABTestingService"
 import EtablissementModule from "./modules/Etablissement"
+import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
 
 function defaultCalculs() {
@@ -83,7 +84,7 @@ function restoreLocal() {
   }
 }
 
-const storeAnswer = (answers, newAnswer, clean) => {
+const storeAnswer = (answers, newAnswer, clean, enfants) => {
   const existingAnswerIndex = answers.findIndex(
     (answer) =>
       answer.id === newAnswer.id &&
@@ -97,20 +98,20 @@ const storeAnswer = (answers, newAnswer, clean) => {
     const answer = answers[existingAnswerIndex]
     answer.value = newAnswer.value
     if (clean) {
-      if (newAnswer.id && newAnswer.id.startsWith("enfant_")) {
-        // If we are changing info about a children
-        // we want to keep the answer on others
-        results = answers
-          .slice(0, existingAnswerIndex + 1)
-          .concat(
-            answers.filter(
-              (answer) =>
-                answer.id.startsWith("enfant_") && answer.id !== newAnswer.id
-            )
-          )
-      } else {
-        results = answers.slice(0, existingAnswerIndex + 1)
-      }
+      // Keep all answers related to children because they are not on the same path
+      const allowedAnswered = enfants
+        ? enfants
+            .map((enfant) => `enfant_${enfant}`)
+            .filter((id) => id !== newAnswer.id)
+        : []
+      results = answers.slice(0, existingAnswerIndex + 1)
+      results = results.concat(
+        answers.filter(
+          (answer) =>
+            allowedAnswered.includes(answer.id) &&
+            results.find((result) => result.id !== answer.id)
+        )
+      )
     } else {
       results = [...answers]
     }
@@ -148,6 +149,15 @@ const store = new Vuex.Store({
     },
     getAllSteps: function (state, getters) {
       return generateAllSteps(getters.situation, state.openFiscaParameters)
+    },
+    lastUnansweredStep: function (state, getters) {
+      const allSteps = getters.getAllSteps.filter(
+        (step) =>
+          step.path !== "/" &&
+          step.path !== "/simulation/resultats" &&
+          step.isActive
+      )
+      return allSteps.find((step) => !isStepAnswered(state.answers.all, step))
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -219,19 +229,8 @@ const store = new Vuex.Store({
         state.calculs.resultats._id === state.situationId
       )
     },
-    getAnswer: (state) => (id, entityName, fieldName, currentOnly) => {
-      const answer = (
-        currentOnly ? state.answers.current : state.answers.all
-      ).find(
-        (answer) =>
-          answer.id === id &&
-          answer.entityName === entityName &&
-          answer.fieldName === fieldName
-      )
-      return answer ? answer.value : undefined
-    },
     situation: (state) => {
-      return generateSituation(state.answers)
+      return generateSituation(state.answers, true)
     },
   },
   mutations: {
@@ -239,8 +238,36 @@ const store = new Vuex.Store({
       state.answers = {
         ...state.answers,
         all: storeAnswer(state.answers.all, answer, false),
-        current: storeAnswer(state.answers.current, answer, true),
+        current: storeAnswer(
+          state.answers.current,
+          answer,
+          true,
+          state.answers.enfants
+        ),
       }
+    },
+    updateCurrentAnswers: (state, { newPath, steps }) => {
+      const currentAnswers = []
+      let i = 0
+      let currentStep = steps[0]
+      while (currentStep && currentStep.path !== newPath) {
+        if (currentStep.isActive && currentStep.path !== "/") {
+          const currentAnswer = state.answers.all.find((answer) => {
+            return (
+              answer.id === currentStep.id &&
+              answer.entityName === currentStep.entity &&
+              answer.fieldName === currentStep.variable
+            )
+          })
+
+          if (currentAnswer) {
+            currentAnswers.push(currentAnswer)
+          }
+        }
+        i = i + 1
+        currentStep = steps[i]
+      }
+      state.answers.current = currentAnswers
     },
     ressourcesFiscales: (state, ressourcesFiscales) => {
       state.answers = {
@@ -265,16 +292,16 @@ const store = new Vuex.Store({
     initialize: function (state) {
       Object.assign(state, restoreLocal(), { saveSituationError: null })
     },
+    saveIndividu: function () {},
+    saveError: function (state, error) {
+      state.error = error
+    },
     removeEnfant: function (state, id) {
       const enfantIndex = id.split("_")[1]
       state.answers = {
         ...state.answers,
         enfants: state.answers.enfants.filter((i) => i != enfantIndex),
       }
-    },
-    saveIndividu: function () {},
-    saveError: function (state, error) {
-      state.error = error
     },
     addEnfant: function (state) {
       let enfantId
@@ -299,10 +326,7 @@ const store = new Vuex.Store({
 
       // When you add a children you need to remove all current answer after the child validation
       const currentLastIndex = state.answers.current.findIndex(
-        (answer) =>
-          answer.entityName === "individu" &&
-          answer.id === "nombre_enfants" &&
-          answer.fieldName === "nombre_enfants"
+        (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
@@ -314,16 +338,18 @@ const store = new Vuex.Store({
         ...state.answers,
         enfants,
         all: storeAnswer(state.answers.all, answer, false),
-        current: storeAnswer(currentAnswers, answer, true),
+        current: storeAnswer(
+          currentAnswers,
+          answer,
+          true,
+          state.answers.enfants
+        ),
       }
     },
     editEnfant: function (state, id) {
       // When you edit a children you need to remove all current answer after the child validation
       const currentLastIndex = state.answers.current.findIndex(
-        (answer) =>
-          answer.entityName === "individu" &&
-          answer.id === "nombre_enfants" &&
-          answer.fieldName === "nombre_enfants"
+        (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
@@ -417,6 +443,12 @@ const store = new Vuex.Store({
     answer: ({ commit }, answer) => {
       commit("answer", answer)
       commit("setDirty")
+    },
+    updateCurrentAnswers: ({ commit, getters }, newPath) => {
+      commit("updateCurrentAnswers", {
+        newPath,
+        steps: getters.getAllSteps,
+      })
     },
     ressourcesFiscales: ({ commit }, ressourcesFiscales) => {
       commit("ressourcesFiscales", ressourcesFiscales)

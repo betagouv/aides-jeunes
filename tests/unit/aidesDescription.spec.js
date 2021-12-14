@@ -22,6 +22,10 @@ describe("benefit descriptions", function () {
         expect(fs.existsSync(path)).toBe(true)
       })
 
+      it("should have a level", function () {
+        expect(typeof institution.level).toBe("string")
+      })
+
       institution.benefitsIds.forEach(function (benefitId) {
         describe(benefitId, function () {
           const benefit = subject.benefitsMap[benefitId]

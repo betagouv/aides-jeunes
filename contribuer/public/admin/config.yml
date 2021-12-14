@@ -489,6 +489,11 @@ fields:
       - *field_departements
       - *field_communes
       - *field_regime_securite_sociale
+    field_references: &field_references
+      label: Lien des références
+      name: references
+      widget: list
+      hint: Pour saisir plusieurs références, séparez les références par une virgule.
 
 collections:
   - name: benefits_javascript
@@ -521,6 +526,7 @@ collections:
       - *field_legende_montant
       - *field_montant_maximal_aide
       - *field_interet_particulier
+      - *field_references
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe

@@ -1,37 +1,41 @@
 <template>
   <div class="aj-debug-progress">
-    <h3 class="aj-question">Parcours complet</h3>
+    <h3 class="aj-question">
+      Parcours complet
+    </h3>
     <button
       v-if="!showInactiveRoutes"
       class="button small"
       @click="showInactiveRoutes = true"
-      >Afficher les étapes cachées</button
     >
+      Afficher les étapes cachées
+    </button>
     <button
       v-if="showInactiveRoutes"
       class="button small"
       @click="showInactiveRoutes = false"
-      >N'afficher que les étapes actives</button
     >
+      N'afficher que les étapes actives
+    </button>
     <ul class="list-unstyled no-padding">
       <li
         v-for="step in full"
-        v-bind:key="step.key || step.path"
+        :key="step.key || step.path"
         :class="{ 'hide-route': !showInactiveRoutes && !step.isActive }"
       >
         <router-link
-          v-bind:class="{
+          :class="{
             inactive: !step.isActive,
             current: step.path == current,
           }"
-          v-bind:to="step.path"
-          >{{ step.path }}</router-link
+          :to="step.path"
         >
+          {{ step.path }}
+        </router-link>
         <abbr
           v-if="step.missing"
           title="Cette page n'existe pas encore dans le router."
-          >🚧</abbr
-        >
+        >🚧</abbr>
       </li>
     </ul>
   </div>

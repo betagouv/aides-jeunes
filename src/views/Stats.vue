@@ -43,7 +43,7 @@
         id="iframe"
         src="https://betagouv.github.io/mes-aides-analytics/"
         scrolling="no"
-        v-on:load="iframeLoaded"
+        @load="iframeLoaded"
       />
     </div>
   </article>

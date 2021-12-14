@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p
-      >Avec vos ressources, le simulateur de la CAF ne vous permet pas
+    <p>
+      Avec vos ressources, le simulateur de la CAF ne vous permet pas
       d'indiquer votre statut étudiant. Pour cette raison, le montant indiqué
       sur le simulateur de la CAF est plus approximatif que celui de notre
       simulateur.
@@ -15,8 +15,9 @@
     <router-link
       class="button outline text-center back-button"
       to="/simulation/resultats"
-      >Retourner aux résultats</router-link
     >
+      Retourner aux résultats
+    </router-link>
   </div>
 </template>
 

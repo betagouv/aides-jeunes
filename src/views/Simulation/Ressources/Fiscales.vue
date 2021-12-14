@@ -1,14 +1,14 @@
 <template>
   <form>
     <div
-      class="form__group"
       v-for="individu in individus"
-      v-bind:key="individu.id"
+      :key="individu.id"
+      class="form__group"
     >
       <button
-        class="button outline with-icon m-auto"
         v-if="!individu.display"
-        v-on:click="individu.display = !individu.display"
+        class="button outline with-icon m-auto"
+        @click="individu.display = !individu.display"
       >
         <svg
           width="16"
@@ -27,42 +27,41 @@
       <div v-if="individu.display">
         <h2>
           Indiquez toutes les ressources <strong>nettes versées</strong> perçues
-          <span v-if="individu._role !== 'demandeur'"
-            ><strong>par {{ individu.label }}</strong></span
-          >
+          <span v-if="individu._role !== 'demandeur'"><strong>par {{ individu.label }}</strong></span>
           en France comme à l'étranger.
         </h2>
         <p>
           Ces informations se trouvent sur votre avis d'imposition
           {{ $store.state.dates.lastYear.label }} sur les revenus
-          {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le
+          {{ $store.state.dates.fiscalYear.label }}. <br>Vous pouvez le
           retrouver en ligne sur
-          <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/"
-            >impots.gouv.fr</a
-          >.
+          <a
+            target="_blank"
+            rel="noopener"
+            href="http://www.impots.gouv.fr/"
+          >impots.gouv.fr</a>.
         </p>
         <label
-          class="form__group"
           v-for="ressource in categoriesRnc"
-          v-bind:key="ressource.id"
+          :key="ressource.id"
+          class="form__group"
         >
           {{ ressource.label }}
           <input
-            type="number"
-            v-select-on-click
             v-model="
               individu.values[ressource.id][$store.state.dates.fiscalYear.id]
             "
-          />
+            v-select-on-click
+            type="number"
+          >
           <span v-if="individu.default[ressource.id]">
             Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
-            derniers mois.</span
-          >
+            derniers mois.</span>
         </label>
       </div>
     </div>
 
-    <Actions v-bind:onSubmit="onSubmit" />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -88,7 +87,7 @@ function getDefaultValue(months, individu, rnc) {
 }
 
 export default {
-  name: "ressources-fiscales",
+  name: "RessourcesFiscales",
   components: {
     Actions,
   },

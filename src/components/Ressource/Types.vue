@@ -4,37 +4,38 @@
       Sélectionnez les types de ressources perçues
       <strong>
         <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
-        <span v-else-if="individu._role !== 'demandeur'"
-          >par {{ individu._firstName }}</span
-        >
-        depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
-      >. Vous pourrez ensuite saisir les montants.
+        <span v-else-if="individu._role !== 'demandeur'">par {{ individu._firstName }}</span>
+        depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong>. Vous pourrez ensuite saisir les montants.
     </p>
     <div
-      class="form__group"
       v-for="category in categories"
-      v-bind:key="category.id"
+      :key="category.id"
+      class="form__group"
     >
-      <h2 class="aj-question">{{ category.label(individu) | capitalize }}</h2>
+      <h2 class="aj-question">
+        {{ category.label(individu) | capitalize }}
+      </h2>
       <div class="aj-selections">
         <div
           v-for="type in sort(typesByCategories[category.id])"
+          :key="type.id"
           class="aj-selection-wrapper"
-          v-bind:key="type.id"
         >
           <input
             :id="type.id"
-            type="checkbox"
             v-model="selectedTypes[type.id]"
-          />
+            type="checkbox"
+          >
           <label :for="type.id">
             {{ type.label }}
           </label>
         </div>
       </div>
     </div>
-    <div class="form__group">{{ countLabel }}</div>
-    <Actions v-bind:onSubmit="onSubmit"> </Actions>
+    <div class="form__group">
+      {{ countLabel }}
+    </div>
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 

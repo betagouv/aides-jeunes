@@ -3,18 +3,18 @@
     <div v-if="!ineligible">
       <router-link
         v-for="(droit, index) in list"
+        :key="index"
         class="aj-aide-box a-unstyled"
-        v-bind:key="index"
-        v-bind:to="`/simulation/resultats/${droit.id}`"
+        :to="`/simulation/resultats/${droit.id}`"
         itemscope
         itemtype="http://schema.org/GovernmentService"
         :data-testid="droit.id"
       >
         <img
           class="aj-aide-illustration"
-          v-bind:src="require(`./../../public/img/${droit.institution.imgSrc}`)"
-          v-bind:alt="'Logo ' + droit.label"
-        />
+          :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
+          :alt="'Logo ' + droit.label"
+        >
         <div class="aj-aide-text">
           <h2 class="aj-question aj-benefit-label" itemprop="name">{{
             capitalize(droit.label)
@@ -22,56 +22,60 @@
           <div class="aj-institution-label">{{
             capitalize(droit.institution.label)
           }}</div>
-          <p class="aj-aide-description" v-html="droit.description"></p>
+          <p
+            class="aj-aide-description"
+            v-html="droit.description"
+          />
           <div
-            class="aj-aide-warning"
             v-if="
               droit.montant &&
-              isBoolean(droit.montant) &&
-              droit.icon === 'fa-exclamation-triangle'
+                isBoolean(droit.montant) &&
+                droit.icon === 'fa-exclamation-triangle'
             "
+            class="aj-aide-warning"
           >
-            <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
+            <img src="@/assets/images/warning.svg"> Attention, cette aide vous
             est accessible sous certaines conditions supplémentaires.
           </div>
         </div>
         <DroitEstime :droit="droit" />
         <div class="aj-aide-cta">
-          <button class="button primary">Demander cette aide</button>
+          <button class="button primary">
+            Demander cette aide
+          </button>
         </div>
       </router-link>
     </div>
     <div v-else>
       <a
         v-for="(droit, index) in list"
-        class="droits-list-item"
-        v-bind:href="droit.link"
-        target="_blank"
-        rel="noopener"
-        itemscope
-        itemtype="http://schema.org/GovernmentService"
+        :key="index"
         v-analytics="{
           name: droit.label,
           action: 'link-ineligible',
           category: 'General',
         }"
-        v-bind:key="index"
+        class="droits-list-item"
+        :href="droit.link"
+        target="_blank"
+        rel="noopener"
+        itemscope
+        itemtype="http://schema.org/GovernmentService"
       >
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
             <img
-              v-bind:src="
+              :src="
                 require(`./../../public/img/${droit.institution.imgSrc}`)
               "
-              v-bind:alt="'Icone pour' + droit.label"
-            />
+              :alt="'Icone pour' + droit.label"
+            >
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>
                 <small
-                  v-bind:aria-label="`Plus d'informations sur ${droit.label}`"
-                  >Plus d'informations</small
-                >
+                  :aria-label="`Plus d'informations sur ${droit.label}`"
+                >Plus d'informations</small>
               </h2>
             </div>
           </div>
@@ -87,13 +91,13 @@ import DroitEstime from "./DroitEstime"
 
 export default {
   name: "DroitsList",
+  components: {
+    DroitEstime,
+  },
+  mixins: [DroitMixin],
   props: {
     droits: Array,
     ineligible: Boolean,
-  },
-  mixins: [DroitMixin],
-  components: {
-    DroitEstime,
   },
   data: function () {
     return {}

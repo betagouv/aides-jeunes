@@ -16,9 +16,8 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailSuggestion()"
-          >Vous avez une suggestion d'amélioration</a
-        >.
+          v-mail="sendMailSuggestion()"
+        >Vous avez une suggestion d'amélioration</a>.
       </li>
       <li>
         <a
@@ -27,9 +26,8 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailEcartSimulation()"
-          >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
-        >.
+          v-mail="sendMailEcartSimulation()"
+        >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a>.
       </li>
       <li>
         <a
@@ -38,29 +36,30 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailEcartInstruction()"
-          >Ces résultats ne correspondent pas à ce que l'administration vous a
-          attribué</a
-        >.
+          v-mail="sendMailEcartInstruction()"
+        >Ces résultats ne correspondent pas à ce que l'administration vous a
+          attribué</a>.
       </li>
     </ul>
-    <small v-if="situationId"
-      >Cette simulation a pour identifiant
+    <small v-if="situationId">Cette simulation a pour identifiant
       <span class="preformatted">{{ situationId }}</span> (en savoir plus sur
-      <router-link to="/confidentialite"
-        >le traitement de vos données personnelles</router-link
-      >).</small
-    ><br />
+      <router-link to="/confidentialite">le traitement de vos données personnelles</router-link>).</small><br>
     <small v-if="situationId">
-      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">
+      <button
+        v-if="!showExpertLinks"
+        class="button small"
+        @click="toggleLinks"
+      >
         Je suis partenaire
       </button>
-      <div v-if="showExpertLinks" class="aj-feedback-partenaire">
+      <div
+        v-if="showExpertLinks"
+        class="aj-feedback-partenaire"
+      >
         Je suis partenaire&nbsp;:
         <ul>
           <li>
-            <router-link :to="{ name: 'resultatsAttendus' }"
-              >Indiquez les résultats attendus pour cette situation
+            <router-link :to="{ name: 'resultatsAttendus' }">Indiquez les résultats attendus pour cette situation
             </router-link>
           </li>
           <li v-if="openfiscaTracerURL">
@@ -68,15 +67,14 @@
               v-analytics="{ category: 'Tracer' }"
               target="_blank"
               :href="openfiscaTracerURL"
-              >Accédez à l'outil d'analyse des résultats de cette simulation</a
-            >
+            >Accédez à l'outil d'analyse des résultats de cette simulation</a>
           </li>
           <li v-if="openfiscaAxeURL">
             <a
               v-analytics="{ category: 'Axe' }"
               target="_blank"
               :href="openfiscaAxeURL"
-              >Analysez l'évolution des aides en fonction des ressources
+            >Analysez l'évolution des aides en fonction des ressources
             </a>
           </li>
           <li v-if="PNDSURL">
@@ -84,25 +82,25 @@
               v-analytics="{ category: 'PNDS' }"
               target="_blank"
               :href="PNDSURL"
-              >Transférer les données au PNDS
+            >Transférer les données au PNDS
             </a>
           </li>
         </ul>
       </div>
     </small>
     <a
-      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
-      class="aj-cta-avis"
       v-analytics="{
         action: 'Parcours',
         category: 'Je donne mon avis',
       }"
+      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
+      class="aj-cta-avis"
       target="_blank"
     >
       <img
         src="https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
         alt="Je donne mon avis"
-      />
+      >
     </a>
   </div>
 </template>

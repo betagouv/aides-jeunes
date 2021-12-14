@@ -1,7 +1,16 @@
 <template>
-  <div class="form__group" v-bind:key="type.meta.id">
-    <h2 v-if="!withoutHeader">{{ type.meta.label }}</h2>
-    <YesNoQuestion class="form__group" v-model="singleValue" html-heading="h3">
+  <div
+    :key="type.meta.id"
+    class="form__group"
+  >
+    <h2 v-if="!withoutHeader">
+      {{ type.meta.label }}
+    </h2>
+    <YesNoQuestion
+      v-model="singleValue"
+      class="form__group"
+      html-heading="h3"
+    >
       <span
         v-html="
           getQuestionLabel(
@@ -13,23 +22,32 @@
       />
     </YesNoQuestion>
 
-    <label class="form__group" v-if="type.displayMonthly === true">
+    <label
+      v-if="type.displayMonthly === true"
+      class="form__group"
+    >
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
         step="any"
         :value="type.amounts[$store.state.dates.thisMonth.id]"
         @input="$emit('update', 'singleValue', index, $event)"
-      ></InputNumber>
+      />
     </label>
 
-    <div class="form__group" v-if="type.displayMonthly === false">
+    <div
+      v-if="type.displayMonthly === false"
+      class="form__group"
+    >
+      <div>
+        Indiquez les montants <strong>nets mensuels</strong> que
+        {{ getLongLabel(individu, type.meta) }}
+      </div>
       <div
-        >Indiquez les montants <strong>nets mensuels</strong> que
-        {{ getLongLabel(individu, type.meta) }}</div
+        v-for="(month, monthIndex) in type.months"
+        :key="month.id"
       >
-      <div v-for="(month, monthIndex) in type.months" v-bind:key="month.id">
         <label>
-          <MonthLabel v-bind:month="month" />
+          <MonthLabel :month="month" />
           <InputNumber
             :value="type.amounts[month.id]"
             @input="
@@ -38,7 +56,7 @@
                 monthIndex,
               })
             "
-          ></InputNumber>
+          />
         </label>
       </div>
     </div>
@@ -86,6 +104,11 @@ function getLongLabel(individu, ressource) {
 
 export default {
   name: "RessourceMontants",
+  components: {
+    InputNumber,
+    MonthLabel,
+    YesNoQuestion,
+  },
   props: {
     individu: Object,
     type: Object,
@@ -101,11 +124,6 @@ export default {
         this.$emit("update", "displayMonthly", this.index, value)
       },
     },
-  },
-  components: {
-    InputNumber,
-    MonthLabel,
-    YesNoQuestion,
   },
   methods: {
     getQuestionLabel,

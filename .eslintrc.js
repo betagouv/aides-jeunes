@@ -8,7 +8,6 @@ module.exports = {
     "plugin:vue/essential",
     "prettier",
     "plugin:cypress/recommended",
-    //"plugin:prettier-vue/recommended",
     "plugin:vue/vue3-recommended",
   ],
   plugins: ["prettier", "vue"],

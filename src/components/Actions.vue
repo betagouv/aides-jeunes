@@ -1,17 +1,21 @@
 <template>
   <div>
-    <div class="notification warning aj-actions-error" v-if="error">
+    <div
+      v-if="error"
+      class="notification warning aj-actions-error"
+    >
       {{ error }}
     </div>
     <div class="aj-actions">
       <button
         class="button next-button"
         type="submit"
-        v-show="onSubmit"
-        v-on:click="localOnSubmit($event)"
-        >Suivant</button
+        @click="localOnSubmit($event)"
       >
-      <BackButton @click.native="goBack" class="previous-button"></BackButton>
+        Suivant
+      </button>
+      <slot />
+      <BackButton @click.native="goBack"  class="previous-button"/>
     </div>
   </div>
 </template>

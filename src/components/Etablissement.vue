@@ -1,13 +1,18 @@
 <template>
   <div class="aj-box aj-etablissement">
     <div v-if="etablissement">
-      <h2 class="aj-question">{{ etablissement.nom }}</h2>
+      <h2 class="aj-question">
+        {{ etablissement.nom }}
+      </h2>
       <div class="aj-etablissement-details">
         <address v-if="etablissement.adresse">
-          <i class="fa fa-home" aria-hidden="true"></i> Adresse :
+          <i
+            class="fa fa-home"
+            aria-hidden="true"
+          /> Adresse :
           <span
             v-for="(ligne, index) in etablissement.adresse.lignes"
-            v-bind:key="index"
+            :key="index"
           >
             {{ ligne }}
           </span>
@@ -18,27 +23,42 @@
           v-if="etablissement.telephone"
           class="aj-etablissements-action-tel-desktop"
         >
-          <i class="fa fa-phone" aria-hidden="true"></i>
+          <i
+            class="fa fa-phone"
+            aria-hidden="true"
+          />
           {{ etablissement.telephone }}
         </div>
-        <div v-if="etablissement.horaires" class="aj-etablissement-horaires">
-          <i class="fa fa-clock-o" aria-hidden="true"></i> Horaires :<br />
+        <div
+          v-if="etablissement.horaires"
+          class="aj-etablissement-horaires"
+        >
+          <i
+            class="fa fa-clock-o"
+            aria-hidden="true"
+          /> Horaires :<br>
           <div class="aj-etablissement-horaires-plage-container">
             <div
               v-for="plage_jour in etablissement.horaires"
+              :key="plage_jour.du"
               class="aj-etablissement-horaires-plage"
-              v-bind:key="plage_jour.du"
             >
-              <div class="font-bold" v-if="plage_jour.du === plage_jour.au">
+              <div
+                v-if="plage_jour.du === plage_jour.au"
+                class="font-bold"
+              >
                 Les {{ plage_jour.du }}s
               </div>
-              <div class="font-bold" v-if="plage_jour.du !== plage_jour.au">
+              <div
+                v-if="plage_jour.du !== plage_jour.au"
+                class="font-bold"
+              >
                 Du {{ plage_jour.du }} au {{ plage_jour.au }}
               </div>
               <ul class="list-unstyled">
                 <li
                   v-for="plage_heure in plage_jour.heures"
-                  v-bind:key="plage_heure.de"
+                  :key="plage_heure.de"
                 >
                   de {{ extractHHMM(plage_heure.de) }} à
                   {{ extractHHMM(plage_heure.a) }}
@@ -47,20 +67,26 @@
             </div>
           </div>
         </div>
-        <div v-if="hasContact" class="aj-etablissements-actions">
+        <div
+          v-if="hasContact"
+          class="aj-etablissements-actions"
+        >
           <div v-if="etablissement.url">
             <a
-              v-bind:href="etablissement.url"
-              class="button primary with-icon"
-              target="_blank"
-              rel="noopener"
               v-analytics="{
                 name: etablissement.id,
                 action: 'Site internet',
                 category: 'Partenaire',
               }"
+              :href="etablissement.url"
+              class="button primary with-icon"
+              target="_blank"
+              rel="noopener"
             >
-              <i class="fa fa-share-square-o" aria-hidden="true"></i>
+              <i
+                class="fa fa-share-square-o"
+                aria-hidden="true"
+              />
               Site internet
             </a>
           </div>
@@ -69,24 +95,29 @@
             class="aj-etablissements-action-tel-mobile"
           >
             <a
-              v-bind:href="`tel:${etablissement.telephone}`"
-              class="button primary with-icon"
-              target="_blank"
-              rel="noopener"
               v-analytics="{
                 name: etablissement.id,
                 action: 'Téléphone',
                 category: 'Partenaire',
               }"
+              :href="`tel:${etablissement.telephone}`"
+              class="button primary with-icon"
+              target="_blank"
+              rel="noopener"
             >
-              <i class="fa fa-phone" aria-hidden="true"></i>
+              <i
+                class="fa fa-phone"
+                aria-hidden="true"
+              />
               {{ etablissement.telephone }}
             </a>
           </div>
         </div>
       </div>
     </div>
-    <p v-else> Aucune information disponible sur cette agence </p>
+    <p v-else>
+      Aucune information disponible sur cette agence
+    </p>
   </div>
 </template>
 

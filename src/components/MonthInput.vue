@@ -1,5 +1,5 @@
 <template>
-  <input v-model="item" />
+  <input v-model="item">
 </template>
 
 <script>

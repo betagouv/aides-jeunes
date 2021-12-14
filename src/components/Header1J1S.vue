@@ -53,7 +53,7 @@
               class="rf"
               alt="Logo République Française"
               src="@/../public/img/logo_rf.svg"
-            />
+            >
           </a>
           <a
             href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
@@ -63,27 +63,32 @@
               class="fr"
               alt="Logo 1 jeune 1 solution France Relance"
               src="@/../public/img/logo1j1s-france-relance.svg"
-            />
+            >
           </a>
         </div>
 
         <div class="aj-1j1s-header-right-links">
           <router-link
+            v-if="$route.name !== 'home'"
             class="button outline is-not-mobile"
             to="/"
-            v-if="$route.name !== 'home'"
-            >Retour à l'accueil du simulateur</router-link
           >
+            Retour à l'accueil du simulateur
+          </router-link>
           <router-link
+            v-if="$route.name !== 'home'"
             class="button outline is-mobile"
             to="/"
-            v-if="$route.name !== 'home'"
-            >Accueil</router-link
           >
+            Accueil
+          </router-link>
         </div>
       </div>
     </div>
-    <nav class="aj-1j1s-header-menu" :class="{ show: showMenu }">
+    <nav
+      class="aj-1j1s-header-menu"
+      :class="{ show: showMenu }"
+    >
       <div class="container">
         <svg
           width="18"
@@ -119,7 +124,7 @@
           </li>
           <li
             v-for="(item, index) in menu"
-            v-bind:key="item.key"
+            :key="item.key"
             :class="{
               'last-item': index === menu.length - 1,
               active: item.href === '/',

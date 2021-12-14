@@ -3,7 +3,7 @@
     <button
       class="aj-etablissements-back-button button outline small with-icon"
       type="button"
-      v-on:click="window && window.history.back()"
+      @click="window && window.history.back()"
     >
       <svg
         width="12"
@@ -23,22 +23,28 @@
       Vous pouvez y être accompagné·e pour faire votre demande et poser toutes
       vos questions.
     </p>
-    <p v-show="updating"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
-      cours…</p
-    >
+    <p v-show="updating">
+      <i
+        class="fa fa-spinner fa-spin"
+        aria-hidden="true"
+      /> Récupération en
+      cours…
+    </p>
     <div v-if="list && list.length">
       <div
         v-for="(etablissement, index) in list"
+        :key="index"
         class="aj-etablissement-container"
-        v-bind:key="index"
       >
-        <Etablissement v-bind:etablissement="etablissement" />
+        <Etablissement :etablissement="etablissement" />
       </div>
     </div>
     <div v-else>
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Revenir aux
+        <i
+          class="fa fa-arrow-circle-left"
+          aria-hidden="true"
+        /> Revenir aux
         résultats
       </router-link>
     </div>
@@ -53,7 +59,7 @@ import Etablissement from "@/components/Etablissement"
 import EtablissementLib from "@/lib/Etablissement"
 
 export default {
-  name: "lieux",
+  name: "Lieux",
   components: {
     Etablissement,
   },

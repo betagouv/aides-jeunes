@@ -1,16 +1,15 @@
 <template>
   <form @submit.prevent="next">
     <YesNoQuestion
-      class="form__group"
-      v-model="enfant._hasRessources"
       v-for="enfant in enfants"
-      v-bind:key="enfant.id"
+      :key="enfant.id"
+      v-model="enfant._hasRessources"
+      class="form__group"
     >
       {{ enfant._firstName | capitalize }} a-t-il/elle perçu des ressources
-      <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
-      > ?
+      <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong> ?
     </YesNoQuestion>
-    <Actions v-bind:onSubmit="onSubmit"> </Actions>
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -19,7 +18,7 @@ import Actions from "@/components/Actions"
 import YesNoQuestion from "@/components/YesNoQuestion"
 
 export default {
-  name: "ressources-types",
+  name: "RessourcesTypes",
   components: {
     YesNoQuestion,
     Actions,

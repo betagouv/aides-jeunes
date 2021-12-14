@@ -1,8 +1,8 @@
 <template>
   <InputDate
     v-model="date"
-    v-on:input="$emit('input', date)"
-    dateType="month"
+    date-type="month"
+    @input="$emit('input', date)"
   />
 </template>
 
@@ -12,11 +12,11 @@ import InputDate from "@/components/InputDate"
 
 export default {
   name: "InputMonth",
-  props: {
-    value: Date,
-  },
   components: {
     InputDate,
+  },
+  props: {
+    value: Date,
   },
   data: function () {
     let date = this.value

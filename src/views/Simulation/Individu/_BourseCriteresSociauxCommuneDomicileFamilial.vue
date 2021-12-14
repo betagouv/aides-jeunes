@@ -4,27 +4,43 @@
       <label class="aj-question">
         Quel est le code postal de la commune de vos parents ?
       </label>
+<<<<<<< HEAD
       <input id="cp" type="number" v-model="codePostal" />
+=======
+      <input
+        v-model="codePostal"
+        type="number"
+      >
+>>>>>>> 32501319 (chore: eslint auto fix for Vue3)
     </div>
 
-    <p v-if="retrievingCommunes"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
-    ></p>
-    <div class="form__group" v-show="communes && communes.length">
+    <p v-if="retrievingCommunes">
+      <i
+        class="fa fa-spinner fa-spin"
+        aria-hidden="true"
+      />
+    </p>
+    <div
+      v-show="communes && communes.length"
+      class="form__group"
+    >
       <label class="aj-question">
         Veuillez sélectionner la ville qui correspond
       </label>
-      <select v-model="nomCommune" id="commune">
+      <select
+        id="commune"
+        v-model="nomCommune"
+      >
         <option
           v-for="commune in communes"
-          v-bind:value="commune.nom"
-          v-bind:key="commune.code"
+          :key="commune.code"
+          :value="commune.nom"
         >
           {{ commune.nom }}
         </option>
       </select>
     </div>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <Actions :on-submit="onSubmit" />
   </form>
 </template>
 <script>
@@ -34,10 +50,10 @@ import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
-  mixins: [DepcomMixin],
   components: {
     Actions,
   },
+  mixins: [DepcomMixin],
   data() {
     const id = this.$route.params.id
     const role = id.split("_")[0]

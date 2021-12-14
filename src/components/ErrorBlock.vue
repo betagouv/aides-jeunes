@@ -1,46 +1,58 @@
 <template>
-  <div id="error" class="alert alert-danger" role="alert">
+  <div
+    id="error"
+    class="alert alert-danger"
+    role="alert"
+  >
     <h2>
-      <i class="fa fa-warning" aria-hidden="true"></i> Une erreur est survenue.
+      <i
+        class="fa fa-warning"
+        aria-hidden="true"
+      /> Une erreur est survenue.
     </h2>
 
-    <div v-if="isTimeoutError" class="notification warning">
-      <p
-        >Vous êtes beaucoup à utiliser ce simulateur en ce moment. On n'a pas
-        réussi à répondre à tout le monde en même temps.</p
-      >
+    <div
+      v-if="isTimeoutError"
+      class="notification warning"
+    >
+      <p>
+        Vous êtes beaucoup à utiliser ce simulateur en ce moment. On n'a pas
+        réussi à répondre à tout le monde en même temps.
+      </p>
 
-      <p
-        >En actualisant la page vous pourrez obtenir les résultats de votre
+      <p>
+        En actualisant la page vous pourrez obtenir les résultats de votre
         simulation. Si vous le pouvez, attendez quelques minutes pour le
-        faire.</p
-      >
+        faire.
+      </p>
     </div>
 
     <p>
       <a
         v-analytics="{ action: 'Support', category: 'Contact' }"
-        v-mail="this.sendErrorMail()"
-        >Signalez ce problème</a
-      >
+        v-mail="sendErrorMail()"
+      >Signalez ce problème</a>
       en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et
       en joignant si possible une capture d'écran. Nous vous répondrons au plus
       vite et corrigerons le problème dès que possible.
     </p>
-    <p
-      >Pour ne pas perdre les données que vous avez déclarées, vous pouvez
+    <p>
+      Pour ne pas perdre les données que vous avez déclarées, vous pouvez
       garder cet onglet ouvert, puis actualiser la page une fois que le problème
-      sera résolu.</p
-    >
+      sera résolu.
+    </p>
     <div>
-      <button class="button" v-on:click="showDetails = !showDetails">
+      <button
+        class="button"
+        @click="showDetails = !showDetails"
+      >
         Afficher les détails techniques
       </button>
     </div>
     <pre v-html="errorText"></pre>
     <small v-if="showDetails">
       Informations techniques :
-      <pre v-html="errorText"></pre>
+      <pre v-html="errorText" />
     </small>
   </div>
 </template>

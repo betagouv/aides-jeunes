@@ -2,18 +2,18 @@
   <article class="text container aj-text-container">
     <h1>Déclaration d'accessibilité</h1>
 
-    <p
-      >La conformité aux normes d’accessibilité numérique est un objectif
+    <p>
+      La conformité aux normes d’accessibilité numérique est un objectif
       ultérieur mais nous tâchons de rendre ce site accessible à toutes et à
-      tous.</p
-    >
+      tous.
+    </p>
 
     <h2>État de conformité</h2>
 
-    <p
-      >Le service est <strong>non conforme avec le RGAA 4.0</strong> : le site
-      n'a pas encore été audité.</p
-    >
+    <p>
+      Le service est <strong>non conforme avec le RGAA 4.0</strong> : le site
+      n'a pas encore été audité.
+    </p>
 
     <h2>Établissement de cette déclaration d'accessibilité</h2>
 
@@ -25,25 +25,24 @@
       <p>
         >Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
         un contenu ou une fonctionnalité du site, merci de nous en faire
-        part.</p
-      >
+        part.
+      </p>
       <ul>
-        <li
-          ><a
+        <li>
+          <a
             v-mail="{
               to: 'aides-jeunes@beta.gouv.fr',
               subject: 'Problème d\'accessibilité',
             }"
-            >aides-jeunes@beta.gouv.fr</a
-          ></li
-        >
+          >aides-jeunes@beta.gouv.fr</a>
+        </li>
       </ul>
     </div>
 
-    <p
-      >Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit
+    <p>
+      Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit
       de faire parvenir vos doléances ou une demande de saisine au Défenseur des
-      droits.</p
-    >
+      droits.
+    </p>
   </article>
 </template>

@@ -14,6 +14,8 @@ import EtablissementModule from "./modules/etablissement"
 import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
 
+import computeAidesVeloBenefits from "../lib/Benefits/compute-aides-velo"
+
 function defaultCalculs() {
   return {
     resultats: {
@@ -522,12 +524,19 @@ const store = createStore({
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
-          return computeAides.bind(Institution.benefits)(
+          const results = computeAides.bind(Institution.benefits)(
             store.getters.situation,
             store.state.situationId,
             openfiscaResponse,
             showPrivate
           )
+
+          computeAidesVeloBenefits.computeAidesVeloBenefits(
+            result.droitsEligibles,
+            store.getters.situation,
+            {}
+          )
+          return results
         })
         .then((results) => store.commit("setResults", results))
         .catch((error) => {

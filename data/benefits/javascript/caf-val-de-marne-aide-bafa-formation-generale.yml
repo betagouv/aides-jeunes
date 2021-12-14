@@ -30,5 +30,5 @@ conditions_generales:
     value: 25
   - type: regime_securite_sociale
     not: true
-    value: regime_agricole
+    values: regime_agricole
 profils: []

@@ -136,13 +136,16 @@ fields:
     fields:
       - *field_not
       - label: Value
-        name: value
+        name: values
         widget: select
+        multiple: true
         options:
           - label: Régime général
             value: regime_general
           - label: Régime agricole
             value: regime_agricole
+          - label: Autres régimes
+            value: autres_regimes
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide

@@ -32,5 +32,5 @@ conditions_generales:
     operator: <=
     value: 25
   - type: regime_securite_sociale
-    value: regime_general
+    values: regime_general
 profils: []

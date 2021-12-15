@@ -490,7 +490,7 @@ fields:
       - *field_communes
       - *field_regime_securite_sociale
     field_references: &field_references
-      label: Lien des références
+      label: Liens des sources de référence
       name: references
       widget: list
       hint: Pour saisir plusieurs références, séparez les références par une virgule.

@@ -12,7 +12,7 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: ""
-montant: 160
+montant: 1600
 interestFlag: _interetBafa
 conditions_generales:
   - type: age

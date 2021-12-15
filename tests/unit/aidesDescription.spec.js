@@ -1,4 +1,5 @@
 const expect = require("expect")
+const fs = require("fs")
 
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
@@ -14,6 +15,11 @@ describe("benefit descriptions", function () {
       it("should have a label", function () {
         expect(typeof institution.label).toBe("string")
         expect(institution.label.length).toBeGreaterThan(1)
+      })
+
+      it("should have a valid img", function () {
+        const path = `${__dirname}/../../public/img/${institution.imgSrc}`
+        expect(fs.existsSync(path)).toBe(true)
       })
 
       Object.keys(institution.prestations).forEach(function (benefitId) {

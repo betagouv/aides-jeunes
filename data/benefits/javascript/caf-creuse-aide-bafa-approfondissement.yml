@@ -1,23 +1,25 @@
-label: aide au BAFA pour une session de formation d’approfondissement
-institution: caf_creuse
+label: aide au BAFA pour une session de formation générale
+institution: caf
 description: L'aide au BAFA pour une session d'approfondissement ou de
-  qualification est une aide locale mise à disposition par la CAF de la
-  Creuse pour vous aider à financer votre session en complément de <a
-  target="_blank"
+  qualification est une aide locale mise à disposition par la CAF de la Creuse
+  pour vous aider à financer votre session en complément de <a target="_blank"
   rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de ses parents.
   - Effectuer la session de formation auprès d’un <a
     target="_blank"rel="noopener"href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
-        établissement conventionné.
+    établissement conventionné.
   - Avoir un quotient familial égal ou inférieur à 1200 €.
   - Signer une charte d’engagement pour le suivi intégral de la formation.
   - Ne pas être pris en charge à 100 % par un employeur.
 link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
-type: bool
+type: float
 unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
 conditions_generales:
   - type: age
     operator: ">="

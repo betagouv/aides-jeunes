@@ -16,7 +16,7 @@ instructions: https://www.caf.fr/allocataires/caf-des-ardennes/offre-de-service/
 type: float
 unit: €
 periodicite: ponctuelle
-legend: ""
+legend: maximum
 montant: 280
 interestFlag: _interetBafa
 conditions_generales:

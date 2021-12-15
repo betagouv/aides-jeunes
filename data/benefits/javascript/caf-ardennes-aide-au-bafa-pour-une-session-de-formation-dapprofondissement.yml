@@ -19,7 +19,7 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 410
+montant: 330
 interestFlag: _interetBafa
 conditions_generales:
   - type: age

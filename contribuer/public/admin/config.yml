@@ -508,6 +508,8 @@ collections:
       - *field_institution
       - *field_description
       - *field_conditions_non_prise_en_compte
+      - *field_conditions_generales
+      - *field_profil_eligibilite
       - *field_lien_plus_informations
       - *field_lien_teleservice
       - *field_lien_formulaire
@@ -519,8 +521,6 @@ collections:
       - *field_legende_montant
       - *field_montant_maximal_aide
       - *field_interet_particulier
-      - *field_conditions_generales
-      - *field_profil_eligibilite
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe

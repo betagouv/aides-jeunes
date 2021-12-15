@@ -69,4 +69,4 @@ moment.locale("fr")
 
 app.use(store)
 app.use(router)
-app.mount("#app")
+app.mount(document.body)

@@ -402,6 +402,19 @@ fields:
                         value: doctorat_3
                       - label: Autre
                         value: autre
+      - label: Stagiaire
+        name: stagiaire
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: []
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
+              - *field_boursier
       - label: Apprenti
         name: apprenti
         widget: object

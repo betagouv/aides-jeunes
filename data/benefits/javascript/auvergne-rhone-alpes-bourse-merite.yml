@@ -15,9 +15,8 @@ teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.
 prefix: la
 type: float
 unit: €
-floorAt: 10
-montant: 500
 periodicite: ponctuelle
+montant: 5003
 conditions_generales:
   - type: regions
     values:
@@ -30,3 +29,4 @@ profils:
           - mention_tres_bien
           - mention_tres_bien_felicitations_jury
   - type: apprenti
+floorAt: 10

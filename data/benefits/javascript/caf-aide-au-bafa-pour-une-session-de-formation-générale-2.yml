@@ -1,0 +1,29 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF des Ardennes pour vous aider à financer votre session
+  en complément de l’aide nationale  <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Etre rattaché au régime général de la sécurité sociale.
+  - Engager votre formation avec un organisme ayant son siège ou une antenne
+    dans les départements de la Marne, des Ardennes, de la Haute Marne, et de
+    l'Aube.
+link: https://www.caf.fr/allocataires/caf-des-ardennes/offre-de-service/enfance-et-jeunesse/le-bafa
+teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
+instructions: https://www.caf.fr/allocataires/caf-des-ardennes/offre-de-service/enfance-et-jeunesse/le-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 280
+interestFlag: _interetBafa
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "08"
+profils: []

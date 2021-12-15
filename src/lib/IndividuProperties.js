@@ -505,6 +505,12 @@ const STEPS = {
     },
   },
 
+  stagiaire: {
+    question: (component) => {
+      return `${Individu.label(component.entity, "être")} en stage ?`
+    },
+  },
+
   statuts_etablissement_scolaire: {
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
     questionType: "enum",

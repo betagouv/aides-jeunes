@@ -31,8 +31,9 @@ function individuBlockFactory(id, chapter) {
                 r("scolarite"),
                 {
                   isActive: (subject) =>
-                    subject.scolarite == "lycee" ||
-                    subject.scolarite == "enseignement_superieur",
+                    ["lycee", "enseignement_superieur"].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("annee_etude")],
                 },
                 {
@@ -53,6 +54,7 @@ function individuBlockFactory(id, chapter) {
                     ].includes(subject.annee_etude),
                   steps: [r("mention_baccalaureat")],
                 },
+                r("stagiaire"),
               ],
             },
             {

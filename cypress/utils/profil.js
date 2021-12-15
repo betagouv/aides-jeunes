@@ -40,6 +40,10 @@ const fill_statuts_etablissement_scolaire = (type) => {
   fillRadio("statuts_etablissement_scolaire", type)
 }
 
+const fill_stagiaire = (stagiaire) => {
+  fillRadio("stagiaire", stagiaire)
+}
+
 const fill_alternant = (alternant) => {
   fillRadio("alternant", alternant)
 }
@@ -125,6 +129,7 @@ const publicStudent = () => {
   fill_annee_etude("licence_1")
   fill_statuts_etablissement_scolaire("public")
   fill_mention_baccalaureat("mention_tres_bien")
+  fill_stagiaire(false)
   fill_alternant(false)
   fillHandicap(false)
   fill_enfant_a_charge(false)

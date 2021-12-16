@@ -6,8 +6,7 @@ description: L'aide au BAFA pour une session de formation générale est une aid
   rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.<br><br>
 conditions:
-  - >
-    Etre inscrit auprès de la Direction Régionale de la Jeunesse, des Sports et
+  - Etre inscrit auprès de la Direction Régionale de la Jeunesse, des Sports et
     de la Cohésion sociale (DRJSCS) de votre lieu de résidence.
 conditions_generales:
   - type: age

@@ -17,21 +17,27 @@ function getFiles(dir) {
     if (fs.lstatSync(absolute).isDirectory()) {
       return getFiles(absolute)
     } else {
-      return files.push({ absolute, filename })
+      const splitFilename = filename.split(".")
+      const nameWithoutExtension = splitFilename
+        .slice(0, splitFilename.length - 1)
+        .join("")
+      const extension = splitFilename[splitFilename.length - 1]
+
+      return files.push({ filename: nameWithoutExtension, absolute, extension })
     }
   })
 }
-getFiles(__dirname)
+getFiles(process.env.NODE_PATH)
 
 const result = files.filter((file) => {
-  const splitFilename = file.filename.split(".")
-  const extension = splitFilename[splitFilename.length - 1]
-  return ["js", "vue"].includes(extension)
+  return ["js", "vue"].includes(file.extension)
 })
+let count = 0
 
 result.forEach((file) => {
   if (file.filename !== kebabCase(file.filename)) {
+    count += 1
     console.log(`'${file.absolute}' ne respecte pas la norme.`)
   }
 })
-console.log(`Total: ${result.length} fichiers`)
+console.log(`Total: ${count}/${result.length} fichiers à renommer.`)

@@ -55,6 +55,9 @@ export default {
       this.$push()
     },
   },
+  props: {
+    modelValue: Number,
+  },
 }
 </script>
 

@@ -16,7 +16,8 @@ communes.forEach(function (commune) {
   // Backward compatibility
   commune.codeCommune = commune.code
   commune.nomCommune = commune.nom
-  commune.epci = communeEpci[0] && communeEpci[0].code
+  commune.epci = communeEpci && communeEpci.code
+  commune.epciType = communeEpci && communeEpci.type
 
   commune.codesPostaux.forEach(function (codePostal) {
     if (!(codePostal in index)) {

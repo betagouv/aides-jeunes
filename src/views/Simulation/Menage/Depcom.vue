@@ -86,6 +86,7 @@ export default {
             _departement: matchingCommune.departement,
             _region: matchingCommune.region,
             _epci: matchingCommune.epci,
+            _epciType: matchingCommune.epciType,
           },
         })
       }

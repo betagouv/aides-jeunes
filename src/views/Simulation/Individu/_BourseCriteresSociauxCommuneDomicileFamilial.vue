@@ -91,6 +91,8 @@ export default {
               matchingCommune.region,
             _bourseCriteresSociauxCommuneDomicileFamilialEpci:
               matchingCommune.epci,
+            _bourseCriteresSociauxCommuneDomicileFamilialEpciType:
+              matchingCommune.epciType,
           },
         })
       }

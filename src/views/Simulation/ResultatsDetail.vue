@@ -58,9 +58,6 @@ export default {
     Feedback,
     LoadingModal,
   },
-<<<<<<< HEAD
-  mixins: [ResultatsMixin],
-=======
   mixins: [ResultatsMixin, StatisticsMixin],
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {
@@ -76,9 +73,10 @@ export default {
       droit &&
         this.$matomo &&
         this.$matomo.trackEvent("General", "showDetails", droit.label)
+
+      this.sendStatistics(this.droits, "showDetails", droitId)
     }
   },
->>>>>>> 8d03442f (update: conflits)
   computed: {
     situation: function () {
       return this.$store.getters.situation

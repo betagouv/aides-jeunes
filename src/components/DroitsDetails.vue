@@ -7,7 +7,7 @@
     <div class="aj-droit-identity">
       <img
         class="aj-droit-illustration"
-        :src="require(`./../../public/img/${droit.provider.imgSrc}`)"
+        :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
         :alt="'Image pour ' + droit.label"
       />
       <div>
@@ -173,7 +173,7 @@ export default {
     BenefitCtaLink,
     DroitEstime,
   },
-  mixins: [DroitMixin, StatisticsMixin],
+  mixins: [DroitMixin],
   props: {
     droit: Object,
     droits: Array,

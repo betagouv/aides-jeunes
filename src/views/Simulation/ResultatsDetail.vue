@@ -74,12 +74,7 @@ export default {
         this.$matomo &&
         this.$matomo.trackEvent("General", "showDetails", droit.label)
 
-      this.sendStatistics(
-        [droit],
-        "showDetails",
-        this.droits.findIndex((droit) => droit.id === droitId) + 1,
-        this.droits.length
-      )
+      this.sendStatistics(this.droits, "showDetails", droitId)
     }
   },
   computed: {

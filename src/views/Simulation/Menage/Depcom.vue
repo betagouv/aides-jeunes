@@ -85,6 +85,7 @@ export default {
             _nomCommune: this.nomCommune,
             _departement: matchingCommune.departement,
             _region: matchingCommune.region,
+            _epci: matchingCommune.epci,
           },
         })
       }

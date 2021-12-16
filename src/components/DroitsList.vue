@@ -91,6 +91,7 @@ export default {
   props: {
     droits: Array,
     ineligible: Boolean,
+    filter: Array,
   },
   data: function () {
     return {}

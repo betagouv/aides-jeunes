@@ -6,11 +6,6 @@ description: Mon Abo Etudiant TER permet d'avoir des tarifs réduits voire une
 conditions:
   - Effectuer un stage d'une durée supérieure ou égale à 4 semaines, lorsque
     vous bénéficiez de cette aide en tant que stagiaire.
-link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=813
-teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/saisieetudiant.htm
-prefix: l’aide
-type: bool
-floorAt: 10
 conditions_generales:
   - type: regions
     values:
@@ -35,3 +30,16 @@ profils:
     conditions:
       - type: boursier
         value: true
+  - type: stagiaire
+    conditions:
+      - type: age
+        operator: <
+        value: 26
+  - type: stagiaire
+    conditions:
+      - type: boursier
+        value: true
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=813
+teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/saisieetudiant.htm
+prefix: l’aide
+type: bool

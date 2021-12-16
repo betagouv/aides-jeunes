@@ -151,6 +151,7 @@ const individu = Object.assign(
     },
     sortie_academie: Boolean,
     sortie_region_academique: Boolean,
+    stagiaire: Boolean,
     statuts_etablissement_scolaire: {
       type: String,
       enum: ["inconnu", "public", "prive_sous_contrat", "prive_hors_contrat"],

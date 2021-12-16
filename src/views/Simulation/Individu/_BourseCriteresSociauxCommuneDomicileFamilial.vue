@@ -71,21 +71,24 @@ export default {
         )
         return
       }
-      const communeMatches = this.communes.filter(
+      const matchingCommune = this.communes.find(
         (c) => c.nom == this.nomCommune
       )
-      if (communeMatches.length) {
+      if (matchingCommune) {
         this.$store.dispatch("answer", {
           id: "demandeur",
           entityName: "individu",
           fieldName: "_bourseCriteresSociauxCommuneDomicileFamilial",
           value: {
-            _bourseCriteresSociauxCommuneDomicileFamilial:
-              communeMatches[0].code,
+            _bourseCriteresSociauxCommuneDomicileFamilial: matchingCommune.code,
             _bourseCriteresSociauxCommuneDomicileFamilialCodePostal:
               this.codePostal.toString(),
             _bourseCriteresSociauxCommuneDomicileFamilialNomCommune:
               this.nomCommune,
+            _bourseCriteresSociauxCommuneDomicileFamilialDepartement:
+              matchingCommune.departement,
+            _bourseCriteresSociauxCommuneDomicileFamilialRegion:
+              matchingCommune.region,
           },
         })
       }

@@ -8,16 +8,10 @@ const {
 import benefits from "@/../data/all"
 
 describe("computeAides", function () {
-  let commune
   let benefit
   let situation
   let studentSituation
   beforeEach(() => {
-    commune = {
-      code: "59313",
-      departement: "59",
-      region: "32",
-    }
     benefit = {
       profils: [
         {
@@ -44,6 +38,8 @@ describe("computeAides", function () {
       famille: {},
       menage: {
         depcom: "64201",
+        _departement: "64",
+        _region: "75",
       },
     }
     studentSituation = {
@@ -58,6 +54,8 @@ describe("computeAides", function () {
       famille: {},
       menage: {
         depcom: "64201",
+        _departement: "64",
+        _region: "75",
       },
     }
   })
@@ -110,7 +108,7 @@ describe("computeAides", function () {
           type: "departements",
           values: ["64", "45", "12"],
         },
-        { commune: null }
+        { situation: { menage: {} } }
       )
     ).toBe(false)
   })
@@ -122,8 +120,8 @@ describe("computeAides", function () {
   it("verify the result when a commune is not in benefit's department", function () {
     expect(
       testGeographicalEligibility(
-        { type: "departements", values: ["45"] },
-        { commune }
+        { type: "departements", values: ["59"] },
+        { situation }
       )
     ).toBe(false)
   })
@@ -133,9 +131,9 @@ describe("computeAides", function () {
       testGeographicalEligibility(
         {
           type: "regions",
-          values: ["32"],
+          values: ["75"],
         },
-        { commune }
+        { situation }
       )
     ).toBe(true)
   })
@@ -163,6 +161,8 @@ describe("computeAides", function () {
 
   it("adds 0 when ineligible city", function () {
     situation.menage.depcom = "95201"
+    situation.menage._departement = "95"
+    situation.menage._region = "11"
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeJavascriptBenefits(benefits, situation, openfiscaRequest)
     expect(

@@ -31,6 +31,6 @@ context("Full simulation", () => {
     projet.fill__interetPermisDeConduire(false)
 
     results.wait()
-    results.hasAAH(1)
+    results.hasAAH()
   })
 })

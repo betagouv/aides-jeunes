@@ -36,7 +36,7 @@ context("Full simulation", () => {
 
     results.wait()
 
-    results.hasPrimeActivite(1)
-    results.captureFiscalResources(2)
+    results.hasPrimeActivite()
+    results.captureFiscalResources()
   })
 })

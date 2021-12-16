@@ -9,9 +9,9 @@ const getBenefitSummary = (id) => cy.get(`@${id}-summary`)
 
 const back = () => cy.get('button[data-testid="back"]').click()
 
-const IdentifyBenefit = (position, id, name) => {
+const IdentifyBenefit = (id, name) => {
   cy.get(
-    `.droits-list [itemtype="http://schema.org/GovernmentService"]:nth-of-type(${position})`,
+    `.droits-list [itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
     { timeout: 10000 }
   ).as(`${id}-summary`)
   getBenefitSummary(id)
@@ -20,11 +20,11 @@ const IdentifyBenefit = (position, id, name) => {
     .should("match", name)
 }
 
-const hasPrimeActivite = (position) => {
+const hasPrimeActivite = () => {
   const name = /Prime d’activité/
   const id = "ppa"
   const description = /revenus/
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
     .invoke("text")
@@ -45,11 +45,11 @@ const hasPrimeActivite = (position) => {
     .should("be.visible")
 }
 
-const captureFiscalResources = (position) => {
+const captureFiscalResources = () => {
   const name = /Livret d’épargne populaire/
-  const id = "livretEpargnePopulaire"
+  const id = "livret_epargne_populaire_taux"
   cy.get(".aj-droit-details-back-button").click()
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id).click()
   cy.get(".notification.warning").invoke("text").should("contain", "ressources")
   cy.get(".button.outline.red").click()
@@ -58,11 +58,11 @@ const captureFiscalResources = (position) => {
   cy.get(id + "-summary").should("not.exist")
 }
 
-const hasHousingBenefit = (position) => {
+const hasHousingBenefit = () => {
   const name = /Aides au logement/
   const id = "aide_logement"
   const description = /Apl/
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
     .invoke("text")
@@ -87,20 +87,20 @@ const hasHousingBenefit = (position) => {
   submit()
 }
 
-const hasCSS = (position) => {
+const hasCSS = () => {
   const name = /Complémentaire santé solidaire/
-  const id = "css"
-  IdentifyBenefit(position, id, name)
+  const id = "css_participation_forfaitaire"
+  IdentifyBenefit(id, name)
   getBenefitSummary(id).find(
     '[data-testid="aj-droit-estime-icon-fa-check-circle"]'
   )
 }
 
-const hasAAH = (position) => {
+const hasAAH = () => {
   const name = /Allocation aux adultes handicapés/
   const id = "aah"
   const description = "AAH"
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
     .invoke("text")
@@ -121,11 +121,11 @@ const hasAAH = (position) => {
     .should("be.visible")
 }
 
-const hasBourseCriteresSociaux = (position) => {
+const hasBourseCriteresSociaux = () => {
   const name = /Bourse sur critères sociaux/
   const id = "bourse_criteres_sociaux"
   const description = /BCS/
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
     .invoke("text")
@@ -146,10 +146,10 @@ const hasBourseCriteresSociaux = (position) => {
     .should("be.visible")
 }
 
-const hasIleDeFranceAideBachelierMeritants = (position) => {
+const hasIleDeFranceAideBachelierMeritants = () => {
   const name = /Aide aux bacheliers méritants/
   const id = "ile-de-france-aide-aux-bacheliers-meritants"
-  IdentifyBenefit(position, id, name)
+  IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
     .invoke("text")

@@ -158,7 +158,7 @@ fields:
     collection: institutions
     value_field: "{{slug}}"
     display_fields: ["{{name}}"]
-    search_fields: [slug, displayFields]
+    search_fields: [slug, name]
     allow_multiple: false
   field_description: &field_description
     label: Courte description

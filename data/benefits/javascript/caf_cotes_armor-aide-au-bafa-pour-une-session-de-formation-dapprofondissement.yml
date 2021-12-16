@@ -1,0 +1,29 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_cotes_armor
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF des Côtes d'Armor pour vous aider à financer votre
+  session d’approfondissement ou de qualification en complément de <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
+  - Percevoir une prestation légale de la CAF des Côtes d’Armor.
+  - Avoir un quotient familial inférieur ou égal à 900€.
+  - Avoir réalisé les 3 stages de formation.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "22"
+profils: []
+link: https://www.caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/enfance-et-jeunesse/bafa-et-bafd
+form: https://www.caf.fr/sites/default/files/caf/221/offre_services/Enfance_jeunesse/bafa/20160418_demande_aide_bafa-bafd.pdf
+instructions: https://www.caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/enfance-et-jeunesse/bafa-et-bafd
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 450
+interestFlag: _interetBafa

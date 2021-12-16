@@ -8,6 +8,7 @@
         v-bind:to="`/simulation/resultats/${droit.id}`"
         itemscope
         itemtype="http://schema.org/GovernmentService"
+        :data-testid="droit.id"
       >
         <img
           class="aj-aide-illustration"
@@ -105,15 +106,6 @@ export default {
     },
   },
   methods: {
-    longCta: function (benefit) {
-      return `Comment obtenir ${benefit.prefix}${
-        benefit.prefix && benefit.prefix.endsWith("’") ? "" : " "
-      }${benefit.label} ?`
-    },
-
-    scrollTo: function (event, droit) {
-      return this.$ScrollService.go(event, document.getElementById(droit.id))
-    },
     push: function (droit) {
       this.$router.push(`/simulation/resultats/${droit.id}`)
     },

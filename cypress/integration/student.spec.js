@@ -50,9 +50,9 @@ context("Full simulation", () => {
 
     results.wait()
 
-    results.hasIleDeFranceAideBachelierMeritants(15)
-    results.hasBourseCriteresSociaux(5)
+    results.hasIleDeFranceAideBachelierMeritants()
+    results.hasBourseCriteresSociaux()
     results.back()
-    results.hasHousingBenefit(4)
+    results.hasHousingBenefit()
   })
 })

@@ -1,0 +1,29 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_calvados
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF du Calvados pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de <a target="_blank"
+  rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Etre allocataire ou rattaché au dossier allocataire de ses parents.
+  - Etre stagiaire ou bénéficiaire de l'aide au logement au moment du stage.
+  - Avoir un quotient familial inférieur ou égal à 850€.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "14"
+profils: []
+link: https://www.caf.fr/allocataires/caf-du-calvados/offre-de-service/enfance-et-jeunesse/bafa-bafd
+form: https://www.caf.fr/sites/default/files/caf/141/Caf.fr/Offre%20de%20service/Enfance%20Jeunesse/Dem%20BAFA%20approfondis%202017.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-calvados/offre-de-service/enfance-et-jeunesse/bafa-bafd
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 215
+interestFlag: _interetBafa

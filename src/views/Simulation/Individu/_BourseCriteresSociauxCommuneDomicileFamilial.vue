@@ -4,7 +4,13 @@
       <label class="aj-question">
         Quel est le code postal de la commune de vos parents ?
       </label>
-      <input id="cp" type="number" v-model="codePostal" />
+      <input
+        id="cp"
+        type="text"
+        data-type="number"
+        v-model="codePostal"
+        pattern="[0-9]*"
+      />
     </div>
 
     <p v-if="retrievingCommunes">
@@ -16,8 +22,8 @@
       </label>
       <select id="commune" v-model="nomCommune">
         <option
-          v-for="commune in communes"
-          :key="commune.code"
+          v-for="(commune, index) in communes"
+          :key="`commune_${index}`"
           :value="commune.nom"
         >
           {{ commune.nom }}
@@ -56,6 +62,7 @@ export default {
       individu,
       nomCommune,
       retrievingCommunes: false,
+      communes: [],
     }
   },
   watch: {
@@ -71,7 +78,7 @@ export default {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+      if (!this.codePostal.toString().match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
         this.$store.dispatch(
           "updateError",
           "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."

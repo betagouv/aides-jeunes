@@ -73,6 +73,8 @@ export default {
       droit &&
         this.$matomo &&
         this.$matomo.trackEvent("General", "showDetails", droit.label)
+
+      this.sendStatistics(this.droits, "showDetails", droitId)
     }
   },
   computed: {

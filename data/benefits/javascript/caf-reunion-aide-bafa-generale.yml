@@ -17,8 +17,8 @@ conditions_generales:
     values:
       - "974"
 profils: []
-link: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
-instructions: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
+link: https://www.caf.fr/allocataires/caf-de-la-reunion/offre-de-service/enfance-et-jeunesse/le-bafa-ou-le-bafd-vous-tente-votre-caf-peut-vous-aider
+instructions: https://www.caf.fr/allocataires/caf-de-la-reunion/offre-de-service/enfance-et-jeunesse/le-bafa-ou-le-bafd-vous-tente-votre-caf-peut-vous-aider
 type: float
 unit: €
 periodicite: ponctuelle
@@ -26,4 +26,4 @@ legend: maximum
 montant: 100
 interestFlag: _interetBafa
 references:
-  - https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
+  - https://www.caf.fr/allocataires/caf-de-la-reunion/offre-de-service/enfance-et-jeunesse/le-bafa-ou-le-bafd-vous-tente-votre-caf-peut-vous-aider

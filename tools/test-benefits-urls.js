@@ -1,5 +1,5 @@
 const axios = require("axios")
-const subject = require("./data/all")
+const subject = require("../data/all")
 
 let links = []
 let done = 0

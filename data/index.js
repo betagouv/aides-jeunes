@@ -1,6 +1,6 @@
 "use strict"
 
-const customBenefits = require("./custom-benefits/index")
+const customBenefits = require("./benefits/custom/index")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {

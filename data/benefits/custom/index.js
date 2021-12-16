@@ -3,7 +3,7 @@
 const {
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
-} = require("../../lib/Benefits/Details")
+} = require("../../../lib/Benefits/Details")
 const moment = require("moment")
 
 const customBenefits = {

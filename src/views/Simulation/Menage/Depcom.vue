@@ -72,17 +72,19 @@ export default {
         )
         return
       }
-      const communeMatches = this.communes.filter(
+      const matchingCommune = this.communes.find(
         (c) => c.nom == this.nomCommune
       )
-      if (communeMatches.length) {
+      if (matchingCommune) {
         this.$store.dispatch("answer", {
           entityName: "menage",
           fieldName: "depcom",
           value: {
-            depcom: communeMatches[0].code,
+            depcom: matchingCommune.code,
             _codePostal: this.codePostal.toString(),
             _nomCommune: this.nomCommune,
+            _departement: matchingCommune.departement,
+            _region: matchingCommune.region,
           },
         })
       }

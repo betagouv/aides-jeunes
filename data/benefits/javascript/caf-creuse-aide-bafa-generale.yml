@@ -6,21 +6,13 @@ description: L'aide au BAFA pour une session générale est une aide locale mise
   rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la CAF</a>.
 conditions:
-  - Etre allocataire ou rattaché au dossier allocataire de ses parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Effectuer la session de formation auprès d’un <a
     target="_blank"rel="noopener"href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
     établissement conventionné.
   - Avoir un quotient familial égal ou inférieur à 1200 €.
   - Signer une charte d’engagement pour le suivi intégral de la formation.
   - Ne pas être pris en charge à 100 % par un employeur.
-link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
-instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 300
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -32,3 +24,11 @@ conditions_generales:
     values:
       - "23"
 profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa

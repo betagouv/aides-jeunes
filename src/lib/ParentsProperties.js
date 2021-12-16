@@ -16,6 +16,10 @@ const STEPS = {
         value: "veuve",
       },
       {
+        label: "Célibataire",
+        value: "celibataire",
+      },
+      {
         label: "Décédés",
         value: "decedes",
       },

@@ -1,0 +1,29 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_la_reunion
+description: L'aide au BAFA pour une session de formation générale est une aide
+  locale mise à disposition par la CAF de la Réunion pour vous aider à financer
+  votre session en complément de  <a target="_blank"
+  rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la CAF</a>.<br><br>
+conditions:
+  - >
+    Etre inscrit auprès de la Direction Régionale de la Jeunesse, des Sports et
+    de la Cohésion sociale (DRJSCS) de votre lieu de résidence.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "974"
+profils: []
+link: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
+instructions: https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 100
+interestFlag: _interetBafa
+references:
+  - https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa

@@ -2,11 +2,17 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (benefits, event = "show", benefitsTotal) {
+    sendStatistics: function (
+      benefits,
+      event = "show",
+      benefitIndex,
+      benefitsTotal
+    ) {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
         process.env.VUE_APP_STATS_URL &&
+        process.env.VUE_APP_STATS_URL.length &&
         benefits &&
         benefits.length
       ) {
@@ -17,7 +23,7 @@ export default {
           benefitsStats.push({
             benefit_id: benefit.id,
             hash_id: id,
-            benefit_index: i + 1,
+            benefit_index: benefitIndex || i + 1,
             page_total: benefitsTotal || totalResults,
             event_type: event,
           })

@@ -25,7 +25,7 @@ export default {
     name: String,
     min: Number,
     max: Number,
-    step: Number,
+    step: String,
     modelValue: Number,
   },
   emits: ["update:modelValue"],

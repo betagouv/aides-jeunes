@@ -1,0 +1,32 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_loiret
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF du Loiret pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de <a target="_blank"
+  rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Etre allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Adresser votre demande à la Caf, dans un délai maximum de trois mois après
+    la date de début de la session d'approfondissement.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 26
+  - type: departements
+    values:
+      - "45"
+profils: []
+link: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
+form: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
+instructions: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 250
+interestFlag: _interetBafa

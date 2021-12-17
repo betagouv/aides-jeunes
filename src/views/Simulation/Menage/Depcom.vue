@@ -67,6 +67,11 @@ export default {
       return Warning.get("aj_not_reliable", this.codePostal)
     },
   },
+  beforeMount() {
+    if (this.codePostal && this.codePostal.length == 5) {
+      this.fetchCommune()
+    }
+  },
   watch: {
     codePostal: function (cp) {
       if (cp && cp.length == 5) {

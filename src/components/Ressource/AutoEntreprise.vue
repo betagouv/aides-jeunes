@@ -7,7 +7,7 @@
       >
       <InputNumber
         id="autoAmount"
-        :value="ressource.amounts[$store.state.dates.lastYear.id]"
+        :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
         @input="update($store.state.dates.lastYear.id, $event)"
       />
     </div>
@@ -19,7 +19,7 @@
       >
       <InputNumber
         id="autoAmountLastMonth"
-        :value="ressource.amounts[$store.state.dates.thisMonth.id]"
+        :modelValue="ressource.amounts[$store.state.dates.thisMonth.id]"
         @input="update($store.state.dates.thisMonth.id, $event)"
       />
     </div>
@@ -33,7 +33,7 @@
       </label>
       <InputNumber
         :id="'autoAmount' + month.label"
-        :value="ressource.amounts[month.id]"
+        :modelValue="ressource.amounts[month.id]"
         @input="update(month.id, $event)"
       />
     </div>

@@ -24,8 +24,9 @@
                 <div
                   class="value-col"
                   v-if="typeof question.value !== 'object'"
-                  >{{ question.value }}</div
                 >
+                  {{ question.value }}
+                </div>
                 <div class="edit-col"
                   ><router-link :to="question.path">Modifier</router-link></div
                 >

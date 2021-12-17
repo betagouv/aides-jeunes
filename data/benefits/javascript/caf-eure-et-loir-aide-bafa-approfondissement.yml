@@ -1,0 +1,25 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_eure_et_loir
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de l'Eure-et-Loir pour vous aider à financer votre
+  session d’approfondissement ou de qualification en complément de <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions: []
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "28"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-l-eure-et-loir/offre-de-service/enfance-et-jeunesse/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+form: https://www.caf.fr/sites/default/files/caf/281/Documents/Bafa/demande_daide_bafa_r4.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-l-eure-et-loir/offre-de-service/enfance-et-jeunesse/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 241
+interestFlag: _interetBafa

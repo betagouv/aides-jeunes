@@ -1,0 +1,27 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_hautes_pyrenees
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF des Hautes-Pyrénées pour vous aider à financer votre
+  session en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Avoir un quotient familial inférieur ou égal à 750 €.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "65"
+profils: []
+link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/solidarite-et-insertion/vous-souhaitez-financer-votre-formation-d-animateur
+form: https://www.caf.fr/sites/default/files/caf/651/Images/Actualite/Plaquette%20social/FORMULAIRE%20DEMANDE%20AIDE%20EXCEPTIONNELLE%20A%20LA%20FORMATION%20BAFA%20proposition.pdf
+instructions: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/solidarite-et-insertion/vous-souhaitez-financer-votre-formation-d-animateur
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 320
+interestFlag: _interetBafa

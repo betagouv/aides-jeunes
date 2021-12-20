@@ -1,0 +1,31 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_morbihan
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF du Morbihan pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de <a target="_blank"
+  rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "56"
+profils: []
+link: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur
+form: https://www.caf.fr/sites/default/files/caf/561/Documents/enfance%20jeunesse/bafa.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 286
+interestFlag: _interetBafa
+references:
+  - https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur

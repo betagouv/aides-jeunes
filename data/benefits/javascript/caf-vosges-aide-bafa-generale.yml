@@ -1,0 +1,30 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_vosges
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF des Vosges pour vous aider à financer votre session en
+  complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Disposer d'un quotient familial inférieur à 670 €.
+  - Suivre votre stage dans un organisme agréé par les services de la DDSCPP
+    (ex. DDJS).
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+  - type: departements
+    values:
+      - "88"
+profils: []
+link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
+instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+interestFlag: _interetBafa
+references: []

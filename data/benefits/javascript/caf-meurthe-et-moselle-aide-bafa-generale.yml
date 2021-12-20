@@ -1,0 +1,26 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_meurthe_et_moselle
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Meurthe-et-Moselle pour vous aider à financer votre
+  session en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Etre allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Avoir un quotient familial inférieur ou égal à 800€.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "54"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
+teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
+instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 230
+interestFlag: _interetBafa

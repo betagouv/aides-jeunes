@@ -5,7 +5,7 @@
       <label for="liberaleType" class="aj-question">Type d'activité</label>
       <select
         id="liberaleType"
-        :value="ressource.extra.tns_autres_revenus_type_activite"
+        :modelValue="ressource.extra.tns_autres_revenus_type_activite"
         @input="
           updateExtra('tns_autres_revenus_type_activite', $event.target.value)
         "
@@ -26,7 +26,9 @@
       <InputNumber
         id="liberaleLastBenef"
         :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
-        @input="update($store.state.dates.lastYear.id, $event)"
+        @input="
+          updateFloat($store.state.dates.lastYear.id, $event.target.value)
+        "
       />
     </div>
   </div>

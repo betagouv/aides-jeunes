@@ -12,13 +12,15 @@
     <div v-if="hasTerrainsNonLoues" class="form__group">
       <label class="form__group">
         Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
-        <InputNumber v-model="demandeur.valeur_terrains_non_loues[periodKey]" />
+        <InputNumber
+          modelValue="demandeur.valeur_terrains_non_loues[periodKey]"
+        />
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
         <InputNumber
-          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
+          modelValue="demandeur.valeur_locative_terrains_non_loues[periodKey]"
         />
       </label>
       <p>
@@ -40,14 +42,14 @@
       <label class="form__group">
         Valeur <b>patrimoniale</b> de vos appartements/immeubles
         <b>non loués</b>
-        <InputNumber v-model="demandeur.valeur_immo_non_loue[periodKey]" />
+        <InputNumber modelValue="demandeur.valeur_immo_non_loue[periodKey]" />
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos appartements/immeubles
         <b>non loués</b>
         <InputNumber
-          v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
+          modelValue="demandeur.valeur_locative_immo_non_loue[periodKey]"
         />
       </label>
       <p>
@@ -58,7 +60,7 @@
 
     <label v-if="hasBiensLoues" class="form__group"
       >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-      <InputNumber v-model="demandeur.valeur_patrimoine_loue[periodKey]" />
+      <InputNumber modelValue="demandeur.valeur_patrimoine_loue[periodKey]" />
     </label>
 
     <h2>
@@ -68,14 +70,14 @@
 
     <label class="form__group">
       Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
-      <InputNumber v-model="demandeur.livret_a[periodKey]" />
+      <InputNumber modelValue="demandeur.livret_a[periodKey]" />
     </label>
 
     <label class="form__group">
       Total des autres produits d'épargne produisant des revenus
       <b>non imposables</b>
       <InputNumber
-        v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
+        modelValue="demandeur.epargne_revenus_non_imposables[periodKey]"
       />
       <span>
         Assurance vie,
@@ -90,7 +92,9 @@
 
     <label class="form__group">
       Total de l'épargne produisant des revenus <b>imposables</b>
-      <InputNumber v-model="demandeur.epargne_revenus_imposables[periodKey]" />
+      <InputNumber
+        modelValue="demandeur.epargne_revenus_imposables[periodKey]"
+      />
       <span>
         Actions, comptes à terme,
         <abbr title="Fonds communs de placement">FCP</abbr>, obligations, parts

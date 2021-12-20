@@ -7,8 +7,10 @@
       >
       <InputNumber
         id="microAmount"
-        :value="ressource.amounts[$store.state.dates.lastYear.id]"
-        @input="update($store.state.dates.lastYear.id, $event)"
+        :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
+        @input="
+          updateFloat($store.state.dates.lastYear.id, $event.target.value)
+        "
       />
     </div>
   </div>

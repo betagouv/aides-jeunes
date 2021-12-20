@@ -35,7 +35,7 @@ export default {
         return this.modelValue
       },
       set(value) {
-        if (!isNaN(parseFloat(value))) {
+        if (!isNaN(value) && parseFloat(value)) {
           this.$emit("update:modelValue", value)
         }
       },

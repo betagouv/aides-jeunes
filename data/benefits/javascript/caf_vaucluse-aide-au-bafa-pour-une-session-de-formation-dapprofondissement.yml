@@ -1,0 +1,30 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_vaucluse
+description: >
+  L'aide à la formation du BAFA est une aide locale mise à disposition par la
+  CAF du Vaucluse pour vous aider à financer votre session d’approfondissement
+  ou de qualification en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Avoir un quotient familial inférieur à 396 €.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 26
+  - type: departements
+    values:
+      - "84"
+profils: []
+link: https://www.caf.fr/sites/default/files/caf/841/Images/pages-partenaires/newpartenaires/documents/FLYER%20-%20BAFA%2072.pdf
+form: https://www.caf.fr/sites/default/files/caf/841/Documents/Offredeservice/demande_daide_bafa.pdf
+instructions: https://www.caf.fr/sites/default/files/caf/841/Images/pages-partenaires/newpartenaires/documents/FLYER%20-%20BAFA%2072.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 198
+interestFlag: _interetBafa

@@ -30,18 +30,18 @@
         </option>
       </select>
     </div>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Individu from "@/../lib/Individu"
 import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
   components: {
-    Actions,
+    ActionButtons,
   },
   mixins: [DepcomMixin],
   data() {

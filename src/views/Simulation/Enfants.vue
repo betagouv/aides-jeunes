@@ -47,12 +47,12 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </div>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Nationality from "@/lib/Nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Scolarite from "@/lib/Scolarite"
@@ -61,7 +61,7 @@ export default {
   name: "SimulationEnfants",
   components: {
     EnSavoirPlus,
-    Actions,
+    ActionButtons,
   },
   computed: {
     enfants: function () {

@@ -55,12 +55,12 @@
         <p v-html="step.help" />
       </template>
     </YesNoQuestion>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
 import Hint from "@/lib/Hint"
 
@@ -74,7 +74,7 @@ import { getAnswer } from "../../../lib/answers"
 export default {
   name: "MutualizedStep",
   components: {
-    Actions,
+    ActionButtons,
     EnSavoirPlus,
     InputNumber,
     InputDate,

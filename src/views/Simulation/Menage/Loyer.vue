@@ -22,12 +22,12 @@
         <InputNumber id="charges" v-model="chargesQuestion.selectedValue" />
       </div>
     </div>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import InputNumber from "@/components/InputNumber"
 import Logement from "@/lib/Logement"
 
@@ -35,7 +35,7 @@ export default {
   name: "SimulationMenageDepCom",
   components: {
     InputNumber,
-    Actions,
+    ActionButtons,
   },
   data: function () {
     return Logement.getLoyerData(this.$store.state.answers.all)

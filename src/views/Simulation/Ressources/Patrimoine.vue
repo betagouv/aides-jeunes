@@ -104,7 +104,7 @@
       </span>
     </label>
 
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -112,7 +112,7 @@
 import { patrimoineTypes } from "@/../lib/Resources"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import InputNumber from "@/components/InputNumber"
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 
 const mapping = {
   hasTerrainsNonLoues: {
@@ -131,7 +131,7 @@ export default {
   components: {
     InputNumber,
     YesNoQuestion,
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const situation = this.$store.getters.situation

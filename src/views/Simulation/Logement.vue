@@ -87,12 +87,12 @@
       </div>
     </fieldset>
 
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Logement from "@/lib/Logement"
 import Individu from "@/../lib/Individu.js"
 import { getAnswer } from "../../../lib/answers"
@@ -100,7 +100,7 @@ import { getAnswer } from "../../../lib/answers"
 export default {
   name: "SimulationLogement",
   components: {
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const logementStatut = getAnswer(

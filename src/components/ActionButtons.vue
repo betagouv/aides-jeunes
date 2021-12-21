@@ -12,7 +12,7 @@
         Suivant
       </button>
       <slot />
-      <BackButton @click.native="goBack" class="previous-button" />
+      <BackButton class="previous-button" @click.native="goBack" />
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@
 <script>
 import BackButton from "@/components/Buttons/BackButton"
 export default {
-  name: "Actions",
+  name: "ActionButtons",
   components: { BackButton },
   props: {
     onSubmit: {

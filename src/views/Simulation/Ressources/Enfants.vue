@@ -11,19 +11,19 @@
       <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
       > ?
     </YesNoQuestion>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import YesNoQuestion from "@/components/YesNoQuestion"
 
 export default {
   name: "RessourcesTypes",
   components: {
     YesNoQuestion,
-    Actions,
+    ActionButtons,
   },
   data: function () {
     let enfants = this.$store.getters.situation.enfants.map((e) =>

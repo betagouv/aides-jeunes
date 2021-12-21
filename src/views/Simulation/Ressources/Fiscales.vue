@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -68,7 +68,7 @@ import some from "lodash/some"
 import isNaN from "lodash/isNaN"
 import Individu from "@/../lib/Individu"
 import { categoriesRnc } from "@/../lib/Resources"
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 
 function getDefaultValue(months, individu, rnc) {
   return sum(
@@ -86,7 +86,7 @@ function getDefaultValue(months, individu, rnc) {
 export default {
   name: "RessourcesFiscales",
   components: {
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const fiscalYear = this.$store.state.dates.fiscalYear.id

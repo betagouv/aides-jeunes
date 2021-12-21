@@ -34,12 +34,12 @@
     <div class="form__group">
       {{ countLabel }}
     </div>
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
@@ -49,7 +49,7 @@ import { getAnswer } from "../../../lib/answers"
 export default {
   name: "RessourceTypes",
   components: {
-    Actions,
+    ActionButtons,
   },
   props: {
     individu: Object,

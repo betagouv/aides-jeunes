@@ -50,12 +50,12 @@
       />
     </div>
 
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import RessourceAutoEntreprise from "@/components/Ressource/AutoEntreprise"
 import RessourceExploitantAgricole from "@/components/Ressource/ExploitantAgricole"
 import RessourceMicroEntreprise from "@/components/Ressource/MicroEntreprise"
@@ -76,7 +76,7 @@ export default {
     RessourceMicroEntreprise,
     RessourceProfessionLiberale,
     RessourceMontants,
-    Actions,
+    ActionButtons,
   },
   mixins: [RessourceProcessor],
   data: function () {

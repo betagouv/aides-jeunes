@@ -32,12 +32,12 @@
       </select>
     </div>
     <WarningMessage v-if="warningMessage" :text="warningMessage" />
-    <Actions :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import WarningMessage from "@/components/WarningMessage"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Warning from "@/lib/Warnings"
@@ -48,7 +48,7 @@ import { getAnswer } from "../../../../lib/answers"
 export default {
   name: "SimulationMenageDepcom",
   components: {
-    Actions,
+    ActionButtons,
     WarningMessage,
     EnSavoirPlus,
   },

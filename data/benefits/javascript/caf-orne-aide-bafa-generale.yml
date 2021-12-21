@@ -23,5 +23,6 @@ instructions: https://www.caf.fr/allocataires/caf-de-l-orne/offre-de-service/enf
 type: float
 unit: €
 periodicite: ponctuelle
+legend: maximum
 montant: 350
 interestFlag: _interetBafa

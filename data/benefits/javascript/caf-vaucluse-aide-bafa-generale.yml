@@ -1,0 +1,30 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_vaucluse
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF du Vaucluse pour vous aider à financer votre session en
+  complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Être sans emploi fixe rémunéré.
+  - Avoir un quotient familial inférieur à 396€.
+  - Suivre votre stage dans un organisme de formation domicilié en PACA.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "84"
+profils: []
+link: https://www.caf.fr/partenaires/caf-de-vaucluse/partenaires-locaux/jeunesse/brevet-d-aptitude-aux-fonctions-d-animateurs-bafa-les-aides-de-la-caf#:~:text=La%20CAF%20de%20Vaucluse%20apporte,dans%20leur%20d%C3%A9marche%20de%20formation.&text=%3E%20L'organisme%20de%20formation%20doit,Administration%20est%20de%20198%20%E2%82%AC.
+instructions: https://www.caf.fr/partenaires/caf-de-vaucluse/partenaires-locaux/jeunesse/brevet-d-aptitude-aux-fonctions-d-animateurs-bafa-les-aides-de-la-caf#:~:text=La%20CAF%20de%20Vaucluse%20apporte,dans%20leur%20d%C3%A9marche%20de%20formation.&text=%3E%20L'organisme%20de%20formation%20doit,Administration%20est%20de%20198%20%E2%82%AC.
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 198
+interestFlag: _interetBafa

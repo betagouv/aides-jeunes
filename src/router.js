@@ -360,7 +360,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
-  if (typeof from.name === "undefined" || from.name === null) {
+  if (!from.name) {
     store.commit("initialize")
     store.dispatch("openFiscaParameters")
     store.dispatch("verifyBenefitVariables")

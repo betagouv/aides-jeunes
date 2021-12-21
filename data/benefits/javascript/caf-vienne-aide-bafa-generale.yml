@@ -1,0 +1,32 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_vienne
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de la Vienne pour vous aider à financer votre session
+  en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Effectuer votre stage auprès d’un organisme conventionné.
+  - Avoir un quotient familial égal ou inférieur à 1200 €.
+  - Ne pas être pris en charge à 100 % par un employeur pour la session
+    d’approfondissement ou de qualification.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "86"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa

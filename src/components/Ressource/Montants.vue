@@ -20,6 +20,7 @@
       <InputNumber
         step="any"
         :modelValue="type.amounts[$store.state.dates.thisMonth.id]"
+        :emit="false"
         @input="$emit('update', 'singleValue', index, $event)"
       />
     </label>
@@ -34,6 +35,7 @@
           <MonthLabel :month="month" />
           <InputNumber
             :modelValue="type.amounts[month.id]"
+            :emit="false"
             @input="
               $emit('update', 'monthUpdate', index, {
                 value: $event,

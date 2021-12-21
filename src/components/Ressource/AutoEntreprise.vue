@@ -8,6 +8,7 @@
       <InputNumber
         id="autoAmount"
         :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
+        :emit="false"
         @input="
           updateFloat($store.state.dates.lastYear.id, $event.target.value)
         "
@@ -22,6 +23,7 @@
       <InputNumber
         id="autoAmountLastMonth"
         :modelValue="ressource.amounts[$store.state.dates.thisMonth.id]"
+        :emit="false"
         @input="
           updateFloat($store.state.dates.thisMonth.id, $event.target.value)
         "
@@ -38,6 +40,7 @@
       <InputNumber
         :id="'autoAmount' + month.label"
         :modelValue="ressource.amounts[month.id]"
+        :emit="false"
         @input="updateFloat(month.id, $event.target.value)"
       />
     </div>

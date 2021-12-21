@@ -8,6 +8,7 @@
       <InputNumber
         id="microAmount"
         :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
+        :emit="false"
         @input="
           updateFloat($store.state.dates.lastYear.id, $event.target.value)
         "

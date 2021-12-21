@@ -27,6 +27,7 @@ export default {
     max: Number,
     step: String,
     modelValue: Number,
+    emit: { type: Boolean, default: true },
   },
   emits: ["update:modelValue"],
   computed: {
@@ -35,7 +36,7 @@ export default {
         return this.modelValue
       },
       set(value) {
-        if (!isNaN(value) && parseFloat(value)) {
+        if (this.emit && !isNaN(value) && parseFloat(value)) {
           this.$emit("update:modelValue", value)
         }
       },

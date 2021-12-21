@@ -281,13 +281,6 @@ const router = createRouter({
               /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsDetail.vue"
             ),
         },
-        {
-          path: ":id/:property",
-          component: () =>
-            import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
-            ),
-        },
       ],
     },
     {

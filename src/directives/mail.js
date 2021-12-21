@@ -13,12 +13,6 @@ function buildHref({ to, subject, body }) {
   return comps.join("?")
 }
 
-// const MailDirective = (Vue) => {
-//   Vue.directive("mail", function (el, binding) {
-//     el.setAttribute("href", buildHref(binding.value))
-//   })
-// }
-
 const MailDirective = {
   // eslint-disable-next-line no-unused-vars
   beforeMount(el, binding, vnode) {

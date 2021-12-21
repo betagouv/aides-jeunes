@@ -62,7 +62,7 @@ export default {
     next: function () {
       this.$store.dispatch("openFiscaParameters")
       this.$store.dispatch("verifyBenefitVariables")
-      this.$router.push("/simulation")
+      this.$push()
     },
   },
 }

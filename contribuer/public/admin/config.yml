@@ -345,7 +345,7 @@ fields:
                         value: terminale
                       - label: Autre
                         value: autre
-      - label: Enseignement supérieur
+      - label: Dans l'enseignement supérieur
         name: enseignement_superieur
         widget: object
         fields:
@@ -392,7 +392,7 @@ fields:
                         value: doctorat_3
                       - label: Autre
                         value: autre
-      - label: Étudiant
+      - label: Scolarisé
         name: etudiant
         widget: object
         fields:
@@ -404,8 +404,6 @@ fields:
             collapsed: false
             types:
               - *field_age
-              - *field_boursier
-              - *field_mention_baccalaureat
               - label: Année d'étude
                 name: annee_etude
                 widget: object

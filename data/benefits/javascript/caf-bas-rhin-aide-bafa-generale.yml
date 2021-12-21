@@ -16,7 +16,7 @@ conditions_generales:
     values:
       - "67"
 profils: []
-link: https://www.jeunes.gouv.fr/bafa-bafd
+link: https://www.bafa-bafd.jeunes.gouv.fr/Region.aspx?MJSReg=67
 form: ""
 instructions: https://www.caf.fr/allocataires/caf-du-bas-rhin/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 type: float

@@ -5,9 +5,10 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "prettier",
     "plugin:cypress/recommended",
     "plugin:vue/vue3-recommended",
+    "plugin:prettier-vue/recommended",
+    "prettier",
   ],
   plugins: ["prettier", "vue"],
   globals: {
@@ -23,5 +24,14 @@ module.exports = {
     "no-irregular-whitespace": 0,
     "vue/multi-word-component-names": 1,
     "vue/no-deprecated-v-on-native-modifier": 0,
+    "eol-last": "error",
   },
+  overrides: [
+    {
+      files: ["**/__tests__/*.{j,t}s?(x)"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }

@@ -113,33 +113,6 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-dev-server": "^4.5.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "eol-last": "error",
-      "no-irregular-whitespace": "off"
-    },
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
-  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}

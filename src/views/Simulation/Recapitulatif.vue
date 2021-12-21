@@ -135,13 +135,13 @@ export default {
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&
           ENTITIES_PROPERTIES[step.entity].loadEntity({
-            ...this,
+            $store: this.$store,
             params: step,
           })
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
           value: answer,
-          component: { ...this, entity },
+          component: { $store: this.$store, entity },
         })
       }
       return []

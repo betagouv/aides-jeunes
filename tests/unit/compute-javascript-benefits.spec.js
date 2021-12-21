@@ -15,7 +15,7 @@ describe("computeAides", function () {
     benefit = {
       profils: [
         {
-          type: "etudiant",
+          type: "enseignement_superieur",
           conditions: [
             {
               type: "mention_baccalaureat",
@@ -49,6 +49,7 @@ describe("computeAides", function () {
         date_naissance: "2000-01-01",
         activite: "etudiant",
         boursier: true,
+        scolarite: "enseignement_superieur",
         mention_baccalaureat: "mention_tres_bien",
       },
       famille: {},

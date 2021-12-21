@@ -7,7 +7,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
 conditions:
-  - "Avoir un quotient familial inférieur à 700€. "
+  - Avoir un quotient familial inférieur à 700€.
 conditions_generales:
   - type: age
     operator: ">="

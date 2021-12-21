@@ -16,7 +16,7 @@
         >
           <input
             :id="`${item.value}`"
-            v-model="modelValue"
+            v-model="value"
             type="radio"
             :name="fieldName"
             :value="item.value"
@@ -36,7 +36,7 @@
       </h2>
       <p v-if="step.help" v-html="step.help" />
       <label>
-        <InputNumber v-model="modelValue" :min="step.min" />
+        <InputNumber v-model="value" :min="step.min" />
       </label>
     </div>
 
@@ -46,10 +46,10 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" /> </h2
       ></label>
-      <InputDate :id="fieldName" v-model="modelValue" required />
+      <InputDate :id="fieldName" v-model="value" required />
     </div>
 
-    <YesNoQuestion v-else v-model="modelValue">
+    <YesNoQuestion v-else v-model="value">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
       <template v-if="step.help" #help>
         <p v-html="step.help" />
@@ -83,7 +83,7 @@ export default {
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
-    const modelValue = getAnswer(
+    const value = getAnswer(
       this.$store.state.answers.all,
       entityName,
       this.$route.params.fieldName,
@@ -95,7 +95,7 @@ export default {
 
     return {
       id,
-      modelValue,
+      value,
       entityName,
       entity,
     }
@@ -137,12 +137,12 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
-        value: this.modelValue,
+        value: this.value,
       })
       this.$push()
     },
     requiredValueMissing() {
-      const hasError = this.modelValue === undefined
+      const hasError = this.value === undefined
       this.$store.dispatch(
         "updateError",
         hasError && "Ce champ est obligatoire."

@@ -1,0 +1,32 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_tarn_et_garonne
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF du Tarn-et-Garonne pour vous aider à financer votre
+  session en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être considéré(e) à charge de vos parents ou être placé(e) par décision
+    judiciaire sous l'autorité des services de l'Etat.
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Avoir un quotient familial inférieur ou égal à 820 €.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "82"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
+form: https://www.caf.fr/sites/default/files/caf/821/Documents/BAFA%20imprime%20NB.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa

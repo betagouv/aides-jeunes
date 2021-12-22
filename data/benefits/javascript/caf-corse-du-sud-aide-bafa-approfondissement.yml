@@ -1,0 +1,31 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_corse_du_sud
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Corse du Sud pour vous aider à financer votre
+  session d’approfondissement ou de qualification en complément de <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents, ou bien être sans emploi.
+  - Remplir les conditions d'attribution de l'aide légale de la CNAF.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - 2A
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-corse-du-sud/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+form: https://www.caf.fr/sites/default/files/caf/201/Documents/_demande_bourse_bafa-majoration.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-corse-du-sud/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 207
+interestFlag: _interetBafa

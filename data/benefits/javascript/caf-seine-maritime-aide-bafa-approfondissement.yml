@@ -1,0 +1,31 @@
+label: aide au BAFA pour une session de formation d'approfondissement
+institution: caf_seine_maritime
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Seine-Maritime pour vous aider à financer votre
+  session d’approfondissement ou de qualification en complément de <a
+  target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>.
+conditions:
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Effectuer votre stage pratique auprès d'un organisme habilité par la
+    Direction départementale de la cohésion sociale, dans un délai de 18 mois
+    après le stage de base.
+  - Avoir un quotient familial inférieur ou égal à 850€.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "76"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-seine-maritime/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-au-brevet-d-aptitude-aux-fonctions-d-animateurs-caf-de-seine-maritime
+form: https://www.caf.fr/sites/default/files/caf/768/Offre%20de%20service/enfance%20et%20jeunesse%20%286%20%C3%A0%2018%20nas%29/bafacnaf.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-seine-maritime/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-au-brevet-d-aptitude-aux-fonctions-d-animateurs-caf-de-seine-maritime
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 550
+interestFlag: _interetBafa

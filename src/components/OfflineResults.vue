@@ -47,7 +47,7 @@
       >
         <label for="email" class="form__group">Votre email</label>
         <input id="email" v-model="email" type="text" name="email" />
-        <p v-if="$v.email.$error" class="notification warning">
+        <p v-if="v$ && v$.email.$error" class="notification warning">
           Un email doit être indiqué.
         </p>
         <div class="aj-feedback-buttons">
@@ -73,6 +73,7 @@
 
 <script>
 import axios from "axios"
+import useVuelidate from "@vuelidate/core"
 import { required, email } from "@vuelidate/validators"
 
 import Modal from "@/components/Modal"
@@ -84,6 +85,9 @@ export default {
   },
   props: {
     id: String,
+  },
+  setup() {
+    return { v$: useVuelidate() }
   },
   data: function () {
     return {
@@ -104,8 +108,8 @@ export default {
       }
     },
     getRecap: function (surveyOptin) {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
+      this.v$.$touch()
+      if (this.v$.$invalid) {
         this.$matomo &&
           this.$matomo.trackEvent(
             "General",

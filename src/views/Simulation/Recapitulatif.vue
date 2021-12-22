@@ -37,9 +37,9 @@
                   class="recapitulatif-row recapitulatif-row-wrap"
                 >
                   <div
-                    class="value-cell"
                     v-for="(value, name) in question.value"
                     :key="name"
+                    class="value-cell"
                   >
                     <div style="font-style: italic">{{ name }} :</div>
                     <div>{{ value }}</div>

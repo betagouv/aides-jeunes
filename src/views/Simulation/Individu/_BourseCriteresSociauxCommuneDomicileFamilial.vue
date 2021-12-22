@@ -6,8 +6,8 @@
       </label>
       <input
         id="cp"
-        type="text"
         v-model="codePostal"
+        type="text"
         data-type="number"
         pattern="[0-9]*"
       />

@@ -2,8 +2,8 @@
   <div>
     <input
       :id="id"
-      v-model="model"
       ref="result"
+      v-model="model"
       v-select-on-click
       type="number"
       :name="name"
@@ -30,6 +30,12 @@ export default {
     emit: { type: Boolean, default: true },
   },
   emits: ["update:modelValue"],
+  data: function () {
+    return {
+      result: this.result,
+      error: false,
+    }
+  },
   computed: {
     model: {
       get() {
@@ -41,12 +47,6 @@ export default {
         }
       },
     },
-  },
-  data: function () {
-    return {
-      result: this.result,
-      error: false,
-    }
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="aj-simulation">
-    <div class="aj-complete-progress-bar" v-if="showProgress">
+    <div v-if="showProgress" class="aj-complete-progress-bar">
       <div :style="currentProgressStyle" />
     </div>
     <div

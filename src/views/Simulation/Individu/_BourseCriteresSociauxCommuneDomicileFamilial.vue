@@ -7,8 +7,8 @@
       <input
         id="cp"
         type="text"
-        data-type="number"
         v-model="codePostal"
+        data-type="number"
         pattern="[0-9]*"
       />
     </div>

@@ -37,6 +37,9 @@ export default {
     InputNumber,
     ActionButtons,
   },
+  props: {
+    modelValue: Number,
+  },
   data: function () {
     return Logement.getLoyerData(this.$store.state.answers.all)
   },
@@ -54,9 +57,6 @@ export default {
       })
       this.$push()
     },
-  },
-  props: {
-    modelValue: Number,
   },
 }
 </script>

@@ -4,8 +4,8 @@
       <h1>{{ title }}</h1>
       <div class="aj-category-title-button-mobile">
         <MenuButton
-          @click.native="goToRecapitulatifPage"
           v-show="showMenuButton"
+          @click.native="goToRecapitulatifPage"
         ></MenuButton>
       </div>
     </div>

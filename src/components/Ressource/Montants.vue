@@ -14,7 +14,6 @@
         "
       />
     </YesNoQuestion>
-
     <label v-if="type.displayMonthly === true" class="form__group">
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
@@ -101,6 +100,7 @@ export default {
     index: Number,
     withoutHeader: Boolean,
   },
+  emits: ["update"],
   computed: {
     singleValue: {
       get: function () {

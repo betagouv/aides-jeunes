@@ -10,14 +10,14 @@
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
               >
-                <div v-html="question.label" class="subtitle"></div>
+                <div class="subtitle" v-html="question.label"></div>
               </div>
             </template>
             <template v-else>
               <div
+                v-if="question.value !== undefined"
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
-                v-if="question.value !== undefined"
               >
                 <div class="question-col" v-html="question.label"></div>
 

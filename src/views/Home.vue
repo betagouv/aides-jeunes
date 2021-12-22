@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: "home",
+  name: "Home",
   computed: {
     hasExistingSituation: function () {
       return this.$store.getters.passSanityCheck

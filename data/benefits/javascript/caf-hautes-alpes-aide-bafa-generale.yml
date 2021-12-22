@@ -5,6 +5,8 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   session en complément de <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
+conditions:
+  - Être membre d'une famille percevant des prestations familiales au titre d'enfant à charge.
 conditions_generales:
   - type: age
     operator: ">="

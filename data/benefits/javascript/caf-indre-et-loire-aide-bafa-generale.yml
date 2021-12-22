@@ -1,0 +1,25 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_indre_et_loire
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de l'Indre-et-Loire pour vous aider à financer votre
+  session en complément de <a target="_blank" rel="noopener"
+  href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la caf</a>
+conditions:
+  - Avoir un quotient familial inférieur à 830€ le mois précédent votre demande.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "37"
+profils: []
+link: https://www.caf.fr/allocataires/caf-touraine/offre-de-service/enfance-et-jeunesse/vous-avez-plus-de-17-ans-et-vous-suivez-une-formation-pour-obtenir-le-bafa
+form: https://www.caf.fr/sites/default/files/caf/371/2%20-%20Offre%20de%20services/Enfance%20et%20jeunesse/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 250
+interestFlag: _interetBafa

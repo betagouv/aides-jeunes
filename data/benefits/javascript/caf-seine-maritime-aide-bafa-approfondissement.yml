@@ -11,8 +11,7 @@ conditions:
   - Effectuer votre stage pratique auprès d'un organisme habilité par la
     Direction départementale de la cohésion sociale, dans un délai de 18 mois
     après le stage de base.
-  - Avoir un quotient familial inférieur à 500€ ou compris entre 501 et 700€ ou
-    compris entre 701 et 850€.
+  - Avoir un quotient familial inférieur ou égal à 850€.
 conditions_generales:
   - type: age
     operator: ">="

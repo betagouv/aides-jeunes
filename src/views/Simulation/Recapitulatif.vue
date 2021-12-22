@@ -22,8 +22,8 @@
                 <div class="question-col" v-html="question.label"></div>
 
                 <div
-                  class="value-col"
                   v-if="typeof question.value !== 'object'"
+                  class="value-col"
                 >
                   {{ question.value }}
                 </div>

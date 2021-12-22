@@ -106,11 +106,6 @@ export default {
     TrouverInterlocuteur,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
-  methods: {
-    isEmpty: function (array) {
-      return !array || array.length === 0
-    },
-  },
   computed: {
     isOldSituation() {
       return !this.$store.state.answers
@@ -172,6 +167,11 @@ export default {
   },
   beforeUnmount: function () {
     this.stopSubscription && this.stopSubscription()
+  },
+  methods: {
+    isEmpty: function (array) {
+      return !array || array.length === 0
+    },
   },
 }
 </script>

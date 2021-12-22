@@ -8,13 +8,11 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Avoir un quotient familial inférieur à 900€.
   - Effectuer votre stage en France.
+  - Être à la charge de vos parents bénéficiaires de prestations familiales pour vous si vous avez entre 17 et 20 ans.
 conditions_generales:
   - type: age
     operator: ">="
     value: 17
-  - type: age
-    operator: <=
-    value: 26
   - type: departements
     values:
       - "13"

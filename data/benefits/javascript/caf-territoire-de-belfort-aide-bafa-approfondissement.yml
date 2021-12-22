@@ -10,6 +10,7 @@ conditions:
   - Vous engager à suivre la totalité de la formation.
   - Vous engager à exercer votre activité d'animateur pendant au moins deux
     années.
+  - Suivre votre formation dans un organisme habilité.
 conditions_generales:
   - type: age
     operator: ">="

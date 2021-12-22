@@ -23,6 +23,6 @@ instructions: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-ser
 type: float
 unit: €
 periodicite: ponctuelle
-legend: ""
+legend: maximum
 montant: 150
 interestFlag: _interetBafa

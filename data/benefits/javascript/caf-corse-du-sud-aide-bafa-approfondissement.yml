@@ -7,8 +7,8 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
 conditions:
-  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Ouvrir droit à l'aide légale de la CNAF.
+  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents, ou bien être sans emploi.
+  - Remplir les conditions d'attribution de l'aide légale de la CNAF.
 conditions_generales:
   - type: age
     operator: ">="

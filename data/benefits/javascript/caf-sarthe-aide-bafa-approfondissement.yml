@@ -8,6 +8,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf</a>.
 conditions:
   - Avoir un quotient familial inférieur à 700€.
+  - Être inscrit(e) pour le troisième module de formation à une session d’approfondissement centrée sur le handicap, la petite enfance, l'accueil de loisirs et le temps périscolaire.
 conditions_generales:
   - type: age
     operator: ">="

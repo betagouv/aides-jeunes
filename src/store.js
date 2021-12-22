@@ -119,6 +119,7 @@ const storeAnswer = (answers, newAnswer, clean, enfants) => {
 
 const store = createStore({
   state: defaultStore(),
+  strict: process.env.NODE_ENV !== "production",
   getters: {
     passSanityCheck: function (state, getters) {
       return (

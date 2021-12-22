@@ -2,7 +2,7 @@
   <div class="aj-website">
     <div class="aj-website-content">
       <Header1J1S />
-      <slot></slot>
+      <slot />
     </div>
     <FooterJ1S />
   </div>
@@ -19,7 +19,7 @@ export default {
     Header1J1S,
   },
   created() {
-    this.$router.onReady(() => {
+    this.$router.isReady().then(() => {
       if (this.$route.query.debug === "parcours") {
         this.$store.dispatch("setDebug", true)
       }

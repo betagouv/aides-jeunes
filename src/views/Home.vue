@@ -11,20 +11,20 @@
           </h1>
           <div class="aj-home-hero-buttons-wrapper">
             <button
-              v-bind:class="`button ${ctaSize} secondary`"
-              v-on:click="next()"
+              v-if="hasExistingSituation"
               v-analytics="{
                 action: 'Reprendre ma simulation',
                 category: 'Home',
               }"
-              v-if="hasExistingSituation"
+              :class="`button ${ctaSize} secondary`"
+              @click="next()"
             >
               Reprendre ma simulation
             </button>
             <button
-              v-bind:class="`button ${ctaSize} primary`"
-              v-on:click="newSituation()"
               v-analytics="{ action: ctaLabel, category: 'Home' }"
+              :class="`button ${ctaSize} primary`"
+              @click="newSituation()"
             >
               {{ ctaLabel }}
             </button>
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: "home",
+  name: "Home",
   computed: {
     hasExistingSituation: function () {
       return this.$store.getters.passSanityCheck

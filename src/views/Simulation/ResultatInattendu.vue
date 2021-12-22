@@ -3,7 +3,7 @@
     <div>
       <router-link to="/simulation/resultats/">
         <h2 aria-label="Retour aux résultats">
-          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour aux
+          <i class="fa fa-arrow-circle-left" aria-hidden="true" /> Retour aux
           résultats
         </h2>
       </router-link>
@@ -12,10 +12,10 @@
     <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
 
     <component
-      v-if="resultatsInattendus[droit.id]"
       :is="resultatsInattendus[droit.id]"
+      v-if="resultatsInattendus[droit.id]"
     />
-    <ResultatInattenduYearMinusTwo :droit="droit" v-else />
+    <ResultatInattenduYearMinusTwo v-else :droit="droit" />
   </form>
 </template>
 
@@ -33,7 +33,7 @@ const RESULTATS_INATTENDUS = {
 }
 
 export default {
-  name: "resultat-inattendu",
+  name: "ResultatInattendu",
   components: {
     ResultatInattenduAideLogement,
     ResultatInattenduGarantieJeune,

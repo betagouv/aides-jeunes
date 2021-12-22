@@ -11,18 +11,18 @@
       max="7"
     />
     {{ value == -1 ? "Non boursier" : "Boursier échelon " + value }}
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxEchelon",
   components: {
-    Actions,
+    ActionButtons,
   },
   mixins: [createIndividuMixin("bourse_criteres_sociaux_echelon")],
 }

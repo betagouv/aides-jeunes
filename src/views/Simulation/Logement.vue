@@ -1,24 +1,26 @@
 <template>
   <form @submit.prevent="onSubmit">
     <fieldset>
-      <legend
-        ><h2 class="aj-question">{{ logementTypesQuestion.label }}</h2></legend
-      >
+      <legend>
+        <h2 class="aj-question">
+          {{ logementTypesQuestion.label }}
+        </h2>
+      </legend>
       <div class="aj-selections">
         <div
           v-for="logementType in logementTypesQuestion.responses"
+          :key="logementType.value"
           class="aj-selection-wrapper"
-          v-bind:key="logementType.value"
         >
           <input
             :id="logementType.value"
+            v-model="logementTypesQuestion.selectedValue"
             type="radio"
             name="logementType"
-            v-model="logementTypesQuestion.selectedValue"
-            v-bind:value="logementType.value"
+            :value="logementType.value"
           />
           <label :for="logementType.value">
-            {{ logementType.label | capitalize }}
+            {{ $filters.capitalize(logementType.label) }}
             <span v-if="logementType.hint" class="help">{{
               logementType.hint
             }}</span>
@@ -28,29 +30,29 @@
     </fieldset>
 
     <fieldset v-if="logementTypesQuestion.selectedValue == 'proprietaire'">
-      <legend
-        ><h2 class="aj-question"
-          >{{ primoAccedantQuestion.label
+      <legend>
+        <h2 class="aj-question">
+          {{ primoAccedantQuestion.label
           }}<span v-if="primoAccedantQuestion.hint" class="help">{{
             primoAccedantQuestion.hint
-          }}</span></h2
-        ></legend
-      >
+          }}</span>
+        </h2>
+      </legend>
       <div class="aj-selections">
         <div
           v-for="response in primoAccedantQuestion.responses"
+          :key="response.value"
           class="aj-selection-wrapper"
-          v-bind:key="response.value"
         >
           <input
             :id="response.label"
+            v-model="primoAccedantQuestion.selectedValue"
             type="radio"
             :name="primoAccedantQuestion.label"
-            v-model="primoAccedantQuestion.selectedValue"
-            v-bind:value="response.value"
+            :value="response.value"
           />
           <label :for="response.label">
-            {{ response.label | capitalize }}
+            {{ $filters.capitalize(response.label) }}
             <span v-if="response.hint" class="help">{{ response.hint }}</span>
           </label>
         </div>
@@ -58,39 +60,39 @@
     </fieldset>
 
     <fieldset v-if="logementTypesQuestion.selectedValue == 'locataire'">
-      <legend
-        ><h2 class="aj-question"
-          >{{ locataireTypesQuestion.label
+      <legend>
+        <h2 class="aj-question">
+          {{ locataireTypesQuestion.label
           }}<span v-if="locataireTypesQuestion.hint" class="help">{{
             locataireTypesQuestion.hint
-          }}</span></h2
-        ></legend
-      >
+          }}</span>
+        </h2>
+      </legend>
       <div
         v-for="response in locataireTypesQuestion.responses"
+        :key="response.value"
         class="aj-selection-wrapper"
-        v-bind:key="response.value"
       >
         <input
           :id="response.value"
+          v-model="locataireTypesQuestion.selectedValue"
           type="radio"
           :name="logementTypesQuestion.label"
-          v-model="locataireTypesQuestion.selectedValue"
-          v-bind:value="response.value"
+          :value="response.value"
         />
         <label :for="response.value">
-          {{ response.label | capitalize }}
+          {{ $filters.capitalize(response.label) }}
           <span v-if="response.hint" class="help">{{ response.hint }}</span>
         </label>
       </div>
     </fieldset>
 
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Logement from "@/lib/Logement"
 import Individu from "@/../lib/Individu.js"
 import { getAnswer } from "../../../lib/answers"
@@ -98,7 +100,7 @@ import { getAnswer } from "../../../lib/answers"
 export default {
   name: "SimulationLogement",
   components: {
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const logementStatut = getAnswer(

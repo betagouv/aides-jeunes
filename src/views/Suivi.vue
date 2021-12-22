@@ -6,14 +6,14 @@
       </div>
       <div class="aj-box-wrapper">
         <div class="aj-unbox">
-          <LoadingModal v-if="!this.droits">
-            <p v-show="!this.droits">Récupération de la situation en cours…</p>
+          <LoadingModal v-if="!droits">
+            <p v-show="!droits"> Récupération de la situation en cours… </p>
           </LoadingModal>
-          <div class="alert alert-success" v-if="submitted">
+          <div v-if="submitted" class="alert alert-success">
             Merci d'avoir rempli ce questionnaire !
           </div>
 
-          <form v-if="this.droits && !submitted">
+          <form v-if="droits && !submitted">
             <p>
               Vous avez effectué une simulation le
               <strong>{{ createdAt }}</strong
@@ -26,7 +26,7 @@
             </p>
             <div
               v-for="droit in droits"
-              v-bind:key="droit.id"
+              :key="droit.id"
               class="aj-box normal-padding-bottom aj-survey-details"
               itemscope
               itemtype="http://schema.org/GovernmentService"
@@ -35,12 +35,14 @@
                 <div class="aj-droit-identity">
                   <img
                     class="aj-droit-illustration"
-                    v-bind:src="
+                    :src="
                       require(`./../../public/img/${droit.institution.imgSrc}`)
                     "
-                    v-bind:alt="droit.label"
+                    :alt="droit.label"
                   />
-                  <h2 class="aj-question" itemprop="name">{{ droit.label }}</h2>
+                  <h2 class="aj-question" itemprop="name">
+                    {{ droit.label }}
+                  </h2>
                 </div>
 
                 <DroitEstime :droit="droit" />
@@ -48,22 +50,22 @@
                 <div class="aj-droit-content">
                   <fieldset class="form__group">
                     <legend>
-                      <h3 class="aj-question"
-                        >Qu'avez-vous fait pour {{ prefix(droit)
-                        }}{{ droit.label }}&nbsp;?</h3
-                      >
+                      <h3 class="aj-question">
+                        Qu'avez-vous fait pour {{ prefix(droit)
+                        }}{{ droit.label }}&nbsp;?
+                      </h3>
                     </legend>
                     <div
                       v-for="choice in droit.choices"
-                      v-bind:key="choice.value"
+                      :key="choice.value"
                       class="aj-selection-wrapper"
                     >
                       <input
-                        type="radio"
                         :id="`choices_${droit.id}_${choice.value}`"
-                        v-bind:name="`choices_${droit.id}_${choice.value}`"
-                        v-bind:value="choice.value"
                         v-model="droit.choiceValue"
+                        type="radio"
+                        :name="`choices_${droit.id}_${choice.value}`"
+                        :value="choice.value"
                       />
                       <label :for="`choices_${droit.id}_${choice.value}`">
                         {{ choice.label }}
@@ -71,19 +73,19 @@
                     </div>
                   </fieldset>
                   <div
-                    class="form__group"
                     v-show="isNegative(droit.choiceValue)"
+                    class="form__group"
                   >
                     <label
                       ><h3
-                        v-bind:for="`choiceComments_${droit.id}`"
+                        :for="`choiceComments_${droit.id}`"
                         class="aj-question"
                       >
                         Pour quelles raisons&nbsp;?
                       </h3></label
                     >
                     <textarea
-                      v-bind:id="`choiceComments_${droit.id}`"
+                      :id="`choiceComments_${droit.id}`"
                       v-model="droit.choiceComments"
                       placeholder="..."
                     />
@@ -93,11 +95,12 @@
             </div>
             <button
               type="submit"
-              v-bind:class="`button large ${!isComplete ? 'secondary  ' : ''}`"
-              v-bind:disabled="!isComplete"
-              v-on:click.prevent="submit"
-              >Envoyer</button
+              :class="`button large ${!isComplete ? 'secondary  ' : ''}`"
+              :disabled="!isComplete"
+              @click.prevent="submit"
             >
+              Envoyer
+            </button>
           </form>
         </div>
       </div>
@@ -126,16 +129,16 @@ function isNegative(value) {
 
 export default {
   name: "Suivi",
+  components: {
+    DroitEstime,
+    LoadingModal,
+  },
   data: function () {
     return {
       submitted: false,
       droits: null,
       followup: null,
     }
-  },
-  components: {
-    DroitEstime,
-    LoadingModal,
   },
   computed: {
     createdAt: function () {
@@ -148,6 +151,32 @@ export default {
         this.droits.length
       )
     },
+  },
+  mounted: function () {
+    axios
+      .get(`/api/followups/surveys/${this.$route.query.token}`)
+      .then((response) => {
+        this.followup = response.data
+        let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
+
+        const benefitsNormalized = Institution.benefits.all
+          .filter((benefit) => benefitsIds.includes(benefit.id))
+          .map((benefit) => {
+            let montant = this.followup.benefits.find(
+              (followupBenefit) => followupBenefit.id === benefit.id
+            ).amount
+
+            return {
+              ...benefit,
+              montant: montant,
+              choices: choices,
+              choiceValue: null,
+              choiceComments: "",
+            }
+          })
+
+        this.droits = benefitsNormalized
+      })
   },
   methods: {
     isBoolean: (val) => typeof val === "boolean",
@@ -178,32 +207,6 @@ export default {
           }
         })
     },
-  },
-  mounted: function () {
-    axios
-      .get(`/api/followups/surveys/${this.$route.query.token}`)
-      .then((response) => {
-        this.followup = response.data
-        let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
-
-        const benefitsNormalized = Institution.benefits.all
-          .filter((benefit) => benefitsIds.includes(benefit.id))
-          .map((benefit) => {
-            let montant = this.followup.benefits.find(
-              (followupBenefit) => followupBenefit.id === benefit.id
-            ).amount
-
-            return {
-              ...benefit,
-              montant: montant,
-              choices: choices,
-              choiceValue: null,
-              choiceComments: "",
-            }
-          })
-
-        this.droits = benefitsNormalized
-      })
   },
 }
 </script>

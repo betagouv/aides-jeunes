@@ -1,38 +1,38 @@
 <template>
   <div>
-    <h2 class="aj-question">Mes enfants à charge <EnSavoirPlus /></h2>
+    <h2 class="aj-question"> Mes enfants à charge <EnSavoirPlus /> </h2>
     <div
       v-for="enfant in enfants"
+      :key="enfant.id"
       class="aj-children-container"
-      v-bind:key="enfant.id"
     >
       <div class="aj-children-header">
         <div class="aj-child-name small capitalize">
           {{ enfant._firstName }}
         </div>
         <div class="aj-child-actions">
-          <a class="edit-link" v-on:click="editPAC(enfant.id)">éditer</a>
-          <a class="delete-link" v-on:click="removePAC(enfant.id)">supprimer</a>
+          <a class="edit-link" @click="editPAC(enfant.id)">éditer</a>
+          <a class="delete-link" @click="removePAC(enfant.id)">supprimer</a>
         </div>
       </div>
       <hr class="aj-hr" />
       <div class="aj-children-line">
         <div class="aj-children-birth-date">
           <label>Sa date de naissance</label>
-          <span>{{ enfant.date_naissance | birthDate }}</span>
+          <span>{{ birthDate(enfant.date_naissance) }}</span>
         </div>
         <div class="aj-children-nationality">
           <label>Sa nationalité</label>
-          <span>{{ enfant.nationalite | nationality }}</span>
+          <span>{{ nationality(enfant.nationalite) }}</span>
         </div>
         <div class="aj-children-scolarite">
           <label>Sa situation</label>
-          <span>{{ enfant.scolarite | scolarite }}</span>
+          <span>{{ scolarite(enfant.scolarite) }}</span>
         </div>
-        <div class="aj-children-delete"> </div>
+        <div class="aj-children-delete" />
       </div>
     </div>
-    <button class="button outline with-icon" id="add-pac" v-on:click="addPAC()">
+    <button id="add-pac" class="button outline with-icon" @click="addPAC()">
       <svg
         width="16"
         height="16"
@@ -47,12 +47,12 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </div>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Nationality from "@/lib/Nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import Scolarite from "@/lib/Scolarite"
@@ -61,33 +61,14 @@ export default {
   name: "SimulationEnfants",
   components: {
     EnSavoirPlus,
-    Actions,
+    ActionButtons,
   },
   computed: {
     enfants: function () {
       return this.$store.getters.situation.enfants || []
     },
   },
-  filters: {
-    birthDate: function (date) {
-      if (date) {
-        return (
-          typeof date === "string" ? new Date(date) : date
-        ).toLocaleDateString("FR-fr", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        }) //).format('DD/MM/YYYY')
-      } else {
-        return "Non renseigné"
-      }
-    },
-    nationality: Nationality.getNationalityFromCountryCode,
-    scolarite: function (value) {
-      const s = Scolarite.types.find((s) => s.value === value)
-      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
-    },
-  },
+
   methods: {
     addPAC: function () {
       const children = this.$store.state.answers.enfants || []
@@ -110,6 +91,24 @@ export default {
           : 0,
       })
       this.$push()
+    },
+    birthDate: function (date) {
+      if (date) {
+        return (
+          typeof date === "string" ? new Date(date) : date
+        ).toLocaleDateString("FR-fr", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        }) //).format('DD/MM/YYYY')
+      } else {
+        return "Non renseigné"
+      }
+    },
+    nationality: Nationality.getNationalityFromCountryCode,
+    scolarite: function (value) {
+      const s = Scolarite.types.find((s) => s.value === value)
+      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },
   },
 }

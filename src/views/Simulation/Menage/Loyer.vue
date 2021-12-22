@@ -8,9 +8,9 @@
       <div class="aj-input-currency-wrapper">
         <InputNumber
           id="loyer"
-          class="aj-input-euros"
           v-model="loyerQuestion.selectedValue"
-        ></InputNumber>
+          class="aj-input-euros"
+        />
       </div>
     </div>
     <div v-if="captureCharges">
@@ -19,18 +19,15 @@
         <span class="help">{{ chargesQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
-        <InputNumber
-          id="charges"
-          v-model="chargesQuestion.selectedValue"
-        ></InputNumber>
+        <InputNumber id="charges" v-model="chargesQuestion.selectedValue" />
       </div>
     </div>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import InputNumber from "@/components/InputNumber"
 import Logement from "@/lib/Logement"
 
@@ -38,7 +35,10 @@ export default {
   name: "SimulationMenageDepCom",
   components: {
     InputNumber,
-    Actions,
+    ActionButtons,
+  },
+  props: {
+    modelValue: Number,
   },
   data: function () {
     return Logement.getLoyerData(this.$store.state.answers.all)

@@ -1,11 +1,10 @@
 <template>
   <div id="error" class="alert alert-danger" role="alert">
-    <h2
-      ><i class="fa fa-warning" aria-hidden="true"></i> Une erreur est
-      survenue.</h2
-    >
-    <p
-      ><a
+    <h2>
+      <i class="fa fa-warning" aria-hidden="true" /> Une erreur est survenue.
+    </h2>
+    <p>
+      <a
         v-analytics="{ action: 'Support', category: 'Contact' }"
         v-mail="{
           subject: `[Erreur Back] Problème technique`,
@@ -22,14 +21,14 @@
       >
       en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et
       en joignant si possible une capture d'écran. Nous vous répondrons au plus
-      vite et corrigerons le problème dès que possible.</p
-    >
+      vite et corrigerons le problème dès que possible.
+    </p>
 
     <p>Nous nous excusons pour la gène occasionée... </p>
 
     <small>
       Informations techniques :
-      <pre v-html="error"></pre>
+      <pre v-html="error" />
     </small>
   </div>
 </template>

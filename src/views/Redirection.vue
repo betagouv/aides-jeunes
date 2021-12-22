@@ -1,14 +1,14 @@
 <template>
   <article class="text container">
-    <p v-if="updating"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Récupération en
-      cours…</p
-    >
+    <p v-if="updating">
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
+      cours…
+    </p>
     <div v-else>
       <div v-if="error">
         <h1>Oups, une erreur est apparue</h1>
-        <p
-          ><a
+        <p>
+          <a
             v-analytics="{ action: 'Support', category: 'Redirection' }"
             v-mail="{
               to: 'aides-jeunes@beta.gouv.fr',
@@ -21,8 +21,8 @@
         ————`,
             }"
             >Signalez ce problème</a
-          ></p
-        >
+          >
+        </p>
         <pre>{{ error }}</pre>
       </div>
 
@@ -35,10 +35,7 @@
         </p>
 
         <ul>
-          <li
-            v-for="variable in teleservice.fields"
-            v-bind:key="variable.label"
-          >
+          <li v-for="variable in teleservice.fields" :key="variable.label">
             {{ variable.label }} :
             {{ variable.formattedValue || variable.value }}
           </li>
@@ -56,11 +53,9 @@
           adresser, en justifiant de votre identité.
         </p>
 
-        <a
-          class="btn btn-primary btn-lg"
-          v-bind:href="teleservice.destination.url"
-          >{{ teleservice.destination.label }}</a
-        >
+        <a class="btn btn-primary btn-lg" :href="teleservice.destination.url">{{
+          teleservice.destination.label
+        }}</a>
       </div>
     </div>
   </article>

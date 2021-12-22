@@ -2,13 +2,12 @@
   <article class="text container aj-text-container">
     <h1>Comment nous contacter ?</h1>
 
-    <p
-      >Nous améliorons ce simulateur en continu, et vous pouvez nous y aider
-      !</p
-    >
+    <p>
+      Nous améliorons ce simulateur en continu, et vous pouvez nous y aider !
+    </p>
 
-    <p
-      >Pour cela, vous pouvez nous contacter par
+    <p>
+      Pour cela, vous pouvez nous contacter par
       <a
         v-analytics="{ action: 'Contact', category: 'Contact' }"
         v-mail="{

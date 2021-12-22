@@ -1,16 +1,17 @@
 <template>
   <div>
     <input
-      type="number"
-      v-select-on-click
-      v-model.number="result"
       :id="id"
+      ref="result"
+      v-model="model"
+      v-select-on-click
+      type="number"
       :name="name"
       :min="min"
       :max="max"
       :step="step"
     />
-    <div class="text-red input-number-error" v-if="error">
+    <div v-if="error" class="text-red input-number-error">
       Ce champ n'est pas valide.
     </div>
   </div>
@@ -19,24 +20,30 @@
 <script>
 export default {
   name: "InputNumber",
-  props: ["id", "name", "value", "min", "max", "step"],
-  data() {
+  props: {
+    id: String,
+    name: String,
+    min: Number,
+    max: Number,
+    step: String,
+    modelValue: Number,
+    emit: { type: Boolean, default: true },
+  },
+  emits: ["update:modelValue"],
+  data: function () {
     return {
+      result: this.result,
       error: false,
     }
   },
   computed: {
-    result: {
-      get: function () {
-        return this.value
+    model: {
+      get() {
+        return this.modelValue
       },
-      set: function (value) {
-        this.error = false
-        if (value || value === 0) {
-          this.$emit("input", value)
-        } else {
-          this.error = true
-          this.$emit("input", undefined)
+      set(value) {
+        if (this.emit && !isNaN(value) && parseFloat(value)) {
+          this.$emit("update:modelValue", value)
         }
       },
     },

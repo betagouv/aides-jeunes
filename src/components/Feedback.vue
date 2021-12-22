@@ -16,7 +16,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailSuggestion()"
+          v-mail="sendMailSuggestion()"
           >Vous avez une suggestion d'amélioration</a
         >.
       </li>
@@ -27,7 +27,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailEcartSimulation()"
+          v-mail="sendMailEcartSimulation()"
           >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
         >.
       </li>
@@ -38,7 +38,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="this.sendMailEcartInstruction()"
+          v-mail="sendMailEcartInstruction()"
           >Ces résultats ne correspondent pas à ce que l'administration vous a
           attribué</a
         >.
@@ -91,12 +91,12 @@
       </div>
     </small>
     <a
-      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
-      class="aj-cta-avis"
       v-analytics="{
         action: 'Parcours',
         category: 'Je donne mon avis',
       }"
+      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
+      class="aj-cta-avis"
       target="_blank"
     >
       <img

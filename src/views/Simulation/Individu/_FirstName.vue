@@ -4,19 +4,19 @@
       >Quel est le prénom de votre enfant ? Il servira uniquement à vous
       faciliter la saisie par la suite.</label
     >
-    <input type="text" id="_firstName" v-model="value" />
-    <Actions v-bind:onSubmit="onSubmit" />
+    <input id="_firstName" v-model="value" type="text" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import { createIndividuMixin } from "@/mixins/IndividuMixin"
 
 export default {
   name: "SimulationIndividuFirstName",
   components: {
-    Actions,
+    ActionButtons,
   },
   mixins: [createIndividuMixin("_firstName")],
 }

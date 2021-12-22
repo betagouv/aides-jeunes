@@ -1,27 +1,27 @@
 <template>
   <form>
     <h2 data-testid="immobilier-title">
-      <i class="fa fa-home" aria-hidden="true"></i>
+      <i class="fa fa-home" aria-hidden="true" />
       Immobilier
     </h2>
 
-    <YesNoQuestion class="form__group" v-model="hasTerrainsNonLoues">
+    <YesNoQuestion v-model="hasTerrainsNonLoues" class="form__group">
       Avez-vous des terrains <b>non loués</b> ?
     </YesNoQuestion>
 
-    <div class="form__group" v-if="hasTerrainsNonLoues">
+    <div v-if="hasTerrainsNonLoues" class="form__group">
       <label class="form__group">
         Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
         <InputNumber
-          v-model="demandeur.valeur_terrains_non_loues[periodKey]"
-        ></InputNumber>
+          modelValue="demandeur.valeur_terrains_non_loues[periodKey]"
+        />
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
         <InputNumber
-          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
-        ></InputNumber>
+          modelValue="demandeur.valeur_locative_terrains_non_loues[periodKey]"
+        />
       </label>
       <p>
         Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
@@ -29,30 +29,28 @@
       </p>
     </div>
 
-    <YesNoQuestion class="form__group" v-model="hasBatisNonLoues">
+    <YesNoQuestion v-model="hasBatisNonLoues" class="form__group">
       Avez-vous des appartements/immeubles <b>non loués</b> ?
-      <template v-slot:help>
+      <template #help>
         <p>
           Sauf résidence principale et bâtiments de l'exploitation agricole.
         </p>
       </template>
     </YesNoQuestion>
 
-    <div class="form__group" v-if="hasBatisNonLoues">
+    <div v-if="hasBatisNonLoues" class="form__group">
       <label class="form__group">
         Valeur <b>patrimoniale</b> de vos appartements/immeubles
         <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_immo_non_loue[periodKey]"
-        ></InputNumber>
+        <InputNumber modelValue="demandeur.valeur_immo_non_loue[periodKey]" />
       </label>
 
       <label class="form__group">
         Valeur <b>locative</b> totale de vos appartements/immeubles
         <b>non loués</b>
         <InputNumber
-          v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
-        ></InputNumber>
+          modelValue="demandeur.valeur_locative_immo_non_loue[periodKey]"
+        />
       </label>
       <p>
         Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
@@ -62,27 +60,25 @@
 
     <label v-if="hasBiensLoues" class="form__group"
       >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-      <InputNumber
-        v-model="demandeur.valeur_patrimoine_loue[periodKey]"
-      ></InputNumber>
+      <InputNumber modelValue="demandeur.valeur_patrimoine_loue[periodKey]" />
     </label>
 
     <h2>
-      <i class="fa fa-money" aria-hidden="true"></i>
+      <i class="fa fa-money" aria-hidden="true" />
       Épargne
     </h2>
 
     <label class="form__group">
       Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
-      <InputNumber v-model="demandeur.livret_a[periodKey]"></InputNumber>
+      <InputNumber modelValue="demandeur.livret_a[periodKey]" />
     </label>
 
     <label class="form__group">
       Total des autres produits d'épargne produisant des revenus
       <b>non imposables</b>
       <InputNumber
-        v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
-      ></InputNumber>
+        modelValue="demandeur.epargne_revenus_non_imposables[periodKey]"
+      />
       <span>
         Assurance vie,
         <abbr title="Compte d'épargne-logement">CEL</abbr>,
@@ -97,8 +93,8 @@
     <label class="form__group">
       Total de l'épargne produisant des revenus <b>imposables</b>
       <InputNumber
-        v-model="demandeur.epargne_revenus_imposables[periodKey]"
-      ></InputNumber>
+        modelValue="demandeur.epargne_revenus_imposables[periodKey]"
+      />
       <span>
         Actions, comptes à terme,
         <abbr title="Fonds communs de placement">FCP</abbr>, obligations, parts
@@ -108,7 +104,7 @@
       </span>
     </label>
 
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -116,7 +112,7 @@
 import { patrimoineTypes } from "@/../lib/Resources"
 import YesNoQuestion from "@/components/YesNoQuestion"
 import InputNumber from "@/components/InputNumber"
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 
 const mapping = {
   hasTerrainsNonLoues: {
@@ -131,11 +127,11 @@ const mapping = {
 }
 
 export default {
-  name: "ressources-patrimoine",
+  name: "RessourcesPatrimoine",
   components: {
     InputNumber,
     YesNoQuestion,
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const situation = this.$store.getters.situation

@@ -2,28 +2,28 @@
   <fieldset>
     <legend>
       <component :is="htmlHeading" class="aj-question">
-        <slot></slot>
+        <slot />
       </component>
-      <slot name="help"></slot>
+      <slot name="help" />
     </legend>
     <div class="aj-selections">
       <div class="aj-selection-wrapper">
         <input
           :id="'yes-' + uniqueFieldName"
-          type="radio"
-          v-bind:value="true"
-          v-bind:name="uniqueFieldName"
           v-model="model"
+          type="radio"
+          :value="true"
+          :name="uniqueFieldName"
         />
         <label :for="'yes-' + uniqueFieldName">Oui</label>
       </div>
       <div class="aj-selection-wrapper">
         <input
           :id="'no-' + uniqueFieldName"
-          type="radio"
-          v-bind:value="false"
-          v-bind:name="uniqueFieldName"
           v-model="model"
+          type="radio"
+          :value="false"
+          :name="uniqueFieldName"
         />
         <label :for="'no-' + uniqueFieldName">Non</label>
       </div>
@@ -35,12 +35,13 @@
 export default {
   name: "YesNoQuestion",
   props: {
-    value: [Boolean, Number],
+    modelValue: [Boolean, Number],
     htmlHeading: {
       type: String,
       default: "h2",
     },
   },
+  emits: ["update:modelValue"],
   data: function () {
     const uniqueFieldName = "field." + Math.random().toString(36).slice(2)
     return {
@@ -50,10 +51,10 @@ export default {
   computed: {
     model: {
       get: function () {
-        return this.value
+        return this.modelValue
       },
       set: function (value) {
-        this.$emit("input", value)
+        this.$emit("update:modelValue", value)
       },
     },
   },

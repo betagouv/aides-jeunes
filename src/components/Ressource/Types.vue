@@ -10,22 +10,20 @@
         depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
       >. Vous pourrez ensuite saisir les montants.
     </p>
-    <div
-      class="form__group"
-      v-for="category in categories"
-      v-bind:key="category.id"
-    >
-      <h2 class="aj-question">{{ category.label(individu) | capitalize }}</h2>
+    <div v-for="category in categories" :key="category.id" class="form__group">
+      <h2 class="aj-question">
+        {{ $filters.capitalize(category.label(individu)) }}
+      </h2>
       <div class="aj-selections">
         <div
           v-for="type in sort(typesByCategories[category.id])"
+          :key="type.id"
           class="aj-selection-wrapper"
-          v-bind:key="type.id"
         >
           <input
             :id="type.id"
-            type="checkbox"
             v-model="selectedTypes[type.id]"
+            type="checkbox"
           />
           <label :for="type.id">
             {{ type.label }}
@@ -33,13 +31,15 @@
         </div>
       </div>
     </div>
-    <div class="form__group">{{ countLabel }}</div>
-    <Actions v-bind:onSubmit="onSubmit"> </Actions>
+    <div class="form__group">
+      {{ countLabel }}
+    </div>
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
@@ -49,7 +49,7 @@ import { getAnswer } from "../../../lib/answers"
 export default {
   name: "RessourceTypes",
   components: {
-    Actions,
+    ActionButtons,
   },
   props: {
     individu: Object,

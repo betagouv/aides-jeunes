@@ -1,10 +1,9 @@
 <template>
   <div>
-    <p
-      >Avec vos ressources, le simulateur de la CAF ne vous permet pas
-      d'indiquer votre statut étudiant. Pour cette raison, le montant indiqué
-      sur le simulateur de la CAF est plus approximatif que celui de notre
-      simulateur.
+    <p>
+      Avec vos ressources, le simulateur de la CAF ne vous permet pas d'indiquer
+      votre statut étudiant. Pour cette raison, le montant indiqué sur le
+      simulateur de la CAF est plus approximatif que celui de notre simulateur.
     </p>
     <p>
       Si vous constatez un écart important avec le montant d'aide au logement
@@ -15,8 +14,9 @@
     <router-link
       class="button outline text-center back-button"
       to="/simulation/resultats"
-      >Retourner aux résultats</router-link
     >
+      Retourner aux résultats
+    </router-link>
   </div>
 </template>
 

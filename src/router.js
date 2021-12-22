@@ -1,14 +1,12 @@
-import Vue from "vue"
-import Router from "vue-router"
+import { nextTick } from "vue"
 import Home from "./views/Home.vue"
 import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
-Vue.use(Router)
+import { createWebHistory, createRouter } from "vue-router"
 
-const router = new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -108,14 +106,6 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "mutualized-step" */ "./views/Simulation/MutualizedStep.vue"
-                ),
-            },
-            {
-              name: "property",
-              path: ":property/:subproperty?",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
                 ),
             },
           ],
@@ -291,13 +281,6 @@ const router = new Router({
               /* webpackChunkName: "resultats" */ "./views/Simulation/ResultatsDetail.vue"
             ),
         },
-        {
-          path: ":id/:property",
-          component: () =>
-            import(
-              /* webpackChunkName: "individu" */ "./views/Simulation/Property.vue"
-            ),
-        },
       ],
     },
     {
@@ -364,13 +347,13 @@ const router = new Router({
         selector: to.hash,
       }
     }
-    return { x: 0, y: 0 }
+    return { left: 0, top: 0 }
   },
 })
 
 router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
-  if (from.name === null) {
+  if (!from.name) {
     store.commit("initialize")
     store.dispatch("openFiscaParameters")
     store.dispatch("verifyBenefitVariables")
@@ -436,7 +419,7 @@ function getTitleMeta(route) {
 router.afterEach((to) => {
   if (to.preventFocus) return
 
-  Vue.nextTick(function () {
+  nextTick(function () {
     document.title = getTitleMeta(to)
 
     let title = document.querySelector("h1")

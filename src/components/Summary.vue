@@ -40,11 +40,11 @@
           <div class="aj-progressBar"></div>
         </div>
 
-        <div class="aj-btn-container" v-if="$store.getters.passSanityCheck">
+        <div v-if="$store.getters.passSanityCheck" class="aj-btn-container">
           <router-link
+            v-if="!isRecapitulatif"
             class="button outline"
             :to="{ name: 'recapitulatif' }"
-            v-if="!isRecapitulatif"
             >{{
               isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
             }}</router-link

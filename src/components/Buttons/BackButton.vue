@@ -21,6 +21,7 @@ export default {
   name: "BackButton",
   props: {
     size: {
+      type: String,
       default: null,
     },
   },

@@ -8,54 +8,54 @@
       en France comme à l'étranger.
     </p>
     <div
+      v-for="(type, index) in types"
+      :key="type.meta.id"
       class="form__group"
       s
-      v-for="(type, index) in types"
-      v-bind:key="type.meta.id"
     >
       <RessourceMontants
         v-if="isSimple(type.meta.id)"
-        v-bind:individu="type.individu"
-        v-bind:index="index"
-        v-bind:type="type"
-        v-on:update="process"
+        :individu="type.individu"
+        :index="index"
+        :type="type"
+        @update="process"
       />
       <RessourceAutoEntreprise
         v-if="type.meta.id.startsWith('rpns_auto_entrepreneur_CA')"
-        v-bind:individu="type.individu"
-        v-bind:ressource="type"
-        v-on:update="updateTNSAmount"
-        v-on:updateExtra="updateTNSExtra"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+        @updateExtra="updateTNSExtra"
       />
       <RessourceMicroEntreprise
         v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
-        v-bind:individu="type.individu"
-        v-bind:ressource="type"
-        v-on:update="updateTNSAmount"
-        v-on:updateExtra="updateTNSExtra"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+        @updateExtra="updateTNSExtra"
       />
       <RessourceProfessionLiberale
         v-if="type.meta.id === 'rpns_autres_revenus'"
-        v-bind:individu="type.individu"
-        v-bind:ressource="type"
-        v-on:update="updateTNSAmount"
-        v-on:updateExtra="updateTNSExtra"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+        @updateExtra="updateTNSExtra"
       />
       <RessourceExploitantAgricole
         v-if="type.meta.id === 'rpns_benefice_exploitant_agricole'"
-        v-bind:individu="type.individu"
-        v-bind:ressource="type"
-        v-on:update="updateTNSAmount"
-        v-on:updateExtra="updateTNSExtra"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+        @updateExtra="updateTNSExtra"
       />
     </div>
 
-    <Actions v-bind:onSubmit="onSubmit"> </Actions>
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import RessourceAutoEntreprise from "@/components/Ressource/AutoEntreprise"
 import RessourceExploitantAgricole from "@/components/Ressource/ExploitantAgricole"
 import RessourceMicroEntreprise from "@/components/Ressource/MicroEntreprise"
@@ -69,16 +69,16 @@ import Individu from "@/../lib/Individu"
 import { getAnswer } from "../../../../lib/answers"
 
 export default {
-  name: "ressources-montants",
-  mixins: [RessourceProcessor],
+  name: "RessourcesMontants",
   components: {
     RessourceAutoEntreprise,
     RessourceExploitantAgricole,
     RessourceMicroEntreprise,
     RessourceProfessionLiberale,
     RessourceMontants,
-    Actions,
+    ActionButtons,
   },
+  mixins: [RessourceProcessor],
   data: function () {
     const individu = this.getIndividu()
     return {
@@ -183,6 +183,7 @@ export default {
           amounts: type.amounts,
         })),
       })
+
       this.$push()
     },
     updateTNSAmount: function (type, period, value) {

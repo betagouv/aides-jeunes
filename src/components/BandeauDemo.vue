@@ -1,5 +1,5 @@
 <template>
-  <div class="bandeau-demo-wrapper" v-if="afficheBandeau">
+  <div v-if="afficheBandeau" class="bandeau-demo-wrapper">
     <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
       Démo
     </a>

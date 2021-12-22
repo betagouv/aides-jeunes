@@ -1,14 +1,10 @@
 <template>
   <form>
-    <div
-      class="form__group"
-      v-for="individu in individus"
-      v-bind:key="individu.id"
-    >
+    <div v-for="individu in individus" :key="individu.id" class="form__group">
       <button
-        class="button outline with-icon m-auto"
         v-if="!individu.display"
-        v-on:click="individu.display = !individu.display"
+        class="button outline with-icon m-auto"
+        @click="individu.display = !individu.display"
       >
         <svg
           width="16"
@@ -42,17 +38,17 @@
           >.
         </p>
         <label
-          class="form__group"
           v-for="ressource in categoriesRnc"
-          v-bind:key="ressource.id"
+          :key="ressource.id"
+          class="form__group"
         >
           {{ ressource.label }}
           <input
-            type="number"
-            v-select-on-click
             v-model="
               individu.values[ressource.id][$store.state.dates.fiscalYear.id]
             "
+            v-select-on-click
+            type="number"
           />
           <span v-if="individu.default[ressource.id]">
             Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
@@ -62,7 +58,7 @@
       </div>
     </div>
 
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 
@@ -72,7 +68,7 @@ import some from "lodash/some"
 import isNaN from "lodash/isNaN"
 import Individu from "@/../lib/Individu"
 import { categoriesRnc } from "@/../lib/Resources"
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 
 function getDefaultValue(months, individu, rnc) {
   return sum(
@@ -88,9 +84,9 @@ function getDefaultValue(months, individu, rnc) {
 }
 
 export default {
-  name: "ressources-fiscales",
+  name: "RessourcesFiscales",
   components: {
-    Actions,
+    ActionButtons,
   },
   data: function () {
     const fiscalYear = this.$store.state.dates.fiscalYear.id

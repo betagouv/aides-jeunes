@@ -1,6 +1,6 @@
 <template>
   <div class="aj-simulation">
-    <div class="aj-complete-progress-bar" v-if="showProgress">
+    <div v-if="showProgress" class="aj-complete-progress-bar">
       <div :style="currentProgressStyle" />
     </div>
     <div
@@ -18,7 +18,7 @@
           <div class="message" v-html="$store.state.message.text" />
         </div>
         <div class="aj-box-wrapper">
-          <router-view v-bind:key="$route.path" />
+          <router-view :key="$route.path" />
         </div>
       </div>
       <Progress v-if="debug" />

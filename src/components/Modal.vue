@@ -1,21 +1,17 @@
 <template>
   <span>
     <component
-      v-bind:is="tag || 'a'"
-      v-on:click="show"
+      :is="tag || 'a'"
       v-analytics="{ action: 'Affiché', category: analyticsCategory }"
-      ><slot name="message"></slot
-    ></component>
-    <div
-      v-if="displayed"
-      class="modal__backdrop"
-      v-on:click.self.prevent="hide"
-    >
+      @click="show"
+      ><slot name="message"
+    /></component>
+    <div v-if="displayed" class="modal__backdrop" @click.self.prevent="hide">
       <div class="modal">
         <span
-          class="aj-modal-close"
           v-analytics="{ action: 'Fermé bouton', category: analyticsCategory }"
-          v-on:click="hide"
+          class="aj-modal-close"
+          @click="hide"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +25,7 @@
             />
           </svg>
         </span>
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </span>
@@ -47,14 +43,6 @@ export default {
       displayed: false,
     }
   },
-  methods: {
-    show: function () {
-      this.displayed = true
-    },
-    hide: function () {
-      this.displayed = false
-    },
-  },
   created: function () {
     let that = this
     this.escapeHandler = function (evt) {
@@ -67,8 +55,16 @@ export default {
     }
     document.addEventListener("keyup", this.escapeHandler)
   },
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     document.removeEventListener("keyup", this.escapeHandler)
+  },
+  methods: {
+    show: function () {
+      this.displayed = true
+    },
+    hide: function () {
+      this.displayed = false
+    },
   },
 }
 </script>

@@ -1,19 +1,18 @@
 <template>
   <a
-    v-bind:href="getURL(link)"
+    v-analytics="{ name: analyticsName, action: type, category: 'General' }"
+    :href="getURL(link)"
     target="_blank"
     rel="noopener"
     class="text-center"
-    v-bind:class="{
+    :class="{
       'button secondary': level === 'default',
       'button primary': level === 'success',
     }"
-    v-on:click="onClick(link)"
-    v-analytics="{ name: analyticsName, action: type, category: 'General' }"
-    v-bind:aria-label="longLabel"
+    :aria-label="longLabel"
+    @click="onClick(link)"
     v-html="label"
-  >
-  </a>
+  />
 </template>
 
 <script>
@@ -33,6 +32,8 @@ let longLabels = {
 
 export default {
   name: "BenefitCtaLink",
+  components: {},
+  mixins: [StatisticsMixin],
   props: {
     analyticsName: String,
     benefit: Object,
@@ -40,8 +41,6 @@ export default {
     type: String,
     link: [String, Object],
   },
-  mixins: [StatisticsMixin],
-  components: {},
   data: function () {
     return {}
   },

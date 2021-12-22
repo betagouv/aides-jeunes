@@ -5,10 +5,10 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:vue/essential",
-    "prettier",
     "plugin:cypress/recommended",
+    "plugin:vue/vue3-recommended",
     "plugin:prettier-vue/recommended",
+    "prettier",
   ],
   plugins: ["prettier", "vue"],
   globals: {
@@ -22,6 +22,20 @@ module.exports = {
   },
   rules: {
     "no-irregular-whitespace": 0,
-    "vue/multi-word-component-names": 1,
+    "vue/no-deprecated-v-on-native-modifier": 0,
+    "eol-last": "error",
+    "vue/require-default-prop": 0,
+    "vue/no-v-html": 0,
+    "vue/v-on-event-hyphenation": 0,
+    "vue/multi-word-component-names": 0,
+    "vue/attribute-hyphenation": 0,
   },
+  overrides: [
+    {
+      files: ["**/__tests__/*.{j,t}s?(x)"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }

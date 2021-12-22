@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p v-if="!aCharge"
-      >Cette aide se base sur
+    <p v-if="!aCharge">
+      Cette aide se base sur
       <strong>
         vos ressources de l'année
         {{ $store.state.dates.fiscalYear.label }},
@@ -21,18 +21,20 @@
     </p>
 
     <router-link
+      v-if="!aCharge"
       class="button text-center"
       to="/simulation/ressources/fiscales"
-      v-if="!aCharge"
-      >Déclarez vos ressources
-      {{ $store.state.dates.fiscalYear.label }}</router-link
     >
+      Déclarez vos ressources
+      {{ $store.state.dates.fiscalYear.label }}
+    </router-link>
 
     <router-link
       class="button outline text-center back-button"
       to="/simulation/resultats"
-      >Retourner aux résultats</router-link
     >
+      Retourner aux résultats
+    </router-link>
   </div>
 </template>
 

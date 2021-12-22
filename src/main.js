@@ -1,6 +1,7 @@
 import "core-js/stable"
-import Vue from "vue"
+import { createApp, h } from "vue"
 import App from "./App.vue"
+
 import router from "./router"
 import store from "./store"
 
@@ -9,9 +10,8 @@ import moment from "moment"
 import ScrollService from "./plugins/ScrollService"
 import StateService from "./plugins/StateService"
 
-import AsyncComputed from "vue-async-computed"
 import * as Sentry from "@sentry/vue"
-import Vuelidate from "vuelidate"
+import useVuelidate from "@vuelidate/core"
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
@@ -29,41 +29,44 @@ const Resizer = {
     iframeResizerContentWindow
   },
 }
-AnalyticsDirective(Vue)
-MailDirective(Vue)
-SelectOnClickDirective(Vue)
+
+const app = createApp({
+  render: () => h(App),
+})
+
+app.directive("analytics", AnalyticsDirective)
+app.directive("mail", MailDirective)
+app.directive("selectOnClick", SelectOnClickDirective)
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
-    Vue,
+    app,
     dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
   })
 }
 
-Vue.use(AsyncComputed)
-Vue.use(Resizer)
-Vue.use(ScrollService)
-Vue.use(StateService)
-Vue.use(Vuelidate)
+app.use(Resizer)
+app.use(ScrollService)
+app.use(StateService)
+app.use(useVuelidate)
 
-Vue.use(VueMatomo, {
+app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",
   trackerFileName: "piwik",
   siteId: process.env.VUE_APP_MATOMO_ID,
   router: router,
 })
 
-Vue.filter("capitalize", function (value) {
-  if (!value) return ""
-  value = value.toString()
-  return value.charAt(0).toUpperCase() + value.slice(1)
-})
+app.config.globalProperties.$filters = {
+  capitalize(value) {
+    if (!value) return ""
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  },
+}
 
-Vue.config.productionTip = false
 moment.locale("fr")
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app")
+app.use(store)
+app.use(router)
+app.mount(document.body)

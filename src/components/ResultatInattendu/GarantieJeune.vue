@@ -13,8 +13,9 @@
     <router-link
       class="button outline text-center back-button"
       to="/simulation/resultats"
-      >Retourner aux résultats</router-link
     >
+      Retourner aux résultats
+    </router-link>
   </div>
 </template>
 

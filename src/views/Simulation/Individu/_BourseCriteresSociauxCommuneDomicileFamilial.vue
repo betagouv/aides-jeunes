@@ -4,40 +4,46 @@
       <label class="aj-question">
         Quel est le code postal de la commune de vos parents ?
       </label>
-      <input id="cp" type="number" v-model="codePostal" />
+      <input
+        id="cp"
+        v-model="codePostal"
+        type="text"
+        data-type="number"
+        pattern="[0-9]*"
+      />
     </div>
 
-    <p v-if="retrievingCommunes"
-      ><i class="fa fa-spinner fa-spin" aria-hidden="true"></i
-    ></p>
-    <div class="form__group" v-show="communes && communes.length">
+    <p v-if="retrievingCommunes">
+      <i class="fa fa-spinner fa-spin" aria-hidden="true" />
+    </p>
+    <div v-show="communes && communes.length" class="form__group">
       <label class="aj-question">
         Veuillez sélectionner la ville qui correspond
       </label>
-      <select v-model="nomCommune" id="commune">
+      <select id="commune" v-model="nomCommune">
         <option
-          v-for="commune in communes"
-          v-bind:value="commune.nom"
-          v-bind:key="commune.code"
+          v-for="(commune, index) in communes"
+          :key="`commune_${index}`"
+          :value="commune.nom"
         >
           {{ commune.nom }}
         </option>
       </select>
     </div>
-    <Actions v-bind:onSubmit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 <script>
-import Actions from "@/components/Actions"
+import ActionButtons from "@/components/ActionButtons"
 import Individu from "@/../lib/Individu"
 import DepcomMixin from "@/mixins/DepcomMixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
-  mixins: [DepcomMixin],
   components: {
-    Actions,
+    ActionButtons,
   },
+  mixins: [DepcomMixin],
   data() {
     const id = this.$route.params.id
     const role = id.split("_")[0]
@@ -56,7 +62,15 @@ export default {
       individu,
       nomCommune,
       retrievingCommunes: false,
+      communes: [],
     }
+  },
+  watch: {
+    codePostal: function (cp) {
+      if (cp && cp.length == 5) {
+        this.fetchCommune()
+      }
+    },
   },
   methods: {
     onSubmit: function () {
@@ -64,7 +78,7 @@ export default {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
+      if (!this.codePostal.toString().match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
         this.$store.dispatch(
           "updateError",
           "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."

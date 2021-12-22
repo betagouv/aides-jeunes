@@ -1,5 +1,5 @@
 <template>
-  <RessourceTypes v-bind:individu="individu" />
+  <RessourceTypes :individu="individu" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import RessourceTypes from "@/components/Ressource/Types"
 import Individu from "@/../lib/Individu"
 
 export default {
-  name: "ressources-types",
+  name: "RessourcesTypes",
   components: {
     RessourceTypes,
   },

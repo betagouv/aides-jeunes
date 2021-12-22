@@ -13,10 +13,15 @@ function buildHref({ to, subject, body }) {
   return comps.join("?")
 }
 
-const MailDirective = (Vue) => {
-  Vue.directive("mail", function (el, binding) {
+const MailDirective = {
+  // vnode is not used but sent to beforeMount nonetheless
+  // eslint-disable-next-line no-unused-vars
+  beforeMount(el, binding, vnode) {
     el.setAttribute("href", buildHref(binding.value))
-  })
+  },
+  unmounted(el) {
+    el.removeEventListener("click", el.myAnalyticsHandler)
+  },
 }
 
 export default MailDirective

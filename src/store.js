@@ -1,7 +1,4 @@
-import Vue from "vue"
-import Vuex from "vuex"
-
-Vue.use(Vuex)
+import { createStore } from "vuex"
 
 import axios from "axios"
 import moment from "moment"
@@ -120,8 +117,9 @@ const storeAnswer = (answers, newAnswer, clean, enfants) => {
   return results
 }
 
-const store = new Vuex.Store({
+const store = createStore({
   state: defaultStore(),
+  strict: process.env.NODE_ENV !== "production",
   getters: {
     passSanityCheck: function (state, getters) {
       return (
@@ -532,7 +530,9 @@ const store = new Vuex.Store({
           )
         })
         .then((results) => store.commit("setResults", results))
-        .catch((error) => store.commit("saveComputationFailure", error))
+        .catch((error) => {
+          store.commit("saveComputationFailure", error)
+        })
     },
     redirection: function (state, next) {
       state.commit(
@@ -596,17 +596,4 @@ store.subscribe(
       })
     )
   }
-)
-
-// Replicate strict mode
-store._vm.$watch(
-  function () {
-    return this._data.$$state
-  },
-  () => {
-    if (!store._committing) {
-      throw "Do not mutate vuex store state outside mutation handlers."
-    }
-  },
-  { deep: true, sync: true }
 )

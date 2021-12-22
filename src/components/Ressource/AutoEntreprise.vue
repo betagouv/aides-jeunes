@@ -7,35 +7,42 @@
       >
       <InputNumber
         id="autoAmount"
-        :value="ressource.amounts[$store.state.dates.lastYear.id]"
-        @input="update($store.state.dates.lastYear.id, $event)"
-      ></InputNumber>
+        :modelValue="ressource.amounts[$store.state.dates.lastYear.id]"
+        :emit="false"
+        @input="
+          updateFloat($store.state.dates.lastYear.id, $event.target.value)
+        "
+      />
     </div>
 
     <div class="form__group">
       <label for="autoAmountLastMonth" class="aj-question"
         >Chiffre d'affaires pour
-        {{ $store.state.dates.thisMonth.label | capitalize }}</label
+        {{ $filters.capitalize($store.state.dates.thisMonth.label) }}</label
       >
       <InputNumber
         id="autoAmountLastMonth"
-        :value="ressource.amounts[$store.state.dates.thisMonth.id]"
-        @input="update($store.state.dates.thisMonth.id, $event)"
-      ></InputNumber>
+        :modelValue="ressource.amounts[$store.state.dates.thisMonth.id]"
+        :emit="false"
+        @input="
+          updateFloat($store.state.dates.thisMonth.id, $event.target.value)
+        "
+      />
     </div>
     <div
-      class="form__group"
       v-for="month in $store.state.dates.last3Months"
-      v-bind:key="month.id"
+      :key="month.id"
+      class="form__group"
     >
       <label :for="'autoAmount' + month.label" class="aj-question">
-        Chiffre d'affaires pour {{ month.label | capitalize }}
+        Chiffre d'affaires pour {{ $filters.capitalize(month.label) }}
       </label>
       <InputNumber
         :id="'autoAmount' + month.label"
-        :value="ressource.amounts[month.id]"
-        @input="update(month.id, $event)"
-      ></InputNumber>
+        :modelValue="ressource.amounts[month.id]"
+        :emit="false"
+        @input="updateFloat(month.id, $event.target.value)"
+      />
     </div>
   </div>
 </template>
@@ -46,10 +53,10 @@ import InputNumber from "@/components/InputNumber"
 
 export default {
   name: "RessourceAutoEntreprise",
-  mixins: [TNSRessourceUpdator],
   components: {
     InputNumber,
   },
+  mixins: [TNSRessourceUpdator],
 }
 </script>
 

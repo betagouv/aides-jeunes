@@ -1,8 +1,8 @@
 <template>
   <div class="recapitulatif">
     <div>
-      <template v-for="(chapter, chapterIndex) in chapters">
-        <div class="chapter-block" :key="chapter.name">
+      <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
+        <div class="chapter-block">
           <h2 class="aj-question">{{ chapter.label }}</h2>
           <template v-for="(question, questionIndex) in chapter.questions">
             <template v-if="question.isChapterSubtitle">
@@ -10,22 +10,23 @@
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
               >
-                <div v-html="question.label" class="subtitle"></div>
+                <div class="subtitle" v-html="question.label"></div>
               </div>
             </template>
             <template v-else>
               <div
+                v-if="question.value !== undefined"
                 :key="`chapter_${chapterIndex}_question_${questionIndex}`"
                 class="recapitulatif-row"
-                v-if="question.value !== undefined"
               >
                 <div class="question-col" v-html="question.label"></div>
 
                 <div
-                  class="value-col"
                   v-if="typeof question.value !== 'object'"
-                  >{{ question.value }}</div
+                  class="value-col"
                 >
+                  {{ question.value }}
+                </div>
                 <div class="edit-col"
                   ><router-link :to="question.path">Modifier</router-link></div
                 >
@@ -36,11 +37,11 @@
                   class="recapitulatif-row recapitulatif-row-wrap"
                 >
                   <div
-                    class="value-cell"
                     v-for="(value, name) in question.value"
                     :key="name"
+                    class="value-cell"
                   >
-                    <div style="font-style: italic">{{ name }} :</div>
+                    <div style="font-style: italic">{{ name }} :</div>
                     <div>{{ value }}</div>
                   </div>
                 </div>
@@ -134,13 +135,13 @@ export default {
         const entity =
           ENTITIES_PROPERTIES[step.entity].loadEntity &&
           ENTITIES_PROPERTIES[step.entity].loadEntity({
-            ...this,
+            $store: this.$store,
             params: step,
           })
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
           value: answer,
-          component: { ...this, entity },
+          component: { $store: this.$store, entity },
         })
       }
       return []

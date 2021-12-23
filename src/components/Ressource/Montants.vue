@@ -18,9 +18,9 @@
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
         step="any"
-        :modelValue="parseFloat(type.amounts[$store.state.dates.thisMonth.id])"
+        :modelValue="type.amounts[$store.state.dates.thisMonth.id]"
         :emit="false"
-        @input="$emit('update', 'singleValue', index, $event.target.value)"
+        @input="$emit('update', 'singleValue', index, $event)"
       />
     </label>
 

@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     attribute: function () {
-      return this.$route.params.parent.split("/").pop()
+      return this.$route.params.parent.pop()
     },
     source: function () {
       return this.$route.params.parent

@@ -88,7 +88,9 @@ export default {
   },
   watch: {
     $route(toRoute, fromRoute) {
-      if (
+      if (toRoute.name !== "ressources/montants") {
+        return
+      } else if (
         toRoute.params.id != fromRoute.params.id ||
         toRoute.params.category != fromRoute.params.category
       ) {

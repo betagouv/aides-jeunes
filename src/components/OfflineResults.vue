@@ -44,11 +44,12 @@
           submitResult &&
           !(submitResult.ok || submitResult.waiting || submitResult.error)
         "
+        ref="form"
       >
         <label for="email" class="form__group">Votre email</label>
-        <input id="email" v-model="email" type="text" name="email" />
-        <p v-if="v$ && v$.email.$error" class="notification warning">
-          Un email doit être indiqué.
+        <input id="email" v-model="email" type="email" name="email" required />
+        <p v-if="errorMessage" class="notification warning">
+          Une adresse email valide doit être indiquée.
         </p>
         <div class="aj-feedback-buttons">
           <button
@@ -73,8 +74,6 @@
 
 <script>
 import axios from "axios"
-import useVuelidate from "@vuelidate/core"
-import { required, email } from "@vuelidate/validators"
 
 import Modal from "@/components/Modal"
 
@@ -86,9 +85,6 @@ export default {
   props: {
     id: String,
   },
-  setup() {
-    return { v$: useVuelidate() }
-  },
   data: function () {
     return {
       email: undefined,
@@ -97,6 +93,7 @@ export default {
         waiting: undefined,
         error: undefined,
       },
+      errorMessage: undefined,
     }
   },
   methods: {
@@ -108,8 +105,8 @@ export default {
       }
     },
     getRecap: function (surveyOptin) {
-      this.v$.$touch()
-      if (this.v$.$invalid) {
+      if (!this.$refs.form.checkValidity()) {
+        this.errorMessage = true
         this.$matomo &&
           this.$matomo.trackEvent(
             "General",
@@ -140,9 +137,6 @@ export default {
           this.submitResult.waiting = false
         })
     },
-  },
-  validations: {
-    email: { required, email },
   },
 }
 </script>

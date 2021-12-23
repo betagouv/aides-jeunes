@@ -11,7 +11,6 @@ import ScrollService from "./plugins/ScrollService"
 import StateService from "./plugins/StateService"
 
 import * as Sentry from "@sentry/vue"
-import useVuelidate from "@vuelidate/core"
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
@@ -48,7 +47,6 @@ if (process.env.NODE_ENV === "production") {
 app.use(Resizer)
 app.use(ScrollService)
 app.use(StateService)
-app.use(useVuelidate)
 
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",

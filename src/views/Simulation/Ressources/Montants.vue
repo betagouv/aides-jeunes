@@ -180,10 +180,17 @@ export default {
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: this.$route.params.category,
-        value: this.types.map((type) => ({
-          id: type.meta.id,
-          amounts: type.amounts,
-        })),
+        value: this.types.map((type) => {
+          Object.keys(type.amounts).forEach(function (period) {
+            if (type.amounts[period] === null || isNaN(type.amounts[period])) {
+              type.amounts[period] = 0
+            }
+          })
+          return {
+            id: type.meta.id,
+            amounts: type.amounts,
+          }
+        }),
       })
 
       this.$push()

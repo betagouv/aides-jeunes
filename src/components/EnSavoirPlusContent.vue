@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     attribute: function () {
-      return this.$route.params.parent.slice(-1)[0]
+      return this.source[this.source.length - 1]
     },
     source: function () {
       return this.$route.params.parent

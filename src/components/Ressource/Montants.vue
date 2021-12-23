@@ -33,7 +33,7 @@
         <label>
           <MonthLabel :month="month" />
           <InputNumber
-            :modelValue="parseFloat(type.amounts[month.id])"
+            :modelValue="type.amounts[month.id]"
             :emit="false"
             @input="
               $emit('update', 'monthUpdate', index, {

@@ -3,7 +3,7 @@
     <input
       :id="id"
       ref="result"
-      v-model="model"
+      v-model.number="model"
       v-select-on-click
       type="number"
       :name="name"
@@ -26,7 +26,7 @@ export default {
     min: Number,
     max: Number,
     step: String,
-    modelValue: Number,
+    modelValue: [Number, String],
     emit: { type: Boolean, default: true },
   },
   emits: ["update:modelValue"],
@@ -42,8 +42,12 @@ export default {
         return this.modelValue
       },
       set(value) {
-        if (this.emit) {
+        if (value || value === 0) {
+          this.error = false
           this.$emit("update:modelValue", value)
+        } else {
+          this.error = true
+          this.$emit("update:modelValue", undefined)
         }
       },
     },

@@ -21,12 +21,12 @@ profils:
     conditions:
       - type: boursier
         value: true
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: age
         operator: <
         value: 26
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: boursier
         value: true

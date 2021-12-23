@@ -14,7 +14,7 @@ conditions_generales:
     values:
       - "52"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: mention_baccalaureat
         values:

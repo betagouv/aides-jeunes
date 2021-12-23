@@ -17,7 +17,7 @@ conditions_generales:
     values:
       - "44"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: age
         operator: <=

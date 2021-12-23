@@ -1,4 +1,4 @@
-import { round } from "../../lib/Benefits/Compute"
+import { round } from "../../lib/Benefits/compute"
 
 describe("round", function () {
   it('should not round for type "bool"', function () {

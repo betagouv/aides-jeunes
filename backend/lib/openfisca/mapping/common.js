@@ -5,7 +5,7 @@ const benefits = require("../../../../data/all")
 const { generator } = require("../../../../lib/Dates")
 const {
   CONDITION_STATEGY,
-} = require("../../../../lib/Benefits/ComputeJavascript")
+} = require("../../../../lib/Benefits/compute-javascript")
 
 exports.isIndividuValid = function (individu, situation) {
   const age = moment(situation.dateDeValeur).diff(

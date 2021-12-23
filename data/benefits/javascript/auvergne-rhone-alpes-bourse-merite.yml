@@ -23,7 +23,7 @@ conditions_generales:
     values:
       - "84"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur
     conditions:
       - type: mention_baccalaureat
         values:

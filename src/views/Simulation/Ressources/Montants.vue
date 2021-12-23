@@ -102,12 +102,13 @@ export default {
       return Individu.label(this.individu, "nom")
     },
     getIndividu: function () {
-      const id = this.$route.params.id
+      const id = this.$route.params.id || "demandeur"
       const role = id.split("_")[0]
+
       const { individu } = Individu.get(
         this.$store.getters.peopleParentsFirst,
         role,
-        this.$route.params.id,
+        id,
         this.$store.state.dates
       )
       return individu

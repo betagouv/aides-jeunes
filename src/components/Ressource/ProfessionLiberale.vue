@@ -26,7 +26,7 @@
       <InputNumber
         id="liberaleLastBenef"
         :value="ressource.amounts[$store.state.dates.lastYear.id]"
-        @input="updateFloat($store.state.dates.lastYear.id, $event)"
+        @input="update($store.state.dates.lastYear.id, $event)"
       />
     </div>
   </div>

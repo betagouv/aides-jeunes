@@ -3,7 +3,7 @@
     <input
       :id="id"
       ref="result"
-      v-model="model"
+      v-model.number="model"
       v-select-on-click
       type="number"
       :name="name"
@@ -25,11 +25,12 @@ export default {
     name: String,
     min: Number,
     max: Number,
-    step: String,
-    modelValue: Number,
+    value: { type: [Number, String] },
+    modelValue: { type: [Number, String] },
+    step: { type: String, default: "any" },
     emit: { type: Boolean, default: true },
   },
-  emits: ["update:modelValue"],
+  emits: ["input", "update:modelValue"],
   data: function () {
     return {
       result: this.result,
@@ -39,11 +40,17 @@ export default {
   computed: {
     model: {
       get() {
-        return this.modelValue
+        return this.value || this.modelValue
       },
       set(value) {
-        if (this.emit && !isNaN(value) && parseFloat(value)) {
+        if (value || value === 0) {
+          this.error = false
+          this.$emit("input", value)
           this.$emit("update:modelValue", value)
+        } else {
+          this.error = true
+          this.$emit("input", undefined)
+          this.$emit("update:modelValue", undefined)
         }
       },
     },

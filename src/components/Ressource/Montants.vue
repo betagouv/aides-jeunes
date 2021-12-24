@@ -17,9 +17,7 @@
     <label v-if="type.displayMonthly === true" class="form__group">
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
-        step="any"
-        :modelValue="type.amounts[$store.state.dates.thisMonth.id]"
-        :emit="false"
+        :value="type.amounts[$store.state.dates.thisMonth.id]"
         @input="$emit('update', 'singleValue', index, $event)"
       />
     </label>
@@ -33,11 +31,10 @@
         <label>
           <MonthLabel :month="month" />
           <InputNumber
-            :modelValue="type.amounts[month.id]"
-            :emit="false"
+            :value="type.amounts[month.id]"
             @input="
               $emit('update', 'monthUpdate', index, {
-                value: $event.target.value,
+                value: $event,
                 monthIndex,
               })
             "

@@ -25,9 +25,6 @@ function update(type, newValue, monthIndex, force) {
   }, true)
   const shouldAutofill = valuesAreEqual || force
   if (shouldAutofill) {
-    if (newValue && newValue.target) {
-      newValue = parseFloat(newValue.target.value)
-    }
     nextMonths.forEach((m) => (type.amounts[m.id] = newValue))
   } else {
     type.amounts[type.months[monthIndex].id] = newValue

@@ -200,6 +200,7 @@ fields:
       label: Texte
       name: text
       widget: text
+      pattern: ['\.$', "La description doit se terminer par un point"]
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)

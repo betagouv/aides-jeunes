@@ -316,6 +316,7 @@ fields:
     widget: select
     hint: Cette variable permet de définir la période de versement du montant de l'aide.
     required: true
+    default: autre
     options:
       - label: Ponctuelle
         value: ponctuelle

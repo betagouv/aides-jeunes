@@ -43,8 +43,8 @@ fields:
             value: "<="
       - label: Valeur
         name: value
-        widget: string
-        pattern: ["^[0-9]*$", "Le champ ne doit contenir que des chiffres"]
+        widget: number
+        step: -1
   field_age: &field_age
     <<: *field_number
     label: Age
@@ -307,9 +307,9 @@ fields:
   field_montant_maximal_aide: &field_montant_maximal_aide
     label: Montant maximal de l'aide
     name: montant
-    widget: string
+    widget: number
     required: false
-    pattern: ["^[0-9]*$", "Le champ ne doit contenir que des chiffres"]
+    step: -1
   field_periodicite_montant_aide: &field_periodicite_montant_aide
     label: "Périodicité du montant de l'aide"
     name: periodicite

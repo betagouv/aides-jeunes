@@ -22,9 +22,9 @@ describe("benefit descriptions", function () {
         expect(fs.existsSync(path)).toBe(true)
       })
 
-      it("should have a type", function () {
-        expect(typeof institution.type).toBe("string")
-      })
+      // it("should have a type", function () {
+      //   expect(typeof institution.type).toBe("string")
+      // })
 
       institution.benefitsIds.forEach(function (benefitId) {
         describe(benefitId, function () {

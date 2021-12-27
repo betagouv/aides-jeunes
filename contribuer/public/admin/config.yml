@@ -634,8 +634,8 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
-      - label: Level
-        name: level
+      - label: Type géographique
+        name: type
         widget: select
         options:
           - label: National

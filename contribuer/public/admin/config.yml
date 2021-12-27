@@ -235,7 +235,7 @@ fields:
   field_type_resultat: &field_type_resultat
     label: Type du résultat
     name: type
-    default: "bool"
+    default: "float"
     widget: select
     options:
       - label: Valeur numérique

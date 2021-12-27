@@ -3,4 +3,4 @@ imgSrc: img/logo_pole_emploi.png
 national: true
 etablissements:
   - pole_emploi
-level: national
+type: national

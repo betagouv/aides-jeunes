@@ -9,9 +9,9 @@ function transformInstitutions(collection) {
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
       benefitsIds: [],
-      level: data.level,
+      type: data.type,
       repository:
-        data.repository || (data.level === "national" ? null : "france-local"),
+        data.repository || (data.type === "national" ? null : "france-local"),
       etablissements: data.etablissements,
     }
     result[data.slug] = item
@@ -20,7 +20,7 @@ function transformInstitutions(collection) {
 }
 
 function setDefaults(benefit, institution) {
-  const top = institution.level === "national" ? 1 : 5
+  const top = institution.type === "national" ? 1 : 5
 
   benefit.id = benefit.slug
   benefit.top = benefit.top || top

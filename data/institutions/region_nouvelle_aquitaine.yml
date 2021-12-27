@@ -1,4 +1,4 @@
 name: Nouvelle-Aquitaine
 imgSrc: img/logo_nouvelle_aquitaine.png
 repository: france-local
-level: regional
+type: regional

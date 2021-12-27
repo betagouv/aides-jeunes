@@ -44,7 +44,7 @@ export default {
     let benefitKeyed = {}
     Institution.benefits.all.forEach((benefit) => {
       const benefit_temp = Object.assign(
-        { level: benefit.institution.level },
+        { type: benefit.institution.type },
         benefit
       )
       if (benefit_temp.label === "Tarification solidaire transports") {

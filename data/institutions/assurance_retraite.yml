@@ -1,5 +1,5 @@
 name: Assurance retraite
 imgSrc: img/logo_assurance_retraite.png
-level: national
+type: national
 etablissements:
   - carsat

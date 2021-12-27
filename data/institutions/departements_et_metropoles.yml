@@ -2,4 +2,4 @@ name: Départements et métropoles de France
 imgSrc: img/logo_etat_francais.png
 repository: france-local
 prefix: les
-level: national
+type: national

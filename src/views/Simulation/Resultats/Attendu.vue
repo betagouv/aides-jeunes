@@ -205,7 +205,7 @@ export default {
     let benefits = []
 
     Institution.benefits.all.forEach((benefit) => {
-      const b = Object.assign({ level: benefit.institution.level }, benefit)
+      const b = Object.assign({ type: benefit.institution.type }, benefit)
       b.label = capitalize(benefit.label)
 
       if (b.label === "Tarification solidaire transports") {

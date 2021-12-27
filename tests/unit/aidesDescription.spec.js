@@ -22,8 +22,8 @@ describe("benefit descriptions", function () {
         expect(fs.existsSync(path)).toBe(true)
       })
 
-      it("should have a level", function () {
-        expect(typeof institution.level).toBe("string")
+      it("should have a type", function () {
+        expect(typeof institution.type).toBe("string")
       })
 
       institution.benefitsIds.forEach(function (benefitId) {

@@ -6,4 +6,4 @@ etablissements:
   - centre_social
   - edas
   - sdsei
-level: national
+type: national

@@ -5,16 +5,16 @@
     <h2>Général</h2>
     <p class="total-element">Total: {{ benefits.length }} aides</p>
 
-    <div v-for="(level, key) in institutionsGroupByLevel" :key="key">
-      <h2>{{ level.title }}</h2>
+    <div v-for="(type, key) in institutionsGroupByType" :key="key">
+      <h2>{{ type.title }}</h2>
       <p class="total-element">
-        Nombre d'aides : {{ level.benefitsLength }}
+        Nombre d'aides : {{ type.benefitsLength }}
         <br />
         Nombre d'institutions :
-        {{ level.institutions.length }}
+        {{ type.institutions.length }}
       </p>
 
-      <div v-for="institution in level.institutions" :key="institution.id">
+      <div v-for="institution in type.institutions" :key="institution.id">
         <h3 class="aj-question">{{ institution.label }}</h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
@@ -30,7 +30,7 @@
 <script>
 import Institution from "@/lib/Institution"
 
-const LEVELS = {
+const TYPES = {
   national: "Aides nationales",
   regional: "Aides régionales",
   departemental: "Aides départementales",
@@ -43,11 +43,11 @@ export default {
     benefits() {
       return Institution.benefits.all.filter((benefit) => !benefit.private)
     },
-    institutionsGroupByLevel() {
+    institutionsGroupByType() {
       const institutionsMap = Institution.benefits.institutionsMap
-      const result = Object.entries(LEVELS).reduce((accum, [level, title]) => {
+      const result = Object.entries(TYPES).reduce((accum, [type, title]) => {
         const benefits = this.benefits.filter(
-          (benefit) => benefit.institution.level === level
+          (benefit) => benefit.institution.type === type
         )
 
         const institutions = benefits.reduce((accum, benefit) => {
@@ -61,7 +61,7 @@ export default {
           return accum
         }, {})
 
-        accum[level] = {
+        accum[type] = {
           title,
           institutions: Object.values(institutions),
           benefitsLength: benefits.length,

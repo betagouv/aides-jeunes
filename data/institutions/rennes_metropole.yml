@@ -2,4 +2,4 @@ name: Rennes Métropole
 imgSrc: img/logo_rennes_metropole.png
 prefix: de
 repository: france-local
-level: communales
+type: communales

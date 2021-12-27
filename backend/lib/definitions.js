@@ -208,8 +208,8 @@ const parents = {
     enum: [
       "en_couple",
       "separes",
-      "decedes",
       "celibataire",
+      "decedes",
       "sans_autorite",
       "veuve",
     ],

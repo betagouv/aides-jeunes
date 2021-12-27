@@ -12,12 +12,12 @@ const STEPS = {
         value: "separes",
       },
       {
-        label: "Veuf ou veuve",
-        value: "veuve",
-      },
-      {
         label: "Célibataire",
         value: "celibataire",
+      },
+      {
+        label: "Veuf ou veuve",
+        value: "veuve",
       },
       {
         label: "Décédés",

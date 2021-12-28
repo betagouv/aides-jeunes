@@ -522,14 +522,12 @@ const store = createStore({
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
-          const results = computeAides.bind(Institution.benefits)(
+          return computeAides.bind(Institution.benefits)(
             store.getters.situation,
             store.state.situationId,
             openfiscaResponse,
             showPrivate
           )
-
-          return results
         })
         .then((results) => store.commit("setResults", results))
         .catch((error) => {

@@ -1,7 +1,6 @@
 "use strict"
 
 const additionalBenefitAttributes = require("./benefits/additional-attributes")
-const customBenefits = require("./custom-benefits")
 const aidesVelo = require("./benefits/aides-velo")
 
 function transformInstitutions(collection) {

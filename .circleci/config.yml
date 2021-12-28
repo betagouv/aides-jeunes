@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: ghcr.io/betagouv/mes-aides-dockerfiles@sha256:92fbe169cc07e6e7ab785676ac294bf296bd27f96a224521035d7db959e45db7
+    - image: ghcr.io/betagouv/mes-aides-dockerfiles@sha256:0480cc271969a3a6ebe2856b107a5ccf19260f7bfacbfef6b0ec55cf8ecb87c6
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker
@@ -37,7 +37,7 @@ start_mes_aides: &start_mes_aides
 wait_for_mes_aides: &wait_for_mes_aides
   run:
     name: Wait for Mes Aides
-    command: wget --retry-connrefused --no-check-certificate -T 30 http://localhost:8080
+    command: wget --retry-connrefused --no-check-certificate -T 60 http://localhost:8080
 
 version: 2.1
 jobs:

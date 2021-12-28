@@ -14,8 +14,6 @@ import EtablissementModule from "./modules/etablissement"
 import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
 
-import computeAidesVeloBenefits from "../lib/Benefits/compute-aides-velo"
-
 function defaultCalculs() {
   return {
     resultats: {
@@ -531,11 +529,6 @@ const store = createStore({
             showPrivate
           )
 
-          computeAidesVeloBenefits.computeAidesVeloBenefits(
-            result.droitsEligibles,
-            store.getters.situation,
-            {}
-          )
           return results
         })
         .then((results) => store.commit("setResults", results))

@@ -1,6 +1,6 @@
 "use strict"
 
-const customBenefits = require("./custom-benefits")
+const customBenefits = require("./benefits/custom")
 const aidesVelo = require("./benefits/aides-velo")
 
 function transformInstitutions(collection) {
@@ -50,7 +50,7 @@ function generate(collections, customBenefits, aidesVeloBenefits) {
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...customBenefits,
-    ...aidesVeloBenefits,
+    ...aidesVeloBenefits.filter((b) => institutions[b.institution]),
   ]
 
   const benefitsMap = {}

@@ -6,7 +6,7 @@ defaults: &defaults
   working_directory: ~/mes-aides-ui
   docker:
     # https://circleci.com/docs/2.0/circleci-images/#language-image-variants
-    - image: docker pull ghcr.io/betagouv/mes-aides-dockerfiles:1.0
+    - image: docker pull ghcr.io/betagouv/mes-aides-dockerfiles@sha256:b131ffeb027ce301143127f5eb5ad0f8c1864b4a1f5da4831eae3c44440c4c16
     # FIXME
     # mongo 2.4.9 is not available on Docker Hub
     # https://stackoverflow.com/questions/48233357/install-older-version-of-mongodb-with-docker

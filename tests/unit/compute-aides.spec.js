@@ -23,7 +23,11 @@ describe("computeAides", function () {
         },
       },
       famille: {},
-      menage: {},
+      menage: {
+        depcom: "49244",
+        _departement: "49",
+        _region: "52",
+      },
     }
 
     openfiscaResult = {
@@ -47,7 +51,7 @@ describe("computeAides", function () {
         _: {
           personne_de_reference: ["demandeur"],
           depcom: {
-            "2014-11": "00000",
+            "2014-11": "49244",
           },
         },
       },
@@ -58,7 +62,9 @@ describe("computeAides", function () {
           },
         },
       },
-      foyers_fiscaux: {},
+      foyers_fiscaux: {
+        _: {},
+      },
     }
   })
 

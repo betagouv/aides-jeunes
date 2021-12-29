@@ -29,7 +29,9 @@ export default {
       return this.$store.state.calculs
     },
     resultats: function () {
-      return this.$store.state.calculs.resultats
+      return (
+        !this.$store.state.calculs.dirty && this.$store.state.calculs.resultats
+      )
     },
     hasWarning: function () {
       return this.accessStatus.forbidden

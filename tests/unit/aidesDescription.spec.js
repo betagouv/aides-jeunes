@@ -17,7 +17,7 @@ describe("benefit descriptions", function () {
         expect(institution.label.length).toBeGreaterThan(1)
       })
 
-      it("should have a valid img", function () {
+      it("should refer to a img file that exists", function () {
         const path = `${__dirname}/../../public/img/${institution.imgSrc}`
         expect(fs.existsSync(path)).toBe(true)
       })

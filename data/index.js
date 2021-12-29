@@ -44,6 +44,7 @@ function generate(collections, customBenefits, aidesVeloBenefits) {
   })
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
+    benefit.top = 8
   })
 
   const benefits = [

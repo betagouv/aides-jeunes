@@ -98,6 +98,7 @@ export default {
   },
   computed: {
     list: function () {
+      console.log(this.droits)
       return this.droits.filter((value) => {
         return !this.filter || this.filter.includes(value.id)
       })

@@ -19,7 +19,9 @@ class InstitutionControl extends Relation.control {
       ? hits
       : hits.filter((institution) => {
           return (
-            institution.data.type && institution.data.type == this.state.filter
+            (institution.data.type &&
+              institution.data.type == this.state.filter) ||
+            (!this.state.filter && !institution.data.type)
           )
         })
   }
@@ -29,9 +31,7 @@ class InstitutionControl extends Relation.control {
   componentDidMount() {
     const { field } = this.props
     const defaultValue = field.get("filter").get("default", "*")
-    if (!this.state.filter && defaultValue) {
-      this.setState({ filter: defaultValue })
-    }
+    this.setState({ filter: defaultValue })
   }
   render() {
     const { value, field, onChange, queryHits } = this.props

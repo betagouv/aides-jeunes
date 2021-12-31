@@ -157,7 +157,7 @@ fields:
     widget: institution
     collection: institutions
     value_field: "{{slug}}"
-    display_fields: ["{{name}}", " / {{type}}"]
+    display_fields: ["{{name}}"]
     search_fields: [slug, name]
     allow_multiple: false
     options_length: -1

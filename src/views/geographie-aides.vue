@@ -32,9 +32,11 @@ import Institution from "@/lib/Institution"
 
 const TYPES = {
   national: "Aides nationales",
-  regional: "Aides régionales",
-  departemental: "Aides départementales",
-  communal: "Aides communales",
+  region: "Aides régionales",
+  departement: "Aides départementales",
+  caf: "CAF Locales",
+  epci: "EPCI (Métropole, inter-communauté, etc.)",
+  commune: "Aides communales",
 }
 
 export default {

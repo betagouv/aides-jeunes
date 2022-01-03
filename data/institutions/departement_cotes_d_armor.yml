@@ -2,4 +2,4 @@ name: Côtes d'Armor
 imgSrc: img/logo_cd22.jpg
 prefix: des
 repository: france-local
-type: departemental
+type: departement

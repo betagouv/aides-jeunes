@@ -7,6 +7,7 @@ class InstitutionControl extends Relation.control {
       initialOptions: [],
       filter: null,
       filterFunction: this.parseHitOptions.bind(this),
+      categories: [],
     }
     this.parseHitOptions = this._customParser
   }
@@ -48,23 +49,24 @@ class InstitutionControl extends Relation.control {
   }
   componentDidMount() {
     const defaultValue = this.props.field.get("filter").get("default", "*")
-    this.setState({ filter: defaultValue })
+    this.setState({
+      filter: defaultValue,
+      categories: this.props.field
+        .get("filter")
+        .get("fields")
+        .map((option) => {
+          return {
+            label: option.get("label"),
+            value: option.get("value"),
+          }
+        })
+        .unshift({ value: "*", label: "Tous" }),
+    })
   }
   render() {
-    this.setState({ computed: this.state.computed++ })
     const { value, field, onChange } = this.props
 
     const name = field.get("name")
-    const categories = field
-      .get("filter")
-      .get("fields")
-      .map((option) => {
-        return {
-          label: option.get("label"),
-          value: option.get("value"),
-        }
-      })
-
     const style = h("link", { rel: "stylesheet", href: "/css/institution.css" })
     const node = super.render(this.state)
 
@@ -79,7 +81,7 @@ class InstitutionControl extends Relation.control {
         id: `filter-${name}`,
         onChange: this.filterUpdate,
       },
-      categories.map((val, index) => {
+      this.state.categories.map((val, index) => {
         return h(
           "option",
           {

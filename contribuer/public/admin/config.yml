@@ -146,6 +146,19 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
+  field_geographical_type: &field_geographical_type
+    - label: Organisation nationale
+      value: national
+    - label: Région
+      value: region
+    - label: Département
+      value: departement
+    - label: CAF locale
+      value: caf
+    - label: EPCI (Métropole, inter-communauté, etc.)
+      value: epci
+    - label: Commune
+      value: commune
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -162,22 +175,10 @@ fields:
     allow_multiple: false
     options_length: -1
     filter:
-      label: "Type Géographique :"
-      default: ""
+      label: "Type :"
+      default: "*"
       target: "type"
-      fields:
-        - label: Tous
-          value: "*"
-        - label: National
-          value: national
-        - label: Régional
-          value: regional
-        - label: Départemental
-          value: departemental
-        - label: Communal
-          value: communal
-        - label: Sans type
-          value: ""
+      fields: *field_geographical_type
   field_description: &field_description
     label: Courte description
     name: description
@@ -655,15 +656,7 @@ collections:
       - label: Type géographique
         name: type
         widget: select
-        options:
-          - label: National
-            value: national
-          - label: Régional
-            value: regional
-          - label: Départemental
-            value: departemental
-          - label: Communal
-            value: communal
+        options: *field_geographical_type
   - name: contribution-pages
     label: Pages
     label_singular: page

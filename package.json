@@ -29,9 +29,8 @@
     "start": "NODE_ENV=production node server.js",
     "stats": "node backend/lib/stats",
     "serve-mail": "node tools/mjml.js",
-    "test": "jest --testTimeout=20000",
+    "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
-    "check-filename-rule": "NODE_PATH=. node tools/check-filename-rule.js",
     "prepare": "husky install"
   },
   "dependencies": {

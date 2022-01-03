@@ -1,6 +1,6 @@
 import "core-js/stable"
 import { createApp, h } from "vue"
-import App from "./App.vue"
+import App from "./app.vue"
 
 import router from "./router"
 import store from "./store"

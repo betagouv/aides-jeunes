@@ -34,7 +34,7 @@ const result = files.filter((file) => {
 let count = 0
 
 result.forEach((file) => {
-  if (!file.filename.match(/^([a-z][a-z0-9]*)(-[a-z0-9]+)*$/)) {
+  if (!file.filename.match(/^(_?)([a-z][a-z0-9]*)(-[a-z0-9]+)*$/)) {
     count += 1
     console.log(`'${file.absolute}' ne respecte pas la norme.`)
   }

@@ -5,8 +5,10 @@ const {
 
 describe("computeAidesVeloBenefits", function () {
   it("EPCI matching", function () {
-    const results = []
-    computeAidesVeloBenefits(results, {
+    const benefits = [
+      { i: "intercommunalite_pays_issoire", titre: "Agglo Pays D'Issoire" },
+    ]
+    const situation = {
       menage: {
         _codePostal: "63500",
         depcom: "63178",
@@ -14,8 +16,10 @@ describe("computeAidesVeloBenefits", function () {
         _epci: "200070407",
         _region: "84",
       },
-    })
+    }
+    const results = []
+    computeAidesVeloBenefits(benefits, results, situation)
 
-    expect(results.length).toBe(2)
+    expect(results.length).toBe(1)
   })
 })

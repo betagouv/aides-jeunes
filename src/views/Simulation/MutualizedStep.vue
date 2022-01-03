@@ -62,9 +62,9 @@
 <script>
 import ActionButtons from "@/components/ActionButtons"
 import YesNoQuestion from "../../components/YesNoQuestion.vue"
-import Hint from "@/lib/Hint"
+import Hint from "@/lib/hint"
 
-import { executeFunctionOrReturnValue, capitalize } from "@/lib/Utils"
+import { executeFunctionOrReturnValue, capitalize } from "@/lib/utils"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
 import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"

@@ -62,10 +62,10 @@ import RessourceMicroEntreprise from "@/components/Ressource/MicroEntreprise"
 import RessourceProfessionLiberale from "@/components/Ressource/ProfessionLiberale"
 import RessourceMontants from "@/components/Ressource/Montants"
 
-import RessourceProcessor from "@/mixins/RessourceProcessor"
-import { ressourceTypes } from "@/../lib/Resources"
+import RessourceProcessor from "@/mixins/ressource-processor"
+import { ressourceTypes } from "../../../../lib/resources"
 import Ressource from "@/../lib/ressource"
-import Individu from "@/../lib/Individu"
+import Individu from "../../../../lib/individu"
 import { getAnswer } from "../../../../lib/answers"
 
 export default {

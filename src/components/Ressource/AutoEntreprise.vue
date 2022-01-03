@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import TNSRessourceUpdator from "@/mixins/TNSRessourceUpdator"
+import TNSRessourceUpdator from "@/mixins/tns-ressource-updator"
 import InputNumber from "@/components/InputNumber"
 
 export default {

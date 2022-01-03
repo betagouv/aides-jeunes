@@ -112,7 +112,7 @@
 import axios from "axios"
 import moment from "moment"
 
-import Institution from "@/lib/Institution"
+import Institution from "@/lib/institution"
 import LoadingModal from "@/components/LoadingModal"
 import DroitEstime from "../components/DroitEstime"
 

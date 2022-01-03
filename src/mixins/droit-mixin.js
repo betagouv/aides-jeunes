@@ -1,4 +1,4 @@
-import { capitalize } from "../lib/Utils"
+import { capitalize } from "../lib/utils"
 
 export default {
   methods: {

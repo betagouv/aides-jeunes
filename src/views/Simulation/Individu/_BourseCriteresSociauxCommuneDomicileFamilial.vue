@@ -13,10 +13,10 @@
 <script>
 import ActionButtons from "@/components/ActionButtons"
 import InputDepCom from "@/components/InputDepcom"
-import Individu from "@/../lib/Individu"
+import Individu from "@/../lib/individu"
 
 import WarningMessage from "@/components/WarningMessage"
-import Warning from "@/lib/Warnings"
+import Warning from "@/lib/warnings"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",

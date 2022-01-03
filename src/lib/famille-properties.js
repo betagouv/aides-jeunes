@@ -1,4 +1,4 @@
-import { yearsAgo } from "@/lib/Utils"
+import { yearsAgo } from "@/lib/utils"
 
 const STEPS = {
   bourse_criteres_sociaux_nombre_enfants_a_charge: {

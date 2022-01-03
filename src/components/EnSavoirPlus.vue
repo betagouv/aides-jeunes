@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Hint from "@/lib/Hint"
+import Hint from "@/lib/hint"
 
 export default {
   name: "EnSavoirPlus",

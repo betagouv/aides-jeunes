@@ -3,7 +3,7 @@
 const {
   PERIODICITE_MENSUELLE,
   PERIODICITE_ANNUELLE,
-} = require("../../../lib/Benefits/Details")
+} = require("../../../lib/benefits/details")
 const moment = require("moment")
 
 const customBenefits = {
@@ -216,7 +216,7 @@ const customBenefits = {
     },
   },
   departements: {
-    apa_eligibilite: require("./apa_eligibilite"),
+    apa_eligibilite: require("./apa-eligibilite"),
   },
   banque_de_france: {
     livret_epargne_populaire_taux: {
@@ -248,7 +248,7 @@ const customBenefits = {
     fsl_eligibilite: require("./fsl"),
   },
   region_occitanie: {
-    occitanie_carte_transport_scolaire_lio: require("./occitanie_carte_transport_scolaire_lio"),
+    occitanie_carte_transport_scolaire_lio: require("./occitanie-carte-transport-scolaire-lio"),
   },
 }
 

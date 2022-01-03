@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Institution from "@/lib/Institution"
+import Institution from "@/lib/institution"
 import ResultatInattenduAideLogement from "@/components/ResultatInattendu/AideLogement"
 import ResultatInattenduGarantieJeune from "@/components/ResultatInattendu/GarantieJeune"
 import ResultatInattenduPpa from "@/components/ResultatInattendu/Ppa"

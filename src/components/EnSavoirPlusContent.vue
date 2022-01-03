@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Hint from "@/lib/Hint"
+import Hint from "@/lib/hint"
 import BackButton from "@/components/Buttons/BackButton"
 
 export default {

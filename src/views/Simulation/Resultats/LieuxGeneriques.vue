@@ -52,8 +52,8 @@
 
 <script>
 import Etablissement from "@/components/Etablissement"
-import Individu from "@/../lib/Individu.js"
-import ResultatsMixin from "@/mixins/Resultats"
+import Individu from "../../../../lib/individu.js"
+import ResultatsMixin from "@/mixins/resultats"
 
 const list = [
   {

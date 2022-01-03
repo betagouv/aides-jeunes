@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import DroitMixin from "../mixins/DroitMixin"
+import DroitMixin from "../mixins/droit-mixin"
 import DroitEstime from "./DroitEstime"
 
 export default {

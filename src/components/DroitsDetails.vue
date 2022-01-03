@@ -163,8 +163,8 @@
 import BenefitCta from "./BenefitCta"
 import BenefitCtaLink from "./BenefitCtaLink"
 import DroitEstime from "./DroitEstime"
-import Situation from "../lib/Situation"
-import DroitMixin from "../mixins/DroitMixin"
+import Situation from "../lib/situation"
+import DroitMixin from "../mixins/droit-mixin"
 
 export default {
   name: "DroitsDetails",

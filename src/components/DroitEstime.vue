@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { formatDroitEstime } from "@/../lib/Benefits/Details"
+import { formatDroitEstime } from "@/../lib/benefits/details"
 
 export default {
   name: "DroitEstime",

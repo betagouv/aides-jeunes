@@ -1,4 +1,4 @@
-const ABTestingService = {
+const AbTestingService = {
   /*
    * L'AB testing repose sur les custom variables de Matomo
    * https://matomo.org/docs/custom-variables/
@@ -58,4 +58,4 @@ const ABTestingService = {
   },
 }
 
-export default ABTestingService
+export default AbTestingService

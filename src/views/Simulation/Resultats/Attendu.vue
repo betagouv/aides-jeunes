@@ -187,15 +187,15 @@ import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
 
 import axios from "axios"
-import Institution from "@/lib/Institution"
-import ResultatsMixin from "@/mixins/Resultats"
+import Institution from "@/lib/institution"
+import ResultatsMixin from "@/mixins/resultats"
 import { sendMontantsAttendus } from "@/plugins/mails"
-import { capitalize } from "@/lib/Utils"
+import { capitalize } from "@/lib/utils"
 import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/lib/Contributions"
+} from "@/lib/contributions"
 
 export default {
   name: "Attendu",

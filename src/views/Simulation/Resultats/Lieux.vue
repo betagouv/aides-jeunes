@@ -48,9 +48,9 @@
 <script>
 import axios from "axios"
 
-import Institution from "@/lib/Institution"
+import Institution from "@/lib/institution"
 import Etablissement from "@/components/Etablissement"
-import EtablissementLib from "@/lib/Etablissement"
+import EtablissementLib from "@/lib/etablissement"
 
 export default {
   name: "Lieux",

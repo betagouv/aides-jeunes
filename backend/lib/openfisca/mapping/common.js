@@ -2,10 +2,10 @@ const moment = require("moment")
 const assign = require("lodash/assign")
 
 const benefits = require("../../../../data/all")
-const { generator } = require("../../../../lib/Dates")
+const { generator } = require("../../../../lib/dates")
 const {
   CONDITION_STATEGY,
-} = require("../../../../lib/Benefits/compute-javascript")
+} = require("../../../../lib/benefits/compute-javascript")
 
 exports.isIndividuValid = function (individu, situation) {
   const age = moment(situation.dateDeValeur).diff(

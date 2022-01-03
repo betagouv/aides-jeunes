@@ -40,7 +40,7 @@
 <script>
 import YesNoQuestion from "@/components/YesNoQuestion"
 import InputMonth from "@/components/InputMonth"
-import { yearsAgo } from "@/lib/Utils"
+import { yearsAgo } from "@/lib/utils"
 
 export default {
   name: "ASSQuestions",

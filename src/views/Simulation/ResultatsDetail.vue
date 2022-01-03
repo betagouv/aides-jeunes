@@ -48,8 +48,8 @@
 import DroitsDetails from "../../components/DroitsDetails.vue"
 import Feedback from "@/components/Feedback"
 import LoadingModal from "@/components/LoadingModal"
-import ResultatsMixin from "@/mixins/Resultats"
-import StatisticsMixin from "@/mixins/Statistics"
+import ResultatsMixin from "@/mixins/resultats"
+import StatisticsMixin from "@/mixins/statistics"
 
 export default {
   name: "SimulationResultatsDetail",

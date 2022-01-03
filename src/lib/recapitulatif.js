@@ -1,11 +1,11 @@
-import Individu from "@/../lib/Individu"
+import Individu from "../../lib/individu"
 import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
-} from "@/lib/Utils"
-import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
-import Logement from "@/lib/Logement"
+} from "@/lib/utils"
+import { ressourceCategories, ressourceTypes } from "../../lib/resources"
+import Logement from "@/lib/logement"
 import moment from "moment"
 import { getAnswer, getStepAnswer } from "../../lib/answers"
 

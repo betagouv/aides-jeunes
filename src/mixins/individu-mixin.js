@@ -1,4 +1,4 @@
-import Individu from "@/../lib/Individu"
+import Individu from "../../lib/individu"
 import { getAnswer } from "../../lib/answers"
 
 export const createIndividuMixin = (props) => {

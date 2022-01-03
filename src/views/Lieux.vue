@@ -48,8 +48,8 @@
 import axios from "axios"
 
 import Etablissement from "@/components/Etablissement"
-import EtablissementLib from "@/lib/Etablissement"
-import Commune from "@/lib/Commune"
+import EtablissementLib from "@/lib/etablissement"
+import Commune from "@/lib/commune"
 
 export default {
   name: "Lieux",

@@ -1,4 +1,4 @@
-var Chapters = require("../Chapters")
+var Chapters = require("../chapters")
 
 function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")

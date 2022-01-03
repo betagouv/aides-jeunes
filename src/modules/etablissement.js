@@ -1,5 +1,5 @@
 import axios from "axios"
-import EtablissementLib from "../lib/Etablissement"
+import EtablissementLib from "../lib/etablissement"
 const EtablissementModule = {
   namespaced: true,
   state() {

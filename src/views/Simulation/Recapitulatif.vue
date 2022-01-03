@@ -62,8 +62,8 @@ import {
   capitalize,
   displayValue,
   executeFunctionOrReturnValue,
-} from "@/lib/Utils"
-import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/Recapitulatif"
+} from "@/lib/utils"
+import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
 import BackButton from "@/components/Buttons/BackButton"
 import { getStepAnswer } from "../../../lib/answers"

@@ -6,7 +6,7 @@ const moment = require("moment")
 
 const common = require("../common")
 const individuRessources = require("./ressources")
-const ressources = require("../../../../../lib/Resources")
+const ressources = require("../../../../../lib/resources")
 
 const ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),

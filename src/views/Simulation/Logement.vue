@@ -93,8 +93,8 @@
 
 <script>
 import ActionButtons from "@/components/ActionButtons"
-import Logement from "@/lib/Logement"
-import Individu from "@/../lib/Individu.js"
+import Logement from "@/lib/logement"
+import Individu from "../../../lib/individu.js"
 import { getAnswer } from "../../../lib/answers"
 
 export default {

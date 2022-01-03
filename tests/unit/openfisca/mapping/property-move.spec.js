@@ -1,4 +1,4 @@
-const subject = require("../../../../backend/lib/openfisca/mapping/propertyMove")
+const subject = require("../../../../backend/lib/openfisca/mapping/property-move")
 const expect = require("expect")
 
 describe("openfisca mapping property move", function () {

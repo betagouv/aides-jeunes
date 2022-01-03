@@ -53,9 +53,9 @@
 
 <script>
 import ActionButtons from "@/components/ActionButtons"
-import Nationality from "@/lib/Nationality"
+import Nationality from "@/lib/nationality"
 import EnSavoirPlus from "@/components/EnSavoirPlus"
-import Scolarite from "@/lib/Scolarite"
+import Scolarite from "@/lib/scolarite"
 
 export default {
   name: "SimulationEnfants",

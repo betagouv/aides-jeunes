@@ -17,7 +17,7 @@
 
 <script>
 import ActionButtons from "@/components/ActionButtons"
-import { createIndividuMixin } from "@/mixins/IndividuMixin"
+import { createIndividuMixin } from "@/mixins/individu-mixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxEchelon",

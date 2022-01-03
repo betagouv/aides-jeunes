@@ -29,7 +29,7 @@
 <script>
 import ActionButtons from "@/components/ActionButtons"
 import InputNumber from "@/components/InputNumber"
-import Logement from "@/lib/Logement"
+import Logement from "@/lib/logement"
 
 export default {
   name: "SimulationMenageDepCom",

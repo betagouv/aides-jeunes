@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import StatisticsMixin from "@/mixins/Statistics"
+import StatisticsMixin from "@/mixins/statistics"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",

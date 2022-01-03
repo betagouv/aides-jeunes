@@ -42,7 +42,7 @@
 import ActionButtons from "@/components/ActionButtons"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
-import { ressourceCategories, ressourceTypes } from "@/../lib/Resources"
+import { ressourceCategories, ressourceTypes } from "../../../lib/resources"
 import Ressource from "@/../lib/ressource"
 import { getAnswer } from "../../../lib/answers"
 

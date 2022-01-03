@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import FeedbackUtils from "@/mixins/FeedbackUtils"
-import Situation from "../../lib/Situation"
+import FeedbackUtils from "@/mixins/feedback-utils"
+import Situation from "../../lib/situation"
 export default {
   name: "ResultatInattenduYearMinusTwo",
   mixins: [FeedbackUtils],

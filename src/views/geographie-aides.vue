@@ -19,7 +19,7 @@
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">
-            {{ benefit.label }}
+            {{ $filters.capitalize(benefit.label) }}
           </li>
         </ul>
       </div>
@@ -38,7 +38,7 @@ const TYPES = {
 }
 
 export default {
-  name: "geographie-aides",
+  name: "GeographieAides",
   computed: {
     benefits() {
       return Institution.benefits.all.filter((benefit) => !benefit.private)

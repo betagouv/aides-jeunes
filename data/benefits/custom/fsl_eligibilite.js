@@ -1,6 +1,5 @@
 function build({ codeImg, label, resources }) {
   return {
-    label: `Aide au maintien dans votre logement ${label}`,
     institution: {
       imgSrc: `logo_${codeImg}.png`,
     },
@@ -14,15 +13,6 @@ function build({ codeImg, label, resources }) {
 }
 
 module.exports = {
-  label: "Aide au maintien dans votre logement",
-  description:
-    "Dans le cadre du Fonds de Solidarité Logement, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).",
-  entity: "menages",
-  type: "bool",
-  prefix: "une",
-  icon: "fa-exclamation-triangle",
-  top: 6,
-  link: "https://www.service-public.fr/particuliers/vosdroits/F1334",
   customization: Object.entries({
     D01: {
       codeImg: "cd01",

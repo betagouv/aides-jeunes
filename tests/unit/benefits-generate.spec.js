@@ -17,16 +17,20 @@ describe("benefit descriptions", function () {
         ],
       },
       benefits_openfisca: {
-        items: [{ slug: "region_benefit", institution: "region" }],
+        items: [
+          { slug: "etat_benefit", institution: "etat" },
+          { slug: "region_benefit", institution: "region" },
+        ],
       },
     }
 
-    const customBenefits = [{ slug: "etat_benefit", institution: "etat" }]
+    const benefitsCustomization = { etat_benefit: { test: () => {} } }
 
-    const result = subject(collections, customBenefits)
+    const result = subject(collections, benefitsCustomization)
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()
+    expect(typeof result.benefitsMap.etat_benefit.test).toBe("function")
     expect(result.benefitsMap.etat_benefit.institution.id).toBe("etat")
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit2")

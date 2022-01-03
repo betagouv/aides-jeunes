@@ -174,7 +174,7 @@ const raw = [
   { i: "ville_montbeliard", n: "Ville de Montbéliard" },
   { i: "ville_nanterre", n: "Ville de Nanterre" },
   { i: "ville_pantin", n: "Ville de Pantin" },
-  { i: "ville_paris", n: "Ville de Paris" },
+  { i: "paris", n: "Ville de Paris" },
   { i: "ville_ploemeur", n: "Ville de Ploemeur" },
   { i: "ville_plouzane", n: "Ville de Plouzané" },
   { i: "ville_rivery", n: "Ville de Rivery" },

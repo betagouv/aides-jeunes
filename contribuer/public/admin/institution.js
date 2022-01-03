@@ -18,6 +18,7 @@ class InstitutionControl extends Relation.control {
     this.forceUpdate()
   }
   filterOptions = (hits) => {
+    hits = [...hits].sort((a, b) => a.data.name.localeCompare(b.data.name))
     return this.state.filter == "*"
       ? hits
       : hits.filter((institution) => {

@@ -1,8 +1,6 @@
 <template>
   <article class="text container aj-text-container">
-    <h1>Répartition géographique des aides</h1>
-
-    <h2>Général</h2>
+    <h1>Toutes les aides</h1>
     <p class="total-element">Total: {{ benefits.length }} aides</p>
 
     <div v-for="(type, key) in institutionsGroupByType" :key="key">

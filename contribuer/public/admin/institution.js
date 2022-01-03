@@ -6,13 +6,16 @@ class InstitutionControl extends Relation.control {
     this.state = {
       initialOptions: [],
       filter: null,
-      filterFunction: this.parseHitOptions.bind({}),
+      filterFunction: this.parseHitOptions.bind(this),
     }
     this.parseHitOptions = this._customParser
   }
 
   filterUpdate = (event) => {
     this.setState({ filter: event.target.value })
+    this.filterSelectedValues()
+    // force update is a bad practice but mandatory in this case
+    this.forceUpdate()
   }
   filterOptions = (hits) => {
     return this.state.filter == "*"
@@ -25,16 +28,30 @@ class InstitutionControl extends Relation.control {
           )
         })
   }
+  filterSelectedValues = () => {
+    // disable current option(s) if not available anymore
+    this.setState({
+      initialOptions: this.state.initialOptions.filter((option) => {
+        return (
+          this.state.filter == "*" ||
+          (this.state.filter == "" && !option.type) ||
+          this.state.filter == option.type
+        )
+      }),
+    })
+  }
   _customParser = (hits) => {
-    return this.state.filterFunction(this.filterOptions(hits))
+    const filtered = this.filterOptions(hits)
+    this.filterSelectedValues()
+    return this.state.filterFunction(filtered)
   }
   componentDidMount() {
-    const { field } = this.props
-    const defaultValue = field.get("filter").get("default", "*")
+    const defaultValue = this.props.field.get("filter").get("default", "*")
     this.setState({ filter: defaultValue })
   }
   render() {
-    const { value, field, onChange, queryHits } = this.props
+    this.setState({ computed: this.state.computed++ })
+    const { value, field, onChange } = this.props
 
     const name = field.get("name")
     const categories = field
@@ -48,7 +65,7 @@ class InstitutionControl extends Relation.control {
       })
 
     const style = h("link", { rel: "stylesheet", href: "/css/institution.css" })
-    const node = super.render()
+    const node = super.render(this.state)
 
     const label = h(
       "label",
@@ -74,11 +91,15 @@ class InstitutionControl extends Relation.control {
         )
       })
     )
-    const container = h("div", { id: "aj-widget-institution" }, [
+    const container = h("div", { id: "aj-widget-form" }, [
       { ...label },
       { ...filter },
     ])
-    return h("div", {}, [{ ...style }, { ...container }, { ...node }])
+    return h("div", { id: "aj-widget-institution", key: this.state.filter }, [
+      { ...style },
+      { ...container },
+      { ...node },
+    ])
   }
 }
 CMS.registerWidget("institution", InstitutionControl)

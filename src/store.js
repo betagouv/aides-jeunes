@@ -9,7 +9,7 @@ import { computeAides, datesGenerator } from "../lib/benefits/compute"
 import { categoriesRnc, patrimoineTypes } from "../lib/resources"
 import { generateAllSteps } from "./lib/State/generator"
 import Institution from "./lib/institution"
-import AbTestingService from "./plugins/ab-testing-service"
+import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"
 import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
@@ -492,7 +492,7 @@ const store = createStore({
         answers.modifiedFrom = store.state.situationId
       }
 
-      answers.abtesting = AbTestingService.getEnvironment()
+      answers.abtesting = ABTestingService.getEnvironment()
       return axios
         .post("/api/answers", answers)
         .then((result) => result.data)

@@ -14,12 +14,11 @@ const StateService = {
       this.$store.dispatch("updateCurrentAnswers", nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
-          this.$matomo &&
-            this.$matomo.trackEvent(
-              "Parcours",
-              "Navigation cancelled",
-              failure.toString()
-            )
+          this.$matomo?.trackEvent(
+            "Parcours",
+            "Navigation cancelled",
+            failure.toString()
+          )
         } else {
           throw new Error(failure)
         }

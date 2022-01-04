@@ -3,7 +3,7 @@
     <button
       class="aj-etablissements-back-button button outline small with-icon"
       type="button"
-      @click="window && window.history.back()"
+      @click="window?.history.back()"
     >
       <svg
         width="12"
@@ -27,7 +27,7 @@
       <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
     </p>
-    <div v-if="list && list.length">
+    <div v-if="list?.length">
       <div
         v-for="(etablissement, index) in list"
         :key="index"
@@ -67,11 +67,7 @@ export default {
   mounted: function () {
     const city = this.$store.getters.situation.menage.depcom
     const benefit = Institution.benefits.all
-      .filter(
-        (benefit) =>
-          benefit.institution.etablissements &&
-          benefit.institution.etablissements.length > 0
-      )
+      .filter((benefit) => benefit.institution.etablissements?.length > 0)
       .find((benefit) => benefit.id === this.$route.params.benefit_id)
     const types = benefit ? benefit.institution.etablissements : []
 

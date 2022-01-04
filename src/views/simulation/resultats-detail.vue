@@ -88,9 +88,7 @@ export default {
         return droit.id === droitId
       })
 
-      droit &&
-        this.$matomo &&
-        this.$matomo.trackEvent("General", "showDetails", droit.label)
+      droit && this.$matomo?.trackEvent("General", "showDetails", droit.label)
 
       this.sendStatistics(this.droits, "showDetails", droitId)
     }
@@ -98,7 +96,7 @@ export default {
   methods: {
     goBack: function (event) {
       event.preventDefault()
-      if (window && window.history.length > 2) {
+      if (window?.history.length > 2) {
         history.back()
       } else {
         this.$router.push("/simulation/resultats")

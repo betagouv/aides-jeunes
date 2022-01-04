@@ -29,8 +29,7 @@ export default {
   },
   methods: {
     trackInterest() {
-      this.$matomo &&
-        this.$matomo.trackEvent("Parcours", "En savoir plus", this.$route.path)
+      this.$matomo?.trackEvent("Parcours", "En savoir plus", this.$route.path)
     },
   },
 }

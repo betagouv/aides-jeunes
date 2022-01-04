@@ -24,7 +24,7 @@
       <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
     </p>
-    <div v-if="etablissements && etablissements.length">
+    <div v-if="etablissements?.length">
       <p class="aj-etablissements-intro">
         Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
         demandes et poser toutes vos questions.
@@ -120,7 +120,7 @@ export default {
     }
   },
   beforeUnmount: function () {
-    this.stopSubscription && this.stopSubscription()
+    this.stopSubscription?.()
   },
   methods: {
     getEtablissementsTypesBySituation() {

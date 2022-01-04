@@ -67,8 +67,7 @@ export default {
       return this.$state.chapters(
         this.$route.path,
         this.$store.getters.getAllSteps,
-        this.$store.getters.lastUnansweredStep &&
-          this.$store.getters.lastUnansweredStep.path
+        this.$store.getters.lastUnansweredStep?.path
       )
     },
     isOldSituation() {
@@ -94,7 +93,7 @@ export default {
         : !chapter.done && !this.chapters[index - 1].done
     },
     goBack() {
-      window && window.history.back()
+      window?.history.back()
     },
   },
 }

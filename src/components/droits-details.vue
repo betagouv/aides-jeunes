@@ -40,10 +40,7 @@
               itemprop="termsOfService"
             />
           </p>
-          <div
-            v-if="droit.conditions && droit.conditions.length"
-            class="aj-droit-conditions"
-          >
+          <div v-if="droit.conditions?.length" class="aj-droit-conditions">
             <p class="aj-droit-conditions-title"
               >Pour en bénéficier, vous devez également :</p
             >

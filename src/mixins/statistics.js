@@ -6,12 +6,10 @@ export default {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
-        process.env.VUE_APP_STATS_URL &&
-        process.env.VUE_APP_STATS_URL.length &&
-        benefits &&
-        benefits.length
+        process.env.VUE_APP_STATS_URL?.length &&
+        benefits?.length
       ) {
-        const id = this && this.$matomo ? this.$matomo.getVisitorId() : uuid
+        const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
         const benefitsStats = []
         const totalResults = benefits.length
         benefits.forEach(function (benefit, i) {

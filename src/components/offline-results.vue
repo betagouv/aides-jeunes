@@ -25,17 +25,17 @@
         faire le point sur les démarches que vous avez faites et les blocages
         que vous avez rencontrés.
       </p>
-      <div v-if="submitResult && submitResult.ok">
+      <div v-if="submitResult?.ok">
         <i class="fa fa-check" />
         On vous envoie un email&nbsp;!
       </div>
 
-      <div v-if="submitResult && submitResult.error">
+      <div v-if="submitResult?.error">
         <i class="fa fa-exclamation-triangle" />
         Une erreur s'est produite
       </div>
 
-      <div v-if="submitResult && submitResult.waiting">
+      <div v-if="submitResult?.waiting">
         <i class="fa fa-spinner fa-spin" aria-hidden="true" />
       </div>
 

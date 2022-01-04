@@ -58,7 +58,7 @@ export default {
     progress() {
       const cleanPath = this.$route.path.replace(/\/en_savoir_plus$/, "")
       const allSteps = this.$store.getters.getAllSteps.filter(
-        (step) => step.path !== "/" && step.path !== "/simulation/resultats"
+        (step) => !["/", "/simulation/resultats"].includes(step.path)
       )
       const activeSteps = allSteps.filter((step) => step.isActive)
 

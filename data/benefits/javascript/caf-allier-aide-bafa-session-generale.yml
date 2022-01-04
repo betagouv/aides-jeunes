@@ -28,4 +28,7 @@ conditions_generales:
   - type: departements
     values:
       - "03"
+  - type: quotient_familial
+    operator: "<="
+    value: 900
 profils: []

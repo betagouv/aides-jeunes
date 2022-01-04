@@ -244,9 +244,13 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   const prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.type || definition.type === "float"
+      return (
+        (!definition.type || definition.type === "float") &&
+        !definition.fiscalYear
+      )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieres,
@@ -259,10 +263,12 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     function (definition) {
       return (
         (!definition.type || definition.type === "float") &&
-        definition.setToZeroRecently
+        definition.setToZeroRecently &&
+        !definition.fiscalYear
       )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieresAtZeroRecently,

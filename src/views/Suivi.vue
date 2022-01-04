@@ -184,9 +184,12 @@ export default {
     isNumber: (val) => typeof val === "number",
     isNegative,
     prefix: function (droit) {
-      return `${droit.prefix}${
-        droit.prefix[droit.prefix.length - 1] == "’" ? "" : " "
-      }`
+      if (droit.prefix) {
+        return `${droit.prefix}${
+          droit.prefix[droit.prefix.length - 1] == "’" ? "" : " "
+        }`
+      }
+      return ""
     },
     submit: function () {
       let answers = this.droits.map((droit) => ({

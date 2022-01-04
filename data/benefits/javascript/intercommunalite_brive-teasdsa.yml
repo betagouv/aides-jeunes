@@ -3,8 +3,12 @@ institution: intercommunalite_brive
 description: dsadsadsad
 conditions:
   - adsdasdasdsa
-conditions_generales: []
+conditions_generales:
+  - type: age
+    operator: <
+    value: 19
 profils: []
 link: sadsad
-type: bool
+type: float
 unit: €
+montant: 200

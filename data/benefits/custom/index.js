@@ -25,11 +25,9 @@ const customBenefits = {
       extra: [{ id: "cmu_c", entity: "familles", type: "bool" }],
       entity: "familles",
       compute: function (result, period) {
-        return result.cmu_c && result.cmu_c[period]
+        return result.cmu_c?.[period]
           ? true
-          : (result.css_participation_forfaitaire &&
-              result.css_participation_forfaitaire[period]) ||
-              0
+          : result.css_participation_forfaitaire?.[period] || 0
       },
       type: "mixed",
       participation: true,
@@ -209,8 +207,7 @@ const customBenefits = {
 
         return (
           situation.demandeur.habite_chez_parents &&
-          demandeur.enfant_a_charge &&
-          demandeur.enfant_a_charge[period]
+          demandeur.enfant_a_charge?.[period]
         )
       },
     },

@@ -8,7 +8,7 @@ function transformInstitutions(collection) {
       slug: data.slug,
       id: data.id || data.slug,
       label: data.name,
-      imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
+      imgSrc: data.imgSrc?.slice("img/".length),
       benefitsIds: [],
       type: data.type,
       repository:

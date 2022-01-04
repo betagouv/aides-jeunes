@@ -21,13 +21,18 @@ describe("benefit descriptions", function () {
     const customBenefits = [{ slug: "etat_benefit", institution: "etat" }]
 
     const result = subject(collections, customBenefits)
-    expect(result.groupByInstitution.etat.prestations.etat_benefit).toBeTruthy()
     expect(
-      result.groupByInstitution.etat.prestations.etat_benefit2
+      result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()
+    expect(result.benefitsMap.etat_benefit.institution.id).toBe("etat")
     expect(
-      result.groupByInstitution.region.prestations.region_benefit
+      result.institutionsMap.etat.benefitsIds.includes("etat_benefit2")
     ).toBeTruthy()
+    expect(result.benefitsMap.etat_benefit2.institution.id).toBe("etat")
+    expect(
+      result.institutionsMap.region.benefitsIds.includes("region_benefit")
+    ).toBeTruthy()
+    expect(result.benefitsMap.region_benefit.institution.id).toBe("region")
     expect(result.all.length).toBe(3)
   })
 })

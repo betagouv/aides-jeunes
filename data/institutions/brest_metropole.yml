@@ -1,4 +1,5 @@
 name: Brest Métropole
 imgSrc: img/logo_brest_metropole.png
 prefix: de
-repository: "france-local"
+repository: france-local
+type: epci

@@ -1,0 +1,24 @@
+#aj-widget-institution {
+  display: flex;
+  flex-direction: column;
+  margin-top: -22px;
+}
+#aj-widget-form {
+  padding: 0px 4px 0px 6px;
+  font-size: 0.8rem;
+  border: 2px solid #dfdfe3;
+  border-radius: 4px 4px 0 0;
+  background-color: #dfdfe3;
+  color: #7a8291;
+  margin-left: auto;
+  margin-bottom: -2px;
+}
+
+#aj-widget-form select {
+  border: 1px solid #dfdfe3;
+  padding: 0px;
+  background: transparent;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  display: inline-block;
+}

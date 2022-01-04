@@ -86,6 +86,10 @@ export default {
               label: "Statistiques",
               href: "/stats",
             },
+            {
+              label: "Toutes les aides",
+              route: "/aides",
+            },
           ],
         },
         {

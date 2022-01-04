@@ -146,6 +146,19 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
+  field_geographical_type: &field_geographical_type
+    - label: Organisation nationale
+      value: national
+    - label: Région
+      value: region
+    - label: Département
+      value: departement
+    - label: CAF locale
+      value: caf
+    - label: EPCI (Métropole, inter-communauté, etc.)
+      value: epci
+    - label: Commune
+      value: commune
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -154,12 +167,18 @@ fields:
   field_institution: &field_institution
     label: Institution
     name: institution
-    widget: relation
+    widget: institution
     collection: institutions
     value_field: "{{slug}}"
     display_fields: ["{{name}}"]
     search_fields: [slug, name]
     allow_multiple: false
+    options_length: -1
+    filter:
+      label: "Type :"
+      default: "*"
+      target: "type"
+      fields: *field_geographical_type
   field_description: &field_description
     label: Courte description
     name: description
@@ -634,10 +653,10 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
-      - label: Institution nationale
-        name: national
-        widget: boolean
-        required: false
+      - label: Type géographique
+        name: type
+        widget: select
+        options: *field_geographical_type
   - name: contribution-pages
     label: Pages
     label_singular: page

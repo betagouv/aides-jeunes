@@ -332,7 +332,7 @@ const router = createRouter({
       component: () =>
         import(/* webpackChunkName: "liste-aides" */ "./views/liste-aides.vue"),
       meta: {
-        headTitle: "Répartition géographique des aides",
+        headTitle: "Toutes les aides",
       },
     },
     {

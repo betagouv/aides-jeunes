@@ -32,8 +32,8 @@ const TYPES = {
   national: "Aides nationales",
   region: "Aides régionales",
   departement: "Aides départementales",
-  caf: "CAF Locales",
   epci: "EPCI (Métropole, inter-communauté, etc.)",
+  caf: "CAF Locales",
   commune: "Aides communales",
 }
 
@@ -49,6 +49,9 @@ export default {
         const benefits = this.benefits.filter(
           (benefit) => benefit.institution.type === type
         )
+        benefits.sort((a, b) => {
+          return a.label.localeCompare(b.label)
+        })
 
         const institutions = benefits.reduce((accum, benefit) => {
           const institution = accum[benefit.institution.id] || {

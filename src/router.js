@@ -327,7 +327,7 @@ const router = createRouter({
         import(/* webpackChunkName: "stats" */ "./views/Stats.vue"),
     },
     {
-      path: "/geographie-aides",
+      path: "/aides",
       name: "geographie-aides",
       component: () =>
         import(

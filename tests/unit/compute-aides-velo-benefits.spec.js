@@ -36,6 +36,7 @@ describe("computeAidesVeloBenefits", function () {
     }
     const results = []
     computeAidesVeloBenefits(benefits, results, situation)
+    console.log(results)
     expect(results[0].description).toEqual(
       expect.not.stringContaining("$plafond")
     )

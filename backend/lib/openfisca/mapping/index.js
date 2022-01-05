@@ -136,19 +136,12 @@ function mapIndividus(situation) {
     }, {})
 }
 
-function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
-  const prestationsWithInterest = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return filterByInterestFlag(definition, demandeur)
-    }
-  )
-
+function giveValueToRequestedVariables(testCase, prestations, periods, value) {
   if (!(periods instanceof Array)) {
     periods = [periods]
   }
 
-  forEach(prestationsWithInterest, function (definition, prestationName) {
+  forEach(prestations, function (definition, prestationName) {
     forEach(testCase[definition.entity], function (entity) {
       entity[prestationName] = entity[prestationName] || {}
       forEach(periods, function (period) {
@@ -276,11 +269,39 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     0
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
+
+  const prestationsWithInterest = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return filterByInterestFlag(definition, situation.demandeur)
+    }
+  )
+
+  const monthlyPrestationsWithInterest = pickBy(
+    prestationsWithInterest,
+    function (definition) {
+      return !definition.fiscalYear
+    }
+  )
+
+  const yearlyPrestationsWithInterest = pickBy(
+    prestationsWithInterest,
+    function (definition) {
+      return definition.fiscalYear
+    }
+  )
+
   giveValueToRequestedVariables(
     testCase,
+    monthlyPrestationsWithInterest,
     periods.thisMonth,
-    null,
-    situation.demandeur
+    null
+  )
+  giveValueToRequestedVariables(
+    testCase,
+    yearlyPrestationsWithInterest,
+    periods.fiscalYear,
+    null
   )
 
   return applyHeuristicsAndFix(testCase, sourceSituation)

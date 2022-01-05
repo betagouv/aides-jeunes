@@ -239,7 +239,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     function (definition) {
       return (
         (!definition.type || definition.type === "float") &&
-        !definition.fiscalYear
+        !definition.openfiscaPeriod
       )
     }
   )
@@ -257,7 +257,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
       return (
         (!definition.type || definition.type === "float") &&
         definition.setToZeroRecently &&
-        !definition.fiscalYear
+        !definition.openfiscaPeriod
       )
     }
   )
@@ -277,32 +277,23 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     }
   )
 
-  const monthlyPrestationsWithInterest = pickBy(
-    prestationsWithInterest,
-    function (definition) {
-      return !definition.fiscalYear
-    }
-  )
+  const openfiscaPeriods = new Set()
+  Object.values(prestationsWithInterest).forEach((definition) => {
+    openfiscaPeriods.add(definition.openfiscaPeriod)
+  })
 
-  const yearlyPrestationsWithInterest = pickBy(
-    prestationsWithInterest,
-    function (definition) {
-      return definition.fiscalYear
-    }
-  )
+  openfiscaPeriods.forEach((value) => {
+    const prestations = pickBy(prestationsWithInterest, function (definition) {
+      return definition.openfiscaPeriod === value
+    })
 
-  giveValueToRequestedVariables(
-    testCase,
-    monthlyPrestationsWithInterest,
-    periods.thisMonth,
-    null
-  )
-  giveValueToRequestedVariables(
-    testCase,
-    yearlyPrestationsWithInterest,
-    periods.fiscalYear,
-    null
-  )
+    giveValueToRequestedVariables(
+      testCase,
+      prestations,
+      value ? periods[value] : periods.thisMonth,
+      null
+    )
+  })
 
   return applyHeuristicsAndFix(testCase, sourceSituation)
 }

@@ -5,7 +5,9 @@ const assign = require("lodash/assign")
 const pick = require("lodash/pick")
 const benefits = require("../../../data/all")
 const pickBy = require("lodash/pickBy")
-const { filterByInterestFlag } = require("@/../lib/Benefits/FilterInterestFlag")
+const {
+  filterByInterestFlag,
+} = require("../../../lib/Benefits/FilterInterestFlag")
 
 function toStringOf(obj) {
   return obj.toString()
@@ -102,7 +104,7 @@ exports.generateTest = function generateYAMLTest(details, situation) {
     function (definition) {
       return (
         filterByInterestFlag(definition, situation.demandeur) &&
-        !definition.fiscalYear
+        !definition.openfiscaPeriod
       )
     }
   )

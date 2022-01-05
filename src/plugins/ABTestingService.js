@@ -33,8 +33,7 @@ const ABTestingService = {
     ABTesting.parentCelibataire.value =
       ABTesting.parentCelibataire.value || Math.random() >= 0.5
         ? "afficheCelibataire"
-        : null
-    ABTesting.parentCelibataire.deleted = true
+        : "masqueCelibaire"
 
     Object.keys(ABTesting).forEach(function (name) {
       const data = ABTesting[name]

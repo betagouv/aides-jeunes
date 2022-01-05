@@ -22,7 +22,7 @@ const STEPS = {
             const abTesting = ABTestingService.getEnvironment()
             return (
               !abTesting.parentCelibataire ||
-              (abTesting.parentCelibataire && abTesting.parentCelibataire.value)
+              abTesting.parentCelibataire?.value == "afficheCelibataire"
             )
           },
         },

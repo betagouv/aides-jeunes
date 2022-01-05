@@ -1,4 +1,7 @@
-module.exports = [
+const all = require("../../localisation.json")
+
+module.exports = all
+;[
   {
     title: "Bonus vélo cargo de l’État",
     description: "L’État accorde une aide de 1 000 € ...",

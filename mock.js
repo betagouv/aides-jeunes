@@ -65,6 +65,16 @@ function mock({ app }) {
     res.send([])
   })
 
+  app.get("/api/openfisca/parameters/:timestamp", function (req, res) {
+    res.send({
+      "prestations.carte_des_metiers.age_maximal": 26,
+      "prestations.minima_sociaux.aah.taux_incapacite": 0.8,
+      "epargne.livret_a.taux": 0.005,
+      "marche_travail.salaire_minimum.smic_h_b": 10.48,
+      "marche_travail.salaire_minimum.nb_heure_travail_mensuel": 151.67,
+    })
+  })
+
   app.get("/api/followups/surveys/:id", function (req, res) {
     res.send({
       benefits: [

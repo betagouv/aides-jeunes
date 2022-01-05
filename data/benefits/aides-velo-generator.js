@@ -1,4 +1,5 @@
 const aidesVelo = require("aides-velo")
+const epci = require("@etalab/decoupage-administratif/data/epci.json")
 
 const benefits = aidesVelo.benefits || require("./aides-velo-mock")
 
@@ -15,6 +16,8 @@ function generate_benefit_list(institutions) {
       case "pays": {
         if (b.collectivity.value === "France") {
           b.institution = "etat"
+        } else {
+          b.discard = true
         }
         break
       }
@@ -23,36 +26,49 @@ function generate_benefit_list(institutions) {
       case "code insee": {
         const institutionList = potentialInstitutions[b.collectivity.kind]
         b.institution = institutionList.find(
-          (r) => r.publicId === b.collectivity.value
-        )
+          (i) => i.publicId === b.collectivity.value
+        )?.id
         break
       }
       case "epci": {
+        const institutionList = potentialInstitutions[b.collectivity.kind]
+        const name = b.collectivity.value.replace("’", "'")
+        const epciMatch = epci.find((e) => e.nom === name)
+        if (epciMatch) {
+          b.institution = institutionList.find(
+            (i) => i.publicId === epciMatch.code
+          )?.id
+        }
+
         break
       }
     }
   })
 
-  return benefits.map((b) => {
-    const newId =
-      b.id ||
-      `${b.collectivity.kind}-${b.collectivity.value}-aides-velo`.replace(
-        " ",
-        "-"
-      )
+  return benefits
+    .filter((b) => !b.discard)
+    .map((b) => {
+      const newId =
+        b.id ||
+        `${b.collectivity.kind}-${b.collectivity.value}-aides-velo`.replace(
+          " ",
+          "-"
+        )
 
-    return {
-      label: "Aide à l'achat d'un vélo : " + b.title,
-      description: b.description || "Aide à l'achat d'un vélo : " + b.title,
-      id: newId,
-      title: b.title,
-      institution: b.institution,
-      type: "float",
-      periodicite: "ponctuelle",
-      montant: 1,
-      link: "https://mock",
-    }
-  })
+      return {
+        label: "Aide à l'achat d'un vélo : " + b.title,
+        description: b.description || "Aide à l'achat d'un vélo : " + b.title,
+        id: newId,
+        debug: `publicId: '${b.collectivity.value}'`,
+        collectivity: b.collectivity.value,
+        title: b.title,
+        institution: b.institution,
+        type: "float",
+        periodicite: "ponctuelle",
+        montant: 1,
+        link: "https://mock",
+      }
+    })
 }
 
 module.exports = generate_benefit_list

@@ -14,6 +14,13 @@ const STEPS = {
       {
         label: "Célibataire",
         value: "celibataire",
+        abTesting: (abTestingService) => {
+          return !(
+            abTestingService &&
+            abTestingService.parentCelibataire &&
+            !abTestingService.parentCelibataire.value
+          )
+        },
       },
       {
         label: "Veuf ou veuve",

@@ -18,12 +18,11 @@ const STEPS = {
         {
           label: "Célibataire",
           value: "celibataire",
-          isRelevant: (component) => {
+          isRelevant: () => {
             const abTesting = ABTestingService.getEnvironment()
-            return !(
-              abTesting &&
-              abTesting.parentCelibataire &&
-              !abTesting.parentCelibataire.value
+            return (
+              !abTesting.parentCelibataire ||
+              (abTesting.parentCelibataire && abTesting.parentCelibataire.value)
             )
           },
         },

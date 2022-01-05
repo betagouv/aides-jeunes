@@ -8,16 +8,6 @@ description: >
   nationale apportée par la CAF</a>.
 conditions:
   - Etre allocataire de la CAF.
-  - Avoir un quotient familial inférieur à 900 €.
-link: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
-form: https://www.caf.fr/sites/default/files/caf/031/Enfance%20et%20jeunesse/BAFA/DBAFA.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 280
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -29,6 +19,15 @@ conditions_generales:
     values:
       - "03"
   - type: quotient_familial
-    operator: "<="
+    operator: <
     value: 900
 profils: []
+link: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
+form: https://www.caf.fr/sites/default/files/caf/031/Enfance%20et%20jeunesse/BAFA/DBAFA.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 280
+interestFlag: _interetBafa

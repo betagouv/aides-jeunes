@@ -160,6 +160,10 @@ fields:
       value: epci
     - label: Commune
       value: commune
+  field_quotient_familial: &field_quotient_familial
+    <<: *field_number
+    label: Quotient familial
+    name: quotient_familial
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -574,6 +578,7 @@ fields:
       - *field_departements
       - *field_communes
       - *field_regime_securite_sociale
+      - *field_quotient_familial
     field_references: &field_references
       label: Liens des sources de référence
       name: references

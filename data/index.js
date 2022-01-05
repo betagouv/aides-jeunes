@@ -1,7 +1,7 @@
 "use strict"
 
 const additionalBenefitAttributes = require("./benefits/additional-attributes")
-const aidesVelo = require("./benefits/aides-velo")
+const aidesVeloGenerator = require("./benefits/aides-velo-generator")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
@@ -30,7 +30,7 @@ function setDefaults(benefit, institution) {
   return benefit
 }
 
-function generate(collections, additionalBenefitAttributes, aidesVeloBenefits) {
+function generate(collections, additionalBenefitAttributes, aidesVeloBenefitListGenerator) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
@@ -42,6 +42,10 @@ function generate(collections, additionalBenefitAttributes, aidesVeloBenefits) {
   customBenefits.forEach((benefit) => {
     benefit.source = "openfisca"
   })
+
+  const aidesVeloBenefits = aidesVeloBenefitListGenerator(
+    Object.values(institutions)
+  )
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
     benefit.top = 8
@@ -76,5 +80,5 @@ function generate(collections, additionalBenefitAttributes, aidesVeloBenefits) {
 
 module.exports = {
   fn: generate,
-  generate: (jam) => generate(jam.collections, additionalBenefitAttributes, aidesVelo),
+  generate: (jam) => generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),
 }

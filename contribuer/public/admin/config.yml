@@ -44,6 +44,7 @@ fields:
       - label: Valeur
         name: value
         widget: number
+        step: -1
   field_age: &field_age
     <<: *field_number
     label: Age
@@ -199,7 +200,12 @@ fields:
     field:
       label: Texte
       name: text
-      widget: text
+      widget: string
+      pattern:
+        [
+          '\.$',
+          "La condition doit commencer par un verbe à l'infinitif et se terminer par un point",
+        ]
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
@@ -234,7 +240,7 @@ fields:
   field_type_resultat: &field_type_resultat
     label: Type du résultat
     name: type
-    default: "bool"
+    default: "float"
     widget: select
     options:
       - label: Valeur numérique
@@ -307,12 +313,14 @@ fields:
     name: montant
     widget: number
     required: false
+    step: -1
   field_periodicite_montant_aide: &field_periodicite_montant_aide
     label: "Périodicité du montant de l'aide"
     name: periodicite
     widget: select
     hint: Cette variable permet de définir la période de versement du montant de l'aide.
-    required: false
+    required: true
+    default: autre
     options:
       - label: Ponctuelle
         value: ponctuelle

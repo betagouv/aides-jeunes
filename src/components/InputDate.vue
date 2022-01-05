@@ -134,19 +134,19 @@ export default {
   },
   watch: {
     day: function (to) {
-      if (to && to.length == 2 && this.auto) {
+      if (to?.length == 2 && this.auto) {
         this.$refs.month.focus()
       }
       this.update("day")
     },
     month: function (to) {
-      if (to && to.length == 2 && this.auto) {
+      if (to?.length == 2 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("month")
     },
     year: function (to) {
-      if (to && to.length == 4 && this.auto) {
+      if (to?.length == 4 && this.auto) {
         this.$refs.year.focus()
       }
       this.update("year")

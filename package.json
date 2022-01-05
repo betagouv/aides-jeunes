@@ -120,8 +120,7 @@
     }
   },
   "browserslist": [
-    "> 5%",
-    "ie >= 11"
+    "defaults"
   ],
   "jest": {
     "testEnvironment": "jsdom",

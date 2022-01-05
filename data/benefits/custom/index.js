@@ -2,7 +2,7 @@
 
 const moment = require("moment")
 
-const benefitsCustomization = {
+const additionnalBenefitsAttributes = {
   css_participation_forfaitaire: {
     compute: function (result, period) {
       return result.cmu_c?.[period]
@@ -65,4 +65,4 @@ const benefitsCustomization = {
   fsl_eligibilite: require("./fsl_eligibilite"),
 }
 
-module.exports = benefitsCustomization
+module.exports = additionnalBenefitsAttributes

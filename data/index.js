@@ -1,6 +1,6 @@
 "use strict"
 
-const benefitsCustomization = require("./benefits/custom/index")
+const additionnalBenefitsAttributes = require("./benefits/custom/index")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
@@ -29,7 +29,7 @@ function setDefaults(benefit, institution) {
   return benefit
 }
 
-function generate(collections, benefitsCustomization) {
+function generate(collections, additionnalBenefitsAttributes) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
@@ -40,7 +40,11 @@ function generate(collections, benefitsCustomization) {
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
   ].map((benefit) => {
-    return Object.assign({}, benefit, benefitsCustomization[benefit.slug])
+    return Object.assign(
+      {},
+      benefit,
+      additionnalBenefitsAttributes[benefit.slug]
+    )
   })
 
   const benefitsMap = {}
@@ -64,5 +68,5 @@ function generate(collections, benefitsCustomization) {
 
 module.exports = {
   fn: generate,
-  generate: (jam) => generate(jam.collections, benefitsCustomization),
+  generate: (jam) => generate(jam.collections, additionnalBenefitsAttributes),
 }

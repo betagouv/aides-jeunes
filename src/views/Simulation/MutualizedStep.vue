@@ -70,7 +70,6 @@ import InputNumber from "@/components/InputNumber"
 import InputDate from "@/components/InputDate"
 import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
 import { getAnswer } from "../../../lib/answers"
-import ABTestingMixin from "@/mixins/ABTestingMixin"
 
 export default {
   name: "MutualizedStep",
@@ -81,7 +80,6 @@ export default {
     InputDate,
     YesNoQuestion,
   },
-  mixins: [ABTestingMixin],
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
@@ -110,9 +108,7 @@ export default {
       return this.$route.params.fieldName
     },
     items() {
-      return this.abTestingFilter(
-        executeFunctionOrReturnValue(this.step, "items", this)
-      )
+      return executeFunctionOrReturnValue(this.step, "items", this)
     },
     question() {
       return capitalize(

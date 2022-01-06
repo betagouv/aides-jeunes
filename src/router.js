@@ -1,6 +1,5 @@
 import { nextTick } from "vue"
 import Home from "./views/Home.vue"
-import ABTestingService from "@/plugins/ABTestingService"
 import store from "./store"
 
 import { createWebHistory, createRouter } from "vue-router"
@@ -345,7 +344,6 @@ const router = createRouter({
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
-        ABTestingService.setVariante("submit", "manual")
         return "/"
       },
     },

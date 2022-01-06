@@ -7,7 +7,6 @@ const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front_only" ? mock : configureAPI
 const parseArgs = require("minimist")
 const benefits = require("./data/all")
-const path = require("path")
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.length
 process.env.VUE_APP_MATOMO_ID = matomo.id
@@ -55,16 +54,6 @@ module.exports = {
           whitespace: "preserve",
         },
       }))
-    config.module
-      .rule("ecpi")
-      .test(require.resolve("@etalab/decoupage-administratif/data/epci.json"))
-      .use("epci-loader")
-      .loader("epci-loader")
-
-    config.resolveLoader.alias.set(
-      "epci-loader",
-      path.resolve(__dirname, "tools/epciLoader.js")
-    )
   },
   devServer: {
     onBeforeSetupMiddleware: before,

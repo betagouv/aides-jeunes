@@ -665,6 +665,11 @@ collections:
         name: type
         widget: select
         options: *field_geographical_type
+      - label: Identifiant
+        hint: Code INSEE pour les communes, départements, régions et code SIREN pour les autres
+        name: publicId
+        widget: string
+        required: false
   - name: contribution-pages
     label: Pages
     label_singular: page

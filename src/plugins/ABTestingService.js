@@ -26,8 +26,11 @@ const ABTestingService = {
     // // et libérer une custom variable
     // // ABTesting.link.deleted = true;
 
-    ABTesting.submit = ABTesting.submit || { index: 1 }
-    ABTesting.submit.deleted = true
+    ABTesting.parentCelibataire = ABTesting.parentCelibataire || { index: 1 }
+    ABTesting.parentCelibataire.value =
+      ABTesting.parentCelibataire.value || Math.random() >= 0.5
+        ? "afficheCelibataire"
+        : "masqueCelibaire"
 
     Object.keys(ABTesting).forEach(function (name) {
       const data = ABTesting[name]

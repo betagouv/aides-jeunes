@@ -205,7 +205,14 @@ const menage = {
 const parents = {
   _situation: {
     type: String,
-    enum: ["en_couple", "separes", "decedes", "sans_autorite", "veuve"],
+    enum: [
+      "en_couple",
+      "separes",
+      "celibataire",
+      "decedes",
+      "sans_autorite",
+      "veuve",
+    ],
   },
   _en_france: Boolean,
   nbptr: Number,

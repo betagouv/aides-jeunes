@@ -208,7 +208,9 @@ const STEPS = {
     },
     questionType: "number",
     showMoreInfo: (component) => {
-      return component.$store.getters.situation.parents._situation === "separes"
+      return ["separes", "celibataire"].includes(
+        component.$store.getters.situation.parents._situation
+      )
     },
     unit: "€",
   },

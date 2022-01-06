@@ -69,7 +69,9 @@ export default {
   },
   watch: {
     codePostal: function (cp) {
-      if (cp && cp.length == 5) {
+      this.nomCommune = null
+      this.communes = []
+      if (cp?.length == 5) {
         this.fetchCommune()
       }
     },

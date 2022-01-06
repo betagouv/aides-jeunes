@@ -67,10 +67,17 @@ export default {
   },
   watch: {
     codePostal: function (cp) {
-      if (cp && cp.length == 5) {
+      this.nomCommune = null
+      this.communes = []
+      if (cp?.length == 5) {
         this.fetchCommune()
       }
     },
+  },
+  beforeMount() {
+    if (this.codePostal && this.codePostal.length == 5) {
+      this.fetchCommune()
+    }
   },
   methods: {
     onSubmit: function () {

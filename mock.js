@@ -2,6 +2,7 @@ const bodyParser = require("body-parser")
 const axios = require("axios")
 const outils = require("./backend/controllers/outils")
 const mapping = require("./backend/lib/openfisca/mapping")
+const openfiscaParameters = require("./backend/lib/openfisca/parameters.js")
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
@@ -66,13 +67,7 @@ function mock({ app }) {
   })
 
   app.get("/api/openfisca/parameters/:timestamp", function (req, res) {
-    res.send({
-      "prestations.carte_des_metiers.age_maximal": 26,
-      "prestations.minima_sociaux.aah.taux_incapacite": 0.8,
-      "epargne.livret_a.taux": 0.005,
-      "marche_travail.salaire_minimum.smic_h_b": 10.48,
-      "marche_travail.salaire_minimum.nb_heure_travail_mensuel": 151.67,
-    })
+    res.send(openfiscaParameters.parametersList)
   })
 
   app.get("/api/followups/surveys/:id", function (req, res) {

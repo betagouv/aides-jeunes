@@ -1,7 +1,5 @@
 const aidesVelo = require("aides-velo")
-const epci = require("@etalab/decoupage-administratif/data/epci.json")
-
-const benefits = aidesVelo.benefits || require("./aides-velo-mock")
+const benefits = aidesVelo()
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {
@@ -32,14 +30,9 @@ function generate_benefit_list(institutions) {
       }
       case "epci": {
         const institutionList = potentialInstitutions[b.collectivity.kind]
-        const name = b.collectivity.value.replace("’", "'")
-        const epciMatch = epci.find((e) => e.nom === name)
-        if (epciMatch) {
-          b.institution = institutionList.find(
-            (i) => i.publicId === epciMatch.code
-          )?.id
-        }
-
+        b.institution = institutionList.find(
+          (i) => i.publicId === b.collectivity.code
+        )?.id
         break
       }
     }
@@ -48,19 +41,11 @@ function generate_benefit_list(institutions) {
   return benefits
     .filter((b) => !b.discard)
     .map((b) => {
-      const newId =
-        b.id ||
-        `${b.collectivity.kind}-${b.collectivity.value}-aides-velo`.replace(
-          " ",
-          "-"
-        )
-
       return {
         label: "Aide à l'achat d'un vélo : " + b.title,
         description: b.description || "Aide à l'achat d'un vélo : " + b.title,
-        id: newId,
-        debug: `publicId: '${b.collectivity.value}'`,
-        collectivity: b.collectivity.value,
+        id: b.id,
+        collectivity: b.collectivity,
         title: b.title,
         institution: b.institution,
         type: "float",

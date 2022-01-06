@@ -43,9 +43,9 @@ function generate(collections, customBenefits, aidesVeloBenefitListGenerator) {
     benefit.source = "openfisca"
   })
 
-  const aidesVeloBenefits = aidesVeloBenefitListGenerator(
-    Object.values(institutions)
-  )
+  const aidesVeloBenefits = aidesVeloBenefitListGenerator
+    ? aidesVeloBenefitListGenerator(Object.values(institutions))
+    : []
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
     benefit.top = 8

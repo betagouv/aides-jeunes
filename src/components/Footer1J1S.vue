@@ -101,20 +101,28 @@ export default {
               href: "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
             },
             {
-              label: "Je postule à un job",
+              label: "Emploi et stage",
               href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
             },
             {
-              label: "Je participe à un événement",
-              href: "https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu",
+              label: "Orientation et formation",
+              href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
             },
             {
-              label: "Les entreprises s'engagent",
-              href: "https://www.1jeune1solution.gouv.fr/entreprises?utm_source=mes-aides-beta&utm_medium=menu",
+              label: "Aides et accompagnement",
+              href: "/",
             },
             {
-              label: "Les mesures pour les jeunes",
-              href: "https://www.1jeune1solution.gouv.fr/espace-jeune?utm_source=mes-aides-beta&utm_medium=menu",
+              label: "Engagement et bénévolat",
+              href: "https://www.1jeune1solution.gouv.fr/engagement?utm_source=mes-aides-beta&utm_medium=menu",
+            },
+            {
+              label: "Employeur",
+              href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
+            },
+            {
+              label: "Partenaires",
+              href: "https://www.1jeune1solution.gouv.fr/partenaires?utm_source=mes-aides-beta&utm_medium=menu",
             },
           ],
         },
@@ -141,6 +149,10 @@ export default {
             {
               label: "Service Civique",
               href: "https://www.service-civique.gouv.fr/",
+            },
+            {
+              label: "France",
+              href: "https://www.france.fr/fr",
             },
           ],
         },

@@ -146,32 +146,27 @@ export default {
       menu: [
         {
           key: "1",
-          label: "Je postule à un job",
+          label: "Emploi et stage",
           href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
           key: "2",
-          label: "Je cherche une formation",
+          label: "Orientation et formation",
           href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
           key: "3",
-          label: "J'accède à mes aides",
+          label: "Aides et accompagnement",
           href: "/",
         },
         {
           key: "4",
-          label: "Je participe à un évenement",
-          href: "https://www.1jeune1solution.gouv.fr/evenements?utm_source=mes-aides-beta&utm_medium=menu",
+          label: "Engagement et bénévolat",
+          href: "https://www.1jeune1solution.gouv.fr/engagement?utm_source=mes-aides-beta&utm_medium=menu",
         },
         {
           key: "5",
-          label: "Je m'engage",
-          href: "https://www.1jeune1solution.gouv.fr/service-civique?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
-          key: "6",
-          label: "Je suis employeur",
+          label: "Employeur",
           href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
         },
       ],

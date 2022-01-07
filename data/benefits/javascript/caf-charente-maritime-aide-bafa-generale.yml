@@ -8,7 +8,6 @@ description: >
   nationale apportée par la CAF</a>.
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
-  - Avoir un quotient familial égal ou inférieur à 760 €.
   - Effectuer la session de formation auprès d’un <a target="_blank"
     rel="noopener"
     href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
@@ -16,14 +15,6 @@ conditions:
   - Signer la charte d’engagement pour le suivi intégral de la formation (voir
     avec l'organisme de formation).
   - Ne pas être pris en charge à 100 % par un employeur.
-link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
-instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
-type: float
-unit: €
-periodicite: ponctuelle
-legend: ""
-montant: 150
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -34,4 +25,16 @@ conditions_generales:
   - type: departements
     values:
       - "17"
+  - type: quotient_familial
+    period: month
+    operator: <=
+    value: 760
 profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
+instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 150
+interestFlag: _interetBafa

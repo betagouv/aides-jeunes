@@ -7,7 +7,6 @@ description: L'aide au BAFA pour une session de formation générale est une aid
   nationale apportée par la CAF</a>.<br><br>
 conditions:
   - Etre allocataire ou rattaché(e) au dossier allocataire de ses parents.
-  - Avoir un quotient familial égal ou inférieur à 1 200 €.
   - >-
     Effectuer son stage auprès d’un 
 
@@ -15,14 +14,6 @@ conditions:
   - Signer un contrat d’engagement pour le suivi intégral de la formation (voir
     avec l'organisme de formation).
   - Ne pas être pris en charge à 100 % par un employeur.
-link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
-instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 300
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -33,4 +24,16 @@ conditions_generales:
   - type: departements
     values:
       - "19"
+  - type: quotient_familial
+    period: month
+    operator: <=
+    value: 1200
 profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+interestFlag: _interetBafa

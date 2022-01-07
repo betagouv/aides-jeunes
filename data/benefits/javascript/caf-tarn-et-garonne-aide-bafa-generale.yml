@@ -9,7 +9,6 @@ conditions:
   - Être considéré(e) à charge de vos parents ou être placé(e) par décision
     judiciaire sous l'autorité des services de l'Etat.
   - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur ou égal à 820 €.
 conditions_generales:
   - type: age
     operator: ">="
@@ -20,6 +19,10 @@ conditions_generales:
   - type: departements
     values:
       - "82"
+  - type: quotient_familial
+    period: month
+    operator: <=
+    value: 820
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
 form: https://www.caf.fr/sites/default/files/caf/821/Documents/BAFA%20imprime%20NB.pdf

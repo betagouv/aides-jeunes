@@ -9,7 +9,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Percevoir une prestation légale de la CAF des Côtes d’Armor.
-  - Avoir un quotient familial inférieur ou égal à 900€.
   - Avoir réalisé les 3 stages de formation.
 conditions_generales:
   - type: age
@@ -18,6 +17,10 @@ conditions_generales:
   - type: departements
     values:
       - "22"
+  - type: quotient_familial
+    period: month
+    operator: <=
+    value: 900
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/enfance-et-jeunesse/bafa-et-bafd
 form: https://www.caf.fr/sites/default/files/caf/221/offre_services/Enfance_jeunesse/bafa/20160418_demande_aide_bafa-bafd.pdf

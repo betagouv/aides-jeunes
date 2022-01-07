@@ -8,7 +8,6 @@ description: >
   nationale apportée par la caf</a>.
 conditions:
   - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur à 396 €.
 conditions_generales:
   - type: age
     operator: ">="
@@ -19,6 +18,10 @@ conditions_generales:
   - type: departements
     values:
       - "84"
+  - type: quotient_familial
+    period: month
+    operator: <
+    value: 396
 profils: []
 link: https://www.caf.fr/sites/default/files/caf/841/Images/pages-partenaires/newpartenaires/documents/FLYER%20-%20BAFA%2072.pdf
 form: https://www.caf.fr/sites/default/files/caf/841/Documents/Offredeservice/demande_daide_bafa.pdf

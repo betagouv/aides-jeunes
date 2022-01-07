@@ -6,15 +6,19 @@ description: La bourse « Jeunes à l’international » vise accompagner les
 conditions:
   - Ne pas être bénéficiaire d'une autre aide publique à la mobilité
     internationale (européenne, nationale, régionale, départementale, locale).
-  - Avoir un quotient familial inférieur à 25 000 €.
-link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
-teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
-prefix: la
-type: bool
-interestFlag: _interetEtudesEtranger
 conditions_generales:
   - type: regions
     values:
       - "53"
+  - type: quotient_familial
+    period: year
+    operator: <
+    value: 25000
 profils:
   - type: enseignement_superieur
+link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
+teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+prefix: la
+type: bool
+periodicite: ponctuelle
+interestFlag: _interetEtudesEtranger

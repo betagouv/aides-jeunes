@@ -8,7 +8,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Effectuer votre formation en externat et en demi-pension.
   - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur ou égal à 1000€.
 conditions_generales:
   - type: age
     operator: ">="
@@ -19,6 +18,10 @@ conditions_generales:
   - type: departements
     values:
       - "62"
+  - type: quotient_familial
+    period: month
+    operator: <=
+    value: 1000
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
 instructions: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement

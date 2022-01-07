@@ -1,49 +1,31 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="form__group">
-      <label class="aj-question">
-        Quel est le code postal de la commune de vos parents ?
-      </label>
-      <input
-        id="cp"
-        v-model="codePostal"
-        type="text"
-        data-type="number"
-        pattern="[0-9]*"
-      />
-    </div>
-
-    <p v-if="retrievingCommunes">
-      <i class="fa fa-spinner fa-spin" aria-hidden="true" />
-    </p>
-    <div v-show="communes && communes.length" class="form__group">
-      <label class="aj-question">
-        Veuillez sélectionner la ville qui correspond
-      </label>
-      <select id="commune" v-model="nomCommune">
-        <option
-          v-for="(commune, index) in communes"
-          :key="`commune_${index}`"
-          :value="commune.nom"
-        >
-          {{ commune.nom }}
-        </option>
-      </select>
-    </div>
+    <InputDepCom
+      v-model:codePostal="codePostal"
+      v-model:nomCommune="nomCommune"
+      v-model:matchingCommune="matchingCommune"
+      codePostalLabel="Quel est le code postal de la commune de vos parents ?"
+    />
+    <WarningMessage v-if="warningMessage" :text="warningMessage" />
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
 <script>
 import ActionButtons from "@/components/ActionButtons"
+import InputDepCom from "@/components/InputDepcom"
 import Individu from "@/../lib/Individu"
-import DepcomMixin from "@/mixins/DepcomMixin"
+
+import WarningMessage from "@/components/WarningMessage"
+import Warning from "@/lib/Warnings"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
   components: {
     ActionButtons,
+    InputDepCom,
+    Warning,
+    WarningMessage,
   },
-  mixins: [DepcomMixin],
   data() {
     const id = this.$route.params.id
     const role = id.split("_")[0]
@@ -61,15 +43,12 @@ export default {
       codePostal,
       individu,
       nomCommune,
-      retrievingCommunes: false,
-      communes: [],
+      matchingCommune: undefined,
     }
   },
-  watch: {
-    codePostal: function (cp) {
-      if (cp && cp.length == 5) {
-        this.fetchCommune()
-      }
+  computed: {
+    warningMessage() {
+      return Warning.get("aj_not_reliable", this.codePostal)
     },
   },
   methods: {
@@ -78,35 +57,26 @@ export default {
         this.$store.dispatch("updateError", "Ce champ est obligatoire.")
         return
       }
-      if (!this.codePostal.toString().match(/^(?:[0-8]\d|9[0-8])\d{3}$/)) {
-        this.$store.dispatch(
-          "updateError",
-          "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
-        )
-        return
-      }
-      const matchingCommune = this.communes.find(
-        (c) => c.nom == this.nomCommune
-      )
-      if (matchingCommune) {
+      if (this.matchingCommune) {
         this.$store.dispatch("answer", {
           id: "demandeur",
           entityName: "individu",
           fieldName: "_bourseCriteresSociauxCommuneDomicileFamilial",
           value: {
-            _bourseCriteresSociauxCommuneDomicileFamilial: matchingCommune.code,
+            _bourseCriteresSociauxCommuneDomicileFamilial:
+              this.matchingCommune.code,
             _bourseCriteresSociauxCommuneDomicileFamilialCodePostal:
               this.codePostal.toString(),
             _bourseCriteresSociauxCommuneDomicileFamilialNomCommune:
               this.nomCommune,
             _bourseCriteresSociauxCommuneDomicileFamilialDepartement:
-              matchingCommune.departement,
+              this.matchingCommune.departement,
             _bourseCriteresSociauxCommuneDomicileFamilialRegion:
-              matchingCommune.region,
+              this.matchingCommune.region,
             _bourseCriteresSociauxCommuneDomicileFamilialEpci:
-              matchingCommune.epci,
+              this.matchingCommune.epci,
             _bourseCriteresSociauxCommuneDomicileFamilialEpciType:
-              matchingCommune.epciType,
+              this.matchingCommune.epciType,
           },
         })
       }
@@ -115,8 +85,3 @@ export default {
   },
 }
 </script>
-<style scoped lang="scss">
-fieldset {
-  margin-bottom: 2em;
-}
-</style>

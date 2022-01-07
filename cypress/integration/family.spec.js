@@ -37,6 +37,7 @@ context("Full simulation", () => {
       { index: 2, value: "{selectall}0" },
     ])
 
+    projet.fill__interetAidesVeloElectrique(false)
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
 

@@ -611,6 +611,11 @@ const STEPS = {
     unit: "mois",
   },
 
+  _interetAidesVeloElectrique: {
+    question:
+      "Souhaitez-vous connaître les aides pour acheter un vélo électrique ?",
+  },
+
   _interetBafa: {
     question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   },

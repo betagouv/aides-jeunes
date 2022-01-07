@@ -27,6 +27,7 @@ context("Full simulation", () => {
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
 
+    projet.fill__interetAidesVeloElectrique(false)
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
 

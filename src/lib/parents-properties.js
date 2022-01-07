@@ -1,5 +1,5 @@
-import ABTestingService from "@/plugins/ABTestingService"
-import { isRelevant } from "@/lib/Utils"
+import ABTestingService from "@/plugins/ab-testing-service"
+import { isRelevant } from "@/lib/utils"
 
 const STEPS = {
   _situation: {

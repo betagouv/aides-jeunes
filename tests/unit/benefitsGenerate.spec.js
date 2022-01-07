@@ -6,7 +6,10 @@ describe("benefit descriptions", function () {
   it("exists", function () {
     const collections = {
       institutions: {
-        items: [{ slug: "etat", national: true }, { slug: "region" }],
+        items: [
+          { slug: "etat", national: true },
+          { slug: "region", id: "region_id" },
+        ],
       },
       benefits_javascript: {
         items: [
@@ -32,7 +35,7 @@ describe("benefit descriptions", function () {
     expect(
       result.institutionsMap.region.benefitsIds.includes("region_benefit")
     ).toBeTruthy()
-    expect(result.benefitsMap.region_benefit.institution.id).toBe("region")
+    expect(result.benefitsMap.region_benefit.institution.id).toBe("region_id")
     expect(result.all.length).toBe(3)
   })
 })

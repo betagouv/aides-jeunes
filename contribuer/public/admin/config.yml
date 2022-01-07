@@ -667,7 +667,7 @@ collections:
         options: *field_geographical_type
       - label: Identifiant
         hint: Code INSEE pour les communes, départements, régions et code SIREN pour les autres
-        name: publicId
+        name: id
         widget: string
         required: false
   - name: contribution-pages

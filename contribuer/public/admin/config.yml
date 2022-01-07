@@ -24,31 +24,33 @@ fields:
       - label: Valeur
         name: value
         widget: boolean
+  field_operator: &field_operator
+    label: Opérateur
+    name: operator
+    widget: select
+    options:
+      - label: Supérieur à
+        value: ">"
+      - label: Supérieur ou égal à
+        value: ">="
+      - label: Égal à
+        value: "="
+      - label: Inférieur à
+        value: "<"
+      - label: Inférieur ou égal à
+        value: "<="
   field_number: &field_number
-    widget: object
-    fields:
-      - label: Opérateur
-        name: operator
-        widget: select
-        options:
-          - label: Supérieur à
-            value: ">"
-          - label: Supérieur ou égal à
-            value: ">="
-          - label: Égal à
-            value: "="
-          - label: Inférieur à
-            value: "<"
-          - label: Inférieur ou égal à
-            value: "<="
-      - label: Valeur
-        name: value
-        widget: number
-        step: -1
+    label: Valeur
+    name: value
+    widget: number
+    step: -1
   field_age: &field_age
-    <<: *field_number
     label: Age
     name: age
+    widget: object
+    fields:
+      - *field_operator
+      - *field_number
   field_regions: &field_regions
     label: Condition géographique régionale
     name: regions
@@ -160,10 +162,23 @@ fields:
       value: epci
     - label: Commune
       value: commune
+  field_period: &field_period
+    label: Période
+    name: period
+    widget: select
+    options:
+      - label: Par mois
+        value: month
+      - label: Par an
+        value: year
   field_quotient_familial: &field_quotient_familial
-    <<: *field_number
     label: Quotient familial
     name: quotient_familial
+    widget: object
+    fields:
+      - *field_operator
+      - *field_number
+      - *field_period
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide

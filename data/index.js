@@ -54,7 +54,7 @@ function generate(collections, additionalBenefitAttributes, aidesVeloBenefitList
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
-    ...aidesVeloBenefits,
+    ...aidesVeloBenefits.filter((b) => b.institution),
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })

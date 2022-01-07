@@ -7,7 +7,7 @@ const benefits = require("../../../data/all")
 const pickBy = require("lodash/pickBy")
 const {
   filterByInterestFlag,
-} = require("../../../lib/Benefits/FilterInterestFlag")
+} = require("../../../lib/benefits/filter-interest-flag")
 
 function toStringOf(obj) {
   return obj.toString()

@@ -16,7 +16,7 @@
   <p v-if="retrievingCommunes">
     <i class="fa fa-spinner fa-spin" aria-hidden="true" />
   </p>
-  <div v-show="communes && communes.length" class="field-group">
+  <div v-show="communes?.length" class="field-group">
     <label for="commune" class="aj-question"
       >Veuillez sélectionner la ville qui correspond
     </label>
@@ -76,7 +76,7 @@ export default {
     },
   },
   beforeMount() {
-    if (this.codePostalValue && this.codePostalValue.length == 5) {
+    if (this.codePostalValue?.length == 5) {
       this.fetchCommune()
     }
   },
@@ -98,12 +98,11 @@ export default {
       return Commune.get(this.codePostalValue)
         .then((communes) => {
           if (communes.length <= 0) {
-            this.$matomo &&
-              this.$matomo.trackEvent(
-                "General",
-                "Depcom introuvable",
-                `Code postal : ${this.codePostalValue}`
-              )
+            this.$matomo?.trackEvent(
+              "General",
+              "Depcom introuvable",
+               `Code postal : ${this.codePostalValue}`
+            )
             this.$store.dispatch(
               "updateError",
               "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."

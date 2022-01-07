@@ -31,6 +31,7 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(1101.42)
     revenu.ignore()
 
+    projet.fill__interetAidesVeloElectrique(false)
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
 

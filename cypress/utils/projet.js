@@ -1,5 +1,9 @@
 import { fillRadio, fillNumber } from "./form"
 
+const fill__interetAidesVeloElectrique = (expect) => {
+  fillRadio("_interetAidesVeloElectrique", expect)
+}
+
 const fill__interetBafa = (expect) => {
   fillRadio("_interetBafa", expect)
 }
@@ -25,6 +29,7 @@ const fill__dureeMoisEtudesEtranger = (duration) => {
 }
 
 export default {
+  fill__interetAidesVeloElectrique,
   fill__interetBafa,
   fill__interetPermisDeConduire,
   fill_sortie_region_academique,

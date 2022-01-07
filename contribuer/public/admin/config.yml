@@ -46,10 +46,9 @@ fields:
         widget: number
         step: -1
   field_age: &field_age
+    <<: *field_number
     label: Age
     name: age
-    widget: object
-    <<: *field_number
   field_regions: &field_regions
     label: Condition géographique régionale
     name: regions

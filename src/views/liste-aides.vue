@@ -54,12 +54,12 @@ export default {
         })
 
         const institutions = benefits.reduce((accum, benefit) => {
-          const institution = accum[benefit.institution.id] || {
-            ...institutionsMap[benefit.institution.id],
+          const institution = accum[benefit.institution.slug] || {
+            ...institutionsMap[benefit.institution.slug],
             benefits: [],
           }
           institution.benefits.push(benefit)
-          accum[institution.id] = institution
+          accum[institution.slug] = institution
 
           return accum
         }, {})

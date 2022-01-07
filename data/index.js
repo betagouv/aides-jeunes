@@ -5,7 +5,8 @@ const customBenefits = require("./benefits/custom/index")
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
     const item = {
-      id: data.slug,
+      slug: data.slug,
+      id: data.id || data.slug,
       label: data.name,
       imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
       benefitsIds: [],

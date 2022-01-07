@@ -42,8 +42,8 @@ function generate_benefit_list(institutions) {
     .filter((b) => !b.discard)
     .map((b) => {
       return {
-        label: "Aide à l'achat d'un vélo : " + b.title,
-        description: b.description || "Aide à l'achat d'un vélo : " + b.title,
+        label: `Aide à l'achat d'un vélo : ${b.title}`,
+        description: b.description || `Aide à l'achat d'un vélo : ${b.title}`,
         id: b.id,
         collectivity: b.collectivity,
         title: b.title,
@@ -51,7 +51,7 @@ function generate_benefit_list(institutions) {
         type: "float",
         periodicite: "ponctuelle",
         montant: 1,
-        link: "https://mock",
+        link: b.url,
       }
     })
 }

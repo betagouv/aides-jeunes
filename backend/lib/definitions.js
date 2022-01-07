@@ -1,6 +1,6 @@
 const concat = require("lodash/concat")
 
-const ressources = require("../../lib/Resources")
+const ressources = require("../../lib/resources")
 
 const famille = {
   bourse_lycee: Boolean,

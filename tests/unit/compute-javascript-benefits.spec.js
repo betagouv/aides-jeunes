@@ -4,7 +4,7 @@ const {
   testProfileEligibility,
   testGeographicalEligibility,
   computeJavascriptBenefits,
-} = require("../../lib/Benefits/compute-javascript")
+} = require("../../lib/benefits/compute-javascript")
 import benefits from "@/../data/all"
 
 describe("computeAides", function () {

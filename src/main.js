@@ -1,14 +1,14 @@
 import "core-js/stable"
 import { createApp, h } from "vue"
-import App from "./App.vue"
+import App from "./app.vue"
 
 import router from "./router"
 import store from "./store"
 
 import moment from "moment"
 
-import ScrollService from "./plugins/ScrollService"
-import StateService from "./plugins/StateService"
+import ScrollService from "./plugins/scroll-service"
+import StateService from "./plugins/state-service"
 
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
@@ -19,7 +19,7 @@ import "@/styles/main.scss"
 
 import AnalyticsDirective from "./directives/analytics"
 import MailDirective from "./directives/mail"
-import SelectOnClickDirective from "./directives/selectOnClick"
+import SelectOnClickDirective from "./directives/select-on-click"
 
 import { iframeResizerContentWindow } from "iframe-resizer"
 

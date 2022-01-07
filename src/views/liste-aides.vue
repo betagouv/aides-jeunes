@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Institution from "@/lib/Institution"
+import Institution from "@/lib/institution"
 
 const TYPES = {
   national: "Aides nationales",

@@ -10,11 +10,11 @@ const buildOpenFiscaIndividu = require("./individu")
 const buildOpenFiscaMenage = require("./menage")
 const migrations = require("../../migrations")
 
-const propertyMove = require("./propertyMove")
-const last3MonthsDuplication = require("./last3MonthsDuplication")
+const propertyMove = require("./property-move")
+const last3MonthsDuplication = require("./last3-months-duplication")
 const {
   filterByInterestFlag,
-} = require("../../../../lib/Benefits/FilterInterestFlag")
+} = require("../../../../lib/benefits/filter-interest-flag")
 
 function dispatchIndividuals(situation) {
   const individus = mapIndividus(situation)

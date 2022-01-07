@@ -30,7 +30,7 @@ start_mes_aides: &start_mes_aides
   run:
     name: Start Mes Aides
     command: |
-      cp backend/config/continuous_integration.js backend/config/production.js
+      cp backend/config/continuous-integration.js backend/config/production.js
       npm start
     background: true
 
@@ -106,7 +106,7 @@ jobs:
       - run:
           name: Build assets
           command: |
-            cp backend/config/continuous_integration.js backend/config/production.js
+            cp backend/config/continuous-integration.js backend/config/production.js
             npm run build
       - persist_to_workspace:
           root: .

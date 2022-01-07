@@ -11,13 +11,12 @@ conditions:
     Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou
     Réunion">en France</abbr> depuis plus de 3 mois.
 link: https://www.service-public.fr/particuliers/vosdroits/F10027
-form: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
-teleservice: https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC
+form: >-
+  https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
+teleservice: >-
+  https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC
+forms: {}
 prefix: la
-extra:
-  - id: cmu_c
-    entity: familles
-    type: bool
 entity: familles
 type: mixed
 participation: true

@@ -19,29 +19,6 @@ teleservices:
   msa: http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643
 entity: familles
 isBaseRessourcesPatrimoine: true
-uncomputability:
-  primo_accedant:
-    reason:
-      user: >-
-        vous êtes <abbr title="Non propriétaire de votre résidence principale
-        dans les deux années précédant l’achat de votre résidence
-        actuelle">primo-accédant</abbr> à la propriété de votre résidence
-        principale
-      admin: le demandeur est primo-accédant de sa résidence principale
-    solution: >-
-      Le <a target="_blank" rel="noopener"
-      href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur
-      de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre
-      bien.
-  locataire_foyer:
-    reason:
-      user: vous logez dans un foyer
-      admin: le demandeur loge dans un foyer
-    solution: >-
-      Le <a target="_blank" rel="noopener"
-      href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur
-      de la CAF</a> vous donnera des estimations selon les différentes
-      conventions possibles de votre foyer.
 floorAt: 10
 prefix: les
 msa: true

@@ -47,6 +47,8 @@ const computeParameter = (parameter, date) => {
   return parametersList[parameter]
 }
 
+module.exports.parametersList = parametersList
+
 module.exports.getParameter = (parameter, date) => {
   return computeParameter(parameter, date)
 }

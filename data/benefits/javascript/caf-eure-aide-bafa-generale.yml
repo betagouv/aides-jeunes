@@ -7,7 +7,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf</a>.
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur ou égal à 600 € le mois de la demande.
   - Dépendre du régime général de la sécurité sociale.
 conditions_generales:
   - type: age
@@ -16,6 +15,9 @@ conditions_generales:
   - type: departements
     values:
       - "27"
+  - type: quotient_familial
+    floor: 600
+    period: month
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-eure/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 form: https://www.caf.fr/sites/default/files/caf/271/Documents/DEM_BAFA_BAFD.pdf

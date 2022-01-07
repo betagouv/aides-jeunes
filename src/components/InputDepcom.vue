@@ -101,7 +101,7 @@ export default {
             this.$matomo?.trackEvent(
               "General",
               "Depcom introuvable",
-               `Code postal : ${this.codePostalValue}`
+              `Code postal : ${this.codePostalValue}`
             )
             this.$store.dispatch(
               "updateError",

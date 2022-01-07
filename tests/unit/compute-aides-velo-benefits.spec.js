@@ -1,7 +1,7 @@
 const expect = require("expect")
 const {
   computeAidesVeloBenefits,
-} = require("../../lib/Benefits/compute-aides-velo")
+} = require("../../lib/benefits/compute-aides-velo")
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {

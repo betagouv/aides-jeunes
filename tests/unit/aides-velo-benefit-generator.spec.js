@@ -12,14 +12,12 @@ describe("aides velo benefit generator", function () {
       (b) => b.collectivity.kind === "code insee"
     )
     console.log(missingCommune.map((b) => b.description).join("\n"))
-    /*    expect(
-      missingCommune
-    ).toEqual([])*/
 
     const missingEPCI = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "epci"
     )
     console.log(missingEPCI.map((b) => b.description).join("\n"))
+
     if (missingEPCI.length) {
       var epci = require("@etalab/decoupage-administratif/data/epci.json")
 
@@ -27,9 +25,11 @@ describe("aides velo benefit generator", function () {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
         )
-        b.debug = `publicId: '${EPCIMatch?.code}'`
+        b.debug = `id:  '${EPCIMatch?.code}'`
       })
     }
-    expect(missingEPCI).toEqual([])
+
+    expect(missingCommune.length).toEqual(0)
+    expect(missingEPCI.length).toEqual(0)
   })
 })

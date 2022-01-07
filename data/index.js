@@ -56,7 +56,7 @@ function generate(collections, customBenefits, aidesVeloBenefitListGenerator) {
     ...collections.benefits_openfisca.items,
     ...customBenefits,
     ...aidesVeloBenefits.filter((b) => b.institution),
-  ]
+  ].map((b) => Object.assign({}, b))
 
   const benefitsMap = {}
 

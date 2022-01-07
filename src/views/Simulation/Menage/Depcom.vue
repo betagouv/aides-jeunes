@@ -23,7 +23,6 @@ export default {
   components: {
     ActionButtons,
     InputDepCom,
-    Warning,
     WarningMessage,
   },
   data: function () {

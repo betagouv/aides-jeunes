@@ -22,8 +22,7 @@ conditions_generales:
       - "86"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1200
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa

@@ -15,8 +15,7 @@ conditions_generales:
       - "47"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 856
+    floor: 856
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
 instructions: https://www.caf.fr/sites/default/files/caf/471/Bafa_conditions_2021.pdf

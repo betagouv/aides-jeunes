@@ -27,8 +27,7 @@ conditions_generales:
       - "17"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 760
+    floor: 760
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
 instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd

@@ -11,8 +11,7 @@ conditions_generales:
       - "27"
   - type: quotient_familial
     period: year
-    operator: <
-    value: 25830
+    floor: 25830
 profils:
   - type: apprenti
 link: https://www.bourgognefranchecomte.fr/node/332

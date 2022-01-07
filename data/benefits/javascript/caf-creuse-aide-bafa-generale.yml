@@ -24,8 +24,7 @@ conditions_generales:
       - "23"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1200
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa

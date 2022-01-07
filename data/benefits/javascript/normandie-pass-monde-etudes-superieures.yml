@@ -10,8 +10,7 @@ conditions_generales:
       - "28"
   - type: quotient_familial
     period: year
-    operator: <
-    value: 30000
+    floor: 30000
 profils:
   - type: enseignement_superieur
   - type: apprenti

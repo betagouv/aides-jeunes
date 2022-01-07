@@ -20,8 +20,7 @@ conditions_generales:
       - "62"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1000
+    floor: 1000
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
 instructions: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement

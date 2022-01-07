@@ -19,8 +19,7 @@ conditions_generales:
     values:
       - "03"
   - type: quotient_familial
-    operator: <
-    value: 900
+    floor: 900
     period: month
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/enfance-et-jeunesse/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur

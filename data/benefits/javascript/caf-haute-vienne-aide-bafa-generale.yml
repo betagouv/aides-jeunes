@@ -24,8 +24,7 @@ conditions_generales:
       - "87"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1200
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-vienne/offre-de-service/enfance-et-jeunesse/vous-voulez-passer-le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-vienne/offre-de-service/enfance-et-jeunesse/vous-voulez-passer-le-bafa

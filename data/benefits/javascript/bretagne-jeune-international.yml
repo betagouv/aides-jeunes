@@ -12,8 +12,7 @@ conditions_generales:
       - "53"
   - type: quotient_familial
     period: year
-    operator: <
-    value: 25000
+    floor: 25000
 profils:
   - type: enseignement_superieur
 link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/

@@ -18,8 +18,7 @@ conditions_generales:
       - "10"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1456
+    floor: 1456
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-aube/offre-de-service/petite-enfance/bourses-bafa-et-bafd
 form: https://www.caf.fr/sites/default/files/caf/101/Documents/Bafa/Bourse%20Compl%C3%A9mentaire%20BAFA%20stage%20de%20base.pdf

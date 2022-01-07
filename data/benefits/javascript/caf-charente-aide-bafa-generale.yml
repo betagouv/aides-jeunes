@@ -22,8 +22,7 @@ conditions_generales:
       - "16"
   - type: quotient_familial
     period: month
-    operator: <=
-    value: 1200
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-charente/offre-de-service/enfance-et-jeunesse/le-bafa-vous-tente
 instructions: https://www.caf.fr/allocataires/caf-de-la-charente/offre-de-service/enfance-et-jeunesse/le-bafa-vous-tente

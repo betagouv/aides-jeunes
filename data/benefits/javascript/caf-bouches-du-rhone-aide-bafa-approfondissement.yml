@@ -19,8 +19,7 @@ conditions_generales:
       - "13"
   - type: quotient_familial
     period: month
-    operator: <
-    value: 900
+    floor: 900
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
 instructions: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse

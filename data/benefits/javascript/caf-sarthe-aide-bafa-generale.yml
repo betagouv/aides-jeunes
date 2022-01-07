@@ -15,8 +15,7 @@ conditions_generales:
       - "72"
   - type: quotient_familial
     period: month
-    operator: <
-    value: 700
+    floor: 700
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-sarthe/offre-de-service/enfance-et-jeunesse/aides-aux-projets-pour-les-jeunes-0
 instructions: https://www.caf.fr/allocataires/caf-de-la-sarthe/offre-de-service/enfance-et-jeunesse/aides-aux-projets-pour-les-jeunes-0

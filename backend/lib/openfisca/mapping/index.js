@@ -8,7 +8,6 @@ const cloneDeep = require("lodash/cloneDeep")
 const common = require("./common")
 const buildOpenFiscaIndividu = require("./individu")
 const buildOpenFiscaMenage = require("./menage")
-const migrations = require("../../migrations")
 
 const propertyMove = require("./property-move")
 const last3MonthsDuplication = require("./last3-months-duplication")
@@ -220,9 +219,7 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
 exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 exports.buildOpenFiscaRequest = function (sourceSituation) {
-  const situation = sourceSituation.toObject
-    ? migrations.apply(sourceSituation).toObject()
-    : cloneDeep(sourceSituation)
+  const situation = cloneDeep(sourceSituation)
 
   const testCase = dispatchIndividuals(situation)
 

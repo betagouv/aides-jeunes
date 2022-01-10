@@ -22,7 +22,6 @@ const AnswerSchema = new mongoose.Schema(
     ressourcesFiscales: Object,
     patrimoine: Object,
     dateDeValeur: Date,
-    version: Number,
     abtesting: Object,
     createdAt: { type: Date, default: Date.now },
     modifiedFrom: String,

@@ -238,7 +238,6 @@ const situation = {
     enum: ["new", "test", "investigation"],
   },
   token: String,
-  version: Number,
 }
 
 module.exports = {

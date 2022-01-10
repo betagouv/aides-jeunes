@@ -37,7 +37,6 @@ function defaultStore() {
       all: [],
       current: [],
       dateDeValeur: new Date(),
-      version: 3,
     },
     message: {
       text: null,

@@ -14,3 +14,4 @@ type: float
 unit: "€"
 entity: menages
 periodicite: annuelle
+openfiscaPeriod: thisYear

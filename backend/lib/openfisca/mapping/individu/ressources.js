@@ -18,10 +18,13 @@ function salaireNetToImposable(value, period, individu) {
     // Moreover if the individu is an "apprenti" it should be annualy deducted
     const date = new Date(period)
     const hours = getParameter(
-      "marche_travail.salaire_minimum.nb_heure_travail_mensuel",
+      "marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel",
       date
     )
-    const rate = getParameter("marche_travail.salaire_minimum.smic_h_b", date)
+    const rate = getParameter(
+      "marche_travail.salaire_minimum.smic.smic_b_horaire",
+      date
+    )
     return Math.max(0, result - hours * rate)
   }
   return result

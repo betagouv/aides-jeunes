@@ -9,7 +9,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Etre stagiaire ou bénéficiaire de l'aide au logement au moment du stage.
-  - Avoir un quotient familial inférieur ou égal à 850€.
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,6 +16,9 @@ conditions_generales:
   - type: departements
     values:
       - "14"
+  - type: quotient_familial
+    period: month
+    floor: 850
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-calvados/offre-de-service/enfance-et-jeunesse/bafa-bafd
 form: https://www.caf.fr/sites/default/files/caf/141/Caf.fr/Offre%20de%20service/Enfance%20Jeunesse/Dem%20BAFA%20approfondis%202017.pdf

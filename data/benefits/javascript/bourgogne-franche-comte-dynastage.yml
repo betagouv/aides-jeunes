@@ -5,19 +5,20 @@ description: L’aide Dynastage est une aide financière versée aux apprentis q
 conditions:
   - Être un apprenti infra-Bac inscrit dans un CFA.
   - Effectuer un stage d'une durée de deux semaines à 6 mois.
-  - Avoir un quotient familial inférieur à 25 830 € (avis d’imposition année N-1
-    sur revenus N-2).
-link: https://www.bourgognefranchecomte.fr/node/332
-prefix: l'aide
-type: float
-unit: €
-legend: maximum
-interestFlag: _interetEtudesEtranger
-montant: 2280
-periodicite: autre
 conditions_generales:
   - type: regions
     values:
       - "27"
+  - type: quotient_familial
+    period: year
+    floor: 25830
 profils:
   - type: apprenti
+link: https://www.bourgognefranchecomte.fr/node/332
+prefix: l'aide
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 2280
+interestFlag: _interetEtudesEtranger

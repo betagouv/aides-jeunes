@@ -136,19 +136,12 @@ function mapIndividus(situation) {
     }, {})
 }
 
-function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
-  const prestationsWithInterest = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return filterByInterestFlag(definition, demandeur)
-    }
-  )
-
+function giveValueToRequestedVariables(testCase, prestations, periods, value) {
   if (!(periods instanceof Array)) {
     periods = [periods]
   }
 
-  forEach(prestationsWithInterest, function (definition, prestationName) {
+  forEach(prestations, function (definition, prestationName) {
     forEach(testCase[definition.entity], function (entity) {
       entity[prestationName] = entity[prestationName] || {}
       forEach(periods, function (period) {
@@ -244,9 +237,13 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   const prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.type || definition.type === "float"
+      return (
+        (!definition.type || definition.type === "float") &&
+        !definition.openfiscaPeriod
+      )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieres,
@@ -259,10 +256,12 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     function (definition) {
       return (
         (!definition.type || definition.type === "float") &&
-        definition.setToZeroRecently
+        definition.setToZeroRecently &&
+        !definition.openfiscaPeriod
       )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieresAtZeroRecently,
@@ -270,12 +269,31 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     0
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
-  giveValueToRequestedVariables(
-    testCase,
-    periods.thisMonth,
-    null,
-    situation.demandeur
+
+  const prestationsWithInterest = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return filterByInterestFlag(definition, situation.demandeur)
+    }
   )
+
+  const openfiscaPeriods = new Set()
+  Object.values(prestationsWithInterest).forEach((definition) => {
+    openfiscaPeriods.add(definition.openfiscaPeriod)
+  })
+
+  openfiscaPeriods.forEach((value) => {
+    const prestations = pickBy(prestationsWithInterest, function (definition) {
+      return definition.openfiscaPeriod === value
+    })
+
+    giveValueToRequestedVariables(
+      testCase,
+      prestations,
+      value ? periods[value] : periods.thisMonth,
+      null
+    )
+  })
 
   return applyHeuristicsAndFix(testCase, sourceSituation)
 }

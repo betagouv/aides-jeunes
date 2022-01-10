@@ -7,7 +7,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf</a>.
 conditions:
   - Etre allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur ou égal à 800€.
 conditions_generales:
   - type: age
     operator: ">="
@@ -18,6 +17,9 @@ conditions_generales:
   - type: departements
     values:
       - "41"
+  - type: quotient_familial
+    period: month
+    floor: 800
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-loir-et-cher/offre-de-service/enfance-et-jeunesse/financer-son-bafa
 form: https://www.caf.fr/sites/default/files/caf/411/PDF%202021/Formulaire%20demande%20aide%20Bafa%2041%20v5.pdf

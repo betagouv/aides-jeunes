@@ -7,9 +7,9 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
 conditions:
-  - Avoir un quotient familial inférieur à 900€.
   - Effectuer votre stage en France.
-  - Être à la charge de vos parents bénéficiaires de prestations familiales pour vous si vous avez entre 17 et 20 ans.
+  - Être à la charge de vos parents bénéficiaires de prestations familiales pour
+    vous si vous avez entre 17 et 20 ans.
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,6 +17,9 @@ conditions_generales:
   - type: departements
     values:
       - "13"
+  - type: quotient_familial
+    period: month
+    floor: 900
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
 instructions: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse

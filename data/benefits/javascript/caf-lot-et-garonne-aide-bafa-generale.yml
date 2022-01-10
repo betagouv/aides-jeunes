@@ -5,8 +5,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   session en complément de <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
-conditions:
-  - Avoir un quotient familial inférieur ou égal à 856€.
+conditions: []
 conditions_generales:
   - type: age
     operator: ">="
@@ -14,6 +13,9 @@ conditions_generales:
   - type: departements
     values:
       - "47"
+  - type: quotient_familial
+    period: month
+    floor: 856
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
 instructions: https://www.caf.fr/sites/default/files/caf/471/Bafa_conditions_2021.pdf

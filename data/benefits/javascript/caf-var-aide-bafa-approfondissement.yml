@@ -8,7 +8,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Être allocataire ou rattaché(e) au dossier allocataire de vos parents, ou
     bien être stagiaire orphelin(e) ou placé(e) en famille d’accueil.
-  - Avoir un quotient familial inférieur ou égal à 1000 euros.
 conditions_generales:
   - type: age
     operator: ">="
@@ -19,6 +18,9 @@ conditions_generales:
   - type: departements
     values:
       - "83"
+  - type: quotient_familial
+    period: month
+    floor: 1000
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-var/offre-de-service/j-ai-un-ou-plusieurs-enfants-de-6-a-18-ans/aide-aux-formations-bafa
 form: https://www.caf.fr/sites/default/files/caf/831/Documents/2020%20BAFA/Demande%20aide%20Bafa%20Caf%20du%20Var.pdf

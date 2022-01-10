@@ -10,7 +10,6 @@ conditions:
   - Effectuer la session de formation auprès d’un <a
     target="_blank"rel="noopener"href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
     établissement conventionné.
-  - Avoir un quotient familial égal ou inférieur à 1200 €.
   - Signer une charte d’engagement pour le suivi intégral de la formation.
   - Ne pas être pris en charge à 100 % par un employeur.
 conditions_generales:
@@ -23,6 +22,9 @@ conditions_generales:
   - type: departements
     values:
       - "23"
+  - type: quotient_familial
+    period: month
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa

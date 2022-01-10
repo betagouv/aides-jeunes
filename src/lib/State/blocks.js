@@ -194,44 +194,6 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == "etudiant",
-              steps: [r("_continuite_etudes")],
-            },
-            {
-              isActive: (subject) =>
-                !subject._continuite_etudes &&
-                ["etudiant", "chomeur", "inactif"].includes(subject.activite),
-              steps: [
-                r("plus_haut_diplome_niveau"),
-                {
-                  isActive: (subject) =>
-                    ["niveau_5", "niveau_6", "niveau_7", "niveau_8"].includes(
-                      subject.plus_haut_diplome_niveau
-                    ),
-                  steps: [
-                    r("plus_haut_diplome_date_obtention"),
-                    {
-                      isActive: (subject) =>
-                        subject.plus_haut_diplome_date_obtention >=
-                        new Date("2019-12-31 00:00:00"),
-                      steps: [
-                        r("_boursier_derniere_annee_etudes"),
-                        {
-                          isActive: (subject) =>
-                            subject._boursier_derniere_annee_etudes,
-                          steps: [
-                            r(
-                              "aide_jeunes_diplomes_anciens_boursiers_base_ressources"
-                            ),
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
               isActive: (subject, situation) => {
                 const age = Individu.age(
                   subject,

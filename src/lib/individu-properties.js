@@ -75,13 +75,6 @@ const STEPS = {
     },
   },
 
-  aide_jeunes_diplomes_anciens_boursiers_base_ressources: {
-    question:
-      "Quel montant mensuel de bourse receviez-vous lors de votre dernière année d'études ?",
-    questionType: "number",
-    unit: "€",
-  },
-
   alternant: {
     question: (component) => {
       return `${Individu.label(component.entity, "être")} en alternance ?`
@@ -384,52 +377,6 @@ const STEPS = {
     ],
   },
 
-  plus_haut_diplome_date_obtention: {
-    question: (component) => {
-      return `Quand ${Individu.label(
-        component.entity,
-        "avoir"
-      )} obtenu votre plus haut diplôme ?
-      (approximativement)`
-    },
-    questionType: "date",
-  },
-
-  plus_haut_diplome_niveau: {
-    question: "Quelle le niveau de votre plus haut diplôme ?",
-    questionType: "enum",
-    items: [
-      {
-        value: "niveau_3",
-        label: "CAP, DNP, CFG",
-      },
-      {
-        value: "niveau_4",
-        label: "Baccalauréat",
-      },
-      {
-        value: "niveau_5",
-        label: "BTS, CPGE",
-      },
-      {
-        value: "niveau_6",
-        label: "Licence, BUT",
-      },
-      {
-        value: "niveau_7",
-        label: "Bac+5 Master",
-      },
-      {
-        value: "niveau_8",
-        label: "Bac+8 Doctorat",
-      },
-      {
-        value: "non_renseigne",
-        label: "Aucun",
-      },
-    ],
-  },
-
   regime_securite_sociale: {
     question: (component) => {
       return component.entity.enfant_a_charge[
@@ -579,14 +526,6 @@ const STEPS = {
         },
       ]
     },
-  },
-
-  _boursier_derniere_annee_etudes: {
-    question: "Étiez-vous boursier lors de votre dernière année d'études ?",
-  },
-
-  _continuite_etudes: {
-    question: "Avez-vous prévu de continuer vos études l'an prochain ?",
   },
 
   _contrat_alternant: {

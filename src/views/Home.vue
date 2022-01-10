@@ -32,7 +32,12 @@
         </div>
       </div>
       <div class="aj-home-illustration">
-        <img src="@/assets/images/home_illustration.png" alt="Portrait jeune" />
+        <div>
+          <img
+            src="@/assets/images/home_illustration.png"
+            alt="Portrait jeune"
+          />
+        </div>
       </div>
     </div>
   </div>

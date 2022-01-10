@@ -24,9 +24,9 @@ describe("benefit descriptions", function () {
       },
     }
 
-    const additionnalBenefitsAttributes = { etat_benefit: { test: () => {} } }
+    const additionnalBenefitsAttribute = { etat_benefit: { test: () => {} } }
 
-    const result = subject(collections, additionnalBenefitsAttributes)
+    const result = subject(collections, additionnalBenefitsAttribute)
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()

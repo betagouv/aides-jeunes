@@ -65,9 +65,9 @@
           Votre simulation n'a pas permis de découvrir de nouveaux droits.
         </h2>
         <p class="aj-results-intro">
-          Si vous êtes dans une situation difficile, d'<router-link to="/sos">
-            autres solutions existent </router-link
-          >.
+          Nous mettons à jour régulièrement le simulateur en ajoutant de
+          nouvelles aides. N'hésitez pas à faire une simulation dans les
+          prochains mois.
         </p>
       </div>
 

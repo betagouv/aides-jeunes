@@ -114,7 +114,7 @@ export default {
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {
       return
-    } else if (this.$route.query && this.$route.query.situationId) {
+    } else if (this.$route.query?.situationId) {
       if (this.$store.state.situationId !== this.$route.query.situationId) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
@@ -138,10 +138,9 @@ export default {
           .catch((error) => {
             this.$store.commit(
               "setSaveSituationError",
-              (error.response && error.response.data) || error
+              error.response?.data || error
             )
-            this.$matomo &&
-              this.$matomo.trackEvent("General", "Erreur sauvegarde simulation")
+            this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.$store.getters.hasResults) {
         this.$store.dispatch("compute")
@@ -153,20 +152,20 @@ export default {
       switch (type) {
         case "setResults": {
           calculs.resultats.droitsEligibles.forEach(function (d) {
-            vm.$matomo && vm.$matomo.trackEvent("General", "show", d.label)
+            vm.$matomo?.trackEvent("General", "show", d.label)
           })
           this.sendStatistics(this.droits, "show")
           break
         }
         case "saveComputationFailure": {
-          vm.$matomo && vm.$matomo.trackEvent("General", "Error")
+          vm.$matomo?.trackEvent("General", "Error")
           break
         }
       }
     })
   },
   beforeUnmount: function () {
-    this.stopSubscription && this.stopSubscription()
+    this.stopSubscription?.()
   },
   methods: {
     isEmpty: function (array) {

@@ -44,13 +44,12 @@ export default {
       this.onSubmit()
     },
     goBack: function () {
-      window && window.history.back()
-      this.$matomo &&
-        this.$matomo.trackEvent(
-          "Parcours",
-          "Bouton précédent",
-          this.$route.fullPath
-        )
+      window?.history.back()
+      this.$matomo?.trackEvent(
+        "Parcours",
+        "Bouton précédent",
+        this.$route.fullPath
+      )
     },
   },
 }

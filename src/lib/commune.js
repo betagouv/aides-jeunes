@@ -22,9 +22,7 @@ const Commune = {
   },
   getMostPopulated: function (communes) {
     return (
-      maxBy(communes, "population") ||
-      (communes && communes.length && communes[0]) ||
-      {}
+      maxBy(communes, "population") || (communes?.length && communes?.[0]) || {}
     )
   },
 }

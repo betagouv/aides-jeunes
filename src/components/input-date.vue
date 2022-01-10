@@ -162,7 +162,7 @@ export default {
     update: function (name) {
       this.currentState = stateManager(this.currentState, {
         element: name,
-        length: (this[name] && this[name].length) || 0,
+        length: this[name]?.length || 0,
       })
 
       const dt = moment(this.date, "YYYY-MM-DD", true)

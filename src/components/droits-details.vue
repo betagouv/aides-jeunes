@@ -40,10 +40,7 @@
               itemprop="termsOfService"
             />
           </p>
-          <div
-            v-if="droit.conditions && droit.conditions.length"
-            class="aj-droit-conditions"
-          >
+          <div v-if="droit.conditions?.length" class="aj-droit-conditions">
             <p class="aj-droit-conditions-title"
               >Pour en bénéficier, vous devez également :</p
             >
@@ -194,12 +191,11 @@ export default {
     alertBrokenLink() {
       this.brokenLinkButtonState = "showThanksMessage"
       setTimeout(() => (this.brokenLinkButtonState = null), 5000)
-      this.$matomo &&
-        this.$matomo.trackEvent(
-          "General",
-          "Erreur lien aide invalide",
-          this.droit.label
-        )
+      this.$matomo?.trackEvent(
+        "General",
+        "Erreur lien aide invalide",
+        this.droit.label
+      )
     },
   },
 }

@@ -35,7 +35,7 @@
       >
     </div>
     <div>
-      <div v-if="places && places.length">
+      <div v-if="places?.length">
         <div v-for="(etablissement, index) in places" :key="index">
           <Etablissement :etablissement="etablissement" />
         </div>

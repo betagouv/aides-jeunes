@@ -431,7 +431,7 @@ router.afterEach((to) => {
 
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
-    if (title && title.tabIndex < 0) {
+    if (title?.tabIndex < 0) {
       // default is -1... https://html.spec.whatwg.org/multipage/interaction.html#dom-tabindex
       title.tabIndex = -1 //...yet it has to be set to -1 to allow `.focus()`
       title.focus()

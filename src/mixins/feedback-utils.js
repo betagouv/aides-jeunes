@@ -1,13 +1,9 @@
 export default {
   computed: {
     montant: function () {
-      const base =
-        (this.$store.state.calculs &&
-          this.$store.state.calculs.resultats &&
-          this.$store.state.calculs.resultats.droitsEligibles) ||
-        []
+      const base = this.$store.state.calculs?.resultats?.droitsEligibles || []
       const benefit = base.filter((d) => d.id === this.droit.id).shift()
-      return (benefit && benefit.montant) || 0
+      return benefit?.montant || 0
     },
     situation: function () {
       return this.$store.getters.situation

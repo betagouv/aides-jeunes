@@ -86,10 +86,8 @@ function mock({ app }) {
 
   app.use(function (err, req, res, next) {
     res
-      .status((err.response && err.response.status) || 500)
-      .send(
-        (err.response && err.response.data) || err.message || err.error || err
-      )
+      .status(err.response?.status || 500)
+      .send(err.response?.data || err.message || err.error || err)
     next()
   })
 }

@@ -114,7 +114,7 @@ export default {
     },
 
     goBack() {
-      window && window.history.back()
+      window?.history.back()
     },
 
     questionsPerStep(step) {
@@ -132,12 +132,10 @@ export default {
       if (ENTITIES_PROPERTIES[step.entity]) {
         const answer = getStepAnswer(this.$store.state.answers.all, step)
 
-        const entity =
-          ENTITIES_PROPERTIES[step.entity].loadEntity &&
-          ENTITIES_PROPERTIES[step.entity].loadEntity({
-            $store: this.$store,
-            params: step,
-          })
+        const entity = ENTITIES_PROPERTIES[step.entity].loadEntity?.({
+          $store: this.$store,
+          params: step,
+        })
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
           value: answer,

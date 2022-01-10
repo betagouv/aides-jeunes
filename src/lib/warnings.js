@@ -19,7 +19,7 @@ const texts = {
 
 const Warning = {
   get(attribute, variation) {
-    return texts[attribute] && texts[attribute](variation)
+    return texts[attribute]?.(variation)
   },
 }
 

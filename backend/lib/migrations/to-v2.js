@@ -9,7 +9,7 @@ function updatePerson(p) {
   if (!p) {
     return
   }
-  p.bourse_criteres_sociaux_echelon = p && p.echelon_bourse
+  p.bourse_criteres_sociaux_echelon = p.echelon_bourse
 
   return _.omit(p, "echelon_bourse")
 }

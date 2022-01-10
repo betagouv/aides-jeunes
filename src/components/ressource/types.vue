@@ -75,8 +75,7 @@ export default {
 
     const selectedTypes = {}
     types.forEach((type) => {
-      selectedTypes[type.id] =
-        selectedRessources && selectedRessources.includes(type.id)
+      selectedTypes[type.id] = selectedRessources?.includes(type.id)
     })
 
     return {

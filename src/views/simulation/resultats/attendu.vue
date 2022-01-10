@@ -299,8 +299,7 @@ export default {
       this.selection = [].concat(...this.selection).concat({ id: null })
     },
     trackMontantAttendu(type) {
-      this.$matomo &&
-        this.$matomo.trackEvent("Montant attendu", type, this.$route.path)
+      this.$matomo?.trackEvent("Montant attendu", type, this.$route.path)
     },
     remove: function (index) {
       const next = this.selection.slice()

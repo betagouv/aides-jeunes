@@ -27,9 +27,7 @@ const STEPS = {
           value: -2,
           label: "Non, j'ai emmenagé il y a moins de 3 mois",
           active:
-            component.$store.getters.situation.menage
-              .statut_occupation_logement &&
-            component.$store.getters.situation.menage.statut_occupation_logement.startsWith(
+            component.$store.getters.situation.menage.statut_occupation_logement?.startsWith(
               "locataire"
             ),
         },

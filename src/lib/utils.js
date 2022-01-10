@@ -1,7 +1,7 @@
 import moment from "moment"
 
 export const executeFunctionOrReturnValue = (obj, name, component) => {
-  return obj && obj[name]
+  return obj?.[name]
     ? typeof obj[name] == "function"
       ? obj[name](component)
       : obj[name]
@@ -27,7 +27,7 @@ export const displayDateValue = (value) => {
 
 export const displayEnumValue = (value, items) => {
   const result = items.find((item) => item.value === value)
-  return result && result.label
+  return result?.label
 }
 
 export const displayYesNoValue = (value) => {

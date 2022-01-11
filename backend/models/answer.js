@@ -8,20 +8,29 @@ const { generateSituation } = require("../../lib/situations")
 const computeAides = mesAides.computeAides.bind(benefits)
 
 const answer = {
-  entityName: String,
+  entityName: {
+    type: String,
+    required: true,
+  },
   fieldName: String,
   id: String,
-  value: Object,
+  value: {
+    type: Object,
+    required: true,
+  },
 }
 
 const AnswerSchema = new mongoose.Schema(
   {
-    all: [answer],
-    current: [answer],
+    all: { type: [answer], required: true },
+    current: { type: [answer], required: true },
     enfants: [Number],
     ressourcesFiscales: Object,
     patrimoine: Object,
-    dateDeValeur: Date,
+    dateDeValeur: {
+      type: Date,
+      required: true,
+    },
     version: Number,
     abtesting: Object,
     createdAt: { type: Date, default: Date.now },

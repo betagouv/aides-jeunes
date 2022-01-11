@@ -44,7 +44,7 @@ function generate_benefit_list(institutions) {
       return {
         label: `Aide à l'achat d'un vélo : ${b.title}`,
         description: b.description || `Aide à l'achat d'un vélo : ${b.title}`,
-        id: b.id,
+        id: `aidesvelo_${b.id}`.replace(/[ .']+/g, "_"),
         collectivity: b.collectivity,
         title: b.title,
         institution: b.institution,

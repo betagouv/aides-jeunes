@@ -50,7 +50,6 @@ function generate_benefit_list(institutions) {
         institution: b.institution,
         type: "float",
         periodicite: "ponctuelle",
-        montant: 1,
         link: b.url,
       }
     })

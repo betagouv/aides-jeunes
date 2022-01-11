@@ -63,7 +63,11 @@ describe("computeAides", function () {
         },
       },
       foyers_fiscaux: {
-        _: {},
+        _: {
+          rfr: {
+            2012: 42,
+          },
+        },
       },
     }
   })

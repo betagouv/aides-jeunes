@@ -81,7 +81,6 @@ const answers = {
     },
   ],
   dateDeValeur: "2021-12-09T16:57:54.234Z",
-  version: 3,
   ressourcesFiscales: {
     demandeur: {
       salaire_imposable: undefined,

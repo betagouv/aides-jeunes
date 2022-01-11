@@ -4,7 +4,7 @@ const benefits = require("../../data/all")
 const generator = require("../../data/benefits/aides-velo-generator.js")
 
 describe("aides velo benefit generator", function () {
-  xit("maps all benefits to existing institutions", function () {
+  it("maps all benefits to existing institutions", function () {
     const list = generator(Object.values(benefits.institutionsMap))
     const missingInstitutionBenefits = list.filter((b) => !b.institution)
 
@@ -16,7 +16,6 @@ describe("aides velo benefit generator", function () {
     const missingEPCI = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "epci"
     )
-    console.log(missingEPCI.map((b) => b.description).join("\n"))
 
     if (missingEPCI.length) {
       var epci = require("@etalab/decoupage-administratif/data/epci.json")
@@ -28,6 +27,9 @@ describe("aides velo benefit generator", function () {
         b.debug = `id:  '${EPCIMatch?.code}'`
       })
     }
+    console.log(
+      missingEPCI.map((b) => `${b.description} - ${b.debug}`).join("\n")
+    )
 
     expect(missingCommune.length).toEqual(0)
     expect(missingEPCI.length).toEqual(0)

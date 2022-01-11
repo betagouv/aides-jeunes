@@ -17,6 +17,7 @@
 
 <script>
 import StatisticsMixin from "@/mixins/statistics"
+import ResultatsMixin from "@/mixins/resultats"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
@@ -33,7 +34,7 @@ let longLabels = {
 export default {
   name: "BenefitCtaLink",
   components: {},
-  mixins: [StatisticsMixin],
+  mixins: [ResultatsMixin, StatisticsMixin],
   props: {
     analyticsName: String,
     benefit: Object,
@@ -63,6 +64,7 @@ export default {
       return link
     },
     onClick: function (link) {
+      this.sendStatistics(this.droits, this.type, this.benefit.id)
       if (typeof link === "object") {
         window.localStorage.setItem(
           "trampoline",

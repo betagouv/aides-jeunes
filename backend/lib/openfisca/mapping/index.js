@@ -297,12 +297,12 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
 
   // Force RFR to be either present or restitued by OpenFisca
   const initialRFRValue =
-    testCase._.foyers_fiscaux?.rfr?.[periods.fiscalYear.id]
+    testCase.foyers_fiscaux._?.rfr?.[periods.fiscalYear.id]
   const newRFRValue = initialRFRValue !== undefined ? initialRFRValue : null
-  if (testCase._.foyers_fiscaux.rfr) {
-    testCase._.foyers_fiscaux.rfr[periods.fiscalYear.id] = newRFRValue
+  if (testCase.foyers_fiscaux._.rfr) {
+    testCase.foyers_fiscaux._.rfr[periods.fiscalYear.id] = newRFRValue
   } else {
-    testCase._.foyers_fiscaux.rfr = { [periods.fiscalYear.id]: newRFRValue }
+    testCase.foyers_fiscaux._.rfr = { [periods.fiscalYear.id]: newRFRValue }
   }
 
   return applyHeuristicsAndFix(testCase, sourceSituation)

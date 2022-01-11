@@ -7,6 +7,7 @@ describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {
     const benefits = [{ id: "aides . pays basque" }]
     const situation = {
+      dateDeValeur: "2021-01-01",
       menage: {
         _codePostal: "64100",
         depcom: "64102",
@@ -15,8 +16,17 @@ describe("computeAidesVeloBenefits", function () {
         _region: "75",
       },
     }
+    const openFiscaResponse = {
+      foyers_fiscaux: {
+        _: {
+          rfr: {
+            2019: 42,
+          },
+        },
+      },
+    }
     const results = []
-    computeAidesVeloBenefits(benefits, results, situation)
+    computeAidesVeloBenefits(benefits, results, situation, openFiscaResponse)
 
     expect(results.length).toBe(1)
   })

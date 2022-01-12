@@ -1,11 +1,4 @@
 module.exports = {
-  label: "carte transport scolaire liO",
-  description:
-    "Dès la rentrée, les transports scolaires régionaux d'Occitanie sont gratuits pour les élèves de la maternelle au lycée.",
-  entity: "individus",
-  type: "bool",
-  prefix: "La",
-  link: "https://lio.laregion.fr/transport-scolaire",
   customization: {
     D09: {
       link: "https://lio.laregion.fr/transports-ariege-scolaire",

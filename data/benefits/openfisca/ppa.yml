@@ -1,0 +1,22 @@
+label: prime d’activité
+periodicite: mensuelle
+type: float
+unit: €
+description: >-
+  La prime d’activité complète les revenus d’activité professionnelle des
+  travailleurs de 18 ans ou plus, des étudiants salariés et apprentis et des
+  non-salariés. La demande peut se faire à travers un téléservice sur, selon
+  votre cas, le site de la Caf ou de la MSA. Elle remplace le RSA activité et la
+  prime pour l’emploi depuis 2016.
+link: https://www.service-public.fr/particuliers/vosdroits/F2882
+teleservice: >-
+  https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/
+teleservices:
+  caf: >-
+    https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaprimedactivite/
+  msa: http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=44739105
+floorAt: 5
+prefix: la
+entity: familles
+msa: true
+institution: caf

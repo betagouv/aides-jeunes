@@ -23,7 +23,7 @@ module.exports = function (devServer) {
 
   devServer.app.use("/followups", require("./backend/followups"))
 
-  devServer.app.use(bodyParser.urlencoded({ limit: "1024kb" }))
+  devServer.app.use(bodyParser.urlencoded({ extended: true, limit: "1024kb" }))
 
   // Route to download a PDF
   let puppeteerArgs = {}

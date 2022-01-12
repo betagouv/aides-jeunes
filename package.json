@@ -82,7 +82,8 @@
     "vue": "^3.2.22",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",

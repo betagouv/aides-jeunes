@@ -14,9 +14,7 @@ function buildHref({ to, subject, body }) {
 }
 
 const MailDirective = {
-  // vnode is not used but sent to beforeMount nonetheless
-  // eslint-disable-next-line no-unused-vars
-  beforeMount(el, binding, vnode) {
+  beforeMount(el, binding) {
     el.setAttribute("href", buildHref(binding.value))
   },
   unmounted(el) {

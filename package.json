@@ -19,8 +19,8 @@
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
-    "cypress": "cypress run",
-    "cypress:open": "cypress open",
+    "cypress": "cypress run --config-file false",
+    "cypress:open": "cypress open --config-file false",
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "prettier:check": "prettier --check .",
@@ -44,7 +44,6 @@
     "@sentry/integrations": "^6.14.0",
     "@sentry/node": "^6.14.0",
     "@sentry/vue": "^6.14.0",
-    "@vue/compiler-sfc": "^3.2.23",
     "axios": "^0.24.0",
     "body-parser": "^1.19.0",
     "communes-lonlat": "^1.1.0",
@@ -59,15 +58,12 @@
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
     "font-awesome": "^4.7.0",
-    "frozen-moment": "^0.4.0",
     "haversine": "^1.1.1",
     "iframe-resizer": "^4.3.2",
     "jamstack-loader": "0.0.8",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
-    "kerberos": "^1.1.7",
     "lodash": "^4.17.21",
-    "mingo": "^4.2.0",
     "mjml": "^4.10.4",
     "mkdirp": "^1.0.4",
     "moment": "^2.29.1",
@@ -76,6 +72,8 @@
     "morgan": "^1.10.0",
     "puppeteer": "11.0.0",
     "require-from-string": "^2.0.2",
+    "sass": "^1.47.0",
+    "sass-loader": "^12.4.0",
     "sib-api-v3-sdk": "^8.2.1",
     "smooth-scroll": "^16.1.3",
     "template.data.gouv.fr": "^1.3.2",
@@ -92,7 +90,6 @@
     "@vue/cli-plugin-eslint": "^5.0.0-beta.7",
     "@vue/cli-plugin-unit-jest": "^5.0.0-beta.7",
     "@vue/cli-service": "^5.0.0-beta.7",
-    "@vue/test-utils": "1.2.2",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
     "argparse": "^2.0.1",
     "babel-core": "7.0.0-bridge.0",
@@ -109,14 +106,10 @@
     "memory-fs": "^0.5.0",
     "minimist": "^1.2.5",
     "mustache": "^4.2.0",
-    "postcss": "^8.3.11",
     "prettier": "2.4.1",
     "pretty-quick": "^3.1.2",
-    "sass": "^1.43.4",
-    "sass-loader": "^10.1.1",
     "webpack": "^5.64.3",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-dev-server": "^4.5.0"
+    "webpack-bundle-analyzer": "^4.5.0"
   },
   "babel": {
     "presets": [
@@ -136,11 +129,6 @@
     "htmlWhitespaceSensitivity": "strict",
     "semi": false
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
   "browserslist": [
     "> 0.1%, last 2 versions, Firefox ESR, not dead"
   ],
@@ -154,7 +142,7 @@
     ],
     "transform": {
       "^.+\\.vue$": "@vue/vue3-jest",
-      ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      ".+\\.(css|styl|less|scss|sass|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
       "^.+\\.jsx?$": "babel-jest",
       "^.+\\.js$": "babel-jest"
     },

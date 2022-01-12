@@ -2,7 +2,7 @@
 
 const moment = require("moment")
 
-const additionnalBenefitsAttribute = {
+const additionnalBenefitAttributes = {
   css_participation_forfaitaire: {
     extra: [{ id: "cmu_c", entity: "familles", type: "bool" }],
     compute: function (result, period) {
@@ -121,4 +121,4 @@ const additionnalBenefitsAttribute = {
   occitanie_carte_transport_scolaire_lio: require("./occitanie-carte-transport-scolaire-lio"),
 }
 
-module.exports = additionnalBenefitsAttribute
+module.exports = additionnalBenefitAttributes

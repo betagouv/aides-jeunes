@@ -8,7 +8,7 @@
       <InputNumber
         id="microAmount"
         :value="ressource.amounts[$store.state.dates.lastYear.id]"
-        @input="update($store.state.dates.lastYear.id, $event)"
+        @update:model-value="update($store.state.dates.lastYear.id, $event)"
       />
     </div>
   </div>

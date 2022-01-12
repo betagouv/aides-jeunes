@@ -18,7 +18,7 @@
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
         :value="type.amounts[$store.state.dates.thisMonth.id]"
-        @input="$emit('update', 'singleValue', index, $event)"
+        @update:model-value="$emit('update', 'singleValue', index, $event)"
       />
     </label>
 
@@ -32,7 +32,7 @@
           <MonthLabel :month="month" />
           <InputNumber
             :value="type.amounts[month.id]"
-            @input="
+            @update:model-value="
               $emit('update', 'monthUpdate', index, {
                 value: $event,
                 monthIndex,

@@ -43,7 +43,7 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(1101.42)
     revenu.fillRevenuBrut(1)
 
-    projet.fill__interetAidesVeloElectrique(false)
+    projet.fill__interetAidesVeloElectrique(true)
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetEtudesEtranger(true)
@@ -54,6 +54,7 @@ context("Full simulation", () => {
     results.hasIleDeFranceAideBachelierMeritants()
     results.hasBourseCriteresSociaux()
     results.back()
+    results.hasAideVeloParis()
     results.hasHousingBenefit()
   })
 })

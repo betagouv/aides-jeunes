@@ -5,7 +5,7 @@ const {
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {
-    const benefits = [{ id: "aides . pays basque" }]
+    const benefits = [{ external_id: "aides . pays basque" }]
     const situation = {
       dateDeValeur: "2021-01-01",
       menage: {

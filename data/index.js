@@ -1,6 +1,6 @@
 "use strict"
 
-const additionnalBenefitAttributes = require("./benefits/custom/index")
+const additionnalBenefitAttributes = require("./benefits/additional-attributes")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {

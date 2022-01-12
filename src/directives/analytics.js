@@ -1,16 +1,13 @@
 const MailDirective = {
-  beforeMount(el, binding, vnode) {
+  beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
-      if (!vnode.context) {
-        return
-      }
-      const matomo = vnode.context.$matomo
+      const matomo = binding?.instance?.$matomo
       if (!matomo) {
         return
       }
 
       // $analytics.eventTrack(/* name -> action */'show', { category: 'General', label: d.label });
-      matomo.trackEvent(
+      matomo?.trackEvent(
         binding.value.category || "defaultCategory",
         binding.value.action,
         binding.value.name,

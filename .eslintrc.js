@@ -30,6 +30,15 @@ module.exports = {
     "vue/multi-word-component-names": 0,
     "vue/attribute-hyphenation": 0,
   },
+  ignorePatterns: [
+    "node_modules",
+    ".tmp",
+    "dist",
+    "IndividuForm.vue",
+    "tmp",
+    "test/integration",
+    "contribuer",
+  ],
   overrides: [
     {
       files: ["**/__tests__/*.{j,t}s?(x)"],

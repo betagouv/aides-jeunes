@@ -5,6 +5,11 @@
   "engines": {
     "node": ">= 16"
   },
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/betagouv/aides-jeunes"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
@@ -113,6 +118,24 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-dev-server": "^4.5.0"
   },
+  "babel": {
+    "presets": [
+      [
+        "@vue/cli-plugin-babel/preset",
+        {
+          "useBuiltIns": "entry"
+        }
+      ]
+    ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "singleQuote": false,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "htmlWhitespaceSensitivity": "strict",
+    "semi": false
+  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
@@ -152,10 +175,5 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
-  },
-  "license": "AGPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/betagouv/aides-jeunes"
   }
 }

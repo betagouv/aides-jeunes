@@ -7,7 +7,6 @@ import store from "./store"
 
 import moment from "moment"
 
-import ScrollService from "./plugins/scroll-service"
 import StateService from "./plugins/state-service"
 
 import * as Sentry from "@sentry/vue"
@@ -45,7 +44,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(Resizer)
-app.use(ScrollService)
 app.use(StateService)
 
 app.use(VueMatomo, {

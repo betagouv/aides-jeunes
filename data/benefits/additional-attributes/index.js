@@ -115,7 +115,7 @@ const additionalBenefitAttributes = {
       return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
     },
     legend: (parameters) =>
-      `au lieu de ${parameters["epargne.livret_a.taux"] * 100}%`,
+      `au lieu de ${parameters["marche_travail.epargne.livret_a.taux"] * 100}%`,
   },
   fsl_eligibilite: require("./fsl-eligibilite"),
   occitanie_carte_transport_scolaire_lio: require("./occitanie-carte-transport-scolaire-lio"),

@@ -2,11 +2,11 @@ const Sentry = require("@sentry/node")
 const openfisca = require("./getter")
 
 const parametersList = {
-  "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal": 26,
-  "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite": 0.8,
-  "marche_travail.epargne.livret_a.taux": 0.005,
-  "marche_travail.salaire_minimum.smic.smic_b_horaire": 10.57,
-  "marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel": 151.67,
+  "prestations.carte_des_metiers.age_maximal": 26,
+  "prestations.minima_sociaux.aah.taux_incapacite": 0.8,
+  "epargne.livret_a.taux": 0.005,
+  "marche_travail.salaire_minimum.smic_h_b": 10.48,
+  "marche_travail.salaire_minimum.nb_heure_travail_mensuel": 151.67,
 }
 
 let parameters

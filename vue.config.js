@@ -24,9 +24,8 @@ module.exports = {
     )
     config.plugins.push(
       new HtmlWebpackPlugin({
-        filename: "[name]-map.xml",
-        template: "public/sitemap.xml",
-        favicon: "public/img/favicon/favicon.ico",
+        filename: "sitemap.xml",
+        template: "public/map.xml",
         inject: false,
         templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
       })

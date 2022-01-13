@@ -4,16 +4,6 @@ description: Le Pass'Région est une carte délivrée par la région
   Auvergne-Rhône-Alpes qui permet d'accéder à de nombreux avantages en lien avec
   la formation, la culture, le sport, la santé et, sous certaines conditions,
   une aide financière pour le permis, le BAFA/BAFD ou le BNSSA.
-conditions:
-  - Être un(e) élève non apprenti(e) inscrit(e) dans un lycée public ou privé
-    sous contrat d’association avec l’Etat, une MFR ou une école de production.
-  - Être un(e) apprenti(e) inscrit(e) dans un Centre de Formation d’Apprentis,
-    un Organisme de Formation d’Apprentis ou une MFR de la région.
-  - "Être inscrit(e) dans l’un des établissements suivants : établissements de
-    formations sanitaires et sociales agréés par la région, missions locales,
-    écoles de la deuxième chance,..."
-  - Être lycéen(ne) résidant en Auvergne-Rhône-Alpes mais contraint par la carte
-    scolaire d’étudier dans un lycée public situé dans une autre région.
 conditions_generales:
   - type: age
     operator: ">="

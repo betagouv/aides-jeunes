@@ -1,6 +1,6 @@
 <template>
   <div v-if="droit.type" class="aj-droit-estime">
-    <span>
+    <div>
       <span v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
         <span class="aj-droit-estime-label font-normal font-base">
           {{ droitEstime.label }}
@@ -23,14 +23,14 @@
       <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
         {{ droitEstime.legend }}
       </span>
-    </span>
-    <span class="aj-droit-estime-inattendu">
+    </div>
+    <div class="aj-droit-estime-inattendu">
       <router-link
         v-if="showUnexpected"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
         >Montant inattendu ?
       </router-link>
-    </span>
+    </div>
   </div>
 </template>
 

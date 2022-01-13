@@ -4,28 +4,9 @@
     itemscope
     itemtype="http://schema.org/GovernmentService"
   >
-    <div class="aj-droit-identity">
-      <img
-        class="aj-droit-illustration"
-        :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
-        :alt="'Image pour ' + droit.label"
-      />
-      <div>
-        <h2 class="aj-question aj-benefit-label" itemprop="name">{{
-          $filters.capitalize(droit.label)
-        }}</h2>
-        <div class="aj-institution-label">{{
-          $filters.capitalize(droit.institution.label)
-        }}</div>
-      </div>
-    </div>
-
-    <DroitEstime :droit="droit" />
+    <DroitHeader :droit="droit"></DroitHeader>
 
     <div class="aj-droit-content">
-      <h2 class="aj-question" itemprop="name">
-        {{ droit.label }}
-      </h2>
       <div class="aj-droit-content-heading">
         <div class="aj-droit-content-description">
           <p>
@@ -159,16 +140,16 @@
 <script>
 import BenefitCta from "./benefit-cta"
 import BenefitCtaLink from "./benefit-cta-link"
-import DroitEstime from "./droit-estime"
 import Situation from "../lib/situation"
 import DroitMixin from "../mixins/droit-mixin"
+import DroitHeader from "@/components/droit-header"
 
 export default {
   name: "DroitsDetails",
   components: {
+    DroitHeader,
     BenefitCta,
     BenefitCtaLink,
-    DroitEstime,
   },
   mixins: [DroitMixin],
   props: {

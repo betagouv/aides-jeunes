@@ -32,20 +32,7 @@
               itemtype="http://schema.org/GovernmentService"
             >
               <div class="aj-droit-survey normal-padding-bottom">
-                <div class="aj-droit-identity">
-                  <img
-                    class="aj-droit-illustration"
-                    :src="
-                      require(`./../../public/img/${droit.institution.imgSrc}`)
-                    "
-                    :alt="droit.label"
-                  />
-                  <h2 class="aj-question" itemprop="name">
-                    {{ droit.label }}
-                  </h2>
-                </div>
-
-                <DroitEstime :droit="droit" />
+                <DroitHeader :droit="droit" />
 
                 <div class="aj-droit-content">
                   <fieldset class="form__group">
@@ -114,7 +101,7 @@ import moment from "moment"
 
 import Institution from "@/lib/institution"
 import LoadingModal from "@/components/loading-modal"
-import DroitEstime from "../components/droit-estime"
+import DroitHeader from "@/components/droit-header"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -130,7 +117,7 @@ function isNegative(value) {
 export default {
   name: "Suivi",
   components: {
-    DroitEstime,
+    DroitHeader,
     LoadingModal,
   },
   data: function () {

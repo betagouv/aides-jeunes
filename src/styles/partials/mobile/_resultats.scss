@@ -8,33 +8,34 @@ html {
       margin: 0 16px 16px 16px;
     }
 
-    .aj-droit-detail,
-    .aj-droit-survey {
+    .aj-droit-header {
       flex-wrap: wrap;
-      justify-content: space-between;
-      .aj-droit-identity {
-        .aj-droit-illustration {
-          width: 80px;
-        }
-        h2 {
-          display: none;
-        }
+
+      .aj-droit-illustration {
+        order: 1;
+        margin-bottom: 16px;
+        width: 80px;
       }
 
-      .aj-droit-content {
+      .aj-droit-identity {
         order: 3;
+        margin-top: 8px;
+        width: 100%;
+      }
+
+      .aj-droit-estime {
+        order: 2;
+        margin-bottom: 16px;
+      }
+    }
+
+    .aj-droit-detail,
+    .aj-droit-survey {
+      .aj-droit-content {
         margin-left: 0;
         margin-top: 1.5rem;
         padding: 0;
         width: 100%;
-
-        h2 {
-          display: block;
-        }
-      }
-
-      .aj-droit-estime {
-        flex-basis: unset;
       }
 
       .aj-droit-content-buttons-cta {

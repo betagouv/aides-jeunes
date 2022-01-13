@@ -33,7 +33,7 @@ link: https://jeunes.auvergnerhonealpes.fr/106-pass-region.htm
 teleservice: https://auvergnerhonealpes.zecarte.fr/ARA/Forms/InscriptionBeneficiaire/InfosCarte.aspx
 instructions: https://www.auvergnerhonealpes.fr/aide/173/289-faire-le-plein-d-avantages-avec-le-pass-region-education-lycees.htm
 type: bool
-unit: €
+unit: null
 periodicite: annuelle
 references:
   - https://www.auvergnerhonealpes.fr/aide/173/289-faire-le-plein-d-avantages-avec-le-pass-region-education-lycees.htm

@@ -64,10 +64,7 @@ function individuBlockFactory(id, chapter) {
                 )
                 const jeune_actif =
                   subject.activite === "salarie" &&
-                  age <=
-                    parameters[
-                      "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
-                    ]
+                  age <= parameters["prestations.carte_des_metiers.age_maximal"]
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
@@ -108,9 +105,7 @@ function individuBlockFactory(id, chapter) {
               !enfant &&
               0.5 <= subject.taux_incapacite &&
               subject.taux_incapacite <
-                parameters[
-                  "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
-                ],
+                parameters["prestations.minima_sociaux.aah.taux_incapacite"],
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],

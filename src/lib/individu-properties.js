@@ -509,7 +509,7 @@ const STEPS = {
     items: (component) => {
       const tauxMax =
         component.$store.state.openFiscaParameters[
-          "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
+          "prestations.minima_sociaux.aah.taux_incapacite"
         ]
       return [
         {

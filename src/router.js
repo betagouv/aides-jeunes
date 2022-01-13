@@ -348,6 +348,14 @@ const router = createRouter({
       },
     },
   ],
+  scrollBehavior(to /*, from, savedPosition*/) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+      }
+    }
+    return { left: 0, top: 0 }
+  },
 })
 
 router.beforeEach((to, from, next) => {

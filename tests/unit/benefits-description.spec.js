@@ -87,7 +87,7 @@ describe("benefit descriptions", function () {
             })
           }
 
-          if (benefit.computesLocally) {
+          if (benefit.source === "javascript") {
             it("should not have an entity", function () {
               expect(benefit.entity).toBe(undefined)
             })
@@ -98,7 +98,7 @@ describe("benefit descriptions", function () {
                 expect(benefit.montant).toBeGreaterThan(0)
               })
             }
-          } else {
+          } else if (benefit.source === "openfisca") {
             it("should have an entity", function () {
               expect(typeof benefit.entity).toBe("string")
               expect(benefit.entity.length).toBeGreaterThan(0)

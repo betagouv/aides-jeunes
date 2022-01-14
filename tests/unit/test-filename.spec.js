@@ -33,7 +33,7 @@ describe("Test filenames rules", function () {
     })
   }
 
-  getFiles(process.env.NODE_PATH)
+  getFiles(path.join(__dirname, "../.."))
 
   const result = files.filter((file) => {
     return ["js", "vue"].includes(file.extension)

@@ -1,6 +1,7 @@
 "use strict"
 
 const additionalBenefitAttributes = require("./benefits/additional-attributes")
+const aidesVeloGenerator = require("./benefits/aides-velo-generator")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
@@ -23,22 +24,38 @@ function transformInstitutions(collection) {
 function setDefaults(benefit, institution) {
   const top = institution.type === "national" ? 1 : 5
 
-  benefit.id = benefit.slug
+  benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
   return benefit
 }
 
-function generate(collections, additionalBenefitAttributes) {
+function generate(
+  collections,
+  additionalBenefitAttributes,
+  aidesVeloBenefitListGenerator
+) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
-    benefit.computesLocally = true
+    benefit.source = "javascript"
+  })
+  collections.benefits_openfisca.items.forEach((benefit) => {
+    benefit.source = "openfisca"
+  })
+
+  const aidesVeloBenefits = aidesVeloBenefitListGenerator
+    ? aidesVeloBenefitListGenerator(Object.values(institutions))
+    : []
+  aidesVeloBenefits.forEach((benefit) => {
+    benefit.source = "aides-velo"
+    benefit.top = 8
   })
 
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
+    ...aidesVeloBenefits.filter((b) => b.institution),
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })
@@ -64,5 +81,6 @@ function generate(collections, additionalBenefitAttributes) {
 
 module.exports = {
   fn: generate,
-  generate: (jam) => generate(jam.collections, additionalBenefitAttributes),
+  generate: (jam) =>
+    generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),
 }

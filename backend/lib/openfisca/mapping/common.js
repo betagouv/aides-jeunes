@@ -61,7 +61,7 @@ function appendExtraVariables(requestedVariables, extraVariables) {
 
 let requestedVariables = {}
 benefits.all
-  .filter((benefit) => !benefit.computesLocally)
+  .filter((benefit) => benefit.source === "openfisca")
   .forEach((benefit) => {
     const item = benefit.openfisca_eligibility_source || benefit.id
     requestedVariables[item] = requestedVariables[item] || assign({}, benefit)

@@ -13,7 +13,7 @@ describe("benefit descriptions", function () {
       },
       benefits_javascript: {
         items: [
-          { slug: "etat_benefit2", institution: "etat", computesLocally: true },
+          { slug: "etat_benefit2", institution: "etat", source: "javascript" },
         ],
       },
       benefits_openfisca: {
@@ -25,7 +25,6 @@ describe("benefit descriptions", function () {
     }
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
-
     const result = subject(collections, additionalBenefitAttributes)
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")

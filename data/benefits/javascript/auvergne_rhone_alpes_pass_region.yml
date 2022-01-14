@@ -1,0 +1,29 @@
+label: pass'Région
+institution: region_auvergne_rhone_alpes
+description: Le Pass'Région est une carte délivrée par la région
+  Auvergne-Rhône-Alpes qui permet d'accéder à de nombreux avantages en lien avec
+  la formation, la culture, le sport, la santé et, sous certaines conditions,
+  une aide financière pour le permis, le BAFA/BAFD ou le BNSSA.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regions
+    values:
+      - "84"
+profils:
+  - type: apprenti
+    conditions: []
+  - type: lyceen
+    conditions: []
+link: https://jeunes.auvergnerhonealpes.fr/106-pass-region.htm
+teleservice: https://auvergnerhonealpes.zecarte.fr/ARA/Forms/InscriptionBeneficiaire/InfosCarte.aspx
+instructions: https://www.auvergnerhonealpes.fr/aide/173/289-faire-le-plein-d-avantages-avec-le-pass-region-education-lycees.htm
+type: bool
+unit: null
+periodicite: annuelle
+references:
+  - https://www.auvergnerhonealpes.fr/aide/173/289-faire-le-plein-d-avantages-avec-le-pass-region-education-lycees.htm

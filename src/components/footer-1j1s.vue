@@ -75,7 +75,7 @@ export default {
               route: "/confidentialite",
             },
             {
-              label: "Accessibilité",
+              label: "Accessibilité (non conforme)",
               route: "/accessibilite",
             },
             {

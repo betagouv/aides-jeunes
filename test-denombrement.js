@@ -150,7 +150,7 @@ function computeInterestingBenefitsCount(codeInsee) {
   })
   return total
 }
-console.log(computeInterestingBenefitsCount(arcachon))
+//console.log(computeInterestingBenefitsCount(arcachon))
 
 // --> Structure de données /tableau avec nb d'aides + commune associée
 
@@ -166,11 +166,30 @@ const interestingBenefitsCountList = []
 })*/
 //console.log(interestingBenefitsCount)
 
-communes.slice(0, 10).forEach((ville) => {
+const epci = require("@etalab/decoupage-administratif/data/epci.json")
+
+console.log(
+  epci.filter((e) => e.code === "243300563" || e.code === "200035319")
+)
+
+/*
+console.log(communes.length) // 37k 10min
+console.log(communes.filter(c => c.type == "commune-actuelle").length)
+console.log(communes.filter(c => c.type == "commune-actuelle" && c.population > 1000).length)
+*/
+
+const relevantCommunes = communes.slice(0, 1000)
+//console.log(relevantCommunes)
+/*
+var ProgressBar = require('progress')
+var bar = new ProgressBar(':bar :elapsed :eta', { total: relevantCommunes.length })
+relevantCommunes.forEach((commune) => {
   interestingBenefitsCountList.push({
-    codeInsee: ville.code,
-    count: computeInterestingBenefitsCount(ville.code),
+    codeInsee: commune.code,
+    count: computeInterestingBenefitsCount(commune.code),
   })
+  bar.tick()
 })
 console.log(interestingBenefitsCountList)
 console.log(computeInterestingBenefitsCount("75056"))
+*/

@@ -31,14 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="aj-home-illustration">
-        <div>
-          <img
-            src="@/assets/images/home_illustration.png"
-            alt="Portrait jeune"
-          />
-        </div>
-      </div>
+      <div class="aj-home-illustration" alt="Portrait jeune"> </div>
     </div>
   </div>
 </template>

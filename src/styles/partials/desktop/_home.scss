@@ -55,25 +55,10 @@ html {
     }
 
     .aj-home-illustration {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: stretch;
       flex-grow: 2;
-
-      div {
-        display: flex;
-        align-items: flex-end;
-        max-height: 87%;
-        flex-grow: 2;
-      }
-
-      img {
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: contain;
-        flex-grow: 2;
-      }
+      background: transparent url("~@/assets/images/home_illustration.png")
+        center bottom / 87% no-repeat;
+      min-height: 700px;
     }
   }
 }

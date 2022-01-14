@@ -1,15 +1,20 @@
 <template>
   <div v-if="droit.type" class="aj-droit-estime">
     <div>
-      <span v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
-        <span class="aj-droit-estime-label font-normal font-base">
-          {{ droitEstime.label }}
+      <template v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
+        <span>
+          <span class="aj-droit-estime-label font-normal font-base">
+            {{ droitEstime.label }}
+          </span>
+          <br />
+          <span class="aj-droit-estime-value font-bold">
+            {{ droitEstime.value }}
+          </span>
         </span>
-        <br />
-        <span class="aj-droit-estime-value font-bold">
-          {{ droitEstime.value }}
+        <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
+          {{ droitEstime.legend }}
         </span>
-      </span>
+      </template>
       <span v-else-if="isBoolean(droitEstime.type)">
         <i
           :data-testid="`aj-droit-estime-icon-${
@@ -19,9 +24,6 @@
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           } fa-2x`"
         />
-      </span>
-      <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
-        {{ droitEstime.legend }}
       </span>
     </div>
     <div class="aj-droit-estime-inattendu">

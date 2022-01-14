@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="aj-home-illustration" alt="Portrait jeune"> </div>
+      <div class="aj-home-illustration" role="img" alt="Portrait jeune"> </div>
     </div>
   </div>
 </template>

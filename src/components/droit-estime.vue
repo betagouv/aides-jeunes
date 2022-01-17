@@ -52,13 +52,13 @@ export default {
       )
     },
     isBenefitTypeBoolean() {
-      return this.droit.type === "bool"
+      return this.droitEstime.type === "bool"
     },
     isBenefitTypeNumber() {
-      return this.droit.type === "float"
+      return this.droitEstime.type === "float"
     },
     isBenefitTypeString() {
-      return this.droit.type === "string"
+      return this.droitEstime.type === "string"
     },
     showUnexpected() {
       return (

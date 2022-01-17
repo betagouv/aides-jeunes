@@ -19,10 +19,7 @@ const answer = {
     enum: ANSWER_FIELD_NAMES,
   },
   id: String,
-  value: {
-    type: Object,
-    required: true,
-  },
+  value: Object,
 }
 
 const AnswerSchema = new mongoose.Schema(

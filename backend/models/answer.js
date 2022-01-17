@@ -10,8 +10,9 @@ const computeAides = mesAides.computeAides.bind(benefits)
 
 const answer = {
   entityName: {
-    type: String,
     required: true,
+    type: String,
+    enum: ["individu", "enfants", "famille", "parents", "menage"],
   },
   fieldName: {
     type: String,

@@ -4,7 +4,11 @@ const openfisca = require("../lib/openfisca")
 const benefits = require("../../data/all")
 const mesAides = require("../../lib/benefits/compute")
 const { generateSituation } = require("../../lib/situations")
-const { ANSWER_FIELD_NAMES } = require("../lib/definitions")
+const {
+  ANSWER_ENTITY_NAMES,
+  ANSWER_FIELD_NAMES,
+  ANSWER_BASIC_IDS,
+} = require("../lib/definitions")
 
 const computeAides = mesAides.computeAides.bind(benefits)
 
@@ -12,13 +16,20 @@ const answer = {
   entityName: {
     required: true,
     type: String,
-    enum: ["individu", "enfants", "famille", "parents", "menage"],
+    enum: ANSWER_ENTITY_NAMES,
   },
   fieldName: {
     type: String,
     enum: ANSWER_FIELD_NAMES,
   },
-  id: String,
+  id: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return ANSWER_BASIC_IDS.includes(value) || value.match(/^enfant_\d+$/)
+      },
+    },
+  },
   value: Object,
 }
 

@@ -223,6 +223,14 @@ const situation = {
   version: Number,
 }
 
+const ANSWER_ENTITY_NAMES = [
+  "individu",
+  "enfants",
+  "famille",
+  "parents",
+  "menage",
+]
+
 const ANSWER_FIELD_NAMES = [
   ...Object.keys(famille),
   ...Object.keys(individuBase),
@@ -232,11 +240,15 @@ const ANSWER_FIELD_NAMES = [
   "ressources",
 ]
 
+const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
+
 module.exports = {
   famille,
   foyerFiscal,
   individu,
   menage,
   situation,
+  ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
+  ANSWER_BASIC_IDS,
 }

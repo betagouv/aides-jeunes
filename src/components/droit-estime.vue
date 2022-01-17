@@ -1,16 +1,21 @@
 <template>
   <div v-if="droit.type" class="aj-droit-estime">
     <div>
-      <span v-if="isNumber(droitEstime.type) || isString(droitEstime.type)">
-        <span class="aj-droit-estime-label font-normal font-base">
-          {{ droitEstime.label }}
+      <template v-if="isBenefitTypeNumber || isBenefitTypeString">
+        <span>
+          <span class="aj-droit-estime-label font-normal font-base">
+            {{ droitEstime.label }}
+          </span>
+          <br />
+          <span class="aj-droit-estime-value font-bold">
+            {{ droitEstime.value }}
+          </span>
         </span>
-        <br />
-        <span class="aj-droit-estime-value font-bold">
-          {{ droitEstime.value }}
+        <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
+          {{ droitEstime.legend }}
         </span>
-      </span>
-      <span v-else-if="isBoolean(droitEstime.type)">
+      </template>
+      <span v-else-if="isBenefitTypeBoolean">
         <i
           :data-testid="`aj-droit-estime-icon-${
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
@@ -19,9 +24,6 @@
             droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
           } fa-2x`"
         />
-      </span>
-      <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
-        {{ droitEstime.legend }}
       </span>
     </div>
     <div class="aj-droit-estime-inattendu">
@@ -43,24 +45,28 @@ export default {
     droit: Object,
   },
   computed: {
-    droitEstime: function () {
+    droitEstime() {
       return formatDroitEstime(
         this.droit,
         this.$store.state.openFiscaParameters
       )
     },
-    showUnexpected: function () {
+    isBenefitTypeBoolean() {
+      return this.droitEstime.type === "bool"
+    },
+    isBenefitTypeNumber() {
+      return this.droitEstime.type === "float"
+    },
+    isBenefitTypeString() {
+      return this.droitEstime.type === "string"
+    },
+    showUnexpected() {
       return (
         (this.droit.isBaseRessourcesYearMinusTwo &&
           !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
         this.droit.showUnexpectedAmount
       )
     },
-  },
-  methods: {
-    isBoolean: (type) => type === "bool",
-    isNumber: (type) => type === "float",
-    isString: (type) => type === "string",
   },
 }
 </script>

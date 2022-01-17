@@ -4,6 +4,7 @@ const openfisca = require("../lib/openfisca")
 const benefits = require("../../data/all")
 const mesAides = require("../../lib/benefits/compute")
 const { generateSituation } = require("../../lib/situations")
+const { ANSWER_FIELD_NAMES } = require("../lib/definitions")
 
 const computeAides = mesAides.computeAides.bind(benefits)
 
@@ -12,7 +13,10 @@ const answer = {
     type: String,
     required: true,
   },
-  fieldName: String,
+  fieldName: {
+    type: String,
+    enum: ANSWER_FIELD_NAMES,
+  },
   id: String,
   value: {
     type: Object,

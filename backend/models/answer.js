@@ -25,7 +25,7 @@ const answer = {
   id: {
     type: String,
     validate: {
-      validator: function (value) {
+      validator(value) {
         return ANSWER_BASIC_IDS.includes(value) || value.match(/^enfant_\d+$/)
       },
     },

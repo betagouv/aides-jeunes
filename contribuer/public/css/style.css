@@ -41,9 +41,9 @@ body {
 }
 
 .aj-droit-identity {
+  flex-grow: 1;
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  width: 70%;
   font-weight: bold;
 }
 
@@ -61,10 +61,8 @@ body {
 
 .aj-droit-detail {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .aj-droit-content {

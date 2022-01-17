@@ -66,11 +66,7 @@ html {
 
       .aj-droit-estime {
         text-align: center;
-        flex-basis: 200px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
+        min-width: 200px;
       }
 
       .aj-aide-cta {
@@ -157,43 +153,33 @@ html {
       }
     }
 
-    .aj-droit-detail,
-    .aj-droit-survey {
+    .aj-droit-header {
       display: flex;
-      flex-direction: row;
       align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: space-between;
 
-      .aj-droit-identity {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        max-width: 70%;
-
-        .aj-droit-illustration {
-          width: 70px;
-          margin-right: 1.5rem;
-        }
+      .aj-droit-illustration {
+        width: 70px;
+        margin-right: 1.5rem;
       }
 
+      .aj-droit-identity {
+        flex-grow: 1;
+      }
+
+      .aj-droit-estime {
+        text-align: right;
+        min-width: 200px;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .aj-droit-detail,
+    .aj-droit-survey {
       .aj-droit-content {
-        order: 4;
         margin-left: 0;
         margin-top: 2rem;
         width: 100%;
         padding: 0 1rem;
-
-        h2 {
-          display: none;
-        }
-      }
-
-      .aj-droit-estime {
-        flex-basis: 200px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        text-align: right;
       }
 
       .aj-droit-conditions {

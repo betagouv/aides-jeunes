@@ -1,0 +1,22 @@
+label: aide au parcours des jeunes
+institution: caf_haute_marne
+description: Vous devez faire face à des dépenses supplémentaires suite à un
+  changement dans votre parcours scolaire ou professionnel ? La Caf de la
+  Haute-Marne peut vous accompagner pour vous soutenir dans vos projets.
+conditions:
+  - Être allocataire de la Caf de la Haute-Marne et ouvrir droit  à l’action
+    sociale de la Caf.
+  - Avoir entre 16 et 25 ans,
+    toujours  rattachés  au  dossier  du/des  parent(s),  bénéficiaire(s)
+    potentiel(s) de l’action sociale de la CAF.
+conditions_generales:
+  - type: quotient_familial
+    period: float
+    floor: 800
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/actualites/annee/2021/aide-au-parcours-des-jeunes
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 500

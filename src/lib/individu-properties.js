@@ -555,15 +555,14 @@ const STEPS = {
       "Souhaitez-vous connaître les aides pour acheter un vélo ? (plusieurs choix possibles)",
     questionType: "multiple",
     items: [
-      { value: "velo_mecanique", label: "Vélo mécanique simple" },
-      { value: "velo_electrique", label: "Vélo électrique" },
-      { value: "velo_cargo", label: "Vélo cargo" },
-      { value: "velo_cargo_electrique", label: "Vélo cargo électrique" },
-      { value: "velo_pliant", label: "Vélo pliant" },
-      { value: "velo_motorisation", label: "Vélo avec motorisation" },
+      { value: "mécanique simple", label: "Vélo mécanique simple" },
+      { value: "électrique", label: "Vélo électrique" },
+      { value: "cargo", label: "Vélo cargo" },
+      { value: "cargo électrique", label: "Vélo cargo électrique" },
+      { value: "pliant", label: "Vélo pliant" },
+      { value: "motorisation", label: "Vélo avec motorisation" },
     ],
   },
-
   _interetBafa: {
     question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   },

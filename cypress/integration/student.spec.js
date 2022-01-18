@@ -43,7 +43,7 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(1101.42)
     revenu.fillRevenuBrut(1)
 
-    projet.fill__interetsAidesVelo(["mécanique simple", "électrique"])
+    projet.fill__interetsAidesVelo(["velo_mecanique", "velo_electrique"])
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetEtudesEtranger(true)

@@ -15,3 +15,4 @@ unit: "€"
 periodicite: ponctuelle
 legend: en bons d’achat
 entity: familles
+openfiscaPeriod: thisMonth

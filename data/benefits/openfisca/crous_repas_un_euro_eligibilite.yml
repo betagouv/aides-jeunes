@@ -8,3 +8,4 @@ instructions: https://www.etudiant.gouv.fr/fr/izly-votre-solution-de-paiement-su
 prefix: le
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

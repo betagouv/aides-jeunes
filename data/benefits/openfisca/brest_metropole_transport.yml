@@ -11,6 +11,7 @@ floorAt: 0.01
 type: float
 unit: "€"
 entity: individus
+openfiscaPeriod: thisMonth
 legend: au lieu de 38.50 € / mois
 periodicite: mensuelle
 participation: true

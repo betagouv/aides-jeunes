@@ -98,24 +98,32 @@ exports.generateTest = function generateYAMLTest(details, situation) {
     situation.toObject ? situation.toObject() : situation
   )
   const periods = common.getPeriods(situation.dateDeValeur)
-  const dropPeriods = [periods.thisMonth].concat(periods.last3Months)
 
   const prestationsWithInterest = pickBy(
     common.requestedVariables,
     function (definition) {
-      return (
-        filterByInterestFlag(definition, situation.demandeur) &&
-        !definition.openfiscaPeriod
-      )
+      return filterByInterestFlag(definition, situation.demandeur)
     }
   )
 
-  mapping.giveValueToRequestedVariables(
-    openfiscaRequest,
-    prestationsWithInterest,
-    dropPeriods,
-    undefined
-  )
+  const openfiscaPeriods = new Set()
+  Object.values(prestationsWithInterest).forEach((definition) => {
+    openfiscaPeriods.add(definition.openfiscaPeriod)
+  })
+
+  openfiscaPeriods.forEach((value) => {
+    const prestations = pickBy(prestationsWithInterest, function (definition) {
+      return definition.openfiscaPeriod === value
+    })
+
+    mapping.giveValueToRequestedVariables(
+      openfiscaRequest,
+      prestations,
+      value ? periods[value] : periods.thisMonth,
+      undefined
+    )
+  })
+
   const testInputs = prepareTestSituationForSpecificExtension(
     openfiscaRequest,
     details.extension

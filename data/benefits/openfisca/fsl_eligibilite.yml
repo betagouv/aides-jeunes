@@ -4,6 +4,7 @@ description: >-
   mises en place pour vous aider à rester dans votre logement et à payer vos
   factures liées à votre logement (eau, électricité, etc.).
 entity: menages
+openfiscaPeriod: thisMonth
 type: bool
 prefix: une
 icon: fa-exclamation-triangle

@@ -2,6 +2,7 @@ label: Loca-Pass
 teleservice: https://locapass.actionlogement.fr
 prefix: "l'avance "
 entity: individus
+openfiscaPeriod: thisMonth
 top: 5
 institution: action_logement
 description: L'avance LOCA-PASS® est une aide gratuite sous forme d'un prêt à 0

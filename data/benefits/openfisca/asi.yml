@@ -13,5 +13,6 @@ prefix: l’
 type: float
 unit: "€"
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: mensuelle
 msa: true

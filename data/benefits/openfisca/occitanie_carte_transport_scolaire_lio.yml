@@ -3,6 +3,7 @@ description: >-
   Dès la rentrée, les transports scolaires régionaux d'Occitanie sont gratuits
   pour les élèves de la maternelle au lycée.
 entity: individus
+openfiscaPeriod: thisMonth
 type: bool
 prefix: La
 link: https://lio.laregion.fr/transport-scolaire

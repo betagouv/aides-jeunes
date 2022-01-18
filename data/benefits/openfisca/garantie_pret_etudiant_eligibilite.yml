@@ -6,3 +6,4 @@ instructions: https://www.etudiant.gouv.fr/fr/pret-etudiant-garanti-par-l-etat-1
 prefix: le
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

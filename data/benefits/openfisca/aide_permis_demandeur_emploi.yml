@@ -13,4 +13,5 @@ floorAt: 1
 periodicite: ponctuelle
 legend: "maximum"
 entity: individus
+openfiscaPeriod: thisMonth
 interestFlag: _interetPermisDeConduire

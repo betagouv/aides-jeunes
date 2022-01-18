@@ -10,4 +10,5 @@ form: https://cdn.paris.fr/paris/2019/07/24/736d309a8cdbf436475f7514f443a08b.pdf
 type: float
 unit: "€"
 entity: familles
+openfiscaPeriod: thisMonth
 periodicite: mensuelle

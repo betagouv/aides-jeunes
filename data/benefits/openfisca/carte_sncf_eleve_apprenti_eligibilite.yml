@@ -5,3 +5,4 @@ link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/elev
 prefix: la
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

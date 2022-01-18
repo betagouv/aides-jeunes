@@ -10,4 +10,5 @@ prefix: l’
 type: float
 unit: "€"
 entity: familles
+openfiscaPeriod: thisMonth
 periodicite: mensuelle

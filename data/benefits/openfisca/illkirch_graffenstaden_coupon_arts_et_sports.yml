@@ -9,6 +9,7 @@ instructions: http://www.illkirch.eu/solidarite-et-sante/ccas/coupon-arts-sports
 prefix: le
 floorAt: 1
 entity: familles
+openfiscaPeriod: thisMonth
 type: float
 unit: "€"
 legend: "en coupons"

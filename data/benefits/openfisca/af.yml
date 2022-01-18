@@ -13,5 +13,6 @@ prefix: "les"
 type: float
 unit: "€"
 entity: familles
+openfiscaPeriod: thisMonth
 periodicite: mensuelle
 msa: true

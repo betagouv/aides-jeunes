@@ -103,6 +103,11 @@ describe("benefit descriptions", function () {
               expect(typeof benefit.entity).toBe("string")
               expect(benefit.entity.length).toBeGreaterThan(0)
             })
+
+            it("should have an openfiscaPeriod", function () {
+              expect(typeof benefit.openfiscaPeriod).toBe("string")
+              expect(benefit.openfiscaPeriod.length).toBeGreaterThan(0)
+            })
           }
         })
       })

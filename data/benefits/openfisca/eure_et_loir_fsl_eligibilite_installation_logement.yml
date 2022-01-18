@@ -11,3 +11,4 @@ link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
 prefix: l'
 type: bool
 entity: menages
+openfiscaPeriod: thisMonth

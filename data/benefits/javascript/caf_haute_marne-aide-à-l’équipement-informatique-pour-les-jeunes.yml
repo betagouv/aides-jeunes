@@ -7,18 +7,32 @@ description: La CAF de la Haute-Marne propose une aide à l'équipement
   (dans la limite de 200 €), sous réserve des disponibilités budgétaires de la
   CAF.
 conditions:
-  - Avoir entre 10 et 15 ans.
   - Transmettre une attestation de l’école garantissant que le matériel
     informatique n’est pas mis à disposition par l’école/le collège à la
     famille, et qu’il est indispensable à la réalisation des devoirs.
   - Transmettre une attestation des parents attestant que le foyer n’est pas
     équipé d’un ordinateur, ou que l’équipement est insuffisant compte-tenu de
     la composition de la famille.
-conditions_generales: []
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 10
+  - type: age
+    operator: <
+    value: 15
+  - type: departements
+    values:
+      - "52"
+  - type: quotient_familial
+    floor: 800
+    period: month
 profils: []
-link: https://www.caf.fr/sites/default/files/caf/521/RIAS%202022.pdf
+link: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
+instructions: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
 type: float
 unit: €
 periodicite: autre
 legend: maximum
 montant: 600
+references:
+  - https://www.caf.fr/sites/default/files/caf/521/RIAS%202022.pdf

@@ -13,3 +13,4 @@ prefix: l’
 type: bool
 floorAt: 10
 entity: individus
+openfiscaPeriod: thisMonth

@@ -11,3 +11,4 @@ unit: "€"
 floorAt: 0.1
 periodicite: mensuelle
 entity: individus
+openfiscaPeriod: thisMonth

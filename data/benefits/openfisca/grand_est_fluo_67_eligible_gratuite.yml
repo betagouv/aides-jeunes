@@ -8,3 +8,4 @@ instructions: https://www.ctbr67.fr/tarifs/tarifs-reduits-gratuite/
 type: bool
 prefix: les
 entity: individus
+openfiscaPeriod: thisMonth

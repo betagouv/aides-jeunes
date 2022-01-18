@@ -19,4 +19,5 @@ instructions: >-
 type: bool
 top: 6
 entity: individus
+openfiscaPeriod: thisMonth
 institution: departements

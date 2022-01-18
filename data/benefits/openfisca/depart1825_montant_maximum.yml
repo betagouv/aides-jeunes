@@ -12,4 +12,5 @@ unit: "€"
 legend: "maximum"
 top: 4
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: annuelle

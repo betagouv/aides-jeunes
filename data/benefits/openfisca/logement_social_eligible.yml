@@ -13,4 +13,5 @@ top: 10
 prefix: le
 type: bool
 entity: familles
+openfiscaPeriod: thisMonth
 private: true

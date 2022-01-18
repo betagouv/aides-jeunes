@@ -9,4 +9,5 @@ prefix: un
 type: bool
 top: 2
 entity: individus
+openfiscaPeriod: thisMonth
 openfisca_eligibility_source: bourse_criteres_sociaux

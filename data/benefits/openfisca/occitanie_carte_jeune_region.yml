@@ -7,3 +7,4 @@ prefix: l’
 type: bool
 floorAt: 1
 entity: individus
+openfiscaPeriod: thisMonth

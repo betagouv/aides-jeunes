@@ -9,3 +9,4 @@ teleservice:
     vers: ccas_saint_louis_preprod
 type: bool
 entity: menages
+openfiscaPeriod: thisMonth

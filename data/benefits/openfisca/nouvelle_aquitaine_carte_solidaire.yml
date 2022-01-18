@@ -9,4 +9,5 @@ type: float
 unit: "%"
 legend: de réduction
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: ponctuelle

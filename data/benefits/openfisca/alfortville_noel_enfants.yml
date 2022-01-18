@@ -12,6 +12,7 @@ floorAt: 0.01
 type: float
 unit: "€"
 entity: familles
+openfiscaPeriod: thisMonth
 legend: en chèque cadeau
 periodicite: annuelle
 private: true

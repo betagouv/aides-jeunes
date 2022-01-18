@@ -8,5 +8,6 @@ prefix: la
 type: float
 unit: "%"
 entity: individus
+openfiscaPeriod: thisMonth
 legend: de l’abonnement STAR
 periodicite: mensuelle

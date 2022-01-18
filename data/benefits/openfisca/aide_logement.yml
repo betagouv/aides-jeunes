@@ -18,6 +18,7 @@ teleservices:
     https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/
   msa: http://www.msa.fr/lfr/c/bookmarks/open_entry?entryId=98643
 entity: familles
+openfiscaPeriod: thisMonth
 isBaseRessourcesPatrimoine: true
 floorAt: 10
 prefix: les

@@ -552,7 +552,16 @@ const STEPS = {
 
   _interetAidesVeloElectrique: {
     question:
-      "Souhaitez-vous connaître les aides pour acheter un vélo électrique ?",
+      "Souhaitez-vous connaître les aides pour acheter un vélo ? (plusieurs choix possibles)",
+    questionType: "multiple",
+    items: [
+      { value: "velo_mecanique", label: "Vélo mécanique simple" },
+      { value: "velo_electrique", label: "Vélo électrique" },
+      { value: "velo_cargo", label: "Vélo cargo" },
+      { value: "velo_cargo_electrique", label: "Vélo cargo électrique" },
+      { value: "velo_pliant", label: "Vélo pliant" },
+      { value: "velo_motorisation", label: "Vélo avec motorisation" },
+    ],
   },
 
   _interetBafa: {

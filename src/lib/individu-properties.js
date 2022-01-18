@@ -550,7 +550,7 @@ const STEPS = {
     unit: "mois",
   },
 
-  _interetAidesVeloElectrique: {
+  _interetsAidesVelo: {
     question:
       "Souhaitez-vous connaître les aides pour acheter un vélo ? (plusieurs choix possibles)",
     questionType: "multiple",

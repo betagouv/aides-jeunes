@@ -26,7 +26,7 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 195
+montant: 194
 interestFlag: _interetBafa
 references:
   - https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur

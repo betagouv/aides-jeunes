@@ -1,15 +1,15 @@
 <template>
   <fieldset>
     <div
-      v-for="(item, value) in this.itemsList"
+      v-for="(item, value) in itemsList"
       :key="value"
       class="aj-selection-wrapper"
     >
       <input
-        type="checkbox"
         :id="value"
-        @input="this.update"
+        type="checkbox"
         :checked="item.checked"
+        @input="update"
       />
       <label :for="value">{{ item.label }}</label>
     </div>
@@ -22,7 +22,7 @@ export default {
   props: {
     modelValue: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     items: [Object],
   },

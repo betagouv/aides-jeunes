@@ -1,7 +1,7 @@
 <template>
   <fieldset>
     <div
-      v-for="(item, value) in itemsList"
+      v-for="(item, value) in itemsObject"
       :key="value"
       class="aj-selection-wrapper"
     >
@@ -29,19 +29,19 @@ export default {
   emits: ["update:modelValue"],
   data() {
     return {
-      itemsList: this.generateAnswers(this.items),
+      itemsObject: this.generateAnswers(this.items),
     }
   },
   methods: {
     generateAnswers(items) {
-      const itemsList = {}
+      const itemsObject = {}
       for (let key in items) {
-        itemsList[items[key].value] = {
+        itemsObject[items[key].value] = {
           label: items[key].label,
           checked: this.modelValue.includes(items[key].value),
         }
       }
-      return itemsList
+      return itemsObject
     },
     update(e) {
       if (!e.target.checked) {

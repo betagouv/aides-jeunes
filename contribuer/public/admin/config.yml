@@ -171,7 +171,6 @@ fields:
         step: -1
       - label: Période
         name: period
-        default: "float"
         widget: select
         options:
           - label: Par mois

@@ -9,6 +9,14 @@ const fillRadio = (url, value, noSubmit) => {
   }
 }
 
+const fillCheckboxes = (url, values) => {
+  cy.url().should("include", url)
+  for (const value of values) {
+    cy.get(`input[type="checkbox"]#${value}`).check()
+  }
+  submit()
+}
+
 const fillNumber = (url, value) => {
   cy.url().should("include", url)
   cy.get("form").find('input[type="number"]').type(value)
@@ -18,5 +26,6 @@ const fillNumber = (url, value) => {
 export default {
   submit,
   fillRadio,
+  fillCheckboxes,
   fillNumber,
 }

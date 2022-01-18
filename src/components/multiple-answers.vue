@@ -41,6 +41,7 @@ export default {
           checked: this.modelValue.includes(items[key].value),
         }
       }
+      this.$emit("update:modelValue", this.modelValue)
       return itemsObject
     },
     update(e) {

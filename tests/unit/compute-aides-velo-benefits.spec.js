@@ -16,7 +16,7 @@ describe("computeAidesVeloBenefits", function () {
         _region: "75",
       },
       demandeur: {
-        _interetsAidesVelo: ["électrique"],
+        _interetsAidesVelo: ["velo_electrique"],
       },
     }
     const openFiscaResponse = {

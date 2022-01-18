@@ -67,6 +67,9 @@ describe("computeAides", function () {
           rfr: {
             2012: 42,
           },
+          nbptr: {
+            2012: 2,
+          },
         },
       },
     }

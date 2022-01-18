@@ -11,7 +11,7 @@ conditions:
     potentiel(s) de l’action sociale de la CAF.
 conditions_generales:
   - type: quotient_familial
-    period: float
+    period: month
     floor: 800
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/actualites/annee/2021/aide-au-parcours-des-jeunes

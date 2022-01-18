@@ -1,7 +1,7 @@
-import { fillRadio, fillNumber } from "./form"
+import { fillRadio, fillCheckboxes, fillNumber } from "./form"
 
 const fill__interetsAidesVelo = (expect) => {
-  fillRadio("_interetsAidesVelo", expect)
+  fillCheckboxes("_interetsAidesVelo", expect)
 }
 
 const fill__interetBafa = (expect) => {

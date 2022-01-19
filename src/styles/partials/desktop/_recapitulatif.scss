@@ -12,6 +12,16 @@
     font-weight: 700;
   }
 
+  .row-space:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  .individu-title {
+    width: 100%;
+    font-weight: 700;
+    border-bottom: 1px solid #000000;
+  }
+
   .recapitulatif-row {
     $edit-col: 70px;
     $question-col: calc(70% - #{$edit-col});

@@ -22,26 +22,31 @@ export const getIndividuByStep = (step, component) => {
 export const SIMPLE_STEPS = {
   ressources(step) {
     const answer = getStepAnswer(this.$store.state.answers.all, step)
-    let value
-    if (answer) {
-      value =
-        answer.length > 0
-          ? answer
-              .map(
-                (ressourceId) =>
-                  ressourceTypes.find(
-                    (ressource) => ressource.id === ressourceId
-                  ).label
-              )
-              .join(", ")
-          : "Aucuns revenus"
+    if (!answer) {
+      return []
     }
+    const value =
+      answer.length > 0
+        ? answer
+            .map(
+              (ressourceId) =>
+                ressourceTypes.find((ressource) => ressource.id === ressourceId)
+                  .label
+            )
+            .join(", ")
+        : "Aucuns revenus"
 
     const individu = getIndividuByStep(
       { id: step.id, role: step.id.split("_")[0] },
       this
     )
     return [
+      {
+        rowClass: "row-space",
+        label: capitalize(Individu.label(individu, "nom")),
+        labelClass: "individu-title",
+        hideEdit: true,
+      },
       {
         label: `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`,
         value,
@@ -172,9 +177,8 @@ export const COMPLEX_STEPS = {
 
         result = [
           {
-            isChapterSubtitle: true,
+            labelClass: "subtitle",
             label: category && capitalize(category.label(individu)),
-            value: "",
           },
           ...answer.map((ressource) => {
             return {

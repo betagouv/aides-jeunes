@@ -4,49 +4,39 @@
       <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
         <div class="chapter-block">
           <h2 class="aj-question">{{ chapter.label }}</h2>
-          <template v-for="(question, questionIndex) in chapter.questions">
-            <template v-if="question.isChapterSubtitle">
+          <template
+            v-for="(question, questionIndex) in chapter.questions"
+            :key="`chapter_${chapterIndex}_question_${questionIndex}`"
+          >
+            <div class="recapitulatif-row" :class="question.rowClass">
               <div
-                :key="`chapter_${chapterIndex}_question_${questionIndex}`"
-                class="recapitulatif-row"
+                :class="question.labelClass || 'question-col'"
+                v-html="question.label"
+              ></div>
+              <div
+                v-if="!['undefined', 'object'].includes(typeof question.value)"
+                class="value-col"
               >
-                <div class="subtitle" v-html="question.label"></div>
+                {{ question.value }}
               </div>
-            </template>
-            <template v-else>
-              <div
-                v-if="question.value !== undefined"
-                :key="`chapter_${chapterIndex}_question_${questionIndex}`"
-                class="recapitulatif-row"
+              <div v-if="!question.hideEdit" class="edit-col"
+                ><router-link :to="question.path">Modifier</router-link></div
               >
-                <div class="question-col" v-html="question.label"></div>
+            </div>
 
-                <div
-                  v-if="typeof question.value !== 'object'"
-                  class="value-col"
-                >
-                  {{ question.value }}
-                </div>
-                <div class="edit-col"
-                  ><router-link :to="question.path">Modifier</router-link></div
-                >
+            <div
+              v-if="typeof question.value === 'object'"
+              class="recapitulatif-row recapitulatif-row-wrap"
+            >
+              <div
+                v-for="(value, name) in question.value"
+                :key="name"
+                class="value-cell"
+              >
+                <div style="font-style: italic">{{ name }} :</div>
+                <div>{{ value }}</div>
               </div>
-              <template v-if="typeof question.value === 'object'">
-                <div
-                  :key="`chapter_${chapterIndex}_question_${questionIndex}_obj`"
-                  class="recapitulatif-row recapitulatif-row-wrap"
-                >
-                  <div
-                    v-for="(value, name) in question.value"
-                    :key="name"
-                    class="value-cell"
-                  >
-                    <div style="font-style: italic">{{ name }} :</div>
-                    <div>{{ value }}</div>
-                  </div>
-                </div>
-              </template>
-            </template>
+            </div>
           </template>
         </div>
       </template>
@@ -75,7 +65,7 @@ export default {
   },
   computed: {
     activeJourney() {
-      return this.$store.getters.getAllSteps.filter((s) => s.isActive)
+      return this.$store.getters.getAllAnsweredSteps
     },
     chapters() {
       return this.$state

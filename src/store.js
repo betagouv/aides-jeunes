@@ -148,6 +148,15 @@ const store = createStore({
     getAllSteps: function (state, getters) {
       return generateAllSteps(getters.situation, state.openFiscaParameters)
     },
+    getAllAnsweredSteps: function (state, getters) {
+      const allSteps = getters.getAllSteps.filter(
+        (step) =>
+          step.path !== "/" &&
+          step.path !== "/simulation/resultats" &&
+          step.isActive
+      )
+      return allSteps.filter((step) => isStepAnswered(state.answers.all, step))
+    },
     lastUnansweredStep: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(
         (step) =>

@@ -7,7 +7,7 @@
       <button
         class="button next-button"
         type="submit"
-        :disabled="disableSubmit"
+        :class="{ disabled: disableSubmit }"
         @click="localOnSubmit($event)"
       >
         Suivant

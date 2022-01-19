@@ -1,4 +1,6 @@
 <template>
+  <div><i>Plusieurs choix possibles</i></div>
+  <br />
   <fieldset>
     <div
       v-for="(item, value) in itemsObject"

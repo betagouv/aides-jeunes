@@ -551,8 +551,7 @@ const STEPS = {
   },
 
   _interetsAidesVelo: {
-    question:
-      "Souhaitez-vous connaître les aides pour acheter un vélo ? (plusieurs choix possibles)",
+    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
     questionType: "multiple",
     items: [
       { value: "velo_mecanique", label: "Vélo mécanique simple" },
@@ -560,7 +559,7 @@ const STEPS = {
       { value: "velo_cargo", label: "Vélo cargo" },
       { value: "velo_cargo_electrique", label: "Vélo cargo électrique" },
       { value: "velo_pliant", label: "Vélo pliant" },
-      { value: "velo_motorisation", label: "Vélo avec motorisation" },
+      { value: "velo_motorisation", label: "Motorisation d'un vélo classique" },
     ],
   },
 

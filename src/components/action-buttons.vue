@@ -7,6 +7,7 @@
       <button
         class="button next-button"
         type="submit"
+        :disabled="disableSubmit"
         @click="localOnSubmit($event)"
       >
         Suivant
@@ -27,6 +28,7 @@ export default {
       type: Function,
       default() {},
     },
+    disableSubmit: Boolean,
   },
   data() {
     return {

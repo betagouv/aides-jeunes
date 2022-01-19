@@ -7,7 +7,7 @@
       codePostalLabel="Quel est le code postal de la commune de vos parents ?"
     />
     <WarningMessage v-if="warningMessage" :text="warningMessage" />
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>
 <script>
@@ -50,12 +50,16 @@ export default {
     },
   },
   methods: {
-    onSubmit: function () {
+    canSubmit(submit) {
       if (!this.nomCommune || !this.codePostal) {
-        this.$store.dispatch("updateError", "Ce champ est obligatoire.")
-        return
+        submit &&
+          this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        return false
       }
-      if (this.matchingCommune) {
+      return Boolean(this.matchingCommune)
+    },
+    onSubmit: function () {
+      if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {
           id: "demandeur",
           entityName: "individu",
@@ -77,8 +81,8 @@ export default {
               this.matchingCommune.epciType,
           },
         })
+        this.$push()
       }
-      this.$push()
     },
   },
 }

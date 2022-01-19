@@ -64,7 +64,7 @@
         <p v-html="step.help" />
       </template>
     </YesNoQuestion>
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit(false)" />
   </form>
 </template>
 
@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (!this.step.optional && this.requiredValueMissing()) {
+      if (!this.canSubmit(true)) {
         return
       }
       this.$store.dispatch("answer", {
@@ -150,13 +150,20 @@ export default {
       })
       this.$push()
     },
-    requiredValueMissing() {
+    requiredValueMissing(submit) {
       const hasError = this.value === undefined
-      this.$store.dispatch(
-        "updateError",
-        hasError && "Ce champ est obligatoire."
-      )
+
+      if (submit) {
+        this.$store.dispatch(
+          "updateError",
+          hasError && "Ce champ est obligatoire."
+        )
+      }
+
       return hasError
+    },
+    canSubmit(submit) {
+      return this.step.optional || !this.requiredValueMissing(submit)
     },
   },
 }

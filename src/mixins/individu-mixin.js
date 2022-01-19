@@ -28,26 +28,27 @@ export const createIndividuMixin = (props) => {
       getLabel: function (type) {
         return Individu.label(this.individu, type)
       },
-      requiredValueMissing: function () {
+      canSubmit: function (submit) {
         const hasError =
           !this.optional && (this.value === undefined || this.value === "")
-        this.$store.dispatch(
-          "updateError",
-          hasError && "Ce champ est obligatoire."
-        )
-        return hasError
+        if (submit) {
+          this.$store.dispatch(
+            "updateError",
+            hasError && "Ce champ est obligatoire."
+          )
+        }
+        return !hasError
       },
       onSubmit: function () {
-        if (this.requiredValueMissing()) {
-          return
+        if (this.canSubmit(true)) {
+          this.$store.dispatch("answer", {
+            id: this.$route.params.id,
+            entityName: "individu",
+            fieldName: this.fieldName,
+            value: this.value,
+          })
+          this.$push()
         }
-        this.$store.dispatch("answer", {
-          id: this.$route.params.id,
-          entityName: "individu",
-          fieldName: this.fieldName,
-          value: this.value,
-        })
-        this.$push()
       },
     },
   }

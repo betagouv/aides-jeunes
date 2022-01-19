@@ -5,7 +5,7 @@
       faciliter la saisie par la suite.</label
     >
     <input id="_firstName" v-model="value" type="text" />
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>
 

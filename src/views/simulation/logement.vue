@@ -87,7 +87,7 @@
       </div>
     </fieldset>
 
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>
 
@@ -194,26 +194,31 @@ export default {
         this.$store.state.dates.today.value
       )
     },
-    onSubmit: function () {
+    updateError(message, submit) {
+      if (submit) {
+        this.$store.dispatch("updateError", message)
+      }
+    },
+    canSubmit(submit) {
       if (!this.logementTypesQuestion.selectedValue) {
-        this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        this.updateError("Ce champ est obligatoire.", submit)
       } else if (
         this.logementTypesQuestion.selectedValue === "proprietaire" &&
         this.primoAccedantQuestion.selectedValue === null
       ) {
-        this.$store.dispatch(
-          "updateError",
-          "Le champ primo-accédant est obligatoire."
-        )
+        this.updateError("Le champ primo-accédant est obligatoire.", submit)
       } else if (
         this.logementTypesQuestion.selectedValue === "locataire" &&
         !this.locataireTypesQuestion.selectedValue
       ) {
-        this.$store.dispatch(
-          "updateError",
-          "Le champ type de logement est obligatoire."
-        )
+        this.updateError("Le champ type de logement est obligatoire.", submit)
       } else {
+        return true
+      }
+      return false
+    },
+    onSubmit: function () {
+      if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {
           entityName: "menage",
           fieldName: "statut_occupation_logement",

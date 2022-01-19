@@ -75,7 +75,9 @@ html {
           }
 
           &[type="checkbox"] {
+            border-radius: 20%;
             &:checked {
+              background-color: var(--green);
               border-width: 4px;
             }
 

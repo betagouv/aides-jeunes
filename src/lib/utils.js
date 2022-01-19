@@ -39,7 +39,7 @@ export const displayMultipleValue = (value, question) => {
         }
       }
     })
-    .join("\n")
+    .join(", ")
 }
 
 export const displayYesNoValue = (value) => {

@@ -64,7 +64,6 @@
         <p v-html="step.help" />
       </template>
     </YesNoQuestion>
-
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

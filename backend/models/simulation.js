@@ -36,7 +36,7 @@ const answer = {
 const SimulationSchema = new mongoose.Schema(
   {
     allAnswers: { type: [answer], required: true },
-    current: { type: [answer], required: true },
+    currentAnswers: { type: [answer], required: true },
     enfants: [Number],
     ressourcesFiscales: Object,
     patrimoine: Object,

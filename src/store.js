@@ -35,7 +35,7 @@ function defaultStore() {
     situationId: null,
     simulation: {
       allAnswers: [],
-      current: [],
+      currentAnswers: [],
       dateDeValeur: new Date(),
       version: 3,
     },
@@ -249,8 +249,8 @@ const store = createStore({
       state.simulation = {
         ...state.simulation,
         allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
-        current: storeAnswer(
-          state.simulation.current,
+        currentAnswers: storeAnswer(
+          state.simulation.currentAnswers,
           answer,
           true,
           state.simulation.enfants
@@ -278,7 +278,7 @@ const store = createStore({
         i = i + 1
         currentStep = steps[i]
       }
-      state.simulation.current = currentAnswers
+      state.simulation.currentAnswers = currentAnswers
     },
     ressourcesFiscales: (state, ressourcesFiscales) => {
       state.simulation = {
@@ -293,7 +293,7 @@ const store = createStore({
       }
     },
     clear: function (state) {
-      state.simulation = { allAnswers: [], current: [], enfants: [] }
+      state.simulation = { allAnswers: [], currentAnswers: [], enfants: [] }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -337,20 +337,20 @@ const store = createStore({
       }
 
       // When you add a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.simulation.current.findIndex(
+      const currentLastIndex = state.simulation.currentAnswers.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.simulation.current
-          : state.simulation.current.splice(0, currentLastIndex)
+          ? state.simulation.currentAnswers
+          : state.simulation.currentAnswers.splice(0, currentLastIndex)
 
       state.simulation = {
         ...state.simulation,
         enfants,
         allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
-        current: storeAnswer(
+        currentAnswers: storeAnswer(
           currentAnswers,
           answer,
           true,
@@ -360,18 +360,18 @@ const store = createStore({
     },
     editEnfant: function (state, id) {
       // When you edit a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.simulation.current.findIndex(
+      const currentLastIndex = state.simulation.currentAnswers.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.simulation.current
-          : state.simulation.current.splice(0, currentLastIndex)
+          ? state.simulation.currentAnswers
+          : state.simulation.currentAnswers.splice(0, currentLastIndex)
 
       state.simulation = {
         ...state.simulation,
-        current: currentAnswers.filter(
+        currentAnswers: currentAnswers.filter(
           (answer) => answer.id !== `enfant_${id}`
         ),
       }

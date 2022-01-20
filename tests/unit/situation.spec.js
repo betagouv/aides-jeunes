@@ -41,7 +41,7 @@ const simulation = {
       ],
     },
   ],
-  current: [
+  currentAnswers: [
     {
       id: "demandeur",
       entityName: "individu",

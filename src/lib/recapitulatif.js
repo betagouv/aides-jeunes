@@ -55,7 +55,7 @@ export const SIMPLE_STEPS = {
   },
   depcom() {
     const answer = getAnswer(
-      this.$store.state.simulation.current,
+      this.$store.state.simulation.currentAnswers,
       "menage",
       "depcom",
       undefined
@@ -73,7 +73,7 @@ export const SIMPLE_STEPS = {
 
   _bourseCriteresSociauxCommuneDomicileFamilial() {
     const answer = getAnswer(
-      this.$store.state.simulation.current,
+      this.$store.state.simulation.currentAnswers,
       "individu",
       "_bourseCriteresSociauxCommuneDomicileFamilial",
       "demandeur"
@@ -91,7 +91,7 @@ export const SIMPLE_STEPS = {
 
   statut_occupation_logement() {
     const answer = getAnswer(
-      this.$store.state.simulation.current,
+      this.$store.state.simulation.currentAnswers,
       "menage",
       "statut_occupation_logement"
     )
@@ -108,11 +108,17 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = getAnswer(this.$store.state.simulation.current, "enfants")
+      const answer = getAnswer(
+        this.$store.state.simulation.currentAnswers,
+        "enfants"
+      )
       return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const answer = getAnswer(this.$store.state.simulation.current, "enfants")
+      const answer = getAnswer(
+        this.$store.state.simulation.currentAnswers,
+        "enfants"
+      )
       return [
         {
           label: "Mes enfants à charge",
@@ -154,7 +160,7 @@ export const COMPLEX_STEPS = {
     fn(step) {
       const answer = (
         getAnswer(
-          this.$store.state.simulation.current,
+          this.$store.state.simulation.currentAnswers,
           step.entity,
           step.variable,
           step.id

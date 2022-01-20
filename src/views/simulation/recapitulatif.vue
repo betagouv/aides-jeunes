@@ -134,7 +134,10 @@ export default {
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = getStepAnswer(this.$store.state.simulation.all, step)
+        const answer = getStepAnswer(
+          this.$store.state.simulation.allAnswers,
+          step
+        )
 
         const entity = ENTITIES_PROPERTIES[step.entity].loadEntity?.({
           $store: this.$store,

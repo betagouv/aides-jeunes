@@ -29,7 +29,7 @@ export default {
   mixins: [createDepcomMixin()],
   data: function () {
     const answer = getAnswer(
-      this.$store.state.simulation.all,
+      this.$store.state.simulation.allAnswers,
       "menage",
       "depcom"
     )

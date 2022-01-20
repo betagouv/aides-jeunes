@@ -41,7 +41,7 @@ export default {
     modelValue: Number,
   },
   data: function () {
-    return Logement.getLoyerData(this.$store.state.simulation.all)
+    return Logement.getLoyerData(this.$store.state.simulation.allAnswers)
   },
   methods: {
     onSubmit: function () {

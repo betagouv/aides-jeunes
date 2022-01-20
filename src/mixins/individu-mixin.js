@@ -10,7 +10,7 @@ export const createIndividuMixin = (props) => {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const value = getAnswer(
-        this.$store.state.simulation.all,
+        this.$store.state.simulation.allAnswers,
         entityName,
         fieldName,
         id

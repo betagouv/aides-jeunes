@@ -127,7 +127,9 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(this.$store.state.simulation.all)
+      const loyerData = Logement.getLoyerData(
+        this.$store.state.simulation.allAnswers
+      )
       return [
         {
           label: loyerData.loyerQuestion.label,

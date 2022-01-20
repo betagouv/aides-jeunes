@@ -67,7 +67,7 @@ export default {
     })
 
     const selectedRessources = getAnswer(
-      this.$store.state.simulation.all,
+      this.$store.state.simulation.allAnswers,
       "individu",
       "ressources",
       this.$route.params.id

@@ -34,7 +34,7 @@ function defaultStore() {
   return {
     situationId: null,
     simulation: {
-      all: [],
+      allAnswers: [],
       current: [],
       dateDeValeur: new Date(),
       version: 3,
@@ -165,7 +165,7 @@ const store = createStore({
           step.isActive
       )
       return allSteps.find(
-        (step) => !isStepAnswered(state.simulation.all, step)
+        (step) => !isStepAnswered(state.simulation.allAnswers, step)
       )
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
@@ -248,7 +248,7 @@ const store = createStore({
     answer: (state, answer) => {
       state.simulation = {
         ...state.simulation,
-        all: storeAnswer(state.simulation.all, answer, false),
+        allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
         current: storeAnswer(
           state.simulation.current,
           answer,
@@ -263,7 +263,7 @@ const store = createStore({
       let currentStep = steps[0]
       while (currentStep && currentStep.path !== newPath) {
         if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = state.simulation.all.find((answer) => {
+          const currentAnswer = state.simulation.allAnswers.find((answer) => {
             return (
               answer.id === currentStep.id &&
               answer.entityName === currentStep.entity &&
@@ -293,7 +293,7 @@ const store = createStore({
       }
     },
     clear: function (state) {
-      state.simulation = { all: [], current: [], enfants: [] }
+      state.simulation = { allAnswers: [], current: [], enfants: [] }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -349,7 +349,7 @@ const store = createStore({
       state.simulation = {
         ...state.simulation,
         enfants,
-        all: storeAnswer(state.simulation.all, answer, false),
+        allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
         current: storeAnswer(
           currentAnswers,
           answer,

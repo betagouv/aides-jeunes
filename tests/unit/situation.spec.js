@@ -2,7 +2,7 @@ import { generateSituation } from "../../lib/situations"
 import { buildOpenFiscaRequest } from "../../backend/lib/openfisca/mapping"
 
 const simulation = {
-  all: [
+  allAnswers: [
     {
       id: "demandeur",
       entityName: "individu",

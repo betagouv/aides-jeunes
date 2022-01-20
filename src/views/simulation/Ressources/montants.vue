@@ -119,7 +119,7 @@ export default {
       )
 
       const answers = getAnswer(
-        this.$store.state.simulation.all,
+        this.$store.state.simulation.allAnswers,
         "individu",
         this.$route.params.category,
         this.$route.params.id

@@ -104,7 +104,7 @@ export default {
   },
   data: function () {
     const logementStatut = getAnswer(
-      this.$store.state.simulation.all,
+      this.$store.state.simulation.allAnswers,
       "menage",
       "statut_occupation_logement"
     )

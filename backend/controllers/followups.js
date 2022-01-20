@@ -8,7 +8,7 @@ const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
-    .populate("simulation") // TODO check if simulation or simulations
+    .populate("simulation")
     .exec(function (err, followup) {
       if (err) {
         return next(err)

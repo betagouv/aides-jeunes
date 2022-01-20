@@ -251,7 +251,7 @@ fields:
         name: periodicite
         widget: select
         required: false
-        options: [Annuel, Trimestrielle, Mensuel, Unique, Autre]
+        options: [Annuelle, Trimestrielle, Mensuelle, Unique, Autre]
 
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence

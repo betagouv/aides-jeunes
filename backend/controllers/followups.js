@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 const Followup = require("mongoose").model("Followup")
 
-const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
+const simulationController = require("./simulation")
 
 const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
 
@@ -17,12 +17,12 @@ exports.followup = function (req, res, next, id) {
         return res.redirect("/")
       }
       req.followup = followup
-      situation.simulation(req, res, next, followup.simulation)
+      simulationController.simulation(req, res, next, followup.simulation)
     })
 }
 
 exports.resultRedirect = function (req, res) {
-  situation.attachAccessCookie(req, res)
+  simulationController.attachAccessCookie(req, res)
   res.redirect(req.simulation.returnPath)
 }
 

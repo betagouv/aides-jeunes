@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const followups = require("../controllers/followups")
-const simulationController = require("../controllers/answers")
+const simulationController = require("../controllers/simulation")
 const teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {

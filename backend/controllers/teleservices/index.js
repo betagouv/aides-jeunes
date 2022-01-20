@@ -1,5 +1,5 @@
 const auth = require("basic-auth")
-const simulationController = require("../answers")
+const simulationController = require("../simulation")
 const jwt = require("jsonwebtoken")
 const moment = require("moment")
 const Mustache = require("mustache")

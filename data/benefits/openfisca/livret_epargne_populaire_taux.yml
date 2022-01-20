@@ -1,0 +1,21 @@
+label: livret d’épargne populaire
+unit: "%"
+type: float
+description: >-
+  Le livret d’épargne populaire (LEP) est un placement réservé aux personnes
+  disposant de revenus modestes. Il offre de nombreux avantages parmi lesquels
+  un taux d’intérêt garanti supérieur aux autres livrets réglementés.
+conditions:
+  - Avoir votre domicile fiscal situé en France.
+  - Effectuer chaque année votre déclaration auprès des impôts.
+  - >-
+    Présenter à l’établissement bancaire votre avis d’imposition indiquant votre
+    revenu fiscal.
+periodicite: annuelle
+link: https://www.service-public.fr/particuliers/vosdroits/F2367
+entity: individus
+isBaseRessourcesYearMinusTwo: true
+floorAt: 0.01
+top: 20
+prefix: le
+institution: banque_de_france

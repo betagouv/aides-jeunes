@@ -6,7 +6,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>.
 conditions:
-  - Disposer d'un quotient familial inférieur à 670 €.
   - Suivre votre stage dans un organisme agréé par les services de la DDSCPP
     (ex. DDJS).
 conditions_generales:
@@ -19,6 +18,9 @@ conditions_generales:
   - type: departements
     values:
       - "88"
+  - type: quotient_familial
+    period: month
+    floor: 670
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
 instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd

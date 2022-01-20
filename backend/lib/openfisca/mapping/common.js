@@ -2,10 +2,10 @@ const moment = require("moment")
 const assign = require("lodash/assign")
 
 const benefits = require("../../../../data/all")
-const { generator } = require("../../../../lib/Dates")
+const { generator } = require("../../../../lib/dates")
 const {
   CONDITION_STATEGY,
-} = require("../../../../lib/Benefits/compute-javascript")
+} = require("../../../../lib/benefits/compute-javascript")
 
 exports.isIndividuValid = function (individu, situation) {
   const age = moment(situation.dateDeValeur).diff(
@@ -61,7 +61,7 @@ function appendExtraVariables(requestedVariables, extraVariables) {
 
 let requestedVariables = {}
 benefits.all
-  .filter((benefit) => !benefit.computesLocally)
+  .filter((benefit) => benefit.source === "openfisca")
   .forEach((benefit) => {
     const item = benefit.openfisca_eligibility_source || benefit.id
     requestedVariables[item] = requestedVariables[item] || assign({}, benefit)

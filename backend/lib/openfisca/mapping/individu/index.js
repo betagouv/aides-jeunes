@@ -7,8 +7,8 @@ const isString = require("lodash/isString")
 
 const { formatDate } = require("../utils")
 const individuRessource = require("./ressources")
-const pastResourcesProxy = require("./pastResourcesProxy")
-const { estActif } = require("../../../../../lib/Activite")
+const pastResourcesProxy = require("./past-resources-proxy")
+const { estActif } = require("../../../../../lib/activite")
 
 const {
   computeDistanceCommunes,
@@ -97,23 +97,10 @@ const individuSchema = {
         .format("YYYY-MM-DD")
     },
   },
-  niveau_diplome_formation: {
-    fn: function (individu) {
-      if (individu._continuite_etudes) {
-        return "niveau_5"
-      } else {
-        return "non_renseigne"
-      }
-    },
-  },
   peec_employeur: {
     fn: function () {
       return true
     },
-  },
-  plus_haut_diplome_date_obtention: {
-    src: "plus_haut_diplome_date_obtention",
-    fn: formatDate,
   },
   professionnalisation: {
     src: "_contrat_alternant",

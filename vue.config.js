@@ -10,12 +10,11 @@ const benefits = require("./data/all")
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.length
 process.env.VUE_APP_MATOMO_ID = matomo.id
-process.env.VUE_APP_VALIDATION_DELAY = (animation && animation.delay) || 0
+process.env.VUE_APP_VALIDATION_DELAY = animation?.delay || 0
 process.env.VUE_APP_BASE_URL = baseURL
 process.env.VUE_APP_CONTEXT = process.env.CONTEXT
 process.env.VUE_APP_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
-process.env.VUE_APP_STATS_URL =
-  statistics && statistics.url ? statistics.url : ""
+process.env.VUE_APP_STATS_URL = statistics?.url ? statistics.url : ""
 
 module.exports = {
   configureWebpack: (config) => {
@@ -25,15 +24,14 @@ module.exports = {
     )
     config.plugins.push(
       new HtmlWebpackPlugin({
-        filename: "[name]-map.xml",
-        template: "public/sitemap.xml",
-        favicon: "public/img/favicon/favicon.ico",
+        filename: "sitemap.xml",
+        template: "public/map.xml",
         inject: false,
         templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
       })
     )
     const args = parseArgs(process.argv.slice(2))
-    if (args.env && args.env.BUNDLEANALYZE) {
+    if (args.env?.BUNDLEANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({}))
     }
   },

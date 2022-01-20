@@ -10,11 +10,11 @@ const buildOpenFiscaIndividu = require("./individu")
 const buildOpenFiscaMenage = require("./menage")
 const migrations = require("../../migrations")
 
-const propertyMove = require("./propertyMove")
-const last3MonthsDuplication = require("./last3MonthsDuplication")
+const propertyMove = require("./property-move")
+const last3MonthsDuplication = require("./last3-months-duplication")
 const {
   filterByInterestFlag,
-} = require("../../../../lib/Benefits/FilterInterestFlag")
+} = require("../../../../lib/benefits/filter-interest-flag")
 
 function dispatchIndividuals(situation) {
   const individus = mapIndividus(situation)
@@ -29,7 +29,7 @@ function dispatchIndividuals(situation) {
   const menages = { _: buildOpenFiscaMenage(situation) }
 
   const demandeur = common.getDemandeur(situation)
-  const demandeurId = demandeur && demandeur.id
+  const demandeurId = demandeur?.id
 
   familles._.parents = [demandeurId]
   menages._.personne_de_reference = [demandeurId]
@@ -51,7 +51,7 @@ function dispatchIndividuals(situation) {
       enfants: [],
     }
 
-    if (situation.parents && situation.parents._situation == "en_couple") {
+    if (situation.parents?._situation == "en_couple") {
       const parent2 = {
         id: "parent2",
       }
@@ -67,7 +67,7 @@ function dispatchIndividuals(situation) {
   }
 
   const conjoint = common.getConjoint(situation)
-  const conjointId = conjoint && conjoint.id
+  const conjointId = conjoint?.id
   if (conjointId) {
     familles._.parents.push(conjointId)
     menages._.conjoint = [conjointId]
@@ -136,19 +136,12 @@ function mapIndividus(situation) {
     }, {})
 }
 
-function giveValueToRequestedVariables(testCase, periods, value, demandeur) {
-  const prestationsWithInterest = pickBy(
-    common.requestedVariables,
-    function (definition) {
-      return filterByInterestFlag(definition, demandeur)
-    }
-  )
-
+function giveValueToRequestedVariables(testCase, prestations, periods, value) {
   if (!(periods instanceof Array)) {
     periods = [periods]
   }
 
-  forEach(prestationsWithInterest, function (definition, prestationName) {
+  forEach(prestations, function (definition, prestationName) {
     forEach(testCase[definition.entity], function (entity) {
       entity[prestationName] = entity[prestationName] || {}
       forEach(periods, function (period) {
@@ -187,16 +180,13 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
     testCase.menages._
   )
   menage.logement_conventionne[periods.thisMonth] =
-    menage.statut_occupation_logement &&
-    menage.statut_occupation_logement[periods.thisMonth] == "primo_accedant" &&
-    menage.loyer &&
-    menage.loyer[periods.thisMonth] == 0
+    menage.statut_occupation_logement?.[periods.thisMonth] ==
+      "primo_accedant" && menage.loyer?.[periods.thisMonth] == 0
 
   const demandeur = sourceSituation.demandeur
   const parents = sourceSituation.parents
 
-  const aCharge =
-    demandeur.enfant_a_charge && demandeur.enfant_a_charge[periods.thisYear]
+  const aCharge = demandeur.enfant_a_charge?.[periods.thisYear]
 
   if (aCharge) {
     if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
@@ -247,9 +237,13 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   const prestationsFinancieres = pickBy(
     common.requestedVariables,
     function (definition) {
-      return !definition.type || definition.type === "float"
+      return (
+        (!definition.type || definition.type === "float") &&
+        !definition.openfiscaPeriod
+      )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieres,
@@ -262,10 +256,12 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     function (definition) {
       return (
         (!definition.type || definition.type === "float") &&
-        definition.setToZeroRecently
+        definition.setToZeroRecently &&
+        !definition.openfiscaPeriod
       )
     }
   )
+
   setNonInjected(
     testCase,
     prestationsFinancieresAtZeroRecently,
@@ -273,12 +269,40 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     0
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
-  giveValueToRequestedVariables(
-    testCase,
-    periods.thisMonth,
-    null,
-    situation.demandeur
+
+  const prestationsWithInterest = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return filterByInterestFlag(definition, situation.demandeur)
+    }
   )
+
+  const openfiscaPeriods = new Set()
+  Object.values(prestationsWithInterest).forEach((definition) => {
+    openfiscaPeriods.add(definition.openfiscaPeriod)
+  })
+
+  openfiscaPeriods.forEach((value) => {
+    const prestations = pickBy(prestationsWithInterest, function (definition) {
+      return definition.openfiscaPeriod === value
+    })
+
+    giveValueToRequestedVariables(
+      testCase,
+      prestations,
+      value ? periods[value] : periods.thisMonth,
+      null
+    )
+  })
+
+  // Force RFR to be either present or restitued by OpenFisca
+  const initialRFRValue = testCase.foyers_fiscaux._?.rfr?.[periods.fiscalYear]
+  const newRFRValue = initialRFRValue !== undefined ? initialRFRValue : null
+  if (testCase.foyers_fiscaux._.rfr) {
+    testCase.foyers_fiscaux._.rfr[periods.fiscalYear] = newRFRValue
+  } else {
+    testCase.foyers_fiscaux._.rfr = { [periods.fiscalYear]: newRFRValue }
+  }
 
   return applyHeuristicsAndFix(testCase, sourceSituation)
 }

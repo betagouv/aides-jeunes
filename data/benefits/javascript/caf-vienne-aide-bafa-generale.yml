@@ -8,7 +8,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
   - Effectuer votre stage auprès d’un organisme conventionné.
-  - Avoir un quotient familial égal ou inférieur à 1200 €.
   - Ne pas être pris en charge à 100 % par un employeur pour la session
     d’approfondissement ou de qualification.
 conditions_generales:
@@ -21,6 +20,9 @@ conditions_generales:
   - type: departements
     values:
       - "86"
+  - type: quotient_familial
+    period: month
+    floor: 1200
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa

@@ -2,6 +2,7 @@ const bodyParser = require("body-parser")
 const axios = require("axios")
 const outils = require("./backend/controllers/outils")
 const mapping = require("./backend/lib/openfisca/mapping")
+const openfiscaParameters = require("./backend/lib/openfisca/parameters.js")
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
@@ -65,6 +66,10 @@ function mock({ app }) {
     res.send([])
   })
 
+  app.get("/api/openfisca/parameters/:timestamp", function (req, res) {
+    res.send(openfiscaParameters.parametersList)
+  })
+
   app.get("/api/followups/surveys/:id", function (req, res) {
     res.send({
       benefits: [
@@ -81,10 +86,8 @@ function mock({ app }) {
 
   app.use(function (err, req, res, next) {
     res
-      .status((err.response && err.response.status) || 500)
-      .send(
-        (err.response && err.response.data) || err.message || err.error || err
-      )
+      .status(err.response?.status || 500)
+      .send(err.response?.data || err.message || err.error || err)
     next()
   })
 }

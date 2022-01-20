@@ -7,7 +7,7 @@ const find = require("lodash/find")
 
 const moment = require("moment")
 const CurrencyFormatter = require("currencyformatter.js")
-const situationsFamiliales = require("../../../lib/SituationsFamiliales.js")
+const situationsFamiliales = require("../../../lib/situations-familiales.js")
 const getPeriods = require("../openfisca/mapping/common").getPeriods
 
 function reduce(demandeur, dateDeValeur, field) {

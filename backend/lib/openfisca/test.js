@@ -4,6 +4,10 @@ const forEach = require("lodash/forEach")
 const assign = require("lodash/assign")
 const pick = require("lodash/pick")
 const benefits = require("../../../data/all")
+const pickBy = require("lodash/pickBy")
+const {
+  filterByInterestFlag,
+} = require("../../../lib/benefits/filter-interest-flag")
 
 function toStringOf(obj) {
   return obj.toString()
@@ -52,7 +56,8 @@ const EXTENSION_VARIABLES = {
 
 benefits.all
   .filter(
-    (benefit) => !benefit.computesLocally && benefit.institution.repository
+    (benefit) =>
+      benefit.source === "openfisca" && benefit.institution.repository
   )
   .forEach((benefit) => {
     const repository = "openfisca-" + benefit.institution.repository
@@ -95,11 +100,21 @@ exports.generateTest = function generateYAMLTest(details, situation) {
   const periods = common.getPeriods(situation.dateDeValeur)
   const dropPeriods = [periods.thisMonth].concat(periods.last3Months)
 
+  const prestationsWithInterest = pickBy(
+    common.requestedVariables,
+    function (definition) {
+      return (
+        filterByInterestFlag(definition, situation.demandeur) &&
+        !definition.openfiscaPeriod
+      )
+    }
+  )
+
   mapping.giveValueToRequestedVariables(
     openfiscaRequest,
+    prestationsWithInterest,
     dropPeriods,
-    undefined,
-    situation.demandeur
+    undefined
   )
   const testInputs = prepareTestSituationForSpecificExtension(
     openfiscaRequest,

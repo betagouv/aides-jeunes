@@ -3,7 +3,7 @@ const fs = require("fs")
 const migrations = fs
   .readdirSync(__dirname)
   .filter(function (file) {
-    return file.match(/^toV\d+\.js$/)
+    return file.match(/^to-v\d+\.js$/)
   })
   .map(function (migrationFile) {
     return require("./" + migrationFile)

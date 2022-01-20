@@ -5,8 +5,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   session en complément de <a target="_blank" rel="noopener"
   href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
   nationale apportée par la caf</a>
-conditions:
-  - Avoir un quotient familial inférieur à 830€ le mois précédent votre demande.
 conditions_generales:
   - type: age
     operator: ">="
@@ -14,6 +12,9 @@ conditions_generales:
   - type: departements
     values:
       - "37"
+  - type: quotient_familial
+    floor: 830
+    period: month
 profils: []
 link: https://www.caf.fr/allocataires/caf-touraine/offre-de-service/enfance-et-jeunesse/vous-avez-plus-de-17-ans-et-vous-suivez-une-formation-pour-obtenir-le-bafa
 form: https://www.caf.fr/sites/default/files/caf/371/2%20-%20Offre%20de%20services/Enfance%20et%20jeunesse/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf

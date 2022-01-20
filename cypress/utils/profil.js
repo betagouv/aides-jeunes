@@ -77,10 +77,6 @@ const fill_enfant_a_charge = (isOnParentDeclaration) => {
   fillRadio("enfant_a_charge", isOnParentDeclaration)
 }
 
-const fill__continuite_etudes = (keepStudying) => {
-  fillRadio("_continuite_etudes", keepStudying)
-}
-
 const fill_regime_securite_sociale = (regime) => {
   fillRadio("regime_securite_sociale", regime)
 }
@@ -133,7 +129,6 @@ const publicStudent = () => {
   fill_alternant(false)
   fillHandicap(false)
   fill_enfant_a_charge(false)
-  fill__continuite_etudes(true)
   fill_regime_securite_sociale("regime_general")
   fill_enceinte(false)
 }

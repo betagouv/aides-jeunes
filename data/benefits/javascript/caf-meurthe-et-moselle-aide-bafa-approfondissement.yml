@@ -8,7 +8,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf</a>.
 conditions:
   - Etre allocataire ou rattaché(e) au dossier allocataire de vos parents.
-  - Avoir un quotient familial inférieur ou égal à 800€.
 conditions_generales:
   - type: age
     operator: ">="
@@ -16,8 +15,12 @@ conditions_generales:
   - type: departements
     values:
       - "54"
+  - type: quotient_familial
+    period: month
+    floor: 800
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
 instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
 type: bool
 unit: €
+periodicite: ponctuelle

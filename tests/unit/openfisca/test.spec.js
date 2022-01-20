@@ -3,7 +3,7 @@ const { values } = require("lodash")
 const Promise = require("bluebird")
 const fs = Promise.promisifyAll(require("fs"))
 const subject = require("../../../backend/lib/openfisca/test")
-const resources = require("../../../lib/Resources")
+const resources = require("../../../lib/resources")
 const tmp = require("tmp")
 
 const details = {

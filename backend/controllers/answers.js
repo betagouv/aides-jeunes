@@ -9,7 +9,7 @@ const openfiscaTest = require("../lib/openfisca/test")
 const Answers = require("mongoose").model("Answer")
 
 exports.answers = function (req, res, next, answersId) {
-  if (answersId && answersId._id) {
+  if (answersId?._id) {
     req.answers = answersId
     req.situation = generateSituation(answersId)
     return next()
@@ -85,7 +85,7 @@ exports.openfiscaResponse = function (req, res, next) {
   return openfisca.calculate(req.situation, function (err, result) {
     if (err)
       return next(
-        Object.assign((err.response && err.response.data) || err, {
+        Object.assign(err.response?.data || err, {
           _id: req.situationId,
         })
       )

@@ -1,0 +1,22 @@
+label: aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_haute_marne
+description: "L'aide proposée par la CAF de la Haute-Marne peut vous aider à
+  financer votre session de formation au BAFD. "
+conditions:
+  - Résider en Haute-Marne.
+  - Être titulaire du BAFA.
+  - Être inscrit(e) au stage de formation générale pour la préparation du brevet
+    d’aptitude aux fonctions de Directeur.
+conditions_generales:
+  - type: departements
+    values:
+      - "52"
+profils: []
+link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
+form: https://www.caf.fr/sites/default/files/caf/521/IMPRIME%20BAFD.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 400
+interestFlag: _interetBafa

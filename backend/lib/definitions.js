@@ -1,6 +1,6 @@
 const concat = require("lodash/concat")
 
-const ressources = require("../../lib/Resources")
+const ressources = require("../../lib/resources")
 
 const famille = {
   bourse_lycee: Boolean,
@@ -46,7 +46,6 @@ const individu = Object.assign(
       ],
     },
     agepi_temps_travail_semaine: Number,
-    aide_jeunes_diplomes_anciens_boursiers_base_ressources: Number,
     alternant: Boolean,
     annee_etude: {
       type: String,
@@ -70,7 +69,6 @@ const individu = Object.assign(
     },
     ass_precondition_remplie: Boolean,
     boursier: Boolean,
-    _boursier_derniere_annee_etudes: Boolean,
     bourse_criteres_sociaux_base_ressources_parentale: Number,
     bourse_criteres_sociaux_echelon: Number,
     _bourseCriteresSociauxCommuneDomicileFamilial: String,
@@ -84,7 +82,6 @@ const individu = Object.assign(
       type: String,
       enum: ["public_non_titulaire", "prive_non_cadre"],
     },
-    _continuite_etudes: Boolean,
     _contrat_alternant: {
       type: String,
       enum: ["apprenti", "professionnalisation"],
@@ -121,21 +118,6 @@ const individu = Object.assign(
     _nombreMoisDebutContratDeTravail: {
       type: Number,
       enum: [2, 5, 12],
-    },
-    plus_haut_diplome_date_obtention: Date,
-    plus_haut_diplome_niveau: {
-      type: String,
-      enum: [
-        "non_renseigne",
-        "niveau_1",
-        "niveau_2",
-        "niveau_3",
-        "niveau_4",
-        "niveau_5",
-        "niveau_6",
-        "niveau_7",
-        "niveau_8",
-      ],
     },
     regime_securite_sociale: {
       type: String,
@@ -205,7 +187,14 @@ const menage = {
 const parents = {
   _situation: {
     type: String,
-    enum: ["en_couple", "separes", "decedes", "sans_autorite", "veuve"],
+    enum: [
+      "en_couple",
+      "separes",
+      "celibataire",
+      "decedes",
+      "sans_autorite",
+      "veuve",
+    ],
   },
   _en_france: Boolean,
   nbptr: Number,

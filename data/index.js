@@ -1,17 +1,19 @@
 "use strict"
 
-const customBenefits = require("./benefits/custom/index")
+const additionalBenefitAttributes = require("./benefits/additional-attributes")
+const aidesVeloGenerator = require("./benefits/aides-velo-generator")
 
 function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
     const item = {
-      id: data.slug,
+      slug: data.slug,
+      id: data.id || data.slug,
       label: data.name,
-      imgSrc: data.imgSrc && data.imgSrc.slice("img/".length),
-      prestations: {},
-      national: data.national,
-      level: data.national ? "prestationsNationales" : "partenairesLocaux",
-      repository: data.repository || (data.national ? null : "france-local"),
+      imgSrc: data.imgSrc?.slice("img/".length),
+      benefitsIds: [],
+      type: data.type,
+      repository:
+        data.repository || (data.type === "national" ? null : "france-local"),
       etablissements: data.etablissements,
     }
     result[data.slug] = item
@@ -19,38 +21,59 @@ function transformInstitutions(collection) {
   }, {})
 }
 
-function setDefaults(benefit, national) {
-  const top = national ? 1 : 5
+function setDefaults(benefit, institution) {
+  const top = institution.type === "national" ? 1 : 5
 
-  benefit.id = benefit.slug
+  benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
   return benefit
 }
 
-function generate(collections, customBenefits) {
+function generate(
+  collections,
+  additionalBenefitAttributes,
+  aidesVeloBenefitListGenerator
+) {
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {
-    benefit.computesLocally = true
+    benefit.source = "javascript"
+  })
+  collections.benefits_openfisca.items.forEach((benefit) => {
+    benefit.source = "openfisca"
+  })
+
+  const aidesVeloBenefits = aidesVeloBenefitListGenerator
+    ? aidesVeloBenefitListGenerator(Object.values(institutions))
+    : []
+  aidesVeloBenefits.forEach((benefit) => {
+    benefit.source = "aides-velo"
+    benefit.top = 8
   })
 
   const benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
-    ...customBenefits,
-  ]
+    ...aidesVeloBenefits.filter((b) => b.institution),
+  ].map((benefit) => {
+    return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
+  })
+
+  const benefitsMap = {}
 
   benefits.forEach((benefit) => {
     const institution = institutions[benefit.institution]
-    benefit = setDefaults(benefit, institution.national)
-    institution.prestations[benefit.slug] = { ...benefit }
+    benefit = setDefaults(benefit, institution)
+    institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
+    benefitsMap[benefit.id] = benefit
   })
 
   const result = {
     all: benefits,
-    groupByInstitution: institutions,
+    institutionsMap: institutions,
+    benefitsMap: benefitsMap,
   }
 
   return result
@@ -58,5 +81,6 @@ function generate(collections, customBenefits) {
 
 module.exports = {
   fn: generate,
-  generate: (jam) => generate(jam.collections, customBenefits),
+  generate: (jam) =>
+    generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),
 }

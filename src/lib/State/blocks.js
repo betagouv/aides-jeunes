@@ -1,7 +1,7 @@
-const Individu = require("@/../lib/Individu")
-const { ACTIVITES_ACTIF } = require("@/../lib/Activite")
+const Individu = require("../../../lib/individu")
+const { ACTIVITES_ACTIF } = require("../../../lib/activite")
 const Ressource = require("@/../lib/ressource")
-const { datesGenerator } = require("../../../lib/Benefits/compute")
+const { datesGenerator } = require("../../../lib/benefits/compute")
 const { Step, ComplexStep } = require("./steps")
 
 function individuBlockFactory(id, chapter) {
@@ -13,8 +13,7 @@ function individuBlockFactory(id, chapter) {
   return {
     subject: (situation) =>
       situation[id] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === id)) ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),
@@ -65,7 +64,10 @@ function individuBlockFactory(id, chapter) {
                 )
                 const jeune_actif =
                   subject.activite === "salarie" &&
-                  age <= parameters["prestations.carte_des_metiers.age_maximal"]
+                  age <=
+                    parameters[
+                      "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
+                    ]
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
@@ -106,7 +108,9 @@ function individuBlockFactory(id, chapter) {
               !enfant &&
               0.5 <= subject.taux_incapacite &&
               subject.taux_incapacite <
-                parameters["prestations.minima_sociaux.aah.taux_incapacite"],
+                parameters[
+                  "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
+                ],
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],
@@ -161,8 +165,7 @@ function individuBlockFactory(id, chapter) {
                 )
                 const thisYear = datesGenerator(situation.dateDeValeur).thisYear
                   .id
-                const enfant_a_charge =
-                  subject.enfant_a_charge && subject.enfant_a_charge[thisYear]
+                const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
                 return (
                   20 <= age &&
                   age < 25 &&
@@ -194,44 +197,6 @@ function individuBlockFactory(id, chapter) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == "etudiant",
-              steps: [r("_continuite_etudes")],
-            },
-            {
-              isActive: (subject) =>
-                !subject._continuite_etudes &&
-                ["etudiant", "chomeur", "inactif"].includes(subject.activite),
-              steps: [
-                r("plus_haut_diplome_niveau"),
-                {
-                  isActive: (subject) =>
-                    ["niveau_5", "niveau_6", "niveau_7", "niveau_8"].includes(
-                      subject.plus_haut_diplome_niveau
-                    ),
-                  steps: [
-                    r("plus_haut_diplome_date_obtention"),
-                    {
-                      isActive: (subject) =>
-                        subject.plus_haut_diplome_date_obtention >=
-                        new Date("2019-12-31 00:00:00"),
-                      steps: [
-                        r("_boursier_derniere_annee_etudes"),
-                        {
-                          isActive: (subject) =>
-                            subject._boursier_derniere_annee_etudes,
-                          steps: [
-                            r(
-                              "aide_jeunes_diplomes_anciens_boursiers_base_ressources"
-                            ),
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
               isActive: (subject, situation) => {
                 const age = Individu.age(
                   subject,
@@ -256,10 +221,10 @@ function extraBlock() {
   return {
     subject: (situation) =>
       situation[id] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === id)) ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
+      s("_interetAidesVeloElectrique", "projets"),
       s("_interetBafa", "projets"),
       s("_interetPermisDeConduire", "projets"),
       {
@@ -310,7 +275,7 @@ function extraBlock() {
 function kidBlock(situation) {
   return {
     steps: [
-      ...(situation.enfants && situation.enfants.length
+      ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
             return {
               steps: [individuBlockFactory(e.id, "foyer")],
@@ -361,9 +326,8 @@ function housingBlock() {
             !subject.statut_occupation_logement ||
             subject.statut_occupation_logement.startsWith("locataire")
           const proprietaire =
-            subject.statut_occupation_logement &&
-            (subject.statut_occupation_logement === "primo_accedant" ||
-              subject.statut_occupation_logement === "proprietaire")
+            subject.statut_occupation_logement === "primo_accedant" ||
+            subject.statut_occupation_logement === "proprietaire"
           return locataire || proprietaire
         },
         steps: [
@@ -393,8 +357,7 @@ function housingBlock() {
       new Step({ entity: "menage", variable: "depcom" }),
       {
         isActive: (subject) =>
-          subject.depcom &&
-          subject.depcom.startsWith("75") &&
+          subject.depcom?.startsWith("75") &&
           subject.statut_occupation_logement != "sans_domicile",
         steps: [new Step({ entity: "famille", variable: "parisien" })],
       },
@@ -433,8 +396,7 @@ function resourceBlocks(situation) {
   const individuResourceBlock = (individuId) => {
     const individu =
       situation[individuId] ||
-      (situation.enfants &&
-        situation.enfants.find((enfant) => enfant.id === individuId)) ||
+      situation.enfants?.find((enfant) => enfant.id === individuId) ||
       {}
     return {
       steps: [
@@ -462,7 +424,7 @@ function resourceBlocks(situation) {
     steps: [
       individuResourceBlock("demandeur"),
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants && situation.enfants.length
+      ...(situation.enfants?.length
         ? [
             new Step({
               entity: "individu",
@@ -494,9 +456,7 @@ function generateBlocks(situation) {
         new Step({ entity: "famille", variable: "en_couple" }),
         {
           isActive: (situation) =>
-            situation.enfants &&
-            situation.enfants.length &&
-            !situation.famille.en_couple,
+            situation.enfants?.length && !situation.famille.en_couple,
           steps: [
             new Step({ entity: "famille", variable: "rsa_isolement_recent" }),
           ],
@@ -515,7 +475,7 @@ function generateBlocks(situation) {
           enfant_a_charge ||
           (subject.activite == "etudiant" &&
             !subject.alternant &&
-            !(situation.enfants && situation.enfants.length))
+            !situation.enfants?.length)
         )
       },
       steps: [
@@ -530,7 +490,7 @@ function generateBlocks(situation) {
             const demandeur_ok =
               situation.demandeur.activite == "etudiant" &&
               !situation.demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
+              !situation.enfants?.length
 
             return parents_ok && demandeur_ok
           },
@@ -580,14 +540,13 @@ function generateBlocks(situation) {
           subject: (situation) => situation.demandeur,
           isActive: (demandeur, situation) => {
             const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-            const enfant_a_charge =
-              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
+            const enfant_a_charge = demandeur.enfant_a_charge?.[thisYear]
 
             const demandeur_ok_bcs =
               demandeur &&
               demandeur.activite == "etudiant" &&
               !demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
+              !situation.enfants?.length
             return enfant_a_charge && !demandeur_ok_bcs
           },
           steps: [
@@ -601,9 +560,7 @@ function generateBlocks(situation) {
           subject: (situation) => situation.demandeur,
           isActive: (demandeur, situation) => {
             const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
-            return (
-              demandeur.enfant_a_charge && demandeur.enfant_a_charge[thisYear]
-            )
+            return demandeur.enfant_a_charge?.[thisYear]
           },
           steps: [
             new Step({

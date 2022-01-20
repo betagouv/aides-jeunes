@@ -1,4 +1,4 @@
-var Chapters = require("../Chapters")
+var Chapters = require("../chapters")
 
 function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -15,7 +15,7 @@ function chapters(currentPath, journey, lastUnanswerPath) {
   let isCurrentChapter
   let passedChapter = true
   return activeChapters.map((chapter) => {
-    isCurrentChapter = chapter.name === (currentStep && currentStep.chapter)
+    isCurrentChapter = chapter.name === currentStep?.chapter
     passedChapter = isCurrentChapter ? false : passedChapter
     chapter.done = passedChapter
     chapter.current = isCurrentChapter

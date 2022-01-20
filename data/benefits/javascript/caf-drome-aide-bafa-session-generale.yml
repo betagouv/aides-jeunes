@@ -9,9 +9,19 @@ description: >
 conditions:
   - Etre allocataire de la Caf de la Drôme au moment du stage (ou enfant d'un
     allocataire drômois).
-  - Avoir un quotient familial inférieur ou égal à 750€.
   - Ne pas avoir déjà obtenu la totalité du financement du Bafa par d'autres
     organismes.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "26"
+  - type: quotient_familial
+    period: month
+    floor: 750
+profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 form: https://www.caf.fr/sites/default/files/caf/261/offre-de-service/enfance-jeunesse/aides-projets-jeunes-bafa/demande-aide-session-formation-generale-bafa2021.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
@@ -20,11 +30,3 @@ unit: €
 periodicite: ponctuelle
 montant: 250
 interestFlag: _interetBafa
-conditions_generales:
-  - type: age
-    operator: ">="
-    value: 17
-  - type: departements
-    values:
-      - "26"
-profils: []

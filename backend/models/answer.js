@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const utils = require("../lib/utils")
 const openfisca = require("../lib/openfisca")
 const benefits = require("../../data/all")
-const mesAides = require("../../lib/Benefits/compute")
+const mesAides = require("../../lib/benefits/compute")
 const { generateSituation } = require("../../lib/situations")
 
 const computeAides = mesAides.computeAides.bind(benefits)
@@ -47,7 +47,7 @@ AnswerSchema.virtual("returnPath").get(function () {
 AnswerSchema.methods.isAccessible = function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||
-    (keychain && keychain[this.cookieName] === this.token)
+    keychain?.[this.cookieName] === this.token
   )
 }
 AnswerSchema.pre("save", function (next) {

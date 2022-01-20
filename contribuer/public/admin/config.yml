@@ -44,6 +44,7 @@ fields:
       - label: Valeur
         name: value
         widget: number
+        step: -1
   field_age: &field_age
     <<: *field_number
     label: Age
@@ -146,6 +147,36 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
+  field_geographical_type: &field_geographical_type
+    - label: Organisation nationale
+      value: national
+    - label: Région
+      value: region
+    - label: Département
+      value: departement
+    - label: CAF locale
+      value: caf
+    - label: EPCI (Métropole, inter-communauté, etc.)
+      value: epci
+    - label: Commune
+      value: commune
+  field_quotient_familial: &field_quotient_familial
+    label: Quotient familial
+    name: quotient_familial
+    widget: object
+    fields:
+      - label: Plafond
+        name: floor
+        widget: number
+        step: -1
+      - label: Période
+        name: period
+        widget: select
+        options:
+          - label: Par mois
+            value: month
+          - label: Par an
+            value: year
   # common fields
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide
@@ -154,12 +185,18 @@ fields:
   field_institution: &field_institution
     label: Institution
     name: institution
-    widget: relation
+    widget: institution
     collection: institutions
     value_field: "{{slug}}"
     display_fields: ["{{name}}"]
     search_fields: [slug, name]
     allow_multiple: false
+    options_length: -1
+    filter:
+      label: "Type :"
+      default: "*"
+      target: "type"
+      fields: *field_geographical_type
   field_description: &field_description
     label: Courte description
     name: description
@@ -180,7 +217,12 @@ fields:
     field:
       label: Texte
       name: text
-      widget: text
+      widget: string
+      pattern:
+        [
+          '\.$',
+          "La condition doit commencer par un verbe à l'infinitif et se terminer par un point",
+        ]
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
@@ -215,7 +257,7 @@ fields:
   field_type_resultat: &field_type_resultat
     label: Type du résultat
     name: type
-    default: "bool"
+    default: "float"
     widget: select
     options:
       - label: Valeur numérique
@@ -288,12 +330,14 @@ fields:
     name: montant
     widget: number
     required: false
+    step: -1
   field_periodicite_montant_aide: &field_periodicite_montant_aide
     label: "Périodicité du montant de l'aide"
     name: periodicite
     widget: select
     hint: Cette variable permet de définir la période de versement du montant de l'aide.
-    required: false
+    required: true
+    default: autre
     options:
       - label: Ponctuelle
         value: ponctuelle
@@ -547,6 +591,7 @@ fields:
       - *field_departements
       - *field_communes
       - *field_regime_securite_sociale
+      - *field_quotient_familial
     field_references: &field_references
       label: Liens des sources de référence
       name: references
@@ -634,9 +679,14 @@ collections:
         name: imgSrc
         widget: image
         allow_multiple: false
-      - label: Institution nationale
-        name: national
-        widget: boolean
+      - label: Type géographique
+        name: type
+        widget: select
+        options: *field_geographical_type
+      - label: Identifiant
+        hint: Code INSEE pour les communes, départements, régions et code SIREN pour les autres
+        name: id
+        widget: string
         required: false
   - name: contribution-pages
     label: Pages

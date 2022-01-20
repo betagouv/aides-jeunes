@@ -12,10 +12,10 @@ function Step({ key, entity, id, variable, chapter }) {
 }
 
 const ENTITIES_PROPERTIES = {
-  famille: require("@/lib/FamilleProperties").default,
-  individu: require("@/lib/IndividuProperties").default,
-  menage: require("@/lib/MenageProperties").default,
-  parents: require("@/lib/ParentsProperties").default,
+  famille: require("@/lib/famille-properties").default,
+  individu: require("@/lib/individu-properties").default,
+  menage: require("@/lib/menage-properties").default,
+  parents: require("@/lib/parents-properties").default,
 }
 
 function ComplexStep({ route, variables, chapter, entity, variable, id }) {

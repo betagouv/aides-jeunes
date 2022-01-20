@@ -3,30 +3,33 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const followups = require("../controllers/followups")
-const answers = require("../controllers/answers")
+const simulationController = require("../controllers/answers")
 const teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
-  api.route("/answers").post(cookieParser(), answers.create)
+  api.route("/simulation").post(cookieParser(), simulationController.create)
 
   const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
-  route.use(answers.validateAccess)
+  route.use(simulationController.validateAccess)
 
-  route.get("/", answers.show)
-  route.get("/openfisca-response", answers.openfiscaResponse)
-  route.get("/legacy-openfisca-request", answers.openfiscaRequestFromLegacy)
+  route.get("/", simulationController.show)
+  route.get("/openfisca-response", simulationController.openfiscaResponse)
+  route.get(
+    "/legacy-openfisca-request",
+    simulationController.openfiscaRequestFromLegacy
+  )
 
   // Enable CORS for openfisca-tracer
   route.options("/openfisca-request", cors())
   route.get(
     "/openfisca-request",
     cors({ origin: "*" }),
-    answers.openfiscaRequest
+    simulationController.openfiscaRequest
   )
 
-  route.post("/openfisca-test", answers.openfiscaTest)
-  route.get("/openfisca-trace", answers.openfiscaTrace)
+  route.post("/openfisca-test", simulationController.openfiscaTest)
+  route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
   route.post("/followup", followups.persist)
 
@@ -37,20 +40,20 @@ module.exports = function (api) {
     )
   })
 
-  api.options("/answers/via/:signedPayload", cors())
+  api.options("/simulation/via/:signedPayload", cors())
   api.get(
-    "/answers/via/:signedPayload",
+    "/simulation/via/:signedPayload",
     cors({ origin: "*" }),
     teleservices.checkCredentials,
     teleservices.attachPayloadSituation,
     teleservices.verifyRequest,
     teleservices.exportRepresentation
   )
-  api.use("/answers/:situationId", route)
+  api.use("/simulation/:situationId", route)
 
   /*
    ** Param injection
    */
-  api.param("situationId", answers.answers)
+  api.param("situationId", simulationController.simulation)
   api.param("signedPayload", teleservices.decodePayload)
 }

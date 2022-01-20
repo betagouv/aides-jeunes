@@ -40,13 +40,13 @@ function mock({ app }) {
 
   let cache = {}
   app.route("/api/outils/communes/:codePostal").get(outils.communes)
-  app.post("/api/answers", function (req, res) {
+  app.post("/api/simulation", function (req, res) {
     const data = Object.assign({ _id: ID() }, req.body)
     cache[data._id] = data
     res.send(data)
   })
 
-  app.get("/api/answers/:id", function (req, res) {
+  app.get("/api/simulation/:id", function (req, res) {
     res.send(cache[req.params.id])
   })
 
@@ -58,7 +58,6 @@ function mock({ app }) {
         if (err) {
           return next(err)
         }
-
         res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
       })
     } catch {

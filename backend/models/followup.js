@@ -34,9 +34,9 @@ SurveySchema.virtual("returnPath").get(function () {
 
 const FollowupSchema = new mongoose.Schema(
   {
-    answers: {
+    simulation: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Answer",
+      ref: "Simulation",
     },
     email: {
       type: String,

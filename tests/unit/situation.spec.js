@@ -1,7 +1,7 @@
 import { generateSituation } from "../../lib/situations"
 import { buildOpenFiscaRequest } from "../../backend/lib/openfisca/mapping"
 
-const answers = {
+const simulation = {
   all: [
     {
       id: "demandeur",
@@ -96,7 +96,7 @@ const answers = {
 }
 describe("The situation", function () {
   it('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
-    const situation = generateSituation(answers, true)
+    const situation = generateSituation(simulation, true)
 
     expect(situation.demandeur.pensions_alimentaires_percues["2019"]).toEqual(
       2400
@@ -107,7 +107,7 @@ describe("The situation", function () {
   })
 
   it("should create an openfisca request with valid ressources`", function () {
-    const situation = generateSituation(answers, true)
+    const situation = generateSituation(simulation, true)
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     expect(
       openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[

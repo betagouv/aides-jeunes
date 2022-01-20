@@ -21,7 +21,7 @@ export const getIndividuByStep = (step, component) => {
 
 export const SIMPLE_STEPS = {
   ressources(step) {
-    const answer = getStepAnswer(this.$store.state.answers.all, step)
+    const answer = getStepAnswer(this.$store.state.simulation.all, step)
     if (!answer) {
       return []
     }
@@ -55,7 +55,7 @@ export const SIMPLE_STEPS = {
   },
   depcom() {
     const answer = getAnswer(
-      this.$store.state.answers.current,
+      this.$store.state.simulation.current,
       "menage",
       "depcom",
       undefined
@@ -73,7 +73,7 @@ export const SIMPLE_STEPS = {
 
   _bourseCriteresSociauxCommuneDomicileFamilial() {
     const answer = getAnswer(
-      this.$store.state.answers.current,
+      this.$store.state.simulation.current,
       "individu",
       "_bourseCriteresSociauxCommuneDomicileFamilial",
       "demandeur"
@@ -91,7 +91,7 @@ export const SIMPLE_STEPS = {
 
   statut_occupation_logement() {
     const answer = getAnswer(
-      this.$store.state.answers.current,
+      this.$store.state.simulation.current,
       "menage",
       "statut_occupation_logement"
     )
@@ -108,11 +108,11 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = getAnswer(this.$store.state.answers.current, "enfants")
+      const answer = getAnswer(this.$store.state.simulation.current, "enfants")
       return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const answer = getAnswer(this.$store.state.answers.current, "enfants")
+      const answer = getAnswer(this.$store.state.simulation.current, "enfants")
       return [
         {
           label: "Mes enfants à charge",
@@ -127,7 +127,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(this.$store.state.answers.all)
+      const loyerData = Logement.getLoyerData(this.$store.state.simulation.all)
       return [
         {
           label: loyerData.loyerQuestion.label,
@@ -152,7 +152,7 @@ export const COMPLEX_STEPS = {
     fn(step) {
       const answer = (
         getAnswer(
-          this.$store.state.answers.current,
+          this.$store.state.simulation.current,
           step.entity,
           step.variable,
           step.id

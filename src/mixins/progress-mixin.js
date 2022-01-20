@@ -12,7 +12,7 @@ export default {
       // Use anwers as basis when you are not in journey
       if (!allSteps.some((step) => step.path === cleanPath)) {
         const answeredSteps = activeSteps.filter((step) =>
-          isStepAnswered(this.$store.state.answers.all, step)
+          isStepAnswered(this.$store.state.simulation.answers.all, step)
         )
         return answeredSteps.length / activeSteps.length
       } else {

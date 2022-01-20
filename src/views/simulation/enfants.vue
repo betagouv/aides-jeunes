@@ -71,7 +71,7 @@ export default {
 
   methods: {
     addPAC: function () {
-      const children = this.$store.state.answers.enfants || []
+      const children = this.$store.state.simulation.enfants || []
       const lastId = children.length > 0 ? children[children.length - 1] : -1
       this.$store.dispatch("addEnfant")
       this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
@@ -86,8 +86,8 @@ export default {
     onSubmit: function () {
       this.$store.dispatch("answer", {
         entityName: "enfants",
-        value: this.$store.state.answers.enfants
-          ? this.$store.state.answers.enfants.length
+        value: this.$store.state.simulation.enfants
+          ? this.$store.state.simulation.enfants.length
           : 0,
       })
       this.$push()

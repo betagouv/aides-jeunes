@@ -33,7 +33,7 @@ const answer = {
   value: Object,
 }
 
-const AnswerSchema = new mongoose.Schema(
+const SimulationSchema = new mongoose.Schema(
   {
     all: { type: [answer], required: true },
     current: { type: [answer], required: true },
@@ -58,34 +58,34 @@ const AnswerSchema = new mongoose.Schema(
   { minimize: false }
 )
 
-AnswerSchema.statics.cookiePrefix = "situation_"
-AnswerSchema.virtual("cookieName").get(function () {
-  return `${AnswerSchema.statics.cookiePrefix}${this._id}`
+SimulationSchema.statics.cookiePrefix = "situation_"
+SimulationSchema.virtual("cookieName").get(function () {
+  return `${SimulationSchema.statics.cookiePrefix}${this._id}`
 })
-AnswerSchema.virtual("returnPath").get(function () {
+SimulationSchema.virtual("returnPath").get(function () {
   return "/simulation/resultats?situationId=" + this._id
 })
 
-AnswerSchema.methods.isAccessible = function (keychain) {
+SimulationSchema.methods.isAccessible = function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||
     keychain?.[this.cookieName] === this.token
   )
 }
-AnswerSchema.pre("save", function (next) {
+SimulationSchema.pre("save", function (next) {
   if (!this.isNew) {
     return next()
   }
-  const answers = this
+  const simulation = this
   utils
     .generateToken()
     .then(function (token) {
-      answers.token = token
+      simulation.token = token
     })
     .then(next)
     .catch(next)
 })
-AnswerSchema.methods.compute = function () {
+SimulationSchema.methods.compute = function () {
   const situation = generateSituation(this)
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
@@ -99,4 +99,4 @@ AnswerSchema.methods.compute = function () {
   })
 }
 
-mongoose.model("Answer", AnswerSchema)
+mongoose.model("Simulation", SimulationSchema)

@@ -228,9 +228,9 @@ fields:
     label_singular: Coût d'accès à l'aide
     hint: |
       Certaines aides et avantages peuvent avoir un coût d'acquisition (ex: carte de réduction)
-    name: field_participation
-    widget: list
-    collapsed: false
+    name: participation
+    widget: object
+    collapsed: true
     required: false
     fields:
       - label: Légende
@@ -252,7 +252,6 @@ fields:
         widget: select
         required: false
         options: [Annuelle, Trimestrielle, Mensuelle, Unique, Autre]
-
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)

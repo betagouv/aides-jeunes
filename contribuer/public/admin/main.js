@@ -4,7 +4,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
   annuelle: "/ an",
 }
 
-const Conditions = ({ conditions }) => {
+const Conditions = ({ conditions, participation }) => {
   if (!conditions || !conditions.length) {
     return <div></div>
   }
@@ -17,9 +17,27 @@ const Conditions = ({ conditions }) => {
       <p className="aj-content-conditions-title">
         Pour en bénéficier, vous devez également :
       </p>
-      <ul className="list-unstyled">{conditionsList}</ul>
+      <ul className="list-unstyled">
+        {conditionsList}
+        {Participation({ participation })}
+      </ul>
     </div>
   )
+}
+
+const Participation = ({ participation }) => {
+  if (participation && participation.legende) {
+    const legend = participation.legende
+    const period = !["unique", "autre"].includes(participation.periodicite)
+      ? ` / ${participation.periodicite}`
+      : ""
+    const cost = participation.cout ? `(${participation.cout}€${period})` : ""
+    return (
+      <li>
+        {participation.legende} {cost}
+      </li>
+    )
+  }
 }
 
 const Description = ({ description, link }) => {
@@ -124,7 +142,10 @@ const DroitPreviewTemplate = ({ entry }) => {
               <Description description={droit.description} link={droit.link} />
             </div>
             <div className="aj-droit-conditions">
-              <Conditions conditions={droit.conditions} />
+              <Conditions
+                conditions={droit.conditions}
+                participation={droit.participation}
+              />
             </div>
             <div className="aj-droit-content-buttons-cta">
               <CTA droit={droit} />

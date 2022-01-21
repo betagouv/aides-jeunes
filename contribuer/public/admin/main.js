@@ -5,7 +5,10 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 }
 
 const Conditions = ({ conditions, participation }) => {
-  if (!conditions || !conditions.length) {
+  if (
+    (!conditions || !conditions.length) &&
+    (!participation || !participation.legende)
+  ) {
     return <div></div>
   }
 
@@ -27,16 +30,7 @@ const Conditions = ({ conditions, participation }) => {
 
 const Participation = ({ participation }) => {
   if (participation && participation.legende) {
-    const legend = participation.legende
-    const period = !["unique", "autre"].includes(participation.periodicite)
-      ? ` / ${participation.periodicite}`
-      : ""
-    const cost = participation.cout ? `(${participation.cout}€${period})` : ""
-    return (
-      <li>
-        {participation.legende} {cost}
-      </li>
-    )
+    return <li>{participation.legende}</li>
   }
 }
 

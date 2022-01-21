@@ -1,0 +1,26 @@
+label: carte Mezzo - 26 ans
+institution: region_pays_de_la_loire
+description: "Ouverte à toutes et tous, la carte de réduction mezzo vous offre
+  -50% (sur le tarif normal) sur tous vos voyages, 7j/7 et sur tout le réseau
+  Aléop en TER. "
+conditions:
+  - A.
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: regions
+    values:
+      - "52"
+profils: []
+link: https://www.ter.sncf.com/pays-de-la-loire/offres/tarifs-et-abonnements/je-voyage-un-peu/carte-mezzo/%5Btab%5Dlescartes
+instructions: https://www.ter.sncf.com/pays-de-la-loire/offres/tarifs-et-abonnements/je-voyage-un-peu/carte-mezzo/%5Btab%5Dlescartes
+type: float
+unit: €
+periodicite: autre
+participation:
+  legende: Vous procurer la Carte Mezzo en ligne pour un montant annuel de 20€.
+    (20€ / an)
+  cout: 20
+  type: Fixe
+  periodicite: an

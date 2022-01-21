@@ -4,24 +4,46 @@ const openfisca = require("../lib/openfisca")
 const benefits = require("../../data/all")
 const mesAides = require("../../lib/benefits/compute")
 const { generateSituation } = require("../../lib/situations")
+const {
+  ANSWER_ENTITY_NAMES,
+  ANSWER_FIELD_NAMES,
+  ANSWER_BASIC_IDS,
+} = require("../lib/definitions")
 
 const computeAides = mesAides.computeAides.bind(benefits)
 
 const answer = {
-  entityName: String,
-  fieldName: String,
-  id: String,
+  entityName: {
+    required: true,
+    type: String,
+    enum: ANSWER_ENTITY_NAMES,
+  },
+  fieldName: {
+    type: String,
+    enum: ANSWER_FIELD_NAMES,
+  },
+  id: {
+    type: String,
+    validate: {
+      validator(value) {
+        return ANSWER_BASIC_IDS.includes(value) || value.match(/^enfant_\d+$/)
+      },
+    },
+  },
   value: Object,
 }
 
 const AnswerSchema = new mongoose.Schema(
   {
-    all: [answer],
-    current: [answer],
+    all: { type: [answer], required: true },
+    current: { type: [answer], required: true },
     enfants: [Number],
     ressourcesFiscales: Object,
     patrimoine: Object,
-    dateDeValeur: Date,
+    dateDeValeur: {
+      type: Date,
+      required: true,
+    },
     version: Number,
     abtesting: Object,
     createdAt: { type: Date, default: Date.now },

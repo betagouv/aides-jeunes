@@ -1,0 +1,19 @@
+label: Abonnement Tempo - 26 ans
+institution: region_normandie
+description: Grâce à la carte Tempo, bénéficiez jusqu'à 50% de réduction sur vos
+  trajets en Normandie ou vers Paris. Vous pouvez faire bénéficier de ces
+  réductions à maximum 4 accompagnants.
+conditions:
+  - Choisir un trajet fréquent entre deux gares normandes.
+conditions_generales: []
+profils: []
+link: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
+teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=NHO
+instructions: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
+type: bool
+unit: €
+periodicite: autre
+participation:
+  type: Variable
+  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
+    fréquent choisi.

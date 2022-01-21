@@ -20,7 +20,7 @@ instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/car
 type: bool
 unit: €
 periodicite: autre
-montant: ""
+montant: 15
 participation:
   legende: "Vous procurer la carte Zou! pour un montant annuel de 15€ au guichet
     d'une gare de la région. "

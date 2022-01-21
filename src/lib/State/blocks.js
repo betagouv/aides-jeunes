@@ -224,7 +224,7 @@ function extraBlock() {
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      s("_interetsAidesVelo", "projets"),
+      s("_interetAidesVeloElectrique", "projets"),
       s("_interetBafa", "projets"),
       s("_interetPermisDeConduire", "projets"),
       {

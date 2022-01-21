@@ -30,18 +30,6 @@ export const displayEnumValue = (value, items) => {
   return result?.label
 }
 
-export const displayMultipleValue = (value, question) => {
-  return value
-    .map((item) => {
-      for (let answer of question.items) {
-        if (item == answer.value) {
-          return answer.label
-        }
-      }
-    })
-    .join(", ")
-}
-
 export const displayYesNoValue = (value) => {
   return value ? "Oui" : "Non"
 }
@@ -62,8 +50,6 @@ export const displayValue = (value, question, component) => {
   switch (question.questionType) {
     case "date":
       return displayDateValue(value)
-    case "multiple":
-      return displayMultipleValue(value, question)
     case "enum":
       return displayEnumValue(
         value,

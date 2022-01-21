@@ -30,6 +30,10 @@
                 <img src="@/assets/images/doigt.svg" />
                 <span v-html="condition" />
               </li>
+              <li v-if="droit.participation">
+                <img src="@/assets/images/doigt.svg" />
+                <span>{{ droit.participation.legende }}</span>
+              </li>
             </ul>
           </div>
         </div>

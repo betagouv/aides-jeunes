@@ -15,6 +15,9 @@ describe("computeAidesVeloBenefits", function () {
         _epci: "200067106",
         _region: "75",
       },
+      demandeur: {
+        _interetsAidesVelo: ["velo_electrique"],
+      },
     }
     const openFiscaResponse = {
       foyers_fiscaux: {

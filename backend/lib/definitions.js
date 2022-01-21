@@ -95,7 +95,17 @@ const individuBase = {
   enfant_place: Boolean,
   _firstName: String,
   _interetBafa: Boolean,
-  _interetAidesVeloElectrique: Boolean,
+  _interetsAidesVelo: {
+    type: [String],
+    enum: [
+      "velo_mecanique",
+      "velo_electrique",
+      "velo_cargo",
+      "velo_cargo_electrique",
+      "velo_pliant",
+      "velo_motorisation",
+    ],
+  },
   _interetEtudesEtranger: Boolean,
   _interetPermisDeConduire: Boolean,
   garde_alternee: Boolean,

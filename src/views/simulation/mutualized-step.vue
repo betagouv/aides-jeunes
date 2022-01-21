@@ -49,6 +49,15 @@
       <InputDate :id="fieldName" v-model="value" required />
     </div>
 
+    <div v-else-if="questionType === 'multiple'">
+      <label :for="fieldName"
+        ><h2 class="aj-question">
+          <span v-html="question" />
+          <EnSavoirPlus v-if="showMoreInfo" /> </h2
+      ></label>
+      <MultipleAnswers v-model="value" :items="items" />
+    </div>
+
     <YesNoQuestion v-else v-model="value">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
       <template v-if="step.help" #help>
@@ -61,6 +70,7 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons"
+import MultipleAnswers from "../../components/multiple-answers.vue"
 import YesNoQuestion from "../../components/yes-no-question.vue"
 import Hint from "@/lib/hint"
 
@@ -78,6 +88,7 @@ export default {
     EnSavoirPlus,
     InputNumber,
     InputDate,
+    MultipleAnswers,
     YesNoQuestion,
   },
   data() {

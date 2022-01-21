@@ -1,0 +1,24 @@
+label: FréquenciO' Jeunes
+institution: region_occitanie
+description: FréquenciO' Jeunes vous permet de bénéficier d’un nombre illimité
+  de déplacements en liO TER sur le trajet de votre choix en Occitanie.
+conditions:
+  - Choisir un trajet fréquent entre deux gares d'Occitanie.
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: regions
+    values:
+      - "76"
+profils: []
+link: https://www.ter.sncf.com/occitanie/offres/tarifs-occitanie/frequent-jeunes
+instructions: https://cdn.ter.sncf.com/medias/PDF/occitanie/BROCHURE-FREQUENCIO-TOUT-PUBLIC_tcm76-136443_tcm76-200824.pdf
+type: bool
+unit: €
+periodicite: autre
+participation:
+  legende: "Payer l'abonnement dont le prix est calculé en fonction du trajet
+    fréquent choisi (prix max. annuel : 90€)."
+  type: Variable
+  cout: ""

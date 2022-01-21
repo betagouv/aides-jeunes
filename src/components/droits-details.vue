@@ -32,7 +32,7 @@
               </li>
               <li v-if="droit.participation">
                 <img src="@/assets/images/doigt.svg" />
-                <span>{{ droit.participation.legende }}</span>
+                <span>{{ formatParticipation(droit.participation) }}</span>
               </li>
             </ul>
           </div>

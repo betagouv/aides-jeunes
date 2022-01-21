@@ -27,7 +27,16 @@ const Conditions = ({ conditions, participation }) => {
 
 const Participation = ({ participation }) => {
   if (participation && participation.legende) {
-    return <li>{participation.legende}</li>
+    const legend = participation.legende
+    const period = !["unique", "autre"].includes(participation.periodicite)
+      ? ` / ${participation.periodicite}`
+      : ""
+    const cost = participation.cout ? `(${participation.cout}€${period})` : ""
+    return (
+      <li>
+        {participation.legende} {cost}
+      </li>
+    )
   }
 }
 

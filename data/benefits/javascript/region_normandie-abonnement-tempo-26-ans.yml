@@ -5,7 +5,13 @@ description: "La carte Tempo vous permet, ainsi qu'à 4 accompagnants, de
   Paris. "
 conditions:
   - Choisir un trajet fréquent entre deux gares normandes.
-conditions_generales: []
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "28"
 profils: []
 link: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
 teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=NHO

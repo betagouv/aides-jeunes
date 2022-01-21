@@ -1,0 +1,37 @@
+label: pass ZOU ! Études
+institution: region_provence_alpes_cote_azur
+description: Le pass ZOU! Études vous permet de bénéficier d’un abonnement de
+  transport unique pour circuler à volonté sur les bus et trains du réseau
+  régional.
+conditions:
+  - Etre scolarisé(e) en région Provence-Alpes-Côte d’Azur.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 3
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "93"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+link: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/pass-zou-etudes
+teleservice: https://services-zou.maregionsud.fr/fr/billetterie/action/8#zouetudes
+instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/pass-zou-etudes
+type: bool
+unit: €
+periodicite: autre
+participation:
+  legende: Vous procurer le pass ZOU! pour un montant annuel maximum de 70€.
+  cout: 70
+  type: Fixe
+  periodicite: an

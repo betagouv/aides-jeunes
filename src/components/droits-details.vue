@@ -22,7 +22,7 @@
             />
           </p>
           <div
-            v-if="droit.conditions?.length || droit.participation.legende"
+            v-if="droit.conditions?.length || droit.participation?.legende"
             class="aj-droit-conditions"
           >
             <p class="aj-droit-conditions-title"

@@ -10,6 +10,9 @@ conditions_generales:
   - type: regions
     values:
       - "52"
+  - type: age
+    operator: ">="
+    value: 26
 profils: []
 link: https://www.ter.sncf.com/pays-de-la-loire/offres/tarifs-et-abonnements/je-voyage-beaucoup/forfait-tutti-illimite
 teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement.html

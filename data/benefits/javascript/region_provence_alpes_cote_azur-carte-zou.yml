@@ -22,8 +22,8 @@ unit: €
 periodicite: autre
 montant: ""
 participation:
-  legende: "Vous procurer la carte Zou! pour un montant annuel de 15 euros au
-    guichet d'une gare de la région. "
+  legende: "Vous procurer la carte Zou! pour un montant annuel de 15€ au guichet
+    d'une gare de la région. "
   cout: 15
   type: Fixe
   periodicite: an

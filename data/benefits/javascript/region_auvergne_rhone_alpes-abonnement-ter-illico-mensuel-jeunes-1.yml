@@ -1,0 +1,24 @@
+label: abonnement TER Illico mensuel jeunes
+institution: region_auvergne_rhone_alpes
+description: "L’abonnement TER Illico hebdomadaire jeunes vous permet de voyager
+  fréquemment à prix réduit sur l’ensemble de région Auvergne-Rhône-Alpes. "
+conditions:
+  - Choisir un trajet fréquent entre deux gares de la région.
+participation:
+  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
+    fréquent choisi.
+  type: Variable
+  periodicite: autre
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "84"
+profils: []
+link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
+type: bool
+unit: €
+periodicite: autre

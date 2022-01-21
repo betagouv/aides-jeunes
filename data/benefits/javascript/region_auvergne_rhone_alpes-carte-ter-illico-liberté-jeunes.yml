@@ -1,0 +1,26 @@
+label: Carte TER illico Liberté jeunes
+institution: region_auvergne_rhone_alpes
+description: La carte TER illico Liberté jeunes vous permet de bénéficier de -50
+  % sur tous vos voyages sur l’ensemble de la région Auvergne-Rhône-Alpes.
+conditions:
+  - A.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "84"
+profils: []
+link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
+teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
+type: bool
+unit: €
+periodicite: autre
+participation:
+  legende: "Vous procurer la carte TER illico Liberté jeunes pour un montant
+    annuel de 15€. "
+  cout: 15
+  type: Fixe
+  periodicite: an

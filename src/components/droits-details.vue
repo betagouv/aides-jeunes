@@ -21,7 +21,10 @@
               itemprop="termsOfService"
             />
           </p>
-          <div v-if="droit.conditions?.length" class="aj-droit-conditions">
+          <div
+            v-if="droit.conditions?.length || droit.participation?.legende"
+            class="aj-droit-conditions"
+          >
             <p class="aj-droit-conditions-title"
               >Pour en bénéficier, vous devez également :</p
             >
@@ -32,7 +35,7 @@
               </li>
               <li v-if="droit.participation">
                 <img src="@/assets/images/doigt.svg" />
-                <span>{{ formatParticipation(droit.participation) }}</span>
+                <span>{{ droit.participation.legende }}</span>
               </li>
             </ul>
           </div>

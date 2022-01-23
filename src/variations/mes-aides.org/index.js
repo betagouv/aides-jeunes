@@ -11,7 +11,7 @@ export default {
       name: "a-propos",
       component: () =>
         import(
-          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/APropos.vue"
+          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/a-propos.vue"
         ),
     },
     {
@@ -19,7 +19,7 @@ export default {
       name: "ameliorer",
       component: () =>
         import(
-          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/Ameliorer.vue"
+          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/ameliorer.vue"
         ),
     },
     {
@@ -27,7 +27,7 @@ export default {
       name: "liens-utiles",
       component: () =>
         import(
-          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/LiensUtiles.vue"
+          /* webpackChunkName: "static" */ "@/variations/mes-aides.org/views/liens-utiles.vue"
         ),
     },
   ],

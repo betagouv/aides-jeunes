@@ -1,5 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { animation, baseURL, matomo, statistics, variation } = require("./backend/config")
+const {
+  animation,
+  baseURL,
+  matomo,
+  statistics,
+  variation,
+} = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")

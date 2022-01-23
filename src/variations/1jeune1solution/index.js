@@ -1,5 +1,5 @@
 import Home from "@/views/home.vue"
-import BaseLayout from "./base-layout.vue"
+import BaseLayout from "@/components/base-layout.vue"
 
 const routes = [
   {

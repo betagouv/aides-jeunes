@@ -1,14 +1,15 @@
 <template>
-  <component :is="layout" :data-name="variation.name">
+  <component :is="layout">
     <BandeauDemo />
     <router-view />
   </component>
 </template>
 
 <script>
-import variation from "@/variations"
-import BandeauDemo from "@/components/bandeau-demo"
 import iFrameLayout from "@/components/iframe-layout.vue"
+import BandeauDemo from "@/components/bandeau-demo"
+
+import variation from "@/variations"
 
 const BaseLayout = variation.BaseLayout
 
@@ -18,11 +19,6 @@ export default {
     BandeauDemo,
     BaseLayout,
     iFrameLayout,
-  },
-  data: function () {
-    return {
-      variation,
-    }
   },
   computed: {
     layout: function () {

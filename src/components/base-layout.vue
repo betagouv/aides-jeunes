@@ -9,13 +9,8 @@
 </template>
 
 <script>
-<<<<<<<< HEAD:src/components/base-layout.vue
 import Header1J1S from "@/components/header-1j1s"
-import FooterJ1S from "./footer-1j1s"
-========
-import Header1J1S from "@/components/Header1J1S"
-import FooterJ1S from "@/components/Footer1J1S"
->>>>>>>> edae8a4f (Expérimente le chargement conditionnel pour mutualise le dépôt):src/variations/aides-jeunes/BaseLayout.vue
+import FooterJ1S from "@/components/footer-1j1s"
 
 export default {
   name: "BaseLayout",

@@ -87,9 +87,6 @@ export default {
       },
       0)
     })
-
-    value.showExperiment = Institution.experimentations.length
-
     return value
   },
   computed: {

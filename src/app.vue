@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" :data-name="variation.name">
     <BandeauDemo />
     <router-view />
   </component>
@@ -18,6 +18,11 @@ export default {
     BandeauDemo,
     BaseLayout,
     iFrameLayout,
+  },
+  data: function () {
+    return {
+      variation,
+    }
   },
   computed: {
     layout: function () {

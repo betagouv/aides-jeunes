@@ -15,9 +15,9 @@
 import ActionButtons from "@/components/action-buttons"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
-import Warning from "@/lib/warnings"
 
 import { getAnswer } from "../../../../lib/answers"
+import { createDepcomMixin } from "../../../mixins/depcom-mixin"
 
 export default {
   name: "SimulationMenageDepcom",
@@ -26,6 +26,7 @@ export default {
     InputDepCom,
     WarningMessage,
   },
+  mixins: [createDepcomMixin()],
   data: function () {
     const answer = getAnswer(this.$store.state.answers.all, "menage", "depcom")
     return {
@@ -34,20 +35,7 @@ export default {
       matchingCommune: undefined,
     }
   },
-  computed: {
-    warningMessage() {
-      return Warning.get("aj_not_reliable", this.codePostal)
-    },
-  },
   methods: {
-    canSubmit(submit) {
-      if (!this.nomCommune || !this.codePostal) {
-        submit &&
-          this.$store.dispatch("updateError", "Ce champ est obligatoire.")
-        return false
-      }
-      return Boolean(this.matchingCommune)
-    },
     onSubmit: function () {
       if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {

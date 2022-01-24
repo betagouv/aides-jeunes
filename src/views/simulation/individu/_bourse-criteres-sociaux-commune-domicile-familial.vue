@@ -15,7 +15,7 @@ import ActionButtons from "@/components/action-buttons"
 import Individu from "@/../lib/individu"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
-import Warning from "@/lib/warnings"
+import { createDepcomMixin } from "../../../mixins/depcom-mixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
@@ -24,6 +24,7 @@ export default {
     InputDepCom,
     WarningMessage,
   },
+  mixins: [createDepcomMixin()],
   data() {
     const id = this.$route.params.id
     const role = id.split("_")[0]
@@ -44,20 +45,7 @@ export default {
       matchingCommune: undefined,
     }
   },
-  computed: {
-    warningMessage() {
-      return Warning.get("aj_not_reliable", this.codePostal)
-    },
-  },
   methods: {
-    canSubmit(submit) {
-      if (!this.nomCommune || !this.codePostal) {
-        submit &&
-          this.$store.dispatch("updateError", "Ce champ est obligatoire.")
-        return false
-      }
-      return Boolean(this.matchingCommune)
-    },
     onSubmit: function () {
       if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {

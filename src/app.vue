@@ -9,9 +9,8 @@
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo"
 
-import variation from "@/variations"
-
-const BaseLayout = variation.BaseLayout
+import context from "@/context"
+const BaseLayout = context.BaseLayout
 
 export default {
   name: "App",

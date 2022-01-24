@@ -2,7 +2,7 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 
 import store from "./store"
-import variation from "./variations"
+import context from "./context"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: variation.Home,
+      component: context.Home,
       beforeEnter: (to, from, next) => {
         let referrer = document.referrer
         if (
@@ -31,7 +31,7 @@ const router = createRouter({
       component: () =>
         import(/* webpackChunkName: "simulation" */ "./views/simulation.vue"),
       meta: {
-        headTitle: "Ma simulation sur le simulateur d'aides " + variation.name,
+        headTitle: "Ma simulation sur le simulateur d'aides " + context.name,
       },
       children: [
         {
@@ -198,7 +198,7 @@ const router = createRouter({
           meta: {
             headTitle:
               "Les résultats de ma simulation sur le simulateur d'aides " +
-              variation.name,
+              context.name,
           },
           component: () =>
             import(
@@ -215,7 +215,7 @@ const router = createRouter({
           meta: {
             headTitle:
               "Trouver de l'aide près de chez vous avec le simulateur d'aides " +
-              variation.name,
+              context.name,
           },
         },
         {
@@ -228,7 +228,7 @@ const router = createRouter({
           meta: {
             headTitle:
               "Trouver des lieux d'informations près de chez vous avec le simulateur d'aides " +
-              variation.name,
+              context.name,
           },
         },
         {
@@ -325,7 +325,7 @@ const router = createRouter({
         return "/"
       },
     },
-    ...variation.routes,
+    ...context.routes,
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {
@@ -391,7 +391,7 @@ router.beforeEach((to, from, next) => {
 })
 
 const DEFAULT_TITLE =
-  "Évaluez vos droits aux aides avec le simulateur de " + variation.name
+  "Évaluez vos droits aux aides avec le simulateur de " + context.name
 
 function getTitleMeta(route) {
   let meta

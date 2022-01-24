@@ -3,7 +3,6 @@ const { ACTIVITES_ACTIF } = require("../../../lib/activite")
 const Ressource = require("@/../lib/ressource")
 const { datesGenerator } = require("../../../lib/benefits/compute")
 const { Step, ComplexStep } = require("./steps")
-const { showBikeBenefits } = require("../../../lib/benefits/compute-aides-velo")
 
 function individuBlockFactory(id, chapter) {
   const r = (variable, chapter) =>
@@ -225,10 +224,7 @@ function extraBlock() {
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      {
-        isActive: (_, situation) => showBikeBenefits(situation),
-        steps: [s("_interetsAidesVelo", "projets")],
-      },
+      s("_interetsAidesVelo", "projets"),
       s("_interetBafa", "projets"),
       s("_interetPermisDeConduire", "projets"),
       {

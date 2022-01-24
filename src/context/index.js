@@ -1,43 +1,11 @@
-import Home from "@/views/home.vue"
-import BaseLayout from "@/components/base-layout.vue"
+import unJeune1solution from "./1jeune1solution"
+import mesAides from "./mes-aides.org"
 
-const routes = [
-  {
-    path: "/accessibilite",
-    name: "accessibilite",
-    component: () =>
-      import(
-        /* webpackChunkName: "accessibilite" */ "@/views/accessibilite.vue"
-      ),
-  },
-  {
-    path: "/contact",
-    name: "contact",
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "@/views/contact.vue"),
-  },
-  {
-    path: "/cgu",
-    name: "cgu",
-    component: () => import(/* webpackChunkName: "cgu" */ "@/views/cgu.vue"),
-  },
-  {
-    path: "/confidentialite",
-    name: "confidentialite",
-    component: () =>
-      import(/* webpackChunkName: "cgu" */ "@/views/confidentialite.vue"),
-  },
-  {
-    path: "/stats",
-    name: "stats",
-    component: () =>
-      import(/* webpackChunkName: "stats" */ "@/views/stats.vue"),
-  },
-]
-
-export default {
-  Home,
-  BaseLayout,
-  name: "1jeune1solution",
-  routes,
+let variation
+if (process.env.VUE_APP_VARIATION === "1jeune1solution") {
+  variation = unJeune1solution
+} else {
+  variation = mesAides
 }
+
+export default variation

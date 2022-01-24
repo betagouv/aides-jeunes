@@ -4,7 +4,7 @@
     <p class="total-element">Total: {{ benefits.length }} aides</p>
 
     <div v-for="(type, key) in institutionsGroupByType" :key="key">
-      <h2>{{ type.title }}</h2>
+      <h2 :id="key">{{ type.title }}</h2>
       <p class="total-element">
         Nombre d'aides : {{ type.benefitsLength }}
         <br />
@@ -13,7 +13,9 @@
       </p>
 
       <div v-for="institution in type.institutions" :key="institution.id">
-        <h3 class="aj-question">{{ institution.label }}</h3>
+        <h3 class="aj-question" :id="institution.id">{{
+          institution.label
+        }}</h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">

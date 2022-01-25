@@ -17,8 +17,3 @@ instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico
 type: bool
 unit: €
 periodicite: autre
-participation:
-  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
-    fréquent choisi.
-  type: Variable
-  periodicite: mois

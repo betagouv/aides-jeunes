@@ -7,10 +7,6 @@ description: >-
   Il s'adresse à toutes et tous (salarié(e)s, étudiant(e)s, stagiaires...) pour simplifier vos déplacements quotidiens.
 conditions:
   - Choisir un trajet fréquent entre deux gares du Pays de la Loire.
-participation:
-  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
-    fréquent choisi.
-  type: Variable
 conditions_generales:
   - type: age
     operator: <

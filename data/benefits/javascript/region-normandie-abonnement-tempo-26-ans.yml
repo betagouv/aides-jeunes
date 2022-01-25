@@ -1,4 +1,8 @@
-label: Abonnement Tempo - 26 ans
+participation:
+  type: Variable
+  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
+    fréquent choisi.
+label: abonnement Tempo - 26 ans
 institution: region_normandie
 description: "La carte Tempo vous permet, ainsi qu'à 4 accompagnants, de
   bénéficier de 50% de réduction maximum sur vos trajets en Normandie ou vers
@@ -19,7 +23,3 @@ instructions: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-n
 type: bool
 unit: €
 periodicite: autre
-participation:
-  type: Variable
-  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
-    fréquent choisi.

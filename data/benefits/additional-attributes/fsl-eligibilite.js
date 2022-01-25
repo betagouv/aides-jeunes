@@ -1,5 +1,6 @@
 function build({ codeImg, label, resources }) {
   return {
+    label: `Aide au maintien dans votre logement ${label}`,
     institution: {
       imgSrc: `logo_${codeImg}.png`,
     },
@@ -270,16 +271,8 @@ module.exports = {
       codeImg: "cd37",
       label: "du département de l’Indre-et-Loire",
       resources: {
-        link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
-      },
-    },
-    M243700754: {
-      codeImg: "tours_metropole",
-      label: "de Tours Métropole Val de Loire",
-      resources: {
-        link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/lacces-au-logement.html",
-        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/impr_FSL_interactif_departement.pdf",
+        link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/laide-au-logement.html",
+        form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_METRO_juillet_2021.pdf",
       },
     },
     D38: {

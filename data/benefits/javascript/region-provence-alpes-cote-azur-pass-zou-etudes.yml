@@ -30,8 +30,3 @@ instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/car
 type: bool
 unit: €
 periodicite: autre
-participation:
-  legende: Vous procurer le pass ZOU! pour un montant annuel maximum de 70€.
-  cout: 70
-  type: Fixe
-  periodicite: an

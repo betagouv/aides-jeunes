@@ -20,7 +20,3 @@ instructions: ""
 type: bool
 unit: €
 periodicite: autre
-participation:
-  legende: Payer le tarif jeune applicable à votre billet dont le prix est calculé
-    en fonction du trajet choisi.
-  type: Variable

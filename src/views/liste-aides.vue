@@ -64,7 +64,6 @@ export default {
           accum[institution.slug] = institution
           return accum
         }, {})
-        console.log(institutions)
 
         accum[type] = {
           title,

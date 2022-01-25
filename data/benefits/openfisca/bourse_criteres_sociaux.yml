@@ -4,7 +4,7 @@ description: La bourse d'enseignement supérieur sur critères sociaux (BCS) est
 conditions:
   - Ne pas en avoir déjà bénéficié 7 (sept) fois.
 link: https://www.service-public.fr/particuliers/vosdroits/F12214
-teleservice: https://www.messervices.etudiant.gouv.fr
+instructions: https://www.service-public.fr/particuliers/vosdroits/F12214
 prefix: une
 type: float
 unit: "€"

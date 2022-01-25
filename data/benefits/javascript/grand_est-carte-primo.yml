@@ -1,0 +1,20 @@
+label: carte PRIMO
+institution: grand_est
+description: >
+  Grâce à la carte PRIMO, bénéficiez de 50 à 70% de réduction quel que soit
+  votre trajet sur le réseau TER Grand Est.
+conditions:
+  - Vous procurer la carte PRIMO pour un montant annuel de 15€.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "44"
+profils: []
+link: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
+instructions: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
+type: bool
+unit: €
+periodicite: autre

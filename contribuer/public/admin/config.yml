@@ -223,46 +223,6 @@ fields:
           '\.$',
           "La condition doit commencer par un verbe à l'infinitif et se terminer par un point",
         ]
-  field_participation: &field_participation
-    label: Coûts d'accès à l'aide
-    label_singular: Coût d'accès à l'aide
-    hint: |
-      Certaines aides et avantages peuvent avoir un coût d'acquisition (ex: carte de réduction)
-    name: participation
-    widget: object
-    collapsed: true
-    required: false
-    fields:
-      - label: Légende
-        name: legende
-        widget: string
-        required: false
-        pattern: ['\.$', "La condition doit se terminer par un point"]
-      - label: Coût en euros
-        name: cout
-        widget: number
-        required: false
-        step: -1
-      - label: Type
-        name: type
-        widget: select
-        required: false
-        options: [Fixe, Variable]
-      - label: Périodicité
-        name: periodicite
-        widget: select
-        required: false
-        options:
-          - label: Annuelle
-            value: an
-          - label: Trimestrielle
-            value: trimestre
-          - label: Mensuelle
-            value: mois
-          - label: Unique
-            value: unique
-          - label: Autre
-            value: autre
   field_lien_plus_informations: &field_lien_plus_informations
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
@@ -657,7 +617,6 @@ collections:
       - *field_institution
       - *field_description
       - *field_conditions_non_prise_en_compte
-      - *field_participation
       - *field_conditions_generales
       - *field_profil_eligibilite
       - *field_lien_plus_informations
@@ -688,7 +647,6 @@ collections:
       - *field_institution
       - *field_description
       - *field_conditions_non_prise_en_compte
-      - *field_participation
       - *field_lien_plus_informations
       - *field_lien_teleservice
       - *field_lien_formulaire

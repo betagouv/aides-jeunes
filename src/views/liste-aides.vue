@@ -17,7 +17,7 @@
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">
-            <a :href="`/simulation/resultats?debug=${benefit.id}`">
+            <a :href="`./aides/${benefit.id}`" target="_blank">
               {{ $filters.capitalize(benefit.label) }}
             </a>
           </li>
@@ -62,11 +62,9 @@ export default {
           }
           institution.benefits.push(benefit)
           accum[institution.slug] = institution
-          //console.log(institution.slug) // institutions
-          console.log(benefit.id) // aides
-
           return accum
         }, {})
+        console.log(institutions)
 
         accum[type] = {
           title,

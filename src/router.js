@@ -335,6 +335,12 @@ const router = createRouter({
       },
     },
     {
+      path: "/aides/:benefitId",
+      name: "aide",
+      component: () =>
+        import(/* webpackChunkName: "aides" */ "./views/aide.vue"),
+    },
+    {
       path: "/suivi",
       name: "suivi",
       component: () =>

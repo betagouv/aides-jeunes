@@ -189,6 +189,13 @@ module.exports = {
         link: "https://www.ladrome.fr/mon-quotidien/logement/en-cas-de-difficultes/les-aides-aux-locataires/",
       },
     },
+    D28: {
+      codeImg: "cd28",
+      label: "du département d'Eure-et-loir",
+      resources: {
+        link: "https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30",
+      },
+    },
     D29: {
       codeImg: "cd29",
       label: "du département du Finistère",

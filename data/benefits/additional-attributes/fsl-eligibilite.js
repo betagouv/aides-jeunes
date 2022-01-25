@@ -241,8 +241,8 @@ module.exports = {
       codeImg: "cd33",
       label: "du département de la Gironde",
       resources: {
-        link: "http://www.fsl33.org/html/aide_maitien.htm",
-        instructions: "http://www.fsl33.org/pdf/FormNoticeMaintien2016.pdf",
+        link: "https://www.fsl33.org/aide-financiere-maintien-logement/",
+        instructions: "http://www.fsl33.org/aide-financiere-maintien-logement/",
       },
     },
     D34: {
@@ -309,7 +309,8 @@ module.exports = {
       label: "du département de Loire Atlantique",
       resources: {
         link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291",
-        form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-03/formulaire_de_demande_daide_au_logement_2020-03-09_14-37-8_451.pdf",
+        instructions:
+          "https://www.loire-atlantique.fr/44/habitat-logement/fonds-de-solidarite-pour-le-logement-fsl-aide-a-l-acces-au-logement/c_1303821#idTitre5",
       },
     },
     M244500468: {
@@ -388,7 +389,7 @@ module.exports = {
       codeImg: "cd60",
       label: "du département de l’Oise",
       resources: {
-        link: "http://www.oise.fr/guide-des-aides/aide/fonds-departemental-de-solidarite/",
+        link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
       },
     },
     D62: {
@@ -432,7 +433,7 @@ module.exports = {
       codeImg: "cd69",
       label: "du département du Rhône",
       resources: {
-        link: "https://www.rhone.fr/solidarites/insertion/logement/le_fonds_de_solidarite_logement",
+        link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
       },
     },
     M200046977: {
@@ -484,7 +485,7 @@ module.exports = {
       codeImg: "cd77",
       label: "du département de Seine-et-Marne",
       resources: {
-        link: "https://www.seine-et-marne.fr/Solidarite/Logement/Aides-au-logement",
+        link: "https://www.seine-et-marne.fr/fr/aides-au-logement",
       },
     },
     D78: {
@@ -549,9 +550,9 @@ module.exports = {
       codeImg: "cd93",
       label: "du département de Seine-Saint-Denis",
       resources: {
-        link: "https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html",
+        link: "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement",
         instructions:
-          "https://seinesaintdenis.fr/Fonds-de-solidarite-logement.html#comment_en_formuler_la_demande",
+          "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement#Comment-en-formuler-la-demande",
       },
     },
     D94: {

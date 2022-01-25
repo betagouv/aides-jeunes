@@ -17,8 +17,3 @@ instructions: https://cdn.ter.sncf.com/medias/PDF/occitanie/BROCHURE-FREQUENCIO-
 type: bool
 unit: €
 periodicite: autre
-participation:
-  legende: "Payer l'abonnement dont le prix est calculé en fonction du trajet
-    fréquent choisi (prix max. annuel : 90€)."
-  type: Variable
-  cout: ""

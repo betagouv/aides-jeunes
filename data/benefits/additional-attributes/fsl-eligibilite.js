@@ -248,7 +248,7 @@ module.exports = {
       codeImg: "cd34",
       label: "du département de l’Hérault",
       resources: {
-        link: "http://www.herault.fr/aides-financieres-fsl",
+        link: "https://herault.fr/402-aide-financiere.htm",
       },
     },
     D35: {
@@ -549,7 +549,7 @@ module.exports = {
       codeImg: "cd92",
       label: "du département des Hauts-de-Seine",
       resources: {
-        link: "https://www.78-92.fr/annuaire/aides-et-services/detail/fonds-de-solidarite-logement-fsl",
+        link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
       },
     },
     D93: {

@@ -13,7 +13,7 @@ conditions_generales:
     values:
       - "84"
 profils: []
-link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune 
+link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
 teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
 instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
 type: bool

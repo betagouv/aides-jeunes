@@ -9,6 +9,7 @@ description: "La carte Tempo vous permet, ainsi qu'à 4 accompagnants, de
   Paris. "
 conditions:
   - Choisir un trajet fréquent entre deux gares normandes.
+  - Souscrire à l'abonnement annuel ou mensuel dont le prix dépend du trajet fréquent choisi.
 conditions_generales:
   - type: age
     operator: <=

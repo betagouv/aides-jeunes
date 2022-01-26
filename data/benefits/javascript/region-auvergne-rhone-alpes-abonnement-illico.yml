@@ -1,0 +1,19 @@
+label: abonnement TER Illico hebdo jeunes
+institution: region_auvergne_rhone_alpes
+description: "L’abonnement TER Illico hebdomadaire jeunes vous donne accès à 7 jours de voyages illimités sur le parcours TER de votre choix en Auvergne-Rhône-Alpes ou à destination de Mâcon et Genève Cornavin (via Bellegarde uniquement). "
+conditions:
+  - Choisir un trajet fréquent entre deux gares de la région.
+  - Vous procurer l'abonnement dont le prix dépend du trajet choisi (rentabilisé à partir de 4 trajets, soit 2 allers-retours).
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: regions
+    values:
+      - "84"
+profils: []
+link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
+type: bool
+unit: €
+periodicite: autre

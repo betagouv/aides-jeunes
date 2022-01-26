@@ -4,11 +4,6 @@ description: "Ouverte à toutes et tous, la carte de réduction mezzo vous offre
   -50% (sur le tarif normal) sur tous vos voyages, 7j/7 et sur tout le réseau
   Aléop en TER. "
 conditions: []
-participation:
-  legende: Vous procurer la Carte mezzo en ligne pour un montant annuel de 30€.
-  cout: 30
-  type: Fixe
-  periodicite: an
 conditions_generales:
   - type: age
     operator: ">="

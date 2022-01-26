@@ -1,0 +1,20 @@
+label: abonnement PRIMO
+institution: grand_est
+description: Grâce à l'abonnement PRIMO, voyagez en illimité sur votre trajet
+  préféré du réseau TER Grand Est.
+conditions:
+  - Souscrire à l'abonnement PRIMO (hebdomadaire ou mensuel).
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "44"
+profils: []
+link: https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement
+teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=LOR
+instructions: https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement
+type: bool
+unit: €
+periodicite: autre

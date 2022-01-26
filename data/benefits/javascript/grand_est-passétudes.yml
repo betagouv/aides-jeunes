@@ -6,10 +6,10 @@ description: Avec la carte Pass Études, vous bénéficiez de 63% de réduction 
   carte Primo (50 % en semaine et 70 % le week-end sur l’achat de tous vos
   billets TER Grand Est).
 conditions:
-  - Vous procurer la carte Pass'Études pour le prix de 64 € par an.
   - Poursuivre vos études dans les départements de la Côte d'Or (21), du Doubs
     (25), de la Nièvre (58), de la Haute-Saône (70), de l'Yonne (89), ou du
     Territoire de Belfort (90).
+  - Vous procurer la carte Pass'Études pour le prix de 64 € par an.
 conditions_generales:
   - type: age
     operator: <=

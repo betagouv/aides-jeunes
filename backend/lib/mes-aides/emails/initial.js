@@ -11,11 +11,11 @@ const { formatDroitEstime } = require("../../../../lib/benefits/details")
 const { mjml } = require(".")
 
 function basicBenefitText(droit, parameters) {
-  if (droit.labelFunction) {
-    return droit.labelFunction(droit)
-  }
-
   const droitEstime = formatDroitEstime(droit, parameters)
+
+  if (droit.labelFunction) {
+    return droit.labelFunction({ ...droit, legend: droitEstime.legend })
+  }
 
   if (droitEstime.type === "bool") {
     return droit.label
@@ -35,7 +35,9 @@ const mjmlTemplate = fs.readFileSync(
 
 function renderAsText(followup, benefits, parameters) {
   const data = {
-    benefitTexts: benefits.map(basicBenefitText, parameters),
+    benefitTexts: benefits.map((benefit) =>
+      basicBenefitText(benefit, parameters)
+    ),
     returnURL: `${config.baseURL}${followup.returnPath}`,
   }
 

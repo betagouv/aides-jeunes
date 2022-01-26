@@ -7,7 +7,7 @@
       codePostalLabel="Quel est le code postal de la commune de vos parents ?"
     />
     <WarningMessage v-if="warningMessage" :text="warningMessage" />
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>
 <script>
@@ -15,7 +15,7 @@ import ActionButtons from "@/components/action-buttons"
 import Individu from "@/../lib/individu"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
-import Warning from "@/lib/warnings"
+import { createDepcomMixin } from "../../../mixins/depcom-mixin"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxCommuneDomicileFamilial",
@@ -24,6 +24,7 @@ export default {
     InputDepCom,
     WarningMessage,
   },
+  mixins: [createDepcomMixin()],
   data() {
     const id = this.$route.params.id
     const role = id.split("_")[0]
@@ -44,18 +45,9 @@ export default {
       matchingCommune: undefined,
     }
   },
-  computed: {
-    warningMessage() {
-      return Warning.get("aj_not_reliable", this.codePostal)
-    },
-  },
   methods: {
     onSubmit: function () {
-      if (!this.nomCommune || !this.codePostal) {
-        this.$store.dispatch("updateError", "Ce champ est obligatoire.")
-        return
-      }
-      if (this.matchingCommune) {
+      if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {
           id: "demandeur",
           entityName: "individu",
@@ -77,8 +69,8 @@ export default {
               this.matchingCommune.epciType,
           },
         })
+        this.$push()
       }
-      this.$push()
     },
   },
 }

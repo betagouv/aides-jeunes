@@ -7,7 +7,7 @@
       codePostalLabel="Quel est votre code postal ?"
     />
     <WarningMessage v-if="warningMessage" :text="warningMessage" />
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>
 
@@ -15,9 +15,9 @@
 import ActionButtons from "@/components/action-buttons"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
-import Warning from "@/lib/warnings"
 
 import { getAnswer } from "../../../../lib/answers"
+import { createDepcomMixin } from "../../../mixins/depcom-mixin"
 
 export default {
   name: "SimulationMenageDepcom",
@@ -26,6 +26,7 @@ export default {
     InputDepCom,
     WarningMessage,
   },
+  mixins: [createDepcomMixin()],
   data: function () {
     const answer = getAnswer(this.$store.state.answers.all, "menage", "depcom")
     return {
@@ -34,19 +35,9 @@ export default {
       matchingCommune: undefined,
     }
   },
-  computed: {
-    warningMessage() {
-      return Warning.get("aj_not_reliable", this.codePostal)
-    },
-  },
   methods: {
     onSubmit: function () {
-      if (!this.nomCommune || !this.codePostal) {
-        this.$store.dispatch("updateError", "Ce champ est obligatoire.")
-        return
-      }
-
-      if (this.matchingCommune) {
+      if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {
           entityName: "menage",
           fieldName: "depcom",
@@ -60,8 +51,8 @@ export default {
             _epciType: this.matchingCommune.epciType,
           },
         })
+        this.$push()
       }
-      this.$push()
     },
   },
 }

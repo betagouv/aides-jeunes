@@ -48,11 +48,13 @@ a.button {
     border-color: var(--green);
   }
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: var(--grey);
       border-color: var(--grey);
     }

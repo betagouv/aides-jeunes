@@ -1,0 +1,22 @@
+label: tarif jeune -26 ans
+institution: region_bourgogne_franche_comte
+description: Le tarif jeune moins de 26 ans vous permet de bénéficier de 50% de
+  réduction sur tous vos trajets en TER Bourgogne-Franche-Comté toute l'année, y
+  compris vers ou depuis Paris, Auvergne-Rhône-Alpes ou Centre-Val de Loire.
+conditions:
+  - Choisir vos trajets en TER Bourgogne-Franche-Comté, vers ou depuis Paris,
+    Auvergne-Rhône-Alpes ou Centre-Val de Loire.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "27"
+profils: []
+link: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/reduction-tarif-jeune-etudiant
+teleservice: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/reduction-tarif-jeune-etudiant
+instructions: ""
+type: bool
+unit: €
+periodicite: autre

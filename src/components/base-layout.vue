@@ -10,7 +10,7 @@
 
 <script>
 import Header1J1S from "@/components/header-1j1s"
-import FooterJ1S from "./footer-1j1s"
+import FooterJ1S from "@/components/footer-1j1s"
 
 export default {
   name: "BaseLayout",

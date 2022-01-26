@@ -17,7 +17,7 @@
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">
-            <a :href="`./aides/${benefit.id}`" target="_blank">
+            <a :href="`./aides/${benefit.id}`">
               {{ $filters.capitalize(benefit.label) }}
             </a>
           </li>

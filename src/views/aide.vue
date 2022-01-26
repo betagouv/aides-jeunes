@@ -1,6 +1,6 @@
 <template>
   <article class="text container aj-text-container">
-    <div class="aj-box normal-padding-bottom aj-results-details">
+    <div class="aj-box aj-results-details">
       <DroitsDetails
         :droit="benefit"
         :droits="[benefit]"
@@ -45,7 +45,7 @@ export default {
 .aj-text-container {
   margin: auto;
 }
-.aj-text-container .aj-results-details {
+.aj-box {
   box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
   border-radius: var(--theme-border-radius);
   background-color: var(--white);

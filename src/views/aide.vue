@@ -1,57 +1,53 @@
 <template>
-  <div class="droits-list">
-    <div class="aj-aide-box a-unstyled">
-      <img
-        class="aj-aide-illustration"
-        :src="require(`./../../public/img/${benefit.institution.imgSrc}`)"
-        :alt="'Logo ' + benefit.institution.label"
+  <article class="text container aj-text-container">
+    <div class="aj-box normal-padding-bottom aj-results-details">
+      <DroitsDetails
+        :droit="benefit"
+        :droits="[benefit]"
+        :city="'75056'"
+        :patrimoine-captured="true"
+        :ressources-year-minus-two-captured="true"
       />
-
-      <div class="aj-aide-text">
-        <h2 class="aj-question aj-benefit-label">{{
-          $filters.capitalize(benefit.label)
-        }}</h2>
-        <div class="aj-institution-label">{{
-          $filters.capitalize(benefit.institution.label)
-        }}</div>
-        <p class="aj-aide-description" v-html="benefit.description" />
-      </div>
-
-      <div class="aj-droit-conditions">
-        <p class="aj-droit-conditions-title"
-          >Pour en bénéficier, il faut également :</p
-        >
-        <ul class="list-unstyled">
-          <li v-for="(condition, index) in benefit.conditions" :key="index">
-            <img src="@/assets/images/doigt.svg" />
-            <span v-html="condition" />
-          </li>
-        </ul>
-      </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
 import Institution from "@/lib/institution"
+import DroitsDetails from "@/components/droits-details.vue"
+
+console.log(Institution)
 
 export default {
-  name: "AidesDetails",
-  components: {},
+  name: "AideDetails",
+  components: {
+    DroitsDetails,
+  },
   data() {
     return {}
   },
   computed: {
     benefitId() {
-      // eslint-disable-next-line no-debugger
-      debugger
       return this.$route.params.benefitId
     },
     benefit() {
-      const benefits = Institution.benefits.all
-      const benefit = benefits.find((benefit) => benefit.id === this.benefitId)
-      return benefit
+      const benefits = Institution.benefits.benefitsMap
+      return benefits[this.benefitId]
     },
   },
 }
 </script>
+
+<style>
+.aj-website-content {
+  background-color: #f2f5f9;
+}
+.aj-text-container {
+  margin: auto;
+}
+.aj-text-container .aj-results-details {
+  box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+  border-radius: var(--theme-border-radius);
+  background-color: var(--white);
+}
+</style>

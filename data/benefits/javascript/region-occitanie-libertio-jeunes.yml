@@ -1,0 +1,17 @@
+label: libertiO' Jeunes
+institution: region_occitanie
+description: Jusqu'à 26 ans inclus, voyagez à -50% tout le temps et partout en
+  Occitanie avec liO Train sur simple justificatif de votre âge.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "76"
+profils: []
+link: https://www.ter.sncf.com/occitanie/offres/tarifs-occitanie/jeunes
+instructions: https://www.ter.sncf.com/occitanie/offres/tarifs-occitanie/jeunes
+type: bool
+unit: €
+periodicite: autre

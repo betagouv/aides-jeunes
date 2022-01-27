@@ -1,0 +1,16 @@
+label: abonnement scolaire BFC
+institution: region_bourgogne_franche_comte
+description: L' abonnement des collégiens et lycéens, externes,
+  demi-pensionnaires, ou internes en Bourgogne-Franche-Comté.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: lyceen
+    conditions: []
+link: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/abonnement-scolaire-college-lycee-rentree
+instructions: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/abonnement-scolaire-college-lycee-rentree
+type: bool
+unit: €
+periodicite: autre

@@ -16,8 +16,6 @@
 import Institution from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
 
-console.log(Institution)
-
 export default {
   name: "AideDetails",
   components: {

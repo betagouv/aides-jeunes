@@ -212,10 +212,6 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
 }
 exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
-function filterPerOpenfiscaPeriod(definition) {
-  return !definition.openfiscaPeriod || definition.openfiscaPeriod === "month"
-}
-
 exports.buildOpenFiscaRequest = function (sourceSituation) {
   const situation = sourceSituation.toObject
     ? migrations.apply(sourceSituation).toObject()
@@ -242,8 +238,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     common.requestedVariables,
     function (definition) {
       return (
-        (!definition.type || definition.type === "float") &&
-        filterPerOpenfiscaPeriod(definition)
+        definition.type === "float" && definition.openfiscaPeriod === "month"
       )
     }
   )
@@ -259,9 +254,9 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     common.requestedVariables,
     function (definition) {
       return (
-        (!definition.type || definition.type === "float") &&
+        definition.type === "float" &&
         definition.setToZeroRecently &&
-        filterPerOpenfiscaPeriod(definition)
+        definition.openfiscaPeriod === "month"
       )
     }
   )

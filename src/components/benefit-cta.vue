@@ -12,7 +12,8 @@
     <router-link
       v-if="
         benefit.institution.etablissements &&
-        benefit.institution.etablissements.length > 0
+        benefit.institution.etablissements.length > 0 &&
+        route !== routeAide
       "
       v-analytics="{
         name: benefit.label,
@@ -61,6 +62,15 @@ export default {
           return item.link
         })
         .slice(0, 2)
+    },
+    route() {
+      return this.$route.path
+    },
+    benefitId() {
+      return this.$route.params.benefitId
+    },
+    routeAide() {
+      return "/aides/" + this.benefitId
     },
   },
 }

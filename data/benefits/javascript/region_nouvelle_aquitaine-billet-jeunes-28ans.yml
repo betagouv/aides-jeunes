@@ -1,0 +1,23 @@
+label: billet jeunes -28ans
+institution: region_nouvelle_aquitaine
+description: Grâce au billet jeunes, voyagez en Nouvelle-Aquitaine à partir de
+  4€. Le billet jeunes est nominatif, utilisable pour un seul trajet et une date
+  déterminée. Il vous permet de voyager sur toute la Nouvelle Aquitaine et vers
+  les régions Centre Val-de-Loire, Pays de la Loire, Occitanie, Auvergne Rhône
+  Alpes.
+conditions:
+  - Choisir un trajet en Nouvelle-Aquitaine.
+  - Payer le billet jeune dont le prix est calculé en fonction du trajet.
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+  - type: age
+    operator: <=
+    value: 28
+profils: []
+link: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
+instructions: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
+type: bool
+unit: €
+periodicite: autre

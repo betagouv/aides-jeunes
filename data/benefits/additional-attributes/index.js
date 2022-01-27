@@ -4,7 +4,14 @@ const moment = require("moment")
 
 const additionalBenefitAttributes = {
   css_participation_forfaitaire: {
-    extra: [{ id: "cmu_c", entity: "familles", type: "bool" }],
+    extra: [
+      {
+        id: "cmu_c",
+        entity: "familles",
+        type: "bool",
+        openfiscaPeriod: "thisMonth",
+      },
+    ],
     compute: function (result, period) {
       return result.cmu_c?.[period]
         ? true

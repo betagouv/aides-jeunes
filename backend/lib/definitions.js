@@ -106,6 +106,7 @@ const individuBase = {
       "velo_motorisation",
     ],
   },
+  _interetAidesVeloElectrique: Boolean,
   _interetEtudesEtranger: Boolean,
   _interetPermisDeConduire: Boolean,
   garde_alternee: Boolean,

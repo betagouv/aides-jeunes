@@ -1,0 +1,22 @@
+label: abonnement tempo -26 ans
+institution: region_normandie
+description: Avec l'abonnement tempo -26 ans, bénéficiez jusqu'à 50% de
+  réduction en Normandie et vers Paris, en semaine et en weekend.
+conditions:
+  - Choisir un trajet de référence en Normandie ou vers Paris.
+  - Payer l'abonnement dont le prix est calculé en fonction du trajet de
+    référence choisi.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "28"
+profils: []
+link: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
+teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=NHO
+instructions: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
+type: bool
+unit: €
+periodicite: autre

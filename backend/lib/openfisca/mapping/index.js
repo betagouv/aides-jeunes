@@ -286,12 +286,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
       return definition.openfiscaPeriod === value
     })
 
-    giveValueToRequestedVariables(
-      testCase,
-      prestations,
-      value ? periods[value] : periods.thisMonth,
-      null
-    )
+    giveValueToRequestedVariables(testCase, prestations, periods[value], null)
   })
 
   // Force RFR to be either present or restitued by OpenFisca

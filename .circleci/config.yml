@@ -163,6 +163,39 @@ jobs:
           name: Stop Xvfb
           command: |
             pkill Xvfb
+  test_defintion_periods:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/mes-aides-ui
+      - *install_virtualenv
+      - run:
+          name: Start OpenFisca
+          command: |
+            source .venv/bin/activate
+            gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=-
+            deactivate
+          background: true
+      - run:
+          name: Wait for OpenFisca
+          command: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
+      - restore_cache:
+          name: Restoring node_modules
+          keys:
+            - v12.1.4-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Start Xvfb
+          command: |
+            Xvfb :99
+          background: true
+      - run:
+          name: test definition periods
+          command: npm run test-definition-periods
+      - run:
+          name: Stop Xvfb
+          command: |
+            pkill Xvfb
   test_openfisca_test_generation:
     <<: *defaults
     steps:
@@ -204,6 +237,10 @@ workflows:
             - install
             - install_openfisca
       - test_e2e:
+          requires:
+            - build
+            - install_openfisca
+      - test_defintion_periods:
           requires:
             - build
             - install_openfisca

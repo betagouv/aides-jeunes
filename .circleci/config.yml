@@ -170,8 +170,8 @@ jobs:
       - attach_workspace:
           at: ~/mes-aides-ui
       - run:
-          name: Check for functional changes
-          command: if ! .circleci/has-openfisca-requirement-changes.sh ; then circleci step halt ; fi
+          name: Check for openfisca requirement changes
+          command: if .circleci/has-openfisca-requirement-changes.sh ; then circleci step halt ; fi
       - *install_virtualenv
       - run:
           name: Start OpenFisca

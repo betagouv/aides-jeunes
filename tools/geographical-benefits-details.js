@@ -1,51 +1,75 @@
 /* eslint-disable prettier-vue/prettier */
+const fs = require("fs")
+const ProgressBar = require("progress")
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epcis = require("@etalab/decoupage-administratif/data/epci.json")
+
+const { institutionsMap } = require("../data/all")
 const {
+  isGeographicallyIncluded,
   computeInterestingBenefitCounts,
 } = require("../lib/benefits/geographical-count-utils")
-const fs = require("fs")
 
-var ProgressBar = require("progress")
-var bar = new ProgressBar(":bar :elapsed :eta", {
-  total: communes.length,
+const communeMap = {}
+communes.forEach((commune) => {
+  communeMap[commune.code] = commune
 })
 
-// Nombre d'aides par type d'institution pour 10 communes
-let interestingBenefitsList = []
-//slice(27000, 27010)
-communes
-  // .filter((e) => e.region === "84")
-  // .slice(27000, 27010)
-  .forEach((commune) => {
-    const interestingBenefitCounts = computeInterestingBenefitCounts(commune)
+const institutionIds = Object.keys(institutionsMap)
+const bar = new ProgressBar(":bar :elapsed :eta", {
+  total: institutionIds.length,
+})
 
-    const counts = Object.values(interestingBenefitCounts)
-    let total = counts.reduce((accumulator, value) => {
-      return accumulator + value
-    }, 0)
+institutionIds.forEach((id) => {
+  const institution = institutionsMap[id]
+  switch (institution.type) {
+    case "national":
+      communes.forEach((commune) => {
+        const previousValue = communeMap[commune.code].count || 0
+        communeMap[commune.code].count =
+          previousValue + institution.benefitsIds.length
+      })
+      break
+    case "region":
+    case "departement":
+      communes.forEach((commune) => {
+        const included = isGeographicallyIncluded(commune, institution)
+        const previousValue = communeMap[commune.code].count || 0
+        communeMap[commune.code].count =
+          previousValue + (included ? institution.benefitsIds.length : 0)
+      })
+      break
+    case "epci":
+      const epciInfo = epcis.find((element) => element.code === institution.id)
+      if (!epciInfo) {
+        console.log(institution)
+        process.exit(1)
+      }
+      epciInfo.membres.forEach((commune) => {
+        const previousValue = communeMap[commune.code].count || 0
+        communeMap[commune.code].count =
+          previousValue + institution.benefitsIds.length
+      })
+      break
+    case "commune":
+      if (!communeMap[institution.id]) {
+        console.log(institution.id)
+        break
+      }
+      const previousValue = communeMap[institution.id].count || 0
+      communeMap[institution.id].count =
+        previousValue + institution.benefitsIds.length
+      break
+    case "caf":
+      break
+    default:
+      console.log("Dont know how to deal with " + typeInstitution)
+  }
 
-    interestingBenefitsList.push({
-      commune,
-      total,
-      ...interestingBenefitCounts,
-    })
-    bar.tick()
-  })
-// Classement des communes qui ont le plus d'aides jusqu'à celles qui en ont le moins
-// console.log(interestingBenefitsList.sort(function (a, b) {
-//     return  b.total - a.total;
-//   }))
+  bar.tick()
+})
 
-// function communesDetails (departement) {
-
-//   const communesFiltrees = interestingBenefitsList.filter(e => e.commune.departement === departement)
-//   return communesFiltrees
-// }
-
-// console.log(communesDetails("976"))
-
-// Création d'un fichier JSON qui contient les données stockées dans interestingBenefitsList
 fs.writeFileSync(
   "geographical-benefits-details.json",
-  JSON.stringify(interestingBenefitsList, null, 2)
+  JSON.stringify(communeMap, null, 2)
 )

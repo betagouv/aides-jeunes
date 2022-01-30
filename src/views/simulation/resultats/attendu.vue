@@ -151,7 +151,8 @@
           <p>
             Vous pouvez nous aider à améliorer le simulateur en nous envoyant
             par mail à
-            <a v-mail="sendMail">aides-jeunes@beta.gouv.fr</a> avec :
+            <a v-mail="sendMail">{{ process.env.VUE_APP_CONTACT_EMAIL }}</a>
+            avec :
           </p>
           <ul>
             <li>

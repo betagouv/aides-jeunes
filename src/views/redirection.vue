@@ -11,7 +11,6 @@
           <a
             v-analytics="{ action: 'Support', category: 'Redirection' }"
             v-mail="{
-              to: 'aides-jeunes@beta.gouv.fr',
               subject: `[${situationId}] Problème redirection`,
               body: `Bonjour,
 

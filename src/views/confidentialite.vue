@@ -180,11 +180,10 @@
     <p>
       <a
         v-mail="{
-          to: 'aides-jeunes@beta.gouv.fr',
           subject: 'Mes données',
           body: emailBody,
         }"
-        >aides-jeunes@beta.gouv.fr</a
+        >{{ process.env.VUE_APP_CONTACT_EMAIL }}</a
       >
     </p>
 

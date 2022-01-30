@@ -30,10 +30,9 @@
         <li>
           <a
             v-mail="{
-              to: 'aides-jeunes@beta.gouv.fr',
               subject: 'Problème d\'accessibilité',
             }"
-            >aides-jeunes@beta.gouv.fr</a
+            >{{ process.env.VUE_APP_CONTACT_EMAIL }}</a
           >
         </li>
       </ul>

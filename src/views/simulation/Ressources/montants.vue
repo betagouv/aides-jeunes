@@ -25,14 +25,12 @@
         :individu="type.individu"
         :ressource="type"
         @update="updateTNSAmount"
-        @updateExtra="updateTNSExtra"
       />
       <RessourceMicroEntreprise
         v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
         :individu="type.individu"
         :ressource="type"
         @update="updateTNSAmount"
-        @updateExtra="updateTNSExtra"
       />
       <RessourceProfessionLiberale
         v-if="type.meta.id === 'rpns_autres_revenus'"
@@ -46,7 +44,6 @@
         :individu="type.individu"
         :ressource="type"
         @update="updateTNSAmount"
-        @updateExtra="updateTNSExtra"
       />
     </div>
 
@@ -191,6 +188,19 @@ export default {
             amounts: type.amounts,
           }
         }),
+      })
+
+      this.types.forEach((type) => {
+        if (type.extra) {
+          Object.keys(type.extra).forEach((extraId) => {
+            this.$store.dispatch("answer", {
+              id: this.$route.params.id,
+              entityName: "individu",
+              fieldName: extraId,
+              value: type.extra[extraId],
+            })
+          })
+        }
       })
 
       this.$push()

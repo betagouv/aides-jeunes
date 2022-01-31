@@ -33,10 +33,14 @@ const answer = {
   value: Object,
 }
 
+const answers = {
+  all: { type: [answer], required: true },
+  current: { type: [answer], required: true },
+}
+
 const SimulationSchema = new mongoose.Schema(
   {
-    allAnswers: { type: [answer], required: true },
-    currentAnswers: { type: [answer], required: true },
+    answers: { type: answers, required: true },
     enfants: [Number],
     ressourcesFiscales: Object,
     patrimoine: Object,

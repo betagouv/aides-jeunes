@@ -55,7 +55,7 @@ export const SIMPLE_STEPS = {
   },
   depcom() {
     const answer = getAnswer(
-      this.$store.state.simulation.currentAnswers,
+      this.$store.state.simulation.answers.current,
       "menage",
       "depcom",
       undefined
@@ -73,7 +73,7 @@ export const SIMPLE_STEPS = {
 
   _bourseCriteresSociauxCommuneDomicileFamilial() {
     const answer = getAnswer(
-      this.$store.state.simulation.currentAnswers,
+      this.$store.state.simulation.answers.current,
       "individu",
       "_bourseCriteresSociauxCommuneDomicileFamilial",
       "demandeur"
@@ -91,7 +91,7 @@ export const SIMPLE_STEPS = {
 
   statut_occupation_logement() {
     const answer = getAnswer(
-      this.$store.state.simulation.currentAnswers,
+      this.$store.state.simulation.answers.current,
       "menage",
       "statut_occupation_logement"
     )
@@ -109,14 +109,14 @@ export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
       const answer = getAnswer(
-        this.$store.state.simulation.currentAnswers,
+        this.$store.state.simulation.answers.current,
         "enfants"
       )
       return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
       const answer = getAnswer(
-        this.$store.state.simulation.currentAnswers,
+        this.$store.state.simulation.answers.current,
         "enfants"
       )
       return [
@@ -134,7 +134,7 @@ export const COMPLEX_STEPS = {
     },
     fn() {
       const loyerData = Logement.getLoyerData(
-        this.$store.state.simulation.allAnswers
+        this.$store.state.simulation.answers.all
       )
       return [
         {
@@ -160,7 +160,7 @@ export const COMPLEX_STEPS = {
     fn(step) {
       const answer = (
         getAnswer(
-          this.$store.state.simulation.currentAnswers,
+          this.$store.state.simulation.answers.current,
           step.entity,
           step.variable,
           step.id

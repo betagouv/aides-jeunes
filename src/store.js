@@ -34,8 +34,10 @@ function defaultStore() {
   return {
     situationId: null,
     simulation: {
-      allAnswers: [],
-      currentAnswers: [],
+      answers: {
+        all: [],
+        current: [],
+      },
       dateDeValeur: new Date(),
       version: 3,
     },
@@ -165,7 +167,7 @@ const store = createStore({
           step.isActive
       )
       return allSteps.find(
-        (step) => !isStepAnswered(state.simulation.allAnswers, step)
+        (step) => !isStepAnswered(state.simulation.answers.all, step)
       )
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
@@ -246,11 +248,11 @@ const store = createStore({
   },
   mutations: {
     answer: (state, answer) => {
-      state.simulation = {
-        ...state.simulation,
-        allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
-        currentAnswers: storeAnswer(
-          state.simulation.currentAnswers,
+      state.simulation.answers = {
+        ...state.simulation.answers,
+        all: storeAnswer(state.simulation.answers.all, answer, false),
+        current: storeAnswer(
+          state.simulation.answers.current,
           answer,
           true,
           state.simulation.enfants
@@ -263,7 +265,7 @@ const store = createStore({
       let currentStep = steps[0]
       while (currentStep && currentStep.path !== newPath) {
         if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = state.simulation.allAnswers.find((answer) => {
+          const currentAnswer = state.simulation.answers.all.find((answer) => {
             return (
               answer.id === currentStep.id &&
               answer.entityName === currentStep.entity &&
@@ -278,7 +280,7 @@ const store = createStore({
         i = i + 1
         currentStep = steps[i]
       }
-      state.simulation.currentAnswers = currentAnswers
+      state.simulation.answers.current = currentAnswers
     },
     ressourcesFiscales: (state, ressourcesFiscales) => {
       state.simulation = {
@@ -293,7 +295,10 @@ const store = createStore({
       }
     },
     clear: function (state) {
-      state.simulation = { allAnswers: [], currentAnswers: [], enfants: [] }
+      state.simulation = {
+        answers: { all: [], current: [] },
+        enfants: [],
+      }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -337,41 +342,43 @@ const store = createStore({
       }
 
       // When you add a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.simulation.currentAnswers.findIndex(
+      const currentLastIndex = state.simulation.answers.current.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.simulation.currentAnswers
-          : state.simulation.currentAnswers.splice(0, currentLastIndex)
+          ? state.simulation.answers.current
+          : state.simulation.answers.current.splice(0, currentLastIndex)
 
       state.simulation = {
         ...state.simulation,
         enfants,
-        allAnswers: storeAnswer(state.simulation.allAnswers, answer, false),
-        currentAnswers: storeAnswer(
-          currentAnswers,
-          answer,
-          true,
-          state.simulation.enfants
-        ),
+        answers: {
+          all: storeAnswer(state.simulation.answers.all, answer, false),
+          current: storeAnswer(
+            currentAnswers,
+            answer,
+            true,
+            state.simulation.enfants
+          ),
+        },
       }
     },
     editEnfant: function (state, id) {
       // When you edit a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.simulation.currentAnswers.findIndex(
+      const currentLastIndex = state.simulation.answers.current.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.simulation.currentAnswers
-          : state.simulation.currentAnswers.splice(0, currentLastIndex)
+          ? state.simulation.answers.current
+          : state.simulation.answers.current.splice(0, currentLastIndex)
 
-      state.simulation = {
-        ...state.simulation,
-        currentAnswers: currentAnswers.filter(
+      state.simulation.answers = {
+        ...state.simulation.answers,
+        current: currentAnswers.filter(
           (answer) => answer.id !== `enfant_${id}`
         ),
       }

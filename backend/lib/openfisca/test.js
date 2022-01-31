@@ -119,7 +119,7 @@ exports.generateTest = function generateYAMLTest(details, situation) {
     mapping.giveValueToRequestedVariables(
       openfiscaRequest,
       prestations,
-      value ? periods[value] : periods.thisMonth,
+      periods[value],
       undefined
     )
   })

@@ -11,7 +11,7 @@ const migrations = require(".")
 const latestVersion = migrations.list[migrations.list.length - 1].version
 
 // Setup mongoose
-const Situation = mongoose.model("Situation")
+const Simulation = mongoose.model("Simulation")
 
 let counter = 0
 let errors = 0
@@ -25,24 +25,24 @@ const parser = new ArgumentParser({
 
 parser.addArgument(["--all"], {
   action: "storeTrue",
-  help: `Migre toutes les situations dans la base de données, par batch de ${limit}.`,
+  help: `Migre toutes les simulations dans la base de données, par batch de ${limit}.`,
 })
 
 parser.addArgument(["--id"], {
-  help: "Migre une situation précise",
+  help: "Migre une simulation précise",
 })
 
-function migrateSituations(conditions) {
-  Situation.find(conditions)
+function migrateSimulations(conditions) {
+  Simulation.find(conditions)
     .sort({ dateDeValeur: -1 })
     .limit(limit)
     .cursor()
     .pipe(
-      es.map(function (situation, done) {
-        migrations.apply(situation)
-        situation.save(function (err) {
+      es.map(function (simulation, done) {
+        migrations.apply(simulation)
+        simulation.save(function (err) {
           if (err) {
-            console.log("Cannot save migrated situation %s", situation.id)
+            console.log("Cannot save migrated simulation %s", simulation.id)
             console.trace(err)
             errors = errors + 1
           }
@@ -74,9 +74,9 @@ function migrateSituations(conditions) {
 function main() {
   const args = parser.parseArgs()
   if (args.id) {
-    migrateSituations({ _id: args.id })
+    migrateSimulations({ _id: args.id })
   } else if (args.all) {
-    migrateSituations({ version: { $ne: latestVersion } })
+    migrateSimulations({ version: { $ne: latestVersion } })
   } else {
     parser.printHelp()
     process.exit(1)

@@ -3,7 +3,7 @@
 cd `dirname $0`
 
 LOG_FILE=/home/main/migration.log
-MAX_LOOP=300
+MAX_LOOP=1000
 
 loop_count=1
 migrate() {

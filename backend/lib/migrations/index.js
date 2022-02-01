@@ -13,15 +13,23 @@ migrations.sort(function (a, b) {
   return a.version - b.version
 })
 
+const latestVersion = Math.max(migrations.map((migration) => migration.version))
+
+const isLatestVersion = (simulation) => {
+  return simulation.version >= latestVersion
+}
+
 module.exports = {
   list: migrations,
-  apply: function (situation) {
-    migrations.forEach(function (migration) {
-      if (situation.version < migration.version) {
-        situation.version = migration.version
-        situation = migration.function(situation)
-      }
-    })
-    return situation
+  apply: function (simulation) {
+    if (!isLatestVersion(simulation.version)) {
+      migrations.forEach(function (migration) {
+        if (simulation.version < migration.version) {
+          simulation.version = migration.version
+          simulation = migration.function(simulation)
+        }
+      })
+    }
+    return simulation
   },
 }

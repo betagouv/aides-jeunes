@@ -39,7 +39,7 @@ function defaultStore() {
         current: [],
       },
       dateDeValeur: new Date(),
-      version: 3,
+      version: 5,
     },
     message: {
       text: null,

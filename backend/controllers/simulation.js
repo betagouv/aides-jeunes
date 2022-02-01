@@ -6,19 +6,24 @@ const assign = require("lodash/assign")
 const { generateSituation } = require("../../lib/situations")
 const openfisca = require("../lib/openfisca")
 const openfiscaTest = require("../lib/openfisca/test")
+const migrations = require("../lib/migrations")
 const Simulation = require("mongoose").model("Simulation")
+
+function getSimulationOnRequest(req, simulation) {
+  req.simulation = migrations.apply(simulation)
+  req.situation = generateSituation(req.simulation)
+}
 
 exports.simulation = function (req, res, next, simulationId) {
   if (simulationId?._id) {
-    req.simulation = simulationId
-    req.situation = generateSituation(simulationId)
+    getSimulationOnRequest(req, simulationId)
     return next()
   }
 
   Simulation.findById(simulationId, (err, simulation) => {
     if (err) return next(err)
-    req.simulation = simulation
-    req.situation = generateSituation(simulation)
+
+    getSimulationOnRequest(req, simulation)
     next()
   })
 }
@@ -73,8 +78,10 @@ exports.create = function (req, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
+  const simulation = migrations.apply(req.body)
+
   return Simulation.create(
-    omit(req.body, "createdAt", "status", "token"),
+    omit(simulation, "createdAt", "status", "token"),
     (err, persistedSimulation) => {
       if (err) return next(err)
 

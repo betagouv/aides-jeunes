@@ -1,0 +1,20 @@
+label: aide de première nécessité
+institution: intercommunalite_bordeaux
+description: L’aide de première nécessité doit aider son bénéficiaire à faire
+  face à ses besoins de première nécessité, c’est-à-dire liés à sa subsistance
+  (alimentation, hygiène, etc.). Elle est destinée aux personnes qui, faute de
+  ressources ou après avoir réglé leurs charges, se trouvent démunies.
+conditions:
+  - Être majeur.
+  - Avoir la nationalité française ou disposer d’un droit au séjour sur le
+    territoire.
+  - Résider sur la commune depuis plus de trois mois.
+  - Disposer de ressources inférieures à un plafond de ressources.
+conditions_generales: []
+profils: []
+link: https://www.bordeaux.fr/o985/ccas
+instructions: https://www.bordeaux.fr/o985/ccas
+prefix: l’
+type: bool
+unit: €
+periodicite: autre

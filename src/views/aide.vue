@@ -1,5 +1,6 @@
 <template>
   <article class="text container aj-text-container">
+    <h1>Détail de l'aide</h1>
     <div class="aj-box aj-results-details">
       <DroitsDetails
         :droit="benefit"

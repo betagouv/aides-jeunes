@@ -1,5 +1,5 @@
 <template>
-  <div v-if="droit.type && route !== routeAide" class="aj-droit-estime">
+  <div v-if="droit.type && $route.name !== 'aide'" class="aj-droit-estime">
     <div>
       <template v-if="isBenefitTypeNumber || isBenefitTypeString">
         <span>
@@ -66,15 +66,6 @@ export default {
           !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
         this.droit.showUnexpectedAmount
       )
-    },
-    route() {
-      return this.$route.path
-    },
-    benefitId() {
-      return this.$route.params.benefitId
-    },
-    routeAide() {
-      return "/aides/" + this.benefitId
     },
   },
 }

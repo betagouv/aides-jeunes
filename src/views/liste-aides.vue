@@ -17,9 +17,11 @@
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">
-            <a :href="`./aides/${benefit.id}`">
+            <router-link
+              :to="{ name: 'aide', params: { benefitId: benefit.id } }"
+            >
               {{ $filters.capitalize(benefit.label) }}
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>

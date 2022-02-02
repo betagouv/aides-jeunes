@@ -1,7 +1,11 @@
 const Text = CMS.getWidget("text")
 
 class DescriptionControl extends Text.control {
+  format = (value) => {
+    return value.trim().replace(/ +(?= )/g, "")
+  }
   isValid = () => {
+    this.props.onChange(this.format(this.props.value))
     const p = document.createElement("p")
     p.innerHTML = this.props.value
     const innerText = p.textContent

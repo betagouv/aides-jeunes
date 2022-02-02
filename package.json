@@ -36,6 +36,7 @@
     "serve-mail": "node tools/mjml.js",
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
+    "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
     "prepare": "husky install"
   },
   "dependencies": {

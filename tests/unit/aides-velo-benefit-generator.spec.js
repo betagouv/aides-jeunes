@@ -6,9 +6,9 @@ const generator = require("../../data/benefits/aides-velo-generator.js")
 describe("aides velo benefit generator", function () {
   const list = generator(Object.values(benefits.institutionsMap))
 
-  it("generates simple benefit ids", function () {
-    list.forEach((benefit) => {
-      expect(benefit.id).toMatch(/^[a-zA-Z_éàè-]+$/)
+  list.forEach((benefit) => {
+    it("generates simple benefit ids", function () {
+      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèçâ-]+$/)
     })
   })
 

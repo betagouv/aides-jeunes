@@ -3,6 +3,7 @@ const axios = require("axios")
 const outils = require("./backend/controllers/outils")
 const mapping = require("./backend/lib/openfisca/mapping")
 const openfiscaParameters = require("./backend/lib/openfisca/parameters.js")
+const { generateSituation } = require("./lib/situations")
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
@@ -49,7 +50,9 @@ function mock({ app }) {
   })
 
   app.get("/api/answers/:id/openfisca-response", function (req, res, next) {
-    sendToOpenfisca(cache[req.params.id], function (err, result) {
+    const simulation = cache[req.params.id]
+    const situation = generateSituation(simulation)
+    sendToOpenfisca(situation, function (err, result) {
       if (err) {
         return next(err)
       }
@@ -59,7 +62,9 @@ function mock({ app }) {
   })
 
   app.get("/api/answers/:id/openfisca-request", function (req, res) {
-    res.send(buildOpenFiscaRequest(cache[req.params.id]))
+    const simulation = cache[req.params.id]
+    const situation = generateSituation(simulation)
+    res.send(buildOpenFiscaRequest(situation))
   })
 
   app.get("/api/openfisca/missingbenefits", function (req, res) {

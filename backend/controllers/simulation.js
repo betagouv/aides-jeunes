@@ -78,10 +78,8 @@ exports.create = function (req, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  const simulation = migrations.apply(req.body)
-
   return Simulation.create(
-    omit(simulation, "createdAt", "status", "token"),
+    omit(req.body, "createdAt", "status", "token"),
     (err, persistedSimulation) => {
       if (err) return next(err)
 

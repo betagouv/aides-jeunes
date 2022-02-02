@@ -5,16 +5,21 @@
 const VERSION = 5
 
 function update_interetAidesVeloElectrique(answers) {
-  const answer = answers.find(
+  const answerIndex = answers.findIndex(
     (answer) =>
       answer.id === "demandeur" &&
       answer.entityName === "individu" &&
       answer.fieldName === "_interetAidesVeloElectrique"
   )
 
-  if (answer?.value) {
-    answer.fieldName = "_interetsAidesVelo"
-    answers.value = ["velo_electrique"]
+  if (!answerIndex) return
+
+  answers[answerIndex].fieldName = "_interetsAidesVelo"
+
+  if (answers[answerIndex].value) {
+    answers[answerIndex].value = ["velo_electrique"]
+  } else {
+    answers[answerIndex].value = []
   }
 }
 

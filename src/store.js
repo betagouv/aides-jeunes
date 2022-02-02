@@ -157,7 +157,9 @@ const store = createStore({
           step.path !== "/simulation/resultats" &&
           step.isActive
       )
-      return allSteps.filter((step) => isStepAnswered(state.answers.all, step))
+      return allSteps.filter((step) =>
+        isStepAnswered(state.simulation.answers.all, step)
+      )
     },
     lastUnansweredStep: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(

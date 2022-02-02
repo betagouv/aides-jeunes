@@ -1,0 +1,19 @@
+name: "Continuous Integration"
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+env:
+  SAUCE_USERNAME: mes-aides-bot
+  OPENFISCA_BIND_HOST: 127.0.0.1:2000
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  PUPPETEER_ARGS: '{"args":["--no-sandbox","--disable-dev-shm-usage"]}'
+jobs:
+  build:
+    container:
+      name: "Docker CI image"
+      image: ghcr.io/betagouv/mes-aides-dockerfiles:node16-python3.7
+    services:
+      name: "Mongo image"
+      image: mongo:3.2.18

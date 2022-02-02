@@ -21,7 +21,7 @@ export const getIndividuByStep = (step, component) => {
 
 export const SIMPLE_STEPS = {
   ressources(step) {
-    const answer = getStepAnswer(this.$store.state.simulation.all, step)
+    const answer = getStepAnswer(this.$store.state.simulation.answers.all, step)
     if (!answer) {
       return []
     }

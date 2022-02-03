@@ -1,0 +1,32 @@
+label: forfait gratuité Jeunes en insertion
+institution: region_ile_de_france
+description: Ce forfait permet à certains jeunes stagiaires de la formation
+  professionnelle continue de voyager gratuitement sur tous les modes de
+  transport franciliens, pendant toute la durée de leur formation. Il est
+  valable sur tous les modes de transport (métro, bus, train, RER, tram express,
+  tram), à l’exception de certaines dessertes directes d’aéroports et des bus
+  touristiques.
+conditions:
+  - "Être stagiaire de la formation professionnelle continue dans l’un des
+    dispositifs suivants du service public régional de formation et d’insertion
+    professionnelle : Avenir Jeunes - Programme Compétences - École de la
+    Deuxième chance."
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regions
+    values:
+      - "11"
+profils: []
+link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/le-forfait-gratuite-jeunes-en-insertion
+teleservice: ""
+form: ""
+instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/le-forfait-gratuite-jeunes-en-insertion
+type: bool
+unit: €
+periodicite: autre
+legend: ""

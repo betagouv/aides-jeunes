@@ -21,10 +21,7 @@ profils:
   - type: etudiant
     conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/carte-scolaire-bus-lignes-regulieres#conditions
-teleservice: ""
-form: ""
 instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/carte-scolaire-bus-lignes-regulieres#conditions
 type: bool
 unit: €
 periodicite: autre
-legend: ""

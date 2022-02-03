@@ -32,10 +32,7 @@ conditions_generales:
     period: month
 profils: []
 link: https://www.bordeaux.fr/ebx/pgPresStand8.psml?_nfpb=true&_pageLabel=pgPresStand8&classofcontent=presentationStandard&id=135645
-teleservice: ""
-form: ""
 instructions: https://www.bordeaux.fr/ebx/pgPresStand8.psml?_nfpb=true&_pageLabel=pgPresStand8&classofcontent=presentationStandard&id=135645
 type: float
 unit: €
 periodicite: autre
-legend: ""

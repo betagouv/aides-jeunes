@@ -56,7 +56,7 @@ if (missingCommune.length) {
       }
       createYamlFile(commune_slug, institution)
 
-      console.log(`Commune ajoutée : ${institution.name}`)
+      console.log(`Commune ajoutée : ${b.description} | ${institution.name}`)
     } else {
       console.log(`Commune manquant : ${b.description}`)
     }
@@ -93,3 +93,10 @@ if (missingEPCI.length) {
     }
   })
 }
+
+console.log(
+  missingInstitutionBenefits
+    .filter((b) => !["code insee", "epci"].includes(b.collectivity.kind))
+    .map((b) => `${b.description} | id : ${b.collectivity.value}`)
+    .join("\n")
+)

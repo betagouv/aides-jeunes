@@ -39,7 +39,19 @@ describe("aides velo benefit generator", function () {
       )
     }
 
+    const missingOtherInstitution = missingInstitutionBenefits.filter(
+      (b) => !["code insee", "epci"].includes(b.collectivity.kind)
+    )
+    if (missingOtherInstitution.length) {
+      console.log(
+        missingOtherInstitution
+          .map((b) => `${b.description} | id : ${b.collectivity.value}`)
+          .join("\n")
+      )
+    }
+
     expect(missingCommune.length).toEqual(0)
     expect(missingEPCI.length).toEqual(0)
+    expect(missingOtherInstitution.length).toEqual(0)
   })
 })

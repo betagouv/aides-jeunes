@@ -5,7 +5,9 @@ class DescriptionControl extends Text.control {
     return value.trim().replace(/ +(?= )/g, "")
   }
   isValid = () => {
-    this.props.onChange(this.format(this.props.value))
+    if (this.props.value?.length > 0) {
+      this.props.onChange(this.format(this.props.value))
+    }
     const p = document.createElement("p")
     p.innerHTML = this.props.value
     const innerText = p.textContent

@@ -21,6 +21,14 @@ const normalizeName = (name) => {
     .toLowerCase()
 }
 
+const createYamlFile = (name, content) => {
+  const fileContent = yaml.dump(content, {
+    skipInvalid: true,
+  })
+
+  fs.writeFileSync(`./data/institutions/${name}.yml`, fileContent)
+}
+
 const list = generator(Object.values(benefits.institutionsMap))
 
 const missingInstitutionBenefits = list.filter((b) => !b.institution)
@@ -29,7 +37,30 @@ const missingCommune = missingInstitutionBenefits.filter(
   (b) => b.collectivity.kind === "code insee"
 )
 if (missingCommune.length) {
-  console.log(missingCommune.map((b) => b.description).join("\n"))
+  missingCommune.forEach((b) => {
+    let commune = null
+    epci.some((item) => {
+      commune = item.membres.find(
+        (membre) => membre.code === b.collectivity.value
+      )
+      return commune
+    })
+    if (commune) {
+      const commune_slug = `ville_${normalizeName(commune.nom)}`
+      const institution = {
+        name: `Ville de ${commune.nom}`,
+        imgSrc: `img/logo_${commune_slug}.png`,
+        prefix: "de la",
+        type: "commune",
+        id: commune.code,
+      }
+      createYamlFile(commune_slug, institution)
+
+      console.log(`Commune ajoutée : ${institution.name}`)
+    } else {
+      console.log(`Commune manquant : ${b.description}`)
+    }
+  })
 }
 
 const missingEPCI = missingInstitutionBenefits.filter(
@@ -48,22 +79,17 @@ if (missingEPCI.length) {
         : EPCIMatch.nom
       const institution = {
         name: nom,
-        imgSrc: `img/logo_${epci_slug}.png # TODO ajouter l'image`,
-        prefix: "de # TODO vérifier le préfixe",
+        imgSrc: `img/logo_${epci_slug}.png`,
+        prefix: "de la",
         type: "epci",
         id: EPCIMatch.code,
       }
 
-      const fileContent = yaml.dump(institution, {
-        skipInvalid: true,
-      })
+      createYamlFile(epci_slug, institution)
 
-      fs.writeFileSync(`./data/institutions/${epci_slug}.yml`, fileContent)
-      console.log(
-        `EPCI trouvée et crée pour l'aide : ${b.description} - ${EPCIMatch.code}`
-      )
+      console.log(`EPCI ajoutée : ${b.description} - ${EPCIMatch.code}`)
     } else {
-      console.log(`EPCI non trouvée pour l'aide : ${b.description}`)
+      console.log(`EPCI manquant : ${b.description}`)
     }
   })
 }

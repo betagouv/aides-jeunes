@@ -1,0 +1,41 @@
+label: Tarification de la restauration Bordeaux seniors
+institution: intercommunalite_bordeaux
+description: >-
+  La Ville de Bordeaux et son CCAS accompagnent le parcours de vie des seniors
+  bordelais en proposant une offre diversifiée de services et en promouvant une
+  dynamique municipale et partenariale appelée « Bordeaux Générations Seniors »
+  afin de conforter leur place dans la ville et favoriser le bien-vivre
+  ensemble.
+
+  L'offre de restauration municipale s'inscrit dans cette politique en faveur des seniors.
+conditions:
+  - Résider à Bordeaux.
+  - Etre en perte d'autonomie.
+conditions_generales:
+  - type: communes
+    values:
+      - "33063"
+  - type: age
+    operator: ">"
+    value: 60
+  - type: quotient_familial
+    floor: 625
+    period: month
+  - type: quotient_familial
+    floor: 870
+    period: month
+  - type: quotient_familial
+    floor: 1195
+    period: month
+  - type: quotient_familial
+    floor: 1425
+    period: month
+profils: []
+link: https://www.bordeaux.fr/ebx/pgPresStand8.psml?_nfpb=true&_pageLabel=pgPresStand8&classofcontent=presentationStandard&id=135645
+teleservice: ""
+form: ""
+instructions: https://www.bordeaux.fr/ebx/pgPresStand8.psml?_nfpb=true&_pageLabel=pgPresStand8&classofcontent=presentationStandard&id=135645
+type: float
+unit: €
+periodicite: autre
+legend: ""

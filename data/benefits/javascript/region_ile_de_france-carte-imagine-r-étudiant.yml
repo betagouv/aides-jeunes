@@ -19,9 +19,6 @@ profils:
     conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-etudiant#conditions
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte
-form: ""
-instructions: ""
 type: bool
 unit: €
 periodicite: autre
-legend: ""

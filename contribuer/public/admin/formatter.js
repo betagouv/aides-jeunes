@@ -11,7 +11,9 @@ class CustomStringControl extends StringControl {
     return value.trim().replace(/ +(?= )/g, "")
   }
   isValid = () => {
-    this.props.onChange(this.format(this.props.value))
+    if (this.props.value?.length > 0) {
+      this.props.onChange(this.format(this.props.value))
+    }
     return (
       !this.props.field.get("required", true) || this.props.value.length > 0
     )

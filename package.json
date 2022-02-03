@@ -14,8 +14,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix .",
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
@@ -37,7 +37,7 @@
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
     "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
-    "prepare": "husky install"
+    "husky": "husky install"
   },
   "dependencies": {
     "@babel/runtime": "^7.16.0",

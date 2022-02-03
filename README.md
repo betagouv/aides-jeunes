@@ -16,7 +16,7 @@
 
 ## 3rd parties
 
-- CircleCI ([config](https://github.com/betagouv/aides-jeunes/blob/master/.circleci/config.yml#L197-L225))
+- Github Actions ([config](https://github.com/betagouv/aides-jeunes/blob/master/.github/workflows/))
   - Continuous integration and deployment
 - Netlify
   - Deloy previews
@@ -168,7 +168,7 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 - `npm run test-benefits-urls` validate links to 3rd parties.
 
-- `npm run prepare` will install git hooks used to facilitate development and reduce the CI running time.
+- `npm run husky` will install git hooks used to facilitate development and reduce the CI running time.
 
 - [Locally](http://localhost:8080/simulation/resultats?debug) or on [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats?debug), it is possible to visualize all the available benefits of the simulator. It is done by adding `debug` as a parameter. It is also possible to set `debug=ppa,rsa` to choose which benefits are listed.
 

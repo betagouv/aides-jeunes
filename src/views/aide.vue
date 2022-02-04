@@ -1,16 +1,26 @@
 <template>
-  <article class="text container aj-text-container">
-    <h1>Détail de l'aide</h1>
-    <div class="aj-box aj-results-details">
-      <DroitsDetails
-        :droit="benefit"
-        :droits="[benefit]"
-        :city="'75056'"
-        :patrimoine-captured="true"
-        :ressources-year-minus-two-captured="true"
-      />
-    </div>
-  </article>
+  <div class="aj-simulation">
+    <article class="container aj-layout-container">
+      <div class="aj-main-container">
+        <div class="aj-category-title-wrapper">
+          <div class="aj-category-title">
+            <h1>Détail de l'aide</h1>
+          </div>
+        </div>
+        <div class="aj-box-wrapper">
+          <div class="aj-box aj-results-details">
+            <DroitsDetails
+              :droit="benefit"
+              :droits="[benefit]"
+              :city="'75056'"
+              :patrimoine-captured="true"
+              :ressources-year-minus-two-captured="true"
+            />
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 </template>
 
 <script>
@@ -37,16 +47,8 @@ export default {
 }
 </script>
 
-<style>
-.aj-website-content {
+<style scoped>
+.aj-simulation {
   background-color: #f2f5f9;
-}
-.aj-text-container {
-  margin: auto;
-}
-.aj-box {
-  box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
-  border-radius: var(--theme-border-radius);
-  background-color: var(--white);
 }
 </style>

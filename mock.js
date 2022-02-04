@@ -60,7 +60,7 @@ function mock({ app }) {
 
         res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
       })
-    } catch (e) {
+    } catch {
       res.sendStatus(404)
     }
   })
@@ -70,7 +70,7 @@ function mock({ app }) {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)
       res.send(buildOpenFiscaRequest(situation))
-    } catch (e) {
+    } catch {
       res.sendStatus(404)
     }
   })

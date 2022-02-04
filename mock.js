@@ -50,21 +50,29 @@ function mock({ app }) {
   })
 
   app.get("/api/answers/:id/openfisca-response", function (req, res, next) {
-    const simulation = cache[req.params.id]
-    const situation = generateSituation(simulation)
-    sendToOpenfisca(situation, function (err, result) {
-      if (err) {
-        return next(err)
-      }
+    try {
+      const simulation = cache[req.params.id]
+      const situation = generateSituation(simulation)
+      sendToOpenfisca(situation, function (err, result) {
+        if (err) {
+          return next(err)
+        }
 
-      res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
-    })
+        res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
+      })
+    } catch (e) {
+      res.sendStatus(404)
+    }
   })
 
   app.get("/api/answers/:id/openfisca-request", function (req, res) {
-    const simulation = cache[req.params.id]
-    const situation = generateSituation(simulation)
-    res.send(buildOpenFiscaRequest(situation))
+    try {
+      const simulation = cache[req.params.id]
+      const situation = generateSituation(simulation)
+      res.send(buildOpenFiscaRequest(situation))
+    } catch (e) {
+      res.sendStatus(404)
+    }
   })
 
   app.get("/api/openfisca/missingbenefits", function (req, res) {

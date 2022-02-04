@@ -54,7 +54,7 @@ export default {
         if (process.env.NODE_ENV === "production") {
           return s
         } else {
-          const { route } = this.$router.resolve(s.path)
+          const route = this.$router.resolve(s.path)
           return {
             key: s.key,
             isActive: s.isActive,

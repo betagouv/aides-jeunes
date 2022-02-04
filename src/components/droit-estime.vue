@@ -29,6 +29,11 @@
     <div class="aj-droit-estime-inattendu">
       <router-link
         v-if="showUnexpected"
+        v-analytics="{
+          name: droit.id,
+          action: 'Montant inattendu',
+          category: 'General',
+        }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
         >Montant inattendu ?
       </router-link>

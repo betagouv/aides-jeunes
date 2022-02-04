@@ -44,7 +44,6 @@ const individuBase = {
       "service_civique",
     ],
   },
-  agepi_temps_travail_semaine: Number,
   alternant: Boolean,
   annee_etude: {
     type: String,

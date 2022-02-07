@@ -5,7 +5,7 @@
       <div class="aj-category-title-button-mobile">
         <MenuButton
           v-show="showMenuButton"
-          @click.native="goToRecapitulatifPage"
+          @click="goToRecapitulatifPage"
         ></MenuButton>
       </div>
     </div>

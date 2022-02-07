@@ -42,7 +42,7 @@
       </template>
     </div>
     <div class="aj-actions">
-      <BackButton @click.native="goBack"></BackButton>
+      <BackButton @click="goBack"></BackButton>
     </div>
   </div>
 </template>

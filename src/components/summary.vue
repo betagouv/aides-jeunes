@@ -70,9 +70,6 @@ export default {
         this.$store.getters.lastUnansweredStep?.path
       )
     },
-    isOldSituation() {
-      return !this.$store.state.answers
-    },
     isRecapitulatif() {
       return this.$route.name === "recapitulatif"
     },
@@ -85,9 +82,6 @@ export default {
   },
   methods: {
     disabledLink(chapter, index) {
-      if (this.isOldSituation) {
-        return true
-      }
       return index === 0
         ? false
         : !chapter.done && !this.chapters[index - 1].done

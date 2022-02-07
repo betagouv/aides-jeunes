@@ -38,18 +38,6 @@
           >
           Les montants avancés sont arrondis à une dizaine d'euros près :
         </p>
-        <div v-if="isOldSituation" class="notification warning">
-          <div class="aj-results-intro">
-            <h3>
-              Attention, la simulation que vous voyez ne peut plus être modifiée
-            </h3>
-            <p>
-              Si vous voulez apporter une modification à votre situation,
-              veuillez recommencer une simulation depuis la
-              <router-link to="home"> page d'accueil </router-link>.
-            </p>
-          </div>
-        </div>
         <DroitsList :droits="droits" />
       </div>
       <div v-if="!isEmpty(droitsNonEligiblesShown)">
@@ -106,11 +94,6 @@ export default {
     TrouverInterlocuteur,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
-  computed: {
-    isOldSituation() {
-      return !this.$store.state.answers
-    },
-  },
   mounted: function () {
     if (this.mock(this.$route.params.droitId)) {
       return

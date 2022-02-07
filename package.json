@@ -36,6 +36,7 @@
     "serve-mail": "node tools/mjml.js",
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
+    "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -44,7 +45,7 @@
     "@sentry/integrations": "^6.14.0",
     "@sentry/node": "^6.14.0",
     "@sentry/vue": "^6.14.0",
-    "aides-velo": "^2.0.0",
+    "aides-velo": "^2.0.12",
     "axios": "^0.24.0",
     "body-parser": "^1.19.0",
     "communes-lonlat": "^1.1.0",

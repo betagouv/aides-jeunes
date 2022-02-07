@@ -6,9 +6,9 @@ const generator = require("../../data/benefits/aides-velo-generator.js")
 describe("aides velo benefit generator", function () {
   const list = generator(Object.values(benefits.institutionsMap))
 
-  it("generates simple benefit ids", function () {
-    list.forEach((benefit) => {
-      expect(benefit.id).toMatch(/^[a-zA-Z_éàè-]+$/)
+  list.forEach((benefit) => {
+    it("generates simple benefit ids", function () {
+      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèçâ-]+$/)
     })
   })
 
@@ -39,7 +39,19 @@ describe("aides velo benefit generator", function () {
       )
     }
 
+    const missingOtherInstitution = missingInstitutionBenefits.filter(
+      (b) => !["code insee", "epci"].includes(b.collectivity.kind)
+    )
+    if (missingOtherInstitution.length) {
+      console.log(
+        missingOtherInstitution
+          .map((b) => `${b.description} | id : ${b.collectivity.value}`)
+          .join("\n")
+      )
+    }
+
     expect(missingCommune.length).toEqual(0)
     expect(missingEPCI.length).toEqual(0)
+    expect(missingOtherInstitution.length).toEqual(0)
   })
 })

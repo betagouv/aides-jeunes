@@ -54,7 +54,7 @@ import {
   executeFunctionOrReturnValue,
 } from "@/lib/utils"
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
-import { ENTITIES_PROPERTIES } from "@/lib/State/steps"
+import { ENTITIES_PROPERTIES } from "@/lib/state/steps"
 import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "../../../lib/answers"
 

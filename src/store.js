@@ -7,7 +7,7 @@ import some from "lodash/some"
 
 import { computeAides, datesGenerator } from "../lib/benefits/compute"
 import { categoriesRnc, patrimoineTypes } from "../lib/resources"
-import { generateAllSteps } from "./lib/State/generator"
+import { generateAllSteps } from "./lib/state/generator"
 import Institution from "./lib/institution"
 import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Chapters from "@/lib/chapters"
+import Chapters from "../../lib/chapters"
 import MenuButton from "@/components/buttons/menu-button"
 
 export default {

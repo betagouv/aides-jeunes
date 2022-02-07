@@ -82,7 +82,7 @@ import { executeFunctionOrReturnValue, capitalize } from "@/lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
-import { ENTITIES_PROPERTIES } from "@/lib/state/steps"
+import { ENTITIES_PROPERTIES } from "@/lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
 
 export default {

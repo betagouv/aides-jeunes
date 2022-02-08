@@ -2,7 +2,7 @@ name: "Continuous Integration"
 on:
   push:
     branches: [master]
-#  pull_request:
+  pull_request:
 env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8

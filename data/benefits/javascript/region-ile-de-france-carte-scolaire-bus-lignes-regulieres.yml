@@ -9,7 +9,7 @@ description: La carte scolaire bus lignes régulières et la carte scolaire bus
 conditions:
   - Être domicilié à 3 km ou plus de l’établissement de scolarisation.
   - Acquérir la carte dont le prix dépend de la distance parcourue. Certaines
-    collectivités peuvent aider à financer la carte.
+    collectivités peuvent aider à financer la carte (<a target="_blank" rel="noopener"href="<https://www.78-92.fr/annuaire/aides-et-services/detail/aide-aux-transports-scolaires>"><Yvelines></a>,<a target="_blank" rel="noopener"href="<https://www.essonne.fr/economie-amenagement-mobilites/mobilites/les-aides-aux-transports>"><Essonne></a>,<a target="_blank" rel="noopener"href="<https://www.valdemarne.fr/a-votre-service/deplacement/transports/subvention-pour-les-transports-scolaires>"><Val-de-Marne></a> et <a target="_blank" rel="noopener"href="<https://www.valdoise.fr/1329-transports-scolaires.htm>"><Val d'Oise></a>).
 conditions_generales:
   - type: age
     operator: <=

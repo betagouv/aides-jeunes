@@ -16,11 +16,4 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          cat >>~/.ssh/config <<END
-          Host solstice
-            HostName ${{ env.PRODUCTION_DEPLOY_KEY }}
-            User ${{ env.SSH_USER }}
-            IdentityFile ~/.ssh/deployment.key
-            StrictHostKeyChecking no
-          END
-          ssh ${{ env.SSH_USER }}@${{ env.PRODUCTION_DEPLOY_KEY }}
+          ssh ${{ env.SSH_USER }}@${{ env.PRODUCTION_DEPLOY_KEY }}  -i ~/.ssh/deployment.key

@@ -49,7 +49,7 @@
               isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
             }}</router-link
           >
-          <BackButton v-else @click.native="goBack()">Retour</BackButton>
+          <BackButton v-else @click="goBack()">Retour</BackButton>
         </div>
       </div>
     </div>

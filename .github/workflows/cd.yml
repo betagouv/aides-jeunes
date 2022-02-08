@@ -17,4 +17,4 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -tt -i ~/.ssh/deployment.key -f "exit"
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key

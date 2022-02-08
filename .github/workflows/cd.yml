@@ -16,4 +16,4 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh ${{ env.SSH_USER }}@${{ env.PRODUCTION_DEPLOY_KEY }}  -i ~/.ssh/deployment.key
+          ssh ${{ env.SSH_USER }}@${{ env.SSH_HOST }}  -i ~/.ssh/deployment.key

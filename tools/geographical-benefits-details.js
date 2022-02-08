@@ -1,12 +1,16 @@
 const fs = require("fs")
 const ProgressBar = require("progress")
-const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const communesBase = require("@etalab/decoupage-administratif/data/communes.json")
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
 const { institutionsMap } = require("../data/all")
 const {
   isGeographicallyIncluded,
 } = require("../lib/benefits/geographical-count-utils")
+
+const communes = communesBase.filter(
+  (commune) => commune.type === "commune-actuelle"
+)
 
 const communeMap = {}
 communes.forEach((commune) => {
@@ -62,7 +66,7 @@ function iterateGivenGeographicalRelevancy(apply) {
       }
       case "commune": {
         if (!communeMap[institution.id]) {
-          console.log(institution.id)
+          // console.log(institution.id)
           break
         }
         apply(communeMap[institution.id], institution)
@@ -77,6 +81,7 @@ function iterateGivenGeographicalRelevancy(apply) {
     bar.tick()
   })
 }
+
 iterateGivenGeographicalRelevancy(listInterestingInstitutions)
 iterateGivenGeographicalRelevancy(incrementCount)
 

@@ -4,11 +4,9 @@ on:
     branches: [master]
   pull_request:
 env:
-  SAUCE_USERNAME: mes-aides-bot
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  PUPPETEER_ARGS: '{"args":["--no-sandbox","--disable-dev-shm-usage"]}'
   PYTHON_VERSION: 3.7
 
 jobs:

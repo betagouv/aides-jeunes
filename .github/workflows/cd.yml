@@ -1,0 +1,14 @@
+name: "Continuous Deployment"
+on:
+  push:
+    branches: [master]
+
+jobs:
+  install:
+    name: Deployment
+    runs-on: ubuntu-20.04
+    steps:
+      - run: |
+          ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+          ssh-add - <<< "${{ secrets.PRODUCTION_DEPLOY_KEY }}"
+          ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr

@@ -1,0 +1,225 @@
+name: "Continuous Integration"
+on:
+  push:
+    branches: [master]
+  pull_request:
+env:
+  OPENFISCA_BIND_HOST: 127.0.0.1:2000
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  PYTHON_VERSION: 3.7
+
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Cache NPM install files
+        uses: actions/cache@v2
+        id: restore-npm-install-packages
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-cache-npm-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Check tool versions
+        run: npm --version && node --version && python3 --version
+      - name: Install dependencies
+        if: steps.restore-dependencies.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit
+  install_openfisca:
+    name: Install OpenFisca
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache Virtual Environment
+        uses: actions/cache@v2
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Setup VirtualEnv
+        run: |
+          pip3 install virtualenv
+          virtualenv .venv
+      - name: Install dependencies
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          pip3 install -r openfisca/requirements.txt 2> ci-err.log
+          test -n ci-err.log && grep incompatible ci-err.log && cat ci-err.log && exit 1
+          rm ci-err.log
+          deactivate
+  lint:
+    name: Lint
+    needs: [install]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Run ESLint
+        run: npm run lint
+      - name: Run Prettier
+        run: npm run prettier:check
+  unit_tests:
+    name: Unit tests
+    needs: [install]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Jest
+        run: npm run test
+  build:
+    name: Build
+    needs: [install]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache build output
+        uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: dist
+          key: ${{ runner.os }}-cache-build-${{ hashFiles('**/package-lock.json') }}
+      - name: Build assets
+        run: |
+          cp backend/config/continuous-integration.js backend/config/production.js
+          npm run build
+  openfisca_test_generation:
+    name: OpenFisca test generation
+    needs: [install, install_openfisca]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Virtual Environment
+        uses: actions/cache@v2
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - name: Validate OpenFisca test generation
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          npm run test tests/unit/openfisca/test.spec.js
+  test_e2e:
+    name: End-to-End Tests
+    needs: [build, install_openfisca]
+    runs-on: ubuntu-20.04
+    timeout-minutes: 15
+    services:
+      mongodb:
+        image: mongo:3.2.18
+        ports:
+          - 27017:27017
+    strategy:
+      matrix:
+        test: [base, family, student, handicap]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Cypress installation
+        uses: actions/cache@v2
+        id: restore-cypress
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cache-cypress-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Virtual Environment
+        uses: actions/cache@v2
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - name: Cache build output
+        uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: dist
+          key: ${{ runner.os }}-cache-build-${{ hashFiles('**/package-lock.json') }}
+      - name: Start OpenFisca
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
+          deactivate
+      - name: Prepare Mes Aides
+        shell: bash
+        run: |
+          cp backend/config/continuous-integration.js backend/config/production.js
+          NODE_ENV=production
+          nohup Xvfb :99 &
+      - name: Cypress install
+        uses: cypress-io/github-action@v2
+        if: steps.restore-cypress.outputs.cache-hit != 'true'
+        with:
+          browser: chrome
+          config-file: false
+          runTests: false
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          config-file: false
+          start: node server.js
+          wait-on: "http://localhost:8080, http://localhost:2000/variable/parisien, http://127.0.0.1:27017"
+          install: false
+          spec: cypress/integration/${{matrix.test}}.spec.js
+      - name: Upload cypress videos
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-${{matrix.test}}
+          path: cypress/videos
+          retention-days: 10

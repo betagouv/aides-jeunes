@@ -11,9 +11,10 @@ jobs:
     name: Deployment
     runs-on: ubuntu-20.04
     steps:
-      - shell: bash
+      - name: Deployment
+        shell: bash
         run: |
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -tt -f ${{ env.SSH_USER }}@${{ env.SSH_HOST }}  -i ~/.ssh/deployment.key 'exit'
+          ssh ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -tt -i ~/.ssh/deployment.key -f "exit"

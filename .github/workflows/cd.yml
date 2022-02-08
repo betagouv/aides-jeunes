@@ -10,9 +10,9 @@ jobs:
   install:
     name: Deployment
     runs-on: ubuntu-20.04
-    shell: bash
     steps:
-      - run: |
+      - shell: bash
+        run: |
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key

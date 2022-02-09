@@ -1,5 +1,5 @@
 <template>
-  <div v-if="droit.type" class="aj-droit-estime">
+  <div v-if="droit.type && $route.name !== 'aide'" class="aj-droit-estime">
     <div>
       <template v-if="isBenefitTypeNumber || isBenefitTypeString">
         <span>

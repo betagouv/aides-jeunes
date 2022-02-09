@@ -12,7 +12,8 @@
     <router-link
       v-if="
         benefit.institution.etablissements &&
-        benefit.institution.etablissements.length > 0
+        benefit.institution.etablissements.length > 0 &&
+        $route.name !== 'aide'
       "
       v-analytics="{
         name: benefit.label,

@@ -9,6 +9,10 @@ env:
   LANG: C.UTF-8
   PYTHON_VERSION: 3.7
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   install:
     name: Install

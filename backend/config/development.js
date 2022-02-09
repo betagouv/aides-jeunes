@@ -14,4 +14,5 @@ module.exports = {
     id: 170,
   },
   statistics: {},
+  mattermost: {},
 }

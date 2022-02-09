@@ -16,4 +16,5 @@ module.exports = Object.assign(require("./development"), {
     privateDsn: "https://userID:password@sentry.data.gouv.fr/17",
   },
   statistics: {},
+  mattermost: {},
 })

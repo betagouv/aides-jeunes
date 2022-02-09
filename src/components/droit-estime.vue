@@ -30,8 +30,8 @@
       <router-link
         v-if="showUnexpected"
         v-analytics="{
-          name: droit.id,
-          action: 'Montant inattendu',
+          name: droitEstime.label,
+          action: 'show-unexpected',
           category: 'General',
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"

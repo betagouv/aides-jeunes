@@ -226,7 +226,7 @@ jobs:
           path: cypress/videos
           retention-days: 10
   ci_failed:
-    name: Continuous Integration Failed
+    name: Detect failure
     runs-on: ubuntu-20.04
     needs:
       [
@@ -244,4 +244,6 @@ jobs:
         shell: bash
         env:
           CONTEXT: ${{ toJSON(needs) }}
-        run: echo "Continuous Integration failed during step $CONTEXT"
+        run: |
+          echo "Continuous Integration failed during step $CONTEXT"
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "[THIS IS A TEST, DO NOT TAKE INTO ACCOUNT] :x: Echec de la CI sur la branche master"}' ${{ secrets.MATTERMOST_POST_URL }}

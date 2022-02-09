@@ -36,6 +36,8 @@ jobs:
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
+      - name: Trigger ci error
+        run: exit 1
   install_openfisca:
     name: Install OpenFisca
     runs-on: ubuntu-20.04
@@ -223,3 +225,23 @@ jobs:
           name: cypress-${{matrix.test}}
           path: cypress/videos
           retention-days: 10
+  ci_failed:
+    name: Continuous Integration Failed
+    runs-on: ubuntu-20.04
+    needs:
+      [
+        install,
+        install_openfisca,
+        lint,
+        unit_tests,
+        build,
+        openfisca_test_generation,
+        test_e2e,
+      ]
+    if: always() && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
+    steps:
+      - name: Send CI failed message
+        shell: bash
+        env:
+          CONTEXT: ${{ toJSON(needs) }}
+        run: echo "Continuous Integration failed during step $CONTEXT"

@@ -28,7 +28,9 @@ function postPollResult(answers) {
   ]
   for (let key of answers) {
     result.push(
-      `${score[key.value][0]} ${key.id} ${
+      `${score[key.value][0]} [${key.id}](${
+        process.env.MES_AIDES_ROOT_URL
+      }/aides/${key.id}) ${
         key.comments.length > 0 ? `*(${key.comments})*` : ""
       }`
     )

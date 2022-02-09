@@ -8,8 +8,6 @@ const utils = require("../lib/utils")
 const renderInitial = require("../lib/mes-aides/emails/initial").render
 const renderSurvey = require("../lib/mes-aides/emails/survey").render
 
-const pollResult = require("../lib/mattermost-bot/poll-result")
-
 const SurveySchema = new mongoose.Schema(
   {
     _id: { type: String },
@@ -163,8 +161,6 @@ FollowupSchema.methods.updateSurvey = function (id, answers) {
   const survey = find(surveys, function (s) {
     return s._id === id
   })
-
-  pollResult.postPollResult(answers)
 
   Object.assign(survey, { answers: answers, repliedAt: Date.now() })
   this.surveys = surveys

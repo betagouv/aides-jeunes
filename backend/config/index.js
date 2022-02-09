@@ -34,6 +34,7 @@ const all = {
     },
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
+  mattermost_post_url: "",
 }
 
 let override = {}

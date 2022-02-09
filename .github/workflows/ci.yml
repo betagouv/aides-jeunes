@@ -36,8 +36,6 @@ jobs:
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
-      - name: Trigger ci error
-        run: exit 1
   install_openfisca:
     name: Install OpenFisca
     runs-on: ubuntu-20.04
@@ -238,12 +236,11 @@ jobs:
         openfisca_test_generation,
         test_e2e,
       ]
-    if: always() && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
+    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
     steps:
       - name: Send CI failed message
         shell: bash
         env:
           CONTEXT: ${{ toJSON(needs) }}
         run: |
-          echo "Continuous Integration failed during step $CONTEXT"
           curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "[THIS IS A TEST, DO NOT TAKE INTO ACCOUNT] :icon-danger: La CI a rencontré un problème sur la branche master"}' ${{ secrets.MATTERMOST_POST_URL }}

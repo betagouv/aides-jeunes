@@ -246,4 +246,4 @@ jobs:
           CONTEXT: ${{ toJSON(needs) }}
         run: |
           echo "Continuous Integration failed during step $CONTEXT"
-          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "[THIS IS A TEST, DO NOT TAKE INTO ACCOUNT] :x: Echec de la CI sur la branche master"}' ${{ secrets.MATTERMOST_POST_URL }}
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "[THIS IS A TEST, DO NOT TAKE INTO ACCOUNT] :icon-danger: La CI a rencontré un problème sur la branche master"}' ${{ secrets.MATTERMOST_POST_URL }}

@@ -231,6 +231,7 @@ jobs:
     name: Check openfisca requirement changes
     runs-on: ubuntu-20.04
     needs: [install, install_openfisca]
+    timeout-minutes: 15
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
@@ -282,6 +283,9 @@ jobs:
           source .venv/bin/activate
           nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
+      - name: Wait openfisca
+        shell: bash
+        run: bash "${GITHUB_WORKSPACE}/.github/wait-curl.sh" http://localhost:2000/variable/parisien 200 30
       - name: Test definition periods
         shell: bash
         run: npm run test-definition-periods

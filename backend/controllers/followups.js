@@ -2,6 +2,7 @@
 const Followup = require("mongoose").model("Followup")
 
 const situation = require("./answers")
+const pollResult = require("../lib/mattermost-bot/poll-result")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
@@ -64,5 +65,6 @@ exports.postSurvey = function (req, res) {
     followup.updateSurvey(req.params.surveyId, req.body).then(() => {
       res.sendStatus(201)
     })
+    pollResult.postPollResult(req.body)
   })
 }

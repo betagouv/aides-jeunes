@@ -3,6 +3,7 @@ const axios = require("axios")
 const outils = require("./backend/controllers/outils")
 const mapping = require("./backend/lib/openfisca/mapping")
 const openfiscaParameters = require("./backend/lib/openfisca/parameters.js")
+const pollResult = require("./backend/lib/mattermost-bot/poll-result")
 const { generateSituation } = require("./lib/situations")
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
@@ -86,6 +87,7 @@ function mock({ app }) {
   })
 
   app.post("/api/followups/surveys/:id/answers", function (req, res) {
+    pollResult.postPollResult(req.body)
     res.sendStatus(201)
   })
 

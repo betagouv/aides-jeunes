@@ -19,7 +19,7 @@ communes.forEach(function (commune) {
   commune.epci = communeEpci?.code
   commune.epciType = communeEpci?.type
 
-  const codesPostauxUniques = [...new Set(commune.codesPostaux)]
+  const codesPostauxUniques = new Set(commune.codesPostaux)
   codesPostauxUniques.forEach(function (codePostal) {
     if (!(codePostal in index)) {
       index[codePostal] = []

@@ -6,7 +6,7 @@ echo $result
 if [ -z "$result" ]
 then
   echo "No functional changes detected."
+    exit 1
 else
   echo "The functional files above were changed."
-    exit 1
 fi

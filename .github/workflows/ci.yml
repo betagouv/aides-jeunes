@@ -9,6 +9,10 @@ env:
   LANG: C.UTF-8
   PYTHON_VERSION: 3.7
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   install:
     name: Install
@@ -223,3 +227,22 @@ jobs:
           name: cypress-${{matrix.test}}
           path: cypress/videos
           retention-days: 10
+  ci_failed:
+    name: Detect failure
+    runs-on: ubuntu-20.04
+    needs:
+      [
+        install,
+        install_openfisca,
+        lint,
+        unit_tests,
+        build,
+        openfisca_test_generation,
+        test_e2e,
+      ]
+    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
+    steps:
+      - name: Send CI failed message
+        shell: bash
+        run: |
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-danger: La CI a rencontré un problème sur la branche master ([lien](https://github.com/betagouv/aides-jeunes/actions/workflows/ci.yml?query=branch%3Amaster+is%3Afailure))"}' ${{ secrets.MATTERMOST_POST_URL }}

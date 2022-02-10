@@ -273,7 +273,7 @@ jobs:
           deactivate
       - name: Wait openfisca
         shell: bash
-        run: bash "${GITHUB_WORKSPACE}/.github/wait-curl.sh" http://localhost:2000/variable/parisien 200 30
+        run: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
       - name: Test definition periods
         shell: bash
         run: npm run test-definition-periods

@@ -230,6 +230,7 @@ jobs:
   check-for-openfisca-requirements-changes:
     name: Check openfisca requirement changes
     runs-on: ubuntu-20.04
+    needs: [install_openfisca]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
@@ -241,8 +242,8 @@ jobs:
         run: if "${GITHUB_WORKSPACE}/.github/has-openfisca-requirement-changes.sh" ; then echo "::set-output name=status::success" ; fi
   test_definition_periods:
     name: Openfisca definition periods tests
-    needs: [check-for-openfisca-requirements-changes, install_openfisca]
-    if: needs.check-for-functional-changes.outputs.status == 'success'
+    needs: [check-for-openfisca-requirements-changes]
+    if: needs.check-for-openfisca-requirements-changes.outputs.status == 'success'
     runs-on: ubuntu-20.04
     timeout-minutes: 15
     steps:

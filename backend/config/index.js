@@ -23,6 +23,14 @@ const all = {
     authenticated_url: "https://api.github.com/user",
     client_secret: process.env.GITHUB_CLIENT_SECRET || "",
     client_id: process.env.GITHUB_CLIENT_ID || "",
+    authorized_users: [
+      "guillett",
+      "Cugniere",
+      "charlottelecuit",
+      "Vanessa-D",
+      "clembiffaud",
+      "Kout95",
+    ],
   },
   matomo: {
     id: 165,

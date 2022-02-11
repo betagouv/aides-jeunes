@@ -23,17 +23,19 @@ exports.callbackGithub = async (req, res) => {
   return res.redirect("/")
 }
 
-exports.isLogged = async (req, res, next) => {
+exports.isAuthorized = async (req, res, next) => {
   const cookie = req.cookies["github_token"]
   if (cookie) {
     try {
-      await axios.get(config.github.authenticated_url, {
+      const result = await axios.get(config.github.authenticated_url, {
         headers: {
           Accept: "application/json",
           Authorization: `token ${cookie.access_token}`,
         },
       })
-      return next()
+      if (config.github.authorized_users.includes(result.data.login)) {
+        return next()
+      }
     } catch (e) {
       console.log(e)
     }

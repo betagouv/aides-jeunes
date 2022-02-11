@@ -18,9 +18,16 @@
   # Il est inutile de nous envoyer des documents personnels (carte de mutuelle, pièce d'identité, etc.) : nous ne pouvons pas les traiter.
   # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation facilite le traitement de votre demande.`,
         }"
-        >courriel à l'adresse suivante
-        {{ process.env.VUE_APP_CONTACT_EMAIL }}</a
+        >courriel à l'adresse suivante {{ contactEmail }}</a
       >.
     </p>
   </article>
 </template>
+<script>
+import ContactEmailMixin from "@/mixins/contact-email"
+
+export default {
+  name: "Contact",
+  mixins: [ContactEmailMixin],
+}
+</script>

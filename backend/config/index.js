@@ -18,6 +18,12 @@ const all = {
   sendInBlue: {
     apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || "privateKey",
   },
+  github: {
+    access_token_url: "https://github.com/login/oauth/access_token",
+    authenticated_url: "https://api.github.com/user",
+    client_secret: process.env.GITHUB_CLIENT_SECRET || "",
+    client_id: process.env.GITHUB_CLIENT_ID || "",
+  },
   matomo: {
     id: 165,
   },

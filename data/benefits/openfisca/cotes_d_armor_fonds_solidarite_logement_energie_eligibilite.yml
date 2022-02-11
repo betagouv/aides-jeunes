@@ -9,3 +9,4 @@ form: https://cotesdarmor.fr/sites/default/files/2019-01/DOSSIER%20DE%20DEMANDE%
 prefix: le
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

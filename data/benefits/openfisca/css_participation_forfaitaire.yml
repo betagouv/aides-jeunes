@@ -17,6 +17,7 @@ teleservice: >-
   https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC
 prefix: la
 entity: familles
+openfiscaPeriod: thisMonth
 type: mixed
 participation: true
 msa: true

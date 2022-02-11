@@ -37,6 +37,7 @@
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
     "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
+    "test-definition-periods": "node tools/test-definition-periods.js",
     "husky": "husky install"
   },
   "dependencies": {

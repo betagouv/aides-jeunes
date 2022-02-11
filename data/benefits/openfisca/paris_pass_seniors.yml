@@ -7,3 +7,4 @@ form: https://cdn.paris.fr/paris/2020/01/10/03d74c0a9d051a5736302fc861d66ef5.pdf
 prefix: le
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

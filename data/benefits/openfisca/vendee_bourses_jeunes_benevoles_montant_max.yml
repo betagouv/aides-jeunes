@@ -19,3 +19,4 @@ legend: maximum
 floorAt: 10
 interestFlag: null
 entity: individus
+openfiscaPeriod: thisMonth

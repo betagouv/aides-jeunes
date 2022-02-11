@@ -13,6 +13,7 @@ instructions: https://www.loire-atlantique.fr/44/jeunesse/l-aide-au-permis-de-co
 prefix: l’
 floorAt: 1
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: ponctuelle
 type: float
 unit: "€"

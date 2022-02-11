@@ -7,3 +7,4 @@ form: https://cdn.paris.fr/paris/2019/11/18/ec559b1825e317b94c547d813dd1fd7d.pdf
 prefix: le
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

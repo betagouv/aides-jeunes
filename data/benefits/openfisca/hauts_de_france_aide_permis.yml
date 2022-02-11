@@ -10,5 +10,6 @@ type: float
 unit: "€"
 interestFlag: _interetPermisDeConduire
 entity: individus
+openfiscaPeriod: thisMonth
 legend: "maximum"
 periodicite: ponctuelle

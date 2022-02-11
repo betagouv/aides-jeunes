@@ -8,4 +8,5 @@ conditions:
 prefix: l’
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth
 interestFlag: _interetEtudesEtranger

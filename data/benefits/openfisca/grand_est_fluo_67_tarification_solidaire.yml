@@ -12,3 +12,4 @@ floorAt: 1
 type: float
 unit: "€"
 entity: individus
+openfiscaPeriod: thisMonth

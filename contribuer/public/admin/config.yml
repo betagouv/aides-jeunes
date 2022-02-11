@@ -325,6 +325,16 @@ fields:
         value: individus
       - label: Ménage
         value: menages
+  field_period_openfisca: &field_period_openfisca
+    label: Période de la variable dans OpenFisca
+    name: openfiscaPeriod
+    widget: select
+    hint: Cette variable fait le lien avec le moteur de calculs. Tant que vous ne savez pas quoi y indiquer, nous recommandons de laisser Mois.
+    options:
+      - label: Mois
+        value: thisMonth
+      - label: Année
+        value: thisYear
   field_montant_maximal_aide: &field_montant_maximal_aide
     label: Montant maximal de l'aide
     name: montant
@@ -659,6 +669,7 @@ collections:
       - *field_fiabilite_montant
       - *field_interet_particulier
       - *field_entite_rattachement_openfisca
+      - *field_period_openfisca
   - name: institutions
     label: Institutions
     label_singular: institution

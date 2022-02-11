@@ -5,3 +5,4 @@ link: https://eurelien.fr/guide/action-et-aides-sociales
 prefix: l’
 type: bool
 entity: individus
+openfiscaPeriod: thisMonth

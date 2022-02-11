@@ -6,6 +6,7 @@ prefix: l’
 type: float
 unit: "€"
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: annuelle
 conditions:
   - avoir obtenu la mention « très bien » à la dernière session du baccalauréat ou durant celle de l'année précédente.

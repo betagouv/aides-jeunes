@@ -9,3 +9,4 @@ unit: "%"
 legend: de réduction
 periodicite: ponctuelle
 entity: menages
+openfiscaPeriod: thisMonth

@@ -238,8 +238,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     common.requestedVariables,
     function (definition) {
       return (
-        (!definition.type || definition.type === "float") &&
-        !definition.openfiscaPeriod
+        definition.type === "float" && definition.openfiscaPeriod === "month"
       )
     }
   )
@@ -255,9 +254,9 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
     common.requestedVariables,
     function (definition) {
       return (
-        (!definition.type || definition.type === "float") &&
+        definition.type === "float" &&
         definition.setToZeroRecently &&
-        !definition.openfiscaPeriod
+        definition.openfiscaPeriod === "month"
       )
     }
   )
@@ -287,12 +286,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
       return definition.openfiscaPeriod === value
     })
 
-    giveValueToRequestedVariables(
-      testCase,
-      prestations,
-      value ? periods[value] : periods.thisMonth,
-      null
-    )
+    giveValueToRequestedVariables(testCase, prestations, periods[value], null)
   })
 
   // Force RFR to be either present or restitued by OpenFisca

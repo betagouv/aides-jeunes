@@ -10,4 +10,5 @@ form: https://cdn.paris.fr/paris/2020/01/13/9951415db06e3d73e54625d5972c7229.pdf
 type: float
 unit: "€"
 entity: familles
+openfiscaPeriod: thisMonth
 periodicite: mensuelle

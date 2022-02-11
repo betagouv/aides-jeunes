@@ -11,4 +11,5 @@ type: float
 unit: "€"
 floorAt: 10
 entity: individus
+openfiscaPeriod: thisMonth
 periodicite: mensuelle

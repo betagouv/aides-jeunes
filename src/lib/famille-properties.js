@@ -6,12 +6,14 @@ const STEPS = {
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",
     questionType: "number",
     min: 1,
+    type: "count",
   },
 
   bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: {
     question: "Et combien (vous y compris) font des études supérieures ?",
     questionType: "number",
     min: 0,
+    type: "count",
   },
 
   bourse_lycee: {

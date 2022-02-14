@@ -56,11 +56,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .input-number-error {
   color: #d63626;
   color: var(--red);
   padding-top: 5px;
   padding-left: 15px;
+}
+input[type="number"] {
+  text-align: right;
 }
 </style>

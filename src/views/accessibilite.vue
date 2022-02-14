@@ -23,7 +23,7 @@
 
     <div>
       <p>
-        >Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
+        Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
         un contenu ou une fonctionnalité du site, merci de nous en faire part.
       </p>
       <ul>

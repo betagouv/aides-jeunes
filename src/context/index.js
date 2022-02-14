@@ -1,5 +1,6 @@
 import Home from "@/views/home.vue"
 import BaseLayout from "@/components/base-layout.vue"
+import Simulation from "@/views/simulation.vue"
 
 const routes = [
   {
@@ -38,6 +39,7 @@ const routes = [
 export default {
   Home,
   BaseLayout,
+  Simulation,
   name: "1jeune1solution",
   routes,
 }

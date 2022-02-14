@@ -28,8 +28,7 @@ const router = createRouter({
       path: "/simulation",
       name: "simulation",
       redirect: "/simulation/individu/demandeur/date_naissance",
-      component: () =>
-        import(/* webpackChunkName: "simulation" */ "./views/simulation.vue"),
+      component: context.Simulation,
       meta: {
         headTitle: `Ma simulation sur le simulateur d'aides ${context.name}`,
       },

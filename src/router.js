@@ -318,6 +318,14 @@ const router = createRouter({
         import(/* webpackChunkName: "suivi" */ "./views/suivi.vue"),
     },
     {
+      path: "/accompagnement",
+      name: "accompagnement",
+      component: () =>
+        import(
+          /* webpackChunkName: "suivi" */ "./views/accompagnement/liste.vue"
+        ),
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

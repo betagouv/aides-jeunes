@@ -19,6 +19,7 @@ if (app.get("env") === "development") {
       .then((render) => res.send(render.html))
   })
 }
+
 app.use(router)
 
 module.exports = app

@@ -70,7 +70,7 @@ export default {
       if (window?.history.length > 2) {
         history.back()
       } else {
-        this.$router.push("/simulation/aides")
+        this.$router.push("/aides")
       }
     },
   },

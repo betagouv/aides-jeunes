@@ -7,6 +7,7 @@ import context from "./context"
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
+    ...context.routes,
     {
       path: "/",
       name: "home",
@@ -323,7 +324,6 @@ const router = createRouter({
         return "/"
       },
     },
-    ...context.routes,
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {

@@ -50,6 +50,8 @@ exports.access = async (req, res, next) => {
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
       }
+      // If cookie validation fails an error will be triggered
+      // eslint-disable-next-line no-empty
     } catch {}
   }
   if (req.query.code) {

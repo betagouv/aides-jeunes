@@ -319,10 +319,18 @@ const router = createRouter({
     },
     {
       path: "/accompagnement",
+      name: "liste-accompagnements",
+      component: () =>
+        import(
+          /* webpackChunkName: "accompagnement-liste" */ "./views/accompagnement/liste.vue"
+        ),
+    },
+    {
+      path: "/accompagnement/:followupId",
       name: "accompagnement",
       component: () =>
         import(
-          /* webpackChunkName: "suivi" */ "./views/accompagnement/liste.vue"
+          /* webpackChunkName: "accomptagnement" */ "./views/accompagnement/liste.vue"
         ),
     },
     {

@@ -4,7 +4,7 @@ const config = require("../config")
 
 function current_uri(req) {
   return `${req.protocol}://${req.hostname}${
-    process.env.PORT ? ":" + process.env.PORT : ""
+    process.env.NODE_ENV == "development" ? ":8080" : ""
   }${req.originalUrl}`
 }
 

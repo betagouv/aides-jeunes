@@ -2,7 +2,7 @@
   <article class="text container aj-text-container">
     <h1>Suivis des utilisateurs</h1>
     <router-link
-      v-if="followupId"
+      v-if="followupId && loggedIn"
       to="/accompagnement"
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"

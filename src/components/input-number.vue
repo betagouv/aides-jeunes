@@ -10,6 +10,7 @@
       :min="min"
       :max="max"
       :step="step"
+      :data-type="dataType"
     />
     <div v-if="error" class="text-red input-number-error">
       Ce champ n'est pas valide.
@@ -25,6 +26,7 @@ export default {
     name: String,
     min: Number,
     max: Number,
+    dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
     modelValue: { type: [Number, String] },
     step: { type: String, default: "any" },
@@ -56,11 +58,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .input-number-error {
   color: #d63626;
   color: var(--red);
   padding-top: 5px;
   padding-left: 15px;
+}
+input[type="number"]:not([data-type="count"]) {
+  text-align: right;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="aj-input-date">
+  <form class="aj-input-date">
     <div v-if="showDay" class="aj-input-date-component day">
       <label class="aj-date-label">jour</label>
       <input
@@ -47,7 +47,7 @@
         min="1900"
       />
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -166,7 +166,11 @@ export default {
       })
 
       const dt = moment(this.date, "YYYY-MM-DD", true)
-      if (dt.isValid()) {
+      if (
+        dt.isValid() &&
+        dt.isAfter(moment("1900-01-01", "YYYY-MM-DD", true)) &&
+        dt.isBefore(moment())
+      ) {
         this.$emit("update:modelValue", dt.toDate())
       } else {
         this.$emit("update:modelValue", undefined)

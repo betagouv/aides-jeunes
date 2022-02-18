@@ -548,6 +548,7 @@ const STEPS = {
       "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
     questionType: "number",
     unit: "mois",
+    type: "count",
   },
 
   _interetsAidesVelo: {

@@ -82,6 +82,12 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       }
       case "caf":
+        communes.forEach((commune) => {
+          const included = isGeographicallyIncluded(commune, institution)
+          if (included) {
+            apply(communeMap[commune.code], institution)
+          }
+        })
         break
       default:
         console.log("Dont know how to deal with " + institution.type)
@@ -104,7 +110,6 @@ function computeInterestingBenefitsCount(region) {
     }
   })
   const removeDuplicateBenefits = [...new Set(totalBenefits)]
-  // console.log(removeDuplicateBenefits)
   return (
     "Nombre d'aides pertinentes pour la région " +
     region +

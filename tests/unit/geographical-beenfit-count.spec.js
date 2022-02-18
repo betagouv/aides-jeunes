@@ -7,26 +7,29 @@ describe("geographical benefit count", function () {
   // Arcachon
   const arcachon = "33009"
   it("works for national institution", function () {
-    const result = isGeographicallyIncluded(arcachon, { type: "national" })
+    const result = isGeographicallyIncluded(
+      { code: arcachon },
+      { type: "national" }
+    )
     expect(result).toEqual(true)
   })
 
   describe("logic for regional institution", function () {
     it("works for relevant region", function () {
       // 75 = Nouvelle Aquitaine
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "region",
-        id: "75",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon, region: "75" },
+        { type: "region", id: "75" }
+      )
       expect(result).toEqual(true)
     })
 
     it("works for irrelevant region", function () {
       // 11 = Île-de-France
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "region",
-        id: "11",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon, region: "75" },
+        { type: "region", id: "11" }
+      )
       expect(result).toEqual(false)
     })
   })
@@ -34,58 +37,78 @@ describe("geographical benefit count", function () {
   describe("logic for departemental institution", function () {
     it("works for relevant departemental", function () {
       // 33 = Gironde
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "departement",
-        id: "33",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon, departement: "33" },
+        { type: "departement", id: "33" }
+      )
       expect(result).toEqual(true)
     })
 
     it("works for irrelevant departement", function () {
       // 75 = Paris
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "departement",
-        id: "75",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon, departement: "33" },
+        { type: "departement", id: "75" }
+      )
       expect(result).toEqual(false)
     })
   })
-
+  // Test EPCI ne passe pas
   describe("logic for epci institution", function () {
     it("works for relevant epci", function () {
       // 243300563 = CA Bassin d'Arcachon Sud-Pôle Atlantique (COBAS)
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "epci",
-        id: "243300563",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon },
+        { type: "epci", id: "243300563" }
+        // { membres: [{ code: arcachon }] }
+      )
       expect(result).toEqual(true)
     })
 
     it("works for irrelevant epci", function () {
-      // 200035319 = CA Bassin d'Arcachon Sud-Pôle Atlantique (COBAS)
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "epci",
-        id: "200035319",
-      })
+      // 200035319 = CA Var Estérel Méditerranée (Cavem)
+      const result = isGeographicallyIncluded(
+        { code: arcachon },
+        { type: "epci", id: "200035319" }
+        // { code: "75056" }
+      )
       expect(result).toEqual(false)
     })
   })
 
   describe("logic for communal institution", function () {
     it("works for relevant commune", function () {
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "commune",
-        id: arcachon,
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon },
+        { type: "commune", id: arcachon }
+      )
       expect(result).toEqual(true)
     })
 
     it("works for irrelevant commune", function () {
       // 75056 = Paris
-      const result = isGeographicallyIncluded(arcachon, {
-        type: "commune",
-        id: "75056",
-      })
+      const result = isGeographicallyIncluded(
+        { code: arcachon },
+        { type: "commune", id: "75056" }
+      )
+      expect(result).toEqual(false)
+    })
+  })
+
+  describe("logic for caf institution", function () {
+    it("works for relevant caf", function () {
+      const result = isGeographicallyIncluded(
+        { code: arcachon, departement: "33" },
+        { type: "caf", id: "caf_gironde" }
+      )
+      expect(result).toEqual(true)
+    })
+
+    it("works for irrelevant caf", function () {
+      const result = isGeographicallyIncluded(
+        { code: arcachon, departement: "33" },
+        { type: "caf", id: "caf_oise" }
+      )
       expect(result).toEqual(false)
     })
   })

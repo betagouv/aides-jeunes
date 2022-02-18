@@ -95,7 +95,7 @@ function mock({ app }) {
   })
 
   app.post("/api/followups/surveys/:id/answers", function (req, res) {
-    pollResult.postPollResult(req.body)
+    pollResult.postPollResult(req.params.simulationId, req.body)
     res.sendStatus(201)
   })
 

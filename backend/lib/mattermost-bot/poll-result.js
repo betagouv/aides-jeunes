@@ -10,7 +10,7 @@ function parseCurrentDate() {
   })} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
 }
 
-function postPollResult(simulationId, answers) {
+function postPollResult(simulation, answers) {
   if (answers.length == 0) {
     return
   }
@@ -20,19 +20,29 @@ function postPollResult(simulationId, answers) {
     nothing: [":icon-warning:", "Aucune demande"],
     already: [":icon-info:", "Déjà perçue"],
   }
+  const orderedAnswers = []
+  for (let benefit of simulation.benefits) {
+    let answer =
+      answers.filter((element) => {
+        return element["id"] == benefit["id"]
+      })[0] || {}
+    answer.unit = benefit.unit
+    answer.amount = benefit.amount
+    orderedAnswers.push(answer)
+  }
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${
       process.env.MES_AIDES_ROOT_URL
-    }/accompagnement/${simulationId})`,
+    }/accompagnement/${simulation._id})`,
     `${Object.values(score)
       .map((val) => val.join(" "))
       .join("  ")}\n  `,
   ]
-  for (let key of answers) {
+  for (let key of orderedAnswers) {
     result.push(
       `${score[key.value][0]} [${key.id}](${
         process.env.MES_AIDES_ROOT_URL
-      }/aides/${key.id}) ${
+      }/aides/${key.id}) ${key.unit ? `**${key.amount}${key.unit}**` : ""} ${
         key.comments.length > 0 ? `*(${key.comments})*` : ""
       }`
     )

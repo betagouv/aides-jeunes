@@ -88,6 +88,6 @@ exports.postSurvey = function (req, res) {
     followup.updateSurvey(req.params.surveyId, req.body).then(() => {
       res.sendStatus(201)
     })
-    pollResult.postPollResult(followup._id, req.body)
+    pollResult.postPollResult(followup, req.body)
   })
 }

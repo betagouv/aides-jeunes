@@ -56,6 +56,29 @@ exports.showFromSurvey = function (req, res) {
   })
 }
 
+exports.showSurveyResults = function (req, res) {
+  Followup.find({
+    surveyOptin: true,
+    surveys: { $exists: true, $ne: [] },
+    "surveys.repliedAt": { $exists: true },
+  })
+    .skip(0)
+    .limit(10)
+    .sort({ "surveys.repliedAt": -1 })
+    .then((followup) => {
+      res.send(followup)
+    })
+}
+
+exports.showSimulation = function (req, res) {
+  Followup.findOne({
+    _id: req.params.simulationId,
+  }).then((simulation) => {
+    if (!simulation) return res.sendStatus(404)
+    res.send([simulation])
+  })
+}
+
 exports.postSurvey = function (req, res) {
   Followup.findOne({
     "surveys._id": req.params.surveyId,
@@ -65,6 +88,6 @@ exports.postSurvey = function (req, res) {
     followup.updateSurvey(req.params.surveyId, req.body).then(() => {
       res.sendStatus(201)
     })
-    pollResult.postPollResult(req.body)
+    pollResult.postPollResult(followup, req.body)
   })
 }

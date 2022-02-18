@@ -21,6 +21,7 @@ const all = {
   github: {
     access_token_url: "https://github.com/login/oauth/access_token",
     authenticated_url: "https://api.github.com/user",
+    authorize_url: "https://github.com/login/oauth/authorize",
     client_secret: process.env.GITHUB_CLIENT_SECRET || "",
     client_id: process.env.GITHUB_CLIENT_ID || "",
     authorized_users: [

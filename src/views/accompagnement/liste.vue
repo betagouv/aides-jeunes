@@ -49,7 +49,129 @@
             class="answers-list"
           >
             <li class="survey-answer">
-              <div :class="`icon-${answer.status}`">{{ answer.status }}</div>
+              <div class="icon">
+                <svg
+                  v-if="answer.status == 'asked'"
+                  width="120"
+                  height="120"
+                  viewBox="0 0 120 120"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
+                      stroke-width="10"
+                      stroke="#70b2a2"
+                      fill="none"
+                    />
+                    <line
+                      stroke="#70b2a2"
+                      y2="39.73677"
+                      x2="91.26323"
+                      y1="82.26323"
+                      x1="48.73677"
+                      stroke-width="10"
+                      fill="none"
+                    />
+                    <path
+                      transform="rotate(-90, 42, 68.5)"
+                      id="svg_4"
+                      d="m28.23677,81.76322l27.52646,-26.52646"
+                      opacity="undefined"
+                      stroke-width="10"
+                      stroke="#70b2a2"
+                      fill="none"
+                    />
+                  </g>
+                </svg>
+
+                <svg
+                  v-if="answer.status == 'already'"
+                  width="120"
+                  height="120"
+                  viewBox="0 0 120 120"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      fill="none"
+                      stroke="#709cb2"
+                      stroke-width="10"
+                      d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
+                    />
+                    <line
+                      transform="rotate(-45, 60, 72)"
+                      fill="none"
+                      stroke-width="10"
+                      x1="42.2723"
+                      y1="89.7277"
+                      x2="77.7277"
+                      y2="54.2723"
+                      stroke="#709cb2"
+                    />
+                    <line
+                      y2="27"
+                      x2="60"
+                      y1="37"
+                      x1="60"
+                      stroke-width="10"
+                      stroke="#709cb2"
+                      fill="none"
+                    />
+                  </g>
+                </svg>
+
+                <svg
+                  v-if="answer.status == 'nothing'"
+                  width="120"
+                  height="120"
+                  viewBox="0 0 120 120"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <g transform="rotate(180, 60, 60)">
+                      <path
+                        d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
+                        stroke-width="10"
+                        stroke="#b29c70"
+                        fill="none"
+                      />
+                      <line
+                        stroke="#b29c70"
+                        y2="54.2723"
+                        x2="77.7277"
+                        y1="89.7277"
+                        x1="42.2723"
+                        stroke-width="10"
+                        fill="none"
+                        transform="rotate(-45, 60, 72)"
+                      />
+                      <line
+                        fill="none"
+                        stroke="#b29c70"
+                        stroke-width="10"
+                        x1="60"
+                        y1="37"
+                        x2="60"
+                        y2="27"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <svg
+                  v-if="answer.status == 'failed'"
+                  width="120"
+                  height="120"
+                  viewBox="0 0 120 120"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    style="fill: none; stroke: #b2707b; stroke-width: 10"
+                    transform="rotate(-90,60,60)"
+                    d="M 38.736771,81.263229 81.263229,38.736771 m -42.526458,0 42.526458,42.526458 M 60,112 A 52,52 0 0 1 8,60 52,52 0 0 1 60,8 52,52 0 0 1 112,60 52,52 0 0 1 60,112 Z"
+                  />
+                </svg>
+              </div>
               <a :href="`/aides/${answer.id}`" target="_blank">{{
                 answer.id
               }}</a>
@@ -154,84 +276,13 @@ export default {
   gap: 1rem;
 }
 
-.icon-asked,
-.icon-failed,
-.icon-nothing,
-.icon-already {
+.icon {
   display: block;
   width: 20px;
   height: 20px;
-  font-size: 0;
-  border-radius: 50%;
-  border: 2px solid hsl(165, 30%, 57%);
-  position: relative;
-  user-select: none;
-
-  position: relative;
 }
-.icon-failed {
-  border: 2px solid hsl(350, 30%, 57%);
-}
-.icon-nothing {
-  border: 2px solid hsl(40, 30%, 57%);
-}
-.icon-already {
-  border: 2px solid hsl(200, 30%, 57%);
-}
-
-.icon-asked:after,
-.icon-failed:before,
-.icon-failed:after,
-.icon-nothing:before,
-.icon-nothing:after,
-.icon-already:before,
-.icon-already:after {
-  display: block;
-  content: "";
-  margin: auto;
-  position: absolute;
-  inset: 0;
-}
-.icon-asked:after {
-  width: 8px;
-  height: 5px;
-  border-bottom: 2px solid hsl(165, 30%, 57%);
-  border-left: 2px solid hsl(165, 30%, 57%);
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-.icon-failed:before,
-.icon-failed:after {
-  width: 10px;
-  height: 2px;
-  background-color: hsl(350, 30%, 57%);
-  transform: rotate(45deg);
-}
-.icon-failed:after {
-  transform: rotate(-45deg);
-}
-
-.icon-nothing:before,
-.icon-nothing:after,
-.icon-already:before,
-.icon-already:after {
-  width: 2px;
-  height: 8px;
-  inset: 6px 0 auto 0;
-  background-color: hsl(40, 30%, 57%);
-}
-.icon-nothing:after {
-  height: 2px;
-  inset: auto 0 12px 0;
-}
-
-.icon-already:before {
-  background-color: hsl(200, 30%, 57%);
-  inset: auto 0 6px 0;
-}
-.icon-already:after {
-  background-color: hsl(200, 30%, 57%);
-  height: 2px;
-  inset: auto 0 2px 0;
+.icon svg {
+  width: 100%;
+  height: 100%;
 }
 </style>

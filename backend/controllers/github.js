@@ -44,7 +44,6 @@ function validateCookieToken(req) {
 }
 
 exports.access = async (req, res, next) => {
-  return next()
   if (req.cookies && req.cookies["github_token"]) {
     try {
       const result = await validateCookieToken(req)

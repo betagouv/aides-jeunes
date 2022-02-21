@@ -75,7 +75,6 @@
                     />
                     <path
                       transform="rotate(-90, 42, 68.5)"
-                      id="svg_4"
                       d="m28.23677,81.76322l27.52646,-26.52646"
                       opacity="undefined"
                       stroke-width="10"
@@ -195,17 +194,17 @@ export default {
       loggedIn: true,
     }
   },
-  watch: {
-    $route: {
-      immediate: true,
-      async handler(route) {
-        this.accompagnements = await this.fetchPollResults()
-      },
-    },
-  },
   computed: {
     followupId() {
       return this.$route.params.followupId
+    },
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      async handler() {
+        this.accompagnements = await this.fetchPollResults()
+      },
     },
   },
   methods: {

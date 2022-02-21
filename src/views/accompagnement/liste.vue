@@ -191,9 +191,17 @@
 export default {
   data: function () {
     return {
-      accompagnements: this.fetchPollResults(),
+      accompagnements: [],
       loggedIn: true,
     }
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      async handler(route) {
+        this.accompagnements = await this.fetchPollResults()
+      },
+    },
   },
   computed: {
     followupId() {

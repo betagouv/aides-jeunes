@@ -72,11 +72,18 @@ exports.showSurveyResults = function (req, res) {
 
 exports.showSimulation = function (req, res) {
   Followup.findOne({
-    _id: req.params.simulationId,
-  }).then((simulation) => {
-    if (!simulation) return res.sendStatus(404)
-    res.send([simulation])
+    "surveys.createdAt": {
+      $gte: new Date(req.params.simulationCreationDate),
+    },
   })
+    .then((simulation) => {
+      if (!simulation) return res.sendStatus(404)
+      res.send([simulation])
+    })
+    .catch((error) => {
+      console.error("error", error)
+      return res.sendStatus(400)
+    })
 }
 
 exports.postSurvey = function (req, res) {

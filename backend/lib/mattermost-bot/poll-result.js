@@ -30,10 +30,11 @@ function postPollResult(simulation, answers) {
     answer.amount = benefit.amount
     orderedAnswers.push(answer)
   }
+  const id = simulation.surveys[simulation.surveys.length - 1].createdAt || ""
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${
       process.env.MES_AIDES_ROOT_URL
-    }/accompagnement/${simulation._id})`,
+    }/accompagnement/${id})`,
     `${Object.values(score)
       .map((val) => val.join(" "))
       .join("  ")}\n  `,
@@ -51,7 +52,8 @@ function postPollResult(simulation, answers) {
   }
 
   const json = JSON.stringify({ text: result.join("\n") })
-  Mattermost.post(json)
+  console.log(json)
+  //Mattermost.post(json)
 }
 
 module.exports = {

@@ -2,7 +2,7 @@
   <article class="text container aj-text-container">
     <h1>Suivis des utilisateurs</h1>
     <router-link
-      v-if="followupId && loggedIn"
+      v-if="simulationCreationDate && loggedIn"
       to="/accompagnement"
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
@@ -38,7 +38,11 @@
               >{{ accompagnement.email }} -
               {{ formatDate(survey.repliedAt) }}</div
             >
-            <router-link :to="`/accompagnement/${accompagnement._id}`"
+            <router-link
+              :to="`/accompagnement/${
+                accompagnement.surveys[accompagnement.surveys.length - 1]
+                  .createdAt
+              }`"
               >Permalink</router-link
             >
             <a :href="`mailto:${accompagnement.email}`">Recontacter</a>
@@ -195,8 +199,8 @@ export default {
     }
   },
   computed: {
-    followupId() {
-      return this.$route.params.followupId
+    simulationCreationDate() {
+      return this.$route.params.simulationCreationDate
     },
   },
   watch: {
@@ -223,8 +227,8 @@ export default {
 
     fetchPollResults: async function () {
       this.retrievingCommunes = true
-      const uri = this.$route.params.followupId
-        ? `/api/followups/id/${this.$route.params.followupId}`
+      const uri = this.$route.params.simulationCreationDate
+        ? `/api/followups/id/${this.$route.params.simulationCreationDate}`
         : `/api/followups/surveys`
       try {
         const response = await fetch(uri, {

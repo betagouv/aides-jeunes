@@ -326,7 +326,7 @@ const router = createRouter({
         ),
     },
     {
-      path: "/accompagnement/:followupId",
+      path: "/accompagnement/:simulationCreationDate",
       name: "accompagnement",
       component: () =>
         import(

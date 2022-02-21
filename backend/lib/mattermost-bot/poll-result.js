@@ -52,8 +52,7 @@ function postPollResult(simulation, answers) {
   }
 
   const json = JSON.stringify({ text: result.join("\n") })
-  console.log(json)
-  //Mattermost.post(json)
+  Mattermost.post(json)
 }
 
 module.exports = {

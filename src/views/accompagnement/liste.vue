@@ -175,7 +175,7 @@
               <a :href="`/aides/${answer.id}`" target="_blank">{{
                 answer.id
               }}</a>
-              <b v-if="answer.unit && !isNaN(answer.amount)"
+              <b v-if="answer.unit && typeof answer.amount === `number`"
                 >({{ answer.amount }}{{ answer.unit }})</b
               >
               <div v-if="answer.comments">{{ answer.comments }}</div>

@@ -7,6 +7,7 @@ export default {
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
         process.env.VUE_APP_STATS_URL?.length &&
+        process.env.VUE_APP_STATS_VERSION &&
         benefits?.length
       ) {
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
@@ -20,6 +21,7 @@ export default {
               benefit_index: i + 1,
               page_total: totalResults,
               event_type: event,
+              version: process.env.VUE_APP_STATS_VERSION,
             })
           }
         })

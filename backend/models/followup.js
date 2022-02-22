@@ -11,6 +11,7 @@ const renderSurvey = require("../lib/mes-aides/emails/survey").render
 const SurveySchema = new mongoose.Schema(
   {
     _id: { type: String },
+    followingId: { type: String },
     createdAt: { type: Date, default: Date.now },
     messageId: { type: String },
     repliedAt: { type: Date },
@@ -156,13 +157,16 @@ FollowupSchema.methods.mock = function () {
   })
 }
 
-FollowupSchema.methods.updateSurvey = function (id, answers) {
+FollowupSchema.methods.updateSurvey = function (id, followingId, answers) {
   const surveys = Array.from(this.surveys)
   const survey = find(surveys, function (s) {
     return s._id === id
   })
-
-  Object.assign(survey, { answers: answers, repliedAt: Date.now() })
+  Object.assign(survey, {
+    answers: answers,
+    repliedAt: Date.now(),
+    followingId: followingId,
+  })
   this.surveys = surveys
   return this.save()
 }

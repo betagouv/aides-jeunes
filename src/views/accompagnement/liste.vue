@@ -2,7 +2,7 @@
   <article class="text container aj-text-container">
     <h1>Suivis des utilisateurs</h1>
     <router-link
-      v-if="simulationCreationDate && loggedIn"
+      v-if="followingId && loggedIn"
       to="/accompagnement"
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
@@ -41,7 +41,7 @@
             <router-link
               :to="`/accompagnement/${
                 accompagnement.surveys[accompagnement.surveys.length - 1]
-                  .createdAt
+                  .followingId
               }`"
               >Permalink</router-link
             >
@@ -199,8 +199,8 @@ export default {
     }
   },
   computed: {
-    simulationCreationDate() {
-      return this.$route.params.simulationCreationDate
+    followingId() {
+      return this.$route.params.followingId
     },
   },
   watch: {
@@ -227,8 +227,8 @@ export default {
 
     fetchPollResults: async function () {
       this.retrievingCommunes = true
-      const uri = this.$route.params.simulationCreationDate
-        ? `/api/followups/id/${this.$route.params.simulationCreationDate}`
+      const uri = this.$route.params.followingId
+        ? `/api/followups/id/${this.$route.params.followingId}`
         : `/api/followups/surveys`
       try {
         const response = await fetch(uri, {

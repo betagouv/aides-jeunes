@@ -10,7 +10,7 @@ function parseCurrentDate() {
   })} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
 }
 
-function postPollResult(simulation, answers) {
+function postPollResult(simulation, answers, followingId) {
   if (answers.length == 0) {
     return
   }
@@ -30,11 +30,10 @@ function postPollResult(simulation, answers) {
     answer.amount = benefit.amount
     orderedAnswers.push(answer)
   }
-  const id = simulation.surveys[simulation.surveys.length - 1].createdAt || ""
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${
       process.env.MES_AIDES_ROOT_URL
-    }/accompagnement/${id})`,
+    }/accompagnement/${followingId})`,
     `${Object.values(score)
       .map((val) => val.join(" "))
       .join("  ")}\n  `,

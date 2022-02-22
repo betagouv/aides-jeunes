@@ -3,6 +3,7 @@ const Followup = require("mongoose").model("Followup")
 
 const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
+const utils = require("../lib/utils")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
@@ -61,6 +62,7 @@ exports.showSurveyResults = function (req, res) {
     surveyOptin: true,
     surveys: { $exists: true, $ne: [] },
     "surveys.repliedAt": { $exists: true },
+    "surveys.followingId": { $exists: true },
   })
     .skip(0)
     .limit(10)
@@ -72,9 +74,7 @@ exports.showSurveyResults = function (req, res) {
 
 exports.showSimulation = function (req, res) {
   Followup.findOne({
-    "surveys.createdAt": {
-      $gte: new Date(req.params.simulationCreationDate),
-    },
+    "surveys.followingId": req.params.followingId,
   })
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
@@ -87,14 +87,23 @@ exports.showSimulation = function (req, res) {
 }
 
 exports.postSurvey = function (req, res) {
-  Followup.findOne({
-    "surveys._id": req.params.surveyId,
-  }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-
-    followup.updateSurvey(req.params.surveyId, req.body).then(() => {
-      res.sendStatus(201)
+  utils
+    .generateToken()
+    .then(function (followingId) {
+      Followup.findOne({
+        "surveys._id": req.params.surveyId,
+      }).then((followup) => {
+        if (!followup) return res.sendStatus(404)
+        followup
+          .updateSurvey(req.params.surveyId, followingId, req.body)
+          .then(() => {
+            res.sendStatus(201)
+          })
+        pollResult.postPollResult(followup, req.body, followingId)
+      })
     })
-    pollResult.postPollResult(followup, req.body)
-  })
+    .catch((error) => {
+      console.log("error", error)
+      return res.sendStatus(400)
+    })
 }

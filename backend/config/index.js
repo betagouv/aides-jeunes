@@ -40,6 +40,7 @@ const all = {
     url:
       process.env.VUE_APP_STATS_URL ||
       "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
+    version: process.env.VUE_APP_STATS_VERSION || 2,
   },
   mongo: {
     uri: process.env.MONGODB_URL || "mongodb://localhost/dds",

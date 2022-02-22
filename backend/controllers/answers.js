@@ -26,7 +26,6 @@ exports.answers = function (req, res, next, answersId) {
 exports.attachAccessCookie = function (req, res) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
-    httpOnly: true,
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
   }

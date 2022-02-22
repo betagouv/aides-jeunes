@@ -25,13 +25,14 @@ exports.answers = function (req, res, next, answersId) {
 
 exports.attachAccessCookie = function (req, res) {
   const maxAge = 7 * 24 * 3600 * 1000
-  res.cookie(req.answers.cookieName, req.answers.token, {
+  const cookiesParameters = {
     maxAge,
     httpOnly: true,
-    sameSite: "none",
-    secure: true,
-  })
-  res.cookie("lastestSituation", req.answers._id.toString(), { maxAge })
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: process.env.NODE_ENV === "production",
+  }
+  res.cookie(req.answers.cookieName, req.answers.token, cookiesParameters)
+  res.cookie("lastestSituation", req.answers._id.toString(), cookiesParameters)
 }
 
 exports.validateAccess = function (req, res, next) {

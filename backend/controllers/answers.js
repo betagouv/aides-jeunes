@@ -28,6 +28,8 @@ exports.attachAccessCookie = function (req, res) {
   res.cookie(req.answers.cookieName, req.answers.token, {
     maxAge,
     httpOnly: true,
+    sameSite: "none",
+    secure: true,
   })
   res.cookie("lastestSituation", req.answers._id.toString(), { maxAge })
 }

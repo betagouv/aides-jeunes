@@ -1,5 +1,4 @@
 var Chapters = require("../chapters")
-const { isResultStep } = require("../../../lib/steps")
 
 function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -7,25 +6,12 @@ function chapters(currentPath, journey, lastUnanswerPath) {
   const activeChaptersNames = activeJourney
     .map((c) => c.chapter)
     .filter((value, index, self) => self.indexOf(value) === index)
-  const activeChapters = Chapters.default
-    .getSommaireChapters()
-    .filter((c) => activeChaptersNames.includes(c.name))
-
-  // Force les chapitres à être done dans les pages de résultats
-  if (isResultStep(currentPath)) {
-    return activeChapters.map((chapter) => {
-      chapter.done = true
-      chapter.current = false
-      chapter.root = activeJourney.find(
-        (item) => item.chapter == chapter.name
-      ).path
-      return chapter
-    })
-  }
-
   const currentStep =
     journey.find((item) => item.path == cleanPath) ||
     journey.find((item) => item.path === lastUnanswerPath)
+  const activeChapters = Chapters.default
+    .getSommaireChapters()
+    .filter((c) => activeChaptersNames.includes(c.name))
   let isCurrentChapter
   let passedChapter = true
   return activeChapters.map((chapter) => {

@@ -6,7 +6,6 @@
 
 <script>
 import { isStepAnswered } from "../../lib/answers"
-import { isResultStep } from "../../lib/steps"
 
 export default {
   name: "ProgressBar",
@@ -20,13 +19,7 @@ export default {
       return "resultatsAttendus" !== this.$route.name
     },
     progress() {
-      // Force la barre de progression à être à 100 % dans les pages de résultats
-      if (isResultStep(this.$route.path)) {
-        return 100
-      }
-
       const cleanPath = this.$route.path.replace(/\/en_savoir_plus$/, "")
-
       const allSteps = this.$store.getters.getAllSteps.filter(
         (step) => !["/", "/simulation/resultats"].includes(step.path)
       )

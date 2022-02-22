@@ -151,7 +151,8 @@
           <p>
             Vous pouvez nous aider à améliorer le simulateur en nous envoyant
             par mail à
-            <a v-mail="sendMail">aides-jeunes@beta.gouv.fr</a> avec :
+            <a v-mail="sendMail">{{ contactEmail }}</a>
+            avec :
           </p>
           <ul>
             <li>
@@ -188,7 +189,9 @@ import sortBy from "lodash/sortBy"
 
 import axios from "axios"
 import Institution from "@/lib/institution"
+import ContactEmailMixin from "@/mixins/contact-email"
 import ResultatsMixin from "@/mixins/resultats"
+
 import { sendMontantsAttendus } from "@/plugins/mails"
 import { capitalize } from "@/lib/utils"
 import {
@@ -199,7 +202,7 @@ import {
 
 export default {
   name: "Attendu",
-  mixins: [ResultatsMixin],
+  mixins: [ContactEmailMixin, ResultatsMixin],
   data: function () {
     let benefitKeyed = {}
     let benefits = []

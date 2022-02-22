@@ -11,7 +11,6 @@
       <a
         v-analytics="{ action: 'Contact', category: 'Contact' }"
         v-mail="{
-          to: 'aides-jeunes@beta.gouv.fr',
           subject: 'Contact',
           body: `
 
@@ -19,8 +18,16 @@
   # Il est inutile de nous envoyer des documents personnels (carte de mutuelle, pièce d'identité, etc.) : nous ne pouvons pas les traiter.
   # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation facilite le traitement de votre demande.`,
         }"
-        >courriel à l'adresse suivante aides-jeunes@beta.gouv.fr</a
+        >courriel à l'adresse suivante {{ contactEmail }}</a
       >.
     </p>
   </article>
 </template>
+<script>
+import ContactEmailMixin from "@/mixins/contact-email"
+
+export default {
+  name: "Contact",
+  mixins: [ContactEmailMixin],
+}
+</script>

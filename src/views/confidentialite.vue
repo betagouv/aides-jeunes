@@ -180,11 +180,10 @@
     <p>
       <a
         v-mail="{
-          to: 'aides-jeunes@beta.gouv.fr',
           subject: 'Mes données',
           body: emailBody,
         }"
-        >aides-jeunes@beta.gouv.fr</a
+        >{{ contactEmail }}</a
       >
     </p>
 
@@ -306,8 +305,11 @@
 </template>
 
 <script>
+import ContactEmailMixin from "@/mixins/contact-email"
+
 export default {
   name: "Cgu",
+  mixins: [ContactEmailMixin],
   computed: {
     situation: function () {
       return this.$store.getters.situation

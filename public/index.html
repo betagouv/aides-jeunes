@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title
-      >Évaluez vos droits aux aides avec le simulateur de 1jeune1solution</title
+      >Évaluez vos droits aux aides avec le simulateur de <%=
+      VUE_APP_CONTEXT_NAME %></title
     >
 
     <meta name="og:title" value="Évaluez vos droits aux aides sociales" />
@@ -25,11 +26,11 @@
     />
     <meta
       name="og:description"
-      content="7 minutes suffisent pour évaluer vos droits à plus de 20 aides avec le simulateur de 1jeune1solution."
+      content="7 minutes suffisent pour évaluer vos droits à plus de 20 aides avec le simulateur de <%= VUE_APP_CONTEXT_NAME %>."
     />
     <meta
       name="twitter:description"
-      content="7 minutes suffisent pour évaluer vos droits à plus de 20 aides avec le simulateur de 1jeune1solution."
+      content="7 minutes suffisent pour évaluer vos droits à plus de 20 aides avec le simulateur de <%= VUE_APP_CONTEXT_NAME %>."
     />
     <link rel="canonical" href="<%= VUE_APP_BASE_URL %>" />
     <meta property="og:url" content="<%= VUE_APP_BASE_URL %>" />
@@ -48,7 +49,10 @@
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:site_name" content="Simulateur de 1jeune1solution" />
+    <meta
+      property="og:site_name"
+      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
+    />
 
     <link
       rel="icon"
@@ -65,16 +69,19 @@
 
     <meta
       name="apple-mobile-web-app-title"
-      content="Simulateur de 1jeune1solution"
+      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
     />
-    <meta name="application-name" content="Simulateur de 1jeune1solution" />
+    <meta
+      name="application-name"
+      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
+    />
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>
     <noscript>
       <strong
-        >Désolé ce simulateur n'est pas fonctionnel si le JavaScript n'est pas
-        activé.</strong
+        >Désolé le simulateur de <%= VUE_APP_CONTEXT_NAME %> n'est pas
+        fonctionnel si le JavaScript n'est pas activé.</strong
       >
     </noscript>
     <!-- built files will be auto injected -->

@@ -23,17 +23,16 @@
 
     <div>
       <p>
-        >Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
+        Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
         un contenu ou une fonctionnalité du site, merci de nous en faire part.
       </p>
       <ul>
         <li>
           <a
             v-mail="{
-              to: 'aides-jeunes@beta.gouv.fr',
               subject: 'Problème d\'accessibilité',
             }"
-            >aides-jeunes@beta.gouv.fr</a
+            >{{ contactEmail }}</a
           >
         </li>
       </ul>
@@ -46,3 +45,12 @@
     </p>
   </article>
 </template>
+
+<script>
+import ContactEmailMixin from "@/mixins/contact-email"
+
+export default {
+  name: "Accessibilite",
+  mixins: [ContactEmailMixin],
+}
+</script>

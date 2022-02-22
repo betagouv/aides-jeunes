@@ -75,6 +75,10 @@ a.button {
       i,
       svg {
         margin-right: 15px;
+
+        path {
+          fill: var(--theme-primary);
+        }
       }
     }
 

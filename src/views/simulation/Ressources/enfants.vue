@@ -18,6 +18,7 @@
 <script>
 import ActionButtons from "@/components/action-buttons"
 import YesNoQuestion from "@/components/yes-no-question"
+import { nullifyUndefinedValue } from "../../../../lib/answers"
 
 export default {
   name: "RessourcesTypes",
@@ -41,7 +42,7 @@ export default {
         fieldName: "_hasRessources",
         value: this.enfants.map((enfant) => ({
           id: enfant.id,
-          value: enfant._hasRessources,
+          value: nullifyUndefinedValue(enfant._hasRessources),
         })),
       })
       this.$push()

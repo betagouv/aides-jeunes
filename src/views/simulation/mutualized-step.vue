@@ -83,7 +83,7 @@ import EnSavoirPlus from "@/components/en-savoir-plus"
 import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "@/lib/state/steps"
-import { getAnswer } from "../../../lib/answers"
+import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
 
 export default {
   name: "MutualizedStep",
@@ -150,7 +150,7 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
-        value: this.value,
+        value: nullifyUndefinedValue(this.value),
       })
       this.$push()
     },

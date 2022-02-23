@@ -11,7 +11,13 @@ conditions:
   - Suivre sa formation dans un organisme de formation habilité par décision du
     Ministre chargé de la jeunesse.
   - Ne pas avoir débuté sa formation au moment du dépôt de la candidature.
-conditions_generales: []
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 30
 profils: []
 link: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
 type: float

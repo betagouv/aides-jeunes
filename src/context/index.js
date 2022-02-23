@@ -34,6 +34,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "stats" */ "@/views/stats.vue"),
   },
+  {
+    path: "/iframe",
+    name: "iframe",
+    component: () =>
+      import(/* webpackChunkName: "iframe" */ "@/views/iframe.vue"),
+  },
 ]
 
 export default {

@@ -4,7 +4,7 @@ const { animation, baseURL, matomo, statistics } = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")
-const before = process.env.NODE_ENV === "front_only" ? mock : configureAPI
+const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 const parseArgs = require("minimist")
 const benefits = require("./data/all")
 

@@ -50,13 +50,13 @@
 </template>
 
 <script>
-import iFrameResize from "iframe-resizer/js/iframeResizer"
+import iframeResize from "iframe-resizer/js/iframeResizer"
 
 export default {
   name: "Stats",
   methods: {
     iframeLoaded() {
-      iFrameResize({ log: false }, "#iframe")
+      iframeResize({ log: false }, "#iframe")
     },
   },
 }

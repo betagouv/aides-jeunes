@@ -1,0 +1,24 @@
+label: abonnement BreizhGo
+institution: region_bretagne
+description: Les abonnement BreizhGo vous permettent de bénéficier d'une
+  réduction jusqu'à 75 % sur vos trajets en Bretagne et de se déplacer de
+  manière illimitée sur une ligne choisie, y compris le week-end, sur les TER,
+  TGV et réseaux urbains. Par exemple, la ligne entre son domicile et son lieu
+  d’étude ou de travail.
+conditions:
+  - Choisir l'abonnement BreizhGo qui convient le mieux à votre trajet et un
+    trajet fréquent.
+  - Vous procurer l'abonnement BreizhGo dont le prix dépend du trajet choisi.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "53"
+profils: []
+link: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
+instructions: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
+type: bool
+unit: €
+periodicite: autre

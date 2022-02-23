@@ -1,0 +1,27 @@
+label: bourse à la mobilité Mobighjovani
+institution: caf_corse_du_sud
+description: Grâce à la bourse Mobighjovani, profitez d'une aide financière qui
+  vise à couvrir les frais non pris en charge dans les différents programmes de
+  mobilité internationale.
+conditions:
+  - Résider en Corse depuis 2 ans.
+  - Déposer une demande écrite motivée.
+  - Être rattaché(e) à un foyer dont le revenu fiscal est inférieur à 18 500€
+    par part fiscale.
+  - Ne pas avoir débuté son projet de mobilité au moment du dépôt de la
+    candidature.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 11
+  - type: age
+    operator: <=
+    value: 30
+profils: []
+link: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
+instructions: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
+type: float
+unit: €
+periodicite: autre
+montant: 300
+interestFlag: _interetEtudesEtranger

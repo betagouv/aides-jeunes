@@ -12,7 +12,7 @@
       >
         <img
           class="aj-aide-illustration"
-          :src="require(`./../../public/img/${getBenefitImage(droit)}`)"
+          :src="require(`./../../public/${getBenefitImage(droit)}`)"
           :alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
@@ -60,7 +60,7 @@
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
             <img
-              :src="require(`./../../public/img/${getBenefitImage(droit)}`)"
+              :src="require(`./../../public/${getBenefitImage(droit)}`)"
               :alt="'Icone pour' + droit.label"
             />
             <div>

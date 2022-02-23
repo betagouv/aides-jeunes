@@ -7,7 +7,10 @@ const assign = require("lodash/assign")
 const mustache = require("consolidate").mustache
 const config = require("../../../config")
 const openfiscaController = require("../../openfisca/parameters")
-const { formatDroitEstime } = require("../../../../lib/benefits/details")
+const {
+  formatDroitEstime,
+  getBenefitImage,
+} = require("../../../../lib/benefits/details")
 const { mjml } = require(".")
 
 function basicBenefitText(droit, parameters) {
@@ -70,7 +73,7 @@ function renderAsHtml(followup, benefits, parameters) {
     }
 
     return assign({}, droit, {
-      imgSrc: `/img/${droit.institution.imgSrc}`,
+      imgSrc: `/img/${getBenefitImage(droit)}`,
       montant: value,
       ctaLink: ctaLink,
       ctaLabel: ctaLabel,

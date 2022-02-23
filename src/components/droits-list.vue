@@ -12,7 +12,7 @@
       >
         <img
           class="aj-aide-illustration"
-          :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
+          :src="require(`./../../public/img/${getBenefitImage(droit)}`)"
           :alt="'Logo ' + droit.label"
         />
         <div class="aj-aide-text">
@@ -60,7 +60,7 @@
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
             <img
-              :src="require(`./../../public/img/${droit.institution.imgSrc}`)"
+              :src="require(`./../../public/img/${getBenefitImage(droit)}`)"
               :alt="'Icone pour' + droit.label"
             />
             <div>
@@ -81,13 +81,14 @@
 <script>
 import DroitMixin from "../mixins/droit-mixin"
 import DroitEstime from "./droit-estime"
+import BenefitMixin from "@/mixins/benefit-image-mixin"
 
 export default {
   name: "DroitsList",
   components: {
     DroitEstime,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, BenefitMixin],
   props: {
     droits: Array,
     ineligible: Boolean,

@@ -30,6 +30,13 @@ describe("benefit descriptions", function () {
         describe(benefitId, function () {
           const benefit = subject.benefitsMap[benefitId]
 
+          if (benefit.imgSrc) {
+            it("should refer to a img file that exists", function () {
+              const path = `${__dirname}/../../public/img/${benefit.imgSrc}`
+              expect(fs.existsSync(path)).toBe(true)
+            })
+          }
+
           it("should have a correct id", function () {
             expect(Boolean(benefitId.match(/[a-z A-Z \-_]*/))).toBe(true)
           })

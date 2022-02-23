@@ -27,6 +27,7 @@ function setDefaults(benefit, institution) {
   benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
+  benefit.imgSrc = benefit.imgSrc?.slice("img/".length)
   return benefit
 }
 
@@ -52,7 +53,7 @@ function generate(
     benefit.top = 8
   })
 
-  const benefits = [
+  let benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
@@ -62,12 +63,13 @@ function generate(
 
   const benefitsMap = {}
 
-  benefits.forEach((benefit) => {
+  benefits = benefits.map((benefit) => {
     const institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
     institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
     benefitsMap[benefit.id] = benefit
+    return benefit
   })
 
   const result = {

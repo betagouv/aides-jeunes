@@ -73,7 +73,7 @@ function renderAsHtml(followup, benefits, parameters) {
     }
 
     return assign({}, droit, {
-      imgSrc: `/${getBenefitImage(droit)}`,
+      imgSrc: getBenefitImage(droit),
       montant: value,
       ctaLink: ctaLink,
       ctaLabel: ctaLabel,

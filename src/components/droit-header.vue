@@ -2,7 +2,7 @@
   <div class="aj-droit-header">
     <img
       class="aj-droit-illustration"
-      :src="require(`/public/${getBenefitImage(droit)}`)"
+      :src="getBenefitImage(droit)"
       :alt="`Image pour ${droit.label}`"
     />
 

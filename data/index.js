@@ -9,7 +9,7 @@ function transformInstitutions(collection) {
       slug: data.slug,
       id: data.id || data.slug,
       label: data.name,
-      imgSrc: data.imgSrc?.slice("img/".length),
+      imgSrc: data.imgSrc?.replace(/^img\//i, ""),
       benefitsIds: [],
       type: data.type,
       repository:
@@ -27,7 +27,7 @@ function setDefaults(benefit, institution) {
   benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
-  benefit.imgSrc = benefit.imgSrc?.replace(/^img\//i, '')
+  benefit.imgSrc = benefit.imgSrc?.replace(/^img\//i, "")
   return benefit
 }
 

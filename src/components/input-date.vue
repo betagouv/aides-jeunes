@@ -1,5 +1,5 @@
 <template>
-  <form class="aj-input-date">
+  <div class="aj-input-date">
     <div v-if="showDay" class="aj-input-date-component day">
       <label class="aj-date-label">jour</label>
       <input
@@ -47,7 +47,7 @@
         min="1900"
       />
     </div>
-  </form>
+  </div>
 </template>
 
 <script>

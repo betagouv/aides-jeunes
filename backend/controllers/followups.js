@@ -62,7 +62,7 @@ exports.showSurveyResults = function (req, res) {
     surveyOptin: true,
     surveys: { $exists: true, $ne: [] },
     "surveys.repliedAt": { $exists: true },
-    "surveys.followingId": { $exists: true },
+    "surveys.surveyId": { $exists: true },
   })
     .skip(0)
     .limit(10)
@@ -74,7 +74,7 @@ exports.showSurveyResults = function (req, res) {
 
 exports.showSimulation = function (req, res) {
   Followup.findOne({
-    "surveys.followingId": req.params.followingId,
+    _id: req.params.surveyId,
   })
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
@@ -87,6 +87,16 @@ exports.showSimulation = function (req, res) {
 }
 
 exports.postSurvey = function (req, res) {
+  Followup.findOne({
+    "surveys._id": req.params.surveyId,
+  }).then((followup) => {
+    if (!followup) return res.sendStatus(404)
+    followup.updateSurvey(req.params.surveyId, req.body).then(() => {
+      res.sendStatus(201)
+    })
+    pollResult.postPollResult(followup, req.body)
+  })
+  /*
   utils
     .generateToken()
     .then(function (followingId) {
@@ -106,4 +116,5 @@ exports.postSurvey = function (req, res) {
       console.log("error", error)
       return res.sendStatus(400)
     })
+  */
 }

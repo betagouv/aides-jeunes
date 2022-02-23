@@ -10,7 +10,7 @@ module.exports = function (api) {
     .get(cookieParser(), githubController.access)
     .get(followups.showSurveyResults)
   api
-    .route("/followups/id/:followingId")
+    .route("/followups/id/:surveyId")
     .get(cookieParser(), githubController.access)
     .get(followups.showSimulation)
 }

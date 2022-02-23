@@ -3,7 +3,6 @@ const Followup = require("mongoose").model("Followup")
 
 const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
-const utils = require("../lib/utils")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
@@ -65,7 +64,6 @@ exports.showSurveyResults = function (req, res) {
     surveyOptin: true,
     surveys: { $exists: true, $ne: [] },
     "surveys.repliedAt": { $exists: true },
-    "surveys.surveyId": { $exists: true },
   })
     .skip(0)
     .limit(10)

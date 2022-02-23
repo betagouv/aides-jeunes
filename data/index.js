@@ -27,7 +27,7 @@ function setDefaults(benefit, institution) {
   benefit.id = benefit.id || benefit.slug
   benefit.top = benefit.top || top
   benefit.floorAt = benefit.floorAt || 1
-  benefit.imgSrc = benefit.imgSrc?.slice("img/".length)
+  benefit.imgSrc = benefit.imgSrc?.replace(/^img\//i, '')
   return benefit
 }
 

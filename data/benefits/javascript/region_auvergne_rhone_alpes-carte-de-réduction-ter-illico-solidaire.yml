@@ -13,7 +13,10 @@ conditions:
   - Soit être bénéficiaire du RSA (sous condition de ressources).
   - Soit être bénéficiaire de l’ASPA.
   - Soit être demandeur d'asile.
-conditions_generales: []
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
 profils: []
 link: https://mmt.vsct.fr/sites/default/files/swt/CARA/2021-06/Depliant%20illico%20Solidaire-janvier%202019.pdf
 teleservice: https://illicosolidaire.cba.fr/

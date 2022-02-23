@@ -49,7 +49,10 @@ exports.persist = function (req, res) {
 
 exports.showFromSurvey = function (req, res) {
   Followup.findOne({
-    "surveys._id": req.params.surveyId,
+    $or: [
+      { "surveys._id": req.params.surveyId },
+      { "surveys.accessToken": req.params.surveyId },
+    ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
 
@@ -88,33 +91,20 @@ exports.showSimulation = function (req, res) {
 
 exports.postSurvey = function (req, res) {
   Followup.findOne({
-    "surveys._id": req.params.surveyId,
+    $or: [
+      { "surveys._id": req.params.surveyId },
+      { "surveys.accessToken": req.params.surveyId },
+    ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
-    followup.updateSurvey(req.params.surveyId, req.body).then(() => {
+    const token = followup.surveys.find(
+      (survey) =>
+        survey._id == req.params.surveyId ||
+        survey.accessToken == req.params.surveyId
+    )._id
+    followup.updateSurvey(token, req.body).then(() => {
       res.sendStatus(201)
     })
     pollResult.postPollResult(followup, req.body)
   })
-  /*
-  utils
-    .generateToken()
-    .then(function (followingId) {
-      Followup.findOne({
-        "surveys._id": req.params.surveyId,
-      }).then((followup) => {
-        if (!followup) return res.sendStatus(404)
-        followup
-          .updateSurvey(req.params.surveyId, followingId, req.body)
-          .then(() => {
-            res.sendStatus(201)
-          })
-        pollResult.postPollResult(followup, req.body, followingId)
-      })
-    })
-    .catch((error) => {
-      console.log("error", error)
-      return res.sendStatus(400)
-    })
-  */
 }

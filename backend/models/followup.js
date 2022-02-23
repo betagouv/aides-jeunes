@@ -29,7 +29,7 @@ const SurveySchema = new mongoose.Schema(
 )
 
 SurveySchema.virtual("returnPath").get(function () {
-  return "/suivi?token=" + this._id
+  return "/suivi?token=" + this.accessToken
 })
 
 const FollowupSchema = new mongoose.Schema(
@@ -104,10 +104,13 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 
 FollowupSchema.methods.createSurvey = function (type) {
   const followup = this
-  return utils.generateToken().then(function (token) {
-    return followup.surveys.create({
-      _id: token,
-      type: type,
+  return utils.generateToken().then(function (id) {
+    return utils.generateToken().then(function (accessToken) {
+      return followup.surveys.create({
+        _id: id,
+        accessToken: accessToken,
+        type: type,
+      })
     })
   })
 }

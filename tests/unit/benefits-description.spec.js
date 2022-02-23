@@ -18,7 +18,7 @@ describe("benefit descriptions", function () {
       })
 
       it("should refer to a img file that exists", function () {
-        const path = `${__dirname}/../../public/img/${institution.imgSrc}`
+        const path = `${__dirname}/../../public/${institution.imgSrc}`
         expect(fs.existsSync(path)).toBe(true)
       })
 
@@ -32,7 +32,7 @@ describe("benefit descriptions", function () {
 
           if (benefit.imgSrc) {
             it("should refer to a img file that exists", function () {
-              const path = `${__dirname}/../../public/img/${benefit.imgSrc}`
+              const path = `${__dirname}/../../public/${benefit.imgSrc}`
               expect(fs.existsSync(path)).toBe(true)
             })
           }

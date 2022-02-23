@@ -52,7 +52,7 @@ const additionalBenefitAttributes = {
       },
       M200046977: {
         institution: {
-          imgSrc: "logo_lyon_metropole.png",
+          imgSrc: "img/logo_lyon_metropole.png",
         },
         link: "https://www.grandlyon.com/services/rsa-mode-d-emploi.html",
       },

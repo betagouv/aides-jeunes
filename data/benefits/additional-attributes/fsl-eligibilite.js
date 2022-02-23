@@ -2,7 +2,7 @@ function build({ codeImg, label, resources }) {
   return {
     label: `Aide au maintien dans votre logement ${label}`,
     institution: {
-      imgSrc: `logo_${codeImg}.png`,
+      imgSrc: `img/logo_${codeImg}.png`,
     },
     conditions: [
       `Occuper, à titre de résidence principale, un logement sur le territoire du département ${label}.`,

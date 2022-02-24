@@ -5,7 +5,7 @@
         <div class="aj-home-hero-content">
           <h1>
             <span class="hightlight"
-              >Évaluez vos droits à<br />plus de 20 aides
+              >Évaluez vos droits à<br />{{ benefitsNumber }} aides
             </span>
             <br />en moins de 5 minutes.
           </h1>
@@ -57,6 +57,11 @@ export default {
     },
     ctaSize: function () {
       return this.hasExistingSituation ? "large" : "xlarge"
+    },
+    benefitsNumber: function () {
+      return process.env.VUE_APP_BENEFIT_COUNT
+        ? process.env.VUE_APP_BENEFIT_COUNT
+        : "plus de 400"
     },
   },
   methods: {

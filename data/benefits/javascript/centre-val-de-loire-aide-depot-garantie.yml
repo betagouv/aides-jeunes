@@ -1,0 +1,26 @@
+label: aide au dépôt de garantie
+institution: region_centre_val_de_loire
+description: L’aide régionale au dépôt de garantie permet de financer la caution
+  demandée par votre propriétaire. Il s’agit d’une avance remboursable,
+  correspondant au montant de la caution exigée.
+conditions:
+  - Vous installer dans votre premier logement.
+  - Constituer un dossier avec les pièces justificatives demandées (cf. <a
+    target="_blank" rel="noopener"
+    href="https://www.yeps.fr/articles/9373061B-A260-4626-ABA2-BEEC54AD5782">instructions</a>).
+  - Adresser le dossier 3 mois maximum après la signature du bail.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 26
+  - type: regions
+    values:
+      - "24"
+profils: []
+link: https://www.yeps.fr/articles/9373061B-A260-4626-ABA2-BEEC54AD5782
+instructions: https://www.yeps.fr/articles/9373061B-A260-4626-ABA2-BEEC54AD5782
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 300

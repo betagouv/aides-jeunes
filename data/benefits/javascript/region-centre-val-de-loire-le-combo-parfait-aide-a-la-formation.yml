@@ -1,0 +1,28 @@
+label: le Combo parfait (aide à la formation)
+institution: region_centre_val_de_loire
+description: "Le Combo Parfait regroupe des formations qualifiantes ou
+  pré-qualifiantes à des métiers de proximité, destinées aux jeunes en recherche
+  d’emploi. Durant toute la durée de la formation, vous bénéficierez d’une
+  rémunération (500€/mois). Des aides complémentaires existent (permis,
+  logement, mobilité) : voir"
+conditions:
+  - Être inscrit(e) à une formation Combo Parfait.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 25
+  - type: age
+    operator: ">="
+    value: 16
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
+instructions: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
+type: float
+unit: €
+periodicite: mensuelle
+montant: 500

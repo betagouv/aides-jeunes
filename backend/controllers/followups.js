@@ -7,10 +7,7 @@ const pollResult = require("../lib/mattermost-bot/poll-result")
 const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
-  Followup.findOne({
-    $or: [{ "surveys._id": id }, { "surveys.accessToken": id }],
-  })
-    .select(excludeFields)
+  Followup.findById(id)
     .populate("answers")
     .exec(function (err, followup) {
       if (err) {

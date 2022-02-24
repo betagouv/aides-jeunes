@@ -1,0 +1,21 @@
+label: e-Carte Avantages Jeunes
+institution: region_bourgogne_franche_comte
+description: Grâce à la e-carte avantage jeunes, bénéficiez de réductions sur
+  les loisirs et la vie quotidienne pour découvrir la culture, l'art et le sport
+  en Bourgogne-Franche-Comté.
+conditions:
+  - Vous procurer la e-carte pour un montant annuel de 8€.
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 30
+  - type: regions
+    values:
+      - "27"
+profils: []
+link: https://www.avantagesjeunes.com/
+teleservice: https://www.avantagesjeunes.com/boutique/etape-1
+instructions: ""
+type: bool
+unit: €
+periodicite: autre

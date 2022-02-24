@@ -65,9 +65,10 @@ app.route("/mjml/:id/:type").get(function (req, res) {
 // Start server
 app.listen(port, function () {
   console.log(
-    "Mes Aides MJML preview server listening on port %d, in %s mode",
+    "Mes Aides MJML preview server listening on port %d, in %s mode, %s",
     port,
-    app.get("env")
+    app.get("env"),
+    `http://localhost:${port}`
   )
 })
 

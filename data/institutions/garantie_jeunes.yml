@@ -1,5 +1,5 @@
 name: Garantie Jeunes
-imgSrc: img/logo_garantie_jeunes.png
+imgSrc: img/benefits/logo_garantie_jeunes.png
 etablissements:
   - mission_locale
 national: true

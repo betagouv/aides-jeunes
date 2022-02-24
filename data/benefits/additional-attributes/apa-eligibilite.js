@@ -2,7 +2,7 @@ module.exports = {
   customization: {
     D05: {
       institution: {
-        imgSrc: "logo_cd05.png",
+        imgSrc: "img/logo_cd05.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf",
@@ -11,7 +11,7 @@ module.exports = {
     },
     D06: {
       institution: {
-        imgSrc: "logo_cd06.png",
+        imgSrc: "img/logo_cd06.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: undefined, // Prevent default instructions recycling
@@ -21,7 +21,7 @@ module.exports = {
     },
     D13: {
       institution: {
-        imgSrc: "logo_cd13.png",
+        imgSrc: "img/logo_cd13.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/dossier_APA.pdf",
@@ -30,7 +30,7 @@ module.exports = {
     },
     D14: {
       institution: {
-        imgSrc: "logo_cd14.png",
+        imgSrc: "img/logo_cd14.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: undefined, // Prevent default form recycling
@@ -39,7 +39,7 @@ module.exports = {
     },
     D28: {
       institution: {
-        imgSrc: "logo_cd28.png",
+        imgSrc: "img/logo_cd28.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.eurelien.fr/sites/default/files/mda-dossier-dallocation-personnalisee-dautonomie.pdf", // Prevent default form recycling
@@ -48,7 +48,7 @@ module.exports = {
     },
     D29: {
       institution: {
-        imgSrc: "logo_cd29.png",
+        imgSrc: "img/logo_cd29.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf",
@@ -57,7 +57,7 @@ module.exports = {
     },
     D31: {
       institution: {
-        imgSrc: "logo_cd31.png",
+        imgSrc: "img/logo_cd31.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.haute-garonne.fr/sites/default/files/20172707-formulaire-demande-_apa.pdf",
@@ -66,7 +66,7 @@ module.exports = {
     },
     D33: {
       institution: {
-        imgSrc: "logo_cd33.png",
+        imgSrc: "img/logo_cd33.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.gironde.fr/sites/default/files/2017-04/demande_apa_web_0.pdf",
@@ -75,7 +75,7 @@ module.exports = {
     },
     D34: {
       institution: {
-        imgSrc: "logo_cd34.png",
+        imgSrc: "img/logo_cd34.png",
       },
       instructions:
         "http://www.herault.fr/lallocation-personnalisee-dautonomie-apa",
@@ -85,7 +85,7 @@ module.exports = {
     },
     D35: {
       institution: {
-        imgSrc: "logo_cd35.png",
+        imgSrc: "img/logo_cd35.png",
       },
       instructions: undefined, // Prevent default form recycling
       form: "http://www.ille-et-vilaine.fr/sites/default/files/asset/document/faire_demande_allocation_apa_juillet_2014.pdf",
@@ -94,7 +94,7 @@ module.exports = {
     },
     D38: {
       institution: {
-        imgSrc: "logo_cd38.png",
+        imgSrc: "img/logo_cd38.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: undefined, // Prevent default instructions recycling
@@ -104,7 +104,7 @@ module.exports = {
     },
     D42: {
       institution: {
-        imgSrc: "logo_cd42.png",
+        imgSrc: "img/logo_cd42.png",
       },
       instructions: undefined, // Prevent default form recycling
       form: "http://www.loire.fr/upload/docs/application/pdf/dossierapa.pdf",
@@ -113,7 +113,7 @@ module.exports = {
     },
     D44: {
       institution: {
-        imgSrc: "logo_cd44.png",
+        imgSrc: "img/logo_cd44.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf",
@@ -122,7 +122,7 @@ module.exports = {
     },
     D45: {
       institution: {
-        imgSrc: "logo_cd45.jpg",
+        imgSrc: "img/logo_cd45.jpg",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: undefined, // Prevent default form recycling
@@ -133,7 +133,7 @@ module.exports = {
     },
     D57: {
       institution: {
-        imgSrc: "logo_cd57.png",
+        imgSrc: "img/logo_cd57.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "http://www.moselle.fr/sitecollectiondocuments/lamoselleetvous/solidarite/seniors/formulaire_demande_apa_domicile.pdf",
@@ -142,7 +142,7 @@ module.exports = {
     },
     D59: {
       institution: {
-        imgSrc: "logo_cd59.png",
+        imgSrc: "img/logo_cd59.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://lenord.fr/upload/docs/application/pdf/2018-04/formulaire_apa_2018-04-27_16-30-55_949.pdf",
@@ -151,7 +151,7 @@ module.exports = {
     },
     D62: {
       institution: {
-        imgSrc: "logo_cd62.png",
+        imgSrc: "img/logo_cd62.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "http://www.pasdecalais.fr/content/download/79774/1263503/file/Dossier+de+demande+APA.pdf",
@@ -160,7 +160,7 @@ module.exports = {
     },
     D64: {
       institution: {
-        imgSrc: "logo_cd64.png",
+        imgSrc: "img/logo_cd64.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "http://www.le64.fr/fileadmin/mediatheque/cg64/documents/actualites/APA_2017/dossier_APA_modifi%C3%A9_juin_2017.pdf",
@@ -169,7 +169,7 @@ module.exports = {
     },
     D67: {
       institution: {
-        imgSrc: "logo_cd67.png",
+        imgSrc: "img/logo_cd67.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "http://www.bas-rhin.fr/eCommunityDocuments/%7BE34C4D98-631D-459B-AA4E-61C91D2F7BA0%7D/3759/document_conseil-departemental-bas-rhin-formulaire-demande-apa.pdf",
@@ -178,7 +178,7 @@ module.exports = {
     },
     D75: {
       institution: {
-        imgSrc: "logo_paris.png",
+        imgSrc: "img/logo_paris.png",
       },
       instructions: "https://apa.paris.fr/portailAPA/",
       form: undefined, // Prevent default form recycling
@@ -187,7 +187,7 @@ module.exports = {
     },
     D76: {
       institution: {
-        imgSrc: "logo_cd76.png",
+        imgSrc: "img/logo_cd76.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.seinemaritime.fr/docs/1_apa-1ere-demande-domicile.pdf",
@@ -196,7 +196,7 @@ module.exports = {
     },
     D77: {
       institution: {
-        imgSrc: "logo_cd77.png",
+        imgSrc: "img/logo_cd77.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: undefined, // Prevent default form recycling
@@ -205,7 +205,7 @@ module.exports = {
     },
     D83: {
       institution: {
-        imgSrc: "logo_cd83.png",
+        imgSrc: "img/logo_cd83.png",
       },
       instructions: "https://www.var.fr/social/autonomie-personnes-agees/apa",
       form: undefined, // Prevent default instructions recycling
@@ -213,7 +213,7 @@ module.exports = {
     },
     D92: {
       institution: {
-        imgSrc: "logo_cd92.png",
+        imgSrc: "img/logo_cd92.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "http://www.hauts-de-seine.fr/fileadmin/PDF/Solidarites/Autonomie/APA_DossierDemandeDom_dec2018.pdf",
@@ -222,7 +222,7 @@ module.exports = {
     },
     D93: {
       institution: {
-        imgSrc: "logo_cd93.png",
+        imgSrc: "img/logo_cd93.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa.pdf",
@@ -231,7 +231,7 @@ module.exports = {
     },
     D94: {
       institution: {
-        imgSrc: "logo_cd94.png",
+        imgSrc: "img/logo_cd94.png",
       },
       instructions: undefined, // Prevent default instructions recycling
       form: "https://www.valdemarne.fr/download/sites/default/files/formulaires/webformudemande_apa_-2018_.pdf",
@@ -240,7 +240,7 @@ module.exports = {
     },
     M200046977: {
       institution: {
-        imgSrc: "logo_lyon_metropole.png",
+        imgSrc: "img/logo_lyon_metropole.png",
       },
       instructions: undefined, // Prevent default form recycling
       form: "https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf",

@@ -2,7 +2,7 @@
   <div class="aj-droit-header">
     <img
       class="aj-droit-illustration"
-      :src="require(`/public/img/${droit.institution.imgSrc}`)"
+      :src="getBenefitImage(droit)"
       :alt="`Image pour ${droit.label}`"
     />
 
@@ -21,12 +21,14 @@
 
 <script>
 import DroitEstime from "./droit-estime"
+import BenefitMixin from "@/mixins/benefit-image-mixin"
 
 export default {
   name: "DroitHeader",
   components: {
     DroitEstime,
   },
+  mixins: [BenefitMixin],
   props: {
     droit: Object,
   },

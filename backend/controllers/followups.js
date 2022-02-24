@@ -4,6 +4,8 @@ const Followup = require("mongoose").model("Followup")
 const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
 
+const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
+
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
     .populate("answers")
@@ -48,12 +50,17 @@ exports.persist = function (req, res) {
 
 exports.showFromSurvey = function (req, res) {
   Followup.findOne({
-    "surveys._id": req.params.surveyId,
-  }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-
-    res.send(followup)
+    $or: [
+      { "surveys._id": req.params.surveyId },
+      { "surveys.accessToken": req.params.surveyId },
+    ],
   })
+    .select(excludeFields)
+    .then((followup) => {
+      if (!followup) return res.sendStatus(404)
+
+      res.send(followup)
+    })
 }
 
 exports.showSurveyResults = function (req, res) {
@@ -65,6 +72,7 @@ exports.showSurveyResults = function (req, res) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
+    .select(excludeFields)
     .then((followup) => {
       res.send(followup)
     })
@@ -72,20 +80,33 @@ exports.showSurveyResults = function (req, res) {
 
 exports.showSimulation = function (req, res) {
   Followup.findOne({
-    _id: req.params.simulationId,
-  }).then((simulation) => {
-    if (!simulation) return res.sendStatus(404)
-    res.send([simulation])
+    _id: req.params.surveyId,
   })
+    .select(excludeFields)
+    .then((simulation) => {
+      if (!simulation) return res.sendStatus(404)
+      res.send([simulation])
+    })
+    .catch((error) => {
+      console.error("error", error)
+      return res.sendStatus(400)
+    })
 }
 
 exports.postSurvey = function (req, res) {
   Followup.findOne({
-    "surveys._id": req.params.surveyId,
+    $or: [
+      { "surveys._id": req.params.surveyId },
+      { "surveys.accessToken": req.params.surveyId },
+    ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
-
-    followup.updateSurvey(req.params.surveyId, req.body).then(() => {
+    const token = followup.surveys.find(
+      (survey) =>
+        survey._id == req.params.surveyId ||
+        survey.accessToken == req.params.surveyId
+    )._id
+    followup.updateSurvey(token, req.body).then(() => {
       res.sendStatus(201)
     })
     pollResult.postPollResult(followup, req.body)

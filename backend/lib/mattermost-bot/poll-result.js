@@ -42,9 +42,11 @@ function postPollResult(simulation, answers) {
     result.push(
       `${score[key.value][0]} [${key.id}](${
         process.env.MES_AIDES_ROOT_URL
-      }/aides/${key.id}) ${key.unit ? `**${key.amount}${key.unit}**` : ""} ${
-        key.comments.length > 0 ? `*(${key.comments})*` : ""
-      }`
+      }/aides/${key.id}) ${
+        key.unit && typeof key.amount === "number"
+          ? `**${key.amount}${key.unit}**`
+          : ""
+      } ${key.comments.length > 0 ? `*(${key.comments})*` : ""}`
     )
   }
 

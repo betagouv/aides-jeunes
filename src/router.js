@@ -326,7 +326,7 @@ const router = createRouter({
         ),
     },
     {
-      path: "/accompagnement/:followupId",
+      path: "/accompagnement/:surveyId",
       name: "accompagnement",
       component: () =>
         import(

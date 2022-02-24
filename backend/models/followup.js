@@ -11,6 +11,7 @@ const renderSurvey = require("../lib/mes-aides/emails/survey").render
 const SurveySchema = new mongoose.Schema(
   {
     _id: { type: String },
+    accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },
     messageId: { type: String },
     repliedAt: { type: Date },
@@ -28,7 +29,7 @@ const SurveySchema = new mongoose.Schema(
 )
 
 SurveySchema.virtual("returnPath").get(function () {
-  return "/suivi?token=" + this._id
+  return "/suivi?token=" + this.accessToken
 })
 
 const FollowupSchema = new mongoose.Schema(
@@ -103,10 +104,13 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 
 FollowupSchema.methods.createSurvey = function (type) {
   const followup = this
-  return utils.generateToken().then(function (token) {
-    return followup.surveys.create({
-      _id: token,
-      type: type,
+  return utils.generateToken().then(function (id) {
+    return utils.generateToken().then(function (accessToken) {
+      return followup.surveys.create({
+        _id: id,
+        accessToken: accessToken,
+        type: type,
+      })
     })
   })
 }
@@ -161,8 +165,10 @@ FollowupSchema.methods.updateSurvey = function (id, answers) {
   const survey = find(surveys, function (s) {
     return s._id === id
   })
-
-  Object.assign(survey, { answers: answers, repliedAt: Date.now() })
+  Object.assign(survey, {
+    answers: answers,
+    repliedAt: Date.now(),
+  })
   this.surveys = surveys
   return this.save()
 }

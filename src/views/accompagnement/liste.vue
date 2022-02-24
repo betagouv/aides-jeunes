@@ -2,7 +2,7 @@
   <article class="text container aj-text-container">
     <h1>Suivis des utilisateurs</h1>
     <router-link
-      v-if="followupId && loggedIn"
+      v-if="surveyId && loggedIn"
       to="/accompagnement"
       class="aj-droit-details-back-button button outline small with-icon"
       type="button"
@@ -75,7 +75,6 @@
                     />
                     <path
                       transform="rotate(-90, 42, 68.5)"
-                      id="svg_4"
                       d="m28.23677,81.76322l27.52646,-26.52646"
                       opacity="undefined"
                       stroke-width="10"
@@ -175,7 +174,7 @@
               <a :href="`/aides/${answer.id}`" target="_blank">{{
                 answer.id
               }}</a>
-              <b v-if="answer.unit && !isNaN(answer.amount)"
+              <b v-if="answer.unit && typeof answer.amount === `number`"
                 >({{ answer.amount }}{{ answer.unit }})</b
               >
               <div v-if="answer.comments">{{ answer.comments }}</div>
@@ -191,13 +190,21 @@
 export default {
   data: function () {
     return {
-      accompagnements: this.fetchPollResults(),
+      accompagnements: [],
       loggedIn: true,
     }
   },
   computed: {
-    followupId() {
-      return this.$route.params.followupId
+    surveyId() {
+      return this.$route.params.surveyId
+    },
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      async handler() {
+        this.accompagnements = await this.fetchPollResults()
+      },
     },
   },
   methods: {
@@ -216,8 +223,8 @@ export default {
 
     fetchPollResults: async function () {
       this.retrievingCommunes = true
-      const uri = this.$route.params.followupId
-        ? `/api/followups/id/${this.$route.params.followupId}`
+      const uri = this.$route.params.surveyId
+        ? `/api/followups/id/${this.$route.params.surveyId}`
         : `/api/followups/surveys`
       try {
         const response = await fetch(uri, {

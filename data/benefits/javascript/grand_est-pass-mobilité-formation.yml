@@ -1,0 +1,24 @@
+label: pass mobilité formation
+institution: grand_est
+description: "Le Pass Mobilité Formation permettra de financer au choix (non
+  cumulable) : l’achat d’une voiture disposant du certificat Crit’air 2 ou
+  Critair 1; l’achat d’un véhicule deux-roues motorisé (scooter, moto…)
+  disposant du certificat Crit’air 2 ou Critair 1; l’achat d’un abonnement TER
+  et l’achat d’un vélo/d’un vélo électrique; la préparation du permis de
+  conduire."
+conditions:
+  - Être inscrit(e) dans une formation financée par la Région Grand Est.
+conditions_generales:
+  - type: regions
+    values:
+      - "44"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/
+instructions: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 1000

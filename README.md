@@ -176,6 +176,12 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 - [OpenFisca tracer](https://openfisca.github.io/tracer/) can allow you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
 
+- `npm run generate-missing-institutions-aides-velo` allow you to generate missing institutions for the package `aides-velo`.
+
+- `npm run test-definition-periods` allow you to valid the periods of openfisca requested variables.
+
+- `npm run evaluate-benefits <simulationId>` allow you to evaluate benefits with simulation id.
+
 ## NetlifyCMS development
 
 It is possible to locally debug changes in NetlifyCMS configuration.

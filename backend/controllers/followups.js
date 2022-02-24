@@ -52,11 +52,13 @@ exports.showFromSurvey = function (req, res) {
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
     ],
-  }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-
-    res.send(followup)
   })
+    .select("-surveys.accessToken")
+    .then((followup) => {
+      if (!followup) return res.sendStatus(404)
+
+      res.send(followup)
+    })
 }
 
 exports.showSurveyResults = function (req, res) {
@@ -78,6 +80,7 @@ exports.showSimulation = function (req, res) {
   Followup.findOne({
     _id: req.params.surveyId,
   })
+    .select("-surveys.accessToken")
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
       res.send([simulation])

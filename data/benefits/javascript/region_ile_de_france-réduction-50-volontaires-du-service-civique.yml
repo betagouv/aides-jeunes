@@ -6,9 +6,8 @@ description: Grâce à cette aide, les volontaires du Service Civique et du Corp
   tickets et les billets origine-destination.
 conditions:
   - Être volontaire du service civique et du service volontaire européen.
-  - Avoir signé un contrat d’engagement avec <a target="_blank"
-    rel="noopener"href="<https://www.service-civique.gouv.fr/>"><l’Agence
-    Service Civique></a> pour une mission se déroulant en Île-de-France.
+  - Avoir signé un contrat d’engagement avec l’Agence Service Civique pour une
+    mission se déroulant en Île-de-France.
 conditions_generales: []
 profils: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/reduction-50-pourcents-volontaires-service-civique

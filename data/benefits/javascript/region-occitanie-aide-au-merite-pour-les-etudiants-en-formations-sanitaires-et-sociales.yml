@@ -1,0 +1,26 @@
+label: aide au mérite pour les étudiants en formations sanitaires et sociales
+institution: region_occitanie
+description: Cette aide au mérite d’un montant de 900 € est versée aux étudiants
+  et étudiantes boursiers du supérieur du secteur sanitaire et social,
+  titulaires d’un baccalauréat mention très bien.
+conditions:
+  - Être titulaire d’une mention « très bien » à la dernière session du
+    baccalauréat français.
+  - Être inscrit(e) dans une formation sanitaire et sociale ouvrant droit à
+    bourse.
+  - Faire sa demande avant le 31 octobre de l'année scolaire en cours.
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+        value: true
+link: https://www.laregion.fr/Aide-au-merite
+teleservice: https://www.laregion.fr/Aide-au-merite
+type: float
+unit: €
+periodicite: autre
+montant: 900

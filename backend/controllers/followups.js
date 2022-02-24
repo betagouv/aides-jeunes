@@ -4,6 +4,8 @@ const Followup = require("mongoose").model("Followup")
 const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
 
+const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
+
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
     .populate("answers")
@@ -53,7 +55,7 @@ exports.showFromSurvey = function (req, res) {
       { "surveys.accessToken": req.params.surveyId },
     ],
   })
-    .select("-surveys.accessToken")
+    .select(excludeFields)
     .then((followup) => {
       if (!followup) return res.sendStatus(404)
 
@@ -70,7 +72,7 @@ exports.showSurveyResults = function (req, res) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
-    .select("-surveys.accessToken")
+    .select(excludeFields)
     .then((followup) => {
       res.send(followup)
     })
@@ -80,7 +82,7 @@ exports.showSimulation = function (req, res) {
   Followup.findOne({
     _id: req.params.surveyId,
   })
-    .select("-surveys.accessToken")
+    .select(excludeFields)
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
       res.send([simulation])

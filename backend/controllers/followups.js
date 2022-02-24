@@ -17,7 +17,7 @@ exports.followup = function (req, res, next, id) {
         return res.redirect("/")
       }
       req.followup = followup
-      situation.situation(req, res, next, followup.answers)
+      situation.answers(req, res, next, followup.answers)
     })
 }
 

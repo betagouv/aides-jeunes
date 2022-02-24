@@ -68,6 +68,7 @@ exports.showSurveyResults = function (req, res) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
+    .select("-surveys.accessToken")
     .then((followup) => {
       res.send(followup)
     })

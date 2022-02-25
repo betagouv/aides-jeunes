@@ -13,7 +13,7 @@ exports.followup = function (req, res, next, id) {
       if (err) {
         return next(err)
       }
-      if (!followup || !followup.answers._id) {
+      if (!followup?.answers?._id) {
         return res.redirect("/")
       }
       req.followup = followup

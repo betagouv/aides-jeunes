@@ -13,7 +13,6 @@ describe("benefit descriptions", function () {
       })
 
       it("should have an id", function () {
-        // Test type institution : vérifier l'existence d'un id
         expect(typeof institution.id).toBe("string")
         expect(institution.id.length).toBeGreaterThan(1)
       })

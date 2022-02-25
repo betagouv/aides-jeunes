@@ -2,4 +2,4 @@ name: Département du Lôt
 imgSrc: img/logo_cd46.png
 prefix: le
 type: departement
-id: "46"
+code_insee: "46"

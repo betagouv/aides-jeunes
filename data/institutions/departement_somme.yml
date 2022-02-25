@@ -1,4 +1,4 @@
 name: Département de la Somme
 imgSrc: img/logo_cd80.png
 type: departement
-id: "80"
+code_insee: "80"

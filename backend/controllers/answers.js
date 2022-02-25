@@ -34,7 +34,7 @@ exports.attachAccessCookie = function (req, res) {
 }
 
 exports.validateAccess = function (req, res, next) {
-  if (req.answers.isAccessible(req.cookies)) return next()
+  if (req.answers?.isAccessible(req.cookies)) return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 

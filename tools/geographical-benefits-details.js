@@ -61,11 +61,12 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       case "epci": {
         const epciInfo = epcis.find(
-          (element) => element.code === institution.id
+          (element) => element.code === institution.code_siren
         )
         if (!epciInfo) {
-          console.log(institution)
-          process.exit(1)
+          console.log(institution.slug)
+          // process.exit(1)
+          break
         }
         epciInfo.membres.forEach((commune) => {
           apply(communeMap[commune.code], institution)

@@ -74,11 +74,11 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       }
       case "commune": {
-        if (!communeMap[institution.id]) {
-          // console.log(institution.id)
+        if (!communeMap[institution.code_insee]) {
+          // console.log(institution.code_insee)
           break
         }
-        apply(communeMap[institution.id], institution)
+        apply(communeMap[institution.code_insee], institution)
         break
       }
       case "caf":

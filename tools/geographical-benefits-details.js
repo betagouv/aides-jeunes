@@ -21,7 +21,6 @@ communes.forEach((commune) => {
 })
 
 const institutionIds = Object.keys(institutionsMap)
-const communeIds = Object.keys(communeMap)
 
 function listInterestingInstitutions(commune, institution) {
   commune.institutions.push(institution.id)
@@ -97,32 +96,9 @@ function iterateGivenGeographicalRelevancy(apply) {
   })
 }
 
-function computeInterestingBenefitsCount(region) {
-  const totalBenefits = []
-
-  communeIds.forEach((id) => {
-    const commune = communeMap[id]
-    if (commune.region === region) {
-      const benefits = commune.benefits
-      benefits.forEach((benefit) => {
-        totalBenefits.push(benefit)
-      })
-    }
-  })
-  const removeDuplicateBenefits = [...new Set(totalBenefits)]
-  return (
-    "Nombre d'aides pertinentes pour la région " +
-    region +
-    " : " +
-    removeDuplicateBenefits.length
-  )
-}
-
 iterateGivenGeographicalRelevancy(listInterestingInstitutions)
 iterateGivenGeographicalRelevancy(incrementCount)
 iterateGivenGeographicalRelevancy(listInterestingBenefits)
-
-console.log(computeInterestingBenefitsCount("75"))
 
 fs.writeFileSync(
   "geographical-benefits-details.json",

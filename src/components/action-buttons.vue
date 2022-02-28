@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="error" class="notification warning aj-actions-error">
-      {{ error }}
-    </div>
+    <WarningMessage v-if="error" class="aj-actions-error">{{
+      error
+    }}</WarningMessage>
     <div class="aj-actions">
       <button
         class="button next-button"
@@ -20,9 +20,10 @@
 
 <script>
 import BackButton from "@/components/buttons/back-button"
+import WarningMessage from "@/components/warning-message"
 export default {
   name: "ActionButtons",
-  components: { BackButton },
+  components: { WarningMessage, BackButton },
   props: {
     onSubmit: {
       type: Function,

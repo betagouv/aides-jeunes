@@ -109,20 +109,16 @@
           <router-link to="/foyer/recapitulatif">les modifier</router-link>.
         </label>
 
-        <p v-if="showConsentNotice" class="notification warning inline">
+        <WarningMessage v-if="showConsentNotice" class="inline">
           Vous devez accepter la publication des données.
           <router-link to="/foyer/recapitulatif">
             Vous pouvez les anonymiser si nécessaire.
           </router-link>
-        </p>
+        </WarningMessage>
 
-        <p v-if="message" class="notification warning">
-          {{ message }}
-        </p>
+        <WarningMessage v-if="message">{{ message }}</WarningMessage>
 
-        <p v-if="error" class="notification warning">
-          {{ error }}
-        </p>
+        <WarningMessage v-if="error">{{ error }}</WarningMessage>
 
         <div>
           <button :class="`button large ${submitting ? 'secondary' : ''}`">
@@ -199,9 +195,11 @@ import {
   reduceContributions,
   getGithubPRFiles,
 } from "@/lib/contributions"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "Attendu",
+  components: { WarningMessage },
   mixins: [ContactEmailMixin, ResultatsMixin],
   data: function () {
     let benefitKeyed = {}

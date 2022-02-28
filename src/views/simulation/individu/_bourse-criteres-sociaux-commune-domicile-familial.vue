@@ -6,7 +6,7 @@
       v-model:matchingCommune="matchingCommune"
       codePostalLabel="Quel est le code postal de la commune de vos parents ?"
     />
-    <WarningMessage v-if="warningMessage" :text="warningMessage" />
+    <WarningMessage v-if="warningMessage">{{ warningMessage }}</WarningMessage>
     <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>

@@ -12,9 +12,9 @@
             >Quitter le mode debug</button
           >
         </div>
-        <div v-if="$store.state.message.text" class="notification warning">
-          <div class="message" v-html="$store.state.message.text" />
-        </div>
+        <WarningMessage v-if="$store.state.message.text"
+          ><div class="message" v-html="$store.state.message.text"
+        /></WarningMessage>
         <div class="aj-box-wrapper">
           <router-view :key="$route.path" />
         </div>
@@ -30,10 +30,12 @@ import TitreChapitre from "@/components/titre-chapitre"
 import Progress from "@/components/progress"
 import Summary from "@/components/summary"
 import ProgressBar from "@/components/progress-bar"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "Simulation",
   components: {
+    WarningMessage,
     ProgressBar,
     TitreChapitre,
     Progress,

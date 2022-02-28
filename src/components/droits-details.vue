@@ -34,13 +34,13 @@
           </div>
         </div>
         <div class="aj-droit-notifications">
-          <div
+          <WarningMessage
             v-if="
               droit.isBaseRessourcesYearMinusTwo &&
               !ressourcesYearMinusTwoCaptured &&
               !isString(droit.montant)
             "
-            class="notification warning print-hidden"
+            class="print-hidden"
           >
             <span>
               <i class="fa fa-warning" aria-hidden="true" />  Cette aide se base
@@ -55,14 +55,15 @@
               Déclarez vos ressources
               {{ $store.state.dates.fiscalYear.label }}
             </router-link>
-          </div>
-          <div
+          </WarningMessage>
+
+          <WarningMessage
             v-if="
               droit.isBaseRessourcesPatrimoine &&
               !patrimoineCaptured &&
               !isString(droit.montant)
             "
-            class="notification warning print-hidden"
+            class="print-hidden"
           >
             <span>
               <i class="fa fa-warning" aria-hidden="true" /> Cette aide se base
@@ -77,7 +78,7 @@
             >
               Déclarez votre patrimoine
             </router-link>
-          </div>
+          </WarningMessage>
         </div>
         <div class="aj-droit-content-buttons print-hidden">
           <div
@@ -143,10 +144,12 @@ import BenefitCtaLink from "./benefit-cta-link"
 import Situation from "../lib/situation"
 import DroitMixin from "../mixins/droit-mixin"
 import DroitHeader from "@/components/droit-header"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "DroitsDetails",
   components: {
+    WarningMessage,
     DroitHeader,
     BenefitCta,
     BenefitCtaLink,

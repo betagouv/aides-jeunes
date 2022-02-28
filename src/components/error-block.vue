@@ -36,7 +36,6 @@
         Afficher les détails techniques
       </button>
     </div>
-    <pre v-html="errorText"></pre>
     <small v-if="showDetails">
       Informations techniques :
       <pre v-html="errorText" />

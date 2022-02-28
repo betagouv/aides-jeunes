@@ -11,6 +11,10 @@ require("../backend/config/mongoose")(mongoose, config)
 const Answers = mongoose.model("Answer")
 
 const answersId = process.argv[2]
+if (!answersId) {
+  console.log("Answers Id is missing")
+  return process.exit(1)
+}
 
 const compute = computeAides.bind(benefits)
 

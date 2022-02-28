@@ -214,6 +214,7 @@ exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 function filterRequestedVariablesBySituation(requestedVariables, situation) {
   const variables = { ...requestedVariables }
+  // exclusion du département 28 parce que le fsl est mieux simulé par les variables `eure_et_loir_eligibilite_*` plutot que dans la variable `fsl_eligibilite`
   if (situation.menage.depcom?.startsWith("28")) {
     delete variables.fsl_eligibilite
   }

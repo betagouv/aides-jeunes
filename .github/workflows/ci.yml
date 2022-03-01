@@ -202,7 +202,6 @@ jobs:
         shell: bash
         run: |
           cp backend/config/continuous-integration.js backend/config/production.js
-          NODE_ENV=production
           nohup Xvfb :99 &
       - name: Cypress install
         uses: cypress-io/github-action@v2
@@ -216,7 +215,7 @@ jobs:
         with:
           browser: chrome
           config-file: false
-          start: node server.js
+          start: npm run start
           wait-on: "http://localhost:8080, http://localhost:2000/variable/parisien, http://127.0.0.1:27017"
           install: false
           spec: cypress/integration/${{matrix.test}}.spec.js

@@ -23,17 +23,16 @@
             capitalize(droit.institution.label)
           }}</div>
           <p class="aj-aide-description" v-html="droit.description" />
-          <div
+          <WarningMessage
             v-if="
               droit.montant &&
               isBoolean(droit.montant) &&
               droit.icon === 'fa-exclamation-triangle'
             "
-            class="aj-aide-warning"
           >
             <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
             est accessible sous certaines conditions supplémentaires.
-          </div>
+          </WarningMessage>
         </div>
         <DroitEstime :droit="droit" />
         <div class="aj-aide-cta">
@@ -82,10 +81,12 @@
 import DroitMixin from "../mixins/droit-mixin"
 import DroitEstime from "./droit-estime"
 import BenefitMixin from "@/mixins/benefit-image-mixin"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "DroitsList",
   components: {
+    WarningMessage,
     DroitEstime,
   },
   mixins: [DroitMixin, BenefitMixin],

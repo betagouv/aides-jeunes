@@ -2,7 +2,6 @@ import { submit } from "./form"
 
 const wait = () => {
   cy.wait("@results")
-  cy.get("#print-disclaimer").invoke("text").should("contain", "engagement")
 }
 
 const getBenefitSummary = (id) => cy.get(`@${id}-summary`)

@@ -50,8 +50,8 @@ a.button {
 
   &:disabled,
   &.disabled {
-    background-color: var(--light-grey);
-    border: 1px solid var(--light-grey);
+    background-color: var(--medium-grey);
+    border: 1px solid var(--medium-grey);
 
     &:hover,
     &:focus {

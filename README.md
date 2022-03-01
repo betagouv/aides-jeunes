@@ -174,7 +174,13 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 - Adding `debug=parcours` as a parameter, show a debug version of all the steps in the simulator, [locally](https://localhost:8080/simulation/individu/demandeur/date_naissance?debug=parcours) and [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/individu/demandeur/date_naissance?debug=parcours).
 
-- [OpenFisca tracer](https://openfisca.github.io/tracer/) can allow you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
+- [OpenFisca tracer](https://openfisca.github.io/tracer/) allows you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
+
+- `npm run generate-missing-institutions-aides-velo` allows you to generate missing institutions for the package `aides-velo`.
+
+- `npm run test-definition-periods` allows you to valid the periods of openfisca requested variables.
+
+- `npm run evaluate-benefits <simulationId>` allows you to evaluate benefits with simulation id.
 
 ## NetlifyCMS development
 

@@ -30,6 +30,7 @@ const all = {
       "charlottelecuit",
       "Vanessa-D",
       "Kout95",
+      "alizeeeeeee",
     ],
   },
   matomo: {

@@ -168,7 +168,45 @@ html {
       }
 
       .aj-category-title-button-mobile {
+        $menu-button-size: 40px;
+
         display: none;
+
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        .menu-button {
+          flex-shrink: 0;
+          border: 1px solid var(--light-grey);
+
+          svg {
+            width: 15px;
+            fill: var(--theme-primary);
+          }
+
+          &:focus,
+          &:active {
+            border: 1px solid var(--theme-primary);
+
+            svg {
+              fill: white;
+            }
+          }
+        }
+
+        .menu-button,
+        .menu-button:focus,
+        .menu-button:active {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: $menu-button-size;
+          width: $menu-button-size;
+          margin-top: 0;
+          margin-right: 10px;
+          padding: 0;
+        }
       }
 
       .aj-help-popup {

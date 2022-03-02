@@ -14,6 +14,19 @@ html {
       .aj-box-wrapper {
         margin-bottom: 78px;
       }
+
+      .aj-category-title {
+        flex-direction: row-reverse;
+        justify-content: center;
+        h1 {
+          font-size: 2em;
+          line-height: 1.125em;
+        }
+      }
+
+      .aj-category-title-button-mobile {
+        display: flex;
+      }
     }
   }
 }

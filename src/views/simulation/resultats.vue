@@ -7,7 +7,7 @@
       <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
     </LoadingModal>
 
-    <div v-if="hasWarning" class="notification warning">
+    <WarningMessage v-if="hasWarning">
       <div>
         <h2>
           <i class="fa fa-warning" aria-hidden="true" /> Aucun résultat
@@ -21,7 +21,7 @@
           <router-link to="home"> page d'accueil </router-link>.
         </p>
       </div>
-    </div>
+    </WarningMessage>
 
     <ErrorBlock v-if="hasError" />
     <ErrorSaveBlock v-if="hasErrorSave" />
@@ -81,10 +81,12 @@ import TrouverInterlocuteur from "@/components/trouver-interlocuteur"
 import LoadingModal from "@/components/loading-modal"
 import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "SimulationResultats",
   components: {
+    WarningMessage,
     DroitsList,
     ErrorBlock,
     ErrorSaveBlock,

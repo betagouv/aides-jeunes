@@ -48,9 +48,9 @@
       >
         <label for="email" class="form__group">Votre email</label>
         <input id="email" v-model="email" type="email" name="email" required />
-        <p v-if="errorMessage" class="notification warning">
-          Une adresse email valide doit être indiquée.
-        </p>
+        <WarningMessage v-if="errorMessage"
+          >Une adresse email valide doit être indiquée.</WarningMessage
+        >
         <div class="aj-feedback-buttons">
           <button
             type="submit"
@@ -76,10 +76,12 @@
 import axios from "axios"
 
 import Modal from "@/components/modal"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "OfflineResults",
   components: {
+    WarningMessage,
     Modal,
   },
   props: {

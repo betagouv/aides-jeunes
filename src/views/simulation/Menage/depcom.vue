@@ -6,7 +6,7 @@
       v-model:matchingCommune="matchingCommune"
       codePostalLabel="Quel est votre code postal ?"
     />
-    <WarningMessage v-if="warningMessage" :text="warningMessage" />
+    <WarningMessage v-if="warningMessage">{{ warningMessage }}</WarningMessage>
     <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
   </form>
 </template>

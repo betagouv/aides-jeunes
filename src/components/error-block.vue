@@ -4,7 +4,7 @@
       <i class="fa fa-warning" aria-hidden="true" /> Une erreur est survenue.
     </h2>
 
-    <div v-if="isTimeoutError" class="notification warning">
+    <WarningMessage v-if="isTimeoutError">
       <p>
         Vous êtes beaucoup à utiliser ce simulateur en ce moment. On n'a pas
         réussi à répondre à tout le monde en même temps.
@@ -14,7 +14,7 @@
         En actualisant la page vous pourrez obtenir les résultats de votre
         simulation. Si vous le pouvez, attendez quelques minutes pour le faire.
       </p>
-    </div>
+    </WarningMessage>
 
     <p>
       <a
@@ -45,9 +45,11 @@
 
 <script>
 import { sendError } from "@/plugins/mails"
+import WarningMessage from "@/components/warning-message"
 
 export default {
   name: "ErrorBlock",
+  components: { WarningMessage },
   data: function () {
     return {
       showDetails: false,

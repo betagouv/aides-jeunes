@@ -1,17 +1,11 @@
 <template>
   <div class="notification warning">
-    {{ text }}
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: "WarningMessage",
-  props: {
-    text: {
-      type: String,
-      required: true,
-    },
-  },
 }
 </script>

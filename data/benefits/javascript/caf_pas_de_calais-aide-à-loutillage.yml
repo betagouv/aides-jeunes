@@ -1,0 +1,42 @@
+label: Aide à l'outillage
+institution: caf_pas_de_calais
+description: Les allocataires de la Caf peuvent bénéficier d’une aide pour les
+  enfants poursuivant des études supérieures nécessitant un outillage spécifique
+  demandé par l’établissement scolaire et lié à l’exercice de la profession
+  choisie (apprenti, alternance, BACPRO, BTS...).
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 14
+  - type: age
+    operator: <
+    value: 20
+  - type: departements
+    values:
+      - "62"
+  - type: quotient_familial
+    floor: 617
+    period: year
+profils:
+  - type: apprenti
+    conditions:
+      - type: age
+        operator: ">="
+        value: 14
+      - type: age
+        operator: <
+        value: 20
+  - type: professionnalisation
+    conditions:
+      - type: age
+        operator: ">="
+        value: 14
+      - type: age
+        operator: <
+        value: 20
+link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/solidarite-et-insertion/prime-a-l-outillage
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 400

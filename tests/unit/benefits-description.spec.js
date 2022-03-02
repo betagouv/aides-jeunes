@@ -12,6 +12,17 @@ describe("benefit descriptions", function () {
         expect(Boolean(institutionSlug.match(/[a-z A-Z \-_]*/))).toBe(true)
       })
 
+      if (
+        institution.type == "departement" ||
+        institution.type == "region" ||
+        institution.type == "commune"
+      ) {
+        it("should have a code_insee", function () {
+          expect(typeof institution.code_insee).toBe("string")
+          expect(institution.code_insee.length).toBeGreaterThan(1)
+        })
+      }
+
       it("should have an id", function () {
         expect(typeof institution.id).toBe("string")
         expect(institution.id.length).toBeGreaterThan(1)

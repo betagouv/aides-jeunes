@@ -35,6 +35,7 @@ profils:
   - type: enseignement_superieur
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
+prefix: les
 type: bool
 unit: null
 periodicite: ponctuelle

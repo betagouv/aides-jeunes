@@ -227,14 +227,17 @@ export default {
         ? `/api/followups/id/${this.$route.params.surveyId}`
         : `/api/followups/surveys`
       try {
-        const response = await fetch(uri, {
-          method: "GET",
-          redirect: "error",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        })
+        const response = await fetch(
+          `${uri}?${Math.random().toString(36).substr(2, 5)}`,
+          {
+            method: "GET",
+            redirect: "error",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
         const output = await response.json()
         for (let accompagnement of output) {
           const surveyStates = {}

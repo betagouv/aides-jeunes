@@ -1,0 +1,41 @@
+label: bourses de mobilité internationale MERMOZ
+institution: hauts_de_france
+description: >-
+  La Région Hauts-de-France a mis en place ce dispositif afin d'aider les
+  étudiants à suivre à l'étranger :
+
+  <br>
+
+  - un parcours de formation – semestre d'études, dans un établissement d'enseignement supérieur,
+
+  <br>
+
+  - un stage au sein d'un autre organisme (entreprises, ONG...),
+
+  <br>
+
+  - un séjour de recherche dans un laboratoire.
+conditions:
+  - "Pour les stages : aux étudiants de l'enseignement supérieur, dès la
+    première année dans le cadre d'une mobilité obligatoire et de Bac+2 à Bac+8
+    aux étudiants en formation sanitaire et sociale, dès la première année dans
+    le cadre d'une mobilité obligatoire et de Bac+2 à Bac+5 aux étudiants en BTS
+    dès la première année."
+  - "Pour les séjours d'études : aux étudiants de l'enseignement supérieur, dès
+    la première année dans le cadre d'une mobilité obligatoire et de Bac+2 à
+    Bac+5 aux étudiants en formation sanitaire et sociale, dès la première année
+    dans le cadre d'une mobilité obligatoire et de Bac+2 à Bac+5."
+  - "Pour les séjours de recherche : aux étudiants de l'enseignement supérieur,
+    de Bac+6 à Bac+8."
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
+type: bool
+unit: null
+periodicite: ponctuelle
+montant: 400

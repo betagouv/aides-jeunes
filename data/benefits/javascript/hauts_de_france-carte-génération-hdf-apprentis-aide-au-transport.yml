@@ -1,0 +1,24 @@
+label: "Carte Génération #HDF-APPRENTIS : aide au transport"
+institution: hauts_de_france
+description: "Grâce à la carte Génération #HDF-APPRENTIS, bénéficiez d'une aide
+  financière au transport forfaitaire, calculée à partir d'un barème
+  kilométrique, sur la base : «Domicile/CFA» par année de contrat."
+conditions:
+  - Être un apprenti inscrit dans un centre de formation pour apprentis ou un
+    organisme de formation habilité à dispenser des formations par apprentissage
+    sur le territoire des Hauts de France.
+  - Être un apprenti inscrit dans un CFA ou un organisme de formation hors
+    région Hauts-de-France, habilité à dispenser des formations par
+    apprentissage, si l'offre de formation n'existe pas régionalement et employé
+    par une entreprise du territoire des Hauts-de-France, sous réserve que le
+    bénéficiaire ne perçoive pas d'aide d'une autre Région.
+conditions_generales: []
+profils:
+  - type: apprenti
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=858
+prefix: la
+type: float
+unit: €
+periodicite: annuelle
+montant: 190

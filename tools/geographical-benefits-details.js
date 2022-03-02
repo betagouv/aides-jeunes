@@ -23,14 +23,23 @@ communes.forEach((commune) => {
 const institutionIds = Object.keys(institutionsMap)
 
 function listInterestingInstitutions(commune, institution) {
+  if (!commune) {
+    return
+  }
   commune.institutions.push(institution.id)
 }
 
 function incrementCount(commune, institution) {
+  if (!commune) {
+    return
+  }
   commune.count += institution.benefitsIds.length
 }
 
 function listInterestingBenefits(commune, institution) {
+  if (!commune) {
+    return
+  }
   const benefits = institution.benefitsIds
   benefits.forEach((benefit) => {
     commune.benefits.push(benefit)
@@ -64,8 +73,10 @@ function iterateGivenGeographicalRelevancy(apply) {
           (element) => element.code === institution.code_siren
         )
         if (!epciInfo) {
-          console.log(institution.slug)
-          // process.exit(1)
+          console.log(
+            `Aucun Epci trouvé pour l'établissement ${institution.slug}`
+          )
+          process.exit(1)
           break
         }
         epciInfo.membres.forEach((commune) => {
@@ -75,7 +86,6 @@ function iterateGivenGeographicalRelevancy(apply) {
       }
       case "commune": {
         if (!communeMap[institution.code_insee]) {
-          // console.log(institution.code_insee)
           break
         }
         apply(communeMap[institution.code_insee], institution)
@@ -90,7 +100,9 @@ function iterateGivenGeographicalRelevancy(apply) {
         })
         break
       default:
-        console.log("Dont know how to deal with " + institution.type)
+        console.log(
+          `Ne sais pas gérer les institutions de type ${institution.type}`
+        )
     }
 
     bar.tick()

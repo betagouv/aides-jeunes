@@ -7,8 +7,12 @@ describe("benefit descriptions", function () {
     const collections = {
       institutions: {
         items: [
-          { slug: "etat", national: true, type: "national" },
-          { slug: "region", code_insee: "code_insee", type: "region" },
+          { slug: "etat", type: "national" },
+          {
+            slug: "region_nouvelle_aquitaine",
+            code_insee: "75",
+            type: "region",
+          },
         ],
       },
       benefits_javascript: {
@@ -19,7 +23,7 @@ describe("benefit descriptions", function () {
       benefits_openfisca: {
         items: [
           { slug: "etat_benefit", institution: "etat" },
-          { slug: "region_benefit", institution: "region" },
+          { slug: "region_benefit", institution: "region_nouvelle_aquitaine" },
         ],
       },
     }
@@ -38,11 +42,11 @@ describe("benefit descriptions", function () {
       "national_etat"
     )
     expect(
-      result.institutionsMap.region.benefitsIds.includes("region_benefit")
+      result.institutionsMap.region_nouvelle_aquitaine.benefitsIds.includes(
+        "region_benefit"
+      )
     ).toBeTruthy()
-    expect(result.benefitsMap.region_benefit.institution.id).toBe(
-      "region_code_insee"
-    )
+    expect(result.benefitsMap.region_benefit.institution.id).toBe("region_75")
     expect(result.all.length).toBe(3)
   })
 })

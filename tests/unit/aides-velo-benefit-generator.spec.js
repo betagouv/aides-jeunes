@@ -32,7 +32,7 @@ describe("aides velo benefit generator", function () {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
         )
-        b.debug = `id:  '${EPCIMatch?.code}'`
+        b.debug = `code_siren:  '${EPCIMatch?.code}'`
       })
       console.log(
         missingEPCI.map((b) => `${b.description} - ${b.debug}`).join("\n")
@@ -45,7 +45,7 @@ describe("aides velo benefit generator", function () {
     if (missingOtherInstitution.length) {
       console.log(
         missingOtherInstitution
-          .map((b) => `${b.description} | id : ${b.collectivity.value}`)
+          .map((b) => `${b.description} | code_insee : ${b.collectivity.value}`)
           .join("\n")
       )
     }

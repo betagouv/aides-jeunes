@@ -1,0 +1,21 @@
+label: Ma carte TER Hauts-de-France
+institution: hauts_de_france
+description: >-
+  Objectif : accompagner les habitants de la région Hauts-de-France dans leurs
+  déplacements occasionnels en TER en proposant un tarif réduit et attractifs
+  sur leurs trajets.
+
+  <br>
+
+  <br>
+
+  Ma carte TER Hauts-de-France est accessible à tous, sans conditions.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=802
+type: bool
+unit: €
+periodicite: annuelle

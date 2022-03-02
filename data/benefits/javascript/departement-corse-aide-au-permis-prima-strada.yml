@@ -23,7 +23,8 @@ conditions_generales:
     value: 25
   - type: departements
     values:
-      - "94"
+      - 2A
+      - 2B
 profils: []
 link: https://www.isula.corsica/jeunesse/Une-aide-pour-les-jeunes-pour-passer-le-permis-de-conduire-Prima-Strada_a80.html
 instructions: https://www.isula.corsica/jeunesse/attachment/2263155/

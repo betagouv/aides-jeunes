@@ -16,16 +16,16 @@ description: >-
 
   - un séjour de recherche dans un laboratoire.
 conditions:
-  - "Pour les stages : aux étudiants de l'enseignement supérieur, dès la
+  - "Pour les stages : être étudiants de l'enseignement supérieur, dès la
     première année dans le cadre d'une mobilité obligatoire et de Bac+2 à Bac+8
     aux étudiants en formation sanitaire et sociale, dès la première année dans
     le cadre d'une mobilité obligatoire et de Bac+2 à Bac+5 aux étudiants en BTS
     dès la première année."
-  - "Pour les séjours d'études : aux étudiants de l'enseignement supérieur, dès
+  - "Pour les séjours d'études : être étudiants de l'enseignement supérieur, dès
     la première année dans le cadre d'une mobilité obligatoire et de Bac+2 à
     Bac+5 aux étudiants en formation sanitaire et sociale, dès la première année
     dans le cadre d'une mobilité obligatoire et de Bac+2 à Bac+5."
-  - "Pour les séjours de recherche : aux étudiants de l'enseignement supérieur,
+  - "Pour les séjours de recherche : être étudiants de l'enseignement supérieur,
     de Bac+6 à Bac+8."
 conditions_generales:
   - type: regions

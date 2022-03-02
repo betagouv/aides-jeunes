@@ -9,17 +9,21 @@ class MyDocument extends Document {
             <script
               dangerouslySetInnerHTML={{
                 __html: `
-                    const _paq = _paq || [];
+                    var _paq = (window._paq = window._paq || [])
                     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-                    _paq.push(['trackPageView']);
-                    _paq.push(['enableLinkTracking']);
-                    (function() {
-                      const u="//stats.data.gouv.fr/";
-                      _paq.push(['setTrackerUrl', u+'piwik.php']);
-                      _paq.push(['setSiteId', '25']);
-                      const d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-                    })();
+                    _paq.push(["trackPageView"])
+                    _paq.push(["enableLinkTracking"])
+                    ;(function () {
+                      var u = "https://stats.data.gouv.fr/"
+                      _paq.push(["setTrackerUrl", u + "piwik.php"])
+                      _paq.push(["setSiteId", "240"])
+                      var d = document,
+                        g = d.createElement("script"),
+                        s = d.getElementsByTagName("script")[0]
+                      g.async = true
+                      g.src = u + "piwik.js"
+                      s.parentNode.insertBefore(g, s)
+                    })()
                   `,
               }}
             />

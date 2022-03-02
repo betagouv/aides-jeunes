@@ -1,9 +1,9 @@
 label: Aide à l'outillage
 institution: caf_pas_de_calais
-description: Les allocataires de la Caf peuvent bénéficier d’une aide pour les
-  enfants poursuivant des études supérieures nécessitant un outillage spécifique
-  demandé par l’établissement scolaire et lié à l’exercice de la profession
-  choisie (apprenti, alternance, BACPRO, BTS...).
+description: Les allocataires de la Caf du Pas-de-Calais peuvent bénéficier
+  d’une aide pour les enfants poursuivant des études supérieures nécessitant un
+  outillage spécifique demandé par l’établissement scolaire et lié à l’exercice
+  de la profession choisie (apprenti, alternance, BACPRO, BTS...).
 conditions_generales:
   - type: age
     operator: ">="

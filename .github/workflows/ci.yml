@@ -215,7 +215,7 @@ jobs:
         with:
           browser: chrome
           config-file: false
-          start: npm run start
+          start: npm run ci
           wait-on: "http://localhost:8080, http://localhost:2000/variable/parisien, http://127.0.0.1:27017"
           install: false
           spec: cypress/integration/${{matrix.test}}.spec.js

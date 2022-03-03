@@ -8,7 +8,7 @@
       La plupart des résultats que nous vous proposons sont automatiquement
       arrondis à une dizaine d'euros près.
     </p>
-    <ul v-if="situationId">
+    <ul :key="situationId">
       <li>
         <a
           v-analytics="{

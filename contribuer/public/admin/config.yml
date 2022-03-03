@@ -714,7 +714,6 @@ collections:
         name: code_siren
         widget: string
         required: false
-
   - name: contribution-pages
     label: Pages
     label_singular: page

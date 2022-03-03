@@ -1,5 +1,5 @@
 label: bourse à la mobilité Mobighjovani
-institution: departement_corse
+institution: region_corse
 description: Grâce à la bourse Mobighjovani, profitez d'une aide financière qui
   vise à couvrir les frais non pris en charge dans les différents programmes de
   mobilité internationale.
@@ -17,7 +17,7 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
-  - type: departements
+  - type: regions
     values:
       - "94"
 profils: []

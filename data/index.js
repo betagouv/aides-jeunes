@@ -7,7 +7,9 @@ function transformInstitutions(collection) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
-      id: data.id || data.slug,
+      id: `${data.type}_${data.code_insee || data.code_siren || data.slug}`,
+      code_siren: data.code_siren,
+      code_insee: data.code_insee,
       label: data.name,
       imgSrc: data.imgSrc,
       benefitsIds: [],

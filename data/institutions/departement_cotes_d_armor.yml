@@ -3,4 +3,4 @@ imgSrc: img/logo_cd22.jpg
 prefix: des
 repository: france-local
 type: departement
-id: "22"
+code_insee: "22"

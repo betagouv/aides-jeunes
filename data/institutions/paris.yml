@@ -3,4 +3,4 @@ imgSrc: img/logo_paris.png
 prefix: de la
 repository: paris
 type: commune
-id: "75056"
+code_insee: "75056"

@@ -704,9 +704,14 @@ collections:
         name: type
         widget: select
         options: *field_geographical_type
-      - label: Identifiant
-        hint: Code INSEE pour les communes, départements, régions et code SIREN pour les autres
-        name: id
+      - label: Code INSEE
+        hint: Pour les communes, départements, régions
+        name: code_insee
+        widget: string
+        required: false
+      - label: Code SIREN
+        hint: En l'absence de code INSEE
+        name: code_siren
         widget: string
         required: false
   - name: contribution-pages

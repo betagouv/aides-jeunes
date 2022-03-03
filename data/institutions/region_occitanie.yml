@@ -2,4 +2,4 @@ name: Occitanie
 imgSrc: img/logo_occitanie.png
 repository: france-local
 type: region
-id: "76"
+code_insee: "76"

@@ -4,12 +4,28 @@ const fs = require("fs")
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
 
-  Object.keys(subject.institutionsMap).forEach(function (institutionId) {
-    describe(institutionId, function () {
-      const institution = subject.institutionsMap[institutionId]
+  Object.keys(subject.institutionsMap).forEach(function (institutionSlug) {
+    describe(institutionSlug, function () {
+      const institution = subject.institutionsMap[institutionSlug]
 
-      it("should have a correct id", function () {
-        expect(Boolean(institutionId.match(/[a-z A-Z \-_]*/))).toBe(true)
+      it("should have a correct slug", function () {
+        expect(Boolean(institutionSlug.match(/[a-z A-Z \-_]*/))).toBe(true)
+      })
+
+      if (
+        institution.type == "departement" ||
+        institution.type == "region" ||
+        institution.type == "commune"
+      ) {
+        it("should have a code_insee", function () {
+          expect(typeof institution.code_insee).toBe("string")
+          expect(institution.code_insee.length).toBeGreaterThan(1)
+        })
+      }
+
+      it("should have an id", function () {
+        expect(typeof institution.id).toBe("string")
+        expect(institution.id.length).toBeGreaterThan(1)
       })
 
       it("should have a label", function () {

@@ -50,13 +50,15 @@ a.button {
 
   &:disabled,
   &.disabled {
-    background-color: var(--medium-grey);
-    border: 1px solid var(--medium-grey);
+    background-color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+    color: #4f4f4f;
 
     &:hover,
     &:focus {
       background-color: var(--grey);
       border-color: var(--grey);
+      color: #4f4f4f;
     }
   }
 

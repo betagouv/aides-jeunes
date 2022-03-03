@@ -8,7 +8,7 @@
       La plupart des résultats que nous vous proposons sont automatiquement
       arrondis à une dizaine d'euros près.
     </p>
-    <ul>
+    <ul v-if="situationId">
       <li>
         <a
           v-analytics="{
@@ -16,7 +16,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="sendMailSuggestion()"
+          v-mail="sendMailSuggestion"
           >Vous avez une suggestion d'amélioration</a
         >.
       </li>
@@ -27,7 +27,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="sendMailEcartSimulation()"
+          v-mail="sendMailEcartSimulation"
           >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
         >.
       </li>
@@ -38,7 +38,7 @@
             action: 'Support',
             category: 'General',
           }"
-          v-mail="sendMailEcartInstruction()"
+          v-mail="sendMailEcartInstruction"
           >Ces résultats ne correspondent pas à ce que l'administration vous a
           attribué</a
         >.
@@ -127,6 +127,15 @@ export default {
     situationId: function () {
       return this.$store.state.situationId
     },
+    sendMailEcartSimulation() {
+      return sendEcartSimulation(this.situationId)
+    },
+    sendMailEcartInstruction() {
+      return sendEcartInstructions(this.situationId)
+    },
+    sendMailSuggestion() {
+      return sendSuggestion(this.situationId)
+    },
   },
   methods: {
     toggleLinks: function () {
@@ -150,15 +159,6 @@ export default {
           })
       }
       this.showExpertLinks = !this.showExpertLinks
-    },
-    sendMailEcartSimulation() {
-      return sendEcartSimulation(this.situationId)
-    },
-    sendMailEcartInstruction() {
-      return sendEcartInstructions(this.situationId)
-    },
-    sendMailSuggestion() {
-      return sendSuggestion(this.situationId)
     },
   },
 }

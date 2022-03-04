@@ -4,7 +4,9 @@ const Followup = require("mongoose").model("Followup")
 const pollResult = require("../lib/mattermost-bot/poll-result")
 const simulationController = require("./simulation")
 
-const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
+const excludeFields = ["accessToken", "surveys.accessToken"]
+  .join(" -")
+  .replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
@@ -15,10 +17,7 @@ exports.followup = function (req, res, next, id) {
       }
       if (
         !followup?.simulation?._id ||
-        (req?.params?.token &&
-          !followup.surveys
-            .map((survey) => survey?.accessToken)
-            .includes(req.params.token))
+        (req?.params?.token && !(followup?.accessToken == req.params.token))
       ) {
         // no id specified or not matching access token
         return res.redirect("/")
@@ -60,6 +59,7 @@ exports.showFromSurvey = function (req, res) {
     $or: [
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
+      { accessToken: req.params.surveyId },
     ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
@@ -102,14 +102,11 @@ exports.postSurvey = function (req, res) {
     $or: [
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
+      { accessToken: req.params.surveyId },
     ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
-    const token = followup.surveys.find(
-      (survey) =>
-        survey._id == req.params.surveyId ||
-        survey.accessToken == req.params.surveyId
-    )._id
+    const token = followup.surveys[followup.surveys.length - 1]._id
     followup.updateSurvey(token, req.body).then(() => {
       res.sendStatus(201)
     })

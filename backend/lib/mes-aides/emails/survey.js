@@ -14,18 +14,18 @@ const mjmlTemplate = fs.readFileSync(
   "utf8"
 )
 
-function renderAsText(followup, survey) {
+function renderAsText(followup) {
   const data = {
-    ctaLink: `${config.baseURL}${survey.returnPath}`,
-    returnURL: `${config.baseURL}${followup.surveyPath}`,
+    ctaLink: `${config.baseURL}${followup.surveyPath}`,
+    returnURL: `${config.baseURL}${followup.returnPath}`,
   }
 
   return mustache.render(textTemplate, data)
 }
 
-function renderAsHtml(followup, survey) {
+function renderAsHtml(followup) {
   const data = {
-    ctaLink: `${config.baseURL}${survey.returnPath}`,
+    ctaLink: `${config.baseURL}${followup.surveyPath}`,
     baseURL: config.baseURL,
     returnURL: `${config.baseURL}${followup.returnPath}`,
   }
@@ -38,6 +38,7 @@ function renderAsHtml(followup, survey) {
   })
 }
 
+<<<<<<< HEAD
 function render(followup, survey) {
   return Promise.all([
     renderAsText(followup, survey),
@@ -49,8 +50,20 @@ function render(followup, survey) {
       }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
       text: values[0],
       html: values[1].html,
+=======
+function render(followup) {
+  return Promise.all([renderAsText(followup), renderAsHtml(followup)]).then(
+    function (values) {
+      return {
+        subject: `[${
+          followup.answers._id || followup.answers
+        }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
+        text: values[0],
+        html: values[1].html,
+      }
+>>>>>>> update: change la position des accessTokens
     }
-  })
+  )
 }
 
 exports.render = render

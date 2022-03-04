@@ -45,7 +45,7 @@
               >Permalink</router-link
             >
             <a
-              :href="`/followups/${accompagnement._id}/${survey.accessToken}`"
+              :href="`/followups/${accompagnement._id}/${accompagnement.accessToken}`"
               target="_blank"
               >Résultats de la simulation</a
             >

@@ -13,7 +13,14 @@ exports.followup = function (req, res, next, id) {
       if (err) {
         return next(err)
       }
-      if (!followup?.simulation?._id) {
+      if (
+        !followup?.simulation?._id ||
+        (req?.params?.token &&
+          !followup.surveys
+            .map((survey) => survey?.accessToken)
+            .includes(req.params.token))
+      ) {
+        // no id specified or not matching access token
         return res.redirect("/")
       }
       req.followup = followup
@@ -54,13 +61,11 @@ exports.showFromSurvey = function (req, res) {
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
     ],
-  })
-    .select(excludeFields)
-    .then((followup) => {
-      if (!followup) return res.sendStatus(404)
+  }).then((followup) => {
+    if (!followup) return res.sendStatus(404)
 
-      res.send(followup)
-    })
+    res.send(followup)
+  })
 }
 
 exports.showSurveyResults = function (req, res) {
@@ -72,7 +77,6 @@ exports.showSurveyResults = function (req, res) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
-    .select(excludeFields)
     .then((followup) => {
       res.send(followup)
     })

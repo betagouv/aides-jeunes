@@ -1,7 +1,7 @@
 <template>
   <div class="aj-sommaire-container">
     <div class="aj-sommaire-content">
-      <h4>Ma simulation</h4>
+      <h3>Ma simulation</h3>
       <div>
         <div class="aj-progressBar-container">
           <div class="aj-step-container">

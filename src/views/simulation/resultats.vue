@@ -137,7 +137,7 @@ export default {
       switch (type) {
         case "setResults": {
           calculs.resultats.droitsEligibles.forEach(function (d) {
-            vm.$matomo?.trackEvent("General", "show", d.label)
+            vm.$matomo?.trackEvent("General", "show", d.id)
           })
           this.sendStatistics(this.droits, "show")
           break

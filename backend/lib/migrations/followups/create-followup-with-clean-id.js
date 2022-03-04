@@ -1,8 +1,4 @@
-// Connect to mongoose
-const mongoose = require("mongoose")
-const config = require("../../../config")
-// Setup mongoose
-require("../../../config/mongoose")(mongoose, config)
+const mongoose = require("../../mongo-connector")
 const Followups = mongoose.model("Followup")
 
 const removeIds = []
@@ -26,15 +22,9 @@ Followups.find({ _id: { $type: "string" } }, {}).then((followups) => {
       cleanObject(survey)
     )
     followupsToInsert.push(cleanFollowup)
-    followup.delete()
   })
 
   Followups.insertMany(followupsToInsert).then(() => {
-    console.log("fin")
-    // Followups.deleteMany({ _id: { $in: removeIds } }, { strictQuery: false })
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    // })
+    console.log("Fin de l'ajout")
   })
 })

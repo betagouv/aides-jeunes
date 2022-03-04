@@ -90,9 +90,6 @@ const hasCSS = () => {
   const name = /Complémentaire santé solidaire/
   const id = "css_participation_forfaitaire"
   IdentifyBenefit(id, name)
-  getBenefitSummary(id).find(
-    '[data-testid="aj-droit-estime-icon-fa-check-circle"]'
-  )
 }
 
 const hasAAH = () => {

@@ -231,6 +231,10 @@ export default {
           `${uri}?${Math.random().toString(36).substr(2, 5)}`,
           {
             method: "GET",
+            params: {
+             // Ajoute un date pour éviter la mise en cache du serveur
+              t: new Date().getTime(),
+            },
             redirect: "error",
             headers: {
               Accept: "application/json",

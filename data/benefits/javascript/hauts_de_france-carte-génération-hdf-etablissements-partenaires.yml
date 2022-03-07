@@ -1,0 +1,21 @@
+label: "carte Génération #HDF - ETABLISSEMENTS / PARTENAIRES"
+institution: hauts_de_france
+description: "La carte Génération #HDF permet d'accorder aux lycéens ou aux
+  apprentis une aide de rentrée forfaitaire individuelle pour couvrir tout ou
+  partie des frais d'acquisition ou de location des livres scolaires et
+  équipements professionnels et de sécurité."
+conditions: []
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=598
+type: float
+unit: €
+periodicite: annuelle
+montant: 100

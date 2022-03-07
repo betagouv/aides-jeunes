@@ -5,11 +5,15 @@ description: Grâce à cette aide, les volontaires du Service Civique et du Corp
   abonnement Navigo mensuel et hebdomadaire, ainsi que sur les carnets de
   tickets et les billets origine-destination.
 conditions:
-  - Être volontaire du service civique et du service volontaire européen.
   - Avoir signé un contrat d’engagement avec l’Agence Service Civique pour une
     mission se déroulant en Île-de-France.
-conditions_generales: []
-profils: []
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: service_civique
+    conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/reduction-50-pourcents-volontaires-service-civique
 instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/reduction-50-pourcents-volontaires-service-civique
 type: bool

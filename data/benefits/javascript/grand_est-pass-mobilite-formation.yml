@@ -15,7 +15,7 @@ conditions_generales:
     values:
       - "44"
 profils:
-  - type: professionnalisation
+  - type: chomeur
     conditions: []
 link: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/
 instructions: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/

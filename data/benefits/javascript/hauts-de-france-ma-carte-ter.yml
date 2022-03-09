@@ -1,6 +1,7 @@
 label: ma carte TER Hauts-de-France
 institution: hauts_de_france
-description: Grâce à cette carte, les habitants de la région Hauts-de-France bénéficient d'un tarif réduit de 50%
+description:
+  Grâce à cette carte, les habitants de la région Hauts-de-France bénéficient d'un tarif réduit de 50%
   pour leurs déplacements occasionnels en TER. Elle est accessible à tous et toutes, sans conditions.
 conditions:
   - Acheter la carte pour le montant de 30 €.

@@ -35,6 +35,7 @@
               :city="'75056'"
               :patrimoine-captured="true"
               :ressources-year-minus-two-captured="true"
+              :show-contribution-links="true"
             />
           </div>
         </div>

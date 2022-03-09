@@ -21,6 +21,7 @@ const all = {
     apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || "privateKey",
   },
   github: {
+    repository_url: "https://github.com/betagouv/aides-jeunes",
     access_token_url: "https://github.com/login/oauth/access_token",
     authenticated_url: "https://api.github.com/user",
     authorize_url: "https://github.com/login/oauth/authorize",

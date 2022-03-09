@@ -1,10 +1,17 @@
-label: bourses de mobilité internationale MERMOZ
+label: bourse de mobilité internationale MERMOZ
 institution: hauts_de_france
-description: >-
-  La Région Hauts-de-France a mis en place ce dispositif afin d'aider les étudiant(e)s à suivre à l'étranger un parcours de formation dans un établissement d'enseignement supérieur, un stage, ou un séjour de recherche dans un laboratoire.
+description: La Région Hauts-de-France a mis en place ce dispositif afin d'aider
+  les étudiant(e)s à suivre à l'étranger un parcours de formation dans un
+  établissement d'enseignement supérieur, un stage, ou un séjour de recherche
+  dans un laboratoire.
 conditions:
-  - vérifier que vous correspondez aux <a target="_blank" rel="noopener" href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929">conditions spécifiques à chaque situation (étudiant(e), stagiaire, en séjour de recherche).</a>
-  - vous devez présenter votre projet de mobilité au service de Relations Internationales ou au service « Stage » de votre établissement avant de déposer votre demande.
+  - vérifier que vous correspondez aux <a target="_blank" rel="noopener"
+    href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929">conditions
+    spécifiques</a> à chaque situation (étudiant(e), stagiaire, en séjour de
+    recherche).
+  - présenter votre projet de mobilité au service de Relations Internationales
+    ou au service « Stage » de votre établissement avant de déposer votre
+    demande.
 conditions_generales:
   - type: regions
     values:
@@ -12,9 +19,16 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ22
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
 prefix: les
-type: bool
+type: float
 unit: null
-periodicite: ponctuelle
+periodicite: mensuelle
+legend: maximum
 montant: 400

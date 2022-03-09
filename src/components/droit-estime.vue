@@ -15,16 +15,6 @@
           {{ droitEstime.legend }}
         </span>
       </template>
-      <span v-else-if="isBenefitTypeBoolean">
-        <i
-          :data-testid="`aj-droit-estime-icon-${
-            droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
-          }`"
-          :class="`fa ${
-            droitEstime.icon ? droitEstime.icon : 'fa-check-circle'
-          } fa-2x`"
-        />
-      </span>
     </div>
     <div class="aj-droit-estime-inattendu">
       <router-link
@@ -55,9 +45,6 @@ export default {
         this.droit,
         this.$store.state.openFiscaParameters
       )
-    },
-    isBenefitTypeBoolean() {
-      return this.droitEstime.type === "bool"
     },
     isBenefitTypeNumber() {
       return this.droitEstime.type === "float"

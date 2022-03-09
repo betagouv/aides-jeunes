@@ -257,6 +257,23 @@ const STEPS = {
           : "Votre conjointe est-elle"
       } enceinte ?`
     },
+    questionType: "enum",
+    items: () => {
+      return [
+        {
+          label: "Oui",
+          value: "enceinte",
+        },
+        {
+          label: "Non",
+          value: "pas_enceinte",
+        },
+        {
+          label: "Pas concerné",
+          value: "pas_concerne",
+        },
+      ]
+    },
   },
 
   enfant_a_charge: {

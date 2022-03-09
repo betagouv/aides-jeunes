@@ -88,6 +88,12 @@ const individuSchema = {
       return moment(situation.dateDeValeur).format("YYYY-MM-DD")
     },
   },
+  enceinte: {
+    src: "enceinte",
+    fn: function (enceinte) {
+      return enceinte === "enceinte"
+    },
+  },
   fin_etudes_etranger: {
     src: "_dureeMoisEtudesEtranger",
     fn: function (_dureeMoisEtudesEtranger, _, situation) {

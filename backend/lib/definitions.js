@@ -89,7 +89,10 @@ const individuBase = {
   date_naissance: Date,
   _dureeMoisEtudesEtranger: Number,
   duree_possession_titre_sejour: Number,
-  enceinte: Boolean,
+  enceinte: {
+    type: String,
+    enum: ["enceinte", "pas_enceinte", "pas_concerne"],
+  },
   enfant_a_charge: Object,
   enfant_place: Boolean,
   _firstName: String,

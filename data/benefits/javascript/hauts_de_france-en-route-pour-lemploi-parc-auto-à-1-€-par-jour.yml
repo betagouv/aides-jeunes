@@ -10,9 +10,7 @@ conditions_generales:
   - type: regions
     values:
       - "32"
-profils:
-  - type: salarie
-    conditions: []
+profils: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632
 teleservice: https://enroutepourlemploi.hautsdefrance.fr/public/compte/login
 type: bool

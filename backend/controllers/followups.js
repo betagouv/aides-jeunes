@@ -17,7 +17,7 @@ exports.followup = function (req, res, next, id) {
       }
       if (
         !followup?.simulation?._id ||
-        (req?.params?.token && !(followup?.accessToken == req.params.token))
+        (req?.params?.token && followup?.accessToken !== req.params.token)
       ) {
         // no id specified or not matching access token
         return res.redirect("/")

@@ -1,37 +1,25 @@
 label: aide régionale à la restauration des étudiants boursiers
 institution: hauts_de_france
-description: >-
-  Objectifs :
-
-  <br>
-
-  - Offrir la gratuité des repas aux étudiants dans les restaurants universitaires,
-
-  <br>
-
-  - Equilibrer l'alimentation des étudiants.
-
-  <br>
-
-  <br>
-
-  Le dispositif prévoit l'utilisation d'un repas par service, c'est-à-dire un repas au déjeuner et/ou un repas au dîner, jusqu'à 100 repas sur l'année universitaire (50 repas par semestre).
+description: Cette aide permet d'offrir la gratuité des repas aux étudiants dans
+  les restaurants universitaires pour équilibrer l'alimentation des
+  étudiant(e)s. Le dispositif prévoit l'utilisation d'un repas par service, au
+  déjeuner et/ou au dîner, jusqu'à 100 repas sur l'année universitaire.
 conditions:
-  - Etre étudiant inscrit dans un établissement d'enseignement supérieur, public
-    ou privé, partenaire de la Région, reconnu par le ministère de
-    l'Enseignement supérieur, de la recherche et de l'innovation sur le
-    territoire des Hauts-de-France ou inscrits dans un établissement dispensant
-    une formation sanitaire ou sociale géré par la Région.
-  - Boursiers du CROUS ou de la Région Hauts-de-France, à l'un des échelons de
-    bourse 4, 5, 6, 7 ou bien, signalés par le service social du CROUS.
+  - Être étudiant(e) inscrit(e) dans un établissement d'enseignement supérieur,
+    public ou privé, partenaire de la Région dans les Hauts-de-France, ou
+    inscrits dans un établissement dispensant une formation sanitaire ou sociale
+    géré par la Région.
+  - Être boursiers du CROUS ou de la Région Hauts-de-France, à l'un des échelons
+    de bourse 4, 5, 6, 7 ou bien signalés par le service social du CROUS.
 conditions_generales:
   - type: age
-    operator: <
+    operator: <=
     value: 35
 profils:
   - type: enseignement_superieur
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=54
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=54
 prefix: l’
 type: bool
 unit: null

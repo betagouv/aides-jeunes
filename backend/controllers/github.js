@@ -56,6 +56,8 @@ exports.access = async (req, res, next) => {
   }
   if (req.query.code) {
     const result = await validateToken(req, res)
+    console.log("DEBUG GITHUB AUTH req.query", req.query)
+    console.log("DEBUG GITHUB AUTH result", result)
     if (result.status === 200 && result.data.access_token) {
       res.cookie("github_token", result.data)
       return next()

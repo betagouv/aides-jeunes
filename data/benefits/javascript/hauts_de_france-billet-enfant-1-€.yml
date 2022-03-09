@@ -11,6 +11,7 @@ conditions_generales:
 profils: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=801
 teleservice: https://m.ter.sncf.com/hauts-de-france/tarifs-cartes/billets/enfant-1-euro
+form: ""
 instructions: ""
 type: bool
 unit: €

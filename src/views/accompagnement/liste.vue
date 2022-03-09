@@ -23,7 +23,10 @@
       </svg>
       Retour à la liste des suivis
     </router-link>
-    <a v-if="!loggedIn" :href="connect()" class="button outline is-not-mobile"
+    <a
+      v-if="loggedIn === false"
+      :href="connect()"
+      class="button outline is-not-mobile"
       >Se connecter</a
     >
     <div v-if="accompagnements.length">
@@ -191,7 +194,7 @@ export default {
   data: function () {
     return {
       accompagnements: [],
-      loggedIn: true,
+      loggedIn: undefined,
     }
   },
   computed: {
@@ -227,7 +230,7 @@ export default {
         ? `/api/followups/id/${this.$route.params.surveyId}`
         : `/api/followups/surveys`
       try {
-        const response = await fetch(uri, {
+        const response = await fetch(`${uri}?${new Date().getTime()}`, {
           method: "GET",
           redirect: "error",
           headers: {

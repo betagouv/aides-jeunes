@@ -228,7 +228,7 @@ export default {
         : `/api/followups/surveys`
       try {
         const response = await fetch(
-          `${uri}?${Math.random().toString(36).substr(2, 5)}`,
+          uri,
           {
             method: "GET",
             params: {

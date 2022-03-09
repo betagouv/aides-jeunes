@@ -1,35 +1,11 @@
 label: en route pour l'emploi (Parc auto à 1 € par jour)
 institution: hauts_de_france
 description: >-
-  Objectif : aider à la mobilité des usagers lorsque celle-ci conditionne une
-  insertion ou une réinsertion professionnelle.
+  La Région met à disposition des bénéficiaires des véhicules pour 1 euro par
+  jour travaillé.
 
-  <br>
-
-  <br>
-
-  La Région met à disposition des bénéficiaires des véhicules pour 1 euro par jour travaillé.
-
-  L'assurance du véhicule est également prise en charge par la Région. Le carburant est à la charge du bénéficiaire ainsi que les dépenses de péage et de parking.
-conditions:
-  - Être en CDI (si supérieur à 20h/semaine).
-  - Être en CDD et contrats d'intérim, de plus d'un mois (si supérieur à
-    20h/semaine).
-  - Être titulaire d'un contrat par alternance (apprentissage ou
-    professionnalisation) en période d'essai ou avec un véhicule en panne et
-    devant se rendre sur le lieu de leur entreprise.
-  - Être étudiant ou stagiaire de la formation professionnelle devant se rendre
-    sur leur lieu de stage en entreprise. Les contrats ou conventions de stage
-    doivent être d'un mois minimum (consécutif).
-  - Être une personne ayant besoin d'un véhicule pour se rendre sur son lieu de
-    travail si elles viennent d'obtenir leur permis de conduire mais ne peuvent
-    pas en acquérir un.
-  - Avoir besoin d'un véhicule pour se rendre sur leur lieu de travail le temps
-    de faire réparer le leur.
-  - Avoir besoin d'un second véhicule pour se rendre sur leur lieu de travail si
-    leur foyer n'en dispose que d'un seul.
-  - Avoir besoin d'un véhicule pour se rendre sur leur lieu de travail car le
-    leur est immobilisé en raison d'un contrôle technique négatif.
+  L'assurance du véhicule est également prise en charge par la Région. Le carburant est à la charge du bénéficiaire ainsi que les dépenses de péage et de parking. Voir les conditions d'éligibilité sur cette page :
+conditions: []
 conditions_generales:
   - type: regions
     values:
@@ -38,6 +14,7 @@ profils:
   - type: salarie
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632
+teleservice: https://enroutepourlemploi.hautsdefrance.fr/public/compte/login
 type: bool
 unit: €
-periodicite: autre
+periodicite: mensuelle

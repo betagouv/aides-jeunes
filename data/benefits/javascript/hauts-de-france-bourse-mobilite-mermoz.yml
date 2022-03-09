@@ -25,7 +25,7 @@ profils:
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ22
-instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
+instructions: ""
 prefix: les
 type: float
 unit: null

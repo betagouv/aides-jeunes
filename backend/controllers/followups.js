@@ -4,6 +4,7 @@ const Followup = require("mongoose").model("Followup")
 const pollResult = require("../lib/mattermost-bot/poll-result")
 const simulationController = require("./simulation")
 
+// TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
   .join(" -")
   .replace(/^/, "-")
@@ -15,6 +16,7 @@ exports.followup = function (req, res, next, id) {
       if (err) {
         return next(err)
       }
+      // TODO remove unecessary condition when tokens are widely used
       if (
         !followup?.simulation?._id ||
         (req?.params?.token && followup?.accessToken !== req.params.token)
@@ -55,6 +57,7 @@ exports.persist = function (req, res) {
 }
 
 exports.showFromSurvey = function (req, res) {
+  // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({
     $or: [
       { "surveys._id": req.params.surveyId },
@@ -98,6 +101,7 @@ exports.showSimulation = function (req, res) {
 }
 
 exports.postSurvey = function (req, res) {
+  // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({
     $or: [
       { "surveys._id": req.params.surveyId },

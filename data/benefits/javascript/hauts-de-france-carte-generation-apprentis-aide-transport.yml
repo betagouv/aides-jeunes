@@ -1,0 +1,23 @@
+label: "Carte Génération - Apprentis : aide au transport"
+institution: hauts_de_france
+description: Grâce à cette aide, la région participe à financer vos trajets pour
+  vous rendre à votre centre de formation.
+conditions:
+  - Être inscrit(e) dans un CFA ou un organisme de formation sur le territoire
+    des Hauts de France.
+  - OU être inscrit(e) dans un CFA ou un organisme de formation hors région
+    Hauts-de-France si l'offre de formation n'existe pas régionalement et que
+    vous êtes employé(e) par une entreprise du territoire des Hauts-de-France,
+    sous réserve que vous ne perceviez pas d'aide d'une autre Région.
+conditions_generales: []
+profils:
+  - type: apprenti
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=858
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=858
+prefix: la
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 200

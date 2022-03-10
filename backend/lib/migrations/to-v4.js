@@ -1,5 +1,5 @@
 /*
- * Déplace allAnswers et currentAnswers dans answers
+ * Déplace answers.all et answers.current dans simulation.answers
  */
 
 const VERSION = 4

@@ -26,7 +26,7 @@ function fetch(s) {
   const path = require("path")
   const cachePath = path.join(
     os.tmpdir(),
-    "situation_" + s.source._id + "_" + base
+    "simulation_" + s.source._id + "_" + base
   )
   /* eslint-disable */
   if (false && fs.existsSync(cachePath)) {

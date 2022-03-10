@@ -1,24 +1,18 @@
-label: garantie Jeunes
+label: contrat d'Engagement Jeunes
 periodicite: mensuelle
 type: float
 unit: €
 description: >-
-  La garantie jeunes permet d’accompagner vers l’emploi ou la formation des
-  jeunes entre 16 et 25 ans en situation difficile. C’est un parcours d´un an en
-  partenariat avec la mission locale qui peut être prolongé jusqu’à 6 mois.
+  Le Contrat d'Engagement Jeune est un parcours de 6 à 12 mois pour vous aider à trouver un emploi. Concrètement, c'est un accompagnement par un(e) conseiller(e) dédié(e), un programme intensif de 15 à 20 heures par semaine composé de différents types d’activités, et une allocation en fonction de vos ressources.
 conditions:
   - >-
-    Faire votre demande d´accompagnement auprès de <a target="_blank"
-    rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/"
-    title="Annuaire des missions locales" >la Mission Locale</a> dont vous
-    dépendez.
+    Faire votre demande d´accompagnement auprès de votre <a target="_blank" rel="noopener" href="https://www.unml.info/les-missions-locales/annuaire/">Mission Locale</a> ou de votre <a target="_blank" rel="noopener" href="https://www.pole-emploi.fr/annuaire/votre-pole-emploi.html">agence Pôle Emploi</a>.
   - >-
-    Être indépendant, notamment ne pas bénéficier d'un soutien financier
+    Être indépendant(e), notamment ne pas bénéficier d'un soutien financier
     familial.
 link: https://www.service-public.fr/particuliers/vosdroits/F32700
 entity: individus
 openfiscaPeriod: thisMonth
 prefix: la
 setToZeroRecently: true
-institution: garantie_jeunes
-imgSrc: img/benefits/logo_garantie_jeunes.png
+institution: etat

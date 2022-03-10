@@ -1,0 +1,31 @@
+label: contrat d'Engagement Jeune
+institution: etat
+description: Le Contrat d'Engagement Jeune est un parcours de 6 à 12 mois pour
+  vous aider à trouver un emploi. Concrètement, c'est un accompagnement par
+  un(e) conseiller(e) dédié(e), un programme intensif de 15 à 20 heures par
+  semaine composé de différents types d’activités, et une allocation pouvant
+  aller jusqu’à 500 euros par mois en fonction de vos ressources.
+conditions:
+  - Être agé(e) de 16 à 25 ans ou jusqu'à 29 ans si vous bénéficiez d’une
+    reconnaissance de la qualité de travailleur handicapé.
+  - N'être ni étudiant(e), ni en formation, ni en emploi.
+  - Faire un diagnostic auprès de votre <a target="_blank" rel="noopener"
+    href="https://www.unml.info/les-missions-locales/annuaire/">Mission
+    Locale</a> ou de votre <a target="_blank" rel="noopener"
+    href="https://www.pole-emploi.fr/annuaire/votre-pole-emploi.html">agence
+    Pôle Emploi</a>.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 29
+profils: []
+link: https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/article/qu-est-ce-que-le-contrat-d-engagement-jeune-cej
+instructions: https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/article/qu-est-ce-que-le-contrat-d-engagement-jeune-cej
+type: float
+unit: €
+periodicite: autre
+legend: maximum (sous conditions de ressources)
+montant: 500

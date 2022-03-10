@@ -12,7 +12,7 @@ function update_interetAidesVeloElectrique(answers) {
       answer.fieldName === "_interetAidesVeloElectrique"
   )
 
-  if (!answerIndex) return
+  if (answerIndex < 0) return
 
   answers[answerIndex].fieldName = "_interetsAidesVelo"
 

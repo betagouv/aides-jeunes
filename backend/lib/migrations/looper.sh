@@ -7,7 +7,7 @@ MAX_LOOP=1000
 
 loop_count=1
 migrate() {
-    script_result=$(node apply.js | tee -a $LOG_FILE)
+    script_result=$(node apply.js --all | tee -a $LOG_FILE)
     read number error <<< $(echo $script_result | awk -F";" '{ print $5" "$6 }')
 }
 

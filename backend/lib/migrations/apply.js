@@ -4,9 +4,9 @@ const ArgumentParser = require("argparse").ArgumentParser
 const es = require("event-stream")
 
 // Loads
-require("../../../backend")
 require("expect")
-const mongoose = require("mongoose")
+const mongoose = require("../mongo-connector")
+
 const migrations = require(".")
 const latestVersion = migrations.list[migrations.list.length - 1].version
 
@@ -33,6 +33,7 @@ parser.addArgument(["--id"], {
 })
 
 function migrateSimulations(conditions) {
+  console.log("conditions", conditions)
   Simulation.find(conditions)
     .sort({ dateDeValeur: -1 })
     .limit(limit)

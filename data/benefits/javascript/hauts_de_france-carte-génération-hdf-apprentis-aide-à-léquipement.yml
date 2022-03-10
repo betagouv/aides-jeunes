@@ -1,10 +1,12 @@
-label: "carte Génération #HDF - APPRENTIS : aide à l'équipement"
+label: "carte Génération - Apprentis : aide à l'équipement"
 institution: hauts_de_france
-description: "Grâce à la carte Génération #HDF - Apprentis, vous pouvez
-  bénéficier d'une aide de rentrée forfaitaire individuelle de 200€ pour couvrir
-  tout ou partie des frais d'acquisition ou de location des livres scolaires et
+description: Grâce à la carte Génération - Apprentis, vous pouvez bénéficier
+  d'une aide de rentrée forfaitaire individuelle de 200€ pour couvrir tout ou
+  partie des frais d'acquisition ou de location des livres scolaires et
   équipements professionnels et de sécurité en lien avec la certification
-  préparée."
+  préparée.
+conditions:
+  - Être primo-entrant(e) à l'apprentissage.
 conditions_generales:
   - type: regions
     values:
@@ -13,6 +15,7 @@ profils:
   - type: apprenti
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=595
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=595
 type: float
 unit: €
 periodicite: ponctuelle

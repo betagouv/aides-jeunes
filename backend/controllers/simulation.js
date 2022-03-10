@@ -36,7 +36,7 @@ exports.attachAccessCookie = function (req, res) {
   }
   res.cookie(req.simulation.cookieName, req.simulation.token, cookiesParameters)
   res.cookie(
-    "lastestSituation",
+    "lastestSimulation",
     req.simulation._id.toString(),
     cookiesParameters
   )

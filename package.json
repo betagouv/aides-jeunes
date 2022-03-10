@@ -32,6 +32,7 @@
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
     "start": "NODE_ENV=production node server.js",
+    "ci": "npm run stats && NODE_ENV=production node server.js",
     "stats": "node backend/lib/stats",
     "serve-mail": "node tools/mjml.js",
     "test": "NODE_PATH=. jest --testTimeout=20000",

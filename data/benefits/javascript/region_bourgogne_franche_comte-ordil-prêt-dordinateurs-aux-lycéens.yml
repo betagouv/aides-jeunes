@@ -12,6 +12,8 @@ profils:
   - type: lyceen
     conditions: []
 link: https://www.bourgognefranchecomte.fr/ordil
+teleservice: ""
+form: https://www.bourgognefranchecomte.fr/sites/default/files/2021-10/Convention%20pret%20eleve%20signee.pdf
 type: bool
 unit: €
 periodicite: autre

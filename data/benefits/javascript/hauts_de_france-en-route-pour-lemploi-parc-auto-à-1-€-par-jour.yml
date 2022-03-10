@@ -1,9 +1,14 @@
 label: en route pour l'emploi (Parc auto à 1 € par jour)
 institution: hauts_de_france
-description: >-
-  La Région met à disposition des bénéficiaires des véhicules pour 1 euro par
-  jour travaillé. L'assurance du véhicule est également prise en charge par la Région. Le carburant est à la charge du bénéficiaire ainsi que les dépenses de péage et de parking. Voir les conditions d'éligibilité sur cette page
-conditions: []
+description: La Région met à disposition des bénéficiaires des véhicules pour 1
+  euro par jour travaillé. L'assurance du véhicule est également prise en charge
+  par la Région. Le carburant est à la charge du bénéficiaire ainsi que les
+  dépenses de péage et de parking.
+conditions:
+  - vérifier que vous correspondez à l'une des catégories détaillées dans <a
+    target="_blank" rel="noopener"
+    href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632">cette
+    page</a>, à la rubrique ”Bénéficiaires”.
 conditions_generales:
   - type: regions
     values:

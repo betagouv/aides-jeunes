@@ -50,7 +50,7 @@ function mock({ app }) {
     res.send(cache[req.params.id])
   })
 
-  app.get("/api/answers/:id/openfisca-response", function (req, res, next) {
+  app.get("/api/simulation/:id/openfisca-response", function (req, res, next) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)
@@ -65,7 +65,7 @@ function mock({ app }) {
     }
   })
 
-  app.get("/api/answers/:id/openfisca-request", function (req, res) {
+  app.get("/api/simulation/:id/openfisca-request", function (req, res) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)

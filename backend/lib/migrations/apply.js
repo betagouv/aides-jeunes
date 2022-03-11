@@ -35,7 +35,7 @@ parser.addArgument(["--id"], {
 function migrateSimulations(conditions) {
   console.log("conditions", conditions)
   Simulation.find(conditions)
-    .sort({ dateDeValeur: -1 })
+    .sort({ _id: -1 })
     .limit(limit)
     .cursor()
     .pipe(

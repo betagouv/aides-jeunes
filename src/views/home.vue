@@ -41,17 +41,6 @@
       </div>
     </div>
   </div>
-  <div
-    style="
-      position: fixed;
-      right: 30px;
-      bottom: 70px;
-      padding: 10px;
-      z-index: 5000;
-      background: #eee;
-    "
-    >::{{ netlifyDeployment }}</div
-  >
 </template>
 
 <script>
@@ -73,11 +62,6 @@ export default {
       return process.env.VUE_APP_BENEFIT_COUNT
         ? process.env.VUE_APP_BENEFIT_COUNT
         : "plus de 400"
-    },
-    netlifyDeployment: function () {
-      return process.env.VUE_APP_NETLIFY_PR
-        ? process.env.VUE_APP_NETLIFY_PR
-        : undefined
     },
   },
   methods: {

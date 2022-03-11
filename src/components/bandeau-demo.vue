@@ -3,6 +3,9 @@
     <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
       Démo
     </a>
+    <router-link class="lien-debug" :to="{ debugLink }"
+      >Accéder à l'aide créée</router-link
+    >
   </div>
 </template>
 
@@ -15,6 +18,10 @@ export default {
     },
     link() {
       return process.env.VUE_APP_PR_URL
+    },
+    debugLink() {
+      //process.env.VUE_APP_NETLIFY_PR
+      return "/simulation/resultats?debug"
     },
   },
 }
@@ -43,6 +50,16 @@ export default {
     color: white;
     transform: rotate(45deg);
     pointer-events: all;
+  }
+
+  .lien-debug {
+    position: fixed;
+    inset: auto 30px 70px auto;
+    display: block;
+    background: #5770be;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #ffffff;
   }
 }
 </style>

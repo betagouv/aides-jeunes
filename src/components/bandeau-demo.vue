@@ -41,7 +41,6 @@ export default {
           )
           if (match) {
             benefits.push(match[1])
-            return
           }
         }
         if (benefits.length) {

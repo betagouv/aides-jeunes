@@ -21,6 +21,16 @@ const ANSWER_TO_REMOVE = [
     entityName: "individu",
     fieldName: "nombre_enfants",
   },
+  {
+    id: "demandeur",
+    entityName: "individu",
+    fieldName: "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
+  },
+  {
+    id: "demandeur",
+    entityName: "individu",
+    fieldName: "_boursier_derniere_annee_etudes",
+  },
 ]
 
 function removeOldField(answers, { id, entityName, fieldName }) {

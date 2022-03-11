@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     afficheBandeau() {
-      return true || process.env.VUE_APP_CONTEXT === "deploy-preview"
+      return process.env.VUE_APP_CONTEXT === "deploy-preview"
     },
     link() {
       return process.env.VUE_APP_PR_URL

@@ -27,7 +27,6 @@ export default {
     link() {
       return process.env.VUE_APP_PR_URL
     },
-    async debugLink() {},
   },
   mounted: async function () {
     let pr = "pull/2530/head".split("/")

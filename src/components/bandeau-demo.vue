@@ -29,30 +29,26 @@ export default {
     },
   },
   mounted: async function () {
-    let pr = "pull/2530/head".split("/")
-    if (process.env.VUE_APP_NETLIFY_PR !== "undefined") {
-      pr = process.env.VUE_APP_NETLIFY_PR.split("/")
-    }
+    const pr = process.env.VUE_APP_NETLIFY_PR.split("/")
     if (pr.length < 3) return
     const url = `https://api.github.com/repos/betagouv/aides-jeunes/pulls/${pr[1]}/files`
-    //process.env.VUE_APP_NETLIFY_PR
-    //return "/simulation/resultats?debug"
-    ///simulation/resultats?debug=aide-nationale-au-brevet-daptitude-aux-fonctions-danimateur-bafa
-    //return process.env.VUE_APP_NETLIFY_PR
     axios
       .get(url)
       .then((response) => {
-        console.log("ok", response)
         for (let entry of response.data) {
-          if (entry.filename.match(/(\.yml|.yaml)$/i)) {
+          const match = entry.filename.match(
+            /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
+          )
+          if (match) {
             this.benefitId = entry.filename
+            this.benefitLink = `/simulation/resultats?debug=${match[1]}`
+            console.log(this.benefitLink)
+            return
           }
         }
-        return
       })
       .catch((e) => {
-        console.log("nok", e)
-        return
+        console.log("Failed to find a benefit file name from this PR", e)
       })
   },
 }

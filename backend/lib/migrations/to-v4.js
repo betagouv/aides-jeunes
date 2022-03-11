@@ -13,6 +13,8 @@ module.exports = {
       all: objectSimulation.all,
       current: objectSimulation.current,
     }
+    simulation.set("all", undefined, { strict: false })
+    simulation.set("current", undefined, { strict: false })
     return simulation
   },
   version: VERSION,

@@ -41,6 +41,9 @@
       </div>
     </div>
   </div>
+  <div style="position: fixed; right: 30px; bottom: 70px"
+    >::{{ process.env.VUE_APP_NETLIFY_PR }}</div
+  >
 </template>
 
 <script>

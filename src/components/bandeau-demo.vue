@@ -4,7 +4,7 @@
       Démo
     </a>
     <a v-if="benefitLink" class="lien-debug" :href="benefitLink"
-      >Accéder à l'aide créée</a
+      >Accéder aux aides ajoutées</a
     >
   </div>
 </template>
@@ -34,14 +34,18 @@ export default {
     axios
       .get(url)
       .then((response) => {
+        const benefits = []
         for (let entry of response.data) {
           const match = entry.filename.match(
             /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
           )
           if (match) {
-            this.benefitLink = `/simulation/resultats?debug=${match[1]}`
+            benefits.append(match[1])
             return
           }
+        }
+        if (benefits.length > 0) {
+          this.benefitLink = `/simulation/resultats?debug=${benefits.join(",")}`
         }
       })
       .catch((e) => {

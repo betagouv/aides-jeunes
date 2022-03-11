@@ -18,7 +18,7 @@ process.env.VUE_APP_CONTEXT = process.env.CONTEXT
 process.env.VUE_APP_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
 process.env.VUE_APP_STATS_URL = statistics?.url ? statistics.url : ""
 process.env.VUE_APP_STATS_VERSION = statistics?.version ? statistics.version : 2
-process.env.VUE_APP_NETLIFY_PR = process.env.BRANCH
+process.env.VUE_APP_NETLIFY_PR = process.env.HEAD
 
 module.exports = {
   configureWebpack: (config) => {

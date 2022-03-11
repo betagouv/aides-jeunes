@@ -5,31 +5,10 @@
 const VERSION = 6
 
 const ANSWER_TO_REMOVE = [
-  { id: "demandeur", entityName: "individu", fieldName: "_continuite_etudes" },
-  {
-    id: "demandeur",
-    entityName: "individu",
-    fieldName: "plus_haut_diplome_niveau",
-  },
-  {
-    id: "demandeur",
-    entityName: "individu",
-    fieldName: "plus_haut_diplome_date_obtention",
-  },
   {
     id: "nombre_enfants",
     entityName: "individu",
     fieldName: "nombre_enfants",
-  },
-  {
-    id: "demandeur",
-    entityName: "individu",
-    fieldName: "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
-  },
-  {
-    id: "demandeur",
-    entityName: "individu",
-    fieldName: "_boursier_derniere_annee_etudes",
   },
 ]
 
@@ -41,7 +20,7 @@ function removeOldField(answers, { id, entityName, fieldName }) {
       answer.fieldName === fieldName
   )
   if (index > -1) {
-    answers.splice(index, 1) // 2nd parameter means remove one item only
+    answers.splice(index, 1)
   }
 }
 

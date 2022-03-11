@@ -1,5 +1,5 @@
 /*
- * Supprime les id lorsqu'ils sont plus nécessaires
+ * Supprime les id lorsqu'ils ne sont plus nécessaires
  */
 const omit = require("lodash/omit")
 const { ANSWER_BASIC_IDS } = require("../definitions")

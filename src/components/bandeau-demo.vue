@@ -4,7 +4,7 @@
       Démo
     </a>
     <a v-if="debugLink !== 'undefined'" class="lien-debug" :href="debugLink"
-      >{{ typeof debugLink }} Accéder à l'aide créée</a
+      >Accéder à l'aide créée</a
     >
   </div>
 </template>
@@ -64,6 +64,7 @@ export default {
     color: #ffffff;
     z-index: 5000000;
     pointer-events: all;
+    border: 1px solid #fff;
   }
 }
 </style>

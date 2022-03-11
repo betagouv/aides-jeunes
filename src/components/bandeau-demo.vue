@@ -22,6 +22,7 @@ export default {
     debugLink() {
       //process.env.VUE_APP_NETLIFY_PR
       //return "/simulation/resultats?debug"
+      ///simulation/resultats?debug=aide-nationale-au-brevet-daptitude-aux-fonctions-danimateur-bafa
       return process.env.VUE_APP_NETLIFY_PR
     },
   },

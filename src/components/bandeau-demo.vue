@@ -3,8 +3,8 @@
     <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
       Démo
     </a>
-    <router-link class="lien-debug" :to="{ debugLink }"
-      >Accéder à l'aide créée</router-link
+    <a v-if="debugLink !== 'undefined'" class="lien-debug" :href="debugLink"
+      >{{ typeof debugLink }} Accéder à l'aide créée</a
     >
   </div>
 </template>
@@ -14,14 +14,15 @@ export default {
   name: "BandeauDemo",
   computed: {
     afficheBandeau() {
-      return process.env.VUE_APP_CONTEXT === "deploy-preview"
+      return true || process.env.VUE_APP_CONTEXT === "deploy-preview"
     },
     link() {
       return process.env.VUE_APP_PR_URL
     },
     debugLink() {
       //process.env.VUE_APP_NETLIFY_PR
-      return "/simulation/resultats?debug"
+      //return "/simulation/resultats?debug"
+      return process.env.VUE_APP_NETLIFY_PR
     },
   },
 }
@@ -54,12 +55,14 @@ export default {
 
   .lien-debug {
     position: fixed;
-    inset: auto 30px 70px auto;
+    inset: auto 30px 50px auto;
     display: block;
     background: #5770be;
     padding: 5px 10px;
     border-radius: 15px;
     color: #ffffff;
+    z-index: 5000000;
+    pointer-events: all;
   }
 }
 </style>

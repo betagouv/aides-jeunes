@@ -173,7 +173,6 @@ const statutOccupationLogementValues = [
 
 const menage = {
   aide_logement_date_pret_conventionne: String,
-  charges_locatives: Number,
   _codePostal: String,
   coloc: Boolean,
   date_entree_logement: Date,

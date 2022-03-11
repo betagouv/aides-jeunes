@@ -40,11 +40,11 @@ export default {
             /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
           )
           if (match) {
-            benefits.append(match[1])
+            benefits.push(match[1])
             return
           }
         }
-        if (benefits.length > 0) {
+        if (benefits.length) {
           this.benefitLink = `/simulation/resultats?debug=${benefits.join(",")}`
         }
       })

@@ -3,7 +3,7 @@
     <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
       Démo
     </a>
-    <a v-if="benefitId" class="lien-debug" :href="benefitLink"
+    <a v-if="benefitLink" class="lien-debug" :href="benefitLink"
       >Accéder à l'aide créée</a
     >
   </div>
@@ -16,7 +16,6 @@ export default {
   name: "BandeauDemo",
   data: function () {
     return {
-      benefitId: null,
       benefitLink: null,
     }
   },
@@ -40,9 +39,7 @@ export default {
             /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
           )
           if (match) {
-            this.benefitId = entry.filename
             this.benefitLink = `/simulation/resultats?debug=${match[1]}`
-            console.log(this.benefitLink)
             return
           }
         }

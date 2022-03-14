@@ -52,7 +52,9 @@ exports.access = async (req, res, next) => {
       }
       // If cookie validation fails an error will be triggered
       // eslint-disable-next-line no-empty
-    } catch {}
+    } catch (e) {
+      console.log("GITHUB LOG: cookie token validation failed:", e)
+    }
   }
   if (req.query.code) {
     const result = await validateToken(req, res)
@@ -60,7 +62,9 @@ exports.access = async (req, res, next) => {
       res.cookie("github_token", result.data)
       return next()
     }
+    console.log("GITHUB LOG: token validation failed:", req.query.code, result)
   }
+  console.log("GITHUB LOG: authentication started, no cookie, no token")
   return authenticate(req, res)
 }
 

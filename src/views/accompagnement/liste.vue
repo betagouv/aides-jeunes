@@ -255,7 +255,6 @@ export default {
         this.accompagnements = output
         this.loggedIn = true
       } catch (status) {
-        console.log(status)
         this.accompagnements = []
         this.loggedIn = false
       }

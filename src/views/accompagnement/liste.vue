@@ -248,14 +248,15 @@ export default {
             }
           })
           accompagnement.benefits.map((benefit) => {
-            benefit["status"] = surveyStates[benefit["id"]]["status"]
-            benefit["comments"] = surveyStates[benefit["id"]]["comments"]
+            if (benefit.id && surveyStates[benefit.id]) {
+              benefit["status"] = surveyStates[benefit["id"]]["status"]
+              benefit["comments"] = surveyStates[benefit["id"]]["comments"]
+            }
           })
         }
         this.accompagnements = output
         this.loggedIn = true
       } catch (status) {
-        console.log(status)
         this.accompagnements = []
         this.loggedIn = false
       }

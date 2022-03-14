@@ -248,7 +248,7 @@ export default {
             }
           })
           accompagnement.benefits.map((benefit) => {
-            if (benefit["id"]) {
+            if (benefit.id && surveyStates[benefit.id]) {
               benefit["status"] = surveyStates[benefit["id"]]["status"]
               benefit["comments"] = surveyStates[benefit["id"]]["comments"]
             }

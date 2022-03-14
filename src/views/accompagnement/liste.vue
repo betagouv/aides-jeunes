@@ -25,11 +25,11 @@
     </router-link>
     <a
       v-if="loggedIn === false"
-      :href="connect()"
+      :href="connect"
       class="button outline is-not-mobile"
       >Se connecter</a
     >
-    <div v-if="accompagnements.length">
+    <div v-if="accompagnements">
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
           v-for="survey in accompagnement.surveys"
@@ -193,13 +193,16 @@
 export default {
   data: function () {
     return {
-      accompagnements: [],
+      accompagnements: undefined,
       loggedIn: undefined,
     }
   },
   computed: {
     surveyId() {
       return this.$route.params.surveyId
+    },
+    connect() {
+      return `/api/auth/redirect?redirect=${window.location}`
     },
   },
   watch: {
@@ -211,9 +214,6 @@ export default {
     },
   },
   methods: {
-    connect() {
-      return `/api/auth/redirect?redirect=${window.location}`
-    },
     formatDate(date) {
       let isoDateTime = new Date(date)
       return `${isoDateTime.toLocaleDateString("fr-FR", {

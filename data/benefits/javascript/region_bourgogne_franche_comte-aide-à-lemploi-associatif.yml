@@ -1,0 +1,25 @@
+label: Aide à l'emploi associatif
+institution: region_bourgogne_franche_comte
+description: Aide ponctuelle de 7 000 € pour toute création d'un poste éligible
+  dans une association, à temps complet (en CDI ou en CDD de 18 mois minimum) ou
+  pour toute pérennisation (de CDD à CDI ou de temps partiel à temps complet).
+  Possibilité d'obtenir en plus une subvention d'investissement de 5 000 €
+  maximum pour l'équipement du poste de travail. La demande d'aide doit être
+  formulée par l'association.
+conditions:
+  - Être une association implantée ou localisée en Bourgogne-Franche-Comté.
+  - Vérifier l'éligibilité du poste.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils: []
+link: https://www.bourgognefranchecomte.fr/node/263
+teleservice: https://subventions.bourgognefranchecomte.fr/sub/extranet/dispositif-consulter.sub?sigle=VA-EMPLOI
+instructions: https://www.bourgognefranchecomte.fr/file-download?fid=6596
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 7000

@@ -78,9 +78,7 @@ const DroitEstime = ({ droit }) => {
             LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] ||
             ""
       droitEstime = (
-        <span className="aj-droit-value">
-          {montant + " " + unit + " " + legend}
-        </span>
+        <span className="aj-droit-value">{`${montant} ${unit} ${legend}`}</span>
       )
       break
     default:

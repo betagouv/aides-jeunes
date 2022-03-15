@@ -1,0 +1,30 @@
+label: Atouts Normandie - Avantages Loisirs
+imgSrc: /public/img/benefits/logo-atouts.jpg
+institution: region_normandie
+description: >-
+  La Région Normandie soutient la découverte de pratiques culturelles, sportives
+  et liées à l'engagement des jeunes normands de 15 à 25 ans. 
+
+  Plus de 170 € d'avantages à utiliser dans le réseau des partenaires: 
+
+  40€ pour le cinéma, 30€ pour des concerts et spectacles, 50€ pour une activité sportive/artistique, 40 € pour le BAFA BAFD BNSSA ou 1er secours et bien plus encore !
+conditions:
+  - Créer un compte sur https://atouts.normandie.fr/.
+  - Adhérer pour 10€ au volet loisirs.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+link: https://www.normandie.fr/sites/default/files/2021-07/Flyer%20Loisirs%20Atouts%20Normandie.pdf
+teleservice: https://atouts.normandie.fr/
+type: float
+unit: €
+periodicite: annuelle
+montant: 170

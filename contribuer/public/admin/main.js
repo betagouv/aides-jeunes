@@ -70,7 +70,13 @@ const DroitEstime = ({ droit }) => {
       const montant = droit.montant || 1
       const unit = droit.unit || "€"
       const legend =
-        droit.legend || LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] || ""
+        droit.legend && LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite]
+          ? `${droit.legend} ${
+              LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite]
+            }`
+          : droit.legend ||
+            LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] ||
+            ""
       droitEstime = (
         <span className="aj-droit-value">
           {montant + " " + unit + " " + legend}

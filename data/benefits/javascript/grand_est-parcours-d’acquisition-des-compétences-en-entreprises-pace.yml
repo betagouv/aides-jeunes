@@ -1,0 +1,23 @@
+label: parcours d’acquisition des compétences en entreprises (PACE)
+institution: grand_est
+description: Ce dispositif permet aux jeunes de 18 à 29 ans, diplômé(e)s ou non,
+  d’acquérir des compétences et une première expériences professionnelle tutorée
+  d’une durée de six mois, au sein d’une entreprise.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 29
+  - type: regions
+    values:
+      - "44"
+profils: []
+link: http://www.pace-grandest.fr/
+teleservice: https://docs.google.com/forms/d/e/1FAIpQLScCXPV5JorT_JapH36mzwvFFMN_tlhXNCYibuU1Ow3qdykYkA/viewform
+instructions: http://www.pace-grandest.fr/
+type: float
+unit: €
+periodicite: mensuelle
+montant: 500

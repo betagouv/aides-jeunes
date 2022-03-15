@@ -1,0 +1,22 @@
+label: jeun'Est
+institution: grand_est
+description: Jeun'Est est un portail, une application et une carte virtuelle (ou
+  physique si vous êtes au lycée), qui vous donne droit à des avantages culture,
+  sport ou tourisme et à des bons plans.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 29
+  - type: regions
+    values:
+      - "44"
+profils: []
+link: https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/
+teleservice: https://beneficiaire.jeunest.fr/Connexion.aspx?ReturnUrl=%2f
+instructions: https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/
+type: bool
+unit: €
+periodicite: autre

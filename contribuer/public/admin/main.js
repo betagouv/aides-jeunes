@@ -4,6 +4,14 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
   annuelle: "/ an",
 }
 
+const requiredGroupValidator = (group) => {
+  return [
+    ...document.querySelectorAll(`[data-group-required*=${group}]`),
+  ].reduce((previous, current) => {
+    return previous || current.querySelector(":scope > input").value.length > 0
+  }, false)
+}
+
 const Conditions = ({ conditions }) => {
   if (!conditions || !conditions.length) {
     return <div></div>

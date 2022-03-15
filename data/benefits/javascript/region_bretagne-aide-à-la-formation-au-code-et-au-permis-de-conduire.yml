@@ -7,10 +7,12 @@ conditions:
   - 'Etre suivi(e) par une mission locale : <a target="_blank" rel="noopener"
     href="https://www.unml.info/les-missions-locales/annuaire/bretagne/">contacter
     la mission locale la plus proche</a>.'
-  - Constater que l’absence de permis est un frein à la réalisation de votre
-    projet.
+  - Pouvoir montrer que l’absence de permis est un frein à la réalisation de
+    votre projet.
   - Bénéficier de l’accompagnement à la qualification de la Région Bretagne ou
-    suivre une de formation QUALIF Emploi.
+    <a target="_blank" rel="noopener"
+    href="https://www.bretagne.bzh/aides/fiches/copie-de-qualif-emploi/">suivre
+    une formation QUALIF Emploi</a>.
 conditions_generales:
   - type: age
     operator: ">="
@@ -18,8 +20,12 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
+  - type: regions
+    values:
+      - "53"
 profils: []
 link: https://www.bretagne.bzh/aides/fiches/aide-a-la-formation-au-code-et-au-permis-de-conduire/
+instructions: https://www.bretagne.bzh/aides/fiches/aide-a-la-formation-au-code-et-au-permis-de-conduire/
 prefix: la
 type: float
 unit: €

@@ -1,0 +1,29 @@
+label: aide à la formation au code et au permis de conduire
+institution: region_bretagne
+description: Cette aide vise à favoriser l’accès à la formation et l’insertion
+  professionnelle des jeunes breton(ne)s en prenant en charge le financement de
+  leur permis de conduire.
+conditions:
+  - 'Etre suivi(e) par une mission locale : <a target="_blank" rel="noopener"
+    href="https://www.unml.info/les-missions-locales/annuaire/bretagne/">contacter
+    la mission locale la plus proche</a>.'
+  - Constater que l’absence de permis est un frein à la réalisation de votre
+    projet.
+  - Bénéficier de l’accompagnement à la qualification de la Région Bretagne ou
+    suivre une de formation QUALIF Emploi.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+link: https://www.bretagne.bzh/aides/fiches/aide-a-la-formation-au-code-et-au-permis-de-conduire/
+prefix: la
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1500
+interestFlag: _interetPermisDeConduire

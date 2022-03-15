@@ -1,0 +1,27 @@
+label: Atouts Normandie - Avantages Loisirs
+institution: region_normandie
+description: La Région Normandie soutient la découverte de pratiques
+  culturelles, sportives et liées à l'engagement des jeunes normands de 15 à 25
+  ans.
+conditions:
+  - Créer un compte sur <a target="_blank" rel="noopener"
+    href="https://atouts.normandie.fr/">cette page</a>.
+  - Adhérer à Atouts Normandie pour 10 €.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+link: https://www.normandie.fr/sites/default/files/2021-07/Flyer%20Loisirs%20Atouts%20Normandie.pdf
+teleservice: https://atouts.normandie.fr/
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 170

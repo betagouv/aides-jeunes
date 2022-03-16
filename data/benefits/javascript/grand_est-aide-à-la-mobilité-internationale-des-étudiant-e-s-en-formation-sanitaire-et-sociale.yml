@@ -1,0 +1,24 @@
+label: aide à la mobilité internationale des étudiant(e)s en formation sanitaire
+  et sociale
+institution: grand_est
+description: Cette aide vise à favoriser la mobilité internationale des élèves
+  et étudiant(e)s en formation dans les instituts de formations sanitaire et
+  sociale de la région Grand Est. Ce dispositif peut s’appliquer en complément
+  d’une aide à la mobilité ERASMUS +.
+conditions:
+  - Être inscrit(e) dans un institut de formations sanitaires ou sociales agréé
+    par la Région Grand Est (hors IBODE, IADE et Cadre de santé).
+  - Ne pas être salarié(e) (promotion professionnelle CIF, apprentis).
+  - Souhaiter effectuer une période d’études ou de stage d’une durée minimale de
+    5 semaines dans un même organisme à l’étranger.
+conditions_generales: []
+profils:
+  - type: etudiant
+    conditions: []
+link: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
+instructions: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 700

@@ -1,0 +1,29 @@
+label: Atouts Normandie - Aide BAFA BAFD BNSSA 1er Secours et chantiers de bénévoles
+imgSrc: /public/img/benefits/logo-atouts.jpg
+institution: region_normandie
+description: La Région Normandie soutient l'engagement des jeunes normands âgés
+  de 15 à 25 ans dans la réalisation d'une formation au titre du BAFA, BAFD,
+  BNSSA, d'un 1er secours ou d'une participation à un chantier de bénévoles
+  organisé en Normandie, en France ou à l’international.
+conditions:
+  - Créer un compte sur <a target="_blank" rel="noopener"
+    href="https://atouts.normandie.fr/">cette page</a>.
+  - Adhérer pour 10€ au volet loisirs.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+link: https://atouts.normandie.fr/
+teleservice: https://atouts.normandie.fr/
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 40
+interestFlag: _interetBafa

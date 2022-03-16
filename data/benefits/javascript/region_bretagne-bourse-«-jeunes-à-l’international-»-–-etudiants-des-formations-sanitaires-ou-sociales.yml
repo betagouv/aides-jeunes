@@ -24,5 +24,6 @@ prefix: la
 type: float
 unit: €
 periodicite: mensuelle
-legend: ""
+legend: maximum
 montant: 500
+interestFlag: _interetEtudesEtranger

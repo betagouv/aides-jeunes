@@ -1,0 +1,30 @@
+label: Bourse « Jeunes à l’international » – Étudiant(e)s des formations
+  sanitaires ou sociales
+institution: region_bretagne
+description: La région Bretagne finance les étudiant(e)s des formations
+  sanitaires ou sociales qui souhaitent effectuer un stage professionnel ou un
+  séjour d’études à l’étranger.
+conditions:
+  - Être étudiant(e) dans le secteur sanitaire et social.
+  - Vérifier que vous correspondez aux <a target="_blank" rel="noopener"
+    href="https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-formations-sanitaires-ou-sociales/">conditions
+    spécifiques</a> d'attribution (section "Bénéficiaires et critères").
+  - Contacter au préalable votre établissement qui vous indiquera la marche à
+    suivre.
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils:
+  - type: etudiant
+    conditions: []
+link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-formations-sanitaires-ou-sociales/
+teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+instructions: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-formations-sanitaires-ou-sociales/
+prefix: la
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 500
+interestFlag: _interetEtudesEtranger

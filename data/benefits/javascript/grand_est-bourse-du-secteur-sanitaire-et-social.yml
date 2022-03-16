@@ -11,7 +11,8 @@ conditions_generales:
   - type: regions
     values:
       - "44"
-profils: []
+profils:
+  - type: etudiant
 link: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
 teleservice: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
 instructions: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/

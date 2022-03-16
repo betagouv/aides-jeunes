@@ -11,7 +11,10 @@ conditions:
   - Ne pas être salarié(e) (promotion professionnelle CIF, apprentis).
   - Souhaiter effectuer une période d’études ou de stage d’une durée minimale de
     5 semaines dans un même organisme à l’étranger.
-conditions_generales: []
+conditions_generales:
+  - type: regions
+    values:
+      - "44"
 profils:
   - type: etudiant
     conditions: []

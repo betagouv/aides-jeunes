@@ -389,8 +389,8 @@ fields:
       - label: Autre
         value: autre
   field_profil_eligibilite: &field_profil_eligibilite
-    label: Profils d'éligibilité
-    label_singular: profil d'éligibilité
+    label: filtre
+    label_singular: profils d'éligibilité
     name: profils
     widget: list
     collapsed: false

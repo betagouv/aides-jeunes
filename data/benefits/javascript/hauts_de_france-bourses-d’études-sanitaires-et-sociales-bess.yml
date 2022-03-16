@@ -9,7 +9,10 @@ conditions:
   - Suivre l'une des <a target="_blank" rel="noopener"
     href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667">formations
     éligibles</a> à la Bourse d'Etudes Sanitaires et Sociales (BESS).
-conditions_generales: []
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
 profils:
   - type: etudiant
     conditions: []

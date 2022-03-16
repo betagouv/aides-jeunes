@@ -2,7 +2,7 @@ label: expériences de Jeunesse
 institution: grand_est
 description: La Région accompagne les jeunes du Grand Est de 15 à 29 ans
   engagé(e)s sur un projet d’engagement citoyen ou porteurs d’un projet
-  professionnalisant d'une aide pouvant aller jusqu'à 2000 €.
+  professionnalisant.
 conditions:
   - Être porteur/porteuse de projets favorisant l’engagement citoyen, seul(e) ou
     en groupe, ou bien avoir un projet faisant apparaître un projet
@@ -23,6 +23,8 @@ conditions_generales:
 profils: []
 link: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
 instructions: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
-type: bool
+type: float
 unit: €
-periodicite: autre
+periodicite: ponctuelle
+legend: maximum
+montant: 2000

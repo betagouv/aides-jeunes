@@ -5,7 +5,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 }
 
 const groupFieldsLegend = {
-  cta: "Liens actionnables",
+  cta: "Liens vers un site, téléservice ou formulaire",
 }
 const groupFieldsHint = "Au moins un des champs suivants doit être rempli"
 

@@ -391,6 +391,7 @@ fields:
   field_profil_eligibilite: &field_profil_eligibilite
     label: filtre
     label_singular: profils d'éligibilité
+    hint: Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s, apprenti(e)s, en recherche d'emploi, etc.)
     name: profils
     widget: list
     collapsed: false

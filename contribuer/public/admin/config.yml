@@ -259,17 +259,20 @@ fields:
     name: instructions
     widget: string
     required: false
+    required_group: cta
   field_lien_formulaire: &field_lien_formulaire
     label: Lien vers un formulaire à imprimer
     name: form
     widget: string
     required: false
+    required_group: cta
   field_lien_teleservice: &field_lien_teleservice
     label: Lien vers un téléservice
     hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
     name: teleservice
     widget: string
     required: false
+    required_group: cta
   field_article_defini: &field_article_defini
     label: Article défini
     name: prefix

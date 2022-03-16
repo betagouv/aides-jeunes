@@ -23,6 +23,11 @@ class CustomStringControl extends StringControl {
       value: this.props.value,
     }
   }
+  componentDidMount() {
+    if (this.props.field.get("required_group")) {
+      requiredGroupRender(this._el, this.props.field.get("required_group"))
+    }
+  }
   format = (value) => {
     return value.trim().replace(/ +(?= )/g, "")
   }
@@ -43,10 +48,14 @@ class CustomStringControl extends StringControl {
   }
 
   render() {
+    const style = h("link", {
+      rel: "stylesheet",
+      href: "/css/custom-controls.css",
+    })
     return h(
       "div",
       { "data-group-required": this.props.field.get("required_group") },
-      [{ ...super.render(this.props) }]
+      [{ ...style }, { ...super.render(this.props) }]
     )
   }
 }

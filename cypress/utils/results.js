@@ -167,6 +167,6 @@ export default {
   hasAAH,
   hasBourseCriteresSociaux,
   captureFiscalResources,
-  hasIleDeFranceAideBachelierMeritants,
+  hasIleDeFranceAideAuMerite,
   hasAideVeloParis,
 }

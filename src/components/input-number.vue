@@ -11,6 +11,7 @@
       :max="max"
       :step="step"
       :data-type="dataType"
+      :onWheel="(e) => e.target.blur()"
     />
     <div v-if="error" class="text-red input-number-error">
       Ce champ n'est pas valide.

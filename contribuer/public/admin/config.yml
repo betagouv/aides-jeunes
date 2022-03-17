@@ -184,7 +184,7 @@ fields:
     widget: image
     allow_multiple: false
     required: false
-    media_folder: "/public/img/benefits"
+    media_folder: "public/img/benefits"
     hint: Utile si vous voulez afficher le logo de l'aide à la place de l'image de l'institution.
   field_nom_aide: &field_nom_aide
     label: Nom de l'aide

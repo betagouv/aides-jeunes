@@ -51,7 +51,7 @@ context("Full simulation", () => {
 
     results.wait()
 
-    results.hasIleDeFranceAideBachelierMeritants()
+    results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()
     results.back()
     results.hasAideVeloParis()

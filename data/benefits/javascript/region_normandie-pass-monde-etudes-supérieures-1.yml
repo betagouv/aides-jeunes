@@ -24,6 +24,15 @@ conditions_generales:
   - type: regions
     values:
       - "28"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 30
+  - type: quotient_familial
+    floor: 30000
+    period: year
 profils:
   - type: enseignement_superieur
     conditions: []

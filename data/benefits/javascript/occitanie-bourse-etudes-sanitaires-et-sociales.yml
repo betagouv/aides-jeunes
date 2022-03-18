@@ -1,6 +1,6 @@
 label: bourse d’Etudes Sanitaires et Sociales
 institution: region_occitanie
-description: Cette bourse est destinée aux élèves et étudiant.e.s inscrit.e.s en
+description: Cette bourse est destinée aux élèves et étudiant(e)s inscrit(e)s en
   formations paramédicales, de sages-femmes ou en travail social dans un centre
   de formation agréé par la Région Occitanie/Pyrénées-Méditerranée.
 conditions:
@@ -12,8 +12,8 @@ conditions:
     rubrique <a target="_blank" rel="noopener"
     href="https://www.laregion.fr/bourses-etudes-sanitaires-sociales">Conditions
     d’éligibilité</a>).
-  - "Déposer la demande de bourse dans les délais demandés : jusqu'au 31
-    juillet2ème, 3ème et 4ème année et jusqu'au 20 octobre 2022 pour les 1ère
+  - "Déposer la demande de bourse dans les délais demandés : jusqu'au 31 juillet
+    pour les 2ème, 3ème et 4ème année et jusqu'au 20 octobre 2022 pour les 1ère
     année."
 conditions_generales:
   - type: regions
@@ -28,4 +28,4 @@ type: float
 unit: €
 periodicite: annuelle
 legend: maximum
-montant: 5734
+montant: 5736

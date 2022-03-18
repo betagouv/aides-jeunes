@@ -24,6 +24,8 @@ profils:
     conditions: []
 link: https://www.laregion.fr/bourses-etudes-sanitaires-sociales
 instructions: https://www.laregion.fr/bourses-etudes-sanitaires-sociales
-type: bool
+type: float
 unit: €
-periodicite: autre
+periodicite: annuelle
+legend: maximum
+montant: 5734

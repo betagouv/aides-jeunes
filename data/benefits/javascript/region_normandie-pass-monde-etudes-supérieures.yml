@@ -1,4 +1,4 @@
-label: Pass Monde Etudes supérieures
+label: Pass Monde Etudes secondaires
 imgSrc: /public/img/benefits/logo-pass-monde.jpg
 institution: region_normandie
 description: >-
@@ -44,6 +44,10 @@ profils:
     conditions: []
 link: https://www.normandie.fr/pass-monde
 teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
-type: bool
+instructions: ""
+type: float
 unit: €
 periodicite: autre
+legend: Maximum
+montant: 880
+interestFlag: null

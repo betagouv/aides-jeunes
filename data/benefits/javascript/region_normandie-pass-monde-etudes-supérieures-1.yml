@@ -1,0 +1,42 @@
+label: Pass Monde Etudes supérieures
+imgSrc: /public/img/benefits/logo-pass-monde.jpg
+institution: region_normandie
+description: >-
+  La Région Normandie accompagne les jeunes normands âgés de 15 à 30 ans
+  inscrits dans un cursus d’étude supérieure en formation initiale ou continue
+  de niveau III, II et I  et effectuant une mobilité internationale individuelle
+  suivante :
+
+  •Stage en milieu professionnel 
+
+  •Séjour d’études en établissement étranger
+
+  •Mission d’étude et d’enquête sur le terrain
+conditions:
+  - Être inscrit dans un établissement normand ou dans une autre région de
+    France si la filière ou le type de cursus n'existe pas en Normandie.
+  - Effectuer une mobilité d'un minimum de 4 semaines (financement jusqu'à 26
+    semaines maximum).
+  - Déposer la demande avant le départ en mobilité.
+  - Présenter un projet qui se déroule en Europe ou hors Europe (DOM TOM non
+    éligibles).
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+link: https://www.normandie.fr/pass-monde
+teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+type: float
+unit: €
+periodicite: autre
+legend: Maximum
+montant: 1440

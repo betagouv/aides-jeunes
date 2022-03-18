@@ -12,7 +12,7 @@ Il s'agira d'une version simplifiée par rapport à la réalité mais qui consti
 
 Il va falloir déterminer l'aide que vous souhaitez intégrer. Pour une première aide, il faut essayer d'en choisir une **simple**, pour laquelle vous avez à votre disposition des **documents de référence** (règlement intérieur, annexes de délibération, etc.) dans lesquels sont détaillées les règles permettant de la calculer. Enfin, il faut aussi que les **ressources** permettant aux usagers des **faire les démarches** soient **accessibles** (page d'information, formulaire en ligne, téléservice, etc.).
 
-![Schéma des étapes entre la contribution et le bénéfice de l'aide](img/logo_ridf_2019_hd.jpg "AIDE AU PASSAGE DE DAEU (diplôme d'accès aux études universitaires)")
+![Schéma des étapes entre la contribution et le bénéfice de l'aide](img/logo_ridf_2019_hd.jpg "AIDE AU PASSAGE DU DAEU (diplôme d'accès aux études universitaires)")
 
 Dans un premier temps, seule l'éligibilité à cette aide sera indiquée. Si un montant peut être calculé (forfaitaire ou en fonction du foyer) il le sera plus tard. En effet de tels calculs augmentent la complexité et cette contribution n'en serait que plus difficile.
 

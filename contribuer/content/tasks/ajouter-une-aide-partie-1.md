@@ -1,10 +1,9 @@
 ---
-title: 🛠 Ajouter une aide 1ère partie
+title: AIDE AU PASSAGE DE DAEU (diplôme d'accès aux études universitaires)
 duration: 30
 prerequisites:
   - ajouter-une-institution
 ---
-
 L'objectif de cette contribution est d'ajouter une première aide dans le simulateur.
 
 Il s'agira d'une version simplifiée par rapport à la réalité mais qui constituera déjà une première étape. La complexité de cette aide sera intégrée et mise en compte progressivement.
@@ -13,7 +12,7 @@ Il s'agira d'une version simplifiée par rapport à la réalité mais qui consti
 
 Il va falloir déterminer l'aide que vous souhaitez intégrer. Pour une première aide, il faut essayer d'en choisir une **simple**, pour laquelle vous avez à votre disposition des **documents de référence** (règlement intérieur, annexes de délibération, etc.) dans lesquels sont détaillées les règles permettant de la calculer. Enfin, il faut aussi que les **ressources** permettant aux usagers des **faire les démarches** soient **accessibles** (page d'information, formulaire en ligne, téléservice, etc.).
 
-![Schéma des étapes entre la contribution et le bénéfice de l'aide](/img/ajouter-une-aide/schema.svg)
+![Schéma des étapes entre la contribution et le bénéfice de l'aide](img/logo_ridf_2019_hd.jpg "AIDE AU PASSAGE DE DAEU (diplôme d'accès aux études universitaires)")
 
 Dans un premier temps, seule l'éligibilité à cette aide sera indiquée. Si un montant peut être calculé (forfaitaire ou en fonction du foyer) il le sera plus tard. En effet de tels calculs augmentent la complexité et cette contribution n'en serait que plus difficile.
 
@@ -25,24 +24,23 @@ Il s'agit de remplir le paragraphe suivant :
 
 Pour bénéficier de l'aide, il faut :
 
-- ... **et**
-- ... **et**
-- ... **et**
-- ... **et**
+* Habiter en Ile-de-France
+* Ne pas être titulaire du baccalauréat
+* Être inscrit à la formation au DAEU dans une université francilienne
 
 Voilà quelques exemples de critères :
 
-- Résider dans la ville de Canéjan
-- Résider dans le département du Bas-Rhin
-- Être âgé de plus de 65 ans
-- Être bénéficiaire du RSA
-- Être parent isolé
-- Avoir un taux d'incapacité supérieur à 80%
-- Avoir des ressources mensuelles inférieures au SMIC
+* Résider dans la ville de Canéjan
+* Résider dans le département du Bas-Rhin
+* Être âgé de plus de 65 ans
+*  bénéficiaire du RSA
+* Être parent isolé
+* Avoir un taux d'incapacité supérieur à 80%
+* Avoir des ressources mensuelles inférieures au SMIC
 
-Il arrive que certains critères soient plus complexes, _être âgé de plus de 65 ans ou de plus de 60 avec un taux d'incapacité de plus de 50%_ en est un exemple.
+Il arrive que certains critères soient plus complexes, *être âgé de plus de 65 ans ou de plus de 60 avec un taux d'incapacité de plus de 50%* en est un exemple.
 
-Il arrive aussi que des critères puissent être regroupés en un critère moins précis mais qui évite de faire une longue énumération. Par exemple, _Avoir signé un CDD de plus de 3 mois ou un CDI ou être entrée dans une formation de plus de 6 mois_ peut être résumée par _Avoir repris une activité_.
+Il arrive aussi que des critères puissent être regroupés en un critère moins précis mais qui évite de faire une longue énumération. Par exemple, *Avoir signé un CDD de plus de 3 mois ou un CDI ou être entrée dans une formation de plus de 6 mois* peut être résumée par *Avoir repris une activité*.
 
 Cette liste sera un point de départ pour coder les règles de votre aide dans le moteur de calculs.
 

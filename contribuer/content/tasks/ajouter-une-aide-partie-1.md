@@ -1,5 +1,5 @@
 ---
-title: AIDE AU PASSAGE DE DAEU (diplôme d'accès aux études universitaires)
+title: AIDE AU PASSAGE DU DAEU (diplôme d'accès aux études universitaires)
 duration: 30
 prerequisites:
   - ajouter-une-institution

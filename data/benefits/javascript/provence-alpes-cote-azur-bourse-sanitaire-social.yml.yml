@@ -11,8 +11,6 @@ conditions_generales:
 profils:
   - type: lyceen
     conditions: []
-  - type: stagiaire
-    conditions: []
   - type: enseignement_superieur
     conditions: []
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social

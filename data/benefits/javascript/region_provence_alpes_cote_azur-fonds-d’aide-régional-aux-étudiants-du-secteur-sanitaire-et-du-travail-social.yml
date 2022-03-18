@@ -19,6 +19,7 @@ profils:
   - type: lyceen
     conditions: []
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/fonds-daide-regional-aux-etudiants-du-secteur-sanitaire-et-du-travail-social
+teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/fonds-daide-regional-aux-etudiants-du-secteur-sanitaire-et-du-travail-social
 type: float
 unit: €

@@ -142,9 +142,9 @@ const hasBourseCriteresSociaux = () => {
     .should("be.visible")
 }
 
-const hasIleDeFranceAideBachelierMeritants = () => {
-  const name = /Aide aux bacheliers méritants/
-  const id = "ile-de-france-aide-aux-bacheliers-meritants"
+const hasIleDeFranceAideAuMerite = () => {
+  const name = /Aide au mérite/
+  const id = "ile-de-france-aide-au-merite"
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find(".aj-droit-estime-value")
@@ -167,6 +167,6 @@ export default {
   hasAAH,
   hasBourseCriteresSociaux,
   captureFiscalResources,
-  hasIleDeFranceAideBachelierMeritants,
+  hasIleDeFranceAideAuMerite,
   hasAideVeloParis,
 }

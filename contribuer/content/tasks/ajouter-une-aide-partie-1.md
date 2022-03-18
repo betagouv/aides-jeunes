@@ -28,21 +28,9 @@ Pour bénéficier de l'aide, il faut :
 * Ne pas être titulaire du baccalauréat
 * Être inscrit à la formation au DAEU dans une université francilienne
 
-Voilà quelques exemples de critères :
 
-* Résider dans la ville de Canéjan
-* Résider dans le département du Bas-Rhin
-* Être âgé de plus de 65 ans
-*  bénéficiaire du RSA
-* Être parent isolé
-* Avoir un taux d'incapacité supérieur à 80%
-* Avoir des ressources mensuelles inférieures au SMIC
 
-Il arrive que certains critères soient plus complexes, *être âgé de plus de 65 ans ou de plus de 60 avec un taux d'incapacité de plus de 50%* en est un exemple.
 
-Il arrive aussi que des critères puissent être regroupés en un critère moins précis mais qui évite de faire une longue énumération. Par exemple, *Avoir signé un CDD de plus de 3 mois ou un CDI ou être entrée dans une formation de plus de 6 mois* peut être résumée par *Avoir repris une activité*.
-
-Cette liste sera un point de départ pour coder les règles de votre aide dans le moteur de calculs.
 
 ## Renseigner les informations relatives à l'aide - 10 minutes max
 

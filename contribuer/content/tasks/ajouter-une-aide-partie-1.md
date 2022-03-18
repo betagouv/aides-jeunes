@@ -27,10 +27,7 @@ Pour bénéficier de l'aide, il faut :
 * Habiter en Ile-de-France
 * Ne pas être titulaire du baccalauréat
 * Être inscrit à la formation au DAEU dans une université francilienne
-
-
-
-
+* Déposer un dossier de demande d'aide régionale sur la plateforme des aides régionales [mesdemarches.iledefrance.fr](https://mesdemarches.iledefrance.fr/), lors du prochain appel à candidatures
 
 ## Renseigner les informations relatives à l'aide - 10 minutes max
 

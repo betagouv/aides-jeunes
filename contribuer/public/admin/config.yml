@@ -708,7 +708,6 @@ collections:
         hint: Pour les communes, départements, régions
         name: code_insee
         widget: string
-        required: false
       - label: Code SIREN
         hint: En l'absence de code INSEE
         name: code_siren

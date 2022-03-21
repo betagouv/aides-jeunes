@@ -34,7 +34,7 @@ profils:
     conditions: []
   - type: service_civique
     conditions: []
-link: Rias_familles_20211019.pdf
+link: https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/jeunesse/l-aide-a-l-autonomie-des-jeunes
 form: https://caf.fr/sites/default/files/caf/711/Offre%20de%20services/Formulaires/Demande%20aide%20%C3%A0%20l%27autonomie%20des%20jeunes.pdf
 type: float
 unit: €

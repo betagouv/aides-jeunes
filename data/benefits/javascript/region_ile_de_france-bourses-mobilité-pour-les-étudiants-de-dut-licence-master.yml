@@ -31,5 +31,5 @@ instructions: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root
 type: float
 unit: €
 periodicite: mensuelle
-legend: ""
+legend: maximum
 montant: 450

@@ -87,7 +87,8 @@
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.14",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.7.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

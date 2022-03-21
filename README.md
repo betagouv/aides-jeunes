@@ -188,6 +188,8 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 - `node tools/mjms.js` allows you to generate emails which contain the result of a simulation or survey.
 
+- `node tools/generate-matches-worksheet.js` allows you to generate a worksheet used for correspondence work between mobility benefits from Pôle Emploi's API and Aides Jeunes benefits.
+
 ## NetlifyCMS development
 
 It is possible to locally debug changes in NetlifyCMS configuration.

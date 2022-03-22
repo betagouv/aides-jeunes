@@ -1,12 +1,10 @@
 label: Aide à l'autonomie des jeunes
 institution: caf_saone_et_loire
 description: >-
-  Vous êtes étudiant, apprenti ou alternant et cumulez deux logements pour la
-  réalisation d’un stage : subvention maximum de 1 000 €.
+  Cette aide vous permet de bénéficier d'une subvention ou d'un prêt allant
+  jusqu'à 1000€ en fonction de votre profil (voir les détails des profils 
 
-  Vous êtes apprenti ou alternant, confronté à des frais de mobilité importants pour vous rendre sur votre lieu d’études, d’apprentissage ou d’alternance : subvention de 1 000 €.
-
-  Vous êtes salarié pour votre première installation dans un logement autonome : prêt maximum de 1 000 €
+  <a target="_blank" rel="noopener" href="https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/jeunesse/l-aide-a-l-autonomie-des-jeunes">ici</a>).
 conditions_generales:
   - type: age
     operator: <=
@@ -17,6 +15,9 @@ conditions_generales:
   - type: quotient_familial
     floor: 1200
     period: month
+  - type: age
+    operator: ">="
+    value: 16
 profils:
   - type: lyceen
     conditions: []
@@ -39,4 +40,5 @@ form: https://caf.fr/sites/default/files/caf/711/Offre%20de%20services/Formulair
 type: float
 unit: €
 periodicite: ponctuelle
+legend: maximum
 montant: 1000

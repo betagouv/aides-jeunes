@@ -23,7 +23,7 @@ function updateLoyer(answers) {
       fieldName: "loyer",
       value: {
         loyer: answers[indexOfLoyer]?.value,
-        charges_locatives: answers[indexOfChargesLocatives].value,
+        charges_locatives: answers[indexOfChargesLocatives]?.value || 0,
       },
     }
 

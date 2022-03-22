@@ -18,6 +18,8 @@ link: https://www.bretagne.bzh/aides/fiches/qualif-vae/
 teleservice: https://www.bretagne.bzh/aides/fiches/qualif-vae/
 instructions: https://www.bretagne.bzh/aides/fiches/qualif-vae/
 prefix: l’
-type: bool
+type: float
 unit: €
 periodicite: autre
+legend: maximum
+montant: 700

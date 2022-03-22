@@ -1,39 +1,20 @@
 /*
- * Supprime les fields plus utilisés
+ * Supprime le field nombre_enfants qui n'est plus utilisé
  */
 
 const VERSION = 6
 
-const ANSWER_TO_REMOVE = [
-  {
-    id: "nombre_enfants",
-    entityName: "individu",
-    fieldName: "nombre_enfants",
-  },
-]
-
-function removeOldField(answers, { id, entityName, fieldName }) {
-  const index = answers.findIndex(
-    (answer) =>
-      answer.id === id &&
-      answer.entityName === entityName &&
-      answer.fieldName === fieldName
+function removeOldField(answers, field) {
+  const newAnswers = answers[field].filter(
+    (answer) => answer.fieldName !== "nombre_enfants"
   )
-  if (index > -1) {
-    answers.splice(index, 1)
-  }
-}
-
-function removeOldFields(answers) {
-  ANSWER_TO_REMOVE.forEach((answerToRemove) =>
-    removeOldField(answers, answerToRemove)
-  )
+  answers.set(field, newAnswers, { strict: true })
 }
 
 module.exports = {
   function: function (simulation) {
-    removeOldFields(simulation.answers.all)
-    removeOldFields(simulation.answers.current)
+    removeOldField(simulation.answers, "all")
+    removeOldField(simulation.answers, "current")
     return simulation
   },
   version: VERSION,

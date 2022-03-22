@@ -212,6 +212,15 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
 }
 exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
+function filterRequestedVariablesBySituation(requestedVariables, situation) {
+  const variables = { ...requestedVariables }
+  // exclusion du département 28 parce que le fsl est mieux simulé par les variables `eure_et_loir_eligibilite_*` plutot que dans la variable `fsl_eligibilite`
+  if (situation.menage.depcom?.startsWith("28")) {
+    delete variables.fsl_eligibilite
+  }
+  return variables
+}
+
 exports.buildOpenFiscaRequest = function (sourceSituation) {
   const situation = sourceSituation.toObject
     ? migrations.apply(sourceSituation).toObject()
@@ -233,9 +242,13 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
   const periods = common.getPeriods(situation.dateDeValeur)
+  const requestedVariables = filterRequestedVariablesBySituation(
+    common.requestedVariables,
+    situation
+  )
 
   const prestationsFinancieres = pickBy(
-    common.requestedVariables,
+    requestedVariables,
     function (definition) {
       return (
         definition.type === "float" && definition.openfiscaPeriod === "month"
@@ -251,7 +264,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   )
 
   const prestationsFinancieresAtZeroRecently = pickBy(
-    common.requestedVariables,
+    requestedVariables,
     function (definition) {
       return (
         definition.type === "float" &&
@@ -270,7 +283,7 @@ exports.buildOpenFiscaRequest = function (sourceSituation) {
   last3MonthsDuplication(testCase, situation.dateDeValeur)
 
   const prestationsWithInterest = pickBy(
-    common.requestedVariables,
+    requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)
     }

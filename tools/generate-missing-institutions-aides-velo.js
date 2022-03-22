@@ -52,7 +52,7 @@ if (missingCommune.length) {
         imgSrc: `img/logo_${commune_slug}.png`,
         prefix: "de la",
         type: "commune",
-        id: commune.code,
+        code_insee: commune.code,
       }
       createYamlFile(commune_slug, institution)
 
@@ -82,7 +82,7 @@ if (missingEPCI.length) {
         imgSrc: `img/logo_${epci_slug}.png`,
         prefix: "de la",
         type: "epci",
-        id: EPCIMatch.code,
+        code_siren: EPCIMatch.code,
       }
 
       createYamlFile(epci_slug, institution)

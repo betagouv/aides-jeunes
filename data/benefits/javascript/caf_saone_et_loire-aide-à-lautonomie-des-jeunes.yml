@@ -1,10 +1,8 @@
 label: Aide à l'autonomie des jeunes
 institution: caf_saone_et_loire
-description: >-
-  Cette aide vous permet de bénéficier d'une subvention ou d'un prêt allant
-  jusqu'à 1000€ en fonction de votre profil (voir les détails des profils 
-
-  <a target="_blank" rel="noopener" href="https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/jeunesse/l-aide-a-l-autonomie-des-jeunes">ici</a>).
+description: La Caf attribue une aide pour favoriser l'autonomie des jeunes qui
+  sont dans un parcours de formation ou d'insertion professionnelle en prenant
+  en charge une partie des frais liés au logement ou à la mobilité.
 conditions_generales:
   - type: age
     operator: <=

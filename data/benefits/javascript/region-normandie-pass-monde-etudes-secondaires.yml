@@ -1,0 +1,40 @@
+label: pass Monde Etudes secondaires
+imgSrc: /public/img/benefits/logo-pass-monde.jpg
+institution: region_normandie
+description: L’aide Pass Monde accompagne la mobilité individuelle des
+  normand(e)s inscrit(e)s dans un cursus d’étude du secondaire en formation
+  initiale ou continue (lycéen(ne)s, apprenti(e)s, jeunes en contrats de
+  professionnalisation et stagiaires de la formation professionnelle).
+conditions:
+  - Être inscrit(e) dans un établissement normand ou dans une autre région de
+    France si la filière ou le type de cursus n'existe pas en Normandie.
+  - Effectuer une mobilité d'un minimum de 4 semaines (financement jusqu'à 26
+    semaines maximum).
+  - Déposer la demande avant le départ en mobilité.
+  - Présenter un projet qui se déroule en Europe ou hors Europe (DOM TOM non
+    éligibles).
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 30
+  - type: regions
+    values:
+      - "28"
+  - type: quotient_familial
+    floor: 30000
+    period: year
+profils:
+  - type: lyceen
+    conditions: []
+link: https://www.normandie.fr/pass-monde-etudes-secondaires
+teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+instructions: ""
+type: float
+unit: €
+periodicite: autre
+legend: Maximum
+montant: 880
+interestFlag: _interetEtudesEtranger

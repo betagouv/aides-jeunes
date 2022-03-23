@@ -43,6 +43,12 @@
     </div>
     <div class="aj-actions">
       <BackButton @click="goBack"></BackButton>
+      <router-link
+        v-if="showResultButton"
+        class="button next-button"
+        to="/simulation/resultats"
+        >Accéder aux résultats</router-link
+      >
     </div>
   </div>
 </template>
@@ -57,12 +63,14 @@ import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "../../../lib/answers"
+import ProgressMixin from "@/mixins/progress-mixin"
 
 export default {
   name: "Recapitulatif",
   components: {
     BackButton,
   },
+  mixins: [ProgressMixin],
   computed: {
     activeJourney() {
       return this.$store.getters.getAllAnsweredSteps
@@ -87,6 +95,12 @@ export default {
             ),
           }
         })
+    },
+    showResultButton() {
+      return (
+        this.progress === 1 &&
+        this.$router.options.history.state.back !== "/simulation/resultats"
+      )
     },
   },
   methods: {

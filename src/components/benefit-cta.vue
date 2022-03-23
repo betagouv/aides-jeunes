@@ -15,6 +15,7 @@
         benefit.institution.etablissements.length > 0 &&
         $route.name !== 'aide'
       "
+      id="cta-proximity"
       v-analytics="{
         name: benefit.label,
         action: 'show-locations',

@@ -30,9 +30,9 @@ profils:
           - licence_3
           - master_1
           - master_2
-link: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=b9557056-0f53-435e-80d5-1bc1e3339bff;1.0
+link: https://www.iledefrance.fr/bourses-mobilite-ile-de-france-informations-aux-etudiants-de-dut-licence-master#
 teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self
-instructions: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=b9557056-0f53-435e-80d5-1bc1e3339bff;1.0
+instructions: https://www.iledefrance.fr/bourses-mobilite-ile-de-france-informations-aux-etudiants-de-dut-licence-master#
 prefix: les
 type: float
 unit: €

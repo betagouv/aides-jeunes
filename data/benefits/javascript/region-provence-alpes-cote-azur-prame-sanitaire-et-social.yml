@@ -15,6 +15,9 @@ conditions:
   - Bénéficier d'une indemnité de stage inférieure à 100 € par semaine, et ne
     pas bénéficier d'Erasmus ou d'une autre aide à la mobilité internationale.
 conditions_generales:
+  - type: regions
+    values:
+      - "93"
   - type: quotient_familial
     floor: 24000
     period: year

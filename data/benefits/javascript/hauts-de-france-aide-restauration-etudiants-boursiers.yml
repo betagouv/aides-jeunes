@@ -1,19 +1,23 @@
 label: aide régionale à la restauration des étudiants boursiers
 institution: hauts_de_france
-description: Cette aide permet d'offrir la gratuité des repas aux étudiants dans
-  les restaurants universitaires pour équilibrer l'alimentation des
+description: Cette aide permet d'offrir la gratuité des repas aux étudiant(e)s
+  dans les restaurants universitaires pour équilibrer l'alimentation des
   étudiant(e)s, à raison d'un repas par service, au déjeuner et/ou au dîner,
   jusqu'à 100 repas sur l'année universitaire.
 conditions:
   - Être étudiant(e) inscrit(e) dans un établissement d'enseignement supérieur,
-    public ou privé, partenaire de la Région, ou inscrits dans un établissement
-    dispensant une formation sanitaire ou sociale géré par la Région.
+    public ou privé, partenaire de la Région, ou inscrit(e)s dans un
+    établissement dispensant une formation sanitaire ou sociale géré par la
+    Région.
   - Être boursiers du CROUS ou de la Région Hauts-de-France, à l'un des échelons
     de bourse 4, 5, 6, 7 ou bien signalés par le service social du CROUS.
 conditions_generales:
   - type: age
     operator: <=
     value: 35
+  - type: regions
+    values:
+      - "32"
 profils:
   - type: enseignement_superieur
     conditions: []

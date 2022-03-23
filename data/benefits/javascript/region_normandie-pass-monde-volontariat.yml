@@ -1,0 +1,56 @@
+label: Pass Monde Volontariat
+imgSrc: /public/img/benefits/logo-pass-monde.jpg
+institution: region_normandie
+description: "La Région Normandie accompagne les jeunes normand(e)s âgé(e)s de
+  15 à 30 ans engagé(e)s dans une mobilité internationale avec l’Office
+  Franco-Allemand pour la Jeunesse ou l’Office Franco-Québécois pour la Jeunesse
+  ou l’un des volontariats suivants : le Service Volontaire Européen/Corps
+  Européen de Solidarité, le Service Civique International, le Volontariat de
+  Solidarité Internationale."
+conditions:
+  - Être inscrit(e) dans un établissement normand ou dans une autre région de
+    France si la filière ou le type de cursus n'existe pas en Normandie.
+  - Effectuer une mobilité d'un minimum de 4 semaines (financement jusqu'à 26
+    semaines maximum).
+  - Déposer la demande avant le départ en mobilité.
+  - Présenter un projet qui se déroule en Europe ou hors Europe (DOM TOM non
+    éligibles).
+  - Répondre aux critères d'éligibilité des différents types de volontariat.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 30
+  - type: regions
+    values:
+      - "28"
+  - type: quotient_familial
+    floor: 30000
+    period: year
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: service_civique
+    conditions: []
+link: https://www.normandie.fr/pass-monde-volontariat
+teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+type: float
+unit: €
+periodicite: annuelle
+legend: Maximum
+montant: 1440
+interestFlag: _interetEtudesEtranger

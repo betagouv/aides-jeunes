@@ -97,7 +97,10 @@ export default {
         })
     },
     showResultButton() {
-      return this.progress === 1
+      return (
+        this.progress === 1 &&
+        this.$router.options.history.state.back !== "/simulation/resultats"
+      )
     },
   },
   methods: {

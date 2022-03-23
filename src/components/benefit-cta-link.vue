@@ -1,5 +1,6 @@
 <template>
   <a
+    :id="`cta-${type}`"
     v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     :href="getURL(link)"
     target="_blank"

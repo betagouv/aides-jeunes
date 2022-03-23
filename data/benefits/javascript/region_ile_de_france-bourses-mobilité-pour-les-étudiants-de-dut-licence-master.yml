@@ -1,11 +1,16 @@
 label: Bourses Mobilité pour les étudiants de DUT, licence, master
 imgSrc: /public/img/benefits/logo_ridf_2019_hd.jpg
 institution: region_ile_de_france
-description: La Région Ile-de-France apporte aux étudiants franciliens inscrits
-  en DUT, licence ou master dans un établissement francilien partenaire une aide
-  financière pour réaliser un stage ou une période d'études à l'étranger, d'une
-  durée de 1 à 10 mois maximum , durant l'année universitaire.
-conditions: []
+description: La Région Ile-de-France apporte aux étudiant(e)s francilien(ne)s
+  inscrit(e)s en DUT, licence ou master dans un établissement francilien
+  partenaire une aide financière pour réaliser un stage ou une période d'études
+  à l'étranger, d'une durée de 1 à 10 mois maximum, durant l'année
+  universitaire.
+conditions:
+  - Être inscrit(e) dans une université, un grand établissement ou une école
+    figurant sur la <a target="_blank" rel="noopener"
+    href="https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=e3ff2b1c-500a-48fd-a2b5-1e3f2b93be81;1.0
+    ">liste des établissements partenaires</a> de la Région.
 conditions_generales:
   - type: regions
     values:
@@ -27,7 +32,8 @@ profils:
           - master_2
 link: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=b9557056-0f53-435e-80d5-1bc1e3339bff;1.0
 teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self
-instructions: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=e3ff2b1c-500a-48fd-a2b5-1e3f2b93be81;1.0
+instructions: https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=b9557056-0f53-435e-80d5-1bc1e3339bff;1.0
+prefix: les
 type: float
 unit: €
 periodicite: mensuelle

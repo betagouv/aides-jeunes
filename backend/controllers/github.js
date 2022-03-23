@@ -34,37 +34,34 @@ function validateToken(req) {
   )
 }
 
-function validateCookieToken(req) {
+function validateCookieToken(github_payload) {
   return axios.get(config.github.authenticated_url, {
     headers: {
       Accept: "application/json",
-      Authorization: `token ${req.cookies["github_token"].access_token}`,
+      Authorization: `token ${github_payload.access_token}`,
     },
   })
 }
 
 exports.access = async (req, res, next) => {
-  if (req.cookies && req.cookies["github_token"]) {
+  let github_payload = req.cookies && req.cookies["github_token"]
+  if (req.query.code) {
+    const result = await validateToken(req, res)
+    if (result.status === 200 && result.data.access_token) {
+      github_payload = result.data
+      res.cookie("github_token", github_payload)
+    }
+  }
+  if (github_payload) {
     try {
-      const result = await validateCookieToken(req)
+      const result = await validateCookieToken(github_payload)
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
       }
       // If cookie validation fails an error will be triggered
       // eslint-disable-next-line no-empty
-    } catch (e) {
-      console.log("GITHUB LOG: cookie token validation failed:", e)
-    }
+    } catch (e) {}
   }
-  if (req.query.code) {
-    const result = await validateToken(req, res)
-    if (result.status === 200 && result.data.access_token) {
-      res.cookie("github_token", result.data)
-      return next()
-    }
-    console.log("GITHUB LOG: token validation failed:", req.query.code, result)
-  }
-  console.log("GITHUB LOG: authentication started, no cookie, no token")
   return authenticate(req, res)
 }
 

@@ -69,7 +69,9 @@ export default {
     const benefit = Institution.benefits.all
       .filter((benefit) => benefit.institution.etablissements?.length > 0)
       .find((benefit) => benefit.id === this.$route.params.benefit_id)
-    const types = benefit ? benefit.institution.etablissements : []
+    const types = benefit
+      ? benefit.etablissements || benefit.institution.etablissements
+      : []
 
     axios
       .get(

@@ -11,8 +11,8 @@
     />
     <router-link
       v-if="
-        benefit.institution.etablissements &&
-        benefit.institution.etablissements.length > 0 &&
+        benefit.etablissements?.length &&
+        benefit.institution.etablissements?.length &&
         $route.name !== 'aide'
       "
       id="cta-proximity"

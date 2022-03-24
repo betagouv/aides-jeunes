@@ -16,3 +16,5 @@ openfiscaPeriod: thisMonth
 prefix: la
 setToZeroRecently: true
 institution: etat
+etablissements:
+  - mission_locale

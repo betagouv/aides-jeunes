@@ -1,0 +1,25 @@
+label: Aide QUALIF VAE
+institution: region_bretagne
+description: Cette aide s’adresse aux personnes en recherche d’emploi qui
+  entament une démarche de validation des acquis de l’expérience (VAE). Il
+  s’agit de financer l’accompagnement individuel nécessaire pour la présentation
+  de leur dossier devant le jury de validation.
+conditions:
+  - Être en recherche d'emploi inscrit(e) à Pôle Emploi et justifier d’au moins
+    un an d’expérience professionnelle dans le domaine visé.
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.bretagne.bzh/aides/fiches/qualif-vae/
+teleservice: https://www.bretagne.bzh/aides/fiches/qualif-vae/
+instructions: https://www.bretagne.bzh/aides/fiches/qualif-vae/
+prefix: l’
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 700

@@ -1,6 +1,13 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-const { animation, baseURL, matomo, statistics } = require("./backend/config")
+const {
+  animation,
+  baseURL,
+  github,
+  matomo,
+  netlifyContributionURL,
+  statistics,
+} = require("./backend/config")
 const configureAPI = require("./configure")
 const mock = require("./mock")
 const webpack = require("webpack")
@@ -16,6 +23,8 @@ process.env.VUE_APP_CONTEXT_NAME = "1jeune1solution"
 process.env.VUE_APP_BASE_URL = baseURL
 process.env.VUE_APP_CONTEXT = process.env.CONTEXT
 process.env.VUE_APP_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
+process.env.VUE_APP_BENEFIT_URL = `${github.repository_url}/blob/master/data/benefits`
+process.env.VUE_APP_NETLIFY_CONTRIBUTION_URL = `${netlifyContributionURL}`
 process.env.VUE_APP_STATS_URL = statistics?.url ? statistics.url : ""
 process.env.VUE_APP_STATS_VERSION = statistics?.version ? statistics.version : 2
 process.env.VUE_APP_NETLIFY_PR = process.env.BRANCH

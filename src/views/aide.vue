@@ -37,6 +37,10 @@
               :ressources-year-minus-two-captured="true"
             />
           </div>
+          <DroitsContributions
+            :droit="benefit"
+            :show-contribution-links="true"
+          />
         </div>
       </div>
     </article>
@@ -46,11 +50,13 @@
 <script>
 import Institution from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
+import DroitsContributions from "@/components/droits-contributions.vue"
 
 export default {
   name: "AideDetails",
   components: {
     DroitsDetails,
+    DroitsContributions,
   },
   data() {
     return {}

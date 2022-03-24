@@ -117,21 +117,6 @@
             <img src="@/assets/images/doigt.svg" /> Démarches pour les
             professions agricoles
           </a>
-
-          <div class="is-align-vertically-center">
-            <a
-              v-if="brokenLinkButtonState === 'show'"
-              class="text-center"
-              @click="alertBrokenLink()"
-              >Lien invalide ?</a
-            >
-            <span
-              v-else-if="brokenLinkButtonState === 'showThanksMessage'"
-              class="text-center"
-              >Merci pour votre aide ! Nous réglerons ce problème très
-              prochainement.</span
-            >
-          </div>
         </div>
       </div>
     </div>
@@ -161,25 +146,9 @@ export default {
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
-  data() {
-    return {
-      brokenLinkButtonState: "show",
-    }
-  },
   computed: {
     aCharge() {
       return Situation.aCharge(this.$store.getters.situation)
-    },
-  },
-  methods: {
-    alertBrokenLink() {
-      this.brokenLinkButtonState = "showThanksMessage"
-      setTimeout(() => (this.brokenLinkButtonState = null), 5000)
-      this.$matomo?.trackEvent(
-        "General",
-        "Erreur lien aide invalide",
-        this.droit.label
-      )
     },
   },
 }

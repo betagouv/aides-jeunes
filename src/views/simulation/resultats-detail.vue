@@ -37,7 +37,9 @@
         :patrimoine-captured="patrimoineCaptured"
         :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
       />
+      <DroitsContributions v-if="droit" :droit="droit" />
     </div>
+
     <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
       <Feedback />
     </div>
@@ -46,6 +48,7 @@
 
 <script>
 import DroitsDetails from "../../components/droits-details.vue"
+import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback"
 import LoadingModal from "@/components/loading-modal"
 import ResultatsMixin from "@/mixins/resultats"
@@ -55,6 +58,7 @@ export default {
   name: "SimulationResultatsDetail",
   components: {
     DroitsDetails,
+    DroitsContributions,
     Feedback,
     LoadingModal,
   },

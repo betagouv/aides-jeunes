@@ -15,7 +15,9 @@ const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 const parseArgs = require("minimist")
 const benefits = require("./data/all")
 
-process.env.VUE_APP_BENEFIT_COUNT = benefits.all.length
+process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
+  (benefit) => !benefit.private
+).length
 process.env.VUE_APP_MATOMO_ID = matomo.id
 process.env.VUE_APP_VALIDATION_DELAY = animation?.delay || 0
 process.env.VUE_APP_CONTACT_EMAIL = "aides-jeunes@beta.gouv.fr"

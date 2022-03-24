@@ -1,0 +1,31 @@
+label: aides PREPA
+institution: region_bretagne
+description: >-
+  En amont d’une formation qualifiante, la gamme « PREPA » permet aux publics de
+  se préparer avant d’intégrer une formation qualifiante ou d’accéder
+  directement à un emploi. 3 aides existent :
+
+
+  <a target="_blank" rel="noopener" href="https://www.bretagne.bzh/aides/fiches/copie-de-prepa-projet/">PREPA Projet</a>
+   : une formation pour concrétiser son projet, 
+
+  <a target="_blank" rel="noopener" href="https://www.bretagne.bzh/aides/fiches/prepa-cles/">PREPA Clés</a> : une formation pour développer ses compétences et 
+
+
+  <a target="_blank" rel="noopener" href="https://www.bretagne.bzh/aides/fiches/prepa-avenir/">PREPA Avenir</a> : une formation pour construire son avenir
+conditions:
+  - Être en recherche d’emploi, sans emploi ou en emploi précaire, inscrit(e) ou
+    non à Pôle Emploi.
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.bretagne.bzh/aides/?mot-clef=%22prepa%22&cloture=0&showall=0
+teleservice: https://aides.bretagne.bzh/account-management/crbr-demandeurs/ux/#/login?redirectTo=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-crbr-portail-depot-demande-aides&footer=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fmentions-legales,Mentions%20l%C3%A9gales,_self
+instructions: ""
+type: bool
+unit: €
+periodicite: ponctuelle

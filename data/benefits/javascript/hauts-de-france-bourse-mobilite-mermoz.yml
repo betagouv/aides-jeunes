@@ -16,6 +16,9 @@ conditions_generales:
   - type: regions
     values:
       - "32"
+  - type: quotient_familial
+    floor: 30000
+    period: year
 profils:
   - type: enseignement_superieur
     conditions: []

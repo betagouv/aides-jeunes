@@ -1,5 +1,5 @@
 const auth = require("basic-auth")
-const answers = require("../answers")
+const simulationController = require("../simulation")
 const jwt = require("jsonwebtoken")
 const moment = require("moment")
 const Mustache = require("mustache")
@@ -45,7 +45,7 @@ const teleservices = [
     public: true,
     destination: {
       label: "en ligne",
-      url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/answers/via/{{token}}&host={{&openFiscaURL}}",
+      url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/simulation/via/{{token}}&host={{&openFiscaURL}}",
     },
   },
   {
@@ -53,7 +53,7 @@ const teleservices = [
     class: OpenFiscaAxe,
     public: true,
     destination: {
-      url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/answers/via/{{token}}",
+      url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/simulation/via/{{token}}",
     },
   },
   {
@@ -103,12 +103,12 @@ function fail(res, msg) {
 exports.metadataResponseGenerator = function (teleservice) {
   return function (req, res) {
     const payload = {
-      id: req.answers._id,
+      id: req.simulation._id,
       scope: teleservice.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }
 
-    const token = jwt.sign(payload, req.answers.token)
+    const token = jwt.sign(payload, req.simulation.token)
 
     return res.json({
       fields: createClass(teleservice, req.situation).toInternal(),
@@ -169,11 +169,11 @@ exports.checkCredentials = function (req, res, next) {
 }
 
 /*
- * This callback attachs the appropriate answers
+ * This callback attachs the appropriate simulation
  * It requires a payload with an identifier
  */
 exports.attachPayloadSituation = function (req, res, next) {
-  answers.answers(req, res, next, req.payload.id)
+  simulationController.simulation(req, res, next, req.payload.id)
 }
 
 /*
@@ -182,7 +182,7 @@ exports.attachPayloadSituation = function (req, res, next) {
  * It requires a situation
  */
 exports.verifyRequest = function (req, res, next) {
-  jwt.verify(req.token, req.answers.token, function (err) {
+  jwt.verify(req.token, req.simulation.token, function (err) {
     if (err) {
       return fail(res, err)
     }

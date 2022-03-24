@@ -28,7 +28,11 @@ export default {
   },
   mixins: [createDepcomMixin()],
   data: function () {
-    const answer = getAnswer(this.$store.state.answers.all, "menage", "depcom")
+    const answer = getAnswer(
+      this.$store.state.simulation.answers.all,
+      "menage",
+      "depcom"
+    )
     return {
       codePostal: answer ? answer._codePostal : undefined,
       nomCommune: answer ? answer._nomCommune : undefined,

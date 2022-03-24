@@ -99,7 +99,7 @@ export default {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
     const value = getAnswer(
-      this.$store.state.answers.all,
+      this.$store.state.simulation.answers.all,
       entityName,
       this.$route.params.fieldName,
       id

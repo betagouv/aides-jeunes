@@ -49,14 +49,14 @@ export default {
   },
   methods: {
     restoreLatest: function () {
-      const lastestSituation = document.cookie
+      const lastestSimulation = document.cookie
         .split("; ")
         .reduce((accum, pair) => {
           const [key, value] = pair.split("=", 2)
           accum[key] = value
           return accum
-        }, {}).lastestSituation
-      if (!lastestSituation) {
+        }, {}).lastestSimulation
+      if (!lastestSimulation) {
         this.$matomo?.trackEvent("General", "redirection", this.$route.path)
         return this.$store.dispatch("redirection", (route) =>
           this.$router.push(route)
@@ -65,10 +65,10 @@ export default {
 
       this.$matomo?.trackEvent("General", "compute", this.$route.path)
       this.$store
-        .dispatch("fetch", lastestSituation)
+        .dispatch("fetch", lastestSimulation)
         .then(() => this.$store.dispatch("compute"))
 
-      return lastestSituation
+      return lastestSimulation
     },
     mock: function (detail) {
       if (this.$route.query.debug !== undefined) {

@@ -1,29 +1,29 @@
 /* eslint-disable no-console */
 const Followup = require("mongoose").model("Followup")
 
-const situation = require("./answers")
 const pollResult = require("../lib/mattermost-bot/poll-result")
+const simulationController = require("./simulation")
 
 const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
-    .populate("answers")
+    .populate("simulation")
     .exec(function (err, followup) {
       if (err) {
         return next(err)
       }
-      if (!followup?.answers?._id) {
+      if (!followup?.simulation?._id) {
         return res.redirect("/")
       }
       req.followup = followup
-      situation.answers(req, res, next, followup.answers)
+      simulationController.simulation(req, res, next, followup.simulation)
     })
 }
 
 exports.resultRedirect = function (req, res) {
-  situation.attachAccessCookie(req, res)
-  res.redirect(req.answers.returnPath)
+  simulationController.attachAccessCookie(req, res)
+  res.redirect(req.simulation.returnPath)
 }
 
 exports.persist = function (req, res) {
@@ -32,7 +32,7 @@ exports.persist = function (req, res) {
   }
 
   Followup.create({
-    answers: req.answers,
+    simulation: req.simulation,
     email: req.body.email,
     surveyOptin: req.body.surveyOptin,
   })

@@ -96,15 +96,15 @@ function renderAsHtml(followup, benefits, parameters) {
 }
 
 async function render(followup) {
-  const populated = await (followup.populated("answers")
+  const populated = await (followup.populated("simulation")
     ? Promise.resolve(followup)
-    : followup.populate("answers").execPopulate())
+    : followup.populate("simulation").execPopulate())
 
   const parameters = await openfiscaController.getParameters(
-    populated.answers.dateDeValeur
+    populated.simulation.dateDeValeur
   )
 
-  const situationResults = await populated.answers.compute()
+  const situationResults = await populated.simulation.compute()
   const droitsEligibles = situationResults.droitsEligibles
   followup.benefits = droitsEligibles.map((benefit) => ({
     id: benefit.id,
@@ -118,7 +118,7 @@ async function render(followup) {
     renderAsHtml(followup, droitsEligibles, parameters),
   ]).then(function (values) {
     return {
-      subject: `[${followup.answers._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+      subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
       text: values[0],
       html: values[1].html,
       attachments: values[1].attachments,

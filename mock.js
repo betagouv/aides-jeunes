@@ -40,17 +40,17 @@ function mock({ app }) {
 
   let cache = {}
   app.route("/api/outils/communes/:codePostal").get(outils.communes)
-  app.post("/api/answers", function (req, res) {
+  app.post("/api/simulation", function (req, res) {
     const data = Object.assign({ _id: ID() }, req.body)
     cache[data._id] = data
     res.send(data)
   })
 
-  app.get("/api/answers/:id", function (req, res) {
+  app.get("/api/simulation/:id", function (req, res) {
     res.send(cache[req.params.id])
   })
 
-  app.get("/api/answers/:id/openfisca-response", function (req, res, next) {
+  app.get("/api/simulation/:id/openfisca-response", function (req, res, next) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)
@@ -58,7 +58,6 @@ function mock({ app }) {
         if (err) {
           return next(err)
         }
-
         res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
       })
     } catch {
@@ -66,7 +65,7 @@ function mock({ app }) {
     }
   })
 
-  app.get("/api/answers/:id/openfisca-request", function (req, res) {
+  app.get("/api/simulation/:id/openfisca-request", function (req, res) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)

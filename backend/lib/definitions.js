@@ -105,7 +105,6 @@ const individuBase = {
       "velo_motorisation",
     ],
   },
-  _interetAidesVeloElectrique: Boolean,
   _interetEtudesEtranger: Boolean,
   _interetPermisDeConduire: Boolean,
   garde_alternee: Boolean,
@@ -174,8 +173,8 @@ const statutOccupationLogementValues = [
 
 const menage = {
   aide_logement_date_pret_conventionne: String,
-  charges_locatives: Number,
   _codePostal: String,
+  charges_locatives: Number,
   coloc: Boolean,
   date_entree_logement: Date,
   _departement: String,
@@ -241,6 +240,15 @@ const ANSWER_ENTITY_NAMES = [
   "menage",
 ]
 
+// Liste des champs n'existant plus dans le simulateur mais stockés dans les anciennes simulation
+const LEGACY_FIELD_NAMES = [
+  "_continuite_etudes",
+  "plus_haut_diplome_niveau",
+  "plus_haut_diplome_date_obtention",
+  "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
+  "_boursier_derniere_annee_etudes",
+]
+
 const ANSWER_FIELD_NAMES = [
   ...Object.keys(famille),
   ...Object.keys(individuBase),
@@ -248,6 +256,7 @@ const ANSWER_FIELD_NAMES = [
   ...Object.keys(parents),
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
+  ...LEGACY_FIELD_NAMES,
 ]
 
 const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]

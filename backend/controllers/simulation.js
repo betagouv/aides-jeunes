@@ -6,19 +6,24 @@ const assign = require("lodash/assign")
 const { generateSituation } = require("../../lib/situations")
 const openfisca = require("../lib/openfisca")
 const openfiscaTest = require("../lib/openfisca/test")
-const Answers = require("mongoose").model("Answer")
+const migrations = require("../lib/migrations")
+const Simulation = require("mongoose").model("Simulation")
 
-exports.answers = function (req, res, next, answersId) {
-  if (answersId?._id) {
-    req.answers = answersId
-    req.situation = generateSituation(answersId)
+function getSimulationOnRequest(req, simulation) {
+  req.simulation = migrations.apply(simulation)
+  req.situation = generateSituation(req.simulation)
+}
+
+exports.simulation = function (req, res, next, simulationId) {
+  if (simulationId?._id) {
+    getSimulationOnRequest(req, simulationId)
     return next()
   }
 
-  Answers.findById(answersId, (err, answers) => {
+  Simulation.findById(simulationId, (err, simulation) => {
     if (err) return next(err)
-    req.answers = answers
-    req.situation = generateSituation(answers)
+
+    getSimulationOnRequest(req, simulation)
     next()
   })
 }
@@ -29,17 +34,21 @@ exports.attachAccessCookie = function (req, res) {
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
   }
-  res.cookie(req.answers.cookieName, req.answers.token, cookiesParameters)
-  res.cookie("lastestSituation", req.answers._id.toString(), cookiesParameters)
+  res.cookie(req.simulation.cookieName, req.simulation.token, cookiesParameters)
+  res.cookie(
+    "lastestSimulation",
+    req.simulation._id.toString(),
+    cookiesParameters
+  )
 }
 
 exports.validateAccess = function (req, res, next) {
-  if (req.answers?.isAccessible(req.cookies)) return next()
+  if (req.simulation?.isAccessible(req.cookies)) return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 
 exports.show = function (req, res) {
-  res.send(req.answers)
+  res.send(req.simulation)
 }
 
 function clearCookies(req, res) {
@@ -47,7 +56,7 @@ function clearCookies(req, res) {
 
   const keys = Object.keys(req.cookies)
   const situationCookies = filter(keys, function (k) {
-    return k.startsWith(Answers.cookiePrefix)
+    return k.startsWith(Simulation.cookiePrefix)
   })
   situationCookies.sort()
 
@@ -69,15 +78,15 @@ exports.create = function (req, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  return Answers.create(
+  return Simulation.create(
     omit(req.body, "createdAt", "status", "token"),
-    (err, persistedAnswers) => {
+    (err, persistedSimulation) => {
       if (err) return next(err)
 
       clearCookies(req, res)
-      req.answers = persistedAnswers
+      req.simulation = persistedSimulation
       exports.attachAccessCookie(req, res)
-      res.send(persistedAnswers)
+      res.send(persistedSimulation)
     }
   )
 }

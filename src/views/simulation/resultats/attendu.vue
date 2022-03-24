@@ -278,7 +278,7 @@ export default {
       }
     },
     testGenerationEndpoint: function () {
-      return `api/answers/${this.$store.state.situationId}/openfisca-test`
+      return `api/simulation/${this.$store.state.situationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(

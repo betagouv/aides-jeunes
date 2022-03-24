@@ -33,11 +33,13 @@ function defaultStore() {
 
   return {
     situationId: null,
-    answers: {
-      all: [],
-      current: [],
+    simulation: {
+      answers: {
+        all: [],
+        current: [],
+      },
       dateDeValeur: new Date(),
-      version: 3,
+      version: 8,
     },
     message: {
       text: null,
@@ -68,15 +70,15 @@ function restoreLocal() {
     store = JSON.parse(window.sessionStorage.store)
   }
 
-  if (!store || !store.answers || !store.answers.dateDeValeur) {
+  if (!store || !store.simulation || !store.simulation.dateDeValeur) {
     store = defaultStore()
   }
 
   return {
     situationId: store.situationId,
-    answers: store.answers,
+    simulation: store.simulation,
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.answers.dateDeValeur),
+    dates: datesGenerator(store.simulation.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
   }
 }
@@ -155,7 +157,9 @@ const store = createStore({
           step.path !== "/simulation/resultats" &&
           step.isActive
       )
-      return allSteps.filter((step) => isStepAnswered(state.answers.all, step))
+      return allSteps.filter((step) =>
+        isStepAnswered(state.simulation.answers.all, step)
+      )
     },
     lastUnansweredStep: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(
@@ -164,7 +168,9 @@ const store = createStore({
           step.path !== "/simulation/resultats" &&
           step.isActive
       )
-      return allSteps.find((step) => !isStepAnswered(state.answers.all, step))
+      return allSteps.find(
+        (step) => !isStepAnswered(state.simulation.answers.all, step)
+      )
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
@@ -224,7 +230,9 @@ const store = createStore({
       return function (representation, situationId) {
         return axios
           .get(
-            `api/answers/${situationId || state.situationId}/${representation}`
+            `api/simulation/${
+              situationId || state.situationId
+            }/${representation}`
           )
           .then((response) => response.data)
       }
@@ -237,19 +245,19 @@ const store = createStore({
       )
     },
     situation: (state) => {
-      return generateSituation(state.answers, true)
+      return generateSituation(state.simulation, true)
     },
   },
   mutations: {
     answer: (state, answer) => {
-      state.answers = {
-        ...state.answers,
-        all: storeAnswer(state.answers.all, answer, false),
+      state.simulation.answers = {
+        ...state.simulation.answers,
+        all: storeAnswer(state.simulation.answers.all, answer, false),
         current: storeAnswer(
-          state.answers.current,
+          state.simulation.answers.current,
           answer,
           true,
-          state.answers.enfants
+          state.simulation.enfants
         ),
       }
     },
@@ -259,7 +267,7 @@ const store = createStore({
       let currentStep = steps[0]
       while (currentStep && currentStep.path !== newPath) {
         if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = state.answers.all.find((answer) => {
+          const currentAnswer = state.simulation.answers.all.find((answer) => {
             return (
               answer.id === currentStep.id &&
               answer.entityName === currentStep.entity &&
@@ -274,22 +282,25 @@ const store = createStore({
         i = i + 1
         currentStep = steps[i]
       }
-      state.answers.current = currentAnswers
+      state.simulation.answers.current = currentAnswers
     },
     ressourcesFiscales: (state, ressourcesFiscales) => {
-      state.answers = {
-        ...state.answers,
+      state.simulation = {
+        ...state.simulation,
         ressourcesFiscales,
       }
     },
     patrimoine: (state, patrimoine) => {
-      state.answers = {
-        ...state.answers,
+      state.simulation = {
+        ...state.simulation,
         patrimoine,
       }
     },
     clear: function (state) {
-      state.answers = { all: [], current: [], enfants: [] }
+      state.simulation = {
+        answers: { all: [], current: [] },
+        enfants: [],
+      }
       state.access.forbidden = false
       state.access.fetching = false
     },
@@ -305,17 +316,18 @@ const store = createStore({
     },
     removeEnfant: function (state, id) {
       const enfantIndex = id.split("_")[1]
-      state.answers = {
-        ...state.answers,
-        enfants: state.answers.enfants.filter((i) => i != enfantIndex),
+      state.simulation = {
+        ...state.simulation,
+        enfants: state.simulation.enfants.filter((i) => i != enfantIndex),
       }
     },
     addEnfant: function (state) {
       let enfantId
       let enfants
-      if (state.answers.enfants && state.answers.enfants.length > 0) {
-        enfantId = state.answers.enfants[state.answers.enfants.length - 1] + 1
-        enfants = [...state.answers.enfants, enfantId]
+      if (state.simulation.enfants && state.simulation.enfants.length > 0) {
+        enfantId =
+          state.simulation.enfants[state.simulation.enfants.length - 1] + 1
+        enfants = [...state.simulation.enfants, enfantId]
       } else {
         enfantId = 0
         enfants = [enfantId]
@@ -332,40 +344,42 @@ const store = createStore({
       }
 
       // When you add a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.answers.current.findIndex(
+      const currentLastIndex = state.simulation.answers.current.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.answers.current
-          : state.answers.current.splice(0, currentLastIndex)
+          ? state.simulation.answers.current
+          : state.simulation.answers.current.splice(0, currentLastIndex)
 
-      state.answers = {
-        ...state.answers,
+      state.simulation = {
+        ...state.simulation,
         enfants,
-        all: storeAnswer(state.answers.all, answer, false),
-        current: storeAnswer(
-          currentAnswers,
-          answer,
-          true,
-          state.answers.enfants
-        ),
+        answers: {
+          all: storeAnswer(state.simulation.answers.all, answer, false),
+          current: storeAnswer(
+            currentAnswers,
+            answer,
+            true,
+            state.simulation.enfants
+          ),
+        },
       }
     },
     editEnfant: function (state, id) {
       // When you edit a children you need to remove all current answer after the child validation
-      const currentLastIndex = state.answers.current.findIndex(
+      const currentLastIndex = state.simulation.answers.current.findIndex(
         (answer) => answer.entityName === "enfants"
       )
 
       const currentAnswers =
         currentLastIndex === -1
-          ? state.answers.current
-          : state.answers.current.splice(0, currentLastIndex)
+          ? state.simulation.answers.current
+          : state.simulation.answers.current.splice(0, currentLastIndex)
 
-      state.answers = {
-        ...state.answers,
+      state.simulation.answers = {
+        ...state.simulation.answers,
         current: currentAnswers.filter(
           (answer) => answer.id !== `enfant_${id}`
         ),
@@ -377,10 +391,10 @@ const store = createStore({
     fetching: function (state) {
       state.access.fetching = true
     },
-    reset: function (state, answers) {
+    reset: function (state, simulation) {
       state.access.fetching = false
-      state.answers = answers
-      state.dates = datesGenerator(answers.dateDeValeur || new Date())
+      state.simulation = simulation
+      state.dates = datesGenerator(simulation.dateDeValeur || new Date())
       state.ameliNoticationDone = false
       state.calculs.dirty = false
     },
@@ -496,14 +510,14 @@ const store = createStore({
       commit("setDirty")
     },
     save: function (store) {
-      let answers = { ...store.state.answers, _id: undefined }
+      let simulation = { ...store.state.simulation, _id: undefined }
       if (store.situationId) {
-        answers.modifiedFrom = store.state.situationId
+        simulation.modifiedFrom = store.state.situationId
       }
 
-      answers.abtesting = ABTestingService.getEnvironment()
+      simulation.abtesting = ABTestingService.getEnvironment()
       return axios
-        .post("/api/answers", answers)
+        .post("/api/simulation", simulation)
         .then((result) => result.data)
         .then((payload) => payload._id)
         .then((id) => store.commit("setId", id))
@@ -511,7 +525,7 @@ const store = createStore({
     fetch: function (state, id) {
       state.commit("fetching")
       return axios
-        .get(`/api/answers/${id}`)
+        .get(`/api/simulation/${id}`)
         .then((result) => result.data)
         .then((payload) => state.commit("reset", payload))
         .then(() => store.commit("setId", id))
@@ -526,7 +540,9 @@ const store = createStore({
     compute: function (store, showPrivate) {
       store.commit("startComputation")
       return axios
-        .get("api/answers/" + store.state.situationId + "/openfisca-response")
+        .get(
+          "api/simulation/" + store.state.situationId + "/openfisca-response"
+        )
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })
@@ -582,7 +598,7 @@ store.subscribe(
   (
     { type },
     {
-      answers,
+      simulation,
       enfants,
       ameliNoticationDone,
       calculs,
@@ -598,7 +614,7 @@ store.subscribe(
       JSON.stringify({
         dateDeValeur,
         situationId,
-        answers,
+        simulation,
         enfants,
         ameliNoticationDone,
         calculs,

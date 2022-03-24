@@ -16,7 +16,6 @@ description: >-
 conditions:
   - Être en recherche d’emploi, sans emploi ou en emploi précaire, inscrit(e) ou
     non à Pôle Emploi.
-  - null
 conditions_generales:
   - type: regions
     values:
@@ -24,6 +23,9 @@ conditions_generales:
 profils:
   - type: chomeur
     conditions: []
+link: https://www.bretagne.bzh/aides/?mot-clef=%22prepa%22&cloture=0&showall=0
+teleservice: https://aides.bretagne.bzh/account-management/crbr-demandeurs/ux/#/login?redirectTo=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-crbr-portail-depot-demande-aides&footer=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fmentions-legales,Mentions%20l%C3%A9gales,_self
+instructions: https://www.bretagne.bzh/aides/?mot-clef=%22prepa%22&cloture=0&showall=0
 type: bool
 unit: €
 periodicite: ponctuelle

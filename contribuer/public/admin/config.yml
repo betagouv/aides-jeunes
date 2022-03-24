@@ -17,6 +17,11 @@ publish_mode: editorial_workflow
 
 root: ../../..
 
+patterns:
+  pattern_url: &pattern_url
+    - "^(https?:\/\/)"
+    - "Le champ doit contenir une url valide"
+
 fields:
   field_boolean: &field_boolean
     widget: object
@@ -253,19 +258,19 @@ fields:
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
     name: link
     widget: string
-    pattern: ["^(https?:\/\/)", "Le champ doit contenir une url valide"]
+    pattern: *pattern_url
   field_lien_instructions: &field_lien_instructions
     label: Lien vers des instructions à suivre
     name: instructions
     widget: string
-    pattern: ["^(https?:\/\/)", "Le champ doit contenir une url valide"]
+    pattern: *pattern_url
     required: false
     required_group: cta
   field_lien_formulaire: &field_lien_formulaire
     label: Lien vers un formulaire à imprimer
     name: form
     widget: string
-    pattern: ["^(https?:\/\/)", "Le champ doit contenir une url valide"]
+    pattern: *pattern_url
     required: false
     required_group: cta
   field_lien_teleservice: &field_lien_teleservice
@@ -273,7 +278,7 @@ fields:
     hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
     name: teleservice
     widget: string
-    pattern: ["^(https?:\/\/)", "Le champ doit contenir une url valide"]
+    pattern: *pattern_url
     required: false
     required_group: cta
   field_article_defini: &field_article_defini

@@ -4,6 +4,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
   annuelle: "/ an",
 }
 
+// Effectue une vérification groupée sur les champs ayant l'attribut required_group
 const groupFieldsLegend = {
   cta: "Liens vers un site, téléservice ou formulaire",
 }
@@ -44,6 +45,7 @@ const requiredGroupRender = (item, id) => {
     console.log("Failed to set fields group", e)
   }
 }
+// Fin de la validation de champ groupés
 
 const Conditions = ({ conditions }) => {
   if (!conditions || !conditions.length) {

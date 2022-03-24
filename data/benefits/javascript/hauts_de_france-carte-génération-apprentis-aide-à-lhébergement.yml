@@ -1,4 +1,4 @@
-label: "Carte Génération - Apprentis : aide à l'hébergement"
+label: "carte Génération - Apprentis : aide à l'hébergement"
 institution: hauts_de_france
 description: Grâce à la carte Génération - Apprentis, bénéficiez d'une aide pour
   vous faciliter le recours à l'hébergement et ainsi contribuer à éviter des
@@ -16,7 +16,7 @@ profils:
   - type: apprenti
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=856
-teleservice: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=856
+teleservice: ""
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=856
 prefix: la
 type: float

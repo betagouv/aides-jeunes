@@ -35,9 +35,12 @@
               :city="'75056'"
               :patrimoine-captured="true"
               :ressources-year-minus-two-captured="true"
-              :show-contribution-links="true"
             />
           </div>
+          <DroitsContributions
+            :droit="benefit"
+            :show-contribution-links="true"
+          />
         </div>
       </div>
     </article>
@@ -47,11 +50,13 @@
 <script>
 import Institution from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
+import DroitsContributions from "@/components/droits-contributions.vue"
 
 export default {
   name: "AideDetails",
   components: {
     DroitsDetails,
+    DroitsContributions,
   },
   data() {
     return {}

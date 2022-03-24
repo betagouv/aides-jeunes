@@ -1,0 +1,20 @@
+label: PACE-Parcours d'Acquisition des Compétences en Entreprise
+imgSrc: public/img/benefits/ge_quadri_baseline-europe.jpg
+institution: grand_est
+description: Permettre à des jeunes diplômés ou non, de 18 à 29ans,d'acquérir
+  des compétences et une première expérience professionnelle tutorée, d'une
+  durée de 6 mois , dans des entreprises implantées dans le Grand Est.
+conditions_generales:
+  - type: regions
+    values:
+      - "44"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.grandest.fr/vos-aides-regionales/parcours-acquisition-competences-entreprise-pace/
+teleservice: ""
+instructions: http://www.pace-grandest.fr/
+type: float
+unit: null
+periodicite: mensuelle
+montant: 500

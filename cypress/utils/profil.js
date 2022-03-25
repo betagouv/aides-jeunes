@@ -105,7 +105,7 @@ const defaultIndivu = () => {
   fill_activite("salarie")
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap(false)
-  fill_enceinte(false)
+  fill_enceinte("pas_enceinte")
 }
 
 const handicaped = () => {
@@ -114,7 +114,7 @@ const handicaped = () => {
   fill_activite("salarie")
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap({ taux_incapacite: 0.65, aah: true })
-  fill_enceinte(false)
+  fill_enceinte("pas_enceinte")
 }
 
 const publicStudent = () => {
@@ -130,7 +130,7 @@ const publicStudent = () => {
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")
-  fill_enceinte(false)
+  fill_enceinte("pas_enceinte")
 }
 
 const defaultChildren = () => {
@@ -149,7 +149,7 @@ const defaultConjoint = () => {
   fill_statut_marital("marie")
   fill_conjoint_activite("salarie")
   fillHandicap(false)
-  fill_enceinte(false)
+  fill_enceinte("pas_enceinte")
 }
 
 export default {

@@ -1,0 +1,28 @@
+label: Aide Régionale à l’Apprentissage (ARA)
+institution: region_ile_de_france
+description: L’Aide Régionale à l’Apprentissage (ARA) a pour objectif de
+  soutenir les apprenti(e)s inscrit(e)s en formation des premiers niveaux de
+  formation (3, 4 et 5) en les aidant à faire face à des dépenses liées à
+  l’achat de livres, d’équipement et de documentation professionnelle, et aux
+  frais de transport, de restauration ou d’hébergement, etc.
+conditions:
+  - Être apprenti(e) inscrit(e) en 2021-2022 en première année dans une
+    formation de niveau 3, 4 et 5 dans un organisme de formation – centre de
+    formation d’apprentis (OF-CFA) francilien.
+  - Faire votre demande auprès de votre OF-CFA.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: apprenti
+    conditions: []
+link: https://www.iledefrance.fr/aide-regionale-apprentissage-dediee-aux-apprentis-en-premiere-annee-de-formation-de-niveaux-3-4-5
+teleservice: ""
+instructions: https://www.iledefrance.fr/aide-regionale-apprentissage-dediee-aux-apprentis-en-premiere-annee-de-formation-de-niveaux-3-4-5
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 375

@@ -1,0 +1,23 @@
+label: Bourses pour les élèves et étudiant-e-s inscrit-e-s en formations
+  sanitaires et sociales
+institution: region_ile_de_france
+description: La Région Ile-de-France verse, sous conditions de ressources, une
+  bourse aux élèves et étudiant-e-s en formation paramédicale ou sociale.
+conditions:
+  - Etre de nationalité française ou ressortissant-e d'un pays de l'Union
+    européenne ou étranger en situation régulière en France.
+  - Être élève ou étudiant-e en formation initiale, inscrit-e en cursus complet
+    dans un établissement dont la formation est agréée par la Région
+    Ile-de-France.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils: []
+link: formations-sanitaires-et-sociales-quelles-aides-financieres-et-pour-qui
+teleservice: https://fss-ext.iledefrance.fr/fss/
+instructions: ""
+prefix: null
+type: bool
+unit: €
+periodicite: mensuelle

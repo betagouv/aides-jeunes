@@ -1,0 +1,24 @@
+label: Aide régionale au passage du Diplôme d'accès aux études universitaires (DAEU)
+institution: region_ile_de_france
+description: la Région Ile-de-France favorise l'accès à l'enseignement supérieur
+  de tous les Francilien-ne-s à travers une aide incitative au passage du
+  diplôme d'accès aux études universitaires DAEU.
+conditions:
+  - Ne pas être titulaire du baccalauréat.
+  - Etre inscrit-e en DAEU dans une université francilienne.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: aide-regionale-pour-le-diplome-dacces-aux-etudes-universitaires-daeu
+teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self
+instructions: ""
+type: float
+unit: €
+periodicite: autre
+montant: 1000
+references:
+  - https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=da8656a7-5619-4dfa-afd3-34ace27c010d;1.0

@@ -28,6 +28,9 @@ conditions_generales:
     period: year
 profils:
   - type: lyceen
+  - type: apprenti
+  - type: professionnalisation
+  - type: stagiaire
     conditions: []
 link: https://www.normandie.fr/pass-monde-etudes-secondaires
 teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx

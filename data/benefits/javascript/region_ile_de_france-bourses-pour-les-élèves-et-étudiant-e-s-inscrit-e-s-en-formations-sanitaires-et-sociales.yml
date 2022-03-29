@@ -22,7 +22,7 @@ profils:
     conditions: []
 link: https://www.iledefrance.fr/formations-sanitaires-et-sociales-quelles-aides-financieres-et-pour-qui
 teleservice: https://fss-ext.iledefrance.fr/fss/
-instructions: ""
+instructions: https://www.iledefrance.fr/formations-sanitaires-et-sociales-quelles-aides-financieres-et-pour-qui
 prefix: null
 type: bool
 unit: €

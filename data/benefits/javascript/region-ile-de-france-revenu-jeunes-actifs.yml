@@ -1,0 +1,31 @@
+label: revenu Jeunes Actifs
+institution: region_ile_de_france
+description: La Région Île-de-France vous permet d'intégrer l’une de ses
+  formations gratuites et rémunérées dans un des 11 secteurs en tension.
+conditions:
+  - Effectuer une formation gratuite que vous choisissez dans le <a
+    target="_blank" rel="noopener" href="https://formpro.oriane.info/">catalogue
+    en ligne</a>.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://www.iledefrance.fr/revenu-jeunes-actifs
+instructions: https://www.iledefrance.fr/revenu-jeunes-actifs
+prefix: le
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 4000

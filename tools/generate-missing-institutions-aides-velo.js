@@ -52,7 +52,7 @@ if (missingCommune.length) {
         imgSrc: `img/logo_${commune_slug}.png`,
         prefix: "de la",
         type: "commune",
-        id: commune.code,
+        code_insee: commune.code,
       }
       createYamlFile(commune_slug, institution)
 
@@ -82,7 +82,7 @@ if (missingEPCI.length) {
         imgSrc: `img/logo_${epci_slug}.png`,
         prefix: "de la",
         type: "epci",
-        id: EPCIMatch.code,
+        code_siren: EPCIMatch.code,
       }
 
       createYamlFile(epci_slug, institution)
@@ -97,6 +97,6 @@ if (missingEPCI.length) {
 console.log(
   missingInstitutionBenefits
     .filter((b) => !["code insee", "epci"].includes(b.collectivity.kind))
-    .map((b) => `${b.description} | id : ${b.collectivity.value}`)
+    .map((b) => `${b.description} | code_insee : ${b.collectivity.value}`)
     .join("\n")
 )

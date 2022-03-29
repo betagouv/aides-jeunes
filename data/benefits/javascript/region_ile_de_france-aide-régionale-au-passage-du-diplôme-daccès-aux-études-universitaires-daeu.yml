@@ -5,7 +5,7 @@ description: La Région Ile-de-France favorise l'accès à l'enseignement supér
   diplôme d'accès aux études universitaires (DAEU).
 conditions:
   - Ne pas être titulaire du baccalauréat.
-  - Etre inscrit(e) en DAEU dans une université francilienne.
+  - Vous inscrire en DAEU dans une université francilienne.
 conditions_generales:
   - type: regions
     values:

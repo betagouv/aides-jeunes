@@ -48,7 +48,7 @@ describe("benefit descriptions", function () {
 
           if (benefit.imgSrc) {
             it("should refer to a img file that exists", function () {
-              const path = `${__dirname}/../../${benefit.imgSrc}`
+              const path = `${__dirname}/../../public/${benefit.imgSrc}`
               expect(fs.existsSync(path)).toBe(true)
             })
           }

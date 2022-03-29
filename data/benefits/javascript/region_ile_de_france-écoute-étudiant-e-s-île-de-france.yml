@@ -1,8 +1,8 @@
 label: écoute Étudiant(e)s Île-de-France
 institution: region_ile_de_france
-description: Cette aide permet aux étudiant(e)s d'évaluer leur état
-  psychologique, d'obtenir une documentation pour aller mieux et de bénéficier
-  de consultations gratuites avec des psychologues si besoin.
+description: Cette aide vous permet d'évaluer votre état psychologique,
+  d'obtenir des ressources pour vous accompagner et de bénéficier de
+  consultations gratuites avec des psychologues si besoin.
 conditions_generales:
   - type: regions
     values:

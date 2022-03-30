@@ -1,11 +1,11 @@
-label: carte Imagine R Étudiant
+label: carte Imagine R
 institution: region_ile_de_france
-description: Le forfait imagine R Étudiant est un forfait annuel destiné aux
-  étudiant(e)s de moins de 26 ans résidant en Île-de-France. Il permet de
-  voyager autant de fois que l’on veut en Île-de-France, sur tous les modes de
-  transport (y compris Filéo), à l’exception de certaines dessertes directes
-  d’aéroports et des bus touristiques. Il permet également de bénéficier d'<a
-  target="_blank" rel="noopener" href="
+description: Le forfait imagine R est un forfait annuel destiné aux personnes de
+  moins de 26 ans résidant en Île-de-France. Il permet de voyager autant de fois
+  que l’on veut en Île-de-France, sur tous les modes de transport (y compris
+  Filéo), à l’exception de certaines dessertes directes d’aéroports et des bus
+  touristiques. Il permet également de bénéficier d'<a target="_blank"
+  rel="noopener" href="
   https://www.iledefrance-mobilites.fr/navigo-avantages-culture">avantages
   culture</a>.
 conditions:
@@ -17,9 +17,7 @@ conditions_generales:
   - type: regions
     values:
       - "11"
-profils:
-  - type: enseignement_superieur
-    conditions: []
+profils: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-etudiant#conditions
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte
 type: bool

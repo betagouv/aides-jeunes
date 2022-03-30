@@ -22,4 +22,4 @@ teleservice: https://ibssp.bourgognefranchecomte.fr/etudiant.php/compte/login
 instructions: https://www.bourgognefranchecomte.fr/demande-de-bourse-sanitaire-et-sociale
 type: bool
 unit: €
-periodicite: autre
+periodicite: annuelle

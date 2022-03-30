@@ -406,7 +406,7 @@ const STEPS = {
     items: [
       {
         value: "regime_general",
-        label: "Régime général (CPAM/CAF)",
+        label: "Régime général (CAF/CPAM)",
       },
       {
         value: "regime_agricole",

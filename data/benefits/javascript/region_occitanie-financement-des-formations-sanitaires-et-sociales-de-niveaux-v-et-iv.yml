@@ -19,6 +19,11 @@ profils:
     conditions: []
   - type: chomeur
     conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
 link: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
 form: ""
 instructions: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV

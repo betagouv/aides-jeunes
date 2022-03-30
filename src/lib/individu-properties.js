@@ -406,7 +406,7 @@ const STEPS = {
     items: [
       {
         value: "regime_general",
-        label: "Caisse d'allocations familiales (CAF)",
+        label: "Régime général (CPAM/CAF)",
       },
       {
         value: "regime_agricole",

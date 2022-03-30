@@ -1,0 +1,20 @@
+label: bourses d’études de formations sanitaires et sociales
+institution: region_corse
+description: La Collectivité de Corse finance les formations sanitaires et
+  sociales via une bourse d'étude sur critères sociaux.
+conditions_generales:
+  - type: regions
+    values:
+      - "94"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+  - type: chomeur
+    conditions: []
+link: https://www.isula.corsica/Borse-di-studii-di-furmazione-sanitarie-e-suciale-Bourses-d-etudes-de-formations-sanitaires-et-sociales_a1541.html
+form: https://www.isula.corsica/attachment/1979793/
+type: bool
+unit: €
+periodicite: autre

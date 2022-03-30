@@ -1,0 +1,24 @@
+label: bourses pour les formations sanitaires et sociales
+institution: region_centre_val_de_loire
+description: La Région attribue des bourses d’études pour les personnes rentrant
+  en formation dans un lycée professionnel ou un institut régional agréé,
+  soumises à conditions de ressources.
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.centre-valdeloire.fr/vivre/accompagner-la-formation/secteur-sanitaire-et-social/les-aides-pour-la-formation-sanitaire-et
+teleservice: https://www.aress.regioncentre-valdeloire.fr/basscep/
+instructions: https://www.centre-valdeloire.fr/vivre/accompagner-la-formation/secteur-sanitaire-et-social/les-aides-pour-la-formation-sanitaire-et
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 5679

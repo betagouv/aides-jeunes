@@ -1,0 +1,19 @@
+label: bourses d'études des formations sociales, paramédicales et de santé
+institution: region_nouvelle_aquitaine
+description: La Région Nouvelle-Aquitaine finance des bourses d'études dans le
+  secteur social, paramédical et de santé.
+conditions:
+  - Effectuer votre formation dans un institut agréé par la Région.
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/bourses-detudes-sur-criteres-sociaux-2022-etudiants-en-formations-sociales-paramedicales-et-de-sante?Profil=Apprenti____%C3%89tudiant____Jeune%20actif____Lyc%C3%A9en____Particulier&Jeunesse=Accompagnement%20scolaire____Apprentissage____%C3%89ducation%20et%20formation____Engagement%20et%20citoyennet%C3%A9____Enseignement%20sup%C3%A9rieur____Insertion%20professionnelle____Lyc%C3%A9es____Mobilit%C3%A9%20internationale____Orientation____Sanitaire%20et%20social&Type=Aides
+teleservice: https://mes-demarches.nouvelle-aquitaine.fr/craPortailFO/
+instructions: ""
+type: bool
+unit: €
+periodicite: autre

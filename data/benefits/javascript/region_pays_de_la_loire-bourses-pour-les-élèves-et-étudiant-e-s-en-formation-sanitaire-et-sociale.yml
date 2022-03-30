@@ -1,0 +1,19 @@
+label: bourses pour les élèves et étudiant(e)s en formation sanitaire et sociale
+institution: region_pays_de_la_loire
+description: La Région finance des bourses pour les élèves et étudiant(e)s dont
+  les revenus familiaux ou personnels sont reconnus insuffisants au regard de
+  leurs charges.
+conditions:
+  - Suivre une formation agréée ou autorisée par la Région Pays de la Loire.
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.paysdelaloire.fr/les-aides/bourses-regionales-pour-les-eleves-et-etudiants-en-formation-initiale-sociale-paramedicale-et-de?sous_thematique=215
+teleservice: https://maboursesanitaireetsociale.paysdelaloire.fr/Profil-public/public/paysdelaloire/bourse/accueil.do
+type: bool
+unit: €
+periodicite: ponctuelle

@@ -10,9 +10,6 @@ conditions:
     Occitanie.
   - Être en poursuite de scolarité ou inscrit(e) comme demandeur(euse) d’emploi
     avant la date d’entrée en formation.
-  - Effectuer sa scolarité après réussite aux sélections d’entrée sur un
-    parcours de formation complet ou allégé grâce à l’obtention d’un diplôme ne
-    pouvant être considéré comme une qualification-métier.
 conditions_generales:
   - type: regions
     values:

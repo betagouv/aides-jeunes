@@ -17,7 +17,11 @@ conditions_generales:
   - type: regions
     values:
       - "11"
-profils: []
+profils:
+  - type: etudiant
+    conditions: []
+  - type: apprenti
+    conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-etudiant#conditions
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte
 type: bool

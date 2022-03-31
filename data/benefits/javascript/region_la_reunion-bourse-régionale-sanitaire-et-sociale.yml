@@ -19,6 +19,6 @@ profils:
 link: https://regionreunion.com/aides-services/article/bourse-regionale-sanitaire-et-socialebourse-ecole-de-gestion-et-de-commerce-de-la-reunion-egcr
 teleservice: https://connexion-demarches.cr-reunion.fr/accounts/register/
 instructions: https://regionreunion.com/aides-services/article/bourse-regionale-sanitaire-et-socialebourse-ecole-de-gestion-et-de-commerce-de-la-reunion-egcr
-type: float
+type: bool
 unit: €
 periodicite: autre

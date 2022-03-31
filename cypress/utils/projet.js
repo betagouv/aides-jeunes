@@ -1,5 +1,9 @@
 import { fillRadio, fillCheckboxes, fillNumber } from "./form"
 
+const fill__interetAidesSanitaireSocial = (expect) => {
+  fillRadio("_interetAidesSanitaireSocial", expect)
+}
+
 const fill__interetsAidesVelo = (expect) => {
   fillCheckboxes("_interetsAidesVelo", expect)
 }
@@ -29,6 +33,7 @@ const fill__dureeMoisEtudesEtranger = (duration) => {
 }
 
 export default {
+  fill__interetAidesSanitaireSocial,
   fill__interetsAidesVelo,
   fill__interetBafa,
   fill__interetPermisDeConduire,

@@ -44,6 +44,10 @@ const fill_stagiaire = (stagiaire) => {
   fillRadio("stagiaire", stagiaire)
 }
 
+const fill__formationSanitaireSocial = (formationSanitaireSocial) => {
+  fillRadio("_formationSanitaireSocial", formationSanitaireSocial)
+}
+
 const fill_alternant = (alternant) => {
   fillRadio("alternant", alternant)
 }
@@ -127,6 +131,7 @@ const publicStudent = () => {
   fill_mention_baccalaureat("mention_tres_bien")
   fill_stagiaire(false)
   fill_alternant(false)
+  fill__formationSanitaireSocial(true)
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

@@ -309,6 +309,11 @@ const STEPS = {
     },
   },
 
+  _formationSanitaireSocial: {
+    question:
+      "Êtes-vous inscrit·e dans une formation du secteur sanitaire et social ?",
+  },
+
   garde_alternee: {
     question: (component) => {
       return `${Individu.label(component.entity, "être")} en garde alternée ?`
@@ -442,7 +447,6 @@ const STEPS = {
     },
     questionType: "enum",
     items: Scolarite.types,
-    enSavoirPlus: true,
   },
 
   sortie_academie: {
@@ -566,6 +570,11 @@ const STEPS = {
     questionType: "number",
     unit: "mois",
     type: "count",
+  },
+
+  _interetAidesSanitaireSocial: {
+    question:
+      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
   },
 
   _interetsAidesVelo: {

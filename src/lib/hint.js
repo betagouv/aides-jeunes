@@ -8,10 +8,13 @@ const texts = {
   depcom: () => {
     return "Le simulateur n'accepte que les codes postaux français. Si vous vivez à l'étranger, ce simulateur n'est pas encore adapté à votre situation."
   },
-  enfants: function () {
+  enfants: () => {
     return `« Un enfant à charge » est un enfant dont vous êtes responsable et dont vous vous occupez, qu'il soit votre enfant naturel ou non.`
   },
-  handicap: function (variation) {
+  _formationSanitaireSocial: () => {
+    return "Exemples : auxiliaire de vie sociale, éducateur·ice spécialisé·e, infirmier·e, ambulancier·e"
+  },
+  handicap: (variation) => {
     if (variation?.includes("enfant")) {
       return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
           et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
@@ -23,7 +26,7 @@ const texts = {
           et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
     }
   },
-  inapte_travail: function () {
+  inapte_travail: () => {
     return "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela."
   },
   scolarite: () => {
@@ -32,7 +35,7 @@ const texts = {
 }
 
 const Hint = {
-  get: function (attribute, variation) {
+  get(attribute, variation) {
     return texts[attribute]?.(variation)
   },
 }

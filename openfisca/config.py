@@ -1,6 +1,7 @@
 import os
 
-bind = os.getenv('OPENFISCA_BIND_HOST', '127.0.0.1:2000')
+port = os.getenv('OPENFISCA_PORT', '2000')
+bind = os.getenv('OPENFISCA_BIND_HOST', '127.0.0.1:' + port)
 timeout = 120
 workers = os.getenv('OPENFISCA_WORKERS', 8)
 

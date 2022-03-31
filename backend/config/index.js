@@ -9,9 +9,11 @@ const all = {
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
     "https://mes-aides.1jeune1solution.beta.gouv.fr",
-  openfiscaURL: process.env.OPENFISCA_URL || "http://localhost:2000",
+  openfiscaURL:
+    process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://localhost:2000",
   openfiscaAxeURL: "https://betagouv.github.io/mes-aides-changent",
   openfiscaPublicURL:
+    process.env.OPENFISCA_PUBLIC_ROOT_URL ||
     "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr",
   openfiscaTracerURL: "https://openfisca.github.io/tracer",
   netlifyContributionURL:
@@ -37,7 +39,7 @@ const all = {
     ],
   },
   matomo: {
-    id: 165,
+    id: process.env.MATOMO_ID || 165,
   },
   statistics: {
     url:

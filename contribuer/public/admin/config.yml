@@ -189,6 +189,11 @@ fields:
             value: month
           - label: Par an
             value: year
+  field_formation_sanitaire_social: &field_formation_sanitaire_social
+    label: En formation sanitaire et sociale
+    name: formation_sanitaire_social
+    widget: boolean
+    default: true
   # common fields
   field_image_aide: &field_image_aide
     label: Logo
@@ -332,6 +337,8 @@ fields:
         value: _interetPermisDeConduire
       - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
         value: _interetEtudesEtranger
+      - label: Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social
+        value: _interetAidesSanitaireSocial
   field_entite_rattachement_openfisca: &field_entite_rattachement_openfisca
     label: Entité de rattachement de la variable dans OpenFisca
     name: entity
@@ -399,6 +406,7 @@ fields:
             types:
               - *field_age
               - *field_boursier
+              - *field_formation_sanitaire_social
               - label: Année d'étude
                 name: annee_etude
                 widget: object
@@ -434,6 +442,7 @@ fields:
               - *field_age
               - *field_boursier
               - *field_mention_baccalaureat
+              - *field_formation_sanitaire_social
               - label: Année d'étude
                 name: annee_etude
                 widget: object
@@ -479,6 +488,7 @@ fields:
             collapsed: false
             types:
               - *field_age
+              - *field_formation_sanitaire_social
               - label: Année d'étude
                 name: annee_etude
                 widget: object
@@ -533,6 +543,7 @@ fields:
             widget: list
             collapsed: false
             types:
+              - *field_formation_sanitaire_social
               - *field_age
               - *field_boursier
       - label: Apprenti
@@ -546,6 +557,7 @@ fields:
             widget: list
             collapsed: false
             types:
+              - *field_formation_sanitaire_social
               - *field_age
               - *field_boursier
       - label: En contrat de professionnalisation
@@ -559,6 +571,7 @@ fields:
             widget: list
             collapsed: false
             types:
+              - *field_formation_sanitaire_social
               - *field_age
       - label: En recherche d'emploi
         name: chomeur
@@ -623,6 +636,7 @@ fields:
       - *field_communes
       - *field_regime_securite_sociale
       - *field_quotient_familial
+      - *field_formation_sanitaire_social
     field_references: &field_references
       label: Liens des sources de référence
       name: references

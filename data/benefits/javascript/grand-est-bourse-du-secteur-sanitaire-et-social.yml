@@ -19,3 +19,4 @@ instructions: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanita
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

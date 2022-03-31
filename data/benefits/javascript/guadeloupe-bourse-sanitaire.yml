@@ -26,6 +26,6 @@ link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/det
 teleservice: https://aides.regionguadeloupe.fr/gesaides_web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
 type: float
 unit: €
-periodicite: autre
+periodicite: annuelle
 legend: maximum
 montant: 5736

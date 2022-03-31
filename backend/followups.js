@@ -7,9 +7,7 @@ const app = express()
 const router = new express.Router()
 
 router.param("followupId", followups.followup)
-// TODO next line is to be removed once tokens are used globally
 router.get("/:followupId", followups.resultRedirect)
-router.get("/:followupId/:token", followups.resultRedirect)
 
 if (app.get("env") === "development") {
   router.get("/:followupId/initial.html", function (req, res) {

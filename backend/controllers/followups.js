@@ -19,7 +19,7 @@ exports.followup = function (req, res, next, id) {
       // TODO remove unecessary condition when tokens are widely used
       if (
         !followup?.simulation?._id ||
-        (req?.params?.token && followup?.accessToken !== req.params.token)
+        (req?.query?.token && followup?.accessToken !== req.query.token)
       ) {
         // no id specified or not matching access token
         return res.redirect("/")

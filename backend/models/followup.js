@@ -187,7 +187,7 @@ FollowupSchema.pre("save", function (next) {
 })
 
 FollowupSchema.virtual("returnPath").get(function () {
-  return `/followups/${this._id}/${this.accessToken}`
+  return `/followups/${this._id}?token=${this.accessToken}`
 })
 
 FollowupSchema.virtual("surveyPath").get(function () {

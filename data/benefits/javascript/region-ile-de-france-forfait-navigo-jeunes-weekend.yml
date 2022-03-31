@@ -9,9 +9,9 @@ description: Le forfait Navigo Jeunes Weekend est réservé aux usager(e)s de
   https://www.iledefrance-mobilites.fr/navigo-avantages-culture">d'avantages
   culture</a>.
 conditions:
-  - Acquérir le forfait Navigo Jeunes Weekend pour le prix de 4,10€ sur les
-    zones 1-3, 8,95€ sur les zones 1-5 et 5,25€ sur les zones 3-5, et le charger
-    sur un Passe Navigo ou l'Application Île-de-France Mobilités.
+  - Acquérir le forfait Navigo Jeunes Weekend pour le prix de 4,10€ par jour sur
+    les zones 1-3, 8,95€ sur les zones 1-5 et 5,25€ sur les zones 3-5, et le
+    charger sur un Passe Navigo ou l'Application Île-de-France Mobilités.
 conditions_generales:
   - type: age
     operator: <=

@@ -1,0 +1,19 @@
+label: billet Illico Autocars
+institution: region_auvergne_rhone_alpes
+description: Grâce au billet Illico Autocars, le prix de votre voyage en
+  Auvergne-Rhône-Alpes est réduit de 30% par rapport au tarif normal. La
+  réduction est valable sur les trajets en autocars TER en Auvergne-Rhône-Alpes
+  (y compris Mâcon et Genève Cornavin via Bellagarde) / Cars Régions Express.
+conditions:
+  - Vous procurer le billet Illico Autocars.
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
+profils: []
+link: https://m.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/billets-reduction/illico-autocars
+teleservice: https://m.ter.sncf.com/auvergne-rhone-alpes/products/form
+prefix: le
+type: bool
+unit: €
+periodicite: autre

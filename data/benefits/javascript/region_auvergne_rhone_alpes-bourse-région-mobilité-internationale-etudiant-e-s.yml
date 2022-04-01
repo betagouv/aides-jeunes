@@ -1,0 +1,22 @@
+label: bourse Région Mobilité Internationale - Etudiant(e)s
+institution: region_auvergne_rhone_alpes
+description: Cette aide a pour but de soutenir la mobilité internationale des
+  étudiant(e)s en études supérieures de la Région Auvergne-Rhône-Alpes.
+conditions:
+  - Être étudiant(e) du supérieur inscrit(e) dans un établissement
+    d'enseignement supérieur d'Auvergne-Rhône-Alpes.
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.auvergnerhonealpes.fr/aide/73/89-se-former-a-l-etranger-avec-la-bourse-regionale-mobilite-internationale-etudiant-enseignement-superieur-recherche-innovation.htm
+teleservice: https://sicorra.auvergnerhonealpes.fr/public
+instructions: https://www.auvergnerhonealpes.fr/aide/73/89-se-former-a-l-etranger-avec-la-bourse-regionale-mobilite-internationale-etudiant-enseignement-superieur-recherche-innovation.htm
+prefix: la
+type: bool
+unit: €
+periodicite: ponctuelle
+interestFlag: _interetEtudesEtranger

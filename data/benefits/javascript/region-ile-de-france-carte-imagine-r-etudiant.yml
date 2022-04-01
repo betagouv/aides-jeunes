@@ -22,16 +22,6 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-  - type: stagiaire
-    conditions: []
-  - type: chomeur
-    conditions: []
-  - type: salarie
-    conditions: []
-  - type: independant
-    conditions: []
-  - type: service_civique
-    conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-scolaire
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte
 type: bool

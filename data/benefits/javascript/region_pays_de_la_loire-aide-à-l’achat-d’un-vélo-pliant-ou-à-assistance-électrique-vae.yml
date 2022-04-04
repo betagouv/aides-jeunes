@@ -1,0 +1,18 @@
+label: aide à l’achat d’un vélo pliant ou à assistance électrique (VAE)
+institution: region_pays_de_la_loire
+description: La Région des Pays de la Loire encourage les abonné(e)s du TER Pays
+  de la Loire à s’équiper de vélo pliant et de vélo à assistance électrique en
+  finançant une partie du coût d'achat.
+conditions:
+  - Être abonné(e) du TER Pays de la Loire.
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils: []
+link: https://www.paysdelaloire.fr/les-aides/aide-lachat-dun-velo-pliant-ou-assistance-electrique-vae-pour-les-abonnes-aleop
+teleservice: https://les-aides.paysdelaloire.fr/account-management/prod-demandeurs/ux/#/login?redirectTo=https:%2F%2Fles-aides.paysdelaloire.fr%2Fles-aides%2F%23%2Fprod%2Fconnecte%2FVELO_PLIANT_TER%2Fdepot%2Fsimple&jwtKey=jwt-prod-portail-depot-demande-aides&footer=https:%2F%2Fles-aides.paysdelaloire.fr%2Fles-aides%2F%23%2Fprod%2Fmentions-legales,Mentions%20l%C3%A9gales,_self
+prefix: l’
+type: bool
+unit: €
+periodicite: autre

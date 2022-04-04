@@ -1,0 +1,20 @@
+label: Aide régionale à l'équipement individuel dans les filières pro et
+  technologiques
+institution: region_ile_de_france
+description: Pour garantir les meilleurs conditions d'études, la Région
+  Ile-de-France met des équipements et matériels pédagogiques individuels à
+  disposition des élèves des formations relevant de la spécialité production, de
+  certaines spécialités de service, de la spécialité "autres disciplines
+  artistiques et spécialités artistiques plurivalentes" et de la formation
+  prépa-métiers niveau 3ème .
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: etudiant
+    conditions: []
+link: https://lycees.iledefrance.fr/dotation-budgetaire
+type: bool
+unit: €
+periodicite: ponctuelle

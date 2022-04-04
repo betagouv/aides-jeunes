@@ -1,12 +1,15 @@
 label: Aide complémentaire au Brevet d'aptitude aux fonctions de directeur (Bafd)
 institution: caf_nord
-description: L'aide complémentaire au Bafd est une aide locale mise à
-  disposition par la Caf du Nord pour vous aider à financer votre formation.
+description: >-
+  L'aide complémentaire au Bafd est une aide locale mise à disposition par la
+  Caf du Nord pour vous aider à financer votre formation.
+
+  Pour tout stagiaire du Bafa ou autre diplôme d'animation ayant déposé une demande d'aide au Bafd.
 conditions:
   - Résider dans le département du Nord au moment de la demande.
   - Être inscrit à la session de perfectionnement.
-  - Déposer la demande complétée par vos soins et par l’organisme(s) de
-    formation dans un délai de 3 mois suivant l’inscription.
+  - Déposer sa demande dans les trois mois suivant l’inscription au stage de
+    perfectionnement.
   - Joindre un RIB si vous n’êtes pas allocataire.
 conditions_generales:
   - type: departements

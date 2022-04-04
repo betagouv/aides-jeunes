@@ -1,0 +1,30 @@
+label: aide au Transport aux Particuliers - Salarié(e)s
+institution: hauts_de_france
+description: Cette aide permet la prise en charge d'une partie des frais liés au
+  trajet domicile-travail pour les salarié(e)s qui utilisent leur véhicule pour
+  aller travailler.
+conditions:
+  - Utiliser un véhicule particulier ou un deux-roues motorisé pour la majorité
+    de vos déplacements quotidiens domicile - travail.
+  - Etre salarié en CDI ou en CDD d'au moins un mois.
+  - Avoir une distance routière entre le domicile et le lieu de travail
+    supérieure ou égale à 20 kilomètres (1 trajet).
+  - Percevoir un salaire net inférieur ou égal à 2 fois le SMIC.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: salarie
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=458
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPS22
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=458
+prefix: l’
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 20

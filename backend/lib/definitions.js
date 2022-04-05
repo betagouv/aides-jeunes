@@ -96,7 +96,9 @@ const individuBase = {
   enfant_a_charge: Object,
   enfant_place: Boolean,
   _firstName: String,
+  _formationSanitaireSocial: Boolean,
   _interetBafa: Boolean,
+  _interetAidesSanitaireSocial: Boolean,
   _interetsAidesVelo: {
     type: [String],
     enum: [

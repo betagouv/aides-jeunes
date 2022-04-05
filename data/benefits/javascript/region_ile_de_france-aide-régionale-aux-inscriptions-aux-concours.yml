@@ -23,6 +23,6 @@ teleservice: ""
 instructions: https://lycees.iledefrance.fr/dotation-budgetaire
 type: float
 unit: €
-periodicite: autre
+periodicite: ponctuelle
 legend: maximum
 montant: 846

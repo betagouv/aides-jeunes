@@ -7,11 +7,25 @@ const es = require("event-stream")
 require("expect")
 const mongoose = require("../mongo-connector")
 
-const migrations = require(".")
-const latestVersion = migrations.list[migrations.list.length - 1].version
+// const migrations = require(".")
+// const latestVersion = migrations.list[migrations.list.length - 1].version
 
 // Setup mongoose
-const Simulation = mongoose.model("Simulation")
+const migrations = {
+  simulations: {
+    model: mongoose.model("Simulation"),
+    migrations: require("./simulations"),
+  },
+  followups: {
+    model: mongoose.model("Followup"),
+    migrations: require("./followups"),
+  },
+}
+
+Object.keys(migrations).forEach((key) => {
+  migrations[key].latestVersion =
+    migrations[key].migrations.list[migrations.list.length - 1].version
+})
 
 let counter = 0
 let errors = 0
@@ -32,8 +46,13 @@ parser.addArgument(["--id"], {
   help: "Migre une simulation précise",
 })
 
-function migrateSimulations(conditions) {
+parser.addArgument(["--model"], {
+  help: "Migre une simulation précise",
+})
+
+function migrate(conditions) {
   console.log("conditions", conditions)
+
   Simulation.find(conditions)
     .sort({ _id: -1 })
     .limit(limit)
@@ -75,9 +94,9 @@ function migrateSimulations(conditions) {
 function main() {
   const args = parser.parseArgs()
   if (args.id) {
-    migrateSimulations({ _id: args.id })
+    migrate({ model: args.model, _id: args.id })
   } else if (args.all) {
-    migrateSimulations({ version: { $ne: latestVersion } })
+    migrate({ model: args.model, version: { $ne: latestVersion } })
   } else {
     parser.printHelp()
     process.exit(1)

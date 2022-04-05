@@ -190,10 +190,10 @@ fields:
           - label: Par an
             value: year
   field_formation_sanitaire_social: &field_formation_sanitaire_social
+    <<: *field_boolean
     label: En formation sanitaire et sociale
     name: formation_sanitaire_social
-    widget: boolean
-    default: true
+
   # common fields
   field_image_aide: &field_image_aide
     label: Logo

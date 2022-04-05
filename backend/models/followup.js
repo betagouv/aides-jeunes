@@ -11,7 +11,6 @@ const renderSurvey = require("../lib/mes-aides/emails/survey").render
 const SurveySchema = new mongoose.Schema(
   {
     _id: { type: String },
-    accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },
     messageId: { type: String },
     repliedAt: { type: Date },
@@ -27,10 +26,6 @@ const SurveySchema = new mongoose.Schema(
   },
   { minimize: false, id: false }
 )
-
-SurveySchema.virtual("returnPath").get(function () {
-  return "/suivi?token=" + this.accessToken
-})
 
 const FollowupSchema = new mongoose.Schema(
   {
@@ -57,6 +52,7 @@ const FollowupSchema = new mongoose.Schema(
       default: [],
     },
     error: { type: Object },
+    accessToken: { type: String },
     _id: { type: String },
   },
   { minimize: false, id: false }
@@ -105,12 +101,9 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 FollowupSchema.methods.createSurvey = function (type) {
   const followup = this
   return utils.generateToken().then(function (id) {
-    return utils.generateToken().then(function (accessToken) {
-      return followup.surveys.create({
-        _id: id,
-        accessToken: accessToken,
-        type: type,
-      })
+    return followup.surveys.create({
+      _id: id,
+      type: type,
     })
   })
 }
@@ -182,13 +175,23 @@ FollowupSchema.pre("save", function (next) {
     .generateToken()
     .then(function (token) {
       followup._id = token
+      utils
+        .generateToken()
+        .then(function (token) {
+          followup.accessToken = token
+        })
+        .then(next)
+        .catch(next)
     })
-    .then(next)
     .catch(next)
 })
 
 FollowupSchema.virtual("returnPath").get(function () {
-  return "/followups/" + this._id
+  return `/followups/${this._id}?token=${this.accessToken}`
+})
+
+FollowupSchema.virtual("surveyPath").get(function () {
+  return `/suivi?token=${this.accessToken}`
 })
 
 mongoose.model("Followup", FollowupSchema)

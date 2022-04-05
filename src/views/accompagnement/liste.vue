@@ -44,6 +44,11 @@
             <router-link :to="`/accompagnement/${accompagnement._id}`"
               >Permalink</router-link
             >
+            <a
+              :href="`/followups/${accompagnement._id}?token=${accompagnement.accessToken}`"
+              target="_blank"
+              >Résultats de la simulation</a
+            >
             <a :href="`mailto:${accompagnement.email}`">Recontacter</a>
           </div>
           <ul

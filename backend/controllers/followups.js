@@ -4,7 +4,10 @@ const Followup = require("mongoose").model("Followup")
 const pollResult = require("../lib/mattermost-bot/poll-result")
 const simulationController = require("./simulation")
 
-const excludeFields = ["surveys.accessToken"].join(" -").replace(/^/, "-")
+// TODO next line is to be updated once tokens are used globally
+const excludeFields = ["accessToken", "surveys.accessToken"]
+  .join(" -")
+  .replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
   Followup.findById(id)
@@ -13,7 +16,12 @@ exports.followup = function (req, res, next, id) {
       if (err) {
         return next(err)
       }
-      if (!followup?.simulation?._id) {
+      // TODO remove unecessary condition when tokens are widely used
+      if (
+        !followup?.simulation?._id ||
+        (req?.query?.token && followup?.accessToken !== req.query.token)
+      ) {
+        // no id specified or not matching access token
         return res.redirect("/")
       }
       req.followup = followup
@@ -49,18 +57,18 @@ exports.persist = function (req, res) {
 }
 
 exports.showFromSurvey = function (req, res) {
+  // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({
     $or: [
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
+      { accessToken: req.params.surveyId },
     ],
-  })
-    .select(excludeFields)
-    .then((followup) => {
-      if (!followup) return res.sendStatus(404)
+  }).then((followup) => {
+    if (!followup) return res.sendStatus(404)
 
-      res.send(followup)
-    })
+    res.send(followup)
+  })
 }
 
 exports.showSurveyResults = function (req, res) {
@@ -72,7 +80,6 @@ exports.showSurveyResults = function (req, res) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
-    .select(excludeFields)
     .then((followup) => {
       res.send(followup)
     })
@@ -94,18 +101,16 @@ exports.showSimulation = function (req, res) {
 }
 
 exports.postSurvey = function (req, res) {
+  // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({
     $or: [
       { "surveys._id": req.params.surveyId },
       { "surveys.accessToken": req.params.surveyId },
+      { accessToken: req.params.surveyId },
     ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
-    const token = followup.surveys.find(
-      (survey) =>
-        survey._id == req.params.surveyId ||
-        survey.accessToken == req.params.surveyId
-    )._id
+    const token = followup.surveys[followup.surveys.length - 1]._id
     followup.updateSurvey(token, req.body).then(() => {
       res.sendStatus(201)
     })

@@ -1,0 +1,30 @@
+label: b-Mouve – Mobilité des formations sanitaires et sociales
+institution: region_bretagne
+description: La subvention B-Mouve vise à permettre aux élèves et étudiant(e)s
+  des formations sanitaires et sociales de la Région Bretagne de réaliser des
+  stages ou des séjours d'études en Europe. Le montant de l’aide dépend du
+  profil des bénéficiaires.
+conditions:
+  - Réaliser un séjour en Europe ou à l’international dans le cadre de votre
+    formation ou de votre mission.
+  - Etudier au sein d'un des <a target="_blank" rel="noopener"
+    href="https://www.bretagne.bzh/app/uploads/Etablissements-eligibles.docx">établissements
+    éligibles</a>.
+  - Transmettre un dossier complet à la Région.
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+  - type: formation_sanitaire_social
+    value: true
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions: []
+link: https://www.bretagne.bzh/aides/fiches/bmouve-bretagne-mobilite-ouverture-europe/
+teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+type: bool
+unit: €
+periodicite: ponctuelle
+interestFlag: _interetEtudesEtranger

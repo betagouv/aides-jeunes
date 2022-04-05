@@ -51,6 +51,7 @@ import axios from "axios"
 import Institution from "@/lib/institution"
 import Etablissement from "@/components/etablissement"
 import EtablissementLib from "@/lib/etablissement"
+import { getEtablissements } from "@/../lib/benefits/etablissements"
 
 export default {
   name: "Lieux",
@@ -66,10 +67,10 @@ export default {
   },
   mounted: function () {
     const city = this.$store.getters.situation.menage.depcom
-    const benefit = Institution.benefits.all
-      .filter((benefit) => benefit.institution.etablissements?.length > 0)
-      .find((benefit) => benefit.id === this.$route.params.benefit_id)
-    const types = benefit ? benefit.institution.etablissements : []
+    const benefit = Institution.benefits.all.find(
+      (benefit) => benefit.id === this.$route.params.benefit_id
+    )
+    const types = getEtablissements(benefit)
 
     axios
       .get(

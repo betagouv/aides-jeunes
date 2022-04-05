@@ -3,7 +3,8 @@ institution: region_ile_de_france
 description: "La Région Ile-de-France soutient les élèves de 2ème année des
   classes préparatoires aux grandes écoles (CPGE) pour le paiement des frais de
   concours : inscription, hébergement, transport."
-conditions: []
+conditions:
+  - Vous rapprocher de votre établissement qui vous indiquera la marche à suivre.
 conditions_generales:
   - type: regions
     values:
@@ -18,8 +19,10 @@ profils:
         values:
           - cpge_1
 link: https://lycees.iledefrance.fr/dotation-budgetaire
-teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Ftiers-selection&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self
+teleservice: ""
+instructions: https://lycees.iledefrance.fr/dotation-budgetaire
 type: float
 unit: €
 periodicite: autre
-montant: 282
+legend: maximum
+montant: 846

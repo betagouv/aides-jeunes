@@ -27,3 +27,4 @@ prefix: null
 type: bool
 unit: €
 periodicite: mensuelle
+interestFlag: _interetAidesSanitaireSocial

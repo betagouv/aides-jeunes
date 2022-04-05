@@ -18,6 +18,8 @@ conditions_generales:
   - type: regions
     values:
       - "32"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: enseignement_superieur
     conditions: []

@@ -19,3 +19,4 @@ instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/bourse
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

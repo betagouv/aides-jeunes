@@ -19,3 +19,4 @@ instructions: https://www.crous-normandie.fr/bourses/aides-paramedicales-sociale
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

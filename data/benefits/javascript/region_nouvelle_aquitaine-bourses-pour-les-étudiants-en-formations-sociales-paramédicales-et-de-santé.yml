@@ -17,3 +17,4 @@ instructions: ""
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

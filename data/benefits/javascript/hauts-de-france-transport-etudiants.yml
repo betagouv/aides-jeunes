@@ -1,0 +1,24 @@
+label: aide au Transport aux Particuliers - Étudiant(e)s
+institution: hauts_de_france
+description: Cette aide est destinée aux étudiant(e)s qui utilisent leur
+  véhicule pour rejoindre leur lieu d'étude. Elle s'effectue par la prise en
+  charge d'une partie des frais liés au trajet domicile-étude.
+conditions:
+  - Utiliser un véhicule particulier ou un deux-roues motorisé.
+  - Parcourir au moins 100 km de façon hebdomadaire.
+  - Ne pas bénéficier d'un autre financement pour vos déplacements (aide non
+    cumulable).
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=780
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF21%2F22
+prefix: l’
+type: float
+unit: €
+periodicite: mensuelle
+montant: 20

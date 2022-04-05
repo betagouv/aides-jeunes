@@ -4,6 +4,49 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
   annuelle: "/ an",
 }
 
+// Effectue une vérification groupée sur les champs ayant l'attribut required_group
+const groupFieldsLegend = {
+  cta: "Liens vers un site, téléservice ou formulaire",
+}
+const groupFieldsHint = "Au moins un des champs suivants doit être rempli"
+
+const requiredGroupValidator = (group) => {
+  return [
+    ...document.querySelectorAll(`[data-group-required*=${group}]`),
+  ].reduce((previous, current) => {
+    return previous || current.querySelector(":scope > input").value.length > 0
+  }, false)
+}
+
+const groups = {}
+const requiredGroupRender = (item, id) => {
+  try {
+    if (!groups[id]) {
+      groups[id] = document.createElement("div")
+      groups[id].className = "fields-group"
+      item.parentNode.parentNode.parentNode.insertBefore(
+        groups[id],
+        item.parentNode.parentNode
+      )
+
+      if (groupFieldsLegend[id]) {
+        const legend = document.createElement("div")
+        legend.innerText = groupFieldsLegend[id]
+        legend.className = "fields-group-label"
+        groups[id].appendChild(legend)
+      }
+      const hint = document.createElement("div")
+      hint.innerText = groupFieldsHint
+      hint.className = "fields-group-hint"
+      groups[id].appendChild(hint)
+    }
+    groups[id].appendChild(item.parentNode.parentNode)
+  } catch (e) {
+    console.log("Failed to set fields group", e)
+  }
+}
+// Fin de la validation de champ groupés
+
 const Conditions = ({ conditions }) => {
   if (!conditions || !conditions.length) {
     return <div></div>
@@ -62,11 +105,15 @@ const DroitEstime = ({ droit }) => {
       const montant = droit.montant || 1
       const unit = droit.unit || "€"
       const legend =
-        droit.legend || LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] || ""
+        droit.legend && LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite]
+          ? `${droit.legend} ${
+              LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite]
+            }`
+          : droit.legend ||
+            LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite] ||
+            ""
       droitEstime = (
-        <span className="aj-droit-value">
-          {montant + " " + unit + " " + legend}
-        </span>
+        <span className="aj-droit-value">{`${montant} ${unit} ${legend}`}</span>
       )
       break
     default:

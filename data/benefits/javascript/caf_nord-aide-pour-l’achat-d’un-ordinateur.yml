@@ -9,6 +9,9 @@ conditions:
     charge de moins de 20 ans.
   - Être allocataire de la Caf.
 conditions_generales:
+  - type: departements
+    values:
+      - "59"
   - type: quotient_familial
     floor: 700
     period: month

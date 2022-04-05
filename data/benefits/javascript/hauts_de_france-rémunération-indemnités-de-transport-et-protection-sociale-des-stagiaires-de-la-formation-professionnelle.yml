@@ -3,11 +3,11 @@ label: rémunération, indemnités de transport et protection sociale des
 institution: hauts_de_france
 description: Cette aide permet de couvrir la rémunération, l'indemnisation des
   frais de transport, la protection sociale des stagiaires de la formation
-  professionnelle et de l'apprentissage.
+  professionnelle.
 conditions:
-  - Être en recherche d'emploi sans droit ouvert au titre de l'assurance
-    chômage, et dont le coût pédagogique de la formation est financé par le
-    Conseil régional des Hauts-de-France.
+  - Être en recherche d'emploi sans droit ouvert au titre de l'assurance chômage.
+  - Suivre une formation dont le coût pédagogique est financé par le Conseil
+    régional des Hauts-de-France.
   - Suivre un stage de <a target="_blank" rel="noopener"
     href="https://formations-en-hauts-de-france.c2rp.fr/">formation
     professionnelle</a> de plus de 70 heures en centre agréé par la Région

@@ -10,11 +10,7 @@
       :level="levels[index]"
     />
     <router-link
-      v-if="
-        benefit.etablissements?.length &&
-        benefit.institution.etablissements?.length &&
-        $route.name !== 'aide'
-      "
+      v-if="showProximityCta"
       id="cta-proximity"
       v-analytics="{
         name: benefit.label,
@@ -34,6 +30,7 @@
 
 <script>
 import BenefitCtaLink from "./benefit-cta-link"
+import { hasEtablissements } from "@/../lib/benefits/etablissements"
 
 const types = ["teleservice", "form", "instructions"]
 export default {
@@ -50,7 +47,7 @@ export default {
     }
   },
   computed: {
-    ctas: function () {
+    ctas() {
       let vm = this
       return types
         .map(function (type) {
@@ -63,6 +60,9 @@ export default {
           return item.link
         })
         .slice(0, 2)
+    },
+    showProximityCta() {
+      return hasEtablissements(this.benefit) && this.$route.name !== "aide"
     },
   },
 }

@@ -15,7 +15,9 @@ conditions_generales:
   - type: regions
     values:
       - "28"
-profils: []
+profils:
+  - type: stagiaire
+    conditions: []
 link: https://www.normandie.fr/aide-lacces-au-permis-de-conduire-permis-b
 teleservice: https://monespace-aides.normandie.fr/account-management/crno-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-crno-portail-depot-demande-aides&footer=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Faides.normandie.fr%2Fbesoin-d-aide,Nous%20contacter,_blank
 prefix: l’

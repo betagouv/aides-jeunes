@@ -1,0 +1,28 @@
+label: Aide régionale aux inscriptions aux concours
+institution: region_ile_de_france
+description: "La Région Ile-de-France soutient les élèves de 2ème année des
+  classes préparatoires aux grandes écoles (CPGE) pour le paiement des frais de
+  concours : inscription, hébergement, transport."
+conditions:
+  - Vous rapprocher de votre établissement qui vous indiquera la marche à suivre.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: quotient_familial
+    floor: 10140
+    period: year
+profils:
+  - type: etudiant
+    conditions:
+      - type: annee_etude
+        values:
+          - cpge_1
+link: https://lycees.iledefrance.fr/dotation-budgetaire
+teleservice: ""
+instructions: https://lycees.iledefrance.fr/dotation-budgetaire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 846

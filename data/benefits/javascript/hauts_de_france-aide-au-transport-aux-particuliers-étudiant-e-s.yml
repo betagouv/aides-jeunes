@@ -6,6 +6,8 @@ description: Cette aide est destinée aux étudiant(e)s qui utilisent leur
 conditions:
   - Utiliser un véhicule particulier ou un deux-roues motorisé.
   - Parcourir au moins 100 km de façon hebdomadaire.
+  - Ne pas bénéficier d'un autre financement pour vos déplacements (aide non
+    cumulable).
 conditions_generales:
   - type: regions
     values:

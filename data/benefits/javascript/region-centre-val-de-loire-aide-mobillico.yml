@@ -1,0 +1,32 @@
+label: aide Mobillico
+institution: region_centre_val_de_loire
+description: Grâce à cette aide, vos transports domicile-travail sont pris en
+  charge, en complément de la prise en charge de votre employeur, pour limiter
+  vos dépenses à 100€ par mois.
+conditions:
+  - Être titulaire d'un abonnement SNCF mensuel ou annuel.
+  - Effectuer des parcours intra ou inter régionaux pour le travail, y compris
+    vers l’Ile-de-France.
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: salarie
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+link: https://www.centre-valdeloire.fr/mobillico
+teleservice: https://aspqol.sphinxonline.net/SurveyServer/s/CRCTOURS/Mobillico/questionnaire.htm
+prefix: l’
+type: bool
+unit: €
+periodicite: autre

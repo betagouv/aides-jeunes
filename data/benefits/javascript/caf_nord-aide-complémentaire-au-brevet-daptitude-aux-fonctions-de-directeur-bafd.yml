@@ -1,0 +1,29 @@
+label: aide complémentaire au Brevet d'aptitude aux fonctions de directeur (BAFD)
+institution: caf_nord
+description: L'aide complémentaire au BAFD est une aide locale mise à
+  disposition par la Caf du Nord pour vous aider à financer votre formation.
+conditions:
+  - Avoir une expérience d'animation.
+  - Résider dans le département du Nord au moment de la demande.
+  - Être inscrit(e) à la session de perfectionnement.
+  - Déposer sa demande dans les trois mois suivant l’inscription au stage de
+    perfectionnement.
+  - Joindre un RIB si vous n’êtes pas allocataire.
+conditions_generales:
+  - type: departements
+    values:
+      - "59"
+  - type: age
+    operator: ">="
+    value: 21
+profils: []
+link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/enfance-et-jeunesse/bafabafd-la-caf-du-nord-peut-vous-aider
+form: https://www.caf.fr/sites/default/files/caf/598/BAFA/2021_06_07_bafd.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/enfance-et-jeunesse/bafabafd-la-caf-du-nord-peut-vous-aider
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 250
+interestFlag: _interetBafa

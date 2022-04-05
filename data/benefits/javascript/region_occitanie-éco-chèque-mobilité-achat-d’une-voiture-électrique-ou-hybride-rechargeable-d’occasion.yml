@@ -14,6 +14,9 @@ conditions_generales:
   - type: regions
     values:
       - "76"
+  - type: age
+    operator: ">="
+    value: 18
 profils: []
 link: https://www.laregion.fr/Eco-cheque-mobilite-voiture-electrique-ou-hybride
 teleservice: https://mesaidesenligne.laregion.fr/aides/#/croccitanie/connecte/F_DMP_E_CHEQ_VO/depot/simple
@@ -21,4 +24,4 @@ type: float
 unit: €
 periodicite: autre
 legend: maximum
-montant: 2000
+montant: 4000

@@ -18,6 +18,8 @@ conditions_generales:
   - type: quotient_familial
     floor: 25000
     period: year
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: etudiant
     conditions: []

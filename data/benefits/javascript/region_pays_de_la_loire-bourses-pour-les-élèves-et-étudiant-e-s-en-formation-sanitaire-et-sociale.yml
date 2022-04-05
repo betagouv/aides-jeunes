@@ -17,3 +17,4 @@ teleservice: https://maboursesanitaireetsociale.paysdelaloire.fr/Profil-public/p
 type: bool
 unit: €
 periodicite: ponctuelle
+interestFlag: _interetAidesSanitaireSocial

@@ -16,10 +16,12 @@ conditions_generales:
     value: 26
   - type: departements
     values:
-      - "08"
-      - "10"
-      - "51"
-      - "52"
+      - "21"
+      - "25"
+      - "58"
+      - "70"
+      - "89"
+      - "90"
 profils:
   - type: enseignement_superieur
     conditions: []

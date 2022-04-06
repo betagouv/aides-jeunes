@@ -9,8 +9,13 @@ const jsBenefits = benefits.all
     )
   })
   .forEach((benefit) => {
-    if (!testGeoRelevancy(benefit)) {
+    const result = testGeoRelevancy(benefit)
+    if (!result.isValid) {
       console.log(benefit.id)
+      console.log(benefit.institution.slug)
+      console.log(benefit.institution.code_insee)
+      console.log(result.conditions)
+      console.log()
     }
   })
 
@@ -24,7 +29,12 @@ function testGeoRelevancy(benefit) {
     )
   })
   if (!conditionGeo) {
-    return false
+    return { result: false, conditions: [] }
   }
-  return conditionGeo.values[0] === benefit.institution.code_insee
+  return {
+    isValid:
+      conditionGeo.values.length == 1 &&
+      conditionGeo.values[0] === benefit.institution.code_insee,
+    conditions: conditionGeo,
+  }
 }

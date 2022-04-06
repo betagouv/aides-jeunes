@@ -70,6 +70,20 @@ exports.showFromSurvey = function (req, res) {
   })
 }
 
+exports.showSurveyResult = function (req, res) {
+  Followup.findOne({
+    _id: req.params.surveyId,
+  })
+    .then((simulation) => {
+      if (!simulation) return res.sendStatus(404)
+      res.send([simulation])
+    })
+    .catch((error) => {
+      console.error("error", error)
+      return res.sendStatus(400)
+    })
+}
+
 exports.showSurveyResults = function (req, res) {
   Followup.find({
     surveyOptin: true,

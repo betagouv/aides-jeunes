@@ -115,6 +115,39 @@ describe("benefit descriptions", function () {
               expect(benefit.entity).toBe(undefined)
             })
 
+            if (
+              ["region", "departement", "commune", "epci"].includes(
+                benefit.institution.type
+              )
+            ) {
+              const complexGeoCriteriaBenefits = [
+                "grand-est-passetudes",
+                "hauts-de-france-mon-abo-etudiant-ter",
+                "region-ile-de-france-vehicules-propres",
+                "region-pays-de-la-loire-ehop-emploi",
+              ]
+              if (!complexGeoCriteriaBenefits.includes(benefit.id)) {
+                it("should have a coherent geographical constraint", function () {
+                  const conditionGeo = benefit.conditions_generales.find(
+                    (condition) => {
+                      return (
+                        condition.type === "regions" ||
+                        condition.type === "departements" ||
+                        condition.type === "communes"
+                      )
+                    }
+                  )
+                  expect(conditionGeo.values.length).toEqual(1)
+                  expect(conditionGeo.type.slice(0, -1)).toEqual(
+                    benefit.institution.type
+                  )
+                  expect(conditionGeo.values).toEqual([
+                    benefit.institution.code_insee,
+                  ])
+                })
+              }
+            }
+
             if (benefit.type === "float") {
               it("should have a montant", function () {
                 expect(typeof benefit.montant).toBe("number")

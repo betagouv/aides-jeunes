@@ -1,0 +1,25 @@
+label: Aide au financement du permis
+institution: guyane
+description: La Collectivité Territoriale de Guyane propose une aide financière
+  pour passer le permis de conduire (permis B).
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regions
+    values:
+      - "03"
+profils: []
+link: https://mes-aides.pole-emploi.fr/region-guyane/aide-regionale-au-permis-de-conduire-region-guyane
+form: https://dl.airtable.com/.attachments/f542bd6d6c0b574c70d8e63772863a4b/2ebe2da8/formaulaire-faj-individuel-2019-0-20121.pdf
+instructions: https://mes-aides.pole-emploi.fr/region-guyane/aide-regionale-au-permis-de-conduire-region-guyane
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000
+interestFlag: _interetPermisDeConduire

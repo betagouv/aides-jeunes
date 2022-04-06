@@ -40,7 +40,7 @@ function postPollResult(simulation, answers) {
   ]
   for (let key of orderedAnswers) {
     result.push(
-      `${score[key.value][0]} [${key.id}](${
+      `${score[key.value] ? score[key.value][0] : ""} [${key.id}](${
         process.env.MES_AIDES_ROOT_URL
       }/aides/${key.id}) ${
         key.unit && typeof key.amount === "number"

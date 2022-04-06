@@ -66,7 +66,6 @@ exports.showFromSurvey = function (req, res) {
     ],
   }).then((followup) => {
     if (!followup) return res.sendStatus(404)
-
     res.send(followup)
   })
 }

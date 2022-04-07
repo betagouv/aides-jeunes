@@ -748,11 +748,13 @@ collections:
         name: code_insee
         widget: string
         required: false
+        required_group: identifier
       - label: Code SIREN
         hint: En l'absence de code INSEE
         name: code_siren
         widget: string
         required: false
+        required_group: identifier
   - name: contribution-pages
     label: Pages
     label_singular: page

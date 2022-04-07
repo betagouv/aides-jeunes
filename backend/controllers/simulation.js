@@ -3,6 +3,7 @@ const filter = require("lodash/filter")
 const pick = require("lodash/pick")
 const assign = require("lodash/assign")
 
+const { baseURL } = require("../config")
 const { generateSituation } = require("../../lib/situations")
 const openfisca = require("../lib/openfisca")
 const openfiscaTest = require("../lib/openfisca/test")
@@ -31,8 +32,8 @@ exports.simulation = function (req, res, next, simulationId) {
 exports.attachAccessCookie = function (req, res) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    secure: process.env.NODE_ENV === "production",
+    sameSite: baseURL.startsWith("https") ? "none" : "lax",
+    secure: baseURL.startsWith("https"),
   }
   res.cookie(req.simulation.cookieName, req.simulation.token, cookiesParameters)
   res.cookie(

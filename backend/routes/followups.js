@@ -12,5 +12,5 @@ module.exports = function (api) {
   api
     .route("/followups/id/:surveyId")
     .get(cookieParser(), githubController.access)
-    .get(followups.showSimulation)
+    .get(followups.showSurveyResult)
 }

@@ -235,7 +235,7 @@ export default {
         ? `/api/followups/id/${this.$route.params.surveyId}`
         : `/api/followups/surveys`
       try {
-        const response = await fetch(`${uri}?${new Date().getTime()}`, {
+        const response = await fetch(uri, {
           method: "GET",
           redirect: "error",
           headers: {

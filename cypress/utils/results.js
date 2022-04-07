@@ -6,11 +6,11 @@ const wait = () => {
 
 const getBenefitSummary = (id) => cy.get(`@${id}-summary`)
 
-const back = () => cy.get('button[data-testid="back"]').click()
+const back = () => cy.get('[data-testid="back-button"]').click()
 
 const IdentifyBenefit = (id, name) => {
   cy.get(
-    `.droits-list [itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
+    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
     { timeout: 10000 }
   ).as(`${id}-summary`)
   getBenefitSummary(id)
@@ -25,16 +25,16 @@ const hasPrimeActivite = () => {
   const description = /revenus/
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-value")
+    .find('[data-testid="droit-estime-value"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€/)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-legend")
+    .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
-  getBenefitSummary(id).find(".aj-aide-cta").click()
+  getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
-  cy.get(".aj-droit-detail").as(id)
+  cy.get('[data-testid="droit-detail"]').as(id)
   cy.get("@" + id)
     .get('[itemprop="description"]')
     .invoke("text")
@@ -63,16 +63,16 @@ const hasHousingBenefit = () => {
   const description = /Apl/
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-value")
+    .find('[data-testid="droit-estime-value"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€/)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-legend")
+    .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
-  getBenefitSummary(id).find(".aj-aide-cta").click()
+  getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
-  cy.get(".aj-droit-detail").as(id)
+  cy.get('[data-testid="droit-detail"]').as(id)
   cy.get("@" + id)
     .get('[itemprop="description"]')
     .invoke("text")
@@ -82,7 +82,7 @@ const hasHousingBenefit = () => {
     .should("be.visible")
   // Vérifie si la page patrimoine est bien affichée
   cy.get("#patrimoine-link").click()
-  cy.get('h2[data-testid="immobilier-title"]').should("exist")
+  cy.get('[data-testid="immobilier-title"]').should("exist")
   submit()
 }
 
@@ -98,16 +98,16 @@ const hasAAH = () => {
   const description = "AAH"
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-value")
+    .find('[data-testid="droit-estime-value"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€/)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-legend")
+    .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
-  getBenefitSummary(id).find(".aj-aide-cta").click()
+  getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
-  cy.get(".aj-droit-detail").as(id)
+  cy.get('[data-testid="droit-detail"]').as(id)
   cy.get("@" + id)
     .get('[itemprop="description"]')
     .invoke("text")
@@ -123,16 +123,16 @@ const hasBourseCriteresSociaux = () => {
   const description = /BCS/
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-value")
+    .find('[data-testid="droit-estime-value"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€/)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-legend")
+    .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
-  getBenefitSummary(id).find(".aj-aide-cta").click()
+  getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
-  cy.get(".aj-droit-detail").as(id)
+  cy.get('[data-testid="droit-detail"]').as(id)
   cy.get("@" + id)
     .get('[itemprop="description"]')
     .invoke("text")
@@ -147,7 +147,7 @@ const hasIleDeFranceAideAuMerite = () => {
   const id = "ile-de-france-aide-au-merite"
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
-    .find(".aj-droit-estime-value")
+    .find('[data-testid="droit-estime-value"]')
     .invoke("text")
     .should("match", /(\d+)[\S\n\r\s]+€/)
 }

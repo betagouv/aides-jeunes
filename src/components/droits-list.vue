@@ -35,7 +35,7 @@
           </WarningMessage>
         </div>
         <DroitEstime :droit="droit" />
-        <div class="aj-aide-cta">
+        <div class="aj-aide-cta" data-testid="aide-cta">
           <button class="button primary"> Demander cette aide </button>
         </div>
       </router-link>

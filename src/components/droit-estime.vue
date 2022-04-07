@@ -7,11 +7,18 @@
             {{ droitEstime.label }}
           </span>
           <br />
-          <span class="aj-droit-estime-value font-bold">
+          <span
+            class="aj-droit-estime-value font-bold"
+            data-testid="droit-estime-value"
+          >
             {{ droitEstime.value }}
           </span>
         </span>
-        <span v-if="droitEstime.legend" class="aj-droit-estime-legend">
+        <span
+          v-if="droitEstime.legend"
+          class="aj-droit-estime-legend"
+          data-testid="droit-estime-legend"
+        >
           {{ droitEstime.legend }}
         </span>
       </template>

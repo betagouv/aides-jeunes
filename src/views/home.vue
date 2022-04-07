@@ -24,6 +24,7 @@
             <button
               v-analytics="{ action: ctaLabel, category: 'Home' }"
               :class="`button ${ctaSize} primary`"
+              data-testid="new-simulation"
               @click="newSituation()"
             >
               {{ ctaLabel }}

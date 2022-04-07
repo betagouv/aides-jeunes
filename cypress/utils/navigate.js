@@ -11,7 +11,7 @@ const goHome = () => {
 
   cy.get(".aj-home-hero-content").invoke("text").should("contain", "aides")
 
-  cy.get(".button.primary").click()
+  cy.get('[data-testid="new-simulation"]').click()
 }
 
 export default {

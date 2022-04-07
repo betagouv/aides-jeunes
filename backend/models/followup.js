@@ -52,6 +52,7 @@ const FollowupSchema = new mongoose.Schema(
       type: [SurveySchema],
       default: [],
     },
+    version: Number,
     error: { type: Object },
     accessToken: { type: String },
     _id: { type: String },

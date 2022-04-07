@@ -2,7 +2,7 @@
  * Supprime les id lorsqu'ils ne sont plus nécessaires
  */
 const omit = require("lodash/omit")
-const { ANSWER_BASIC_IDS } = require("../definitions")
+const { ANSWER_BASIC_IDS } = require("../../definitions")
 const VERSION = 8
 
 function removeIds(answers) {

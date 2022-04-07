@@ -3,6 +3,7 @@
     class="aj-droit-detail normal-padding-bottom"
     itemscope
     itemtype="http://schema.org/GovernmentService"
+    data-testid="droit-detail"
   >
     <DroitHeader :droit="droit"></DroitHeader>
 

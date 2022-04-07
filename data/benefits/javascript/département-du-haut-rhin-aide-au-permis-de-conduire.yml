@@ -1,0 +1,24 @@
+label: Aide au permis de conduire
+institution: département-du-haut-rhin
+description: Cette aide proposée par le fonds d’aide aux jeunes (FAJ) est
+  destiné à favoriser l’insertion sociale et professionnelle des jeunes en
+  situation de grande précarité. Elle peut vous permettre de financer votre
+  permis de conduire.
+conditions:
+  - Être en difficulté financière.
+  - Effectuer votre demande auprès de votre Mission Locale.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+link: https://mes-aides.pole-emploi.fr/collectivite-europeenne-d-alsace/aide-au-permis-de-conduire-collectivite-europeene-d-alsace
+instructions: https://mes-aides.pole-emploi.fr/collectivite-europeenne-d-alsace/aide-au-permis-de-conduire-collectivite-europeene-d-alsace
+prefix: l’
+type: bool
+unit: €
+periodicite: ponctuelle
+interestFlag: _interetPermisDeConduire

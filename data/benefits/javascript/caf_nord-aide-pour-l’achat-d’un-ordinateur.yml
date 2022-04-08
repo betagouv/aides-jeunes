@@ -1,9 +1,8 @@
-label: aide pour l’achat d’un ordinateur
+label: aide à l'achat d'équipement
 institution: caf_nord
 description: La Caf vous propose un prêt équipement à taux 0 pour l'achat d’un
   ordinateur, d'électroménager, d'équipement mobilier, de matériel de
-  puériculture, ou d'un vélo pour vous ou pour votre enfant qui devient
-  étudiant.
+  puériculture, ou d'un vélo pour vous ou pour votre enfant.
 conditions:
   - Faire partie d'un foyer ayant un enfant à naître ou au moins un enfant à
     charge de moins de 20 ans.
@@ -16,7 +15,7 @@ conditions_generales:
     floor: 700
     period: month
 profils: []
-link: https://caf.fr/allocataires/caf-du-nord/actualites/annee/2021/une-aide-pour-l-achat-d-un-ordinateur
+link: https://caf.fr/allocataires/caf-du-nord/offre-de-service/logement-et-cadre-de-vie/une-aide-pour-l-achat-d-un-ordinateur
 form: https://caf.fr/sites/default/files/caf/598/IMPRIMES/DEQUIP_2021.pdf
 prefix: l’
 type: float

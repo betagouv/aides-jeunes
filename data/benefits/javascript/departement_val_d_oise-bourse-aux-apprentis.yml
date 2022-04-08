@@ -1,0 +1,22 @@
+label: bourse aux apprentis
+institution: departement_val_d_oise
+description: Le Conseil départemental du Val d’Oise attribue une bourse
+  départementale aux apprenti(e)s d'un montant de 230€, versée en une seule fois
+  au titre de l'année scolaire.
+conditions:
+  - Etre domicilié(e) fiscalement dans le Val d’Oise.
+conditions_generales:
+  - type: age
+    operator: <
+    value: 25
+profils:
+  - type: apprenti
+    conditions: []
+link: https://mes-aides.pole-emploi.fr/departement-val-d-oise/aide-departementale-bourse-aux-apprentis
+instructions: https://mes-aides.pole-emploi.fr/departement-val-d-oise/aide-departementale-bourse-aux-apprentis
+prefix: la
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 230

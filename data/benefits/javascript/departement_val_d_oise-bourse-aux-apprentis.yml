@@ -9,6 +9,9 @@ conditions_generales:
   - type: age
     operator: <
     value: 25
+  - type: departements
+    values:
+      - "95"
 profils:
   - type: apprenti
     conditions: []

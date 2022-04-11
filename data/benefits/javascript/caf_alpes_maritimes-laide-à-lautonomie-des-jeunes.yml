@@ -1,0 +1,35 @@
+label: L'aide à l'autonomie des jeunes
+institution: caf_alpes_maritimes
+description: >-
+  La Caf des Alpes-Maritimes peut verser à vos parents une Aide à l'autonomie
+  des jeunes (Aaj).
+
+  Cette aide est destinée à soutenir les familles allocataires de la Caf 06 ayant à charge un ou des jeune(s) titulaires du bac et poursuivant des études supérieures.
+conditions:
+  - Etre âgé(e) de 20 à 25 ans.
+  - Etre domicilié(e) et à la charge de vos parents.
+  - Etre titulaire du Bac et poursuivre des études supérieures en France ou à
+    Monaco et, en cas de cumul des études avec une activité professionnelle,
+    avoir un revenu inférieur ou égal à 55 % du smic.
+  - Ne pas percevoir une aide au logement à titre personnel.
+conditions_generales:
+  - type: departements
+    values:
+      - "06"
+  - type: quotient_familial
+    floor: 800
+    period: month
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: age
+        operator: <=
+        value: 25
+link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/l-aide-a-l-autonomie-des-jeunes-aaj
+form: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2020/Demande_2020_aide_autonomie_jeunes.pdf
+instructions: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2021/NOTICE%20-%20DEMANDE%20AAJ%20%20sept%2021%20juin%2022%20%28MAJ%2005%2010%2021%29.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+legend: versée en deux fois
+montant: 1520

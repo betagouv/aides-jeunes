@@ -43,7 +43,7 @@ function render(followup) {
     function (values) {
       return {
         subject: `[${
-          followup.simulation._id || followup.simulation
+          followup?.simulation?._id || followup?.simulation
         }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
         text: values[0],
         html: values[1].html,

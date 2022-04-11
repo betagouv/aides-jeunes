@@ -95,8 +95,8 @@ FollowupSchema.methods.sendInitialEmail = function () {
     })
 }
 
-FollowupSchema.methods.renderSurveyEmail = function (survey) {
-  return renderSurvey(this, survey)
+FollowupSchema.methods.renderSurveyEmail = function () {
+  return renderSurvey(this)
 }
 
 FollowupSchema.methods.createSurvey = function (type) {
@@ -112,7 +112,7 @@ FollowupSchema.methods.createSurvey = function (type) {
 FollowupSchema.methods.sendSurvey = function () {
   const followup = this
   return this.createSurvey("initial").then((survey) => {
-    return this.renderSurveyEmail(survey)
+    return this.renderSurveyEmail()
       .then((render) => {
         const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]

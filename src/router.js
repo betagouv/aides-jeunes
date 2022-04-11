@@ -279,12 +279,6 @@ const router = createRouter({
       ],
     },
     {
-      name: "lieux-details",
-      path: "/lieux/:commune/:type",
-      component: () =>
-        import(/* webpackChunkName: "lieux" */ "./views/lieux/details.vue"),
-    },
-    {
       path: "/redirection",
       name: "redirection",
       component: () =>

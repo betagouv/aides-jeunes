@@ -1,0 +1,24 @@
+label: Bourse à l'installtation des étudiants en kinésithérapie et maïeutique
+institution: region_ile_de_france
+description: La Région Ile-de-France soutient l'installation des étudiants en
+  kinésithérapie et maïeutique (sages-femmes) dans les zones franciliennes
+  carencées en professionnels de santé.
+conditions:
+  - Etre inscrit-e en avant-dernière année d'études.
+  - S'engager à s'installer pour 3 ans minimum, en secteur 1, dans une zone
+    carencée, dans les 6 mois suivqnt l'obtention du diplôme.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: etudiant
+    conditions:
+      - type: formation_sanitaire_social
+        value: false
+link: https://www.iledefrance.fr/bourse-daide-linstallation-des-etudiants-en-formation-kinesitherapie-et-maieutique
+teleservice: https://mesdemarches.iledefrance.fr
+type: float
+unit: €
+periodicite: annuelle
+montant: 8400

@@ -7,6 +7,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 // Effectue une vérification groupée sur les champs ayant l'attribut required_group
 const groupFieldsLegend = {
   cta: "Liens vers un site, téléservice ou formulaire",
+  identifier: "Code INSEE ou code SIREN",
 }
 const groupFieldsHint = "Au moins un des champs suivants doit être rempli"
 

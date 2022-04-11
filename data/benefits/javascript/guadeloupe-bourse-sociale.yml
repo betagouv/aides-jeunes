@@ -17,6 +17,8 @@ conditions_generales:
   - type: regions
     values:
       - "01"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: stagiaire
     conditions: []
@@ -30,3 +32,4 @@ unit: €
 periodicite: annuelle
 legend: maximum
 montant: 5736
+interestFlag: _interetAidesSanitaireSocial

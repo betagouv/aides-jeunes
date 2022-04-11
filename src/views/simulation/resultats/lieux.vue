@@ -71,8 +71,12 @@ export default {
   },
   methods: {
     goToBenefitDetail() {
-      const path = `/simulation/resultats/${this.benefit.id}`
-      this.$router.push(path)
+      if (this.benefit?.id) {
+        const path = `/simulation/resultats/${this.benefit.id}`
+        this.$router.push(path)
+      } else {
+        window?.history.back()
+      }
     },
   },
 }

@@ -1,5 +1,5 @@
-import axios from "axios"
-import EtablissementLib from "../lib/etablissement"
+import { getEtablissements } from "../../lib/benefits/etablissements"
+
 const EtablissementModule = {
   namespaced: true,
   state() {
@@ -24,25 +24,17 @@ const EtablissementModule = {
     get(state, payload) {
       state.commit("setError", null)
       state.commit("setUpdating", true)
-      const API_URL =
-        "https://etablissements-publics.api.gouv.fr/v3/communes/" +
-        payload.city +
-        "/" +
-        payload.types.join("+")
-
-      return axios
-        .get(API_URL)
-        .then((response) => {
-          if (!response.data.features) return []
-          let listEtablissements = response.data.features
-            .map(EtablissementLib.normalize)
-            .sort((a, b) => {
-              return (
-                payload.types.indexOf(a.pivotLocal) -
-                payload.types.indexOf(b.pivotLocal)
-              )
-            })
-          state.commit("setEtablissements", listEtablissements)
+      return getEtablissements(payload.city, payload.types)
+        .then((etablissements) => {
+          return etablissements.sort((a, b) => {
+            return (
+              payload.types.indexOf(a.pivotLocal) -
+              payload.types.indexOf(b.pivotLocal)
+            )
+          })
+        })
+        .then((etablissements) => {
+          state.commit("setEtablissements", etablissements)
           state.commit("setUpdating", false)
         })
         .catch(state.commit("setError", "Aucun résultat"))

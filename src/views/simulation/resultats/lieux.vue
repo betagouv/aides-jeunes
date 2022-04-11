@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import axios from "axios"
-
 import Institution from "@/lib/institution"
 import Etablissement from "@/components/etablissement"
-import EtablissementLib from "@/lib/etablissement"
-import { getEtablissements } from "@/../lib/benefits/etablissements"
+import {
+  getBenefitEtablissements,
+  getEtablissements,
+} from "@/../lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button"
 
 export default {
@@ -59,27 +59,11 @@ export default {
     this.benefit = Institution.benefits.all.find(
       (benefit) => benefit.id === this.$route.params.benefit_id
     )
-    const types = getEtablissements(this.benefit)
+    const types = getBenefitEtablissements(this.benefit)
 
-    axios
-      .get(
-        `https://etablissements-publics.api.gouv.fr/v3/communes/${city}/${types.join(
-          "+"
-        )}`
-      )
-      .then(
-        function (response) {
-          return response.data.features
-        },
-        function () {
-          return []
-        }
-      )
-      .then(function (etablissements) {
-        return etablissements.map(EtablissementLib.normalize)
-      })
-      .then((o) => {
-        this.list = o
+    getEtablissements(city, types)
+      .then((etablissements) => {
+        this.list = etablissements
       })
       .finally(() => {
         this.updating = false

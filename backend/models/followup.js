@@ -192,7 +192,12 @@ FollowupSchema.virtual("returnPath").get(function () {
 })
 
 FollowupSchema.virtual("surveyPath").get(function () {
-  return `/suivi?token=${this.accessToken}`
+  //TODO Restore next line and remove the rest once token in email are fully supported
+  if (this.accessToken) {
+    return `/suivi?token=${this.accessToken}`
+  } else {
+    return `/suivi?token=${this?.surveys[this.surveys.length - 1]._id}`
+  }
 })
 
 mongoose.model("Followup", FollowupSchema)

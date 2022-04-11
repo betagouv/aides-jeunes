@@ -9,6 +9,7 @@
 
     <BackButton
       class="aj-droit-details-back-button small"
+      data-testid="back-button"
       @click="goBack($event)"
       >Retour aux résultats</BackButton
     >

@@ -1,46 +1,33 @@
-import ABTestingService from "@/plugins/ab-testing-service"
-import { isRelevant } from "@/lib/utils"
-
 const STEPS = {
   _situation: {
     question: "Quelle est la situation de vos parents ?",
     questionType: "enum",
-    items: (component) => {
-      let items = [
-        {
-          label: "En couple",
-          value: "en_couple",
-        },
-        {
-          label: "Séparés",
-          value: "separes",
-        },
-        {
-          label: "Célibataire",
-          value: "celibataire",
-          isRelevant: () => {
-            const abTesting = ABTestingService.getEnvironment()
-            return (
-              !abTesting.parentCelibataire ||
-              abTesting.parentCelibataire?.value == "afficheCelibataire"
-            )
-          },
-        },
-        {
-          label: "Veuf ou veuve",
-          value: "veuve",
-        },
-        {
-          label: "Décédés",
-          value: "decedes",
-        },
-        {
-          label: "Sans autorité parentale",
-          value: "sans_autorite",
-        },
-      ]
-      return isRelevant(items, component)
-    },
+    items: [
+      {
+        label: "En couple",
+        value: "en_couple",
+      },
+      {
+        label: "Séparés",
+        value: "separes",
+      },
+      {
+        label: "Célibataire",
+        value: "celibataire",
+      },
+      {
+        label: "Veuf ou veuve",
+        value: "veuve",
+      },
+      {
+        label: "Décédés",
+        value: "decedes",
+      },
+      {
+        label: "Sans autorité parentale",
+        value: "sans_autorite",
+      },
+    ],
   },
   _en_france: {
     question: "Vos parents habitent-ils en France ?",

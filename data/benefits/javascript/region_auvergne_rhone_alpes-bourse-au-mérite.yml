@@ -1,0 +1,28 @@
+label: Bourse au mérite +
+imgSrc: https://www.auvergnerhonealpes.fr/uploads/Image/b7/7463_211_Logo-Region-apercu-LOGO_REGION_RVB-BLEU-GRIS.png
+institution: region_auvergne_rhone_alpes
+description: >-
+  500 € pour lycéens/apprentis de terminale ou en dernière année de CAP ou de BP
+  en Auvergne-Rhône-Alpes. Candidature proposée par l'établissement selon :
+
+  La persévérance et la détermination scolaire
+
+  Le dépassement de soi face aux difficultés de santé et de vie
+
+  La solidarité et l’implication envers les autres
+
+  L’engagement et la participation à la vie de l’établissement scolaire
+
+  L'obtention du diplôme est indispensable.
+conditions:
+  - Le paiement de la bourse interviendra une fois le relevé de notes attestant
+    de la réussite au diplôme transmis au Conseil régional. Les établissements
+    des jeunes réalisent cette démarche et ont jusqu’au 31 octobre 2022 pour
+    cela.
+conditions_generales: []
+profils: []
+link: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
+instructions: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
+type: float
+unit: €
+periodicite: autre

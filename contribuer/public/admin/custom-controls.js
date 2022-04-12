@@ -25,7 +25,11 @@ class CustomStringControl extends StringControl {
   }
   componentDidMount() {
     if (this.props.field.get("required_group")) {
-      requiredGroupRender(this._el, this.props.field.get("required_group"))
+      requiredGroupRender(
+        this.props.field.get("name"),
+        this._el,
+        this.props.field.get("required_group")
+      )
     }
   }
   format = (value) => {

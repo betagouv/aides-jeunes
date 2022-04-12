@@ -10,6 +10,8 @@ conditions_generales:
   - type: regions
     values:
       - "84"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: chomeur
     conditions: []
@@ -22,3 +24,4 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 5736
+interestFlag: _interetAidesSanitaireSocial

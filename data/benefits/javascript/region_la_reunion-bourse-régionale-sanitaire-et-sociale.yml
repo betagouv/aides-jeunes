@@ -13,6 +13,8 @@ conditions_generales:
   - type: regions
     values:
       - "04"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: enseignement_superieur
     conditions: []
@@ -22,3 +24,4 @@ instructions: https://regionreunion.com/aides-services/article/bourse-regionale-
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

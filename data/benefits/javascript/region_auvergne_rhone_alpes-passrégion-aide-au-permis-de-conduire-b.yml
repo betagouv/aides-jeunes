@@ -1,0 +1,21 @@
+label: Pass'Région - aide au permis de conduire B
+imgSrc: https://www.auvergnerhonealpes.fr/uploads/Image/b7/7463_211_Logo-Region-apercu-LOGO_REGION_RVB-BLEU-GRIS.png
+institution: region_auvergne_rhone_alpes
+description: >-
+  Les jeunes qui effectueront une mission d’engagement volontaire proposée par
+  les associations partenaires de la Région verront leur engagement récompensé :
+  la Région pourra financer une partie de leur permis de conduire B (incluant la
+  conduite accompagnée).
+
+   500 € ->réalisation d'une mission d'engagement volontaire de 80h,
+  ou
+   200 € -> réalisation d'une mission d'engagement volontaire de 35h.
+conditions:
+  - Disposer d'un Pass'Région actif.
+  - null
+  - null
+conditions_generales: []
+profils: []
+type: float
+unit: €
+periodicite: autre

@@ -1,0 +1,21 @@
+label: Bourse mobilité internationale Lycéens et Apprentis
+imgSrc: https://www.auvergnerhonealpes.fr/uploads/Image/b7/7463_211_Logo-Region-apercu-LOGO_REGION_RVB-BLEU-GRIS.png
+institution: region_auvergne_rhone_alpes
+description: Partir se former à l'étranger. Vous recherchez de l'aide pour
+  réaliser un stage à l'étranger dans le cadre du lycée ou du CFA. 90€ par
+  semaine pendant le stage à l'étranger. Une prime de 200€ supplémentaire si le
+  jeune bénéficiaire est apprenti ou boursier d'Etat sur critères sociaux.
+conditions:
+  - Le financement correspond à une durée de 3 semaines, quelle que soit la
+    durée effective du stage au sein de la même entreprise.
+conditions_generales: []
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+link: https://www.auvergnerhonealpes.fr/aide/93/89-se-former-a-l-etranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis-education-lycees.htm
+form: https://sicorra.auvergnerhonealpes.fr/public
+type: float
+unit: €
+periodicite: autre

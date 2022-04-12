@@ -22,8 +22,8 @@ exports.simulation = function (req, res, next, simulationId) {
   }
 
   Simulation.findById(simulationId, (err, simulation) => {
+    if (!simulation) return res.sendStatus(404)
     if (err) return next(err)
-
     getSimulationOnRequest(req, simulation)
     next()
   })

@@ -173,6 +173,7 @@ FollowupSchema.pre("save", function (next) {
     return next()
   }
   const followup = this
+  followup.version = 2
   utils
     .generateToken()
     .then(function (token) {

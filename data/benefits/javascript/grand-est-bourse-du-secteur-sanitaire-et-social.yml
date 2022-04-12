@@ -11,6 +11,8 @@ conditions_generales:
   - type: regions
     values:
       - "44"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: etudiant
 link: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/

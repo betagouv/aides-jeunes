@@ -31,3 +31,4 @@ instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_d
 type: bool
 unit: €
 periodicite: autre
+interestFlag: _interetAidesSanitaireSocial

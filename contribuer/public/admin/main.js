@@ -20,13 +20,23 @@ const requiredGroupValidator = (group) => {
 }
 
 const groups = {}
-const requiredGroupRender = (item, id) => {
+const requiredGroupRender = (name, item, id) => {
   try {
-    if (!groups[id]) {
-      groups[id] = document.createElement("div")
-      groups[id].className = "fields-group"
+    // Flush group container on page update
+    if (
+      typeof groups[id] !== "undefined" &&
+      groups[id]?.childs.includes(name)
+    ) {
+      delete groups[id]
+    }
+    if (!groups[id]?.container) {
+      groups[id] = {
+        childs: [],
+        container: document.createElement("div"),
+      }
+      groups[id].container.className = "fields-group"
       item.parentNode.parentNode.parentNode.insertBefore(
-        groups[id],
+        groups[id].container,
         item.parentNode.parentNode
       )
 
@@ -34,14 +44,15 @@ const requiredGroupRender = (item, id) => {
         const legend = document.createElement("div")
         legend.innerText = groupFieldsLegend[id]
         legend.className = "fields-group-label"
-        groups[id].appendChild(legend)
+        groups[id].container.appendChild(legend)
       }
       const hint = document.createElement("div")
       hint.innerText = groupFieldsHint
       hint.className = "fields-group-hint"
-      groups[id].appendChild(hint)
+      groups[id].container.appendChild(hint)
     }
-    groups[id].appendChild(item.parentNode.parentNode)
+    groups[id].childs.push(name)
+    groups[id].container.appendChild(item.parentNode.parentNode)
   } catch (e) {
     console.log("Failed to set fields group", e)
   }

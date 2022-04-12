@@ -23,6 +23,13 @@ describe("benefit descriptions", function () {
         })
       }
 
+      if (institution.type == "epci") {
+        it("should have a code_siren", function () {
+          expect(typeof institution.code_siren).toBe("string")
+          expect(institution.code_siren.length).toBeGreaterThan(1)
+        })
+      }
+
       it("should have an id", function () {
         expect(typeof institution.id).toBe("string")
         expect(institution.id.length).toBeGreaterThan(1)

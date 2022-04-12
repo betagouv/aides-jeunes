@@ -8,6 +8,8 @@ conditions_generales:
   - type: regions
     values:
       - "93"
+  - type: formation_sanitaire_social
+    value: true
 profils:
   - type: lyceen
     conditions: []

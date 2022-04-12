@@ -26,3 +26,4 @@ type: float
 unit: €
 periodicite: autre
 montant: 900
+interestFlag: _interetAidesSanitaireSocial

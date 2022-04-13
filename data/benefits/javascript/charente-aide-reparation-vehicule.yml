@@ -1,0 +1,24 @@
+label: aide à la réparation de véhicule
+institution: departement_de_la_charente
+description: Cette aide vise à soutenir l'insertion des allocataires du RSA.
+  Elle peut être mobilisée pour la prise en charge d'une partie des frais de
+  réparation d'un véhicule.
+conditions:
+  - Être bénéficiaire du RSA.
+  - Avoir un contrat d’engagements réciproques (CER) ou un projet personnalisé
+    d’accès à l’emploi (PPAE).
+conditions_generales:
+  - type: departements
+    values:
+      - "16"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://mes-aides.pole-emploi.fr/departement-charente/aide-a-la-reparation-de-vehicule
+teleservice: https://mes-aides.pole-emploi.fr/departement-charente/aide-a-la-reparation-de-vehicule
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 600

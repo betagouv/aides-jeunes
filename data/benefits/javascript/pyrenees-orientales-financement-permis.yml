@@ -1,0 +1,25 @@
+label: aide au financement du permis de conduire
+institution: departement_des_pyrenees_orientales
+description: Cette aide au financement du permis B et des frais d'assurance du
+  véhicule est proposée dans le cadre de "l'Aide Départementale de Retour à
+  l'Emploi" (ADRE).
+conditions:
+  - Être allocataire du RSA.
+  - Effectuer votre demande auprès de votre référent RSA ou de votre référent de
+    votre <a target="_blank" rel="noopener"
+    href="http://www.ledepartement66.fr/dossier/les-maisons-sociales-de-proximite/">Maison
+    sociale de proximité</a>.
+conditions_generales:
+  - type: departements
+    values:
+      - "66"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://mes-aides.pole-emploi.fr/departement-pyrenees-orientales/aide-de-retour-a-l-emploi-pyrenees-orientales
+instructions: https://mes-aides.pole-emploi.fr/departement-pyrenees-orientales/aide-de-retour-a-l-emploi-pyrenees-orientales
+prefix: l’
+type: bool
+unit: €
+periodicite: ponctuelle
+interestFlag: _interetPermisDeConduire

@@ -1,28 +1,31 @@
-label: Bourse au mérite +
+label: bourse au mérite +
 imgSrc: https://www.auvergnerhonealpes.fr/uploads/Image/b7/7463_211_Logo-Region-apercu-LOGO_REGION_RVB-BLEU-GRIS.png
 institution: region_auvergne_rhone_alpes
-description: >-
-  500 € pour lycéens/apprentis de terminale ou en dernière année de CAP ou de BP
-  en Auvergne-Rhône-Alpes. Candidature proposée par l'établissement selon :
-
-  La persévérance et la détermination scolaire
-
-  Le dépassement de soi face aux difficultés de santé et de vie
-
-  La solidarité et l’implication envers les autres
-
-  L’engagement et la participation à la vie de l’établissement scolaire
-
-  L'obtention du diplôme est indispensable.
+description: Votre candidature doit être proposée par l'établissement selon
+  plusieurs critères que vous retrouvez <a target="_blank" rel="noopener"
+  href="https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm">ici</a>.
+  Rapprochez-vous de votre établissement pour évoquer cette aide et qu'il
+  constitue un dossier.
 conditions:
-  - Le paiement de la bourse interviendra une fois le relevé de notes attestant
-    de la réussite au diplôme transmis au Conseil régional. Les établissements
-    des jeunes réalisent cette démarche et ont jusqu’au 31 octobre 2022 pour
-    cela.
-conditions_generales: []
-profils: []
+  - Le paiement de la bourse interviendra une fois le diplôme validé et
+    l'attestation transmise au Conseil Régional.
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
+profils:
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+  - type: apprenti
+    conditions: []
+  - type: etudiant
+    conditions: []
 link: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
 instructions: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
 type: float
 unit: €
 periodicite: autre
+montant: 500

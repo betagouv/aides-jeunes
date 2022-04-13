@@ -1,7 +1,10 @@
 label: Aide au financement du permis
 institution: martinique
-description: La Collectivité Territoriale de Guyane propose une aide financière
-  pour passer le permis de conduire.
+description: Il s'agit d'un dispositif destiné à prévenir les risques
+  d’exclusions économiques et sociales des jeunes et à favoriser les démarches
+  d’insertion des jeunes en difficulté (aide alimentaire et pour l’hygiène,
+  secours exceptionnels, hébergement, aides à la formation, l'emploi et la
+  mobilité, dont une aide à l'obtention du permis B).
 conditions:
   - Être français(e) ou étranger(e)s en situation de séjour régulier en France.
   - Être sans revenus ou avec de faibles ressources.
@@ -18,8 +21,8 @@ conditions_generales:
     operator: <=
     value: 25
 profils: []
-link: https://mes-aides.pole-emploi.fr/region-martinique/aide-regionale-au-permis-de-conduire-region-martinique
-instructions: https://mes-aides.pole-emploi.fr/region-martinique/aide-regionale-au-permis-de-conduire-region-martinique
+link: https://www.collectivitedemartinique.mq/le-fonds-daide-aux-jeunes/
+instructions: https://www.collectivitedemartinique.mq/le-fonds-daide-aux-jeunes/
 prefix: l’
 type: bool
 unit: €

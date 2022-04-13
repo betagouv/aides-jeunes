@@ -1,10 +1,10 @@
-label: Aide à la réparation de véhicule
+label: aide à la réparation de véhicule
 institution: département-de-la-charente
-description: Cette aide vise à soutenir l'insertion des allocataires RSA. Elle
-  peut être mobilisée pour la prise en charge d'une partie des frais de
+description: Cette aide vise à soutenir l'insertion des allocataires du RSA.
+  Elle peut être mobilisée pour la prise en charge d'une partie des frais de
   réparation d'un véhicule.
 conditions:
-  - Être au RSA.
+  - Être bénéficiaire du RSA.
   - Avoir un contrat d’engagements réciproques (CER) ou un projet personnalisé
     d’accès à l’emploi (PPAE).
 conditions_generales:

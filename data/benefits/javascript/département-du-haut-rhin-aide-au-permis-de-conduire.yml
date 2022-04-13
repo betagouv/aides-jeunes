@@ -1,9 +1,10 @@
-label: Aide au financement du permis de conduire
+label: fonds d'Aide aux Jeunes
 institution: departement_du_haut_rhin
-description: Cette aide proposée par le fonds d’aide aux jeunes (FAJ) est
-  destiné à favoriser l’insertion sociale et professionnelle des jeunes en
-  situation de grande précarité. Elle peut vous permettre de financer votre
-  permis de conduire.
+description: Ce dispositif est destiné à prévenir les risques d’exclusions
+  économiques et sociales et à favoriser vos démarches d’insertion (aide
+  alimentaire et pour l’hygiène, secours exceptionnels, hébergement, aides à la
+  formation, emploi et la mobilité, notamment une aide à l'obtention du permis
+  B).
 conditions:
   - Être en difficulté financière.
   - Effectuer votre demande auprès de votre Mission Locale.
@@ -24,4 +25,4 @@ prefix: l’
 type: bool
 unit: €
 periodicite: ponctuelle
-interestFlag: _interetPermisDeConduire
+interestFlag: null

@@ -1,0 +1,28 @@
+label: fonds d'Aide aux Jeunes (FAJ)
+institution: guyane
+description: Il s'agit d'un dispositif destiné à prévenir les risques
+  d’exclusions économiques et sociales des jeunes et à favoriser les démarches
+  d’insertion des jeunes en difficulté (aide alimentaire et pour l’hygiène,
+  secours exceptionnels, hébergement, aides à la formation, l'emploi et la
+  mobilité, dont une aide à l'obtention du permis B).
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regions
+    values:
+      - "03"
+profils: []
+link: https://www.ctguyane.fr/la-collectivite-territoriale-de-guyane-finance-annuellement-le-fonds-daide-aux-jeunes-a-hauteur-de-300-000-euros/
+form: https://dl.airtable.com/.attachments/f542bd6d6c0b574c70d8e63772863a4b/2ebe2da8/formaulaire-faj-individuel-2019-0-20121.pdf
+instructions: https://www.ctguyane.fr/la-collectivite-territoriale-de-guyane-finance-annuellement-le-fonds-daide-aux-jeunes-a-hauteur-de-300-000-euros/
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000
+interestFlag: null

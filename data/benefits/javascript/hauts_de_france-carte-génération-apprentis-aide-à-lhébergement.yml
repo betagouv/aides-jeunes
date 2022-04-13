@@ -1,9 +1,8 @@
 label: "carte Génération - Apprentis : aide à l'hébergement"
 institution: hauts_de_france
 description: Grâce à la carte Génération - Apprentis, bénéficiez d'une aide pour
-  vous faciliter le recours à l'hébergement et ainsi contribuer à éviter des
-  déplacements trop importants au détriment des conditions de suivi de votre
-  formation.
+  faciliter votre recours à l'hébergement pour éviter des déplacements trop
+  importants au détriment des conditions de suivi de votre formation.
 conditions: []
 conditions_generales:
   - type: regions

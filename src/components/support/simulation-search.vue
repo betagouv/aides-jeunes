@@ -1,0 +1,36 @@
+<template>
+  <form @submit="onSubmit">
+    <label for="simulationId" class="aj-question"
+      >Accéder à une simulation :</label
+    >
+    <div>
+      <input
+        id="simulationId"
+        v-model="situationId"
+        style="max-width: 400px"
+        type="text"
+        placeholder="ID de la simulation"
+        required
+      />
+      <button class="button primary">Accéder</button>
+    </div>
+  </form>
+</template>
+
+<script>
+export default {
+  name: "SimulationSearch",
+  data() {
+    return {
+      situationId: "",
+    }
+  },
+  methods: {
+    onSubmit() {
+      window
+        ?.open(`/api/support/simulation/${this.situationId}`, "_blank")
+        .focus()
+    },
+  },
+}
+</script>

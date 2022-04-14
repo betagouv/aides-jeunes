@@ -30,6 +30,8 @@
       >Se connecter</a
     >
     <div v-if="accompagnements">
+      <SimulationSearch />
+
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
           v-for="survey in accompagnement.surveys"
@@ -195,7 +197,9 @@
 </template>
 
 <script>
+import SimulationSearch from "@/components/support/simulation-search"
 export default {
+  components: { SimulationSearch },
   data: function () {
     return {
       accompagnements: undefined,

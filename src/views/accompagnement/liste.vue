@@ -29,9 +29,10 @@
       class="button outline is-not-mobile"
       >Se connecter</a
     >
-    <div v-if="accompagnements">
-      <SimulationSearch />
 
+    <SimulationSearch v-if="loggedIn" />
+
+    <div v-if="accompagnements">
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
           v-for="survey in accompagnement.surveys"

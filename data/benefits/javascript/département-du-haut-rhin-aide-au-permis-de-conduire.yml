@@ -1,5 +1,5 @@
 label: fonds d'Aide aux Jeunes
-institution: departement_du_haut_rhin
+institution: collectivité-européenne-dalsace
 description: Ce dispositif est destiné à prévenir les risques d’exclusions
   économiques et sociales et à favoriser vos démarches d’insertion (aide
   alimentaire et pour l’hygiène, secours exceptionnels, hébergement, aides à la
@@ -17,6 +17,7 @@ conditions_generales:
     value: 25
   - type: departements
     values:
+      - "67"
       - "68"
 profils: []
 link: https://mes-aides.pole-emploi.fr/collectivite-europeenne-d-alsace/aide-au-permis-de-conduire-collectivite-europeene-d-alsace

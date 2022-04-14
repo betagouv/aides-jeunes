@@ -346,9 +346,9 @@ fields:
         value: _interetBafa
       - label: Oui, l'afficher en cas d'intérêt pour passer le permis de conduire.
         value: _interetPermisDeConduire
-      - label: Oui, l'afficher en cas d'intérêt pour faires des études à l'étranger.
+      - label: Oui, l'afficher en cas d'intérêt pour faire des études à l'étranger.
         value: _interetEtudesEtranger
-      - label: Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social
+      - label: Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social.
         value: _interetAidesSanitaireSocial
   field_entite_rattachement_openfisca: &field_entite_rattachement_openfisca
     label: Entité de rattachement de la variable dans OpenFisca

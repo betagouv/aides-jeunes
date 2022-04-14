@@ -47,7 +47,7 @@
               >Permalink</router-link
             >
             <a
-              :href="`/followups/${accompagnement._id}?token=${accompagnement.accessToken}`"
+              :href="`/api/support/simulation/${accompagnement.simulation}`"
               target="_blank"
               >Résultats de la simulation</a
             >

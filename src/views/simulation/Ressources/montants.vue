@@ -1,7 +1,7 @@
 <template>
   <form>
     <p>
-      Indiquez toutes les ressources <strong>nettes versées</strong> perçues
+      Indiquez toutes les ressources <strong>nettes</strong> perçues
       <span v-if="individu._role !== 'demandeur'"
         ><strong>par {{ getIndividuNom() }}</strong></span
       >

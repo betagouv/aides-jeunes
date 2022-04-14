@@ -42,7 +42,12 @@
           <div class="survey-answer">
             <div
               >{{ accompagnement.email }} -
-              {{ formatDate(survey.repliedAt) }}</div
+              <span class="badge">
+                Répondu le {{ formatDate(survey.repliedAt) }}
+              </span>
+              <span class="badge">
+                Simulation du {{ formatDate(accompagnement.createdAt) }}
+              </span></div
             >
             <router-link :to="`/accompagnement/${accompagnement._id}`"
               >Permalink</router-link
@@ -226,12 +231,9 @@ export default {
   methods: {
     formatDate(date) {
       let isoDateTime = new Date(date)
-      return `${isoDateTime.toLocaleDateString("fr-FR", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
+      return `${isoDateTime.toLocaleDateString(
+        "fr-FR"
+      )} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
     },
 
     fetchPollResults: async function () {
@@ -306,5 +308,12 @@ export default {
 .icon svg {
   width: 100%;
   height: 100%;
+}
+
+.badge {
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 6px;
+  border-radius: 4px;
 }
 </style>

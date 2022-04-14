@@ -29,6 +29,7 @@ fields:
       - label: Valeur
         name: value
         widget: boolean
+        default: false
   field_number: &field_number
     widget: object
     fields:
@@ -198,6 +199,10 @@ fields:
     <<: *field_boolean
     label: En formation sanitaire et sociale
     name: formation_sanitaire_social
+  field_beneficiare_rsa: &field_beneficiare_rsa
+    <<: *field_boolean
+    label: Bénéficiaire RSA
+    name: beneficiaire_rsa
 
   # common fields
   field_image_aide: &field_image_aide
@@ -649,6 +654,7 @@ fields:
       - *field_regime_securite_sociale
       - *field_quotient_familial
       - *field_formation_sanitaire_social
+      - *field_beneficiare_rsa
     field_references: &field_references
       label: Liens des sources de référence
       name: references

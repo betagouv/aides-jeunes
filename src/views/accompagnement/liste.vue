@@ -40,8 +40,11 @@
           class="accompagnement"
         >
           <div class="survey-answer">
-            <div
-              >{{ accompagnement.email }} -
+            <div>
+              <a :href="`mailto:${accompagnement.email}`">{{
+                accompagnement.email
+              }}</a>
+              -
               <span class="badge">
                 Sondage le {{ formatDate(survey.repliedAt) }}
               </span>
@@ -57,7 +60,6 @@
               target="_blank"
               >Résultats de la simulation</a
             >
-            <a :href="`mailto:${accompagnement.email}`">Recontacter</a>
           </div>
           <ul
             v-for="answer in accompagnement.benefits"

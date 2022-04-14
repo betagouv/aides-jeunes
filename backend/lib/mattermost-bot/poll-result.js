@@ -46,7 +46,7 @@ function postPollResult(simulation, answers) {
         key.unit && typeof key.amount === "number"
           ? `**${key.amount}${key.unit}**`
           : ""
-      } ${key.comments && key.comments.length > 0 ? `*(${key.comments})*` : ""}`
+      } ${key.comments?.length > 0 ? `*(${key.comments})*` : ""}`
     )
   }
 

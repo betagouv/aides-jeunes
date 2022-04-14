@@ -1,9 +1,9 @@
 <template>
-  <form @submit="onSubmit">
+  <form class="simulation-search" @submit="onSubmit">
     <label for="simulationId" class="aj-question"
       >Accéder à une simulation :</label
     >
-    <div>
+    <div class="simulation-search-input">
       <input
         id="simulationId"
         v-model="situationId"
@@ -34,3 +34,14 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.simulation-search {
+  margin-bottom: 24px;
+  .simulation-search-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+</style>

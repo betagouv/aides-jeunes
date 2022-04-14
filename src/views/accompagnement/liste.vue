@@ -29,6 +29,9 @@
       class="button outline is-not-mobile"
       >Se connecter</a
     >
+
+    <SimulationSearch v-if="loggedIn" />
+
     <div v-if="accompagnements">
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
@@ -45,7 +48,7 @@
               >Permalink</router-link
             >
             <a
-              :href="`/followups/${accompagnement._id}?token=${accompagnement.accessToken}`"
+              :href="`/api/support/simulation/${accompagnement.simulation}`"
               target="_blank"
               >Résultats de la simulation</a
             >
@@ -195,7 +198,9 @@
 </template>
 
 <script>
+import SimulationSearch from "@/components/support/simulation-search"
 export default {
+  components: { SimulationSearch },
   data: function () {
     return {
       accompagnements: undefined,

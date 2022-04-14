@@ -1,21 +1,20 @@
-label: "Une aide au départ en vacances pour les jeunes : le dispositif SAC ADOS"
+label: "Une aide au départ en vacances pour les jeunes : le dispositif Sac Ados"
 institution: caf_alpes_maritimes
-description: "Créé par l’association « Vacances Ouvertes », le dispositif Sac
-  Ados est une aide aux projets de départs en vacances autonomes. La Caf des
-  Alpes-Maritimes offre aux jeunes maralpins âgés de 16 à 25 ans un coup de
-  pouce financier : 150 € en chèques vacances pour les départs en France et 250
-  € en carte prépayée pour les départs vers l'Europe (uniquement pour les
-  majeurs)."
+description: Créé par l’association « Vacances Ouvertes », c'est une aide aux
+  projets de départs en vacances autonomes. Il s'agit de 150 € en chèques
+  vacances pour les départs en France et 250 € en carte prépayée pour les
+  départs vers l'Europe (uniquement pour les majeurs).
 conditions:
-  - Une partie des jeunes bénéficiaires du projet doit être allocataire de la
-    Caf 06 ou enfant à charge de famille allocataire.
+  - Contacter l'une des structures présentes dans cette <a target="_blank"
+    rel="noopener"
+    href="https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2022/Partenaires%20Sac%20Ados%202022%20-%20maj%2005avr22.pdf">liste</a>.
 conditions_generales:
-  - type: regime_securite_sociale
-    includes:
-      - regime_general
   - type: departements
     values:
       - "06"
+  - type: age
+    operator: ">="
+    value: 16
   - type: age
     operator: <=
     value: 25
@@ -26,6 +25,6 @@ instructions: https://fb.watch/bVzOfhtnp2/
 type: float
 unit: €
 periodicite: ponctuelle
-legend: ""
+legend: maximum
 montant: 250
 references: []

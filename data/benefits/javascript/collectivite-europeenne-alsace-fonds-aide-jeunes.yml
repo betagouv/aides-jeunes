@@ -20,8 +20,8 @@ conditions_generales:
       - "67"
       - "68"
 profils: []
-link: https://mes-aides.pole-emploi.fr/collectivite-europeenne-d-alsace/aide-au-permis-de-conduire-collectivite-europeene-d-alsace
-instructions: https://mes-aides.pole-emploi.fr/collectivite-europeenne-d-alsace/aide-au-permis-de-conduire-collectivite-europeene-d-alsace
+link: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
+instructions: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
 prefix: l’
 type: bool
 unit: €

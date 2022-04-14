@@ -40,13 +40,16 @@
           class="accompagnement"
         >
           <div class="survey-answer">
-            <div
-              >{{ accompagnement.email }} -
+            <div>
+              <a :href="`mailto:${accompagnement.email}`">{{
+                accompagnement.email
+              }}</a>
+              -
               <span class="badge">
-                Répondu le {{ formatDate(survey.repliedAt) }}
+                Sondage le {{ formatDate(survey.repliedAt) }}
               </span>
               <span class="badge">
-                Simulation du {{ formatDate(accompagnement.createdAt) }}
+                Simulation le {{ formatDate(accompagnement.createdAt) }}
               </span></div
             >
             <router-link :to="`/accompagnement/${accompagnement._id}`"
@@ -57,7 +60,6 @@
               target="_blank"
               >Résultats de la simulation</a
             >
-            <a :href="`mailto:${accompagnement.email}`">Recontacter</a>
           </div>
           <ul
             v-for="answer in accompagnement.benefits"
@@ -231,9 +233,14 @@ export default {
   methods: {
     formatDate(date) {
       let isoDateTime = new Date(date)
-      return `${isoDateTime.toLocaleDateString(
-        "fr-FR"
-      )} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
+      return `${isoDateTime.toLocaleDateString("fr-FR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+      })} à ${isoDateTime.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}`
     },
 
     fetchPollResults: async function () {
@@ -311,7 +318,7 @@ export default {
 }
 
 .badge {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   background: rgba(0, 0, 0, 0.05);
   padding: 4px 6px;
   border-radius: 4px;

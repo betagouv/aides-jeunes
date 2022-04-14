@@ -7,7 +7,6 @@
       <input
         id="simulationId"
         v-model="situationId"
-        style="max-width: 400px"
         type="text"
         placeholder="ID de la simulation"
         required
@@ -27,9 +26,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      window
-        ?.open(`/api/support/simulation/${this.situationId}`, "_blank")
-        .focus()
+      const situationId = /([a-z0-9]{24})/.exec(this.situationId)[0]
+      window?.open(`/api/support/simulation/${situationId}`, "_blank").focus()
     },
   },
 }
@@ -38,10 +36,15 @@ export default {
 <style lang="scss" scoped>
 .simulation-search {
   margin-bottom: 24px;
+
   .simulation-search-input {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+
+    input {
+      max-width: 400px;
+    }
   }
 }
 </style>

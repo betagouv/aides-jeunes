@@ -189,9 +189,12 @@
                   />
                 </svg>
               </div>
-              <a :href="`/aides/${answer.id}`" target="_blank">{{
-                answer.id
-              }}</a>
+              <a
+                :href="`/aides/${answer.id}`"
+                target="_blank"
+                :title="answer.id"
+                >{{ benefitsMap[answer.id]?.label || answer.id }}</a
+              >
               <b v-if="answer.unit && typeof answer.amount === `number`"
                 >({{ answer.amount }}{{ answer.unit }})</b
               >
@@ -206,10 +209,12 @@
 
 <script>
 import SimulationSearch from "@/components/support/simulation-search"
+import Institution from "@/lib/institution"
 export default {
   components: { SimulationSearch },
   data: function () {
     return {
+      benefitsMap: Institution.benefits.benefitsMap,
       accompagnements: undefined,
       loggedIn: undefined,
     }

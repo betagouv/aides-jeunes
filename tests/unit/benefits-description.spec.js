@@ -3,10 +3,12 @@ const fs = require("fs")
 const regions = require("@etalab/decoupage-administratif/data/regions.json")
 const departements = require("@etalab/decoupage-administratif/data/departements.json")
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
 const codesRegion = []
 const codesDepartement = []
 const codesCommune = []
+const codesEpci = []
 
 regions.forEach((region) => {
   codesRegion.push(region.code)
@@ -17,12 +19,18 @@ departements.forEach((departement) => {
 communes.forEach((commune) => {
   codesCommune.push(commune.code)
 })
+epcis.forEach((epci) => {
+  codesEpci.push(epci.code)
+})
 
-const codesInsee = {
+const codesInstitutions = {
   regions: codesRegion,
   departements: codesDepartement,
   communes: codesCommune,
+  epcis: codesEpci,
 }
+
+const complexInstitution = ["collectivité-européenne-dalsace"]
 
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
@@ -46,17 +54,21 @@ describe("benefit descriptions", function () {
         })
 
         it("should have a relevant code_insee", function () {
-          const complexInstitution = ["collectivité-européenne-dalsace"]
-
           if (!complexInstitution.includes(institution.slug)) {
             if (institution.type == "region") {
-              expect(codesInsee.regions).toContain(institution.code_insee)
+              expect(codesInstitutions.regions).toContain(
+                institution.code_insee
+              )
             }
             if (institution.type == "departement") {
-              expect(codesInsee.departements).toContain(institution.code_insee)
+              expect(codesInstitutions.departements).toContain(
+                institution.code_insee
+              )
             }
             if (institution.type == "commune") {
-              expect(codesInsee.communes).toContain(institution.code_insee)
+              expect(codesInstitutions.communes).toContain(
+                institution.code_insee
+              )
             }
           }
         })
@@ -66,6 +78,12 @@ describe("benefit descriptions", function () {
         it("should have a code_siren", function () {
           expect(typeof institution.code_siren).toBe("string")
           expect(institution.code_siren).toMatch(/^(1|2){1}[0-9]{8}$/)
+        })
+
+        it("should have a relevant code_siren", function () {
+          if (!complexInstitution.includes(institution.slug)) {
+            expect(codesInstitutions.epcis).toContain(institution.code_siren)
+          }
         })
       }
 

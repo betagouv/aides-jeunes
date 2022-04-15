@@ -1,5 +1,28 @@
 const expect = require("expect")
 const fs = require("fs")
+const regions = require("@etalab/decoupage-administratif/data/regions.json")
+const departements = require("@etalab/decoupage-administratif/data/departements.json")
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+
+const codesRegion = []
+const codesDepartement = []
+const codesCommune = []
+
+regions.forEach((region) => {
+  codesRegion.push(region.code)
+})
+departements.forEach((departement) => {
+  codesDepartement.push(departement.code)
+})
+communes.forEach((commune) => {
+  codesCommune.push(commune.code)
+})
+
+const codesInsee = {
+  regions: codesRegion,
+  departements: codesDepartement,
+  communes: codesCommune,
+}
 
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
@@ -20,6 +43,22 @@ describe("benefit descriptions", function () {
         it("should have a code_insee", function () {
           expect(typeof institution.code_insee).toBe("string")
           expect(institution.code_insee.length).toBeGreaterThan(1)
+        })
+
+        it("should have a relevant code_insee", function () {
+          const complexInstitution = ["collectivité-européenne-dalsace"]
+
+          if (!complexInstitution.includes(institution.slug)) {
+            if (institution.type == "region") {
+              expect(codesInsee.regions).toContain(institution.code_insee)
+            }
+            if (institution.type == "departement") {
+              expect(codesInsee.departements).toContain(institution.code_insee)
+            }
+            if (institution.type == "commune") {
+              expect(codesInsee.communes).toContain(institution.code_insee)
+            }
+          }
         })
       }
 

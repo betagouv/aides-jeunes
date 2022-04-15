@@ -18,7 +18,7 @@ const STEPS = {
   },
 
   _nombreMoisEntreeLogement: {
-    question: "Prévoyez-vous d'emménager prochainement ?",
+    question: "Prévoyez-vous de déménager prochainement ?",
     questionType: "enum",
     items: (component) => {
       return [

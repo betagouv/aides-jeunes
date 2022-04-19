@@ -405,7 +405,7 @@ fields:
     collapsed: false
     default: []
     types:
-      - label: Lycéen(ne)
+      - label: Lycéen·ne
         name: lyceen
         widget: object
         fields:

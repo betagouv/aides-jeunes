@@ -10,7 +10,6 @@ conditions_generales:
     values:
       - "52"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: enseignement_superieur
     conditions: []

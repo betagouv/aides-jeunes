@@ -9,7 +9,6 @@ conditions_generales:
     values:
       - "93"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: lyceen
     conditions: []

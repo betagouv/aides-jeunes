@@ -15,7 +15,6 @@ profils:
   - type: etudiant
     conditions:
       - type: formation_sanitaire_social
-        value: true
 link: https://www.iledefrance.fr/bourse-daide-linstallation-des-etudiants-en-formation-kinesitherapie-et-maieutique
 teleservice: https://mesdemarches.iledefrance.fr
 prefix: la

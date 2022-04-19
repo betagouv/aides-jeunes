@@ -60,6 +60,14 @@ const FollowupSchema = new mongoose.Schema(
   { minimize: false, id: false }
 )
 
+FollowupSchema.statics.findByIdOrOldId = function (id) {
+  if (id.length === 24) {
+    return this.findById(id)
+  } else {
+    return this.findOne({ _oldId: id })
+  }
+}
+
 FollowupSchema.methods.postInitialEmail = function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId
@@ -177,15 +185,9 @@ FollowupSchema.pre("save", function (next) {
   utils
     .generateToken()
     .then(function (token) {
-      followup._id = token
-      utils
-        .generateToken()
-        .then(function (token) {
-          followup.accessToken = token
-        })
-        .then(next)
-        .catch(next)
+      followup.accessToken = token
     })
+    .then(next)
     .catch(next)
 })
 

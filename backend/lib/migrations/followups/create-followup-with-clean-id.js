@@ -1,5 +1,5 @@
 const mongoose = require("../../mongo-connector")
-const Followups = mongoose.model("Followup")
+const Followup = mongoose.model("Followup")
 
 const removeIds = []
 const followupsToInsert = []
@@ -11,7 +11,7 @@ function cleanObject(doc) {
   return obj
 }
 
-Followups.find({ _id: { $type: "string" } }, {}).then((followups) => {
+Followup.find({ _id: { $type: "string" } }, {}).then((followups) => {
   if (!followups) return
 
   followups.forEach((followup, index) => {
@@ -26,7 +26,7 @@ Followups.find({ _id: { $type: "string" } }, {}).then((followups) => {
   })
 
   console.log("Sauvegarde...")
-  Followups.insertMany(followupsToInsert).then(() => {
+  Followup.insertMany(followupsToInsert).then(() => {
     console.log("Fin de l'ajout")
     process.exit()
   })

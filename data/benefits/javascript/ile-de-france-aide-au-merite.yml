@@ -17,12 +17,10 @@ conditions_generales:
     values:
       - "11"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: enseignement_superieur
     conditions:
       - type: boursier
-        value: true
       - type: mention_baccalaureat
         values:
           - mention_tres_bien

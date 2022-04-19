@@ -29,7 +29,6 @@ profils:
   - type: enseignement_superieur
     conditions:
       - type: boursier
-        value: true
       - type: mention_baccalaureat
         values:
           - mention_tres_bien

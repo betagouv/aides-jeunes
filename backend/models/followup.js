@@ -10,6 +10,7 @@ const renderSurvey = require("../lib/mes-aides/emails/survey").render
 
 const SurveySchema = new mongoose.Schema(
   {
+    _oldId: { type: String },
     accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },
     messageId: { type: String },
@@ -53,6 +54,7 @@ const FollowupSchema = new mongoose.Schema(
     },
     error: { type: Object },
     accessToken: { type: String },
+    _oldId: { type: String },
   },
   { minimize: false, id: false }
 )

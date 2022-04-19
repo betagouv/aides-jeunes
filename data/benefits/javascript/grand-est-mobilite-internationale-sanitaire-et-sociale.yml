@@ -16,7 +16,6 @@ conditions_generales:
     values:
       - "44"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: etudiant
     conditions: []

@@ -23,12 +23,12 @@ patterns:
     - "Le champ doit contenir une url valide"
 
 fields:
-  field_boolean: &field_boolean
+  field_empty: &field_empty
     widget: object
     fields:
-      - label: Valeur
-        name: value
-        widget: boolean
+      - label: empty
+        widget: hidden
+        name: empty
   field_number: &field_number
     widget: object
     fields:
@@ -119,7 +119,7 @@ fields:
         widget: list
         hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
   field_boursier: &field_boursier
-    <<: *field_boolean
+    <<: *field_empty
     label: Boursier
     name: boursier
   field_mention_baccalaureat: &field_mention_baccalaureat
@@ -195,9 +195,13 @@ fields:
           - label: Par an
             value: year
   field_formation_sanitaire_social: &field_formation_sanitaire_social
-    <<: *field_boolean
+    <<: *field_empty
     label: En formation sanitaire et sociale
     name: formation_sanitaire_social
+  field_beneficiare_rsa: &field_beneficiare_rsa
+    <<: *field_empty
+    label: Bénéficiaire RSA
+    name: beneficiaire_rsa
 
   # common fields
   field_image_aide: &field_image_aide
@@ -649,6 +653,7 @@ fields:
       - *field_regime_securite_sociale
       - *field_quotient_familial
       - *field_formation_sanitaire_social
+      - *field_beneficiare_rsa
     field_references: &field_references
       label: Liens des sources de référence
       name: references

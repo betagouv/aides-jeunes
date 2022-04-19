@@ -8,7 +8,6 @@ conditions_generales:
     values:
       - "24"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: lyceen
     conditions: []

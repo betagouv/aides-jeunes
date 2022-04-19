@@ -14,12 +14,10 @@ conditions_generales:
     values:
       - "76"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: enseignement_superieur
     conditions:
       - type: boursier
-        value: true
 link: https://www.laregion.fr/Aide-au-merite
 teleservice: https://www.laregion.fr/Aide-au-merite
 type: float

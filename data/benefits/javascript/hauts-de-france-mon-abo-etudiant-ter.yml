@@ -20,7 +20,6 @@ profils:
   - type: apprenti
     conditions:
       - type: boursier
-        value: true
   - type: enseignement_superieur
     conditions:
       - type: age
@@ -29,7 +28,6 @@ profils:
   - type: enseignement_superieur
     conditions:
       - type: boursier
-        value: true
   - type: stagiaire
     conditions:
       - type: age
@@ -38,7 +36,6 @@ profils:
   - type: stagiaire
     conditions:
       - type: boursier
-        value: true
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=813
 teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/saisieetudiant.htm
 prefix: l’aide

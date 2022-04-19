@@ -11,7 +11,6 @@ conditions_generales:
     values:
       - "84"
   - type: formation_sanitaire_social
-    value: true
 profils:
   - type: chomeur
     conditions: []

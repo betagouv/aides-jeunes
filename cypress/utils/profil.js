@@ -109,6 +109,7 @@ const defaultIndivu = () => {
   fill_activite("salarie")
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap(false)
+  fill_regime_securite_sociale("regime_general")
   fill_enceinte("pas_enceinte")
 }
 
@@ -118,6 +119,7 @@ const handicaped = () => {
   fill_activite("salarie")
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap({ taux_incapacite: 0.65, aah: true })
+  fill_regime_securite_sociale("regime_general")
   fill_enceinte("pas_enceinte")
 }
 

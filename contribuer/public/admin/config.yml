@@ -232,7 +232,7 @@ fields:
       default: "*"
       target: "type"
       fields: *field_geographical_type
-    hint : Si votre institution n'apparaît pas dans la liste, vous pouvez l'ajouter <a target="_blank" rel="noopener" href="https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new">ici</a>.
+    hint: Si votre institution n'apparaît pas dans la liste, vous pouvez l'ajouter <a target="_blank" rel="noopener" href="https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new">ici</a>.
   field_description: &field_description
     label: Courte description
     name: description

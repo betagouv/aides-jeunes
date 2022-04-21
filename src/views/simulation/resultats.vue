@@ -102,12 +102,13 @@ export default {
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.situationId) {
-      if (this.$store.state.situationId !== this.$route.query.situationId) {
+      if (
+        this.$store.state.situationId !== this.$route.query.situationId ||
+        this.$store.state.calculs.dirty
+      ) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
           .then(() => this.$store.dispatch("compute"))
-      } else if (!this.$store.getters.hasResults) {
-        this.$store.dispatch("compute")
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
       this.restoreLatest()

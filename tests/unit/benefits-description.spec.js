@@ -24,13 +24,11 @@ epcis.forEach((epci) => {
 })
 
 const codesInstitutions = {
-  regions: codesRegion,
-  departements: codesDepartement,
-  communes: codesCommune,
-  epcis: codesEpci,
+  region: codesRegion,
+  departement: codesDepartement,
+  commune: codesCommune,
+  epci: codesEpci,
 }
-
-const complexInstitution = ["collectivité-européenne-dalsace"]
 
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
@@ -54,23 +52,9 @@ describe("benefit descriptions", function () {
         })
 
         it("should have a relevant code_insee", function () {
-          if (!complexInstitution.includes(institution.slug)) {
-            if (institution.type == "region") {
-              expect(codesInstitutions.regions).toContain(
-                institution.code_insee
-              )
-            }
-            if (institution.type == "departement") {
-              expect(codesInstitutions.departements).toContain(
-                institution.code_insee
-              )
-            }
-            if (institution.type == "commune") {
-              expect(codesInstitutions.communes).toContain(
-                institution.code_insee
-              )
-            }
-          }
+          expect(codesInstitutions[institution.type]).toContain(
+            institution.code_insee
+          )
         })
       }
 
@@ -81,9 +65,9 @@ describe("benefit descriptions", function () {
         })
 
         it("should have a relevant code_siren", function () {
-          if (!complexInstitution.includes(institution.slug)) {
-            expect(codesInstitutions.epcis).toContain(institution.code_siren)
-          }
+          expect(codesInstitutions[institution.type]).toContain(
+            institution.code_siren
+          )
         })
       }
 

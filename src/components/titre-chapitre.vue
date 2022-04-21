@@ -2,6 +2,7 @@
   <div class="aj-category-title-wrapper">
     <div class="aj-category-title">
       <h1>{{ title }}</h1>
+      <SendRecapEmailButton class="outline hide-tablet"></SendRecapEmailButton>
       <div class="aj-category-title-button-mobile">
         <MenuButton
           v-show="showMenuButton"
@@ -15,10 +16,11 @@
 <script>
 import Chapters from "../../lib/chapters"
 import MenuButton from "@/components/buttons/menu-button"
+import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
 
 export default {
   name: "TitreChapitre",
-  components: { MenuButton },
+  components: { SendRecapEmailButton, MenuButton },
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)

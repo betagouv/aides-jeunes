@@ -61,6 +61,7 @@ function defaultStore() {
     iframeOrigin: null,
     saveSituationError: null,
     openFiscaParameters: {},
+    recapEmailState: undefined,
   }
 }
 
@@ -80,6 +81,7 @@ function restoreLocal() {
     calculs: store.calculs || defaultCalculs(),
     dates: datesGenerator(store.simulation.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
+    recapEmailState: store.recapEmailState,
   }
 }
 
@@ -459,6 +461,9 @@ const store = createStore({
     openFiscaParameters: function (state, parameters) {
       state.openFiscaParameters = parameters
     },
+    setRecapEmailState: function (state, newState) {
+      state.recapEmailState = newState
+    },
   },
   actions: {
     answer: ({ commit }, answer) => {
@@ -510,6 +515,7 @@ const store = createStore({
       commit("setDirty")
     },
     save: function (store) {
+      store.commit("setRecapEmailState", undefined)
       let simulation = { ...store.state.simulation, _id: undefined }
       if (store.situationId) {
         simulation.modifiedFrom = store.state.situationId
@@ -523,6 +529,7 @@ const store = createStore({
         .then((id) => store.commit("setId", id))
     },
     fetch: function (state, id) {
+      store.commit("setRecapEmailState", undefined)
       state.commit("fetching")
       return axios
         .get(`/api/simulation/${id}`)
@@ -604,6 +611,7 @@ store.subscribe(
       calculs,
       dateDeValeur,
       situationId,
+      recapEmailState,
     }
   ) => {
     if (type === "initialize") {
@@ -618,6 +626,7 @@ store.subscribe(
         enfants,
         ameliNoticationDone,
         calculs,
+        recapEmailState,
       })
     )
   }

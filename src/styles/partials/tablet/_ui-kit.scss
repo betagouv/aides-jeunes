@@ -28,5 +28,9 @@ html {
         display: flex;
       }
     }
+
+    .hide-tablet {
+      display: none !important;
+    }
   }
 }

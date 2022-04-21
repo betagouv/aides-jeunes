@@ -8,6 +8,7 @@
         v-model="day"
         v-select-on-click
         type="text"
+        inputmode="numeric"
         data-type="number"
         pattern="[0-9]*"
         autofocus
@@ -24,6 +25,7 @@
         v-model="month"
         v-select-on-click
         type="text"
+        inputmode="numeric"
         data-type="number"
         pattern="[0-9]*"
         aria-label="Mois"
@@ -39,6 +41,7 @@
         v-model="year"
         v-select-on-click
         type="text"
+        inputmode="numeric"
         data-type="number"
         pattern="[0-9]*"
         class="year"

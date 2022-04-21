@@ -9,6 +9,7 @@
       v-model="codePostalValue"
       type="text"
       data-type="number"
+      inputmode="numeric"
       pattern="[0-9]*"
     />
   </div>

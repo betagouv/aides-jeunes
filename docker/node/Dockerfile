@@ -24,8 +24,6 @@ RUN apk update && apk upgrade && \
       harfbuzz@edge \
       ttf-freefont@edge
 
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Add user so we don't need --no-sandbox.
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \

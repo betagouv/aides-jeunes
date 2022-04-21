@@ -2,7 +2,6 @@
 
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
-const utils = require("./backend/lib/utils")
 const Sentry = require("@sentry/node")
 
 module.exports = function (devServer) {
@@ -25,44 +24,7 @@ module.exports = function (devServer) {
 
   devServer.app.use(bodyParser.urlencoded({ extended: true, limit: "1024kb" }))
 
-  // Route to download a PDF
-  let puppeteerArgs = {}
-  if (process.env.PUPPETEER_ARGS) {
-    try {
-      puppeteerArgs = JSON.parse(process.env.PUPPETEER_ARGS)
-    } catch (e) {
-      // Do nothing
-    }
-  }
-
   devServer.app.set("trust proxy", true)
-
-  devServer.app.route("/foyer/resultat").post(function (req, res) {
-    const html = Buffer.from(req.body.base64, "base64").toString("utf-8")
-
-    const pdfOptions = {
-      format: "A4",
-      margin: {
-        top: "0.5cm",
-        right: "2cm",
-        bottom: "0.5cm",
-        left: "2cm",
-      },
-    }
-
-    const callback = function (pdf) {
-      res.writeHead(200, {
-        "Content-Type": "application/pdf",
-        "Content-Disposition":
-          "attachment; filename=MesAides_simulation_" +
-          req.body.basename +
-          ".pdf",
-      })
-      res.end(pdf, "binary")
-    }
-
-    utils.convertHTMLToPDF(html, callback, pdfOptions, puppeteerArgs, false)
-  })
 
   // The error handler must be before any other error middleware and after all controllers
   devServer.app.use(Sentry.Handlers.errorHandler())

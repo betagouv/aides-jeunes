@@ -59,6 +59,22 @@ const requiredGroupRender = (name, item, id) => {
 }
 // Fin de la validation de champ groupés
 
+// Affichage d'informations d'institution
+var institutionsMap = {}
+function updateInstitutionsList(institutions) {
+  if (Object.keys(institutionsMap).length === 0) {
+    for (let key in institutions) {
+      if (institutions[key]?.slug && institutions[key].data) {
+        const slug = institutions[key].slug
+        institutionsMap[slug] = {
+          name: institutions[key].data?.name,
+          imgSrc: institutions[key].data?.imgSrc,
+        }
+      }
+    }
+  }
+}
+
 const Conditions = ({ conditions }) => {
   if (!conditions || !conditions.length) {
     return <div></div>
@@ -170,11 +186,17 @@ const CTA = ({ droit }) => {
 
 const DroitPreviewTemplate = ({ entry }) => {
   const droit = entry.get("data").toJS()
+  const institution =
+    droit.institution && institutionsMap[droit.institution]
+      ? institutionsMap[droit.institution].name
+      : ""
+  console.log(droit.institution, institution, institutionsMap)
   return (
     <div className="aj-main-container">
       <div className="aj-results-details">
         <div className="aj-droit-detail">
           <div className="aj-droit-identity">{droit.label}</div>
+          <div className="aj-droit-identity">{institution}</div>
           <div className="aj-droit-montant">
             <DroitEstime droit={droit} />
           </div>

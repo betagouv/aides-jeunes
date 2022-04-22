@@ -44,6 +44,7 @@ class InstitutionControl extends Relation.control {
   }
   _customParser = (hits) => {
     const filtered = this.filterOptions(hits)
+    updateInstitutionsList(hits)
     this.filterSelectedValues()
     return this.state.filterFunction(filtered)
   }

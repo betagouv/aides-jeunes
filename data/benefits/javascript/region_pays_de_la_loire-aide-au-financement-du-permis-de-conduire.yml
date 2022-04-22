@@ -3,7 +3,7 @@ institution: region_pays_de_la_loire
 description: La Région des Pays de la Loire propose une aide financière pour
   passer le permis de conduire (permis B).
 conditions:
-  - Être inscrit(e) à Pôle Emploi.
+  - Être inscrit·e à Pôle Emploi.
 conditions_generales:
   - type: regions
     values:

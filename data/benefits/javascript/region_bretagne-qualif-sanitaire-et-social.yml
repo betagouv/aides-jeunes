@@ -3,7 +3,7 @@ institution: region_bretagne
 description: La région Bretagne finance les formations agréées et les bourses
   d'études dans le secteur sanitaire et social, sous conditions de ressources.
 conditions:
-  - Être étudiant(e) dans le secteur sanitaire et social.
+  - Être étudiant·e dans le secteur sanitaire et social.
   - Vérifier que vos ressources correspondent aux seuils fixés par la région.
 conditions_generales:
   - type: regions

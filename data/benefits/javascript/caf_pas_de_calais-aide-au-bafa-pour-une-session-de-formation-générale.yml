@@ -7,7 +7,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf</a>.
 conditions:
   - Effectuer votre formation en externat et en demi-pension.
-  - Être allocataire ou rattaché(e) au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
 conditions_generales:
   - type: age
     operator: ">="

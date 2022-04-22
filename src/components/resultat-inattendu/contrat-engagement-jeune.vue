@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>
-      La Garantie Jeune s'adresse aux jeunes qui n'ont pas de ressources ni
-      soutien financier familial.
+      Le Contrat d'Engagement Jeune s'adresse aux jeunes qui n'ont pas de
+      ressources ni soutien financier familial.
     </p>
     <p>
       Si vous constatez que le montant indiqué ou que l'éligibilité est
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "GarantieJeune",
+  name: "ContratEngagementJeune",
   computed: {},
 }
 </script>

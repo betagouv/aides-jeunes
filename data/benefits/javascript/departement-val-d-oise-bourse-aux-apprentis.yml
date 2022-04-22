@@ -1,9 +1,9 @@
 label: bourse aux apprentis
 institution: departement_val_d_oise
 description: Le Conseil départemental du Val d’Oise attribue une bourse
-  départementale aux apprenti(e)s.
+  départementale aux apprenti·e·s.
 conditions:
-  - Etre domicilié(e) fiscalement dans le Val d’Oise.
+  - Etre domicilié·e fiscalement dans le Val d’Oise.
 conditions_generales:
   - type: age
     operator: <

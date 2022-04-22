@@ -6,7 +6,7 @@ description: "Le Combo Parfait regroupe des formations qualifiantes ou
   rémunération (500€/mois). Des aides complémentaires existent (permis,
   logement, mobilité) : voir"
 conditions:
-  - Être inscrit(e) à une formation Combo Parfait.
+  - Être inscrit·e à une formation Combo Parfait.
 conditions_generales:
   - type: age
     operator: <=

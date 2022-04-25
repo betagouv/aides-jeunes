@@ -1,0 +1,24 @@
+label: stages Monde - Jeunes diplômé.e et en recherche d'emploi
+institution: region_bourgogne_franche_comte
+description: Cette aide vous permet de financer une expérience professionnelle à
+  l’étranger sous la forme d'une bourse et d'être accompagnée.e dans votre
+  démarche.
+conditions:
+  - Souhaiter acquérir une expérience professionnelle à l’étranger.
+  - Être inscrit à Pôle emploi avant le début du stage.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.bourgognefranchecomte.fr/node/410
+instructions: https://www.bourgognefranchecomte.fr/node/410
+prefix: les
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 3680
+interestFlag: _interetEtudesEtranger

@@ -18,7 +18,7 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
-  - type: departements
+  - type: regions
     values:
       - "94"
 profils: []

@@ -1,0 +1,23 @@
+label: Aide Emergys Bretagne
+institution: region_bretagne
+description: Cette aide accompagne les porteur.euse(s) de projets innovants dans
+  l’émergence et la structuration de leur projet pendant une période de deux
+  ans.
+conditions:
+  - Porter un projet de création d’entreprise innovante.
+  - OU Avoir une jeune entreprise innovante (de moins de 36 mois si elle est
+    entrée dans le dispositif avant son 1er anniversaire).
+  - Être accompagné.e par une technopole dans votre projet.
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils: []
+link: https://www.bretagne.bzh/aides/fiches/emergys-bretagne/
+instructions: https://www.bretagne.bzh/aides/fiches/emergys-bretagne/
+prefix: l’
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 50000

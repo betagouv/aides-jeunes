@@ -13,6 +13,7 @@ conditions_generales:
 profils: []
 link: https://www.bretagne.bzh/aides/fiches/fonds-emergence/
 teleservice: https://franceactive-bretagne.bzh/decouvrir-france-active/mouvement-entrepreneurs-engages/notre-offre-en-bretagne-2/
+prefix: le
 type: float
 unit: €
 periodicite: autre

@@ -15,7 +15,10 @@ export default {
   name: "SendRecapEmailButton",
   computed: {
     show() {
-      return this.$store.state.recapEmailState !== "ok"
+      return (
+        this.$store.state.recapEmailState !== "ok" &&
+        this.$route.name === "resultats"
+      )
     },
   },
   methods: {

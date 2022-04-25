@@ -1,0 +1,21 @@
+label: pASS'VAE
+institution: region_bourgogne_franche_comte
+description: La Région soutient votre démarche de Valorisation des acquis de
+  l'expérience (VAE) en finançant votre parcours. La VAE est l’opportunité de
+  valoriser ses acquis et d’obtenir une certification de valeur nationale
+  (diplôme, titre ou certification).
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+  - type: beneficiaire_rsa
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.bourgognefranchecomte.fr/node/240
+teleservice: ""
+instructions: https://www.emfor-bfc.org/orientation-parcours/vae/
+prefix: le
+type: bool
+unit: €
+periodicite: autre

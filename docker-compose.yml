@@ -23,7 +23,6 @@ services:
     environment:
       MONGODB_URL: mongodb://mongo:27017/dds
       OPENFISCA_URL: http://openfisca:2000
-      PUPPETEER_ARGS: '{"executablePath":"/usr/bin/chromium-browser","args":["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"]}'
       MAILJET_PUBLIC_KEY: ${MAILJET_PUBLIC_KEY}
       MAILJET_PRIVATE_KEY: ${MAILJET_PRIVATE_KEY}
     ports:

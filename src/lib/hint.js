@@ -1,45 +1,28 @@
+import { ENTITIES_PROPERTIES } from "@/lib/mutualized-steps"
+
 const texts = {
-  activite: () => {
-    return "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance »."
-  },
-  bourse_criteres_sociaux_base_ressources_parentale: () => {
-    return "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés."
-  },
   depcom: () => {
     return "Le simulateur n'accepte que les codes postaux français. Si vous vivez à l'étranger, ce simulateur n'est pas encore adapté à votre situation."
   },
   enfants: () => {
     return `« Un enfant à charge » est un enfant dont vous êtes responsable et dont vous vous occupez, qu'il soit votre enfant naturel ou non.`
   },
-  _formationSanitaireSocial: () => {
-    return "Exemples : auxiliaire de vie sociale, éducateur·ice spécialisé·e, infirmier·e, ambulancier·e"
-  },
-  handicap: (variation) => {
-    if (variation?.includes("enfant")) {
-      return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
-    } else if (variation?.includes("conjoint")) {
-      return `Votre conjoint est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
-    } else {
-      return `Vous êtes « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
-    }
-  },
-  inapte_travail: () => {
-    return "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela."
-  },
-  scolarite: () => {
-    return "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur »."
-  },
-  nbptr: () => {
-    return "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu."
-  },
 }
+
+// Retrieve `moreInfo` field of each mutualized step
+Object.values(ENTITIES_PROPERTIES).forEach((property) => {
+  Object.entries(property.STEPS).forEach(([stepName, step]) => {
+    if (step.moreInfo) {
+      texts[stepName] = step.moreInfo
+    }
+  })
+})
 
 const Hint = {
   get(attribute, variation) {
-    return texts[attribute]?.(variation)
+    return typeof texts[attribute] === "string"
+      ? texts[attribute]
+      : texts[attribute]?.(variation)
   },
 }
 

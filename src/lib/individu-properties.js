@@ -73,6 +73,8 @@ const STEPS = {
       ]
       return isRelevant(items, component)
     },
+    moreInfo:
+      "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
   },
 
   alternant: {
@@ -200,6 +202,8 @@ const STEPS = {
       )} de vos parents ?`
     },
     questionType: "number",
+    moreInfo:
+      "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
     showMoreInfo: (component) => {
       return ["separes", "celibataire"].includes(
         component.$store.getters.situation.parents._situation
@@ -312,6 +316,8 @@ const STEPS = {
   _formationSanitaireSocial: {
     question:
       "Êtes-vous inscrit·e dans une formation du secteur sanitaire et social ?",
+    moreInfo:
+      "Exemples : auxiliaire de vie sociale, éducateur·ice spécialisé·e, infirmier·e, ambulancier·e...",
   },
 
   garde_alternee: {
@@ -356,6 +362,18 @@ const STEPS = {
         "être"
       )} en situation de handicap ?`
     },
+    moreInfo: (variation) => {
+      if (variation?.includes("enfant")) {
+        return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
+          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
+      } else if (variation?.includes("conjoint")) {
+        return `Votre conjoint est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
+          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
+      } else {
+        return `Vous êtes « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
+          et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
+      }
+    },
   },
 
   inapte_travail: {
@@ -365,6 +383,8 @@ const STEPS = {
         "être"
       )} reconnu·e inapte au travail ?`
     },
+    moreInfo:
+      "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela.",
   },
 
   mention_baccalaureat: {
@@ -447,6 +467,8 @@ const STEPS = {
     },
     questionType: "enum",
     items: Scolarite.types,
+    moreInfo:
+      "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   },
 
   sortie_academie: {

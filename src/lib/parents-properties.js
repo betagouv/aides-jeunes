@@ -38,6 +38,8 @@ const STEPS = {
     questionType: "number",
     optional: true,
     type: "count",
+    moreInfo:
+      "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
   },
   rfr: {
     question:

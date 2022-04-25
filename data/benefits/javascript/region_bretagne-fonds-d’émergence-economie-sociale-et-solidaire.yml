@@ -1,0 +1,20 @@
+label: Fonds d’émergence - Economie sociale et solidaire
+institution: region_bretagne
+description: Cette aide accompagne les porteur.euse(s) de projets à vocations
+  sociale et/ou environnementale dans l’élaboration du modèle économique et de
+  l’insertion de leurs projets dans leur écosystème local.
+conditions:
+  - Porter un projet individuel et/ou faire partie d'une structure de l’Économie
+    Sociale et Solidaire (ESS).
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+profils: []
+link: https://www.bretagne.bzh/aides/fiches/fonds-emergence/
+teleservice: https://franceactive-bretagne.bzh/decouvrir-france-active/mouvement-entrepreneurs-engages/notre-offre-en-bretagne-2/
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 20000

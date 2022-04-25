@@ -132,6 +132,7 @@ describe("benefit descriptions", function () {
                 "hauts-de-france-mon-abo-etudiant-ter",
                 "region-ile-de-france-vehicules-propres",
                 "region-pays-de-la-loire-ehop-emploi",
+                "collectivite-europeenne-alsace-fonds-aide-jeunes",
               ]
               if (!complexGeoCriteriaBenefits.includes(benefit.id)) {
                 it("should have a coherent geographical constraint", function () {

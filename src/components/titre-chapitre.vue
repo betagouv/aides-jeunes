@@ -11,7 +11,7 @@
     </div>
     <SendRecapEmailButton
       class="recap-email-button outline"
-      text="Recevoir mes résultats"
+      text="Recevoir les résultats par email"
     ></SendRecapEmailButton>
   </div>
 </template>

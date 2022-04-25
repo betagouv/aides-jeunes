@@ -6,13 +6,19 @@
     @click="showModal"
   >
     <i class="fa fa-envelope-o" aria-hidden="true" />
-    Recevoir par email
+    {{ text }}
   </button>
 </template>
 
 <script>
 export default {
   name: "SendRecapEmailButton",
+  props: {
+    text: {
+      type: String,
+      default: "Recevoir par email",
+    },
+  },
   computed: {
     show() {
       return (
@@ -28,11 +34,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-.modal__backdrop {
-  display: flex;
-  align-items: flex-start;
-  padding: 4em;
-}
-</style>

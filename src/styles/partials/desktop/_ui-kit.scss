@@ -155,6 +155,8 @@ html {
       }
 
       .aj-category-title-wrapper {
+        display: flex;
+        justify-content: space-between;
         padding: 32px;
       }
 

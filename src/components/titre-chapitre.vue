@@ -2,7 +2,6 @@
   <div class="aj-category-title-wrapper">
     <div class="aj-category-title">
       <h1>{{ title }}</h1>
-      <SendRecapEmailButton class="outline hide-tablet"></SendRecapEmailButton>
       <div class="aj-category-title-button-mobile">
         <MenuButton
           v-show="showMenuButton"
@@ -10,6 +9,10 @@
         ></MenuButton>
       </div>
     </div>
+    <SendRecapEmailButton
+      class="recap-email-button outline"
+      text="Recevoir mes résultats"
+    ></SendRecapEmailButton>
   </div>
 </template>
 

@@ -9,7 +9,12 @@ html {
     }
     .aj-main-container {
       .aj-category-title-wrapper {
+        flex-direction: column;
         padding: 16px 32px;
+
+        .recap-email-button {
+          margin-top: 16px;
+        }
       }
       .aj-box-wrapper {
         margin-bottom: 78px;
@@ -27,10 +32,6 @@ html {
       .aj-category-title-button-mobile {
         display: flex;
       }
-    }
-
-    .hide-tablet {
-      display: none !important;
     }
   }
 }

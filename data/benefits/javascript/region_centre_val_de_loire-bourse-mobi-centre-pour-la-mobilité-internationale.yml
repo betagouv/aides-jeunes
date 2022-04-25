@@ -1,0 +1,23 @@
+label: Bourse Mobi-Centre pour la mobilité internationale
+institution: region_centre_val_de_loire
+description: « Mobi-Centre » est une aide régionale individuelle qui vous est
+  versée lors d’une mobilité internationale (stage ou séjours d'études),
+  applicable dans tous les pays, au cours de votre cursus.
+conditions:
+  - Faire votre demande auprès de votre établissement de formation.
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.yeps.fr/articles/E261D681-9B09-47A8-836D-514969B6FAC8
+instructions: https://www.yeps.fr/articles/E261D681-9B09-47A8-836D-514969B6FAC8
+prefix: la
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 240
+interestFlag: _interetEtudesEtranger

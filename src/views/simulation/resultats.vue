@@ -97,6 +97,8 @@ export default {
   },
   mixins: [ResultatsMixin, StatisticsMixin],
   mounted: function () {
+    this.$store.dispatch("updateCurrentAnswers", this.$route.path)
+
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.situationId) {

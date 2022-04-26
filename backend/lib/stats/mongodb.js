@@ -17,7 +17,7 @@ function closeClient() {
 
 function extractSimulationDailyCount(db, fromDate, toDate) {
   return db
-    .collection("situations_dds")
+    .collection("simulations")
     .mapReduce(
       function () {
         emit(this.dateDeValeur.toISOString().slice(0, 10), 1)

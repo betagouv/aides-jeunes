@@ -21,7 +21,7 @@ services:
       dockerfile: "./docker/node/Dockerfile"
       context: "."
     environment:
-      MONGODB_URL: mongodb://mongo:27017/dds
+      MONGODB_URL: mongodb://mongo:27017/db_aides_jeunes
       OPENFISCA_URL: http://openfisca:2000
       MAILJET_PUBLIC_KEY: ${MAILJET_PUBLIC_KEY}
       MAILJET_PRIVATE_KEY: ${MAILJET_PRIVATE_KEY}

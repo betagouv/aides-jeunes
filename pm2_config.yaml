@@ -6,7 +6,7 @@ apps:
     merge_logs: true
     env:
       MES_AIDES_ROOT_URL: https://mes-aides.1jeune1solution.beta.gouv.fr
-      MONGODB_URL: mongodb://localhost/dds
+      MONGODB_URL: mongodb://localhost/db_aides_jeunes
       NODE_ENV: production
       PORT: 8000
       CHROME_DEVEL_SANDBOX: /usr/local/sbin/chrome-devel-sandbox

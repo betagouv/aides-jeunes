@@ -1,18 +1,34 @@
-label: revenu écologique jeune
+label: revenu Écologique Jeune
 institution: region_occitanie
-description: La Région vous propose une aide si vous souhaitez créer un projet
-  environnemental
+description: La Région vous propose une aide si vous souhaitez développer un
+  projet professionnel qui contribue à la protection de la nature et à la lutte
+  contre le réchauffement climatique. Elle consiste en un accompagnement et une
+  aide financière forfaitaire.
+conditions:
+  - Avoir un projet qui est validé dans le cadre d’un accompagnement par une
+    structure labellisée.
 conditions_generales:
   - type: regions
     values:
       - "76"
+  - type: beneficiaire_rsa
   - type: age
     operator: <=
     value: 29
-profils: []
+  - type: age
+    operator: ">="
+    value: 18
+  - type: beneficiaire_rsa
+profils:
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: independant
+    conditions: []
 link: https://www.laregion.fr/Revenu-Ecologique-Jeunes
-teleservice: ""
-form: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+teleservice: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+form: ""
 instructions: ""
 prefix: le
 type: float

@@ -48,7 +48,7 @@ const all = {
     version: process.env.VUE_APP_STATS_VERSION || 2,
   },
   mongo: {
-    uri: process.env.MONGODB_URL || "mongodb://localhost/dds",
+    uri: process.env.MONGODB_URL || "mongodb://localhost/db_aides_jeunes",
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,

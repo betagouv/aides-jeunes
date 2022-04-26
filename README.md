@@ -32,7 +32,7 @@
 If you want to play with the UI, you can be set up very quickly:
 
 ```bash
-npm run fast-install
+npm ci
 npm run front
 ```
 
@@ -46,7 +46,7 @@ The application should be accessible at `localhost:8080`.
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 12.x are installed on your machine:
+Make sure `build-essential`, `mongodb` and `node` 16.x are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -55,7 +55,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 12.x for the web application, and Python 3.7 for Openfisca.
+The runtime is Node 16.x for the web application, and Python 3.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 

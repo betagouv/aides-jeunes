@@ -1,0 +1,22 @@
+label: revenu écologique jeune
+institution: region_occitanie
+description: La Région vous propose une aide si vous souhaitez créer un projet
+  environnemental
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+  - type: age
+    operator: <=
+    value: 29
+profils: []
+link: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+teleservice: ""
+form: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+instructions: ""
+prefix: le
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000

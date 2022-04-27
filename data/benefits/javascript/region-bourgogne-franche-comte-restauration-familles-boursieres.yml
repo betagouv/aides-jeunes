@@ -1,0 +1,18 @@
+label: aides à l'hébergement et la restauration des lycéen·ne·s
+institution: region_bourgogne_franche_comte
+description: Cette aide vous permet d'obtenir une déduction sur vos frais
+  d’hébergement et/ou de restauration facturés par les établissements.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+link: https://www.bourgognefranchecomte.fr/node/322
+instructions: https://www.bourgognefranchecomte.fr/node/322
+prefix: les
+type: bool
+unit: €
+periodicite: autre

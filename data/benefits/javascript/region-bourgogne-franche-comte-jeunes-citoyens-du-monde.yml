@@ -1,0 +1,42 @@
+label: dispositif Jeunes Citoyens du Monde
+institution: region_bourgogne_franche_comte
+description: La Région Bourgogne-Franche-Comté offre aux jeunes la possibilité
+  d’acquérir une expérience dans le domaine de la solidarité internationale
+  grâce à un soutien financier individuel.
+conditions:
+  - Mener une action de développement ou humanitaire à titre bénévole grâce à
+    une structure relevant du secteur public, privé ou mixte.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: etudiant
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: service_civique
+    conditions: []
+link: https://www.bourgognefranchecomte.fr/node/407
+teleservice: https://subventions.bourgognefranchecomte.fr/sub/extranet/dispositif-consulter.sub?sigle=INT-JCM
+prefix: le
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000
+interestFlag: _interetEtudesEtranger

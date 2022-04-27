@@ -10,6 +10,8 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
+  - type: lyceen
+    conditions: []
 link: https://www.europeocentre-valdeloire.eu/euro-metiers-centre/#:~:text=%C2%AB%20Euro%20M%C3%A9tiers%20Centre%2DVal%20de%20Loire%20%C2%BB%20s'adresse,r%C3%A9cemment%20dipl%C3%B4m%C3%A9s%20(tout%20niveau).
 instructions: https://www.europeocentre-valdeloire.eu/euro-metiers-centre/#:~:text=%C2%AB%20Euro%20M%C3%A9tiers%20Centre%2DVal%20de%20Loire%20%C2%BB%20s'adresse,r%C3%A9cemment%20dipl%C3%B4m%C3%A9s%20(tout%20niveau).
 prefix: l’

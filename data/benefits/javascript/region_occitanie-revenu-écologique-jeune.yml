@@ -18,7 +18,6 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
-  - type: beneficiaire_rsa
 profils:
   - type: chomeur
     conditions: []

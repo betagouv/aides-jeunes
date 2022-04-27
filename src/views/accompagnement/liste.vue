@@ -32,7 +32,14 @@
 
     <SimulationSearch v-if="loggedIn" />
 
-    <div v-if="accompagnements">
+    <div v-if="loggedIn && accompagnements">
+      <div class="aj-question">Réponses au sondage</div>
+      <div class="legend">
+        <div class="icon icon-asked"></div> Demande réussie
+        <div class="icon icon-failed"></div> Demande échouée
+        <div class="icon icon-nothing"></div> Aucune demande
+        <div class="icon icon-already"></div> Déjà perçue
+      </div>
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
           v-for="survey in accompagnement.surveys"
@@ -67,128 +74,23 @@
             class="answers-list"
           >
             <li class="survey-answer">
-              <div class="icon">
-                <svg
-                  v-if="answer.status == 'asked'"
-                  width="120"
-                  height="120"
-                  viewBox="0 0 120 120"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
-                      stroke-width="10"
-                      stroke="#70b2a2"
-                      fill="none"
-                    />
-                    <line
-                      stroke="#70b2a2"
-                      y2="39.73677"
-                      x2="91.26323"
-                      y1="82.26323"
-                      x1="48.73677"
-                      stroke-width="10"
-                      fill="none"
-                    />
-                    <path
-                      transform="rotate(-90, 42, 68.5)"
-                      d="m28.23677,81.76322l27.52646,-26.52646"
-                      opacity="undefined"
-                      stroke-width="10"
-                      stroke="#70b2a2"
-                      fill="none"
-                    />
-                  </g>
-                </svg>
+              <div
+                v-if="answer.status == 'asked'"
+                class="icon icon-asked"
+              ></div>
+              <div
+                v-if="answer.status == 'already'"
+                class="icon icon-already"
+              ></div>
+              <div
+                v-if="answer.status == 'nothing'"
+                class="icon icon-nothing"
+              ></div>
+              <div
+                v-if="answer.status == 'failed'"
+                class="icon icon-failed"
+              ></div>
 
-                <svg
-                  v-if="answer.status == 'already'"
-                  width="120"
-                  height="120"
-                  viewBox="0 0 120 120"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      fill="none"
-                      stroke="#709cb2"
-                      stroke-width="10"
-                      d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
-                    />
-                    <line
-                      transform="rotate(-45, 60, 72)"
-                      fill="none"
-                      stroke-width="10"
-                      x1="42.2723"
-                      y1="89.7277"
-                      x2="77.7277"
-                      y2="54.2723"
-                      stroke="#709cb2"
-                    />
-                    <line
-                      y2="27"
-                      x2="60"
-                      y1="37"
-                      x1="60"
-                      stroke-width="10"
-                      stroke="#709cb2"
-                      fill="none"
-                    />
-                  </g>
-                </svg>
-
-                <svg
-                  v-if="answer.status == 'nothing'"
-                  width="120"
-                  height="120"
-                  viewBox="0 0 120 120"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <g transform="rotate(180, 60, 60)">
-                      <path
-                        d="m60,112c-28.72928,0 -52,-23.27072 -52,-52c0,-28.72928 23.27072,-52 52,-52c28.72928,0 52,23.27072 52,52c0,28.72928 -23.27072,52 -52,52z"
-                        stroke-width="10"
-                        stroke="#b29c70"
-                        fill="none"
-                      />
-                      <line
-                        stroke="#b29c70"
-                        y2="54.2723"
-                        x2="77.7277"
-                        y1="89.7277"
-                        x1="42.2723"
-                        stroke-width="10"
-                        fill="none"
-                        transform="rotate(-45, 60, 72)"
-                      />
-                      <line
-                        fill="none"
-                        stroke="#b29c70"
-                        stroke-width="10"
-                        x1="60"
-                        y1="37"
-                        x2="60"
-                        y2="27"
-                      />
-                    </g>
-                  </g>
-                </svg>
-                <svg
-                  v-if="answer.status == 'failed'"
-                  width="120"
-                  height="120"
-                  viewBox="0 0 120 120"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    style="fill: none; stroke: #b2707b; stroke-width: 10"
-                    transform="rotate(-90,60,60)"
-                    d="M 38.736771,81.263229 81.263229,38.736771 m -42.526458,0 42.526458,42.526458 M 60,112 A 52,52 0 0 1 8,60 52,52 0 0 1 60,8 52,52 0 0 1 112,60 52,52 0 0 1 60,112 Z"
-                  />
-                </svg>
-              </div>
               <a
                 :href="`/aides/${answer.id}`"
                 target="_blank"
@@ -304,7 +206,8 @@ export default {
 .answers-list {
   padding: 0;
 }
-.survey-answer {
+.survey-answer,
+.legend {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -312,10 +215,28 @@ export default {
   gap: 1rem;
 }
 
+.legend {
+  margin-bottom: 1rem;
+}
+
 .icon {
   display: block;
   width: 20px;
   height: 20px;
+
+  background-size: 20px;
+}
+.icon-asked {
+  background-image: url("data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIxMjAiCiAgaGVpZ2h0PSIxMjAiCiAgdmlld0JveD0iMCAwIDEyMCAxMjAiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgo+CiAgPGc+CiAgICA8cGF0aAogICAgICBkPSJtNjAsMTEyYy0yOC43MjkyOCwwIC01MiwtMjMuMjcwNzIgLTUyLC01MmMwLC0yOC43MjkyOCAyMy4yNzA3MiwtNTIgNTIsLTUyYzI4LjcyOTI4LDAgNTIsMjMuMjcwNzIgNTIsNTJjMCwyOC43MjkyOCAtMjMuMjcwNzIsNTIgLTUyLDUyeiIKICAgICAgc3Ryb2tlLXdpZHRoPSIxMCIKICAgICAgc3Ryb2tlPSIjNzBiMmEyIgogICAgICBmaWxsPSJub25lIgogICAgLz4KICAgIDxsaW5lCiAgICAgIHN0cm9rZT0iIzcwYjJhMiIKICAgICAgeTI9IjM5LjczNjc3IgogICAgICB4Mj0iOTEuMjYzMjMiCiAgICAgIHkxPSI4Mi4yNjMyMyIKICAgICAgeDE9IjQ4LjczNjc3IgogICAgICBzdHJva2Utd2lkdGg9IjEwIgogICAgICBmaWxsPSJub25lIgogICAgLz4KICAgIDxwYXRoCiAgICAgIHRyYW5zZm9ybT0icm90YXRlKC05MCwgNDIsIDY4LjUpIgogICAgICBkPSJtMjguMjM2NzcsODEuNzYzMjJsMjcuNTI2NDYsLTI2LjUyNjQ2IgogICAgICBvcGFjaXR5PSJ1bmRlZmluZWQiCiAgICAgIHN0cm9rZS13aWR0aD0iMTAiCiAgICAgIHN0cm9rZT0iIzcwYjJhMiIKICAgICAgZmlsbD0ibm9uZSIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=");
+}
+.icon-already {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPiA8Zz4gPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzA5Y2IyIiBzdHJva2Utd2lkdGg9IjEwIiBkPSJtNjAsMTEyYy0yOC43MjkyOCwwIC01MiwtMjMuMjcwNzIgLTUyLC01MmMwLC0yOC43MjkyOCAyMy4yNzA3MiwtNTIgNTIsLTUyYzI4LjcyOTI4LDAgNTIsMjMuMjcwNzIgNTIsNTJjMCwyOC43MjkyOCAtMjMuMjcwNzIsNTIgLTUyLDUyeiIgLz4gPGxpbmUgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1LCA2MCwgNzIpIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEwIiB4MT0iNDIuMjcyMyIgeTE9Ijg5LjcyNzciIHgyPSI3Ny43Mjc3IiB5Mj0iNTQuMjcyMyIgc3Ryb2tlPSIjNzA5Y2IyIiAvPiA8bGluZSB5Mj0iMjciIHgyPSI2MCIgeTE9IjM3IiB4MT0iNjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZT0iIzcwOWNiMiIgZmlsbD0ibm9uZSIgLz4gPC9nPgo8L3N2Zz4=");
+}
+.icon-nothing {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPiA8Zz4gPGcgdHJhbnNmb3JtPSJyb3RhdGUoMTgwLCA2MCwgNjApIj4gPHBhdGggZD0ibTYwLDExMmMtMjguNzI5MjgsMCAtNTIsLTIzLjI3MDcyIC01MiwtNTJjMCwtMjguNzI5MjggMjMuMjcwNzIsLTUyIDUyLC01MmMyOC43MjkyOCwwIDUyLDIzLjI3MDcyIDUyLDUyYzAsMjguNzI5MjggLTIzLjI3MDcyLDUyIC01Miw1MnoiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZT0iI2IyOWM3MCIgZmlsbD0ibm9uZSIgLz4gPGxpbmUgc3Ryb2tlPSIjYjI5YzcwIiB5Mj0iNTQuMjcyMyIgeDI9Ijc3LjcyNzciIHkxPSI4OS43Mjc3IiB4MT0iNDIuMjcyMyIgc3Ryb2tlLXdpZHRoPSIxMCIgZmlsbD0ibm9uZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1LCA2MCwgNzIpIiAvPiA8bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiNiMjljNzAiIHN0cm9rZS13aWR0aD0iMTAiIHgxPSI2MCIgeTE9IjM3IiB4Mj0iNjAiIHkyPSIyNyIgLz4gPC9nPiA8L2c+Cjwvc3ZnPg==");
+}
+.icon-failed {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPiA8cGF0aCBzdHlsZT0iZmlsbDogbm9uZTsgc3Ryb2tlOiAjYjI3MDdiOyBzdHJva2Utd2lkdGg6IDEwIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsNjAsNjApIiBkPSJNIDM4LjczNjc3MSw4MS4yNjMyMjkgODEuMjYzMjI5LDM4LjczNjc3MSBtIC00Mi41MjY0NTgsMCA0Mi41MjY0NTgsNDIuNTI2NDU4IE0gNjAsMTEyIEEgNTIsNTIgMCAwIDEgOCw2MCA1Miw1MiAwIDAgMSA2MCw4IDUyLDUyIDAgMCAxIDExMiw2MCA1Miw1MiAwIDAgMSA2MCwxMTIgWiIgLz4KPC9zdmc+");
 }
 .icon svg {
   width: 100%;

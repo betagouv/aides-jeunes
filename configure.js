@@ -10,7 +10,7 @@ module.exports = function (devServer) {
     // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
     dsn:
       process.env.NODE_ENV === "production"
-        ? "https://dff4dd1245ed4ed2b05a11f513c23cb4@o548798.ingest.sentry.io/5709109"
+        ? "https://b44fa037e37b4b9eb1a050675b253dce@sentry.incubateur.net/17"
         : null,
   })
 

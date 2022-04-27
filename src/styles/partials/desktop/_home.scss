@@ -40,10 +40,15 @@ html {
           }
         }
 
+        .aj-home-disclaimer {
+          max-width: 80%;
+        }
+
         .aj-home-hero-buttons-wrapper {
           margin-top: 3.75rem;
           display: flex;
           flex-direction: column;
+          max-width: 60%;
           button {
             font-weight: bold;
           }

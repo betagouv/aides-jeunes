@@ -78,11 +78,11 @@ import MultipleAnswers from "../../components/multiple-answers.vue"
 import YesNoQuestion from "../../components/yes-no-question.vue"
 import Hint from "@/lib/hint"
 
-import { executeFunctionOrReturnValue, capitalize } from "@/lib/utils"
+import { executeFunctionOrReturnValue, capitalize } from "../../../lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
-import { ENTITIES_PROPERTIES } from "@/lib/mutualized-steps"
+import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
 
 export default {

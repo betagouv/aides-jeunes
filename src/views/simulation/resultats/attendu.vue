@@ -189,7 +189,7 @@ import ContactEmailMixin from "@/mixins/contact-email"
 import ResultatsMixin from "@/mixins/resultats"
 
 import { sendMontantsAttendus } from "@/plugins/mails"
-import { capitalize } from "@/lib/utils"
+import { capitalize } from "../../../../lib/utils"
 import {
   fetchContributions,
   reduceContributions,

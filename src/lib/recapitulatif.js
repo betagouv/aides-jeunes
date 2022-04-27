@@ -3,7 +3,7 @@ import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
-} from "@/lib/utils"
+} from "../../lib/utils"
 import { ressourceCategories, ressourceTypes } from "../../lib/resources"
 import Logement from "@/lib/logement"
 import moment from "moment"

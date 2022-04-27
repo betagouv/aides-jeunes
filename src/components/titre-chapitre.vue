@@ -9,16 +9,21 @@
         ></MenuButton>
       </div>
     </div>
+    <SendRecapEmailButton
+      class="recap-email-button outline"
+      text="Recevoir les résultats par email"
+    ></SendRecapEmailButton>
   </div>
 </template>
 
 <script>
 import Chapters from "../../lib/chapters"
 import MenuButton from "@/components/buttons/menu-button"
+import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
 
 export default {
   name: "TitreChapitre",
-  components: { MenuButton },
+  components: { SendRecapEmailButton, MenuButton },
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)

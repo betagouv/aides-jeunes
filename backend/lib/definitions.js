@@ -92,8 +92,10 @@ const statutOccupationLogementValues = [
 ]
 
 const menage = {
+  aide_logement_date_pret_conventionne: String,
   _codePostal: String,
   charges_locatives: Number,
+  date_entree_logement: Date,
   _departement: String,
   depcom: String,
   _epci: String,
@@ -189,7 +191,6 @@ const ANSWER_ENTITY_NAMES = [
 
 // Liste des champs n'existant plus dans le simulateur mais stockés dans les anciennes simulation
 const LEGACY_FIELD_NAMES = [
-  "aide_logement_date_pret_conventionne",
   "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
   "_boursier_derniere_annee_etudes",
   "_continuite_etudes",

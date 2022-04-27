@@ -40,6 +40,23 @@ body {
   padding: 1.5rem 4%;
 }
 
+.aj-droit-header {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.aj-institution-label {
+  color: rgb(131, 147, 167);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.aj-droit-illustration {
+  max-width: 70px;
+  max-height: 70px;
+}
+
 .aj-droit-identity {
   flex-grow: 1;
   font-size: 1.25rem;

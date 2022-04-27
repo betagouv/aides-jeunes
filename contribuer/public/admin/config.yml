@@ -207,7 +207,7 @@ fields:
   field_image_aide: &field_image_aide
     label: Logo
     name: imgSrc
-    widget: image
+    widget: hidden
     allow_multiple: false
     required: false
     public_folder: "img/benefits"

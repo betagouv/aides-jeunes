@@ -39,7 +39,7 @@ app.directive("selectOnClick", SelectOnClickDirective)
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
     app,
-    dsn: "https://80847fcdc7e74cbfb9d2f47751e42889@o548798.ingest.sentry.io/5709078",
+    dsn: "https://77f2520f2558451c80b1b95131135bcd@sentry.incubateur.net/18",
   })
 }
 

@@ -1,0 +1,31 @@
+label: Bourse Aquisis - Études à l'étranger pour étudiant·e·s et apprenti·e·s post-bac
+institution: region_bourgogne_franche_comte
+description: Cette bourse vous permet d’effectuer des périodes d’études dans le
+  monde entier (sauf France métropolitaine et DROM-COM), afin d’acquérir des
+  compétences nouvelles et de vous perfectionner en langues étrangères.
+conditions:
+  - Être inscrit·e·s dans un établissement d’enseignement supérieur de
+    Bourgogne-Franche-Comté.
+  - Avoir une période d’études à réaliser à l’étranger dans le cadre de votre
+    cursus de formation.
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+  - type: quotient_familial
+    floor: 25830
+    period: year
+profils:
+  - type: apprenti
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.bourgognefranchecomte.fr/node/382
+instructions: https://www.bourgognefranchecomte.fr/mobilite-internationale
+prefix: la
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 2300
+interestFlag: _interetEtudesEtranger

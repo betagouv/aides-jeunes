@@ -138,7 +138,7 @@ You can safely use `npm test && npm run cypress` to drive your developments.
 We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
 
 The development server for emails can be easily start with:
-`node mjml.js` or `npm run serve-mail`
+`node tools/mjml.js` or `npm run serve-mail`
 
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
 You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.

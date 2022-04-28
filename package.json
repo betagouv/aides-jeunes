@@ -25,7 +25,6 @@
     "db-update": "./import-tests.sh",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "fast-install": "npm ci",
     "front": "NODE_ENV=front-only npm run serve",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "openfisca": "OPENFISCA_WORKERS=1 gunicorn openfisca.api --config openfisca/config.py",

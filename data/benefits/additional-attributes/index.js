@@ -104,7 +104,7 @@ const additionalBenefitAttributes = {
       )
     },
   },
-  garantie_jeunes: {
+  contrat_engagement_jeune: {
     computeUnexpectedAmount: (situation) => {
       let demandeur = situation.demandeur
       let period =

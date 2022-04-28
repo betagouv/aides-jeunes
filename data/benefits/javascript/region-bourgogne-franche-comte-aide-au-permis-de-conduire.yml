@@ -8,7 +8,7 @@ conditions:
     financières) ou émancipé·e fiscalement (sans conditions).
   - Être engagé·e dans un parcours de formation (niveau IV ou inférieur) ou
     demandeur d’emploi (sous conditions) ou en mission de Service civique ou
-    Garantie Jeunes.
+    Contrat d'Engagement Jeune.
 conditions_generales:
   - type: age
     operator: ">="

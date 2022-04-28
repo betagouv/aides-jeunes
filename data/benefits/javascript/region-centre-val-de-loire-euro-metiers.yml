@@ -1,0 +1,21 @@
+label: euro Métiers - Centre-Val de Loire
+institution: region_centre_val_de_loire
+description: Cette aide vous permet de financer votre stage en entreprise à l'étranger.
+conditions:
+  - Vous rapprocher de votre organisme de formation.
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: apprenti
+    conditions: []
+  - type: lyceen
+    conditions: []
+link: https://www.europeocentre-valdeloire.eu/euro-metiers-centre/#:~:text=%C2%AB%20Euro%20M%C3%A9tiers%20Centre%2DVal%20de%20Loire%20%C2%BB%20s'adresse,r%C3%A9cemment%20dipl%C3%B4m%C3%A9s%20(tout%20niveau).
+instructions: https://www.europeocentre-valdeloire.eu/euro-metiers-centre/#:~:text=%C2%AB%20Euro%20M%C3%A9tiers%20Centre%2DVal%20de%20Loire%20%C2%BB%20s'adresse,r%C3%A9cemment%20dipl%C3%B4m%C3%A9s%20(tout%20niveau).
+prefix: l’
+type: bool
+unit: €
+periodicite: autre
+interestFlag: _interetEtudesEtranger

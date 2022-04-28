@@ -12,7 +12,8 @@ conditions_generales:
       - "84"
 profils: []
 link: https://www.auvergnerhonealpes.fr/aide/44/89-obtenir-une-aide-d-urgence-pour-poursuivre-ma-formation-sante-social-orientation-formation.htm
-teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
+teleservice: ""
+form: https://rhone-alpes.commeunservice.com/bourses/piece/modele/recuperer?nomFichier=Dossier_demande_FAU.pdf
 prefix: l’
 type: float
 unit: €

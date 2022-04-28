@@ -22,13 +22,13 @@
 <script>
 import Institution from "@/lib/institution"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement"
-import ResultatInattenduGarantieJeune from "@/components/resultat-inattendu/garantie-jeune"
+import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune"
 import ResultatInattenduPpa from "@/components/resultat-inattendu/ppa"
 import ResultatInattenduYearMinusTwo from "@/components/resultat-inattendu/year-minus-two"
 
 const RESULTATS_INATTENDUS = {
   aide_logement: ResultatInattenduAideLogement,
-  garantie_jeunes: ResultatInattenduGarantieJeune,
+  contrat_engagement_jeune: ResultatInattenduContratEngagementJeune,
   ppa: ResultatInattenduPpa,
 }
 
@@ -36,7 +36,7 @@ export default {
   name: "ResultatInattendu",
   components: {
     ResultatInattenduAideLogement,
-    ResultatInattenduGarantieJeune,
+    ResultatInattenduContratEngagementJeune,
     ResultatInattenduPpa,
     ResultatInattenduYearMinusTwo,
   },

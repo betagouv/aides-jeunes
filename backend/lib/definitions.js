@@ -5,6 +5,7 @@ const { ENTITIES_PROPERTIES } = require("../../lib/mutualized-steps")
 
 const famille = {
   bourse_lycee: Boolean,
+  en_couple: Boolean,
 }
 
 const foyerFiscal = {
@@ -217,6 +218,7 @@ module.exports = {
   foyerFiscal,
   individu,
   menage,
+  parents,
   situation,
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,

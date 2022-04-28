@@ -1,3 +1,7 @@
+const config = {
+  institutionRessourcesURL: "https://mes-aides.1jeune1solution.beta.gouv.fr",
+}
+
 const LEGENDE_PERIODICITE_AIDE_ENUM = {
   ponctuelle: "",
   mensuelle: "/ mois",
@@ -58,6 +62,20 @@ const requiredGroupRender = (name, item, id) => {
   }
 }
 // Fin de la validation de champ groupés
+
+// Affichage d'informations d'institution
+var institutionsMap = {}
+function updateInstitutionsList(institutions) {
+  for (let key in institutions) {
+    if (institutions[key]?.slug && institutions[key].data) {
+      const slug = institutions[key].slug
+      institutionsMap[slug] = {
+        name: institutions[key].data?.name,
+        imgSrc: institutions[key].data?.imgSrc,
+      }
+    }
+  }
+}
 
 const Conditions = ({ conditions }) => {
   if (!conditions || !conditions.length) {
@@ -170,13 +188,39 @@ const CTA = ({ droit }) => {
 
 const DroitPreviewTemplate = ({ entry }) => {
   const droit = entry.get("data").toJS()
+  const institution =
+    droit.institution && institutionsMap[droit.institution]
+      ? institutionsMap[droit.institution].name
+      : ""
+  const institutionImage =
+    droit.institution && institutionsMap[droit.institution]
+      ? institutionsMap[droit.institution].imgSrc
+      : undefined
   return (
     <div className="aj-main-container">
       <div className="aj-results-details">
         <div className="aj-droit-detail">
-          <div className="aj-droit-identity">{droit.label}</div>
-          <div className="aj-droit-montant">
-            <DroitEstime droit={droit} />
+          <div className="aj-droit-header">
+            {(droit.imgSrc && (
+              <img
+                className="aj-droit-illustration"
+                src={`${config.institutionRessourcesURL}/${droit.imgSrc}`}
+              />
+            )) ||
+              (institutionImage && (
+                <img
+                  className="aj-droit-illustration"
+                  src={`${config.institutionRessourcesURL}/${institutionImage}`}
+                />
+              ))}
+            <div>
+              <div className="aj-droit-identity">{droit.label}</div>
+              <div className="aj-institution-label">{institution}</div>
+            </div>
+
+            <div className="aj-droit-montant">
+              <DroitEstime droit={droit} />
+            </div>
           </div>
           <div className="aj-droit-content">
             <div className="aj-droit-content-description">

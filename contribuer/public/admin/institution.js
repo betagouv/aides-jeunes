@@ -43,10 +43,12 @@ class InstitutionControl extends Relation.control {
     })
   }
   _customParser = (hits) => {
+    updateInstitutionsList(hits)
     const filtered = this.filterOptions(hits)
     this.filterSelectedValues()
     return this.state.filterFunction(filtered)
   }
+
   componentDidMount() {
     const defaultValue = this.props.field.get("filter").get("default", "*")
     this.setState({
@@ -64,8 +66,7 @@ class InstitutionControl extends Relation.control {
     })
   }
   render() {
-    const { value, field, onChange } = this.props
-
+    const { field } = this.props
     const name = field.get("name")
     const style = h("link", { rel: "stylesheet", href: "/css/institution.css" })
     const node = super.render(this.state)

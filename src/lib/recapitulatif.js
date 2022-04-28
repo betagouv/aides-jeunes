@@ -34,7 +34,7 @@ export const SIMPLE_STEPS = {
                   .label
             )
             .join(", ")
-        : "Aucuns revenus"
+        : "Aucun revenu"
 
     const individu = getIndividuByStep(
       { id: step.id, role: step.id.split("_")[0] },

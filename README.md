@@ -32,7 +32,7 @@
 If you want to play with the UI, you can be set up very quickly:
 
 ```bash
-npm run fast-install
+npm ci
 npm run front
 ```
 
@@ -46,7 +46,7 @@ The application should be accessible at `localhost:8080`.
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 12.x are installed on your machine:
+Make sure `build-essential`, `mongodb` and `node` 16.x are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -55,7 +55,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 12.x for the web application, and Python 3.7 for Openfisca.
+The runtime is Node 16.x for the web application, and Python 3.7 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
@@ -71,7 +71,7 @@ npm ci
 
 ## Openfisca
 
-:warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.6`.
+:warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.13`.
 
 You should [install Python 3 in a virtual environment](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. The instructions below rely on the built-in `venv` module so that there are no additional external dependencies:
 
@@ -138,7 +138,7 @@ You can safely use `npm test && npm run cypress` to drive your developments.
 We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
 
 The development server for emails can be easily start with:
-`node mjml.js` or `npm run serve-mail`
+`node tools/mjml.js` or `npm run serve-mail`
 
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
 You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.
@@ -181,6 +181,12 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 - `npm run test-definition-periods` allows you to valid the periods of openfisca requested variables.
 
 - `npm run evaluate-benefits <simulationId>` allows you to evaluate benefits with simulation id.
+
+- `node tools/geographical-benefits-details.js` allows you to get the relevant benefits for each commune.
+
+- `node tools/get-all-steps.js` allows you to get all the steps and substeps of a simulation.
+
+- `node tools/mjms.js` allows you to generate emails which contain the result of a simulation or survey.
 
 ## NetlifyCMS development
 

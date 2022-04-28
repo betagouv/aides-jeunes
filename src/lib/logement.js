@@ -72,9 +72,11 @@ function getLoyerData(answers) {
   const captureCharges = Logement.captureCharges(logementStatut)
 
   if (isLocataire) {
-    const loyerLabel = `Quel est le montant${
-      captureCharges ? "" : ", charges comprises,"
-    } de votre ${coloc ? "part du " : ""}loyer`
+    const loyerLabel = `Quel est le montant de votre ${
+      coloc ? "part du " : ""
+    }loyer ${
+      captureCharges ? "(charges non comprises)" : "(charges comprises)"
+    } ?`
     return {
       captureCharges,
       loyerQuestion: {

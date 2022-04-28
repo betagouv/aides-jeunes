@@ -42,7 +42,6 @@ body {
 
 .aj-droit-header {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
   align-items: flex-start;
   width: 100%;
@@ -93,9 +92,9 @@ body {
 
 .aj-droit-montant {
   flex-basis: 200px;
-  flex-grow: 0;
   flex-shrink: 0;
   text-align: right;
+  flex: 1;
 
   font-weight: bold;
   font-size: 1.4rem;

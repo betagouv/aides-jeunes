@@ -105,9 +105,10 @@ export default {
       if (this.$store.state.situationId !== this.$route.query.situationId) {
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
-          .then(() => this.$store.dispatch("compute"))
-      } else if (!this.$store.getters.hasResults) {
-        this.$store.dispatch("compute")
+          .then(() => {
+            this.$store.dispatch("compute")
+            this.$router.replace({ situationId: null })
+          })
       } // Else nothing to do
     } else if (!this.$store.getters.passSanityCheck) {
       this.restoreLatest()

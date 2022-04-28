@@ -42,8 +42,10 @@ body {
 
 .aj-droit-header {
   display: flex;
+  justify-content: space-between;
   gap: 20px;
   align-items: flex-start;
+  width: 100%;
 }
 
 .aj-institution-label {

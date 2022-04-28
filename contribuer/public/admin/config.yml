@@ -198,7 +198,7 @@ fields:
     <<: *field_empty
     label: En formation sanitaire et sociale
     name: formation_sanitaire_social
-  field_beneficiare_rsa: &field_beneficiare_rsa
+  field_beneficiaire_rsa: &field_beneficiaire_rsa
     <<: *field_empty
     label: Bénéficiaire RSA
     name: beneficiaire_rsa
@@ -638,6 +638,18 @@ fields:
             collapsed: false
             types:
               - *field_age
+      - label: Bénéficiaire RSA
+        name: beneficiaire_rsa
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: []
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
   # champs propre aux aides javascript
   field_conditions_generales: &field_conditions_generales
     label: Conditions générales à satisfaire simultanément
@@ -654,7 +666,7 @@ fields:
       - *field_regime_securite_sociale
       - *field_quotient_familial
       - *field_formation_sanitaire_social
-      - *field_beneficiare_rsa
+      - *field_beneficiaire_rsa
 
 collections:
   - name: benefits_javascript

@@ -207,7 +207,7 @@ fields:
   field_image_aide: &field_image_aide
     label: Logo
     name: imgSrc
-    widget: image
+    widget: hidden
     allow_multiple: false
     required: false
     public_folder: "img/benefits"
@@ -232,7 +232,7 @@ fields:
       default: "*"
       target: "type"
       fields: *field_geographical_type
-    hint: Si votre institution n'apparaît pas dans la liste, vous pouvez l'ajouter [ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
+    hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
     name: description

@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 const followups = require("../controllers/followups")
+const download = require("../controllers/exports")
 const simulationController = require("../controllers/simulation")
 const teleservices = require("../controllers/teleservices")
 
@@ -31,6 +32,7 @@ module.exports = function (api) {
   route.post("/openfisca-test", simulationController.openfiscaTest)
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
+  route.get("/exports/pdf", download.printPDF)
   route.post("/followup", followups.persist)
 
   teleservices.names.forEach(function (name) {

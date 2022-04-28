@@ -14,6 +14,7 @@
           class="aj-aide-illustration"
           :src="getBenefitImage(droit)"
           :alt="'Logo ' + droit.label"
+          crossOrigin="anonymous"
         />
         <div class="aj-aide-text">
           <h2 class="aj-question aj-benefit-label" itemprop="name">{{

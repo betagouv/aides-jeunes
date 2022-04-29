@@ -198,7 +198,7 @@ export default {
 </script>
 <style scoped>
 .button {
-  display: inline-block;
+  display: inline-block !important;
 }
 .accompagnement {
   border: 1px solid #ddd;

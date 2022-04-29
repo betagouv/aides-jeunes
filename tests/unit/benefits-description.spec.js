@@ -1,6 +1,36 @@
 const expect = require("expect")
 const fs = require("fs")
 
+const regions = require("@etalab/decoupage-administratif/data/regions.json")
+const departements = require("@etalab/decoupage-administratif/data/departements.json")
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epcis = require("@etalab/decoupage-administratif/data/epci.json")
+
+const codesRegion = []
+const codesDepartement = []
+const codesCommune = []
+const codesEpci = []
+
+regions.forEach((region) => {
+  codesRegion.push(region.code)
+})
+departements.forEach((departement) => {
+  codesDepartement.push(departement.code)
+})
+communes.forEach((commune) => {
+  codesCommune.push(commune.code)
+})
+epcis.forEach((epci) => {
+  codesEpci.push(epci.code)
+})
+
+const codesInstitutions = {
+  region: codesRegion,
+  departement: codesDepartement,
+  commune: codesCommune,
+  epci: codesEpci,
+}
+
 describe("benefit descriptions", function () {
   const subject = require("../../data/all")
 
@@ -21,12 +51,24 @@ describe("benefit descriptions", function () {
           expect(typeof institution.code_insee).toBe("string")
           expect(institution.code_insee.length).toBeGreaterThan(1)
         })
+
+        it("should have a relevant code_insee", function () {
+          expect(codesInstitutions[institution.type]).toContain(
+            institution.code_insee
+          )
+        })
       }
 
       if (institution.type == "epci") {
         it("should have a code_siren", function () {
           expect(typeof institution.code_siren).toBe("string")
           expect(institution.code_siren).toMatch(/^(1|2){1}[0-9]{8}$/)
+        })
+
+        it("should have a relevant code_siren", function () {
+          expect(codesInstitutions[institution.type]).toContain(
+            institution.code_siren
+          )
         })
       }
 

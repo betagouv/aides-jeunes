@@ -60,6 +60,11 @@
               target="_blank"
               >Résultats de la simulation</a
             >
+            <div
+              @click="() => copyBenefitsList(accompagnement.benefits)"
+              class="copy-button"
+              >Copier</div
+            >
           </div>
           <ul
             v-for="answer in accompagnement.benefits"
@@ -248,6 +253,31 @@ export default {
       })}`
     },
 
+    copyBenefitsList: function (benefitsList) {
+      if (benefitsList?.length) {
+        const container = document.createElement("ul")
+        for (let benefit of benefitsList) {
+          const benefitItem = document.createElement("li")
+          const benefitLink = document.createElement("a")
+          benefitLink.innerText =
+            this.benefitsMap[benefit.id]?.label || benefit.id
+          benefitLink.href = `${process.env.VUE_APP_BASE_URL}/aides/${benefit.id}`
+          benefitItem.appendChild(benefitLink)
+          container.appendChild(benefitItem)
+        }
+
+        // In order to copy the rich-text we need to add it to the page
+        document.body.appendChild(container)
+        window.getSelection().removeAllRanges()
+        let range = document.createRange()
+        range.selectNode(container)
+        window.getSelection().addRange(range)
+        document.execCommand("copy")
+        window.getSelection().removeAllRanges()
+        container.remove()
+      }
+    },
+
     fetchPollResults: async function () {
       this.retrievingCommunes = true
       const uri = this.$route.params.surveyId
@@ -327,5 +357,19 @@ export default {
   background: rgba(0, 0, 0, 0.05);
   padding: 4px 6px;
   border-radius: 4px;
+}
+
+.copy-button {
+  color: var(--theme-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.copy-button:hover {
+  color: var(--dark-blue);
+  text-decoration: none;
+}
+.copy-button:active {
+  color: var(--blue);
+  font-size: 15px;
 }
 </style>

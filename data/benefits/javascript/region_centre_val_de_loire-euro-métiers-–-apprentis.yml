@@ -1,0 +1,20 @@
+label: euro Métiers – Apprentis
+institution: region_centre_val_de_loire
+description: La Région soutient financièrement les stages à l’étranger des apprenti·e·s.
+conditions:
+  - Contacter votre établissement pour vérifier qu'il fait partie du dispositif
+    et déposer votre demande auprès d'eux.
+conditions_generales:
+  - type: regions
+    values:
+      - "24"
+profils:
+  - type: apprenti
+    conditions: []
+link: https://www.yeps.fr/blog/articles/730CAD0E-801F-4D86-8E8C-8F1B701A82B2
+instructions: https://www.yeps.fr/blog/articles/730CAD0E-801F-4D86-8E8C-8F1B701A82B2
+prefix: l’
+type: bool
+unit: €
+periodicite: ponctuelle
+interestFlag: _interetEtudesEtranger

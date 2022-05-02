@@ -1,0 +1,31 @@
+label: accompagnement Validation des Acquis de l'Expérience (VAE)
+institution: hauts_de_france
+description: Cette aide vous permet de financer partiellement votre VAE sous la
+  forme d'un abondement sur votre Compte Formation.
+conditions:
+  - Être inscrit·e à Pôle Emploi.
+  - Contacter un·e conseiller·e VAE dans un centre <a target="_blank"
+    rel="noopener" href="http://www.interval-vae.fr/">Interval</a>, <a
+    target="_blank" rel="noopener" href="http://www.laio.c2rp.fr//">un Point
+    Information Conseil ou un Point Relais Conseil</a> afin d'être aidé dans la
+    constitution de votre dossier.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+  - type: age
+    operator: ">="
+    value: 18
+profils:
+  - type: chomeur
+    conditions: []
+  - type: salarie
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=512
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=512
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 5000

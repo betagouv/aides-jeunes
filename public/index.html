@@ -15,18 +15,9 @@
 
     <base href="/" />
 
-    <meta
-      name="description"
-      content="Ce questionnaire en ligne simple vous donnera un montant mensuel pour chaque prestation et vous donnera accès aux démarches."
-    />
-    <meta
-      property="og:description"
-      content="7 minutes suffisent pour évaluer vos droits à <%= VUE_APP_BENEFIT_COUNT %> aides avec le simulateur de <%= VUE_APP_CONTEXT_NAME %>."
-    />
-    <meta
-      name="twitter:description"
-      content="7 minutes suffisent pour évaluer vos droits à <%= VUE_APP_BENEFIT_COUNT %> aides avec le simulateur de <%= VUE_APP_CONTEXT_NAME %>."
-    />
+    <meta name="description" content="<%= VUE_APP_DESCRIPTION %>" />
+    <meta property="og:description" content="<%= VUE_APP_DESCRIPTION %>" />
+    <meta name="twitter:description" content="<%= VUE_APP_DESCRIPTION %>" />
     <link rel="canonical" href="<%= VUE_APP_BASE_URL %>" />
     <meta property="og:url" content="<%= VUE_APP_BASE_URL %>" />
 
@@ -61,7 +52,6 @@
       sizes="192x192"
       href="<%= VUE_APP_BASE_URL %>/img/favicon/android-chrome-192x192.png"
     />
-
     <meta
       name="apple-mobile-web-app-title"
       content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"

@@ -31,6 +31,7 @@ process.env.VUE_APP_STATS_URL = statistics?.url ? statistics.url : ""
 process.env.VUE_APP_STATS_VERSION = statistics?.version ? statistics.version : 2
 process.env.VUE_APP_NETLIFY_PR = process.env.BRANCH
 process.env.VUE_APP_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}`
+process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${process.env.VUE_APP_BENEFIT_COUNT} aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}.`
 
 module.exports = {
   configureWebpack: (config) => {

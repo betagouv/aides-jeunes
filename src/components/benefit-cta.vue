@@ -3,7 +3,7 @@
     <BenefitCtaLink
       v-for="(cta, index) in ctas"
       :key="index"
-      :analytics-name="benefit.label"
+      :analytics-name="benefit.id"
       :benefit="benefit"
       :link="cta.link"
       :type="cta.type"
@@ -13,7 +13,7 @@
       v-if="showProximityCta"
       id="cta-proximity"
       v-analytics="{
-        name: benefit.label,
+        name: benefit.id,
         action: 'show-locations',
         category: 'General',
       }"

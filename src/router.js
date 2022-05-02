@@ -400,15 +400,13 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-const DEFAULT_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${context.name}`
-
 function getTitleMeta(route) {
   let meta
   for (let index = route.matched.length - 1; index >= 0; index -= 1) {
     meta = route.matched[index].meta
     if (meta.headTitle) return meta.headTitle
   }
-  return DEFAULT_TITLE
+  return process.env.VUE_APP_TITLE
 }
 
 router.afterEach((to) => {

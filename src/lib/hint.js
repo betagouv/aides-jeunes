@@ -32,6 +32,9 @@ const texts = {
   scolarite: () => {
     return "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur »."
   },
+  nbptr: () => {
+    return "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu."
+  },
 }
 
 const Hint = {

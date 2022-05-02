@@ -1,0 +1,22 @@
+label: aide aux dépenses de rentrée
+institution: region_corse
+description: La Région aide financièrement les élèves boursiers dans l'achat de
+  leur matériel scolaire.
+conditions:
+  - Contacter <a target="_blank" rel="noopener"
+    href="https://www.crous-corse.fr/contact/">votre CROUS</a>.
+conditions_generales:
+  - type: regions
+    values:
+      - "94"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+link: https://www.crous-corse.fr/bourses/aide-aux-depenses-de-rentree/
+instructions: https://www.crous-corse.fr/bourses/aide-aux-depenses-de-rentree/
+prefix: l’
+type: float
+unit: €
+periodicite: annuelle
+montant: 500

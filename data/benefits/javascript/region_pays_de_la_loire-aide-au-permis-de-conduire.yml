@@ -1,0 +1,22 @@
+label: Aide au permis de conduire
+institution: region_pays_de_la_loire
+description: La Région vous aide à financer votre permis de conduire.
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://mes-aides.pole-emploi.fr/region-pays-de-la-loire/aide-regionale-au-permis-de-conduire-pays-de-la-loire#
+instructions: https://mes-aides.pole-emploi.fr/region-pays-de-la-loire/aide-regionale-au-permis-de-conduire-pays-de-la-loire#
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1600
+interestFlag: _interetPermisDeConduire

@@ -84,7 +84,7 @@ import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
-import { useIndividu } from "@/composables/individu.ts"
+import Individu from "../../../lib/individu"
 
 export default {
   name: "MutualizedStep",
@@ -105,11 +105,13 @@ export default {
       this.$route.params.fieldName,
       id
     )
+    const entity = ENTITIES_PROPERTIES[entityName].loadEntity?.(this)
 
     return {
       id,
       value,
       entityName,
+      entity,
     }
   },
   computed: {
@@ -142,7 +144,14 @@ export default {
     },
     individu() {
       if (this.entityName === "individu") {
-        return useIndividu(this.$route.params.id)
+        const id = this.$route.params.id
+        const role = id.split("_")[0]
+        const { individu } = Individu.get(
+          this.$store.getters.peopleParentsFirst,
+          role,
+          id
+        )
+        return individu
       }
       return undefined
     },

@@ -1,10 +1,7 @@
 const concat = require("lodash/concat")
 
 const ressources = require("../../lib/resources")
-const {
-  ENTITIES_PROPERTIES,
-  forEachProperties,
-} = require("../../lib/mutualized-steps")
+const { forEachProperties } = require("../../lib/mutualized-steps")
 
 const famille = {
   bourse_lycee: Boolean,

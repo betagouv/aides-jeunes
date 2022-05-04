@@ -84,6 +84,7 @@ import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
+import Individu from "../../../lib/individu"
 
 export default {
   name: "MutualizedStep",
@@ -121,11 +122,11 @@ export default {
       return this.$route.params.fieldName
     },
     items() {
-      return executeFunctionOrReturnValue(this.step, "items", this)
+      return executeFunctionOrReturnValue(this.step, "items", this.propertyData)
     },
     question() {
       return capitalize(
-        executeFunctionOrReturnValue(this.step, "question", this)
+        executeFunctionOrReturnValue(this.step, "question", this.propertyData)
       )
     },
     questionType() {
@@ -134,11 +135,36 @@ export default {
     showMoreInfo() {
       const showMoreInfo =
         this.step.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.step, "showMoreInfo", this)
+        executeFunctionOrReturnValue(
+          this.step,
+          "showMoreInfo",
+          this.propertyData
+        )
       return showMoreInfo && Hint.get(this.fieldName)
     },
+    individu() {
+      if (this.entityName === "individu") {
+        const id = this.$route.params.id
+        const role = id.split("_")[0]
+        const { individu } = Individu.get(
+          this.$store.getters.peopleParentsFirst,
+          role,
+          id
+        )
+        return individu
+      }
+      return undefined
+    },
+    propertyData() {
+      return {
+        openFiscaParameters: this.$store.state.openFiscaParameters,
+        simulation: this.$store.state.simulation,
+        individu: this.individu,
+        periods: this.$store.state.dates,
+      }
+    },
     step() {
-      return this.entityProperties.STEPS[this.fieldName]
+      return this.entityProperties[this.fieldName]
     },
   },
   methods: {

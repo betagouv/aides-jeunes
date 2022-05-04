@@ -144,7 +144,7 @@ export default {
           params: step,
         })
         return this.buildMutualizedQuestion({
-          question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
+          question: ENTITIES_PROPERTIES[step.entity][step.variable],
           value: answer,
           component: { $store: this.$store, entity },
         })

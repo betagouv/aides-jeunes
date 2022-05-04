@@ -104,11 +104,8 @@ const value = ref(
   )
 )
 const individu = entityName === "individu" ? useGetIndividu() : undefined
-
 const entityProperties = ENTITIES_PROPERTIES[entityName]
-
 const fieldName = route.params.fieldName
-
 const propertyData = computed(() => {
   return {
     openFiscaParameters: store.state.openFiscaParameters,
@@ -117,14 +114,12 @@ const propertyData = computed(() => {
     periods: store.state.dates,
   }
 })
-
-const step = entityProperties.STEPS[fieldName]
+const step = entityProperties[fieldName]
 const items = executeFunctionOrReturnValue(step, "items", propertyData.value)
 const question = capitalize(
   executeFunctionOrReturnValue(step, "question", propertyData.value)
 )
 const questionType = step.questionType
-
 const showMoreInfo = computed(() => {
   const showMoreInfo =
     step.showMoreInfo === undefined ||
@@ -132,7 +127,7 @@ const showMoreInfo = computed(() => {
   return showMoreInfo && Hint.get(fieldName)
 })
 
-const requiredValueMissing = (submit: boolean): boolean => {
+function requiredValueMissing(submit: boolean): boolean {
   const hasError = value.value === undefined
 
   if (submit) {
@@ -141,11 +136,11 @@ const requiredValueMissing = (submit: boolean): boolean => {
 
   return hasError
 }
-const canSubmit = (submit: boolean) => {
+function canSubmit(submit: boolean) {
   return step.optional || !requiredValueMissing(submit)
 }
 
-const onSubmit = (): void => {
+function onSubmit(): void {
   if (!canSubmit(true)) {
     return
   }

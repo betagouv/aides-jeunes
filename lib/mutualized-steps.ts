@@ -10,11 +10,9 @@ function forEachProperties(
 ) {
   Object.entries(ENTITIES_PROPERTIES).forEach(
     ([entityName, entityProperties]) => {
-      Object.entries(entityProperties.STEPS).forEach(
-        ([propertyName, property]) => {
-          fn(entityName, propertyName, property)
-        }
-      )
+      Object.entries(entityProperties).forEach(([propertyName, property]) => {
+        fn(entityName, propertyName, property)
+      })
     }
   )
 }

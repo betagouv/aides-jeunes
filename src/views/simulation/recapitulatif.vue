@@ -145,7 +145,7 @@ export default {
 
         const individu = getIndividuByStep(step, this)
         return this.buildMutualizedQuestion({
-          question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
+          question: ENTITIES_PROPERTIES[step.entity][step.variable],
           value: answer,
           component: { $store: this.$store, individu },
         })

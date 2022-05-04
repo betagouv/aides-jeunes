@@ -2,44 +2,36 @@
   "name": "mes-aides-jeunes",
   "version": "12.1.3",
   "description": "Simulateur de prestations sociales pour les jeunes",
-  "engines": {
-    "node": ">= 16"
-  },
-  "license": "AGPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/betagouv/aides-jeunes"
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --no-clean",
     "test:unit": "vue-cli-service test:unit",
     "lint": "npx eslint .",
-    "lint:fix": "npx eslint --fix .",
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
+    "ci": "npm run stats && NODE_ENV=production node server.js",
     "cypress": "cypress run --config-file false",
     "cypress:open": "cypress open --config-file false",
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
-    "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write .",
+    "evaluate-benefits": "node tools/evaluate-benefits",
     "front": "NODE_ENV=front-only npm run serve",
+    "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
+    "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
+    "lint:fix": "npx eslint --fix .",
     "openfisca": "OPENFISCA_WORKERS=1 gunicorn openfisca.api --config openfisca/config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
-    "start": "NODE_ENV=production node server.js",
-    "ci": "npm run stats && NODE_ENV=production node server.js",
-    "stats": "node backend/lib/stats",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "serve-mail": "node tools/mjml.js",
+    "start": "NODE_ENV=production node server.js",
+    "stats": "node backend/lib/stats",
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
-    "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
-    "test-definition-periods": "node tools/test-definition-periods.js",
-    "husky": "husky install",
-    "evaluate-benefits": "node tools/evaluate-benefits"
+    "test-definition-periods": "node tools/test-definition-periods.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.16.0",
@@ -90,10 +82,16 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",
+    "@types/iframe-resizer": "^3.5.9",
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.4",
+    "@vue/cli-plugin-typescript": "~4.5.15",
     "@vue/cli-plugin-unit-jest": "^5.0.4",
     "@vue/cli-service": "^5.0.4",
+    "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/vue3-jest": "^27.0.0",
     "argparse": "^2.0.1",
     "babel-core": "7.0.0-bridge.0",
@@ -112,6 +110,8 @@
     "mustache": "^4.2.0",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
+    "ts-jest": "^27.0.4",
+    "typescript": "~4.1.5",
     "webpack": "^5.64.3",
     "webpack-bundle-analyzer": "^4.5.0"
   },
@@ -166,6 +166,15 @@
     "watchPlugins": [
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
-    ]
+    ],
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/betagouv/aides-jeunes"
   }
 }

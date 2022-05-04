@@ -10,6 +10,7 @@ import moment from "moment"
 import StateService from "./plugins/state-service"
 
 import * as Sentry from "@sentry/vue"
+// @ts-ignore
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
@@ -20,6 +21,7 @@ import AnalyticsDirective from "./directives/analytics"
 import MailDirective from "./directives/mail"
 import SelectOnClickDirective from "./directives/select-on-click"
 
+// @ts-ignore
 import { iframeResizerContentWindow } from "iframe-resizer"
 
 const Resizer = {
@@ -54,7 +56,7 @@ app.use(VueMatomo, {
 })
 
 app.config.globalProperties.$filters = {
-  capitalize(value) {
+  capitalize(value: string) {
     if (!value) return ""
     value = value.toString()
     return value.charAt(0).toUpperCase() + value.slice(1)

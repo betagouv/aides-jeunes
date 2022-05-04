@@ -13,7 +13,7 @@
       </p>
 
       <div v-for="institution in type.institutions" :key="institution.id">
-        <h3 class="aj-question" :id="institution.id">{{
+        <h3 :id="institution.id" class="aj-question">{{
           institution.label
         }}</h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>

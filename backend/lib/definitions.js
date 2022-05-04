@@ -1,7 +1,10 @@
 const concat = require("lodash/concat")
 
 const ressources = require("../../lib/resources")
-const { ENTITIES_PROPERTIES } = require("../../lib/mutualized-steps")
+const {
+  ENTITIES_PROPERTIES,
+  forEachProperties,
+} = require("../../lib/mutualized-steps")
 
 const famille = {
   bourse_lycee: Boolean,
@@ -142,45 +145,38 @@ const entities = {
   parents,
 }
 
-Object.entries(ENTITIES_PROPERTIES).forEach(
-  ([entityName, entityProperties]) => {
-    Object.entries(entityProperties.STEPS).forEach(
-      ([propertyName, property]) => {
-        if (entities[entityName][propertyName]) {
-          return
-        }
-        switch (property.questionType) {
-          case "enum": {
-            entities[entityName][propertyName] = {
-              type: String,
-              enum: property.items.map((item) => item.value),
-            }
-            break
-          }
-          case "number": {
-            entities[entityName][propertyName] = Number
-            break
-          }
-          case "date": {
-            entities[entityName][propertyName] = Date
-            break
-          }
-          case "multiple": {
-            entities[entityName][propertyName] = entities[entityName][
-              propertyName
-            ] = {
-              type: [String],
-              enum: property.items.map((item) => item.value),
-            }
-            break
-          }
-          default:
-            entities[entityName][propertyName] = Boolean
-        }
-      }
-    )
+forEachProperties((entityName, propertyName, property) => {
+  if (entities[entityName][propertyName]) {
+    return
   }
-)
+  switch (property.questionType) {
+    case "enum": {
+      entities[entityName][propertyName] = {
+        type: String,
+        enum: property.items.map((item) => item.value),
+      }
+      break
+    }
+    case "number": {
+      entities[entityName][propertyName] = Number
+      break
+    }
+    case "date": {
+      entities[entityName][propertyName] = Date
+      break
+    }
+    case "multiple": {
+      entities[entityName][propertyName] = entities[entityName][propertyName] =
+        {
+          type: [String],
+          enum: property.items.map((item) => item.value),
+        }
+      break
+    }
+    default:
+      entities[entityName][propertyName] = Boolean
+  }
+})
 
 const ANSWER_ENTITY_NAMES = [
   "individu",

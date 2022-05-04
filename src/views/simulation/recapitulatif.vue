@@ -59,7 +59,11 @@ import {
   displayValue,
   executeFunctionOrReturnValue,
 } from "../../../lib/utils"
-import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
+import {
+  SIMPLE_STEPS,
+  COMPLEX_STEPS,
+  getIndividuByStep,
+} from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "../../../lib/answers"
@@ -139,14 +143,11 @@ export default {
           step
         )
 
-        const entity = ENTITIES_PROPERTIES[step.entity].loadEntity?.({
-          $store: this.$store,
-          params: step,
-        })
+        const individu = getIndividuByStep(step, this)
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity].STEPS[step.variable],
           value: answer,
-          component: { $store: this.$store, entity },
+          component: { $store: this.$store, individu },
         })
       }
       return []

@@ -72,7 +72,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import ActionButtons from "@/components/action-buttons"
 import MultipleAnswers from "../../components/multiple-answers.vue"
 import YesNoQuestion from "../../components/yes-no-question.vue"
@@ -84,91 +84,79 @@ import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
+import { useGetIndividu } from "@/composables/get-individu.ts"
+import { useRoute } from "vue-router"
+import { useStore } from "vuex"
+import { computed, ref, getCurrentInstance } from "vue"
 
-export default {
-  name: "MutualizedStep",
-  components: {
-    ActionButtons,
-    EnSavoirPlus,
-    InputNumber,
-    InputDate,
-    MultipleAnswers,
-    YesNoQuestion,
-  },
-  data() {
-    const entityName = this.$route.path.split("/")[2]
-    const id = (this.params || this.$route.params).id
-    const value = getAnswer(
-      this.$store.state.simulation.answers.all,
-      entityName,
-      this.$route.params.fieldName,
-      id
-    )
-    const entity = ENTITIES_PROPERTIES[entityName].loadEntity?.(this)
+const app = getCurrentInstance()
+const route = useRoute()
+const store = useStore()
+const entityName = route.path.split("/")[2]
+const id = route.params.id
 
-    return {
-      id,
-      value,
-      entityName,
-      entity,
-    }
-  },
-  computed: {
-    entityProperties() {
-      return ENTITIES_PROPERTIES[this.entityName]
-    },
-    fieldName() {
-      return this.$route.params.fieldName
-    },
-    items() {
-      return executeFunctionOrReturnValue(this.step, "items", this)
-    },
-    question() {
-      return capitalize(
-        executeFunctionOrReturnValue(this.step, "question", this)
-      )
-    },
-    questionType() {
-      return this.step.questionType
-    },
-    showMoreInfo() {
-      const showMoreInfo =
-        this.step.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.step, "showMoreInfo", this)
-      return showMoreInfo && Hint.get(this.fieldName)
-    },
-    step() {
-      return this.entityProperties.STEPS[this.fieldName]
-    },
-  },
-  methods: {
-    onSubmit() {
-      if (!this.canSubmit(true)) {
-        return
-      }
-      this.$store.dispatch("answer", {
-        id: this.id,
-        entityName: this.entityName,
-        fieldName: this.fieldName,
-        value: nullifyUndefinedValue(this.value),
-      })
-      this.$push()
-    },
-    requiredValueMissing(submit) {
-      const hasError = this.value === undefined
+const value = ref(
+  getAnswer(
+    store.state.simulation.answers.all,
+    entityName,
+    route.params.fieldName,
+    id
+  )
+)
+const individu = entityName === "individu" ? useGetIndividu() : undefined
 
-      if (submit) {
-        this.$store.dispatch(
-          "updateError",
-          hasError && "Ce champ est obligatoire."
-        )
-      }
+const entityProperties = ENTITIES_PROPERTIES[entityName]
 
-      return hasError
-    },
-    canSubmit(submit) {
-      return this.step.optional || !this.requiredValueMissing(submit)
-    },
-  },
+const fieldName = route.params.fieldName
+
+const propertyData = computed(() => {
+  return {
+    openFiscaParameters: store.state.openFiscaParameters,
+    simulation: store.state.simulation,
+    individu: individu,
+    periods: store.state.dates,
+  }
+})
+
+const step = entityProperties.STEPS[fieldName]
+const items = executeFunctionOrReturnValue(step, "items", propertyData.value)
+const question = capitalize(
+  executeFunctionOrReturnValue(step, "question", propertyData.value)
+)
+const questionType = step.questionType
+
+const showMoreInfo = computed(() => {
+  const showMoreInfo =
+    step.showMoreInfo === undefined ||
+    executeFunctionOrReturnValue(step, "showMoreInfo", propertyData.value)
+  return showMoreInfo && Hint.get(fieldName)
+})
+
+const requiredValueMissing = (submit: boolean): boolean => {
+  const hasError = value.value === undefined
+
+  if (submit) {
+    store.dispatch("updateError", hasError && "Ce champ est obligatoire.")
+  }
+
+  return hasError
+}
+const canSubmit = (submit: boolean) => {
+  return step.optional || !requiredValueMissing(submit)
+}
+
+const onSubmit = (): void => {
+  if (!canSubmit(true)) {
+    return
+  }
+  store.dispatch("answer", {
+    id,
+    entityName,
+    fieldName,
+    value: nullifyUndefinedValue(value.value),
+  })
+
+  // TODO Replace push function by composable
+  app?.appContext.config.globalProperties.$push()
 }
 </script>

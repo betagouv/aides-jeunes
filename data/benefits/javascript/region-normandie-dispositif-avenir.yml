@@ -1,0 +1,22 @@
+label: "dispositif #Avenir"
+institution: region_normandie
+description: La Région finance une formation permettant d’effectuer un état des
+  lieux de votre parcours personnel et professionnel.
+conditions:
+  - Être en démarche d’orientation, de reconversion professionnelle, de
+    renforcement de vos compétences ou à la recherche d’un accompagnement dans
+    la mise en œuvre d'un projet de retour à l’emploi.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.normandie.fr/avenir
+teleservice: https://monespace-aides.normandie.fr/account-management/crno-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fconnecte%2FF_NTEL009FORM%2Fdepot%2Fsimple&jwtKey=jwt-crno-portail-depot-demande-aides&footer=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Faides.normandie.fr%2Fbesoin-d-aide,Nous%20contacter,_blank
+instructions: ""
+prefix: le
+type: bool
+unit: €
+periodicite: ponctuelle

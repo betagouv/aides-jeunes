@@ -1,5 +1,5 @@
 <template>
-  <div @click="() => copyBenefitsList(benefitsList)" class="copy-button"
+  <div class="copy-button" @click="() => copyBenefitsList(benefitsList)"
     >Copier</div
   >
 </template>

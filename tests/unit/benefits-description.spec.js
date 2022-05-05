@@ -6,29 +6,11 @@ const departements = require("@etalab/decoupage-administratif/data/departements.
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
-const codesRegion = []
-const codesDepartement = []
-const codesCommune = []
-const codesEpci = []
-
-regions.forEach((region) => {
-  codesRegion.push(region.code)
-})
-departements.forEach((departement) => {
-  codesDepartement.push(departement.code)
-})
-communes.forEach((commune) => {
-  codesCommune.push(commune.code)
-})
-epcis.forEach((epci) => {
-  codesEpci.push(epci.code)
-})
-
 const codesInstitutions = {
-  region: codesRegion,
-  departement: codesDepartement,
-  commune: codesCommune,
-  epci: codesEpci,
+  region: regions.map((region) => region.code),
+  departement: departements.map((departement) => departement.code),
+  commune: communes.map((commune) => commune.code),
+  epci: epcis.map((epci) => epci.code),
 }
 
 describe("benefit descriptions", function () {
@@ -57,9 +39,7 @@ describe("benefit descriptions", function () {
             institution.code_insee
           )
         })
-      }
-
-      if (institution.type == "epci") {
+      } else if (institution.type == "epci") {
         it("should have a code_siren", function () {
           expect(typeof institution.code_siren).toBe("string")
           expect(institution.code_siren).toMatch(/^(1|2){1}[0-9]{8}$/)

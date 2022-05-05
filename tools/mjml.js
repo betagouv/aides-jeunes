@@ -6,7 +6,7 @@ const express = require("express")
 require("../backend/api")
 const Followup = require("mongoose").model("Followup")
 const renderInitial = require("../backend/lib/mes-aides/emails/initial").render
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
 const renderSurvey = require("../backend/lib/mes-aides/emails/survey").render
 
 const port = process.env.PORT || 9001

@@ -290,9 +290,8 @@ fields:
     label: Article défini
     name: prefix
     hint: |
-      Pour permet la formation de phrase grammaticalement correcte.
-      Il s'agit d'indiquer le texte à insérer à la place de PPPP dans la phrase suivante dans laquelle AAAA correspondant au nom de l'aide :
-      Comment obtenir PPPP AAAA ? Par exemples dans « Comment obtenir l'aide exceptionnelle ? » « l' » est le préfix. Pour « Comment obtenir les aides au logement ? » le préfix est « les ».
+      L'ajout d'un article défini permet la formation de phrase grammaticalement correcte.
+      Par exemple, dans la phrase « Comment obtenir l'aide exceptionnelle ? », on choisit le préfixe est « l' ». Pour « Comment obtenir les aides au logement ? », on choisit le préfixe est « les ».
     widget: select
     required: false
     options: [le, la, les, l’, une, l’aide]

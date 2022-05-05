@@ -7,7 +7,7 @@ env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  PYTHON_VERSION: 3.7
+  PYTHON_VERSION: 3.7.12
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -57,8 +57,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup VirtualEnv
         run: |
-          pip3 install virtualenv
-          virtualenv .venv
+          python -m venv .venv
       - name: Install dependencies
         shell: bash
         run: |

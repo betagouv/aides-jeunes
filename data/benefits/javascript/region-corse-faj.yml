@@ -1,0 +1,24 @@
+label: fonds d'Aide aux Jeunes
+institution: region_corse
+description: La Région soutient les jeunes dans leur démarche d’insertion grâce
+  à une aide financière.
+conditions:
+  - Avoir des ressources ne dépassant pas 551,31 € nets.
+  - Effectuer votre demande auprès de votre référent·e social·e.
+conditions_generales:
+  - type: regions
+    values:
+      - "94"
+  - type: age
+    operator: ">"
+    value: 18
+  - type: age
+    operator: <
+    value: 25
+profils: []
+link: https://www.isula.corsica/assemblea/docs/RapportCP/2020CP171-annexe.pdf
+instructions: https://www.isula.corsica/assemblea/docs/RapportCP/2020CP171-annexe.pdf
+prefix: le
+type: bool
+unit: €
+periodicite: ponctuelle

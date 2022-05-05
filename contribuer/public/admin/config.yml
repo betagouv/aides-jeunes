@@ -290,7 +290,7 @@ fields:
     label: Article défini
     name: prefix
     hint: |
-      L'ajout d'un article définit permet la formation de phrase grammaticalement correcte.
+      L'ajout d'un article défini permet la formation de phrase grammaticalement correcte.
       Par exemple, dans la phrase « Comment obtenir l'aide exceptionnelle ? », on choisit le préfixe est « l' ». Pour « Comment obtenir les aides au logement ? », on choisit le préfixe est « les ».
     widget: select
     required: false

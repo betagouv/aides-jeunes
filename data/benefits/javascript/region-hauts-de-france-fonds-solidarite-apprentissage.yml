@@ -1,0 +1,22 @@
+label: fonds de solidarité des apprenti·e·s (FSA)
+institution: hauts_de_france
+description: Si vous êtes en apprentissage et en difficulté financière, la
+  Région vous propose une aide ponctuelle. Elle peut être mobilisée pour le
+  logement, la santé, l'alimentation, le transport et l'équipement.
+conditions:
+  - Constituer votre dossier de demande avec votre organisme de formation.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: apprenti
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=608
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=608
+prefix: le
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 800

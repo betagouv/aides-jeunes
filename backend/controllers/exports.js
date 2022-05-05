@@ -1,4 +1,3 @@
-const Simulation = require("mongoose").model("Simulation")
 const print = require("../lib/print")
 const simulationResult = require("../lib/mes-aides/pdf/simulation-result")
 

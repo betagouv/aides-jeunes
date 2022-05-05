@@ -1,0 +1,25 @@
+label: fonds Régional Social d’Urgence (FRSU)
+institution: hauts_de_france
+description: La Région propose d'apporter une aide financière personnalisée aux
+  étudiant·e·s en difficulté financière.
+conditions:
+  - Être inscrit·e dans un établissement d'enseignement supérieur reconnu par le
+    Ministère de l'enseignement supérieur.
+  - Être en grande difficulté financière.
+  - Prendre rendez-vous avec votre CROUS pour effectuer la demande.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+  - type: age
+    operator: <=
+    value: 35
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=66
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=66
+prefix: le
+type: bool
+unit: €
+periodicite: ponctuelle

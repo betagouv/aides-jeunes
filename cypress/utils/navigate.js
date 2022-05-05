@@ -5,7 +5,7 @@ const init = () => {
 }
 
 const goHome = () => {
-  cy.get('meta[name="og:description"]')
+  cy.get('meta[property="og:description"]')
     .invoke("attr", "content")
     .should("match", /\d+ aides/i)
 

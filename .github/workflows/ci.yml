@@ -57,8 +57,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup VirtualEnv
         run: |
-          pip3 install virtualenv
-          virtualenv .venv
+          python -m venv .venv
       - name: Install dependencies
         shell: bash
         run: |

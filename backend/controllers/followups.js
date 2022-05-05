@@ -10,7 +10,7 @@ const excludeFields = ["accessToken", "surveys.accessToken"]
   .replace(/^/, "-")
 
 exports.followup = function (req, res, next, id) {
-  Followup.findById(id)
+  Followup.findByIdOrOldId(id)
     .populate("simulation")
     .exec(function (err, followup) {
       if (err) {
@@ -58,22 +58,14 @@ exports.persist = function (req, res) {
 
 exports.showFromSurvey = function (req, res) {
   // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({
-    $or: [
-      { "surveys._id": req.params.surveyId },
-      { "surveys.accessToken": req.params.surveyId },
-      { accessToken: req.params.surveyId },
-    ],
-  }).then((followup) => {
+  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
     if (!followup) return res.sendStatus(404)
     res.send(followup)
   })
 }
 
 exports.showSurveyResult = function (req, res) {
-  Followup.findOne({
-    _id: req.params.surveyId,
-  })
+  Followup.findByIdOrOldId(req.params.surveyId)
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
       res.send([simulation])
@@ -99,9 +91,7 @@ exports.showSurveyResults = function (req, res) {
 }
 
 exports.showSimulation = function (req, res) {
-  Followup.findOne({
-    _id: req.params.surveyId,
-  })
+  Followup.findByIdOrOldId(req.params.surveyId)
     .select(excludeFields)
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
@@ -115,13 +105,7 @@ exports.showSimulation = function (req, res) {
 
 exports.postSurvey = function (req, res) {
   // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({
-    $or: [
-      { "surveys._id": req.params.surveyId },
-      { "surveys.accessToken": req.params.surveyId },
-      { accessToken: req.params.surveyId },
-    ],
-  }).then((followup) => {
+  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
     if (!followup) return res.sendStatus(404)
     const token = followup.surveys[followup.surveys.length - 1]._id
     followup.updateSurvey(token, req.body).then(() => {

@@ -1,35 +1,43 @@
 const fs = require("fs")
 
-const migrations = fs
-  .readdirSync(__dirname)
-  .filter(function (file) {
-    return file.match(/^to-v\d+\.js$/)
+function getMigrations(folderName) {
+  const folderPath = `${__dirname}/${folderName}`
+  const migrations = fs
+    .readdirSync(folderPath)
+    .filter(function (file) {
+      return file.match(/^to-v\d+\.js$/)
+    })
+    .map(function (migrationFile) {
+      return require(`${folderPath}/${migrationFile}`)
+    })
+
+  migrations.sort(function (a, b) {
+    return a.version - b.version
   })
-  .map(function (migrationFile) {
-    return require("./" + migrationFile)
-  })
+  return migrations
+}
 
-migrations.sort(function (a, b) {
-  return a.version - b.version
-})
+function getLatestVersion(migrations) {
+  return migrations[migrations.length - 1].version
+}
 
-const latestVersion = Math.max(migrations.map((migration) => migration.version))
-
-const isLatestVersion = (simulation) => {
-  return simulation.version >= latestVersion
+function getLatestVersionByFolderName(folderName) {
+  const migrations = getMigrations(folderName)
+  return getLatestVersion(migrations)
 }
 
 module.exports = {
-  list: migrations,
-  apply: function (simulation) {
-    if (!isLatestVersion(simulation.version)) {
-      migrations.forEach(function (migration) {
-        if (simulation.version < migration.version) {
-          simulation.version = migration.version
-          simulation = migration.function(simulation)
-        }
-      })
-    }
-    return simulation
+  getLatestVersionByFolderName,
+  apply: function (model) {
+    const folderName = `${model.constructor.modelName.toLowerCase()}s`
+    const migrations = getMigrations(folderName)
+
+    migrations.forEach(function (migration) {
+      if (model.version === undefined || model.version < migration.version) {
+        model.version = migration.version
+        model = migration.function(model)
+      }
+    })
+    return model
   },
 }

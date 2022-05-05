@@ -19,6 +19,7 @@ const typeKeys = ["initial", "survey"]
 app.route("/").get(function (req, res) {
   Followup.find()
     .sort({ createdAt: -1 })
+    .limit(10)
     .exec(function (err, docs) {
       res.send(`
       <html><body><h1>List</h1><ul>
@@ -42,7 +43,7 @@ app.route("/").get(function (req, res) {
 })
 
 app.route("/mjml/:id/:type").get(function (req, res) {
-  Followup.findOne({ _id: req.params.id })
+  Followup.findByIdOrOldId(req.params.id)
     .populate("simulation")
     .exec(function (err, followup) {
       console.log("followup", { _id: req.params.id }, followup)

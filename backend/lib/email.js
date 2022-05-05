@@ -51,9 +51,7 @@ reply.add_argument("--id", {
 
 function processSend(args) {
   if (args.id) {
-    Followup.findOne({
-      _id: args.id,
-    })
+    Followup.findByIdOrOldId(args.id)
       .then((f) => {
         switch (args.type) {
           case "initial":
@@ -130,7 +128,14 @@ function main() {
       break
     case "reply":
       Followup.findOne({
-        "surveys._id": args.id,
+        $or: [
+          {
+            "surveys._id": args.id,
+          },
+          {
+            "surveys._oldId": args.id,
+          },
+        ],
       })
         .then((e) => {
           console.log(e)

@@ -6,8 +6,13 @@ LOG_FILE=/home/main/migration.log
 MAX_LOOP=1000
 
 loop_count=1
+
+MODEL_MIGRATION=$1;
+
+echo "Migration de $MODEL_MIGRATION"
+
 migrate() {
-    script_result=$(node apply.js --all | tee -a $LOG_FILE)
+    script_result=$(node apply.js --all --model=$MODEL_MIGRATION | tee -a $LOG_FILE)
     read number error <<< $(echo $script_result | awk -F";" '{ print $5" "$6 }')
 }
 

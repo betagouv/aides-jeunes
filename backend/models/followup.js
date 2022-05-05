@@ -10,9 +10,9 @@ const renderSurvey = require("../lib/mes-aides/emails/survey").render
 
 const SurveySchema = new mongoose.Schema(
   {
-    _id: { type: String },
-    createdAt: { type: Date, default: Date.now },
+    _oldId: { type: String },
     accessToken: { type: String },
+    createdAt: { type: Date, default: Date.now },
     messageId: { type: String },
     repliedAt: { type: Date },
     error: { type: Object },
@@ -52,12 +52,21 @@ const FollowupSchema = new mongoose.Schema(
       type: [SurveySchema],
       default: [],
     },
+    version: Number,
     error: { type: Object },
     accessToken: { type: String },
-    _id: { type: String },
+    _oldId: { type: String },
   },
   { minimize: false, id: false }
 )
+
+FollowupSchema.statics.findByIdOrOldId = function (id) {
+  if (id.length === 24) {
+    return this.findById(id)
+  } else {
+    return this.findOne({ _oldId: id })
+  }
+}
 
 FollowupSchema.methods.postInitialEmail = function (messageId) {
   this.sentAt = Date.now()
@@ -172,18 +181,13 @@ FollowupSchema.pre("save", function (next) {
     return next()
   }
   const followup = this
+  followup.version = 2
   utils
     .generateToken()
     .then(function (token) {
-      followup._id = token
-      utils
-        .generateToken()
-        .then(function (token) {
-          followup.accessToken = token
-        })
-        .then(next)
-        .catch(next)
+      followup.accessToken = token
     })
+    .then(next)
     .catch(next)
 })
 

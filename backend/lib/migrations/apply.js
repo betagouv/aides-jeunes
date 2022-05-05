@@ -8,10 +8,21 @@ require("expect")
 const mongoose = require("../mongo-connector")
 
 const migrations = require(".")
-const latestVersion = migrations.list[migrations.list.length - 1].version
+const { getLatestVersionByFolderName } = require("./index")
 
 // Setup mongoose
-const Simulation = mongoose.model("Simulation")
+const modelMigration = {
+  simulations: {
+    model: mongoose.model("Simulation"),
+  },
+  followups: {
+    model: mongoose.model("Followup"),
+  },
+}
+
+Object.keys(modelMigration).forEach((key) => {
+  modelMigration[key].latestVersion = getLatestVersionByFolderName(key)
+})
 
 let counter = 0
 let errors = 0
@@ -32,18 +43,28 @@ parser.addArgument(["--id"], {
   help: "Migre une simulation précise",
 })
 
-function migrateSimulations(conditions) {
+parser.addArgument(["--model"], {
+  help: "Migre une simulation précise",
+})
+
+function migrate(currentMigration, conditions) {
   console.log("conditions", conditions)
-  Simulation.find(conditions)
+
+  currentMigration.model
+    .find(conditions)
     .sort({ _id: -1 })
     .limit(limit)
     .cursor()
     .pipe(
-      es.map(function (simulation, done) {
-        migrations.apply(simulation)
-        simulation.save(function (err) {
+      es.map(function (model, done) {
+        migrations.apply(model)
+        model.save(function (err) {
           if (err) {
-            console.log("Cannot save migrated simulation %s", simulation.id)
+            console.log(
+              "Cannot save migrated %s %s",
+              model.constructor.modelName,
+              model.id
+            )
             console.trace(err)
             errors = errors + 1
           }
@@ -56,7 +77,7 @@ function migrateSimulations(conditions) {
       console.log(
         [
           "Terminé",
-          latestVersion,
+          currentMigration.latestVersion,
           startDate,
           new Date().toISOString(),
           counter,
@@ -74,10 +95,15 @@ function migrateSimulations(conditions) {
 
 function main() {
   const args = parser.parseArgs()
+  const currentMigration = args.model
+    ? modelMigration[args.model]
+    : modelMigration.simulations
   if (args.id) {
-    migrateSimulations({ _id: args.id })
+    migrate(currentMigration, { _id: args.id })
   } else if (args.all) {
-    migrateSimulations({ version: { $ne: latestVersion } })
+    migrate(currentMigration, {
+      version: { $ne: currentMigration.latestVersion },
+    })
   } else {
     parser.printHelp()
     process.exit(1)

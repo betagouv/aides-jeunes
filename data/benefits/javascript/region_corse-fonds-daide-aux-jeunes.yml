@@ -3,8 +3,7 @@ institution: region_corse
 description: La Région soutient les jeunes dans leur démarche d’insertion grâce
   à une aide financière.
 conditions:
-  - Avoir des ressources ne dépassant pas 53 % du SMIC mensuel net (551,31 €
-    net).
+  - Avoir des ressources ne dépassant pas 551,31 € nets.
   - Effectuer votre demande auprès de votre référent·e social·e.
 conditions_generales:
   - type: regions

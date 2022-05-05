@@ -1,0 +1,22 @@
+label: aide d'urgence pour poursuivre ma formation santé-social
+institution: region_auvergne_rhone_alpes
+description: Cette aide vous permet d'éviter d'avoir à interrompre votre
+  parcours de formation suite à une situation d'urgence (maladie, décès,
+  chômage, divorce, etc.).
+conditions:
+  - Rencontrer un·e travailleur·euse social·e.
+conditions_generales:
+  - type: formation_sanitaire_social
+  - type: regions
+    values:
+      - "84"
+profils: []
+link: https://www.auvergnerhonealpes.fr/aide/44/89-obtenir-une-aide-d-urgence-pour-poursuivre-ma-formation-sante-social-orientation-formation.htm
+teleservice: ""
+form: https://rhone-alpes.commeunservice.com/bourses/piece/modele/recuperer?nomFichier=Dossier_demande_FAU.pdf
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 3500

@@ -1,0 +1,21 @@
+label: aide complémentaire à la scolarité des lycéen·ne·s
+institution: hauts_de_france
+description: La Région accorde des aides financières aux lycéen·ne·s rencontrant
+  des difficultés financières afin de participer aux dépenses liées à la
+  scolarité (restauration, hébergement, manuels scolaires, équipement
+  professionnel, transport) ou à une situation exceptionnelle.
+conditions:
+  - Faire la demande d'aide auprès de votre établissement.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: lyceen
+    conditions: []
+link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=627
+instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=627
+prefix: l’
+type: bool
+unit: €
+periodicite: ponctuelle

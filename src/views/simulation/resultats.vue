@@ -59,6 +59,10 @@
         </p>
       </div>
 
+      <div class="aj-box-wrapper aj-results-summary">
+        <Recapitulatif />
+      </div>
+
       <div class="aj-results-tools">
         <TrouverInterlocuteur />
         <OfflineResults
@@ -82,6 +86,7 @@ import LoadingModal from "@/components/loading-modal"
 import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
 import WarningMessage from "@/components/warning-message"
+import Recapitulatif from "./recapitulatif"
 
 export default {
   name: "SimulationResultats",
@@ -94,6 +99,7 @@ export default {
     LoadingModal,
     OfflineResults,
     TrouverInterlocuteur,
+    Recapitulatif,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
   mounted: function () {
@@ -162,3 +168,13 @@ export default {
   },
 }
 </script>
+<style scoped>
+.aj-results-summary {
+  display: none;
+}
+@media print {
+  .aj-results-summary {
+    display: block;
+  }
+}
+</style>

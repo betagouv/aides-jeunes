@@ -159,4 +159,10 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped>
+@media print {
+  .aj-actions {
+    display: none;
+  }
+}
+</style>

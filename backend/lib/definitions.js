@@ -3,176 +3,64 @@ const concat = require("lodash/concat")
 const ressources = require("../../lib/resources")
 const { forEachProperties } = require("../../lib/mutualized-steps")
 
-const famille = {
-  bourse_lycee: Boolean,
-  en_couple: Boolean,
-}
+const famille = []
 
-const foyerFiscal = {
-  rfr: Object,
-}
+const foyerFiscal = ["rfr"]
 
 const allRessources = concat(
   ressources.ressourceTypes,
   ressources.categoriesRnc,
   ressources.patrimoineTypes
-).reduce(function (result, ressource) {
-  result[ressource.id] = Object
-  return result
-}, {})
+).map((ressource) => ressource.id)
 
-const individuBase = {
-  _id: false,
-  id: String,
-  activite: {
-    type: String,
-    enum: [
-      "salarie",
-      "independant",
-      "chomeur",
-      "etudiant",
-      "inactif",
-      "retraite",
-      "service_civique",
-    ],
-  },
-  annee_etude: {
-    type: String,
-    enum: [
-      "seconde",
-      "premiere",
-      "terminale",
-      "bts_1",
-      "but_1",
-      "cpge_1",
-      "licence_1",
-      "licence_2",
-      "licence_3",
-      "master_1",
-      "master_2",
-      "doctorat_1",
-      "doctorat_2",
-      "doctorat_3",
-      "autre",
-    ],
-  },
-  bourse_criteres_sociaux_echelon: Number,
-  _bourseCriteresSociauxCommuneDomicileFamilial: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialDepartement: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialEpci: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialEpciType: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: String,
-  _bourseCriteresSociauxCommuneDomicileFamilialRegion: String,
-  date_debut_chomage: Date,
-  enfant_a_charge: Object,
-  _firstName: String,
-  _hasRessources: Boolean,
-  _nombreMoisDebutContratDeTravail: {
-    type: Number,
-    enum: [2, 5, 12],
-  },
-  _role: { type: String, enum: ["demandeur", "conjoint", "enfant"] },
-  taux_incapacite: Number,
-  tns_autres_revenus_type_activite: {
-    type: String,
-    enum: ["achat_revente", "bic", "bnc"],
-  },
-}
-
-const individu = Object.assign(individuBase, allRessources)
-
-const statutOccupationLogementValues = [
-  "primo_accedant",
-  "proprietaire",
-  "locataire_vide",
-  "locataire_meuble",
-  "loge_gratuitement",
-  "locataire_foyer",
-  "sans_domicile",
+const individuBase = [
+  "_id",
+  "id",
+  "bourse_criteres_sociaux_echelon",
+  "_bourseCriteresSociauxCommuneDomicileFamilial",
+  "_bourseCriteresSociauxCommuneDomicileFamilialCodePostal",
+  "_bourseCriteresSociauxCommuneDomicileFamilialDepartement",
+  "_bourseCriteresSociauxCommuneDomicileFamilialEpci",
+  "_bourseCriteresSociauxCommuneDomicileFamilialEpciType",
+  "_bourseCriteresSociauxCommuneDomicileFamilialNomCommune",
+  "_bourseCriteresSociauxCommuneDomicileFamilialRegion",
+  "_firstName",
+  "_hasRessources",
+  "_role",
 ]
 
-const menage = {
-  aide_logement_date_pret_conventionne: String,
-  _codePostal: String,
-  charges_locatives: Number,
-  date_entree_logement: Date,
-  _departement: String,
-  depcom: String,
-  _epci: String,
-  _epciType: String,
-  loyer: Number,
-  _nombreMoisEntreeLogement: Number,
-  _nomCommune: String,
-  _region: String,
-  statut_occupation_logement: {
-    type: String,
-    enum: statutOccupationLogementValues,
-  },
-}
+const individu = [...individuBase, ...allRessources]
 
-const parents = {}
+const menage = [
+  "aide_logement_date_pret_conventionne",
+  "_codePostal",
+  "charges_locatives",
+  "date_entree_logement",
+  "_departement",
+  "depcom",
+  "_epci",
+  "_epciType",
+  "loyer",
+  "_nomCommune",
+  "_region",
+  "statut_occupation_logement",
+]
 
-const situation = {
-  abtesting: Object,
-  createdAt: { type: Date, default: Date.now },
-  dateDeValeur: Date,
-  external_id: String,
-  famille,
-  foyer_fiscal: foyerFiscal,
-  demandeur: individu,
-  conjoint: { type: individu, default: null },
-  enfants: [individu],
-  menage,
-  parents,
-  modifiedFrom: String,
-  status: {
-    type: String,
-    default: "new",
-    enum: ["new", "test", "investigation"],
-  },
-  token: String,
-  version: Number,
-}
+const parents = []
 
 const entities = {
   famille,
   individu,
   menage,
   parents,
+  foyerFiscal,
 }
 
-forEachProperties((entityName, propertyName, property) => {
-  if (entities[entityName][propertyName]) {
+forEachProperties((entityName, propertyName) => {
+  if (entities[entityName].includes(propertyName)) {
     return
   }
-  switch (property.questionType) {
-    case "enum": {
-      entities[entityName][propertyName] = {
-        type: String,
-        enum: property.items.map((item) => item.value),
-      }
-      break
-    }
-    case "number": {
-      entities[entityName][propertyName] = Number
-      break
-    }
-    case "date": {
-      entities[entityName][propertyName] = Date
-      break
-    }
-    case "multiple": {
-      entities[entityName][propertyName] = entities[entityName][propertyName] =
-        {
-          type: [String],
-          enum: property.items.map((item) => item.value),
-        }
-      break
-    }
-    default:
-      entities[entityName][propertyName] = Boolean
-  }
+  entities[entityName].push(propertyName)
 })
 
 const ANSWER_ENTITY_NAMES = [
@@ -195,10 +83,10 @@ const LEGACY_FIELD_NAMES = [
 ]
 
 const ANSWER_FIELD_NAMES = [
-  ...Object.keys(famille),
-  ...Object.keys(individuBase),
-  ...Object.keys(menage),
-  ...Object.keys(parents),
+  ...famille,
+  ...individu,
+  ...menage,
+  ...parents,
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
   ...LEGACY_FIELD_NAMES,
@@ -206,14 +94,12 @@ const ANSWER_FIELD_NAMES = [
 
 const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
 
+const PROPS_TO_NOT_REPLICATE = ["rfr", "enfant_a_charge", ...allRessources]
+
 module.exports = {
-  famille,
-  foyerFiscal,
-  individu,
-  menage,
-  parents,
-  situation,
+  ...entities,
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
   ANSWER_BASIC_IDS,
+  PROPS_TO_NOT_REPLICATE,
 }

@@ -1,0 +1,29 @@
+label: Aide au BAFA
+institution: region_pays_de_la_loire
+description: Cette aide vous permet de financer votre BAFA.
+conditions:
+  - Faire votre demande auprès de la Région.
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+  - type: apprenti
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats/aidesvelo_aides_bonus_v%C3%A9lo_%C3%A9lectrique
+instructions: https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats/aidesvelo_aides_bonus_v%C3%A9lo_%C3%A9lectrique
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 200
+interestFlag: _interetBafa

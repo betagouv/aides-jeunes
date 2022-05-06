@@ -10,7 +10,7 @@
         :class="{ disabled: disableSubmit }"
         @click="localOnSubmit($event)"
       >
-        Suivant
+        {{ submitLabel }}
       </button>
       <slot />
       <BackButton class="previous-button" @click="goBack" />
@@ -28,6 +28,10 @@ export default {
     onSubmit: {
       type: Function,
       default() {},
+    },
+    submitLabel: {
+      type: String,
+      default: "Suivant",
     },
     disableSubmit: Boolean,
   },

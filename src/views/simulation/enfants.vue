@@ -47,7 +47,10 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons
+      :on-submit="onSubmit"
+      :submit-label="enfants.length ? 'Suivant' : 'Pas d\'enfant à charge'"
+    />
   </div>
 </template>
 

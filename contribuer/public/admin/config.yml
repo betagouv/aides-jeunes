@@ -685,8 +685,8 @@ collections:
       - *field_image_aide
       - *field_institution
       - *field_description
-      - *field_conditions_non_prise_en_compte
       - *field_conditions_generales
+      - *field_conditions_non_prise_en_compte
       - *field_profil_eligibilite
       - *field_lien_plus_informations
       - *field_lien_teleservice

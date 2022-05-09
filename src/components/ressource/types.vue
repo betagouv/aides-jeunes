@@ -9,7 +9,8 @@
           <span v-else-if="individu._role !== 'demandeur'"
             >{{ individu._firstName }} a-t'il/elle
           </span>
-          <span v-else>Avez-vous perçu des revenus </span>
+          <span v-else>Avez-vous</span>
+          perçu des revenus
           <span>
             depuis {{ $store.state.dates.twelveMonthsAgo.label }} (revenus
             professionels, allocations, indemnités, pensions, bourses) ?</span

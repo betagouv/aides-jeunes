@@ -12,7 +12,7 @@
           <span v-else>Avez-vous perçu des revenus </span>
           <span>
             depuis {{ $store.state.dates.twelveMonthsAgo.label }} (revenus
-            professionels, allocation, indemnités, pension, bourse) ?</span
+            professionels, allocations, indemnités, pensions, bourses) ?</span
           >
         </div>
       </h2>

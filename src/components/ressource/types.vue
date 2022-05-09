@@ -1,43 +1,45 @@
 <template>
   <form>
-    <h2 class="aj-question">
-      <div>
-        <span v-if="individu._role === 'conjoint'"
-          >Votre conjoint(e) a-t'il/elle
-        </span>
-        <span v-else-if="individu._role !== 'demandeur'"
-          >{{ individu._firstName }} a-t'il/elle
-        </span>
-        <span v-else>Avez-vous perçu des revenus </span>
-        <span>
-          depuis {{ $store.state.dates.twelveMonthsAgo.label }} (revenus
-          professionels, allocation, indemnités, pension, bourse) ?</span
-        >
-      </div>
-    </h2>
-    <fieldset>
-      <div class="aj-selection-wrapper">
-        <input
-          id="ressources"
-          v-model="ressources"
-          type="radio"
-          name="ressources"
-          :value="true"
-        />
-        <label for="ressources"> Oui </label>
-      </div>
-      <div class="aj-selection-wrapper">
-        <input
-          id="no-ressources"
-          v-model="ressources"
-          type="radio"
-          name="ressources"
-          :value="false"
-        />
-        <label for="no-ressources"> Non </label>
-      </div>
-    </fieldset>
-    <div v-if="ressources">
+    <div v-if="ressourcesCollapse">
+      <h2 class="aj-question">
+        <div>
+          <span v-if="individu._role === 'conjoint'"
+            >Votre conjoint(e) a-t'il/elle
+          </span>
+          <span v-else-if="individu._role !== 'demandeur'"
+            >{{ individu._firstName }} a-t'il/elle
+          </span>
+          <span v-else>Avez-vous perçu des revenus </span>
+          <span>
+            depuis {{ $store.state.dates.twelveMonthsAgo.label }} (revenus
+            professionels, allocation, indemnités, pension, bourse) ?</span
+          >
+        </div>
+      </h2>
+      <fieldset>
+        <div class="aj-selection-wrapper">
+          <input
+            id="ressources"
+            v-model="ressources"
+            type="radio"
+            name="ressources"
+            :value="true"
+          />
+          <label for="ressources"> Oui </label>
+        </div>
+        <div class="aj-selection-wrapper">
+          <input
+            id="no-ressources"
+            v-model="ressources"
+            type="radio"
+            name="ressources"
+            :value="false"
+          />
+          <label for="no-ressources"> Non </label>
+        </div>
+      </fieldset>
+    </div>
+    <div v-if="ressources || !ressourcesCollapse">
       <p>
         Sélectionnez les types de ressources perçues
         <strong>
@@ -90,6 +92,7 @@ import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "../../../lib/resources"
 import Ressource from "@/../lib/ressource"
 import { getAnswer } from "../../../lib/answers"
+import ABTestingService from "@/plugins/ab-testing-service"
 
 export default {
   name: "RessourceTypes",
@@ -100,6 +103,9 @@ export default {
     individu: Object,
   },
   data: function () {
+    const abTesting = ABTestingService.getEnvironment()
+    const ressourcesCollapse = abTesting.ressourcesCollapse.value === "collapse"
+
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
@@ -126,6 +132,7 @@ export default {
       selectedTypes[type.id] = selectedRessources?.includes(type.id)
     })
     return {
+      ressourcesCollapse: ressourcesCollapse,
       ressources: ressources,
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
@@ -157,7 +164,9 @@ export default {
         entityName: "individu",
         fieldName: "ressources",
         value: Object.keys(this.selectedTypes).filter(
-          (type) => this.ressources && this.selectedTypes[type]
+          (type) =>
+            (this.ressources || !this.ressourcesCollapse) &&
+            this.selectedTypes[type]
         ),
       })
       this.$push()

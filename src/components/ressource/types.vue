@@ -1,6 +1,6 @@
 <template>
   <form>
-    <div v-if="ressourcesCollapse">
+    <div v-if="ressourcesYesNoQuestion">
       <h2 class="aj-question">
         <div>
           <span v-if="individu._role === 'conjoint'"
@@ -39,7 +39,7 @@
         </div>
       </fieldset>
     </div>
-    <div v-if="ressources || !ressourcesCollapse">
+    <div v-if="ressources || !ressourcesYesNoQuestion">
       <p>
         Sélectionnez les types de ressources perçues
         <strong>
@@ -104,7 +104,8 @@ export default {
   },
   data: function () {
     const abTesting = ABTestingService.getEnvironment()
-    const ressourcesCollapse = abTesting.ressourcesCollapse.value === "collapse"
+    const ressourcesYesNoQuestion =
+      abTesting.ressourcesYesNoQuestion.value === "collapse"
 
     let types = ressourceTypes.filter((ressourceType) => {
       return (
@@ -132,7 +133,7 @@ export default {
       selectedTypes[type.id] = selectedRessources?.includes(type.id)
     })
     return {
-      ressourcesCollapse: ressourcesCollapse,
+      ressourcesYesNoQuestion: ressourcesYesNoQuestion,
       ressources: ressources,
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
@@ -165,7 +166,7 @@ export default {
         fieldName: "ressources",
         value: Object.keys(this.selectedTypes).filter(
           (type) =>
-            (this.ressources || !this.ressourcesCollapse) &&
+            (this.ressources || !this.ressourcesYesNoQuestion) &&
             this.selectedTypes[type]
         ),
       })

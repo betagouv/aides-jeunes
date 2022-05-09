@@ -26,9 +26,11 @@ const ABTestingService = {
     // // et libérer une custom variable
     // // ABTesting.link.deleted = true;
 
-    ABTesting.ressourcesCollapse = ABTesting.ressourcesCollapse || { index: 1 }
-    ABTesting.ressourcesCollapse.value =
-      ABTesting.ressourcesCollapse.value || Math.random() >= 0.5
+    ABTesting.ressourcesYesNoQuestion = ABTesting.ressourcesYesNoQuestion || {
+      index: 1,
+    }
+    ABTesting.ressourcesYesNoQuestion.value =
+      ABTesting.ressourcesYesNoQuestion.value || Math.random() >= 0.5
         ? "collapse"
         : "show"
 

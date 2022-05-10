@@ -1,0 +1,25 @@
+label: une Formation, un Emploi
+institution: region_normandie
+description: La Région finance la formation en alternance des personnes en
+  recherche d'emploi qui seront embauché·e·s par la suite en entreprise pour une
+  durée minimum de 6 mois. Elle assure également la rémunération des stagiaires
+  non indemnisé·e·s par Pôle Emploi.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Être sorti·e de formation initiale (statut scolaire et apprentissage) depuis
+    plus de 9 mois.
+  - Avoir trouvé une entreprise et remplir le <a target="_blank" rel="noopener"
+    href="https://parcours-metier.normandie.fr/sites/default/files/2018-11/Formulaire%20Entreprise%20-%20UF%20UE-%202018-interactifv2.pdf">formulaire</a>
+    avec elle.
+type: bool
+unit: €
+periodicite: autre
+link: https://parcours-metier.normandie.fr/ftlv-dispositif-une-formation-un-emploi
+instructions: https://parcours-metier.normandie.fr/ftlv-dispositif-une-formation-un-emploi

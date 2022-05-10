@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2 class="aj-question"> Mes enfants à charge <EnSavoirPlus /> </h2>
+    <p
+      >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton "Suivant".</p
+    >
     <div
       v-for="enfant in enfants"
       :key="enfant.id"

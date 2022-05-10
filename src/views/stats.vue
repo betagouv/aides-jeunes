@@ -6,7 +6,7 @@
       <div>
         Les
         <a
-          href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=9&period=day&date=yesterday"
+          href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=day&date=yesterday"
         >
           statistiques d'usage de Mes Aides
         </a>
@@ -15,13 +15,13 @@
       <div>
         Comprenez comment nous évaluons la
         <a
-          href="https://beta.gouv.fr/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public"
+          href="https://blog.beta.gouv.fr/dinsic/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public/"
         >
           performance de Mes Aides
         </a>
         et comment nous
         <a
-          href="https://beta.gouv.fr/2017/05/03/mes-aides-datascience-public.html"
+          href="https://blog.beta.gouv.fr/dinsic/2017/05/03/mes-aides-datascience-public/"
         >
           améliorons notre simulateur
         </a>

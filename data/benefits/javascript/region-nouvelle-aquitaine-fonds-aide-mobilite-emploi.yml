@@ -1,0 +1,21 @@
+label: fonds d'aide à la mobilité vers l'emploi
+institution: region_nouvelle_aquitaine
+description: La Région vous soutient financièrement dans votre projet de
+  mobilité en participant à vos frais de logement et/ou de transport.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: salarie
+    conditions: []
+conditions:
+  - Être sorti·e de formation depuis moins de 6 mois.
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 2000
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/fonds-daide-la-mobilite-vers-lemploi
+teleservice: https://mes-demarches.nouvelle-aquitaine.fr/craPortailFO/externe/creationDossier.do?codeDispositif=FPC11-20

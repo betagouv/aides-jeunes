@@ -1,4 +1,4 @@
-label: erasmus+ Stage - Post-bac
+label: erasmus+ Stage
 institution: region_nouvelle_aquitaine
 description: La Région finance en partie la réalisation d'un stage professionnel
   à l'étranger d'une durée de 2 à 12 mois.
@@ -7,7 +7,7 @@ conditions_generales:
     values:
       - "75"
 conditions:
-  - Etudier dans un établissement faisant partie du Consortium régional (<a
+  - Étudier dans un établissement faisant partie du Consortium régional (<a
     target="_blank" rel="noopener"
     href="https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/erasmus-stage-public-post-bac-2020-2022">voir
     liste</a>).

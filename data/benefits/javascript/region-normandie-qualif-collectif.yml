@@ -1,0 +1,22 @@
+label: qUALIF collectif
+institution: region_normandie
+description: La Région vous propose de suivre une action de formation
+  qualifiante et d’obtenir un diplôme ou un titre professionnel.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+conditions:
+  - Contacter l’organisme de formation ou solliciter votre conseiller·e en
+    évolution professionnelle (Missions locales, Pôle emploi et Cap emploi).
+  - Être sorti·e de formation initiale (statut scolaire et apprentissage) depuis
+    plus de 9 mois.
+profils:
+  - type: chomeur
+    conditions: []
+link: https://parcours-metier.normandie.fr/ftlv-qualif-collectif
+instructions: https://parcours-metier.normandie.fr/ftlv-qualif-collectif
+prefix: le
+type: bool
+unit: €
+periodicite: ponctuelle

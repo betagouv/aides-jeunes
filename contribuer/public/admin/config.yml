@@ -685,20 +685,20 @@ collections:
       - *field_image_aide
       - *field_institution
       - *field_description
-      - *field_conditions_generales
-      - *field_conditions_non_prise_en_compte
-      - *field_profil_eligibilite
-      - *field_lien_plus_informations
-      - *field_lien_teleservice
-      - *field_lien_formulaire
-      - *field_lien_instructions
       - *field_article_defini
+      - *field_conditions_generales
+      - *field_profil_eligibilite
+      - *field_conditions_non_prise_en_compte
+      - *field_interet_particulier
       - *field_type_resultat
       - *field_unite_resultat
       - *field_periodicite_montant_aide
       - *field_legende_montant
       - *field_montant_maximal_aide
-      - *field_interet_particulier
+      - *field_lien_plus_informations
+      - *field_lien_teleservice
+      - *field_lien_formulaire
+      - *field_lien_instructions
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe
@@ -715,18 +715,18 @@ collections:
       - *field_image_aide
       - *field_institution
       - *field_description
-      - *field_conditions_non_prise_en_compte
-      - *field_lien_plus_informations
-      - *field_lien_teleservice
-      - *field_lien_formulaire
-      - *field_lien_instructions
       - *field_article_defini
+      - *field_conditions_non_prise_en_compte
+      - *field_interet_particulier
       - *field_type_resultat
       - *field_unite_resultat
       - *field_periodicite_montant_aide
       - *field_legende_montant
+      - *field_lien_plus_informations
+      - *field_lien_teleservice
+      - *field_lien_formulaire
+      - *field_lien_instructions
       - *field_fiabilite_montant
-      - *field_interet_particulier
       - *field_entite_rattachement_openfisca
       - *field_period_openfisca
   - name: institutions

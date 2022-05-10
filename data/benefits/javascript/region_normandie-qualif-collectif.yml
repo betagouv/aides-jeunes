@@ -7,8 +7,10 @@ conditions_generales:
     values:
       - "28"
 conditions:
-  - Contacter l’organisme de formation ou solliciter votre conseiller.e en
+  - Contacter l’organisme de formation ou solliciter votre conseiller·e en
     évolution professionnelle (Missions locales, Pôle emploi et Cap emploi).
+  - Être sorti·e de formation initiale (statut scolaire et apprentissage) depuis
+    plus de 9 mois.
 profils:
   - type: chomeur
     conditions: []

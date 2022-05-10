@@ -320,8 +320,8 @@ fields:
       - label: séances
         value: séances
   field_legende_montant: &field_legende_montant
-    label: Légende asssociée au montant
-    hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Cette légende correspond à « séances » dans l'affichage « N séances » et à « au lieu x de 0,5% dans « 1% au lieu de 0,5% ».
+    label: Légende associée au montant
+    hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Par exemple, si vous écrivez "maximum" dans ce champ, et que vous avez indiqué "200 €" en montant, cela affichera "200 € maximum".
     name: legend
     widget: string
     required: false

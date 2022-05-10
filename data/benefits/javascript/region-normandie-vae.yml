@@ -1,0 +1,19 @@
+label: accompagnement à la VAE (Validation des Acquis de l'Expérience)
+institution: region_normandie
+description: La Région soutient les candidat·e·s en assurant la prise en charge
+  de l’accompagnement méthodologique à l’écriture du dossier et la préparation à
+  l’entretien.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+conditions: []
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.normandie.fr/dispositif-daccompagnement-la-validation-des-acquis-de-lexperience
+teleservice: https://monespace-aides.normandie.fr/account-management/crno-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fconnecte%2FF_NTEL002ORIEN%2Fdepot%2Fsimple&jwtKey=jwt-crno-portail-depot-demande-aides&footer=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Faides.normandie.fr%2Fbesoin-d-aide,Nous%20contacter,_blank
+prefix: l’
+type: bool
+unit: €
+periodicite: ponctuelle

@@ -30,9 +30,8 @@ const ABTestingService = {
       index: 1,
     }
     ABTesting.ressourcesYesNoQuestion.value =
-      ABTesting.ressourcesYesNoQuestion.value || Math.random() >= 0.5
-        ? "collapse"
-        : "show"
+      ABTesting.ressourcesYesNoQuestion.value ||
+      (Math.random() >= 0.5 ? "collapse" : "show")
 
     Object.keys(ABTesting).forEach(function (name) {
       const data = ABTesting[name]

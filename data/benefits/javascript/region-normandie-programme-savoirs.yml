@@ -1,0 +1,23 @@
+label: programme « Savoirs »
+institution: region_normandie
+description: La Région propose une offre de formation visant à développer et
+  renforcer les compétences des personnes en recherche d’emploi.
+conditions_generales:
+  - type: regions
+    values:
+      - "28"
+conditions:
+  - Choisir un des modules dans la <a target="_blank" rel="noopener"
+    href="https://parcours-metier.normandie.fr/ftlv-dispositif-socle">liste</a>.
+  - Faire la demande auprès de votre conseiller·e Pôle Emploi, Mission Locale,
+    Cap Emploi, PLIE ou votre référent.e social.e pour être orienté·e vers un
+    organisme de formation prestataire.
+profils:
+  - type: chomeur
+    conditions: []
+link: https://parcours-metier.normandie.fr/ftlv-dispositif-socle
+instructions: https://parcours-metier.normandie.fr/ftlv-dispositif-socle
+prefix: le
+type: bool
+unit: €
+periodicite: autre

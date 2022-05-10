@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2 class="aj-question"> Mes enfants à charge <EnSavoirPlus /> </h2>
+    <p
+      >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton "Suivant".</p
+    >
     <div
       v-for="enfant in enfants"
       :key="enfant.id"
@@ -47,10 +50,7 @@
       </svg>
       Ajouter un enfant à charge
     </button>
-    <ActionButtons
-      :on-submit="onSubmit"
-      :submit-label="enfants.length ? 'Suivant' : 'Pas d\'enfant à charge'"
-    />
+    <ActionButtons :on-submit="onSubmit" />
   </div>
 </template>
 

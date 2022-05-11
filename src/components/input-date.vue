@@ -16,6 +16,7 @@
         placeholder="JJ"
         min="1"
         max="31"
+        maxlength="2"
       />
     </div>
     <div class="aj-input-date-component month">
@@ -32,6 +33,7 @@
         placeholder="MM"
         min="1"
         max="12"
+        maxlength="2"
       />
     </div>
     <div class="aj-input-date-component year">
@@ -48,6 +50,7 @@
         aria-label="Année"
         placeholder="AAAA"
         min="1900"
+        maxlength="4"
       />
     </div>
   </div>
@@ -56,39 +59,6 @@
 <script>
 import moment from "moment"
 import padStart from "lodash/padStart"
-
-function stateManager(current, next) {
-  if (
-    (current.element === "day" &&
-      current.length === 0 &&
-      next.element === "day" &&
-      next.length === 1) ||
-    (current.element === "day" &&
-      current.length === 1 &&
-      next.element === "day" &&
-      next.length === 2) ||
-    (current.element === "day" &&
-      current.length === 2 &&
-      next.element === "month" &&
-      next.length === 1) ||
-    (current.element === "month" &&
-      current.length === 1 &&
-      next.element === "month" &&
-      next.length === 2) ||
-    (current.element === "month" &&
-      current.length === 2 &&
-      next.element === "year" &&
-      next.length === 1) ||
-    (current.element === "year" &&
-      current.length === 1 &&
-      next.element === "year" &&
-      next.length === 2)
-  ) {
-    return next
-  } else {
-    return false
-  }
-}
 
 export default {
   name: "InputDate",
@@ -140,19 +110,19 @@ export default {
       if (to?.length == 2 && this.auto) {
         this.$refs.month.focus()
       }
-      this.update("day")
+      this.update()
     },
     month: function (to) {
       if (to?.length == 2 && this.auto) {
         this.$refs.year.focus()
       }
-      this.update("month")
+      this.update()
     },
     year: function (to) {
       if (to?.length == 4 && this.auto) {
         this.$refs.year.focus()
       }
-      this.update("year")
+      this.update()
     },
   },
   methods: {
@@ -162,12 +132,7 @@ export default {
         this.$emit("update:modelValue", value)
       }
     },
-    update: function (name) {
-      this.currentState = stateManager(this.currentState, {
-        element: name,
-        length: this[name]?.length || 0,
-      })
-
+    update: function () {
       const dt = moment(this.date, "YYYY-MM-DD", true)
       if (
         dt.isValid() &&

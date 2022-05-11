@@ -9,30 +9,32 @@
       :key="enfant.id"
       class="aj-children-container"
     >
-      <div class="aj-children-header">
-        <div class="aj-child-name small capitalize">
-          {{ enfant._firstName }}
+      <div v-if="enfant.date_naissance">
+        <div class="aj-children-header">
+          <div class="aj-child-name small capitalize">
+            {{ enfant._firstName }}
+          </div>
+          <div class="aj-child-actions">
+            <a class="edit-link" @click="editPAC(enfant.id)">éditer</a>
+            <a class="delete-link" @click="removePAC(enfant.id)">supprimer</a>
+          </div>
         </div>
-        <div class="aj-child-actions">
-          <a class="edit-link" @click="editPAC(enfant.id)">éditer</a>
-          <a class="delete-link" @click="removePAC(enfant.id)">supprimer</a>
+        <hr class="aj-hr" />
+        <div class="aj-children-line">
+          <div class="aj-children-birth-date">
+            <label>Sa date de naissance</label>
+            <span>{{ birthDate(enfant.date_naissance) }}</span>
+          </div>
+          <div class="aj-children-nationality">
+            <label>Sa nationalité</label>
+            <span>{{ nationality(enfant.nationalite) }}</span>
+          </div>
+          <div class="aj-children-scolarite">
+            <label>Sa situation</label>
+            <span>{{ scolarite(enfant.scolarite) }}</span>
+          </div>
+          <div class="aj-children-delete" />
         </div>
-      </div>
-      <hr class="aj-hr" />
-      <div class="aj-children-line">
-        <div class="aj-children-birth-date">
-          <label>Sa date de naissance</label>
-          <span>{{ birthDate(enfant.date_naissance) }}</span>
-        </div>
-        <div class="aj-children-nationality">
-          <label>Sa nationalité</label>
-          <span>{{ nationality(enfant.nationalite) }}</span>
-        </div>
-        <div class="aj-children-scolarite">
-          <label>Sa situation</label>
-          <span>{{ scolarite(enfant.scolarite) }}</span>
-        </div>
-        <div class="aj-children-delete" />
       </div>
     </div>
     <button id="add-pac" class="button outline with-icon" @click="addPAC()">
@@ -87,11 +89,15 @@ export default {
       this.$router.push(`/simulation/individu/${id}/_firstName`)
     },
     onSubmit: function () {
+      const enfants = this.enfants.filter((enfant) => {
+        if (!enfant.date_naissance) {
+          this.$store.dispatch("removeEnfant", enfant.id)
+        }
+        return enfant.date_naissance !== undefined
+      })
       this.$store.dispatch("answer", {
         entityName: "enfants",
-        value: this.$store.state.simulation.enfants
-          ? this.$store.state.simulation.enfants.length
-          : 0,
+        value: enfants.length,
       })
       this.$push()
     },

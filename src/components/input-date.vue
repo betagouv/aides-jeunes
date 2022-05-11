@@ -16,7 +16,6 @@
         placeholder="JJ"
         min="1"
         max="31"
-        maxlength="2"
       />
     </div>
     <div class="aj-input-date-component month">
@@ -33,7 +32,6 @@
         placeholder="MM"
         min="1"
         max="12"
-        maxlength="2"
       />
     </div>
     <div class="aj-input-date-component year">
@@ -50,7 +48,6 @@
         aria-label="Année"
         placeholder="AAAA"
         min="1900"
-        maxlength="4"
       />
     </div>
   </div>

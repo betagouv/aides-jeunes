@@ -3,6 +3,7 @@ institution: region_nouvelle_aquitaine
 description: La Région propose un tarif réduit pour la restauration pour les
   lycéen·ne·s demi-pensionnaires ou internes inscrit·e·s dans un lycée public ou
   EREA.
+prefix: l’
 conditions_generales:
   - type: departements
     values:
@@ -18,6 +19,6 @@ conditions:
   - Bénéficier de l'Allocation de Rentrée Scolaire.
 type: bool
 unit: €
-periodicite: autre
+periodicite: annuelle
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/aide-la-restauration-pour-les-lyceens
 instructions: https://les-aides.nouvelle-aquitaine.fr/jeunesse/aide-la-restauration-pour-les-lyceens

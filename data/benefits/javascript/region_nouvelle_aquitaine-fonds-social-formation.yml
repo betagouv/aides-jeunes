@@ -1,0 +1,31 @@
+label: Fonds social formation
+institution: region_nouvelle_aquitaine
+description: La Région vous aide à financer votre parcours de formation dans le
+  cas où, face à un imprévu, vous ne parveniez plus à régler vos dépenses de
+  logement et/ou de transport.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions:
+      - type: formation_sanitaire_social
+  - type: apprenti
+    conditions: []
+conditions:
+  - Être en formation professionnelle, en formation sanitaire et sociale,
+    salarié·e en SIAE ou apprenti·e·s.
+  - Compléter <a target="_blank" rel="noopener"
+    href="https://les-aides.nouvelle-aquitaine.fr/sites/default/files/2021-05/Attestation_Structure-Formation_FSF.pdf">l'attestation</a>
+    avec votre référent·e de formation.
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 1000
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/fonds-social-formation
+teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas

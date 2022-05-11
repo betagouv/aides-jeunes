@@ -306,7 +306,7 @@ fields:
       - label: Éligibilité (Oui / Non)
         value: bool
   field_unite_resultat: &field_unite_resultat
-    label: Unité lorsque le type de résultat est un montant
+    label: Unité lorsque le type de résultat est une valeur numérique
     hint: Il s'agit de spécifier l'unité du montant.
     name: unit
     widget: select
@@ -320,7 +320,7 @@ fields:
       - label: séances
         value: séances
   field_legende_montant: &field_legende_montant
-    label: Légende associée au montant
+    label: Légende associée à la valeur numérique
     hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Par exemple, si vous écrivez "maximum" dans ce champ, et que vous avez indiqué "200 €" en montant, cela affichera "200 € maximum".
     name: legend
     widget: string
@@ -385,10 +385,10 @@ fields:
     required: false
     step: -1
   field_periodicite_montant_aide: &field_periodicite_montant_aide
-    label: "Périodicité du montant de l'aide"
+    label: "Périodicité de l'aide"
     name: periodicite
     widget: select
-    hint: Cette variable permet de définir la période de versement du montant de l'aide.
+    hint: Cette variable permet de définir la fréquence de versement de l'aide.
     required: true
     default: autre
     options:

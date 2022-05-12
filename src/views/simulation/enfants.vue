@@ -92,8 +92,9 @@ export default {
       const enfants = this.enfants.filter((enfant) => {
         if (!enfant.date_naissance) {
           this.$store.dispatch("removeEnfant", enfant.id)
+          return false
         }
-        return enfant.date_naissance !== undefined
+        return true
       })
       this.$store.dispatch("answer", {
         entityName: "enfants",

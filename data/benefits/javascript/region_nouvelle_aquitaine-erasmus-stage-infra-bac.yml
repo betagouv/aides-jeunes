@@ -1,4 +1,4 @@
-label: Erasmus+ Stage - Infra-Bac
+label: Erasmus+ Stage
 institution: region_nouvelle_aquitaine
 description: La Région finance en partie la réalisation d'un stage professionnel
   à l'étranger d'une durée de 2 semaines à 6 mois.
@@ -10,10 +10,8 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
-  - type: chomeur
-    conditions: []
 conditions:
-  - Être inscrit·z dans un établissement d’enseignement et de formation
+  - Être inscrit·e dans un établissement d’enseignement et de formation
     professionnelle faisant partie du Consortium régional.
 interestFlag: _interetEtudesEtranger
 type: bool

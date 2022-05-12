@@ -70,17 +70,11 @@ export default {
   },
   emits: ["update:modelValue"],
   data: function () {
-    const captureFullDate = this.dateType === "date"
-
     return {
-      currentState: this.modelValue
-        ? 0
-        : captureFullDate
-        ? { element: "day", length: 0 }
-        : { element: "day", length: 2 },
-      day: captureFullDate
-        ? this.modelValue && moment(this.modelValue).format("DD")
-        : "01",
+      day:
+        this.dateType === "date"
+          ? this.modelValue && moment(this.modelValue).format("DD")
+          : "01",
       month: this.modelValue && moment(this.modelValue).format("MM"),
       year: this.modelValue && moment(this.modelValue).format("YYYY"),
     }
@@ -102,7 +96,6 @@ export default {
   watch: {
     day: function (to, from) {
       if (
-        to?.length == 2 &&
         to.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
         this.lastCharChanged(to, from)
       ) {
@@ -111,11 +104,7 @@ export default {
       this.update()
     },
     month: function (to, from) {
-      if (
-        to?.length == 2 &&
-        to.match(/^(0?[1-9]|1[012])$/) &&
-        this.lastCharChanged(to, from)
-      ) {
+      if (to.match(/^(0?[1-9]|1[012])$/) && this.lastCharChanged(to, from)) {
         this.$refs.year.focus()
       }
       this.update()
@@ -126,10 +115,10 @@ export default {
   },
   methods: {
     lastCharChanged: function (to, from) {
-      if (to.length && to.length != from.length) {
+      if (to.length == 2 && to.length != from.length) {
         return true
       } else {
-        return to.length ? to.slice(-1) != from.slice(-1) : false
+        return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
       }
     },
     emit: function ($event) {

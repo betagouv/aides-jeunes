@@ -158,11 +158,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-@media print {
-  .aj-actions {
-    display: none;
-  }
-}
-</style>

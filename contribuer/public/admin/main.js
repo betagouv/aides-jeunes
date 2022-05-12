@@ -132,8 +132,8 @@ const DroitEstime = ({ droit }) => {
       droitEstime = <span className="aj-droit-eligible">✅</span>
       break
     case "float":
-      const montant = droit.montant || 1
-      const unit = droit.unit || "€"
+      const montant = droit.montant || ""
+      const unit = droit.montant ? droit.unit : ""
       const legend =
         droit.legend && LEGENDE_PERIODICITE_AIDE_ENUM[droit.periodicite]
           ? `${droit.legend} ${

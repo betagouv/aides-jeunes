@@ -104,21 +104,18 @@ export default {
   },
   watch: {
     day: function (to) {
-      if (to?.length == 2 && this.auto) {
+      if (to?.length == 2 && !isNaN(to)) {
         this.$refs.month.focus()
       }
       this.update()
     },
     month: function (to) {
-      if (to?.length == 2 && this.auto) {
+      if (to?.length == 2 && !isNaN(to)) {
         this.$refs.year.focus()
       }
       this.update()
     },
     year: function (to) {
-      if (to?.length == 4 && this.auto) {
-        this.$refs.year.focus()
-      }
       this.update()
     },
   },

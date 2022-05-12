@@ -64,6 +64,7 @@ import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "../../../lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
+import { useIndividu } from "@/composables/individu.ts"
 
 export default {
   name: "Recapitulatif",
@@ -74,6 +75,13 @@ export default {
   computed: {
     activeJourney() {
       return this.$store.getters.getAllAnsweredSteps
+    },
+    propertyData() {
+      return {
+        openFiscaParameters: this.$store.state.openFiscaParameters,
+        simulation: this.$store.state.simulation,
+        periods: this.$store.state.dates,
+      }
     },
     chapters() {
       return this.$state
@@ -139,14 +147,13 @@ export default {
           step
         )
 
-        const entity = ENTITIES_PROPERTIES[step.entity].loadEntity?.({
-          $store: this.$store,
-          params: step,
-        })
+        const individu =
+          step.entity === "individu" ? useIndividu(step.id) : undefined
+
         return this.buildMutualizedQuestion({
           question: ENTITIES_PROPERTIES[step.entity][step.variable],
           value: answer,
-          component: { $store: this.$store, entity },
+          component: { ...this.propertyData, individu },
         })
       }
       return []

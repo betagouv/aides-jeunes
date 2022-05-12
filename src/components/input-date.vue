@@ -57,39 +57,6 @@
 import moment from "moment"
 import padStart from "lodash/padStart"
 
-function stateManager(current, next) {
-  if (
-    (current.element === "day" &&
-      current.length === 0 &&
-      next.element === "day" &&
-      next.length === 1) ||
-    (current.element === "day" &&
-      current.length === 1 &&
-      next.element === "day" &&
-      next.length === 2) ||
-    (current.element === "day" &&
-      current.length === 2 &&
-      next.element === "month" &&
-      next.length === 1) ||
-    (current.element === "month" &&
-      current.length === 1 &&
-      next.element === "month" &&
-      next.length === 2) ||
-    (current.element === "month" &&
-      current.length === 2 &&
-      next.element === "year" &&
-      next.length === 1) ||
-    (current.element === "year" &&
-      current.length === 1 &&
-      next.element === "year" &&
-      next.length === 2)
-  ) {
-    return next
-  } else {
-    return false
-  }
-}
-
 export default {
   name: "InputDate",
   props: {
@@ -103,25 +70,16 @@ export default {
   },
   emits: ["update:modelValue"],
   data: function () {
-    const captureFullDate = this.dateType === "date"
-
     return {
-      currentState: this.modelValue
-        ? 0
-        : captureFullDate
-        ? { element: "day", length: 0 }
-        : { element: "day", length: 2 },
-      day: captureFullDate
-        ? this.modelValue && moment(this.modelValue).format("DD")
-        : "01",
+      day:
+        this.dateType === "date"
+          ? this.modelValue && moment(this.modelValue).format("DD")
+          : "01",
       month: this.modelValue && moment(this.modelValue).format("MM"),
       year: this.modelValue && moment(this.modelValue).format("YYYY"),
     }
   },
   computed: {
-    auto: function () {
-      return Boolean(this.currentState)
-    },
     date: function () {
       return `${this.year}-${this.month && padStart(this.month, 2, "0")}-${
         this.day && padStart(this.day, 2, "0")
@@ -136,38 +94,40 @@ export default {
     },
   },
   watch: {
-    day: function (to) {
-      if (to?.length == 2 && this.auto) {
+    day: function (to, from) {
+      if (
+        to.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
+        this.lastCharChanged(to, from)
+      ) {
         this.$refs.month.focus()
       }
-      this.update("day")
+      this.update()
     },
-    month: function (to) {
-      if (to?.length == 2 && this.auto) {
+    month: function (to, from) {
+      if (to.match(/^(0?[1-9]|1[012])$/) && this.lastCharChanged(to, from)) {
         this.$refs.year.focus()
       }
-      this.update("month")
+      this.update()
     },
-    year: function (to) {
-      if (to?.length == 4 && this.auto) {
-        this.$refs.year.focus()
-      }
-      this.update("year")
+    year: function () {
+      this.update()
     },
   },
   methods: {
+    lastCharChanged: function (to, from) {
+      if (to.length == 2 && to.length != from.length) {
+        return true
+      } else {
+        return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
+      }
+    },
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {
         this.$emit("update:modelValue", value)
       }
     },
-    update: function (name) {
-      this.currentState = stateManager(this.currentState, {
-        element: name,
-        length: this[name]?.length || 0,
-      })
-
+    update: function () {
       const dt = moment(this.date, "YYYY-MM-DD", true)
       if (
         dt.isValid() &&

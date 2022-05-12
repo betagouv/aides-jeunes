@@ -1,0 +1,29 @@
+label: "aides aux brevets : BAFA, BAFD, BNSSA"
+institution: region_nouvelle_aquitaine
+description: La Région prend en charge une partie des Brevets d’Aptitude aux
+  Fonctions d’Animateur·ice et de Directeur·ice (BAFA et BAFD) et du Brevet
+  national de Sécurité et de Sauveteur·euse aquatique (BNSSA).
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 30
+profils: []
+conditions:
+  - Vérifier que le revenu fiscal de référence de votre foyer est inférieur à 9
+    700 € par part fiscale.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 400
+link: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/aides-aux-brevets-bafa-bafd-bnssa
+teleservice: https://mes-demarches.nouvelle-aquitaine.fr/craPortailFO/
+instructions: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/aides-aux-brevets-bafa-bafd-bnssa

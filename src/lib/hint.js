@@ -1,4 +1,4 @@
-import { ENTITIES_PROPERTIES } from "@/lib/mutualized-steps"
+import { forEachProperties } from "../../lib/mutualized-steps"
 
 const texts = {
   depcom: () => {
@@ -10,12 +10,10 @@ const texts = {
 }
 
 // Retrieve `moreInfo` field of each mutualized step
-Object.values(ENTITIES_PROPERTIES).forEach((property) => {
-  Object.entries(property.STEPS).forEach(([stepName, step]) => {
-    if (step.moreInfo) {
-      texts[stepName] = step.moreInfo
-    }
-  })
+forEachProperties((_, propertyName, property) => {
+  if (property.moreInfo) {
+    texts[propertyName] = property.moreInfo
+  }
 })
 
 const Hint = {

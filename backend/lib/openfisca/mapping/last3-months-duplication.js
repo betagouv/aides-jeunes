@@ -7,16 +7,8 @@ const { additionalProps } = require("./individu")
 const definitions = require("../../definitions")
 
 function determinePropsToReplicate(entityTypeName, entityDefinition) {
-  let keyList = Object.keys(entityDefinition)
-
-  let filtered = keyList.filter((key) => {
-    let type = entityDefinition[key].type || entityDefinition[key]
-    return (
-      key != "id" &&
-      !key.startsWith("_") &&
-      typeof type == "function" &&
-      type != Object
-    )
+  let filtered = entityDefinition.filter((key) => {
+    return key != "id" && !key.startsWith("_")
   })
 
   if (entityTypeName == "individu") {

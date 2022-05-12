@@ -75,10 +75,6 @@ const individuSchema = {
         .format("YYYY-MM-DD")
     },
   },
-  date_arret_de_travail: {
-    src: "date_arret_de_travail",
-    fn: formatDate,
-  },
   date_debut_chomage: {
     src: "date_debut_chomage",
     fn: formatDate,

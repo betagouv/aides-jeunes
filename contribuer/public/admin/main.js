@@ -198,6 +198,7 @@ const DroitPreviewTemplate = ({ entry }) => {
       : undefined
   return (
     <div className="aj-main-container">
+      <h1 className="aj-preview">Aperçu</h1>
       <div className="aj-results-details">
         <div className="aj-droit-detail">
           <div className="aj-droit-header">

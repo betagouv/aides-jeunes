@@ -109,7 +109,7 @@ export default {
       }
       this.update()
     },
-    year: function (to) {
+    year: function () {
       this.update()
     },
   },

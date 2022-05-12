@@ -86,9 +86,6 @@ export default {
     }
   },
   computed: {
-    auto: function () {
-      return Boolean(this.currentState)
-    },
     date: function () {
       return `${this.year}-${this.month && padStart(this.month, 2, "0")}-${
         this.day && padStart(this.day, 2, "0")
@@ -103,14 +100,22 @@ export default {
     },
   },
   watch: {
-    day: function (to) {
-      if (to?.length == 2 && !isNaN(to)) {
+    day: function (to, from) {
+      if (
+        to?.length == 2 &&
+        to.match(/^\d*$/) &&
+        this.lastCharChanged(to, from)
+      ) {
         this.$refs.month.focus()
       }
       this.update()
     },
-    month: function (to) {
-      if (to?.length == 2 && !isNaN(to)) {
+    month: function (to, from) {
+      if (
+        to?.length == 2 &&
+        to.match(/^\d*$/) &&
+        this.lastCharChanged(to, from)
+      ) {
         this.$refs.year.focus()
       }
       this.update()
@@ -120,6 +125,13 @@ export default {
     },
   },
   methods: {
+    lastCharChanged: function (to, from) {
+      if (to.length && to.length != from.length) {
+        return true
+      } else {
+        return to.length ? to.slice(-1) != from.slice(-1) : false
+      }
+    },
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {

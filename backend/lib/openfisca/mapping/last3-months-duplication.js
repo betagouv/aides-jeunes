@@ -10,8 +10,6 @@ function determinePropsToReplicate(entityTypeName, entityDefinition) {
   let filtered = entityDefinition.filter((key) => {
     return key != "id" && !key.startsWith("_")
   })
-  console.log(entityTypeName)
-  console.log(filtered.length)
 
   if (entityTypeName == "individu") {
     return uniq(filtered.concat(...Object.keys(additionalProps)))

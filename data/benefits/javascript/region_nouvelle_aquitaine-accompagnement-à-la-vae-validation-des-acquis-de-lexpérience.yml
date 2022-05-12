@@ -11,8 +11,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Justifier d’au moins un an d’expérience en lien avec le diplôme visé et
-    avoir un avis de recevabilité du certificateur en cours de validité.
+  - Justifier d’au moins un an d’expérience en lien avec le diplôme visé.
   - Avoir rencontré le Point Régional Conseil VAE (05 57 57 55 66).
 type: float
 unit: €

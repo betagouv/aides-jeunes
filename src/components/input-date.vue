@@ -103,7 +103,7 @@ export default {
     day: function (to, from) {
       if (
         to?.length == 2 &&
-        to.match(/^0?[1-9]|[12][0-9]|3[01]$/) &&
+        to.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
         this.lastCharChanged(to, from)
       ) {
         this.$refs.month.focus()
@@ -113,7 +113,7 @@ export default {
     month: function (to, from) {
       if (
         to?.length == 2 &&
-        to.match(/^0?[1-9]|1[012]$/) &&
+        to.match(/^(0?[1-9]|1[012])$/) &&
         this.lastCharChanged(to, from)
       ) {
         this.$refs.year.focus()

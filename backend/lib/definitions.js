@@ -94,12 +94,9 @@ const ANSWER_FIELD_NAMES = [
 
 const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
 
-const PROPS_TO_NOT_REPLICATE = ["rfr", "enfant_a_charge", ...allRessources]
-
 module.exports = {
   ...entities,
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
   ANSWER_BASIC_IDS,
-  PROPS_TO_NOT_REPLICATE,
 }

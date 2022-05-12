@@ -6,7 +6,9 @@ prefix: le
 conditions_generales:
   - type: departements
     values:
-      - "74"
+      - "19"
+      - "23"
+      - "87"
   - type: age
     operator: ">="
     value: 17

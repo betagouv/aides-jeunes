@@ -1,25 +1,27 @@
+const { EnumProperty, Property } = require("./types.ts")
+
 const { getAnswer } = require("../answers")
 
 module.exports = {
-  coloc: {
+  coloc: new Property({
     question: "Est-ce une colocation ?",
-  },
+  }),
 
-  logement_chambre: {
+  logement_chambre: new Property({
     question: `Est-ce une chambre ?
       <span class="help">
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipé d'un WC.
       </span>`,
-  },
+  }),
 
-  participation_frais: {
+  participation_frais: new Property({
     question: `Participez-vous aux frais du logement ?
       <span class="help"
         >Par exemple aux dépenses d'électricité, de téléphone, etc.</span
       >`,
-  },
+  }),
 
-  _nombreMoisEntreeLogement: {
+  _nombreMoisEntreeLogement: new EnumProperty({
     question: "Prévoyez-vous de déménager prochainement ?",
     questionType: "enum",
     items: ({ simulation }) => {
@@ -38,5 +40,5 @@ module.exports = {
         { value: -12, label: "Non", active: true },
       ].filter((item) => item.active)
     },
-  },
+  }),
 }

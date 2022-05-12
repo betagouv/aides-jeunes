@@ -1,5 +1,7 @@
+const { EnumProperty, NumberProperty, Property } = require("./types.ts")
+
 module.exports = {
-  _situation: {
+  _situation: new EnumProperty({
     question: "Quelle est la situation de vos parents ?",
     questionType: "enum",
     items: [
@@ -28,11 +30,12 @@ module.exports = {
         value: "sans_autorite",
       },
     ],
-  },
-  _en_france: {
+  }),
+  _en_france: new Property({
     question: "Vos parents habitent-ils en France ?",
-  },
-  nbptr: {
+  }),
+
+  nbptr: new NumberProperty({
     question:
       "Quel est le nombre de parts sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
@@ -40,11 +43,11 @@ module.exports = {
     type: "count",
     moreInfo:
       "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
-  },
-  rfr: {
+  }),
+
+  rfr: new Property({
     question:
       "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
-    wrapperClassName: "aj-input-currency-wrapper",
-  },
+  }),
 }

@@ -10,7 +10,7 @@
       </legend>
       <div class="aj-selections">
         <div
-          v-for="(item, index) in items"
+          v-for="(item, index) in step.getItems(propertyData)"
           :key="`${item.value}`"
           class="aj-selection-wrapper"
         >
@@ -59,7 +59,7 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" /> </h2
       ></label>
-      <MultipleAnswers v-model="value" :items="items" />
+      <MultipleAnswers v-model="value" :items="step.getItems(propertyData)" />
     </div>
 
     <YesNoQuestion v-else v-model="value">
@@ -118,9 +118,6 @@ export default {
     },
     fieldName() {
       return this.$route.params.fieldName
-    },
-    items() {
-      return executeFunctionOrReturnValue(this.step, "items", this.propertyData)
     },
     question() {
       return capitalize(

@@ -1,0 +1,18 @@
+html {
+  body {
+    @media print {
+      .aj-results-summary {
+        display: block;
+      }
+      .aj-1j1s-header-logo-container svg,
+      .aj-1j1s-header-right-links,
+      .aj-1j1s-footer,
+      .aj-aide-cta,
+      .aj-results-tools,
+      .recap-email-button,
+      .aj-category-title-button-mobile {
+        display: none !important;
+      }
+    }
+  }
+}

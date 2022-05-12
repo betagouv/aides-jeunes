@@ -168,13 +168,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-.aj-results-summary {
-  display: none;
-}
-@media print {
-  .aj-results-summary {
-    display: block;
-  }
-}
-</style>

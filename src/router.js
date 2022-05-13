@@ -352,6 +352,12 @@ const router = createRouter({
         ),
     },
     {
+      path: "/questions",
+      name: "questions",
+      component: () =>
+        import(/* webpackChunkName: "questions" */ "./views/questions.vue"),
+    },
+    {
       path: "/accompagnement/:surveyId",
       name: "accompagnement",
       component: () =>

@@ -13,3 +13,8 @@ a[href="#/collections/institutions/new"]:after {
   content: "Créer une nouvelle institution";
   font-size: 14px;
 }
+
+/* Hide the publish button at the top of a benefit creation page */
+div[class*="ToolbarSubSectionFirst"] button + div {
+  display: none;
+}

@@ -204,7 +204,7 @@ fields:
     name: beneficiaire_rsa
 
   # common fields
-  field_image_aide: &field_image_aide
+  field_benefit_image: &field_benefit_image
     label: Logo
     name: imgSrc
     widget: hidden
@@ -213,7 +213,7 @@ fields:
     public_folder: "img/benefits"
     media_folder: "/public/img/benefits"
     hint: Utile si vous voulez afficher le logo de l'aide à la place de l'image de l'institution.
-  field_nom_aide: &field_nom_aide
+  field_benefit_name: &field_benefit_name
     label: Nom de l'aide
     name: label
     widget: string
@@ -237,7 +237,7 @@ fields:
     label: Courte description
     name: description
     widget: description
-  field_conditions_non_prise_en_compte: &field_conditions_non_prise_en_compte
+  field_unmodeled_conditions: &field_unmodeled_conditions
     label: Conditions non prises en compte par le simulateur
     label_singular: Condition non prise en compte par le simulateur
     hint: |
@@ -258,27 +258,27 @@ fields:
           '\.$',
           "La condition doit commencer par un verbe à l'infinitif et se terminer par un point",
         ]
-  field_lien_plus_informations: &field_lien_plus_informations
+  field_link_information: &field_link_information
     label: Lien vers la page d'informations de référence
     hint: Vers un site institutionnel de préférence (par exemple, pour les aides nationales il s'agit souvent de service-public.fr)
     name: link
     widget: string
     pattern: *pattern_url
-  field_lien_instructions: &field_lien_instructions
+  field_link_instructions: &field_link_instructions
     label: Lien vers des instructions à suivre
     name: instructions
     widget: string
     pattern: *pattern_url
     required: false
     required_group: cta
-  field_lien_formulaire: &field_lien_formulaire
+  field_link_form: &field_link_form
     label: Lien vers un formulaire à imprimer
     name: form
     widget: string
     pattern: *pattern_url
     required: false
     required_group: cta
-  field_lien_teleservice: &field_lien_teleservice
+  field_link_teleservice: &field_link_teleservice
     label: Lien vers un téléservice
     hint: Lorsqu'il y a la possibilité de faire la démarche en ligne.
     name: teleservice
@@ -286,7 +286,7 @@ fields:
     pattern: *pattern_url
     required: false
     required_group: cta
-  field_article_defini: &field_article_defini
+  field_definite_article: &field_definite_article
     label: Article défini
     name: prefix
     hint: |
@@ -295,7 +295,7 @@ fields:
     widget: select
     required: false
     options: [le, la, les, l’, une, l’aide]
-  field_type_resultat: &field_type_resultat
+  field_result_type: &field_result_type
     label: Type du résultat
     name: type
     default: "float"
@@ -305,7 +305,7 @@ fields:
         value: float
       - label: Éligibilité (Oui / Non)
         value: bool
-  field_unite_resultat: &field_unite_resultat
+  field_result_unit: &field_result_unit
     label: Unité lorsque le type de résultat est une valeur numérique
     hint: Il s'agit de spécifier l'unité du montant.
     name: unit
@@ -319,13 +319,13 @@ fields:
         value: "%"
       - label: séances
         value: séances
-  field_legende_montant: &field_legende_montant
+  field_amount_legend: &field_amount_legend
     label: Légende associée à la valeur numérique
     hint: Cette légende permet d'ajouter des informations complémentaires sur le montant. Par exemple, si vous écrivez "maximum" dans ce champ, et que vous avez indiqué "200 €" en montant, cela affichera "200 € maximum".
     name: legend
     widget: string
     required: false
-  field_fiabilite_montant: &field_fiabilite_montant
+  field_amount_reliability: &field_amount_reliability
     label: Niveau de fiabilité lorsque le résultat est un montant
     name: floorAt
     widget: select
@@ -337,7 +337,7 @@ fields:
         value: 1
       - label: 0.01 (pour éviter l'arrondi)
         value: 0.01
-  field_interet_particulier: &field_interet_particulier
+  field_specific_interest: &field_specific_interest
     label: Faut-il limiter l'affichage de l'aide en fonction d'un intérêt particulier ?
     name: interestFlag
     hint: |
@@ -354,7 +354,7 @@ fields:
         value: _interetEtudesEtranger
       - label: Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social.
         value: _interetAidesSanitaireSocial
-  field_entite_rattachement_openfisca: &field_entite_rattachement_openfisca
+  field_openfisca_linked_entity: &field_openfisca_linked_entity
     label: Entité de rattachement de la variable dans OpenFisca
     name: entity
     widget: select
@@ -368,7 +368,7 @@ fields:
         value: individus
       - label: Ménage
         value: menages
-  field_period_openfisca: &field_period_openfisca
+  field_openfisca_period: &field_openfisca_period
     label: Période de la variable dans OpenFisca
     name: openfiscaPeriod
     widget: select
@@ -378,13 +378,13 @@ fields:
         value: thisMonth
       - label: Année
         value: thisYear
-  field_montant_maximal_aide: &field_montant_maximal_aide
+  field_benefit_max_amount: &field_benefit_max_amount
     label: Montant maximal de l'aide
     name: montant
     widget: number
     required: false
     step: -1
-  field_periodicite_montant_aide: &field_periodicite_montant_aide
+  field_benefit_amount_periodicity: &field_benefit_amount_periodicity
     label: "Périodicité de l'aide"
     name: periodicite
     widget: select
@@ -400,7 +400,7 @@ fields:
         value: annuelle
       - label: Autre
         value: autre
-  field_profil_eligibilite: &field_profil_eligibilite
+  field_eligibility_profile: &field_eligibility_profile
     label: profil d'éligibilité
     label_singular: profils d'éligibilité
     hint: Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s, apprenti(e)s, en recherche d'emploi, etc.)
@@ -650,7 +650,7 @@ fields:
             types:
               - *field_age
   # champs propre aux aides javascript
-  field_conditions_generales: &field_conditions_generales
+  field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
     label_singular: Condition générale à satisfaire
     name: conditions_generales
@@ -681,24 +681,24 @@ collections:
     summary: "{{label}} ({{fields.institution}})"
     extension: yml
     fields:
-      - *field_nom_aide
-      - *field_image_aide
+      - *field_benefit_name
+      - *field_benefit_image
       - *field_institution
       - *field_description
-      - *field_article_defini
-      - *field_conditions_generales
-      - *field_profil_eligibilite
-      - *field_conditions_non_prise_en_compte
-      - *field_interet_particulier
-      - *field_type_resultat
-      - *field_unite_resultat
-      - *field_periodicite_montant_aide
-      - *field_legende_montant
-      - *field_montant_maximal_aide
-      - *field_lien_plus_informations
-      - *field_lien_teleservice
-      - *field_lien_formulaire
-      - *field_lien_instructions
+      - *field_definite_article
+      - *field_general_conditions
+      - *field_eligibility_profile
+      - *field_unmodeled_conditions
+      - *field_specific_interest
+      - *field_result_type
+      - *field_result_unit
+      - *field_benefit_amount_periodicity
+      - *field_amount_legend
+      - *field_benefit_max_amount
+      - *field_link_information
+      - *field_link_teleservice
+      - *field_link_form
+      - *field_link_instructions
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe
@@ -711,24 +711,24 @@ collections:
     slug: "{{label}}"
     extension: yml
     fields:
-      - *field_nom_aide
-      - *field_image_aide
+      - *field_benefit_name
+      - *field_benefit_image
       - *field_institution
       - *field_description
-      - *field_article_defini
-      - *field_conditions_non_prise_en_compte
-      - *field_interet_particulier
-      - *field_type_resultat
-      - *field_unite_resultat
-      - *field_periodicite_montant_aide
-      - *field_legende_montant
-      - *field_lien_plus_informations
-      - *field_lien_teleservice
-      - *field_lien_formulaire
-      - *field_lien_instructions
-      - *field_fiabilite_montant
-      - *field_entite_rattachement_openfisca
-      - *field_period_openfisca
+      - *field_definite_article
+      - *field_unmodeled_conditions
+      - *field_specific_interest
+      - *field_result_type
+      - *field_result_unit
+      - *field_benefit_amount_periodicity
+      - *field_amount_legend
+      - *field_link_information
+      - *field_link_teleservice
+      - *field_link_form
+      - *field_link_instructions
+      - *field_amount_reliability
+      - *field_openfisca_linked_entity
+      - *field_openfisca_period
   - name: institutions
     label: Institutions
     label_singular: institution
@@ -777,7 +777,7 @@ collections:
     delete: false
     files:
       - label: Accueil
-        name: accueil
+        name: home
         file: "contribuer/content/home.md"
         fields:
           - { label: Titre, name: title, widget: string }

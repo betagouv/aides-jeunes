@@ -84,6 +84,7 @@ import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
+import { useIndividu } from "@/composables/individu.ts"
 
 export default {
   name: "MutualizedStep",
@@ -104,13 +105,11 @@ export default {
       this.$route.params.fieldName,
       id
     )
-    const entity = ENTITIES_PROPERTIES[entityName].loadEntity?.(this)
 
     return {
       id,
       value,
       entityName,
-      entity,
     }
   },
   computed: {
@@ -121,11 +120,11 @@ export default {
       return this.$route.params.fieldName
     },
     items() {
-      return executeFunctionOrReturnValue(this.step, "items", this)
+      return executeFunctionOrReturnValue(this.step, "items", this.propertyData)
     },
     question() {
       return capitalize(
-        executeFunctionOrReturnValue(this.step, "question", this)
+        executeFunctionOrReturnValue(this.step, "question", this.propertyData)
       )
     },
     questionType() {
@@ -134,11 +133,29 @@ export default {
     showMoreInfo() {
       const showMoreInfo =
         this.step.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(this.step, "showMoreInfo", this)
+        executeFunctionOrReturnValue(
+          this.step,
+          "showMoreInfo",
+          this.propertyData
+        )
       return showMoreInfo && Hint.get(this.fieldName)
     },
+    individu() {
+      if (this.entityName === "individu") {
+        return useIndividu(this.$route.params.id)
+      }
+      return undefined
+    },
+    propertyData() {
+      return {
+        openFiscaParameters: this.$store.state.openFiscaParameters,
+        simulation: this.$store.state.simulation,
+        individu: this.individu,
+        periods: this.$store.state.dates,
+      }
+    },
     step() {
-      return this.entityProperties.STEPS[this.fieldName]
+      return this.entityProperties[this.fieldName]
     },
   },
   methods: {

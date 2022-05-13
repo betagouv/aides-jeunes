@@ -12,6 +12,7 @@ const allRessources = concat(
   ressources.categoriesRnc,
   ressources.patrimoineTypes
 ).map((ressource) => ressource.id)
+allRessources.push("tns_autres_revenus_type_activite")
 
 const individuBase = [
   "_id",

@@ -14,7 +14,6 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être étudiant·e, apprenti·e ou stagiaire de la formation professionnelle.
   - Ne pas bénéficier, pour le même stage, d’une autre aide à la mobilité de la
     Région ou d’une indemnisation mensuelle de stage supérieure à 700 €.
   - Ne pas dépasser le plafond de revenus fixé à 50 000 €.

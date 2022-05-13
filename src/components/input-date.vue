@@ -114,7 +114,7 @@ export default {
     },
   },
   methods: {
-    lastCharChanged: function (to, from) {
+    lastCharChanged: function (to = "", from = "") {
       if (to.length == 2 && to.length != from.length) {
         return true
       } else {

@@ -12,6 +12,7 @@ const allRessources = concat(
   ressources.categoriesRnc,
   ressources.patrimoineTypes
 ).map((ressource) => ressource.id)
+// tns_autres_revenus_type_activite field is required when you choose rpns_autres_revenus
 allRessources.push("tns_autres_revenus_type_activite")
 
 const individuBase = [

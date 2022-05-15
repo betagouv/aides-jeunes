@@ -1,5 +1,5 @@
 <template>
-  <footer class="aj-1j1s-footer">
+  <footer role="contentInfo" class="aj-1j1s-footer">
     <div class="container">
       <div class="aj-1j1s-footer-logo-container">
         <img

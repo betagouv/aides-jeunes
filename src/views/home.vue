@@ -41,7 +41,7 @@
         <div>
           <img
             src="@/assets/images/home_illustration.png"
-            alt="Portrait jeune"
+            alt=""
           />
         </div>
       </div>

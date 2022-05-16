@@ -1,0 +1,26 @@
+label: prime Job Etudiant
+institution: region_pays_de_la_loire
+description: La Région offre une prime à tous les jeunes qui cumulent emploi et études.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+  - type: age
+    operator: <=
+    value: 26
+profils:
+  - type: etudiant
+    conditions: []
+conditions:
+  - Exercer une activité rémunérée en Pays de la Loire (hors cadre des études)
+    durant la période scolaire de référence.
+  - Être titulaire du <a target="_blank" rel="noopener"
+    href="https://www.epassjeunes-paysdelaloire.fr/">E-pass Jeunes</a>.
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 200
+link: https://www.paysdelaloire.fr/les-aides/job-etudiant-prime-de-200-euros
+teleservice: https://www.epassjeunes-paysdelaloire.fr/
+instructions: ""

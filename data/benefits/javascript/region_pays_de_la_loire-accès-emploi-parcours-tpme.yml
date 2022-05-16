@@ -1,0 +1,19 @@
+label: aCCÈS Emploi - parcours TPME
+institution: region_pays_de_la_loire
+description: La Région finance une formation d'adaptation à l'emploi pour vous
+  permettre d'ajuster vos compétences avant une embauche.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Prendre rendez-vous avec votre conseiller·e Pôle emploi.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.paysdelaloire.fr/les-aides/region-formation-acces-emploi-parcours-tpme
+instructions: https://www.paysdelaloire.fr/les-aides/region-formation-acces-emploi-parcours-tpme

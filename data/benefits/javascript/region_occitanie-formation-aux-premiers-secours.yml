@@ -1,0 +1,20 @@
+label: formation aux premiers secours
+institution: region_occitanie
+description: La Région finance intégralement une formation aux premiers secours
+  (PSC1), hors temps scolaire et durant toute l’année (y compris pendant les
+  vacances scolaires).
+prefix: la
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+profils:
+  - type: lyceen
+    conditions: []
+conditions:
+  - Être titulaire de la Carte Jeune Région.
+type: bool
+unit: €
+periodicite: ponctuelle
+link: https://www.laregion.fr/Formation-premiers-secours
+instructions: https://www.laregion.fr/Formation-premiers-secours

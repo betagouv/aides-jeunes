@@ -1,0 +1,25 @@
+label: Pass Mutuelle Etudiant·e
+institution: region_occitanie
+description: La Région propose une aide spécifique pour favoriser l’accès aux
+  soins des étudiant·e·s n'étant pas déjà couvert·e·s par une mutuelle.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+conditions:
+  - Ne pas bénéficier de la Complémentaire Santé Solidaire.
+  - Adhérer à l'<a target="_blank" rel="noopener"
+    href="https://www.laregion.fr/Pass-Mutuelle-Etudiant-e">une des mutuelles
+    partenaires</a>.
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 100
+link: https://www.laregion.fr/Pass-Mutuelle-Etudiant-e
+instructions: https://www.laregion.fr/Pass-Mutuelle-Etudiant-e

@@ -1,0 +1,28 @@
+label: "Sas jeunes : orientation active vers l'emploi"
+institution: region_nouvelle_aquitaine
+description: La Région propose un accompagnement individualisé pour construire
+  son parcours vers un emploi.
+prefix: le
+conditions_generales:
+  - type: departements
+    values:
+      - "19"
+      - "23"
+      - "87"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Être accompagné·e par une Mission Locale du Limousin et effectuer votre
+    demande auprès d'eux.
+type: bool
+unit: €
+periodicite: ponctuelle
+link: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/sas-jeunes-orientation-active-vers-lemploi
+instructions: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/sas-jeunes-orientation-active-vers-lemploi

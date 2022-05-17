@@ -156,6 +156,7 @@ describe("benefit descriptions", function () {
                 "region-pays-de-la-loire-ehop-emploi",
                 "collectivite-europeenne-alsace-fonds-aide-jeunes",
                 "region-nouvelle-aquitaine-aide-à-la-restauration-des-lycéen·ne·s",
+                "region-nouvelle-aquitaine-sas-jeunes-orientation-active-vers-emploi",
               ]
               if (!complexGeoCriteriaBenefits.includes(benefit.id)) {
                 it("should have a coherent geographical constraint", function () {
@@ -168,7 +169,7 @@ describe("benefit descriptions", function () {
                       )
                     }
                   )
-                  expect(conditionGeo.values.length).toBeGreaterThan(0)
+                  expect(conditionGeo.values.length).toEqual(1)
                   expect(conditionGeo.type.slice(0, -1)).toEqual(
                     benefit.institution.type
                   )

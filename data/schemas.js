@@ -12,18 +12,18 @@ const typesMap = {
   institution: "string",
   description: "string",
   list: "array",
+  hidden: "hidden",
 }
 
 function getFieldType(field) {
-  if (typeof field.widget === "undefined") {
-    console.log("//>", field)
-  }
+  console.log(field)
+  //console.log(field.name, "|||||||||||||||", field.widget)
   return typesMap[field.widget] ? typesMap[field.widget] : field.widget
 }
 
 function generateSchema(fields) {
   let schema = {}
-  console.log(fields)
+  //console.log(fields)
   for (let field of fields) {
     let line = {
       type: getFieldType(field),
@@ -38,7 +38,7 @@ function generateSchema(fields) {
       (field.widget == "hidden" && field.type == "list")
     ) {
       if (field.types) {
-        schema[field.name] = [generateSchema(field.types)]
+        schema[field.name] = generateSchema(field.types)
       } else if (field.fields) {
         schema[field.name] = generateSchema(field.fields)
       } else if (field.type) {
@@ -53,15 +53,27 @@ function generateSchema(fields) {
   return schema
 }
 
-function compareSchema(data, schema, output) {
-  //console.log(typeof data["conditions_generales"])
+function compareSchema(data, schema, output, depth = false) {
+  /*
+    compareSchema works as follow:
+    - first loop:
+        - makes sure that every key in the data is in the schema
+        - don't take into account "hidden" type key, since their format isn't controlled
+        - if the type of the data key is an object, recursively call compareSchema
+    - second loop : make sure that the data is not missing a field
+  */
+  if (depth) {
+    console.log("////> DATA", data)
+    console.log("////> SCHEMA", schema)
+  }
   const schemaKeys = Object.keys(schema)
   for (let key in data) {
     if (schemaKeys.includes(key)) {
       if (
         typeof data[key] !== schema[key].type &&
         schema[key].type != "hidden" &&
-        typeof schema[key].type !== "undefined"
+        typeof schema[key].type !== "undefined" &&
+        typeof schema[key].type !== "object"
       ) {
         output.push({
           path: `${key}`,
@@ -72,9 +84,9 @@ function compareSchema(data, schema, output) {
       }
       if (typeof data[key] == "object" && schema[key].type != "hidden") {
         if (data[key] instanceof Array) {
-          console.log("//>", schema[key].type)
+          //console.log("//>", schema[key])
           for (let subkey of data[key]) {
-            //compareSchema(subkey, schema[key], output)
+            compareSchema(subkey, schema[key], output, true)
           }
         } else {
           compareSchema(data[key], schema[key], output)
@@ -103,6 +115,7 @@ function validateFile(filename, schema) {
     fs.readFileSync(path.join(__dirname, `../${filename}`))
   )
   const output = []
+  //console.log(file)
   compareSchema(file, schema, output)
   return output
 }

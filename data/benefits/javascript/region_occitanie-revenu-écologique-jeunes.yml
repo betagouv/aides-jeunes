@@ -1,0 +1,27 @@
+label: Revenu Écologique Jeunes
+institution: region_occitanie
+description: Cette aide vous permet de vous former à un métier vert ou à créer
+  une activité qui a un impact positif sur l'environnement. Elle consiste en une
+  formation, un accompagnement et une aide forfaitaire (sous conditions de
+  ressources).
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 29
+profils:
+  - type: chomeur
+    conditions: []
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 1000
+link: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+teleservice: https://www.laregion.fr/Revenu-Ecologique-Jeunes

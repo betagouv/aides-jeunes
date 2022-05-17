@@ -11,6 +11,8 @@ conditions_generales:
 profils:
   - type: chomeur
     conditions: []
+  - type: stagiaire
+    conditions: []
 conditions:
   - Être en formation professionnelle engagé·e en parcours "Région Formation".
   - Vous rapprocher de votre organisme de formation pour monter le dossier.

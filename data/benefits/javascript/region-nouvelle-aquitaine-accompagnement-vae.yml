@@ -1,0 +1,22 @@
+label: Accompagnement à la VAE (Validation des Acquis de l'Expérience)
+institution: region_nouvelle_aquitaine
+description: La Région soutient les démarches VAE en finançant l’accompagnement
+  réalisé par des organismes habilités.
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Justifier d’au moins un an d’expérience en lien avec le diplôme visé.
+  - Avoir rencontré le Point Régional Conseil VAE (05 57 57 55 66).
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 2000
+link: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/vae-accompagnement-de-la-validation-des-acquis-de-lexperience
+instructions: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/vae-accompagnement-de-la-validation-des-acquis-de-lexperience

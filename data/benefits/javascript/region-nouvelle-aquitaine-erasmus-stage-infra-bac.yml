@@ -1,0 +1,21 @@
+label: Erasmus+ Stage
+institution: region_nouvelle_aquitaine
+description: La Région finance en partie la réalisation d'un stage professionnel
+  à l'étranger d'une durée de 2 semaines à 6 mois.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: apprenti
+    conditions: []
+conditions:
+  - Être inscrit·e en apprentissage niveau CAP, BEP ou baccalauréat dans un établissement d’enseignement et de formation
+    professionnelle faisant partie du Consortium régional.
+interestFlag: _interetEtudesEtranger
+type: bool
+unit: €
+periodicite: ponctuelle
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/erasmus-stage-public-infra-bac
+teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas

@@ -1,0 +1,26 @@
+label: aides à la mobilité internationale des étudiant·e·s
+institution: region_occitanie
+description: La Région soutient financièrement les étudiant·e·s qui effectuent
+  une mobilité à l’étranger (stage ou séjour d'études) dans le cadre de leur
+  cursus de formation au sein d’<a target="_blank" rel="noopener"
+  href="https://www.laregion.fr/Aides-mobilite-etudiants">un des établissements
+  partenaires</a>.
+prefix: les
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+conditions:
+  - Effectuer votre stage ou séjour d’études dans le cadre de votre cursus de
+    formation et entrer dans l'année d'obtention de votre diplôme.
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: mensuelle
+legend: ""
+montant: 300
+link: https://www.laregion.fr/Aides-mobilite-etudiants
+instructions: https://www.laregion.fr/Aides-mobilite-etudiants

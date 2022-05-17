@@ -1,0 +1,18 @@
+label: azeaze
+institution: intercommunalite_nevers
+description: Some random descriptiondescription.
+prefix: la
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+  - type: regions
+    values:
+      - "27"
+profils: []
+type: float
+unit: €
+periodicite: autre
+montant: 200
+link: http://google.com
+teleservice: http://google.com

@@ -1,0 +1,22 @@
+label: "soutien scolaire : service gratuit d'aide aux devoirs"
+institution: region_nouvelle_aquitaine
+description: "La Région propose un soutien scolaire personnalisé par téléphone
+  pour les matières suivantes : français, anglais, espagnol, mathématiques et
+  physique."
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+conditions:
+  - Appeler le 05 57 57 50 00 du lundi au jeudi de 18h à 21h.
+type: bool
+unit: €
+periodicite: autre
+link: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/soutien-scolaire-service-gratuit-daide-aux-devoirs
+instructions: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/soutien-scolaire-service-gratuit-daide-aux-devoirs

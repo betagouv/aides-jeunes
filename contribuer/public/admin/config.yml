@@ -778,7 +778,6 @@ collections:
         name: etablissements
         widget: hidden
         required: false
-        type: list
       - label: repository
         name: repository
         widget: hidden

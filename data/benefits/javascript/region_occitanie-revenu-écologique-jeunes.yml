@@ -24,4 +24,5 @@ periodicite: mensuelle
 legend: maximum
 montant: 1000
 link: https://www.laregion.fr/Revenu-Ecologique-Jeunes
-teleservice: https://www.laregion.fr/Revenu-Ecologique-Jeunes
+teleservice: ""
+instructions: https://www.laregion.fr/Revenu-Ecologique-Jeunes

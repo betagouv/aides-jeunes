@@ -167,7 +167,7 @@ describe("benefit descriptions", function () {
                       )
                     }
                   )
-                  expect(conditionGeo.values.length).toEqual(1)
+                  expect(conditionGeo.values.length).toBeGreaterThan(0)
                   expect(conditionGeo.type.slice(0, -1)).toEqual(
                     benefit.institution.type
                   )

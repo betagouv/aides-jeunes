@@ -770,6 +770,19 @@ collections:
         widget: string
         required: false
         required_group: identifier
+      - label: Article défini
+        name: prefix
+        widget: hidden
+        required: false
+      - label: Etablissements
+        name: etablissements
+        widget: hidden
+        required: false
+        type: list
+      - label: repository
+        name: repository
+        widget: hidden
+        required: false
   - name: contribution-pages
     label: Pages
     label_singular: page

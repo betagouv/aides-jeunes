@@ -1,6 +1,5 @@
 const path = require("path")
 const fs = require("fs")
-//const validateSchema = require("yaml-schema-validator")
 
 const schemas = require("../../data/schemas")
 const institutionSchema = schemas.getCollectionSchema("institutions")
@@ -19,12 +18,6 @@ describe("Test Institutions schema", function () {
             `data/institutions/${institutionFilename}`,
             institutionSchema
           )
-          /*
-          validateSchema(`${dataDir}/institutions/${institutionFilename}`, {
-            schema: institutionSchema,
-            logLevel: "none",
-          })
-          */
         ).toEqual([])
       })
     })

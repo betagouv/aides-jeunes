@@ -11,17 +11,19 @@ const typesMap = {
   image: "string",
   institution: "string",
   description: "string",
+  list: "array",
 }
 
 function getFieldType(field) {
-  if (field.widget == "hidden") {
-    console.log(typesMap[field.widget] ? typesMap[field.widget] : field.widget)
+  if (typeof field.widget === "undefined") {
+    console.log("//>", field)
   }
   return typesMap[field.widget] ? typesMap[field.widget] : field.widget
 }
 
 function generateSchema(fields) {
   let schema = {}
+  console.log(fields)
   for (let field of fields) {
     let line = {
       type: getFieldType(field),
@@ -52,13 +54,14 @@ function generateSchema(fields) {
 }
 
 function compareSchema(data, schema, output) {
+  //console.log(typeof data["conditions_generales"])
   const schemaKeys = Object.keys(schema)
   for (let key in data) {
     if (schemaKeys.includes(key)) {
       if (
         typeof data[key] !== schema[key].type &&
         schema[key].type != "hidden" &&
-        !["array", "object"].includes(typeof data[key])
+        typeof schema[key].type !== "undefined"
       ) {
         output.push({
           path: `${key}`,
@@ -66,6 +69,16 @@ function compareSchema(data, schema, output) {
             schema[key].type
           } expected in schema`,
         })
+      }
+      if (typeof data[key] == "object" && schema[key].type != "hidden") {
+        if (data[key] instanceof Array) {
+          console.log("//>", schema[key].type)
+          for (let subkey of data[key]) {
+            //compareSchema(subkey, schema[key], output)
+          }
+        } else {
+          compareSchema(data[key], schema[key], output)
+        }
       }
     } else {
       output.push({

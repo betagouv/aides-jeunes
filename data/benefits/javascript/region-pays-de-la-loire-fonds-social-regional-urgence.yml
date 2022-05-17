@@ -1,0 +1,24 @@
+label: fonds social régional d'urgence
+institution: region_pays_de_la_loire
+description: La Région propose une aide pour sécuriser les parcours de formation
+  des stagiaires de la formation professionnelle continue, en cas de situation
+  d'urgence pouvant entraver la continuité de cette formation.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+conditions:
+  - Être en formation professionnelle engagé·e en parcours "Région Formation".
+  - Vous rapprocher de votre organisme de formation pour monter le dossier.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.paysdelaloire.fr/les-aides/fonds-social-regional-durgence
+teleservice: https://les-aides.paysdelaloire.fr/account-management/prod-demandeurs/ux/#/login?redirectTo=https:%2F%2Fles-aides.paysdelaloire.fr%2Faides%2F%23%2Fprod%2Fconnecte%2FF_FSU%2Fdepot%2Fsimple&jwtKey=jwt-prod-portail-depot-demande-aides&footer=https:%2F%2Fles-aides.paysdelaloire.fr%2Faides%2F%23%2Fprod%2Fmentions-legales,Mentions%20l%C3%A9gales,_self
+instructions: https://www.paysdelaloire.fr/les-aides/fonds-social-regional-durgence

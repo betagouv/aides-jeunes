@@ -155,6 +155,7 @@ describe("benefit descriptions", function () {
                 "region-ile-de-france-vehicules-propres",
                 "region-pays-de-la-loire-ehop-emploi",
                 "collectivite-europeenne-alsace-fonds-aide-jeunes",
+                "region-nouvelle-aquitaine-aide-à-la-restauration-des-lycéen·ne·s",
               ]
               if (!complexGeoCriteriaBenefits.includes(benefit.id)) {
                 it("should have a coherent geographical constraint", function () {

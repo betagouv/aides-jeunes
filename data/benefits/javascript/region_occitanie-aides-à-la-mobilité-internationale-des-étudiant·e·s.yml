@@ -15,13 +15,12 @@ profils:
     conditions: []
 conditions:
   - Effectuer votre stage ou séjour d’études dans le cadre de votre cursus de
-    formation et entrer dans l’obtention de votre diplôme.
-  - Le réaliser auprès d’un seul et même organisme et sur une période continue.
+    formation et entrer dans l'année d'obtention de votre diplôme.
 interestFlag: _interetEtudesEtranger
-type: bool
+type: float
 unit: €
-periodicite: annuelle
+periodicite: mensuelle
 legend: ""
-montant: ""
+montant: 300
 link: https://www.laregion.fr/Aides-mobilite-etudiants
 instructions: https://www.laregion.fr/Aides-mobilite-etudiants

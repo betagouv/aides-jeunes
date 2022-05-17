@@ -1,0 +1,26 @@
+label: rémunération des stagiaires de la formation professionnelle
+institution: region_occitanie
+description: La Région vous accompagne en finançant votre formation, et selon
+  certaines conditions, peut vous accorder une rémunération durant votre période
+  de formation professionnelle.
+prefix: la
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+  - type: age
+    operator: ">="
+    value: 16
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Suivre une formation professionnelle agréée et financée par la Région.
+  - Ne pas être indemnisé·e par Pôle Emploi.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 685
+link: https://www.laregion.fr/Remuneration-des-stagiaires-de-la-formation-professionnelle
+instructions: https://www.laregion.fr/Remuneration-des-stagiaires-de-la-formation-professionnelle

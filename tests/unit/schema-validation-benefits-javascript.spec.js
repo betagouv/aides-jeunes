@@ -1,9 +1,8 @@
 const path = require("path")
 const fs = require("fs")
-const validateSchema = require("yaml-schema-validator")
 
 const schemas = require("../../data/schemas")
-const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
+//const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
 
 const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
@@ -14,14 +13,10 @@ const benefitSchema2 = {
   label: { type: "string", required: true },
   institution: { type: "string", required: true },
   description: { type: "string", required: true },
-  conditions_generales: [
-    {
-      random: { type: "string", required: false },
-      task: [{ type: "string", required: false }],
-      type: { type: "string", required: false },
-      values: [{ val: { type: "string", required: false } }],
-    },
-  ],
+  conditions_generales: {
+    type: { type: "string", required: false },
+    values: { values: { type: "string", required: false } },
+  },
 }
 
 const result = schemas.validateFile(

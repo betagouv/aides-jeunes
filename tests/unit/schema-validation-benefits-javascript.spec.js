@@ -2,7 +2,7 @@ const path = require("path")
 const fs = require("fs")
 
 const schemas = require("../../data/schemas")
-//const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
+const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
 
 const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
@@ -15,7 +15,7 @@ const benefitSchema2 = {
   description: { type: "string", required: true },
   conditions_generales: {
     type: { type: "string", required: false },
-    values: { values: { type: "string", required: false } },
+    values: [{ type: "string", required: false }],
   },
 }
 
@@ -23,6 +23,8 @@ const result = schemas.validateFile(
   `data/benefits/javascript/region-normandie-vae.yml`,
   benefitSchema2
 )
+
+console.log("==>", benefitSchema["conditions_generales"])
 
 /*
 {
@@ -47,7 +49,7 @@ const result = validateSchema(`${dataDir}/benefits/javascript/region-normandie-v
 })
 */
 
-console.log(result)
+//console.log(result)
 //console.log(JSON.stringify(benefitSchema.conditions_generales))
 //console.log(benefitSchema.conditions_generales)
 

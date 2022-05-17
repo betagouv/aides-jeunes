@@ -29,11 +29,13 @@ function generateSchema(fields) {
       type: getFieldType(field),
       required: field.required === false ? false : true,
     }
-    if (
+    if (field.fields) {
+      console.log("//", field.fields)
+      schema[field.name] = generateSchema(field.fields) // field.fields.map(subField => generateSchema(subField))
+    } else if (
       field.widget == "list" ||
       field.widget == "object" ||
       field.types ||
-      field.fields ||
       field.type ||
       (field.widget == "hidden" && field.type == "list")
     ) {
@@ -85,8 +87,20 @@ function compareSchema(data, schema, output, depth = false) {
       if (typeof data[key] == "object" && schema[key].type != "hidden") {
         if (data[key] instanceof Array) {
           //console.log("//>", schema[key])
-          for (let subkey of data[key]) {
-            compareSchema(subkey, schema[key], output, true)
+          if (schema[key] instanceof Array) {
+            let types = schema[key].map((field) => field.type)
+            for (let subkey of data[key]) {
+              if (!types.includes(typeof subkey)) {
+                output.push({
+                  path: `${key}`,
+                  message: `${typeof subkey} invalid`,
+                })
+              }
+            }
+          } else {
+            for (let subkey of data[key]) {
+              compareSchema(subkey, schema[key], output, true)
+            }
           }
         } else {
           compareSchema(data[key], schema[key], output)

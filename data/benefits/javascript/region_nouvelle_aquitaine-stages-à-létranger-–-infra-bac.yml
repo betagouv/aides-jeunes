@@ -1,0 +1,24 @@
+label: stage à l'étranger (lycéen·ne·s)
+institution: region_nouvelle_aquitaine
+description: La Région finance une partie de votre stage à l'étranger d'une
+  durée de 2 à 4 semaines.
+prefix: les
+conditions_generales:
+  - type: regions
+    values:
+      - "75"
+profils:
+  - type: lyceen
+    conditions: []
+  - type: apprenti
+    conditions: []
+conditions: []
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 400
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac
+teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
+instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac

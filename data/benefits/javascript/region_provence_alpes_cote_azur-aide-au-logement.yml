@@ -1,0 +1,37 @@
+label: aide au logement
+institution: region_provence_alpes_cote_azur
+description: La Région vous permet de bénéficier d’un hébergement à bas prix
+  durant votre formation.
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+  - type: formation_sanitaire_social
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: chomeur
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: salarie
+    conditions: []
+conditions:
+  - Être inscrit·e dans un établissement autorisé ou agréé et financé par la
+    Région et suivre assidûment la formation financée par la Région jusqu’à son
+    terme.
+  - Être locataire de sa résidence principale et avec des enfants à charge ou en
+    situation de double résidence car nécessité de louer un hébergement
+    temporaire supplémentaire.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/aide-au-logement
+teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F

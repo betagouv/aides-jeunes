@@ -85,7 +85,11 @@
         </div>
       </div>
     </div>
-    <nav role="navigation" class="aj-1j1s-header-menu" :class="{ show: showMenu }">
+    <nav
+      role="navigation"
+      class="aj-1j1s-header-menu"
+      :class="{ show: showMenu }"
+    >
       <div class="container">
         <svg
           width="18"

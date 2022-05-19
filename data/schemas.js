@@ -11,14 +11,11 @@ const typesMap = {
   image: "string",
   institution: "string",
   description: "string",
-  //list: "array",
   list: "string",
   hidden: "hidden",
 }
 
 function getFieldType(field) {
-  //console.log(field)
-  //console.log(field.name, "|||||||||||||||", field.widget)
   return typesMap[field.widget] ? typesMap[field.widget] : field.widget
 }
 

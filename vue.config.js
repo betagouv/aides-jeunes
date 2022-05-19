@@ -8,7 +8,7 @@ const {
   netlifyContributionURL,
   statistics,
 } = require("./backend/config")
-const configureAPI = require("./configure")
+const configureAPI = require("./dist-server/configure")
 const mock = require("./mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI

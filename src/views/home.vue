@@ -1,5 +1,5 @@
 <template>
-  <div id="homepage">
+  <main id="homepage" role="main">
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
@@ -39,14 +39,11 @@
       </div>
       <div class="aj-home-illustration">
         <div>
-          <img
-            src="@/assets/images/home_illustration.png"
-            alt="Portrait jeune"
-          />
+          <img src="@/assets/images/home_illustration.png" alt="" />
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

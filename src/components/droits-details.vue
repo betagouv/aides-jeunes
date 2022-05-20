@@ -28,7 +28,7 @@
             >
             <ul class="list-unstyled">
               <li v-for="(condition, index) in droit.conditions" :key="index">
-                <img src="@/assets/images/doigt.svg" />
+                <img src="@/assets/images/doigt.svg" alt="" />
                 <span v-html="condition" />
               </li>
             </ul>

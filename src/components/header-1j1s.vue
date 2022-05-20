@@ -1,5 +1,5 @@
 <template>
-  <header class="aj-1j1s-header">
+  <header role="banner" class="aj-1j1s-header">
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
         <svg
@@ -85,7 +85,11 @@
         </div>
       </div>
     </div>
-    <nav class="aj-1j1s-header-menu" :class="{ show: showMenu }">
+    <nav
+      role="navigation"
+      class="aj-1j1s-header-menu"
+      :class="{ show: showMenu }"
+    >
       <div class="container">
         <svg
           width="18"

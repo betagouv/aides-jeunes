@@ -85,7 +85,7 @@ export default {
 
 <style>
 .total-element {
-  color: var(--dark-grey);
+  color: var(--darker-grey);
   font-weight: 700;
 }
 </style>

@@ -52,13 +52,13 @@ a.button {
   &.disabled {
     background-color: var(--light-grey);
     border: 1px solid var(--light-grey);
-    color: #4f4f4f;
+    color: var(--darkest-grey);
 
     &:hover,
     &:focus {
       background-color: var(--grey);
       border-color: var(--grey);
-      color: #4f4f4f;
+      color: var(--darkest-grey);
     }
   }
 

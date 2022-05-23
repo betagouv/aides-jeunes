@@ -3,15 +3,17 @@
     <h1>Déclaration d'accessibilité</h1>
 
     <p>
-      La conformité aux normes d’accessibilité numérique est un objectif
-      ultérieur mais nous tâchons de rendre ce site accessible à toutes et à
-      tous.
+      L’accessibilité est prise en compte dans la conception de ce projet mais
+      nous n’avons pas encore passé d’audit de conformité.
+    </p>
+    <p>
+      À ce jour, la navigation au clavier et la lecture d'écran est possible.
     </p>
 
     <h2>État de conformité</h2>
 
     <p>
-      Le service est <strong>non conforme avec le RGAA 4.0</strong> : le site
+      Le service est <strong>non conforme avec le RGAA 4.1</strong> : le site
       n'a pas encore été audité.
     </p>
 
@@ -40,8 +42,12 @@
 
     <p>
       Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit
-      de faire parvenir vos doléances ou une demande de saisine au Défenseur des
-      droits.
+      de faire parvenir vos doléances ou une demande de saisine au
+      <a
+        href="https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016"
+        target="_blank"
+        >Défenseur des droits.</a
+      >
     </p>
   </article>
 </template>

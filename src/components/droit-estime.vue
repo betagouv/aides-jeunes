@@ -3,7 +3,7 @@
     v-if="
       droit.type &&
       ($route.name !== 'aide' ||
-        ($route.name === 'aide' && droit.source !== 'openfisca'))
+        ($route.name === 'aide' && droit.source === 'javascript'))
     "
     class="aj-droit-estime"
   >

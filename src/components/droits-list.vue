@@ -30,8 +30,8 @@
               droit.warning === true
             "
           >
-            <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
-            est accessible sous certaines conditions supplémentaires.
+            <img src="@/assets/images/warning.svg" alt="" /> Attention, cette
+            aide vous est accessible sous certaines conditions supplémentaires.
           </WarningMessage>
         </div>
         <DroitEstime :droit="droit" />
@@ -65,7 +65,8 @@
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>
-                <small :aria-label="`Plus d'informations sur ${droit.label}`"
+                <small
+                  :aria-label="`Plus d'informations sur ${droit.label} - Nouvelle fenêtre`"
                   >Plus d'informations</small
                 >
               </h2>

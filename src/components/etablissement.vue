@@ -61,6 +61,7 @@
               class="button primary with-icon"
               target="_blank"
               rel="noopener"
+              :aria-label="`Site internet : ${etablissement.nom} - Nouvelle fenêtre`"
             >
               <i class="fa fa-share-square-o" aria-hidden="true" />
               Site internet

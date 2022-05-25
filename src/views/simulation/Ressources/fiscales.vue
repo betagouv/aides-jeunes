@@ -33,7 +33,11 @@
           {{ $store.state.dates.lastYear.label }} sur les revenus
           {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le
           retrouver en ligne sur
-          <a target="_blank" rel="noopener" href="http://www.impots.gouv.fr/"
+          <a
+            target="_blank"
+            rel="noopener"
+            href="http://www.impots.gouv.fr/"
+            title="impots.gouv.fr - Nouvelle fenêtre"
             >impots.gouv.fr</a
           >.
         </p>

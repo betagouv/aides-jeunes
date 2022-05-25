@@ -18,8 +18,9 @@
         target="_blank"
         rel="noopener"
         href="https://www.1jeune1solution.gouv.fr/confidentialite"
-        >la plateforme 1jeune1solution.</a
-      >
+        title="la plateforme 1jeune1solution : politique de confidentialité - Nouvelle fenêtre"
+        >la plateforme 1jeune1solution</a
+      >.
     </p>
 
     <h3>Pour quelles raisons nous utilisons des informations sur vous ?</h3>
@@ -200,6 +201,7 @@
         target="_blank"
         rel="noopener"
         href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces"
+        title="ici - Nouvelle fenêtre"
         >ici</a
       >, un modèle de courrier élaboré par la CNIL.
     </p>
@@ -244,6 +246,7 @@
               target="_blank"
               rel="noopener"
               href="https://www.ovh.com/fr/protection-donnees-personnelles"
+              title="OVH : protection des données personnelles - Nouvelle fenêtre"
               >https://www.ovh.com/fr/protection-donnees-personnelles</a
             >
           </td>

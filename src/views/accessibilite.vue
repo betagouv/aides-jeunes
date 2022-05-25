@@ -46,8 +46,9 @@
       <a
         href="https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016"
         target="_blank"
-        >Défenseur des droits.</a
-      >
+        title="Défenseur des droits - Nouvelle fenêtre"
+        >Défenseur des droits</a
+      >.
     </p>
   </article>
 </template>

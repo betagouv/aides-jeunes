@@ -1,4 +1,4 @@
-label: Etudier au Québec
+label: étudier au Québec
 institution: region_la_reunion
 description: La Région propose une aide financière aux étudiant·e·s souhaitant
   partir étudier au Québec.
@@ -21,7 +21,8 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Choisir une formation et un Cégep éligibles au dispositif Québec.
+  - Choisir une formation et un centre de formation éligibles au dispositif
+    Québec.
 interestFlag: _interetEtudesEtranger
 type: bool
 unit: €

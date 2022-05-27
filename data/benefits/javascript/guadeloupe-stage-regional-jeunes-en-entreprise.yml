@@ -1,0 +1,27 @@
+label: stage Régional - Jeunes en Entreprise
+institution: guadeloupe
+description: La Région vous permet d'effectuer une première expérience au sein
+  d’une entreprise locale et de percevoir une gratification.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "01"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: lyceen
+    conditions: []
+  - type: enseignement_superieur
+    conditions: []
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 500
+link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/stage-regional-jeunes-en-entreprise/categorie/economie-emploi-entreprises/#_
+teleservice: https://aides.regionguadeloupe.fr/gesaides_web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
+instructions: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/stage-regional-jeunes-en-entreprise/categorie/economie-emploi-entreprises/#_

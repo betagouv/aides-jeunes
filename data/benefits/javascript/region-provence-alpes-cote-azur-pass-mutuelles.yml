@@ -1,0 +1,23 @@
+label: pass Mutuelles
+institution: region_provence_alpes_cote_azur
+description: La Région vous aide à financer votre complémentaire santé.
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+conditions:
+  - Souscrire une complémentaire santé auprès d’<a target="_blank"
+    rel="noopener"
+    href="https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-mutuelles">un
+    des 7 organismes</a> conventionnés par la Région.
+interestFlag: _interetAidesSanitaireSocial
+type: float
+unit: €
+periodicite: autre
+montant: 100
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-mutuelles
+instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-mutuelles

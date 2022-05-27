@@ -10,12 +10,14 @@ conditions_generales:
   - type: age
     operator: <=
     value: 29
-profils: []
+profils:
+  - type: enseignement_superieur
+    conditions: []
 conditions:
   - Souscrire un prêt auprès d'une <a target="_blank" rel="noopener"
     href="https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/pret-etudiant-a-taux-zero/categorie/formation-enseignement-jeunesse/#_">banque
     partenaire</a>.
-  - Si vous avez entre 25 et 29 ans, ne pas avoir interrompu vos études.
+  - Si vous avez plus de 25 ans, ne pas avoir interrompu vos études.
 type: bool
 unit: €
 periodicite: ponctuelle

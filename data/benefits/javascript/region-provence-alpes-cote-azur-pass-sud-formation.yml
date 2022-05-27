@@ -1,0 +1,24 @@
+label: pass Sud Formation
+institution: region_provence_alpes_cote_azur
+description: La Région vous aide à financer votre formation professionnelle dans
+  un secteur qui recrute.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+  - type: age
+    operator: ">="
+    value: 16
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Être inscrit·e à Pôle Emploi ou Cap Emploi.
+  - Intégrer une formation dont le coût est inférieur à 10 000€ TTC.
+  - Vous assurer que cette formation n’est financée par aucune autre structure.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle
+instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle

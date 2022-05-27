@@ -1,0 +1,30 @@
+label: Programme Régional d’Aide à la Mobilité Etudiante (PRAME)
+institution: region_provence_alpes_cote_azur
+description: La Région propose une bourse pour effectuer un stage à l’étranger
+  dans le cadre de votre cursus de formation.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+  - type: quotient_familial
+    period: year
+    floor: 24000
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: enseignement_superieur
+    conditions: []
+conditions:
+  - Ne pas être bénéficiaire d'une allocation Erasmus, d'une autre aide à la
+    mobilité internationale ni percevoir une indemnité de stage supérieure à 100
+    € par semaine.
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 2000
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-enseignement-superieur-2021-2022
+teleservice: https://aidesformation.maregionsud.fr/

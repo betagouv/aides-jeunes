@@ -1,8 +1,7 @@
 label: Hébergement à la Cité Internationale Universitaire de Paris
 institution: guadeloupe
-description: La Région facilite l’accès au logement, dans la région parisienne,
-  aux étudiant·e·s poursuivant des études d’un niveau master en France
-  hexagonale.
+description: La Région vous aide à vous loger en région parisienne si vous
+  poursuivez des études d’un niveau master en France hexagonale.
 prefix: l’
 conditions_generales:
   - type: regions
@@ -23,8 +22,6 @@ profils:
 conditions:
   - Être inscrit·e au sein d’un établissement d’enseignement supérieur privé ou
     public relevant de l’Académie de Paris, Créteil ou de Versailles.
-  - Transmettre les éléments justifiant de sa capacité financière à s’acquitter
-    du paiement du loyer mensuel.
 interestFlag: _interetEtudesEtranger
 type: bool
 unit: €

@@ -1,0 +1,19 @@
+label: fonds social lycéen régional
+institution: region_pays_de_la_loire
+description: La Région propose une aide financière aux familles en difficulté
+  pour leurs dépenses d'hébergement, de restauration et de transport.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: lyceen
+    conditions: []
+conditions:
+  - Prendre contact auprès de votre établissement et constituer un dossier.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.paysdelaloire.fr/les-aides/fonds-social-lyceen-regional
+instructions: https://www.paysdelaloire.fr/les-aides/fonds-social-lyceen-regional

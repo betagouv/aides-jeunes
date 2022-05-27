@@ -1,0 +1,28 @@
+label: envoléo
+institution: region_pays_de_la_loire
+description: La Région prend en charge une partie du financement d'un séjour
+  d'études ou d'un stage à l'étranger de 3 mois minimum réalisé dans le cadre du
+  cursus de formation.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+  - type: age
+    operator: <=
+    value: 28
+profils:
+  - type: enseignement_superieur
+    conditions: []
+conditions:
+  - Être présélectionné·e par votre établissement de formation pour candidater
+    au programme.
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000
+link: https://www.paysdelaloire.fr/les-aides/envoleo
+teleservice: https://tsenvoleo.paysdelaloire.fr/MobiliteCRPL/workflow_url?ECITIZ_ACTIVITY_PATH=ActeurDemandeurIdentifie&USERID=CreationCompte&ECITIZ_DECONNECTION_URL=close.htm
+instructions: https://www.paysdelaloire.fr/les-aides/envoleo

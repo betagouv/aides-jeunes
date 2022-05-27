@@ -1,6 +1,6 @@
 label: VISA sanitaire et social
 institution: region_pays_de_la_loire
-description: La Région finance des formations aux métiers du sanitaire et du social.
+description: La Région finance des formations aux métiers du secteur sanitaire et social.
 prefix: l’aide
 conditions_generales:
   - type: regions
@@ -14,8 +14,8 @@ profils:
   - type: salarie
     conditions: []
 conditions:
-  - S'inscrire via Parcoursup (si étudiant·e) ou effectuer la demande auprès de
-    Pôle Emploi (si demandeur·euse d'emploi).
+  - Vous inscrire via Parcoursup si vous êtes étudiant·e, ou effectuer la
+    demande auprès de Pôle Emploi si vous êtes demandeur·euse d'emploi.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €

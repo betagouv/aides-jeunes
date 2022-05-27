@@ -25,3 +25,4 @@ legend: maximum
 montant: 1000
 link: https://www.paysdelaloire.fr/les-aides/envoleo
 teleservice: https://tsenvoleo.paysdelaloire.fr/MobiliteCRPL/workflow_url?ECITIZ_ACTIVITY_PATH=ActeurDemandeurIdentifie&USERID=CreationCompte&ECITIZ_DECONNECTION_URL=close.htm
+instructions: https://www.paysdelaloire.fr/les-aides/envoleo

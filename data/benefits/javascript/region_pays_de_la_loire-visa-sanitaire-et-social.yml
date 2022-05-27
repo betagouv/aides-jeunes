@@ -1,0 +1,24 @@
+label: VISA sanitaire et social
+institution: region_pays_de_la_loire
+description: La Région finance des formations aux métiers du secteur sanitaire et social.
+prefix: l’aide
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+profils:
+  - type: etudiant
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: salarie
+    conditions: []
+conditions:
+  - Vous inscrire via Parcoursup si vous êtes étudiant·e, ou effectuer la
+    demande auprès de Pôle Emploi si vous êtes demandeur·euse d'emploi.
+interestFlag: _interetAidesSanitaireSocial
+type: bool
+unit: €
+periodicite: autre
+link: https://www.paysdelaloire.fr/les-aides/region-formation-visa-sanitaire-et-social
+instructions: https://www.paysdelaloire.fr/les-aides/region-formation-visa-sanitaire-et-social

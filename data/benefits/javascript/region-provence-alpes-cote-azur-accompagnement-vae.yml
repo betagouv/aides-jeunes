@@ -1,0 +1,21 @@
+label: Accompagnement à la VAE (Validation des Acquis de l'Expérience)
+institution: region_provence_alpes_cote_azur
+description: La Région vous accompagne dans votre démarche de VAE.
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Être inscrit·e à Pôle Emploi.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 2400
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/validation-des-acquis-de-lexperience
+teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
+instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/validation-des-acquis-de-lexperience

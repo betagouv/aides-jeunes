@@ -11,7 +11,7 @@ profils:
   - type: lyceen
     conditions: []
 conditions:
-  - Prendre contact et constituer un dossier auprès de l'établissement.
+  - Prendre contact auprès de votre établissement et constituer un dossier.
 type: bool
 unit: €
 periodicite: autre

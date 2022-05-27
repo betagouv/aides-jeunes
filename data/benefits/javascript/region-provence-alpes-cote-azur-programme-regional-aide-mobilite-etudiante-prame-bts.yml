@@ -1,0 +1,31 @@
+label: programme Régional d’Aide à la Mobilité Etudiante (PRAME) - BTS
+institution: region_provence_alpes_cote_azur
+description: Cette aide a pour objectif de favoriser la mobilité des
+  étudiant·e·s en donnant accès à une bourse régionale dans le cadre de
+  l’accomplissement d’un stage à l’étranger durant leur cursus.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "93"
+  - type: quotient_familial
+    floor: 24000
+    period: year
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: annee_etude
+        values:
+          - bts_1
+conditions:
+  - Ne pas bénéficier d'une allocation Erasmus, d'une autre aide à la mobilité
+    internationale ou d’une indemnité de stage supérieure à 100 € par semaine.
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 2000
+link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-bts-2021-2022
+teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
+instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-bts-2021-2022

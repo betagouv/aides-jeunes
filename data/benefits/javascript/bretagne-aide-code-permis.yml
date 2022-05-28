@@ -4,15 +4,15 @@ description: Cette aide vise à favoriser l’accès à la formation et l’inse
   professionnelle des jeunes breton·ne·s en prenant en charge le financement de
   leur permis de conduire.
 conditions:
-  - 'Etre suivi·e par une mission locale : <a target="_blank" rel="noopener"
+  - 'Etre suivi·e par une mission locale : <a target="_blank" rel="noopener" title="Voir
+    les missions locales - Nouvelle fenêtre"
     href="https://www.unml.info/les-missions-locales/annuaire/bretagne/">contacter
     la mission locale la plus proche</a>.'
   - Pouvoir montrer que l’absence de permis est un frein à la réalisation de
     votre projet.
   - Bénéficier de l’accompagnement à la qualification de la Région Bretagne ou
-    <a target="_blank" rel="noopener"
-    href="https://www.bretagne.bzh/aides/fiches/copie-de-qualif-emploi/">suivre
-    une formation QUALIF Emploi</a>.
+    <a target="_blank" rel="noopener" title="Formation QUALIF Emploi - Nouvelle fenêtre"
+    href="https://www.bretagne.bzh/aides/fiches/copie-de-qualif-emploi/">suivre une formation QUALIF Emploi</a>.
 conditions_generales:
   - type: age
     operator: ">="

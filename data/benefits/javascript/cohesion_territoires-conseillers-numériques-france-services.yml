@@ -1,0 +1,26 @@
+label: Conseillers numériques France Services
+institution: cohesion_territoires
+description: >-
+  Les conseillers numériques France Services proposent des ateliers sur le
+  numérique du quotidien.
+
+
+  Les conseillers numériques France Services vous accompagnent pour devenir autonome dans les démarches numériques. Des ateliers individuels ou collectifs sont proposés près de chez vous:
+conditions_generales: []
+profils:
+  - type: chomeur
+    conditions: []
+  - type: lyceen
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+conditions: []
+type: bool
+unit: null
+periodicite: ponctuelle
+link: https://cartographie.conseiller-numerique.gouv.fr/
+teleservice: ""
+form: ""
+instructions: https://www.conseiller-numerique.gouv.fr/

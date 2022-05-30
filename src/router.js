@@ -2,6 +2,9 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import store from "./store"
 import context from "./context"
+import Institution from "@/lib/institution"
+
+const benefits = Institution.benefits.benefitsMap
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -274,6 +277,16 @@ const router = createRouter({
             import(
               /* webpackChunkName: "resultats" */ "./views/simulation/resultats-detail.vue"
             ),
+          meta: {
+            headTitle: (params) => {
+              const droitLabel = `${benefits[params.droitId].label}`
+              return benefits[params.droitId]?.label
+                ? droitLabel.charAt(0).toUpperCase() +
+                    droitLabel.slice(1) +
+                    ` - Ma simulation d'aides ${context.name}`
+                : process.env.VUE_APP_TITLE
+            },
+          },
         },
       ],
     },
@@ -288,6 +301,9 @@ const router = createRouter({
       name: "stats",
       component: () =>
         import(/* webpackChunkName: "stats" */ "./views/stats.vue"),
+      meta: {
+        headTitle: `Statistiques du simulateur d'aides ${context.name}`,
+      },
     },
     {
       path: "/aides",
@@ -295,7 +311,7 @@ const router = createRouter({
       component: () =>
         import(/* webpackChunkName: "liste-aides" */ "./views/liste-aides.vue"),
       meta: {
-        headTitle: "Toutes les aides",
+        headTitle: `Toutes les aides du simulateur ${context.name}`,
       },
     },
     {
@@ -303,6 +319,16 @@ const router = createRouter({
       name: "aide",
       component: () =>
         import(/* webpackChunkName: "aides" */ "./views/aide.vue"),
+      meta: {
+        headTitle: (params) => {
+          const benefitLabel = `${benefits[params.benefitId].label}`
+          return benefits[params.benefitId]?.label
+            ? benefitLabel.charAt(0).toUpperCase() +
+                benefitLabel.slice(1) +
+                ` - Simulateur d'aides ${context.name}`
+            : process.env.VUE_APP_TITLE
+        },
+      },
     },
     {
       path: "/suivi",
@@ -403,7 +429,12 @@ function getTitleMeta(route) {
   let meta
   for (let index = route.matched.length - 1; index >= 0; index -= 1) {
     meta = route.matched[index].meta
-    if (meta.headTitle) return meta.headTitle
+    if (meta.headTitle) {
+      if (typeof meta.headTitle === "function") {
+        return meta.headTitle(route.params)
+      }
+      return meta.headTitle
+    }
   }
   return process.env.VUE_APP_TITLE
 }

@@ -109,8 +109,7 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 }
 
 FollowupSchema.methods.createSurvey = function (type) {
-  const followup = this
-  return followup.surveys.create({
+  return this.surveys.create({
     type: type,
   })
 }

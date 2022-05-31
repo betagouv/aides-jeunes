@@ -2,14 +2,10 @@
   <footer role="contentInfo" class="aj-1j1s-footer">
     <div class="container">
       <div class="aj-1j1s-footer-logo-container">
-        <img
-          class="rf"
-          alt="Logo République Française"
-          src="@/../public/img/logo_rf.svg"
-        />
+        <img class="rf" alt="" src="@/../public/img/logo_rf.svg" />
         <img
           class="fr"
-          alt="Logo 1 jeune 1 solution France relance"
+          alt=""
           src="@/../public/img/logo1j1s-france-relance.svg"
         />
       </div>

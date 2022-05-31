@@ -9,11 +9,12 @@
         itemscope
         itemtype="http://schema.org/GovernmentService"
         :data-testid="droit.id"
+        :aria-label="`Demander ${droit.prefix} ${droit.label}`"
       >
         <img
           class="aj-aide-illustration"
           :src="getBenefitImage(droit)"
-          :alt="'Logo ' + droit.label"
+          alt=""
         />
         <div class="aj-aide-text">
           <h2 class="aj-question aj-benefit-label" itemprop="name">{{
@@ -58,10 +59,7 @@
       >
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
-            <img
-              :src="getBenefitImage(droit)"
-              :alt="'Icone pour' + droit.label"
-            />
+            <img :src="getBenefitImage(droit)" alt="" />
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>

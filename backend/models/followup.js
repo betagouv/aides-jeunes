@@ -109,12 +109,8 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 }
 
 FollowupSchema.methods.createSurvey = function (type) {
-  const followup = this
-  return utils.generateToken().then(function (id) {
-    return followup.surveys.create({
-      _id: id,
-      type: type,
-    })
+  return this.surveys.create({
+    type: type,
   })
 }
 

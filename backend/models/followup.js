@@ -109,9 +109,11 @@ FollowupSchema.methods.renderSurveyEmail = function (survey) {
 }
 
 FollowupSchema.methods.createSurvey = function (type) {
-  return this.surveys.create({
-    type: type,
-  })
+  return Promise.resolve(
+    this.surveys.create({
+      type: type,
+    })
+  )
 }
 
 FollowupSchema.methods.sendSurvey = function () {

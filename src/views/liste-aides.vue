@@ -41,6 +41,7 @@ const TYPES = {
   epci: "EPCI (Métropole, inter-communauté, etc.)",
   caf: "CAF Locales",
   commune: "Aides communales",
+  autre: "Autres aides",
 }
 
 export default {

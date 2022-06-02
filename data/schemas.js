@@ -60,15 +60,7 @@ function compareSchema(data, schema, output, depth = []) {
   const schemaKeys = Object.keys(schema)
   for (let key in data) {
     if (schemaKeys.includes(key) && schema[key].type != "hidden") {
-      if (
-        typeof data[key] !== schema[key].type && // compare type with expected type
-        data[key] !== null && // in case the field was unset in netlify CMS
-        schema[key].type != "hidden" && // don't check hidden fields
-        typeof schema[key].type !== "undefined" && // skip array check
-        typeof schema[key].type !== "object" // don't check object
-      ) {
-        output.push(errorLogger(key, depth, data[key], schema[key].type))
-      } else if (typeof data[key] == "object") {
+      if (typeof data[key] == "object") {
         // if the field contains other field, check them recursively
         // if the field is an array, check each item against a list of possible fields
         if (data[key] instanceof Array) {
@@ -94,6 +86,13 @@ function compareSchema(data, schema, output, depth = []) {
         } else if (data[key] != null) {
           compareSchema(data[key], schema[key], output, [...depth, key])
         }
+      } else if (
+        typeof data[key] !== schema[key].type && // compare type with expected type
+        data[key] !== null && // in case the field was unset in netlify CMS
+        schema[key].type != "hidden" && // don't check hidden fields
+        typeof schema[key].type !== "undefined" // skip array check
+      ) {
+        output.push(errorLogger(key, depth, data[key], schema[key].type))
       }
       // if the field is not in the schema
     } else if (typeof schema[key]?.type === "undefined") {
@@ -106,7 +105,7 @@ function compareSchema(data, schema, output, depth = []) {
     if (
       !dataKeys.includes(key) &&
       schema[key].type != "hidden" &&
-      schema[key].required == true &&
+      schema[key].required &&
       !(schema instanceof Array)
     ) {
       output.push({

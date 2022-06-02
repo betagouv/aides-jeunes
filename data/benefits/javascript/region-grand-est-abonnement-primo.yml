@@ -15,6 +15,7 @@ profils: []
 link: https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement
 teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=LOR
 instructions: https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement
+prefix: l'
 type: bool
 unit: €
 periodicite: autre

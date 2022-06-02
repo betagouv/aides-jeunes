@@ -15,6 +15,7 @@ profils:
     conditions: []
 link: https://www.paysdelaloire.fr/les-aides/bourses-regionales-pour-les-eleves-et-etudiants-en-formation-initiale-sociale-paramedicale-et-de?sous_thematique=215
 teleservice: https://maboursesanitaireetsociale.paysdelaloire.fr/Profil-public/public/paysdelaloire/bourse/accueil.do
+prefix: les
 type: bool
 unit: €
 periodicite: ponctuelle

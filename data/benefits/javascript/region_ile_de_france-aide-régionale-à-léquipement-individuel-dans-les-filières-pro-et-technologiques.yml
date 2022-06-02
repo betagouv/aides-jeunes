@@ -24,6 +24,7 @@ profils:
           - bts_1
 link: https://lycees.iledefrance.fr/dotation-budgetaire
 instructions: https://lycees.iledefrance.fr/dotation-budgetaire
+prefix: l'
 type: bool
 unit: €
 periodicite: ponctuelle

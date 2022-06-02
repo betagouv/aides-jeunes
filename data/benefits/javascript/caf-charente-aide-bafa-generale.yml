@@ -26,6 +26,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-charente/offre-de-service/enfance-et-jeunesse/le-bafa-vous-tente
 instructions: https://www.caf.fr/allocataires/caf-de-la-charente/offre-de-service/enfance-et-jeunesse/le-bafa-vous-tente
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

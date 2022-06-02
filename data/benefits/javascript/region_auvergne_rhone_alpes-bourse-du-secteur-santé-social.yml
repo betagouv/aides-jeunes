@@ -18,6 +18,7 @@ profils:
     conditions: []
 link: https://www.auvergnerhonealpes.fr/aide/47/89-obtenir-une-bourse-pour-suivre-une-formation-dans-le-secteur-sante-social-orientation-formation.htm
 teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#FSS
+prefix: la
 type: float
 unit: €
 periodicite: ponctuelle

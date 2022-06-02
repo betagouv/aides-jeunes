@@ -1,4 +1,4 @@
-label: le Combo parfait (aide à la formation)
+label: Combo parfait (aide à la formation)
 institution: region_centre_val_de_loire
 description: "Le Combo Parfait regroupe des formations qualifiantes ou
   pré-qualifiantes à des métiers de proximité, destinées aux jeunes en recherche
@@ -22,6 +22,7 @@ profils:
     conditions: []
 link: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
 instructions: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
+prefix: le
 type: float
 unit: €
 periodicite: mensuelle

@@ -1,4 +1,4 @@
-label: Éhop - Covoiturage Solidaire pour l'emploi
+label: Covoiturage Solidaire pour l'emploi - Éhop
 institution: region_pays_de_la_loire
 description: L'aide Éhop vous permet de trouver facilement un covoiturage pour
   vous rendre sur votre lieu de travail. Le service de mise en relation est
@@ -22,6 +22,7 @@ profils:
     conditions: []
 link: https://ehopcovoiturons-nous.fr/particuliers
 teleservice: https://m.ouestgo.fr/#/solidary-transport/home/request
+prefix: le
 type: bool
 unit: €
 periodicite: autre

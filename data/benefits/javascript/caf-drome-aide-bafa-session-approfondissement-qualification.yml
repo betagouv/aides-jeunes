@@ -12,6 +12,7 @@ conditions:
   - Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
 link: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

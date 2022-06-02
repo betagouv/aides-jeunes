@@ -24,6 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/enfance-et-jeunesse/l-aide-aux-stagiaires-en-formation-bafa
 instructions: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/enfance-et-jeunesse/l-aide-aux-stagiaires-en-formation-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

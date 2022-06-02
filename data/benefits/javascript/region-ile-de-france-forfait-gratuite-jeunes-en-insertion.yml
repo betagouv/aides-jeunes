@@ -24,6 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/le-forfait-gratuite-jeunes-en-insertion
 instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/le-forfait-gratuite-jeunes-en-insertion
+prefix: le
 type: bool
 unit: €
 periodicite: autre

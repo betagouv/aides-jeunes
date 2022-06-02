@@ -15,6 +15,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
 form: https://www.caf.fr/sites/default/files/caf/521/IMPRIME%20BAFD.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

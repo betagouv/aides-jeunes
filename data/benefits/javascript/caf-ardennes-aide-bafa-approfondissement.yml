@@ -15,6 +15,7 @@ conditions:
 link: https://www.caf.fr/allocataires/caf-des-ardennes/offre-de-service/enfance-et-jeunesse/le-bafa
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres
 instructions: https://www.caf.fr/allocataires/caf-des-ardennes/offre-de-service/enfance-et-jeunesse/le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

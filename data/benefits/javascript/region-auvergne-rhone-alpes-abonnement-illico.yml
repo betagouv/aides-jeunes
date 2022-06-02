@@ -14,6 +14,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
 instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-hebdo-jeunes
+prefix: l'
 type: bool
 unit: €
 periodicite: autre

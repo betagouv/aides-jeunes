@@ -19,6 +19,7 @@ link: https://jeunes.nouvelle-aquitaine.fr/formation/accompagnement-scolaire/le-
 teleservice: https://www.mesdemarches.aidesrentree.fr/Beneficiaires/Views/Accueil.aspx
 form: ""
 instructions: ""
+prefix: le
 type: float
 unit: €
 periodicite: ponctuelle

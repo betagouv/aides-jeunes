@@ -27,6 +27,7 @@ profils:
     conditions: []
 link: https://www.ter.sncf.com/grand-est/offres/forfaits/champagne-ardenne/champagne-ardenne_pass-etudes#:~:text=Avec%20la%20carte%20PASS'%C3%89TUDES,vos%20billets%20TER%20Grand%20Est.
 form: https://cdn.ter.sncf.com/medias/PDF/grand_est/2021%20formulaire%20demande%20de%20carte%20PASS%20ETUDES_tcm75-151436_tcm75-136212.pdf
+prefix: le
 type: bool
 unit: €
 periodicite: annuelle

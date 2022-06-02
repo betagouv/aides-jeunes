@@ -18,6 +18,7 @@ profils:
 link: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
 instructions: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/
+prefix: la
 type: float
 unit: €
 periodicite: annuelle

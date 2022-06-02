@@ -18,5 +18,6 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/hauts-de-france/offres/cartes-de-reduction/carte-ter-26-ans
 instructions: https://www.ter.sncf.com/hauts-de-france/offres/cartes-de-reduction/carte-ter-26-ans
+prefix: la
 type: bool
 periodicite: autre

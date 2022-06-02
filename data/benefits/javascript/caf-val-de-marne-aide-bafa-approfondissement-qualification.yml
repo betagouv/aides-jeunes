@@ -12,6 +12,7 @@ conditions:
 link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/demande_daide_bafa.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

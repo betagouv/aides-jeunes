@@ -14,6 +14,7 @@ conditions_generales:
 profils: []
 link: https://mmt.vsct.fr/sites/default/files/swt/CARA/2021-06/Depliant%20illico%20Solidaire-janvier%202019.pdf
 teleservice: https://illicosolidaire.cba.fr/
+prefix: la
 type: bool
 unit: €
 periodicite: annuelle

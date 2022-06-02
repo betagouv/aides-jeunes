@@ -36,6 +36,7 @@ profils:
         value: 20
 link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/solidarite-et-insertion/prime-a-l-outillage
 instructions: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/solidarite-et-insertion/prime-a-l-outillage
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

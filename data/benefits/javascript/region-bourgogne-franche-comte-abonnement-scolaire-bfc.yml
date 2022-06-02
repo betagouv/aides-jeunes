@@ -11,6 +11,7 @@ profils:
     conditions: []
 link: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/abonnement-scolaire-college-lycee-rentree
 instructions: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/abonnement-scolaire-college-lycee-rentree
+prefix: l'
 type: bool
 unit: €
 periodicite: autre

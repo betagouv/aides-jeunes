@@ -19,6 +19,7 @@ profils:
     conditions: []
 link: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/
 instructions: https://www.grandest.fr/vos-aides-regionales/pass-mobilite-formation/
+prefix: le
 type: float
 unit: €
 periodicite: ponctuelle

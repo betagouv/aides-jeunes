@@ -17,6 +17,7 @@ profils:
 link: https://www.crous-normandie.fr/bourses/aides-paramedicales-sociales-de-sante/
 teleservice: https://www.messervices.etudiant.gouv.fr/envole/
 instructions: https://www.crous-normandie.fr/bourses/aides-paramedicales-sociales-de-sante/
+prefix: les
 type: bool
 unit: €
 periodicite: autre

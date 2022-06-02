@@ -12,6 +12,7 @@ conditions:
 link: https://www.caf.fr/allocataires/caf-de-l-ain/offre-de-service/enfance-et-jeunesse/le-bafa
 form: https://www.caf.fr/sites/default/files/caf/011/Images/Offres%20de%20service/Enfance%20et%20Jeunesse/Demande%20BAFA%203.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-ain/offre-de-service/enfance-et-jeunesse/le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

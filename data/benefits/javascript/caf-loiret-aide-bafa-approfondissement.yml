@@ -24,6 +24,7 @@ profils: []
 link: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
 form: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/451/Livret%20action%20sociale%202020/Info%20et%20dde%20BAFA%20CAF%202020.pdf
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

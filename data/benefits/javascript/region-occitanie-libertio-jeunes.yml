@@ -12,6 +12,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/occitanie/offres/tarifs-occitanie/jeunes
 instructions: https://www.ter.sncf.com/occitanie/offres/tarifs-occitanie/jeunes
+prefix: l'aide
 type: bool
 unit: €
 periodicite: autre

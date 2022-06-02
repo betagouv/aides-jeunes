@@ -13,6 +13,7 @@ link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositi
 teleservice: https://m.ter.sncf.com/hauts-de-france/tarifs-cartes/billets/enfant-1-euro
 form: ""
 instructions: ""
+prefix: le
 type: bool
 unit: €
 periodicite: autre

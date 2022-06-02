@@ -16,6 +16,7 @@ conditions:
   - Ne pas être pris en charge à 100 % par l'employeur.
 link: https://www.caf.fr/allocataires/caf-des-deux-sevres/offre-de-service/enfance-et-jeunesse/bafa-l-aide-pour-la-formation-generale-coup-de-pouce-bafa
 instructions: https://www.caf.fr/allocataires/caf-des-deux-sevres/offre-de-service/enfance-et-jeunesse/bafa-l-aide-pour-la-formation-generale-coup-de-pouce-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

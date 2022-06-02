@@ -22,6 +22,7 @@ conditions_generales:
 profils: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir
 instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir
+prefix: le
 type: bool
 unit: €
 periodicite: autre

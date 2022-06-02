@@ -18,6 +18,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
 instructions: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
+prefix: l'aide
 type: bool
 unit: €
 periodicite: autre

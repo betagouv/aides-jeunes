@@ -25,6 +25,7 @@ link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sante-jeu
 teleservice: https://passantejeunes.maregionsud.fr/Account/LogOn?ReturnUrl=%2fAccount%2fLogOn%3fReturnUrl%3d%252fAccount%252fLogOn%253fReturnUrl%253d%25252f
 form: ""
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sante-jeunes
+prefix: le
 type: bool
 unit: €
 periodicite: autre

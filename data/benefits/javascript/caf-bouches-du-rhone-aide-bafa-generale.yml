@@ -22,6 +22,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
 instructions: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

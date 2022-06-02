@@ -24,6 +24,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/enfance-et-jeunesse/bafa-et-bafd
 form: https://www.caf.fr/sites/default/files/caf/221/offre_services/Enfance_jeunesse/bafa/20160418_demande_aide_bafa-bafd.pdf
 instructions: https://www.caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/enfance-et-jeunesse/bafa-et-bafd
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

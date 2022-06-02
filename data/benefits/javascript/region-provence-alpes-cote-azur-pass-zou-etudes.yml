@@ -28,6 +28,7 @@ profils:
 link: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/pass-zou-etudes
 teleservice: https://services-zou.maregionsud.fr/fr/billetterie/action/8#zouetudes
 instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/pass-zou-etudes
+prefix: le
 type: bool
 unit: €
 periodicite: autre

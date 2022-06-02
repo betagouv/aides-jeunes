@@ -15,6 +15,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/pays-de-la-loire/offres/tarifs-et-abonnements/je-voyage-un-peu/carte-mezzo/%5Btab%5Dlescartes
 instructions: https://www.ter.sncf.com/pays-de-la-loire/offres/tarifs-et-abonnements/je-voyage-un-peu/carte-mezzo/%5Btab%5Dlescartes
+prefix: la
 type: bool
 unit: €
 periodicite: annuelle

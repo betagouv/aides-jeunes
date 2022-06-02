@@ -19,6 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

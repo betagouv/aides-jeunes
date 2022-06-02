@@ -22,6 +22,7 @@ profils:
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=BESS-01%2F22
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667
+prefix: la
 type: float
 unit: €
 periodicite: autre

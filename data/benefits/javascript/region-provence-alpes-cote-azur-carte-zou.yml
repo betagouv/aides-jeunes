@@ -18,5 +18,6 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/zou-50-75-26
 instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/zou-50-75-26
+prefix: la
 type: bool
 periodicite: autre

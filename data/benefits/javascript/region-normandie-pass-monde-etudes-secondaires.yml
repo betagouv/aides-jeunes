@@ -35,6 +35,7 @@ profils:
 link: https://www.normandie.fr/pass-monde-etudes-secondaires
 teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
 instructions: ""
+prefix: le
 type: float
 unit: €
 periodicite: autre

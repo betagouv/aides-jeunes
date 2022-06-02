@@ -20,6 +20,7 @@ profils:
     conditions: []
 link: https://www.collectivitedemartinique.mq/wp-content/uploads/2021/07/Pr_Broch_a5_Espace-Etudiants_Form-Sanitaires_2107.pdf
 teleservice: https://etudiants.collectivitedemartinique.mq/
+prefix: les
 type: float
 unit: €
 periodicite: annuelle

@@ -23,6 +23,7 @@ conditions_generales:
 profils: []
 link: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
 instructions: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
+prefix: l'aide
 type: float
 unit: €
 periodicite: ponctuelle

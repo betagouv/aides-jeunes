@@ -38,6 +38,7 @@ const TYPES = {
   national: "Aides nationales",
   region: "Aides régionales",
   departement: "Aides départementales",
+  autre: "Collectivités territoriales",
   epci: "EPCI (Métropole, inter-communauté, etc.)",
   caf: "CAF Locales",
   commune: "Aides communales",

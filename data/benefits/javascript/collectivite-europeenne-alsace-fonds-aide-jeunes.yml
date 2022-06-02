@@ -22,7 +22,7 @@ conditions_generales:
 profils: []
 link: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
 instructions: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
-prefix: l’
+prefix: les
 type: bool
 unit: €
 periodicite: ponctuelle

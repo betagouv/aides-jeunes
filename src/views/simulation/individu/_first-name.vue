@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <label for="_firstName" class="aj-question"
+    <label role="heading" aria-level="2" for="_firstName" class="aj-question"
       >Quel est le prénom de votre enfant ? Il servira uniquement à vous
       faciliter la saisie par la suite.</label
     >

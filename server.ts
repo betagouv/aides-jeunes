@@ -2,18 +2,18 @@
 /* eslint-disable no-console */
 
 const express = require("express")
-const app = express()
 const path = require("path")
 
+const app = express()
 const port = process.env.PORT || 8080
 
 process.env.MES_AIDES_ROOT_URL =
-  process.env.MES_AIDES_ROOT_URL || "http://localhost:" + port
+  process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
 require("./configure")({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {
-  res.sendFile(path.join(__dirname, "../dist/index.html"))
+  res.sendFile("~/dist/index.html")
 })
 
 app.use(function (err, req, res, next) {
@@ -22,12 +22,11 @@ app.use(function (err, req, res, next) {
   next()
 })
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(
-    "Mes Aides server listening on port %d, in %s mode, expecting to be deployed on %s",
-    port,
-    app.get("env"),
-    process.env.MES_AIDES_ROOT_URL
+    `Aides Jeunes server listening on port ${port}, in ${app.get(
+      "env"
+    )} mode, expecting to be deployed on ${process.env.MES_AIDES_ROOT_URL}`
   )
 })
 

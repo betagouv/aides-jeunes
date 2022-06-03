@@ -1,24 +1,20 @@
+participation: true
 label: complémentaire santé solidaire
-periodicite: mensuelle
-description: >-
-  La Complémentaire Santé Solidaire (CSS) est une protection complémentaire
-  santé (mutuelle). Elle remplace la Complémentaire Maladie Universelle
-  Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire Santé (ACS)
-  à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est accordée pour
-  un an.
-conditions:
-  - >-
-    Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou
-    Réunion">en France</abbr> depuis plus de 3 mois.
-link: https://www.service-public.fr/particuliers/vosdroits/F10027
-form: >-
-  https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
-teleservice: >-
-  https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true&_pageID=P1_DEMANDE_CMUC
+institution: assurance_maladie
+description: La Complémentaire Santé Solidaire (CSS) est une protection
+  complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie
+  Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire
+  Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est
+  accordée pour un an.
 prefix: la
+conditions:
+  - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou
+    Réunion">en France</abbr> depuis plus de 3 mois.
+type: mixed
+periodicite: mensuelle
+link: https://www.service-public.fr/particuliers/vosdroits/F10027
+teleservice: https://www.complementaire-sante-solidaire.gouv.fr/cmu-c-demarche.php
+form: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
 entity: familles
 openfiscaPeriod: thisMonth
-type: mixed
-participation: true
 msa: true
-institution: assurance_maladie

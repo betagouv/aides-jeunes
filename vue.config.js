@@ -7,7 +7,7 @@ const {
   matomo,
   netlifyContributionURL,
   statistics,
-} = require("./backend/config")
+} = require("./dist-server/backend/config")
 const configureAPI = require("./dist-server/configure")
 const mock = require("./mock")
 const webpack = require("webpack")

@@ -9,7 +9,7 @@ const {
   statistics,
 } = require("./dist-server/backend/config")
 const configureAPI = require("./dist-server/configure")
-const mock = require("./mock")
+const mock = require("./dist-server/mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 const parseArgs = require("minimist")

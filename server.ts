@@ -4,6 +4,7 @@
 const express = require("express")
 
 const app = express()
+const path = require("path")
 const port = process.env.PORT || 8080
 
 process.env.MES_AIDES_ROOT_URL =
@@ -12,7 +13,7 @@ require("./configure")({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {
-  res.sendFile("../dist/index.html")
+  res.sendFile(path.join(__dirname, "dist/index.html"))
 })
 
 app.use(function (err, req, res, next) {

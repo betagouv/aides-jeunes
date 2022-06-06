@@ -12,7 +12,7 @@ require("./configure")({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {
-  res.sendFile("~/dist/index.html")
+  res.sendFile("../dist/index.html")
 })
 
 app.use(function (err, req, res, next) {

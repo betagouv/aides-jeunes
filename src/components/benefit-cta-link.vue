@@ -50,7 +50,7 @@ export default {
       return typeLabels[this.type]
     },
     longLabel: function () {
-      return `${longLabels[this.type]} pour ${this.benefit.prefix}${
+      return `${longLabels[this.type]} pour ${this.benefit.prefix || ""}${
         this.benefit.prefix?.endsWith("’") ? "" : " "
       }${this.benefit.label}`
     },

@@ -10,6 +10,7 @@
       xml:space="preserve"
       width="10"
     >
+      <title>Modifier ma simulation</title>
       <g>
         <path
           d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z"
@@ -26,6 +27,7 @@
         <circle cx="4.029" cy="48.661" r="4.029" />
       </g>
     </svg>
+    <span class="btn-label" aria-hidden="true">Modifier ma simulation</span>
   </button>
 </template>
 
@@ -35,4 +37,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.btn-label {
+  display: none;
+}
+</style>

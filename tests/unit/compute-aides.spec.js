@@ -36,6 +36,9 @@ describe("computeAides", function () {
           rsa_non_calculable: {
             "2014-11": "error",
           },
+          rsa: {
+            "2014-11": 0,
+          },
           paris_logement_familles: {
             "2014-11": 10,
           },

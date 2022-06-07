@@ -21,7 +21,7 @@
                 <img
                   src="../assets/images/done.svg"
                   class="aj-check-icon"
-                  alt="Logo validé"
+                  alt=""
                 />
               </div>
               <router-link

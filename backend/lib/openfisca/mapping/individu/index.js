@@ -85,13 +85,6 @@ const individuSchema = {
       return moment(situation.dateDeValeur).format("YYYY-MM-DD")
     },
   },
-  domaine_specialites_formation_niveau_17: {
-    src: "_domaineFormation",
-    fn: function (_domaineFormation) {
-      const domaine = Scolarite.domainesFormation[_domaineFormation]?.level
-      return (domaine?.level === 17 && domaine.value) || undefined
-    },
-  },
   enceinte: {
     src: "enceinte",
     fn: function (enceinte) {

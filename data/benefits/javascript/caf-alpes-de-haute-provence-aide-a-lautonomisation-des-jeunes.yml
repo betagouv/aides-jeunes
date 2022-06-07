@@ -26,6 +26,7 @@ profils:
         value: 25
 link: https://www.caf.fr/partenaires/caf-des-alpes-de-haute-provence/partenaires-locaux/aide-a-l-autonomisation-des-jeunes
 form: https://www.caf.fr/sites/default/files/caf/041/AFI/IMPRIME%20AAJ%2010-2021%20pour%20utilisation%202022.pdf
+prefix: l'
 type: float
 unit: €
 periodicite: mensuelle

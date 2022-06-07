@@ -49,6 +49,7 @@ function generate_benefit_list(institutions) {
         collectivity: b.collectivity,
         title: b.title,
         institution: b.institution,
+        prefix: "l'",
         type: "float",
         periodicite: "ponctuelle",
         link: b.url,

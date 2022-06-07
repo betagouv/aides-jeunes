@@ -24,6 +24,7 @@ profils:
     conditions: []
 link: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
 instructions: https://www.auvergnerhonealpes.fr/aide/81/289-beneficier-de-la-bourse-au-merite-en-tant-que-lyceen-ou-apprenti-education-lycees.htm
+prefix: la
 type: float
 unit: €
 periodicite: autre

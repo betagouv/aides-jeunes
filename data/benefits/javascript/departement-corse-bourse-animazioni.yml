@@ -24,6 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
 instructions: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
+prefix: la
 type: float
 unit: €
 periodicite: autre

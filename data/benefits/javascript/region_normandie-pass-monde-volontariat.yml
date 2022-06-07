@@ -48,6 +48,7 @@ profils:
     conditions: []
 link: https://www.normandie.fr/pass-monde-volontariat
 teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+prefix: le
 type: float
 unit: €
 periodicite: annuelle

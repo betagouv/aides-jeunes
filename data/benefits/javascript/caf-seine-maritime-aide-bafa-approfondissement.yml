@@ -25,6 +25,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-seine-maritime/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-au-brevet-d-aptitude-aux-fonctions-d-animateurs-caf-de-seine-maritime
 form: https://www.caf.fr/sites/default/files/caf/768/Offre%20de%20service/enfance%20et%20jeunesse%20%286%20%C3%A0%2018%20nas%29/bafacnaf.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-seine-maritime/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-au-brevet-d-aptitude-aux-fonctions-d-animateurs-caf-de-seine-maritime
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

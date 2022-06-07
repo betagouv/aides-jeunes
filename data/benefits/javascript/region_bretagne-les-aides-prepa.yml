@@ -26,6 +26,7 @@ profils:
 link: https://www.bretagne.bzh/aides/?mot-clef=%22prepa%22&cloture=0&showall=0
 teleservice: https://aides.bretagne.bzh/account-management/crbr-demandeurs/ux/#/login?redirectTo=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-crbr-portail-depot-demande-aides&footer=https:%2F%2Faides.bretagne.bzh%2Faides%2F%23%2Fcrbr%2Fmentions-legales,Mentions%20l%C3%A9gales,_self
 instructions: ""
+prefix: les
 type: bool
 unit: €
 periodicite: ponctuelle

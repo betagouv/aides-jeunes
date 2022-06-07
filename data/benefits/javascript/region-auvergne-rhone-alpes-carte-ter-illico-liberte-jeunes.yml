@@ -16,6 +16,7 @@ profils: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
 teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
 instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/offres/tarifs/illico-liberte-jeune
+prefix: la
 type: bool
 unit: €
 periodicite: autre

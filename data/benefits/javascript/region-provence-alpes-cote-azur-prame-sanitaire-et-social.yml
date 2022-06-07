@@ -25,6 +25,7 @@ conditions_generales:
 profils: []
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-sanitaire-et-social-2021-2022
 teleservice: https://aidesformation.maregionsud.fr/
+prefix: le
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-sanitaire-et-social-2021-2022
 type: float
 unit: €

@@ -16,6 +16,7 @@ profils:
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=595
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=595
+prefix: la
 type: float
 unit: €
 periodicite: ponctuelle

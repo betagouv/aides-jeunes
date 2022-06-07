@@ -25,6 +25,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
 form: https://www.caf.fr/sites/default/files/caf/261/offre-de-service/enfance-jeunesse/aides-projets-jeunes-bafa/demande-aide-session-formation-generale-bafa2021.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/jeune-de-11-a-25-ans/aide-pour-passer-le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

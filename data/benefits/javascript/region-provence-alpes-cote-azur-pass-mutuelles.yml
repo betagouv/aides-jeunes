@@ -15,6 +15,7 @@ conditions:
     href="https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-mutuelles">un
     des 7 organismes</a> conventionnés par la Région.
 interestFlag: _interetAidesSanitaireSocial
+prefix: le
 type: float
 unit: €
 periodicite: autre

@@ -19,6 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-sarthe/offre-de-service/enfance-et-jeunesse/aides-aux-projets-pour-les-jeunes-0
 instructions: https://www.caf.fr/allocataires/caf-de-la-sarthe/offre-de-service/enfance-et-jeunesse/aides-aux-projets-pour-les-jeunes-0
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

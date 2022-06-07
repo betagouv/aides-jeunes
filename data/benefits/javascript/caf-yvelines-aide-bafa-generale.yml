@@ -16,6 +16,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-des-yvelines/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-et-au-bafd
 form: https://www.caf.fr/sites/default/files/caf/781/Documents/Action-sociale/Enfance-jeunesse/BAFA/7.5%2806-2021%29-bafa-bafd-3.pdf
 instructions: https://www.caf.fr/allocataires/caf-des-yvelines/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-et-au-bafd
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

@@ -18,6 +18,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/pass-abonne-moins-28
 teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/?codeRegion=AQU
+prefix: le
 type: bool
 unit: €
 periodicite: autre

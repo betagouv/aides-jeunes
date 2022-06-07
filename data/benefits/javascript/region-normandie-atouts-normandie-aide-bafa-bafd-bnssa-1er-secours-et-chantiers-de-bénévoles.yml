@@ -23,6 +23,7 @@ conditions_generales:
 profils: []
 link: https://atouts.normandie.fr/
 teleservice: https://atouts.normandie.fr/
+prefix: l'aide
 type: float
 unit: €
 periodicite: ponctuelle

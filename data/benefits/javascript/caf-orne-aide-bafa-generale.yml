@@ -20,6 +20,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-orne/offre-de-service/enfance-et-jeunesse/la-formation-bafa-bafd
 instructions: https://www.caf.fr/allocataires/caf-de-l-orne/offre-de-service/enfance-et-jeunesse/la-formation-bafa-bafd
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

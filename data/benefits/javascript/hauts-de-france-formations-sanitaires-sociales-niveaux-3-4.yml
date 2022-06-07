@@ -21,6 +21,7 @@ profils:
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=656
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=656
+prefix: le
 type: bool
 unit: €
 periodicite: autre

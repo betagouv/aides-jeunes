@@ -29,6 +29,7 @@ conditions_generales:
 profils: []
 link: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
 instructions: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
+prefix: l'
 type: float
 unit: €
 periodicite: autre

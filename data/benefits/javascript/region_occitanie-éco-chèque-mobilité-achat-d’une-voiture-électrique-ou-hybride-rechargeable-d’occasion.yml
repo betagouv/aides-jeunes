@@ -20,6 +20,7 @@ conditions_generales:
 profils: []
 link: https://www.laregion.fr/Eco-cheque-mobilite-voiture-electrique-ou-hybride
 teleservice: https://mesaidesenligne.laregion.fr/aides/#/croccitanie/connecte/F_DMP_E_CHEQ_VO/depot/simple
+prefix: l'
 type: float
 unit: €
 periodicite: autre

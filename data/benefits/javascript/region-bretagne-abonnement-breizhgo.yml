@@ -19,6 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
 instructions: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
+prefix: l'
 type: bool
 unit: €
 periodicite: autre

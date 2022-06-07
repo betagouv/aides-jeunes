@@ -18,6 +18,7 @@ profils:
 link: https://www.centre-valdeloire.fr/vivre/accompagner-la-formation/secteur-sanitaire-et-social/les-aides-pour-la-formation-sanitaire-et
 teleservice: https://www.aress.regioncentre-valdeloire.fr/basscep/
 instructions: https://www.centre-valdeloire.fr/vivre/accompagner-la-formation/secteur-sanitaire-et-social/les-aides-pour-la-formation-sanitaire-et
+prefix: les
 type: float
 unit: €
 periodicite: ponctuelle

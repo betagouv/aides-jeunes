@@ -27,6 +27,7 @@ profils:
 link: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
 form: ""
 instructions: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
+prefix: le
 type: bool
 unit: €
 periodicite: autre

@@ -16,6 +16,7 @@ profils: []
 link: https://www.avantagesjeunes.com/
 teleservice: https://www.avantagesjeunes.com/boutique/etape-1
 instructions: ""
+prefix: l'
 type: bool
 unit: €
 periodicite: autre

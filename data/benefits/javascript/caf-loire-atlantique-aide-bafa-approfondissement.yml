@@ -21,6 +21,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-loire-atlantique/offre-de-service/enfance-et-jeunesse/l-aide-locale-au-financement-du-bafa
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
 instructions: https://www.caf.fr/allocataires/caf-de-loire-atlantique/offre-de-service/enfance-et-jeunesse/l-aide-locale-au-financement-du-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

@@ -23,6 +23,7 @@ profils:
     conditions: []
 link: https://www.bretagne.bzh/aides/fiches/bmouve-bretagne-mobilite-ouverture-europe/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+prefix: l'aide
 type: bool
 unit: €
 periodicite: ponctuelle

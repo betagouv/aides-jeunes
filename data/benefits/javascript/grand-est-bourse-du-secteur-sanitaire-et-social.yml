@@ -17,6 +17,7 @@ profils:
 link: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
 teleservice: https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-PORTAILSIMULATION
 instructions: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
+prefix: la
 type: bool
 unit: €
 periodicite: autre

@@ -15,6 +15,7 @@ conditions_generales:
 profils: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=802
 teleservice: https://m.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/+26-ans
+prefix: l'aide
 type: bool
 unit: €
 periodicite: annuelle

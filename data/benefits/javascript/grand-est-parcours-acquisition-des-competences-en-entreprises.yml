@@ -17,6 +17,7 @@ profils: []
 link: http://www.pace-grandest.fr/
 teleservice: https://docs.google.com/forms/d/e/1FAIpQLScCXPV5JorT_JapH36mzwvFFMN_tlhXNCYibuU1Ow3qdykYkA/viewform
 instructions: http://www.pace-grandest.fr/
+prefix: le
 type: float
 unit: €
 periodicite: mensuelle

@@ -22,6 +22,7 @@ conditions_generales:
 profils: []
 link: https://www.bourgognefranchecomte.fr/permisdeconduire
 instructions: https://www.bourgognefranchecomte.fr/permisdeconduire
+prefix: l'
 type: float
 unit: €
 periodicite: autre

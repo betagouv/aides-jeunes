@@ -16,6 +16,7 @@ profils:
     conditions: []
 link: https://www.isula.corsica/Borse-di-studii-di-furmazione-sanitarie-e-suciale-Bourses-d-etudes-de-formations-sanitaires-et-sociales_a1541.html
 form: https://www.isula.corsica/attachment/1979793/
+prefix: les
 type: bool
 unit: €
 periodicite: autre

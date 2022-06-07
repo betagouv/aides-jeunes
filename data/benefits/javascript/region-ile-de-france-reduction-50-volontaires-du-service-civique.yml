@@ -16,6 +16,7 @@ profils:
     conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/reduction-50-pourcents-volontaires-service-civique
 instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/reduction-50-pourcents-volontaires-service-civique
+prefix: la
 type: bool
 unit: €
 periodicite: autre

@@ -18,6 +18,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-eure-et-loir/offre-de-service/enfance-et-jeunesse/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 form: https://www.caf.fr/sites/default/files/caf/281/Documents/Bafa/demande_daide_bafa_r4.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-eure-et-loir/offre-de-service/enfance-et-jeunesse/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

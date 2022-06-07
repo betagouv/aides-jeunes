@@ -20,6 +20,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-aveyron/offre-de-service/enfance-et-jeunesse/le-bafa
 form: https://www.caf.fr/sites/default/files/caf/121/Documents/Offre%20de%20service/demande_daide_bafa_r4.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-aveyron/offre-de-service/enfance-et-jeunesse/le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

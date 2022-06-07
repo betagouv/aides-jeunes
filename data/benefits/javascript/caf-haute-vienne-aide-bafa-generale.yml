@@ -28,6 +28,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-vienne/offre-de-service/enfance-et-jeunesse/vous-voulez-passer-le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-vienne/offre-de-service/enfance-et-jeunesse/vous-voulez-passer-le-bafa
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

@@ -17,6 +17,7 @@ profils: []
 link: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/reduction-tarif-jeune-etudiant
 teleservice: https://www.ter.sncf.com/bourgogne-franche-comte/offres/tarif-train/reduction-tarif-jeune-etudiant
 instructions: ""
+prefix: le
 type: bool
 unit: €
 periodicite: autre

@@ -21,6 +21,7 @@ profils:
 link: https://lycees.iledefrance.fr/dotation-budgetaire
 teleservice: ""
 instructions: https://lycees.iledefrance.fr/dotation-budgetaire
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

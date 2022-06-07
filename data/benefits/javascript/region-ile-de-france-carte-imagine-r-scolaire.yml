@@ -24,6 +24,7 @@ profils:
     conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-scolaire
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte
+prefix: la
 type: bool
 unit: €
 periodicite: autre

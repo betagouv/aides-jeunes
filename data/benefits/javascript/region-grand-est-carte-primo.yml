@@ -15,6 +15,7 @@ conditions_generales:
 profils: []
 link: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
 instructions: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
+prefix: la
 type: bool
 unit: €
 periodicite: autre

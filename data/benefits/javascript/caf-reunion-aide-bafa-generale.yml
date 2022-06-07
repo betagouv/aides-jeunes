@@ -18,6 +18,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-reunion/offre-de-service/enfance-et-jeunesse/le-bafa-ou-le-bafd-vous-tente-votre-caf-peut-vous-aider
 instructions: https://www.caf.fr/allocataires/caf-de-la-reunion/offre-de-service/enfance-et-jeunesse/le-bafa-ou-le-bafd-vous-tente-votre-caf-peut-vous-aider
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

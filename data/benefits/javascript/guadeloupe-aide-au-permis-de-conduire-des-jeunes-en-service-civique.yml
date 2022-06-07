@@ -21,6 +21,7 @@ profils:
         value: 25
 link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/aide-au-permis-de-conduire-des-jeunes-en-service-civique/categorie/etudiant/#_
 instructions: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/aide-au-permis-de-conduire-des-jeunes-en-service-civique/categorie/etudiant/#_
+prefix: l'
 type: float
 unit: €
 periodicite: autre

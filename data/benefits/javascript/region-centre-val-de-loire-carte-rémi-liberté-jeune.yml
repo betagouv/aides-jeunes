@@ -21,6 +21,7 @@ profils: []
 link: https://www.ter.sncf.com/centre-val-de-loire/offres/gamme-occasionnels-remi/remiliberte/carte-remi-liberte-jeune
 teleservice: https://vad.keolis.com/ter-centre-commandecarte/#/offres
 instructions: https://www.ter.sncf.com/centre-val-de-loire/offres/gamme-occasionnels-remi/remiliberte/carte-remi-liberte-jeune
+prefix: la
 type: bool
 unit: €
 periodicite: autre

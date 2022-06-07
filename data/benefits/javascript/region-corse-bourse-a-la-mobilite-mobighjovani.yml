@@ -23,6 +23,7 @@ conditions_generales:
 profils: []
 link: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
 instructions: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
+prefix: la
 type: float
 unit: €
 periodicite: autre

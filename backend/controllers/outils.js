@@ -1,5 +1,4 @@
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
-const communeCode98 = require("./communeCode98.json")
 const epci = require("@etalab/decoupage-administratif/data/epci.json")
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
@@ -39,7 +38,7 @@ epci.forEach(function (epci) {
 })
 
 function find(postalCode) {
-  return indexCodesPostaux[postalCode] || communeCode98[postalCode] || []
+  return indexCodesPostaux[postalCode] || []
 }
 
 exports.find = find

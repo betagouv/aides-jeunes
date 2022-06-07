@@ -14,6 +14,10 @@ const typesMap = {
   list: "string",
   hidden: "hidden",
 }
+const netlifyTypesMap = {
+  number: "string",
+  string: "string",
+}
 
 function generateSchema(fields) {
   let schema = {}
@@ -87,7 +91,7 @@ function compareSchema(data, schema, output, depth = []) {
           compareSchema(data[key], schema[key], output, [...depth, key])
         }
       } else if (
-        typeof data[key] !== schema[key].type && // compare type with expected type
+        netlifyTypesMap[typeof data[key]] !== schema[key].type && // compare type with expected type
         data[key] !== null && // in case the field was unset in netlify CMS
         schema[key].type != "hidden" && // don't check hidden fields
         typeof schema[key].type !== "undefined" // skip array check

@@ -14,7 +14,6 @@ const {
   computeDistanceCommunes,
   findCommuneByInseeCode,
 } = require("../../../mes-aides/distance")
-const Scolarite = require("../../../../../lib/scolarite")
 
 const individuSchema = {
   activite: {

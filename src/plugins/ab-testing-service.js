@@ -26,13 +26,6 @@ const ABTestingService = {
     // // et libérer une custom variable
     // // ABTesting.link.deleted = true;
 
-    ABTesting.ressourcesYesNoQuestion = ABTesting.ressourcesYesNoQuestion || {
-      index: 1,
-    }
-    ABTesting.ressourcesYesNoQuestion.value =
-      ABTesting.ressourcesYesNoQuestion.value ||
-      (Math.random() >= 0.5 ? "collapse" : "show")
-
     Object.keys(ABTesting).forEach(function (name) {
       const data = ABTesting[name]
       if (data.deleted) {

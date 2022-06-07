@@ -2,9 +2,6 @@ import { submit } from "./form"
 
 const fill_ressources_types = (types = []) => {
   cy.url().should("includes", "ressources/types")
-  if (types.length) {
-    cy.get("form").find(`input[type="radio"][id="ressources"]`).check()
-  }
   types.forEach((type) =>
     cy.get("form").find(`input[type="checkbox"][id="${type}"]`).check()
   )

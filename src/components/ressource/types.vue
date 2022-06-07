@@ -1,46 +1,6 @@
 <template>
   <form>
-    <div v-if="ressourcesYesNoQuestion">
-      <h2 class="aj-question">
-        <div>
-          <span v-if="individu._role === 'conjoint'"
-            >Votre conjoint(e) a-t'il/elle
-          </span>
-          <span v-else-if="individu._role !== 'demandeur'"
-            >{{ individu._firstName }} a-t'il/elle
-          </span>
-          <span v-else>Avez-vous</span>
-          perçu des revenus
-          <span>
-            depuis {{ $store.state.dates.twelveMonthsAgo.label }} (revenus
-            professionels, allocations, indemnités, pensions, bourses) ?</span
-          >
-        </div>
-      </h2>
-      <fieldset>
-        <div class="aj-selection-wrapper">
-          <input
-            id="ressources"
-            v-model="ressources"
-            type="radio"
-            name="ressources"
-            :value="true"
-          />
-          <label for="ressources"> Oui </label>
-        </div>
-        <div class="aj-selection-wrapper">
-          <input
-            id="no-ressources"
-            v-model="ressources"
-            type="radio"
-            name="ressources"
-            :value="false"
-          />
-          <label for="no-ressources"> Non </label>
-        </div>
-      </fieldset>
-    </div>
-    <div v-if="ressources || !ressourcesYesNoQuestion">
+    <div>
       <p>
         Sélectionnez les types de ressources perçues
         <strong>
@@ -93,7 +53,6 @@ import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "../../../lib/resources"
 import Ressource from "@/../lib/ressource"
 import { getAnswer } from "../../../lib/answers"
-import ABTestingService from "@/plugins/ab-testing-service"
 
 export default {
   name: "RessourceTypes",
@@ -104,10 +63,6 @@ export default {
     individu: Object,
   },
   data: function () {
-    const abTesting = ABTestingService.getEnvironment()
-    const ressourcesYesNoQuestion =
-      abTesting.ressourcesYesNoQuestion.value === "collapse"
-
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
@@ -125,17 +80,11 @@ export default {
       "ressources",
       this.$route.params.id
     )
-    const ressources =
-      typeof selectedRessources === "undefined"
-        ? null
-        : selectedRessources.length > 0
     const selectedTypes = {}
     types.forEach((type) => {
       selectedTypes[type.id] = selectedRessources?.includes(type.id)
     })
     return {
-      ressourcesYesNoQuestion: ressourcesYesNoQuestion,
-      ressources: ressources,
       categories: ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
       selectedTypes,
@@ -166,9 +115,7 @@ export default {
         entityName: "individu",
         fieldName: "ressources",
         value: Object.keys(this.selectedTypes).filter(
-          (type) =>
-            (this.ressources || !this.ressourcesYesNoQuestion) &&
-            this.selectedTypes[type]
+          (type) => this.selectedTypes[type]
         ),
       })
       this.$push()

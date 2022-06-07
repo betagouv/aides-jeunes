@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     rebase-strategy: "disabled"
     versioning-strategy: increase
     open-pull-requests-limit: 1

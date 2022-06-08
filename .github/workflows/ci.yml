@@ -176,6 +176,9 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install specific NPM version
+        shell: bash
+        run: npm install -g npm@8.1.2
       - name: Cache Cypress installation
         uses: actions/cache@v2
         id: restore-cypress

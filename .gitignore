@@ -54,3 +54,13 @@ v8-compile-cache-*/
 .*idea
 *yarn.lock
 .DS_Store
+
+contribuer/.next
+contribuer/out
+
+cypress/screenshots
+cypress/videos
+
+openfisca/*.pyc
+
+

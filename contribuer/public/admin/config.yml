@@ -679,11 +679,6 @@ fields:
       - *field_quotient_familial
       - *field_formation_sanitaire_social
       - *field_beneficiaire_rsa
-  field_references: &field_references
-    label: Liens des sources de référence
-    name: references
-    widget: hidden
-    required: false
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat
@@ -771,7 +766,6 @@ collections:
       # hidden fields
       - *field_private_benefit
       - *field_benefit_partial_support
-      - *field_references
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe

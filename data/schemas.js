@@ -40,12 +40,25 @@ function generateSchema(fields) {
       }
     } else {
       schema[field.name] = line
+      if (field.widget == "select") {
+        line.allowedValues = field.options.map((option) =>
+          option.value ? option.value : option
+        )
+      }
     }
   }
   return schema
 }
 
-function errorLogger(field, depth = [], value, expectedType) {
+function errorLogger(field, depth = [], value, expectedType, expectedValues) {
+  if (expectedValues) {
+    return {
+      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
+      message: `${field} value is --${value}--; either [${expectedValues.join(
+        ", "
+      )}] expected in schema`,
+    }
+  }
   if (value && expectedType) {
     return {
       path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
@@ -97,6 +110,23 @@ function compareSchema(data, schema, output, depth = []) {
         typeof schema[key].type !== "undefined" // skip array check
       ) {
         output.push(errorLogger(key, depth, data[key], schema[key].type))
+      } else if (
+        schema[key].allowedValues && // if only specific values are allowed for this field
+        !schema[key].allowedValues.includes(data[key]) &&
+        !(
+          data[key]?.trim() &&
+          schema[key].allowedValues.includes(data[key].trim())
+        )
+      ) {
+        output.push(
+          errorLogger(
+            key,
+            depth,
+            data[key],
+            schema[key].type,
+            schema[key].allowedValues
+          )
+        )
       }
       // if the field is not in the schema
     } else if (typeof schema[key]?.type === "undefined") {

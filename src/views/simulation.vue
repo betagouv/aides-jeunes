@@ -5,7 +5,7 @@
       class="container aj-layout-container"
       :class="{ 'aj-debug-container': debug }"
     >
-      <main id="main" role="main" class="aj-main-container">
+      <div class="aj-main-container">
         <TitreChapitre />
         <div v-if="debug" class="aj-debug-switch">
           <button class="button small" @click="disableDebug"
@@ -18,7 +18,7 @@
         <div class="aj-box-wrapper">
           <router-view :key="$route.path" />
         </div>
-      </main>
+      </div>
       <Progress v-if="debug" />
       <Summary v-else />
     </div>

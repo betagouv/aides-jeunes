@@ -141,7 +141,7 @@ export default {
         return COMPLEX_STEPS[match].fn.bind(this)(step)
       }
 
-      if (ENTITIES_PROPERTIES[step.entity].default) {
+      if (ENTITIES_PROPERTIES[step.entity]) {
         const answer = getStepAnswer(
           this.$store.state.simulation.answers.all,
           step
@@ -151,7 +151,7 @@ export default {
           step.entity === "individu" ? useIndividu(step.id) : undefined
 
         return this.buildMutualizedQuestion({
-          question: ENTITIES_PROPERTIES[step.entity].default[step.variable],
+          question: ENTITIES_PROPERTIES[step.entity][step.variable],
           value: answer,
           component: { ...this.propertyData, individu },
         })

@@ -14,10 +14,6 @@ const typesMap = {
   list: "string",
   hidden: "hidden",
 }
-const netlifyTypesMap = {
-  number: "string",
-  string: "string",
-}
 
 function generateSchema(fields) {
   let schema = {}
@@ -104,7 +100,8 @@ function compareSchema(data, schema, output, depth = []) {
           compareSchema(data[key], schema[key], output, [...depth, key])
         }
       } else if (
-        netlifyTypesMap[typeof data[key]] !== schema[key].type && // compare type with expected type
+        typeof data[key] !== schema[key].type && // compare type with expected type
+        !["string", "number"].includes(typeof data[key]) && // number in file can be a string or number in schema
         data[key] !== null && // in case the field was unset in netlify CMS
         schema[key].type != "hidden" && // don't check hidden fields
         typeof schema[key].type !== "undefined" // skip array check
@@ -114,8 +111,11 @@ function compareSchema(data, schema, output, depth = []) {
         schema[key].allowedValues && // if only specific values are allowed for this field
         !schema[key].allowedValues.includes(data[key]) &&
         !(
-          typeof data[key] === "string" &&
-          schema[key].allowedValues.includes(data[key].trim())
+          // in case value is a string
+          (
+            typeof data[key] === "string" &&
+            schema[key].allowedValues.includes(data[key].trim())
+          )
         )
       ) {
         output.push(

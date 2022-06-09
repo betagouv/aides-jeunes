@@ -1,6 +1,6 @@
-const { EnumProperty, NumberProperty, Property } = require("./types.ts")
+import { EnumProperty, NumberProperty, Property } from "./types"
 
-module.exports = {
+export default {
   _situation: new EnumProperty({
     question: "Quelle est la situation de vos parents ?",
     questionType: "enum",

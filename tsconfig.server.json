@@ -6,6 +6,12 @@
     "baseUrl": "."
   },
 
-  "include": ["./*.ts", "backend/**/*.ts", "backend/**/*.d.ts"],
+  "include": [
+    "./*.ts",
+    "backend/**/*.ts",
+    "backend/**/*.d.ts",
+    "lib/**/*.ts",
+    "lib/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "src"]
 }

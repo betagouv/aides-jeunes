@@ -1,9 +1,4 @@
-const {
-  EnumProperty,
-  NumberProperty,
-  PropertyData,
-  Property,
-} = require("./types.ts")
+import { EnumProperty, NumberProperty, PropertyData, Property } from "./types"
 
 const Individu = require("../individu")
 const { capitalize, yearsAgo } = require("../utils")
@@ -16,7 +11,7 @@ const isRelevant = (items: any[], propertyData: PropertyData) => {
   )
 }
 
-module.exports = {
+export default {
   ah_restriction_substantielle_durable_acces_emploi: new Property({
     question: ({ individu }) => {
       return `${Individu.label(

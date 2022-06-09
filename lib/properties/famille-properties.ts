@@ -1,8 +1,7 @@
-const { EnumProperty, NumberProperty, Property } = require("./types.ts")
+import { EnumProperty, NumberProperty, Property } from "./types"
+import { yearsAgo } from "../utils"
 
-const { yearsAgo } = require("../utils")
-
-module.exports = {
+export default {
   bourse_criteres_sociaux_nombre_enfants_a_charge: new NumberProperty({
     question:
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",

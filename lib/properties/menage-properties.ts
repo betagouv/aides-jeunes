@@ -1,8 +1,8 @@
-const { EnumProperty, Property } = require("./types.ts")
+import { EnumProperty, Property } from "./types"
 
 const { getAnswer } = require("../answers")
 
-module.exports = {
+export default {
   coloc: new Property({
     question: "Est-ce une colocation ?",
   }),

@@ -114,7 +114,7 @@ export default {
   },
   computed: {
     entityProperties() {
-      return ENTITIES_PROPERTIES[this.entityName]
+      return ENTITIES_PROPERTIES[this.entityName].default
     },
     fieldName() {
       return this.$route.params.fieldName

@@ -22,3 +22,4 @@ profils:
       - type: age
         operator: <=
         value: 29
+periodicite: annuelle

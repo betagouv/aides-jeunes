@@ -40,3 +40,4 @@ link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositi
 teleservice: https://aspqol.sphinxonline.net/surveyserver/s/CRCAmiens/PASS2021/saisieetudiant.htm
 prefix: l’aide
 type: bool
+periodicite: autre

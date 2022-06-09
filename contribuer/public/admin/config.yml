@@ -294,7 +294,7 @@ fields:
       Par exemple, dans la phrase « Comment obtenir l'aide exceptionnelle ? », on choisit le préfixe « l' ». Pour « Comment obtenir les aides au logement ? », on choisit le préfixe « les ».
     widget: select
     required: true
-    options: [le, la, les, l’, une, l’aide]
+    options: [le, la, les, l’, une, un, l’aide]
   field_result_type: &field_result_type
     label: Type du résultat
     name: type

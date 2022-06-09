@@ -114,7 +114,7 @@ function compareSchema(data, schema, output, depth = []) {
         schema[key].allowedValues && // if only specific values are allowed for this field
         !schema[key].allowedValues.includes(data[key]) &&
         !(
-          data[key]?.trim() &&
+          typeof data[key] === "string" &&
           schema[key].allowedValues.includes(data[key].trim())
         )
       ) {

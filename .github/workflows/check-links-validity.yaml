@@ -1,0 +1,22 @@
+name: Check links validity
+on:
+  schedule:
+    # https://crontab.guru/#0_11_*_*_2
+    - cron: "0 11 * * 2"
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - run: npm install
+      - id: invalid_links
+        run: node ./tools/check-links-validity.js --ci
+        timeout-minutes: 10
+      - if: steps.invalid_links.outputs.comment
+        uses: ./.github/actions/reopen-issue-with-comment
+        with:
+          issue-number: 140
+          comment: ${{ steps.invalid_links.outputs.comment }}

@@ -9,7 +9,7 @@ description: >
   l’autonomie.
 link: https://www.service-public.fr/particuliers/vosdroits/F12242
 instructions: https://www.service-public.fr/particuliers/vosdroits/F12242
-prefix: l'
+prefix: l’
 type: float
 unit: €
 entity: individus

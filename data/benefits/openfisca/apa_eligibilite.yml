@@ -16,7 +16,7 @@ link: >-
   https://www.pour-les-personnes-agees.gouv.fr/preserver-son-autonomie-s-informer-et-anticiper/perte-d-autonomie-evaluation-et-droits/lallocation-personnalisee-dautonomie-apa
 instructions: >-
   https://www.pour-les-personnes-agees.gouv.fr/preserver-son-autonomie-s-informer-et-anticiper/perte-d-autonomie-evaluation-et-droits/lallocation-personnalisee-dautonomie-apa#anchor5
-prefix: l'
+prefix: l’
 type: bool
 top: 6
 entity: individus

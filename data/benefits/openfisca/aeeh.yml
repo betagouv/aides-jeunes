@@ -6,7 +6,7 @@ link: https://www.service-public.fr/particuliers/vosdroits/F14809
 instructions: https://www.service-public.fr/particuliers/vosdroits/F14809
 forms:
   mdph: https://www.formulaires.modernisation.gouv.fr/gf/cerfa_15692.do
-prefix: l'
+prefix: l’
 type: float
 unit: "€"
 floorAt: 1

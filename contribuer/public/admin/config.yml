@@ -177,6 +177,8 @@ fields:
       value: epci
     - label: Commune
       value: commune
+    - label: Autre
+      value: autre
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -656,6 +658,10 @@ fields:
     name: private
     required: false
     widget: hidden
+  field_benefit_partial_support: &field_benefit_partial_support
+    label: L'aide ne couvre qu'une partie des frais
+    name: participation
+    widget: hidden
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
@@ -711,10 +717,6 @@ fields:
   field_benefit_participation: &field_benefit_forms
     label: Liens vers des formulaires de demande de l'aide
     name: forms
-    widget: hidden
-  field_benefit_partial_support: &field_benefit_partial_support
-    label: L'aide ne couvre qu'une partie des frais
-    name: participation
     widget: hidden
   field_benefit_institution: &field_benefit_institution
     label: Référence aux institutions supervisant l'aide

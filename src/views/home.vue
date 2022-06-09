@@ -64,7 +64,7 @@ export default {
     benefitsNumber: function () {
       return process.env.VUE_APP_BENEFIT_COUNT
         ? process.env.VUE_APP_BENEFIT_COUNT
-        : "plus de 400"
+        : "plus de 600"
     },
   },
   methods: {

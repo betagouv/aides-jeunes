@@ -100,6 +100,14 @@ describe("benefit descriptions", function () {
             expect(innerText.length).toBeLessThanOrEqual(420)
           })
 
+          if (benefit.description.includes('target="_blank"')) {
+            it("should have a title attribute in its description when a link opens in a new window", function () {
+              expect(benefit.description.includes("Nouvelle fenêtre")).toBe(
+                true
+              )
+            })
+          }
+
           it("should have a link", function () {
             expect(typeof benefit.link).toBe("string")
             expect(benefit.link).toMatch(/^https?:\/\//)
@@ -112,6 +120,11 @@ describe("benefit descriptions", function () {
                   it("should end with a comma.", function () {
                     expect(condition).toMatch(/\.$/)
                   })
+                  if (condition.includes('target="_blank"')) {
+                    it("should have a title attribute in its conditions when a link opens in a new window", function () {
+                      expect(condition.includes("Nouvelle fenêtre")).toBe(true)
+                    })
+                  }
                 })
               })
             })

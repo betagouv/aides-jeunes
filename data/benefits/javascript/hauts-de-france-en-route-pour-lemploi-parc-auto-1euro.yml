@@ -6,7 +6,7 @@ description: La Région met à disposition des bénéficiaires des véhicules po
   dépenses de péage et de parking.
 conditions:
   - vérifier que vous correspondez à l'une des catégories détaillées dans <a
-    target="_blank" rel="noopener"
+    target="_blank" title="Liste des catégories - Nouvelle fenêtre" rel="noopener"
     href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632">cette
     page</a>, à la rubrique ”Bénéficiaires”.
 conditions_generales:

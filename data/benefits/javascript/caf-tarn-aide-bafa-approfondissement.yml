@@ -8,10 +8,9 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la Caf</a>.
 conditions:
   - 'Vous adresser au service Jeunesse & Sports de la DDCSPP de votre
-    département pour vous inscrire et connaître les organismes de formation <a
-    target="_blank" rel="noopener"
-    href="https://lannuaire.service-public.fr/occitanie/tarn/sdjes-81004-01">:
-    informations de contact.'
+    département pour vous inscrire et connaître les organismes de formation : <a
+    target="_blank" title="Informations de contact - Nouvelle fenêtre" rel="noopener"
+    href="https://lannuaire.service-public.fr/occitanie/tarn/sdjes-81004-01">informations de contact<a/>.'
 conditions_generales:
   - type: age
     operator: ">="

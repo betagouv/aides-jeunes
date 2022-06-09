@@ -6,7 +6,7 @@ description: La Région Île-de-France vous permet d'intégrer l’une de ses
   en situation de handicap.
 conditions:
   - Effectuer une formation gratuite que vous choisissez dans le <a
-    target="_blank" rel="noopener" href="https://formpro.oriane.info/">catalogue
+    target="_blank" title="Catalogue en ligne - Nouvelle fenêtre" rel="noopener" href="https://formpro.oriane.info/">catalogue
     en ligne</a>.
 conditions_generales:
   - type: regions

@@ -69,6 +69,9 @@ function errorLogger(field, depth = [], value, expectedType, expectedValues) {
 }
 
 function compareSchema(data, schema, output, depth = []) {
+  // Disable schema validation for file with specific key
+  if (data?.skip_schema_check) return
+
   // Check that every field in the schema is in the data and of the specified type
   const schemaKeys = Object.keys(schema)
   for (let key in data) {

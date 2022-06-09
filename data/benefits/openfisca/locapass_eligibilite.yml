@@ -1,6 +1,6 @@
 label: Loca-Pass
 teleservice: https://locapass.actionlogement.fr
-prefix: "l'avance "
+prefix: l’aide
 entity: individus
 openfiscaPeriod: thisMonth
 top: 5
@@ -11,4 +11,5 @@ conditions:
   - Ne pas être employé·e par une entreprise publique.
 link: https://www.actionlogement.fr/l-avance-loca-pass?utm_source=mes-aides-jeunes&utm_medium=resultats
 type: bool
-floorAt: 0.1
+floorAt: 0.01
+periodicite: ponctuelle

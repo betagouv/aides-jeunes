@@ -305,6 +305,8 @@ fields:
         value: float
       - label: Éligibilité (Oui / Non)
         value: bool
+      - label: Autre
+        value: mixed
   field_result_unit: &field_result_unit
     label: Unité lorsque le type de résultat est une valeur numérique
     hint: Il s'agit de spécifier l'unité du montant.
@@ -684,6 +686,47 @@ fields:
     label: Référence à la règle de calcul OpenFisca
     name: openfisca_eligibility_source
     widget: hidden
+  field_benefit_teleservices: &field_benefit_teleservices
+    label: Liens vers plusieurs téléservices
+    name: teleservices
+    widget: hidden
+  field_benefit_ressources_year_minus_two:
+    &field_benefit_ressources_year_minus_two
+    label: Aide calculée en fonction des revenus N-2
+    name: isBaseRessourcesYearMinusTwo
+    widget: hidden
+  field_benefit_msa_specific: &field_benefit_msa_specific
+    label: Aide restreinte aux usagers de la MSA
+    name: msa
+    widget: hidden
+  field_benefit_forms: &field_benefit_forms
+    label: Liens vers des formulaires de demande de l'aide
+    name: forms
+    widget: hidden
+  field_benefit_participation: &field_benefit_forms
+    label: Liens vers des formulaires de demande de l'aide
+    name: forms
+    widget: hidden
+  field_benefit_partial_support: &field_benefit_partial_support
+    label: L'aide ne couvre qu'une partie des frais
+    name: participation
+    widget: hidden
+  field_benefit_institution: &field_benefit_institution
+    label: Référence aux institutions supervisant l'aide
+    name: etablissements
+    widget: hidden
+  field_benefit_set_to_zero_recently: &field_benefit_set_to_zero_recently
+    label: L'aide OpenFisca a été remise à zéro récemment
+    name: setToZeroRecently
+    widget: hidden
+  field_benefit_capital_dependant: &field_benefit_capital_dependant
+    label: L'attribution de l'aide est dépendante du capital personnel
+    name: isBaseRessourcesPatrimoine
+    widget: hidden
+  field_benefit_openfisca_mapping: &field_benefit_openfisca_mapping
+    label: Identifiant OpenFisca de l'aide
+    name: openfisca_eligibility_source
+    widget: hidden
 
 collections:
   - name: benefits_javascript
@@ -749,8 +792,18 @@ collections:
       - *field_openfisca_linked_entity
       - *field_openfisca_period
       - *field_private_benefit
+      # hidden fields
       - *field_benefit_position
       - *field_benefit_warning_message
+      - *field_benefit_teleservices
+      - *field_benefit_ressources_year_minus_two
+      - *field_benefit_msa_specific
+      - *field_benefit_forms
+      - *field_benefit_partial_support
+      - *field_benefit_institution
+      - *field_benefit_set_to_zero_recently
+      - *field_benefit_capital_dependant
+      - *field_benefit_openfisca_mapping
   - name: institutions
     label: Institutions
     label_singular: institution

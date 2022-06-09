@@ -12,3 +12,4 @@ prefix: l’
 type: bool
 entity: menages
 openfiscaPeriod: thisMonth
+periodicite: ponctuelle

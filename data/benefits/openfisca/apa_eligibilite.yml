@@ -22,3 +22,4 @@ top: 6
 entity: individus
 openfiscaPeriod: thisMonth
 institution: departements
+periodicite: autre

@@ -5,6 +5,7 @@ description: >-
 entity: individus
 openfiscaPeriod: thisMonth
 type: bool
-prefix: La
+prefix: la
 link: https://lio.laregion.fr/transport-scolaire
 institution: region_occitanie
+periodicite: annuelle

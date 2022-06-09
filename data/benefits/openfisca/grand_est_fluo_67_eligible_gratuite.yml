@@ -9,3 +9,4 @@ type: bool
 prefix: les
 entity: individus
 openfiscaPeriod: thisMonth
+periodicite: autre

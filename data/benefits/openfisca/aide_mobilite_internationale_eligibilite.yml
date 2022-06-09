@@ -10,3 +10,4 @@ type: bool
 entity: individus
 openfiscaPeriod: thisMonth
 interestFlag: _interetEtudesEtranger
+periodicite: autre

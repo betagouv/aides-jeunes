@@ -9,3 +9,4 @@ type: bool
 top: 2
 entity: individus
 openfiscaPeriod: thisMonth
+periodicite: ponctuelle

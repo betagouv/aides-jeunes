@@ -11,7 +11,7 @@ conditions:
   - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou
     Réunion">en France</abbr> depuis plus de 3 mois.
 type: mixed
-periodicite: mensuelless
+periodicite: mensuelle
 link: https://www.service-public.fr/particuliers/vosdroits/F10027
 teleservice: https://www.complementaire-sante-solidaire.gouv.fr/cmu-c-demarche.php
 form: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf

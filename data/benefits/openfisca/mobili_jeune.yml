@@ -7,7 +7,7 @@ conditions:
   - Ne pas être employé·e par une entreprise publique.
 link: https://www.actionlogement.fr/l-aide-mobili-jeune?utm_source=mes-aides-jeunes&utm_medium=resultats
 teleservice: https://mobilijeune.actionlogement.fr
-prefix: "l'aide "
+prefix: l’aide
 type: float
 unit: €
 floorAt: 1

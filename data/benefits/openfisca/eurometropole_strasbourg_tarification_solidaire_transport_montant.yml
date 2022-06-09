@@ -10,4 +10,4 @@ periodicite: mensuelle
 legend: / mois au lieu de 51.80 €
 entity: individus
 openfiscaPeriod: thisMonth
-floorAt: 0.10
+floorAt: 0.01

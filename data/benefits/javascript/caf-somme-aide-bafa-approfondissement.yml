@@ -21,7 +21,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 form: https://www.caf.fr/sites/default/files/caf/801/PDF/Bafa%20Cerfa%2011381%2002.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

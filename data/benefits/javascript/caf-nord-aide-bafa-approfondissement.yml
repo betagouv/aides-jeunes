@@ -21,7 +21,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/enfance-et-jeunesse/bafabafd-la-caf-du-nord-peut-vous-aider
 form: https://www.caf.fr/sites/default/files/DEMANDE%20AIDE%20BAFA.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/enfance-et-jeunesse/bafabafd-la-caf-du-nord-peut-vous-aider
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

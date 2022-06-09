@@ -16,7 +16,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-mayenne/offre-de-service/enfance-et-jeunesse/bafabafd-votre-caf-vous-aide
 form: http://www.caf53.fr/ods/pdf/caf53_bafa_demande_aide_formation.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-mayenne/offre-de-service/enfance-et-jeunesse/bafabafd-votre-caf-vous-aide
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

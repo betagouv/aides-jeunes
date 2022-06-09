@@ -30,7 +30,7 @@ profils:
 link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/l-aide-a-l-autonomie-des-jeunes-aaj
 form: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2020/Demande_2020_aide_autonomie_jeunes.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2021/NOTICE%20-%20DEMANDE%20AAJ%20%20sept%2021%20juin%2022%20%28MAJ%2005%2010%2021%29.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

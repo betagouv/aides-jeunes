@@ -19,7 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

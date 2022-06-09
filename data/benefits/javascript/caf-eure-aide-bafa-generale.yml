@@ -22,7 +22,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-eure/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 form: https://www.caf.fr/sites/default/files/caf/271/Documents/DEM_BAFA_BAFD.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/271/Documents/Notice%20BAFA3.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

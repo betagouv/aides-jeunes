@@ -22,7 +22,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/sites/default/files/caf/972/Documents/LE%20BAFA%20VOUS%20TENTE.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/972/Documents/LE%20BAFA%20VOUS%20TENTE.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

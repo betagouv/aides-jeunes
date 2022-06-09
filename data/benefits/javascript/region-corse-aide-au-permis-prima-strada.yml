@@ -27,7 +27,7 @@ conditions_generales:
 profils: []
 link: https://www.isula.corsica/jeunesse/Une-aide-pour-les-jeunes-pour-passer-le-permis-de-conduire-Prima-Strada_a80.html
 instructions: https://www.isula.corsica/jeunesse/attachment/2263155/
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: autre

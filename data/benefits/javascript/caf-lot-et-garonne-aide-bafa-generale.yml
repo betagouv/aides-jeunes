@@ -19,7 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
 instructions: https://www.caf.fr/sites/default/files/caf/471/Bafa_conditions_2021.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

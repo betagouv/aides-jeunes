@@ -26,7 +26,7 @@ conditions_generales:
 profils: []
 link: https://www.bretagne.bzh/aides/fiches/aide-a-la-formation-au-code-et-au-permis-de-conduire/
 instructions: https://www.bretagne.bzh/aides/fiches/aide-a-la-formation-au-code-et-au-permis-de-conduire/
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

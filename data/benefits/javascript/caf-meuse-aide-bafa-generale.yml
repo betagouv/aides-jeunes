@@ -16,7 +16,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-meuse/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa-bafd
 form: ""
 instructions: https://www.caf.fr/sites/default/files/caf/551/Documents/Offre%20de%20service/enfance%20jeunesse/BAFA%20BAFD/notice_BAFA_BAFD%20202101.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

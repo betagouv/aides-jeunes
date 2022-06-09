@@ -21,7 +21,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service-0/enfance-et-jeunesse/bafa-bafd-dispositif-regional
 form: https://www.caf.fr/sites/default/files/caf/701/SITE/Offre%20de%20service/Enfance%20jeunesse/Aide%20r%C3%A9gionale%20BAFA%20BAFD/BAFA-BAFD%202017%20REGIONAL.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service-0/enfance-et-jeunesse/bafa-bafd-dispositif-regional
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

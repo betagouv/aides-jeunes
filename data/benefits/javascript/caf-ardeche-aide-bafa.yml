@@ -11,7 +11,7 @@ conditions:
 link: https://www.caf.fr/allocataires/caf-de-l-ardeche/offre-de-service/enfance-et-jeunesse/le-bafa
 form: https://www.caf.fr/sites/default/files/caf/078/Documents/demande_daide_bafa.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-ardeche/offre-de-service/enfance-et-jeunesse/le-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

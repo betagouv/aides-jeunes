@@ -23,7 +23,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-corse-du-sud/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 form: https://www.caf.fr/sites/default/files/caf/201/Documents/_demande_bourse_bafa-majoration.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-corse-du-sud/offre-de-service/enfance-et-jeunesse/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

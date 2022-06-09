@@ -23,7 +23,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-l-aube/offre-de-service/petite-enfance/bourses-bafa-et-bafd
 form: https://www.caf.fr/sites/default/files/caf/101/Documents/Bafa/Bourse%20Compl%C3%A9mentaire%20BAFA%20stage%20de%20base.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-l-aube/offre-de-service/petite-enfance/bourses-bafa-et-bafd
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

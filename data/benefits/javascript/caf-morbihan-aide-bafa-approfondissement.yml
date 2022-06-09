@@ -22,7 +22,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur
 form: https://www.caf.fr/sites/default/files/caf/561/Documents/enfance%20jeunesse/bafa.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-morbihan/offre-de-service/enfance-et-jeunesse/bourses-bafa-brevet-d-aptitude-aux-fonctions-d-animateur-et-bafd-brevet-d-aptitude-aux-fonctions-de-directeur
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

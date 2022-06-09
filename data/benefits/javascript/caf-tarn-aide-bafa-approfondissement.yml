@@ -23,7 +23,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-du-tarn/offre-de-service/enfance-et-jeunesse/aides-a-la-formation-et-a-l-inclusion-numerique
 form: https://www.caf.fr/sites/default/files/caf/811/Imprim%C3%A9%20BAFA%20CAF81.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-tarn/offre-de-service/enfance-et-jeunesse/aides-a-la-formation-et-a-l-inclusion-numerique
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

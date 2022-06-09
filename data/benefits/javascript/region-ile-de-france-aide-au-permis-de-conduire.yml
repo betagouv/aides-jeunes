@@ -27,7 +27,7 @@ profils:
     conditions: []
 link: https://www.iledefrance.fr/aide-au-permis-de-conduire-pour-jeunes-en-insertion
 instructions: https://www.iledefrance.fr/aide-au-permis-de-conduire-pour-jeunes-en-insertion
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: autre

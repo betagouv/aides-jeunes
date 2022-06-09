@@ -30,7 +30,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

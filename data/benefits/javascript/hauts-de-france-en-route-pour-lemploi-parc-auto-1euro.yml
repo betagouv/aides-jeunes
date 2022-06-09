@@ -16,7 +16,7 @@ conditions_generales:
 profils: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632
 teleservice: https://enroutepourlemploi.hautsdefrance.fr/public/compte/login
-prefix: l'aide
+prefix: l’aide
 type: bool
 unit: €
 periodicite: mensuelle

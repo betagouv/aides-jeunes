@@ -19,7 +19,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-saone-et-loire/actualites/annee/2020/bafa-savez-vous-que-la-caf-peut-financer-une-partie-de-la-formation
 form: http://blog.caf71.fr/wp-content/uploads/2020/02/BOURSE-BAFA-CAF.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-saone-et-loire/actualites/annee/2020/bafa-savez-vous-que-la-caf-peut-financer-une-partie-de-la-formation
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

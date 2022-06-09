@@ -25,7 +25,7 @@ profils:
       - type: boursier
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=385
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=385
-prefix: l'
+prefix: l’
 type: bool
 unit: €
 periodicite: autre

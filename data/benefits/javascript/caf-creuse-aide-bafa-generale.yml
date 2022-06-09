@@ -28,7 +28,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/enfance-et-jeunesse/aides-pour-le-financement-du-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

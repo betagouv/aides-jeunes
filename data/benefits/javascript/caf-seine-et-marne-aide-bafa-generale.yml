@@ -20,7 +20,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
 instructions: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

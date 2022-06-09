@@ -17,7 +17,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafa-session-d-approfondissement
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
 instructions: https://www.caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafa-session-d-approfondissement
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

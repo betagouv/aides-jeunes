@@ -1,4 +1,5 @@
 import { fillRadio, submit } from "./form"
+import Scolarite from "../../lib/scolarite"
 
 const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
@@ -44,8 +45,8 @@ const fill_stagiaire = (stagiaire) => {
   fillRadio("stagiaire", stagiaire)
 }
 
-const fill__formationSanitaireSocial = (formationSanitaireSocial) => {
-  fillRadio("_formationSanitaireSocial", formationSanitaireSocial)
+const fill_groupe_specialites_formation = (groupe_specialites_formation) => {
+  fillRadio("groupe_specialites_formation", groupe_specialites_formation)
 }
 
 const fill_alternant = (alternant) => {
@@ -131,7 +132,10 @@ const publicStudent = () => {
   fill_mention_baccalaureat("mention_tres_bien")
   fill_stagiaire(false)
   fill_alternant(false)
-  fill__formationSanitaireSocial(true)
+  fill_groupe_specialites_formation(
+    Scolarite.groupeSpecialitesFormation
+      .specialites_plurivalentes_sanitaires_et_sociales.value
+  )
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

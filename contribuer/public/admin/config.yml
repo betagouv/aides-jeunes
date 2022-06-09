@@ -671,6 +671,19 @@ fields:
       - *field_quotient_familial
       - *field_formation_sanitaire_social
       - *field_beneficiaire_rsa
+  # champs propre aux aides openfisca
+  field_benefit_position: &field_benefit_position
+    label: Pondération de l'aide sur la page de résultat
+    name: top
+    widget: hidden
+  field_benefit_warning_message: &field_benefit_warning_message
+    label: Affiche un message d'avertissement spécifique
+    name: warning
+    widget: hidden
+  field_openfisca_eligibility_source: &openfisca_eligibility_source
+    label: Référence à la règle de calcul OpenFisca
+    name: openfisca_eligibility_source
+    widget: hidden
 
 collections:
   - name: benefits_javascript
@@ -736,6 +749,8 @@ collections:
       - *field_openfisca_linked_entity
       - *field_openfisca_period
       - *field_private_benefit
+      - *field_benefit_position
+      - *field_benefit_warning_message
   - name: institutions
     label: Institutions
     label_singular: institution

@@ -36,11 +36,7 @@
       </h2>
       <p v-if="step.help" v-html="step.help" />
       <label>
-        <InputNumber
-          v-model="value"
-          :min="step.min"
-          :data-type="step.type ? step.type : 'amount'"
-        />
+        <InputNumber v-model="value" :min="step.min" :data-type="step.type" />
       </label>
     </div>
 

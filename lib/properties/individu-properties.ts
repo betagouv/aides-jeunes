@@ -12,7 +12,7 @@ const isRelevant = (items: any[], propertyData: PropertyData) => {
 }
 
 export default {
-  ah_restriction_substantielle_durable_acces_emploi: new Property({
+  aah_restriction_substantielle_durable_acces_emploi: new Property({
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -336,6 +336,12 @@ export default {
     ],
   }),
 
+  groupe_specialites_formation: new EnumProperty({
+    question: "De quel secteur votre formation fait-elle partie ?",
+    questionType: "enum",
+    items: Object.values(Scolarite.groupeSpecialitesFormation),
+  }),
+
   habite_chez_parents: new Property({
     question: "Êtes-vous hébergé chez vos parents ?",
   }),
@@ -571,12 +577,6 @@ export default {
     type: "count",
   }),
 
-  groupe_specialites_formation: new EnumProperty({
-    question: "De quel secteur votre formation fait-elle partie ?",
-    questionType: "enum",
-    items: Object.values(Scolarite.groupeSpecialitesFormation),
-  }),
-
   _interetsAidesVelo: new EnumProperty({
     question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
     questionType: "multiple",
@@ -588,6 +588,11 @@ export default {
       { value: "velo_pliant", label: "Vélo pliant" },
       { value: "velo_motorisation", label: "Motorisation d'un vélo classique" },
     ],
+  }),
+
+  _interetAidesSanitaireSocial: new Property({
+    question:
+      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
   }),
 
   _interetBafa: new Property({

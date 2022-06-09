@@ -9,8 +9,9 @@ Benefits.all.forEach((benefit) => {
       .filter((link) => link)
       .map((link) => {
         return {
-          title: `${benefit.label} (${benefit.id})`,
+          title: benefit.label,
           link,
+          filepath: `${benefit.source}/${benefit.id}.yml`,
         }
       })
   )
@@ -32,7 +33,7 @@ async function processNextQueueItem() {
   }
 }
 
-async function fetchAndReport({ link, title }) {
+async function fetchAndReport({ link, title, filepath }) {
   let status = await getHTTPStatus(link)
 
   // Retry one time in case of timeout
@@ -40,7 +41,7 @@ async function fetchAndReport({ link, title }) {
     await sleep(10_000)
     status = await getHTTPStatus(link)
   }
-  report({ status, link, title })
+  report({ status, link, title, filepath })
 }
 
 async function getHTTPStatus(link) {
@@ -56,10 +57,10 @@ async function getHTTPStatus(link) {
   }
 }
 
-async function report({ status, link, title }) {
+async function report({ status, link, title, filepath }) {
   console.log(status === 200 ? "✅" : "❌", status, link)
   if (status !== 200) {
-    detectedErrors.push({ status, link, title })
+    detectedErrors.push({ status, link, title, filepath })
   }
 }
 
@@ -78,10 +79,13 @@ function sleep(ms) {
 
 			Certains liens référencés ne semblent plus fonctionner :
 
-			| Aide | Status HTTP |
-			|---|---|
+			| Aide | Status HTTP | Lien de modification |
+			|---|---|---|
 			${detectedErrors
-        .map(({ status, title, link }) => `| [${title}](${link}) | ${status} |`)
+        .map(
+          ({ status, title, link, filepath }) =>
+            `| [${title}](${link}) | ${status} | [https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath}](✎ Modifier) |`
+        )
         .join("\n")}`
 
       const format = (msg) =>

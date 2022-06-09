@@ -2,7 +2,7 @@ import Famille from "./properties/famille-properties"
 import Individu from "./properties/individu-properties"
 import Menage from "./properties/menage-properties"
 import Parents from "./properties/parents-properties"
-import { Property } from "./properties/types"
+import { Property } from "./properties/property"
 
 export const ENTITIES_PROPERTIES = {
   famille: Famille,

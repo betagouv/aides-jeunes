@@ -1,4 +1,5 @@
-import { EnumProperty, NumberProperty, PropertyData, Property } from "./types"
+import { EnumProperty, NumberProperty, Property } from "./property"
+import { PropertyData } from "../types/property"
 
 const Individu = require("../individu")
 const { capitalize, yearsAgo } = require("../utils")

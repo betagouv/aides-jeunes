@@ -1,4 +1,4 @@
-import { EnumProperty, NumberProperty, Property } from "./types"
+import { EnumProperty, NumberProperty, Property } from "./property"
 
 export default {
   _situation: new EnumProperty({

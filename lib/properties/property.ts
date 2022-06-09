@@ -1,9 +1,4 @@
-export interface PropertyData {
-  openFiscaParameters?: any
-  simulation?: any
-  individu?: any
-  periods?: any
-}
+import { PropertyData } from "../types/property"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)

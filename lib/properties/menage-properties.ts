@@ -1,4 +1,4 @@
-import { EnumProperty, Property } from "./types"
+import { EnumProperty, Property } from "./property"
 
 const { getAnswer } = require("../answers")
 

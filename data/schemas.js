@@ -54,7 +54,7 @@ function errorLogger(field, depth = [], value, expectedType, expectedValues) {
   if (expectedValues) {
     return {
       path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
-      message: `${field} value is --${value}--; either [${expectedValues.join(
+      message: `${field} value is ${value}; either [${expectedValues.join(
         ", "
       )}] expected in schema`,
     }

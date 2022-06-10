@@ -1,9 +1,8 @@
 name: Check links validity
 on:
   schedule:
-    # https://crontab.guru/#0_11_*_*_2
-    - cron: "0 11 * * 2"
-  pull_request:
+    # https://crontab.guru/#0_11_*_*_1
+    - cron: "0 11 * * 1"
 jobs:
   run:
     runs-on: ubuntu-latest

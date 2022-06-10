@@ -15,8 +15,8 @@ Benefits.all.forEach((benefit) => {
           title: benefit.label,
           link,
           type: linkType,
-          filepath: ["openfisca", "javascript"].includes(benefit.source)
-            ? `${benefit.source}/${benefit.id}.yml`
+          editLink: ["openfisca", "javascript"].includes(benefit.source)
+            ? `https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_${benefit.source}/entries/${benefit.id}`
             : undefined,
         }
       })
@@ -39,7 +39,7 @@ async function processNextQueueItem() {
   }
 }
 
-async function fetchAndReport({ link, title, filepath, type }) {
+async function fetchAndReport({ link, title, editLink, type }) {
   let status = await getHTTPStatus(link)
 
   // Retry one time in case of timeout
@@ -47,7 +47,7 @@ async function fetchAndReport({ link, title, filepath, type }) {
     await sleep(10000)
     status = await getHTTPStatus(link)
   }
-  report({ status, link, title, filepath, type })
+  report({ status, link, title, editLink, type })
 }
 
 async function getHTTPStatus(link) {
@@ -64,10 +64,10 @@ async function getHTTPStatus(link) {
   }
 }
 
-async function report({ status, link, title, filepath, type }) {
+async function report({ status, link, title, editLink, type }) {
   console.log(status === 200 ? "✅" : "❌", status, link)
   if (status !== 200) {
-    detectedErrors.push({ status, link, title, filepath, type })
+    detectedErrors.push({ status, link, title, editLink, type })
   }
 }
 
@@ -90,11 +90,9 @@ function sleep(ms) {
 			|---|---|---|---|
 			${detectedErrors
         .map(
-          ({ status, title, link, filepath, type }) =>
+          ({ status, title, link, editLink, type }) =>
             `| [${title}](${link}) | ${type} | ${status} | ${
-              filepath
-                ? `[✎ Modifier](https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath})`
-                : ""
+              editLink ? `[✎ Modifier](${editLink})` : ""
             } |`
         )
         .join("\n")}`

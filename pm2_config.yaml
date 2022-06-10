@@ -1,6 +1,6 @@
 apps:
   - name: ma-web
-    script: server.js
+    script: ./dist-server/server.js
     instances: 4
     exec_mode: cluster
     merge_logs: true

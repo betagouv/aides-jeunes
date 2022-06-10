@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "dist-server",
+    "target": "es2016",
+    "module": "commonjs",
+    "baseUrl": "."
+  },
+
+  "include": ["./*.ts", "backend/**/*.ts", "backend/**/*.d.ts"],
+  "exclude": ["node_modules", "src"]
+}

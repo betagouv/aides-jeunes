@@ -7,9 +7,9 @@ const {
   matomo,
   netlifyContributionURL,
   statistics,
-} = require("./backend/config")
-const configureAPI = require("./configure")
-const mock = require("./mock")
+} = require("./dist-server/backend/config")
+const configureAPI = require("./dist-server/configure")
+const mock = require("./dist-server/mock")
 const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 const parseArgs = require("minimist")

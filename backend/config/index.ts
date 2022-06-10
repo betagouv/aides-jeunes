@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
+import { ConfigurationLayout } from "../types/config"
+
 const env = process.env.NODE_ENV || "development"
 
-const all = {
+const all: ConfigurationLayout = {
   env: env,
   animation: {
-    delay: process.env.ANIMATION_DELAY || 300,
+    delay: Number(process.env.ANIMATION_DELAY) || 300,
   },
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
@@ -39,13 +41,13 @@ const all = {
     ],
   },
   matomo: {
-    id: process.env.MATOMO_ID || 165,
+    id: Number(process.env.MATOMO_ID) || 165,
   },
   statistics: {
     url:
       process.env.VUE_APP_STATS_URL ||
       "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
-    version: process.env.VUE_APP_STATS_VERSION || 2,
+    version: Number(process.env.VUE_APP_STATS_VERSION) || 2,
   },
   mongo: {
     uri: process.env.MONGODB_URL || "mongodb://localhost/db_aides_jeunes",

@@ -1,4 +1,4 @@
-const bodyParser = require("body-parser")
+//const bodyParser = require("body-parser")
 const axios = require("axios")
 const outils = require("./backend/controllers/outils")
 const mapping = require("./backend/lib/openfisca/mapping")
@@ -38,7 +38,7 @@ const ID = function () {
 function mock({ app }) {
   app.use(bodyParser.json())
 
-  let cache = {}
+  const cache = {}
   app.route("/api/outils/communes/:codePostal").get(outils.communes)
   app.post("/api/simulation", function (req, res) {
     const data = Object.assign({ _id: ID() }, req.body)

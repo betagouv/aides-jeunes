@@ -51,9 +51,8 @@ async function fetchAndReport({ link, title, filepath, type }) {
 }
 
 async function getHTTPStatus(link) {
-  const maxTime = 15_000
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), maxTime)
+  setTimeout(() => controller.abort(), 15_000)
 
   try {
     const res = await fetch(link, { signal: controller.signal })

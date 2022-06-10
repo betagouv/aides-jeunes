@@ -44,7 +44,7 @@ async function fetchAndReport({ link, title, filepath, type }) {
 
   // Retry one time in case of timeout
   if (status === 499) {
-    await sleep(10_000)
+    await sleep(10000)
     status = await getHTTPStatus(link)
   }
   report({ status, link, title, filepath, type })
@@ -52,12 +52,14 @@ async function fetchAndReport({ link, title, filepath, type }) {
 
 async function getHTTPStatus(link) {
   const controller = new AbortController()
-  setTimeout(() => controller.abort(), 15_000)
+  const timeout = setTimeout(() => controller.abort(), 15000)
 
   try {
     const res = await fetch(link, { signal: controller.signal })
+    clearTimeout(timeout)
     return res.status
   } catch (err) {
+    clearTimeout(timeout)
     return 499
   }
 }

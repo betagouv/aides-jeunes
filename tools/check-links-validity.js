@@ -84,7 +84,7 @@ function sleep(ms) {
 			${detectedErrors
         .map(
           ({ status, title, link, filepath }) =>
-            `| [${title}](${link}) | ${status} | [https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath}](✎ Modifier) |`
+            `| [${title}](${link}) | ${status} | [✎ Modifier](https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath}) |`
         )
         .join("\n")}`
 

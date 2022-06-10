@@ -33,8 +33,7 @@ export class Property {
 
   getValueOrExecuteFunction(key: string, propertyData: PropertyData): any {
     // @ts-ignore
-    const value = this[key]
-    return typeof value === "function" ? value(propertyData) : value
+    return typeof this[key] === "function" ? this[key](propertyData) : this[key]
   }
 
   getQuestion(propertyData: PropertyData) {

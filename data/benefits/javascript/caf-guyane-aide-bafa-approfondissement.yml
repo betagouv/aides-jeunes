@@ -21,7 +21,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-guyane/offre-de-service/enfance-et-jeunesse/aide-au-brevet-d-aptitude-aux-fonctions-d-animation-bafa
 form: https://www.caf.fr/sites/default/files/caf/973/Documents/formulaires/bafa.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-guyane/offre-de-service/enfance-et-jeunesse/aide-au-brevet-d-aptitude-aux-fonctions-d-animation-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

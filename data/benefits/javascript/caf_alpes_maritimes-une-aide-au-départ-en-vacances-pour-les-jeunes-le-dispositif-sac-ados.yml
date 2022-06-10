@@ -22,7 +22,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/le-dispositif-sac-ados
 form: ""
 instructions: https://fb.watch/bVzOfhtnp2/
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

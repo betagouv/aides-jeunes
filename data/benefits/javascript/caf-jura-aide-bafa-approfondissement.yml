@@ -21,7 +21,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
 instructions: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

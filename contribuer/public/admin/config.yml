@@ -177,6 +177,8 @@ fields:
       value: epci
     - label: Commune
       value: commune
+    - label: Autre
+      value: autre
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -294,7 +296,7 @@ fields:
       Par exemple, dans la phrase « Comment obtenir l'aide exceptionnelle ? », on choisit le préfixe « l' ». Pour « Comment obtenir les aides au logement ? », on choisit le préfixe « les ».
     widget: select
     required: true
-    options: [le, la, les, l’, une, l’aide]
+    options: [le, la, les, l’, une, un, l’aide]
   field_result_type: &field_result_type
     label: Type du résultat
     name: type
@@ -305,6 +307,8 @@ fields:
         value: float
       - label: Éligibilité (Oui / Non)
         value: bool
+      - label: Autre
+        value: mixed
   field_result_unit: &field_result_unit
     label: Unité lorsque le type de résultat est une valeur numérique
     hint: Il s'agit de spécifier l'unité du montant.
@@ -649,6 +653,15 @@ fields:
             collapsed: false
             types:
               - *field_age
+  field_private_benefit: &field_private_benefit
+    label: Masquer l'aide
+    name: private
+    required: false
+    widget: hidden
+  field_benefit_partial_support: &field_benefit_partial_support
+    label: L'aide ne couvre qu'une partie des frais
+    name: participation
+    widget: hidden
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
@@ -666,6 +679,56 @@ fields:
       - *field_quotient_familial
       - *field_formation_sanitaire_social
       - *field_beneficiaire_rsa
+  # champs propre aux aides openfisca
+  field_benefit_position: &field_benefit_position
+    label: Pondération de l'aide sur la page de résultat
+    name: top
+    widget: hidden
+  field_benefit_warning_message: &field_benefit_warning_message
+    label: Affiche un message d'avertissement spécifique
+    name: warning
+    widget: hidden
+  field_openfisca_eligibility_source: &openfisca_eligibility_source
+    label: Référence à la règle de calcul OpenFisca
+    name: openfisca_eligibility_source
+    widget: hidden
+  field_benefit_teleservices: &field_benefit_teleservices
+    label: Liens vers plusieurs téléservices
+    name: teleservices
+    widget: hidden
+  field_benefit_ressources_year_minus_two:
+    &field_benefit_ressources_year_minus_two
+    label: Aide calculée en fonction des revenus N-2
+    name: isBaseRessourcesYearMinusTwo
+    widget: hidden
+  field_benefit_msa_specific: &field_benefit_msa_specific
+    label: Aide restreinte aux usagers de la MSA
+    name: msa
+    widget: hidden
+  field_benefit_forms: &field_benefit_forms
+    label: Liens vers des formulaires de demande de l'aide
+    name: forms
+    widget: hidden
+  field_benefit_participation: &field_benefit_forms
+    label: Liens vers des formulaires de demande de l'aide
+    name: forms
+    widget: hidden
+  field_benefit_institution: &field_benefit_institution
+    label: Référence aux institutions supervisant l'aide
+    name: etablissements
+    widget: hidden
+  field_benefit_set_to_zero_recently: &field_benefit_set_to_zero_recently
+    label: L'aide OpenFisca a été remise à zéro récemment
+    name: setToZeroRecently
+    widget: hidden
+  field_benefit_capital_dependant: &field_benefit_capital_dependant
+    label: L'attribution de l'aide est dépendante du capital personnel
+    name: isBaseRessourcesPatrimoine
+    widget: hidden
+  field_benefit_openfisca_mapping: &field_benefit_openfisca_mapping
+    label: Identifiant OpenFisca de l'aide
+    name: openfisca_eligibility_source
+    widget: hidden
 
 collections:
   - name: benefits_javascript
@@ -699,6 +762,10 @@ collections:
       - *field_link_teleservice
       - *field_link_form
       - *field_link_instructions
+      - *field_amount_reliability
+      # hidden fields
+      - *field_private_benefit
+      - *field_benefit_partial_support
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe
@@ -729,6 +796,19 @@ collections:
       - *field_amount_reliability
       - *field_openfisca_linked_entity
       - *field_openfisca_period
+      - *field_private_benefit
+      # hidden fields
+      - *field_benefit_position
+      - *field_benefit_warning_message
+      - *field_benefit_teleservices
+      - *field_benefit_ressources_year_minus_two
+      - *field_benefit_msa_specific
+      - *field_benefit_forms
+      - *field_benefit_partial_support
+      - *field_benefit_institution
+      - *field_benefit_set_to_zero_recently
+      - *field_benefit_capital_dependant
+      - *field_benefit_openfisca_mapping
   - name: institutions
     label: Institutions
     label_singular: institution
@@ -770,6 +850,18 @@ collections:
         widget: string
         required: false
         required_group: identifier
+      - label: Article défini
+        name: prefix
+        widget: hidden
+        required: false
+      - label: Etablissements
+        name: etablissements
+        widget: hidden
+        required: false
+      - label: repository
+        name: repository
+        widget: hidden
+        required: false
   - name: contribution-pages
     label: Pages
     label_singular: page

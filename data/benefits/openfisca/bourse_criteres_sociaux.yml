@@ -8,7 +8,7 @@ instructions: https://www.service-public.fr/particuliers/vosdroits/F12214
 prefix: une
 type: float
 unit: "€"
-floorAt: 0.1
+floorAt: 0.01
 periodicite: mensuelle
 entity: individus
 openfiscaPeriod: thisMonth

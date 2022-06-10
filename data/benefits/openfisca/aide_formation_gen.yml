@@ -6,7 +6,7 @@ teleservice: https://dse.phm.education.gouv.fr/GEN/
 prefix: l’
 type: float
 unit: "€"
-floorAt: 0.1
+floorAt: 0.01
 entity: individus
 periodicite: mensuelle
 openfiscaPeriod: thisMonth

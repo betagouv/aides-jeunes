@@ -10,3 +10,5 @@ teleservice:
 type: bool
 entity: menages
 openfiscaPeriod: thisMonth
+periodicite: autre
+skip_schema_check: true

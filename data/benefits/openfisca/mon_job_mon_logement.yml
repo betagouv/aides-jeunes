@@ -7,7 +7,7 @@ conditions:
   - Ne pas être employé·e par une entreprise publique.
 link: https://www.actionlogement.fr/aide-mon-job-mon-logement
 teleservice: https://piv.actionlogement.fr/simulateur-mobilite
-prefix: l'
+prefix: l’
 type: float
 unit: €
 floorAt: 1

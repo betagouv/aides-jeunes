@@ -24,7 +24,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-du-territoire-de-belfort/offre-de-service/Enfance-et-jeunesse/la-bourse-de-stage-d-animateur-ou-de-directeur-de-centres-de-vacances-et-de-loisirs
 form: https://www.caf.fr/sites/default/files/caf/901/BAFA/BAFA%20BASE.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-territoire-de-belfort/offre-de-service/Enfance-et-jeunesse/la-bourse-de-stage-d-animateur-ou-de-directeur-de-centres-de-vacances-et-de-loisirs
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

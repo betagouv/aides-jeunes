@@ -21,7 +21,7 @@ profils:
     conditions: []
 link: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
 instructions: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: annuelle

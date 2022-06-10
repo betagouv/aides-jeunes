@@ -18,7 +18,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-touraine/offre-de-service/enfance-et-jeunesse/vous-avez-plus-de-17-ans-et-vous-suivez-une-formation-pour-obtenir-le-bafa
 form: https://www.caf.fr/sites/default/files/caf/371/2%20-%20Offre%20de%20services/Enfance%20et%20jeunesse/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

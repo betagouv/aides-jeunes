@@ -24,7 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
 instructions: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

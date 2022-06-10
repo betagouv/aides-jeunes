@@ -25,7 +25,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-de-loir-et-cher/offre-de-service/enfance-et-jeunesse/financer-son-bafa
 form: https://www.caf.fr/sites/default/files/caf/411/PDF%202021/Formulaire%20demande%20aide%20Bafa%2041%20v5.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-loir-et-cher/offre-de-service/enfance-et-jeunesse/financer-son-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

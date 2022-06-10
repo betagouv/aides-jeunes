@@ -11,7 +11,7 @@ conditions:
 link: https://www.caf.fr/allocataires/caf-de-la-haute-loire/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa-et-bafd
 form: https://www.caf.fr/sites/default/files/caf/431/FORMULAIRES_ACSO/BAFA-Cerfa11381-02.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-loire/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa-et-bafd
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

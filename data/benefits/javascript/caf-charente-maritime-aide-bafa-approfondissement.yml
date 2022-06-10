@@ -31,7 +31,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
 instructions: https://www.caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service-0/enfance-et-jeunesse/l-aide-a-la-formation-bafabafd
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

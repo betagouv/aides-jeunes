@@ -6,7 +6,7 @@ description:
   d'Azur, à la culture et au sport avec 80 € et des bons plans.
 link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
 instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
-prefix: l'
+prefix: l’
 type: bool
 conditions_generales:
   - type: regions
@@ -22,3 +22,4 @@ profils:
   - type: etudiant
   - type: service_civique
   - type: apprenti
+periodicite: ponctuelle

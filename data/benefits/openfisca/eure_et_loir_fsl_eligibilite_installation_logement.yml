@@ -8,7 +8,8 @@ conditions:
     (ressources hors aide personnelle au logement, allocation logement,
     allocation de rentrée scolaire, allocation d’éducation spéciale et ses compléments).
 link: https://www.eurelien.fr/guide/action-et-aides-sociales#guide-block-30
-prefix: l'
+prefix: l’
 type: bool
 entity: menages
 openfiscaPeriod: thisMonth
+periodicite: ponctuelle

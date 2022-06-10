@@ -24,7 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/sites/default/files/caf/521/Flyer%20Parcours%20Jeunes%202021.pdf#pdfjs.action=download
 instructions: https://www.caf.fr/sites/default/files/caf/521/Flyer%20Parcours%20Jeunes%202021.pdf#pdfjs.action=download
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: autre

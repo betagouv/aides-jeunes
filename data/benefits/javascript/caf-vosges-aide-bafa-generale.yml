@@ -24,7 +24,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
 instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

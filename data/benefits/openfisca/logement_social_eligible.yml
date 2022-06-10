@@ -15,3 +15,4 @@ type: bool
 entity: familles
 openfiscaPeriod: thisMonth
 private: true
+periodicite: ponctuelle

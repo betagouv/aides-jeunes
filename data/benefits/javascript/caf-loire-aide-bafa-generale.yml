@@ -8,7 +8,7 @@ description: L'aide au BAFA pour une session de formation générale est une aid
 link: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
 form: https://www.caf.fr/sites/default/files/caf/428/Documents/Bafa/51%2060%20A%2007_DBAFA.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

@@ -22,7 +22,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-du-calvados/offre-de-service/enfance-et-jeunesse/bafa-bafd
 form: https://www.caf.fr/sites/default/files/caf/141/Caf.fr/Offre%20de%20service/Petite%20Enfance/2021/16_02/ASD019%20-%20Dem%20BAFA%20Grale%202021.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-calvados/offre-de-service/enfance-et-jeunesse/bafa-bafd
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

@@ -7,3 +7,4 @@ prefix: le
 type: bool
 entity: individus
 openfiscaPeriod: thisMonth
+periodicite: ponctuelle

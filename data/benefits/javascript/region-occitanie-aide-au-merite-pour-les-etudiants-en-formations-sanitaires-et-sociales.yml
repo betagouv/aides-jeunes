@@ -20,7 +20,7 @@ profils:
       - type: boursier
 link: https://www.laregion.fr/Aide-au-merite
 teleservice: https://www.laregion.fr/Aide-au-merite
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: autre

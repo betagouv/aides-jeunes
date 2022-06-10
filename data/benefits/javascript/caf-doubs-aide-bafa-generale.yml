@@ -16,7 +16,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-doubs/offre-de-service/enfance-et-jeunesse/le-bafa-et-le-bafd
 instructions: https://www.caf.fr/sites/default/files/caf/253/Pages%20locales%202021/NOTICE%20BAFA%20BAFD.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

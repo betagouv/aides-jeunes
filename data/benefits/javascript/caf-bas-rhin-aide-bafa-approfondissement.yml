@@ -17,7 +17,7 @@ conditions_generales:
 profils: []
 link: https://www.bafa-bafd.jeunes.gouv.fr/Region.aspx?MJSReg=67
 instructions: https://www.caf.fr/allocataires/caf-du-bas-rhin/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

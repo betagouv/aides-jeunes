@@ -18,7 +18,7 @@ profils: []
 link: https://www.caf.fr/allocataires/caf-des-hautes-alpes/offre-de-service-0/enfance-et-jeunesse
 form: https://www.caf.fr/sites/default/files/caf/051/Documents/BAFA%20formulaire%20stage1.pdf
 instructions: https://www.caf.fr/allocataires/caf-des-hautes-alpes/offre-de-service-0/enfance-et-jeunesse
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

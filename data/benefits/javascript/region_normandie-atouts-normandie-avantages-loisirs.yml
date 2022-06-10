@@ -20,7 +20,7 @@ conditions_generales:
 profils: []
 link: https://www.normandie.fr/sites/default/files/2021-07/Flyer%20Loisirs%20Atouts%20Normandie.pdf
 teleservice: https://atouts.normandie.fr/
-prefix: l'aide
+prefix: l’aide
 type: float
 unit: €
 periodicite: annuelle

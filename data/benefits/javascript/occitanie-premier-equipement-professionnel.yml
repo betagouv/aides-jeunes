@@ -20,3 +20,4 @@ conditions_generales:
       - "76"
 profils:
   - type: lyceen
+periodicite: ponctuelle

@@ -6,3 +6,4 @@ prefix: l’
 type: bool
 entity: individus
 openfiscaPeriod: thisMonth
+periodicite: autre

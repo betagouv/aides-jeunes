@@ -25,7 +25,7 @@ profils: []
 link: https://www.caf.fr/sites/default/files/caf/841/Images/pages-partenaires/newpartenaires/documents/FLYER%20-%20BAFA%2072.pdf
 form: https://www.caf.fr/sites/default/files/caf/841/Documents/Offredeservice/demande_daide_bafa.pdf
 instructions: https://www.caf.fr/sites/default/files/caf/841/Images/pages-partenaires/newpartenaires/documents/FLYER%20-%20BAFA%2072.pdf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

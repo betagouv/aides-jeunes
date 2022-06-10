@@ -26,7 +26,7 @@ conditions_generales:
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

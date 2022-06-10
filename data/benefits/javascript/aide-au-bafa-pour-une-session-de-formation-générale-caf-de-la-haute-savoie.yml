@@ -10,7 +10,7 @@ description: L'aide au BAFA pour une session de formation générale est une aid
 conditions: []
 link: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-savoie/contacter-ma-caf
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

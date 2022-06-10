@@ -1,5 +1,5 @@
-const fetch = require("node-fetch")
 const Benefits = require("../data/all")
+const axios = require("axios")
 
 // Extrait la liste des liens référencés dans la base de règles
 let links = []
@@ -51,16 +51,13 @@ async function fetchAndReport({ link, title, editLink, type }) {
 }
 
 async function getHTTPStatus(link) {
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 15000)
-
   try {
-    const res = await fetch(link, { signal: controller.signal })
-    clearTimeout(timeout)
+    const res = await axios.get(link, {
+      timeout: 15000,
+    })
     return res.status
   } catch (err) {
-    clearTimeout(timeout)
-    return 499
+    return err.response?.status || 499
   }
 }
 

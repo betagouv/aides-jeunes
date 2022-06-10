@@ -5,13 +5,17 @@ const Benefits = require("../data/all")
 let links = []
 Benefits.all.forEach((benefit) => {
   links = links.concat(
-    [benefit.link, benefit.instructions, benefit.form, benefit.teleservice]
-      .filter((link) => link)
-      .map((link) => {
+    ["link", "instructions", "form", "teleservice"]
+      .filter((linkType) => typeof benefit[linkType] === "string")
+      .map((linkType) => {
+        const link = benefit[linkType]
         return {
           title: benefit.label,
           link,
-          filepath: `${benefit.source}/${benefit.id}.yml`,
+          type: linkType,
+          filepath: ["openfisca", "javascript"].includes(benefit.source)
+            ? `${benefit.source}/${benefit.id}.yml`
+            : undefined,
         }
       })
   )
@@ -33,7 +37,7 @@ async function processNextQueueItem() {
   }
 }
 
-async function fetchAndReport({ link, title, filepath }) {
+async function fetchAndReport({ link, title, filepath, type }) {
   let status = await getHTTPStatus(link)
 
   // Retry one time in case of timeout
@@ -41,7 +45,7 @@ async function fetchAndReport({ link, title, filepath }) {
     await sleep(10_000)
     status = await getHTTPStatus(link)
   }
-  report({ status, link, title, filepath })
+  report({ status, link, title, filepath, type })
 }
 
 async function getHTTPStatus(link) {
@@ -57,10 +61,10 @@ async function getHTTPStatus(link) {
   }
 }
 
-async function report({ status, link, title, filepath }) {
+async function report({ status, link, title, filepath, type }) {
   console.log(status === 200 ? "✅" : "❌", status, link)
   if (status !== 200) {
-    detectedErrors.push({ status, link, title, filepath })
+    detectedErrors.push({ status, link, title, filepath, type })
   }
 }
 
@@ -79,12 +83,16 @@ function sleep(ms) {
 
 			Certains liens référencés ne semblent plus fonctionner :
 
-			| Aide | Status HTTP | Lien de modification |
-			|---|---|---|
+			| Aide | Type | Status HTTP | Lien de modification |
+			|---|---|---|---|
 			${detectedErrors
         .map(
-          ({ status, title, link, filepath }) =>
-            `| [${title}](${link}) | ${status} | [✎ Modifier](https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath}) |`
+          ({ status, title, link, filepath, type }) =>
+            `| [${title}](${link}) | ${type} | ${status} | ${
+              filepath
+                ? `[✎ Modifier](https://github.com/betagouv/aides-jeunes/blob/master/data/benefits/${filepath})`
+                : ""
+            } |`
         )
         .join("\n")}`
 

@@ -6,7 +6,9 @@ let links = []
 Benefits.all.forEach((benefit) => {
   links = links.concat(
     ["link", "instructions", "form", "teleservice"]
-      .filter((linkType) => typeof benefit[linkType] === "string")
+      .filter(
+        (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"
+      )
       .map((linkType) => {
         const link = benefit[linkType]
         return {

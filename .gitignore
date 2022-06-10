@@ -41,6 +41,7 @@ node_modules
 
 # Compiled assets
 dist
+dist-server
 
 .project
 .sass-cache

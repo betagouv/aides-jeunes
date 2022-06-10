@@ -12,12 +12,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      - run: npm install --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
       - id: invalid_links
         run: node ./tools/check-links-validity.js --ci
         timeout-minutes: 10
       - if: steps.invalid_links.outputs.comment
         uses: ./.github/actions/reopen-issue-with-comment
         with:
-          issue-number: 140
+          issue-number: 2945
           comment: ${{ steps.invalid_links.outputs.comment }}

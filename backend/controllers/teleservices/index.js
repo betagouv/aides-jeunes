@@ -36,7 +36,7 @@ const teleservices = [
     public: true,
     destination: {
       label: "Transférer les informations",
-      url: "https://agrums-acadis-connect/agrum/analyse-des-droits/{{token}}",
+      url: "https://agrums.acadis.re/agrum/analyse-des-droits/{{token}}",
     },
   },
   {

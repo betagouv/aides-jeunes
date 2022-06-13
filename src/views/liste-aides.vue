@@ -15,7 +15,7 @@
       <div v-for="institution in type.institutions" :key="institution.id">
         <h3 :id="institution.id" class="aj-question">
           <router-link
-            :title="`Lien vers l'institution ${institution.label}`"
+            :title="`Lien vers la liste des aides de l'institution ${institution.label}`"
             :to="{
               path: `/aides`,
               hash: `#${institution.id}`,

@@ -42,7 +42,7 @@ jobs:
         run: npm --version && node --version && python3 --version
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit
+        run: npm ci --no-audit
   install_openfisca:
     name: Install OpenFisca
     runs-on: ubuntu-20.04

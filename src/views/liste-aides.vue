@@ -13,9 +13,17 @@
       </p>
 
       <div v-for="institution in type.institutions" :key="institution.id">
-        <h3 :id="institution.id" class="aj-question">{{
-          institution.label
-        }}</h3>
+        <h3 :id="institution.id" class="aj-question">
+          <router-link
+            :title="`Lien vers l'institution ${institution.label}`"
+            :to="{
+              path: `/aides`,
+              hash: `#${institution.id}`,
+            }"
+          >
+            {{ institution.label }}
+          </router-link>
+        </h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">

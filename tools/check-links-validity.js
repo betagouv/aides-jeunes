@@ -12,7 +12,7 @@ Benefits.all.forEach((benefit) => {
       .map((linkType) => {
         const link = benefit[linkType]
         return {
-          title: benefit.label,
+          title: `${benefit.label} (${benefit.institution.label})`,
           link,
           type: linkType,
           editLink: ["openfisca", "javascript"].includes(benefit.source)

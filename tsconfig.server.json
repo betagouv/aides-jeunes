@@ -13,5 +13,5 @@
     "lib/**/*.ts",
     "lib/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "src"]
+  "exclude": ["node_modules", "src", "tools"]
 }

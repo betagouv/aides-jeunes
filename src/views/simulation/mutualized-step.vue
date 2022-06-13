@@ -116,7 +116,7 @@ export default {
       return this.$route.params.fieldName
     },
     question() {
-      return this.getQuestion()
+      return this.step.getQuestion(this.propertyData)
     },
     questionType() {
       return this.step.questionType

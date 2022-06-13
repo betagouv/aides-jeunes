@@ -1,4 +1,4 @@
-import { PropertyData } from "../types/property"
+import { EnumItemProperty, PropertyData } from "../types/property"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)
@@ -42,7 +42,9 @@ export class Property {
 }
 
 export class EnumProperty extends Property {
-  items?: any[] | ((propertyData: PropertyData) => any[])
+  items:
+    | EnumItemProperty[]
+    | ((propertyData: PropertyData) => EnumItemProperty[])
 
   constructor({
     question,
@@ -59,7 +61,9 @@ export class EnumProperty extends Property {
     help?: string
     moreInfo?: string | ((variation: any) => string)
     showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-    items?: any[] | ((propertyData: PropertyData) => any[])
+    items:
+      | EnumItemProperty[]
+      | ((propertyData: PropertyData) => EnumItemProperty[])
   }) {
     super({
       question,
@@ -72,8 +76,21 @@ export class EnumProperty extends Property {
     this.items = items
   }
 
-  getItems(propertyData: PropertyData) {
-    return this.getValueOrExecuteFunction("items", propertyData)
+  getRelevantItems(
+    items: EnumItemProperty[],
+    propertyData: PropertyData
+  ): EnumItemProperty[] {
+    return items.filter(
+      (item: EnumItemProperty) =>
+        !item.isRelevant || item.isRelevant(propertyData)
+    )
+  }
+
+  getItems(propertyData: PropertyData): EnumItemProperty[] {
+    return this.getRelevantItems(
+      this.getValueOrExecuteFunction("items", propertyData),
+      propertyData
+    )
   }
 }
 

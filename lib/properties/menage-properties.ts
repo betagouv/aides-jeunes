@@ -24,21 +24,21 @@ export default {
   _nombreMoisEntreeLogement: new EnumProperty({
     question: "Prévoyez-vous de déménager prochainement ?",
     questionType: "enum",
-    items: ({ simulation }) => {
-      const value = getAnswer(
-        simulation.answers.current,
-        "menage",
-        "statut_occupation_logement"
-      )
-      return [
-        { value: 12, label: "Oui", active: true },
-        {
-          value: -2,
-          label: "Non, j'ai emmenagé il y a moins de 3 mois",
-          active: value?.startsWith("locataire"),
+    items: [
+      { value: 12, label: "Oui" },
+      {
+        value: -2,
+        label: "Non, j'ai emmenagé il y a moins de 3 mois",
+        isRelevant: ({ simulation }) => {
+          const value = getAnswer(
+            simulation.answers.current,
+            "menage",
+            "statut_occupation_logement"
+          )
+          return value?.startsWith("locataire")
         },
-        { value: -12, label: "Non", active: true },
-      ].filter((item) => item.active)
-    },
+      },
+      { value: -12, label: "Non" },
+    ],
   }),
 }

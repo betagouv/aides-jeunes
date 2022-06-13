@@ -6,12 +6,6 @@ const { capitalize, yearsAgo } = require("../utils")
 const Scolarite = require("../scolarite")
 const { getAnswer } = require("../answers")
 
-const isRelevant = (items: any[], propertyData: PropertyData) => {
-  return items.filter(
-    (item) => !item.isRelevant || item.isRelevant(propertyData)
-  )
-}
-
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new Property({
     question: ({ individu }) => {
@@ -33,41 +27,38 @@ export default {
       return `${Individu.label(individu, "être")} ?`
     },
     questionType: "enum",
-    items: (propertyData) => {
-      const items = [
-        {
-          value: "etudiant",
-          label: "Scolarisé·e, étudiant·e, alternant·e",
-        },
-        {
-          value: "salarie",
-          label: "Salarié·e",
-        },
-        {
-          value: "independant",
-          label: "Indépendant·e",
-        },
-        {
-          value: "service_civique",
-          label: "En service civique",
-        },
-        {
-          value: "chomeur",
-          label: "Inscrit·e comme demandeur d’emploi",
-        },
-        {
-          value: "retraite",
-          label: "Retraité·e",
-          isRelevant: ({ individu, periods }: PropertyData) =>
-            Individu.age(individu, periods.today.value) > 30,
-        },
-        {
-          value: "inactif",
-          label: "Autre",
-        },
-      ]
-      return isRelevant(items, propertyData)
-    },
+    items: [
+      {
+        value: "etudiant",
+        label: "Scolarisé·e, étudiant·e, alternant·e",
+      },
+      {
+        value: "salarie",
+        label: "Salarié·e",
+      },
+      {
+        value: "independant",
+        label: "Indépendant·e",
+      },
+      {
+        value: "service_civique",
+        label: "En service civique",
+      },
+      {
+        value: "chomeur",
+        label: "Inscrit·e comme demandeur d’emploi",
+      },
+      {
+        value: "retraite",
+        label: "Retraité·e",
+        isRelevant: ({ individu, periods }: PropertyData) =>
+          Individu.age(individu, periods.today.value) > 30,
+      },
+      {
+        value: "inactif",
+        label: "Autre",
+      },
+    ],
     moreInfo:
       "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
   }),
@@ -81,94 +72,124 @@ export default {
   annee_etude: new EnumProperty({
     question: "Dans quelle classe êtes-vous actuellement ?",
     questionType: "enum",
-    items: ({ individu }) => {
-      return [
-        {
-          label: "CAP - 1ère année",
-          value: "cap_1",
-          only: "lycee",
+    items: [
+      {
+        label: "CAP - 1ère année",
+        value: "cap_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
         },
-        {
-          label: "CAP - 2ème année",
-          value: "cap_2",
-          only: "lycee",
+      },
+      {
+        label: "CAP - 2ème année",
+        value: "cap_2",
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
         },
-        {
-          label: "Seconde",
-          value: "seconde",
-          only: "lycee",
+      },
+      {
+        label: "Seconde",
+        value: "seconde",
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
         },
-        {
-          label: "Première",
-          value: "premiere",
-          only: "lycee",
+      },
+      {
+        label: "Première",
+        value: "premiere",
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
         },
-        {
-          label: "Terminale",
-          value: "terminale",
-          only: "lycee",
+      },
+      {
+        label: "Terminale",
+        value: "terminale",
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
         },
-        {
-          label: "BTS",
-          value: "bts_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "BTS",
+        value: "bts_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "BUT",
-          value: "but_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "BUT",
+        value: "but_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "CPGE",
-          value: "cpge_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "CPGE",
+        value: "cpge_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Licence - 1ère année",
-          value: "licence_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Licence - 1ère année",
+        value: "licence_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Licence - 2ème année",
-          value: "licence_2",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Licence - 2ème année",
+        value: "licence_2",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Licence - 3ème année",
-          value: "licence_3",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Licence - 3ème année",
+        value: "licence_3",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Master - 1ère année",
-          value: "master_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Master - 1ère année",
+        value: "master_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Master - 2ème année",
-          value: "master_2",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Master - 2ème année",
+        value: "master_2",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Doctorat - 1ère année",
-          value: "doctorat_1",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Doctorat - 1ère année",
+        value: "doctorat_1",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Doctorat - 2ème année",
-          value: "doctorat_2",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Doctorat - 2ème année",
+        value: "doctorat_2",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Doctorat - 3ème année",
-          value: "doctorat_3",
-          only: "enseignement_superieur",
+      },
+      {
+        label: "Doctorat - 3ème année",
+        value: "doctorat_3",
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
         },
-        {
-          label: "Autre",
-          value: "autre",
-        },
-      ].filter((item) => !item.only || item.only === individu.scolarite)
-    },
+      },
+      {
+        label: "Autre",
+        value: "autre",
+      },
+    ],
   }),
 
   ass_precondition_remplie: new Property({
@@ -285,7 +306,7 @@ export default {
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
     questionType: "enum",
-    items: ({ individu }) => {
+    items: ({ individu }: PropertyData) => {
       const isDemandeur = individu._role === "demandeur"
       return [
         {
@@ -618,30 +639,32 @@ export default {
         : "Depuis quand avez-vous signé votre contrat de travail ?"
     },
     questionType: "enum",
-    items: ({ individu, periods }) => {
-      const jeune_actif = Individu.age(individu, periods.today.value) <= 25
-      return [
-        {
-          value: 2,
-          label: "Moins de 3 mois",
-          isRelevant: true,
+    items: [
+      {
+        value: 2,
+        label: "Moins de 3 mois",
+      },
+      {
+        value: 5,
+        label: "Entre 3 et 6 mois",
+        isRelevant: ({ individu, periods }: PropertyData) => {
+          return Individu.age(individu, periods.today.value) <= 25
         },
-        {
-          value: 5,
-          label: "Entre 3 et 6 mois",
-          isRelevant: jeune_actif,
+      },
+      {
+        value: 12,
+        label: "Plus de 3 mois",
+        isRelevant: ({ individu, periods }: PropertyData) => {
+          return Individu.age(individu, periods.today.value) > 25
         },
-        {
-          value: 12,
-          label: "Plus de 3 mois",
-          isRelevant: !jeune_actif,
+      },
+      {
+        value: 12,
+        label: "Plus 6 mois",
+        isRelevant: ({ individu, periods }: PropertyData) => {
+          return Individu.age(individu, periods.today.value) <= 25
         },
-        {
-          value: 12,
-          label: "Plus 6 mois",
-          isRelevant: jeune_actif,
-        },
-      ].filter((item) => item.isRelevant)
-    },
+      },
+    ],
   }),
 }

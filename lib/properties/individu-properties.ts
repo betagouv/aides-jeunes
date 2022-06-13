@@ -460,6 +460,7 @@ export default {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
         target="_blank"
+        title="Académies - Nouvelle fenêtre"
         rel="noopener"
         href="https://www.education.gouv.fr/les-regions-academiques-academies-et-services-departementaux-de-l-education-nationale-6557"
         >hors de votre académie</a
@@ -473,6 +474,7 @@ export default {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
         target="_blank"
+        title="Régions académiques - Nouvelle fenêtre"
         rel="noopener"
         href="https://www.etudiant.gouv.fr/fr/aide-la-mobilite-en-master-1504#item2"
         >hors de votre région académique</a

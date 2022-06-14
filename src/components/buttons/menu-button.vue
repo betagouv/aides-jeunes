@@ -1,5 +1,9 @@
 <template>
-  <button class="menu-button button outline small" type="button">
+  <button
+    class="menu-button button outline small"
+    type="button"
+    aria-labelledby="button-label"
+  >
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -9,8 +13,9 @@
       viewBox="0 0 60.123 60.123"
       xml:space="preserve"
       width="10"
+      aria-hidden="true"
+      focusable="false"
     >
-      <title>Modifier ma simulation</title>
       <g>
         <path
           d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z"
@@ -27,7 +32,7 @@
         <circle cx="4.029" cy="48.661" r="4.029" />
       </g>
     </svg>
-    <span class="btn-label" aria-hidden="true">Modifier ma simulation</span>
+    <span id="button-label" class="btn-label">Modifier ma simulation</span>
   </button>
 </template>
 

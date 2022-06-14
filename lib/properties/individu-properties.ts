@@ -347,7 +347,7 @@ export default {
     question: "Êtes-vous hébergé chez vos parents ?",
   }),
 
-  handicap: new EnumProperty({
+  handicap: new Property({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en situation de handicap ?`
     },

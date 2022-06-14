@@ -26,7 +26,7 @@ context("Full simulation", () => {
 
     revenu.fill_ressources_types([
       "salaire_net",
-      "rpns_auto_entrepreneur_CA_bnc",
+      "rpns_micro_entreprise_CA_bnc_imp",
     ])
     revenu.fillConstantRevenu(1101.42)
     revenu.ignore()

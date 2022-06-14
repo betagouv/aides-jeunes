@@ -9,7 +9,7 @@
         itemscope
         itemtype="http://schema.org/GovernmentService"
         :data-testid="droit.id"
-        :aria-label="`Demander ${droit.prefix} ${droit.label}`"
+        :aria-label="askBenefit(droit)"
       >
         <img
           class="aj-aide-illustration"
@@ -107,6 +107,11 @@ export default {
   methods: {
     push: function (droit) {
       this.$router.push(`/simulation/resultats/${droit.id}`)
+    },
+    askBenefit: function (droit) {
+      return `Demander ${droit.prefix}${droit.prefix == "l’" ? "" : " "}${
+        droit.label
+      }`
     },
   },
 }

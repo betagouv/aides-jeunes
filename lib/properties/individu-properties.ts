@@ -1,5 +1,4 @@
 import { EnumProperty, NumberProperty, Property } from "./property"
-import { PropertyData } from "../types/property"
 
 const Individu = require("../individu")
 const { capitalize, yearsAgo } = require("../utils")
@@ -51,7 +50,7 @@ export default {
       {
         value: "retraite",
         label: "Retraité·e",
-        isRelevant: ({ individu, periods }: PropertyData) =>
+        isRelevant: ({ individu, periods }) =>
           Individu.age(individu, periods.today.value) > 30,
       },
       {
@@ -306,7 +305,7 @@ export default {
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
     questionType: "enum",
-    items: ({ individu }: PropertyData) => {
+    items: ({ individu }) => {
       const isDemandeur = individu._role === "demandeur"
       return [
         {
@@ -647,21 +646,21 @@ export default {
       {
         value: 5,
         label: "Entre 3 et 6 mois",
-        isRelevant: ({ individu, periods }: PropertyData) => {
+        isRelevant: ({ individu, periods }) => {
           return Individu.age(individu, periods.today.value) <= 25
         },
       },
       {
         value: 12,
         label: "Plus de 3 mois",
-        isRelevant: ({ individu, periods }: PropertyData) => {
+        isRelevant: ({ individu, periods }) => {
           return Individu.age(individu, periods.today.value) > 25
         },
       },
       {
         value: 12,
         label: "Plus 6 mois",
-        isRelevant: ({ individu, periods }: PropertyData) => {
+        isRelevant: ({ individu, periods }) => {
           return Individu.age(individu, periods.today.value) <= 25
         },
       },

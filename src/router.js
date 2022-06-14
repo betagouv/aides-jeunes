@@ -321,11 +321,11 @@ const router = createRouter({
         import(/* webpackChunkName: "aides" */ "./views/aide.vue"),
       meta: {
         headTitle: (params) => {
-          const benefitLabel = `${benefits[params.benefitId].label}`
-          return benefits[params.benefitId]?.label
-            ? benefitLabel.charAt(0).toUpperCase() +
-                benefitLabel.slice(1) +
-                ` - Simulateur d'aides ${context.name}`
+          const benefitLabel = benefits[params.benefitId].label
+          return benefitLabel
+            ? `${benefitLabel.charAt(0).toUpperCase()}${benefitLabel.slice(
+                1
+              )} - Simulateur d'aides ${context.name}`
             : process.env.VUE_APP_TITLE
         },
       },

@@ -351,7 +351,9 @@ router.beforeEach((to, from, next) => {
   if (!from.name) {
     store.commit("initialize")
     store.dispatch("openFiscaParameters")
-    store.dispatch("verifyBenefitVariables")
+    if (process.env.VUE_APP_CONTEXT === "deploy-preview") {
+      store.dispatch("verifyBenefitVariables")
+    }
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&

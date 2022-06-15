@@ -2,6 +2,7 @@
  * Migre rpns_auto_entrepreneur vers rpns_micro_entreprise
  */
 
+const _ = require("lodash")
 const VERSION = 11
 
 const AE_map = {
@@ -46,6 +47,24 @@ function replaceAutoEntrepeneurInRpnsRessources(answers) {
       if (AE_map[ressource.id]) {
         result.id = AE_map[ressource.id]
         update = true
+        // Récupères le montant des 4 derniers mois et fait la moyenne des résultats pour calculer le revenu annuel
+        const year = Object.keys(result.amounts).find((key) => key.length === 4)
+        const amountsByMonthKey = Object.keys(result.amounts).filter(
+          (key) => key.length === 7
+        )
+        const amountsByMonthKeyToSum = amountsByMonthKey.filter(
+          (key) => !key.startsWith(year)
+        )
+        const newYear = amountsByMonthKeyToSum[0].slice(0, 4)
+        result.amounts[newYear] =
+          (amountsByMonthKeyToSum.reduce(
+            (accum, key) => accum + result.amounts[key],
+            0
+          ) /
+            (amountsByMonthKeyToSum.length || 1)) *
+          12
+
+        result.amounts = _.omit(result.amounts, amountsByMonthKey)
       }
       return result
     })

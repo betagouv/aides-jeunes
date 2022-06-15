@@ -14,4 +14,3 @@ floorAt: 1
 entity: individus
 openfiscaPeriod: thisMonth
 periodicite: mensuelle
-private: true

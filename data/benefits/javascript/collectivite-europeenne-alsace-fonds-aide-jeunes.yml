@@ -3,11 +3,8 @@ institution: collectivité-européenne-dalsace
 description: Ce dispositif est destiné à prévenir les risques d’exclusions
   économiques et sociales et à favoriser vos démarches d’insertion (aide
   alimentaire et pour l’hygiène, secours exceptionnels, hébergement, aides à la
-  formation, emploi et la mobilité, notamment une aide à l'obtention du permis
-  B).
-conditions:
-  - Être en difficulté financière.
-  - Effectuer votre demande auprès de votre Mission Locale.
+  formation, l'emploi et la mobilité).
+prefix: les
 conditions_generales:
   - type: age
     operator: ">="
@@ -20,10 +17,12 @@ conditions_generales:
       - "67"
       - "68"
 profils: []
-link: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
-instructions: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
-prefix: les
+conditions:
+  - Être en difficulté financière.
+  - Effectuer votre demande auprès de votre Mission Locale.
+interestFlag: null
 type: bool
 unit: €
 periodicite: ponctuelle
-interestFlag: null
+link: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes
+instructions: https://www.haut-rhin.fr/content/des-aides-pour-les-jeunes

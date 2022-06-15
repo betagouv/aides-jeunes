@@ -12,49 +12,50 @@ const AE_map = {
 }
 
 function replaceAutoEntrepreneurInRessources(answers) {
-  const ressources = answers.find(
+  const ressourcesList = answers.filter(
     (answer) =>
       answer.entityName === "individu" && answer.fieldName === "ressources"
   )
 
-  if (!ressources) return
+  ressourcesList.forEach((ressources) => {
+    let update = false
 
-  let update = false
+    const newRessourcesValue = ressources.value.map((ressource) => {
+      if (AE_map[ressource]) {
+        update = true
+        return AE_map[ressource]
+      }
+      return ressource
+    })
 
-  const newRessourcesValue = ressources.value.map((ressource) => {
-    if (AE_map[ressource]) {
-      update = true
-      return AE_map[ressource]
+    if (update) {
+      ressources.set("value", newRessourcesValue, { strict: false })
     }
-    return ressource
   })
-
-  if (update) {
-    ressources.set("value", newRessourcesValue, { strict: false })
-  }
 }
 
 function replaceAutoEntrepeneurInRpnsRessources(answers) {
-  const rnpsRessources = answers.find(
+  const rnpsRessourcesList = answers.filter(
     (answer) => answer.entityName === "individu" && answer.fieldName === "rpns"
   )
 
-  if (!rnpsRessources) return
-
-  let update = false
-  const newRessources = rnpsRessources.value.map((ressource) => {
-    if (AE_map[ressource.id]) {
-      ressource.id = AE_map[ressource.id]
-      update = true
-    }
-    return ressource
-  })
-
-  if (update) {
-    rnpsRessources.set("value", newRessources, {
-      strict: false,
+  rnpsRessourcesList.forEach((rnpsRessources) => {
+    let update = false
+    const newRessources = rnpsRessources.value.map((ressource) => {
+      const result = { ...ressource }
+      if (AE_map[ressource.id]) {
+        result.id = AE_map[ressource.id]
+        update = true
+      }
+      return result
     })
-  }
+
+    if (update) {
+      rnpsRessources.set("value", newRessources, {
+        strict: false,
+      })
+    }
+  })
 }
 
 function updateAutoEntrepreneur(answers) {

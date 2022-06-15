@@ -12,7 +12,7 @@ MODEL_MIGRATION=$1;
 echo "Migration de $MODEL_MIGRATION"
 
 migrate() {
-    script_result=$(node apply.js --all --model=$MODEL_MIGRATION | tee -a $LOG_FILE)
+    script_result=$(node run migrate -- --model=$MODEL_MIGRATION | tee -a $LOG_FILE)
     read number error <<< $(echo $script_result | awk -F";" '{ print $5" "$6 }')
 }
 

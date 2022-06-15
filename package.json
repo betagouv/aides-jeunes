@@ -33,7 +33,8 @@
     "stats": "node ./dist-server/backend/lib/stats",
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "test-benefits-urls": "node tools/test-benefits-urls.js",
-    "test-definition-periods": "node tools/test-definition-periods.js"
+    "test-definition-periods": "node tools/test-definition-periods.js",
+    "migrate": "node dist-server/backend/lib/migrations/apply.js --all"
   },
   "dependencies": {
     "@actions/core": "^1.8.2",

@@ -20,12 +20,6 @@
         :type="type"
         @update="process"
       />
-      <RessourceAutoEntreprise
-        v-if="type.meta.id.startsWith('rpns_auto_entrepreneur_CA')"
-        :individu="type.individu"
-        :ressource="type"
-        @update="updateTNSAmount"
-      />
       <RessourceMicroEntreprise
         v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
         :individu="type.individu"
@@ -53,7 +47,6 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons"
-import RessourceAutoEntreprise from "@/components/ressource/auto-entreprise"
 import RessourceExploitantAgricole from "@/components/ressource/exploitant-agricole"
 import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise"
 import RessourceProfessionLiberale from "@/components/ressource/profession-liberale"
@@ -68,7 +61,6 @@ import { getAnswer } from "../../../../lib/answers"
 export default {
   name: "RessourcesMontants",
   components: {
-    RessourceAutoEntreprise,
     RessourceExploitantAgricole,
     RessourceMicroEntreprise,
     RessourceProfessionLiberale,
@@ -161,9 +153,6 @@ export default {
     },
     isSimple: function (type) {
       const complex = [
-        "rpns_auto_entrepreneur_CA_achat_revente",
-        "rpns_auto_entrepreneur_CA_bic",
-        "rpns_auto_entrepreneur_CA_bnc",
         "rpns_benefice_exploitant_agricole",
         "rpns_micro_entreprise_CA_bic_vente_imp",
         "rpns_micro_entreprise_CA_bic_service_imp",

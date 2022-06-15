@@ -2,7 +2,7 @@
 
 cd `dirname $0`
 
-LOG_FILE=/home/main/migration.log
+LOG_FILE=/home/antoine/Work/Telescoop/aides-jeunes/migration.log
 MAX_LOOP=1000
 
 loop_count=1
@@ -12,7 +12,7 @@ MODEL_MIGRATION=$1;
 echo "Migration de $MODEL_MIGRATION"
 
 migrate() {
-    script_result=$(node run migrate -- --model=$MODEL_MIGRATION | tee -a $LOG_FILE)
+    script_result=$(npm run migrate -- --model=$MODEL_MIGRATION | tee -a $LOG_FILE)
     read number error <<< $(echo $script_result | awk -F";" '{ print $5" "$6 }')
 }
 

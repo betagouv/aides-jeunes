@@ -47,6 +47,12 @@ function replaceAutoEntrepeneurInRpnsRessources(answers) {
       if (AE_map[ressource.id]) {
         result.id = AE_map[ressource.id]
         update = true
+        // Dans certains cas il n'y a pas `amounts`
+        if (!result.amounts) {
+          result.amounts = {}
+          return result
+        }
+
         // Récupères le montant des 4 derniers mois et fait la moyenne des résultats pour calculer le revenu annuel
         const year = Object.keys(result.amounts).find((key) => key.length === 4)
         const amountsByMonthKey = Object.keys(result.amounts).filter(

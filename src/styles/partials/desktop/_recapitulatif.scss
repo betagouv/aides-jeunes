@@ -55,4 +55,14 @@
       border: 1px solid var(--light-grey);
     }
   }
+
+  .aj-actions {
+    & > div {
+      display: flex;
+    }
+
+    .third-party-button {
+      display: none;
+    }
+  }
 }

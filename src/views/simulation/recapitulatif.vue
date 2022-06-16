@@ -42,13 +42,26 @@
       </template>
     </div>
     <div class="aj-actions">
-      <BackButton @click="goBack"></BackButton>
-      <router-link
-        v-if="showResultButton"
-        class="button next-button"
-        to="/simulation/resultats"
-        >Accéder aux résultats</router-link
+      <div>
+        <BackButton @click="goBack"></BackButton>
+
+        <router-link
+          v-if="showResultButton"
+          class="button next-button"
+          to="/simulation/resultats"
+        >
+          Accéder aux résultats
+        </router-link>
+      </div>
+
+      <button
+        v-if="showReturnUrl"
+        class="button third-party-button"
+        @click="browseToReturnUrl()"
       >
+        <i class="fa fa-share-square-o" aria-hidden="true"></i>
+        {{ returnUrl.label }}
+      </button>
     </div>
   </div>
 </template>
@@ -65,6 +78,7 @@ import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "../../../lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
 import { useIndividu } from "@/composables/individu.ts"
+import { redirect } from "@/lib/redirect"
 
 export default {
   name: "Recapitulatif",
@@ -109,6 +123,12 @@ export default {
         this.progress === 1 &&
         this.$router.options.history.state.back !== "/simulation/resultats"
       )
+    },
+    showReturnUrl() {
+      return this.returnUrl && this.returnUrl.label && this.returnUrl.url
+    },
+    returnUrl() {
+      return this.$store.getters.thirdPartyData?.returnUrl
     },
   },
   methods: {
@@ -161,6 +181,10 @@ export default {
 
     stepPerChapter(chapterName) {
       return this.activeJourney.filter((step) => step.chapter === chapterName)
+    },
+
+    browseToReturnUrl() {
+      redirect(this.returnUrl.url)
     },
   },
 }

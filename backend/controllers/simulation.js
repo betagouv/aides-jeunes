@@ -2,6 +2,7 @@ const omit = require("lodash/omit")
 const filter = require("lodash/filter")
 const pick = require("lodash/pick")
 const assign = require("lodash/assign")
+var axios = require("axios")
 
 const { baseURL } = require("../config")
 const { generateSituation } = require("../../lib/situations")
@@ -101,7 +102,34 @@ exports.openfiscaResponse = function (req, res, next) {
         })
       )
 
-    res.send(Object.assign(result, { _id: req.situationId }))
+    if (
+      req.simulation.thirdPartyData &&
+      req.simulation.thirdPartyData.resultsUrl
+    ) {
+      axios
+        .post(
+          req.simulation.thirdPartyData.resultsUrl,
+          {
+            aidesRequestJsonPayload: req.simulation,
+            aidesResponseJsonPayload: result,
+          },
+          process.env.RESULT_URL_API_KEY
+            ? {
+                headers: {
+                  Authorization: `Bearer ${process.env.RESULT_URL_API_KEY}`,
+                },
+              }
+            : {}
+        )
+        .catch((err) => {
+          console.error("Failed to send simulation result", err)
+        })
+        .finally(() =>
+          res.send(Object.assign(result, { _id: req.situationId }))
+        )
+    } else {
+      res.send(Object.assign(result, { _id: req.situationId }))
+    }
   })
 }
 

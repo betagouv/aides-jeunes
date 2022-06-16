@@ -12,7 +12,11 @@ const SurveySchema = new mongoose.Schema(
   {
     _oldId: { type: String },
     accessToken: { type: String },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      expires: parseInt(process.env.MONGODB_DOCUMENT_TTL_SECONDS) || undefined,
+    },
     messageId: { type: String },
     repliedAt: { type: Date },
     error: { type: Object },

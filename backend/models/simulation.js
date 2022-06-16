@@ -50,7 +50,11 @@ const SimulationSchema = new mongoose.Schema(
     },
     version: Number,
     abtesting: Object,
-    createdAt: { type: Date, default: Date.now },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      expires: parseInt(process.env.MONGODB_DOCUMENT_TTL_SECONDS) || undefined,
+    },
     modifiedFrom: String,
     status: {
       type: String,
@@ -58,6 +62,7 @@ const SimulationSchema = new mongoose.Schema(
       enum: ["new", "test", "investigation"],
     },
     token: String,
+    thirdPartyData: Object,
   },
   { minimize: false }
 )

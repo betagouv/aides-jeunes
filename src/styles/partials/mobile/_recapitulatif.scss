@@ -1,0 +1,14 @@
+.recapitulatif {
+  .aj-actions {
+    flex-direction: column;
+    gap: 16px;
+
+    & > div {
+      justify-content: space-between;
+    }
+
+    .third-party-button {
+      display: block;
+    }
+  }
+}

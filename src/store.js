@@ -249,6 +249,9 @@ const store = createStore({
     situation: (state) => {
       return generateSituation(state.simulation, true)
     },
+    thirdPartyData: function (state) {
+      return state.simulation?.thirdPartyData
+    },
   },
   mutations: {
     answer: (state, answer) => {

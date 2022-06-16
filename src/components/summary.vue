@@ -50,6 +50,15 @@
             }}</router-link
           >
           <BackButton v-else @click="goBack()">Retour</BackButton>
+
+          <button
+            v-if="showReturnUrl"
+            class="button aj-return-url"
+            @click="browseToReturnUrl()"
+          >
+            <i class="fa fa-share-square-o" aria-hidden="true"></i>
+            {{ returnUrl.label }}
+          </button>
         </div>
       </div>
     </div>
@@ -58,6 +67,7 @@
 
 <script>
 import BackButton from "@/components/buttons/back-button"
+import { redirect } from "@/lib/redirect"
 
 export default {
   name: "Summary",
@@ -79,6 +89,12 @@ export default {
         this.$route.name === "resultatsDetails"
       )
     },
+    showReturnUrl() {
+      return this.returnUrl && this.returnUrl.label && this.returnUrl.url
+    },
+    returnUrl() {
+      return this.$store.getters.thirdPartyData?.returnUrl
+    },
   },
   methods: {
     disabledLink(chapter, index) {
@@ -88,6 +104,9 @@ export default {
     },
     goBack() {
       window?.history.back()
+    },
+    browseToReturnUrl() {
+      redirect(this.returnUrl.url)
     },
   },
 }

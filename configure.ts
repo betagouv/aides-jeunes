@@ -5,14 +5,23 @@ const morgan = require("morgan")
 const Sentry = require("@sentry/node")
 
 module.exports = function (devServer) {
-  Sentry.init({
-    // Enable Sentry in production
-    // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
-    dsn:
-      process.env.NODE_ENV === "production"
-        ? "https://b44fa037e37b4b9eb1a050675b253dce@sentry.incubateur.net/17"
-        : null,
-  })
+  if (process.env.ENABLE_SENTRY === "true") {
+    Sentry.init({
+      // Enable Sentry in production
+      // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
+      dsn:
+        process.env.NODE_ENV === "production"
+          ? "https://b44fa037e37b4b9eb1a050675b253dce@sentry.incubateur.net/17"
+          : null,
+    })
+
+    // The request handler must be the first middleware on the app
+    devServer.app.use(Sentry.Handlers.requestHandler())
+
+    console.log("Sentry enabled")
+  } else {
+    console.log("Sentry disabled")
+  }
 
   // The request handler must be the first middleware on the app
   devServer.app.use(Sentry.Handlers.requestHandler())

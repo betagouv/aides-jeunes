@@ -87,6 +87,7 @@ import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
 import WarningMessage from "@/components/warning-message"
 import Recapitulatif from "./recapitulatif"
+import { setSituationCredentials } from "@/lib/cookies"
 
 export default {
   name: "SimulationResultats",
@@ -109,6 +110,13 @@ export default {
       return
     } else if (this.$route.query?.situationId) {
       if (this.$store.state.situationId !== this.$route.query.situationId) {
+        if (this.hasSituationCredentials) {
+          setSituationCredentials(
+            this.$cookies,
+            this.$route.query.situationId,
+            this.$route.query.token
+          )
+        }
         this.$store
           .dispatch("fetch", this.$route.query.situationId)
           .then(() => {
@@ -164,6 +172,15 @@ export default {
   methods: {
     isEmpty: function (array) {
       return !array || array.length === 0
+    },
+  },
+  computed: {
+    hasSituationCredentials: function () {
+      return (
+        this.$route.query &&
+        this.$route.query.situationId &&
+        this.$route.query.token
+      )
     },
   },
 }

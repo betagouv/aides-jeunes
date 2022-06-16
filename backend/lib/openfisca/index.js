@@ -22,7 +22,7 @@ function sendToOpenfisca(endpoint, transform) {
     }
 
     axios
-      .post(config.openfiscaURL + "/" + endpoint, request)
+      .post(`${config.openfiscaURL}/${endpoint}`, request)
       .then((response) => response.data)
       .then(function (result) {
         callback(null, result)

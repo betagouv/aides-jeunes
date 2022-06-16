@@ -48,7 +48,7 @@ export default {
   },
   emits: ["update:modelValue"],
   data: function () {
-    const uniqueFieldName = "field." + Math.random().toString(36).slice(2)
+    const uniqueFieldName = `field.${Math.random().toString(36).slice(2)}`
     return {
       uniqueFieldName,
     }

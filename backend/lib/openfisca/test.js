@@ -60,7 +60,7 @@ benefits.all
       benefit.source === "openfisca" && benefit.institution.repository
   )
   .forEach((benefit) => {
-    const repository = "openfisca-" + benefit.institution.repository
+    const repository = `openfisca-${benefit.institution.repository}`
     const entity = benefit.entity
 
     if (!EXTENSION_VARIABLES[repository][entity]) {

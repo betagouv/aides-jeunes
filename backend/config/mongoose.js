@@ -10,7 +10,7 @@ module.exports = function (mongoose, config) {
   const modelsPath = path.join(__dirname, "../models")
   fs.readdirSync(modelsPath).forEach(function (file) {
     if (/(.*)\.(js$|coffee$)/.test(file)) {
-      require(modelsPath + "/" + file)
+      require(`${modelsPath}/${file}`)
     }
   })
 }

@@ -286,7 +286,7 @@ export default {
       )}`
     },
     filename() {
-      return "mes-aides-" + this.$store.state.situationId + ".yml"
+      return `mes-aides-${this.$store.state.situationId}.yml`
     },
     sendMail() {
       return sendMontantsAttendus(this.$store.state.situationId)

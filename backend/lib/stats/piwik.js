@@ -34,10 +34,9 @@ exports.getUsageData = function (fromDate, toDate) {
         format: "JSON",
         idSite: matomo.id,
         period: "day",
-        date:
-          fromDate.toISOString().slice(0, 10) +
-          "," +
-          toDate.toISOString().slice(0, 10),
+        date: `${fromDate.toISOString().slice(0, 10)},${toDate
+          .toISOString()
+          .slice(0, 10)}`,
       },
     })
     .then((response) => response.data)

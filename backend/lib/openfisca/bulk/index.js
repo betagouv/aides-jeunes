@@ -64,8 +64,9 @@ function build(situation, variable, values) {
   const periods = common.getPeriods(situation.dateDeValeur)
 
   const fullTimePeriodLength = 12 * 4
-  const fullTimePeriod =
-    "month:" + periods["threeYearsAgo"] + ":" + fullTimePeriodLength.toString()
+  const fullTimePeriod = `month:${
+    periods["threeYearsAgo"]
+  }:${fullTimePeriodLength.toString()}`
 
   return values.reduce((a, v) => {
     situation.demandeur[variable] = {}

@@ -10,7 +10,7 @@
       min="-1"
       max="7"
     />
-    {{ value == -1 ? "Non boursier" : "Boursier échelon " + value }}
+    {{ value == -1 ? "Non boursier" : `Boursier échelon ${value}` }}
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

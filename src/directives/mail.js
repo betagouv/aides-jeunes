@@ -1,13 +1,13 @@
 function buildHref({ to, subject, body }) {
   let params = []
   if (subject) {
-    params.push("subject=" + encodeURIComponent(subject))
+    params.push(`subject=${encodeURIComponent(subject)}`)
   }
   if (body) {
-    params.push("body=" + encodeURIComponent(body))
+    params.push(`body=${encodeURIComponent(body)}`)
   }
   let comps = [
-    "mailto:" + (to || process.env.VUE_APP_CONTACT_EMAIL),
+    `mailto:${to || process.env.VUE_APP_CONTACT_EMAIL}`,
     params.join("&"),
   ]
   return comps.join("?")

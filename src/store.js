@@ -338,11 +338,9 @@ const store = createStore({
         entityName: "individu",
         id: `enfant_${enfantId}`,
         fieldName: "_firstName",
-        value:
-          "votre " +
-          enfants.length +
-          (enfants.length === 1 ? "ᵉʳ" : "ᵉ") +
-          " enfant",
+        value: `votre ${enfants.length}${
+          enfants.length === 1 ? "ᵉʳ" : "ᵉ"
+        } enfant`,
       }
 
       // When you add a children you need to remove all current answer after the child validation
@@ -547,9 +545,7 @@ const store = createStore({
     compute: function (store, showPrivate) {
       store.commit("startComputation")
       return axios
-        .get(
-          "api/simulation/" + store.state.situationId + "/openfisca-response"
-        )
+        .get(`api/simulation/${store.state.situationId}/openfisca-response`)
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })

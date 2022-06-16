@@ -24,10 +24,7 @@ function fetch(s) {
   const fs = Promise.promisifyAll(require("fs"))
   const os = require("os")
   const path = require("path")
-  const cachePath = path.join(
-    os.tmpdir(),
-    "simulation_" + s.source._id + "_" + base
-  )
+  const cachePath = path.join(os.tmpdir(), `simulation_${s.source._id}_${base}`)
   /* eslint-disable */
   if (false && fs.existsSync(cachePath)) {
     // eslint-disable-line no-constant-condition

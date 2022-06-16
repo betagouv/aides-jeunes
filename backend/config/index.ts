@@ -62,10 +62,10 @@ const all: ConfigurationLayout = {
 
 let override = {}
 try {
-  override = require("./" + env)
-  console.info("Using specific configuration for " + env + ".")
+  override = require(`./${env}`)
+  console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
-  console.warn("No specific configuration for " + env + ".")
+  console.warn(`No specific configuration for ${env}.`)
 }
 
 module.exports = Object.assign(all, override)

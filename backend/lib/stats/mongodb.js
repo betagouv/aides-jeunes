@@ -111,7 +111,7 @@ function extractSurveyDetails(db) {
           obj[b.id] = b.amount
         })
         this.surveys[0].answers.forEach(function (a) {
-          emit(a.id + ";" + a.value, 1)
+          emit(`${a.id};${a.value}`, 1)
         })
       },
       function (k, v) {

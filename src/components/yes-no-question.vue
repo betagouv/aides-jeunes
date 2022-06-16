@@ -1,7 +1,12 @@
 <template>
   <fieldset>
     <legend>
-      <component :is="htmlHeading" class="aj-question">
+      <component
+        :is="htmlHeading"
+        role="heading"
+        aria-level="2"
+        class="aj-question"
+      >
         <slot />
       </component>
       <slot name="help" />

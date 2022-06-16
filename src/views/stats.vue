@@ -31,6 +31,7 @@
         Les informations suivantes peuvent être retrouvées sur un
         <a
           target="_blank"
+          title="Statistiques d'impact du simulateur d'aides 1jeune1solution - Nouvelle fenêtre"
           rel="noopener"
           href="https://betagouv.github.io/mes-aides-analytics/"
         >

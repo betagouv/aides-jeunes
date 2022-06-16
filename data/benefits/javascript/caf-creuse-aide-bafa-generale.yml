@@ -3,13 +3,13 @@ institution: caf_creuse
 description: L'aide au BAFA pour une session générale est une aide locale mise à
   disposition par la CAF de la Creuse pour vous aider à financer votre session
   en complément de <a target="_blank"
-  rel="noopener"href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
-  nationale apportée par la CAF</a>.
+  rel="noopener title="Voir l'aide nationale - Nouvelle fenêtre" "href="https://www.caf.fr/allocataires/vies-de-famille/jeune-ou-etudiant/vie-active/comment-financer-son-bafa">l'aide
+  nationale apportée par la Caf</a>.
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
-  - Effectuer la session de formation auprès d’un <a
-    target="_blank"rel="noopener"href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
-    établissement conventionné.
+  - Effectuer la session de formation auprès d’un <a target="_blank"
+    rel="noopener" title="Voir les établissements conventionnés - Nouvelle fenêtre" href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
+    établissement conventionné</a>.
   - Signer une charte d’engagement pour le suivi intégral de la formation.
   - Ne pas être pris en charge à 100 % par un employeur.
 conditions_generales:

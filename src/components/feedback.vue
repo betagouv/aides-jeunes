@@ -68,6 +68,7 @@
               v-analytics="{ category: 'Tracer' }"
               target="_blank"
               :href="openfiscaTracerURL"
+              title="Accédez à l'outil d'analyse des résultats de cette simulation - Nouvelle fenêtre"
               >Accédez à l'outil d'analyse des résultats de cette simulation</a
             >
           </li>
@@ -76,6 +77,7 @@
               v-analytics="{ category: 'Axe' }"
               target="_blank"
               :href="openfiscaAxeURL"
+              title="Analysez l'évolution des aides en fonction des ressources : graphique - Nouvelle fenêtre"
               >Analysez l'évolution des aides en fonction des ressources
             </a>
           </li>
@@ -84,6 +86,7 @@
               v-analytics="{ category: 'PNDS' }"
               target="_blank"
               :href="PNDSURL"
+              title="Transférer les données au PNDS :  - Nouvelle fenêtre"
               >Transférer les données au PNDS
             </a>
           </li>
@@ -98,6 +101,7 @@
       href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       class="aj-cta-avis"
       target="_blank"
+      title="Je donne mon avis - Nouvelle fenêtre"
     >
       <img
         src="https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"

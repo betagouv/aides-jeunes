@@ -9,11 +9,12 @@
         itemscope
         itemtype="http://schema.org/GovernmentService"
         :data-testid="droit.id"
+        :aria-label="askBenefit(droit)"
       >
         <img
           class="aj-aide-illustration"
           :src="getBenefitImage(droit)"
-          :alt="'Logo ' + droit.label"
+          alt=""
         />
         <div class="aj-aide-text">
           <h2 class="aj-question aj-benefit-label" itemprop="name">{{
@@ -30,8 +31,8 @@
               droit.warning === true
             "
           >
-            <img src="@/assets/images/warning.svg" /> Attention, cette aide vous
-            est accessible sous certaines conditions supplémentaires.
+            <img src="@/assets/images/warning.svg" alt="" /> Attention, cette
+            aide vous est accessible sous certaines conditions supplémentaires.
           </WarningMessage>
         </div>
         <DroitEstime :droit="droit" />
@@ -58,14 +59,12 @@
       >
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
-            <img
-              :src="getBenefitImage(droit)"
-              :alt="'Icone pour' + droit.label"
-            />
+            <img :src="getBenefitImage(droit)" alt="" />
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>
-                <small :aria-label="`Plus d'informations sur ${droit.label}`"
+                <small
+                  :aria-label="`Plus d'informations sur ${droit.label} - Nouvelle fenêtre`"
                   >Plus d'informations</small
                 >
               </h2>
@@ -108,6 +107,11 @@ export default {
   methods: {
     push: function (droit) {
       this.$router.push(`/simulation/resultats/${droit.id}`)
+    },
+    askBenefit: function (droit) {
+      return `Demander ${droit.prefix}${droit.prefix == "l’" ? "" : " "}${
+        droit.label
+      }`
     },
   },
 }

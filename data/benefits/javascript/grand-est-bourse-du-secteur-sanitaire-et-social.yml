@@ -4,8 +4,8 @@ description: La région Grand Est peut octroyer des bourses d’études à carac
   social aux étudiant·e·s inscrit·e·s dans les formations du secteur sanitaire
   et social agréées et financées par la Région Grand Est.
 conditions:
-  - Vérifier que vous correspondez <a target="_blank" rel="noopener"
-    href="https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-PORTAILSIMULATION">aux
+  - Vérifier que vous correspondez aux <a target="_blank" rel="noopener" title ="Voir les critères de ressources - Nouvelle fenêtre"
+    href="https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-PORTAILSIMULATION">
     critères de ressources définis par la région</a>.
 conditions_generales:
   - type: regions

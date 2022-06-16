@@ -3,7 +3,7 @@ institution: region_corse
 description: La Région aide financièrement les élèves boursier·e·s dans l'achat
   de leur matériel scolaire.
 conditions:
-  - Contacter <a target="_blank" rel="noopener"
+  - Contacter <a target="_blank" rel="noopener" title="votre CROUS - Nouvelle fenêtre"
     href="https://www.crous-corse.fr/contact/">votre CROUS</a>.
 conditions_generales:
   - type: regions

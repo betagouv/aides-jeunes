@@ -1,6 +1,6 @@
 <template>
   <div class="field-group">
-    <label for="cp" class="aj-question"
+    <label role="heading" aria-level="2" for="cp" class="aj-question"
       >{{ codePostalLabel }}
       <EnSavoirPlus />
     </label>

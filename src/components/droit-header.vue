@@ -1,10 +1,6 @@
 <template>
   <div class="aj-droit-header">
-    <img
-      class="aj-droit-illustration"
-      :src="getBenefitImage(droit)"
-      :alt="`Image pour ${droit.label}`"
-    />
+    <img class="aj-droit-illustration" :src="getBenefitImage(droit)" alt="" />
 
     <div class="aj-droit-identity">
       <h2 class="aj-question aj-benefit-label" itemprop="name">{{

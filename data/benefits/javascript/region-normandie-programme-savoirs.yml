@@ -7,7 +7,7 @@ conditions_generales:
     values:
       - "28"
 conditions:
-  - Choisir un des modules dans la <a target="_blank" rel="noopener"
+  - Choisir un des modules dans la <a target="_blank" rel="noopener" title="liste - Nouvelle fenêtre"
     href="https://parcours-metier.normandie.fr/ftlv-dispositif-socle">liste</a>.
   - Faire la demande auprès de votre conseiller·e Pôle Emploi, Mission Locale,
     Cap Emploi, PLIE ou votre référent.e social.e pour être orienté·e vers un

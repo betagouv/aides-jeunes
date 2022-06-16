@@ -14,11 +14,19 @@
     >
     <span v-if="showContributionLinks && isEditableBenefit()"
       > -
-      <a :href="repositoryBenefitUrl()" target="_blank" rel="noreferrer"
+      <a
+        :href="repositoryBenefitUrl()"
+        target="_blank"
+        rel="noreferrer"
+        title="Code source de l'aide - Nouvelle fenêtre"
         >Code source de l'aide</a
       >
       -
-      <a :href="netlifyContributionUrl()" target="_blank" rel="noreferrer"
+      <a
+        :href="netlifyContributionUrl()"
+        target="_blank"
+        rel="noreferrer"
+        title="Proposer une modification : outil de contribution - Nouvelle fenêtre"
         >Proposer une modification</a
       ></span
     >

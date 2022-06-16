@@ -13,7 +13,7 @@ profils:
       - type: boursier
 conditions:
   - Ne pas être éligible à la Complémentaire Santé Solidaire.
-  - Adhérer à l'<a target="_blank" rel="noopener"
+  - Adhérer à l'<a target="_blank" rel="noopener" title="mutuelles partenaires - Nouvelle fenêtre"
     href="https://www.laregion.fr/Pass-Mutuelle-Etudiant-e">une des mutuelles
     partenaires (catégorie "Conditions d'éligibilité")</a>.
 type: float

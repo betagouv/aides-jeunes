@@ -51,7 +51,7 @@
           >
             <img
               class="rf"
-              alt="Logo République Française"
+              alt="Accueil 1 jeune 1 solution"
               src="@/../public/img/logo_rf.svg"
             />
           </a>
@@ -61,7 +61,7 @@
           >
             <img
               class="fr"
-              alt="Logo 1 jeune 1 solution France Relance"
+              alt="Accueil 1 jeune 1 solution"
               src="@/../public/img/logo1j1s-france-relance.svg"
             />
           </a>

@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <div class="field-group">
-      <label for="loyer" class="aj-question"
+      <label role="heading" aria-level="2" for="loyer" class="aj-question"
         >{{ loyerQuestion.label }}
         <span class="help">{{ loyerQuestion.hint }}</span>
       </label>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div v-if="captureCharges">
-      <label for="charges" class="aj-question"
+      <label role="heading" aria-level="2" for="charges" class="aj-question"
         >{{ chargesQuestion.label }}
         <span class="help">{{ chargesQuestion.hint }}</span>
       </label>

@@ -15,7 +15,7 @@ profils:
 conditions:
   - Exercer une activité rémunérée en Pays de la Loire (hors cadre des études)
     durant la période scolaire de référence.
-  - Être titulaire du <a target="_blank" rel="noopener"
+  - Être titulaire du <a target="_blank" rel="noopener" title="E-pass Jeunes - Nouvelle fenêtre"
     href="https://www.epassjeunes-paysdelaloire.fr/">E-pass Jeunes</a>.
 type: float
 unit: €

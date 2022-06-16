@@ -1,6 +1,12 @@
 <template>
   <div v-if="afficheBandeau" class="bandeau-demo-wrapper">
-    <a class="bandeau-demo" target="_blank" rel="noopener" :href="link">
+    <a
+      class="bandeau-demo"
+      target="_blank"
+      title="Démo - Nouvelle fenêtre"
+      rel="noopener"
+      :href="link"
+    >
       Démo
     </a>
     <a v-if="benefitLink" class="lien-debug" :href="benefitLink"

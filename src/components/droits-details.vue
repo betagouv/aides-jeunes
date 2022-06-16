@@ -114,8 +114,9 @@
             rel="noopener"
             class="aj-droit-pro-agricole"
             href="https://www.msa.fr/lfy/espace-prive"
+            title="Démarches pour les professions agricoles - Nouvelle fenêtre"
           >
-            <img src="@/assets/images/doigt.svg" /> Démarches pour les
+            <img src="@/assets/images/doigt.svg" alt="" /> Démarches pour les
             professions agricoles
           </a>
         </div>

@@ -19,7 +19,7 @@ profils:
   - type: etudiant
     conditions: []
 conditions:
-  - Compléter <a target="_blank" rel="noopener"
+  - Compléter <a target="_blank" rel="noopener" title="attestation - Nouvelle fenêtre"
     href="https://les-aides.nouvelle-aquitaine.fr/sites/default/files/2021-05/Attestation_Structure-Formation_FSF.pdf">l'attestation</a>
     avec votre référent·e de formation.
 type: float

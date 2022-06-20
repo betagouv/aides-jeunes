@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "dist-server",
-    "target": "es2016",
+    "target": "esnext",
     "module": "commonjs",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "skipLibCheck": true
   },
 
   "include": [

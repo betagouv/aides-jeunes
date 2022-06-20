@@ -102,7 +102,8 @@
                 >{{ benefitsMap[answer.id]?.label || answer.id }}</a
               >
               <b v-if="answer.unit && typeof answer.amount === `number`"
-                >({{ answer.amount }}{{ answer.unit }})</b
+                >({{ Math.round(answer.amount * 100) / 100
+                }}{{ answer.unit }})</b
               >
               <div v-if="answer.comments">{{ answer.comments }}</div>
             </li>

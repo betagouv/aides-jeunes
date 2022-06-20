@@ -18,7 +18,7 @@
     "db": "mongod --dbpath db",
     "db-update": "./import-tests.sh",
     "evaluate-benefits": "node tools/evaluate-benefits",
-    "front": "NODE_ENV=front-only npm run serve",
+    "front": "npm run build:server && NODE_ENV=front-only npm run serve",
     "generate-missing-institutions-aides-velo": "NODE_PATH=. node tools/generate-missing-institutions-aides-velo.js",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",

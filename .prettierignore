@@ -1,4 +1,5 @@
 db
 dist
+dist-server
 .next
 .venv*

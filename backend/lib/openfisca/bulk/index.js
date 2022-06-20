@@ -75,7 +75,7 @@ function build(situation, variable, values) {
 
     ss.foyers_fiscaux._.irpp = { [periods.thisYear]: null }
 
-    const prefixed = prefix(v.toString() + "_", ss)
+    const prefixed = prefix(`${v.toString()}_`, ss)
     return append(a, prefixed)
   }, init())
 }

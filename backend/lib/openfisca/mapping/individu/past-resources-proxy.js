@@ -81,7 +81,7 @@ function ressourcesYearMoins2Captured(situation) {
   const yearMoins2 = moment(situation.dateDeValeur)
     .subtract(2, "years")
     .format("YYYY")
-  const januaryYearMoins2 = yearMoins2 + "-01"
+  const januaryYearMoins2 = `${yearMoins2}-01`
   const hasRfr =
     situation.foyer_fiscal && some(situation.foyer_fiscal.rfr, isNumber)
   const hasYm2Ressources = common

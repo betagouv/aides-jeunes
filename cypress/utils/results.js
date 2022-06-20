@@ -52,7 +52,7 @@ const captureFiscalResources = () => {
   cy.get(".button.outline.red").click()
   cy.get('input[type="number"]').first().type("50000")
   submit()
-  cy.get(id + "-summary").should("not.exist")
+  cy.get(`${id}-summary`).should("not.exist")
 }
 
 const hasHousingBenefit = () => {

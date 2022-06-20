@@ -20,3 +20,8 @@ jobs:
         with:
           issue-number: 2945
           comment: ${{ steps.invalid_links.outputs.comment }}
+      - if: steps.invalid_links.outputs.comment
+        name: Send dead links info message
+        shell: bash
+        run: |
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-info: La liste des liens morts a été mise à jour ici : [lien](https://github.com/betagouv/aides-jeunes/issues/2945)"}' ${{ secrets.MATTERMOST_POST_URL }}

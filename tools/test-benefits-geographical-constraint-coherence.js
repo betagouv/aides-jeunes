@@ -36,3 +36,7 @@ function testGeoRelevancy(benefit) {
     }
   }
 }
+
+module.exports = {
+  testGeoRelevancy,
+}

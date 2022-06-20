@@ -41,9 +41,13 @@ function generate_benefit_list(institutions) {
   return benefits
     .filter((b) => !b.discard)
     .map((b) => {
+      const description =
+        b.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
+          ? b.description
+          : `Aide à l'achat d'un vélo : ${b.title}`
       return {
         label: `Aide à l'achat d'un vélo : ${b.title}`,
-        description: b.description || `Aide à l'achat d'un vélo : ${b.title}`,
+        description: description,
         id: `aidesvelo_${b.id}`.replace(/[ .']+/g, "_"),
         external_id: b.id,
         collectivity: b.collectivity,

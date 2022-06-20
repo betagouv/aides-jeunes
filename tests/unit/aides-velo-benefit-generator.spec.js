@@ -11,6 +11,10 @@ describe("aides velo benefit generator", function () {
       expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèçâôû-]+$/)
     })
 
+    it("verify description exists", function () {
+      expect(benefit.description?.length).toBeGreaterThanOrEqual(1)
+    })
+
     it("verify description do not contain interpolate variable", function () {
       expect(benefit.description).not.toMatch(/((\s\$)+|(^\$)+)\w+/)
     })

@@ -44,7 +44,7 @@ function postPollResult(simulation, answers) {
         process.env.MES_AIDES_ROOT_URL
       }/aides/${key.id}) ${
         key.unit && typeof key.amount === "number"
-          ? `**${key.amount}${key.unit}**`
+          ? `**${Math.round(key.amount * 100) / 100}${key.unit}**`
           : ""
       } ${key.comments?.length > 0 ? `*(${key.comments})*` : ""}`
     )

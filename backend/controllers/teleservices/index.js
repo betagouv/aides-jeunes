@@ -116,7 +116,7 @@ exports.metadataResponseGenerator = function (teleservice) {
         label: teleservice.destination.label,
         url: Mustache.render(teleservice.destination.url, {
           token: token,
-          baseURL: req.protocol + "://" + req.get("host"),
+          baseURL: `${req.protocol}://${req.get("host")}`,
           openfiscaAxeURL: config.openfiscaAxeURL,
           openFiscaURL: config.openfiscaPublicURL,
           openfiscaTracerURL: config.openfiscaTracerURL,

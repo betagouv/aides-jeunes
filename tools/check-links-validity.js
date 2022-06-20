@@ -103,7 +103,7 @@ function sleep(ms) {
       console.log(`::set-output name=comment::${format(message)}`)
     } else if (detectedErrors) {
       console.log(
-        "Liens invalides :" + detectedErrors.map(({ link }) => `\n- ${link}`)
+        `Liens invalides : ${detectedErrors.map(({ link }) => `\n- ${link}`)}`
       )
     }
 

@@ -66,7 +66,7 @@ benefits.all
     const item = benefit.openfisca_eligibility_source || benefit.id
     requestedVariables[item] = requestedVariables[item] || assign({}, benefit)
     if (benefit.uncomputability) {
-      requestedVariables[benefit.id + "_non_calculable"] = assign({}, benefit, {
+      requestedVariables[`${benefit.id}_non_calculable`] = assign({}, benefit, {
         type: "string",
       })
     }

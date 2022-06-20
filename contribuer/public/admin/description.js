@@ -14,20 +14,14 @@ class DescriptionControl extends Text.control {
     if (innerText.length < 10) {
       return {
         error: {
-          message:
-            "La description doit faire plus de 10 caractères (à la dernière vérification elle en faisait " +
-            innerText.length +
-            "). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
+          message: `La description doit faire plus de 10 caractères (à la dernière vérification elle en faisait ${innerText.length}). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr`,
         },
       }
     }
     if (innerText.length > 420) {
       return {
         error: {
-          message:
-            "La description doit faire moins de 420 caractères (à la dernière vérification elle en faisait " +
-            innerText.length +
-            "). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr",
+          message: `La description doit faire moins de 420 caractères (à la dernière vérification elle en faisait ${innerText.length}). En cas de blocage, contactez nous à aides-jeunes@beta.gouv.fr`,
         },
       }
     }

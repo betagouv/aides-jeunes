@@ -64,8 +64,9 @@ function build(situation, variable, values) {
   const periods = common.getPeriods(situation.dateDeValeur)
 
   const fullTimePeriodLength = 12 * 4
-  const fullTimePeriod =
-    "month:" + periods["threeYearsAgo"] + ":" + fullTimePeriodLength.toString()
+  const fullTimePeriod = `month:${
+    periods["threeYearsAgo"]
+  }:${fullTimePeriodLength.toString()}`
 
   return values.reduce((a, v) => {
     situation.demandeur[variable] = {}
@@ -74,7 +75,7 @@ function build(situation, variable, values) {
 
     ss.foyers_fiscaux._.irpp = { [periods.thisYear]: null }
 
-    const prefixed = prefix(v.toString() + "_", ss)
+    const prefixed = prefix(`${v.toString()}_`, ss)
     return append(a, prefixed)
   }, init())
 }

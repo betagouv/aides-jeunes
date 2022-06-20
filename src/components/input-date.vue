@@ -86,7 +86,7 @@ export default {
       }`
     },
     firstId: function () {
-      const uniqueFieldName = "id." + Math.random().toString(36).slice(2)
+      const uniqueFieldName = `id.${Math.random().toString(36).slice(2)}`
       return this.id || uniqueFieldName
     },
     showDay: function () {

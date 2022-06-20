@@ -30,10 +30,10 @@ function Task({ id }) {
   const buildHref = ({ url, title, body }) => {
     let params = []
     if (title) {
-      params.push("title=" + encodeURIComponent(title))
+      params.push(`title=${encodeURIComponent(title)}`)
     }
     if (body) {
-      params.push("body=" + encodeURIComponent(body))
+      params.push(`body=${encodeURIComponent(body)}`)
     }
     let comps = [url, params.join("&")]
     return comps.join("?")

@@ -61,9 +61,7 @@ function migrate(currentMigration, conditions) {
         model.save(function (err) {
           if (err) {
             console.log(
-              "Cannot save migrated %s %s",
-              model.constructor.modelName,
-              model.id
+              `Cannot save migrated ${model.constructor.modelName} ${model.id}`
             )
             console.trace(err)
             errors = errors + 1

@@ -10,7 +10,7 @@ api.use(bodyParser.json())
 const routesPath = path.join(__dirname, "../routes")
 fs.readdirSync(routesPath).forEach(function (file) {
   if (/(.*)\.(js$|coffee$)/.test(file)) {
-    require(routesPath + "/" + file)(api)
+    require(`${routesPath}/${file}`)(api)
   }
 })
 

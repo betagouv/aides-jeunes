@@ -1,4 +1,5 @@
 import { EnumItemProperty, PropertyData } from "../types/property"
+import { capitalize } from "../utils"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)
@@ -37,7 +38,7 @@ export class Property {
   }
 
   getQuestion(propertyData: PropertyData) {
-    return this.getValueOrExecuteFunction("question", propertyData)
+    return capitalize(this.getValueOrExecuteFunction("question", propertyData))
   }
 }
 

@@ -10,6 +10,10 @@ describe("aides velo benefit generator", function () {
     it("generates simple benefit ids", function () {
       expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèçâôû-]+$/)
     })
+
+    it("verify description do not contain interpolate variable", function () {
+      expect(benefit.description).not.toMatch(/((\s\$)+|(^\$)+)\w+/)
+    })
   })
 
   it("maps all benefits to existing institutions", function () {

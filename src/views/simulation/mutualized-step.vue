@@ -74,7 +74,7 @@ import MultipleAnswers from "../../components/multiple-answers.vue"
 import YesNoQuestion from "../../components/yes-no-question.vue"
 import Hint from "@/lib/hint"
 
-import { executeFunctionOrReturnValue, capitalize } from "../../../lib/utils"
+import { executeFunctionOrReturnValue } from "../../../lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
@@ -116,9 +116,7 @@ export default {
       return this.$route.params.fieldName
     },
     question() {
-      return capitalize(
-        executeFunctionOrReturnValue(this.step, "question", this.propertyData)
-      )
+      return this.step.getQuestion(this.propertyData)
     },
     questionType() {
       return this.step.questionType

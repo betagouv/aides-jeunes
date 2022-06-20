@@ -173,7 +173,8 @@ describe("benefit descriptions", function () {
                     return (
                       condition.type === "regions" ||
                       condition.type === "departements" ||
-                      condition.type === "communes"
+                      condition.type === "communes" ||
+                      condition.type === "epcis"
                     )
                   }
                 )

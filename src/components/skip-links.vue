@@ -3,10 +3,20 @@
     <nav role="navigation" aria-label="Accès rapide">
       <ul class="skiplinks__list">
         <li>
-          <a class="button outline" href="#main">Accéder au contenu</a>
+          <router-link
+            class="button outline"
+            :to="{ path: `${$route.path}`, hash: `#content` }"
+          >
+            Accéder au contenu
+          </router-link>
         </li>
         <li>
-          <a class="button outline" href="#footer">Accéder au pied de page</a>
+          <router-link
+            class="button outline"
+            :to="{ path: `${$route.path}`, hash: `#footer` }"
+          >
+            Accéder au pied de page
+          </router-link>
         </li>
       </ul>
     </nav>

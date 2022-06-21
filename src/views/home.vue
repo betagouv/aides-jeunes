@@ -1,5 +1,5 @@
 <template>
-  <main id="homepage" role="main">
+  <div id="homepage">
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>

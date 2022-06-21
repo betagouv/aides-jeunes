@@ -3,7 +3,9 @@
   <div class="aj-website">
     <div class="aj-website-content">
       <Header1J1S />
-      <slot />
+      <main id="content" role="main">
+        <slot />
+      </main>
     </div>
     <FooterJ1S />
   </div>

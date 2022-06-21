@@ -50,6 +50,11 @@ describe("benefit descriptions", function () {
             institution.code_siren
           )
         })
+      } else if (institution.type == "caf") {
+        it("should have a code_siren", function () {
+          expect(typeof institution.code_siren).toBe("string")
+          expect(institution.code_siren).toMatch(/^[1-9]{1}[0-9]{8}$/)
+        })
       }
 
       it("should have an id", function () {

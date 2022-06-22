@@ -1,4 +1,4 @@
-export default Simulation
+const Simulation = {}
 
 Simulation.getLatest = function () {
   return document.cookie.split("; ").reduce((accum, pair) => {
@@ -7,3 +7,5 @@ Simulation.getLatest = function () {
     return accum
   }, {}).lastestSimulation
 }
+
+export default Simulation

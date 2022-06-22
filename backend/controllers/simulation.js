@@ -156,5 +156,5 @@ exports.openfiscaTest = function (req, res) {
 
 exports.redirect = function (req, res) {
   exports.attachAccessCookie(req, res)
-  res.redirect("/simulation")
+  res.redirect("/simulation/redirect")
 }

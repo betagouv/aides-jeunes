@@ -1,74 +1,79 @@
 <template>
   <div>
     <h1>Liste des questions</h1>
-    <div v-for="question in questions" :key="question" v-html="question"> </div>
+    <div> {{ JSON.stringify(questions) }} </div>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { generateAllSteps } from "../../lib/state/generator"
 import { SIMPLE_STEPS } from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps"
+import SimpleProperties from "../../lib/properties/others/simple-properties"
 import { useIndividu } from "@/composables/individu"
-import { capitalize, executeFunctionOrReturnValue } from "../../lib/utils"
 import { datesGenerator } from "../../lib/benefits/compute"
 import moment from "moment"
+import { useStore } from "vuex"
+import { Property } from "../../lib/properties/property"
 
-export default {
-  name: "Recapitulatif",
-  data() {
-    const steps = generateAllSteps(
-      {
-        individus: {
-          demandeur: {},
-        },
-        menage: {},
-      },
-      this.$store.state.openFiscaParameters
-    )
-    const periods = datesGenerator(moment().format())
-    return {
-      steps,
-      propertyData: {
-        openFiscaParameters: this.$store.state.openFiscaParameters,
-        simulation: this.$store.state.simulation,
-        periods: periods,
-      },
-    }
-  },
-  computed: {
-    questions() {
-      return this.steps.reduce((accum, step) => {
-        const result = this.questionsPerStep(step)
-        accum.push(...result)
-        return accum
-      }, [])
+const store = useStore()
+
+const steps = generateAllSteps(
+  {
+    individus: {
+      demandeur: {},
+      conjoint: {},
     },
+    menage: {},
   },
-  methods: {
-    questionsPerStep(step) {
-      if (SIMPLE_STEPS[step.variable]) {
-        return SIMPLE_STEPS[step.variable]
-          .bind(this)(step)
-          .map((question) => question.label)
-      }
-
-      if (ENTITIES_PROPERTIES[step.entity]) {
-        const individu =
-          step.entity === "individu" ? useIndividu(step.id) : undefined
-
-        const question = executeFunctionOrReturnValue(
-          ENTITIES_PROPERTIES[step.entity][step.variable],
-          "question",
-          {
-            ...this.propertyData,
-            individu,
-          }
-        )
-        return [capitalize(question || "")]
-      }
-      return []
-    },
-  },
+  store.state.openFiscaParameters
+)
+const periods = datesGenerator(moment().format())
+const propertyData = {
+  openFiscaParameters: store.state.openFiscaParameters,
+  simulation: store.state.simulation,
+  periods: periods,
 }
+
+function questionsPerStep(step) {
+  let result: any = {
+    id: step.variable,
+    entity: step.entity,
+    url: step.url,
+  }
+
+  // if (SIMPLE_STEPS[step.variable]) {
+  //   return []
+  // return SIMPLE_STEPS[step.variable]
+  //   .bind(this)(step)
+  //   .map((question) => {
+  //     return [{
+  //       question: question.label,
+  //     }]
+  //   })
+  // }
+
+  const property =
+    ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
+    SimpleProperties[step.variable]
+
+  if (property) {
+    const individu =
+      step.entity === "individu" ? useIndividu(step.id) : undefined
+
+    const currentPropertyData = {
+      ...propertyData,
+      individu,
+    }
+    result = { ...result, ...property.getFormat(currentPropertyData) }
+    return [result]
+  }
+  return []
+}
+
+const questions = steps.reduce((accum, step) => {
+  const result = questionsPerStep(step)
+  accum.push(...result)
+  return accum
+}, [])
 </script>

@@ -7,10 +7,16 @@ const simulationController = require("../controllers/simulation")
 const teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
-  api.route("/simulation").post(cookieParser(), simulationController.create)
+  api.options("/simulation", cors())
+  api
+    .route("/simulation")
+    .post(cors({ origin: "*" }), cookieParser(), simulationController.create)
 
   const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
+
+  route.get("/redirect", simulationController.redirect)
+
   route.use(simulationController.validateAccess)
 
   route.get("/", simulationController.show)

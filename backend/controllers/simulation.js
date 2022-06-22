@@ -153,3 +153,8 @@ exports.openfiscaTest = function (req, res) {
     : req.situation
   res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
 }
+
+exports.redirect = function (req, res) {
+  exports.attachAccessCookie(req, res)
+  res.redirect("/simulation")
+}

@@ -1,8 +1,10 @@
 import {
-  EnumProperty,
-  NumberProperty,
-  Property,
   TextProperty,
+  DateProperty,
+  EnumProperty,
+  MultipleProperty,
+  NumberProperty,
+  YesNoProperty,
 } from "./property"
 
 const Individu = require("../individu")
@@ -11,7 +13,7 @@ const Scolarite = require("../scolarite")
 const { getAnswer } = require("../answers")
 
 export default {
-  aah_restriction_substantielle_durable_acces_emploi: new Property({
+  aah_restriction_substantielle_durable_acces_emploi: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -67,7 +69,7 @@ export default {
       "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
   }),
 
-  alternant: new Property({
+  alternant: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en alternance ?`
     },
@@ -196,7 +198,7 @@ export default {
     ],
   }),
 
-  ass_precondition_remplie: new Property({
+  ass_precondition_remplie: new YesNoProperty({
     question: ({ individu }) => {
       const date_debut_chomage = individu.date_debut_chomage
       return `${Individu.label(individu, "avoir")} travaillé
@@ -235,7 +237,7 @@ export default {
     unit: "€",
   }),
 
-  boursier: new Property({
+  boursier: new YesNoProperty({
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   }),
 
@@ -254,17 +256,16 @@ export default {
     ],
   }),
 
-  date_debut_chomage: new Property({
+  date_debut_chomage: new DateProperty({
     question: ({ individu }) => {
       return `Quand ${Individu.label(
         individu,
         "avoir"
       )} commencé à être au chômage ?`
     },
-    questionType: "date",
   }),
 
-  date_naissance: new Property({
+  date_naissance: new DateProperty({
     question: ({ individu }) => {
       return individu._role === "demandeur"
         ? `Quelle est votre date de naissance ?`
@@ -273,7 +274,6 @@ export default {
             "préposition"
           )}${Individu.label(individu, "nom")} ?`
     },
-    questionType: "date",
   }),
 
   enceinte: new EnumProperty({
@@ -325,7 +325,7 @@ export default {
     },
   }),
 
-  enfant_place: new Property({
+  enfant_place: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -334,7 +334,7 @@ export default {
     },
   }),
 
-  garde_alternee: new Property({
+  garde_alternee: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en garde alternée ?`
     },
@@ -368,11 +368,11 @@ export default {
     items: Object.values(Scolarite.groupeSpecialitesFormation),
   }),
 
-  habite_chez_parents: new Property({
+  habite_chez_parents: new YesNoProperty({
     question: "Êtes-vous hébergé chez vos parents ?",
   }),
 
-  handicap: new Property({
+  handicap: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en situation de handicap ?`
     },
@@ -390,7 +390,7 @@ export default {
     },
   }),
 
-  inapte_travail: new Property({
+  inapte_travail: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} reconnu·e inapte au travail ?`
     },
@@ -457,7 +457,7 @@ export default {
     ],
   }),
 
-  rsa_jeune_condition_heures_travail_remplie: new Property({
+  rsa_jeune_condition_heures_travail_remplie: new YesNoProperty({
     question: ({ individu, periods }) => {
       return `${Individu.label(individu, "avoir")} travaillé
       <abbr
@@ -480,7 +480,7 @@ export default {
       "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   }),
 
-  sortie_academie: new Property({
+  sortie_academie: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
@@ -494,7 +494,7 @@ export default {
     },
   }),
 
-  sortie_region_academique: new Property({
+  sortie_region_academique: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
@@ -508,7 +508,7 @@ export default {
     },
   }),
 
-  stagiaire: new Property({
+  stagiaire: new YesNoProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en stage ?`
     },
@@ -600,7 +600,6 @@ export default {
   _dureeMoisEtudesEtranger: new NumberProperty({
     question:
       "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
-    questionType: "number",
     unit: "mois",
     type: "count",
   }),
@@ -610,9 +609,8 @@ export default {
       "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
   }),
 
-  _interetsAidesVelo: new EnumProperty({
+  _interetsAidesVelo: new MultipleProperty({
     question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
-    questionType: "multiple",
     items: [
       { value: "velo_mecanique", label: "Vélo mécanique simple" },
       { value: "velo_electrique", label: "Vélo électrique" },
@@ -623,21 +621,21 @@ export default {
     ],
   }),
 
-  _interetAidesSanitaireSocial: new Property({
+  _interetAidesSanitaireSocial: new YesNoProperty({
     question:
       "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
   }),
 
-  _interetBafa: new Property({
+  _interetBafa: new YesNoProperty({
     question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   }),
 
-  _interetEtudesEtranger: new Property({
+  _interetEtudesEtranger: new YesNoProperty({
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
   }),
 
-  _interetPermisDeConduire: new Property({
+  _interetPermisDeConduire: new YesNoProperty({
     question: "Prévoyez-vous de passer le permis de conduire ?",
   }),
 

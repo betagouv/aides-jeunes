@@ -2,6 +2,7 @@ import { EnumProperty, MultipleProperty, Property } from "../property"
 import { EnumItemProperty, PropertyData } from "../../types/property"
 const Individu = require("../../individu")
 const { ressourceCategories } = require("../../resources")
+const { STATUT_OCCUPATION_LABEL } = require("../../logement")
 
 export default {
   _bourseCriteresSociauxCommuneDomicileFamilial: new Property({
@@ -53,15 +54,13 @@ export default {
       }
     ),
   }),
-  // statut_occupation_logement: new EnumProperty({
-  //   question: "Quel est le code postal de la commune de vos parents ?",
-  //   questionType: "depcom",
-  //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //   getAnswerFormat(propertyData: PropertyData): any {
-  //     return {
-  //       type: "string",
-  //       items: STATUT_OCCUPATION_LABEL
-  //     }
-  //   },
-  // }),
+  statut_occupation_logement: new EnumProperty({
+    question: "Quel est le code postal de la commune de vos parents ?",
+    items: Object.keys(STATUT_OCCUPATION_LABEL).map((key) => {
+      return <EnumItemProperty>{
+        label: STATUT_OCCUPATION_LABEL[key],
+        value: key,
+      }
+    }),
+  }),
 }

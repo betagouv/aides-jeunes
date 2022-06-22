@@ -7,14 +7,12 @@
 
 <script lang="ts" setup>
 import { generateAllSteps } from "../../lib/state/generator"
-import { SIMPLE_STEPS } from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps"
 import SimpleProperties from "../../lib/properties/others/simple-properties"
 import { useIndividu } from "@/composables/individu"
 import { datesGenerator } from "../../lib/benefits/compute"
 import moment from "moment"
 import { useStore } from "vuex"
-import { Property } from "../../lib/properties/property"
 
 const store = useStore()
 
@@ -41,17 +39,6 @@ function questionsPerStep(step) {
     entity: step.entity,
     url: step.url,
   }
-
-  // if (SIMPLE_STEPS[step.variable]) {
-  //   return []
-  // return SIMPLE_STEPS[step.variable]
-  //   .bind(this)(step)
-  //   .map((question) => {
-  //     return [{
-  //       question: question.label,
-  //     }]
-  //   })
-  // }
 
   const property =
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||

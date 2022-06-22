@@ -1,11 +1,12 @@
 <template>
   <div class="skiplinks">
     <nav role="navigation" aria-label="Accès rapide">
-      <ul class="skiplinks__list">
+      <ul class="skiplinks__list list-unstyled">
         <li>
           <router-link
             class="button outline"
             :to="{ path: `${$route.path}`, hash: `#content` }"
+            @click="focusOnMain()"
           >
             Accéder au contenu
           </router-link>
@@ -14,6 +15,7 @@
           <router-link
             class="button outline"
             :to="{ path: `${$route.path}`, hash: `#footer` }"
+            @click="focusOnFooter()"
           >
             Accéder au pied de page
           </router-link>
@@ -28,6 +30,18 @@ export default {
   name: "SkipLinks",
   data() {
     return {}
+  },
+  methods: {
+    focusOnFooter: function () {
+      const footer = document.querySelector("footer")
+      footer.tabIndex = -1
+      footer.focus()
+    },
+    focusOnMain: function () {
+      const title = document.querySelector("h1")
+      title.tabIndex = -1
+      title.focus()
+    },
   },
 }
 </script>
@@ -51,6 +65,5 @@ export default {
 .skiplinks__list {
   display: flex;
   flex-wrap: wrap;
-  list-style-type: none;
 }
 </style>

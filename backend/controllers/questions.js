@@ -60,6 +60,21 @@ const simulationBase = {
   },
 }
 
+function getSituationIndividus(situation) {
+  return []
+    .concat(situation.demandeur, situation.conjoint, situation.enfants)
+    .filter((individu) => individu)
+}
+
+function getIndividu(individus, individuId) {
+  let individu
+  if (individuId) {
+    const role = individuId.split("_")[0]
+    individu = Individu.get(individus, role, individuId).individu
+  }
+  return individu
+}
+
 function getQuestionsPerStep(step, propertyData, individus) {
   let result = {
     id: step.variable,
@@ -73,14 +88,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
     SimpleProperties[step.variable]
 
   if (property) {
-    let individu
-    if (step.entity === "individu") {
-      const role = step.id?.split("_")[0]
-      individu =
-        step.entity === "individu"
-          ? Individu.get(individus, role, step.id).individu
-          : undefined
-    }
+    const individu = getIndividu(individus, step.id)
 
     const currentPropertyData = {
       ...propertyData,
@@ -100,9 +108,7 @@ exports.getQuestions = (req, res) => {
   const situation = generateSituation(simulation, true)
   const periods = generator(simulation.dateDeValeur)
 
-  const individus = []
-    .concat(situation.demandeur, situation.conjoint, situation.enfants)
-    .filter((individu) => individu)
+  const individus = getSituationIndividus(situation)
 
   const now = Date.now()
   const propertyData = {

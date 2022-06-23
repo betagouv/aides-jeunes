@@ -49,6 +49,7 @@ const router = createRouter({
               .catch(() => {
                 next("/")
               })
+            })
           },
         },
         {

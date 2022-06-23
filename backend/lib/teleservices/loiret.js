@@ -107,8 +107,8 @@ const fields = {
   },
 }
 
-function Loiret(situation) {
-  this.situation = situation
+function Loiret(simulation) {
+  this.situation = simulation.getSituation()
 }
 
 Loiret.prototype.toInternal = function () {

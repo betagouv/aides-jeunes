@@ -5,6 +5,7 @@ const moment = require("moment")
 const Mustache = require("mustache")
 
 const config = require("../../config")
+const AidesJeunesPreremplissage = require("../../lib/teleservices/aides-jeunes-preremplissage")
 const Loiret = require("../../lib/teleservices/loiret")
 const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
@@ -63,12 +64,20 @@ const teleservices = [
       url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },
   },
+  {
+    name: "aides_jeunes_preremplissage",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/preremplissage/resultats?token={{token}}",
+    },
+  },
 ]
 
-function createClass(teleservice, situation) {
+function createClass(teleservice, simulation) {
   // Create object dynamically, and apply constructor
   const ts = Object.create(teleservice.class.prototype)
-  teleservice.class.apply(ts, [situation])
+  teleservice.class.apply(ts, [simulation])
 
   return ts
 }
@@ -111,7 +120,7 @@ exports.metadataResponseGenerator = function (teleservice) {
     const token = jwt.sign(payload, req.simulation.token)
 
     return res.json({
-      fields: createClass(teleservice, req.situation).toInternal(),
+      fields: createClass(teleservice, req.simulation).toInternal(),
       destination: {
         label: teleservice.destination.label,
         url: Mustache.render(teleservice.destination.url, {
@@ -196,7 +205,7 @@ exports.verifyRequest = function (req, res, next) {
  */
 exports.exportRepresentation = function (req, res) {
   return Promise.resolve(
-    createClass(req.teleservice, req.situation).toExternal()
+    createClass(req.teleservice, req.simulation).toExternal()
   ).then(function (value) {
     return res.json(value)
   })

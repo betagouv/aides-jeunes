@@ -2,18 +2,8 @@ label: aide locale au BAFA pour une session de formation générale
 institution: caf_ain
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de l'Ain pour vous aider à financer votre session en
-  complément de l'aide
-  nationale apportée par la caf.
-link: https://www.caf.fr/allocataires/caf-de-l-ain/offre-de-service/enfance-et-jeunesse/le-bafa
-form: https://www.caf.fr/sites/default/files/caf/011/Images/Offres%20de%20service/Logement/2021/ANNEXE%204.1%20_BAFA_session%20de%20form%20g%C3%A9n%C3%A9rale%20RIAS%202021.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-l-ain/offre-de-service/enfance-et-jeunesse/le-bafa
+  complément de l'aide nationale apportée par la caf.
 prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-legend: ""
-montant: 160
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -22,3 +12,12 @@ conditions_generales:
     values:
       - "01"
 profils: []
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 160
+link: https://caf.fr/allocataires/caf-de-l-ain/offre-de-service/vie-professionnelle/vous-accompagner-pour-passer-le-bafa
+form: https://caf.fr/sites/default/files/medias/011/Allocataires/Vie%20professionnelle/BAFA/ANNEXE%204-1%20Dde%20BAFA_session%20de%20form%20g%C3%A9n%C3%A9rale%202022.pdf
+instructions: https://caf.fr/allocataires/caf-de-l-ain/offre-de-service/vie-professionnelle/vous-accompagner-pour-passer-le-bafa

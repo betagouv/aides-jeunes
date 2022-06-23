@@ -1,0 +1,24 @@
+label: Aide nationale exceptionnelle au Brevet d'aptitude aux fonctions
+  d'animateur (BAFA)
+institution: etat
+description: "L’État français propose une aide financière exceptionnelle pour
+  vous aider à passer votre BAFA. Elle est déduite de votre coût par l'organisme
+  de formation : l'avance de cette partie des frais n'est donc pas nécessaire."
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+profils: []
+conditions:
+  - Vous rapprocher d'un des <a target="_blank" title="Organismes de formation
+    habilités - Nouvelle fenêtre" rel="noopener"
+    href="https://www.bafa-bafd.jeunes.gouv.fr/coms/listeOfn.aspx">organismes de
+    formation habilités</a> à délivrer ce brevet.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 200
+link: https://www.jeunes.gouv.fr/Une-aide-exceptionnelle-de-200
+instructions: https://www.jeunes.gouv.fr/Une-aide-exceptionnelle-de-200

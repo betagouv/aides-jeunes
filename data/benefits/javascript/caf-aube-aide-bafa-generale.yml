@@ -5,9 +5,6 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   complément de l'aide nationale apportée par la caf.
 prefix: l’
 conditions_generales:
-  - type: age
-    operator: ">="
-    value: 17
   - type: departements
     values:
       - "10"

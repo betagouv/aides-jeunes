@@ -6,7 +6,7 @@ require("expect")
 const mongoose = require("../backend/lib/mongo-connector")
 const Simulation = mongoose.model("Simulation")
 
-function getAnonymizedAnswer(answer) {
+function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {
     case "famille": {
       switch (answer.fieldName) {
@@ -43,6 +43,7 @@ function getAnonymizedAnswer(answer) {
           case "_interetPermisDeConduire":
           case "_interetsAidesVelo":
           case "activite":
+          case "age":
           case "alternant":
           case "boursier":
           case "depcom":
@@ -52,11 +53,13 @@ function getAnonymizedAnswer(answer) {
             return answer
           }
           case "date_naissance": {
+            const dt = new Date(simulation.dateDeValeur)
+            const dob = new Date(answer.value)
             return {
               id: answer.id,
               entityName: answer.entityName,
               fieldName: "age",
-              value: 42 /* TODO */,
+              value: Math.round((dt - dob) / 365.25 / 24 / 60 / 60 / 1000, 0),
             }
           }
           default: {
@@ -74,27 +77,29 @@ function getAnonymizedAnswer(answer) {
   }
 }
 
-function generateNewAll(answers) {
-  return answers.map(getAnonymizedAnswer).filter((a) => a)
+function generateNewAll(answers, simulation) {
+  return answers.map((a) => getAnonymizedAnswer(a, simulation)).filter((a) => a)
 }
 
 function main() {
-  Simulation.find()
+  const aMonthAgo = new Date() - 31 * 24 * 60 * 60 * 1000
+  Simulation.find({
+    dateDeValeur: { $lt: aMonthAgo },
+    status: "new",
+  })
     .sort({ _id: -1 })
     .cursor()
     .pipe(
       es.map(function (model, done) {
-        console.log(model._id.valueOf())
         model.status = "anonymized"
 
-        const newAll = generateNewAll(model.answers.all)
-
+        const newAll = generateNewAll(model.answers.all, model)
         model.answers = {
           all: newAll,
           current: [],
         }
-        console.log(newAll)
-        /*model.save(function (err) {
+
+        model.save(function (err) {
           if (err) {
             console.log(
               `Cannot save ${model.constructor.modelName} ${model.id}`
@@ -102,9 +107,7 @@ function main() {
             console.trace(err)
           }
           done()
-        })*/
-
-        done()
+        })
       })
     )
     .on("end", function () {

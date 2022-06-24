@@ -4,14 +4,14 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF des Bouches du Rhône pour vous aider à financer votre
   session d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la caf.
-conditions:
-  - Effectuer votre stage en France.
-  - Être à la charge de vos parents bénéficiaires de prestations familiales pour
-    vous si vous avez entre 17 et 20 ans.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
     value: 17
+  - type: age
+    operator: <=
+    value: 20
   - type: departements
     values:
       - "13"
@@ -19,12 +19,16 @@ conditions_generales:
     period: month
     floor: 900
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
-instructions: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/petite-enfance-enfance-et-jeunesse
-prefix: l’
+conditions:
+  - Effectuer votre stage en France.
+  - Être à la charge de vos parents bénéficiaires de prestations familiales pour
+    vous si vous avez entre 17 et 20 ans.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 180
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/vie-professionnelle/devenir-animateur-bafa
+form: https://caf.fr/sites/default/files/medias/131/Offres%20de%20service/Vie%20professionnelle/Documents/mod%C3%A8le%20bafa%20caf%202022.pdf
+instructions: https://caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/vie-professionnelle/devenir-animateur-bafa

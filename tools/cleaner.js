@@ -4,6 +4,7 @@ const es = require("event-stream")
 // Loads
 require("expect")
 const mongoose = require("../backend/lib/mongo-connector")
+const Followup = mongoose.model("Followup")
 const Simulation = mongoose.model("Simulation")
 
 function getAnonymizedAnswer(answer, simulation) {
@@ -83,6 +84,39 @@ function generateNewAll(answers, simulation) {
 
 function main() {
   const aMonthAgo = new Date() - 31 * 24 * 60 * 60 * 1000
+
+  Followup.find({
+    createdAt: { $lt: aMonthAgo },
+    email: { $exists: true },
+    surveyOptin: true,
+  })
+    .sort({ _id: -1 })
+    .cursor()
+    .pipe(
+      es.map(function (model, done) {
+        model.email = undefined
+
+        model.save(function (err) {
+          if (err) {
+            console.log(
+              `Cannot save ${model.constructor.modelName} ${model.id}`
+            )
+            console.trace(err)
+          }
+          done()
+        })
+      })
+    )
+    .on("end", function () {
+      console.log(["Terminé"].join(";"))
+      process.exit()
+    })
+    .on("error", function (err) {
+      console.trace(err)
+      process.exit()
+    })
+    .resume()
+
   Simulation.find({
     dateDeValeur: { $lt: aMonthAgo },
     status: "new",

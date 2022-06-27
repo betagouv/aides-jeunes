@@ -41,9 +41,14 @@ const router = createRouter({
           path: "redirect",
           name: "redirect",
           beforeEnter: (to, from, next) => {
-            store.dispatch("fetch", Simulation.getLatest()).then(() => {
-              next("/simulation")
-            })
+            store
+              .dispatch("fetch", Simulation.getLatest())
+              .then(() => {
+                next(`/simulation${to.query.to || ""}`)
+              })
+              .catch(() => {
+                next("/")
+              })
           },
         },
         {

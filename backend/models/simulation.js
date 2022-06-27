@@ -4,6 +4,7 @@ const openfisca = require("../lib/openfisca")
 const benefits = require("../../data/all")
 const mesAides = require("../../lib/benefits/compute")
 const { generateSituation } = require("../../lib/situations")
+const { version } = require("../../lib/simulation")
 const {
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
@@ -48,7 +49,7 @@ const SimulationSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    version: Number,
+    version: { type: Number, default: version },
     abtesting: Object,
     createdAt: { type: Date, default: Date.now },
     modifiedFrom: String,

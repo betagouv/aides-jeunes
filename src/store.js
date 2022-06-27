@@ -13,6 +13,7 @@ import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"
 import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
+import { version } from "../lib/simulation"
 
 function defaultCalculs() {
   return {
@@ -39,7 +40,7 @@ function defaultStore() {
         current: [],
       },
       dateDeValeur: new Date(),
-      version: 11,
+      version,
     },
     message: {
       text: null,

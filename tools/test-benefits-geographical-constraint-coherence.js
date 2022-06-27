@@ -9,15 +9,17 @@ benefits.all
     )
   })
   .forEach((benefit) => {
-    const result = testGeoRelevancy(benefit)
+    const result = testGeographicalRelevancy(benefit)
     if (!result.isValid) {
-      console.log(benefit.id)
-      console.log(benefit.institution.code_insee)
+      console.log("================================")
+      console.log(`Benefit : ${benefit.id}`)
+      console.log(`Insee code : ${benefit.institution.code_insee}`)
+      console.log("potentially incompatible with conditions :")
       console.log(result.conditions)
     }
   })
 
-function testGeoRelevancy(benefit) {
+function testGeographicalRelevancy(benefit) {
   const conditionGeo = benefit.conditions_generales.find((condition) => {
     return (
       condition.type === "regions" ||
@@ -38,5 +40,5 @@ function testGeoRelevancy(benefit) {
 }
 
 module.exports = {
-  testGeoRelevancy,
+  testGeographicalRelevancy,
 }

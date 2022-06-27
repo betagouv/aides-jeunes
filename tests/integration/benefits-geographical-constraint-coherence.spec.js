@@ -1,11 +1,11 @@
 const expect = require("expect")
 const {
-  testGeoRelevancy,
+  testGeographicalRelevancy,
 } = require("../../tools/test-benefits-geographical-constraint-coherence")
 
 describe("geographical constraint", function () {
   it("works for regional benefit", function () {
-    const result = testGeoRelevancy({
+    const result = testGeographicalRelevancy({
       institution: { code_insee: "84", type: "region" },
       conditions_generales: [{ type: "regions", values: ["84"] }],
     })
@@ -13,7 +13,7 @@ describe("geographical constraint", function () {
   })
 
   it("works for departemental benefit", function () {
-    const result = testGeoRelevancy({
+    const result = testGeographicalRelevancy({
       institution: { code_insee: "13", type: "departement" },
       conditions_generales: [{ type: "departements", values: ["13"] }],
     })

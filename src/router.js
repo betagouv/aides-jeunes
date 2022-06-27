@@ -113,7 +113,7 @@ const router = createRouter({
               path: "_bourseCriteresSociauxCommuneDomicileFamilial",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/simulation/individu/_bourse-criteres-sociaux-commune-domicile-familial.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/simulation/depcom-step.vue"
                 ),
             },
             {
@@ -184,7 +184,7 @@ const router = createRouter({
               path: "depcom",
               component: () =>
                 import(
-                  /* webpackChunkName: "individu" */ "./views/simulation/Menage/depcom.vue"
+                  /* webpackChunkName: "mutualized-step" */ "./views/simulation/depcom-step.vue"
                 ),
             },
             {

@@ -20,12 +20,6 @@ const individuBase = [
   "id",
   "bourse_criteres_sociaux_echelon",
   "_bourseCriteresSociauxCommuneDomicileFamilial",
-  "_bourseCriteresSociauxCommuneDomicileFamilialCodePostal",
-  "_bourseCriteresSociauxCommuneDomicileFamilialDepartement",
-  "_bourseCriteresSociauxCommuneDomicileFamilialEpci",
-  "_bourseCriteresSociauxCommuneDomicileFamilialEpciType",
-  "_bourseCriteresSociauxCommuneDomicileFamilialNomCommune",
-  "_bourseCriteresSociauxCommuneDomicileFamilialRegion",
   "_firstName",
   "_hasRessources",
   "_role",
@@ -35,16 +29,10 @@ const individu = [...individuBase, ...allRessources]
 
 const menage = [
   "aide_logement_date_pret_conventionne",
-  "_codePostal",
   "charges_locatives",
   "date_entree_logement",
-  "_departement",
   "depcom",
-  "_epci",
-  "_epciType",
   "loyer",
-  "_nomCommune",
-  "_region",
   "statut_occupation_logement",
 ]
 

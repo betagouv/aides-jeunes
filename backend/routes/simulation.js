@@ -15,8 +15,6 @@ module.exports = function (api) {
   const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
 
-  route.get("/redirect", simulationController.redirect)
-
   route.use(simulationController.validateAccess)
 
   route.get("/", simulationController.show)
@@ -25,6 +23,7 @@ module.exports = function (api) {
     "/legacy-openfisca-request",
     simulationController.openfiscaRequestFromLegacy
   )
+  route.get("/redirect", simulationController.redirect)
 
   // Enable CORS for openfisca-tracer
   route.options("/openfisca-request", cors())

@@ -85,10 +85,10 @@ function generateNewAll(answers, simulation) {
 function main() {
   const aMonthAgo = new Date() - 31 * 24 * 60 * 60 * 1000
 
+  let followup_count = 0
   Followup.find({
     createdAt: { $lt: aMonthAgo },
     email: { $exists: true },
-    surveyOptin: true,
   })
     .sort({ _id: -1 })
     .cursor()
@@ -103,12 +103,13 @@ function main() {
             )
             console.trace(err)
           }
+          followup_count += 1
           done()
         })
       })
     )
     .on("end", function () {
-      console.log(["Terminé"].join(";"))
+      console.log(["Terminé", "Followup", followup_count].join(";"))
       process.exit()
     })
     .on("error", function (err) {
@@ -117,11 +118,12 @@ function main() {
     })
     .resume()
 
+  let simulation_count = 0
   Simulation.find({
     dateDeValeur: { $lt: aMonthAgo },
     status: "new",
   })
-    .sort({ _id: -1 })
+    .sort({ dateDeValeur: 1 })
     .cursor()
     .pipe(
       es.map(function (model, done) {
@@ -140,12 +142,13 @@ function main() {
             )
             console.trace(err)
           }
+          simulation_count += 1
           done()
         })
       })
     )
     .on("end", function () {
-      console.log(["Terminé"].join(";"))
+      console.log(["Terminé", "Simulation", simulation_count].join(";"))
       process.exit()
     })
     .on("error", function (err) {

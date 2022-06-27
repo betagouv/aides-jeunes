@@ -97,7 +97,12 @@ function getQuestionsPerStep(step, propertyData, individus) {
     result = { ...result, ...property.getFormat(currentPropertyData) }
     return [result]
   }
-  return []
+  return [
+    {
+      ...result,
+      missing: true,
+    },
+  ]
 }
 
 exports.getQuestions = (req, res) => {

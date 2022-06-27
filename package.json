@@ -3,6 +3,7 @@
   "version": "12.1.3",
   "description": "Simulateur de prestations sociales pour les jeunes",
   "scripts": {
+    "serve:back": "npm run build:server && node ./dist-server/server.js",
     "serve": "npm run build:server && vue-cli-service serve",
     "build": "npm run build:server && npm run build:front",
     "clean:dist-server": "rm -fR dist-server",

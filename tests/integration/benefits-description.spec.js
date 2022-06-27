@@ -167,35 +167,21 @@ describe("benefit descriptions", function () {
                 benefit.institution.type
               )
             ) {
-              const complexGeoCriteriaBenefits = [
-                "grand-est-passetudes",
-                "hauts-de-france-mon-abo-etudiant-ter",
-                "region-ile-de-france-vehicules-propres",
-                "region-pays-de-la-loire-ehop-emploi",
-                "collectivite-europeenne-alsace-fonds-aide-jeunes",
-                "region-nouvelle-aquitaine-aide-à-la-restauration-des-lycéen·ne·s",
-                "region-nouvelle-aquitaine-sas-jeunes-orientation-active-vers-emploi",
-              ]
-              if (!complexGeoCriteriaBenefits.includes(benefit.id)) {
-                it("should have a coherent geographical constraint", function () {
-                  const conditionGeo = benefit.conditions_generales.find(
-                    (condition) => {
-                      return (
-                        condition.type === "regions" ||
-                        condition.type === "departements" ||
-                        condition.type === "communes"
-                      )
-                    }
-                  )
-                  expect(conditionGeo.values.length).toEqual(1)
-                  expect(conditionGeo.type.slice(0, -1)).toEqual(
-                    benefit.institution.type
-                  )
-                  expect(conditionGeo.values).toEqual([
-                    benefit.institution.code_insee,
-                  ])
-                })
-              }
+              it("should have a geographical constraint", function () {
+                const conditionGeo = benefit.conditions_generales.find(
+                  (condition) => {
+                    return (
+                      condition.type === "regions" ||
+                      condition.type === "departements" ||
+                      condition.type === "communes" ||
+                      condition.type === "epcis"
+                    )
+                  }
+                )
+                expect(typeof conditionGeo.type).toBe("string")
+                expect(conditionGeo.type.length).toBeGreaterThan(1)
+                expect(conditionGeo.values.length).toBeGreaterThan(0)
+              })
             }
 
             if (benefit.type === "float") {

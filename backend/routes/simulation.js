@@ -10,7 +10,13 @@ module.exports = function (api) {
   api.options("/simulation", cors())
   api
     .route("/simulation")
-    .post(cors({ origin: "*" }), cookieParser(), simulationController.create)
+    .post(
+      cors({ origin: "*" }),
+      cookieParser(),
+      simulationController.create,
+      simulationController.attachAccessCookie,
+      simulationController.show
+    )
 
   const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())

@@ -29,7 +29,7 @@ exports.simulation = function (req, res, next, simulationId) {
   })
 }
 
-exports.attachAccessCookie = function (req, res) {
+exports.attachAccessCookie = function (req, res, next) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
     sameSite: baseURL.startsWith("https") ? "none" : "lax",
@@ -41,6 +41,7 @@ exports.attachAccessCookie = function (req, res) {
     req.simulation._id.toString(),
     cookiesParameters
   )
+  next && next()
 }
 
 exports.validateAccess = function (req, res, next) {
@@ -87,8 +88,7 @@ exports.create = function (req, res, next) {
 
       clearCookies(req, res)
       req.simulation = persistedSimulation
-      exports.attachAccessCookie(req, res)
-      res.send(persistedSimulation)
+      next && next()
     }
   )
 }

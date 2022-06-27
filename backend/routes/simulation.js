@@ -23,7 +23,11 @@ module.exports = function (api) {
     "/legacy-openfisca-request",
     simulationController.openfiscaRequestFromLegacy
   )
-  route.get("/redirect", simulationController.redirect)
+  route.get(
+    "/redirect",
+    simulationController.attachAccessCookie,
+    simulationController.redirect
+  )
 
   // Enable CORS for openfisca-tracer
   route.options("/openfisca-request", cors())

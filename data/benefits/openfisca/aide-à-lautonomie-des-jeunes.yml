@@ -1,0 +1,15 @@
+label: Aide à l'autonomie des jeunes
+institution: caf_haute_saone
+description: "Jeunes jusqu’à 30 ans, allocataire ou non dans le cadre d’une
+  insertion socio-professionnelle (exemple : frais de scolarité, de formation,
+  de garde d’enfant…)."
+prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+link: https://caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/autonomie-des-jeunes
+teleservice: https://caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/autonomie-des-jeunes
+form: ""
+instructions: https://caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/autonomie-des-jeunes
+entity: individus
+openfiscaPeriod: thisYear

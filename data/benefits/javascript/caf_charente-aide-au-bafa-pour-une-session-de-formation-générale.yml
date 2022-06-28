@@ -1,0 +1,33 @@
+label: aide au BAFA pour une session de formation générale
+institution: caf_charente
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de la Charente pour vous aider à financer votre session
+  en complément de l'aide nationale apportée par la CAF.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "16"
+  - type: quotient_familial
+    floor: 1200
+    period: month
+profils: []
+conditions:
+  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Effectuer votre stage auprès d’un <a target="_blank" title="Organismes
+    Conventionnés- Nouvelle fenêtre" rel="noopener"
+    href="https://caf.fr/sites/default/files/medias/161/Allocataires/Vie%20professionnelle/Je%20souhaite%20passer%20le%20Bafa/BAFA_liste%20org%20conv%20caf.fr%202021.pdf">organisme
+    conventionné</a>, et les contacter pour effectuer votre demande.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://caf.fr/allocataires/caf-de-la-charente/offre-de-service/vie-professionnelle/je-souhaite-passer-le-bafa
+instructions: https://caf.fr/allocataires/caf-de-la-charente/offre-de-service/vie-professionnelle/je-souhaite-passer-le-bafa

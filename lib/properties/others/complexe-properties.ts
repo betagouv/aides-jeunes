@@ -60,12 +60,10 @@ export default {
         (category: any) => category.id === step.variable
       )
 
-      return [
-        {
-          text: category.label(),
-          answerFormat,
-        },
-      ]
+      return {
+        text: category.label(),
+        answerFormat,
+      }
     },
   },
 }

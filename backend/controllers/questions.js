@@ -113,12 +113,16 @@ function getQuestionsPerStep(step, propertyData, individus) {
   const complexeStep = COMPLEXE_STEPS.find((complexeStep) =>
     complexeStep.matcher(step)
   )
-  if (complexeStep)
+  if (complexeStep) {
+    const formatResult = complexeStep.getFormat(step, propertyData)
+    const questionFormatName = Array.isArray(formatResult)
+      ? "questionsFormat"
+      : "questionFormat"
     return {
       ...result,
-      complexeStep: true,
-      questionsFormat: complexeStep.getFormat(step, propertyData),
+      [questionFormatName]: formatResult,
     }
+  }
 
   return {
     ...result,

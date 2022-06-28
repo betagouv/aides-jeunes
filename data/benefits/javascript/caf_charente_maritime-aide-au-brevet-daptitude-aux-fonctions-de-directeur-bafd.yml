@@ -1,0 +1,30 @@
+label: aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_charente_maritime
+description: L'aide proposée par la CAF de la Charente-Maritime peut vous aider
+  à financer votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "17"
+  - type: quotient_familial
+    floor: 760
+    period: month
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Être titulaire du BAFA.
+  - Effectuer votre stage auprès d’un <a target="_blank" title="Organisme
+    Conventionné - Nouvelle fenêtre" rel="noopener"
+    href="https://caf.fr/sites/default/files/medias/171/Documents/Offre%20de%20service/Bafa_Bafd/liste%20org%20conv%20caf.fr%202021.pdf">organisme
+    conventionné</a>.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafd
+instructions: https://caf.fr/allocataires/caf-de-la-charente-maritime/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafd

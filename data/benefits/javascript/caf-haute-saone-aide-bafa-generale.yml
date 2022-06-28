@@ -4,8 +4,7 @@ description: "Les allocataires qui répondent aux conditions générales pour
   accéder aux aides financières d’action sociale. Avoir entre 17 et 30 ans
   révolus (à la date de réalisation du stage de formation générale). Pas de
   conditions de ressources. Financement: 150 € maximum au titre de l’inscription
-  à la 1ère session et 150 € maximum par session d’approfondissement. L’aide est
-  versée en 2 fois."
+  à la 1ère session."
 prefix: le
 conditions_generales:
   - type: departements

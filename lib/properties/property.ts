@@ -86,8 +86,7 @@ export class DateProperty extends Property {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getAnswerFormat(propertyData: PropertyData): any {
     return {
-      type: "string",
-      format: "iso",
+      type: "date",
     }
   }
 }

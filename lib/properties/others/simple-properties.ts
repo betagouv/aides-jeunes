@@ -11,15 +11,15 @@ export default {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getAnswerFormat(propertyData: PropertyData): any {
       return {
-        type: `{
-        _bourseCriteresSociauxCommuneDomicileFamilial: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialDepartement: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialRegion: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialEpci: string,
-        _bourseCriteresSociauxCommuneDomicileFamilialEpciType: string,
-      }`,
+        type: {
+          _bourseCriteresSociauxCommuneDomicileFamilial: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialDepartement: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialRegion: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialEpci: "string",
+          _bourseCriteresSociauxCommuneDomicileFamilialEpciType: "string",
+        },
       }
     },
   }),
@@ -29,15 +29,26 @@ export default {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getAnswerFormat(propertyData: PropertyData): any {
       return {
-        type: `{
-        depcom: string,
-        _codePostal: string,
-        _nomCommune: string,
-        _departement: string,
-        _region: string,
-        _epci: string,
-        _epciType: string,
-      }`,
+        type: {
+          depcom: "string",
+          _codePostal: "string",
+          _nomCommune: "string",
+          _departement: "string",
+          _region: "string",
+          _epci: "string",
+          _epciType: "string",
+        },
+      }
+    },
+  }),
+  _firstName: new Property({
+    question:
+      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
+    questionType: "text",
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getAnswerFormat(propertyData: PropertyData): any {
+      return {
+        type: "string",
       }
     },
   }),

@@ -85,7 +85,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
 
   const property =
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
-    SimpleProperties[step.variable]
+    SimpleProperties.default[step.variable]
 
   if (property) {
     const individu = getIndividu(individus, step.id)

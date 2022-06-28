@@ -1,0 +1,22 @@
+label: Aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_cotes_armor
+description: L'aide proposée par la CAF des Côtes-d'Armor peut vous aider à
+  financer votre session de formation au BAFD. Le montant total de la
+  participation est versé à l'issue du dernier stage d'approfondissement ou de
+  qualification.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "22"
+profils: []
+conditions:
+  - Vous rapprocher de votre CAF pour connaître les conditions d'éligibilité.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 450
+link: https://caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/vie-professionnelle/bafa-et-bafd
+form: https://caf.fr/sites/default/files/medias/221/Allocataires/Vie_profesionnelle/Bafa/20220211_demande_BAFA.pdf
+instructions: https://caf.fr/allocataires/caf-des-cotes-d-armor/offre-de-service/vie-professionnelle/bafa-et-bafd

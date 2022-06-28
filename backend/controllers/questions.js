@@ -76,15 +76,6 @@ function getSituationIndividus(situation) {
     .filter((individu) => individu)
 }
 
-function getIndividu(individus, individuId) {
-  let individu
-  if (individuId) {
-    const role = individuId.split("_")[0]
-    individu = Individu.get(individus, role, individuId).individu
-  }
-  return individu
-}
-
 function getQuestionsPerStep(step, propertyData, individus) {
   let result = {
     id: step.variable,
@@ -97,7 +88,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
     SimpleProperties.default[step.variable]
 
-  const individu = getIndividu(individus, step.id)
+  const individu = Individu.getById(individus, step.id)
 
   if (property) {
     const currentPropertyData = {
@@ -114,7 +105,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
     complexeStep.matcher(step)
   )
   if (complexeStep) {
-    const formatResult = complexeStep.getFormat(step, propertyData)
+    const formatResult = complexeStep.getFormat(step, propertyData, individus)
     const questionFormatName = Array.isArray(formatResult)
       ? "questionsFormat"
       : "questionFormat"

@@ -1,9 +1,39 @@
 import { PropertyData } from "../../types/property"
+import { capitalize } from "vue"
+const Individu = require("../../individu")
 const { getLoyerData } = require("../../logement")
 const { getAnswer } = require("../../answers")
 const { ressourceTypes, ressourceCategories } = require("../../resources")
 
 export default {
+  _hasRessources: {
+    matcher: (step: any) => step.variable === "_hasRessources",
+    getFormat: (step: any, propertyData: PropertyData, individus: []) => {
+      return propertyData.simulation.enfants.map((enfantNumber: number) => {
+        const enfant = Individu.getById(individus, `enfant_${enfantNumber}`)
+        return {
+          text: `${capitalize(
+            enfant._firstName
+          )} a-t-il/elle perçu des ressources <strong>depuis ${
+            propertyData.periods.twelveMonthsAgo.label
+          }</strong> ?`,
+          answerFormat: {
+            type: "boolean",
+            items: [
+              {
+                label: "Oui",
+                value: true,
+              },
+              {
+                label: "Non",
+                value: false,
+              },
+            ],
+          },
+        }
+      })
+    },
+  },
   loyer: {
     matcher: (step: any) => step.variable === "loyer",
     getFormat: (step: any, propertyData: PropertyData) => {

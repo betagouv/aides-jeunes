@@ -1,10 +1,8 @@
-label: bourse QUALIF Sanitaire et Social
+label: QUALIF Sanitaire et Social
 institution: region_bretagne
 description: La région Bretagne finance les formations agréées et les bourses
   d'études dans le secteur sanitaire et social, sous conditions de ressources.
-conditions:
-  - Être étudiant·e dans le secteur sanitaire et social.
-  - Vérifier que vos ressources correspondent aux seuils fixés par la région.
+prefix: l’
 conditions_generales:
   - type: regions
     values:
@@ -15,13 +13,15 @@ profils:
     conditions: []
   - type: chomeur
     conditions: []
-link: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/
-teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
-instructions: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/
-prefix: la
+conditions:
+  - Être étudiant·e dans le secteur sanitaire et social.
+  - Vérifier que vos ressources correspondent aux seuils fixés par la région.
+interestFlag: _interetAidesSanitaireSocial
 type: float
 unit: €
 periodicite: annuelle
 legend: maximum
 montant: 5670
-interestFlag: _interetAidesSanitaireSocial
+link: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/
+teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
+instructions: https://www.bretagne.bzh/aides/fiches/copie-de-qualif-sanitaire-et-social/

@@ -1,7 +1,7 @@
 import { EnumProperty, MultipleProperty, Property } from "../property"
 import { EnumItemProperty, PropertyData } from "../../types/property"
 const Individu = require("../../individu")
-const { ressourceCategories } = require("../../resources")
+const { ressourceTypes } = require("../../resources")
 const { STATUT_OCCUPATION_LABEL } = require("../../logement")
 
 export default {
@@ -56,14 +56,9 @@ export default {
     question: ({ individu }) => {
       return `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`
     },
-    items: ressourceCategories.map(
-      (category: { id: string; label: () => {} }) => {
-        return <EnumItemProperty>{
-          value: category.id,
-          label: category.label(),
-        }
-      }
-    ),
+    items: ressourceTypes.map((resource: any) => {
+      return { value: resource.id, label: resource.label }
+    }),
   }),
   statut_occupation_logement: new EnumProperty({
     question: "Quel est le code postal de la commune de vos parents ?",

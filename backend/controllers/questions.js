@@ -5,6 +5,10 @@ const { ENTITIES_PROPERTIES } = require("../../lib/mutualized-steps")
 const SimpleProperties = require("../../lib/properties/others/simple-properties")
 const Individu = require("../../lib/individu")
 const { generateAllSteps } = require("../../lib/state/generator")
+const ComplexeProperties = require("../../lib/properties/others/complexe-properties")
+const { ressourceTypes } = require("../../lib/resources")
+
+const COMPLEXE_STEPS = Object.values(ComplexeProperties.default)
 
 const simulationBase = {
   enfants: [0],
@@ -56,6 +60,12 @@ const simulationBase = {
         fieldName: "_situation",
         value: "en_couple",
       },
+      {
+        id: "demandeur",
+        entityName: "individu",
+        fieldName: "ressources",
+        value: ressourceTypes.map((resource) => resource.id),
+      },
     ],
   },
 }
@@ -87,22 +97,33 @@ function getQuestionsPerStep(step, propertyData, individus) {
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
     SimpleProperties.default[step.variable]
 
-  if (property) {
-    const individu = getIndividu(individus, step.id)
+  const individu = getIndividu(individus, step.id)
 
+  if (property) {
     const currentPropertyData = {
       ...propertyData,
       individu,
     }
-    result = { ...result, ...property.getFormat(currentPropertyData) }
-    return [result]
-  }
-  return [
-    {
+    result = {
       ...result,
-      missing: true,
-    },
-  ]
+      questionFormat: property.getFormat(currentPropertyData),
+    }
+    return result
+  }
+  const complexeStep = COMPLEXE_STEPS.find((complexeStep) =>
+    complexeStep.matcher(step)
+  )
+  if (complexeStep)
+    return {
+      ...result,
+      complexeStep: true,
+      questionsFormat: complexeStep.getFormat(step, propertyData),
+    }
+
+  return {
+    ...result,
+    missing: true,
+  }
 }
 
 exports.getQuestions = (req, res) => {
@@ -126,7 +147,7 @@ exports.getQuestions = (req, res) => {
   const result = steps.reduce(
     (accum, step) => [
       ...accum,
-      ...getQuestionsPerStep(step, propertyData, individus),
+      getQuestionsPerStep(step, propertyData, individus),
     ],
     []
   )

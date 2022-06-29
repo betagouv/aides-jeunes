@@ -153,3 +153,28 @@ export class DepcomProperty extends Property {
     })
   }
 }
+
+export class TextProperty extends Property {
+  constructor({
+    question,
+    optional,
+    help,
+    moreInfo,
+    showMoreInfo,
+  }: {
+    question: string | ((propertyData: PropertyData) => string)
+    optional?: boolean
+    help?: string
+    moreInfo?: string | ((variation: any) => string)
+    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
+  }) {
+    super({
+      question,
+      questionType: "text",
+      help,
+      optional,
+      moreInfo,
+      showMoreInfo,
+    })
+  }
+}

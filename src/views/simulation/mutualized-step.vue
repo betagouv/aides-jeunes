@@ -1,13 +1,12 @@
 <template>
   <form @submit.prevent="onSubmit">
     <fieldset v-if="questionType === 'enum'">
-      <legend>
-        <h2 class="aj-question">
-          <span v-html="question" />
-          <EnSavoirPlus v-if="showMoreInfo" />
-        </h2>
-        <p v-if="step.help" v-html="step.help" />
-      </legend>
+      <MutualizedStepTitle
+        title-wrapper="legend"
+        :question="question"
+        :show-more-info="showMoreInfo"
+        :help="step.help"
+      ></MutualizedStepTitle>
       <div class="aj-selections">
         <div
           v-for="(item, index) in step.getItems(propertyData)"
@@ -30,33 +29,39 @@
     </fieldset>
 
     <div v-else-if="questionType === 'number'">
-      <h2 class="aj-question">
-        <span v-html="question" />
-        <EnSavoirPlus v-if="showMoreInfo" />
-      </h2>
-      <p v-if="step.help" v-html="step.help" />
-      <label>
-        <InputNumber v-model="value" :min="step.min" :data-type="step.type" />
-      </label>
+      <MutualizedStepTitle
+        :for-title-wrapper="fieldName"
+        :question="question"
+        :show-more-info="showMoreInfo"
+        :help="step.help"
+      ></MutualizedStepTitle>
+      <InputNumber
+        :id="fieldName"
+        v-model="value"
+        :min="step.min"
+        :data-type="step.type"
+      />
     </div>
 
     <div v-else-if="questionType === 'date'">
-      <label :for="fieldName"
-        ><h2 class="aj-question">
-          <span v-html="question" />
-          <EnSavoirPlus v-if="showMoreInfo" /> </h2
-      ></label>
+      <MutualizedStepTitle
+        :for-title-wrapper="fieldName"
+        :question="question"
+        :show-more-info="showMoreInfo"
+        :help="step.help"
+      ></MutualizedStepTitle>
       <InputDate :id="fieldName" v-model="value" required />
     </div>
 
-    <div v-else-if="questionType === 'multiple'">
-      <label :for="fieldName"
-        ><h2 class="aj-question">
-          <span v-html="question" />
-          <EnSavoirPlus v-if="showMoreInfo" /> </h2
-      ></label>
+    <fieldset v-else-if="questionType === 'multiple'">
+      <MutualizedStepTitle
+        title-wrapper="legend"
+        :question="question"
+        :show-more-info="showMoreInfo"
+        :help="step.help"
+      ></MutualizedStepTitle>
       <MultipleAnswers v-model="value" :items="step.getItems(propertyData)" />
-    </div>
+    </fieldset>
 
     <YesNoQuestion v-else v-model="value">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
@@ -72,6 +77,7 @@
 import ActionButtons from "@/components/action-buttons"
 import MultipleAnswers from "../../components/multiple-answers.vue"
 import YesNoQuestion from "../../components/yes-no-question.vue"
+import MutualizedStepTitle from "../../components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "../../../lib/utils"
@@ -91,6 +97,7 @@ export default {
     InputDate,
     MultipleAnswers,
     YesNoQuestion,
+    MutualizedStepTitle,
   },
   data() {
     const entityName = this.$route.path.split("/")[2]

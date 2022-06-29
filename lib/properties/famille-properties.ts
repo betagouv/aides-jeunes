@@ -1,4 +1,4 @@
-import { EnumProperty, NumberProperty, YesNoProperty } from "./property"
+import { EnumProperty, NumberProperty, BooleanProperty } from "./property"
 import { yearsAgo } from "../utils"
 
 export default {
@@ -18,11 +18,11 @@ export default {
       type: "count",
     }),
 
-  bourse_lycee: new YesNoProperty({
+  bourse_lycee: new BooleanProperty({
     question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
   }),
 
-  parisien: new YesNoProperty({
+  parisien: new BooleanProperty({
     question: ({ simulation }) => {
       return `Avez-vous habité Paris au moins 3 ans depuis ${yearsAgo(
         5,
@@ -31,7 +31,7 @@ export default {
     },
   }),
 
-  proprietaire_proche_famille: new YesNoProperty({
+  proprietaire_proche_famille: new BooleanProperty({
     question: `Avez-vous un lien de parenté direct avec votre propriétaire ?
       <span class="help"
         >Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant,
@@ -39,7 +39,7 @@ export default {
       >`,
   }),
 
-  rsa_isolement_recent: new YesNoProperty({
+  rsa_isolement_recent: new BooleanProperty({
     question: "Vivez-vous seul·e depuis plus de 18 mois ?",
   }),
 

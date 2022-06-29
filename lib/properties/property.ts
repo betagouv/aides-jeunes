@@ -59,7 +59,7 @@ export class Property {
   }
 }
 
-export class YesNoProperty extends Property {
+export class BooleanProperty extends Property {
   // eslint-disable-next-line no-empty-pattern
   getAnswerFormat({}: PropertyData): any {
     return {

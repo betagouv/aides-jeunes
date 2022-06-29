@@ -1,7 +1,6 @@
 const auth = require("basic-auth")
 const simulationController = require("../simulation")
 const jwt = require("jsonwebtoken")
-const moment = require("moment")
 const Mustache = require("mustache")
 
 const config = require("../../config")
@@ -10,8 +9,10 @@ const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
 const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
 const PNDS = require("../../lib/teleservices/pnds")
+require("dayjs/locale/fr")
+const dayjs = require("dayjs")
 
-moment.locale("fr")
+dayjs.locale("fr")
 
 const teleservices = [
   {

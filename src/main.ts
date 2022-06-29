@@ -5,8 +5,6 @@ import App from "./app.vue"
 import router from "./router"
 import store from "./store"
 
-import moment from "moment"
-
 import StateService from "./plugins/state-service"
 
 import * as Sentry from "@sentry/vue"
@@ -23,6 +21,9 @@ import SelectOnClickDirective from "./directives/select-on-click"
 
 // @ts-ignore
 import { iframeResizerContentWindow } from "iframe-resizer"
+
+import "dayjs/locale/fr"
+import dayjs from "dayjs"
 
 const Resizer = {
   install: function () {
@@ -63,7 +64,7 @@ app.config.globalProperties.$filters = {
   },
 }
 
-moment.locale("fr")
+dayjs.locale("fr")
 
 app.use(store)
 app.use(router)

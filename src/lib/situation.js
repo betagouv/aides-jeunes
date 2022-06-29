@@ -1,4 +1,4 @@
-import moment from "moment"
+import dayjs from "dayjs"
 
 const Situation = {
   getDemandeur: function (situation) {
@@ -16,7 +16,7 @@ const Situation = {
   aCharge: function (situation) {
     let demandeur = situation.demandeur
     let period =
-      situation.dateDeValeur && moment(situation.dateDeValeur).format("YYYY")
+      situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
     return demandeur?.enfant_a_charge?.[period]
   },
 

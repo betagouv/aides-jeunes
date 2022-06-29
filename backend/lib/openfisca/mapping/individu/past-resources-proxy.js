@@ -2,7 +2,7 @@ const concat = require("lodash/concat")
 const isNumber = require("lodash/isNumber")
 const some = require("lodash/some")
 
-const moment = require("moment")
+const dayjs = require("dayjs")
 
 const common = require("../common")
 const individuRessources = require("./ressources")
@@ -78,8 +78,8 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
 }
 
 function ressourcesYearMoins2Captured(situation) {
-  const yearMoins2 = moment(situation.dateDeValeur)
-    .subtract(2, "years")
+  const yearMoins2 = dayjs(situation.dateDeValeur)
+    .subtract(2, "year")
     .format("YYYY")
   const januaryYearMoins2 = `${yearMoins2}-01`
   const hasRfr =

@@ -37,9 +37,6 @@ module.exports = {
   configureWebpack: (config) => {
     config.devtool = "source-map"
     config.plugins.push(
-      new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(fr)$/)
-    )
-    config.plugins.push(
       new HtmlWebpackPlugin({
         filename: "sitemap.xml",
         template: "public/map.xml",

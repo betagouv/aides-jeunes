@@ -20,7 +20,6 @@ const individuBase = [
   "id",
   "bourse_criteres_sociaux_echelon",
   "_bourseCriteresSociauxCommuneDomicileFamilial",
-  "_firstName",
   "_hasRessources",
   "_role",
 ]

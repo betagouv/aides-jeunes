@@ -1,4 +1,3 @@
-participation: true
 label: complémentaire santé solidaire
 institution: assurance_maladie
 description: La Complémentaire Santé Solidaire (CSS) est une protection
@@ -13,8 +12,10 @@ conditions:
 type: mixed
 periodicite: mensuelle
 link: https://www.service-public.fr/particuliers/vosdroits/F10027
-teleservice: https://www.complementaire-sante-solidaire.gouv.fr/cmu-c-demarche.php
+teleservice: ""
 form: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
+instructions: https://www.complementaire-sante-solidaire.gouv.fr/cmu-c-demarche.php
 entity: familles
 openfiscaPeriod: thisMonth
 msa: true
+participation: true

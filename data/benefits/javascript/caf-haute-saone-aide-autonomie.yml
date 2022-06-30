@@ -1,0 +1,24 @@
+label: aide à l'autonomie des jeunes
+institution: caf_haute_saone
+description: Cette aide vous permet de vous financer vos frais de scolarité, de
+  formation, de garde d’enfant, etc. dans le cadre d'une insertion
+  professionnelle.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: <=
+    value: 30
+  - type: departements
+    values:
+      - "70"
+profils: []
+conditions:
+  - Construire votre parcours avec un accompagnement (foyer de jeunes
+    travailleur·euse·s, travailleur·euse social·e, Caf ou professionnel·le du
+    secteur médico-social).
+  - Contacter votre Caf pour faire votre demande.
+type: bool
+unit: €
+periodicite: autre
+link: https://caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/autonomie-des-jeunes
+instructions: https://caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/autonomie-des-jeunes

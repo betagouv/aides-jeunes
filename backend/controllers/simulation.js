@@ -29,7 +29,7 @@ exports.simulation = function (req, res, next, simulationId) {
   })
 }
 
-exports.attachAccessCookie = function (req, res) {
+exports.attachAccessCookie = function (req, res, next) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
     sameSite: baseURL.startsWith("https") ? "none" : "lax",
@@ -41,10 +41,12 @@ exports.attachAccessCookie = function (req, res) {
     req.simulation._id.toString(),
     cookiesParameters
   )
+  next && next()
 }
 
 exports.validateAccess = function (req, res, next) {
-  if (req.simulation?.isAccessible(req.cookies)) return next()
+  if (req.simulation?.isAccessible({ ...req.cookies, ...req.query }))
+    return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 
@@ -86,8 +88,7 @@ exports.create = function (req, res, next) {
 
       clearCookies(req, res)
       req.simulation = persistedSimulation
-      exports.attachAccessCookie(req, res)
-      res.send(persistedSimulation)
+      next && next()
     }
   )
 }
@@ -152,4 +153,10 @@ exports.openfiscaTest = function (req, res) {
     ? req.situation.toObject()
     : req.situation
   res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
+}
+
+exports.redirect = function (req, res) {
+  res.redirect(
+    `/simulation/redirect${req?.query?.to ? `?to=${req.query.to}` : ""}`
+  )
 }

@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import store from "./store"
 import context from "./context"
 import Institution from "@/lib/institution"
+import Simulation from "@/lib/simulation"
 
 const benefits = Institution.benefits.benefitsMap
 
@@ -36,6 +37,20 @@ const router = createRouter({
         headTitle: `Ma simulation sur le simulateur d'aides ${context.name}`,
       },
       children: [
+        {
+          path: "redirect",
+          name: "redirect",
+          beforeEnter: (to, from, next) => {
+            store
+              .dispatch("fetch", Simulation.getLatest())
+              .then(() => {
+                next(`/simulation${to.query.to || ""}`)
+              })
+              .catch(() => {
+                next("/")
+              })
+          },
+        },
         {
           path: ":parent+/en_savoir_plus",
           name: "en_savoir_plus",
@@ -383,9 +398,12 @@ router.beforeEach((to, from, next) => {
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&
-      ["resultats", "resultatsDetails", "resultatsLieuxGeneriques"].indexOf(
-        to.name
-      ) === -1 &&
+      [
+        "redirect",
+        "resultats",
+        "resultatsDetails",
+        "resultatsLieuxGeneriques",
+      ].indexOf(to.name) === -1 &&
       !store.getters.passSanityCheck &&
       to.query.debug === undefined
     ) {

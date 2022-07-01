@@ -14,6 +14,9 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
 profils: []
 conditions:
   - Avoir réalisé le stage de formation générale et le 1er stage pratique.

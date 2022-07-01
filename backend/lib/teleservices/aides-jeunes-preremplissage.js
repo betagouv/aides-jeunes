@@ -1,6 +1,3 @@
-const openfisca = require("../openfisca")
-const Simulation = require("mongoose").model("Simulation")
-
 function AidesJeunesPreremplissage(simulation) {
   this.simulation = simulation
 }

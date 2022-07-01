@@ -18,7 +18,6 @@ function getAnonymizedAnswer(answer, simulation) {
           return null
         }
       }
-      return answer
     }
     case "menage": {
       switch (answer.fieldName) {
@@ -31,7 +30,6 @@ function getAnonymizedAnswer(answer, simulation) {
           return null
         }
       }
-      return answer
     }
     case "individu": {
       if (answer.id == "demandeur" || answer.id == "conjoint") {

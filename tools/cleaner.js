@@ -65,7 +65,6 @@ function getAnonymizedAnswer(answer, simulation) {
             return null
           }
         }
-        return answer
       } else {
         return null
       }

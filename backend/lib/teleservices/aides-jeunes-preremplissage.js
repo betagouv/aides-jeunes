@@ -17,7 +17,7 @@ AidesJeunesPreremplissage.prototype.toExternal = function () {
         return results
       })
       .catch((err) => {
-        return { message: "oups!" }
+        return { err: err.toString() }
       })
     return p
   } catch (e) {

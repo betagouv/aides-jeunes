@@ -6,7 +6,6 @@ const Mustache = require("mustache")
 
 const config = require("../../config")
 const AidesJeunesPreremplissage = require("../../lib/teleservices/aides-jeunes-preremplissage")
-const Loiret = require("../../lib/teleservices/loiret")
 const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
 const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
@@ -15,22 +14,6 @@ const PNDS = require("../../lib/teleservices/pnds")
 moment.locale("fr")
 
 const teleservices = [
-  {
-    name: "loiret_APA_test",
-    class: Loiret,
-    destination: {
-      label: "Accéder au téléservice du Loiret (test)",
-      url: "https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?situation={{token}}",
-    },
-  },
-  {
-    name: "loiret_APA",
-    class: Loiret,
-    destination: {
-      label: "Accéder au téléservice du Loiret",
-      url: "https://services.loiret.fr/public/requestv2/accountless/teleprocedure_id/264?situation={{token}}",
-    },
-  },
   {
     name: "ccas_saint_louis_preprod",
     class: OpenFiscaResponse,

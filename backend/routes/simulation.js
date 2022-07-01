@@ -7,10 +7,20 @@ const simulationController = require("../controllers/simulation")
 const teleservices = require("../controllers/teleservices")
 
 module.exports = function (api) {
-  api.route("/simulation").post(cookieParser(), simulationController.create)
+  api.options("/simulation", cors())
+  api
+    .route("/simulation")
+    .post(
+      cors({ origin: "*" }),
+      cookieParser(),
+      simulationController.create,
+      simulationController.attachAccessCookie,
+      simulationController.show
+    )
 
   const route = new express.Router({ mergeParams: true })
   route.use(cookieParser())
+
   route.use(simulationController.validateAccess)
 
   route.get("/", simulationController.show)
@@ -18,6 +28,11 @@ module.exports = function (api) {
   route.get(
     "/legacy-openfisca-request",
     simulationController.openfiscaRequestFromLegacy
+  )
+  route.get(
+    "/redirect",
+    simulationController.attachAccessCookie,
+    simulationController.redirect
   )
 
   // Enable CORS for openfisca-tracer

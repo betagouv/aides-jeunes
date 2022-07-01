@@ -1,3 +1,5 @@
+import Simulation from "../lib/simulation"
+
 export default {
   computed: {
     droits: function () {
@@ -49,13 +51,7 @@ export default {
   },
   methods: {
     restoreLatest: function () {
-      const lastestSimulation = document.cookie
-        .split("; ")
-        .reduce((accum, pair) => {
-          const [key, value] = pair.split("=", 2)
-          accum[key] = value
-          return accum
-        }, {}).lastestSimulation
+      const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
         this.$matomo?.trackEvent("General", "redirection", this.$route.path)
         return this.$store.dispatch("redirection", (route) =>

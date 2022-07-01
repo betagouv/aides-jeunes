@@ -18,7 +18,7 @@ conditions:
   - Engager votre formation avec un organisme ayant son siège ou une antenne
     dans les départements de la Marne, des Ardennes, de la Haute Marne, et de
     l'Aube.
-  - Vous connecter sur votre <a target="_blank" rel="noopener" href="https://connect.caf.fr/connexionappli/dist/#/login">Compte CAF</a> puis accéder à <a target="_blank" rel="noopener" href="https://wwwd.caf.fr/wps/myportal/caffr/moncompte/faireunedemandedeprestation?codePrestation=DBAFA">cette page</a>. 
+  - Vous connecter sur votre <a target="_blank" title="Connexion compte CAF - Nouvelle fenêtre" rel="noopener" href="https://connect.caf.fr/connexionappli/dist/#/login">Compte CAF</a> puis accéder à <a target="_blank" title="Formulaire de demande d'aide BAFA - Nouvelle fenêtre" rel="noopener" href="https://wwwd.caf.fr/wps/myportal/caffr/moncompte/faireunedemandedeprestation?codePrestation=DBAFA">cette page</a>.
 interestFlag: _interetBafa
 type: float
 unit: €

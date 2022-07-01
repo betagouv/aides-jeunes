@@ -1,10 +1,7 @@
-label: aide au BAFA pour une session de formation d'approfondissement
+label: aide au BAFA
 institution: caf_haute_saone
-description: "Les allocataires qui répondent aux conditions générales pour
-  accéder aux aides financières d’action sociale. Avoir entre 17 et 30 ans
-  révolus (à la date de réalisation du stage de formation générale). Pas de
-  conditions de ressources. Financement: montant fixé pour l’ensemble du cursus
-  est de 150€."
+description: Votre CAF départementale vous aide à financer votre BAFA, de la
+  session générale à la session d'approfondissement.
 prefix: l’
 conditions_generales:
   - type: age
@@ -19,12 +16,13 @@ conditions_generales:
 profils: []
 conditions:
   - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Contacter votre Caf pour faire votre demande.
 interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 150
+montant: 300
 link: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/bafa-bafd-dispositif
-form: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/bafa-bafd-dispositif
+form: ""
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/bafa-bafd-dispositif

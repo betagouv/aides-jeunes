@@ -58,6 +58,15 @@
       <MultipleAnswers v-model="value" :items="step.getItems(propertyData)" />
     </div>
 
+    <div v-else-if="questionType === 'text'">
+      <label :for="fieldName"
+        ><h2 class="aj-question">
+          <span v-html="question" />
+          <EnSavoirPlus v-if="showMoreInfo" /> </h2
+      ></label>
+      <input :id="fieldName" v-model="value" type="text" />
+    </div>
+
     <YesNoQuestion v-else v-model="value">
       <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
       <template v-if="step.help" #help>

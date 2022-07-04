@@ -56,7 +56,7 @@ const SimulationSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "new",
-      enum: ["new", "test", "investigation"],
+      enum: ["new", "test", "investigation", "anonymized"],
     },
     token: String,
   },

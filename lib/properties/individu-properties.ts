@@ -4,7 +4,7 @@ import {
   EnumProperty,
   MultipleProperty,
   NumberProperty,
-  YesNoProperty,
+  BooleanProperty,
 } from "./property"
 
 const Individu = require("../individu")
@@ -13,7 +13,7 @@ const Scolarite = require("../scolarite")
 const { getAnswer } = require("../answers")
 
 export default {
-  aah_restriction_substantielle_durable_acces_emploi: new YesNoProperty({
+  aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -69,7 +69,7 @@ export default {
       "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
   }),
 
-  alternant: new YesNoProperty({
+  alternant: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en alternance ?`
     },
@@ -198,7 +198,7 @@ export default {
     ],
   }),
 
-  ass_precondition_remplie: new YesNoProperty({
+  ass_precondition_remplie: new BooleanProperty({
     question: ({ individu }) => {
       const date_debut_chomage = individu.date_debut_chomage
       return `${Individu.label(individu, "avoir")} travaillé
@@ -237,7 +237,7 @@ export default {
     unit: "€",
   }),
 
-  boursier: new YesNoProperty({
+  boursier: new BooleanProperty({
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   }),
 
@@ -325,7 +325,7 @@ export default {
     },
   }),
 
-  enfant_place: new YesNoProperty({
+  enfant_place: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -334,7 +334,7 @@ export default {
     },
   }),
 
-  garde_alternee: new YesNoProperty({
+  garde_alternee: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en garde alternée ?`
     },
@@ -368,11 +368,11 @@ export default {
     items: Object.values(Scolarite.groupeSpecialitesFormation),
   }),
 
-  habite_chez_parents: new YesNoProperty({
+  habite_chez_parents: new BooleanProperty({
     question: "Êtes-vous hébergé chez vos parents ?",
   }),
 
-  handicap: new YesNoProperty({
+  handicap: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en situation de handicap ?`
     },
@@ -390,7 +390,7 @@ export default {
     },
   }),
 
-  inapte_travail: new YesNoProperty({
+  inapte_travail: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} reconnu·e inapte au travail ?`
     },
@@ -457,7 +457,7 @@ export default {
     ],
   }),
 
-  rsa_jeune_condition_heures_travail_remplie: new YesNoProperty({
+  rsa_jeune_condition_heures_travail_remplie: new BooleanProperty({
     question: ({ individu, periods }) => {
       return `${Individu.label(individu, "avoir")} travaillé
       <abbr
@@ -480,7 +480,7 @@ export default {
       "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   }),
 
-  sortie_academie: new YesNoProperty({
+  sortie_academie: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
@@ -494,7 +494,7 @@ export default {
     },
   }),
 
-  sortie_region_academique: new YesNoProperty({
+  sortie_region_academique: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "avoir")} prévu d'étudier
       <a
@@ -508,7 +508,7 @@ export default {
     },
   }),
 
-  stagiaire: new YesNoProperty({
+  stagiaire: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en stage ?`
     },
@@ -621,21 +621,21 @@ export default {
     ],
   }),
 
-  _interetAidesSanitaireSocial: new YesNoProperty({
+  _interetAidesSanitaireSocial: new BooleanProperty({
     question:
       "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
   }),
 
-  _interetBafa: new YesNoProperty({
+  _interetBafa: new BooleanProperty({
     question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   }),
 
-  _interetEtudesEtranger: new YesNoProperty({
+  _interetEtudesEtranger: new BooleanProperty({
     question:
       "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
   }),
 
-  _interetPermisDeConduire: new YesNoProperty({
+  _interetPermisDeConduire: new BooleanProperty({
     question: "Prévoyez-vous de passer le permis de conduire ?",
   }),
 

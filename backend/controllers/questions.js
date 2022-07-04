@@ -7,6 +7,7 @@ const Individu = require("../../lib/individu")
 const { generateAllSteps } = require("../../lib/state/generator")
 const ComplexeProperties = require("../../lib/properties/others/complexe-properties")
 const { ressourceTypes } = require("../../lib/resources")
+const DepcomProperties = require("../../lib/properties/depcom-properties")
 
 const COMPLEXE_STEPS = Object.values(ComplexeProperties.default)
 
@@ -86,6 +87,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
 
   const property =
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
+    DepcomProperties.default[step.variable] ||
     SimpleProperties.default[step.variable]
 
   const individu = Individu.getById(individus, step.id)

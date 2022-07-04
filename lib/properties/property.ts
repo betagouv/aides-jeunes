@@ -208,6 +208,21 @@ export class DepcomProperty extends Property {
       showMoreInfo,
     })
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: {
+        depcom: "string",
+        _codePostal: "string",
+        _nomCommune: "string",
+        _departement: "string",
+        _region: "string",
+        _epci: "string",
+        _epciType: "string",
+      },
+    }
+  }
 }
 
 export class TextProperty extends Property {
@@ -232,5 +247,12 @@ export class TextProperty extends Property {
       moreInfo,
       showMoreInfo,
     })
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: "string",
+    }
   }
 }

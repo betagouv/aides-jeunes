@@ -77,14 +77,6 @@ const router = createRouter({
                 ),
             },
             {
-              name: "_firstName",
-              path: "_firstName",
-              component: () =>
-                import(
-                  /* webpackChunkName: "individu" */ "./views/simulation/individu/_first-name.vue"
-                ),
-            },
-            {
               name: "ressources/types",
               path: "ressources/types",
               component: () =>

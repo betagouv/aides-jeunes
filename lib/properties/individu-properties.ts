@@ -1,4 +1,9 @@
-import { EnumProperty, NumberProperty, Property } from "./property"
+import {
+  EnumProperty,
+  NumberProperty,
+  Property,
+  TextProperty,
+} from "./property"
 
 const Individu = require("../individu")
 const { capitalize, yearsAgo } = require("../utils")
@@ -598,6 +603,11 @@ export default {
     questionType: "number",
     unit: "mois",
     type: "count",
+  }),
+
+  _firstName: new TextProperty({
+    question:
+      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
   }),
 
   _interetsAidesVelo: new EnumProperty({

@@ -4,7 +4,7 @@
       v-model:codePostal="codePostal"
       v-model:nomCommune="nomCommune"
       v-model:matchingCommune="matchingCommune"
-      codePostalLabel="Quel est votre code postal ?"
+      :codePostalLabel="question"
     />
     <WarningMessage v-if="warningMessage">{{ warningMessage }}</WarningMessage>
     <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
@@ -16,35 +16,66 @@ import ActionButtons from "@/components/action-buttons"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
 
-import { getAnswer } from "../../../../lib/answers"
-import { createDepcomMixin } from "../../../mixins/depcom-mixin"
+import { getAnswer } from "@/../lib/answers"
+import DepcomProperties from "@/../lib/properties/depcom-properties"
+import Warning from "@/lib/warnings"
 
 export default {
-  name: "SimulationMenageDepcom",
+  name: "SimulationDepcomStep",
   components: {
     ActionButtons,
     InputDepCom,
     WarningMessage,
   },
-  mixins: [createDepcomMixin()],
   data: function () {
+    const routeSplit = this.$route.path.split("/")
+    const entityName = routeSplit[2]
+    let id = undefined
+    let fieldName
+    if (entityName === "individu") {
+      id = routeSplit[3]
+      fieldName = routeSplit[4]
+    } else {
+      fieldName = routeSplit[3]
+    }
+
+    const question = DepcomProperties[fieldName].question
     const answer = getAnswer(
       this.$store.state.simulation.answers.all,
-      "menage",
-      "depcom"
+      entityName,
+      fieldName,
+      id
     )
     return {
+      entityName,
+      id,
+      fieldName,
+      question,
       codePostal: answer ? answer._codePostal : undefined,
       nomCommune: answer ? answer._nomCommune : undefined,
       matchingCommune: undefined,
     }
   },
+  computed: {
+    warningMessage() {
+      return Warning.get("aj_not_reliable", this.codePostal)
+    },
+  },
   methods: {
+    canSubmit(submit) {
+      if (!this.nomCommune || !this.codePostal) {
+        submit &&
+          this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        return false
+      }
+      return Boolean(this.matchingCommune)
+    },
     onSubmit: function () {
       if (this.canSubmit(true)) {
         this.$store.dispatch("answer", {
-          entityName: "menage",
-          fieldName: "depcom",
+          id: this.id,
+          entityName: this.entityName,
+          fieldName: this.fieldName,
           value: {
             depcom: this.matchingCommune.code,
             _codePostal: this.codePostal.toString(),
@@ -55,6 +86,7 @@ export default {
             _epciType: this.matchingCommune.epciType,
           },
         })
+
         this.$push()
       }
     },

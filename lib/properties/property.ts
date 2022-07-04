@@ -127,3 +127,29 @@ export class NumberProperty extends Property {
     this.min = min
   }
 }
+
+export class DepcomProperty extends Property {
+  constructor({
+    question,
+    optional,
+    help,
+    moreInfo,
+    showMoreInfo,
+  }: {
+    question: string | ((propertyData: PropertyData) => string)
+    questionType?: string
+    optional?: boolean
+    help?: string
+    moreInfo?: string | ((variation: any) => string)
+    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
+  }) {
+    super({
+      question,
+      questionType: "depcom",
+      help,
+      optional,
+      moreInfo,
+      showMoreInfo,
+    })
+  }
+}

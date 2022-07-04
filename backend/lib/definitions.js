@@ -73,6 +73,7 @@ const LEGACY_FIELD_NAMES = [
 ]
 
 const ANSWER_FIELD_NAMES = [
+  "age", // For anonymized answers
   ...famille,
   ...individu,
   ...menage,

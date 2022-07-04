@@ -9,6 +9,9 @@ conditions_generales:
   - type: quotient_familial
     floor: 622
     period: month
+  - type: departements
+    values:
+      - "24"
 profils: []
 conditions:
   - Être ressortissant·e du régime général.

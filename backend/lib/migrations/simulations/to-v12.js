@@ -24,7 +24,8 @@ function updateBourseCriteresSociauxCommuneDomicileFamilial(answers) {
   if (!answer) return
 
   const newValue = Object.keys(answer.value).reduce((accum, key) => {
-    accum[VALUE_MAP[key]] = answer.value[key]
+    const newKey = VALUE_MAP[key] || key
+    accum[newKey] = answer.value[key]
     return accum
   }, {})
 

@@ -10,7 +10,7 @@
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build:front": "vue-cli-service build --no-clean",
-    "build:server": "npm run clean:dist-server && tsc -p tsconfig.server.json && cp -r lib backend data contribuer tools dist-server/",
+    "build:server": "tsc -p tsconfig.server.json && cp -r lib backend data contribuer tools dist-server/",
     "test:unit": "vue-cli-service test:unit",
     "lint": "eslint .",
     "ci": "npm run stats && NODE_ENV=production node ./dist-server/server.js",

@@ -7,6 +7,9 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 17
+  - type: departements
+    values:
+      - "24"
 profils: []
 conditions:
   - Être titulaire du BAFA.

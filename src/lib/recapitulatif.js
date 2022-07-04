@@ -81,10 +81,7 @@ export const SIMPLE_STEPS = {
     return [
       {
         label: "Quel est le code postal de la commune de vos parents ?",
-        value: displayDepcomValue(
-          answer._bourseCriteresSociauxCommuneDomicileFamilialCodePostal,
-          answer._bourseCriteresSociauxCommuneDomicileFamilialNomCommune
-        ),
+        value: displayDepcomValue(answer._codePostal, answer._nomCommune),
       },
     ]
   },

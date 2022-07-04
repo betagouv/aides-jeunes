@@ -17,6 +17,6 @@ entity: individus
 openfiscaPeriod: thisMonth
 isBaseRessourcesYearMinusTwo: true
 floorAt: 0.01
-top: 20
+top: 30
 prefix: le
 institution: banque_de_france

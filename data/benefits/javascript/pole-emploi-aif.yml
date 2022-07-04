@@ -16,3 +16,4 @@ type: bool
 unit: €
 periodicite: ponctuelle
 interestFlag: null
+top: 10

@@ -12,3 +12,4 @@ periodicite: ponctuelle
 floorAt: 1
 entity: individus
 openfiscaPeriod: thisMonth
+top: 2

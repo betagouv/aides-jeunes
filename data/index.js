@@ -14,6 +14,7 @@ function transformInstitutions(collection) {
       imgSrc: data.imgSrc,
       benefitsIds: [],
       type: data.type,
+      top: data.top,
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
       etablissements: data.etablissements,
@@ -23,11 +24,21 @@ function transformInstitutions(collection) {
   }, {})
 }
 
-function setDefaults(benefit, institution) {
-  const top = institution.type === "national" ? 1 : 5
+function setTop(benefit, institution) {
+  const default_top =
+    institution.top ||
+    (institution.type === "national"
+      ? 3
+      : benefit.source == "aides-velo"
+      ? 13
+      : 14)
 
+  return benefit.top || default_top
+}
+
+function setDefaults(benefit, institution) {
   benefit.id = benefit.id || benefit.slug
-  benefit.top = benefit.top || top
+  benefit.top = setTop(benefit, institution)
   benefit.floorAt = benefit.floorAt || 1
   return benefit
 }
@@ -51,7 +62,6 @@ function generate(
     : []
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
-    benefit.top = 8
   })
 
   let benefits = [

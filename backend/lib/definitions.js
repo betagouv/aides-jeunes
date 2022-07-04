@@ -61,6 +61,8 @@ const ANSWER_ENTITY_NAMES = [
   "menage",
 ]
 
+const ANONYMIZED_FIELD_NAMES = ["age"]
+
 // Liste des champs n'existant plus dans le simulateur mais stockés dans les anciennes simulation
 const LEGACY_FIELD_NAMES = [
   "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
@@ -80,6 +82,7 @@ const ANSWER_FIELD_NAMES = [
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
   ...LEGACY_FIELD_NAMES,
+  ...ANONYMIZED_FIELD_NAMES,
 ]
 
 const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]

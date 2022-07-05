@@ -137,7 +137,15 @@ export default {
             this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.$store.getters.hasResults) {
-        this.$store.dispatch("compute")
+        if (this.$store.state.simulation.teleservice) {
+          this.$store.getters
+            .fetchRepresentation(this.$store.state.simulation.teleservice)
+            .then((representation) => {
+              window.location.href = representation.destination.url
+            })
+        } else {
+          this.$store.dispatch("compute")
+        }
       }
     }
 

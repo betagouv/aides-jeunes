@@ -58,6 +58,7 @@ const SimulationSchema = new mongoose.Schema(
       default: "new",
       enum: ["new", "test", "investigation", "anonymized"],
     },
+    teleservice: String,
     token: String,
   },
   { minimize: false }
@@ -91,8 +92,13 @@ SimulationSchema.pre("save", function (next) {
     .then(next)
     .catch(next)
 })
+
+SimulationSchema.methods.getSituation = function () {
+  return generateSituation(this)
+}
+
 SimulationSchema.methods.compute = function () {
-  const situation = generateSituation(this)
+  const situation = this.getSituation()
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
       if (err) {

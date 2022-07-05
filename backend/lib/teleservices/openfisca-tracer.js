@@ -1,7 +1,7 @@
 const openfisca = require("../openfisca")
 
-function OpenFiscaTracer(situation) {
-  this.situation = situation
+function OpenFiscaTracer(simulation) {
+  this.situation = simulation.getSituation()
 }
 
 OpenFiscaTracer.prototype.toInternal = function () {

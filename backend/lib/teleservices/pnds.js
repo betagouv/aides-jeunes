@@ -1,7 +1,7 @@
 const openfisca = require("../openfisca")
 
-function PNDS(situation) {
-  this.situation = situation
+function PNDS(simulation) {
+  this.situation = simulation.getSituation()
 }
 
 PNDS.prototype.toInternal = function () {

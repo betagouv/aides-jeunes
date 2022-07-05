@@ -5,7 +5,7 @@ const moment = require("moment")
 const Mustache = require("mustache")
 
 const config = require("../../config")
-const Loiret = require("../../lib/teleservices/loiret")
+const AidesJeunesPreremplissage = require("../../lib/teleservices/aides-jeunes-preremplissage")
 const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
 const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
@@ -14,22 +14,6 @@ const PNDS = require("../../lib/teleservices/pnds")
 moment.locale("fr")
 
 const teleservices = [
-  {
-    name: "loiret_APA_test",
-    class: Loiret,
-    destination: {
-      label: "Accéder au téléservice du Loiret (test)",
-      url: "https://reflexe45-test.loiret.fr/public/requestv2/accountless/teleprocedure_id/92?situation={{token}}",
-    },
-  },
-  {
-    name: "loiret_APA",
-    class: Loiret,
-    destination: {
-      label: "Accéder au téléservice du Loiret",
-      url: "https://services.loiret.fr/public/requestv2/accountless/teleprocedure_id/264?situation={{token}}",
-    },
-  },
   {
     name: "ccas_saint_louis_preprod",
     class: OpenFiscaResponse,
@@ -63,12 +47,20 @@ const teleservices = [
       url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },
   },
+  {
+    name: "aides_jeunes_preremplissage",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/preremplissage/resultats?token={{token}}",
+    },
+  },
 ]
 
-function createClass(teleservice, situation) {
+function createClass(teleservice, simulation) {
   // Create object dynamically, and apply constructor
   const ts = Object.create(teleservice.class.prototype)
-  teleservice.class.apply(ts, [situation])
+  teleservice.class.apply(ts, [simulation])
 
   return ts
 }
@@ -111,7 +103,7 @@ exports.metadataResponseGenerator = function (teleservice) {
     const token = jwt.sign(payload, req.simulation.token)
 
     return res.json({
-      fields: createClass(teleservice, req.situation).toInternal(),
+      fields: createClass(teleservice, req.simulation).toInternal(),
       destination: {
         label: teleservice.destination.label,
         url: Mustache.render(teleservice.destination.url, {
@@ -196,7 +188,7 @@ exports.verifyRequest = function (req, res, next) {
  */
 exports.exportRepresentation = function (req, res) {
   return Promise.resolve(
-    createClass(req.teleservice, req.situation).toExternal()
+    createClass(req.teleservice, req.simulation).toExternal()
   ).then(function (value) {
     return res.json(value)
   })

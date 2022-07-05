@@ -19,3 +19,4 @@ entity: familles
 openfiscaPeriod: thisMonth
 msa: true
 participation: true
+top: 2.5

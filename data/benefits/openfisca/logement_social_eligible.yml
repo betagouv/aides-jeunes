@@ -9,7 +9,7 @@ conditions:
 link: https://www.service-public.fr/particuliers/vosdroits/F869
 teleservice: https://www.demande-logement-social.gouv.fr/creation/accesCriteresEligibilites.do
 isBaseRessourcesYearMinusTwo: true
-top: 10
+top: 15
 prefix: le
 type: bool
 entity: familles

@@ -764,6 +764,7 @@ collections:
       - *field_link_instructions
       - *field_amount_reliability
       # hidden fields
+      - *field_benefit_position
       - *field_private_benefit
       - *field_benefit_partial_support
   - name: benefits_openfisca
@@ -862,6 +863,7 @@ collections:
         name: repository
         widget: hidden
         required: false
+      - *field_benefit_position
   - name: contribution-pages
     label: Pages
     label_singular: page

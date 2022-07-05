@@ -1,5 +1,3 @@
-const openfisca = require("../openfisca")
-
 function AidesJeunesServiceLogement(simulation) {
   this.simulation = simulation
 }
@@ -15,7 +13,7 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
   }
 
   const inputs = query[props[0]]
-  scenarios = inputs.map((v, i) => {
+  const scenarios = inputs.map((v, i) => {
     return props.reduce((a, v) => {
       a[v] = query[v][i]
       return a

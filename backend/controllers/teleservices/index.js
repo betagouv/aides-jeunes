@@ -49,7 +49,7 @@ const teleservices = [
     },
   },
   {
-    name: "aides_jeunes_preremplissage",
+    name: "aides_jeunes_preremplissage_dev",
     class: AidesJeunesPreremplissage,
     public: true,
     destination: {
@@ -57,11 +57,27 @@ const teleservices = [
     },
   },
   {
+    name: "aides_jeunes_service_logement_dev",
+    class: AidesJeunesServiceLogement,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/service-logement?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_preremplissage",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "https://aides-jeunes-experimentations.netlify.app/preremplissage/resultats?token={{token}}",
+    },
+  },
+  {
     name: "aides_jeunes_service_logement",
     class: AidesJeunesServiceLogement,
     public: true,
     destination: {
-      url: "http://localhost:3000/service-logement/resultats?token={{token}}",
+      url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
     },
   },
 ]

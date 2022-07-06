@@ -16,7 +16,6 @@ conditions_generales:
 profils: []
 conditions:
   - Être allocataire de la Caf de l'Eure.
-  - Relever du régime général de la Sécurité Sociale.
   - Être titulaire du BAFA (ou équivalent).
 interestFlag: _interetBafa
 type: float

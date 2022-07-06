@@ -1,0 +1,22 @@
+label: aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_dordogne
+description: L'aide proposée par la CAF de Dordogne peut vous aider à financer
+  votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "24"
+profils: []
+conditions:
+  - Être titulaire du BAFA.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 250
+link: https://caf.fr/allocataires/caf-de-la-dordogne/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafabafd
+instructions: https://caf.fr/allocataires/caf-de-la-dordogne/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafabafd

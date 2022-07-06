@@ -1,0 +1,23 @@
+label: aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_doubs
+description: L'aide proposée par la CAF du Doubs peut vous aider à financer
+  votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "25"
+profils: []
+conditions:
+  - Être titulaire du BAFA.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://caf.fr/allocataires/caf-du-doubs/offre-de-service/vie-professionnelle/le-bafa-et-le-bafd
+form: https://caf.fr/sites/default/files/medias/253/BAFA%20BAFD/Imprim%C3%A9%20BAFD.pdf
+instructions: https://caf.fr/allocataires/caf-du-doubs/offre-de-service/vie-professionnelle/le-bafa-et-le-bafd

@@ -1,0 +1,27 @@
+label: aide au BAFA pour une session de formation générale et d'approfondissement
+institution: caf_dordogne
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Dordogne pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de l'aide nationale
+  apportée par la caf.
+prefix: l’
+conditions_generales:
+  - type: quotient_familial
+    floor: 622
+    period: month
+  - type: departements
+    values:
+      - "24"
+profils: []
+conditions:
+  - Être ressortissant·e du régime général.
+  - Être sur le dossier CAF de ses parents ou avoir au moins un enfant à charge.
+  - Être bénéficiaire d’une prestation familiale (RSA, l’AAH, APL, ARS pour un
+    enfant).
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 250
+link: https://caf.fr/allocataires/caf-de-la-dordogne/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafabafd
+instructions: https://caf.fr/allocataires/caf-de-la-dordogne/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafabafd

@@ -76,17 +76,17 @@
 </template>
 
 <script>
-import DroitsList from "../../components/droits-list"
-import ErrorBlock from "../../components/error-block"
-import ErrorSaveBlock from "../../components/error-save-block"
-import Feedback from "../../components/feedback"
-import OfflineResults from "../../components/offline-results"
-import TrouverInterlocuteur from "@/components/trouver-interlocuteur"
-import LoadingModal from "@/components/loading-modal"
+import DroitsList from "@/components/droits-list.vue"
+import ErrorBlock from "@/components/error-block.vue"
+import ErrorSaveBlock from "@/components/error-save-block.vue"
+import Feedback from "@/components/feedback.vue"
+import OfflineResults from "@/components/offline-results.vue"
+import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
+import LoadingModal from "@/components/loading-modal.vue"
 import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
-import WarningMessage from "@/components/warning-message"
-import Recapitulatif from "./recapitulatif"
+import WarningMessage from "@/components/warning-message.vue"
+import Recapitulatif from "@/views/simulation/recapitulatif.vue"
 
 export default {
   name: "SimulationResultats",

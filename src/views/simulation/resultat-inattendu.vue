@@ -21,10 +21,10 @@
 
 <script>
 import Institution from "@/lib/institution"
-import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement"
-import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune"
-import ResultatInattenduPpa from "@/components/resultat-inattendu/ppa"
-import ResultatInattenduYearMinusTwo from "@/components/resultat-inattendu/year-minus-two"
+import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
+import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"
+import ResultatInattenduPpa from "@/components/resultat-inattendu/ppa.vue"
+import ResultatInattenduYearMinusTwo from "@/components/resultat-inattendu/year-minus-two.vue"
 
 const RESULTATS_INATTENDUS = {
   aide_logement: ResultatInattenduAideLogement,

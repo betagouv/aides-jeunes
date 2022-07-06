@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import RessourceTypes from "@/components/ressource/types"
-import Individu from "../../../../lib/individu"
+import RessourceTypes from "@/components/ressource/types.vue"
+import Individu from "@/../lib/individu"
 
 export default {
   name: "RessourcesTypes",

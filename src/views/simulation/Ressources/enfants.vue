@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
-import YesNoQuestion from "@/components/yes-no-question"
-import { nullifyUndefinedValue } from "../../../../lib/answers"
+import ActionButtons from "@/components/action-buttons.vue"
+import YesNoQuestion from "@/components/yes-no-question.vue"
+import { nullifyUndefinedValue } from "@/../lib/answers"
 
 export default {
   name: "RessourcesTypes",

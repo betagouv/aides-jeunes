@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
-import { ressourceCategories, ressourceTypes } from "../../../lib/resources"
+import { ressourceCategories, ressourceTypes } from "@/../lib/resources"
 import Ressource from "@/../lib/ressource"
-import { getAnswer } from "../../../lib/answers"
+import { getAnswer } from "@/../lib/answers"
 
 export default {
   name: "RessourceTypes",

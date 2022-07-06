@@ -100,8 +100,8 @@ import axios from "axios"
 import moment from "moment"
 
 import Institution from "@/lib/institution"
-import LoadingModal from "@/components/loading-modal"
-import DroitHeader from "@/components/droit-header"
+import LoadingModal from "@/components/loading-modal.vue"
+import DroitHeader from "@/components/droit-header.vue"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },

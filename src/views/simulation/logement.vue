@@ -92,10 +92,10 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import Logement from "@/lib/logement"
-import Individu from "../../../lib/individu.js"
-import { getAnswer } from "../../../lib/answers"
+import Individu from "@/../lib/individu.js"
+import { getAnswer } from "@/../lib/answers"
 
 export default {
   name: "SimulationLogement",

@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import BackButton from "@/components/buttons/back-button"
-import WarningMessage from "@/components/warning-message"
+import BackButton from "@/components/buttons/back-button.vue"
+import WarningMessage from "@/components/warning-message.vue"
 export default {
   name: "ActionButtons",
   components: { WarningMessage, BackButton },

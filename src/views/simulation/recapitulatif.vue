@@ -60,9 +60,9 @@ import {
   executeFunctionOrReturnValue,
 } from "../../../lib/utils"
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
-import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
-import BackButton from "@/components/buttons/back-button"
-import { getStepAnswer } from "../../../lib/answers"
+import { ENTITIES_PROPERTIES } from "@/../lib/mutualized-steps"
+import BackButton from "@/components/buttons/back-button.vue"
+import { getStepAnswer } from "@/../lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
 import { useIndividu } from "@/composables/individu.ts"
 

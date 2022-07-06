@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
-import InputDepCom from "@/components/input-depcom"
-import WarningMessage from "@/components/warning-message"
+import ActionButtons from "@/components/action-buttons.vue"
+import InputDepCom from "@/components/input-depcom.vue"
+import WarningMessage from "@/components/warning-message.vue"
 
 import { getAnswer } from "@/../lib/answers"
 import DepcomProperties from "@/../lib/properties/depcom-properties"

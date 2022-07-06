@@ -12,6 +12,10 @@ backend:
 media_folder: public/img
 public_folder: img
 
+slug:
+  encoding: ascii
+  clean_accents: true
+
 # local_backend: true
 publish_mode: editorial_workflow
 

@@ -210,10 +210,7 @@ print(
       },
       {
         query: {
-          dateDeValeur: {
-            $gt: ISODate("2022-05-10"),
-            $lt: ISODate("2022-06-10"),
-          },
+          dateDeValeur: {},
         },
         out: { inline: 1 },
         scope: {

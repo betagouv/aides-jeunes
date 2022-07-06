@@ -7,7 +7,7 @@ prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
-    value: 15
+    value: 17
   - type: age
     operator: <=
     value: 25
@@ -22,6 +22,5 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 150
-link: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa
-teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
-instructions: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/enfance-et-jeunesse/les-aides-a-la-formation-bafa
+link: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/vie-professionnelle/les-aides-la-formation-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-seine-et-marne/offre-de-service/vie-professionnelle/les-aides-la-formation-bafa

@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import Chapters from "../../lib/chapters"
-import MenuButton from "@/components/buttons/menu-button"
-import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
+import Chapters from "@/../lib/chapters"
+import MenuButton from "@/components/buttons/menu-button.vue"
+import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 
 export default {
   name: "TitreChapitre",

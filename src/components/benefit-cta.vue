@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import BenefitCtaLink from "./benefit-cta-link"
+import BenefitCtaLink from "@/components/benefit-cta-link.vue"
 import { hasEtablissements } from "@/../lib/benefits/etablissements"
 
 const types = ["teleservice", "form", "instructions"]

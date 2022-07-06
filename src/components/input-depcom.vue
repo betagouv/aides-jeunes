@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import Commune from "../lib/commune"
-import EnSavoirPlus from "@/components/en-savoir-plus"
+import Commune from "@/lib/commune"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 
 export default {
   name: "InputDepCom",

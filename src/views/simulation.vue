@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import TitreChapitre from "@/components/titre-chapitre"
-import Progress from "@/components/progress"
-import Summary from "@/components/summary"
-import ProgressBar from "@/components/progress-bar"
-import WarningMessage from "@/components/warning-message"
+import TitreChapitre from "@/components/titre-chapitre.vue"
+import Progress from "@/components/progress.vue"
+import Summary from "@/components/summary.vue"
+import ProgressBar from "@/components/progress-bar.vue"
+import WarningMessage from "@/components/warning-message.vue"
 
 export default {
   name: "Simulation",

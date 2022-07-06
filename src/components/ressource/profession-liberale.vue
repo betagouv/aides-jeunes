@@ -34,7 +34,7 @@
 
 <script>
 import TNSRessourceUpdator from "@/mixins/tns-ressource-updator"
-import InputNumber from "@/components/input-number"
+import InputNumber from "@/components/input-number.vue"
 
 export default {
   name: "RessourceProfessionLiberale",

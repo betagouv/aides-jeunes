@@ -1,3 +1,5 @@
+/*global db, emit, ISODate, variables*/
+
 function month(simulation) {
   return simulation.dateDeValeur.toISOString().slice(0, 7)
 }

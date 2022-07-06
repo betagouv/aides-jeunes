@@ -17,10 +17,12 @@ conditions_generales:
   - type: quotient_familial
     floor: 600
     period: month
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
 profils: []
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
-  - Dépendre du régime général de la sécurité sociale.
 interestFlag: _interetBafa
 type: float
 unit: €

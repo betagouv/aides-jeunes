@@ -158,12 +158,12 @@ var props = {
   age,
   avecRessources,
   departement,
-  epci,
-  logement,
-  month,
   depcom,
   depcom100kp,
+  epci,
   region,
+  logement,
+  month,
 }
 
 function genericGetter(propName, simulation) {
@@ -173,8 +173,21 @@ function genericGetter(propName, simulation) {
   return answer ? answer.value : "#N/A"
 }
 
-var propNames =
-  typeof variables == "undefined" ? ["month"] : variables.split(",")
+if (typeof headers == "undefined") {
+  print("Usage:")
+  print(
+    "mongo --quiet db_aides_jeunes --eval \"var headers='month,depcom100kp,departement';\" tools/mongo-query.js > export.csv"
+  )
+  print("  headers doit contenir les entêtes souhaitées.")
+  print("")
+  print("Variables possibles :")
+  Object.keys(props).forEach((p) => {
+    print("  " + p)
+  })
+  print("  + les valeurs de fieldName dans les réponses")
+  quit(1)
+}
+var propNames = headers.split(",")
 
 print(propNames.join(";") + ";count")
 print(

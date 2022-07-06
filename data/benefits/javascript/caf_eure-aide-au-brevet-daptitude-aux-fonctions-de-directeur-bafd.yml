@@ -10,6 +10,9 @@ conditions_generales:
   - type: quotient_familial
     floor: 600
     period: month
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
 profils: []
 conditions:
   - Être allocataire de la Caf de l'Eure.

@@ -49,6 +49,7 @@ module.exports = {
     "node_modules",
     ".tmp",
     "dist",
+    "dist-server",
     "IndividuForm.vue",
     "tmp",
     "test/integration",

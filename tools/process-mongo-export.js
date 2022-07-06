@@ -25,9 +25,9 @@ const stats = {
 }
 
 const agg = [
-  (r) => [stats.france],
+  () => [stats.france],
   (r) => {
-    const [dt, group, depcom] = r._id.split(";")
+    const [, , depcom] = r._id.split(";")
     if (!communeMap[depcom]) {
       console.log(r)
       return []
@@ -37,7 +37,7 @@ const agg = [
     return [stats.regions[regionCode]]
   },
   (r) => {
-    const [dt, group, depcom] = r._id.split(";")
+    const [, , depcom] = r._id.split(";")
     if (!communeMap[depcom]) {
       console.log(r)
       return []
@@ -48,7 +48,7 @@ const agg = [
     return [stats.departements[departementCode]]
   },
   (r) => {
-    const [dt, group, depcom] = r._id.split(";")
+    const [, , depcom] = r._id.split(";")
     if (!communeMap[depcom]) {
       console.log(r)
       return []
@@ -68,7 +68,7 @@ rawData /*.slice(0, 10)*/
       const elements = a(row)
 
       elements.forEach((element) => {
-        const [dt, group, depcom] = row._id.split(";")
+        const [dt, group] = row._id.split(";")
         const groups = [group]
         //console.log([dt, depcom, groups], row.value)
 
@@ -79,9 +79,10 @@ rawData /*.slice(0, 10)*/
           splitByCount: {},
           total: 0,
         }
-        groupsLabel = groups.join(";")
 
-        items = groups[0].split(",").filter((i) => i.length || i == "#N/A")
+        const items = groups[0]
+          .split(",")
+          .filter((i) => i.length || i == "#N/A")
         items.forEach((i) => {
           element[dt].split[i] = (element[dt].split[i] || 0) + row.value
         })

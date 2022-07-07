@@ -38,14 +38,17 @@
 
 <script>
 import Etablissement from "@/components/etablissement.vue"
-import Individu from "@/../lib/individu.js"
+import * as individu from "@/../lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats"
 import BackButton from "@/components/buttons/back-button.vue"
 
 const list = [
   {
     isRelevant: (demandeur, situation) => {
-      let demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
+      let demandeurAge = individu.Individu.age(
+        demandeur,
+        situation.dateDeValeur
+      )
 
       return demandeurAge <= 25 && demandeurAge >= 16
     },

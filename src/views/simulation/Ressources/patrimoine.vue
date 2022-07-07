@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import { patrimoineTypes } from "@/../lib/resources"
+import * as resources from "@/../lib/resources"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
@@ -139,7 +139,7 @@ export default {
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.$store.getters.peopleParentsFirst
 
-    let patrimoineProperties = patrimoineTypes.map((p) => p.id)
+    let patrimoineProperties = resources.patrimoineTypes.map((p) => p.id)
     patrimoineProperties.forEach(function (patrimoinePropertyName) {
       demandeur[patrimoinePropertyName] = Object.assign(
         {},
@@ -177,7 +177,7 @@ export default {
     onSubmit: function () {
       const values = {}
 
-      patrimoineTypes.forEach((patrimoinType) => {
+      resources.patrimoineTypes.forEach((patrimoinType) => {
         values[patrimoinType.id] =
           this.demandeur[patrimoinType.id][this.periodKey]
       })

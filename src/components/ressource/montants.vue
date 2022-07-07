@@ -48,7 +48,7 @@
 <script>
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
-import Individu from "@/../lib/individu"
+import * as libIndividu from "@/../lib/individu"
 import InputNumber from "@/components/input-number.vue"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
@@ -67,7 +67,7 @@ function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
 }
 
 function getLongLabel(individu, ressource) {
-  const subject = Individu.label(individu)
+  const subject = libIndividu.Individu.label(individu)
 
   const auxForms = {
     demandeur: "avez",

@@ -1,4 +1,4 @@
-import { getAnswer } from "../../lib/answers"
+import * as answersLib from "../../lib/answers"
 
 function getStatutOccupationLogement(logement) {
   let statusOccupationMap = {
@@ -60,13 +60,13 @@ function captureCharges(logementStatut) {
 }
 
 function getLoyerData(answers) {
-  const logementStatut = getAnswer(
+  const logementStatut = answersLib.getAnswer(
     answers,
     "menage",
     "statut_occupation_logement"
   )
-  const coloc = getAnswer(answers, "menage", "coloc")
-  const loyer = getAnswer(answers, "menage", "loyer") || {}
+  const coloc = answersLib.getAnswer(answers, "menage", "coloc")
+  const loyer = answersLib.getAnswer(answers, "menage", "loyer") || {}
 
   const isLocataire = !Logement.isOwner(logementStatut)
   const captureCharges = Logement.captureCharges(logementStatut)

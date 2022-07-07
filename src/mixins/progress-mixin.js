@@ -1,4 +1,4 @@
-import { isStepAnswered } from "../../lib/answers"
+import * as answers from "@/../lib/answers.js"
 
 export default {
   computed: {
@@ -12,7 +12,7 @@ export default {
       // Use anwers as basis when you are not in journey
       if (!allSteps.some((step) => step.path === cleanPath)) {
         const answeredSteps = activeSteps.filter((step) =>
-          isStepAnswered(this.$store.state.simulation.answers.all, step)
+          answers.isStepAnswered(this.$store.state.simulation.answers.all, step)
         )
         return answeredSteps.length / activeSteps.length
       } else {

@@ -50,9 +50,9 @@
 import ActionButtons from "@/components/action-buttons.vue"
 import orderBy from "lodash/orderBy"
 import groupBy from "lodash/groupBy"
-import { ressourceCategories, ressourceTypes } from "@/../lib/resources"
-import Ressource from "@/../lib/ressource"
-import { getAnswer } from "@/../lib/answers"
+import * as resources from "@/../lib/resources"
+import * as ressource from "@/../lib/ressource"
+import * as answers from "@/../lib/answers"
 
 export default {
   name: "RessourceTypes",
@@ -63,7 +63,7 @@ export default {
     individu: Object,
   },
   data: function () {
-    let types = ressourceTypes.filter((ressourceType) => {
+    let types = resources.ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
@@ -74,7 +74,7 @@ export default {
       )
     })
 
-    const selectedRessources = getAnswer(
+    const selectedRessources = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       "individu",
       "ressources",
@@ -85,7 +85,7 @@ export default {
       selectedTypes[type.id] = selectedRessources?.includes(type.id)
     })
     return {
-      categories: ressourceCategories,
+      categories: resources.ressourceCategories,
       typesByCategories: groupBy(types, (t) => t.category),
       selectedTypes,
     }
@@ -102,7 +102,7 @@ export default {
   },
   watch: {
     individu: function () {
-      this.selectedTypes = Ressource.getIndividuRessourceTypes(
+      this.selectedTypes = ressource.Ressource.getIndividuRessourceTypes(
         this.individu,
         this.$store.getters.situation
       )

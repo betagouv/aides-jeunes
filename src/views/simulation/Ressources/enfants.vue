@@ -18,7 +18,7 @@
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
-import { nullifyUndefinedValue } from "@/../lib/answers"
+import * as answers from "@/../lib/answers"
 
 export default {
   name: "RessourcesTypes",
@@ -42,7 +42,7 @@ export default {
         fieldName: "_hasRessources",
         value: this.enfants.map((enfant) => ({
           id: enfant.id,
-          value: nullifyUndefinedValue(enfant._hasRessources),
+          value: answers.nullifyUndefinedValue(enfant._hasRessources),
         })),
       })
       this.$push()

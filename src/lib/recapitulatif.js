@@ -1,17 +1,13 @@
-import Individu from "../../lib/individu"
-import {
-  capitalize,
-  displayCurrencyValue,
-  displayDepcomValue,
-} from "../../lib/utils"
-import { ressourceCategories, ressourceTypes } from "../../lib/resources"
+import * as individuLib from "../../lib/individu"
+import * as utils from "../../lib/utils"
+import * as resources from "../../lib/resources"
 import Logement from "@/lib/logement"
 import moment from "moment"
-import { getAnswer, getStepAnswer } from "../../lib/answers"
+import * as answers from "../../lib/answers"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
-  return Individu.get(
+  return individuLib.Individu.get(
     component.$store.getters.peopleParentsFirst,
     role,
     step.id,
@@ -21,7 +17,10 @@ export const getIndividuByStep = (step, component) => {
 
 export const SIMPLE_STEPS = {
   ressources(step) {
-    const answer = getStepAnswer(this.$store.state.simulation.answers.all, step)
+    const answer = answers.getStepAnswer(
+      this.$store.state.simulation.answers.all,
+      step
+    )
     if (!answer) {
       return []
     }
@@ -30,8 +29,9 @@ export const SIMPLE_STEPS = {
         ? answer
             .map(
               (ressourceId) =>
-                ressourceTypes.find((ressource) => ressource.id === ressourceId)
-                  .label
+                resources.ressourceTypes.find(
+                  (ressource) => ressource.id === ressourceId
+                ).label
             )
             .join(", ")
         : "Aucun revenu"
@@ -43,18 +43,21 @@ export const SIMPLE_STEPS = {
     return [
       {
         rowClass: "row-space",
-        label: capitalize(Individu.label(individu, "nom")),
+        label: utils.capitalize(individuLib.Individu.label(individu, "nom")),
         labelClass: "individu-title",
         hideEdit: true,
       },
       {
-        label: `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`,
+        label: `Quel type de revenu ${individuLib.Individu.label(
+          individu,
+          "percevoir"
+        )} ?`,
         value,
       },
     ]
   },
   depcom() {
-    const answer = getAnswer(
+    const answer = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       "menage",
       "depcom",
@@ -65,14 +68,14 @@ export const SIMPLE_STEPS = {
       {
         label: "Quel est votre code postal ?",
         value: answer
-          ? displayDepcomValue(answer._codePostal, answer._nomCommune)
+          ? utils.displayDepcomValue(answer._codePostal, answer._nomCommune)
           : undefined,
       },
     ]
   },
 
   _bourseCriteresSociauxCommuneDomicileFamilial() {
-    const answer = getAnswer(
+    const answer = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       "individu",
       "_bourseCriteresSociauxCommuneDomicileFamilial",
@@ -81,13 +84,13 @@ export const SIMPLE_STEPS = {
     return [
       {
         label: "Quel est le code postal de la commune de vos parents ?",
-        value: displayDepcomValue(answer._codePostal, answer._nomCommune),
+        value: utils.displayDepcomValue(answer._codePostal, answer._nomCommune),
       },
     ]
   },
 
   statut_occupation_logement() {
-    const answer = getAnswer(
+    const answer = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       "menage",
       "statut_occupation_logement"
@@ -105,14 +108,14 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = getAnswer(
+      const answer = answers.getAnswer(
         this.$store.state.simulation.answers.all,
         "enfants"
       )
       return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const answer = getAnswer(
+      const answer = answers.getAnswer(
         this.$store.state.simulation.answers.all,
         "enfants"
       )
@@ -137,13 +140,15 @@ export const COMPLEX_STEPS = {
         {
           label: loyerData.loyerQuestion.label,
           value: loyerData.loyerQuestion.selectedValue
-            ? displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
+            ? utils.displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
             : undefined,
         },
         loyerData.chargesQuestion && {
           label: loyerData.chargesQuestion.label,
           value: loyerData.chargesQuestion.selectedValue
-            ? displayCurrencyValue(loyerData.chargesQuestion.selectedValue)
+            ? utils.displayCurrencyValue(
+                loyerData.chargesQuestion.selectedValue
+              )
             : undefined,
         },
       ].filter((item) => item)
@@ -156,14 +161,16 @@ export const COMPLEX_STEPS = {
     },
     fn(step) {
       const answer = (
-        getAnswer(
+        answers.getAnswer(
           this.$store.state.simulation.answers.all,
           step.entity,
           step.variable,
           step.id
         ) || []
       ).map((ressource) => {
-        const ressourceType = ressourceTypes.find((r) => r.id === ressource.id)
+        const ressourceType = resources.ressourceTypes.find(
+          (r) => r.id === ressource.id
+        )
         return {
           ...ressourceType,
           ...ressource,
@@ -172,7 +179,7 @@ export const COMPLEX_STEPS = {
 
       let result = []
       if (answer.length) {
-        const category = ressourceCategories.find(
+        const category = resources.ressourceCategories.find(
           (category) => category.id === step.variable
         )
         const individu = getIndividuByStep(
@@ -183,17 +190,19 @@ export const COMPLEX_STEPS = {
         result = [
           {
             labelClass: "subtitle",
-            label: category && capitalize(category.label(individu)),
+            label: category && utils.capitalize(category.label(individu)),
           },
           ...answer.map((ressource) => {
             return {
-              label: capitalize(ressource.label),
+              label: utils.capitalize(ressource.label),
               value: Object.entries(ressource.amounts).reduce(
                 (accum, [key, value]) => {
                   const date = ressource.isMontantAnnuel
                     ? key
-                    : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
-                  accum[date] = displayCurrencyValue(value)
+                    : utils.capitalize(
+                        moment(key, "YYYY-MM").format("MMMM YYYY")
+                      )
+                  accum[date] = utils.displayCurrencyValue(value)
                   return accum
                 },
                 {}

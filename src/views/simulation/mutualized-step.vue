@@ -83,12 +83,12 @@ import MultipleAnswers from "@/components/multiple-answers.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import Hint from "@/lib/hint"
 
-import { executeFunctionOrReturnValue } from "@/../lib/utils"
+import * as utils from "@/../lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@/../lib/mutualized-steps"
-import { getAnswer, nullifyUndefinedValue } from "@/../lib/answers"
+import * as answers from "@/../lib/answers"
 import { useIndividu } from "@/composables/individu.ts"
 
 export default {
@@ -104,7 +104,7 @@ export default {
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
-    const value = getAnswer(
+    const value = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       entityName,
       this.$route.params.fieldName,
@@ -133,7 +133,7 @@ export default {
     showMoreInfo() {
       const showMoreInfo =
         this.step.showMoreInfo === undefined ||
-        executeFunctionOrReturnValue(
+        utils.executeFunctionOrReturnValue(
           this.step,
           "showMoreInfo",
           this.propertyData
@@ -167,7 +167,7 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
-        value: nullifyUndefinedValue(this.value),
+        value: answers.nullifyUndefinedValue(this.value),
       })
       this.$push()
     },

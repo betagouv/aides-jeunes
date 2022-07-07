@@ -1,5 +1,5 @@
-import Individu from "../../lib/individu"
-import { getAnswer } from "../../lib/answers"
+import * as individu from "../../lib/individu"
+import * as answers from "../../lib/answers"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props
@@ -9,7 +9,7 @@ export const createIndividuMixin = (props) => {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const value = getAnswer(
+      const value = answers.getAnswer(
         this.$store.state.simulation.answers.all,
         entityName,
         fieldName,
@@ -26,7 +26,7 @@ export const createIndividuMixin = (props) => {
     },
     methods: {
       getLabel: function (type) {
-        return Individu.label(this.individu, type)
+        return individu.Individu.label(this.individu, type)
       },
       canSubmit: function (submit) {
         const hasError =

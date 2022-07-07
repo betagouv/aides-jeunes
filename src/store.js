@@ -5,15 +5,15 @@ import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import { computeAides, datesGenerator } from "../lib/benefits/compute"
-import { categoriesRnc, patrimoineTypes } from "../lib/resources"
-import { generateAllSteps } from "../lib/state/generator"
+import * as compute from "../lib/benefits/compute"
+import * as resources from "../lib/resources"
+import * as generator from "../lib/state/generator"
 import Institution from "./lib/institution"
 import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"
-import { isStepAnswered } from "../lib/answers"
-import { generateSituation } from "../lib/situations"
-import { version } from "../lib/simulation"
+import * as answers from "../lib/answers"
+import * as situations from "../lib/situations"
+import * as simulation from "../lib/simulation"
 
 function defaultCalculs() {
   return {
@@ -40,7 +40,7 @@ function defaultStore() {
         current: [],
       },
       dateDeValeur: new Date(),
-      version,
+      simulation: simulation.version,
     },
     message: {
       text: null,
@@ -53,7 +53,7 @@ function defaultStore() {
       forbidden: false,
     },
     calculs: defaultCalculs(),
-    dates: datesGenerator(now),
+    dates: compute.datesGenerator(now),
     ameliNoticationDone: false,
     lieux: null,
     title: null,
@@ -80,7 +80,7 @@ function restoreLocal() {
     situationId: store.situationId,
     simulation: store.simulation,
     calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.simulation.dateDeValeur),
+    dates: compute.datesGenerator(store.simulation.dateDeValeur),
     ameliNoticationDone: store.ameliNoticationDone,
     recapEmailState: store.recapEmailState,
   }
@@ -151,7 +151,10 @@ const store = createStore({
       }
     },
     getAllSteps: function (state, getters) {
-      return generateAllSteps(getters.situation, state.openFiscaParameters)
+      return generator.generateAllSteps(
+        getters.situation,
+        state.openFiscaParameters
+      )
     },
     getAllAnsweredSteps: function (state, getters) {
       const allSteps = getters.getAllSteps.filter(
@@ -161,7 +164,7 @@ const store = createStore({
           step.isActive
       )
       return allSteps.filter((step) =>
-        isStepAnswered(state.simulation.answers.all, step)
+        answers.isStepAnswered(state.simulation.answers.all, step)
       )
     },
     lastUnansweredStep: function (state, getters) {
@@ -172,14 +175,14 @@ const store = createStore({
           step.isActive
       )
       return allSteps.find(
-        (step) => !isStepAnswered(state.simulation.answers.all, step)
+        (step) => !answers.isStepAnswered(state.simulation.answers.all, step)
       )
     },
     ressourcesYearMinusTwoCaptured: function (state, getters) {
       const yearMinusTwo = state.dates.fiscalYear.id
       const januaryYearMinusTwo = state.dates.fiscalYear12Months[0].id
       return getters.peopleParentsFirst.some(function (individu) {
-        return categoriesRnc.reduce(function (
+        return resources.categoriesRnc.reduce(function (
           hasYm2RessourcesAccum,
           categorieRnc
         ) {
@@ -221,7 +224,7 @@ const store = createStore({
         return undefined
       }
 
-      return patrimoineTypes.reduce(function (accum, ressource) {
+      return resources.patrimoineTypes.reduce(function (accum, ressource) {
         if (!demandeur[ressource.id]) {
           return accum
         }
@@ -248,7 +251,7 @@ const store = createStore({
       )
     },
     situation: (state) => {
-      return generateSituation(state.simulation, true)
+      return situations.generateSituation(state.simulation, true)
     },
   },
   mutations: {
@@ -395,7 +398,9 @@ const store = createStore({
     reset: function (state, simulation) {
       state.access.fetching = false
       state.simulation = simulation
-      state.dates = datesGenerator(simulation.dateDeValeur || new Date())
+      state.dates = compute.datesGenerator(
+        simulation.dateDeValeur || new Date()
+      )
       state.ameliNoticationDone = false
       state.calculs.dirty = false
     },
@@ -551,7 +556,7 @@ const store = createStore({
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
-          return computeAides.bind(Institution.benefits)(
+          return compute.computeAides.bind(Institution.benefits)(
             store.getters.situation,
             store.state.situationId,
             openfiscaResponse,

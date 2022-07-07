@@ -1,4 +1,4 @@
-import { getEtablissements } from "../../lib/benefits/etablissements"
+import * as etablissements from "../../lib/benefits/etablissements"
 
 const EtablissementModule = {
   namespaced: true,
@@ -24,7 +24,8 @@ const EtablissementModule = {
     get(state, payload) {
       state.commit("setError", null)
       state.commit("setUpdating", true)
-      return getEtablissements(payload.city, payload.types)
+      return etablissements
+        .getEtablissements(payload.city, payload.types)
         .then((etablissements) => {
           return etablissements.sort((a, b) => {
             return (

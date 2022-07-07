@@ -54,15 +54,11 @@
 </template>
 
 <script>
-import {
-  capitalize,
-  displayValue,
-  executeFunctionOrReturnValue,
-} from "../../../lib/utils"
+import * as utils from "../../../lib/utils"
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
 import { ENTITIES_PROPERTIES } from "@/../lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button.vue"
-import { getStepAnswer } from "@/../lib/answers"
+import * as answers from "@/../lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
 import { useIndividu } from "@/composables/individu.ts"
 
@@ -116,10 +112,14 @@ export default {
       return question
         ? [
             {
-              label: capitalize(
-                executeFunctionOrReturnValue(question, "question", component)
+              label: utils.capitalize(
+                utils.executeFunctionOrReturnValue(
+                  question,
+                  "question",
+                  component
+                )
               ),
-              value: displayValue(value, question, component),
+              value: utils.displayValue(value, question, component),
             },
           ]
         : []
@@ -142,7 +142,7 @@ export default {
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = getStepAnswer(
+        const answer = answers.getStepAnswer(
           this.$store.state.simulation.answers.all,
           step
         )

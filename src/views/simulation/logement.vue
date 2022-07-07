@@ -94,8 +94,8 @@
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
 import Logement from "@/lib/logement"
-import Individu from "@/../lib/individu.js"
-import { getAnswer } from "@/../lib/answers"
+import * as individu from "@/../lib/individu.js"
+import * as answersLib from "@/../lib/answers"
 
 export default {
   name: "SimulationLogement",
@@ -103,7 +103,7 @@ export default {
     ActionButtons,
   },
   data: function () {
-    const logementStatut = getAnswer(
+    const logementStatut = answersLib.getAnswer(
       this.$store.state.simulation.answers.all,
       "menage",
       "statut_occupation_logement"
@@ -189,7 +189,7 @@ export default {
   },
   methods: {
     demandeurAge: function () {
-      return Individu.age(
+      return individu.Individu.age(
         this.$store.getters.situation.demandeur,
         this.$store.state.dates.today.value
       )

@@ -70,8 +70,8 @@
 import sum from "lodash/sum"
 import some from "lodash/some"
 import isNaN from "lodash/isNaN"
-import Individu from "@/../lib/individu"
-import { categoriesRnc } from "@/../lib/resources"
+import * as individuLib from "@/../lib/individu"
+import * as resources from "@/../lib/resources"
 import ActionButtons from "@/components/action-buttons.vue"
 
 function getDefaultValue(months, individu, rnc) {
@@ -96,13 +96,13 @@ export default {
     const fiscalYear = this.$store.state.dates.fiscalYear.id
     let individus = this.$store.getters.peopleParentsFirst.map((source) => {
       let individu = {
-        label: Individu.label(source),
+        label: individuLib.Individu.label(source),
         default: {},
         values: {},
         id: source.id,
       }
 
-      categoriesRnc.forEach((categorieRnc) => {
+      resources.categoriesRnc.forEach((categorieRnc) => {
         individu.values[categorieRnc.id] = Object.assign(
           {},
           source[categorieRnc.id] || {}
@@ -117,9 +117,9 @@ export default {
       })
 
       individu.display =
-        Individu.isParent(source) ||
+        individuLib.Individu.isParent(source) ||
         some(
-          categoriesRnc.map(
+          resources.categoriesRnc.map(
             (ressource) =>
               source[ressource.id] &&
               source[ressource.id][fiscalYear] !== undefined
@@ -129,7 +129,7 @@ export default {
     })
 
     return {
-      categoriesRnc,
+      categoriesRnc: resources.categoriesRnc,
       individus,
     }
   },

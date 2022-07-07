@@ -1,16 +1,16 @@
-import { next, current, chapters } from "../../lib/state"
+import * as state from "../../lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
 
 const StateService = {
   install(app) {
     app.config.globalProperties.$state = {
-      next,
-      current,
-      chapters,
+      next: state.next,
+      current: state.current,
+      chapters: state.chapters,
     }
 
     app.config.globalProperties.$push = function () {
-      const nextStep = next(this.$route, this.$store.getters.getAllSteps)
+      const nextStep = state.next(this.$route, this.$store.getters.getAllSteps)
       this.$store.dispatch("updateCurrentAnswers", nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {

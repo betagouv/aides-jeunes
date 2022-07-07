@@ -53,10 +53,10 @@ import RessourceProfessionLiberale from "@/components/ressource/profession-liber
 import RessourceMontants from "@/components/ressource/montants.vue"
 
 import RessourceProcessor from "@/mixins/ressource-processor"
-import { ressourceTypes } from "@/../lib/resources"
-import Ressource from "@/../lib/ressource"
-import Individu from "@/../lib/individu"
-import { getAnswer } from "@/../lib/answers"
+import * as resources from "@/../lib/resources"
+import * as ressource from "@/../lib/ressource"
+import * as libIndividu from "@/../lib/individu"
+import * as answersLib from "@/../lib/answers"
 
 export default {
   name: "RessourcesMontants",
@@ -90,12 +90,12 @@ export default {
   },
   methods: {
     getIndividuNom: function () {
-      return Individu.label(this.individu, "nom")
+      return libIndividu.Individu.label(this.individu, "nom")
     },
     getIndividu: function () {
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const { individu } = Individu.get(
+      const { individu } = libIndividu.Individu.get(
         this.$store.getters.peopleParentsFirst,
         role,
         this.$route.params.id,
@@ -104,20 +104,21 @@ export default {
       return individu
     },
     getTypes: function (individu) {
-      const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
-        individu,
-        this.$route.params.category,
-        this.$store.getters.situation
-      )
+      const selectedTypes =
+        ressource.Ressource.getIndividuRessourceTypesByCategory(
+          individu,
+          this.$route.params.category,
+          this.$store.getters.situation
+        )
 
-      const answers = getAnswer(
+      const answers = answersLib.getAnswer(
         this.$store.state.simulation.answers.all,
         "individu",
         this.$route.params.category,
         this.$route.params.id
       )
 
-      return ressourceTypes.reduce((result, type) => {
+      return resources.ressourceTypes.reduce((result, type) => {
         if (selectedTypes[type.id]) {
           let amounts = Object.assign({}, individu[type.id])
           if (answers) {
@@ -131,7 +132,7 @@ export default {
             }
           }
 
-          const months = Ressource.getPeriodsForCurrentYear(
+          const months = ressource.Ressource.getPeriodsForCurrentYear(
             this.$store.state.dates,
             type
           )

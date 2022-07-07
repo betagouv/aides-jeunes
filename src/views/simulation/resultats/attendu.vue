@@ -189,7 +189,7 @@ import ContactEmailMixin from "@/mixins/contact-email"
 import ResultatsMixin from "@/mixins/resultats"
 
 import { sendMontantsAttendus } from "@/plugins/mails"
-import { capitalize } from "@/../lib/utils"
+import * as utils from "@/../lib/utils"
 import {
   fetchContributions,
   reduceContributions,
@@ -207,7 +207,7 @@ export default {
 
     Institution.benefits.all.forEach((benefit) => {
       const b = Object.assign({ type: benefit.institution.type }, benefit)
-      b.label = capitalize(benefit.label)
+      b.label = utils.capitalize(benefit.label)
 
       if (b.label === "Tarification solidaire transports") {
         b.label = `${b.label} - ${benefit.institution.label}`

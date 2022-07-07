@@ -60,7 +60,7 @@
 import ActionButtons from "@/components/action-buttons.vue"
 import Nationality from "@/lib/nationality"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
-import Scolarite from "@/../lib/scolarite"
+import * as scolarite from "@/../lib/scolarite"
 
 export default {
   name: "SimulationEnfants",
@@ -117,8 +117,10 @@ export default {
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite: function (value) {
-      const s = Scolarite.types.find((s) => s.value === value)
-      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
+      const s = scolarite.Scolarite.types.find((s) => s.value === value)
+      return s
+        ? scolarite.Scolarite.types.find((s) => s.value === value).label
+        : "-"
     },
   },
 }

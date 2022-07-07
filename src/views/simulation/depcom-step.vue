@@ -16,7 +16,7 @@ import ActionButtons from "@/components/action-buttons.vue"
 import InputDepCom from "@/components/input-depcom.vue"
 import WarningMessage from "@/components/warning-message.vue"
 
-import { getAnswer } from "@/../lib/answers"
+import * as answers from "@/../lib/answers"
 import DepcomProperties from "@/../lib/properties/depcom-properties"
 import Warning from "@/lib/warnings"
 
@@ -40,7 +40,7 @@ export default {
     }
 
     const question = DepcomProperties[fieldName].question
-    const answer = getAnswer(
+    const answer = answers.getAnswer(
       this.$store.state.simulation.answers.all,
       entityName,
       fieldName,

@@ -34,10 +34,7 @@
 <script>
 import Institution from "@/lib/institution"
 import Etablissement from "@/components/etablissement.vue"
-import {
-  getBenefitEtablissements,
-  getEtablissements,
-} from "@/../lib/benefits/etablissements"
+import * as etablissements from "@/../lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button.vue"
 
 export default {
@@ -59,9 +56,10 @@ export default {
     this.benefit = Institution.benefits.all.find(
       (benefit) => benefit.id === this.$route.params.benefit_id
     )
-    const types = getBenefitEtablissements(this.benefit)
+    const types = etablissements.getBenefitEtablissements(this.benefit)
 
-    getEtablissements(city, types)
+    etablissements
+      .getEtablissements(city, types)
       .then((etablissements) => {
         this.list = etablissements
       })

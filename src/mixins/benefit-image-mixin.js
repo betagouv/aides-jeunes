@@ -1,9 +1,9 @@
-import { getBenefitImage } from "../../lib/benefits/details"
+import * as details from "../../lib/benefits/details"
 
 export default {
   methods: {
     getBenefitImage: (droit) => {
-      return getBenefitImage(droit)
+      return details.getBenefitImage(droit)
     },
   },
 }

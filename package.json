@@ -47,6 +47,7 @@
     "@sentry/integrations": "^6.14.0",
     "@sentry/node": "^6.14.0",
     "@sentry/vue": "^6.14.0",
+    "@vitejs/plugin-legacy": "^1.8.2",
     "@vitejs/plugin-vue": "^2.3.3",
     "aides-velo": "2.0.37",
     "axios": "^0.24.0",

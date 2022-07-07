@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { formatDroitEstime } from "@/../lib/benefits/details"
+import * as details from "@/../lib/benefits/details"
 
 export default {
   name: "DroitEstime",
@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     droitEstime() {
-      return formatDroitEstime(
+      return details.formatDroitEstime(
         this.droit,
         this.$store.state.openFiscaParameters
       )

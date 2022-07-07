@@ -30,7 +30,7 @@
 
 <script>
 import BenefitCtaLink from "@/components/benefit-cta-link.vue"
-import { hasEtablissements } from "@/../lib/benefits/etablissements"
+import * as etablissements from "@/../lib/benefits/etablissements"
 
 const types = ["teleservice", "form", "instructions"]
 export default {
@@ -62,7 +62,10 @@ export default {
         .slice(0, 2)
     },
     showProximityCta() {
-      return hasEtablissements(this.benefit) && this.$route.name !== "aide"
+      return (
+        etablissements.hasEtablissements(this.benefit) &&
+        this.$route.name !== "aide"
+      )
     },
   },
 }

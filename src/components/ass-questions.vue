@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     capturePreconditionAss: function () {
-      let dt = dayjs(this.individu.date_debut_chomage)
+      const dt = dayjs(this.individu.date_debut_chomage)
       return this.individu.date_debut_chomage && dt.year && dt.year()
     },
   },

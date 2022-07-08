@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import EnSavoirPlus from "@/components/en-savoir-plus"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 
 const props = defineProps({
   titleWrapper: { type: String, default: "label" },

@@ -45,7 +45,7 @@ export default {
       "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
   }),
 
-  rfr: new BooleanProperty({
+  rfr: new NumberProperty({
     question:
       "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",

@@ -384,9 +384,13 @@ router.beforeEach((to, from, next) => {
   if (!from.name) {
     store.commit("initialize")
     store.dispatch("openFiscaParameters")
-    if (process.env.VUE_APP_CONTEXT === "deploy-preview") {
+    if (
+      process.env.VUE_APP_CONTEXT !== "production" ||
+      to?.redirectedFrom?.fullPath === "/init-ci"
+    ) {
       store.dispatch("verifyBenefitVariables")
     }
+
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&

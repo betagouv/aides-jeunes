@@ -11,6 +11,7 @@ const fill_first_name = (prenom) => {
 
 const fill_date_naissance = (birthDate) => {
   cy.url().should("include", "date_naissance")
+  cy.get(".warning").should("not.exist") // check openfisca missing benefits
   submit()
   cy.url().should("include", "date_naissance") // Stay on the same page as an answer is required
   cy.get("#date_naissance").type(birthDate)

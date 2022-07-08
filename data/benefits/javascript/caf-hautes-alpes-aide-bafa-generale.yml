@@ -6,7 +6,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la caf.
 conditions:
   - Être membre d'une famille percevant des prestations familiales au titre d'enfant à charge.
-  - Faire votre demande auprès de votre Caf en <a target="_blank" title="Connexion au compte - Nouvelle fenêtre" rel="noopener" href="https://connect.caf.fr/connexionappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fwps%2Fmyportal%2Fcaffr#/login">vous connectant à votre compte</a>.
+  - Envoyer le formulaire de demande à votre Caf en <a target="_blank" title="Connexion au compte - Nouvelle fenêtre" rel="noopener" href="https://connect.caf.fr/connexionappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fwps%2Fmyportal%2Fcaffr#/login">vous connectant à votre compte</a>.
 conditions_generales:
   - type: age
     operator: ">="
@@ -16,6 +16,7 @@ conditions_generales:
       - "05"
 profils: []
 link: https://caf.fr/allocataires/caf-des-hautes-alpes/offre-de-service/vie-professionnelle/aide-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+form: https://caf.fr/sites/default/files/medias/051/V2%20BAFA%20formulaire%20stage%201%20-%202022.pdf
 instructions: https://caf.fr/allocataires/caf-des-hautes-alpes/offre-de-service/vie-professionnelle/aide-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 prefix: l’
 type: float

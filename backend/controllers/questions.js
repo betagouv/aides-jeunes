@@ -67,6 +67,18 @@ const simulationBase = {
         fieldName: "ressources",
         value: ressourceTypes.map((resource) => resource.id),
       },
+      {
+        entityName: "individu",
+        fieldName: "date_debut_chomage",
+        id: "demandeur",
+        value: "2021-12-31T23:00:00.000Z",
+      },
+      {
+        entityName: "individu",
+        fieldName: "date_debut_chomage",
+        id: "conjoint",
+        value: "2021-12-31T23:00:00.000Z",
+      },
     ],
   },
 }

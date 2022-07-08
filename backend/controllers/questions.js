@@ -116,11 +116,6 @@ function getQuestionsPerStep(step, propertyData, individus) {
       [questionFormatName]: formatResult,
     }
   }
-
-  return {
-    ...result,
-    missing: true,
-  }
 }
 
 exports.getQuestions = (req, res) => {
@@ -141,13 +136,13 @@ exports.getQuestions = (req, res) => {
   }
 
   const steps = generateAllSteps(situation, propertyData.openFiscaParameters)
-  const result = steps.reduce(
-    (accum, step) => [
-      ...accum,
-      getQuestionsPerStep(step, propertyData, individus),
-    ],
-    []
-  )
+  const result = steps.reduce((accum, step) => {
+    const question = getQuestionsPerStep(step, propertyData, individus)
+    if (question) {
+      accum.push(question)
+    }
+    return accum
+  }, [])
 
   return res.send(result)
 }

@@ -2,6 +2,8 @@ module.exports = {
   env: {
     node: true,
     es6: true,
+    // https://eslint.vuejs.org/user-guide/#faq
+    "vue/setup-compiler-macros": true,
   },
 
   extends: [

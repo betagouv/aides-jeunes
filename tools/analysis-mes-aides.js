@@ -1,7 +1,5 @@
 const aides = require("../aids.json")
 
-// console.log(aides)
-
 const interestingSlugs = [
   "bourse-communale-au-permis-de-conduire-lyon",
   "aide-regionale-au-permis-de-conduire-auvergne-rhone-alpes",
@@ -9,33 +7,75 @@ const interestingSlugs = [
   "bourse-communale-au-permis-de-conduire-arnas",
 ]
 
-//
+const interestingSlugMap = {
+  "bourse-communale-au-permis-de-conduire-lyon": 1,
+  "aide-regionale-au-permis-de-conduire-auvergne-rhone-alpes": 1,
+  "aide-departementale-au-permis-de-conduire-rhone": 1,
+  "bourse-communale-au-permis-de-conduire-arnas": 1,
+}
+
+const interestingSlugMap2 = interestingSlugs.reduce((accumulator, item) => {
+  accumulator[item] = 1
+  return accumulator
+}, {})
+
 const filterAides = aides.filter(
-  (aide) =>
-    aide.slug == interestingSlugs[0] ||
-    aide.slug == interestingSlugs[1] ||
-    aide.slug == interestingSlugs[2] ||
-    aide.slug == interestingSlugs[3]
+  (aide) => interestingSlugs.indexOf(aide.slug) >= 0
+  //  (aide) => interestingSlugs.find(item => item === aide.slug)
+  //  (aide) => interestingSlugMap[aide.slug]
+  //  (aide) => interestingSlugMap2[aide.slug]
 )
+console.log(filterAides)
 
-//console.log(filterAides)
-console.log("Nombre d'aides: ", filterAides.length)
+// combien d'aides dans le fichier ?
+console.log(`Nombre d'aides au total : ${aides.length}`)
 
+//process.exit(0)
 //quel type d'aide? régionales, départementales, communales
-const typeAides = aides.map((aide) => aide.type)
+const typeAides = aides.map((aide) => aide.geographicalArea)
 const filteredTypeArray = typeAides.filter(function (element, position) {
   return typeAides.indexOf(element) == position
 })
-console.log("The filtered array ", filteredTypeArray)
+//console.log("The filtered array ", filteredTypeArray)
 
 // combien d'aides régionales, départementales, communales ?
+const geoCounts = {}
+aides.forEach((aide) => {
+  //const rawInitialValue = geoCounts[aide.geographicalArea]
+  //const initialValue = rawInitialValue === undefined ? 0 : rawInitialValue
+  //const initialValue = rawInitialValue || 0
+  //const newValue = initialValue + 1
+  //geoCounts[aide.geographicalArea] = newValue
+  geoCounts[aide.geographicalArea] = (geoCounts[aide.geographicalArea] || 0) + 1
+})
+console.log(geoCounts)
+/*
+function isOdd(v) {
+  const result = v % 2 == 1
+  console.log(`${v} is odd ${result}.`)
+  return result
+}
+
+isOdd(1)
+isOdd(2)
+isOdd(3)
+isOdd(4)
+
+console.log('Result:')
+console.log(isOdd(1) && isOdd(2) && isOdd(3))
+
+console.log('Result:')
+console.log(isOdd(2) || isOdd(3) || isOdd(4))
+*/
 
 // comment sont structurées les infos de condition?
 
-// combien d'aides dans le fichier ?
-const numberAides = aides.map((aide) => aide.organism.noAids)
-//const numberAides = aides.map((aide) => aide.type)
-console.log("nombre d'aides ", numberAides.length)
+// combien d'aides régionales, départementales, communales ?
+const geoCounts = {}
+aides.forEach((aide) => {
+  geoCounts[aide.geographicalArea] = (geoCounts[aide.geographicalArea] || 0) + 1
+})
+console.log(geoCounts)
 
 // dire combien d'aides ont 0, 1, 2 ... conditions
 const conditionAides1 = aides.filter((aide) => aide.conditions.length == 0)

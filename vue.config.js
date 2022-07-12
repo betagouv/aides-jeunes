@@ -1,5 +1,12 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
+import webpack from "webpack"
+import parseArgs from "minimist"
+
+import config from "./dist-server/backend/config/index.js"
+import configureAPI from "./dist-server/configure.js"
+import mock from "./dist-server/mock.js"
+
 const {
   animation,
   baseURL,
@@ -7,11 +14,10 @@ const {
   matomo,
   netlifyContributionURL,
   statistics,
-} = require("./dist-server/backend/config")
-const configureAPI = require("./dist-server/configure")
-const mock = require("./dist-server/mock")
+} = config
+
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
-const parseArgs = require("minimist")
+
 const benefits = require("./data/all")
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(

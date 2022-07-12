@@ -8,6 +8,8 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "allowJs": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
     "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -27,5 +29,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules", "backend"]
+  "exclude": ["node_modules", "backend", "contribuer"]
 }

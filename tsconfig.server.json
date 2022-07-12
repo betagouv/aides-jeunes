@@ -1,17 +1,33 @@
 {
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
     "outDir": "dist-server",
-    "target": "es2016",
-    "module": "commonjs",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "resolveJsonModule": true
   },
 
   "include": [
-    "./*.ts",
+    "*.ts",
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",
     "lib/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "src"]
+  "exclude": ["node_modules", "src", "contribuer"]
 }

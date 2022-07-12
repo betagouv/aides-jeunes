@@ -1,4 +1,3 @@
-const moment = require("moment")
 const assign = require("lodash/assign")
 
 const benefits = require("../../../../data/all")
@@ -6,11 +5,12 @@ const { generator } = require("../../../../lib/dates")
 const {
   CONDITION_STATEGY,
 } = require("../../../../lib/benefits/compute-javascript")
+const dayjs = require("dayjs")
 
 exports.isIndividuValid = function (individu, situation) {
-  const age = moment(situation.dateDeValeur).diff(
-    moment(individu.date_naissance),
-    "years"
+  const age = dayjs(situation.dateDeValeur).diff(
+    dayjs(individu.date_naissance),
+    "year"
   )
   return individu._role != "enfant" || age <= 25 || individu.handicap
 }
@@ -40,7 +40,7 @@ exports.getIndividusSortedParentsFirst = function (situation) {
 }
 
 exports.getPeriods = function (dateDeValeur) {
-  dateDeValeur = moment(dateDeValeur)
+  dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
   return keys.reduce((result, key) => {

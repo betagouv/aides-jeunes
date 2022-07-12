@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import moment from "moment"
 import padStart from "lodash/padStart"
+import dayjs from "dayjs"
 
 export default {
   name: "InputDate",
@@ -73,10 +73,10 @@ export default {
     return {
       day:
         this.dateType === "date"
-          ? this.modelValue && moment(this.modelValue).format("DD")
+          ? this.modelValue && dayjs(this.modelValue).format("DD")
           : "01",
-      month: this.modelValue && moment(this.modelValue).format("MM"),
-      year: this.modelValue && moment(this.modelValue).format("YYYY"),
+      month: this.modelValue && dayjs(this.modelValue).format("MM"),
+      year: this.modelValue && dayjs(this.modelValue).format("YYYY"),
     }
   },
   computed: {
@@ -128,11 +128,11 @@ export default {
       }
     },
     update: function () {
-      const dt = moment(this.date, "YYYY-MM-DD", true)
+      const dt = dayjs(this.date, "YYYY-MM-DD", true)
       if (
         dt.isValid() &&
-        dt.isAfter(moment("1900-01-01", "YYYY-MM-DD", true)) &&
-        dt.isBefore(moment())
+        dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
+        dt.isBefore(dayjs())
       ) {
         this.$emit("update:modelValue", dt.toDate())
       } else {

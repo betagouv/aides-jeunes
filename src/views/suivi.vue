@@ -97,11 +97,11 @@
 
 <script>
 import axios from "axios"
-import moment from "moment"
 
 import Institution from "@/lib/institution"
 import LoadingModal from "@/components/loading-modal"
 import DroitHeader from "@/components/droit-header"
+import dayjs from "dayjs"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -129,7 +129,9 @@ export default {
   },
   computed: {
     createdAt: function () {
-      return this.followup && moment(this.followup.createdAt).format("ll")
+      return (
+        this.followup && dayjs(this.followup.createdAt).format("DD MMMM YYYY")
+      )
     },
     isComplete: function () {
       let choiceValues = this.droits.map((droit) => droit.choiceValue)

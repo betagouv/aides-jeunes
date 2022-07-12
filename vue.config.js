@@ -10,7 +10,6 @@ const {
 } = require("./dist-server/backend/config")
 const configureAPI = require("./dist-server/configure")
 const mock = require("./dist-server/mock")
-const webpack = require("webpack")
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 const parseArgs = require("minimist")
 const benefits = require("./data/all")
@@ -36,9 +35,6 @@ process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits 
 module.exports = {
   configureWebpack: (config) => {
     config.devtool = "source-map"
-    config.plugins.push(
-      new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(fr)$/)
-    )
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: "sitemap.xml",

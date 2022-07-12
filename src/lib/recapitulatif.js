@@ -5,9 +5,9 @@ import {
   displayDepcomValue,
 } from "../../lib/utils"
 import { ressourceCategories, ressourceTypes } from "../../lib/resources"
-import Logement from "../../lib/logement"
-import moment from "moment"
+import Logement from "@/../lib/logement"
 import { getAnswer, getStepAnswer } from "../../lib/answers"
+import dayjs from "dayjs"
 
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
@@ -192,7 +192,7 @@ export const COMPLEX_STEPS = {
                 (accum, [key, value]) => {
                   const date = ressource.isMontantAnnuel
                     ? key
-                    : capitalize(moment(key, "YYYY-MM").format("MMMM YYYY"))
+                    : capitalize(dayjs(key, "YYYY-MM").format("MMMM YYYY"))
                   accum[date] = displayCurrencyValue(value)
                   return accum
                 },

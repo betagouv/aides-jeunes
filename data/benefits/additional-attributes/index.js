@@ -1,7 +1,6 @@
 "use strict"
 
-const moment = require("moment")
-
+const dayjs = require("dayjs")
 const additionalBenefitAttributes = {
   css_participation_forfaitaire: {
     extra: [
@@ -108,7 +107,7 @@ const additionalBenefitAttributes = {
     computeUnexpectedAmount: (situation) => {
       let demandeur = situation.demandeur
       let period =
-        situation.dateDeValeur && moment(situation.dateDeValeur).format("YYYY")
+        situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
 
       return (
         situation.demandeur.habite_chez_parents &&

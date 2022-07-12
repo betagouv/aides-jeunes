@@ -1,4 +1,3 @@
-const moment = require("moment")
 const isNaN = require("lodash/isNaN")
 const forEach = require("lodash/forEach")
 const isUndefined = require("lodash/isUndefined")
@@ -14,6 +13,7 @@ const {
   computeDistanceCommunes,
   findCommuneByInseeCode,
 } = require("../../../mes-aides/distance")
+const dayjs = require("dayjs")
 
 const individuSchema = {
   activite: {
@@ -37,7 +37,7 @@ const individuSchema = {
     fn: function (dateDeNaissance, individu, situation) {
       return (
         dateDeNaissance &&
-        moment(situation.dateDeValeur).diff(moment(dateDeNaissance), "years")
+        dayjs(situation.dateDeValeur).diff(dayjs(dateDeNaissance), "year")
       )
     },
   },
@@ -46,7 +46,7 @@ const individuSchema = {
     fn: function (dateDeNaissance, individu, situation) {
       return (
         dateDeNaissance &&
-        moment(situation.dateDeValeur).diff(moment(dateDeNaissance), "months")
+        dayjs(situation.dateDeValeur).diff(dayjs(dateDeNaissance), "month")
       )
     },
   },
@@ -70,8 +70,8 @@ const individuSchema = {
   contrat_de_travail_debut: {
     src: "_nombreMoisDebutContratDeTravail",
     fn: function (_nombreMoisDebutContratDeTravail, _, situation) {
-      return moment(situation.dateDeValeur)
-        .subtract(_nombreMoisDebutContratDeTravail, "months")
+      return dayjs(situation.dateDeValeur)
+        .subtract(_nombreMoisDebutContratDeTravail || 0, "month")
         .format("YYYY-MM-DD")
     },
   },
@@ -81,7 +81,7 @@ const individuSchema = {
   },
   debut_etudes_etranger: {
     fn: function (_, situation) {
-      return moment(situation.dateDeValeur).format("YYYY-MM-DD")
+      return dayjs(situation.dateDeValeur).format("YYYY-MM-DD")
     },
   },
   enceinte: {
@@ -93,9 +93,9 @@ const individuSchema = {
   fin_etudes_etranger: {
     src: "_dureeMoisEtudesEtranger",
     fn: function (_dureeMoisEtudesEtranger, _, situation) {
-      return moment(situation.dateDeValeur)
-        .add(_dureeMoisEtudesEtranger, "M")
-        .add(1, "d")
+      return dayjs(situation.dateDeValeur)
+        .add(_dureeMoisEtudesEtranger || 0, "month")
+        .add(1, "day")
         .format("YYYY-MM-DD")
     },
   },

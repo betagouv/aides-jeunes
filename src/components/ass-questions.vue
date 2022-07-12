@@ -41,6 +41,7 @@
 import YesNoQuestion from "@/components/yes-no-question"
 import InputMonth from "@/components/input-month"
 import { yearsAgo } from "../../lib/utils"
+import dayjs from "dayjs"
 
 export default {
   name: "ASSQuestions",
@@ -53,7 +54,7 @@ export default {
   },
   computed: {
     capturePreconditionAss: function () {
-      let dt = moment(this.individu.date_debut_chomage)
+      const dt = dayjs(this.individu.date_debut_chomage)
       return this.individu.date_debut_chomage && dt.year && dt.year()
     },
   },

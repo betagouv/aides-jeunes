@@ -56,6 +56,7 @@
     "cors": "^2.8.5",
     "currency.js": "^2.0.4",
     "currencyformatter.js": "^2.2.0",
+    "dayjs": "^1.11.3",
     "errorhandler": "^1.5.1",
     "event-stream": "4.0.1",
     "express": "^4.17.1",
@@ -69,7 +70,6 @@
     "lodash": "^4.17.21",
     "mjml": "^4.10.4",
     "mkdirp": "^1.0.4",
-    "moment": "^2.29.2",
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
@@ -88,6 +88,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",
+    "@babel/preset-typescript": "^7.18.6",
     "@types/express": "^4.17.13",
     "@types/iframe-resizer": "^3.5.9",
     "@types/node": "^17.0.34",
@@ -101,8 +102,8 @@
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/vue3-jest": "^27.0.0",
     "argparse": "^2.0.1",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^27.3.1",
+    "@babel/core": "^7.18.6",
+    "babel-jest": "^27.5.1",
     "cypress": "^9.2.1",
     "eslint": ">=7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -117,6 +118,7 @@
     "mustache": "^4.2.0",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
+    "ts-jest": "^28.0.5",
     "typescript": "~4.1.5",
     "webpack": "^5.64.3",
     "webpack-bundle-analyzer": "^4.5.0"
@@ -128,7 +130,8 @@
         {
           "useBuiltIns": "entry"
         }
-      ]
+      ],
+      "@babel/preset-typescript"
     ]
   },
   "prettier": {
@@ -154,8 +157,7 @@
     "transform": {
       "^.+\\.vue$": "@vue/vue3-jest",
       ".+\\.(css|styl|less|scss|sass|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^.+\\.jsx?$": "babel-jest",
-      "^.+\\.js$": "babel-jest"
+      "\\.[jt]sx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
       "/node_modules/"

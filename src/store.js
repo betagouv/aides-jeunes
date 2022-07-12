@@ -1,7 +1,6 @@
 import { createStore } from "vuex"
 
 import axios from "axios"
-import moment from "moment"
 import values from "lodash/values"
 import some from "lodash/some"
 
@@ -13,6 +12,7 @@ import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"
 import { isStepAnswered } from "../lib/answers"
 import { generateSituation } from "../lib/situations"
+import dayjs from "dayjs"
 import { version } from "../lib/simulation"
 
 function defaultCalculs() {
@@ -30,7 +30,7 @@ function defaultCalculs() {
 }
 
 function defaultStore() {
-  const now = moment().format()
+  const now = dayjs().format()
 
   return {
     situationId: null,

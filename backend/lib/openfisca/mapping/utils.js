@@ -1,7 +1,7 @@
-const moment = require("moment")
+const dayjs = require("dayjs")
 
 function formatDate(date) {
-  return date && moment(date).format("YYYY-MM-DD")
+  return date && dayjs(date).format("YYYY-MM-DD")
 }
 
 module.exports = {

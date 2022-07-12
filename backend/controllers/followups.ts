@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 const Followup = require("mongoose").model("Followup")
 
-const pollResult = require("../lib/mattermost-bot/poll-result")
-const simulationController = require("./simulation")
+import pollResult from "../lib/mattermost-bot/poll-result.js"
+import simulationController from "./simulation.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
   .join(" -")
   .replace(/^/, "-")
 
-exports.followup = function (req, res, next, id) {
+export function followup(req, res, next, id) {
   Followup.findByIdOrOldId(id)
     .populate("simulation")
     .exec(function (err, followup) {
@@ -29,12 +29,12 @@ exports.followup = function (req, res, next, id) {
     })
 }
 
-exports.resultRedirect = function (req, res) {
+export function resultRedirect(req, res) {
   simulationController.attachAccessCookie(req, res)
   res.redirect(req.simulation.returnPath)
 }
 
-exports.persist = function (req, res) {
+export function persist(req, res) {
   if (!req.body.email || !req.body.email.length) {
     return res.status(400).send({ result: "KO" })
   }
@@ -56,7 +56,7 @@ exports.persist = function (req, res) {
     })
 }
 
-exports.showFromSurvey = function (req, res) {
+export function showFromSurvey(req, res) {
   // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
     if (!followup) return res.sendStatus(404)
@@ -64,7 +64,7 @@ exports.showFromSurvey = function (req, res) {
   })
 }
 
-exports.showSurveyResult = function (req, res) {
+export function showSurveyResult(req, res) {
   Followup.findByIdOrOldId(req.params.surveyId)
     .then((simulation) => {
       if (!simulation) return res.sendStatus(404)
@@ -76,7 +76,7 @@ exports.showSurveyResult = function (req, res) {
     })
 }
 
-exports.showSurveyResults = function (req, res) {
+export function showSurveyResults(req, res) {
   Followup.find({
     surveyOptin: true,
     surveys: { $exists: true, $ne: [] },
@@ -90,7 +90,7 @@ exports.showSurveyResults = function (req, res) {
     })
 }
 
-exports.showSimulation = function (req, res) {
+export function showSimulation(req, res) {
   Followup.findByIdOrOldId(req.params.surveyId)
     .select(excludeFields)
     .then((simulation) => {
@@ -103,7 +103,7 @@ exports.showSimulation = function (req, res) {
     })
 }
 
-exports.postSurvey = function (req, res) {
+export function postSurvey(req, res) {
   // TODO remove unecessary OR condition when tokens are widely used
   Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
     if (!followup) return res.sendStatus(404)

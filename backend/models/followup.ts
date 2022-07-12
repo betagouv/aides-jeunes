@@ -1,9 +1,9 @@
-const mongoose = require("mongoose")
-const find = require("lodash/find")
-const validator = require("validator")
+import mongoose from "mongoose"
+import find from "lodash/find"
+import validator from "validator"
 
-const { SendSmtpEmail, sendEmail } = require("../lib/send-in-blue")
-const utils = require("../lib/utils")
+import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
+import utils from "../lib/utils.js"
 
 const renderInitial = require("../lib/mes-aides/emails/initial").render
 const renderSurvey = require("../lib/mes-aides/emails/survey").render
@@ -189,11 +189,11 @@ FollowupSchema.pre("save", function (next) {
     .catch(next)
 })
 
-FollowupSchema.virtual("returnPath").get(function () {
+FollowupSchema.virtual("returnPath").get(function (this: any) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })
 
-FollowupSchema.virtual("surveyPath").get(function () {
+FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
 })
 

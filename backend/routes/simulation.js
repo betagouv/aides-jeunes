@@ -25,10 +25,7 @@ module.exports = function (api) {
 
   route.get("/", simulationController.show)
   route.get("/openfisca-response", simulationController.openfiscaResponse)
-  route.get(
-    "/legacy-openfisca-request",
-    simulationController.openfiscaRequestFromLegacy
-  )
+
   route.get(
     "/redirect",
     simulationController.attachAccessCookie,

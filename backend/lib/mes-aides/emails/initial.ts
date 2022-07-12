@@ -1,17 +1,18 @@
-const capitalize = require("lodash/capitalize")
-const fs = require("fs")
-const path = require("path")
-const map = require("lodash/map")
-const assign = require("lodash/assign")
+import capitalize from "lodash/capitalize"
+import fs from "fs"
+import path from "path"
+import map from "lodash/map"
+import assign from "lodash/assign"
 
-const mustache = require("consolidate").mustache
-const config = require("../../../config")
-const openfiscaController = require("../../openfisca/parameters")
-const {
+import consolidate from "consolidate"
+const mustache = consolidate.mustache
+import config from "../../../config/index.js"
+import openfiscaController from "../../openfisca/parameters.js"
+import {
   formatDroitEstime,
   getBenefitImage,
-} = require("../../../../lib/benefits/details")
-const { mjml } = require(".")
+} from "../../../../lib/benefits/details.js"
+import { mjml } from "./index.js"
 
 function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)
@@ -95,7 +96,7 @@ function renderAsHtml(followup, benefits, parameters) {
     })
 }
 
-async function render(followup) {
+export async function render(followup) {
   const populated = await (followup.populated("simulation")
     ? Promise.resolve(followup)
     : followup.populate("simulation").execPopulate())
@@ -125,5 +126,3 @@ async function render(followup) {
     }
   })
 }
-
-exports.render = render

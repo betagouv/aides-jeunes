@@ -1,9 +1,10 @@
-const fs = require("fs")
-const path = require("path")
-const mustache = require("consolidate").mustache
-const config = require("../../../config")
+import fs from "fs"
+import path from "path"
+import consolidate from "consolidate"
+const mustache = consolidate.mustache
+import config from "../../../config/index.js"
 
-const { mjml } = require(".")
+import { mjml } from "./index.js"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/survey.txt"),

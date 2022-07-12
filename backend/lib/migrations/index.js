@@ -1,4 +1,4 @@
-const fs = require("fs")
+import fs from "fs"
 
 function getMigrations(folderName) {
   const folderPath = `${__dirname}/${folderName}`
@@ -26,7 +26,7 @@ function getLatestVersionByFolderName(folderName) {
   return getLatestVersion(migrations)
 }
 
-module.exports = {
+export default {
   getLatestVersionByFolderName,
   apply: function (model) {
     const folderName = `${model.constructor.modelName.toLowerCase()}s`

@@ -1,15 +1,14 @@
-const fs = require("fs")
-const mjml = require("mjml")
-const path = require("path")
+import fs from "fs"
+import Mjml from "mjml"
+import path from "path"
 
-function toBase64(file) {
+export function toBase64(file: string) {
   return fs.readFileSync(file, "base64")
 }
 
-exports.imageRoot = path.join(__dirname, "../../../../public/img/")
-exports.toBase64 = toBase64
+export const imageRoot = path.join(__dirname, "../../../../public/img/")
 
-exports.defaultAttachments = [
+export const defaultAttachments = [
   // {
   //     ContentType: 'image/svg+xml',
   //     Filename: 'logo.svg',
@@ -23,8 +22,8 @@ exports.defaultAttachments = [
   // }
 ]
 
-exports.mjml = function (template) {
-  return mjml(template, {
+export function mjml(template) {
+  return Mjml(template, {
     fonts: {},
   })
 }

@@ -1,6 +1,6 @@
-const axios = require("axios")
-const url = require("url")
-const config = require("../config")
+import axios from "axios"
+import url from "url"
+import config from "../config/index.js"
 
 function current_uri(req) {
   return `${req.protocol}://${req.hostname}${
@@ -43,10 +43,10 @@ function validateCookieToken(github_payload) {
   })
 }
 
-exports.access = async (req, res, next) => {
+const access = async (req, res, next) => {
   let github_payload = req.cookies && req.cookies["github_token"]
   if (req.query.code) {
-    const result = await validateToken(req, res)
+    const result = await validateToken(req)
     if (result.status === 200 && result.data.access_token) {
       github_payload = result.data
       res.cookie("github_token", github_payload)
@@ -65,10 +65,12 @@ exports.access = async (req, res, next) => {
   return authenticate(req, res)
 }
 
-exports.postAuthRedirect = (req, res) => {
+const postAuthRedirect = (req, res) => {
   if (req.query.redirect) {
     return res.redirect(req.query.redirect)
   } else {
     return res.redirect("/")
   }
 }
+
+export default { access, postAuthRedirect }

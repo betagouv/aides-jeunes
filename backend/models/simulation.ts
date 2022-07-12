@@ -1,17 +1,17 @@
-const mongoose = require("mongoose")
-const utils = require("../lib/utils")
-const openfisca = require("../lib/openfisca")
-const benefits = require("../../data/all")
-const mesAides = require("../../lib/benefits/compute")
-const { generateSituation } = require("../../lib/situations")
-const { version } = require("../../lib/simulation")
-const {
+import mongoose from "mongoose"
+import utils from "../lib/utils.js"
+import openfisca from "../lib/openfisca/index.js"
+import benefits from "../../data/all.js"
+import { computeAides } from "../../lib/benefits/compute.js"
+import generateSituation from "../../lib/situations.js"
+import { version } from "../../lib/simulation.js"
+import {
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
   ANSWER_BASIC_IDS,
-} = require("../lib/definitions")
+} from "../lib/definitions.js"
 
-const computeAides = mesAides.computeAides.bind(benefits)
+const computeBenefits = computeAides.bind(benefits)
 
 const answer = {
   entityName: {
@@ -64,7 +64,9 @@ const SimulationSchema = new mongoose.Schema(
   { minimize: false }
 )
 
-SimulationSchema.statics.cookiePrefix = "simulation_"
+SimulationSchema.statics.cookiePrefix = () => {
+  return "simulation_"
+}
 SimulationSchema.virtual("cookieName").get(function () {
   return `${SimulationSchema.statics.cookiePrefix}${this._id}`
 })
@@ -105,7 +107,12 @@ SimulationSchema.methods.compute = function () {
         return reject(err)
       }
 
-      const aides = computeAides(situation, this._id, openfiscaResponse, false)
+      const aides = computeBenefits(
+        situation,
+        this._id,
+        openfiscaResponse,
+        false
+      )
       resolve(aides)
     })
   })

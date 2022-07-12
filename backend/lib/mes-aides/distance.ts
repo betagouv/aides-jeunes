@@ -1,4 +1,4 @@
-const haversine = require("haversine")
+import haversine from "haversine"
 
 const processArrondissements = (inseeCode) => {
   if (inseeCode) {
@@ -15,7 +15,7 @@ const processArrondissements = (inseeCode) => {
   return inseeCode
 }
 
-function computeDistanceCommunes(origin, destination) {
+export function computeDistanceCommunes(origin, destination) {
   if (origin?.centre && destination?.centre) {
     return haversine(
       origin.centre.coordinates,
@@ -31,10 +31,7 @@ const communes = require("communes-lonlat").reduce((map, item) => {
   return map
 }, {})
 
-function findCommuneByInseeCode(inseeCode) {
+export function findCommuneByInseeCode(inseeCode) {
   inseeCode = processArrondissements(inseeCode)
   return communes[inseeCode]
 }
-
-exports.computeDistanceCommunes = computeDistanceCommunes
-exports.findCommuneByInseeCode = findCommuneByInseeCode

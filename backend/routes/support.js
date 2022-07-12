@@ -1,8 +1,9 @@
-const cookieParser = require("cookie-parser")
+import cookieParser from "cookie-parser"
+import express from "express"
+
 const githubController = require("../controllers/github")
 const supportController = require("../controllers/support")
 const simulationController = require("../controllers/simulation")
-const express = require("express")
 
 module.exports = function (api) {
   const route = new express.Router({ mergeParams: true })
@@ -14,7 +15,7 @@ module.exports = function (api) {
     (req, res, next) => {
       simulationController.simulation(req, res, next, req.params.simulationId)
     },
-    supportController.simulation
+    supportController
   )
 
   api.use("/support", route)

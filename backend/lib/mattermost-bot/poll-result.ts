@@ -1,4 +1,4 @@
-const Mattermost = require("./mattermost")
+import mattermost from "./mattermost.js"
 
 function parseCurrentDate() {
   const isoDateTime = new Date(Date.now())
@@ -20,7 +20,7 @@ function postPollResult(simulation, answers) {
     nothing: [":icon-warning:", "Aucune demande"],
     already: [":icon-info:", "Déjà perçue"],
   }
-  const orderedAnswers = []
+  const orderedAnswers: any[] = []
   for (let benefit of simulation.benefits) {
     let answer =
       answers.filter((element) => {
@@ -51,9 +51,9 @@ function postPollResult(simulation, answers) {
   }
 
   const json = JSON.stringify({ text: result.join("\n") })
-  Mattermost.post(json)
+  mattermost.post(json)
 }
 
-module.exports = {
+export default {
   postPollResult,
 }

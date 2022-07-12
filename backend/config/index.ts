@@ -68,4 +68,6 @@ try {
   console.warn(`No specific configuration for ${env}.`)
 }
 
-module.exports = Object.assign(all, override)
+const config = Object.assign(all, override)
+
+export default config

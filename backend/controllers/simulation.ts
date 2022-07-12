@@ -1,21 +1,23 @@
-const omit = require("lodash/omit")
-const filter = require("lodash/filter")
-const pick = require("lodash/pick")
-const assign = require("lodash/assign")
+import omit from "lodash/omit"
+import filter from "lodash/filter"
+import pick from "lodash/pick"
+import assign from "lodash/assign"
+import mongoose from "mongoose"
 
-const { baseURL } = require("../config")
-const { generateSituation } = require("../../lib/situations")
-const openfisca = require("../lib/openfisca")
-const openfiscaTest = require("../lib/openfisca/test")
-const migrations = require("../lib/migrations")
-const Simulation = require("mongoose").model("Simulation")
+import config from "../config/index.js"
+import generateSituation from "../../lib/situations.js"
+import openfisca from "../lib/openfisca/index.js"
+import openfiscaTestLib from "../lib/openfisca/test.js"
+import migrations from "../lib/migrations/index.js"
+
+const Simulation = mongoose.model("Simulation")
 
 function getSimulationOnRequest(req, simulation) {
   req.simulation = migrations.apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
 
-exports.simulation = function (req, res, next, simulationId) {
+function simulation(req, res, next, simulationId) {
   if (simulationId?._id) {
     getSimulationOnRequest(req, simulationId)
     return next()
@@ -29,11 +31,11 @@ exports.simulation = function (req, res, next, simulationId) {
   })
 }
 
-exports.attachAccessCookie = function (req, res, next) {
+function attachAccessCookie(req, res, next?) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
-    sameSite: baseURL.startsWith("https") ? "none" : "lax",
-    secure: baseURL.startsWith("https"),
+    sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
+    secure: config.baseURL.startsWith("https"),
   }
   res.cookie(req.simulation.cookieName, req.simulation.token, cookiesParameters)
   res.cookie(
@@ -44,13 +46,13 @@ exports.attachAccessCookie = function (req, res, next) {
   next && next()
 }
 
-exports.validateAccess = function (req, res, next) {
+function validateAccess(req, res, next) {
   if (req.simulation?.isAccessible({ ...req.cookies, ...req.query }))
     return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 
-exports.show = function (req, res) {
+function show(req, res) {
   res.send(req.simulation)
 }
 
@@ -59,7 +61,7 @@ function clearCookies(req, res) {
 
   const keys = Object.keys(req.cookies)
   const situationCookies = filter(keys, function (k) {
-    return k.startsWith(Simulation.cookiePrefix)
+    return k.startsWith(Simulation.schema.statics.cookiePrefix)
   })
   situationCookies.sort()
 
@@ -74,7 +76,7 @@ function clearCookies(req, res) {
   }
 }
 
-exports.create = function (req, res, next) {
+function create(req, res, next) {
   if (req.body._id)
     return res.status(403).send({
       error:
@@ -93,7 +95,7 @@ exports.create = function (req, res, next) {
   )
 }
 
-exports.openfiscaResponse = function (req, res, next) {
+function openfiscaResponse(req, res, next) {
   return openfisca.calculate(req.situation, function (err, result) {
     if (err)
       return next(
@@ -106,7 +108,7 @@ exports.openfiscaResponse = function (req, res, next) {
   })
 }
 
-exports.openfiscaTrace = function (req, res, next) {
+function openfiscaTrace(req, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
       return next(Object.assign(err.response.data, { _id: req.situationId }))
@@ -115,12 +117,8 @@ exports.openfiscaTrace = function (req, res, next) {
   })
 }
 
-exports.openfiscaRequest = function (req, res) {
+function openfiscaRequest(req, res) {
   res.send(openfisca.buildOpenFiscaRequest(req.situation))
-}
-
-exports.openfiscaRequestFromLegacy = function (req, res) {
-  res.send(openfisca.buildOpenFiscaRequestFromLegacySituation(req.situation))
 }
 
 const DETAILS_DEFAULT_ATTRIBUTES = {
@@ -137,7 +135,7 @@ const DETAILS_ATTRIBUTES = [
   "output",
 ]
 
-exports.openfiscaTest = function (req, res) {
+function openfiscaTest(req, res) {
   const details = assign(
     {},
     DETAILS_DEFAULT_ATTRIBUTES,
@@ -152,11 +150,24 @@ exports.openfiscaTest = function (req, res) {
   const situation = req.situation.toObject
     ? req.situation.toObject()
     : req.situation
-  res.type("yaml").send(openfiscaTest.generateYAMLTest(details, situation))
+  res.type("yaml").send(openfiscaTestLib.generateYAMLTest(details, situation))
 }
 
-exports.redirect = function (req, res) {
+function redirect(req, res) {
   res.redirect(
     `/simulation/redirect${req?.query?.to ? `?to=${req.query.to}` : ""}`
   )
+}
+
+export default {
+  simulation,
+  attachAccessCookie,
+  validateAccess,
+  show,
+  create,
+  openfiscaResponse,
+  openfiscaTrace,
+  openfiscaRequest,
+  openfiscaTest,
+  redirect,
 }

@@ -1,6 +1,6 @@
 "use strict"
 
-module.exports = Object.assign(require("./development"), {
+export default Object.assign(require("./development"), {
   animation: {
     delay: 0,
   },

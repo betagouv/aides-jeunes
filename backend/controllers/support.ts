@@ -1,6 +1,6 @@
-const simulationController = require("./simulation")
+import simulationController from "./simulation.js"
 
-exports.simulation = function (req, res) {
+export default function simulation(req, res) {
   simulationController.attachAccessCookie(req, res)
   return res.redirect(req.simulation.returnPath)
 }

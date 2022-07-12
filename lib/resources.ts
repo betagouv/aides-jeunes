@@ -488,4 +488,9 @@ let patrimoineTypes = [
   },
 ]
 
-export { ressourceCategories, ressourceTypes, categoriesRnc, patrimoineTypes }
+export default {
+  ressourceCategories,
+  ressourceTypes,
+  categoriesRnc,
+  patrimoineTypes,
+}

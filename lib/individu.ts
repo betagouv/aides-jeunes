@@ -31,7 +31,7 @@ function getConjoint() {
   return get([], "conjoint").individu
 }
 
-function get(individus, role, id) {
+function get(individus, role, id?: any) {
   let DEFAULT_INDIVIDU = {
     id: role,
     annee_etude: undefined,

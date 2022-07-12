@@ -302,7 +302,7 @@ function kidBlock(situation) {
   }
 }
 
-function housingBlock() {
+function housingBlock(situation) {
   return {
     subject: (situation) => situation.menage,
     steps: [

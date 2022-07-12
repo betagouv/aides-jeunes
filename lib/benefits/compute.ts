@@ -72,6 +72,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
     droitsEligibles: [],
     droitsNonEligibles: [],
     droitsInjectes: [], // declared by the user
+    _id: undefined,
   }
 
   const individus = filter(

@@ -1,8 +1,12 @@
-const epcis = require("@etalab/decoupage-administratif/data/epci.json")
+import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-var { institutionsMap } = require("../../data/all")
+import institutionsMap from "../../data/all.js"
 
-function isGeographicallyIncluded(commune, institution, epciInfoParams) {
+export function isGeographicallyIncluded(
+  commune,
+  institution,
+  epciInfoParams?: any
+) {
   const typeInstitution = institution.type
   const idInstitution = institution.code_insee || institution.code_siren
 
@@ -30,7 +34,7 @@ function isGeographicallyIncluded(commune, institution, epciInfoParams) {
 
 const institutionIds = Object.keys(institutionsMap)
 
-function computeInterestingBenefitCounts(commune) {
+export function computeInterestingBenefitCounts(commune) {
   const totals = {}
   institutionIds.forEach((id) => {
     const institution = institutionsMap[id]
@@ -41,9 +45,4 @@ function computeInterestingBenefitCounts(commune) {
     }
   })
   return totals
-}
-
-module.exports = {
-  isGeographicallyIncluded,
-  computeInterestingBenefitCounts,
 }

@@ -1,4 +1,4 @@
-const currency = require("currency.js")
+import currency from "currency.js"
 
 const PERIODICITE_PONCTUELLE = "ponctuelle"
 const PERIODICITE_MENSUELLE = "mensuelle"
@@ -92,7 +92,7 @@ const getBenefitImage = (droit) => {
   return `/${droit.imgSrc ? droit.imgSrc : droit.institution.imgSrc}`
 }
 
-module.exports = {
+export {
   getBenefitLegend,
   formatDroitEstime,
   LEGENDE_PERIODICITE_AIDE_ENUM,

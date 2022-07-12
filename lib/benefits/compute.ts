@@ -1,15 +1,16 @@
-const merge = require("lodash/merge")
-const sortBy = require("lodash/sortBy")
-const assign = require("lodash/assign")
-const sumBy = require("lodash/sumBy")
-const some = require("lodash/some")
-const filter = require("lodash/filter")
+import merge from "lodash/merge"
+import sortBy from "lodash/sortBy"
+import assign from "lodash/assign"
+import sumBy from "lodash/sumBy"
+import some from "lodash/some"
+import filter from "lodash/filter"
 
-const determineCustomizationIds = require("./customization")
-const { computeJavascriptBenefits } = require("./compute-javascript")
-const { computeAidesVeloBenefits } = require("./compute-aides-velo")
+import determineCustomizationIds from "./customization.js"
+import { computeJavascriptBenefits } from "./compute-javascript.js"
+import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
 
-const datesGenerator = require("../dates").generator
+import { generator } from "../dates.js"
+export const datesGenerator = generator
 
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
@@ -28,7 +29,7 @@ function normalizeOpenfiscaRessources(testCase) {
   )
 }
 
-function valueAt(ressourceId, ressources, period, aide) {
+function valueAt(ressourceId, ressources, period, aide?: any) {
   if (aide?.compute) {
     return aide.compute(ressources, period)
   } else {
@@ -40,7 +41,7 @@ function valueAt(ressourceId, ressources, period, aide) {
   }
 }
 
-function round(amount, aide) {
+export function round(amount, aide) {
   if (aide.type === "mixed" && typeof amount === "boolean") {
     return amount
   }
@@ -59,8 +60,8 @@ function round(amount, aide) {
   }
 }
 
-function computeAides(situation, id, openfiscaResponse, showPrivate) {
-  const periods = datesGenerator(situation.dateDeValeur)
+export function computeAides(situation, id, openfiscaResponse, showPrivate) {
+  const periods = generator(situation.dateDeValeur)
 
   computeJavascriptBenefits(this, situation, openfiscaResponse)
 
@@ -155,7 +156,3 @@ function computeAides(situation, id, openfiscaResponse, showPrivate) {
   result._id = id
   return result
 }
-
-exports.computeAides = computeAides
-exports.round = round
-exports.datesGenerator = datesGenerator

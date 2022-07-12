@@ -1,5 +1,5 @@
-const axios = require("axios")
-const sortBy = require("lodash/sortBy")
+import axios from "axios"
+import sortBy from "lodash/sortBy"
 
 function normalize(etablissementFeature) {
   let etablissement = etablissementFeature.properties
@@ -38,19 +38,19 @@ function normalize(etablissementFeature) {
   return etablissement
 }
 
-function hasEtablissements(benefit) {
+export function hasEtablissements(benefit) {
   return (
     benefit.etablissements?.length || benefit.institution.etablissements?.length
   )
 }
-function getBenefitEtablissements(benefit) {
+export function getBenefitEtablissements(benefit) {
   if (benefit.etablissements?.length) {
     return benefit.etablissements
   }
   return benefit.institution.etablissements || []
 }
 
-async function getEtablissements(depcom, types) {
+export async function getEtablissements(depcom, types) {
   return axios
     .get(
       `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
@@ -64,7 +64,3 @@ async function getEtablissements(depcom, types) {
       return etablissements.map(normalize)
     })
 }
-
-exports.hasEtablissements = hasEtablissements
-exports.getBenefitEtablissements = getBenefitEtablissements
-exports.getEtablissements = getEtablissements

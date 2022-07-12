@@ -1,7 +1,8 @@
-const { generator } = require("../dates")
-const { filterByInterestFlag } = require("./filter-interest-flag")
-const Scolarite = require("../scolarite")
 const dayjs = require("dayjs")
+import { generator } from "../dates.js"
+import { filterByInterestFlag } from "./filter-interest-flag.js"
+import Scolarite from "../scolarite.js"
+
 
 const testRSARecipient = ({ openfiscaResponse, periods }) => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -61,7 +62,7 @@ const COMMUNE_PARAMETERS = {
   communes: "depcom",
 }
 
-function testGeographicalEligibility(condition, { situation }) {
+export function testGeographicalEligibility(condition, { situation }) {
   // Pas de contrainte géographique
   if (!condition.values || condition.values.length === 0) {
     return true
@@ -72,7 +73,7 @@ function testGeographicalEligibility(condition, { situation }) {
   return condition.values.includes(situation.menage[communeParameter])
 }
 
-const CONDITION_STATEGY = {
+export const CONDITION_STATEGY = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[
@@ -187,7 +188,7 @@ function testConditions(conditions, data) {
   )
 }
 
-function testProfileEligibility(benefit, data) {
+export function testProfileEligibility(benefit, data) {
   return (
     benefit.profils === undefined ||
     benefit.profils.length === 0 ||
@@ -200,7 +201,11 @@ function testProfileEligibility(benefit, data) {
   )
 }
 
-function computeJavascriptBenefits(benefits, situation, openfiscaResponse) {
+export function computeJavascriptBenefits(
+  benefits,
+  situation,
+  openfiscaResponse
+) {
   const age = dayjs(situation.dateDeValeur).diff(
     situation.demandeur.date_naissance,
     "year"
@@ -234,8 +239,3 @@ function computeJavascriptBenefits(benefits, situation, openfiscaResponse) {
       }
     })
 }
-
-exports.CONDITION_STATEGY = CONDITION_STATEGY
-exports.testProfileEligibility = testProfileEligibility
-exports.testGeographicalEligibility = testGeographicalEligibility
-exports.computeJavascriptBenefits = computeJavascriptBenefits

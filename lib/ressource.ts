@@ -1,8 +1,8 @@
-const { categoriesRnc, ressourceTypes } = require("./resources")
-const filter = require("lodash/filter")
-const keys = require("lodash/keys")
-const keyBy = require("lodash/keyBy")
-const uniq = require("lodash/uniq")
+import { categoriesRnc, ressourceTypes } from "./resources.js"
+import filter from "lodash/filter"
+import keys from "lodash/keys"
+import keyBy from "lodash/keyBy"
+import uniq from "lodash/uniq"
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
   let periodKeys = []
@@ -158,7 +158,7 @@ function isRessourceOnMainScreen(ressourceOrType) {
   return type != "pensions_alimentaires_versees_individu"
 }
 
-const Ressource = {
+export default {
   getPeriodsForCurrentYear,
   // Ne semble pas être utilisée
   // getPeriodKeysForCurrentYear,
@@ -172,5 +172,3 @@ const Ressource = {
   setIndividuRessourceTypes,
   unsetForCurrentYear,
 }
-
-module.exports = Ressource

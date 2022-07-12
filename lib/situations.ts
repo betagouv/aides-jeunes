@@ -1,7 +1,7 @@
-const Ressource = require("./ressource")
-const { ressourceTypes } = require("./resources")
-const { datesGenerator } = require("./benefits/compute")
-const Scolarite = require("./scolarite")
+import Ressource from "./ressource.js"
+import { ressourceTypes } from "./resources.js"
+import { datesGenerator } from "./benefits/compute"
+import Scolarite from "./scolarite"
 
 const generateDefaultIndividu = (role, id) => ({
   id: id,
@@ -200,6 +200,4 @@ function generateSituation(simulation, useAll) {
   return situation
 }
 
-module.exports = {
-  generateSituation,
-}
+export default generateSituation

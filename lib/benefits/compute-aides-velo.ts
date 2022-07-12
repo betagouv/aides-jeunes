@@ -1,5 +1,5 @@
-const { generator } = require("../dates")
-const aidesVelo = require("aides-velo")
+import aidesVelo from "aides-velo"
+const { generator } = require("../dates.js")
 
 const veloTypes = {
   velo_mecanique: "mécanique simple",
@@ -10,7 +10,7 @@ const veloTypes = {
   velo_motorisation: "motorisation",
 }
 
-function canComputeAidesVeloBenefits(situation) {
+function canComputeAidesVeloBenefits(situation: any) {
   return [
     situation.menage.depcom,
     situation.menage._departement,
@@ -18,16 +18,15 @@ function canComputeAidesVeloBenefits(situation) {
   ].every((value) => Boolean(value))
 }
 
-function computeAidesVeloBenefits(
-  aidesVeloBenefitList,
-  resultHolder,
-  situation,
-  openfiscaResponse
+export function computeAidesVeloBenefits(
+  aidesVeloBenefitList: any,
+  resultHolder: any,
+  situation: any,
+  openfiscaResponse: any
 ) {
   if (!canComputeAidesVeloBenefits(situation)) {
     return
   }
-
   const periods = generator(situation.dateDeValeur)
 
   const eligibleBenefitsMap = {}
@@ -44,7 +43,7 @@ function computeAidesVeloBenefits(
 
     Object.assign(
       eligibleBenefitsMap,
-      aidesVelo(inputs).reduce((a, v) => {
+      aidesVelo(inputs).reduce((a: any, v: any) => {
         a[v.id] = {
           ...v,
           montant: v.amount,
@@ -65,5 +64,3 @@ function computeAidesVeloBenefits(
       })
     })
 }
-
-exports.computeAidesVeloBenefits = computeAidesVeloBenefits

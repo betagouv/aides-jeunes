@@ -1,10 +1,7 @@
 const ACTIVITES_ACTIF = ["service_civique", "salarie", "independant"]
 
-function estActif(activite) {
+function estActif(activite: string) {
   return ACTIVITES_ACTIF.includes(activite)
 }
 
-module.exports = {
-  ACTIVITES_ACTIF,
-  estActif,
-}
+export { ACTIVITES_ACTIF, estActif }

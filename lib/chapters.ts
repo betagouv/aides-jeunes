@@ -16,7 +16,7 @@ function getSommaireChapters() {
   return chapters.filter((c) => c.name !== "resultats")
 }
 
-function getLabel(name) {
+function getLabel(name: string) {
   const chapter = chapters.find((c) => c.name === name)
   return chapter?.label || "Ma simulation"
 }

@@ -1,4 +1,4 @@
-import { DepcomProperty } from "./property"
+import { DepcomProperty } from "./property.js"
 
 export default {
   depcom: new DepcomProperty({

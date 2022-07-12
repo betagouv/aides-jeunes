@@ -16,7 +16,7 @@ function generateYear(dt) {
   }
 }
 
-function datesGenerator(dateDeValeur) {
+export function datesGenerator(dateDeValeur) {
   const ref = dayjs(dateDeValeur)
   return {
     today: {
@@ -53,5 +53,3 @@ function datesGenerator(dateDeValeur) {
     threeYearsAgo: generateMonth(ref.subtract(3, "year")),
   }
 }
-
-exports.generator = datesGenerator

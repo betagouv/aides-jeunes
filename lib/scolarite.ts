@@ -1,4 +1,4 @@
-const Scolarite = {
+export default {
   types: [
     {
       value: "college",
@@ -59,5 +59,3 @@ const Scolarite = {
     },
   },
 }
-
-module.exports = Scolarite

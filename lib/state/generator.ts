@@ -1,5 +1,5 @@
-const { Step } = require("./steps")
-const { generateBlocks } = require("./blocks")
+import { Step } from "./steps.js"
+import { generateBlocks } from "./blocks.js"
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },
@@ -57,7 +57,7 @@ function generateJourney(situation, parameters) {
   }
 }
 
-function generateAllSteps(situation, parameters) {
+export function generateAllSteps(situation, parameters) {
   const fullSteps = generateJourney(situation, parameters)
   fullSteps.pop()
   let lastChapter
@@ -66,8 +66,4 @@ function generateAllSteps(situation, parameters) {
     else s.chapter = lastChapter
     return s
   })
-}
-
-module.exports = {
-  generateAllSteps,
 }

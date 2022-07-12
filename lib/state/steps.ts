@@ -22,7 +22,4 @@ ComplexStep.prototype.clean = function (store) {
   this.substeps.forEach((s) => s.clean(store))
 }
 
-module.exports = {
-  ComplexStep,
-  Step,
-}
+export { ComplexStep, Step }

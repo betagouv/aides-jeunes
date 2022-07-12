@@ -1,9 +1,9 @@
-const Individu = require("../individu")
-const { ACTIVITES_ACTIF } = require("../activite")
-const Ressource = require("../ressource")
-const { datesGenerator } = require("../benefits/compute")
-const { Step, ComplexStep } = require("./steps")
-const Scolarite = require("../scolarite")
+import Individu from "../individu.js"
+import { ACTIVITES_ACTIF } from "../activite.js"
+import Ressource from "../ressource.js"
+import { datesGenerator } from "../benefits/compute.js"
+import { Step, ComplexStep } from "./steps.js"
+import Scolarite from "../scolarite.js"
 
 function individuBlockFactory(id, chapter) {
   const r = (variable, chapter) =>
@@ -461,7 +461,7 @@ function resourceBlocks(situation) {
   }
 }
 
-function generateBlocks(situation) {
+export function generateBlocks(situation) {
   return [
     { steps: [new Step({})] },
     individuBlockFactory("demandeur"),
@@ -592,8 +592,4 @@ function generateBlocks(situation) {
     },
     new Step({ entity: "resultats" }),
   ]
-}
-
-module.exports = {
-  generateBlocks,
 }

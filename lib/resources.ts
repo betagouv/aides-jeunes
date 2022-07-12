@@ -1,6 +1,6 @@
 "use strict"
-const Individu = require("./individu")
-const datesGenerator = require("./dates").generator
+import Individu from "./individu.js"
+import { generator } from "./dates.js"
 
 let ressourceCategories = [
   {
@@ -131,10 +131,7 @@ let ressourceTypes = [
     isRelevant: (situation, individu) => {
       return (
         55 <=
-        Individu.age(
-          individu,
-          datesGenerator(situation.dateDeValeur).today.value
-        )
+        Individu.age(individu, generator(situation.dateDeValeur).today.value)
       )
     },
   },
@@ -184,7 +181,7 @@ let ressourceTypes = [
     isRelevant: (situation, individu) => {
       const age = Individu.age(
         individu,
-        datesGenerator(situation.dateDeValeur).today.value
+        generator(situation.dateDeValeur).today.value
       )
       return 16 <= age && (age <= 25 || (individu.handicap && age < 30))
     },
@@ -491,9 +488,4 @@ let patrimoineTypes = [
   },
 ]
 
-module.exports = {
-  ressourceCategories: ressourceCategories,
-  ressourceTypes: ressourceTypes,
-  categoriesRnc: categoriesRnc,
-  patrimoineTypes: patrimoineTypes,
-}
+export { ressourceCategories, ressourceTypes, categoriesRnc, patrimoineTypes }

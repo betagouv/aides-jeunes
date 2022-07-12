@@ -1,6 +1,6 @@
-const dayjs = require("dayjs")
+import dayjs from "dayjs"
 
-const executeFunctionOrReturnValue = (obj, name, component) => {
+export function executeFunctionOrReturnValue(obj, name, component) {
   return obj?.[name]
     ? typeof obj[name] == "function"
       ? obj[name](component)
@@ -8,25 +8,25 @@ const executeFunctionOrReturnValue = (obj, name, component) => {
     : undefined
 }
 
-const capitalize = (str) => {
+export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-const yearsAgo = (years, date, format = "MMMM YYYY") => {
+export const yearsAgo = (years, date, format = "MMMM YYYY") => {
   let dt = dayjs(date)
   return date && dt.subtract(years, "year").format(format)
 }
 
-const displayDateValue = (value) => {
+export const displayDateValue = (value) => {
   return dayjs(value).format("DD MMMM YYYY")
 }
 
-const displayEnumValue = (value, items) => {
+export function displayEnumValue(value, items) {
   const result = items.find((item) => item.value === value)
   return result?.label
 }
 
-const displayMultipleValue = (value, question) => {
+export function displayMultipleValue(value, question) {
   return value
     .map((item) => {
       for (let answer of question.items) {
@@ -38,19 +38,19 @@ const displayMultipleValue = (value, question) => {
     .join(", ")
 }
 
-const displayYesNoValue = (value) => {
+export function displayYesNoValue(value) {
   return value ? "Oui" : "Non"
 }
 
-const displayCurrencyValue = (value) => {
+export function displayCurrencyValue(value) {
   return `${value}\xa0€`
 }
 
-const displayDepcomValue = (codePostal, nom) => {
+export function displayDepcomValue(codePostal, nom) {
   return `${codePostal} (${nom})`
 }
 
-const displayValue = (value, question, component) => {
+export function displayValue(value, question, component) {
   if (value === undefined) {
     return value
   }
@@ -70,17 +70,4 @@ const displayValue = (value, question, component) => {
     case undefined:
       return displayYesNoValue(value)
   }
-}
-
-module.exports = {
-  executeFunctionOrReturnValue,
-  capitalize,
-  yearsAgo,
-  displayDateValue,
-  displayEnumValue,
-  displayMultipleValue,
-  displayYesNoValue,
-  displayCurrencyValue,
-  displayDepcomValue,
-  displayValue,
 }

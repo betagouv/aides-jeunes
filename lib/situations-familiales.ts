@@ -1,6 +1,6 @@
 "use strict"
 
-const situationsFamiliales = [
+export const situationsFamiliales = [
   {
     value: "marie", // Enum value 1 in OpenFisca
     label: "Marié·e",
@@ -14,4 +14,3 @@ const situationsFamiliales = [
     label: "En union libre",
   },
 ]
-module.exports = situationsFamiliales

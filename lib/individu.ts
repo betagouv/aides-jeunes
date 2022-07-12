@@ -1,7 +1,7 @@
 const cloneDeep = require("lodash/cloneDeep")
 const dayjs = require("dayjs")
 
-function isRoleParent(role) {
+function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)
 }
 
@@ -182,4 +182,4 @@ const Individu = {
   ],
 }
 
-module.exports = Individu
+export default Individu

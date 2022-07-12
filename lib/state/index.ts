@@ -1,6 +1,6 @@
-var Chapters = require("../chapters")
+import Chapters from "../chapters.js"
 
-function chapters(currentPath, journey, lastUnanswerPath) {
+export function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
   const activeJourney = journey.filter((s) => s.isActive)
   const activeChaptersNames = activeJourney
@@ -26,11 +26,11 @@ function chapters(currentPath, journey, lastUnanswerPath) {
   })
 }
 
-function current(currentPath, journey) {
+export function current(currentPath, journey) {
   return journey.find((item) => item.path == currentPath)
 }
 
-function next(current, journey) {
+export function next(current, journey) {
   let matches = journey
     .map((element, index) => {
       return { element, index }
@@ -44,10 +44,4 @@ function next(current, journey) {
   return journey
     .slice(matches[matches.length - 1].index + 1)
     .filter((step) => step.isActive)[0]
-}
-
-module.exports = {
-  next,
-  chapters,
-  current,
 }

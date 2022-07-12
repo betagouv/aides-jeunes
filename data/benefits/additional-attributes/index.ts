@@ -1,7 +1,12 @@
 "use strict"
 
-const dayjs = require("dayjs")
-const additionalBenefitAttributes = {
+import dayjs from "dayjs"
+
+//import situationsLayout from "../../../lib/types/situations"
+import { benefitLayout } from "../../types/benefits"
+import { openfiscaParametersLayout } from "../../../lib/types/parameters"
+
+export const additionalBenefitAttributes = {
   css_participation_forfaitaire: {
     extra: [
       {
@@ -18,7 +23,7 @@ const additionalBenefitAttributes = {
     },
   },
   rsa: {
-    labelFunction: function (b) {
+    labelFunction: function (b: benefitLayout) {
       return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
     },
     uncomputability: {
@@ -120,11 +125,9 @@ const additionalBenefitAttributes = {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
     },
-    legend: (parameters) =>
+    legend: (parameters: openfiscaParametersLayout) =>
       `au lieu de ${parameters["marche_travail.epargne.livret_a.taux"] * 100}%`,
   },
   fsl_eligibilite: require("./fsl-eligibilite"),
   occitanie_carte_transport_scolaire_lio: require("./occitanie-carte-transport-scolaire-lio"),
 }
-
-module.exports = additionalBenefitAttributes

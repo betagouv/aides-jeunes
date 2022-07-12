@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   customization: {
     D09: {
       link: "https://lio.laregion.fr/transports-ariege-scolaire",

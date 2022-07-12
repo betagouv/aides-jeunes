@@ -1,10 +1,10 @@
-const path = require("path")
-const { get } = require("jamstack-loader")
+import path from "path"
+import yaml from "js-yaml"
+import fs from "fs"
+import { get } from "jamstack-loader"
 const jamstack = get(
   path.join(__dirname, "../contribuer/public/admin/config.yml")
 )
-const yaml = require("js-yaml")
-const fs = require("fs")
 
 const typesMap = {
   select: "string",
@@ -46,7 +46,13 @@ function generateSchema(fields) {
   return schema
 }
 
-function errorLogger(field, depth = [], value, expectedType, expectedValues) {
+function errorLogger(
+  field,
+  depth = [],
+  value?: any,
+  expectedType?: any,
+  expectedValues?: any
+) {
   if (expectedValues) {
     return {
       path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
@@ -153,7 +159,7 @@ function compareSchema(data, schema, output, depth = []) {
   }
 }
 
-function validateFile(filename, schema) {
+export function validateFile(filename, schema) {
   const file = yaml.load(
     fs.readFileSync(path.join(__dirname, `../${filename}`))
   )
@@ -162,8 +168,6 @@ function validateFile(filename, schema) {
   return output
 }
 
-function getCollectionSchema(collection) {
+export function getCollectionSchema(collection) {
   return generateSchema(jamstack.collections[collection].fields)
 }
-
-module.exports = { getCollectionSchema, validateFile }

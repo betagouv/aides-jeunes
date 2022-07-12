@@ -13,7 +13,7 @@ function build({ codeImg, label, resources }) {
   }
 }
 
-module.exports = {
+export default {
   customization: Object.entries({
     D01: {
       codeImg: "cd01",

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   customization: {
     D05: {
       institution: {

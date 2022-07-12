@@ -63,3 +63,12 @@ module.exports.getParameters = async (date) => {
 
   return results
 }
+
+module.exports.getParametersSync = (date) => {
+  const results = {}
+  Object.keys(parametersList).forEach((parameter) => {
+    results[parameter] = computeParameter(parameter, date)
+  })
+
+  return results
+}

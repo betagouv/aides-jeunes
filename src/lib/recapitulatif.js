@@ -5,7 +5,7 @@ import {
   displayDepcomValue,
 } from "../../lib/utils"
 import { ressourceCategories, ressourceTypes } from "../../lib/resources"
-import Logement from "@/lib/logement"
+import Logement from "../../lib/logement"
 import moment from "moment"
 import { getAnswer, getStepAnswer } from "../../lib/answers"
 

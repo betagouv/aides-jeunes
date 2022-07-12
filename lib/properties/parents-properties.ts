@@ -1,4 +1,4 @@
-import { EnumProperty, NumberProperty, Property } from "./property"
+import { EnumProperty, NumberProperty, BooleanProperty } from "./property"
 
 export default {
   _situation: new EnumProperty({
@@ -31,7 +31,7 @@ export default {
       },
     ],
   }),
-  _en_france: new Property({
+  _en_france: new BooleanProperty({
     question: "Vos parents habitent-ils en France ?",
   }),
 
@@ -45,7 +45,7 @@ export default {
       "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
   }),
 
-  rfr: new Property({
+  rfr: new NumberProperty({
     question:
       "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",

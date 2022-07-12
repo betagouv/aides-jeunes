@@ -1,5 +1,11 @@
-import { EnumItemProperty, PropertyData } from "../types/property"
 import { capitalize } from "../utils"
+import {
+  EnumItemProperty,
+  ItemPropertyConstruct,
+  NumberPropertyConstruct,
+  PropertyConstruct,
+  PropertyData,
+} from "../types/property"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)
@@ -16,20 +22,18 @@ export class Property {
     help,
     moreInfo,
     showMoreInfo,
-  }: {
-    question: string | ((propertyData: PropertyData) => string)
-    questionType?: string
-    optional?: boolean
-    help?: string
-    moreInfo?: string | ((variation: any) => string)
-    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-  }) {
+    getAnswerFormat,
+  }: PropertyConstruct) {
     this.question = question
     this.questionType = questionType
     this.optional = optional
     this.help = help
     this.moreInfo = moreInfo
     this.showMoreInfo = showMoreInfo
+
+    if (getAnswerFormat) {
+      this.getAnswerFormat = getAnswerFormat
+    }
   }
 
   getValueOrExecuteFunction(key: string, propertyData: PropertyData): any {
@@ -40,41 +44,61 @@ export class Property {
   getQuestion(propertyData: PropertyData) {
     return capitalize(this.getValueOrExecuteFunction("question", propertyData))
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData) {}
+
+  getFormat(propertyData: PropertyData): any {
+    return {
+      text: this.getQuestion(propertyData),
+      type: this.questionType,
+      help: this.help,
+      answerFormat: this.getAnswerFormat(propertyData),
+      optional: this.optional,
+    }
+  }
 }
 
-export class EnumProperty extends Property {
+export class BooleanProperty extends Property {
+  // eslint-disable-next-line no-empty-pattern
+  getAnswerFormat({}: PropertyData): any {
+    return {
+      type: "boolean",
+      items: [
+        {
+          label: "Oui",
+          value: true,
+        },
+        {
+          label: "Non",
+          value: false,
+        },
+      ],
+    }
+  }
+}
+
+export class DateProperty extends Property {
+  constructor(propertyConstruct: PropertyConstruct) {
+    super({ ...propertyConstruct, questionType: "date" })
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: "date",
+    }
+  }
+}
+
+export class ItemProperty extends Property {
   items:
     | EnumItemProperty[]
     | ((propertyData: PropertyData) => EnumItemProperty[])
 
-  constructor({
-    question,
-    questionType,
-    optional,
-    help,
-    moreInfo,
-    showMoreInfo,
-    items,
-  }: {
-    question: string | ((propertyData: PropertyData) => string)
-    questionType?: string
-    optional?: boolean
-    help?: string
-    moreInfo?: string | ((variation: any) => string)
-    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-    items:
-      | EnumItemProperty[]
-      | ((propertyData: PropertyData) => EnumItemProperty[])
-  }) {
-    super({
-      question,
-      questionType,
-      optional,
-      help,
-      moreInfo,
-      showMoreInfo,
-    })
-    this.items = items
+  constructor(itemPropertyConstruct: ItemPropertyConstruct) {
+    super(itemPropertyConstruct)
+    this.items = itemPropertyConstruct.items
   }
 
   getRelevantItems(
@@ -95,6 +119,34 @@ export class EnumProperty extends Property {
   }
 }
 
+export class EnumProperty extends ItemProperty {
+  constructor(itemPropertyConstruct: ItemPropertyConstruct) {
+    super({ ...itemPropertyConstruct, questionType: "enum" })
+  }
+
+  getAnswerFormat(propertyData: PropertyData): any {
+    const items = this.getValueOrExecuteFunction("items", propertyData)
+    return {
+      type: typeof items[0]?.value,
+      items,
+    }
+  }
+}
+
+export class MultipleProperty extends ItemProperty {
+  constructor(itemPropertyConstruct: ItemPropertyConstruct) {
+    super({ ...itemPropertyConstruct, questionType: "multiple" })
+  }
+
+  getAnswerFormat(propertyData: PropertyData): any {
+    const items = this.getValueOrExecuteFunction("items", propertyData)
+    return {
+      type: `${typeof items[0]?.value}[]`,
+      items,
+    }
+  }
+}
+
 export class NumberProperty extends Property {
   type: string
   unit?: string
@@ -102,7 +154,6 @@ export class NumberProperty extends Property {
 
   constructor({
     question,
-    questionType,
     optional,
     help,
     moreInfo,
@@ -110,21 +161,26 @@ export class NumberProperty extends Property {
     type = "amount",
     unit,
     min,
-  }: {
-    question: string | ((propertyData: PropertyData) => string)
-    questionType?: string
-    optional?: boolean
-    help?: string
-    moreInfo?: string | ((variation: any) => string)
-    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-    type?: string
-    unit?: string
-    min?: number
-  }) {
-    super({ question, questionType, help, optional, moreInfo, showMoreInfo })
+  }: NumberPropertyConstruct) {
+    super({
+      question,
+      questionType: "number",
+      help,
+      optional,
+      moreInfo,
+      showMoreInfo,
+    })
     this.type = type
     this.unit = unit
     this.min = min
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: "number",
+      min: this.min,
+    }
   }
 }
 
@@ -152,6 +208,21 @@ export class DepcomProperty extends Property {
       showMoreInfo,
     })
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: {
+        depcom: "string",
+        _codePostal: "string",
+        _nomCommune: "string",
+        _departement: "string",
+        _region: "string",
+        _epci: "string",
+        _epciType: "string",
+      },
+    }
+  }
 }
 
 export class TextProperty extends Property {
@@ -176,5 +247,12 @@ export class TextProperty extends Property {
       moreInfo,
       showMoreInfo,
     })
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAnswerFormat(propertyData: PropertyData): any {
+    return {
+      type: "string",
+    }
   }
 }

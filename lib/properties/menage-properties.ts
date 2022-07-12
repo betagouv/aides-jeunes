@@ -1,20 +1,20 @@
-import { EnumProperty, Property } from "./property"
+import { EnumProperty, BooleanProperty } from "./property"
 
 const { getAnswer } = require("../answers")
 
 export default {
-  coloc: new Property({
+  coloc: new BooleanProperty({
     question: "Est-ce une colocation ?",
   }),
 
-  logement_chambre: new Property({
+  logement_chambre: new BooleanProperty({
     question: `Est-ce une chambre ?
       <span class="help">
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipé d'un WC.
       </span>`,
   }),
 
-  participation_frais: new Property({
+  participation_frais: new BooleanProperty({
     question: `Participez-vous aux frais du logement ?
       <span class="help"
         >Par exemple aux dépenses d'électricité, de téléphone, etc.</span

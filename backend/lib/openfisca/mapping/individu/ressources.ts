@@ -1,5 +1,5 @@
-const forEach = require("lodash/forEach")
-const { getParameter } = require("../../../../lib/openfisca/parameters")
+import forEach from "lodash/forEach"
+import { getParameter } from "../../parameters.js"
 
 const TAUX_CSG_CRDS = 0.029,
   ASSIETTE_COTIS = 0.9825,
@@ -86,7 +86,7 @@ function computeRessources(mesAidesIndividu, openFiscaIndividu) {
   })
 }
 
-module.exports = {
+export default {
   computeRessources: computeRessources,
   computedRessources: individuRessources,
 }

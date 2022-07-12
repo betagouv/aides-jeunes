@@ -1,10 +1,10 @@
-const config = require("../../config")
-const mapping = require("./mapping")
-const axios = require("axios")
+import config from "../../config/index.js"
+import mapping from "./mapping/index.js"
+import axios from "axios"
 
 const buildOpenFiscaRequest = (exports.buildOpenFiscaRequest =
   mapping.buildOpenFiscaRequest)
-function sendToOpenfisca(endpoint, transform) {
+export function sendToOpenfisca(endpoint, transform?: any) {
   if (!transform) {
     transform = buildOpenFiscaRequest
   }
@@ -31,6 +31,11 @@ function sendToOpenfisca(endpoint, transform) {
   }
 }
 
-exports.calculate = sendToOpenfisca("calculate")
-exports.trace = sendToOpenfisca("trace")
-exports.sendToOpenfisca = sendToOpenfisca
+export const calculate = sendToOpenfisca("calculate")
+export const trace = sendToOpenfisca("trace")
+
+export default {
+  buildOpenFiscaRequest,
+  calculate,
+  trace,
+}

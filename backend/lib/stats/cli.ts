@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-const Promise = require("bluebird")
-const omit = require("lodash/omit")
-const fs = Promise.promisifyAll(require("fs"))
-const mongodb = require("./mongodb")
+import Promise from "bluebird"
+import omit from "lodash/omit"
+import fs from "fs/promises"
+import mongodb from "./mongodb"
 
 mongodb
   .connect()
   .then((db) => {
-    const p = new Promise((resolve, reject) => {
+    const p = async (resolve, reject) => {
       db.collection("followups")
         .find({ "surveys.repliedAt": { $exists: true } })
         .toArray((err, items) => {
@@ -28,17 +28,17 @@ mongodb
 
           resolve(rows)
         })
-    })
+    }
     return p
   })
-  .then((r) => {
+  .then(async (r) => {
     const csv = r.map((i) =>
       Object.values(i)
         .map((s) => `"${s}"`)
         .join(";")
     )
     csv.unshift("benefit;result;comment;id;date")
-    return fs.writeFileAsync("data.csv", csv.join("\n"), "utf-8")
+    return await fs.writeFile("data.csv", csv.join("\n"), "utf-8")
 
     //return fs.writeFileAsync('data.json', JSON.stringify(r, null, 2), 'utf-8')
   })

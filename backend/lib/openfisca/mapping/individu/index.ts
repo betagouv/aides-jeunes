@@ -1,19 +1,19 @@
-const isNaN = require("lodash/isNaN")
-const forEach = require("lodash/forEach")
-const isUndefined = require("lodash/isUndefined")
-const cloneDeep = require("lodash/cloneDeep")
-const isString = require("lodash/isString")
+import dayjs from "dayjs"
+import isNaN from "lodash/isNaN"
+import forEach from "lodash/forEach"
+import isUndefined from "lodash/isUndefined"
+import cloneDeep from "lodash/cloneDeep"
+import isString from "lodash/isString"
 
-const { formatDate } = require("../utils")
-const individuRessource = require("./ressources")
-const pastResourcesProxy = require("./past-resources-proxy")
-const { estActif } = require("../../../../../lib/activite")
+import { formatDate } from "../utils.js"
+import individuRessource from "./ressources.js"
+import pastResourcesProxy from "./past-resources-proxy.js"
+import { estActif } from "../../../../../lib/activite.js"
 
-const {
+import {
   computeDistanceCommunes,
   findCommuneByInseeCode,
-} = require("../../../mes-aides/distance")
-const dayjs = require("dayjs")
+} from "../../../mes-aides/distance.js"
 
 const individuSchema = {
   activite: {
@@ -137,7 +137,7 @@ function isNotValidValue(value) {
   )
 }
 
-function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
+export default function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
   const openFiscaIndividu = cloneDeep(mesAidesIndividu)
   forEach(individuSchema, function (definition, openfiscaKey) {
     const params = isString(definition) ? { src: definition } : definition
@@ -158,4 +158,3 @@ function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
 }
 
 buildOpenFiscaIndividu.additionalProps = individuSchema
-module.exports = buildOpenFiscaIndividu

@@ -1,13 +1,11 @@
-const assign = require("lodash/assign")
+import dayjs from "dayjs"
+import assign from "lodash/assign"
 
-const benefits = require("../../../../data/all")
-const { generator } = require("../../../../lib/dates")
-const {
-  CONDITION_STATEGY,
-} = require("../../../../lib/benefits/compute-javascript")
-const dayjs = require("dayjs")
+import benefits from "../../../../data/all.js"
+import { generator } from "../../../../lib/dates.js"
+import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
-exports.isIndividuValid = function (individu, situation) {
+function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
     "year"
@@ -15,31 +13,31 @@ exports.isIndividuValid = function (individu, situation) {
   return individu._role != "enfant" || age <= 25 || individu.handicap
 }
 
-exports.getDemandeur = function (situation) {
+function getDemandeur(situation) {
   return situation.demandeur
 }
 
-exports.getConjoint = function (situation) {
+function getConjoint(situation) {
   return situation.conjoint
 }
 
-exports.getEnfants = function (situation) {
+function getEnfants(situation) {
   return situation.enfants
 }
 
-exports.getIndividusSortedParentsFirst = function (situation) {
+function getIndividusSortedParentsFirst(situation) {
   return []
     .concat(
-      exports.getDemandeur(situation),
-      exports.getConjoint(situation),
-      exports.getEnfants(situation)
+      getDemandeur(situation),
+      getConjoint(situation),
+      getEnfants(situation)
     )
     .filter(function (individu) {
       return individu
     })
 }
 
-exports.getPeriods = function (dateDeValeur) {
+function getPeriods(dateDeValeur) {
   dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
@@ -84,4 +82,12 @@ Object.values(CONDITION_STATEGY).forEach((condition) => {
   }
 })
 
-exports.requestedVariables = requestedVariables
+export default {
+  isIndividuValid,
+  getDemandeur,
+  getConjoint,
+  getEnfants,
+  getPeriods,
+  getIndividusSortedParentsFirst,
+  requestedVariables,
+}

@@ -1,6 +1,7 @@
-const Promise = require("bluebird")
-const openfisca = Promise.promisifyAll(require(".."))
-const common = require("../mapping/common")
+//import Promise from "bluebird"
+//const openfisca = Promise.promisifyAll(require(".."))
+import openfisca from "../index.js"
+import common from "../mapping/common.js"
 
 const entityGroups = {
   individus: [],
@@ -51,7 +52,7 @@ function append(acummulator, situation) {
   return acummulator
 }
 
-const defaultValues = []
+const defaultValues: number[] = []
 const max = 3500
 const base = 25
 const steps = max / base + 1
@@ -104,7 +105,7 @@ function extractResults({ source, response }, benefitIds) {
   }, {})
 }
 
-module.exports = {
+export default {
   base,
   build,
   extractResults,

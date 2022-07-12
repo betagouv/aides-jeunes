@@ -1,12 +1,10 @@
-const cloneDeep = require("lodash/cloneDeep")
-const dayjs = require("dayjs")
+import cloneDeep from "lodash/cloneDeep"
+import dayjs from "dayjs"
 
-function buildOpenFiscaMenage(situation) {
+export function buildOpenFiscaMenage(situation) {
   const openFiscaMenage = cloneDeep(situation.menage)
   openFiscaMenage.date_entree_logement = dayjs(situation.dateDeValeur)
     .add(openFiscaMenage._nombreMoisEntreeLogement || 0, "month")
     .format("YYYY-MM-DD")
   return openFiscaMenage
 }
-
-module.exports = buildOpenFiscaMenage

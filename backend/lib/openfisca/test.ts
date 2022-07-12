@@ -1,13 +1,11 @@
-const common = require("./mapping/common")
-const mapping = require("./mapping")
-const forEach = require("lodash/forEach")
-const assign = require("lodash/assign")
-const pick = require("lodash/pick")
-const benefits = require("../../../data/all")
-const pickBy = require("lodash/pickBy")
-const {
-  filterByInterestFlag,
-} = require("../../../lib/benefits/filter-interest-flag")
+import common from "./mapping/common.js"
+import mapping from "./mapping/index.js"
+import forEach from "lodash/forEach"
+import assign from "lodash/assign"
+import pick from "lodash/pick"
+import benefits from "../../../data/all.js"
+import pickBy from "lodash/pickBy"
+import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 
 function toStringOf(obj) {
   return obj.toString()
@@ -42,7 +40,7 @@ function toYAML(test) {
   return require("js-yaml").dump(test)
 }
 
-const EXTENSION_VARIABLES = {
+export const EXTENSION_VARIABLES = {
   "openfisca-paris": {
     familles: ["parisien"],
     individus: [],
@@ -93,7 +91,7 @@ const TEST_ATTRIBUTES = [
   "relative_error_margin",
 ]
 
-exports.generateTest = function generateYAMLTest(details, situation) {
+export const generateTest = function generateYAMLTest(details, situation) {
   const openfiscaRequest = mapping.buildOpenFiscaRequest(
     situation.toObject ? situation.toObject() : situation
   )
@@ -138,8 +136,6 @@ exports.generateTest = function generateYAMLTest(details, situation) {
   return result
 }
 
-exports.generateYAMLTest = function generateYAMLTest(details, situation) {
+export function generateYAMLTest(details, situation) {
   return toYAML(exports.generateTest(details, situation))
 }
-
-exports.EXTENSION_VARIABLES = EXTENSION_VARIABLES

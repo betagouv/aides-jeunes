@@ -1,12 +1,12 @@
-const concat = require("lodash/concat")
-const isNumber = require("lodash/isNumber")
-const some = require("lodash/some")
+import concat from "lodash/concat"
+import isNumber from "lodash/isNumber"
+import some from "lodash/some"
 
-const dayjs = require("dayjs")
+import dayjs from "dayjs"
 
-const common = require("../common")
-const individuRessources = require("./ressources")
-const ressources = require("../../../../../lib/resources")
+import common from "../common.js"
+import individuRessources from "./ressources.js"
+import ressources from "../../../../../lib/resources.js"
 
 const ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),
@@ -102,7 +102,7 @@ function ressourcesYearMoins2Captured(situation) {
   return hasRfr || hasYm2Ressources
 }
 
-function proxyRessources(individu, situation) {
+export default function proxyRessources(individu, situation) {
   if (!ressourcesYearMoins2Captured(situation)) {
     proxyWithCurrentResources(individu, situation.dateDeValeur)
   } else {
@@ -112,5 +112,3 @@ function proxyRessources(individu, situation) {
 
 proxyRessources.proxyWithCurrentResources = proxyWithCurrentResources
 proxyRessources.extendFiscalDataBackward = extendFiscalDataBackward
-
-module.exports = proxyRessources

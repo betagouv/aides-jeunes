@@ -1,21 +1,19 @@
-const filter = require("lodash/filter")
-const forEach = require("lodash/forEach")
-const assign = require("lodash/assign")
-const pickBy = require("lodash/pickBy")
-const difference = require("lodash/difference")
-const cloneDeep = require("lodash/cloneDeep")
+import filter from "lodash/filter"
+import forEach from "lodash/forEach"
+import assign from "lodash/assign"
+import pickBy from "lodash/pickBy"
+import difference from "lodash/difference"
+import cloneDeep from "lodash/cloneDeep"
 
-const common = require("./common")
-const buildOpenFiscaIndividu = require("./individu")
-const buildOpenFiscaMenage = require("./menage")
+import common from "./common.js"
+import buildOpenFiscaIndividu from "./individu/index.js"
+import { buildOpenFiscaMenage } from "./menage/index.js"
 
-const propertyMove = require("./property-move")
-const last3MonthsDuplication = require("./last3-months-duplication")
-const {
-  filterByInterestFlag,
-} = require("../../../../lib/benefits/filter-interest-flag")
+import propertyMove from "./property-move.js"
+import last3MonthsDuplication from "./last3-months-duplication.js"
+import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
-function dispatchIndividuals(situation) {
+export function dispatchIndividuals(situation) {
   const individus = mapIndividus(situation)
 
   const familles = { _: situation.famille }
@@ -135,7 +133,12 @@ function mapIndividus(situation) {
     }, {})
 }
 
-function giveValueToRequestedVariables(testCase, prestations, periods, value) {
+export function giveValueToRequestedVariables(
+  testCase,
+  prestations,
+  periods,
+  value
+) {
   if (!(periods instanceof Array)) {
     periods = [periods]
   }
@@ -159,8 +162,6 @@ function giveValueToRequestedVariables(testCase, prestations, periods, value) {
     })
   })
 }
-exports.giveValueToRequestedVariables = giveValueToRequestedVariables
-exports.dispatchIndividuals = dispatchIndividuals
 
 // Use heuristics to pass functional tests
 // Complexity may be added in the future in the application (new questions to ask)
@@ -168,7 +169,7 @@ exports.dispatchIndividuals = dispatchIndividuals
 // cf. https://github.com/openfisca/openfisca-france/pull/1233
 // logement_conventionne needs to be true when the loan in fully paid
 // to avoid a benefit from appearing
-function applyHeuristicsAndFix(testCase, sourceSituation) {
+export function applyHeuristicsAndFix(testCase, sourceSituation) {
   const periods = common.getPeriods(sourceSituation.dateDeValeur)
 
   const menage = assign(
@@ -209,7 +210,6 @@ function applyHeuristicsAndFix(testCase, sourceSituation) {
   testCase.menages._ = menage
   return testCase
 }
-exports.applyHeuristicsAndFix = applyHeuristicsAndFix
 
 function filterRequestedVariablesBySituation(requestedVariables, situation) {
   const variables = { ...requestedVariables }
@@ -220,7 +220,7 @@ function filterRequestedVariablesBySituation(requestedVariables, situation) {
   return variables
 }
 
-exports.buildOpenFiscaRequest = function (sourceSituation) {
+export function buildOpenFiscaRequest(sourceSituation) {
   const situation = cloneDeep(sourceSituation)
 
   const testCase = dispatchIndividuals(situation)

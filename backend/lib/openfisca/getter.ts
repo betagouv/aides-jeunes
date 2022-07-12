@@ -1,7 +1,7 @@
-const axios = require("axios")
-const config = require("../../config")
+import axios from "axios"
+import config from "../../config/index.js"
 
-exports.get = function (item, callback) {
+function get(item, callback) {
   axios
     .get(`${config.openfiscaURL}${item}`)
     .then((response) => response.data)
@@ -10,5 +10,11 @@ exports.get = function (item, callback) {
     })
 }
 
-exports.getPromise = async (item) =>
+async function getPromise(item) {
   axios.get(`${config.openfiscaURL}${item}`).then((response) => response.data)
+}
+
+export default {
+  get,
+  getPromise,
+}

@@ -1,10 +1,10 @@
-const forEach = require("lodash/forEach")
-const uniq = require("lodash/uniq")
+import forEach from "lodash/forEach"
+import uniq from "lodash/uniq"
 
-const common = require("./common")
+import common from "./common.js"
 
-const { additionalProps } = require("./individu")
-const definitions = require("../../definitions")
+import { additionalProps } from "./individu/index.js"
+import definitions from "../../definitions.js"
 
 function determinePropsToReplicate(entityTypeName, entityDefinition) {
   let filtered = entityDefinition.filter((key) => {
@@ -31,7 +31,7 @@ const forDuplication = types.reduce((accum, type) => {
   return accum
 }, {})
 
-function copyTo3PreviousMonths(testCase, dateDeValeur) {
+export default function copyTo3PreviousMonths(testCase, dateDeValeur) {
   const periodKeys = [
     "thisMonth",
     "oneMonthAgo",
@@ -55,5 +55,3 @@ function copyTo3PreviousMonths(testCase, dateDeValeur) {
     })
   })
 }
-
-module.exports = copyTo3PreviousMonths

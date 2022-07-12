@@ -1,7 +1,7 @@
-const forEach = require("lodash/forEach")
-const pickBy = require("lodash/pickBy")
+import forEach from "lodash/forEach"
+import pickBy from "lodash/pickBy"
 
-const common = require("./common")
+import common from "./common.js"
 
 const famillePropertiesGivenToIndividu = Object.keys(
   pickBy(common.requestedVariables, function (definition) {
@@ -25,7 +25,7 @@ const movedProperties = {
   },
 }
 
-exports.movePropertyValuesToGroupEntity = function (testCase) {
+function movePropertyValuesToGroupEntity(testCase) {
   Object.keys(movedProperties).forEach(function (testCasePropertyName) {
     const moveDetails = movedProperties[testCasePropertyName]
 
@@ -61,3 +61,5 @@ exports.movePropertyValuesToGroupEntity = function (testCase) {
 
   return testCase
 }
+
+export default { movePropertyValuesToGroupEntity }

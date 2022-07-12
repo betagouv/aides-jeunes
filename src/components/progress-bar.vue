@@ -4,38 +4,22 @@
   </div>
 </template>
 
-<script>
-import ProgressMixin from "@/mixins/progress-mixin"
-import { useStore } from "@/stores"
 
-export default {
-  name: "ProgressBar",
-  mixins: [ProgressMixin],
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  data() {
-    return {
-      window,
-    }
-  },
-  computed: {
-    showProgress() {
-      return "resultatsAttendus" !== this.$route.name
-    },
-    currentProgressStyle() {
-      return {
-        width: `${this.progress * 100}%`,
-      }
-    },
-  },
-  methods: {
-    disableDebug() {
-      this.store.setDebug(false)
-      this.$router.replace({ debug: null })
-    },
-  },
-}
+<script lang="ts" setup>
+import { computed, ComputedRef } from "vue"
+import { useRoute } from "vue-router"
+import { useProgress } from "@/composables/progress"
+
+const route = useRoute()
+const progress: ComputedRef<number> = useProgress()
+
+const showProgress = computed(() => {
+  return "resultatsAttendus" !== route.name
+})
+
+const currentProgressStyle = computed(() => {
+  return {
+    width: `${progress.value * 100}%`,
+  }
+})
 </script>

@@ -3,6 +3,7 @@ import { EnumItemProperty } from "../../types/property.js"
 import Individu from "../../individu.js"
 import { ressourceTypes } from "../../resources.js"
 import { STATUT_OCCUPATION_LABEL } from "../../logement.js"
+import { capitalize } from "vue"
 
 export default {
   ressources: new MultipleProperty({
@@ -12,6 +13,14 @@ export default {
     items: ressourceTypes.map((resource: any) => {
       return { value: resource.id, label: resource.label }
     }),
+    recapHeader: ({ individu }) => {
+      return {
+        rowClass: "row-space",
+        label: capitalize(Individu.label(individu, "nom")),
+        labelClass: "individu-title",
+        hideEdit: true,
+      }
+    },
   }),
   statut_occupation_logement: new EnumProperty({
     question: "Quel est le code postal de la commune de vos parents ?",

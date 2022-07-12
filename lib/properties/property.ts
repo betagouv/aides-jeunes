@@ -1,11 +1,20 @@
-import { capitalize } from "../utils.js"
+import {
+  capitalize,
+  displayYesNoValue,
+  displayEnumValue,
+  displayDepcomValue,
+  displayDateValue,
+} from "../utils.js"
 import {
   EnumItemProperty,
   ItemPropertyConstruct,
   NumberPropertyConstruct,
   PropertyConstruct,
   PropertyData,
+  RecapPropertyLine,
+  Step,
 } from "../types/property.js"
+import { getStepAnswer } from "../answers.js"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)
@@ -14,6 +23,7 @@ export class Property {
   help?: string
   moreInfo?: string | ((variation: any) => string)
   showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
+  recapHeader?: (propertyData: PropertyData) => RecapPropertyLine
 
   constructor({
     question,
@@ -23,6 +33,7 @@ export class Property {
     moreInfo,
     showMoreInfo,
     getAnswerFormat,
+    recapHeader,
   }: PropertyConstruct) {
     this.question = question
     this.questionType = questionType
@@ -30,6 +41,8 @@ export class Property {
     this.help = help
     this.moreInfo = moreInfo
     this.showMoreInfo = showMoreInfo
+    this.showMoreInfo = showMoreInfo
+    this.recapHeader = recapHeader
 
     if (getAnswerFormat) {
       this.getAnswerFormat = getAnswerFormat
@@ -57,6 +70,20 @@ export class Property {
       optional: this.optional,
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return value
+  }
+
+  getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine {
+    const answer = getStepAnswer(propertyData.simulation.answers.all, step)
+
+    return {
+      label: this.getQuestion(propertyData),
+      value:
+        answer === undefined ? answer : this.displayValue(propertyData, answer),
+    }
+  }
 }
 
 export class BooleanProperty extends Property {
@@ -76,6 +103,10 @@ export class BooleanProperty extends Property {
       ],
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return displayYesNoValue(value)
+  }
 }
 
 export class DateProperty extends Property {
@@ -88,6 +119,10 @@ export class DateProperty extends Property {
     return {
       type: "date",
     }
+  }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return displayDateValue(value)
   }
 }
 
@@ -131,6 +166,10 @@ export class EnumProperty extends ItemProperty {
       items,
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return displayEnumValue(value, this.getItems(propertyData))
+  }
 }
 
 export class MultipleProperty extends ItemProperty {
@@ -145,6 +184,18 @@ export class MultipleProperty extends ItemProperty {
       items,
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return value
+      .map((item: boolean | number | string) => {
+        for (const answer of this.getItems(propertyData)) {
+          if (item === answer.value) {
+            return answer.label
+          }
+        }
+      })
+      .join(", ")
+  }
 }
 
 export class NumberProperty extends Property {
@@ -153,26 +204,16 @@ export class NumberProperty extends Property {
   min?: number
 
   constructor({
-    question,
-    optional,
-    help,
-    moreInfo,
-    showMoreInfo,
     type = "amount",
-    unit,
-    min,
+    ...numberPropertyConstruct
   }: NumberPropertyConstruct) {
     super({
-      question,
       questionType: "number",
-      help,
-      optional,
-      moreInfo,
-      showMoreInfo,
+      ...numberPropertyConstruct,
     })
     this.type = type
-    this.unit = unit
-    this.min = min
+    this.unit = numberPropertyConstruct.unit
+    this.min = numberPropertyConstruct.min
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -182,30 +223,17 @@ export class NumberProperty extends Property {
       min: this.min,
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return this.unit ? `${value} ${this.unit}` : value
+  }
 }
 
 export class DepcomProperty extends Property {
-  constructor({
-    question,
-    optional,
-    help,
-    moreInfo,
-    showMoreInfo,
-  }: {
-    question: string | ((propertyData: PropertyData) => string)
-    questionType?: string
-    optional?: boolean
-    help?: string
-    moreInfo?: string | ((variation: any) => string)
-    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-  }) {
+  constructor(propertyConstruct: PropertyConstruct) {
     super({
-      question,
+      ...propertyConstruct,
       questionType: "depcom",
-      help,
-      optional,
-      moreInfo,
-      showMoreInfo,
     })
   }
 
@@ -223,29 +251,17 @@ export class DepcomProperty extends Property {
       },
     }
   }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return displayDepcomValue(value?._codePostal, value?._nomCommune)
+  }
 }
 
 export class TextProperty extends Property {
-  constructor({
-    question,
-    optional,
-    help,
-    moreInfo,
-    showMoreInfo,
-  }: {
-    question: string | ((propertyData: PropertyData) => string)
-    optional?: boolean
-    help?: string
-    moreInfo?: string | ((variation: any) => string)
-    showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
-  }) {
+  constructor(propertyConstruct: PropertyConstruct) {
     super({
-      question,
+      ...propertyConstruct,
       questionType: "text",
-      help,
-      optional,
-      moreInfo,
-      showMoreInfo,
     })
   }
 

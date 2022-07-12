@@ -81,7 +81,7 @@ const Individu = {
     return dayjs(dateDeReference).diff(individu.date_naissance, "year")
   },
 
-  label: function (individu, type) {
+  label: function (individu, type?: string) {
     const VOYELLES = ["a", "e", "i", "o", "u", "y"]
 
     const labelDict = {

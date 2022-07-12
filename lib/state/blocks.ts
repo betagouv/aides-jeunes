@@ -5,8 +5,8 @@ import { datesGenerator } from "../benefits/compute.js"
 import { Step, ComplexStep } from "./steps.js"
 import Scolarite from "../scolarite.js"
 
-function individuBlockFactory(id, chapter) {
-  const r = (variable, chapter) =>
+function individuBlockFactory(id, chapter?: string) {
+  const r = (variable, chapter?: string) =>
     new Step({ entity: "individu", id, variable, chapter })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
@@ -220,7 +220,7 @@ function individuBlockFactory(id, chapter) {
 
 function extraBlock() {
   const id = "demandeur"
-  const s = (variable, chapter) =>
+  const s = (variable: string, chapter?: string) =>
     new Step({ entity: "individu", id, variable, chapter })
 
   return {

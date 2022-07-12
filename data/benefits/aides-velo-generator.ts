@@ -1,4 +1,5 @@
-const aidesVelo = require("aides-velo")
+import aidesVelo from "aides-velo"
+
 const benefits = aidesVelo()
 
 function generate_benefit_list(institutions) {
@@ -61,4 +62,4 @@ function generate_benefit_list(institutions) {
     })
 }
 
-module.exports = generate_benefit_list
+export default generate_benefit_list

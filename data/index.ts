@@ -1,9 +1,9 @@
 "use strict"
 
-const additionalBenefitAttributes = require("./benefits/additional-attributes")
-const aidesVeloGenerator = require("./benefits/aides-velo-generator")
+import additionalBenefitAttributes from "./benefits/additional-attributes/index.js"
+import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 
-function transformInstitutions(collection) {
+function transformInstitutions(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,

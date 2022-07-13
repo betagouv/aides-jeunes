@@ -13,6 +13,9 @@ conditions_generales:
   - type: regime_securite_sociale
     includes:
       - regime_general
+  - type: departements
+    values:
+      - "27"
 profils: []
 conditions:
   - Être allocataire de la Caf de l'Eure.

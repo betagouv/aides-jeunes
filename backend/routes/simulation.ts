@@ -1,12 +1,12 @@
-const express = require("express")
-const cookieParser = require("cookie-parser")
-const cors = require("cors")
+import express from "express"
+import cookieParser from "cookie-parser"
+import cors from "cors"
 
-const followups = require("../controllers/followups")
-const simulationController = require("../controllers/simulation")
-const teleservices = require("../controllers/teleservices")
+import { persist } from "../controllers/followups.js"
+import simulationController from "../controllers/simulation.js"
+import teleservices from "../controllers/teleservices/index.js"
 
-module.exports = function (api) {
+export default function (api) {
   api.options("/simulation", cors())
   api
     .route("/simulation")
@@ -18,7 +18,7 @@ module.exports = function (api) {
       simulationController.show
     )
 
-  const route = new express.Router({ mergeParams: true })
+  const route = express.Router({ mergeParams: true })
   route.use(cookieParser())
 
   route.use(simulationController.validateAccess)
@@ -43,7 +43,7 @@ module.exports = function (api) {
   route.post("/openfisca-test", simulationController.openfiscaTest)
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
-  route.post("/followup", followups.persist)
+  route.post("/followup", persist)
 
   teleservices.names.forEach(function (name) {
     route.get(

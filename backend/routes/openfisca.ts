@@ -1,7 +1,7 @@
-const { check, validationResult } = require("express-validator")
-const openfisca = require("../lib/openfisca/getter")
-const openfiscaController = require("../controllers/openfisca")
-const benefits = require("../../data/all")
+import { check, validationResult } from "express-validator"
+import openfisca from "../lib/openfisca/getter.js"
+import openfiscaController from "../controllers/openfisca.js"
+import benefits from "../../data/all.js"
 
 let missingBenefits
 

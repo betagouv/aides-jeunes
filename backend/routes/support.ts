@@ -5,8 +5,8 @@ const githubController = require("../controllers/github")
 const supportController = require("../controllers/support")
 const simulationController = require("../controllers/simulation")
 
-module.exports = function (api) {
-  const route = new express.Router({ mergeParams: true })
+export default function (api) {
+  const route = express.Router({ mergeParams: true })
   route.use(cookieParser())
   route.use(githubController.access)
 

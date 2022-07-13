@@ -69,7 +69,12 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" /> </h2
       ></label>
-      <input :id="fieldName" v-model="value" type="text" />
+      <input
+        :id="fieldName"
+        v-model="value"
+        :data-testid="fieldName"
+        type="text"
+      />
     </div>
 
     <YesNoQuestion v-else v-model="value">

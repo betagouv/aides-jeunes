@@ -38,7 +38,7 @@
       </div>
     </div>
     <button
-      data-testid="addpac"
+      data-testid="add-pac"
       class="button outline with-icon"
       @click="addPAC()"
     >

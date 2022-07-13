@@ -1,5 +1,7 @@
-import communes from "@etalab/decoupage-administratif/data/communes.json"
-import epci from "@etalab/decoupage-administratif/data/epci.json"
+import { createRequire } from "module"
+const require = createRequire(import.meta.url)
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epci = require("@etalab/decoupage-administratif/data/epci.json")
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
 const communeMap = {}

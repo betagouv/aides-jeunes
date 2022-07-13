@@ -209,9 +209,7 @@ print(
         return Array.sum(v)
       },
       {
-        query: {
-          dateDeValeur: {},
-        },
+        query: {},
         out: { inline: 1 },
         scope: {
           props,

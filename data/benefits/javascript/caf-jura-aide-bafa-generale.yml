@@ -6,6 +6,8 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions:
   - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
 prefix: l’
+conditions:
+  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
 conditions_generales:
   - type: age
     operator: ">="

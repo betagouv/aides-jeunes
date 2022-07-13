@@ -4,7 +4,7 @@ import Scolarite from "../../lib/scolarite"
 const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
 
-  // Verify if submit are block to avoid empty value
+  // Verify if submit is blocked to avoid empty value
   cy.get('[data-testid="_firstName"]').clear()
   submit()
   cy.get("label").invoke("text").should("contain", "prénom")

@@ -2,7 +2,7 @@ import { fillRadio, submit } from "./form"
 import Scolarite from "../../lib/scolarite"
 
 const fill_first_name = (prenom) => {
-  cy.get("label").invoke("text").should("contain", "prénom")
+  cy.get("[data-testid='question']").invoke("text").should("contain", "prénom")
 
   // Verify if submit is blocked to avoid empty value
   cy.get('[data-testid="_firstName"]').clear()
@@ -10,7 +10,7 @@ const fill_first_name = (prenom) => {
   cy.get("label").invoke("text").should("contain", "prénom")
 
   if (prenom) {
-    cy.get('[data-testid="_firstName"]').type(prenom)
+    cy.get(`[data-testid="_firstName"]`).type(prenom)
   } else {
     cy.get('[data-testid="_firstName"]').type("John")
   }
@@ -19,10 +19,10 @@ const fill_first_name = (prenom) => {
 
 const fill_date_naissance = (birthDate) => {
   cy.url().should("include", "date_naissance")
-  cy.get(".warning").should("not.exist") // check openfisca missing benefits
+  cy.get("[data-testid='warning-message']").should("not.exist") // check openfisca missing benefits
   submit()
   cy.url().should("include", "date_naissance") // Stay on the same page as an answer is required
-  cy.get("#date_naissance").type(birthDate)
+  cy.get("[data-testid='date_naissance']").type(birthDate)
   submit()
 }
 

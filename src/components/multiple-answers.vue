@@ -9,6 +9,7 @@
     >
       <input
         :id="value"
+        :data-testid="value"
         type="checkbox"
         :checked="item.checked"
         @input="update"

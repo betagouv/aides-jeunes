@@ -7,6 +7,7 @@
         ref="day"
         v-model="day"
         v-select-on-click
+        :data-testid="firstId"
         type="text"
         inputmode="numeric"
         data-type="number"

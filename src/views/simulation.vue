@@ -12,9 +12,9 @@
             >Quitter le mode debug</button
           >
         </div>
-        <WarningMessage v-if="store.message.text"
-          ><div class="message" v-html="store.message.text"
-        /></WarningMessage>
+        <WarningMessage v-if="store.message.text" data-testid="warning-message">
+          <div class="message" v-html="store.message.text" />
+        </WarningMessage>
         <div class="aj-box-wrapper">
           <router-view :key="$route.path" />
         </div>

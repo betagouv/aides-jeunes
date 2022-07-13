@@ -20,6 +20,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "ts-node": {
+      "esm": true
+    },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
@@ -29,5 +32,13 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules", "backend", "contribuer", "data", "lib"]
+  "exclude": [
+    "node_modules",
+    "backend",
+    "contribuer",
+    "data",
+    "lib",
+    "dist",
+    "dist-server"
+  ]
 }

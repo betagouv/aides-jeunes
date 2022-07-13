@@ -17,7 +17,7 @@ const props = defineProps({
   titleWrapper: { type: String, default: "label" },
   forTitleWrapper: { type: String },
   question: { type: String, required: true },
-  showMoreInfo: { type: Boolean, required: true },
-  help: { type: String, required: true },
+  showMoreInfo: { type: Boolean },
+  help: { type: String },
 })
 </script>

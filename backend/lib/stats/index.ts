@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-const Promise = require("bluebird")
-const fs = Promise.promisifyAll(require("fs"))
-const mkdirp = require("mkdirp")
-const path = require("path")
+import Promise from "bluebird"
+//const fs = Promise.promisifyAll(require("fs"))
+import fs from "fs/promises"
+import mkdirp from "mkdirp"
+import path from "path"
 
-const piwik = require("./piwik")
-const mongodb = require("./mongodb")
+import piwik from "./piwik.js"
+import mongodb from "./mongodb"
 
 function dateDaysAgo(nb_days) {
   let date = new Date()
@@ -33,11 +34,7 @@ mkdirp(path.dirname(relative_path)).then(() => {
       }
     })
     .then(function (data) {
-      return fs.writeFileAsync(
-        relative_path,
-        JSON.stringify(data, null, 2),
-        "utf-8"
-      )
+      return fs.writeFile(relative_path, JSON.stringify(data, null, 2), "utf-8")
     })
     .catch(function (error) {
       console.error("error", error)

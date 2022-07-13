@@ -157,4 +157,4 @@ export default function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
   return openFiscaIndividu
 }
 
-buildOpenFiscaIndividu.additionalProps = individuSchema
+export const additionalProps = individuSchema

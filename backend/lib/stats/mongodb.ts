@@ -1,7 +1,8 @@
 /* global emit: true */
-const Promise = require("bluebird")
-const MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
-const config = require("../../config")
+import Promise from "bluebird"
+//const MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
+import { MongoClient } from "mongodb"
+import config from "../../config/index.js"
 
 let client
 function saveClient(refDb) {
@@ -167,14 +168,12 @@ function manageMissingDBOrCollection(error) {
   }
 }
 
-function connect() {
-  return MongoClient.connectAsync(config.mongo.uri, config.mongo.options)
+async function connect() {
+  return await MongoClient.connect(config.mongo.uri, config.mongo.options)
     .then(saveClient)
     .then((client) => client.db())
 }
-exports.connect = connect
-
-exports.getStats = function (fromDate, toDate) {
+function getStats(fromDate, toDate) {
   return connect()
     .then(function (db) {
       // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
@@ -202,4 +201,4 @@ exports.getStats = function (fromDate, toDate) {
     })
 }
 
-exports.closeClient = closeClient
+export default { connect, closeClient, getStats }

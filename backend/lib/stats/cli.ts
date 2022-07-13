@@ -1,20 +1,20 @@
 /* eslint-disable no-console */
-import Promise from "bluebird"
+//import Promise from "bluebird"
 import omit from "lodash/omit"
 import fs from "fs/promises"
 import mongodb from "./mongodb"
 
 mongodb
   .connect()
-  .then((db) => {
-    const p = async (resolve, reject) => {
+  .then(async (db) => {
+    const p = (resolve, reject) => {
       db.collection("followups")
         .find({ "surveys.repliedAt": { $exists: true } })
         .toArray((err, items) => {
           if (err) {
             return reject(err)
           }
-          const rows = []
+          const rows: any[] = []
           items.forEach((i) => {
             const b = {
               situation: i.situation,
@@ -29,7 +29,7 @@ mongodb
           resolve(rows)
         })
     }
-    return p
+    return await p
   })
   .then(async (r) => {
     const csv = r.map((i) =>

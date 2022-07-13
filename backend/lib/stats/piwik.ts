@@ -1,6 +1,6 @@
-const { matomo } = require("../../config")
+import config from "../../config/index.js"
 
-const axios = require("axios")
+import axios from "axios"
 
 function formatPiwik(data) {
   const metrics = [
@@ -32,7 +32,7 @@ exports.getUsageData = function (fromDate, toDate) {
         module: "API",
         method: "API.get",
         format: "JSON",
-        idSite: matomo.id,
+        idSite: config.matomo.id,
         period: "day",
         date: `${fromDate.toISOString().slice(0, 10)},${toDate
           .toISOString()

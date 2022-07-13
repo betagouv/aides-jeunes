@@ -179,7 +179,9 @@ export default {
       this.$push()
     },
     requiredValueMissing(submit) {
-      const hasError = this.value === undefined
+      const hasError =
+        this.value === undefined ||
+        (this.questionType === "text" && !this.value)
 
       if (submit) {
         this.$store.dispatch(

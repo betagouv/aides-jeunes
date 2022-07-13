@@ -15,6 +15,12 @@ conditions_generales:
     floor: 830
     period: month
 profils: []
+conditions:
+  - Envoyer le <a target="_blank" title="Formulaire - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf">formulaire</a>
+    dans délai de 3 mois maximum après la date de début de votre session de
+    formation.
 interestFlag: _interetBafa
 type: float
 unit: €

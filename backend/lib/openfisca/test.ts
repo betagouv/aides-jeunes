@@ -139,3 +139,9 @@ export const generateTest = function generateYAMLTest(details, situation) {
 export function generateYAMLTest(details, situation) {
   return toYAML(exports.generateTest(details, situation))
 }
+
+export default {
+  EXTENSION_VARIABLES,
+  generateTest,
+  generateYAMLTest,
+}

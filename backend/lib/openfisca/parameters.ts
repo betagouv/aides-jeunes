@@ -64,11 +64,16 @@ export async function getParameters(date) {
   return results
 }
 
-module.exports.getParametersSync = (date) => {
+const getParametersSync = (date) => {
   const results = {}
   Object.keys(parametersList).forEach((parameter) => {
     results[parameter] = computeParameter(parameter, date)
   })
 
   return results
+export default {
+  parametersList,
+  getParameter,
+  getParameters,
+  getParametersSync
 }

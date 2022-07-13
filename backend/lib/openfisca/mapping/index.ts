@@ -310,3 +310,10 @@ export function buildOpenFiscaRequest(sourceSituation) {
 
   return applyHeuristicsAndFix(testCase, sourceSituation)
 }
+
+export default {
+  dispatchIndividuals,
+  giveValueToRequestedVariables,
+  applyHeuristicsAndFix,
+  buildOpenFiscaRequest,
+}

@@ -1,3 +1,3 @@
-import openfiscaParameters from "../lib/openfisca/parameters"
+import { getParameters } from "../lib/openfisca/parameters"
 
-export default { getParameters: openfiscaParameters.getParameters }
+export default { getParameters }

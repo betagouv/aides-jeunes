@@ -29,5 +29,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules", "backend", "contribuer"]
+  "exclude": ["node_modules", "backend", "contribuer", "data", "lib"]
 }

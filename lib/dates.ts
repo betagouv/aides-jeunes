@@ -1,5 +1,5 @@
-const dayjs = require("dayjs")
-const range = require("lodash/range")
+import dayjs from "dayjs"
+import { range } from "lodash"
 
 function generateMonth(dt) {
   return {

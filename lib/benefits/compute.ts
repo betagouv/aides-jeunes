@@ -1,9 +1,4 @@
-import merge from "lodash/merge"
-import sortBy from "lodash/sortBy"
-import assign from "lodash/assign"
-import sumBy from "lodash/sumBy"
-import some from "lodash/some"
-import filter from "lodash/filter"
+import { merge, sortBy, assign, sumBy, some, filter } from "lodash"
 
 import determineCustomizationIds from "./customization.js"
 import { computeJavascriptBenefits } from "./compute-javascript.js"

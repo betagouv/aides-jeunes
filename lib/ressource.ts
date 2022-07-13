@@ -1,8 +1,5 @@
 import { categoriesRnc, ressourceTypes } from "./resources.js"
-import filter from "lodash/filter"
-import keys from "lodash/keys"
-import keyBy from "lodash/keyBy"
-import uniq from "lodash/uniq"
+import { filter, keys, keyBy, uniq } from "lodash"
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
   let periodKeys = []

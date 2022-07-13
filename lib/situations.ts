@@ -1,7 +1,7 @@
 import Ressource from "./ressource.js"
 import { ressourceTypes } from "./resources.js"
-import { datesGenerator } from "./benefits/compute"
-import Scolarite from "./scolarite"
+import { datesGenerator } from "./benefits/compute.js"
+import Scolarite from "./scolarite.js"
 
 const generateDefaultIndividu = (role, id) => ({
   id: id,

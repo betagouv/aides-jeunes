@@ -1,5 +1,5 @@
-const cloneDeep = require("lodash/cloneDeep")
-const dayjs = require("dayjs")
+import { cloneDeep } from "lodash"
+import dayjs from "dayjs"
 
 function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)

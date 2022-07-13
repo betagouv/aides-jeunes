@@ -19,7 +19,7 @@ communesActuelles.forEach(function (commune) {
   commune.nomCommune = commune.nom
 
   const codesPostauxUniques = new Set(commune.codesPostaux)
-  codesPostauxUniques.map(function (codePostal) {
+  codesPostauxUniques.forEach(function (codePostal: any) {
     if (!(codePostal in indexCodesPostaux)) {
       indexCodesPostaux[codePostal] = []
     }

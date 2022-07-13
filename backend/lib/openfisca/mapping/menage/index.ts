@@ -1,4 +1,5 @@
-import { cloneDeep } from "lodash"
+import lodash from "lodash"
+const cloneDeep = lodash.cloneDeep
 import dayjs from "dayjs"
 
 export function buildOpenFiscaMenage(situation) {

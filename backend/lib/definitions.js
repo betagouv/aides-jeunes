@@ -1,4 +1,5 @@
-import { concat } from "lodash"
+import lodash from "lodash"
+const concat = lodash.concat
 
 const ressources = require("../../lib/resources")
 const { forEachProperties } = require("../../lib/mutualized-steps")
@@ -84,7 +85,7 @@ const ANSWER_FIELD_NAMES = [
 
 const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
 
-module.exports = {
+export default {
   ...entities,
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,

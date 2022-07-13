@@ -1,4 +1,5 @@
-import { concat, isNumber, some } from "lodash"
+import lodash from "lodash"
+const { concat, isNumber, some } = lodash
 import dayjs from "dayjs"
 
 import common from "../common.js"

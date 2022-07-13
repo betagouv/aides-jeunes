@@ -33,7 +33,7 @@ let ressourceCategories = [
   },
 ]
 
-let ressourceTypes = [
+export let ressourceTypes = [
   {
     id: "salaire_net",
     label: "Salaire (dont primes et indemnités de fin de contrat)",

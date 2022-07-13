@@ -1,4 +1,5 @@
-import { cloneDeep } from "lodash"
+import lodash from "lodash"
+const cloneDeep = lodash
 import dayjs from "dayjs"
 
 function isRoleParent(role: string) {

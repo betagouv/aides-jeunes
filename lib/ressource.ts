@@ -1,5 +1,6 @@
-import { categoriesRnc, ressourceTypes } from "./resources.js"
-import { filter, keys, keyBy, uniq } from "lodash"
+import resources from "./resources.js"
+import lodash from "lodash"
+const { filter, keys, keyBy, uniq } = lodash
 
 function getPeriodsForCurrentYear(dates, ressourceType) {
   let periodKeys = []
@@ -71,7 +72,7 @@ function isRessourceRelevant(ressourceType, situation, individu) {
   )
 }
 
-let ressourcesForTrailingMonthsAndFiscalYear = categoriesRnc
+let ressourcesForTrailingMonthsAndFiscalYear = resources.categoriesRnc
   .filter(function (fiscalRessource) {
     return fiscalRessource.sources?.indexOf(fiscalRessource.id) >= 0
   })
@@ -96,7 +97,7 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
 function getIndividuRessourceCategories(individu, situation) {
   return uniq(
     filter(
-      ressourceTypes,
+      resources.ressourceTypes,
       (ressourceType) =>
         isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) &&
         isRessourceOnMainScreen(ressourceType) &&
@@ -107,7 +108,7 @@ function getIndividuRessourceCategories(individu, situation) {
 }
 
 function getIndividuRessourceTypes(individu, situation) {
-  return filter(ressourceTypes, (ressourceType) => {
+  return filter(resources.ressourceTypes, (ressourceType) => {
     return (
       isRessourceOnMainScreen(ressourceType) &&
       isRessourceRelevant(ressourceType, situation, individu)
@@ -122,7 +123,7 @@ function getIndividuRessourceTypes(individu, situation) {
 }
 
 function getIndividuRessourceTypesByCategory(individu, category, situation) {
-  return filter(ressourceTypes, (ressourceType) => {
+  return filter(resources.ressourceTypes, (ressourceType) => {
     return (
       ressourceType.category === category &&
       isRessourceOnMainScreen(ressourceType) &&
@@ -138,7 +139,10 @@ function getIndividuRessourceTypesByCategory(individu, category, situation) {
 }
 
 function setIndividuRessourceTypes(individu, types, dates) {
-  let typeMap = keyBy(filter(ressourceTypes, isRessourceOnMainScreen), "id")
+  let typeMap = keyBy(
+    filter(resources.ressourceTypes, isRessourceOnMainScreen),
+    "id"
+  )
 
   Object.keys(types).forEach(function (ressourceTypeId) {
     if (types[ressourceTypeId]) {

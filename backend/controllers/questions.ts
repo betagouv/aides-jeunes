@@ -1,15 +1,15 @@
-const { getParametersSync } = require("../lib/openfisca/parameters")
-const { generator } = require("../../lib/dates")
-const { generateSituation } = require("../../lib/situations")
-const { ENTITIES_PROPERTIES } = require("../../lib/mutualized-steps")
-const SimpleProperties = require("../../lib/properties/others/simple-properties")
-const Individu = require("../../lib/individu")
-const { generateAllSteps } = require("../../lib/state/generator")
-const ComplexeProperties = require("../../lib/properties/others/complexe-properties")
-const { ressourceTypes } = require("../../lib/resources")
-const DepcomProperties = require("../../lib/properties/depcom-properties")
+import { getParametersSync } from "../lib/openfisca/parameters.js"
+import { generator } from "../../lib/dates.js"
+import { generateSituation } from "../../lib/situations.js"
+import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
+import SimpleProperties from "../../lib/properties/others/simple-properties.js"
+import Individu from "../../lib/individu.js"
+import { generateAllSteps } from "../../lib/state/generator.js"
+import ComplexeProperties from "../../lib/properties/others/complexe-properties.js"
+import { ressourceTypes } from "../../lib/resources.js"
+import DepcomProperties from "../../lib/properties/depcom-properties.js"
 
-const COMPLEXE_STEPS = Object.values(ComplexeProperties.default)
+const COMPLEXE_STEPS = Object.values(ComplexeProperties)
 
 const simulationBase = {
   enfants: [0],

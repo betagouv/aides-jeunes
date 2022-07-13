@@ -37,4 +37,5 @@ export interface ConfigurationLayout {
   }
   sessionSecret: string
   mattermost_post_url: string
+  teleserviceAccessTokens?: any
 }

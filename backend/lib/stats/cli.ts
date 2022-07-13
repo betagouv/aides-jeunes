@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 //import Promise from "bluebird"
-import omit from "lodash/omit"
+import { omit } from "lodash"
 import fs from "fs/promises"
 import mongodb from "./mongodb"
 

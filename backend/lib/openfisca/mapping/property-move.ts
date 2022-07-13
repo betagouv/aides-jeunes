@@ -1,5 +1,4 @@
-import forEach from "lodash/forEach"
-import pickBy from "lodash/pickBy"
+import { forEach, pickBy } from "lodash"
 
 import common from "./common.js"
 

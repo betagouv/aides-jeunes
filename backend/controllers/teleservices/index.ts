@@ -1,17 +1,16 @@
-const auth = require("basic-auth")
-const simulationController = require("../simulation")
-const jwt = require("jsonwebtoken")
-const Mustache = require("mustache")
+import auth from "basic-auth"
+import simulationController from "../simulation"
+import jwt from "jsonwebtoken"
+import Mustache from "mustache"
 
-const config = require("../../config")
-const AidesJeunesPreremplissage = require("../../lib/teleservices/aides-jeunes-preremplissage")
-const AidesJeunesServiceLogement = require("../../lib/teleservices/aides-jeunes-service-logement")
-const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
-const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
-const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
-const PNDS = require("../../lib/teleservices/pnds")
-require("dayjs/locale/fr")
-const dayjs = require("dayjs")
+import config from "../../config"
+import AidesJeunesPreremplissage from "../../lib/teleservices/aides-jeunes-preremplissage"
+import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe"
+import OpenFiscaResponse from "../../lib/teleservices/openfisca-response"
+import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer"
+import PNDS from "../../lib/teleservices/pnds"
+import "dayjs/locale/fr"
+import dayjs from "dayjs"
 
 dayjs.locale("fr")
 
@@ -91,14 +90,14 @@ function createClass(teleservice, simulation) {
   return ts
 }
 
-exports.names = teleservices.map(function (ts) {
+const names = teleservices.map(function (ts) {
   return ts.name
 })
 
 /*
  * Express callback to expose teleservice data
  */
-exports.list = function (req, res) {
+function list(req, res) {
   res.json(teleservices)
 }
 
@@ -118,7 +117,7 @@ function fail(res, msg) {
  * - decorated data with metadata for display and
  * - the appropriate URL to third party teleservice.
  */
-exports.metadataResponseGenerator = function (teleservice) {
+function metadataResponseGenerator(teleservice) {
   return function (req, res) {
     const payload = {
       id: req.simulation._id,
@@ -150,7 +149,7 @@ exports.metadataResponseGenerator = function (teleservice) {
  * - the decoded token as payload (generated in metadataResponseGenerator)
  * - the appropriate teleservice using the scope name
  */
-exports.decodePayload = function (req, res, next, token) {
+function decodePayload(req, res, next, token) {
   req.token = token
   req.payload = jwt.decode(token)
   if (!req.payload) return fail(res, "Corrupted payload")
@@ -165,7 +164,7 @@ const tokens = config.teleserviceAccessTokens || {}
 /*
  * This callback validates the basic authorization cookie content
  */
-exports.checkCredentials = function (req, res, next) {
+function checkCredentials(req, res, next) {
   if (req.teleservice.public) {
     next()
     return
@@ -190,7 +189,7 @@ exports.checkCredentials = function (req, res, next) {
  * This callback attachs the appropriate simulation
  * It requires a payload with an identifier
  */
-exports.attachPayloadSituation = function (req, res, next) {
+function attachPayloadSituation(req, res, next) {
   simulationController.simulation(req, res, next, req.payload.id)
 }
 
@@ -199,7 +198,7 @@ exports.attachPayloadSituation = function (req, res, next) {
  * * The consent is considered given if the token is signed by the token attached to the situation
  * It requires a situation
  */
-exports.verifyRequest = function (req, res, next) {
+function verifyRequest(req, res, next) {
   jwt.verify(req.token, req.simulation.token, function (err) {
     if (err) {
       return fail(res, err)
@@ -212,7 +211,7 @@ exports.verifyRequest = function (req, res, next) {
  * This function returns a key/value object representing the requested situation to prefill a specific teleservice.
  * At the moment, the key/value pairs are hardcoded but it mimics the expected behavior.
  */
-exports.exportRepresentation = function (req, res) {
+function exportRepresentation(req, res) {
   return Promise.resolve(
     createClass(req.teleservice, req.simulation).toExternal(req)
   ).then(function (value) {
@@ -220,6 +219,18 @@ exports.exportRepresentation = function (req, res) {
   })
 }
 
-for (let i = 0; i < teleservices.length; i++) {
-  exports[teleservices[i].name] = teleservices[i]
+const teleservicesExports = {
+  names,
+  list,
+  metadataResponseGenerator,
+  decodePayload,
+  checkCredentials,
+  attachPayloadSituation,
+  verifyRequest,
+  exportRepresentation,
 }
+for (let i = 0; i < teleservices.length; i++) {
+  teleservicesExports[teleservices[i].name] = teleservices[i]
+}
+
+export default teleservicesExports

@@ -1,10 +1,7 @@
 import common from "./mapping/common.js"
 import mapping from "./mapping/index.js"
-import forEach from "lodash/forEach"
-import assign from "lodash/assign"
-import pick from "lodash/pick"
+import { forEach, assign, pick, pickBy } from "lodash"
 import benefits from "../../../data/all.js"
-import pickBy from "lodash/pickBy"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 
 function toStringOf(obj) {

@@ -71,9 +71,10 @@ const getParametersSync = (date) => {
   })
 
   return results
+}
 export default {
   parametersList,
   getParameter,
   getParameters,
-  getParametersSync
+  getParametersSync,
 }

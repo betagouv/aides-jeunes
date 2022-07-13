@@ -1,4 +1,4 @@
-const concat = require("lodash/concat")
+import { concat } from "lodash"
 
 const ressources = require("../../lib/resources")
 const { forEachProperties } = require("../../lib/mutualized-steps")

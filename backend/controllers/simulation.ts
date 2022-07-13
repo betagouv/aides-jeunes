@@ -1,7 +1,4 @@
-import omit from "lodash/omit"
-import filter from "lodash/filter"
-import pick from "lodash/pick"
-import assign from "lodash/assign"
+import { omit, filter, pick, assign } from "lodash"
 import mongoose from "mongoose"
 
 import config from "../config/index.js"

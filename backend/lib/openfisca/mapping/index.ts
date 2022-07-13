@@ -1,9 +1,4 @@
-import filter from "lodash/filter"
-import forEach from "lodash/forEach"
-import assign from "lodash/assign"
-import pickBy from "lodash/pickBy"
-import difference from "lodash/difference"
-import cloneDeep from "lodash/cloneDeep"
+import { filter, forEach, assign, pickBy, difference, cloneDeep } from "lodash"
 
 import common from "./common.js"
 import buildOpenFiscaIndividu from "./individu/index.js"

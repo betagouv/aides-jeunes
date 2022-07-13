@@ -1,8 +1,6 @@
-import capitalize from "lodash/capitalize"
+import { capitalize, map, assign } from "lodash"
 import fs from "fs"
 import path from "path"
-import map from "lodash/map"
-import assign from "lodash/assign"
 
 import consolidate from "consolidate"
 const mustache = consolidate.mustache

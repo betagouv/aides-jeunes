@@ -1,5 +1,4 @@
-import forEach from "lodash/forEach"
-import uniq from "lodash/uniq"
+import { forEach, uniq } from "lodash"
 
 import common from "./common.js"
 

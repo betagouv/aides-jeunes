@@ -1,9 +1,9 @@
 import path from "path"
-import { get } from "jamstack-loader"
-const jamstack = get(
-  path.join(__dirname, "../contribuer/public/admin/config.yml")
+import jamstackLoader from "jamstack-loader"
+const jamstack = jamstackLoader.get(
+  path.join(path.dirname("."), "contribuer/public/admin/config.yml")
 )
 
-const base = require("./index")
+import base from "./index.js"
 
 export default base.generate(jamstack)

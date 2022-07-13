@@ -194,6 +194,7 @@ It is possible to locally debug changes in NetlifyCMS configuration.
 
 - First, [contribuer/public/admin/config.yml#L15](https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml#L15) must be uncommented;
 - `npx netlify-cms-proxy-server` should be ran from `.` and
-- `npm run dev` should be ran from `contribuer`.
+- `npm ci` and `npm run dev` should be ran from `contribuer`.
+- In the local url, apply this modifications to see contribution tool locally : `http://localhost:3000/admin/index.html`instead of `http://localhost:3000/admin#/` 
 
 Changes made will be reflected locally instead of generating pull requests in production.

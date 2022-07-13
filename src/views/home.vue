@@ -2,7 +2,7 @@
   <main id="homepage" role="main">
     <div class="container">
       <div class="aj-home-hero">
-        <div class="aj-home-hero-content">
+        <div class="aj-home-hero-content" data-testid="home-hero-content">
           <h1>
             <span class="hightlight"
               >Évaluez vos droits à<br />{{ benefitsNumber }} aides

@@ -37,7 +37,11 @@
         </div>
       </div>
     </div>
-    <button id="add-pac" class="button outline with-icon" @click="addPAC()">
+    <button
+      data-testid="addpac"
+      class="button outline with-icon"
+      @click="addPAC()"
+    >
       <svg
         width="16"
         height="16"

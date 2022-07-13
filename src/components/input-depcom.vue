@@ -7,6 +7,7 @@
     <input
       id="cp"
       v-model="codePostalValue"
+      data-testid="postalCode"
       type="text"
       data-type="number"
       inputmode="numeric"

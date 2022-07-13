@@ -20,25 +20,29 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
     }, {})
   })
 
-  try {
-    this.simulation.answers.current = this.simulation.answers.all
+  this.simulation.answers.current = this.simulation.answers.all
 
-    var loyer = this.simulation.answers.current.find(
-      (e) => e.fieldName == "loyer"
-    )
-    loyer.value.loyer = scenarios[0].loyer || loyer.value.loyer
+  var loyer = this.simulation.answers.current.find(
+    (e) => e.fieldName == "loyer"
+  )
+  loyer.value.loyer = scenarios[0].loyer || loyer.value.loyer
 
-    var depcom = this.simulation.answers.current.find(
-      (e) => e.fieldName == "depcom"
-    )
-    depcom.value.depcom = scenarios[0].depcom || depcom.value.depcom
+  var depcom = this.simulation.answers.current.find(
+    (e) => e.fieldName == "depcom"
+  )
+  depcom.value.depcom = scenarios[0].depcom || depcom.value.depcom
 
-    return this.simulation.compute().then((r) => {
-      return r.droitsEligibles.find((e) => e.slug == "aide_logement")?.montant
+  return this.simulation
+    .compute()
+    .then((r) => {
+      return {
+        value: r.droitsEligibles.find((e) => e.slug == "aide_logement")
+          ?.montant,
+      }
     })
-  } catch (e) {
-    return e.toString()
-  }
+    .catch((error) => {
+      return { error: error?.message, data: error?.response?.data }
+    })
 }
 
 module.exports = AidesJeunesServiceLogement

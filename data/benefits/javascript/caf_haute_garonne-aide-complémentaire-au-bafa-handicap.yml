@@ -12,6 +12,9 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 17
+  - type: departements
+    values:
+      - "31"
 profils: []
 conditions:
   - Compléter votre <a target="_blank" title="Demande d'aide au BAFA - Nouvelle

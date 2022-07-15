@@ -1,8 +1,7 @@
-const dayjs = require("dayjs")
+import dayjs from "dayjs"
 import { generator } from "../dates.js"
 import { filterByInterestFlag } from "./filter-interest-flag.js"
 import Scolarite from "../scolarite.js"
-
 
 const testRSARecipient = ({ openfiscaResponse, periods }) => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]

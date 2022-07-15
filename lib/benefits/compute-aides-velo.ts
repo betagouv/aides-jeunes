@@ -1,5 +1,5 @@
 import aidesVelo from "aides-velo"
-const { generator } = require("../dates.js")
+import { generator } from "../dates.js"
 
 const veloTypes = {
   velo_mecanique: "mécanique simple",

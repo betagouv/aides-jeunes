@@ -34,7 +34,7 @@ const getIndividu = (situation, id) => {
   return individu
 }
 
-function generateSituation(simulation, useAll?: any) {
+export function generateSituation(simulation, useAll?: any) {
   if (!simulation) {
     return {}
   }
@@ -199,5 +199,3 @@ function generateSituation(simulation, useAll?: any) {
 
   return situation
 }
-
-export default generateSituation

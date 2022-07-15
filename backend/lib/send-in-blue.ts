@@ -1,9 +1,8 @@
-const SibApiV3Sdk = require("sib-api-v3-sdk")
+import SibApiV3Sdk from "sib-api-v3-sdk"
 const defaultClient = SibApiV3Sdk.ApiClient.instance
-const config = require("../config")
+import config from "../config/index.js"
 
-const SendSmtpEmail = SibApiV3Sdk.SendSmtpEmail
-export { SendSmtpEmail }
+export const SendSmtpEmail = SibApiV3Sdk.SendSmtpEmail
 export function sendEmail(sendSmtpEmail) {
   const apiKey = defaultClient.authentications["api-key"]
   apiKey.apiKey = config.sendInBlue.apiKey

@@ -1,8 +1,9 @@
-const ArgumentParser = require("argparse").ArgumentParser
+import { ArgumentParser } from "argparse"
 
-const config = require("../config")
-const mongoose = require("mongoose")
-require("../config/mongoose")(mongoose, config)
+import config from "../config/index.js"
+import mongoose from "mongoose"
+import mongooseConfig from "../config/mongoose.js"
+mongooseConfig(mongoose, config)
 
 const Followup = mongoose.model("Followup")
 

@@ -130,7 +130,7 @@ function getQuestionsPerStep(step, propertyData, individus) {
   }
 }
 
-exports.getQuestions = (req, res) => {
+export function getQuestions(req, res) {
   const simulation = {
     ...simulationBase,
     dateDeValeur: Date.now(),

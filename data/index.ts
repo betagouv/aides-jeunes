@@ -1,6 +1,6 @@
 "use strict"
 
-import additionalBenefitAttributes from "./benefits/additional-attributes/index.js"
+import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 
 function transformInstitutions(collection: any[]) {
@@ -92,7 +92,7 @@ function generate(
   return result
 }
 
-module.exports = {
+export default {
   fn: generate,
   generate: (jam) =>
     generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),

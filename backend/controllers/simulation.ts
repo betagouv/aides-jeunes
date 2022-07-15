@@ -2,7 +2,7 @@ import { omit, filter, pick, assign } from "lodash"
 import mongoose from "mongoose"
 
 import config from "../config/index.js"
-import generateSituation from "../../lib/situations.js"
+import { generateSituation } from "../../lib/situations.js"
 import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
 import migrations from "../lib/migrations/index.js"

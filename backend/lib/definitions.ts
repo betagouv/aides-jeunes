@@ -1,8 +1,8 @@
 import lodash from "lodash"
 const concat = lodash.concat
 
-const ressources = require("../../lib/resources")
-const { forEachProperties } = require("../../lib/mutualized-steps")
+import ressources from "../../lib/resources.js"
+import { forEachProperties } from "../../lib/mutualized-steps.js"
 
 const famille = []
 

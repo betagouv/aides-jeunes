@@ -3,7 +3,7 @@ import utils from "../lib/utils.js"
 import openfisca from "../lib/openfisca/index.js"
 import benefits from "../../data/all.js"
 import { computeAides } from "../../lib/benefits/compute.js"
-import generateSituation from "../../lib/situations.js"
+import { generateSituation } from "../../lib/situations.js"
 import { version } from "../../lib/simulation.js"
 import {
   ANSWER_ENTITY_NAMES,

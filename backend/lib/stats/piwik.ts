@@ -24,7 +24,7 @@ function formatPiwik(data) {
   })
 }
 
-exports.getUsageData = function (fromDate, toDate) {
+function getUsageData(fromDate, toDate) {
   return axios
     .request({
       url: "https://stats.data.gouv.fr/index.php",
@@ -43,3 +43,5 @@ exports.getUsageData = function (fromDate, toDate) {
     .then(formatPiwik)
     .catch(() => [])
 }
+
+export default { getUsageData }

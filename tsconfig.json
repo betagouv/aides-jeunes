@@ -39,6 +39,7 @@
     "data",
     "lib",
     "dist",
-    "dist-server"
+    "dist-server",
+    "tools"
   ]
 }

@@ -29,5 +29,5 @@
     "lib/**/*.ts",
     "lib/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "src", "contribuer"]
+  "exclude": ["node_modules", "src", "contribuer", "tools"]
 }

@@ -4,7 +4,7 @@ import outils from "./backend/controllers/outils.js"
 import mapping from "./backend/lib/openfisca/mapping/index.js"
 import openfiscaParameters from "./backend/lib/openfisca/parameters.js"
 import pollResult from "./backend/lib/mattermost-bot/poll-result.js"
-import generateSituation from "./lib/situations.js"
+import { generateSituation } from "./lib/situations.js"
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest

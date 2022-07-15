@@ -6,6 +6,7 @@ import parseArgs from "minimist"
 import config from "./dist-server/backend/config/index.js"
 import configureAPI from "./dist-server/configure.js"
 import mock from "./dist-server/mock.js"
+import benefits from "./dist-server/data/all.js"
 
 const {
   animation,
@@ -17,8 +18,6 @@ const {
 } = config
 
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
-
-const benefits = require("./data/all")
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
   (benefit) => !benefit.private
@@ -38,7 +37,7 @@ process.env.VUE_APP_NETLIFY_PR = process.env.BRANCH
 process.env.VUE_APP_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}`
 process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${process.env.VUE_APP_BENEFIT_COUNT} aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}.`
 
-module.exports = {
+export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
     config.plugins.push(

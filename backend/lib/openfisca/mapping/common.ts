@@ -6,6 +6,8 @@ import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
+import { datesGeneratorLayout } from "../../../../lib/types/dates.js"
+
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
@@ -38,7 +40,7 @@ function getIndividusSortedParentsFirst(situation) {
     })
 }
 
-function getPeriods(dateDeValeur) {
+function getPeriods(dateDeValeur): any {
   dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
@@ -78,7 +80,7 @@ benefits.all
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
 Object.values(CONDITION_STATEGY).forEach((condition) => {
-  if (condition.extra) {
+  if (condition?.extra) {
     appendExtraVariables(requestedVariables, condition.extra)
   }
 })

@@ -38,7 +38,7 @@ const menage = [
 
 const parents = []
 
-const entities = {
+export const entities = {
   famille,
   individu,
   menage,
@@ -53,7 +53,7 @@ forEachProperties((entityName, propertyName) => {
   entities[entityName].push(propertyName)
 })
 
-const ANSWER_ENTITY_NAMES = [
+export const ANSWER_ENTITY_NAMES = [
   "individu",
   "enfants",
   "famille",
@@ -72,7 +72,7 @@ const LEGACY_FIELD_NAMES = [
   "duree_possession_titre_sejour",
 ]
 
-const ANSWER_FIELD_NAMES = [
+export const ANSWER_FIELD_NAMES = [
   "age", // For anonymized answers
   ...famille,
   ...individu,
@@ -83,7 +83,7 @@ const ANSWER_FIELD_NAMES = [
   ...LEGACY_FIELD_NAMES,
 ]
 
-const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
+export const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
 
 export default {
   ...entities,

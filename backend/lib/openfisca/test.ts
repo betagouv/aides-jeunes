@@ -1,6 +1,7 @@
 import common from "./mapping/common.js"
 import mapping from "./mapping/index.js"
-import { forEach, assign, pick, pickBy } from "lodash"
+import lodash from "lodash"
+const { forEach, assign, pick, pickBy } = lodash
 import benefits from "../../../data/all.js"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 

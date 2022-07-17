@@ -1,4 +1,5 @@
-import { omit, filter, pick, assign } from "lodash"
+import lodash from "lodash"
+const { omit, filter, pick, assign } = lodash
 import mongoose from "mongoose"
 
 import config from "../config/index.js"

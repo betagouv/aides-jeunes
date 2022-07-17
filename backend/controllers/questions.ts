@@ -1,13 +1,15 @@
 import { getParametersSync } from "../lib/openfisca/parameters.js"
 import { generator } from "../../lib/dates.js"
 import { generateSituation } from "../../lib/situations.js"
-import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
-import SimpleProperties from "../../lib/properties/others/simple-properties.js"
 import Individu from "../../lib/individu.js"
 import { generateAllSteps } from "../../lib/state/generator.js"
-import ComplexeProperties from "../../lib/properties/others/complexe-properties.js"
 import { ressourceTypes } from "../../lib/resources.js"
+import SimpleProperties from "../../lib/properties/others/simple-properties.js"
+import ComplexeProperties from "../../lib/properties/others/complexe-properties.js"
 import DepcomProperties from "../../lib/properties/depcom-properties.js"
+import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
+
+import { questionLayout } from "../types/question"
 
 const COMPLEXE_STEPS = Object.values(ComplexeProperties)
 
@@ -89,8 +91,12 @@ function getSituationIndividus(situation) {
     .filter((individu) => individu)
 }
 
-function getQuestionsPerStep(step, propertyData, individus) {
-  let result = {
+function getQuestionsPerStep(
+  step,
+  propertyData,
+  individus
+): questionLayout | undefined {
+  const result: questionLayout = {
     id: step.variable,
     entity: step.entity,
     individu: step.id,
@@ -109,11 +115,10 @@ function getQuestionsPerStep(step, propertyData, individus) {
       ...propertyData,
       individu,
     }
-    result = {
+    return {
       ...result,
       questionFormat: property.getFormat(currentPropertyData),
     }
-    return result
   }
   const complexeStep = COMPLEXE_STEPS.find((complexeStep) =>
     complexeStep.matcher(step)
@@ -148,7 +153,7 @@ export function getQuestions(req, res) {
   }
 
   const steps = generateAllSteps(situation, propertyData.openFiscaParameters)
-  const result = steps.reduce((accum, step) => {
+  const result = steps.reduce((accum: any[], step) => {
     const question = getQuestionsPerStep(step, propertyData, individus)
     if (question) {
       accum.push(question)

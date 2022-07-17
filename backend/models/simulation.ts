@@ -64,7 +64,7 @@ const SimulationSchema = new mongoose.Schema(
   { minimize: false }
 )
 
-SimulationSchema.statics.cookiePrefix = () => {
+SimulationSchema.statics.cookiePrefix = (): string => {
   return "simulation_"
 }
 SimulationSchema.virtual("cookieName").get(function () {

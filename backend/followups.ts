@@ -20,4 +20,4 @@ if (app.get("env") === "development") {
 }
 app.use(router)
 
-module.exports = app
+export default app

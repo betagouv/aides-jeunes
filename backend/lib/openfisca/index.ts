@@ -2,8 +2,7 @@ import config from "../../config/index.js"
 import mapping from "./mapping/index.js"
 import axios from "axios"
 
-const buildOpenFiscaRequest = (exports.buildOpenFiscaRequest =
-  mapping.buildOpenFiscaRequest)
+export const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
 export function sendToOpenfisca(endpoint, transform?: any) {
   if (!transform) {
     transform = buildOpenFiscaRequest

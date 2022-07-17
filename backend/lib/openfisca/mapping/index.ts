@@ -9,10 +9,13 @@ import propertyMove from "./property-move.js"
 import last3MonthsDuplication from "./last3-months-duplication.js"
 import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
-export function dispatchIndividuals(situation) {
+import { situationsLayout } from "../../../../lib/types/situations.js"
+import { familleLayout } from "../../../types/openfisca.js"
+
+export function dispatchIndividuals(situation: situationsLayout) {
   const individus = mapIndividus(situation)
 
-  const familles = { _: situation.famille }
+  const familles: any = { _: situation.famille }
   const foyers_fiscaux = {
     _: {
       declarants: [],

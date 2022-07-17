@@ -6,6 +6,7 @@ import Sentry from "@sentry/node"
 import errorHandler from "errorhandler"
 
 import api from "./backend/api.js"
+import followups from "./backend/followups.js"
 
 export default function (devServer) {
   Sentry.init({
@@ -23,7 +24,7 @@ export default function (devServer) {
   // Setup app
   devServer.app.use("/api", api)
 
-  //devServer.app.use("/followups", require("./backend/followups"))
+  devServer.app.use("/followups", followups)
 
   devServer.app.use(express.urlencoded({ extended: true, limit: "1024kb" }))
 

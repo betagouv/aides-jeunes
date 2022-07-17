@@ -3,7 +3,10 @@ import { ressourceTypes } from "./resources.js"
 import { datesGenerator } from "./benefits/compute.js"
 import Scolarite from "./scolarite.js"
 
-const generateDefaultIndividu = (role, id) => ({
+import { individuLayout } from "./types/individu.js"
+import { situationsLayout } from "./types/situations.js"
+
+const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,
   annee_etude: undefined,
   date_naissance: undefined,
@@ -12,7 +15,7 @@ const generateDefaultIndividu = (role, id) => ({
   _role: role,
 })
 
-const getIndividu = (situation, id) => {
+const getIndividu = (situation: situationsLayout, id: string) => {
   let individu
   switch (id) {
     case "demandeur": {
@@ -34,12 +37,12 @@ const getIndividu = (situation, id) => {
   return individu
 }
 
-export function generateSituation(simulation, useAll?: any) {
+export function generateSituation(simulation: situationsLayout, useAll?: any) {
   if (!simulation) {
     return {}
   }
   const dates = datesGenerator(simulation.dateDeValeur)
-  const situation = {
+  const situation: situationsLayout = {
     dateDeValeur: simulation.dateDeValeur,
     version: simulation.version,
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
@@ -74,7 +77,7 @@ export function generateSituation(simulation, useAll?: any) {
     if (answer.entityName === "individu") {
       if (answer.id === "enfants") {
         answer.value.forEach((response) => {
-          const enfant = situation?.enfants.find(
+          const enfant = situation?.enfants?.find(
             (enfant) => enfant.id == response.id
           )
           if (enfant) {

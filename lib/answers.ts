@@ -1,11 +1,13 @@
-export function isStepAnswered(answers, step) {
+import { answerLayout } from "./types/answer"
+
+export function isStepAnswered(answers: answerLayout[], step) {
   getStepAnswer(answers, step) !== undefined
 }
 
-export const getStepAnswer = (answers, step) =>
+export const getStepAnswer = (answers: answerLayout[], step) =>
   getAnswer(answers, step.entity, step.variable, step.id)
 
-export const getAnswer = (answers, entity, variable, id) => {
+export const getAnswer = (answers: answerLayout[], entity, variable, id) => {
   const answer = answers.find(
     (answer) =>
       answer.id === id &&

@@ -1,12 +1,14 @@
 import lodash from "lodash"
-const cloneDeep = lodash
+const cloneDeep = lodash.cloneDeep
 import dayjs from "dayjs"
+
+import { individuLayout } from "./types/individu"
 
 function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)
 }
 
-function ressourceHeader(individu) {
+function ressourceHeader(individu: individuLayout) {
   switch (individu._role) {
     case "demandeur":
       return "Vos ressources personnelles uniquement"
@@ -20,7 +22,7 @@ function ressourceHeader(individu) {
   }
 }
 
-function find(situation, role, id) {
+function find(situation, role: string, id?: string) {
   return situation[role] || situation.find((s) => s.id === id)
 }
 
@@ -32,8 +34,8 @@ function getConjoint() {
   return get([], "conjoint").individu
 }
 
-function get(individus, role, id?: any) {
-  let DEFAULT_INDIVIDU = {
+function get(individus: individuLayout[], role: string, id?: string) {
+  const DEFAULT_INDIVIDU: individuLayout = {
     id: role,
     annee_etude: undefined,
     date_naissance: undefined,
@@ -42,8 +44,8 @@ function get(individus, role, id?: any) {
     _role: role,
   }
 
-  let existingIndividu = find(individus, role, id)
-  let individu = {
+  const existingIndividu = find(individus, role, id)
+  const individu = {
     ...cloneDeep(DEFAULT_INDIVIDU),
     ...cloneDeep(existingIndividu),
   }
@@ -68,7 +70,7 @@ function get(individus, role, id?: any) {
   }
 }
 
-function getById(individus, individuId) {
+function getById(individus, individuId: string) {
   let individu
   if (individuId) {
     const role = individuId.split("_")[0]
@@ -78,11 +80,11 @@ function getById(individus, individuId) {
 }
 
 const Individu = {
-  age: function (individu, dateDeReference) {
+  age: function (individu: individuLayout, dateDeReference: string) {
     return dayjs(dateDeReference).diff(individu.date_naissance, "year")
   },
 
-  label: function (individu, type?: string) {
+  label: function (individu: individuLayout, type?: string) {
     const VOYELLES = ["a", "e", "i", "o", "u", "y"]
 
     const labelDict = {
@@ -99,6 +101,7 @@ const Individu = {
       préposition: {
         conjoint: () => "de ",
         enfant: () =>
+          individu._firstName &&
           VOYELLES.includes(individu._firstName[0].toLowerCase())
             ? `d'`
             : "de ",
@@ -128,7 +131,7 @@ const Individu = {
   getConjoint,
   ressourceHeader,
 
-  ressourceShortLabel: function (individu) {
+  ressourceShortLabel: function (individu: individuLayout) {
     switch (individu._role) {
       case "demandeur":
         return "vos ressources"
@@ -137,34 +140,14 @@ const Individu = {
     }
   },
 
-  nationaliteLabel: function (individu) {
+  nationaliteLabel: function (individu: individuLayout) {
     return `TODO2${individu.id}` //NationaliteService.getLabel(individu.nationalite);
   },
 
   isRoleParent,
 
-  isParent: function (individu) {
+  isParent: function (individu: individuLayout) {
     return isRoleParent(individu._role)
-  },
-
-  formatStatutsSpecifiques: function (individu) {
-    let statuts = []
-    if (individu.enceinte) {
-      statuts.push("enceinte")
-    }
-
-    if (individu.boursier) {
-      statuts.push("boursier")
-    }
-
-    if (individu.garde_alternee) {
-      statuts.push("en garde alternée")
-    }
-
-    //TODO3 statuts = _.map(statuts, $filter('lowercaseFirst'));
-    statuts = statuts.join(", ")
-    //TODO3 statuts = $filter('uppercaseFirst')(statuts);
-    return "TODO3" //statuts;
   },
 
   situationsFamiliales: [

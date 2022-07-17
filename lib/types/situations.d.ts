@@ -1,11 +1,17 @@
+import { individuLayout } from "./individu"
+
 export interface situationsLayout {
-  dateDeValeur: string
-  version: number
-  demandeur: any //generateDefaultIndividu("demandeur", "demandeur"),
-  enfants: any
-  famille: any
-  menage: {
+  dateDeValeur?: number
+  version?: number
+  //demandeur?: any //generateDefaultIndividu("demandeur", "demandeur"),
+  demandeur?: individuLayout
+  enfants?: any[] | null
+  famille?: any
+  menage?: {
     aide_logement_date_pret_conventionne: string
   }
-  parents: any
+  parents?: any
+  conjoint?: any
+  answers?: any
+  patrimoine?: any
 }

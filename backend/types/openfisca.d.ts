@@ -8,6 +8,7 @@ export interface openfiscaMappingLayout {
     _: {
       declarants: individuLayout[]
       personnes_a_charge: individuLayout[]
+      rfr: any
     }
   }
   menages: {

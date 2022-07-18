@@ -12,7 +12,11 @@ import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-f
 import { situationsLayout } from "../../../../lib/types/situations.js"
 import { familleLayout } from "../../../types/openfisca.js"
 
-export function dispatchIndividuals(situation: situationsLayout) {
+import { openfiscaMappingLayout } from "../../../types/openfisca.js"
+
+export function dispatchIndividuals(
+  situation: situationsLayout
+): openfiscaMappingLayout {
   const individus = mapIndividus(situation)
 
   const familles: any = { _: situation.famille }

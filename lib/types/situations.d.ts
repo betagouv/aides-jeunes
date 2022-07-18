@@ -14,4 +14,5 @@ export interface situationsLayout {
   conjoint?: any
   answers?: any
   patrimoine?: any
+  ressourcesFiscales?: any
 }

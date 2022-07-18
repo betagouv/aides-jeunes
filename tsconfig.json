@@ -21,9 +21,6 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "ts-node": {
-      "esm": true
-    },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [

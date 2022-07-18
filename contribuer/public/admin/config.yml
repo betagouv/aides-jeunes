@@ -867,3 +867,4 @@ collections:
         name: repository
         widget: hidden
         required: false
+      - *field_benefit_position

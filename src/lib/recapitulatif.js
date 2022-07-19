@@ -12,16 +12,16 @@ import dayjs from "dayjs"
 export const getIndividuByStep = (step, component) => {
   const role = step.id.split("_")[0]
   return Individu.get(
-    component.$store.getters.peopleParentsFirst,
+    component.store.peopleParentsFirst,
     role,
     step.id,
-    component.$store.state.dates
+    component.store.dates
   ).individu
 }
 
 export const SIMPLE_STEPS = {
   ressources(step) {
-    const answer = getStepAnswer(this.$store.state.simulation.answers.all, step)
+    const answer = getStepAnswer(this.store.simulation.answers.all, step)
     if (!answer) {
       return []
     }
@@ -55,7 +55,7 @@ export const SIMPLE_STEPS = {
   },
   depcom() {
     const answer = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "menage",
       "depcom",
       undefined
@@ -73,7 +73,7 @@ export const SIMPLE_STEPS = {
 
   _bourseCriteresSociauxCommuneDomicileFamilial() {
     const answer = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "individu",
       "_bourseCriteresSociauxCommuneDomicileFamilial",
       "demandeur"
@@ -88,7 +88,7 @@ export const SIMPLE_STEPS = {
 
   statut_occupation_logement() {
     const answer = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "menage",
       "statut_occupation_logement"
     )
@@ -105,17 +105,11 @@ export const SIMPLE_STEPS = {
 export const COMPLEX_STEPS = {
   enfants: {
     matcher(step) {
-      const answer = getAnswer(
-        this.$store.state.simulation.answers.all,
-        "enfants"
-      )
+      const answer = getAnswer(this.store.simulation.answers.all, "enfants")
       return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
     },
     fn() {
-      const answer = getAnswer(
-        this.$store.state.simulation.answers.all,
-        "enfants"
-      )
+      const answer = getAnswer(this.store.simulation.answers.all, "enfants")
       return [
         {
           label: "Mes enfants à charge",
@@ -130,9 +124,7 @@ export const COMPLEX_STEPS = {
       return step.key.match(/\/loyer$/)
     },
     fn() {
-      const loyerData = Logement.getLoyerData(
-        this.$store.state.simulation.answers.all
-      )
+      const loyerData = Logement.getLoyerData(this.store.simulation.answers.all)
       return [
         {
           label: loyerData.loyerQuestion.label,
@@ -157,7 +149,7 @@ export const COMPLEX_STEPS = {
     fn(step) {
       const answer = (
         getAnswer(
-          this.$store.state.simulation.answers.all,
+          this.store.simulation.answers.all,
           step.entity,
           step.variable,
           step.id

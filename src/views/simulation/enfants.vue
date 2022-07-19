@@ -61,6 +61,7 @@ import ActionButtons from "@/components/action-buttons"
 import Nationality from "@/lib/nationality"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import Scolarite from "@lib/scolarite"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationEnfants",
@@ -68,35 +69,40 @@ export default {
     EnSavoirPlus,
     ActionButtons,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     enfants: function () {
-      return this.$store.getters.situation.enfants || []
+      return this.store.situation.enfants || []
     },
   },
 
   methods: {
     addPAC: function () {
-      const children = this.$store.state.simulation.enfants || []
+      const children = this.store.simulation.enfants || []
       const lastId = children.length > 0 ? children[children.length - 1] : -1
-      this.$store.dispatch("addEnfant")
+      this.store.addEnfant()
       this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
     },
     removePAC: function (id) {
-      this.$store.dispatch("removeEnfant", id)
+      this.store.removeEnfant(id)
     },
     editPAC: function (id) {
-      this.$store.dispatch("editEnfant")
+      this.store.editEnfant()
       this.$router.push(`/simulation/individu/${id}/_firstName`)
     },
     onSubmit: function () {
       const enfants = this.enfants.filter((enfant) => {
         if (!enfant.date_naissance) {
-          this.$store.dispatch("removeEnfant", enfant.id)
+          this.store.removeEnfant(enfant.id)
           return false
         }
         return true
       })
-      this.$store.dispatch("answer", {
+      this.store.answer({
         entityName: "enfants",
         value: enfants.length,
       })

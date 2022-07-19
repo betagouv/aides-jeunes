@@ -382,7 +382,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
   if (!from.name) {
-    store.commit("initialize")
+    // store.commit("initialize")
     store.dispatch("openFiscaParameters")
     if (
       process.env.VUE_APP_CONTEXT !== "production" ||

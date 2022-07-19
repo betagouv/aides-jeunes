@@ -103,68 +103,67 @@ export default {
   },
   mixins: [ResultatsMixin, StatisticsMixin],
   mounted: function () {
-    this.$store.dispatch("updateCurrentAnswers", this.$route.path)
+    this.store.updateCurrentAnswers(this.$route.path)
 
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.situationId) {
-      if (this.$store.state.situationId !== this.$route.query.situationId) {
-        this.$store
-          .dispatch("fetch", this.$route.query.situationId)
-          .then(() => {
-            this.$store.dispatch("compute")
-            this.$router.replace({ situationId: null })
-          })
+      if (this.store.situationId !== this.$route.query.situationId) {
+        this.store.fetch(this.$route.query.situationId).then(() => {
+          this.store.compute()
+          this.$router.replace({ situationId: null })
+        })
       } // Else nothing to do
-    } else if (!this.$store.getters.passSanityCheck) {
+    } else if (!this.store.passSanityCheck) {
       this.restoreLatest()
     } else {
-      if (this.$store.state.calculs.dirty) {
-        this.$store.commit("setSaveSituationError", null)
-        this.$store
-          .dispatch("save")
+      if (this.store.calculs.dirty) {
+        this.store.setSaveSituationError(null)
+        this.store
+          .save()
           .then(() => {
-            if (this.$store.state.access.forbidden) {
+            if (this.store.access.forbidden) {
               return
             }
-            return this.$store.dispatch("compute")
+            return this.store.compute()
           })
           .catch((error) => {
-            this.$store.commit(
+            this.store.commit(
               "setSaveSituationError",
               error.response?.data || error
             )
             this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
           })
-      } else if (!this.$store.getters.hasResults) {
-        if (this.$store.state.simulation.teleservice) {
-          this.$store.getters
-            .fetchRepresentation(this.$store.state.simulation.teleservice)
+      } else if (!this.store.hasResults) {
+        if (this.store.simulation.teleservice) {
+          this.store
+            .fetchRepresentation(this.store.simulation.teleservice)
             .then((representation) => {
               window.location.href = representation.destination.url
             })
         } else {
-          this.$store.dispatch("compute")
+          this.store.compute()
         }
       }
     }
 
-    let vm = this
-    this.stopSubscription = this.$store.subscribe(({ type }, { calculs }) => {
-      switch (type) {
-        case "setResults": {
-          calculs.resultats.droitsEligibles.forEach(function (d) {
-            vm.$matomo?.trackEvent("General", "show", d.id)
-          })
-          this.sendStatistics(this.droits, "show")
-          break
-        }
-        case "saveComputationFailure": {
-          vm.$matomo?.trackEvent("General", "Error")
-          break
-        }
-      }
-    })
+    // let vm = this
+    // TODO do this with pinia
+    // this.stopSubscription = this.$store.subscribe(({ type }, { calculs }) => {
+    //   switch (type) {
+    //     case "setResults": {
+    //       calculs.resultats.droitsEligibles.forEach(function (d) {
+    //         vm.$matomo?.trackEvent("General", "show", d.id)
+    //       })
+    //       this.sendStatistics(this.droits, "show")
+    //       break
+    //     }
+    //     case "saveComputationFailure": {
+    //       vm.$matomo?.trackEvent("General", "Error")
+    //       break
+    //     }
+    //   }
+    // })
   },
   beforeUnmount: function () {
     this.stopSubscription?.()

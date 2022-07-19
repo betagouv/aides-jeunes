@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "SendRecapEmailButton",
   props: {
@@ -19,17 +21,21 @@ export default {
       default: "Recevoir par email",
     },
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     show() {
       return (
-        this.$store.state.recapEmailState !== "ok" &&
-        this.$route.name === "resultats"
+        this.store.recapEmailState !== "ok" && this.$route.name === "resultats"
       )
     },
   },
   methods: {
     showModal: function () {
-      this.$store.commit("setRecapEmailState", "show")
+      this.store.setRecapEmailState("show")
     },
   },
 }

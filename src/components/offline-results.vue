@@ -15,6 +15,7 @@
 <script>
 import RecapEmailModal from "@/components/modals/recap-email-modal"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
+import { useStore } from "@/stores"
 
 export default {
   name: "OfflineResults",
@@ -25,9 +26,14 @@ export default {
   props: {
     id: String,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     show() {
-      return this.$store.state.recapEmailState !== "ok"
+      return this.store.recapEmailState !== "ok"
     },
   },
 }

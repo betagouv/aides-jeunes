@@ -1,6 +1,12 @@
 import Simulation from "../lib/simulation"
+import { useStore } from "@/stores"
 
 export default {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     droits: function () {
       return this.resultats?.droitsEligibles
@@ -17,21 +23,19 @@ export default {
       )
     },
     droitsNonEligiblesShow: function () {
-      return this.$store.state.ameliNoticationDone
+      return this.store.ameliNoticationDone
     },
     resultatsId: function () {
       return this.resultats?._id || "???"
     },
     accessStatus: function () {
-      return this.$store.state.access
+      return this.store.access
     },
     resultatStatus: function () {
-      return this.$store.state.calculs
+      return this.store.calculs
     },
     resultats: function () {
-      return (
-        !this.$store.state.calculs.dirty && this.$store.state.calculs.resultats
-      )
+      return !this.store.calculs.dirty && this.store.calculs.resultats
     },
     hasWarning: function () {
       return this.accessStatus.forbidden
@@ -40,7 +44,7 @@ export default {
       return this.resultatStatus.error
     },
     hasErrorSave: function () {
-      return this.$store.state.saveSituationError
+      return this.store.saveSituationError
     },
     shouldDisplayResults: function () {
       return (
@@ -54,21 +58,17 @@ export default {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
         this.$matomo?.trackEvent("General", "redirection", this.$route.path)
-        return this.$store.dispatch("redirection", (route) =>
-          this.$router.push(route)
-        )
+        return this.store.redirection((route) => this.$router.push(route))
       }
 
       this.$matomo?.trackEvent("General", "compute", this.$route.path)
-      this.$store
-        .dispatch("fetch", lastestSimulation)
-        .then(() => this.$store.dispatch("compute"))
+      this.store.fetch(lastestSimulation).then(() => this.store.compute())
 
       return lastestSimulation
     },
     mock: function (detail) {
       if (this.$route.query.debug !== undefined) {
-        this.$store.dispatch("mockResults", detail || this.$route.query.debug)
+        this.store.mockResults(detail || this.$route.query.debug)
       }
       return this.$route.query.debug !== undefined
     },

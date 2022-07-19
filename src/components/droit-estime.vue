@@ -47,18 +47,21 @@
 
 <script>
 import { formatDroitEstime } from "@lib/benefits/details"
+import { useStore } from "@/stores"
 
 export default {
   name: "DroitEstime",
   props: {
     droit: Object,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     droitEstime() {
-      return formatDroitEstime(
-        this.droit,
-        this.$store.state.openFiscaParameters
-      )
+      return formatDroitEstime(this.droit, this.store.openFiscaParameters)
     },
     isBenefitTypeNumber() {
       return this.droitEstime.type === "float"
@@ -69,7 +72,7 @@ export default {
     showUnexpected() {
       return (
         (this.droit.isBaseRessourcesYearMinusTwo &&
-          !this.$store.getters.ressourcesYearMinusTwoCaptured) ||
+          !this.store.ressourcesYearMinusTwoCaptured) ||
         this.droit.showUnexpectedAmount
       )
     },

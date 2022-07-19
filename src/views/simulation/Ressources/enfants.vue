@@ -7,8 +7,7 @@
       class="form__group"
     >
       {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des
-      ressources
-      <strong>depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+      ressources <strong>depuis {{ store.dates.twelveMonthsAgo.label }}</strong
       > ?
     </YesNoQuestion>
     <ActionButtons :on-submit="onSubmit" />
@@ -19,6 +18,7 @@
 import ActionButtons from "@/components/action-buttons"
 import YesNoQuestion from "@/components/yes-no-question"
 import { nullifyUndefinedValue } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourcesTypes",
@@ -26,17 +26,20 @@ export default {
     YesNoQuestion,
     ActionButtons,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
-    let enfants = this.$store.getters.situation.enfants.map((e) =>
-      Object.assign({}, e)
-    )
+    let enfants = this.store.situation.enfants.map((e) => Object.assign({}, e))
     return {
       enfants,
     }
   },
   methods: {
     onSubmit: function () {
-      this.$store.dispatch("answer", {
+      this.store.answer({
         id: "enfants",
         entityName: "individu",
         fieldName: "_hasRessources",

@@ -47,11 +47,18 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "Home",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     hasExistingSituation: function () {
-      return this.$store.getters.passSanityCheck
+      return this.store.passSanityCheck
     },
     ctaLabel: function () {
       return this.hasExistingSituation
@@ -69,14 +76,14 @@ export default {
   },
   methods: {
     newSituation: function () {
-      this.$store.dispatch("clear", this.$route.query.external_id)
+      this.store.clear(this.$route.query.external_id)
       this.next()
     },
     next: function () {
-      this.$store.dispatch("openFiscaParameters")
+      this.store.openFiscaParameters()
       // we only want to look for benefit variables in preview mode
       if (process.env.VUE_APP_CONTEXT !== "production") {
-        this.$store.dispatch("verifyBenefitVariables")
+        this.store.verifyBenefitVariables()
       }
       this.$push()
     },

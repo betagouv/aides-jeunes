@@ -40,6 +40,7 @@ import LoadingModal from "@/components/loading-modal"
 import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
 import BackButton from "@/components/buttons/back-button"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationResultatsDetail",
@@ -51,9 +52,14 @@ export default {
     LoadingModal,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     situation: function () {
-      return this.$store.getters.situation
+      return this.store.situation
     },
     droit: function () {
       const droitId = this.$route.params.droitId
@@ -63,10 +69,10 @@ export default {
       return droit
     },
     patrimoineCaptured: function () {
-      return this.$store.getters.hasPatrimoine !== undefined
+      return this.store.hasPatrimoine !== undefined
     },
     ressourcesYearMinusTwoCaptured: function () {
-      return this.$store.getters.ressourcesYearMinusTwoCaptured
+      return this.store.ressourcesYearMinusTwoCaptured
     },
   },
   mounted: function () {

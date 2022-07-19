@@ -46,10 +46,16 @@
 <script>
 import { sendError } from "@/plugins/mails"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "ErrorBlock",
   components: { WarningMessage },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     return {
       showDetails: false,
@@ -57,7 +63,7 @@ export default {
   },
   computed: {
     resultatStatus: function () {
-      return this.$store.state.calculs
+      return this.store.calculs
     },
     errorText: function () {
       let value = this.resultatStatus.error && this.resultatStatus.exception
@@ -71,12 +77,12 @@ export default {
       )
     },
     resultats: function () {
-      return this.$store.state.calculs.resultats
+      return this.store.calculs.resultats
     },
   },
   methods: {
     sendErrorMail() {
-      return sendError(this.$store.state.situationId, this.errorText)
+      return sendError(this.store.situationId, this.errorText)
     },
   },
 }

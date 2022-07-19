@@ -40,7 +40,7 @@
           <div class="aj-progressBar"></div>
         </div>
 
-        <div v-if="$store.getters.passSanityCheck" class="aj-btn-container">
+        <div v-if="store.passSanityCheck" class="aj-btn-container">
           <router-link
             v-if="!isRecapitulatif"
             class="button outline"
@@ -58,16 +58,22 @@
 
 <script>
 import BackButton from "@/components/buttons/back-button"
+import { useStore } from "@/stores"
 
 export default {
   name: "Summary",
   components: { BackButton },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     chapters() {
       return this.$state.chapters(
         this.$route.path,
-        this.$store.getters.getAllSteps,
-        this.$store.getters.lastUnansweredStep?.path
+        this.store.getAllSteps,
+        this.store.lastUnansweredStep?.path
       )
     },
     isRecapitulatif() {

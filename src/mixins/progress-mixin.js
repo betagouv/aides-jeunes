@@ -4,7 +4,7 @@ export default {
   computed: {
     progress() {
       const cleanPath = this.$route.path.replace(/\/en_savoir_plus$/, "")
-      const allSteps = this.$store.getters.getAllSteps.filter(
+      const allSteps = this.store.getAllSteps.filter(
         (step) => !["/", "/simulation/resultats"].includes(step.path)
       )
       const activeSteps = allSteps.filter((step) => step.isActive)
@@ -12,7 +12,7 @@ export default {
       // Use anwers as basis when you are not in journey
       if (!allSteps.some((step) => step.path === cleanPath)) {
         const answeredSteps = activeSteps.filter((step) =>
-          isStepAnswered(this.$store.state.simulation.answers.all, step)
+          isStepAnswered(this.store.simulation.answers.all, step)
         )
         return answeredSteps.length / activeSteps.length
       } else {

@@ -1,5 +1,6 @@
 import { next, current, chapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
+import { useStore } from "@/stores"
 
 const StateService = {
   install(app) {
@@ -10,8 +11,9 @@ const StateService = {
     }
 
     app.config.globalProperties.$push = function () {
-      const nextStep = next(this.$route, this.$store.getters.getAllSteps)
-      this.$store.dispatch("updateCurrentAnswers", nextStep.path)
+      const store = useStore()
+      const nextStep = next(this.$route, store.getAllSteps)
+      store.updateCurrentAnswers(nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
           this.$matomo?.trackEvent(

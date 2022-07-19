@@ -46,7 +46,7 @@
             <span>
               <i class="fa fa-warning" aria-hidden="true" />  Cette aide se base
               sur vos ressources de l'année
-              {{ $store.state.dates.fiscalYear.label }}
+              {{ store.dates.fiscalYear.label }}
             </span>
             <router-link
               v-if="!aCharge"
@@ -54,7 +54,7 @@
               to="/simulation/ressources/fiscales"
             >
               Déclarez vos ressources
-              {{ $store.state.dates.fiscalYear.label }}
+              {{ store.dates.fiscalYear.label }}
             </router-link>
           </WarningMessage>
 
@@ -132,6 +132,7 @@ import Situation from "../lib/situation"
 import DroitMixin from "../mixins/droit-mixin"
 import DroitHeader from "@/components/droit-header"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "DroitsDetails",
@@ -148,9 +149,14 @@ export default {
     patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     aCharge() {
-      return Situation.aCharge(this.$store.getters.situation)
+      return Situation.aCharge(this.store.situation)
     },
   },
 }

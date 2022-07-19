@@ -61,8 +61,15 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "Redirection",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     return {
       situationId: null,
@@ -86,7 +93,7 @@ export default {
       return
     }
 
-    this.$store.getters
+    this.store
       .fetchRepresentation(this.$route.query.vers, this.situationId)
       .then((data) => {
         this.teleservice = data

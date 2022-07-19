@@ -10,7 +10,7 @@
           <span v-else-if="individu._role !== 'demandeur'"
             >par {{ individu._firstName }}</span
           >
-          depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+          depuis {{ store.dates.twelveMonthsAgo.label }}</strong
         >. Vous pourrez ensuite saisir les montants.
       </p>
       <div
@@ -53,6 +53,7 @@ import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourceTypes",
@@ -62,20 +63,25 @@ export default {
   props: {
     individu: Object,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
           ressourceType,
-          this.$store.getters.situation,
+          this.store.situation,
           this.individu
         )
       )
     })
 
     const selectedRessources = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "individu",
       "ressources",
       this.$route.params.id
@@ -104,13 +110,13 @@ export default {
     individu: function () {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.$store.getters.situation
+        this.store.situation
       )
     },
   },
   methods: {
     onSubmit: function () {
-      this.$store.dispatch("answer", {
+      this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: "ressources",

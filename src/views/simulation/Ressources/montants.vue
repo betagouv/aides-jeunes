@@ -57,6 +57,7 @@ import { ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import Individu from "@lib/individu"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourcesMontants",
@@ -68,6 +69,9 @@ export default {
     ActionButtons,
   },
   mixins: [RessourceProcessor],
+  setup() {
+    return { store: useStore() }
+  },
   data: function () {
     const individu = this.getIndividu()
     return {
@@ -96,10 +100,10 @@ export default {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const { individu } = Individu.get(
-        this.$store.getters.peopleParentsFirst,
+        this.store.peopleParentsFirst,
         role,
         this.$route.params.id,
-        this.$store.state.dates
+        this.store.dates
       )
       return individu
     },
@@ -107,11 +111,11 @@ export default {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
-        this.$store.getters.situation
+        this.store.situation
       )
 
       const answers = getAnswer(
-        this.$store.state.simulation.answers.all,
+        this.store.simulation.answers.all,
         "individu",
         this.$route.params.category,
         this.$route.params.id
@@ -132,7 +136,7 @@ export default {
           }
 
           const months = Ressource.getPeriodsForCurrentYear(
-            this.$store.state.dates,
+            this.store.dates,
             type
           )
 
@@ -162,7 +166,7 @@ export default {
       return complex.indexOf(type) === -1
     },
     onSubmit: function () {
-      this.$store.dispatch("answer", {
+      this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: this.$route.params.category,
@@ -182,7 +186,7 @@ export default {
       this.types.forEach((type) => {
         if (type.extra) {
           Object.keys(type.extra).forEach((extraId) => {
-            this.$store.dispatch("answer", {
+            this.store.answer({
               id: this.$route.params.id,
               entityName: "individu",
               fieldName: extraId,

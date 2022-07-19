@@ -19,6 +19,7 @@ import WarningMessage from "@/components/warning-message"
 import { getAnswer } from "@lib/answers"
 import DepcomProperties from "@lib/properties/depcom-properties"
 import Warning from "@/lib/warnings"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationDepcomStep",
@@ -26,6 +27,11 @@ export default {
     ActionButtons,
     InputDepCom,
     WarningMessage,
+  },
+  setup() {
+    return {
+      store: useStore(),
+    }
   },
   data: function () {
     const routeSplit = this.$route.path.split("/")
@@ -41,7 +47,7 @@ export default {
 
     const question = DepcomProperties[fieldName].question
     const answer = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       entityName,
       fieldName,
       id
@@ -64,15 +70,14 @@ export default {
   methods: {
     canSubmit(submit) {
       if (!this.nomCommune || !this.codePostal) {
-        submit &&
-          this.$store.dispatch("updateError", "Ce champ est obligatoire.")
+        submit && this.store.updateError("Ce champ est obligatoire.")
         return false
       }
       return Boolean(this.matchingCommune)
     },
     onSubmit: function () {
       if (this.canSubmit(true)) {
-        this.$store.dispatch("answer", {
+        this.store.answer({
           id: this.id,
           entityName: this.entityName,
           fieldName: this.fieldName,

@@ -12,8 +12,8 @@
             >Quitter le mode debug</button
           >
         </div>
-        <WarningMessage v-if="$store.state.message.text"
-          ><div class="message" v-html="$store.state.message.text"
+        <WarningMessage v-if="store.message.text"
+          ><div class="message" v-html="store.message.text"
         /></WarningMessage>
         <div class="aj-box-wrapper">
           <router-view :key="$route.path" />
@@ -31,6 +31,7 @@ import Progress from "@/components/progress"
 import Summary from "@/components/summary"
 import ProgressBar from "@/components/progress-bar"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "Simulation",
@@ -40,6 +41,11 @@ export default {
     TitreChapitre,
     Progress,
     Summary,
+  },
+  setup() {
+    return {
+      store: useStore(),
+    }
   },
   data() {
     return {
@@ -51,12 +57,12 @@ export default {
       return this.$route.path !== "/simulation/recapitulatif"
     },
     debug() {
-      return this.$store.getters.getDebug
+      return this.store.getDebug
     },
   },
   methods: {
     disableDebug() {
-      this.$store.dispatch("setDebug", false)
+      this.store.setDebug(false)
       this.$router.replace({ debug: null })
     },
   },

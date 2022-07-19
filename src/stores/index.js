@@ -63,25 +63,25 @@ function defaultStore() {
   }
 }
 
-function restoreLocal() {
-  let store
-  if (window.sessionStorage.store) {
-    store = JSON.parse(window.sessionStorage.store)
-  }
-
-  if (!store || !store.simulation || !store.simulation.dateDeValeur) {
-    store = defaultStore()
-  }
-
-  return {
-    situationId: store.situationId,
-    simulation: store.simulation,
-    calculs: store.calculs || defaultCalculs(),
-    dates: datesGenerator(store.simulation.dateDeValeur),
-    ameliNoticationDone: store.ameliNoticationDone,
-    recapEmailState: store.recapEmailState,
-  }
-}
+// function restoreLocal() {
+//   let store
+//   if (window.sessionStorage.store) {
+//     store = JSON.parse(window.sessionStorage.store)
+//   }
+//
+//   if (!store || !store.simulation || !store.simulation.dateDeValeur) {
+//     store = defaultStore()
+//   }
+//
+//   return {
+//     situationId: store.situationId,
+//     simulation: store.simulation,
+//     calculs: store.calculs || defaultCalculs(),
+//     dates: datesGenerator(store.simulation.dateDeValeur),
+//     ameliNoticationDone: store.ameliNoticationDone,
+//     recapEmailState: store.recapEmailState,
+//   }
+// }
 
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
@@ -266,15 +266,25 @@ export const useStore = defineStore("store", {
     initialize() {
       // Object.assign(this, restoreLocal(), { saveSituationError: null })
     },
-    clear(external_id) {
-      this.simulation = {
-        answers: { all: [], current: [] },
-        enfants: [],
+    resetSimulation() {
+      const store = defaultStore()
+
+      const newStore = {
+        situationId: store.situationId,
+        simulation: store.simulation,
+        calculs: store.calculs,
+        dates: datesGenerator(store.simulation.dateDeValeur),
+        ameliNoticationDone: store.ameliNoticationDone,
+        recapEmailState: store.recapEmailState,
+        saveSituationError: null,
       }
+      Object.assign(this, newStore)
+    },
+    clear(external_id) {
       this.access.forbidden = false
       this.access.fetching = false
 
-      this.initialize()
+      this.resetSimulation()
 
       this.external_id = external_id
     },
@@ -456,7 +466,7 @@ export const useStore = defineStore("store", {
       next("/simulation")
     },
     openFiscaParameters() {
-      const date = new Date(this.situation.dateDeValeur)
+      const date = new Date(this.simulation.dateDeValeur)
       return axios
         .get(`api/openfisca/parameters/${date.toISOString()}`)
         .then((response) => {
@@ -476,6 +486,9 @@ export const useStore = defineStore("store", {
             )
           }
         })
+    },
+    setSaveSituationError(saveSituationError) {
+      this.saveSituationError = saveSituationError
     },
   },
 })

@@ -30,6 +30,7 @@
 import ActionButtons from "@/components/action-buttons"
 import InputNumber from "@/components/input-number"
 import Logement from "@lib/logement"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationMenageDepCom",
@@ -40,12 +41,15 @@ export default {
   props: {
     modelValue: Number,
   },
+  setup() {
+    return { store: useStore() }
+  },
   data: function () {
-    return Logement.getLoyerData(this.$store.state.simulation.answers.all)
+    return Logement.getLoyerData(this.store.simulation.answers.all)
   },
   methods: {
     onSubmit: function () {
-      this.$store.dispatch("answer", {
+      this.store.answer({
         entityName: "menage",
         fieldName: "loyer",
         value: {

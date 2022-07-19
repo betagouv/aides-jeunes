@@ -1,3 +1,5 @@
+import { useStore } from "@/stores"
+
 function getDisplayMonthly(months, amounts) {
   const result = months.reduce(
     (result, m) => {
@@ -32,6 +34,11 @@ function update(type, newValue, monthIndex, force) {
 }
 
 export default {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   methods: {
     getDisplayMonthly: getDisplayMonthly,
     process: function (type, index, value) {
@@ -76,7 +83,7 @@ export default {
             updatedRessources[t.meta.id][m.id] =
               t.amounts[m.id] || t.amounts[m.id] === 0
                 ? t.amounts[m.id]
-                : t.amounts[this.$store.state.dates.thisMonth.id] || 0
+                : t.amounts[this.store.dates.thisMonth.id] || 0
           })
 
           const extras = t.meta.extra || []
@@ -95,7 +102,7 @@ export default {
             updatedRessources[t.meta.id][m.id] =
               t.amounts[m.id] || t.amounts[m.id] === 0
                 ? t.amounts[m.id]
-                : t.amounts[this.$store.state.dates.thisMonth.id] || 0
+                : t.amounts[this.store.dates.thisMonth.id] || 0
           })
 
           const extras = t.meta.extra || []

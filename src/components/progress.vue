@@ -41,8 +41,15 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "Progress",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data() {
     return {
       showInactiveRoutes: true,
@@ -50,7 +57,7 @@ export default {
   },
   computed: {
     full: function () {
-      return this.$store.getters.getAllSteps.map((s) => {
+      return this.store.getAllSteps.map((s) => {
         if (process.env.NODE_ENV === "production") {
           return s
         } else {

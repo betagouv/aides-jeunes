@@ -18,6 +18,7 @@
 
 <script>
 import StatisticsMixin from "@/mixins/statistics"
+import { useStore } from "@/stores"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
@@ -41,6 +42,11 @@ export default {
     level: String,
     type: String,
     link: [String, Object],
+  },
+  setup() {
+    return {
+      store: useStore(),
+    }
   },
   data: function () {
     return {}
@@ -68,7 +74,7 @@ export default {
         window.localStorage.setItem(
           "trampoline",
           JSON.stringify({
-            situationId: this.$store.state.calculs.resultats._id,
+            situationId: this.store.calculs.resultats._id,
           })
         )
       }

@@ -75,17 +75,24 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "ResultatInattenduPpa",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     isProprietaireAvecPretEnCours: function () {
-      return this.$store.getters.isProprietaireAvecPretEnCours
+      return this.store.isProprietaireAvecPretEnCours
     },
     isHebergeParticipeFrais: function () {
-      return this.$store.getters.isHebergeParticipeFrais
+      return this.store.isHebergeParticipeFrais
     },
     situation: function () {
-      return this.$store.getters.situation
+      return this.store.situation
     },
   },
 }

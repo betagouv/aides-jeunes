@@ -113,6 +113,7 @@ import { patrimoineTypes } from "@lib/resources"
 import YesNoQuestion from "@/components/yes-no-question"
 import InputNumber from "@/components/input-number"
 import ActionButtons from "@/components/action-buttons"
+import { useStore } from "@/stores"
 
 const mapping = {
   hasTerrainsNonLoues: {
@@ -133,11 +134,14 @@ export default {
     YesNoQuestion,
     ActionButtons,
   },
+  setup() {
+    return { store: useStore() }
+  },
   data: function () {
-    const situation = this.$store.getters.situation
+    const situation = this.store.situation
     let periodKey = "month:2012-01:120"
     let demandeur = Object.assign({}, situation.demandeur)
-    let individus = this.$store.getters.peopleParentsFirst
+    let individus = this.store.peopleParentsFirst
 
     let patrimoineProperties = patrimoineTypes.map((p) => p.id)
     patrimoineProperties.forEach(function (patrimoinePropertyName) {
@@ -193,7 +197,7 @@ export default {
           this.demandeur.valeur_patrimoine_loue[this.periodKey]
       }
 
-      this.$store.dispatch("patrimoine", values)
+      this.store.patrimoine(values)
       this.$router.push("/simulation/resultats")
     },
   },

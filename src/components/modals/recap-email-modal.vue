@@ -69,6 +69,7 @@
 import axios from "axios"
 
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "RecapEmailModal",
@@ -78,6 +79,11 @@ export default {
   props: {
     id: String,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     return {
       email: undefined,
@@ -86,7 +92,7 @@ export default {
   },
   computed: {
     recapEmailState() {
-      return this.$store.state.recapEmailState
+      return this.store.recapEmailState
     },
     show() {
       return ![undefined, "ok"].includes(this.recapEmailState)
@@ -94,7 +100,7 @@ export default {
   },
   methods: {
     hide: function () {
-      this.$store.commit("setRecapEmailState", undefined)
+      this.store.setRecapEmailState(undefined)
     },
     getRecap: function (surveyOptin) {
       if (!this.$refs.form.checkValidity()) {
@@ -114,14 +120,14 @@ export default {
         surveyOptin,
       }
 
-      this.$store.commit("setRecapEmailState", "waiting")
+      this.store.setRecapEmailState("waiting")
       return axios
         .post(uri, payload)
         .then(() => {
-          this.$store.commit("setRecapEmailState", "ok")
+          this.store.setRecapEmailState("ok")
         })
         .catch(() => {
-          this.$store.commit("setRecapEmailState", "error")
+          this.store.setRecapEmailState("error")
         })
     },
   },

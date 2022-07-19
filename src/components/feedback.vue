@@ -116,9 +116,15 @@ import {
   sendEcartInstructions,
   sendSuggestion,
 } from "@/plugins/mails"
+import { useStore } from "@/stores"
 
 export default {
   name: "Feedback",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     return {
       openfiscaTracerURL: false,
@@ -129,7 +135,7 @@ export default {
   },
   computed: {
     situationId: function () {
-      return this.$store.state.situationId
+      return this.store.situationId
     },
     sendMailEcartSimulation() {
       return sendEcartSimulation(this.situationId)
@@ -144,23 +150,21 @@ export default {
   methods: {
     toggleLinks: function () {
       if (!this.openfiscaTracerURL) {
-        this.$store.getters
+        this.store
           .fetchRepresentation("openfisca_tracer")
           .then((representation) => {
             this.openfiscaTracerURL = representation.destination.url
           })
 
-        this.$store.getters
+        this.store
           .fetchRepresentation("openfisca_axe")
           .then((representation) => {
             this.openfiscaAxeURL = representation.destination.url
           })
 
-        this.$store.getters
-          .fetchRepresentation("PNDS")
-          .then((representation) => {
-            this.PNDSURL = representation.destination.url
-          })
+        this.store.fetchRepresentation("PNDS").then((representation) => {
+          this.PNDSURL = representation.destination.url
+        })
       }
       this.showExpertLinks = !this.showExpertLinks
     },

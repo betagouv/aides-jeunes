@@ -9,7 +9,7 @@
           getQuestionLabel(
             individu,
             type.meta,
-            $store.state.dates.twelveMonthsAgo.label
+            store.dates.twelveMonthsAgo.label
           )
         "
       />
@@ -17,7 +17,7 @@
     <label v-if="type.displayMonthly === true" class="form__group">
       Indiquez le montant <b>mensuel net</b> :
       <InputNumber
-        :value="type.amounts[$store.state.dates.thisMonth.id]"
+        :value="type.amounts[store.dates.thisMonth.id]"
         @update:model-value="$emit('update', 'singleValue', index, $event)"
       />
     </label>
@@ -50,6 +50,7 @@ import MonthLabel from "@/components/month-label"
 import YesNoQuestion from "@/components/yes-no-question"
 import Individu from "@lib/individu"
 import InputNumber from "@/components/input-number"
+import { useStore } from "@/stores"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
   let verbForms = {
@@ -98,6 +99,11 @@ export default {
     withoutHeader: Boolean,
   },
   emits: ["update"],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     singleValue: {
       get: function () {

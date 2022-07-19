@@ -20,10 +20,16 @@
 import Chapters from "@lib/chapters"
 import MenuButton from "@/components/buttons/menu-button"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
+import { useStore } from "@/stores"
 
 export default {
   name: "TitreChapitre",
   components: { SendRecapEmailButton, MenuButton },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
@@ -41,8 +47,8 @@ export default {
 
       const current = path.replace(/\/en_savoir_plus/, "")
       const step =
-        this.$store.getters.passSanityCheck &&
-        this.$state.current(current, this.$store.getters.getAllSteps)
+        this.store.passSanityCheck &&
+        this.$state.current(current, this.store.getAllSteps)
       const chapterName = step?.chapter || ""
       return Chapters.getLabel(chapterName)
     },

@@ -1,16 +1,22 @@
 import Individu from "@lib/individu"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props
 
   return {
+    setup() {
+      return {
+        store: useStore(),
+      }
+    },
     data: function () {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const value = getAnswer(
-        this.$store.state.simulation.answers.all,
+        this.store.simulation.answers.all,
         entityName,
         fieldName,
         id
@@ -32,16 +38,13 @@ export const createIndividuMixin = (props) => {
         const hasError =
           !this.optional && (this.value === undefined || this.value === "")
         if (submit) {
-          this.$store.dispatch(
-            "updateError",
-            hasError && "Ce champ est obligatoire."
-          )
+          this.store.updateError(hasError && "Ce champ est obligatoire.")
         }
         return !hasError
       },
       onSubmit: function () {
         if (this.canSubmit(true)) {
-          this.$store.dispatch("answer", {
+          this.store.answer({
             id: this.$route.params.id,
             entityName: "individu",
             fieldName: this.fieldName,

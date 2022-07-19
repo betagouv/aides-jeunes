@@ -5,11 +5,18 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "FoyerRecap",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     situation: function () {
-      return this.$store.getters.situation
+      return this.store.situation
     },
   },
 }

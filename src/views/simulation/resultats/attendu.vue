@@ -153,7 +153,7 @@
           <ul>
             <li>
               le contenu du formulaire et en indiquant l'identifiant suivant :
-              <span class="bold">{{ $store.state.situationId }} .</span>
+              <span class="bold">{{ store.situationId }} .</span>
             </li>
             <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
           </ul>
@@ -196,11 +196,15 @@ import {
   getGithubPRFiles,
 } from "@/lib/contributions"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "Attendu",
   components: { WarningMessage },
   mixins: [ContactEmailMixin, ResultatsMixin],
+  setup() {
+    return { store: useStore() }
+  },
   data: function () {
     let benefitKeyed = {}
     let benefits = []
@@ -252,7 +256,7 @@ export default {
         },
       ]
       map.forEach((p) => {
-        this.$store.state.calculs.resultats[p.prop].forEach((b) => {
+        this.store.calculs.resultats[p.prop].forEach((b) => {
           resultats[b.id] = Object.assign({ status: p.status }, b)
         })
       })
@@ -278,7 +282,7 @@ export default {
       }
     },
     testGenerationEndpoint: function () {
-      return `api/simulation/${this.$store.state.situationId}/openfisca-test`
+      return `api/simulation/${this.store.situationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(
@@ -286,10 +290,10 @@ export default {
       )}`
     },
     filename() {
-      return `mes-aides-${this.$store.state.situationId}.yml`
+      return `mes-aides-${this.store.situationId}.yml`
     },
     sendMail() {
-      return sendMontantsAttendus(this.$store.state.situationId)
+      return sendMontantsAttendus(this.store.situationId)
     },
   },
   mounted() {

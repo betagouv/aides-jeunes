@@ -73,6 +73,7 @@
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
+    "pinia": "^2.0.16",
     "require-from-string": "^2.0.2",
     "sass": "^1.47.0",
     "sass-loader": "^12.4.0",

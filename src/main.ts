@@ -24,12 +24,14 @@ import { iframeResizerContentWindow } from "iframe-resizer"
 
 import "dayjs/locale/fr"
 import dayjs from "dayjs"
+import { createPinia } from "pinia"
 
 const Resizer = {
   install: function () {
     iframeResizerContentWindow
   },
 }
+const pinia = createPinia()
 
 const app = createApp({
   render: () => h(App),
@@ -67,5 +69,6 @@ app.config.globalProperties.$filters = {
 dayjs.locale("fr")
 
 app.use(store)
+app.use(pinia)
 app.use(router)
 app.mount(document.body)

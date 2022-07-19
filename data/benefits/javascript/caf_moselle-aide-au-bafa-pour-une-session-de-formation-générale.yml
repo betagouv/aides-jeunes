@@ -2,10 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_moselle
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de la Moselle pour vous aider à financer votre session
-  en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  en complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,12 +15,13 @@ conditions_generales:
     excludes:
       - regime_agricole
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-moselle/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
-form: https://www.caf.fr/sites/default/files/caf/571/pdfDivers/Bafa/Bafa_aideFormGle_dec2020.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-la-moselle/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
-prefix: l’
+conditions:
+  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 200
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-de-la-moselle/offre-de-service/vie-professionnelle/l-aide-au-financement-du-bafa
+form: https://caf.fr/sites/default/files/medias/571/OffredeService/VieProfessionnelle/Bafa_aideFormGle_dec2020.pdf
+instructions: https://caf.fr/allocataires/caf-de-la-moselle/offre-de-service/vie-professionnelle/l-aide-au-financement-du-bafa

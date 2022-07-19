@@ -84,10 +84,6 @@ export default {
             updatedRessources[e.id] = t.extra[e.id]
           })
         })
-        this.$store.dispatch(
-          "updateIndividu",
-          Object.assign({}, this.types[0].individu, updatedRessources)
-        )
       } else {
         this.types.forEach((t) => {
           let updatedRessources = {}
@@ -106,11 +102,6 @@ export default {
           extras.forEach((e) => {
             updatedRessources[e.id] = t.extra[e.id]
           })
-
-          this.$store.dispatch(
-            "updateIndividu",
-            Object.assign({}, t.individu, updatedRessources)
-          )
         })
       }
     },

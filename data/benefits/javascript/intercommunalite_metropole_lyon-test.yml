@@ -1,0 +1,26 @@
+label: Test
+institution: intercommunalite_metropole_lyon
+description: Blablabla j'ai pas d'inspi
+prefix: l’aide
+conditions_generales:
+  - type: communes
+    values:
+      - "55039"
+profils:
+  - type: apprenti
+    conditions:
+      - type: age
+        operator: =
+        value: 18
+conditions:
+  - Avoir le permis de conduire.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 500
+link: https://service-public.fr
+teleservice: https://service-public.fr
+form: ""
+instructions: ""

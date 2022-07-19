@@ -9,25 +9,41 @@
   >
     <div>
       <template v-if="isBenefitTypeNumber || isBenefitTypeString">
-        <span>
-          <span class="aj-droit-estime-label font-normal font-base">
-            {{ droitEstime.label }}
+        <template v-if="droitEstime.uncomputability">
+          <span>
+            <span class="aj-droit-estime-label font-normal font-base">
+              {{ droitEstime.label }}
+            </span>
+            <br />
+            <span
+              class="aj-droit-estime-value font-bold"
+              data-testid="droit-estime-value"
+            >
+              Inconnu
+            </span>
           </span>
-          <br />
+        </template>
+        <template v-else>
+          <span>
+            <span class="aj-droit-estime-label font-normal font-base">
+              {{ droitEstime.label }}
+            </span>
+            <br />
+            <span
+              class="aj-droit-estime-value font-bold"
+              data-testid="droit-estime-value"
+            >
+              {{ droitEstime.value }}
+            </span>
+          </span>
           <span
-            class="aj-droit-estime-value font-bold"
-            data-testid="droit-estime-value"
+            v-if="droitEstime.legend"
+            class="aj-droit-estime-legend"
+            data-testid="droit-estime-legend"
           >
-            {{ droitEstime.value }}
+            {{ droitEstime.legend }}
           </span>
-        </span>
-        <span
-          v-if="droitEstime.legend"
-          class="aj-droit-estime-legend"
-          data-testid="droit-estime-legend"
-        >
-          {{ droitEstime.legend }}
-        </span>
+        </template>
       </template>
     </div>
     <div class="aj-droit-estime-inattendu">

@@ -54,6 +54,7 @@ function formatDroitEstime(droit, parameters) {
     value: droit.montant || 1,
     unit: droit.unit || "€",
     icon: undefined,
+    uncomputability: typeof droit.montant === "string",
   }
   switch (droit.type) {
     case "float":

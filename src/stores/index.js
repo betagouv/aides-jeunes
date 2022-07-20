@@ -135,11 +135,8 @@ export const useStore = defineStore("store", {
     ressourcesYearMinusTwoCaptured() {
       const yearMinusTwo = this.dates.fiscalYear.id
       const januaryYearMinusTwo = this.dates.fiscalYear12Months[0].id
-      return this.peopleParentsFirst.some(function (individu) {
-        return categoriesRnc.reduce(function (
-          hasYm2RessourcesAccum,
-          categorieRnc
-        ) {
+      return this.peopleParentsFirst.some((individu) => {
+        return categoriesRnc.reduce((hasYm2RessourcesAccum, categorieRnc) => {
           if (!individu[categorieRnc.id]) {
             return hasYm2RessourcesAccum
           }
@@ -149,8 +146,7 @@ export const useStore = defineStore("store", {
             typeof individu[categorieRnc.id][yearMinusTwo] == "number" ||
             typeof individu[categorieRnc.id][januaryYearMinusTwo] == "number"
           )
-        },
-        false)
+        }, false)
       })
     },
     isProprietaireAvecPretEnCours() {
@@ -178,7 +174,7 @@ export const useStore = defineStore("store", {
         return undefined
       }
 
-      return patrimoineTypes.reduce(function (accum, ressource) {
+      return patrimoineTypes.reduce((accum, ressource) => {
         if (!demandeur[ressource.id]) {
           return accum
         }
@@ -187,7 +183,7 @@ export const useStore = defineStore("store", {
       }, undefined)
     },
     fetchRepresentation() {
-      return function (representation, situationId) {
+      return (representation, situationId) => {
         return axios
           .get(
             `api/simulation/${
@@ -437,10 +433,10 @@ export const useStore = defineStore("store", {
 
       return axios
         .get(`api/simulation/${this.situationId}/openfisca-response`)
-        .then(function (OpenfiscaResponse) {
-          return OpenfiscaResponse.data
+        .then((openfiscaResponse) => {
+          return openfiscaResponse.data
         })
-        .then(function (openfiscaResponse) {
+        .then((openfiscaResponse) => {
           return computeAides.bind(Institution.benefits)(
             this.situation,
             this.situationId,

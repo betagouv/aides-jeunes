@@ -124,14 +124,15 @@ export default {
       this.restoreLatest()
     } else {
       if (this.store.calculs.dirty) {
+        const vm = this
         this.store.setSaveSituationError(null)
         this.store
           .save()
           .then(() => {
-            if (this.store.access.forbidden) {
+            if (vm.store.access.forbidden) {
               return
             }
-            return this.store.compute()
+            return vm.store.compute()
           })
           .catch((error) => {
             this.store.setSaveSituationError(error.response?.data || error)

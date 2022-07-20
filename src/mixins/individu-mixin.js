@@ -1,16 +1,10 @@
 import Individu from "@lib/individu"
 import { getAnswer } from "@lib/answers"
-import { useStore } from "@/stores"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props
 
   return {
-    setup() {
-      return {
-        store: useStore(),
-      }
-    },
     data() {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id

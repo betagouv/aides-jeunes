@@ -6,6 +6,8 @@
       >
     </router-link>
 
+    {{ store.situation }}
+
     <p v-show="updating">
       <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…

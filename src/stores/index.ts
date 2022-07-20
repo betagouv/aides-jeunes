@@ -5,16 +5,28 @@ import { computeAides, datesGenerator } from "../../lib/benefits/compute"
 import { generateAllSteps } from "../../lib/state/generator"
 import { isStepAnswered, storeAnswer } from "../../lib/answers"
 import { categoriesRnc, patrimoineTypes } from "../../lib/resources"
+// @ts-ignore
 import some from "lodash/some"
+// @ts-ignore
 import values from "lodash/values"
 import axios from "axios"
 import { generateSituation } from "../../lib/situations"
 import ABTestingService from "@/plugins/ab-testing-service"
 import Institution from "@/lib/institution"
+import {
+  Answer,
+  Calculs,
+  PersistedStore,
+  Resultats,
+  Simulation,
+  Situation,
+  Store,
+} from "../../lib/types/store"
 
-function defaultCalculs() {
+function defaultCalculs(): Calculs {
   return {
     resultats: {
+      _id: undefined,
       droitsEligibles: null,
       droitsNonEligibles: null,
       droitsInjectes: null,
@@ -26,7 +38,7 @@ function defaultCalculs() {
   }
 }
 
-function defaultStore() {
+function defaultStore(): Store {
   const now = dayjs().format()
 
   return {
@@ -52,7 +64,6 @@ function defaultStore() {
     calculs: defaultCalculs(),
     dates: datesGenerator(now),
     ameliNoticationDone: false,
-    lieux: null,
     title: null,
     themeColor: null,
     inIframe: false,
@@ -60,11 +71,15 @@ function defaultStore() {
     saveSituationError: null,
     openFiscaParameters: {},
     recapEmailState: undefined,
+    external_id: undefined,
   }
 }
 
-function getPersitedStateProperties(state, save = false) {
-  const persistedStoreData = {
+function getPersitedStateProperties(
+  state: Store,
+  save = false
+): PersistedStore {
+  const persistedStoreData: PersistedStore = {
     situationId: state.situationId,
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
@@ -91,7 +106,15 @@ function restoreLocal() {
   return getPersitedStateProperties(state)
 }
 
-export function persistDataOnSessionStorage({ after, store, name }) {
+export function persistDataOnSessionStorage({
+  after,
+  store,
+  name,
+}: {
+  after: (callback: () => void) => void
+  store: Store
+  name: string
+}) {
   after(() => {
     if (name === "initialize") {
       return
@@ -107,31 +130,28 @@ export function persistDataOnSessionStorage({ after, store, name }) {
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
   getters: {
-    passSanityCheck() {
-      return this.situation.demandeur && this.situation.demandeur.date_naissance
+    passSanityCheck(): boolean {
+      return Boolean(
+        this.situation.demandeur && this.situation.demandeur.date_naissance
+      )
     },
-    getDebug() {
+    getDebug(): boolean {
       return this.debug
     },
-    peopleParentsFirst() {
+    peopleParentsFirst(): any[] {
       return []
         .concat(
+          // @ts-ignore
           this.situation.demandeur,
           this.situation.conjoint,
           this.situation.enfants
         )
         .filter((individu) => individu)
     },
-    getIndividu() {
-      return (id) => {
-        const items = this.peopleParentsFirst.filter((i) => i.id === id)
-        return items.length ? items[0] : null
-      }
-    },
-    getAllSteps() {
+    getAllSteps(): any[] {
       return generateAllSteps(this.situation, this.openFiscaParameters)
     },
-    getAllAnsweredSteps() {
+    getAllAnsweredSteps(): any[] {
       const allSteps = this.getAllSteps.filter(
         (step) =>
           step.path !== "/" &&
@@ -142,7 +162,7 @@ export const useStore = defineStore("store", {
         isStepAnswered(this.simulation.answers.all, step)
       )
     },
-    lastUnansweredStep() {
+    lastUnansweredStep(): any {
       const allSteps = this.getAllSteps.filter(
         (step) =>
           step.path !== "/" &&
@@ -156,7 +176,8 @@ export const useStore = defineStore("store", {
     ressourcesYearMinusTwoCaptured() {
       const yearMinusTwo = this.dates.fiscalYear.id
       const januaryYearMinusTwo = this.dates.fiscalYear12Months[0].id
-      return this.peopleParentsFirst.some((individu) => {
+      // @ts-ignore
+      return this.peopleParentsFirst.some((individu: any) => {
         return categoriesRnc.reduce((hasYm2RessourcesAccum, categorieRnc) => {
           if (!individu[categorieRnc.id]) {
             return hasYm2RessourcesAccum
@@ -170,14 +191,14 @@ export const useStore = defineStore("store", {
         }, false)
       })
     },
-    isProprietaireAvecPretEnCours() {
+    isProprietaireAvecPretEnCours(): boolean {
       const menage = this.situation.menage
       const isProprietaire = ["primo_accedant", "proprietaire"].includes(
         menage.statut_occupation_logement
       )
       return isProprietaire && menage.loyer > 0
     },
-    isHebergeParticipeFrais() {
+    isHebergeParticipeFrais(): boolean {
       const menage = this.situation.menage
       return (
         menage.statut_occupation_logement === "loge_gratuitement" &&
@@ -189,7 +210,7 @@ export const useStore = defineStore("store", {
      * - false if those ressources are all null else
      * - true
      */
-    hasPatrimoine() {
+    hasPatrimoine(): any {
       const demandeur = this.situation.demandeur
       if (!demandeur) {
         return undefined
@@ -204,7 +225,7 @@ export const useStore = defineStore("store", {
       }, undefined)
     },
     fetchRepresentation() {
-      return (representation, situationId) => {
+      return (representation: string, situationId: string) => {
         return axios
           .get(
             `api/simulation/${
@@ -214,14 +235,14 @@ export const useStore = defineStore("store", {
           .then((response) => response.data)
       }
     },
-    hasResults() {
-      return (
+    hasResults(): boolean {
+      return Boolean(
         this.situationId &&
-        this.calculs.resultats._id &&
-        this.calculs.resultats._id === this.situationId
+          this.calculs.resultats._id &&
+          this.calculs.resultats._id === this.situationId
       )
     },
-    situation() {
+    situation(): Situation {
       return generateSituation(this.simulation, true)
     },
   },
@@ -229,7 +250,7 @@ export const useStore = defineStore("store", {
     setDirty() {
       this.calculs.dirty = true
     },
-    answer(answer) {
+    answer(answer: Answer) {
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer, false),
@@ -242,7 +263,7 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    updateCurrentAnswers(newPath) {
+    updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps
       const currentAnswers = []
       let i = 0
@@ -266,14 +287,14 @@ export const useStore = defineStore("store", {
       }
       this.simulation.answers.current = currentAnswers
     },
-    ressourcesFiscales(ressourcesFiscales) {
+    ressourcesFiscales(ressourcesFiscales: any) {
       this.simulation = {
         ...this.simulation,
         ressourcesFiscales,
       }
       this.setDirty()
     },
-    patrimoine(patrimoine) {
+    patrimoine(patrimoine: any) {
       this.simulation = {
         ...this.simulation,
         patrimoine,
@@ -289,7 +310,7 @@ export const useStore = defineStore("store", {
       const newStore = getPersitedStateProperties(state)
       Object.assign(this, newStore)
     },
-    clear(external_id) {
+    clear(external_id: string) {
       this.access.forbidden = false
       this.access.fetching = false
 
@@ -297,7 +318,7 @@ export const useStore = defineStore("store", {
 
       this.external_id = external_id
     },
-    setDebug(debug) {
+    setDebug(debug: boolean) {
       this.debug = debug
     },
     addEnfant() {
@@ -345,7 +366,7 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    editEnfant(id) {
+    editEnfant(id: number) {
       // When you edit a children you need to remove all current answer after the child validation
       const currentLastIndex = this.simulation.answers.current.findIndex(
         (answer) => answer.entityName === "enfants"
@@ -365,28 +386,28 @@ export const useStore = defineStore("store", {
 
       this.setDirty()
     },
-    removeEnfant(id) {
+    removeEnfant(id: string) {
       const enfantIndex = parseInt(id.split("_")[1])
       this.simulation = {
         ...this.simulation,
-        enfants: this.simulation.enfants.filter((i) => i !== enfantIndex),
+        enfants: this.simulation.enfants?.filter((i) => i !== enfantIndex),
       }
       this.setDirty()
     },
-    updateError(error) {
+    updateError(error: string) {
       this.error = error
     },
-    setRecapEmailState(newState) {
+    setRecapEmailState(newState: string | undefined) {
       this.recapEmailState = newState
     },
-    setId(id) {
+    setId(id: string) {
       this.situationId = id
       this.calculs.dirty = false
     },
     save() {
       this.setRecapEmailState(undefined)
 
-      let simulation = { ...this.simulation, _id: undefined }
+      const simulation = { ...this.simulation, _id: undefined }
       if (this.situationId) {
         simulation.modifiedFrom = this.situationId
       }
@@ -398,7 +419,7 @@ export const useStore = defineStore("store", {
         .then((payload) => payload._id)
         .then((id) => this.setId(id))
     },
-    reset(simulation) {
+    reset(simulation: Simulation) {
       this.access.fetching = false
       this.simulation = simulation
       this.dates = datesGenerator(simulation.dateDeValeur || new Date())
@@ -409,7 +430,7 @@ export const useStore = defineStore("store", {
       this.access.fetching = false
       this.access.forbidden = true
     },
-    fetch(id) {
+    fetch(id: string) {
       this.setRecapEmailState(undefined)
 
       this.access.fetching = true
@@ -424,11 +445,12 @@ export const useStore = defineStore("store", {
           this.saveAccessFailure()
         })
     },
-    setResults(results) {
+    setResults(results: Resultats) {
       this.calculs.resultats = results
       this.calculs.updating = false
     },
-    mockResults(benefit) {
+    mockResults(benefit: any) {
+      // @ts-ignore
       this.setResults(Institution.mockResults(benefit))
     },
     startComputation() {
@@ -436,12 +458,12 @@ export const useStore = defineStore("store", {
       this.calculs.exception = false
       this.calculs.error = false
     },
-    saveComputationFailure(error) {
+    saveComputationFailure(error: any) {
       this.calculs.updating = false
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    compute(showPrivate) {
+    compute(showPrivate: boolean) {
       this.startComputation()
 
       return axios
@@ -457,12 +479,12 @@ export const useStore = defineStore("store", {
             showPrivate
           )
         })
-        .then((results) => this.setResults(results))
+        .then((results) => this.setResults(results as Resultats))
         .catch((error) => {
           this.saveComputationFailure(error)
         })
     },
-    setMessage(message, counter) {
+    setMessage(message: string, counter?: number) {
       this.message = {
         text: message,
         counter: counter || 1,
@@ -473,18 +495,19 @@ export const useStore = defineStore("store", {
         return
       }
 
-      this.message.counter = this.message.counter - 1
+      this.message.counter = (this.message.counter || 1) - 1
       if (this.message.counter < 0) {
         this.message.text = null
       }
     },
-    redirection(next) {
+    redirection(next: (path: string) => void) {
       this.setMessage(
         `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VUE_APP_CONTACT_EMAIL}">${process.env.VUE_APP_CONTACT_EMAIL}</a>.`
       )
       next("/simulation")
     },
     setOpenFiscaParameters() {
+      // @ts-ignore
       const date = new Date(this.simulation.dateDeValeur)
       return axios
         .get(`api/openfisca/parameters/${date.toISOString()}`)
@@ -509,20 +532,20 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
           }
         })
     },
-    setSaveSituationError(saveSituationError) {
+    setSaveSituationError(saveSituationError: string) {
       this.saveSituationError = saveSituationError
     },
     setAmeliNoticationDone() {
       this.ameliNoticationDone = true
     },
-    setIframeOrigin(newOrigin) {
+    setIframeOrigin(newOrigin: string) {
       this.inIframe = true
       this.iframeOrigin = newOrigin
     },
-    setThemeColor(themeColor) {
+    setThemeColor(themeColor: string) {
       this.themeColor = themeColor
     },
-    setTitle(newTitle) {
+    setTitle(newTitle: string) {
       this.title = newTitle
     },
   },

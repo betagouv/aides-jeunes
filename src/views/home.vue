@@ -75,7 +75,7 @@ export default {
     next: function () {
       this.$store.dispatch("openFiscaParameters")
       // we only want to look for benefit variables in preview mode
-      if (process.env.VUE_APP_CONTEXT === "deploy-preview") {
+      if (process.env.VUE_APP_CONTEXT !== "production") {
         this.$store.dispatch("verifyBenefitVariables")
       }
       this.$push()

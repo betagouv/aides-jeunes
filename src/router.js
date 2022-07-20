@@ -387,8 +387,6 @@ router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
   const store = useStore()
   if (!from.name) {
-    // store.commit("initialize")
-    store.setOpenFiscaParameters()
     if (
       process.env.VUE_APP_CONTEXT !== "production" ||
       to?.redirectedFrom?.fullPath === "/init-ci"

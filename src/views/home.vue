@@ -3,7 +3,6 @@
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
-          {{ context }}
           <h1>
             <span class="hightlight"
               >Évaluez vos droits à<br />{{ benefitsNumber }} aides

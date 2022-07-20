@@ -63,25 +63,44 @@ function defaultStore() {
   }
 }
 
-// function restoreLocal() {
-//   let store
-//   if (window.sessionStorage.store) {
-//     store = JSON.parse(window.sessionStorage.store)
-//   }
-//
-//   if (!store || !store.simulation || !store.simulation.dateDeValeur) {
-//     store = defaultStore()
-//   }
-//
-//   return {
-//     situationId: store.situationId,
-//     simulation: store.simulation,
-//     calculs: store.calculs || defaultCalculs(),
-//     dates: datesGenerator(store.simulation.dateDeValeur),
-//     ameliNoticationDone: store.ameliNoticationDone,
-//     recapEmailState: store.recapEmailState,
-//   }
-// }
+function getPersitedStateProperties(state, save = false) {
+  const persistedStoreData = {
+    situationId: state.situationId,
+    simulation: state.simulation,
+    calculs: state.calculs || defaultCalculs(),
+    ameliNoticationDone: state.ameliNoticationDone,
+    recapEmailState: state.recapEmailState,
+  }
+  if (!save) {
+    persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)
+  }
+
+  return persistedStoreData
+}
+
+function restoreLocal() {
+  let state
+  if (window.sessionStorage.store) {
+    state = JSON.parse(window.sessionStorage.store)
+  }
+
+  if (!state || !state.simulation || !state.simulation.dateDeValeur) {
+    state = defaultStore()
+  }
+
+  return getPersitedStateProperties(state)
+}
+
+export function persistDataOnSessionStorage({ type }, state) {
+  if (type === "initialize") {
+    return
+  }
+  const persitedStateProperties = getPersitedStateProperties(state, true)
+  window.sessionStorage.setItem(
+    "store",
+    JSON.stringify(persitedStateProperties)
+  )
+}
 
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
@@ -260,20 +279,12 @@ export const useStore = defineStore("store", {
       this.setDirty()
     },
     initialize() {
-      // Object.assign(this, restoreLocal(), { saveSituationError: null })
+      Object.assign(this, restoreLocal(), { saveSituationError: null })
     },
     resetSimulation() {
-      const store = defaultStore()
+      const state = defaultStore()
 
-      const newStore = {
-        situationId: store.situationId,
-        simulation: store.simulation,
-        calculs: store.calculs,
-        dates: datesGenerator(store.simulation.dateDeValeur),
-        ameliNoticationDone: store.ameliNoticationDone,
-        recapEmailState: store.recapEmailState,
-        saveSituationError: null,
-      }
+      const newStore = getPersitedStateProperties(state)
       Object.assign(this, newStore)
     },
     clear(external_id) {
@@ -353,7 +364,7 @@ export const useStore = defineStore("store", {
       this.setDirty()
     },
     removeEnfant(id) {
-      const enfantIndex = id.split("_")[1]
+      const enfantIndex = parseInt(id.split("_")[1])
       this.simulation = {
         ...this.simulation,
         enfants: this.simulation.enfants.filter((i) => i !== enfantIndex),

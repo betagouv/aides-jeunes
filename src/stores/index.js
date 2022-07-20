@@ -91,15 +91,17 @@ function restoreLocal() {
   return getPersitedStateProperties(state)
 }
 
-export function persistDataOnSessionStorage({ type }, state) {
-  if (type === "initialize") {
-    return
-  }
-  const persitedStateProperties = getPersitedStateProperties(state, true)
-  window.sessionStorage.setItem(
-    "store",
-    JSON.stringify(persitedStateProperties)
-  )
+export function persistDataOnSessionStorage({ after, store, name }) {
+  after(() => {
+    if (name === "initialize") {
+      return
+    }
+    const persitedStateProperties = getPersitedStateProperties(store, true)
+    window.sessionStorage.setItem(
+      "store",
+      JSON.stringify(persitedStateProperties)
+    )
+  })
 }
 
 export const useStore = defineStore("store", {

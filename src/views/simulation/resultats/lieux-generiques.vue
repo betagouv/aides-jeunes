@@ -106,12 +106,13 @@ export default {
   mounted() {
     if (!this.store.situation.menage.depcom) {
       this.restoreLatest()
-      // TODO fix this
-      // this.stopSubscription = this.$store.subscribe(({ type }) => {
-      //   if (type === "reset") {
-      //     this.loadEtablissements()
-      //   }
-      // })
+      this.stopSubscription = this.store.$onAction(({ after, name }) => {
+        after(() => {
+          if (name === "reset") {
+            this.loadEtablissements()
+          }
+        })
+      })
     } else {
       this.loadEtablissements()
     }

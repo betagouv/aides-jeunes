@@ -151,23 +151,24 @@ export default {
       }
     }
 
-    // let vm = this
-    // TODO do this with pinia
-    // this.stopSubscription = this.$store.subscribe(({ type }, { calculs }) => {
-    //   switch (type) {
-    //     case "setResults": {
-    //       calculs.resultats.droitsEligibles.forEach(function (d) {
-    //         vm.$matomo?.trackEvent("General", "show", d.id)
-    //       })
-    //       this.sendStatistics(this.droits, "show")
-    //       break
-    //     }
-    //     case "saveComputationFailure": {
-    //       vm.$matomo?.trackEvent("General", "Error")
-    //       break
-    //     }
-    //   }
-    // })
+    let vm = this
+    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
+      after(() => {
+        switch (name) {
+          case "setResults": {
+            store.calculs.resultats.droitsEligibles.forEach(function (d) {
+              vm.$matomo?.trackEvent("General", "show", d.id)
+            })
+            this.sendStatistics(this.droits, "show")
+            break
+          }
+          case "saveComputationFailure": {
+            vm.$matomo?.trackEvent("General", "Error")
+            break
+          }
+        }
+      })
+    })
   },
   beforeUnmount() {
     this.stopSubscription?.()

@@ -22,7 +22,7 @@ export default {
   },
   setup() {
     const store = useStore()
-    store.$subscribe(persistDataOnSessionStorage)
+    store.$onAction(persistDataOnSessionStorage)
     store.initialize()
     store.setOpenFiscaParameters()
     return {

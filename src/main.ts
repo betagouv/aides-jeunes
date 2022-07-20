@@ -3,7 +3,6 @@ import { createApp, h } from "vue"
 import App from "./app.vue"
 
 import router from "./router"
-import store from "./store"
 
 import StateService from "./plugins/state-service"
 
@@ -68,7 +67,6 @@ app.config.globalProperties.$filters = {
 
 dayjs.locale("fr")
 
-app.use(store)
 app.use(pinia)
 app.use(router)
 app.mount(document.body)

@@ -85,7 +85,6 @@
     "vue": "^3.2.32",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.14",
-    "vuex": "^4.0.2",
     "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {

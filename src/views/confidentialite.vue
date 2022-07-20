@@ -320,10 +320,10 @@ export default {
     }
   },
   computed: {
-    situation: function () {
+    situation() {
       return this.store.situation
     },
-    emailBody: function () {
+    emailBody() {
       return `Bonjour,
 
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.

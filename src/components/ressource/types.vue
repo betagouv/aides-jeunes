@@ -68,7 +68,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
@@ -97,7 +97,7 @@ export default {
     }
   },
   computed: {
-    countLabel: function () {
+    countLabel() {
       const count = Object.keys(this.selectedTypes).filter(
         (selectType) => this.selectedTypes[selectType]
       ).length
@@ -107,7 +107,7 @@ export default {
     },
   },
   watch: {
-    individu: function () {
+    individu() {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
         this.store.situation
@@ -115,7 +115,7 @@ export default {
     },
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
@@ -126,7 +126,7 @@ export default {
       })
       this.$push()
     },
-    sort: function (array) {
+    sort(array) {
       return orderBy(array, ["positionInList", "label"])
     },
   },

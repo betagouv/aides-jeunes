@@ -44,11 +44,11 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     return Logement.getLoyerData(this.store.simulation.answers.all)
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       this.store.answer({
         entityName: "menage",
         fieldName: "loyer",

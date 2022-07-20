@@ -48,11 +48,11 @@ export default {
     },
   },
   methods: {
-    localOnSubmit: function (event) {
+    localOnSubmit(event) {
       event.preventDefault()
       this.onSubmit()
     },
-    goBack: function () {
+    goBack() {
       window?.history.back()
       this.$matomo?.trackEvent(
         "Parcours",

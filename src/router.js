@@ -1,9 +1,9 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
-import store from "./store"
 import context from "./context"
 import Institution from "@/lib/institution"
 import Simulation from "@/lib/simulation"
+import { useStore } from "@/stores"
 
 const benefits = Institution.benefits.benefitsMap
 
@@ -15,14 +15,16 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: context.Home,
-      beforeEnter: (to, from, next) => {
+      beforeEnter(to, from, next) {
+        const store = useStore()
         let referrer = document.referrer
+        // TODO Est-toujours utile ?
         if (
-          !store.state.ameliNoticationDone &&
+          !store.ameliNoticationDone &&
           (referrer.match(/ameli\.fr/) ||
             referrer.match(/mes-aides\.org\/ameli/))
         ) {
-          store.commit("setAmeliNoticationDone")
+          store.setAmeliNoticationDone()
           return next("/ameli")
         }
         next()
@@ -40,9 +42,10 @@ const router = createRouter({
         {
           path: "redirect",
           name: "redirect",
-          beforeEnter: (to, from, next) => {
+          beforeEnter(to, from, next) {
+            const store = useStore()
             store
-              .dispatch("fetch", Simulation.getLatest())
+              .fetch(Simulation.getLatest())
               .then(() => {
                 next(`/simulation${to.query.to || ""}`)
               })
@@ -261,8 +264,9 @@ const router = createRouter({
               /* webpackChunkName: "ressources-fiscales" */ "./views/simulation/Ressources/fiscales.vue"
             ),
           meta: {
-            title: function () {
-              return `Les revenus imposables de votre foyer en ${store.state.dates.fiscalYear.label}`
+            title() {
+              const store = useStore()
+              return `Les revenus imposables de votre foyer en ${store.dates.fiscalYear.label}`
             },
           },
         },
@@ -381,14 +385,15 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const params = new URLSearchParams(document.location.search.substring(1))
+  const store = useStore()
   if (!from.name) {
     // store.commit("initialize")
-    store.dispatch("openFiscaParameters")
+    store.setOpenFiscaParameters()
     if (
       process.env.VUE_APP_CONTEXT !== "production" ||
       to?.redirectedFrom?.fullPath === "/init-ci"
     ) {
-      store.dispatch("verifyBenefitVariables")
+      store.verifyBenefitVariables()
     }
 
     if (
@@ -400,42 +405,43 @@ router.beforeEach((to, from, next) => {
         "resultatsDetails",
         "resultatsLieuxGeneriques",
       ].indexOf(to.name) === -1 &&
-      !store.getters.passSanityCheck &&
+      !store.passSanityCheck &&
       to.query.debug === undefined
     ) {
-      return store.dispatch("redirection", (route) => next(route))
+      return store.redirection((route) => next(route))
     }
 
     const iframe = params.get("iframe")
     if (iframe != null) {
-      store.commit("setIframeOrigin", null)
+      store.setIframeOrigin(null)
     }
   }
 
-  if (store.state.iframeOrigin) {
-    store.commit("setIframeOrigin", null)
+  if (store.iframeOrigin) {
+    store.setIframeOrigin(null)
   }
 
+  // TODO Est-ce utile ?
   const themeColor = params.get("themeColor")
   if (themeColor) {
-    store.commit("setThemeColor", themeColor)
+    store.setThemeColor(themeColor)
   }
 
   if (to.meta.title) {
     if (typeof to.meta.title === "function") {
-      store.commit("setTitle", to.meta.title(to, store.state.situation))
+      store.setTitle(to.meta.title(to, store.situation))
     } else {
-      store.commit("setTitle", to.meta.title)
+      store.setTitle(to.meta.title)
     }
   } else {
-    store.commit("setTitle", "Évaluez vos droits aux aides sociales")
+    store.setTitle("Évaluez vos droits aux aides sociales")
   }
 
-  if (store.state.error) {
-    store.dispatch("updateError", false)
+  if (store.error) {
+    store.updateError(false)
   }
-  if (store.state.message.text) {
-    store.commit("decrementMessageRemainingViewTime")
+  if (store.message.text) {
+    store.decrementMessageRemainingViewTime()
   }
 
   next()

@@ -72,7 +72,7 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     const individu = this.getIndividu()
     return {
       individu,
@@ -93,10 +93,10 @@ export default {
     },
   },
   methods: {
-    getIndividuNom: function () {
+    getIndividuNom() {
       return Individu.label(this.individu, "nom")
     },
-    getIndividu: function () {
+    getIndividu() {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const { individu } = Individu.get(
@@ -107,7 +107,7 @@ export default {
       )
       return individu
     },
-    getTypes: function (individu) {
+    getTypes(individu) {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
@@ -155,7 +155,7 @@ export default {
         return result
       }, [])
     },
-    isSimple: function (type) {
+    isSimple(type) {
       const complex = [
         "rpns_benefice_exploitant_agricole",
         "rpns_micro_entreprise_CA_bic_vente_imp",
@@ -165,7 +165,7 @@ export default {
       ]
       return complex.indexOf(type) === -1
     },
-    onSubmit: function () {
+    onSubmit() {
       this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
@@ -198,10 +198,10 @@ export default {
 
       this.$push()
     },
-    updateTNSAmount: function (type, period, value) {
+    updateTNSAmount(type, period, value) {
       type.amounts[period] = value
     },
-    updateTNSExtra: function (type, item, value) {
+    updateTNSExtra(type, item, value) {
       type.extra[item] = value
     },
   },

@@ -75,26 +75,26 @@ export default {
     }
   },
   computed: {
-    enfants: function () {
+    enfants() {
       return this.store.situation.enfants || []
     },
   },
 
   methods: {
-    addPAC: function () {
+    addPAC() {
       const children = this.store.simulation.enfants || []
       const lastId = children.length > 0 ? children[children.length - 1] : -1
       this.store.addEnfant()
       this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
     },
-    removePAC: function (id) {
+    removePAC(id) {
       this.store.removeEnfant(id)
     },
-    editPAC: function (id) {
+    editPAC(id) {
       this.store.editEnfant()
       this.$router.push(`/simulation/individu/${id}/_firstName`)
     },
-    onSubmit: function () {
+    onSubmit() {
       const enfants = this.enfants.filter((enfant) => {
         if (!enfant.date_naissance) {
           this.store.removeEnfant(enfant.id)
@@ -108,7 +108,7 @@ export default {
       })
       this.$push()
     },
-    birthDate: function (date) {
+    birthDate(date) {
       if (date) {
         return (
           typeof date === "string" ? new Date(date) : date
@@ -122,7 +122,7 @@ export default {
       }
     },
     nationality: Nationality.getNationalityFromCountryCode,
-    scolarite: function (value) {
+    scolarite(value) {
       const s = Scolarite.types.find((s) => s.value === value)
       return s ? Scolarite.types.find((s) => s.value === value).label : "-"
     },

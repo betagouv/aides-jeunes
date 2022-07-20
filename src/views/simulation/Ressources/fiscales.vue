@@ -94,7 +94,7 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     const fiscalYear = this.store.dates.fiscalYear.id
     let individus = this.store.peopleParentsFirst.map((source) => {
       let individu = {
@@ -136,7 +136,7 @@ export default {
     }
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       const fiscalYear = this.store.dates.fiscalYear.id
       const values = {}
       this.individus.forEach((individu) => {

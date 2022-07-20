@@ -50,7 +50,7 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     return {
       benefit: null,
       list: [],
@@ -58,7 +58,7 @@ export default {
       window,
     }
   },
-  mounted: function () {
+  mounted() {
     const city = this.store.situation.menage.depcom
     this.benefit = Institution.benefits.all.find(
       (benefit) => benefit.id === this.$route.params.benefit_id

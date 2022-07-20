@@ -85,13 +85,13 @@ export default {
     }
   },
   computed: {
-    isProprietaireAvecPretEnCours: function () {
+    isProprietaireAvecPretEnCours() {
       return this.store.isProprietaireAvecPretEnCours
     },
-    isHebergeParticipeFrais: function () {
+    isHebergeParticipeFrais() {
       return this.store.isHebergeParticipeFrais
     },
-    situation: function () {
+    situation() {
       return this.store.situation
     },
   },

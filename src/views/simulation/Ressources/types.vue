@@ -16,7 +16,7 @@ export default {
     return { store: useStore() }
   },
   computed: {
-    individu: function () {
+    individu() {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const { individu } = Individu.get(

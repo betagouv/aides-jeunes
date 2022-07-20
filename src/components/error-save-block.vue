@@ -44,7 +44,7 @@ export default {
     }
   },
   computed: {
-    error: function () {
+    error() {
       let value = this.store.saveSituationError
       return value instanceof String || value instanceof Error
         ? value

@@ -377,9 +377,9 @@ export const useStore = defineStore("store", {
     save() {
       this.setRecapEmailState(undefined)
 
-      let simulation = { ...this.this.simulation, _id: undefined }
+      let simulation = { ...this.simulation, _id: undefined }
       if (this.situationId) {
-        simulation.modifiedFrom = this.this.situationId
+        simulation.modifiedFrom = this.situationId
       }
 
       simulation.abtesting = ABTestingService.getEnvironment()
@@ -408,7 +408,7 @@ export const useStore = defineStore("store", {
       return axios
         .get(`/api/simulation/${id}`)
         .then((result) => result.data)
-        .then((payload) => this.commit("reset", payload))
+        .then((payload) => this.reset(payload))
         .then(() => this.setId(id))
         .catch((e) => {
           console.log(e)
@@ -432,23 +432,23 @@ export const useStore = defineStore("store", {
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    compute(store, showPrivate) {
+    compute(showPrivate) {
       this.startComputation()
 
       return axios
-        .get(`api/simulation/${store.this.situationId}/openfisca-response`)
+        .get(`api/simulation/${this.situationId}/openfisca-response`)
         .then(function (OpenfiscaResponse) {
           return OpenfiscaResponse.data
         })
         .then(function (openfiscaResponse) {
           return computeAides.bind(Institution.benefits)(
-            store.getters.situation,
-            store.this.situationId,
+            this.situation,
+            this.situationId,
             openfiscaResponse,
             showPrivate
           )
         })
-        .then((results) => store.setResults(results))
+        .then((results) => this.setResults(results))
         .catch((error) => {
           this.saveComputationFailure(error)
         })
@@ -459,13 +459,23 @@ export const useStore = defineStore("store", {
         counter: counter || 1,
       }
     },
+    decrementMessageRemainingViewTime() {
+      if (!this.message.text) {
+        return
+      }
+
+      this.message.counter = this.message.counter - 1
+      if (this.message.counter < 0) {
+        this.message.text = null
+      }
+    },
     redirection(next) {
       this.setMessage(
         `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VUE_APP_CONTACT_EMAIL}">${process.env.VUE_APP_CONTACT_EMAIL}</a>.`
       )
       next("/simulation")
     },
-    openFiscaParameters() {
+    setOpenFiscaParameters() {
       const date = new Date(this.simulation.dateDeValeur)
       return axios
         .get(`api/openfisca/parameters/${date.toISOString()}`)
@@ -482,13 +492,29 @@ export const useStore = defineStore("store", {
             this.setMessage(
               `🚀 Vous avez ajouté <abbr title="${missingBenefits.join(
                 ", "
-              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`
+              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comm
+
+
+ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`
             )
           }
         })
     },
     setSaveSituationError(saveSituationError) {
       this.saveSituationError = saveSituationError
+    },
+    setAmeliNoticationDone() {
+      this.ameliNoticationDone = true
+    },
+    setIframeOrigin(newOrigin) {
+      this.inIframe = true
+      this.iframeOrigin = newOrigin
+    },
+    setThemeColor(themeColor) {
+      this.themeColor = themeColor
+    },
+    setTitle(newTitle) {
+      this.title = newTitle
     },
   },
 })

@@ -56,27 +56,27 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     return {
       showDetails: false,
     }
   },
   computed: {
-    resultatStatus: function () {
+    resultatStatus() {
       return this.store.calculs
     },
-    errorText: function () {
+    errorText() {
       let value = this.resultatStatus.error && this.resultatStatus.exception
       return value instanceof String || value instanceof Error
         ? value
         : JSON.stringify(value, null, 2)
     },
-    isTimeoutError: function () {
+    isTimeoutError() {
       return (
         this.errorText instanceof String && this.errorText.match(/time.?out/i)
       )
     },
-    resultats: function () {
+    resultats() {
       return this.store.calculs.resultats
     },
   },

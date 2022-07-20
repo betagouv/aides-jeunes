@@ -56,7 +56,7 @@ export default {
     }
   },
   computed: {
-    full: function () {
+    full() {
       return this.store.getAllSteps.map((s) => {
         if (process.env.NODE_ENV === "production") {
           return s
@@ -72,7 +72,7 @@ export default {
         }
       })
     },
-    current: function () {
+    current() {
       return this.$route.path
     },
   },

@@ -41,6 +41,7 @@ import Etablissement from "@/components/etablissement"
 import Individu from "@lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats"
 import BackButton from "@/components/buttons/back-button"
+import { useStore } from "@/stores"
 
 const list = [
   {
@@ -79,6 +80,11 @@ export default {
     Etablissement,
   },
   mixins: [ResultatsMixin],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data: function () {
     return {
       window,

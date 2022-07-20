@@ -108,7 +108,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     const logementStatut = getAnswer(
       this.store.simulation.answers.all,
       "menage",
@@ -194,7 +194,7 @@ export default {
     }
   },
   methods: {
-    demandeurAge: function () {
+    demandeurAge() {
       return Individu.age(
         this.store.situation.demandeur,
         this.store.dates.today.value
@@ -223,7 +223,7 @@ export default {
       }
       return false
     },
-    onSubmit: function () {
+    onSubmit() {
       if (this.canSubmit(true)) {
         this.store.answer({
           entityName: "menage",

@@ -205,7 +205,7 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     let benefitKeyed = {}
     let benefits = []
 
@@ -265,7 +265,7 @@ export default {
     expectedResults() {
       return filter(this.selection, (i) => i.ref && i.expected !== null)
     },
-    testMetadata: function () {
+    testMetadata() {
       let outputVariables = this.expectedResults.reduce(function (
         results,
         expectedValue
@@ -281,7 +281,7 @@ export default {
         output: outputVariables,
       }
     },
-    testGenerationEndpoint: function () {
+    testGenerationEndpoint() {
       return `api/simulation/${this.store.situationId}/openfisca-test`
     },
     resultToBase64() {
@@ -300,21 +300,21 @@ export default {
     this.getContributions()
   },
   methods: {
-    add: function () {
+    add() {
       this.selection = [].concat(...this.selection).concat({ id: null })
     },
     trackMontantAttendu(type) {
       this.$matomo?.trackEvent("Montant attendu", type, this.$route.path)
     },
-    remove: function (index) {
+    remove(index) {
       const next = this.selection.slice()
       next.splice(index, 1)
       this.selection = next
     },
-    getTitle: function (item) {
+    getTitle(item) {
       return this.benefitKeyed[item.id].label
     },
-    getActual: function (item) {
+    getActual(item) {
       //Todo : Retirer cette ligne lorsque l'on pourra accéder aux résultats des contributions.
       if (!this.resultats[item.id]) return 0
       return this.resultats[item.id].montant
@@ -357,7 +357,7 @@ export default {
         }
       })
     },
-    submit: function () {
+    submit() {
       this.message = null
       if (this.submitting) {
         return

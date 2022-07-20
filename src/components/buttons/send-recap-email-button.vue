@@ -34,7 +34,7 @@ export default {
     },
   },
   methods: {
-    showModal: function () {
+    showModal() {
       this.store.setRecapEmailState("show")
     },
   },

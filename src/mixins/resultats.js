@@ -1,52 +1,46 @@
 import Simulation from "../lib/simulation"
-import { useStore } from "@/stores"
 
 export default {
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
   computed: {
-    droits: function () {
+    droits() {
       return this.resultats?.droitsEligibles
     },
-    droitsNonEligibles: function () {
+    droitsNonEligibles() {
       return (
         (this.droitsNonEligiblesShow && this.resultats?.droitsNonEligibles) ||
         []
       )
     },
-    droitsNonEligiblesShown: function () {
+    droitsNonEligiblesShown() {
       return this.droitsNonEligibles.filter(
         (i) => i.id === "css_participation_forfaitaire"
       )
     },
-    droitsNonEligiblesShow: function () {
+    droitsNonEligiblesShow() {
       return this.store.ameliNoticationDone
     },
-    resultatsId: function () {
+    resultatsId() {
       return this.resultats?._id || "???"
     },
-    accessStatus: function () {
+    accessStatus() {
       return this.store.access
     },
-    resultatStatus: function () {
+    resultatStatus() {
       return this.store.calculs
     },
-    resultats: function () {
+    resultats() {
       return !this.store.calculs.dirty && this.store.calculs.resultats
     },
-    hasWarning: function () {
+    hasWarning() {
       return this.accessStatus.forbidden
     },
-    hasError: function () {
+    hasError() {
       return this.resultatStatus.error
     },
-    hasErrorSave: function () {
+    hasErrorSave() {
       return this.store.saveSituationError
     },
-    shouldDisplayResults: function () {
+    shouldDisplayResults() {
       return (
         !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
         this.droits
@@ -54,7 +48,7 @@ export default {
     },
   },
   methods: {
-    restoreLatest: function () {
+    restoreLatest() {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
         this.$matomo?.trackEvent("General", "redirection", this.$route.path)
@@ -66,7 +60,7 @@ export default {
 
       return lastestSimulation
     },
-    mock: function (detail) {
+    mock(detail) {
       if (this.$route.query.debug !== undefined) {
         this.store.mockResults(detail || this.$route.query.debug)
       }

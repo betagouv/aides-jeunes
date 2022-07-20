@@ -87,6 +87,7 @@ import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
 import WarningMessage from "@/components/warning-message"
 import Recapitulatif from "./recapitulatif"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationResultats",
@@ -102,7 +103,12 @@ export default {
     Recapitulatif,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
-  mounted: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  mounted() {
     this.store.updateCurrentAnswers(this.$route.path)
 
     if (this.mock(this.$route.params.droitId)) {
@@ -128,10 +134,7 @@ export default {
             return this.store.compute()
           })
           .catch((error) => {
-            this.store.commit(
-              "setSaveSituationError",
-              error.response?.data || error
-            )
+            this.store.setSaveSituationError(error.response?.data || error)
             this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.store.hasResults) {
@@ -165,11 +168,11 @@ export default {
     //   }
     // })
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     this.stopSubscription?.()
   },
   methods: {
-    isEmpty: function (array) {
+    isEmpty(array) {
       return !array || array.length === 0
     },
   },

@@ -84,7 +84,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     return {
       email: undefined,
       errorMessage: undefined,
@@ -99,10 +99,10 @@ export default {
     },
   },
   methods: {
-    hide: function () {
+    hide() {
       this.store.setRecapEmailState(undefined)
     },
-    getRecap: function (surveyOptin) {
+    getRecap(surveyOptin) {
       if (!this.$refs.form.checkValidity()) {
         this.errorMessage = true
         this.$matomo &&

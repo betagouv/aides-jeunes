@@ -125,7 +125,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     return {
       openfiscaTracerURL: false,
       openfiscaAxeURL: false,
@@ -134,7 +134,7 @@ export default {
     }
   },
   computed: {
-    situationId: function () {
+    situationId() {
       return this.store.situationId
     },
     sendMailEcartSimulation() {
@@ -148,7 +148,7 @@ export default {
     },
   },
   methods: {
-    toggleLinks: function () {
+    toggleLinks() {
       if (!this.openfiscaTracerURL) {
         this.store
           .fetchRepresentation("openfisca_tracer")

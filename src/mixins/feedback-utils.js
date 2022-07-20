@@ -1,17 +1,17 @@
 export default {
   computed: {
-    montant: function () {
+    montant() {
       const base = this.store.calculs?.resultats?.droitsEligibles || []
       const benefit = base.filter((d) => d.id === this.droit.id).shift()
       return benefit?.montant || 0
     },
-    situation: function () {
+    situation() {
       return this.store.situation
     },
-    emailSubject: function () {
+    emailSubject() {
       return `[${this.situationId}] Montants inattendus`
     },
-    emailBody: function () {
+    emailBody() {
       return `
 Bonjour,
 

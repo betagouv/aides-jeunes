@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     getDisplayMonthly: getDisplayMonthly,
-    process: function (type, index, value) {
+    process(type, index, value) {
       const source = this.types[index]
       switch (type) {
         case "displayMonthly": {
@@ -69,7 +69,7 @@ export default {
         }
       }
     },
-    save: function (types, single) {
+    save(types, single) {
       if (!types.length) {
         return
       } else if (single) {

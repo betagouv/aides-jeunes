@@ -70,7 +70,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     return {
       situationId: null,
       error: null,
@@ -78,7 +78,7 @@ export default {
       updating: true,
     }
   },
-  mounted: function () {
+  mounted() {
     this.situationId = window.sessionStorage.getItem("situationId")
     if (!this.situationId) {
       this.situationId = JSON.parse(

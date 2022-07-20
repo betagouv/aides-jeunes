@@ -11,7 +11,7 @@ export const createIndividuMixin = (props) => {
         store: useStore(),
       }
     },
-    data: function () {
+    data() {
       const entityName = this.$route.path.split("/")[2]
       const id = this.$route.params.id
       const role = id.split("_")[0]
@@ -31,10 +31,10 @@ export const createIndividuMixin = (props) => {
       }
     },
     methods: {
-      getLabel: function (type) {
+      getLabel(type) {
         return Individu.label(this.individu, type)
       },
-      canSubmit: function (submit) {
+      canSubmit(submit) {
         const hasError =
           !this.optional && (this.value === undefined || this.value === "")
         if (submit) {
@@ -42,7 +42,7 @@ export const createIndividuMixin = (props) => {
         }
         return !hasError
       },
-      onSubmit: function () {
+      onSubmit() {
         if (this.canSubmit(true)) {
           this.store.answer({
             id: this.$route.params.id,

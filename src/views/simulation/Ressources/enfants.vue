@@ -31,14 +31,14 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     let enfants = this.store.situation.enfants.map((e) => Object.assign({}, e))
     return {
       enfants,
     }
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       this.store.answer({
         id: "enfants",
         entityName: "individu",

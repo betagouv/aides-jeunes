@@ -137,7 +137,7 @@ export default {
   setup() {
     return { store: useStore() }
   },
-  data: function () {
+  data() {
     const situation = this.store.situation
     let periodKey = "month:2012-01:120"
     let demandeur = Object.assign({}, situation.demandeur)
@@ -178,7 +178,7 @@ export default {
     }
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       const values = {}
 
       patrimoineTypes.forEach((patrimoinType) => {

@@ -33,7 +33,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     const routeSplit = this.$route.path.split("/")
     const entityName = routeSplit[2]
     let id = undefined
@@ -75,7 +75,7 @@ export default {
       }
       return Boolean(this.matchingCommune)
     },
-    onSubmit: function () {
+    onSubmit() {
       if (this.canSubmit(true)) {
         this.store.answer({
           id: this.id,

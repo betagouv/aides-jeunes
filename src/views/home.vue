@@ -3,6 +3,7 @@
     <div class="container">
       <div class="aj-home-hero">
         <div class="aj-home-hero-content">
+          {{ context }}
           <h1>
             <span class="hightlight"
               >Évaluez vos droits à<br />{{ benefitsNumber }} aides
@@ -54,33 +55,34 @@ export default {
   setup() {
     return {
       store: useStore(),
+      context: process.env.VUE_APP_CONTEXT,
     }
   },
   computed: {
-    hasExistingSituation: function () {
+    hasExistingSituation() {
       return this.store.passSanityCheck
     },
-    ctaLabel: function () {
+    ctaLabel() {
       return this.hasExistingSituation
         ? "Commencer une nouvelle simulation"
         : "Je commence"
     },
-    ctaSize: function () {
+    ctaSize() {
       return this.hasExistingSituation ? "large" : "xlarge"
     },
-    benefitsNumber: function () {
+    benefitsNumber() {
       return process.env.VUE_APP_BENEFIT_COUNT
         ? process.env.VUE_APP_BENEFIT_COUNT
         : "plus de 400"
     },
   },
   methods: {
-    newSituation: function () {
+    newSituation() {
       this.store.clear(this.$route.query.external_id)
       this.next()
     },
-    next: function () {
-      this.store.openFiscaParameters()
+    next() {
+      this.store.setOpenFiscaParameters()
       // we only want to look for benefit variables in preview mode
       if (process.env.VUE_APP_CONTEXT !== "production") {
         this.store.verifyBenefitVariables()

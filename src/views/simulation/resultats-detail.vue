@@ -58,24 +58,24 @@ export default {
     }
   },
   computed: {
-    situation: function () {
+    situation() {
       return this.store.situation
     },
-    droit: function () {
+    droit() {
       const droitId = this.$route.params.droitId
       const droit = (this.droits || []).find(function (droit) {
         return droit.id === droitId
       })
       return droit
     },
-    patrimoineCaptured: function () {
+    patrimoineCaptured() {
       return this.store.hasPatrimoine !== undefined
     },
-    ressourcesYearMinusTwoCaptured: function () {
+    ressourcesYearMinusTwoCaptured() {
       return this.store.ressourcesYearMinusTwoCaptured
     },
   },
-  mounted: function () {
+  mounted() {
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (!this.droits) {
@@ -92,7 +92,7 @@ export default {
     }
   },
   methods: {
-    goBack: function (event) {
+    goBack(event) {
       event.preventDefault()
       if (window?.history.length > 2) {
         history.back()

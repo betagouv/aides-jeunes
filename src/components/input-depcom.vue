@@ -55,7 +55,7 @@ export default {
       store: useStore(),
     }
   },
-  data: function () {
+  data() {
     return {
       codePostalValue: this.codePostal,
       nomCommuneValue: this.nomCommune,
@@ -88,7 +88,7 @@ export default {
     }
   },
   methods: {
-    updateMatchingCommune: function () {
+    updateMatchingCommune() {
       this.$emit(
         "update:matchingCommune",
         this.communes.find((c) => c.nom == this.nomCommuneValue)

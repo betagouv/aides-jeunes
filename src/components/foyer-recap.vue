@@ -15,7 +15,7 @@ export default {
     }
   },
   computed: {
-    situation: function () {
+    situation() {
       return this.store.situation
     },
   },

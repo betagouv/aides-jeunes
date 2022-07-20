@@ -106,10 +106,10 @@ export default {
   },
   computed: {
     singleValue: {
-      get: function () {
+      get() {
         return this.type.displayMonthly
       },
-      set: function (value) {
+      set(value) {
         this.$emit("update", "displayMonthly", this.index, value)
       },
     },

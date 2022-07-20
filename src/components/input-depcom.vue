@@ -94,7 +94,7 @@ export default {
         this.communes.find((c) => c.nom == this.nomCommuneValue)
       )
     },
-    fetchCommune: async function () {
+    async fetchCommune() {
       if (
         !this.codePostalValue ||
         this.codePostalValue.toString().length !== 5

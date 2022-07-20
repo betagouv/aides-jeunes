@@ -1,28 +1,28 @@
 import { defineStore } from "pinia"
 import { getEtablissements } from "../../lib/benefits/etablissements"
+import { HelpingInstitution } from "../../lib/types/helping-institution"
 
-export const useInstitutionStore = defineStore("institution", {
-  // convert to a function
+export const useHelpingInstitutionStore = defineStore("helping-institution", {
   state: () => ({
-    list: [],
-    error: null,
-    updating: false,
+    list: <HelpingInstitution[]>[],
+    error: <string | null>null,
+    updating: <boolean>false,
   }),
   actions: {
-    setEtablissements(etablissements) {
+    setEtablissements(etablissements: HelpingInstitution[]) {
       this.list = etablissements
     },
-    setError(error) {
+    setError(error: string | null) {
       this.error = error
     },
-    setUpdating(payload) {
-      this.updating = payload
+    setUpdating(updating: boolean) {
+      this.updating = updating
     },
-    get(payload) {
+    get(payload: { city: string; types: string[] }) {
       this.setError(null)
       this.setUpdating(true)
       return getEtablissements(payload.city, payload.types)
-        .then((etablissements) => {
+        .then((etablissements: HelpingInstitution[]) => {
           return etablissements.sort((a, b) => {
             return (
               payload.types.indexOf(a.pivotLocal) -
@@ -34,7 +34,7 @@ export const useInstitutionStore = defineStore("institution", {
           this.setEtablissements(etablissements)
           this.setUpdating(false)
         })
-        .catch(this.setError("Aucun résultat"))
+        .catch(() => this.setError("Aucun résultat"))
     },
   },
 })

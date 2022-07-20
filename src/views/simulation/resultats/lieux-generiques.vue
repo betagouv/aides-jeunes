@@ -42,7 +42,7 @@ import Individu from "@lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats"
 import BackButton from "@/components/buttons/back-button"
 import { useStore } from "@/stores"
-import { useInstitutionStore } from "@/stores/institution"
+import { useHelpingInstitutionStore } from "@/stores/helping-institution"
 
 const list = [
   {
@@ -84,7 +84,7 @@ export default {
   setup() {
     return {
       store: useStore(),
-      institutionStore: useInstitutionStore(),
+      helpingInstitutionStore: useHelpingInstitutionStore(),
     }
   },
   data() {
@@ -94,13 +94,13 @@ export default {
   },
   computed: {
     etablissements() {
-      return this.institutionStore.list
+      return this.helpingInstitutionStore.list
     },
     updating() {
-      return this.institutionStore.updating
+      return this.helpingInstitutionStore.updating
     },
     error() {
-      return this.institutionStore.error
+      return this.helpingInstitutionStore.error
     },
   },
   mounted() {
@@ -135,7 +135,7 @@ export default {
     },
     loadEtablissements() {
       let typeEtablissements = this.getEtablissementsTypesBySituation()
-      this.institutionStore.get({
+      this.helpingInstitutionStore.get({
         city: this.store.situation.menage.depcom,
         types: typeEtablissements,
       })

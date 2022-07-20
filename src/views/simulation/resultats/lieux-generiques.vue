@@ -94,13 +94,13 @@ export default {
   },
   computed: {
     etablissements() {
-      return this.institutionStore.etablissementsSearch.list
+      return this.institutionStore.list
     },
     updating() {
-      return this.institutionStore.etablissementsSearch.updating
+      return this.institutionStore.updating
     },
     error() {
-      return this.institutionStore.etablissementsSearch.error
+      return this.institutionStore.error
     },
   },
   mounted() {
@@ -118,7 +118,7 @@ export default {
     }
   },
   beforeUnmount() {
-    // this.stopSubscription?.()
+    this.stopSubscription?.()
   },
   methods: {
     getEtablissementsTypesBySituation() {

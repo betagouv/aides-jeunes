@@ -2,11 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_saone_et_loire
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de Saône-et-Loire pour vous aider à financer votre
-  session en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Avoir déposé une demande dans les 3 mois qui suivent l’inscription au
-    premier stage.
+  session en complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -15,12 +12,14 @@ conditions_generales:
     values:
       - "71"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-saone-et-loire/actualites/annee/2020/bafa-savez-vous-que-la-caf-peut-financer-une-partie-de-la-formation
-form: http://blog.caf71.fr/wp-content/uploads/2020/02/BOURSE-BAFA-CAF.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-saone-et-loire/actualites/annee/2020/bafa-savez-vous-que-la-caf-peut-financer-une-partie-de-la-formation
-prefix: l’
+conditions:
+  - Avoir déposé une demande dans les 3 mois qui suivent l’inscription au
+    premier stage.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 400
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/vie-professionnelle/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
+form: https://caf.fr/sites/default/files/medias/711/Allocataires/Vie_professionnelle/Documents/BOURSE%20BAFA%20CAF_saisissable.pdf
+instructions: https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/vie-professionnelle/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa

@@ -1,7 +1,8 @@
-label: aide au BAFA
+label: aide au BAFA et BAFD
 institution: caf_haute_saone
-description: Votre CAF départementale vous aide à financer votre BAFA, de la
-  session générale à la session d'approfondissement.
+description: Votre CAF départementale vous aide à financer votre BAFA (de la
+  session générale à la session d'approfondissement) et votre BAFD, en
+  complément de l'aide nationale apportée par la CAF.
 prefix: l’
 conditions_generales:
   - type: age
@@ -16,7 +17,7 @@ conditions_generales:
 profils: []
 conditions:
   - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
-  - Contacter votre Caf pour faire votre demande.
+  - Contacter votre CAF pour faire votre demande.
 interestFlag: _interetBafa
 type: float
 unit: €
@@ -24,5 +25,5 @@ periodicite: ponctuelle
 legend: maximum
 montant: 300
 link: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/bafa-bafd-dispositif
-form: ""
+form: https://www.caf.fr/sites/default/files/medias/701/site/BAFA%20BAFD%20-%20dispositif%20r%C3%A9gional/BAFA-BAFD%202017%20REGIONAL.pdf
 instructions: https://www.caf.fr/allocataires/caf-de-la-haute-saone/offre-de-service/vie-professionnelle/bafa-bafd-dispositif

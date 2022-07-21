@@ -1,9 +1,9 @@
-label: aide au BAFA pour une session de formation générale
+label: Aides au BAFA et au BAFD
 institution: caf_yvelines
-description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF des Yvelines pour vous aider à financer votre session
-  en complément de l'aide
-  nationale apportée par la CAF.
+description: Les aides à la formation au BAFA et BAFD sont des aides locales
+  mise à disposition par la CAF des Yvelines pour vous aider à financer vos
+  sessions en complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -12,12 +12,11 @@ conditions_generales:
     values:
       - "78"
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-yvelines/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-et-au-bafd
-form: https://www.caf.fr/sites/default/files/caf/781/Documents/Action-sociale/Enfance-jeunesse/BAFA/7.5%2806-2021%29-bafa-bafd-3.pdf
-instructions: https://www.caf.fr/allocataires/caf-des-yvelines/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-et-au-bafd
-prefix: l’
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 300
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-des-yvelines/offre-de-service/vie-professionnelle/l-aide-au-bafa-et-au-bafd
+form: https://caf.fr/sites/default/files/medias/781/Allocataires/enfance%20et%20jeunesse/Bafa%20et%20Bafd/7.5(06-2021)-bafa-bafd-3.pdf
+instructions: https://caf.fr/allocataires/caf-des-yvelines/offre-de-service/vie-professionnelle/l-aide-au-bafa-et-au-bafd

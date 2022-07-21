@@ -11,12 +11,6 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 17
-  - type: age
-    operator: <=
-    value: 25
-  - type: regime_securite_sociale
-    includes:
-      - regime_general
 profils: []
 conditions:
   - Suivre une formation assurée par un organisme de formation à but non

@@ -1,14 +1,10 @@
-label: aide au BAFA pour une session de formation d'approfondissement
+label: aides au BAFA pour une session de formation générale et d'approfondissement
 institution: caf_tarn
-description: L'aide à la formation du BAFA est une aide locale mise à
+description: Les aides à la formation du BAFA sont des aides lcaoles mise à
   disposition par la CAF du Tarn pour vous aider à financer votre session
-  d’approfondissement ou de qualification en complément de l'aide
+  générale, d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la CAF.
-conditions:
-  - 'Vous adresser au service Jeunesse & Sports de la DDCSPP de votre
-    département pour vous inscrire et connaître les organismes de formation : <a
-    target="_blank" title="Informations de contact - Nouvelle fenêtre" rel="noopener"
-    href="https://lannuaire.service-public.fr/occitanie/tarn/sdjes-81004-01">informations de contact<a/>.'
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -16,14 +12,23 @@ conditions_generales:
   - type: departements
     values:
       - "81"
+  - type: quotient_familial
+    floor: 800
+    period: month
 profils: []
-link: https://www.caf.fr/allocataires/caf-du-tarn/offre-de-service/enfance-et-jeunesse/aides-a-la-formation-et-a-l-inclusion-numerique
-form: https://www.caf.fr/sites/default/files/caf/811/Imprim%C3%A9%20BAFA%20CAF81.pdf
-instructions: https://www.caf.fr/allocataires/caf-du-tarn/offre-de-service/enfance-et-jeunesse/aides-a-la-formation-et-a-l-inclusion-numerique
-prefix: l’
+conditions:
+  - 'Vous adresser au service Jeunesse & Sports de la DDCSPP de votre
+    département pour vous inscrire et connaître les organismes de formation : <a
+    target="_blank" title="Informations de contact - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://lannuaire.service-public.fr/occitanie/tarn/sdjes-81004-01">informations
+    de contact<a/>.'
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 550
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-du-tarn/offre-de-service/vie-professionnelle/aide-au-bafa
+form: https://caf.fr/sites/default/files/medias/811/Fichiers%20allocataires/Imprim%C3%A9%20BAFA%20CAF81.pdf
+instructions: https://caf.fr/allocataires/caf-du-tarn/offre-de-service/vie-professionnelle/aide-au-bafa

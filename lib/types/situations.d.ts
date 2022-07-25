@@ -1,7 +1,7 @@
 import { individuLayout } from "./individu"
 
 export interface situationsLayout {
-  dateDeValeur?: number
+  dateDeValeur: number
   version?: number
   //demandeur?: any //generateDefaultIndividu("demandeur", "demandeur"),
   demandeur?: individuLayout

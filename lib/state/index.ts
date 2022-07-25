@@ -1,4 +1,5 @@
 import Chapters from "../chapters.js"
+import { chapterLayout } from "../types/chapters"
 
 export function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -9,9 +10,9 @@ export function chapters(currentPath, journey, lastUnanswerPath) {
   const currentStep =
     journey.find((item) => item.path == cleanPath) ||
     journey.find((item) => item.path === lastUnanswerPath)
-  const activeChapters = Chapters.default
-    .getSommaireChapters()
-    .filter((c) => activeChaptersNames.includes(c.name))
+  const activeChapters = Chapters.getSommaireChapters().filter((c) =>
+    activeChaptersNames.includes(c.name)
+  )
   let isCurrentChapter
   let passedChapter = true
   return activeChapters.map((chapter) => {

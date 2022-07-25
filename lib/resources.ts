@@ -2,6 +2,9 @@
 import Individu from "./individu.js"
 import { generator } from "./dates.js"
 
+import { situationsLayout } from "../lib/types/situations"
+import { individuLayout } from "../lib/types/individu"
+
 let ressourceCategories = [
   {
     id: "revenusActivite",
@@ -86,7 +89,7 @@ export let ressourceTypes = [
     label: "Allocations familiales",
     category: "allocations",
     prefix: "des",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -95,7 +98,7 @@ export let ressourceTypes = [
     label: "Complément familial (CF)",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -104,7 +107,7 @@ export let ressourceTypes = [
     label: "Allocation de soutien familial (ASF)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(situation.enfants?.filter((e) => e.garde_aternee).length)
@@ -128,7 +131,7 @@ export let ressourceTypes = [
     label: "Allocation de solidarité aux personnes âgées (ASPA)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         55 <=
         Individu.age(individu, generator(situation.dateDeValeur).today.value)
@@ -140,7 +143,7 @@ export let ressourceTypes = [
     label: "Allocation supplémentaire d’invalidité (ASI)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.handicap
     },
   },
@@ -149,7 +152,7 @@ export let ressourceTypes = [
     label: "Allocation de solidarité spécifique (ASS)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.activite != "etudiant"
     },
   },
@@ -158,7 +161,7 @@ export let ressourceTypes = [
     label: "Allocation adulte handicapé (AAH)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.handicap
     },
   },
@@ -169,7 +172,7 @@ export let ressourceTypes = [
     prefix: "le",
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.handicap
     },
   },
@@ -178,7 +181,7 @@ export let ressourceTypes = [
     label: "Contrat engagement jeune",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       const age = Individu.age(
         individu,
         generator(situation.dateDeValeur).today.value
@@ -192,7 +195,7 @@ export let ressourceTypes = [
     category: "allocations",
     prefix: "la",
     sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.handicap
     },
   },
@@ -201,7 +204,7 @@ export let ressourceTypes = [
     label: "Allocation d’éducation de l’enfant handicapé (AEEH)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
@@ -213,7 +216,7 @@ export let ressourceTypes = [
     label: "Prestation de compensation du handicap (PCH)",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.handicap ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
@@ -225,7 +228,7 @@ export let ressourceTypes = [
     label: "Prestation d’accueil du jeune enfant (PAJE) - Allocation de base",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -234,7 +237,7 @@ export let ressourceTypes = [
     label: "Complément de libre choix d’activité (CLCA)",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -243,7 +246,7 @@ export let ressourceTypes = [
     label: "Prestation partagée d’éducation de l’enfant (PreParE)",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation, individu) => {
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -319,7 +322,7 @@ export let ressourceTypes = [
     category: "pensions",
     prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
-    isRelevant(situation, individu) {
+    isRelevant(situation: situationsLayout, individu: individuLayout) {
       return individu.activite === "retraite"
     },
   },
@@ -328,7 +331,7 @@ export let ressourceTypes = [
     label: "Retraite du combattant",
     category: "pensions",
     prefix: "une",
-    isRelevant(situation, individu) {
+    isRelevant(situation: situationsLayout, individu: individuLayout) {
       return individu.activite === "retraite"
     },
   },

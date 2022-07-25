@@ -14,4 +14,5 @@ export interface individuLayout {
   stagiaire?: boolean
   groupe_specialites_formation?: any
   mention_baccalaureat?: string
+  handicap: boolean
 }

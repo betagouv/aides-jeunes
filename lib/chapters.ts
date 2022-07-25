@@ -1,4 +1,6 @@
-const chapters = [
+import { chapterLayout } from "./types/chapters"
+
+const chapters: chapterLayout[] = [
   { label: "Mon profil", name: "profil" },
   { label: "Mon foyer", name: "foyer" },
   { label: "Mon logement", name: "logement" },

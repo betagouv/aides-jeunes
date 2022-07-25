@@ -7,7 +7,7 @@ export function isStepAnswered(answers: answerLayout[], step) {
 export const getStepAnswer = (answers: answerLayout[], step) =>
   getAnswer(answers, step.entity, step.variable, step.id)
 
-export const getAnswer = (answers: answerLayout[], entity, variable, id) => {
+export const getAnswer = (answers: answerLayout[], entity, variable, id?) => {
   const answer = answers.find(
     (answer) =>
       answer.id === id &&

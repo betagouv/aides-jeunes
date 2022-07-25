@@ -12,7 +12,11 @@ import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-f
 import { situationsLayout } from "../../../../lib/types/situations.js"
 import { familleLayout } from "../../../types/openfisca.js"
 
-import { openfiscaMappingLayout } from "../../../types/openfisca.js"
+import {
+  openfiscaMappingLayout,
+  menageLayout,
+  foyersFiscauxLayout,
+} from "../../../types/openfisca.js"
 
 export function dispatchIndividuals(
   situation: situationsLayout
@@ -20,13 +24,13 @@ export function dispatchIndividuals(
   const individus = mapIndividus(situation)
 
   const familles: any = { _: situation.famille }
-  const foyers_fiscaux = {
+  const foyers_fiscaux: foyersFiscauxLayout = {
     _: {
       declarants: [],
       personnes_a_charge: [],
     },
   }
-  const menages = { _: buildOpenFiscaMenage(situation) }
+  const menages: menageLayout = { _: buildOpenFiscaMenage(situation) }
 
   const demandeur = common.getDemandeur(situation)
   const demandeurId = demandeur?.id
@@ -289,7 +293,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
     }
   )
 
-  const openfiscaPeriods = new Set()
+  const openfiscaPeriods: Set<string> = new Set()
   Object.values(prestationsWithInterest).forEach((definition) => {
     openfiscaPeriods.add(definition.openfiscaPeriod)
   })

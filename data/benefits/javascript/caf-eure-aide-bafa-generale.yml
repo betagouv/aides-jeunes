@@ -21,8 +21,6 @@ conditions_generales:
     includes:
       - regime_general
 profils: []
-conditions:
-  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
 interestFlag: _interetBafa
 type: float
 unit: €

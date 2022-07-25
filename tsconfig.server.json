@@ -24,7 +24,9 @@
   },
 
   "include": [
-    "*.ts",
+    "./configure.ts",
+    "./mock.ts",
+    "./server.ts",
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",

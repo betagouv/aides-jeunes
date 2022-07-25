@@ -19,6 +19,7 @@
     "outDir": "dist-server",
     "baseUrl": ".",
     "noImplicitAny": false,
+    "noImplicitThis": false,
     "resolveJsonModule": true
   },
 

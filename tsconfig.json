@@ -11,6 +11,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
+    "noImplicitThis": false,
     "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,

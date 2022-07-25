@@ -1,6 +1,8 @@
 import aidesVelo from "aides-velo"
 
-const benefits = aidesVelo()
+import { benefitVeloLayout } from "data/types/benefits"
+
+const benefits: benefitVeloLayout[] = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {

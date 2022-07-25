@@ -11,7 +11,7 @@ export interface individuLayout {
   activite?: string
   scolarite?: string
   _contrat_alternant?: string
-  stagiaire: boolean
+  stagiaire?: boolean
   groupe_specialites_formation?: any
   mention_baccalaureat?: string
 }

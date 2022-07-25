@@ -41,7 +41,7 @@ export function dispatchIndividuals(
   const aCharge =
     demandeur.enfant_a_charge &&
     Object.keys(demandeur.enfant_a_charge).length &&
-    demandeur.enfant_a_charge[Object.keys(demandeur.enfant_a_charge)]
+    demandeur.enfant_a_charge[`${Object.keys(demandeur.enfant_a_charge)}`]
 
   if (aCharge) {
     const parent1 = {

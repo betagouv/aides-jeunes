@@ -6,6 +6,8 @@ import validator from "validator"
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
+import { SurveyLayout } from "../types/survey.js"
+
 const renderInitial = require("../lib/mes-aides/emails/initial").render
 const renderSurvey = require("../lib/mes-aides/emails/survey").render
 
@@ -119,7 +121,7 @@ FollowupSchema.methods.createSurvey = function (type) {
 
 FollowupSchema.methods.sendSurvey = function () {
   const followup = this
-  return this.createSurvey("initial").then((survey) => {
+  return this.createSurvey("initial").then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(survey)
       .then((render) => {
         const email = new SendSmtpEmail()

@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 import lodash from "lodash"
-const { isNaN, forEach, isUndefined, cloneDeep, isString } = lodash
+const { isNaN, forEach, isUndefined, cloneDeep } = lodash
 
 import { formatDate } from "../utils.js"
 import individuRessource from "./ressources.js"
@@ -12,7 +12,9 @@ import {
   findCommuneByInseeCode,
 } from "../../../mes-aides/distance.js"
 
-const individuSchema = {
+import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
+
+const individuSchema: individuGeneratorLayout = {
   activite: {
     src: "activite",
     fn: function (activite) {
@@ -137,11 +139,13 @@ function isNotValidValue(value) {
 export default function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
   const openFiscaIndividu = cloneDeep(mesAidesIndividu)
   forEach(individuSchema, function (definition, openfiscaKey) {
-    const params = isString(definition) ? { src: definition } : definition
-
-    openFiscaIndividu[openfiscaKey] = params.src
-      ? params.fn(mesAidesIndividu[params.src], mesAidesIndividu, situation)
-      : params.fn(mesAidesIndividu, situation)
+    openFiscaIndividu[openfiscaKey] = definition.src
+      ? definition.fn(
+          mesAidesIndividu[definition.src],
+          mesAidesIndividu,
+          situation
+        )
+      : definition.fn(mesAidesIndividu, situation)
 
     // Remove null as OpenFisca do not handle them correctly
     if (isNotValidValue(openFiscaIndividu[openfiscaKey])) {

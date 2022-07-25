@@ -77,11 +77,11 @@ benefits.all
   })
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
-Object.values(CONDITION_STATEGY).forEach((condition) => {
-  if (condition?.extra) {
-    appendExtraVariables(requestedVariables, condition.extra)
+for (let condition in CONDITION_STATEGY) {
+  if (CONDITION_STATEGY[condition]?.extra) {
+    appendExtraVariables(requestedVariables, CONDITION_STATEGY[condition].extra)
   }
-})
+}
 
 export default {
   isIndividuValid,

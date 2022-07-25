@@ -6,8 +6,6 @@ import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
-import { datesGeneratorLayout } from "../../../../lib/types/dates.js"
-
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),

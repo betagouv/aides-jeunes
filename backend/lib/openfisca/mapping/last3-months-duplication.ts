@@ -25,8 +25,9 @@ const types = [
   "menage",
 ]
 const forDuplication = types.reduce((accum, type) => {
-  const plural = type.type ? type.plural : `${type}s`
-  type = type.type ? type.type : type
+  const plural =
+    typeof type === "object" && type?.type ? type.plural : `${type}s`
+  type = typeof type === "object" && type?.type ? type.type : `${type}`
   accum[plural] = determinePropsToReplicate(type, definitions[type])
   return accum
 }, {})

@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 //import situationsLayout from "../../../lib/types/situations"
 import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
+import { situationsLayout } from "lib/types/situations"
 
 import apa_eligibilite from "./apa-eligibilite.js"
 import fsl_eligibilite from "./fsl-eligibilite.js"
@@ -67,15 +68,15 @@ export const additionalBenefitAttributes = {
     },
   },
   aide_logement: {
-    computeUnexpectedAmount: (situation) => {
+    computeUnexpectedAmount: (situation: situationsLayout) => {
       // not ideal because we are not computing other incomes => but covers 90% of the cases
-      const salary: number = situation.demandeur.salaire_net
+      const salary: number = situation?.demandeur?.salaire_net
         ? Object.values(situation.demandeur.salaire_net).reduce(
             (acc, value): number => acc + value,
             0
           )
         : 0
-      return situation.demandeur.activite === "etudiant" && salary >= 7000
+      return situation?.demandeur?.activite === "etudiant" && salary >= 7000
     },
     uncomputability: {
       primo_accedant: {

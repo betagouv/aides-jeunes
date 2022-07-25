@@ -64,9 +64,9 @@ const SimulationSchema = new mongoose.Schema(
   { minimize: false }
 )
 
-SimulationSchema.statics.cookiePrefix = (): string => {
+SimulationSchema.static("cookiePrefix", (): string => {
   return "simulation_"
-}
+})
 SimulationSchema.virtual("cookieName").get(function () {
   return `${SimulationSchema.statics.cookiePrefix}${this._id}`
 })
@@ -74,13 +74,13 @@ SimulationSchema.virtual("returnPath").get(function () {
   return `/simulation/resultats?situationId=${this._id}`
 })
 
-SimulationSchema.methods.isAccessible = function (keychain) {
+SimulationSchema.method("isAccessible", function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||
     keychain?.[this.cookieName] === this.token ||
     keychain?.token === this.token
   )
-}
+})
 SimulationSchema.pre("save", function (next) {
   if (!this.isNew) {
     return next()
@@ -95,11 +95,11 @@ SimulationSchema.pre("save", function (next) {
     .catch(next)
 })
 
-SimulationSchema.methods.getSituation = function () {
+SimulationSchema.method("getSituation", function () {
   return generateSituation(this)
-}
+})
 
-SimulationSchema.methods.compute = function () {
+SimulationSchema.method("compute", function () {
   const situation = this.getSituation()
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
@@ -116,6 +116,6 @@ SimulationSchema.methods.compute = function () {
       resolve(aides)
     })
   })
-}
+})
 
 mongoose.model("Simulation", SimulationSchema)

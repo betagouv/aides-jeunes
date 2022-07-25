@@ -40,7 +40,7 @@ const computeParameter = (parameter, date) => {
     }
   }
   Sentry.captureMessage("Openfisca parameters are not loaded", (scope) => {
-    scope.setContext("parameters", {
+    return scope.setContext("parameters", {
       date,
       parameter,
       parameters,

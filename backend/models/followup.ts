@@ -63,15 +63,15 @@ const FollowupSchema = new mongoose.Schema(
   { minimize: false, id: false }
 )
 
-FollowupSchema.statics.findByIdOrOldId = function (id) {
+FollowupSchema.static("findByIdOrOldId", function (id) {
   if (id.length === 24) {
     return this.findById(id)
   } else {
     return this.findOne({ _oldId: id })
   }
-}
+})
 
-FollowupSchema.methods.postInitialEmail = function (messageId) {
+FollowupSchema.method("postInitialEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId
   if (!this.surveyOptin) {
@@ -79,13 +79,13 @@ FollowupSchema.methods.postInitialEmail = function (messageId) {
   }
   this.error = undefined
   return this.save()
-}
+})
 
-FollowupSchema.methods.renderInitialEmail = function () {
+FollowupSchema.method("renderInitialEmail", function () {
   return renderInitial(this)
-}
+})
 
-FollowupSchema.methods.sendInitialEmail = function () {
+FollowupSchema.method("sendInitialEmail", function () {
   const followup = this
   return this.renderInitialEmail()
     .then((render) => {
@@ -105,21 +105,21 @@ FollowupSchema.methods.sendInitialEmail = function () {
       followup.error = JSON.stringify(err, null, 2)
       return followup.save()
     })
-}
+})
 
-FollowupSchema.methods.renderSurveyEmail = function (survey) {
+FollowupSchema.method("renderSurveyEmail", function (survey) {
   return renderSurvey(this, survey)
-}
+})
 
-FollowupSchema.methods.createSurvey = function (type) {
+FollowupSchema.method("createSurvey", function (type) {
   return Promise.resolve(
     this.surveys.create({
       type: type,
     })
   )
-}
+})
 
-FollowupSchema.methods.sendSurvey = function () {
+FollowupSchema.method("sendSurvey", function () {
   const followup = this
   return this.createSurvey("initial").then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(survey)
@@ -152,9 +152,9 @@ FollowupSchema.methods.sendSurvey = function () {
         return followup.save()
       })
   })
-}
+})
 
-FollowupSchema.methods.mock = function () {
+FollowupSchema.method("mock", function () {
   const followup = this
   return this.createSurvey("initial").then((survey) => {
     const surveys = Array.from(followup.surveys)
@@ -162,11 +162,11 @@ FollowupSchema.methods.mock = function () {
     followup.surveys = surveys
     return followup.save()
   })
-}
+})
 
-FollowupSchema.methods.updateSurvey = function (id, answers) {
-  const surveys = Array.from(this.surveys)
-  const survey = find(surveys, function (s) {
+FollowupSchema.method("updateSurvey", function (id, answers) {
+  const surveys: SurveyLayout[] = Array.from(this.surveys)
+  const survey = find(surveys, function (s: SurveyLayout) {
     return s._id === id
   })
   Object.assign(survey, {
@@ -175,7 +175,7 @@ FollowupSchema.methods.updateSurvey = function (id, answers) {
   })
   this.surveys = surveys
   return this.save()
-}
+})
 
 FollowupSchema.pre("save", function (next) {
   if (!this.isNew) {

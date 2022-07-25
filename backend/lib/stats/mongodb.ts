@@ -1,7 +1,9 @@
 /* global emit: true */
-import Promise from "bluebird"
+//import Promise from "bluebird"
 //const MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
 import { MongoClient } from "mongodb"
+declare function emit(key, value)
+
 import config from "../../config/index.js"
 
 let client
@@ -24,7 +26,7 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
         emit(this.dateDeValeur.toISOString().slice(0, 10), 1)
       },
       function (date, values) {
-        return Array.sum(values)
+        return values.reduce((sum, number: number) => sum + number)
       },
       {
         out: {
@@ -77,8 +79,8 @@ function extractSurveySummary(db) {
           emit(this.surveys[0].answers[0].value, 1)
         }
       },
-      function (k, v) {
-        return Array.sum(v)
+      function (k, values) {
+        return values.reduce((sum, number: number) => sum + number)
       },
       {
         query: {
@@ -115,8 +117,8 @@ function extractSurveyDetails(db) {
           emit(`${a.id};${a.value}`, 1)
         })
       },
-      function (k, v) {
-        return Array.sum(v)
+      function (k, values) {
+        return values.reduce((sum, number: number) => sum + number)
       },
       {
         query: {

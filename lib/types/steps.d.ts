@@ -4,6 +4,17 @@ export interface StepLayout {
   id?: any
   variable?: any
   chapter?: any
+  isActive?: boolean
+}
+
+export interface StepGeneratorLayout {
+  path: string
+  key: string
+  entity: any
+  id: string
+  variable: any
+  chapter: any
+  isActive?: boolean
 }
 
 export interface ComplexStepLayout {
@@ -13,4 +24,15 @@ export interface ComplexStepLayout {
   entity?: any
   variable?: any
   id?: any
+  isActive?: boolean
+}
+
+export interface ComplexStepGeneratorLayout {
+  path: string
+  key: string
+  entity: any
+  id: string
+  variable: any
+  chapter: any
+  substeps: any
 }

@@ -5,6 +5,8 @@ import { datesGenerator } from "../benefits/compute.js"
 import { Step, ComplexStep } from "./steps.js"
 import Scolarite from "../scolarite.js"
 
+import { BlockLayout } from "../types/blocks"
+
 function individuBlockFactory(id, chapter?: string) {
   const r = (variable, chapter?: string) =>
     new Step({ entity: "individu", id, variable, chapter })
@@ -461,7 +463,7 @@ function resourceBlocks(situation) {
   }
 }
 
-export function generateBlocks(situation) {
+export function generateBlocks(situation): BlockLayout[] {
   return [
     { steps: [new Step({})] },
     individuBlockFactory("demandeur"),

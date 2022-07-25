@@ -21,6 +21,6 @@ export interface datesGeneratorLayout {
 }
 
 export interface dateLayout {
-  id?: string
+  id: string
   label: string
 }

@@ -1,3 +1,5 @@
+import { Function } from "lodash"
+
 export interface individuLayout {
   id: string
   annee_etude?: string
@@ -14,5 +16,12 @@ export interface individuLayout {
   stagiaire?: boolean
   groupe_specialites_formation?: any
   mention_baccalaureat?: string
-  handicap: boolean
+  handicap?: boolean
+}
+
+export interface individuGeneratorLayout {
+  [id: string]: {
+    src?: string
+    fn: Function
+  }
 }

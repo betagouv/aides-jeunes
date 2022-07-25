@@ -4,6 +4,7 @@ import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations"
 import { individuLayout } from "../lib/types/individu"
+import { resourceLayout } from "./types/resources"
 
 let ressourceCategories = [
   {
@@ -36,7 +37,7 @@ let ressourceCategories = [
   },
 ]
 
-export let ressourceTypes = [
+export let ressourceTypes: resourceLayout[] = [
   {
     id: "salaire_net",
     label: "Salaire (dont primes et indemnités de fin de contrat)",
@@ -144,7 +145,7 @@ export let ressourceTypes = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.handicap
+      return (individu?.handicap && individu.handicap) === true
     },
   },
   {
@@ -162,7 +163,7 @@ export let ressourceTypes = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.handicap
+      return (individu?.handicap && individu.handicap) === true
     },
   },
   {
@@ -173,7 +174,7 @@ export let ressourceTypes = [
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.handicap
+      return (individu?.handicap && individu.handicap) === true
     },
   },
   {
@@ -186,7 +187,9 @@ export let ressourceTypes = [
         individu,
         generator(situation.dateDeValeur).today.value
       )
-      return 16 <= age && (age <= 25 || (individu.handicap && age < 30))
+      return Boolean(
+        16 <= age && (age <= 25 || (individu.handicap && age < 30))
+      )
     },
   },
   {
@@ -196,7 +199,7 @@ export let ressourceTypes = [
     prefix: "la",
     sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.handicap
+      return (individu?.handicap && individu.handicap) === true
     },
   },
   {

@@ -1,6 +1,14 @@
-import { StepLayout, ComplexStepLayout } from "../types/steps"
+import {
+  StepLayout,
+  ComplexStepLayout,
+  StepGeneratorLayout,
+  ComplexStepGeneratorLayout,
+} from "../types/steps"
 
-function Step({ key, entity, id, variable, chapter }: StepLayout) {
+function Step(
+  this: StepGeneratorLayout,
+  { key, entity, id, variable, chapter }: StepLayout
+) {
   this.path = entity
     ? `/simulation/${entity}${id ? `/${id}` : ""}${
         variable ? `/${variable}` : ""
@@ -13,14 +21,10 @@ function Step({ key, entity, id, variable, chapter }: StepLayout) {
   this.chapter = chapter
 }
 
-function ComplexStep({
-  route,
-  variables,
-  chapter,
-  entity,
-  variable,
-  id,
-}: ComplexStepLayout) {
+function ComplexStep(
+  this: ComplexStepGeneratorLayout,
+  { route, variables, chapter, entity, variable, id }: ComplexStepLayout
+) {
   Step.call(this, { key: route, chapter: chapter, entity, variable, id })
   this.path = `/simulation/${route}`
   this.substeps = variables ? variables.map((v) => new Step(v)) : []

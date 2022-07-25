@@ -2,8 +2,11 @@ import resources from "./resources.js"
 import lodash from "lodash"
 const { filter, keys, keyBy, uniq } = lodash
 
-function getPeriodsForCurrentYear(dates, ressourceType) {
-  let periodKeys = []
+import { datesGeneratorLayout, dateLayout } from "../lib/types/dates"
+import { resourceLayout } from "./types/resources"
+
+function getPeriodsForCurrentYear(dates: datesGeneratorLayout, ressourceType) {
+  let periodKeys: dateLayout[] = []
   if (ressourceType.isMontantAnnuel) {
     periodKeys.push(dates.lastYear)
     return periodKeys
@@ -17,11 +20,18 @@ function getPeriodsForCurrentYear(dates, ressourceType) {
   return periodKeys
 }
 
-function getPeriodKeysForCurrentYear(dates, ressourceType) {
+function getPeriodKeysForCurrentYear(
+  dates: datesGeneratorLayout,
+  ressourceType
+) {
   return getPeriodsForCurrentYear(dates, ressourceType).map((date) => date.id)
 }
 
-function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
+function setDefaultValueForCurrentYear(
+  dates: datesGeneratorLayout,
+  individu,
+  ressourceType
+) {
   let ressourceId = ressourceType.id
   individu[ressourceId] = individu[ressourceId] || {}
   let ressource = individu[ressourceId]
@@ -46,7 +56,11 @@ function setDefaultValueForCurrentYear(dates, individu, ressourceType) {
   })
 }
 
-function unsetForCurrentYear(dates, entity, ressourceType) {
+function unsetForCurrentYear(
+  dates: datesGeneratorLayout,
+  entity,
+  ressourceType
+) {
   let ressourceId = ressourceType.id
   entity[ressourceId] = entity[ressourceId] || {}
   let ressource = entity[ressourceId]
@@ -66,7 +80,7 @@ function unsetForCurrentYear(dates, entity, ressourceType) {
   }
 }
 
-function isRessourceRelevant(ressourceType, situation, individu) {
+function isRessourceRelevant(ressourceType, situation, individu): boolean {
   return (
     !ressourceType.isRelevant || ressourceType.isRelevant(situation, individu)
   )
@@ -74,7 +88,10 @@ function isRessourceRelevant(ressourceType, situation, individu) {
 
 let ressourcesForTrailingMonthsAndFiscalYear = resources.categoriesRnc
   .filter(function (fiscalRessource) {
-    return fiscalRessource.sources?.indexOf(fiscalRessource.id) >= 0
+    return (
+      fiscalRessource?.sources &&
+      fiscalRessource.sources.indexOf(fiscalRessource.id) >= 0
+    )
   })
   .map(function (fiscalRessource) {
     return fiscalRessource.id
@@ -98,7 +115,7 @@ function getIndividuRessourceCategories(individu, situation) {
   return uniq(
     filter(
       resources.ressourceTypes,
-      (ressourceType) =>
+      (ressourceType: resourceLayout) =>
         isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) &&
         isRessourceOnMainScreen(ressourceType) &&
         isRessourceRelevant(ressourceType, situation, individu),
@@ -153,7 +170,7 @@ function setIndividuRessourceTypes(individu, types, dates) {
   })
 }
 
-function isRessourceOnMainScreen(ressourceOrType) {
+function isRessourceOnMainScreen(ressourceOrType): boolean {
   // Make this function robust so that it can be called with a type from the ressourceTypes constant, or just a string.
   let type = ressourceOrType.id || ressourceOrType
   return type != "pensions_alimentaires_versees_individu"

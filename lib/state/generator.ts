@@ -1,5 +1,6 @@
 import { Step } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
+import { StepLayout } from "../types/steps"
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },
@@ -37,7 +38,7 @@ function processBlock(
   }
 }
 
-function generateJourney(situation, parameters) {
+function generateJourney(situation, parameters): StepLayout[] | undefined {
   const blocks = generateBlocks(situation)
 
   function processBlocks({ situation, parameters }) {
@@ -59,6 +60,7 @@ function generateJourney(situation, parameters) {
 
 export function generateAllSteps(situation, parameters) {
   const fullSteps = generateJourney(situation, parameters)
+  if (!fullSteps) return []
   fullSteps.pop()
   let lastChapter
   return fullSteps.map((s) => {

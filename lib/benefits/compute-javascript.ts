@@ -4,6 +4,7 @@ import { filterByInterestFlag } from "./filter-interest-flag.js"
 import Scolarite from "../scolarite.js"
 
 import { situationsLayout } from "lib/types/situations.js"
+import { ConditionsLayout } from "lib/types/benefits.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -86,10 +87,13 @@ export function testGeographicalEligibility(
 
   const communeParameter = COMMUNE_PARAMETERS[condition.type]
 
-  return condition.values.includes(situation.menage[communeParameter])
+  return (
+    situation.menage &&
+    condition.values.includes(situation.menage[communeParameter])
+  )
 }
 
-export const CONDITION_STATEGY = {
+export const CONDITION_STATEGY: ConditionsLayout = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[

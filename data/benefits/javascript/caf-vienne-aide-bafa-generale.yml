@@ -2,13 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_vienne
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de la Vienne pour vous aider à financer votre session
-  en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
-  - Effectuer votre stage auprès d’un organisme conventionné.
-  - Ne pas être pris en charge à 100 % par un employeur pour la session
-    d’approfondissement ou de qualification.
+  en complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -23,12 +18,16 @@ conditions_generales:
     period: month
     floor: 1200
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
-instructions: https://www.caf.fr/allocataires/caf-de-la-vienne/offre-de-service/enfance-et-jeunesse/vous-recherchez-des-informations-sur-le-bafa
-prefix: l’
+conditions:
+  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Effectuer votre stage auprès d’un organisme conventionné.
+  - Contacter directement l’organisme de formation de votre choix pour toute
+    information.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 300
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-de-la-vienne/offre-de-service/vie-personnelle/vous-recherchez-des-informations-sur-le-bafa-pour-votre-enfant
+instructions: https://caf.fr/allocataires/caf-de-la-vienne/offre-de-service/vie-personnelle/vous-recherchez-des-informations-sur-le-bafa-pour-votre-enfant

@@ -1,4 +1,5 @@
-import { capitalize, map, assign } from "lodash"
+import lodash from "lodash"
+const { capitalize, map, assign } = lodash
 import fs from "fs"
 import path from "path"
 
@@ -27,11 +28,17 @@ function basicBenefitText(droit, parameters) {
 }
 
 const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/initial.txt"),
+  path.join(
+    path.dirname(""),
+    "backend/lib/mes-aides/emails/templates/initial.txt"
+  ),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/initial.mjml"),
+  path.join(
+    path.dirname(""),
+    "backend/lib/mes-aides/emails/templates/initial.mjml"
+  ),
   "utf8"
 )
 
@@ -94,7 +101,7 @@ function renderAsHtml(followup, benefits, parameters) {
     })
 }
 
-export async function render(followup) {
+export default async function render(followup) {
   const populated = await (followup.populated("simulation")
     ? Promise.resolve(followup)
     : followup.populate("simulation").execPopulate())

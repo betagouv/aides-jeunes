@@ -8,8 +8,10 @@ import utils from "../lib/utils.js"
 
 import { SurveyLayout } from "../types/survey.js"
 
-const renderInitial = require("../lib/mes-aides/emails/initial").render
-const renderSurvey = require("../lib/mes-aides/emails/survey").render
+//const renderInitial = require("../lib/mes-aides/emails/initial").render
+import renderInitial from "../lib/mes-aides/emails/initial.js"
+//const renderSurvey = require("../lib/mes-aides/emails/survey").render
+import renderSurvey from "../lib/mes-aides/emails/survey.js"
 
 const SurveySchema = new mongoose.Schema(
   {
@@ -200,4 +202,4 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
 })
 
-mongoose.model("Followup", FollowupSchema)
+export default mongoose.model("Followup", FollowupSchema)

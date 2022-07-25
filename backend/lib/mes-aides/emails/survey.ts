@@ -7,11 +7,17 @@ import config from "../../../config/index.js"
 import { mjml } from "./index.js"
 
 const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/survey.txt"),
+  path.join(
+    path.dirname(""),
+    "backend/lib/mes-aides/emails/templates/survey.txt"
+  ),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/survey.mjml"),
+  path.join(
+    path.dirname(""),
+    "backend/lib/mes-aides/emails/templates/survey.mjml"
+  ),
   "utf8"
 )
 
@@ -39,7 +45,7 @@ function renderAsHtml(followup) {
   })
 }
 
-function render(followup) {
+export default function render(followup) {
   return Promise.all([renderAsText(followup), renderAsHtml(followup)]).then(
     function (values) {
       return {
@@ -52,5 +58,3 @@ function render(followup) {
     }
   )
 }
-
-exports.render = render

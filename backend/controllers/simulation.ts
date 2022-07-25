@@ -8,7 +8,8 @@ import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
 import migrations from "../lib/migrations/index.js"
 
-const Simulation = mongoose.model("Simulation")
+//const Simulation = mongoose.model("Simulation")
+import Simulation from "../models/simulation.js"
 
 function getSimulationOnRequest(req, simulation) {
   req.simulation = migrations.apply(simulation)

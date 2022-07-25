@@ -118,4 +118,4 @@ SimulationSchema.method("compute", function () {
   })
 })
 
-mongoose.model("Simulation", SimulationSchema)
+export default mongoose.model("Simulation", SimulationSchema)

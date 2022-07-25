@@ -196,7 +196,9 @@ export function generateSituation(simulation: situationsLayout, useAll?: any) {
   if (simulation.patrimoine) {
     const periodKey = "month:2012-01:120"
     Object.keys(simulation.patrimoine).forEach((key) => {
-      situation.demandeur[key] = { [periodKey]: simulation.patrimoine[key] }
+      if (situation?.demandeur) {
+        situation.demandeur[key] = { [periodKey]: simulation.patrimoine[key] }
+      }
     })
   }
 

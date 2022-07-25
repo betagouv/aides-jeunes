@@ -35,4 +35,5 @@ export interface ComplexStepGeneratorLayout {
   variable: any
   chapter: any
   substeps: any
+  isActive?: boolean
 }

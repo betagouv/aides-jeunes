@@ -24,12 +24,22 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  "resolve": {
+    "extensions": [".ts", ".js", ".json"]
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "./configure.ts",
+    "./mock.ts",
+    "./server.ts",
+    "backend/**/*.ts",
+    "backend/**/*.d.ts",
+    "lib/**/*.ts",
+    "lib/**/*.d.ts"
   ],
   "exclude": [
     "node_modules",

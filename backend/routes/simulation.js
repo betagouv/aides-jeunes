@@ -51,6 +51,7 @@ module.exports = function (api) {
   teleservices.names.forEach(function (name) {
     route.get(
       `/${name}`,
+      cors({ origin: "*" }),
       teleservices.metadataResponseGenerator(teleservices[name])
     )
   })

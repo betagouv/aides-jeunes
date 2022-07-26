@@ -5,6 +5,7 @@ const Mustache = require("mustache")
 
 const config = require("../../config")
 const AidesJeunesPreremplissage = require("../../lib/teleservices/aides-jeunes-preremplissage")
+const AidesJeunesServiceLogement = require("../../lib/teleservices/aides-jeunes-service-logement")
 const OpenFiscaAxe = require("../../lib/teleservices/openfisca-axe")
 const OpenFiscaResponse = require("../../lib/teleservices/openfisca-response")
 const OpenFiscaTracer = require("../../lib/teleservices/openfisca-tracer")
@@ -49,11 +50,35 @@ const teleservices = [
     },
   },
   {
-    name: "aides_jeunes_preremplissage",
+    name: "aides_jeunes_preremplissage_dev",
     class: AidesJeunesPreremplissage,
     public: true,
     destination: {
       url: "http://localhost:3000/preremplissage/resultats?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_service_logement_dev",
+    class: AidesJeunesServiceLogement,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/service-logement?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_preremplissage",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "https://aides-jeunes-experimentations.netlify.app/preremplissage/resultats?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_service_logement",
+    class: AidesJeunesServiceLogement,
+    public: true,
+    destination: {
+      url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
     },
   },
 ]
@@ -189,7 +214,7 @@ exports.verifyRequest = function (req, res, next) {
  */
 exports.exportRepresentation = function (req, res) {
   return Promise.resolve(
-    createClass(req.teleservice, req.simulation).toExternal()
+    createClass(req.teleservice, req.simulation).toExternal(req)
   ).then(function (value) {
     return res.json(value)
   })

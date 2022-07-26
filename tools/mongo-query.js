@@ -78,7 +78,6 @@ function depcom100kp(simulation) {
     (depcomAnswer &&
       depcomAnswer.value &&
       depcomAnswer.value.depcom &&
-      depcomAnswer.value.depcom &&
       depcoms[depcomAnswer.value.depcom] &&
       depcomAnswer.value.depcom) ||
     "#N/A"

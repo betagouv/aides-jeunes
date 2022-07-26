@@ -18,7 +18,7 @@ conditions:
     Associative.
   - Être allocataire de la CAF de la Savoie.
 interestFlag: _interetBafa
-type: bool
+type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum

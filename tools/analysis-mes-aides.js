@@ -10,7 +10,6 @@ const interestingSlugs = [
   "bourse-communale-au-permis-de-conduire-arnas",
 ]
 
-
 const interestingSlugMap2 = interestingSlugs.reduce((accumulator, item) => {
   accumulator[item] = 1
   return accumulator

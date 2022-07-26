@@ -69,7 +69,12 @@
           <span v-html="question" />
           <EnSavoirPlus v-if="showMoreInfo" /> </h2
       ></label>
-      <input :id="fieldName" v-model="value" type="text" />
+      <input
+        :id="fieldName"
+        v-model="value"
+        :data-testid="fieldName"
+        type="text"
+      />
     </div>
 
     <YesNoQuestion v-else v-model="value">
@@ -179,7 +184,9 @@ export default {
       this.$push()
     },
     requiredValueMissing(submit) {
-      const hasError = this.value === undefined
+      const hasError =
+        this.value === undefined ||
+        (this.questionType === "text" && !this.value)
 
       if (submit) {
         this.$store.dispatch(

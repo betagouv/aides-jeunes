@@ -22,11 +22,7 @@ function age(simulation) {
   return dobAnwser
     ? Math.round(
         (simulation.dateDeValeur - ISODate(dobAnwser.value)) /
-          365.25 /
-          24 /
-          60 /
-          60 /
-          1000,
+          (365.25 / 24 / 60 / 60 / 1000),
         0
       )
     : "#N/A"

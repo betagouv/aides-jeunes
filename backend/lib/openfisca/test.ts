@@ -95,14 +95,14 @@ export const generateTest = function generateYAMLTest(details, situation) {
   )
   const periods = common.getPeriods(situation.dateDeValeur)
 
-  const prestationsWithInterest = pickBy(
+  const prestationsWithInterest: lodash.Dictionary<any> = pickBy(
     common.requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)
     }
   )
 
-  const openfiscaPeriods = new Set()
+  const openfiscaPeriods: Set<string> = new Set()
   Object.values(prestationsWithInterest).forEach((definition) => {
     openfiscaPeriods.add(definition.openfiscaPeriod)
   })

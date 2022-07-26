@@ -6,6 +6,8 @@ import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
+import { openfiscaPeriodsLayout } from "../../../types/openfisca.js"
+
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
@@ -38,7 +40,7 @@ function getIndividusSortedParentsFirst(situation) {
     })
 }
 
-function getPeriods(dateDeValeur): any {
+function getPeriods(dateDeValeur): openfiscaPeriodsLayout {
   dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)

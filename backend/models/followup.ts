@@ -8,12 +8,18 @@ import utils from "../lib/utils.js"
 
 import { SurveyLayout } from "../types/survey.js"
 
-//const renderInitial = require("../lib/mes-aides/emails/initial").render
 import renderInitial from "../lib/mes-aides/emails/initial.js"
-//const renderSurvey = require("../lib/mes-aides/emails/survey").render
 import renderSurvey from "../lib/mes-aides/emails/survey.js"
 
-const SurveySchema = new mongoose.Schema(
+// FIXME: either duplicate mongoose schema logic or skip ts schema check
+interface MongooseLayout {
+  [id: string]: any
+}
+interface FollowupModel extends mongoose.Model<MongooseLayout> {
+  findByIdOrOldId(id: string): any
+}
+
+const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {
     _oldId: { type: String },
     accessToken: { type: String },
@@ -110,7 +116,7 @@ FollowupSchema.method("sendInitialEmail", function () {
 })
 
 FollowupSchema.method("renderSurveyEmail", function (survey) {
-  return renderSurvey(this, survey)
+  return renderSurvey(survey)
 })
 
 FollowupSchema.method("createSurvey", function (type) {
@@ -171,6 +177,10 @@ FollowupSchema.method("updateSurvey", function (id, answers) {
   const survey = find(surveys, function (s: SurveyLayout) {
     return s._id === id
   })
+  if (typeof survey === "undefined") {
+    console.log("Could not find and update survey using its id")
+    return
+  }
   Object.assign(survey, {
     answers: answers,
     repliedAt: Date.now(),
@@ -202,4 +212,7 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
 })
 
-export default mongoose.model("Followup", FollowupSchema)
+export default mongoose.model<MongooseLayout, FollowupModel>(
+  "Followup",
+  FollowupSchema
+)

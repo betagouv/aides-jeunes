@@ -171,7 +171,7 @@ function manageMissingDBOrCollection(error) {
 }
 
 async function connect() {
-  return await MongoClient.connect(config.mongo.uri, config.mongo.options)
+  return await MongoClient.connect(config.mongo.uri)
     .then(saveClient)
     .then((client) => client.db())
 }
@@ -197,10 +197,7 @@ function getStats(fromDate, toDate) {
       )
     })
     .catch(manageMissingDBOrCollection)
-    .finally((result) => {
-      closeClient()
-      return result
-    })
+    .finally(closeClient)
 }
 
 export default { connect, closeClient, getStats }

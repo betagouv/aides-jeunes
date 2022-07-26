@@ -5,7 +5,7 @@ import mongoose from "mongoose"
 import mongooseConfig from "../config/mongoose.js"
 mongooseConfig(mongoose, config)
 
-const Followup = mongoose.model("Followup")
+import Followup from "../models/followup.js"
 
 const parser = new ArgumentParser({
   add_help: true,

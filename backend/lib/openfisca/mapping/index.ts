@@ -93,9 +93,8 @@ export function dispatchIndividuals(
     return enfant.id
   })
   familles._.enfants = enfantIds
-  foyers_fiscaux._.personnes_a_charge = []
-    .concat(...foyers_fiscaux._.personnes_a_charge)
-    .concat(...enfantIds)
+  foyers_fiscaux._.personnes_a_charge =
+    foyers_fiscaux._.personnes_a_charge.concat(enfantIds)
   menages._.enfants = enfantIds
 
   return {

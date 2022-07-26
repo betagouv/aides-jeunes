@@ -118,8 +118,7 @@ function getIndividuRessourceCategories(individu, situation) {
       (ressourceType: resourceLayout) =>
         isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) &&
         isRessourceOnMainScreen(ressourceType) &&
-        isRessourceRelevant(ressourceType, situation, individu),
-      {}
+        isRessourceRelevant(ressourceType, situation, individu)
     ).map((r) => r.category)
   )
 }

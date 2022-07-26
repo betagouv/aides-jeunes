@@ -4,6 +4,7 @@ cd `dirname $0`
 
 NOW=$(date +"%F_%H-%M-%S")
 DEST=../dist/documents
+mkdir -p "$DEST"
 
 echo $NOW
 

@@ -5,7 +5,7 @@ function month(simulation) {
 }
 
 function age(simulation) {
-  var ageAnswer =
+  const ageAnswer =
     simulation.answers &&
     simulation.answers.all.find(function (e) {
       return e.fieldName === "age"
@@ -14,7 +14,7 @@ function age(simulation) {
     return ageAnswer.value
   }
 
-  var dobAnwser =
+  const dobAnwser =
     simulation.answers &&
     simulation.answers.all.find(function (e) {
       return e.fieldName === "date_naissance"
@@ -29,7 +29,7 @@ function age(simulation) {
 }
 
 function depcom(simulation) {
-  var depcomAnswer = simulation.answers.all.find(function (e) {
+  const depcomAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "depcom"
   })
   return (
@@ -38,7 +38,7 @@ function depcom(simulation) {
 }
 
 function depcom100kp(simulation) {
-  var depcomAnswer = simulation.answers.all.find(function (e) {
+  const depcomAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "depcom"
   })
 
@@ -85,7 +85,7 @@ function depcom100kp(simulation) {
 }
 
 function epci(simulation) {
-  var depcomAnswer = simulation.answers.all.find(function (e) {
+  const depcomAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "depcom"
   })
   return (
@@ -98,7 +98,7 @@ function epci(simulation) {
 }
 
 function departement(simulation) {
-  var depcomAnswer = simulation.answers.all.find(function (e) {
+  const depcomAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "depcom"
   })
   return (
@@ -111,7 +111,7 @@ function departement(simulation) {
 }
 
 function region(simulation) {
-  var depcomAnswer = simulation.answers.all.find(function (e) {
+  const depcomAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "depcom"
   })
   return (
@@ -124,27 +124,27 @@ function region(simulation) {
 }
 
 function activite(simulation) {
-  var activiteAnswer = simulation.answers.all.find(function (e) {
+  const activiteAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "activite"
   })
   return activiteAnswer ? activiteAnswer.value : "#N/A"
 }
 
 function logement(simulation) {
-  var logementAnswer = simulation.answers.all.find(function (e) {
+  const logementAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "statut_occupation_logement"
   })
   return logementAnswer ? logementAnswer.value : "#N/A"
 }
 
 function avecRessources(simulation) {
-  var ressourcesAnswer = simulation.answers.all.find(function (e) {
+  const ressourcesAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "ressources"
   })
   return ressourcesAnswer ? ressourcesAnswer.value.length > 0 : "#N/A"
 }
 
-var props = {
+const props = {
   activite,
   age,
   avecRessources,
@@ -158,7 +158,7 @@ var props = {
 }
 
 function genericGetter(propName, simulation) {
-  var answer = simulation.answers.all.find(function (e) {
+  const answer = simulation.answers.all.find(function (e) {
     return e.fieldName === propName
   })
   return answer ? answer.value : "#N/A"
@@ -167,7 +167,7 @@ function genericGetter(propName, simulation) {
 if (typeof headers == "undefined") {
   print("Usage:")
   print(
-    "mongo --quiet db_aides_jeunes --eval \"var headers='month,depcom100kp,departement';\" tools/mongo-query.js > export.csv"
+    "mongo --quiet db_aides_jeunes --eval \"const headers='month,depcom100kp,departement';\" tools/mongo-query.js > export.csv"
   )
   print("  headers doit contenir les entêtes souhaitées.")
   print("")
@@ -178,7 +178,7 @@ if (typeof headers == "undefined") {
   print("  + les valeurs de fieldName dans les réponses")
   quit(1)
 }
-var propNames = headers.split(",")
+const propNames = headers.split(",")
 
 print(propNames.join(";") + ";count")
 print(
@@ -186,8 +186,8 @@ print(
     .getCollection("simulations")
     .mapReduce(
       function () {
-        var sim = this
-        var values = propNames.map(function (name) {
+        const sim = this
+        const values = propNames.map(function (name) {
           if (props[name]) {
             return props[name](sim)
           } else {

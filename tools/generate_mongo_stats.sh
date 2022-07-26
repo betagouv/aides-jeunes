@@ -9,7 +9,8 @@ mkdir -p "$DEST"
 echo $NOW
 
 function generate_stats {
-  mongo --quiet db_aides_jeunes --eval "var headers='$1';" mongo-query.js > $DEST/$2_$NOW.csv
+  echo $2
+  mongo --quiet db_aides_jeunes --eval "const headers='$1';" mongo-query.js > $DEST/$2_$NOW.csv
   cp $DEST/$2_$NOW.csv $DEST/$2.csv
 }
 

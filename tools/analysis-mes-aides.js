@@ -14,7 +14,7 @@ const interestingSlugMap2 = interestingSlugs.reduce((accumulator, item) => {
   accumulator[item] = 1
   return accumulator
 }, {})
-//console.log(interestingSlugMap2)
+console.log(interestingSlugMap2)
 
 // nombres d'aides par rapport aux slugs qui nous intéressent
 const filterAides = aides.filter(
@@ -44,7 +44,7 @@ aides.forEach((aide) => {
 
 // combien d'aides régionales, départementales, communales ?
 const numberConditions = aides.map((aide) => aide.conditions)
-//console.log(numberConditions)
+console.log(numberConditions)
 const conditionsLengthCounts = {}
 aides.forEach((aide) => {
   conditionsLengthCounts[aide.conditions.length] =

@@ -37,11 +37,7 @@ function depcom(simulation) {
     return e.fieldName === "depcom"
   })
   return (
-    (depcomAnswer &&
-      depcomAnswer.value &&
-      depcomAnswer.value.depcom &&
-      depcomAnswer.value.depcom) ||
-    "#N/A"
+    (depcomAnswer && depcomAnswer.value && depcomAnswer.value.depcom) || "#N/A"
   )
 }
 

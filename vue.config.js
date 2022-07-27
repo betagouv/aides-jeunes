@@ -38,7 +38,6 @@ process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits 
 export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
-
     ;(config.resolve = {
       alias: {
         "@/*": ["src/*"],

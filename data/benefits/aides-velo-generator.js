@@ -1,11 +1,14 @@
-import { createRequire } from "module"
-const require = createRequire(import.meta.url)
-const aidesVelo = require("aides-velo")
-// import aidesVelo from "aides-velo/build"
+import aidesVelo from "aides-velo"
 
-import { benefitVeloLayout } from "../types/benefits"
+// async function main() {
+//   const aidesVelo : Function = await import("aides-velo")
+//   return [...aidesVelo()]
+// }
+// let benefits: Promise<benefitVeloLayout[]> = main()
 
-const benefits: benefitVeloLayout[] = [...aidesVelo()]
+//import { benefitVeloLayout } from "../types/benefits"
+
+const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {

@@ -2,14 +2,14 @@ import axios from "axios"
 import { sortBy } from "lodash"
 
 function normalize(etablissementFeature) {
-  let etablissement = etablissementFeature.properties
+  const etablissement = etablissementFeature.properties
 
   if (etablissement.url === "https://www.maisondeservicesaupublic.fr") {
     delete etablissement.url
   }
 
   if (etablissement.horaires) {
-    let mapping = {
+    const mapping = {
       lundi: 1,
       mardi: 2,
       mercredi: 3,

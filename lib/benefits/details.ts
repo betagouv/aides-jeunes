@@ -36,8 +36,17 @@ function getDecimalPrecision(droit) {
   return droit.floorAt < 1 ? 2 : 0
 }
 
+interface droitEstimeLayout {
+  id: any
+  label?: any
+  legend: any
+  type: any
+  value: any
+  unit: any
+  icon?: any
+}
 function formatDroitEstime(droit, parameters) {
-  let droitEstime = {
+  let droitEstime: droitEstimeLayout = {
     id: droit.id || undefined,
     label: undefined,
     legend: getBenefitLegend(droit, parameters) || "",

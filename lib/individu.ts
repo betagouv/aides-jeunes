@@ -51,7 +51,7 @@ function get(individus: individuLayout[], role: string, id?: string) {
   }
 
   if (role == "enfant" && !existingIndividu) {
-    let usedIds = individus.map(function (enfant) {
+    const usedIds = individus.map(function (enfant) {
       return enfant.id
     })
     let count = 0

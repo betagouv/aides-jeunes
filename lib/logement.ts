@@ -1,7 +1,7 @@
 const { getAnswer } = require("./answers")
 
 function getStatutOccupationLogement(logement) {
-  let statusOccupationMap = {
+  const statusOccupationMap = {
     proprietaireprimoaccedant: "primo_accedant",
     proprietaire: "proprietaire",
     locatairenonmeuble: "locataire_vide",
@@ -20,7 +20,7 @@ function getStatutOccupationLogement(logement) {
 }
 
 function getLogementVariables(statusOccupationId) {
-  let baseLogementMap = {
+  const baseLogementMap = {
     primo_accedant: { type: "proprietaire", primoAccedant: true },
     proprietaire: { type: "proprietaire", primoAccedant: false },
     locataire_vide: { type: "locataire", locationType: "nonmeuble" },
@@ -29,7 +29,7 @@ function getLogementVariables(statusOccupationId) {
     locataire_foyer: { type: "locataire", locationType: "foyer" },
     sans_domicile: { type: "sansDomicile" },
   }
-  let base = statusOccupationId && baseLogementMap[statusOccupationId]
+  const base = statusOccupationId && baseLogementMap[statusOccupationId]
   return { type: null, primoAccedant: null, locationType: null, ...base }
 }
 

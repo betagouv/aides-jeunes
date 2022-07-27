@@ -13,8 +13,7 @@ export function capitalize(str) {
 }
 
 export const yearsAgo = (years, date, format = "MMMM YYYY") => {
-  let dt = dayjs(date)
-  return date && dt.subtract(years, "year").format(format)
+  return date && dayjs(date).subtract(years, "year").format(format)
 }
 
 export const displayDateValue = (value) => {
@@ -29,7 +28,7 @@ export function displayEnumValue(value, items) {
 export function displayMultipleValue(value, question) {
   return value
     .map((item) => {
-      for (let answer of question.items) {
+      for (const answer of question.items) {
         if (item == answer.value) {
           return answer.label
         }

@@ -30,5 +30,5 @@
     "lib/**/*.ts",
     "lib/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "node_modules/aides-velo/index.ts"]
+  "exclude": ["node_modules", "tests"]
 }

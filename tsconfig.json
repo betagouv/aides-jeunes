@@ -44,6 +44,7 @@
     "lib",
     "dist",
     "dist-server",
-    "tools"
+    "tools",
+    "tests"
   ]
 }

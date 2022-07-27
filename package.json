@@ -169,7 +169,7 @@
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/"
+      "/\\./"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
@@ -185,7 +185,12 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ],
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
+    "globals": {
+      "ts-jest": {
+        "babelConfig": true
+      }
+    }
   },
   "engines": {
     "node": ">= 16"

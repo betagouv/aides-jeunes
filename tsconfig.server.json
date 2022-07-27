@@ -6,12 +6,6 @@
     "target": "esnext",
     "module": "esnext",
     "strict": false,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "allowJs": true,
-    "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -20,10 +14,11 @@
     "baseUrl": ".",
     "noImplicitAny": false,
     "noImplicitThis": false,
+    "moduleResolution": "node",
     "resolveJsonModule": true
   },
   "resolve": {
-    "extensions": [".ts", ".js", ".json"]
+    "extensions": [".cjs", ".ts", ".js", ".json"]
   },
   "include": [
     "./configure.ts",
@@ -33,6 +28,5 @@
     "backend/**/*.d.ts",
     "lib/**/*.ts",
     "lib/**/*.d.ts"
-  ],
-  "exclude": ["node_modules", "src", "contribuer", "tools"]
+  ]
 }

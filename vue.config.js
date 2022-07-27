@@ -38,22 +38,17 @@ process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits 
 export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
-    ;(config.resolve = {
-      alias: {
-        "@/*": ["src/*"],
-      },
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".vue"],
-    }),
-      config.plugins.push(
-        new HtmlWebpackPlugin({
-          filename: "sitemap.xml",
-          template: "public/map.xml",
-          inject: false,
-          templateParameters: {
-            VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL,
-          },
-        })
-      )
+
+    config.plugins.push(
+      new HtmlWebpackPlugin({
+        filename: "sitemap.xml",
+        template: "public/map.xml",
+        inject: false,
+        templateParameters: {
+          VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL,
+        },
+      })
+    )
     const args = parseArgs(process.argv.slice(2))
     if (args.env?.BUNDLEANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({}))
@@ -73,17 +68,6 @@ export default {
         // modify the options...
         return options
       })
-    config.module
-      .rule("vue")
-      .use("vue-loader")
-      .loader("vue-loader")
-      .tap((options) => ({
-        ...options,
-        compilerOptions: {
-          ...options.compilerOptions,
-          whitespace: "preserve",
-        },
-      }))
   },
   devServer: {
     onBeforeSetupMiddleware: before,

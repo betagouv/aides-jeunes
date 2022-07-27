@@ -184,7 +184,7 @@ import filter from "lodash/filter"
 import sortBy from "lodash/sortBy"
 
 import axios from "axios"
-import Institution from "@/../dist-server/lib/institution"
+import Institution from "@/lib/institution"
 import ContactEmailMixin from "@/mixins/contact-email"
 import ResultatsMixin from "@/mixins/resultats"
 
@@ -194,7 +194,7 @@ import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/../dist-server/lib/contributions"
+} from "@/lib/contributions"
 import WarningMessage from "@/components/warning-message"
 
 export default {

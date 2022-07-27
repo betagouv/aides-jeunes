@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Institution from "@/../dist-server/lib/institution"
+import Institution from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 

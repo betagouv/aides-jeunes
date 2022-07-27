@@ -17,8 +17,8 @@ import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
 
 import { getAnswer } from "@/../lib/answers"
-import DepcomProperties from "@/../lib/properties/depcom-properties"
-import Warning from "@/../dist-server/lib/warnings"
+import DepcomProperties from "@/../dist-server/lib/properties/depcom-properties"
+import Warning from "@/lib/warnings"
 
 export default {
   name: "SimulationDepcomStep",

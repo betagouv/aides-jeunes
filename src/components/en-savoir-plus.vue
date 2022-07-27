@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Hint from "@/../dist-server/lib/hint"
+import Hint from "@/lib/hint"
 
 export default {
   name: "EnSavoirPlus",

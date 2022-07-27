@@ -98,7 +98,7 @@
 <script>
 import axios from "axios"
 
-import Institution from "@/../dist-server/lib/institution"
+import Institution from "@/lib/institution"
 import LoadingModal from "@/components/loading-modal"
 import DroitHeader from "@/components/droit-header"
 import dayjs from "dayjs"

@@ -54,9 +54,9 @@ import RessourceMontants from "@/components/ressource/montants"
 
 import RessourceProcessor from "@/mixins/ressource-processor"
 import { ressourceTypes } from "../../../../dist-server/lib/resources"
-import Ressource from "@/../lib/ressource"
-import Individu from "../../../../lib/individu"
-import { getAnswer } from "../../../../lib/answers"
+import Ressource from "@/../dist-server/lib/ressource"
+import Individu from "../../../../dist-server/lib/individu"
+import { getAnswer } from "../../../../dist-server/lib/answers"
 
 export default {
   name: "RessourcesMontants",

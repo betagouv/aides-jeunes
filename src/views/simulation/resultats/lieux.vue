@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import Institution from "@/../dist-server/lib/institution"
+import Institution from "@/lib/institution"
 import Etablissement from "@/components/etablissement"
 import {
   getBenefitEtablissements,

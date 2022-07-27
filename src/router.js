@@ -2,8 +2,8 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import store from "./store"
 import context from "./context"
-import Institution from "@/../dist-server/lib/institution"
-import Simulation from "@/../dist-server/lib/simulation"
+import Institution from "@/lib/institution"
+import Simulation from "@/lib/simulation"
 
 const benefits = Institution.benefits.benefitsMap
 

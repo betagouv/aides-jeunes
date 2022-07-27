@@ -1,4 +1,4 @@
-import BenefitsCategories from "@/../dist-server/lib/benefits-categories"
+import BenefitsCategories from "@/lib/benefits-categories"
 import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
 import { generate } from "@/../dist-server/data"
 

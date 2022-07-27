@@ -54,8 +54,8 @@ import {
   ressourceCategories,
   ressourceTypes,
 } from "../../../dist-server/lib/resources"
-import Ressource from "@/../lib/ressource"
-import { getAnswer } from "../../../lib/answers"
+import Ressource from "@/../dist-server/lib/ressource"
+import { getAnswer } from "../../../dist-server/lib/answers"
 
 export default {
   name: "RessourceTypes",

@@ -7,7 +7,7 @@ import some from "lodash/some"
 import {
   computeAides,
   datesGenerator,
-} from "../dist-server/lib../lib/benefits/compute"
+} from "../dist-server/lib/benefits/compute"
 import { categoriesRnc, patrimoineTypes } from "../dist-server/lib/resources"
 import { generateAllSteps } from "../dist-server/lib/state/generator"
 import Institution from "./lib/institution"

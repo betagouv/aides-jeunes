@@ -94,7 +94,7 @@
 <script>
 import ActionButtons from "@/components/action-buttons"
 import Logement from "../../../lib/logement"
-import Individu from "../../../lib/individu.js"
+import Individu from "../../../dist-server/lib/individu.js"
 import { getAnswer } from "../../../lib/answers"
 
 export default {

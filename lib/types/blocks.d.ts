@@ -1,5 +1,5 @@
 export interface BlockLayout {
   subject?: any
-  isActive?: boolean
+  isActive?: any
   steps?: any
 }

@@ -37,7 +37,7 @@ const getIndividu = (situation: situationsLayout, id: string) => {
   return individu
 }
 
-export function generateSituation(simulation: situationsLayout, useAll?: any) {
+export function generateSituation(simulation, useAll?: any) {
   if (!simulation) {
     return {}
   }

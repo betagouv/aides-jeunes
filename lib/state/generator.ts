@@ -2,9 +2,11 @@ import { Step } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
 import { StepLayout } from "../types/steps"
 
+import { BlockLayout } from "../types/blocks.js"
+
 function processBlock(
   { journey, subject, situation, isActive, parameters },
-  block
+  block: BlockLayout
 ) {
   if (block instanceof Step) {
     block.isActive = isActive

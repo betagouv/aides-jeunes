@@ -304,7 +304,7 @@ function kidBlock(situation) {
   }
 }
 
-function housingBlock(situation) {
+function housingBlock() {
   return {
     subject: (situation) => situation.menage,
     steps: [
@@ -525,7 +525,7 @@ export function generateBlocks(situation): BlockLayout[] {
         },
       ],
     },
-    housingBlock(situation),
+    housingBlock(),
     resourceBlocks(situation),
     {
       isActive: (situation) => {

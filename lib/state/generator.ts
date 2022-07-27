@@ -18,7 +18,7 @@ function processBlock(
     if (!block.steps) {
       throw Error(`${block} (${block instanceof Array ? "array" : "?"})`)
     }
-    let blockSubject = block.subject
+    const blockSubject = block.subject
       ? block.subject(subject, situation)
       : subject || situation
     const localActive =
@@ -44,7 +44,7 @@ function generateJourney(situation, parameters): StepLayout[] | undefined {
   const blocks = generateBlocks(situation)
 
   function processBlocks({ situation, parameters }) {
-    let journey = []
+    const journey = []
     blocks.forEach((b) => {
       processBlock(
         { journey, subject: situation, situation, isActive: true, parameters },

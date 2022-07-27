@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { situationsLayout } from "./situations"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { individuLayout } from "./individu"
 
 export interface resourceLayout {

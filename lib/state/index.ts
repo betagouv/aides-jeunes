@@ -1,5 +1,4 @@
 import Chapters from "../chapters.js"
-import { chapterLayout } from "../types/chapters"
 
 export function chapters(currentPath, journey, lastUnanswerPath) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
@@ -32,7 +31,7 @@ export function current(currentPath, journey) {
 }
 
 export function next(current, journey) {
-  let matches = journey
+  const matches = journey
     .map((element, index) => {
       return { element, index }
     })

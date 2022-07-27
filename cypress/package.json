@@ -1,0 +1,5 @@
+{
+  "name": "cypress-package",
+  "private": true,
+  "type": "commonjs"
+}

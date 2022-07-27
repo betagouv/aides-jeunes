@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "outDir": "dist",
     "importHelpers": true,
@@ -12,6 +12,7 @@
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
+    "noImplicitReturns": false,
     "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -25,7 +26,7 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "resolve": {
-    "extensions": [".ts", ".js", ".json"]
+    "extensions": [".ts", ".js", ".json", ".vue"]
   },
   "include": [
     "src/**/*.ts",
@@ -33,13 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "./configure.ts",
-    "./mock.ts",
-    "./server.ts",
-    "backend/**/*.ts",
-    "backend/**/*.d.ts",
-    "lib/**/*.ts",
-    "lib/**/*.d.ts"
+    "tests/unit/openfisca/mapping/dispatch-individuals.spec.js"
   ],
   "exclude": [
     "node_modules",

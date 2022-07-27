@@ -4,7 +4,6 @@
   "description": "Simulateur de prestations sociales pour les jeunes",
   "type": "module",
   "scripts": {
-    "serve:back": "npm run build:server && node ./dist-server/server.js",
     "serve": "npm run build:server && vue-cli-service serve",
     "serve:back": "npm run build:server && node ./dist-server/server.js",
     "build": "npm run build:server && npm run build:front",
@@ -159,7 +158,8 @@
     "transform": {
       "^.+\\.vue$": "@vue/vue3-jest",
       ".+\\.(css|styl|less|scss|sass|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "\\.[jt]sx?$": "babel-jest"
+      "\\.[jt]sx?$": "babel-jest",
+      "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "transformIgnorePatterns": [
       "/node_modules/"

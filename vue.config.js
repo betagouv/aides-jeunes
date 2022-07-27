@@ -1,6 +1,5 @@
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
-import webpack from "webpack"
 import parseArgs from "minimist"
 
 import config from "./dist-server/backend/config/index.js"
@@ -23,7 +22,6 @@ process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
   (benefit) => !benefit.private
 ).length
 process.env.VUE_APP_MATOMO_ID = matomo.id
-process.env.VUE_APP_VALIDATION_DELAY = animation?.delay || 0
 process.env.VUE_APP_CONTACT_EMAIL = "aides-jeunes@beta.gouv.fr"
 process.env.VUE_APP_CONTEXT_NAME = "1jeune1solution"
 process.env.VUE_APP_BASE_URL = baseURL
@@ -40,14 +38,23 @@ process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits 
 export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
-    config.plugins.push(
-      new HtmlWebpackPlugin({
-        filename: "sitemap.xml",
-        template: "public/map.xml",
-        inject: false,
-        templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
-      })
-    )
+
+    ;(config.resolve = {
+      alias: {
+        "@/*": ["src/*"],
+      },
+      extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".vue"],
+    }),
+      config.plugins.push(
+        new HtmlWebpackPlugin({
+          filename: "sitemap.xml",
+          template: "public/map.xml",
+          inject: false,
+          templateParameters: {
+            VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL,
+          },
+        })
+      )
     const args = parseArgs(process.argv.slice(2))
     if (args.env?.BUNDLEANALYZE) {
       config.plugins.push(new BundleAnalyzerPlugin({}))
@@ -59,6 +66,14 @@ export default {
       .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
       .use("file-loader")
       .loader("file-loader")
+    config.module
+      .rule("ts")
+      .use("ts-loader")
+      .loader("ts-loader")
+      .tap((options) => {
+        // modify the options...
+        return options
+      })
     config.module
       .rule("vue")
       .use("vue-loader")

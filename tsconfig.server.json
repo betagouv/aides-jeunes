@@ -22,7 +22,9 @@
     "noImplicitThis": false,
     "resolveJsonModule": true
   },
-
+  "resolve": {
+    "extensions": [".ts", ".js", ".json"]
+  },
   "include": [
     "./configure.ts",
     "./mock.ts",

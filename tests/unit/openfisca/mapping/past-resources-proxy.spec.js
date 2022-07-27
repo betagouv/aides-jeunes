@@ -1,5 +1,5 @@
-const subject = require("../../../../backend/lib/openfisca/mapping/individu/past-resources-proxy")
-const expect = require("expect")
+import subject from "../../../../dist-server/backend/lib/openfisca/mapping/individu/past-resources-proxy.js"
+import expect from "expect"
 
 describe("openfisca past resource proxy", function () {
   const date = new Date("2019-02-14")

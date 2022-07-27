@@ -1,10 +1,10 @@
+import subject from "../../../../dist-server/backend/lib/openfisca/mapping/individu/index.js"
+import expect from "expect"
+
 const situation = {
   demandeur: { _bourseCriteresSociauxCommuneDomicileFamilial: "38185" },
   menage: { depcom: "33090" },
 }
-
-const subject = require("../../../../backend/lib/openfisca/mapping/individu")
-const expect = require("expect")
 
 describe("distance computation", function () {
   const result =

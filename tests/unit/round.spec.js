@@ -1,4 +1,4 @@
-import { round } from "../../lib/benefits/compute"
+import { round } from "../../dist-server/lib/benefits/compute.js"
 
 describe("round", function () {
   it('should not round for type "bool"', function () {

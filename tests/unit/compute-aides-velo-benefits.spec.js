@@ -1,7 +1,5 @@
-const expect = require("expect")
-const {
-  computeAidesVeloBenefits,
-} = require("../../lib/benefits/compute-aides-velo")
+import expect from "expect"
+import { computeAidesVeloBenefits } from "../../dist-server/lib/benefits/compute-aides-velo.js"
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {

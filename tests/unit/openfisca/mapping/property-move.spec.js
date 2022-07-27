@@ -1,5 +1,5 @@
-const subject = require("../../../../backend/lib/openfisca/mapping/property-move")
-const expect = require("expect")
+import subject from "../../../../dist-server/backend/lib/openfisca/mapping/property-move.js"
+import expect from "expect"
 
 describe("openfisca mapping property move", function () {
   describe("movePropertyValuesToGroupEntity", function () {

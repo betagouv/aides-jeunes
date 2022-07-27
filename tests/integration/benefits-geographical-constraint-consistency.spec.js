@@ -1,7 +1,5 @@
-const expect = require("expect")
-const {
-  testGeographicalRelevancy,
-} = require("../../tools/test-benefits-geographical-constraint-consistency")
+import expect from "expect"
+import { testGeographicalRelevancy } from "../../tools/test-benefits-geographical-constraint-consistency"
 
 describe("geographical constraint", function () {
   it("works for regional benefit", function () {

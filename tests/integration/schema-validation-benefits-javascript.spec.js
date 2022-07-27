@@ -1,10 +1,13 @@
 const path = require("path")
 const fs = require("fs")
 
-const schemas = require("../../data/schemas")
-const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
+import {
+  validateFile,
+  getCollectionSchema,
+} from "../../dist-server/data/schemas.js"
+const benefitSchema = getCollectionSchema("benefits_javascript")
 
-const dataDir = path.join(__dirname, "../../data")
+const dataDir = path.join(__dirname, "../../dist-server/data")
 const benefitFiles = fs
   .readdirSync(`${dataDir}/benefits/javascript`)
   .filter((filename) => filename.match(/\.yml$/))
@@ -14,7 +17,7 @@ describe("Test Javascript Benefit schema", function () {
     describe(benefitFilename, function () {
       it("should respect Javascript Benefit schema", function () {
         expect(
-          schemas.validateFile(
+          validateFile(
             `data/benefits/javascript/${benefitFilename}`,
             benefitSchema
           )

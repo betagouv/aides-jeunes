@@ -1,10 +1,12 @@
-const expect = require("expect")
-const fs = require("fs")
+import expect from "expect"
+import fs from "fs"
 
-const regions = require("@etalab/decoupage-administratif/data/regions.json")
-const departements = require("@etalab/decoupage-administratif/data/departements.json")
-const communes = require("@etalab/decoupage-administratif/data/communes.json")
-const epcis = require("@etalab/decoupage-administratif/data/epci.json")
+import regions from "@etalab/decoupage-administratif/data/regions.json"
+import departements from "@etalab/decoupage-administratif/data/departements.json"
+import communes from "@etalab/decoupage-administratif/data/communes.json"
+import epcis from "@etalab/decoupage-administratif/data/epci.json"
+
+import * as subject from "../../dist-server/data/all.js"
 
 const codesInstitutions = {
   region: regions.map((region) => region.code),
@@ -14,8 +16,6 @@ const codesInstitutions = {
 }
 
 describe("benefit descriptions", function () {
-  const subject = require("../../data/all")
-
   Object.keys(subject.institutionsMap).forEach(function (institutionSlug) {
     describe(institutionSlug, function () {
       const institution = subject.institutionsMap[institutionSlug]

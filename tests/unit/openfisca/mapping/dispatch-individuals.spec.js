@@ -1,5 +1,5 @@
-const subject = require("../../../../backend/lib/openfisca/mapping")
-const expect = require("expect")
+import subject from "../../../../dist-server/backend/lib/openfisca/mapping/index.js"
+import expect from "expect"
 
 describe("openfisca dispatchIndividuals", function () {
   function buildSituation(props) {

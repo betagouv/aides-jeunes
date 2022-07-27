@@ -147,7 +147,14 @@
     "> 0.1%, last 2 versions, Firefox ESR, not dead"
   ],
   "jest": {
-    "testEnvironment": "jsdom",
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "."
+    ],
+    "testEnvironment": "node",
     "moduleFileExtensions": [
       "js",
       "jsx",

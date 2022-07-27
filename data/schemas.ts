@@ -16,9 +16,9 @@ const typesMap = {
 }
 
 function generateSchema(fields) {
-  let schema = {}
-  for (let field of fields) {
-    let line = {
+  const schema = {}
+  for (const field of fields) {
+    const line = {
       type: typesMap[field.widget] ? typesMap[field.widget] : field.widget,
       required: field.required === false ? false : true,
     }
@@ -80,7 +80,7 @@ function compareSchema(data, schema, output, depth = []) {
 
   // Check that every field in the schema is in the data and of the specified type
   const schemaKeys = Object.keys(schema)
-  for (let key in data) {
+  for (const key in data) {
     if (schemaKeys.includes(key) && schema[key].type != "hidden") {
       if (typeof data[key] == "object") {
         // if the field contains other field, check them recursively
@@ -88,7 +88,7 @@ function compareSchema(data, schema, output, depth = []) {
         if (data[key] instanceof Array) {
           if (schema[key] instanceof Array) {
             const types = schema[key].map((field) => field.type)
-            for (let i in data[key]) {
+            for (const i in data[key]) {
               if (!types.includes(typeof data[key][i])) {
                 output.push(
                   errorLogger(i, depth, data[key][i], types.join(", "))
@@ -96,9 +96,9 @@ function compareSchema(data, schema, output, depth = []) {
               }
             }
           } else {
-            for (let subkey of data[key]) {
+            for (const subkey of data[key]) {
               if (typeof subkey == "object" && subkey["values"]?.length) {
-                let proxy = {}
+                const proxy = {}
                 proxy[subkey["type"]] = subkey["values"]
                 compareSchema(proxy, schema[key], output, [...depth, key])
               }
@@ -144,7 +144,7 @@ function compareSchema(data, schema, output, depth = []) {
   }
 
   const dataKeys = Object.keys(data)
-  for (let key in schema) {
+  for (const key in schema) {
     if (
       !dataKeys.includes(key) &&
       schema[key].type != "hidden" &&

@@ -102,8 +102,8 @@ export const additionalBenefitAttributes = {
       return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
     },
     computeUnexpectedAmount(situation) {
-      let menage = situation.menage
-      let isProprietaire = ["primo_accedant", "proprietaire"].includes(
+      const menage = situation.menage
+      const isProprietaire = ["primo_accedant", "proprietaire"].includes(
         menage.statut_occupation_logement
       )
       return (
@@ -115,8 +115,8 @@ export const additionalBenefitAttributes = {
   },
   contrat_engagement_jeune: {
     computeUnexpectedAmount: (situation) => {
-      let demandeur = situation.demandeur
-      let period =
+      const demandeur = situation.demandeur
+      const period =
         situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
 
       return (

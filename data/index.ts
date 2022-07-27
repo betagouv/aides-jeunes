@@ -43,7 +43,7 @@ function setDefaults(benefit, institution) {
   return benefit
 }
 
-function generate(
+export function generate(
   collections,
   additionalBenefitAttributes,
   aidesVeloBenefitListGenerator

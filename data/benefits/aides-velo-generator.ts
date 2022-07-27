@@ -1,8 +1,9 @@
 import { createRequire } from "module"
 const require = createRequire(import.meta.url)
 const aidesVelo = require("aides-velo")
+// import aidesVelo from "aides-velo/build"
 
-import { benefitVeloLayout } from "data/types/benefits"
+import { benefitVeloLayout } from "../types/benefits"
 
 const benefits: benefitVeloLayout[] = [...aidesVelo()]
 

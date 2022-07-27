@@ -8,7 +8,6 @@ import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
 import migrations from "../lib/migrations/index.js"
 
-//const Simulation = mongoose.model("Simulation")
 import Simulation from "../models/simulation.js"
 
 function getSimulationOnRequest(req, simulation) {
@@ -60,7 +59,7 @@ function clearCookies(req, res) {
 
   const keys = Object.keys(req.cookies)
   const situationCookies = filter(keys, function (k) {
-    return k.startsWith(Simulation.schema.statics.cookiePrefix)
+    return k.startsWith(Simulation.cookiePrefix())
   })
   situationCookies.sort()
 

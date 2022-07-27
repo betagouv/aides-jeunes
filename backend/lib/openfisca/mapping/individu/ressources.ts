@@ -68,7 +68,7 @@ function computeRessources(mesAidesIndividu, openFiscaIndividu) {
     openFiscaIndividu[outputKey] = openFiscaIndividu[outputKey] || {}
     const result = openFiscaIndividu[outputKey]
     forEach(sourceDefinitions, function (definition) {
-      const srcKey = definition.src || definition
+      const srcKey = definition.src
       const fn =
         definition.fn ||
         function (x) {

@@ -11,13 +11,7 @@ import { SurveyLayout } from "../types/survey.js"
 import renderInitial from "../lib/mes-aides/emails/initial.js"
 import renderSurvey from "../lib/mes-aides/emails/survey.js"
 
-// FIXME: either duplicate mongoose schema logic or skip ts schema check
-interface MongooseLayout {
-  [id: string]: any
-}
-interface FollowupModel extends mongoose.Model<MongooseLayout> {
-  findByIdOrOldId(id: string): any
-}
+import { MongooseLayout, FollowupModel } from "../types/models.js"
 
 const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {
@@ -189,19 +183,18 @@ FollowupSchema.method("updateSurvey", function (id, answers) {
   return this.save()
 })
 
-FollowupSchema.pre("save", function (next) {
+FollowupSchema.pre("save", async function (next) {
   if (!this.isNew) {
     return next()
   }
-  const followup = this
-  followup.version = 2
-  utils
-    .generateToken()
-    .then(function (token) {
-      followup.accessToken = token
-    })
-    .then(next)
-    .catch(next)
+  try {
+    const followup = this
+    followup.version = 2
+    followup.token = await utils.generateToken()
+    next()
+  } catch {
+    next()
+  }
 })
 
 FollowupSchema.virtual("returnPath").get(function (this: any) {

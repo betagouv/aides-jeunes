@@ -10,8 +10,10 @@ function get(item, callback) {
     })
 }
 
-async function getPromise(item) {
-  axios.get(`${config.openfiscaURL}${item}`).then((response) => response.data)
+async function getPromise(item): Promise<any> {
+  return axios
+    .get(`${config.openfiscaURL}${item}`)
+    .then((response) => response.data)
 }
 
 export default {

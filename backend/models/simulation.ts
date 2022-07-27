@@ -11,6 +11,8 @@ import {
   ANSWER_BASIC_IDS,
 } from "../lib/definitions.js"
 
+import { MongooseLayout, SimulationModel } from "../types/models.js"
+
 const computeBenefits = computeAides.bind(benefits)
 
 const answer = {
@@ -39,7 +41,7 @@ const answers = {
   current: { type: [answer], required: true },
 }
 
-const SimulationSchema = new mongoose.Schema(
+const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
   {
     answers: { type: answers, required: true },
     enfants: [Number],
@@ -81,18 +83,17 @@ SimulationSchema.method("isAccessible", function (keychain) {
     keychain?.token === this.token
   )
 })
-SimulationSchema.pre("save", function (next) {
+SimulationSchema.pre("save", async function (next) {
   if (!this.isNew) {
     return next()
   }
-  const simulation = this
-  utils
-    .generateToken()
-    .then(function (token) {
-      simulation.token = token
-    })
-    .then(next)
-    .catch(next)
+  try {
+    const simulation = this
+    simulation.token = await utils.generateToken()
+    next()
+  } catch {
+    next()
+  }
 })
 
 SimulationSchema.method("getSituation", function () {
@@ -118,4 +119,7 @@ SimulationSchema.method("compute", function () {
   })
 })
 
-export default mongoose.model("Simulation", SimulationSchema)
+export default mongoose.model<MongooseLayout, SimulationModel>(
+  "Simulation",
+  SimulationSchema
+)

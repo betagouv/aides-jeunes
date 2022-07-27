@@ -6,7 +6,7 @@ import { situationsLayout } from "../lib/types/situations"
 import { individuLayout } from "../lib/types/individu"
 import { resourceLayout } from "./types/resources"
 
-let ressourceCategories = [
+export const ressourceCategories = [
   {
     id: "revenusActivite",
     label: () => `Revenus d'activité`,
@@ -37,7 +37,7 @@ let ressourceCategories = [
   },
 ]
 
-export let ressourceTypes: resourceLayout[] = [
+export const ressourceTypes: resourceLayout[] = [
   {
     id: "salaire_net",
     label: "Salaire (dont primes et indemnités de fin de contrat)",
@@ -420,7 +420,7 @@ export let ressourceTypes: resourceLayout[] = [
   },
 ]
 
-let categoriesRnc = [
+export const categoriesRnc = [
   {
     id: "salaire_imposable",
     label: "Revenus d’activité connus",
@@ -459,7 +459,7 @@ let categoriesRnc = [
   },
 ]
 
-let patrimoineTypes = [
+export const patrimoineTypes = [
   {
     id: "valeur_patrimoine_loue",
     label: "Valeur de vos biens loués",

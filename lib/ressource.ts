@@ -6,7 +6,7 @@ import { datesGeneratorLayout, dateLayout } from "../lib/types/dates"
 import { resourceLayout } from "./types/resources"
 
 function getPeriodsForCurrentYear(dates: datesGeneratorLayout, ressourceType) {
-  let periodKeys: dateLayout[] = []
+  const periodKeys: dateLayout[] = []
   if (ressourceType.isMontantAnnuel) {
     periodKeys.push(dates.lastYear)
     return periodKeys
@@ -32,10 +32,10 @@ function setDefaultValueForCurrentYear(
   individu,
   ressourceType
 ) {
-  let ressourceId = ressourceType.id
+  const ressourceId = ressourceType.id
   individu[ressourceId] = individu[ressourceId] || {}
-  let ressource = individu[ressourceId]
-  let periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType)
+  const ressource = individu[ressourceId]
+  const periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType)
 
   if (
     periodKeys.some(function (periodKey) {
@@ -61,10 +61,10 @@ function unsetForCurrentYear(
   entity,
   ressourceType
 ) {
-  let ressourceId = ressourceType.id
+  const ressourceId = ressourceType.id
   entity[ressourceId] = entity[ressourceId] || {}
-  let ressource = entity[ressourceId]
-  let periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType)
+  const ressource = entity[ressourceId]
+  const periodKeys = getPeriodKeysForCurrentYear(dates, ressourceType)
   periodKeys.forEach(function (periodKey) {
     delete ressource[periodKey]
   })
@@ -86,7 +86,7 @@ function isRessourceRelevant(ressourceType, situation, individu): boolean {
   )
 }
 
-let ressourcesForTrailingMonthsAndFiscalYear = resources.categoriesRnc
+const ressourcesForTrailingMonthsAndFiscalYear = resources.categoriesRnc
   .filter(function (fiscalRessource) {
     return (
       fiscalRessource?.sources &&
@@ -155,7 +155,7 @@ function getIndividuRessourceTypesByCategory(individu, category, situation) {
 }
 
 function setIndividuRessourceTypes(individu, types, dates) {
-  let typeMap = keyBy(
+  const typeMap = keyBy(
     filter(resources.ressourceTypes, isRessourceOnMainScreen),
     "id"
   )
@@ -171,7 +171,7 @@ function setIndividuRessourceTypes(individu, types, dates) {
 
 function isRessourceOnMainScreen(ressourceOrType): boolean {
   // Make this function robust so that it can be called with a type from the ressourceTypes constant, or just a string.
-  let type = ressourceOrType.id || ressourceOrType
+  const type = ressourceOrType.id || ressourceOrType
   return type != "pensions_alimentaires_versees_individu"
 }
 

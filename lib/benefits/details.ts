@@ -46,7 +46,7 @@ interface droitEstimeLayout {
   icon?: any
 }
 function formatDroitEstime(droit, parameters) {
-  let droitEstime: droitEstimeLayout = {
+  const droitEstime: droitEstimeLayout = {
     id: droit.id || undefined,
     label: undefined,
     legend: getBenefitLegend(droit, parameters) || "",

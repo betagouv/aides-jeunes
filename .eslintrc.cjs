@@ -1,34 +1,29 @@
-{
-  "env": {
-    "node": true,
-    "es6": true,
-    // https://eslint.vuejs.org/user-guide/#faq
-    "vue/setup-compiler-macros": true
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
   },
-
-  "extends": [
+  extends: [
     "eslint:recommended",
+    "plugin:vue/vue3-essential",
+    "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
     "plugin:vue/vue3-recommended",
     "plugin:prettier-vue/recommended",
     "prettier",
-    "@vue/typescript"
+    "@vue/typescript",
   ],
-
-  "plugins": ["prettier", "vue"],
-
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+  parserOptions: {
+    ecmaVersion: 2018,
+    parser: "@typescript-eslint/parser",
+    sourceType: "module",
   },
-
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "parser": "@typescript-eslint/parser"
+  plugins: ["prettier", "vue", "@typescript-eslint"],
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
   },
-
-  "rules": {
+  rules: {
     "no-irregular-whitespace": 0,
     "vue/no-deprecated-v-on-native-modifier": 0,
     "eol-last": "error",
@@ -44,10 +39,12 @@
     "@typescript-eslint/no-useless-constructor": "error",
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-var-requires": "off",
   },
-
-  "ignorePatterns": [
+  ignorePatterns: [
     "node_modules",
     ".tmp",
     "dist",
@@ -55,15 +52,15 @@
     "IndividuForm.vue",
     "tmp",
     "test/integration",
-    "contribuer"
+    "contribuer",
   ],
 
-  "overrides": [
+  overrides: [
     {
-      "files": ["**/__tests__/*.{j,t}s?(x)"],
-      "env": {
-        "jest": true
-      }
-    }
-  ]
+      files: ["**/__tests__/*.{j,t}s?(x)"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }

@@ -7,14 +7,7 @@ import configureAPI from "./dist-server/configure.js"
 import mock from "./dist-server/mock.js"
 import benefits from "./dist-server/data/all.js"
 
-const {
-  animation,
-  baseURL,
-  github,
-  matomo,
-  netlifyContributionURL,
-  statistics,
-} = config
+const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 
@@ -60,14 +53,6 @@ export default {
       .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
       .use("file-loader")
       .loader("file-loader")
-    config.module
-      .rule("ts")
-      .use("ts-loader")
-      .loader("ts-loader")
-      .tap((options) => {
-        // modify the options...
-        return options
-      })
   },
   devServer: {
     onBeforeSetupMiddleware: before,

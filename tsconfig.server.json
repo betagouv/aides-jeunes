@@ -15,7 +15,8 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": []
   },
   "resolve": {
     "extensions": [".cjs", ".ts", ".js", ".json"]
@@ -28,5 +29,6 @@
     "backend/**/*.d.ts",
     "lib/**/*.ts",
     "lib/**/*.d.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "node_modules/aides-velo/index.ts"]
 }

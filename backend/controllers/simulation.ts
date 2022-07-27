@@ -1,6 +1,5 @@
 import lodash from "lodash"
 const { omit, filter, pick, assign } = lodash
-import mongoose from "mongoose"
 
 import config from "../config/index.js"
 import { generateSituation } from "../../lib/situations.js"

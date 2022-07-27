@@ -54,9 +54,9 @@ function renderAsText(followup, benefits, parameters) {
 }
 
 function renderAsHtml(followup, benefits, parameters) {
-  let droits = map(benefits, function (droit) {
+  const droits = map(benefits, function (droit) {
     let value = ""
-    let droitEstime = formatDroitEstime(droit, parameters)
+    const droitEstime = formatDroitEstime(droit, parameters)
 
     if (droitEstime.type === "float") {
       value = `${droitEstime.value} ${droitEstime.legend}`

@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import mongoose from "mongoose"
 import Followup from "../models/followup.js"
-//const Followup = mongoose.model('Followup')
 
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"

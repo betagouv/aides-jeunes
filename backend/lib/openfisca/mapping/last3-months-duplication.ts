@@ -7,7 +7,7 @@ import { additionalProps } from "./individu/index.js"
 import definitions from "../../definitions.js"
 
 function determinePropsToReplicate(entityTypeName, entityDefinition) {
-  let filtered = entityDefinition.filter((key) => {
+  const filtered = entityDefinition.filter((key) => {
     return key != "id" && !key.startsWith("_")
   })
 

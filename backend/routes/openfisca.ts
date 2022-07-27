@@ -13,7 +13,7 @@ module.exports = function (api) {
     }
 
     openfisca.get("/variables", (payload) => {
-      let missingValues = benefits.all
+      const missingValues = benefits.all
         .filter((benefit) => {
           const source = benefit.openfisca_eligibility_source || benefit.id
           return benefit.source === "openfisca" && !payload[source]

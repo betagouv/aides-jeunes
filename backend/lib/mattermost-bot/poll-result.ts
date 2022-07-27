@@ -21,8 +21,8 @@ function postPollResult(simulation, answers) {
     already: [":icon-info:", "Déjà perçue"],
   }
   const orderedAnswers: any[] = []
-  for (let benefit of simulation.benefits) {
-    let answer =
+  for (const benefit of simulation.benefits) {
+    const answer =
       answers.filter((element) => {
         return element["id"] == benefit["id"]
       })[0] || {}
@@ -38,7 +38,7 @@ function postPollResult(simulation, answers) {
       .map((val) => val.join(" "))
       .join("  ")}\n  `,
   ]
-  for (let key of orderedAnswers) {
+  for (const key of orderedAnswers) {
     result.push(
       `${score[key.value] ? score[key.value][0] : ""} [${key.id}](${
         process.env.MES_AIDES_ROOT_URL

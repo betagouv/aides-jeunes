@@ -5,7 +5,6 @@ const ArgumentParser = argparse.ArgumentParser
 import es from "event-stream"
 
 // Loads
-import except from "except"
 import mongoose from "../mongo-connector.js"
 import { apply, getLatestVersionByFolderName } from "./index.js"
 

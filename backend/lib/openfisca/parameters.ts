@@ -21,7 +21,7 @@ const computeParameters = async () => {
       )
     )
 
-    let newParameters = {}
+    const newParameters = {}
     values.forEach((value) => {
       newParameters[value.id] = value.values
     })

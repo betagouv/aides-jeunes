@@ -30,7 +30,7 @@ function prefix(prefix, situation) {
 
     entityGroups[entityName].forEach((property) => {
       Object.keys(situation[entityName]).forEach((id) => {
-        let entity = situation[entityName][id]
+        const entity = situation[entityName][id]
 
         if (entity[property]) {
           entity[property] = entity[property].map((id) => prefix + id)

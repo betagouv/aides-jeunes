@@ -78,7 +78,7 @@ function appendExtraVariables(requestedVariables, extraVariables) {
   })
 }
 
-let requestedVariables = {}
+const requestedVariables = {}
 benefits.all
   .filter((benefit) => benefit.source === "openfisca")
   .forEach((benefit) => {
@@ -97,7 +97,7 @@ benefits.all
   })
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
-for (let condition in CONDITION_STATEGY) {
+for (const condition in CONDITION_STATEGY) {
   if (CONDITION_STATEGY[condition]?.extra) {
     appendExtraVariables(requestedVariables, CONDITION_STATEGY[condition].extra)
   }

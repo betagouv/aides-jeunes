@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import { patrimoineTypes } from "../../../../lib/resources"
+import { patrimoineTypes } from "../../../../dist-server/lib/resources"
 import YesNoQuestion from "@/components/yes-no-question"
 import InputNumber from "@/components/input-number"
 import ActionButtons from "@/components/action-buttons"

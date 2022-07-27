@@ -4,7 +4,10 @@ import {
   displayCurrencyValue,
   displayDepcomValue,
 } from "../../lib/utils"
-import { ressourceCategories, ressourceTypes } from "../../lib/resources"
+import {
+  ressourceCategories,
+  ressourceTypes,
+} from "../../dist-server/lib/resources"
 import Logement from "@/../lib/logement"
 import { getAnswer, getStepAnswer } from "../../lib/answers"
 import dayjs from "dayjs"

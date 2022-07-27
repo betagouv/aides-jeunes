@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import Institution from "@/lib/institution"
+import Institution from "@/../dist-server/lib/institution"
 
 const TYPES = {
   national: "Aides nationales",

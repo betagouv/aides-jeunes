@@ -117,7 +117,7 @@
 <script>
 import SimulationSearch from "@/components/support/simulation-search"
 import CopyButton from "@/components/support/copy-button"
-import Institution from "@/lib/institution"
+import Institution from "@/../dist-server/lib/institution"
 export default {
   components: { SimulationSearch, CopyButton },
   data: function () {

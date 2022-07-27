@@ -4,16 +4,19 @@ import axios from "axios"
 import values from "lodash/values"
 import some from "lodash/some"
 
-import { computeAides, datesGenerator } from "../lib/benefits/compute"
-import { categoriesRnc, patrimoineTypes } from "../lib/resources"
-import { generateAllSteps } from "../lib/state/generator"
+import {
+  computeAides,
+  datesGenerator,
+} from "../dist-server/lib../lib/benefits/compute"
+import { categoriesRnc, patrimoineTypes } from "../dist-server/lib/resources"
+import { generateAllSteps } from "../dist-server/lib/state/generator"
 import Institution from "./lib/institution"
 import ABTestingService from "./plugins/ab-testing-service"
 import EtablissementModule from "./modules/etablissement"
-import { isStepAnswered } from "../lib/answers"
-import { generateSituation } from "../lib/situations"
+import { isStepAnswered } from "../dist-server/lib/answers"
+import { generateSituation } from "../dist-server/lib/situations"
 import dayjs from "dayjs"
-import { version } from "../lib/simulation"
+import { version } from "../dist-server/lib/simulation"
 
 function defaultCalculs() {
   return {

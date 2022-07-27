@@ -1,4 +1,4 @@
-import { forEachProperties } from "../../lib/mutualized-steps"
+import { forEachProperties } from "../../dist-server/lib/mutualized-steps"
 
 const texts = {
   depcom: () => {

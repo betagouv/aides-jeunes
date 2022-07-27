@@ -58,7 +58,7 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons"
-import Nationality from "@/lib/nationality"
+import Nationality from "@/../dist-server/lib/nationality"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import Scolarite from "../../../lib/scolarite"
 

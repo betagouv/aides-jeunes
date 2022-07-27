@@ -44,13 +44,31 @@ function getPeriods(dateDeValeur): openfiscaPeriodsLayout {
   dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
-  return keys.reduce((result, key) => {
+  const output = {
+    today: "",
+    thisMonth: "",
+    thisYear: "",
+    oneMonthAgo: "",
+    twoMonthsAgo: "",
+    threeMonthsAgo: "",
+    twelveMonthsAgo: "",
+    last3Months: [],
+    last12Months: [],
+    lastYear: "",
+    fiscalYear: "",
+    fiscalYear12Months: [],
+    previousFiscalYear: "",
+    previousFiscalYear12Months: [],
+    threeYearsAgo: "",
+  }
+  keys.reduce((result, key) => {
     // Manage single item and maps
     result[key] = dateMap[key].id
       ? dateMap[key].id
       : dateMap[key].map((i) => i.id)
     return result
   }, {})
+  return output
 }
 
 function appendExtraVariables(requestedVariables, extraVariables) {

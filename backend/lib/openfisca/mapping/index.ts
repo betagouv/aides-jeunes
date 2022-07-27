@@ -10,7 +10,6 @@ import last3MonthsDuplication from "./last3-months-duplication.js"
 import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
 import { situationsLayout } from "../../../../lib/types/situations.js"
-import { familleLayout } from "../../../types/openfisca.js"
 
 import {
   openfiscaMappingLayout,

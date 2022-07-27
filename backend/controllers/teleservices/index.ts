@@ -9,6 +9,7 @@ import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe"
 import OpenFiscaResponse from "../../lib/teleservices/openfisca-response"
 import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer"
 import PNDS from "../../lib/teleservices/pnds"
+import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement"
 import "dayjs/locale/fr"
 import dayjs from "dayjs"
 

@@ -1,13 +1,5 @@
 import aidesVelo from "aides-velo"
 
-// async function main() {
-//   const aidesVelo : Function = await import("aides-velo")
-//   return [...aidesVelo()]
-// }
-// let benefits: Promise<benefitVeloLayout[]> = main()
-
-//import { benefitVeloLayout } from "../types/benefits"
-
 const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {

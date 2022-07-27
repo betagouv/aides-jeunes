@@ -1,4 +1,6 @@
-import aidesVelo from "aides-velo"
+import { createRequire } from "module"
+const require = createRequire(import.meta.url)
+const aidesVelo = require("aides-velo")
 import { generator } from "../dates.js"
 
 const veloTypes = {

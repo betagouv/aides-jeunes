@@ -120,7 +120,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
       const customization =
         benefit.customization?.[customizationIds[1]] ||
         benefit.customization?.[customizationIds[0]]
-      let institution = customization?.institution
+      const institution = customization?.institution
         ? {
             ...benefit.institution,
             ...customization.institution,

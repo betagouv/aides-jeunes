@@ -1,4 +1,4 @@
-import subject from "../../../../dist-server/backend/lib/openfisca/mapping/property-move.js"
+import subject from "@build/backend/lib/openfisca/mapping/property-move.js"
 import expect from "expect"
 
 describe("openfisca mapping property move", function () {

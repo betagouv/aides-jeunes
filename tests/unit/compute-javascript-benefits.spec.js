@@ -1,11 +1,11 @@
 import expect from "expect"
-import { buildOpenFiscaRequest } from "@/../dist-server/backend/lib/openfisca/mapping/index.js"
+import { buildOpenFiscaRequest } from "@build/backend/lib/openfisca/mapping/index.js"
 import {
   testProfileEligibility,
   testGeographicalEligibility,
   computeJavascriptBenefits,
-} from "../../dist-server/lib/benefits/compute-javascript"
-import benefits from "@/../dist-server/data/all.js"
+} from "@build/lib/benefits/compute-javascript"
+import benefits from "@build/data/all.js"
 
 describe("computeAides", function () {
   let benefit

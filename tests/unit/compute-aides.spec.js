@@ -1,5 +1,5 @@
-import { computeAides } from "../../lib/benefits/compute"
-import benefits from "@/../data/all"
+import { computeAides } from "@build/lib/benefits/compute"
+import benefits from "@build/data/all"
 
 const compute = computeAides.bind(benefits)
 

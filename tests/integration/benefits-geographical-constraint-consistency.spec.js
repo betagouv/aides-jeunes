@@ -1,5 +1,5 @@
 import expect from "expect"
-import { testGeographicalRelevancy } from "../../tools/test-benefits-geographical-constraint-consistency"
+import { testGeographicalRelevancy } from "@build/tools/test-benefits-geographical-constraint-consistency"
 
 describe("geographical constraint", function () {
   it("works for regional benefit", function () {

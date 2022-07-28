@@ -1,7 +1,7 @@
 import expect from "expect"
-import benefits from "../../dist-server/data/all"
+import benefits from "@build/data/all"
 
-import generator from "../../dist-server/data/benefits/aides-velo-generator.js"
+import generator from "@build/data/benefits/aides-velo-generator.js"
 
 describe("aides velo benefit generator", function () {
   const list = generator(Object.values(benefits.institutionsMap))

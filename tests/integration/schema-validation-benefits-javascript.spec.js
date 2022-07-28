@@ -1,10 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
-import {
-  validateFile,
-  getCollectionSchema,
-} from "../../dist-server/data/schemas.js"
+import { validateFile, getCollectionSchema } from "@build/data/schemas.js"
 const benefitSchema = getCollectionSchema("benefits_javascript")
 
 const dataDir = path.join(__dirname, "../../dist-server/data")

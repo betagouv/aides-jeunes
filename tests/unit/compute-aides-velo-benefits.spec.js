@@ -1,5 +1,5 @@
 import expect from "expect"
-import { computeAidesVeloBenefits } from "../../dist-server/lib/benefits/compute-aides-velo.js"
+import { computeAidesVeloBenefits } from "@build/lib/benefits/compute-aides-velo.js"
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {

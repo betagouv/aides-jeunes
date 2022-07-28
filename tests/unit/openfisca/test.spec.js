@@ -2,8 +2,8 @@ const expect = require("expect")
 const { values } = require("lodash")
 const Promise = require("bluebird")
 const fs = Promise.promisifyAll(require("fs"))
-import subject from "../../../dist-server/backend/lib/openfisca/test"
-import resources from "../../../dist-server/lib/resources"
+import subject from "@build/backend/lib/openfisca/test"
+import resources from "@build/lib/resources"
 const tmp = require("tmp")
 
 const details = {

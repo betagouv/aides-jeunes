@@ -6,7 +6,7 @@ import departements from "@etalab/decoupage-administratif/data/departements.json
 import communes from "@etalab/decoupage-administratif/data/communes.json"
 import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-import * as subject from "../../dist-server/data/all.js"
+import * as subject from "@build/data/all.js"
 
 const codesInstitutions = {
   region: regions.map((region) => region.code),

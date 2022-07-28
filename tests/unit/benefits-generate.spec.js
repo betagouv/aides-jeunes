@@ -1,5 +1,5 @@
 import expect from "expect"
-import subject from "../../dist-server/data/index.js"
+import subject from "@build/data/index.js"
 
 describe("benefit descriptions", function () {
   it("exists", function () {

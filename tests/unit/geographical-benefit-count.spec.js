@@ -1,5 +1,5 @@
 import expect from "expect"
-import { isGeographicallyIncluded } from "../../dist-server/lib/benefits/geographical-count-utils.js"
+import { isGeographicallyIncluded } from "@build/lib/benefits/geographical-count-utils.js"
 
 describe("geographical benefit count", function () {
   // Arcachon

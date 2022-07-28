@@ -1,28 +1,26 @@
-"use strict"
-exports.__esModule = true
-var all_js_1 = require("../data/all.js")
-all_js_1["default"].all
-  .filter(function (benefit) {
+import benefits from "../dist-server/data/all.js"
+
+benefits.all
+  .filter((benefit) => {
     return (
       ["region", "departement", "commune", "epci"].includes(
         benefit.institution.type
       ) && benefit.source === "javascript"
     )
   })
-  .forEach(function (benefit) {
-    var result = testGeographicalRelevancy(benefit)
-    if (!(result === null || result === void 0 ? void 0 : result.isValid)) {
+  .forEach((benefit) => {
+    const result = testGeographicalRelevancy(benefit)
+    if (!result?.isValid) {
       console.log("================================")
-      console.log("Benefit : " + benefit.id)
-      console.log("Insee code : " + benefit.institution.code_insee)
+      console.log(`Benefit : ${benefit.id}`)
+      console.log(`Insee code : ${benefit.institution.code_insee}`)
       console.log("potentially incompatible with conditions :")
-      console.log(
-        result === null || result === void 0 ? void 0 : result.conditions
-      )
+      console.log(result?.conditions)
     }
   })
+
 function testGeographicalRelevancy(benefit) {
-  var conditionGeo = benefit.conditions_generales.find(function (condition) {
+  const conditionGeo = benefit.conditions_generales.find((condition) => {
     return (
       condition.type === "regions" ||
       condition.type === "departements" ||
@@ -40,6 +38,7 @@ function testGeographicalRelevancy(benefit) {
     }
   }
 }
-module.exports = {
-  testGeographicalRelevancy: testGeographicalRelevancy,
+
+export default {
+  testGeographicalRelevancy,
 }

@@ -6,7 +6,7 @@ import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
-import { openfiscaPeriodsLayout } from "../../../types/openfisca.js"
+//import { openfiscaPeriodsLayout } from "../../../types/openfisca.js"
 
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
@@ -40,35 +40,18 @@ function getIndividusSortedParentsFirst(situation) {
     })
 }
 
-function getPeriods(dateDeValeur): openfiscaPeriodsLayout {
+// FIXME: returned type should be openfiscaPeriodsLayout
+function getPeriods(dateDeValeur): any {
   dateDeValeur = dayjs(dateDeValeur)
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
-  const output = {
-    today: "",
-    thisMonth: "",
-    thisYear: "",
-    oneMonthAgo: "",
-    twoMonthsAgo: "",
-    threeMonthsAgo: "",
-    twelveMonthsAgo: "",
-    last3Months: [],
-    last12Months: [],
-    lastYear: "",
-    fiscalYear: "",
-    fiscalYear12Months: [],
-    previousFiscalYear: "",
-    previousFiscalYear12Months: [],
-    threeYearsAgo: "",
-  }
-  keys.reduce((result, key) => {
+  return keys.reduce((result, key) => {
     // Manage single item and maps
     result[key] = dateMap[key].id
       ? dateMap[key].id
       : dateMap[key].map((i) => i.id)
     return result
   }, {})
-  return output
 }
 
 function appendExtraVariables(requestedVariables, extraVariables) {

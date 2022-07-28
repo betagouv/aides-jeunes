@@ -1,4 +1,4 @@
-import subject from "@build/backend/lib/openfisca/mapping/index.js"
+import subject from "@root/backend/lib/openfisca/mapping"
 import expect from "expect"
 
 const situation = {

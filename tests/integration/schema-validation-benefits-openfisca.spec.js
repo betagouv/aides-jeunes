@@ -1,10 +1,10 @@
 const path = require("path")
 const fs = require("fs")
 
-const schemas = require("@build/data/schemas")
+const schemas = require("@root/data/schemas")
 const benefitSchema = schemas.getCollectionSchema("benefits_openfisca")
 
-const dataDir = path.join(__dirname, "../../dist-server/data")
+const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
   .readdirSync(`${dataDir}/benefits/openfisca`)
   .filter((filename) => filename.match(/\.yml$/))

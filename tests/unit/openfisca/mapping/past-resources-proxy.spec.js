@@ -1,4 +1,4 @@
-import subject from "@build/backend/lib/openfisca/mapping/individu/past-resources-proxy.js"
+import subject from "@root/backend/lib/openfisca/mapping/individu/past-resources-proxy"
 import expect from "expect"
 
 describe("openfisca past resource proxy", function () {

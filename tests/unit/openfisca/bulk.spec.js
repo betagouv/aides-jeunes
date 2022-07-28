@@ -1,4 +1,4 @@
-import bulk from "@build/backend/lib/openfisca/bulk"
+import bulk from "@root/backend/lib/openfisca/bulk"
 const { build, extractResults } = bulk
 
 const situation = {

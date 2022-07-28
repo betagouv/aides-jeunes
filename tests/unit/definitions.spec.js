@@ -1,6 +1,6 @@
 import expect from "expect"
 
-import entities from "@build/backend/lib/definitions.js"
+import entities from "@root/backend/lib/definitions"
 const { famille, individu, menage, parents } = entities
 
 describe("Tests definitions", function () {

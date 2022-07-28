@@ -168,12 +168,21 @@
       "\\.[jt]sx?$": "babel-jest",
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
     "transformIgnorePatterns": [
       "/\\./"
     ],
     "moduleNameMapper": {
-      "@build/(.*)": "<rootDir>/dist-server/$1"
+      "(.+)\\.js": "$1",
+      "@root/(.*)": "<rootDir>/$1"
     },
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "snapshotSerializers": [
       "jest-serializer-vue"
     ],
@@ -185,12 +194,7 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ],
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
-    "globals": {
-      "ts-jest": {
-        "babelConfig": true
-      }
-    }
+    "preset": "ts-jest"
   },
   "engines": {
     "node": ">= 16"

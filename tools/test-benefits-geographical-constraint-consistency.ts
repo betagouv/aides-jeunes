@@ -1,4 +1,4 @@
-import benefits from "../dist-server/data/all"
+import benefits from "../data/all.js"
 
 benefits.all
   .filter((benefit) => {

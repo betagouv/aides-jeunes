@@ -28,7 +28,9 @@
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",
-    "lib/**/*.d.ts"
+    "lib/**/*.d.ts",
+    "data/**/*.ts",
+    "data/**/*.d.ts"
   ],
   "exclude": ["node_modules", "tests"]
 }

@@ -172,7 +172,7 @@
       "/\\./"
     ],
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "@build/(.*)": "<rootDir>/dist-server/$1"
     },
     "snapshotSerializers": [
       "jest-serializer-vue"

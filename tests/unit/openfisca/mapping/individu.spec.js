@@ -1,4 +1,4 @@
-import subject from "@root/backend/lib/openfisca/mapping/individu"
+import { additionalProps } from "@root/backend/lib/openfisca/mapping/individu"
 import expect from "expect"
 
 const situation = {
@@ -8,7 +8,7 @@ const situation = {
 
 describe("distance computation", function () {
   const result =
-    subject.additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
+    additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situation.demandeur,
       situation
     )

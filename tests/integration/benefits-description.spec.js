@@ -6,7 +6,7 @@ import departements from "@etalab/decoupage-administratif/data/departements.json
 import communes from "@etalab/decoupage-administratif/data/communes.json"
 import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-import * as subject from "@root/data/all"
+import subject from "@root/data/all"
 
 const codesInstitutions = {
   region: regions.map((region) => region.code),
@@ -98,9 +98,10 @@ describe("benefit descriptions", function () {
 
           it("should have a description", function () {
             expect(typeof benefit.description).toBe("string")
-            const p = document.createElement("p")
-            p.innerHTML = benefit.description
-            const innerText = p.textContent
+            const innerText = benefit.description
+              .replace(/<\/?[^>]+>/gi, "")
+              .replace(/\s\s+/g, " ")
+              .trim()
             expect(innerText.length).toBeGreaterThanOrEqual(10)
             expect(innerText.length).toBeLessThanOrEqual(420)
           })

@@ -39,6 +39,4 @@ function testGeographicalRelevancy(benefit) {
   }
 }
 
-export default {
-  testGeographicalRelevancy,
-}
+export default testGeographicalRelevancy

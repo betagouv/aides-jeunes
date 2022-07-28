@@ -42,6 +42,7 @@ describe("openfisca result extraction", function () {
       },
       ["irpp"]
     )
+    console.log(result)
     expect(result["1000"].irpp).toBe(10)
   })
 })

@@ -99,12 +99,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Cache server build output
-        uses: actions/cache@v2
-        id: restore-server-build
-        with:
-          path: dist-server
-          key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
       - name: Jest
         run: npm run test
   build:

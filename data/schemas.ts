@@ -21,6 +21,7 @@ function generateSchema(fields) {
     const line = {
       type: typesMap[field.widget] ? typesMap[field.widget] : field.widget,
       required: field.required === false ? false : true,
+      allowedValues: undefined,
     }
     if (field.fields) {
       schema[field.name] = generateSchema(field.fields)

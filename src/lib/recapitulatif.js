@@ -8,8 +8,8 @@ import {
   ressourceCategories,
   ressourceTypes,
 } from "../../dist-server/lib/resources"
-import Logement from "@/../lib/logement"
-import { getAnswer, getStepAnswer } from "../../lib/answers"
+import Logement from "@/../dist-server/lib/logement"
+import { getAnswer, getStepAnswer } from "../../dist-server/lib/answers"
 import dayjs from "dayjs"
 
 export const getIndividuByStep = (step, component) => {

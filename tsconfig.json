@@ -26,7 +26,7 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "resolve": {
-    "extensions": [".ts", ".js", ".json"]
+    "extensions": [".ts", ".js", ".json", ".vue"]
   },
   "include": [
     "src/**/*.ts",

@@ -32,5 +32,5 @@
     "data/**/*.ts",
     "data/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["node_modules", "tests", "dist-server", "dist"]
 }

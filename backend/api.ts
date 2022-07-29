@@ -9,7 +9,6 @@ configMongoose(mongoose, config)
 
 // Setup Express
 const app = express()
-
 app.use(configAPI)
 
 export default app

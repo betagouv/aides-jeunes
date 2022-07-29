@@ -1,7 +1,7 @@
 import express from "express"
 import { getQuestions } from "../controllers/questions.js"
 
-module.exports = function (api) {
+export default function (api) {
   const route = express.Router({ mergeParams: true })
   route.get("", getQuestions)
 

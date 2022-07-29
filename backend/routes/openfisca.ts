@@ -5,7 +5,7 @@ import benefits from "../../data/all.js"
 
 let missingBenefits
 
-module.exports = function (api) {
+export default (api) => {
   api.route("/openfisca/missingbenefits").get(async (req, res) => {
     if (missingBenefits) {
       res.json(missingBenefits)

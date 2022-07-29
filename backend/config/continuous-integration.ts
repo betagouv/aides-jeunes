@@ -1,6 +1,7 @@
 "use strict"
+import development from "./development.js"
 
-export default Object.assign(require("./development"), {
+export default Object.assign(development, {
   animation: {
     delay: 0,
   },

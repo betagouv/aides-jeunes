@@ -1,17 +1,17 @@
 import auth from "basic-auth"
-import simulationController from "../simulation"
+import simulationController from "../simulation.js"
 import jwt from "jsonwebtoken"
 import Mustache from "mustache"
 
-import config from "../../config"
-import AidesJeunesPreremplissage from "../../lib/teleservices/aides-jeunes-preremplissage"
-import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe"
-import OpenFiscaResponse from "../../lib/teleservices/openfisca-response"
-import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer"
-import PNDS from "../../lib/teleservices/pnds"
-import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement"
-import "dayjs/locale/fr"
+import config from "../../config/index.js"
+import { AidesJeunesPreremplissage } from "../../lib/teleservices/aides-jeunes-preremplissage.js"
+import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe.js"
+import OpenFiscaResponse from "../../lib/teleservices/openfisca-response.js"
+import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer.js"
+import PNDS from "../../lib/teleservices/pnds.js"
+import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
 import dayjs from "dayjs"
+import "dayjs/locale/fr.js"
 
 dayjs.locale("fr")
 

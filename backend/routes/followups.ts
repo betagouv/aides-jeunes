@@ -7,7 +7,7 @@ import {
 } from "../controllers/followups.js"
 import githubController from "../controllers/github.js"
 
-export default function (api) {
+const followupsRoutes = function (api) {
   api.route("/followups/surveys/:surveyId").get(showFromSurvey)
   api.route("/followups/surveys/:surveyId/answers").post(postSurvey)
   api
@@ -19,3 +19,4 @@ export default function (api) {
     .get(cookieParser(), githubController.access)
     .get(showSurveyResult)
 }
+export default followupsRoutes

@@ -37,4 +37,5 @@ export default {
   buildOpenFiscaRequest,
   calculate,
   trace,
+  sendToOpenfisca,
 }

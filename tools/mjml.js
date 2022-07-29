@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-const express = require("express")
+import express from "express"
 
-require("../backend/api")
-const Followup = require("mongoose").model("Followup")
-const renderInitial = require("../backend/lib/mes-aides/emails/initial").render
+import "../backend/api.js"
+import mongoose from "mongoose"
+const Followup = mongoose.model("Followup")
+import renderInitial from "../backend/lib/mes-aides/emails/initial.js"
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-const renderSurvey = require("../backend/lib/mes-aides/emails/survey").render
+import "../backend/lib/mes-aides/emails/survey.js"
 
 const port = process.env.PORT || 9001
 
@@ -72,4 +73,4 @@ app.listen(port, function () {
   )
 })
 
-module.exports = app
+export default app

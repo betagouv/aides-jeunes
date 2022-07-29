@@ -53,6 +53,17 @@ export default {
       .test(/\.(ico(2)?)(\?[a-z0-9=&.]+)?$/)
       .use("file-loader")
       .loader("file-loader")
+    config.module
+      .rule("vue")
+      .use("vue-loader")
+      .loader("vue-loader")
+      .tap((options) => ({
+        ...options,
+        compilerOptions: {
+          ...options.compilerOptions,
+          whitespace: "preserve",
+        },
+      }))
   },
   devServer: {
     onBeforeSetupMiddleware: before,

@@ -1,4 +1,4 @@
-const { getAnswer } = require("./answers")
+import { getAnswer } from "./answers.js"
 
 function getStatutOccupationLogement(logement) {
   const statusOccupationMap = {
@@ -33,7 +33,7 @@ function getLogementVariables(statusOccupationId) {
   return { type: null, primoAccedant: null, locationType: null, ...base }
 }
 
-const STATUT_OCCUPATION_LABEL = {
+export const STATUT_OCCUPATION_LABEL = {
   primo_accedant: "Propriétaire primo-accédant",
   proprietaire: "Propriétaire",
   locataire_vide: "Locataire",
@@ -59,7 +59,7 @@ function captureCharges(logementStatut) {
   )
 }
 
-function getLoyerData(answers) {
+export function getLoyerData(answers) {
   const logementStatut = getAnswer(
     answers,
     "menage",
@@ -112,4 +112,4 @@ const Logement = {
   STATUT_OCCUPATION_LABEL,
 }
 
-module.exports = Logement
+export default Logement

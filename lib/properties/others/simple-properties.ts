@@ -1,8 +1,8 @@
-import { EnumProperty, MultipleProperty } from "../property"
-import { EnumItemProperty } from "../../types/property"
-const Individu = require("../../individu")
-const { ressourceTypes } = require("../../resources")
-const { STATUT_OCCUPATION_LABEL } = require("../../logement")
+import { EnumProperty, MultipleProperty } from "../property.js"
+import { EnumItemProperty } from "../../types/property.js"
+import Individu from "../../individu.js"
+import { ressourceTypes } from "../../resources.js"
+import { STATUT_OCCUPATION_LABEL } from "../../logement.js"
 
 export default {
   ressources: new MultipleProperty({

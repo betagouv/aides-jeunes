@@ -1,4 +1,6 @@
 import fs from "fs"
+import { URL } from "url"
+const __dirname = new URL(".", import.meta.url).pathname
 
 function getMigrations(folderName) {
   const folderPath = `${__dirname}/${folderName}`
@@ -7,8 +9,8 @@ function getMigrations(folderName) {
     .filter(function (file) {
       return file.match(/^to-v\d+\.js$/)
     })
-    .map(function (migrationFile) {
-      return require(`${folderPath}/${migrationFile}`)
+    .map(async function (migrationFile) {
+      return await import(`${folderPath}/${migrationFile}`)
     })
 
   migrations.sort(function (a, b) {

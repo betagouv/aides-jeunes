@@ -34,7 +34,7 @@ function updateBourseCriteresSociauxCommuneDomicileFamilial(answers) {
   })
 }
 
-module.exports = {
+export default {
   function: function (simulation) {
     updateBourseCriteresSociauxCommuneDomicileFamilial(simulation.answers.all)
     updateBourseCriteresSociauxCommuneDomicileFamilial(

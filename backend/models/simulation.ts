@@ -103,18 +103,14 @@ SimulationSchema.method("getSituation", function () {
 
 SimulationSchema.method("compute", function () {
   const situation = this.getSituation()
+  const id = this._id
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
       if (err) {
         return reject(err)
       }
 
-      const aides = computeBenefits(
-        situation,
-        this._id,
-        openfiscaResponse,
-        false
-      )
+      const aides = computeBenefits(situation, id, openfiscaResponse, false)
       resolve(aides)
     })
   })

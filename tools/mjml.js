@@ -5,7 +5,8 @@ import express from "express"
 
 import "../backend/api.js"
 import mongoose from "mongoose"
-const Followup = mongoose.model("Followup")
+//const Followup = mongoose.model("Followup")
+import Followup from "../backend/models/followup.js"
 import renderInitial from "../backend/lib/mes-aides/emails/initial.js"
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
 import "../backend/lib/mes-aides/emails/survey.js"

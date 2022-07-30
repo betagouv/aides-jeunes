@@ -1,7 +1,7 @@
 import { answerLayout } from "./types/answer"
 
 export function isStepAnswered(answers: answerLayout[], step) {
-  getStepAnswer(answers, step) !== undefined
+  return getStepAnswer(answers, step) !== undefined
 }
 
 export const getStepAnswer = (answers: answerLayout[], step) =>

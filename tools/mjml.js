@@ -48,12 +48,12 @@ app.route("/mjml/:id/:type").get(function (req, res) {
   Followup.findByIdOrOldId(req.params.id)
     .populate("simulation")
     .exec(function (err, followup) {
-      console.log("followup", { _id: req.params.id }, followup)
-
       const p =
         req.params.type == "initial"
           ? renderInitial(followup)
-          : followup.createSurvey().then((s) => followup.renderSurveyEmail(s))
+          : followup
+              .createSurvey()
+              .then((s) => followup.renderSurveyEmail(followup))
       p.then(function (result) {
         const mode = req.query.mode || "html"
         if (mode == "html") {

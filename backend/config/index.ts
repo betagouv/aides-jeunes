@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { ConfigurationLayout } from "../types/config"
-import { createRequire } from "module"
 
 const env = process.env.NODE_ENV || "development"
 
@@ -61,18 +60,13 @@ const all: ConfigurationLayout = {
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
 }
 
-const override = new Promise(function (resolve, reject) {
-  import(`./${env}.js`)
-    .then((module) => {
-      console.info(`Using specific configuration for ${env}.`)
-      resolve(module?.default)
-    })
-    .catch((e) => {
-      console.warn(`No specific configuration for ${env}, ${e}`)
-      reject({})
-    })
-})
+let override = {}
+try {
+  override = await import(`./${env}.js`).then((module) => module?.default)
+  console.info(`Using specific configuration for ${env}.`)
+} catch (e) {
+  console.warn(`No specific configuration for ${env}, ${e}`)
+}
 
 const config = Object.assign(all, override)
-console.log(override)
 export default config

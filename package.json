@@ -194,7 +194,11 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ],
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "automock": false,
+    "setupFiles": [
+      "./tests/unit/mocks/config.js"
+    ]
   },
   "engines": {
     "node": ">= 16"

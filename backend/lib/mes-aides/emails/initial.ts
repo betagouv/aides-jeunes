@@ -49,7 +49,6 @@ function renderAsText(followup, benefits, parameters) {
     ),
     returnURL: `${config.baseURL}${followup.returnPath}`,
   }
-
   return mustache.render(textTemplate, data)
 }
 

@@ -60,13 +60,17 @@ const all: ConfigurationLayout = {
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
 }
 
-let override = {}
-try {
-  override = require(`./${env}`)
-  console.info(`Using specific configuration for ${env}.`)
-} catch (e) {
-  console.warn(`No specific configuration for ${env}.`)
+async function loadCustomConfiguration() {
+  try {
+    const customConfiguration = await import(`./${env}.js`)
+    console.info(`Using specific configuration for ${env}.`)
+    return customConfiguration
+  } catch (e) {
+    console.warn(`No specific configuration for ${env}, ${e}`)
+    return {}
+  }
 }
+const override = loadCustomConfiguration()
 
 const config = Object.assign(all, override)
 

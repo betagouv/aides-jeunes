@@ -60,18 +60,15 @@ const all: ConfigurationLayout = {
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
 }
 
-async function loadCustomConfiguration() {
-  try {
-    const customConfiguration = await import(`./${env}.js`)
-    console.info(`Using specific configuration for ${env}.`)
-    return customConfiguration
-  } catch (e) {
-    console.warn(`No specific configuration for ${env}, ${e}`)
-    return {}
-  }
+let override
+try {
+  override = await import(`./${env}.js`).then((module) => module?.default)
+  console.info(`Using specific configuration for ${env}.`)
+} catch (e) {
+  console.warn(`No specific configuration for ${env}, ${e}`)
+  override = {}
 }
-const override = loadCustomConfiguration()
 
 const config = Object.assign(all, override)
-
+console.log(override)
 export default config

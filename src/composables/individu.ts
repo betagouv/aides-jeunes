@@ -1,5 +1,5 @@
 import { useStore } from "vuex"
-import Individu from "../../lib/individu"
+import Individu from "@lib/individu.js"
 
 export const useIndividu = (individuId: string) => {
   const store = useStore()

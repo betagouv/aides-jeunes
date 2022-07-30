@@ -60,7 +60,7 @@
 import ActionButtons from "@/components/action-buttons"
 import Nationality from "@/lib/nationality"
 import EnSavoirPlus from "@/components/en-savoir-plus"
-import Scolarite from "../../../lib/scolarite"
+import Scolarite from "@lib/scolarite"
 
 export default {
   name: "SimulationEnfants",

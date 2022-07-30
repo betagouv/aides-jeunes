@@ -58,11 +58,11 @@ import {
   capitalize,
   displayValue,
   executeFunctionOrReturnValue,
-} from "../../../lib/utils"
+} from "@lib/utils"
 import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
-import { ENTITIES_PROPERTIES } from "../../../dist-server/lib/mutualized-steps"
+import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button"
-import { getStepAnswer } from "../../../dist-server/lib/answers"
+import { getStepAnswer } from "@lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
 import { useIndividu } from "@/composables/individu.ts"
 

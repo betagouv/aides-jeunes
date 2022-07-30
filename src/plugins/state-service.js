@@ -1,4 +1,4 @@
-import { next, current, chapters } from "../../dist-server/lib/state"
+import { next, current, chapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
 
 const StateService = {

@@ -1,6 +1,6 @@
 import BenefitsCategories from "@/lib/benefits-categories"
 import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-import data from "@/../dist-server/data"
+import data from "@data"
 
 const Institution = {
   benefits: data.generate(jamstack),

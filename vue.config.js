@@ -1,14 +1,14 @@
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 import parseArgs from "minimist"
-
+import path from "path"
 import config from "./dist-server/backend/config/index.js"
 import configureAPI from "./dist-server/configure.js"
 import mock from "./dist-server/mock.js"
 import benefits from "./dist-server/data/all.js"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
-
+const __dirname = new URL(".", import.meta.url).pathname
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
@@ -31,7 +31,14 @@ process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits 
 export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
-
+    config.resolve = {
+      alias: {
+        "@lib": path.resolve(__dirname, "dist-server/lib"),
+        "@data": path.resolve(__dirname, "dist-server/data"),
+        "@": path.resolve(__dirname, "src"),
+      },
+      extensions: [".ts", ".js", ".vue", ".json"],
+    }
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: "sitemap.xml",

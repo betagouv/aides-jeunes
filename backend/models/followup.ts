@@ -124,7 +124,7 @@ FollowupSchema.method("createSurvey", function (type) {
 FollowupSchema.method("sendSurvey", function () {
   const followup = this
   return this.createSurvey("initial").then((survey: SurveyLayout) => {
-    return this.renderSurveyEmail(survey)
+    return this.renderSurveyEmail(followup)
       .then((render) => {
         const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]

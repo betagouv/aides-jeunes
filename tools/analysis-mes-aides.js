@@ -1,5 +1,47 @@
 const aides = require("../aids.json")
+const aidesGS = require("../all-aides-pole-emploi.json")
+const fs = require("fs")
 
+const aidesPeCertifiedTrue = aidesGS.filter((aide) => {
+  return aide.certified === "TRUE"
+})
+
+aides.forEach((aide) => {
+  const match = aidesPeCertifiedTrue.find((correspondance) => {
+    return correspondance.idPe === aide.id
+  })
+  aide.idAj = match?.idAj
+})
+
+const aidesPeInCertified = aides.filter((aide) => {
+  return !aide.idAj
+})
+const aidesPeToDo = aidesPeInCertified.filter((aide) => {
+  return (
+    aide.geographicalArea !== "Échelle communale" &&
+    aide.districts.length <= 1 &&
+    aide.geographicalArea !== "Échelle intercommunale"
+  )
+})
+
+console.log(aidesPeToDo[0].districts[0].split(" - ")[0])
+console.log(aides.length)
+console.log(aidesPeInCertified.length)
+console.log(aides.length - aidesPeInCertified.length)
+
+process.exit(0)
+const aidesCertified = {}
+aidesGS.forEach((aide) => {
+  aidesCertified[aide.certified] = (aidesCertified[aide.certified] || 0) + 1
+})
+console.log(aidesCertified)
+
+//console.log("Aides :", aidesGS.length) //142 occurences
+console.log("Aides :", aidesPeCertifiedTrue.length) //31 occurences
+fs.writeFileSync(
+  "certifiedPe.json",
+  JSON.stringify(aidesPeCertifiedTrue, null, 2)
+)
 // combien d'aides dans le fichier ?
 //console.log(`Nombre d'aides au total : ${aides.length}`)
 

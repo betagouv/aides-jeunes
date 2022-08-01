@@ -2,8 +2,6 @@
 /* global emit: true */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare function emit(key, value)
-//import Promise from "bluebird"
-//const MongoClient = Promise.promisifyAll(require("mongodb").MongoClient)
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"

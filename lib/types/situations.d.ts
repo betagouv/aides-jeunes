@@ -3,7 +3,6 @@ import { individuLayout } from "./individu"
 export interface situationsLayout {
   dateDeValeur: number
   version?: number
-  //demandeur?: any //generateDefaultIndividu("demandeur", "demandeur"),
   demandeur?: individuLayout
   enfants?: any[] | null
   famille?: any

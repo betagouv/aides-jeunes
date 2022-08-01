@@ -70,7 +70,6 @@ SimulationSchema.static("cookiePrefix", (): string => {
   return "simulation_"
 })
 SimulationSchema.virtual("cookieName").get(function () {
-  //return `${SimulationSchema.statics.cookiePrefix}${this._id}`
   return `simulation_${this._id}`
 })
 SimulationSchema.virtual("returnPath").get(function () {

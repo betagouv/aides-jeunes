@@ -1,5 +1,3 @@
-//import Promise from "bluebird"
-//const openfisca = Promise.promisifyAll(require(".."))
 import openfisca from "../index.js"
 import common from "../mapping/common.js"
 

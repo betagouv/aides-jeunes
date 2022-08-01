@@ -27,14 +27,6 @@ simulationRoutes(api)
 supportRoutes(api)
 teleservicesRoutes(api)
 
-// const routesPath = path.join(path.dirname(""), "dist-server/backend/routes")
-// fs.readdirSync(routesPath).forEach(async (file) => {
-//   if (/(.*)\.(js$|coffee$)/.test(file)) {
-//     const routes = await import(`../../../${routesPath}/${file}`)
-//     routes.default(api)
-//   }
-// })
-
 api.all("*", function (req, res) {
   res.sendStatus(404)
 })

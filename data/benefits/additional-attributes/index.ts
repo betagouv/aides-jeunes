@@ -2,7 +2,6 @@
 
 import dayjs from "dayjs"
 
-//import situationsLayout from "../../../lib/types/situations"
 import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
 import { situationsLayout } from "lib/types/situations"
@@ -125,7 +124,7 @@ export const additionalBenefitAttributes = {
       )
     },
   },
-  apa_eligibilite: apa_eligibilite,
+  apa_eligibilite,
   livret_epargne_populaire_taux: {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
@@ -133,7 +132,6 @@ export const additionalBenefitAttributes = {
     legend: (parameters: openfiscaParametersLayout) =>
       `au lieu de ${parameters["marche_travail.epargne.livret_a.taux"] * 100}%`,
   },
-  fsl_eligibilite: fsl_eligibilite,
-  occitanie_carte_transport_scolaire_lio:
-    occitanie_carte_transport_scolaire_lio,
+  fsl_eligibilite,
+  occitanie_carte_transport_scolaire_lio,
 }

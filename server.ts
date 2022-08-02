@@ -15,7 +15,7 @@ process.env.MES_AIDES_ROOT_URL =
 
 configure({ app })
 
-app.use(express.static("dist"))
+app.use(express.static("../dist"))
 app.route("/*").get(function (req, res) {
   res.sendFile(path.join(__dirname, "../dist/index.html"))
 })

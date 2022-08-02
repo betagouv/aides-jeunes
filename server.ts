@@ -4,6 +4,7 @@
 import express from "express"
 import path from "path"
 import configure from "./configure.js"
+const __dirname = new URL(".", import.meta.url).pathname
 
 const app = express()
 
@@ -16,7 +17,7 @@ configure({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {
-  res.sendFile("dist/index.html", { root: path.dirname("") })
+  res.sendFile(path.join(__dirname, "../dist/index.html"))
 })
 
 app.use(function (err, req, res, next) {

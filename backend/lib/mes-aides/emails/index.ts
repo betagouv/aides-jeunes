@@ -1,12 +1,13 @@
 import fs from "fs"
 import Mjml from "mjml"
 import path from "path"
+const __dirname = new URL(".", import.meta.url).pathname
 
 export function toBase64(file: string) {
   return fs.readFileSync(file, "base64")
 }
 
-export const imageRoot = path.join(path.dirname(""), "../../../../public/img/")
+export const imageRoot = path.join(__dirname, "../../../../public/img/")
 
 export const defaultAttachments = [
   // {

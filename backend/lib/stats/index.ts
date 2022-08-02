@@ -22,7 +22,10 @@ const yesterday = dateDaysAgo(1)
 const today = dateDaysAgo(0)
 
 // ./documents/ allow CORS access thank to an NGINX rule
-const relative_path = `${__dirname}/../../../../dist/documents/stats.json`
+const relative_path = path.join(
+  __dirname,
+  "/../../../../dist/documents/stats.json"
+)
 
 mkdirp(path.dirname(relative_path)).then(() => {
   Promise.all([

@@ -2,7 +2,6 @@ import lodash from "lodash"
 const { capitalize, map, assign } = lodash
 import fs from "fs"
 import path from "path"
-
 import consolidate from "consolidate"
 const mustache = consolidate.mustache
 import config from "../../../config/index.js"
@@ -12,6 +11,8 @@ import {
   getBenefitImage,
 } from "../../../../lib/benefits/details.js"
 import { mjml } from "./index.js"
+
+const __dirname = new URL(".", import.meta.url).pathname
 
 function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)
@@ -28,17 +29,11 @@ function basicBenefitText(droit, parameters) {
 }
 
 const textTemplate = fs.readFileSync(
-  path.join(
-    path.dirname(""),
-    "backend/lib/mes-aides/emails/templates/initial.txt"
-  ),
+  path.join(__dirname, "templates/initial.txt"),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(
-    path.dirname(""),
-    "backend/lib/mes-aides/emails/templates/initial.mjml"
-  ),
+  path.join(__dirname, "templates/initial.mjml"),
   "utf8"
 )
 

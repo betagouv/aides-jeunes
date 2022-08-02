@@ -3,21 +3,16 @@ import path from "path"
 import consolidate from "consolidate"
 const mustache = consolidate.mustache
 import config from "../../../config/index.js"
-
 import { mjml } from "./index.js"
 
+const __dirname = new URL(".", import.meta.url).pathname
+
 const textTemplate = fs.readFileSync(
-  path.join(
-    path.dirname(""),
-    "backend/lib/mes-aides/emails/templates/survey.txt"
-  ),
+  path.join(__dirname, "templates/survey.txt"),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(
-    path.dirname(""),
-    "backend/lib/mes-aides/emails/templates/survey.mjml"
-  ),
+  path.join(__dirname, "templates/survey.mjml"),
   "utf8"
 )
 

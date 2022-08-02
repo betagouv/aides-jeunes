@@ -15,7 +15,7 @@
     "build:server": "tsc --skipLibCheck -p tsconfig.server.json && cp -r lib backend data contribuer tools dist-server/",
     "test:unit": "vue-cli-service test:unit",
     "lint": "eslint backend data lib src ./*.ts",
-    "ci": "npm run stats && NODE_ENV=production node ./dist-server/server.js",
+    "ci": "npm run stats && cd dist-server && NODE_ENV=production node ./server.js",
     "cypress": "cypress run --config-file false",
     "cypress:open": "cypress open --config-file false",
     "db": "mongod --dbpath db",

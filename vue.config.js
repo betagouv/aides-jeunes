@@ -3,18 +3,13 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 import parseArgs from "minimist"
 import path from "path"
 import config from "./dist-server/backend/config/index.js"
+import configureAPI from "./dist-server/configure.js"
+import mock from "./dist-server/mock.js"
 import benefits from "./dist-server/data/all.js"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 const __dirname = new URL(".", import.meta.url).pathname
-
-async function before() {
-  if (process.env.NODE_ENV === "front-only") {
-    return await import("./dist-server/mock.js")
-  } else {
-    return await import("./dist-server/configure.js")
-  }
-}
+const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
   (benefit) => !benefit.private

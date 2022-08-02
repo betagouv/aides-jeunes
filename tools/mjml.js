@@ -3,7 +3,8 @@
 
 import express from "express"
 
-import "../backend/api.js"
+import api from "../backend/api.js"
+api()
 import mongoose from "mongoose"
 //const Followup = mongoose.model("Followup")
 import Followup from "../backend/models/followup.js"

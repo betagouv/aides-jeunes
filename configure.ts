@@ -22,7 +22,8 @@ export default function (devServer) {
   devServer.app.use(Sentry.Handlers.requestHandler())
 
   // Setup app
-  devServer.app.use("/api", api)
+  const apiHandler = api()
+  devServer.app.use("/api", apiHandler)
 
   devServer.app.use("/followups", followups)
 

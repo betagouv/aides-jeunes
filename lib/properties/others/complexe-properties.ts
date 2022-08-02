@@ -1,9 +1,9 @@
-import { PropertyData } from "../../types/property"
+import { PropertyData } from "../../types/property.js"
 import { capitalize } from "vue"
-const Individu = require("../../individu")
-const { getLoyerData } = require("../../logement")
-const { getAnswer } = require("../../answers")
-const { ressourceTypes, ressourceCategories } = require("../../resources")
+import Individu from "../../individu.js"
+import { getLoyerData } from "../../logement.js"
+import { getAnswer } from "../../answers.js"
+import { ressourceTypes, ressourceCategories } from "../../resources.js"
 
 export default {
   _hasRessources: {

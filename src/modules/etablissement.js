@@ -1,4 +1,4 @@
-import { getEtablissements } from "../../lib/benefits/etablissements"
+import { getEtablissements } from "@lib/benefits/etablissements"
 
 const EtablissementModule = {
   namespaced: true,

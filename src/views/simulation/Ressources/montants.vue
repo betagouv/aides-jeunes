@@ -53,10 +53,10 @@ import RessourceProfessionLiberale from "@/components/ressource/profession-liber
 import RessourceMontants from "@/components/ressource/montants"
 
 import RessourceProcessor from "@/mixins/ressource-processor"
-import { ressourceTypes } from "../../../../lib/resources"
-import Ressource from "@/../lib/ressource"
-import Individu from "../../../../lib/individu"
-import { getAnswer } from "../../../../lib/answers"
+import { ressourceTypes } from "@lib/resources"
+import Ressource from "@lib/ressource"
+import Individu from "@lib/individu"
+import { getAnswer } from "@lib/answers"
 
 export default {
   name: "RessourcesMontants",

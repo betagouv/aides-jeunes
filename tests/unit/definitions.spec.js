@@ -1,11 +1,7 @@
-const expect = require("expect")
+import expect from "expect"
 
-const {
-  famille,
-  individu,
-  menage,
-  parents,
-} = require("../../backend/lib/definitions")
+import entities from "@root/backend/lib/definitions"
+const { famille, individu, menage, parents } = entities
 
 describe("Tests definitions", function () {
   ;[famille, individu, menage, parents].forEach((entity) => {

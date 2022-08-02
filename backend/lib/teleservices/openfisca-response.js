@@ -1,4 +1,4 @@
-const openfisca = require("../openfisca")
+import openfisca from "../openfisca/index.js"
 
 function OpenFiscaResponse(simulation) {
   this.situation = simulation.getSituation()
@@ -31,4 +31,4 @@ OpenFiscaResponse.prototype.toExternal = function () {
   return p
 }
 
-module.exports = OpenFiscaResponse
+export default OpenFiscaResponse

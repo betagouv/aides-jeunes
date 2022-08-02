@@ -21,7 +21,7 @@ function updateEnceinte(answers) {
   })
 }
 
-module.exports = {
+export default {
   function: function (simulation) {
     updateEnceinte(simulation.answers.all)
     updateEnceinte(simulation.answers.current)

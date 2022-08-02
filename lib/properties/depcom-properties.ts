@@ -1,4 +1,4 @@
-import { DepcomProperty } from "./property"
+import { DepcomProperty } from "./property.js"
 
 export default {
   depcom: new DepcomProperty({
@@ -7,4 +7,5 @@ export default {
   _bourseCriteresSociauxCommuneDomicileFamilial: new DepcomProperty({
     question: "Quel est le code postal de la commune de vos parents ?",
   }),
+  default: [],
 }

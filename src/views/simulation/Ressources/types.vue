@@ -4,7 +4,7 @@
 
 <script>
 import RessourceTypes from "@/components/ressource/types"
-import Individu from "../../../../lib/individu"
+import Individu from "@lib/individu"
 
 export default {
   name: "RessourcesTypes",

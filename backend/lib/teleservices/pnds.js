@@ -1,4 +1,4 @@
-import openfisca from "../openfisca/index.js"
+const openfisca = require("../openfisca")
 
 function PNDS(simulation) {
   this.situation = simulation.getSituation()
@@ -12,4 +12,4 @@ PNDS.prototype.toExternal = function () {
   return openfisca.buildOpenFiscaRequest(this.situation)
 }
 
-export default PNDS
+module.exports = PNDS

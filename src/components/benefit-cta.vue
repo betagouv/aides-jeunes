@@ -30,7 +30,7 @@
 
 <script>
 import BenefitCtaLink from "./benefit-cta-link"
-import { hasEtablissements } from "@lib/benefits/etablissements"
+import { hasEtablissements } from "@/../lib/benefits/etablissements"
 
 const types = ["teleservice", "form", "instructions"]
 export default {

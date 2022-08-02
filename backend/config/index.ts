@@ -62,11 +62,10 @@ const all: ConfigurationLayout = {
 
 let override = {}
 try {
-  override = await import(`./${env}.js`).then((module) => module?.default)
+  override = require(`./${env}`)
   console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
-  console.warn(`No specific configuration for ${env}, ${e}`)
+  console.warn(`No specific configuration for ${env}.`)
 }
 
-const config = Object.assign(all, override)
-export default config
+module.exports = Object.assign(all, override)

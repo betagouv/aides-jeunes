@@ -1,12 +1,12 @@
-import Individu from "@lib/individu"
+import Individu from "../../lib/individu"
 import {
   capitalize,
   displayCurrencyValue,
   displayDepcomValue,
-} from "@lib/utils"
-import { ressourceCategories, ressourceTypes } from "@lib/resources"
-import Logement from "@lib/logement"
-import { getAnswer, getStepAnswer } from "@lib/answers"
+} from "../../lib/utils"
+import { ressourceCategories, ressourceTypes } from "../../lib/resources"
+import Logement from "@/../lib/logement"
+import { getAnswer, getStepAnswer } from "../../lib/answers"
 import dayjs from "dayjs"
 
 export const getIndividuByStep = (step, component) => {

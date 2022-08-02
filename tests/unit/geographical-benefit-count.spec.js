@@ -1,5 +1,7 @@
-import expect from "expect"
-import { isGeographicallyIncluded } from "@root/lib/benefits/geographical-count-utils"
+const expect = require("expect")
+const {
+  isGeographicallyIncluded,
+} = require("../../lib/benefits/geographical-count-utils")
 
 describe("geographical benefit count", function () {
   // Arcachon

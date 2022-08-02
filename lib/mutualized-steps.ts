@@ -1,8 +1,8 @@
-import Famille from "./properties/famille-properties.js"
-import Individu from "./properties/individu-properties.js"
-import Menage from "./properties/menage-properties.js"
-import Parents from "./properties/parents-properties.js"
-import { Property } from "./properties/property.js"
+import Famille from "./properties/famille-properties"
+import Individu from "./properties/individu-properties"
+import Menage from "./properties/menage-properties"
+import Parents from "./properties/parents-properties"
+import { Property } from "./properties/property"
 
 export const ENTITIES_PROPERTIES = {
   famille: Famille,
@@ -12,7 +12,7 @@ export const ENTITIES_PROPERTIES = {
 }
 
 export function forEachProperties(
-  fn: (entityName: string, propertyName: string, property: Property) => void
+  fn: (entityName: string, propertyName: string, property: Property) => {}
 ) {
   Object.entries(ENTITIES_PROPERTIES).forEach(
     ([entityName, entityProperties]) => {

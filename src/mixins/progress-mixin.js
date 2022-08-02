@@ -1,4 +1,4 @@
-import { isStepAnswered } from "@lib/answers"
+import { isStepAnswered } from "../../lib/answers"
 
 export default {
   computed: {

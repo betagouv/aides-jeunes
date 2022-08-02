@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   function: function (s) {
     s.version = 1
     return s

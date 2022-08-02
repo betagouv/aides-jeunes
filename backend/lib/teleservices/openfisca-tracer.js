@@ -1,4 +1,4 @@
-import openfisca from "../openfisca/index.js"
+const openfisca = require("../openfisca")
 
 function OpenFiscaTracer(simulation) {
   this.situation = simulation.getSituation()
@@ -12,4 +12,4 @@ OpenFiscaTracer.prototype.toExternal = function () {
   return openfisca.buildOpenFiscaRequest(this.situation)
 }
 
-export default OpenFiscaTracer
+module.exports = OpenFiscaTracer

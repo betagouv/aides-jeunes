@@ -1,6 +1,3 @@
-import subject from "@root/backend/lib/openfisca/mapping"
-import expect from "expect"
-
 const situation = {
   dateDeValeur: new Date("2017-10-02"),
   demandeur: {},
@@ -10,6 +7,9 @@ const situation = {
     statut_occupation_logement: "sans_domicile",
   },
 }
+
+const subject = require("../../../../backend/lib/openfisca/mapping")
+const expect = require("expect")
 
 describe("openfisca buildOpenFiscaRequest", function () {
   const result = subject.buildOpenFiscaRequest(situation)

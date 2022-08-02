@@ -45,4 +45,4 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
     })
 }
 
-export default AidesJeunesServiceLogement
+module.exports = AidesJeunesServiceLogement

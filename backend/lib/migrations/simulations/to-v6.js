@@ -11,7 +11,7 @@ function removeOldField(answers, field) {
   answers.set(field, newAnswers, { strict: true })
 }
 
-export default {
+module.exports = {
   function: function (simulation) {
     removeOldField(simulation.answers, "all")
     removeOldField(simulation.answers, "current")

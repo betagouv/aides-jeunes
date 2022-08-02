@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
-/* global defineProps */
+
 const props = defineProps({
   titleWrapper: { type: String, default: "label" },
   forTitleWrapper: { type: String },

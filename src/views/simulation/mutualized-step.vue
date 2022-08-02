@@ -94,12 +94,12 @@ import YesNoQuestion from "../../components/yes-no-question.vue"
 import MutualizedStepTitle from "../../components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
-import { executeFunctionOrReturnValue } from "@lib/utils"
+import { executeFunctionOrReturnValue } from "../../../lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus"
 import InputNumber from "@/components/input-number"
 import InputDate from "@/components/input-date"
-import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
-import { getAnswer, nullifyUndefinedValue } from "@lib/answers"
+import { ENTITIES_PROPERTIES } from "../../../lib/mutualized-steps"
+import { getAnswer, nullifyUndefinedValue } from "../../../lib/answers"
 import { useIndividu } from "@/composables/individu.ts"
 
 export default {

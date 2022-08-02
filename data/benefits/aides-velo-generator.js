@@ -1,6 +1,5 @@
-import aidesVelo from "aides-velo"
-
-const benefits = [...aidesVelo()]
+const aidesVelo = require("aides-velo")
+const benefits = aidesVelo()
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {
@@ -11,7 +10,7 @@ function generate_benefit_list(institutions) {
   }
 
   benefits.forEach((b) => {
-    switch (b?.collectivity?.kind) {
+    switch (b.collectivity.kind) {
       case "pays": {
         if (b.collectivity.value === "France") {
           b.institution = "etat"
@@ -25,14 +24,14 @@ function generate_benefit_list(institutions) {
       case "code insee": {
         const institutionList = potentialInstitutions[b.collectivity.kind]
         b.institution = institutionList.find(
-          (i) => i.code_insee === b?.collectivity?.value
+          (i) => i.code_insee === b.collectivity.value
         )?.slug
         break
       }
       case "epci": {
         const institutionList = potentialInstitutions[b.collectivity.kind]
         b.institution = institutionList.find(
-          (i) => i.code_siren === b?.collectivity?.code
+          (i) => i.code_siren === b.collectivity.code
         )?.slug
         break
       }
@@ -43,7 +42,7 @@ function generate_benefit_list(institutions) {
     .filter((b) => !b.discard)
     .map((b) => {
       const description =
-        b?.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
+        b.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
           ? b.description
           : `Aide à l'achat d'un vélo : ${b.title}`
       return {
@@ -62,4 +61,4 @@ function generate_benefit_list(institutions) {
     })
 }
 
-export default generate_benefit_list
+module.exports = generate_benefit_list

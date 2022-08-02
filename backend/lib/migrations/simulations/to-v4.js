@@ -4,7 +4,7 @@
 
 const VERSION = 4
 
-export default {
+module.exports = {
   function: function (simulation) {
     const objectSimulation = simulation.toObject
       ? simulation.toObject()

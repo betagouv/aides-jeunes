@@ -1,32 +1,28 @@
 #!/usr/bin/env node
 
-import express from "express"
-import morgan from "morgan"
-import Sentry from "@sentry/node"
-import errorHandler from "errorhandler"
+const bodyParser = require("body-parser")
+const morgan = require("morgan")
+const Sentry = require("@sentry/node")
 
-import api from "./backend/api.js"
-import followups from "./backend/followups.js"
-
-export default function (devServer) {
+module.exports = function (devServer) {
   Sentry.init({
     // Enable Sentry in production
     // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
     dsn:
       process.env.NODE_ENV === "production"
         ? "https://b44fa037e37b4b9eb1a050675b253dce@sentry.incubateur.net/17"
-        : undefined,
+        : null,
   })
 
   // The request handler must be the first middleware on the app
   devServer.app.use(Sentry.Handlers.requestHandler())
 
   // Setup app
-  devServer.app.use("/api", api)
+  devServer.app.use("/api", require("./backend/api"))
 
-  devServer.app.use("/followups", followups)
+  devServer.app.use("/followups", require("./backend/followups"))
 
-  devServer.app.use(express.urlencoded({ extended: true, limit: "1024kb" }))
+  devServer.app.use(bodyParser.urlencoded({ extended: true, limit: "1024kb" }))
 
   devServer.app.set("trust proxy", true)
 
@@ -35,7 +31,7 @@ export default function (devServer) {
 
   if (devServer.app.get("env") == "development") {
     devServer.app.use(morgan("dev"))
-    devServer.app.use(errorHandler())
+    devServer.app.use(require("errorhandler")())
   } else {
     devServer.app.use(morgan("combined"))
   }

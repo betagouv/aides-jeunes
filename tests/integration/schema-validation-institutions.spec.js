@@ -1,7 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
-const schemas = require("@root/data/schemas")
+const schemas = require("../../data/schemas")
 const institutionSchema = schemas.getCollectionSchema("institutions")
 
 const dataDir = path.join(__dirname, "../../data")

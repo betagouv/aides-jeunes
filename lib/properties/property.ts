@@ -1,11 +1,11 @@
-import { capitalize } from "../utils.js"
+import { capitalize } from "../utils"
 import {
   EnumItemProperty,
   ItemPropertyConstruct,
   NumberPropertyConstruct,
   PropertyConstruct,
   PropertyData,
-} from "../types/property.js"
+} from "../types/property"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)

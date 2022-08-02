@@ -31,7 +31,7 @@ function updateLoyer(answers) {
   }
 }
 
-export default {
+module.exports = {
   function: function (simulation) {
     updateLoyer(simulation.answers.all)
     updateLoyer(simulation.answers.current)

@@ -93,9 +93,9 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons"
-import Logement from "@lib/logement.js"
-import Individu from "@lib/individu.js"
-import { getAnswer } from "@lib/answers"
+import Logement from "../../../lib/logement"
+import Individu from "../../../lib/individu.js"
+import { getAnswer } from "../../../lib/answers"
 
 export default {
   name: "SimulationLogement",

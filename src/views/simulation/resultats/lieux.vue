@@ -37,7 +37,7 @@ import Etablissement from "@/components/etablissement"
 import {
   getBenefitEtablissements,
   getEtablissements,
-} from "@lib/benefits/etablissements"
+} from "@/../lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button"
 
 export default {

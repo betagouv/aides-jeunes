@@ -1,8 +1,8 @@
 const path = require("path")
 const fs = require("fs")
 
-import { validateFile, getCollectionSchema } from "@root/data/schemas"
-const benefitSchema = getCollectionSchema("benefits_javascript")
+const schemas = require("../../data/schemas")
+const benefitSchema = schemas.getCollectionSchema("benefits_javascript")
 
 const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
@@ -14,7 +14,7 @@ describe("Test Javascript Benefit schema", function () {
     describe(benefitFilename, function () {
       it("should respect Javascript Benefit schema", function () {
         expect(
-          validateFile(
+          schemas.validateFile(
             `data/benefits/javascript/${benefitFilename}`,
             benefitSchema
           )

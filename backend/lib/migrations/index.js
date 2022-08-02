@@ -1,6 +1,4 @@
-import fs from "fs"
-import { URL } from "url"
-const __dirname = new URL(".", import.meta.url).pathname
+const fs = require("fs")
 
 function getMigrations(folderName) {
   const folderPath = `${__dirname}/${folderName}`
@@ -9,8 +7,8 @@ function getMigrations(folderName) {
     .filter(function (file) {
       return file.match(/^to-v\d+\.js$/)
     })
-    .map(async function (migrationFile) {
-      return await import(`${folderPath}/${migrationFile}`)
+    .map(function (migrationFile) {
+      return require(`${folderPath}/${migrationFile}`)
     })
 
   migrations.sort(function (a, b) {
@@ -28,7 +26,7 @@ function getLatestVersionByFolderName(folderName) {
   return getLatestVersion(migrations)
 }
 
-export default {
+module.exports = {
   getLatestVersionByFolderName,
   apply: function (model) {
     const folderName = `${model.constructor.modelName.toLowerCase()}s`

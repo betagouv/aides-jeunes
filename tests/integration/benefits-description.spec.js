@@ -1,12 +1,10 @@
-import expect from "expect"
-import fs from "fs"
+const expect = require("expect")
+const fs = require("fs")
 
-import regions from "@etalab/decoupage-administratif/data/regions.json"
-import departements from "@etalab/decoupage-administratif/data/departements.json"
-import communes from "@etalab/decoupage-administratif/data/communes.json"
-import epcis from "@etalab/decoupage-administratif/data/epci.json"
-
-import subject from "@root/data/all"
+const regions = require("@etalab/decoupage-administratif/data/regions.json")
+const departements = require("@etalab/decoupage-administratif/data/departements.json")
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
 const codesInstitutions = {
   region: regions.map((region) => region.code),
@@ -16,6 +14,8 @@ const codesInstitutions = {
 }
 
 describe("benefit descriptions", function () {
+  const subject = require("../../data/all")
+
   Object.keys(subject.institutionsMap).forEach(function (institutionSlug) {
     describe(institutionSlug, function () {
       const institution = subject.institutionsMap[institutionSlug]
@@ -98,10 +98,9 @@ describe("benefit descriptions", function () {
 
           it("should have a description", function () {
             expect(typeof benefit.description).toBe("string")
-            const innerText = benefit.description
-              .replace(/<\/?[^>]+>/gi, "")
-              .replace(/\s\s+/g, " ")
-              .trim()
+            const p = document.createElement("p")
+            p.innerHTML = benefit.description
+            const innerText = p.textContent
             expect(innerText.length).toBeGreaterThanOrEqual(10)
             expect(innerText.length).toBeLessThanOrEqual(420)
           })

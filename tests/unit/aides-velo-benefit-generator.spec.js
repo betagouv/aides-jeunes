@@ -1,7 +1,7 @@
-import expect from "expect"
-import benefits from "@root/data/all"
+const expect = require("expect")
+const benefits = require("../../data/all")
 
-import generator from "@root/data/benefits/aides-velo-generator"
+const generator = require("../../data/benefits/aides-velo-generator.js")
 
 describe("aides velo benefit generator", function () {
   const list = generator(Object.values(benefits.institutionsMap))

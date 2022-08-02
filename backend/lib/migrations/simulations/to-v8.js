@@ -1,9 +1,8 @@
 /*
  * Supprime les id lorsqu'ils ne sont plus nécessaires
  */
-import lodash from "lodash"
-const { omit } = lodash
-import { ANSWER_BASIC_IDS } from "../../definitions.js"
+const omit = require("lodash/omit")
+const { ANSWER_BASIC_IDS } = require("../../definitions")
 const VERSION = 8
 
 function removeIds(answers) {
@@ -25,7 +24,7 @@ function removeIds(answers) {
   }
 }
 
-export default {
+module.exports = {
   function: function (simulation) {
     removeIds(simulation.answers.all)
     removeIds(simulation.answers.current)

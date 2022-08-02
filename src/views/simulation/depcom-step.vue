@@ -16,8 +16,8 @@ import ActionButtons from "@/components/action-buttons"
 import InputDepCom from "@/components/input-depcom"
 import WarningMessage from "@/components/warning-message"
 
-import { getAnswer } from "@/../lib/answers"
-import DepcomProperties from "@/../lib/properties/depcom-properties"
+import { getAnswer } from "@lib/answers"
+import DepcomProperties from "@lib/properties/depcom-properties"
 import Warning from "@/lib/warnings"
 
 export default {

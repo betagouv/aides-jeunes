@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-const express = require("express")
+import express from "express"
+import path from "path"
+import configure from "./configure.js"
 
 const app = express()
-const path = require("path")
+
 const port = process.env.PORT || 8080
 
 process.env.MES_AIDES_ROOT_URL =
   process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
-require("./configure")({ app })
+
+configure({ app })
 
 app.use(express.static("dist"))
 app.route("/*").get(function (req, res) {
-  res.sendFile(path.join(__dirname, "../dist/index.html"))
+  res.sendFile("dist/index.html", { root: path.dirname("") })
 })
 
 app.use(function (err, req, res, next) {
@@ -30,4 +33,4 @@ app.listen(port, () => {
   )
 })
 
-module.exports = app
+export default app

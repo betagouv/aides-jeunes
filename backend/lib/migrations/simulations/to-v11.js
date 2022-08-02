@@ -2,7 +2,7 @@
  * Migre rpns_auto_entrepreneur vers rpns_micro_entreprise
  */
 
-const _ = require("lodash")
+import _ from "lodash"
 const VERSION = 11
 
 const AE_map = {
@@ -88,7 +88,7 @@ function updateAutoEntrepreneur(answers) {
   replaceAutoEntrepeneurInRpnsRessources(answers)
 }
 
-module.exports = {
+export default {
   function: function (simulation) {
     updateAutoEntrepreneur(simulation.answers.all)
     updateAutoEntrepreneur(simulation.answers.current)

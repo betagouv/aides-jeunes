@@ -1,5 +1,5 @@
-import { EnumProperty, NumberProperty, BooleanProperty } from "./property"
-import { yearsAgo } from "../utils"
+import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
+import { yearsAgo } from "../utils.js"
 
 export default {
   bourse_criteres_sociaux_nombre_enfants_a_charge: new NumberProperty({

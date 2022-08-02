@@ -1,7 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
-const schemas = require("../../data/schemas")
+const schemas = require("@root/data/schemas")
 const benefitSchema = schemas.getCollectionSchema("benefits_openfisca")
 
 const dataDir = path.join(__dirname, "../../data")

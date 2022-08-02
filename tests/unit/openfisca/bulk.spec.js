@@ -1,4 +1,5 @@
-const { build, extractResults } = require("../../../backend/lib/openfisca/bulk")
+import bulk from "@root/backend/lib/openfisca/bulk"
+const { build, extractResults } = bulk
 
 const situation = {
   dateDeValeur: "2021-01",

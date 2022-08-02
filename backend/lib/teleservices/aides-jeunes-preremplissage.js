@@ -1,4 +1,4 @@
-function AidesJeunesPreremplissage(simulation) {
+export function AidesJeunesPreremplissage(simulation) {
   this.simulation = simulation
 }
 
@@ -21,5 +21,3 @@ AidesJeunesPreremplissage.prototype.toExternal = function () {
     console.log(e)
   }
 }
-
-module.exports = AidesJeunesPreremplissage

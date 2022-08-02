@@ -2,7 +2,7 @@
  * Migre _formationSanitaireSocial vers groupe_specialites_formation
  */
 
-const Scolarite = require("../../../../lib/scolarite")
+import Scolarite from "../../../../lib/scolarite.js"
 const VERSION = 10
 
 function updateGroupeSpecialitesFormation(answers) {
@@ -22,7 +22,7 @@ function updateGroupeSpecialitesFormation(answers) {
     : Scolarite.groupeSpecialitesFormation.autre.value
 }
 
-module.exports = {
+export default {
   function: function (simulation) {
     updateGroupeSpecialitesFormation(simulation.answers.all)
     updateGroupeSpecialitesFormation(simulation.answers.current)

@@ -1,4 +1,4 @@
-import { EnumProperty, NumberProperty, BooleanProperty } from "./property"
+import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
 
 export default {
   _situation: new EnumProperty({

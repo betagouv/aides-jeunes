@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-const express = require("express")
+import express from "express"
 
-require("../backend/api")
-const Followup = require("mongoose").model("Followup")
-const renderInitial = require("../backend/lib/mes-aides/emails/initial").render
+import "../backend/api.js"
+import mongoose from "mongoose"
+//const Followup = mongoose.model("Followup")
+import Followup from "../backend/models/followup.js"
+import renderInitial from "../backend/lib/mes-aides/emails/initial.js"
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-const renderSurvey = require("../backend/lib/mes-aides/emails/survey").render
+import "../backend/lib/mes-aides/emails/survey.js"
 
 const port = process.env.PORT || 9001
 
@@ -46,12 +48,12 @@ app.route("/mjml/:id/:type").get(function (req, res) {
   Followup.findByIdOrOldId(req.params.id)
     .populate("simulation")
     .exec(function (err, followup) {
-      console.log("followup", { _id: req.params.id }, followup)
-
       const p =
         req.params.type == "initial"
           ? renderInitial(followup)
-          : followup.createSurvey().then((s) => followup.renderSurveyEmail(s))
+          : followup
+              .createSurvey()
+              .then((s) => followup.renderSurveyEmail(followup))
       p.then(function (result) {
         const mode = req.query.mode || "html"
         if (mode == "html") {
@@ -72,4 +74,4 @@ app.listen(port, function () {
   )
 })
 
-module.exports = app
+export default app

@@ -1,17 +1,36 @@
 {
-  "compilerOptions": {
-    "outDir": "dist-server",
-    "target": "es2016",
-    "module": "commonjs",
-    "baseUrl": "."
+  "parserOptions": {
+    "sourceType": "module"
   },
-
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "dist-server",
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": []
+  },
+  "resolve": {
+    "extensions": [".cjs", ".ts", ".js", ".json"]
+  },
   "include": [
-    "./*.ts",
+    "./configure.ts",
+    "./mock.ts",
+    "./server.ts",
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",
-    "lib/**/*.d.ts"
+    "lib/**/*.d.ts",
+    "data/**/*.ts",
+    "data/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "src"]
+  "exclude": ["node_modules", "tests", "dist-server", "dist"]
 }

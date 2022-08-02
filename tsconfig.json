@@ -2,12 +2,17 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
+    "outDir": "dist",
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "allowJs": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noImplicitReturns": false,
     "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,16 +21,32 @@
     "baseUrl": ".",
     "types": ["webpack-env", "jest"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@lib/*": ["dist-server/lib/*"],
+      "@data/*": ["dist-server/data/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "resolve": {
+    "extensions": [".ts", ".js", ".json", ".vue"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "tests/unit/openfisca/mapping/dispatch-individuals.spec.js"
   ],
-  "exclude": ["node_modules", "backend"]
+  "exclude": [
+    "node_modules",
+    "backend",
+    "contribuer",
+    "data",
+    "lib",
+    "dist",
+    "dist-server",
+    "tools",
+    "tests"
+  ]
 }

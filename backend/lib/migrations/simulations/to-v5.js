@@ -23,7 +23,7 @@ function update_interetAidesVeloElectrique(answers) {
   }
 }
 
-module.exports = {
+export default {
   function: function (simulation) {
     update_interetAidesVeloElectrique(simulation.answers.all)
     update_interetAidesVeloElectrique(simulation.answers.current)

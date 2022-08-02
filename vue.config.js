@@ -1,24 +1,20 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-const {
-  animation,
-  baseURL,
-  github,
-  matomo,
-  netlifyContributionURL,
-  statistics,
-} = require("./dist-server/backend/config")
-const configureAPI = require("./dist-server/configure")
-const mock = require("./dist-server/mock")
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
+import parseArgs from "minimist"
+import path from "path"
+import config from "./dist-server/backend/config/index.js"
+import configureAPI from "./dist-server/configure.js"
+import mock from "./dist-server/mock.js"
+import benefits from "./dist-server/data/all.js"
+
+const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
+const __dirname = new URL(".", import.meta.url).pathname
 const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
-const parseArgs = require("minimist")
-const benefits = require("./data/all")
 
 process.env.VUE_APP_BENEFIT_COUNT = benefits.all.filter(
   (benefit) => !benefit.private
 ).length
 process.env.VUE_APP_MATOMO_ID = matomo.id
-process.env.VUE_APP_VALIDATION_DELAY = animation?.delay || 0
 process.env.VUE_APP_CONTACT_EMAIL = "aides-jeunes@beta.gouv.fr"
 process.env.VUE_APP_CONTEXT_NAME = "1jeune1solution"
 process.env.VUE_APP_BASE_URL = baseURL
@@ -32,15 +28,25 @@ process.env.VUE_APP_NETLIFY_PR = process.env.BRANCH
 process.env.VUE_APP_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}`
 process.env.VUE_APP_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${process.env.VUE_APP_BENEFIT_COUNT} aides avec le simulateur de ${process.env.VUE_APP_CONTEXT_NAME}.`
 
-module.exports = {
+export default {
   configureWebpack: (config) => {
     config.devtool = "source-map"
+    config.resolve = {
+      alias: {
+        "@lib": path.resolve(__dirname, "dist-server/lib"),
+        "@data": path.resolve(__dirname, "dist-server/data"),
+        "@": path.resolve(__dirname, "src"),
+      },
+      extensions: [".ts", ".js", ".vue", ".json"],
+    }
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: "sitemap.xml",
         template: "public/map.xml",
         inject: false,
-        templateParameters: { VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL },
+        templateParameters: {
+          VUE_APP_BASE_URL: process.env.VUE_APP_BASE_URL,
+        },
       })
     )
     const args = parseArgs(process.argv.slice(2))

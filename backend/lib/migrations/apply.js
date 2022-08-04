@@ -1,14 +1,12 @@
 /* eslint-disable no-console */
-const ArgumentParser = require("argparse").ArgumentParser
+import argparse from "argparse"
+const ArgumentParser = argparse.ArgumentParser
 
-const es = require("event-stream")
+import es from "event-stream"
 
 // Loads
-require("expect")
-const mongoose = require("../mongo-connector")
-
-const migrations = require(".")
-const { getLatestVersionByFolderName } = require("./index")
+import mongoose from "../mongo-connector.js"
+import { apply, getLatestVersionByFolderName } from "./index.js"
 
 // Setup mongoose
 const modelMigration = {
@@ -57,7 +55,7 @@ function migrate(currentMigration, conditions) {
     .cursor()
     .pipe(
       es.map(function (model, done) {
-        migrations.apply(model)
+        apply(model)
         model.save(function (err) {
           if (err) {
             console.log(

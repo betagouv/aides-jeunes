@@ -1,4 +1,4 @@
-import { getBenefitImage } from "../../lib/benefits/details"
+import { getBenefitImage } from "@lib/benefits/details"
 
 export default {
   methods: {

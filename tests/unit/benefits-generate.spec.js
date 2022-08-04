@@ -1,8 +1,7 @@
-const expect = require("expect")
+import expect from "expect"
+import subject from "@root/data"
 
 describe("benefit descriptions", function () {
-  const subject = require("../../data").fn
-
   it("exists", function () {
     const collections = {
       institutions: {
@@ -29,7 +28,7 @@ describe("benefit descriptions", function () {
     }
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
-    const result = subject(collections, additionalBenefitAttributes)
+    const result = subject.fn(collections, additionalBenefitAttributes)
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()

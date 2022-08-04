@@ -1,11 +1,11 @@
-const expect = require("expect")
-const { buildOpenFiscaRequest } = require("@/../backend/lib/openfisca/mapping")
-const {
+import expect from "expect"
+import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping"
+import {
   testProfileEligibility,
   testGeographicalEligibility,
   computeJavascriptBenefits,
-} = require("../../lib/benefits/compute-javascript")
-import benefits from "@/../data/all"
+} from "@root/lib/benefits/compute-javascript"
+import benefits from "@root/data/all"
 
 describe("computeAides", function () {
   let benefit

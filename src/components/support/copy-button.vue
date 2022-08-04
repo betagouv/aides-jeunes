@@ -6,7 +6,10 @@
 <script>
 export default {
   name: "CopyButton",
-  props: ["benefitsMap", "benefitsList"],
+  props: {
+    benefitsMap: Object,
+    benefitsList: Object,
+  },
   data() {
     return {
       situationId: "",

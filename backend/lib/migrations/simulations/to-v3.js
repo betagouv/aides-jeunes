@@ -1,7 +1,7 @@
 /*
  * Rename echelon_bourse in bourse_criteres_sociaux_echelon
  */
-const _ = require("lodash")
+import _ from "lodash"
 
 const VERSION = 3
 
@@ -53,7 +53,7 @@ function updatePerson(p) {
   return _.omit(p, old_props.concat(...extras, ...old_CA))
 }
 
-module.exports = {
+export default {
   function: function (situation) {
     situation.demandeur = updatePerson(situation.demandeur)
     situation.conjoint = updatePerson(situation.conjoint)

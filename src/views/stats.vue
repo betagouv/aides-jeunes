@@ -42,7 +42,7 @@
 
       <iframe
         id="iframe"
-        src="https://betagouv.github.io/mes-aides-analytics/"
+        src="https://betagouv.github.io/mes-aides-analytics/iframe"
         scrolling="no"
         @load="iframeLoaded"
       />

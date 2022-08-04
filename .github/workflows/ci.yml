@@ -217,7 +217,7 @@ jobs:
       - name: Prepare Mes Aides
         shell: bash
         run: |
-          cp backend/config/continuous-integration.js dist-server/backend/config/production.js
+          cp dist-server/backend/config/continuous-integration.js dist-server/backend/config/production.js
           nohup Xvfb :99 &
       - name: Cypress install
         uses: cypress-io/github-action@v2

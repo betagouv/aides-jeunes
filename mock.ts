@@ -1,9 +1,10 @@
-const axios = require("axios")
-const outils = require("./backend/controllers/outils")
-const mapping = require("./backend/lib/openfisca/mapping")
-const openfiscaParameters = require("./backend/lib/openfisca/parameters.js")
-const pollResult = require("./backend/lib/mattermost-bot/poll-result")
-const { generateSituation } = require("./lib/situations")
+import axios from "axios"
+import express from "express"
+import outils from "./backend/controllers/outils.js"
+import mapping from "./backend/lib/openfisca/mapping/index.js"
+import openfiscaParameters from "./backend/lib/openfisca/parameters.js"
+import pollResult from "./backend/lib/mattermost-bot/poll-result.js"
+import { generateSituation } from "./lib/situations.js"
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
@@ -35,8 +36,7 @@ const ID = function () {
 }
 
 function mock({ app }) {
-  const bodyParser = require("body-parser")
-  app.use(bodyParser.json())
+  app.use(express.json())
 
   const cache = {}
   app.route("/api/outils/communes/:codePostal").get(outils.communes)
@@ -106,4 +106,4 @@ function mock({ app }) {
   })
 }
 
-module.exports = mock
+export default mock

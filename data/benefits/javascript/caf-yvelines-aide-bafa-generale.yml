@@ -16,6 +16,7 @@ interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
+legend: maximum
 montant: 300
 link: https://caf.fr/allocataires/caf-des-yvelines/offre-de-service/vie-professionnelle/l-aide-au-bafa-et-au-bafd
 form: https://caf.fr/sites/default/files/medias/781/Allocataires/enfance%20et%20jeunesse/Bafa%20et%20Bafd/7.5(06-2021)-bafa-bafd-3.pdf

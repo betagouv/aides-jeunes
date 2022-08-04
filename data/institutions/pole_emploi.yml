@@ -3,3 +3,4 @@ imgSrc: img/logo_pole_emploi.png
 etablissements:
   - pole_emploi
 type: national
+code_siren: "130005481"

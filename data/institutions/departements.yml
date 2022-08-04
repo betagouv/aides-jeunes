@@ -7,3 +7,4 @@ etablissements:
   - edas
   - sdsei
 type: national
+code_siren: "999999999"

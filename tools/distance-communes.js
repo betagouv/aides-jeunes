@@ -1,7 +1,7 @@
-const {
+import {
   findCommuneByInseeCode,
   computeDistanceCommunes,
-} = require("./backend/lib/mes-aides/distance.js")
+} from "../dist-server/backend/lib/mes-aides/distance.js"
 const origin = findCommuneByInseeCode(process.argv[2])
 const destination = findCommuneByInseeCode(process.argv[3])
 

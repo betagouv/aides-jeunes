@@ -3,7 +3,7 @@ label: Aides au BAFA et BAFD pour une formation générale ou
 institution: caf_ille_et_vilaine
 description: L'aide à la formation au BAFD est une aide locale mise à
   disposition par la CAF d'Ille-et-Vilaine pour vous aider à financer votre
-  session en complément de l'aide nationale apportée par la CAF.
+  session en complément de l'aide nationale apportée par la CAF. Son montant dépend de votre quotient familial.
 prefix: les
 conditions_generales:
   - type: age
@@ -12,10 +12,13 @@ conditions_generales:
   - type: departements
     values:
       - "35"
+  - type: quotient_familial
+    period: year
+    floor: 750
 profils: []
 interestFlag: _interetBafa
 type: bool
-unit: "%"
+unit: null
 periodicite: autre
 montant: ""
 link: https://caf.fr/allocataires/caf-d-ille-et-vilaine/offre-de-service/vie-professionnelle/je-passe-le-bafa-ou-le-bafd

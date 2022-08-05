@@ -18,7 +18,6 @@ conditions_generales:
 profils: []
 interestFlag: _interetBafa
 type: bool
-unit: null
 periodicite: autre
 montant: ""
 link: https://caf.fr/allocataires/caf-d-ille-et-vilaine/offre-de-service/vie-professionnelle/je-passe-le-bafa-ou-le-bafd

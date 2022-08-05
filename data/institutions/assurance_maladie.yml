@@ -3,3 +3,4 @@ imgSrc: img/logo_assurance_maladie.png
 type: national
 etablissements:
   - cpam
+code_siren: "180035024"

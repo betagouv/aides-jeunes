@@ -850,7 +850,7 @@ collections:
         required: false
         required_group: identifier
       - label: Code SIREN
-        hint: En l'absence de code INSEE
+        hint: En cas de doute, il est possible de rechercher sur https://annuaire-entreprises.data.gouv.fr
         name: code_siren
         widget: string
         required: false

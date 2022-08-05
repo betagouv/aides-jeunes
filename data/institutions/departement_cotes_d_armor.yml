@@ -4,3 +4,4 @@ prefix: des
 repository: france-local
 type: departement
 code_insee: "22"
+code_siren: "222200016"

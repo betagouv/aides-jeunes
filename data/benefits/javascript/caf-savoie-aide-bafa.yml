@@ -1,25 +1,9 @@
 label: aide locale au BAFA pour une session de formation générale
 institution: caf_savoie
-description: >
-  L'aide à la formation du BAFA est une aide locale mise à disposition par la
-  CAF de la Savoie pour vous aider à financer votre session de formation
-  générale en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Suivre une formation assurée par un organisme de formation à but non
-    lucratif habilité par le ministère de la Jeunesse, des Sports et de la Vie
-    Associative.
-  - Être allocataire de la CAF de la Savoie.
-link: https://www.caf.fr/allocataires/caf-de-la-savoie/offre-de-service-0/enfance-et-jeunesse/les-aides-a-la-formation-au-bafa-bafd
-form: https://www.caf.fr/sites/default/files/caf/731/Documents/bafa_bafd/BAFA%20convention%202017.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-la-savoie/offre-de-service-0/enfance-et-jeunesse/les-aides-a-la-formation-au-bafa-bafd
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de la Savoie pour vous aider à financer votre session
+  de formation générale en complément de l'aide nationale apportée par la CAF.
 prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 350
-interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:
@@ -27,10 +11,18 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 17
-  - type: age
-    operator: <=
-    value: 25
-  - type: regime_securite_sociale
-    includes:
-      - regime_general
 profils: []
+conditions:
+  - Suivre une formation assurée par un organisme de formation à but non
+    lucratif habilité par le ministère de la Jeunesse, des Sports et de la Vie
+    Associative.
+  - Être allocataire de la CAF de la Savoie.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 350
+link: https://caf.fr/allocataires/caf-de-la-savoie/offre-de-service/vie-professionnelle/les-aides-la-formation-au-bafa-bafd#aidelocale
+form: ""
+instructions: https://caf.fr/allocataires/caf-de-la-savoie/offre-de-service/vie-professionnelle/les-aides-la-formation-au-bafa-bafd#aidelocale

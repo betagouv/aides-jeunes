@@ -1,0 +1,21 @@
+label: Aide au BAFA pour une session de formation générale
+institution: caf_maine_et_loire
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Maine-et-Loire pour vous aider à financer votre
+  session de formation en complément de l'aide nationale apportée par la CAF
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "49"
+  - type: age
+    operator: ">="
+    value: 17
+profils: []
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+montant: 200
+link: https://caf.fr/allocataires/caf-de-maine-et-loire/offre-de-service/vie-personnelle/je-souhaite-beneficier-de-l-aide-bafa
+instructions: https://caf.fr/allocataires/caf-de-maine-et-loire/offre-de-service/vie-personnelle/je-souhaite-beneficier-de-l-aide-bafa

@@ -2,10 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_jura
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF du Jura pour vous aider à financer votre session en
-  complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  complément de l'aide nationale apportée par la caf.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,11 +15,11 @@ conditions_generales:
     values:
       - "39"
 profils: []
-link: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
-instructions: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa
-prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-montant: 150
+conditions:
+  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
 interestFlag: _interetBafa
+type: bool
+periodicite: ponctuelle
+link: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad
+form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202022.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad

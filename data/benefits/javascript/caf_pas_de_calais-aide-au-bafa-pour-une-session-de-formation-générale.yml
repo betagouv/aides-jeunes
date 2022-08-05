@@ -1,12 +1,9 @@
-label: aide au BAFA pour une session de formation générale
+label: aide au BAFA pour une session de formation générale et d'approfondissement
 institution: caf_pas_de_calais
 description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF du Pas-de-Calais pour vous aider à financer votre
-  session en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Effectuer votre formation en externat et en demi-pension.
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  disposition par la CAF du Pas-de-Calais pour vous aider à financer vos deux
+  sessions en complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -21,12 +18,18 @@ conditions_generales:
     period: month
     floor: 1000
 profils: []
-link: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
-instructions: https://www.caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/enfance-et-jeunesse/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
-prefix: l’
+conditions:
+  - Effectuer votre formation en externat et en demi-pension.
+  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Contacter votre CAF sur l'<a target="_blank" title="espace en ligne -
+    Nouvelle fenêtre" rel="noopener"
+    href="https://connect.caf.fr/connexionappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fwps%2Fmyportal%2Fcaffr%2Fmoncompte%2Fcontactermacaf#/login">espace
+    en ligne</a>.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 200
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/vie-personnelle/je-veux-passer-le-bafa/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement
+instructions: https://caf.fr/allocataires/caf-du-pas-de-calais/offre-de-service/vie-personnelle/je-veux-passer-le-bafa/les-aides-de-la-caf-pour-le-stage-de-base-et-d-approfondissement

@@ -41,16 +41,23 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "Progress",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data() {
     return {
       showInactiveRoutes: true,
     }
   },
   computed: {
-    full: function () {
-      return this.$store.getters.getAllSteps.map((s) => {
+    full() {
+      return this.store.getAllSteps.map((s) => {
         if (process.env.NODE_ENV === "production") {
           return s
         } else {
@@ -65,7 +72,7 @@ export default {
         }
       })
     },
-    current: function () {
+    current() {
       return this.$route.path
     },
   },

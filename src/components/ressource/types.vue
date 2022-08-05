@@ -10,7 +10,7 @@
           <span v-else-if="individu._role !== 'demandeur'"
             >par {{ individu._firstName }}</span
           >
-          depuis {{ $store.state.dates.twelveMonthsAgo.label }}</strong
+          depuis {{ store.dates.twelveMonthsAgo.label }}</strong
         >. Vous pourrez ensuite saisir les montants.
       </p>
       <div
@@ -53,6 +53,7 @@ import groupBy from "lodash/groupBy"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourceTypes",
@@ -62,20 +63,25 @@ export default {
   props: {
     individu: Object,
   },
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  data() {
     let types = ressourceTypes.filter((ressourceType) => {
       return (
         Ressource.isRessourceOnMainScreen(ressourceType) &&
         Ressource.isRessourceRelevant(
           ressourceType,
-          this.$store.getters.situation,
+          this.store.situation,
           this.individu
         )
       )
     })
 
     const selectedRessources = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "individu",
       "ressources",
       this.$route.params.id
@@ -91,7 +97,7 @@ export default {
     }
   },
   computed: {
-    countLabel: function () {
+    countLabel() {
       const count = Object.keys(this.selectedTypes).filter(
         (selectType) => this.selectedTypes[selectType]
       ).length
@@ -101,16 +107,16 @@ export default {
     },
   },
   watch: {
-    individu: function () {
+    individu() {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.$store.getters.situation
+        this.store.situation
       )
     },
   },
   methods: {
-    onSubmit: function () {
-      this.$store.dispatch("answer", {
+    onSubmit() {
+      this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: "ressources",
@@ -120,7 +126,7 @@ export default {
       })
       this.$push()
     },
-    sort: function (array) {
+    sort(array) {
       return orderBy(array, ["positionInList", "label"])
     },
   },

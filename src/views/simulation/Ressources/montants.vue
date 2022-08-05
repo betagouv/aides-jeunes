@@ -57,6 +57,7 @@ import { ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import Individu from "@lib/individu"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourcesMontants",
@@ -68,7 +69,10 @@ export default {
     ActionButtons,
   },
   mixins: [RessourceProcessor],
-  data: function () {
+  setup() {
+    return { store: useStore() }
+  },
+  data() {
     const individu = this.getIndividu()
     return {
       individu,
@@ -89,29 +93,29 @@ export default {
     },
   },
   methods: {
-    getIndividuNom: function () {
+    getIndividuNom() {
       return Individu.label(this.individu, "nom")
     },
-    getIndividu: function () {
+    getIndividu() {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const { individu } = Individu.get(
-        this.$store.getters.peopleParentsFirst,
+        this.store.peopleParentsFirst,
         role,
         this.$route.params.id,
-        this.$store.state.dates
+        this.store.dates
       )
       return individu
     },
-    getTypes: function (individu) {
+    getTypes(individu) {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
-        this.$store.getters.situation
+        this.store.situation
       )
 
       const answers = getAnswer(
-        this.$store.state.simulation.answers.all,
+        this.store.simulation.answers.all,
         "individu",
         this.$route.params.category,
         this.$route.params.id
@@ -132,7 +136,7 @@ export default {
           }
 
           const months = Ressource.getPeriodsForCurrentYear(
-            this.$store.state.dates,
+            this.store.dates,
             type
           )
 
@@ -151,7 +155,7 @@ export default {
         return result
       }, [])
     },
-    isSimple: function (type) {
+    isSimple(type) {
       const complex = [
         "rpns_benefice_exploitant_agricole",
         "rpns_micro_entreprise_CA_bic_vente_imp",
@@ -161,8 +165,8 @@ export default {
       ]
       return complex.indexOf(type) === -1
     },
-    onSubmit: function () {
-      this.$store.dispatch("answer", {
+    onSubmit() {
+      this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: this.$route.params.category,
@@ -182,7 +186,7 @@ export default {
       this.types.forEach((type) => {
         if (type.extra) {
           Object.keys(type.extra).forEach((extraId) => {
-            this.$store.dispatch("answer", {
+            this.store.answer({
               id: this.$route.params.id,
               entityName: "individu",
               fieldName: extraId,
@@ -194,10 +198,10 @@ export default {
 
       this.$push()
     },
-    updateTNSAmount: function (type, period, value) {
+    updateTNSAmount(type, period, value) {
       type.amounts[period] = value
     },
-    updateTNSExtra: function (type, item, value) {
+    updateTNSExtra(type, item, value) {
       type.extra[item] = value
     },
   },

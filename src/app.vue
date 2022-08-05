@@ -10,6 +10,7 @@ import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo"
 
 import context from "@/context"
+import { persistDataOnSessionStorage, useStore } from "@/stores"
 const BaseLayout = context.BaseLayout
 
 export default {
@@ -19,9 +20,18 @@ export default {
     BaseLayout,
     iFrameLayout,
   },
+  setup() {
+    const store = useStore()
+    store.$onAction(persistDataOnSessionStorage)
+    store.initialize()
+    store.setOpenFiscaParameters()
+    return {
+      store,
+    }
+  },
   computed: {
     layout: function () {
-      return this.$store.state.inIframe ? "iFrameLayout" : "BaseLayout"
+      return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
     },
   },
 }

@@ -101,6 +101,7 @@ import InputDate from "@/components/input-date"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "@lib/answers"
 import { useIndividu } from "@/composables/individu.ts"
+import { useStore } from "@/stores"
 
 export default {
   name: "MutualizedStep",
@@ -113,11 +114,16 @@ export default {
     YesNoQuestion,
     MutualizedStepTitle,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data() {
     const entityName = this.$route.path.split("/")[2]
     const id = (this.params || this.$route.params).id
     const value = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       entityName,
       this.$route.params.fieldName,
       id
@@ -160,10 +166,10 @@ export default {
     },
     propertyData() {
       return {
-        openFiscaParameters: this.$store.state.openFiscaParameters,
-        simulation: this.$store.state.simulation,
+        openFiscaParameters: this.store.openFiscaParameters,
+        simulation: this.store.simulation,
         individu: this.individu,
-        periods: this.$store.state.dates,
+        periods: this.store.dates,
       }
     },
     step() {
@@ -175,7 +181,7 @@ export default {
       if (!this.canSubmit(true)) {
         return
       }
-      this.$store.dispatch("answer", {
+      this.store.answer({
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
@@ -189,10 +195,7 @@ export default {
         (this.questionType === "text" && !this.value)
 
       if (submit) {
-        this.$store.dispatch(
-          "updateError",
-          hasError && "Ce champ est obligatoire."
-        )
+        this.store.updateError(hasError && "Ce champ est obligatoire.")
       }
 
       return hasError

@@ -25,8 +25,8 @@
       >
       <InputNumber
         id="liberaleLastBenef"
-        :value="ressource.amounts[$store.state.dates.lastYear.id]"
-        @update:model-value="update($store.state.dates.lastYear.id, $event)"
+        :value="ressource.amounts[store.dates.lastYear.id]"
+        @update:model-value="update(store.dates.lastYear.id, $event)"
       />
     </div>
   </div>
@@ -35,11 +35,17 @@
 <script>
 import TNSRessourceUpdator from "@/mixins/tns-ressource-updator"
 import InputNumber from "@/components/input-number"
+import { useStore } from "@/stores"
 
 export default {
   name: "RessourceProfessionLiberale",
   components: { InputNumber },
   mixins: [TNSRessourceUpdator],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
 }
 </script>
 

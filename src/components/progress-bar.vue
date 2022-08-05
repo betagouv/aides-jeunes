@@ -6,10 +6,16 @@
 
 <script>
 import ProgressMixin from "@/mixins/progress-mixin"
+import { useStore } from "@/stores"
 
 export default {
   name: "ProgressBar",
   mixins: [ProgressMixin],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data() {
     return {
       window,
@@ -27,7 +33,7 @@ export default {
   },
   methods: {
     disableDebug() {
-      this.$store.dispatch("setDebug", false)
+      this.store.setDebug(false)
       this.$router.replace({ debug: null })
     },
   },

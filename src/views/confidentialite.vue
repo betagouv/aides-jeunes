@@ -309,15 +309,21 @@
 
 <script>
 import ContactEmailMixin from "@/mixins/contact-email"
+import { useStore } from "@/stores"
 
 export default {
   name: "Cgu",
   mixins: [ContactEmailMixin],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
-    situation: function () {
-      return this.$store.getters.situation
+    situation() {
+      return this.store.situation
     },
-    emailBody: function () {
+    emailBody() {
       return `Bonjour,
 
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.

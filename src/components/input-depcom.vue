@@ -36,6 +36,7 @@
 <script>
 import Commune from "../lib/commune"
 import EnSavoirPlus from "@/components/en-savoir-plus"
+import { useStore } from "@/stores"
 
 export default {
   name: "InputDepCom",
@@ -49,7 +50,12 @@ export default {
     matchingCommune: Object,
   },
   emits: ["update:nomCommune", "update:codePostal", "update:matchingCommune"],
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  data() {
     return {
       codePostalValue: this.codePostal,
       nomCommuneValue: this.nomCommune,
@@ -82,13 +88,13 @@ export default {
     }
   },
   methods: {
-    updateMatchingCommune: function () {
+    updateMatchingCommune() {
       this.$emit(
         "update:matchingCommune",
         this.communes.find((c) => c.nom == this.nomCommuneValue)
       )
     },
-    fetchCommune: async function () {
+    async fetchCommune() {
       if (
         !this.codePostalValue ||
         this.codePostalValue.toString().length !== 5
@@ -104,13 +110,12 @@ export default {
               "Depcom introuvable",
               `Code postal : ${this.codePostalValue}`
             )
-            this.$store.dispatch(
-              "updateError",
+            this.store.updateError(
               "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
             )
             return []
           }
-          this.$store.dispatch("updateError", null)
+          this.store.updateError(null)
           if (!communes.map((c) => c.nom).includes(this.nomCommuneValue)) {
             this.nomCommuneValue = Commune.getMostPopulated(communes).nom
           }

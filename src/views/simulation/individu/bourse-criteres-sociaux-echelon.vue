@@ -18,6 +18,7 @@
 <script>
 import ActionButtons from "@/components/action-buttons"
 import { createIndividuMixin } from "@/mixins/individu-mixin"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxEchelon",
@@ -25,5 +26,10 @@ export default {
     ActionButtons,
   },
   mixins: [createIndividuMixin("bourse_criteres_sociaux_echelon")],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
 }
 </script>

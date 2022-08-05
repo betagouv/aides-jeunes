@@ -65,6 +65,7 @@ import BackButton from "@/components/buttons/back-button"
 import { getStepAnswer } from "@lib/answers"
 import ProgressMixin from "@/mixins/progress-mixin"
 import { useIndividu } from "@/composables/individu.ts"
+import { useStore } from "@/stores"
 
 export default {
   name: "Recapitulatif",
@@ -72,20 +73,25 @@ export default {
     BackButton,
   },
   mixins: [ProgressMixin],
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     activeJourney() {
-      return this.$store.getters.getAllAnsweredSteps
+      return this.store.getAllAnsweredSteps
     },
     propertyData() {
       return {
-        openFiscaParameters: this.$store.state.openFiscaParameters,
-        simulation: this.$store.state.simulation,
-        periods: this.$store.state.dates,
+        openFiscaParameters: this.store.openFiscaParameters,
+        simulation: this.store.simulation,
+        periods: this.store.dates,
       }
     },
     chapters() {
       return this.$state
-        .chapters(this.$route.path, this.$store.getters.getAllSteps)
+        .chapters(this.$route.path, this.store.getAllSteps)
         .map((chapter) => {
           return {
             label: chapter.label,
@@ -142,10 +148,7 @@ export default {
       }
 
       if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = getStepAnswer(
-          this.$store.state.simulation.answers.all,
-          step
-        )
+        const answer = getStepAnswer(this.store.simulation.answers.all, step)
 
         const individu =
           step.entity === "individu" ? useIndividu(step.id) : undefined

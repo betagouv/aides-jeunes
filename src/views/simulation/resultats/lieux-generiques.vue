@@ -6,6 +6,8 @@
       >
     </router-link>
 
+    {{ store.situation }}
+
     <p v-show="updating">
       <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
       cours…
@@ -41,6 +43,8 @@ import Etablissement from "@/components/etablissement"
 import Individu from "@lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats"
 import BackButton from "@/components/buttons/back-button"
+import { useStore } from "@/stores"
+import { useHelpingInstitutionStore } from "@/stores/helping-institution"
 
 const list = [
   {
@@ -79,35 +83,43 @@ export default {
     Etablissement,
   },
   mixins: [ResultatsMixin],
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+      helpingInstitutionStore: useHelpingInstitutionStore(),
+    }
+  },
+  data() {
     return {
       window,
     }
   },
   computed: {
     etablissements() {
-      return this.$store.state.etablissementsSearch.list
+      return this.helpingInstitutionStore.list
     },
     updating() {
-      return this.$store.state.etablissementsSearch.updating
+      return this.helpingInstitutionStore.updating
     },
     error() {
-      return this.$store.state.etablissementsSearch.error
+      return this.helpingInstitutionStore.error
     },
   },
   mounted() {
-    if (!this.$store.getters.situation.menage.depcom) {
+    if (!this.store.situation.menage.depcom) {
       this.restoreLatest()
-      this.stopSubscription = this.$store.subscribe(({ type }) => {
-        if (type === "reset") {
-          this.loadEtablissements()
-        }
+      this.stopSubscription = this.store.$onAction(({ after, name }) => {
+        after(() => {
+          if (name === "reset") {
+            this.loadEtablissements()
+          }
+        })
       })
     } else {
       this.loadEtablissements()
     }
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     this.stopSubscription?.()
   },
   methods: {
@@ -116,20 +128,17 @@ export default {
       list.forEach((item) => {
         let isRelevant =
           !item.isRelevant ||
-          item.isRelevant(
-            this.$store.getters.situation.demandeur,
-            this.$store.getters.situation
-          )
+          item.isRelevant(this.store.situation.demandeur, this.store.situation)
         if (isRelevant) {
           relevantTypes = relevantTypes.concat(...item.types)
         }
       })
       return relevantTypes
     },
-    loadEtablissements: function () {
+    loadEtablissements() {
       let typeEtablissements = this.getEtablissementsTypesBySituation()
-      this.$store.dispatch("etablissementsSearch/get", {
-        city: this.$store.getters.situation.menage.depcom,
+      this.helpingInstitutionStore.get({
+        city: this.store.situation.menage.depcom,
         types: typeEtablissements,
       })
     },

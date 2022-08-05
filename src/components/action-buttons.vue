@@ -21,6 +21,7 @@
 <script>
 import BackButton from "@/components/buttons/back-button"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 export default {
   name: "ActionButtons",
   components: { WarningMessage, BackButton },
@@ -31,6 +32,11 @@ export default {
     },
     disableSubmit: Boolean,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   data() {
     return {
       window,
@@ -38,15 +44,15 @@ export default {
   },
   computed: {
     error() {
-      return this.$store.state.error
+      return this.store.error
     },
   },
   methods: {
-    localOnSubmit: function (event) {
+    localOnSubmit(event) {
       event.preventDefault()
       this.onSubmit()
     },
-    goBack: function () {
+    goBack() {
       window?.history.back()
       this.$matomo?.trackEvent(
         "Parcours",

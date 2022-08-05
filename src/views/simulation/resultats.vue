@@ -87,6 +87,7 @@ import ResultatsMixin from "@/mixins/resultats"
 import StatisticsMixin from "@/mixins/statistics"
 import WarningMessage from "@/components/warning-message"
 import Recapitulatif from "./recapitulatif"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationResultats",
@@ -102,75 +103,78 @@ export default {
     Recapitulatif,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
-  mounted: function () {
-    this.$store.dispatch("updateCurrentAnswers", this.$route.path)
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  mounted() {
+    this.store.updateCurrentAnswers(this.$route.path)
 
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.situationId) {
-      if (this.$store.state.situationId !== this.$route.query.situationId) {
-        this.$store
-          .dispatch("fetch", this.$route.query.situationId)
-          .then(() => {
-            this.$store.dispatch("compute")
-            this.$router.replace({ situationId: null })
-          })
+      if (this.store.situationId !== this.$route.query.situationId) {
+        this.store.fetch(this.$route.query.situationId).then(() => {
+          this.store.compute()
+          this.$router.replace({ situationId: null })
+        })
       } // Else nothing to do
-    } else if (!this.$store.getters.passSanityCheck) {
+    } else if (!this.store.passSanityCheck) {
       this.restoreLatest()
     } else {
-      if (this.$store.state.calculs.dirty) {
-        this.$store.commit("setSaveSituationError", null)
-        this.$store
-          .dispatch("save")
+      if (this.store.calculs.dirty) {
+        const vm = this
+        this.store.setSaveSituationError(null)
+        this.store
+          .save()
           .then(() => {
-            if (this.$store.state.access.forbidden) {
+            if (vm.store.access.forbidden) {
               return
             }
-            return this.$store.dispatch("compute")
+            return vm.store.compute()
           })
           .catch((error) => {
-            this.$store.commit(
-              "setSaveSituationError",
-              error.response?.data || error
-            )
+            this.store.setSaveSituationError(error.response?.data || error)
             this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
           })
-      } else if (!this.$store.getters.hasResults) {
-        if (this.$store.state.simulation.teleservice) {
-          this.$store.getters
-            .fetchRepresentation(this.$store.state.simulation.teleservice)
+      } else if (!this.store.hasResults) {
+        if (this.store.simulation.teleservice) {
+          this.store
+            .fetchRepresentation(this.store.simulation.teleservice)
             .then((representation) => {
               window.location.href = representation.destination.url
             })
         } else {
-          this.$store.dispatch("compute")
+          this.store.compute()
         }
       }
     }
 
     let vm = this
-    this.stopSubscription = this.$store.subscribe(({ type }, { calculs }) => {
-      switch (type) {
-        case "setResults": {
-          calculs.resultats.droitsEligibles.forEach(function (d) {
-            vm.$matomo?.trackEvent("General", "show", d.id)
-          })
-          this.sendStatistics(this.droits, "show")
-          break
+    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
+      after(() => {
+        switch (name) {
+          case "setResults": {
+            store.calculs.resultats.droitsEligibles.forEach(function (d) {
+              vm.$matomo?.trackEvent("General", "show", d.id)
+            })
+            this.sendStatistics(this.droits, "show")
+            break
+          }
+          case "saveComputationFailure": {
+            vm.$matomo?.trackEvent("General", "Error")
+            break
+          }
         }
-        case "saveComputationFailure": {
-          vm.$matomo?.trackEvent("General", "Error")
-          break
-        }
-      }
+      })
     })
   },
-  beforeUnmount: function () {
+  beforeUnmount() {
     this.stopSubscription?.()
   },
   methods: {
-    isEmpty: function (array) {
+    isEmpty(array) {
       return !array || array.length === 0
     },
   },

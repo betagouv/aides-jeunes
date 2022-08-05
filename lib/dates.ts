@@ -20,7 +20,7 @@ function generateYear(dt: any): dateLayout {
 }
 
 export const generator = function datesGenerator(
-  dateDeValeur: number
+  dateDeValeur: Date | number | string
 ): datesGeneratorLayout {
   const ref = dayjs(dateDeValeur)
   return {

@@ -46,37 +46,43 @@
 <script>
 import { sendError } from "@/plugins/mails"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "ErrorBlock",
   components: { WarningMessage },
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  data() {
     return {
       showDetails: false,
     }
   },
   computed: {
-    resultatStatus: function () {
-      return this.$store.state.calculs
+    resultatStatus() {
+      return this.store.calculs
     },
-    errorText: function () {
+    errorText() {
       let value = this.resultatStatus.error && this.resultatStatus.exception
       return value instanceof String || value instanceof Error
         ? value
         : JSON.stringify(value, null, 2)
     },
-    isTimeoutError: function () {
+    isTimeoutError() {
       return (
         this.errorText instanceof String && this.errorText.match(/time.?out/i)
       )
     },
-    resultats: function () {
-      return this.$store.state.calculs.resultats
+    resultats() {
+      return this.store.calculs.resultats
     },
   },
   methods: {
     sendErrorMail() {
-      return sendError(this.$store.state.situationId, this.errorText)
+      return sendError(this.store.situationId, this.errorText)
     },
   },
 }

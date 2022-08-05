@@ -34,11 +34,18 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "ErrorSaveBlock",
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
-    error: function () {
-      let value = this.$store.state.saveSituationError
+    error() {
+      let value = this.store.saveSituationError
       return value instanceof String || value instanceof Error
         ? value
         : JSON.stringify(value, null, 2)

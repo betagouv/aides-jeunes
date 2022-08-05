@@ -39,6 +39,7 @@ import {
   getEtablissements,
 } from "@lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button"
+import { useStore } from "@/stores"
 
 export default {
   name: "Lieux",
@@ -46,7 +47,10 @@ export default {
     BackButton,
     Etablissement,
   },
-  data: function () {
+  setup() {
+    return { store: useStore() }
+  },
+  data() {
     return {
       benefit: null,
       list: [],
@@ -54,8 +58,8 @@ export default {
       window,
     }
   },
-  mounted: function () {
-    const city = this.$store.getters.situation.menage.depcom
+  mounted() {
+    const city = this.store.situation.menage.depcom
     this.benefit = Institution.benefits.all.find(
       (benefit) => benefit.id === this.$route.params.benefit_id
     )

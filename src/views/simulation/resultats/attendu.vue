@@ -153,7 +153,7 @@
           <ul>
             <li>
               le contenu du formulaire et en indiquant l'identifiant suivant :
-              <span class="bold">{{ $store.state.situationId }} .</span>
+              <span class="bold">{{ store.situationId }} .</span>
             </li>
             <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
           </ul>
@@ -196,12 +196,16 @@ import {
   getGithubPRFiles,
 } from "@/lib/contributions"
 import WarningMessage from "@/components/warning-message"
+import { useStore } from "@/stores"
 
 export default {
   name: "Attendu",
   components: { WarningMessage },
   mixins: [ContactEmailMixin, ResultatsMixin],
-  data: function () {
+  setup() {
+    return { store: useStore() }
+  },
+  data() {
     let benefitKeyed = {}
     let benefits = []
 
@@ -252,7 +256,7 @@ export default {
         },
       ]
       map.forEach((p) => {
-        this.$store.state.calculs.resultats[p.prop].forEach((b) => {
+        this.store.calculs.resultats[p.prop].forEach((b) => {
           resultats[b.id] = Object.assign({ status: p.status }, b)
         })
       })
@@ -261,7 +265,7 @@ export default {
     expectedResults() {
       return filter(this.selection, (i) => i.ref && i.expected !== null)
     },
-    testMetadata: function () {
+    testMetadata() {
       let outputVariables = this.expectedResults.reduce(function (
         results,
         expectedValue
@@ -277,8 +281,8 @@ export default {
         output: outputVariables,
       }
     },
-    testGenerationEndpoint: function () {
-      return `api/simulation/${this.$store.state.situationId}/openfisca-test`
+    testGenerationEndpoint() {
+      return `api/simulation/${this.store.situationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(
@@ -286,31 +290,31 @@ export default {
       )}`
     },
     filename() {
-      return `mes-aides-${this.$store.state.situationId}.yml`
+      return `mes-aides-${this.store.situationId}.yml`
     },
     sendMail() {
-      return sendMontantsAttendus(this.$store.state.situationId)
+      return sendMontantsAttendus(this.store.situationId)
     },
   },
   mounted() {
     this.getContributions()
   },
   methods: {
-    add: function () {
+    add() {
       this.selection = [].concat(...this.selection).concat({ id: null })
     },
     trackMontantAttendu(type) {
       this.$matomo?.trackEvent("Montant attendu", type, this.$route.path)
     },
-    remove: function (index) {
+    remove(index) {
       const next = this.selection.slice()
       next.splice(index, 1)
       this.selection = next
     },
-    getTitle: function (item) {
+    getTitle(item) {
       return this.benefitKeyed[item.id].label
     },
-    getActual: function (item) {
+    getActual(item) {
       //Todo : Retirer cette ligne lorsque l'on pourra accéder aux résultats des contributions.
       if (!this.resultats[item.id]) return 0
       return this.resultats[item.id].montant
@@ -353,7 +357,7 @@ export default {
         }
       })
     },
-    submit: function () {
+    submit() {
       this.message = null
       if (this.submitting) {
         return

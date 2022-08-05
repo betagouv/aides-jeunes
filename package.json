@@ -73,6 +73,7 @@
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
+    "pinia": "^2.0.16",
     "require-from-string": "^2.0.2",
     "sass": "^1.47.0",
     "sass-loader": "^12.4.0",
@@ -83,7 +84,6 @@
     "vue": "^3.2.32",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.14",
-    "vuex": "^4.0.2",
     "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {

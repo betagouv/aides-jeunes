@@ -47,36 +47,44 @@
 </template>
 
 <script>
+import { useStore } from "@/stores"
+
 export default {
   name: "Home",
+  setup() {
+    return {
+      store: useStore(),
+      context: process.env.VUE_APP_CONTEXT,
+    }
+  },
   computed: {
-    hasExistingSituation: function () {
-      return this.$store.getters.passSanityCheck
+    hasExistingSituation() {
+      return this.store.passSanityCheck
     },
-    ctaLabel: function () {
+    ctaLabel() {
       return this.hasExistingSituation
         ? "Commencer une nouvelle simulation"
         : "Je commence"
     },
-    ctaSize: function () {
+    ctaSize() {
       return this.hasExistingSituation ? "large" : "xlarge"
     },
-    benefitsNumber: function () {
+    benefitsNumber() {
       return process.env.VUE_APP_BENEFIT_COUNT
         ? process.env.VUE_APP_BENEFIT_COUNT
         : "plus de 400"
     },
   },
   methods: {
-    newSituation: function () {
-      this.$store.dispatch("clear", this.$route.query.external_id)
+    newSituation() {
+      this.store.clear(this.$route.query.external_id)
       this.next()
     },
-    next: function () {
-      this.$store.dispatch("openFiscaParameters")
+    next() {
+      this.store.setOpenFiscaParameters()
       // we only want to look for benefit variables in preview mode
       if (process.env.VUE_APP_CONTEXT !== "production") {
-        this.$store.dispatch("verifyBenefitVariables")
+        this.store.verifyBenefitVariables()
       }
       this.$push()
     },

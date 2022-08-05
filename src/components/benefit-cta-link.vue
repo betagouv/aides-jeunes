@@ -18,6 +18,7 @@
 
 <script>
 import StatisticsMixin from "@/mixins/statistics"
+import { useStore } from "@/stores"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
@@ -42,33 +43,38 @@ export default {
     type: String,
     link: [String, Object],
   },
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  data() {
     return {}
   },
   computed: {
-    label: function () {
+    label() {
       return typeLabels[this.type]
     },
-    longLabel: function () {
+    longLabel() {
       return `${longLabels[this.type]} pour ${this.benefit.prefix || ""}${
         this.benefit.prefix?.endsWith("’") ? "" : " "
       }${this.benefit.label} - Nouvelle fenêtre`
     },
   },
   methods: {
-    getURL: function (link) {
+    getURL(link) {
       if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
 
       return link
     },
-    onClick: function (link) {
+    onClick(link) {
       if (typeof link === "object") {
         window.localStorage.setItem(
           "trampoline",
           JSON.stringify({
-            situationId: this.$store.state.calculs.resultats._id,
+            situationId: this.store.calculs.resultats._id,
           })
         )
       }

@@ -96,15 +96,21 @@ import ActionButtons from "@/components/action-buttons"
 import Logement from "@lib/logement.js"
 import Individu from "@lib/individu.js"
 import { getAnswer } from "@lib/answers"
+import { useStore } from "@/stores"
 
 export default {
   name: "SimulationLogement",
   components: {
     ActionButtons,
   },
-  data: function () {
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  data() {
     const logementStatut = getAnswer(
-      this.$store.state.simulation.answers.all,
+      this.store.simulation.answers.all,
       "menage",
       "statut_occupation_logement"
     )
@@ -173,7 +179,7 @@ export default {
             label: "Foyer",
             value: "foyer",
             hint: [
-              ...(this.$store.getters.situation.demandeur.activite == "etudiant"
+              ...(this.store.situation.demandeur.activite == "etudiant"
                 ? ["résidence universitaire", "logement CROUS"]
                 : []),
               this.demandeurAge() > 50 ? "maison de retraite" : "",
@@ -188,15 +194,15 @@ export default {
     }
   },
   methods: {
-    demandeurAge: function () {
+    demandeurAge() {
       return Individu.age(
-        this.$store.getters.situation.demandeur,
-        this.$store.state.dates.today.value
+        this.store.situation.demandeur,
+        this.store.dates.today.value
       )
     },
     updateError(message, submit) {
       if (submit) {
-        this.$store.dispatch("updateError", message)
+        this.store.updateError(message)
       }
     },
     canSubmit(submit) {
@@ -217,9 +223,9 @@ export default {
       }
       return false
     },
-    onSubmit: function () {
+    onSubmit() {
       if (this.canSubmit(true)) {
-        this.$store.dispatch("answer", {
+        this.store.answer({
           entityName: "menage",
           fieldName: "statut_occupation_logement",
           value: Logement.getStatutOccupationLogement({

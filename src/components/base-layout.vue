@@ -11,6 +11,7 @@
 <script>
 import Header1J1S from "@/components/header-1j1s"
 import FooterJ1S from "@/components/footer-1j1s"
+import { useStore } from "@/stores"
 
 export default {
   name: "BaseLayout",
@@ -18,10 +19,15 @@ export default {
     FooterJ1S,
     Header1J1S,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   created() {
     this.$router.isReady().then(() => {
       if (this.$route.query.debug === "parcours") {
-        this.$store.dispatch("setDebug", true)
+        this.store.setDebug(true)
       }
     })
   },

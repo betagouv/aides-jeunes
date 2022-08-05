@@ -4,7 +4,7 @@
       Cette aide se base sur
       <strong>
         vos ressources de l'année
-        {{ $store.state.dates.fiscalYear.label }},
+        {{ store.dates.fiscalYear.label }},
       </strong>
       que vous n'avez pas encore déclarées lors de cette simulation.
     </p>
@@ -16,7 +16,7 @@
       </small>
       <small v-if="!aCharge"
         >Vous pouvez améliorer les résultats affichés en indiquant vos
-        ressources sur l'année {{ $store.state.dates.fiscalYear.label }}.
+        ressources sur l'année {{ store.dates.fiscalYear.label }}.
       </small>
     </p>
 
@@ -26,7 +26,7 @@
       to="/simulation/ressources/fiscales"
     >
       Déclarez vos ressources
-      {{ $store.state.dates.fiscalYear.label }}
+      {{ store.dates.fiscalYear.label }}
     </router-link>
 
     <router-link
@@ -41,15 +41,21 @@
 <script>
 import FeedbackUtils from "@/mixins/feedback-utils"
 import Situation from "../../lib/situation"
+import { useStore } from "@/stores"
 export default {
   name: "ResultatInattenduYearMinusTwo",
   mixins: [FeedbackUtils],
   props: {
     droit: Object,
   },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
   computed: {
     aCharge() {
-      return Situation.aCharge(this.$store.getters.situation)
+      return Situation.aCharge(this.store.situation)
     },
   },
 }

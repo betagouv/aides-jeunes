@@ -30,9 +30,9 @@
         </h2>
         <p>
           Ces informations se trouvent sur votre avis d'imposition
-          {{ $store.state.dates.lastYear.label }} sur les revenus
-          {{ $store.state.dates.fiscalYear.label }}. <br />Vous pouvez le
-          retrouver en ligne sur
+          {{ store.dates.lastYear.label }} sur les revenus
+          {{ store.dates.fiscalYear.label }}. <br />Vous pouvez le retrouver en
+          ligne sur
           <a
             target="_blank"
             rel="noopener"
@@ -48,9 +48,7 @@
         >
           {{ ressource.label }}
           <input
-            v-model="
-              individu.values[ressource.id][$store.state.dates.fiscalYear.id]
-            "
+            v-model="individu.values[ressource.id][store.dates.fiscalYear.id]"
             v-select-on-click
             type="number"
           />
@@ -73,6 +71,7 @@ import isNaN from "lodash/isNaN"
 import Individu from "@lib/individu"
 import { categoriesRnc } from "@lib/resources"
 import ActionButtons from "@/components/action-buttons"
+import { useStore } from "@/stores"
 
 function getDefaultValue(months, individu, rnc) {
   return sum(
@@ -92,9 +91,12 @@ export default {
   components: {
     ActionButtons,
   },
-  data: function () {
-    const fiscalYear = this.$store.state.dates.fiscalYear.id
-    let individus = this.$store.getters.peopleParentsFirst.map((source) => {
+  setup() {
+    return { store: useStore() }
+  },
+  data() {
+    const fiscalYear = this.store.dates.fiscalYear.id
+    let individus = this.store.peopleParentsFirst.map((source) => {
       let individu = {
         label: Individu.label(source),
         default: {},
@@ -110,7 +112,7 @@ export default {
         individu.values[categorieRnc.id][fiscalYear] =
           source[categorieRnc.id]?.[fiscalYear]
         individu.default[categorieRnc.id] = getDefaultValue(
-          this.$store.state.dates.last12Months,
+          this.store.dates.last12Months,
           source,
           categorieRnc
         )
@@ -134,8 +136,8 @@ export default {
     }
   },
   methods: {
-    onSubmit: function () {
-      const fiscalYear = this.$store.state.dates.fiscalYear.id
+    onSubmit() {
+      const fiscalYear = this.store.dates.fiscalYear.id
       const values = {}
       this.individus.forEach((individu) => {
         const individuValues = {}
@@ -148,7 +150,7 @@ export default {
         values[individu.id] = individuValues
       })
 
-      this.$store.dispatch("ressourcesFiscales", values)
+      this.store.ressourcesFiscales(values)
       this.$router.push("/simulation/resultats")
     },
   },

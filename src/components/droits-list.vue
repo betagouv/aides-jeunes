@@ -77,10 +77,10 @@
 </template>
 
 <script>
-import DroitMixin from "../mixins/droit-mixin"
-import DroitEstime from "./droit-estime"
+import DroitMixin from "@/mixins/droit-mixin"
+import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin"
-import WarningMessage from "@/components/warning-message"
+import WarningMessage from "@/components/warning-message.vue"
 
 export default {
   name: "DroitsList",

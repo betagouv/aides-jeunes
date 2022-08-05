@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import BackButton from "@/components/buttons/back-button"
+import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"
 
 export default {

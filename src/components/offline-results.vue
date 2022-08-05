@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import RecapEmailModal from "@/components/modals/recap-email-modal"
-import SendRecapEmailButton from "@/components/buttons/send-recap-email-button"
+import RecapEmailModal from "@/components/modals/recap-email-modal.vue"
+import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 import { useStore } from "@/stores"
 
 export default {

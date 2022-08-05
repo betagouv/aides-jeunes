@@ -89,16 +89,16 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
-import MultipleAnswers from "../../components/multiple-answers.vue"
-import YesNoQuestion from "../../components/yes-no-question.vue"
-import MutualizedStepTitle from "../../components/mutualized-step-title.vue"
+import ActionButtons from "@/components/action-buttons.vue"
+import MultipleAnswers from "@/components/multiple-answers.vue"
+import YesNoQuestion from "@/components/yes-no-question.vue"
+import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "@lib/utils"
-import EnSavoirPlus from "@/components/en-savoir-plus"
-import InputNumber from "@/components/input-number"
-import InputDate from "@/components/input-date"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
+import InputNumber from "@/components/input-number.vue"
+import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "@lib/answers"
 import { useIndividu } from "@/composables/individu.ts"

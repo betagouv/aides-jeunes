@@ -99,8 +99,8 @@
 import axios from "axios"
 
 import Institution from "@/lib/institution"
-import LoadingModal from "@/components/loading-modal"
-import DroitHeader from "@/components/droit-header"
+import LoadingModal from "@/components/loading-modal.vue"
+import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"
 
 const choices = [

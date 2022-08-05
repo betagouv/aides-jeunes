@@ -61,9 +61,9 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import Nationality from "@/lib/nationality"
-import EnSavoirPlus from "@/components/en-savoir-plus"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import Scolarite from "@lib/scolarite"
 import { useStore } from "@/stores"
 

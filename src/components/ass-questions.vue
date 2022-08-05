@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import YesNoQuestion from "@/components/yes-no-question"
-import InputMonth from "@/components/input-month"
+import YesNoQuestion from "@/components/yes-no-question.vue"
+import InputMonth from "@/components/input-month.vue"
 import { yearsAgo } from "@lib/utils"
 import dayjs from "dayjs"
 

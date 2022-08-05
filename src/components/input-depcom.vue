@@ -36,7 +36,7 @@
 
 <script>
 import Commune from "../lib/commune"
-import EnSavoirPlus from "@/components/en-savoir-plus"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores"
 
 export default {

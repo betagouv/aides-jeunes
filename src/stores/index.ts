@@ -1,18 +1,16 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
-import { version } from "../../lib/simulation"
-import { computeAides, datesGenerator } from "../../lib/benefits/compute"
-import { generateAllSteps } from "../../lib/state/generator"
-import { isStepAnswered, storeAnswer } from "../../lib/answers"
-import { categoriesRnc, patrimoineTypes } from "../../lib/resources"
-// @ts-ignore
-import some from "lodash/some"
-// @ts-ignore
-import values from "lodash/values"
+import { version } from "@lib/simulation.js"
+import { computeAides, datesGenerator } from "@lib/benefits/compute.js"
+import { generateAllSteps } from "@lib/state/generator.js"
+import { isStepAnswered, storeAnswer } from "@lib/answers.js"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
+import lodash from "lodash"
+const { some, values } = lodash
 import axios from "axios"
-import { generateSituation } from "../../lib/situations"
-import ABTestingService from "@/plugins/ab-testing-service"
-import Institution from "@/lib/institution"
+import { generateSituation } from "@lib/situations.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
+import Institution from "@/lib/institution.js"
 import {
   Answer,
   Calculs,
@@ -21,7 +19,7 @@ import {
   Simulation,
   Situation,
   Store,
-} from "../../lib/types/store"
+} from "@lib/types/store"
 
 function defaultCalculs(): Calculs {
   return {

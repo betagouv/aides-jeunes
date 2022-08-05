@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
-import RessourceExploitantAgricole from "@/components/ressource/exploitant-agricole"
-import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise"
-import RessourceProfessionLiberale from "@/components/ressource/profession-liberale"
-import RessourceMontants from "@/components/ressource/montants"
+import ActionButtons from "@/components/action-buttons.vue"
+import RessourceExploitantAgricole from "@/components/ressource/exploitant-agricole.vue"
+import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise.vue"
+import RessourceProfessionLiberale from "@/components/ressource/profession-liberale.vue"
+import RessourceMontants from "@/components/ressource/montants.vue"
 
 import RessourceProcessor from "@/mixins/ressource-processor"
 import { ressourceTypes } from "@lib/resources"

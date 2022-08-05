@@ -68,7 +68,7 @@
 <script>
 import axios from "axios"
 
-import WarningMessage from "@/components/warning-message"
+import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores"
 
 export default {

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import { orderBy, groupBy } from "lodash-es"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"

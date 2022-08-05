@@ -127,12 +127,12 @@
 </template>
 
 <script>
-import BenefitCta from "./benefit-cta"
-import BenefitCtaLink from "./benefit-cta-link"
+import BenefitCta from "./benefit-cta.vue"
+import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "../lib/situation"
 import DroitMixin from "../mixins/droit-mixin"
-import DroitHeader from "@/components/droit-header"
-import WarningMessage from "@/components/warning-message"
+import DroitHeader from "@/components/droit-header.vue"
+import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores"
 
 export default {

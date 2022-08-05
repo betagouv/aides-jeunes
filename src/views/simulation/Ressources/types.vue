@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import RessourceTypes from "@/components/ressource/types"
+import RessourceTypes from "@/components/ressource/types.vue"
 import Individu from "@lib/individu"
 import { useStore } from "@/stores"
 

@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import Etablissement from "@/components/etablissement"
+import Etablissement from "@/components/etablissement.vue"
 import Individu from "@lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats"
-import BackButton from "@/components/buttons/back-button"
+import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"
 import { useHelpingInstitutionStore } from "@/stores/helping-institution"
 

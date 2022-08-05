@@ -40,7 +40,7 @@
 
 <script>
 import Hint from "@/lib/hint"
-import BackButton from "@/components/buttons/back-button"
+import BackButton from "@/components/buttons/back-button.vue"
 
 export default {
   name: "EnSavoirPlusContent",

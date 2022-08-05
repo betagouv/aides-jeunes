@@ -1,5 +1,7 @@
 import BenefitsCategories from "@/lib/benefits-categories"
-import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
+//import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
+import jamstackLoader from "jamstack-loader"
+const jamstack = jamstackLoader("../../contribuer/public/admin/config.yml")
 import data from "@data"
 
 const Institution = {

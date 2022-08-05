@@ -115,8 +115,8 @@
 </template>
 
 <script>
-import SimulationSearch from "@/components/support/simulation-search"
-import CopyButton from "@/components/support/copy-button"
+import SimulationSearch from "@/components/support/simulation-search.vue"
+import CopyButton from "@/components/support/copy-button.vue"
 import Institution from "@/lib/institution"
 export default {
   components: { SimulationSearch, CopyButton },

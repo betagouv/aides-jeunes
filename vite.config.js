@@ -11,9 +11,6 @@ export default defineConfig({
       targets: ["defaults", "not IE 11"],
     }),
   ],
-  rollupOptions: {
-    external: ["jamstack-loader"],
-  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

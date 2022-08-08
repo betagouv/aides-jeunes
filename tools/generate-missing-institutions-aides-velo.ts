@@ -1,9 +1,9 @@
-const benefits = require("../data/all")
-const yaml = require("js-yaml")
-const fs = require("fs")
-const generator = require("../data/benefits/aides-velo-generator.js")
-
-const epci = require("@etalab/decoupage-administratif/data/epci.json")
+// @ts-ignore
+import fs from "fs"
+import benefits from "../data/all.js"
+import yaml from "js-yaml"
+import generator from "../data/benefits/aides-velo-generator.js"
+import epci from "@etalab/decoupage-administratif/data/epci.json"
 
 const NAME_FORMATTER = {
   CA: "Communauté d'agglomération",
@@ -53,6 +53,7 @@ if (missingCommune.length) {
         prefix: "de la",
         type: "commune",
         code_insee: commune.code,
+        code_siren: commune.siren,
       }
       createYamlFile(commune_slug, institution)
 

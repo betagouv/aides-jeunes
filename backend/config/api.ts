@@ -3,7 +3,7 @@ import express from "express"
 // import fs from "fs"
 // import {join} from "path"
 
-import benefitsRoutes from "../routes/benefits.js"
+import dataRoutes from "../routes/data.js"
 import followupsRoutes from "../routes/followups.js"
 import githubRoutes from "../routes/github.js"
 import openfiscaRoutes from "../routes/openfisca.js"
@@ -17,7 +17,7 @@ const api = express()
 
 api.use(express.json())
 
-benefitsRoutes(api)
+dataRoutes(api)
 followupsRoutes(api)
 githubRoutes(api)
 openfiscaRoutes(api)

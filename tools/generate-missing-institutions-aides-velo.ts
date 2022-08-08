@@ -53,6 +53,7 @@ if (missingCommune.length) {
         prefix: "de la",
         type: "commune",
         code_insee: commune.code,
+        code_siren: commune.siren,
       }
       createYamlFile(commune_slug, institution)
 

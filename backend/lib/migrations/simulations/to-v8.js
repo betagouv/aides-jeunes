@@ -1,8 +1,7 @@
 /*
  * Supprime les id lorsqu'ils ne sont plus nécessaires
  */
-import lodash from "lodash"
-const { omit } = lodash
+import { omit } from "lodash-es"
 import { ANSWER_BASIC_IDS } from "../../definitions.js"
 const VERSION = 8
 

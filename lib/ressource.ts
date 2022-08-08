@@ -1,6 +1,5 @@
 import resources from "./resources.js"
-import lodash from "lodash"
-const { filter, keys, keyBy, uniq } = lodash
+import { filter, keys, keyBy, uniq } from "lodash-es"
 
 import { datesGeneratorLayout, dateLayout } from "../lib/types/dates"
 import { resourceLayout } from "./types/resources"

@@ -1,5 +1,11 @@
-import lodash from "lodash"
-const { filter, forEach, assign, pickBy, difference, cloneDeep } = lodash
+import {
+  filter,
+  forEach,
+  assign,
+  pickBy,
+  difference,
+  cloneDeep,
+} from "lodash-es"
 
 import common from "./common.js"
 import buildOpenFiscaIndividu from "./individu/index.js"

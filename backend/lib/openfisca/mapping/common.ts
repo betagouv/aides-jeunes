@@ -1,6 +1,5 @@
 import dayjs from "dayjs"
-import lodash from "lodash"
-const assign = lodash.assign
+import { assign } from "lodash-es"
 
 import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"

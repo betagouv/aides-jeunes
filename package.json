@@ -22,7 +22,7 @@
     "db-update": "./import-tests.sh",
     "evaluate-benefits": "node dist-server/tools/evaluate-benefits",
     "front": "npm run build:server && NODE_ENV=front-only npm run serve",
-    "generate-missing-institutions-aides-velo": "NODE_PATH=. node dist-server/tools/generate-missing-institutions-aides-velo.js",
+    "generate-missing-institutions-aides-velo": "NODE_PATH=. node --experimental-json-modules dist-server/tools/generate-missing-institutions-aides-velo.js",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "lint:fix": "eslint --fix .",

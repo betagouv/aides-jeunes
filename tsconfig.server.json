@@ -30,7 +30,9 @@
     "lib/**/*.ts",
     "lib/**/*.d.ts",
     "data/**/*.ts",
-    "data/**/*.d.ts"
+    "data/**/*.d.ts",
+    "tools/**/*.ts",
+    "tools/**/*.d.ts"
   ],
   "exclude": ["node_modules", "tests", "dist-server", "dist"]
 }

@@ -175,7 +175,7 @@ export const COMPLEX_STEPS = {
         result = [
           {
             labelClass: "subtitle",
-            label: category && capitalize(category.label(individu)),
+            label: category && capitalize(category.label),
           },
           ...answer.map((ressource) => {
             return {

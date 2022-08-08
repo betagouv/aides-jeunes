@@ -19,7 +19,7 @@
         class="form__group"
       >
         <h2 class="aj-question">
-          {{ $filters.capitalize(category.label(individu)) }}
+          {{ $filters.capitalize(category.label) }}
         </h2>
         <div class="aj-selections">
           <div

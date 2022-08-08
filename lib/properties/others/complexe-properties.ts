@@ -91,7 +91,7 @@ export default {
       )
 
       return {
-        text: category.label(),
+        text: category.label,
         answerFormat,
       }
     },

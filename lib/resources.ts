@@ -9,31 +9,31 @@ import { resourceLayout } from "./types/resources"
 export const ressourceCategories = [
   {
     id: "revenusActivite",
-    label: () => `Revenus d'activité`,
+    label: "Revenus d'activité",
   },
   {
     id: "rpns",
-    label: () => `Revenus professionnels non salariés`,
+    label: "Revenus professionnels non salariés",
   },
   {
     id: "allocations",
-    label: () => `Allocation(s)`,
+    label: "Allocation(s)",
   },
   {
     id: "indemnites",
-    label: () => `Indemnités`,
+    label: "Indemnités",
   },
   {
     id: "pensions",
-    label: () => `Pension(s)`,
+    label: "Pension(s)",
   },
   {
     id: "patrimoine",
-    label: () => `Revenus du patrimoine`,
+    label: "Revenus du patrimoine",
   },
   {
     id: "autre",
-    label: () => `Autres revenus`,
+    label: "Autres revenus",
   },
 ]
 

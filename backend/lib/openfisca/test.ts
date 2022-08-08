@@ -94,7 +94,7 @@ export const generateTest = function generateYAMLTest(details, situation) {
   )
   const periods = common.getPeriods(situation.dateDeValeur)
 
-  const prestationsWithInterest: lodash.Dictionary<any> = pickBy(
+  const prestationsWithInterest: Record<string, any> = pickBy(
     common.requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)

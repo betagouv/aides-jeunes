@@ -65,9 +65,7 @@
 </template>
 
 <script>
-import sum from "lodash/sum"
-import some from "lodash/some"
-import isNaN from "lodash/isNaN"
+import { sum, some, isNaN } from "lodash-es"
 import Individu from "@lib/individu"
 import { categoriesRnc } from "@lib/resources"
 import ActionButtons from "@/components/action-buttons"

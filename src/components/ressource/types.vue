@@ -48,8 +48,7 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons"
-import orderBy from "lodash/orderBy"
-import groupBy from "lodash/groupBy"
+import { orderBy, groupBy } from "lodash-es"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"

@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import padStart from "lodash/padStart"
+import { padStart } from "lodash-es"
 import dayjs from "dayjs"
 
 export default {

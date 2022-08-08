@@ -167,10 +167,6 @@ export const COMPLEX_STEPS = {
         const category = ressourceCategories.find(
           (category) => category.id === step.variable
         )
-        const individu = getIndividuByStep(
-          { id: step.id, role: step.id.split("_")[0] },
-          this
-        )
 
         result = [
           {

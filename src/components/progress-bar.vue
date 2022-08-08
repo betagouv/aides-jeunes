@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
 import { computed, ComputedRef } from "vue"
 import { useRoute } from "vue-router"

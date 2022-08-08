@@ -1,7 +1,6 @@
 import common from "./mapping/common.js"
 import mapping from "./mapping/index.js"
-import lodash from "lodash"
-const { forEach, assign, pick, pickBy } = lodash
+import { forEach, assign, pick, pickBy } from "lodash-es"
 import benefits from "../../../data/all.js"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 
@@ -95,7 +94,7 @@ export const generateTest = function generateYAMLTest(details, situation) {
   )
   const periods = common.getPeriods(situation.dateDeValeur)
 
-  const prestationsWithInterest: lodash.Dictionary<any> = pickBy(
+  const prestationsWithInterest: Record<string, any> = pickBy(
     common.requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)

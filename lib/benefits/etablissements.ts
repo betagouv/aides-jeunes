@@ -1,5 +1,5 @@
 import axios from "axios"
-import { sortBy } from "lodash"
+import { sortBy } from "lodash-es"
 
 function normalize(etablissementFeature) {
   const etablissement = etablissementFeature.properties

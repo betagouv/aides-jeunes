@@ -1,8 +1,8 @@
 import { createStore } from "vuex"
 
 import axios from "axios"
-import values from "lodash/values"
-import some from "lodash/some"
+import { values } from "lodash-es"
+import { some } from "lodash-es"
 
 import { computeAides, datesGenerator } from "@lib/benefits/compute"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources"

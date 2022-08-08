@@ -1,5 +1,11 @@
-import lodash from "lodash"
-const { filter, forEach, assign, pickBy, difference, cloneDeep } = lodash
+import {
+  filter,
+  forEach,
+  assign,
+  pickBy,
+  difference,
+  cloneDeep,
+} from "lodash-es"
 
 import common from "./common.js"
 import buildOpenFiscaIndividu from "./individu/index.js"
@@ -284,7 +290,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
 
-  const prestationsWithInterest = pickBy(
+  const prestationsWithInterest: Record<string, any> = pickBy(
     requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)

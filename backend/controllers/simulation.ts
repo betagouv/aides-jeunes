@@ -1,5 +1,4 @@
-import lodash from "lodash"
-const { omit, filter, pick, assign } = lodash
+import { omit, filter, pick, assign } from "lodash-es"
 
 import config from "../config/index.js"
 import { generateSituation } from "../../lib/situations.js"

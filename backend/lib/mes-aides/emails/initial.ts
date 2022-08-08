@@ -1,5 +1,4 @@
-import lodash from "lodash"
-const { capitalize, map, assign } = lodash
+import { capitalize, map, assign } from "lodash-es"
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"

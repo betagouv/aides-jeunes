@@ -290,7 +290,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
 
-  const prestationsWithInterest = pickBy(
+  const prestationsWithInterest: Record<string, any> = pickBy(
     requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)

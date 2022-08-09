@@ -20,19 +20,19 @@
 <script>
 export default {
   name: "IFrame",
-  mounted: function () {
-    let externalScript = document.createElement("script")
-    externalScript.setAttribute("src", this.scriptPath)
-    document.getElementById("dest").appendChild(externalScript)
-  },
   computed: {
     scriptPath() {
-      return "/documents/integration.js"
+      return "/documents/iframe-integration.js"
     },
     fullScript() {
       // eslint-disable-next-line no-useless-escape
       return `<script src="${process.env.VUE_APP_BASE_URL}${this.scriptPath}"><\/script>`
     },
+  },
+  mounted: function () {
+    let externalScript = document.createElement("script")
+    externalScript.setAttribute("src", this.scriptPath)
+    document.getElementById("dest").appendChild(externalScript)
   },
 }
 </script>

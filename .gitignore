@@ -64,4 +64,4 @@ cypress/videos
 
 openfisca/*.pyc
 
-
+public/documents/*

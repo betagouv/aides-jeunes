@@ -86,6 +86,10 @@ export default {
               label: "Toutes les aides",
               route: "/aides",
             },
+            {
+              label: "Intégration",
+              route: "/iframe",
+            },
           ],
         },
         {

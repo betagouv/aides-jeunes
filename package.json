@@ -4,13 +4,14 @@
   "description": "Simulateur de prestations sociales pour les jeunes",
   "type": "module",
   "scripts": {
-    "serve": "npm run build:server && vue-cli-service serve",
+    "serve": "npm run build:server && npm run build:iframes && vue-cli-service serve",
     "serve:back": "npm run build:server && node ./dist-server/server.js",
-    "build": "npm run build:server && npm run build:front",
+    "build": "npm run build:server && npm run build:front && npm run build:iframes",
     "clean:dist-server": "rm -fR dist-server",
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
+    "build:iframes": "webpack --config iframes.config.js",
     "build:front": "vue-cli-service build --no-clean",
     "build:server": "tsc --skipLibCheck -p tsconfig.server.json && cp -r lib backend data contribuer tools dist-server/",
     "test:unit": "vue-cli-service test:unit",
@@ -85,6 +86,7 @@
     "vue": "^3.2.32",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.14",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {

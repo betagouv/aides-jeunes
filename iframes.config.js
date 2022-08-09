@@ -1,17 +1,12 @@
 import path from "path"
 import { fileURLToPath } from "url"
 import webpack from "webpack"
-import config from "./dist-server/backend/config/index.js"
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-if (process.env.NODE_ENV === "production") {
-  const port = process.env.PORT || 8080
-  process.env.BASE_URL =
-    process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
-} else {
-  process.env.BASE_URL = config.baseURL
-}
+const port = process.env.PORT || 8080
+process.env.BASE_URL =
+  process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
 
 export default {
   mode: "production",

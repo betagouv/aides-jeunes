@@ -4,10 +4,11 @@ import dayjs from "dayjs"
 
 import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
-import { situationsLayout } from "lib/types/situations"
+import { situationsLayout } from "../../../lib/types/situations"
 
 import apa_eligibilite from "./apa-eligibilite.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
+import { getAnswer } from "../../../lib/answers.js"
 
 export const additionalBenefitAttributes = {
   css_participation_forfaitaire: {
@@ -63,6 +64,17 @@ export const additionalBenefitAttributes = {
         },
         link: "https://www.grandlyon.com/services/rsa-mode-d-emploi.html",
       },
+    },
+  },
+  "cohesion-territoires-conseillers-numeriques-france-services": {
+    link: function getCnfsLink(store) {
+      const answer = getAnswer(
+        store.state.simulation.answers.all,
+        "menage",
+        "depcom"
+      )
+      const codePostal = answer._codePostal
+      return `https://cartographie.conseiller-numerique.gouv.fr/?address=${codePostal}`
     },
   },
   aide_logement: {

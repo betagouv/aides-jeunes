@@ -66,7 +66,9 @@ export default {
       if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
-
+      if (typeof link === "function") {
+        return link(this.$store)
+      }
       return link
     },
     onClick(link) {

@@ -23,7 +23,7 @@ function updateGroupeSpecialitesFormation(answers) {
 }
 
 export default {
-  function: function (simulation) {
+  function(simulation) {
     updateGroupeSpecialitesFormation(simulation.answers.all)
     updateGroupeSpecialitesFormation(simulation.answers.current)
     return simulation

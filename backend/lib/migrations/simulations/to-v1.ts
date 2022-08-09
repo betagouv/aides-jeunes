@@ -1,5 +1,5 @@
 export default {
-  function: function (s) {
+  function(s) {
     s.version = 1
     return s
   },

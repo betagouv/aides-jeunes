@@ -22,7 +22,7 @@ function updateEnceinte(answers) {
 }
 
 export default {
-  function: function (simulation) {
+  function(simulation) {
     updateEnceinte(simulation.answers.all)
     updateEnceinte(simulation.answers.current)
     return simulation

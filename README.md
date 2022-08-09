@@ -137,8 +137,7 @@ You can safely use `npm test && npm run cypress` to drive your developments.
 
 We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
 
-The development server for emails can be easily start with:
-`node tools/mjml.js` or `npm run serve-mail`
+The development server for emails can be easily start with: `npm run tools:serve-mail`
 
 If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
 You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.
@@ -166,9 +165,27 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 # Other tools scripts & tips
 
-- `npm run test-benefits-urls` validate links to 3rd parties.
+Before using tools, don't forget to build server with `npm run build:server`.
 
 - `npm run husky` will install git hooks used to facilitate development and reduce the CI running time.
+
+- `npm run tools:check-links-validity` validate links to 3rd parties.
+
+- `npm run tools:cleaner` allows you to clean simulations data oldest than 31 days.
+
+- `npm run tools:evaluate-benefits <simulationId>` allows you to evaluate benefits with simulation id.
+
+- `npm run tools:generate-missing-institutions-aides-velo` allows you to generate missing institutions for the package `aides-velo`.
+
+- `npm run tools:geographical-benefits-details` allows you to get the relevant benefits for each commune.
+
+- `npm run tools:get-all-steps` allows you to get all the steps and substeps of a simulation.
+
+- `npm run tools:serve-mail` allows you to generate emails which contain the result of a simulation or survey.
+
+- `npm run tools:test-benefits-geographical-constraint-consistency` validate geographical constraint consistency of benefits.
+
+- `npm run tools:test-definition-periods` allows you to valid the periods of openfisca requested variables.
 
 - [Locally](http://localhost:8080/simulation/resultats?debug) or on [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats?debug), it is possible to visualize all the available benefits of the simulator. It is done by adding `debug` as a parameter. It is also possible to set `debug=ppa,rsa` to choose which benefits are listed.
 
@@ -176,17 +193,28 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 - [OpenFisca tracer](https://openfisca.github.io/tracer/) allows you to debug OpenFisca computations. ([source](https://github.com/openfisca/tracer))
 
-- `npm run generate-missing-institutions-aides-velo` allows you to generate missing institutions for the package `aides-velo`.
+# Export simulations data from database
 
-- `npm run test-definition-periods` allows you to valid the periods of openfisca requested variables.
+Mongo export to csv.
 
-- `npm run evaluate-benefits <simulationId>` allows you to evaluate benefits with simulation id.
+How to use:
+`mongo --quiet db_aides_jeunes --eval "var headers='month,depcom100kp,departement';" tools/mongo-query.js > export.csv` headers doit contenir les entêtes souhaitées.
 
-- `node tools/geographical-benefits-details.js` allows you to get the relevant benefits for each commune.
+`headers` must contain the desired headers.
 
-- `node tools/get-all-steps.js` allows you to get all the steps and substeps of a simulation.
+Possible variables:
 
-- `node tools/mjms.js` allows you to generate emails which contain the result of a simulation or survey.
+- `activite`
+- `age`
+- `avecRessources`
+- `departement`
+- `depcom`
+- `depcom100kp`
+- `epci`
+- `region`
+- `logement`
+- `month`
+- `+ les valeurs de fieldName dans les réponses`
 
 ## NetlifyCMS development
 

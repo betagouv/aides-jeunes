@@ -302,7 +302,7 @@ jobs:
         run: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
       - name: Test definition periods
         shell: bash
-        run: npm run test-definition-periods
+        run: npm run tools:test-definition-periods
   ci_failed:
     name: Detect failure
     runs-on: ubuntu-20.04

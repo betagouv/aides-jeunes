@@ -1,5 +1,5 @@
-const Benefits = require("../data/all")
-const axios = require("axios")
+import Benefits from "../data/all.js"
+import axios from "axios"
 
 // Extrait la liste des liens référencés dans la base de règles
 let links = []
@@ -25,7 +25,7 @@ Benefits.all.forEach((benefit) => {
 
 // Certains sites référencés ont des problèmes de certificats, mais ce n'est pas
 // ce que nous cherchons à détecter ici.
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
 // Création d'une queue permettant de paralléliser la vérification des liens
 const queue = [...links]

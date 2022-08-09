@@ -15,7 +15,7 @@ function updatePerson(p) {
 }
 
 export default {
-  function: function (situation) {
+  function(situation) {
     situation.demandeur = updatePerson(situation.demandeur)
     situation.conjoint = updatePerson(situation.conjoint)
 

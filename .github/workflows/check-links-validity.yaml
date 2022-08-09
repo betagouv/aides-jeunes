@@ -12,8 +12,9 @@ jobs:
         with:
           node-version: "16"
       - run: npm ci --legacy-peer-deps
+      - run: npm run build:server
       - id: invalid_links
-        run: node ./tools/check-links-validity.js --ci
+        run: npm run tools:check-links-validity
         timeout-minutes: 10
       - if: steps.invalid_links.outputs.comment
         uses: ./.github/actions/reopen-issue-with-comment

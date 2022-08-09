@@ -39,12 +39,12 @@ html {
         display: flex;
         flex-direction: column;
         flex: 1 0 auto;
+        height: 100vh;
 
         .aj-layout-container {
           flex-direction: row-reverse;
           flex: 1 1 auto;
           width: 100%;
-          min-height: 100vh;
         }
 
         .aj-text-container {

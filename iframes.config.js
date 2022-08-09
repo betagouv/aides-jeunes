@@ -8,6 +8,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 process.env.BASE_URL = config.baseURL
 
 export default {
+  mode: "production",
   entry: {
     "iframe-integration": "./iframes/iframe-integration.js",
   },

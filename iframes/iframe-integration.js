@@ -3,8 +3,6 @@ import { iframeResize } from "iframe-resizer"
 const script = document.currentScript
 const src = new URL(`${process.env.BASE_URL}/simulation`)
 
-iframeResize({ log: false }, "#iframe")
-
 src.searchParams.set("iframe", true)
 src.searchParams.set(
   "integratorUrl",
@@ -24,5 +22,6 @@ const iframeAttributes = {
 for (var key in iframeAttributes) {
   iframe.setAttribute(key, iframeAttributes[key])
 }
+iframeResize({}, iframe)
 
 script.before(iframe)

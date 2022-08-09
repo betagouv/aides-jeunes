@@ -167,15 +167,11 @@ export const COMPLEX_STEPS = {
         const category = ressourceCategories.find(
           (category) => category.id === step.variable
         )
-        const individu = getIndividuByStep(
-          { id: step.id, role: step.id.split("_")[0] },
-          this
-        )
 
         result = [
           {
             labelClass: "subtitle",
-            label: category && capitalize(category.label(individu)),
+            label: category && capitalize(category.label),
           },
           ...answer.map((ressource) => {
             return {

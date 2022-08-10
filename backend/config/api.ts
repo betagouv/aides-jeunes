@@ -1,31 +1,24 @@
 import express from "express"
-// import path from "path"
-// import fs from "fs"
-// import {join} from "path"
-
-import dataRoutes from "../routes/data.js"
-import followupsRoutes from "../routes/followups.js"
-import githubRoutes from "../routes/github.js"
-import openfiscaRoutes from "../routes/openfisca.js"
-import outilsRoutes from "../routes/outils.js"
-import questionsRoutes from "../routes/questions.js"
-import simulationRoutes from "../routes/simulation.js"
-import supportRoutes from "../routes/support.js"
-import teleservicesRoutes from "../routes/teleservices.js"
+import path from "path"
+import fs from "fs"
+const __dirname = new URL(".", import.meta.url).pathname
 
 const api = express()
-
 api.use(express.json())
 
-dataRoutes(api)
-followupsRoutes(api)
-githubRoutes(api)
-openfiscaRoutes(api)
-outilsRoutes(api)
-questionsRoutes(api)
-simulationRoutes(api)
-supportRoutes(api)
-teleservicesRoutes(api)
+const routesPath = path.join(__dirname, "../routes")
+async function loadRoutes() {
+  const routes = await Promise.all(
+    fs
+      .readdirSync(routesPath)
+      .filter((file) => /(.*)\.(js$)/.test(file))
+      .map(function (file) {
+        return import(`${routesPath}/${file}`) //(api)
+      })
+  )
+  routes.map((route) => route.default(api))
+}
+await loadRoutes()
 
 api.all("*", function (req, res) {
   res.sendStatus(404)

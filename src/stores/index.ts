@@ -492,7 +492,7 @@ export const useStore = defineStore("store", {
         return
       }
 
-      this.message.counter = (this.message.counter || 1) - 1
+      this.message.counter = this.message.counter - 1
       if (this.message.counter < 0) {
         this.message.text = null
       }

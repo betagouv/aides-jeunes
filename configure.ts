@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import express from "express"
 import morgan from "morgan"
 import Sentry from "@sentry/node"

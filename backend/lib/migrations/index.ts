@@ -52,7 +52,7 @@ export function apply(model) {
   migrations.forEach(function (migration: any) {
     if (model.version === undefined || model.version < migration.version) {
       model.version = migration.version
-      model = migration.function(model)
+      model = migration.apply(model)
     }
   })
   return model

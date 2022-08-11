@@ -1,6 +1,6 @@
 const VERSION = 1
 export default {
-  function(followup) {
+  apply(followup) {
     followup.version = VERSION
     return followup
   },

@@ -5,7 +5,7 @@
 const VERSION = 2
 
 export default {
-  function(followup) {
+  apply(followup) {
     if (!followup.accessToken) {
       const survey = followup.surveys?.[0]
       if (survey) {

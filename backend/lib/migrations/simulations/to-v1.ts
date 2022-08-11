@@ -1,7 +1,7 @@
 export default {
-  function(s) {
-    s.version = 1
-    return s
+  apply(followup) {
+    followup.version = 1
+    return followup
   },
   version: 1,
 }

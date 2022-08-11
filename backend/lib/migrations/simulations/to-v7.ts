@@ -32,7 +32,7 @@ function updateLoyer(answers) {
 }
 
 export default {
-  function(simulation) {
+  apply(simulation) {
     updateLoyer(simulation.answers.all)
     updateLoyer(simulation.answers.current)
     return simulation

@@ -25,7 +25,7 @@ function removeIds(answers) {
 }
 
 export default {
-  function(simulation) {
+  apply(simulation) {
     removeIds(simulation.answers.all)
     removeIds(simulation.answers.current)
     return simulation

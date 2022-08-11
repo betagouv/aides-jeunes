@@ -1,9 +1,10 @@
 import Benefits from "../data/all.js"
 import axios from "axios"
+import fs from "fs"
 
 // Extrait la liste des liens référencés dans la base de règles
 let links = []
-Benefits.all.forEach((benefit) => {
+Benefits.all.slice(0, 2).forEach((benefit) => {
   links = links.concat(
     ["link", "instructions", "form", "teleservice"]
       .filter(
@@ -12,6 +13,7 @@ Benefits.all.forEach((benefit) => {
       .map((linkType) => {
         const link = benefit[linkType]
         return {
+          benefit: benefit.id,
           title: `${benefit.label} (${benefit.institution.label})`,
           link,
           type: linkType,
@@ -39,7 +41,7 @@ async function processNextQueueItem() {
   }
 }
 
-async function fetchAndReport({ link, title, editLink, type }) {
+async function fetchAndReport({ benefit, link, title, editLink, type }) {
   let status = await getHTTPStatus(link)
 
   // Retry one time in case of timeout
@@ -47,7 +49,7 @@ async function fetchAndReport({ link, title, editLink, type }) {
     await sleep(10000)
     status = await getHTTPStatus(link)
   }
-  report({ status, link, title, editLink, type })
+  report({ benefit, status, link, title, editLink, type })
 }
 
 async function getHTTPStatus(link) {
@@ -61,10 +63,10 @@ async function getHTTPStatus(link) {
   }
 }
 
-async function report({ status, link, title, editLink, type }) {
+async function report({ benefit, status, link, title, editLink, type }) {
   console.log(status === 200 ? "✅" : "❌", status, link)
   if (status !== 200) {
-    detectedErrors.push({ status, link, title, editLink, type })
+    detectedErrors.push({ benefit, status, link, title, editLink, type })
   }
 }
 
@@ -76,6 +78,7 @@ function sleep(ms) {
   await Promise.allSettled(
     Array.from({ length: simultaneousItems }).map(processNextQueueItem)
   )
+  fs.writeFileSync("link-tests.json", JSON.stringify(detectedErrors, null, 2))
   if (detectedErrors.length > 0) {
     // Formattage spécifique pour récupérer le résultat avec l'action Github
     if (process.argv.slice(2).includes("--ci")) {

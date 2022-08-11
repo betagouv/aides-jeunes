@@ -225,7 +225,7 @@ export const useStore = defineStore("store", {
       return (representation: string, situationId: string) => {
         return axios
           .get(
-            `api/simulation/${
+            `/api/simulation/${
               situationId || this.situationId
             }/${representation}`
           )
@@ -464,7 +464,7 @@ export const useStore = defineStore("store", {
       this.startComputation()
 
       return axios
-        .get(`api/simulation/${this.situationId}/openfisca-response`)
+        .get(`/api/simulation/${this.situationId}/openfisca-response`)
         .then((openfiscaResponse) => {
           return openfiscaResponse.data
         })

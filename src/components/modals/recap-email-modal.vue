@@ -114,7 +114,7 @@ export default {
         return
       }
 
-      const uri = `api/simulation/${this.id}/followup`
+      const uri = `/api/simulation/${this.id}/followup`
       const payload = {
         email: this.email,
         surveyOptin,

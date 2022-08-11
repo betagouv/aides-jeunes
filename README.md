@@ -165,27 +165,27 @@ ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
 
 # Other tools scripts & tips
 
-Before using tools, don't forget to build server with `npm run build:server`.
+In order to use those tools you need to build the server at least once using the command `npm run build:server`.
 
-- `npm run husky` will install git hooks used to facilitate development and reduce the CI running time.
+- `npm run husky` installs git hooks used to facilitate development and reduce the CI running time.
 
-- `npm run tools:check-links-validity` validate links to 3rd parties.
+- `npm run tools:check-links-validity` validates links to 3rd parties in benefits files.
 
-- `npm run tools:cleaner` allows you to clean simulations data oldest than 31 days.
+- `npm run tools:cleaner` cleans simulations data older than 31 days.
 
-- `npm run tools:evaluate-benefits <simulationId>` allows you to evaluate benefits with simulation id.
+- `npm run tools:evaluate-benefits <simulationId>` evaluates benefits linked to a simulation id.
 
-- `npm run tools:generate-missing-institutions-aides-velo` allows you to generate missing institutions for the package `aides-velo`.
+- `npm run tools:generate-missing-institutions-aides-velo` generates missing institutions for the package `aides-velo`.
 
-- `npm run tools:geographical-benefits-details` allows you to get the relevant benefits for each commune.
+- `npm run tools:geographical-benefits-details` gets the relevant benefits for each commune.
 
-- `npm run tools:get-all-steps` allows you to get all the steps and substeps of a simulation.
+- `npm run tools:get-all-steps` gets all the steps and substeps of a simulation.
 
-- `npm run tools:serve-mail` allows you to generate emails which contain the result of a simulation or survey.
+- `npm run tools:serve-mail` generates emails which contain the result of a simulation or a survey.
 
-- `npm run tools:test-benefits-geographical-constraint-consistency` validate geographical constraint consistency of benefits.
+- `npm run tools:test-benefits-geographical-constraint-consistency` validates geographical constraint consistency of benefits.
 
-- `npm run tools:test-definition-periods` allows you to valid the periods of openfisca requested variables.
+- `npm run tools:test-definition-periods`validates the periods of openfisca requested variables.
 
 - [Locally](http://localhost:8080/simulation/resultats?debug) or on [production](https://mes-aides.1jeune1solution.beta.gouv.fr/simulation/resultats?debug), it is possible to visualize all the available benefits of the simulator. It is done by adding `debug` as a parameter. It is also possible to set `debug=ppa,rsa` to choose which benefits are listed.
 
@@ -198,9 +198,10 @@ Before using tools, don't forget to build server with `npm run build:server`.
 Mongo export to csv.
 
 How to use:
-`mongo --quiet db_aides_jeunes --eval "var headers='month,depcom100kp,departement';" tools/mongo-query.js > export.csv` headers doit contenir les entêtes souhaitées.
+`mongo --quiet db_aides_jeunes --eval "var headers='month,depcom100kp,departement';" tools/mongo-query.js > export.csv`
 
-`headers` must contain the desired headers.
+The `headers`parameter must contains desired headers.
+
 
 Possible variables:
 
@@ -214,7 +215,7 @@ Possible variables:
 - `region`
 - `logement`
 - `month`
-- `+ les valeurs de fieldName dans les réponses`
+- `+ possible fieldName values in the answers`
 
 ## NetlifyCMS development
 

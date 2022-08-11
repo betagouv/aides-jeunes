@@ -6,10 +6,6 @@ import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
 
 import config from "./dist-server/backend/config/index.js"
-/*
-import configureAPI from "./dist-server/configure.js"
-import mock from "./dist-server/mock.js"
-*/
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
@@ -33,14 +29,6 @@ const variables = {
 }
 
 export default defineConfig(async ({ command, mode }) => {
-  console.log(command)
-  console.log(process.env)
-  //await setTimeout(() => { }, 4000)
-  if (command === "serve") {
-    //const configureAPI = await import("./dist-server/configure.js")
-    //const configureAPI = await import("./dist-server/mock.js")
-    //console.log(configureAPI.default())
-  }
   return {
     server: {
       port: 8080,

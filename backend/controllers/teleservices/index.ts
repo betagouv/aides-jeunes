@@ -174,8 +174,9 @@ function checkCredentials(req, res, next) {
   const credentials = auth(req)
   if (
     !credentials ||
-    !tokens[credentials.name] ||
-    credentials.pass != tokens[credentials.name]
+    !tokens[req.teleservice.name] ||
+    credentials.name != req.teleservice.name ||
+    credentials.pass != tokens[req.teleservice.name]
   ) {
     res
       .status(401)

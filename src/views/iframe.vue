@@ -26,7 +26,7 @@ export default {
     },
     fullScript() {
       // eslint-disable-next-line no-useless-escape
-      return `<script src="${process.env.VUE_APP_BASE_URL}${this.scriptPath}"><\/script>`
+      return `<script src="${process.env.VITE_BASE_URL}${this.scriptPath}"><\/script>`
     },
   },
   mounted: function () {

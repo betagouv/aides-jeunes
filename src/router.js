@@ -296,7 +296,7 @@ const router = createRouter({
                   1
                 )} - Ma simulation d'aides ${context.name}`
               } else {
-                return process.env.VUE_APP_TITLE
+                return process.env.VITE_TITLE
               }
             },
           },
@@ -337,9 +337,9 @@ const router = createRouter({
           const benefitLabel = benefits[params.benefitId].label
           return benefitLabel
             ? `${benefitLabel.charAt(0).toUpperCase()}${benefitLabel.slice(
-                1
-              )} - Simulateur d'aides ${context.name}`
-            : process.env.VUE_APP_TITLE
+              1
+            )} - Simulateur d'aides ${context.name}`
+            : process.env.VITE_TITLE
         },
       },
     },
@@ -390,7 +390,7 @@ router.beforeEach((to, from, next) => {
   const store = useStore()
   if (!from.name) {
     if (
-      process.env.VUE_APP_CONTEXT !== "production" ||
+      process.env.VITE_CONTEXT !== "production" ||
       to?.redirectedFrom?.fullPath === "/init-ci"
     ) {
       store.verifyBenefitVariables()
@@ -458,7 +458,7 @@ function getTitleMeta(route) {
       return meta.headTitle
     }
   }
-  return process.env.VUE_APP_TITLE
+  return process.env.VITE_TITLE
 }
 
 router.afterEach((to) => {

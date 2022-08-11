@@ -494,7 +494,7 @@ export const useStore = defineStore("store", {
     },
     redirection(next: (path: string) => void) {
       this.setMessage(
-        `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VUE_APP_CONTACT_EMAIL}">${process.env.VUE_APP_CONTACT_EMAIL}</a>.`
+        `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VITE_CONTACT_EMAIL}">${process.env.VITE_CONTACT_EMAIL}</a>.`
       )
       next("/simulation")
     },
@@ -502,14 +502,14 @@ export const useStore = defineStore("store", {
       // @ts-ignore
       const date = new Date(this.simulation.dateDeValeur)
       return axios
-        .get(`api/openfisca/parameters/${date.toISOString()}`)
+        .get(`/api/openfisca/parameters/${date.toISOString()}`)
         .then((response) => {
           this.openFiscaParameters = response.data
         })
     },
     verifyBenefitVariables() {
       return axios
-        .get("api/openfisca/missingbenefits")
+        .get("/api/openfisca/missingbenefits")
         .then((response) => response.data)
         .then((missingBenefits) => {
           if (missingBenefits.length) {

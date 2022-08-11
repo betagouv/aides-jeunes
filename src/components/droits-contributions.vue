@@ -53,10 +53,10 @@ export default {
       return ["javascript", "openfisca"].includes(this.droit.source)
     },
     repositoryBenefitUrl() {
-      return `${process.env.VUE_APP_BENEFIT_URL}/${this.droit.source}/${this.droit.id}.yml`
+      return `${process.env.VITE_BENEFIT_URL}/${this.droit.source}/${this.droit.id}.yml`
     },
     netlifyContributionUrl() {
-      return `${process.env.VUE_APP_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
+      return `${process.env.VITE_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
     },
     alertBrokenLink() {
       this.brokenLinkButtonState = "showThanksMessage"

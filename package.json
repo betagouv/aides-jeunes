@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "vite:serve": "npx vite serve ./",
+    "vite:serve-front": "",
     "vite:preview": "npx vite preview",
     "vite:build": "npx vite build ./",
     "serve": "npm run build:server && npm run build:iframes && vue-cli-service serve",

@@ -6,8 +6,8 @@ export default {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
-        process.env.VUE_APP_STATS_URL?.length &&
-        process.env.VUE_APP_STATS_VERSION &&
+        process.env.VITE_STATS_URL?.length &&
+        process.env.VITE_STATS_VERSION &&
         benefits?.length
       ) {
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
@@ -21,11 +21,11 @@ export default {
               benefit_index: i + 1,
               page_total: totalResults,
               event_type: event,
-              version: process.env.VUE_APP_STATS_VERSION,
+              version: process.env.VITE_STATS_VERSION,
             })
           }
         })
-        fetch(process.env.VUE_APP_STATS_URL, {
+        fetch(process.env.VITE_STATS_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(benefitsStats),

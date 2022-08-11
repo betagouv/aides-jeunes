@@ -7,7 +7,7 @@ function buildHref({ to, subject, body }) {
     params.push(`body=${encodeURIComponent(body)}`)
   }
   let comps = [
-    `mailto:${to || process.env.VUE_APP_CONTACT_EMAIL}`,
+    `mailto:${to || process.env.VITE_CONTACT_EMAIL}`,
     params.join("&"),
   ]
   return comps.join("?")

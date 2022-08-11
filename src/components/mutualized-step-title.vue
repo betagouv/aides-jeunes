@@ -2,7 +2,7 @@
   <div>
     <component :is="titleWrapper" :for="forTitleWrapper">
       <h2 class="aj-question">
-        <span v-html="props.question" />
+        <span data-testid="question" v-html="props.question" />
         <EnSavoirPlus v-if="props.showMoreInfo" />
       </h2>
     </component>

@@ -5,6 +5,7 @@
       ref="result"
       v-model.number="model"
       v-select-on-click
+      :data-testid="id"
       type="number"
       :name="name"
       :min="min"

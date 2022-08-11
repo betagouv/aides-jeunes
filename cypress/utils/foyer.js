@@ -4,7 +4,7 @@ import profil from "./profil"
 const children = (numberOfChildren) => {
   for (let i = 0; i < numberOfChildren; i++) {
     cy.url().should("includes", "enfants")
-    cy.get("button#add-pac").click()
+    cy.get('[data-testid="add-pac"]').click()
     profil.defaultChildren()
   }
   cy.url().should("includes", "enfants")
@@ -22,17 +22,23 @@ const fill__situation = (situation) => {
 const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
   numberOfChildren
 ) => {
-  cy.get(".aj-question > span").invoke("text").should("contain", "la charge")
-  cy.get('input[type="number"').type(numberOfChildren)
+  cy.get('[data-testid="question"')
+    .invoke("text")
+    .should("contain", "la charge")
+  cy.get(
+    'input[type="number"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge"]'
+  ).type(numberOfChildren)
   submit()
 }
 
 const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur =
   (numberOfChildren) => {
-    cy.get(".aj-question > span")
+    cy.get("[data-testid='question']")
       .invoke("text")
       .should("contain", "des études supérieures")
-    cy.get('input[type="number"').type(numberOfChildren)
+    cy.get(
+      'input[type="number"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur"]'
+    ).type(numberOfChildren)
     submit()
   }
 

@@ -77,7 +77,7 @@ const hasHousingBenefit = () => {
     .should("match", description)
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
   // Vérifie si la page patrimoine est bien affichée
-  cy.get("#patrimoine-link").click()
+  cy.get('[data-testid="patrimoine-link"]').click()
   cy.get('[data-testid="immobilier-title"]').should("exist")
   submit()
 }

@@ -64,11 +64,12 @@
     </fieldset>
 
     <div v-else-if="questionType === 'text'">
-      <label :for="fieldName"
-        ><h2 class="aj-question">
-          <span v-html="question" />
-          <EnSavoirPlus v-if="showMoreInfo" /> </h2
-      ></label>
+      <MutualizedStepTitle
+        :for-title-wrapper="fieldName"
+        :question="question"
+        :show-more-info="showMoreInfo"
+        :help="step.help"
+      ></MutualizedStepTitle>
       <input
         :id="fieldName"
         v-model="value"

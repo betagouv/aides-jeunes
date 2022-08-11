@@ -19,7 +19,11 @@
         <span class="help">{{ chargesQuestion.hint }}</span>
       </label>
       <div class="aj-input-currency-wrapper">
-        <InputNumber id="charges" v-model="chargesQuestion.selectedValue" />
+        <InputNumber
+          id="charges"
+          v-model="chargesQuestion.selectedValue"
+          data-testid="loyer"
+        />
       </div>
     </div>
     <ActionButtons :on-submit="onSubmit" />

@@ -74,6 +74,7 @@
             </span>
             <router-link
               id="patrimoine-link"
+              data-testid="patrimoine-link"
               class="button outline red no-shadow text-center"
               to="/simulation/ressources/patrimoine"
             >

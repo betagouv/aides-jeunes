@@ -4,12 +4,12 @@ import config from "../config/index.js"
 import { generateSituation } from "../../lib/situations.js"
 import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
-import migrations from "../lib/migrations/index.js"
+import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
 
 function getSimulationOnRequest(req, simulation) {
-  req.simulation = migrations.apply(simulation)
+  req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
 

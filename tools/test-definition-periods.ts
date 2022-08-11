@@ -1,8 +1,6 @@
-const {
-  requestedVariables,
-} = require("../backend/lib/openfisca/mapping/common")
-const { get } = require("../backend/lib/openfisca/getter")
-const assert = require("assert")
+import Common from "../backend/lib/openfisca/mapping/common.js"
+import OpenfiscaGetter from "../backend/lib/openfisca/getter.js"
+import assert from "assert"
 
 const openfiscaPeriodToDefinitionPeriod = {
   thisMonth: "MONTH",
@@ -11,12 +9,12 @@ const openfiscaPeriodToDefinitionPeriod = {
 }
 
 const openfiscaPromise = []
-Object.keys(requestedVariables).forEach((variableId) => {
+Object.keys(Common.requestedVariables).forEach((variableId) => {
   openfiscaPromise.push(
-    get(`/variable/${variableId}`, (data) => {
+    OpenfiscaGetter.get(`/variable/${variableId}`, (data) => {
       const definitionPeriod =
         openfiscaPeriodToDefinitionPeriod[
-          requestedVariables[variableId].openfiscaPeriod
+          Common.requestedVariables[variableId].openfiscaPeriod
         ]
       assert(definitionPeriod === data.definitionPeriod)
     })

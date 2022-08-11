@@ -1,14 +1,13 @@
-const fs = require("fs")
-const ProgressBar = require("progress")
-const communesBase = require("@etalab/decoupage-administratif/data/communes.json")
-const epcis = require("@etalab/decoupage-administratif/data/epci.json")
+// @ts-ignore
+import fs from "fs"
+import ProgressBar from "progress"
+import communesBase from "@etalab/decoupage-administratif/data/communes.json"
+import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-const { institutionsMap } = require("../data/all")
-const {
-  isGeographicallyIncluded,
-} = require("../lib/benefits/geographical-count-utils")
+import Benefits from "../data/all.js"
+import { isGeographicallyIncluded } from "../lib/benefits/geographical-count-utils.js"
 
-const communes = communesBase.filter(
+const communes = (communesBase as any[]).filter(
   (commune) => commune.type === "commune-actuelle"
 )
 
@@ -20,7 +19,7 @@ communes.forEach((commune) => {
   commune.benefits = []
 })
 
-const institutionIds = Object.keys(institutionsMap)
+const institutionIds = Object.keys(Benefits.institutionsMap)
 
 function listInterestingInstitutions(commune, institution) {
   if (!commune) {
@@ -52,7 +51,7 @@ function iterateGivenGeographicalRelevancy(apply) {
   })
 
   institutionIds.forEach((id) => {
-    const institution = institutionsMap[id]
+    const institution = Benefits.institutionsMap[id]
     switch (institution.type) {
       case "national":
         communes.forEach((commune) => {
@@ -76,6 +75,7 @@ function iterateGivenGeographicalRelevancy(apply) {
           console.log(
             `Aucun Epci trouvé pour l'établissement ${institution.slug}`
           )
+          // @ts-ignore
           process.exit(1)
           break
         }

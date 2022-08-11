@@ -5,11 +5,9 @@ import express from "express"
 
 import api from "../backend/api.js"
 api()
-import mongoose from "mongoose"
-//const Followup = mongoose.model("Followup")
+import "../backend/lib/mongo-connector.js"
 import Followup from "../backend/models/followup.js"
 import renderInitial from "../backend/lib/mes-aides/emails/initial.js"
-// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
 import "../backend/lib/mes-aides/emails/survey.js"
 
 const port = process.env.PORT || 9001
@@ -54,13 +52,13 @@ app.route("/mjml/:id/:type").get(function (req, res) {
           ? renderInitial(followup)
           : followup
               .createSurvey()
-              .then((s) => followup.renderSurveyEmail(followup))
+              .then(() => followup.renderSurveyEmail(followup))
       p.then(function (result) {
         const mode = req.query.mode || "html"
         if (mode == "html") {
           res.send(result[mode])
         } else {
-          res.set({ "Content-Type": "text/plain" }).send(result[mode])
+          res.set({ "Content-Type": "text/plain" }).send(result[mode as string])
         }
       })
     })

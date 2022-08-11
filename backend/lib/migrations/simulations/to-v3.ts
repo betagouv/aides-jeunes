@@ -39,7 +39,7 @@ function updatePerson(p) {
   }
 
   if (p.tns_micro_entreprise_chiffre_affaires) {
-    let dest_field = AE_map[p.tns_micro_entreprise_type_activite]
+    const dest_field = AE_map[p.tns_micro_entreprise_type_activite]
     if (dest_field) {
       p[dest_field] = p.tns_micro_entreprise_chiffre_affaires
     }
@@ -54,7 +54,7 @@ function updatePerson(p) {
 }
 
 export default {
-  function: function (situation) {
+  apply(situation) {
     situation.demandeur = updatePerson(situation.demandeur)
     situation.conjoint = updatePerson(situation.conjoint)
 

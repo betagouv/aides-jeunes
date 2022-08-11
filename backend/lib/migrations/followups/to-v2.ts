@@ -4,8 +4,8 @@
 
 const VERSION = 2
 
-module.exports = {
-  function: async function (followup) {
+export default {
+  apply(followup) {
     if (!followup.accessToken) {
       const survey = followup.surveys?.[0]
       if (survey) {

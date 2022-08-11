@@ -24,7 +24,7 @@ function update_interetAidesVeloElectrique(answers) {
 }
 
 export default {
-  function: function (simulation) {
+  apply(simulation) {
     update_interetAidesVeloElectrique(simulation.answers.all)
     update_interetAidesVeloElectrique(simulation.answers.current)
     return simulation

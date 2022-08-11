@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-const es = require("event-stream")
+import es from "event-stream"
 
 // Loads
-require("expect")
-const mongoose = require("../backend/lib/mongo-connector")
-const Followup = mongoose.model("Followup")
-const Simulation = mongoose.model("Simulation")
+// import expect from "expect"
+import("../backend/lib/mongo-connector.js")
+import Simulation from "../backend/models/simulation.js"
+import Followup from "../backend/models/followup.js"
 
 function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {
@@ -58,7 +58,9 @@ function getAnonymizedAnswer(answer, simulation) {
               id: answer.id,
               entityName: answer.entityName,
               fieldName: "age",
-              value: Math.round((dt - dob) / 365.25 / 24 / 60 / 60 / 1000, 0),
+              value: Math.round(
+                (dt.getTime() - dob.getTime()) / 365.25 / 24 / 60 / 60 / 1000
+              ),
             }
           }
           default: {
@@ -80,7 +82,7 @@ function generateNewAll(answers, simulation) {
 }
 
 function main() {
-  const aMonthAgo = new Date() - 31 * 24 * 60 * 60 * 1000
+  const aMonthAgo = new Date().getTime() - 31 * 24 * 60 * 60 * 1000
 
   let followup_count = 0
   Followup.find({

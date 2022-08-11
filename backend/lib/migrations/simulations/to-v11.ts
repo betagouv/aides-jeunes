@@ -89,7 +89,7 @@ function updateAutoEntrepreneur(answers) {
 }
 
 export default {
-  function: function (simulation) {
+  apply(simulation) {
     updateAutoEntrepreneur(simulation.answers.all)
     updateAutoEntrepreneur(simulation.answers.current)
     return simulation

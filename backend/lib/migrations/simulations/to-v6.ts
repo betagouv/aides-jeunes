@@ -12,7 +12,7 @@ function removeOldField(answers, field) {
 }
 
 export default {
-  function: function (simulation) {
+  apply(simulation) {
     removeOldField(simulation.answers, "all")
     removeOldField(simulation.answers, "current")
     return simulation

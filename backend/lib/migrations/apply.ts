@@ -5,22 +5,10 @@ const ArgumentParser = argparse.ArgumentParser
 import es from "event-stream"
 
 // Loads
-import mongoose from "../mongo-connector.js"
-import { apply, getLatestVersionByFolderName } from "./index.js"
-
-// Setup mongoose
-const modelMigration = {
-  simulations: {
-    model: mongoose.model("Simulation"),
-  },
-  followups: {
-    model: mongoose.model("Followup"),
-  },
-}
-
-Object.keys(modelMigration).forEach((key) => {
-  modelMigration[key].latestVersion = getLatestVersionByFolderName(key)
-})
+import { apply, getLatestVersionByModelName } from "./index.js"
+import "../mongo-connector.js"
+import Simulation from "../../models/simulation.js"
+import Followup from "../../models/followup.js"
 
 let counter = 0
 let errors = 0
@@ -43,6 +31,18 @@ parser.addArgument(["--id"], {
 
 parser.addArgument(["--model"], {
   help: "Migre une simulation précise",
+})
+
+const modelMigration = {
+  simulations: {
+    model: Simulation,
+  },
+  followups: {
+    model: Followup,
+  },
+}
+Object.keys(modelMigration).forEach((key) => {
+  modelMigration[key].latestVersion = getLatestVersionByModelName(key)
 })
 
 function migrate(currentMigration, conditions) {

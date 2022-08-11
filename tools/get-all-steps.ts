@@ -1,4 +1,4 @@
-const { generateBlocks } = require("../lib/state/blocks")
+import { generateBlocks } from "../lib/state/blocks.js"
 
 const getStepOrSubSteps = (accum, step) => {
   if (step.steps) {

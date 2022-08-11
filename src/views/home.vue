@@ -54,7 +54,7 @@ export default {
   setup() {
     return {
       store: useStore(),
-      context: process.env.VUE_APP_CONTEXT,
+      context: process.env.VITE_CONTEXT,
     }
   },
   computed: {
@@ -70,8 +70,8 @@ export default {
       return this.hasExistingSituation ? "large" : "xlarge"
     },
     benefitsNumber() {
-      return process.env.VUE_APP_BENEFIT_COUNT
-        ? process.env.VUE_APP_BENEFIT_COUNT
+      return process.env.VITE_BENEFIT_COUNT
+        ? process.env.VITE_BENEFIT_COUNT
         : "plus de 400"
     },
   },
@@ -83,7 +83,7 @@ export default {
     next() {
       this.store.setOpenFiscaParameters()
       // we only want to look for benefit variables in preview mode
-      if (process.env.VUE_APP_CONTEXT !== "production") {
+      if (process.env.VITE_CONTEXT !== "production") {
         this.store.verifyBenefitVariables()
       }
       this.$push()

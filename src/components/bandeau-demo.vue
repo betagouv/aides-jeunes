@@ -27,35 +27,39 @@ export default {
   },
   computed: {
     afficheBandeau() {
-      return process.env.VUE_APP_CONTEXT === "deploy-preview"
+      return process.env.VITE_CONTEXT === "deploy-preview"
     },
     link() {
-      return process.env.VUE_APP_PR_URL
+      return process.env.VITE_PR_URL
     },
   },
   mounted: async function () {
-    const pr = process.env.VUE_APP_NETLIFY_PR.split("/")
-    if (pr.length < 3) return
-    const url = `https://api.github.com/repos/betagouv/aides-jeunes/pulls/${pr[1]}/files`
-    axios
-      .get(url)
-      .then((response) => {
-        const benefits = []
-        for (let entry of response.data) {
-          const match = entry.filename.match(
-            /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
-          )
-          if (match) {
-            benefits.push(match[1])
+    if (process.env.VITE_NETLIFY_PR) {
+      const pr = process.env.VITE_NETLIFY_PR.split("/")
+      if (pr.length < 3) return
+      const url = `https://api.github.com/repos/betagouv/aides-jeunes/pulls/${pr[1]}/files`
+      axios
+        .get(url)
+        .then((response) => {
+          const benefits = []
+          for (let entry of response.data) {
+            const match = entry.filename.match(
+              /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
+            )
+            if (match) {
+              benefits.push(match[1])
+            }
           }
-        }
-        if (benefits.length) {
-          this.benefitLink = `/simulation/resultats?debug=${benefits.join(",")}`
-        }
-      })
-      .catch((e) => {
-        console.log("Failed to find a benefit file name from this PR", e)
-      })
+          if (benefits.length) {
+            this.benefitLink = `/simulation/resultats?debug=${benefits.join(
+              ","
+            )}`
+          }
+        })
+        .catch((e) => {
+          console.log("Failed to find a benefit file name from this PR", e)
+        })
+    }
   },
 }
 </script>

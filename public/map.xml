@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc><%= VUE_APP_BASE_URL %></loc>
+        <loc><%= VITE_BASE_URL %></loc>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc><%= VUE_APP_BASE_URL %>/simulation</loc>
+        <loc><%= VITE_BASE_URL %>/simulation</loc>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc><%= VUE_APP_BASE_URL %>/contact</loc>
+        <loc><%= VITE_BASE_URL %>/contact</loc>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc><%= VUE_APP_BASE_URL %>/accessibilite</loc>
+        <loc><%= VITE_BASE_URL %>/accessibilite</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc><%= VUE_APP_BASE_URL %>/cgu</loc>
+        <loc><%= VITE_BASE_URL %>/cgu</loc>
         <priority>0.1</priority>
     </url>
     <url>
-        <loc><%= VUE_APP_BASE_URL %>/confidentialite</loc>
+        <loc><%= VITE_BASE_URL %>/confidentialite</loc>
         <priority>0.1</priority>
     </url>
 </urlset>

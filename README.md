@@ -202,7 +202,6 @@ How to use:
 
 The `headers`parameter must contains desired headers.
 
-
 Possible variables:
 
 - `activite`

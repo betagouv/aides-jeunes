@@ -1,6 +1,7 @@
 import Benefits from "../data/all.js"
 import axios from "axios"
 import fs from "fs"
+import Bluebird from "bluebird"
 
 // Extrait la liste des liens référencés dans la base de règles
 let links = []
@@ -29,18 +30,6 @@ Benefits.all.slice(0, 2).forEach((benefit) => {
 // ce que nous cherchons à détecter ici.
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 
-// Création d'une queue permettant de paralléliser la vérification des liens
-const queue = [...links]
-const detectedErrors = []
-const simultaneousItems = 5
-
-async function processNextQueueItem() {
-  if (queue.length !== 0) {
-    await fetchAndReport(queue.shift())
-    await processNextQueueItem()
-  }
-}
-
 async function fetchAndReport({ benefit, link, title, editLink, type }) {
   let status = await getHTTPStatus(link)
 
@@ -49,7 +38,7 @@ async function fetchAndReport({ benefit, link, title, editLink, type }) {
     await sleep(10000)
     status = await getHTTPStatus(link)
   }
-  report({ benefit, status, link, title, editLink, type })
+  return report({ benefit, status, link, title, editLink, type })
 }
 
 async function getHTTPStatus(link) {
@@ -63,10 +52,10 @@ async function getHTTPStatus(link) {
   }
 }
 
-async function report({ benefit, status, link, title, editLink, type }) {
+function report({ benefit, status, link, title, editLink, type }) {
   console.log(status === 200 ? "✅" : "❌", status, link)
   if (status !== 200) {
-    detectedErrors.push({ benefit, status, link, title, editLink, type })
+    return { benefit, status, link, title, editLink, type }
   }
 }
 
@@ -74,10 +63,9 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-;(async () => {
-  await Promise.allSettled(
-    Array.from({ length: simultaneousItems }).map(processNextQueueItem)
-  )
+function main() {
+  const results = Bluebird.map(links, fetchAndReport, { concurrency: 5 })
+  const detectedErrors = results.filter((i) => i)
   fs.writeFileSync("link-tests.json", JSON.stringify(detectedErrors, null, 2))
   if (detectedErrors.length > 0) {
     // Formattage spécifique pour récupérer le résultat avec l'action Github
@@ -112,4 +100,6 @@ function sleep(ms) {
 
     console.log("Terminé")
   }
-})()
+}
+
+main()

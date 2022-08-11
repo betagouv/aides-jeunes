@@ -25,6 +25,7 @@ export default function (api) {
 
   route.get("/", simulationController.show)
   route.get("/openfisca-response", simulationController.openfiscaResponse)
+  route.get("/results", simulationController.results)
 
   route.get(
     "/redirect",
@@ -62,11 +63,11 @@ export default function (api) {
     teleservices.verifyRequest,
     teleservices.exportRepresentation
   )
-  api.use("/simulation/:situationId", route)
+  api.use("/simulation/:simulationId", route)
 
   /*
    ** Param injection
    */
-  api.param("situationId", simulationController.simulation)
+  api.param("simulationId", simulationController.simulation)
   api.param("signedPayload", teleservices.decodePayload)
 }

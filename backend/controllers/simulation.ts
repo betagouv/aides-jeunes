@@ -8,21 +8,23 @@ import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
 
-function getSimulationOnRequest(req, simulation) {
+function setSimulationOnRequest(req, simulation) {
   req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
 
-function simulation(req, res, next, simulationId) {
-  if (simulationId?._id) {
-    getSimulationOnRequest(req, simulationId)
+function simulation(req, res, next, simulationOrSimulationId) {
+  if (simulationOrSimulationId?._id) {
+    const simulation = simulationOrSimulationId
+    setSimulationOnRequest(req, simulation)
     return next()
   }
 
+  const simulationId = simulationOrSimulationId
   Simulation.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)
-    getSimulationOnRequest(req, simulation)
+    setSimulationOnRequest(req, simulation)
     next()
   })
 }
@@ -104,6 +106,21 @@ function openfiscaResponse(req, res, next) {
   })
 }
 
+function results(req, res, next) {
+  return req.simulation
+    .compute()
+    .then((results) => {
+      return res.send(Object.assign(results, { _id: req.simulation._id }))
+    })
+    .catch((err) => {
+      return next(
+        Object.assign(err?.response?.data || err, {
+          _id: req.simulation._id,
+        })
+      )
+    })
+}
+
 function openfiscaTrace(req, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
@@ -166,4 +183,5 @@ export default {
   openfiscaRequest,
   openfiscaTest,
   redirect,
+  results,
 }

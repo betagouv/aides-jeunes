@@ -100,7 +100,7 @@ SimulationSchema.method("getSituation", function () {
   return generateSituation(this)
 })
 
-SimulationSchema.method("compute", function () {
+SimulationSchema.method("compute", function (showPrivate) {
   const situation = this.getSituation()
   const id = this._id
   return new Promise(function (resolve, reject) {
@@ -109,7 +109,12 @@ SimulationSchema.method("compute", function () {
         return reject(err)
       }
 
-      const aides = computeBenefits(situation, id, openfiscaResponse, false)
+      const aides = computeBenefits(
+        situation,
+        id,
+        openfiscaResponse,
+        showPrivate
+      )
       resolve(aides)
     })
   })

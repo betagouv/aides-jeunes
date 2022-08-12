@@ -43,9 +43,9 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
-  const stats = await axios.get(
-    "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics"
-  )
+  const stats = await axios
+    .get("https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics")
+    .then((r) => r.data)
   const statTotal = stats.map((v) => {
     const p = v.events?.showDetails || {}
     const totals = Object.keys(p)
@@ -97,40 +97,50 @@ async function getBenefitData() {
         : undefined,
     }
   })
-  return data.sort((a, b) => -(a.priority - b.priority))
+  return data.sort((a, b) => +(a.priority - b.priority))
 }
 
-function listItem(data) {
+function githubRowFormat(data) {
   const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
   const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
   return [details, ...errors].join("\n")
 }
 
-function logGitHubIssueCommentText(benefitWithErrors) {
-  const message = `Certaines (${
+function basicFormat(data) {
+  const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
+  const details = `- ${data.label} / ${data.institution} (${data.priority} affichages)`
+  return [details, ...errors].join("\n")
+}
+
+function buildMessage(benefitWithErrors, rowFormat) {
+  return `Certaines (${
     benefitWithErrors.length
   }) aides référencées ont des liens dysfonctionnels :
 
-${benefitWithErrors.reverse().map(listItem).join("\n")}`
-  const format = (msg) => msg.trim()
-  console.log(`::set-output name=comment::${format(message)}`)
+${benefitWithErrors.reverse().map(rowFormat).join("\n")}`
+}
+
+function buildGitHubIssueCommentText(benefitWithErrors) {
+  return `::set-output name=comment::${buildMessage(
+    benefitWithErrors,
+    githubRowFormat
+  )}`
 }
 
 async function main() {
   const benefitData = await getBenefitData()
   const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  const detectedErrors = results.filter((i) => i.errors.length)
+  const detectedErrors = results
+    .filter((i) => i.errors.length)
+    .sort((a, b) => -(a.priority - b.priority))
   if (detectedErrors.length > 0) {
     if (process.argv.slice(2).includes("--ci")) {
-      logGitHubIssueCommentText(detectedErrors)
+      console.log(buildGitHubIssueCommentText(detectedErrors))
     } else if (detectedErrors) {
-      console.log(
-        `Liens invalides : ${detectedErrors.map(({ link }) => `\n- ${link}`)}`
-      )
+      console.log(buildMessage(detectedErrors, basicFormat))
     }
-
-    console.log("Terminé")
   }
+  console.log("Terminé")
 }
 
 main()

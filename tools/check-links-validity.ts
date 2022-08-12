@@ -101,7 +101,7 @@ async function getBenefitData() {
 }
 
 function githubRowFormat(data) {
-  const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
+  const errors = data.errors.map((e) => ` - ${e.status} [${e.type}](${e.link})`)
   const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
   return [details, ...errors].join("\n")
 }
@@ -117,7 +117,7 @@ function buildMessage(benefitWithErrors, rowFormat) {
     benefitWithErrors.length
   }) aides référencées ont des liens dysfonctionnels :
 
-${benefitWithErrors.reverse().map(rowFormat).join("\n")}`
+${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
@@ -125,6 +125,8 @@ function buildGitHubIssueCommentText(benefitWithErrors) {
     benefitWithErrors,
     githubRowFormat
   )}`
+    .split("\n")
+    .join("<br />")
 }
 
 async function main() {

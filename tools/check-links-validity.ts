@@ -43,8 +43,8 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
-  const stats = await Promise.resolve(
-    JSON.parse(fs.readFileSync("./statistics", "utf-8"))
+  const stats = await axios.get(
+    "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics"
   )
   const statTotal = stats.map((v) => {
     const p = v.events?.showDetails || {}
@@ -100,46 +100,26 @@ async function getBenefitData() {
   return data.sort((a, b) => -(a.priority - b.priority))
 }
 
-function rowText(data) {
-  const errors = data.errors.map((e) => `${e.status} ${e.type} ${e.link}`)
-  const details = `${data.label} - ${data.institution}<br />${errors.join(
-    "<br />"
-  )}`
-  return `|${details}|${data.priority}|[✎](${data.editLink})|`
+function listItem(data) {
+  const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
+  const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
+  return [details, ...errors].join("\n")
 }
 
-// Formattage spécifique pour récupérer le résultat avec l'action Github
 function logGitHubIssueCommentText(benefitWithErrors) {
-  const message = `
-
-  Certaines (${
+  const message = `Certaines (${
     benefitWithErrors.length
   }) aides référencées ont des liens dysfonctionnels :
 
-  (De la moins prioritaire à la plus pr)
-
-  |Aide|Priorité|✎|
-  |----|--------|-|
-  ${benefitWithErrors.reverse().map(rowText).join("\n")}`
-
-  const format = (msg) =>
-    msg
-      .trim()
-      .split("\n")
-      .map((line) => line.trim())
-      .join("<br />")
+${benefitWithErrors.reverse().map(listItem).join("\n")}`
+  const format = (msg) => msg.trim()
   console.log(`::set-output name=comment::${format(message)}`)
 }
 
 async function main() {
   const benefitData = await getBenefitData()
-  //const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  //const detectedErrors = results.filter((i) => i.errors.length)
-  const detectedErrors = JSON.parse(
-    fs.readFileSync("link-tests_2022-08-12T16-46-59.071Z.json", "utf-8")
-  )
-  /*fs.writeFileSync(`link-tests_${(new Date()).toISOString().replace(/:/g, '-')}.json`,
-    JSON.stringify(detectedErrors, null, 2))*/
+  const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
+  const detectedErrors = results.filter((i) => i.errors.length)
   if (detectedErrors.length > 0) {
     if (process.argv.slice(2).includes("--ci")) {
       logGitHubIssueCommentText(detectedErrors)

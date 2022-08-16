@@ -44,10 +44,10 @@ export default defineConfig(async ({ command, mode }) => {
     },
     plugins: [
       vue(),
-      legacy({
-        targets: ["defaults", "not IE 11"],
-      }),
       nodePolyfills(),
+      // legacy({
+      //   targets: ["defaults", "not IE 11"],
+      // }),
     ],
     resolve: {
       preferBuiltins: false,

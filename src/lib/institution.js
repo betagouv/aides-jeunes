@@ -1,7 +1,7 @@
 import BenefitsCategories from "@/lib/benefits-categories"
 //import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-//import jamstackLoader from "jamstack-loader"
-//const jamstack = jamstackLoader.get("../../contribuer/public/admin/config.yml")
+//import jamstackLoader from "../../node_modules/jamstack-loader/src/index.js"
+//const jamstackD = jamstackLoader.get("../../contribuer/public/admin/config.yml")
 
 const jamstack = {
   institutions: {
@@ -16,10 +16,11 @@ const jamstack = {
   all: [],
 }
 
-import data from "@data/index.js"
+//import data from "@data/index.js"
+import data from "@data/all.js"
 
 const Institution = {
-  benefits: data.generate(jamstack),
+  benefits: [], //data, //data.generate(jamstack),
   mockResults(sublist) {
     let filterSublist
     if (sublist) {

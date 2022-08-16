@@ -50,7 +50,7 @@ function mock({ app }) {
     res.send(cache[req.params.id])
   })
 
-  app.get("/api/simulation/:id/openfisca-response", function (req, res, next) {
+  app.get("/api/simulation/:id/results", function (req, res, next) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)

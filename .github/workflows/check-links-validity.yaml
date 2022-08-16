@@ -20,7 +20,7 @@ jobs:
       - if: steps.invalid_links.outputs.comment
         uses: ./.github/actions/reopen-issue-with-comment
         with:
-          issue-number: 2945
+          issue number: 2945
           comment: ${{ steps.invalid_links.outputs.comment }}
       - if: steps.invalid_links.outputs.comment
         name: Send dead links info message

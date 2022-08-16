@@ -8,7 +8,7 @@ async function checkURL(benefit) {
   const errors = results.filter((r) => !r.ok)
   console.log(
     `${benefit.label} (${benefit.institution})\n${results
-      .map((e) => (e.ok ? `✅ ${e.type}` : `❌ ${e.type} ${e.link}`))
+      .map((e) => (e.ok ? `- ✅ ${e.type}` : `- ❌ ${e.type} ${e.link}`))
       .join("\n")}`
   )
 
@@ -75,17 +75,25 @@ async function getBenefitData() {
   const priorityMap = await getPriorityStats()
 
   const data = Benefits.all.map((benefit) => {
-    const links = ["link", "instructions", "form", "teleservice"]
+    const linkMap = ["link", "instructions", "form", "teleservice"]
       .filter(
         (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"
       )
-      .map((linkType) => {
+      .reduce((a, linkType) => {
         const link = benefit[linkType]
-        return {
-          link,
-          type: linkType,
-        }
-      })
+        a[link] = a[link] || { link, types: [] }
+        a[link].types.push(linkType)
+
+        return a
+      }, {})
+
+    const links = Object.values(linkMap).map((v: any) => {
+      return {
+        link: v.link,
+        type: v.types.join(" / "),
+      }
+    })
+
     return {
       id: benefit.id,
       label: benefit.label,
@@ -101,7 +109,9 @@ async function getBenefitData() {
 }
 
 function githubRowFormat(data) {
-  const errors = data.errors.map((e) => ` - ${e.status} [${e.type}](${e.link})`)
+  const errors = data.errors.map(
+    (e) => ` - [${e.type}](${e.link}) (${e.status})`
+  )
   const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
   return [details, ...errors].join("\n")
 }
@@ -113,9 +123,9 @@ function basicFormat(data) {
 }
 
 function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines (${
+  return `Certaines aides référencées (${
     benefitWithErrors.length
-  }) aides référencées ont des liens dysfonctionnels :
+  }) ont des liens dysfonctionnels :
 
 ${benefitWithErrors.map(rowFormat).join("\n")}`
 }

@@ -1,23 +1,10 @@
 label: aide au BAFA pour une session d’approfondissement ou de qualification
 institution: caf_loire
-description: >
-  L'aide au BAFA pour une session d'approfondissement ou de qualification est
-  une aide locale mise à disposition par la CAF de la Loire pour vous aider à
-  financer votre session en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
-    d’animateur de centre de vacances et de loisirs (BAFA).
-link: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
-teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
-instructions: https://www.caf.fr/sites/default/files/caf/428/Documents/Rias%202020/Caf%20Loire%20-%20Allocataires%20-%20Aide%20Bafa%202020.pdf
+description: L'aide au BAFA pour une session d'approfondissement ou de
+  qualification est une aide locale mise à disposition par la CAF de la Loire
+  pour vous aider à financer votre session en complément de l'aide nationale
+  apportée par la CAF.
 prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 250
-interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -26,3 +13,15 @@ conditions_generales:
     values:
       - "42"
 profils: []
+conditions:
+  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+    d’animateur de centre de vacances et de loisirs (BAFA).
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 300
+link: https://caf.fr/allocataires/caf-de-la-loire/offre-de-service/vie-personnelle/l-aide-au-bafa
+teleservice: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire
+instructions: https://caf.fr/allocataires/caf-de-la-loire/offre-de-service/vie-personnelle/l-aide-au-bafa

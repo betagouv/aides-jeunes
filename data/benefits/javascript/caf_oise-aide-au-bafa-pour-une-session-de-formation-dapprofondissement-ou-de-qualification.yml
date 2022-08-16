@@ -1,0 +1,23 @@
+label: Aide au BAFA pour une session de formation d'approfondissement ou de
+  qualification
+institution: caf_oise
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la Caf de l'Oise pour vous aider à financer votre session
+  d’approfondissement ou de qualification en complément de l'aide nationale
+  apportée par la CAF.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "60"
+  - type: age
+    operator: <=
+    value: 17
+profils: []
+interestFlag: _interetBafa
+type: bool
+unit: €
+periodicite: autre
+link: https://caf.fr/allocataires/caf-de-l-oise/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafa-et-obtenir-une-aide-financiere
+form: https://caf.fr/sites/default/files/medias/608/Imprim%C3%A9s%20Afi/imprime_bafa_approf.pdf
+instructions: https://caf.fr/allocataires/caf-de-l-oise/offre-de-service/vie-professionnelle/je-souhaite-passer-mon-bafa-et-obtenir-une-aide-financiere

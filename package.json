@@ -14,6 +14,7 @@
     "clean:dist-server": "rm -fR dist-server",
     "build:analyze": "npm run build -- --env.BUNDLEANALYZE",
     "build:dev": "webpack --mode=development",
+    "build:collections": "node ./dist-server/backend/lib/collections",
     "build:netlify": "npm run build && cp netlify_redirects dist/_redirects",
     "build:iframes": "webpack --config iframes.config.js",
     "build:front": "vue-cli-service build --no-clean",

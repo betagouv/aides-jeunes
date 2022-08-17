@@ -83,11 +83,11 @@ for (const condition in CONDITION_STATEGY) {
 }
 
 export default {
-  isIndividuValid,
-  getDemandeur,
   getConjoint,
+  getDemandeur,
   getEnfants,
-  getPeriods,
   getIndividusSortedParentsFirst,
+  getPeriods,
+  isIndividuValid,
   requestedVariables,
 }

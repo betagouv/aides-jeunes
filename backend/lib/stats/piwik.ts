@@ -5,8 +5,8 @@ import axios from "axios"
 function formatPiwik(data) {
   const metrics = [
     {
-      source: "nb_visits",
       name: "visit",
+      source: "nb_visits",
     },
   ]
   const dates = Object.keys(data)
@@ -18,8 +18,8 @@ function formatPiwik(data) {
       }
     })
     return {
-      metric: metric.name,
       datapoints: datapoints,
+      metric: metric.name,
     }
   })
 }
@@ -27,17 +27,17 @@ function formatPiwik(data) {
 function getUsageData(fromDate, toDate) {
   return axios
     .request({
-      url: "https://stats.data.gouv.fr/index.php",
       params: {
-        module: "API",
-        method: "API.get",
-        format: "JSON",
-        idSite: config.matomo.id,
-        period: "day",
         date: `${fromDate.toISOString().slice(0, 10)},${toDate
           .toISOString()
           .slice(0, 10)}`,
+        format: "JSON",
+        idSite: config.matomo.id,
+        method: "API.get",
+        module: "API",
+        period: "day",
       },
+      url: "https://stats.data.gouv.fr/index.php",
     })
     .then((response) => response.data)
     .then(formatPiwik)

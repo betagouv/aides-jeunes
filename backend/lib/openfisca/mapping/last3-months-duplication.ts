@@ -19,7 +19,7 @@ function determinePropsToReplicate(entityTypeName, entityDefinition) {
 
 const types = [
   "famille",
-  { type: "foyerFiscal", plural: "foyers_fiscaux" },
+  { plural: "foyers_fiscaux", type: "foyerFiscal" },
   "individu",
   "menage",
 ]

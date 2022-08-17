@@ -7,21 +7,21 @@ const jamstack = get(
 )
 
 const typesMap = {
-  select: "string",
+  description: "string",
+  hidden: "hidden",
   image: "string",
   institution: "string",
-  description: "string",
   list: "string",
-  hidden: "hidden",
+  select: "string",
 }
 
 function generateSchema(fields) {
   const schema = {}
   for (const field of fields) {
     const line = {
-      type: typesMap[field.widget] ? typesMap[field.widget] : field.widget,
-      required: field.required === false ? false : true,
       allowedValues: undefined,
+      required: field.required === false ? false : true,
+      type: typesMap[field.widget] ? typesMap[field.widget] : field.widget,
     }
     if (field.fields) {
       schema[field.name] = generateSchema(field.fields)
@@ -56,21 +56,21 @@ function errorLogger(
 ) {
   if (expectedValues) {
     return {
-      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
       message: `${field} value is ${value}; either [${expectedValues.join(
         ", "
       )}] expected in schema`,
+      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
     }
   }
   if (value && expectedType) {
     return {
-      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
       message: `${field} is of type ${typeof value}, ${expectedType} expected in schema`,
+      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
     }
   } else {
     return {
-      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
       message: `${field} is not present in schema`,
+      path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
     }
   }
 }
@@ -153,8 +153,8 @@ function compareSchema(data, schema, output, depth = []) {
       !(schema instanceof Array)
     ) {
       output.push({
-        path: `${depth.join(".")}${depth.length ? "." : ""}${key}`,
         message: `${key} field is missing`,
+        path: `${depth.join(".")}${depth.length ? "." : ""}${key}`,
       })
     }
   }

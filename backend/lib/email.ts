@@ -13,15 +13,15 @@ const parser = new ArgumentParser({
 })
 
 const subparsers = parser.add_subparsers({
-  title: "Commandes",
   dest: "command",
+  title: "Commandes",
 })
 
 const send = subparsers.add_parser("send")
 
 const send_types = send.add_subparsers({
-  title: "Type",
   dest: "type",
+  title: "Type",
 })
 
 const send_initial = send_types.add_parser("initial")
@@ -83,11 +83,11 @@ function processSend(args) {
     }
     const limit = parseInt(args.multiple) || 1
     Followup.find({
-      "surveys.type": { $ne: "initial" },
       sentAt: {
         $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
       },
       surveyOptin: true,
+      "surveys.type": { $ne: "initial" },
     })
       .sort({ createdAt: 1 })
       .limit(limit)

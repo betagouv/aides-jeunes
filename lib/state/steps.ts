@@ -25,7 +25,7 @@ function ComplexStep(
   this: ComplexStepGeneratorLayout,
   { route, variables, chapter, entity, variable, id }: ComplexStepLayout
 ) {
-  Step.call(this, { key: route, chapter: chapter, entity, variable, id })
+  Step.call(this, { chapter: chapter, entity, id, key: route, variable })
   this.path = `/simulation/${route}`
   this.substeps = variables ? variables.map((v) => new Step(v)) : []
 }

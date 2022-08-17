@@ -22,8 +22,8 @@ function updateLoyer(answers) {
       entityName: "menage",
       fieldName: "loyer",
       value: {
-        loyer: answers[indexOfLoyer]?.value,
         charges_locatives: answers[indexOfChargesLocatives]?.value || 0,
+        loyer: answers[indexOfLoyer]?.value,
       },
     }
 

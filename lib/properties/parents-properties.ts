@@ -1,9 +1,10 @@
 import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
 
 export default {
+  _en_france: new BooleanProperty({
+    question: "Vos parents habitent-ils en France ?",
+  }),
   _situation: new EnumProperty({
-    question: "Quelle est la situation de vos parents ?",
-    questionType: "enum",
     items: [
       {
         label: "En couple",
@@ -30,19 +31,18 @@ export default {
         value: "sans_autorite",
       },
     ],
-  }),
-  _en_france: new BooleanProperty({
-    question: "Vos parents habitent-ils en France ?",
+    question: "Quelle est la situation de vos parents ?",
+    questionType: "enum",
   }),
 
   nbptr: new NumberProperty({
+    moreInfo:
+      "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
+    optional: true,
     question:
       "Quel est le nombre de parts sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
-    optional: true,
     type: "count",
-    moreInfo:
-      "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
   }),
 
   rfr: new NumberProperty({

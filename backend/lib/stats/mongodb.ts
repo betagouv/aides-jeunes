@@ -50,13 +50,13 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
 function formatMongo(data) {
   return [
     {
-      metric: "simulation",
       datapoints: data.map(function (dateTuple) {
         return {
           date: dateTuple._id,
           value: dateTuple.value,
         }
       }),
+      metric: "simulation",
     },
   ]
 }
@@ -67,10 +67,10 @@ function extractSurveySummary(db) {
     .mapReduce(
       function () {
         const m = {
+          already: 4,
           asked: 1,
           failed: 2,
           nothing: 3,
-          already: 4,
         }
         if (this.surveys[0].answers.length) {
           this.surveys[0].answers.sort(function (a, b) {
@@ -83,11 +83,11 @@ function extractSurveySummary(db) {
         return values.reduce((sum, number: number) => sum + number)
       },
       {
-        query: {
-          "surveys.type": "initial",
-          "surveys.repliedAt": { $exists: true },
-        },
         out: { inline: 1 },
+        query: {
+          "surveys.repliedAt": { $exists: true },
+          "surveys.type": "initial",
+        },
       }
     )
     .then((r) => r.results || r)
@@ -121,11 +121,11 @@ function extractSurveyDetails(db) {
         return values.reduce((sum, number: number) => sum + number)
       },
       {
-        query: {
-          "surveys.type": "initial",
-          "surveys.repliedAt": { $exists: true },
-        },
         out: { inline: 1 },
+        query: {
+          "surveys.repliedAt": { $exists: true },
+          "surveys.type": "initial",
+        },
       }
     )
     .then((r) => r.results || r)
@@ -161,8 +161,8 @@ function manageMissingDBOrCollection(error) {
     return {
       dailySituationCount: [],
       survey: {
-        summary: [],
         details: [],
+        summary: [],
       },
     }
   } else {
@@ -187,8 +187,8 @@ function getStats(fromDate, toDate) {
               return {
                 dailySituationCount: dailies,
                 survey: {
-                  summary,
                   details,
+                  summary,
                 },
               }
             })
@@ -200,4 +200,4 @@ function getStats(fromDate, toDate) {
     .finally(closeClient)
 }
 
-export default { connect, closeClient, getStats }
+export default { closeClient, connect, getStats }

@@ -1,23 +1,23 @@
 import dayjs from "dayjs"
 
 const Situation = {
-  getDemandeur: function (situation) {
-    return situation.demandeur
+  aCharge: function (situation) {
+    let demandeur = situation.demandeur
+    let period =
+      situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
+    return demandeur?.enfant_a_charge?.[period]
   },
 
   getConjoint: function (situation) {
     return situation.conjoint
   },
 
-  getEnfants: function (situation) {
-    return situation.enfants
+  getDemandeur: function (situation) {
+    return situation.demandeur
   },
 
-  aCharge: function (situation) {
-    let demandeur = situation.demandeur
-    let period =
-      situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
-    return demandeur?.enfant_a_charge?.[period]
+  getEnfants: function (situation) {
+    return situation.enfants
   },
 
   hasEnfantScolarise: function (situation) {

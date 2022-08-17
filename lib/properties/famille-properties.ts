@@ -3,23 +3,38 @@ import { yearsAgo } from "../utils.js"
 
 export default {
   bourse_criteres_sociaux_nombre_enfants_a_charge: new NumberProperty({
+    min: 1,
     question:
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",
     questionType: "number",
-    min: 1,
     type: "count",
   }),
 
   bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur:
     new NumberProperty({
+      min: 0,
       question: "Et combien (vous y compris) font des études supérieures ?",
       questionType: "number",
-      min: 0,
       type: "count",
     }),
 
   bourse_lycee: new BooleanProperty({
     question: "Actuellement bénéficiez-vous d'une bourse du lycée ?",
+  }),
+
+  en_couple: new EnumProperty({
+    items: [
+      {
+        label: "Je vis seul·e",
+        value: false,
+      },
+      {
+        label: "Je vis en couple",
+        value: true,
+      },
+    ],
+    question: "Vivez-vous seul·e ou en couple ?",
+    questionType: "enum",
   }),
 
   parisien: new BooleanProperty({
@@ -41,20 +56,5 @@ export default {
 
   rsa_isolement_recent: new BooleanProperty({
     question: "Vivez-vous seul·e depuis plus de 18 mois ?",
-  }),
-
-  en_couple: new EnumProperty({
-    question: "Vivez-vous seul·e ou en couple ?",
-    questionType: "enum",
-    items: [
-      {
-        label: "Je vis seul·e",
-        value: false,
-      },
-      {
-        label: "Je vis en couple",
-        value: true,
-      },
-    ],
   }),
 }

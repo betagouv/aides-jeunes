@@ -2,12 +2,12 @@ import { getAnswer } from "./answers.js"
 
 function getStatutOccupationLogement(logement) {
   const statusOccupationMap = {
-    proprietaireprimoaccedant: "primo_accedant",
-    proprietaire: "proprietaire",
-    locatairenonmeuble: "locataire_vide",
-    locatairemeublehotel: "locataire_meuble",
     heberge: "loge_gratuitement",
     locatairefoyer: "locataire_foyer",
+    locatairemeublehotel: "locataire_meuble",
+    locatairenonmeuble: "locataire_vide",
+    proprietaire: "proprietaire",
+    proprietaireprimoaccedant: "primo_accedant",
     sansDomicile: "sans_domicile",
   }
   let statusOccupationId = logement.type
@@ -21,25 +21,25 @@ function getStatutOccupationLogement(logement) {
 
 function getLogementVariables(statusOccupationId) {
   const baseLogementMap = {
-    primo_accedant: { type: "proprietaire", primoAccedant: true },
-    proprietaire: { type: "proprietaire", primoAccedant: false },
-    locataire_vide: { type: "locataire", locationType: "nonmeuble" },
-    locataire_meuble: { type: "locataire", locationType: "meublehotel" },
+    locataire_foyer: { locationType: "foyer", type: "locataire" },
+    locataire_meuble: { locationType: "meublehotel", type: "locataire" },
+    locataire_vide: { locationType: "nonmeuble", type: "locataire" },
     loge_gratuitement: { type: "heberge" },
-    locataire_foyer: { type: "locataire", locationType: "foyer" },
+    primo_accedant: { primoAccedant: true, type: "proprietaire" },
+    proprietaire: { primoAccedant: false, type: "proprietaire" },
     sans_domicile: { type: "sansDomicile" },
   }
   const base = statusOccupationId && baseLogementMap[statusOccupationId]
-  return { type: null, primoAccedant: null, locationType: null, ...base }
+  return { locationType: null, primoAccedant: null, type: null, ...base }
 }
 
 export const STATUT_OCCUPATION_LABEL = {
+  locataire_foyer: "Locataire foyer",
+  locataire_meuble: "Locataire de meublé ou hotel",
+  locataire_vide: "Locataire",
+  loge_gratuitement: "Logé gratuitement",
   primo_accedant: "Propriétaire primo-accédant",
   proprietaire: "Propriétaire",
-  locataire_vide: "Locataire",
-  locataire_meuble: "Locataire de meublé ou hotel",
-  loge_gratuitement: "Logé gratuitement",
-  locataire_foyer: "Locataire foyer",
   sans_domicile: "Sans domicile stable",
 }
 
@@ -79,23 +79,23 @@ export function getLoyerData(answers) {
     } ?`
     return {
       captureCharges,
-      loyerQuestion: {
-        label: loyerLabel,
-        selectedValue: loyer.loyer,
-        hint: "Sans déduire vos aides au logement si vous en avez.",
-      },
       chargesQuestion: {
+        hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
         label: "Quel est le montant de vos charges locatives ?",
         selectedValue: loyer.charges_locatives,
-        hint: "Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
+      },
+      loyerQuestion: {
+        hint: "Sans déduire vos aides au logement si vous en avez.",
+        label: loyerLabel,
+        selectedValue: loyer.loyer,
       },
     }
   } else {
     return {
       captureCharges,
       loyerQuestion: {
-        label: "Quelles sont vos mensualités ?",
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
+        label: "Quelles sont vos mensualités ?",
         selectedValue: loyer.loyer,
       },
     }
@@ -103,13 +103,13 @@ export function getLoyerData(answers) {
 }
 
 const Logement = {
-  getLogementVariables,
-  getStatutOccupationLogement,
-  getStatutOccupationLabel,
-  isOwner,
-  captureCharges,
-  getLoyerData,
   STATUT_OCCUPATION_LABEL,
+  captureCharges,
+  getLogementVariables,
+  getLoyerData,
+  getStatutOccupationLabel,
+  getStatutOccupationLogement,
+  isOwner,
 }
 
 export default Logement

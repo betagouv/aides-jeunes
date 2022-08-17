@@ -7,9 +7,9 @@ function OpenFiscaResponse(simulation) {
 OpenFiscaResponse.prototype.toInternal = function () {
   return [
     {
-      label: "Votre simulation",
       formattedValue:
         "l’intégralité des informations saisies et des résultats obtenus.",
+      label: "Votre simulation",
     },
   ]
 }

@@ -20,6 +20,38 @@ export const getIndividuByStep = (step, component) => {
 }
 
 export const SIMPLE_STEPS = {
+  _bourseCriteresSociauxCommuneDomicileFamilial() {
+    const answer = getAnswer(
+      this.store.simulation.answers.all,
+      "individu",
+      "_bourseCriteresSociauxCommuneDomicileFamilial",
+      "demandeur"
+    )
+    return [
+      {
+        label: "Quel est le code postal de la commune de vos parents ?",
+        value: displayDepcomValue(answer._codePostal, answer._nomCommune),
+      },
+    ]
+  },
+  depcom() {
+    const answer = getAnswer(
+      this.store.simulation.answers.all,
+      "menage",
+      "depcom",
+      undefined
+    )
+
+    return [
+      {
+        label: "Quel est votre code postal ?",
+        value: answer
+          ? displayDepcomValue(answer._codePostal, answer._nomCommune)
+          : undefined,
+      },
+    ]
+  },
+
   ressources(step) {
     const answer = getStepAnswer(this.store.simulation.answers.all, step)
     if (!answer) {
@@ -42,46 +74,14 @@ export const SIMPLE_STEPS = {
     )
     return [
       {
-        rowClass: "row-space",
+        hideEdit: true,
         label: capitalize(Individu.label(individu, "nom")),
         labelClass: "individu-title",
-        hideEdit: true,
+        rowClass: "row-space",
       },
       {
         label: `Quel type de revenu ${Individu.label(individu, "percevoir")} ?`,
         value,
-      },
-    ]
-  },
-  depcom() {
-    const answer = getAnswer(
-      this.store.simulation.answers.all,
-      "menage",
-      "depcom",
-      undefined
-    )
-
-    return [
-      {
-        label: "Quel est votre code postal ?",
-        value: answer
-          ? displayDepcomValue(answer._codePostal, answer._nomCommune)
-          : undefined,
-      },
-    ]
-  },
-
-  _bourseCriteresSociauxCommuneDomicileFamilial() {
-    const answer = getAnswer(
-      this.store.simulation.answers.all,
-      "individu",
-      "_bourseCriteresSociauxCommuneDomicileFamilial",
-      "demandeur"
-    )
-    return [
-      {
-        label: "Quel est le code postal de la commune de vos parents ?",
-        value: displayDepcomValue(answer._codePostal, answer._nomCommune),
       },
     ]
   },
@@ -104,10 +104,6 @@ export const SIMPLE_STEPS = {
 
 export const COMPLEX_STEPS = {
   enfants: {
-    matcher(step) {
-      const answer = getAnswer(this.store.simulation.answers.all, "enfants")
-      return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
-    },
     fn() {
       const answer = getAnswer(this.store.simulation.answers.all, "enfants")
       return [
@@ -117,12 +113,13 @@ export const COMPLEX_STEPS = {
         },
       ]
     },
+    matcher(step) {
+      const answer = getAnswer(this.store.simulation.answers.all, "enfants")
+      return step.key.match(/\/simulation\/enfants$/) && answer !== undefined
+    },
   },
 
   loyer: {
-    matcher(step) {
-      return step.key.match(/\/loyer$/)
-    },
     fn() {
       const loyerData = Logement.getLoyerData(this.store.simulation.answers.all)
       return [
@@ -140,12 +137,12 @@ export const COMPLEX_STEPS = {
         },
       ].filter((item) => item)
     },
+    matcher(step) {
+      return step.key.match(/\/loyer$/)
+    },
   },
 
   "ressources/montants": {
-    matcher(step) {
-      return step.key.match(/ressources\/montants\/(\w)*/)
-    },
     fn(step) {
       const answer = (
         getAnswer(
@@ -170,8 +167,8 @@ export const COMPLEX_STEPS = {
 
         result = [
           {
-            labelClass: "subtitle",
             label: category && capitalize(category.label),
+            labelClass: "subtitle",
           },
           ...answer.map((ressource) => {
             return {
@@ -192,6 +189,9 @@ export const COMPLEX_STEPS = {
       }
 
       return result
+    },
+    matcher(step) {
+      return step.key.match(/ressources\/montants\/(\w)*/)
     },
   },
 }

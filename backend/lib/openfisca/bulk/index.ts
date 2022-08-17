@@ -2,9 +2,9 @@ import openfisca from "../index.js"
 import common from "../mapping/common.js"
 
 const entityGroups = {
-  individus: [],
   familles: ["parents", "enfants"],
   foyers_fiscaux: ["declarants", "personnes_a_charge"],
+  individus: [],
   menages: ["personne_de_reference", "conjoint", "enfants"],
 }
 
@@ -104,10 +104,10 @@ function extractResults({ source, response }, benefitIds) {
 }
 
 export default {
+  append,
   base,
   build,
   extractResults,
   init,
   prefix,
-  append,
 }

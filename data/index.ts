@@ -6,18 +6,18 @@ import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 function transformInstitutions(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
-      slug: data.slug,
-      id: `${data.type}_${data.code_insee || data.code_siren || data.slug}`,
-      code_siren: data.code_siren,
-      code_insee: data.code_insee,
-      label: data.name,
-      imgSrc: data.imgSrc,
       benefitsIds: [],
-      type: data.type,
-      top: data.top,
+      code_insee: data.code_insee,
+      code_siren: data.code_siren,
+      etablissements: data.etablissements,
+      id: `${data.type}_${data.code_insee || data.code_siren || data.slug}`,
+      imgSrc: data.imgSrc,
+      label: data.name,
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
-      etablissements: data.etablissements,
+      slug: data.slug,
+      top: data.top,
+      type: data.type,
     }
     result[data.slug] = item
     return result
@@ -85,8 +85,8 @@ export function generate(
 
   const result = {
     all: benefits,
-    institutionsMap: institutions,
     benefitsMap: benefitsMap,
+    institutionsMap: institutions,
   }
 
   return result

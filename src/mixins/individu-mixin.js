@@ -19,15 +19,12 @@ export const createIndividuMixin = (props) => {
         error: false,
         fieldName,
         id,
-        value,
-        role,
         optional,
+        role,
+        value,
       }
     },
     methods: {
-      getLabel(type) {
-        return Individu.label(this.individu, type)
-      },
       canSubmit(submit) {
         const hasError =
           !this.optional && (this.value === undefined || this.value === "")
@@ -36,12 +33,15 @@ export const createIndividuMixin = (props) => {
         }
         return !hasError
       },
+      getLabel(type) {
+        return Individu.label(this.individu, type)
+      },
       onSubmit() {
         if (this.canSubmit(true)) {
           this.store.answer({
-            id: this.$route.params.id,
             entityName: "individu",
             fieldName: this.fieldName,
+            id: this.$route.params.id,
             value: this.value,
           })
           this.$push()

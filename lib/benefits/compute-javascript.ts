@@ -21,6 +21,13 @@ const PROFILE_STATEGY = {
   chomeur: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.activite === "chomeur"
   },
+  enseignement_superieur: ({
+    situation,
+  }: {
+    situation: situationsLayout
+  }): boolean => {
+    return situation.demandeur?.scolarite === "enseignement_superieur"
+  },
   etudiant: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.activite === "etudiant"
   },
@@ -29,13 +36,6 @@ const PROFILE_STATEGY = {
   },
   independant: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.activite === "independant"
-  },
-  enseignement_superieur: ({
-    situation,
-  }: {
-    situation: situationsLayout
-  }): boolean => {
-    return situation.demandeur?.scolarite === "enseignement_superieur"
   },
   lyceen: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.scolarite === "lycee"
@@ -63,17 +63,17 @@ const PROFILE_STATEGY = {
 }
 
 const OPERATOR = {
-  ">": (a: number, b: number) => a > b,
-  ">=": (a: number, b: number) => a >= b,
-  "=": (a: number, b: number) => a === b,
   "<": (a: number, b: number) => a < b,
   "<=": (a: number, b: number) => a <= b,
+  "=": (a: number, b: number) => a === b,
+  ">": (a: number, b: number) => a > b,
+  ">=": (a: number, b: number) => a >= b,
 }
 
 const COMMUNE_PARAMETERS = {
-  regions: "_region",
-  departements: "_departement",
   communes: "depcom",
+  departements: "_departement",
+  regions: "_region",
 }
 
 export function testGeographicalEligibility(
@@ -94,20 +94,49 @@ export function testGeographicalEligibility(
 }
 
 export const CONDITION_STATEGY: ConditionsLayout = {
+  age: {
+    test: (condition, { age }) => {
+      return OPERATOR[condition.operator](age, condition.value)
+    },
+  },
+  annee_etude: {
+    test: (condition, { situation }: { situation: situationsLayout }) => {
+      return condition.values.includes(situation.demandeur?.annee_etude)
+    },
+  },
+  beneficiaire_rsa: {
+    extra: [
+      {
+        entity: "familles",
+        id: "rsa",
+        openfiscaPeriod: "thisMonth",
+        type: "float",
+      },
+    ],
+    test: (_, data) => {
+      return testRSARecipient(data)
+    },
+  },
   boursier: {
+    extra: [
+      {
+        entity: "individus",
+        id: "boursier",
+        openfiscaPeriod: "thisMonth",
+        type: "bool",
+      },
+    ],
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[
         periods.thisMonth.id
       ]
     },
-    extra: [
-      {
-        id: "boursier",
-        entity: "individus",
-        type: "bool",
-        openfiscaPeriod: "thisMonth",
-      },
-    ],
+  },
+  communes: {
+    test: testGeographicalEligibility,
+  },
+  departements: {
+    test: testGeographicalEligibility,
   },
   formation_sanitaire_social: {
     test: (_, { situation }: { situation: situationsLayout }) => {
@@ -125,23 +154,28 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       )
     },
   },
-  age: {
-    test: (condition, { age }) => {
-      return OPERATOR[condition.operator](age, condition.value)
-    },
-  },
-  regions: {
-    test: testGeographicalEligibility,
-  },
-  departements: {
-    test: testGeographicalEligibility,
-  },
-  communes: {
-    test: testGeographicalEligibility,
-  },
-  annee_etude: {
-    test: (condition, { situation }: { situation: situationsLayout }) => {
-      return condition.values.includes(situation.demandeur?.annee_etude)
+  quotient_familial: {
+    extra: [
+      {
+        entity: "foyers_fiscaux",
+        id: "rfr",
+        openfiscaPeriod: "fiscalYear",
+        type: "float",
+      },
+      {
+        entity: "foyers_fiscaux",
+        id: "nbptr",
+        openfiscaPeriod: "fiscalYear",
+        type: "float",
+      },
+    ],
+    test: (condition, { openfiscaResponse, periods }) => {
+      const rfr = openfiscaResponse.foyers_fiscaux._.rfr[periods.fiscalYear.id]
+      const nbptr =
+        openfiscaResponse.foyers_fiscaux._.nbptr[periods.fiscalYear.id] || 1
+      const periodDivider = condition.period === "month" ? 12 : 1
+      const quotient_familial = rfr / nbptr / periodDivider
+      return quotient_familial <= condition.floor
     },
   },
   regime_securite_sociale: {
@@ -161,42 +195,8 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       return includes && excludes
     },
   },
-  quotient_familial: {
-    test: (condition, { openfiscaResponse, periods }) => {
-      const rfr = openfiscaResponse.foyers_fiscaux._.rfr[periods.fiscalYear.id]
-      const nbptr =
-        openfiscaResponse.foyers_fiscaux._.nbptr[periods.fiscalYear.id] || 1
-      const periodDivider = condition.period === "month" ? 12 : 1
-      const quotient_familial = rfr / nbptr / periodDivider
-      return quotient_familial <= condition.floor
-    },
-    extra: [
-      {
-        id: "rfr",
-        entity: "foyers_fiscaux",
-        type: "float",
-        openfiscaPeriod: "fiscalYear",
-      },
-      {
-        id: "nbptr",
-        entity: "foyers_fiscaux",
-        type: "float",
-        openfiscaPeriod: "fiscalYear",
-      },
-    ],
-  },
-  beneficiaire_rsa: {
-    test: (_, data) => {
-      return testRSARecipient(data)
-    },
-    extra: [
-      {
-        id: "rsa",
-        entity: "familles",
-        type: "float",
-        openfiscaPeriod: "thisMonth",
-      },
-    ],
+  regions: {
+    test: testGeographicalEligibility,
   },
 }
 
@@ -233,7 +233,7 @@ export function computeJavascriptBenefits(
     "year"
   )
   const periods = generator(situation.dateDeValeur)
-  const data = { situation, openfiscaResponse, periods, age }
+  const data = { age, openfiscaResponse, periods, situation }
 
   benefits.all
     .filter(

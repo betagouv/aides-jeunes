@@ -14,7 +14,6 @@ import { questionLayout } from "../types/question"
 const COMPLEXE_STEPS = Object.values(ComplexeProperties)
 
 const simulationBase = {
-  enfants: [0],
   answers: {
     all: [
       {
@@ -64,9 +63,9 @@ const simulationBase = {
         value: "en_couple",
       },
       {
-        id: "demandeur",
         entityName: "individu",
         fieldName: "ressources",
+        id: "demandeur",
         value: ressourceTypes.map((resource) => resource.id),
       },
       {
@@ -83,6 +82,7 @@ const simulationBase = {
       },
     ],
   },
+  enfants: [0],
 }
 
 function getSituationIndividus(situation) {
@@ -97,8 +97,8 @@ function getQuestionsPerStep(
   individus
 ): questionLayout | undefined {
   const result: questionLayout = {
-    id: step.variable,
     entity: step.entity,
+    id: step.variable,
     individu: step.id,
     url: step.path,
   }
@@ -148,8 +148,8 @@ export function getQuestions(req, res) {
   const now = Date.now()
   const propertyData = {
     openFiscaParameters: getParametersSync(now),
-    simulation,
     periods,
+    simulation,
   }
 
   const steps = generateAllSteps(situation, propertyData.openFiscaParameters)

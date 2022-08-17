@@ -10,13 +10,13 @@ function normalize(etablissementFeature) {
 
   if (etablissement.horaires) {
     const mapping = {
+      dimanche: 7,
+      jeudi: 4,
       lundi: 1,
       mardi: 2,
       mercredi: 3,
-      jeudi: 4,
-      vendredi: 5,
       samedi: 6,
-      dimanche: 7,
+      vendredi: 5,
     }
     etablissement.horaires = sortBy(etablissement.horaires, function (plage) {
       return mapping[plage.du]

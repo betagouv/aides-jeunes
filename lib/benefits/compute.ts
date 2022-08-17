@@ -64,10 +64,13 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
   const computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 
   const result = {
-    droitsEligibles: [],
-    droitsNonEligibles: [],
-    droitsInjectes: [], // declared by the user
+    // declared by the user
     _id: undefined,
+
+    droitsEligibles: [],
+
+    droitsInjectes: [],
+    droitsNonEligibles: [],
   }
 
   const individus = filter(
@@ -128,9 +131,9 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
 
       dest.push(
         assign({}, benefit, customization, {
+          institution,
           montant: value,
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),
-          institution,
         })
       )
     })

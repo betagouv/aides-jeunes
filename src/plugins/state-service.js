@@ -5,9 +5,9 @@ import { useStore } from "@/stores"
 const StateService = {
   install(app) {
     app.config.globalProperties.$state = {
-      next,
-      current,
       chapters,
+      current,
+      next,
     }
 
     app.config.globalProperties.$push = function () {

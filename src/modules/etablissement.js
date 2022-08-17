@@ -1,25 +1,6 @@
 import { getEtablissements } from "@lib/benefits/etablissements"
 
 const EtablissementModule = {
-  namespaced: true,
-  state() {
-    return {
-      list: [],
-      error: null,
-      updating: false,
-    }
-  },
-  mutations: {
-    setEtablissements(state, etablissements) {
-      state.list = etablissements
-    },
-    setError(state, error) {
-      state.error = error
-    },
-    setUpdating(state, payload) {
-      state.updating = payload
-    },
-  },
   actions: {
     get(state, payload) {
       state.commit("setError", null)
@@ -39,6 +20,25 @@ const EtablissementModule = {
         })
         .catch(state.commit("setError", "Aucun résultat"))
     },
+  },
+  mutations: {
+    setError(state, error) {
+      state.error = error
+    },
+    setEtablissements(state, etablissements) {
+      state.list = etablissements
+    },
+    setUpdating(state, payload) {
+      state.updating = payload
+    },
+  },
+  namespaced: true,
+  state() {
+    return {
+      error: null,
+      list: [],
+      updating: false,
+    }
   },
 }
 

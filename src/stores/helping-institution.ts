@@ -3,21 +3,7 @@ import { getEtablissements } from "../../lib/benefits/etablissements"
 import { HelpingInstitution } from "../../lib/types/helping-institution"
 
 export const useHelpingInstitutionStore = defineStore("helping-institution", {
-  state: () => ({
-    list: <HelpingInstitution[]>[],
-    error: <string | null>null,
-    updating: <boolean>false,
-  }),
   actions: {
-    setEtablissements(etablissements: HelpingInstitution[]) {
-      this.list = etablissements
-    },
-    setError(error: string | null) {
-      this.error = error
-    },
-    setUpdating(updating: boolean) {
-      this.updating = updating
-    },
     get(payload: { city: string; types: string[] }) {
       this.setError(null)
       this.setUpdating(true)
@@ -36,5 +22,19 @@ export const useHelpingInstitutionStore = defineStore("helping-institution", {
         })
         .catch(() => this.setError("Aucun résultat"))
     },
+    setError(error: string | null) {
+      this.error = error
+    },
+    setEtablissements(etablissements: HelpingInstitution[]) {
+      this.list = etablissements
+    },
+    setUpdating(updating: boolean) {
+      this.updating = updating
+    },
   },
+  state: () => ({
+    error: <string | null>null,
+    list: <HelpingInstitution[]>[],
+    updating: <boolean>false,
+  }),
 })

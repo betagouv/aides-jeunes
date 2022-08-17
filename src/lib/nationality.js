@@ -1,7 +1,7 @@
 let ZONE_LABEL = {
+  autre: "hors UE",
   fr: "française",
   ue: "UE",
-  autre: "hors UE",
 }
 
 let EEE_COUNTRY_CODES = [
@@ -68,11 +68,6 @@ function getZone(countryCode) {
 }
 
 const Nationality = {
-  getLabel: function (nationality) {
-    return ZONE_LABEL[getZone(nationality)]
-  },
-  getNationalityFromCountryCode: getNationalityFromCountryCode,
-  getZone: getZone,
   getCountryCodeByNationality: function (nationality) {
     switch (nationality) {
       case "ue":
@@ -83,6 +78,11 @@ const Nationality = {
 
     return "FR"
   },
+  getLabel: function (nationality) {
+    return ZONE_LABEL[getZone(nationality)]
+  },
+  getNationalityFromCountryCode: getNationalityFromCountryCode,
+  getZone: getZone,
 }
 
 export default Nationality

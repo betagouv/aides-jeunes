@@ -72,18 +72,18 @@ function renderAsHtml(followup, benefits, parameters) {
     }
 
     return assign({}, droit, {
+      ctaLabel: ctaLabel,
+      ctaLink: ctaLink,
+      droitLabel: capitalize(droit.label),
       imgSrc: getBenefitImage(droit),
       montant: value,
-      ctaLink: ctaLink,
-      ctaLabel: ctaLabel,
-      droitLabel: capitalize(droit.label),
     })
   })
 
   return mustache
     .render(mjmlTemplate, {
-      droits: droits,
       baseURL: config.baseURL,
+      droits: droits,
       returnURL: `${config.baseURL}${followup.returnPath}`,
     })
     .then(function (templateString) {
@@ -106,8 +106,8 @@ export default async function render(followup) {
   const situationResults = await populated.simulation.compute()
   const droitsEligibles = situationResults.droitsEligibles
   followup.benefits = droitsEligibles.map((benefit) => ({
-    id: benefit.id,
     amount: benefit.montant,
+    id: benefit.id,
     unit: benefit.unit,
   }))
   followup.save()
@@ -117,10 +117,10 @@ export default async function render(followup) {
     renderAsHtml(followup, droitsEligibles, parameters),
   ]).then(function (values) {
     return {
+      attachments: values[1].attachments,
+      html: values[1].html,
       subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
       text: values[0],
-      html: values[1].html,
-      attachments: values[1].attachments,
     }
   })
 }

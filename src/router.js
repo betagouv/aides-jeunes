@@ -12,9 +12,6 @@ const router = createRouter({
   routes: [
     ...context.routes,
     {
-      path: "/",
-      name: "home",
-      component: context.Home,
       beforeEnter(to, from, next) {
         const store = useStore()
         let referrer = document.referrer
@@ -29,19 +26,13 @@ const router = createRouter({
         }
         next()
       },
+      component: context.Home,
+      name: "home",
+      path: "/",
     },
     {
-      path: "/simulation",
-      name: "simulation",
-      redirect: "/simulation/individu/demandeur/date_naissance",
-      component: context.Simulation,
-      meta: {
-        headTitle: `Ma simulation sur le simulateur d'aides ${context.name}`,
-      },
       children: [
         {
-          path: "redirect",
-          name: "redirect",
           beforeEnter(to, from, next) {
             const store = useStore()
             store
@@ -53,170 +44,170 @@ const router = createRouter({
                 next("/")
               })
           },
+          name: "redirect",
+          path: "redirect",
         },
         {
-          path: ":parent+/en_savoir_plus",
-          name: "en_savoir_plus",
           component: () =>
             import(
               /* webpackChunkName: "en_savoir_plus" */ "./components/en-savoir-plus-content.vue"
             ),
+          name: "en_savoir_plus",
+          path: ":parent+/en_savoir_plus",
         },
         {
-          name: "individu",
-          path: "individu/:id",
-          redirect: "/simulation/individu/:id/date_naissance",
-          component: () =>
-            import(
-              /* webpackChunkName: "individu" */ "./views/simulation/individu.vue"
-            ),
           children: [
             {
-              name: "bourse_criteres_sociaux_echelon",
-              path: "bourse_criteres_sociaux_echelon",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/simulation/individu/bourse-criteres-sociaux-echelon.vue"
                 ),
+              name: "bourse_criteres_sociaux_echelon",
+              path: "bourse_criteres_sociaux_echelon",
             },
             {
-              name: "ressources/types",
-              path: "ressources/types",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/simulation/Ressources/types.vue"
                 ),
+              name: "ressources/types",
+              path: "ressources/types",
             },
             {
-              name: "_hasRessources",
-              path: "_hasRessources",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/simulation/Ressources/enfants.vue"
                 ),
+              name: "_hasRessources",
+              path: "_hasRessources",
             },
             {
-              name: "ressources/montants",
-              path: "ressources/montants/:category",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/simulation/Ressources/montants.vue"
                 ),
+              name: "ressources/montants",
+              path: "ressources/montants/:category",
             },
             {
-              name: "_bourseCriteresSociauxCommuneDomicileFamilial",
-              path: "_bourseCriteresSociauxCommuneDomicileFamilial",
               component: () =>
                 import(
                   /* webpackChunkName: "mutualized-step" */ "./views/simulation/depcom-step.vue"
                 ),
+              name: "_bourseCriteresSociauxCommuneDomicileFamilial",
+              path: "_bourseCriteresSociauxCommuneDomicileFamilial",
             },
             {
-              name: "IndividuStep",
-              path: ":fieldName",
               component: () =>
                 import(
                   /* webpackChunkName: "mutualized-step" */ "./views/simulation/mutualized-step.vue"
                 ),
+              name: "IndividuStep",
+              path: ":fieldName",
             },
           ],
+          component: () =>
+            import(
+              /* webpackChunkName: "individu" */ "./views/simulation/individu.vue"
+            ),
+          name: "individu",
+          path: "individu/:id",
+          redirect: "/simulation/individu/:id/date_naissance",
         },
         {
-          path: "parents/:fieldName",
           component: () =>
             import(
               /* webpackChunkName: "mutualized-step" */ "./views/simulation/mutualized-step.vue"
             ),
+          path: "parents/:fieldName",
         },
         {
-          path: "enfants",
           component: () =>
             import(
               /* webpackChunkName: "individu" */ "./views/simulation/enfants.vue"
             ),
+          path: "enfants",
         },
         {
-          path: "famille",
+          children: [
+            {
+              component: () =>
+                import(
+                  /* webpackChunkName: "mutualized-step" */ "./views/simulation/mutualized-step.vue"
+                ),
+              name: "FamilleStep",
+              path: ":fieldName",
+            },
+          ],
           component: () =>
             import(
               /* webpackChunkName: "famille" */ "./views/simulation/famille.vue"
             ),
-          children: [
-            {
-              name: "FamilleStep",
-              path: ":fieldName",
-              component: () =>
-                import(
-                  /* webpackChunkName: "mutualized-step" */ "./views/simulation/mutualized-step.vue"
-                ),
-            },
-          ],
+          path: "famille",
         },
         {
-          path: "menage/statut_occupation_logement",
           component: () =>
             import(
               /* webpackChunkName: "logement" */ "./views/simulation/logement.vue"
             ),
+          path: "menage/statut_occupation_logement",
         },
         {
-          path: "menage",
-          component: () =>
-            import(
-              /* webpackChunkName: "logement" */ "./views/simulation/menage.vue"
-            ),
           children: [
             {
-              name: "loyer",
-              path: "loyer",
               component: () =>
                 import(
                   /* webpackChunkName: "individu" */ "./views/simulation/Menage/loyer.vue"
                 ),
+              name: "loyer",
+              path: "loyer",
             },
             {
-              name: "depcom",
-              path: "depcom",
               component: () =>
                 import(
                   /* webpackChunkName: "mutualized-step" */ "./views/simulation/depcom-step.vue"
                 ),
+              name: "depcom",
+              path: "depcom",
             },
             {
-              name: "MenageStep",
-              path: ":fieldName",
               component: () =>
                 import(
                   /* webpackChunkName: "mutualized-step" */ "./views/simulation/mutualized-step.vue"
                 ),
+              name: "MenageStep",
+              path: ":fieldName",
             },
           ],
+          component: () =>
+            import(
+              /* webpackChunkName: "logement" */ "./views/simulation/menage.vue"
+            ),
+          path: "menage",
         },
         {
-          name: "recapitulatif",
-          path: "recapitulatif",
-          meta: {
-            headTitle: `Récapitulatif de vos réponses sur le simulateur d'aides ${context.name}`,
-          },
           component: () =>
             import(
               /* webpackChunkName: "resultats" */ "./views/simulation/recapitulatif.vue"
             ),
+          meta: {
+            headTitle: `Récapitulatif de vos réponses sur le simulateur d'aides ${context.name}`,
+          },
+          name: "recapitulatif",
+          path: "recapitulatif",
         },
         {
-          name: "resultats",
-          path: "resultats",
-          meta: {
-            headTitle: `Les résultats de ma simulation sur le simulateur d'aides ${context.name}`,
-          },
           component: () =>
             import(
               /* webpackChunkName: "resultats" */ "./views/simulation/resultats.vue"
             ),
+          meta: {
+            headTitle: `Les résultats de ma simulation sur le simulateur d'aides ${context.name}`,
+          },
+          name: "resultats",
+          path: "resultats",
         },
         {
-          name: "resultatsLieuxGeneriques",
-          path: "resultats/lieux",
           component: () =>
             import(
               /* webpackChunkName: "lieux" */ "./views/simulation/resultats/lieux-generiques.vue"
@@ -224,10 +215,10 @@ const router = createRouter({
           meta: {
             headTitle: `Trouver de l'aide près de chez vous avec le simulateur d'aides ${context.name}`,
           },
+          name: "resultatsLieuxGeneriques",
+          path: "resultats/lieux",
         },
         {
-          name: "resultatsLieuxDedies",
-          path: "resultats/:benefit_id/lieux",
           component: () =>
             import(
               /* webpackChunkName: "lieux" */ "./views/simulation/resultats/lieux.vue"
@@ -235,19 +226,19 @@ const router = createRouter({
           meta: {
             headTitle: `Trouver des lieux d'informations près de chez vous avec le simulateur d'aides ${context.name}`,
           },
+          name: "resultatsLieuxDedies",
+          path: "resultats/:benefit_id/lieux",
         },
         {
-          name: "resultatsAttendus",
-          path: "resultats/attendus",
           component: () =>
             import(
               /* webpackChunkName: "attendu" */ "./views/simulation/resultats/attendu.vue"
             ),
           meta: { title: "Résultats attendus" },
+          name: "resultatsAttendus",
+          path: "resultats/attendus",
         },
         {
-          name: "resultatInattendu",
-          path: "resultat/inattendu/:id",
           component: () =>
             import(
               /* webpackChunkName: "resultat-inattendu" */ "./views/simulation/resultat-inattendu.vue"
@@ -255,10 +246,10 @@ const router = createRouter({
           meta: {
             title: "Resultats Attendus ",
           },
+          name: "resultatInattendu",
+          path: "resultat/inattendu/:id",
         },
         {
-          name: "ressourcesFiscales",
-          path: "ressources/fiscales",
           component: () =>
             import(
               /* webpackChunkName: "ressources-fiscales" */ "./views/simulation/Ressources/fiscales.vue"
@@ -269,10 +260,10 @@ const router = createRouter({
               return `Les revenus imposables de votre foyer en ${store.dates.fiscalYear.label}`
             },
           },
+          name: "ressourcesFiscales",
+          path: "ressources/fiscales",
         },
         {
-          name: "ressourcesPatrimoine",
-          path: "ressources/patrimoine",
           component: () =>
             import(
               /* webpackChunkName: "ressources-patrimoine" */ "./views/simulation/Ressources/patrimoine.vue"
@@ -280,10 +271,10 @@ const router = createRouter({
           meta: {
             title: "Votre patrimoine",
           },
+          name: "ressourcesPatrimoine",
+          path: "ressources/patrimoine",
         },
         {
-          name: "resultatsDetails",
-          path: "resultats/:droitId",
           component: () =>
             import(
               /* webpackChunkName: "resultats" */ "./views/simulation/resultats-detail.vue"
@@ -298,36 +289,43 @@ const router = createRouter({
                 : process.env.VUE_APP_TITLE
             },
           },
+          name: "resultatsDetails",
+          path: "resultats/:droitId",
         },
       ],
+      component: context.Simulation,
+      meta: {
+        headTitle: `Ma simulation sur le simulateur d'aides ${context.name}`,
+      },
+      name: "simulation",
+      path: "/simulation",
+      redirect: "/simulation/individu/demandeur/date_naissance",
     },
     {
-      path: "/redirection",
-      name: "redirection",
       component: () =>
         import(/* webpackChunkName: "redirection" */ "./views/redirection.vue"),
+      name: "redirection",
+      path: "/redirection",
     },
     {
-      path: "/stats",
-      name: "stats",
       component: () =>
         import(/* webpackChunkName: "stats" */ "./views/stats.vue"),
       meta: {
         headTitle: `Statistiques du simulateur d'aides ${context.name}`,
       },
+      name: "stats",
+      path: "/stats",
     },
     {
-      path: "/aides",
-      name: "liste-aides",
       component: () =>
         import(/* webpackChunkName: "liste-aides" */ "./views/liste-aides.vue"),
       meta: {
         headTitle: `Toutes les aides du simulateur ${context.name}`,
       },
+      name: "liste-aides",
+      path: "/aides",
     },
     {
-      path: "/aides/:benefitId",
-      name: "aide",
       component: () =>
         import(/* webpackChunkName: "aides" */ "./views/aide.vue"),
       meta: {
@@ -340,32 +338,34 @@ const router = createRouter({
             : process.env.VUE_APP_TITLE
         },
       },
+      name: "aide",
+      path: "/aides/:benefitId",
     },
     {
-      path: "/suivi",
-      name: "suivi",
       component: () =>
         import(/* webpackChunkName: "suivi" */ "./views/suivi.vue"),
+      name: "suivi",
+      path: "/suivi",
     },
     {
-      path: "/accompagnement",
-      name: "liste-accompagnements",
       component: () =>
         import(
           /* webpackChunkName: "accompagnement-liste" */ "./views/accompagnement/liste.vue"
         ),
+      name: "liste-accompagnements",
+      path: "/accompagnement",
     },
     {
-      path: "/accompagnement/:surveyId",
-      name: "accompagnement",
       component: () =>
         import(
           /* webpackChunkName: "accomptagnement" */ "./views/accompagnement/liste.vue"
         ),
+      name: "accompagnement",
+      path: "/accompagnement/:surveyId",
     },
     {
-      path: "/init-ci",
       name: "init-ci",
+      path: "/init-ci",
       redirect: () => {
         return "/"
       },
@@ -375,8 +375,8 @@ const router = createRouter({
     if (to.hash) {
       // https://router.vuejs.org/guide/advanced/scroll-behavior.html
       return {
-        el: to.hash,
         behavior: "smooth",
+        el: to.hash,
       }
     }
     return { left: 0, top: 0 }

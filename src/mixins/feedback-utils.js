@@ -1,16 +1,5 @@
 export default {
   computed: {
-    montant() {
-      const base = this.store.calculs?.resultats?.droitsEligibles || []
-      const benefit = base.filter((d) => d.id === this.droit.id).shift()
-      return benefit?.montant || 0
-    },
-    situation() {
-      return this.store.situation
-    },
-    emailSubject() {
-      return `[${this.situationId}] Montants inattendus`
-    },
     emailBody() {
       return `
 Bonjour,
@@ -33,6 +22,17 @@ ID : ${
       } (à conserver impérativement pour traitement de votre demande)
 ————
 `
+    },
+    emailSubject() {
+      return `[${this.situationId}] Montants inattendus`
+    },
+    montant() {
+      const base = this.store.calculs?.resultats?.droitsEligibles || []
+      const benefit = base.filter((d) => d.id === this.droit.id).shift()
+      return benefit?.montant || 0
+    },
+    situation() {
+      return this.store.situation
     },
   },
 }

@@ -6,10 +6,10 @@ const PERIODICITE_ANNUELLE = "annuelle"
 const PERIODICITE_AUTRE = "autre"
 
 const LEGENDE_PERIODICITE_AIDE_ENUM = {
-  [PERIODICITE_PONCTUELLE]: "",
-  [PERIODICITE_MENSUELLE]: "/ mois",
   [PERIODICITE_ANNUELLE]: "/ an",
   [PERIODICITE_AUTRE]: "",
+  [PERIODICITE_MENSUELLE]: "/ mois",
+  [PERIODICITE_PONCTUELLE]: "",
 }
 
 function getBenefitLegend(benefit, parameters) {
@@ -25,10 +25,10 @@ function getBenefitLegend(benefit, parameters) {
 
 function formatCurrency(value, unit, precision) {
   return currency(value, {
-    symbol: ` ${unit}`,
     pattern: "#!",
     precision,
     separator: " ",
+    symbol: ` ${unit}`,
   }).format()
 }
 
@@ -47,13 +47,13 @@ interface droitEstimeLayout {
 }
 function formatDroitEstime(droit, parameters) {
   const droitEstime: droitEstimeLayout = {
+    icon: undefined,
     id: droit.id || undefined,
     label: undefined,
     legend: getBenefitLegend(droit, parameters) || "",
     type: droit.type || "float",
-    value: droit.montant || 1,
     unit: droit.unit || "€",
-    icon: undefined,
+    value: droit.montant || 1,
   }
   switch (droit.type) {
     case "float":

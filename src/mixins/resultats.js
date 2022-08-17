@@ -2,6 +2,9 @@ import Simulation from "../lib/simulation"
 
 export default {
   computed: {
+    accessStatus() {
+      return this.store.access
+    },
     droits() {
       return this.resultats?.droitsEligibles
     },
@@ -11,19 +14,22 @@ export default {
         []
       )
     },
+    droitsNonEligiblesShow() {
+      return this.store.ameliNoticationDone
+    },
     droitsNonEligiblesShown() {
       return this.droitsNonEligibles.filter(
         (i) => i.id === "css_participation_forfaitaire"
       )
     },
-    droitsNonEligiblesShow() {
-      return this.store.ameliNoticationDone
+    hasError() {
+      return this.resultatStatus.error
     },
-    resultatsId() {
-      return this.resultats?._id || "???"
+    hasErrorSave() {
+      return this.store.saveSituationError
     },
-    accessStatus() {
-      return this.store.access
+    hasWarning() {
+      return this.accessStatus.forbidden
     },
     resultatStatus() {
       return this.store.calculs
@@ -31,14 +37,8 @@ export default {
     resultats() {
       return !this.store.calculs.dirty && this.store.calculs.resultats
     },
-    hasWarning() {
-      return this.accessStatus.forbidden
-    },
-    hasError() {
-      return this.resultatStatus.error
-    },
-    hasErrorSave() {
-      return this.store.saveSituationError
+    resultatsId() {
+      return this.resultats?._id || "???"
     },
     shouldDisplayResults() {
       return (
@@ -48,6 +48,12 @@ export default {
     },
   },
   methods: {
+    mock(detail) {
+      if (this.$route.query.debug !== undefined) {
+        this.store.mockResults(detail || this.$route.query.debug)
+      }
+      return this.$route.query.debug !== undefined
+    },
     restoreLatest() {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
@@ -59,12 +65,6 @@ export default {
       this.store.fetch(lastestSimulation).then(() => this.store.compute())
 
       return lastestSimulation
-    },
-    mock(detail) {
-      if (this.$route.query.debug !== undefined) {
-        this.store.mockResults(detail || this.$route.query.debug)
-      }
-      return this.$route.query.debug !== undefined
     },
   },
 }

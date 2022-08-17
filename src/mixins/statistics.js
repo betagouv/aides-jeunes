@@ -17,18 +17,18 @@ export default {
           if (!benefitId || benefitId == benefit.id) {
             benefitsStats.push({
               benefit_id: benefit.id,
-              hash_id: id,
               benefit_index: i + 1,
-              page_total: totalResults,
               event_type: event,
+              hash_id: id,
+              page_total: totalResults,
               version: process.env.VUE_APP_STATS_VERSION,
             })
           }
         })
         fetch(process.env.VUE_APP_STATS_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(benefitsStats),
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
         }).catch((error) => console.error(error))
       }
     },

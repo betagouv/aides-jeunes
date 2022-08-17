@@ -14,6 +14,7 @@ import { getAnswer } from "../answers.js"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
+    help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
     question: ({ individu }) => {
       return `${Individu.label(
         individu,
@@ -25,48 +26,47 @@ export default {
         >CDAPH</abbr
       > ?`
     },
-    help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
   }),
 
   activite: new EnumProperty({
-    question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} ?`
-    },
-    questionType: "enum",
     items: [
       {
-        value: "etudiant",
         label: "Scolarisé·e, étudiant·e, alternant·e",
+        value: "etudiant",
       },
       {
-        value: "salarie",
         label: "Salarié·e",
+        value: "salarie",
       },
       {
-        value: "independant",
         label: "Indépendant·e",
+        value: "independant",
       },
       {
-        value: "service_civique",
         label: "En service civique",
+        value: "service_civique",
       },
       {
-        value: "chomeur",
         label: "Inscrit·e comme demandeur d’emploi",
+        value: "chomeur",
       },
       {
-        value: "retraite",
-        label: "Retraité·e",
         isRelevant: ({ individu, periods }) =>
           Individu.age(individu, periods.today.value) > 30,
+        label: "Retraité·e",
+        value: "retraite",
       },
       {
-        value: "inactif",
         label: "Autre",
+        value: "inactif",
       },
     ],
     moreInfo:
       "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
+    question: ({ individu }) => {
+      return `${Individu.label(individu, "être")} ?`
+    },
+    questionType: "enum",
   }),
 
   alternant: new BooleanProperty({
@@ -76,126 +76,126 @@ export default {
   }),
 
   annee_etude: new EnumProperty({
-    question: "Dans quelle classe êtes-vous actuellement ?",
-    questionType: "enum",
     items: [
       {
+        isRelevant({ individu }) {
+          return individu.scolarite === "lycee"
+        },
         label: "CAP - 1ère année",
         value: "cap_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "lycee"
         },
-      },
-      {
         label: "CAP - 2ème année",
         value: "cap_2",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "lycee"
         },
-      },
-      {
         label: "Seconde",
         value: "seconde",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "lycee"
         },
-      },
-      {
         label: "Première",
         value: "premiere",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "lycee"
         },
-      },
-      {
         label: "Terminale",
         value: "terminale",
-        isRelevant({ individu }) {
-          return individu.scolarite === "lycee"
-        },
       },
       {
+        isRelevant({ individu }) {
+          return individu.scolarite === "enseignement_superieur"
+        },
         label: "BTS",
         value: "bts_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "BUT",
         value: "but_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "CPGE",
         value: "cpge_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Licence - 1ère année",
         value: "licence_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Licence - 2ème année",
         value: "licence_2",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Licence - 3ème année",
         value: "licence_3",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Master - 1ère année",
         value: "master_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Master - 2ème année",
         value: "master_2",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Doctorat - 1ère année",
         value: "doctorat_1",
+      },
+      {
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
-      },
-      {
         label: "Doctorat - 2ème année",
         value: "doctorat_2",
-        isRelevant({ individu }) {
-          return individu.scolarite === "enseignement_superieur"
-        },
       },
       {
-        label: "Doctorat - 3ème année",
-        value: "doctorat_3",
         isRelevant({ individu }) {
           return individu.scolarite === "enseignement_superieur"
         },
+        label: "Doctorat - 3ème année",
+        value: "doctorat_3",
       },
       {
         label: "Autre",
         value: "autre",
       },
     ],
+    question: "Dans quelle classe êtes-vous actuellement ?",
+    questionType: "enum",
   }),
 
   ass_precondition_remplie: new BooleanProperty({
@@ -212,6 +212,8 @@ export default {
   }),
 
   bourse_criteres_sociaux_base_ressources_parentale: new NumberProperty({
+    moreInfo:
+      "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
     question: ({ periods }) => {
       return `Quel est le revenu brut global ${yearsAgo(
         2,
@@ -224,8 +226,6 @@ export default {
       )} de vos parents ?`
     },
     questionType: "number",
-    moreInfo:
-      "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
     showMoreInfo: ({ simulation }) => {
       const _situation = getAnswer(
         simulation.answers.current,
@@ -242,8 +242,6 @@ export default {
   }),
 
   categorie_salarie: new EnumProperty({
-    question: "Êtes-vous en alternance dans le secteur public ?",
-    questionType: "enum",
     items: [
       {
         label: "Oui",
@@ -254,6 +252,8 @@ export default {
         value: "prive_non_cadre",
       },
     ],
+    question: "Êtes-vous en alternance dans le secteur public ?",
+    questionType: "enum",
   }),
 
   date_debut_chomage: new DateProperty({
@@ -276,15 +276,22 @@ export default {
     },
   }),
 
-  enceinte: new EnumProperty({
-    question: ({ individu }) => {
-      return `${
-        individu._role === "demandeur"
-          ? "Êtes-vous"
-          : "Votre conjointe est-elle"
-      } enceinte ?`
-    },
+  _contrat_alternant: new EnumProperty({
+    question: "Êtes-vous ?",
     questionType: "enum",
+    items: [
+      {
+        value: "apprenti",
+        label: "En apprentissage",
+      },
+      {
+        value: "professionnalisation",
+        label: "En contrat de professionnalisation",
+      },
+    ],
+  }),
+
+  enceinte: new EnumProperty({
     items: [
       {
         label: "Oui",
@@ -299,9 +306,37 @@ export default {
         value: "pas_concerne",
       },
     ],
+    question: ({ individu }) => {
+      return `${
+        individu._role === "demandeur"
+          ? "Êtes-vous"
+          : "Votre conjointe est-elle"
+      } enceinte ?`
+    },
+    questionType: "enum",
+  }),
+
+  _dureeMoisEtudesEtranger: new NumberProperty({
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    type: "count",
+    unit: "mois",
   }),
 
   enfant_a_charge: new EnumProperty({
+    items: ({ individu }) => {
+      const isDemandeur = individu._role === "demandeur"
+      return [
+        {
+          label: "Oui",
+          value: !isDemandeur,
+        },
+        {
+          label: "Non",
+          value: isDemandeur,
+        },
+      ]
+    },
     question: ({ individu }) => {
       return individu._role === "demandeur"
         ? "Avez-vous fait votre propre déclaration d'impôts ?"
@@ -310,19 +345,11 @@ export default {
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
     questionType: "enum",
-    items: ({ individu }) => {
-      const isDemandeur = individu._role === "demandeur"
-      return [
-        {
-          value: !isDemandeur,
-          label: "Oui",
-        },
-        {
-          value: isDemandeur,
-          label: "Non",
-        },
-      ]
-    },
+  }),
+
+  _firstName: new TextProperty({
+    question:
+      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
   }),
 
   enfant_place: new BooleanProperty({
@@ -334,48 +361,75 @@ export default {
     },
   }),
 
+  _interetAidesSanitaireSocial: new BooleanProperty({
+    question:
+      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
+  }),
+
   garde_alternee: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en garde alternée ?`
     },
   }),
 
+  _interetBafa: new BooleanProperty({
+    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
+  }),
+
   gir: new EnumProperty({
+    items: [
+      {
+        label: "Jamais",
+        value: "gir_6",
+      },
+      {
+        label: "Ponctuellement",
+        value: "gir_5",
+      },
+      {
+        label: "Régulièrement",
+        value: "gir_1",
+      },
+    ],
     question: ({ individu }) => {
       return `${Individu.label(individu, "avoir")} besoin d’une aide à la
       personne ?`
     },
     questionType: "enum",
-    items: [
-      {
-        value: "gir_6",
-        label: "Jamais",
-      },
-      {
-        value: "gir_5",
-        label: "Ponctuellement",
-      },
-      {
-        value: "gir_1",
-        label: "Régulièrement",
-      },
-    ],
+  }),
+
+  _interetEtudesEtranger: new BooleanProperty({
+    question:
+      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
   }),
 
   groupe_specialites_formation: new EnumProperty({
+    items: Object.values(Scolarite.groupeSpecialitesFormation),
     question: "De quel secteur votre formation fait-elle partie ?",
     questionType: "enum",
-    items: Object.values(Scolarite.groupeSpecialitesFormation),
+  }),
+
+  _interetPermisDeConduire: new BooleanProperty({
+    question: "Prévoyez-vous de passer le permis de conduire ?",
   }),
 
   habite_chez_parents: new BooleanProperty({
     question: "Êtes-vous hébergé chez vos parents ?",
   }),
 
+  _interetsAidesVelo: new MultipleProperty({
+    items: [
+      { label: "Vélo mécanique simple", value: "velo_mecanique" },
+      { label: "Vélo électrique", value: "velo_electrique" },
+      { label: "Vélo cargo", value: "velo_cargo" },
+      { label: "Vélo cargo électrique", value: "velo_cargo_electrique" },
+      { label: "Vélo pliant", value: "velo_pliant" },
+      { label: "Motorisation d'un vélo classique", value: "velo_motorisation" },
+    ],
+    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
+  }),
+
   handicap: new BooleanProperty({
-    question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} en situation de handicap ?`
-    },
     moreInfo: (variation) => {
       if (variation?.includes("enfant")) {
         return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
@@ -388,32 +442,62 @@ export default {
           et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
       }
     },
+    question: ({ individu }) => {
+      return `${Individu.label(individu, "être")} en situation de handicap ?`
+    },
+  }),
+
+  _nombreMoisDebutContratDeTravail: new EnumProperty({
+    items: [
+      {
+        label: "Moins de 3 mois",
+        value: 2,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) <= 25
+        },
+        label: "Entre 3 et 6 mois",
+        value: 5,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) > 25
+        },
+        label: "Plus de 3 mois",
+        value: 12,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) <= 25
+        },
+        label: "Plus 6 mois",
+        value: 12,
+      },
+    ],
+    question: ({ individu }) => {
+      return individu.activite === "etudiant" && individu.alternant
+        ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
+        : "Depuis quand avez-vous signé votre contrat de travail ?"
+    },
+    questionType: "enum",
   }),
 
   inapte_travail: new BooleanProperty({
+    moreInfo:
+      "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela.",
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} reconnu·e inapte au travail ?`
     },
-    moreInfo:
-      "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela.",
   }),
 
   mention_baccalaureat: new EnumProperty({
+    items: Scolarite.mentionsBaccalaureat,
     question: "Avez-vous obtenu une mention au baccalauréat ?",
     questionType: "enum",
-    items: Scolarite.mentionsBaccalaureat,
   }),
 
   nationalite: new EnumProperty({
-    question: ({ individu }) => {
-      return individu._role === "demandeur"
-        ? "Quelle est votre nationalité ?"
-        : `Quelle est la nationalité ${Individu.label(
-            individu,
-            "préposition"
-          )}${Individu.label(individu, "nom")} ?`
-    },
-    questionType: "enum",
     items: [
       {
         label: "Française",
@@ -428,33 +512,42 @@ export default {
         value: "AF",
       },
     ],
+    question: ({ individu }) => {
+      return individu._role === "demandeur"
+        ? "Quelle est votre nationalité ?"
+        : `Quelle est la nationalité ${Individu.label(
+            individu,
+            "préposition"
+          )}${Individu.label(individu, "nom")} ?`
+    },
+    questionType: "enum",
   }),
 
   regime_securite_sociale: new EnumProperty({
+    items: [
+      {
+        label: "Régime général (CAF/CPAM)",
+        value: "regime_general",
+      },
+      {
+        label: "Mutualité sociale agricole (MSA)",
+        value: "regime_agricole",
+      },
+      {
+        label: "Autre",
+        value: "autres_regimes",
+      },
+      {
+        label: "Je ne sais pas",
+        value: "inconnu",
+      },
+    ],
     question: ({ individu, periods }) => {
       return individu.enfant_a_charge[periods.thisYear.id]
         ? "Quel est le régime de protection sociale de vos parents ?"
         : "Quel est votre régime de protection sociale ?"
     },
     questionType: "enum",
-    items: [
-      {
-        value: "regime_general",
-        label: "Régime général (CAF/CPAM)",
-      },
-      {
-        value: "regime_agricole",
-        label: "Mutualité sociale agricole (MSA)",
-      },
-      {
-        value: "autres_regimes",
-        label: "Autre",
-      },
-      {
-        value: "inconnu",
-        label: "Je ne sais pas",
-      },
-    ],
   }),
 
   rsa_jeune_condition_heures_travail_remplie: new BooleanProperty({
@@ -469,15 +562,15 @@ export default {
   }),
 
   scolarite: new EnumProperty({
+    items: Scolarite.types,
+    moreInfo:
+      "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
     question: ({ individu }) => {
       return individu._role == "demandeur"
         ? "Où êtes-vous scolarisé·e ?"
         : `Où sera scolarisé·e ${individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Scolarite.types,
-    moreInfo:
-      "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   }),
 
   sortie_academie: new BooleanProperty({
@@ -514,36 +607,56 @@ export default {
     },
   }),
 
-  statuts_etablissement_scolaire: new EnumProperty({
-    question: "Dans quel type d'établissement étudiez-vous actuellement ?",
-    questionType: "enum",
-    items: [
-      {
-        value: "public",
-        label: "Établissement public",
-      },
-      {
-        value: "prive_sous_contrat",
-        label: "Établissement privé sous contrat",
-      },
-      {
-        value: "prive_hors_contrat",
-        label: "Établissement privé hors contrat",
-      },
-      {
-        value: "inconnu",
-        label: "Autre",
-      },
-    ],
-  }),
-
   statut_marital: new EnumProperty({
+    items: Individu.situationsFamiliales,
     question: "Quelle est votre relation avec votre conjoint·e ?",
     questionType: "enum",
-    items: Individu.situationsFamiliales,
+  }),
+
+  statuts_etablissement_scolaire: new EnumProperty({
+    items: [
+      {
+        label: "Établissement public",
+        value: "public",
+      },
+      {
+        label: "Établissement privé sous contrat",
+        value: "prive_sous_contrat",
+      },
+      {
+        label: "Établissement privé hors contrat",
+        value: "prive_hors_contrat",
+      },
+      {
+        label: "Autre",
+        value: "inconnu",
+      },
+    ],
+    question: "Dans quel type d'établissement étudiez-vous actuellement ?",
+    questionType: "enum",
   }),
 
   taux_incapacite: new EnumProperty({
+    items: ({ openFiscaParameters }) => {
+      const tauxMax =
+        openFiscaParameters[
+          "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
+        ]
+      return [
+        {
+          label: "Moins de 50%",
+          value: 0.3,
+        },
+        {
+          label: `Entre 50% et ${tauxMax * 100}%`,
+          value: (0.5 + tauxMax) / 2,
+        },
+        {
+          label: `Plus de ${tauxMax * 100}%`,
+          value: (tauxMax + 1) / 2,
+        },
+      ]
+    },
     question: ({ individu }) => {
       const start =
         individu._role === "demandeur"
@@ -560,118 +673,5 @@ export default {
           > ?`
     },
     questionType: "enum",
-    items: ({ openFiscaParameters }) => {
-      const tauxMax =
-        openFiscaParameters[
-          "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
-        ]
-      return [
-        {
-          value: 0.3,
-          label: "Moins de 50%",
-        },
-        {
-          value: (0.5 + tauxMax) / 2,
-          label: `Entre 50% et ${tauxMax * 100}%`,
-        },
-        {
-          value: (tauxMax + 1) / 2,
-          label: `Plus de ${tauxMax * 100}%`,
-        },
-      ]
-    },
-  }),
-
-  _contrat_alternant: new EnumProperty({
-    question: "Êtes-vous ?",
-    questionType: "enum",
-    items: [
-      {
-        value: "apprenti",
-        label: "En apprentissage",
-      },
-      {
-        value: "professionnalisation",
-        label: "En contrat de professionnalisation",
-      },
-    ],
-  }),
-
-  _dureeMoisEtudesEtranger: new NumberProperty({
-    question:
-      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
-    unit: "mois",
-    type: "count",
-  }),
-
-  _firstName: new TextProperty({
-    question:
-      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
-  }),
-
-  _interetsAidesVelo: new MultipleProperty({
-    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
-    items: [
-      { value: "velo_mecanique", label: "Vélo mécanique simple" },
-      { value: "velo_electrique", label: "Vélo électrique" },
-      { value: "velo_cargo", label: "Vélo cargo" },
-      { value: "velo_cargo_electrique", label: "Vélo cargo électrique" },
-      { value: "velo_pliant", label: "Vélo pliant" },
-      { value: "velo_motorisation", label: "Motorisation d'un vélo classique" },
-    ],
-  }),
-
-  _interetAidesSanitaireSocial: new BooleanProperty({
-    question:
-      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
-  }),
-
-  _interetBafa: new BooleanProperty({
-    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
-  }),
-
-  _interetEtudesEtranger: new BooleanProperty({
-    question:
-      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
-  }),
-
-  _interetPermisDeConduire: new BooleanProperty({
-    question: "Prévoyez-vous de passer le permis de conduire ?",
-  }),
-
-  _nombreMoisDebutContratDeTravail: new EnumProperty({
-    question: ({ individu }) => {
-      return individu.activite === "etudiant" && individu.alternant
-        ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
-        : "Depuis quand avez-vous signé votre contrat de travail ?"
-    },
-    questionType: "enum",
-    items: [
-      {
-        value: 2,
-        label: "Moins de 3 mois",
-      },
-      {
-        value: 5,
-        label: "Entre 3 et 6 mois",
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
-        },
-      },
-      {
-        value: 12,
-        label: "Plus de 3 mois",
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) > 25
-        },
-      },
-      {
-        value: 12,
-        label: "Plus 6 mois",
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
-        },
-      },
-    ],
   }),
 }

@@ -44,8 +44,8 @@ function find(postalCode) {
 }
 
 export default {
-  find,
   communes: function (req, res) {
     res.send(find(req.params.codePostal))
   },
+  find,
 }

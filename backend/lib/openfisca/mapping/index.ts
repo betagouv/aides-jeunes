@@ -53,11 +53,11 @@ export function dispatchIndividuals(
       id: "parent1",
     }
     individus[parent1.id] = { ...parent1, id: undefined }
-    familles.parents = { parents: [parent1.id], enfants: [] }
+    familles.parents = { enfants: [], parents: [parent1.id] }
     foyers_fiscaux._.declarants.push(parent1.id)
     menages.parents = {
-      personne_de_reference: [parent1.id],
       enfants: [],
+      personne_de_reference: [parent1.id],
     }
 
     if (situation.parents?._situation == "en_couple") {
@@ -103,9 +103,9 @@ export function dispatchIndividuals(
   menages._.enfants = enfantIds
 
   return {
-    individus: individus,
     familles,
     foyers_fiscaux,
+    individus: individus,
     menages,
   }
 }
@@ -323,8 +323,8 @@ export function buildOpenFiscaRequest(sourceSituation) {
 }
 
 export default {
-  dispatchIndividuals,
-  giveValueToRequestedVariables,
   applyHeuristicsAndFix,
   buildOpenFiscaRequest,
+  dispatchIndividuals,
+  giveValueToRequestedVariables,
 }

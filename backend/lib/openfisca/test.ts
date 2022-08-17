@@ -38,14 +38,14 @@ function toYAML(test) {
 }
 
 export const EXTENSION_VARIABLES = {
-  "openfisca-paris": {
-    familles: ["parisien"],
-    individus: [],
-  },
   "openfisca-france-local": {
     familles: [],
     individus: [],
     menages: [],
+  },
+  "openfisca-paris": {
+    familles: ["parisien"],
+    individus: [],
   },
 }
 
@@ -125,8 +125,8 @@ export const generateTest = function generateYAMLTest(details, situation) {
   )
 
   const testCase = {
-    period: periods.thisMonth,
     input: testInputs,
+    period: periods.thisMonth,
   }
 
   const result = assign(pick(details, TEST_ATTRIBUTES), testCase)

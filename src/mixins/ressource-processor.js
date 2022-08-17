@@ -5,7 +5,7 @@ function getDisplayMonthly(months, amounts) {
       result.allSame = result.allSame && amounts[m.id] === result.initial
       return result
     },
-    { allNull: true, initial: amounts[months[0].id], allSame: true }
+    { allNull: true, allSame: true, initial: amounts[months[0].id] }
   )
 
   if (result.allNull) {

@@ -9,15 +9,11 @@ import { BlockLayout } from "../types/blocks"
 
 function individuBlockFactory(id, chapter?: string) {
   const r = (variable, chapter?: string) =>
-    new Step({ entity: "individu", id, variable, chapter })
+    new Step({ chapter, entity: "individu", id, variable })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
   return {
-    subject: (situation) =>
-      situation[id] ||
-      situation.enfants?.find((enfant) => enfant.id === id) ||
-      {},
     steps: [
       ...(enfant ? [r("_firstName")] : []),
       r("date_naissance", demandeur ? "profil" : chapter),
@@ -217,19 +213,19 @@ function individuBlockFactory(id, chapter?: string) {
         : []),
       ...(!enfant ? [r("enceinte")] : []),
     ],
+    subject: (situation) =>
+      situation[id] ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
+      {},
   }
 }
 
 function extraBlock() {
   const id = "demandeur"
   const s = (variable: string, chapter?: string) =>
-    new Step({ entity: "individu", id, variable, chapter })
+    new Step({ chapter, entity: "individu", id, variable })
 
   return {
-    subject: (situation) =>
-      situation[id] ||
-      situation.enfants?.find((enfant) => enfant.id === id) ||
-      {},
     steps: [
       s("_interetsAidesVelo", "projets"),
       s("_interetBafa", "projets"),
@@ -286,6 +282,10 @@ function extraBlock() {
         ],
       },
     ],
+    subject: (situation) =>
+      situation[id] ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
+      {},
   }
 }
 
@@ -299,18 +299,17 @@ function kidBlock(situation) {
             }
           })
         : []),
-      new Step({ entity: "enfants", chapter: "foyer" }),
+      new Step({ chapter: "foyer", entity: "enfants" }),
     ],
   }
 }
 
 function housingBlock() {
   return {
-    subject: (situation) => situation.menage,
     steps: [
       new Step({
-        entity: "menage",
         chapter: "logement",
+        entity: "menage",
         variable: "statut_occupation_logement",
       }),
       {
@@ -349,8 +348,8 @@ function housingBlock() {
         },
         steps: [
           new ComplexStep({
-            route: "menage/loyer",
             entity: "menage",
+            route: "menage/loyer",
             variable: "loyer",
             variables: [
               { entity: "menage", variable: "loyer" },
@@ -379,7 +378,6 @@ function housingBlock() {
         steps: [new Step({ entity: "famille", variable: "parisien" })],
       },
       {
-        subject: (menage, situation) => situation.demandeur,
         isActive: (demandeur, situation) => {
           return (
             demandeur.activite == "etudiant" &&
@@ -393,7 +391,6 @@ function housingBlock() {
         steps: [
           new Step({ entity: "parents", variable: "_en_france" }),
           {
-            subject: (menage, situation) => situation.parents,
             isActive: (parents) => !parents || parents._en_france,
             steps: [
               new Step({
@@ -402,10 +399,13 @@ function housingBlock() {
                 variable: "_bourseCriteresSociauxCommuneDomicileFamilial",
               }),
             ],
+            subject: (menage, situation) => situation.parents,
           },
         ],
+        subject: (menage, situation) => situation.demandeur,
       },
     ],
+    subject: (situation) => situation.menage,
   }
 }
 
@@ -418,20 +418,20 @@ function resourceBlocks(situation) {
     return {
       steps: [
         new ComplexStep({
-          route: `individu/${individuId}/ressources/types`,
           chapter: "revenus",
           entity: "individu",
-          variable: "ressources",
           id: individuId,
+          route: `individu/${individuId}/ressources/types`,
+          variable: "ressources",
         }),
       ].concat(
         Ressource.getIndividuRessourceCategories(individu, situation).map(
           (category) =>
             new ComplexStep({
-              route: `individu/${individuId}/ressources/montants/${category}`,
               entity: "individu",
-              variable: category,
               id: individuId,
+              route: `individu/${individuId}/ressources/montants/${category}`,
+              variable: category,
             })
         )
       ),
@@ -445,8 +445,8 @@ function resourceBlocks(situation) {
         ? [
             new Step({
               entity: "individu",
-              variable: "_hasRessources",
               id: "enfants",
+              variable: "_hasRessources",
             }),
           ]
         : []),
@@ -482,7 +482,6 @@ export function generateBlocks(situation): BlockLayout[] {
       ],
     },
     {
-      subject: (situation) => situation.demandeur,
       isActive: (subject, situation) => {
         const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
         const enfant_a_charge =
@@ -498,7 +497,6 @@ export function generateBlocks(situation): BlockLayout[] {
       steps: [
         new Step({ entity: "parents", variable: "_situation" }),
         {
-          subject: (demandeur, situation) => situation.parents,
           isActive: (parents, situation) => {
             const parents_ok =
               !parents ||
@@ -522,8 +520,10 @@ export function generateBlocks(situation): BlockLayout[] {
                 "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
             }),
           ],
+          subject: (demandeur, situation) => situation.parents,
         },
       ],
+      subject: (situation) => situation.demandeur,
     },
     housingBlock(),
     resourceBlocks(situation),
@@ -554,7 +554,6 @@ export function generateBlocks(situation): BlockLayout[] {
           ],
         },
         {
-          subject: (situation) => situation.demandeur,
           isActive: (demandeur, situation) => {
             const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
             const enfant_a_charge = demandeur.enfant_a_charge?.[thisYear]
@@ -572,9 +571,9 @@ export function generateBlocks(situation): BlockLayout[] {
               variable: "rfr",
             }),
           ],
+          subject: (situation) => situation.demandeur,
         },
         {
-          subject: (situation) => situation.demandeur,
           isActive: (demandeur, situation) => {
             const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
             return demandeur.enfant_a_charge?.[thisYear]
@@ -585,12 +584,13 @@ export function generateBlocks(situation): BlockLayout[] {
               variable: "nbptr",
             }),
           ],
+          subject: (situation) => situation.demandeur,
         },
       ],
     },
     extraBlock(),
     {
-      steps: [new Step({ entity: "resultats", chapter: "resultats" })],
+      steps: [new Step({ chapter: "resultats", entity: "resultats" })],
     },
     new Step({ entity: "resultats" }),
   ]

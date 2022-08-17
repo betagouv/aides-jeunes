@@ -34,11 +34,11 @@ parser.addArgument(["--model"], {
 })
 
 const modelMigration = {
-  simulations: {
-    model: Simulation,
-  },
   followups: {
     model: Followup,
+  },
+  simulations: {
+    model: Simulation,
   },
 }
 Object.keys(modelMigration).forEach((key) => {

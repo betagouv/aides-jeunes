@@ -41,7 +41,7 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
       }
     })
     .catch((error) => {
-      return { error: error?.message, data: error?.response?.data }
+      return { data: error?.response?.data, error: error?.message }
     })
 }
 

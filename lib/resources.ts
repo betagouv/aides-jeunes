@@ -39,149 +39,147 @@ export const ressourceCategories = [
 
 export const ressourceTypes: resourceLayout[] = [
   {
-    id: "salaire_net",
-    label: "Salaire (dont primes et indemnités de fin de contrat)",
     category: "revenusActivite",
+    hint: "Entrez le montant avant la retenue à la source",
+    id: "salaire_net",
     interuptionQuestionLabel:
       "un salaire, des allocations chômage, ou des indemnités de la sécurité sociale",
+    label: "Salaire (dont primes et indemnités de fin de contrat)",
     positionInList: "1",
-    hint: "Entrez le montant avant la retenue à la source",
   },
   {
+    category: "revenusActivite",
     id: "indemnites_stage",
     label: "Rémunération de stage",
-    category: "revenusActivite",
     prefix: "une",
   },
   {
+    category: "revenusActivite",
     id: "revenus_stage_formation_pro",
     label: "Revenus de stage de formation professionnelle",
-    category: "revenusActivite",
     prefix: "des",
   },
   {
-    id: "chomage_net",
-    label: "Allocations chômage (ARE)",
     category: "allocations",
+    hint: "Entrez le montant avant la retenue à la source",
+    id: "chomage_net",
     interuptionQuestionLabel:
       "des allocations chômage, un salaire ou des indemnités de la sécurité sociale",
-    hint: "Entrez le montant avant la retenue à la source",
+    label: "Allocations chômage (ARE)",
   },
   {
+    category: "allocations",
     id: "allocation_securisation_professionnelle",
     label: "Allocation de sécurisation professionnelle",
-    category: "allocations",
     prefix: "une",
   },
   {
+    category: "allocations",
     id: "prime_forfaitaire_mensuelle_reprise_activite",
     label: "Prime forfaitaire mensuelle pour la reprise d’activité",
-    category: "allocations",
     prefix: "une",
   },
   {
+    category: "allocations",
     id: "aide_logement",
     label: "Aides au logement (APL, ALS, ALF)",
-    category: "allocations",
     prefix: "des",
   },
   {
+    category: "allocations",
     id: "af",
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
+    },
     label: "Allocations familiales",
-    category: "allocations",
     prefix: "des",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
-    },
   },
   {
+    category: "allocations",
     id: "cf",
-    label: "Complément familial (CF)",
-    category: "allocations",
-    prefix: "le",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
+    label: "Complément familial (CF)",
+    prefix: "le",
   },
   {
-    id: "asf",
-    label: "Allocation de soutien familial (ASF)",
     category: "allocations",
-    prefix: "l’",
+    id: "asf",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(situation.enfants?.filter((e) => e.garde_aternee).length)
       )
     },
+    label: "Allocation de soutien familial (ASF)",
+    prefix: "l’",
   },
   {
+    category: "allocations",
     id: "rsa",
     label: "Revenu de solidarité active (RSA)",
-    category: "allocations",
     prefix: "le",
   },
   {
+    category: "revenusActivite",
     id: "ppa",
     label: "Prime d’activité",
-    category: "revenusActivite",
     prefix: "la",
   },
   {
-    id: "aspa",
-    label: "Allocation de solidarité aux personnes âgées (ASPA)",
     category: "allocations",
-    prefix: "l’",
+    id: "aspa",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         55 <=
         Individu.age(individu, generator(situation.dateDeValeur).today.value)
       )
     },
+    label: "Allocation de solidarité aux personnes âgées (ASPA)",
+    prefix: "l’",
   },
   {
-    id: "asi",
-    label: "Allocation supplémentaire d’invalidité (ASI)",
     category: "allocations",
-    prefix: "l’",
+    id: "asi",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (individu?.handicap && individu.handicap) === true
     },
+    label: "Allocation supplémentaire d’invalidité (ASI)",
+    prefix: "l’",
   },
   {
-    id: "ass",
-    label: "Allocation de solidarité spécifique (ASS)",
     category: "allocations",
-    prefix: "l’",
+    id: "ass",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.activite != "etudiant"
     },
+    label: "Allocation de solidarité spécifique (ASS)",
+    prefix: "l’",
   },
   {
-    id: "aah",
-    label: "Allocation adulte handicapé (AAH)",
     category: "allocations",
-    prefix: "l’",
+    id: "aah",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (individu?.handicap && individu.handicap) === true
     },
+    label: "Allocation adulte handicapé (AAH)",
+    prefix: "l’",
   },
   {
-    id: "caah",
-    label: "Complément de ressources adulte handicapé",
     category: "allocations",
+    id: "caah",
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+      return (individu?.handicap && individu.handicap) === true
+    },
+    label: "Complément de ressources adulte handicapé",
     prefix: "le",
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
-    },
   },
   {
-    id: "contrat_engagement_jeune",
-    label: "Contrat engagement jeune",
     category: "allocations",
-    prefix: "le",
+    id: "contrat_engagement_jeune",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       const age = Individu.age(
         individu,
@@ -191,232 +189,234 @@ export const ressourceTypes: resourceLayout[] = [
         16 <= age && (age <= 25 || (individu.handicap && age < 30))
       )
     },
+    label: "Contrat engagement jeune",
+    prefix: "le",
   },
   {
-    id: "mva",
-    label: "Majoration pour vie autonome (MVA)",
     category: "allocations",
-    prefix: "la",
-    sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
+    id: "mva",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (individu?.handicap && individu.handicap) === true
     },
+    label: "Majoration pour vie autonome (MVA)",
+    prefix: "la",
+    sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
   },
   {
-    id: "aeeh",
-    label: "Allocation d’éducation de l’enfant handicapé (AEEH)",
     category: "allocations",
-    prefix: "l’",
+    id: "aeeh",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
       )
     },
+    label: "Allocation d’éducation de l’enfant handicapé (AEEH)",
+    prefix: "l’",
   },
   {
-    id: "pch",
-    label: "Prestation de compensation du handicap (PCH)",
     category: "allocations",
-    prefix: "la",
+    id: "pch",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.handicap ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
       )
     },
+    label: "Prestation de compensation du handicap (PCH)",
+    prefix: "la",
   },
   {
+    category: "allocations",
     id: "paje_base",
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
+    },
     label: "Prestation d’accueil du jeune enfant (PAJE) - Allocation de base",
-    category: "allocations",
     prefix: "la",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
-    },
   },
   {
+    category: "allocations",
     id: "paje_clca",
+    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
+    },
     label: "Complément de libre choix d’activité (CLCA)",
-    category: "allocations",
     prefix: "le",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
-    },
   },
   {
-    id: "paje_prepare",
-    label: "Prestation partagée d’éducation de l’enfant (PreParE)",
     category: "allocations",
-    prefix: "la",
+    id: "paje_prepare",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
+    label: "Prestation partagée d’éducation de l’enfant (PreParE)",
+    prefix: "la",
   },
   {
-    id: "indemnites_journalieres_maternite",
-    label: "Indemnités de maternité, paternité, adoption",
     category: "indemnites",
+    id: "indemnites_journalieres_maternite",
     interuptionQuestionLabel:
       "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
     isRelevant: (situation) => situation.enfants?.length,
+    label: "Indemnités de maternité, paternité, adoption",
   },
   {
-    id: "indemnites_journalieres_maladie",
-    label: "Indemnités maladie",
     category: "indemnites",
-    interuptionQuestionLabel:
-      "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
     hint: "Entrez le montant avant la retenue à la source",
+    id: "indemnites_journalieres_maladie",
+    interuptionQuestionLabel:
+      "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
+    label: "Indemnités maladie",
   },
   {
+    category: "indemnites",
     id: "indemnites_journalieres_maladie_professionnelle",
+    interuptionQuestionLabel:
+      "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
     label: "Indemnités maladie professionnelle",
-    category: "indemnites",
-    interuptionQuestionLabel:
-      "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
   },
   {
+    category: "indemnites",
     id: "indemnites_journalieres_accident_travail",
-    label: "Indemnités d’accident du travail",
-    category: "indemnites",
     interuptionQuestionLabel:
       "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
+    label: "Indemnités d’accident du travail",
   },
   {
+    category: "indemnites",
     id: "indemnites_chomage_partiel",
     label: "Indemnités d’activité partielle",
-    category: "indemnites",
     prefix: "des",
   },
   {
+    category: "indemnites",
     id: "indemnites_volontariat",
     label: "Indemnités de volontariat",
-    category: "indemnites",
     prefix: "des",
   },
   {
+    category: "indemnites",
     id: "dedommagement_victime_amiante",
     label: "Dédommagement aux victimes de l’amiante",
-    category: "indemnites",
     prefix: "un",
   },
   {
+    category: "pensions",
     id: "pensions_alimentaires_percues",
     label: "Pension alimentaire",
-    category: "pensions",
     prefix: "une",
   },
   {
-    id: "pensions_alimentaires_versees_individu",
-    label: "Pension alimentaire versée",
     category: "pensions",
+    id: "pensions_alimentaires_versees_individu",
     interuptionQuestionLabel: "une pension alimentaire",
+    label: "Pension alimentaire versée",
   },
   {
+    category: "pensions",
     id: "prestation_compensatoire",
     label: "Prestation compensatoire (suite à séparation)",
-    category: "pensions",
     prefix: "une",
   },
   {
-    id: "retraite_nette",
-    label: "Retraite (y compris reversion), rente",
     category: "pensions",
-    prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
+    id: "retraite_nette",
     isRelevant(situation: situationsLayout, individu: individuLayout) {
       return individu.activite === "retraite"
     },
-  },
-  {
-    id: "retraite_combattant",
-    label: "Retraite du combattant",
-    category: "pensions",
+    label: "Retraite (y compris reversion), rente",
     prefix: "une",
+  },
+  {
+    category: "pensions",
+    id: "retraite_combattant",
     isRelevant(situation: situationsLayout, individu: individuLayout) {
       return individu.activite === "retraite"
     },
+    label: "Retraite du combattant",
+    prefix: "une",
   },
   {
+    category: "pensions",
     id: "pensions_invalidite",
     label: "Pension d’invalidité",
-    category: "pensions",
     prefix: "une",
   },
   {
+    category: "autre",
     id: "bourse_enseignement_sup",
     label: "Bourse de l’enseignement supérieur",
-    category: "autre",
     prefix: "une",
   },
   {
+    category: "autre",
     id: "bourse_recherche",
     label: "Bourse de recherche",
-    category: "autre",
     prefix: "une",
   },
   {
+    category: "autre",
     id: "bourse_lycee",
     label: "Bourse du lycée",
-    category: "autre",
     prefix: "une",
   },
   {
+    category: "autre",
     id: "gains_exceptionnels",
     label: "Gains exceptionnels (dons, gains aux jeux, héritage)",
-    category: "autre",
     prefix: "des",
   },
   {
+    category: "patrimoine",
     id: "revenus_locatifs",
     label: "Revenus locatifs (terrains, appartements, SCI…)",
-    category: "patrimoine",
     prefix: "des",
   },
   {
+    category: "patrimoine",
     id: "revenus_capital",
     label: "Revenus du capital (intérêts, plus-values, dividendes…)",
-    category: "patrimoine",
     prefix: "des",
   },
   {
+    category: "rpns",
     id: "rpns_micro_entreprise_CA_bic_vente_imp",
+    isMontantAnnuel: true,
     label: "Via une micro-entreprise (Achat/revente ou fourniture de logement)",
-    category: "rpns",
-    isMontantAnnuel: true,
   },
   {
+    category: "rpns",
     id: "rpns_micro_entreprise_CA_bic_service_imp",
-    label: "Via une micro-entreprise (Autre activité relevant des BIC)",
-    category: "rpns",
     isMontantAnnuel: true,
+    label: "Via une micro-entreprise (Autre activité relevant des BIC)",
   },
   {
+    category: "rpns",
     id: "rpns_micro_entreprise_CA_bnc_imp",
+    isMontantAnnuel: true,
     label:
       "Via une micro-entreprise (Activité libérale et/ou intellectuelle (BNC))",
-    category: "rpns",
-    isMontantAnnuel: true,
   },
   {
+    category: "rpns",
     id: "rpns_benefice_exploitant_agricole",
-    label: "En tant qu'exploitant agricole",
-    category: "rpns",
     isMontantAnnuel: true,
+    label: "En tant qu'exploitant agricole",
   },
   {
-    id: "rpns_autres_revenus",
-    label: "En profession libérale (entrepreneur)",
     category: "rpns",
-    isMontantAnnuel: true,
     extra: [
       {
-        id: "tns_autres_revenus_type_activite",
         default: "bic",
+        id: "tns_autres_revenus_type_activite",
         openfiscaPeriod: "thisMonth",
       },
     ],
+    id: "rpns_autres_revenus",
+    isMontantAnnuel: true,
+    label: "En profession libérale (entrepreneur)",
   },
 ]
 
@@ -495,8 +495,8 @@ export const patrimoineTypes = [
 ]
 
 export default {
-  ressourceCategories,
-  ressourceTypes,
   categoriesRnc,
   patrimoineTypes,
+  ressourceCategories,
+  ressourceTypes,
 }

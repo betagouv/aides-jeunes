@@ -175,16 +175,20 @@ function isRessourceOnMainScreen(ressourceOrType): boolean {
 }
 
 export default {
+  getIndividuRessourceCategories,
+
+  getIndividuRessourceTypes,
+
+  getIndividuRessourceTypesByCategory,
+
   getPeriodsForCurrentYear,
+
+  isRessourceOnMainScreen,
   // Ne semble pas être utilisée
   // getPeriodKeysForCurrentYear,
   isRessourceRelevant,
-  isRessourceOnMainScreen,
   isSelectedForCurrentYear,
   setDefaultValueForCurrentYear,
-  getIndividuRessourceCategories,
-  getIndividuRessourceTypes,
-  getIndividuRessourceTypesByCategory,
   setIndividuRessourceTypes,
   unsetForCurrentYear,
 }

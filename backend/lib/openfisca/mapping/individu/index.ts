@@ -15,38 +15,34 @@ import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
 
 const individuSchema: individuGeneratorLayout = {
   activite: {
-    src: "activite",
     fn: function (activite) {
       return estActif(activite) ? "actif" : activite
     },
-  },
-  apprenti: {
-    src: "_contrat_alternant",
-    fn: function (contratAlternant) {
-      return contratAlternant === "apprenti"
-    },
-  },
-  date_naissance: {
-    src: "date_naissance",
-    fn: formatDate,
+    src: "activite",
   },
   age: {
-    src: "date_naissance",
     fn: function (dateDeNaissance, individu, situation) {
       return (
         dateDeNaissance &&
         dayjs(situation.dateDeValeur).diff(dayjs(dateDeNaissance), "year")
       )
     },
+    src: "date_naissance",
   },
   age_en_mois: {
-    src: "date_naissance",
     fn: function (dateDeNaissance, individu, situation) {
       return (
         dateDeNaissance &&
         dayjs(situation.dateDeValeur).diff(dayjs(dateDeNaissance), "month")
       )
     },
+    src: "date_naissance",
+  },
+  apprenti: {
+    fn: function (contratAlternant) {
+      return contratAlternant === "apprenti"
+    },
+    src: "_contrat_alternant",
   },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
@@ -66,16 +62,20 @@ const individuSchema: individuGeneratorLayout = {
     },
   },
   contrat_de_travail_debut: {
-    src: "_nombreMoisDebutContratDeTravail",
     fn: function (_nombreMoisDebutContratDeTravail, _, situation) {
       return dayjs(situation.dateDeValeur)
         .subtract(_nombreMoisDebutContratDeTravail || 0, "month")
         .format("YYYY-MM-DD")
     },
+    src: "_nombreMoisDebutContratDeTravail",
   },
   date_debut_chomage: {
-    src: "date_debut_chomage",
     fn: formatDate,
+    src: "date_debut_chomage",
+  },
+  date_naissance: {
+    fn: formatDate,
+    src: "date_naissance",
   },
   debut_etudes_etranger: {
     fn: function (_, situation) {
@@ -83,19 +83,19 @@ const individuSchema: individuGeneratorLayout = {
     },
   },
   enceinte: {
-    src: "enceinte",
     fn: function (enceinte) {
       return enceinte === "enceinte"
     },
+    src: "enceinte",
   },
   fin_etudes_etranger: {
-    src: "_dureeMoisEtudesEtranger",
     fn: function (_dureeMoisEtudesEtranger, _, situation) {
       return dayjs(situation.dateDeValeur)
         .add(_dureeMoisEtudesEtranger || 0, "month")
         .add(1, "day")
         .format("YYYY-MM-DD")
     },
+    src: "_dureeMoisEtudesEtranger",
   },
   peec_employeur: {
     fn: function () {
@@ -103,26 +103,26 @@ const individuSchema: individuGeneratorLayout = {
     },
   },
   professionnalisation: {
-    src: "_contrat_alternant",
     fn: function (contratAlternant) {
       return contratAlternant === "professionnalisation"
     },
+    src: "_contrat_alternant",
   },
   regime_securite_sociale: {
-    src: "regime_securite_sociale",
     fn: function (regime_securite_sociale) {
       return regime_securite_sociale !== "inconnu"
         ? regime_securite_sociale
         : "regime_general"
     },
+    src: "regime_securite_sociale",
   },
   secteur_activite_employeur: {
-    src: "regime_securite_sociale",
     fn: function (regime_securite_sociale) {
       return regime_securite_sociale === "regime_agricole"
         ? "agricole"
         : "non_agricole"
     },
+    src: "regime_securite_sociale",
   },
 }
 

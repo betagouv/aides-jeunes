@@ -2,15 +2,18 @@
 
 export const situationsFamiliales = [
   {
-    value: "marie", // Enum value 1 in OpenFisca
+    // Enum value 1 in OpenFisca
     label: "Marié·e",
+    value: "marie",
   },
   {
-    value: "pacse", // Enum value 5 in OpenFisca
+    // Enum value 5 in OpenFisca
     label: "Pacsé·e",
+    value: "pacse",
   },
   {
-    value: "celibataire", // Enum value 2 in OpenFisca
+    // Enum value 2 in OpenFisca
     label: "En union libre",
+    value: "celibataire",
   },
 ]

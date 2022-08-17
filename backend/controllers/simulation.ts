@@ -156,14 +156,14 @@ function redirect(req, res) {
 }
 
 export default {
-  simulation,
   attachAccessCookie,
-  validateAccess,
-  show,
   create,
-  openfiscaResponse,
-  openfiscaTrace,
   openfiscaRequest,
+  openfiscaResponse,
   openfiscaTest,
+  openfiscaTrace,
   redirect,
+  show,
+  simulation,
+  validateAccess,
 }

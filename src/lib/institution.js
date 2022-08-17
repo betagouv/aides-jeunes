@@ -19,15 +19,15 @@ const Institution = {
       .filter((benefit) => !filterSublist || filterSublist.includes(benefit.id))
       .map((benefit) => {
         return Object.assign({}, benefit, {
-          montant: benefit.montant || defaults[benefit.type || "float"],
           mock: true,
+          montant: benefit.montant || defaults[benefit.type || "float"],
         })
       })
 
     return {
       droitsEligibles: list,
-      droitsNonEligibles: [],
       droitsInjectes: [],
+      droitsNonEligibles: [],
     }
   },
 }

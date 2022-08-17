@@ -24,8 +24,8 @@ function getLabel(name: string) {
 }
 
 const Chapters = {
-  getLabel,
   getChapters,
+  getLabel,
   getSommaireChapters,
 }
 

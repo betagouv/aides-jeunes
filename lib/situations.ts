@@ -7,12 +7,12 @@ import { individuLayout } from "./types/individu.js"
 import { situationsLayout } from "./types/situations.js"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
-  id: id,
+  _role: role,
   annee_etude: undefined,
   date_naissance: undefined,
   enfant_a_charge: {},
+  id: id,
   nationalite: undefined,
-  _role: role,
 })
 
 const getIndividu = (situation: situationsLayout, id: string) => {
@@ -44,7 +44,6 @@ export function generateSituation(simulation, useAll?: any) {
   const dates = datesGenerator(simulation.dateDeValeur)
   const situation: situationsLayout = {
     dateDeValeur: simulation.dateDeValeur,
-    version: simulation.version,
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
     enfants: simulation?.enfants
       ? simulation.enfants.map((enfant, index) => {
@@ -64,6 +63,7 @@ export function generateSituation(simulation, useAll?: any) {
       aide_logement_date_pret_conventionne: "2018-12-31",
     },
     parents: {},
+    version: simulation.version,
   }
 
   if (!simulation) {

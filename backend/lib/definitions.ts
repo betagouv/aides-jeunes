@@ -39,10 +39,10 @@ const parents = []
 
 export const entities = {
   famille,
+  foyerFiscal,
   individu,
   menage,
   parents,
-  foyerFiscal,
 }
 
 forEachProperties((entityName, propertyName) => {
@@ -86,7 +86,7 @@ export const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]
 
 export default {
   ...entities,
+  ANSWER_BASIC_IDS,
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
-  ANSWER_BASIC_IDS,
 }

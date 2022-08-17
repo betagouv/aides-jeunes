@@ -40,8 +40,8 @@ export function persist(req, res) {
   }
 
   Followup.create({
-    simulation: req.simulation,
     email: req.body.email,
+    simulation: req.simulation,
     surveyOptin: req.body.surveyOptin,
   })
     .then((followup) => {

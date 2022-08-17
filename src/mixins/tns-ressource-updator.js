@@ -1,7 +1,4 @@
 export default {
-  props: {
-    ressource: Object,
-  },
   methods: {
     update: function (month, value) {
       this.$emit("update", this.ressource, month, value)
@@ -9,5 +6,8 @@ export default {
     updateExtra: function (item, value) {
       this.$emit("updateExtra", this.ressource, item, value)
     },
+  },
+  props: {
+    ressource: Object,
   },
 }

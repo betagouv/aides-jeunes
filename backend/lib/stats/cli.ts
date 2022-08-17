@@ -16,8 +16,8 @@ mongodb
           const rows: any[] = []
           items.forEach((i) => {
             const b = {
-              situation: i.situation,
               date: i.createdAt.toISOString().slice(0, 10),
+              situation: i.situation,
             }
 
             i.surveys[0].answers.forEach((a) => {

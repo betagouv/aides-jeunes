@@ -50,11 +50,11 @@ export class Property {
 
   getFormat(propertyData: PropertyData): any {
     return {
+      answerFormat: this.getAnswerFormat(propertyData),
+      help: this.help,
+      optional: this.optional,
       text: this.getQuestion(propertyData),
       type: this.questionType,
-      help: this.help,
-      answerFormat: this.getAnswerFormat(propertyData),
-      optional: this.optional,
     }
   }
 }
@@ -63,7 +63,6 @@ export class BooleanProperty extends Property {
   // eslint-disable-next-line no-empty-pattern
   getAnswerFormat({}: PropertyData): any {
     return {
-      type: "boolean",
       items: [
         {
           label: "Oui",
@@ -74,6 +73,7 @@ export class BooleanProperty extends Property {
           value: false,
         },
       ],
+      type: "boolean",
     }
   }
 }
@@ -127,8 +127,8 @@ export class EnumProperty extends ItemProperty {
   getAnswerFormat(propertyData: PropertyData): any {
     const items = this.getValueOrExecuteFunction("items", propertyData)
     return {
-      type: typeof items[0]?.value,
       items,
+      type: typeof items[0]?.value,
     }
   }
 }
@@ -141,8 +141,8 @@ export class MultipleProperty extends ItemProperty {
   getAnswerFormat(propertyData: PropertyData): any {
     const items = this.getValueOrExecuteFunction("items", propertyData)
     return {
-      type: `${typeof items[0]?.value}[]`,
       items,
+      type: `${typeof items[0]?.value}[]`,
     }
   }
 }
@@ -163,11 +163,11 @@ export class NumberProperty extends Property {
     min,
   }: NumberPropertyConstruct) {
     super({
+      help,
+      moreInfo,
+      optional,
       question,
       questionType: "number",
-      help,
-      optional,
-      moreInfo,
       showMoreInfo,
     })
     this.type = type
@@ -178,8 +178,8 @@ export class NumberProperty extends Property {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getAnswerFormat(propertyData: PropertyData): any {
     return {
-      type: "number",
       min: this.min,
+      type: "number",
     }
   }
 }
@@ -200,11 +200,11 @@ export class DepcomProperty extends Property {
     showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
   }) {
     super({
+      help,
+      moreInfo,
+      optional,
       question,
       questionType: "depcom",
-      help,
-      optional,
-      moreInfo,
       showMoreInfo,
     })
   }
@@ -213,13 +213,13 @@ export class DepcomProperty extends Property {
   getAnswerFormat(propertyData: PropertyData): any {
     return {
       type: {
-        depcom: "string",
         _codePostal: "string",
-        _nomCommune: "string",
         _departement: "string",
-        _region: "string",
         _epci: "string",
         _epciType: "string",
+        _nomCommune: "string",
+        _region: "string",
+        depcom: "string",
       },
     }
   }
@@ -240,11 +240,11 @@ export class TextProperty extends Property {
     showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
   }) {
     super({
+      help,
+      moreInfo,
+      optional,
       question,
       questionType: "text",
-      help,
-      optional,
-      moreInfo,
       showMoreInfo,
     })
   }

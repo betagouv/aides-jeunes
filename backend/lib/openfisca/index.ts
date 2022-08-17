@@ -36,6 +36,6 @@ export const trace = sendToOpenfisca("trace")
 export default {
   buildOpenFiscaRequest,
   calculate,
-  trace,
   sendToOpenfisca,
+  trace,
 }

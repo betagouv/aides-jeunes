@@ -52,9 +52,9 @@ app.use(StateService)
 
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",
-  trackerFileName: "piwik",
-  siteId: process.env.VUE_APP_MATOMO_ID,
   router: router,
+  siteId: process.env.VUE_APP_MATOMO_ID,
+  trackerFileName: "piwik",
 })
 
 app.config.globalProperties.$filters = {

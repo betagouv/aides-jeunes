@@ -17,13 +17,13 @@ const computeBenefits = computeAides.bind(benefits)
 
 const answer = {
   entityName: {
+    enum: ANSWER_ENTITY_NAMES,
     required: true,
     type: String,
-    enum: ANSWER_ENTITY_NAMES,
   },
   fieldName: {
-    type: String,
     enum: ANSWER_FIELD_NAMES,
+    type: String,
   },
   id: {
     type: String,
@@ -37,31 +37,31 @@ const answer = {
 }
 
 const answers = {
-  all: { type: [answer], required: true },
-  current: { type: [answer], required: true },
+  all: { required: true, type: [answer] },
+  current: { required: true, type: [answer] },
 }
 
 const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
   {
-    answers: { type: answers, required: true },
-    enfants: [Number],
-    ressourcesFiscales: Object,
-    patrimoine: Object,
-    dateDeValeur: {
-      type: Date,
-      required: true,
-    },
-    version: { type: Number, default: version },
     abtesting: Object,
-    createdAt: { type: Date, default: Date.now },
+    answers: { required: true, type: answers },
+    createdAt: { default: Date.now, type: Date },
+    dateDeValeur: {
+      required: true,
+      type: Date,
+    },
+    enfants: [Number],
     modifiedFrom: String,
+    patrimoine: Object,
+    ressourcesFiscales: Object,
     status: {
-      type: String,
       default: "new",
       enum: ["new", "test", "investigation", "anonymized"],
+      type: String,
     },
     teleservice: String,
     token: String,
+    version: { default: version, type: Number },
   },
   { minimize: false }
 )

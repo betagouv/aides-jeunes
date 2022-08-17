@@ -4,10 +4,10 @@ const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {
-    région: institutions.filter((i) => i.type === "region"),
+    "code insee": institutions.filter((i) => i.type === "commune"),
     département: institutions.filter((i) => i.type === "departement"),
     epci: institutions.filter((i) => i.type === "epci"),
-    "code insee": institutions.filter((i) => i.type === "commune"),
+    région: institutions.filter((i) => i.type === "region"),
   }
 
   benefits.forEach((b) => {
@@ -47,17 +47,17 @@ function generate_benefit_list(institutions) {
           ? b.description
           : `Aide à l'achat d'un vélo : ${b.title}`
       return {
-        label: `Aide à l'achat d'un vélo : ${b.title}`,
-        description: description,
-        id: `aidesvelo_${b.id}`.replace(/[ .']+/g, "_"),
-        external_id: b.id,
         collectivity: b.collectivity,
-        title: b.title,
+        description: description,
+        external_id: b.id,
+        id: `aidesvelo_${b.id}`.replace(/[ .']+/g, "_"),
         institution: b.institution,
-        prefix: "l'",
-        type: "float",
-        periodicite: "ponctuelle",
+        label: `Aide à l'achat d'un vélo : ${b.title}`,
         link: b.url,
+        periodicite: "ponctuelle",
+        prefix: "l'",
+        title: b.title,
+        type: "float",
       }
     })
 }

@@ -27,8 +27,8 @@ function renderAsText(followup) {
 
 function renderAsHtml(followup) {
   const data = {
-    ctaLink: `${config.baseURL}${followup.surveyPath}`,
     baseURL: config.baseURL,
+    ctaLink: `${config.baseURL}${followup.surveyPath}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
   }
 
@@ -44,11 +44,11 @@ export default function render(followup) {
   return Promise.all([renderAsText(followup), renderAsHtml(followup)]).then(
     function (values) {
       return {
+        html: values[1].html,
         subject: `[${
           followup.simulation?._id || followup.simulation
         }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
         text: values[0],
-        html: values[1].html,
       }
     }
   )

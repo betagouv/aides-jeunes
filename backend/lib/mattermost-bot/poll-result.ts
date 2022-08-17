@@ -3,10 +3,10 @@ import mattermost from "./mattermost.js"
 function parseCurrentDate() {
   const isoDateTime = new Date(Date.now())
   return `${isoDateTime.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
     weekday: "long",
     year: "numeric",
-    month: "long",
-    day: "numeric",
   })} à ${isoDateTime.toLocaleTimeString("fr-FR")}`
 }
 
@@ -15,10 +15,10 @@ function postPollResult(simulation, answers) {
     return
   }
   const score = {
+    already: [":icon-info:", "Déjà perçue"],
     asked: [":icon-valid:", "Demande réussie"],
     failed: [":icon-danger:", "Demande échouée"],
     nothing: [":icon-warning:", "Aucune demande"],
-    already: [":icon-info:", "Déjà perçue"],
   }
   const orderedAnswers: any[] = []
   for (const benefit of simulation.benefits) {

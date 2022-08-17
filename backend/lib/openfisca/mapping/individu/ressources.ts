@@ -33,31 +33,31 @@ function salaireNetToImposable(value, period, individu) {
 const individuRessources = {
   chomage_brut: [
     {
-      src: "chomage_net",
       fn: function (value) {
         return value / (1 - ((0.062 + 0.005) * 0.9825 + 0.028))
       },
+      src: "chomage_net",
     },
   ],
   retraite_brute: [
     {
-      src: "retraite_nette",
       fn: function (value) {
         // approximation prélèvement moyen de 7.4 % de cotisations sociales (csg-crds)
         return value / 0.926
       },
+      src: "retraite_nette",
     },
   ],
   salaire_de_base: [
     {
-      src: "salaire_net",
       fn: salaireNetToBrut,
+      src: "salaire_net",
     },
   ],
   salaire_imposable: [
     {
-      src: "salaire_net",
       fn: salaireNetToImposable,
+      src: "salaire_net",
     },
   ],
 }

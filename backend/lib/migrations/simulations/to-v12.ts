@@ -6,11 +6,11 @@ const VERSION = 12
 const VALUE_MAP = {
   _bourseCriteresSociauxCommuneDomicileFamilial: "depcom",
   _bourseCriteresSociauxCommuneDomicileFamilialCodePostal: "_codePostal",
-  _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: "_nomCommune",
   _bourseCriteresSociauxCommuneDomicileFamilialDepartement: "_departement",
-  _bourseCriteresSociauxCommuneDomicileFamilialRegion: "_region",
   _bourseCriteresSociauxCommuneDomicileFamilialEpci: "_epci",
   _bourseCriteresSociauxCommuneDomicileFamilialEpciType: "_epciType",
+  _bourseCriteresSociauxCommuneDomicileFamilialNomCommune: "_nomCommune",
+  _bourseCriteresSociauxCommuneDomicileFamilialRegion: "_region",
 }
 
 function updateBourseCriteresSociauxCommuneDomicileFamilial(answers) {

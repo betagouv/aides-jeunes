@@ -9,9 +9,9 @@ export function reduceContributions(acc, contribution, type) {
   const splitLabel = contribution.head.label.split("/")
   if (splitLabel[1] === type) {
     acc.push({
-      sha: contribution.head.sha,
       filename: `${splitLabel[2]}.yml`,
       folder: type,
+      sha: contribution.head.sha,
     })
   }
   return acc

@@ -1,7 +1,6 @@
 export const sendEcartInstructions = (situationId) => {
   if (!situationId) situationId = "??"
   return {
-    subject: `[${situationId}] Montants inattendus`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -17,12 +16,12 @@ export const sendEcartInstructions = (situationId) => {
     ————
     ID : ${situationId} (à conserver impérativement pour traitement de votre demande)
             ————`,
+    subject: `[${situationId}] Montants inattendus`,
   }
 }
 export const sendEcartSimulation = (situationId) => {
   if (!situationId) situationId = "??"
   return {
-    subject: `[${situationId}] Montants inattendus`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -37,6 +36,7 @@ export const sendEcartSimulation = (situationId) => {
     ————
     ID : ${situationId} (à conserver impérativement pour traitement de votre demande)
             ————`,
+    subject: `[${situationId}] Montants inattendus`,
   }
 }
 
@@ -51,7 +51,6 @@ export const sendError = (situationId, error) => {
   if (!situationId) situationId = "??"
   if (!error) error = "Impossible de récupérer l'erreur."
   return {
-    subject: `[${situationId}] Problème technique`,
     body: `Bonjour,
 
   J'ai tenté de XXX,
@@ -64,13 +63,13 @@ export const sendError = (situationId, error) => {
   ID : ${situationId}
   Erreur : ${error}
   ————`,
+    subject: `[${situationId}] Problème technique`,
   }
 }
 
 export const sendMontantsAttendus = (situationId) => {
   if (!situationId) situationId = "??"
   return {
-    subject: `[${situationId}] - Montant attendus`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -83,5 +82,6 @@ export const sendMontantsAttendus = (situationId) => {
   ————
   ID : ${situationId}
   ————`,
+    subject: `[${situationId}] - Montant attendus`,
   }
 }

@@ -16,52 +16,52 @@ const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {
     _oldId: { type: String },
     accessToken: { type: String },
-    createdAt: { type: Date, default: Date.now },
-    messageId: { type: String },
-    repliedAt: { type: Date },
-    error: { type: Object },
     answers: [
       {
+        comments: String,
         id: String,
         value: String,
-        comments: String,
       },
     ],
+    createdAt: { default: Date.now, type: Date },
+    error: { type: Object },
+    messageId: { type: String },
+    repliedAt: { type: Date },
     type: { type: String },
   },
-  { minimize: false, id: false }
+  { id: false, minimize: false }
 )
 
 const FollowupSchema = new mongoose.Schema(
   {
-    simulation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Simulation",
-    },
+    _oldId: { type: String },
+    accessToken: { type: String },
+    benefits: { type: Object },
+    createdAt: { default: Date.now, type: Date },
     email: {
       type: String,
       validate: {
-        validator: validator.isEmail,
-        message: "{VALUE} n'est pas un email valide",
         isAsync: false,
+        message: "{VALUE} n'est pas un email valide",
+        validator: validator.isEmail,
       },
     },
-    createdAt: { type: Date, default: Date.now },
-    sentAt: { type: Date },
+    error: { type: Object },
     messageId: { type: String },
+    sentAt: { type: Date },
+    simulation: {
+      ref: "Simulation",
+      type: mongoose.Schema.Types.ObjectId,
+    },
+    surveyOptin: { default: false, type: Boolean },
     surveySentAt: { type: Date },
-    benefits: { type: Object },
-    surveyOptin: { type: Boolean, default: false },
     surveys: {
-      type: [SurveySchema],
       default: [],
+      type: [SurveySchema],
     },
     version: Number,
-    error: { type: Object },
-    accessToken: { type: String },
-    _oldId: { type: String },
   },
-  { minimize: false, id: false }
+  { id: false, minimize: false }
 )
 
 FollowupSchema.static("findByIdOrOldId", function (id) {

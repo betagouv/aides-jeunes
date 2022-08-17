@@ -17,69 +17,69 @@ dayjs.locale("fr")
 
 const teleservices = [
   {
-    name: "ccas_saint_louis_preprod",
     class: OpenFiscaResponse,
-    public: true,
     destination: {
       label: "Transférer les informations",
       url: "https://agrums.acadis.re/agrum/analyse-des-droits/{{token}}",
     },
+    name: "ccas_saint_louis_preprod",
+    public: true,
   },
   {
-    name: "openfisca_tracer",
     class: OpenFiscaTracer,
-    public: true,
     destination: {
       label: "en ligne",
       url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/simulation/via/{{token}}&host={{&openFiscaURL}}",
     },
+    name: "openfisca_tracer",
+    public: true,
   },
   {
-    name: "openfisca_axe",
     class: OpenFiscaAxe,
-    public: true,
     destination: {
       url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/simulation/via/{{token}}",
     },
+    name: "openfisca_axe",
+    public: true,
   },
   {
-    name: "PNDS",
     class: PNDS,
     destination: {
       url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },
+    name: "PNDS",
   },
   {
-    name: "aides_jeunes_preremplissage_dev",
     class: AidesJeunesPreremplissage,
-    public: true,
     destination: {
       url: "http://localhost:3000/preremplissage/resultats?token={{token}}",
     },
+    name: "aides_jeunes_preremplissage_dev",
+    public: true,
   },
   {
-    name: "aides_jeunes_service_logement_dev",
     class: AidesJeunesServiceLogement,
-    public: true,
     destination: {
       url: "http://localhost:3000/service-logement?token={{token}}",
     },
+    name: "aides_jeunes_service_logement_dev",
+    public: true,
   },
   {
-    name: "aides_jeunes_preremplissage",
     class: AidesJeunesPreremplissage,
-    public: true,
     destination: {
       url: "https://aides-jeunes-experimentations.netlify.app/preremplissage/resultats?token={{token}}",
     },
+    name: "aides_jeunes_preremplissage",
+    public: true,
   },
   {
-    name: "aides_jeunes_service_logement",
     class: AidesJeunesServiceLogement,
-    public: true,
     destination: {
       url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
     },
+    name: "aides_jeunes_service_logement",
+    public: true,
   },
 ]
 
@@ -121,25 +121,25 @@ function fail(res, msg) {
 function metadataResponseGenerator(teleservice) {
   return function (req, res) {
     const payload = {
+      exp: Math.floor(Date.now() / 1000) + 60 * 60,
       id: req.simulation._id,
-      scope: teleservice.name,
-      exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
+      scope: teleservice.name, // Expires after one hour
     }
 
     const token = jwt.sign(payload, req.simulation.token)
 
     return res.json({
-      fields: createClass(teleservice, req.simulation).toInternal(),
       destination: {
         label: teleservice.destination.label,
         url: Mustache.render(teleservice.destination.url, {
-          token: token,
           baseURL: `${req.protocol}://${req.get("host")}`,
-          openfiscaAxeURL: config.openfiscaAxeURL,
           openFiscaURL: config.openfiscaPublicURL,
+          openfiscaAxeURL: config.openfiscaAxeURL,
           openfiscaTracerURL: config.openfiscaTracerURL,
+          token: token,
         }),
       },
+      fields: createClass(teleservice, req.simulation).toInternal(),
     })
   }
 }
@@ -222,14 +222,14 @@ function exportRepresentation(req, res) {
 }
 
 const teleservicesExports = {
-  names,
+  attachPayloadSituation,
+  checkCredentials,
+  decodePayload,
+  exportRepresentation,
   list,
   metadataResponseGenerator,
-  decodePayload,
-  checkCredentials,
-  attachPayloadSituation,
+  names,
   verifyRequest,
-  exportRepresentation,
 }
 for (let i = 0; i < teleservices.length; i++) {
   teleservicesExports[teleservices[i].name] = teleservices[i]

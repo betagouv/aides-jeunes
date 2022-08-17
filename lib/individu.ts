@@ -35,12 +35,12 @@ function getConjoint() {
 
 function get(individus: individuLayout[], role: string, id?: string) {
   const DEFAULT_INDIVIDU: individuLayout = {
-    id: role,
+    _role: role,
     annee_etude: undefined,
     date_naissance: undefined,
     enfant_a_charge: {},
+    id: role,
     nationalite: undefined,
-    _role: role,
   }
 
   const existingIndividu = find(individus, role, id)
@@ -83,19 +83,39 @@ const Individu = {
     return dayjs(dateDeReference).diff(individu.date_naissance, "year")
   },
 
+  find,
+  get,
+  getById,
+  getConjoint,
+  getDemandeur,
+  isParent: function (individu: individuLayout) {
+    return isRoleParent(individu._role)
+  },
+  isRoleParent,
+
   label: function (individu: individuLayout, type?: string) {
     const VOYELLES = ["a", "e", "i", "o", "u", "y"]
 
     const labelDict = {
-      possessive: {
-        demandeur: () => "votre",
-        conjoint: () => "sa",
-        enfant: () => "sa",
+      avoir: {
+        conjoint: () => "votre conjoint·e a-t-il/elle",
+        demandeur: () => "avez-vous",
+        enfant: () => `${individu._firstName} a-t-il/elle`,
       },
       nom: {
-        demandeur: () => "vous",
         conjoint: () => "votre conjoint·e",
+        demandeur: () => "vous",
         enfant: () => `${individu._firstName}`,
+      },
+      percevoir: {
+        conjoint: () => "votre conjoint·e perçoit-il/elle",
+        demandeur: () => "percevez-vous",
+        enfant: () => `${individu._firstName} perçoit-il/elle`,
+      },
+      possessive: {
+        conjoint: () => "sa",
+        demandeur: () => "votre",
+        enfant: () => "sa",
       },
       préposition: {
         conjoint: () => "de ",
@@ -105,29 +125,19 @@ const Individu = {
             ? `d'`
             : "de ",
       },
-      avoir: {
-        demandeur: () => "avez-vous",
-        conjoint: () => "votre conjoint·e a-t-il/elle",
-        enfant: () => `${individu._firstName} a-t-il/elle`,
-      },
-      percevoir: {
-        demandeur: () => "percevez-vous",
-        conjoint: () => "votre conjoint·e perçoit-il/elle",
-        enfant: () => `${individu._firstName} perçoit-il/elle`,
-      },
       être: {
-        demandeur: () => "êtes-vous",
         conjoint: () => "votre conjoint·e est-il/elle",
+        demandeur: () => "êtes-vous",
         enfant: () => `${individu._firstName} est-il/elle`,
       },
     }
     return labelDict[type || "nom"][individu._role]()
   },
-  find,
-  get,
-  getById,
-  getDemandeur,
-  getConjoint,
+
+  nationaliteLabel: function (individu: individuLayout) {
+    return `TODO2${individu.id}` //NationaliteService.getLabel(individu.nationalite);
+  },
+
   ressourceHeader,
 
   ressourceShortLabel: function (individu: individuLayout) {
@@ -139,28 +149,21 @@ const Individu = {
     }
   },
 
-  nationaliteLabel: function (individu: individuLayout) {
-    return `TODO2${individu.id}` //NationaliteService.getLabel(individu.nationalite);
-  },
-
-  isRoleParent,
-
-  isParent: function (individu: individuLayout) {
-    return isRoleParent(individu._role)
-  },
-
   situationsFamiliales: [
     {
-      value: "marie", // Enum value 1 in OpenFisca
+      // Enum value 1 in OpenFisca
       label: "Marié·e",
+      value: "marie",
     },
     {
-      value: "pacse", // Enum value 5 in OpenFisca
+      // Enum value 5 in OpenFisca
       label: "Pacsé·e",
+      value: "pacse",
     },
     {
-      value: "celibataire", // Enum value 2 in OpenFisca
+      // Enum value 2 in OpenFisca
       label: "En union libre",
+      value: "celibataire",
     },
   ],
 }

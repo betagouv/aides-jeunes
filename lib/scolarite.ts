@@ -1,26 +1,20 @@
 export default {
-  types: [
-    {
-      value: "college",
-      label: "Au collège",
-    },
-    {
-      value: "lycee",
-      label: "Au lycée / En CAP / En CPA",
-    },
-    {
-      value: "enseignement_superieur",
-      label: "Dans l'enseignement supérieur",
-    },
-    {
-      value: "grande_ecole_du_numerique",
-      label: "Dans une grande école du numérique",
-    },
-    {
-      value: "inconnue",
+  // https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701
+  groupeSpecialitesFormation: {
+    autre: {
       label: "Autre",
+      value: "aucun",
     },
-  ],
+    specialites_pluritechnologiques_genie_civil_construction_bois: {
+      label: "Génie civil, construction, bois",
+      value: "groupe_230",
+    },
+    specialites_plurivalentes_sanitaires_et_sociales: {
+      label: "Sanitaire et social",
+      value: "groupe_330",
+    },
+  },
+
   mentionsBaccalaureat: [
     {
       label: "Mention assez bien",
@@ -43,19 +37,27 @@ export default {
       value: "non_renseignee",
     },
   ],
-  // https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701
-  groupeSpecialitesFormation: {
-    specialites_plurivalentes_sanitaires_et_sociales: {
-      label: "Sanitaire et social",
-      value: "groupe_330",
+
+  types: [
+    {
+      label: "Au collège",
+      value: "college",
     },
-    specialites_pluritechnologiques_genie_civil_construction_bois: {
-      label: "Génie civil, construction, bois",
-      value: "groupe_230",
+    {
+      label: "Au lycée / En CAP / En CPA",
+      value: "lycee",
     },
-    autre: {
+    {
+      label: "Dans l'enseignement supérieur",
+      value: "enseignement_superieur",
+    },
+    {
+      label: "Dans une grande école du numérique",
+      value: "grande_ecole_du_numerique",
+    },
+    {
       label: "Autre",
-      value: "aucun",
+      value: "inconnue",
     },
-  },
+  ],
 }

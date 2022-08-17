@@ -6,8 +6,6 @@ const name = process.env.VUE_APP_CONTEXT_NAME
 
 const routes = [
   {
-    path: "/accessibilite",
-    name: "accessibilite",
     component: () =>
       import(
         /* webpackChunkName: "accessibilite" */ "@/views/accessibilite.vue"
@@ -15,53 +13,55 @@ const routes = [
     meta: {
       headTitle: `Accessibilité - Simulateur d'aides ${name}`,
     },
+    name: "accessibilite",
+    path: "/accessibilite",
   },
   {
-    path: "/contact",
-    name: "contact",
     component: () =>
       import(/* webpackChunkName: "contact" */ "@/views/contact.vue"),
     meta: {
       headTitle: `Contact - Simulateur d'aides ${name}`,
     },
+    name: "contact",
+    path: "/contact",
   },
   {
-    path: "/cgu",
-    name: "cgu",
     component: () => import(/* webpackChunkName: "cgu" */ "@/views/cgu.vue"),
     meta: {
       headTitle: `CGU - Simulateur d'aides ${name}`,
     },
+    name: "cgu",
+    path: "/cgu",
   },
   {
-    path: "/confidentialite",
-    name: "confidentialite",
     component: () =>
       import(/* webpackChunkName: "cgu" */ "@/views/confidentialite.vue"),
     meta: {
       headTitle: `Politique de confidentialité - Simulateur d'aides ${name}`,
     },
+    name: "confidentialite",
+    path: "/confidentialite",
   },
   {
-    path: "/stats",
-    name: "stats",
     component: () =>
       import(/* webpackChunkName: "stats" */ "@/views/stats.vue"),
     meta: {
       headTitle: `Statistiques du simulateur d'aides ${name}`,
     },
+    name: "stats",
+    path: "/stats",
   },
   {
-    path: "/iframe",
-    name: "iframe",
     component: () =>
       import(/* webpackChunkName: "iframe" */ "@/views/iframe.vue"),
+    name: "iframe",
+    path: "/iframe",
   },
 ]
 
 export default {
-  Home,
   BaseLayout,
+  Home,
   Simulation,
   name,
   routes,

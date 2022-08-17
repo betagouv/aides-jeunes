@@ -7,18 +7,11 @@ import { ressourceTypes, ressourceCategories } from "../../resources.js"
 
 export default {
   _hasRessources: {
-    matcher: (step: any) => step.variable === "_hasRessources",
     getFormat: (step: any, propertyData: PropertyData, individus: []) => {
       return propertyData.simulation.enfants.map((enfantNumber: number) => {
         const enfant = Individu.getById(individus, `enfant_${enfantNumber}`)
         return {
-          text: `${capitalize(
-            enfant._firstName
-          )} a-t-il/elle perçu des ressources <strong>depuis ${
-            propertyData.periods.twelveMonthsAgo.label
-          }</strong> ?`,
           answerFormat: {
-            type: "boolean",
             items: [
               {
                 label: "Oui",
@@ -29,33 +22,58 @@ export default {
                 value: false,
               },
             ],
+            type: "boolean",
           },
+          text: `${capitalize(
+            enfant._firstName
+          )} a-t-il/elle perçu des ressources <strong>depuis ${
+            propertyData.periods.twelveMonthsAgo.label
+          }</strong> ?`,
         }
       })
     },
+    matcher: (step: any) => step.variable === "_hasRessources",
   },
   loyer: {
-    matcher: (step: any) => step.variable === "loyer",
     getFormat: (step: any, propertyData: PropertyData) => {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       return [loyerData.loyerQuestion, loyerData.chargesQuestion]
         .filter((question) => question)
         .map((question) => {
           return {
-            text: question.label,
-            hint: question.hint,
             answersFormat: {
               type: "number",
             },
+            hint: question.hint,
+            text: question.label,
           }
         })
     },
+    matcher: (step: any) => step.variable === "loyer",
   },
   "ressources/montants": {
-    matcher(step: any) {
-      return ressourceCategories.some(
+    getFormat(step: any, propertyData: PropertyData) {
+      const answerFormat = this.getResourcesTypesByCategoryId(
+        step,
+        propertyData.simulation.answers.all
+      ).map((resource: any) => {
+        const period = resource.isMontantAnnuel ? "YYYY" : "YYYY-MM"
+        return {
+          amounts: {
+            [period]: "number",
+          },
+          id: resource.id,
+        }
+      })
+
+      const category = ressourceCategories.find(
         (category: any) => category.id === step.variable
       )
+
+      return {
+        answerFormat,
+        text: category.label,
+      }
     },
 
     getResourcesTypesByCategoryId(
@@ -72,28 +90,10 @@ export default {
       )
     },
 
-    getFormat(step: any, propertyData: PropertyData) {
-      const answerFormat = this.getResourcesTypesByCategoryId(
-        step,
-        propertyData.simulation.answers.all
-      ).map((resource: any) => {
-        const period = resource.isMontantAnnuel ? "YYYY" : "YYYY-MM"
-        return {
-          id: resource.id,
-          amounts: {
-            [period]: "number",
-          },
-        }
-      })
-
-      const category = ressourceCategories.find(
+    matcher(step: any) {
+      return ressourceCategories.some(
         (category: any) => category.id === step.variable
       )
-
-      return {
-        text: category.label,
-        answerFormat,
-      }
     },
   },
 }

@@ -28,11 +28,11 @@ function processBlock(
     block.steps.forEach((step) =>
       processBlock(
         {
-          journey,
-          subject: blockSubject,
-          situation,
-          parameters,
           isActive: localActive,
+          journey,
+          parameters,
+          situation,
+          subject: blockSubject,
         },
         step
       )
@@ -47,14 +47,14 @@ function generateJourney(situation, parameters): StepLayout[] | undefined {
     const journey = []
     blocks.forEach((b) => {
       processBlock(
-        { journey, subject: situation, situation, isActive: true, parameters },
+        { isActive: true, journey, parameters, situation, subject: situation },
         b
       )
     })
     return journey
   }
   try {
-    return processBlocks({ situation, parameters })
+    return processBlocks({ parameters, situation })
   } catch (e) {
     console.log("error", e)
   }

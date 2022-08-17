@@ -1,26 +1,8 @@
 import BenefitsCategories from "@/lib/benefits-categories"
-//import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-//import jamstackLoader from "../../node_modules/jamstack-loader/src/index.js"
-//const jamstackD = jamstackLoader.get("../../contribuer/public/admin/config.yml")
-
-const jamstack = {
-  institutions: {
-    items: [],
-  },
-  benefits_javascript: {
-    items: [],
-  },
-  benefits_openfisca: {
-    items: [],
-  },
-  all: [],
-}
-
-//import data from "@data/index.js"
-import data from "@data/all.js"
+import collections from "@data/collections.json"
 
 const Institution = {
-  benefits: [], //data, //data.generate(jamstack),
+  benefits: collections,
   mockResults(sublist) {
     let filterSublist
     if (sublist) {

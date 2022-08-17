@@ -44,6 +44,7 @@ export default defineConfig(async ({ command, mode }) => {
     },
     plugins: [
       vue(),
+      //nodePolyfills(),
       nodePolyfills(),
       // legacy({
       //   targets: ["defaults", "not IE 11"],
@@ -55,9 +56,10 @@ export default defineConfig(async ({ command, mode }) => {
         "@": path.resolve(__dirname, "src"),
         "@lib": path.resolve(__dirname, "dist-server/lib"),
         "@data": path.resolve(__dirname, "dist-server/data"),
-        fs: "rollup-plugin-polyfill-node",
-        process: "rollup-plugin-polyfill-node",
-        path: "./node_modules/rollup-plugin-polyfill-node/dist/index.js",
+        // fs: "rollup-plugin-polyfill-node",
+        // process: "rollup-plugin-polyfill-node",
+        // path: "rollup-plugin-polyfill-node"
+        path: "rollup-plugin-node-polyfills",
       },
     },
     define: {

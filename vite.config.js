@@ -36,16 +36,12 @@ export default defineConfig(async ({ command, mode }) => {
     },
     build: {
       rollupOptions: {
-        plugins: [
-          vue(),
-          rollupYaml({
-            include: ["data/**", "contribuer/**"],
-          }),
-        ],
+        plugins: [],
       },
       commonjsOptions: {
         exclude: ["lib"],
       },
+      emptyOutDir: false,
     },
     plugins: [
       vue(),

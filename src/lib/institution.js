@@ -44,7 +44,7 @@ let collections = config.collections.reduce((accum, collection) => {
   accum[collection.name] = pop(collection)
   return accum
 }, {})
-console.log("//>", collections)
+
 const Institution = {
   benefits: data.generate({ collections }),
   mockResults(sublist) {

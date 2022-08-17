@@ -1,6 +1,5 @@
 import vue from "@vitejs/plugin-vue"
 import legacy from "@vitejs/plugin-legacy"
-import nodePolyfills from "rollup-plugin-polyfill-node"
 import path from "path"
 import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
@@ -9,6 +8,7 @@ import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
+import rollupYaml from "@rollup/plugin-yaml"
 //const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 
 const variables = {
@@ -36,7 +36,7 @@ export default defineConfig(async ({ command, mode }) => {
     },
     build: {
       rollupOptions: {
-        external: ["jamstack-loader"],
+        plugins: [],
       },
       commonjsOptions: {
         exclude: ["lib"],
@@ -44,8 +44,9 @@ export default defineConfig(async ({ command, mode }) => {
     },
     plugins: [
       vue(),
-      //nodePolyfills(),
-      nodePolyfills(),
+      rollupYaml({
+        include: ["data/**", "contribuer/**"],
+      }),
       // legacy({
       //   targets: ["defaults", "not IE 11"],
       // }),
@@ -56,10 +57,6 @@ export default defineConfig(async ({ command, mode }) => {
         "@": path.resolve(__dirname, "src"),
         "@lib": path.resolve(__dirname, "dist-server/lib"),
         "@data": path.resolve(__dirname, "dist-server/data"),
-        // fs: "rollup-plugin-polyfill-node",
-        // process: "rollup-plugin-polyfill-node",
-        // path: "rollup-plugin-polyfill-node"
-        path: "rollup-plugin-node-polyfills",
       },
     },
     define: {

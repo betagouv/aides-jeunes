@@ -1,0 +1,16 @@
+label: Aide test affichage (ne pas publier)
+institution: intercommunalite_brive
+description: Description
+prefix: le
+conditions_generales:
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+profils: []
+type: float
+unit: €
+periodicite: autre
+link: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new
+teleservice: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new
+form: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new
+instructions: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new

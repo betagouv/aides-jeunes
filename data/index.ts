@@ -3,11 +3,17 @@
 import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 
+function getInstitutionId(institution) {
+  return `${institution.type}_${
+    institution.code_insee || institution.code_siren || institution.slug
+  }`
+}
+
 function transformInstitutions(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
-      id: `${data.type}_${data.code_insee || data.code_siren || data.slug}`,
+      id: getInstitutionId(data),
       code_siren: data.code_siren,
       code_insee: data.code_insee,
       label: data.name,
@@ -93,6 +99,7 @@ export function generate(
 }
 
 export default {
+  getInstitutionId,
   fn: generate,
   generate: (jam) =>
     generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),

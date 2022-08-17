@@ -45,6 +45,7 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-empty-function": "off",
+    "sort-keys": ["warn", "asc", { caseSensitive: false, natural: true }],
   },
   ignorePatterns: [
     "node_modules",

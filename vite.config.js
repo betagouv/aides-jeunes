@@ -3,12 +3,12 @@ import legacy from "@vitejs/plugin-legacy"
 import path from "path"
 import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
+import rollupYaml from "@rollup/plugin-yaml"
 
 import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-import rollupYaml from "@rollup/plugin-yaml"
 //const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 
 const variables = {
@@ -36,7 +36,12 @@ export default defineConfig(async ({ command, mode }) => {
     },
     build: {
       rollupOptions: {
-        plugins: [],
+        plugins: [
+          vue(),
+          rollupYaml({
+            include: ["data/**", "contribuer/**"],
+          }),
+        ],
       },
       commonjsOptions: {
         exclude: ["lib"],

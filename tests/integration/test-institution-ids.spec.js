@@ -11,7 +11,7 @@ describe("Institution id", () => {
   for (const institution of institutions) {
     describe(institution.slug, () => {
       it("should be unique", () => {
-        const id = Benefits.getInstitutionId(institution)
+        const id = Benefits.generateInstitutionId(institution)
         expect(institutionIds).not.toContain(id)
         institutionIds.push(id)
       })

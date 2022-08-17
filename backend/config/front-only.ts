@@ -7,8 +7,8 @@ export default {
   },
   statistics: {},
   teleserviceAccessTokens: {
-    PNDS: "token",
     loiret_APA: "token",
     loiret_APA_test: "token",
+    PNDS: "token",
   },
 }

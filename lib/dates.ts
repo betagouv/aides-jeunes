@@ -31,13 +31,13 @@ export const generator = function datesGenerator(
       return generateMonth(fiscalYear.month(monthIndex))
     }),
 
-    // 12-element array of the latest 12 month
-    last12Months: range(1, 12 + 1).map(function (monthIndex) {
+    // 3-element array of the latest 3 month
+    last3Months: range(1, 3 + 1).map(function (monthIndex) {
       return generateMonth(ref.subtract(monthIndex, "month"))
     }),
 
-    // 3-element array of the latest 3 month
-    last3Months: range(1, 3 + 1).map(function (monthIndex) {
+    // 12-element array of the latest 12 month
+    last12Months: range(1, 12 + 1).map(function (monthIndex) {
       return generateMonth(ref.subtract(monthIndex, "month"))
     }),
 

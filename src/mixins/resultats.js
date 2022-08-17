@@ -31,14 +31,14 @@ export default {
     hasWarning() {
       return this.accessStatus.forbidden
     },
-    resultatStatus() {
-      return this.store.calculs
-    },
     resultats() {
       return !this.store.calculs.dirty && this.store.calculs.resultats
     },
     resultatsId() {
       return this.resultats?._id || "???"
+    },
+    resultatStatus() {
+      return this.store.calculs
     },
     shouldDisplayResults() {
       return (

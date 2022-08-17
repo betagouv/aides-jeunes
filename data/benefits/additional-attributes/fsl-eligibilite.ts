@@ -220,14 +220,6 @@ export default {
         link: "https://herault.fr/402-aide-financiere.htm",
       },
     },
-    M200030195: {
-      codeImg: "nice_metropole",
-      label: "de la Métropole Nice Côte d’Azur",
-      resources: {
-        link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
-        form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
-      },
-    },
     D35: {
       codeImg: "cd35",
       label: "du département d’Ille-et-Vilaine",
@@ -352,16 +344,6 @@ export default {
         link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
       },
     },
-    M242900314: {
-      codeImg: "brest_metropole",
-      label: "de Brest Métropole",
-      resources: {
-        link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
-        form: "https://infosociale.finistere.fr/wp-content/uploads/2018/06/CD29_imprime_unique_jlt2019.pdf",
-        instructions:
-          "https://infosociale.finistere.fr/wp-content/uploads/2019/07/pb_R%C3%A8glement-FSL-m%C3%A9tropolitain-2019.pdf",
-      },
-    },
     D62: {
       codeImg: "cd62",
       label: "du département du Pas-de-Calais",
@@ -376,13 +358,6 @@ export default {
         instructions:
           "https://www.puy-de-dome.fr/fileadmin/user_upload/CD63-2020-RI-FSL.pdf",
         link: "https://www.puy-de-dome.fr/social/logement-habitat/fonds-solidarite-logement.html",
-      },
-    },
-    M243100518: {
-      codeImg: "toulouse_metropole",
-      label: "de Toulouse Métropole",
-      resources: {
-        link: "https://www.toulouse-metropole.fr/missions/solidarite/fonds-de-solidarite-logement-fsl-",
       },
     },
     D64: {
@@ -456,14 +431,6 @@ export default {
         link: "https://www.seine-et-marne.fr/fr/aides-au-logement",
       },
     },
-    M244500468: {
-      codeImg: "orleans_metropole",
-      label: "de Orléans Métropole",
-      resources: {
-        link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
-        form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
-      },
-    },
     D78: {
       codeImg: "cd78",
       label: "du département des Yvelines",
@@ -515,14 +482,6 @@ export default {
         link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
       },
     },
-    M245900410: {
-      codeImg: "lille_metropole",
-      label: "de la Métropole européenne de Lille",
-      resources: {
-        link: "https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement",
-        form: "https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf",
-      },
-    },
     D92: {
       codeImg: "cd92",
       label: "du département des Hauts-de-Seine",
@@ -560,6 +519,14 @@ export default {
         link: "https://www.departement974.fr/aide/aide-habitat-fonds-de-solidarite-pour-logement-fsl#aidesimpayes",
       },
     },
+    M200030195: {
+      codeImg: "nice_metropole",
+      label: "de la Métropole Nice Côte d’Azur",
+      resources: {
+        form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
+        link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
+      },
+    },
     M200046977: {
       codeImg: "lyon_metropole",
       label: "de la Métropole de Lyon",
@@ -567,6 +534,39 @@ export default {
         instructions:
           "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
         link: "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
+      },
+    },
+    M242900314: {
+      codeImg: "brest_metropole",
+      label: "de Brest Métropole",
+      resources: {
+        form: "https://infosociale.finistere.fr/wp-content/uploads/2018/06/CD29_imprime_unique_jlt2019.pdf",
+        instructions:
+          "https://infosociale.finistere.fr/wp-content/uploads/2019/07/pb_R%C3%A8glement-FSL-m%C3%A9tropolitain-2019.pdf",
+        link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
+      },
+    },
+    M243100518: {
+      codeImg: "toulouse_metropole",
+      label: "de Toulouse Métropole",
+      resources: {
+        link: "https://www.toulouse-metropole.fr/missions/solidarite/fonds-de-solidarite-logement-fsl-",
+      },
+    },
+    M244500468: {
+      codeImg: "orleans_metropole",
+      label: "de Orléans Métropole",
+      resources: {
+        form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
+        link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
+      },
+    },
+    M245900410: {
+      codeImg: "lille_metropole",
+      label: "de la Métropole européenne de Lille",
+      resources: {
+        form: "https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf",
+        link: "https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement",
       },
     },
   }).reduce((accum, [key, value]) => {

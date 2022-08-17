@@ -133,9 +133,9 @@ function metadataResponseGenerator(teleservice) {
         label: teleservice.destination.label,
         url: Mustache.render(teleservice.destination.url, {
           baseURL: `${req.protocol}://${req.get("host")}`,
-          openFiscaURL: config.openfiscaPublicURL,
           openfiscaAxeURL: config.openfiscaAxeURL,
           openfiscaTracerURL: config.openfiscaTracerURL,
+          openFiscaURL: config.openfiscaPublicURL,
           token: token,
         }),
       },

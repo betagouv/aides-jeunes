@@ -103,13 +103,13 @@ export function getLoyerData(answers) {
 }
 
 const Logement = {
-  STATUT_OCCUPATION_LABEL,
   captureCharges,
   getLogementVariables,
   getLoyerData,
   getStatutOccupationLabel,
   getStatutOccupationLogement,
   isOwner,
+  STATUT_OCCUPATION_LABEL,
 }
 
 export default Logement

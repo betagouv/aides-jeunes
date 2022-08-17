@@ -87,6 +87,6 @@ function computeRessources(mesAidesIndividu, openFiscaIndividu) {
 }
 
 export default {
-  computeRessources: computeRessources,
   computedRessources: individuRessources,
+  computeRessources: computeRessources,
 }

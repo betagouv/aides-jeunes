@@ -62,7 +62,7 @@ const routes = [
 export default {
   BaseLayout,
   Home,
-  Simulation,
   name,
   routes,
+  Simulation,
 }

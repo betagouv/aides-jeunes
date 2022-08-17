@@ -10,8 +10,8 @@ export default {
   openfiscaTracerURL: "http://localhost:3000",
   statistics: {},
   teleserviceAccessTokens: {
-    PNDS: "token",
     loiret_APA: "token",
     loiret_APA_test: "token",
+    PNDS: "token",
   },
 }

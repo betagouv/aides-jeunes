@@ -192,6 +192,37 @@ export const useStore = defineStore("store", {
 
       this.external_id = external_id
     },
+    compute(showPrivate: boolean) {
+      this.startComputation()
+
+      return axios
+        .get(`api/simulation/${this.situationId}/openfisca-response`)
+        .then((openfiscaResponse) => {
+          return openfiscaResponse.data
+        })
+        .then((openfiscaResponse) => {
+          return computeAides.bind(Institution.benefits)(
+            this.situation,
+            this.situationId,
+            openfiscaResponse,
+            showPrivate
+          )
+        })
+        .then((results) => this.setResults(results as Resultats))
+        .catch((error) => {
+          this.saveComputationFailure(error)
+        })
+    },
+    decrementMessageRemainingViewTime() {
+      if (!this.message.text) {
+        return
+      }
+
+      this.message.counter = this.message.counter - 1
+      if (this.message.counter < 0) {
+        this.message.text = null
+      }
+    },
     editEnfant(id: number) {
       // When you edit a children you need to remove all current answer after the child validation
       const currentLastIndex = this.simulation.answers.current.findIndex(
@@ -234,49 +265,10 @@ export const useStore = defineStore("store", {
       // @ts-ignore
       this.setResults(Institution.mockResults(benefit))
     },
-    compute(showPrivate: boolean) {
-      this.startComputation()
-
-      return axios
-        .get(`api/simulation/${this.situationId}/openfisca-response`)
-        .then((openfiscaResponse) => {
-          return openfiscaResponse.data
-        })
-        .then((openfiscaResponse) => {
-          return computeAides.bind(Institution.benefits)(
-            this.situation,
-            this.situationId,
-            openfiscaResponse,
-            showPrivate
-          )
-        })
-        .then((results) => this.setResults(results as Resultats))
-        .catch((error) => {
-          this.saveComputationFailure(error)
-        })
-    },
     patrimoine(patrimoine: any) {
       this.simulation = {
         ...this.simulation,
         patrimoine,
-      }
-      this.setDirty()
-    },
-    decrementMessageRemainingViewTime() {
-      if (!this.message.text) {
-        return
-      }
-
-      this.message.counter = this.message.counter - 1
-      if (this.message.counter < 0) {
-        this.message.text = null
-      }
-    },
-    removeEnfant(id: string) {
-      const enfantIndex = parseInt(id.split("_")[1])
-      this.simulation = {
-        ...this.simulation,
-        enfants: this.simulation.enfants?.filter((i) => i !== enfantIndex),
       }
       this.setDirty()
     },
@@ -285,6 +277,14 @@ export const useStore = defineStore("store", {
         `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VUE_APP_CONTACT_EMAIL}">${process.env.VUE_APP_CONTACT_EMAIL}</a>.`
       )
       next("/simulation")
+    },
+    removeEnfant(id: string) {
+      const enfantIndex = parseInt(id.split("_")[1])
+      this.simulation = {
+        ...this.simulation,
+        enfants: this.simulation.enfants?.filter((i) => i !== enfantIndex),
+      }
+      this.setDirty()
     },
     reset(simulation: Simulation) {
       this.access.fetching = false
@@ -330,38 +330,14 @@ export const useStore = defineStore("store", {
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    setDirty() {
-      this.calculs.dirty = true
-    },
     setAmeliNoticationDone() {
       this.ameliNoticationDone = true
     },
-    updateCurrentAnswers(newPath: string) {
-      const steps = this.getAllSteps
-      const currentAnswers = []
-      let i = 0
-      let currentStep = steps[0]
-      while (currentStep && currentStep.path !== newPath) {
-        if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = this.simulation.answers.all.find((answer) => {
-            return (
-              answer.id === currentStep.id &&
-              answer.entityName === currentStep.entity &&
-              answer.fieldName === currentStep.variable
-            )
-          })
-
-          if (currentAnswer) {
-            currentAnswers.push(currentAnswer)
-          }
-        }
-        i = i + 1
-        currentStep = steps[i]
-      }
-      this.simulation.answers.current = currentAnswers
-    },
     setDebug(debug: boolean) {
       this.debug = debug
+    },
+    setDirty() {
+      this.calculs.dirty = true
     },
     setId(id: string) {
       this.situationId = id
@@ -399,9 +375,6 @@ export const useStore = defineStore("store", {
     setThemeColor(themeColor: string) {
       this.themeColor = themeColor
     },
-    updateError(error: string) {
-      this.error = error
-    },
     setTitle(newTitle: string) {
       this.title = newTitle
     },
@@ -409,6 +382,33 @@ export const useStore = defineStore("store", {
       this.calculs.updating = true
       this.calculs.exception = false
       this.calculs.error = false
+    },
+    updateCurrentAnswers(newPath: string) {
+      const steps = this.getAllSteps
+      const currentAnswers = []
+      let i = 0
+      let currentStep = steps[0]
+      while (currentStep && currentStep.path !== newPath) {
+        if (currentStep.isActive && currentStep.path !== "/") {
+          const currentAnswer = this.simulation.answers.all.find((answer) => {
+            return (
+              answer.id === currentStep.id &&
+              answer.entityName === currentStep.entity &&
+              answer.fieldName === currentStep.variable
+            )
+          })
+
+          if (currentAnswer) {
+            currentAnswers.push(currentAnswer)
+          }
+        }
+        i = i + 1
+        currentStep = steps[i]
+      }
+      this.simulation.answers.current = currentAnswers
+    },
+    updateError(error: string) {
+      this.error = error
     },
     verifyBenefitVariables() {
       return axios

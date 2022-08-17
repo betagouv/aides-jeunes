@@ -54,11 +54,11 @@ const FollowupSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
     },
     surveyOptin: { default: false, type: Boolean },
-    surveySentAt: { type: Date },
     surveys: {
       default: [],
       type: [SurveySchema],
     },
+    surveySentAt: { type: Date },
     version: Number,
   },
   { id: false, minimize: false }

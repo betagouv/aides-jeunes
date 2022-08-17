@@ -13,6 +13,99 @@ import Scolarite from "../scolarite.js"
 import { getAnswer } from "../answers.js"
 
 export default {
+  _contrat_alternant: new EnumProperty({
+    items: [
+      {
+        label: "En apprentissage",
+        value: "apprenti",
+      },
+      {
+        label: "En contrat de professionnalisation",
+        value: "professionnalisation",
+      },
+    ],
+    question: "Êtes-vous ?",
+    questionType: "enum",
+  }),
+
+  _dureeMoisEtudesEtranger: new NumberProperty({
+    question:
+      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
+    type: "count",
+    unit: "mois",
+  }),
+
+  _firstName: new TextProperty({
+    question:
+      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
+  }),
+
+  _interetAidesSanitaireSocial: new BooleanProperty({
+    question:
+      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
+  }),
+
+  _interetBafa: new BooleanProperty({
+    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
+  }),
+
+  _interetEtudesEtranger: new BooleanProperty({
+    question:
+      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
+  }),
+
+  _interetPermisDeConduire: new BooleanProperty({
+    question: "Prévoyez-vous de passer le permis de conduire ?",
+  }),
+
+  _interetsAidesVelo: new MultipleProperty({
+    items: [
+      { label: "Vélo mécanique simple", value: "velo_mecanique" },
+      { label: "Vélo électrique", value: "velo_electrique" },
+      { label: "Vélo cargo", value: "velo_cargo" },
+      { label: "Vélo cargo électrique", value: "velo_cargo_electrique" },
+      { label: "Vélo pliant", value: "velo_pliant" },
+      { label: "Motorisation d'un vélo classique", value: "velo_motorisation" },
+    ],
+    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
+  }),
+
+  _nombreMoisDebutContratDeTravail: new EnumProperty({
+    items: [
+      {
+        label: "Moins de 3 mois",
+        value: 2,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) <= 25
+        },
+        label: "Entre 3 et 6 mois",
+        value: 5,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) > 25
+        },
+        label: "Plus de 3 mois",
+        value: 12,
+      },
+      {
+        isRelevant: ({ individu, periods }) => {
+          return Individu.age(individu, periods.today.value) <= 25
+        },
+        label: "Plus 6 mois",
+        value: 12,
+      },
+    ],
+    question: ({ individu }) => {
+      return individu.activite === "etudiant" && individu.alternant
+        ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
+        : "Depuis quand avez-vous signé votre contrat de travail ?"
+    },
+    questionType: "enum",
+  }),
+
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
     help: "Attention, cette restriction est différente de la reconnaissance de la qualité de travailleur handicapé.",
     question: ({ individu }) => {
@@ -276,21 +369,6 @@ export default {
     },
   }),
 
-  _contrat_alternant: new EnumProperty({
-    question: "Êtes-vous ?",
-    questionType: "enum",
-    items: [
-      {
-        value: "apprenti",
-        label: "En apprentissage",
-      },
-      {
-        value: "professionnalisation",
-        label: "En contrat de professionnalisation",
-      },
-    ],
-  }),
-
   enceinte: new EnumProperty({
     items: [
       {
@@ -314,13 +392,6 @@ export default {
       } enceinte ?`
     },
     questionType: "enum",
-  }),
-
-  _dureeMoisEtudesEtranger: new NumberProperty({
-    question:
-      "Combien de mois envisagez-vous de partir à l'étranger dans le cadre de vos études ?",
-    type: "count",
-    unit: "mois",
   }),
 
   enfant_a_charge: new EnumProperty({
@@ -347,11 +418,6 @@ export default {
     questionType: "enum",
   }),
 
-  _firstName: new TextProperty({
-    question:
-      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
-  }),
-
   enfant_place: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(
@@ -361,19 +427,10 @@ export default {
     },
   }),
 
-  _interetAidesSanitaireSocial: new BooleanProperty({
-    question:
-      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
-  }),
-
   garde_alternee: new BooleanProperty({
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en garde alternée ?`
     },
-  }),
-
-  _interetBafa: new BooleanProperty({
-    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   }),
 
   gir: new EnumProperty({
@@ -398,35 +455,14 @@ export default {
     questionType: "enum",
   }),
 
-  _interetEtudesEtranger: new BooleanProperty({
-    question:
-      "Prévoyez-vous de partir à l'étranger dans le cadre de vos études ?",
-  }),
-
   groupe_specialites_formation: new EnumProperty({
     items: Object.values(Scolarite.groupeSpecialitesFormation),
     question: "De quel secteur votre formation fait-elle partie ?",
     questionType: "enum",
   }),
 
-  _interetPermisDeConduire: new BooleanProperty({
-    question: "Prévoyez-vous de passer le permis de conduire ?",
-  }),
-
   habite_chez_parents: new BooleanProperty({
     question: "Êtes-vous hébergé chez vos parents ?",
-  }),
-
-  _interetsAidesVelo: new MultipleProperty({
-    items: [
-      { label: "Vélo mécanique simple", value: "velo_mecanique" },
-      { label: "Vélo électrique", value: "velo_electrique" },
-      { label: "Vélo cargo", value: "velo_cargo" },
-      { label: "Vélo cargo électrique", value: "velo_cargo_electrique" },
-      { label: "Vélo pliant", value: "velo_pliant" },
-      { label: "Motorisation d'un vélo classique", value: "velo_motorisation" },
-    ],
-    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
   }),
 
   handicap: new BooleanProperty({
@@ -445,42 +481,6 @@ export default {
     question: ({ individu }) => {
       return `${Individu.label(individu, "être")} en situation de handicap ?`
     },
-  }),
-
-  _nombreMoisDebutContratDeTravail: new EnumProperty({
-    items: [
-      {
-        label: "Moins de 3 mois",
-        value: 2,
-      },
-      {
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
-        },
-        label: "Entre 3 et 6 mois",
-        value: 5,
-      },
-      {
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) > 25
-        },
-        label: "Plus de 3 mois",
-        value: 12,
-      },
-      {
-        isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
-        },
-        label: "Plus 6 mois",
-        value: 12,
-      },
-    ],
-    question: ({ individu }) => {
-      return individu.activite === "etudiant" && individu.alternant
-        ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
-        : "Depuis quand avez-vous signé votre contrat de travail ?"
-    },
-    questionType: "enum",
   }),
 
   inapte_travail: new BooleanProperty({

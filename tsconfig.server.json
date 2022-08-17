@@ -1,7 +1,4 @@
 {
-  "parserOptions": {
-    "sourceType": "module"
-  },
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -18,9 +15,7 @@
     "resolveJsonModule": true,
     "types": []
   },
-  "resolve": {
-    "extensions": [".cjs", ".ts", ".js", ".json"]
-  },
+  "exclude": ["node_modules", "tests", "dist-server", "dist"],
   "include": [
     "./configure.ts",
     "./mock.ts",
@@ -34,5 +29,10 @@
     "tools/**/*.ts",
     "tools/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "tests", "dist-server", "dist"]
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "resolve": {
+    "extensions": [".cjs", ".ts", ".js", ".json"]
+  }
 }

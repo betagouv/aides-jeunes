@@ -27,17 +27,6 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "resolve": {
-    "extensions": [".ts", ".js", ".json", ".vue"]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "tests/unit/openfisca/mapping/dispatch-individuals.spec.js"
-  ],
   "exclude": [
     "node_modules",
     "backend",
@@ -48,5 +37,16 @@
     "dist-server",
     "tools",
     "tests"
-  ]
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "tests/unit/openfisca/mapping/dispatch-individuals.spec.js"
+  ],
+  "resolve": {
+    "extensions": [".ts", ".js", ".json", ".vue"]
+  }
 }

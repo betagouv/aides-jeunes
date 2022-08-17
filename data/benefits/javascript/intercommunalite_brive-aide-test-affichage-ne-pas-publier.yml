@@ -6,6 +6,9 @@ conditions_generales:
   - type: regime_securite_sociale
     includes:
       - regime_general
+  - type: departements
+    values:
+      - "56"
 profils: []
 type: float
 unit: €

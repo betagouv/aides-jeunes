@@ -1,17 +1,52 @@
-//import x from "../../data/**/*.yml"
 import BenefitsCategories from "@/lib/benefits-categories"
-import collections from "@data/collections.json"
-
-const contentModules = import.meta.glob("../../data/**/*.{yml,yaml}", {
-  eager: true,
-})
-console.log(contentModules)
-
 import data from "@data"
-import jamstack from "jamstack-loader!../../contribuer/public/admin/config.yml"
-console.log(jamstack)
+import * as config from "../../contribuer/public/admin/config.yml"
+
+const collectionsData = {
+  institutions: import.meta.glob("../../data/institutions/*.{yml,yaml}", {
+    eager: true,
+  }),
+  benefits_javascript: import.meta.glob(
+    "../../data/benefits/javascript/*.{yml,yaml}",
+    {
+      eager: true,
+    }
+  ),
+  benefits_openfisca: import.meta.glob(
+    "../../data/benefits/javascript/*.{yml,yaml}",
+    {
+      eager: true,
+    }
+  ),
+}
+
+const slugPattern = /\/([0-9a-z\-_–·éèà’ëïô]*)\.ya?ml$/i
+function pop(collection) {
+  const items = []
+  for (let key in collectionsData[collection.name]) {
+    if (key.match(slugPattern)) {
+      const slug = slugPattern.exec(key)[1]
+      items.push({
+        slug,
+        ...collectionsData[collection.name][key],
+      })
+    } else {
+      console.log("Failed to load file:", key)
+    }
+  }
+  return {
+    ...collection,
+    items,
+  }
+}
+
+let collections = config.collections.reduce((accum, collection) => {
+  accum[collection.name] = pop(collection)
+  return accum
+}, {})
+
 const Institution = {
-  benefits: collections,
+  benefits: data.generate({ collections }),
   mockResults(sublist) {
     let filterSublist
     if (sublist) {

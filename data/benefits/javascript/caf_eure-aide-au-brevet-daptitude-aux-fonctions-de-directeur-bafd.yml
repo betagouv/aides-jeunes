@@ -1,0 +1,29 @@
+label: aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_eure
+description: L'aide proposée par la CAF de l'Eure peut vous aider à financer
+  votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 21
+  - type: quotient_familial
+    floor: 600
+    period: month
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+  - type: departements
+    values:
+      - "27"
+profils: []
+conditions:
+  - Être allocataire de la Caf de l'Eure.
+  - Être titulaire du BAFA (ou équivalent).
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 250
+link: https://www.caf.fr/allocataires/caf-de-l-eure/offre-de-service/vie-professionnelle/je-suis-assistant-maternel-agree/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa-et-aux-fonctions-de-directeur-bafd
+instructions: https://www.caf.fr/allocataires/caf-de-l-eure/offre-de-service/vie-professionnelle/je-suis-assistant-maternel-agree/le-brevet-d-aptitude-aux-fonctions-d-animateur-bafa-et-aux-fonctions-de-directeur-bafd

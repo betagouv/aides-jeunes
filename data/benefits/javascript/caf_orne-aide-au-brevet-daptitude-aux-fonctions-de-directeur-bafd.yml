@@ -1,0 +1,28 @@
+label: Aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_orne
+description: L'aide proposée par la CAF de l'Orne peut vous aider à financer
+  votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 21
+  - type: departements
+    values:
+      - "61"
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+profils: []
+conditions:
+  - Être titulaire du BAFA.
+  - Être allocataire de la CAF de l'Orne.
+  - Renvoyer le formulaire ci-dessous par courrier à la CAF de l'Orne.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+montant: 200
+link: https://caf.fr/allocataires/caf-de-l-orne/offre-de-service/vie-personnelle/la-formation-bafa-bafd
+form: https://caf.fr/sites/default/files/medias/611/PDF/FormulaireDemandeBAFD.pdf
+instructions: https://caf.fr/allocataires/caf-de-l-orne/offre-de-service/vie-personnelle/la-formation-bafa-bafd

@@ -1,0 +1,21 @@
+label: Aide au Brevet d'Aptitude aux Fonctions de Directeur (BAFD)
+institution: caf_morbihan
+description: L'aide proposée par la CAF du Morbihan peut vous aider à financer
+  votre session de formation au BAFD.
+prefix: l’
+conditions_generales:
+  - type: regime_securite_sociale
+    includes:
+      - regime_general
+  - type: departements
+    values:
+      - "56"
+profils: []
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+montant: 286
+link: https://caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/bourses-bafa-et-bafd
+form: https://caf.fr/sites/default/files/medias/561/vie%20professionnelle/BAFD%20(demande).pdf
+instructions: https://caf.fr/allocataires/caf-du-morbihan/offre-de-service/vie-professionnelle/bourses-bafa-et-bafd

@@ -1,0 +1,35 @@
+label: Aide complémentaire au BAFA Handicap
+institution: caf_haute_garonne
+description: La Caf de la Haute-Garonne propose une aide complémentaire BAFA
+  Handicap si vous choisissez de suivre un stage d'approfondissement "Accueil
+  d'enfants en situation de handicap dans les centres de loisirs", dans un des
+  <a target="_blank" title="Organismes conventionnés - Nouvelle fenêtre"
+  rel="noopener"
+  href="https://fr.calameo.com/read/003857823acdee8c8d857?page=15">organismes
+  conventionnés</a>.
+prefix: l’
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: departements
+    values:
+      - "31"
+profils: []
+conditions:
+  - Compléter votre <a target="_blank" title="Demande d'aide au BAFA - Nouvelle
+    fenêtre" rel="noopener"
+    href="https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire">demande
+    d'aide au BAFA</a> et y joindre <a target="_blank" title="l'attestation -
+    Nouvelle fenêtre" rel="noopener"
+    href="https://fr.calameo.com/read/003857823386e1cb70e9e">l'attestation</a>
+    mentionnant que la session est axée sur l'accueil d'enfants en situation de
+    handicap.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 230
+link: https://fr.calameo.com/read/003857823acdee8c8d857?page=14
+teleservice: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire

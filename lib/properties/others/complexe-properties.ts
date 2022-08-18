@@ -53,18 +53,18 @@ export default <{ [key: string]: any }>{
     },
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
         {
           label: loyerData.loyerQuestion.label,
-          value: displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
-        }
+          value: displayCurrencyValue(loyerData.loyerQuestion.selectedValue),
+        },
       ]
       if (loyerData.chargesQuestion) {
         details.push({
           label: loyerData.chargesQuestion.label,
-          value: displayCurrencyValue(loyerData.chargesQuestion.selectedValue)
+          value: displayCurrencyValue(loyerData.chargesQuestion.selectedValue),
         })
       }
       return details

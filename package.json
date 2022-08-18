@@ -24,7 +24,7 @@
     "front": "npm run build:server && NODE_ENV=front-only npm run serve",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "eslint --fix backend data lib src ./*.ts",
     "openfisca": "OPENFISCA_WORKERS=1 gunicorn openfisca.api --config openfisca/config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",

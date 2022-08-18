@@ -5,17 +5,20 @@ import * as config from "../../contribuer/public/admin/config.yml"
 const collectionsData = {
   institutions: import.meta.glob("../../data/institutions/*.{yml,yaml}", {
     eager: true,
+    import: "default",
   }),
   benefits_javascript: import.meta.glob(
     "../../data/benefits/javascript/*.{yml,yaml}",
     {
       eager: true,
+      import: "default",
     }
   ),
   benefits_openfisca: import.meta.glob(
     "../../data/benefits/openfisca/*.{yml,yaml}",
     {
       eager: true,
+      import: "default",
     }
   ),
 }

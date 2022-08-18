@@ -1,0 +1,468 @@
+{
+  "_id": "62fca12b88390f2da6ba2a9c",
+  "droitsEligibles": [
+    {
+      "conditions": [
+        "PrÃ©senter au guichet du musÃ©e ou du monument concernÃ© avec une piÃ¨ce justifiant de son Ã¢ge et de sa rÃ©sidence. Cette piÃ¨ce peut Ãªtre une carte d'identitÃ©, un passeport ou une carte de sÃ©jour."
+      ],
+      "description": "Les jeunes de moins de 26 ans habitant dans l'Union europÃ©enne peuvent accÃ©der gratuitement Ã  certains musÃ©es et monuments nationaux, sur simple prÃ©sentation d'une piÃ¨ce d'identitÃ©.",
+      "entity": "individus",
+      "floorAt": 1,
+      "id": "gratuite_musees_monuments",
+      "institution": {
+        "benefitsIds": [
+          "benefit_front_test",
+          "etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa",
+          "aide_financement_permis_apprenti",
+          "aide_formation_gen",
+          "aide_merite_montant",
+          "aide_mobilite_internationale_eligibilite",
+          "aide_mobilite_master",
+          "aide_mobilite_parcoursup",
+          "bourse_criteres_sociaux",
+          "cheque_energie",
+          "contrat_engagement_jeune",
+          "crous_logement_eligibilite",
+          "crous_repas_un_euro_eligibilite",
+          "depart1825_montant_maximum",
+          "garantie_pret_etudiant_eligibilite",
+          "gratuite_musees_monuments",
+          "pass_culture",
+          "pret_formation_permis_eligibilite",
+          "seances_sante_psy_etudiant",
+          "aidesvelo_aides_bonus_vÃ©lo_cargo",
+          "aidesvelo_aides_bonus_vÃ©lo_Ã©lectrique",
+          "aidesvelo_aides_prime_Ã _la_conversion"
+        ],
+        "code_siren": "999999999",
+        "id": "national_999999999",
+        "imgSrc": "img/logo_etat_francais.png",
+        "label": "LâÃtat franÃ§ais",
+        "repository": null,
+        "slug": "etat",
+        "top": 5,
+        "type": "national"
+      },
+      "label": "accÃ¨s gratuit aux musÃ©es et monuments nationaux",
+      "link": "https://www.service-public.fr/particuliers/vosdroits/F20348",
+      "montant": true,
+      "openfiscaPeriod": "thisMonth",
+      "periodicite": "ponctuelle",
+      "prefix": "lâ",
+      "slug": "gratuite_musees_monuments",
+      "source": "openfisca",
+      "top": 5,
+      "type": "bool"
+    },
+    {
+      "conditions": [
+        "Faire votre demande dÂ´accompagnement auprÃ¨s de votre <a target=\"_blank\" title=\"Missions Locales - Nouvelle fenÃªtre\" rel=\"noopener\" href=\"https://www.unml.info/les-missions-locales/annuaire/\">Mission Locale</a> ou de votre <a target=\"_blank\" title=\"Agences PÃ´le Emploi - Nouvelle fenÃªtre\" rel=\"noopener\" href=\"https://www.pole-emploi.fr/annuaire/votre-pole-emploi.html\">agence PÃ´le Emploi</a>.",
+        "Ãtre indÃ©pendantÂ·e, notamment ne pas bÃ©nÃ©ficier d'un soutien financier familial."
+      ],
+      "description": "Le Contrat d'Engagement Jeune est un parcours de 6 Ã  12 mois pour vous aider Ã  trouver un emploi. ConcrÃ¨tement, c'est un accompagnement par unÂ·e conseillerÂ·e dÃ©diÃ©Â·e, un programme intensif de 15 Ã  20 heures par semaine composÃ© de diffÃ©rents types dâactivitÃ©s, et une allocation en fonction de vos ressources.",
+      "entity": "individus",
+      "etablissements": ["mission_locale"],
+      "floorAt": 1,
+      "id": "contrat_engagement_jeune",
+      "institution": {
+        "benefitsIds": [
+          "benefit_front_test",
+          "etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa",
+          "aide_financement_permis_apprenti",
+          "aide_formation_gen",
+          "aide_merite_montant",
+          "aide_mobilite_internationale_eligibilite",
+          "aide_mobilite_master",
+          "aide_mobilite_parcoursup",
+          "bourse_criteres_sociaux",
+          "cheque_energie",
+          "contrat_engagement_jeune",
+          "crous_logement_eligibilite",
+          "crous_repas_un_euro_eligibilite",
+          "depart1825_montant_maximum",
+          "garantie_pret_etudiant_eligibilite",
+          "gratuite_musees_monuments",
+          "pass_culture",
+          "pret_formation_permis_eligibilite",
+          "seances_sante_psy_etudiant",
+          "aidesvelo_aides_bonus_vÃ©lo_cargo",
+          "aidesvelo_aides_bonus_vÃ©lo_Ã©lectrique",
+          "aidesvelo_aides_prime_Ã _la_conversion"
+        ],
+        "code_siren": "999999999",
+        "id": "national_999999999",
+        "imgSrc": "img/logo_etat_francais.png",
+        "label": "LâÃtat franÃ§ais",
+        "repository": null,
+        "slug": "etat",
+        "top": 5,
+        "type": "national"
+      },
+      "instructions": "https://www.service-public.fr/particuliers/vosdroits/F32700",
+      "label": "contrat d'Engagement Jeunes",
+      "link": "https://www.service-public.fr/particuliers/vosdroits/F32700",
+      "montant": 500,
+      "openfiscaPeriod": "thisMonth",
+      "periodicite": "mensuelle",
+      "prefix": "la",
+      "setToZeroRecently": true,
+      "slug": "contrat_engagement_jeune",
+      "source": "openfisca",
+      "top": 5,
+      "type": "float",
+      "unit": "â¬"
+    },
+    {
+      "conditions": [
+        "RÃ©server vos vacances sur <a target=\"_blank\" rel=\"noopener\" title=\"un site partenaire - Nouvelle fenÃªtre\" href=\"https://www.lesstations.com/\">un site partenaire</a>.",
+        "Financer au moins 50â¬ de vos vacances."
+      ],
+      "description": "Le programme DÃ©part 18-25 permet aux jeunes de financer jusquâÃ  75% de leurs vacances pour 200â¬ maximum par personne et par an.",
+      "entity": "individus",
+      "floorAt": 1,
+      "id": "depart1825_montant_maximum",
+      "institution": {
+        "benefitsIds": [
+          "benefit_front_test",
+          "etat-aide-nationale-exceptionnelle-au-brevet-daptitude-aux-fonctions-danimateur-bafa",
+          "aide_financement_permis_apprenti",
+          "aide_formation_gen",
+          "aide_merite_montant",
+          "aide_mobilite_internationale_eligibilite",
+          "aide_mobilite_master",
+          "aide_mobilite_parcoursup",
+          "bourse_criteres_sociaux",
+          "cheque_energie",
+          "contrat_engagement_jeune",
+          "crous_logement_eligibilite",
+          "crous_repas_un_euro_eligibilite",
+          "depart1825_montant_maximum",
+          "garantie_pret_etudiant_eligibilite",
+          "gratuite_musees_monuments",
+          "pass_culture",
+          "pret_formation_permis_eligibilite",
+          "seances_sante_psy_etudiant",
+          "aidesvelo_aides_bonus_vÃ©lo_cargo",
+          "aidesvelo_aides_bonus_vÃ©lo_Ã©lectrique",
+          "aidesvelo_aides_prime_Ã _la_conversion"
+        ],
+        "code_siren": "999999999",
+        "id": "national_999999999",
+        "imgSrc": "img/logo_etat_francais.png",
+        "label": "LâÃtat franÃ§ais",
+        "repository": null,
+        "slug": "etat",
+        "top": 5,
+        "type": "national"
+      },
+      "label": "dÃ©part 18-25",
+      "legend": "maximum",
+      "link": "https://depart1825.com/nos-sejours/",
+      "montant": 200,
+      "openfiscaPeriod": "thisMonth",
+      "periodicite": "annuelle",
+      "prefix": "lâaide",
+      "slug": "depart1825_montant_maximum",
+      "source": "openfisca",
+      "teleservice": "https://www.lesstations.com/",
+      "top": 5,
+      "type": "float",
+      "unit": "â¬"
+    },
+    {
+      "conditions": [
+        "Souscrire Ã  l'abonnement PRIMO (hebdomadaire ou mensuel)."
+      ],
+      "conditions_generales": [
+        {
+          "operator": "<=",
+          "type": "age",
+          "value": 26
+        },
+        {
+          "type": "regions",
+          "values": ["44"]
+        }
+      ],
+      "description": "GrÃ¢ce Ã  l'abonnement PRIMO, voyagez en illimitÃ© sur votre trajet prÃ©fÃ©rÃ© du rÃ©seau TER Grand Est.",
+      "floorAt": 1,
+      "id": "region-grand-est-abonnement-primo",
+      "institution": {
+        "benefitsIds": [
+          "grand-est-aide-mobilite-internationale-etudiants",
+          "grand-est-bourse-du-secteur-sanitaire-et-social",
+          "grand-est-experiences-de-jeunesse",
+          "grand-est-jeunest",
+          "grand-est-mobilite-internationale-sanitaire-et-sociale",
+          "grand-est-parcours-acquisition-des-competences-en-entreprises",
+          "grand-est-passetudes",
+          "grand_est-pass-mobilite-formation",
+          "region-grand-est-abonnement-primo",
+          "region-grand-est-carte-primo",
+          "grand_est_fluo_67_eligible_gratuite",
+          "grand_est_fluo_67_tarification_solidaire",
+          "aidesvelo_aides_grand_est"
+        ],
+        "code_insee": "44",
+        "code_siren": "200052264",
+        "id": "region_44",
+        "imgSrc": "img/logo_grandest.png",
+        "label": "Grand Est",
+        "repository": "france-local",
+        "slug": "grand_est",
+        "type": "region"
+      },
+      "instructions": "https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement",
+      "label": "abonnement PRIMO",
+      "link": "https://www.ter.sncf.com/grand-est/offres/primo/primo_abonnement",
+      "montant": true,
+      "periodicite": "autre",
+      "prefix": "lâ",
+      "profils": [],
+      "slug": "region-grand-est-abonnement-primo",
+      "source": "javascript",
+      "teleservice": "https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=LOR",
+      "top": 14,
+      "type": "bool",
+      "unit": "â¬"
+    },
+    {
+      "conditions": [
+        "Vous procurer la carte PRIMO pour un montant annuel de 15â¬."
+      ],
+      "conditions_generales": [
+        {
+          "operator": "<=",
+          "type": "age",
+          "value": 26
+        },
+        {
+          "type": "regions",
+          "values": ["44"]
+        }
+      ],
+      "description": "GrÃ¢ce Ã  la carte PRIMO, bÃ©nÃ©ficiez de 50 Ã  70% de rÃ©duction quel que soit votre trajet sur le rÃ©seau TER Grand Est.\n",
+      "floorAt": 1,
+      "id": "region-grand-est-carte-primo",
+      "institution": {
+        "benefitsIds": [
+          "grand-est-aide-mobilite-internationale-etudiants",
+          "grand-est-bourse-du-secteur-sanitaire-et-social",
+          "grand-est-experiences-de-jeunesse",
+          "grand-est-jeunest",
+          "grand-est-mobilite-internationale-sanitaire-et-sociale",
+          "grand-est-parcours-acquisition-des-competences-en-entreprises",
+          "grand-est-passetudes",
+          "grand_est-pass-mobilite-formation",
+          "region-grand-est-abonnement-primo",
+          "region-grand-est-carte-primo",
+          "grand_est_fluo_67_eligible_gratuite",
+          "grand_est_fluo_67_tarification_solidaire",
+          "aidesvelo_aides_grand_est"
+        ],
+        "code_insee": "44",
+        "code_siren": "200052264",
+        "id": "region_44",
+        "imgSrc": "img/logo_grandest.png",
+        "label": "Grand Est",
+        "repository": "france-local",
+        "slug": "grand_est",
+        "type": "region"
+      },
+      "instructions": "https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre",
+      "label": "carte PRIMO",
+      "link": "https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre",
+      "montant": true,
+      "periodicite": "autre",
+      "prefix": "la",
+      "profils": [],
+      "slug": "region-grand-est-carte-primo",
+      "source": "javascript",
+      "top": 14,
+      "type": "bool",
+      "unit": "â¬"
+    },
+    {
+      "conditions": [
+        "Ãtre porteur/porteuse de projets favorisant lâengagement citoyen, seulÂ·e ou en groupe, ou bien avoir un projet faisant apparaÃ®tre un projet professionnel clair, nÃ©cessitant un soutien.",
+        "Remplir le dossier de candidature <a target=\"_blank\" rel=\"noopener\" title =\"Candidater - Nouvelle fenÃªtre\" href=\"https://messervices.grandest.fr/account-management/crge-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fconnecte%2FF_TEL0004%2Fdepot%2Fsimple&jwtKey=jwt-crge-portail-depot-demande-aides&footer=https:%2F%2Fwww.grandest.fr%2Fmentions-legales%2F,Mentions%20l%C3%A9gales,_blank\">Ã  ce lien</a> (attention, cette aide nÃ©cessite un passage en commission)."
+      ],
+      "conditions_generales": [
+        {
+          "operator": ">=",
+          "type": "age",
+          "value": 15
+        },
+        {
+          "operator": "<=",
+          "type": "age",
+          "value": 29
+        },
+        {
+          "type": "regions",
+          "values": ["44"]
+        }
+      ],
+      "description": "La RÃ©gion accompagne les jeunes du Grand Est de 15 Ã  29 ans engagÃ©Â·eÂ·s sur un projet dâengagement citoyen ou porteurs dâun projet professionnalisant.",
+      "floorAt": 1,
+      "id": "grand-est-experiences-de-jeunesse",
+      "institution": {
+        "benefitsIds": [
+          "grand-est-aide-mobilite-internationale-etudiants",
+          "grand-est-bourse-du-secteur-sanitaire-et-social",
+          "grand-est-experiences-de-jeunesse",
+          "grand-est-jeunest",
+          "grand-est-mobilite-internationale-sanitaire-et-sociale",
+          "grand-est-parcours-acquisition-des-competences-en-entreprises",
+          "grand-est-passetudes",
+          "grand_est-pass-mobilite-formation",
+          "region-grand-est-abonnement-primo",
+          "region-grand-est-carte-primo",
+          "grand_est_fluo_67_eligible_gratuite",
+          "grand_est_fluo_67_tarification_solidaire",
+          "aidesvelo_aides_grand_est"
+        ],
+        "code_insee": "44",
+        "code_siren": "200052264",
+        "id": "region_44",
+        "imgSrc": "img/logo_grandest.png",
+        "label": "Grand Est",
+        "repository": "france-local",
+        "slug": "grand_est",
+        "type": "region"
+      },
+      "instructions": "https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/",
+      "label": "expÃ©riences de Jeunesse",
+      "legend": "maximum",
+      "link": "https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/",
+      "montant": 2000,
+      "periodicite": "ponctuelle",
+      "prefix": "lâaide",
+      "profils": [],
+      "slug": "grand-est-experiences-de-jeunesse",
+      "source": "javascript",
+      "top": 14,
+      "type": "float",
+      "unit": "â¬"
+    },
+    {
+      "conditions_generales": [
+        {
+          "operator": ">=",
+          "type": "age",
+          "value": 15
+        },
+        {
+          "operator": "<=",
+          "type": "age",
+          "value": 29
+        },
+        {
+          "type": "regions",
+          "values": ["44"]
+        }
+      ],
+      "description": "Jeun'Est est un portail, une application et une carte virtuelle (ou physique si vous Ãªtes au lycÃ©e), qui vous donne droit Ã  des avantages culture, sport ou tourisme et Ã  des bons plans.",
+      "floorAt": 1,
+      "id": "grand-est-jeunest",
+      "institution": {
+        "benefitsIds": [
+          "grand-est-aide-mobilite-internationale-etudiants",
+          "grand-est-bourse-du-secteur-sanitaire-et-social",
+          "grand-est-experiences-de-jeunesse",
+          "grand-est-jeunest",
+          "grand-est-mobilite-internationale-sanitaire-et-sociale",
+          "grand-est-parcours-acquisition-des-competences-en-entreprises",
+          "grand-est-passetudes",
+          "grand_est-pass-mobilite-formation",
+          "region-grand-est-abonnement-primo",
+          "region-grand-est-carte-primo",
+          "grand_est_fluo_67_eligible_gratuite",
+          "grand_est_fluo_67_tarification_solidaire",
+          "aidesvelo_aides_grand_est"
+        ],
+        "code_insee": "44",
+        "code_siren": "200052264",
+        "id": "region_44",
+        "imgSrc": "img/logo_grandest.png",
+        "label": "Grand Est",
+        "repository": "france-local",
+        "slug": "grand_est",
+        "type": "region"
+      },
+      "instructions": "https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/",
+      "label": "jeun'Est",
+      "link": "https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/",
+      "montant": true,
+      "periodicite": "autre",
+      "prefix": "lâaide",
+      "profils": [],
+      "slug": "grand-est-jeunest",
+      "source": "javascript",
+      "teleservice": "https://beneficiaire.jeunest.fr/Connexion.aspx?ReturnUrl=%2f",
+      "top": 14,
+      "type": "bool",
+      "unit": "â¬"
+    },
+    {
+      "conditions_generales": [
+        {
+          "operator": ">=",
+          "type": "age",
+          "value": 18
+        },
+        {
+          "operator": "<=",
+          "type": "age",
+          "value": 29
+        },
+        {
+          "type": "regions",
+          "values": ["44"]
+        }
+      ],
+      "description": "Ce dispositif permet aux jeunes de 18 Ã  29 ans, diplÃ´mÃ©Â·eÂ·s ou non, dâacquÃ©rir des compÃ©tences et une premiÃ¨re expÃ©riences professionnelle tutorÃ©e dâune durÃ©e de six mois, au sein dâune entreprise.",
+      "floorAt": 1,
+      "id": "grand-est-parcours-acquisition-des-competences-en-entreprises",
+      "institution": {
+        "benefitsIds": [
+          "grand-est-aide-mobilite-internationale-etudiants",
+          "grand-est-bourse-du-secteur-sanitaire-et-social",
+          "grand-est-experiences-de-jeunesse",
+          "grand-est-jeunest",
+          "grand-est-mobilite-internationale-sanitaire-et-sociale",
+          "grand-est-parcours-acquisition-des-competences-en-entreprises",
+          "grand-est-passetudes",
+          "grand_est-pass-mobilite-formation",
+          "region-grand-est-abonnement-primo",
+          "region-grand-est-carte-primo",
+          "grand_est_fluo_67_eligible_gratuite",
+          "grand_est_fluo_67_tarification_solidaire",
+          "aidesvelo_aides_grand_est"
+        ],
+        "code_insee": "44",
+        "code_siren": "200052264",
+        "id": "region_44",
+        "imgSrc": "img/logo_grandest.png",
+        "label": "Grand Est",
+        "repository": "france-local",
+        "slug": "grand_est",
+        "type": "region"
+      },
+      "instructions": "http://www.pace-grandest.fr/",
+      "label": "parcours dâacquisition des compÃ©tences en entreprises (PACE)",
+      "link": "http://www.pace-grandest.fr/",
+      "montant": 500,
+      "periodicite": "mensuelle",
+      "prefix": "le",
+      "profils": [],
+      "slug": "grand-est-parcours-acquisition-des-competences-en-entreprises",
+      "source": "javascript",
+      "teleservice": "https://docs.google.com/forms/d/e/1FAIpQLScCXPV5JorT_JapH36mzwvFFMN_tlhXNCYibuU1Ow3qdykYkA/viewform",
+      "top": 14,
+      "type": "float",
+      "unit": "â¬"
+    }
+  ],
+  "droitsInjectes": []
+}

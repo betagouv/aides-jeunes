@@ -53,22 +53,21 @@ export default <{ [key: string]: any }>{
     },
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
-      return [
+      const details = [
         {
           label: loyerData.loyerQuestion.label,
-          value: loyerData.loyerQuestion.selectedValue
-            ? displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
-            : undefined,
-        },
-        loyerData.chargesQuestion && {
+          value: displayCurrencyValue(loyerData.loyerQuestion.selectedValue)
+        }
+      ]
+      if (loyerData.chargesQuestion) {
+        details.push({
           label: loyerData.chargesQuestion.label,
-          value: loyerData.chargesQuestion.selectedValue
-            ? displayCurrencyValue(loyerData.chargesQuestion.selectedValue)
-            : undefined,
-        },
-      ].filter((item) => item)
+          value: displayCurrencyValue(loyerData.chargesQuestion.selectedValue)
+        })
+      }
+      return details
     },
   },
   "ressources/montants": {

@@ -1,5 +1,7 @@
 import vue from "@vitejs/plugin-vue"
 import legacy from "@vitejs/plugin-legacy"
+import { createHtmlPlugin } from "vite-plugin-html"
+
 import path from "path"
 import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
@@ -20,7 +22,7 @@ const variables = {
   VITE_CONTEXT: process.env.CONTEXT,
   VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
   VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
-  VITE_NETLIFY_CONTRIBUTION_URL: `${netlifyContributionURL}`,
+  VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
   VITE_STATS_URL: statistics?.url ? statistics.url : "",
   VITE_STATS_VERSION: statistics?.version ? statistics.version : 2,
   VITE_NETLIFY_PR: process.env.BRANCH,
@@ -37,6 +39,9 @@ export default defineConfig(async ({ command, mode }) => {
     build: {
       rollupOptions: {
         plugins: [],
+        input: {
+          app: "./public/index.html",
+        },
       },
       commonjsOptions: {
         exclude: ["lib"],

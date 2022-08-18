@@ -517,7 +517,7 @@ export const useStore = defineStore("store", {
         .get("/api/openfisca/missingbenefits")
         .then((response) => response.data)
         .then((missingBenefits) => {
-          if (Array.isArray(missingBenefits)) {
+          if (Array.isArray(missingBenefits) && missingBenefits.length > 0) {
             this.setMessage(
               `🚀 Vous avez ajouté <abbr title="${missingBenefits.join(
                 ", "

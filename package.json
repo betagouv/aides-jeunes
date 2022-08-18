@@ -89,7 +89,6 @@
     "tmp": "^0.2.1",
     "validator": "^13.7.0",
     "vite": "^3.0.4",
-    "vite-plugin-html": "^3.2.0",
     "vue": "^3.2.32",
     "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.14",
@@ -127,7 +126,7 @@
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
     "ts-jest": "^28.0.5",
-    "typescript": "~4.1.5",
+    "typescript": "^4.7.4",
     "webpack": "^5.64.3",
     "webpack-bundle-analyzer": "^4.5.0"
   },
@@ -170,9 +169,7 @@
       "vue"
     ],
     "transform": {
-      "^.+\\.vue$": "@vue/vue3-jest",
-      ".+\\.(css|styl|less|scss|sass|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "\\.[jt]sx?$": "babel-jest",
+      "\\.[jt]sx?$": "ts-jest",
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "globals": {
@@ -191,17 +188,10 @@
     "extensionsToTreatAsEsm": [
       ".ts"
     ],
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ],
     "testMatch": [
       "**/tests/(integration|unit)/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
     ],
     "testURL": "http://localhost/",
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ],
     "preset": "ts-jest",
     "automock": false,
     "setupFiles": [

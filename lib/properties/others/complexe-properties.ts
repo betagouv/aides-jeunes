@@ -6,6 +6,16 @@ import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
 
 export default {
+  enfants: {
+    matcher: (step: any) => step.entity === "enfants",
+    getFormat() {
+      return [
+        {
+          text: "Mes enfants à charge",
+        },
+      ]
+    },
+  },
   _hasRessources: {
     matcher: (step: any) => step.variable === "_hasRessources",
     getFormat: (step: any, propertyData: PropertyData, individus: []) => {

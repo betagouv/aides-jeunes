@@ -5,7 +5,7 @@ async function run() {
   try {
     const inputs = {
       token: core.getInput("token"),
-      issueNumber: Number(core.getInput("issue number")),
+      issueNumber: Number(core.getInput("issue-number")),
       comment: core.getInput("comment"),
     }
 
@@ -14,12 +14,19 @@ async function run() {
 
     const octokit = github.getOctokit(inputs.token)
 
-    core.info("Editing the issue")
+    core.info("Re-opening the issue")
     await octokit.rest.issues.update({
       owner: owner,
       repo: repo,
       issue_number: inputs.issueNumber,
       state: "open",
+    })
+
+    core.info("Adding a comment")
+    await octokit.rest.issues.createComment({
+      owner: owner,
+      repo: repo,
+      issue_number: inputs.issueNumber,
       body: inputs.comment.replace(/<br \/>/g, `\n`),
     })
   } catch (error) {

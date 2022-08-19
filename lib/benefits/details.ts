@@ -45,6 +45,11 @@ interface droitEstimeLayout {
   unit: any
   icon?: any
 }
+
+function getValueOfBoolean(value) {
+  return value ? "Éligible" : "Non éligible"
+}
+
 function formatDroitEstime(droit, parameters) {
   const droitEstime: droitEstimeLayout = {
     id: droit.id || undefined,
@@ -58,12 +63,15 @@ function formatDroitEstime(droit, parameters) {
   switch (droit.type) {
     case "float":
     case "string":
+      break
     case "bool":
+      droitEstime.value = getValueOfBoolean(droit.montant)
       break
     case "mixed":
       if (typeof droitEstime.value === "boolean") {
         droitEstime.type = "bool"
         droitEstime.legend = ""
+        droitEstime.value = getValueOfBoolean(droit.montant)
       } else {
         droitEstime.type = "float"
         droitEstime.unit = "€"

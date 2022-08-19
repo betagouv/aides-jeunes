@@ -5,7 +5,7 @@ import { createHtmlPlugin } from "vite-plugin-html"
 import path from "path"
 import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
-import rollupYaml from "@rollup/plugin-yaml"
+//import rollupYaml from "@rollup/plugin-yaml"
 
 import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
@@ -29,6 +29,69 @@ process.env.VITE_STATS_VERSION = statistics?.version ? statistics.version : 2
 process.env.VITE_NETLIFY_PR = process.env.BRANCH
 process.env.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${process.env.VITE_CONTEXT_NAME}`
 process.env.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${process.env.VITE_BENEFIT_COUNT} aides avec le simulateur de ${process.env.VITE_CONTEXT_NAME}.`
+
+import YAML from "js-yaml"
+import toSource from "tosource"
+import { createFilter, makeLegalIdentifier } from "@rollup/pluginutils"
+
+const defaults = {
+  documentMode: "single",
+  safe: true,
+  transform: null,
+}
+const ext = /\.ya?ml$/
+
+function yaml(opts = {}) {
+  console.log("yaml opts", opts)
+  const options = Object.assign({}, defaults, opts)
+  const { documentMode, safe } = options
+  const filter = createFilter(options.include, options.exclude)
+  let loadMethod = null
+
+  if (documentMode === "single") {
+    loadMethod = safe ? YAML.load : YAML.safeLoad
+  } else if (documentMode === "multi") {
+    loadMethod = safe ? YAML.loadAll : YAML.safeLoadAll
+  } else {
+    this.error(
+      `plugin-yaml → documentMode: '${documentMode}' is not a valid value. Please choose 'single' or 'multi'`
+    )
+  }
+
+  return {
+    name: "yaml",
+
+    transform(content, id) {
+      if (!ext.test(id)) return null
+      if (!filter(id)) return null
+
+      console.log("yaml, transform", id, content)
+
+      let data = loadMethod(content)
+
+      if (typeof options.transform === "function") {
+        const result = options.transform(data, id)
+        // eslint-disable-next-line no-undefined
+        if (result !== undefined) {
+          data = result
+        }
+      }
+
+      const keys = Object.keys(data).filter(
+        (key) => key === makeLegalIdentifier(key)
+      )
+      const code = `var data = ${toSource(data)};\n\n`
+      const exports = ["export default data;"]
+        .concat(keys.map((key) => `export var ${key} = data.${key};`))
+        .join("\n")
+
+      return {
+        code: code + exports,
+        map: { mappings: "" },
+      }
+    },
+  }
+}
 
 export default defineConfig(async ({ command, mode }) => {
   return {
@@ -58,7 +121,7 @@ export default defineConfig(async ({ command, mode }) => {
           },
         },
       }),
-      rollupYaml({
+      yaml({
         include: ["data/**", "contribuer/**"],
       }),
       // legacy({

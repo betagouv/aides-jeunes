@@ -118,13 +118,12 @@ export default function JamstackPlugin(opts = {}) {
       return null
     },
     load(id) {
-      if (!id.startsWith("jamstack") && !id.match(/[\?&]jamstack$/)) {
+      if (!id.match(/[\?&]jamstack$/)) {
         return null
       }
 
-      const data = get(
-        "/home/thomas/repos/aides-jeunes/contribuer/public/admin/config.yml?jamstack"
-      )
+      const fullPath = path.join(__dirname, id.slice(0, -" jamstack".length))
+      const data = get(fullPath)
       const keys = Object.keys(data).filter(
         (key) => key === makeLegalIdentifier(key)
       )

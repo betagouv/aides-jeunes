@@ -20,5 +20,5 @@ conditions:
 type: bool
 periodicite: autre
 link: https://www.ter.sncf.com/hauts-de-france/abonnements/tous-les-abonnements/abonnements-tout-public/mon-abo-ter-hauts-de-france-hebdomadaire
-teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=NPC
+teleservice: https://www.ter.sncf.com/hauts-de-france/products
 instructions: https://www.ter.sncf.com/hauts-de-france/abonnements/tous-les-abonnements/abonnements-tout-public/mon-abo-ter-hauts-de-france-hebdomadaire

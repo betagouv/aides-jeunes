@@ -7,10 +7,6 @@ const epci = require("@etalab/decoupage-administratif/data/epci.json")
 const departments = require("@etalab/decoupage-administratif/data/departements.json")
 import benefits from "../data/all.js"
 
-// recuperer les codes postaux
-// generer le contenu editiorial
-// creeer un fichier yaml
-
 const DEFAULT_FSL = {
   type: "bool",
   prefix: "une",

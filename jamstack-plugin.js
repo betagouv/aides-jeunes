@@ -3,7 +3,7 @@ import path from "path"
 import yaml from "js-yaml"
 
 import toSource from "tosource"
-import { createFilter, makeLegalIdentifier } from "@rollup/pluginutils"
+import { makeLegalIdentifier } from "@rollup/pluginutils"
 
 function read(sourcePath) {
   return {
@@ -103,11 +103,8 @@ const defaults = {
   safe: true,
   transform: null,
 }
-const ext = /\.ya?ml$/
 
-export default function JamstackPlugin(opts = {}) {
-  const options = Object.assign({}, defaults, opts)
-
+export default function JamstackPlugin() {
   return {
     name: "jamstack",
     resolveId(source) {

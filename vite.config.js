@@ -1,5 +1,4 @@
 import vue from "@vitejs/plugin-vue"
-import legacy from "@vitejs/plugin-legacy"
 import { createHtmlPlugin } from "vite-plugin-html"
 
 import path from "path"
@@ -10,7 +9,7 @@ import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-import JamstackPlugin from "./plugin.js"
+import JamstackPlugin from "./jamstack-plugin.js"
 
 //const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
 

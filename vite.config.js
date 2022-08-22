@@ -5,7 +5,6 @@ import { createHtmlPlugin } from "vite-plugin-html"
 import path from "path"
 import { defineConfig } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
-//import rollupYaml from "@rollup/plugin-yaml"
 
 import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"

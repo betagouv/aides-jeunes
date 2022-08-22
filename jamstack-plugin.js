@@ -98,12 +98,6 @@ function get(configPath) {
   return build(load(config.source), config.sourcePath)
 }
 
-const defaults = {
-  documentMode: "single",
-  safe: true,
-  transform: null,
-}
-
 export default function JamstackPlugin() {
   return {
     name: "jamstack",

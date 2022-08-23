@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url)
 import fsl_eligibilite from "../data/benefits/additional-attributes/fsl-eligibilite.js"
 import fs from "fs"
 import yaml from "js-yaml"
-const epci = require("@etalab/decoupage-administratif/data/epci.json")
+const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 const departments = require("@etalab/decoupage-administratif/data/departements.json")
 import benefits from "../data/all.js"
 
@@ -15,9 +15,16 @@ const DEFAULT_FSL = {
 }
 
 function getDepartmentInstitutionByInseeCode(inseeCode) {
-  Object.keys(benefits.institutionsMap).find((institutionName) => {
+  return Object.keys(benefits.institutionsMap).find((institutionName) => {
     const institution = benefits.institutionsMap[institutionName]
     return institution.code_insee === inseeCode
+  })
+}
+
+function getMetropoleInstitutionBySirenCode(sirenCode) {
+  return Object.keys(benefits.institutionsMap).find((institutionName) => {
+    const institution = benefits.institutionsMap[institutionName]
+    return institution.code_siren === sirenCode
   })
 }
 
@@ -33,6 +40,19 @@ function generateDepartmentInstitution(inseeCode) {
     code_insee: inseeCode,
   }
   const name = `departement_${normalizeName(department.nom)}`
+  createYamlFile("./tmp/institutions", name, content)
+
+  return name
+}
+function generateMetropoleInstitution(sirenCode, imgSrc) {
+  const metropole = epcis.find((epci) => epci.code === sirenCode)
+  const content = {
+    name: metropole.nom,
+    imgSrc: imgSrc,
+    type: "epci",
+    code_siren: sirenCode,
+  }
+  const name = normalizeName(metropole.nom)
   createYamlFile("./tmp/institutions", name, content)
 
   return name
@@ -76,15 +96,16 @@ const createYamlFile = (path, name, content) => {
   fs.writeFileSync(`${path}/${name}.yml`, fileContent)
 }
 
-Object.keys(fsl_eligibilite.customization).forEach((code) => {
-  const geographicalEntity = code[0]
-  const geographicalCode = code.slice(1)
+Object.keys(fsl_eligibilite.customization).forEach(;(code) => {
+  const geographicalEntity = code[0] // département/ métropole
+  const geographicalCode = code.slice(1) // code Insee pour le départemebnt ou code Siren pour la métropole
 
   // récupère l'aide customisé
   const customizationBenefit = fsl_eligibilite.customization[code]
 
   if (geographicalEntity === "D") {
-    let benefitInstitutionName = getDepartmentInstitutionByInseeCode
+    let benefitInstitutionName =
+      getDepartmentInstitutionByInseeCode(geographicalCode)
     if (!benefitInstitutionName) {
       // Generate institution if doesn't exist and retrieve name
       benefitInstitutionName = generateDepartmentInstitution(geographicalCode)
@@ -106,11 +127,18 @@ Object.keys(fsl_eligibilite.customization).forEach((code) => {
     // migrer en yml et sauvegarde le fichier
     createYamlFile("./tmp/benefits", benefitName, benefit)
   } else {
-    console.log(customizationBenefit)
+    //console.log(customizationBenefit)
     // Gerer les métropoles
+    let institutionName = getMetropoleInstitutionBySirenCode(geographicalCode)
+
     // Récupérer l'institution par le code siren
     // si elle existe pas la créer
-
+    if (!institutionName) {
+      institutionName = generateMetropoleInstitution(
+        geographicalCode,
+        customizationBenefit.institution.imgSrc
+      )
+    }
     // Récupérer les communes de la métropole
 
     // Générer la conditions sur les communes de la métropole

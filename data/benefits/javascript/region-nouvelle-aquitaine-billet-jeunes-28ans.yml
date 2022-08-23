@@ -5,9 +5,7 @@ description: Grâce au Billet Jeunes, voyagez en Nouvelle-Aquitaine à partir de
   déterminée. Il vous permet de voyager sur toute la Nouvelle Aquitaine et vers
   les régions Centre Val-de-Loire, Pays de la Loire, Occitanie, Auvergne Rhône
   Alpes.
-conditions:
-  - Choisir un trajet en Nouvelle-Aquitaine.
-  - Payer le Billet Jeune dont le prix est calculé en fonction du trajet.
+prefix: l’aide
 conditions_generales:
   - type: regions
     values:
@@ -16,9 +14,12 @@ conditions_generales:
     operator: <=
     value: 28
 profils: []
-link: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
-instructions: https://www.ter.sncf.com/nouvelle-aquitaine/offres/cartes-abonnements/billet-jeunes-nouvelle-aquitaine
-prefix: l’aide
+conditions:
+  - Choisir un trajet en Nouvelle-Aquitaine.
+  - Payer le Billet Jeune dont le prix est calculé en fonction du trajet.
 type: bool
 unit: €
 periodicite: autre
+link: https://www.ter.sncf.com/nouvelle-aquitaine/tarifs-cartes/billets-reduction/billet-jeunes
+teleservice: https://www.ter.sncf.com/nouvelle-aquitaine/products/form
+instructions: ""

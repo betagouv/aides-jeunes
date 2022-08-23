@@ -1,15 +1,9 @@
-participation:
-  type: Variable
-  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
-    fréquent choisi.
 label: abonnement Tempo - 26 ans
 institution: region_normandie
-description: "La carte Tempo vous permet, ainsi qu'à 4 accompagnants, de
+description: La carte Tempo vous permet, ainsi qu'à 4 accompagnants, de
   bénéficier de 50% de réduction maximum sur vos trajets en Normandie ou vers
-  Paris. "
-conditions:
-  - Choisir un trajet fréquent entre deux gares normandes.
-  - Souscrire à l'abonnement annuel ou mensuel dont le prix dépend du trajet fréquent choisi.
+  Paris.
+prefix: l’
 conditions_generales:
   - type: age
     operator: <=
@@ -18,10 +12,17 @@ conditions_generales:
     values:
       - "28"
 profils: []
-link: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
-teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=NHO
-instructions: https://www.ter.sncf.com/normandie/offres/tempo-nomad/abonnement-normandie-moins26
-prefix: l’
+conditions:
+  - Choisir un trajet fréquent entre deux gares normandes.
+  - Souscrire à l'abonnement annuel ou mensuel dont le prix dépend du trajet
+    fréquent choisi.
 type: bool
 unit: €
 periodicite: autre
+link: https://www.ter.sncf.com/normandie/abonnements/tous-les-abonnements/abonnements-tempo-normandie
+teleservice: ""
+instructions: https://www.ter.sncf.com/normandie/abonnements/tous-les-abonnements/abonnements-tempo-normandie
+participation:
+  type: Variable
+  legende: Payer l'abonnement dont le prix est calculé en fonction du trajet
+    fréquent choisi.

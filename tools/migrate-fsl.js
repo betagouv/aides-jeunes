@@ -40,7 +40,7 @@ function generateDepartmentInstitution(inseeCode) {
     code_insee: inseeCode,
   }
   const name = `departement_${normalizeName(department.nom)}`
-  createYamlFile("./tmp/institutions", name, content)
+  createYamlFile("./data/institutions", name, content)
 
   return name
 }
@@ -53,7 +53,7 @@ function generateMetropoleInstitution(sirenCode, imgSrc) {
     code_siren: sirenCode,
   }
   const name = normalizeName(metropole.nom)
-  createYamlFile("./tmp/institutions", name, content)
+  createYamlFile("./data/institutions", name, content)
 
   return name
 }
@@ -64,6 +64,24 @@ function addDepartmentCondition(inseeCode) {
       {
         type: "departements",
         values: [inseeCode],
+      },
+    ],
+  }
+}
+
+function getCommunesInseeCodeByMetropoleSirenCode(sirenCode) {
+  const metropole = epcis.find((epci) => epci.code === sirenCode)
+  const communesInseeCode = metropole.membres.map((membre) => membre.code)
+  return communesInseeCode
+}
+
+function addCommuneCondition(sirenCode) {
+  const communes = getCommunesInseeCodeByMetropoleSirenCode(sirenCode)
+  return {
+    conditions_generales: [
+      {
+        type: "communes",
+        values: communes,
       },
     ],
   }
@@ -96,15 +114,17 @@ const createYamlFile = (path, name, content) => {
   fs.writeFileSync(`${path}/${name}.yml`, fileContent)
 }
 
-Object.keys(fsl_eligibilite.customization).forEach(;(code) => {
+Object.keys(fsl_eligibilite.customization).forEach((code) => {
   const geographicalEntity = code[0] // département/ métropole
   const geographicalCode = code.slice(1) // code Insee pour le départemebnt ou code Siren pour la métropole
 
   // récupère l'aide customisé
   const customizationBenefit = fsl_eligibilite.customization[code]
+  let benefitInstitutionName
+  let benefit
 
   if (geographicalEntity === "D") {
-    let benefitInstitutionName =
+    benefitInstitutionName =
       getDepartmentInstitutionByInseeCode(geographicalCode)
     if (!benefitInstitutionName) {
       // Generate institution if doesn't exist and retrieve name
@@ -113,34 +133,27 @@ Object.keys(fsl_eligibilite.customization).forEach(;(code) => {
 
     // Met en forme l'aide
     // Ajoute la condition sur le département
-    const benefit = formatBenefit(
+    benefit = formatBenefit(
       customizationBenefit,
       benefitInstitutionName,
       addDepartmentCondition(geographicalCode)
     )
     // Generer le nom de l'aide
-    const benefitName = `${benefitInstitutionName.replace(
-      /_/g,
-      "-"
-    )}-fsl-eligibilite`
-
-    // migrer en yml et sauvegarde le fichier
-    createYamlFile("./tmp/benefits", benefitName, benefit)
   } else {
     //console.log(customizationBenefit)
     // Gerer les métropoles
-    let institutionName = getMetropoleInstitutionBySirenCode(geographicalCode)
+    benefitInstitutionName =
+      getMetropoleInstitutionBySirenCode(geographicalCode)
 
     // Récupérer l'institution par le code siren
     // si elle existe pas la créer
-    if (!institutionName) {
-      institutionName = generateMetropoleInstitution(
+    if (!benefitInstitutionName) {
+      benefitInstitutionName = generateMetropoleInstitution(
         geographicalCode,
         customizationBenefit.institution.imgSrc
       )
     }
     // Récupérer les communes de la métropole
-
     // Générer la conditions sur les communes de la métropole
     // exemple
     // conditions_generales:
@@ -149,9 +162,18 @@ Object.keys(fsl_eligibilite.customization).forEach(;(code) => {
     //    values:
     //      - "06088"
     //      - "06999"
-
     // générer l'aide au format js à partir des infos récupérées dans les étapes précédentes
-
-    // créer le fichier yaml
+    benefit = formatBenefit(
+      customizationBenefit,
+      benefitInstitutionName,
+      addCommuneCondition(geographicalCode)
+    )
   }
+  const benefitName = `${benefitInstitutionName.replace(
+    /_/g,
+    "-"
+  )}-fsl-eligibilite`
+
+  // migrer en yml et sauvegarde le fichier
+  createYamlFile("./data/benefits/javascript", benefitName, benefit)
 })

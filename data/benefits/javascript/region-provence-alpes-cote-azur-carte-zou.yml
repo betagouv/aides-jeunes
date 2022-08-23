@@ -4,10 +4,7 @@ description: Grâce à la carte Zou!, bénéficiez de 50% de réduction sur tous
   déplacements en TER en région Sud Provence-Alpes-Côte d'Azur - vos
   accompagnants (3 maximum) bénéficient également de cette réduction - et de 75%
   de réduction sur votre trajet privilégié.
-conditions:
-  - Effectuer des trajets ayant pour origine une gare située en région Sud
-    Provence-Alpes-Côte d'Azur.
-  - Vous procurer la carte Zou! pour un montant de 15 €.
+prefix: la
 conditions_generales:
   - type: age
     operator: <=
@@ -16,8 +13,12 @@ conditions_generales:
     values:
       - "93"
 profils: []
-link: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/zou-50-75-26
-instructions: https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur/offres/cartes-abonnements/zou-50-75-26
-prefix: la
+conditions:
+  - Effectuer des trajets ayant pour origine une gare située en région Sud
+    Provence-Alpes-Côte d'Azur.
+  - Vous procurer la carte Zou! pour un montant de 15 €.
 type: bool
 periodicite: autre
+link: https://www.maregionsud.fr/toutes-vos-aides/detail/zou-hebdo-mensuel-annuel
+teleservice: https://zou.maregionsud.fr/services-en-ligne/
+instructions: ""

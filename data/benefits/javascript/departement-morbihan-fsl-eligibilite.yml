@@ -1,0 +1,28 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département du Morbihan
+institution: departement_morbihan
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département du Morbihan.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/
+form: >-
+  https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf
+instructions: >-
+  https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département du Morbihan, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "56"

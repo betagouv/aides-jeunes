@@ -1,0 +1,24 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département du Var
+institution: departement_var
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département du Var.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: https://www.var.fr/social/insertion/fonds-de-solidarite-logement
+form: >-
+  https://www.var.fr/documents/20142/2028094/MAINTIEN+A4.pdf/7623c7eb-daa0-cf0e-aabf-cd701c8c6d1d
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département du Var, des aides
+  financières sont mises en place pour vous aider à rester dans votre logement
+  et à payer vos factures liées à votre logement (eau, électricité, etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "83"

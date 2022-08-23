@@ -1,0 +1,23 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département du Bas-Rhin
+institution: departement_bas_rhin
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département du Bas-Rhin.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département du Bas-Rhin, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "67"

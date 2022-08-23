@@ -1,0 +1,82 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement de la Métropole de Lyon
+institution: intercommunalite_metropole_lyon
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département de la Métropole de Lyon.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html
+instructions: https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement de la Métropole de Lyon, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: communes
+    values:
+      - "69123"
+      - "69266"
+      - "69259"
+      - "69256"
+      - "69290"
+      - "69034"
+      - "69029"
+      - "69282"
+      - "69286"
+      - "69275"
+      - "69149"
+      - "69244"
+      - "69202"
+      - "69204"
+      - "69091"
+      - "69199"
+      - "69081"
+      - "69089"
+      - "69283"
+      - "69069"
+      - "69273"
+      - "69271"
+      - "69152"
+      - "69276"
+      - "69096"
+      - "69100"
+      - "69072"
+      - "69143"
+      - "69088"
+      - "69194"
+      - "69142"
+      - "69292"
+      - "69279"
+      - "69191"
+      - "69040"
+      - "69278"
+      - "69044"
+      - "69205"
+      - "69260"
+      - "69046"
+      - "69063"
+      - "69250"
+      - "69116"
+      - "69127"
+      - "69163"
+      - "69284"
+      - "69117"
+      - "69087"
+      - "69207"
+      - "69296"
+      - "69003"
+      - "69033"
+      - "69068"
+      - "69293"
+      - "69168"
+      - "69085"
+      - "69153"
+      - "69233"
+      - "69071"

@@ -1,0 +1,24 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département de l’Ariège
+institution: departement_ariege
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département de l’Ariège.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: http://www.ariege.fr/Etre-solidaire/Logement/Le-Fonds-unique-Habitat-FUH
+instructions: http://www.ariege.fr/Etre-solidaire/Logement/Rencontrer-un-travailleur-social
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département de l’Ariège, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "09"

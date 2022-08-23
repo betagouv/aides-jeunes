@@ -1,0 +1,24 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département de la Sarthe
+institution: departement_sarthe
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département de la Sarthe.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://www.sarthe.fr/insertion-logement/logement-habitat/fonds-de-solidarite-logement
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département de la Sarthe, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "72"

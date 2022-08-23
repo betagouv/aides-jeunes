@@ -1,0 +1,120 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement de la Métropole européenne de Lille
+institution: metropole_europeenne_de_lille
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département de la Métropole européenne de Lille.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement
+form: >-
+  https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement de la Métropole européenne de
+  Lille, des aides financières sont mises en place pour vous aider à rester dans
+  votre logement et à payer vos factures liées à votre logement (eau,
+  électricité, etc.).
+conditions_generales:
+  - type: communes
+    values:
+      - "59350"
+      - "59512"
+      - "59599"
+      - "59009"
+      - "59650"
+      - "59378"
+      - "59328"
+      - "59017"
+      - "59360"
+      - "59368"
+      - "59163"
+      - "59410"
+      - "59279"
+      - "59646"
+      - "59507"
+      - "59299"
+      - "59220"
+      - "59286"
+      - "59648"
+      - "59367"
+      - "59508"
+      - "59421"
+      - "59527"
+      - "59152"
+      - "59560"
+      - "59636"
+      - "59011"
+      - "59386"
+      - "59426"
+      - "59090"
+      - "59339"
+      - "59343"
+      - "59143"
+      - "59457"
+      - "59352"
+      - "59317"
+      - "59653"
+      - "59482"
+      - "59051"
+      - "59553"
+      - "59524"
+      - "59656"
+      - "59202"
+      - "59052"
+      - "59098"
+      - "59044"
+      - "59566"
+      - "59278"
+      - "59477"
+      - "59598"
+      - "59005"
+      - "59585"
+      - "59316"
+      - "59256"
+      - "59193"
+      - "59346"
+      - "59660"
+      - "59146"
+      - "59550"
+      - "59523"
+      - "59128"
+      - "59611"
+      - "59252"
+      - "59303"
+      - "59356"
+      - "59250"
+      - "59470"
+      - "59388"
+      - "59522"
+      - "59173"
+      - "59332"
+      - "59088"
+      - "59025"
+      - "59320"
+      - "59609"
+      - "59013"
+      - "59247"
+      - "59602"
+      - "59487"
+      - "59670"
+      - "59196"
+      - "59281"
+      - "59275"
+      - "59133"
+      - "59257"
+      - "59458"
+      - "59437"
+      - "59056"
+      - "59106"
+      - "59371"
+      - "59195"
+      - "59201"
+      - "59658"
+      - "59208"
+      - "59643"

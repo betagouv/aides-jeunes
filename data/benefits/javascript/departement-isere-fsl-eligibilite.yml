@@ -1,0 +1,24 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département d’Isère
+institution: departement_isere
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département d’Isère.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: https://www.isere.fr/aides-au-logement
+form: https://www.isere.fr/sites/default/files/demande-directe.pdf
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département d’Isère, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "38"

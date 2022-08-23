@@ -1,0 +1,25 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département du Puy-de-Dôme
+institution: departement_puy_de_dome
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département du Puy-de-Dôme.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://www.puy-de-dome.fr/social/logement-habitat/fonds-solidarite-logement.html
+instructions: https://www.puy-de-dome.fr/fileadmin/user_upload/CD63-2020-RI-FSL.pdf
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département du Puy-de-Dôme,
+  des aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: departements
+    values:
+      - "63"

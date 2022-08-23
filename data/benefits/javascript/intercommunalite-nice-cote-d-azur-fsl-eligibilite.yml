@@ -1,0 +1,73 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement de la Métropole Nice Côte d’Azur
+institution: intercommunalite_nice_cote_d_azur
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département de la Métropole Nice Côte d’Azur.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement
+form: http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement de la Métropole Nice Côte
+  d’Azur, des aides financières sont mises en place pour vous aider à rester
+  dans votre logement et à payer vos factures liées à votre logement (eau,
+  électricité, etc.).
+conditions_generales:
+  - type: communes
+    values:
+      - "06088"
+      - "06027"
+      - "06123"
+      - "06157"
+      - "06033"
+      - "06149"
+      - "06065"
+      - "06114"
+      - "06159"
+      - "06147"
+      - "06075"
+      - "06032"
+      - "06122"
+      - "06064"
+      - "06011"
+      - "06046"
+      - "06126"
+      - "06006"
+      - "06059"
+      - "06060"
+      - "06103"
+      - "06034"
+      - "06066"
+      - "06121"
+      - "06120"
+      - "06127"
+      - "06025"
+      - "06074"
+      - "06117"
+      - "06109"
+      - "06151"
+      - "06153"
+      - "06021"
+      - "06013"
+      - "06073"
+      - "06042"
+      - "06020"
+      - "06144"
+      - "06129"
+      - "06072"
+      - "06146"
+      - "06156"
+      - "06111"
+      - "06055"
+      - "06110"
+      - "06119"
+      - "06009"
+      - "06080"
+      - "06102"

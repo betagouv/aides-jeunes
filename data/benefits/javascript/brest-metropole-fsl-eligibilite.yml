@@ -1,0 +1,34 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement de Brest Métropole
+institution: brest_metropole
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département de Brest Métropole.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/
+form: >-
+  https://infosociale.finistere.fr/wp-content/uploads/2018/06/CD29_imprime_unique_jlt2019.pdf
+instructions: >-
+  https://infosociale.finistere.fr/wp-content/uploads/2019/07/pb_R%C3%A8glement-FSL-m%C3%A9tropolitain-2019.pdf
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement de Brest Métropole, des aides
+  financières sont mises en place pour vous aider à rester dans votre logement
+  et à payer vos factures liées à votre logement (eau, électricité, etc.).
+conditions_generales:
+  - type: communes
+    values:
+      - "29019"
+      - "29075"
+      - "29189"
+      - "29212"
+      - "29235"
+      - "29069"
+      - "29061"
+      - "29011"

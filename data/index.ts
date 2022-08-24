@@ -3,11 +3,21 @@
 import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 
+function generateInstitutionId(institution) {
+  return `${institution.type}_${
+    institution.code_insee || institution.code_siren || institution.slug
+  }`
+}
+
+function generateBenefitId(benefit) {
+  return benefit.id || benefit.slug
+}
+
 function transformInstitutions(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
-      id: `${data.type}_${data.code_insee || data.code_siren || data.slug}`,
+      id: generateInstitutionId(data),
       code_siren: data.code_siren,
       code_insee: data.code_insee,
       label: data.name,
@@ -37,7 +47,7 @@ function setTop(benefit, institution) {
 }
 
 function setDefaults(benefit, institution) {
-  benefit.id = benefit.id || benefit.slug
+  benefit.id = generateBenefitId(benefit)
   benefit.top = setTop(benefit, institution)
   benefit.floorAt = benefit.floorAt || 1
   return benefit
@@ -93,6 +103,8 @@ export function generate(
 }
 
 export default {
+  generateInstitutionId,
+  generateBenefitId,
   fn: generate,
   generate: (jam) =>
     generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),

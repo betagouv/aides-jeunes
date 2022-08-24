@@ -20,7 +20,6 @@ describe("Institution id", () => {
         institutionIds.push(id)
       })
 
-      // Verify insee code if epci
       if (institution.type === "epci") {
         it("has a unique siren code", () => {
           expect(institutionSirenCodes).not.toContain(institution.siren_code)

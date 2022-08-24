@@ -146,7 +146,7 @@ export default {
           )
         : this.store.calculs.resultats.droitsEligibles
 
-      return droits.map((droit) => this.formatDroit(droit))
+      return droits?.map((droit) => this.formatDroit(droit))
     },
     situationId() {
       return this.store.situationId

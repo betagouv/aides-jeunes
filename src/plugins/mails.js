@@ -10,6 +10,7 @@ const generateResultLines = (droits, customAmount) => {
 
 export const sendEcartInstructions = (situationId, droitsEligibles) => {
   if (!situationId) situationId = "??"
+  if (!droitsEligibles) droitsEligibles = []
 
   return {
     subject: `[${situationId}] Montants inattendus`,
@@ -32,6 +33,7 @@ export const sendEcartInstructions = (situationId, droitsEligibles) => {
 }
 export const sendEcartSimulation = (situationId, droitsEligibles) => {
   if (!situationId) situationId = "??"
+  if (!droitsEligibles) droitsEligibles = []
 
   return {
     subject: `[${situationId}] Montants inattendus`,

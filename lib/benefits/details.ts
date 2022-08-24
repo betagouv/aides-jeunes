@@ -80,26 +80,30 @@ function formatDroitEstime(droit, parameters) {
       break
   }
 
-  switch (droitEstime.unit) {
-    case "€":
-      droitEstime.label = droit.participation ? "Coût estimé" : "Montant estimé"
-      if (droit.floorAt) {
-        droitEstime.value = formatCurrency(
-          droitEstime.value,
-          droitEstime.unit,
-          getDecimalPrecision(droit)
-        )
-      }
-      break
-    case "séances":
-      droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
-      break
-    case "%":
-      droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
-      break
-    default:
-      droitEstime.label = "Valeur estimée"
-      break
+  if (droitEstime.type !== "bool") {
+    switch (droitEstime.unit) {
+      case "€":
+        droitEstime.label = droit.participation
+          ? "Coût estimé"
+          : "Montant estimé"
+        if (droit.floorAt) {
+          droitEstime.value = formatCurrency(
+            droitEstime.value,
+            droitEstime.unit,
+            getDecimalPrecision(droit)
+          )
+        }
+        break
+      case "séances":
+        droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
+        break
+      case "%":
+        droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
+        break
+      default:
+        droitEstime.label = "Valeur estimée"
+        break
+    }
   }
 
   return droitEstime

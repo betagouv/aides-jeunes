@@ -3,6 +3,7 @@ on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch:
 env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8

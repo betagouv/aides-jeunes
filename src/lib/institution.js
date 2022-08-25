@@ -26,7 +26,6 @@ const Institution = {
 
     return {
       droitsEligibles: list,
-      droitsNonEligibles: [],
       droitsInjectes: [],
     }
   },

@@ -25,7 +25,6 @@ function defaultCalculs(): Calculs {
     resultats: {
       _id: undefined,
       droitsEligibles: null,
-      droitsNonEligibles: null,
       droitsInjectes: null,
     },
     dirty: false,

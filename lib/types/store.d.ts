@@ -1,7 +1,6 @@
 export interface Resultats {
   _id?: string
   droitsEligibles: [] | null
-  droitsNonEligibles: [] | null
   droitsInjectes: [] | null
 }
 

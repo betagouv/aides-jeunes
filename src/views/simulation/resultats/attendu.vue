@@ -246,10 +246,6 @@ export default {
           status: "eligible",
         },
         {
-          prop: "droitsNonEligibles",
-          status: "ineligible",
-        },
-        {
           prop: "droitsInjectes",
           status: "injected",
         },

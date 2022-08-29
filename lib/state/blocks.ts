@@ -19,7 +19,7 @@ function individuBlockFactory(id, chapter?: string) {
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      ...(enfant ? [r("_firstName")] : []),
+      ...(enfant ? [r("_firstName", chapter)] : []),
       r("date_naissance", demandeur ? "profil" : chapter),
       r("nationalite"),
       ...(conjoint ? [r("statut_marital")] : []),

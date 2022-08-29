@@ -1,7 +1,10 @@
 <template>
   <div class="recapitulatif">
     <div>
-      <template v-for="(chapter, chapterIndex) in chapters" :key="chapter.name">
+      <template
+        v-for="(chapter, chapterIndex) in myChapters"
+        :key="chapter.name"
+      >
         <div class="chapter-block">
           <h2 class="aj-question">{{ chapter.label }}</h2>
           <template
@@ -53,118 +56,82 @@
   </div>
 </template>
 
-<script>
-import {
-  capitalize,
-  displayValue,
-  executeFunctionOrReturnValue,
-} from "@lib/utils"
-import { SIMPLE_STEPS, COMPLEX_STEPS } from "@/lib/recapitulatif"
-import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
-import BackButton from "@/components/buttons/back-button"
-import { getStepAnswer } from "@lib/answers"
-import ProgressMixin from "@/mixins/progress-mixin"
+<script lang="ts" setup>
+import { getPropertyOfStep } from "@lib/mutualized-steps"
+import BackButton from "@/components/buttons/back-button.vue"
 import { useIndividu } from "@/composables/individu.ts"
+import ComplexeProperties from "@lib/properties/others/complexe-properties"
+import { chapters } from "@lib/state"
+import { useRoute, useRouter } from "vue-router"
+import { RecapPropertyLine, Step } from "@lib/types/property"
+import { computed, ComputedRef } from "vue"
+import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
 
-export default {
-  name: "Recapitulatif",
-  components: {
-    BackButton,
-  },
-  mixins: [ProgressMixin],
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  computed: {
-    activeJourney() {
-      return this.store.getAllAnsweredSteps
-    },
-    propertyData() {
-      return {
-        openFiscaParameters: this.store.openFiscaParameters,
-        simulation: this.store.simulation,
-        periods: this.store.dates,
-      }
-    },
-    chapters() {
-      return this.$state
-        .chapters(this.$route.path, this.store.getAllSteps)
-        .map((chapter) => {
-          return {
-            label: chapter.label,
-            questions: this.stepPerChapter(chapter.name).reduce(
-              (accum, step) => {
-                accum.push(
-                  ...this.questionsPerStep(step).map((question) => {
-                    question.path = step.path
-                    return question
-                  })
-                )
-                return accum
-              },
-              []
-            ),
-          }
-        })
-    },
-    showResultButton() {
-      return (
-        this.progress === 1 &&
-        this.$router.options.history.state.back !== "/simulation/resultats"
-      )
-    },
-  },
-  methods: {
-    buildMutualizedQuestion({ question, value, component }) {
-      return question
-        ? [
-            {
-              label: capitalize(
-                executeFunctionOrReturnValue(question, "question", component)
-              ),
-              value: displayValue(value, question, component),
-            },
-          ]
-        : []
-    },
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+const progress: ComputedRef<number> = useProgress()
+const activeJourney = store.getAllAnsweredSteps
+const propertyData = {
+  openFiscaParameters: store.openFiscaParameters,
+  simulation: store.simulation,
+  periods: store.dates,
+}
 
-    goBack() {
-      window?.history.back()
-    },
+const showResultButton = computed(() => {
+  return (
+    progress.value === 1 &&
+    router.options.history.state.back !== "/simulation/resultats"
+  )
+})
 
-    questionsPerStep(step) {
-      if (SIMPLE_STEPS[step.variable]) {
-        return SIMPLE_STEPS[step.variable].bind(this)(step)
-      }
+const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
+  return {
+    label: chapter.label,
+    questions: stepPerChapter(chapter.name).reduce(
+      (accum: RecapPropertyLine[], step: Step) => {
+        accum.push(
+          ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
+            recapLine.path = step.path
+            return recapLine
+          })
+        )
+        return accum
+      },
+      []
+    ),
+  }
+})
 
-      const match = Object.keys(COMPLEX_STEPS).find((key) =>
-        COMPLEX_STEPS[key].matcher.bind(this)(step)
-      )
-      if (match) {
-        return COMPLEX_STEPS[match].fn.bind(this)(step)
-      }
+function stepPerChapter(chapterName: string) {
+  return activeJourney.filter((step: Step) => step.chapter === chapterName)
+}
 
-      if (ENTITIES_PROPERTIES[step.entity]) {
-        const answer = getStepAnswer(this.store.simulation.answers.all, step)
+function questionsPerStep(step: Step): RecapPropertyLine[] {
+  const individu = step.entity === "individu" ? useIndividu(step.id) : undefined
 
-        const individu =
-          step.entity === "individu" ? useIndividu(step.id) : undefined
+  const currentPropertyData = { ...propertyData, individu }
+  const property = getPropertyOfStep(step)
 
-        return this.buildMutualizedQuestion({
-          question: ENTITIES_PROPERTIES[step.entity][step.variable],
-          value: answer,
-          component: { ...this.propertyData, individu },
-        })
-      }
-      return []
-    },
+  if (property) {
+    return [
+      property.recapHeader?.(currentPropertyData),
+      property.getRecap(currentPropertyData, step),
+    ].filter((block) => block) as RecapPropertyLine[]
+  }
 
-    stepPerChapter(chapterName) {
-      return this.activeJourney.filter((step) => step.chapter === chapterName)
-    },
-  },
+  const match = Object.keys(ComplexeProperties).find((key) =>
+    ComplexeProperties[key].matcher(step)
+  )
+  if (match && ComplexeProperties[match].getRecap) {
+    return ComplexeProperties[match].getRecap(currentPropertyData, step)
+  }
+
+  return []
+}
+
+function goBack() {
+  window?.history.back()
 }
 </script>

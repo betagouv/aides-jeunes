@@ -5,6 +5,16 @@ export interface PropertyData {
   periods?: any
 }
 
+export interface Step {
+  entity: string
+  id: string
+  variable: string
+  path: string
+  key: string
+  chapter?: string
+  isActive?: boolean
+}
+
 export interface EnumItemProperty {
   label: string
   value: boolean | number | string
@@ -19,6 +29,7 @@ export interface PropertyConstruct {
   moreInfo?: string | ((variation: any) => string)
   showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
   getAnswerFormat?: (propertyData: PropertyData) => any
+  recapHeader?: (propertyData: PropertyData) => any
 }
 
 export interface ItemPropertyConstruct extends PropertyConstruct {
@@ -31,4 +42,13 @@ export interface NumberPropertyConstruct extends PropertyConstruct {
   type?: string
   unit?: string
   min?: number
+}
+
+export interface RecapPropertyLine {
+  rowClass?: string
+  label: string
+  value?: string
+  labelClass?: string
+  hideEdit?: boolean
+  path?: string
 }

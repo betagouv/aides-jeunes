@@ -1,4 +1,3 @@
-"use strict"
 import Individu from "./individu.js"
 import { generator } from "./dates.js"
 

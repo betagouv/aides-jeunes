@@ -68,7 +68,7 @@ function addConditions() {
   return {
     conditions_generales: [
       {
-        type: "institution",
+        type: "attached_to_institution",
       },
       {
         type: "statut_occupation_logement",

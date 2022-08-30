@@ -25,7 +25,7 @@ description: >-
   aider à rester dans votre logement et à payer vos factures liées à votre
   logement (eau, électricité, etc.).
 conditions_generales:
-  - type: institution
+  - type: attached_to_institution
   - type: statut_occupation_logement
     excludes:
       - loge_gratuitement

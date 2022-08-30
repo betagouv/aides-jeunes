@@ -208,6 +208,41 @@ fields:
     <<: *field_empty
     label: Bénéficiaire RSA
     name: beneficiaire_rsa
+  field_attached_to_institution: &field_attached_to_institution
+    <<: *field_empty
+    label: Habite dans le périmètre géographique l'institution (uniquement commune, epci, département ou région)
+    name: attached_to_institution
+  field_select_statut_occupation_logement:
+    &field_select_statut_occupation_logement
+    widget: select
+    multiple: true
+    required: false
+    options:
+      - label: Propriétaire primo-accédant
+        value: primo_accedant
+      - label: Propriétaire
+        value: proprietaire
+      - label: Locataire
+        value: locataire_vide
+      - label: Locataire de meublé ou hotel
+        value: locataire_meuble
+      - label: "Logé gratuitement"
+        value: loge_gratuitement
+      - label: "Locataire foyer"
+        value: locataire_foyer
+      - label: "Sans domicile stable"
+        value: sans_domicile
+  field_statut_occupation_logement: &field_statut_occupation_logement
+    label: Statut d'occupation du logement
+    name: statut_occupation_logement
+    widget: object
+    fields:
+      - <<: *field_select_statut_occupation_logement
+        label: Inclus
+        name: includes
+      - <<: *field_select_statut_occupation_logement
+        label: Exclus
+        name: excludes
 
   # common fields
   field_benefit_image: &field_benefit_image
@@ -683,6 +718,8 @@ fields:
       - *field_quotient_familial
       - *field_formation_sanitaire_social
       - *field_beneficiaire_rsa
+      - *field_attached_to_institution
+      - *field_statut_occupation_logement
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat

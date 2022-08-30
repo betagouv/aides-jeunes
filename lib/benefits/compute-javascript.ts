@@ -145,7 +145,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       return OPERATOR[condition.operator](age, condition.value)
     },
   },
-  institution: {
+  attached_to_institution: {
     test: (
       _,
       {

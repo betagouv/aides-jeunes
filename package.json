@@ -132,9 +132,6 @@
     "htmlWhitespaceSensitivity": "strict",
     "semi": false
   },
-  "browserslist": [
-    "> 0.1%, last 2 versions, Firefox ESR, not dead"
-  ],
   "jest": {
     "roots": [
       "<rootDir>/tests"

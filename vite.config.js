@@ -59,9 +59,9 @@ export default defineConfig(async ({ command, mode }) => {
       rollupYaml({
         include: ["data/**", "contribuer/**"],
       }),
-      // legacy({
-      //   targets: ["defaults", "not IE 11"],
-      // }),
+      legacy({
+        targets: ["defaults"],
+      }),
     ],
     resolve: {
       preferBuiltins: false,

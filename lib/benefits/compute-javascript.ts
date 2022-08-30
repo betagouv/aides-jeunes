@@ -181,7 +181,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
   },
   annee_etude: {
     test: (condition, { situation }: { situation: situationsLayout }) => {
-      return condition.includes.includes(situation.demandeur?.annee_etude)
+      return condition.values.includes(situation.demandeur?.annee_etude)
     },
   },
   regime_securite_sociale: {

@@ -1,0 +1,26 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département du Val-de-Marne
+institution: departement_val_de_marne
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département du Val-de-Marne.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  https://www.valdemarne.fr/a-votre-service/habitat/logement/aides-aux-impayes-locatifs-fsh
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département du Val-de-Marne,
+  des aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: institution
+  - type: statut_occupation_logement
+    excludes:
+      - loge_gratuitement
+      - sans_domicile

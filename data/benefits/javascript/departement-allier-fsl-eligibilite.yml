@@ -1,0 +1,27 @@
+type: bool
+prefix: une
+top: 6
+periodicite: ponctuelle
+label: Aide au maintien dans votre logement du département de l’Allier
+institution: departement_allier
+conditions:
+  - >-
+    Occuper, à titre de résidence principale, un logement sur le territoire du
+    département du département de l’Allier.
+  - >-
+    <strong>Satisfaire les conditions de ressources</strong> décrites dans le
+    règlement.
+link: >-
+  http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl
+instructions: http://www.allier.gouv.fr/l-acces-au-logement-pour-tous-a402.html
+description: >-
+  Dans le cadre du Fonds de Solidarité Logement du département de l’Allier, des
+  aides financières sont mises en place pour vous aider à rester dans votre
+  logement et à payer vos factures liées à votre logement (eau, électricité,
+  etc.).
+conditions_generales:
+  - type: institution
+  - type: statut_occupation_logement
+    excludes:
+      - loge_gratuitement
+      - sans_domicile

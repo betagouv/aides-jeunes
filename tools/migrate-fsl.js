@@ -16,10 +16,15 @@ const DEFAULT_FSL = {
 }
 
 function getDepartmentInstitutionByInseeCode(inseeCode) {
-  return Object.keys(benefits.institutionsMap).find((institutionName) => {
-    const institution = benefits.institutionsMap[institutionName]
-    return institution.code_insee === inseeCode
-  })
+  return Object.keys(benefits.institutionsMap)
+    .filter(
+      (institutionName) =>
+        benefits.institutionsMap[institutionName].type === "departement"
+    )
+    .find((institutionName) => {
+      const institution = benefits.institutionsMap[institutionName]
+      return institution.code_insee === inseeCode
+    })
 }
 
 function getMetropoleInstitutionBySirenCode(sirenCode) {

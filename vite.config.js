@@ -11,8 +11,6 @@ import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-//const before = process.env.NODE_ENV === "front-only" ? mock : configureAPI
-
 process.env.VITE_BENEFIT_COUNT = benefits.all.filter(
   (benefit) => !benefit.private
 ).length

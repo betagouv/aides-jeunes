@@ -12,6 +12,7 @@ export interface situationsLayout {
     depcom?: string
     _epci?: string
     _region?: string
+    statut_occupation_logement?: string
   }
   parents?: any
   conjoint?: any

@@ -20,3 +20,7 @@ description: >-
   et à payer vos factures liées à votre logement (eau, électricité, etc.).
 conditions_generales:
   - type: institution
+  - type: statut_occupation_logement
+    excludes:
+      - loge_gratuitement
+      - sans_domicile

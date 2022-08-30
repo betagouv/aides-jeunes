@@ -24,3 +24,7 @@ description: >-
   etc.).
 conditions_generales:
   - type: institution
+  - type: statut_occupation_logement
+    excludes:
+      - loge_gratuitement
+      - sans_domicile

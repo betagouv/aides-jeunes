@@ -11,6 +11,21 @@ const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   return rsa > 1
 }
 
+const includesOrExcludes = (expected, value, isInclude) => {
+  return (
+    !expected ||
+    expected.length === 0 ||
+    isInclude ||
+    expected.includes(value) === isInclude
+  )
+}
+
+const includesAndExcludesCondition = (condition, value) => {
+  const includes = includesOrExcludes(condition.includes, value, true)
+  const excludes = includesOrExcludes(condition.excludes, value, false)
+  return includes && excludes
+}
+
 const PROFILE_STATEGY = {
   apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation?.demandeur?._contrat_alternant === "apprenti"
@@ -166,24 +181,23 @@ export const CONDITION_STATEGY: ConditionsLayout = {
   },
   annee_etude: {
     test: (condition, { situation }: { situation: situationsLayout }) => {
-      return condition.values.includes(situation.demandeur?.annee_etude)
+      return condition.includes.includes(situation.demandeur?.annee_etude)
     },
   },
   regime_securite_sociale: {
     test: (condition, { openfiscaResponse }) => {
-      const includes =
-        !condition.includes ||
-        condition.includes.length === 0 ||
-        condition.includes.includes(
-          openfiscaResponse.individus.demandeur.regime_securite_sociale
-        )
-      const excludes =
-        !condition.excludes ||
-        condition.excludes.length === 0 ||
-        !condition.excludes.includes(
-          openfiscaResponse.individus.demandeur.regime_securite_sociale
-        )
-      return includes && excludes
+      return includesAndExcludesCondition(
+        condition,
+        openfiscaResponse.individus.demandeur.regime_securite_sociale
+      )
+    },
+  },
+  statut_occupation_logement: {
+    test: (condition, { situation }) => {
+      return includesAndExcludesCondition(
+        condition,
+        situation.menage.statut_occupation_logement
+      )
     },
   },
   quotient_familial: {

@@ -6,6 +6,7 @@ import yaml from "js-yaml"
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 const departments = require("@etalab/decoupage-administratif/data/departements.json")
 import benefits from "../data/all.js"
+import { StatutOccupationLogement } from "../lib/logement.js"
 
 const DEFAULT_FSL = {
   type: "bool",
@@ -58,11 +59,18 @@ function generateMetropoleInstitution(sirenCode, imgSrc) {
   return name
 }
 
-function addInstitutionCondition() {
+function addConditions() {
   return {
     conditions_generales: [
       {
         type: "institution",
+      },
+      {
+        type: "statut_occupation_logement",
+        excludes: [
+          StatutOccupationLogement.loge_gratuitement,
+          StatutOccupationLogement.sans_domicile,
+        ],
       },
     ],
   }
@@ -117,7 +125,7 @@ Object.keys(fsl_eligibilite.customization).forEach((code) => {
     benefit = formatBenefit(
       customizationBenefit,
       benefitInstitutionName,
-      addInstitutionCondition()
+      addConditions()
     )
     // Generer le nom de l'aide
   } else {
@@ -147,7 +155,7 @@ Object.keys(fsl_eligibilite.customization).forEach((code) => {
     benefit = formatBenefit(
       customizationBenefit,
       benefitInstitutionName,
-      addInstitutionCondition()
+      addConditions()
     )
   }
   const benefitName = `${benefitInstitutionName.replace(

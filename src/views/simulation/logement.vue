@@ -132,7 +132,7 @@ export default {
             hint: "ou en location-accession",
           },
           {
-            label: "Hébergé",
+            label: "Hébergé·e",
             value: "heberge",
             hint: "chez vos parents, chez un particulier ou en logement de fonction",
           },

@@ -8,6 +8,10 @@ export interface situationsLayout {
   famille?: any
   menage?: {
     aide_logement_date_pret_conventionne: string
+    _departement?: string
+    depcom?: string
+    _epci?: string
+    _region?: string
   }
   parents?: any
   conjoint?: any

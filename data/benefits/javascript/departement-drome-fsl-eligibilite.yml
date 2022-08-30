@@ -19,6 +19,4 @@ description: >-
   logement et à payer vos factures liées à votre logement (eau, électricité,
   etc.).
 conditions_generales:
-  - type: departements
-    values:
-      - "26"
+  - type: institution

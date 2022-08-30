@@ -130,6 +130,31 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       return OPERATOR[condition.operator](age, condition.value)
     },
   },
+  institution: {
+    test: (
+      _,
+      {
+        situation,
+      }: {
+        situation: situationsLayout
+      },
+      benefit
+    ): boolean => {
+      const institution = benefit.institution
+
+      switch (institution.type) {
+        case "region":
+          return situation.menage._region === institution.code_insee
+        case "departement":
+          return situation.menage._departement === institution.code_insee
+        case "epci":
+          return situation.menage._epci === institution.code_siren
+        case "commune":
+          return situation.menage.depcom === institution.code_insee
+      }
+      return false
+    },
+  },
   regions: {
     test: testGeographicalEligibility,
   },
@@ -200,13 +225,13 @@ export const CONDITION_STATEGY: ConditionsLayout = {
   },
 }
 
-function testConditions(conditions, data) {
+function testConditions(conditions, data, benefit) {
   if (!conditions) {
     return true
   }
 
   return conditions.every((condition) =>
-    CONDITION_STATEGY[condition.type].test(condition, data)
+    CONDITION_STATEGY[condition.type].test(condition, data, benefit)
   )
 }
 
@@ -217,7 +242,7 @@ export function testProfileEligibility(benefit, data) {
     benefit.profils.some((profil) => {
       return (
         PROFILE_STATEGY[profil.type](data) &&
-        testConditions(profil.conditions, data)
+        testConditions(profil.conditions, data, benefit)
       )
     })
   )
@@ -246,7 +271,8 @@ export function computeJavascriptBenefits(
 
       const generalConditionsEligibility = testConditions(
         benefit.conditions_generales,
-        data
+        data,
+        benefit
       )
 
       const montant = benefit.montant

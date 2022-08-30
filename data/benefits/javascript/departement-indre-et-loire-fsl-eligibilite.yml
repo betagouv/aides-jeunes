@@ -21,6 +21,4 @@ description: >-
   rester dans votre logement et à payer vos factures liées à votre logement
   (eau, électricité, etc.).
 conditions_generales:
-  - type: departements
-    values:
-      - "37"
+  - type: institution

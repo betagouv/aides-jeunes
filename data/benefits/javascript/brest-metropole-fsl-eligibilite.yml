@@ -22,13 +22,4 @@ description: >-
   financières sont mises en place pour vous aider à rester dans votre logement
   et à payer vos factures liées à votre logement (eau, électricité, etc.).
 conditions_generales:
-  - type: communes
-    values:
-      - "29019"
-      - "29075"
-      - "29189"
-      - "29212"
-      - "29235"
-      - "29069"
-      - "29061"
-      - "29011"
+  - type: institution

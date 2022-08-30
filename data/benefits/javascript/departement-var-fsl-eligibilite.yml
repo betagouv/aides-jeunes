@@ -19,6 +19,4 @@ description: >-
   financières sont mises en place pour vous aider à rester dans votre logement
   et à payer vos factures liées à votre logement (eau, électricité, etc.).
 conditions_generales:
-  - type: departements
-    values:
-      - "83"
+  - type: institution

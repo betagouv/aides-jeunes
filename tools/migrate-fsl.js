@@ -58,30 +58,11 @@ function generateMetropoleInstitution(sirenCode, imgSrc) {
   return name
 }
 
-function addDepartmentCondition(inseeCode) {
+function addInstitutionCondition() {
   return {
     conditions_generales: [
       {
-        type: "departements",
-        values: [inseeCode],
-      },
-    ],
-  }
-}
-
-function getCommunesInseeCodeByMetropoleSirenCode(sirenCode) {
-  const metropole = epcis.find((epci) => epci.code === sirenCode)
-  const communesInseeCode = metropole.membres.map((membre) => membre.code)
-  return communesInseeCode
-}
-
-function addCommuneCondition(sirenCode) {
-  const communes = getCommunesInseeCodeByMetropoleSirenCode(sirenCode)
-  return {
-    conditions_generales: [
-      {
-        type: "communes",
-        values: communes,
+        type: "institution",
       },
     ],
   }
@@ -136,7 +117,7 @@ Object.keys(fsl_eligibilite.customization).forEach((code) => {
     benefit = formatBenefit(
       customizationBenefit,
       benefitInstitutionName,
-      addDepartmentCondition(geographicalCode)
+      addInstitutionCondition()
     )
     // Generer le nom de l'aide
   } else {
@@ -166,7 +147,7 @@ Object.keys(fsl_eligibilite.customization).forEach((code) => {
     benefit = formatBenefit(
       customizationBenefit,
       benefitInstitutionName,
-      addCommuneCondition(geographicalCode)
+      addInstitutionCondition()
     )
   }
   const benefitName = `${benefitInstitutionName.replace(

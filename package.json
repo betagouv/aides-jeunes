@@ -4,7 +4,6 @@
   "description": "Simulateur de prestations sociales pour les jeunes",
   "type": "module",
   "scripts": {
-    "vite:preview": "npx vite preview",
     "serve": "npm run build:server && npm run build:iframes && node ./dev.js",
     "serve:back": "npm run build:server && node ./dist-server/server.js",
     "build": "npm run build:server && npm run build:iframes && npm run build:front",
@@ -12,6 +11,7 @@
     "build:iframes": "webpack --config iframes.config.js",
     "build:front": "vite build",
     "build:server": "tsc -p tsconfig.server.json && cp -r lib backend data tools dist-server/",
+    "preview": "vite preview",
     "lint": "eslint backend data lib src ./*.ts",
     "ci": "npm run stats && cd dist-server && NODE_ENV=production node ./server.js",
     "cypress": "cypress run --config-file false",

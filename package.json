@@ -134,8 +134,7 @@
       "<rootDir>/tests"
     ],
     "moduleDirectories": [
-      "node_modules",
-      "."
+      "node_modules"
     ],
     "testEnvironment": "node",
     "moduleFileExtensions": [
@@ -146,8 +145,7 @@
       "vue"
     ],
     "transform": {
-      "\\.[jt]sx?$": "ts-jest",
-      "^.+\\.(ts|tsx)$": "ts-jest"
+      "\\.[jt]sx?$": "ts-jest"
     },
     "globals": {
       "ts-jest": {

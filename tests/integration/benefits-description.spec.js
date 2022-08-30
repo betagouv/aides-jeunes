@@ -180,13 +180,16 @@ describe("benefit descriptions", function () {
                       condition.type === "regions" ||
                       condition.type === "departements" ||
                       condition.type === "communes" ||
-                      condition.type === "epcis"
+                      condition.type === "epcis" ||
+                      condition.type === "attached_to_institution"
                     )
                   }
                 )
                 expect(typeof conditionGeo.type).toBe("string")
-                expect(conditionGeo.type.length).toBeGreaterThan(1)
-                expect(conditionGeo.values.length).toBeGreaterThan(0)
+                if (conditionGeo.type !== "attached_to_institution") {
+                  expect(conditionGeo.type.length).toBeGreaterThan(1)
+                  expect(conditionGeo.values.length).toBeGreaterThan(0)
+                }
               })
             }
 

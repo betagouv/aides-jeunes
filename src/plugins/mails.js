@@ -1,13 +1,23 @@
-export const sendEcartInstructions = (situationId) => {
+const generateResultLines = (droits, customAmount) => {
+  return droits
+    .map(({ amount, label }) => {
+      return `- ${customAmount || amount} pour la prestation « ${label} ».`
+    })
+    .join("\n")
+}
+
+export const sendEcartInstructions = (situationId, droitsEligibles) => {
   if (!situationId) situationId = "??"
+  if (!droitsEligibles) droitsEligibles = []
+
   return {
     subject: `[${situationId}] Montants inattendus`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
-    - XXX € / mois pour la prestation «  ».
+    ${generateResultLines(droitsEligibles)}
     Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
-    - XXX € / mois pour la prestation «  ».
+    ${generateResultLines(droitsEligibles, "XXX")}
 
     J'ai bien compris que vous n'étiez pas décisionnaires et ne pourrez pas intervenir en ma faveur.
     Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart et améliorer le simulateur pour d'autres utilisateurs.
@@ -19,16 +29,18 @@ export const sendEcartInstructions = (situationId) => {
             ————`,
   }
 }
-export const sendEcartSimulation = (situationId) => {
+export const sendEcartSimulation = (situationId, droitsEligibles) => {
   if (!situationId) situationId = "??"
+  if (!droitsEligibles) droitsEligibles = []
+
   return {
     subject: `[${situationId}] Montants inattendus`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
-    - XXX € / mois pour la prestation «  ».
+    ${generateResultLines(droitsEligibles)}
     Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
-    - XXX € / mois pour la prestation «  ».
+    ${generateResultLines(droitsEligibles, "XXX")}
 
     Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart.
 

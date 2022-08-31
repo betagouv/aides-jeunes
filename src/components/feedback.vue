@@ -8,7 +8,7 @@
       La plupart des résultats que nous vous proposons sont automatiquement
       arrondis à une dizaine d'euros près.
     </p>
-    <ul :key="situationId">
+    <ul :key="`${situationId}-${droits?.length}`">
       <li>
         <a
           v-analytics="{
@@ -117,11 +117,15 @@ import {
   sendSuggestion,
 } from "@/plugins/mails"
 import { useStore } from "@/stores"
+import { useRoute } from "vue-router"
+import { formatDroitEstime } from "@lib/benefits/details.js"
+import { capitalize } from "@lib/utils.js"
 
 export default {
   name: "Feedback",
   setup() {
     return {
+      route: useRoute(),
       store: useStore(),
     }
   },
@@ -134,20 +138,44 @@ export default {
     }
   },
   computed: {
+    droits() {
+      const droitId = this.route.params.droitId
+      const droits = droitId
+        ? this.store.calculs.resultats.droitsEligibles.filter(
+            (droit) => droit.id === this.route.params.droitId
+          )
+        : this.store.calculs.resultats.droitsEligibles
+
+      return droits?.map((droit) => this.formatDroit(droit))
+    },
     situationId() {
       return this.store.situationId
     },
     sendMailEcartSimulation() {
-      return sendEcartSimulation(this.situationId)
+      return sendEcartSimulation(this.situationId, this.droits)
     },
     sendMailEcartInstruction() {
-      return sendEcartInstructions(this.situationId)
+      return sendEcartInstructions(this.situationId, this.droits)
     },
     sendMailSuggestion() {
       return sendSuggestion(this.situationId)
     },
   },
   methods: {
+    formatDroit(droit) {
+      const droitEstime = formatDroitEstime(
+        droit,
+        this.store.openFiscaParameters
+      )
+      const benefitLabel = capitalize(droit.label)
+      const amount = `${droitEstime.value}${
+        droitEstime.legend ? ` ${droitEstime.legend}` : ""
+      }`
+      return {
+        label: benefitLabel,
+        amount: amount,
+      }
+    },
     toggleLinks() {
       if (!this.openfiscaTracerURL) {
         this.store

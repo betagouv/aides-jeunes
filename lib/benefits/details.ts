@@ -45,6 +45,11 @@ interface droitEstimeLayout {
   unit: any
   icon?: any
 }
+
+function getValueOfBoolean(value) {
+  return value ? "Éligible" : "Non éligible"
+}
+
 function formatDroitEstime(droit, parameters) {
   const droitEstime: droitEstimeLayout = {
     id: droit.id || undefined,
@@ -58,12 +63,15 @@ function formatDroitEstime(droit, parameters) {
   switch (droit.type) {
     case "float":
     case "string":
+      break
     case "bool":
+      droitEstime.value = getValueOfBoolean(droit.montant)
       break
     case "mixed":
       if (typeof droitEstime.value === "boolean") {
         droitEstime.type = "bool"
         droitEstime.legend = ""
+        droitEstime.value = getValueOfBoolean(droit.montant)
       } else {
         droitEstime.type = "float"
         droitEstime.unit = "€"
@@ -72,26 +80,30 @@ function formatDroitEstime(droit, parameters) {
       break
   }
 
-  switch (droitEstime.unit) {
-    case "€":
-      droitEstime.label = droit.participation ? "Coût estimé" : "Montant estimé"
-      if (droit.floorAt) {
-        droitEstime.value = formatCurrency(
-          droitEstime.value,
-          droitEstime.unit,
-          getDecimalPrecision(droit)
-        )
-      }
-      break
-    case "séances":
-      droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
-      break
-    case "%":
-      droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
-      break
-    default:
-      droitEstime.label = "Valeur estimée"
-      break
+  if (droitEstime.type !== "bool") {
+    switch (droitEstime.unit) {
+      case "€":
+        droitEstime.label = droit.participation
+          ? "Coût estimé"
+          : "Montant estimé"
+        if (droit.floorAt) {
+          droitEstime.value = formatCurrency(
+            droitEstime.value,
+            droitEstime.unit,
+            getDecimalPrecision(droit)
+          )
+        }
+        break
+      case "séances":
+        droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
+        break
+      case "%":
+        droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
+        break
+      default:
+        droitEstime.label = "Valeur estimée"
+        break
+    }
   }
 
   return droitEstime

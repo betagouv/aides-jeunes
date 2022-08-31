@@ -13,10 +13,10 @@ const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
 
 const includesAndExcludesCondition = (condition, value) => {
   const includes =
-    !(condition && !condition?.includes?.length) ||
+    !(condition && condition?.includes?.length) ||
     condition.includes.includes(value)
   const excludes =
-    !(condition && !condition?.excludes?.length) ||
+    !(condition && condition?.excludes?.length) ||
     !condition.excludes.includes(value)
   return includes && excludes
 }

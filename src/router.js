@@ -290,12 +290,14 @@ const router = createRouter({
             ),
           meta: {
             headTitle: (params) => {
-              const droitLabel = `${benefits[params.droitId].label}`
-              return benefits[params.droitId]?.label
-                ? droitLabel.charAt(0).toUpperCase() +
-                    droitLabel.slice(1) +
-                    ` - Ma simulation d'aides ${context.name}`
-                : process.env.VUE_APP_TITLE
+              if (benefits[params.droitId]) {
+                const droitLabel = `${benefits[params.droitId].label}`
+                return `${droitLabel.charAt(0).toUpperCase()}${droitLabel.slice(
+                  1
+                )} - Ma simulation d'aides ${context.name}`
+              } else {
+                return process.env.VUE_APP_TITLE
+              }
             },
           },
         },

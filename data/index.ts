@@ -1,7 +1,6 @@
-"use strict"
-
 import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
+import { build } from "./benefits/dynamic/fsl.js"
 
 function generateInstitutionId(institution) {
   return `${institution.type}_${
@@ -74,10 +73,13 @@ export function generate(
     benefit.source = "aides-velo"
   })
 
+  const fslBenefits = build(institutions)
+
   let benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
+    ...fslBenefits,
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })

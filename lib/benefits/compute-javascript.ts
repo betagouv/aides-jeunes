@@ -11,21 +11,11 @@ const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   return rsa > 1
 }
 
-const includesOrExcludes = (expected, value, isInclude) => {
-  return (
-    !expected ||
-    expected.length === 0 ||
-    isInclude ||
-    expected.includes(value) === isInclude
-  )
-}
-
 const includesAndExcludesCondition = (condition, value) => {
-  const includes = includesOrExcludes(condition.includes, value, true)
-  const excludes = includesOrExcludes(condition.excludes, value, false)
+  const includes = !(condition?.includes?.length) || condition.excludes.includes(value)
+  const excludes = !(condition?.excludes?.length) || !condition.excludes.includes(value)
   return includes && excludes
 }
-
 const PROFILE_STATEGY = {
   apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation?.demandeur?._contrat_alternant === "apprenti"

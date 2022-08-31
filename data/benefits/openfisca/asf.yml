@@ -17,7 +17,7 @@ type: float
 unit: €
 periodicite: mensuelle
 link: https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/l-allocation-de-soutien-familial-asf
-teleservice: https://connect.caf.fr/connexionappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fwps%2Fmyportal%2Fcaffr%2Fmoncompte%2Ffaireunedemandedeprestation#/login
+teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#DASF
 form: ""
 instructions: https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/l-allocation-de-soutien-familial-asf
 floorAt: 10

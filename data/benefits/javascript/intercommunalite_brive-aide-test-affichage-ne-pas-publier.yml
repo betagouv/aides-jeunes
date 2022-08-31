@@ -13,6 +13,8 @@ profils: []
 type: float
 unit: €
 periodicite: autre
+legend: maximum
+montant: 10
 link: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new
 teleservice: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new
 form: https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_javascript/new

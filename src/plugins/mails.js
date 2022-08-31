@@ -1,11 +1,9 @@
 const generateResultLines = (droits, customAmount) => {
   return droits
     .map(({ amount, label }) => {
-      return `
-      - ${customAmount || amount} pour la prestation « ${label} ».
-    `
+      return `- ${customAmount || amount} pour la prestation « ${label} ».`
     })
-    .join("")
+    .join("\n")
 }
 
 export const sendEcartInstructions = (situationId, droitsEligibles) => {

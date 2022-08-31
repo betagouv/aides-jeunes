@@ -19,6 +19,7 @@ conditions:
 type: float
 unit: €
 periodicite: autre
+legend: maximum
 montant: 1000
 link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/logement/le-pret-caf-equipement-mobiliermenager#:~:text=Quel%20montant%20%3F,%C3%A0%20taux%20z%C3%A9ro%2C%20sans%20int%C3%A9r%C3%AAt.
 form: https://www.caf.fr/sites/default/files/medias/598/Documents/Pr%C3%AAt%20%C3%A9quipement/Pret_equipement_Caf.pdf

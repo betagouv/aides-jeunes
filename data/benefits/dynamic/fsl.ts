@@ -7,7 +7,7 @@ const DEFAULT_FSL = {
   periodicite: "ponctuelle",
 }
 
-const FSL_BY_CODE = {
+export const FSL_BY_CODE = {
   D01: {
     label: "du département de l’Ain",
     resources: {
@@ -539,37 +539,38 @@ function formatBenefit(customizationBenefit, institution) {
   }
 }
 
+export function getInstitutionName(institutionsMap, code) {
+  // D = département ; M = métropole
+  const geographicalEntity = code[0]
+  // code Insee pour le département ou code Siren pour la métropole
+  const geographicalCode = code.slice(1)
+  let institutionName
+
+  if (geographicalEntity === "D") {
+    institutionName = getDepartmentInstitutionByInseeCode(
+      institutionsMap,
+      geographicalCode
+    )
+  } else {
+    institutionName = getMetropoleInstitutionBySirenCode(
+      institutionsMap,
+      geographicalCode
+    )
+  }
+  return institutionName
+}
+
 export function build(institutionsMap) {
   const result: any = Object.keys(FSL_BY_CODE).reduce(
     (accum: any, code: string) => {
-      // D = département ; M = métropole
-      const geographicalEntity = code[0]
-      // code Insee pour le département ou code Siren pour la métropole
-      const geographicalCode = code.slice(1)
-
       const customizationBenefit = FSL_BY_CODE[code]
-      let benefitInstitutionName
+      const institutionName = getInstitutionName(institutionsMap, code)
 
-      if (geographicalEntity === "D") {
-        benefitInstitutionName = getDepartmentInstitutionByInseeCode(
-          institutionsMap,
-          geographicalCode
-        )
-      } else {
-        benefitInstitutionName = getMetropoleInstitutionBySirenCode(
-          institutionsMap,
-          geographicalCode
-        )
-      }
-
-      if (!benefitInstitutionName) {
+      if (!institutionName) {
         console.warn(`No instistution for metropole fsl ${code}`)
         return accum
       }
-      const benefit = formatBenefit(
-        customizationBenefit,
-        benefitInstitutionName
-      )
+      const benefit = formatBenefit(customizationBenefit, institutionName)
 
       accum.push(benefit)
       return accum

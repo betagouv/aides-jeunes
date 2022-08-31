@@ -222,15 +222,6 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
   return testCase
 }
 
-function filterRequestedVariablesBySituation(requestedVariables, situation) {
-  const variables = { ...requestedVariables }
-  // exclusion du département 28 parce que le fsl est mieux simulé par les variables `eure_et_loir_eligibilite_*` plutot que dans la variable `fsl_eligibilite`
-  if (situation.menage.depcom?.startsWith("28")) {
-    delete variables.fsl_eligibilite
-  }
-  return variables
-}
-
 export function buildOpenFiscaRequest(sourceSituation) {
   const situation = cloneDeep(sourceSituation)
 
@@ -250,10 +241,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
   propertyMove.movePropertyValuesToGroupEntity(testCase)
 
   const periods = common.getPeriods(situation.dateDeValeur)
-  const requestedVariables = filterRequestedVariablesBySituation(
-    common.requestedVariables,
-    situation
-  )
+  const requestedVariables = { ...common.requestedVariables }
 
   const prestationsFinancieres = pickBy(
     requestedVariables,

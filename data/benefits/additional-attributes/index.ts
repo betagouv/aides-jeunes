@@ -7,7 +7,6 @@ import { openfiscaParametersLayout } from "../../../lib/types/parameters"
 import { situationsLayout } from "lib/types/situations"
 
 import apa_eligibilite from "./apa-eligibilite.js"
-import fsl_eligibilite from "./fsl-eligibilite.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
 export const additionalBenefitAttributes = {
@@ -132,6 +131,5 @@ export const additionalBenefitAttributes = {
     legend: (parameters: openfiscaParametersLayout) =>
       `au lieu de ${parameters["marche_travail.epargne.livret_a.taux"] * 100}%`,
   },
-  fsl_eligibilite,
   occitanie_carte_transport_scolaire_lio,
 }

@@ -544,7 +544,7 @@ export function build(institutionsMap) {
     (accum: any, code: string) => {
       // D = département ; M = métropole
       const geographicalEntity = code[0]
-      // code Insee pour le départemebnt ou code Siren pour la métropole
+      // code Insee pour le département ou code Siren pour la métropole
       const geographicalCode = code.slice(1)
 
       const customizationBenefit = FSL_BY_CODE[code]

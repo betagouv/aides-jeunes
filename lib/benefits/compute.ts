@@ -65,7 +65,6 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
 
   const result = {
     droitsEligibles: [],
-    droitsNonEligibles: [],
     droitsInjectes: [], // declared by the user
     _id: undefined,
   }
@@ -115,7 +114,9 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         )
       }
 
-      const dest = value ? result.droitsEligibles : result.droitsNonEligibles
+      if (!value) {
+        return
+      }
       const customization =
         benefit.customization?.[customizationIds?.[1]] ||
         benefit.customization?.[customizationIds?.[0]]
@@ -126,7 +127,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
           }
         : benefit.institution
 
-      dest.push(
+      result.droitsEligibles.push(
         assign({}, benefit, customization, {
           montant: value,
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),

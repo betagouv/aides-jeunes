@@ -40,13 +40,6 @@
         </p>
         <DroitsList :droits="droits" />
       </div>
-      <div v-if="!isEmpty(droitsNonEligiblesShown)">
-        <p>
-          Les conditions des aides suivantes
-          <strong>ne sont pas</strong> remplies :
-        </p>
-        <DroitsList ineligible :droits="droitsNonEligiblesShown" />
-      </div>
 
       <div v-show="isEmpty(droits)" class="frame-resultats">
         <h2>

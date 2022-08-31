@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
-import { computeAides, datesGenerator } from "@lib/benefits/compute.js"
+import { datesGenerator } from "@lib/benefits/compute.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
@@ -25,7 +25,6 @@ function defaultCalculs(): Calculs {
     resultats: {
       _id: undefined,
       droitsEligibles: null,
-      droitsNonEligibles: null,
       droitsInjectes: null,
     },
     dirty: false,
@@ -464,17 +463,13 @@ export const useStore = defineStore("store", {
       this.startComputation()
 
       return axios
-        .get(`api/simulation/${this.situationId}/openfisca-response`)
-        .then((openfiscaResponse) => {
-          return openfiscaResponse.data
-        })
-        .then((openfiscaResponse) => {
-          return computeAides.bind(Institution.benefits)(
-            this.situation,
-            this.situationId,
-            openfiscaResponse,
-            showPrivate
-          )
+        .get(
+          `api/simulation/${this.situationId}/results${
+            showPrivate ? "&showPrivate" : ""
+          }`
+        )
+        .then((response) => {
+          return response.data
         })
         .then((results) => this.setResults(results as Resultats))
         .catch((error) => {

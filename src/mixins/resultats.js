@@ -5,20 +5,6 @@ export default {
     droits() {
       return this.resultats?.droitsEligibles
     },
-    droitsNonEligibles() {
-      return (
-        (this.droitsNonEligiblesShow && this.resultats?.droitsNonEligibles) ||
-        []
-      )
-    },
-    droitsNonEligiblesShown() {
-      return this.droitsNonEligibles.filter(
-        (i) => i.id === "css_participation_forfaitaire"
-      )
-    },
-    droitsNonEligiblesShow() {
-      return this.store.ameliNoticationDone
-    },
     resultatsId() {
       return this.resultats?._id || "???"
     },

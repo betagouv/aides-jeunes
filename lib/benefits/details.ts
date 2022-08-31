@@ -44,6 +44,7 @@ interface droitEstimeLayout {
   value: any
   unit: any
   icon?: any
+  uncomputability: boolean
 }
 function formatDroitEstime(droit, parameters) {
   const droitEstime: droitEstimeLayout = {

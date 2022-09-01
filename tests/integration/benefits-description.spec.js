@@ -120,8 +120,14 @@ describe("benefit descriptions", function () {
           }
 
           it("should have a link", function () {
-            expect(typeof benefit.link).toBe("string")
-            expect(benefit.link).toMatch(/^https?:\/\//)
+            if (benefit.link) {
+              expect(typeof benefit.link).toBe("string")
+              expect(benefit.link).toMatch(/^https?:\/\//)
+            } else {
+              expect(typeof benefit.linkGenerator).toBe("function")
+              const linkValue = benefit.linkGenerator([])
+              expect(linkValue).toMatch(/^https?:\/\//)
+            }
           })
 
           if (benefit.conditions) {
@@ -212,6 +218,33 @@ describe("benefit descriptions", function () {
           }
         })
       })
+    })
+  })
+})
+
+describe("individual linkGenerator", function () {
+  describe("cohesion-territoires-conseillers-numeriques-france-services", function () {
+    const generator =
+      subject.benefitsMap[
+        "cohesion-territoires-conseillers-numeriques-france-services"
+      ].linkGenerator
+    it("should exist", function () {
+      expect(generator).toBeTruthy()
+    })
+    it("should generate generic urls", function () {
+      expect(generator([])).toMatch(/^https?:\/\//)
+    })
+    it("should generate generic urls", function () {
+      const linkValue = generator([
+        {
+          entityName: "menage",
+          fieldName: "depcom",
+          value: {
+            _codePostal: "69008",
+          },
+        },
+      ])
+      expect(linkValue).toMatch(/^https?:\/\/.*address=69008$/)
     })
   })
 })

@@ -222,12 +222,12 @@ describe("benefit descriptions", function () {
   })
 })
 
-describe("individual linkGenerator", function () {
+describe("individual instructionsGenerator", function () {
   describe("cohesion-territoires-conseillers-numeriques-france-services", function () {
     const generator =
       subject.benefitsMap[
         "cohesion-territoires-conseillers-numeriques-france-services"
-      ].linkGenerator
+      ].instructionsGenerator
     it("should exist", function () {
       expect(generator).toBeTruthy()
     })
@@ -235,15 +235,7 @@ describe("individual linkGenerator", function () {
       expect(generator([])).toMatch(/^https?:\/\//)
     })
     it("should generate generic urls", function () {
-      const linkValue = generator([
-        {
-          entityName: "menage",
-          fieldName: "depcom",
-          value: {
-            _codePostal: "69008",
-          },
-        },
-      ])
+      const linkValue = generator("69008")
       expect(linkValue).toMatch(/^https?:\/\/.*address=69008$/)
     })
   })

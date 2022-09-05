@@ -8,7 +8,6 @@ import { situationsLayout } from "../../../lib/types/situations"
 
 import apa_eligibilite from "./apa-eligibilite.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
-import { getAnswer } from "../../../lib/answers.js"
 
 export const additionalBenefitAttributes = {
   css_participation_forfaitaire: {
@@ -67,12 +66,10 @@ export const additionalBenefitAttributes = {
     },
   },
   "cohesion-territoires-conseillers-numeriques-france-services": {
-    linkGenerator: function getCnfsLink(answers) {
-      const answer = getAnswer(answers, "menage", "depcom")
-      if (!answer) {
+    instructionsGenerator: function getCnfsLink(codePostal) {
+      if (!codePostal) {
         return "https://cartographie.conseiller-numerique.gouv.fr/"
       } else {
-        const codePostal = answer._codePostal
         return `https://cartographie.conseiller-numerique.gouv.fr/?address=${codePostal}`
       }
     },

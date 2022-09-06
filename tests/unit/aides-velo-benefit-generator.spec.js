@@ -26,9 +26,6 @@ describe("aides velo benefit generator", function () {
     const missingCommune = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "code insee"
     )
-    if (missingCommune.length) {
-      console.log(missingCommune.map((b) => b.description).join("\n"))
-    }
 
     const missingEPCI = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "epci"
@@ -42,21 +39,11 @@ describe("aides velo benefit generator", function () {
         )
         b.debug = `code_siren:  '${EPCIMatch?.code}'`
       })
-      console.log(
-        missingEPCI.map((b) => `${b.description} - ${b.debug}`).join("\n")
-      )
     }
 
     const missingOtherInstitution = missingInstitutionBenefits.filter(
       (b) => !["code insee", "epci"].includes(b.collectivity.kind)
     )
-    if (missingOtherInstitution.length) {
-      console.log(
-        missingOtherInstitution
-          .map((b) => `${b.description} | code_insee : ${b.collectivity.value}`)
-          .join("\n")
-      )
-    }
 
     expect(missingCommune.length).toEqual(0)
     expect(missingEPCI.length).toEqual(0)

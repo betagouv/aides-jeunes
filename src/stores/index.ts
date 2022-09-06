@@ -5,7 +5,7 @@ import { datesGenerator } from "@lib/benefits/compute.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import { some, values } from "lodash-es"
+import { some, values, isEqual } from "lodash-es"
 import axios from "axios"
 import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
@@ -253,7 +253,7 @@ export const useStore = defineStore("store", {
         answer.fieldName,
         answer.id
       )
-      if (existingAnswerValue !== answer.value) {
+      if (!isEqual(existingAnswerValue, answer.value)) {
         this.setDirty()
       }
 

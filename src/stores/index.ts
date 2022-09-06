@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
 import { datesGenerator } from "@lib/benefits/compute.js"
 import { generateAllSteps } from "@lib/state/generator.js"
-import { isStepAnswered, storeAnswer } from "@lib/answers.js"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
 import { some, values } from "lodash-es"
 import axios from "axios"
@@ -247,12 +247,16 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = true
     },
     answer(answer: Answer) {
-      const answerToTest = this.simulation.answers.all.find(
-        (allAnswer) => allAnswer.fieldName === answer.fieldName
+      const existingAnswerValue = getAnswer(
+        this.simulation.answers.all,
+        answer.entityName,
+        answer.fieldName,
+        answer.id
       )
-      if (JSON.stringify(answerToTest) !== JSON.stringify(answer)) {
+      if (existingAnswerValue !== answer.value) {
         this.setDirty()
       }
+
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer, false),

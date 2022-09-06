@@ -48,12 +48,13 @@ export default {
   },
   computed: {
     ctas() {
-      let vm = this
       return types
-        .map(function (type) {
+        .map((type) => {
+          const linkGenerator = this.benefit[`${type}Generator`]
+          const link = this.benefit[type] || (linkGenerator && linkGenerator())
           return {
-            type: type,
-            link: vm.benefit[type],
+            type,
+            link,
           }
         })
         .filter(function (item) {

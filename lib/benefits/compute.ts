@@ -151,6 +151,10 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
 
       result.droitsEligibles.push(
         assign({}, benefit, customization, {
+          instructions:
+            benefit.instructions ||
+            (benefit.instructionsGenerator &&
+              benefit.instructionsGenerator(situation?.menage?._codePostal)),
           montant: value,
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),
           institution,

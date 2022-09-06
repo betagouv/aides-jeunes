@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 
 import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
-import { situationsLayout } from "lib/types/situations"
+import { situationsLayout } from "../../../lib/types/situations"
 
 import apa_eligibilite from "./apa-eligibilite.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
@@ -63,6 +63,15 @@ export const additionalBenefitAttributes = {
         },
         link: "https://www.grandlyon.com/services/rsa-mode-d-emploi.html",
       },
+    },
+  },
+  "cohesion-territoires-conseillers-numeriques-france-services": {
+    instructionsGenerator: (codePostal) => {
+      if (!codePostal) {
+        return "https://cartographie.conseiller-numerique.gouv.fr/"
+      } else {
+        return `https://cartographie.conseiller-numerique.gouv.fr/?address=${codePostal}`
+      }
     },
   },
   aide_logement: {

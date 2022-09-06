@@ -51,9 +51,10 @@ export default {
       let vm = this
       return types
         .map(function (type) {
+          const generator = vm.benefit[`${type}Generator`]
           return {
             type: type,
-            link: vm.benefit[type],
+            link: vm.benefit[type] || (generator && generator()),
           }
         })
         .filter(function (item) {

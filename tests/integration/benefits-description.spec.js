@@ -120,14 +120,8 @@ describe("benefit descriptions", function () {
           }
 
           it("should have a link", function () {
-            if (benefit.link) {
-              expect(typeof benefit.link).toBe("string")
-              expect(benefit.link).toMatch(/^https?:\/\//)
-            } else {
-              expect(typeof benefit.linkGenerator).toBe("function")
-              const linkValue = benefit.linkGenerator([])
-              expect(linkValue).toMatch(/^https?:\/\//)
-            }
+            expect(typeof benefit.link).toBe("string")
+            expect(benefit.link).toMatch(/^https?:\/\//)
           })
 
           if (benefit.conditions) {

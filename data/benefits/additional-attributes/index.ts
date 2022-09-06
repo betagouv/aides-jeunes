@@ -66,7 +66,7 @@ export const additionalBenefitAttributes = {
     },
   },
   "cohesion-territoires-conseillers-numeriques-france-services": {
-    instructionsGenerator: function getCnfsLink(codePostal) {
+    instructionsGenerator: (codePostal) => {
       if (!codePostal) {
         return "https://cartographie.conseiller-numerique.gouv.fr/"
       } else {

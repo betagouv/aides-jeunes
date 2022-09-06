@@ -247,6 +247,12 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = true
     },
     answer(answer: Answer) {
+      const answerToTest = this.simulation.answers.all.find(
+        (allAnswer) => allAnswer.fieldName === answer.fieldName
+      )
+      if (JSON.stringify(answerToTest) !== JSON.stringify(answer)) {
+        this.setDirty()
+      }
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer, false),
@@ -257,7 +263,6 @@ export const useStore = defineStore("store", {
           this.simulation.enfants
         ),
       }
-      this.setDirty()
     },
     updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps

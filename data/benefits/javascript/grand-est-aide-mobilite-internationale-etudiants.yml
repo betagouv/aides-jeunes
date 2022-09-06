@@ -1,17 +1,8 @@
-label: aide à la mobilité internationale des étudiants
+label: aide à la mobilité internationale des étudiant·e·s
 institution: grand_est
-description: L'aide à la mobilité internationale des étudiants a pour but de
-  soutenir la mobilité internationale des étudiants de la région Grand Est.
-conditions:
-  - Effectuer sa période d’études ou de stage doit au sein d’un organisme à
-    l’étranger (université, laboratoire ou entreprise).
-  - Choisir n'importe quelle destination à l’exception de la France (DOM-TOM
-    inclus), et des principautés d’Andorre et de Monaco.
-link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
-instructions: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+description: L'aide à la mobilité internationale des étudiant·e·s a pour but de
+  soutenir la mobilité internationale des étudiant·e·s de la région Grand Est.
 prefix: l’
-type: bool
-interestFlag: _interetEtudesEtranger
 conditions_generales:
   - type: regions
     values:
@@ -22,4 +13,13 @@ profils:
       - type: age
         operator: <=
         value: 29
+conditions:
+  - Effectuer sa période d’études ou de stage doit au sein d’un organisme à
+    l’étranger (université, laboratoire ou entreprise).
+  - Choisir n'importe quelle destination à l’exception de la France (DOM-TOM
+    inclus), et des principautés d’Andorre et de Monaco.
+interestFlag: _interetEtudesEtranger
+type: bool
 periodicite: ponctuelle
+link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+instructions: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/

@@ -21,7 +21,7 @@ export default {
   }),
 
   _nombreMoisEntreeLogement: new EnumProperty({
-    question: "Prévoyez-vous de déménager prochainement ?",
+    question: "Prévoyez-vous de déménager prochainement ?",
     questionType: "enum",
     items: [
       { value: 12, label: "Oui" },

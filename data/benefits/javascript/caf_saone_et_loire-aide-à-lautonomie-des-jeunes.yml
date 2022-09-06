@@ -3,6 +3,7 @@ institution: caf_saone_et_loire
 description: La Caf attribue une aide pour favoriser l'autonomie des jeunes qui
   sont dans un parcours de formation ou d'insertion professionnelle en prenant
   en charge une partie des frais liés au logement ou à la mobilité.
+prefix: l’
 conditions_generales:
   - type: age
     operator: <=
@@ -33,11 +34,10 @@ profils:
     conditions: []
   - type: service_civique
     conditions: []
-link: https://caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/jeunesse/l-aide-a-l-autonomie-des-jeunes
-form: https://caf.fr/sites/default/files/caf/711/Offre%20de%20services/Formulaires/Demande%20aide%20%C3%A0%20l%27autonomie%20des%20jeunes.pdf
-prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 1000
+link: https://www.caf.fr/allocataires/caf-de-saone-et-loire/offre-de-service/logement/l-aide-l-autonomie-des-jeunes#:~:text=Les%20conditions%20%C3%A0%20remplir%20et,%C3%A9gal%20%C3%A0%201%20200%20euros.&text=%3E%20montant%20et%20nature%20de%20l,maximum%20de%201%20000%20euros.
+form: https://www.caf.fr/sites/default/files/medias/711/Allocataires/Logement/Documents/demande_aide_autonomie_jeunes.pdf

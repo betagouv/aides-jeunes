@@ -1,10 +1,8 @@
-label: carte PRIMO
+label: Abonnement PRIMO Mensuel
 institution: grand_est
-description: >
-  Grâce à la carte PRIMO, bénéficiez de 50 à 70% de réduction quel que soit
-  votre trajet sur le réseau TER Grand Est.
-conditions:
-  - Vous procurer la carte PRIMO pour un montant annuel de 15€.
+description: Grâce à l'abonnement PRIMO mensuel, vous pouvez voyager en illimité
+  sur un trajet choisi (aller/retour) en TER.
+prefix: la
 conditions_generales:
   - type: age
     operator: <=
@@ -13,9 +11,10 @@ conditions_generales:
     values:
       - "44"
 profils: []
-link: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
-instructions: https://www.ter.sncf.com/grand-est/offres/primo/primo_carte#ancre
-prefix: la
+conditions: []
 type: bool
 unit: €
 periodicite: autre
+link: https://www.ter.sncf.com/grand-est/abonnements/tous-les-abonnements/abonnement-moins-de-26-ans/abonnement-primo-mensuel
+teleservice: https://www.ter.sncf.com/grand-est/products
+instructions: ""

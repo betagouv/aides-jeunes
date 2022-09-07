@@ -1,0 +1,33 @@
+label: Aide au BAFA pour une session de formation d'approfondissement
+institution: caf_gironde
+description: L'aide à la formation du BAFA est une aide locale mise à
+  disposition par la CAF de Gironde pour vous aider à financer votre session
+  d’approfondissement en complément de l'aide nationale apportée par la CAF.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "33"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: departements
+    values:
+      - "33"
+profils: []
+conditions:
+  - Etre inscrit·e pour le stage ou l'avoir réalisé dans un organisme habilité
+    par le Ministère de la jeunesse et des sports.
+  - Effectuer votre demande dans un délai de 3 mois après votre inscription.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 300
+link: https://caf.fr/allocataires/caf-de-la-gironde/offre-de-service/vie-professionnelle/le-bafa
+form: https://caf.fr/sites/default/files/medias/331/Pass%20bonification%20BAFA%2021032022.pdf
+instructions: https://caf.fr/allocataires/caf-de-la-gironde/offre-de-service/vie-professionnelle/le-bafa

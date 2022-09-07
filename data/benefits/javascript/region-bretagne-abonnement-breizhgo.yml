@@ -23,3 +23,4 @@ prefix: l’
 type: bool
 unit: €
 periodicite: autre
+private: true

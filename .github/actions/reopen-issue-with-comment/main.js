@@ -5,7 +5,7 @@ async function run() {
   try {
     const inputs = {
       token: core.getInput("token"),
-      issueNumber: Number(core.getInput("issue-number")),
+      issueNumber: Number(core.getInput("issue number")),
       comment: core.getInput("comment"),
     }
 

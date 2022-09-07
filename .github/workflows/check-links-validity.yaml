@@ -7,7 +7,6 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -17,7 +16,7 @@ jobs:
       - run: npm run build:server
       - id: invalid_links
         run: npm run tools:check-links-validity
-        timeout-minutes: 10
+        timeout-minutes: 20
       - if: steps.invalid_links.outputs.comment
         uses: ./.github/actions/reopen-issue-with-comment
         with:

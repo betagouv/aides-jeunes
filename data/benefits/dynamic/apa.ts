@@ -371,7 +371,7 @@ function formatBenefit(customizationBenefit, institution) {
       services sociaux de votre département.`,
       "Accepter le plan d’aide proposé par votre département.",
       "Résider depuis plus de trois mois dans votre département.",
-      'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l’APA avec d’autres revenus ? - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides à l’</a> non cumulables avec l’APA.',
+      'Ne pas percevoir <a target="_blank" rel="noopener" title="Service Public.fr - Peut-on cumuler l’APA avec d’autres revenus ? - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F11678">certaines autres aides</a> non cumulables avec l’APA.',
     ],
     ...customizationBenefit.resources,
     institution,

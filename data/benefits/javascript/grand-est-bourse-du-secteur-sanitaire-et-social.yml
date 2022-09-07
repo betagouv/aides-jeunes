@@ -1,12 +1,9 @@
 label: bourse du secteur sanitaire et social
 institution: grand_est
-description: La région Grand Est peut octroyer des bourses d’études à caractère
+description: La Région Grand Est peut octroyer des bourses d’études à caractère
   social aux étudiant·e·s inscrit·e·s dans les formations du secteur sanitaire
   et social agréées et financées par la Région Grand Est.
-conditions:
-  - Vérifier que vous correspondez aux <a target="_blank" rel="noopener" title ="Voir les critères de ressources - Nouvelle fenêtre"
-    href="https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-PORTAILSIMULATION">
-    critères de ressources définis par la région</a>.
+prefix: la
 conditions_generales:
   - type: regions
     values:
@@ -14,11 +11,15 @@ conditions_generales:
   - type: formation_sanitaire_social
 profils:
   - type: etudiant
-link: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
-teleservice: https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-PORTAILSIMULATION
-instructions: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
-prefix: la
+conditions:
+  - Vérifier que vous correspondez aux <a target="_blank" rel="noopener" title
+    ="Voir les critères de ressources - Nouvelle fenêtre"
+    href="https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL">
+    critères de ressources définis par la Région</a>.
+interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
 periodicite: autre
-interestFlag: _interetAidesSanitaireSocial
+link: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/
+teleservice: https://boursesanitaireetsociale.grandest.fr/BSS-WEB/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
+instructions: https://www.grandest.fr/vos-aides-regionales/bourse-secteur-sanitaire-social/

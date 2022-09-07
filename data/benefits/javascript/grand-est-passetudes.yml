@@ -2,14 +2,9 @@ label: pass'Études
 institution: grand_est
 description: Avec la carte Pass Études, vous bénéficiez de 63% de réduction sur
   vos trajets effectués entre votre domicile et votre lieu d’études, sur le
-  réseau TER (train ou autocar) et d'une réduction des mêmes réductions que la
-  carte Primo (50 % en semaine et 70 % le week-end sur l’achat de tous vos
-  billets TER Grand Est).
-conditions:
-  - Poursuivre vos études dans les départements de la Côte d'Or (21), du Doubs
-    (25), de la Nièvre (58), de la Haute-Saône (70), de l'Yonne (89), ou du
-    Territoire de Belfort (90).
-  - Vous procurer la carte Pass'Études pour le prix de 64 € par an.
+  réseau TER (train ou autocar) et de 50% de réduction en semaine sur l'ensemble
+  du réseau TER Fluo.
+prefix: le
 conditions_generales:
   - type: age
     operator: <=
@@ -25,9 +20,13 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://www.ter.sncf.com/grand-est/offres/forfaits/champagne-ardenne/champagne-ardenne_pass-etudes#:~:text=Avec%20la%20carte%20PASS'%C3%89TUDES,vos%20billets%20TER%20Grand%20Est.
-form: https://cdn.ter.sncf.com/medias/PDF/grand_est/2021%20formulaire%20demande%20de%20carte%20PASS%20ETUDES_tcm75-151436_tcm75-136212.pdf
-prefix: le
+conditions:
+  - Poursuivre vos études dans les départements de la Côte d'Or (21), du Doubs
+    (25), de la Nièvre (58), de la Haute-Saône (70), de l'Yonne (89), ou du
+    Territoire de Belfort (90).
+  - Vous procurer la carte Pass'Études pour le prix de 45€ par an.
 type: bool
 unit: €
 periodicite: annuelle
+link: https://www.ter.sncf.com/grand-est/abonnements/tous-les-abonnements/abonnements-moins-26-ans/pass-etudes
+form: https://mmt.vsct.fr/sites/default/files/swt/CGRE/2022-07/2022%20formulaire%20demande%20de%20carte%20PASS%20ETUDES%20-%20version%20Imprimeur.pdf

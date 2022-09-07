@@ -6,7 +6,6 @@ import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
 import { situationsLayout } from "../../../lib/types/situations"
 
-import apa_eligibilite from "./apa-eligibilite.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
 export const additionalBenefitAttributes = {
@@ -132,7 +131,6 @@ export const additionalBenefitAttributes = {
       )
     },
   },
-  apa_eligibilite,
   livret_epargne_populaire_taux: {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`

@@ -16,8 +16,7 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 link: https://www.infos-jeunes.fr/dispositifs/bourses-aux-jeunes-benevoles-vendeens
-teleservice: https://www.infos-jeunes.fr/sites/default/files/bourse_dossier_candidature_2022.pdf?iframe=1
-form: ""
+form: https://www.infos-jeunes.fr/sites/default/files/bourse_dossier_candidature_2022.pdf?iframe=1
 floorAt: 10
 entity: individus
 openfiscaPeriod: thisMonth

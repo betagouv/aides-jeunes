@@ -9,13 +9,13 @@ benefits.all
     )
   })
   .forEach((benefit) => {
-    const result = testGeographicalRelevancy(benefit)
-    if (!result?.isValid) {
+    const { conditionFound, isValid, conditions } =
+      testGeographicalRelevancy(benefit)
+    if (conditionFound && !isValid) {
       console.log("================================")
       console.log(`Benefit : ${benefit.id}`)
       console.log(`Insee code : ${benefit.institution.code_insee}`)
-      console.log("potentially incompatible with conditions :")
-      console.log(result?.conditions)
+      console.log("potentially incompatible with conditions :", conditions)
     }
   })
 
@@ -30,6 +30,7 @@ function testGeographicalRelevancy(benefit) {
   })
   if (conditionGeo) {
     return {
+      conditionFound: true,
       isValid:
         conditionGeo.values.length == 1 &&
         conditionGeo.values[0] === benefit.institution.code_insee &&
@@ -37,6 +38,7 @@ function testGeographicalRelevancy(benefit) {
       conditions: conditionGeo,
     }
   }
+  return { conditionFound: false, isValid: false, conditions: null }
 }
 
 export default testGeographicalRelevancy

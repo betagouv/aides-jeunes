@@ -2,12 +2,7 @@ label: aide à l'autonomie des jeunes
 institution: caf_alpes_maritimes
 description: La Caf des Alpes-Maritimes peut verser à vos parents une Aide à
   l'autonomie des jeunes (Aaj).
-conditions:
-  - Etre domicilié·e et à la charge de vos parents.
-  - Etre titulaire du Bac et poursuivre des études supérieures en France ou à
-    Monaco et, en cas de cumul des études avec une activité professionnelle,
-    avoir un revenu inférieur ou égal à 55 % du smic.
-  - Ne pas percevoir une aide au logement à titre personnel.
+prefix: l’
 conditions_generales:
   - type: departements
     values:
@@ -27,12 +22,17 @@ profils:
       - type: age
         operator: <=
         value: 25
-link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/l-aide-a-l-autonomie-des-jeunes-aaj
-form: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2020/Demande_2020_aide_autonomie_jeunes.pdf
-instructions: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2021/NOTICE%20-%20DEMANDE%20AAJ%20%20sept%2021%20juin%2022%20%28MAJ%2005%2010%2021%29.pdf
-prefix: l’
+conditions:
+  - Etre à la charge de vos parents et domicilié·e chez eux.
+  - Etre titulaire du Bac et poursuivre des études supérieures en France ou à
+    Monaco et, en cas de cumul des études avec une activité professionnelle,
+    avoir un revenu inférieur ou égal à 55 % du smic.
+  - Ne pas percevoir une aide au logement à titre personnel.
 type: float
 unit: €
 periodicite: ponctuelle
 legend: versée en deux fois
 montant: 1520
+link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/vie-personnelle/votre-enfant-16-ans-et-et-vous-souhaitez-le-soutenir-dans-ses-projets#:~:text=Le%20montant&text=le%201er%20versement%20d'un,la%20carte%20d'%C3%A9tudiant)%20%3B&text=le%202%C3%A8me%20versement%20d'un,'attestation%20de%20pr%C3%A9sence%20scolaire).
+form: https://www.caf.fr/sites/default/files/medias/061/Vie%20perso/2022/Demande_2020_aide_autonomie_jeunes.pdf
+instructions: ""

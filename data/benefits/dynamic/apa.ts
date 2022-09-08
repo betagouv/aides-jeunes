@@ -109,7 +109,7 @@ export const APA_BY_CODE = {
     },
     teleservice: undefined, // Prevent default form recycling
     resources: {
-      link: undefined,
+      link: "https://www.herault.gouv.fr/Demarches-administratives/Toutes-les-demarches-pour-les-particuliers/Service-Public-pour-les-particuliers#!/particuliers/page/F10009",
       form: undefined, // Prevent default form recycling
       instructions:
         "http://www.herault.fr/lallocation-personnalisee-dautonomie-apa",

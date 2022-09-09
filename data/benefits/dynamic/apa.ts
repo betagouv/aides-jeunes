@@ -5,30 +5,16 @@ const DEFAULT_APA = {
 }
 
 export const APA_BY_CODE = {
-  D05: {
+  departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
-    institution: {
-      imgSrc: "img/logo_cd05.png",
-    },
-    teleservice: undefined, // Prevent default instructions recycling
-    resources: {
-      link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
-      form: "https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf",
-      instructions: undefined, // Prevent default instructions recycling
-    },
+    link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
+    form: "https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf",
   },
   D06: {
     label: "du département des Alpes Maritimes",
-    institution: {
-      imgSrc: "img/logo_cd06.png",
-    },
     teleservice:
       "https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html",
-    resources: {
-      link: "https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html",
-      form: undefined, // Prevent default instructions recycling
-      instructions: undefined, // Prevent default instructions recycling
-    },
+    link: "https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html",
   },
   D13: {
     label: "du département des Bouches du Rhône",

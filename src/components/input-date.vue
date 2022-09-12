@@ -69,7 +69,11 @@ export default {
       default: "date",
     },
   },
-  emits: ["update:modelValue"],
+  emits: [
+    "update:modelValue",
+    "date-error-validation",
+    "remove-date-error-validation",
+  ],
   data: function () {
     return {
       day:
@@ -128,13 +132,53 @@ export default {
         this.$emit("update:modelValue", value)
       }
     },
+    isEmpty(data) {
+      return data === undefined || data === null || data === ""
+    },
+    dayValidation: function () {
+      if (this.day > 31 || this.day < 1 || this.isEmpty(this.day)) {
+        return false
+      }
+      return true
+    },
+    yearValidation: function () {
+      const currentYear = new Date().getFullYear()
+      if (
+        this.year <= 1900 ||
+        this.year > currentYear ||
+        this.isEmpty(this.year)
+      ) {
+        return false
+      }
+      return true
+    },
+    monthValidation: function () {
+      if (this.month > 12 || this.month < 1 || this.isEmpty(this.month)) {
+        return false
+      }
+      return true
+    },
     update: function () {
       const dt = dayjs(this.date, "YYYY-MM-DD", true)
       if (
+        !this.dayValidation() ||
+        !this.monthValidation() ||
+        !this.yearValidation()
+      ) {
+        this.$emit(
+          "date-error-validation",
+          "La date n'est pas valide (format accepté : JJ | MM | AAAA)"
+        )
+      }
+      if (
         dt.isValid() &&
         dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
-        dt.isBefore(dayjs())
+        dt.isBefore(dayjs()) &&
+        this.dayValidation() &&
+        this.monthValidation() &&
+        this.yearValidation()
       ) {
+        this.$emit("remove-date-error-validation")
         this.$emit("update:modelValue", dt.toDate())
       } else {
         this.$emit("update:modelValue", undefined)

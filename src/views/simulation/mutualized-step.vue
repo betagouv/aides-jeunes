@@ -50,7 +50,13 @@
         :show-more-info="showMoreInfo"
         :help="step.help"
       ></MutualizedStepTitle>
-      <InputDate :id="fieldName" v-model="value" required />
+      <InputDate
+        :id="fieldName"
+        v-model="value"
+        required
+        @date-error-validation="customErrorValidation"
+        @remove-date-error-validation="removeCustomErrorValidation"
+      />
     </div>
 
     <fieldset v-else-if="questionType === 'multiple'">
@@ -129,11 +135,13 @@ export default {
       this.$route.params.fieldName,
       id
     )
+    const customMessageError = null
 
     return {
       id,
       value,
       entityName,
+      customMessageError,
     }
   },
   computed: {
@@ -195,11 +203,22 @@ export default {
         this.value === undefined ||
         (this.questionType === "text" && !this.value)
 
-      if (submit) {
-        this.store.updateError(hasError && "Ce champ est obligatoire.")
+      if (submit && hasError) {
+        if (this.customMessageError) {
+          this.store.updateError(this.customMessageError)
+        } else {
+          this.store.updateError("Ce champ est obligatoire.")
+        }
       }
-
       return hasError
+    },
+    customErrorValidation(errorMessage) {
+      this.customMessageError = errorMessage
+      this.canSubmit(false)
+    },
+    removeCustomErrorValidation() {
+      this.store.updateError(undefined)
+      this.customMessageError = null
     },
     canSubmit(submit) {
       return this.step.optional || !this.requiredValueMissing(submit)

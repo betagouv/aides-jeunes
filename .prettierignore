@@ -1,5 +1,7 @@
 db
 dist
 dist-server
+*.min.js
 .next
+public
 .venv*

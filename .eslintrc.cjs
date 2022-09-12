@@ -47,14 +47,15 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
   },
   ignorePatterns: [
-    "node_modules",
-    ".tmp",
+    "contribuer",
     "dist",
     "dist-server",
     "IndividuForm.vue",
-    "tmp",
+    "*.min.js",
+    "node_modules",
     "test/integration",
-    "contribuer",
+    ".tmp",
+    "tmp",
   ],
 
   overrides: [

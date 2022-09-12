@@ -52,6 +52,12 @@
         to="/simulation/resultats"
         >Accéder aux résultats</router-link
       >
+      <router-link
+        v-else
+        class="button next-button"
+        :to="store.lastUnansweredStep?.path"
+        >Continuer</router-link
+      >
     </div>
   </div>
 </template>
@@ -78,14 +84,13 @@ const propertyData = {
   simulation: store.simulation,
   periods: store.dates,
 }
-
+console.log(store.lastUnansweredStep, "yeah")
 const showResultButton = computed(() => {
   return (
     progress.value === 1 &&
     router.options.history.state.back !== "/simulation/resultats"
   )
 })
-
 const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
   return {
     label: chapter.label,

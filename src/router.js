@@ -337,8 +337,8 @@ const router = createRouter({
           const benefitLabel = benefits[params.benefitId].label
           return benefitLabel
             ? `${benefitLabel.charAt(0).toUpperCase()}${benefitLabel.slice(
-              1
-            )} - Simulateur d'aides ${context.name}`
+                1
+              )} - Simulateur d'aides ${context.name}`
             : process.env.VITE_TITLE
         },
       },

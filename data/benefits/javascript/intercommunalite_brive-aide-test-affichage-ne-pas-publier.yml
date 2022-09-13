@@ -9,6 +9,9 @@ conditions_generales:
   - type: departements
     values:
       - "56"
+  - type: regions
+    values:
+      - "53"
 profils: []
 type: float
 unit: €

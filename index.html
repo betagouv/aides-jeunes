@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title> <%= VUE_APP_TITLE %> </title>
+    <title> <%= VITE_TITLE %> </title>
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="<%= VUE_APP_TITLE %>" />
-    <meta name="twitter:title" content="<%= VUE_APP_TITLE %>" />
+    <meta property="og:title" content="<%= VITE_TITLE %>" />
+    <meta name="twitter:title" content="<%= VITE_TITLE %>" />
 
     <meta name="robots" content="index,follow" />
 
@@ -15,59 +15,52 @@
 
     <base href="/" />
 
-    <meta name="description" content="<%= VUE_APP_DESCRIPTION %>" />
-    <meta property="og:description" content="<%= VUE_APP_DESCRIPTION %>" />
-    <meta name="twitter:description" content="<%= VUE_APP_DESCRIPTION %>" />
-    <link rel="canonical" href="<%= VUE_APP_BASE_URL %>" />
-    <meta property="og:url" content="<%= VUE_APP_BASE_URL %>" />
+    <meta name="description" content="<%= VITE_DESCRIPTION %>" />
+    <meta property="og:description" content="<%= VITE_DESCRIPTION %>" />
+    <meta name="twitter:description" content="<%= VITE_DESCRIPTION %>" />
+    <link rel="canonical" href="<%= VITE_BASE_URL %>" />
+    <meta property="og:url" content="<%= VITE_BASE_URL %>" />
 
-    <meta
-      name="thumbnail"
-      content="<%= VUE_APP_BASE_URL %>/img/Twitter_1024x512.png"
-    />
-    <meta
-      property="og:image"
-      content="<%= VUE_APP_BASE_URL %>/img/Twitter_1024x512.png"
-    />
-    <meta
-      property="twitter:image"
-      content="<%= VUE_APP_BASE_URL %>/img/Twitter_1024x512.png"
-    />
+    <meta name="thumbnail" content="img/Twitter_1024x512.png" />
+    <meta property="og:image" content="img/Twitter_1024x512.png" />
+    <meta property="twitter:image" content="img/Twitter_1024x512.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       property="og:site_name"
-      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
+      content="Simulateur de <%= VITE_CONTEXT_NAME %>"
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="<%= VUE_APP_BASE_URL %>/img/favicon/favicon-16x16.png"
+      href="img/favicon/favicon-16x16.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="<%= VUE_APP_BASE_URL %>/img/favicon/android-chrome-192x192.png"
+      href="img/favicon/android-chrome-192x192.png"
     />
     <meta
       name="apple-mobile-web-app-title"
-      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
+      content="Simulateur de <%= VITE_CONTEXT_NAME %>"
     />
     <meta
       name="application-name"
-      content="Simulateur de <%= VUE_APP_CONTEXT_NAME %>"
+      content="Simulateur de <%= VITE_CONTEXT_NAME %>"
     />
     <meta name="theme-color" content="#ffffff" />
+
+    <script type="module" src="/src/main.ts"></script>
   </head>
 
   <body>
     <noscript>
       <strong
-        >Désolé le simulateur de <%= VUE_APP_CONTEXT_NAME %> n'est pas
-        fonctionnel si le JavaScript n'est pas activé.</strong
+        >Désolé le simulateur de <%= VITE_CONTEXT_NAME %> n'est pas fonctionnel
+        si le JavaScript n'est pas activé.</strong
       >
     </noscript>
     <!-- built files will be auto injected -->

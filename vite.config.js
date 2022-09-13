@@ -48,10 +48,10 @@ export default defineConfig(async ({ command, mode }) => {
         minify: true,
         inject: {
           data: {
-            VITE_TITLE: process.env.VITE_TITLE,
-            VITE_DESCRIPTION: process.env.VITE_DESCRIPTION,
-            VITE_BASE_URL: process.env.VITE_BASE_URL,
-            VITE_CONTEXT_NAME: process.env.VITE_CONTEXT_NAME,
+            VITE_TITLE: viteEnvironment.VITE_TITLE,
+            VITE_DESCRIPTION: viteEnvironment.VITE_DESCRIPTION,
+            VITE_BASE_URL: viteEnvironment.VITE_BASE_URL,
+            VITE_CONTEXT_NAME: viteEnvironment.VITE_CONTEXT_NAME,
           },
         },
       }),

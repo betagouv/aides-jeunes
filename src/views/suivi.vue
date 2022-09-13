@@ -13,7 +13,7 @@
             <div class="is-align-vertically-center">
               <h3 class="last">Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
             </div>
-            <div v-if="droits && showAccompaniementBlock === true">
+            <div v-if="droits && showAccompanimentBlock === true">
               <p class="survey-result-text md">
                 Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
                 rendez-vous pour être accompagné·e par notre équipe.</p
@@ -161,13 +161,12 @@ export default {
         this.droits.length
       )
     },
-    showAccompaniementBlock: function () {
+    showAccompanimentBlock: function () {
       if (this.droits.length === 0) {
         return false
       }
-      return (
-        this.droits.map((droit) => droit.choiceValue).includes("failed") ||
-        this.droits.map((droit) => droit.choiceValue).includes("nothing")
+      return this.droits.some((droit) =>
+        ["failed", "nothing"].includes(droit.choiceValue)
       )
     },
   },

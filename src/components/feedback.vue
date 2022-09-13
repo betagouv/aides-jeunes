@@ -140,11 +140,11 @@ export default {
   computed: {
     droits() {
       const droitId = this.route.params.droitId
-      const droits = droitId
-        ? this.store.calculs.resultats.droitsEligibles.filter(
-            (droit) => droit.id === this.route.params.droitId
-          )
-        : this.store.calculs.resultats.droitsEligibles
+      const droits = this.store.calculs.resultats.droitsEligibles
+        ? this.store.calculs.resultats.droitsEligibles.filter((droit) => {
+            return !droitId || droit.id === droitId
+          })
+        : []
 
       return droits?.map((droit) => this.formatDroit(droit))
     },

@@ -4,10 +4,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de Loire-Atlantique pour vous aider à financer votre
   session d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la CAF.
-conditions:
-  - Avoir validé la session de formation générale et son stage pratique.
-  - Etre inscrit en session d'approfondissement ou de qualification et déposer
-    votre demande dans les trois mois suivant l'inscription.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -16,13 +13,16 @@ conditions_generales:
     values:
       - "44"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-loire-atlantique/offre-de-service/enfance-et-jeunesse/l-aide-locale-au-financement-du-bafa
-teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf
-instructions: https://www.caf.fr/allocataires/caf-de-loire-atlantique/offre-de-service/enfance-et-jeunesse/l-aide-locale-au-financement-du-bafa
-prefix: l’
+conditions:
+  - Avoir validé la session de formation générale et son stage pratique.
+  - Etre inscrit en session d'approfondissement ou de qualification et déposer
+    votre demande dans les trois mois suivant l'inscription.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 208
-interestFlag: _interetBafa
+link: https://www.caf.fr/allocataires/caf-de-loire-atlantique/offre-de-service/vie-personnelle/vacances-et-loisirs/comment-financer-le-bafa
+teleservice: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire
+instructions: ""

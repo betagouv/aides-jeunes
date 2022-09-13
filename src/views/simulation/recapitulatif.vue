@@ -53,9 +53,9 @@
         >Accéder aux résultats</router-link
       >
       <router-link
-        v-else
+        v-else-if="store.lastUnansweredStep"
         class="button next-button"
-        :to="store.lastUnansweredStep?.path"
+        :to="store.lastUnansweredStep.path"
         >Continuer</router-link
       >
     </div>

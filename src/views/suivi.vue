@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="aj-main-container">
-      <div class="aj-category-title-wrapper">
+      <div v-if="!submitted" class="aj-category-title-wrapper">
         <h1>Qu'avez-vous fait avec votre simulation&nbsp;?</h1>
       </div>
       <div class="aj-box-wrapper">
@@ -9,8 +9,29 @@
           <LoadingModal v-if="!droits">
             <p v-show="!droits"> Récupération de la situation en cours… </p>
           </LoadingModal>
-          <div v-if="submitted" class="alert alert-success">
-            Merci d'avoir rempli ce questionnaire !
+          <div v-if="submitted" class="alert alert-success survey-result-block">
+            <div class="is-align-vertically-center">
+              <h3 class="last">Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
+            </div>
+            <div v-if="droits && showAccompaniementBlock === true">
+              <p class="survey-result-text md">
+                Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
+                rendez-vous pour être accompagné·e par notre équipe.</p
+              >
+              <div class="survey-result-button">
+                <a
+                  class="button primary survey-result-button"
+                  href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
+                  >Prendre rendez-vous pour être aidé·e dans mes démarches</a
+                >
+              </div>
+
+              <p class="survey-result-text sm"
+                >La prise de rendez-vous se fait en quelques minutes et vous
+                permet de bénéficier d'un accompagnement d'une quinzaine de
+                minutes par un·e membre de notre équipe</p
+              >
+            </div>
           </div>
 
           <form v-if="droits && !submitted">
@@ -140,6 +161,15 @@ export default {
         this.droits.length
       )
     },
+    showAccompaniementBlock: function () {
+      if (this.droits.length === 0) {
+        return false
+      }
+      return (
+        this.droits.map((droit) => droit.choiceValue).includes("failed") ||
+        this.droits.map((droit) => droit.choiceValue).includes("nothing")
+      )
+    },
   },
   mounted: function () {
     axios
@@ -202,3 +232,33 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.survey-result-block {
+  margin: 0 15% 15%;
+  padding: 4% 0 4% 0;
+}
+
+.survey-result-button {
+  margin: auto 20% auto 20%;
+}
+
+@media (max-width: 576px) {
+  .survey-result-button {
+    margin: auto 1% auto 1%;
+  }
+}
+.survey-result-text {
+  text-align: center;
+  line-height: 130%;
+  color: #526ab6;
+  margin: 4% 0 4% 0;
+}
+
+.survey-result-text.md {
+  font-size: 1.2em;
+}
+.survey-result-text.sm {
+  font-size: 1em;
+}
+</style>

@@ -11,22 +11,21 @@ import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-process.env.VITE_BENEFIT_COUNT = benefits.all.filter(
-  (benefit) => !benefit.private
-).length
-process.env.VITE_MATOMO_ID = matomo.id
-process.env.VITE_CONTACT_EMAIL = "aides-jeunes@beta.gouv.fr"
-process.env.VITE_CONTEXT_NAME = "1jeune1solution"
-process.env.VITE_BASE_URL = baseURL
-process.env.VITE_CONTEXT = process.env.CONTEXT
-process.env.VITE_PR_URL = `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`
-process.env.VITE_BENEFIT_URL = `${github.repository_url}/blob/master/data/benefits`
-process.env.VITE_NETLIFY_CONTRIBUTION_URL = netlifyContributionURL
-process.env.VITE_STATS_URL = statistics?.url ? statistics.url : ""
-process.env.VITE_STATS_VERSION = statistics?.version ? statistics.version : 2
-process.env.VITE_NETLIFY_PR = process.env.BRANCH
-process.env.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${process.env.VITE_CONTEXT_NAME}`
-process.env.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${process.env.VITE_BENEFIT_COUNT} aides avec le simulateur de ${process.env.VITE_CONTEXT_NAME}.`
+const viteEnvironment = {
+  VITE_BENEFIT_COUNT: benefits.all.filter((benefit) => !benefit.private).length,
+  VITE_MATOMO_ID: matomo.id,
+  VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
+  VITE_CONTEXT_NAME: "1jeune1solution",
+  VITE_BASE_URL: baseURL,
+  VITE_CONTEXT: process.env.CONTEXT,
+  VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
+  VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
+  VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
+  VITE_STATS_URL: statistics?.url ? statistics.url : "",
+  VITE_NETLIFY_PR: process.env.BRANCH,
+}
+viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
+viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
 
 export default defineConfig(async ({ command, mode }) => {
   return {
@@ -72,7 +71,7 @@ export default defineConfig(async ({ command, mode }) => {
       },
     },
     define: {
-      "process.env": process.env,
+      "process.env": viteEnvironment,
     },
   }
 })

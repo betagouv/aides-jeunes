@@ -2,6 +2,10 @@
   <article class="text container aj-text-container">
     <h1>Toutes les aides</h1>
     <p class="total-element">Total: {{ benefits.length }} aides</p>
+    <div class="cp-filter-block">
+      <div class="cp-filter-label"> Filtrer par code postal :</div>
+      <input v-model="zipCode" type="text" class="cp-filter-input" />
+    </div>
 
     <div v-for="(type, key) in institutionsGroupByType" :key="key">
       <h2 :id="`liste_${key}`">{{ type.title }}</h2>
@@ -54,6 +58,11 @@ const TYPES = {
 
 export default {
   name: "GeographieAides",
+  data() {
+    return {
+      zipCode: "",
+    }
+  },
   computed: {
     benefits() {
       return Institution.benefits.all.filter((benefit) => !benefit.private)
@@ -96,5 +105,18 @@ export default {
 .total-element {
   color: var(--darker-grey);
   font-weight: 700;
+}
+.cp-filter-block {
+  display: flex;
+  align-items: center;
+  margin: 1% 0 2% 0;
+}
+.cp-filter-label {
+  margin-right: 0.5%;
+}
+.cp-filter-input {
+  width: 6em;
+  text-align: center;
+  height: 1.7em;
 }
 </style>

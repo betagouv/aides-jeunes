@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import MonthLabel from "@/components/month-label"
-import YesNoQuestion from "@/components/yes-no-question"
+import MonthLabel from "@/components/month-label.vue"
+import YesNoQuestion from "@/components/yes-no-question.vue"
 import Individu from "@lib/individu"
-import InputNumber from "@/components/input-number"
+import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {

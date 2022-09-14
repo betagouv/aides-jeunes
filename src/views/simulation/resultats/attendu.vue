@@ -194,7 +194,7 @@ import {
   reduceContributions,
   getGithubPRFiles,
 } from "@/lib/contributions"
-import WarningMessage from "@/components/warning-message"
+import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores"
 
 export default {
@@ -277,7 +277,7 @@ export default {
       }
     },
     testGenerationEndpoint() {
-      return `api/simulation/${this.store.situationId}/openfisca-test`
+      return `/api/simulation/${this.store.situationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(

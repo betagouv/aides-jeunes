@@ -68,7 +68,7 @@
 <script>
 import axios from "axios"
 
-import WarningMessage from "@/components/warning-message"
+import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores"
 
 export default {
@@ -114,7 +114,7 @@ export default {
         return
       }
 
-      const uri = `api/simulation/${this.id}/followup`
+      const uri = `/api/simulation/${this.id}/followup`
       const payload = {
         email: this.email,
         surveyOptin,

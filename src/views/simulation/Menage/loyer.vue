@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
-import InputNumber from "@/components/input-number"
+import ActionButtons from "@/components/action-buttons.vue"
+import InputNumber from "@/components/input-number.vue"
 import Logement from "@lib/logement"
 import { useStore } from "@/stores"
 

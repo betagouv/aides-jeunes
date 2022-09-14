@@ -33,12 +33,12 @@
 
 <script>
 import Institution from "@/lib/institution"
-import Etablissement from "@/components/etablissement"
+import Etablissement from "@/components/etablissement.vue"
 import {
   getBenefitEtablissements,
   getEtablissements,
 } from "@lib/benefits/etablissements"
-import BackButton from "@/components/buttons/back-button"
+import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"
 
 export default {

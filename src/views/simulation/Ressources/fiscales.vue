@@ -68,7 +68,7 @@
 import { sum, some, isNaN } from "lodash-es"
 import Individu from "@lib/individu"
 import { categoriesRnc } from "@lib/resources"
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores"
 
 function getDefaultValue(months, individu, rnc) {

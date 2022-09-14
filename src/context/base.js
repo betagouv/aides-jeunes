@@ -2,7 +2,7 @@ import Home from "@/views/home.vue"
 import BaseLayout from "@/components/base-layout.vue"
 import Simulation from "@/views/simulation.vue"
 
-const name = process.env.VUE_APP_CONTEXT_NAME
+const name = process.env.VITE_CONTEXT_NAME
 
 const routes = [
   {

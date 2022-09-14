@@ -33,7 +33,7 @@ export default {
             l.toUpperCase()
           )
 
-          benefitLink.href = `${process.env.VUE_APP_BASE_URL}/aides/${benefit.id}`
+          benefitLink.href = `${process.env.VITE_BASE_URL}/aides/${benefit.id}`
           benefitItem.appendChild(benefitLink)
           list.appendChild(benefitItem)
         }

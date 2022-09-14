@@ -53,7 +53,7 @@ app.use(StateService)
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",
   trackerFileName: "piwik",
-  siteId: process.env.VUE_APP_MATOMO_ID,
+  siteId: process.env.VITE_MATOMO_ID,
   router: router,
 })
 

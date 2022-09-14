@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ActionButtons from "@/components/action-buttons"
+import ActionButtons from "@/components/action-buttons.vue"
 import { createIndividuMixin } from "@/mixins/individu-mixin"
 import { useStore } from "@/stores"
 

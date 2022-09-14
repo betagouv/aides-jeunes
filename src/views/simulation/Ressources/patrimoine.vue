@@ -110,9 +110,9 @@
 
 <script>
 import { patrimoineTypes } from "@lib/resources"
-import YesNoQuestion from "@/components/yes-no-question"
-import InputNumber from "@/components/input-number"
-import ActionButtons from "@/components/action-buttons"
+import YesNoQuestion from "@/components/yes-no-question.vue"
+import InputNumber from "@/components/input-number.vue"
+import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores"
 
 const mapping = {

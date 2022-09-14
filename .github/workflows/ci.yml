@@ -164,7 +164,7 @@ jobs:
     timeout-minutes: 15
     services:
       mongodb:
-        image: mongo:3.2.18
+        image: mongo:4.0.27
         ports:
           - 27017:27017
     strategy:

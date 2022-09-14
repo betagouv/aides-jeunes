@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import DroitEstime from "./droit-estime"
+import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin"
 
 export default {

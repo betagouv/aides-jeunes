@@ -139,8 +139,8 @@ export default {
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.store.peopleParentsFirst
 
-    let patrimoineProperties = patrimoineTypes.map((p) => p.id)
-    patrimoineProperties.forEach(function (patrimoinePropertyName) {
+    patrimoineTypes.forEach(function (p) {
+      const patrimoinePropertyName = p.id
       demandeur[patrimoinePropertyName] = Object.assign(
         {},
         demandeur[patrimoinePropertyName]

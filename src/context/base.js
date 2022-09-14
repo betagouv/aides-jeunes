@@ -8,10 +8,7 @@ const routes = [
   {
     path: "/accessibilite",
     name: "accessibilite",
-    component: () =>
-      import(
-        /* webpackChunkName: "accessibilite" */ "@/views/accessibilite.vue"
-      ),
+    component: () => import("@/views/accessibilite.vue"),
     meta: {
       headTitle: `Accessibilité - Simulateur d'aides ${name}`,
     },
@@ -19,8 +16,7 @@ const routes = [
   {
     path: "/contact",
     name: "contact",
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "@/views/contact.vue"),
+    component: () => import("@/views/contact.vue"),
     meta: {
       headTitle: `Contact - Simulateur d'aides ${name}`,
     },
@@ -28,7 +24,7 @@ const routes = [
   {
     path: "/cgu",
     name: "cgu",
-    component: () => import(/* webpackChunkName: "cgu" */ "@/views/cgu.vue"),
+    component: () => import("@/views/cgu.vue"),
     meta: {
       headTitle: `CGU - Simulateur d'aides ${name}`,
     },
@@ -36,8 +32,7 @@ const routes = [
   {
     path: "/confidentialite",
     name: "confidentialite",
-    component: () =>
-      import(/* webpackChunkName: "cgu" */ "@/views/confidentialite.vue"),
+    component: () => import("@/views/confidentialite.vue"),
     meta: {
       headTitle: `Politique de confidentialité - Simulateur d'aides ${name}`,
     },
@@ -45,8 +40,7 @@ const routes = [
   {
     path: "/stats",
     name: "stats",
-    component: () =>
-      import(/* webpackChunkName: "stats" */ "@/views/stats.vue"),
+    component: () => import("@/views/stats.vue"),
     meta: {
       headTitle: `Statistiques du simulateur d'aides ${name}`,
     },
@@ -54,8 +48,7 @@ const routes = [
   {
     path: "/iframe",
     name: "iframe",
-    component: () =>
-      import(/* webpackChunkName: "iframe" */ "@/views/iframe.vue"),
+    component: () => import("@/views/iframe.vue"),
   },
 ]
 

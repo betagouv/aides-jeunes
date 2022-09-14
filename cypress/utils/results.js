@@ -45,7 +45,7 @@ const hasPrimeActivite = () => {
 const captureFiscalResources = () => {
   const name = /Livret d’épargne populaire/
   const id = "livret_epargne_populaire_taux"
-  cy.get(".aj-droit-details-back-button").click()
+  cy.get('[data-testid="back-button"]').click()
   IdentifyBenefit(id, name)
   getBenefitSummary(id).click()
   cy.get(".notification.warning").invoke("text").should("contain", "ressources")

@@ -141,9 +141,11 @@ export default {
     droits() {
       const droitId = this.route.params.droitId
       const droits = droitId
-          ? [this.store.calculs.resultats?.droitsEligibles?.find((droit) => {
-            return droit.id === droitId
-          })]
+        ? [
+            this.store.calculs.resultats?.droitsEligibles?.find((droit) => {
+              return droit.id === droitId
+            }),
+          ]
         : this.store.calculs.resultats.droitsEligibles
 
       return droits?.map((droit) => this.formatDroit(droit))

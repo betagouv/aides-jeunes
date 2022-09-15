@@ -1,4 +1,4 @@
-import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
+import { additionalBenefitAttributes as dynamicBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { build } from "./benefits/dynamic/fsl.js"
 
@@ -12,7 +12,7 @@ function generateBenefitId(benefit) {
   return benefit.id || benefit.slug
 }
 
-function generateInstitutionData(collection: any[]) {
+function generateFullInstitutionData(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
@@ -46,7 +46,7 @@ function setTop(benefit, institution) {
   return benefit.top || default_top
 }
 
-function formatBenefitCollection(benefitCollection, institutions) {
+function generateFullBenefitData(benefitCollection, institutions) {
   benefitCollection.map((benefit) => {
     benefit.id = generateBenefitId(benefit)
     benefit.top = setTop(benefit, institutions[benefit.institution])
@@ -56,7 +56,7 @@ function formatBenefitCollection(benefitCollection, institutions) {
 
   return benefitCollection
 }
-const generateBenefitCollection = function (
+const mergeBenefits = function (
   staticBenefitCollection,
   institutions,
   activeBenefits
@@ -84,10 +84,17 @@ const generateBenefitCollection = function (
     benefitCollection.push(...activeBenefits)
   }
   benefitCollection.map((benefit) => {
-    return Object.assign(benefit, additionalBenefitAttributes[benefit.slug])
+    return Object.assign(benefit, dynamicBenefitAttributes[benefit.slug])
   })
 
   return benefitCollection
+}
+const addRelationToData = function (institutions, benefitCollection) {
+  benefitCollection.forEach((benefit) => {
+    const institution = institutions[benefit.institution]
+    institution.benefitsIds.push(benefit.id)
+    benefit.institution = institution
+  })
 }
 export function generate(
   staticBenefitCollection,
@@ -96,22 +103,19 @@ export function generate(
     aidesVelo: false,
   }
 ) {
-  const institutions = generateInstitutionData(
+  let institutions = generateFullInstitutionData(
     staticBenefitCollection.institutions.items
   )
 
-  let benefitCollection = generateBenefitCollection(
+  let benefitCollection = mergeBenefits(
     staticBenefitCollection,
     institutions,
     activeBenefits
   )
 
-  benefitCollection = formatBenefitCollection(benefitCollection, institutions)
+  benefitCollection = generateFullBenefitData(benefitCollection, institutions)
 
-  benefitCollection.forEach((benefit) => {
-    const institution = institutions[benefit.institution]
-    institution.benefitsIds.push(benefit.id)
-  })
+  addRelationToData(institutions,benefitCollection)
 
   const benefitsMap = {}
   benefitCollection.forEach((benefit) => {

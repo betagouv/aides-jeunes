@@ -1,10 +1,90 @@
+<script setup>
+import dayjs from "dayjs"
+import { defineEmits, ref, watch, computed } from "vue"
+import { useDateValidation } from "@/composables/useDateValidation.ts"
+
+const emit = defineEmits([
+  "date-error-validation",
+  "remove-date-error-validation",
+  "update:modelValue",
+])
+
+const { day, month, year, dayValidation, monthValidation, yearValidation } =
+  useDateValidation()
+
+const monthRef = ref("")
+const yearRef = ref("")
+
+const lastCharChanged = (to = "", from = "") => {
+  if (!from && to) return true
+  if (!from && !to) return false
+  if (to.length == 2 && to.length != from.length) {
+    return true
+  } else {
+    return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
+  }
+}
+
+watch(day, (newValue, oldValue) => {
+  emit("remove-date-error-validation")
+  if (
+    newValue.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
+    lastCharChanged(newValue, oldValue)
+  ) {
+    monthRef.value.focus()
+  }
+  update()
+})
+watch(month, (newValue, oldValue) => {
+  emit("remove-date-error-validation")
+  if (
+    newValue.match(/^(0?[1-9]|1[012])$/) &&
+    lastCharChanged(newValue, oldValue)
+  ) {
+    yearRef.value.focus()
+  }
+  update()
+})
+watch(year, () => {
+  emit("remove-date-error-validation")
+  update()
+})
+
+const update = () => {
+  const dt = dayjs(date.value, "YYYY-MM-DD", true)
+  if (!dayValidation() || !monthValidation() || !yearValidation()) {
+    emit(
+      "date-error-validation",
+      "La date n'est pas valide (format accepté : JJ | MM | AAAA)"
+    )
+  }
+  if (
+    dt.isValid() &&
+    dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
+    dt.isBefore(dayjs()) &&
+    dayValidation() &&
+    monthValidation() &&
+    yearValidation()
+  ) {
+    emit("remove-date-error-validation")
+    emit("update:modelValue", dt.toDate())
+  } else {
+    emit("update:modelValue", undefined)
+  }
+}
+
+const date = computed(() => {
+  return `${year.value}-${month.value}-${day.value}`
+})
+</script>
+
 <template>
   <div class="aj-input-date">
     <div v-if="showDay" class="aj-input-date-component day">
       <label class="aj-date-label">jour</label>
       <input
         :id="firstId"
-        ref="day"
+        ref="dayRef"
         v-model="day"
         v-select-on-click
         :data-testid="firstId"
@@ -22,7 +102,7 @@
     <div class="aj-input-date-component month">
       <label class="aj-date-label">mois</label>
       <input
-        ref="month"
+        ref="monthRef"
         v-model="month"
         v-select-on-click
         type="text"
@@ -38,7 +118,7 @@
     <div class="aj-input-date-component year">
       <label class="aj-date-label">année</label>
       <input
-        ref="year"
+        ref="yearRef"
         v-model="year"
         v-select-on-click
         type="text"
@@ -55,11 +135,7 @@
 </template>
 
 <script>
-import { padStart } from "lodash-es"
-import dayjs from "dayjs"
-
 export default {
-  name: "InputDate",
   props: {
     id: String,
     modelValue: [Date, String],
@@ -69,27 +145,7 @@ export default {
       default: "date",
     },
   },
-  emits: [
-    "update:modelValue",
-    "date-error-validation",
-    "remove-date-error-validation",
-  ],
-  data: function () {
-    return {
-      day:
-        this.dateType === "date"
-          ? this.modelValue && dayjs(this.modelValue).format("DD")
-          : "01",
-      month: this.modelValue && dayjs(this.modelValue).format("MM"),
-      year: this.modelValue && dayjs(this.modelValue).format("YYYY"),
-    }
-  },
   computed: {
-    date: function () {
-      return `${this.year}-${this.month && padStart(this.month, 2, "0")}-${
-        this.day && padStart(this.day, 2, "0")
-      }`
-    },
     firstId: function () {
       const uniqueFieldName = `id.${Math.random().toString(36).slice(2)}`
       return this.id || uniqueFieldName
@@ -98,90 +154,11 @@ export default {
       return this.dateType === "date"
     },
   },
-  watch: {
-    day: function (to, from) {
-      if (
-        to.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
-        this.lastCharChanged(to, from)
-      ) {
-        this.$refs.month.focus()
-      }
-      this.update()
-    },
-    month: function (to, from) {
-      if (to.match(/^(0?[1-9]|1[012])$/) && this.lastCharChanged(to, from)) {
-        this.$refs.year.focus()
-      }
-      this.update()
-    },
-    year: function () {
-      this.update()
-    },
-  },
   methods: {
-    lastCharChanged: function (to = "", from = "") {
-      if (to.length == 2 && to.length != from.length) {
-        return true
-      } else {
-        return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
-      }
-    },
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {
         this.$emit("update:modelValue", value)
-      }
-    },
-    isEmpty(data) {
-      return data === undefined || data === null || data === ""
-    },
-    dayValidation: function () {
-      if (this.day > 31 || this.day < 1 || this.isEmpty(this.day)) {
-        return false
-      }
-      return true
-    },
-    yearValidation: function () {
-      const currentYear = new Date().getFullYear()
-      if (
-        this.year <= 1900 ||
-        this.year > currentYear ||
-        this.isEmpty(this.year)
-      ) {
-        return false
-      }
-      return true
-    },
-    monthValidation: function () {
-      if (this.month > 12 || this.month < 1 || this.isEmpty(this.month)) {
-        return false
-      }
-      return true
-    },
-    update: function () {
-      const dt = dayjs(this.date, "YYYY-MM-DD", true)
-      if (
-        !this.dayValidation() ||
-        !this.monthValidation() ||
-        !this.yearValidation()
-      ) {
-        this.$emit(
-          "date-error-validation",
-          "La date n'est pas valide (format accepté : JJ | MM | AAAA)"
-        )
-      }
-      if (
-        dt.isValid() &&
-        dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
-        dt.isBefore(dayjs()) &&
-        this.dayValidation() &&
-        this.monthValidation() &&
-        this.yearValidation()
-      ) {
-        this.$emit("remove-date-error-validation")
-        this.$emit("update:modelValue", dt.toDate())
-      } else {
-        this.$emit("update:modelValue", undefined)
       }
     },
   },

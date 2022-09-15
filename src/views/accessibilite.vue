@@ -92,9 +92,9 @@
       </li>
     </ul>
 
-    <h3>Établissement de cette déclaration d’accessibilité</h3>
+    <h2>Établissement de cette déclaration d’accessibilité</h2>
 
-    <p>Cette déclaration a été établie le 8 septembre 2022.</p>
+    <p>Cette déclaration a été établie le 15 septembre 2022.</p>
 
     <h3>Technologies utilisées pour la réalisation du service</h3>
 

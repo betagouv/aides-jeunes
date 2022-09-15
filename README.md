@@ -71,6 +71,8 @@ npm ci
 
 ## Openfisca
 
+`Warning MacOS :` go to next section
+
 :warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.13`.
 
 You should [install Python 3 in a virtual environment](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. The instructions below rely on the built-in `venv` module so that there are no additional external dependencies:
@@ -85,6 +87,32 @@ npm run install-openfisca  # install dependencies
 Then, to start the OpenFisca server, simply run `source .venv/bin/activate` followed by `npm run openfisca`.
 
 OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
+
+### MacOs caveat
+
+Pour lancer python sans utiliser rosetta
+
+```bash
+#Bien vérifier que le terminal est en "arm64"
+arch
+brew install pyenv
+brew install pyenv-virtualenv
+brew install openssl
+#installer la bonne version de python
+pyenv install 3.8.12
+pyenv global 3.8.12
+#dans de dossier aides-jeunes
+python -m venv .venv   # create the virtual environment in the .venv folder
+source .venv/bin/activate  # activate the virtual environment
+```
+
+⚠️ Mac M1 `pip install -r openfisca/requirements-m1.txt --no-deps pandas`
+
+⚠️ Mac intel : `npm run install-openfisca`
+
+Then, to start the OpenFisca server, simply run source .venv/bin/activate followed by npm run openfisca
+
+⚠️ if you want to switch from rosetta to Arm, you have to reinstall everything (pyenv, python...) delete .venv and recreate it
 
 ### Development mode
 

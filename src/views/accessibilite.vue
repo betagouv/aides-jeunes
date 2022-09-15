@@ -28,7 +28,7 @@
 
     <p
       >L’audit de conformité réalisé par une experte en accessibilité web de
-      l’entreprise SMILE révèle que 42,55% des critères du RGAA version 4.1 sont
+      l’entreprise SMILE révèle que 42,55 % des critères du RGAA version 4.1 sont
       respectés.</p
     >
 
@@ -76,7 +76,7 @@
             efficace avec un lecteur d’écran</li
           >
           <li>Contenu de page est inséré en css.</li>
-          <li>En zoom 200% le menu principal est tronqué.</li>
+          <li>En zoom 200 % le menu principal est tronqué.</li>
           <li>L’ordre de tabulation n’est pas traité correctement.</li>
           <li
             >Au niveau formulaire, étiquettes mal relié aux champs, absence de

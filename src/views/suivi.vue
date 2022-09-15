@@ -162,9 +162,6 @@ export default {
       )
     },
     showAccompanimentBlock: function () {
-      if (this.droits.length === 0) {
-        return false
-      }
       return this.droits.some((droit) =>
         ["failed", "nothing"].includes(droit.choiceValue)
       )

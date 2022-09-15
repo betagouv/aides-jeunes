@@ -1,6 +1,6 @@
 import { additionalBenefitAttributes as dynamicBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
-import { build } from "./benefits/dynamic/fsl.js"
+import { build as buildFSL } from "./benefits/dynamic/fsl.js"
 import { benefitVeloLayout } from "./types/benefits"
 
 function generateInstitutionId(institution) {
@@ -75,7 +75,7 @@ const mergeBenefits = function (
   })
 
   if (options.fsl === true) {
-    benefitCollection.push(...build(institutions))
+    benefitCollection.push(...buildFSL(institutions))
   }
   if (options.aidesVelo === true) {
     const aidesVeloBenefits = aidesVeloGenerator(Object.values(institutions))
@@ -139,7 +139,7 @@ export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam, options) => {
-    return generate(jam.collections, options)
+  generate: (jam) => {
+    return generate(jam.collections)
   },
 }

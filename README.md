@@ -88,20 +88,20 @@ Then, to start the OpenFisca server, simply run `source .venv/bin/activate` foll
 
 OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
 
-### MacOs caveat
+### Openfisca MacOs install and run
 
-Pour lancer python sans utiliser rosetta
+For both intel and apple silicon
 
 ```bash
-#Bien vérifier que le terminal est en "arm64"
+#Check the terminal isn't in rosetta mode "arm64"
 arch
 brew install pyenv
 brew install pyenv-virtualenv
 brew install openssl
-#installer la bonne version de python
+#install proper python's version
 pyenv install 3.8.12
 pyenv global 3.8.12
-#dans de dossier aides-jeunes
+#inside project folder
 python -m venv .venv   # create the virtual environment in the .venv folder
 source .venv/bin/activate  # activate the virtual environment
 ```

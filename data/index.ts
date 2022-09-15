@@ -1,6 +1,7 @@
 import { additionalBenefitAttributes as dynamicBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { build } from "./benefits/dynamic/fsl.js"
+import { benefitVeloLayout } from "./types/benefits"
 
 function generateInstitutionId(institution) {
   return `${institution.type}_${
@@ -59,7 +60,7 @@ function generateFullBenefitData(benefitCollection, institutions) {
 const mergeBenefits = function (
   staticBenefitCollection,
   institutions,
-  activeBenefits
+  options
 ) {
   const benefitCollection = [
     ...staticBenefitCollection.benefits_javascript.items,
@@ -73,18 +74,21 @@ const mergeBenefits = function (
     benefit.source = "openfisca"
   })
 
-  if (activeBenefits.fsl === true) {
+  if (options.fsl === true) {
     benefitCollection.push(...build(institutions))
   }
-  if (activeBenefits.aidesVelo === true) {
+  if (options.aidesVelo === true) {
     const aidesVeloBenefits = aidesVeloGenerator(Object.values(institutions))
-    aidesVeloBenefits.map((benefit) => {
+    aidesVeloBenefits.map((benefit: benefitVeloLayout) => {
       benefit.source = "aides-velo"
     })
-    benefitCollection.push(...activeBenefits)
+    benefitCollection.push(...aidesVeloBenefits)
   }
   benefitCollection.map((benefit) => {
-    return Object.assign(benefit, dynamicBenefitAttributes[benefit.slug])
+    return Object.assign(
+      benefit,
+      options.dynamicBenefitAttributes[benefit.slug]
+    )
   })
 
   return benefitCollection
@@ -98,24 +102,26 @@ const addRelationToData = function (institutions, benefitCollection) {
 }
 export function generate(
   staticBenefitCollection,
-  activeBenefits = {
-    fsl: false,
-    aidesVelo: false,
+  options = {
+    // permet de déterminer les infos à générer pour les tests unitaires
+    fsl: true,
+    aidesVelo: true,
+    dynamicBenefitAttributes: dynamicBenefitAttributes,
   }
 ) {
-  let institutions = generateFullInstitutionData(
+  const institutions = generateFullInstitutionData(
     staticBenefitCollection.institutions.items
   )
 
   let benefitCollection = mergeBenefits(
     staticBenefitCollection,
     institutions,
-    activeBenefits
+    options
   )
 
   benefitCollection = generateFullBenefitData(benefitCollection, institutions)
 
-  addRelationToData(institutions,benefitCollection)
+  addRelationToData(institutions, benefitCollection)
 
   const benefitsMap = {}
   benefitCollection.forEach((benefit) => {
@@ -133,7 +139,7 @@ export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam, activeBenefits) => {
-    return generate(jam.collections, activeBenefits)
+  generate: (jam, options) => {
+    return generate(jam.collections, options)
   },
 }

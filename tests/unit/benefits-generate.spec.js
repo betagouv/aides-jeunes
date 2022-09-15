@@ -28,7 +28,7 @@ describe("benefit descriptions", function () {
     }
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
-    const result = subject.fn(collections, additionalBenefitAttributes)
+    const result = subject.fn(collections, {dynamicBenefitAttributes: additionalBenefitAttributes})
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()

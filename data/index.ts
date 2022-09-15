@@ -12,7 +12,7 @@ function generateBenefitId(benefit) {
   return benefit.id || benefit.slug
 }
 
-function transformInstitutions(collection: any[]) {
+function generateInstitutionData(collection: any[]) {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
@@ -46,69 +46,90 @@ function setTop(benefit, institution) {
   return benefit.top || default_top
 }
 
-function setDefaults(benefit, institution) {
-  benefit.id = generateBenefitId(benefit)
-  benefit.top = setTop(benefit, institution)
-  benefit.floorAt = benefit.floorAt || 1
-  return benefit
-}
-
-export function generate(
-  collections,
-  additionalBenefitAttributes,
-  aidesVeloBenefitListGenerator
-) {
-  const institutions = transformInstitutions(collections.institutions.items)
-
-  collections.benefits_javascript.items.forEach((benefit) => {
-    benefit.source = "javascript"
-  })
-  collections.benefits_openfisca.items.forEach((benefit) => {
-    benefit.source = "openfisca"
-  })
-
-  const aidesVeloBenefits = aidesVeloBenefitListGenerator
-    ? aidesVeloBenefitListGenerator(Object.values(institutions))
-    : []
-  aidesVeloBenefits.forEach((benefit) => {
-    benefit.source = "aides-velo"
-  })
-
-  const fslBenefits = build(institutions)
-
-  let benefits = [
-    ...collections.benefits_javascript.items,
-    ...collections.benefits_openfisca.items,
-    ...aidesVeloBenefits.filter((b) => b.institution),
-    ...fslBenefits,
-  ].map((benefit) => {
-    return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
-  })
-
-  const benefitsMap = {}
-
-  benefits = benefits.map((benefit) => {
-    const institution = institutions[benefit.institution]
-    benefit = setDefaults(benefit, institution)
-    institution.benefitsIds.push(benefit.id)
-    benefit.institution = institution
-    benefitsMap[benefit.id] = benefit
+function formatBenefitCollection(benefitCollection, institutions) {
+  benefitCollection.map((benefit) => {
+    benefit.id = generateBenefitId(benefit)
+    benefit.top = setTop(benefit, institutions[benefit.institution])
+    benefit.floorAt = benefit.floorAt || 1
     return benefit
   })
 
-  const result = {
-    all: benefits,
+  return benefitCollection
+}
+const generateBenefitCollection = function (
+  staticBenefitCollection,
+  institutions,
+  activeBenefits
+) {
+  const benefitCollection = [
+    ...staticBenefitCollection.benefits_javascript.items,
+    ...staticBenefitCollection.benefits_openfisca.items,
+  ]
+
+  staticBenefitCollection.benefits_javascript.items.forEach((benefit) => {
+    benefit.source = "javascript"
+  })
+  staticBenefitCollection.benefits_openfisca.items.forEach((benefit) => {
+    benefit.source = "openfisca"
+  })
+
+  if (activeBenefits.fsl === true) {
+    benefitCollection.push(...build(institutions))
+  }
+  if (activeBenefits.aidesVelo === true) {
+    const aidesVeloBenefits = aidesVeloGenerator(Object.values(institutions))
+    aidesVeloBenefits.map((benefit) => {
+      benefit.source = "aides-velo"
+    })
+    benefitCollection.push(...activeBenefits)
+  }
+  benefitCollection.map((benefit) => {
+    return Object.assign(benefit, additionalBenefitAttributes[benefit.slug])
+  })
+
+  return benefitCollection
+}
+export function generate(
+  staticBenefitCollection,
+  activeBenefits = {
+    fsl: false,
+    aidesVelo: false,
+  }
+) {
+  const institutions = generateInstitutionData(
+    staticBenefitCollection.institutions.items
+  )
+
+  let benefitCollection = generateBenefitCollection(
+    staticBenefitCollection,
+    institutions,
+    activeBenefits
+  )
+
+  benefitCollection = formatBenefitCollection(benefitCollection, institutions)
+
+  benefitCollection.forEach((benefit) => {
+    const institution = institutions[benefit.institution]
+    institution.benefitsIds.push(benefit.id)
+  })
+
+  const benefitsMap = {}
+  benefitCollection.forEach((benefit) => {
+    benefitsMap[benefit.id] = benefit
+  })
+
+  return {
+    all: benefitCollection,
     institutionsMap: institutions,
     benefitsMap: benefitsMap,
   }
-
-  return result
 }
 
 export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam) =>
-    generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),
+  generate: (jam, activeBenefits) => {
+    return generate(jam.collections, activeBenefits)
+  },
 }

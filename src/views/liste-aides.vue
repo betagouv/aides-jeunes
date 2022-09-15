@@ -194,17 +194,16 @@ export default {
 .cp-filter-block {
   display: flex;
   align-items: center;
-  margin: 0% 0 0 0;
 }
 .cp-filter-label {
-  margin-right: 0.5%;
+  margin-right: 0.4rem;
 }
 .cp-filter-input {
-  width: 6em;
+  width: 6rem;
   text-align: center;
-  height: 1.7em;
+  height: 1.7rem;
 }
 .cp-filter-benefit-number {
-  margin: 0.2% 0 2% 0;
+  margin: 0.1rem 0 1rem 0;
 }
 </style>

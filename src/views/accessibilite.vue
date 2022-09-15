@@ -28,8 +28,8 @@
 
     <p
       >L’audit de conformité réalisé par une experte en accessibilité web de
-      l’entreprise SMILE révèle que 42,55 % des critères du RGAA version 4.1 sont
-      respectés.</p
+      l’entreprise SMILE révèle que 42,55 % des critères du RGAA version 4.1
+      sont respectés.</p
     >
 
     <h2>Contenus non accessibles</h2>

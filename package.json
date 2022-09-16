@@ -118,6 +118,7 @@
     "pretty-quick": "^3.1.2",
     "ts-jest": "^28.0.5",
     "typescript": "^4.7.4",
+    "unplugin-auto-import": "^0.11.2",
     "webpack": "^5.64.3",
     "webpack-bundle-analyzer": "^4.5.0"
   },

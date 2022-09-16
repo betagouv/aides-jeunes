@@ -11,6 +11,7 @@ export function useDateValidation() {
 
   const dayValidation = () => {
     if (
+      !day.value ||
       day.value > 31 ||
       day.value < 1 ||
       day.value.length > 2 ||
@@ -24,6 +25,7 @@ export function useDateValidation() {
 
   const monthValidation = () => {
     if (
+      !month.value ||
       month.value > 12 ||
       month.value < 1 ||
       month.value.length > 2 ||
@@ -38,6 +40,7 @@ export function useDateValidation() {
   const yearValidation = () => {
     const currentYear = new Date().getFullYear()
     if (
+      !year.value ||
       year.value <= 1900 ||
       year.value > currentYear ||
       isEmpty(year.value) ||

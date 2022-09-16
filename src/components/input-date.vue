@@ -1,6 +1,6 @@
 <script setup>
 import dayjs from "dayjs"
-import { defineEmits, ref, watch, computed } from "vue"
+import { defineEmits, defineProps, ref, watch, computed } from "vue"
 import { useDateValidation } from "@/composables/useDateValidation.ts"
 
 const emit = defineEmits([
@@ -9,11 +9,28 @@ const emit = defineEmits([
   "update:modelValue",
 ])
 
+const props = defineProps({
+  id: String,
+  modelValue: [Date, String],
+  //dateType should be "date" for a DD-MM-YYY date input and "month" for MM-YYYY
+  dateType: {
+    type: String,
+    default: "date",
+  },
+})
+
 const { day, month, year, dayValidation, monthValidation, yearValidation } =
   useDateValidation()
 
 const monthRef = ref("")
 const yearRef = ref("")
+
+day.value =
+  props.dateType === "date"
+    ? props.modelValue && dayjs(props.modelValue).format("DD")
+    : "01"
+month.value = props.modelValue && dayjs(props.modelValue).format("MM")
+year.value = props.modelValue && dayjs(props.modelValue).format("YYYY")
 
 const lastCharChanged = (to = "", from = "") => {
   if (!from && to) return true
@@ -76,6 +93,15 @@ const update = () => {
 const date = computed(() => {
   return `${year.value}-${month.value}-${day.value}`
 })
+
+const firstId = computed(() => {
+  const uniqueFieldName = `id.${Math.random().toString(36).slice(2)}`
+  return props.id || uniqueFieldName
+})
+
+const showDay = computed(() => {
+  return props.dateType === "date"
+})
 </script>
 
 <template>
@@ -133,34 +159,3 @@ const date = computed(() => {
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    id: String,
-    modelValue: [Date, String],
-    //dateType should be "date" for a DD-MM-YYY date input and "month" for MM-YYYY
-    dateType: {
-      type: String,
-      default: "date",
-    },
-  },
-  computed: {
-    firstId: function () {
-      const uniqueFieldName = `id.${Math.random().toString(36).slice(2)}`
-      return this.id || uniqueFieldName
-    },
-    showDay: function () {
-      return this.dateType === "date"
-    },
-  },
-  methods: {
-    emit: function ($event) {
-      let value = new Date($event.target.value)
-      if (value) {
-        this.$emit("update:modelValue", value)
-      }
-    },
-  },
-}
-</script>

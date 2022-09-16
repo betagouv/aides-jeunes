@@ -41,7 +41,8 @@ const fillRevenuBrut = (revenu) => {
 const fillChildrenRessources = (childrenRessource) => {
   childrenRessource.forEach((childrenHasRessource, index) => {
     cy.get("form")
-      .find(`input[value="${childrenHasRessource}"]`, { timeout: 20000 })
+      .find(`input[value="${childrenHasRessource}"]`)
+      .should("be.visible")
       .eq(index)
       .check()
   })

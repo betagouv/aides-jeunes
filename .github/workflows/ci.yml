@@ -225,11 +225,13 @@ jobs:
         if: steps.restore-cypress.outputs.cache-hit != 'true'
         with:
           browser: chrome
+          config-file: cypress.config.ts
           runTests: false
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
+          config-file: cypress.config.ts
           start: npm run ci
           wait-on: "http://localhost:8080, http://localhost:2000/variable/parisien, http://127.0.0.1:27017"
           install: false

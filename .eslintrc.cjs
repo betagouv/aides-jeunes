@@ -12,6 +12,7 @@ module.exports = {
     "plugin:prettier-vue/recommended",
     "prettier",
     "@vue/typescript",
+    "./.eslintrc-auto-import.json",
   ],
   parserOptions: {
     ecmaVersion: 2018,

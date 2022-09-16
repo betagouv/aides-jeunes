@@ -22,8 +22,8 @@ const props = defineProps({
 const { day, month, year, dayValidation, monthValidation, yearValidation } =
   useDateValidation()
 
-const monthRef = ref("")
-const yearRef = ref("")
+const inputMonthRef = ref("")
+const inputYearRef = ref("")
 
 day.value =
   props.dateType === "date"
@@ -48,7 +48,7 @@ watch(day, (newValue, oldValue) => {
     newValue.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
     lastCharChanged(newValue, oldValue)
   ) {
-    monthRef.value.focus()
+    inputMonthRef.value.focus()
   }
   update()
 })
@@ -58,7 +58,7 @@ watch(month, (newValue, oldValue) => {
     newValue.match(/^(0?[1-9]|1[012])$/) &&
     lastCharChanged(newValue, oldValue)
   ) {
-    yearRef.value.focus()
+    inputYearRef.value.focus()
   }
   update()
 })
@@ -128,7 +128,7 @@ const showDay = computed(() => {
     <div class="aj-input-date-component month">
       <label class="aj-date-label">mois</label>
       <input
-        ref="monthRef"
+        ref="inputMonthRef"
         v-model="month"
         v-select-on-click
         type="text"
@@ -144,7 +144,7 @@ const showDay = computed(() => {
     <div class="aj-input-date-component year">
       <label class="aj-date-label">année</label>
       <input
-        ref="yearRef"
+        ref="inputYearRef"
         v-model="year"
         v-select-on-click
         type="text"

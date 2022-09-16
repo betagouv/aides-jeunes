@@ -28,8 +28,8 @@
 
     <p
       >L’audit de conformité réalisé par une experte en accessibilité web de
-      l’entreprise SMILE révèle que 42,55% des critères du RGAA version 4.1 sont
-      respectés.</p
+      l’entreprise SMILE révèle que 42,55 % des critères du RGAA version 4.1
+      sont respectés.</p
     >
 
     <h2>Contenus non accessibles</h2>
@@ -76,7 +76,7 @@
             efficace avec un lecteur d’écran</li
           >
           <li>Contenu de page est inséré en css.</li>
-          <li>En zoom 200% le menu principal est tronqué.</li>
+          <li>En zoom 200 % le menu principal est tronqué.</li>
           <li>L’ordre de tabulation n’est pas traité correctement.</li>
           <li
             >Au niveau formulaire, étiquettes mal relié aux champs, absence de
@@ -92,9 +92,9 @@
       </li>
     </ul>
 
-    <h3>Établissement de cette déclaration d’accessibilité</h3>
+    <h2>Établissement de cette déclaration d’accessibilité</h2>
 
-    <p>Cette déclaration a été établie le 8 septembre 2022.</p>
+    <p>Cette déclaration a été établie le 15 septembre 2022.</p>
 
     <h3>Technologies utilisées pour la réalisation du service</h3>
 

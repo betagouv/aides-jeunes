@@ -41,7 +41,7 @@ const fillRevenuBrut = (revenu) => {
 const fillChildrenRessources = (childrenRessource) => {
   childrenRessource.forEach((childrenHasRessource, index) => {
     cy.get("form")
-      .find(`input[value=${childrenHasRessource}]`)
+      .find(`input[value="${childrenHasRessource}"]`)
       .eq(index)
       .check()
   })

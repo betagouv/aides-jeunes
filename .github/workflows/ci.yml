@@ -225,7 +225,6 @@ jobs:
         if: steps.restore-cypress.outputs.cache-hit != 'true'
         with:
           browser: chrome
-          config-file: false
           runTests: false
       - name: Cypress run
         uses: cypress-io/github-action@v2

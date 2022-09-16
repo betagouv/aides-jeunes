@@ -84,7 +84,6 @@ const propertyData = {
   simulation: store.simulation,
   periods: store.dates,
 }
-console.log(store.lastUnansweredStep, "yeah")
 const showResultButton = computed(() => {
   return (
     progress.value === 1 &&

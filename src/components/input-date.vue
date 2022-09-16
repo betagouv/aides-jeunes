@@ -22,8 +22,8 @@ const props = defineProps({
 const { day, month, year, dayValidation, monthValidation, yearValidation } =
   useDateValidation()
 
-const inputMonthRef = ref("")
-const inputYearRef = ref("")
+const monthInput = ref(null) // used to focus on the month input when the day input is filled
+const yearInput = ref(null)
 
 day.value =
   props.dateType === "date"
@@ -48,7 +48,7 @@ watch(day, (newValue, oldValue) => {
     newValue.match(/^(0?[1-9]|[12][0-9]|3[01])$/) &&
     lastCharChanged(newValue, oldValue)
   ) {
-    inputMonthRef.value.focus()
+    monthInput.value.focus()
   }
   update()
 })
@@ -58,7 +58,7 @@ watch(month, (newValue, oldValue) => {
     newValue.match(/^(0?[1-9]|1[012])$/) &&
     lastCharChanged(newValue, oldValue)
   ) {
-    inputYearRef.value.focus()
+    yearInput.value.focus()
   }
   update()
 })
@@ -69,19 +69,19 @@ watch(year, () => {
 
 const update = () => {
   const dt = dayjs(date.value, "YYYY-MM-DD", true)
-  if (!dayValidation() || !monthValidation() || !yearValidation()) {
-    emit(
-      "date-error-validation",
-      "La date n'est pas valide (format accepté : JJ | MM | AAAA)"
-    )
-  }
+  console.log("date.value", date.value)
+  // UNUSED
+  // if (!dayValidation() || !monthValidation() || !yearValidation()) {
+  //   emit(
+  //     "date-error-validation",
+  //     "La date n'est pas valide (format accepté : JJ | MM | AAAA)"
+  //   )
+  // }
+  console.log("dt", dt)
   if (
     dt.isValid() &&
     dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
-    dt.isBefore(dayjs()) &&
-    dayValidation() &&
-    monthValidation() &&
-    yearValidation()
+    dt.isBefore(dayjs())
   ) {
     emit("remove-date-error-validation")
     emit("update:modelValue", dt.toDate())
@@ -91,6 +91,7 @@ const update = () => {
 }
 
 const date = computed(() => {
+  if (!year.value && !month.value && !day.value) return null
   return `${year.value}-${month.value}-${day.value}`
 })
 
@@ -110,7 +111,6 @@ const showDay = computed(() => {
       <label class="aj-date-label">jour</label>
       <input
         :id="firstId"
-        ref="dayRef"
         v-model="day"
         v-select-on-click
         :data-testid="firstId"
@@ -128,7 +128,7 @@ const showDay = computed(() => {
     <div class="aj-input-date-component month">
       <label class="aj-date-label">mois</label>
       <input
-        ref="inputMonthRef"
+        ref="monthInput"
         v-model="month"
         v-select-on-click
         type="text"
@@ -144,7 +144,7 @@ const showDay = computed(() => {
     <div class="aj-input-date-component year">
       <label class="aj-date-label">année</label>
       <input
-        ref="inputYearRef"
+        ref="yearInput"
         v-model="year"
         v-select-on-click
         type="text"

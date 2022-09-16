@@ -22,6 +22,7 @@ import SelectOnClickDirective from "./directives/select-on-click"
 import { iframeResizerContentWindow } from "iframe-resizer"
 
 import "dayjs/locale/fr"
+import customParseFormat from "dayjs/plugin/customParseFormat"
 import dayjs from "dayjs"
 import { createPinia } from "pinia"
 
@@ -66,6 +67,7 @@ app.config.globalProperties.$filters = {
 }
 
 dayjs.locale("fr")
+dayjs.extend(customParseFormat)
 
 app.use(pinia)
 app.use(router)

@@ -163,11 +163,7 @@ export default {
     checkBenefitsIncluded(): boolean {
       return this.benefits.filter((benefit) => {
         return isGeographicallyIncluded(
-          {
-            code: this.zipCode,
-            departement: this.selectedDepartement,
-            region: this.selectedRegion,
-          },
+          this.selectedCommune,
           benefit.institution
         )
       })

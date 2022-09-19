@@ -1,5 +1,5 @@
 import subject from "@root/backend/lib/openfisca/mapping"
-import expect from "expect"
+import { expect } from "expect"
 
 describe("openfisca dispatchIndividuals", function () {
   function buildSituation(props) {

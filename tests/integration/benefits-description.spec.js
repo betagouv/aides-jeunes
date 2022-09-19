@@ -1,4 +1,4 @@
-import expect from "expect"
+import { expect } from "expect"
 import fs from "fs"
 
 import regions from "@etalab/decoupage-administratif/data/regions.json"

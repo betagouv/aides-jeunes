@@ -1,4 +1,4 @@
-import expect from "expect"
+import { expect } from "expect"
 import Benefits from "@root/data/all"
 import {
   FSL_BY_CODE,

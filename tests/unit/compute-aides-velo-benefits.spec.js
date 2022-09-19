@@ -1,4 +1,4 @@
-import expect from "expect"
+import { expect } from "expect"
 import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo"
 
 describe("computeAidesVeloBenefits", function () {

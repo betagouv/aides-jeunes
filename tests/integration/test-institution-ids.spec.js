@@ -1,4 +1,4 @@
-import expect from "expect"
+import { expect } from "expect"
 
 import Benefits from "../../data/index.js"
 import jamstackLoader from "jamstack-loader"

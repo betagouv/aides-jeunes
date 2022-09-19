@@ -1,4 +1,4 @@
-import expect from "expect"
+import { expect } from "expect"
 import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping"
 import {
   testProfileEligibility,

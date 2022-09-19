@@ -1,8 +1,6 @@
 {
   "globals": {
     "EffectScope": true,
-    "[alias]": true,
-    "[import-names]": true,
     "axios": true,
     "computed": true,
     "createApp": true,

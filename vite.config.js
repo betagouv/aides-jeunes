@@ -88,11 +88,11 @@ export default defineConfig(async ({ command, mode }) => {
               // default imports
               ["default", "axios"], // import { default as axios } from 'axios',
             ],
-            "[package-name]": [
-              "[import-names]",
-              // alias
-              ["[from]", "[alias]"],
-            ],
+            // "[package-name]": [
+            //   "[import-names]",
+            //   // alias
+            //   ["[from]", "[alias]"],
+            // ],
           },
         ],
 

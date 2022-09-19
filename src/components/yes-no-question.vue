@@ -14,23 +14,23 @@
     <div class="aj-selections">
       <div class="aj-selection-wrapper">
         <input
-          :id="'yes-' + uniqueFieldName"
+          :id="`yes-${uniqueFieldName}`"
           v-model="model"
           type="radio"
           :value="true"
           :name="uniqueFieldName"
         />
-        <label :for="'yes-' + uniqueFieldName">Oui</label>
+        <label :for="`yes-${uniqueFieldName}`">Oui</label>
       </div>
       <div class="aj-selection-wrapper">
         <input
-          :id="'no-' + uniqueFieldName"
+          :id="`no-${uniqueFieldName}`"
           v-model="model"
           type="radio"
           :value="false"
           :name="uniqueFieldName"
         />
-        <label :for="'no-' + uniqueFieldName">Non</label>
+        <label :for="`no-${uniqueFieldName}`">Non</label>
       </div>
     </div>
   </fieldset>

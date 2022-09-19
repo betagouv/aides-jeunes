@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="next">
+  <form @submit.prevent="next" :data-testid="fieldName">
     <YesNoQuestion
       v-for="enfant in enfants"
       :key="enfant.id"
@@ -34,6 +34,7 @@ export default {
   data() {
     let enfants = this.store.situation.enfants.map((e) => Object.assign({}, e))
     return {
+      fieldName: "_hasRessources",
       enfants,
     }
   },
@@ -42,7 +43,7 @@ export default {
       this.store.answer({
         id: "enfants",
         entityName: "individu",
-        fieldName: "_hasRessources",
+        fieldName: this.fieldName,
         value: this.enfants.map((enfant) => ({
           id: enfant.id,
           value: nullifyUndefinedValue(enfant._hasRessources),

@@ -5,8 +5,7 @@ description: "Le Combo Parfait regroupe des formations qualifiantes ou
   d’emploi. Durant toute la durée de la formation, vous bénéficierez d’une
   rémunération (500€/mois). Des aides complémentaires existent (permis,
   logement, mobilité) : voir"
-conditions:
-  - Être inscrit·e à une formation Combo Parfait.
+prefix: le
 conditions_generales:
   - type: age
     operator: <=
@@ -20,10 +19,11 @@ conditions_generales:
 profils:
   - type: chomeur
     conditions: []
-link: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
-instructions: https://www.yeps.fr/articles/891A0CF9-7DA0-421F-893C-327BAFE976CB
-prefix: le
+conditions:
+  - Être inscrit·e à une formation Combo Parfait.
 type: float
 unit: €
 periodicite: mensuelle
 montant: 500
+link: https://www.centre-valdeloire.fr/lactualite-de-la-region-centre-valdeloire/combo-parfait-la-formule-gagnante-pour-accompagner-les
+instructions: https://www.centre-valdeloire.fr/lactualite-de-la-region-centre-valdeloire/combo-parfait-la-formule-gagnante-pour-accompagner-les

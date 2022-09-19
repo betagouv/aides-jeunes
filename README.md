@@ -93,7 +93,7 @@ OpenFisca dependencies are specified in [openfisca/requirements.txt](https://git
 For both intel and apple silicon
 
 ```bash
-#Check the terminal isn't in rosetta mode "arm64"
+#Check the terminal isn't in rosetta mode. arch should return "arm64"
 arch
 brew install pyenv
 brew install pyenv-virtualenv

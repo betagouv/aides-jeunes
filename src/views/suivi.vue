@@ -231,30 +231,34 @@ export default {
 
 <style scoped>
 .survey-result-block {
-  margin: 0 15% 15%;
-  padding: 4% 0 4% 0;
+  margin: auto 10rem auto 10rem;
+  padding: 2rem 0 2rem 0;
 }
 
 .survey-result-button {
-  margin: auto 20% auto 20%;
+  margin: auto 10rem auto 10rem;
+  min-width: fit-content;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .survey-result-button {
-    margin: auto 1% auto 1%;
+    margin: auto;
+  }
+  .survey-result-block {
+    margin: auto 2rem auto 2rem;
   }
 }
+
 .survey-result-text {
   text-align: center;
-  line-height: 130%;
   color: #526ab6;
-  margin: 4% 0 4% 0;
+  margin: 1rem 0 2rem 0;
 }
 
 .survey-result-text.md {
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 .survey-result-text.sm {
-  font-size: 1em;
+  font-size: 1rem;
 }
 </style>

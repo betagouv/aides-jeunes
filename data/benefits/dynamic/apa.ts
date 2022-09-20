@@ -29,7 +29,7 @@ export const APA_BY_CODE = {
   departement_eure_et_loir: {
     label: "du département d'Eure et Loir",
     link: "https://eurelien.fr/guide/autonomie",
-    form: "https://www.eurelien.fr/sites/default/files/mda-dossier-dallocation-personnalisee-dautonomie.pdf", // Prevent default form recycling
+    form: "https://www.eurelien.fr/sites/default/files/mda-dossier-dallocation-personnalisee-dautonomie.pdf",
   },
   departement_finistere: {
     label: "du département du Finistère",

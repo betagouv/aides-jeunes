@@ -76,11 +76,8 @@ export const APA_BY_CODE = {
   },
   departement_loiret: {
     label: "du département du Loiret",
-    teleservice: {
-      state: "redirection", // TODO
-      params: { vers: "loiret_APA" },
-    },
     link: "https://www.loiret.fr/aide/allocation-personnalisee-dautonomie-apa-domicile-et-en-etablissement-ayant-opte-pour-la-0#:~:text=est%20une%20prestation%20en%20nature,l'%C3%A9quipe%20pluridisciplinaire%20du%20D%C3%A9partement.",
+    form: "https://www.loiret.fr/sites/loiret/files/media/documents/2021/11/formulaire-demande-APA-Carsat-MDA-01112021_0.pdf",
   },
   departement_moselle: {
     label: "du département de Moselle",

@@ -9,24 +9,27 @@
           <LoadingModal v-if="!droits">
             <p v-show="!droits"> Récupération de la situation en cours… </p>
           </LoadingModal>
-          <div v-if="submitted" class="alert alert-success survey-result-block">
+          <div
+            v-if="submitted"
+            class="alert alert-success aj-survey-result-thank"
+          >
             <div class="is-align-vertically-center">
               <h3 class="last">Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
             </div>
             <div v-if="droits && showAccompanimentBlock === true">
-              <p class="survey-result-text md">
+              <p class="aj-survey-result-text md">
                 Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
                 rendez-vous pour être accompagné·e par notre équipe.</p
               >
-              <div class="survey-result-button">
+              <div class="aj-survey-result-button">
                 <a
-                  class="button primary survey-result-button"
+                  class="button primary aj-survey-result-button"
                   href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
                   >Prendre rendez-vous pour être aidé·e dans mes démarches</a
                 >
               </div>
 
-              <p class="survey-result-text sm"
+              <p class="aj-survey-result-text sm"
                 >La prise de rendez-vous se fait en quelques minutes et vous
                 permet de bénéficier d'un accompagnement d'une quinzaine de
                 minutes par un·e membre de notre équipe</p
@@ -230,35 +233,35 @@ export default {
 </script>
 
 <style scoped>
-.survey-result-block {
+.aj-survey-result-thank {
   margin: auto 10rem auto 10rem;
   padding: 2rem 0 2rem 0;
 }
 
-.survey-result-button {
+.aj-survey-result-button {
   margin: auto 10rem auto 10rem;
   min-width: fit-content;
 }
 
 @media (max-width: 768px) {
-  .survey-result-button {
+  .aj-survey-result-button {
     margin: auto;
   }
-  .survey-result-block {
+  .aj-survey-result-thank {
     margin: auto 2rem auto 2rem;
   }
 }
 
-.survey-result-text {
+.aj-survey-result-text {
   text-align: center;
   color: #526ab6;
   margin: 1rem 0 2rem 0;
 }
 
-.survey-result-text.md {
+.aj-survey-result-text.md {
   font-size: 1.2rem;
 }
-.survey-result-text.sm {
+.aj-survey-result-text.sm {
   font-size: 1rem;
 }
 </style>

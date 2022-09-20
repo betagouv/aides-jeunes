@@ -11,7 +11,7 @@ MarkupSafe==2.0.1
 more-itertools==8.11.0
 nptyping==1.4.4
 numexpr==2.7.3
-numpy==1.20.3
+numpy==1.22.0
 OpenFisca-Core==35.7.7
 OpenFisca-France==116.12.0
 OpenFisca-France-Local==4.1.0

@@ -84,6 +84,24 @@ const COMMUNE_PARAMETERS = {
   departements: "_departement",
   communes: "depcom",
 }
+const INSTITUTION_LIST = [
+  { name: "region", key: "_region", code: "code_insee" },
+  {
+    name: "departement",
+    key: "_departement",
+    code: "code_insee",
+  },
+  { name: "epci", key: "_epci", code: "code_siren" },
+  { name: "commune", key: "depcom", code: "code_insee" },
+]
+const remapInstitutionNameToKey = function (institution) {
+  return Object.entries(institution).map(([type, code]) => {
+    const excludedInstitution = INSTITUTION_LIST.find(
+      (item) => type === item.name
+    )
+    return { key: excludedInstitution.key, code }
+  })
+}
 
 export function testGeographicalEligibility(
   condition: any,
@@ -141,7 +159,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
   },
   attached_to_institution: {
     test: (
-      _,
+      condition,
       {
         situation,
       }: {
@@ -150,18 +168,22 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       benefit
     ): boolean => {
       const institution = benefit.institution
-
-      switch (institution.type) {
-        case "region":
-          return situation.menage?._region === institution.code_insee
-        case "departement":
-          return situation.menage?._departement === institution.code_insee
-        case "epci":
-          return situation.menage?._epci === institution.code_siren
-        case "commune":
-          return situation.menage?.depcom === institution.code_insee
+      let isExcluded = false
+      if (condition.excludes) {
+        const mappedExcludes = remapInstitutionNameToKey(condition.excludes)
+        isExcluded = !!mappedExcludes.find((item) => {
+          return situation.menage[item.key] === item.code
+        })
       }
-      return false
+      const institutionToTest = INSTITUTION_LIST.find(
+        (item) => institution.type === item.name
+      )
+      return (
+        institutionToTest &&
+        situation.menage[institutionToTest.key] ===
+        institution[institutionToTest.code] &&
+        !isExcluded
+      )
     },
   },
   regions: {

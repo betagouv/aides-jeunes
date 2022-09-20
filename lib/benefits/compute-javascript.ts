@@ -5,6 +5,7 @@ import Scolarite from "../scolarite"
 
 import { situationsLayout } from "../types/situations"
 import { ConditionsLayout } from "../types/benefits"
+import { INSTITUTION_LIST, remapInstitutionNameToKey } from "../utils"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -84,24 +85,6 @@ const COMMUNE_PARAMETERS = {
   departements: "_departement",
   communes: "depcom",
 }
-const INSTITUTION_LIST = [
-  { name: "region", key: "_region", code: "code_insee" },
-  {
-    name: "departement",
-    key: "_departement",
-    code: "code_insee",
-  },
-  { name: "epci", key: "_epci", code: "code_siren" },
-  { name: "commune", key: "depcom", code: "code_insee" },
-]
-const remapInstitutionNameToKey = function (institution) {
-  return Object.entries(institution).map(([type, code]) => {
-    const excludedInstitution = INSTITUTION_LIST.find(
-      (item) => type === item.name
-    )
-    return { key: excludedInstitution.key, code }
-  })
-}
 
 export function testGeographicalEligibility(
   condition: any,
@@ -171,9 +154,11 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       let isExcluded = false
       if (condition.excludes) {
         const mappedExcludes = remapInstitutionNameToKey(condition.excludes)
-        isExcluded = !!mappedExcludes.find((item) => {
-          return situation.menage[item.key] === item.code
-        })
+        isExcluded = !!mappedExcludes.find(
+          (item: { codes: string[]; key: string }) => {
+            return item.codes.includes(situation.menage[item.key])
+          }
+        )
       }
       const institutionToTest = INSTITUTION_LIST.find(
         (item) => institution.type === item.name

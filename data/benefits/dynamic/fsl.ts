@@ -367,7 +367,7 @@ export const FSL_BY_CODE = {
     resources: {
       link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
     },
-    excludes: { epci: "200046977" },
+    excludes: { epci: ["200046977"] },
   },
   M200046977: {
     label: "de la Métropole de Lyon",

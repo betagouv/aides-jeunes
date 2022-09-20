@@ -5,6 +5,10 @@ import mapping from "./backend/lib/openfisca/mapping/index.js"
 import openfiscaParameters from "./backend/lib/openfisca/parameters.js"
 import pollResult from "./backend/lib/mattermost-bot/poll-result.js"
 import { generateSituation } from "./lib/situations.js"
+import { computeAides } from "./lib/benefits/compute.js"
+import benefits from "./data/all.js"
+
+const computeBenefits = computeAides.bind(benefits)
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
@@ -54,11 +58,19 @@ function mock({ app }) {
     try {
       const simulation = cache[req.params.id]
       const situation = generateSituation(simulation)
-      sendToOpenfisca(situation, function (err, result) {
+      sendToOpenfisca(situation, async function (err, result) {
         if (err) {
           return next(err)
         }
-        res.send(Object.assign({ _id: cache[req.params.id]._id }, result))
+        const mockResultSimulation = await computeBenefits(
+          situation,
+          req.params.id,
+          result,
+          false
+        )
+        res.send(
+          Object.assign({ _id: cache[req.params.id]._id }, mockResultSimulation)
+        )
       })
     } catch {
       res.sendStatus(404)

@@ -1,14 +1,9 @@
 label: abonnement BreizhGo
 institution: region_bretagne
-description: Les abonnement BreizhGo vous permettent de bénéficier d'une
-  réduction jusqu'à 75 % sur vos trajets en Bretagne et de se déplacer de
-  manière illimitée sur une ligne choisie, y compris le week-end, sur les TER,
-  TGV et réseaux urbains. Par exemple, la ligne entre son domicile et son lieu
-  d’étude ou de travail.
-conditions:
-  - Choisir l'abonnement BreizhGo qui convient le mieux à votre trajet et un
-    trajet fréquent.
-  - Vous procurer l'abonnement BreizhGo dont le prix dépend du trajet choisi.
+description: Les abonnements BreizhGo -26 ans TER options TGV et réseaux urbains
+  vous permettent d'emprunter en illimité les TER, TGV et bus, métro ou tram sur
+  un trajet donné.
+prefix: l’
 conditions_generales:
   - type: age
     operator: <=
@@ -17,10 +12,12 @@ conditions_generales:
     values:
       - "53"
 profils: []
-link: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
-instructions: https://www.ter.sncf.com/bretagne/offres/tarifs/quotidien-moins-26
-prefix: l’
+conditions:
+  - Charger votre abonnement sur votre carte KorriGo.
 type: bool
 unit: €
 periodicite: autre
+link: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
+teleservice: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
+instructions: ""
 private: true

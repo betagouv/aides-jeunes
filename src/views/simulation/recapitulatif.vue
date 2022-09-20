@@ -11,7 +11,7 @@
             v-for="(question, questionIndex) in chapter.questions"
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
-            <div class="recapitulatif-row" :class="question.rowClass">
+            <div :class="question.rowClass" class="recapitulatif-row">
               <div
                 :class="question.labelClass || 'question-col'"
                 v-html="question.label"
@@ -22,9 +22,9 @@
               >
                 {{ question.value }}
               </div>
-              <div v-if="!question.hideEdit" class="edit-col"
-                ><router-link :to="question.path">Modifier</router-link></div
-              >
+              <div v-if="!question.hideEdit" class="edit-col">
+                <router-link :to="question.path">Modifier</router-link>
+              </div>
             </div>
 
             <div
@@ -50,14 +50,14 @@
         v-if="showResultButton"
         class="button next-button"
         to="/simulation/resultats"
-        >Accéder aux résultats</router-link
-      >
+        >Accéder aux résultats
+      </router-link>
       <router-link
         v-else-if="store.lastUnansweredStep"
-        class="button next-button"
         :to="store.lastUnansweredStep.path"
-        >Continuer</router-link
-      >
+        class="button next-button"
+        >Continuer
+      </router-link>
     </div>
   </div>
 </template>
@@ -84,12 +84,14 @@ const propertyData = {
   simulation: store.simulation,
   periods: store.dates,
 }
+
 const showResultButton = computed(() => {
   return (
     progress.value === 1 &&
     router.options.history.state.back !== "/simulation/resultats"
   )
 })
+
 const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
   return {
     label: chapter.label,

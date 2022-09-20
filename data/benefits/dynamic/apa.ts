@@ -194,9 +194,7 @@ export function buildAPA(institutionsMap) {
 
       const institutionName = institutionsMap[code]?.slug
       if (!institutionsMap[code] || !institutionName) {
-        if (process.env.NODE_ENV !== "test") {
-          console.warn(`No institution for metropole apa ${code}`)
-        }
+        console.warn(`No institution for metropole apa ${code}`)
         return accum
       }
       const benefit = formatBenefit(customizationBenefit, institutionName)

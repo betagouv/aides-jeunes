@@ -231,37 +231,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.aj-survey-result-thank {
-  margin: auto 10rem auto 10rem;
-  padding: 2rem 0 2rem 0;
-}
-
-.aj-survey-result-button {
-  margin: auto 10rem auto 10rem;
-  min-width: fit-content;
-}
-
-@media (max-width: 768px) {
-  .aj-survey-result-button {
-    margin: auto;
-  }
-  .aj-survey-result-thank {
-    margin: auto 2rem auto 2rem;
-  }
-}
-
-.aj-survey-result-text {
-  text-align: center;
-  color: #526ab6;
-  margin: 1rem 0 2rem 0;
-}
-
-.aj-survey-result-text.md {
-  font-size: 1.2rem;
-}
-.aj-survey-result-text.sm {
-  font-size: 1rem;
-}
-</style>

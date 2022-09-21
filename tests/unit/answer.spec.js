@@ -1,8 +1,7 @@
-import { addAnswer } from "@root/lib/answers.ts"
+import { setActivePinia, createPinia } from 'pinia'
+import { useStore } from "@root/src/stores"
 
-const store = {}
-
-const initMockStore = () => {
+const initMock = (store) => {
   store.calculs = { dirty: false }
   store.simulation = {
     answers: {
@@ -38,66 +37,80 @@ const initMockStore = () => {
   }
 }
 
+const initStore = () => {
+  const store = useStore()
+  initMock(store)
+  return store;
+}
+
 describe("Store answers tests", () => {
+  
   beforeEach(() => {
-    initMockStore()
+    // creates a fresh pinia and make it active so it's automatically picked
+    // up by any useStore() call without having to pass it to it:
+    // `useStore(pinia)`
+    setActivePinia(createPinia())
   })
 
   it("Store should not be dirty when the answer value is the same", () => {
+    const store = initStore();
     const newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should not be dirty when multiple answers values are the same", () => {
+    const store = initStore();
     let newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: false,
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should be dirty when the answer value is different", () => {
+    const store = initStore();
     const newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })
 
   it("Store should be dirty when multiple answers values are different", () => {
+    const store = initStore();
     let newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: true,
     }
-    addAnswer(newAnswer, store.simulation, store.calculs)
+    store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })
 })

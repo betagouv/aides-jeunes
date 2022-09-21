@@ -156,6 +156,14 @@
       "/\\./"
     ],
     "moduleNameMapper": {
+      "@lib/simulation.js": "<rootDir>/lib/simulation.ts",
+      "@lib/benefits/compute.js": "<rootDir>/lib/benefits/compute.ts",
+      "@lib/state/generator.js": "<rootDir>/lib/state/generator.ts",
+      "@lib/answers.js": "<rootDir>/lib/answers.ts",
+      "@lib/resources.js": "<rootDir>/lib/resources.ts",
+      "@lib/situations.js": "<rootDir>/lib/situations.ts",
+      "@/(.*)": "<rootDir>/src/$1",
+      "@/lib/(.*)": "<rootDir>/src/lib/$1",
       "(.+)\\.js": "$1",
       "@root/(.*)": "<rootDir>/$1",
       "^lodash-es$": "lodash"

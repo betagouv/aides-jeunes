@@ -250,7 +250,7 @@ export const useStore = defineStore("store", {
       const simulationAnswerValue = this.getSimulationAnswerValue(answer)
       if (!isEqual(simulationAnswerValue, answer.value)) {
         this.setDirty()
-        this.updateAnswer(answer)
+        this.updateAnswerSimulation(answer)
       }
     },
     getSimulationAnswerValue(answer: Answer) {
@@ -261,7 +261,7 @@ export const useStore = defineStore("store", {
         answer.id
       )
     },
-    updateAnswer(answer: Answer) {
+    updateAnswerSimulation(answer: Answer) {
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer, false, []),

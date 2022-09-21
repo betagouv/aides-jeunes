@@ -1,0 +1,27 @@
+label: TEST / Tarification sociale et solidaire des transports
+institution: ville_daix
+description: Ceci est une aide pour recevoir un tarif préférentiel ou la
+  gratuité de votre titre de transport.
+prefix: une
+conditions_generales:
+  - type: quotient_familial
+    floor: 2000
+    period: month
+profils:
+  - type: etudiant
+    conditions:
+      - type: age
+        operator: <=
+        value: 25
+conditions:
+  - Être gentil.
+interestFlag: _interetBafa
+type: bool
+unit: €
+periodicite: annuelle
+legend: ""
+montant: 500
+link: https://beta.gouv.fr
+teleservice: https://beta.gouv.fr
+form: https://beta.gouv.fr
+instructions: https://beta.gouv.fr

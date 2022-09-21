@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="aj-main-container">
-      <div class="aj-category-title-wrapper">
+      <div v-if="!submitted" class="aj-category-title-wrapper">
         <h1>Qu'avez-vous fait avec votre simulation&nbsp;?</h1>
       </div>
       <div class="aj-box-wrapper">
@@ -9,8 +9,32 @@
           <LoadingModal v-if="!droits">
             <p v-show="!droits"> Récupération de la situation en cours… </p>
           </LoadingModal>
-          <div v-if="submitted" class="alert alert-success">
-            Merci d'avoir rempli ce questionnaire !
+          <div
+            v-if="submitted"
+            class="alert alert-success aj-survey-result-thank"
+          >
+            <div class="is-align-vertically-center">
+              <h3 class="last">Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
+            </div>
+            <div v-if="droits && showAccompanimentBlock === true">
+              <p class="aj-survey-result-text md">
+                Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
+                rendez-vous pour être accompagné·e par notre équipe.</p
+              >
+              <div class="aj-survey-result-button">
+                <a
+                  class="button primary aj-survey-result-button"
+                  href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
+                  >Prendre rendez-vous pour être aidé·e dans mes démarches</a
+                >
+              </div>
+
+              <p class="aj-survey-result-text sm"
+                >La prise de rendez-vous se fait en quelques minutes et vous
+                permet de bénéficier d'un accompagnement d'une quinzaine de
+                minutes par un·e membre de notre équipe</p
+              >
+            </div>
           </div>
 
           <form v-if="droits && !submitted">
@@ -138,6 +162,11 @@ export default {
       return (
         choiceValues.filter((choiceValue) => choiceValue).length ===
         this.droits.length
+      )
+    },
+    showAccompanimentBlock: function () {
+      return this.droits.some((droit) =>
+        ["failed", "nothing"].includes(droit.choiceValue)
       )
     },
   },

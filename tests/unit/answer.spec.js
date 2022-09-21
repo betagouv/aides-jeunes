@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia } from 'pinia'
+import { setActivePinia, createPinia } from "pinia"
 import { useStore } from "@root/src/stores"
 
 const initMock = (store) => {
@@ -40,11 +40,10 @@ const initMock = (store) => {
 const initStore = () => {
   const store = useStore()
   initMock(store)
-  return store;
+  return store
 }
 
 describe("Store answers tests", () => {
-  
   beforeEach(() => {
     // creates a fresh pinia and make it active so it's automatically picked
     // up by any useStore() call without having to pass it to it:
@@ -53,7 +52,7 @@ describe("Store answers tests", () => {
   })
 
   it("Store should not be dirty when the answer value is the same", () => {
-    const store = initStore();
+    const store = initStore()
     const newAnswer = {
       id: "demandeur",
       entityName: "individu",
@@ -65,7 +64,7 @@ describe("Store answers tests", () => {
   })
 
   it("Store should not be dirty when multiple answers values are the same", () => {
-    const store = initStore();
+    const store = initStore()
     let newAnswer = {
       id: "demandeur",
       entityName: "individu",
@@ -84,7 +83,7 @@ describe("Store answers tests", () => {
   })
 
   it("Store should be dirty when the answer value is different", () => {
-    const store = initStore();
+    const store = initStore()
     const newAnswer = {
       id: "demandeur",
       entityName: "individu",
@@ -96,7 +95,7 @@ describe("Store answers tests", () => {
   })
 
   it("Store should be dirty when multiple answers values are different", () => {
-    const store = initStore();
+    const store = initStore()
     let newAnswer = {
       id: "demandeur",
       entityName: "individu",

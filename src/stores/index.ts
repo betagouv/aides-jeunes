@@ -3,9 +3,9 @@ import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
 import { datesGenerator } from "@lib/benefits/compute.js"
 import { generateAllSteps } from "@lib/state/generator.js"
-import { addAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import { some, values } from "lodash-es"
+import { some, values, isEqual } from "lodash-es"
 import axios from "axios"
 import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
@@ -247,7 +247,31 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = true
     },
     answer(answer: Answer) {
-      addAnswer(answer, this.simulation, this.calculs)
+      const simulationAnswerValue = this.getSimulationAnswerValue(answer)
+      if (!isEqual(simulationAnswerValue, answer.value)) {
+        this.setDirty()
+        this.updateAnswer(answer)
+      }
+    },
+    getSimulationAnswerValue(answer: Answer) {
+      return getAnswer(
+        this.simulation.answers.all,
+        answer.entityName,
+        answer.fieldName,
+        answer.id
+      )
+    },
+    updateAnswer(answer: Answer) {
+      this.simulation.answers = {
+        ...this.simulation.answers,
+        all: storeAnswer(this.simulation.answers.all, answer, false, []),
+        current: storeAnswer(
+          this.simulation.answers.current,
+          answer,
+          true,
+          this.simulation.enfants
+        ),
+      }
     },
     updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps

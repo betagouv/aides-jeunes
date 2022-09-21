@@ -1,6 +1,4 @@
 import { answerLayout } from "./types/answer"
-import { isEqual } from "lodash-es"
-import { Answer } from "./types/store"
 
 export function isStepAnswered(answers: answerLayout[], step) {
   return getStepAnswer(answers, step) !== undefined
@@ -57,27 +55,4 @@ export function storeAnswer(answers, newAnswer, clean, enfants) {
   }
 
   return results
-}
-
-export function addAnswer(answer: Answer, simulation, calculs) {
-  const existingAnswerValue = getAnswer(
-    simulation.answers.all,
-    answer.entityName,
-    answer.fieldName,
-    answer.id
-  )
-  if (!isEqual(existingAnswerValue, answer.value)) {
-    calculs.dirty = true
-  }
-
-  simulation.answers = {
-    ...simulation.answers,
-    all: storeAnswer(simulation.answers.all, answer, false, []),
-    current: storeAnswer(
-      simulation.answers.current,
-      answer,
-      true,
-      simulation.enfants
-    ),
-  }
 }

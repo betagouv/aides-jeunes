@@ -12,6 +12,7 @@
         <div class="aj-droit-content-description">
           <p>
             <span itemprop="description" v-html="droit.description" />
+            <span>&nbsp;</span>
             <BenefitCtaLink
               v-if="droit.link"
               :analytics-name="droit.label"

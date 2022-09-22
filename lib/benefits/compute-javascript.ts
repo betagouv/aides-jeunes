@@ -154,7 +154,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       let isExcluded = false
       if (condition.excludes) {
         const mappedExcludes = remapInstitutionNameToKey(condition.excludes)
-        isExcluded = !!mappedExcludes.find(
+        isExcluded = mappedExcludes.some(
           (item: { codes: string[]; key: string }) => {
             return item.codes.includes(situation.menage[item.key])
           }

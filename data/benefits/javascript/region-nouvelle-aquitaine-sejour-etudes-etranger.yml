@@ -23,6 +23,6 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 2900
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/sejours-detude-letranger-public-post-bac
+montant: 4500
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/sejours-detudes-letranger-public-post-bac-annee-academique-20222023
 teleservice: https://mes-demarches.nouvelle-aquitaine.fr/craPortailFO/externe/creationDossier.do?codeDispositif=MI_VOLET3

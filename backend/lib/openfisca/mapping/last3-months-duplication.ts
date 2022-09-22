@@ -1,9 +1,9 @@
-import { forEach, uniq } from "lodash-es"
+import { forEach, uniq } from "lodash"
 
-import common from "./common.js"
+import common from "./common"
 
-import { additionalProps } from "./individu/index.js"
-import definitions from "../../definitions.js"
+import { additionalProps } from "./individu/index"
+import definitions from "../../definitions"
 
 function determinePropsToReplicate(entityTypeName, entityDefinition) {
   const filtered = entityDefinition.filter((key) => {

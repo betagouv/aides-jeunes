@@ -1,11 +1,11 @@
-import Famille from "./properties/famille-properties.js"
-import Individu from "./properties/individu-properties.js"
-import Menage from "./properties/menage-properties.js"
-import Parents from "./properties/parents-properties.js"
-import { Property } from "./properties/property.js"
-import DepcomProperties from "./properties/depcom-properties.js"
-import SimpleProperties from "./properties/others/simple-properties.js"
-import { Step } from "./types/property.js"
+import Famille from "./properties/famille-properties"
+import Individu from "./properties/individu-properties"
+import Menage from "./properties/menage-properties"
+import Parents from "./properties/parents-properties"
+import { Property } from "./properties/property"
+import DepcomProperties from "./properties/depcom-properties"
+import SimpleProperties from "./properties/others/simple-properties"
+import { Step } from "./types/property"
 
 export const ENTITIES_PROPERTIES: {
   [key: string]: { [key: string]: Property }

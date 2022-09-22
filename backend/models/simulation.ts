@@ -1,17 +1,17 @@
 import mongoose from "mongoose"
-import utils from "../lib/utils.js"
-import openfisca from "../lib/openfisca/index.js"
-import benefits from "../../data/all.js"
-import { computeAides } from "../../lib/benefits/compute.js"
-import { generateSituation } from "../../lib/situations.js"
-import { version } from "../../lib/simulation.js"
+import utils from "../lib/utils"
+import openfisca from "../lib/openfisca/index"
+import benefits from "../../data/all"
+import { computeAides } from "../../lib/benefits/compute"
+import { generateSituation } from "../../lib/situations"
+import { version } from "../../lib/simulation"
 import {
   ANSWER_ENTITY_NAMES,
   ANSWER_FIELD_NAMES,
   ANSWER_BASIC_IDS,
-} from "../lib/definitions.js"
+} from "../lib/definitions"
 
-import { MongooseLayout, SimulationModel } from "../types/models.js"
+import { MongooseLayout, SimulationModel } from "../types/models"
 
 const computeBenefits = computeAides.bind(benefits)
 

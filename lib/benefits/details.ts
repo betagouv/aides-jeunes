@@ -1,4 +1,6 @@
+// @ts-ignore
 import currency from "currency.js"
+import { droitEstimeLayout } from "../types/details"
 
 const PERIODICITE_PONCTUELLE = "ponctuelle"
 const PERIODICITE_MENSUELLE = "mensuelle"
@@ -34,16 +36,6 @@ function formatCurrency(value, unit, precision) {
 
 function getDecimalPrecision(droit) {
   return droit.floorAt < 1 ? 2 : 0
-}
-
-interface droitEstimeLayout {
-  id: any
-  label?: any
-  legend: any
-  type: any
-  value: any
-  unit: any
-  icon?: any
 }
 
 function getValueOfBoolean(value) {

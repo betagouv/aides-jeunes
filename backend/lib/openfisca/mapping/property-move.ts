@@ -1,6 +1,6 @@
-import { forEach, pickBy } from "lodash-es"
+import { forEach, pickBy } from "lodash"
 
-import common from "./common.js"
+import common from "./common"
 
 import { propertyLayout } from "../../../types/properties"
 

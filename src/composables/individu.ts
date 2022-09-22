@@ -1,4 +1,4 @@
-import Individu from "@lib/individu.js"
+import Individu from "@lib/individu"
 import { useStore } from "@/stores"
 
 export const useIndividu = (individuId: string) => {

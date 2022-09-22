@@ -15,9 +15,9 @@
           <input
             :id="logementType.value"
             v-model="logementTypesQuestion.selectedValue"
-            type="radio"
-            name="logementType"
             :value="logementType.value"
+            name="logementType"
+            type="radio"
           />
           <label :for="logementType.value">
             {{ $filters.capitalize(logementType.label) }}
@@ -47,9 +47,9 @@
           <input
             :id="response.label"
             v-model="primoAccedantQuestion.selectedValue"
-            type="radio"
             :name="primoAccedantQuestion.label"
             :value="response.value"
+            type="radio"
           />
           <label :for="response.label">
             {{ $filters.capitalize(response.label) }}
@@ -76,9 +76,9 @@
         <input
           :id="response.value"
           v-model="locataireTypesQuestion.selectedValue"
-          type="radio"
           :name="logementTypesQuestion.label"
           :value="response.value"
+          type="radio"
         />
         <label :for="response.value">
           {{ $filters.capitalize(response.label) }}
@@ -87,14 +87,14 @@
       </div>
     </fieldset>
 
-    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
+    <ActionButtons :disableSubmit="!canSubmit(false)" :on-submit="onSubmit" />
   </form>
 </template>
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import Logement from "@lib/logement.js"
-import Individu from "@lib/individu.js"
+import Logement from "@lib/logement"
+import Individu from "@lib/individu"
 import { getAnswer } from "@lib/answers"
 import { useStore } from "@/stores"
 
@@ -241,7 +241,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 fieldset {
   margin-bottom: 2em;
 }

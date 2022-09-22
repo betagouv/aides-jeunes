@@ -6,7 +6,7 @@ import { benefitLayout } from "../../types/benefits"
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
 import { situationsLayout } from "../../../lib/types/situations"
 
-import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
+import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio"
 
 export const additionalBenefitAttributes = {
   css_participation_forfaitaire: {

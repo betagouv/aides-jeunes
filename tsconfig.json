@@ -19,7 +19,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "jest"],
+    "types": ["jest"],
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["dist-server/lib/*"],

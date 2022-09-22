@@ -1,3 +1,3 @@
 "use strict"
 
-export default {}
+module.exports = {}

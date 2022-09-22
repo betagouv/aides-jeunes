@@ -1,17 +1,17 @@
 import dayjs from "dayjs"
-import { isNaN, forEach, isUndefined, cloneDeep } from "lodash-es"
+import { isNaN, forEach, isUndefined, cloneDeep } from "lodash"
 
-import { formatDate } from "../utils.js"
-import individuRessource from "./ressources.js"
-import pastResourcesProxy from "./past-resources-proxy.js"
-import { estActif } from "../../../../../lib/activite.js"
+import { formatDate } from "../utils"
+import individuRessource from "./ressources"
+import pastResourcesProxy from "./past-resources-proxy"
+import { estActif } from "../../../../../lib/activite"
 
 import {
   computeDistanceCommunes,
   findCommuneByInseeCode,
-} from "../../../mes-aides/distance.js"
+} from "../../../mes-aides/distance"
 
-import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
+import { individuGeneratorLayout } from "../../../../../lib/types/individu"
 
 const individuSchema: individuGeneratorLayout = {
   activite: {

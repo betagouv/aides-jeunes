@@ -1,5 +1,6 @@
+// @ts-ignore
 import aidesVelo from "aides-velo"
-import { generator } from "../dates.js"
+import { generator } from "../dates"
 
 const veloTypes = {
   velo_mecanique: "mécanique simple",
@@ -30,7 +31,7 @@ export function computeAidesVeloBenefits(
   const periods = generator(situation.dateDeValeur)
 
   const eligibleBenefitsMap = {}
-  for (let type of situation.demandeur._interetsAidesVelo) {
+  for (const type of situation.demandeur._interetsAidesVelo) {
     const inputs = {
       "vélo . type": veloTypes[type],
       "localisation . code insee": situation.menage.depcom,
@@ -44,6 +45,7 @@ export function computeAidesVeloBenefits(
     Object.assign(
       eligibleBenefitsMap,
       aidesVelo(inputs).reduce((a, v) => {
+        // @ts-ignore
         a[v.id] = {
           ...v,
           montant: v.amount,

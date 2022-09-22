@@ -1,4 +1,4 @@
-import mattermost from "./mattermost.js"
+import mattermost from "./mattermost"
 
 function parseCurrentDate() {
   const isoDateTime = new Date(Date.now())

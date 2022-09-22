@@ -103,7 +103,7 @@ export const FSL_BY_CODE = {
     resources: {
       link: "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
       instructions:
-        "https://www.calvados.fr/contents/fiche/fiches-aide--services/aides-financieres-pour-le-mainti.html",
+        "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
     },
   },
   D15: {

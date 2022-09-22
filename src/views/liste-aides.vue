@@ -33,7 +33,7 @@
               hash: `#${institution.id}`,
             }"
           >
-            {{ institution.label }} {{ institution.type }}
+            {{ institution.label }}
           </router-link>
         </h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
@@ -58,12 +58,14 @@ import Commune from "@/lib/commune"
 
 const isGeographicallyIncluded = function (
   commune: any,
-  institution: typeof Institution,
-  epciInfoParams?: any
+  institution: typeof Institution
 ): boolean {
   const typeInstitution = institution.type
   const idInstitution = institution.code_insee || institution.code_siren
 
+  if (!commune || !idInstitution) {
+    return false
+  }
   if (typeInstitution == "national") {
     return true
   } else if (typeInstitution == "region") {
@@ -73,16 +75,30 @@ const isGeographicallyIncluded = function (
     const codeNiveauInstitution = commune[typeInstitution]
     return idInstitution == codeNiveauInstitution
   } else if (typeInstitution == "epci") {
-    const epciInfo =
-      epciInfoParams || epcis.find((element) => element.code === idInstitution)
+    const epciInfo = epcis.find((element) => element.code === idInstitution)
     if (epciInfo === undefined) {
       return false
     }
-    return Boolean(epciInfo.membres.find((c) => c.code === commune.code))
+    if (epciInfo.membres.find((c) => c.code === commune.code)) {
+      return true
+    }
+    return false
   } else if (typeInstitution == "commune") {
-    // TODO: check if it's the same commune
+    // Commune code should be the same as the institution EPCI member founded with its siren code
+    const institutionEpci = epcis.find((element) =>
+      element.membres.find((membre) => {
+        if (membre.siren === institution.code_siren) {
+          return true
+        }
+      })
+    )
+    const InstitutionMatchCommune = institutionEpci.membres.some(
+      (membre) =>
+        institution.code_siren == membre.siren && membre.code == commune.code
+    )
+    return InstitutionMatchCommune
   } else if (typeInstitution == "caf") {
-    // TODO: check if it's the same commune
+    return institution.department == commune.departement
   } else {
     return false
   }
@@ -169,14 +185,15 @@ export default {
       })
     },
     async computeDataSelected(): Promise<void> {
-      if (!this.zipCode) {
+      if (this.zipCode.match(/^[0-9]{5}$/)) {
+        const res = await Commune.get(this.zipCode)
+        this.selectedCommune = res[0]
+        this.selectedDepartement = this.selectedCommune?.departement
+        this.selectedRegion = this.selectedCommune?.region
+        this.benefitsIncluded = this.checkBenefitsIncluded()
+      } else {
         this.selectedCommune = null
       }
-      const res = await Commune.get(this.zipCode)
-      this.selectedCommune = res[0]
-      this.selectedDepartement = this.selectedCommune?.departement
-      this.selectedRegion = this.selectedCommune?.region
-      this.benefitsIncluded = this.checkBenefitsIncluded()
     },
   },
 }

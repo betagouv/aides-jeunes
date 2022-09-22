@@ -247,19 +247,16 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = true
     },
     answer(answer: Answer) {
-      const simulationAnswerValue = this.getSimulationAnswerValue(answer)
-      if (!isEqual(simulationAnswerValue, answer.value)) {
-        this.setDirty()
-        this.updateAnswerSimulation(answer)
-      }
-    },
-    getSimulationAnswerValue(answer: Answer) {
-      return getAnswer(
+      const simulationAnswerValue = getAnswer(
         this.simulation.answers.all,
         answer.entityName,
         answer.fieldName,
         answer.id
       )
+      if (!isEqual(simulationAnswerValue, answer.value)) {
+        this.setDirty()
+        this.updateAnswerSimulation(answer)
+      }
     },
     updateAnswerSimulation(answer: Answer) {
       this.simulation.answers = {
@@ -365,7 +362,7 @@ export const useStore = defineStore("store", {
         ...this.simulation,
         enfants,
         answers: {
-          all: storeAnswer(this.simulation.answers.all, answer, false),
+          all: storeAnswer(this.simulation.answers.all, answer, false, []),
           current: storeAnswer(
             currentAnswers,
             answer,

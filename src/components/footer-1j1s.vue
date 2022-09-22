@@ -2,11 +2,11 @@
   <footer role="contentInfo" class="aj-1j1s-footer">
     <div class="container">
       <div class="aj-1j1s-footer-logo-container">
-        <img class="rf" alt="" src="@/../public/img/logo_rf.svg" />
+        <img class="rf" alt="" src="/img/logo_rf.svg" />
         <img
           class="fr"
           alt=""
-          src="@/../public/img/logo1j1s-france-relance.svg"
+          src="/img/logo1j1s-france-relance.svg"
         />
       </div>
       <div

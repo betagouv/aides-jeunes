@@ -52,7 +52,7 @@
             <img
               class="rf"
               alt="Accueil 1 jeune 1 solution"
-              src="@/../public/img/logo_rf.svg"
+              src="/img/logo_rf.svg"
             />
           </a>
           <a
@@ -62,7 +62,7 @@
             <img
               class="fr"
               alt="Accueil 1 jeune 1 solution"
-              src="@/../public/img/logo1j1s-france-relance.svg"
+              src="/img/logo1j1s-france-relance.svg"
             />
           </a>
         </div>

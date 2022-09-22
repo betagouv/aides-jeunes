@@ -20,7 +20,7 @@ export default defineConfig(async ({ command, mode }) => {
     VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
     VITE_CONTEXT_NAME: "1jeune1solution",
     VITE_BASE_URL: baseURL,
-    VITE_CONTEXT: process.env.CONTEXT,
+    VITE_CONTEXT: process.env.NODE_ENV,
     VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
     VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
     VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,

@@ -2,21 +2,8 @@ label: aide locale au BAFA pour une session de formation générale
 institution: caf_val_de_marne
 description: L'aide au BAFA pour une session de formation générale est une aide
   locale mise à disposition par la CAF du Val-de-Marne pour vous aider à
-  financer votre session en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Vous engagez à achever votre formation dans les délais prévus par la
-    réglementation (30 mois).
-link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/BAFA%201%20Lettre%20d%27engagement%20-RAS%2001.09.2019.pdf
-instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
+  financer votre session en complément de l'aide nationale apportée par la CAF.
 prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-legend: ""
-montant: 200
-interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:
@@ -31,3 +18,15 @@ conditions_generales:
     excludes:
       - regime_agricole
 profils: []
+conditions:
+  - Vous engagez à achever votre formation dans les délais prévus par la
+    réglementation (30 mois).
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+legend: ""
+montant: 600
+link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/vie-personnelle/l-aide-au-bafa
+form: https://www.caf.fr/sites/default/files/medias/941/Partenaires%20locaux/Offre%20de%20service%20familiale%20et%20sociale/Aides%20financi%C3%A8res/BAFA%201%20Lettre%20d'engagement%20-RAS%2001.09.2022-maj.docx
+instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/vie-personnelle/l-aide-au-bafa

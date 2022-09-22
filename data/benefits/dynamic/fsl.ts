@@ -233,7 +233,7 @@ export const FSL_BY_CODE = {
     label: "du département d’Isère",
     resources: {
       link: "https://www.isere.fr/aides-au-logement",
-      form: "https://www.isere.fr/sites/default/files/demande-directe.pdf",
+      instructions: "https://www.isere.fr/aides-au-logement",
     },
   },
   D40: {

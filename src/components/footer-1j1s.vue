@@ -3,11 +3,7 @@
     <div class="container">
       <div class="aj-1j1s-footer-logo-container">
         <img class="rf" alt="" src="/img/logo_rf.svg" />
-        <img
-          class="fr"
-          alt=""
-          src="/img/logo1j1s-france-relance.svg"
-        />
+        <img class="fr" alt="" src="/img/logo1j1s-france-relance.svg" />
       </div>
       <div
         v-for="(item, index) in menu"

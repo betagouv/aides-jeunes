@@ -27,7 +27,7 @@
     </div>
 
     <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback />
+      <Feedback v-if="droit" />
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@ import legacy from "@vitejs/plugin-legacy"
 import { createHtmlPlugin } from "vite-plugin-html"
 
 import path from "path"
-import { defineConfig } from "vite"
+import { defineConfig, loadEnv } from "vite"
 const __dirname = new URL(".", import.meta.url).pathname
 import rollupYaml from "@rollup/plugin-yaml"
 
@@ -11,23 +11,24 @@ import config from "./dist-server/backend/config/index.js"
 import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-const viteEnvironment = {
-  VITE_BENEFIT_COUNT: benefits.all.filter((benefit) => !benefit.private).length,
-  VITE_MATOMO_ID: matomo.id,
-  VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
-  VITE_CONTEXT_NAME: "1jeune1solution",
-  VITE_BASE_URL: baseURL,
-  VITE_CONTEXT: process.env.CONTEXT,
-  VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
-  VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
-  VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
-  VITE_STATS_URL: statistics?.url ? statistics.url : "",
-  VITE_NETLIFY_PR: process.env.BRANCH,
-}
-viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
-viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
-
 export default defineConfig(async ({ command, mode }) => {
+  process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""))
+  const viteEnvironment = {
+    VITE_BENEFIT_COUNT: benefits.all.filter((benefit) => !benefit.private)
+      .length,
+    VITE_MATOMO_ID: matomo.id,
+    VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
+    VITE_CONTEXT_NAME: "1jeune1solution",
+    VITE_BASE_URL: baseURL,
+    VITE_CONTEXT: process.env.CONTEXT,
+    VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
+    VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
+    VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
+    VITE_STATS_URL: statistics?.url ? statistics.url : "",
+    VITE_NETLIFY_PR: process.env.BRANCH,
+  }
+  viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
+  viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
   return {
     server: {
       port: 8080,

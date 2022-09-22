@@ -1,4 +1,4 @@
-import { additionalBenefitAttributes as dynamicBenefitAttributes } from "./benefits/additional-attributes/index.js"
+import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { build as buildFSL } from "./benefits/dynamic/fsl.js"
 import { benefitVeloLayout } from "./types/benefits"
@@ -57,10 +57,12 @@ function generateFullBenefitData(benefitCollection, institutions) {
 
   return benefitCollection
 }
+
 const mergeBenefits = function (
   staticBenefitCollection,
-  institutions,
-  options
+  activeDynamicBenefitGenerators,
+  dynamicBenefitAttributes,
+  institutions
 ) {
   const benefitCollection = [
     ...staticBenefitCollection.benefits_javascript.items,
@@ -74,10 +76,10 @@ const mergeBenefits = function (
     benefit.source = "openfisca"
   })
 
-  if (options.fsl === true) {
+  if (activeDynamicBenefitGenerators.fsl === true) {
     benefitCollection.push(...buildFSL(institutions))
   }
-  if (options.aidesVelo === true) {
+  if (activeDynamicBenefitGenerators.aidesVelo === true) {
     const aidesVeloBenefits = aidesVeloGenerator(Object.values(institutions))
     aidesVeloBenefits.map((benefit: benefitVeloLayout) => {
       benefit.source = "aides-velo"
@@ -85,10 +87,7 @@ const mergeBenefits = function (
     benefitCollection.push(...aidesVeloBenefits)
   }
   benefitCollection.map((benefit) => {
-    return Object.assign(
-      benefit,
-      options.dynamicBenefitAttributes[benefit.slug]
-    )
+    return Object.assign(benefit, dynamicBenefitAttributes[benefit.slug])
   })
 
   return benefitCollection
@@ -100,14 +99,15 @@ const addRelationToData = function (institutions, benefitCollection) {
     benefit.institution = institution
   })
 }
+
 export function generate(
   staticBenefitCollection,
-  options = {
+  activeDynamicBenefitGenerators = {
     // permet de déterminer les infos à générer pour les tests unitaires
     fsl: true,
     aidesVelo: true,
-    dynamicBenefitAttributes: dynamicBenefitAttributes,
-  }
+  },
+  dynamicBenefitAttributes = additionalBenefitAttributes
 ) {
   const institutions = generateFullInstitutionData(
     staticBenefitCollection.institutions.items
@@ -115,8 +115,9 @@ export function generate(
 
   let benefitCollection = mergeBenefits(
     staticBenefitCollection,
-    institutions,
-    options
+    activeDynamicBenefitGenerators,
+    dynamicBenefitAttributes,
+    institutions
   )
 
   benefitCollection = generateFullBenefitData(benefitCollection, institutions)

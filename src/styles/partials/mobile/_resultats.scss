@@ -62,7 +62,13 @@ html {
         flex-basis: 100%;
       }
       .aj-feedback-buttons {
-        height: 11rem;
+        height: 100%;
+        .button {
+          padding: 0.8rem;
+        }
+        :nth-child(2) {
+          margin-top: 1rem;
+        }
       }
     }
 

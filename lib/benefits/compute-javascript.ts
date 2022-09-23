@@ -5,7 +5,6 @@ import Scolarite from "../scolarite"
 
 import { situationsLayout } from "../types/situations"
 import { ConditionsLayout } from "../types/benefits"
-import { INSTITUTION_LIST, remapInstitutionNameToKey } from "../utils"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -84,6 +83,7 @@ const COMMUNE_PARAMETERS = {
   regions: "_region",
   departements: "_departement",
   communes: "depcom",
+  epcis: "_epci",
 }
 
 export function testGeographicalEligibility(
@@ -142,7 +142,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
   },
   attached_to_institution: {
     test: (
-      condition,
+      _,
       {
         situation,
       }: {
@@ -151,23 +151,25 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       benefit
     ): boolean => {
       const institution = benefit.institution
-      let isExcluded = false
-      if (condition.excludes && condition.excludes.length > 0) {
-        const mappedExcludes = remapInstitutionNameToKey(condition.excludes)
-        isExcluded = mappedExcludes.some(
-          (item: { codes: string[]; key: string }) => {
-            return item.codes.includes(situation.menage[item.key])
-          }
-        )
+
+      switch (institution.type) {
+        case "region":
+          return situation.menage._region === institution.code_insee
+        case "departement":
+          return situation.menage._departement === institution.code_insee
+        case "epci":
+          return situation.menage._epci === institution.code_siren
+        case "commune":
+          return situation.menage.depcom === institution.code_insee
       }
-      const institutionToTest = INSTITUTION_LIST.find(
-        (item) => institution.type === item.name
-      )
-      return (
-        institutionToTest &&
-        situation.menage[institutionToTest.key] ===
-        institution[institutionToTest.code] &&
-        !isExcluded
+      return false
+    },
+  },
+  invert: {
+    test: (condition, props) => {
+      return !CONDITION_STATEGY[condition.value.type].test(
+        condition.value,
+        props
       )
     },
   },
@@ -178,6 +180,9 @@ export const CONDITION_STATEGY: ConditionsLayout = {
     test: testGeographicalEligibility,
   },
   communes: {
+    test: testGeographicalEligibility,
+  },
+  epcis: {
     test: testGeographicalEligibility,
   },
   annee_etude: {

@@ -39,6 +39,7 @@ describe("computeAides", function () {
       menage: {
         depcom: "64201",
         _departement: "64",
+        _epci: "244900015",
         _region: "75",
       },
     }
@@ -133,6 +134,18 @@ describe("computeAides", function () {
         {
           type: "regions",
           values: ["75"],
+        },
+        { situation }
+      )
+    ).toBe(true)
+  })
+
+  it("verify the result when a commune is in benefit's EPCI", function () {
+    expect(
+      testGeographicalEligibility(
+        {
+          type: "epcis",
+          values: ["244900015"],
         },
         { situation }
       )

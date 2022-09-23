@@ -70,22 +70,3 @@ export function displayValue(value, question, component) {
       return displayYesNoValue(value)
   }
 }
-
-export const INSTITUTION_LIST = [
-  { name: "region", key: "_region", code: "code_insee" },
-  {
-    name: "departement",
-    key: "_departement",
-    code: "code_insee",
-  },
-  { name: "epci", key: "_epci", code: "code_siren" },
-  { name: "commune", key: "depcom", code: "code_insee" },
-]
-export const remapInstitutionNameToKey = function (institution) {
-  return Object.entries(institution).map(([type, codes]) => {
-    const excludedInstitution = INSTITUTION_LIST.find(
-      (item) => type === item.name
-    )
-    return { key: excludedInstitution.key, codes }
-  })
-}

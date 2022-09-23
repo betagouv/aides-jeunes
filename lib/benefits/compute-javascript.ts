@@ -152,7 +152,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
     ): boolean => {
       const institution = benefit.institution
       let isExcluded = false
-      if (condition.excludes) {
+      if (condition.excludes && condition.excludes.length > 0) {
         const mappedExcludes = remapInstitutionNameToKey(condition.excludes)
         isExcluded = mappedExcludes.some(
           (item: { codes: string[]; key: string }) => {

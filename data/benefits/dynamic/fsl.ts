@@ -313,9 +313,9 @@ export const FSL_BY_CODE = {
   D59: {
     label: "du département du Nord",
     resources: {
-      link: "https://lenord.fr/jcms/preprd1_145072/le-fonds-de-solidarite-pour-le-logement",
+      link: "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
       instructions:
-        "https://lenord.fr/jcms/prd1_334245/aide-au-maintien-dans-le-logement?thematique=&typePublic=&motsCles=maintien",
+        "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
     },
   },
   M200093201: {

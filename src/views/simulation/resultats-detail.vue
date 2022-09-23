@@ -10,7 +10,7 @@
     <BackButton
       class="aj-droit-details-back-button small"
       data-testid="back-button"
-      @click="goBack($event)"
+      @click="goBack"
       >Retour aux résultats</BackButton
     >
 
@@ -43,7 +43,6 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"
 
 export default {
-  name: "SimulationResultatsDetail",
   components: {
     BackButton,
     DroitsDetails,
@@ -92,13 +91,8 @@ export default {
     }
   },
   methods: {
-    goBack(event) {
-      event.preventDefault()
-      if (window?.history.length > 2) {
-        history.back()
-      } else {
-        this.$router.push("/simulation/resultats")
-      }
+    goBack() {
+      this.$router.push("/simulation/resultats")
     },
   },
 }

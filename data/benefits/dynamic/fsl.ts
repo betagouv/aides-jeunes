@@ -525,15 +525,10 @@ function formatBenefit(customizationBenefit, institution) {
     institution,
     source: "javascript",
     conditions_generales: [
-      (() => {
-        const attachementParams: { type: string; excludes?: object } = {
-          type: "attached_to_institution",
-        }
-        if (customizationBenefit.excludes) {
-          attachementParams.excludes = customizationBenefit.excludes
-        }
-        return attachementParams
-      })(),
+      {
+        type: "attached_to_institution",
+        excludes: customizationBenefit.excludes
+      },
       {
         type: "statut_occupation_logement",
         excludes: [

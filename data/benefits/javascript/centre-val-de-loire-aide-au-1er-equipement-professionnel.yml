@@ -4,10 +4,7 @@ description: L'aide au premier équipement professionnel est une aide financièr
   qui vous est versée si vous êtes lycéen·ne. Elle vous aidera à acheter
   l’équipement professionnel indispensable à votre activité (outillage,
   vêtements ou équipements spéciaux).
-conditions:
-  - Être lycéen·ne·s en 1ère année de bac pro dont la formation professionnelle
-    nécessite l’achat d’équipements, ou bien être en 2ème année après avoir
-    suivi un autre cursus.
+prefix: l’
 conditions_generales:
   - type: regions
     values:
@@ -15,10 +12,14 @@ conditions_generales:
 profils:
   - type: lyceen
     conditions: []
-link: https://www.yeps.fr/articles/947C9784-CA1E-4CA1-870B-90406FC60EAF
-instructions: https://www.yeps.fr/articles/947C9784-CA1E-4CA1-870B-90406FC60EAF
-prefix: l’
+conditions:
+  - Être lycéen·ne en 1ère année de bac pro dont la formation professionnelle
+    nécessite l’achat d’équipements, ou bien être en 2ème année après avoir
+    suivi un autre cursus.
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 50
+link: https://www.yeps.fr/conseil/aide-au-1er-equipement-professionnel/
+teleservice: ""
+instructions: https://www.yeps.fr/conseil/aide-au-1er-equipement-professionnel/

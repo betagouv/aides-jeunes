@@ -49,6 +49,15 @@ html {
         border-radius: 0;
         flex-basis: 100%;
       }
+      .aj-feedback-buttons {
+        height: 100%;
+        .button {
+          padding: 0.8rem;
+        }
+        :nth-child(2) {
+          margin-top: 1rem;
+        }
+      }
 
       .aj-find-contact-box {
         border-radius: 0;

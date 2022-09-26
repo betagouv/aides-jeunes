@@ -14,12 +14,26 @@
     <h3>Prévisualisation</h3>
 
     <div id="dest"></div>
+
+    <h3>Customisation de l'iframe</h3>
+    <p
+      >Si vous souhaitez intégrer cette iframe mais que vous souhaitez que nous
+      y apportions des modifications spécifiques, vous pouvez contacter l'équipe
+      directement à cette adresse
+      <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a
+      >.</p
+    >
   </article>
 </template>
 
 <script>
 export default {
   name: "IFrame",
+  data() {
+    return {
+      contactEmail: process.env.VITE_CONTACT_EMAIL,
+    }
+  },
   computed: {
     scriptPath() {
       return "/documents/iframe-integration.js"

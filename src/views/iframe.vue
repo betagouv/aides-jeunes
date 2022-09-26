@@ -21,7 +21,7 @@
       y apportions des modifications spécifiques, vous pouvez contacter l'équipe
       directement à cette adresse
       <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a
-      >.</p
+      >.<br />Merci !</p
     >
   </article>
 </template>

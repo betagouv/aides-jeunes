@@ -1,7 +1,11 @@
 import Benefits from "../data/all.js"
 import axios from "axios"
 import fs from "fs"
+import https from "https"
 import Bluebird from "bluebird"
+
+// Avoid some errors due to bad tls management
+const httpsAgent = new https.Agent({ rejectUnauthorized: false })
 
 async function checkURL(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
@@ -31,6 +35,12 @@ async function getHTTPStatus(link) {
   try {
     const res = await axios.get(link, {
       timeout: 15000,
+      withCredentials: true,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0",
+      },
+      httpsAgent,
     })
     return res.status
   } catch (err) {

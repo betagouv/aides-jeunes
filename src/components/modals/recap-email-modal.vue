@@ -139,5 +139,6 @@ export default {
   display: flex;
   align-items: flex-start;
   padding: 4em;
+  overflow-y: scroll;
 }
 </style>

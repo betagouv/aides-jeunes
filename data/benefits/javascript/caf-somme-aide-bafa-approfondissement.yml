@@ -2,12 +2,9 @@ label: aide au BAFA pour une session de formation d'approfondissement
 institution: caf_somme
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de la Somme pour vous aider à financer votre session
-  d’approfondissement ou de qualification en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Suivre votre formation dans un organisme conventionné (Céméa de Picardie,
-    Fédération Départementale Familles Rurales de la Somme, foyers ruraux, UFCV,
-    scouts et guides de France).
+  d’approfondissement ou de qualification en complément de l'aide nationale
+  apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -16,13 +13,16 @@ conditions_generales:
     values:
       - "80"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-form: https://www.caf.fr/sites/default/files/caf/801/PDF/Bafa%20Cerfa%2011381%2002.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-prefix: l’
+conditions:
+  - Suivre votre formation dans un organisme conventionné (Céméa de Picardie,
+    Fédération Départementale Familles Rurales de la Somme, foyers ruraux, UFCV,
+    scouts et guides de France).
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 200
-interestFlag: _interetBafa
+link: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/vie-professionnelle/l-aide-au-bafa#:~:text=Votre%20Caf%20peut%20vous%20aider,tr%C3%A8s%20recherch%C3%A9e%20dans%20la%20Somme.&text=La%20Caf%20accorde%20%C3%A0%20tous,d%C3%A9duite%20de%20la%20facture%20totale.
+form: https://www.caf.fr/sites/default/files/medias/801/Offres%20de%20service/vie%20professionnelle/Bafa%20Cerfa%2011381%2002.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-la-somme/offre-de-service/vie-professionnelle/l-aide-au-bafa#:~:text=Votre%20Caf%20peut%20vous%20aider,tr%C3%A8s%20recherch%C3%A9e%20dans%20la%20Somme.&text=La%20Caf%20accorde%20%C3%A0%20tous,d%C3%A9duite%20de%20la%20facture%20totale.

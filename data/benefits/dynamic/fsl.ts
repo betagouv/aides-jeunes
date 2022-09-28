@@ -23,9 +23,9 @@ export const FSL_BY_CODE = {
   D03: {
     label: "du département de l’Allier",
     resources: {
-      link: "http://www.caf.fr/allocataires/caf-de-l-allier/offre-de-service/logement-et-cadre-de-vie/le-fonds-de-solidarite-pour-le-logement-fsl",
+      link: "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
       instructions:
-        "http://www.allier.gouv.fr/l-acces-au-logement-pour-tous-a402.html",
+        "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
     },
   },
   D04: {

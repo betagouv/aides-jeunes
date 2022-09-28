@@ -300,7 +300,7 @@ export const FSL_BY_CODE = {
       link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
       form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/Doss/22_morbihan_Fonds-Solidarite-Logement_2022.pdf",
       instructions:
-        "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl#:~:text=Aide%20au%20maintien%20dans%20le,(CMS)%20dont%20vous%20d%C3%A9pendez.",
+        "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
     },
   },
   D57: {

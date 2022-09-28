@@ -10,7 +10,9 @@ let jamstack
 if (existsSync(configFile)) {
   jamstack = jamstackLoader.get(configFile)
 } else {
-  jamstack = jamstackLoader.get(path.join(__dirname, "../../contribuer/public/admin/config.yml"))
+  jamstack = jamstackLoader.get(
+    path.join(__dirname, "../../contribuer/public/admin/config.yml")
+  )
 }
 
 export default base.generate(jamstack)

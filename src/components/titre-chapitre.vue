@@ -10,7 +10,7 @@
       </div>
     </div>
     <SendRecapEmailButton
-      v-if="DroitsList"
+      v-if="shouldDisplayResults && hasDroits"
       class="recap-email-button outline"
       text="Recevoir les résultats par email"
     ></SendRecapEmailButton>
@@ -22,11 +22,12 @@ import Chapters from "@lib/chapters"
 import MenuButton from "@/components/buttons/menu-button.vue"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 import { useStore } from "@/stores"
-import DroitsList from "@/components/droits-list.vue"
+import ResultatsMixin from "@/mixins/resultats"
 
 export default {
   name: "TitreChapitre",
   components: { SendRecapEmailButton, MenuButton },
+  mixins: [ResultatsMixin],
   setup() {
     return {
       store: useStore(),

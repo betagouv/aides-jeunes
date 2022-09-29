@@ -5,6 +5,9 @@ export default {
     droits() {
       return this.resultats?.droitsEligibles
     },
+    hasDroits() {
+      return this.droits.length > 0
+    },
     resultatsId() {
       return this.resultats?._id || "???"
     },

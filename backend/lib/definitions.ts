@@ -33,6 +33,8 @@ const menage = [
   "depcom",
   "loyer",
   "statut_occupation_logement",
+  "logement_type",
+  "primo_accedant",
 ]
 
 const parents = []

@@ -40,4 +40,30 @@ export default {
       { value: -12, label: "Non" },
     ],
   }),
+  statut_occupation_logement: new EnumProperty({
+    question: "Quel est votre statut d'occupation du logement ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Locataire",
+        value: "locataire",
+        hint: "figurant sur le bail, en foyer ou en résidence",
+      },
+      {
+        label: "Propriétaire",
+        value: "proprietaire",
+        hint: "ou en location-accession",
+      },
+      {
+        label: "Hébergé·e",
+        value: "heberge",
+        hint: "chez vos parents, chez un particulier ou en logement de fonction",
+      },
+      {
+        label: "Sans domicile stable",
+        value: "sansDomicile",
+        hint: "ou domiciliation administrative",
+      },
+    ],
+  }),
 }

@@ -329,11 +329,27 @@ function housingBlock() {
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
+          new Step({
+            entity: "menage",
+            chapter: "logement",
+            variable: "logement_type",
+          }),
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({
             entity: "famille",
             variable: "proprietaire_proche_famille",
+          }),
+        ],
+      },
+      {
+        isActive: (subject) =>
+          subject.statut_occupation_logement === "proprietaire",
+        steps: [
+          new Step({
+            entity: "menage",
+            chapter: "logement",
+            variable: "primo_accedant",
           }),
         ],
       },

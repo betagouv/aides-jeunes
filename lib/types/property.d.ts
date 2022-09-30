@@ -18,7 +18,8 @@ export interface Step {
 export interface EnumItemProperty {
   label: string
   value: boolean | number | string
-  isRelevant?: (propertyData: PropertyData) => boolean
+  isRelevant?: (propertyData: PropertyData) => boolean,
+  hint?: string
 }
 
 export interface PropertyConstruct {
@@ -51,4 +52,5 @@ export interface RecapPropertyLine {
   labelClass?: string
   hideEdit?: boolean
   path?: string
+  hint?: string
 }

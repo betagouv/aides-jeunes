@@ -23,6 +23,7 @@
           />
           <label :for="`${item.value}`">
             {{ item.label }}
+            <span v-if="item.hint" class="help">{{ item.hint }}</span>
           </label>
         </div>
       </div>

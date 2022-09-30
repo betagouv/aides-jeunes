@@ -120,8 +120,12 @@ const router = createRouter({
           ],
         },
         {
-          path: "menage/statut_occupation_logement",
-          component: () => import("./views/simulation/logement.vue"),
+          path: "menage/logement_type",
+          component: () => import("./views/simulation/logement-type.vue"),
+        },
+        {
+          path: "menage/primo_accedant",
+          component: () => import("./views/simulation/primo-accedant.vue"),
         },
         {
           path: "menage",

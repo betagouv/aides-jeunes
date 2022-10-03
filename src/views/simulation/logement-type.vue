@@ -34,7 +34,6 @@
   </div>
 </template>
 
-
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
 import Logement from "@lib/logement"
@@ -114,10 +113,9 @@ export default {
   },
 }
 </script>
-  
-  <style scoped lang="scss">
+
+<style scoped lang="scss">
 fieldset {
   margin-bottom: 2em;
 }
 </style>
-  

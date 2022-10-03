@@ -281,7 +281,7 @@ export default {
       return `${
         individu._role === "demandeur"
           ? "Êtes-vous enceint·e ?"
-          : "Est-ce que votre partenaire est enceint·e ?
+          : "Est-ce que votre partenaire est enceint·e ?"
       }`
     },
     questionType: "enum",

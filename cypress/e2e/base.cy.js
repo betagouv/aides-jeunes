@@ -25,7 +25,7 @@ context("Full simulation", () => {
     navigate.goRecap()
     navigate.next()
     logement.fill_logement("sansDomicile")
-    logement.fill__nombreMoisEntreeLogement(-12)
+    logement.fill_nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
     revenu.fill_ressources_types([
       "salaire_net",

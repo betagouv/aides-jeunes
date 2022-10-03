@@ -97,7 +97,6 @@ export default {
     },
     onSubmit() {
       if (this.canSubmit(true)) {
-        console.log("onSubmit logement type")
         this.store.answer({
           entityName: "menage",
           fieldName: "statut_occupation_logement",

@@ -7,12 +7,20 @@ const fill_logement = (logement, type) => {
   }
 }
 
-const fill__nombreMoisEntreeLogement = (nombre) => {
+const fill_nombreMoisEntreeLogement = (nombre) => {
   fillRadio("_nombreMoisEntreeLogement", nombre)
+}
+
+const fill_typeLogement = (type) => {
+  fillRadio("logement_type", type)
 }
 
 const fill_participation_frais = (participe) => {
   fillRadio("participation_frais", participe)
+}
+
+const fill_demenagement_prevu = (demangementPrevu) => {
+  fillRadio("_nombreMoisEntreeLogement", demangementPrevu)
 }
 
 const fill_habite_chez_parents = (situation) => {
@@ -57,7 +65,8 @@ const fill__en_france = (inFrance) => {
 
 export default {
   fill_logement,
-  fill__nombreMoisEntreeLogement,
+  fill_nombreMoisEntreeLogement,
+  fill_typeLogement,
   fill_depcom,
   fill_parisien,
   fill_coloc,
@@ -66,5 +75,6 @@ export default {
   fill_loyer,
   fill__en_france,
   fill_participation_frais,
+  fill_demenagement_prevu,
   fill_habite_chez_parents,
 }

@@ -25,8 +25,9 @@ context("Full simulation", () => {
       1
     )
 
-    logement.fill_logement("locataire", "nonmeuble")
-    logement.fill__nombreMoisEntreeLogement(12)
+    logement.fill_logement("locataire")
+    logement.fill_nombreMoisEntreeLogement(-12)
+    logement.fill_typeLogement("nonmeuble")
     logement.fill_coloc(false)
     logement.fill_logement_chambre(false)
     logement.fill_proprietaire_proche_famille(false)

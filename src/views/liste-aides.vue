@@ -66,15 +66,15 @@ const isGeographicallyIncluded = function (
   if (!commune || !idInstitution) {
     return false
   }
-  if (typeInstitution == "national") {
+  if (typeInstitution === "national") {
     return true
-  } else if (typeInstitution == "region") {
+  } else if (typeInstitution === "region") {
     const codeNiveauInstitution = commune[typeInstitution]
     return idInstitution == codeNiveauInstitution
-  } else if (typeInstitution == "departement") {
+  } else if (typeInstitution === "departement") {
     const codeNiveauInstitution = commune[typeInstitution]
     return idInstitution == codeNiveauInstitution
-  } else if (typeInstitution == "epci") {
+  } else if (typeInstitution === "epci") {
     const epciInfo = epcis.find((element) => element.code === idInstitution)
     if (epciInfo === undefined) {
       return false
@@ -83,7 +83,7 @@ const isGeographicallyIncluded = function (
       return true
     }
     return false
-  } else if (typeInstitution == "commune") {
+  } else if (typeInstitution === "commune") {
     // Commune code should be the same as the institution EPCI member founded with its siren code
     const institutionEpci = epcis.find((element) =>
       element.membres.find((membre) => {
@@ -97,7 +97,7 @@ const isGeographicallyIncluded = function (
         institution.code_siren == membre.siren && membre.code == commune.code
     )
     return InstitutionMatchCommune
-  } else if (typeInstitution == "caf") {
+  } else if (typeInstitution === "caf") {
     return institution.department == commune.departement
   } else {
     return false

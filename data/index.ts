@@ -21,7 +21,7 @@ function transformInstitutions(collection: any[]) {
       code_insee: data.code_insee,
       label: data.name,
       imgSrc: data.imgSrc,
-      department: data.department ? data.department : undefined,
+      department: data.department,
       benefitsIds: [],
       type: data.type,
       top: data.top,

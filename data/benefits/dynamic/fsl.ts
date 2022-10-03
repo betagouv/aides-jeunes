@@ -298,9 +298,9 @@ export const FSL_BY_CODE = {
     label: "du département du Morbihan",
     resources: {
       link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-      form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/20_morbihan_5_H08_FSL_maintien_logement.pdf",
+      form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/Doss/22_morbihan_Fonds-Solidarite-Logement_2022.pdf",
       instructions:
-        "https://www.morbihan.fr/les-services/aides-departementales/toutes-nos-aides/toutes-nos-aides/?tx_cg56aidesdep_guidedesaides[selectMotsCles]=fsl&tx_cg56aidesdep_guidedesaides[action]=resultsNoCache&tx_cg56aidesdep_guidedesaides[controller]=Aide#hautDePage",
+        "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
     },
   },
   D57: {

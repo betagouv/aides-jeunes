@@ -12,8 +12,9 @@ profils:
     conditions: []
 conditions:
   - Étudier dans un établissement faisant partie du Consortium régional (<a
-    target="_blank" title="Liste des établissements - Nouvelle fenêtre" rel="noopener"
-    href="https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/erasmus-stage-public-post-bac-2020-2022">voir
+    target="_blank" title="Liste des établissements - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-public-post-bac-20222023?recherche=Erasmus%20%20Stage">voir
     liste</a>).
   - Faire valider son dossier par l'établissement avant la date de début du
     séjour.
@@ -23,5 +24,5 @@ unit: €
 periodicite: mensuelle
 legend: maximum
 montant: 520
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/erasmus-stage-public-post-bac-2020-2022
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-public-post-bac-20222023?recherche=Erasmus%20%20Stage
 teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas

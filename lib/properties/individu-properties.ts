@@ -280,9 +280,9 @@ export default {
     question: ({ individu }) => {
       return `${
         individu._role === "demandeur"
-          ? "Êtes-vous"
-          : "Votre conjointe est-elle"
-      } enceinte ?`
+          ? "Êtes-vous enceint·e ?"
+          : "Est-ce que votre partenaire est enceint·e ?"
+      }`
     },
     questionType: "enum",
     items: [
@@ -295,7 +295,7 @@ export default {
         value: "pas_enceinte",
       },
       {
-        label: "Pas concerné",
+        label: "Pas concerné·e",
         value: "pas_concerne",
       },
     ],

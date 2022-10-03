@@ -281,8 +281,8 @@ export default {
       return `${
         individu._role === "demandeur"
           ? "Êtes-vous"
-          : "Votre conjointe est-il ou est-elle"
-      } enceint·e ?`
+          : "Votre conjoint·e -il ou est-elle"
+      } enceinte ?`
     },
     questionType: "enum",
     items: [

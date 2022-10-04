@@ -17,6 +17,7 @@ conditions_generales:
     period: month
     floor: 800
 profils: []
+interestFlag: _interetBafa
 link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
 instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
 prefix: l’

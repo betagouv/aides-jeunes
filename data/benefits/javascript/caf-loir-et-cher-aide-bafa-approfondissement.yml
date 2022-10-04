@@ -19,6 +19,7 @@ conditions_generales:
     period: month
     floor: 800
 profils: []
+interestFlag: _interetBafa
 conditions:
   - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
 type: float

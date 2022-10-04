@@ -527,7 +527,6 @@ function formatBenefit(customizationBenefit, institution) {
     conditions_generales: [
       {
         type: "attached_to_institution",
-        excludes: customizationBenefit.excludes || [],
       },
       ...(customizationBenefit.excludedEPCI
         ? [

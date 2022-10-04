@@ -1,12 +1,11 @@
 import { additionalBenefitAttributes } from "./benefits/additional-attributes/index"
 import aidesVeloGenerator from "./benefits/aides-velo-generator"
-import { build } from "./benefits/dynamic/fsl"
+import { build as buildFSL } from "./benefits/dynamic/fsl"
 import { buildAPA } from "./benefits/dynamic/apa"
 
 function generateInstitutionId(institution) {
-  return `${institution.type}_${
-    institution.code_insee || institution.code_siren || institution.slug
-  }`
+  return `${institution.type}_${institution.code_insee || institution.code_siren || institution.slug
+    }`
 }
 
 function generateBenefitId(benefit) {
@@ -41,8 +40,8 @@ function setTop(benefit, institution) {
     (institution.type === "national"
       ? 3
       : benefit.source == "aides-velo"
-      ? 13
-      : 14)
+        ? 13
+        : 14)
 
   return benefit.top || default_top
 }
@@ -75,15 +74,15 @@ export function generate(
     benefit.source = "aides-velo"
   })
 
-  const fslBenefits = build(institutions)
   const apaBenefits = buildAPA()
+  const fslBenefits = buildFSL()
 
   let benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
-    ...fslBenefits,
     ...apaBenefits,
+    ...fslBenefits,
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })

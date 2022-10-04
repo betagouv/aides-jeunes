@@ -7,7 +7,7 @@ const DEFAULT_FSL = {
   periodicite: "ponctuelle",
 }
 
-export const FSL_BY_CODE = {
+export const FSL_BY_INSTITUTION_SLUG = {
   departement_ain: {
     label: "du département de l’Ain",
     link: "https://www.ain.fr/solutions/fond-solidarite-logement-maintien-dans-le-logement/",
@@ -352,30 +352,35 @@ export const FSL_BY_CODE = {
   },
 }
 
-function formatBenefit(customizationBenefit, institutionId) {
+function formatBenefit(
+  { label, link, form, instructions, excludedEPCI },
+  institutionId
+) {
   return {
     id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
     ...DEFAULT_FSL,
-    description: `Dans le cadre du Fonds de Solidarité Logement ${customizationBenefit.label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
+    description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
     conditions: [
-      `Occuper, à titre de résidence principale, un logement sur le territoire ${customizationBenefit.label}.`,
+      `Occuper, à titre de résidence principale, un logement sur le territoire ${label}.`,
       "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
     ],
-    ...customizationBenefit,
-    label: `Aide au maintien dans votre logement ${customizationBenefit.label}`,
-    institutionId,
+    link,
+    form,
+    instructions,
+    label: `Aide au maintien dans votre logement ${label}`,
+    institution: institutionId,
     source: "javascript",
     conditions_generales: [
       {
         type: "attached_to_institution",
       },
-      ...(customizationBenefit.excludedEPCI
+      ...(excludedEPCI
         ? [
           {
             type: "invert",
             value: {
               type: "epcis",
-              values: [customizationBenefit.excludedEPCI],
+              values: [excludedEPCI],
             },
           },
         ]
@@ -392,9 +397,9 @@ function formatBenefit(customizationBenefit, institutionId) {
 }
 
 export function build() {
-  const result: any = Object.keys(FSL_BY_CODE).reduce(
+  const result: any = Object.keys(FSL_BY_INSTITUTION_SLUG).reduce(
     (accum: any, institutionId: string) => {
-      const customizationBenefit = FSL_BY_CODE[institutionId]
+      const customizationBenefit = FSL_BY_INSTITUTION_SLUG[institutionId]
       const benefit = formatBenefit(customizationBenefit, institutionId)
 
       accum.push(benefit)

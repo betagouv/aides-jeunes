@@ -56,7 +56,8 @@ function setDefaults(benefit, institution) {
 export function generate(
   collections,
   additionalBenefitAttributes,
-  aidesVeloBenefitListGenerator
+  aidesVeloBenefitListGenerator,
+  fslGenerator
 ) {
   const institutions = transformInstitutions(collections.institutions.items)
 
@@ -75,7 +76,7 @@ export function generate(
   })
 
   const apaBenefits = buildAPA()
-  const fslBenefits = buildFSL()
+  const fslBenefits = fslGenerator ? fslGenerator() : []
 
   let benefits = [
     ...collections.benefits_javascript.items,
@@ -112,5 +113,10 @@ export default {
   generateBenefitId,
   fn: generate,
   generate: (jam) =>
-    generate(jam.collections, additionalBenefitAttributes, aidesVeloGenerator),
+    generate(
+      jam.collections,
+      additionalBenefitAttributes,
+      aidesVeloGenerator,
+      buildFSL
+    ),
 }

@@ -367,10 +367,7 @@ export const FSL_BY_CODE = {
     resources: {
       link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
     },
-    exclusions: [{
-      type: "epcis",
-      values: ["200046977"],
-    }],
+    excludedEPCI: "200046977",
   },
   M200046977: {
     label: "de la Métropole de Lyon",
@@ -530,14 +527,18 @@ function formatBenefit(customizationBenefit, institution) {
     conditions_generales: [
       {
         type: "attached_to_institution",
+        excludes: customizationBenefit.excludes || [],
       },
-      ...(customizationBenefit.exclusions
-        ? customizationBenefit.exclusions.map(exclusion => {
-          return {
-            type: "invert",
-            value: exclusion,
-          }
-        })
+      ...(customizationBenefit.excludedEPCI
+        ? [
+            {
+              type: "invert",
+              value: {
+                type: "epcis",
+                values: [customizationBenefit.excludedEPCI],
+              },
+            },
+          ]
         : []),
       {
         type: "statut_occupation_logement",

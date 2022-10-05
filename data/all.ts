@@ -3,10 +3,7 @@ import path from "path"
 import base from "./index.js"
 import jamstackLoader from "jamstack-loader"
 
-//const _dirname = new URL(".", import.meta.url).pathname
-if(typeof __dirname === "undefined") {
-  var __dirname = new URL(".", import.meta.url).pathname
-}
+const __dirname = new URL(".", import.meta.url).pathname
 const configFile = path.join(__dirname, "../contribuer/public/admin/config.yml")
 
 let jamstack

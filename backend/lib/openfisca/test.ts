@@ -1,3 +1,4 @@
+import jsYaml from "js-yaml"
 import common from "./mapping/common.js"
 import mapping from "./mapping/index.js"
 import { forEach, assign, pick, pickBy } from "lodash-es"
@@ -34,7 +35,7 @@ function normalizeIDs(test) {
 
 function toYAML(test) {
   normalizeIDs(test)
-  return require("js-yaml").dump(test)
+  return jsYaml.dump(test)
 }
 
 export const EXTENSION_VARIABLES = {
@@ -134,7 +135,7 @@ export const generateTest = function generateYAMLTest(details, situation) {
 }
 
 export function generateYAMLTest(details, situation) {
-  return toYAML(exports.generateTest(details, situation))
+  return toYAML(generateTest(details, situation))
 }
 
 export default {

@@ -1,10 +1,10 @@
-const expect = require("expect")
-const { values } = require("lodash")
-const Promise = require("bluebird")
-const fs = Promise.promisifyAll(require("fs"))
+import expect from "expect"
+import { values } from "lodash-es"
+import Promise from "bluebird"
+import fs from "fs/promises"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
-const tmp = require("tmp")
+import tmp from "tmp"
 
 const details = {
   name: "Ideal name",

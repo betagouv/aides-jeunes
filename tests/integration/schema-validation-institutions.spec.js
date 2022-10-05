@@ -1,9 +1,9 @@
-const path = require("path")
-const fs = require("fs")
+import path from "path"
+import fs from "fs"
+import { getCollectionSchema, validateFile } from "@root/data/schemas"
 
-const schemas = require("@root/data/schemas")
-const institutionSchema = schemas.getCollectionSchema("institutions")
-
+const institutionSchema = getCollectionSchema("institutions")
+const __dirname = new URL(".", import.meta.url).pathname
 const dataDir = path.join(__dirname, "../../data")
 const institutionFiles = fs
   .readdirSync(`${dataDir}/institutions`)
@@ -14,7 +14,7 @@ describe("Test Institutions schema", function () {
     describe(institutionFilename, function () {
       it("should respect institution schema", function () {
         expect(
-          schemas.validateFile(
+          validateFile(
             `data/institutions/${institutionFilename}`,
             institutionSchema
           )

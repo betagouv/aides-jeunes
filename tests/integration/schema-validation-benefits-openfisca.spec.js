@@ -1,9 +1,9 @@
-const path = require("path")
-const fs = require("fs")
+import path from "path"
+import fs from "fs"
+import { getCollectionSchema, validateFile } from "@root/data/schemas"
 
-const schemas = require("@root/data/schemas")
-const benefitSchema = schemas.getCollectionSchema("benefits_openfisca")
-
+const benefitSchema = getCollectionSchema("benefits_openfisca")
+const __dirname = new URL(".", import.meta.url).pathname
 const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
   .readdirSync(`${dataDir}/benefits/openfisca`)
@@ -14,7 +14,7 @@ describe("Test OpenFisca Benefit schema", function () {
     describe(benefitFilename, function () {
       it("should respect OpenFisca Benefit schema", function () {
         expect(
-          schemas.validateFile(
+          validateFile(
             `data/benefits/openfisca/${benefitFilename}`,
             benefitSchema
           )

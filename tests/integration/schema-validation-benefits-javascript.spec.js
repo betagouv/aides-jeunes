@@ -1,9 +1,9 @@
-const path = require("path")
-const fs = require("fs")
-
+import path from "path"
+import fs from "fs"
 import { validateFile, getCollectionSchema } from "@root/data/schemas"
-const benefitSchema = getCollectionSchema("benefits_javascript")
 
+const benefitSchema = getCollectionSchema("benefits_javascript")
+const __dirname = new URL(".", import.meta.url).pathname
 const dataDir = path.join(__dirname, "../../data")
 const benefitFiles = fs
   .readdirSync(`${dataDir}/benefits/javascript`)

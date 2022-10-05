@@ -7,6 +7,9 @@ const openfisca = Promise.promisifyAll(openfiscaImport)
 const request = Promise.promisify(
   openfisca.sendToOpenfisca("calculate", (s) => s)
 )
+import fs from "fs/promises"
+import os from "os"
+import path from "path"
 
 import bulk from "../openfisca/bulk/index.js"
 const { base, build, extractResults } = bulk
@@ -26,9 +29,6 @@ benefits.all.forEach((benefit) => {
 const variable = "salaire_net"
 
 function fetch(s) {
-  const fs = Promise.promisifyAll(require("fs"))
-  const os = require("os")
-  const path = require("path")
   const cachePath = path.join(os.tmpdir(), `simulation_${s.source._id}_${base}`)
   /* eslint-disable */
   if (false && fs.existsSync(cachePath)) {

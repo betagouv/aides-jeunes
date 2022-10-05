@@ -1,7 +1,8 @@
-const path = require("path")
+import path from "path"
+import jamstackLoader from "jamstack-loader"
 
-const { get } = require("jamstack-loader")
-const jamstack = get(
+const __dirname = new URL(".", import.meta.url).pathname
+const jamstack = jamstackLoader.get(
   path.join(__dirname, "../../contribuer/public/admin/config.yml")
 )
 

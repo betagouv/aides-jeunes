@@ -1,6 +1,8 @@
-const fs = require("fs")
-const path = require("path")
-const expect = require("expect")
+import fs from "fs"
+import path from "path"
+import expect from "expect"
+
+const __dirname = new URL(".", import.meta.url).pathname
 
 describe("Test filenames rules", function () {
   const files = []

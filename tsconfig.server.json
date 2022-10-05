@@ -16,6 +16,7 @@
     "noImplicitThis": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "allowJs": true,
     "types": []
   },
   "resolve": {

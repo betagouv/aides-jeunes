@@ -149,7 +149,8 @@
     },
     "globals": {
       "ts-jest": {
-        "isolatedModules": true
+        "isolatedModules": true,
+        "useESM": true
       }
     },
     "transformIgnorePatterns": [
@@ -157,8 +158,7 @@
     ],
     "moduleNameMapper": {
       "(.+)\\.js": "$1",
-      "@root/(.*)": "<rootDir>/$1",
-      "^lodash-es$": "lodash"
+      "@root/(.*)": "<rootDir>/$1"
     },
     "extensionsToTreatAsEsm": [
       ".ts"

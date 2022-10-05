@@ -73,7 +73,7 @@ function run_cmd(cmd, args) {
 
 function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
-  return fs.writeFileSync(tmpobj.fd, yaml, "utf8").then(function () {
+  return fs.writeFile(tmpobj.fd, yaml, "utf8").then(function () {
     const args = extension
       ? ["test", tmpobj.name, "--extensions", extension]
       : ["test", tmpobj.name]

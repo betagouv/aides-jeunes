@@ -1,7 +1,7 @@
 import expect from "expect"
 import { values } from "lodash-es"
 import Promise from "bluebird"
-import fs from "fs/promises"
+import fs from "fs"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
 import tmp from "tmp"
@@ -73,7 +73,7 @@ function run_cmd(cmd, args) {
 
 function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
-  return fs.writeFileAsync(tmpobj.fd, yaml, "utf8").then(function () {
+  return fs.writeFile(tmpobj.fd, yaml, "utf8").then(function () {
     const args = extension
       ? ["test", tmpobj.name, "--extensions", extension]
       : ["test", tmpobj.name]

@@ -29,7 +29,7 @@
     "prettier:fix": "prettier --write .",
     "start": "cd dist-server && NODE_ENV=production node ./server.js",
     "stats": "node ./dist-server/backend/lib/stats",
-    "test": "NODE_PATH=. jest --testTimeout=20000",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
     "tools:check-links-validity": "node dist-server/tools/check-links-validity.js  --ci",
     "tools:cleaner": "node dist-server/tools/cleaner.js",
     "tools:evaluate-benefits": "node dist-server/tools/evaluate-benefits",

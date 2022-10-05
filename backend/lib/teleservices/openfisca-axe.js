@@ -1,6 +1,4 @@
 import Promise from "bluebird"
-import { createRequire } from "module"
-const require = createRequire(import.meta.url)
 
 import openfiscaImport from "../openfisca/index.js"
 const openfisca = Promise.promisifyAll(openfiscaImport)

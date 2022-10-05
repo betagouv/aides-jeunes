@@ -25,7 +25,7 @@ const relative_path = path.join(
   "/../../../../dist/documents/stats.json"
 )
 
-fs.mkdir(path.dirname(relative_path), { recursive: true }).then((data) => {
+fs.mkdir(path.dirname(relative_path), { recursive: true }).then(() => {
   Promise.all([
     mongodb.getStats(nineWeeksAgo, today),
     piwik.getUsageData(nineWeeksAgo, yesterday),

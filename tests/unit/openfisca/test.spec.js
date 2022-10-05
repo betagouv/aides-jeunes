@@ -5,6 +5,7 @@ import fs from "fs/promises"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
 import tmp from "tmp"
+import childProcess from "child_process"
 
 const details = {
   name: "Ideal name",
@@ -42,7 +43,7 @@ describe("openfisca generateTest", function () {
 
 function run_cmd(cmd, args) {
   return new Promise(function (resolve, reject) {
-    const spawn = require("child_process").spawn
+    const spawn = childProcess.spawn
     const child = spawn(cmd, args)
     let respErr = ""
     let respOut = ""
@@ -73,7 +74,7 @@ function run_cmd(cmd, args) {
 
 function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
-  return fs.writeFile(tmpobj.fd, yaml, "utf8").then(function () {
+  return fs.writeFile(tmpobj.name, yaml, "utf8").then(function () {
     const args = extension
       ? ["test", tmpobj.name, "--extensions", extension]
       : ["test", tmpobj.name]

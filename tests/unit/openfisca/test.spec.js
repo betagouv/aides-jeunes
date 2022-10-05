@@ -1,7 +1,7 @@
 import expect from "expect"
 import { values } from "lodash-es"
 import Promise from "bluebird"
-import fs from "fs"
+import fs from "fs/promises"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
 import tmp from "tmp"

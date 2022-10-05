@@ -36,7 +36,7 @@ describe("Test filenames rules", function () {
   getFiles(path.join(__dirname, "../.."))
 
   const result = files.filter((file) => {
-    return ["js", "vue"].includes(file.extension)
+    return ["ts", "js", "vue"].includes(file.extension)
   })
 
   result.forEach((file) => {

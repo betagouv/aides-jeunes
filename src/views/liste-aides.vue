@@ -74,7 +74,7 @@ const isGeographicallyIncluded = function (
   } else if (typeInstitution === "epci") {
     const epciInfo = epcis.find((element) => element.code === idInstitution)
     return (
-      epciInfo && epciInfo.membres.find((c) => c.code === commune.code) != null
+      epciInfo && epciInfo.membres.some((c) => c.code === commune.code)
     )
   } else if (typeInstitution === "commune") {
     // Commune code should be the same as the institution EPCI member founded with its siren code

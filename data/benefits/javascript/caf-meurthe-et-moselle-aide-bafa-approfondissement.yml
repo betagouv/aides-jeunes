@@ -4,8 +4,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de Meurthe-et-Moselle pour vous aider à financer votre
   session d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la CAF.
-conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,10 +16,11 @@ conditions_generales:
     period: month
     floor: 800
 profils: []
+conditions:
+  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
 interestFlag: _interetBafa
-link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
-instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
-prefix: l’
 type: bool
 unit: €
 periodicite: ponctuelle
+link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/vie-personnelle/les-aides-aux-formations#:~:text=Pour%20les%20stagiaires%20ayant%20entam%C3%A9s,%2DLambert%2054046%20Nancy%20Cedex).
+instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/vie-personnelle/les-aides-aux-formations#:~:text=Pour%20les%20stagiaires%20ayant%20entam%C3%A9s,%2DLambert%2054046%20Nancy%20Cedex).

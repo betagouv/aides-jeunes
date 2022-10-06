@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import Promise from "bluebird"
-//const fs = Promise.promisifyAll(require("fs"))
 import fs from "fs/promises"
-import mkdirp from "mkdirp"
 import path from "path"
 
 import piwik from "./piwik.js"
@@ -27,7 +25,7 @@ const relative_path = path.join(
   "/../../../../dist/documents/stats.json"
 )
 
-mkdirp(path.dirname(relative_path)).then(() => {
+fs.mkdir(path.dirname(relative_path), { recursive: true }).then(() => {
   Promise.all([
     mongodb.getStats(nineWeeksAgo, today),
     piwik.getUsageData(nineWeeksAgo, yesterday),

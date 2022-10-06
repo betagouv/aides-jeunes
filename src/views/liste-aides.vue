@@ -207,9 +207,7 @@ export default {
 .cp-filter-block {
   display: flex;
   align-items: center;
-}
-.cp-filter-label {
-  margin-right: 0.4rem;
+  gap: 0.4rem;
 }
 .cp-filter-input {
   width: 6rem;

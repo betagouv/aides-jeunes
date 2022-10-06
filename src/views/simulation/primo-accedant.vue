@@ -4,7 +4,10 @@
       <fieldset>
         <legend>
           <h2 class="aj-question">
-            {{ primoAccedantTypesQuestion.label }}
+            {{ primoAccedantTypesQuestion.label
+            }}<span v-if="primoAccedantTypesQuestion.hint" class="help">{{
+              primoAccedantTypesQuestion.hint
+            }}</span>
           </h2>
         </legend>
         <div class="aj-selections">
@@ -95,7 +98,6 @@ export default {
     },
     onSubmit() {
       if (this.canSubmit(true)) {
-        console.log("onSubmit primo accedant")
         this.store.answer({
           entityName: "menage",
           fieldName: "statut_occupation_logement",

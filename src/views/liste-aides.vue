@@ -68,10 +68,7 @@ const isGeographicallyIncluded = function (
   }
   if (typeInstitution === "national") {
     return true
-  } else if (typeInstitution === "region") {
-    const codeNiveauInstitution = commune[typeInstitution]
-    return idInstitution == codeNiveauInstitution
-  } else if (typeInstitution === "departement") {
+  } else if (["region", "departement"].includes(typeInstitution)) {
     const codeNiveauInstitution = commune[typeInstitution]
     return idInstitution == codeNiveauInstitution
   } else if (typeInstitution === "epci") {

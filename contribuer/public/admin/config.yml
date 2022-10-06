@@ -906,6 +906,6 @@ collections:
         required: false
       - label: Département
         name: department
-        widget: string
+        widget: hidden
         required: false
       - *field_benefit_position

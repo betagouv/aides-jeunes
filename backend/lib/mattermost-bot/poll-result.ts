@@ -20,15 +20,13 @@ function postPollResult(simulation, answers) {
     nothing: [":icon-warning:", "Aucune demande"],
     already: [":icon-info:", "Déjà perçue"],
   }
+
   const orderedAnswers: any[] = []
-  for (const benefit of simulation.benefits) {
-    const answer =
-      answers.filter((element) => {
-        return element["id"] == benefit["id"]
-      })[0] || {}
-    answer.unit = benefit.unit
-    answer.amount = benefit.amount
-    orderedAnswers.push(answer)
+  for(let answer of answers) {
+    const answerDetails = simulation.benefits.filter((benefit) => {
+      return answer["id"] == benefit["id"]
+    })[0] || {}
+    orderedAnswers.push({...answerDetails, ...answer})
   }
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${

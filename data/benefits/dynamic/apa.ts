@@ -184,20 +184,11 @@ function formatBenefit(customizationBenefit, institution) {
   }
 }
 
-export function buildAPA(institutionsMap) {
+export function buildAPA() {
   const result: any = Object.keys(APA_BY_CODE).reduce(
-    (accum: any, code: string) => {
-      const customizationBenefit = APA_BY_CODE[code]
-
-      const institutionName = institutionsMap[code]?.slug
-      if (!institutionsMap[code] || !institutionName) {
-        console.warn(`No institution for metropole apa ${code}`)
-        return accum
-      }
-      const benefit = formatBenefit(customizationBenefit, institutionName)
-
-      accum.push(benefit)
-      return accum
+    (benefits: any, code: string) => {
+      benefits[code] = formatBenefit(APA_BY_CODE[code], code)
+      return benefits
     },
     []
   )

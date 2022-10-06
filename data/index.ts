@@ -76,8 +76,7 @@ export function generate(
   })
 
   const fslBenefits = build(institutions)
-
-  const apaBenefits = buildAPA(institutions)
+  const apaBenefits = buildAPA()
 
   let benefits = [
     ...collections.benefits_javascript.items,

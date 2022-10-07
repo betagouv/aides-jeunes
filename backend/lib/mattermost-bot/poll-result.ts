@@ -22,11 +22,12 @@ function postPollResult(simulation, answers) {
   }
 
   const orderedAnswers: any[] = []
-  for(let answer of answers) {
-    const answerDetails = simulation.benefits.filter((benefit) => {
-      return answer["id"] == benefit["id"]
-    })[0] || {}
-    orderedAnswers.push({...answerDetails, ...answer})
+  for (let answer of answers) {
+    const answerDetails =
+      simulation.benefits.filter((benefit) => {
+        return answer["id"] == benefit["id"]
+      })[0] || {}
+    orderedAnswers.push({ ...answerDetails, ...answer })
   }
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${

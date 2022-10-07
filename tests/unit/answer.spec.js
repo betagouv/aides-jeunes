@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia } from "pinia"
+import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores"
 
 const initMock = (store) => {

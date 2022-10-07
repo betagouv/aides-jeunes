@@ -171,7 +171,6 @@ export const FSL_BY_CODE = {
     label: "de Brest Métropole",
     resources: {
       link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
-      form: "https://infosociale.finistere.fr/wp-content/uploads/2020/07/PB_Imprime-FSL-Brest-metropole-012020.pdf",
       instructions:
         "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
     },

@@ -150,6 +150,8 @@
       "/\\./"
     ],
     "moduleNameMapper": {
+      "@lib/(.*).js": "<rootDir>/lib/$1.ts",
+      "@/(.*)": "<rootDir>/src/$1",
       "(.+)\\.js": "$1",
       "@root/(.*)": "<rootDir>/$1",
       "^lodash-es$": "lodash"

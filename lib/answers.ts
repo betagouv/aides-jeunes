@@ -21,7 +21,7 @@ export function nullifyUndefinedValue(value) {
   return value === undefined ? null : value
 }
 
-export function storeAnswer(answers, newAnswer, clean, enfants) {
+export function storeAnswer(answers, newAnswer, clean, enfants?) {
   const existingAnswerIndex = answers.findIndex(
     (answer) =>
       answer.id === newAnswer.id &&

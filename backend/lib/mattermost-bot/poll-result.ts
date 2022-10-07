@@ -22,7 +22,7 @@ function postPollResult(simulation, answers) {
   }
 
   const orderedAnswers: any[] = []
-  for (let answer of answers) {
+  for (const answer of answers) {
     const answerDetails =
       simulation.benefits.filter((benefit) => {
         return answer["id"] == benefit["id"]

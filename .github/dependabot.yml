@@ -11,3 +11,17 @@ updates:
       - dependencies
     allow:
       - dependency-name: "aides-velo"
+  - package-ecosystem: "pip"
+    directory: "./openfisca"
+    schedule:
+      interval: "weekly"
+    rebase-strategy: "disabled"
+    versioning-strategy: increase
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+    allow:
+      - dependency-name: "Openfisca-Core[web-api]"
+      - dependency-name: "Openfisca-France"
+      - dependency-name: "Openfisca-Paris"
+      - dependency-name: "OpenFisca-France-Local[excel-reader]"

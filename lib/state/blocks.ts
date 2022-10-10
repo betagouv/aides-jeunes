@@ -1,7 +1,7 @@
 import Individu from "../individu"
 import { ACTIVITES_ACTIF } from "../activite"
 import Ressource from "../ressource"
-import { datesGenerator } from "../benefits/compute"
+import { generator as datesGenerator } from "../dates"
 import { Step, ComplexStep } from "./steps"
 import Scolarite from "../scolarite"
 
@@ -27,87 +27,87 @@ function individuBlockFactory(id, chapter?: string) {
       ...(!enfant ? [r("activite")] : []),
       ...(demandeur
         ? [
-            {
-              isActive: (subject) => subject.activite == "etudiant",
-              steps: [
-                r("scolarite"),
-                {
-                  isActive: (subject) =>
-                    ["lycee", "enseignement_superieur"].includes(
-                      subject.scolarite
-                    ),
-                  steps: [r("annee_etude")],
-                },
-                {
-                  isActive: (subject) =>
-                    ["college", "lycee", "enseignement_superieur"].includes(
-                      subject.scolarite
-                    ),
-                  steps: [r("statuts_etablissement_scolaire")],
-                },
-                {
-                  isActive: (subject) =>
-                    [
-                      "bts_1",
-                      "but_1",
-                      "cpge_1",
-                      "licence_1",
-                      "licence_2",
-                    ].includes(subject.annee_etude),
-                  steps: [r("mention_baccalaureat")],
-                },
-                r("stagiaire"),
-              ],
-            },
-            {
-              isActive: (subject, situation, parameters) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const jeune_actif =
-                  subject.activite === "salarie" &&
-                  age <=
-                    parameters[
-                      "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
-                    ]
-                return subject.activite === "etudiant" || jeune_actif
+          {
+            isActive: (subject) => subject.activite == "etudiant",
+            steps: [
+              r("scolarite"),
+              {
+                isActive: (subject) =>
+                  ["lycee", "enseignement_superieur"].includes(
+                    subject.scolarite
+                  ),
+                steps: [r("annee_etude")],
               },
-              steps: [
-                r("alternant"),
-                {
-                  isActive: (subject) => subject.alternant,
-                  steps: [r("_contrat_alternant"), r("categorie_salarie")],
-                },
-              ],
-            },
-            {
-              isActive: (subject) => {
-                return ["lycee", "enseignement_superieur", "inconnue"].includes(
-                  subject.scolarite
-                )
+              {
+                isActive: (subject) =>
+                  ["college", "lycee", "enseignement_superieur"].includes(
+                    subject.scolarite
+                  ),
+                steps: [r("statuts_etablissement_scolaire")],
               },
-              steps: [r("groupe_specialites_formation")],
+              {
+                isActive: (subject) =>
+                  [
+                    "bts_1",
+                    "but_1",
+                    "cpge_1",
+                    "licence_1",
+                    "licence_2",
+                  ].includes(subject.annee_etude),
+                steps: [r("mention_baccalaureat")],
+              },
+              r("stagiaire"),
+            ],
+          },
+          {
+            isActive: (subject, situation, parameters) => {
+              const age = Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              )
+              const jeune_actif =
+                subject.activite === "salarie" &&
+                age <=
+                parameters[
+                "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
+                ]
+              return subject.activite === "etudiant" || jeune_actif
             },
-            {
-              isActive: (subject) =>
-                subject.activite === "salarie" || subject.alternant,
-              steps: [r("_nombreMoisDebutContratDeTravail")],
+            steps: [
+              r("alternant"),
+              {
+                isActive: (subject) => subject.alternant,
+                steps: [r("_contrat_alternant"), r("categorie_salarie")],
+              },
+            ],
+          },
+          {
+            isActive: (subject) => {
+              return ["lycee", "enseignement_superieur", "inconnue"].includes(
+                subject.scolarite
+              )
             },
-          ]
+            steps: [r("groupe_specialites_formation")],
+          },
+          {
+            isActive: (subject) =>
+              subject.activite === "salarie" || subject.alternant,
+            steps: [r("_nombreMoisDebutContratDeTravail")],
+          },
+        ]
         : []),
       ...(!enfant
         ? [
-            {
-              isActive: (subject) => subject.activite == "chomeur",
-              steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
-            },
-            {
-              isActive: (subject) =>
-                !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
-              steps: [r("inapte_travail")],
-            },
-          ]
+          {
+            isActive: (subject) => subject.activite == "chomeur",
+            steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
+          },
+          {
+            isActive: (subject) =>
+              !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
+            steps: [r("inapte_travail")],
+          },
+        ]
         : []),
       r("handicap"),
       {
@@ -119,101 +119,101 @@ function individuBlockFactory(id, chapter?: string) {
               !enfant &&
               0.5 <= subject.taux_incapacite &&
               subject.taux_incapacite <
-                parameters[
-                  "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
-                ],
+              parameters[
+              "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
+              ],
             steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
           },
         ],
       },
       ...(enfant
         ? [
-            {
-              isActive: (subject) => subject.handicap,
-              steps: [r("enfant_place")],
-            },
-          ]
+          {
+            isActive: (subject) => subject.handicap,
+            steps: [r("enfant_place")],
+          },
+        ]
         : []),
       ...(demandeur
         ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
-              steps: [r("enfant_a_charge")],
+          {
+            isActive: (subject, situation) => {
+              const age = Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              )
+              return 8 < age && age <= 25
             },
-          ]
+            steps: [r("enfant_a_charge")],
+          },
+        ]
         : []),
       ...(enfant
         ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
-              steps: [r("scolarite")],
+          {
+            isActive: (subject, situation) => {
+              const age = Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              )
+              return 8 < age && age <= 25
             },
-          ]
+            steps: [r("scolarite")],
+          },
+        ]
         : []),
       ...(demandeur
         ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const thisYear = datesGenerator(situation.dateDeValeur).thisYear
-                  .id
-                const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
-                return (
-                  20 <= age &&
-                  age < 25 &&
-                  !["etudiant", ...ACTIVITES_ACTIF].includes(
-                    subject.activite
-                  ) &&
-                  !subject.ass_precondition_remplie &&
-                  !enfant_a_charge
-                )
-              },
-              steps: [r("rsa_jeune_condition_heures_travail_remplie")],
+          {
+            isActive: (subject, situation) => {
+              const age = Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              )
+              const thisYear = datesGenerator(situation.dateDeValeur).thisYear
+                .id
+              const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
+              return (
+                20 <= age &&
+                age < 25 &&
+                !["etudiant", ...ACTIVITES_ACTIF].includes(
+                  subject.activite
+                ) &&
+                !subject.ass_precondition_remplie &&
+                !enfant_a_charge
+              )
             },
-          ]
+            steps: [r("rsa_jeune_condition_heures_travail_remplie")],
+          },
+        ]
         : []),
       ...(enfant ? [r("enfant_a_charge")] : []),
       ...(demandeur
         ? [
-            {
-              isActive: (subject, situation) =>
-                60 <=
-                Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                ),
-              steps: [r("gir")],
-            },
-          ]
+          {
+            isActive: (subject, situation) =>
+              60 <=
+              Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              ),
+            steps: [r("gir")],
+          },
+        ]
         : []),
       ...(demandeur
         ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return age <= 25
-              },
-              steps: [r("regime_securite_sociale")],
+          {
+            isActive: (subject, situation) => {
+              const age = Individu.age(
+                subject,
+                datesGenerator(situation.dateDeValeur).today.value
+              )
+              return age <= 25
             },
-          ]
+            steps: [r("regime_securite_sociale")],
+          },
+        ]
         : []),
       ...(!enfant ? [r("enceinte")] : []),
     ],
@@ -294,10 +294,10 @@ function kidBlock(situation) {
     steps: [
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
-            return {
-              steps: [individuBlockFactory(e.id, "foyer")],
-            }
-          })
+          return {
+            steps: [individuBlockFactory(e.id, "foyer")],
+          }
+        })
         : []),
       new Step({ entity: "enfants", chapter: "foyer" }),
     ],
@@ -443,20 +443,20 @@ function resourceBlocks(situation) {
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
       ...(situation.enfants?.length
         ? [
-            new Step({
-              entity: "individu",
-              variable: "_hasRessources",
-              id: "enfants",
-            }),
-          ]
+          new Step({
+            entity: "individu",
+            variable: "_hasRessources",
+            id: "enfants",
+          }),
+        ]
         : []),
       {
         steps: situation.enfants
           ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
-                : { steps: [] }
-            })
+            return e._hasRessources
+              ? individuResourceBlock(e.id)
+              : { steps: [] }
+          })
           : [],
       },
     ],

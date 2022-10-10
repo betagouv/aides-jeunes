@@ -1,6 +1,6 @@
 import Ressource from "./ressource"
 import { ressourceTypes } from "./resources"
-import { datesGenerator } from "./benefits/compute"
+import { generator as datesGenerator } from "./dates"
 import Scolarite from "./scolarite"
 
 import { individuLayout } from "./types/individu"
@@ -48,16 +48,15 @@ export function generateSituation(simulation, useAll?: any) {
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),
     enfants: simulation?.enfants
       ? simulation.enfants.map((enfant, index) => {
-          const countDiplay = index + 1
-          const _firstName = `votre ${countDiplay}${
-            countDiplay === 1 ? "ᵉʳ" : "ᵉ"
+        const countDiplay = index + 1
+        const _firstName = `votre ${countDiplay}${countDiplay === 1 ? "ᵉʳ" : "ᵉ"
           } enfant`
 
-          return {
-            ...generateDefaultIndividu("enfant", `enfant_${enfant}`),
-            _firstName,
-          }
-        })
+        return {
+          ...generateDefaultIndividu("enfant", `enfant_${enfant}`),
+          _firstName,
+        }
+      })
       : null,
     famille: {},
     menage: {
@@ -102,16 +101,16 @@ export function generateSituation(simulation, useAll?: any) {
               individu["_interetAidesSanitaireSocial"] =
                 individu["_interetAidesSanitaireSocial"] ||
                 answer.value ===
-                  Scolarite.groupeSpecialitesFormation
-                    .specialites_plurivalentes_sanitaires_et_sociales.value
+                Scolarite.groupeSpecialitesFormation
+                  .specialites_plurivalentes_sanitaires_et_sociales.value
               break
             }
             case "_interetAidesSanitaireSocial": {
               individu["_interetAidesSanitaireSocial"] =
                 answer.value ||
                 individu["groupe_specialites_formation"] ===
-                  Scolarite.groupeSpecialitesFormation
-                    .specialites_plurivalentes_sanitaires_et_sociales.value
+                Scolarite.groupeSpecialitesFormation
+                  .specialites_plurivalentes_sanitaires_et_sociales.value
               break
             }
             case "statut_marital": {

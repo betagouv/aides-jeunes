@@ -65,6 +65,7 @@ export default defineConfig(async ({ mode }) => {
       legacy({
         targets: ["defaults"],
       }),
+      visualizer(),
     ],
     resolve: {
       preferBuiltins: false,

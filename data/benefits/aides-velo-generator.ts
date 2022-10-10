@@ -1,6 +1,6 @@
 // @ts-ignore
 import aidesVelo from "aides-velo"
-
+import { benefitVeloLayout } from "../../data/types/benefits.d"
 const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {
@@ -11,31 +11,33 @@ function generate_benefit_list(institutions) {
     "code insee": institutions.filter((i) => i.type === "commune"),
   }
 
-  benefits.forEach((b: any) => {
-    switch (b?.collectivity?.kind) {
-      case "pays": {
-        if (b.collectivity.value === "France") {
-          b.institution = "etat"
-        } else {
-          b.discard = true
+  benefits.forEach((b: benefitVeloLayout) => {
+    if (b && b.collectivity) {
+      switch (b.collectivity.kind) {
+        case "pays": {
+          if (b.collectivity.value === "France") {
+            b.institution = "etat"
+          } else {
+            b.discard = true
+          }
+          break
         }
-        break
-      }
-      case "région":
-      case "département":
-      case "code insee": {
-        const institutionList = potentialInstitutions[b.collectivity.kind]
-        b.institution = institutionList.find(
-          (i) => i.code_insee === b?.collectivity?.value
-        )?.slug
-        break
-      }
-      case "epci": {
-        const institutionList = potentialInstitutions[b.collectivity.kind]
-        b.institution = institutionList.find(
-          (i) => i.code_siren === b?.collectivity?.code
-        )?.slug
-        break
+        case "région":
+        case "département":
+        case "code insee": {
+          const institutionList = potentialInstitutions[b.collectivity.kind]
+          b.institution = institutionList.find(
+            (i) => i.code_insee === b.collectivity?.value
+          )?.slug
+          break
+        }
+        case "epci": {
+          const institutionList = potentialInstitutions[b.collectivity.kind]
+          b.institution = institutionList.find(
+            (i) => i.code_siren === b.collectivity?.code
+          )?.slug
+          break
+        }
       }
     }
   })
@@ -44,12 +46,12 @@ function generate_benefit_list(institutions) {
     .filter((b: any) => !b.discard)
     .map((b?: any) => {
       const description =
-        b?.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
+        b.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
           ? b.description
           : `Aide à l'achat d'un vélo : ${b.title}`
       return {
         label: `Aide à l'achat d'un vélo : ${b.title}`,
-        description: description,
+        description,
         id: `aidesvelo_${b.id}`.replace(/[ .']+/g, "_"),
         external_id: b.id,
         collectivity: b.collectivity,

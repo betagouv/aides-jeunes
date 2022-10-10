@@ -5,7 +5,7 @@ import router from "./router"
 
 import StateService from "./plugins/state-service"
 
-import * as Sentry from "@sentry/vue"
+import { init as SentryInit } from "@sentry/vue"
 // @ts-ignore
 import VueMatomo from "vue-matomo"
 
@@ -41,7 +41,7 @@ app.directive("mail", MailDirective)
 app.directive("selectOnClick", SelectOnClickDirective)
 
 if (process.env.NODE_ENV === "production") {
-  Sentry.init({
+  SentryInit({
     app,
     dsn: "https://77f2520f2558451c80b1b95131135bcd@sentry.incubateur.net/18",
   })

@@ -37,6 +37,12 @@ export default {
     },
   },
   methods: {
+    eligibleBenefits() {
+      return (
+        !this.store.calculs.dirty &&
+        this.store.calculs.resultats.droitsEligibles
+      )
+    },
     restoreLatest() {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {

@@ -1,6 +1,7 @@
 import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { build } from "./benefits/dynamic/fsl.js"
+import { buildAPA } from "./benefits/dynamic/apa.js"
 
 function generateInstitutionId(institution) {
   return `${institution.type}_${
@@ -75,12 +76,14 @@ export function generate(
   })
 
   const fslBenefits = build(institutions)
+  const apaBenefits = buildAPA()
 
   let benefits = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
     ...fslBenefits,
+    ...apaBenefits,
   ].map((benefit) => {
     return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
   })

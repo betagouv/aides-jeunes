@@ -1,5 +1,5 @@
 import { load } from "js-yaml"
-const axios = require("axios")
+import axios from "axios"
 
 const MES_AIDES_PR_GITHUB =
   "https://api.github.com/repos/betagouv/aides-jeunes/pulls"

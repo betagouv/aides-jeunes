@@ -165,7 +165,7 @@ export const CONDITION_STATEGY: ConditionsLayout = {
       return false
     },
   },
-  invert: {
+  not: {
     test: (condition, props) => {
       return !CONDITION_STATEGY[condition.value.type].test(
         condition.value,

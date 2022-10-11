@@ -353,9 +353,25 @@ export const FSL_BY_INSTITUTION_SLUG = {
 }
 
 function formatBenefit(
-  { label, link, form, instructions, excludedEPCI },
+  { label, link, form, instructions, excludedEPCI }: any,
   institutionId
 ) {
+  const conditions_generales = [
+    {
+      type: "attached_to_institution",
+    },
+    ...(excludedEPCI
+      ? [
+        {
+          type: "not",
+          value: {
+            type: "epcis",
+            values: [excludedEPCI],
+          },
+        },
+      ]
+      : []),
+  ]
   return {
     id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
     ...DEFAULT_FSL,
@@ -397,15 +413,8 @@ function formatBenefit(
 }
 
 export function build() {
-  const result: any = Object.keys(FSL_BY_INSTITUTION_SLUG).reduce(
-    (accum: any, institutionId: string) => {
-      const customizationBenefit = FSL_BY_INSTITUTION_SLUG[institutionId]
-      const benefit = formatBenefit(customizationBenefit, institutionId)
-
-      accum.push(benefit)
-      return accum
-    },
-    []
+  return Object.entries(FSL_BY_INSTITUTION_SLUG).map(
+    ([institutionSlug, customizationBenefit]) =>
+      formatBenefit(customizationBenefit, institutionSlug)
   )
-  return result
 }

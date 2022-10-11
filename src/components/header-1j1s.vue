@@ -181,7 +181,6 @@ const toggleShowMenu = () => {
   </header>
 </template>
 
-
 <style scoped>
 .menu-item:hover {
   text-decoration: underline;

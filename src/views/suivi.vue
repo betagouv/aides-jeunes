@@ -122,7 +122,7 @@
 <script>
 import axios from "axios"
 
-import Institution from "@/lib/institution"
+import BenefitsGenerator from "@/lib/institution"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"
@@ -177,8 +177,8 @@ export default {
         this.followup = response.data
         let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
 
-        const benefitsNormalized = Institution.benefits.all
-          .filter((benefit) => benefitsIds.includes(benefit.id))
+        const benefitsNormalized = BenefitsGenerator()
+          .all.filter((benefit) => benefitsIds.includes(benefit.id))
           .map((benefit) => {
             let montant = this.followup.benefits.find(
               (followupBenefit) => followupBenefit.id === benefit.id

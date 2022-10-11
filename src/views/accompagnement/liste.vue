@@ -117,12 +117,12 @@
 <script>
 import SimulationSearch from "@/components/support/simulation-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
-import Institution from "@/lib/institution"
+import BenefitsGenerator from "@/lib/institution"
 export default {
   components: { SimulationSearch, CopyButton },
   data: function () {
     return {
-      benefitsMap: Institution.benefits.benefitsMap,
+      benefitsMap: Benefits().benefitsMap,
       accompagnements: undefined,
       loggedIn: undefined,
     }

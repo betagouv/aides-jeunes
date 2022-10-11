@@ -38,4 +38,3 @@ export default function (app: express.Application) {
     app.use(morgan("combined"))
   }
 }
-}

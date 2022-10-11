@@ -371,6 +371,13 @@ function formatBenefit(
         },
       ]
       : []),
+    {
+      type: "statut_occupation_logement",
+      excludes: [
+        StatutOccupationLogement.loge_gratuitement,
+        StatutOccupationLogement.sans_domicile,
+      ],
+    },
   ]
   return {
     id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,

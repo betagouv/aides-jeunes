@@ -5,7 +5,8 @@ html {
 
       .aj-1j1s-header-logo-container {
         border-bottom: 0.0625rem solid #e6e6e6;
-        padding: 0.625rem;
+        padding-block: 1rem;
+        padding-inline: 1rem;
 
         .container {
           display: flex;
@@ -21,13 +22,21 @@ html {
               }
             }
           }
+
+          .aj-1j1s-header-left-links {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+          }
         }
 
         img {
+          margin-top: 0.1rem;
+          margin-left: 0rem;
           margin-right: 20px;
 
           &.rf {
-            width: 9.5rem;
+            width: 5.5rem;
           }
 
           &.fr {

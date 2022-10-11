@@ -1,46 +1,90 @@
+<script setup>
+import { ref } from "vue"
+
+const showMenu = ref(false)
+const menu = ref([
+  {
+    key: "1",
+    label: "Accueil",
+    href: "https://www.1jeune1solution.gouv.fr/",
+  },
+  {
+    key: "1",
+    label: "Offres",
+    href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
+  },
+  {
+    key: "2",
+    label: "Formation et orientation",
+    href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
+  },
+  {
+    key: "3",
+    label: "Aides et accompagnement",
+    href: "/",
+  },
+  {
+    key: "4",
+    label: "Engagement",
+    href: "https://www.1jeune1solution.gouv.fr/engagement?utm_source=mes-aides-beta&utm_medium=menu",
+  },
+  {
+    key: "5",
+    label: "Je suis un employeur",
+    href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
+  },
+])
+
+const toggleShowMenu = () => {
+  showMenu.value = !showMenu.value
+}
+</script>
+
 <template>
   <header role="banner" class="aj-1j1s-header">
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
-        <svg
-          width="26"
-          height="18"
-          viewBox="0 0 18 26"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          fit=""
-          preserveAspectRatio="xMidYMid meet"
-          focusable="false"
-          @click="toggleShowMenu()"
-        >
-          <title>Logo bouton menu</title>
-          <rect
-            x="26"
-            width="2"
-            height="26"
-            rx="1"
-            transform="rotate(90 26 0)"
-            fill="currentColor"
-          />
-          <rect
-            x="26"
-            y="8"
-            width="2"
-            height="26"
-            rx="1"
-            transform="rotate(90 26 8)"
-            fill="currentColor"
-          />
-          <rect
-            x="26"
-            y="16"
-            width="2"
-            height="26"
-            rx="1"
-            transform="rotate(90 26 16)"
-            fill="currentColor"
-          />
-        </svg>
+        <div>
+          <svg
+            width="26"
+            height="18"
+            viewBox="0 0 18 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            fit=""
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+            @click="toggleShowMenu()"
+          >
+            <title>Logo bouton menu</title>
+            <rect
+              x="26"
+              width="2"
+              height="26"
+              rx="1"
+              transform="rotate(90 26 0)"
+              fill="currentColor"
+            />
+            <rect
+              x="26"
+              y="8"
+              width="2"
+              height="26"
+              rx="1"
+              transform="rotate(90 26 8)"
+              fill="currentColor"
+            />
+            <rect
+              x="26"
+              y="16"
+              width="2"
+              height="26"
+              rx="1"
+              transform="rotate(90 26 16)"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
         <div
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
@@ -57,13 +101,9 @@
           </a>
           <a
             href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
-            class="fr-link"
+            class="aj-1j1s-header-title"
           >
-            <img
-              class="fr"
-              alt="Accueil 1 jeune 1 solution"
-              src="/img/logo1j1s-france-relance.svg"
-            />
+            1jeune1solution
           </a>
         </div>
 
@@ -131,7 +171,7 @@
               active: item.href === '/',
             }"
           >
-            <a :href="item.href">
+            <a :href="item.href" class="menu-item">
               {{ item.label }}
             </a>
           </li>
@@ -141,45 +181,18 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: "Header1J1S",
-  data() {
-    return {
-      showMenu: false,
-      menu: [
-        {
-          key: "1",
-          label: "Emploi et stage",
-          href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
-          key: "2",
-          label: "Orientation et formation",
-          href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
-          key: "3",
-          label: "Aides et accompagnement",
-          href: "/",
-        },
-        {
-          key: "4",
-          label: "Engagement et bénévolat",
-          href: "https://www.1jeune1solution.gouv.fr/engagement?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-        {
-          key: "5",
-          label: "Employeur",
-          href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
-        },
-      ],
-    }
-  },
-  methods: {
-    toggleShowMenu() {
-      this.showMenu = !this.showMenu
-    },
-  },
+
+<style scoped>
+.menu-item:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
-</script>
+
+.aj-1j1s-header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+  font-family: Marianne, arial, sans-serif;
+}
+</style>

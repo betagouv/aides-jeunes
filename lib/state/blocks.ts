@@ -1,9 +1,9 @@
-import Individu from "../individu.js"
-import { ACTIVITES_ACTIF } from "../activite.js"
-import Ressource from "../ressource.js"
-import { datesGenerator } from "../benefits/compute.js"
-import { Step, ComplexStep } from "./steps.js"
-import Scolarite from "../scolarite.js"
+import Individu from "../individu"
+import { ACTIVITES_ACTIF } from "../activite"
+import Ressource from "../ressource"
+import { datesGenerator } from "../benefits/compute"
+import { Step, ComplexStep } from "./steps"
+import Scolarite from "../scolarite"
 
 import { BlockLayout } from "../types/blocks"
 

@@ -1,5 +1,5 @@
 import cookieParser from "cookie-parser"
-import githubController from "../controllers/github.js"
+import githubController from "../controllers/github"
 
 export default (api) => {
   api

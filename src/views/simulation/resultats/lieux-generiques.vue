@@ -2,12 +2,12 @@
   <div class="aj-unbox">
     <router-link :to="{ name: 'resultats' }">
       <BackButton class="aj-etablissements-back-button small"
-        >Retour aux résultats</BackButton
-      >
+        >Retour aux résultats
+      </BackButton>
     </router-link>
 
     <p v-show="updating">
-      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
+      <i aria-hidden="true" class="fa fa-spinner fa-spin" /> Récupération en
       cours…
     </p>
     <div v-if="etablissements?.length">
@@ -25,12 +25,12 @@
       </div>
     </div>
     <div v-else>
-      <p class="aj-etablissements-intro" :v-if="error">
+      <p v-if="error" class="aj-etablissements-intro">
         {{ error }}
       </p>
       Revenir aux résultats
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true" />
+        <i aria-hidden="true" class="fa fa-arrow-circle-left" />
       </router-link>
     </div>
   </div>
@@ -38,7 +38,7 @@
 
 <script>
 import Etablissement from "@/components/etablissement.vue"
-import Individu from "@lib/individu.js"
+import Individu from "@lib/individu"
 import ResultatsMixin from "@/mixins/resultats"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"

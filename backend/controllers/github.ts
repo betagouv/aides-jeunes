@@ -1,6 +1,6 @@
 import axios from "axios"
 import url from "url"
-import config from "../config/index.js"
+import config from "../config/index"
 
 function current_uri(req) {
   return `${req.protocol}://${req.hostname}${

@@ -1,16 +1,16 @@
 import Promise from "bluebird"
-import { createRequire } from "module"
-const require = createRequire(import.meta.url)
 
-import openfiscaImport from "../openfisca/index.js"
+import openfiscaImport from "../openfisca/index"
+
 const openfisca = Promise.promisifyAll(openfiscaImport)
 const request = Promise.promisify(
   openfisca.sendToOpenfisca("calculate", (s) => s)
 )
 
-import bulk from "../openfisca/bulk/index.js"
+import bulk from "../openfisca/bulk/index"
+
 const { base, build, extractResults } = bulk
-import benefits from "../../../data/all.js"
+import benefits from "../../../data/all"
 
 function OpenFiscaAxe(simulation) {
   this.situation = simulation.getSituation()

@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { range } from "lodash-es"
+import { range } from "lodash"
 
 import { datesGeneratorLayout, dateLayout } from "./types/dates"
 

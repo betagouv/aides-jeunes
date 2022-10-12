@@ -1,5 +1,5 @@
 import Sentry from "@sentry/node"
-import openfisca from "./getter.js"
+import openfisca from "./getter"
 
 import { openfiscaParametersLayout } from "../../../lib/types/parameters"
 

@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
 import argparse from "argparse"
+
 const ArgumentParser = argparse.ArgumentParser
 
 import es from "event-stream"
 
 // Loads
-import { apply, getLatestVersionByModelName } from "./index.js"
-import "../mongo-connector.js"
-import Simulation from "../../models/simulation.js"
-import Followup from "../../models/followup.js"
+import { apply, getLatestVersionByModelName } from "./index"
+import "../mongo-connector"
+import Simulation from "../../models/simulation"
+import Followup from "../../models/followup"
 
 let counter = 0
 let errors = 0
@@ -105,4 +106,5 @@ function main() {
     process.exit(1)
   }
 }
+
 main()

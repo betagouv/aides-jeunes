@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash-es"
+import { cloneDeep } from "lodash"
 import dayjs from "dayjs"
 
 import { menageLayout } from "../../../../types/openfisca"

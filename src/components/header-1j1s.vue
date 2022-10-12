@@ -106,12 +106,18 @@ const toggleShowMenu = () => {
 }
 
 const expandMenu = (index) => {
-  menu.value[index].expanded = !menu.value[index].expanded
+  if (index != null) {
+    menu.value[index].expanded = !menu.value[index].expanded
+  }
   menu.value.forEach((item, i) => {
     if (i !== index) {
       item.expanded = false
     }
   })
+}
+
+const handleFocusOut = () => {
+  expandMenu(null)
 }
 </script>
 
@@ -247,7 +253,12 @@ const expandMenu = (index) => {
                 active: item.href === '/',
               }"
             >
-              <div class="menu-item" @click="expandMenu(index)">
+              <div
+                class="menu-item"
+                tabindex="0"
+                @click="expandMenu(index)"
+                @focusout="handleFocusOut"
+              >
                 <span>{{ item.label }}</span>
                 <svg
                   width="24"

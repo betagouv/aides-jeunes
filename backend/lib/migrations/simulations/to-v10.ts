@@ -2,8 +2,7 @@
  * Migre _formationSanitaireSocial vers groupe_specialites_formation
  */
 
-import Scolarite from "../../../../lib/scolarite"
-
+import Scolarite from "../../../../lib/scolarite.js"
 const VERSION = 10
 
 function updateGroupeSpecialitesFormation(answers) {

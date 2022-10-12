@@ -1,4 +1,4 @@
-import { StatutOccupationLogement } from "../../../lib/logement"
+import { StatutOccupationLogement } from "../../../lib/logement.js"
 
 const DEFAULT_FSL = {
   type: "bool",

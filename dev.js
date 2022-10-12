@@ -1,7 +1,7 @@
 import express from "express"
 import { createServer as createViteServer } from "vite"
-import configure from "./configure"
-import mock from "../mock"
+import configure from "./dist-server/configure.js"
+import mock from "./dist-server/mock.js"
 
 const port = process.env.PORT || 8080
 
@@ -9,12 +9,11 @@ async function createServer() {
   const app = express()
   const vite = await createViteServer({
     server: { middlewareMode: true },
-    configFile: `${__dirname}/../vite.config.ts`,
   })
   if (process.env.NODE_ENV === "front-only") {
-    mock(app)
+    mock({ app })
   } else {
-    configure(app)
+    configure({ app })
   }
   app.use(vite.middlewares)
   app.listen(port, () => {

@@ -48,7 +48,7 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import { orderBy, groupBy } from "lodash"
+import { orderBy, groupBy } from "lodash-es"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"

@@ -1,20 +1,27 @@
-import { filter, forEach, assign, pickBy, difference, cloneDeep } from "lodash"
+import {
+  filter,
+  forEach,
+  assign,
+  pickBy,
+  difference,
+  cloneDeep,
+} from "lodash-es"
 
-import common from "./common"
-import buildOpenFiscaIndividu from "./individu/index"
-import { buildOpenFiscaMenage } from "./menage/index"
+import common from "./common.js"
+import buildOpenFiscaIndividu from "./individu/index.js"
+import { buildOpenFiscaMenage } from "./menage/index.js"
 
-import propertyMove from "./property-move"
-import last3MonthsDuplication from "./last3-months-duplication"
-import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag"
+import propertyMove from "./property-move.js"
+import last3MonthsDuplication from "./last3-months-duplication.js"
+import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
-import { situationsLayout } from "../../../../lib/types/situations"
+import { situationsLayout } from "../../../../lib/types/situations.js"
 
 import {
   openfiscaMappingLayout,
   menageLayout,
   foyersFiscauxLayout,
-} from "../../../types/openfisca"
+} from "../../../types/openfisca.js"
 
 export function dispatchIndividuals(
   situation: situationsLayout
@@ -238,7 +245,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
 
   const prestationsFinancieres = pickBy(
     requestedVariables,
-    function (definition: any) {
+    function (definition) {
       return (
         definition.type === "float" && definition.openfiscaPeriod === "month"
       )
@@ -254,7 +261,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
 
   const prestationsFinancieresAtZeroRecently = pickBy(
     requestedVariables,
-    function (definition: any) {
+    function (definition) {
       return (
         definition.type === "float" &&
         definition.setToZeroRecently &&

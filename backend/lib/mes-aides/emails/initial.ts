@@ -1,16 +1,17 @@
-import { capitalize, map, assign } from "lodash"
+import { capitalize, map, assign } from "lodash-es"
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
-
 const mustache = consolidate.mustache
-import config from "../../../config/index"
-import openfiscaController from "../../openfisca/parameters"
+import config from "../../../config/index.js"
+import openfiscaController from "../../openfisca/parameters.js"
 import {
   formatDroitEstime,
   getBenefitImage,
-} from "../../../../lib/benefits/details"
-import { mjml } from "./index"
+} from "../../../../lib/benefits/details.js"
+import { mjml } from "./index.js"
+
+const __dirname = new URL(".", import.meta.url).pathname
 
 function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)

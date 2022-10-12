@@ -1,4 +1,4 @@
-import { getAnswer } from "./answers"
+import { getAnswer } from "./answers.js"
 
 export enum StatutOccupationLogement {
   primo_accedant = "primo_accedant",

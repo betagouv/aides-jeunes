@@ -1,7 +1,7 @@
 /*
  * Rename echelon_bourse in bourse_criteres_sociaux_echelon
  */
-import _ from "lodash-es"
+import _ from "lodash"
 
 const VERSION = 3
 

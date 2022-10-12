@@ -22,9 +22,9 @@
     "extensions": [".cjs", ".ts", ".js", ".json"]
   },
   "include": [
-    "./configure.ts",
+    "./backend/configure.ts",
     "./mock.ts",
-    "./server.ts",
+    "./backend/server.ts",
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",

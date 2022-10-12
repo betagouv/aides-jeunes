@@ -1,5 +1,4 @@
-import { createRequire } from "module"
-const require = createRequire(import.meta.url)
+// @ts-ignore
 const communes = require("@etalab/decoupage-administratif/data/communes.json")
 const epci = require("@etalab/decoupage-administratif/data/epci.json")
 

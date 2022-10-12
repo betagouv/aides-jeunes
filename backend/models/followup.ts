@@ -1,16 +1,16 @@
 import mongoose from "mongoose"
-import { find } from "lodash-es"
+import { find } from "lodash"
 import validator from "validator"
 
-import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
-import utils from "../lib/utils.js"
+import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue"
+import utils from "../lib/utils"
 
-import { SurveyLayout } from "../types/survey.js"
+import { SurveyLayout } from "../types/survey"
 
-import renderInitial from "../lib/mes-aides/emails/initial.js"
-import renderSurvey from "../lib/mes-aides/emails/survey.js"
+import renderInitial from "../lib/mes-aides/emails/initial"
+import renderSurvey from "../lib/mes-aides/emails/survey"
 
-import { MongooseLayout, FollowupModel } from "../types/models.js"
+import { MongooseLayout, FollowupModel } from "../types/models"
 
 const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {
@@ -140,7 +140,7 @@ FollowupSchema.method("sendSurvey", function () {
             return survey
           })
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.log("error", err)
         survey.error = err
         return survey

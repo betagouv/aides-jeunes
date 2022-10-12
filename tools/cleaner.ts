@@ -3,7 +3,7 @@ import es from "event-stream"
 
 // Loads
 // import expect from "expect"
-import("../backend/lib/mongo-connector.js")
+import("../backend/lib/mongo-connector")
 import Simulation from "../backend/models/simulation.js"
 import Followup from "../backend/models/followup.js"
 

@@ -1,12 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 /* global emit: true */
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare function emit(key, value)
+
 import { MongoClient } from "mongodb"
 
-import config from "../../config/index.js"
+import config from "../../config/index"
 
 let client
+
 function saveClient(refDb) {
   client = refDb
   return client
@@ -175,6 +178,7 @@ async function connect() {
     .then(saveClient)
     .then((client) => client.db())
 }
+
 function getStats(fromDate, toDate) {
   return connect()
     .then(function (db) {

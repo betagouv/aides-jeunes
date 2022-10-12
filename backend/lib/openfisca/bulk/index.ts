@@ -1,5 +1,5 @@
-import openfisca from "../index.js"
-import common from "../mapping/common.js"
+import openfisca from "../index"
+import common from "../mapping/common"
 
 const entityGroups = {
   individus: [],

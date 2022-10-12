@@ -8,15 +8,15 @@
         v-model="day"
         v-select-on-click
         :data-testid="firstId"
-        type="text"
-        inputmode="numeric"
-        data-type="number"
-        pattern="[0-9]*"
-        autofocus
         aria-label="Jour"
-        placeholder="JJ"
-        min="1"
+        autofocus
+        data-type="number"
+        inputmode="numeric"
         max="31"
+        min="1"
+        pattern="[0-9]*"
+        placeholder="JJ"
+        type="text"
       />
     </div>
     <div class="aj-input-date-component month">
@@ -25,14 +25,14 @@
         ref="month"
         v-model="month"
         v-select-on-click
-        type="text"
-        inputmode="numeric"
-        data-type="number"
-        pattern="[0-9]*"
         aria-label="Mois"
-        placeholder="MM"
-        min="1"
+        data-type="number"
+        inputmode="numeric"
         max="12"
+        min="1"
+        pattern="[0-9]*"
+        placeholder="MM"
+        type="text"
       />
     </div>
     <div class="aj-input-date-component year">
@@ -41,21 +41,21 @@
         ref="year"
         v-model="year"
         v-select-on-click
-        type="text"
-        inputmode="numeric"
-        data-type="number"
-        pattern="[0-9]*"
-        class="year"
         aria-label="Année"
-        placeholder="AAAA"
+        class="year"
+        data-type="number"
+        inputmode="numeric"
         min="1900"
+        pattern="[0-9]*"
+        placeholder="AAAA"
+        type="text"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { padStart } from "lodash-es"
+import { padStart } from "lodash"
 import dayjs from "dayjs"
 
 export default {

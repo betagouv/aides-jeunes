@@ -62,7 +62,7 @@ const all: ConfigurationLayout = {
 
 let override = {}
 try {
-  override = await import(`./${env}.js`).then((module) => module?.default)
+  override = require(`./${env}.js`)
   console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
   console.warn(`No specific configuration for ${env}`)

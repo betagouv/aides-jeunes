@@ -1,7 +1,7 @@
 // Connect to mongoose
 import mongoose from "mongoose"
-import config from "../config/index.js"
-import mongooseConfig from "../config/mongoose.js"
+import config from "../config/index"
+import mongooseConfig from "../config/mongoose"
 
 // Setup mongoose
 mongooseConfig(mongoose, config)

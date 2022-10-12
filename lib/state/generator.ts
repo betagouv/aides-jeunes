@@ -1,8 +1,8 @@
-import { Step } from "./steps.js"
-import { generateBlocks } from "./blocks.js"
+import { Step } from "./steps"
+import { generateBlocks } from "./blocks"
 import { StepLayout } from "../types/steps"
 
-import { BlockLayout } from "../types/blocks.js"
+import { BlockLayout } from "../types/blocks"
 
 function processBlock(
   { journey, subject, situation, isActive, parameters },
@@ -53,6 +53,7 @@ function generateJourney(situation, parameters): StepLayout[] | undefined {
     })
     return journey
   }
+
   try {
     return processBlocks({ situation, parameters })
   } catch (e) {

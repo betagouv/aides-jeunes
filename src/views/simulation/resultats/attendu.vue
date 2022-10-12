@@ -6,10 +6,10 @@
           class="aj-etablissements-back-button button outline small with-icon"
         >
           <svg
-            width="12"
+            fill="none"
             height="12"
             viewBox="0 0 12 12"
-            fill="none"
+            width="12"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -68,7 +68,7 @@
 
           <div v-if="item.ref" class="form__group">
             <label for="de">La valeur obtenue</label>
-            <input disabled :value="getActual(item.ref)" />
+            <input :value="getActual(item.ref)" disabled />
           </div>
 
           <div v-if="item.ref" class="form__group">
@@ -98,7 +98,7 @@
 
         <label class="form__group"
           >Description détaillée
-          <textarea v-model="details" rows="9" :placeholder="detailed" />
+          <textarea v-model="details" :placeholder="detailed" rows="9" />
         </label>
 
         <label class="form__group">
@@ -106,7 +106,8 @@
           J'accepte que les données de cette simulation soient visibles en
           ligne. Si les informations correspondent à une situation réelle, vous
           devriez
-          <router-link to="/foyer/recapitulatif">les modifier</router-link>.
+          <router-link to="/foyer/recapitulatif">les modifier</router-link>
+          .
         </label>
 
         <WarningMessage v-if="showConsentNotice" class="inline">
@@ -125,7 +126,7 @@
             Enregistrer
           </button>
           <span v-show="submitting"
-            ><i class="fa fa-spinner fa-spin" aria-hidden="true" />
+            ><i aria-hidden="true" class="fa fa-spinner fa-spin" />
             Enregistrement en cours…</span
           >
         </div>
@@ -160,9 +161,9 @@
         </div>
         <div>
           <a
-            class="button large"
             :download="filename"
             :href="resultToBase64"
+            class="button large"
             @click="trackMontantAttendu('Téléchargement données')"
           >
             Télécharger le fichier de données
@@ -180,7 +181,7 @@
 </template>
 
 <script>
-import { filter, sortBy } from "lodash-es"
+import { filter, sortBy } from "lodash"
 
 import axios from "axios"
 import Institution from "@/lib/institution"
@@ -397,17 +398,20 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .aj-resultats-attendus {
   select {
     max-width: 100%;
   }
+
   .inline {
     display: block;
   }
+
   .button {
     margin-top: 0.85em;
   }
+
   bold {
     font-weight: bold;
   }

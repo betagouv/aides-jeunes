@@ -1,10 +1,11 @@
-import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
+import { merge, sortBy, assign, sumBy, some, filter } from "lodash"
 
-import determineCustomizationIds from "./customization.js"
-import { computeJavascriptBenefits } from "./compute-javascript.js"
-import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
+import determineCustomizationIds from "./customization"
+import { computeJavascriptBenefits } from "./compute-javascript"
+import { computeAidesVeloBenefits } from "./compute-aides-velo"
 
-import { generator } from "../dates.js"
+import { generator } from "../dates"
+
 export const datesGenerator = generator
 
 /**
@@ -79,7 +80,9 @@ function keepClosestFSL(benefits, openfiscaResponse, periods) {
 export function computeAides(situation, id, openfiscaResponse, showPrivate) {
   const periods = generator(situation.dateDeValeur)
 
+  // @ts-ignore
   computeJavascriptBenefits(this, situation, openfiscaResponse)
+  // @ts-ignore
   keepClosestFSL(this.benefitsMap, openfiscaResponse, periods)
 
   const customizationIds = determineCustomizationIds(situation)
@@ -98,7 +101,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
       ...(situation.enfants || [])
     )
   )
-
+  // @ts-ignore
   this.all
     .filter((benefit) => showPrivate || !benefit.private)
     .forEach((benefit) => {
@@ -113,7 +116,9 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         }) ||
         valueAt(benefit.id, situation.famille, period) !== undefined
       ) {
+        // @ts-ignore
         return result.droitsInjectes.push(
+          // @ts-ignore
           assign({}, benefit, {
             montant: sumBy(individus, (i) =>
               Math.abs(valueAt(benefit.id, i, period))
@@ -136,12 +141,16 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         )
       }
 
-      if (!value) {
+      if (!value || !customizationIds) {
         return
       }
-      const customization =
-        benefit.customization?.[customizationIds?.[1]] ||
-        benefit.customization?.[customizationIds?.[0]]
+      let customization
+
+      if (customizationIds[1]) {
+        benefit.customization?.[customizationIds[1]]
+      } else if (customizationIds[0]) {
+        benefit.customization?.[customizationIds[0]]
+      }
       const institution = customization?.institution
         ? {
             ...benefit.institution,
@@ -150,6 +159,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         : benefit.institution
 
       result.droitsEligibles.push(
+        // @ts-ignore
         assign({}, benefit, customization, {
           instructions:
             benefit.instructions ||
@@ -163,6 +173,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
     })
 
   if (situation.demandeur._interetsAidesVelo?.length) {
+    // @ts-ignore
     const aidesVeloList = this.all.filter((b) => b.source === "aides-velo")
     computeAidesVeloBenefits(
       aidesVeloList,

@@ -1,11 +1,10 @@
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
-const mustache = consolidate.mustache
-import config from "../../../config/index.js"
-import { mjml } from "./index.js"
 
-const __dirname = new URL(".", import.meta.url).pathname
+const mustache = consolidate.mustache
+import config from "../../../config/index"
+import { mjml } from "./index"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/survey.txt"),

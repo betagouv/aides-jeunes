@@ -2,7 +2,8 @@
  * Migre rpns_auto_entrepreneur vers rpns_micro_entreprise
  */
 
-import _ from "lodash-es"
+import _ from "lodash"
+
 const VERSION = 11
 
 const AE_map = {

@@ -1,5 +1,5 @@
-import { EnumProperty, BooleanProperty } from "./property.js"
-import { getAnswer } from "../answers.js"
+import { EnumProperty, BooleanProperty } from "./property"
+import { getAnswer } from "../answers"
 
 export default {
   coloc: new BooleanProperty({

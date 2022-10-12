@@ -1,5 +1,5 @@
 import cors from "cors"
-import { benefits, institutions } from "../controllers/data.js"
+import { benefits, institutions } from "../controllers/data"
 
 const dataRoutes = function (api) {
   api.route("/benefits").get(cors({ origin: "*" }), benefits)

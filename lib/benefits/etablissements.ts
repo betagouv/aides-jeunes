@@ -1,5 +1,5 @@
 import axios from "axios"
-import { sortBy } from "lodash-es"
+import { sortBy } from "lodash"
 
 function normalize(etablissementFeature) {
   const etablissement = etablissementFeature.properties
@@ -43,6 +43,7 @@ export function hasEtablissements(benefit) {
     benefit.etablissements?.length || benefit.institution.etablissements?.length
   )
 }
+
 export function getBenefitEtablissements(benefit) {
   if (benefit.etablissements?.length) {
     return benefit.etablissements

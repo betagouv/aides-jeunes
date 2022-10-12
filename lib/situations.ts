@@ -1,10 +1,10 @@
-import Ressource from "./ressource.js"
-import { ressourceTypes } from "./resources.js"
-import { datesGenerator } from "./benefits/compute.js"
-import Scolarite from "./scolarite.js"
+import Ressource from "./ressource"
+import { ressourceTypes } from "./resources"
+import { datesGenerator } from "./benefits/compute"
+import Scolarite from "./scolarite"
 
-import { individuLayout } from "./types/individu.js"
-import { situationsLayout } from "./types/situations.js"
+import { individuLayout } from "./types/individu"
+import { situationsLayout } from "./types/situations"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,

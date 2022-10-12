@@ -1,4 +1,4 @@
-import simulationController from "./simulation"
+import simulationController from "./simulation.js"
 
 export default function simulation(req, res) {
   simulationController.attachAccessCookie(req, res)

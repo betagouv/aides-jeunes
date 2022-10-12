@@ -1,5 +1,5 @@
-import Individu from "./individu"
-import { generator } from "./dates"
+import Individu from "./individu.js"
+import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations"
 import { individuLayout } from "../lib/types/individu"

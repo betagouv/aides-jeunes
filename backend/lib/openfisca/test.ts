@@ -1,8 +1,8 @@
-import common from "./mapping/common"
-import mapping from "./mapping/index"
-import { forEach, assign, pick, pickBy } from "lodash"
-import benefits from "../../../data/all"
-import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag"
+import common from "./mapping/common.js"
+import mapping from "./mapping/index.js"
+import { forEach, assign, pick, pickBy } from "lodash-es"
+import benefits from "../../../data/all.js"
+import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 
 function toStringOf(obj) {
   return obj.toString()

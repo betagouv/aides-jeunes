@@ -1,9 +1,8 @@
-import config from "../../config/index"
-import mapping from "./mapping/index"
+import config from "../../config/index.js"
+import mapping from "./mapping/index.js"
 import axios from "axios"
 
 export const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
-
 export function sendToOpenfisca(endpoint, transform?: any) {
   if (!transform) {
     transform = buildOpenFiscaRequest
@@ -13,7 +12,7 @@ export function sendToOpenfisca(endpoint, transform?: any) {
     let request
     try {
       request = transform(situation)
-    } catch (e: any) {
+    } catch (e) {
       return callback({
         message: e.message,
         name: e.name,

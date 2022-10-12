@@ -2,15 +2,15 @@
   <div class="aj-simulation">
     <ProgressBar></ProgressBar>
     <div
-      :class="{ 'aj-debug-container': debug }"
       class="container aj-layout-container"
+      :class="{ 'aj-debug-container': debug }"
     >
       <div class="aj-main-container">
         <TitreChapitre />
         <div v-if="debug" class="aj-debug-switch">
           <button class="button small" @click="disableDebug"
-            >Quitter le mode debug
-          </button>
+            >Quitter le mode debug</button
+          >
         </div>
         <WarningMessage v-if="store.message.text" data-testid="warning-message">
           <div class="message" v-html="store.message.text" />
@@ -68,3 +68,11 @@ export default {
   },
 }
 </script>
+
+<style type="text/css" scoped>
+/* Hack for dev */
+/*.container {*/
+/*max-width: 100%;*/
+/*display: flex;*/
+/*}*/
+</style>

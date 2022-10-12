@@ -5,12 +5,12 @@ import {
   MultipleProperty,
   NumberProperty,
   BooleanProperty,
-} from "./property.js"
+} from "./property"
 
-import Individu from "../individu.js"
-import { capitalize, yearsAgo } from "../utils.js"
-import Scolarite from "../scolarite.js"
-import { getAnswer } from "../answers.js"
+import Individu from "../individu"
+import { capitalize, yearsAgo } from "../utils"
+import Scolarite from "../scolarite"
+import { getAnswer } from "../answers"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({

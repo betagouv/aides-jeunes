@@ -2,9 +2,9 @@ import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
-import { persist } from "../controllers/followups.js"
-import simulationController from "../controllers/simulation.js"
-import teleservices from "../controllers/teleservices/index.js"
+import { persist } from "../controllers/followups"
+import simulationController from "../controllers/simulation"
+import teleservices from "../controllers/teleservices/index"
 
 export default function (api) {
   api.options("/simulation", cors())

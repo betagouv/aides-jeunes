@@ -1,9 +1,9 @@
-import { PropertyData, RecapPropertyLine, Step } from "../../types/property.js"
-import { capitalize, displayCurrencyValue } from "../../utils.js"
-import Individu from "../../individu.js"
-import { getLoyerData } from "../../logement.js"
-import { getAnswer } from "../../answers.js"
-import { ressourceTypes, ressourceCategories } from "../../resources.js"
+import { PropertyData, RecapPropertyLine, Step } from "../../types/property"
+import { capitalize, displayCurrencyValue } from "../../utils"
+import Individu from "../../individu"
+import { getLoyerData } from "../../logement"
+import { getAnswer } from "../../answers"
+import { ressourceTypes, ressourceCategories } from "../../resources"
 import dayjs from "dayjs"
 
 export default <{ [key: string]: any }>{

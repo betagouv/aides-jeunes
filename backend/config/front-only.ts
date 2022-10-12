@@ -1,6 +1,6 @@
 "use strict"
 
-export default {
+module.exports = {
   baseURL: "http://localhost:8080",
   teleserviceAccessTokens: {
     loiret_APA_test: "token",

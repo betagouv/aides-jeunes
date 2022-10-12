@@ -22,12 +22,12 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
 
   this.simulation.answers.current = this.simulation.answers.all
 
-  var loyer = this.simulation.answers.current.find(
+  const loyer = this.simulation.answers.current.find(
     (e) => e.fieldName == "loyer"
   )
   loyer.value.loyer = scenarios[0].loyer || loyer.value.loyer
 
-  var depcom = this.simulation.answers.current.find(
+  const depcom = this.simulation.answers.current.find(
     (e) => e.fieldName == "depcom"
   )
   depcom.value.depcom = scenarios[0].depcom || depcom.value.depcom

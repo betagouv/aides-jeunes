@@ -48,8 +48,9 @@
       >Cette simulation a pour identifiant
       <span class="preformatted">{{ situationId }}</span> (en savoir plus sur
       <router-link to="/confidentialite"
-        >le traitement de vos données personnelles</router-link
-      >).</small
+        >le traitement de vos données personnelles
+      </router-link>
+      ).</small
     ><br />
     <small v-if="situationId">
       <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">
@@ -66,8 +67,8 @@
           <li v-if="openfiscaTracerURL">
             <a
               v-analytics="{ category: 'Tracer' }"
-              target="_blank"
               :href="openfiscaTracerURL"
+              target="_blank"
               title="Accédez à l'outil d'analyse des résultats de cette simulation - Nouvelle fenêtre"
               >Accédez à l'outil d'analyse des résultats de cette simulation</a
             >
@@ -75,8 +76,8 @@
           <li v-if="openfiscaAxeURL">
             <a
               v-analytics="{ category: 'Axe' }"
-              target="_blank"
               :href="openfiscaAxeURL"
+              target="_blank"
               title="Analysez l'évolution des aides en fonction des ressources : graphique - Nouvelle fenêtre"
               >Analysez l'évolution des aides en fonction des ressources
             </a>
@@ -84,8 +85,8 @@
           <li v-if="PNDSURL">
             <a
               v-analytics="{ category: 'PNDS' }"
-              target="_blank"
               :href="PNDSURL"
+              target="_blank"
               title="Transférer les données au PNDS :  - Nouvelle fenêtre"
               >Transférer les données au PNDS
             </a>
@@ -98,14 +99,14 @@
         action: 'Parcours',
         category: 'Je donne mon avis',
       }"
-      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       class="aj-cta-avis"
+      href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       target="_blank"
       title="Je donne mon avis - Nouvelle fenêtre"
     >
       <img
-        src="https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
         alt="Je donne mon avis"
+        src="https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
       />
     </a>
   </div>
@@ -118,8 +119,8 @@ import {
 } from "@/plugins/mails"
 import { useStore } from "@/stores"
 import { useRoute } from "vue-router"
-import { formatDroitEstime } from "@lib/benefits/details.js"
-import { capitalize } from "@lib/utils.js"
+import { formatDroitEstime } from "@lib/benefits/details"
+import { capitalize } from "@lib/utils"
 
 export default {
   name: "Feedback",

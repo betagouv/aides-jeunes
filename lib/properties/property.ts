@@ -4,7 +4,7 @@ import {
   displayEnumValue,
   displayDepcomValue,
   displayDateValue,
-} from "../utils.js"
+} from "../utils"
 import {
   EnumItemProperty,
   ItemPropertyConstruct,
@@ -13,8 +13,8 @@ import {
   PropertyData,
   RecapPropertyLine,
   Step,
-} from "../types/property.js"
-import { getStepAnswer } from "../answers.js"
+} from "../types/property"
+import { getStepAnswer } from "../answers"
 
 export class Property {
   question: string | ((propertyData: PropertyData) => string)

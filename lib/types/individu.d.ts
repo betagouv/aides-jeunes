@@ -1,4 +1,4 @@
-import { Function } from "lodash-es"
+import { Function } from "lodash"
 
 export interface individuLayout {
   id: string

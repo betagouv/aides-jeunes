@@ -1,18 +1,17 @@
 import axios from "axios"
 import express from "express"
-import outils from "./backend/controllers/outils"
-import mapping from "./backend/lib/openfisca/mapping/index"
-import openfiscaParameters from "./backend/lib/openfisca/parameters"
-import pollResult from "./backend/lib/mattermost-bot/poll-result"
-import { generateSituation } from "./lib/situations"
-import { computeAides } from "./lib/benefits/compute"
-import benefits from "./data/all"
+import outils from "./backend/controllers/outils.js"
+import mapping from "./backend/lib/openfisca/mapping/index.js"
+import openfiscaParameters from "./backend/lib/openfisca/parameters.js"
+import pollResult from "./backend/lib/mattermost-bot/poll-result.js"
+import { generateSituation } from "./lib/situations.js"
+import { computeAides } from "./lib/benefits/compute.js"
+import benefits from "./data/all.js"
 
 const computeBenefits = computeAides.bind(benefits)
 
 const openfiscaRoot = "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr"
 const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
-
 function sendToOpenfisca(situation, callback) {
   let request
   try {

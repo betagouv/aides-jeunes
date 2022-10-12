@@ -1,6 +1,6 @@
 import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-import institutionsMap from "../../data/all"
+import institutionsMap from "../../data/all.js"
 
 export function isGeographicallyIncluded(
   commune,

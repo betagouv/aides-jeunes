@@ -7,10 +7,10 @@
         @click="individu.display = !individu.display"
       >
         <svg
-          fill="none"
+          width="16"
           height="16"
           viewBox="0 0 16 16"
-          width="16"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -34,9 +34,9 @@
           {{ store.dates.fiscalYear.label }}. <br />Vous pouvez le retrouver en
           ligne sur
           <a
-            href="http://www.impots.gouv.fr/"
-            rel="noopener"
             target="_blank"
+            rel="noopener"
+            href="http://www.impots.gouv.fr/"
             title="impots.gouv.fr - Nouvelle fenêtre"
             >impots.gouv.fr</a
           >.
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { sum, some, isNaN } from "lodash"
+import { sum, some, isNaN } from "lodash-es"
 import Individu from "@lib/individu"
 import { categoriesRnc } from "@lib/resources"
 import ActionButtons from "@/components/action-buttons.vue"

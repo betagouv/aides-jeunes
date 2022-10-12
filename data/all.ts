@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs"
-import base from "./index"
+import base from "./index.js"
 import jamstackLoader from "jamstack-loader"
 
 const configFile = "contribuer/public/admin/config.yml"

@@ -3,8 +3,10 @@ import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"
 
-import piwik from "./piwik"
-import mongodb from "./mongodb"
+import piwik from "./piwik.js"
+import mongodb from "./mongodb.js"
+
+const __dirname = new URL(".", import.meta.url).pathname
 
 function dateDaysAgo(nb_days) {
   let date = new Date()

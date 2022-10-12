@@ -1,5 +1,5 @@
 import axios from "axios"
-import config from "../../config/index"
+import config from "../../config/index.js"
 
 async function post(text) {
   await axios
@@ -12,5 +12,4 @@ async function post(text) {
       console.log(`Failed to send post to mattermost ${error}`)
     })
 }
-
 export default { post }

@@ -1,4 +1,4 @@
-import Chapters from "../chapters"
+import Chapters from "../chapters.js"
 
 export function chapters(currentPath, journey, lastUnanswerPath?) {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")

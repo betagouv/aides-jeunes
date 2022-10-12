@@ -4,7 +4,7 @@ import {
   FSL_BY_CODE,
   build,
   getInstitutionName,
-} from "../../data/benefits/dynamic/fsl"
+} from "../../data/benefits/dynamic/fsl.js"
 
 describe("Fsl benefits", function () {
   const fslBenefits = build(Benefits.institutionsMap)

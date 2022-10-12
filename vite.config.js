@@ -4,16 +4,14 @@ import { createHtmlPlugin } from "vite-plugin-html"
 
 import path from "path"
 import { defineConfig, loadEnv } from "vite"
-
 const __dirname = new URL(".", import.meta.url).pathname
 import rollupYaml from "@rollup/plugin-yaml"
 
-import config from "./backend/config/index"
-import benefits from "./data/all"
-
+import config from "./dist-server/backend/config/index.js"
+import benefits from "./dist-server/data/all.js"
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async ({ command, mode }) => {
   process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""))
   const viteEnvironment = {
     VITE_BENEFIT_COUNT: benefits.all.filter((benefit) => !benefit.private)
@@ -69,8 +67,8 @@ export default defineConfig(async ({ mode }) => {
       preferBuiltins: false,
       alias: {
         "@": path.resolve(__dirname, "src"),
-        "@lib": path.resolve(__dirname, "lib"),
-        "@data": path.resolve(__dirname, "data"),
+        "@lib": path.resolve(__dirname, "dist-server/lib"),
+        "@data": path.resolve(__dirname, "dist-server/data"),
       },
     },
     define: {

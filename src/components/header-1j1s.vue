@@ -61,6 +61,7 @@ const menu = ref([
       {
         label: "Mes aides financières",
         href: "",
+        active: true,
       },
       {
         label: "Mes aides au logement",
@@ -101,10 +102,6 @@ const menu = ref([
   },
 ])
 
-const toggleShowMenu = () => {
-  showMenu.value = !showMenu.value
-}
-
 const expandMenu = (index) => {
   if (index != null) {
     menu.value[index].expanded = !menu.value[index].expanded
@@ -125,47 +122,6 @@ const handleFocusOut = () => {
   <header role="banner" class="aj-1j1s-header">
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
-        <div>
-          <svg
-            width="26"
-            height="18"
-            viewBox="0 0 18 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            fit=""
-            preserveAspectRatio="xMidYMid meet"
-            focusable="false"
-            @click="toggleShowMenu()"
-          >
-            <title>Logo bouton menu</title>
-            <rect
-              x="26"
-              width="2"
-              height="26"
-              rx="1"
-              transform="rotate(90 26 0)"
-              fill="currentColor"
-            />
-            <rect
-              x="26"
-              y="8"
-              width="2"
-              height="26"
-              rx="1"
-              transform="rotate(90 26 8)"
-              fill="currentColor"
-            />
-            <rect
-              x="26"
-              y="16"
-              width="2"
-              height="26"
-              rx="1"
-              transform="rotate(90 26 16)"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
         <div
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
@@ -212,34 +168,6 @@ const handleFocusOut = () => {
       :class="{ show: showMenu }"
     >
       <div class="container">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          fit=""
-          preserveAspectRatio="xMidYMid meet"
-          focusable="false"
-          @click="toggleShowMenu()"
-        >
-          <rect
-            x="16.7"
-            width="1.8"
-            height="23.6"
-            rx="0.9"
-            transform="rotate(45 16.7 0)"
-            fill="currentColor"
-          />
-          <rect
-            y="1.3"
-            width="1.8"
-            height="23.6"
-            rx="0.9"
-            transform="rotate(-45 0 1.3)"
-            fill="currentColor"
-          />
-        </svg>
         <ul class="ul-menu">
           <div class="menu-col-left">
             <li class="li-item-left">
@@ -268,6 +196,7 @@ const handleFocusOut = () => {
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
+                  :class="item.expanded ? 'svg-rotate' : ''"
                 >
                   <path
                     d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
@@ -282,9 +211,12 @@ const handleFocusOut = () => {
                   v-for="(submenu, subindex) in menu[index].submenus"
                   :key="`menu-item-${index}-submenu-${subindex}`"
                 >
-                  <a :href="submenu.href" class="menu-item-submenu">{{
-                    submenu.label
-                  }}</a>
+                  <a
+                    :href="submenu.href"
+                    class="menu-item-submenu"
+                    :class="submenu.active ? 'active' : ''"
+                    >{{ submenu.label }}</a
+                  >
                 </li>
               </ul>
             </li>

@@ -63,10 +63,6 @@ html {
           max-width: 78rem !important;
         }
 
-        svg {
-          display: none;
-        }
-
         .ul-menu {
           display: flex;
           justify-content: space-between;
@@ -79,6 +75,12 @@ html {
             display: flex;
             justify-content: space-between;
             margin-left: 1.5rem;
+
+            .active {
+              font-weight: 700;
+              text-decoration: underline;
+              text-underline-offset: 0.2rem;
+            }
 
             .li-item-left {
               position: relative;
@@ -103,6 +105,9 @@ html {
                 border-top: 1px solid #e5e5e5;
                 width: 100%;
                 padding: 0.5rem;
+              }
+              .menu-item-submenu:not(.active) {
+                font-weight: 400;
               }
             }
 
@@ -139,24 +144,13 @@ html {
             line-height: 2rem;
             text-underline-offset: 0.2rem;
 
-            .menu-item:hover {
-              text-decoration: underline;
-              cursor: pointer;
-
-              svg {
-                transform: rotate(180deg);
-                transition: 300ms ease all;
-              }
-            }
-
             &:not(.last-item) {
               margin-right: 2.3125rem;
             }
 
-            &.active {
-              font-weight: 700;
+            .menu-item:hover {
               text-decoration: underline;
-              text-underline-offset: 0.2rem;
+              cursor: pointer;
             }
 
             .menu-item {
@@ -172,6 +166,11 @@ html {
                 width: 1.5rem;
                 height: 1.5rem;
                 position: relative;
+                transition: 300ms ease all;
+              }
+
+              .svg-rotate {
+                transform: rotate(180deg);
               }
             }
           }

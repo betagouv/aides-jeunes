@@ -1,4 +1,4 @@
-import openfisca from "../openfisca/index"
+import openfisca from "../openfisca/index.js"
 
 function PNDS(simulation) {
   this.situation = simulation.getSituation()

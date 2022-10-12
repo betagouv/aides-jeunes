@@ -1,7 +1,7 @@
 import { check, validationResult } from "express-validator"
-import openfisca from "../lib/openfisca/getter"
-import openfiscaController from "../controllers/openfisca"
-import benefits from "../../data/all"
+import openfisca from "../lib/openfisca/getter.js"
+import openfiscaController from "../controllers/openfisca.js"
+import benefits from "../../data/all.js"
 
 let missingBenefits
 

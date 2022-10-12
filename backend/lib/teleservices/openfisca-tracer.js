@@ -1,4 +1,4 @@
-import openfisca from "../openfisca/index"
+import openfisca from "../openfisca/index.js"
 
 function OpenFiscaTracer(simulation) {
   this.situation = simulation.getSituation()

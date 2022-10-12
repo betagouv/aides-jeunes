@@ -1,17 +1,12 @@
 import path from "path"
 import fs from "fs"
 import bluebird from "bluebird"
-import { ConfigurationLayout } from "../types/config"
+const __dirname = new URL(".", import.meta.url).pathname
 
-export default function (mongoose: any, config: ConfigurationLayout) {
+export default function (mongoose, config) {
   mongoose.Promise = bluebird
 
-  mongoose
-    .connect(config.mongo.uri, config.mongo.options)
-    .then(() => console.info("DB connected"))
-    .catch((e) => {
-      throw new Error(e)
-    })
+  mongoose.connect(config.mongo.uri, config.mongo.options)
 
   // Bootstrap models
   const modelsPath = path.join(__dirname, "../models")

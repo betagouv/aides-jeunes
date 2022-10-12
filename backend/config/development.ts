@@ -1,6 +1,6 @@
 "use strict"
 
-module.exports = {
+export default {
   baseURL: "http://localhost:8080",
   openfiscaAxeURL: "http://localhost:3000",
   openfiscaPublicURL: "http://localhost:2000",

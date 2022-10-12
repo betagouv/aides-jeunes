@@ -1,4 +1,0 @@
-{
-  "watch": ["backend/", "lib/", "data/"],
-  "ext": "js, ts"
-}

@@ -1,4 +1,3 @@
-// @ts-ignore
 import aidesVelo from "aides-velo"
 
 const benefits = [...aidesVelo()]
@@ -11,7 +10,7 @@ function generate_benefit_list(institutions) {
     "code insee": institutions.filter((i) => i.type === "commune"),
   }
 
-  benefits.forEach((b: any) => {
+  benefits.forEach((b) => {
     switch (b?.collectivity?.kind) {
       case "pays": {
         if (b.collectivity.value === "France") {
@@ -41,8 +40,8 @@ function generate_benefit_list(institutions) {
   })
 
   return benefits
-    .filter((b: any) => !b.discard)
-    .map((b?: any) => {
+    .filter((b) => !b.discard)
+    .map((b) => {
       const description =
         b?.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
           ? b.description

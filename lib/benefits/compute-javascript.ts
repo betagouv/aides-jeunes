@@ -1,10 +1,10 @@
 import dayjs from "dayjs"
-import { generator } from "../dates"
-import { filterByInterestFlag } from "./filter-interest-flag"
-import Scolarite from "../scolarite"
+import { generator } from "../dates.js"
+import { filterByInterestFlag } from "./filter-interest-flag.js"
+import Scolarite from "../scolarite.js"
 
-import { situationsLayout } from "../types/situations"
-import { ConditionsLayout } from "../types/benefits"
+import { situationsLayout } from "lib/types/situations.js"
+import { ConditionsLayout } from "lib/types/benefits.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -153,13 +153,13 @@ export const CONDITION_STATEGY: ConditionsLayout = {
 
       switch (institution.type) {
         case "region":
-          return situation.menage?._region === institution.code_insee
+          return situation.menage._region === institution.code_insee
         case "departement":
-          return situation.menage?._departement === institution.code_insee
+          return situation.menage._departement === institution.code_insee
         case "epci":
-          return situation.menage?._epci === institution.code_siren
+          return situation.menage._epci === institution.code_siren
         case "commune":
-          return situation.menage?.depcom === institution.code_insee
+          return situation.menage.depcom === institution.code_insee
       }
       return false
     },

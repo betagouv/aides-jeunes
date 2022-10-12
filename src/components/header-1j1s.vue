@@ -2,31 +2,32 @@
 import { ref } from "vue"
 
 const showMenu = ref(false)
+const openedIndex = ref(null)
+const vite1jeune1solutionUrl = process.env.VITE_1J1S_URL
 const menu = ref([
   {
     label: "Offres",
-    href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
     expanded: false,
     submenus: [
       {
         label: "Emplois",
-        href: "",
+        href: `emplois`,
       },
       {
         label: "Stages",
-        href: "",
+        href: `stages`,
       },
       {
         label: "Contrats d'alternance",
-        href: "",
+        href: `apprentissage`,
       },
       {
         label: "Jobs étudiants",
-        href: "",
+        href: "jobs-etudiants",
       },
       {
         label: "Emplois en Europe",
-        href: "",
+        href: "europe",
       },
     ],
   },
@@ -37,15 +38,15 @@ const menu = ref([
     submenus: [
       {
         label: "Formations",
-        href: "",
+        href: "formations",
       },
       {
         label: "Découvrir les métiers",
-        href: "",
+        href: "découvrir-les-métiers",
       },
       {
         label: "Participer à un évênement",
-        href: "",
+        href: "evenements",
       },
     ],
   },
@@ -56,32 +57,32 @@ const menu = ref([
     submenus: [
       {
         label: "Contrat Engagement Jeune",
-        href: "",
+        href: "contrat-engagement-jeune",
       },
       {
         label: "Mes aides financières",
-        href: "",
+        href: "mes-aides",
         active: true,
       },
       {
         label: "Mes aides au logement",
-        href: "",
+        href: "logements/aides-logement",
       },
       {
         label: "Le mentorat",
-        href: "",
+        href: "mentorat",
       },
       {
         label: "Je crée mon CV personnalisé",
-        href: "",
+        href: "creer-mon-cv",
       },
       {
         label: "Accompagnement",
-        href: "",
+        href: "accompagnement",
       },
       {
         label: "Les mesures jeunes",
-        href: "",
+        href: "espace-jeune",
       },
     ],
   },
@@ -92,11 +93,11 @@ const menu = ref([
     submenus: [
       {
         label: "Le service civique",
-        href: "",
+        href: "service-civique",
       },
       {
         label: "Le bénévolat",
-        href: "",
+        href: "benevolat",
       },
     ],
   },
@@ -104,17 +105,16 @@ const menu = ref([
 
 const expandMenu = (index) => {
   if (index != null) {
+    openedIndex.value = index
     menu.value[index].expanded = !menu.value[index].expanded
+  } else {
+    openedIndex.value = null
   }
   menu.value.forEach((item, i) => {
     if (i !== index) {
       item.expanded = false
     }
   })
-}
-
-const handleFocusOut = () => {
-  expandMenu(null)
 }
 </script>
 
@@ -181,12 +181,7 @@ const handleFocusOut = () => {
                 active: item.href === '/',
               }"
             >
-              <div
-                class="menu-item"
-                tabindex="0"
-                @click="expandMenu(index)"
-                @focusout="handleFocusOut"
-              >
+              <div class="menu-item" tabindex="0" @click="expandMenu(index)">
                 <span>{{ item.label }}</span>
                 <svg
                   width="24"
@@ -212,9 +207,9 @@ const handleFocusOut = () => {
                   :key="`menu-item-${index}-submenu-${subindex}`"
                 >
                   <a
-                    :href="submenu.href"
                     class="menu-item-submenu"
                     :class="submenu.active ? 'active' : ''"
+                    :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
                     >{{ submenu.label }}</a
                   >
                 </li>

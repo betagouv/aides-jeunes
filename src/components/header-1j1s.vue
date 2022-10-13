@@ -182,21 +182,23 @@ const expandMenu = (index) => {
               }"
             >
               <div class="menu-item" tabindex="0" @click="expandMenu(index)">
-                <span>{{ item.label }}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  :class="item.expanded ? 'svg-rotate' : ''"
-                >
-                  <path
-                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
-                  ></path>
-                </svg>
+                <div>{{ item.label }}</div>
+                <div>
+                  <svg
+                    width="24"
+                    height="24"
+                    class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    :class="item.expanded ? 'svg-rotate' : ''"
+                  >
+                    <path
+                      d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <ul
                 v-if="menu[index].expanded && menu[index].submenus.length > 0"

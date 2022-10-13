@@ -7,10 +7,10 @@
         @click="hide"
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           height="24"
           viewBox="0 0 24 24"
           width="24"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M0 0h24v24H0V0z" fill="none" />
           <path
@@ -25,36 +25,36 @@
         que vous avez rencontrés.
       </p>
       <div v-if="recapEmailState === 'ok'">
-        <i class="fa fa-check" />
+        <i class="ri ri-check-line" />
         On vous envoie un email&nbsp;!
       </div>
 
       <div v-if="recapEmailState === 'error'">
-        <i class="fa fa-exclamation-triangle" />
+        <i class="ri ri-error-warning-fill" />
         Une erreur s'est produite
       </div>
 
       <div v-if="recapEmailState === 'waiting'">
-        <i class="fa fa-spinner fa-spin" aria-hidden="true" />
+        <i aria-hidden="true" class="ri ri-loader-2-line ri-spin" />
       </div>
 
       <form v-if="recapEmailState === 'show'" ref="form">
-        <label for="email" class="form__group">Votre email</label>
-        <input id="email" v-model="email" type="email" name="email" required />
+        <label class="form__group" for="email">Votre email</label>
+        <input id="email" v-model="email" name="email" required type="email" />
         <WarningMessage v-if="errorMessage"
-          >Une adresse email valide doit être indiquée.</WarningMessage
-        >
+          >Une adresse email valide doit être indiquée.
+        </WarningMessage>
         <div class="aj-feedback-buttons">
           <button
-            type="submit"
             class="button outline text-center"
+            type="submit"
             @click.prevent="getRecap(true)"
           >
             J'accepte d'être recontacté·e par email
           </button>
           <button
-            type="submit"
             class="button outline red text-center"
+            type="submit"
             @click.prevent="getRecap(false)"
           >
             Non merci, je préfère ne recevoir que le récapitulatif
@@ -134,7 +134,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .modal__backdrop {
   display: flex;
   align-items: flex-start;

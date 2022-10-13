@@ -64,7 +64,6 @@
     "event-stream": "4.0.1",
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
-    "font-awesome": "^4.7.0",
     "haversine": "^1.1.1",
     "iframe-resizer": "^4.3.2",
     "jamstack-loader": "^0.0.9",

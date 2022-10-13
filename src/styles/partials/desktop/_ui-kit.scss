@@ -26,6 +26,7 @@ html {
       .aj-complete-progress-bar {
         height: 16px;
         background-color: var(--light-grey);
+
         div {
           height: 100%;
           border-radius: 0 4px 4px 0;
@@ -122,6 +123,7 @@ html {
 
       .aj-box-wrapper {
         margin-bottom: 94px;
+
         & > div:not(.aj-unbox),
         & > form:not(.aj-unbox),
         & .aj-box {
@@ -151,6 +153,7 @@ html {
             order: 2;
             margin-left: 24px;
           }
+
           .previous {
             order: 1;
           }
@@ -166,6 +169,7 @@ html {
       .aj-category-title {
         display: flex;
         justify-content: space-between;
+
         h1 {
           font-size: 2.75rem;
           margin: 0;
@@ -326,7 +330,7 @@ html {
       }
     }
 
-    .fa-exclamation-triangle {
+    .ri-error-warning-fill {
       color: var(--orange);
     }
 

@@ -3,8 +3,8 @@
     <div>
       <router-link to="/simulation/resultats/">
         <h2 aria-label="Retour aux résultats">
-          <i class="fa fa-arrow-circle-left" aria-hidden="true" /> Retour aux
-          résultats
+          <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" /> Retour
+          aux résultats
         </h2>
       </router-link>
     </div>

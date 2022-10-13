@@ -3,6 +3,10 @@ html {
     header.aj-1j1s-header {
       background-color: var(--white);
 
+      .aj-modal-dialog {
+        display: none;
+      }
+
       .aj-1j1s-header-logo-container {
         padding-block: 1rem;
         padding-inline: 1rem;

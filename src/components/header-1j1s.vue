@@ -3,6 +3,7 @@ import { ref } from "vue"
 
 const showMenu = ref(false)
 const openedIndex = ref(null)
+const showMenuModal = ref(false)
 const vite1jeune1solutionUrl = process.env.VITE_1J1S_URL
 const menu = ref([
   {
@@ -120,6 +121,115 @@ const expandMenu = (index) => {
 
 <template>
   <header role="banner" class="aj-1j1s-header">
+    <dialog
+      v-if="showMenuModal"
+      class="aj-modal-dialog"
+      open=""
+      aria-modal="true"
+    >
+      <div class="aj-modal-component">
+        <div class="aj-modal-close">
+          <div
+            class="aj-modal-close-button"
+            title="Fermer la modale"
+            @click="showMenuModal = !showMenuModal"
+          >
+            <svg
+              width="16"
+              height="16"
+              class="icon_size__Voigr"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.99999 7.05684L11.3 3.75684L12.2427 4.6995L8.94266 7.9995L12.2427 11.2995L11.3 12.2422L7.99999 8.94217L4.69999 12.2422L3.75732 11.2995L7.05732 7.9995L3.75732 4.6995L4.69999 3.75684L7.99999 7.05684Z"
+              ></path>
+            </svg>
+            <span class="aj-modal-close-button-label">Fermer</span>
+          </div>
+        </div>
+        <div class="aj-modal-title"
+          ><svg
+            width="16"
+            height="16"
+            class="icon_size__Voigr"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M2 2.6665H14V3.99984H2V2.6665ZM2 7.33317H10V8.6665H2V7.33317ZM2 11.9998H14V13.3332H2V11.9998Z"
+            ></path>
+          </svg>
+          <span>Menu</span>
+        </div>
+        <nav role="navigation">
+          <ul class="aj-modal-navigation-list">
+            <li>
+              <a href="/">
+                <span class="aj-modal-navigation-list-label">Accueil</span>
+              </a>
+            </li>
+            <li v-for="(item, index) in menu" :key="index">
+              <div class="aj-modal-nav-item"
+                ><span class="aj-modal-navigation-list-label">{{
+                  item.label
+                }}</span
+                ><svg
+                  width="24"
+                  height="24"
+                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                v-for="(submenu, index) in item.submenus"
+                :key="index"
+                class="aj-modal-nav-subitem"
+              >
+                <div
+                  ><span class="aj-modal-navigation-list-sublabel">{{
+                    submenu.label
+                  }}</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="aj-modal-navigation-list-last-item"
+                ><span class="aj-modal-navigation-list-label"
+                  >Je suis employeur</span
+                ><svg
+                  width="24"
+                  height="24"
+                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                  ></path></svg></div
+            ></li> </ul
+        ></nav>
+      </div>
+    </dialog>
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
         <div
@@ -139,7 +249,10 @@ const expandMenu = (index) => {
             </a>
           </div>
 
-          <div class="aj-1j1s-responsive-menu-button">
+          <div
+            class="aj-1j1s-responsive-menu-button"
+            @click="showMenuModal = !showMenuModal"
+          >
             <svg
               width="24"
               height="24"

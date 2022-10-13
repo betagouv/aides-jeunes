@@ -126,22 +126,47 @@ const expandMenu = (index) => {
           class="aj-1j1s-header-left-links"
           :class="{ 'not-home': $route.name !== 'home' }"
         >
-          <a
-            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
-            class="rf-link"
-          >
-            <img
-              class="rf"
-              alt="Accueil 1 jeune 1 solution"
-              src="/img/logo_rf.svg"
-            />
-          </a>
-          <a
-            href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
-            class="aj-1j1s-header-title"
-          >
-            1jeune1solution
-          </a>
+          <div class="aj-1j1s-logo">
+            <a
+              href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+              class="rf-link"
+            >
+              <img
+                class="rf"
+                alt="Accueil 1 jeune 1 solution"
+                src="/img/logo_rf.svg"
+              />
+            </a>
+          </div>
+
+          <div class="aj-1j1s-responsive-menu-button">
+            <svg
+              width="24"
+              height="24"
+              class="icon_size__Voigr"
+              viewBox="0 0 25 24"
+              fill="#566bb1"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M3.5 3.99976H21.5V5.99976H3.5V3.99976ZM3.5 10.9998H21.5V12.9998H3.5V10.9998ZM3.5 17.9998H21.5V19.9998H3.5V17.9998Z"
+              ></path>
+            </svg>
+            <span class="aj-1j1s-responsive-menu-label">Menu</span>
+          </div>
+          <div class="aj-1j1s-responsive-label">
+            <div>
+              <a
+                href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
+                class="aj-1j1s-header-title"
+              >
+                1jeune1solution
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="aj-1j1s-header-right-links">

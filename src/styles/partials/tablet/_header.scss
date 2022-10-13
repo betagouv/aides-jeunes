@@ -13,6 +13,11 @@ html {
           }
 
           .aj-1j1s-header-left-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0;
+            width: 100%;
             * {
               color: #000;
             }
@@ -44,81 +49,42 @@ html {
                 margin-left: 0;
               }
             }
-          }
-        }
-      }
 
-      .aj-1j1s-header-menu {
-        position: fixed;
-        left: -150%;
-        top: 0;
-        height: 100%;
-        width: 250%;
-        z-index: -1;
-        background-color: transparent;
-        transition: all 0.3s ease;
+            .aj-1j1s-logo {
+            }
 
-        .container {
-          opacity: 1;
-          background-color: var(--white);
-          max-width: 31.25rem;
-          height: 100%;
-          margin-top: 0.6875rem;
-          padding: 0 2rem;
-          border-top-right-radius: var(--theme-border-radius);
-          margin-left: 0;
-          position: relative;
-
-          svg {
-            display: block;
-            cursor: pointer;
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
-          }
-
-          ul {
-            flex-direction: column;
-            margin: 3.75rem 0 3.125rem;
-
-            li {
-              margin-bottom: 1.875rem;
-
-              &:not(.last-item) {
-                margin-right: 0;
+            .aj-1j1s-responsive-menu-button {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+              align-items: center;
+              border-radius: 1rem;
+              padding: 1rem 1.25rem 0.5rem 1.25rem;
+              span {
+                color: #566bb1;
+                font-size: .875rem;
               }
+            }
 
-              &.home-link {
-                display: block;
-                a {
-                  color: var(--green);
-                  font-weight: normal;
-                  background-image: linear-gradient(
-                    hsla(0, 0%, 100%, 0),
-                    hsla(0, 0%, 100%, 0) 56%,
-                    rgba(43, 182, 115, 0.1) 0,
-                    rgba(43, 182, 115, 0.1) 100%,
-                    hsla(0, 0%, 100%, 0) 0
-                  );
-                }
-              }
-
-              a {
-                color: var(--theme-primary);
+            .aj-1j1s-responsive-menu-button:hover {
+              cursor: pointer;
+              background-color: #ececff;
+            }
+            .aj-1j1s-responsive-label {
+              flex-basis: 100%;
+              border-top: 2px solid #e5e5e5;
+              padding-top: 1rem;
+              margin-top: 1rem;
+              line-height: 1rem;
+              .aj-1j1s-header-title {
                 font-size: 1.125rem;
-                font-weight: 700;
               }
             }
           }
         }
-
-        &.show {
-          left: 0;
-          z-index: 99;
-          background-color: transparentize(#000531, 0.3);
-        }
+      }
+      .aj-1j1s-header-menu {
+        display: none;
       }
     }
   }

@@ -1,6 +1,6 @@
 import BenefitsCategories from "@/lib/benefits-categories"
 import data from "@data"
-import * as config from "../../contribuer/public/admin/config.yml"
+import { collections as configCollections } from "../../contribuer/public/admin/config.yml"
 
 function generateBenefits() {
   const collectionsData = {
@@ -27,12 +27,12 @@ function generateBenefits() {
   const slugPattern = /\/([0-9a-z\-_–·éèà’ëïô]*)\.ya?ml$/i
   function pop(collection) {
     const items = []
-    for (let key in collectionsData[collection.name]) {
+    for (let key in collectionsData[collection]) {
       if (key.match(slugPattern)) {
         const slug = slugPattern.exec(key)[1]
         items.push({
           slug,
-          ...collectionsData[collection.name][key],
+          ...collectionsData[collection][key],
         })
       } else {
         console.log("Failed to load file:", key)
@@ -44,8 +44,9 @@ function generateBenefits() {
     }
   }
 
-  let collections = config.collections.reduce((accum, collection) => {
-    accum[collection.name] = pop(collection)
+  console.log("!!", configCollections)
+  let collections = configCollections.reduce((accum, collection) => {
+    accum[collection] = pop(collection)
     return accum
   }, {})
 

@@ -61,6 +61,14 @@ export default defineConfig(async ({ mode }) => {
       }),
       rollupYaml({
         include: ["data/**", "contribuer/**"],
+        transform(data, filePath) {
+          if (data && filePath.match(/(.*)config\.yml$/)) {
+            data.collections = data.collections.map(
+              (collection) => collection.name
+            )
+            return { collections: data.collections }
+          }
+        },
       }),
       legacy({
         targets: ["defaults"],

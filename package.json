@@ -7,7 +7,7 @@
     "build": "concurrently 'npm run build:server' 'npm run build:lib' 'npm run build:data' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
     "clean:dist-server": "rm -fR dist-server",
     "copy:templates": "cp -R backend/lib/mes-aides/emails/templates dist-server/backend/lib/mes-aides/emails/templates",
-    "build:iframes": "babel ./iframes/iframe-integration.js --out-file public/documents/iframe-integration.js",
+    "build:iframes": "webpack --config iframes/iframes.config.ts",
     "build:front": "vite build",
     "build:server": "babel ./backend --out-dir dist-server/backend --extensions '.ts,.js'",
     "build:lib": "babel ./lib --out-dir dist-server/lib --extensions '.ts,.js'",

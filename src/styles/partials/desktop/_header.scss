@@ -64,7 +64,6 @@ html {
       .aj-1j1s-header-menu {
         border-bottom: 1px solid #e5e5e5;
         border-top: 1px solid #e5e5e5;
-        line-height: 2rem;
 
         .container {
           max-width: 78rem !important;
@@ -78,11 +77,12 @@ html {
           padding: 0;
           margin: 0;
           position: relative;
+          line-height: 1rem;
           .menu-col-left {
             display: flex;
             justify-content: space-between;
             margin-left: 1.5rem;
-
+            width: 100%;
             .active {
               font-weight: 700;
               text-decoration: underline;
@@ -104,7 +104,6 @@ html {
               border-radius: 0 0 20px 20px;
               overflow: hidden;
               margin-bottom: 1rem;
-              margin-top: 0.65rem;
               margin-left: -0.6rem;
               padding-inline-start: 0;
 
@@ -127,29 +126,19 @@ html {
               text-decoration: underline;
             }
           }
-
-          .menu-col-right {
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            height: 100%;
-            font-weight: 700;
-            .li-item-right {
+          .last-item {
+              color: #fff;
               padding: 0.6rem 1rem 0.5rem 1rem;
               background-color: #18753c;
-              margin-right: 0;
-            }
-
-            .li-item-right:hover {
-              background-color: #18753cc2;
-            }
+              margin-left: auto !important;
+              font-weight: 700;
+          }
+          .last-item:hover {
+            background-color: #18753cc2;
           }
 
           li {
             display: block;
-            line-height: 2rem;
             text-underline-offset: 0.2rem;
 
             &:not(.last-item) {
@@ -177,6 +166,7 @@ html {
                 height: 1.5rem;
                 position: relative;
                 transition: 300ms ease all;
+                margin-top: 0.5rem;
               }
 
               .svg-rotate {

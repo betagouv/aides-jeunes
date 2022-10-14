@@ -384,27 +384,6 @@ const submenuClick = (index, subindex, submenu) => {
                 </div>
               </div>
             </li>
-            <!-- <li>
-              <div class="aj-modal-navigation-list-last-item">
-                <span class="aj-modal-navigation-list-label">
-                  Je suis employeur
-                </span>
-                <svg
-                  width="24"
-                  height="24"
-                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
-                  ></path>
-                </svg>
-              </div>
-            </li> -->
           </ul>
         </nav>
       </div>
@@ -533,25 +512,6 @@ const submenuClick = (index, subindex, submenu) => {
                   >
                 </li>
               </ul>
-            </li>
-          </div>
-          <div class="menu-col-right">
-            <li class="li-item-right">
-              <div class="menu-item">
-                <span>Je suis employeur</span>
-                <svg
-                  width="24"
-                  height="24"
-                  fill="#fff"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
-                  ></path>
-                </svg>
-              </div>
             </li>
           </div>
         </ul>

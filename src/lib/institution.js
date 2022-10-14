@@ -1,56 +1,8 @@
 import BenefitsCategories from "@/lib/benefits-categories"
-import data from "@data"
-import { collections as configCollections } from "../../contribuer/public/admin/config.yml"
+import institutionsBenefits from "generator:benefits"
 
-function generateBenefits() {
-  const collectionsData = {
-    institutions: import.meta.glob("../../data/institutions/*.{yml,yaml}", {
-      eager: true,
-      import: "default",
-    }),
-    benefits_javascript: import.meta.glob(
-      "../../data/benefits/javascript/*.{yml,yaml}",
-      {
-        eager: true,
-        import: "default",
-      }
-    ),
-    benefits_openfisca: import.meta.glob(
-      "../../data/benefits/openfisca/*.{yml,yaml}",
-      {
-        eager: true,
-        import: "default",
-      }
-    ),
-  }
-
-  const slugPattern = /\/([0-9a-z\-_–·éèà’ëïô]*)\.ya?ml$/i
-  function pop(collection) {
-    const items = []
-    for (let key in collectionsData[collection]) {
-      if (key.match(slugPattern)) {
-        const slug = slugPattern.exec(key)[1]
-        items.push({
-          slug,
-          ...collectionsData[collection][key],
-        })
-      } else {
-        console.log("Failed to load file:", key)
-      }
-    }
-    return {
-      ...collection,
-      items,
-    }
-  }
-
-  console.log("!!", configCollections)
-  let collections = configCollections.reduce((accum, collection) => {
-    accum[collection] = pop(collection)
-    return accum
-  }, {})
-
-  return data.generate({ collections })
+export function getBenefit(benefitId) {
+  return institutionsBenefits[benefitId]
 }
 
 export const mockResults = function (sublist) {
@@ -64,16 +16,21 @@ export const mockResults = function (sublist) {
     float: 1,
   }
 
-  const list = generateBenefits()
-    .all.filter(
-      (benefit) => !filterSublist || filterSublist.includes(benefit.id)
+  let benefits = []
+  if (filterSublist) {
+    benefits = filterSublist.map((benefit) => institutionsBenefits[benefit])
+  } else {
+    benefits = Object.keys(institutionsBenefits).map(
+      (benefit) => institutionsBenefits[benefit]
     )
-    .map((benefit) => {
-      return Object.assign({}, benefit, {
-        montant: benefit.montant || defaults[benefit.type || "float"],
-        mock: true,
-      })
+  }
+
+  const list = benefits.map((benefit) => {
+    return Object.assign({}, benefit, {
+      montant: benefit.montant || defaults[benefit.type || "float"],
+      mock: true,
     })
+  })
 
   return {
     droitsEligibles: list,
@@ -81,4 +38,4 @@ export const mockResults = function (sublist) {
   }
 }
 
-export default generateBenefits
+export default {}

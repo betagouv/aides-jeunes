@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import institutionsBenefits from "@/../out.json"
+import institutionsBenefits from "generator:institutions"
 import Commune from "@/lib/commune"
 
 const TYPES = {

@@ -10,12 +10,10 @@ const __dirname = new URL(".", import.meta.url).pathname
 import config from "./backend/config/index"
 import benefits from "./data/all"
 
-
 import { visualizer } from "rollup-plugin-visualizer"
-import generator from "./rollup/generator.rollup.js"
+import generator from "./rollup/generator.rollup"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
-
 
 export default defineConfig(async ({ mode }) => {
   process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""))

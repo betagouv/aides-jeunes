@@ -137,6 +137,7 @@ html {
             flex-direction: row;
             justify-content: space-between;
             padding-bottom: 0.5rem;
+            // padding: 0.5rem 0.5rem 0rem 1.5rem;
 
             svg {
               background-repeat: no-repeat;
@@ -149,6 +150,13 @@ html {
 
             .svg-rotate {
               transform: rotate(180deg);
+            }
+          }
+          .aj-modal-navigation-subsubmenu {
+            display: flex;
+            align-items: center;
+            svg {
+              transform: rotate(90deg);
             }
           }
           .aj-modal-navigation-list {
@@ -172,19 +180,32 @@ html {
             }
             .aj-modal-nav-subitem {
               margin-left: -1.5rem;
+              margin-right: -0.5rem;
+              right: 0;
               padding-top: 0.5rem;
               padding-bottom: 0.5rem;
+              background-color: #fff;
               .aj-modal-navigation-list-sublabel {
                 margin: 0.5rem 0 0.5rem 2rem;
                 text-underline-offset: 0.2rem;
                 color: #000;
                 text-decoration: none;
               }
+              div:first-child {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+              svg {
+                display: block;
+                width: 24px;
+                height: 24px;
+              }
             }
             li:last-child {
               background-color: #18753c;
-              color: #e5e5e5;
-              font-weight: 600;
+              color: #ffffff;
+              // font-weight: 600;
             }
           }
         }

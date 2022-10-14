@@ -3,6 +3,7 @@ import { ref } from "vue"
 
 const showMenu = ref(false)
 const openedIndex = ref(null)
+const openedSubmenuIndex = ref(null)
 const showMenuModal = ref(false)
 const vite1jeune1solutionUrl = process.env.VITE_1J1S_URL
 const menu = ref([
@@ -105,6 +106,7 @@ const menu = ref([
   {
     label: "Je suis employeur",
     expanded: false,
+    childrenExpandedIndex: null,
     submenus: [
       {
         label: "Rejoindre la mobilisation",
@@ -140,6 +142,7 @@ const menu = ref([
 ])
 
 const expandMenu = (index) => {
+  console.log("expandMenu", index)
   if (index != null) {
     openedIndex.value = index
     menu.value[index].expanded = !menu.value[index].expanded
@@ -151,6 +154,33 @@ const expandMenu = (index) => {
       item.expanded = false
     }
   })
+  openedSubmenuIndex.value = null
+}
+
+const expandChildrenSubmenu = (index, subindex) => {
+  console.log("expandChildrenSubmenu", index, subindex)
+  if (index != null && subindex != null) {
+    if (menu.value[index].childrenExpandedIndex === subindex) {
+      menu.value[index].childrenExpandedIndex = null
+      openedSubmenuIndex.value = null
+    } else {
+      menu.value[index].childrenExpandedIndex = subindex
+      openedSubmenuIndex.value = subindex
+    }
+    console.log(menu.value[index].submenus[subindex].childrenExpanded)
+  } else if (index != null && subindex == null) {
+    menu.value[index].childrenExpandedIndex = null
+    openedSubmenuIndex.value = null
+  }
+}
+
+const submenuClick = (index, subindex, submenu) => {
+  console.log("submenuClick", index, subindex, submenu)
+  if (submenu?.href) {
+    window.location.href = `${vite1jeune1solutionUrl}/${submenu.href}`
+  } else {
+    expandChildrenSubmenu(index, subindex)
+  }
 }
 </script>
 
@@ -214,17 +244,18 @@ const expandMenu = (index) => {
                 </div>
               </a>
             </li>
-            <li
-              v-for="(item, index) in menu"
-              :key="index"
-              @click="expandMenu(index)"
-            >
-              <div class="aj-modal-nav-item"
-                ><span
+            <li v-for="(item, index) in menu" :key="index">
+              <div
+                v-if="!item.childrenExpandedIndex"
+                class="aj-modal-nav-item"
+                @click="expandMenu(index)"
+              >
+                <span
                   class="aj-modal-navigation-list-label"
                   :class="item.expanded ? 'active' : ''"
-                  >{{ item.label }}</span
-                ><svg
+                  >{{ item.label }}
+                </span>
+                <svg
                   width="24"
                   height="24"
                   :class="item.expanded ? 'svg-rotate' : ''"
@@ -239,7 +270,88 @@ const expandMenu = (index) => {
                   ></path>
                 </svg>
               </div>
-              <div v-if="item.expanded">
+              <div v-else>
+                <div
+                  class="aj-modal-nav-item"
+                  @click="submenuClick(index, subindex, submenu)"
+                >
+                  <span v-if="!item.childrenExpandedIndex">
+                    <span
+                      class="aj-modal-navigation-list-label"
+                      :class="item.expanded ? 'active' : ''"
+                      >{{ item.label }}
+                    </span>
+                    <svg
+                      width="24"
+                      height="24"
+                      :class="item.expanded ? 'svg-rotate' : ''"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span v-else class="aj-modal-navigation-subsubmenu">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                      ></path>
+                    </svg>
+                    <span
+                      class="aj-modal-navigation-list-label"
+                      :class="item.expanded ? 'active' : ''"
+                      >{{ item.submenus[item.childrenExpandedIndex].label }}
+                    </span>
+                  </span>
+                </div>
+                <div
+                  v-for="(submenu, subindex) in item.submenus[
+                    item.childrenExpandedIndex
+                  ].children"
+                  :key="`submenu-${subindex}`"
+                  class="aj-modal-nav-subitem"
+                >
+                  <div>
+                    <a
+                      class="aj-modal-navigation-list-sublabel menu-item-submenu"
+                      :class="submenu.active ? 'active' : ''"
+                      @click="submenuClick(index, subindex, submenu)"
+                    >
+                      {{ submenu.label }}
+                    </a>
+                    <div v-if="submenu.children" class="aj-submenu-children">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M8.78047 7.99999L5.48047 4.69999L6.42314 3.75732L10.6658 7.99999L6.42314 12.2427L5.48047 11.3L8.78047 7.99999Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="item.expanded && !openedSubmenuIndex">
                 <div
                   v-for="(submenu, subindex) in item.submenus"
                   :key="`submenu-${subindex}`"
@@ -249,10 +361,25 @@ const expandMenu = (index) => {
                     <a
                       class="aj-modal-navigation-list-sublabel menu-item-submenu"
                       :class="submenu.active ? 'active' : ''"
-                      :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
+                      @click="submenuClick(index, subindex, submenu)"
                     >
                       {{ submenu.label }}
                     </a>
+                    <div v-if="submenu.children" class="aj-submenu-children">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M8.78047 7.99999L5.48047 4.69999L6.42314 3.75732L10.6658 7.99999L6.42314 12.2427L5.48047 11.3L8.78047 7.99999Z"
+                        ></path>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -86,7 +86,7 @@ html {
       .aj-1j1s-header-menu {
         display: none;
       }
-      .aj-modal-dialog{
+      .aj-modal-dialog {
         position: fixed;
         z-index: 5500;
         width: 100%;
@@ -94,17 +94,17 @@ html {
         top: 0;
         padding: 0;
         border: none;
-        background-color: hsla(0,0%,9%,.375);
+        background-color: hsla(0, 0%, 9%, 0.375);
         pointer-events: none;
         display: block;
         visibility: visible;
         opacity: 1;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         .aj-modal-component {
           height: 100vh;
           overflow-y: scroll;
           background-color: #fff;
-          pointer-events: all;      
+          pointer-events: all;
           .aj-modal-close {
             position: sticky;
             top: 0;
@@ -120,55 +120,71 @@ html {
               gap: 0.5rem;
             }
           }
+          .active {
+            font-weight: 700;
+            text-decoration: underline !important;
+            text-underline-offset: 0.2rem;
+          }
           .aj-modal-title {
             margin: 0 0 0.5rem 1rem;
-            font-size: .9rem;
+            font-size: 0.9rem;
             display: flex;
             gap: 0.4rem;
             align-items: center;
           }
-          .aj-modal-nav-item, .aj-modal-navigation-list-last-item {
+          .aj-modal-nav-item {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             padding-bottom: 0.5rem;
+
+            svg {
+              background-repeat: no-repeat;
+              display: inline-block;
+              width: 1.5rem;
+              height: 1.5rem;
+              position: relative;
+              transition: 300ms ease all;
+            }
+
+            .svg-rotate {
+              transform: rotate(180deg);
+            }
           }
           .aj-modal-navigation-list {
             list-style: none;
             padding: 0;
             color: #000;
             li {
-              padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-              font-size: .875rem;
-              line-height: 1.5rem;
+              padding: 0.5rem 0.5rem 0rem 1.5rem;
+              font-size: 0.875rem;
+              line-height: 1.8rem;
             }
-            a {
+            .aj-modal-nav-first-item {
               color: #000;
               padding: 0;
               font-weight: 700;
               text-decoration: underline;
             }
-            li:not(:last-child), .aj-modal-nav-subitem {
+            li:not(:last-child),
+            .aj-modal-nav-subitem {
               border-top: 1px solid #e5e5e5;
             }
             .aj-modal-nav-subitem {
-              margin-left: -1rem;
+              margin-left: -1.5rem;
               padding-top: 0.5rem;
               padding-bottom: 0.5rem;
               .aj-modal-navigation-list-sublabel {
                 margin: 0.5rem 0 0.5rem 2rem;
+                text-underline-offset: 0.2rem;
+                color: #000;
+                text-decoration: none;
               }
             }
             li:last-child {
               background-color: #18753c;
-              color:#e5e5e5;
+              color: #e5e5e5;
               font-weight: 600;
-              padding: 0;
-            }
-            .aj-modal-navigation-list-last-item {
-              padding: 0.5rem 0.5rem 0.5rem 1rem;
-              font-size: .875rem;
-              line-height: 1.5rem;
             }
           }
         }

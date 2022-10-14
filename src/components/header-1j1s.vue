@@ -102,6 +102,41 @@ const menu = ref([
       },
     ],
   },
+  {
+    label: "Je suis employeur",
+    expanded: false,
+    submenus: [
+      {
+        label: "Rejoindre la mobilisation",
+        href: "les-entreprises-s-engagent",
+      },
+      {
+        label: "Recruter et agir pour les jeunes",
+        children: [
+          {
+            label: "Je recrute",
+            href: "je-recrute",
+          },
+          {
+            label: "Je deviens mentor",
+            href: "je-deviens-mentor",
+          },
+          {
+            label: "Je propose des immersions",
+            href: "immersions",
+          },
+        ],
+      },
+      {
+        label: "Découvrir les mesures employeur",
+        href: "mesures-employeurs",
+      },
+      {
+        label: "Accéder à mon espace",
+        href: "mon-espace",
+      },
+    ],
+  },
 ])
 
 const expandMenu = (index) => {
@@ -173,16 +208,61 @@ const expandMenu = (index) => {
         <nav role="navigation">
           <ul class="aj-modal-navigation-list">
             <li>
-              <a href="/">
-                <span class="aj-modal-navigation-list-label">Accueil</span>
+              <a href="/" class="aj-modal-nav-first-item">
+                <div class="aj-modal-nav-item">
+                  <span class="aj-modal-navigation-list-label">Accueil</span>
+                </div>
               </a>
             </li>
-            <li v-for="(item, index) in menu" :key="index">
+            <li
+              v-for="(item, index) in menu"
+              :key="index"
+              @click="expandMenu(index)"
+            >
               <div class="aj-modal-nav-item"
-                ><span class="aj-modal-navigation-list-label">{{
-                  item.label
-                }}</span
+                ><span
+                  class="aj-modal-navigation-list-label"
+                  :class="item.expanded ? 'active' : ''"
+                  >{{ item.label }}</span
                 ><svg
+                  width="24"
+                  height="24"
+                  :class="item.expanded ? 'svg-rotate' : ''"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                  ></path>
+                </svg>
+              </div>
+              <div v-if="item.expanded">
+                <div
+                  v-for="(submenu, subindex) in item.submenus"
+                  :key="`submenu-${subindex}`"
+                  class="aj-modal-nav-subitem"
+                >
+                  <div>
+                    <a
+                      class="aj-modal-navigation-list-sublabel menu-item-submenu"
+                      :class="submenu.active ? 'active' : ''"
+                      :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
+                    >
+                      {{ submenu.label }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- <li>
+              <div class="aj-modal-navigation-list-last-item">
+                <span class="aj-modal-navigation-list-label">
+                  Je suis employeur
+                </span>
+                <svg
                   width="24"
                   height="24"
                   class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
@@ -197,37 +277,9 @@ const expandMenu = (index) => {
                   ></path>
                 </svg>
               </div>
-              <div
-                v-for="(submenu, index) in item.submenus"
-                :key="index"
-                class="aj-modal-nav-subitem"
-              >
-                <div
-                  ><span class="aj-modal-navigation-list-sublabel">{{
-                    submenu.label
-                  }}</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="aj-modal-navigation-list-last-item"
-                ><span class="aj-modal-navigation-list-label"
-                  >Je suis employeur</span
-                ><svg
-                  width="24"
-                  height="24"
-                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
-                  ></path></svg></div
-            ></li> </ul
-        ></nav>
+            </li> -->
+          </ul>
+        </nav>
       </div>
     </dialog>
     <div class="aj-1j1s-header-logo-container">
@@ -309,7 +361,7 @@ const expandMenu = (index) => {
         <ul class="ul-menu">
           <div class="menu-col-left">
             <li class="li-item-left">
-              <div href="/" class="menu-item">Accueil</div>
+              <a href="/" class="menu-item">Accueil</a>
             </li>
             <li
               v-for="(item, index) in menu"

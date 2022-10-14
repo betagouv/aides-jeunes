@@ -7,7 +7,7 @@
 export default {
   name: "CopyButton",
   props: {
-    benefitsMap: Object,
+    benefitsMap: Function,
     benefitsList: Object,
   },
   data() {
@@ -28,7 +28,7 @@ export default {
         for (let benefit of benefitsList) {
           const benefitItem = document.createElement("li")
           const benefitLink = document.createElement("a")
-          const benefitTitle = this.benefitsMap[benefit.id]?.label || benefit.id
+          const benefitTitle = this.benefitsMap(benefit.id)?.label || benefit.id
           benefitLink.innerText = benefitTitle.replace(/(^[a-z])/, (l) =>
             l.toUpperCase()
           )

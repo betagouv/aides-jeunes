@@ -121,8 +121,7 @@
 
 <script>
 import axios from "axios"
-
-import BenefitsGenerator from "@/lib/institution"
+import { getBenefit } from "@/lib/institution"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"
@@ -175,23 +174,23 @@ export default {
       .get(`/api/followups/surveys/${this.$route.query.token}`)
       .then((response) => {
         this.followup = response.data
-        let benefitsIds = this.followup.benefits.map((benefit) => benefit.id)
+        let followupBenefits = this.followup.benefits.map((benefit) =>
+          getBenefit(benefit.id)
+        )
 
-        const benefitsNormalized = BenefitsGenerator()
-          .all.filter((benefit) => benefitsIds.includes(benefit.id))
-          .map((benefit) => {
-            let montant = this.followup.benefits.find(
-              (followupBenefit) => followupBenefit.id === benefit.id
-            ).amount
+        const benefitsNormalized = followupBenefits.map((benefit) => {
+          let montant = this.followup.benefits.find(
+            (followupBenefit) => followupBenefit.id === benefit.id
+          ).amount
 
-            return {
-              ...benefit,
-              montant: montant,
-              choices: choices,
-              choiceValue: null,
-              choiceComments: "",
-            }
-          })
+          return {
+            ...benefit,
+            montant: montant,
+            choices: choices,
+            choiceValue: null,
+            choiceComments: "",
+          }
+        })
 
         this.droits = benefitsNormalized
       })

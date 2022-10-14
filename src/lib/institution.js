@@ -1,8 +1,8 @@
 import BenefitsCategories from "@/lib/benefits-categories"
-import institutionsBenefits from "generator:benefits"
+import Benefits from "generator:benefits"
 
 export function getBenefit(benefitId) {
-  return institutionsBenefits[benefitId]
+  return Benefits[benefitId]
 }
 
 export const mockResults = function (sublist) {
@@ -18,11 +18,9 @@ export const mockResults = function (sublist) {
 
   let benefits = []
   if (filterSublist) {
-    benefits = filterSublist.map((benefit) => institutionsBenefits[benefit])
+    benefits = filterSublist.map((benefit) => Benefits[benefit])
   } else {
-    benefits = Object.keys(institutionsBenefits).map(
-      (benefit) => institutionsBenefits[benefit]
-    )
+    benefits = Object.keys(Benefits).map((benefit) => Benefits[benefit])
   }
 
   const list = benefits.map((benefit) => {
@@ -38,4 +36,4 @@ export const mockResults = function (sublist) {
   }
 }
 
-export default {}
+export default Object.keys(Benefits).map((benefit) => Benefits[benefit])

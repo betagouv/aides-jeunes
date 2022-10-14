@@ -1,65 +1,155 @@
-html {
-  body {
-    footer.aj-1j1s-footer {
-      background-color: var(--white);
-      padding-top: 16px;
-      border-top: 0.0625rem solid #e6e6e6;
+.aj-1j1s-pre-footer {
+  background-color: #18753c;
+  color: #fff;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
 
-      .container {
-        display: flex;
-        flex-direction: row;
+.aj-1j1s-footer {
+  padding: 2rem 1.5rem;
 
-        .aj-1j1s-footer-logo-container {
-          display: flex;
-          flex-wrap: wrap;
+  &__container {
+    max-width: 78em;
+    display: flex;
+    margin: auto;
+    align-self: center;
+    align-items: center;
+  }
 
-          width: 25%;
+  &__bottom-container {
+    border-top: 1px solid #e5e5e5;
+    color: #666;
+    margin: 0.7rem auto 0 auto;
+    display: block;
+    flex-wrap: wrap;
+    padding-top: 0.7rem;
+    font-size: 0.75rem;
+    max-width: 78rem;
+  }
 
-          .rf {
-            margin: 0.625rem;
-            max-width: 5.875rem;
-          }
+  &__section {
+    width: 50vw;
 
-          .fr {
-            margin: 0.625rem;
-            max-width: 8.25rem;
-          }
-        }
+    &--logo {
+      display: flex;
+      align-items: center;
+    }
 
-        .aj-1j1s-footer-col {
-          width: 25%;
-          flex-wrap: wrap;
+    &--messages {
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+    }
+  }
 
-          h2 {
-            text-transform: uppercase;
-            font-size: 1.375rem;
-            font-weight: normal;
+  &__logo-container {
+    &--republique {
+      max-width: 140px;
+    }
 
-            svg {
-              display: none;
-            }
-          }
+    &--relance {
+      margin-left: 2.5rem;
+    }
+  }
 
-          ul {
-            padding: 0;
-            margin: 0;
+  &__republique-logo-text {
+    text-transform: uppercase;
+    font-family: "Marianne", sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    line-height: 1;
+    font-size: 1.125rem;
+  }
 
-            li {
-              list-style-type: none;
-              margin-bottom: 10px;
+  &__external-link-list {
+    margin: 0;
+    padding: 0;
+  }
 
-              a {
-                text-decoration: none;
-                color: #000;
+  &__external-link-list-item {
+    list-style: none;
+    display: inline-block;
+    margin: 0 1.5rem 0 0;
+    padding: 0;
+  }
 
-                &:hover {
-                  background: none;
-                  text-decoration: underline;
-                }
-              }
-            }
-          }
-        }
+  &__external-link,
+  &__external-link:visited,
+  &__external-link:active {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+    i {
+      font-size: 1.125rem;
+      vertical-align: middle;
+    }
+  }
+
+  &__internal-link {
+    padding: 0.7rem 0.7rem 0.7rem 0;
+    border-right: 1px solid #e5e5e5;
+    margin-right: 0.7rem;
+    display: inline-block;
+    text-decoration: none;
+    color: #666;
+    font-size: 0.75rem;
+
+    &:visited,
+    &:active,
+    &:hover {
+      color: inherit;
+      border-radius: 0;
+    }
+
+    i {
+      vertical-align: middle;
+    }
+
+    &--email {
+      &:visited,
+      &:active,
+      &:hover {
+        text-decoration: underline;
+      }
+
+      text-decoration: underline;
+    }
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  &__legal {
+    margin-top: 0.7em;
+  }
+
+  &__license-link {
+    text-decoration: underline;
+    color: inherit;
+
+    &:visited,
+    &:active,
+    &:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: $screen-md-min) {
+  .aj-1j1s-footer {
+    &__container {
+      display: block;
+    }
+
+    &__section {
+      width: 100%;
+
+      &--messages {
+        font-size: 0.75rem;
       }
     }
   }

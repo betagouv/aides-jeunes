@@ -1,48 +1,80 @@
 <template>
-  <footer role="contentInfo" class="aj-1j1s-footer">
-    <div class="container">
-      <div class="aj-1j1s-footer-logo-container">
-        <img class="rf" alt="" src="/img/logo_rf.svg" />
-        <img class="fr" alt="" src="/img/logo1j1s-france-relance.svg" />
+  <p class="aj-1j1s-pre-footer"
+    >Une initiative du Gouvernement pour accompagner, former, et faciliter
+    l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30 ans, sur
+    tous les territoires.</p
+  >
+  <footer class="aj-1j1s-footer" role="contentInfo">
+    <div class="aj-1j1s-footer__container">
+      <div class="aj-1j1s-footer__section aj-1j1s-footer__section--logo">
+        <div
+          class="aj-1j1s-footer__logo-container aj-1j1s-footer__logo-container--republique"
+        >
+          <img alt="drapeau" class="rf" src="/img/mariane_no_text.svg" />
+          <span class="aj-1j1s-footer__republique-logo-text">
+            Ministère du travail, de l'emploi et de l'insertion
+          </span>
+          <img alt="liberté égalité fraternité" src="/img/devise.svg" />
+        </div>
+        <div
+          class="aj-1j1s-footer__logo-container aj-1j1s-footer__logo-container--relance"
+        >
+          <img alt="logo france relance" src="/img/france-relance.svg" />
+        </div>
       </div>
-      <div
-        v-for="(item, index) in menu"
-        :key="index"
-        class="aj-1j1s-footer-col"
-        :class="{ show: item.show }"
-      >
-        <h2
-          :class="{ last: index === menu.length - 1 }"
+      <div class="aj-1j1s-footer__section aj-1j1s-footer__section--messages">
+        <span>#1jeune1solution</span>
+        <p
+          >Une initiative du Gouvernement pour accompagner, former, et faciliter
+          l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30
+          ans, sur tous les territoires.</p
+        >
+        <ul class="aj-1j1s-footer__external-link-list">
+          <li
+            v-for="link in externalLinks"
+            :key="link.label"
+            class="aj-1j1s-footer__external-link-list-item"
+          >
+            <a
+              :href="link.href"
+              class="aj-1j1s-footer__external-link"
+              target="_blank"
+            >
+              {{ link.label }}
+              <i aria-hidden="true" class="ri-share-box-line ri"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="aj-1j1s-footer__bottom-container">
+      <template v-for="(item, index) in menu" :key="index">
+        <a
+          :class="item.class"
+          :href="item.href"
+          class="aj-1j1s-footer__internal-link"
           @click="toggleShowItem(item)"
         >
           {{ item.label }}
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            fit=""
-            preserveAspectRatio="xMidYMid meet"
-            focusable="false"
-          >
-            <path
-              d="M0.75 0.75L6.00005 6.00007L0.749998 11.2501"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </h2>
-        <ul>
-          <li v-for="(child, childIndex) in item.children" :key="childIndex">
-            <a v-if="child.href" :href="child.href">{{ child.label }}</a>
-            <router-link v-else :to="child.route">
-              {{ child.label }}
-            </router-link>
-          </li>
-        </ul>
+          <i
+            v-if="item.newTab"
+            aria-hidden="true"
+            class="ri-share-box-line ri"
+          ></i>
+        </a>
+      </template>
+      <div class="aj-1j1s-footer__legal">
+        Sauf mention contraire, tous les contenus de ce site sont sous
+        licence&nbsp;
+        <a
+          class="aj-1j1s-footer__license-link"
+          href="https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <span class="TextIcon_textIcon__fq9Gn">etalab-2.0 </span>
+          <i aria-hidden="true" class="ri-share-box-line"></i>
+        </a>
       </div>
     </div>
   </footer>
@@ -55,102 +87,52 @@ export default {
     return {
       menu: [
         {
-          label: "À propos",
-          show: false,
-          children: [
-            {
-              label: "CGU & Mentions légales",
-              route: "/cgu",
-            },
-            {
-              label: "Politique de confidentialité",
-              route: "/confidentialite",
-            },
-            {
-              label: "Accessibilité (non conforme)",
-              route: "/accessibilite",
-            },
-            {
-              label: "Nous contacter",
-              route: "/contact",
-            },
-            {
-              label: "Statistiques",
-              href: "/stats",
-            },
-            {
-              label: "Toutes les aides",
-              route: "/aides",
-            },
-            {
-              label: "Intégration",
-              route: "/iframe",
-            },
-          ],
-        },
-        {
           label: "Plan du site",
-          show: false,
-          children: [
-            {
-              label: "Accueil",
-              href: "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-            {
-              label: "Emploi et stage",
-              href: "https://www.1jeune1solution.gouv.fr/emplois?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-            {
-              label: "Orientation et formation",
-              href: "https://www.1jeune1solution.gouv.fr/formations?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-            {
-              label: "Aides et accompagnement",
-              href: "/",
-            },
-            {
-              label: "Engagement et bénévolat",
-              href: "https://www.1jeune1solution.gouv.fr/engagement?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-            {
-              label: "Employeur",
-              href: "https://www.1jeune1solution.gouv.fr/je-recrute?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-            {
-              label: "Partenaires",
-              href: "https://www.1jeune1solution.gouv.fr/partenaires?utm_source=mes-aides-beta&utm_medium=menu",
-            },
-          ],
+          href: "/plan-du-site",
         },
         {
-          label: "Liens utiles",
-          show: false,
-          children: [
-            {
-              label: "Gouvernement",
-              href: "https://www.gouvernement.fr/",
-            },
-            {
-              label: "Ministère du travail, de l'emploi et de l'insertion",
-              href: "https://travail-emploi.gouv.fr/",
-            },
-            {
-              label: "Pôle emploi",
-              href: "https://www.pole-emploi.fr/accueil/",
-            },
-            {
-              label: "Annuaire des missions locales",
-              href: "https://www.unml.info/les-missions-locales/annuaire/",
-            },
-            {
-              label: "Service Civique",
-              href: "https://www.service-civique.gouv.fr/",
-            },
-            {
-              label: "France",
-              href: "https://www.france.fr/fr",
-            },
-          ],
+          label: "Conditions générales d'utilisations",
+          href: "/cgu",
+        },
+        {
+          label: "Accessibilité (non conforme)",
+          href: "/accessibilite",
+        },
+        {
+          label: "Mentions légales",
+          href: "/mentions-legales",
+        },
+        {
+          label: "Politique de confidentialité",
+          href: "/confidentialite",
+        },
+        {
+          label: "Nous contacter",
+          href: "mailto:contact-1j1s@sg.social.gouv.fr",
+          class: "aj-1j1s-footer__internal-link--email",
+          newTab: true,
+        },
+      ],
+      externalLinks: [
+        {
+          label: "legifrance.gouv.fr",
+          href: "https://www.legifrance.gouv.fr/",
+        },
+        {
+          label: "gouvernement.fr",
+          href: "https://www.gouvernement.fr/",
+        },
+        {
+          label: "service-public.fr",
+          href: "https://www.service-public.fr/",
+        },
+        {
+          label: "data.gouv.fr",
+          href: "https://www.data.gouv.fr/",
+        },
+        {
+          label: "france.fr",
+          href: "https://www.france.fr/fr",
         },
       ],
     }

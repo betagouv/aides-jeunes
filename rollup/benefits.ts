@@ -1,4 +1,4 @@
-import generator from "../dist-server/data/all.js"
+import generator from "../data/all.js"
 
 const benefits = {}
 const excludeKeys = [
@@ -31,6 +31,5 @@ for (const benefit in generator.benefitsMap) {
     }
   }
 }
-//console.log(JSON.stringify(benefits))
 
 export default benefits

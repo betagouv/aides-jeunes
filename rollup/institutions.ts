@@ -1,10 +1,9 @@
-import generator from "../dist-server/data/all.js"
+import generator from "../data/all.js"
 
 import { createRequire } from "module"
 const require = createRequire(import.meta.url)
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
-// Store all benefits per institution
 const institutionsBenefits = {}
 
 for (const benefit in generator.benefitsMap) {

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { maxBy } from "lodash-es"
+import { maxBy } from "lodash"
 
 function sortByName(aCity, bCity) {
   if (aCity.nom < bCity.nom) return -1

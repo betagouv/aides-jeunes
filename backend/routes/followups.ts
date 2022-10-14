@@ -4,8 +4,8 @@ import {
   postSurvey,
   showSurveyResult,
   showSurveyResults,
-} from "../controllers/followups.js"
-import githubController from "../controllers/github.js"
+} from "../controllers/followups"
+import githubController from "../controllers/github"
 
 const followupsRoutes = function (api) {
   api.route("/followups/surveys/:surveyId").get(showFromSurvey)

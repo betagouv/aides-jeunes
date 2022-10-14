@@ -1,8 +1,9 @@
 /*
  * Supprime les id lorsqu'ils ne sont plus nécessaires
  */
-import { omit } from "lodash-es"
-import { ANSWER_BASIC_IDS } from "../../definitions.js"
+import { omit } from "lodash"
+import { ANSWER_BASIC_IDS } from "../../definitions"
+
 const VERSION = 8
 
 function removeIds(answers) {

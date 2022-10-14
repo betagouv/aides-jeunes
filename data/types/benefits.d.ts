@@ -17,4 +17,5 @@ export interface benefitVeloLayout extends Aide {
   title?: string
   id?: string
   url?: string
+  amount?: string
 }

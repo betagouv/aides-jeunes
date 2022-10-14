@@ -1,11 +1,12 @@
 import { ArgumentParser } from "argparse"
 
-import config from "../config/index.js"
+import config from "../config/index"
 import mongoose from "mongoose"
-import mongooseConfig from "../config/mongoose.js"
+import mongooseConfig from "../config/mongoose"
+
 mongooseConfig(mongoose, config)
 
-import Followup from "../models/followup.js"
+import Followup from "../models/followup"
 
 const parser = new ArgumentParser({
   add_help: true,
@@ -153,4 +154,5 @@ function main() {
       process.exit(1)
   }
 }
+
 main()

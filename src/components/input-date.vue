@@ -75,10 +75,10 @@ export default {
     return {
       day:
         this.dateType === "date"
-          ? this.modelValue && dayjs(this.modelValue).format("DD")
+          ? this.modelValue && dayjs.utc(this.modelValue).format("DD")
           : "01",
-      month: this.modelValue && dayjs(this.modelValue).format("MM"),
-      year: this.modelValue && dayjs(this.modelValue).format("YYYY"),
+      month: this.modelValue && dayjs.utc(this.modelValue).format("MM"),
+      year: this.modelValue && dayjs.utc(this.modelValue).format("YYYY"),
     }
   },
   computed: {

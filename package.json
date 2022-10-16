@@ -69,7 +69,6 @@
     "jamstack-loader": "^0.0.9",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
-    "lodash-es": "^4.17.21",
     "mjml": "^4.10.4",
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.12",

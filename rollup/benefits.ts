@@ -5,7 +5,6 @@ const excludeKeys = [
   "conditions_generales",
   "entity",
   "etablissements",
-  "floorAt",
   "forms",
   "interestFlag",
   "openfisca_eligibility_source",

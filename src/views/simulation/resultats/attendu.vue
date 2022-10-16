@@ -209,7 +209,7 @@ export default {
     let benefitKeyed = {}
     let benefits = []
 
-    Institution.benefits.all.forEach((benefit) => {
+    Institution.forEach((benefit) => {
       const b = Object.assign({ type: benefit.institution.type }, benefit)
       b.label = capitalize(benefit.label)
 
@@ -235,7 +235,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: Institution.benefits.institutionsMap,
+      institutions: Institution,
     }
   },
   computed: {

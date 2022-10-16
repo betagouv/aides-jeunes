@@ -104,6 +104,8 @@
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/test-utils": "^2.1.0",
+    "@vue/vue3-jest": "^27.0.0",
     "argparse": "^2.0.1",
     "concurrently": "^7.4.0",
     "cypress": "^10.8.0",
@@ -149,7 +151,8 @@
       "vue"
     ],
     "transform": {
-      "\\.[jt]sx?$": "ts-jest"
+      "\\.[jt]sx?$": "ts-jest",
+      "\\.vue$": "@vue/vue3-jest"
     },
     "globals": {
       "ts-jest": {

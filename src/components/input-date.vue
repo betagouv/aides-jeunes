@@ -55,8 +55,9 @@
 </template>
 
 <script>
-import { padStart } from "lodash"
 import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
+dayjs.extend(utc)
 
 export default {
   name: "InputDate",
@@ -82,8 +83,8 @@ export default {
   },
   computed: {
     date: function () {
-      return `${this.year}-${this.month && padStart(this.month, 2, "0")}-${
-        this.day && padStart(this.day, 2, "0")
+      return `${this.year}-${this.month && this.month.padStart(2, "0")}-${
+        this.day && this.day.padStart(2, "0")
       }`
     },
     firstId: function () {
@@ -129,11 +130,11 @@ export default {
       }
     },
     update: function () {
-      const dt = dayjs(this.date, "YYYY-MM-DD", true)
+      const dt = dayjs.utc(this.date, "YYYY-MM-DD", true)
       if (
         dt.isValid() &&
-        dt.isAfter(dayjs("1900-01-01", "YYYY-MM-DD", true)) &&
-        dt.isBefore(dayjs())
+        dt.isAfter(dayjs.utc("1900-01-01", "YYYY-MM-DD", true)) &&
+        dt.isBefore(dayjs.utc())
       ) {
         this.$emit("update:modelValue", dt.toDate())
       } else {

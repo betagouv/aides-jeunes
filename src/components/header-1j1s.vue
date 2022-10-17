@@ -497,7 +497,11 @@ const submenuClick = (index, subindex, submenu) => {
                 </div>
               </div>
               <ul
-                v-if="menu[index].expanded && menu[index].submenus.length > 0"
+                v-if="
+                  menu[index].expanded &&
+                  menu[index].submenus.length > 0 &&
+                  index < menu.length - 1
+                "
                 class="menu-item-submenus"
               >
                 <li
@@ -516,6 +520,36 @@ const submenuClick = (index, subindex, submenu) => {
           </div>
         </ul>
       </div>
+      <transition name="fade">
+        <div class="menu-employee">
+          <ul
+            v-if="menu.length > 0 && menu[menu.length - 1].expanded"
+            class="menu-item-submenus-employee"
+          >
+            <div>
+              <p class="aj-1j1s-header-title">Je suis employeur</p>
+              <p>Découvrez des services faits pour vous !</p>
+            </div>
+            <div
+              v-for="(submenu, subindex) in menu[menu.length - 1].submenus"
+              :key="`last-submenu-${subindex}`"
+              class="last-submenu-col-right"
+            >
+              <p v-if="submenu">{{ submenu.label }}</p>
+            </div>
+          </ul>
+        </div>
+      </transition>
     </nav>
   </header>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

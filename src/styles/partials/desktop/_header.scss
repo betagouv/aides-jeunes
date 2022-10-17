@@ -3,6 +3,15 @@ html {
     header.aj-1j1s-header {
       background-color: var(--white);
 
+      .aj-1j1s-header-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        font-family: Marianne, arial, sans-serif;
+        margin-top: 1rem;
+      }
+
       .aj-modal-dialog {
         display: none;
       }
@@ -30,14 +39,6 @@ html {
             display: flex;
             align-items: center;
             gap: 4rem;
-            .aj-1j1s-header-title {
-              font-size: 1.25rem;
-              font-weight: 700;
-              color: #000;
-              text-decoration: none;
-              font-family: Marianne, arial, sans-serif;
-              margin-top: 1rem;
-            }
             .aj-1j1s-responsive-menu-button {
               display: none;
             }
@@ -111,6 +112,9 @@ html {
                 border-top: 1px solid #e5e5e5;
                 width: 100%;
                 padding: 0.5rem;
+                display: block;
+                padding-block: 0.8rem;
+                padding-inline: 1rem;
               }
               .menu-item-submenu:not(.active) {
                 font-weight: 400;
@@ -173,6 +177,34 @@ html {
                 transform: rotate(180deg);
               }
             }
+          }
+        }
+        .menu-employee {
+          width: 50%;
+        }
+        .menu-item-submenus-employee {
+          color: #161616;
+          z-index: 5;
+          position: absolute;
+          margin-top: 0.09rem;
+          background-color: #fff;
+          display: flex !important;
+          flex-direction: row  !important;
+          padding: 1rem 2.5rem;
+
+          .last-submenu-col-right {
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+
+            padding: 0 2.5rem 0 2.5rem;
+            p {
+              color: #566bb1;
+              font-weight: 700;  
+            }
+          }
+          .last-submenu-col-right:nth-child(n+3) {
+            border-left: 1px solid #566bb1;
           }
         }
       }

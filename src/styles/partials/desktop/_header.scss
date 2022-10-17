@@ -75,9 +75,7 @@
   }
 
   &-nav {
-    border-bottom: 1px solid #e5e5e5;
     border-top: 1px solid #e5e5e5;
-
     .container {
       max-width: 78rem !important;
     }
@@ -173,18 +171,21 @@
       }
     }
     .menu-employee {
-      max-width: 78rem;
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
+      margin-top: 0.1rem;
+      outline: 1px solid #e5e5e5;
+      margin-bottom: 0.1rem;
     }
     .menu-item-submenus-employee {
+      max-width: 78rem;
+      margin: 0 auto;
       color: #161616;
       z-index: 5;
-      position: absolute;
-      margin-top: 0.09rem;
       background-color: #fff;
       display: flex !important;
       flex-direction: row !important;
-      padding: 2.5rem 2.5rem 2.5rem 1.5rem;
+      padding: 0 2.5rem 1rem 1.5rem;
 
       .last-submenu-col-right {
         padding: 0 2.5rem 0 2.5rem;
@@ -206,12 +207,11 @@
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          .last-menu-subsubmenus {
-            color: #161616;
-            text-decoration: none;
-            padding-left: 1rem;
-            font-size: 1rem;
-          }
+          color: #161616;
+          text-decoration: none;
+          padding-left: 1rem;
+          font-size: 1rem;
+
           a {
             text-decoration: none;
             color: #000;

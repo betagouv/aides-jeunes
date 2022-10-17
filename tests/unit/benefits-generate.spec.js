@@ -1,6 +1,12 @@
 import expect from "expect"
 import subject from "@root/data"
 
+jest.mock("@root/data/benefits/dynamic/apa.ts", () => {
+  return {
+    buildAPA: jest.fn(() => []),
+  }
+})
+
 describe("benefit descriptions", function () {
   it("exists", function () {
     const collections = {
@@ -29,6 +35,7 @@ describe("benefit descriptions", function () {
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
     const result = subject.fn(collections, additionalBenefitAttributes)
+
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
     ).toBeTruthy()

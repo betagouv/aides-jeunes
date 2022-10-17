@@ -456,64 +456,62 @@ const submenuClick = (index, subindex, submenu) => {
     </div>
     <nav
       role="navigation"
-      class="aj-1j1s-header-menu"
+      class="aj-1j1s-header-nav"
       :class="{ show: showMenu }"
     >
       <div class="container">
-        <ul class="ul-menu">
-          <div class="menu-col-left">
-            <li class="li-item-left">
-              <a href="/" class="menu-item">Accueil</a>
-            </li>
-            <li
-              v-for="(item, index) in menu"
-              :key="`menu-item-${index}`"
-              :class="{
-                'last-item': index === menu.length - 1,
-                active: item.href === '/',
-              }"
-            >
-              <div class="menu-item" tabindex="0" @click="expandMenu(index)">
-                <div>{{ item.label }}</div>
-                <div>
-                  <svg
-                    width="24"
-                    height="24"
-                    class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    :class="item.expanded ? 'svg-rotate' : ''"
-                  >
-                    <path
-                      d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
-              <ul
-                v-if="
-                  menu[index].expanded &&
-                  menu[index].submenus.length > 0 &&
-                  index < menu.length - 1
-                "
-                class="menu-item-submenus"
-              >
-                <li
-                  v-for="(submenu, subindex) in menu[index].submenus"
-                  :key="`menu-item-${index}-submenu-${subindex}`"
+        <ul class="aj-1j1s-header-nav__menu">
+          <li>
+            <a href="/" class="menu-item">Accueil</a>
+          </li>
+          <li
+            v-for="(item, index) in menu"
+            :key="`menu-item-${index}`"
+            :class="{
+              'last-item': index === menu.length - 1,
+              active: item.href === '/',
+            }"
+          >
+            <div class="menu-item" tabindex="0" @click="expandMenu(index)">
+              <div>{{ item.label }}</div>
+              <div>
+                <svg
+                  width="24"
+                  height="24"
+                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  :class="item.expanded ? 'svg-rotate' : ''"
                 >
-                  <a
-                    class="menu-item-submenu"
-                    :class="submenu.active ? 'active' : ''"
-                    :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
-                    >{{ submenu.label }}</a
-                  >
-                </li>
-              </ul>
-            </li>
-          </div>
+                  <path
+                    d="M12 13.5797L16.95 8.62971L18.364 10.0437L12 16.4077L5.63599 10.0437L7.04999 8.62971L12 13.5797Z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <ul
+              v-if="
+                menu[index].expanded &&
+                menu[index].submenus.length > 0 &&
+                index < menu.length - 1
+              "
+              class="menu-item-submenus"
+            >
+              <li
+                v-for="(submenu, subindex) in menu[index].submenus"
+                :key="`menu-item-${index}-submenu-${subindex}`"
+              >
+                <a
+                  class="menu-item-submenu"
+                  :class="submenu.active ? 'active' : ''"
+                  :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
+                  >{{ submenu.label }}</a
+                >
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
       <transition name="fade">

@@ -48,7 +48,6 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import { groupBy } from "lodash"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"
@@ -133,13 +132,13 @@ export default {
       )
     },
     groupTypes(types) {
-      console.log("1!!", types)
-      console.log(
-        "2!!",
-        groupBy(types, (t) => t.category)
-      )
-
-      return groupBy(types, (t) => t.category)
+      return types.reduce((categories, type) => {
+        if (!categories[type.category]) {
+          categories[type.category] = []
+        }
+        categories[type.category].push(type)
+        return categories
+      }, {})
     },
   },
 }

@@ -24,12 +24,14 @@ describe("types.vue", () => {
       { label: "APL", category: "Allocations" },
       { label: "Bourse", category: "Autre" },
     ]
-    const result = [
-      { positionInList: 1, label: "Salaire 1" },
-      { positionInList: 2, label: "Salaire 2" },
-      { label: "Prime" },
-      { label: "Stage" },
-    ]
-    expect(Types.methods.sort(categories)).toEqual(result)
+    const result = {
+      Autre: [{ label: "Bourse", category: "Autre" }],
+      Allocations: [{ label: "APL", category: "Allocations" }],
+      Revenus: [
+        { label: "Salaire", category: "Revenus" },
+        { label: "Revenus de stage", category: "Revenus" },
+      ],
+    }
+    expect(Types.methods.groupTypes(categories)).toEqual(result)
   })
 })

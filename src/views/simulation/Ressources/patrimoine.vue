@@ -1,7 +1,7 @@
 <template>
   <form>
     <h2 data-testid="immobilier-title">
-      <i class="fa fa-home" aria-hidden="true" />
+      <i aria-hidden="true" class="ri ri-home-4-line" />
       Immobilier
     </h2>
 
@@ -62,7 +62,7 @@
     </label>
 
     <h2>
-      <i class="fa fa-money" aria-hidden="true" />
+      <i aria-hidden="true" class="ri ri-money-euro-box-line" />
       Épargne
     </h2>
 

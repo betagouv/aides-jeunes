@@ -3,7 +3,7 @@
     <div class="aj-loading-modal-content">
       <slot />
       <div class="text-center">
-        <i class="fa fa-spinner fa-2x fa-spin" aria-hidden="true" />
+        <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
       </div>
     </div>
   </div>

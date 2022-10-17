@@ -126,7 +126,7 @@
             Enregistrer
           </button>
           <span v-show="submitting"
-            ><i aria-hidden="true" class="fa fa-spinner fa-spin" />
+            ><i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
             Enregistrement en cours…</span
           >
         </div>
@@ -181,7 +181,7 @@
 </template>
 
 <script>
-import { filter, sortBy } from "lodash"
+import { filter, sortBy } from "lodash-es"
 
 import axios from "axios"
 import Institution from "@/lib/institution"

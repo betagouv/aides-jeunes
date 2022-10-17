@@ -1,9 +1,9 @@
 <template>
   <div
     class="aj-droit-detail normal-padding-bottom"
+    data-testid="droit-detail"
     itemscope
     itemtype="http://schema.org/GovernmentService"
-    data-testid="droit-detail"
   >
     <DroitHeader :droit="droit"></DroitHeader>
 
@@ -16,11 +16,11 @@
             <BenefitCtaLink
               v-if="droit.link"
               :analytics-name="droit.label"
-              :link="droit.link"
               :benefit="droit"
-              type="link"
-              level="'inline'"
+              :link="droit.link"
               itemprop="termsOfService"
+              level="'inline'"
+              type="link"
             />
           </p>
           <div v-if="droit.conditions?.length" class="aj-droit-conditions">
@@ -29,7 +29,7 @@
             >
             <ul class="list-unstyled">
               <li v-for="(condition, index) in droit.conditions" :key="index">
-                <img src="@/assets/images/doigt.svg" alt="" />
+                <img alt="" src="@/assets/images/doigt.svg" />
                 <span v-html="condition" />
               </li>
             </ul>
@@ -45,8 +45,8 @@
             class="print-hidden"
           >
             <span>
-              <i class="fa fa-warning" aria-hidden="true" />  Cette aide se base
-              sur vos ressources de l'année
+              <i aria-hidden="true" class="ri ri-error-warning-fill" />  Cette
+              aide se base sur vos ressources de l'année
               {{ store.dates.fiscalYear.label }}
             </span>
             <router-link
@@ -68,15 +68,15 @@
             class="print-hidden"
           >
             <span>
-              <i class="fa fa-warning" aria-hidden="true" /> Cette aide se base
-              sur votre patrimoine. Vous avez un patrimoine immobilier,
-              d'épargne, des revenus fonciers et/ou du capital ? Vous devez
-              renseigner des informations complémentaires.
+              <i aria-hidden="true" class="ri ri-error-warning-fill" /> Cette
+              aide se base sur votre patrimoine. Vous avez un patrimoine
+              immobilier, d'épargne, des revenus fonciers et/ou du capital ?
+              Vous devez renseigner des informations complémentaires.
             </span>
             <router-link
               id="patrimoine-link"
-              data-testid="patrimoine-link"
               class="button outline red no-shadow text-center"
+              data-testid="patrimoine-link"
               to="/simulation/ressources/patrimoine"
             >
               Déclarez votre patrimoine
@@ -100,9 +100,9 @@
             </p>
           </div>
           <BenefitCta
-            class="aj-droit-content-buttons-cta"
             :benefit="droit"
             :benefitsTotal="droits.length"
+            class="aj-droit-content-buttons-cta"
           />
 
           <a
@@ -112,13 +112,13 @@
               action: 'msa',
               category: 'General',
             }"
-            target="_blank"
-            rel="noopener"
             class="aj-droit-pro-agricole"
             href="https://www.msa.fr/lfy/espace-prive"
+            rel="noopener"
+            target="_blank"
             title="Démarches pour les professions agricoles - Nouvelle fenêtre"
           >
-            <img src="@/assets/images/doigt.svg" alt="" /> Démarches pour les
+            <img alt="" src="@/assets/images/doigt.svg" /> Démarches pour les
             professions agricoles
           </a>
         </div>

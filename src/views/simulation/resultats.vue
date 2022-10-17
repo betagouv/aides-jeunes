@@ -10,15 +10,16 @@
     <WarningMessage v-if="hasWarning">
       <div>
         <h2>
-          <i class="fa fa-warning" aria-hidden="true" /> Aucun résultat
-          disponible
+          <i aria-hidden="true" class="ri ri-error-warning-fill" /> Aucun
+          résultat disponible
         </h2>
         <h3>
           La simulation à laquelle vous souhaitez accéder n‘est pas accessible.
         </h3>
         <p class="aj-results-intro">
           Pour commencer votre simulation, rendez-vous sur la
-          <router-link to="home"> page d'accueil </router-link>.
+          <router-link to="home"> page d'accueil</router-link>
+          .
         </p>
       </div>
     </WarningMessage>

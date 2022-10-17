@@ -6,7 +6,7 @@
       </h2>
       <div class="aj-etablissement-details">
         <address v-if="etablissement.adresse">
-          <i class="fa fa-home" aria-hidden="true" /> Adresse :
+          <i aria-hidden="true" class="ri ri-home-4-line" /> Adresse :
           <span
             v-for="(ligne, index) in etablissement.adresse.lignes"
             :key="index"
@@ -20,11 +20,11 @@
           v-if="etablissement.telephone"
           class="aj-etablissements-action-tel-desktop"
         >
-          <i class="fa fa-phone" aria-hidden="true" />
+          <i aria-hidden="true" class="ri ri-phone-fill" />
           {{ etablissement.telephone }}
         </div>
         <div v-if="etablissement.horaires" class="aj-etablissement-horaires">
-          <i class="fa fa-clock-o" aria-hidden="true" /> Horaires :<br />
+          <i aria-hidden="true" class="ri ri-time-line" /> Horaires :<br />
           <div class="aj-etablissement-horaires-plage-container">
             <div
               v-for="plage_jour in etablissement.horaires"
@@ -57,13 +57,13 @@
                 action: 'Site internet',
                 category: 'Partenaire',
               }"
+              :aria-label="`Site internet : ${etablissement.nom} - Nouvelle fenêtre`"
               :href="etablissement.url"
               class="button primary with-icon"
-              target="_blank"
               rel="noopener"
-              :aria-label="`Site internet : ${etablissement.nom} - Nouvelle fenêtre`"
+              target="_blank"
             >
-              <i class="fa fa-share-square-o" aria-hidden="true" />
+              <i aria-hidden="true" class="ri ri-share-box-line" />
               Site internet
             </a>
           </div>
@@ -79,10 +79,10 @@
               }"
               :href="`tel:${etablissement.telephone}`"
               class="button primary with-icon"
-              target="_blank"
               rel="noopener"
+              target="_blank"
             >
-              <i class="fa fa-phone" aria-hidden="true" />
+              <i aria-hidden="true" class="ri ri-phone-fill" />
               {{ etablissement.telephone }}
             </a>
           </div>

@@ -3,15 +3,15 @@
     <BackButton
       class="aj-etablissements-back-button small"
       @click="goToBenefitDetail()"
-      >Retour à l'aide</BackButton
-    >
+      >Retour à l'aide
+    </BackButton>
     <p class="aj-etablissements-intro">
       Vous pouvez y être accompagné·e pour faire votre demande et poser toutes
       vos questions.
     </p>
     <p v-show="updating">
-      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
-      cours…
+      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
+      Récupération en cours…
     </p>
     <div v-if="list?.length">
       <div
@@ -24,8 +24,8 @@
     </div>
     <div v-else>
       <router-link to="/simulation/resultats">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true" /> Revenir aux
-        résultats
+        <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" /> Revenir
+        aux résultats
       </router-link>
     </div>
   </div>

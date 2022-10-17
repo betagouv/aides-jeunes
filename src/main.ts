@@ -11,7 +11,7 @@ import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
 
 import "template.data.gouv.fr/dist/main.css"
-import "font-awesome/scss/font-awesome.scss"
+import "@/styles/remixicon.css"
 import "@/styles/main.scss"
 
 import AnalyticsDirective from "./directives/analytics"

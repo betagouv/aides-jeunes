@@ -1,7 +1,8 @@
 <template>
   <div id="error" class="alert alert-danger" role="alert">
     <h2>
-      <i class="fa fa-warning" aria-hidden="true" /> Une erreur est survenue.
+      <i aria-hidden="true" class="ri ri-error-warning-fill" /> Une erreur est
+      survenue.
     </h2>
     <p>
       <a

@@ -1,11 +1,11 @@
 <template>
   <button
     v-if="show"
-    type="button"
     class="button text-center"
+    type="button"
     @click="showModal"
   >
-    <i class="fa fa-envelope-o" aria-hidden="true" />
+    <i aria-hidden="true" class="ri ri-mail-line" />
     {{ text }}
   </button>
 </template>

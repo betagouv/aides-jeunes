@@ -7,8 +7,8 @@
     </router-link>
 
     <p v-show="updating">
-      <i aria-hidden="true" class="fa fa-spinner fa-spin" /> Récupération en
-      cours…
+      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
+      Récupération en cours…
     </p>
     <div v-if="etablissements?.length">
       <p class="aj-etablissements-intro">
@@ -30,7 +30,7 @@
       </p>
       Revenir aux résultats
       <router-link to="/simulation/resultats">
-        <i aria-hidden="true" class="fa fa-arrow-circle-left" />
+        <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" />
       </router-link>
     </div>
   </div>

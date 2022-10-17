@@ -1,8 +1,8 @@
 <template>
   <article class="text container">
     <p v-if="updating">
-      <i class="fa fa-spinner fa-spin" aria-hidden="true" /> Récupération en
-      cours…
+      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
+      Récupération en cours…
     </p>
     <div v-else>
       <div v-if="error">
@@ -52,7 +52,7 @@
           adresser, en justifiant de votre identité.
         </p>
 
-        <a class="btn btn-primary btn-lg" :href="teleservice.destination.url">{{
+        <a :href="teleservice.destination.url" class="btn btn-primary btn-lg">{{
           teleservice.destination.label
         }}</a>
       </div>

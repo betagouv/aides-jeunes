@@ -1,6 +1,6 @@
 <template>
   <div class="field-group">
-    <label role="heading" aria-level="2" for="cp" class="aj-question"
+    <label aria-level="2" class="aj-question" for="cp" role="heading"
       >{{ codePostalLabel }}
       <EnSavoirPlus />
     </label>
@@ -8,18 +8,18 @@
       id="cp"
       v-model="codePostalValue"
       data-testid="postalCode"
-      type="text"
       data-type="number"
       inputmode="numeric"
       pattern="[0-9]*"
+      type="text"
     />
   </div>
 
   <p v-if="retrievingCommunes">
-    <i class="fa fa-spinner fa-spin" aria-hidden="true" />
+    <i aria-hidden="true" class="ri ri-loader-2-line ri-spin" />
   </p>
   <div v-show="communes?.length" class="field-group">
-    <label for="commune" class="aj-question"
+    <label class="aj-question" for="commune"
       >Veuillez sélectionner la ville qui correspond
     </label>
     <select id="commune" v-model="nomCommuneValue">
@@ -134,7 +134,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .field-group {
   margin-bottom: 2em;
 }

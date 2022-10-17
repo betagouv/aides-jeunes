@@ -1,6 +1,6 @@
 .aj-1j1s-header {
 
-  &-modal__dialog {
+  &-modal {
     position: fixed;
     z-index: 5500;
     width: 100%;
@@ -137,6 +137,7 @@
 
       .aj-1j1s-header-left-links {
         display: flex;
+        flex-direction: row-reverse;
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 0;
@@ -171,9 +172,6 @@
           a.fr-link {
             margin-left: 0;
           }
-        }
-
-        .aj-1j1s-logo {
         }
 
         .aj-1j1s-responsive-menu-button {

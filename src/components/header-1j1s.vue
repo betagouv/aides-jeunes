@@ -184,7 +184,7 @@ const submenuClick = (index, subindex, submenu) => {
   <header role="banner" class="aj-1j1s-header">
     <dialog
       v-if="showMenuModal"
-      class="aj-1j1s-header-modal__dialog"
+      class="aj-1j1s-header-modal"
       open=""
       aria-modal="true"
     >

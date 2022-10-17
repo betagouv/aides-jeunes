@@ -40,7 +40,7 @@ const ID = function () {
   return `_${Math.random().toString(36).substr(2, 9)}`
 }
 
-function mock({ app }) {
+function mock(app: express.Application) {
   app.use(express.json())
 
   const cache = {}

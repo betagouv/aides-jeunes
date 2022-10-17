@@ -123,14 +123,14 @@
         }
       }
 
-      .last-item {
+      &-last-item {
         color: #fff;
         padding: 0.6rem 1rem 0.5rem 1rem;
         background-color: #18753c;
         margin-left: auto !important;
         font-weight: 700;
       }
-      .last-item:hover {
+      &-last-item:hover {
         background-color: #18753cc2;
       }
 
@@ -141,34 +141,34 @@
         &:not(.last-item) {
           margin-right: 2.3125rem;
         }
+      }
 
-        .menu-item:hover {
-          text-decoration: underline;
-          cursor: pointer;
+      &-item:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &-item {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0.1rem;
+        height: 100%;
+
+        svg {
+          background-repeat: no-repeat;
+          display: inline-block;
+          width: 1.5rem;
+          height: 1.5rem;
+          position: relative;
+          transition: 300ms ease all;
+          margin-top: 0.5rem;
         }
 
-        .menu-item {
-          text-decoration: none;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          gap: 0.1rem;
-          height: 100%;
-
-          svg {
-            background-repeat: no-repeat;
-            display: inline-block;
-            width: 1.5rem;
-            height: 1.5rem;
-            position: relative;
-            transition: 300ms ease all;
-            margin-top: 0.5rem;
-          }
-
-          .svg-rotate {
-            transform: rotate(180deg);
-          }
+        .svg-rotate {
+          transform: rotate(180deg);
         }
       }
     }

@@ -462,17 +462,21 @@ const submenuClick = (index, subindex, submenu) => {
       <div class="container">
         <ul class="aj-1j1s-header-nav__menu">
           <li>
-            <a href="/" class="menu-item">Accueil</a>
+            <a href="/">Accueil</a>
           </li>
           <li
             v-for="(item, index) in menu"
             :key="`menu-item-${index}`"
             :class="{
-              'last-item': index === menu.length - 1,
+              'aj-1j1s-header-nav__menu-last-item': index === menu.length - 1,
               active: item.href === '/',
             }"
           >
-            <div class="menu-item" tabindex="0" @click="expandMenu(index)">
+            <div
+              class="aj-1j1s-header-nav__menu-item"
+              tabindex="0"
+              @click="expandMenu(index)"
+            >
               <div>{{ item.label }}</div>
               <div>
                 <svg
@@ -553,13 +557,3 @@ const submenuClick = (index, subindex, submenu) => {
     </nav>
   </header>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>

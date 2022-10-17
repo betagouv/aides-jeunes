@@ -184,7 +184,7 @@ const submenuClick = (index, subindex, submenu) => {
   <header role="banner" class="aj-1j1s-header">
     <dialog
       v-if="showMenuModal"
-      class="aj-modal-dialog"
+      class="aj-1j1s-header-modal__dialog"
       open=""
       aria-modal="true"
     >
@@ -428,7 +428,7 @@ const submenuClick = (index, subindex, submenu) => {
             <div>
               <a
                 href="https://www.1jeune1solution.gouv.fr?utm_source=mes-aides-beta&utm_medium=menu"
-                class="aj-1j1s-header-title"
+                class="aj-1j1s-header__title"
               >
                 1jeune1solution
               </a>
@@ -523,7 +523,7 @@ const submenuClick = (index, subindex, submenu) => {
             class="menu-item-submenus-employee"
           >
             <div>
-              <p class="aj-1j1s-header-title">Je suis employeur</p>
+              <p class="aj-1j1s-header__title">Je suis employeur</p>
               <p>Découvrez des services faits pour vous !</p>
             </div>
             <div

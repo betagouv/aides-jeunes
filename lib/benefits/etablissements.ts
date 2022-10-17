@@ -18,7 +18,7 @@ export function normalize(etablissementFeature) {
       dimanche: 7,
     }
     etablissement.horaires = etablissement.horaires.sort(
-      (plage) => -mapping[plage.du.toLowerCase()]
+      (a, b) => mapping[a.plage.du.toLowerCase()] - mapping[b.du.toLowerCase()]
     )
   }
 

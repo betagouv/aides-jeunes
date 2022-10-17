@@ -180,7 +180,8 @@ html {
           }
         }
         .menu-employee {
-          width: 50%;
+          max-width: 78rem;
+          margin: 0 auto;
         }
         .menu-item-submenus-employee {
           color: #161616;
@@ -193,14 +194,38 @@ html {
           padding: 1rem 2.5rem;
 
           .last-submenu-col-right {
-            display: flex;
-            flex-direction: row;
-            text-align: left;
-
             padding: 0 2.5rem 0 2.5rem;
+            display: flex;
+            flex-direction: column;
             p {
               color: #566bb1;
               font-weight: 700;
+            }
+            .last-menu-submenu-label {
+              a {
+                text-decoration: none;
+              }
+              a:hover {
+                text-decoration: underline;
+              }
+            }
+            .last-menu-subsubmenus {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              .last-menu-subsubmenus {
+                color: #161616;
+                text-decoration: none;
+                padding-left: 1rem;
+                font-size: 1rem;
+              }
+              a {
+                text-decoration: none;
+                color: #000;
+              }
+              a:hover {
+                text-decoration: underline;
+              }
             }
           }
           .last-submenu-col-right:nth-child(n + 3) {

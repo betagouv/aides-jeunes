@@ -142,7 +142,6 @@ const menu = ref([
 ])
 
 const expandMenu = (index) => {
-  console.log("expandMenu", index)
   if (index != null) {
     openedIndex.value = index
     menu.value[index].expanded = !menu.value[index].expanded
@@ -158,7 +157,6 @@ const expandMenu = (index) => {
 }
 
 const expandChildrenSubmenu = (index, subindex) => {
-  console.log("expandChildrenSubmenu", index, subindex)
   if (index != null && subindex != null) {
     if (menu.value[index].childrenExpandedIndex === subindex) {
       menu.value[index].childrenExpandedIndex = null
@@ -167,7 +165,6 @@ const expandChildrenSubmenu = (index, subindex) => {
       menu.value[index].childrenExpandedIndex = subindex
       openedSubmenuIndex.value = subindex
     }
-    console.log(menu.value[index].submenus[subindex].childrenExpanded)
   } else if (index != null && subindex == null) {
     menu.value[index].childrenExpandedIndex = null
     openedSubmenuIndex.value = null
@@ -175,7 +172,6 @@ const expandChildrenSubmenu = (index, subindex) => {
 }
 
 const submenuClick = (index, subindex, submenu) => {
-  console.log("submenuClick", index, subindex, submenu)
   if (submenu?.href) {
     window.location.href = `${vite1jeune1solutionUrl}/${submenu.href}`
   } else {
@@ -535,7 +531,24 @@ const submenuClick = (index, subindex, submenu) => {
               :key="`last-submenu-${subindex}`"
               class="last-submenu-col-right"
             >
-              <p v-if="submenu">{{ submenu.label }}</p>
+              <p v-if="submenu" class="last-menu-submenu-label">
+                <a
+                  v-if="submenu.href"
+                  :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
+                >
+                  {{ submenu.label }}
+                </a>
+                <span v-else> {{ submenu.label }} :</span>
+              </p>
+              <div class="last-menu-subsubmenus">
+                <a
+                  v-for="(subsubmenu, subsubindex) in submenu.children"
+                  :key="`$last-submenu-${subindex}-subsubmenu-${subsubindex}`"
+                  :href="`${vite1jeune1solutionUrl}/${subsubmenu.href}`"
+                >
+                  {{ subsubmenu.label }}
+                </a>
+              </div>
             </div>
           </ul>
         </div>

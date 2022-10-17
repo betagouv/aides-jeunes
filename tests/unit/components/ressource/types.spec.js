@@ -17,7 +17,7 @@ describe("types.vue", () => {
     expect(Types.methods.sort(categories)).toEqual(result)
   })
 
-  it("group ressource types", () => {
+  it("group ressource by types", () => {
     const categories = [
       { label: "Salaire", category: "Revenus" },
       { label: "Revenus de stage", category: "Revenus" },

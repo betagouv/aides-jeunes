@@ -70,3 +70,20 @@ export function displayValue(value, question, component) {
       return displayYesNoValue(value)
   }
 }
+
+export function isEqual(left, right) {
+  return (
+    left === right ||
+    (left instanceof Object &&
+      right instanceof Object &&
+      Object.keys(left).length === Object.keys(right).length &&
+      Object.keys(left).every(
+        (key) => right.hasOwnProperty(key) && isEqual(left[key], right[key])
+      ) &&
+      !(
+        left instanceof Date &&
+        right instanceof Date &&
+        left.getTime() !== right.getTime()
+      ))
+  )
+}

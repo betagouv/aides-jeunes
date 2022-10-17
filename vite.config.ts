@@ -27,6 +27,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_BENEFIT_URL: `${github.repository_url}/blob/master/data/benefits`,
     VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
     VITE_STATS_URL: statistics?.url ? statistics.url : "",
+    VITE_STATS_VERSION: statistics?.version,
     VITE_NETLIFY_PR: process.env.BRANCH,
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`

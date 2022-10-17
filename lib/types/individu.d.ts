@@ -1,5 +1,3 @@
-import { Function } from "lodash"
-
 export interface individuLayout {
   id: string
   annee_etude?: string

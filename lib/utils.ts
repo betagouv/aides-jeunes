@@ -79,7 +79,9 @@ export function isEqual(left, right) {
       right instanceof Object &&
       Object.keys(left).length === Object.keys(right).length &&
       Object.keys(left).every(
-        (key) => right.hasOwnProperty(key) && isEqual(left[key], right[key])
+        (key) =>
+          Object.prototype.hasOwnProperty.call(right, key) &&
+          isEqual(left[key], right[key])
       ) &&
       !(
         left instanceof Date &&

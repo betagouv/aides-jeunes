@@ -131,11 +131,11 @@ html {
             }
           }
           .last-item {
-              color: #fff;
-              padding: 0.6rem 1rem 0.5rem 1rem;
-              background-color: #18753c;
-              margin-left: auto !important;
-              font-weight: 700;
+            color: #fff;
+            padding: 0.6rem 1rem 0.5rem 1rem;
+            background-color: #18753c;
+            margin-left: auto !important;
+            font-weight: 700;
           }
           .last-item:hover {
             background-color: #18753cc2;
@@ -189,7 +189,7 @@ html {
           margin-top: 0.09rem;
           background-color: #fff;
           display: flex !important;
-          flex-direction: row  !important;
+          flex-direction: row !important;
           padding: 1rem 2.5rem;
 
           .last-submenu-col-right {
@@ -200,10 +200,10 @@ html {
             padding: 0 2.5rem 0 2.5rem;
             p {
               color: #566bb1;
-              font-weight: 700;  
+              font-weight: 700;
             }
           }
-          .last-submenu-col-right:nth-child(n+3) {
+          .last-submenu-col-right:nth-child(n + 3) {
             border-left: 1px solid #566bb1;
           }
         }

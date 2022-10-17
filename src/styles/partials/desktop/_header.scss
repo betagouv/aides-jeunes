@@ -21,7 +21,7 @@
     .container {
       display: flex;
       justify-content: space-between;
-      .aj-1j1s-header-right-links {
+      .aj-1j1s-header-logo-container__col-right {
         margin-left: auto;
 
         .button {
@@ -33,7 +33,7 @@
         }
       }
 
-      .aj-1j1s-header-left-links {
+      .aj-1j1s-header-logo-container__col-left {
         display: flex;
         align-items: center;
         gap: 4rem;

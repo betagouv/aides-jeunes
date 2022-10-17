@@ -387,7 +387,7 @@ const submenuClick = (index, subindex, submenu) => {
     <div class="aj-1j1s-header-logo-container">
       <div class="container">
         <div
-          class="aj-1j1s-header-left-links"
+          class="aj-1j1s-header-logo-container__col-left"
           :class="{ 'not-home': $route.name !== 'home' }"
         >
           <div class="aj-1j1s-logo">
@@ -436,7 +436,7 @@ const submenuClick = (index, subindex, submenu) => {
           </div>
         </div>
 
-        <div class="aj-1j1s-header-right-links">
+        <div class="aj-1j1s-header-logo-container__col-right">
           <router-link
             v-if="$route.name !== 'home'"
             class="button outline is-not-mobile"

@@ -34,7 +34,7 @@
     "tools:check-links-validity": "babel-node -x \".ts\" ./tools/check-links-validity.ts --ci",
     "tools:cleaner": "node dist-server/tools/cleaner.js",
     "tools:evaluate-benefits": "node dist-server/tools/evaluate-benefits",
-    "tools:generate-missing-institutions-aides-velo": "NODE_PATH=. node --experimental-json-modules dist-server/tools/generate-missing-institutions-aides-velo.js",
+    "tools:generate-missing-institutions-aides-velo": "babel-node -x \".ts\" ./tools/generate-missing-institutions-aides-velo",
     "tools:geographical-benefits-details": "node --experimental-json-modules dist-server/tools/geographical-benefits-details.js",
     "tools:get-all-steps": "node dist-server/tools/get-all-steps.js",
     "tools:serve-mail": "npx babel-node -x '.ts' ./tools/mjml.ts",

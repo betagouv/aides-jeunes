@@ -1,8 +1,8 @@
 // @ts-ignore
 import fs from "fs"
-import benefits from "../data/all.js"
+import benefits from "../data/all"
 import yaml from "js-yaml"
-import generator from "../data/benefits/aides-velo-generator.js"
+import generator from "../data/benefits/aides-velo-generator"
 import epci from "@etalab/decoupage-administratif/data/epci.json"
 
 const NAME_FORMATTER = {

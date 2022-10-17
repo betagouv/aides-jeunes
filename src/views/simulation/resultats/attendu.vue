@@ -181,8 +181,6 @@
 </template>
 
 <script>
-import { filter, sortBy } from "lodash"
-
 import axios from "axios"
 import Institution from "@/lib/institution"
 import ContactEmailMixin from "@/mixins/contact-email"
@@ -220,7 +218,9 @@ export default {
       benefitKeyed[b.id] = b
     })
 
-    benefits = sortBy(benefits, "label")
+    benefits.sort((a, b) => {
+      return a.label.localeCompare(b.label)
+    })
     return {
       benefits,
       benefitKeyed,
@@ -259,7 +259,7 @@ export default {
       return resultats
     },
     expectedResults() {
-      return filter(this.selection, (i) => i.ref && i.expected !== null)
+      return this.selection.filter((i) => i.ref && i.expected !== null)
     },
     testMetadata() {
       let outputVariables = this.expectedResults.reduce(function (
@@ -348,7 +348,9 @@ export default {
             benefitsPromises.push(this.fetchBenefit(benefit))
           })
           Promise.all(benefitsPromises).then(() => {
-            this.benefits = sortBy(this.benefits, "label")
+            this.benefits.sort((a, b) => {
+              return a.label.localeCompare(b.label)
+            })
           })
         }
       })

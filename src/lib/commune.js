@@ -1,5 +1,4 @@
 import axios from "axios"
-import { maxBy } from "lodash"
 
 function sortByName(aCity, bCity) {
   if (aCity.nom < bCity.nom) return -1
@@ -21,8 +20,9 @@ const Commune = {
       })
   },
   getMostPopulated: function (communes) {
-    return (
-      maxBy(communes, "population") || (communes?.length && communes?.[0]) || {}
+    return communes.reduce(
+      (a, b) => (a?.population < b?.population ? b : a),
+      communes?.[0] || {}
     )
   },
 }

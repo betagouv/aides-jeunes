@@ -1,15 +1,14 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
-import { version } from "@lib/simulation.js"
-import { generator as datesGenerator } from "@lib/dates.js"
-import { generateAllSteps } from "@lib/state/generator.js"
-import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
-import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import { isEqual, some, values } from "lodash"
+import { version } from "@lib/simulation"
+import { generator as datesGenerator } from "@lib/dates"
+import { generateAllSteps } from "@lib/state/generator"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources"
+import { isEqual, some, values } from "lodash-es"
 import axios from "axios"
-import { generateSituation } from "@lib/situations.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
-
+import { generateSituation } from "@lib/situations"
+import ABTestingService from "@/plugins/ab-testing-service"
 import {
   Answer,
   Calculs,
@@ -224,8 +223,7 @@ export const useStore = defineStore("store", {
       return (representation: string, situationId: string) => {
         return axios
           .get(
-            `/api/simulation/${
-              situationId || this.situationId
+            `/api/simulation/${situationId || this.situationId
             }/${representation}`
           )
           .then((response) => response.data)
@@ -234,8 +232,8 @@ export const useStore = defineStore("store", {
     hasResults(): boolean {
       return Boolean(
         this.situationId &&
-          this.calculs.resultats._id &&
-          this.calculs.resultats._id === this.situationId
+        this.calculs.resultats._id &&
+        this.calculs.resultats._id === this.situationId
       )
     },
     situation(): Situation {
@@ -343,9 +341,8 @@ export const useStore = defineStore("store", {
         entityName: "individu",
         id: `enfant_${enfantId}`,
         fieldName: "_firstName",
-        value: `votre ${enfants.length}${
-          enfants.length === 1 ? "ᵉʳ" : "ᵉ"
-        } enfant`,
+        value: `votre ${enfants.length}${enfants.length === 1 ? "ᵉʳ" : "ᵉ"
+          } enfant`,
       }
 
       // When you add a children you need to remove all current answer after the child validation
@@ -476,8 +473,7 @@ export const useStore = defineStore("store", {
 
       return axios
         .get(
-          `/api/simulation/${this.situationId}/results${
-            showPrivate ? "&showPrivate" : ""
+          `/api/simulation/${this.situationId}/results${showPrivate ? "&showPrivate" : ""
           }`
         )
         .then((response) => {

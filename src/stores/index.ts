@@ -6,7 +6,6 @@ import { generateAllSteps } from "@lib/state/generator"
 import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources"
 import { isEqual } from "@lib/utils"
-import { some, values } from "lodash-es"
 import axios from "axios"
 import { generateSituation } from "@lib/situations"
 import ABTestingService from "@/plugins/ab-testing-service"
@@ -216,8 +215,9 @@ export const useStore = defineStore("store", {
         if (!demandeur[ressource.id]) {
           return accum
         }
-
-        return accum || some(values(demandeur[ressource.id]))
+        return (
+          accum || Object.values(demandeur[ressource.id]).some((value) => value)
+        )
       }, undefined)
     },
     fetchRepresentation() {

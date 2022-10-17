@@ -1,4 +1,4 @@
-import { isEqual } from "@root/lib/utils"
+import { isEqual, range } from "@root/lib/utils"
 
 describe("isEqual function", () => {
   const testSet = [
@@ -91,4 +91,21 @@ describe("isEqual function", () => {
     ]
     expect(isEqual(left, right)).toEqual(false)
   })
+})
+
+describe("range function", () => {
+  const testSet = [
+    { start: 0, end: 1, result: [0] },
+    { start: 0, end: 5, result: [0, 1, 2, 3, 4] },
+    { start: 2, result: [0, 1] },
+    { start: 5, result: [0, 1, 2, 3, 4] },
+    { start: 1, end: 4, result: [1, 2, 3] },
+  ]
+  for (let test of testSet) {
+    it("compares simple values", () => {
+      expect(range(test.start, test.end ? test.end : undefined)).toEqual(
+        test.result
+      )
+    })
+  }
 })

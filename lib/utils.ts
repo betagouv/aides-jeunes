@@ -87,3 +87,10 @@ export function isEqual(left, right) {
       ))
   )
 }
+
+export function range(start, end) {
+  if (!end) {
+    return [...Array(start).keys()]
+  }
+  return [...Array(end - start).keys()].map((key) => key + start)
+}

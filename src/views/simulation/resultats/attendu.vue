@@ -181,7 +181,7 @@
 </template>
 
 <script>
-import { filter, sortBy } from "lodash-es"
+import { filter, sortBy } from "lodash"
 
 import axios from "axios"
 import Institution from "@/lib/institution"

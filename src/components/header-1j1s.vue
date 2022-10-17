@@ -478,7 +478,6 @@ const submenuClick = (index, subindex, submenu) => {
                 <svg
                   width="24"
                   height="24"
-                  class="Header_subNavItemIcon__3ZdNn icon_size__Voigr"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
@@ -497,14 +496,14 @@ const submenuClick = (index, subindex, submenu) => {
                 menu[index].submenus.length > 0 &&
                 index < menu.length - 1
               "
-              class="menu-item-submenus"
+              class="aj-1j1s-header-nav__menu-submenus"
             >
               <li
                 v-for="(submenu, subindex) in menu[index].submenus"
                 :key="`menu-item-${index}-submenu-${subindex}`"
               >
                 <a
-                  class="menu-item-submenu"
+                  class="aj-1j1s-header-nav__menu-submenus-item"
                   :class="submenu.active ? 'active' : ''"
                   :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
                   >{{ submenu.label }}</a

@@ -7,6 +7,16 @@
     text-underline-offset: 0.2rem;
   }
 
+  a {
+    text-underline-offset: 0.2rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
   &__title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -62,10 +72,6 @@
         width: 11.0625rem;
       }
     }
-
-    svg {
-      display: none;
-    }
   }
 
   &-nav {
@@ -85,10 +91,11 @@
       margin: 0;
       position: relative;
       line-height: 1rem;
-      margin-left: 1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 0;
       width: 100%;
 
-      .menu-item-submenus {
+      &-submenus {
         color: #161616;
         z-index: 5;
         position: absolute;
@@ -100,6 +107,7 @@
         overflow: hidden;
         margin-bottom: 1rem;
         margin-left: -0.6rem;
+        margin-top: 0.57rem;
         padding-inline-start: 0;
 
         li {
@@ -110,19 +118,11 @@
           padding-block: 0.8rem;
           padding-inline: 1rem;
         }
-        .menu-item-submenu:not(.active) {
+        &-item:not(.active) {
           font-weight: 400;
         }
       }
 
-      a {
-        text-underline-offset: 0.2rem;
-        color: inherit;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
       .last-item {
         color: #fff;
         padding: 0.6rem 1rem 0.5rem 1rem;

@@ -1,3 +1,4 @@
+import cloneDeep from "lodash.clonedeep"
 import dayjs from "dayjs"
 
 export function executeFunctionOrReturnValue(obj, name, component) {
@@ -93,4 +94,12 @@ export function range(start, end) {
     return [...Array(start).keys()]
   }
   return [...Array(end - start).keys()].map((key) => key + start)
+}
+
+export function clone(variable: any): any {
+  if (structuredClone) {
+    return structuredClone(variable)
+  } else {
+    return cloneDeep(variable)
+  }
 }

@@ -1,5 +1,5 @@
-import { cloneDeep } from "lodash"
 import dayjs from "dayjs"
+import { clone } from "./utils"
 
 import { individuLayout } from "./types/individu"
 
@@ -45,8 +45,8 @@ function get(individus: individuLayout[], role: string, id?: string) {
 
   const existingIndividu = find(individus, role, id)
   const individu = {
-    ...cloneDeep(DEFAULT_INDIVIDU),
-    ...cloneDeep(existingIndividu),
+    ...clone(DEFAULT_INDIVIDU),
+    ...clone(existingIndividu),
   }
 
   if (role == "enfant" && !existingIndividu) {

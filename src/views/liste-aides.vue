@@ -100,8 +100,11 @@ export default {
           epci: institutionsBenefits["epci"].filter((epci) =>
             epci?.location.includes(this.selectedCommune.code)
           ),
+          commune: institutionsBenefits["commune"].filter(
+            (commune) => commune?.location == this.selectedCommune?.code
+          ),
           caf: institutionsBenefits["caf"].filter(
-            (caf) => caf?.location == this.selectedCommune?.departement
+            (caf) => caf.location == this.selectedCommune?.departement
           ),
         }
       }
@@ -119,6 +122,7 @@ export default {
     async computeDataSelected(): Promise<void> {
       if (this.zipCode.match(/^[0-9]{5}$/)) {
         const res = await Commune.get(this.zipCode)
+        console.log(res[0])
         this.selectedCommune = res[0]
       } else {
         this.selectedCommune = null

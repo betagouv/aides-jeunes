@@ -49,7 +49,7 @@ for (const id in generator.institutionsMap) {
         .find((element) => element.code === institution.code_siren)
         ?.membres.map((commune) => commune.code) || []
   } else if (institution.type === "caf") {
-    institutionObject.location = institution.departement
+    institutionObject.location = institution.department
   } else if (["region", "departement", "commune"].includes(institution.type)) {
     institutionObject.location = institution.code_insee
   }

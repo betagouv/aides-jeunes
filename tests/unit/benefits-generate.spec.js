@@ -6,6 +6,11 @@ jest.mock("@root/data/benefits/dynamic/apa.ts", () => {
     buildAPA: jest.fn(() => []),
   }
 })
+jest.mock("@root/data/benefits/dynamic/fsl.ts", () => {
+  return {
+    build: jest.fn(() => []),
+  }
+})
 
 describe("benefit descriptions", function () {
   it("exists", function () {

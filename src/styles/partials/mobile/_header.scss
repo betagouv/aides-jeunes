@@ -3,7 +3,8 @@ html {
     header.aj-1j1s-header {
       .aj-1j1s-header-logo-container {
         .container {
-          .aj-1j1s-header-right-links {
+          .aj-1j1s-header-logo-container__col-right {
+            margin-top: -1rem;
             .button {
               padding: 10px 20px;
               &.is-not-mobile {

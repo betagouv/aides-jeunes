@@ -138,8 +138,12 @@
         display: block;
         text-underline-offset: 0.2rem;
 
-        &:not(.aj-1j1s-header-nav__menu-last-item) {
-          margin-right: 2.3125rem;
+            > div, a {
+          padding: 0 .8rem;
+
+          &.aj-1j1s-header-nav__menu-last-item {
+            padding-right: 0;
+          }
         }
       }
 

@@ -77,13 +77,14 @@
   &__external-link,
   &__external-link:visited,
   &__external-link:active {
+    display: inline-flex;
+    gap: 0.25rem;
     text-decoration: none;
     color: black;
     font-weight: bold;
 
     i {
       font-size: 1.125rem;
-      vertical-align: middle;
     }
   }
 

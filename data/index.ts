@@ -58,7 +58,8 @@ export function generate(
   collections,
   additionalBenefitAttributes,
   aidesVeloBenefitListGenerator,
-  fslGenerator
+  fslGenerator,
+  apaGenerator
 ) {
   const institutions = transformInstitutions(collections.institutions.items)
 
@@ -76,8 +77,8 @@ export function generate(
     benefit.source = "aides-velo"
   })
 
-  const apaBenefits = buildAPA()
   const fslBenefits = fslGenerator ? fslGenerator() : []
+  const apaBenefits = apaGenerator ? apaGenerator() : []
 
   let benefits = [
     ...collections.benefits_javascript.items,
@@ -118,6 +119,7 @@ export default {
       jam.collections,
       additionalBenefitAttributes,
       aidesVeloGenerator,
-      buildFSL
+      buildFSL,
+      buildAPA
     ),
 }

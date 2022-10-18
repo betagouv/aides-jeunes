@@ -1,17 +1,6 @@
 import expect from "expect"
 import subject from "@root/data"
 
-jest.mock("@root/data/benefits/dynamic/apa.ts", () => {
-  return {
-    buildAPA: jest.fn(() => []),
-  }
-})
-jest.mock("@root/data/benefits/dynamic/fsl.ts", () => {
-  return {
-    build: jest.fn(() => []),
-  }
-})
-
 describe("benefit descriptions", function () {
   it("exists", function () {
     const collections = {

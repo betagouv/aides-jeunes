@@ -127,6 +127,7 @@
     .container {
       display: flex;
       align-items: center;
+      flex-direction: column;
 
       svg {
         display: block;
@@ -136,7 +137,6 @@
 
       .aj-1j1s-header-logo-container__col-left {
         display: flex;
-        flex-direction: row-reverse;
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 0;

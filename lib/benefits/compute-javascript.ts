@@ -83,6 +83,7 @@ const COMMUNE_PARAMETERS = {
   regions: "_region",
   departements: "_departement",
   communes: "depcom",
+  epcis: "_epci",
 }
 
 export function testGeographicalEligibility(
@@ -153,15 +154,23 @@ export const CONDITION_STATEGY: ConditionsLayout = {
 
       switch (institution.type) {
         case "region":
-          return situation.menage?._region === institution.code_insee
+          return situation.menage._region === institution.code_insee
         case "departement":
-          return situation.menage?._departement === institution.code_insee
+          return situation.menage._departement === institution.code_insee
         case "epci":
-          return situation.menage?._epci === institution.code_siren
+          return situation.menage._epci === institution.code_siren
         case "commune":
-          return situation.menage?.depcom === institution.code_insee
+          return situation.menage.depcom === institution.code_insee
       }
       return false
+    },
+  },
+  not: {
+    test: (condition, props) => {
+      return !CONDITION_STATEGY[condition.value.type].test(
+        condition.value,
+        props
+      )
     },
   },
   regions: {
@@ -171,6 +180,9 @@ export const CONDITION_STATEGY: ConditionsLayout = {
     test: testGeographicalEligibility,
   },
   communes: {
+    test: testGeographicalEligibility,
+  },
+  epcis: {
     test: testGeographicalEligibility,
   },
   annee_etude: {

@@ -7,574 +7,399 @@ const DEFAULT_FSL = {
   periodicite: "ponctuelle",
 }
 
-export const FSL_BY_CODE = {
-  D01: {
+export const FSL_BY_INSTITUTION_SLUG = {
+  departement_ain: {
     label: "du département de l’Ain",
-    resources: {
-      link: "https://www.ain.fr/solutions/fond-solidarite-logement-maintien-dans-le-logement/",
-    },
+    link: "https://www.ain.fr/solutions/fond-solidarite-logement-maintien-dans-le-logement/",
   },
-  D02: {
+  departement_aisne: {
     label: "du département de l’Aisne",
-    resources: {
-      link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
-    },
+    link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
   },
-  D03: {
+  departement_allier: {
     label: "du département de l’Allier",
-    resources: {
-      link: "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
-      instructions:
-        "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
-    },
+    link: "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
+    instructions:
+      "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
   },
-  D04: {
+  departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",
-    resources: {
-      link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
-      form: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/formulaire/Insertion/Acc%C3%A8s_au_logement/IMPRIME_FSL_12-2019.pdf",
-      instructions:
-        "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/mesure-daccompagnement-social-personnalise.html#c6266",
-    },
+    link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
+    form: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/formulaire/Insertion/Acc%C3%A8s_au_logement/IMPRIME_FSL_12-2019.pdf",
+    instructions:
+      "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/mesure-daccompagnement-social-personnalise.html#c6266",
   },
-  D05: {
+  departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
-    resources: {
-      link: "https://www.hautes-alpes.fr/4996-fonds-de-solidarite-pour-le-logement-fsl-.htm",
-      instructions:
-        "https://www.hautes-alpes.fr/4996-fonds-de-solidarite-pour-le-logement-fsl-.htm",
-    },
+    link: "https://www.hautes-alpes.fr/4996-fonds-de-solidarite-pour-le-logement-fsl-.htm",
+    instructions:
+      "https://www.hautes-alpes.fr/4996-fonds-de-solidarite-pour-le-logement-fsl-.htm",
   },
-  D06: {
+  departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    resources: {
-      link: "https://www.departement06.fr/aides-a-l-insertion/fsl-2607.html",
-    },
+    link: "https://www.departement06.fr/aides-a-l-insertion/fsl-2607.html",
+    excludedEPCI: "200030195",
   },
-  M200030195: {
+  intercommunalite_nice_cote_d_azur: {
     label: "de la Métropole Nice Côte d’Azur",
-    resources: {
-      link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
-      form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
-    },
+    link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
+    form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
   },
-  D07: {
+  departement_ardeche: {
     label: "du département de l’Ardèche",
-    resources: {
-      link: "http://www.ardeche.fr/132-fonds-unique-logement.htm",
-      form: "http://www.ardeche.fr/include/viewfilesecure.php?idtf=3609&path=cb%2F3609_762_formulaires-ful-2015BD.pdf",
-    },
+    link: "http://www.ardeche.fr/132-fonds-unique-logement.htm",
+    form: "http://www.ardeche.fr/include/viewfilesecure.php?idtf=3609&path=cb%2F3609_762_formulaires-ful-2015BD.pdf",
   },
-  D08: {
+  departement_ardennes: {
     label: "du département de l’Ardennes",
-    resources: {
-      link: "https://cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-formulaire-unique-de-demande-de-subvention",
-      form: "https://cd08.fr/sites/default/files/maj2020_compilation_formulaires_fsl.pdf",
-    },
+    link: "https://cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-formulaire-unique-de-demande-de-subvention",
+    form: "https://cd08.fr/sites/default/files/maj2020_compilation_formulaires_fsl.pdf",
   },
-  D09: {
+  departement_ariege: {
     label: "du département de l’Ariège",
-    resources: {
-      link: "http://www.ariege.fr/Etre-solidaire/Logement/Le-Fonds-unique-Habitat-FUH",
-      instructions:
-        "http://www.ariege.fr/Etre-solidaire/Logement/Rencontrer-un-travailleur-social",
-    },
+    link: "http://www.ariege.fr/Etre-solidaire/Logement/Le-Fonds-unique-Habitat-FUH",
+    instructions:
+      "http://www.ariege.fr/Etre-solidaire/Logement/Rencontrer-un-travailleur-social",
   },
-  D11: {
+  departement_aude: {
     label: "du département de l’Aude",
-    resources: {
-      link: "https://www.aude.fr/je-beneficie-du-fonds-unique-logement-ful",
-    },
+    link: "https://www.aude.fr/je-beneficie-du-fonds-unique-logement-ful",
   },
-  D12: {
+  departement_aveyron: {
     label: "du département de l’Aveyron",
-    resources: {
-      link: "https://aveyron.fr/pages/logement/des%20aides%20pour%20acc%C3%A9der%20%C3%A0%20un%20logement%20ou%20sy%20maintenir",
-    },
+    link: "https://aveyron.fr/pages/logement/des%20aides%20pour%20acc%C3%A9der%20%C3%A0%20un%20logement%20ou%20sy%20maintenir",
   },
-  D13: {
+  departement_bouches_du_rhone: {
     label: "du département Des Bouches-du-Rhône",
-    resources: {
-      link: "https://www.departement13.fr/nos-actions/logement/les-dispositifs/le-fonds-de-solidarite-pour-le-logement/",
-    },
+    link: "https://www.departement13.fr/nos-actions/logement/les-dispositifs/le-fonds-de-solidarite-pour-le-logement/",
   },
-  D14: {
+  departement_calvados: {
     label: "du département du Calvados",
-    resources: {
-      link: "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
-      instructions:
-        "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
-    },
+    link: "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
+    instructions:
+      "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
   },
-  D15: {
+  departement_cantal: {
     label: "du département du Cantal",
-    resources: {
-      link: "http://www.cantal.fr/fonds-de-solidarite-pour-le-logement/",
-    },
+    link: "http://www.cantal.fr/fonds-de-solidarite-pour-le-logement/",
   },
-  D16: {
+  departement_de_la_charente: {
     label: "du département de Charente",
-    resources: {
-      link: "https://www.charentesolidarites.org/index.php/component/sppagebuilder/8-le-fsl.html",
-      instructions:
-        "https://www.charentesolidarites.org/index.php/component/sppagebuilder/8-le-fsl.html",
-    },
+    link: "https://www.charentesolidarites.org/index.php/component/sppagebuilder/8-le-fsl.html",
+    instructions:
+      "https://www.charentesolidarites.org/index.php/component/sppagebuilder/8-le-fsl.html",
   },
-  D17: {
+  departement_charente_maritime: {
     label: "du département de Charente-Maritime",
-    resources: {
-      link: "https://la.charente-maritime.fr/fiches-aides/fonds-solidarite-pour-logement",
-    },
+    link: "https://la.charente-maritime.fr/fiches-aides/fonds-solidarite-pour-logement",
   },
-  D18: {
+  departement_cher: {
     label: "du département du Cher",
-    resources: {
-      link: "https://www.departement18.fr/Logement-habitat",
-    },
+    link: "https://www.departement18.fr/Logement-habitat",
   },
-  D19: {
+  departement_correze: {
     label: "du département de Corrèze",
-    resources: {
-      link: "https://www.correze.fr/nos-missions/habitat/les-aides-sociales-pour-le-logement",
-      instructions:
-        "https://www.correze.fr/services-en-ligne/les-aides/aide-aux-travailleurs-de-condition-modeste",
-    },
+    link: "https://www.correze.fr/nos-missions/habitat/les-aides-sociales-pour-le-logement",
+    instructions:
+      "https://www.correze.fr/services-en-ligne/les-aides/aide-aux-travailleurs-de-condition-modeste",
   },
-  D21: {
+  departement_cote_or: {
     label: "du département de la Côte-d’Or",
-    resources: {
-      link: "https://www.cotedor.fr/votre-service/insertion/accompagnement-financier/accompagnement-et-aides-lacces-ou-au-maintien-dans",
-    },
+    link: "https://www.cotedor.fr/votre-service/insertion/accompagnement-financier/accompagnement-et-aides-lacces-ou-au-maintien-dans",
   },
-  D25: {
+  departement_doubs: {
     label: "du département du Doubs",
-    resources: {
-      link: "https://www.doubs.fr/index.php/vous-accompagner/36-particuliers/2242-le-fonds-de-solidarite-logement-fsl",
-      form: "http://www.adil25.org/fileadmin/user_upload/PDAHLPD/Grand_public/imprime_aide_financiere_individuelle_FSL_actualise.pdf",
-      instructions:
-        "http://www.adil25.org/le-pdalhpd/documentation/le-reglement-interieur-du-fsl-et-formulaire-de-demande-daide.html",
-    },
+    link: "https://www.doubs.fr/index.php/vous-accompagner/36-particuliers/2242-le-fonds-de-solidarite-logement-fsl",
+    form: "http://www.adil25.org/fileadmin/user_upload/PDAHLPD/Grand_public/imprime_aide_financiere_individuelle_FSL_actualise.pdf",
+    instructions:
+      "http://www.adil25.org/le-pdalhpd/documentation/le-reglement-interieur-du-fsl-et-formulaire-de-demande-daide.html",
   },
-  D26: {
+  departement_drome: {
     label: "du département de la Drôme",
-    resources: {
-      link: "https://www.ladrome.fr/mon-quotidien/logement/en-cas-de-difficultes/les-aides-aux-locataires/",
-    },
+    link: "https://www.ladrome.fr/mon-quotidien/logement/en-cas-de-difficultes/les-aides-aux-locataires/",
   },
-  D29: {
+  departement_finistere: {
     label: "du département du Finistère",
-    resources: {
-      link: "https://www.finistere.fr/A-votre-service/Habitat-Logement/Acces-et-maintien-dans-un-logement-FSL",
-    },
+    link: "https://www.finistere.fr/A-votre-service/Habitat-Logement/Acces-et-maintien-dans-un-logement-FSL",
+    excludedEPCI: "242900314",
   },
-  M242900314: {
+  brest_metropole: {
     label: "de Brest Métropole",
-    resources: {
-      link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
-      instructions:
-        "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
-    },
+    link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
+    instructions:
+      "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
   },
-  D30: {
+  departement_gard: {
     label: "du département du Gard",
-    resources: {
-      link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
-      instructions:
-        "https://www.gard.fr/fileadmin/mediatheque/documents_2020/logement/doc_fond_solidarite_logement-2020.pdf",
-    },
+    link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
+    instructions:
+      "https://www.gard.fr/fileadmin/mediatheque/documents_2020/logement/doc_fond_solidarite_logement-2020.pdf",
   },
-  D31: {
+  departement_haute_garonne: {
     label: "du département de la Haute-Garonne",
-    resources: {
-      link: "https://www.haute-garonne.fr/aide/fonds-de-solidarite-logement-fsl",
-    },
+    link: "https://www.haute-garonne.fr/aide/fonds-de-solidarite-logement-fsl",
+    excludedEPCI: "243100518",
   },
-  M243100518: {
+  toulouse_metropole: {
     label: "de Toulouse Métropole",
-    resources: {
-      link: "https://www.toulouse-metropole.fr/missions/solidarite/fonds-de-solidarite-logement-fsl-",
-    },
+    link: "https://www.toulouse-metropole.fr/missions/solidarite/fonds-de-solidarite-logement-fsl-",
   },
-  D33: {
+  departement_gironde: {
     label: "du département de la Gironde",
-    resources: {
-      link: "https://www.fsl33.org/aide-financiere-maintien-logement/",
-      instructions: "http://www.fsl33.org/aide-financiere-maintien-logement/",
-    },
+    link: "https://www.fsl33.org/aide-financiere-maintien-logement/",
+    instructions: "http://www.fsl33.org/aide-financiere-maintien-logement/",
   },
-  D34: {
+  departement_herault: {
     label: "du département de l’Hérault",
-    resources: {
-      link: "https://herault.fr/402-aide-financiere.htm",
-    },
+    link: "https://herault.fr/402-aide-financiere.htm",
   },
-  D35: {
+  departement_ille_et_vilaine: {
     label: "du département d’Ille-et-Vilaine",
-    resources: {
-      link: "https://www.ille-et-vilaine.fr/demande-fsl",
-      form: "https://www.ille-et-vilaine.fr/sites/default/files/asset/document/fo-psh-0818-001_imprimeuniquemasques_form_ext_0.pdf",
-    },
+    link: "https://www.ille-et-vilaine.fr/demande-fsl",
+    form: "https://www.ille-et-vilaine.fr/sites/default/files/asset/document/fo-psh-0818-001_imprimeuniquemasques_form_ext_0.pdf",
   },
-  D36: {
+  departement_indre: {
     label: "du département de l’Indre",
-    resources: {
-      link: "https://www.adil36.org/aides-locales/locataires-en-difficultes",
-    },
+    link: "https://www.adil36.org/aides-locales/locataires-en-difficultes",
   },
-  D37: {
+  departement_indre_et_loire: {
     label: "du département de l’Indre-et-Loire",
-    resources: {
-      link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/laide-au-logement.html",
-      form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_METRO_juillet_2021.pdf",
-    },
+    link: "https://www.touraine.fr/mes-services-au-quotidien/enfance-famille/laide-au-logement.html",
+    form: "https://www.touraine.fr/files/touraine/documents/etre-accompagne/missions/617_impr_FSL_CD37_interactif_METRO_juillet_2021.pdf",
   },
-  D38: {
+  departement_isere: {
     label: "du département d’Isère",
-    resources: {
-      link: "https://www.isere.fr/aides-au-logement",
-      instructions: "https://www.isere.fr/aides-au-logement",
-    },
+    link: "https://www.isere.fr/aides-au-logement",
+    instructions: "https://www.isere.fr/aides-au-logement",
   },
-  D40: {
+  departement_landes: {
     label: "du département des Landes",
-    resources: {
-      link: "https://www.landes.fr/logement",
-    },
+    link: "https://www.landes.fr/logement",
   },
-  D41: {
+  departement_loir_et_cher: {
     label: "du département du Loir-et-Cher",
-    resources: {
-      link: "https://www.departement41.fr/services-en-ligne/etre-accompagne/insertion-habitat/aide-au-logement/",
-    },
+    link: "https://www.departement41.fr/services-en-ligne/etre-accompagne/insertion-habitat/aide-au-logement/",
   },
-  D42: {
+  departement_loire: {
     label: "du département de la Loire",
-    resources: {
-      link: "https://www.loire.fr/jcms/lw_1024718/le-fonds-de-solidarite-pour-le-logement-fsl",
-    },
+    link: "https://www.loire.fr/jcms/lw_1024718/le-fonds-de-solidarite-pour-le-logement-fsl",
   },
-  D44: {
+  departement_loire_atlantique: {
     label: "du département de Loire Atlantique",
-    resources: {
-      link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291",
-      instructions:
-        "https://www.loire-atlantique.fr/44/habitat-logement/fonds-de-solidarite-pour-le-logement-fsl-aide-a-l-acces-au-logement/c_1303821#idTitre5",
-    },
+    link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/parent-/-famille/fonds-de-solidarite-pour-le-logement-fsl-les-aides-a-l-acces-ou-au-maintien-dans-votre-logement-fr-t1_16291",
+    instructions:
+      "https://www.loire-atlantique.fr/44/habitat-logement/fonds-de-solidarite-pour-le-logement-fsl-aide-a-l-acces-au-logement/c_1303821#idTitre5",
   },
-  M244500468: {
+  intercommunalite_orleans_metropole: {
     label: "de Orléans Métropole",
-    resources: {
-      link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
-      form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
-    },
+    link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
+    form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
   },
-  D49: {
+  departement_maine_et_loire: {
     label: "du département du Maine-et-Loire",
-    resources: {
-      link: "https://www.maine-et-loire.fr/aides-et-services/logement-et-habitat/fonds-solidarite-logement/aides-pour-le-maintien-dans-le-logement",
-    },
+    link: "https://www.maine-et-loire.fr/aides-et-services/logement-et-habitat/fonds-solidarite-logement/aides-pour-le-maintien-dans-le-logement",
   },
-  D50: {
+  departement_manche: {
     label: "du département de la Manche",
-    resources: {
-      link: "https://www.manche.fr/conseil-departemental/FSL.aspx",
-      form: "https://www.manche.fr/conseil-departemental/iso_album/dossier_de_demande_logement.pdf",
-    },
+    link: "https://www.manche.fr/conseil-departemental/FSL.aspx",
+    form: "https://www.manche.fr/conseil-departemental/iso_album/dossier_de_demande_logement.pdf",
   },
-  D51: {
+  departement_marne: {
     label: "du département de la Marne",
-    resources: {
-      link: "http://www.marne.fr/les-actions/sante-et-social/logement-social/acces-et-maintien-dans-le-logement-le-fonds-solidarite",
-    },
+    link: "http://www.marne.fr/les-actions/sante-et-social/logement-social/acces-et-maintien-dans-le-logement-le-fonds-solidarite",
   },
-  D53: {
+  departement_mayenne: {
     label: "du département de la Mayenne",
-    resources: {
-      link: "https://www.lamayenne.fr/service/le-fonds-solidarite-pour-le-logement",
-    },
+    link: "https://www.lamayenne.fr/service/le-fonds-solidarite-pour-le-logement",
   },
-  D56: {
+  departement_morbihan: {
     label: "du département du Morbihan",
-    resources: {
-      link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-      form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/22_morbihan_5_H08_FSL_maintien_logement.pdf",
-      instructions:
-        "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
-    },
+    link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
+    form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/22_morbihan_5_H08_FSL_maintien_logement.pdf",
+    instructions:
+      "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
   },
-  D57: {
+  departement_moselle: {
     label: "du département de la Moselle",
-    resources: {
-      link: "https://www.moselle.fr/jcms/pl_12538/fr/fonds-solidarite-logement-fsl",
-      form: "https://www.moselle.fr/upload/docs/application/pdf/2018-11/demande_dintervention_du_fsl_-_acces_impayes_locatifs.pdf",
-    },
+    link: "https://www.moselle.fr/jcms/pl_12538/fr/fonds-solidarite-logement-fsl",
+    form: "https://www.moselle.fr/upload/docs/application/pdf/2018-11/demande_dintervention_du_fsl_-_acces_impayes_locatifs.pdf",
   },
-  D59: {
+  departement_nord: {
     label: "du département du Nord",
-    resources: {
-      link: "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
-      instructions:
-        "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
-    },
+    link: "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
+    instructions:
+      "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
+    excludedEPCI: "245900410",
   },
-  M200093201: {
+  metropole_europeenne_de_lille: {
     label: "de la Métropole européenne de Lille",
-    resources: {
-      link: "https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement",
-      form: "https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf",
-    },
+    link: "https://www.lillemetropole.fr/votre-metropole/competences/amenagement-du-territoire/logement/le-fonds-de-solidarite-logement",
+    form: "https://www.lillemetropole.fr/sites/default/files/2019-12/Volet%20demandeur%20maintien.pdf",
   },
-  D60: {
+  departement_oise: {
     label: "du département de l’Oise",
-    resources: {
-      link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
-    },
+    link: "https://www.oise.fr/information/guide-des-aides-departementales/fonds-departemental-de-solidarite-3145",
   },
-  D62: {
+  departement_pas_de_calais: {
     label: "du département du Pas-de-Calais",
-    resources: {
-      link: "https://www.pasdecalais.fr/Solidarite-Sante/Reglement-Departemental-d-Aide-Sociale/Le-developpement-des-solidarites/Le-logement-des-personnes-defavorisees-et-le-Fonds-de-Solidarite-Logement/L-aide-financiere-Fonds-Solidarite-Logement-volet-acces-logement-identifie",
-    },
+    link: "https://www.pasdecalais.fr/Solidarite-Sante/Reglement-Departemental-d-Aide-Sociale/Le-developpement-des-solidarites/Le-logement-des-personnes-defavorisees-et-le-Fonds-de-Solidarite-Logement/L-aide-financiere-Fonds-Solidarite-Logement-volet-acces-logement-identifie",
   },
-  D63: {
+  departement_puy_de_dome: {
     label: "du département du Puy-de-Dôme",
-    resources: {
-      link: "https://www.puy-de-dome.fr/social/logement-habitat/fonds-solidarite-logement.html",
-      instructions:
-        "https://www.puy-de-dome.fr/fileadmin/user_upload/CD63-2020-RI-FSL.pdf",
-    },
+    link: "https://www.puy-de-dome.fr/social/logement-habitat/fonds-solidarite-logement.html",
+    instructions:
+      "https://www.puy-de-dome.fr/fileadmin/user_upload/CD63-2020-RI-FSL.pdf",
   },
-  D64: {
+  departement_pyrenees_atlantiques: {
     label: "du département des Pyrénées-Atlantiques",
-    resources: {
-      link: "https://le64.fr/vous-aider-acceder-un-logement-ou-vous-y-maintenir",
-    },
+    link: "https://le64.fr/vous-aider-acceder-un-logement-ou-vous-y-maintenir",
   },
-  D67: {
+  departement_bas_rhin: {
     label: "du département du Bas-Rhin",
-    resources: {
-      link: "https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/",
-    },
+    link: "https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/",
   },
-  D68: {
+  departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",
-    resources: {
-      link: "https://www.haut-rhin.fr/content/des-aides-pour-votre-logement",
-    },
+    link: "https://www.haut-rhin.fr/content/des-aides-pour-votre-logement",
   },
-  D69: {
+  departement_rhone: {
     label: "du département du Rhône",
-    resources: {
-      link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
-    },
+    link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
+    excludedEPCI: "200046977",
   },
-  M200046977: {
+  intercommunalite_metropole_lyon: {
     label: "de la Métropole de Lyon",
-    resources: {
-      link: "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
-      instructions:
-        "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
-    },
+    link: "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
+    instructions:
+      "https://www.grandlyon.com/services/aides-fonds-solidarite-logement.html",
   },
-  D71: {
+  departement_saone_et_loire: {
     label: "du département de la Saône-et-Loire",
-    resources: {
-      link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement#:~:text=b%C3%A9n%C3%A9ficier%20peut%2D%C3%AAtre%20d'une,)%20%3A%20habitat71%40cg71.fr",
-      form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
-    },
+    link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement#:~:text=b%C3%A9n%C3%A9ficier%20peut%2D%C3%AAtre%20d'une,)%20%3A%20habitat71%40cg71.fr",
+    form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
   },
-  D72: {
+  departement_sarthe: {
     label: "du département de la Sarthe",
-    resources: {
-      link: "https://www.sarthe.fr/insertion-logement/logement-habitat/fonds-de-solidarite-logement",
-    },
+    link: "https://www.sarthe.fr/insertion-logement/logement-habitat/fonds-de-solidarite-logement",
   },
-  D74: {
+  departement_haute_savoie: {
     label: "du département de la Haute-Savoie",
-    resources: {
-      link: "https://www.hautesavoie.fr/informations-services/logement",
-    },
+    link: "https://www.hautesavoie.fr/informations-services/logement",
   },
-  D75: {
+  departement_paris: {
     label: "du département de Paris",
-    resources: {
-      link: "https://www.paris.fr/pages/aides-au-logement-3827#le-fonds-de-solidarite-pour-le-logement-de-paris",
-    },
+    link: "https://www.paris.fr/pages/aides-au-logement-3827#le-fonds-de-solidarite-pour-le-logement-de-paris",
   },
-  D76: {
+  departement_seine_maritime: {
     label: "du département de Seine-Maritime",
-    resources: {
-      link: "https://www.seinemaritime.fr/vos-services/habitat-logement/le-plan-departemental-daction-pour-le-logement-des-personnes-defavorisees/fonds-solidarite-logement.html",
-    },
+    link: "https://www.seinemaritime.fr/vos-services/habitat-logement/le-plan-departemental-daction-pour-le-logement-des-personnes-defavorisees/fonds-solidarite-logement.html",
   },
-  D77: {
+  departement_seine_et_marne: {
     label: "du département de Seine-et-Marne",
-    resources: {
-      link: "https://www.seine-et-marne.fr/fr/aides-au-logement",
-    },
+    link: "https://www.seine-et-marne.fr/fr/aides-au-logement",
   },
-  D78: {
+  departement_yvelines: {
     label: "du département des Yvelines",
-    resources: {
-      link: "https://www.yvelines.fr/solidarite/adultes-en-difficulte/logement/acces-et-maintien-logement/",
-    },
+    link: "https://www.yvelines.fr/solidarite/adultes-en-difficulte/logement/acces-et-maintien-logement/",
   },
-  D80: {
+  departement_somme: {
     label: "du département de la Somme",
-    resources: {
-      link: "https://www.somme.fr/services/rsa-insertion/les-aides-a-linsertion/le-fonds-de-solidarite-logement/",
-    },
+    link: "https://www.somme.fr/services/rsa-insertion/les-aides-a-linsertion/le-fonds-de-solidarite-logement/",
   },
-  D83: {
+  departement_var: {
     label: "du département du Var",
-    resources: {
-      link: "https://www.var.fr/social/insertion/fonds-de-solidarite-logement",
-      form: "https://www.var.fr/documents/20142/2028094/MAINTIEN+A4.pdf/7623c7eb-daa0-cf0e-aabf-cd701c8c6d1d",
-    },
+    link: "https://www.var.fr/social/insertion/fonds-de-solidarite-logement",
+    form: "https://www.var.fr/documents/20142/2028094/MAINTIEN+A4.pdf/7623c7eb-daa0-cf0e-aabf-cd701c8c6d1d",
   },
-  D84: {
+  departement_vaucluse: {
     label: "du département du Vaucluse",
-    resources: {
-      link: "http://www.vaucluse.fr/habitat-logement/les-aides-aux-particuliers/le-fonds-de-solidarite-pour-le-logement-1531.html",
-    },
+    link: "http://www.vaucluse.fr/habitat-logement/les-aides-aux-particuliers/le-fonds-de-solidarite-pour-le-logement-1531.html",
   },
-  D85: {
+  departement_vendee: {
     label: "du département de la Vendée",
-    resources: {
-      link: "http://www.vendee.fr/Territoire-et-environnement/Habitat-Logement/42264-Habitat-Logement/L-accompagnement-des-menages-en-difficultes",
-    },
+    link: "http://www.vendee.fr/Territoire-et-environnement/Habitat-Logement/42264-Habitat-Logement/L-accompagnement-des-menages-en-difficultes",
   },
-  D86: {
+  departement_vienne: {
     label: "du département de la Vienne",
-    resources: {
-      link: "http://www.fsl86.fr/",
-      form: "http://www.fsl86.fr/images/pdf/declaration_de_ressources.pdf",
-    },
+    link: "http://www.fsl86.fr/",
+    form: "http://www.fsl86.fr/images/pdf/declaration_de_ressources.pdf",
   },
-  D91: {
+  departement_essonne: {
     label: "du département de l’Essonne",
-    resources: {
-      link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
-    },
+    link: "http://www.essonne.fr/le-departement/les-organismes-associes/le-fonds-de-solidarite-pour-le-logement-fsl/",
   },
-  D92: {
+  departement_hauts_de_seine: {
     label: "du département des Hauts-de-Seine",
-    resources: {
-      link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
-    },
+    link: "https://www.78-92.fr/annuaire/aides-et-services/detail/le-fonds-de-solidarite-logement-fsl-92",
   },
-  D93: {
+  departement_seine_saint_denis: {
     label: "du département de Seine-Saint-Denis",
-    resources: {
-      link: "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement",
-      instructions:
-        "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement#Comment-en-formuler-la-demande",
-    },
+    link: "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement",
+    instructions:
+      "https://seinesaintdenis.fr/solidarite/action-sociale/article/fonds-de-solidarite-logement#Comment-en-formuler-la-demande",
   },
-  D94: {
+  departement_val_de_marne: {
     label: "du département du Val-de-Marne",
-    resources: {
-      link: "https://www.valdemarne.fr/a-votre-service/habitat/logement/aides-aux-impayes-locatifs-fsh",
-    },
+    link: "https://www.valdemarne.fr/a-votre-service/habitat/logement/aides-aux-impayes-locatifs-fsh",
   },
-  D95: {
+  departement_val_d_oise: {
     label: "du département du Val d’Oise",
-    resources: {
-      link: "https://www.valdoise.fr/aide-et-service/11/6-fonds-de-solidarite-logement-aide-a-l-acces-au-logement.htm",
-    },
+    link: "https://www.valdoise.fr/aide-et-service/11/6-fonds-de-solidarite-logement-aide-a-l-acces-au-logement.htm",
   },
-  D974: {
+  departement_la_reunion: {
     label: "du département de la Réunion",
-    resources: {
-      link: "https://www.departement974.fr/aide/aide-habitat-fonds-de-solidarite-pour-logement-fsl#aidesimpayes",
-    },
+    link: "https://www.departement974.fr/aide/aide-habitat-fonds-de-solidarite-pour-logement-fsl#aidesimpayes",
   },
 }
 
-function getDepartmentInstitutionByInseeCode(institutionsMap, inseeCode) {
-  return Object.keys(institutionsMap)
-    .filter(
-      (institutionName) =>
-        institutionsMap[institutionName].type === "departement"
-    )
-    .find((institutionName) => {
-      const institution = institutionsMap[institutionName]
-      return institution.code_insee === inseeCode
-    })
-}
-
-function getMetropoleInstitutionBySirenCode(institutionsMap, sirenCode) {
-  return Object.keys(institutionsMap).find((institutionName) => {
-    const institution = institutionsMap[institutionName]
-    return institution.code_siren === sirenCode
-  })
-}
-
-function formatBenefit(customizationBenefit, institution) {
+function formatBenefit(
+  { label, link, form, instructions, excludedEPCI }: any,
+  institutionId
+) {
+  const conditions_generales = [
+    {
+      type: "attached_to_institution",
+    },
+    ...(excludedEPCI
+      ? [
+          {
+            type: "not",
+            value: {
+              type: "epcis",
+              values: [excludedEPCI],
+            },
+          },
+        ]
+      : []),
+    {
+      type: "statut_occupation_logement",
+      excludes: [
+        StatutOccupationLogement.loge_gratuitement,
+        StatutOccupationLogement.sans_domicile,
+      ],
+    },
+  ]
   return {
-    id: `${institution.replace(/_/g, "-")}-fsl-eligibilite`,
+    id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
     ...DEFAULT_FSL,
-    label: `Aide au maintien dans votre logement ${customizationBenefit.label}`,
-    description: `Dans le cadre du Fonds de Solidarité Logement ${customizationBenefit.label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
+    description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
     conditions: [
-      `Occuper, à titre de résidence principale, un logement sur le territoire ${customizationBenefit.label}.`,
+      `Occuper, à titre de résidence principale, un logement sur le territoire ${label}.`,
       "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
     ],
-    ...customizationBenefit.resources,
-    institution,
+    link,
+    form,
+    instructions,
+    label: `Aide au maintien dans votre logement ${label}`,
+    institution: institutionId,
     source: "javascript",
-    conditions_generales: [
-      {
-        type: "attached_to_institution",
-      },
-      {
-        type: "statut_occupation_logement",
-        excludes: [
-          StatutOccupationLogement.loge_gratuitement,
-          StatutOccupationLogement.sans_domicile,
-        ],
-      },
-    ],
+    conditions_generales,
   }
 }
 
-export function getInstitutionName(institutionsMap, code) {
-  // D = département ; M = métropole
-  const geographicalEntity = code[0]
-  // code Insee pour le département ou code Siren pour la métropole
-  const geographicalCode = code.slice(1)
-  let institutionName
-
-  if (geographicalEntity === "D") {
-    institutionName = getDepartmentInstitutionByInseeCode(
-      institutionsMap,
-      geographicalCode
-    )
-  } else {
-    institutionName = getMetropoleInstitutionBySirenCode(
-      institutionsMap,
-      geographicalCode
-    )
-  }
-  return institutionName
-}
-
-export function build(institutionsMap) {
-  const result: any = Object.keys(FSL_BY_CODE).reduce(
-    (accum: any, code: string) => {
-      const customizationBenefit = FSL_BY_CODE[code]
-      const institutionName = getInstitutionName(institutionsMap, code)
-
-      if (!institutionName) {
-        console.warn(`No institution for metropole fsl ${code}`)
-        return accum
-      }
-      const benefit = formatBenefit(customizationBenefit, institutionName)
-
-      accum.push(benefit)
-      return accum
-    },
-    []
+export function build() {
+  return Object.entries(FSL_BY_INSTITUTION_SLUG).map(
+    ([institutionSlug, customizationBenefit]) =>
+      formatBenefit(customizationBenefit, institutionSlug)
   )
-  return result
 }

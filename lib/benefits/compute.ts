@@ -5,7 +5,6 @@ import { computeJavascriptBenefits } from "./compute-javascript"
 import { computeAidesVeloBenefits } from "./compute-aides-velo"
 
 import { generator } from "../dates"
-
 export const datesGenerator = generator
 
 /**
@@ -56,34 +55,11 @@ export function round(amount, aide) {
   }
 }
 
-function keepClosestFSL(benefits, openfiscaResponse, periods) {
-  const fslBenefits = Object.keys(openfiscaResponse.individus.demandeur).filter(
-    (key) => {
-      return (
-        key.includes("fsl-eligibilite") &&
-        openfiscaResponse.individus.demandeur[key][periods.thisMonth.id]
-      )
-    }
-  )
-  if (fslBenefits.length >= 2) {
-    const epciFsl =
-      fslBenefits.find((key) => benefits[key].institution.type === "epci") ||
-      fslBenefits[0]
-    fslBenefits
-      .filter((key) => key !== epciFsl)
-      .forEach((key) => {
-        delete openfiscaResponse.individus.demandeur[key]
-      })
-  }
-}
-
 export function computeAides(situation, id, openfiscaResponse, showPrivate) {
   const periods = generator(situation.dateDeValeur)
 
   // @ts-ignore
   computeJavascriptBenefits(this, situation, openfiscaResponse)
-  // @ts-ignore
-  keepClosestFSL(this.benefitsMap, openfiscaResponse, periods)
 
   const customizationIds = determineCustomizationIds(situation)
   const computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)

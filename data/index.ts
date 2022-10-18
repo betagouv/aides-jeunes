@@ -4,8 +4,9 @@ import { build as buildFSL } from "./benefits/dynamic/fsl"
 import { buildAPA } from "./benefits/dynamic/apa"
 
 function generateInstitutionId(institution) {
-  return `${institution.type}_${institution.code_insee || institution.code_siren || institution.slug
-    }`
+  return `${institution.type}_${
+    institution.code_insee || institution.code_siren || institution.slug
+  }`
 }
 
 function generateBenefitId(benefit) {
@@ -40,8 +41,8 @@ function setTop(benefit, institution) {
     (institution.type === "national"
       ? 3
       : benefit.source == "aides-velo"
-        ? 13
-        : 14)
+      ? 13
+      : 14)
 
   return benefit.top || default_top
 }

@@ -362,14 +362,14 @@ function formatBenefit(
     },
     ...(excludedEPCI
       ? [
-        {
-          type: "not",
-          value: {
-            type: "epcis",
-            values: [excludedEPCI],
+          {
+            type: "not",
+            value: {
+              type: "epcis",
+              values: [excludedEPCI],
+            },
           },
-        },
-      ]
+        ]
       : []),
     {
       type: "statut_occupation_logement",
@@ -393,29 +393,7 @@ function formatBenefit(
     label: `Aide au maintien dans votre logement ${label}`,
     institution: institutionId,
     source: "javascript",
-    conditions_generales: [
-      {
-        type: "attached_to_institution",
-      },
-      ...(excludedEPCI
-        ? [
-          {
-            type: "invert",
-            value: {
-              type: "epcis",
-              values: [excludedEPCI],
-            },
-          },
-        ]
-        : []),
-      {
-        type: "statut_occupation_logement",
-        excludes: [
-          StatutOccupationLogement.loge_gratuitement,
-          StatutOccupationLogement.sans_domicile,
-        ],
-      },
-    ],
+    conditions_generales,
   }
 }
 

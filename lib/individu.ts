@@ -1,5 +1,5 @@
-import { cloneDeep } from "lodash"
 import dayjs from "dayjs"
+import cloneDeep from "lodash.clonedeep"
 
 import { individuLayout } from "./types/individu"
 

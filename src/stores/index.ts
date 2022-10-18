@@ -1,15 +1,14 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
-import { version } from "@lib/simulation.js"
-import { generator as datesGenerator } from "@lib/dates.js"
-import { generateAllSteps } from "@lib/state/generator.js"
-import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
-import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import { isEqual, some, values } from "lodash"
+import { version } from "@lib/simulation"
+import { generator as datesGenerator } from "@lib/dates"
+import { generateAllSteps } from "@lib/state/generator"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources"
+import isEqual from "lodash.isequal"
 import axios from "axios"
-import { generateSituation } from "@lib/situations.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
-
+import { generateSituation } from "@lib/situations"
+import ABTestingService from "@/plugins/ab-testing-service"
 import {
   Answer,
   Calculs,
@@ -216,8 +215,9 @@ export const useStore = defineStore("store", {
         if (!demandeur[ressource.id]) {
           return accum
         }
-
-        return accum || some(values(demandeur[ressource.id]))
+        return (
+          accum || Object.values(demandeur[ressource.id]).some((value) => value)
+        )
       }, undefined)
     },
     fetchRepresentation() {

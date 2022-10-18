@@ -48,7 +48,6 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import { orderBy, groupBy } from "lodash"
 import { ressourceCategories, ressourceTypes } from "@lib/resources"
 import Ressource from "@lib/ressource"
 import { getAnswer } from "@lib/answers"
@@ -91,7 +90,7 @@ export default {
     })
     return {
       categories: ressourceCategories,
-      typesByCategories: groupBy(types, (t) => t.category),
+      typesByCategories: this.groupTypes(types),
       selectedTypes,
     }
   },
@@ -126,7 +125,20 @@ export default {
       this.$push()
     },
     sort(array) {
-      return orderBy(array, ["positionInList", "label"])
+      return array.sort(
+        (a, b) =>
+          (a.positionInList || Infinity) - (b.positionInList || Infinity) ||
+          a.label.localeCompare(b.label)
+      )
+    },
+    groupTypes(types) {
+      return types.reduce((categories, type) => {
+        if (!categories[type.category]) {
+          categories[type.category] = []
+        }
+        categories[type.category].push(type)
+        return categories
+      }, {})
     },
   },
 }

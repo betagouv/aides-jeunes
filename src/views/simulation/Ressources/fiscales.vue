@@ -65,24 +65,10 @@
 </template>
 
 <script>
-import { sum, some, isNaN } from "lodash"
 import Individu from "@lib/individu"
 import { categoriesRnc } from "@lib/resources"
 import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores"
-
-function getDefaultValue(months, individu, rnc) {
-  return sum(
-    (rnc.sources || []).map(function (sourceName) {
-      if (!individu[sourceName]) {
-        return 0
-      }
-
-      let ressource = individu[sourceName]
-      return sum(months.map((month) => ressource[month.id] || 0))
-    })
-  )
-}
 
 export default {
   name: "RessourcesFiscales",
@@ -109,7 +95,7 @@ export default {
         )
         individu.values[categorieRnc.id][fiscalYear] =
           source[categorieRnc.id]?.[fiscalYear]
-        individu.default[categorieRnc.id] = getDefaultValue(
+        individu.default[categorieRnc.id] = this.getDefaultValue(
           this.store.dates.last12Months,
           source,
           categorieRnc
@@ -118,12 +104,10 @@ export default {
 
       individu.display =
         Individu.isParent(source) ||
-        some(
-          categoriesRnc.map(
-            (ressource) =>
-              source[ressource.id] &&
-              source[ressource.id][fiscalYear] !== undefined
-          )
+        categoriesRnc.some(
+          (ressource) =>
+            source[ressource.id] &&
+            source[ressource.id][fiscalYear] !== undefined
         )
       return individu
     })
@@ -150,6 +134,18 @@ export default {
 
       this.store.ressourcesFiscales(values)
       this.$router.push("/simulation/resultats")
+    },
+    getDefaultValue(months, individu, rnc) {
+      return (rnc.sources || []).reduce((total, sourceName) => {
+        if (!individu[sourceName]) {
+          return total
+        }
+        let ressource = individu[sourceName]
+        return (
+          total +
+          months.reduce((acc, month) => acc + (ressource[month.id] || 0), 0)
+        )
+      }, 0)
     },
   },
 }

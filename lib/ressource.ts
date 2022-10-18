@@ -1,5 +1,4 @@
 import resources from "./resources"
-import { filter, keys, keyBy, uniq } from "lodash"
 
 import { datesGeneratorLayout, dateLayout } from "../lib/types/dates"
 import { resourceLayout } from "./types/resources"
@@ -104,68 +103,63 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
       ressourceIdOrType.id || ressourceIdOrType
     ) >= 0
   ) {
-    return keys(ressource).length > 1
+    return ressource && Object.keys(ressource).length > 1
   }
 
   return Boolean(ressource)
 }
 
 function getIndividuRessourceCategories(individu, situation) {
-  return uniq(
-    filter(
-      resources.ressourceTypes,
-      (ressourceType: resourceLayout) =>
-        isSelectedForCurrentYear(individu[ressourceType.id], ressourceType) &&
-        isRessourceOnMainScreen(ressourceType) &&
-        isRessourceRelevant(ressourceType, situation, individu)
-    ).map((r) => r.category)
-  )
+  return [
+    ...new Set(
+      resources.ressourceTypes
+        .filter(
+          (ressourceType: resourceLayout) =>
+            isSelectedForCurrentYear(
+              individu[ressourceType.id],
+              ressourceType
+            ) &&
+            isRessourceOnMainScreen(ressourceType) &&
+            isRessourceRelevant(ressourceType, situation, individu)
+        )
+        .map((r) => r.category)
+    ),
+  ]
 }
 
 function getIndividuRessourceTypes(individu, situation) {
-  return filter(resources.ressourceTypes, (ressourceType) => {
-    return (
-      isRessourceOnMainScreen(ressourceType) &&
-      isRessourceRelevant(ressourceType, situation, individu)
-    )
-  }).reduce((accumulator, ressourceType) => {
-    accumulator[ressourceType.id] = isSelectedForCurrentYear(
-      individu[ressourceType.id],
-      ressourceType
-    )
-    return accumulator
-  }, {})
+  return resources.ressourceTypes
+    .filter((ressourceType) => {
+      return (
+        isRessourceOnMainScreen(ressourceType) &&
+        isRessourceRelevant(ressourceType, situation, individu)
+      )
+    })
+    .reduce((accumulator, ressourceType) => {
+      accumulator[ressourceType.id] = isSelectedForCurrentYear(
+        individu[ressourceType.id],
+        ressourceType
+      )
+      return accumulator
+    }, {})
 }
 
 function getIndividuRessourceTypesByCategory(individu, category, situation) {
-  return filter(resources.ressourceTypes, (ressourceType) => {
-    return (
-      ressourceType.category === category &&
-      isRessourceOnMainScreen(ressourceType) &&
-      isRessourceRelevant(ressourceType, situation, individu)
-    )
-  }).reduce((accumulator, ressourceType) => {
-    accumulator[ressourceType.id] = isSelectedForCurrentYear(
-      individu[ressourceType.id],
-      ressourceType
-    )
-    return accumulator
-  }, {})
-}
-
-function setIndividuRessourceTypes(individu, types, dates) {
-  const typeMap = keyBy(
-    filter(resources.ressourceTypes, isRessourceOnMainScreen),
-    "id"
-  )
-
-  Object.keys(types).forEach(function (ressourceTypeId) {
-    if (types[ressourceTypeId]) {
-      setDefaultValueForCurrentYear(dates, individu, typeMap[ressourceTypeId])
-    } else {
-      unsetForCurrentYear(dates, individu, typeMap[ressourceTypeId])
-    }
-  })
+  return resources.ressourceTypes
+    .filter((ressourceType) => {
+      return (
+        ressourceType.category === category &&
+        isRessourceOnMainScreen(ressourceType) &&
+        isRessourceRelevant(ressourceType, situation, individu)
+      )
+    })
+    .reduce((accumulator, ressourceType) => {
+      accumulator[ressourceType.id] = isSelectedForCurrentYear(
+        individu[ressourceType.id],
+        ressourceType
+      )
+      return accumulator
+    }, {})
 }
 
 function isRessourceOnMainScreen(ressourceOrType): boolean {
@@ -177,7 +171,6 @@ function isRessourceOnMainScreen(ressourceOrType): boolean {
 export default {
   getPeriodsForCurrentYear,
   // Ne semble pas être utilisée
-  // getPeriodKeysForCurrentYear,
   isRessourceRelevant,
   isRessourceOnMainScreen,
   isSelectedForCurrentYear,
@@ -185,6 +178,5 @@ export default {
   getIndividuRessourceCategories,
   getIndividuRessourceTypes,
   getIndividuRessourceTypesByCategory,
-  setIndividuRessourceTypes,
   unsetForCurrentYear,
 }

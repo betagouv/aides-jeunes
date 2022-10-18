@@ -1,7 +1,6 @@
 import axios from "axios"
-import { sortBy } from "lodash"
 
-function normalize(etablissementFeature) {
+export function normalize(etablissementFeature) {
   const etablissement = etablissementFeature.properties
 
   if (etablissement.url === "https://www.maisondeservicesaupublic.fr") {
@@ -18,9 +17,9 @@ function normalize(etablissementFeature) {
       samedi: 6,
       dimanche: 7,
     }
-    etablissement.horaires = sortBy(etablissement.horaires, function (plage) {
-      return mapping[plage.du]
-    })
+    etablissement.horaires = etablissement.horaires.sort(
+      (a, b) => mapping[a.du.toLowerCase()] - mapping[b.du.toLowerCase()]
+    )
   }
 
   etablissement.adresse = etablissement.adresses.find(

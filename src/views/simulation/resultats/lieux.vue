@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import Institution from "@/lib/institution"
 import Etablissement from "@/components/etablissement.vue"
 import {
   getBenefitEtablissements,
@@ -40,6 +39,7 @@ import {
 } from "@lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores"
+import ResultatsMixin from "@/mixins/resultats"
 
 export default {
   name: "Lieux",
@@ -47,6 +47,7 @@ export default {
     BackButton,
     Etablissement,
   },
+  mixins: [ResultatsMixin],
   setup() {
     return { store: useStore() }
   },
@@ -60,7 +61,8 @@ export default {
   },
   mounted() {
     const city = this.store.situation.menage.depcom
-    this.benefit = Institution.benefits.all.find(
+    const benefits = this.eligibleBenefits()
+    this.benefit = benefits.find(
       (benefit) => benefit.id === this.$route.params.benefit_id
     )
     const types = getBenefitEtablissements(this.benefit)

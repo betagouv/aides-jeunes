@@ -19,8 +19,8 @@
             data-testid="droit-estime-value"
           >
             {{ droitEstime.value }}
-          </span>
-        </span>
+          </span> </span
+        >&nbsp;
         <span
           v-if="droitEstime.legend"
           class="aj-droit-estime-legend"

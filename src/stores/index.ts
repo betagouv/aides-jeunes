@@ -1,15 +1,15 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
-import { datesGenerator } from "@lib/benefits/compute.js"
+import { generator as datesGenerator } from "@lib/dates.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import { isEqual, some, values } from "lodash-es"
+import { isEqual, some, values } from "lodash"
 import axios from "axios"
 import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
-import Institution from "@/lib/institution.js"
+
 import {
   Answer,
   Calculs,
@@ -456,9 +456,10 @@ export const useStore = defineStore("store", {
       this.calculs.resultats = results
       this.calculs.updating = false
     },
-    mockResults(benefit: any) {
+    async mockResults(benefit: any) {
+      const { mockResults } = await import("@/lib/institution.js")
       // @ts-ignore
-      this.setResults(Institution.mockResults(benefit))
+      this.setResults(mockResults(benefit))
     },
     startComputation() {
       this.calculs.updating = true

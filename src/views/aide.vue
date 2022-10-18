@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Institution from "@/lib/institution"
+import { getBenefit } from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 
@@ -66,8 +66,7 @@ export default {
       return this.$route.params.benefitId
     },
     benefit() {
-      const benefits = Institution.benefits.benefitsMap
-      return benefits[this.benefitId]
+      return getBenefit(this.benefitId)
     },
   },
   methods: {

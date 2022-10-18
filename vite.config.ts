@@ -6,10 +6,12 @@ import path from "path"
 import { defineConfig, loadEnv } from "vite"
 
 const __dirname = new URL(".", import.meta.url).pathname
-import rollupYaml from "@rollup/plugin-yaml"
 
 import config from "./backend/config/index"
 import benefits from "./data/all"
+
+import { visualizer } from "rollup-plugin-visualizer"
+import generator from "./rollup/generator.rollup"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
@@ -47,6 +49,7 @@ export default defineConfig(async ({ mode }) => {
       emptyOutDir: false,
     },
     plugins: [
+      generator,
       vue(),
       createHtmlPlugin({
         minify: true,
@@ -59,12 +62,10 @@ export default defineConfig(async ({ mode }) => {
           },
         },
       }),
-      rollupYaml({
-        include: ["data/**", "contribuer/**"],
-      }),
       legacy({
         targets: ["defaults"],
       }),
+      visualizer(),
     ],
     resolve: {
       preferBuiltins: false,

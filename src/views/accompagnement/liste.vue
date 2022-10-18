@@ -99,7 +99,7 @@
                 :href="`/aides/${answer.id}`"
                 target="_blank"
                 :title="answer.id"
-                >{{ benefitsMap[answer.id]?.label || answer.id }}</a
+                >{{ benefitsMap(answer.id)?.label || answer.id }}</a
               >
               <b v-if="answer.unit && typeof answer.amount === `number`"
                 >({{ Math.round(answer.amount * 100) / 100
@@ -117,12 +117,12 @@
 <script>
 import SimulationSearch from "@/components/support/simulation-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
-import Institution from "@/lib/institution"
+import { getBenefit } from "@/lib/institution"
 export default {
   components: { SimulationSearch, CopyButton },
   data: function () {
     return {
-      benefitsMap: Institution.benefits.benefitsMap,
+      benefitsMap: getBenefit,
       accompagnements: undefined,
       loggedIn: undefined,
     }

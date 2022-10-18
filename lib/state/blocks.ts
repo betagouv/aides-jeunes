@@ -1,7 +1,7 @@
 import Individu from "../individu"
 import { ACTIVITES_ACTIF } from "../activite"
 import Ressource from "../ressource"
-import { datesGenerator } from "../benefits/compute"
+import { generator as datesGenerator } from "../dates"
 import { Step, ComplexStep } from "./steps"
 import Scolarite from "../scolarite"
 

@@ -1,11 +1,8 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context"
-import Institution from "@/lib/institution"
 import Simulation from "@/lib/simulation"
 import { useStore } from "@/stores"
-
-const benefits = Institution.benefits.benefitsMap
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -218,18 +215,6 @@ const router = createRouter({
           name: "resultatsDetails",
           path: "resultats/:droitId",
           component: () => import("./views/simulation/resultats-detail.vue"),
-          meta: {
-            headTitle: (params) => {
-              if (benefits[params.droitId]) {
-                const droitLabel = `${benefits[params.droitId].label}`
-                return `${droitLabel.charAt(0).toUpperCase()}${droitLabel.slice(
-                  1
-                )} - Ma simulation d'aides ${context.name}`
-              } else {
-                return process.env.VITE_TITLE
-              }
-            },
-          },
         },
       ],
     },
@@ -259,14 +244,7 @@ const router = createRouter({
       name: "aide",
       component: () => import("./views/aide.vue"),
       meta: {
-        headTitle: (params) => {
-          const benefitLabel = benefits[params.benefitId].label
-          return benefitLabel
-            ? `${benefitLabel.charAt(0).toUpperCase()}${benefitLabel.slice(
-                1
-              )} - Simulateur d'aides ${context.name}`
-            : process.env.VITE_TITLE
-        },
+        headTitle: `Simulateur d'aides ${context.name}`,
       },
     },
     {

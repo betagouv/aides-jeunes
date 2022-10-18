@@ -566,7 +566,7 @@ export function build(institutionsMap) {
       const institutionName = getInstitutionName(institutionsMap, code)
 
       if (!institutionName) {
-        console.warn(`No instistution for metropole fsl ${code}`)
+        console.warn(`No institution for metropole fsl ${code}`)
         return accum
       }
       const benefit = formatBenefit(customizationBenefit, institutionName)

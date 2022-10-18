@@ -1,6 +1,6 @@
 import Ressource from "./ressource"
 import { ressourceTypes } from "./resources"
-import { datesGenerator } from "./benefits/compute"
+import { generator as datesGenerator } from "./dates"
 import Scolarite from "./scolarite"
 
 import { individuLayout } from "./types/individu"

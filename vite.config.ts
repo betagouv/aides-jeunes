@@ -28,7 +28,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_NETLIFY_CONTRIBUTION_URL: netlifyContributionURL,
     VITE_STATS_URL: statistics?.url ? statistics.url : "",
     VITE_NETLIFY_PR: process.env.BRANCH,
-    VITE_1J1S_URL: "https://1j1s-front-prod.osc-fr1.scalingo.io",
+    VITE_1J1S_URL: "https://www.1jeune1solution.gouv.fr",
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`

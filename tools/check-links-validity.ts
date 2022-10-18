@@ -1,8 +1,11 @@
-import Benefits from "../data/all.js"
+import Benefits from "../data/all"
 import axios from "axios"
-import fs from "fs"
 import https from "https"
 import Bluebird from "bluebird"
+
+console.log(Benefits)
+
+process.exit()
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })

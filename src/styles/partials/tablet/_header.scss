@@ -92,6 +92,8 @@
           border-top: 1px solid #e5e5e5;
         }
         .aj-modal-nav-subitem {
+          display: flex;
+          justify-content: space-between;
           margin-left: -1.5rem;
           margin-right: -0.5rem;
           right: 0;
@@ -99,7 +101,7 @@
           padding-bottom: 0.5rem;
           background-color: #fff;
           .aj-modal-navigation-list-sublabel {
-            margin: 0.5rem 0 0.5rem 2rem;
+            margin: 0rem 0 0rem 2rem;
             text-underline-offset: 0.2rem;
             color: #000;
             text-decoration: none;

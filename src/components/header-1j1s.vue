@@ -352,30 +352,28 @@ const submenuClick = (index, subindex, submenu) => {
                   v-for="(submenu, subindex) in item.submenus"
                   :key="`submenu-${subindex}`"
                   class="aj-modal-nav-subitem"
+                  @click="submenuClick(index, subindex, submenu)"
                 >
-                  <div>
-                    <a
-                      class="aj-modal-navigation-list-sublabel menu-item-submenu"
-                      :class="submenu.active ? 'active' : ''"
-                      @click="submenuClick(index, subindex, submenu)"
+                  <div
+                    class="aj-modal-navigation-list-sublabel menu-item-submenu"
+                    :class="submenu.active ? 'active' : ''"
+                  >
+                    {{ submenu.label }}
+                  </div>
+                  <div v-if="submenu.children" class="aj-submenu-children">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
                     >
-                      {{ submenu.label }}
-                    </a>
-                    <div v-if="submenu.children" class="aj-submenu-children">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M8.78047 7.99999L5.48047 4.69999L6.42314 3.75732L10.6658 7.99999L6.42314 12.2427L5.48047 11.3L8.78047 7.99999Z"
-                        ></path>
-                      </svg>
-                    </div>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.78047 7.99999L5.48047 4.69999L6.42314 3.75732L10.6658 7.99999L6.42314 12.2427L5.48047 11.3L8.78047 7.99999Z"
+                      ></path>
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -477,7 +475,13 @@ const submenuClick = (index, subindex, submenu) => {
               tabindex="0"
               @click="expandMenu(index)"
             >
-              <div>{{ item.label }}</div>
+              <div
+                :class="{
+                  'aj-1j1s-header-nav__menu-last-item-label':
+                    index === menu.length - 1,
+                }"
+                >{{ item.label }}</div
+              >
               <div>
                 <svg
                   width="24"

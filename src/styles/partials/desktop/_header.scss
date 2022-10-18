@@ -88,7 +88,6 @@
       padding: 0;
       margin: 0;
       position: relative;
-      line-height: 1rem;
       padding-left: 1.5rem;
       padding-right: 0;
       width: 100%;
@@ -123,7 +122,7 @@
 
       &-last-item {
         color: #fff;
-        padding: 0.6rem 1rem 0.5rem 1rem;
+        padding: 0 1rem 0 1rem;
         background-color: #18753c;
         margin-left: auto !important;
         font-weight: 700;
@@ -136,7 +135,7 @@
         display: block;
         text-underline-offset: 0.2rem;
 
-        &:not(.last-item) {
+        &:not(.aj-1j1s-header-nav__menu-last-item) {
           margin-right: 2.3125rem;
         }
       }
@@ -153,7 +152,7 @@
         align-items: center;
         text-align: center;
         gap: 0.1rem;
-        height: 100%;
+    
 
         svg {
           background-repeat: no-repeat;
@@ -170,6 +169,11 @@
         }
       }
     }
+  }
+
+  &-nav__menu-last-item-label {
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
   }
   &__employee {
     width: 100%;

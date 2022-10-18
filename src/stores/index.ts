@@ -224,7 +224,8 @@ export const useStore = defineStore("store", {
       return (representation: string, situationId: string) => {
         return axios
           .get(
-            `/api/simulation/${situationId || this.situationId
+            `/api/simulation/${
+              situationId || this.situationId
             }/${representation}`
           )
           .then((response) => response.data)
@@ -233,8 +234,8 @@ export const useStore = defineStore("store", {
     hasResults(): boolean {
       return Boolean(
         this.situationId &&
-        this.calculs.resultats._id &&
-        this.calculs.resultats._id === this.situationId
+          this.calculs.resultats._id &&
+          this.calculs.resultats._id === this.situationId
       )
     },
     situation(): Situation {
@@ -342,8 +343,9 @@ export const useStore = defineStore("store", {
         entityName: "individu",
         id: `enfant_${enfantId}`,
         fieldName: "_firstName",
-        value: `votre ${enfants.length}${enfants.length === 1 ? "ᵉʳ" : "ᵉ"
-          } enfant`,
+        value: `votre ${enfants.length}${
+          enfants.length === 1 ? "ᵉʳ" : "ᵉ"
+        } enfant`,
       }
 
       // When you add a children you need to remove all current answer after the child validation
@@ -474,7 +476,8 @@ export const useStore = defineStore("store", {
 
       return axios
         .get(
-          `/api/simulation/${this.situationId}/results${showPrivate ? "&showPrivate" : ""
+          `/api/simulation/${this.situationId}/results${
+            showPrivate ? "&showPrivate" : ""
           }`
         )
         .then((response) => {

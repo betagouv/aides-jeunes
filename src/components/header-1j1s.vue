@@ -348,11 +348,11 @@ const submenuClick = (index, subindex, submenu) => {
                 </div>
               </div>
               <div v-if="item.expanded && !openedSubmenuIndex">
-                <div
+                <a
                   v-for="(submenu, subindex) in item.submenus"
                   :key="`submenu-${subindex}`"
                   class="aj-modal-nav-subitem"
-                  @click="submenuClick(index, subindex, submenu)"
+                  :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
                 >
                   <div
                     class="aj-modal-navigation-list-sublabel menu-item-submenu"
@@ -375,7 +375,7 @@ const submenuClick = (index, subindex, submenu) => {
                       ></path>
                     </svg>
                   </div>
-                </div>
+                </a>
               </div>
             </li>
           </ul>

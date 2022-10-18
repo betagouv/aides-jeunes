@@ -129,9 +129,9 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
       }
       const institution = customization?.institution
         ? {
-          ...benefit.institution,
-          ...customization.institution,
-        }
+            ...benefit.institution,
+            ...customization.institution,
+          }
         : benefit.institution
 
       result.droitsEligibles.push(

@@ -91,16 +91,12 @@ export default {
           href: "/plan-du-site",
         },
         {
-          label: "Conditions générales d'utilisations",
+          label: "CGU & Mentions légales",
           href: "/cgu",
         },
         {
           label: "Accessibilité (non conforme)",
           href: "/accessibilite",
-        },
-        {
-          label: "Mentions légales",
-          href: "/mentions-legales",
         },
         {
           label: "Politique de confidentialité",

@@ -69,7 +69,6 @@
     "jamstack-loader": "^0.0.9",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
-    "lodash-es": "^4.17.21",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "lodash.range": "^3.2.0",
@@ -170,8 +169,7 @@
       "@lib/(.*)": "<rootDir>/lib/$1",
       "@/(.*)": "<rootDir>/src/$1",
       "(.+)\\.js": "$1",
-      "@root/(.*)": "<rootDir>/$1",
-      "^lodash-es$": "lodash"
+      "@root/(.*)": "<rootDir>/$1"
     },
     "extensionsToTreatAsEsm": [
       ".ts"

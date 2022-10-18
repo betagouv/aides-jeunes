@@ -518,10 +518,10 @@ const submenuClick = (index, subindex, submenu) => {
         </ul>
       </div>
       <transition name="fade">
-        <div class="menu-employee">
+        <div class="aj-1j1s-header__employee">
           <ul
             v-if="menu.length > 0 && menu[menu.length - 1].expanded"
-            class="menu-item-submenus-employee"
+            class="aj-1j1s-header__employee-submenus"
           >
             <div>
               <p class="aj-1j1s-header__title">Je suis employeur</p>
@@ -530,9 +530,12 @@ const submenuClick = (index, subindex, submenu) => {
             <div
               v-for="(submenu, subindex) in menu[menu.length - 1].submenus"
               :key="`last-submenu-${subindex}`"
-              class="last-submenu-col-right"
+              class="aj-1j1s-header__employee-submenus-last-right"
             >
-              <p v-if="submenu" class="last-menu-submenu-label">
+              <p
+                v-if="submenu"
+                class="aj-1j1s-header__employee-submenus-last-label"
+              >
                 <a
                   v-if="submenu.href"
                   :href="`${vite1jeune1solutionUrl}/${submenu.href}`"
@@ -541,7 +544,7 @@ const submenuClick = (index, subindex, submenu) => {
                 </a>
                 <span v-else> {{ submenu.label }} :</span>
               </p>
-              <div class="last-menu-subsubmenus">
+              <div class="aj-1j1s-header__employee-subsubmenus">
                 <a
                   v-for="(subsubmenu, subsubindex) in submenu.children"
                   :key="`$last-submenu-${subindex}-subsubmenu-${subsubindex}`"

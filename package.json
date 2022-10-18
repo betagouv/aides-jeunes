@@ -71,6 +71,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash-es": "^4.17.21",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.range": "^3.2.0",
     "mjml": "^4.10.4",
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.12",

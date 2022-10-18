@@ -1,4 +1,3 @@
-import cloneDeep from "lodash.clonedeep"
 import dayjs from "dayjs"
 
 export function executeFunctionOrReturnValue(obj, name, component) {
@@ -69,39 +68,5 @@ export function displayValue(value, question, component) {
       return question.unit ? `${value} ${question.unit}` : value
     case undefined:
       return displayYesNoValue(value)
-  }
-}
-
-export function isEqual(left, right) {
-  return (
-    left === right ||
-    (left instanceof Object &&
-      right instanceof Object &&
-      Object.keys(left).length === Object.keys(right).length &&
-      Object.keys(left).every(
-        (key) =>
-          Object.prototype.hasOwnProperty.call(right, key) &&
-          isEqual(left[key], right[key])
-      ) &&
-      !(
-        left instanceof Date &&
-        right instanceof Date &&
-        left.getTime() !== right.getTime()
-      ))
-  )
-}
-
-export function range(start, end) {
-  if (!end) {
-    return [...Array(start).keys()]
-  }
-  return [...Array(end - start).keys()].map((key) => key + start)
-}
-
-export function clone(variable: any): any {
-  if (structuredClone) {
-    return structuredClone(variable)
-  } else {
-    return cloneDeep(variable)
   }
 }

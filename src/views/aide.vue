@@ -66,7 +66,6 @@ export default {
       return this.$route.params.benefitId
     },
     benefit() {
-      //return BenefitsGenerator().benefitsMap[this.benefitId]
       return getBenefit(this.benefitId)
     },
   },

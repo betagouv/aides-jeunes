@@ -84,7 +84,7 @@ export default {
   },
   computed: {
     benefits(): Array<any> {
-      return [] //Benefits.all.filter((benefit) => !benefit.private)
+      return []
     },
     institutionsGroups(): any {
       if (this.selectedCommune) {

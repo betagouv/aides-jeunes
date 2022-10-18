@@ -18,7 +18,7 @@ conditions:
     rel="noopener"
     href="https://wwwd.caf.fr/wps/portal/caffr/macaf/contactermacaf#/contactcaf">Contacter
     votre CAF</a> pour connaître la démarche de dépôt de dossier.
-interestFlag: _interetBafa
+interestFlag: _interetEtudesEtranger
 type: float
 unit: €
 periodicite: ponctuelle

@@ -18,7 +18,7 @@ function getStatutOccupationLogement(logement) {
     locatairemeublehotel: "locataire_meuble",
     heberge: "loge_gratuitement",
     locatairefoyer: "locataire_foyer",
-    sansDomicile: "sans_domicile",
+    sans_domicile: "sans_domicile",
   }
   let statusOccupationId = logement.type
   if (logement.type == "proprietaire" && logement.primoAccedant) {
@@ -37,7 +37,7 @@ function getLogementVariables(statusOccupationId) {
     locataire_meuble: { type: "locataire", locationType: "meublehotel" },
     loge_gratuitement: { type: "heberge" },
     locataire_foyer: { type: "locataire", locationType: "foyer" },
-    sans_domicile: { type: "sansDomicile" },
+    sans_domicile: { type: "sans_domicile" },
   }
   const base = statusOccupationId && baseLogementMap[statusOccupationId]
   return { type: null, primoAccedant: null, locationType: null, ...base }

@@ -20,7 +20,7 @@ context("Full simulation", () => {
     foyer.children(0)
     foyer.fill_en_couple(false)
 
-    logement.fill_logement("sansDomicile")
+    logement.fill_logement("sans_domicile")
     logement.fill_nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
 

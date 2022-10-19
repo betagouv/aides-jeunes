@@ -61,7 +61,7 @@ export default {
       },
       {
         label: "Sans domicile stable",
-        value: "sansDomicile",
+        value: "sans_domicile",
         hint: "ou domiciliation administrative",
       },
     ],

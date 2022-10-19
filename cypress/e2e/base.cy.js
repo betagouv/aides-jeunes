@@ -24,7 +24,7 @@ context("Full simulation", () => {
     foyer.fill_rsa_isolement_recent(false)
     navigate.goRecap()
     navigate.next()
-    logement.fill_logement("sansDomicile")
+    logement.fill_logement("sans_domicile")
     logement.fill_nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
     revenu.fill_ressources_types([

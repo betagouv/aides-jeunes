@@ -22,7 +22,7 @@ context("Full simulation", () => {
     foyer.fill_en_couple(true)
     profil.defaultConjoint()
 
-    logement.fill_logement("sansDomicile")
+    logement.fill_logement("sans_domicile")
     logement.fill_nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
 

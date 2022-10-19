@@ -460,7 +460,7 @@ const submenuClick = (index, subindex, submenu) => {
       <div class="container">
         <ul class="aj-1j1s-header-nav__menu">
           <li>
-            <a href="/">Accueil</a>
+            <a class="aj-1j1s-header-nav__menu-item" href="/">Accueil</a>
           </li>
           <li
             v-for="(item, index) in menu"

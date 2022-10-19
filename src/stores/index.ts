@@ -63,6 +63,7 @@ function defaultStore(): Store {
     themeColor: null,
     inIframe: false,
     iframeOrigin: null,
+    iframeHeaderCollapse: false,
     saveSituationError: null,
     openFiscaParameters: {},
     recapEmailState: undefined,
@@ -545,6 +546,9 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     setIframeOrigin(newOrigin: string) {
       this.inIframe = true
       this.iframeOrigin = newOrigin
+    },
+    setIframeHeaderCollapse(collapse: boolean = false) {
+      this.iframeHeaderCollapse = collapse
     },
     setThemeColor(themeColor: string) {
       this.themeColor = themeColor

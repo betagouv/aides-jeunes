@@ -306,6 +306,10 @@ router.beforeEach((to, from, next) => {
     if (iframe != null) {
       store.setIframeOrigin(null)
     }
+
+    if (params.get("institutional")) {
+      store.setIframeHeaderCollapse(params.get("institutional"))
+    }
   }
 
   if (store.iframeOrigin) {

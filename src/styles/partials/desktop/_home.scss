@@ -6,7 +6,9 @@ html {
     }
   }
 }
+
 #homepage {
+  min-height: 520px;
   height: 100%;
   background: linear-gradient(
     105deg,
@@ -14,6 +16,7 @@ html {
     53%,
     var(--theme-primary) 47%
   );
+
   .container {
     display: flex;
     flex-direction: row;
@@ -50,9 +53,11 @@ html {
           display: flex;
           flex-direction: column;
           max-width: 60%;
+
           button {
             font-weight: bold;
           }
+
           button + button {
             margin-top: 1rem;
           }

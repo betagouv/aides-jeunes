@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from "vue"
+import { ref, useAttrs } from "vue"
 import useDetectOutsideClick from "@/composables/use-detect-outside-click.ts"
+const attrs = useAttrs()
 
 const componentRef = ref(null)
 const openedIndex = ref(null)
@@ -466,6 +467,7 @@ const submenuClick = (index, subindex, submenu) => {
       role="navigation"
       class="aj-1j1s-header-nav"
       :class="{ show: showMenu }"
+      v-if="!attrs.collapse"
     >
       <div class="container">
         <ul ref="componentRef" class="aj-1j1s-header-nav__menu">

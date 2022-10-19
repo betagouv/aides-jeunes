@@ -1,4 +1,5 @@
 <template>
+  <Header1J1S v-if="headerCollapse" :collapse="headerCollapse" />
   <slot />
   <div class="iframe-footer">
     <p>Simulateur propulsé par&nbsp;</p>
@@ -13,8 +14,23 @@
 </template>
 
 <script>
+import Header1J1S from "@/components/header-1j1s.vue"
+import { useStore } from "@/stores"
 export default {
   name: "IFrameLayout",
+  components: {
+    Header1J1S,
+  },
+  setup() {
+    return {
+      store: useStore(),
+    }
+  },
+  computed: {
+    headerCollapse: function () {
+      return this.store.iframeHeaderCollapse
+    },
+  },
 }
 </script>
 

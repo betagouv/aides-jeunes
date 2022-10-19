@@ -2,7 +2,11 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (benefits, event = "show", benefitId) {
+    sendStatistics: function (
+      benefits,
+      event = "show || showDetails || form || instructions ||link ||msa || show-locations || teleservice || link-ineligible || show-unexpected || close || retour-logement || simulation-caf || email",
+      benefitId
+    ) {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&

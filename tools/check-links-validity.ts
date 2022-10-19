@@ -10,7 +10,11 @@ const httpsAgent = new https.Agent({ rejectUnauthorized: false })
 const customBenefitsFiles = [
   {
     pattern: /-fsl-eligibilite$/,
-    file: `${Config.github.repository_url}/data/benefits/dynamic/fsl.ts`,
+    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/fsl.ts`,
+  },
+  {
+    pattern: /-apa-eligibilite$/,
+    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/apa.ts`,
   },
   {
     pattern: /^aidesvelo_/,

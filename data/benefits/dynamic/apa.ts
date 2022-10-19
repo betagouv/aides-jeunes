@@ -151,7 +151,8 @@ export const APA_BY_CODE = {
   },
 }
 
-function formatBenefit(customizationBenefit, institution) {
+function formatBenefit(institution) {
+  const customizationBenefit = APA_BY_CODE[institution]
   return {
     id: `${institution.replace(/_/g, "-")}-apa-eligibilite`,
     ...DEFAULT_APA,
@@ -185,12 +186,5 @@ function formatBenefit(customizationBenefit, institution) {
 }
 
 export function buildAPA() {
-  const result: any = Object.keys(APA_BY_CODE).reduce(
-    (benefits: any, code: string) => {
-      benefits[code] = formatBenefit(APA_BY_CODE[code], code)
-      return benefits
-    },
-    []
-  )
-  return result
+  return Object.keys(APA_BY_CODE).map((code) => formatBenefit(code))
 }

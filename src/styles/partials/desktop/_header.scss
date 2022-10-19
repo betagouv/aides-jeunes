@@ -84,7 +84,7 @@
       display: flex;
       justify-content: space-between;
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
       padding: 0;
       margin: 0;
       position: relative;
@@ -104,17 +104,20 @@
         overflow: hidden;
         margin-bottom: 1rem;
         margin-left: -0.6rem;
-        margin-top: 0.27rem;
+        margin-top: 0.02rem;
         padding-inline-start: 0;
 
         li {
           border-top: 1px solid #e5e5e5;
           width: 100%;
-          padding: 0.5rem;
-          display: block;
-          padding-block: 0.8rem;
-          padding-inline: 1rem;
+          display: flex !important;
         }
+
+        a {
+          flex: 1 !important;
+          padding: 0.8rem !important;
+        }
+
         &-item:not(.active) {
           font-weight: 400;
         }
@@ -156,6 +159,7 @@
         align-items: center;
         text-align: center;
         gap: 0.1rem;
+        height: 100%;
 
         svg {
           background-repeat: no-repeat;

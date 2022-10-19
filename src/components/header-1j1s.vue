@@ -219,7 +219,6 @@ const submenuClick = (index, subindex, submenu) => {
             height="16"
             class="icon_size__Voigr"
             viewBox="0 0 16 16"
-            fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >

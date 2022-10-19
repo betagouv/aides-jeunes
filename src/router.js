@@ -178,12 +178,6 @@ const router = createRouter({
           },
         },
         {
-          name: "resultatsAttendus",
-          path: "resultats/attendus",
-          component: () => import("./views/simulation/resultats/attendu.vue"),
-          meta: { title: "Résultats attendus" },
-        },
-        {
           name: "resultatInattendu",
           path: "resultat/inattendu/:id",
           component: () => import("./views/simulation/resultat-inattendu.vue"),

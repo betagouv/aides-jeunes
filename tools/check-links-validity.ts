@@ -1,10 +1,34 @@
 import Benefits from "../data/all"
+import Config from "../backend/config/index"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
+
+const customBenefitsFiles = [
+  {
+    pattern: /-fsl-eligibilite$/,
+    file: `${Config.github.repository_url}/data/benefits/dynamic/fsl.ts`,
+  },
+  {
+    pattern: /^aidesvelo_/,
+    file: `https://github.com/mquandalle/mesaidesvelo/blob/master/src/aides.yaml`,
+  },
+]
+
+function setEditLink(benefit) {
+  for (let category of customBenefitsFiles) {
+    if (benefit.id.match(category.pattern)) {
+      console.log(benefit.id, category.pattern)
+      return category.file
+    }
+  }
+  return ["openfisca", "javascript"].includes(benefit.source)
+    ? `https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_${benefit.source}/entries/${benefit.id}`
+    : undefined
+}
 
 async function checkURL(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
@@ -109,9 +133,7 @@ async function getBenefitData() {
       institution: benefit.institution.label,
       priority: priorityMap[benefit.id] || 0,
       links,
-      editLink: ["openfisca", "javascript"].includes(benefit.source)
-        ? `https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_${benefit.source}/entries/${benefit.id}`
-        : undefined,
+      editLink: setEditLink(benefit),
     }
   })
   return data.sort((a, b) => +(a.priority - b.priority))

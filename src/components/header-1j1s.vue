@@ -415,6 +415,7 @@ const submenuClick = (index, subindex, submenu) => {
           <div
             class="aj-1j1s-responsive-menu-button"
             @click="showMenuModal = !showMenuModal"
+            v-if="!attrs.collapse"
           >
             <svg
               width="24"

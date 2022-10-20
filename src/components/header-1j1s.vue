@@ -219,7 +219,6 @@ const submenuClick = (index, subindex, submenu) => {
             height="16"
             class="icon_size__Voigr"
             viewBox="0 0 16 16"
-            fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
@@ -460,7 +459,7 @@ const submenuClick = (index, subindex, submenu) => {
       <div class="container">
         <ul class="aj-1j1s-header-nav__menu">
           <li>
-            <a href="/">Accueil</a>
+            <a class="aj-1j1s-header-nav__menu-item" href="/">Accueil</a>
           </li>
           <li
             v-for="(item, index) in menu"

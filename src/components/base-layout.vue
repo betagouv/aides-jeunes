@@ -1,11 +1,11 @@
 <template>
-  <div class="aj-website">
-    <div class="aj-website-content">
-      <Header1J1S />
+  <div class="fr-page--full-height">
+    <Header1J1S />
+    <main class="fr-container">
       <slot />
-    </div>
-    <FooterJ1S />
+    </main>
   </div>
+  <FooterJ1S />
 </template>
 
 <script>

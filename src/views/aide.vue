@@ -37,10 +37,12 @@
               :ressources-year-minus-two-captured="true"
             />
           </div>
-          <DroitsContributions
-            :droit="benefit"
-            :show-contribution-links="true"
-          />
+          <div class="fr-text--center">
+            <DroitsContributions
+              :droit="benefit"
+              :show-contribution-links="true"
+            />
+          </div>
         </div>
       </div>
     </article>

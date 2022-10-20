@@ -1,42 +1,69 @@
 <template>
-  <fieldset>
-    <legend>
-      <component
-        :is="htmlHeading"
-        role="heading"
-        aria-level="2"
-        class="aj-question"
-      >
-        <slot />
-      </component>
-      <slot name="help" />
-    </legend>
-    <div class="aj-selections">
-      <div class="aj-selection-wrapper">
-        <input
-          :id="`yes-${uniqueFieldName}`"
-          v-model="model"
-          type="radio"
-          :value="true"
-          :name="uniqueFieldName"
-        />
-        <label :for="`yes-${uniqueFieldName}`">Oui</label>
-      </div>
-      <div class="aj-selection-wrapper">
-        <input
-          :id="`no-${uniqueFieldName}`"
-          v-model="model"
-          type="radio"
-          :value="false"
-          :name="uniqueFieldName"
-        />
-        <label :for="`no-${uniqueFieldName}`">Non</label>
+  <div v-if="slots.default || slots.help">
+    <component
+      :is="htmlHeading"
+      role="heading"
+      aria-level="2"
+      class="fr-text--lg"
+    >
+      <slot />
+    </component>
+    <slot name="help" />
+    <div class="fr-container--fluid">
+      <div class="fr-grid-row">
+        <div class="fr-col-6 fr-col-md-6 fr-col-lg-6">
+          <div class="fr-radio-group fr-radio-rich fr-mb-2w">
+            <input
+              :id="`yes-${uniqueFieldName}`"
+              v-model="model"
+              type="radio"
+              :value="true"
+              :name="uniqueFieldName"
+            />
+            <label :for="`yes-${uniqueFieldName}`" class="fr-label">
+              Oui
+            </label>
+          </div>
+          <div class="fr-radio-group fr-radio-rich">
+            <input
+              :id="`no-${uniqueFieldName}`"
+              v-model="model"
+              type="radio"
+              :value="false"
+              :name="uniqueFieldName"
+            />
+            <label :for="`no-${uniqueFieldName}`" class="fr-label"> Non </label>
+          </div>
+        </div>
       </div>
     </div>
-  </fieldset>
+  </div>
+  <div v-else>
+    <div class="fr-radio-group fr-radio-rich">
+      <input
+        :id="`yes-${uniqueFieldName}`"
+        v-model="model"
+        type="radio"
+        :value="true"
+        :name="uniqueFieldName"
+      />
+      <label :for="`yes-${uniqueFieldName}`" class="fr-label"> Oui </label>
+    </div>
+    <div class="fr-radio-group fr-radio-rich">
+      <input
+        :id="`no-${uniqueFieldName}`"
+        v-model="model"
+        type="radio"
+        :value="false"
+        :name="uniqueFieldName"
+      />
+      <label :for="`no-${uniqueFieldName}`" class="fr-label"> Non </label>
+    </div>
+  </div>
 </template>
 
 <script>
+import { useSlots } from "vue"
 export default {
   name: "YesNoQuestion",
   props: {
@@ -51,6 +78,7 @@ export default {
     const uniqueFieldName = `field.${Math.random().toString(36).slice(2)}`
     return {
       uniqueFieldName,
+      slots: useSlots(),
     }
   },
   computed: {

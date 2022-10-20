@@ -5,29 +5,35 @@
       Immobilier
     </h2>
 
-    <YesNoQuestion v-model="hasTerrainsNonLoues" class="form__group">
-      Avez-vous des terrains <b>non loués</b> ?
-    </YesNoQuestion>
+    <div class="fr-mb-5w">
+      <div class="fr-form-group">
+        <YesNoQuestion v-model="hasTerrainsNonLoues">
+          Avez-vous des terrains <b>non loués</b> ?
+        </YesNoQuestion>
 
-    <div v-if="hasTerrainsNonLoues" class="form__group">
-      <label class="form__group">
-        Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
-        <InputNumber v-model="demandeur.valeur_terrains_non_loues[periodKey]" />
-      </label>
+        <div v-if="hasTerrainsNonLoues" class="form__group fr-my-4w">
+          <label class="fr-mb-2w">
+            Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
+            <InputNumber
+              v-model="demandeur.valeur_terrains_non_loues[periodKey]"
+            />
+          </label>
 
-      <label class="form__group">
-        Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
-        />
-      </label>
-      <p>
-        Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
-        ou de taxe foncière.
-      </p>
+          <label class="fr-mb-2w">
+            Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
+            <InputNumber
+              v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
+            />
+          </label>
+          <p>
+            Pour la trouver, consultez votre avis d'imposition de taxe
+            d'habitation ou de taxe foncière.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <YesNoQuestion v-model="hasBatisNonLoues" class="form__group">
+    <YesNoQuestion v-model="hasBatisNonLoues" class="form__group fr-my-4w">
       Avez-vous des appartements/immeubles <b>non loués</b> ?
       <template #help>
         <p>
@@ -36,7 +42,7 @@
       </template>
     </YesNoQuestion>
 
-    <div v-if="hasBatisNonLoues" class="form__group">
+    <div v-if="hasBatisNonLoues" class="form__group fr-my-4w">
       <label class="form__group">
         Valeur <b>patrimoniale</b> de vos appartements/immeubles
         <b>non loués</b>

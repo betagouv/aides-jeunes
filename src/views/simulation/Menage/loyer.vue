@@ -1,31 +1,44 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div class="field-group">
-      <label role="heading" aria-level="2" for="loyer" class="aj-question"
-        >{{ loyerQuestion.label }}
-        <span class="help">{{ loyerQuestion.hint }}</span>
-      </label>
-      <div class="aj-input-currency-wrapper">
-        <InputNumber
-          id="loyer"
-          v-model="loyerQuestion.selectedValue"
-          class="aj-input-euros"
-        />
+  <form @submit.prevent="onSubmit" class="fr-form-group">
+    <fieldset class="fr-fieldset fr-mb-2w">
+      <div class="fr-fieldset__content">
+        <div class="fr-input-group">
+          <label role="heading" aria-level="2" for="loyer" class="fr-label"
+            >{{ loyerQuestion.label }}<br />
+            <span class="fr-hint-text">{{ loyerQuestion.hint }}</span>
+          </label>
+          <div class="fr-container--fluid">
+            <div class="fr-grid-row">
+              <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+                <InputNumber
+                  id="loyer"
+                  :amount="true"
+                  v-model="loyerQuestion.selectedValue"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="captureCharges" class="fr-input-group">
+          <label role="heading" aria-level="2" for="charges" class="fr-label"
+            >{{ chargesQuestion.label }}
+            <span class="fr-hint-text">{{ chargesQuestion.hint }}</span>
+          </label>
+          <div class="fr-container--fluid">
+            <div class="fr-grid-row">
+              <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+                <InputNumber
+                  id="charges"
+                  v-model="chargesQuestion.selectedValue"
+                  :amount="true"
+                  data-testid="loyer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div v-if="captureCharges">
-      <label role="heading" aria-level="2" for="charges" class="aj-question"
-        >{{ chargesQuestion.label }}
-        <span class="help">{{ chargesQuestion.hint }}</span>
-      </label>
-      <div class="aj-input-currency-wrapper">
-        <InputNumber
-          id="charges"
-          v-model="chargesQuestion.selectedValue"
-          data-testid="loyer"
-        />
-      </div>
-    </div>
+    </fieldset>
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

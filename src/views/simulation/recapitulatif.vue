@@ -5,38 +5,47 @@
         v-for="(chapter, chapterIndex) in myChapters"
         :key="chapter.name"
       >
-        <div class="chapter-block">
-          <h2 class="aj-question">{{ chapter.label }}</h2>
+        <div class="chapter-block fr-mb-4w">
+          <h2 class="fr-display-sm fr-text--lead">{{ chapter.label }}</h2>
           <template
             v-for="(question, questionIndex) in chapter.questions"
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
-            <div :class="question.rowClass" class="recapitulatif-row">
-              <div
-                :class="question.labelClass || 'question-col'"
-                v-html="question.label"
-              ></div>
-              <div
-                v-if="!['undefined', 'object'].includes(typeof question.value)"
-                class="value-col"
-              >
-                {{ question.value }}
-              </div>
-              <div v-if="!question.hideEdit" class="edit-col">
-                <router-link :to="question.path"> Modifier </router-link>
+            <div class="fr-container--fluid">
+              <div class="fr-grid-row fr-mb-1w">
+                <div class="fr-col-6">
+                  <div
+                    :class="
+                      {'fr-text--bold' : question.labelClass}
+                    "
+                    v-html="question.label"
+                  ></div>
+                </div>
+                <div class="fr-col-4">
+                  <div v-if="
+                      !['undefined', 'object'].includes(typeof question.value)
+                    ">
+                    {{ question.value }}
+                  </div>
+                </div>
+                <div class="fr-col-2">
+                  <div v-if="!question.hideEdit">
+                    <router-link :to="question.path">Modifier</router-link>
+                  </div>
+                </div>
               </div>
             </div>
-
+            <hr v-if="question.labelClass == 'individu-title'" />
             <div
               v-if="typeof question.value === 'object'"
-              class="recapitulatif-row recapitulatif-row-wrap"
+              class="fr-grid-row fr-mb-1w"
             >
               <div
                 v-for="(value, name) in question.value"
                 :key="name"
-                class="value-cell"
+                class="fr-col-3 fr-mb-1w fr-pb-1w"
               >
-                <div style="font-style: italic">{{ name }} :</div>
+                <div class="fr-hint-text">{{ name }} :</div>
                 <div>{{ value }}</div>
               </div>
             </div>
@@ -44,21 +53,28 @@
         </div>
       </template>
     </div>
-    <div class="aj-actions">
-      <BackButton @click="goBack"></BackButton>
-      <router-link
-        v-if="showResultButton"
-        class="button next-button"
-        to="/simulation/resultats"
+    <ul class="fr-btns-group fr-btns-group--inline fr-my-5w">
+      <li>
+        <BackButton
+          @click="goBack"
+          class="fr-btn--icon-center"
+        ></BackButton>
+      </li>
+      <li v-if="showResultButton">
+        <router-link
+          class="fr-btn"
+          to="/simulation/resultats"
         >Accéder aux résultats
-      </router-link>
-      <router-link
-        v-else-if="store.lastUnansweredStep"
-        :to="store.lastUnansweredStep.path"
-        class="button next-button"
+        </router-link>
+      </li>
+      <li v-else-if="store.lastUnansweredStep">
+        <router-link
+          :to="store.lastUnansweredStep.path"
+          class="fr-btn"
         >Continuer
-      </router-link>
-    </div>
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 

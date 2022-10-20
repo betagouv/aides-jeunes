@@ -30,6 +30,14 @@ const routes = [
     },
   },
   {
+    path: "/mentions-legales",
+    name: "mentions-legales",
+    component: () => import("@/views/mentions-legales.vue"),
+    meta: {
+      headTitle: `Mentions légales - Simulateur d'aides ${name}`,
+    },
+  },
+  {
     path: "/confidentialite",
     name: "confidentialite",
     component: () => import("@/views/confidentialite.vue"),

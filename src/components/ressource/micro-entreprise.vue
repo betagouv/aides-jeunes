@@ -1,15 +1,19 @@
 <template>
-  <div>
-    <h3>{{ ressource.meta.label }}</h3>
-    <div class="form__group">
-      <label for="microAmount" class="aj-question"
-        >Chiffre d’affaires {{ store.dates.lastYear.label }}</label
-      >
-      <InputNumber
-        id="microAmount"
-        :value="ressource.amounts[store.dates.lastYear.id]"
-        @update:model-value="update(store.dates.lastYear.id, $event)"
-      />
+  <div class="fr-form-group">
+    <h2 class="fr-text--lead">{{ ressource.meta.label }}</h2>
+    <label for="microAmount" class="fr-label fr-text--lg"
+      >Chiffre d’affaires {{ store.dates.lastYear.label }}</label
+    >
+    <div class="fr-container--fluid">
+      <div class="fr-grid-row">
+        <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+          <InputNumber
+            id="microAmount"
+            :value="ressource.amounts[store.dates.lastYear.id]"
+            @update:model-value="update(store.dates.lastYear.id, $event)"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,5 +34,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="css"></style>

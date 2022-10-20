@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="amount ? 'fr-input-wrap fr-icon-money-euro-circle-fill' : ''">
     <input
       :id="id"
       ref="result"
@@ -12,21 +12,27 @@
       :max="max"
       :step="step"
       :data-type="dataType"
+      class="fr-input"
+      pattern="[0-9]*"
+      inputmode="numeric"
     />
-    <div v-if="error" class="text-red input-number-error">
-      Ce champ n'est pas valide.
-    </div>
   </div>
+  <WarningMessage v-if="error" class="fr-mt-2w"
+    >Ce champ n'est pas valide.</WarningMessage
+  >
 </template>
 
 <script>
+import WarningMessage from "@/components/warning-message.vue"
 export default {
   name: "InputNumber",
+  components: { WarningMessage },
   props: {
     id: String,
     name: String,
     min: Number,
     max: Number,
+    amount: { type: Boolean, default: false },
     dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
     modelValue: { type: [Number, String] },

@@ -1,11 +1,9 @@
 <template>
   <div class="aj-unbox">
-    <BackButton
-      class="aj-etablissements-back-button small"
-      @click="goToBenefitDetail()"
+    <BackButton class="fr-mb-2w" size="small" @click="goToBenefitDetail()"
       >Retour à l'aide
     </BackButton>
-    <p class="aj-etablissements-intro">
+    <p class="fr-text--lg">
       Vous pouvez y être accompagné·e pour faire votre demande et poser toutes
       vos questions.
     </p>
@@ -14,11 +12,7 @@
       Récupération en cours…
     </p>
     <div v-if="list?.length">
-      <div
-        v-for="(etablissement, index) in list"
-        :key="index"
-        class="aj-etablissement-container"
-      >
+      <div v-for="(etablissement, index) in list" :key="index">
         <Etablissement :etablissement="etablissement" />
       </div>
     </div>

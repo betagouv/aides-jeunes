@@ -1,5 +1,5 @@
 <template>
-  <article class="text container aj-text-container">
+  <article class="fr-article">
     <h1>Déclaration d’accessibilité</h1>
 
     <p>
@@ -194,8 +194,8 @@
           title="Défenseur des droits - Nouvelle fenêtre"
           >une personne déléguée dans votre région</a
         >
-        ou</li
-      >
+        ou
+      </li>
       <li
         >en envoyant un courrier par la poste (gratuit, ne pas mettre de
         timbre), à l’adresse suivante :
@@ -203,8 +203,8 @@
           Défenseur des droits<br />
           Libre réponse 71120<br />
           75342 Paris CEDEX 07
-        </address></li
-      >
+        </address>
+      </li>
     </ul>
   </article>
 </template>

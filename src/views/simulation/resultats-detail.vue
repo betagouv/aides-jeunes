@@ -8,21 +8,21 @@
     </LoadingModal>
 
     <BackButton
-      class="aj-droit-details-back-button small"
+      class="fr-btn--secondary fr-btn--sm fr-mb-2w"
       data-testid="back-button"
       @click="goBack"
       >Retour aux résultats</BackButton
     >
 
-    <div class="aj-box normal-padding-bottom aj-results-details">
-      <DroitsDetails
-        v-if="droit"
-        :droit="droit"
-        :droits="droits"
-        :city="situation.menage.depcom"
-        :patrimoine-captured="patrimoineCaptured"
-        :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
-      />
+    <DroitsDetails
+      v-if="droit"
+      :droit="droit"
+      :droits="droits"
+      :city="situation.menage.depcom"
+      :patrimoine-captured="patrimoineCaptured"
+      :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
+    />
+    <div class="fr-text--center">
       <DroitsContributions v-if="droit" :droit="droit" />
     </div>
 

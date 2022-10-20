@@ -1,27 +1,8 @@
 <template>
   <form>
-    <div v-for="individu in individus" :key="individu.id" class="form__group">
-      <button
-        v-if="!individu.display"
-        class="button outline with-icon m-auto"
-        @click="individu.display = !individu.display"
-      >
-        <svg
-          fill="none"
-          height="16"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M8 4.25C7.5875 4.25 7.25 4.5875 7.25 5V7.25H5C4.5875 7.25 4.25 7.5875 4.25 8C4.25 8.4125 4.5875 8.75 5 8.75H7.25V11C7.25 11.4125 7.5875 11.75 8 11.75C8.4125 11.75 8.75 11.4125 8.75 11V8.75H11C11.4125 8.75 11.75 8.4125 11.75 8C11.75 7.5875 11.4125 7.25 11 7.25H8.75V5C8.75 4.5875 8.4125 4.25 8 4.25ZM8 0.5C3.86 0.5 0.5 3.86 0.5 8C0.5 12.14 3.86 15.5 8 15.5C12.14 15.5 15.5 12.14 15.5 8C15.5 3.86 12.14 0.5 8 0.5ZM8 14C4.6925 14 2 11.3075 2 8C2 4.6925 4.6925 2 8 2C11.3075 2 14 4.6925 14 8C14 11.3075 11.3075 14 8 14Z"
-            fill="#6575EA"
-          />
-        </svg>
-        Déclarer des ressources pour {{ individu.label }}
-      </button>
+    <div v-for="individu in individus" :key="individu.id">
       <div v-if="individu.display">
-        <h2>
+        <h2 class="fr-text--lead">
           Indiquez toutes les ressources <strong>nettes versées</strong> perçues
           <span v-if="individu._role !== 'demandeur'"
             ><strong>par {{ individu.label }}</strong></span
@@ -41,23 +22,39 @@
             >impots.gouv.fr</a
           >.
         </p>
-        <label
+        <div
           v-for="ressource in categoriesRnc"
           :key="ressource.id"
-          class="form__group"
+          class="fr-form-group"
         >
-          {{ ressource.label }}
-          <input
-            v-model="individu.values[ressource.id][store.dates.fiscalYear.id]"
-            v-select-on-click
-            type="number"
-          />
-          <span v-if="individu.default[ressource.id]">
-            Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
-            derniers mois.</span
-          >
-        </label>
+          <label>
+            {{ ressource.label }}
+            <input
+              v-model="individu.values[ressource.id][store.dates.fiscalYear.id]"
+              v-select-on-click
+              class="fr-input"
+              type="number"
+            />
+            <span v-if="individu.default[ressource.id]">
+              Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
+              derniers mois.</span
+            >
+          </label>
+        </div>
       </div>
+      <ul
+        class="fr-btns-group fr-btns-group--inline fr-text--center"
+        v-if="!individu.display"
+      >
+        <li
+          ><button
+            class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-add-circle-line"
+            @click="individu.display = !individu.display"
+          >
+            Déclarer des ressources pour {{ individu.label }}
+          </button></li
+        >
+      </ul>
     </div>
 
     <ActionButtons :on-submit="onSubmit" />

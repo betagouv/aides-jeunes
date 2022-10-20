@@ -259,6 +259,14 @@ const router = createRouter({
         return "/"
       },
     },
+    {
+      path: "/:catchAll(.*)",
+      name: "page-introuvable",
+      component: () => import("./views/page-introuvable.vue"),
+      meta: {
+        headTitle: `Page introuvable - Simulateur d'aides ${context.name}`,
+      },
+    },
   ],
   scrollBehavior(to /*, from, savedPosition*/) {
     if (to.hash) {

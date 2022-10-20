@@ -1,45 +1,60 @@
 <template>
-  <div :key="type.meta.id" class="form__group">
-    <h2 v-if="!withoutHeader">
+  <div :key="type.meta.id" class="fr-mb-4w">
+    <h2 v-if="!withoutHeader" class="fr-text--lead fr-pr-3w">
       {{ type.meta.label }}
     </h2>
-    <YesNoQuestion v-model="singleValue" class="form__group" html-heading="h3">
-      <span
-        v-html="
-          getQuestionLabel(
-            individu,
-            type.meta,
-            store.dates.twelveMonthsAgo.label
-          )
-        "
-      />
-    </YesNoQuestion>
-    <label v-if="type.displayMonthly === true" class="form__group">
-      Indiquez le montant <b>mensuel net</b> :
-      <InputNumber
-        :value="type.amounts[store.dates.thisMonth.id]"
-        @update:model-value="$emit('update', 'singleValue', index, $event)"
-      />
-    </label>
+    <div class="fr-form-group">
+      <YesNoQuestion v-model="singleValue" html-heading="h3">
+        <span
+          v-html="
+            getQuestionLabel(
+              individu,
+              type.meta,
+              store.dates.twelveMonthsAgo.label
+            )
+          "
+        />
+      </YesNoQuestion>
 
-    <div v-if="type.displayMonthly === false" class="form__group">
-      <div>
-        Indiquez les montants <strong>nets mensuels</strong> que
-        {{ getLongLabel(individu, type.meta) }}
-      </div>
-      <div v-for="(month, monthIndex) in type.months" :key="month.id">
-        <label>
+      <label v-if="type.displayMonthly === true">
+        Indiquez le montant <b>mensuel net</b> :
+        <div class="fr-container--fluid">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+              <InputNumber
+                :value="type.amounts[store.dates.thisMonth.id]"
+                @update:model-value="
+                  $emit('update', 'singleValue', index, $event)
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </label>
+
+      <div v-if="type.displayMonthly === false">
+        <div>
+          Indiquez les montants <strong>nets mensuels</strong> que
+          {{ getLongLabel(individu, type.meta) }}
+        </div>
+        <div v-for="(month, monthIndex) in type.months" :key="month.id">
           <MonthLabel :month="month" />
-          <InputNumber
-            :value="type.amounts[month.id]"
-            @update:model-value="
-              $emit('update', 'monthUpdate', index, {
-                value: $event,
-                monthIndex,
-              })
-            "
-          />
-        </label>
+          <div class="fr-container--fluid">
+            <div class="fr-grid-row">
+              <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                <InputNumber
+                  :value="type.amounts[month.id]"
+                  @update:model-value="
+                    $emit('update', 'monthUpdate', index, {
+                      value: $event,
+                      monthIndex,
+                    })
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,60 +1,64 @@
 <template>
-  <div class="aj-sommaire-container">
-    <div class="aj-sommaire-content">
-      <h3>Ma simulation</h3>
-      <div>
-        <div class="aj-progressBar-container">
-          <div class="aj-step-container">
-            <div
-              v-for="(chapter, index) in chapters"
-              :key="index"
-              class="aj-step"
-            >
-              <div
-                class="aj-step-icon"
-                :class="{
-                  'aj-step-done': chapter.done,
-                  'aj-step-inactive': !chapter.done,
-                  'aj-step-active': chapter.current,
-                }"
-              >
-                <img
-                  src="../assets/images/done.svg"
-                  class="aj-check-icon"
-                  alt=""
-                />
-              </div>
-              <router-link
-                :to="chapter.root"
-                class="aj-step-title"
-                :class="{
-                  'aj-active-title': chapter.current,
-                  'aj-disabled-title': disabledLink(chapter, index),
-                }"
-                :tabindex="disabledLink(chapter, index) ? -1 : 0"
-              >
-                {{ chapter.label }}
-              </router-link>
-            </div>
-          </div>
-          <div class="aj-progressBar"></div>
-        </div>
-
-        <div v-if="store.passSanityCheck" class="aj-btn-container">
-          <router-link
-            v-if="!isRecapitulatif"
-            class="button outline"
-            :to="{ name: 'recapitulatif' }"
-            data-testid="previous-or-recap-button"
-            >{{
-              isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
-            }}</router-link
+  <nav
+    class="fr-sidemenu fr-sidemenu--sticky-full-height fr-col-lg-12"
+    aria-label="Sommaire"
+  >
+    <div class="fr-sidemenu__inner">
+      <button
+        class="fr-sidemenu__btn"
+        hidden
+        aria-controls="fr-sidemenu-wrapper"
+        aria-expanded="false"
+      >Sommaire</button>
+      <div
+        class="fr-collapse"
+        id="fr-sidemenu-wrapper"
+      >
+        <div class="fr-sidemenu__title fr-text--regular fr-pt-5w">Ma simulation</div>
+        <ul class="fr-sidemenu__list">
+          <li
+            v-for="(chapter, index) in chapters"
+            :key="index"
+            class="fr-sidemenu__item"
+            :class="{
+              'aj-step-done': chapter.done,
+              'fr-sidemenu__item--active': !chapter.done,
+              'aj-step-active': chapter.current,
+            }"
           >
-          <BackButton v-else @click="goBack()">Retour</BackButton>
-        </div>
+            <router-link
+              :to="chapter.root"
+              :tabindex="disabledLink(chapter, index) ? -1 : 0"
+              class="fr-sidemenu__link"
+              :class="{
+                'aj-active-title': chapter.current,
+                'aj-disabled-title': disabledLink(chapter, index),
+              }"
+              target="_self"
+            >{{ chapter.label }}</router-link>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul
+          v-if="store.passSanityCheck"
+          class="fr-btns-group fr-btns-group--inline fr-mt-5w"
+        >
+          <li v-if="!isRecapitulatif">
+            <router-link
+              class="fr-btn fr-btn--secondary"
+              :to="{ name: 'recapitulatif' }"
+            >{{
+                isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
+              }}</router-link>
+          </li>
+          <li v-else>
+            <BackButton @click="goBack()">Retour</BackButton>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>

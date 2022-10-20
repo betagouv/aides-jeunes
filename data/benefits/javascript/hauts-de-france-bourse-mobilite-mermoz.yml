@@ -30,6 +30,7 @@ link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositi
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ22
 instructions: ""
 prefix: les
+interestFlag: _interetEtudesEtranger
 type: float
 unit: null
 periodicite: mensuelle

@@ -1,19 +1,28 @@
 <template>
-  <div class="aj-category-title-wrapper">
-    <div class="aj-category-title">
-      <h1>{{ title }}</h1>
-      <div class="aj-category-title-button-mobile">
+  <div class="fr-container--fluid fr-px-0 fr-mt-3w fr-py-2w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-hidden-md fr-col-1 fr-mr-2w">
         <MenuButton
           v-show="showMenuButton"
           @click="goToRecapitulatifPage"
         ></MenuButton>
       </div>
+      <div class="fr-col">
+        <h1 class="fr-my-0">{{ title }}</h1>
+      </div>
+      <div
+        v-if="shouldDisplayResults && hasDroits"
+        class="fr-col-12 fr-col-md-6 fr-col-lg-5"
+      >
+        <ul class="fr-btns-group fr-btns-group--right fr-mt-1w">
+          <li>
+            <SendRecapEmailButton
+              text="Recevoir les résultats par email"
+            ></SendRecapEmailButton>
+          </li>
+        </ul>
+      </div>
     </div>
-    <SendRecapEmailButton
-      v-if="shouldDisplayResults && hasDroits"
-      class="recap-email-button outline"
-      text="Recevoir les résultats par email"
-    ></SendRecapEmailButton>
   </div>
 </template>
 

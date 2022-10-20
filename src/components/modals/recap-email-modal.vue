@@ -1,68 +1,102 @@
 <template>
-  <div v-if="show" class="modal__backdrop" @click.self.prevent="hide">
-    <div class="modal">
-      <span
-        v-analytics="{ action: 'Fermé bouton', category: 'Email' }"
-        class="aj-modal-close"
-        @click="hide"
-      >
-        <svg
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path
-            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
-          />
-        </svg>
-      </span>
-      <h2 class="aj-question"> Recevoir un récapitulatif par email </h2>
-      <p>
-        Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
-        faire le point sur les démarches que vous avez faites et les blocages
-        que vous avez rencontrés.
-      </p>
-      <div v-if="recapEmailState === 'ok'">
-        <i class="ri ri-check-line" />
-        On vous envoie un email&nbsp;!
-      </div>
+  <dialog
+    v-if="show"
+    aria-labelledby="fr-modal-email-title"
+    role="dialog"
+    id="fr-modal-email"
+    class="fr-modal fr-modal--opened"
+    aria-modal="true"
+    open="true"
+  >
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button
+                v-analytics="{ action: 'Fermé bouton', category: 'Email' }"
+                @click="hide"
+                class="fr-link--close fr-link"
+                title="Fermer la fenêtre modale"
+                aria-controls="fr-modal-email"
+                >Fermer</button
+              >
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="fr-modal-email-title" class="fr-modal__title"
+                >Recevoir un récapitulatif par email</h1
+              >
+              <p>
+                Si vous le souhaitez nous pouvons vous recontacter à deux
+                reprises pour faire le point sur les démarches que vous avez
+                faites et les blocages que vous avez rencontrés.
+              </p>
+              <div v-if="recapEmailState === 'ok'">
+                <i class="ri ri-check-line" />
+                On vous envoie un email&nbsp;!
+              </div>
 
-      <div v-if="recapEmailState === 'error'">
-        <i class="ri ri-error-warning-fill" />
-        Une erreur s'est produite
-      </div>
-
-      <div v-if="recapEmailState === 'waiting'">
-        <i aria-hidden="true" class="ri ri-loader-2-line ri-spin" />
-      </div>
-
-      <form v-if="recapEmailState === 'show'" ref="form">
-        <label class="form__group" for="email">Votre email</label>
-        <input id="email" v-model="email" name="email" required type="email" />
-        <WarningMessage v-if="errorMessage"
-          >Une adresse email valide doit être indiquée.
-        </WarningMessage>
-        <div class="aj-feedback-buttons">
-          <button
-            class="button outline text-center"
-            type="submit"
-            @click.prevent="getRecap(true)"
-          >
-            J'accepte d'être recontacté·e par email
-          </button>
-          <button
-            class="button outline red text-center"
-            type="submit"
-            @click.prevent="getRecap(false)"
-          >
-            Non merci, je préfère ne recevoir que le récapitulatif
-          </button>
+              <div
+                v-if="recapEmailState === 'error'"
+                class="fr-alert fr-alert--error"
+              >
+                <p>Une erreur s'est produite</p>
+              </div>
+              <div v-if="recapEmailState === 'waiting'" class="fr-mb-2w">
+                <span
+                  class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+                  aria-hidden="true"
+                ></span
+                ><span class="fr-ml-2w">Envoi en cours…</span>
+              </div>
+              <form
+                v-if="recapEmailState === 'show'"
+                ref="form"
+                class="fr-form"
+              >
+                <div class="fr-form-group">
+                  <label class="fr-label" for="email">Votre email</label>
+                  <input
+                    id="email"
+                    v-model="email"
+                    name="email"
+                    required
+                    type="email"
+                    class="fr-input"
+                  />
+                </div>
+                <WarningMessage v-if="errorMessage"
+                  >Une adresse email valide doit être indiquée.
+                </WarningMessage>
+              </form>
+            </div>
+            <div class="fr-modal__footer">
+              <ul class="fr-btns-group">
+                <li>
+                  <button
+                    :disabled="recapEmailState === 'waiting'"
+                    class="fr-btn"
+                    @click.prevent="getRecap(false)"
+                  >
+                    J'accepte d'être recontacté·e par email
+                  </button>
+                </li>
+                <li>
+                  <button
+                    :disabled="recapEmailState === 'waiting'"
+                    class="fr-btn fr-btn--secondary"
+                    @click.prevent="getRecap(true)"
+                  >
+                    Non merci, je préfère ne recevoir que le récapitulatif
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <script>

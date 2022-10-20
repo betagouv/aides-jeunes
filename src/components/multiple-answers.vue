@@ -1,21 +1,23 @@
 <template>
   <div><i>Plusieurs choix possibles</i></div>
   <br />
-  <fieldset>
-    <div
-      v-for="(item, value) in itemsObject"
-      :key="value"
-      class="aj-selection-wrapper"
+  <fieldset class="fr-fieldset">
+    <div class="fr-fieldset__content">
+      <div
+        v-for="(item, value) in itemsObject"
+        :key="value"
+        class="fr-checkbox-group"
+      >
+        <input
+          :id="value"
+          :data-testid="value"
+          type="checkbox"
+          :checked="item.checked"
+          @input="update"
+        />
+        <label :for="value" class="fr-label">{{ item.label }}</label>
+      </div></div
     >
-      <input
-        :id="value"
-        :data-testid="value"
-        type="checkbox"
-        :checked="item.checked"
-        @input="update"
-      />
-      <label :for="value">{{ item.label }}</label>
-    </div>
   </fieldset>
 </template>
 

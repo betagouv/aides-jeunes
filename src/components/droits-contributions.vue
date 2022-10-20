@@ -2,8 +2,9 @@
   <p class="is-align-vertically-center">
     <a
       v-if="brokenLinkButtonState === 'show'"
+      href="#"
       class="text-center"
-      @click="alertBrokenLink()"
+      @click="alertBrokenLink($event)"
       >Lien invalide ?</a
     >
     <span
@@ -58,7 +59,8 @@ export default {
     netlifyContributionUrl() {
       return `${process.env.VITE_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
     },
-    alertBrokenLink() {
+    alertBrokenLink(event) {
+      event.preventDefault()
       this.brokenLinkButtonState = "showThanksMessage"
       setTimeout(() => (this.brokenLinkButtonState = null), 5000)
       this.$matomo?.trackEvent(

@@ -1,3 +1,30 @@
+<template>
+  <div>
+    <WarningMessage
+      v-if="error"
+      class="fr-mb-4w"
+    >{{ error }}</WarningMessage>
+    <div>
+      <ul class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right">
+        <li>
+          <button
+            class="fr-btn"
+            type="submit"
+            :class="{ 'fr-btn-disabled': disableSubmit }"
+            @click="localOnSubmit($event)"
+          >
+            Suivant
+          </button>
+        </li>
+        <li>
+          <slot />
+          <BackButton @click="goBack" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps } from "vue"
@@ -61,23 +88,3 @@ const goBack = () => {
   }
 }
 </script>
-
-<template>
-  <div>
-    <WarningMessage v-if="error" class="aj-actions-error">{{
-      error
-    }}</WarningMessage>
-    <div class="aj-actions">
-      <button
-        class="button next-button"
-        type="submit"
-        :class="{ disabled: disableSubmit }"
-        @click="localOnSubmit($event)"
-      >
-        Suivant
-      </button>
-      <slot />
-      <BackButton class="previous-button" @click="goBack" />
-    </div>
-  </div>
-</template>

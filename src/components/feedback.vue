@@ -1,63 +1,68 @@
 <template>
-  <div class="aj-feedback">
-    <h2 class="aj-question">
-      Nous améliorons ce simulateur en continu, et vous pouvez nous y
-      aider&nbsp;!
-    </h2>
-    <p>
-      La plupart des résultats que nous vous proposons sont automatiquement
-      arrondis à une dizaine d'euros près.
-    </p>
-    <ul :key="`${situationId}-${droits?.length}`">
-      <li>
-        <a
-          v-analytics="{
-            name: 'Suggestion',
-            action: 'Support',
-            category: 'General',
-          }"
-          v-mail="sendMailSuggestion"
-          >Vous avez une suggestion d'amélioration</a
-        >.
-      </li>
-      <li>
-        <a
-          v-analytics="{
-            name: 'Écart simulation',
-            action: 'Support',
-            category: 'General',
-          }"
-          v-mail="sendMailEcartSimulation"
-          >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
-        >.
-      </li>
-      <li>
-        <a
-          v-analytics="{
-            name: 'Écart instruction',
-            action: 'Support',
-            category: 'General',
-          }"
-          v-mail="sendMailEcartInstruction"
-          >Ces résultats ne correspondent pas à ce que l'administration vous a
-          attribué</a
-        >.
-      </li>
-    </ul>
-    <small v-if="situationId"
+  <h2 class="fr-text--lead">
+    Nous améliorons ce simulateur en continu, et vous pouvez nous y aider&nbsp;!
+  </h2>
+  <p>
+    La plupart des résultats que nous vous proposons sont automatiquement
+    arrondis à une dizaine d'euros près.
+  </p>
+  <ul :key="`${situationId}-${droits?.length}`">
+    <li>
+      <a
+        v-analytics="{
+          name: 'Suggestion',
+          action: 'Support',
+          category: 'General',
+        }"
+        v-mail="sendMailSuggestion"
+        >Vous avez une suggestion d'amélioration</a
+      >.
+    </li>
+    <li>
+      <a
+        v-analytics="{
+          name: 'Écart simulation',
+          action: 'Support',
+          category: 'General',
+        }"
+        v-mail="sendMailEcartSimulation"
+        >Ces résultats ne correspondent pas à ceux d'un autre simulateur</a
+      >.
+    </li>
+    <li>
+      <a
+        v-analytics="{
+          name: 'Écart instruction',
+          action: 'Support',
+          category: 'General',
+        }"
+        v-mail="sendMailEcartInstruction"
+        >Ces résultats ne correspondent pas à ce que l'administration vous a
+        attribué</a
+      >.
+    </li>
+  </ul>
+  <p
+    ><small v-if="situationId"
       >Cette simulation a pour identifiant
       <span class="preformatted">{{ situationId }}</span> (en savoir plus sur
       <router-link to="/confidentialite"
         >le traitement de vos données personnelles
       </router-link>
-      ).</small
-    ><br />
-    <small v-if="situationId">
-      <button v-if="!showExpertLinks" class="button small" @click="toggleLinks">
+      ).
+    </small></p
+  >
+  <p
+    ><small v-if="situationId">
+      <button
+        v-if="!showExpertLinks"
+        class="fr-btn fr-btn--sm"
+        @click="toggleLinks"
+      >
         Je suis partenaire
       </button>
-      <div v-if="showExpertLinks" class="aj-feedback-partenaire">
-        Je suis partenaire&nbsp;:
+      <div v-if="showExpertLinks">
+        <p>Je suis partenaire&nbsp;:</p>
         <ul>
           <li v-if="openfiscaTracerURL">
             <a
@@ -88,13 +93,14 @@
           </li>
         </ul>
       </div>
-    </small>
-    <a
+    </small></p
+  >
+  <p class="fr-text--center"
+    ><a
       v-analytics="{
         action: 'Parcours',
         category: 'Je donne mon avis',
       }"
-      class="aj-cta-avis"
       href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       target="_blank"
       title="Je donne mon avis - Nouvelle fenêtre"
@@ -102,9 +108,8 @@
       <img
         alt="Je donne mon avis"
         src="https://voxusagers.numerique.gouv.fr/static/bouton-bleu.svg"
-      />
-    </a>
-  </div>
+      /> </a
+  ></p>
 </template>
 <script>
 import {

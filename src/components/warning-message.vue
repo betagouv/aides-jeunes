@@ -1,6 +1,8 @@
 <template>
-  <div class="notification warning">
-    <slot></slot>
+  <div class="fr-alert fr-alert--warning">
+    <p>
+      <slot></slot>
+    </p>
   </div>
 </template>
 

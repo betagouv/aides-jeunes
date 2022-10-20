@@ -4,8 +4,8 @@
     v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     :aria-label="longLabel"
     :class="{
-      'button secondary': level === 'default',
-      'button primary': level === 'success',
+      'fr-btn fr-btn--secondary': level === 'default',
+      'fr-btn': level === 'success',
     }"
     :href="getURL(link)"
     class="text-center"

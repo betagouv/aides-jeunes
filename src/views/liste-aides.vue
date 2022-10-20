@@ -1,22 +1,34 @@
 <template>
-  <article class="text container aj-text-container">
+  <article class="fr-article">
     <h1>Toutes les aides</h1>
     <p class="total-element">Total: {{ benefitsCount }} aides</p>
-    <div class="cp-filter-block">
-      <p class="cp-filter-label">Filtrer par code postal :</p>
-      <input
-        v-model="zipCode"
-        type="text"
-        class="cp-filter-input"
-        @keyup.enter="computeDataSelected"
-      />
+    <div class="fr-form-group">
+      <div class="fr-container--fluid">
+        <div class="fr-grid-row">
+          <div class="fr-col-12">
+            <label class="cp-filter-label" for="cp-input"
+              >Filtrer par code postal :</label
+            >
+          </div>
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <input
+              v-model="zipCode"
+              id="cp-input"
+              type="text"
+              class="fr-input"
+              @keyup.enter="computeDataSelected"
+            />
+          </div>
+          <div v-if="selectedCommune" class="fr-col-12">
+            <p class="fr-text--bold fr-mt-2w"
+              >{{ countFilteredBenefits() }} aides disponibles pour la commune
+              de {{ selectedCommune.nom }}</p
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h6 v-if="selectedCommune" class="cp-filter-benefit-number"
-      >{{ countFilteredBenefits() }}
-      aides disponibles pour la commune de
-      {{ selectedCommune.nom }}
-    </h6>
     <div v-for="(institutions, type) in institutionsGroups" :key="type">
       <h2 :id="`liste_${type}`">{{ types[type] }}</h2>
       <p class="total-element">
@@ -143,23 +155,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.total-element {
-  color: var(--darker-grey);
-  font-weight: 700;
-}
-.cp-filter-block {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.cp-filter-input {
-  width: 6rem;
-  text-align: center;
-  height: 1.7rem;
-}
-.cp-filter-benefit-number {
-  margin: 0.1rem 0 1rem 0;
-}
-</style>

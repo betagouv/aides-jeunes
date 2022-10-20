@@ -1,13 +1,15 @@
 <template>
-  <div v-if="show" class="aj-offline-results">
-    <h2 class="aj-question"> Je garde ces informations&nbsp;! </h2>
-    <span>
+  <div v-if="show">
+    <h2 class="fr-text--lead"> Je garde ces informations&nbsp;! </h2>
+    <p>
       Vous pouvez enregistrer les résultats de votre simulation pour les
       consulter plus tard.
-    </span>
-    <div class="aj-offline-results-button">
-      <SendRecapEmailButton class="primary"></SendRecapEmailButton>
-    </div>
+    </p>
+    <ul class="fr-btns-group fr-btns-group--inline-xs">
+      <li>
+        <SendRecapEmailButton class="primary"></SendRecapEmailButton>
+      </li>
+    </ul>
     <RecapEmailModal :id="id"></RecapEmailModal>
   </div>
 </template>

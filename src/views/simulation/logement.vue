@@ -1,89 +1,117 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <fieldset>
-      <legend>
-        <h2 class="aj-question">
+  <form @submit.prevent="onSubmit" class="fr-form-group">
+    <fieldset class="fr-fieldset fr-mb-2w">
+      <legend class="fr-fieldset__legend fr-container fr-px-0">
+        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
           {{ logementTypesQuestion.label }}
         </h2>
       </legend>
-      <div class="aj-selections">
-        <div
-          v-for="logementType in logementTypesQuestion.responses"
-          :key="logementType.value"
-          class="aj-selection-wrapper"
-        >
-          <input
-            :id="logementType.value"
-            v-model="logementTypesQuestion.selectedValue"
-            :value="logementType.value"
-            name="logementType"
-            type="radio"
-          />
-          <label :for="logementType.value">
-            {{ $filters.capitalize(logementType.label) }}
-            <span v-if="logementType.hint" class="help">{{
-              logementType.hint
-            }}</span>
-          </label>
+      <div class="fr-fieldset__content">
+        <div class="fr-container--fluid">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
+              <div
+                v-for="logementType in logementTypesQuestion.responses"
+                :key="logementType.value"
+                class="fr-radio-group fr-radio-rich"
+              >
+                <input
+                  :id="logementType.value"
+                  v-model="logementTypesQuestion.selectedValue"
+                  :value="logementType.value"
+                  name="logementType"
+                  type="radio"
+                />
+                <label :for="logementType.value" class="fr-label">
+                  <span
+                    >{{ $filters.capitalize(logementType.label) }}
+                    <i v-if="logementType.hint" class="fr-text--sm fr-ml-1w">{{
+                      logementType.hint
+                    }}</i></span
+                  >
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </fieldset>
 
-    <fieldset v-if="logementTypesQuestion.selectedValue == 'proprietaire'">
-      <legend>
-        <h2 class="aj-question">
-          {{ primoAccedantQuestion.label
-          }}<span v-if="primoAccedantQuestion.hint" class="help">{{
-            primoAccedantQuestion.hint
-          }}</span>
+    <fieldset
+      v-if="logementTypesQuestion.selectedValue == 'proprietaire'"
+      class="fr-fieldset"
+    >
+      <legend class="fr-fieldset__legend fr-container fr-px-0">
+        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
+          {{ primoAccedantQuestion.label }}
         </h2>
+        <span v-if="primoAccedantQuestion.hint" class="fr-hint-text">{{
+          primoAccedantQuestion.hint
+        }}</span>
       </legend>
-      <div class="aj-selections">
-        <div
-          v-for="response in primoAccedantQuestion.responses"
-          :key="response.value"
-          class="aj-selection-wrapper"
-        >
-          <input
-            :id="response.label"
-            v-model="primoAccedantQuestion.selectedValue"
-            :name="primoAccedantQuestion.label"
-            :value="response.value"
-            type="radio"
-          />
-          <label :for="response.label">
-            {{ $filters.capitalize(response.label) }}
-            <span v-if="response.hint" class="help">{{ response.hint }}</span>
-          </label>
+      <div class="fr-fieldset__content">
+        <div class="fr-container--fluid">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
+              <div
+                v-for="response in primoAccedantQuestion.responses"
+                :key="response.value"
+                class="fr-radio-group fr-radio-rich"
+              >
+                <input
+                  :id="response.label"
+                  v-model="primoAccedantQuestion.selectedValue"
+                  :name="primoAccedantQuestion.label"
+                  :value="response.value"
+                  type="radio"
+                />
+                <label :for="response.label" class="fr-label">
+                  <span>{{ $filters.capitalize(response.label) }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </fieldset>
 
-    <fieldset v-if="logementTypesQuestion.selectedValue == 'locataire'">
-      <legend>
-        <h2 class="aj-question">
-          {{ locataireTypesQuestion.label
-          }}<span v-if="locataireTypesQuestion.hint" class="help">{{
-            locataireTypesQuestion.hint
-          }}</span>
+    <fieldset
+      v-if="logementTypesQuestion.selectedValue == 'locataire'"
+      class="fr-fieldset fr-container fr-px-0"
+    >
+      <legend class="fr-fieldset__legend">
+        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
+          {{ locataireTypesQuestion.label }}
         </h2>
       </legend>
-      <div
-        v-for="response in locataireTypesQuestion.responses"
-        :key="response.value"
-        class="aj-selection-wrapper"
-      >
-        <input
-          :id="response.value"
-          v-model="locataireTypesQuestion.selectedValue"
-          :name="logementTypesQuestion.label"
-          :value="response.value"
-          type="radio"
-        />
-        <label :for="response.value">
-          {{ $filters.capitalize(response.label) }}
-          <span v-if="response.hint" class="help">{{ response.hint }}</span>
-        </label>
+      <div class="fr-fieldset__content">
+        <div class="fr-container--fluid">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
+              <div
+                v-for="response in locataireTypesQuestion.responses"
+                :key="response.value"
+                class="fr-radio-group fr-radio-rich"
+              >
+                <input
+                  :id="response.value"
+                  v-model="locataireTypesQuestion.selectedValue"
+                  :name="logementTypesQuestion.label"
+                  :value="response.value"
+                  type="radio"
+                />
+                <label :for="response.value">
+                  <span
+                    >{{ $filters.capitalize(response.label) }}
+                    <i v-if="response.hint" class="fr-text--sm fr-ml-1w">{{
+                      response.hint
+                    }}</i></span
+                  >
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </fieldset>
 
@@ -240,9 +268,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-fieldset {
-  margin-bottom: 2em;
-}
-</style>

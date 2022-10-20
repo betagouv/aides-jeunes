@@ -1,127 +1,125 @@
 <template>
   <div
-    class="aj-droit-detail normal-padding-bottom"
+    class="fr-tile fr-tile-horizontal fr-mb-2w"
     data-testid="droit-detail"
     itemscope
     itemtype="http://schema.org/GovernmentService"
   >
-    <DroitHeader :droit="droit"></DroitHeader>
+    <div class="fr-p-4w">
+      <DroitHeader :droit="droit"></DroitHeader>
+      <p class="fr-text--justify fr-mb-3w">
+        <span itemprop="description" v-html="droit.description" />
+        <span>&nbsp;</span>
+        <BenefitCtaLink
+          v-if="droit.link"
+          :analytics-name="droit.label"
+          :benefit="droit"
+          :link="droit.link"
+          itemprop="termsOfService"
+          level="'inline'"
+          type="link"
+        />
+      </p>
+      <div
+        v-if="droit.conditions?.length"
+        class="fr-highlight fr-ml-0 fr-py-2w fr-mb-2w"
+      >
+        <strong class="aj-droit-conditions-title"
+          >Pour en bénéficier, vous devez également :
+        </strong>
+        <ul class="fr-list-unstyled fr-px-0">
+          <li v-for="(condition, index) in droit.conditions" :key="index">
+            <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
+            <span v-html="condition" />
+          </li>
+        </ul>
+      </div>
+      <WarningMessage
+        v-if="
+          droit.isBaseRessourcesYearMinusTwo &&
+          !ressourcesYearMinusTwoCaptured &&
+          !isString(droit.montant)
+        "
+        class="print-hidden"
+      >
+        <p class="fr-callout__text">
+          Cette aide se base sur vos ressources de l'année
+          {{ store.dates.fiscalYear.label }}
+        </p>
+        <router-link
+          v-if="!aCharge"
+          class="fr-btn fr-btn--secondary"
+          to="/simulation/ressources/fiscales"
+        >
+          Déclarez vos ressources
+          {{ store.dates.fiscalYear.label }}
+        </router-link>
+      </WarningMessage>
 
-    <div class="aj-droit-content">
-      <div class="aj-droit-content-heading">
-        <div class="aj-droit-content-description">
-          <p>
-            <span itemprop="description" v-html="droit.description" />
-            <span>&nbsp;</span>
-            <BenefitCtaLink
-              v-if="droit.link"
-              :analytics-name="droit.label"
-              :benefit="droit"
-              :link="droit.link"
-              itemprop="termsOfService"
-              level="'inline'"
-              type="link"
-            />
-          </p>
-          <div v-if="droit.conditions?.length" class="aj-droit-conditions">
-            <p class="aj-droit-conditions-title"
-              >Pour en bénéficier, vous devez également :</p
-            >
-            <ul class="list-unstyled">
-              <li v-for="(condition, index) in droit.conditions" :key="index">
-                <img alt="" src="@/assets/images/doigt.svg" />
-                <span v-html="condition" />
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="aj-droit-notifications">
-          <WarningMessage
-            v-if="
-              droit.isBaseRessourcesYearMinusTwo &&
-              !ressourcesYearMinusTwoCaptured &&
-              !isString(droit.montant)
-            "
-            class="print-hidden"
-          >
-            <span>
-              <i aria-hidden="true" class="ri ri-error-warning-fill" />  Cette
-              aide se base sur vos ressources de l'année
-              {{ store.dates.fiscalYear.label }}
-            </span>
-            <router-link
-              v-if="!aCharge"
-              class="button outline red no-shadow text-center"
-              to="/simulation/ressources/fiscales"
-            >
-              Déclarez vos ressources
-              {{ store.dates.fiscalYear.label }}
-            </router-link>
-          </WarningMessage>
-
-          <WarningMessage
-            v-if="
-              droit.isBaseRessourcesPatrimoine &&
-              !patrimoineCaptured &&
-              !isString(droit.montant)
-            "
-            class="print-hidden"
-          >
-            <span>
-              <i aria-hidden="true" class="ri ri-error-warning-fill" /> Cette
-              aide se base sur votre patrimoine. Vous avez un patrimoine
-              immobilier, d'épargne, des revenus fonciers et/ou du capital ?
-              Vous devez renseigner des informations complémentaires.
-            </span>
+      <WarningMessage
+        v-if="
+          droit.isBaseRessourcesPatrimoine &&
+          !patrimoineCaptured &&
+          !isString(droit.montant)
+        "
+        class="print-hidden"
+      >
+        <span>
+          <i aria-hidden="true" class="ri ri-error-warning-fill" /> Cette aide
+          se base sur votre patrimoine. Vous avez un patrimoine immobilier,
+          d'épargne, des revenus fonciers et/ou du capital ? Vous devez
+          renseigner des informations complémentaires.
+        </span>
+        <ul class="fr-btns-group">
+          <li>
             <router-link
               id="patrimoine-link"
-              class="button outline red no-shadow text-center"
+              class="fr-btn fr-btn--secondary"
               data-testid="patrimoine-link"
               to="/simulation/ressources/patrimoine"
             >
               Déclarez votre patrimoine
             </router-link>
-          </WarningMessage>
+          </li>
+        </ul>
+      </WarningMessage>
+      <div class="aj-droit-content-buttons print-hidden">
+        <div
+          v-if="isString(droit.montant)"
+          class="notification warning print-hidden"
+        >
+          <p>
+            L'application Mes Aides ne peut pas calculer le montant de cette
+            prestation, car
+            <span v-html="droit.uncomputability[droit.montant].reason.user" />
+            <br />
+            <strong
+              v-if="droit.uncomputability[droit.montant].solution"
+              v-html="droit.uncomputability[droit.montant].solution"
+            />
+          </p>
         </div>
-        <div class="aj-droit-content-buttons print-hidden">
-          <div
-            v-if="isString(droit.montant)"
-            class="notification warning print-hidden"
-          >
-            <p>
-              L'application Mes Aides ne peut pas calculer le montant de cette
-              prestation, car
-              <span v-html="droit.uncomputability[droit.montant].reason.user" />
-              <br />
-              <strong
-                v-if="droit.uncomputability[droit.montant].solution"
-                v-html="droit.uncomputability[droit.montant].solution"
-              />
-            </p>
-          </div>
-          <BenefitCta
-            :benefit="droit"
-            :benefitsTotal="droits.length"
-            class="aj-droit-content-buttons-cta"
-          />
+        <BenefitCta :benefit="droit" :benefitsTotal="droits.length" />
 
-          <a
-            v-if="droit.msa"
-            v-analytics="{
-              name: droit.label,
-              action: 'msa',
-              category: 'General',
-            }"
-            class="aj-droit-pro-agricole"
-            href="https://www.msa.fr/lfy/espace-prive"
-            rel="noopener"
-            target="_blank"
-            title="Démarches pour les professions agricoles - Nouvelle fenêtre"
-          >
-            <img alt="" src="@/assets/images/doigt.svg" /> Démarches pour les
-            professions agricoles
-          </a>
-        </div>
+        <a
+          v-if="droit.msa"
+          v-analytics="{
+            name: droit.label,
+            action: 'msa',
+            category: 'General',
+          }"
+          class="aj-droit-pro-agricole"
+          href="https://www.msa.fr/lfy/espace-prive"
+          rel="noopener"
+          target="_blank"
+          title="Démarches pour les professions agricoles - Nouvelle fenêtre"
+        >
+          <img
+            alt=""
+            src="@/assets/images/doigt.svg"
+            class="fr-mr-1w"
+          />Démarches pour les professions agricoles
+        </a>
       </div>
     </div>
   </div>

@@ -1,15 +1,13 @@
 <template>
   <form @submit.prevent="next" :data-testid="fieldName">
-    <YesNoQuestion
-      v-for="enfant in enfants"
-      :key="enfant.id"
-      v-model="enfant._hasRessources"
-      class="form__group"
-    >
-      {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des
-      ressources <strong>depuis {{ store.dates.twelveMonthsAgo.label }}</strong
-      > ?
-    </YesNoQuestion>
+    <div v-for="enfant in enfants" :key="enfant.id" class="fr-form-group">
+      <YesNoQuestion v-model="enfant._hasRessources">
+        {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des
+        ressources
+        <strong>depuis {{ store.dates.twelveMonthsAgo.label }}</strong
+        > ?
+      </YesNoQuestion>
+    </div>
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>
@@ -32,7 +30,9 @@ export default {
     }
   },
   data() {
-    let enfants = this.store.situation.enfants.map((e) => Object.assign({}, e))
+    const enfants = this.store.situation.enfants.map((e) =>
+      Object.assign({}, e)
+    )
     return {
       fieldName: "_hasRessources",
       enfants,

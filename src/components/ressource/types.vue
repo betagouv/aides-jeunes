@@ -13,32 +13,34 @@
           depuis {{ store.dates.twelveMonthsAgo.label }}</strong
         >. Vous pourrez ensuite saisir les montants.
       </p>
-      <div
+      <fieldset
         v-for="category in categories"
         :key="category.id"
-        class="form__group"
+        class="fr-fieldset fr-mb-4w"
       >
-        <h2 class="aj-question">
-          {{ $filters.capitalize(category.label) }}
-        </h2>
-        <div class="aj-selections">
+        <legend class="fr-fieldset__legend">
+          <h2 class="fr-display-sm fr-text--lead">
+            {{ $filters.capitalize(category.label) }}
+          </h2>
+        </legend>
+        <div class="fr-fieldset__content">
           <div
             v-for="type in sort(typesByCategories[category.id])"
             :key="type.id"
-            class="aj-selection-wrapper"
+            class="fr-checkbox-group"
           >
             <input
               :id="type.id"
               v-model="selectedTypes[type.id]"
               type="checkbox"
             />
-            <label :for="type.id">
+            <label :for="type.id" class="fr-label">
               {{ type.label }}
             </label>
           </div>
         </div>
-      </div>
-      <div class="form__group">
+      </fieldset>
+      <div class="fr-mb-4w">
         {{ countLabel }}
       </div>
     </div>

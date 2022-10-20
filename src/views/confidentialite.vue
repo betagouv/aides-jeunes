@@ -1,5 +1,5 @@
 <template>
-  <article class="text container aj-text-container">
+  <article class="fr-article">
     <h1>Politique de confidentialité</h1>
 
     <h2>Traitements des données à caractère personnel</h2>
@@ -103,7 +103,7 @@
 
     <h3>Combien de temps gardons-nous vos informations ?</h3>
 
-    <table>
+    <table class="fr-table">
       <thead>
         <tr>
           <th>Types de données</th>
@@ -227,7 +227,7 @@
       strictes de confidentialité, d’usage et de protection des données.
     </p>
 
-    <table>
+    <table class="fr-table">
       <thead>
         <tr>
           <th>Partenaire</th>

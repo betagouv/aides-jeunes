@@ -1,30 +1,41 @@
 <template>
-  <div>
-    <BenefitCtaLink
-      v-for="(cta, index) in ctas"
-      :key="index"
-      :analytics-name="benefit.id"
-      :benefit="benefit"
-      :link="cta.link"
-      :type="cta.type"
-      :level="levels[index]"
-    />
-    <router-link
-      v-if="showProximityCta"
-      id="cta-proximity"
-      v-analytics="{
-        name: benefit.id,
-        action: 'show-locations',
-        category: 'General',
-      }"
-      class="button primary"
-      :to="{
-        name: 'resultatsLieuxDedies',
-        params: { benefit_id: benefit.id },
-      }"
-    >
-      À proximité de chez vous
-    </router-link>
+  <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <ul
+        v-for="(cta, index) in ctas"
+        :key="index"
+        class="fr-col-6 fr-btns-group fr-mx-0 fr-py-0 fr-px-0"
+      >
+        <li>
+          <BenefitCtaLink
+            :analytics-name="benefit.id"
+            :benefit="benefit"
+            :link="cta.link"
+            :type="cta.type"
+            :level="levels[index]"
+          /> </li
+      ></ul>
+      <ul
+        v-if="showProximityCta"
+        class="fr-col fr-btns-group fr-mx-0 fr-py-0 fr-px-0"
+      >
+        <router-link
+          id="cta-proximity"
+          v-analytics="{
+            name: benefit.id,
+            action: 'show-locations',
+            category: 'General',
+          }"
+          class="fr-btn"
+          :to="{
+            name: 'resultatsLieuxDedies',
+            params: { benefit_id: benefit.id },
+          }"
+        >
+          À proximité de chez vous
+        </router-link>
+      </ul>
+    </div>
   </div>
 </template>
 

@@ -1,4 +1,3 @@
-
 <script setup>
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps } from "vue"
@@ -83,5 +82,3 @@ const goBack = () => {
     </div>
   </div>
 </template>
-
-

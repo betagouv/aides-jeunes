@@ -750,7 +750,7 @@ fields:
     label: Liens vers des formulaires de demande de l'aide
     name: forms
     widget: hidden
-  field_benefit_participation: &field_benefit_forms
+  field_benefit_participation: &field_benefit_participation
     label: Liens vers des formulaires de demande de l'aide
     name: forms
     widget: hidden

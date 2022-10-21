@@ -142,4 +142,15 @@ describe("Answers tests", () => {
     )
     expect(previousFirstAnswer).toEqual(undefined)
   })
+  it("Previous answer of the first should be undefined", () => {
+    const store = initStore()
+    const answer = store.simulation.answers.all[1]
+    const presviousAnswer = getPreviousAnswer(
+      store.simulation.answers.all,
+      answer.entityName,
+      answer.fieldName,
+      answer.id
+    )
+    expect(presviousAnswer).toEqual(undefined)
+  })
 })

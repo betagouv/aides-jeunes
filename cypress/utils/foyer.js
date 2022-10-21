@@ -42,10 +42,15 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_sup
     submit()
   }
 
+const fill_rsa_isolement_recent = (isolement) => {
+  fillRadio("rsa_isolement_recent", isolement)
+}
+
 export default {
   children,
   fill_en_couple,
   fill__situation,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur,
+  fill_rsa_isolement_recent,
 }

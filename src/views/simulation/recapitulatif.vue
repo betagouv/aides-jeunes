@@ -23,7 +23,9 @@
                 {{ question.value }}
               </div>
               <div v-if="!question.hideEdit" class="edit-col">
-                <router-link :to="question.path">Modifier</router-link>
+                <router-link :to="question.path" data-cy="recap-update-button">
+                  Modifier
+                </router-link>
               </div>
             </div>
 

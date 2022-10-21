@@ -2,7 +2,6 @@
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps } from "vue"
 import { getPreviousAnswer } from "@lib/answers"
-import router from "@/router"
 import { useStore } from "@/stores"
 import { useRoute } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"

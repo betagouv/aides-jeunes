@@ -17,6 +17,27 @@ export const getAnswer = (answers: answerLayout[], entity, variable?, id?) => {
   return answer ? answer.value : undefined
 }
 
+export const getAnswerIndex = (
+  answers: answerLayout[],
+  entityName,
+  id,
+  fieldName
+) => {
+  return answers.findIndex((answer) => {
+    if (entityName && id && fieldName) {
+      return (
+        answer.entityName === entityName &&
+        answer.id === id &&
+        answer.fieldName === fieldName
+      )
+    } else if (entityName && id) {
+      return answer.entityName === entityName && answer.id === id
+    } else if (entityName) {
+      return answer.entityName === entityName
+    }
+  })
+}
+
 export const getPreviousAnswer = (
   answers: answerLayout[],
   entityName,

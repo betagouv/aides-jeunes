@@ -1,7 +1,7 @@
 <script setup>
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps } from "vue"
-import { getPreviousAnswer } from "@lib/answers"
+import { getAnswerIndex } from "@lib/answers"
 import { useStore } from "@/stores"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
@@ -38,13 +38,14 @@ const goBack = () => {
   const id = route.path.split("/")[3]
   const fieldName = route.path.split("/")[4]
 
-  const previousAnswer = getPreviousAnswer(
+  const answerIndex = getAnswerIndex(
     store.simulation.answers.all,
     entityName,
     id,
     fieldName
   )
-  if (previousAnswer) {
+  if (answerIndex > 0) {
+    const previousAnswer = store.simulation.answers.all[answerIndex - 1]
     let previousRoute = `/simulation/${previousAnswer.entityName}`
     if (previousAnswer.id) {
       previousRoute += `/${previousAnswer.id}`
@@ -53,9 +54,7 @@ const goBack = () => {
       previousRoute += `/${previousAnswer.fieldName}`
     }
     router.push({ path: previousRoute })
-  } else if (
-    route.fullPath === "/simulation/individu/demandeur/date_naissance"
-  ) {
+  } else if (answerIndex === 0) {
     router.push("/")
   } else {
     window.history.back()

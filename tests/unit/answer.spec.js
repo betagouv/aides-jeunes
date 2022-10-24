@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores"
-import { getPreviousAnswer } from "@lib/answers"
+import { getAnswerIndex } from "@lib/answers"
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -116,36 +116,36 @@ describe("Answers tests", () => {
   })
 
   // Answer tests
-  it("Get previous answer", () => {
+  it("Get answer index", () => {
     const store = initStore()
     const answer = store.simulation.answers.all[2]
 
-    const previousAnswer = getPreviousAnswer(
+    const answerIndex = getAnswerIndex(
       store.simulation.answers.all,
       answer.entityName,
       answer.id,
       answer.fieldName
     )
-    expect(previousAnswer).toStrictEqual(store.simulation.answers.all[1])
+    expect(answerIndex).toStrictEqual(2)
 
     const firstAnswer = store.simulation.answers.all[0]
-    const previousFirstAnswer = getPreviousAnswer(
+    const firstAnswerIndex = getAnswerIndex(
       store.simulation.answers.all,
       firstAnswer.entityName,
       firstAnswer.id,
       firstAnswer.fieldName
     )
-    expect(previousFirstAnswer).toEqual(undefined)
+    expect(firstAnswerIndex).toEqual(0)
   })
-  it("Previous answer of the first should be undefined", () => {
+  it("Wrong answer should give an not found index (-1)", () => {
     const store = initStore()
     const answer = store.simulation.answers.all[1]
-    const presviousAnswer = getPreviousAnswer(
+    const answerIndex = getAnswerIndex(
       store.simulation.answers.all,
-      answer.entityName,
-      answer.fieldName,
-      answer.id
+      "wrong entity name",
+      answer.id,
+      answer.fieldName
     )
-    expect(presviousAnswer).toEqual(undefined)
+    expect(answerIndex).toEqual(-1)
   })
 })

@@ -20,7 +20,7 @@ const includesAndExcludesCondition = (condition, value) => {
     !condition.excludes.includes(value)
   return includes && excludes
 }
-const PROFILE_STATEGY = {
+const PROFILE_STRATEGY = {
   apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation?.demandeur?._contrat_alternant === "apprenti"
   },
@@ -103,7 +103,7 @@ export function testGeographicalEligibility(
   )
 }
 
-export const CONDITION_STATEGY: ConditionsLayout = {
+export const CONDITION_STRATEGY: ConditionsLayout = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[
@@ -251,7 +251,7 @@ function testConditions(conditions, data, benefit) {
   }
 
   return conditions.every((condition) =>
-    CONDITION_STATEGY[condition.type].test(condition, data, benefit)
+    CONDITION_STRATEGY[condition.type].test(condition, data, benefit)
   )
 }
 
@@ -261,7 +261,7 @@ export function testProfileEligibility(benefit, data) {
     benefit.profils.length === 0 ||
     benefit.profils.some((profil) => {
       return (
-        PROFILE_STATEGY[profil.type](data) &&
+        PROFILE_STRATEGY[profil.type](data) &&
         testConditions(profil.conditions, data, benefit)
       )
     })

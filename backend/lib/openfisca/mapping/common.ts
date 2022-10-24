@@ -1,9 +1,9 @@
 import dayjs from "dayjs"
 import { assign } from "lodash"
 
-import benefits from "../../../../data/all"
-import { generator } from "../../../../lib/dates"
-import { CONDITION_STATEGY } from "../../../../lib/benefits/compute-javascript"
+import benefits from "../../../../data/all.js"
+import { generator } from "../../../../lib/dates.js"
+import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
@@ -76,9 +76,12 @@ benefits.all
   })
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
-for (const condition in CONDITION_STATEGY) {
-  if (CONDITION_STATEGY[condition]?.extra) {
-    appendExtraVariables(requestedVariables, CONDITION_STATEGY[condition].extra)
+for (const condition in CONDITION_STRATEGY) {
+  if (CONDITION_STRATEGY[condition]?.extra) {
+    appendExtraVariables(
+      requestedVariables,
+      CONDITION_STRATEGY[condition].extra
+    )
   }
 }
 

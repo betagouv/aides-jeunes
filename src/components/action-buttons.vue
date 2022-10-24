@@ -3,7 +3,7 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps } from "vue"
 import { getPreviousAnswer } from "@lib/answers"
 import { useStore } from "@/stores"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
 
 const props = defineProps({
@@ -16,6 +16,7 @@ const props = defineProps({
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 const error = computed(() => {
   return store.error

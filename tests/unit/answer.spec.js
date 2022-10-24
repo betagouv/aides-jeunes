@@ -1,7 +1,6 @@
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores"
 import { getPreviousAnswer } from "@lib/answers"
-import isEqual from "lodash.isequal"
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -127,11 +126,7 @@ describe("Answers tests", () => {
       answer.id,
       answer.fieldName
     )
-    const deepEqualTest = isEqual(
-      previousAnswer,
-      store.simulation.answers.all[1]
-    )
-    expect(deepEqualTest).toEqual(true)
+    expect(previousAnswer).toStrictEqual(store.simulation.answers.all[1])
 
     const firstAnswer = store.simulation.answers.all[0]
     const previousFirstAnswer = getPreviousAnswer(

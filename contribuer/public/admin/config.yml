@@ -750,10 +750,6 @@ fields:
     label: Liens vers des formulaires de demande de l'aide
     name: forms
     widget: hidden
-  field_benefit_participation: &field_benefit_participation
-    label: Liens vers des formulaires de demande de l'aide
-    name: forms
-    widget: hidden
   field_benefit_institution: &field_benefit_institution
     label: Référence aux institutions supervisant l'aide
     name: etablissements

@@ -16,29 +16,19 @@ const app = express()
 
 const typeKeys = ["initial", "survey"]
 
+app.engine(".html", require("ejs").__express)
+app.set("views", __dirname + "/views")
+app.set("view engine", "html")
+
 app.route("/").get(function (req, res) {
   Followup.find()
     .sort({ createdAt: -1 })
     .limit(10)
     .exec(function (err, docs) {
-      res.send(`
-      <html><body><h1>List</h1><ul>
-      ${docs.map(
-        (d) => `
-        <li>
-          ${d._id}&nbsp;
-          <ul>
-            ${typeKeys
-              .map(
-                (t) =>
-                  `<li>${t} <a href="mjml/${d._id}/${t}?mode=html">HTML</a> <a href="mjml/${d._id}/${t}?mode=text">texte</a></li>`
-              )
-              .join("")}
-          </ul>
-        </li>
-        `
-      )}</ul></body></html>
-`)
+      res.render("index", {
+        docs: docs,
+        typeKeys: typeKeys,
+      })
     })
 })
 

@@ -8,42 +8,56 @@
       <h1>Service d'email local</h1>
       <span>
         <p v-if="docs"> Nombre de suivis : {{ docs.length }}</p>
-        <p> Pour ajouter un suivi, effectuer une simulation jusqu'au bout, cliquer sur le bouton <b>"Recevoir les résultats par email"</b> et enfin sur <b>"j'accepte d'être recontacté par email"</b></p>  
+        <p>
+          Pour ajouter un suivi, effectuer une simulation jusqu'au bout, cliquer
+          sur le bouton <b>"Recevoir les résultats par email"</b> et enfin sur
+          <b>"j'accepte d'être recontacté par email"</b></p
+        >
       </span>
-          <ul v-if="docs && typeKeys">
-            <h2>Liste des suivis</h2>
-            <li v-for="doc in docs">
-              <h3>Suivi n°{{ doc._id}}</h3>
-              <ul v-for="typeKey in typeKeys">
-                <li>
-                  <span> {{ typeKey === 'initial' ? 'Mail initial : ' : 'Résultats simulation : '  }}</span><a :href="`mjml/${doc._id}/${typeKey}?mode=html`" target="_blank">HTML</a> <a :href="`mjml/${doc._id}/${typeKey}?mode=text`" target="_blank">texte</a>
-              </ul>
+      <ul v-if="docs && typeKeys">
+        <h2>Liste des suivis</h2>
+        <li v-for="doc in docs">
+          <h3>Suivi n°{{ doc._id}}</h3>
+          <ul v-for="typeKey in typeKeys">
+            <li>
+              <span v-if="typeKey === 'initial'">Mail initial : </span>
+              <span v-else>Résultats simulation : </span>
+              &nbsp;
+              <a :href="`mjml/${doc._id}/${typeKey}?mode=html`" target="_blank"
+                >HTML</a
+              > &nbsp;
+              <a :href="`mjml/${doc._id}/${typeKey}?mode=text`" target="_blank"
+                >texte</a
+              >
             </li>
-        </ul>
+          </ul>
+        </li>
+      </ul>
     </div>
     <script>
-        const { createApp, onMounted, ref } = Vue;
-        const app = createApp({
-        setup() {
-            const docs = ref(<%- JSON.stringify(docs) %>);
-            const typeKeys = ref(<%- JSON.stringify(typeKeys) %>);
-
-             console.log(docs, typeKeys);
-            return { docs, typeKeys };
-        }
-        });
-        app.mount("#app");
-    </script>  
+      const { createApp, onMounted, ref } = Vue;
+      const app = createApp({
+      setup() {
+          const docs = ref(<%- JSON.stringify(docs) %>);
+          const typeKeys = ref(<%- JSON.stringify(typeKeys) %>);
+          return { docs, typeKeys };
+      }
+      });
+      app.mount("#app");
+    </script>
     <style>
       body {
-        font-family: Marianne,arial,sans-serif;
+        font-family: Marianne, arial, sans-serif;
         overflow-y: scroll;
         padding: 1rem;
       }
       .description {
         font-weight: 600;
       }
-      h1, h2, h3, a {
+      h1,
+      h2,
+      h3,
+      a {
         color: #566bb1;
       }
       li {

@@ -1,9 +1,8 @@
 label: pass abonné -28 ans
 institution: region_nouvelle_aquitaine
 description: Grâce au Pass Abonné -28 (hebdo, mensuel ou annuel), vous
-  bénéficiez de 33% de réduction par rapport à un Pass abonné
-  Tout Public, sur vos déplacements quotidiens sur un parcours déterminé en
-  Nouvelle-Aquitaine.
+  bénéficiez de 33% de réduction par rapport à un Pass abonné Tout Public, sur
+  vos déplacements quotidiens sur un parcours déterminé en Nouvelle-Aquitaine.
 prefix: le
 conditions_generales:
   - type: age
@@ -21,4 +20,5 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=AQU
-teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=AQU
+teleservice: ""
+instructions: https://www.ter.sncf.com/nouvelle-aquitaine/tarifs-cartes/billets-reduction/billet-jeunes

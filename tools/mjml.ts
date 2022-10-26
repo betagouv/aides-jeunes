@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 
 import express from "express"
 
-import api from "../backend/api.js"
+import api from "../backend/api"
 api()
-import "../backend/lib/mongo-connector.js"
-import Followup from "../backend/models/followup.js"
-import renderInitial from "../backend/lib/mes-aides/emails/initial.js"
-import "../backend/lib/mes-aides/emails/survey.js"
+import "../backend/lib/mongo-connector"
+import Followup from "../backend/models/followup"
+import renderInitial from "../backend/lib/mes-aides/emails/initial"
+import "../backend/lib/mes-aides/emails/survey"
 
 const port = process.env.PORT || 9001
 

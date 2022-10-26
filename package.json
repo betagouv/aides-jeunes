@@ -38,7 +38,7 @@
     "tools:geographical-benefits-details": "node --experimental-json-modules dist-server/tools/geographical-benefits-details.js",
     "tools:get-all-steps": "node dist-server/tools/get-all-steps.js",
     "tools:test-benefits-geographical-constraint-consistency": "node dist-server/tools/test-benefits-geographical-constraint-consistency.js",
-    "tools:serve-mail": "node dist-server/tools/mjml.js",
+    "tools:serve-mail": "npx babel-node -x '.ts' ./tools/mjml.ts",
     "tools:test-definition-periods": "node dist-server/tools/test-definition-periods.js",
     "migrate": "node dist-server/backend/lib/migrations/apply.js --all"
   },

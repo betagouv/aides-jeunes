@@ -84,7 +84,7 @@ function processSend(args) {
     }
     const limit = parseInt(args.multiple) || 1
     Followup.find({
-      "surveys.type": { $ne: "initial" },
+      "surveys.type": { $ne: "simulation-results" },
       sentAt: {
         $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
       },

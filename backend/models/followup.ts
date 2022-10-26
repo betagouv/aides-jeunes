@@ -126,42 +126,44 @@ FollowupSchema.method("createSurvey", function (type) {
 
 FollowupSchema.method("sendSurvey", function () {
   const followup = this
-  return this.createSurvey("initial").then((survey: SurveyLayout) => {
-    return this.renderSurveyEmail(followup)
-      .then((render) => {
-        const email = new SendSmtpEmail()
-        email.to = [{ email: followup.email }]
-        email.subject = render.subject
-        email.textContent = render.text
-        email.htmlContent = render.html
-        email.tags = ["survey"]
-        return sendEmail(email)
-          .then((response) => {
-            return response.messageId
-          })
-          .then((messageId) => {
-            survey.messageId = messageId
-            return survey
-          })
-      })
-      .catch((err: Error) => {
-        console.log("error", err)
-        survey.error = err
-        return survey
-      })
-      .then((survey) => {
-        const surveys = Array.from(followup.surveys)
-        surveys.push(survey)
+  return this.createSurvey("simulation-results").then(
+    (survey: SurveyLayout) => {
+      return this.renderSurveyEmail(followup)
+        .then((render) => {
+          const email = new SendSmtpEmail()
+          email.to = [{ email: followup.email }]
+          email.subject = render.subject
+          email.textContent = render.text
+          email.htmlContent = render.html
+          email.tags = ["survey"]
+          return sendEmail(email)
+            .then((response) => {
+              return response.messageId
+            })
+            .then((messageId) => {
+              survey.messageId = messageId
+              return survey
+            })
+        })
+        .catch((err: Error) => {
+          console.log("error", err)
+          survey.error = err
+          return survey
+        })
+        .then((survey) => {
+          const surveys = Array.from(followup.surveys)
+          surveys.push(survey)
 
-        followup.surveys = surveys
-        return followup.save()
-      })
-  })
+          followup.surveys = surveys
+          return followup.save()
+        })
+    }
+  )
 })
 
 FollowupSchema.method("mock", function () {
   const followup = this
-  return this.createSurvey("initial").then((survey) => {
+  return this.createSurvey("simulation-results").then((survey) => {
     const surveys = Array.from(followup.surveys)
     surveys.push(survey)
     followup.surveys = surveys

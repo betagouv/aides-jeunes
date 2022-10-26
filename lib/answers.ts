@@ -38,28 +38,6 @@ export const getAnswerIndex = (
   })
 }
 
-export const getPreviousAnswer = (
-  answers: answerLayout[],
-  entityName,
-  id,
-  fieldName
-) => {
-  const answerIndex = answers.findIndex((answer) => {
-    if (entityName && id && fieldName) {
-      return (
-        answer.entityName === entityName &&
-        answer.id === id &&
-        answer.fieldName === fieldName
-      )
-    } else if (entityName && id) {
-      return answer.entityName === entityName && answer.id === id
-    } else if (entityName) {
-      return answer.entityName === entityName
-    }
-  })
-  return answers[answerIndex - 1]
-}
-
 // Nécessaire si la question est optionnelle
 export function nullifyUndefinedValue(value) {
   return value === undefined ? null : value

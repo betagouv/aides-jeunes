@@ -2,11 +2,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (
-      benefits,
-      event = "show || showDetails || form || instructions ||link ||msa || show-locations || teleservice || link-ineligible || show-unexpected || close || retour-logement || simulation-caf || email",
-      benefitId
-    ) {
+    sendStatistics: function (benefits, event, benefitId) {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
@@ -14,6 +10,9 @@ export default {
         process.env.VITE_STATS_VERSION &&
         benefits?.length
       ) {
+        if (!benefits.length) {
+          benefits = [{ id: benefitId }]
+        }
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
         const benefitsStats = []
         const totalResults = benefits.length

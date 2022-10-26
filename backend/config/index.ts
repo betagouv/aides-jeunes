@@ -47,7 +47,7 @@ const all: ConfigurationLayout = {
     url:
       process.env.VITE_STATS_URL ||
       "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
-    version: Number(process.env.VITE_STATS_VERSION) || 2,
+    version: Number(process.env.VITE_STATS_VERSION) || 3,
   },
   mongo: {
     uri: process.env.MONGODB_URL || "mongodb://localhost/db_aides_jeunes",

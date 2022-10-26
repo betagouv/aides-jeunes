@@ -17,7 +17,7 @@ const goHome = () => {
 }
 
 const goRecap = () => {
-  cy.get('[data-cy="previous-or-recap-button"]').click()
+  cy.get('[data-testid="previous-or-recap-button"]').click()
 }
 
 const next = () => {

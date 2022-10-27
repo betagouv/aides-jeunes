@@ -12,32 +12,34 @@ context("Full simulation", () => {
     navigate.init()
   })
 
-  it("accepts a basic situation", () => {
+  it("Go to the recap during a basic situation and modify/continue the simulation", () => {
     navigate.goHome()
-
     profil.defaultIndivu()
-
     foyer.children(0)
     foyer.fill_en_couple(false)
-
+    navigate.goRecap()
+    navigate.updateFromRecap("Mes enfants à charge")
+    foyer.children(1)
+    foyer.fill_en_couple(false)
+    foyer.fill_rsa_isolement_recent(false)
+    navigate.goRecap()
+    navigate.next()
     logement.fill_logement("sansDomicile")
     logement.fill__nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
-
     revenu.fill_ressources_types([
       "salaire_net",
       "rpns_micro_entreprise_CA_bnc_imp",
     ])
     revenu.fillConstantRevenu(1101.42)
     revenu.ignore()
-
+    revenu.fillChildrenRessources([true])
+    revenu.fill_ressources_types([])
     projet.fill__interetsAidesVelo([])
     projet.fill__interetBafa(false)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetAidesSanitaireSocial(false)
-
     results.wait()
-
     results.hasPrimeActivite()
     results.captureFiscalResources()
   })

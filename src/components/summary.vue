@@ -45,6 +45,7 @@
             v-if="!isRecapitulatif"
             class="button outline"
             :to="{ name: 'recapitulatif' }"
+            data-testid="previous-or-recap-button"
             >{{
               isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
             }}</router-link

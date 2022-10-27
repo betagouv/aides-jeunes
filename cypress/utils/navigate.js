@@ -16,7 +16,24 @@ const goHome = () => {
   cy.get('[data-testid="new-simulation"]').click()
 }
 
+const goRecap = () => {
+  cy.get('[data-testid="previous-or-recap-button"]').click()
+}
+
+const next = () => {
+  cy.get(".next-button").click()
+}
+
+const updateFromRecap = (buttonLabel) => {
+  cy.get(`div .question-col:contains('${buttonLabel}')`)
+    .siblings()
+    .contains("Modifier")
+    .click()
+}
 export default {
   init,
   goHome,
+  goRecap,
+  next,
+  updateFromRecap,
 }

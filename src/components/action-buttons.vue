@@ -1,3 +1,67 @@
+<script setup>
+import BackButton from "@/components/buttons/back-button.vue"
+import { computed, defineProps } from "vue"
+import { getAnswerIndex } from "@lib/answers"
+import { useStore } from "@/stores"
+import { useRoute, useRouter } from "vue-router"
+import WarningMessage from "@/components/warning-message.vue"
+
+const props = defineProps({
+  onSubmit: {
+    type: Function,
+    default() {},
+  },
+  disableSubmit: Boolean,
+})
+
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+
+const error = computed(() => {
+  return store.error
+})
+
+const localOnSubmit = (event) => {
+  event.preventDefault()
+  props.onSubmit()
+}
+
+const goBack = () => {
+  window._paq.push([
+    "trackEvent",
+    "Parcours",
+    "Bouton précédent",
+    route.fullPath,
+  ])
+  const entityName = route.path.split("/")[2]
+  const id = route.path.split("/")[3]
+  const fieldName = route.path.split("/")[4]
+
+  const answerIndex = getAnswerIndex(
+    store.simulation.answers.all,
+    entityName,
+    id,
+    fieldName
+  )
+  if (answerIndex > 0) {
+    const previousAnswer = store.simulation.answers.all[answerIndex - 1]
+    let previousRoute = `/simulation/${previousAnswer.entityName}`
+    if (previousAnswer.id) {
+      previousRoute += `/${previousAnswer.id}`
+    }
+    if (previousAnswer.fieldName) {
+      previousRoute += `/${previousAnswer.fieldName}`
+    }
+    router.push({ path: previousRoute })
+  } else if (answerIndex === 0) {
+    router.push("/")
+  } else {
+    window.history.back()
+  }
+}
+</script>
+
 <template>
   <div>
     <WarningMessage v-if="error" class="aj-actions-error">{{
@@ -17,51 +81,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import BackButton from "@/components/buttons/back-button.vue"
-import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores"
-export default {
-  name: "ActionButtons",
-  components: { WarningMessage, BackButton },
-  props: {
-    onSubmit: {
-      type: Function,
-      default() {},
-    },
-    disableSubmit: Boolean,
-  },
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  data() {
-    return {
-      window,
-    }
-  },
-  computed: {
-    error() {
-      return this.store.error
-    },
-  },
-  methods: {
-    localOnSubmit(event) {
-      event.preventDefault()
-      this.onSubmit()
-    },
-    goBack() {
-      window?.history.back()
-      this.$matomo?.trackEvent(
-        "Parcours",
-        "Bouton précédent",
-        this.$route.fullPath
-      )
-    },
-  },
-}
-</script>
-
-<style type="text/css"></style>

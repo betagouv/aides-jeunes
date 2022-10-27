@@ -38,9 +38,7 @@
         <div class="aj-droit-notifications">
           <WarningMessage
             v-if="
-              droit.isBaseRessourcesYearMinusTwo &&
-              !ressourcesYearMinusTwoCaptured &&
-              !isString(droit.montant)
+              droit.isBaseRessourcesYearMinusTwo && !isString(droit.montant)
             "
             class="print-hidden"
           >
@@ -49,14 +47,26 @@
               aide se base sur vos ressources de l'année
               {{ store.dates.fiscalYear.label }}
             </span>
-            <router-link
-              v-if="!aCharge"
-              class="button outline red no-shadow text-center"
-              to="/simulation/ressources/fiscales"
-            >
-              Déclarez vos ressources
-              {{ store.dates.fiscalYear.label }}
-            </router-link>
+            <template v-if="!ressourcesYearMinusTwoCaptured">
+              <router-link
+                v-if="!aCharge"
+                class="button outline red no-shadow text-center"
+                to="/simulation/ressources/fiscales"
+              >
+                Déclarez vos ressources
+                {{ store.dates.fiscalYear.label }}
+              </router-link>
+            </template>
+            <template v-else>
+              <router-link
+                v-if="!aCharge"
+                class="button outline red no-shadow text-center"
+                to="/simulation/ressources/fiscales"
+              >
+                Modifiez vos ressources
+                {{ store.dates.fiscalYear.label }}
+              </router-link>
+            </template>
           </WarningMessage>
 
           <WarningMessage

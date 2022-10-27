@@ -43,6 +43,20 @@
           </template>
         </div>
       </template>
+      <template v-if="propertyData.simulation.ressourcesFiscales">
+        <h2 class="aj-question">Ma fiscalité</h2>
+        <div class="recapitulatif-row">
+          <div class="question-col"
+            >Indiquez toutes les ressources nettes versées perçues par vous en
+            France comme à l'étranger.
+          </div>
+          <div class="edit-col">
+            <router-link to="/simulation/ressources/fiscales">
+              Modifier
+            </router-link>
+          </div>
+        </div>
+      </template>
     </div>
     <div class="aj-actions">
       <BackButton @click="goBack"></BackButton>

@@ -6,14 +6,10 @@ on:
     - cron: "0 11 * * 1"
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-      - run: npm ci --legacy-peer-deps
-      - run: npm run build:server
+      - run: npm ci
       - id: invalid_links
         run: npm run tools:check-links-validity
         timeout-minutes: 20

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue"
-import useDetectOutsideClick from "@/composables/useDetectOutsideClick.ts"
+import useDetectOutsideClick from "@/composables/use-detect-outside-click.ts"
 
 const componentRef = ref(null)
 const openedIndex = ref(null)

@@ -1,4 +1,4 @@
-import benefits from "../data/all.js"
+import benefits from "../data/all"
 
 benefits.all
   .filter((benefit) => {

@@ -25,7 +25,6 @@ const customBenefitsFiles = [
 function setEditLink(benefit) {
   for (let category of customBenefitsFiles) {
     if (benefit.id.match(category.pattern)) {
-      console.log(benefit.id, category.pattern)
       return category.file
     }
   }

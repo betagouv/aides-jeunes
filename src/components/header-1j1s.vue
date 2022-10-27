@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from "vue"
+import useDetectOutsideClick from "@/composables/useDetectOutsideClick.ts"
 
-const showMenu = ref(false)
+const componentRef = ref(null)
 const openedIndex = ref(null)
 const openedSubmenuIndex = ref(null)
+const showMenu = ref(false)
 const showMenuModal = ref(false)
 const vite1jeune1solutionUrl = process.env.VITE_1J1S_URL
 const menu = ref([
@@ -155,6 +157,12 @@ const expandMenu = (index) => {
   })
   openedSubmenuIndex.value = null
 }
+
+useDetectOutsideClick(componentRef, () => {
+  menu.value.forEach((item) => {
+    item.expanded = false
+  })
+})
 
 const expandChildrenSubmenu = (index, subindex) => {
   if (index != null && subindex != null) {
@@ -457,7 +465,7 @@ const submenuClick = (index, subindex, submenu) => {
       :class="{ show: showMenu }"
     >
       <div class="container">
-        <ul class="aj-1j1s-header-nav__menu">
+        <ul ref="componentRef" class="aj-1j1s-header-nav__menu">
           <li>
             <a class="aj-1j1s-header-nav__menu-item" href="/">Accueil</a>
           </li>

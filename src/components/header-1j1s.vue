@@ -159,9 +159,12 @@ const expandMenu = (index) => {
 }
 
 useDetectOutsideClick(componentRef, () => {
-  menu.value.forEach((item) => {
-    item.expanded = false
-  })
+  // DetectOutsideClick composable is only used in desktop mode (different menu behavior)
+  if (window.innerWidth > 768) {
+    menu.value.forEach((item) => {
+      item.expanded = false
+    })
+  }
 })
 
 const expandChildrenSubmenu = (index, subindex) => {

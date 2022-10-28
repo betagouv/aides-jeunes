@@ -4,25 +4,25 @@
       <router-link
         v-for="(droit, index) in list"
         :key="index"
-        class="aj-aide-box a-unstyled"
+        :aria-label="askBenefit(droit)"
+        :data-testid="droit.id"
         :to="`/simulation/resultats/${droit.id}`"
+        class="aj-aide-box a-unstyled"
         itemscope
         itemtype="http://schema.org/GovernmentService"
-        :data-testid="droit.id"
-        :aria-label="askBenefit(droit)"
       >
         <img
-          class="aj-aide-illustration"
           :src="getBenefitImage(droit)"
           alt=""
+          class="aj-aide-illustration"
         />
         <div class="aj-aide-text">
           <h2 class="aj-question aj-benefit-label" itemprop="name">{{
             capitalize(droit.label)
           }}</h2>
-          <div class="aj-institution-label">{{
-            capitalize(droit.institution.label)
-          }}</div>
+          <div class="aj-institution-label"
+            >{{ capitalize(droit.institution.label) }}
+          </div>
           <p class="aj-aide-description" v-html="droit.description" />
           <WarningMessage
             v-if="
@@ -31,13 +31,24 @@
               droit.warning === true
             "
           >
-            <img src="@/assets/images/warning.svg" alt="" /> Attention, cette
+            <img alt="" src="@/assets/images/warning.svg" /> Attention, cette
             aide vous est accessible sous certaines conditions supplémentaires.
           </WarningMessage>
+          <router-link
+            v-if="
+              droit.isBaseRessourcesYearMinusTwo &&
+              store.simulation?.ressourcesFiscales
+            "
+            class="button outline red text-center small"
+            to="/simulation/ressources/fiscales"
+          >
+            Modifier vos revenus fiscaux
+          </router-link>
         </div>
         <DroitEstime :droit="droit" />
+
         <div class="aj-aide-cta" data-testid="aide-cta">
-          <button class="button primary"> Demander cette aide </button>
+          <button class="button primary"> Demander cette aide</button>
         </div>
       </router-link>
     </div>
@@ -50,12 +61,12 @@
           action: 'link-ineligible',
           category: 'General',
         }"
-        class="droits-list-item"
         :href="droit.link"
-        target="_blank"
-        rel="noopener"
+        class="droits-list-item"
         itemscope
         itemtype="http://schema.org/GovernmentService"
+        rel="noopener"
+        target="_blank"
       >
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
@@ -81,6 +92,7 @@ import DroitMixin from "@/mixins/droit-mixin"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin"
 import WarningMessage from "@/components/warning-message.vue"
+import { useStore } from "@/stores"
 
 export default {
   name: "DroitsList",
@@ -95,7 +107,7 @@ export default {
     filter: Array,
   },
   data: function () {
-    return {}
+    return { store: useStore() }
   },
   computed: {
     list: function () {

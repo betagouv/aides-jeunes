@@ -1,36 +1,16 @@
 import mongoose from "mongoose"
-import { find } from "lodash"
 import validator from "validator"
 
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue"
 import utils from "../lib/utils"
 
-import { SurveyLayout } from "../types/survey"
+import { SurveyLayout, SurveyType } from "../types/survey"
 
 import renderSimulationResults from "../lib/mes-aides/emails/simulation-results"
+import renderSimulationUsefulnessSurvey from "../lib/mes-aides/emails/simulation-usefulness-survey"
 import renderBenefitActionSurvey from "../lib/mes-aides/emails/benefit-action-survey"
-
+import SurveySchema from "./survey-schema"
 import { MongooseLayout, FollowupModel } from "../types/models"
-
-const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
-  {
-    _oldId: { type: String },
-    accessToken: { type: String },
-    createdAt: { type: Date, default: Date.now },
-    messageId: { type: String },
-    repliedAt: { type: Date },
-    error: { type: Object },
-    answers: [
-      {
-        id: String,
-        value: String,
-        comments: String,
-      },
-    ],
-    type: { type: String },
-  },
-  { minimize: false, id: false }
-)
 
 const FollowupSchema = new mongoose.Schema(
   {
@@ -111,29 +91,36 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
 })
 
-FollowupSchema.method("renderBenefitActionSurveyEmail", function (survey) {
-  return renderBenefitActionSurvey(survey)
+FollowupSchema.method("renderSurveyEmail", function (survey) {
+  switch (survey.type) {
+    case "benefit-action":
+      return renderBenefitActionSurvey(this)
+    case "simulation-usefulness":
+      return renderSimulationUsefulnessSurvey(this)
+    default:
+      return Promise.reject(new Error("Unknown email type"))
+  }
 })
 
-FollowupSchema.method("createSurvey", function (type) {
+FollowupSchema.method("createSurvey", function (type: SurveyType) {
   return Promise.resolve(
     this.surveys.create({
-      type: type,
+      type,
     })
   )
 })
 
-FollowupSchema.method("sendSurvey", function () {
+FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
-  return this.createSurvey("benefit-action").then((survey: SurveyLayout) => {
-    return this.renderBenefitActionSurveyEmail(followup)
+  return this.createSurvey(surveyType).then((survey: SurveyLayout) => {
+    return this.renderSurveyEmail(survey)
       .then((render) => {
         const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]
         email.subject = render.subject
         email.textContent = render.text
         email.htmlContent = render.html
-        email.tags = ["survey"]
+        email.tags = ["survey", surveyType]
         return sendEmail(email)
           .then((response) => {
             return response.messageId
@@ -168,20 +155,34 @@ FollowupSchema.method("mock", function () {
   })
 })
 
-FollowupSchema.method("updateSurvey", function (id, answers) {
-  const surveys: SurveyLayout[] = Array.from(this.surveys)
-  const survey = find(surveys, function (s: SurveyLayout) {
-    return s._id === id
-  })
-  if (typeof survey === "undefined") {
-    console.log("Could not find and update survey using its id")
-    return
-  }
-  Object.assign(survey, {
-    answers: answers,
+FollowupSchema.method("addSurvey", function (answers, type = null) {
+  this.surveys.push({
+    answers,
     repliedAt: Date.now(),
+    type,
   })
-  this.surveys = surveys
+  return this.save()
+})
+
+FollowupSchema.method("setWasUseful", function (wasUseful) {
+  const survey = this.surveys.find((survey) =>
+    survey.answers.find((answer) => answer.id === "wasUseful")
+  )
+  // if there is no survey with a "wasUseful" answer, create one
+  if (!survey) {
+    this.surveys.push({
+      answers: [
+        {
+          id: "wasUseful",
+          value: wasUseful,
+        },
+      ],
+      repliedAt: Date.now(),
+      type: "simulation-usefulness",
+    })
+  } else {
+    survey.answers.find((answer) => answer.id === "wasUseful").value = wasUseful
+  }
   return this.save()
 })
 
@@ -205,6 +206,14 @@ FollowupSchema.virtual("returnPath").get(function (this: any) {
 
 FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
+})
+
+FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {
+  return `&wasuseful=1`
+})
+
+FollowupSchema.virtual("wasNotUsefulPath").get(function (this: any) {
+  return `&wasuseful=0`
 })
 
 export default mongoose.model<MongooseLayout, FollowupModel>(

@@ -122,14 +122,35 @@ export function showSimulation(req: ajRequest, res: Response) {
     })
 }
 
-export function postSurvey(req: ajRequest, res: Response) {
-  // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-    const token = followup.surveys[followup.surveys.length - 1]._id
-    followup.updateSurvey(token, req.body).then(() => {
-      res.sendStatus(201)
-    })
+export async function getFollowup(
+  req: ajRequest,
+  res: Response,
+  next: NextFunction,
+  accessToken: any
+) {
+  const followup = await Followup.findOne({ accessToken })
+  if (!followup) return res.sendStatus(404)
+  req.followup = followup
+  next()
+}
+
+export async function postAnswersSurvey(req: ajRequest, res: Response) {
+  try {
+    await req.followup.addSurvey(req.body, "benefit-action")
+    res.sendStatus(201)
     pollResult.postPollResult(followup, req.body)
-  })
+  } catch (err) {
+    console.error(err)
+    res.sendStatus(400)
+  }
+}
+
+export async function updateWasUseful(req: ajRequest, res: Response) {
+  try {
+    await req.followup.setWasUseful(req.params.wasuseful)
+    res.sendStatus(200)
+  } catch (err) {
+    console.error(err)
+    res.sendStatus(400)
+  }
 }

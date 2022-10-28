@@ -16,6 +16,14 @@ if (app.get("env") === "development") {
       .then((render: any) => res.send(render.html))
   })
   router.get(
+    "/:followupId/simulation-usefulness-survey.html",
+    (req: ajRequest, res) => {
+      req.followup
+        .renderSimulationUsefulnessSurveyEmail({ returnPath: "/returnPath" })
+        .then((render: any) => res.send(render.html))
+    }
+  )
+  router.get(
     "/:followupId/benefit-action-survey.html",
     (req: ajRequest, res) => {
       req.followup

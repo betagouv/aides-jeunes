@@ -1,0 +1,16 @@
+Bonjour,
+
+Vous avez fait il y a quelques jours une simulation sur 1jeune1solution.gouv.fr.
+
+Nous aimerions savoir si cette simulation vous a été utile. Si cela a été le cas, merci de nous l'indiquer en cliquant sur le lien suivant :
+{{&wasUsefulLinkYes}}
+
+Sinon vous pouvez l'indiquer en cliquant sur le lien suivant : 
+{{&wasUsefulLinkNo}}
+
+Dans tous les cas, nous vous inviterons à remplir un formulaire qui vous prendra moins de 30 secondes. Cela nous permettra de continuer à améliorer le simulateur.
+
+Pour toute question ou remarque, vous pouvez également nous contacter à l'adresse suivante : aides-jeunes@beta.gouv.fr
+
+Bonne journée,
+L'équipe du simulateur de 1jeune1solution.gouv.fr

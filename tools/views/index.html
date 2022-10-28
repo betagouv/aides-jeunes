@@ -21,9 +21,14 @@
           <ul v-for="typeKey in typeKeys">
             <li>
               <span v-if="typeKey === 'simulation-results'"
-                >Mail initial :
+                >Résultats de simulation :
               </span>
-              <span v-else>Résultats simulation : </span>
+              <span v-else-if="typeKey === 'benefit-action-survey'"
+                >Mail de sondage (V1) :
+              </span>
+              <span v-else-if="typeKey === 'simulation-usefulness-survey'"
+                >Mail de sondage (V2) :
+              </span>
               &nbsp;
               <a
                 :href="`mjml/${followup._id}/${typeKey}?mode=html`"

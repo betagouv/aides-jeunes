@@ -7,6 +7,7 @@ api()
 import "../backend/lib/mongo-connector"
 import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
+import "../backend/lib/mes-aides/emails/simulation-usefulness-survey"
 import "../backend/lib/mes-aides/emails/benefit-action-survey"
 
 const port = process.env.PORT || 9001
@@ -14,7 +15,11 @@ const port = process.env.PORT || 9001
 // Setup Express
 const app = express()
 
-const typeKeys = ["simulation-results", "benefit-action-survey"]
+const typeKeys = [
+  "simulation-results",
+  "simulation-usefulness-survey",
+  "benefit-action-survey",
+]
 
 app.engine(".html", require("ejs").__express)
 app.set("views", __dirname + "/views")
@@ -36,20 +41,30 @@ app.route("/mjml/:id/:type").get(function (req, res) {
   Followup.findByIdOrOldId(req.params.id)
     .populate("simulation")
     .exec(function (err, followup) {
-      const p =
-        req.params.type == "simulation-results"
-          ? renderSimulationResults(followup)
-          : followup
-              .createSurvey()
-              .then(() => followup.renderBenefitActionSurveyEmail(followup))
-      p.then(function (result) {
-        const mode = req.query.mode || "html"
-        if (mode == "html") {
-          res.send(result[mode])
-        } else {
-          res.set({ "Content-Type": "text/plain" }).send(result[mode as string])
-        }
-      })
+      let p = {}
+      if (req.params.type == "simulation-results") {
+        p = renderSimulationResults(followup)
+      } else if (req.params.type == "simulation-usefulness-survey") {
+        p = followup
+          .createSurvey()
+          .then(() => followup.renderSimulationUsefulnessSurveyEmail(followup))
+      } else if (req.params.type == "benefit-action-survey") {
+        p = followup
+          .createSurvey()
+          .then(() => followup.renderBenefitActionSurveyEmail(followup))
+      }
+      if (p instanceof Promise) {
+        p.then(function (result) {
+          const mode = req.query.mode || "html"
+          if (mode == "html") {
+            res.send(result[mode])
+          } else {
+            res
+              .set({ "Content-Type": "text/plain" })
+              .send(result[mode as string])
+          }
+        })
+      }
     })
 })
 

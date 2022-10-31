@@ -27,6 +27,16 @@
     $question-col: calc(70% - #{$edit-col});
     $value-col: calc(30% - #{$edit-col});
 
+    .value-col-first-line {
+      font-size: 0.8em;
+      line-height: 1.2em;
+      display: inline-block;
+    }
+
+    .value-col-second-line {
+      margin-bottom: 4px;
+    }
+
     display: flex;
     justify-content: space-between;
 
@@ -42,12 +52,15 @@
     .question-col {
       width: $question-col;
     }
+
     .value-col {
       width: $value-col;
     }
+
     .edit-col {
       width: $edit-col;
     }
+
     .value-cell {
       padding: 4px;
       width: 150px;

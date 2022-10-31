@@ -52,8 +52,8 @@
           </div>
           <div class="value-col">
             <div v-for="(ressource, key) in propertyData.simulation.ressourcesFiscales.demandeur">
-              {{ categoriesFiscales[key] }}&nbsp;:
-              <div>
+              <span class="value-col-first-line">{{ categoriesFiscales[key] }}&nbsp;:</span>
+              <div class="value-col-second-line">
                 {{ ressource }}&nbsp;€
               </div>
             </div>

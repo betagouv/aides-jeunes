@@ -51,11 +51,15 @@
             France comme à l'étranger.
           </div>
           <div class="value-col">
-            <div v-for="(ressource, key) in propertyData.simulation.ressourcesFiscales.demandeur">
-              <span class="value-col-first-line">{{ categoriesFiscales[key] }}&nbsp;:</span>
-              <div class="value-col-second-line">
-                {{ ressource }}&nbsp;€
-              </div>
+            <div
+              v-for="(ressource, key) in propertyData.simulation
+                .ressourcesFiscales.demandeur"
+              :key="key"
+            >
+              <span class="value-col-first-line"
+                >{{ categoriesFiscales[key] }}&nbsp;:</span
+              >
+              <div class="value-col-second-line"> {{ ressource }}&nbsp;€</div>
             </div>
           </div>
           <div class="edit-col">
@@ -72,13 +76,13 @@
         v-if="showResultButton"
         class="button next-button"
         to="/simulation/resultats"
-      >Accéder aux résultats
+        >Accéder aux résultats
       </router-link>
       <router-link
         v-else-if="store.lastUnansweredStep"
         :to="store.lastUnansweredStep.path"
         class="button next-button"
-      >Continuer
+        >Continuer
       </router-link>
     </div>
   </div>
@@ -104,7 +108,7 @@ const activeJourney = store.getAllAnsweredSteps
 const propertyData = {
   openFiscaParameters: store.openFiscaParameters,
   simulation: store.simulation,
-  periods: store.dates
+  periods: store.dates,
 }
 const categoriesFiscales = {
   salaire_imposable: "Salaires imposable",
@@ -113,7 +117,7 @@ const categoriesFiscales = {
   frais_reels: "Frais réels",
   pensions_alimentaires_versees: "Pensions alimentaires versées",
   pensions_alimentaires_percues: "Pensions alimentaires perçues",
-  revenus_locatifs: "Revenus locatifs"
+  revenus_locatifs: "Revenus locatifs",
 }
 const showResultButton = computed(() => {
   return (
@@ -136,7 +140,7 @@ const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
         return accum
       },
       []
-    )
+    ),
   }
 })
 
@@ -153,7 +157,7 @@ function questionsPerStep(step: Step): RecapPropertyLine[] {
   if (property) {
     return [
       property.recapHeader?.(currentPropertyData),
-      property.getRecap(currentPropertyData, step)
+      property.getRecap(currentPropertyData, step),
     ].filter((block) => block) as RecapPropertyLine[]
   }
 

@@ -74,6 +74,7 @@ import { computed, ComputedRef } from "vue"
 import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
 import { categoriesRnc } from "@lib/resources"
+import { patrimoineTypes } from "@lib/resources"
 
 const store = useStore()
 const route = useRoute()
@@ -146,8 +147,31 @@ const addFiscalResourcesResChapter = (resChapters) => {
   return resChapters
 }
 
+const addPatrimoineResChapter = (resChapters) => {
+  if (store.hasPatrimoine) {
+    const path = "/simulation/ressources/patrimoine"
+    const questions = []
+    patrimoineTypes.forEach((type, index) => {
+      const value = store.simulation.patrimoine[patrimoineTypes[index].id]
+      if (value) {
+        const label = patrimoineTypes[index].label
+        questions.push({
+          label,
+          value: `${value} €`,
+          path,
+        })
+      }
+    })
+    resChapters.push({
+      label: "Mon patrimoine",
+      questions,
+    })
+  }
+  return resChapters
+}
+
 const myChapters = computed(() => {
-  const resChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
+  let resChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
     let questions = stepPerChapter(chapter.name).reduce(
       (accum: RecapPropertyLine[], step: Step) => {
         accum.push(
@@ -165,7 +189,9 @@ const myChapters = computed(() => {
       questions,
     }
   })
-  return addFiscalResourcesResChapter(resChapters)
+  resChapters = addFiscalResourcesResChapter(resChapters)
+  resChapters = addPatrimoineResChapter(resChapters)
+  return resChapters
 })
 
 function stepPerChapter(chapterName: string) {

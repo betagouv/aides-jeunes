@@ -10,7 +10,7 @@ conditions_generales:
       - "49"
   - type: age
     operator: ">="
-    value: 17
+    value: 16
 profils: []
 interestFlag: _interetBafa
 type: float

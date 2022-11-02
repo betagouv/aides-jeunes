@@ -10,7 +10,7 @@ conditions:
 conditions_generales:
   - type: age
     operator: ">="
-    value: 17
+    value: 16
   - type: regime_securite_sociale
     includes:
       - regime_general

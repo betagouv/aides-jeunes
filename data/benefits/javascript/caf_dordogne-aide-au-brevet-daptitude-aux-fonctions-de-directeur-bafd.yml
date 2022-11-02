@@ -6,7 +6,7 @@ prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
-    value: 16
+    value: 21
   - type: departements
     values:
       - "24"

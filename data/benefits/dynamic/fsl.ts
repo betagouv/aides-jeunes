@@ -397,7 +397,7 @@ function formatBenefit(
   }
 }
 
-export function build() {
+export function buildFSL() {
   return Object.entries(FSL_BY_INSTITUTION_SLUG).map(
     ([institutionSlug, customizationBenefit]) =>
       formatBenefit(customizationBenefit, institutionSlug)

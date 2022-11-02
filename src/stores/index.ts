@@ -547,7 +547,7 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
       this.inIframe = true
       this.iframeOrigin = newOrigin
     },
-    setIframeHeaderCollapse(collapse: boolean = false) {
+    setIframeHeaderCollapse(collapse = false) {
       this.iframeHeaderCollapse = collapse
     },
     setThemeColor(themeColor: string) {

@@ -10,6 +10,10 @@
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>
 
     <code>{{ fullScript }}</code>
+    <p
+      >Plusieurs options s'offrent à vous pour personnaliser l'affichage du
+      simulateur :</p
+    >
     <ul class="options-list">
       <li>
         <input
@@ -29,7 +33,7 @@
           id="institutional"
           value="institutional"
         />
-        <label for="institutional">Afficher les logos institutionels</label>
+        <label for="institutional">Afficher les logos institutionel</label>
       </li>
     </ul>
 
@@ -89,6 +93,10 @@ export default {
 }
 </script>
 <style scoped>
+#dest {
+  max-width: 1000px;
+  margin: auto;
+}
 code {
   background-color: rgb(248, 248, 248);
   border-radius: unset;

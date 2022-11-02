@@ -2,9 +2,7 @@ import { iframeResize } from "iframe-resizer"
 
 const script = document.currentScript
 const page = script.getAttribute("splash") !== null ? "" : "simulation"
-const src = new URL(
-  `https://deploy-preview-3320--aides-jeunes.netlify.app/${page}`
-)
+const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
 src.searchParams.set(

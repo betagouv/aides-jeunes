@@ -46,8 +46,6 @@ export default {
       const path = route.path
       if (path === "/simulation/recapitulatif") {
         return "Récapitulatif"
-      } else if (path === "/simulation/individu/demandeur/date_naissance") {
-        return "Mon profil"
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

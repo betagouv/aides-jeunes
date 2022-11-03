@@ -20,7 +20,7 @@ function getSommaireChapters() {
 
 function getLabel(name: string) {
   const chapter = chapters.find((c) => c.name === name)
-  return chapter?.label || "Ma simulation"
+  return chapter?.label || "Mon profil"
 }
 
 const Chapters = {

@@ -75,7 +75,7 @@ function errorLogger(
   }
 }
 
-function compareSchema(data, schema, output, depth = []) {
+export function compareSchema(data, schema, output, depth = []) {
   // Disable schema validation for file with specific key
   if (data?.skip_schema_check) return
 

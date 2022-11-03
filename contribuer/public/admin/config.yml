@@ -701,6 +701,12 @@ fields:
     label: L'aide ne couvre qu'une partie des frais
     name: participation
     widget: hidden
+  field_benefit_id: &field_benefit_id
+    name: id
+    widget: hidden
+  field_benefit_source: &field_benefit_source
+    name: source
+    widget: hidden
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
@@ -804,6 +810,8 @@ collections:
       - *field_benefit_position
       - *field_private_benefit
       - *field_benefit_partial_support
+      - *field_benefit_id
+      - *field_benefit_source
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe

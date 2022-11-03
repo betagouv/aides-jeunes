@@ -32,12 +32,13 @@ const all: ConfigurationLayout = {
     client_secret: process.env.GITHUB_CLIENT_SECRET || "",
     client_id: process.env.GITHUB_CLIENT_ID || "",
     authorized_users: [
-      "guillett",
-      "Cugniere",
-      "charlottelecuit",
-      "Vanessa-D",
-      "Kout95",
       "alizeeeeeee",
+      "Allan-CodeWorks",
+      "charlottelecuit",
+      "Cugniere",
+      "guillett",
+      "shamzic",
+      "Valandr",
     ],
   },
   matomo: {

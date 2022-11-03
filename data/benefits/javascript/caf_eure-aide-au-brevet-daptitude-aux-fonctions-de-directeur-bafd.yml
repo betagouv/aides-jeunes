@@ -6,7 +6,7 @@ prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
-    value: 21
+    value: 18
   - type: quotient_familial
     floor: 600
     period: month

@@ -9,7 +9,7 @@ conditions_generales:
       - "59"
   - type: age
     operator: ">="
-    value: 21
+    value: 18
 profils: []
 conditions:
   - Avoir une expérience d'animation.

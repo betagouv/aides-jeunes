@@ -4,6 +4,9 @@ description: L'aide proposée par la CAF du Morbihan peut vous aider à financer
   votre session de formation au BAFD.
 prefix: l’
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
   - type: regime_securite_sociale
     includes:
       - regime_general

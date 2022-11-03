@@ -8,6 +8,9 @@ conditions:
   - Être inscrit·e au stage de formation générale pour la préparation du brevet
     d’aptitude aux fonctions de Directeur.
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
   - type: departements
     values:
       - "52"

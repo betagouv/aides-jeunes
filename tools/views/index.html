@@ -20,14 +20,20 @@
           <h3>Suivi n°{{ followup._id}}</h3>
           <ul v-for="typeKey in typeKeys">
             <li>
-              <span v-if="typeKey === 'simulation-results'">Mail initial : </span>
+              <span v-if="typeKey === 'simulation-results'"
+                >Mail initial :
+              </span>
               <span v-else>Résultats simulation : </span>
               &nbsp;
-              <a :href="`mjml/${followup._id}/${typeKey}?mode=html`" target="_blank"
+              <a
+                :href="`mjml/${followup._id}/${typeKey}?mode=html`"
+                target="_blank"
                 >HTML</a
               >
               &nbsp;
-              <a :href="`mjml/${followup._id}/${typeKey}?mode=text`" target="_blank"
+              <a
+                :href="`mjml/${followup._id}/${typeKey}?mode=text`"
+                target="_blank"
                 >texte</a
               >
             </li>

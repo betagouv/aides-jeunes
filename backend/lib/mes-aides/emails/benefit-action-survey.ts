@@ -7,11 +7,11 @@ import config from "../../../config/index"
 import { mjml } from "./index"
 
 const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/survey.txt"),
+  path.join(__dirname, "templates/benefit-action-survey.txt"),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/survey.mjml"),
+  path.join(__dirname, "templates/benefit-action-survey.mjml"),
   "utf8"
 )
 

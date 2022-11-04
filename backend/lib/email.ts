@@ -25,9 +25,11 @@ const send_types = send.add_subparsers({
   dest: "type",
 })
 
-const send_initial = send_types.add_parser("initial")
-const send_survey = send_types.add_parser("survey")
-const senders = [send_initial, send_survey]
+const send_simulation_results = send_types.add_parser("simulation-results")
+const send_benefit_action_survey = send_types.add_parser(
+  "benefit-action-survey"
+)
+const senders = [send_simulation_results, send_benefit_action_survey]
 senders.forEach((send) => {
   send.add_argument("--id", {
     help: "Followup Id",
@@ -56,9 +58,9 @@ function processSend(args) {
     Followup.findByIdOrOldId(args.id)
       .then((f) => {
         switch (args.type) {
-          case "initial":
-            return f.sendInitialEmail()
-          case "survey":
+          case "simulation-results":
+            return f.sendSimulationResultsEmail()
+          case "benefit-action-survey":
             if (args.mock) {
               return f.mock()
             } else {

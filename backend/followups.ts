@@ -10,16 +10,19 @@ router.param("followupId", followup)
 router.get("/:followupId", resultRedirect)
 
 if (app.get("env") === "development") {
-  router.get("/:followupId/initial.html", (req: ajRequest, res) => {
+  router.get("/:followupId/simulation-results.html", (req: ajRequest, res) => {
     req.followup
-      .renderInitialEmail()
+      .renderSimulationResultsEmail()
       .then((render: any) => res.send(render.html))
   })
-  router.get("/:followupId/survey.html", (req: ajRequest, res) => {
-    req.followup
-      .renderSurveyEmail({ returnPath: "/returnPath" })
-      .then((render: any) => res.send(render.html))
-  })
+  router.get(
+    "/:followupId/benefit-action-survey.html",
+    (req: ajRequest, res) => {
+      req.followup
+        .renderBenefitActionSurveyEmail({ returnPath: "/returnPath" })
+        .then((render: any) => res.send(render.html))
+    }
+  )
 }
 app.use(router)
 

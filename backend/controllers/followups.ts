@@ -52,7 +52,7 @@ export function persist(req: ajRequest, res: Response) {
     surveyOptin: req.body.surveyOptin,
   })
     .then((followup) => {
-      return followup.sendInitialEmail()
+      return followup.sendSimulationResultsEmail()
     })
     .then(() => {
       return res.send({ result: "OK" })

@@ -379,25 +379,28 @@ function formatBenefit(
       ],
     },
   ]
-  return {
-    id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
-    ...DEFAULT_FSL,
-    description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
-    conditions: [
-      `Occuper, à titre de résidence principale, un logement sur le territoire ${label}.`,
-      "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
-    ],
-    link,
-    form,
-    instructions,
-    label: `Aide au maintien dans votre logement ${label}`,
-    institution: institutionId,
-    source: "javascript",
-    conditions_generales,
-  }
+  return Object.assign(
+    {},
+    {
+      id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
+      ...DEFAULT_FSL,
+      description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
+      conditions: [
+        `Occuper, à titre de résidence principale, un logement sur le territoire ${label}.`,
+        "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",
+      ],
+      link,
+      form: form ? form : null,
+      instructions: instructions ? instructions : null,
+      label: `Aide au maintien dans votre logement ${label}`,
+      institution: institutionId,
+      source: "javascript",
+      conditions_generales,
+    }
+  )
 }
 
-export function build() {
+export function buildFSL() {
   return Object.entries(FSL_BY_INSTITUTION_SLUG).map(
     ([institutionSlug, customizationBenefit]) =>
       formatBenefit(customizationBenefit, institutionSlug)

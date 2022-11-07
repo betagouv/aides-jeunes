@@ -11,7 +11,7 @@ conditions_generales:
       - 47
   - type: age
     operator: ">="
-    value: 17
+    value: 16
   - type: quotient_familial
     period: month
     floor: 856

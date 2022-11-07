@@ -12,7 +12,7 @@ conditions_generales:
       - "60"
   - type: age
     operator: <=
-    value: 17
+    value: 16
 profils: []
 interestFlag: _interetBafa
 type: bool

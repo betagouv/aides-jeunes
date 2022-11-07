@@ -5,6 +5,9 @@ description: L'aide à la formation au BAFD est une aide locale mise à
   complément de l'aide nationale apportée par la CAF.
 prefix: l’
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
   - type: quotient_familial
     floor: 1456
     period: month

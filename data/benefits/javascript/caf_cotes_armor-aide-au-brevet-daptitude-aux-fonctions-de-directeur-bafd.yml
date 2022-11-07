@@ -6,6 +6,9 @@ description: L'aide proposée par la CAF des Côtes-d'Armor peut vous aider à
   qualification.
 prefix: l’
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
   - type: departements
     values:
       - "22"

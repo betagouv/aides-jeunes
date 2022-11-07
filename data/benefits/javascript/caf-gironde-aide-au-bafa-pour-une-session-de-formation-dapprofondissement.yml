@@ -10,7 +10,7 @@ conditions_generales:
       - "33"
   - type: age
     operator: ">="
-    value: 17
+    value: 16
   - type: age
     operator: <=
     value: 25

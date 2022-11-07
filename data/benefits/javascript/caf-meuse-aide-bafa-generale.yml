@@ -7,7 +7,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 conditions_generales:
   - type: age
     operator: ">="
-    value: 17
+    value: 16
   - type: departements
     values:
       - "55"

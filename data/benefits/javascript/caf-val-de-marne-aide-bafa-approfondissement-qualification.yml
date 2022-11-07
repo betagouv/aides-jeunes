@@ -22,5 +22,5 @@ conditions_generales:
       - "94"
   - type: age
     operator: ">="
-    value: 17
+    value: 16
 profils: []

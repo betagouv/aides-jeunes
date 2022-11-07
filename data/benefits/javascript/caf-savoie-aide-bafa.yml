@@ -10,7 +10,7 @@ conditions_generales:
       - "73"
   - type: age
     operator: ">="
-    value: 17
+    value: 16
 profils: []
 conditions:
   - Suivre une formation assurée par un organisme de formation à but non

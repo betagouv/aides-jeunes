@@ -1,16 +1,15 @@
 html {
-    body {
-      height: unset;
-      .aj-iframe-footer-body {
-          margin-top: 1rem;
-        }
-      .aj-iframe-footer {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        font-size: 13px;
-      }
+  body {
+    height: unset;
+    .aj-iframe-footer-body {
+      margin-top: 1rem;
+    }
+    .aj-iframe-footer {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      font-size: 13px;
     }
   }
-  
+}

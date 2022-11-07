@@ -1,9 +1,16 @@
+// extends "Aide" type defined in "aides-velo" package
+type Aide = {
+  title: string
+  description: string
+  url: string
+  amount?: number
+}
+
 export interface benefitLayout {
   label: string
   montant: any
 }
 
-// extends "Aide" type defined in "aides-velo" package
 export interface benefitVeloLayout extends Aide {
   collectivity?: {
     id: string
@@ -13,9 +20,5 @@ export interface benefitVeloLayout extends Aide {
   }
   institution?: string
   discard?: boolean
-  description?: string
-  title?: string
   id?: string
-  url?: string
-  amount?: string
 }

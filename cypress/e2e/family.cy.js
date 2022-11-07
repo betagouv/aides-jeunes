@@ -23,8 +23,8 @@ context("Full simulation", () => {
     profil.defaultConjoint()
 
     logement.fill_logement("sansDomicile")
-    logement.fill__nombreMoisEntreeLogement(-12)
     logement.fill_depcom("94120")
+    logement.fill__nombreMoisEntreeLogement(-12)
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)

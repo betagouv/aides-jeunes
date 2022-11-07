@@ -26,7 +26,6 @@ context("Full simulation", () => {
     )
 
     logement.fill_logement("locataire", "nonmeuble")
-    logement.fill__nombreMoisEntreeLogement(12)
     logement.fill_coloc(false)
     logement.fill_logement_chambre(false)
     logement.fill_proprietaire_proche_famille(false)
@@ -38,6 +37,7 @@ context("Full simulation", () => {
       "75001",
       "_bourseCriteresSociauxCommuneDomicileFamilial"
     )
+    logement.fill__nombreMoisEntreeLogement(12)
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)

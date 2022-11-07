@@ -53,6 +53,7 @@ $screen-smaller-than-mobile: 399px;
 @import "partials/desktop/resultats";
 @import "partials/desktop/recapitulatif";
 @import "partials/desktop/print";
+@import "partials/desktop/iframe";
 
 /* TABLET IMPORTS */
 @media (max-width: 768px) {
@@ -76,6 +77,7 @@ $screen-smaller-than-mobile: 399px;
   @import "partials/mobile/home";
   @import "partials/mobile/simulation";
   @import "partials/mobile/resultats";
+  @import "partials/mobile/iframe";
 }
 
 /* UTILS */

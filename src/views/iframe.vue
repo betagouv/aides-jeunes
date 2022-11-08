@@ -20,20 +20,20 @@
           type="checkbox"
           checked="true"
           v-model="options"
-          id="splash"
-          value="splash"
+          id="data-from-home"
+          value="data-from-home"
         />
-        <label for="splash">Afficher l'écran d'accueil</label>
+        <label for="data-from-home">Afficher l'écran d'accueil</label>
       </li>
       <li>
         <input
           type="checkbox"
           checked="true"
           v-model="options"
-          id="institutional"
-          value="institutional"
+          id="data-with-logo"
+          value="data-with-logo"
         />
-        <label for="institutional">Afficher les logos institutionel</label>
+        <label for="data-with-logo">Afficher les logos institutionel</label>
       </li>
     </ul>
 
@@ -57,7 +57,7 @@ export default {
   name: "IFrame",
   data() {
     return {
-      options: ["splash", "institutional"],
+      options: ["data-from-home", "data-with-logo"],
       contactEmail: process.env.VITE_CONTACT_EMAIL,
     }
   },

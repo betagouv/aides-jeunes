@@ -307,8 +307,8 @@ router.beforeEach((to, from, next) => {
       store.setIframeOrigin(null)
     }
 
-    if (params.get("institutional")) {
-      store.setIframeHeaderCollapse(params.get("institutional"))
+    if (params.get("data-with-logo")) {
+      store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
   }
 

@@ -1,7 +1,7 @@
 import { iframeResize } from "iframe-resizer"
 
 const script = document.currentScript
-const page = script.getAttribute("splash") !== null ? "" : "simulation"
+const page = script.getAttribute("data-from-home") !== null ? "" : "simulation"
 const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
@@ -9,8 +9,8 @@ src.searchParams.set(
   "integratorUrl",
   encodeURIComponent(window.location.href.toString())
 )
-if (script.getAttribute("institutional") !== null) {
-  src.searchParams.set("institutional", true)
+if (script.getAttribute("data-with-logo") !== null) {
+  src.searchParams.set("data-with-logo", true)
 }
 
 const iframe = document.createElement("iframe")

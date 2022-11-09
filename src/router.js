@@ -306,6 +306,10 @@ router.beforeEach((to, from, next) => {
     if (iframe != null) {
       store.setIframeOrigin(null)
     }
+
+    if (params.get("data-with-logo")) {
+      store.setIframeHeaderCollapse(params.get("data-with-logo"))
+    }
   }
 
   if (store.iframeOrigin) {

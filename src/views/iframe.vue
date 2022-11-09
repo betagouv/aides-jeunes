@@ -10,6 +10,32 @@
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>
 
     <code>{{ fullScript }}</code>
+    <p
+      >Plusieurs options s'offrent à vous pour personnaliser l'affichage du
+      simulateur :</p
+    >
+    <ul class="options-list">
+      <li>
+        <input
+          type="checkbox"
+          checked="true"
+          v-model="options"
+          id="data-from-home"
+          value="data-from-home"
+        />
+        <label for="data-from-home">Afficher l'écran d'accueil</label>
+      </li>
+      <li>
+        <input
+          type="checkbox"
+          checked="true"
+          v-model="options"
+          id="data-with-logo"
+          value="data-with-logo"
+        />
+        <label for="data-with-logo">Afficher les logos institutionel</label>
+      </li>
+    </ul>
 
     <h3>Prévisualisation</h3>
 
@@ -26,11 +52,12 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "IFrame",
   data() {
     return {
+      options: ["data-from-home", "data-with-logo"],
       contactEmail: process.env.VITE_CONTACT_EMAIL,
     }
   },
@@ -40,19 +67,51 @@ export default {
     },
     fullScript() {
       // eslint-disable-next-line no-useless-escape
-      return `<script src="${process.env.VITE_BASE_URL}${this.scriptPath}"><\/script>`
+      return `<script src="${process.env.VITE_BASE_URL}${
+        this.scriptPath
+      }" ${this.options.join(" ")}><\/script>`
     },
   },
   mounted: function () {
-    let externalScript = document.createElement("script")
-    externalScript.setAttribute("src", this.scriptPath)
-    document.getElementById("dest").appendChild(externalScript)
+    this.setIframeContainer()
+  },
+  watch: {
+    options: function (): void {
+      this.setIframeContainer()
+    },
+  },
+  methods: {
+    setIframeContainer() {
+      let externalScript = document.createElement("script")
+      externalScript.setAttribute("src", this.scriptPath)
+      for (let option of this.options) {
+        externalScript.setAttribute(option, "")
+      }
+      document.getElementById("dest").replaceChildren(...[externalScript])
+    },
   },
 }
 </script>
 <style scoped>
+#dest {
+  max-width: 1000px;
+  margin: auto;
+}
 code {
   background-color: rgb(248, 248, 248);
   border-radius: unset;
+}
+.options-list {
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+}
+.options-list li {
+  display: flex;
+  vertical-align: middle;
+}
+.options-list li input {
+  margin-right: none;
+  cursor: pointer;
 }
 </style>

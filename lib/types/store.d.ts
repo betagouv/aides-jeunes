@@ -81,6 +81,7 @@ export interface Store {
   themeColor: string | null
   inIframe: boolean
   iframeOrigin: string | null
+  iframeHeaderCollapse: boolean
   saveSituationError: string | null
   openFiscaParameters: OpenfiscaParameters
   recapEmailState: string | undefined

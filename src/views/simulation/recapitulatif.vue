@@ -11,7 +11,11 @@
             v-for="(question, questionIndex) in chapter.questions"
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
-            <div :class="question.rowClass" class="recapitulatif-row">
+            <div
+              v-if="!question.value.includes('undefined')"
+              :class="question.rowClass"
+              class="recapitulatif-row"
+            >
               <div
                 :class="question.labelClass || 'question-col'"
                 v-html="question.label"

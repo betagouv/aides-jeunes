@@ -112,5 +112,6 @@ code {
 }
 .options-list li input {
   margin-right: none;
+  cursor: pointer;
 }
 </style>

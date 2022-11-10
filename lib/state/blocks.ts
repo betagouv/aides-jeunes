@@ -315,17 +315,6 @@ function housingBlock() {
       }),
       {
         isActive: (subject) =>
-          subject.statut_occupation_logement !== "proprietaire" &&
-          subject.statut_occupation_logement !== "primo_accedant",
-        steps: [
-          new Step({
-            entity: "menage",
-            variable: "_nombreMoisEntreeLogement",
-          }),
-        ],
-      },
-      {
-        isActive: (subject) =>
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
@@ -403,6 +392,17 @@ function housingBlock() {
               }),
             ],
           },
+        ],
+      },
+      {
+        isActive: (subject) =>
+          subject.statut_occupation_logement !== "proprietaire" &&
+          subject.statut_occupation_logement !== "primo_accedant",
+        steps: [
+          new Step({
+            entity: "menage",
+            variable: "_nombreMoisEntreeLogement",
+          }),
         ],
       },
     ],

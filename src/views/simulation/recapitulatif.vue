@@ -73,6 +73,7 @@ import { RecapPropertyLine, Step } from "@lib/types/property"
 import { computed, ComputedRef } from "vue"
 import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
+import { categoriesRnc } from "@lib/resources"
 
 const store = useStore()
 const route = useRoute()
@@ -93,49 +94,21 @@ const showResultButton = computed(() => {
 })
 
 const addIndividuQuestions = (questions, individuLabel, data, path) => {
-  questions.push(
-    {
-      rowClass: "row-space",
-      label: individuLabel,
-      labelClass: "individu-title",
-      hideEdit: true,
-    },
-    {
-      label: "Revenus d'activité connus",
-      value: data.salaire_imposable,
-      path,
-    },
-    {
-      label: "Autre revenus imposables",
-      value: data.chomage_imposable,
-      path,
-    },
-    {
-      label: "Pensions, retraite, rente",
-      value: data.retraite_imposable,
-      path,
-    },
-    {
-      label: "Frais réels déductibles",
-      value: data.frais_reels,
-      path,
-    },
-    {
-      label: "Pensions alimentaires reçues",
-      value: data.pensions_alimentaires_percues,
-      path,
-    },
-    {
-      label: "Pensions alimentaires versées",
-      value: data.pensions_alimentaires_versees,
-      path,
-    },
-    {
-      label: "Revenus fonciers nets",
-      value: data.revenus_locatifs,
-      path,
+  questions.push({
+    rowClass: "row-space",
+    label: individuLabel,
+    labelClass: "individu-title",
+    hideEdit: true,
+  })
+  categoriesRnc.forEach((category) => {
+    if (data[category.id]) {
+      questions.push({
+        label: category.label,
+        value: `${data[category.id]} €`,
+        path,
+      })
     }
-  )
+  })
 }
 
 const addFiscalResourcesResChapter = (resChapters) => {

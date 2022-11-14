@@ -149,18 +149,16 @@
     <h2>Direction de publication</h2>
 
     <p>
-      Le délégué générale à l’emploi et à la formation professionnelle et le
+      Le délégué général à l’emploi et à la formation professionnelle et le
       directeur interministériel du numérique.
     </p>
 
     <h2>Hébergement du site</h2>
 
-    <p>
-      Ce site est hébergé par OVH SAS<br />
-      2 rue Kellermann,<br />
-      59100 Roubaix<br /><br />
-      Téléphone : +339 72 10 10 0
-    </p>
+    <p class="p-cgu-style">Ce site est hébergé par OVH SAS </p>
+    <p class="p-cgu-style">2 rue Kellermann,</p>
+    <p class="p-cgu-style">59100 Roubaix</p>
+    <p>Téléphone : +339 72 10 10 0</p>
 
     <h2>Accessibilité</h2>
 

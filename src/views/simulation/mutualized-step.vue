@@ -148,7 +148,7 @@ export default {
       return this.step.getQuestion(this.propertyData)
     },
     questionType() {
-      return this.step.questionType
+      return this.step?.questionType
     },
     showMoreInfo() {
       const showMoreInfo =

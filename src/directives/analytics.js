@@ -3,11 +3,10 @@ import analytics from "../mixins/statistics"
 const MailDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
-      analytics.methods.sendStatistics(
-        [],
-        binding.value.action,
-        binding.value.name
-      )
+      analytics.methods.sendStatistics({
+        event: binding.value.action,
+        benefitId: binding.value.name,
+      })
       const matomo = binding?.instance?.$matomo
       if (!matomo) {
         return

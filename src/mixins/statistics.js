@@ -2,7 +2,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function (benefits, event, benefitId) {
+    sendStatistics: function ({ benefits, benefitId, event }) {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&
@@ -10,7 +10,7 @@ export default {
         process.env.VITE_STATS_VERSION &&
         benefits?.length
       ) {
-        if (!benefits.length) {
+        if (!benefits?.length) {
           benefits = [{ id: benefitId }]
         }
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid

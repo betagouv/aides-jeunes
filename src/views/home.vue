@@ -10,9 +10,11 @@
             <br />en moins de 5 minutes.
           </h1>
           <div class="aj-home-disclaimer"
-            >Avant de démarrer la simulation de vos aides, pensez à vous munir
-            de vos ressources et de celles de vos parents si vous êtes encore à
-            leur charge.</div
+            ><p
+              >Avant de démarrer la simulation de vos aides, pensez à vous munir
+              de vos ressources et de celles de vos parents si vous êtes encore
+              leur charge.
+            </p></div
           >
           <div class="aj-home-hero-buttons-wrapper">
             <button

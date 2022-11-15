@@ -1,26 +1,23 @@
-label: Aide au financement du permis de conduire
+label: Aides au financement du permis de conduire
 institution: region_pays_de_la_loire
-description: La Région des Pays de la Loire propose une aide financière pour
+description: La Région des Pays de la Loire propose des aides financières pour
   passer le permis de conduire (permis B).
-conditions:
-  - Être inscrit·e à Pôle Emploi.
+prefix: l’
 conditions_generales:
   - type: regions
     values:
       - "52"
 profils:
   - type: chomeur
-    conditions:
-      - type: age
-        operator: <=
-        value: 26
-link: https://mes-aides.pole-emploi.fr/region-pays-de-la-loire/aide-regionale-au-permis-de-conduire-pays-de-la-loire
-teleservice: https://www.moncompteformation.gouv.fr/espace-prive/html/#/
-instructions: https://mes-aides.pole-emploi.fr/region-pays-de-la-loire/aide-regionale-au-permis-de-conduire-pays-de-la-loire
-prefix: l’
+    conditions: []
+conditions:
+  - Être inscrit·e à Pôle Emploi.
+interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 1600
-interestFlag: _interetPermisDeConduire
+link: https://mes-aides.pole-emploi.fr/transport-et-mobilite/aides-permis/pays-de-la-loire
+teleservice: https://mes-aides.pole-emploi.fr/transport-et-mobilite/aides-permis/pays-de-la-loire
+instructions: ""

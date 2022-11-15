@@ -54,7 +54,7 @@ context("Full simulation", () => {
     results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()
     results.back()
-    results.hasAideVeloParis()
+    results.hasAideVeloNationale()
     results.hasHousingBenefit()
   })
 })

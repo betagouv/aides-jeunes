@@ -144,9 +144,9 @@ const hasIleDeFranceAideAuMerite = () => {
     .should("match", /(\d+)[\S\n\r\s]+€/)
 }
 
-const hasAideVeloParis = () => {
-  const name = /Aide à l'achat d'un vélo : Ville de Paris/
-  const id = "aidesvelo_aides_paris"
+const hasAideVeloNationale = () => {
+  const name = /Aide à l'achat d'un vélo : Bonus vélo/
+  const id = "aidesvelo_aides_bonus_vélo"
   IdentifyBenefit(id, name)
 }
 
@@ -160,5 +160,5 @@ export default {
   hasBourseCriteresSociaux,
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
-  hasAideVeloParis,
+  hasAideVeloNationale,
 }

@@ -25,7 +25,8 @@ context("Full simulation", () => {
       1
     )
 
-    logement.fill_logement("locataire", "nonmeuble")
+    logement.fill_logement("locataire")
+    logement.fill_locataire_type("nonmeuble")
     logement.fill_coloc(false)
     logement.fill_logement_chambre(false)
     logement.fill_proprietaire_proche_famille(false)

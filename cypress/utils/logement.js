@@ -1,10 +1,11 @@
 import { submit, fillRadio } from "./form"
 
-const fill_logement = (logement, type) => {
-  fillRadio("logement", logement, type)
-  if (type) {
-    fillRadio("logement", type)
-  }
+const fill_logement = (logement) => {
+  fillRadio("logement", logement)
+}
+
+const fill_locataire_type = (logementType) => {
+  fillRadio("_locataire_type", logementType)
 }
 
 const fill__nombreMoisEntreeLogement = (nombre) => {
@@ -57,6 +58,7 @@ const fill__en_france = (inFrance) => {
 
 export default {
   fill_logement,
+  fill_locataire_type,
   fill__nombreMoisEntreeLogement,
   fill_depcom,
   fill_parisien,

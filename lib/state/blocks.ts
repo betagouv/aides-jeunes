@@ -316,8 +316,15 @@ function housingBlock() {
       {
         isActive: (subject) =>
           !subject.statut_occupation_logement ||
+          subject.statut_occupation_logement.startsWith("proprietaire"),
+        steps: [new Step({ entity: "menage", variable: "_primo_accedant" })],
+      },
+      {
+        isActive: (subject) =>
+          !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("locataire"),
         steps: [
+          new Step({ entity: "menage", variable: "_locataire_type" }),
           new Step({ entity: "menage", variable: "coloc" }),
           new Step({ entity: "menage", variable: "logement_chambre" }),
           new Step({

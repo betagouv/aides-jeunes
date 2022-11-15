@@ -120,10 +120,6 @@ const router = createRouter({
           ],
         },
         {
-          path: "menage/statut_occupation_logement",
-          component: () => import("./views/simulation/logement.vue"),
-        },
-        {
           path: "menage",
           component: () => import("./views/simulation/menage.vue"),
           children: [

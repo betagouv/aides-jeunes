@@ -37,6 +37,33 @@ const getIndividu = (situation: situationsLayout, id: string) => {
   return individu
 }
 
+const getLogementSituation = (situation: situationsLayout) => {
+  if (situation && situation.menage) {
+    if (situation.menage.statut_occupation_logement === "locataire") {
+      if (situation.menage._locataire_type === "nonmeuble") {
+        situation.menage.statut_occupation_logement = "locataire_vide"
+      }
+      if (situation.menage._locataire_type === "meublehotel") {
+        situation.menage.statut_occupation_logement = "locataire_meuble"
+      }
+      if (situation.menage._locataire_type === "foyer") {
+        situation.menage.statut_occupation_logement = "locataire_foyer"
+      }
+    }
+    if (situation.menage.statut_occupation_logement === "proprietaire") {
+      if (situation.menage._primo_accedant === true) {
+        situation.menage.statut_occupation_logement = "primo_accedant"
+      }
+    }
+    if (situation.menage.statut_occupation_logement === "heberge") {
+      situation.menage.statut_occupation_logement = "loge_gratuitement"
+    }
+    if (situation.menage.statut_occupation_logement === "sansDomicile") {
+      situation.menage.statut_occupation_logement = "sans_domicile"
+    }
+  }
+}
+
 export function generateSituation(simulation, useAll?: any) {
   if (!simulation) {
     return {}
@@ -201,6 +228,8 @@ export function generateSituation(simulation, useAll?: any) {
       }
     })
   }
+
+  getLogementSituation(situation)
 
   return situation
 }

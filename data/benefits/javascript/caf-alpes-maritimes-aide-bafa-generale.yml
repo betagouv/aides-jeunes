@@ -1,9 +1,9 @@
-label: Aide au BAFA pour une session de formation générale
+label: Aide au BAFA pour une session de formation générale ou d’approfondissement
 institution: caf_alpes_maritimes
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF des Alpes-Maritimes pour vous aider à financer votre
-  session d’approfondissement ou de qualification en complément de l'aide
-  nationale apportée par la CAF.
+  session générale, d’approfondissement ou de qualification en complément de
+  l'aide nationale apportée par la CAF.
 prefix: l’
 conditions_generales:
   - type: age
@@ -13,11 +13,15 @@ conditions_generales:
     values:
       - "06"
 profils: []
+conditions:
+  - Être allocataires au titre d'enfant à charge, ou être membre d'une famille
+    ouvrant droit aux prestations familiales au titre d'enfant à charge.
 interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
-montant: 250
+legend: maximum
+montant: 350
 link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/vie-personnelle/votre-enfant-16-ans-et-et-vous-souhaitez-le-soutenir-dans-ses-projets
-form: https://www.caf.fr/sites/default/files/medias/061/Vie%20perso/2022/Demande-bourse-BAFA_200421.pdf
+form: https://www.caf.fr/sites/default/files/medias/061/Vie%20perso/2022/Demande-bourse-BAFA-Maj281022.pdf
 instructions: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/vie-personnelle/votre-enfant-16-ans-et-et-vous-souhaitez-le-soutenir-dans-ses-projets

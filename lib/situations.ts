@@ -2,9 +2,9 @@ import Ressource from "./ressource"
 import { ressourceTypes } from "./resources"
 import { generator as datesGenerator } from "./dates"
 import Scolarite from "./scolarite"
-
 import { individuLayout } from "./types/individu"
 import { situationsLayout } from "./types/situations"
+import Logement from "./logement"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,
@@ -35,33 +35,6 @@ const getIndividu = (situation: situationsLayout, id: string) => {
     }
   }
   return individu
-}
-
-const getLogementSituation = (situation: situationsLayout) => {
-  if (situation && situation.menage) {
-    if (situation.menage.statut_occupation_logement === "locataire") {
-      if (situation.menage._locationType === "nonmeuble") {
-        situation.menage.statut_occupation_logement = "locataire_vide"
-      }
-      if (situation.menage._locationType === "meublehotel") {
-        situation.menage.statut_occupation_logement = "locataire_meuble"
-      }
-      if (situation.menage._locationType === "foyer") {
-        situation.menage.statut_occupation_logement = "locataire_foyer"
-      }
-    }
-    if (situation.menage.statut_occupation_logement === "proprietaire") {
-      if (situation.menage._primoAccedant === true) {
-        situation.menage.statut_occupation_logement = "primo_accedant"
-      }
-    }
-    if (situation.menage.statut_occupation_logement === "heberge") {
-      situation.menage.statut_occupation_logement = "loge_gratuitement"
-    }
-    if (situation.menage.statut_occupation_logement === "sansDomicile") {
-      situation.menage.statut_occupation_logement = "sans_domicile"
-    }
-  }
 }
 
 export function generateSituation(simulation, useAll?: any) {
@@ -229,7 +202,13 @@ export function generateSituation(simulation, useAll?: any) {
     })
   }
 
-  getLogementSituation(situation)
+  if (situation && situation.menage) {
+    situation.menage.statut_occupation_logement = Logement.getLogementType(
+      situation.menage.statut_occupation_logement,
+      situation.menage._locationType,
+      situation.menage._primoAccedant
+    )
+  }
 
   return situation
 }

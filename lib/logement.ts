@@ -10,23 +10,30 @@ export enum StatutOccupationLogement {
   sans_domicile = "sans_domicile",
 }
 
-function getStatutOccupationLogement(logement) {
-  const statusOccupationMap = {
-    proprietaireprimoaccedant: "primo_accedant",
-    proprietaire: "proprietaire",
-    locatairenonmeuble: "locataire_vide",
-    locatairemeublehotel: "locataire_meuble",
-    heberge: "loge_gratuitement",
-    locatairefoyer: "locataire_foyer",
-    sansDomicile: "sans_domicile",
+function getLogementType(_logementType, _locationType, _primoAccedant) {
+  if (_logementType === "locataire") {
+    if (_locationType === "nonmeuble") {
+      _logementType = "locataire_vide"
+    }
+    if (_locationType === "meublehotel") {
+      _logementType = "locataire_meuble"
+    }
+    if (_locationType === "foyer") {
+      _logementType = "locataire_foyer"
+    }
   }
-  let statusOccupationId = logement.type
-  if (logement.type == "proprietaire" && logement.primoAccedant) {
-    statusOccupationId = "proprietaireprimoaccedant"
-  } else if (logement.type == "locataire" && logement.locationType) {
-    statusOccupationId += logement.locationType
+  if (_logementType === "proprietaire") {
+    if (_primoAccedant === true) {
+      _logementType = "primo_accedant"
+    }
   }
-  return statusOccupationMap[statusOccupationId]
+  if (_logementType === "heberge") {
+    _logementType = "loge_gratuitement"
+  }
+  if (_logementType === "sansDomicile") {
+    _logementType = "sans_domicile"
+  }
+  return _logementType
 }
 
 function getLogementVariables(statusOccupationId) {
@@ -114,7 +121,7 @@ export function getLoyerData(answers) {
 
 const Logement = {
   getLogementVariables,
-  getStatutOccupationLogement,
+  getLogementType,
   getStatutOccupationLabel,
   isOwner,
   captureCharges,

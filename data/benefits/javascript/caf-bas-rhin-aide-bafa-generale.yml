@@ -2,11 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_bas_rhin
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF du Bas-Rhin pour vous aider à financer votre session en
-  complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Effectuer votre stage de formation de base dans l'un des organismes de
-    formation habilités par les services de la Jeunesse et des Sports.
+  complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -15,13 +12,17 @@ conditions_generales:
     values:
       - "67"
 profils: []
-link: https://www.bafa-bafd.jeunes.gouv.fr/Region.aspx?MJSReg=67
-form: ""
-instructions: https://www.caf.fr/allocataires/caf-du-bas-rhin/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
-prefix: l’
+conditions:
+  - Effectuer votre stage de formation de base dans l'un des organismes de
+    formation habilités par les services de la Jeunesse et des Sports.
+  - Contacter votre CAF pour obtenir le formulaire de demande d'aide.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 300
-interestFlag: _interetBafa
+link: https://www.caf.fr/allocataires/caf-du-bas-rhin/offre-de-service/vie-professionnelle/l-aide-au-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
+teleservice: ""
+form: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire
+instructions: ""

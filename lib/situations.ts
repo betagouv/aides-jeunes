@@ -40,13 +40,13 @@ const getIndividu = (situation: situationsLayout, id: string) => {
 const getLogementSituation = (situation: situationsLayout) => {
   if (situation && situation.menage) {
     if (situation.menage.statut_occupation_logement === "locataire") {
-      if (situation.menage._locataire_type === "nonmeuble") {
+      if (situation.menage._location_type === "nonmeuble") {
         situation.menage.statut_occupation_logement = "locataire_vide"
       }
-      if (situation.menage._locataire_type === "meublehotel") {
+      if (situation.menage._location_type === "meublehotel") {
         situation.menage.statut_occupation_logement = "locataire_meuble"
       }
-      if (situation.menage._locataire_type === "foyer") {
+      if (situation.menage._location_type === "foyer") {
         situation.menage.statut_occupation_logement = "locataire_foyer"
       }
     }

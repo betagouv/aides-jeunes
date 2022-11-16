@@ -7,7 +7,7 @@ export interface situationsLayout {
   enfants?: any[] | null
   famille?: any
   menage?: {
-    _location_type?: string
+    _locationType?: string
     _primoAccedant?: boolean
     aide_logement_date_pret_conventionne: string
     _departement?: string

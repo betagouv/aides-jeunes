@@ -5,7 +5,7 @@ const fill__logementType = (logement) => {
 }
 
 const fill__locationType = (logementType) => {
-  fillRadio("_location_type", logementType)
+  fillRadio("_locationType", logementType)
 }
 
 const fill__nombreMoisEntreeLogement = (nombre) => {

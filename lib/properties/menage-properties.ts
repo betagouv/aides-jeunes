@@ -72,7 +72,7 @@ export default {
         >Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.</span
       >`,
   }),
-  _location_type: new EnumProperty({
+  _locationType: new EnumProperty({
     question: "Quel type de logement louez-vous ?",
     items: [
       {

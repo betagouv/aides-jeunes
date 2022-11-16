@@ -65,7 +65,7 @@
 <script lang="ts" setup>
 import { getPropertyOfStep } from "@lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useIndividu } from "@/composables/individu.ts"
+import { useIndividu } from "@/composables/individu"
 import ComplexeProperties from "@lib/properties/others/complexe-properties"
 import { chapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
@@ -73,6 +73,7 @@ import { RecapPropertyLine, Step } from "@lib/types/property"
 import { computed, ComputedRef } from "vue"
 import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
+import { categoriesRnc } from "@lib/resources"
 
 const store = useStore()
 const route = useRoute()
@@ -92,10 +93,62 @@ const showResultButton = computed(() => {
   )
 })
 
-const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
-  return {
-    label: chapter.label,
-    questions: stepPerChapter(chapter.name).reduce(
+const addIndividuQuestions = (questions, individuLabel, data, path) => {
+  questions.push({
+    rowClass: "row-space",
+    label: individuLabel,
+    labelClass: "individu-title",
+    hideEdit: true,
+  })
+  categoriesRnc.forEach((category) => {
+    if (data[category.id]) {
+      questions.push({
+        label: category.label,
+        value: `${data[category.id]} €`,
+        path,
+      })
+    }
+  })
+}
+
+const addFiscalResourcesResChapter = (resChapters) => {
+  const ressourcesFiscales = store.simulation.ressourcesFiscales
+  if (ressourcesFiscales) {
+    const demandeur = ressourcesFiscales.demandeur
+    if (demandeur) {
+      const path = "/simulation/ressources/fiscales"
+      const myFiscalResourcesChapter = {
+        label: "Mes ressources fiscales",
+        questions: [],
+      }
+      for (const property in ressourcesFiscales) {
+        if (property === "demandeur") {
+          addIndividuQuestions(
+            myFiscalResourcesChapter.questions,
+            "Vous",
+            demandeur,
+            path
+          )
+        }
+        if (property.includes("enfant_")) {
+          const childIndex = property.substring(property.indexOf("_") + 1)
+          addIndividuQuestions(
+            myFiscalResourcesChapter.questions,
+            `${store.situation.enfants[childIndex]._firstName}`,
+            ressourcesFiscales[property],
+            path
+          )
+        }
+      }
+      resChapters.push(myFiscalResourcesChapter)
+    }
+  }
+  return resChapters
+}
+
+const myChapters = computed(() => {
+  const resChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
+    let questions = stepPerChapter(chapter.name).reduce(
       (accum: RecapPropertyLine[], step: Step) => {
         accum.push(
           ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
@@ -106,8 +159,13 @@ const myChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
         return accum
       },
       []
-    ),
-  }
+    )
+    return {
+      label: chapter.label,
+      questions,
+    }
+  })
+  return addFiscalResourcesResChapter(resChapters)
 })
 
 function stepPerChapter(chapterName: string) {

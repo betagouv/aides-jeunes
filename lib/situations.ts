@@ -51,7 +51,7 @@ const getLogementSituation = (situation: situationsLayout) => {
       }
     }
     if (situation.menage.statut_occupation_logement === "proprietaire") {
-      if (situation.menage._primo_accedant === true) {
+      if (situation.menage._primoAccedant === true) {
         situation.menage.statut_occupation_logement = "primo_accedant"
       }
     }

@@ -66,7 +66,7 @@ export default {
       },
     ],
   }),
-  _primo_accedant: new BooleanProperty({
+  _primoAccedant: new BooleanProperty({
     question: `Êtes-vous primo-accédant pour cette propriété ? </br>
       <span class="help"
         >Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.</span

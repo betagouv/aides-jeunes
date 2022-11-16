@@ -317,7 +317,7 @@ function housingBlock() {
         isActive: (subject) =>
           !subject.statut_occupation_logement ||
           subject.statut_occupation_logement.startsWith("proprietaire"),
-        steps: [new Step({ entity: "menage", variable: "_primo_accedant" })],
+        steps: [new Step({ entity: "menage", variable: "_primoAccedant" })],
       },
       {
         isActive: (subject) =>

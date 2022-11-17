@@ -104,9 +104,8 @@ export default {
         },
         {
           label: "Nous contacter",
-          href: "mailto:contact-1j1s@sg.social.gouv.fr",
+          href: "/contact",
           class: "aj-1j1s-footer__internal-link--email",
-          newTab: true,
         },
       ],
       externalLinks: [

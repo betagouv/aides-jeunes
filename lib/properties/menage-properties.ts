@@ -88,10 +88,13 @@ export default {
         label: "Foyer",
         value: "foyer",
         isRelevant({ demandeurIndividu, periods }) {
-          return (
-            Individu.age(demandeurIndividu, periods.today.value) < 50 &&
-            demandeurIndividu.activite === "etudiant"
-          )
+          if (demandeurIndividu) {
+            return (
+              Individu.age(demandeurIndividu, periods.today.value) < 50 &&
+              demandeurIndividu.activite === "etudiant"
+            )
+          }
+          return false
         },
         hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
       },
@@ -99,10 +102,13 @@ export default {
         label: "Foyer",
         value: "foyer",
         isRelevant({ demandeurIndividu, periods }) {
-          return (
-            Individu.age(demandeurIndividu, periods.today.value) < 50 &&
-            demandeurIndividu.activite !== "etudiant"
-          )
+          if (demandeurIndividu) {
+            return (
+              Individu.age(demandeurIndividu, periods.today.value) < 50 &&
+              demandeurIndividu.activite !== "etudiant"
+            )
+          }
+          return false
         },
         hint: "Foyer de jeune travailleur, résidence sociale…",
       },
@@ -110,7 +116,10 @@ export default {
         label: "Foyer",
         value: "foyer",
         isRelevant({ demandeurIndividu, periods }) {
-          return Individu.age(demandeurIndividu, periods.today.value) >= 50
+          if (demandeurIndividu) {
+            return Individu.age(demandeurIndividu, periods.today.value) >= 50
+          }
+          return false
         },
         hint: "Maison de retraite, résidence sociale…",
       },

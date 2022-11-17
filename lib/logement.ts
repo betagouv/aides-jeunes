@@ -41,20 +41,6 @@ function getStatutOccupationLogement(
   return statutOccupationLogement
 }
 
-function getLogementVariables(statusOccupationId) {
-  const baseLogementMap = {
-    primo_accedant: { type: "proprietaire", primoAccedant: true },
-    proprietaire: { type: "proprietaire", primoAccedant: false },
-    locataire_vide: { type: "locataire", locationType: "nonmeuble" },
-    locataire_meuble: { type: "locataire", locationType: "meublehotel" },
-    loge_gratuitement: { type: "heberge" },
-    locataire_foyer: { type: "locataire", locationType: "foyer" },
-    sans_domicile: { type: "sansDomicile" },
-  }
-  const base = statusOccupationId && baseLogementMap[statusOccupationId]
-  return { type: null, primoAccedant: null, locationType: null, ...base }
-}
-
 export const STATUT_OCCUPATION_LABEL = {
   primo_accedant: "Propriétaire primo-accédant",
   proprietaire: "Propriétaire",
@@ -69,29 +55,30 @@ function getStatutOccupationLabel(statut) {
   return STATUT_OCCUPATION_LABEL[statut]
 }
 
-function isOwner(logementStatut) {
-  return (
-    logementStatut === "proprietaire" || logementStatut === "primo_accedant"
-  )
+function isOwner(_logementType, _primoAccedant) {
+  return _logementType === "proprietaire" || _primoAccedant === true
 }
 
-function captureCharges(logementStatut) {
+function captureCharges(_logementType, _primoAccedant, _locationType) {
   return !(
-    Logement.isOwner(logementStatut) || logementStatut === "locataire_meuble"
+    Logement.isOwner(_logementType, _primoAccedant) ||
+    _locationType === "meublehotel"
   )
 }
 
 export function getLoyerData(answers) {
-  const logementStatut = getAnswer(
-    answers,
-    "menage",
-    "statut_occupation_logement"
-  )
+  const _logementType = getAnswer(answers, "menage", "_logementType")
+  const _primoAccedant = getAnswer(answers, "menage", "_primoAccedant")
+  const _locationType = getAnswer(answers, "menage", "_primoAccedant")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
 
-  const isLocataire = !Logement.isOwner(logementStatut)
-  const captureCharges = Logement.captureCharges(logementStatut)
+  const isLocataire = !Logement.isOwner(_logementType, _primoAccedant)
+  const captureCharges = Logement.captureCharges(
+    _logementType,
+    _primoAccedant,
+    _locationType
+  )
 
   if (isLocataire) {
     const loyerLabel = `Quel est le montant de votre ${
@@ -125,7 +112,6 @@ export function getLoyerData(answers) {
 }
 
 const Logement = {
-  getLogementVariables,
   getStatutOccupationLogement,
   getStatutOccupationLabel,
   isOwner,

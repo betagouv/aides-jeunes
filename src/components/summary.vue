@@ -9,12 +9,12 @@
         hidden
         aria-controls="fr-sidemenu-wrapper"
         aria-expanded="false"
-      >Sommaire</button>
-      <div
-        class="fr-collapse"
-        id="fr-sidemenu-wrapper"
+        >Sommaire</button
       >
-        <div class="fr-sidemenu__title fr-text--regular fr-pt-5w">Ma simulation</div>
+      <div class="fr-collapse" id="fr-sidemenu-wrapper">
+        <div class="fr-sidemenu__title fr-text--regular fr-pt-5w"
+          >Ma simulation</div
+        >
         <ul class="fr-sidemenu__list">
           <li
             v-for="(chapter, index) in chapters"
@@ -35,7 +35,8 @@
                 'aj-disabled-title': disabledLink(chapter, index),
               }"
               target="_self"
-            >{{ chapter.label }}</router-link>
+              >{{ chapter.label }}</router-link
+            >
           </li>
         </ul>
       </div>
@@ -48,9 +49,10 @@
             <router-link
               class="fr-btn fr-btn--secondary"
               :to="{ name: 'recapitulatif' }"
-            >{{
+              >{{
                 isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
-              }}</router-link>
+              }}</router-link
+            >
           </li>
           <li v-else>
             <BackButton @click="goBack()">Retour</BackButton>

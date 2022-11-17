@@ -1,8 +1,6 @@
-import { EnumProperty, MultipleProperty } from "../property"
-import { EnumItemProperty } from "../../types/property"
+import { MultipleProperty } from "../property"
 import Individu from "../../individu"
 import { ressourceTypes } from "../../resources"
-import { STATUT_OCCUPATION_LABEL } from "../../logement"
 import { capitalize } from "vue"
 
 export default {

@@ -67,7 +67,6 @@
     "express-validator": "^6.13.0",
     "haversine": "^1.1.1",
     "iframe-resizer": "^4.3.2",
-    "install": "^0.13.0",
     "jamstack-loader": "^0.0.9",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^8.5.1",

@@ -130,13 +130,6 @@ function activite(simulation) {
   return activiteAnswer ? activiteAnswer.value : "#N/A"
 }
 
-function logement(simulation) {
-  const logementAnswer = simulation.answers.all.find(function (e) {
-    return e.fieldName === "statut_occupation_logement"
-  })
-  return logementAnswer ? logementAnswer.value : "#N/A"
-}
-
 function avecRessources(simulation) {
   const ressourcesAnswer = simulation.answers.all.find(function (e) {
     return e.fieldName === "ressources"
@@ -153,7 +146,6 @@ const props = {
   depcom100kp,
   epci,
   region,
-  logement,
   month,
 }
 

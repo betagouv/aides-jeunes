@@ -203,8 +203,8 @@ export function generateSituation(simulation, useAll?: any) {
   }
 
   if (situation && situation.menage) {
-    situation.menage.statut_occupation_logement = Logement.getLogementType(
-      situation.menage.statut_occupation_logement,
+    situation.menage.statut_occupation_logement = Logement.getStatutOccupationLogement(
+      situation.menage._logementType,
       situation.menage._locationType,
       situation.menage._primoAccedant
     )

@@ -311,14 +311,14 @@ function housingBlock() {
       new Step({
         entity: "menage",
         chapter: "logement",
-        variable: "statut_occupation_logement",
+        variable: "_logementType",
       }),
       {
         isActive: (subject) => {
           return (
-            !subject.statut_occupation_logement ||
+            !subject._logementType ||
             ["proprietaire", "primo_accedant"].some((proprietaire) =>
-              subject.statut_occupation_logement.includes(proprietaire)
+              subject._logementType.includes(proprietaire)
             )
           )
         },
@@ -326,8 +326,8 @@ function housingBlock() {
       },
       {
         isActive: (subject) =>
-          !subject.statut_occupation_logement ||
-          subject.statut_occupation_logement.startsWith("locataire"),
+          !subject._logementType ||
+          subject._logementType.startsWith("locataire"),
         steps: [
           new Step({ entity: "menage", variable: "_locationType" }),
           new Step({ entity: "menage", variable: "coloc" }),
@@ -341,11 +341,9 @@ function housingBlock() {
       {
         isActive: (subject) => {
           const locataire =
-            !subject.statut_occupation_logement ||
-            subject.statut_occupation_logement.startsWith("locataire")
-          const proprietaire =
-            subject.statut_occupation_logement === "primo_accedant" ||
-            subject.statut_occupation_logement === "proprietaire"
+            !subject._logementType ||
+            subject._logementType.startsWith("locataire")
+          const proprietaire = subject._logementType === "proprietaire"
           return locataire || proprietaire
         },
         steps: [
@@ -361,8 +359,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) =>
-          subject.statut_occupation_logement == "loge_gratuitement",
+        isActive: (subject) => subject._logementType == "heberge",
         steps: [
           new Step({ entity: "menage", variable: "participation_frais" }),
           new Step({
@@ -376,7 +373,7 @@ function housingBlock() {
       {
         isActive: (subject) =>
           subject.depcom?.startsWith("75") &&
-          subject.statut_occupation_logement != "sans_domicile",
+          subject._logementType != "sansDomicile",
         steps: [new Step({ entity: "famille", variable: "parisien" })],
       },
       {
@@ -408,8 +405,8 @@ function housingBlock() {
       },
       {
         isActive: (subject) =>
-          subject.statut_occupation_logement !== "proprietaire" &&
-          subject.statut_occupation_logement !== "primo_accedant",
+          subject._logementType !== "proprietaire" &&
+          subject._primoAccedant !== true,
         steps: [
           new Step({
             entity: "menage",

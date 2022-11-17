@@ -41,7 +41,7 @@ export default {
       { value: -12, label: "Non" },
     ],
   }),
-  statut_occupation_logement: new EnumProperty({
+  _logementType: new EnumProperty({
     question: "Êtes-vous ?",
     questionType: "enum",
     items: [

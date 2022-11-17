@@ -15,16 +15,16 @@
               <div class="fr-grid-row fr-mb-1w">
                 <div class="fr-col-6">
                   <div
-                    :class="
-                      {'fr-text--bold' : question.labelClass}
-                    "
+                    :class="{ 'fr-text--bold': question.labelClass }"
                     v-html="question.label"
                   ></div>
                 </div>
                 <div class="fr-col-4">
-                  <div v-if="
+                  <div
+                    v-if="
                       !['undefined', 'object'].includes(typeof question.value)
-                    ">
+                    "
+                  >
                     {{ question.value }}
                   </div>
                 </div>
@@ -55,23 +55,16 @@
     </div>
     <ul class="fr-btns-group fr-btns-group--inline fr-my-5w">
       <li>
-        <BackButton
-          @click="goBack"
-          class="fr-btn--icon-center"
-        ></BackButton>
+        <BackButton @click="goBack" class="fr-btn--icon-center"></BackButton>
       </li>
       <li v-if="showResultButton">
-        <router-link
-          class="fr-btn"
-          to="/simulation/resultats"
-        >Accéder aux résultats
+        <router-link class="fr-btn" to="/simulation/resultats"
+          >Accéder aux résultats
         </router-link>
       </li>
       <li v-else-if="store.lastUnansweredStep">
-        <router-link
-          :to="store.lastUnansweredStep.path"
-          class="fr-btn"
-        >Continuer
+        <router-link :to="store.lastUnansweredStep.path" class="fr-btn"
+          >Continuer
         </router-link>
       </li>
     </ul>

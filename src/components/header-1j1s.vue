@@ -1,8 +1,5 @@
 <template>
-  <header
-    role="banner"
-    class="fr-header"
-  >
+  <header role="banner" class="fr-header">
     <div class="fr-header__body">
       <div class="fr-container">
         <div class="fr-header__body-row">
@@ -27,10 +24,7 @@
               </div>
             </div>
             <div class="fr-header__service">
-              <a
-                :href="homeTo"
-                :title="homeTitle"
-              >
+              <a :href="homeTo" :title="homeTitle">
                 <p class="fr-header__service-title">
                   {{ serviceTitle }}
                 </p>
@@ -39,18 +33,9 @@
           </div>
           <div class="fr-header__tools">
             <div class="fr-header__tools-links">
-              <ul
-                v-if="$route.name !== 'home'"
-                class="fr-btns-group"
-              >
-                <li
-                  v-for="quickLink in quickLinks"
-                  :key="quickLink"
-                >
-                  <router-link
-                    class="fr-btn"
-                    :to="quickLink.path"
-                  >{{
+              <ul v-if="$route.name !== 'home'" class="fr-btns-group">
+                <li v-for="quickLink in quickLinks" :key="quickLink">
+                  <router-link class="fr-btn" :to="quickLink.path">{{
                     quickLink.label
                   }}</router-link>
                 </li>

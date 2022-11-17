@@ -1,5 +1,6 @@
 import { EnumProperty, BooleanProperty } from "./property"
 import { getAnswer } from "../answers"
+import Individu from "../../lib/individu"
 
 export default {
   coloc: new BooleanProperty({
@@ -86,18 +87,32 @@ export default {
       {
         label: "Foyer",
         value: "foyer",
-        hint: (activite, demandeurAge) => {
-          return [
-            ...(activite == "etudiant"
-              ? ["résidence universitaire", "logement CROUS"]
-              : []),
-            demandeurAge > 50 ? "maison de retraite" : "",
-            "foyer de jeune travailleur",
-            "résidence sociale…",
-          ]
-            .filter((present) => present)
-            .join(", ")
+        isRelevant({ demandeurIndividu, periods }) {
+          return (
+            Individu.age(demandeurIndividu, periods.today.value) < 50 &&
+            demandeurIndividu.activite === "etudiant"
+          )
         },
+        hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
+      },
+      {
+        label: "Foyer",
+        value: "foyer",
+        isRelevant({ demandeurIndividu, periods }) {
+          return (
+            Individu.age(demandeurIndividu, periods.today.value) < 50 &&
+            demandeurIndividu.activite !== "etudiant"
+          )
+        },
+        hint: "Foyer de jeune travailleur, résidence sociale…",
+      },
+      {
+        label: "Foyer",
+        value: "foyer",
+        isRelevant({ demandeurIndividu, periods }) {
+          return Individu.age(demandeurIndividu, periods.today.value) >= 50
+        },
+        hint: "Maison de retraite, résidence sociale…",
       },
     ],
   }),

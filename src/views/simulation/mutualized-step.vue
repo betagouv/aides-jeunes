@@ -23,11 +23,11 @@
           />
           <label :for="`${item.value}`">
             {{ item.label }}
-            <span v-if="item.hint" class="help">
-              <span v-if="typeof item.hint === 'string'">{{ item.hint }}</span>
-              <span v-if="typeof item.hint === 'function'">{{
-                item.hint(store.situation.demandeur.activite, demandeurAge)
-              }}</span>
+            <span
+              v-if="item.hint && typeof item.hint === 'string'"
+              class="help"
+            >
+              {{ item.hint }}
             </span>
           </label>
         </div>
@@ -172,6 +172,9 @@ export default {
       }
       return undefined
     },
+    demandeurIndividu() {
+      return useIndividu("demandeur")
+    },
     demandeurAge() {
       return Individu.age(
         this.store.situation.demandeur,
@@ -184,6 +187,7 @@ export default {
         simulation: this.store.simulation,
         individu: this.individu,
         periods: this.store.dates,
+        demandeurIndividu: this.demandeurIndividu,
       }
     },
     step() {

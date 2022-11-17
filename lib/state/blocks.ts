@@ -315,8 +315,11 @@ function housingBlock() {
       }),
       {
         isActive: (subject) => {
-          return ["proprietaire", "primo_accedant"].some((proprietaire) =>
-            subject.statut_occupation_logement.includes(proprietaire)
+          return (
+            !subject.statut_occupation_logement ||
+            ["proprietaire", "primo_accedant"].some((proprietaire) =>
+              subject.statut_occupation_logement.includes(proprietaire)
+            )
           )
         },
         steps: [new Step({ entity: "menage", variable: "_primoAccedant" })],

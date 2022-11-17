@@ -1,9 +1,5 @@
 <template>
-  <footer
-    class="fr-footer"
-    role="contentinfo"
-    id="footer"
-  >
+  <footer class="fr-footer" role="contentinfo" id="footer">
     <div class="fr-container">
       <div class="fr-footer__body">
         <div class="fr-footer__brand fr-enlarge-link">
@@ -32,10 +28,7 @@
               :key="link.label"
               class="fr-footer__content-item"
             >
-              <a
-                class="fr-footer__content-link"
-                :href="link.href"
-              >{{
+              <a class="fr-footer__content-link" :href="link.href">{{
                 link.label
               }}</a>
             </li>
@@ -49,20 +42,19 @@
             :key="link.label"
             class="fr-footer__bottom-item"
           >
-            <router-link
-              class="fr-footer__bottom-link"
-              :to="link.to"
-            >{{
+            <router-link class="fr-footer__bottom-link" :to="link.to">{{
               link.label
             }}</router-link>
           </li>
         </ul>
         <div class="fr-footer__bottom-copy">
-          <p>Sauf mention contraire, tous les contenus de ce site sont sous
+          <p
+            >Sauf mention contraire, tous les contenus de ce site sont sous
             <a
               href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
               target="_blank"
-            >licence etalab-2.0</a>
+              >licence etalab-2.0</a
+            >
           </p>
         </div>
       </div>

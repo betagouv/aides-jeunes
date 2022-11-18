@@ -81,7 +81,7 @@
     "sib-api-v3-sdk": "^8.2.1",
     "tmp": "^0.2.1",
     "validator": "^13.7.0",
-    "vite": "^3.0.4",
+    "vite": "^3.2.4",
     "vite-plugin-html": "^3.2.0",
     "vue": "^3.2.32",
     "vue-matomo": "^4.1.0",

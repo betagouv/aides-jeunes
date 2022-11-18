@@ -1,6 +1,16 @@
 import { EnumProperty, BooleanProperty } from "./property"
 import { getAnswer } from "../answers"
-import Individu from "../../lib/individu"
+import dayjs from "dayjs"
+
+const isLessThanFiftyYearsOld = (simulation, periods) => {
+  const date_naissance = getAnswer(
+    simulation.answers.current,
+    "individu",
+    "date_naissance",
+    "demandeur"
+  )
+  return dayjs(periods.today.value).diff(date_naissance, "year") < 50
+}
 
 export default {
   coloc: new BooleanProperty({
@@ -87,40 +97,15 @@ export default {
       {
         label: "Foyer",
         value: "foyer",
-        isRelevant({ demandeurIndividu, periods }) {
-          if (demandeurIndividu) {
-            return (
-              Individu.age(demandeurIndividu, periods.today.value) < 50 &&
-              demandeurIndividu.activite === "etudiant"
-            )
-          }
-          return false
-        },
+        isRelevant: ({ simulation, periods }) =>
+          isLessThanFiftyYearsOld(simulation, periods),
         hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
       },
       {
         label: "Foyer",
         value: "foyer",
-        isRelevant({ demandeurIndividu, periods }) {
-          if (demandeurIndividu) {
-            return (
-              Individu.age(demandeurIndividu, periods.today.value) < 50 &&
-              demandeurIndividu.activite !== "etudiant"
-            )
-          }
-          return false
-        },
-        hint: "Foyer de jeune travailleur, résidence sociale…",
-      },
-      {
-        label: "Foyer",
-        value: "foyer",
-        isRelevant({ demandeurIndividu, periods }) {
-          if (demandeurIndividu) {
-            return Individu.age(demandeurIndividu, periods.today.value) >= 50
-          }
-          return false
-        },
+        isRelevant: ({ simulation, periods }) =>
+          !isLessThanFiftyYearsOld(simulation, periods),
         hint: "Maison de retraite, résidence sociale…",
       },
     ],

@@ -30,7 +30,7 @@
 
       <p v-if="retrievingCommunes">
         <span
-          class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
         ></span>
       </p>

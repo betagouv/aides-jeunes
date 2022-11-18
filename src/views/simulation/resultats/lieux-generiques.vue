@@ -5,7 +5,7 @@
 
   <p v-show="updating">
     <span
-      class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+      class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
       aria-hidden="true"
     ></span
     ><span class="fr-ml-2w">Récupération en cours…</span>

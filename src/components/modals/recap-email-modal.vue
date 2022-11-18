@@ -31,10 +31,6 @@
                 reprises pour faire le point sur les démarches que vous avez
                 faites et les blocages que vous avez rencontrés.
               </p>
-              <div v-if="recapEmailState === 'ok'">
-                <i class="ri ri-check-line" />
-                On vous envoie un email&nbsp;!
-              </div>
 
               <div
                 v-if="recapEmailState === 'error'"
@@ -42,12 +38,14 @@
               >
                 <p>Une erreur s'est produite</p>
               </div>
-              <div v-if="recapEmailState === 'waiting'" class="fr-mb-2w">
-                <span
-                  class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
-                  aria-hidden="true"
-                ></span
-                ><span class="fr-ml-2w">Envoi en cours…</span>
+              <div v-if="recapEmailState === 'waiting'">
+                <p
+                  ><span
+                    class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+                    aria-hidden="true"
+                  ></span
+                  ><span class="fr-ml-2w">Envoi en cours…</span></p
+                >
               </div>
               <form
                 v-if="recapEmailState === 'show'"
@@ -65,7 +63,7 @@
                     class="fr-input"
                   />
                 </div>
-                <WarningMessage v-if="errorMessage"
+                <WarningMessage v-if="errorMessage" class="fr-mt-2w"
                   >Une adresse email valide doit être indiquée.
                 </WarningMessage>
               </form>

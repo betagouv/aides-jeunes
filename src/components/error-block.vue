@@ -1,21 +1,18 @@
 <template>
-  <div id="error" class="alert alert-danger" role="alert">
-    <h2>
-      <i aria-hidden="true" class="ri ri-error-warning-fill" /> Une erreur est
-      survenue.
-    </h2>
+  <div class="fr-alert fr-alert--error" role="alert">
+    <h2 class="fr-text--lead"> Une erreur est survenue. </h2>
 
-    <WarningMessage v-if="isTimeoutError">
+    <div v-if="isTimeoutError">
       <p>
-        Vous êtes beaucoup à utiliser ce simulateur en ce moment. On n'a pas
-        réussi à répondre à tout le monde en même temps.
+        Un grand nombre de personnes utilise ce simulateur en ce moment. Nous
+        n'avons pas réussi à répondre à tout le monde en même temps.
       </p>
 
       <p>
         En actualisant la page vous pourrez obtenir les résultats de votre
         simulation. Si vous le pouvez, attendez quelques minutes pour le faire.
       </p>
-    </WarningMessage>
+    </div>
 
     <p>
       <a
@@ -33,8 +30,11 @@
       résolu.
     </p>
     <div>
-      <button class="button" @click="showDetails = !showDetails">
-        Afficher les détails techniques
+      <button
+        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-mt-2w"
+        @click="showDetails = !showDetails"
+      >
+        {{ showDetails ? "Masquer" : "Afficher" }} les détails techniques
       </button>
     </div>
     <small v-if="showDetails">

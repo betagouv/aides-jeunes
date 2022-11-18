@@ -8,11 +8,8 @@
 
   <WarningMessage v-if="hasWarning">
     <div>
-      <h2>
-        <span aria-hidden="true" class="fr-icon--lg fr-icon-alert-line"></span>
-        Aucun résultat disponible
-      </h2>
-      <h3>
+      <h2 class="fr-text--lead"> Aucun résultat disponible </h2>
+      <h3 class="fr-text--lg">
         La simulation à laquelle vous souhaitez accéder n‘est pas accessible.
       </h3>
       <p class="fr-text--lg">
@@ -41,8 +38,8 @@
       <DroitsList :droits="droits" />
     </div>
 
-    <div v-show="isEmpty(droits)" class="frame-resultats">
-      <h2>
+    <div v-show="isEmpty(droits)" class="fr-py-5w">
+      <h2 class="fr-text--lead">
         Votre simulation n'a pas permis de découvrir de nouveaux droits.
       </h2>
       <p class="fr-text--lg">

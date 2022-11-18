@@ -12,7 +12,7 @@
             <div class="fr-modal__content fr-my-4w fr-text--center">
               <slot />
               <div
-                class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+                class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
                 aria-hidden="true"
               ></div>
             </div>

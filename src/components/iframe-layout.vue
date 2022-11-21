@@ -37,3 +37,9 @@ export default {
   },
 }
 </script>
+<style scoped>
+html,
+body {
+  height: unset !important;
+}
+</style>

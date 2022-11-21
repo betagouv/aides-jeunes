@@ -1,5 +1,5 @@
 <template>
-  <article class="text container aj-text-container">
+  <article class="fr-article">
     <h2>Intégrez le simulateur sur votre site&nbsp;!</h2>
     <p
       >Notre simulateur est intégrable de manière transparente en ajoutant une
@@ -9,37 +9,50 @@
     <h3>Code d'intégration</h3>
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>
 
-    <code>{{ fullScript }}</code>
     <p
-      >Plusieurs options s'offrent à vous pour personnaliser l'affichage du
-      simulateur :</p
+      ><code class="fr-text--sm fr-p-1v">{{ fullScript }}</code></p
     >
-    <ul class="options-list">
-      <li>
-        <input
-          type="checkbox"
-          checked="true"
-          v-model="options"
-          id="data-from-home"
-          value="data-from-home"
-        />
-        <label for="data-from-home">Afficher l'écran d'accueil</label>
-      </li>
-      <li>
-        <input
-          type="checkbox"
-          checked="true"
-          v-model="options"
-          id="data-with-logo"
-          value="data-with-logo"
-        />
-        <label for="data-with-logo">Afficher les logos institutionel</label>
-      </li>
-    </ul>
+    <div class="fr-form-group">
+      <fieldset class="fr-fieldset fr-fieldset--inline">
+        <legend
+          class="fr-fieldset__legend fr-text--regular"
+          id="checkboxes-inline-legend"
+        >
+          Plusieurs options s'offrent à vous pour personnaliser l'affichage du
+          simulateur :
+        </legend>
+        <div class="fr-fieldset__content">
+          <div class="fr-checkbox-group">
+            <input
+              type="checkbox"
+              checked="true"
+              v-model="options"
+              id="data-from-home"
+              value="data-from-home"
+            />
+            <label for="data-from-home" class="fr-label"
+              >Afficher l'écran d'accueil</label
+            >
+          </div>
+          <div class="fr-checkbox-group">
+            <input
+              type="checkbox"
+              checked="true"
+              v-model="options"
+              id="data-with-logo"
+              value="data-with-logo"
+            />
+            <label for="data-with-logo" class="fr-label"
+              >Afficher les logos institutionel</label
+            >
+          </div>
+        </div>
+      </fieldset>
+    </div>
 
     <h3>Prévisualisation</h3>
 
-    <div id="dest"></div>
+    <div id="dest" class="fr-col-11 fr-m-auto"></div>
 
     <h3>Customisation de l'iframe</h3>
     <p
@@ -47,8 +60,8 @@
       apportions des modifications spécifiques, vous pouvez contacter l'équipe
       directement à cette adresse
       <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a
-      >.<br />Merci !</p
-    >
+      >.<br />Merci !
+    </p>
   </article>
 </template>
 
@@ -92,26 +105,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-#dest {
-  max-width: 1000px;
-  margin: auto;
-}
-code {
-  background-color: rgb(248, 248, 248);
-  border-radius: unset;
-}
-.options-list {
-  display: flex;
-  gap: 2rem;
-  padding: 0;
-}
-.options-list li {
-  display: flex;
-  vertical-align: middle;
-}
-.options-list li input {
-  margin-right: none;
-  cursor: pointer;
-}
-</style>

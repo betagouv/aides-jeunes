@@ -12,6 +12,7 @@
               </div>
               <div class="fr-header__navbar">
                 <button
+                  v-if="!attributes?.collapse || $route.name !== 'home'"
                   class="fr-btn--menu fr-btn"
                   data-fr-opened="false"
                   aria-controls="modal-499"

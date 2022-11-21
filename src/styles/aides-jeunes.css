@@ -169,6 +169,10 @@ h3:focus {
   margin-top: 24px;
 }
 
+.fr-article code {
+  background: var(--background-disabled-grey);
+}
+
 @media print {
   .fr-print-only {
     display: inherit !important;

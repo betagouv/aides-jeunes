@@ -7,7 +7,7 @@
             <div class="fr-header__brand-top">
               <div class="fr-header__logo">
                 <p class="fr-logo fr-text--preformated">
-                  {{ logoText.join(" \n") }}
+                  {{ parameters.logoText.join(" \n") }}
                 </p>
               </div>
               <div class="fr-header__navbar">
@@ -24,9 +24,9 @@
               </div>
             </div>
             <div class="fr-header__service">
-              <a :href="homeTo" :title="homeTitle">
+              <a :href="parameters.homeTo" :title="parameters.homeTitle">
                 <p class="fr-header__service-title">
-                  {{ serviceTitle }}
+                  {{ parameters.serviceTitle }}
                 </p>
               </a>
             </div>
@@ -34,7 +34,7 @@
           <div class="fr-header__tools">
             <div class="fr-header__tools-links">
               <ul v-if="$route.name !== 'home'" class="fr-btns-group">
-                <li v-for="quickLink in quickLinks" :key="quickLink">
+                <li v-for="quickLink in parameters.quickLinks" :key="quickLink">
                   <router-link class="fr-btn" :to="quickLink.path">{{
                     quickLink.label
                   }}</router-link>
@@ -59,29 +59,27 @@
           Fermer
         </button>
         <div class="fr-header__menu-links"> </div>
-        <Navigation />
+        <Navigation v-if="!attributes?.collapse" />
       </div>
     </div>
   </header>
 </template>
 <script setup>
+import { useAttrs } from "vue"
 import Navigation from "@/components/navigation.vue"
-const homeTo =
-  "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu"
-const homeTitle =
-  "Retour à l’accueil du site - 1jeune1solution - République Française"
-const serviceTitle = "1jeune1solution"
-const logoText = ["République", "Française"]
-const quickLinks = [
-  {
-    label: "Retour à l'accueil du simulateur",
-    path: "/",
-  },
-]
-const navItems = [
-  {
-    to: "/",
-    text: "Accueil",
-  },
-]
+const attributes = useAttrs()
+const parameters = {
+  homeTo:
+    "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
+  homeTitle:
+    "Retour à l’accueil du site - 1jeune1solution - République Française",
+  serviceTitle: "1jeune1solution",
+  logoText: ["République", "Française"],
+  quickLinks: [
+    {
+      label: "Retour à l'accueil du simulateur",
+      path: "/",
+    },
+  ],
+}
 </script>

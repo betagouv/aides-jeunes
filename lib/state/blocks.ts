@@ -319,8 +319,7 @@ function housingBlock() {
       },
       {
         isActive: (subject) =>
-          !subject._logementType ||
-          subject._logementType.startsWith("locataire"),
+          !subject._logementType || subject._logementType === "locataire",
         steps: [
           new Step({ entity: "menage", variable: "_locationType" }),
           new Step({ entity: "menage", variable: "coloc" }),
@@ -334,8 +333,7 @@ function housingBlock() {
       {
         isActive: (subject) => {
           const locataire =
-            !subject._logementType ||
-            subject._logementType.startsWith("locataire")
+            !subject._logementType || subject._logementType === "locataire"
           const proprietaire = subject._logementType === "proprietaire"
           return locataire || proprietaire
         },
@@ -397,9 +395,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) =>
-          subject._logementType !== "proprietaire" &&
-          subject._primoAccedant !== true,
+        isActive: (subject) => subject._logementType !== "proprietaire",
         steps: [
           new Step({
             entity: "menage",

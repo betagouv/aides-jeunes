@@ -1,20 +1,33 @@
 name: "Continuous Deployment"
 on:
   push:
-    branches: [master]
+    branches: [master, dev]
 env:
   SSH_HOST: solstice.mes-aides.1jeune1solution.beta.gouv.fr
   SSH_USER: root
 
 jobs:
-  install:
-    name: Deployment
+  deploy_production:
+    if: github.ref == 'refs/heads/master'
+    name: Production deployment
     runs-on: ubuntu-20.04
     steps:
-      - name: Deployment
+      - name: Production deployment
         shell: bash
         run: |
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key
+  deploy_preproduction:
+    if: github.ref == 'refs/heads/dev'
+    name: Preproduction Deployment
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Preproduction Deployment
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key

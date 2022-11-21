@@ -55,30 +55,22 @@ function getStatutOccupationLabel(statut) {
   return STATUT_OCCUPATION_LABEL[statut]
 }
 
-function isOwner(_logementType, _primoAccedant) {
-  return _logementType === "proprietaire" || _primoAccedant === true
+function isOwner(_logementType) {
+  return _logementType === "proprietaire"
 }
 
-function captureCharges(_logementType, _primoAccedant, _locationType) {
-  return !(
-    Logement.isOwner(_logementType, _primoAccedant) ||
-    _locationType === "meublehotel"
-  )
+function captureCharges(_logementType, _locationType) {
+  return !(Logement.isOwner(_logementType) || _locationType === "meublehotel")
 }
 
 export function getLoyerData(answers) {
   const _logementType = getAnswer(answers, "menage", "_logementType")
-  const _primoAccedant = getAnswer(answers, "menage", "_primoAccedant")
   const _locationType = getAnswer(answers, "menage", "_primoAccedant")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
 
-  const isLocataire = !Logement.isOwner(_logementType, _primoAccedant)
-  const captureCharges = Logement.captureCharges(
-    _logementType,
-    _primoAccedant,
-    _locationType
-  )
+  const isLocataire = !Logement.isOwner(_logementType)
+  const captureCharges = Logement.captureCharges(_logementType, _locationType)
 
   if (isLocataire) {
     const loyerLabel = `Quel est le montant de votre ${

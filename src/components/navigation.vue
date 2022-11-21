@@ -29,40 +29,70 @@
           >{{ element.label }}</button
         >
         <div
-          v-if="element.children"
+          v-if="
+            element.children &&
+            element.children.some((subelement) => subelement?.children)
+          "
+          class="fr-collapse fr-mega-menu"
+          :id="`nav-menu-${index}`"
+          tabindex="-1"
+        >
+          <div class="fr-container fr-container--fluid fr-container-lg">
+            <button
+              class="fr-link--close fr-link"
+              :aria-controls="`nav-menu-${index}`"
+              >Fermer</button
+            >
+            <div class="fr-grid-row fr-grid-row-lg--gutters">
+              <div
+                v-for="(category, categoryIndex) in element.children"
+                :key="category.label"
+                class="fr-col-12 fr-col-lg-3"
+              >
+                <h5 class="fr-mega-menu__category">
+                  <a
+                    v-if="category.link"
+                    class="fr-nav__link"
+                    :href="category.link"
+                    target="_self"
+                    >{{ category.label }}</a
+                  >
+                  <span v-else class="fr-nav__link">{{ category.label }}</span>
+                </h5>
+                <ul v-if="category.children" class="fr-mega-menu__list">
+                  <li
+                    v-for="subcategory in category.children"
+                    :key="subcategory.label"
+                    ><a
+                      :href="subcategory.link"
+                      class="fr-nav__link"
+                      target="_self"
+                      >{{ subcategory.label }}</a
+                    ></li
+                  >
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          v-else-if="element.children"
           :id="`nav-menu-${index}`"
           class="fr-collapse fr-menu"
         >
           <ul class="fr-menu__list">
             <li
-              v-for="(subelement, subindex) in element.children"
+              v-for="subelement in element.children"
               :key="subelement.label"
               class="fr-nav__item"
             >
               <a
-                v-if="!subelement.children"
                 class="fr-nav__link"
                 :href="`${domain}${subelement.link}`"
                 target="_self"
+                :aria-current="subelement.active"
                 >{{ subelement.label }}</a
               >
-              <button
-                v-if="subelement.children"
-                class="fr-nav__btn"
-                aria-expanded="false"
-                :aria-controls="`nav-submenu-${index}-${subindex}`"
-                >{{ subelement.label }}</button
-              >
-              <div
-                v-if="subelement.children"
-                class="fr-container fr-container--fluid fr-container-lg"
-              >
-                <button
-                  :aria-controls="`nav-submenu-${index}-${subindex}`"
-                  class="fr-link--close fr-link"
-                  >Fermer</button
-                >
-              </div>
             </li>
           </ul>
         </div>
@@ -97,7 +127,7 @@ const navigation = [
     active: true,
     children: [
       { label: "Contrat Engagement Jeune", link: "/contrat-engagement-jeune" },
-      { label: "Mes aides financières", link: "/mes-aides" },
+      { label: "Mes aides financières", link: "/mes-aides", active: true },
       { label: "Mes aides au logement", link: "/logements/aides-logement" },
       { label: "Le mentorat", link: "/mentorat" },
       { label: "Je crée mon CV personnalisé", link: "/creer-mon-cv" },

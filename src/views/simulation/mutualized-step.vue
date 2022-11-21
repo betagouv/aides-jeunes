@@ -175,6 +175,7 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
+        path: this.$route.path,
         value: nullifyUndefinedValue(this.value),
       })
       this.$push()

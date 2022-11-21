@@ -117,6 +117,7 @@ export default {
       })
       this.store.answer({
         entityName: "enfants",
+        path: this.$route.path,
         value: enfants.length,
       })
       this.$push()

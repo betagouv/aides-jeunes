@@ -44,6 +44,7 @@ export default {
         id: "enfants",
         entityName: "individu",
         fieldName: this.fieldName,
+        path: this.$route.path,
         value: this.enfants.map((enfant) => ({
           id: enfant.id,
           value: nullifyUndefinedValue(enfant._hasRessources),

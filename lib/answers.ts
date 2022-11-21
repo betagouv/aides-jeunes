@@ -17,6 +17,10 @@ export const getAnswer = (answers: answerLayout[], entity, variable?, id?) => {
   return answer ? answer.value : undefined
 }
 
+export const getAnswerIndexByPath = (answers: answerLayout[], path) => {
+  return answers.findIndex((answer) => answer.path === path)
+}
+
 export const getAnswerIndex = (
   answers: answerLayout[],
   entityName,

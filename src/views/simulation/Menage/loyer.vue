@@ -71,6 +71,7 @@ export default {
       this.store.answer({
         entityName: "menage",
         fieldName: "loyer",
+        path: this.$route.path,
         value: {
           loyer: this.loyerQuestion.selectedValue || 0,
           charges_locatives: this.captureCharges

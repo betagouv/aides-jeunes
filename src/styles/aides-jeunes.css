@@ -6,6 +6,11 @@
   text-align: justify;
 }
 
+.fr-text--disabled {
+  color: var(--text-disabled-grey);
+  pointer-events: none;
+}
+
 .fr-icon-spin {
   display: inline-block;
   animation: spin 2.5s linear infinite;
@@ -176,6 +181,10 @@ h3:focus {
 @media print {
   .fr-print-only {
     display: inherit !important;
+  }
+
+  .fr-print-hidden {
+    display: none !important;
   }
 }
 

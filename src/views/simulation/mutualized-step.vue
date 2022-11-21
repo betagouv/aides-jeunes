@@ -169,11 +169,9 @@ export default {
     individu() {
       if (this.entityName === "individu") {
         return useIndividu(this.$route.params.id)
+      } else {
+        return useIndividu("demandeur")
       }
-      return undefined
-    },
-    demandeurIndividu() {
-      return useIndividu("demandeur")
     },
     demandeurAge() {
       return Individu.age(
@@ -187,7 +185,6 @@ export default {
         simulation: this.store.simulation,
         individu: this.individu,
         periods: this.store.dates,
-        demandeurIndividu: this.demandeurIndividu,
       }
     },
     step() {

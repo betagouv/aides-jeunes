@@ -1,4 +1,5 @@
 import { getAnswer } from "./answers"
+import { situationsMenageLayout } from "./types/situations"
 
 export enum StatutOccupationLogement {
   primo_accedant = "primo_accedant",
@@ -10,11 +11,11 @@ export enum StatutOccupationLogement {
   sans_domicile = "sans_domicile",
 }
 
-function getStatutOccupationLogement(
+function getStatutOccupationLogement({
   _logementType,
   _locationType,
-  _primoAccedant
-) {
+  _primoAccedant,
+}: situationsMenageLayout) {
   let statutOccupationLogement = _logementType
   if (_logementType === "locataire") {
     if (_locationType === "nonmeuble") {

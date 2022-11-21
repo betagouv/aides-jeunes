@@ -7,15 +7,15 @@ export interface situationsLayout {
   enfants?: any[] | null
   famille?: any
   menage?: {
-    _locationType?: string
-    _primoAccedant?: boolean
     aide_logement_date_pret_conventionne: string
     _departement?: string
     depcom?: string
     _epci?: string
+    _locationType?: string
+    _logementType?: string
+    _primoAccedant?: boolean
     _region?: string
     statut_occupation_logement?: string
-    _logementType?: string
   }
   parents?: any
   conjoint?: any

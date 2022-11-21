@@ -39,7 +39,9 @@ export default {
 </script>
 <style scoped>
 html,
-body {
+body,
+.fr-page--full-height,
+.fr-modal--large .fr-modal__content {
   height: unset !important;
 }
 </style>

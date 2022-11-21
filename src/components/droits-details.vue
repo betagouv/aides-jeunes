@@ -64,12 +64,11 @@
         "
         class="print-hidden"
       >
-        <span>
-          <i aria-hidden="true" class="ri ri-error-warning-fill" /> Cette aide
-          se base sur votre patrimoine. Vous avez un patrimoine immobilier,
-          d'épargne, des revenus fonciers et/ou du capital ? Vous devez
-          renseigner des informations complémentaires.
-        </span>
+        <p>
+          Cette aide se base sur votre patrimoine. Vous avez un patrimoine
+          immobilier, d'épargne, des revenus fonciers et/ou du capital ? Vous
+          devez renseigner des informations complémentaires.
+        </p>
         <ul class="fr-btns-group">
           <li>
             <router-link
@@ -83,7 +82,7 @@
           </li>
         </ul>
       </WarningMessage>
-      <div class="aj-droit-content-buttons print-hidden">
+      <div class="print-hidden">
         <div
           v-if="isString(droit.montant)"
           class="notification warning print-hidden"

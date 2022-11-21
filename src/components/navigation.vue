@@ -45,7 +45,7 @@
             >
             <div class="fr-grid-row fr-grid-row-lg--gutters">
               <div
-                v-for="(category, categoryIndex) in element.children"
+                v-for="category in element.children"
                 :key="category.label"
                 class="fr-col-12 fr-col-lg-3"
               >

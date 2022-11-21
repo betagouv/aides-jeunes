@@ -1,7 +1,11 @@
 <template>
   <form>
-    <div v-for="individu in individus" :key="individu.id">
-      <div v-if="individu.display">
+    <fieldset
+      v-for="individu in individus"
+      :key="individu.id"
+      class="fr-fieldset"
+    >
+      <legend class="fr-fieldset__legend">
         <h2 class="fr-text--lead">
           Indiquez toutes les ressources <strong>nettes versées</strong> perçues
           <span v-if="individu._role !== 'demandeur'"
@@ -9,37 +13,43 @@
           >
           en France comme à l'étranger.
         </h2>
-        <p>
-          Ces informations se trouvent sur votre avis d'imposition
-          {{ store.dates.lastYear.label }} sur les revenus
-          {{ store.dates.fiscalYear.label }}. <br />Vous pouvez le retrouver en
-          ligne sur
-          <a
-            href="http://www.impots.gouv.fr/"
-            rel="noopener"
-            target="_blank"
-            title="impots.gouv.fr - Nouvelle fenêtre"
-            >impots.gouv.fr</a
-          >.
-        </p>
-        <div
-          v-for="ressource in categoriesRnc"
-          :key="ressource.id"
-          class="fr-form-group"
-        >
-          <label>
-            {{ ressource.label }}
-            <input
-              v-model="individu.values[ressource.id][store.dates.fiscalYear.id]"
-              v-select-on-click
-              class="fr-input"
-              type="number"
-            />
-            <span v-if="individu.default[ressource.id]">
-              Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
-              derniers mois.</span
-            >
-          </label>
+      </legend>
+      <div class="fr-fieldset__content">
+        <div v-if="individu.display">
+          <p>
+            Ces informations se trouvent sur votre avis d'imposition
+            {{ store.dates.lastYear.label }} sur les revenus
+            {{ store.dates.fiscalYear.label }}. <br />Vous pouvez le retrouver
+            en ligne sur
+            <a
+              href="http://www.impots.gouv.fr/"
+              rel="noopener"
+              target="_blank"
+              title="impots.gouv.fr - Nouvelle fenêtre"
+              >impots.gouv.fr</a
+            >.
+          </p>
+          <div
+            v-for="ressource in categoriesRnc"
+            :key="ressource.id"
+            class="fr-mb-2w"
+          >
+            <label class="fr-label">
+              {{ ressource.label }}
+              <input
+                v-model="
+                  individu.values[ressource.id][store.dates.fiscalYear.id]
+                "
+                v-select-on-click
+                class="fr-input fr-col-6 fr-col-xs-5 fr-col-lg-5"
+                type="number"
+              />
+              <span v-if="individu.default[ressource.id]" class="fr-hint-text">
+                Ce montant vaut {{ individu.default[ressource.id] }} pour les 12
+                derniers mois.</span
+              >
+            </label>
+          </div>
         </div>
       </div>
       <ul
@@ -55,7 +65,7 @@
           </button></li
         >
       </ul>
-    </div>
+    </fieldset>
 
     <ActionButtons :on-submit="onSubmit" />
   </form>

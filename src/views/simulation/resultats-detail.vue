@@ -26,9 +26,7 @@
       <DroitsContributions v-if="droit" :droit="droit" />
     </div>
 
-    <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback v-if="droit" />
-    </div>
+    <Feedback v-if="droit" />
   </div>
 </template>
 

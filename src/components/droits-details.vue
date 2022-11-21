@@ -40,20 +40,24 @@
           !ressourcesYearMinusTwoCaptured &&
           !isString(droit.montant)
         "
-        class="print-hidden"
+        class="fr-print-hidden"
       >
-        <p class="fr-callout__text">
+        <p>
           Cette aide se base sur vos ressources de l'année
           {{ store.dates.fiscalYear.label }}
         </p>
-        <router-link
-          v-if="!aCharge"
-          class="fr-btn fr-btn--secondary"
-          to="/simulation/ressources/fiscales"
-        >
-          Déclarez vos ressources
-          {{ store.dates.fiscalYear.label }}
-        </router-link>
+        <ul class="fr-btns-group fr-mt-2w">
+          <li>
+            <router-link
+              v-if="!aCharge"
+              class="fr-btn fr-btn--secondary"
+              to="/simulation/ressources/fiscales"
+            >
+              Déclarez vos ressources
+              {{ store.dates.fiscalYear.label }}
+            </router-link>
+          </li>
+        </ul>
       </WarningMessage>
 
       <WarningMessage
@@ -62,14 +66,14 @@
           !patrimoineCaptured &&
           !isString(droit.montant)
         "
-        class="print-hidden"
+        class="fr-print-hidden"
       >
         <p>
           Cette aide se base sur votre patrimoine. Vous avez un patrimoine
           immobilier, d'épargne, des revenus fonciers et/ou du capital ? Vous
           devez renseigner des informations complémentaires.
         </p>
-        <ul class="fr-btns-group">
+        <ul class="fr-btns-group fr-mt-2w">
           <li>
             <router-link
               id="patrimoine-link"
@@ -82,11 +86,8 @@
           </li>
         </ul>
       </WarningMessage>
-      <div class="print-hidden">
-        <div
-          v-if="isString(droit.montant)"
-          class="notification warning print-hidden"
-        >
+      <div class="fr-print-hidden">
+        <WarningMessage v-if="isString(droit.montant)">
           <p>
             L'application Mes Aides ne peut pas calculer le montant de cette
             prestation, car
@@ -97,7 +98,7 @@
               v-html="droit.uncomputability[droit.montant].solution"
             />
           </p>
-        </div>
+        </WarningMessage>
         <BenefitCta :benefit="droit" :benefitsTotal="droits.length" />
 
         <a

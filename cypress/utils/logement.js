@@ -1,11 +1,11 @@
 import { submit, fillRadio } from "./form"
 
-const fill__logementType = (logement) => {
-  fillRadio("logement", logement)
+const fill__logementType = (_logementType) => {
+  fillRadio("_logementType", _logementType)
 }
 
-const fill__locationType = (logementType) => {
-  fillRadio("_locationType", logementType)
+const fill__locationType = (_locationType) => {
+  fillRadio("_locationType", _locationType)
 }
 
 const fill__nombreMoisEntreeLogement = (nombre) => {

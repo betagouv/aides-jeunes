@@ -314,14 +314,7 @@ function housingBlock() {
         variable: "_logementType",
       }),
       {
-        isActive: (subject) => {
-          return (
-            !subject._logementType ||
-            ["proprietaire", "primo_accedant"].some((proprietaire) =>
-              subject._logementType.includes(proprietaire)
-            )
-          )
-        },
+        isActive: (subject) => subject._logementType === "proprietaire",
         steps: [new Step({ entity: "menage", variable: "_primoAccedant" })],
       },
       {

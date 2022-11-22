@@ -1,7 +1,7 @@
 <template>
   <div class="fr-page--full-height">
     <Header1J1S />
-    <main class="fr-container">
+    <main role="main" class="fr-container">
       <slot />
     </main>
   </div>

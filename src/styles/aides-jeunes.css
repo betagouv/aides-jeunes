@@ -8,7 +8,6 @@
 
 .fr-text--disabled {
   color: var(--text-disabled-grey);
-  pointer-events: none;
 }
 
 .fr-icon-spin {
@@ -75,6 +74,7 @@
 
 [data-text] {
   position: relative;
+  z-index: 1;
 }
 
 [data-text]:hover:after {
@@ -86,7 +86,7 @@
   inset: auto auto 150% 0;
   margin: auto;
   width: 250px;
-  z-index: 50000;
+  z-index: calc(var(--ground) + 10000);
   text-transform: none;
 }
 

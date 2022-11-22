@@ -12,7 +12,7 @@
       <div class="fr-fieldset__content">
         <div class="fr-container--fluid">
           <div class="fr-grid-row">
-            <div class="fr-col-8 fr-col-md-8 fr-col-lg-8">
+            <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
               <div class="fr-form-group">
                 <div v-if="questionType === 'enum'">
                   <div
@@ -41,27 +41,25 @@
                     :data-type="step.type"
                   />
                 </div>
-                <div v-else-if="questionType === 'date'">
-                  <InputDate :id="fieldName" v-model="value" />
-                </div>
-                <div v-else-if="questionType === 'multiple'">
-                  <MultipleAnswers
-                    v-model="value"
-                    :items="step.getItems(propertyData)"
-                  />
-                </div>
-                <div v-else-if="questionType === 'text'">
-                  <input
-                    :id="fieldName"
-                    v-model="value"
-                    :data-testid="fieldName"
-                    type="text"
-                    class="fr-input"
-                  />
-                </div>
-                <div v-else>
-                  <YesNoQuestion v-model="value"></YesNoQuestion>
-                </div>
+                <InputDate
+                  v-else-if="questionType === 'date'"
+                  :id="fieldName"
+                  v-model="value"
+                />
+                <MultipleAnswers
+                  v-else-if="questionType === 'multiple'"
+                  v-model="value"
+                  :items="step.getItems(propertyData)"
+                />
+                <input
+                  v-else-if="questionType === 'text'"
+                  :id="fieldName"
+                  v-model="value"
+                  :data-testid="fieldName"
+                  type="text"
+                  class="fr-input"
+                />
+                <YesNoQuestion v-else v-model="value"></YesNoQuestion>
               </div>
             </div>
           </div>

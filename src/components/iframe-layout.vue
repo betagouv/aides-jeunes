@@ -1,6 +1,8 @@
 <template>
   <Header1J1S v-if="headerCollapse" :collapse="headerCollapse" />
-  <slot />
+  <main role="main">
+    <slot />
+  </main>
   <div>
     <p class="fr-text--center fr-p-1w">
       Simulateur propulsé par

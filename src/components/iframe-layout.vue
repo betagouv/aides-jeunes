@@ -9,13 +9,10 @@
           la plateforme 1jeune1solution
         </a>
       </p>
-      <p>-</p>
+      <p class="aj-iframe-footer-mob-height">-</p>
       <p>
-        Accédez à nos<a
-          href="https://mes-aides.1jeune1solution.beta.gouv.fr/cgu"
-        >
-          CGU</a
-        ></p
+        Accédez à nos
+        <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/cgu">CGU</a></p
       >
     </div>
   </div>

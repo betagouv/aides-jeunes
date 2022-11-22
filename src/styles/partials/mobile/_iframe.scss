@@ -3,5 +3,13 @@ html {
     .aj-iframe-footer-body {
       min-height: 13rem;
     }
+    .aj-iframe-footer {
+      display: block;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      font-size: 13px;
+      line-height: 10px;
+    }
   }
 }

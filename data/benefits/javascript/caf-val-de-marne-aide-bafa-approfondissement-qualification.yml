@@ -4,18 +4,7 @@ description: L'aide au Bafa pour une session d'approfondissement ou de
   qualification est une aide locale mise à disposition par la CAF du
   Val-de-Marne pour vous aider à financer votre session en complément de l'aide
   nationale apportée par la CAF.
-conditions:
-  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
-    d’animateur de centre de vacances et de loisirs (BAFA).
-link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
-form: https://www.caf.fr/sites/default/files/caf/941/Documents/Offre-services/demande_daide_bafa.pdf
-instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/enfance-et-jeunesse/l-aide-au-bafa
 prefix: l’
-type: float
-unit: €
-periodicite: ponctuelle
-montant: 100
-interestFlag: _interetBafa
 conditions_generales:
   - type: departements
     values:
@@ -23,4 +12,21 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 16
+  - type: age
+    operator: <=
+    value: 25
+  - type: regime_securite_sociale
+    excludes:
+      - regime_agricole
 profils: []
+conditions:
+  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+    d’animateur de centre de vacances et de loisirs (BAFA).
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/vie-personnelle/l-aide-au-bafa#:~:text=Session%20d'approfondissement%20ou%20de%20qualification%20%3A&text=Montant%20de%20l'aide%20nationale,b%C3%A9n%C3%A9ficier%20de%20l'aide%20nationale.
+form: https://www.caf.fr/sites/default/files/medias/941/Partenaires%20locaux/Offre%20de%20service%20familiale%20et%20sociale/Aides%20financi%C3%A8res/BAFA%201%20Lettre%20d'engagement%20-RAS%2001.09.2022-maj.docx
+instructions: https://www.caf.fr/allocataires/caf-du-val-de-marne/offre-de-service/vie-personnelle/l-aide-au-bafa#:~:text=Session%20d'approfondissement%20ou%20de%20qualification%20%3A&text=Montant%20de%20l'aide%20nationale,b%C3%A9n%C3%A9ficier%20de%20l'aide%20nationale.

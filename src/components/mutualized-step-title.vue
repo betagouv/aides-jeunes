@@ -6,6 +6,7 @@
         v-html="props.question"
         class="fr-display-sm fr-text--lead fr-pr-3w"
       />
+      &nbsp;
       <EnSavoirPlus v-if="props.showMoreInfo" />
     </h2>
   </component>

@@ -4,7 +4,7 @@
       <h2>
         <span class="fr-display-sm fr-text--lead fr-pr-3w"
           >Mes enfants à charge</span
-        >
+        >&nbsp;
         <EnSavoirPlus />
       </h2>
     </legend>

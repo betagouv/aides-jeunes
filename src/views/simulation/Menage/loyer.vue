@@ -1,44 +1,41 @@
 <template>
   <form @submit.prevent="onSubmit" class="fr-form-group">
-    <fieldset class="fr-fieldset fr-mb-2w">
-      <div class="fr-fieldset__content">
-        <div class="fr-input-group">
-          <label role="heading" aria-level="2" for="loyer" class="fr-label"
-            >{{ loyerQuestion.label }}<br />
-            <span class="fr-hint-text">{{ loyerQuestion.hint }}</span>
-          </label>
-          <div class="fr-container--fluid">
-            <div class="fr-grid-row">
-              <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
-                <InputNumber
-                  id="loyer"
-                  :amount="true"
-                  v-model="loyerQuestion.selectedValue"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div v-if="captureCharges" class="fr-input-group">
-          <label role="heading" aria-level="2" for="charges" class="fr-label"
-            >{{ chargesQuestion.label }}
-            <span class="fr-hint-text">{{ chargesQuestion.hint }}</span>
-          </label>
-          <div class="fr-container--fluid">
-            <div class="fr-grid-row">
-              <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
-                <InputNumber
-                  id="charges"
-                  v-model="chargesQuestion.selectedValue"
-                  :amount="true"
-                  data-testid="loyer"
-                />
-              </div>
-            </div>
+    <div class="fr-mb-6w">
+      <label for="loyer">
+        <h2 class="fr-text--lead">{{ loyerQuestion.label }}</h2>
+      </label>
+      <span class="fr-hint-text">{{ loyerQuestion.hint }}</span>
+      <div class="fr-container--fluid">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+            <InputNumber
+              id="loyer"
+              :amount="true"
+              v-model="loyerQuestion.selectedValue"
+            />
           </div>
         </div>
       </div>
-    </fieldset>
+    </div>
+    <div v-if="captureCharges" class="fr-mb-2w">
+      <label for="charges">
+        <h2 class="fr-text--lead">{{ chargesQuestion.label }}</h2>
+      </label>
+      <span class="fr-hint-text">{{ chargesQuestion.hint }}</span>
+      <div class="fr-container--fluid">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+            <InputNumber
+              id="charges"
+              v-model="chargesQuestion.selectedValue"
+              :amount="true"
+              data-testid="loyer"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

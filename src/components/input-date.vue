@@ -1,9 +1,9 @@
 <template>
-  <div class="fr-form-group">
-    <fieldset class="fr-fieldset fr-fieldset--inline">
-      <div class="fr-fieldset__content">
-        <div v-if="showDay" class="fr-input-group fr-mr-2w fr-mw-9w">
-          <label class="fr-label fr-text--center">jour</label>
+  <div class="fr-container--fluid">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div v-if="showDay" class="fr-col-3 fr-col-md-2">
+        <label class="fr-label fr-text--center">
+          <span class="fr-hint-text fr-mb-1v">jour</span>
           <input
             :id="firstId"
             class="fr-input"
@@ -21,9 +21,11 @@
             placeholder="JJ"
             type="text"
           />
-        </div>
-        <div class="fr-input-group fr-mr-2w fr-mw-9w">
-          <label class="fr-label fr-text--center">mois</label>
+        </label>
+      </div>
+      <div class="fr-col-3 fr-col-md-2">
+        <label class="fr-label fr-text--center">
+          <span class="fr-hint-text fr-mb-1v">mois</span>
           <input
             ref="month"
             class="fr-input"
@@ -38,9 +40,11 @@
             placeholder="MM"
             type="text"
           />
-        </div>
-        <div class="fr-input-group fr-mw-18w">
-          <label class="fr-label fr-text--center"> année</label>
+        </label>
+      </div>
+      <div class="fr-col-6 fr-col-md-4">
+        <label class="fr-label fr-text--center">
+          <span class="fr-hint-text fr-mb-1v">année</span>
           <input
             ref="year"
             v-model="year"
@@ -54,11 +58,10 @@
             placeholder="AAAA"
             type="text"
           />
-        </div>
+        </label>
       </div>
-    </fieldset>
+    </div>
   </div>
-  <div> </div>
 </template>
 
 <script>

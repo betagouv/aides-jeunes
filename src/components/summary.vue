@@ -22,16 +22,17 @@
             class="fr-sidemenu__item"
           >
             <router-link
+              v-if="!disabledLink(chapter, index)"
               :to="chapter.root"
-              :tabindex="disabledLink(chapter, index) ? -1 : 0"
+              tabindex="0"
               class="fr-sidemenu__link"
               :aria-current="chapter.current ? chapter.current : null"
-              :class="{
-                'fr-text--disabled': disabledLink(chapter, index),
-              }"
               target="_self"
               >{{ chapter.label }}</router-link
             >
+            <span v-else class="fr-sidemenu__link fr-text--disabled">{{
+              chapter.label
+            }}</span>
           </li>
         </ul>
       </div>

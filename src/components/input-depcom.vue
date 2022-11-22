@@ -1,63 +1,55 @@
 <template>
-  <fieldset class="fr-fieldset">
-    <div class="fr-fieldset__content">
-      <div class="fr-input-group">
-        <label
-          aria-level="2"
-          class="fr-label fr-text--lead fr-text--bold fr-pr-3w"
-          for="cp"
-          role="heading"
-          >{{ codePostalLabel }}
-          <EnSavoirPlus />
-        </label>
-        <div class="fr-container">
-          <div class="fr-grid-row">
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
-              <input
-                id="cp"
-                v-model="codePostalValue"
-                data-testid="postalCode"
-                data-type="number"
-                inputmode="numeric"
-                pattern="[0-9]*"
-                type="text"
-                class="fr-input"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p v-if="retrievingCommunes">
-        <span
-          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-          aria-hidden="true"
-        ></span>
-      </p>
-      <div v-show="communes?.length" class="fr-input-group fr-mt-5w">
-        <label
-          class="fr-label fr-text--lead fr-text--bold fr-pr-3w"
-          for="commune"
-          >Veuillez sélectionner la ville qui correspond
-        </label>
-        <div class="fr-container">
-          <div class="fr-grid-row">
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
-              <select id="commune" v-model="nomCommuneValue" class="fr-select">
-                <option
-                  v-for="(commune, index) in communes"
-                  :key="`commune_${index}`"
-                  :value="commune.nom"
-                >
-                  {{ commune.nom }}
-                </option>
-              </select>
-            </div>
+  <div>
+    <div class="fr-input-group">
+      <label class="fr-label fr-text--lead fr-text--bold fr-pr-3w" for="cp"
+        >{{ codePostalLabel }}&nbsp;
+        <EnSavoirPlus />
+      </label>
+      <div class="fr-container">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <input
+              id="cp"
+              v-model="codePostalValue"
+              data-testid="postalCode"
+              data-type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              type="text"
+              class="fr-input"
+            />
           </div>
         </div>
       </div>
     </div>
-  </fieldset>
+
+    <p v-if="retrievingCommunes">
+      <span
+        class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+        aria-hidden="true"
+      ></span>
+    </p>
+    <div v-show="communes?.length" class="fr-input-group fr-mt-5w">
+      <label class="fr-label fr-text--lead fr-text--bold fr-pr-3w" for="commune"
+        >Veuillez sélectionner la ville qui correspond
+      </label>
+      <div class="fr-container">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <select id="commune" v-model="nomCommuneValue" class="fr-select">
+              <option
+                v-for="(commune, index) in communes"
+                :key="`commune_${index}`"
+                :value="commune.nom"
+              >
+                {{ commune.nom }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

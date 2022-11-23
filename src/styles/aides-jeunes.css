@@ -122,24 +122,10 @@
   text-transform: none;
 }
 
-.fr-page--full-height {
+.aj-page--full-height {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.fr-page--hero {
-  height: 100%;
-  flex: 1;
-  height: 700px;
-  max-height: 700px;
-  align-items: stretch;
-}
-
-.fr-page--hero .fr-col {
-  flex: 1;
-  height: 100%;
-  min-height: 700px;
 }
 
 .aj-hero-section {

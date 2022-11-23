@@ -1,11 +1,11 @@
 <template>
-  <div class="fr-grid-row">
+  <div class="fr-grid-row aj-hero-section">
     <div
-      class="fr-col-12 fr-col-md-6 fr-col--middle fr-mt-6w fr-mt-md-12w fr-mb-md-10w"
+      class="aj-hero-section--text fr-col fr-col-12 fr-col-md-6 fr-col--middle fr-py-6w fr-py-md-12w fr-px-4w"
       data-testid="home-hero-content"
     >
       <h1>
-        <span class="fr-text--highlight"
+        <span class="aj-hero-section--text-highlight"
           >Évaluez vos droits à<br />{{ benefitsNumber }} aides</span
         ><br />en moins de 5 minutes.
       </h1>
@@ -41,9 +41,13 @@
       </ul>
     </div>
     <div
-      class="fr-col-6 fr-col--bottom fr-text--center fr-hidden fr-unhidden-md fr-container fr-grid-row--center"
+      class="fr-col fr-col-6 fr-col--bottom fr-text--center fr-hidden fr-unhidden-md fr-container fr-grid-row--center"
     >
-      <img src="@/assets/images/home_illustration.png" alt="" />
+      <img
+        src="@/assets/images/home_illustration.png"
+        class="aj-hero-section--img"
+        alt=""
+      />
     </div>
   </div>
 </template>

@@ -61,6 +61,7 @@
                     required
                     type="email"
                     class="fr-input"
+                    autocomplete="email"
                   />
                 </div>
                 <WarningMessage v-if="errorMessage" class="fr-mt-2w"

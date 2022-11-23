@@ -1,5 +1,33 @@
 :root {
   --text-disabled-grey: #666;
+  --blue-ecume-975-75: #f4f6fe;
+  --blue-ecume-975-75-hover: #d7dffb;
+  --blue-ecume-975-75-active: #c3cffa;
+  --blue-ecume-950-100: #e9edfe;
+  --blue-ecume-950-100-hover: #c5d0fc;
+  --blue-ecume-950-100-active: #adbffc;
+  --blue-ecume-sun-247-moon-675: #2f4077;
+  --blue-ecume-sun-247-moon-675-hover: #4e68bb;
+  --blue-ecume-sun-247-moon-675-active: #667dcf;
+  --blue-ecume-925-125: #dee5fd;
+  --blue-ecume-925-125-hover: #b4c5fb;
+  --blue-ecume-925-125-active: #99b3f9;
+  --blue-ecume-main-400: #465f9d;
+  --blue-ecume-850-200: #bfccfb;
+  --blue-cumulus-975-75: #f3f6fe;
+  --blue-cumulus-975-75-hover: #d3dffc;
+  --blue-cumulus-975-75-active: #bed0fa;
+  --blue-cumulus-950-100: #e6eefe;
+  --blue-cumulus-950-100-hover: #bcd3fc;
+  --blue-cumulus-950-100-active: #9fc3fc;
+  --blue-cumulus-sun-368-moon-732: #3558a2;
+  --blue-cumulus-sun-368-moon-732-hover: #5982e0;
+  --blue-cumulus-sun-368-moon-732-active: #7996e6;
+  --blue-cumulus-925-125: #dae6fd;
+  --blue-cumulus-925-125-hover: #a9c8fb;
+  --blue-cumulus-925-125-active: #8ab8f9;
+  --blue-cumulus-main-526: #417dc4;
+  --blue-cumulus-850-200: #b6cffb;
 }
 
 .fr-text--center {
@@ -100,9 +128,56 @@
   flex-direction: column;
 }
 
-main {
-  /* min-height: 80vh; */
+.fr-page--hero {
+  height: 100%;
   flex: 1;
+  height: 700px;
+  max-height: 700px;
+  align-items: stretch;
+}
+
+.fr-page--hero .fr-col {
+  flex: 1;
+  height: 100%;
+  min-height: 700px;
+}
+
+.aj-hero-section {
+  min-height: 100%;
+  height: 635px;
+  max-height: 635px;
+  background-color: var(--blue-cumulus-main-526);
+}
+
+.aj-hero-section .fr-btn {
+  background-color: var(--blue-cumulus-main-526) !important;
+}
+
+.aj-hero-section--text {
+  background-color: white;
+  height: 100%;
+}
+
+.aj-hero-section--text h1 {
+  color: var(--blue-cumulus-main-526);
+  font-weight: normal;
+}
+
+.aj-hero-section--text-highlight {
+  background-image: linear-gradient(
+    0deg,
+    var(--success-975-75) 0%,
+    var(--success-975-75) 50%,
+    transparent 50%,
+    transparent 100%
+  );
+  color: #27a658;
+}
+
+.aj-hero-section--img {
+  height: 100%;
+  max-height: 550px;
+  margin-top: 150px;
 }
 
 .aj-main-container {
@@ -152,16 +227,6 @@ h3:focus {
   min-height: 70vh;
 }
 
-.fr-text--highlight {
-  background-image: linear-gradient(
-    0deg,
-    var(--border-default-grey) 0%,
-    var(--border-default-grey) 50%,
-    transparent 50%,
-    transparent 100%
-  );
-}
-
 .fr-print-only {
   display: none;
 }
@@ -191,11 +256,3 @@ h3:focus {
     display: none !important;
   }
 }
-
-/*
-xs / 0 - 575
-sm / 567 - 767
-md / 768 - 991
-lg / 992 - 1247
-xl / >= 1248
-*/

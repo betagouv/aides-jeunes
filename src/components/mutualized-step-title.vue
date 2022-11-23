@@ -1,5 +1,8 @@
 <template>
-  <component :is="titleWrapper" :for="forTitleWrapper">
+  <component
+    :is="titleWrapper && forTitleWrapper ? titleWrapper : 'div'"
+    :for="forTitleWrapper"
+  >
     <h2 class="fr-mb-0">
       <span
         data-testid="question"

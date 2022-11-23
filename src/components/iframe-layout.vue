@@ -4,15 +4,16 @@
   <div class="aj-iframe-footer-body">
     <div class="aj-iframe-footer">
       <p>
-        Simulateur propulsé par&nbsp;
+        Simulateur propulsé par
         <a href="https://www.1jeune1solution.gouv.fr/" target="_blank">
           la plateforme 1jeune1solution
         </a>
       </p>
-    </div>
-    <div class="aj-iframe-footer">
-      <p>Accédez à nos&nbsp;</p
-      ><a href="https://mes-aides.1jeune1solution.beta.gouv.fr/cgu">CGU</a>
+      <p class="aj-iframe-footer-mob-height">-</p>
+      <p>
+        Accédez à nos
+        <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/cgu">CGU</a></p
+      >
     </div>
   </div>
 </template>

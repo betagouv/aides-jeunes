@@ -39,7 +39,7 @@
         >
           <div class="fr-container fr-container--fluid fr-container-lg">
             <button
-              class="fr-link--close fr-link"
+              class="fr-btn--close fr-btn"
               :aria-controls="`nav-menu-${index}`"
               >Fermer</button
             >

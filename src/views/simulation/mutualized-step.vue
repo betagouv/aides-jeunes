@@ -170,11 +170,6 @@ export default {
         return useIndividu("demandeur")
       }
     },
-    demandeurAge() {
-      return Individu.age(
-        this.store.situation.demandeur,
-        this.store.dates.today.value
-      )
     },
     propertyData() {
       return {

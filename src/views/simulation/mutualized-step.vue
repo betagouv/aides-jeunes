@@ -170,7 +170,6 @@ export default {
         return useIndividu("demandeur")
       }
     },
-    },
     propertyData() {
       return {
         openFiscaParameters: this.store.openFiscaParameters,

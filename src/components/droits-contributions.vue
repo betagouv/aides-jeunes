@@ -1,17 +1,5 @@
 <template>
   <p class="is-align-vertically-center">
-    <a
-      v-if="brokenLinkButtonState === 'show'"
-      class="text-center"
-      @click="alertBrokenLink()"
-      >Lien invalide ?</a
-    >
-    <span
-      v-else-if="brokenLinkButtonState === 'showThanksMessage'"
-      class="text-center"
-      >Merci pour votre aide ! Nous réglerons ce problème très
-      prochainement.</span
-    >
     <span v-if="showContributionLinks && isEditableBenefit()"
       > -
       <a

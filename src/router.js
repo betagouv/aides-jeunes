@@ -249,12 +249,12 @@ const router = createRouter({
     {
       path: "/accompagnement",
       name: "liste-accompagnements",
-      component: () => import("./views/accompagnement/liste.vue"),
+      component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
       path: "/accompagnement/:surveyId",
       name: "accompagnement",
-      component: () => import("./views/accompagnement/liste.vue"),
+      component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
       path: "/init-ci",

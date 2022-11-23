@@ -2,7 +2,8 @@ import { EnumProperty, BooleanProperty } from "./property"
 import { getAnswer } from "../answers"
 import dayjs from "dayjs"
 
-const isLessThanFiftyYearsOld = (simulation, periods) => {
+const isLessThanFiftyYearsOld = (props) => {
+  const { simulation, periods } = props
   const date_naissance = getAnswer(
     simulation.answers.current,
     "individu",
@@ -97,15 +98,13 @@ export default {
       {
         label: "Foyer",
         value: "foyer",
-        isRelevant: ({ simulation, periods }) =>
-          isLessThanFiftyYearsOld(simulation, periods),
+        isRelevant: (props) => isLessThanFiftyYearsOld(props),
         hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
       },
       {
         label: "Foyer",
         value: "foyer",
-        isRelevant: ({ simulation, periods }) =>
-          !isLessThanFiftyYearsOld(simulation, periods),
+        isRelevant: (props) => !isLessThanFiftyYearsOld(props),
         hint: "Maison de retraite, résidence sociale…",
       },
     ],

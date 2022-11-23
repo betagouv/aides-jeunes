@@ -22,7 +22,7 @@
               action: 'Reprendre ma simulation',
               category: 'Home',
             }"
-            class="fr-btn fr-btn--secondary"
+            class="fr-btn"
             @click="next()"
           >
             Reprendre ma simulation
@@ -32,6 +32,7 @@
           ><button
             v-analytics="{ action: ctaLabel, category: 'Home' }"
             class="fr-btn"
+            :class="{ 'fr-btn--secondary': hasExistingSituation }"
             data-testid="new-simulation"
             @click="newSituation()"
           >
@@ -78,7 +79,7 @@ export default {
     benefitsNumber() {
       return process.env.VITE_BENEFIT_COUNT
         ? process.env.VITE_BENEFIT_COUNT
-        : "plus de 400"
+        : "plus de 700"
     },
   },
   methods: {

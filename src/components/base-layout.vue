@@ -1,5 +1,5 @@
 <template>
-  <div class="fr-page--full-height">
+  <div class="aj-page--full-height">
     <Header1J1S />
     <main role="main" class="fr-container fr-container--fluid">
       <slot />

@@ -42,7 +42,7 @@ export default {
 <style scoped>
 html,
 body,
-.fr-page--full-height,
+.aj-page--full-height,
 .fr-modal--large .fr-modal__content {
   height: unset !important;
 }

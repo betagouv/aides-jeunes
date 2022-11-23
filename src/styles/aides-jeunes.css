@@ -1,3 +1,7 @@
+:root {
+  --text-disabled-grey: #666;
+}
+
 .fr-text--center {
   text-align: center;
 }

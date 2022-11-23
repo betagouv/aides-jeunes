@@ -1,7 +1,7 @@
 <template>
   <div class="fr-container--fluid">
     <div class="fr-grid-row fr-grid-row--gutters">
-      <div v-if="showDay" class="fr-col-3 fr-col-md-2">
+      <div v-if="showDay" class="fr-col-3 fr-col-sm-3 fr-col-lg-2">
         <label class="fr-label fr-text--center">
           <span class="fr-hint-text fr-mb-1v">jour</span>
           <input
@@ -23,7 +23,7 @@
           />
         </label>
       </div>
-      <div class="fr-col-3 fr-col-md-2">
+      <div class="fr-col-3 fr-col-sm-3 fr-col-lg-2">
         <label class="fr-label fr-text--center">
           <span class="fr-hint-text fr-mb-1v">mois</span>
           <input
@@ -42,7 +42,7 @@
           />
         </label>
       </div>
-      <div class="fr-col-6 fr-col-md-4">
+      <div class="fr-col-6 fr-col-sm-4 fr-col-lg-4">
         <label class="fr-label fr-text--center">
           <span class="fr-hint-text fr-mb-1v">année</span>
           <input

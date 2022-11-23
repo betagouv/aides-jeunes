@@ -53,7 +53,7 @@
                   <a
                     v-if="category.link"
                     class="fr-nav__link"
-                    :href="category.link"
+                    :href="`${domain}${category.link}`"
                     target="_self"
                     >{{ category.label }}</a
                   >
@@ -64,7 +64,7 @@
                     v-for="subcategory in category.children"
                     :key="subcategory.label"
                     ><a
-                      :href="subcategory.link"
+                      :href="`${domain}${subcategory.link}`"
                       class="fr-nav__link"
                       target="_self"
                       >{{ subcategory.label }}</a

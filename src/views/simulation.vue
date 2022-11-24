@@ -5,7 +5,7 @@
       <Progress v-if="debug" />
       <Summary v-else />
     </div>
-    <div class="fr-col-12 fr-col-md-9">
+    <div class="fr-col-12 fr-col-md-9 fr-p-2w">
       <TitreChapitre />
       <div v-if="debug" class="fr-mb-md-2w">
         <button class="fr-btn fr-btn--sm" @click="disableDebug"

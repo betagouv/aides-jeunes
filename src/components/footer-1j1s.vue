@@ -28,9 +28,14 @@
               :key="link.label"
               class="fr-footer__content-item"
             >
-              <a class="fr-footer__content-link" :href="link.href">{{
-                link.label
-              }}</a>
+              <a
+                class="fr-footer__content-link"
+                :href="link.href"
+                :title="`${link.label} - nouvelle fenêtre`"
+                target="_blank"
+                rel="noopener"
+                >{{ link.label }}</a
+              >
             </li>
           </ul>
         </div>

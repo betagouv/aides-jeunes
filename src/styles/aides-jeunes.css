@@ -1,33 +1,22 @@
 :root {
   --text-disabled-grey: #666;
-  --blue-ecume-975-75: #f4f6fe;
-  --blue-ecume-975-75-hover: #d7dffb;
-  --blue-ecume-975-75-active: #c3cffa;
-  --blue-ecume-950-100: #e9edfe;
-  --blue-ecume-950-100-hover: #c5d0fc;
-  --blue-ecume-950-100-active: #adbffc;
-  --blue-ecume-sun-247-moon-675: #2f4077;
-  --blue-ecume-sun-247-moon-675-hover: #4e68bb;
-  --blue-ecume-sun-247-moon-675-active: #667dcf;
-  --blue-ecume-925-125: #dee5fd;
-  --blue-ecume-925-125-hover: #b4c5fb;
-  --blue-ecume-925-125-active: #99b3f9;
-  --blue-ecume-main-400: #465f9d;
-  --blue-ecume-850-200: #bfccfb;
-  --blue-cumulus-975-75: #f3f6fe;
-  --blue-cumulus-975-75-hover: #d3dffc;
-  --blue-cumulus-975-75-active: #bed0fa;
-  --blue-cumulus-950-100: #e6eefe;
-  --blue-cumulus-950-100-hover: #bcd3fc;
-  --blue-cumulus-950-100-active: #9fc3fc;
-  --blue-cumulus-sun-368-moon-732: #3558a2;
-  --blue-cumulus-sun-368-moon-732-hover: #5982e0;
-  --blue-cumulus-sun-368-moon-732-active: #7996e6;
-  --blue-cumulus-925-125: #dae6fd;
-  --blue-cumulus-925-125-hover: #a9c8fb;
-  --blue-cumulus-925-125-active: #8ab8f9;
-  --blue-cumulus-main-526: #417dc4;
-  --blue-cumulus-850-200: #b6cffb;
+}
+
+.fr-fieldset {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fr-fieldset__content {
+  margin-left: 0;
+}
+
+.fr-header__menu[role="dialog"] .fr-mega-menu p {
+  display: none;
+}
+
+.fr-header__menu[role="dialog"] .fr-mega-menu div[data-submenu="true"] ul {
+  text-indent: 16px;
 }
 
 .fr-text--center {
@@ -106,7 +95,6 @@
 
 [data-text] {
   position: relative;
-  z-index: calc(var(--ground) + 10000);
 }
 
 [data-text]:hover:after {

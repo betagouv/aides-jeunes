@@ -18,6 +18,7 @@
           :href="`${domain}${element.link}`"
           target="_self"
           :aria-current="element.active"
+          :title="element.active ? 'Onglet actif' : ''"
           >{{ element.label }}</a
         >
         <button
@@ -26,6 +27,7 @@
           aria-expanded="false"
           :aria-controls="`nav-menu-${index}`"
           class="fr-nav__btn"
+          :title="element.active ? 'Onglet actif' : ''"
           >{{ element.label }}</button
         >
         <div
@@ -48,6 +50,7 @@
                 v-for="category in element.children"
                 :key="category.label"
                 class="fr-col-12 fr-col-lg-3"
+                :data-submenu="!category.link"
               >
                 <h5 class="fr-mega-menu__category">
                   <a
@@ -59,6 +62,9 @@
                   >
                   <span v-else class="fr-nav__link">{{ category.label }}</span>
                 </h5>
+                <p v-if="category.legend" class="fr-p-2w">{{
+                  category.legend
+                }}</p>
                 <ul v-if="category.children" class="fr-mega-menu__list">
                   <li
                     v-for="subcategory in category.children"
@@ -91,6 +97,7 @@
                 :href="`${domain}${subelement.link}`"
                 target="_self"
                 :aria-current="subelement.active"
+                :title="subelement.active ? 'Sous-onglet actif' : ''"
                 >{{ subelement.label }}</a
               >
             </li>
@@ -146,12 +153,12 @@ const navigation = [
   },
   {
     label: "Je suis employeur",
-    legend: "Découvrez des services faits pour vous !",
     alignRight: true,
     children: [
       {
         label: "Rejoindre la mobilisation",
         link: "/les-entreprises-s-engagent",
+        legend: "Découvrez des services faits pour vous !",
       },
       {
         children: [

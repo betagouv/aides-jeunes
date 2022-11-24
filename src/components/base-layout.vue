@@ -1,7 +1,22 @@
 <template>
+  <div class="fr-skiplinks">
+    <nav class="fr-container" role="navigation" aria-label="Accès rapide">
+      <ul class="fr-skiplinks__list">
+        <li>
+          <a class="fr-link" href="#main">Contenu</a>
+        </li>
+        <li>
+          <a class="fr-link" href="#navigation-menu">Menu</a>
+        </li>
+        <li>
+          <a class="fr-link" href="#footer">Pied de page</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <div class="aj-page--full-height">
     <Header1J1S />
-    <main role="main" class="fr-container fr-container--fluid">
+    <main role="main" id="main" class="fr-container fr-container--fluid">
       <slot />
     </main>
   </div>

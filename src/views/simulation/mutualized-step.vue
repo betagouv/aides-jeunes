@@ -93,7 +93,6 @@ import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "@lib/utils"
-import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import Individu from "@lib/individu"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
@@ -106,7 +105,6 @@ export default {
   name: "MutualizedStep",
   components: {
     ActionButtons,
-    EnSavoirPlus,
     InputNumber,
     InputDate,
     MultipleAnswers,

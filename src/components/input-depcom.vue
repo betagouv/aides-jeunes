@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="fr-input-group">
-      <label class="fr-label fr-text--lead fr-text--bold fr-pr-3w" for="cp"
-        >{{ codePostalLabel }}&nbsp;
+      <label class="fr-label fr-text--lead fr-text--bold" for="cp"
+        >{{ codePostalLabel }}
         <EnSavoirPlus />
       </label>
       <div class="fr-container">

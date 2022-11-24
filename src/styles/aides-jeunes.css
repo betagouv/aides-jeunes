@@ -95,6 +95,7 @@
 
 [data-text] {
   position: relative;
+  z-index: 10;
 }
 
 [data-text]:hover:after {

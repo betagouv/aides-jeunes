@@ -4,9 +4,7 @@
     aria-labelledby="fr-modal-email-title"
     role="dialog"
     id="fr-modal-email"
-    class="fr-modal fr-modal--opened"
-    aria-modal="true"
-    open="true"
+    class="fr-modal"
   >
     <div class="fr-container fr-container--fluid fr-container-md">
       <div class="fr-grid-row fr-grid-row--center">
@@ -16,7 +14,7 @@
               <button
                 v-analytics="{ action: 'Fermé bouton', category: 'Email' }"
                 @click="hide"
-                class="fr-link--close fr-link"
+                class="fr-btn--close fr-btn"
                 title="Fermer la fenêtre modale"
                 aria-controls="fr-modal-email"
                 >Fermer</button

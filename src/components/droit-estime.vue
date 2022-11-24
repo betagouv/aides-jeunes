@@ -5,6 +5,7 @@
       ($route.name !== 'aide' ||
         ($route.name === 'aide' && droit.source === 'javascript'))
     "
+    class="aj-benefit-amount"
   >
     <div class="fr-text--center">
       <template v-if="isBenefitTypeNumber || isBenefitTypeString">

@@ -40,9 +40,7 @@
                 </WarningMessage>
               </div>
             </div>
-            <div class="aj-benefit-amount">
-              <DroitEstime :droit="droit" />
-            </div>
+            <DroitEstime :droit="droit" />
           </div>
           <div class="fr-container fr-px-0">
             <div class="fr-grid-row fr-grid-row--right">

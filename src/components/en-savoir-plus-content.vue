@@ -1,5 +1,5 @@
 <template>
-  <div class="fr-hidden-sm fr-col-1 fr-mr-2w">
+  <!--<div class="fr-hidden-sm fr-col-1 fr-mr-2w">
     <dialog
       aria-labelledby="fr-modal-en-savoir-plus-title"
       id="fr-modal-en-savoir-plus"
@@ -31,7 +31,8 @@
       </div>
     </dialog>
   </div>
-  <div class="fr-mb-4w">
+  <div class="fr-mb-4w">-->
+  <div>
     <h4>En savoir plus</h4>
     <p>{{ text }}</p>
     <BackButton size="small" @click="window?.history.back()">

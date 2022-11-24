@@ -1,6 +1,6 @@
 <template>
-  <article class="fr-article">
-    <h1>Détail de l'aide</h1>
+  <article>
+    <h1 class="fr-mt-7w">Détail de l'aide</h1>
     <p>
       <router-link
         to="/aides"
@@ -19,43 +19,13 @@
   </article>
 </template>
 
-<script>
+<script setup>
+import { useRoute } from "vue-router"
 import { getBenefit } from "@/lib/institution"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 
-export default {
-  name: "AideDetails",
-  components: {
-    DroitsDetails,
-    DroitsContributions,
-  },
-  data() {
-    return {}
-  },
-  computed: {
-    benefitId() {
-      return this.$route.params.benefitId
-    },
-    benefit() {
-      return getBenefit(this.benefitId)
-    },
-  },
-  methods: {
-    goBack: function (event) {
-      event.preventDefault()
-      if (window?.history.length > 2) {
-        history.back()
-      } else {
-        this.$router.push("/aides")
-      }
-    },
-  },
-}
+const route = useRoute()
+const benefitId = route.params.benefitId
+const benefit = getBenefit(benefitId)
 </script>
-
-<style scoped>
-.aj-simulation {
-  background-color: #f2f5f9;
-}
-</style>

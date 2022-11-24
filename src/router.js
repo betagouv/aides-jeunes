@@ -361,6 +361,7 @@ function getTitleMeta(route) {
 }
 
 router.afterEach((to) => {
+  return
   if (to.preventFocus) return
 
   nextTick(function () {

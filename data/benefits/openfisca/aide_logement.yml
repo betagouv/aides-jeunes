@@ -10,9 +10,9 @@ conditions:
     href="https://www.caf.fr/aides-et-services/connaitre-vos-droits-selon-votre-situation/vous-louez-ou-vous-achetez-un-logement/vous-occupez-un-logement-insalubre-ou-non-decent"
     aria-describedby="9 mètres carrés par personne, fenêtre, WC, eau potable, électricité" title="Logement insalubre ou non-décent - Nouvelle fenêtre"
     >décent</a>.
-link: https://www.service-public.fr/particuliers/vosdroits/N20360
+link: https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/logement/les-aides-personnelles-au-logement
 teleservice: >-
-  https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/
+  https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/logement/les-aides-personnelles-au-logement
 teleservices:
   caf: >-
     https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/demanderlaideaulogement/

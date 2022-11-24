@@ -13,7 +13,7 @@ conditions_generales:
     values:
       - "27"
   - type: quotient_familial
-    floor: 25830
+    cap: 25830
     period: year
 profils:
   - type: apprenti

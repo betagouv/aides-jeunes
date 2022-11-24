@@ -14,7 +14,7 @@ conditions_generales:
     value: 16
   - type: quotient_familial
     period: month
-    floor: 856
+    cap: 856
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
 form: https://www.caf.fr/sites/default/files/caf/471/Documents/offre_de_service/enfance_jeunesse/Demande%20Bafa.pdf

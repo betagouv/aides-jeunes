@@ -19,7 +19,7 @@ conditions_generales:
     values:
       - "03"
   - type: quotient_familial
-    floor: 1000
+    cap: 1000
     period: month
 profils: []
 link: https://caf.fr/allocataires/caf-de-l-allier/offre-de-service/vie-professionnelle/le-bafa-brevet-d-aptitude-aux-fonctions-d-animateur

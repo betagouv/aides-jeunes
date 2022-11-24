@@ -9,7 +9,7 @@ conditions_generales:
     values:
       - "59"
   - type: quotient_familial
-    floor: 700
+    cap: 700
     period: month
 profils: []
 conditions:

@@ -15,7 +15,7 @@ conditions_generales:
     values:
       - "27"
   - type: quotient_familial
-    floor: 600
+    cap: 600
     period: month
   - type: regime_securite_sociale
     includes:

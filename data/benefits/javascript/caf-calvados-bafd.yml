@@ -9,7 +9,7 @@ conditions_generales:
     values:
       - "14"
   - type: quotient_familial
-    floor: 1000
+    cap: 1000
     period: month
   - type: age
     operator: ">="

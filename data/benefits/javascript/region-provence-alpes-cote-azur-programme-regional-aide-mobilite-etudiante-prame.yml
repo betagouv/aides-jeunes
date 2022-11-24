@@ -9,7 +9,7 @@ conditions_generales:
       - "93"
   - type: quotient_familial
     period: year
-    floor: 26000
+    cap: 26000
   - type: age
     operator: <=
     value: 30

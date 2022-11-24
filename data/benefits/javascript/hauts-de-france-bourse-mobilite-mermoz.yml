@@ -17,7 +17,7 @@ conditions_generales:
     values:
       - "32"
   - type: quotient_familial
-    floor: 30000
+    cap: 30000
     period: year
 profils:
   - type: enseignement_superieur

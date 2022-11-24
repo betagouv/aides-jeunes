@@ -16,7 +16,7 @@ conditions_generales:
     values:
       - "11"
   - type: quotient_familial
-    floor: 19190
+    cap: 19190
     period: year
 profils:
   - type: enseignement_superieur

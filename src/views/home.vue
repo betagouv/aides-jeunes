@@ -41,9 +41,7 @@
         >
       </ul>
     </div>
-    <div
-      class="fr-col fr-col-6 fr-col--bottom fr-text--center fr-hidden fr-unhidden-md fr-container fr-grid-row--center"
-    >
+    <div class="fr-col fr-col-6 fr-col--bottom fr-hidden fr-unhidden-md">
       <img
         src="@/assets/images/home_illustration.png"
         class="aj-hero-section--img"

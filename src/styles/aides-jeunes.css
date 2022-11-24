@@ -158,8 +158,8 @@
 
 .aj-hero-section--img {
   height: 100%;
-  max-height: 550px;
-  margin-top: 150px;
+  max-height: 600px;
+  margin: auto;
 }
 
 .aj-main-container {
@@ -171,8 +171,27 @@
   max-width: 100% !important;
 }
 
+.aj-benefit-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.aj-benefit-name {
+  flex: 1 1 30ch;
+}
+
+.aj-benefit-institution {
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-mention-grey);
+}
+
 .aj-institution-icon {
   width: 70px;
+  min-width: 70px;
 }
 
 @keyframes spin {

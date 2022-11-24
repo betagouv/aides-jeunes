@@ -7,9 +7,8 @@
       <span
         data-testid="question"
         v-html="props.question"
-        class="fr-display-sm fr-text--lead fr-pr-3w"
+        class="fr-display-sm fr-text--lead"
       />
-      &nbsp;
       <EnSavoirPlus v-if="props.showMoreInfo" />
     </h2>
   </component>

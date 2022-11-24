@@ -106,16 +106,17 @@
 
 [data-text] {
   position: relative;
-  z-index: 1;
+  z-index: calc(var(--ground) + 10000);
 }
 
 [data-text]:hover:after {
   display: block;
   content: attr(data-text);
   padding: 10px;
-  background-color: var(--background-disabled-grey);
+  background-color: var(--background-contrast-info);
   position: absolute;
-  inset: auto auto 150% 0;
+  /* inset: auto auto 150% 0; */
+  inset: 120% 0 auto auto;
   margin: auto;
   width: 250px;
   z-index: calc(var(--ground) + 10000);

@@ -2,9 +2,7 @@
   <fieldset class="fr-fieldset fr-mb-2w">
     <legend class="fr-fieldset__legend fr-mb-0">
       <h2>
-        <span class="fr-display-sm fr-text--lead fr-pr-3w"
-          >Mes enfants à charge</span
-        >&nbsp;
+        <span class="fr-display-sm fr-text--lead">Mes enfants à charge</span>
         <EnSavoirPlus />
       </h2>
     </legend>

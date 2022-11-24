@@ -175,6 +175,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: space-between;
+
   gap: 32px;
 }
 
@@ -189,9 +191,32 @@
   color: var(--text-mention-grey);
 }
 
+.aj-benefit-amount {
+  min-width: 120px;
+}
+
 .aj-institution-icon {
   width: 70px;
   min-width: 70px;
+}
+
+@media (max-width: 992px) {
+  .aj-benefit-header {
+    justify-content: space-between;
+  }
+
+  .aj-institution-icon {
+    order: 1;
+  }
+
+  .aj-benefit-amount {
+    order: 2;
+  }
+
+  .aj-benefit-name {
+    order: 3;
+    flex-basis: 100%;
+  }
 }
 
 @keyframes spin {

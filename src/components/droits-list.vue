@@ -4,14 +4,55 @@
       <router-link
         v-for="(droit, index) in list"
         :key="index"
-        class="fr-tile fr-enlarge-link fr-tile--horizontal fr-mb-5w"
+        class="fr-tile fr-mb-5w"
         :to="`/simulation/resultats/${droit.id}`"
         itemscope
         itemtype="http://schema.org/GovernmentService"
         :data-testid="droit.id"
         :aria-label="askBenefit(droit)"
       >
-        <div class="fr-tile__body">
+        <div class="fr-p-4w">
+          <div class="aj-benefit-header fr-mb-4w">
+            <img
+              class="aj-institution-icon"
+              :src="getBenefitImage(droit)"
+              alt=""
+            />
+            <div class="aj-benefit-name">
+              <h2 class="fr-text--lead" itemprop="name">{{
+                capitalize(droit.label)
+              }}</h2>
+              <div class="aj-benefit-institution"
+                >{{ capitalize(droit.institution.label) }}
+              </div>
+              <div>
+                <p class="fr-text--justify" v-html="droit.description" />
+                <WarningMessage
+                  v-if="
+                    droit.montant &&
+                    isBoolean(droit.montant) &&
+                    droit.warning === true
+                  "
+                >
+                  <img src="@/assets/images/warning.svg" alt="" /> Attention,
+                  cette aide vous est accessible sous certaines conditions
+                  supplémentaires.
+                </WarningMessage>
+              </div>
+            </div>
+            <div class="aj-benefit-amount">
+              <DroitEstime :droit="droit" />
+            </div>
+          </div>
+          <div class="fr-container fr-px-0">
+            <div class="fr-grid-row fr-grid-row--right">
+              <button class="fr-btn" data-testid="aide-cta">
+                Demander cette aide
+              </button>
+            </div>
+          </div>
+        </div>
+        <div v-if="false" class="fr-p-4w">
           <div class="fr-container fr-px-0 fr-mb-1w">
             <div class="fr-grid-row fr-grid-row--gutters">
               <div class="fr-col-1">

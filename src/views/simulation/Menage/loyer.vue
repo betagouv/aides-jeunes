@@ -1,10 +1,15 @@
 <template>
-  <form @submit.prevent="onSubmit" class="fr-form-group">
-    <div class="fr-mb-6w">
-      <label for="loyer">
-        <h2 class="fr-text--lead">{{ loyerQuestion.label }}</h2>
+  <form @submit.prevent="onSubmit">
+    <div>
+      <label for="loyer" class="fr-px-2v"
+        ><span class="fr-text--lead fr-text--bold">{{
+          loyerQuestion.label
+        }}</span>
+        <span class="fr-hint-text fr-px-2v fr-mt-2v">{{
+          loyerQuestion.hint
+        }}</span>
       </label>
-      <span class="fr-hint-text">{{ loyerQuestion.hint }}</span>
+
       <div class="fr-container--fluid">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
@@ -17,11 +22,16 @@
         </div>
       </div>
     </div>
-    <div v-if="captureCharges" class="fr-mb-2w">
-      <label for="charges">
-        <h2 class="fr-text--lead">{{ chargesQuestion.label }}</h2>
+    <div v-if="captureCharges" class="fr-mt-6w">
+      <label for="charges" class="fr-px-2v">
+        <span class="fr-text--lead fr-text--bold">{{
+          chargesQuestion.label
+        }}</span>
+        <span class="fr-hint-text fr-px-2v fr-mt-2v">{{
+          chargesQuestion.hint
+        }}</span>
       </label>
-      <span class="fr-hint-text">{{ chargesQuestion.hint }}</span>
+
       <div class="fr-container--fluid">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">

@@ -13,7 +13,6 @@
       :step="step"
       :data-type="dataType"
       class="fr-input"
-      pattern="[0-9]*"
       inputmode="numeric"
     />
   </div>

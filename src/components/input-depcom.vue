@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="fr-input-group">
-      <label class="fr-label fr-text--lead fr-text--bold" for="cp"
-        >{{ codePostalLabel }}
+    <div>
+      <label class="fr-px-2v" for="cp"
+        ><span class="fr-text--lead fr-text--bold">{{ codePostalLabel }}</span>
         <EnSavoirPlus />
       </label>
-      <div class="fr-container">
+
+      <div class="fr-container fr-container--fluid fr-mt-4w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <input
@@ -23,17 +24,19 @@
       </div>
     </div>
 
-    <p v-if="retrievingCommunes">
+    <div v-if="retrievingCommunes" class="fr-mt-4w">
       <span
         class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
         aria-hidden="true"
       ></span>
-    </p>
-    <div v-show="communes?.length" class="fr-input-group fr-mt-5w">
-      <label class="fr-label fr-text--lead fr-text--bold fr-pr-3w" for="commune"
-        >Veuillez sélectionner la ville qui correspond
+    </div>
+    <div v-show="communes?.length" class="fr-input-group fr-mb-2w fr-mt-4w">
+      <label class="fr-label fr-pr-3w" for="commune"
+        ><span class="fr-text--lead fr-text--bold"
+          >Veuillez sélectionner la ville qui correspond</span
+        >
       </label>
-      <div class="fr-container">
+      <div class="fr-container fr-container--fluid fr-mt-4w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select id="commune" v-model="nomCommuneValue" class="fr-select">

@@ -1,49 +1,41 @@
 <template>
   <form class="fr-form-group">
-    <fieldset class="fr-fieldset">
-      <div class="fr-fieldset__content">
-        <p>
-          Indiquez toutes les ressources <strong>nettes</strong> perçues
-          <span v-if="individu._role !== 'demandeur'"
-            ><strong>par {{ getIndividuNom() }}</strong></span
-          >
-          en France comme à l'étranger.
-        </p>
-        <div
-          v-for="(type, index) in types"
-          :key="type.meta.id"
-          class="form__group"
-          s
-        >
-          <RessourceMontants
-            v-if="isSimple(type.meta.id)"
-            :individu="type.individu"
-            :index="index"
-            :type="type"
-            @update="process"
-          />
-          <RessourceMicroEntreprise
-            v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
-            :individu="type.individu"
-            :ressource="type"
-            @update="updateTNSAmount"
-          />
-          <RessourceProfessionLiberale
-            v-if="type.meta.id === 'rpns_autres_revenus'"
-            :individu="type.individu"
-            :ressource="type"
-            @update="updateTNSAmount"
-            @updateExtra="updateTNSExtra"
-          />
-          <RessourceExploitantAgricole
-            v-if="type.meta.id === 'rpns_benefice_exploitant_agricole'"
-            :individu="type.individu"
-            :ressource="type"
-            @update="updateTNSAmount"
-          />
-        </div>
-      </div>
-    </fieldset>
+    <p>
+      Indiquez toutes les ressources <strong>nettes</strong> perçues
+      <span v-if="individu._role !== 'demandeur'"
+        ><strong>par {{ getIndividuNom() }}</strong></span
+      >
+      en France comme à l'étranger.
+    </p>
+    <div v-for="(type, index) in types" :key="type.meta.id">
+      <RessourceMontants
+        v-if="isSimple(type.meta.id)"
+        :individu="type.individu"
+        :index="index"
+        :type="type"
+        @update="process"
+      />
+      <RessourceMicroEntreprise
+        v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+      />
+      <RessourceProfessionLiberale
+        v-if="type.meta.id === 'rpns_autres_revenus'"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+        @updateExtra="updateTNSExtra"
+      />
+      <RessourceExploitantAgricole
+        v-if="type.meta.id === 'rpns_benefice_exploitant_agricole'"
+        :individu="type.individu"
+        :ressource="type"
+        @update="updateTNSAmount"
+      />
+    </div>
+
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

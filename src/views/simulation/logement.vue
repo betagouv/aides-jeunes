@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent="onSubmit" class="fr-form-group">
-    <fieldset class="fr-fieldset fr-mb-2w">
-      <legend class="fr-fieldset__legend fr-container fr-px-0">
-        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend">
+        <span class="fr-text--lead">
           {{ logementTypesQuestion.label }}
-        </h2>
+        </span>
       </legend>
       <div class="fr-fieldset__content">
         <div class="fr-container--fluid">
@@ -39,16 +39,17 @@
 
     <fieldset
       v-if="logementTypesQuestion.selectedValue == 'proprietaire'"
-      class="fr-fieldset"
+      class="fr-fieldset fr-mt-2w"
     >
-      <legend class="fr-fieldset__legend fr-container fr-px-0">
-        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
+      <legend class="fr-fieldset__legend">
+        <span class="fr-text--lead">
           {{ primoAccedantQuestion.label }}
-        </h2>
+        </span>
         <span v-if="primoAccedantQuestion.hint" class="fr-hint-text">{{
           primoAccedantQuestion.hint
         }}</span>
       </legend>
+
       <div class="fr-fieldset__content">
         <div class="fr-container--fluid">
           <div class="fr-grid-row">
@@ -77,12 +78,12 @@
 
     <fieldset
       v-if="logementTypesQuestion.selectedValue == 'locataire'"
-      class="fr-fieldset fr-container fr-px-0"
+      class="fr-fieldset fr-container fr-mt-2w"
     >
       <legend class="fr-fieldset__legend">
-        <h2 class="fr-display-sm fr-text--lead fr-mb-0">
+        <span class="fr-text--lead">
           {{ locataireTypesQuestion.label }}
-        </h2>
+        </span>
       </legend>
       <div class="fr-fieldset__content">
         <div class="fr-container--fluid">

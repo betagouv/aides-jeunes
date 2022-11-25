@@ -1,18 +1,12 @@
 <template>
-  <component
-    :is="titleWrapper && forTitleWrapper ? titleWrapper : 'div'"
-    :for="forTitleWrapper"
-  >
-    <h2 class="fr-mb-0">
-      <span
-        data-testid="question"
-        v-html="props.question"
-        class="fr-display-sm fr-text--lead"
-      />
-      <EnSavoirPlus v-if="props.showMoreInfo" />
-    </h2>
-  </component>
-  <p v-if="props.help" v-html="props.help" class="fr-mt-2w fr-hint-text" />
+  <span
+    id="step-question"
+    data-testid="question"
+    v-html="props.question"
+    class="fr-text--lead"
+  />
+  <EnSavoirPlus v-if="props.showMoreInfo" />
+  <span v-if="props.help" v-html="props.help" class="fr-hint-text" />
 </template>
 
 <script lang="ts" setup>

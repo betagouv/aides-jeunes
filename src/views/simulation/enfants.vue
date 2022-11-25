@@ -1,16 +1,14 @@
 <template>
-  <fieldset class="fr-fieldset fr-mb-2w">
-    <legend class="fr-fieldset__legend fr-mb-0">
-      <h2>
-        <span class="fr-display-sm fr-text--lead">Mes enfants à charge</span>
-        <EnSavoirPlus />
-      </h2>
+  <fieldset class="fr-fieldset">
+    <legend class="fr-fieldset__legend fr-px-0">
+      <span class="fr-text--lead">Mes enfants à charge</span>
+      <EnSavoirPlus />
+      <span class="fr-hint-text"
+        >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton
+        "Suivant".</span
+      >
     </legend>
     <div class="fr-fieldset__content">
-      <p class="fr-mb-2w"
-        >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton
-        "Suivant".</p
-      >
       <div v-for="enfant in enfants" :key="enfant.id" class="fr-mb-4w">
         <div v-if="enfant.date_naissance">
           <div class="fr-container--fluid">

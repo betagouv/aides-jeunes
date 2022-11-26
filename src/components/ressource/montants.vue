@@ -1,10 +1,16 @@
 <template>
-  <div :key="type.meta.id" class="fr-mb-4w">
-    <h2 v-if="!withoutHeader" class="fr-text--lead fr-pr-3w">
-      {{ type.meta.label }}
-    </h2>
-    <div class="fr-form-group">
-      <YesNoQuestion v-model="singleValue" html-heading="h3">
+  <fieldset :key="type.meta.id" class="fr-fieldset fr-mb-4w">
+    <legend class="fr-fieldset__legend">
+      <span class="fr-text--lead">
+        {{ type.meta.label }}
+      </span>
+    </legend>
+    <div class="fr-fieldset__content">
+      <YesNoQuestion
+        v-model="singleValue"
+        html-heading="h2"
+        :id="`${type.meta.id}_question`"
+      >
         <span
           v-html="
             getQuestionLabel(
@@ -16,13 +22,16 @@
         />
       </YesNoQuestion>
 
-      <label v-if="type.displayMonthly === true">
-        Indiquez le montant <b>mensuel net</b> :
+      <div v-if="type.displayMonthly === true">
+        <label :for="`${type.meta.id}_monthly`" class="fr-label">
+          Indiquez le montant <b>mensuel net</b> :
+        </label>
         <div class="fr-container--fluid">
           <div class="fr-grid-row">
             <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
               <InputNumber
                 :value="type.amounts[store.dates.thisMonth.id]"
+                :id="`${type.meta.id}_monthly`"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
                 "
@@ -30,19 +39,24 @@
             </div>
           </div>
         </div>
-      </label>
+      </div>
 
-      <div v-if="type.displayMonthly === false">
-        <div>
+      <div v-else-if="type.displayMonthly === false">
+        <p>
           Indiquez les montants <strong>nets mensuels</strong> que
           {{ getLongLabel(individu, type.meta) }}
-        </div>
-        <div v-for="(month, monthIndex) in type.months" :key="month.id">
-          <MonthLabel :month="month" />
+        </p>
+        <div
+          v-for="(month, monthIndex) in type.months"
+          :key="month.id"
+          class="fr-mt-1w"
+        >
+          <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
           <div class="fr-container--fluid">
             <div class="fr-grid-row">
               <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
                 <InputNumber
+                  :id="`${type.meta.id}_${month.id}`"
                   :value="type.amounts[month.id]"
                   @update:model-value="
                     $emit('update', 'monthUpdate', index, {
@@ -57,7 +71,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </fieldset>
 </template>
 
 <script>
@@ -111,7 +125,6 @@ export default {
     individu: Object,
     type: Object,
     index: Number,
-    withoutHeader: Boolean,
   },
   emits: ["update"],
   setup() {

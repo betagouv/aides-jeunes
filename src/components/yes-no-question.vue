@@ -2,9 +2,10 @@
   <div v-if="slots.default || slots.help">
     <component
       :is="htmlHeading"
+      :id="id"
       role="heading"
       aria-level="2"
-      class="fr-text--lg"
+      class="fr-text--lg fr-text--regular"
     >
       <slot />
     </component>
@@ -19,8 +20,13 @@
               type="radio"
               :value="true"
               :name="uniqueFieldName"
+              :aria-labelledby="`${id} label-yes-${uniqueFieldName}`"
             />
-            <label :for="`yes-${uniqueFieldName}`" class="fr-label">
+            <label
+              :for="`yes-${uniqueFieldName}`"
+              :id="`label-yes-${uniqueFieldName}`"
+              class="fr-label"
+            >
               Oui
             </label>
           </div>
@@ -31,8 +37,15 @@
               type="radio"
               :value="false"
               :name="uniqueFieldName"
+              :aria-labelledby="`${id} label-no-${uniqueFieldName}`"
             />
-            <label :for="`no-${uniqueFieldName}`" class="fr-label"> Non </label>
+            <label
+              :for="`no-${uniqueFieldName}`"
+              :id="`label-no-${uniqueFieldName}`"
+              class="fr-label"
+            >
+              Non
+            </label>
           </div>
         </div>
       </div>
@@ -72,6 +85,7 @@ export default {
       type: String,
       default: "h2",
     },
+    id: String,
   },
   emits: ["update:modelValue"],
   data: function () {

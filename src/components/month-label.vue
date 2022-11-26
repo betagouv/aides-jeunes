@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <label :for="id">
     {{ $filters.capitalize(month.label) }}
     <span v-if="month.id === store.dates.thisMonth.id">
       - estimation jusqu'à la fin du mois</span
     >
-  </div>
+  </label>
 </template>
 
 <script>
@@ -14,6 +14,7 @@ export default {
   name: "MonthLabel",
   props: {
     month: Object,
+    id: String,
   },
   setup() {
     return {

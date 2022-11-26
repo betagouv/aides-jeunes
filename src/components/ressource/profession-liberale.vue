@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <div class="fr-form-group">
-      <h2 class="fr-text--lead">{{ ressource.meta.label }}</h2>
+  <fieldset class="fr-fieldset fr-mt-4w">
+    <legend>
+      <span class="fr-text--lead fr-text--bold">{{
+        ressource.meta.label
+      }}</span>
+    </legend>
+    <div class="fr-fieldset__content fr-pt-2w">
       <label for="liberaleType" class="fr-text--lg">Type d'activité</label>
-      <div class="fr-container--fluid">
+      <div class="fr-container--fluid fr-mb-2w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select
@@ -28,8 +32,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="fr-form-group">
+
       <label for="liberaleLastBenef" class="fr-text--lg"
         >Bénéfice sur le dernier exercice clos</label
       >
@@ -45,7 +48,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </fieldset>
 </template>
 
 <script>

@@ -33,7 +33,7 @@
   </div>
   <div class="fr-mb-4w">-->
   <div>
-    <h4>En savoir plus</h4>
+    <h2 class="fr-text--lead">En savoir plus</h2>
     <p>{{ text }}</p>
     <BackButton size="small" @click="window?.history.back()">
       Retour

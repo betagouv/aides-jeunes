@@ -1,5 +1,5 @@
 <template>
-  <div><span class="fr-hint-text">Plusieurs choix possibles</span></div>
+  <p class="fr-hint-text">Plusieurs choix possibles</p>
   <div
     v-for="(item, value) in itemsObject"
     :key="value"

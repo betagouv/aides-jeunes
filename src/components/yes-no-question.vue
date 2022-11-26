@@ -20,7 +20,9 @@
               type="radio"
               :value="true"
               :name="uniqueFieldName"
-              :aria-labelledby="`${id} label-yes-${uniqueFieldName}`"
+              :aria-labelledby="
+                id ? `${id} label-yes-${uniqueFieldName}` : null
+              "
             />
             <label
               :for="`yes-${uniqueFieldName}`"
@@ -37,7 +39,7 @@
               type="radio"
               :value="false"
               :name="uniqueFieldName"
-              :aria-labelledby="`${id} label-no-${uniqueFieldName}`"
+              :aria-labelledby="id ? `${id} label-no-${uniqueFieldName}` : null"
             />
             <label
               :for="`no-${uniqueFieldName}`"

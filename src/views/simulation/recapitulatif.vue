@@ -14,24 +14,26 @@
             <div class="fr-container--fluid">
               <div class="fr-grid-row fr-mb-1w">
                 <div class="fr-col-6">
-                  <div
+                  <p
+                    class="fr-my-0"
                     :class="{ 'fr-text--bold': question.labelClass }"
                     v-html="question.label"
-                  ></div>
+                  ></p>
                 </div>
                 <div class="fr-col-4">
-                  <div
+                  <p
                     v-if="
                       !['undefined', 'object'].includes(typeof question.value)
                     "
+                    class="fr-my-0"
                   >
                     {{ question.value }}
-                  </div>
+                  </p>
                 </div>
                 <div class="fr-col-2">
-                  <div v-if="!question.hideEdit">
+                  <p v-if="!question.hideEdit" class="fr-my-0">
                     <router-link :to="question.path">Modifier</router-link>
-                  </div>
+                  </p>
                 </div>
               </div>
             </div>
@@ -45,8 +47,8 @@
                 :key="name"
                 class="fr-col-3 fr-mb-1w fr-pb-1w"
               >
-                <div class="fr-hint-text">{{ name }} :</div>
-                <div>{{ value }}</div>
+                <p class="fr-hint-text fr-my-0">{{ name }} :</p>
+                <p class="fr-my-0">{{ value }}</p>
               </div>
             </div>
           </template>

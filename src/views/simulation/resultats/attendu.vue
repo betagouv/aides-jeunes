@@ -144,14 +144,16 @@
           </ul>
         </div>
         <div>
-          <a
-            :download="filename"
-            :href="resultToBase64"
-            class="button large"
-            @click="trackMontantAttendu('Téléchargement données')"
+          <p
+            ><a
+              :download="filename"
+              :href="resultToBase64"
+              class="button large"
+              @click="trackMontantAttendu('Téléchargement données')"
+            >
+              Télécharger le fichier de données
+            </a></p
           >
-            Télécharger le fichier de données
-          </a>
         </div>
         <p>
           Vous pouvez aussi revenir à

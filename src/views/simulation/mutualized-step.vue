@@ -62,6 +62,7 @@
                 <input
                   v-else-if="questionType === 'text'"
                   :id="fieldName"
+                  aria-labelledby="step-question"
                   v-model="value"
                   :data-testid="fieldName"
                   type="text"

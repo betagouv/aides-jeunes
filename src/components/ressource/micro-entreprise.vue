@@ -5,7 +5,7 @@
         ressource.meta.label
       }}</span>
     </legend>
-    <div class="fr-fieldset__content">
+    <div class="fr-fieldset__content fr-pt-2w">
       <label :for="`${ressource.meta.id}_microAmount`" class="fr-label"
         >Chiffre d’affaires {{ store.dates.lastYear.label }}</label
       >

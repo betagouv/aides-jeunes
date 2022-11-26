@@ -1,12 +1,12 @@
 <template>
   <article class="fr-article">
-    <h2>Intégrez le simulateur sur votre site&nbsp;!</h2>
+    <h1>Intégrez le simulateur sur votre site&nbsp;!</h1>
     <p
       >Notre simulateur est intégrable de manière transparente en ajoutant une
       simple ligne de code à votre page Web.</p
     >
 
-    <h3>Code d'intégration</h3>
+    <h2>Code d'intégration</h2>
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>
 
     <p
@@ -50,11 +50,11 @@
       </fieldset>
     </div>
 
-    <h3>Prévisualisation</h3>
+    <h2>Prévisualisation</h2>
 
     <div id="dest" class="fr-col-11 fr-m-auto"></div>
 
-    <h3>Customisation de l'iframe</h3>
+    <h2>Customisation de l'iframe</h2>
     <p
       >Si vous voulez intégrer cette iframe mais que vous souhaitez que nous y
       apportions des modifications spécifiques, vous pouvez contacter l'équipe

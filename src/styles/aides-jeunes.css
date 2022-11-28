@@ -70,14 +70,6 @@
   background: #faf4ce;
 }
 
-.fr-background--orange {
-  background-color: #f8bd8f;
-}
-
-.fr-list-unstyled {
-  list-style: none;
-}
-
 .fr-btn {
   text-align: center !important;
 }
@@ -154,10 +146,6 @@
   height: 100%;
   max-height: 600px;
   margin: auto;
-}
-
-.aj-main-container {
-  /* background-color: var(--background-alt-grey) */
 }
 
 .fr-btn.fr-btn--icon-left,
@@ -275,4 +263,27 @@ h3:focus {
   .fr-print-hidden {
     display: none !important;
   }
+}
+
+.aj-progress-bar-container {
+  height: 4px;
+}
+
+.aj-progress-bar-background {
+  background-color: var(--background-disabled-grey);
+  position: absolute;
+  inset: auto 0;
+  height: 4px;
+  width: 100%;
+  transition: 0.2s;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.aj-progress-bar-foreground {
+  height: 4px;
+  background-color: var(--blue-cumulus-main-526);
+  transition: 0.2s;
 }

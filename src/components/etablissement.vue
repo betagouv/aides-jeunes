@@ -93,7 +93,6 @@
               rel="noopener"
               target="_blank"
             >
-              <i aria-hidden="true" class="ri ri-phone-fill" />
               {{ etablissement.telephone }}
             </a>
           </li>

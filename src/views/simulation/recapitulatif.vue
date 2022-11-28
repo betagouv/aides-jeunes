@@ -14,11 +14,12 @@
             <div class="fr-container--fluid">
               <div class="fr-grid-row fr-mb-1w">
                 <div class="fr-col-6">
-                  <p
-                    class="fr-my-0"
-                    :class="{ 'fr-text--bold': question.labelClass }"
+                  <h3
+                    v-if="question.labelClass"
+                    class="fr-my-0 fr-text--md"
                     v-html="question.label"
-                  ></p>
+                  ></h3>
+                  <p v-else class="fr-my-0" v-html="question.label"></p>
                 </div>
                 <div class="fr-col-4">
                   <p

@@ -46,15 +46,6 @@ export default {
     netlifyContributionUrl() {
       return `${process.env.VITE_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
     },
-    alertBrokenLink() {
-      this.brokenLinkButtonState = "showThanksMessage"
-      setTimeout(() => (this.brokenLinkButtonState = null), 5000)
-      this.$matomo?.trackEvent(
-        "General",
-        "Erreur lien aide invalide",
-        this.droit.label
-      )
-    },
   },
 }
 </script>

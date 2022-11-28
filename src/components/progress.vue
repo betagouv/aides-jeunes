@@ -3,19 +3,19 @@
     <h3 class="aj-question"> Parcours complet </h3>
     <button
       v-if="!showInactiveRoutes"
-      class="button small"
+      class="fr-btn fr-btn--sm"
       @click="showInactiveRoutes = true"
     >
       Afficher les étapes cachées
     </button>
     <button
       v-if="showInactiveRoutes"
-      class="button small"
+      class="fr-btn fr-btn--sm"
       @click="showInactiveRoutes = false"
     >
       N'afficher que les étapes actives
     </button>
-    <ul class="list-unstyled no-padding">
+    <ul class="fr-toggle__list">
       <li
         v-for="step in full"
         :key="step.key || step.path"

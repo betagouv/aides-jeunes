@@ -1,169 +1,169 @@
 <template>
-  <div class="aj-main-container aj-resultats-attendus">
-    <form @submit.prevent="submit">
-      <router-link :to="{ name: 'resultats' }" class="fr-btn fr-btn--sm">
-        Retour aux résultats
-      </router-link>
-      <div v-if="!result">
-        <p>
-          Ce formulaire permet aux personnes ayant une expertise dans les
-          prestations sociales de nous aider à améliorer le simulateur.
+  <form @submit.prevent="submit">
+    <router-link :to="{ name: 'resultats' }" class="fr-btn fr-btn--sm">
+      Retour aux résultats
+    </router-link>
+    <div v-if="!result">
+      <p>
+        Ce formulaire permet aux personnes ayant une expertise dans les
+        prestations sociales de nous aider à améliorer le simulateur.
+      </p>
+      <p>Plusieurs situations sont possibles&nbsp;:</p>
+      <ul>
+        <li>
+          vous souhaitez <strong>confirmer</strong> que le résultat obtenu est
+          correct ou
+        </li>
+        <li>
+          vous souhaitez indiquer que résultat obtenu est
+          <strong>incorrect</strong>.
+        </li>
+      </ul>
+      <p>
+        Dans tous les cas, il est important d'expliciter les intentions derrière
+        votre validation. En général, il s'agit d'indiquer
+        <strong>la règle métier</strong>.
+      </p>
+
+      <fieldset
+        v-for="(item, index) in selection"
+        :key="index"
+        class="form__group"
+      >
+        <legend v-if="item.ref">
+          <h2>{{ getTitle(item.ref) }}</h2>
+        </legend>
+        <div class="form__group">
+          <label for="de"
+            >Quelle est la prestation pour laquelle vous connaissez le
+            résultat&nbsp;?</label
+          >
+          <select v-model="item.ref">
+            <option
+              v-for="(benefit, bIndex) in benefits"
+              :key="bIndex"
+              :value="benefit"
+            >
+              {{ benefit.label }}
+            </option>
+          </select>
+        </div>
+
+        <div v-if="item.ref" class="form__group">
+          <label for="de">La valeur obtenue</label>
+          <input :value="getActual(item.ref)" disabled />
+        </div>
+
+        <div v-if="item.ref" class="form__group">
+          <label for="expected"
+            >Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label
+          >
+          <input id="expected" v-model="item.expected" />
+        </div>
+        <div>
+          <button class="button small warning" @click.prevent="remove(index)">
+            Supprimer cette prestation
+          </button>
+        </div>
+      </fieldset>
+
+      <button class="form__group button secondary" @click.prevent="add">
+        Ajouter une autre prestation pour laquelle vous connaissez le résultat
+      </button>
+
+      <label class="form__group"
+        >Description courte
+        <input
+          v-model="shortDescription"
+          placeholder="Les AL ne sont pas prises en compte dans le RSA"
+        />
+      </label>
+
+      <label class="form__group"
+        >Description détaillée
+        <textarea v-model="details" :placeholder="detailed" rows="9" />
+      </label>
+
+      <label class="form__group">
+        <input v-model="consentGiven" type="checkbox" />
+        J'accepte que les données de cette simulation soient visibles en ligne.
+        Si les informations correspondent à une situation réelle, vous devriez
+        <router-link to="/foyer/recapitulatif">les modifier</router-link>
+        .
+      </label>
+
+      <WarningMessage v-if="showConsentNotice" class="inline">
+        Vous devez accepter la publication des données.
+        <router-link to="/foyer/recapitulatif">
+          Vous pouvez les anonymiser si nécessaire.
+        </router-link>
+      </WarningMessage>
+
+      <WarningMessage v-if="message">{{ message }}</WarningMessage>
+
+      <WarningMessage v-if="error">{{ error }}</WarningMessage>
+
+      <div>
+        <button :class="`button large ${submitting ? 'secondary' : ''}`">
+          Enregistrer
+        </button>
+        <p v-show="submitting">
+          <span
+            class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+            aria-hidden="true"
+          ></span
+          ><span class="fr-ml-2w">Enregistrement en cours…</span>
         </p>
-        <p>Plusieurs situations sont possibles&nbsp;:</p>
+      </div>
+    </div>
+
+    <div v-if="result">
+      <label class="form__group">
+        <textarea
+          ref="aj-textarea-results"
+          v-model="result"
+          class="aj-textarea-results"
+          readonly
+          rows="9"
+          @click="copyToClipboard"
+        />
+      </label>
+
+      <div>
+        <p>
+          Vous pouvez nous aider à améliorer le simulateur en nous envoyant par
+          mail à
+          <a v-mail="sendMail">{{ contactEmail }}</a>
+          avec :
+        </p>
         <ul>
           <li>
-            vous souhaitez <strong>confirmer</strong> que le résultat obtenu est
-            correct ou
+            le contenu du formulaire et en indiquant l'identifiant suivant :
+            <span class="bold">{{ store.situationId }} .</span>
           </li>
-          <li>
-            vous souhaitez indiquer que résultat obtenu est
-            <strong>incorrect</strong>.
-          </li>
+          <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
         </ul>
-        <p>
-          Dans tous les cas, il est important d'expliciter les intentions
-          derrière votre validation. En général, il s'agit d'indiquer
-          <strong>la règle métier</strong>.
-        </p>
-
-        <fieldset
-          v-for="(item, index) in selection"
-          :key="index"
-          class="form__group"
+      </div>
+      <div>
+        <p
+          ><a
+            :download="filename"
+            :href="resultToBase64"
+            class="button large"
+            @click="trackMontantAttendu('Téléchargement données')"
+          >
+            Télécharger le fichier de données
+          </a></p
         >
-          <legend v-if="item.ref">
-            <h2>{{ getTitle(item.ref) }}</h2>
-          </legend>
-          <div class="form__group">
-            <label for="de"
-              >Quelle est la prestation pour laquelle vous connaissez le
-              résultat&nbsp;?</label
-            >
-            <select v-model="item.ref">
-              <option
-                v-for="(benefit, bIndex) in benefits"
-                :key="bIndex"
-                :value="benefit"
-              >
-                {{ benefit.label }}
-              </option>
-            </select>
-          </div>
-
-          <div v-if="item.ref" class="form__group">
-            <label for="de">La valeur obtenue</label>
-            <input :value="getActual(item.ref)" disabled />
-          </div>
-
-          <div v-if="item.ref" class="form__group">
-            <label for="expected"
-              >Quelle est la valeur à laquelle vous vous attendiez&nbsp;?</label
-            >
-            <input id="expected" v-model="item.expected" />
-          </div>
-          <div>
-            <button class="button small warning" @click.prevent="remove(index)">
-              Supprimer cette prestation
-            </button>
-          </div>
-        </fieldset>
-
-        <button class="form__group button secondary" @click.prevent="add">
-          Ajouter une autre prestation pour laquelle vous connaissez le résultat
-        </button>
-
-        <label class="form__group"
-          >Description courte
-          <input
-            v-model="shortDescription"
-            placeholder="Les AL ne sont pas prises en compte dans le RSA"
-          />
-        </label>
-
-        <label class="form__group"
-          >Description détaillée
-          <textarea v-model="details" :placeholder="detailed" rows="9" />
-        </label>
-
-        <label class="form__group">
-          <input v-model="consentGiven" type="checkbox" />
-          J'accepte que les données de cette simulation soient visibles en
-          ligne. Si les informations correspondent à une situation réelle, vous
-          devriez
-          <router-link to="/foyer/recapitulatif">les modifier</router-link>
-          .
-        </label>
-
-        <WarningMessage v-if="showConsentNotice" class="inline">
-          Vous devez accepter la publication des données.
-          <router-link to="/foyer/recapitulatif">
-            Vous pouvez les anonymiser si nécessaire.
-          </router-link>
-        </WarningMessage>
-
-        <WarningMessage v-if="message">{{ message }}</WarningMessage>
-
-        <WarningMessage v-if="error">{{ error }}</WarningMessage>
-
-        <div>
-          <button :class="`button large ${submitting ? 'secondary' : ''}`">
-            Enregistrer
-          </button>
-          <span v-show="submitting"
-            ><i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
-            Enregistrement en cours…</span
-          >
-        </div>
       </div>
-
-      <div v-if="result">
-        <label class="form__group">
-          <textarea
-            ref="aj-textarea-results"
-            v-model="result"
-            class="aj-textarea-results"
-            readonly
-            rows="9"
-            @click="copyToClipboard"
-          />
-        </label>
-
-        <div>
-          <p>
-            Vous pouvez nous aider à améliorer le simulateur en nous envoyant
-            par mail à
-            <a v-mail="sendMail">{{ contactEmail }}</a>
-            avec :
-          </p>
-          <ul>
-            <li>
-              le contenu du formulaire et en indiquant l'identifiant suivant :
-              <span class="bold">{{ store.situationId }} .</span>
-            </li>
-            <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
-          </ul>
-        </div>
-        <div>
-          <p
-            ><a
-              :download="filename"
-              :href="resultToBase64"
-              class="button large"
-              @click="trackMontantAttendu('Téléchargement données')"
-            >
-              Télécharger le fichier de données
-            </a></p
-          >
-        </div>
-        <p>
-          Vous pouvez aussi revenir à
-          <router-link to="/simulation/resultats">
-            la page de résultats.
-          </router-link>
-        </p>
-      </div>
-    </form>
-  </div>
+      <p>
+        Vous pouvez aussi revenir à
+        <router-link to="/simulation/resultats">
+          la page de résultats.
+        </router-link>
+      </p>
+    </div>
+  </form>
 </template>
 
 <script>

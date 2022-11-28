@@ -8,8 +8,11 @@
       vos questions.
     </p>
     <p v-show="updating">
-      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
-      Récupération en cours…
+      <span
+        class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+        aria-hidden="true"
+      ></span
+      ><span class="fr-ml-2w">Récupération en cours…</span>
     </p>
     <div v-if="list?.length">
       <div v-for="(etablissement, index) in list" :key="index">
@@ -18,8 +21,9 @@
     </div>
     <div v-else>
       <router-link to="/simulation/resultats">
-        <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" /> Revenir
-        aux résultats
+        <BackButton class="fr-mb-4w" size="small"
+          >Revenir aux résultats
+        </BackButton>
       </router-link>
     </div>
   </div>

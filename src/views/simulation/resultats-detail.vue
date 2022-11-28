@@ -2,9 +2,19 @@
   <div>
     <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
       <p v-show="accessStatus.fetching">
-        Récupération de la situation en cours…
+        <span
+          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+          aria-hidden="true"
+        ></span
+        ><span class="fr-ml-2w">Récupération en cours…</span>
       </p>
-      <p v-show="resultatStatus.updating"> Récupération de vos droits… </p>
+      <p v-show="resultatStatus.updating">
+        <span
+          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+          aria-hidden="true"
+        ></span
+        ><span class="fr-ml-2w">Récupération de vos droits…</span>
+      </p>
     </LoadingModal>
 
     <BackButton

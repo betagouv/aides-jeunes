@@ -1,15 +1,14 @@
 <template>
   <form>
     <div>
-      <router-link to="/simulation/resultats/">
-        <h2 aria-label="Retour aux résultats">
-          <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" /> Retour
-          aux résultats
-        </h2>
+      <router-link to="/simulation/resultats">
+        <BackButton class="fr-mb-4w" size="small"
+          >Revenir aux résultats
+        </BackButton>
       </router-link>
     </div>
 
-    <h3>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h3>
+    <h2>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h2>
 
     <component
       :is="resultatsInattendus[droit.id]"
@@ -21,6 +20,7 @@
 
 <script>
 import Institution from "@/lib/institution"
+import BackButton from "@/components/buttons/back-button.vue"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
 import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"
 import ResultatInattenduPpa from "@/components/resultat-inattendu/ppa.vue"

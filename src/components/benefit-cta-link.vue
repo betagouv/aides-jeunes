@@ -24,7 +24,7 @@ let typeLabels = {
   teleservice: "Faire une demande en ligne",
   form: "Accéder au formulaire papier",
   instructions: "Accéder aux instructions",
-  link: "Plus d'informations <i class='ri-share-box-line ri' aria-hidden='true' role='presentation'></i>",
+  link: "Plus d'informations",
 }
 
 let longLabels = {

@@ -25,7 +25,7 @@
         class="fr-highlight fr-ml-0 fr-py-2w fr-mb-2w"
       >
         <strong>Pour en bénéficier, vous devez également : </strong>
-        <ul class="fr-list-unstyled fr-px-0">
+        <ul class="fr-toggle__list fr-px-0">
           <li v-for="(condition, index) in droit.conditions" :key="index">
             <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
             <span v-html="condition" />

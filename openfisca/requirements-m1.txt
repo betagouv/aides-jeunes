@@ -13,7 +13,7 @@ nptyping==1.4.4
 numexpr==2.7.3
 numpy==1.22.0
 OpenFisca-Core==35.7.7
-OpenFisca-France==117.1.1
+OpenFisca-France==120.0.0
 OpenFisca-France-Local==4.2.0
 Openfisca-Paris==3.5.0
 openpyxl==3.0.9

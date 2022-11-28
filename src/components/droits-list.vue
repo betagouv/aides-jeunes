@@ -1,99 +1,60 @@
 <template>
   <div class="droits-list">
     <div v-if="!ineligible">
-      <router-link
-        v-for="(droit, index) in list"
-        :key="index"
-        class="fr-tile fr-mb-5w"
-        :to="`/simulation/resultats/${droit.id}`"
-        itemscope
-        itemtype="http://schema.org/GovernmentService"
-        :data-testid="droit.id"
-        :aria-label="askBenefit(droit)"
-      >
-        <div class="fr-p-4w">
-          <div class="aj-benefit-header fr-mb-4w">
-            <img
-              class="aj-institution-icon"
-              :src="getBenefitImage(droit)"
-              alt=""
-            />
-            <div class="aj-benefit-name">
-              <h2 class="fr-text--lead" itemprop="name">{{
-                capitalize(droit.label)
-              }}</h2>
-              <div class="aj-benefit-institution"
-                >{{ capitalize(droit.institution.label) }}
-              </div>
-              <div>
-                <p class="fr-text--justify" v-html="droit.description" />
-                <WarningMessage
-                  v-if="
-                    droit.montant &&
-                    isBoolean(droit.montant) &&
-                    droit.warning === true
-                  "
-                >
-                  <img src="@/assets/images/warning.svg" alt="" /> Attention,
-                  cette aide vous est accessible sous certaines conditions
-                  supplémentaires.
-                </WarningMessage>
-              </div>
-            </div>
-            <DroitEstime :droit="droit" />
-          </div>
-          <div class="fr-container fr-px-0">
-            <div class="fr-grid-row fr-grid-row--right">
-              <button class="fr-btn" data-testid="aide-cta">
-                Demander cette aide
-              </button>
-            </div>
-          </div>
-        </div>
-        <div v-if="false" class="fr-p-4w">
-          <div class="fr-container fr-px-0 fr-mb-1w">
-            <div class="fr-grid-row fr-grid-row--gutters">
-              <div class="fr-col-1">
-                <img
-                  class="aj-institution-icon"
-                  :src="getBenefitImage(droit)"
-                  alt=""
-                />
-              </div>
-              <div class="fr-col-8 fr-pl-3w">
-                <h2 class="fr-tile__title" itemprop="name">{{
+      <div v-for="(droit, index) in list" :key="index" class="fr-mb-5w">
+        <router-link
+          class="fr-tile fr-pb-4w"
+          :to="`/simulation/resultats/${droit.id}`"
+          itemscope
+          itemtype="http://schema.org/GovernmentService"
+          :data-testid="droit.id"
+          :aria-label="askBenefit(droit)"
+        >
+          <div class="fr-p-4w">
+            <div class="aj-benefit-header fr-mb-4w">
+              <img
+                class="aj-institution-icon"
+                :src="getBenefitImage(droit)"
+                alt=""
+              />
+              <div class="aj-benefit-name">
+                <h2 class="fr-text--lead" itemprop="name">{{
                   capitalize(droit.label)
                 }}</h2>
-                <div class="fr-hint-text"
+                <div class="aj-benefit-institution"
                   >{{ capitalize(droit.institution.label) }}
                 </div>
-                <p class="fr-text--justify" v-html="droit.description" />
-                <WarningMessage
-                  v-if="
-                    droit.montant &&
-                    isBoolean(droit.montant) &&
-                    droit.warning === true
-                  "
-                >
-                  <img src="@/assets/images/warning.svg" alt="" /> Attention,
-                  cette aide vous est accessible sous certaines conditions
-                  supplémentaires.
-                </WarningMessage>
+                <div>
+                  <p class="fr-text--justify" v-html="droit.description" />
+                  <WarningMessage
+                    v-if="
+                      droit.montant &&
+                      isBoolean(droit.montant) &&
+                      droit.warning === true
+                    "
+                  >
+                    <img src="@/assets/images/warning.svg" alt="" /> Attention,
+                    cette aide vous est accessible sous certaines conditions
+                    supplémentaires.
+                  </WarningMessage>
+                </div>
               </div>
-              <div class="fr-col-3">
-                <DroitEstime :droit="droit" />
-              </div>
+              <DroitEstime :droit="droit" />
             </div>
           </div>
-          <div class="fr-container fr-px-0">
-            <div class="fr-grid-row fr-grid-row--right">
-              <button class="fr-btn" data-testid="aide-cta">
-                Demander cette aide
-              </button>
-            </div>
+        </router-link>
+        <div class="fr-container fr-px-3w fr-mt-n8w">
+          <div class="fr-grid-row fr-grid-row--right">
+            <router-link
+              :to="`/simulation/resultats/${droit.id}`"
+              class="fr-btn"
+              data-testid="aide-cta"
+            >
+              Demander cette aide
+            </router-link>
           </div>
         </div>
-      </router-link>
+      </div>
     </div>
     <div v-else>
       <a

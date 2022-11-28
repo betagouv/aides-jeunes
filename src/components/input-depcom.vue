@@ -18,6 +18,7 @@
               pattern="[0-9]*"
               type="text"
               class="fr-input"
+              autocomplete="postal-code"
             />
           </div>
         </div>

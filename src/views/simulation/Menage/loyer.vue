@@ -13,11 +13,7 @@
       <div class="fr-container--fluid">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
-            <InputNumber
-              id="loyer"
-              :amount="true"
-              v-model="loyerQuestion.selectedValue"
-            />
+            <InputNumber id="loyer" v-model="loyerQuestion.selectedValue" />
           </div>
         </div>
       </div>
@@ -38,7 +34,6 @@
             <InputNumber
               id="charges"
               v-model="chargesQuestion.selectedValue"
-              :amount="true"
               data-testid="loyer"
             />
           </div>

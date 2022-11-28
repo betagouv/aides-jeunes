@@ -11,7 +11,7 @@
             v-for="(question, questionIndex) in chapter.questions"
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
-            <div class="fr-container--fluid">
+            <div class="fr-container fr-px-0">
               <div class="fr-grid-row fr-mb-1w">
                 <div class="fr-col-6">
                   <h3

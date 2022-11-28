@@ -11,7 +11,7 @@
     <div class="fr-fieldset__content">
       <div v-for="enfant in enfants" :key="enfant.id" class="fr-mb-4w">
         <div v-if="enfant.date_naissance">
-          <div class="fr-container--fluid">
+          <div class="fr-container fr-px-0">
             <div class="fr-grid-row fr-grid-row--middle">
               <div class="fr-col fr-text--bold">{{ enfant._firstName }}</div>
               <div class="fr-col">
@@ -37,7 +37,7 @@
             </div>
           </div>
           <hr class="fr-hr fr-pb-1w" />
-          <div class="fr-container--fluid">
+          <div class="fr-container fr-px-0">
             <div class="fr-grid-row fr-grid-row--middle">
               <p class="fr-col-4 fr-m-0">
                 <span class="fr-text--sm">Sa date de naissance</span><br />

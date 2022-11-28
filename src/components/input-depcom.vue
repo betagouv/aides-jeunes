@@ -6,7 +6,7 @@
         <EnSavoirPlus />
       </label>
 
-      <div class="fr-container fr-container--fluid fr-mt-4w">
+      <div class="fr-container fr-px-0 fr-mt-4w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <input
@@ -37,7 +37,7 @@
           >Veuillez sélectionner la ville qui correspond</span
         >
       </label>
-      <div class="fr-container fr-container--fluid fr-mt-4w">
+      <div class="fr-container fr-px-0 fr-mt-4w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select id="commune" v-model="nomCommuneValue" class="fr-select">

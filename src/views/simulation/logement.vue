@@ -7,7 +7,7 @@
         </span>
       </legend>
       <div class="fr-fieldset__content">
-        <div class="fr-container--fluid">
+        <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
             <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
               <div
@@ -51,7 +51,7 @@
       </legend>
 
       <div class="fr-fieldset__content">
-        <div class="fr-container--fluid">
+        <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
             <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
               <div
@@ -86,7 +86,7 @@
         </span>
       </legend>
       <div class="fr-fieldset__content">
-        <div class="fr-container--fluid">
+        <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
             <div class="fr-col-12 fr-col-md-10 fr-col-lg-10">
               <div

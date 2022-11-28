@@ -7,7 +7,7 @@
     </legend>
     <div class="fr-fieldset__content fr-pt-2w">
       <label for="liberaleType" class="fr-text--lg">Type d'activité</label>
-      <div class="fr-container--fluid fr-mb-2w">
+      <div class="fr-container fr-px-0 fr-mb-2w">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select
@@ -36,9 +36,9 @@
       <label for="liberaleLastBenef" class="fr-text--lg"
         >Bénéfice sur le dernier exercice clos</label
       >
-      <div class="fr-container--fluid">
+      <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
-          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+          <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
             <InputNumber
               id="liberaleLastBenef"
               :value="ressource.amounts[store.dates.lastYear.id]"

@@ -1,5 +1,5 @@
 <template>
-  <div class="fr-container--fluid">
+  <div class="fr-container fr-px-0">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div v-if="showDay" class="fr-col-3 fr-col-sm-3 fr-col-lg-2">
         <label class="fr-label fr-text--center">

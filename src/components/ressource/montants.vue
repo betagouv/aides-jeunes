@@ -26,9 +26,9 @@
         <label :for="`${type.meta.id}_monthly`" class="fr-label">
           Indiquez le montant <b>mensuel net</b> :
         </label>
-        <div class="fr-container--fluid">
+        <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
               <InputNumber
                 :value="type.amounts[store.dates.thisMonth.id]"
                 :id="`${type.meta.id}_monthly`"
@@ -52,9 +52,9 @@
           class="fr-mt-1w"
         >
           <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
-          <div class="fr-container--fluid">
+          <div class="fr-container fr-px-0">
             <div class="fr-grid-row">
-              <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+              <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                 <InputNumber
                   :id="`${type.meta.id}_${month.id}`"
                   :value="type.amounts[month.id]"

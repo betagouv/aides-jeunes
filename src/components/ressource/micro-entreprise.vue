@@ -9,9 +9,9 @@
       <label :for="`${ressource.meta.id}_microAmount`" class="fr-label"
         >Chiffre d’affaires {{ store.dates.lastYear.label }}</label
       >
-      <div class="fr-container--fluid">
+      <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
-          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+          <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
             <InputNumber
               :id="`${ressource.meta.id}_microAmount`"
               :value="ressource.amounts[store.dates.lastYear.id]"

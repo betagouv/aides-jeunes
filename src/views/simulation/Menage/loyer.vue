@@ -10,9 +10,9 @@
         }}</span>
       </label>
 
-      <div class="fr-container--fluid">
+      <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
-          <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+          <div class="fr-col-12 fr-col-md-6 fr-col-md-5 fr-col-lg-5">
             <InputNumber id="loyer" v-model="loyerQuestion.selectedValue" />
           </div>
         </div>
@@ -28,9 +28,9 @@
         }}</span>
       </label>
 
-      <div class="fr-container--fluid">
+      <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
-          <div class="fr-col-12 fr-col-md-5 fr-col-lg-5">
+          <div class="fr-col-12 fr-col-sm-5 fr-col-md-5 fr-col-lg-5">
             <InputNumber
               id="charges"
               v-model="chargesQuestion.selectedValue"

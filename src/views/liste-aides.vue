@@ -3,7 +3,7 @@
     <h1>Toutes les aides</h1>
     <p class="total-element">Total: {{ benefitsCount }} aides</p>
     <div class="fr-form-group">
-      <div class="fr-container--fluid">
+      <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
           <div class="fr-col-12">
             <label class="cp-filter-label" for="cp-input"

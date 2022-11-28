@@ -15,8 +15,8 @@
         charge.
       </p>
       <ul class="fr-btns-group">
-        <li
-          ><button
+        <li>
+          <router-link
             v-if="hasExistingSituation"
             v-analytics="{
               action: 'Reprendre ma simulation',
@@ -24,21 +24,23 @@
             }"
             class="fr-btn"
             @click="next()"
+            to="#"
           >
             Reprendre ma simulation
-          </button></li
-        >
-        <li
-          ><button
+          </router-link>
+        </li>
+        <li>
+          <router-link
             v-analytics="{ action: ctaLabel, category: 'Home' }"
             class="fr-btn"
             :class="{ 'fr-btn--secondary': hasExistingSituation }"
             data-testid="new-simulation"
             @click="newSituation()"
+            to="#"
           >
             {{ ctaLabel }}
-          </button></li
-        >
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="fr-col fr-col-6 fr-col--bottom fr-hidden fr-unhidden-md">

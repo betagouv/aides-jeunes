@@ -9,7 +9,7 @@
       <label for="liberaleType" class="fr-text--lg">Type d'activité</label>
       <div class="fr-container fr-px-0 fr-mb-2w">
         <div class="fr-grid-row">
-          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+          <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
             <select
               id="liberaleType"
               class="fr-select"

@@ -1,5 +1,6 @@
 <template>
   <span v-if="text" @mouseover="trackInterest()" class="fr-ml-1v">
+    &nbsp;
     <router-link
       :to="{ path: $route.path + '/en_savoir_plus' }"
       :data-text="text"

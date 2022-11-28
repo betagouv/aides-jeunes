@@ -33,7 +33,11 @@
                 </div>
                 <div class="fr-col-2">
                   <p v-if="!question.hideEdit" class="fr-my-0">
-                    <router-link :to="question.path">Modifier</router-link>
+                    <router-link
+                      :to="question.path"
+                      :title="`Modifier la réponse à la question ${question.label}`"
+                      >Modifier</router-link
+                    >
                   </p>
                 </div>
               </div>

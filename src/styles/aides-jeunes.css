@@ -2,6 +2,10 @@
   --text-disabled-grey: #666;
 }
 
+.fr-mt-n8w {
+  margin-top: -64px;
+}
+
 .fr-fieldset {
   margin-left: auto;
   margin-right: auto;

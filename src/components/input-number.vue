@@ -1,21 +1,19 @@
 <template>
-  <div :class="amount ? 'fr-input-wrap fr-icon-money-euro-circle-fill' : ''">
-    <input
-      :id="id"
-      ref="result"
-      v-model.number="model"
-      v-select-on-click
-      :data-testid="id"
-      type="number"
-      :name="name"
-      :min="min"
-      :max="max"
-      :step="step"
-      :data-type="dataType"
-      class="fr-input"
-      inputmode="numeric"
-    />
-  </div>
+  <input
+    :id="id"
+    ref="result"
+    v-model.number="model"
+    v-select-on-click
+    :data-testid="id"
+    type="number"
+    :name="name"
+    :min="min"
+    :max="max"
+    :step="step"
+    :data-type="dataType"
+    class="fr-input"
+    inputmode="numeric"
+  />
   <WarningMessage v-if="error" class="fr-mt-2w"
     >Ce champ n'est pas valide.</WarningMessage
   >
@@ -31,7 +29,6 @@ export default {
     name: String,
     min: Number,
     max: Number,
-    amount: { type: Boolean, default: false },
     dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
     modelValue: { type: [Number, String] },

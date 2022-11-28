@@ -39,18 +39,18 @@
           <hr class="fr-hr fr-pb-1w" />
           <div class="fr-container--fluid">
             <div class="fr-grid-row fr-grid-row--middle">
-              <div class="fr-col-4">
+              <p class="fr-col-4 fr-m-0">
                 <span class="fr-text--sm">Sa date de naissance</span><br />
                 <span>{{ birthDate(enfant.date_naissance) }}</span>
-              </div>
-              <div class="fr-col-4">
+              </p>
+              <p class="fr-col-4 fr-m-0">
                 <span class="fr-text--sm">Sa nationalité</span><br />
                 <span>{{ nationality(enfant.nationalite) }}</span>
-              </div>
-              <div class="fr-col-4">
+              </p>
+              <p class="fr-col-4 fr-m-0">
                 <span class="fr-text--sm">Sa situation</span><br />
                 <span>{{ scolarite(enfant.scolarite) }}</span>
-              </div>
+              </p>
             </div>
           </div>
         </div>

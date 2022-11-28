@@ -51,18 +51,31 @@
                 class="fr-form"
               >
                 <div class="fr-form-group">
-                  <label class="fr-label" for="email">Votre email</label>
+                  <label class="fr-label" for="email"
+                    >Votre email
+                    <span class="fr-hint-text"
+                      >Format attendu : nom@domaine.fr</span
+                    >
+                  </label>
                   <input
                     id="email"
                     v-model="email"
                     name="email"
+                    ref="email"
                     required
+                    :aria-invalid="errorMessage"
+                    :aria-describedBy="
+                      errorMessage ? 'invalid-email-warning' : null
+                    "
                     type="email"
                     class="fr-input"
                     autocomplete="email"
                   />
                 </div>
-                <WarningMessage v-if="errorMessage" class="fr-mt-2w"
+                <WarningMessage
+                  v-if="errorMessage"
+                  id="invalid-email-warning"
+                  class="fr-mt-2w"
                   >Une adresse email valide doit être indiquée.
                 </WarningMessage>
               </form>
@@ -136,6 +149,7 @@ export default {
     getRecap(surveyOptin) {
       if (!this.$refs.form.checkValidity()) {
         this.errorMessage = true
+        this.$refs.email.focus()
         this.$matomo &&
           this.$matomo.trackEvent(
             "General",
@@ -164,12 +178,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.modal__backdrop {
-  display: flex;
-  align-items: flex-start;
-  padding: 4em;
-  overflow-y: scroll;
-}
-</style>

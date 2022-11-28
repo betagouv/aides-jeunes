@@ -78,7 +78,7 @@
 
     <fieldset
       v-if="logementTypesQuestion.selectedValue == 'locataire'"
-      class="fr-fieldset fr-container fr-mt-2w"
+      class="fr-fieldset fr-mt-2w"
     >
       <legend class="fr-fieldset__legend">
         <span class="fr-text--lead">

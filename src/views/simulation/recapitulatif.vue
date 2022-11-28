@@ -12,8 +12,8 @@
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
             <div class="fr-container fr-px-0">
-              <div class="fr-grid-row fr-mb-1w">
-                <div class="fr-col-6">
+              <div class="fr-grid-row fr-mb-3v">
+                <div class="fr-col-12 fr-col-sm-6">
                   <h3
                     v-if="question.labelClass"
                     class="fr-my-0 fr-text--md"
@@ -21,7 +21,7 @@
                   ></h3>
                   <p v-else class="fr-my-0" v-html="question.label"></p>
                 </div>
-                <div class="fr-col-4">
+                <div class="fr-col-12 fr-col-sm-4">
                   <p
                     v-if="
                       !['undefined', 'object'].includes(typeof question.value)
@@ -31,7 +31,7 @@
                     {{ question.value }}
                   </p>
                 </div>
-                <div class="fr-col-2">
+                <div class="fr-col-12 fr-col-sm-2">
                   <p v-if="!question.hideEdit" class="fr-my-0">
                     <router-link
                       :to="question.path"

@@ -1,5 +1,5 @@
 <template>
-  <div class="aj-unbox">
+  <div>
     <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
       <p v-show="accessStatus.fetching">
         Récupération de la situation en cours…

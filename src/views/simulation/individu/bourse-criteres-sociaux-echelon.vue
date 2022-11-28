@@ -1,16 +1,27 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <label for="bourse_criteres_sociaux_echelon" class="aj-question"
-      >À quel échelon {{ getLabel("être") }} boursier ?</label
-    >
-    <input
-      id="bourse_criteres_sociaux_echelon"
-      v-model="value"
-      type="range"
-      min="-1"
-      max="7"
-    />
-    {{ value == -1 ? "Non boursier" : `Boursier échelon ${value}` }}
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend" id="step-question">
+        À quel échelon {{ getLabel("être") }} boursier ?
+      </legend>
+      <div class="fr-fieldset__content">
+        <div class="fr-container--fluid">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
+              <input
+                id="bourse_criteres_sociaux_echelon"
+                v-model="value"
+                type="range"
+                min="-1"
+                max="7"
+                aria-labelledby="step-question"
+              />
+            </div>
+          </div>
+        </div>
+        <p>{{ value == -1 ? "Non boursier" : `Boursier échelon ${value}` }}</p>
+      </div>
+    </fieldset>
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

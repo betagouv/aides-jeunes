@@ -55,13 +55,7 @@
               >
             </li>
             <li v-else>
-              <BackButton
-                @click="
-                  mobileNavigationCollapse()
-                  goBack()
-                "
-                >Retour</BackButton
-              >
+              <BackButton @click="goBack()">Retour</BackButton>
             </li>
           </ul>
         </div>
@@ -107,6 +101,7 @@ export default {
         : !chapter.done && !this.chapters[index - 1].done
     },
     goBack() {
+      this.mobileNavigationCollapse()
       window?.history.back()
     },
     mobileNavigationCollapse() {

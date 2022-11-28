@@ -18,6 +18,7 @@
             pattern="[0-9]*"
             placeholder="JJ"
             type="text"
+            autocomplete="bday-day"
           />
         </label>
       </div>
@@ -35,6 +36,7 @@
             pattern="[0-9]*"
             placeholder="MM"
             type="text"
+            autocomplete="bday-month"
           />
         </label>
       </div>
@@ -52,6 +54,7 @@
             pattern="[0-9]*"
             placeholder="AAAA"
             type="text"
+            autocomplete="bday-year"
           />
         </label>
       </div>

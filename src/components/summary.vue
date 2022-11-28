@@ -2,6 +2,7 @@
   <nav
     class="fr-sidemenu fr-sidemenu--sticky-full-height fr-col-lg-12"
     aria-label="Sommaire"
+    role="navigation"
   >
     <div class="fr-sidemenu__inner">
       <button
@@ -12,8 +13,8 @@
         >Sommaire</button
       >
       <div class="fr-collapse" id="fr-sidemenu-wrapper">
-        <div class="fr-sidemenu__title fr-text--regular fr-pt-5w"
-          >Ma simulation</div
+        <h2 class="fr-sidemenu__title fr-text--regular fr-pt-5w"
+          >Ma simulation</h2
         >
         <ul class="fr-sidemenu__list">
           <li

@@ -1,37 +1,4 @@
 <template>
-  <!--<div class="fr-hidden-sm fr-col-1 fr-mr-2w">
-    <dialog
-      aria-labelledby="fr-modal-en-savoir-plus-title"
-      id="fr-modal-en-savoir-plus"
-      class="fr-modal fr-modal--opened fr-modal--large"
-      data-fr-js-modal="true"
-      role="dialog"
-      aria-modal="true"
-      open="true"
-    >
-      <div class="fr-container fr-container--fluid fr-container-md">
-        <div class="fr-grid-row fr-grid-row--center">
-          <div class="fr-col-12">
-            <div class="fr-modal__body">
-              <div class="fr-modal__header">
-                <button
-                  class="fr-link--close fr-link"
-                  aria-controls="fr-modal-en-savoir-plus"
-                  @click="window?.history.back()"
-                  >Fermer</button
-                >
-              </div>
-              <div class="fr-modal__content">
-                <h4>En savoir plus</h4>
-                <p>{{ text }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </dialog>
-  </div>
-  <div class="fr-mb-4w">-->
   <div>
     <h2 class="fr-text--lead">En savoir plus</h2>
     <p>{{ text }}</p>

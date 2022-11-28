@@ -6,14 +6,16 @@
   >
     <div class="fr-sidemenu__inner">
       <button
-        class="fr-sidemenu__btn"
-        hidden
+        class="fr-sidemenu__btn fr-px-2w"
         aria-controls="fr-sidemenu-wrapper"
         aria-expanded="false"
+        ref="sideMenuButton"
         >Sommaire</button
       >
       <div class="fr-collapse" id="fr-sidemenu-wrapper">
-        <h2 class="fr-sidemenu__title fr-text--regular fr-pt-5w"
+        <h2
+          class="fr-sidemenu__title fr-text--regular fr-hidden fr-unhidden-md fr-pt-5w fr-px-2w"
+          @click="mobileNavigationCollapse()"
           >Ma simulation</h2
         >
         <ul class="fr-sidemenu__list">
@@ -24,37 +26,45 @@
           >
             <router-link
               v-if="!disabledLink(chapter, index)"
+              @click="mobileNavigationCollapse()"
               :to="chapter.root"
               tabindex="0"
-              class="fr-sidemenu__link"
+              class="fr-sidemenu__link fr-px-2w"
               :aria-current="chapter.current ? chapter.current : null"
               target="_self"
               >{{ chapter.label }}</router-link
             >
-            <span v-else class="fr-sidemenu__link fr-text--disabled">{{
+            <span v-else class="fr-sidemenu__link fr-text--disabled fr-px-2w">{{
               chapter.label
             }}</span>
           </li>
         </ul>
-      </div>
-      <div>
-        <ul
-          v-if="store.passSanityCheck"
-          class="fr-btns-group fr-btns-group--inline fr-mt-5w"
-        >
-          <li v-if="!isRecapitulatif">
-            <router-link
-              class="fr-btn fr-btn--secondary"
-              :to="{ name: 'recapitulatif' }"
-              >{{
-                isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
-              }}</router-link
-            >
-          </li>
-          <li v-else>
-            <BackButton @click="goBack()">Retour</BackButton>
-          </li>
-        </ul>
+        <div>
+          <ul
+            v-if="store.passSanityCheck"
+            class="fr-btns-group fr-btns-group--inline-md fr-mt-5w fr-px-2w fr-px-md-0"
+          >
+            <li v-if="!isRecapitulatif">
+              <router-link
+                @click="mobileNavigationCollapse()"
+                class="fr-btn fr-btn--secondary"
+                :to="{ name: 'recapitulatif' }"
+                >{{
+                  isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
+                }}</router-link
+              >
+            </li>
+            <li v-else>
+              <BackButton
+                @click="
+                  mobileNavigationCollapse()
+                  goBack()
+                "
+                >Retour</BackButton
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -98,6 +108,9 @@ export default {
     },
     goBack() {
       window?.history.back()
+    },
+    mobileNavigationCollapse() {
+      this.$refs.sideMenuButton.setAttribute("aria-expanded", false)
     },
   },
 }

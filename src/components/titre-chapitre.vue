@@ -1,12 +1,6 @@
 <template>
   <div class="fr-container--fluid fr-px-0 fr-mt-3w fr-py-2w">
     <div class="fr-grid-row fr-grid-row--gutters">
-      <div v-if="showMenuButton" class="fr-hidden-md fr-col-1 fr-mr-2w">
-        <MenuButton
-          v-show="showMenuButton"
-          @click="goToRecapitulatifPage"
-        ></MenuButton>
-      </div>
       <div class="fr-col">
         <h1 class="fr-my-0">{{ title }}</h1>
       </div>

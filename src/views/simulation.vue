@@ -1,7 +1,7 @@
 <template>
   <ProgressBar></ProgressBar>
   <div class="fr-grid-row">
-    <div class="fr-col-12 fr-col-md-3 fr-hidden fr-unhidden-md">
+    <div class="fr-col-12 fr-col-md-3">
       <Progress v-if="debug" />
       <Summary v-else />
     </div>

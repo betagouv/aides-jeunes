@@ -1,5 +1,5 @@
 <template>
-  <div class="aj-unbox">
+  <div>
     <BackButton class="fr-mb-2w" size="small" @click="goToBenefitDetail()"
       >Retour à l'aide
     </BackButton>

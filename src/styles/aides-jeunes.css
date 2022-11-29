@@ -207,12 +207,6 @@
   }
 }
 
-h1:focus,
-h2:focus,
-h3:focus {
-  outline-style: none !important;
-}
-
 .fr-text--preformated {
   white-space: pre;
 }

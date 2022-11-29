@@ -1,7 +1,6 @@
 <template>
   <p class="is-align-vertically-center">
-    <span v-if="showContributionLinks && isEditableBenefit()"
-      > -
+    <span v-if="showContributionLinks && isEditableBenefit()">
       <a
         :href="repositoryBenefitUrl()"
         target="_blank"

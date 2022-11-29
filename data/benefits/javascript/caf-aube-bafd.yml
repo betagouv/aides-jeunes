@@ -9,7 +9,7 @@ conditions_generales:
     operator: ">="
     value: 18
   - type: quotient_familial
-    floor: 1456
+    ceiling: 1456
     period: month
   - type: departements
     values:

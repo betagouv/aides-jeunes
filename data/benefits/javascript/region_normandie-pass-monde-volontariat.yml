@@ -27,7 +27,7 @@ conditions_generales:
     values:
       - "28"
   - type: quotient_familial
-    floor: 30000
+    ceiling: 30000
     period: year
 profils:
   - type: lyceen

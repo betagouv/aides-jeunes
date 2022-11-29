@@ -196,6 +196,10 @@
       inset 0 -1px 0 0 var(--border-default-grey);
     z-index: calc(var(--ground) + 100);
   }
+
+  .aj-action-buttons .fr-btns-group {
+    justify-content: space-between !important;
+  }
 }
 
 @media (max-width: 992px) {

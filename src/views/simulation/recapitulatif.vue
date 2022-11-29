@@ -1,6 +1,6 @@
 <template>
-  <div class="recapitulatif">
-    <div>
+  <div>
+    <div class="fr-mb-5w">
       <template
         v-for="(chapter, chapterIndex) in myChapters"
         :key="chapter.name"
@@ -60,21 +60,23 @@
         </div>
       </template>
     </div>
-    <ul class="fr-btns-group fr-btns-group--inline fr-my-5w">
-      <li>
-        <BackButton @click="goBack" class="fr-btn--icon-center"></BackButton>
-      </li>
-      <li v-if="showResultButton">
-        <router-link class="fr-btn" to="/simulation/resultats"
-          >Accéder aux résultats
-        </router-link>
-      </li>
-      <li v-else-if="store.lastUnansweredStep">
-        <router-link :to="store.lastUnansweredStep.path" class="fr-btn"
-          >Continuer
-        </router-link>
-      </li>
-    </ul>
+    <div class="aj-action-buttons">
+      <ul class="fr-btns-group fr-btns-group--inline">
+        <li>
+          <BackButton @click="goBack" class="fr-btn--icon-center"></BackButton>
+        </li>
+        <li v-if="showResultButton">
+          <router-link class="fr-btn" to="/simulation/resultats"
+            >Accéder aux résultats
+          </router-link>
+        </li>
+        <li v-else-if="store.lastUnansweredStep">
+          <router-link :to="store.lastUnansweredStep.path" class="fr-btn"
+            >Continuer
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -86,11 +88,18 @@ import ComplexeProperties from "@lib/properties/others/complexe-properties"
 import { chapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine, Step } from "@lib/types/property"
-import { computed, ComputedRef } from "vue"
+import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
 import { categoriesRnc } from "@lib/resources"
 import { patrimoineTypes } from "@lib/resources"
+
+onMounted(() => {
+  document.body.setAttribute("data-action-buttons", "true")
+})
+onUnmounted(() => {
+  document.body.removeAttribute("data-action-buttons")
+})
 
 const store = useStore()
 const route = useRoute()

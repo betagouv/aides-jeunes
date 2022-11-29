@@ -182,6 +182,22 @@
   min-width: 70px;
 }
 
+@media (max-width: 576px) {
+  body[data-action-buttons="true"] {
+    padding-bottom: 72px;
+  }
+
+  .aj-action-buttons {
+    position: fixed;
+    inset: auto 0 0 0;
+    background: var(--background-default-grey);
+    padding: 16px 16px 0;
+    box-shadow: inset 0 1px 0 0 var(--border-default-grey),
+      inset 0 -1px 0 0 var(--border-default-grey);
+    z-index: calc(var(--ground) + 10000);
+  }
+}
+
 @media (max-width: 992px) {
   .aj-benefit-header {
     justify-content: space-between;
@@ -234,7 +250,7 @@
 }
 
 .fr-article {
-  margin: 56px auto;
+  margin: 56px 24px;
 }
 
 .fr-article h2 {

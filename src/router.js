@@ -359,12 +359,12 @@ function getTitleMeta(route) {
   }
   return process.env.VITE_TITLE
 }
-/*
+
 // désactivé en attendant de prendre position sur les liens d'évitement
 
 router.afterEach((to) => {
   if (to.preventFocus) return
-
+  /*
   nextTick(function () {
     document.title = getTitleMeta(to)
 
@@ -376,6 +376,7 @@ router.afterEach((to) => {
       title.focus()
     }
   })
+  */
 })
-*/
+
 export default router

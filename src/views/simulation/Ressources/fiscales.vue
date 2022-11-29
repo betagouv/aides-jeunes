@@ -34,9 +34,10 @@
             :key="ressource.id"
             class="fr-mb-2w"
           >
-            <label class="fr-label">
+            <label :for="ressource.id" class="fr-label">
               {{ ressource.label }}
               <input
+                :id="ressource.id"
                 v-model="
                   individu.values[ressource.id][store.dates.fiscalYear.id]
                 "

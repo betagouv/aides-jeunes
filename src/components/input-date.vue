@@ -2,7 +2,7 @@
   <div class="fr-container fr-px-0">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div v-if="showDay" class="fr-col-3 fr-col-sm-3 fr-col-md-2 fr-col-lg-2">
-        <label class="fr-label fr-text--center">
+        <label class="fr-label fr-text--center" :for="firstId">
           <span class="fr-hint-text fr-mb-1v">jour</span>
           <input
             :id="firstId"
@@ -23,9 +23,10 @@
         </label>
       </div>
       <div class="fr-col-3 fr-col-sm-3 fr-col-md-2 fr-col-lg-2">
-        <label class="fr-label fr-text--center">
+        <label class="fr-label fr-text--center" for="month-input">
           <span class="fr-hint-text fr-mb-1v">mois</span>
           <input
+            id="month-input"
             ref="month"
             class="fr-input"
             v-model="month"
@@ -41,9 +42,10 @@
         </label>
       </div>
       <div class="fr-col-6 fr-col-sm-4 fr-col-md-4 fr-col-lg-4">
-        <label class="fr-label fr-text--center">
+        <label class="fr-label fr-text--center" for="year-input">
           <span class="fr-hint-text fr-mb-1v">année</span>
           <input
+            id="year-input"
             ref="year"
             v-model="year"
             v-select-on-click

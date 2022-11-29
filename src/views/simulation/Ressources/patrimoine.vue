@@ -19,9 +19,13 @@
 
         <div v-if="hasTerrainsNonLoues" class="form__group fr-my-4w">
           <div>
-            <label class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w">
+            <label
+              for="valeur_terrains_non_loues"
+              class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w"
+            >
               Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
               <InputNumber
+                id="valeur_terrains_non_loues"
                 v-model="demandeur.valeur_terrains_non_loues[periodKey]"
                 class=""
               />
@@ -29,9 +33,13 @@
           </div>
 
           <div class="fr-mt-2w">
-            <label class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w">
+            <label
+              id="valeur_locative_terrains_non_loues"
+              class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w"
+            >
               Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
               <InputNumber
+                id="valeur_locative_terrains_non_loues"
                 v-model="
                   demandeur.valeur_locative_terrains_non_loues[periodKey]
                 "
@@ -59,20 +67,22 @@
 
         <div v-if="hasBatisNonLoues" class="fr-my-4w">
           <div>
-            <label class="fr-label">
+            <label for="valeur_immo_non_loue" class="fr-label">
               Valeur <b>patrimoniale</b> de vos appartements/immeubles
               <b>non loués</b>
               <InputNumber
+                id="valeur_immo_non_loue"
                 v-model="demandeur.valeur_immo_non_loue[periodKey]"
               />
             </label>
           </div>
 
           <div class="fr-mt-2w">
-            <label class="fr-label">
+            <label for="valeur_locative_immo_non_loue" class="fr-label">
               Valeur <b>locative</b> totale de vos appartements/immeubles
               <b>non loués</b>
               <InputNumber
+                id="valeur_locative_immo_non_loue"
                 v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
               />
             </label>
@@ -84,9 +94,13 @@
           </div>
 
           <div class="fr-mt-2w">
-            <label v-if="hasBiensLoues" class="fr-label fr-mt-2w"
+            <label
+              v-if="hasBiensLoues"
+              for="valeur_patrimoine_loue"
+              class="fr-label fr-mt-2w"
               >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
               <InputNumber
+                id="valeur_patrimoine_loue"
                 v-model="demandeur.valeur_patrimoine_loue[periodKey]"
               />
             </label>
@@ -108,17 +122,21 @@
       </legend>
       <div class="fr-fieldset__content">
         <div>
-          <label class="fr-label">
+          <label for="livret_a" class="fr-label">
             Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
-            <InputNumber v-model="demandeur.livret_a[periodKey]" />
+            <InputNumber
+              id="livret_a"
+              v-model="demandeur.livret_a[periodKey]"
+            />
           </label>
         </div>
 
         <div class="fr-mt-2w">
-          <label class="fr-label">
+          <label for="epargne_revenus_non_imposables" class="fr-label">
             Total des autres produits d'épargne produisant des revenus
             <b>non imposables</b>
             <InputNumber
+              id="epargne_revenus_non_imposables"
               v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
             />
             <span class="fr-hint-text">
@@ -134,9 +152,10 @@
         </div>
 
         <div class="fr-mt-2w">
-          <label class="fr-label">
+          <label for="epargne_revenus_imposables" class="fr-label">
             Total de l'épargne produisant des revenus <b>imposables</b>
             <InputNumber
+              id="epargne_revenus_imposables"
               v-model="demandeur.epargne_revenus_imposables[periodKey]"
             />
             <span class="fr-hint-text">

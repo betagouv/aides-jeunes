@@ -3,7 +3,14 @@ import { submit } from "./form"
 const fill_ressources_types = (types = []) => {
   cy.url().should("includes", "ressources/types")
   types.forEach((type) =>
-    cy.get("form").find(`input[type="checkbox"][id="${type}"]`).check()
+    cy
+      .get("form")
+      .find(`input[type="checkbox"][id="${type}"]`)
+      .invoke("attr", "id")
+      .then((id) => {
+        return cy.get("form").find(`label[for="${id}"]`)
+      })
+      .click()
   )
   submit()
 }
@@ -13,7 +20,11 @@ const fillConstantRevenu = (revenu) => {
   cy.get("@salarySection")
     .find('input[type="radio"][value="true"]')
     .first()
-    .check()
+    .invoke("attr", "id")
+    .then((id) => {
+      return cy.get(`label[for="${id}"]`)
+    })
+    .click()
   cy.get("@salarySection").find('input[type="number"]').type(revenu)
   submit()
 }
@@ -23,7 +34,11 @@ const fillInconstantRevenu = (revenus) => {
   cy.get("@salarySection")
     .find('input[type="radio"][value="false"]')
     .first()
-    .check()
+    .invoke("attr", "id")
+    .then((id) => {
+      return cy.get(`label[for="${id}"]`)
+    })
+    .click()
   cy.get("@salarySection").find('input[type="number"]').as("inputs")
   cy.get("@inputs").its("length").should("equal", 13)
 
@@ -43,7 +58,11 @@ const fillChildrenRessources = (childrenRessource) => {
     cy.get("[data-testid='_hasRessources']")
       .find(`input[value="${childrenHasRessource}"]`)
       .eq(index)
-      .check()
+      .invoke("attr", "id")
+      .then((id) => {
+        return cy.get(`label[for="${id}"]`)
+      })
+      .click()
   })
   submit()
 }

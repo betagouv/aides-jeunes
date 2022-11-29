@@ -48,6 +48,7 @@
                 @click="mobileNavigationCollapse()"
                 class="fr-btn fr-btn--secondary"
                 :to="{ name: 'recapitulatif' }"
+                data-testid="previous-or-recap-button"
                 >{{
                   isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
                 }}</router-link

@@ -39,17 +39,17 @@
           !isString(droit.montant)
         "
         class="fr-print-hidden"
+        data-testid="benefit-detail-warning"
       >
-        <p>
-          Cette aide se base sur vos ressources de l'année
-          {{ store.dates.fiscalYear.label }}
-        </p>
+        Cette aide se base sur vos ressources de l'année
+        {{ store.dates.fiscalYear.label }}
         <ul class="fr-btns-group fr-mt-2w">
           <li>
             <router-link
               v-if="!aCharge"
               class="fr-btn fr-btn--secondary"
               to="/simulation/ressources/fiscales"
+              data-testid="benefit-ressources-link"
             >
               Déclarez vos ressources
               {{ store.dates.fiscalYear.label }}

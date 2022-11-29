@@ -13,7 +13,10 @@
           >
             <div class="fr-container fr-px-0">
               <div class="fr-grid-row fr-mb-3v">
-                <div class="fr-col-12 fr-col-sm-6">
+                <div
+                  class="fr-col-12 fr-col-sm-6"
+                  data-testclass="question-row"
+                >
                   <h3
                     v-if="question.labelClass"
                     class="fr-my-0 fr-text--md"
@@ -71,7 +74,10 @@
           </router-link>
         </li>
         <li v-else-if="store.lastUnansweredStep">
-          <router-link :to="store.lastUnansweredStep.path" class="fr-btn"
+          <router-link
+            :to="store.lastUnansweredStep.path"
+            class="fr-btn"
+            data-test-id="button-continue"
             >Continuer
           </router-link>
         </li>

@@ -7,7 +7,7 @@ const fill_first_name = (prenom) => {
   // Verify if submit is blocked to avoid empty value
   cy.get('[data-testid="_firstName"]').clear()
   submit()
-  cy.get("label").invoke("text").should("contain", "prénom")
+  cy.get("legend").invoke("text").should("contain", "prénom")
 
   if (prenom) {
     cy.get(`[data-testid="_firstName"]`).type(prenom)

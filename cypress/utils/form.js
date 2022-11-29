@@ -2,7 +2,12 @@ const submit = () => cy.get('button[type="submit"]').click()
 
 const fillRadio = (url, value, noSubmit) => {
   cy.url().should("include", url)
-  cy.get('input[type="radio"]').check(value.toString())
+  cy.get(`input[type="radio"][value="${value}"]`)
+    .invoke("attr", "id")
+    .then((id) => {
+      return cy.get(`label[for="${id}"]`)
+    })
+    .click()
 
   if (!noSubmit) {
     submit()

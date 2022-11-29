@@ -98,12 +98,10 @@ const parameters = {
     { label: "france.fr", href: "https://www.france.fr/" },
   ],
   accessLinks: [
-    //{ label: "Plan du site", to: "#" },
     { label: "Accessibilité : non conforme", to: "/accessibilite" },
     { label: "Conditions générales d’utilisation", to: "/cgu" },
     { label: "Mentions légales", to: "/mentions-legales" },
     { label: "Données personnelles", to: "/confidentialite" },
-    //{ label: "Gestion des cookies", to: "/cookies" },
     { label: "Statistiques", to: "/stats" },
     { label: "Toutes les aides", to: "/aides" },
     { label: "Nous contacter", to: "/contact" },

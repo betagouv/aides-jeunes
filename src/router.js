@@ -360,14 +360,13 @@ function getTitleMeta(route) {
   return process.env.VITE_TITLE
 }
 
-// désactivé en attendant de prendre position sur les liens d'évitement
-
 router.afterEach((to) => {
   if (to.preventFocus) return
-  /*
+
   nextTick(function () {
     document.title = getTitleMeta(to)
 
+    /*
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
     if (title?.tabIndex < 0) {
@@ -375,8 +374,8 @@ router.afterEach((to) => {
       title.tabIndex = -1 //...yet it has to be set to -1 to allow `.focus()`
       title.focus()
     }
+    */
   })
-  */
 })
 
 export default router

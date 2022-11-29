@@ -359,9 +359,10 @@ function getTitleMeta(route) {
   }
   return process.env.VITE_TITLE
 }
+/*
+// désactivé en attendant de prendre position sur les liens d'évitement
 
 router.afterEach((to) => {
-  return
   if (to.preventFocus) return
 
   nextTick(function () {
@@ -376,5 +377,5 @@ router.afterEach((to) => {
     }
   })
 })
-
+*/
 export default router

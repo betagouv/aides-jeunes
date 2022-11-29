@@ -23,6 +23,9 @@
           />
           <label :for="`${item.value}`">
             {{ item.label }}
+            <span v-if="item.hint" class="help">
+              {{ item.hint }}
+            </span>
           </label>
         </div>
       </div>
@@ -97,6 +100,7 @@ import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "@lib/utils"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
+import Individu from "@lib/individu"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
@@ -162,8 +166,9 @@ export default {
     individu() {
       if (this.entityName === "individu") {
         return useIndividu(this.$route.params.id)
+      } else {
+        return useIndividu("demandeur")
       }
-      return undefined
     },
     propertyData() {
       return {

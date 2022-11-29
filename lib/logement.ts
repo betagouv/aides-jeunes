@@ -1,4 +1,5 @@
 import { getAnswer } from "./answers"
+import { situationsMenageLayout } from "./types/situations"
 
 export enum StatutOccupationLogement {
   primo_accedant = "primo_accedant",
@@ -10,37 +11,35 @@ export enum StatutOccupationLogement {
   sans_domicile = "sans_domicile",
 }
 
-function getStatutOccupationLogement(logement) {
-  const statusOccupationMap = {
-    proprietaireprimoaccedant: "primo_accedant",
-    proprietaire: "proprietaire",
-    locatairenonmeuble: "locataire_vide",
-    locatairemeublehotel: "locataire_meuble",
-    heberge: "loge_gratuitement",
-    locatairefoyer: "locataire_foyer",
-    sansDomicile: "sans_domicile",
+function getStatutOccupationLogement({
+  _logementType,
+  _locationType,
+  _primoAccedant,
+}: situationsMenageLayout) {
+  let statutOccupationLogement = _logementType
+  if (_logementType === "locataire") {
+    if (_locationType === "vide") {
+      statutOccupationLogement = "locataire_vide"
+    }
+    if (_locationType === "meuble") {
+      statutOccupationLogement = "locataire_meuble"
+    }
+    if (_locationType === "foyer") {
+      statutOccupationLogement = "locataire_foyer"
+    }
   }
-  let statusOccupationId = logement.type
-  if (logement.type == "proprietaire" && logement.primoAccedant) {
-    statusOccupationId = "proprietaireprimoaccedant"
-  } else if (logement.type == "locataire" && logement.locationType) {
-    statusOccupationId += logement.locationType
+  if (_logementType === "proprietaire") {
+    if (_primoAccedant === true) {
+      statutOccupationLogement = "primo_accedant"
+    }
   }
-  return statusOccupationMap[statusOccupationId]
-}
-
-function getLogementVariables(statusOccupationId) {
-  const baseLogementMap = {
-    primo_accedant: { type: "proprietaire", primoAccedant: true },
-    proprietaire: { type: "proprietaire", primoAccedant: false },
-    locataire_vide: { type: "locataire", locationType: "nonmeuble" },
-    locataire_meuble: { type: "locataire", locationType: "meublehotel" },
-    loge_gratuitement: { type: "heberge" },
-    locataire_foyer: { type: "locataire", locationType: "foyer" },
-    sans_domicile: { type: "sansDomicile" },
+  if (_logementType === "heberge") {
+    statutOccupationLogement = "loge_gratuitement"
   }
-  const base = statusOccupationId && baseLogementMap[statusOccupationId]
-  return { type: null, primoAccedant: null, locationType: null, ...base }
+  if (_logementType === "sansDomicile") {
+    statutOccupationLogement = "sans_domicile"
+  }
+  return statutOccupationLogement
 }
 
 export const STATUT_OCCUPATION_LABEL = {
@@ -57,29 +56,22 @@ function getStatutOccupationLabel(statut) {
   return STATUT_OCCUPATION_LABEL[statut]
 }
 
-function isOwner(logementStatut) {
-  return (
-    logementStatut === "proprietaire" || logementStatut === "primo_accedant"
-  )
+function isOwner(_logementType) {
+  return _logementType === "proprietaire"
 }
 
-function captureCharges(logementStatut) {
-  return !(
-    Logement.isOwner(logementStatut) || logementStatut === "locataire_meuble"
-  )
+function captureCharges(_logementType, _locationType) {
+  return !(Logement.isOwner(_logementType) || _locationType === "meuble")
 }
 
 export function getLoyerData(answers) {
-  const logementStatut = getAnswer(
-    answers,
-    "menage",
-    "statut_occupation_logement"
-  )
+  const _logementType = getAnswer(answers, "menage", "_logementType")
+  const _locationType = getAnswer(answers, "menage", "_primoAccedant")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
 
-  const isLocataire = !Logement.isOwner(logementStatut)
-  const captureCharges = Logement.captureCharges(logementStatut)
+  const isLocataire = !Logement.isOwner(_logementType)
+  const captureCharges = Logement.captureCharges(_logementType, _locationType)
 
   if (isLocataire) {
     const loyerLabel = `Quel est le montant de votre ${
@@ -113,7 +105,6 @@ export function getLoyerData(answers) {
 }
 
 const Logement = {
-  getLogementVariables,
   getStatutOccupationLogement,
   getStatutOccupationLabel,
   isOwner,

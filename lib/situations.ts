@@ -2,9 +2,9 @@ import Ressource from "./ressource"
 import { ressourceTypes } from "./resources"
 import { generator as datesGenerator } from "./dates"
 import Scolarite from "./scolarite"
-
 import { individuLayout } from "./types/individu"
 import { situationsLayout } from "./types/situations"
+import Logement from "./logement"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,
@@ -200,6 +200,11 @@ export function generateSituation(simulation, useAll?: any) {
         situation.demandeur[key] = { [periodKey]: simulation.patrimoine[key] }
       }
     })
+  }
+
+  if (situation && situation.menage) {
+    situation.menage.statut_occupation_logement =
+      Logement.getStatutOccupationLogement(situation.menage)
   }
 
   return situation

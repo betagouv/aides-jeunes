@@ -23,7 +23,10 @@ function getAnonymizedAnswer(answer, simulation) {
       switch (answer.fieldName) {
         case "depcom":
         case "loyer":
-        case "statut_occupation_logement": {
+        case "statut_occupation_logement":
+        case "_logementType":
+        case "_primoAccedant":
+        case "_locationType": {
           return answer
         }
         default: {

@@ -1,5 +1,17 @@
 import { EnumProperty, BooleanProperty } from "./property"
 import { getAnswer } from "../answers"
+import dayjs from "dayjs"
+
+const isLessThanFiftyYearsOld = (props) => {
+  const { simulation, periods } = props
+  const date_naissance = getAnswer(
+    simulation.answers.current,
+    "individu",
+    "date_naissance",
+    "demandeur"
+  )
+  return dayjs(periods.today.value).diff(date_naissance, "year") < 50
+}
 
 export default {
   coloc: new BooleanProperty({
@@ -38,6 +50,63 @@ export default {
         },
       },
       { value: -12, label: "Non" },
+    ],
+  }),
+  _logementType: new EnumProperty({
+    question: "Êtes-vous ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Locataire",
+        value: "locataire",
+        hint: "figurant sur le bail, en foyer ou en résidence",
+      },
+      {
+        label: "Propriétaire",
+        value: "proprietaire",
+        hint: "ou en location-accession",
+      },
+      {
+        label: "Hébergé·e",
+        value: "heberge",
+        hint: "chez vos parents, chez un particulier ou en logement de fonction",
+      },
+      {
+        label: "Sans domicile stable",
+        value: "sansDomicile",
+        hint: "ou domiciliation administrative",
+      },
+    ],
+  }),
+  _primoAccedant: new BooleanProperty({
+    question: `Êtes-vous primo-accédant pour cette propriété ? </br>
+      <span class="help"
+        >Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.</span
+      >`,
+  }),
+  _locationType: new EnumProperty({
+    question: "Quel type de logement louez-vous ?",
+    items: [
+      {
+        label: "Non meublé",
+        value: "vide",
+      },
+      {
+        label: "Meublé / Hôtel",
+        value: "meuble",
+      },
+      {
+        label: "Foyer",
+        value: "foyer",
+        isRelevant: (props) => isLessThanFiftyYearsOld(props),
+        hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
+      },
+      {
+        label: "Foyer",
+        value: "foyer",
+        isRelevant: (props) => !isLessThanFiftyYearsOld(props),
+        hint: "Maison de retraite, résidence sociale…",
+      },
     ],
   }),
 }

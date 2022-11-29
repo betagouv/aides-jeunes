@@ -18,6 +18,7 @@ export interface Step {
 export interface EnumItemProperty {
   label: string
   value: boolean | number | string
+  hint?: string | any
   isRelevant?: (propertyData: PropertyData) => boolean
 }
 

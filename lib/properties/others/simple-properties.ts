@@ -1,8 +1,6 @@
-import { EnumProperty, MultipleProperty } from "../property"
-import { EnumItemProperty } from "../../types/property"
+import { MultipleProperty } from "../property"
 import Individu from "../../individu"
 import { ressourceTypes } from "../../resources"
-import { STATUT_OCCUPATION_LABEL } from "../../logement"
 import { capitalize } from "vue"
 
 export default {
@@ -21,15 +19,6 @@ export default {
         hideEdit: true,
       }
     },
-  }),
-  statut_occupation_logement: new EnumProperty({
-    question: "Quel votre statut d'occupation de logement ?",
-    items: Object.keys(STATUT_OCCUPATION_LABEL).map((key) => {
-      return <EnumItemProperty>{
-        label: STATUT_OCCUPATION_LABEL[key],
-        value: key,
-      }
-    }),
   }),
   default: [],
 }

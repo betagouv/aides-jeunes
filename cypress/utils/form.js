@@ -17,7 +17,12 @@ const fillRadio = (url, value, noSubmit) => {
 const fillCheckboxes = (url, values) => {
   cy.url().should("include", url)
   for (const value of values) {
-    cy.get(`input[type="checkbox"][data-testid="${value}"]`).check()
+    cy.get(`input[type="checkbox"][data-testid="${value}"]`)
+      .invoke("attr", "id")
+      .then((id) => {
+        return cy.get(`label[for="${id}"]`)
+      })
+      .click()
   }
   submit()
 }

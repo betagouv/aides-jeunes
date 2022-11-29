@@ -10,7 +10,7 @@ conditions_generales:
     values:
       - "11"
   - type: quotient_familial
-    floor: 10140
+    ceiling: 10140
     period: year
 profils:
   - type: etudiant

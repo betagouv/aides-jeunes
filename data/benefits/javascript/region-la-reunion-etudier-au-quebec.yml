@@ -8,7 +8,7 @@ conditions_generales:
     values:
       - "04"
   - type: quotient_familial
-    floor: 26631
+    ceiling: 26631
     period: year
 profils:
   - type: lyceen

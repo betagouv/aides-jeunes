@@ -8,7 +8,7 @@ conditions_generales:
     operator: ">="
     value: 18
   - type: quotient_familial
-    floor: 600
+    ceiling: 600
     period: month
   - type: regime_securite_sociale
     includes:

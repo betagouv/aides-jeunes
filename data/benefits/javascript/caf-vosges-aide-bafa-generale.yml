@@ -19,7 +19,7 @@ conditions_generales:
       - "88"
   - type: quotient_familial
     period: month
-    floor: 670
+    ceiling: 670
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
 instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd

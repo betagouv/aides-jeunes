@@ -12,7 +12,7 @@ conditions_generales:
     values:
       - "71"
   - type: quotient_familial
-    floor: 1200
+    ceiling: 1200
     period: month
   - type: age
     operator: ">="

@@ -6,8 +6,9 @@
     >
       <h1>
         <span class="aj-hero-section--text-highlight"
-          >Évaluez vos droits à<br />{{ benefitsNumber }} aides</span
-        ><br />en moins de 5 minutes.
+          >Évaluez vos droits à <br />{{ benefitsNumber }} aides</span
+        >
+        <br />en moins de 5 minutes.
       </h1>
       <p class="fr-text--lg fr-mb-6w">
         Avant de démarrer la simulation de vos aides, pensez à vous munir de vos

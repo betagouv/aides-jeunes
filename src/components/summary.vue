@@ -15,7 +15,6 @@
       <div class="fr-collapse" id="fr-sidemenu-wrapper">
         <h2
           class="fr-sidemenu__title fr-text--regular fr-hidden fr-unhidden-md fr-pt-5w fr-px-2w"
-          @click="mobileNavigationCollapse()"
           >Ma simulation</h2
         >
         <ul class="fr-sidemenu__list">

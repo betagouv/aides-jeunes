@@ -10,7 +10,7 @@ conditions_generales:
     values:
       - "11"
   - type: quotient_familial
-    cap: 10140
+    floor: 10140
     period: year
 profils:
   - type: etudiant

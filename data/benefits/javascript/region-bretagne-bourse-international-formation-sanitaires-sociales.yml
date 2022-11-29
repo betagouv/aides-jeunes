@@ -16,7 +16,7 @@ conditions_generales:
     values:
       - "53"
   - type: quotient_familial
-    cap: 25000
+    floor: 25000
     period: year
   - type: formation_sanitaire_social
 profils:

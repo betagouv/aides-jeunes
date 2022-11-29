@@ -13,7 +13,7 @@ conditions_generales:
       - "72"
   - type: quotient_familial
     period: month
-    cap: 700
+    floor: 700
 profils: []
 conditions: []
 interestFlag: _interetBafa

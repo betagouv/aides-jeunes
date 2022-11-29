@@ -8,7 +8,7 @@ conditions_generales:
     values:
       - "17"
   - type: quotient_familial
-    cap: 760
+    floor: 760
     period: month
   - type: age
     operator: ">="

@@ -14,7 +14,7 @@ conditions_generales:
       - "72"
   - type: quotient_familial
     period: month
-    cap: 700
+    floor: 700
 profils: []
 conditions:
   - Être inscrit·e pour le troisième module de formation à une session

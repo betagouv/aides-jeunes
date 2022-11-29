@@ -13,7 +13,7 @@ conditions_generales:
     operator: <=
     value: 25
   - type: quotient_familial
-    cap: 800
+    floor: 800
     period: month
   - type: departements
     values:

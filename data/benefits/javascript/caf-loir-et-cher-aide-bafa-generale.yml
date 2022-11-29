@@ -16,7 +16,7 @@ conditions_generales:
       - "41"
   - type: quotient_familial
     period: month
-    cap: 800
+    floor: 800
 profils: []
 conditions:
   - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.

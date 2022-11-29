@@ -15,7 +15,7 @@ conditions_generales:
       - "65"
   - type: quotient_familial
     period: month
-    cap: 750
+    floor: 750
 profils: []
 link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/solidarite-et-insertion/vous-souhaitez-financer-votre-formation-d-animateur
 form: https://www.caf.fr/sites/default/files/caf/651/Images/Actualite/Plaquette%20social/FORMULAIRE%20DEMANDE%20AIDE%20EXCEPTIONNELLE%20A%20LA%20FORMATION%20BAFA%20proposition.pdf

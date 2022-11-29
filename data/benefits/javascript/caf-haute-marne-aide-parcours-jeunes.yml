@@ -11,7 +11,7 @@ conditions:
 conditions_generales:
   - type: quotient_familial
     period: month
-    cap: 800
+    floor: 800
   - type: departements
     values:
       - "52"

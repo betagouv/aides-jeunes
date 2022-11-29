@@ -17,7 +17,7 @@ conditions_generales:
       - "13"
   - type: quotient_familial
     period: month
-    cap: 1200
+    floor: 1200
 profils: []
 conditions:
   - Effectuer votre stage en France.

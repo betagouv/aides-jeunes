@@ -189,7 +189,7 @@ fields:
     widget: object
     fields:
       - label: Plafond
-        name: cap
+        name: floor
         widget: number
         step: -1
       - label: Période

@@ -16,7 +16,7 @@ conditions_generales:
       - "62"
   - type: quotient_familial
     period: month
-    cap: 1000
+    floor: 1000
 profils: []
 conditions:
   - Effectuer votre formation en externat et en demi-pension.

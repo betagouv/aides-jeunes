@@ -7,7 +7,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
 prefix: l’
 conditions_generales:
   - type: quotient_familial
-    cap: 622
+    floor: 622
     period: month
   - type: departements
     values:

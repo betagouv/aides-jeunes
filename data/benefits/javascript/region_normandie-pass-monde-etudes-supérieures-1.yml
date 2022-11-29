@@ -25,7 +25,7 @@ conditions_generales:
     operator: <=
     value: 30
   - type: quotient_familial
-    cap: 30000
+    floor: 30000
     period: year
 profils:
   - type: enseignement_superieur

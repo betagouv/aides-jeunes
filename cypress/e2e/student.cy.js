@@ -26,7 +26,7 @@ context("Full simulation", () => {
     )
 
     logement.fill__logementType("locataire")
-    logement.fill__locationType("nonmeuble")
+    logement.fill__locationType("vide")
     logement.fill_coloc(false)
     logement.fill_logement_chambre(false)
     logement.fill_proprietaire_proche_famille(false)

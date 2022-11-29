@@ -89,11 +89,11 @@ export default {
     items: [
       {
         label: "Non meublé",
-        value: "nonmeuble",
+        value: "vide",
       },
       {
         label: "Meublé / Hôtel",
-        value: "meublehotel",
+        value: "meuble",
       },
       {
         label: "Foyer",

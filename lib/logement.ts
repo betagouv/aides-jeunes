@@ -18,10 +18,10 @@ function getStatutOccupationLogement({
 }: situationsMenageLayout) {
   let statutOccupationLogement = _logementType
   if (_logementType === "locataire") {
-    if (_locationType === "nonmeuble") {
+    if (_locationType === "vide") {
       statutOccupationLogement = "locataire_vide"
     }
-    if (_locationType === "meublehotel") {
+    if (_locationType === "meuble") {
       statutOccupationLogement = "locataire_meuble"
     }
     if (_locationType === "foyer") {
@@ -61,7 +61,7 @@ function isOwner(_logementType) {
 }
 
 function captureCharges(_logementType, _locationType) {
-  return !(Logement.isOwner(_logementType) || _locationType === "meublehotel")
+  return !(Logement.isOwner(_logementType) || _locationType === "meuble")
 }
 
 export function getLoyerData(answers) {

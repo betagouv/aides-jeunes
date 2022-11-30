@@ -1,38 +1,43 @@
 <template>
-  <div>
-    <div v-if="!submitted" class="aj-category-title-wrapper">
+  <div class="fr-py-4w fr-px-2w">
+    <div v-if="!submitted">
       <h1>Qu'avez-vous fait avec votre simulation&nbsp;?</h1>
     </div>
-    <div class="aj-box-wrapper">
-      <div class="aj-unbox">
+    <div>
+      <div>
         <LoadingModal v-if="!droits">
-          <p v-show="!droits"> Récupération de la situation en cours… </p>
+          <p> Récupération de la situation en cours… </p>
         </LoadingModal>
-        <div
-          v-if="submitted"
-          class="alert alert-success aj-survey-result-thank"
-        >
-          <div class="is-align-vertically-center">
-            <h3 class="last">Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
-          </div>
-          <div v-if="droits && showAccompanimentBlock === true">
-            <p class="aj-survey-result-text md">
-              Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
-              rendez-vous pour être accompagné·e par notre équipe.</p
-            >
-            <div class="aj-survey-result-button">
-              <a
-                class="button primary aj-survey-result-button"
-                href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
-                >Prendre rendez-vous pour être aidé·e dans mes démarches</a
-              >
-            </div>
+        <div v-if="submitted" class="fr-text--center">
+          <div class="fr-container fr-py-4w">
+            <div class="fr-grid-row fr-grid-row--center">
+              <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
+                <h3 class="last"
+                  >Merci d'avoir rempli ce questionnaire&nbsp;!</h3
+                >
+                <div v-if="droits && showAccompanimentBlock === true">
+                  <p class="fr-text--lg">
+                    Vous avez besoin d'aide pour effectuer vos démarches ?
+                    Prenez rendez-vous pour être accompagné·e par notre
+                    équipe.</p
+                  >
+                  <p>
+                    <a
+                      class="fr-btn fr-btn--lg"
+                      href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
+                      >Prendre rendez-vous pour être aidé·e dans mes
+                      démarches</a
+                    >
+                  </p>
 
-            <p class="aj-survey-result-text sm"
-              >La prise de rendez-vous se fait en quelques minutes et vous
-              permet de bénéficier d'un accompagnement d'une quinzaine de
-              minutes par un·e membre de notre équipe</p
-            >
+                  <p class="fr-mt-3w"
+                    >La prise de rendez-vous se fait en quelques minutes et vous
+                    permet de bénéficier d'un accompagnement d'une quinzaine de
+                    minutes par un·e membre de notre équipe</p
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -50,56 +55,65 @@
           <div
             v-for="droit in droits"
             :key="droit.id"
-            class="aj-box normal-padding-bottom aj-survey-details"
+            class="fr-tile fr-tile-horizontal fr-mb-2w fr-pb-2w"
             itemscope
             itemtype="http://schema.org/GovernmentService"
           >
-            <div class="aj-droit-survey normal-padding-bottom">
+            <div class="fr-p-4w">
               <DroitHeader :droit="droit" />
 
-              <div class="aj-droit-content">
-                <fieldset class="form__group">
-                  <legend>
-                    <h3 class="aj-question">
-                      Qu'avez-vous fait pour {{ prefix(droit)
-                      }}{{ droit.label }}&nbsp;?
-                    </h3>
-                  </legend>
-                  <div
-                    v-for="choice in droit.choices"
-                    :key="choice.value"
-                    class="aj-selection-wrapper"
-                  >
-                    <input
-                      :id="`choices_${droit.id}_${choice.value}`"
-                      v-model="droit.choiceValue"
-                      type="radio"
-                      :name="`choices_${droit.id}_${choice.value}`"
-                      :value="choice.value"
-                    />
-                    <label :for="`choices_${droit.id}_${choice.value}`">
-                      {{ choice.label }}
-                    </label>
+              <fieldset class="fr-fieldset">
+                <legend class="fr-fieldset__legend">
+                  Qu'avez-vous fait pour {{ prefix(droit)
+                  }}{{ droit.label }}&nbsp;?
+                </legend>
+                <div class="fr-fieldset__content">
+                  <div class="fr-container fr-px-0">
+                    <div class="fr-grid-row">
+                      <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
+                        <div
+                          v-for="choice in droit.choices"
+                          :key="choice.value"
+                          class="fr-radio-group fr-radio-rich"
+                        >
+                          <input
+                            :id="`choices_${droit.id}_${choice.value}`"
+                            v-model="droit.choiceValue"
+                            type="radio"
+                            :name="`choices_${droit.id}_${choice.value}`"
+                            :value="choice.value"
+                          />
+                          <label
+                            :for="`choices_${droit.id}_${choice.value}`"
+                            class="fr-label"
+                          >
+                            {{ choice.label }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </fieldset>
-                <div v-show="isNegative(droit.choiceValue)" class="form__group">
-                  <label>
-                    <h3 :for="`choiceComments_${droit.id}`" class="aj-question">
+                  <div v-show="isNegative(droit.choiceValue)">
+                    <label
+                      :for="`choiceComments_${droit.id}`"
+                      class="fr-label fr-text--bold fr-mt-2w fr-mb-1w"
+                    >
                       Pour quelles raisons&nbsp;?
-                    </h3>
-                  </label>
-                  <textarea
-                    :id="`choiceComments_${droit.id}`"
-                    v-model="droit.choiceComments"
-                    placeholder="..."
-                  />
+                    </label>
+                    <textarea
+                      :id="`choiceComments_${droit.id}`"
+                      class="fr-input"
+                      v-model="droit.choiceComments"
+                      placeholder="..."
+                    />
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </div>
           </div>
           <button
             type="submit"
-            :class="`button large ${!isComplete ? 'secondary  ' : ''}`"
+            class="fr-btn fr-btn--lg"
             :disabled="!isComplete"
             @click.prevent="submit"
           >

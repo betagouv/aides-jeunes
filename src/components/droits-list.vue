@@ -3,7 +3,7 @@
     <div v-if="!ineligible">
       <div v-for="(droit, index) in list" :key="index" class="fr-mb-5w">
         <router-link
-          class="fr-tile fr-pb-4w"
+          class="fr-tile"
           :to="`/simulation/resultats/${droit.id}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
@@ -41,19 +41,21 @@
               </div>
               <DroitEstime :droit="droit" />
             </div>
+            <ul
+              class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right"
+            >
+              <li>
+                <router-link
+                  :to="`/simulation/resultats/${droit.id}`"
+                  class="fr-btn fr-my-0"
+                  data-testid="aide-cta"
+                >
+                  Demander cette aide
+                </router-link>
+              </li>
+            </ul>
           </div>
         </router-link>
-        <div class="fr-container fr-px-3w fr-mt-n8w">
-          <div class="fr-grid-row fr-grid-row--right">
-            <router-link
-              :to="`/simulation/resultats/${droit.id}`"
-              class="fr-btn"
-              data-testid="aide-cta"
-            >
-              Demander cette aide
-            </router-link>
-          </div>
-        </div>
       </div>
     </div>
     <div v-else>

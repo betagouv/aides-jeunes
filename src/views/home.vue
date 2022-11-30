@@ -17,7 +17,7 @@
       </p>
       <ul class="fr-btns-group">
         <li>
-          <router-link
+          <button
             v-if="hasExistingSituation"
             v-analytics="{
               action: 'Reprendre ma simulation',
@@ -25,16 +25,24 @@
             }"
             class="fr-btn"
             @click="next()"
-            to="#"
           >
             Reprendre ma simulation
-          </router-link>
+          </button>
         </li>
         <li>
+          <button
+            v-if="this.hasExistingSituation"
+            v-analytics="{ action: ctaLabel, category: 'Home' }"
+            class="fr-btn fr-btn--secondary"
+            data-testid="new-simulation"
+            @click="newSituation()"
+          >
+            {{ ctaLabel }}
+          </button>
           <router-link
+            v-else
             v-analytics="{ action: ctaLabel, category: 'Home' }"
             class="fr-btn"
-            :class="{ 'fr-btn--secondary': hasExistingSituation }"
             data-testid="new-simulation"
             @click="newSituation()"
             to="#"

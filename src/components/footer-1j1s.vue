@@ -71,9 +71,9 @@
 const parameters = {
   logoText: ["Ministère du", "travail, de", "l'emploi et de", "l'insertion"],
   logoImage: "/img/france-relance.svg",
-  logoImageAlt: "Logo France Relance",
+  logoImageAlt: "France Relance",
   logoLabel:
-    "Retour à l’accueil du site - 1jeune1solution - République Française",
+    "Retour à l’accueil du site - France Relance - Ministère du Travail, de l’Emploi et de l’Insertion",
   logoLink:
     "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
   descText:

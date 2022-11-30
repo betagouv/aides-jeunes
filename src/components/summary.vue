@@ -1,9 +1,5 @@
 <template>
-  <nav
-    class="fr-sidemenu fr-sidemenu--sticky-full-height fr-col-lg-12"
-    aria-label="Sommaire"
-    role="navigation"
-  >
+  <nav class="fr-sidemenu fr-col-lg-12" aria-label="Sommaire" role="navigation">
     <div class="fr-sidemenu__inner">
       <button
         class="fr-sidemenu__btn fr-px-2w"

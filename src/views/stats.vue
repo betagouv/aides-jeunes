@@ -41,6 +41,7 @@
 
     <iframe
       id="iframe"
+      title="Statistiques d'impact du simulateur d'aides 1jeune1solution"
       class="fr-col-12"
       src="https://betagouv.github.io/mes-aides-analytics/iframe"
       scrolling="no"

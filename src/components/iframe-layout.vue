@@ -3,7 +3,7 @@
   <main role="main">
     <slot />
   </main>
-  <div>
+  <div class="aj-iframe-footer">
     <p class="fr-text--center fr-p-1w">
       Simulateur propulsé par
       <a

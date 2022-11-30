@@ -202,6 +202,10 @@
   }
 }
 
+.aj-iframe-footer {
+  box-shadow: inset 0 1px 0 0 var(--border-default-grey);
+}
+
 @media (max-width: 992px) {
   .aj-benefit-header {
     justify-content: space-between;

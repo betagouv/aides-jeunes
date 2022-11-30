@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h1 class="fr-mt-7w">Détail de l'aide</h1>
+    <h1 class="fr-mt-7w fr-mx-2w">Détail de l'aide</h1>
     <p>
       <router-link
         to="/aides"

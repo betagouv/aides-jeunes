@@ -300,6 +300,7 @@
 
     <iframe
       id="tracking-optout"
+      title="Paramètres de suivi de l'utilisateur - stats.data.gouv.fr"
       src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
     >
       Vous pouvez choisir de

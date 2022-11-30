@@ -1,70 +1,72 @@
 <template>
-  <fieldset class="fr-fieldset">
-    <legend class="fr-fieldset__legend fr-px-0">
-      <span class="fr-text--lead">Mes enfants à charge</span>
-      <EnSavoirPlus />
-      <span class="fr-hint-text"
-        >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton
-        "Suivant".</span
-      >
-    </legend>
-    <div class="fr-fieldset__content">
-      <div v-for="enfant in enfants" :key="enfant.id" class="fr-mb-4w">
-        <div v-if="enfant.date_naissance">
-          <div class="fr-container fr-px-0">
-            <div class="fr-grid-row fr-grid-row--middle">
-              <div class="fr-col fr-text--bold">{{ enfant._firstName }}</div>
-              <div class="fr-col">
-                <ul
-                  class="fr-btns-group fr-btns-group--inline fr-grid-row--right"
-                >
-                  <li
-                    ><button
-                      class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-mb-0"
-                      @click="editPAC(enfant.id)"
-                      >éditer</button
-                    ></li
+  <form @submit.prevent="onSubmit">
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend fr-px-0">
+        <span class="fr-text--lead">Mes enfants à charge</span>
+        <EnSavoirPlus />
+        <span class="fr-hint-text"
+          >Si vous n'avez pas d'enfant à charge, cliquez sur le bouton
+          "Suivant".</span
+        >
+      </legend>
+      <div class="fr-fieldset__content">
+        <div v-for="enfant in enfants" :key="enfant.id" class="fr-mb-4w">
+          <div v-if="enfant.date_naissance">
+            <div class="fr-container fr-px-0">
+              <div class="fr-grid-row fr-grid-row--middle">
+                <div class="fr-col fr-text--bold">{{ enfant._firstName }}</div>
+                <div class="fr-col">
+                  <ul
+                    class="fr-btns-group fr-btns-group--inline fr-grid-row--right"
                   >
-                  <li
-                    ><button
-                      class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-mb-0"
-                      @click="removePAC(enfant.id)"
-                      >supprimer</button
-                    ></li
-                  >
-                </ul>
+                    <li
+                      ><button
+                        class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-mb-0"
+                        @click="editPAC(enfant.id)"
+                        >éditer</button
+                      ></li
+                    >
+                    <li
+                      ><button
+                        class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-mb-0"
+                        @click="removePAC(enfant.id)"
+                        >supprimer</button
+                      ></li
+                    >
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr class="fr-hr fr-pb-1w" />
+            <div class="fr-container fr-px-0">
+              <div class="fr-grid-row fr-grid-row--middle">
+                <p class="fr-col-4 fr-m-0">
+                  <span class="fr-text--sm">Sa date de naissance</span><br />
+                  <span>{{ birthDate(enfant.date_naissance) }}</span>
+                </p>
+                <p class="fr-col-4 fr-m-0">
+                  <span class="fr-text--sm">Sa nationalité</span><br />
+                  <span>{{ nationality(enfant.nationalite) }}</span>
+                </p>
+                <p class="fr-col-4 fr-m-0">
+                  <span class="fr-text--sm">Sa situation</span><br />
+                  <span>{{ scolarite(enfant.scolarite) }}</span>
+                </p>
               </div>
             </div>
           </div>
-          <hr class="fr-hr fr-pb-1w" />
-          <div class="fr-container fr-px-0">
-            <div class="fr-grid-row fr-grid-row--middle">
-              <p class="fr-col-4 fr-m-0">
-                <span class="fr-text--sm">Sa date de naissance</span><br />
-                <span>{{ birthDate(enfant.date_naissance) }}</span>
-              </p>
-              <p class="fr-col-4 fr-m-0">
-                <span class="fr-text--sm">Sa nationalité</span><br />
-                <span>{{ nationality(enfant.nationalite) }}</span>
-              </p>
-              <p class="fr-col-4 fr-m-0">
-                <span class="fr-text--sm">Sa situation</span><br />
-                <span>{{ scolarite(enfant.scolarite) }}</span>
-              </p>
-            </div>
-          </div>
         </div>
+        <button
+          data-testid="add-pac"
+          class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-add-circle-line"
+          @click="addPAC()"
+        >
+          Ajouter un enfant à charge
+        </button>
       </div>
-      <button
-        data-testid="add-pac"
-        class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-add-circle-line"
-        @click="addPAC()"
-      >
-        Ajouter un enfant à charge
-      </button>
-    </div>
-  </fieldset>
-  <ActionButtons :on-submit="onSubmit" />
+    </fieldset>
+    <ActionButtons :on-submit="onSubmit" />
+  </form>
 </template>
 
 <script>

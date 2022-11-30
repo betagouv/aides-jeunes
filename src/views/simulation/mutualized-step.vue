@@ -28,16 +28,13 @@
                       :value="item.value"
                       :autofocus="index === 0"
                     />
-                    <label
-                      :for="`${item.value}`"
-                      class="fr-label"
-                    >
-                      <span>{{ item.label }}</span> <i
-                        v-if="item.hint"
-                        class="fr-text--sm fr-ml-1w"
-                      >{{
-                      item.hint
-                    }}</i>
+                    <label :for="`${item.value}`" class="fr-label">
+                      <span
+                        >{{ item.label }}
+                        <i v-if="item.hint" class="fr-text--sm fr-ml-1w">{{
+                          item.hint
+                        }}</i></span
+                      >
                     </label>
                   </div>
                 </div>
@@ -68,10 +65,7 @@
                   type="text"
                   class="fr-input"
                 />
-                <YesNoQuestion
-                  v-else
-                  v-model="value"
-                ></YesNoQuestion>
+                <YesNoQuestion v-else v-model="value"></YesNoQuestion>
               </div>
             </div>
           </div>
@@ -79,10 +73,7 @@
       </div>
     </fieldset>
 
-    <ActionButtons
-      :on-submit="onSubmit"
-      :disable-submit="!canSubmit(false)"
-    />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit(false)" />
   </form>
 </template>
 

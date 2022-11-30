@@ -33,7 +33,7 @@ export default {
 
   proprietaire_proche_famille: new BooleanProperty({
     question: `Avez-vous un lien de parenté direct avec votre propriétaire ?
-      <span class="help"
+      <span class="fr-hint-text"
         >Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant,
         grand-parent…) ?</span
       >`,

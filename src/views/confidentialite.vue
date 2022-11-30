@@ -103,42 +103,44 @@
 
     <h3>Combien de temps gardons-nous vos informations ?</h3>
 
-    <table class="fr-table">
-      <thead>
-        <tr>
-          <th>Types de données</th>
-          <th>Durée de conservation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Données relatives aux Utilisateurs</td>
-          <td>7 jours</td>
-        </tr>
-        <tr>
-          <td>
-            Catégories spécifiques de données relatives aux Utilisateurs et à
-            leurs enfants
-          </td>
-          <td>7 jours</td>
-        </tr>
-        <tr>
-          <td>Données de contact des Utilisateurs</td>
-          <td>1 mois</td>
-        </tr>
-        <tr>
-          <td>Données relatives au sondage</td>
-          <td>6 mois</td>
-        </tr>
-        <tr>
-          <td>Données d’hébergeur</td>
-          <td>
-            <strong>1 an</strong>, conformément au décret n°2011-219 du 25
-            février 2011
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="fr-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Types de données</th>
+            <th>Durée de conservation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Données relatives aux Utilisateurs</td>
+            <td>7 jours</td>
+          </tr>
+          <tr>
+            <td>
+              Catégories spécifiques de données relatives aux Utilisateurs et à
+              leurs enfants
+            </td>
+            <td>7 jours</td>
+          </tr>
+          <tr>
+            <td>Données de contact des Utilisateurs</td>
+            <td>1 mois</td>
+          </tr>
+          <tr>
+            <td>Données relatives au sondage</td>
+            <td>6 mois</td>
+          </tr>
+          <tr>
+            <td>Données d’hébergeur</td>
+            <td>
+              <strong>1 an</strong>, conformément au décret n°2011-219 du 25
+              février 2011
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h3>
       Quels sont les droits dont vous disposez sur vos informations et où les
@@ -227,32 +229,34 @@
       strictes de confidentialité, d’usage et de protection des données.
     </p>
 
-    <table class="fr-table">
-      <thead>
-        <tr>
-          <th>Partenaire</th>
-          <th>Pays destinataire</th>
-          <th>Traitement réalisé</th>
-          <th>Garanties</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>OVH SAS</td>
-          <td>France</td>
-          <td>Hébergement</td>
-          <td>
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://www.ovh.com/fr/protection-donnees-personnelles"
-              title="OVH : protection des données personnelles - Nouvelle fenêtre"
-              >https://www.ovh.com/fr/protection-donnees-personnelles</a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="fr-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Partenaire</th>
+            <th>Pays destinataire</th>
+            <th>Traitement réalisé</th>
+            <th>Garanties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OVH SAS</td>
+            <td>France</td>
+            <td>Hébergement</td>
+            <td>
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://www.ovh.com/fr/protection-donnees-personnelles"
+                title="OVH : protection des données personnelles - Nouvelle fenêtre"
+                >https://www.ovh.com/fr/protection-donnees-personnelles</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h3>Sécurité et confidentialité des données</h3>
 

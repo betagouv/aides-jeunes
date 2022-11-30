@@ -1,6 +1,5 @@
 <template>
   <dialog
-    v-if="show"
     aria-labelledby="fr-modal-email-title"
     role="dialog"
     id="fr-modal-email"
@@ -137,9 +136,6 @@ export default {
   computed: {
     recapEmailState() {
       return this.store.recapEmailState
-    },
-    show() {
-      return ![undefined, "ok"].includes(this.recapEmailState)
     },
   },
   methods: {

@@ -43,6 +43,12 @@
 
       <div v-else-if="type.displayMonthly === false">
         <p>
+          <span class="fr-hint-text fr-mb-1w"
+            >Pour faciliter la saisie des ressources sur 13 mois, lorsque un
+            montant est saisi pour un mois donné, les montants pour les périodes
+            précédents sont également mis à jour automatiquement. Ils peuvent
+            être modifiés ensuite.</span
+          >
           Indiquez les montants <strong>nets mensuels</strong> que
           {{ getLongLabel(individu, type.meta) }}
         </p>

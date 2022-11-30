@@ -1,6 +1,6 @@
 <template>
   <div class="fr-tile fr-tile--horizontal fr-mb-6w">
-    <div v-if="etablissement" class="fr-tile__body">
+    <div v-if="etablissement" class="fr-container fr-p-4w">
       <h2 class="fr-tile__title fr-mb-3w">
         {{ etablissement.nom }}
       </h2>
@@ -26,7 +26,7 @@
         ></span>
         {{ etablissement.telephone }}
       </div>
-      <div v-if="etablissement.horaires" class="fr-mb-3w fr-col-lg-12">
+      <div v-if="etablissement.horaires" class="fr-mb-3w">
         <div class="fr-mb-2w">
           <span
             class="fr-icon--sm fr-icon-time-line fr-mr-1w"
@@ -34,7 +34,7 @@
           ></span>
           Horaires :
         </div>
-        <div class="fr-container--fluid fr-px-0">
+        <div class="fr-container fr-container--fluid fr-px-0">
           <div class="fr-grid-row fr-grid-row--gutters">
             <div
               v-for="plage_jour in etablissement.horaires"

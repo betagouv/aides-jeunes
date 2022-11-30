@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="show"
-    class="fr-btn fr-btn--icon-center fr-icon-mail-line"
+    class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
     @click="showModal"

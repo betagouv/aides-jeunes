@@ -22,7 +22,7 @@
       vite et corrigerons le problème dès que possible.
     </p>
 
-    <p>Veuillez nous excusez pour la gêne occasionnée.</p>
+    <p>Veuillez nous excuser pour la gêne occasionnée.</p>
 
     <p
       ><small>

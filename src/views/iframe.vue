@@ -43,7 +43,7 @@
               value="data-with-logo"
             />
             <label for="data-with-logo" class="fr-label"
-              >Afficher les logos institutionel</label
+              >Afficher les logos institutionnels</label
             >
           </div>
         </div>

@@ -1,6 +1,10 @@
 <template>
   <div class="aj-benefit-header fr-mb-4w">
-    <img :src="getBenefitImage(droit)" class="aj-institution-icon" alt="" />
+    <img
+      :src="getBenefitImage(droit)"
+      class="aj-institution-icon"
+      :alt="`Logo ${droit.institution.label}`"
+    />
     <div class="aj-benefit-name">
       <h2 class="fr-text--lead" itemprop="name">{{
         $filters.capitalize(droit.label)

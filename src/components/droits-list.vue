@@ -15,7 +15,7 @@
               <img
                 class="aj-institution-icon"
                 :src="getBenefitImage(droit)"
-                alt=""
+                :alt="`Logo ${droit.institution.label}`"
               />
               <div class="aj-benefit-name">
                 <h2 class="fr-text--lead" itemprop="name">{{
@@ -74,7 +74,10 @@
       >
         <div class="droits-list-item-cell">
           <div class="droits-list-item-cell-left">
-            <img :src="getBenefitImage(droit)" alt="" />
+            <img
+              :src="getBenefitImage(droit)"
+              :alt="`Logo ${droit.institution.label}`"
+            />
             <div>
               <h2>
                 <div itemprop="name">{{ droit.label }}</div>

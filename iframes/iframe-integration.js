@@ -17,6 +17,7 @@ const iframe = document.createElement("iframe")
 const iframeAttributes = {
   id: "simulateur",
   src: src.toString(),
+  title: `Évaluez vos droits aux aides avec le simulateur d'aides 1jeune1solution`,
   style: "border: none; width: 100%; display: block; height: 700px",
   allow: "clipboard-write",
   allowfullscreen: true,

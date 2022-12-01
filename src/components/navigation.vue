@@ -16,7 +16,6 @@
           v-if="!element.children"
           class="fr-nav__link"
           :href="`${domain}${element.link}`"
-          target="_self"
           :aria-current="element.active"
           :title="element.active ? 'Onglet actif' : ''"
           >{{ element.label }}</a
@@ -57,7 +56,6 @@
                     v-if="category.link"
                     class="fr-nav__link"
                     :href="`${domain}${category.link}`"
-                    target="_self"
                     >{{ category.label }}</a
                   >
                   <span v-else class="fr-nav__link">{{ category.label }}</span>
@@ -72,7 +70,6 @@
                     ><a
                       :href="`${domain}${subcategory.link}`"
                       class="fr-nav__link"
-                      target="_self"
                       >{{ subcategory.label }}</a
                     ></li
                   >
@@ -95,7 +92,6 @@
               <a
                 class="fr-nav__link"
                 :href="`${domain}${subelement.link}`"
-                target="_self"
                 :aria-current="subelement.active"
                 :title="subelement.active ? 'Sous-onglet actif' : ''"
                 >{{ subelement.label }}</a

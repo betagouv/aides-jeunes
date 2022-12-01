@@ -1,43 +1,53 @@
 <template>
-  <div class="aj-box aj-etablissement">
-    <div v-if="etablissement">
-      <h2 class="aj-question">
+  <div class="fr-tile fr-tile--horizontal fr-mb-6w">
+    <div v-if="etablissement" class="fr-container fr-p-4w">
+      <h2 class="fr-tile__title fr-mb-3w">
         {{ etablissement.nom }}
       </h2>
-      <div class="aj-etablissement-details">
-        <address v-if="etablissement.adresse">
-          <i aria-hidden="true" class="ri ri-home-4-line" /> Adresse :
-          <span
-            v-for="(ligne, index) in etablissement.adresse.lignes"
-            :key="index"
-          >
-            {{ ligne }}
-          </span>
+      <address v-if="etablissement.adresse" class="fr-hint-text fr-mb-3w">
+        <span
+          class="fr-icon--sm fr-icon-home-4-line fr-mr-1w"
+          aria-hidden="true"
+        ></span>
+        Adresse :
+        <span
+          >{{ etablissement.adresse.lignes.join(", ") }}
           {{ etablissement.adresse.codePostal }}
-          {{ etablissement.adresse.commune }}
-        </address>
-        <div
-          v-if="etablissement.telephone"
-          class="aj-etablissements-action-tel-desktop"
+          {{ etablissement.adresse.commune }}</span
         >
-          <i aria-hidden="true" class="ri ri-phone-fill" />
-          {{ etablissement.telephone }}
+      </address>
+      <div
+        v-if="etablissement.telephone"
+        class="fr-hidden fr-unhidden-sm fr-mb-3w"
+      >
+        <span
+          class="fr-icon--sm fr-icon-phone-fill fr-mr-1w"
+          aria-hidden="true"
+        ></span>
+        {{ etablissement.telephone }}
+      </div>
+      <div v-if="etablissement.horaires" class="fr-mb-3w">
+        <div class="fr-mb-2w">
+          <span
+            class="fr-icon--sm fr-icon-time-line fr-mr-1w"
+            aria-hidden="true"
+          ></span>
+          Horaires :
         </div>
-        <div v-if="etablissement.horaires" class="aj-etablissement-horaires">
-          <i aria-hidden="true" class="ri ri-time-line" /> Horaires :<br />
-          <div class="aj-etablissement-horaires-plage-container">
+        <div class="fr-container fr-container--fluid fr-px-0">
+          <div class="fr-grid-row fr-grid-row--gutters">
             <div
               v-for="plage_jour in etablissement.horaires"
               :key="plage_jour.du"
-              class="aj-etablissement-horaires-plage"
+              class="fr-col-6 fr-col-lg-4"
             >
-              <div v-if="plage_jour.du === plage_jour.au" class="font-bold">
+              <div v-if="plage_jour.du === plage_jour.au" class="fr-text--bold">
                 Les {{ plage_jour.du }}s
               </div>
-              <div v-if="plage_jour.du !== plage_jour.au" class="font-bold">
+              <div v-if="plage_jour.du !== plage_jour.au" class="fr-text--bold">
                 Du {{ plage_jour.du }} au {{ plage_jour.au }}
               </div>
-              <ul class="list-unstyled">
+              <ul class="fr-raw-list">
                 <li
                   v-for="plage_heure in plage_jour.heures"
                   :key="plage_heure.de"
@@ -49,8 +59,13 @@
             </div>
           </div>
         </div>
-        <div v-if="hasContact" class="aj-etablissements-actions">
-          <div v-if="etablissement.url">
+      </div>
+      <div class="fr-container">
+        <ul
+          v-if="hasContact"
+          class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right"
+        >
+          <li v-if="etablissement.url">
             <a
               v-analytics="{
                 name: etablissement.id,
@@ -59,18 +74,14 @@
               }"
               :aria-label="`Site internet : ${etablissement.nom} - Nouvelle fenêtre`"
               :href="etablissement.url"
-              class="button primary with-icon"
+              class="fr-btn"
               rel="noopener"
               target="_blank"
             >
-              <i aria-hidden="true" class="ri ri-share-box-line" />
               Site internet
             </a>
-          </div>
-          <div
-            v-if="etablissement.telephone"
-            class="aj-etablissements-action-tel-mobile"
-          >
+          </li>
+          <li v-if="etablissement.telephone">
             <a
               v-analytics="{
                 name: etablissement.id,
@@ -78,15 +89,14 @@
                 category: 'Partenaire',
               }"
               :href="`tel:${etablissement.telephone}`"
-              class="button primary with-icon"
+              class="fr-btn fr-hidden-sm"
               rel="noopener"
               target="_blank"
             >
-              <i aria-hidden="true" class="ri ri-phone-fill" />
               {{ etablissement.telephone }}
             </a>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
     <p v-else> Aucune information disponible sur cette agence </p>

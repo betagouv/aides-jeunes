@@ -1,27 +1,29 @@
 <template>
-  <div>
-    <input
-      :id="id"
-      ref="result"
-      v-model.number="model"
-      v-select-on-click
-      :data-testid="id"
-      type="number"
-      :name="name"
-      :min="min"
-      :max="max"
-      :step="step"
-      :data-type="dataType"
-    />
-    <div v-if="error" class="text-red input-number-error">
-      Ce champ n'est pas valide.
-    </div>
-  </div>
+  <input
+    :id="id"
+    ref="result"
+    v-model.number="model"
+    v-select-on-click
+    :data-testid="id"
+    type="number"
+    :name="name"
+    :min="min"
+    :max="max"
+    :step="step"
+    :data-type="dataType"
+    class="fr-input"
+    inputmode="numeric"
+  />
+  <WarningMessage v-if="error" class="fr-mt-2w"
+    >Ce champ n'est pas valide.</WarningMessage
+  >
 </template>
 
 <script>
+import WarningMessage from "@/components/warning-message.vue"
 export default {
   name: "InputNumber",
+  components: { WarningMessage },
   props: {
     id: String,
     name: String,

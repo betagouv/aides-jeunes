@@ -245,16 +245,23 @@ const router = createRouter({
     {
       path: "/accompagnement",
       name: "liste-accompagnements",
-      component: () => import("./views/accompagnement/liste.vue"),
+      component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
       path: "/accompagnement/:surveyId",
       name: "accompagnement",
-      component: () => import("./views/accompagnement/liste.vue"),
+      component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
       path: "/init-ci",
       name: "init-ci",
+      redirect: () => {
+        return "/"
+      },
+    },
+    {
+      path: "/:catchAll(.*)",
+      name: "page-introuvable",
       redirect: () => {
         return "/"
       },
@@ -358,6 +365,7 @@ router.afterEach((to) => {
   nextTick(function () {
     document.title = getTitleMeta(to)
 
+    /*
     let title = document.querySelector("h1")
     // if anyone wants to set a tabindex manually, do not overwrite it
     if (title?.tabIndex < 0) {
@@ -365,6 +373,7 @@ router.afterEach((to) => {
       title.tabIndex = -1 //...yet it has to be set to -1 to allow `.focus()`
       title.focus()
     }
+    */
   })
 })
 

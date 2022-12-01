@@ -1,4 +1,7 @@
 import { createApp, h } from "vue"
+import "@gouvfr/dsfr/dist/dsfr.min.css"
+import "@gouvfr/dsfr/dist/utility/utility.min.css"
+import "@gouvfr/dsfr/dist/dsfr.module.min.js"
 import App from "./app.vue"
 
 import router from "./router"
@@ -9,9 +12,7 @@ import * as Sentry from "@sentry/vue"
 // @ts-ignore
 import VueMatomo from "vue-matomo"
 
-import "template.data.gouv.fr/dist/main.css"
-import "@/styles/remixicon.css"
-import "@/styles/main.scss"
+import "@/styles/aides-jeunes.css"
 
 import AnalyticsDirective from "./directives/analytics"
 import MailDirective from "./directives/mail"

@@ -1,140 +1,115 @@
 <template>
-  <p class="aj-1j1s-pre-footer"
-    >Une initiative du Gouvernement pour accompagner, former, et faciliter
-    l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30 ans, sur
-    tous les territoires.</p
-  >
-  <footer class="aj-1j1s-footer" role="contentInfo">
-    <div class="aj-1j1s-footer__container">
-      <div class="aj-1j1s-footer__section aj-1j1s-footer__section--logo">
-        <div
-          class="aj-1j1s-footer__logo-container aj-1j1s-footer__logo-container--republique"
-        >
-          <img alt="drapeau" class="rf" src="/img/mariane_no_text.svg" />
-          <span class="aj-1j1s-footer__republique-logo-text">
-            Ministère du travail, de l'emploi et de l'insertion
-          </span>
-          <img alt="liberté égalité fraternité" src="/img/devise.svg" />
+  <footer class="fr-footer" role="contentinfo" id="footer">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <p class="fr-logo fr-text--preformated">{{
+            parameters.logoText.join(" \n")
+          }}</p>
+          <a
+            v-if="parameters.logoImage"
+            class="fr-footer__brand-link"
+            :href="parameters.logoLink"
+            :title="parameters.logoLabel"
+          >
+            <img
+              class="fr-footer__logo"
+              style="width: 3.5rem"
+              :src="parameters.logoImage"
+              :alt="parameters.logoImageAlt"
+            />
+          </a>
         </div>
-        <div
-          class="aj-1j1s-footer__logo-container aj-1j1s-footer__logo-container--relance"
-        >
-          <img alt="logo france relance" src="/img/france-relance.svg" />
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">{{ parameters.descText }}</p>
+          <ul class="fr-footer__content-list">
+            <li
+              v-for="link in parameters.ecosystemLinks"
+              :key="link.label"
+              class="fr-footer__content-item"
+            >
+              <a
+                class="fr-footer__content-link"
+                :href="link.href"
+                :title="`${link.label} - nouvelle fenêtre`"
+                target="_blank"
+                rel="noopener"
+                >{{ link.label }}</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="aj-1j1s-footer__section aj-1j1s-footer__section--messages">
-        <span>#1jeune1solution</span>
-        <p
-          >Une initiative du Gouvernement pour accompagner, former, et faciliter
-          l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30
-          ans, sur tous les territoires.</p
-        >
-        <ul class="aj-1j1s-footer__external-link-list">
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
           <li
-            v-for="link in externalLinks"
+            v-for="link in parameters.accessLinks"
             :key="link.label"
-            class="aj-1j1s-footer__external-link-list-item"
+            class="fr-footer__bottom-item"
           >
-            <a
-              :href="link.href"
-              class="aj-1j1s-footer__external-link"
-              target="_blank"
-            >
-              {{ link.label }}
-              <i aria-hidden="true" class="ri-share-box-line ri"></i>
-            </a>
+            <router-link class="fr-footer__bottom-link" :to="link.to">{{
+              link.label
+            }}</router-link>
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="aj-1j1s-footer__bottom-container">
-      <template v-for="(item, index) in menu" :key="index">
-        <a
-          :class="item.class"
-          :href="item.href"
-          class="aj-1j1s-footer__internal-link"
-          @click="toggleShowItem(item)"
-        >
-          {{ item.label }}
-          <i
-            v-if="item.newTab"
-            aria-hidden="true"
-            class="ri-share-box-line ri"
-          ></i>
-        </a>
-      </template>
-      <div class="aj-1j1s-footer__legal">
-        Sauf mention contraire, tous les contenus de ce site sont sous
-        licence&nbsp;
-        <a
-          class="aj-1j1s-footer__license-link"
-          href="https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <span class="TextIcon_textIcon__fq9Gn">etalab-2.0 </span>
-          <i aria-hidden="true" class="ri-share-box-line"></i>
-        </a>
+        <div class="fr-footer__bottom-copy">
+          <p
+            >Sauf mention contraire, tous les contenus de ce site sont sous
+            <a
+              href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
+              target="_blank"
+              >licence etalab-2.0</a
+            >
+          </p>
+        </div>
       </div>
     </div>
   </footer>
 </template>
 
-<script>
-export default {
-  name: "FooterJ1S",
-  data() {
-    return {
-      menu: [
-        {
-          label: "Plan du site",
-          href: "/plan-du-site",
-        },
-        {
-          label: "CGU & Mentions légales",
-          href: "/cgu",
-        },
-        {
-          label: "Accessibilité (non conforme)",
-          href: "/accessibilite",
-        },
-        {
-          label: "Politique de confidentialité",
-          href: "/confidentialite",
-        },
-        {
-          label: "Nous contacter",
-          href: "/contact",
-        },
-      ],
-      externalLinks: [
-        {
-          label: "legifrance.gouv.fr",
-          href: "https://www.legifrance.gouv.fr/",
-        },
-        {
-          label: "gouvernement.fr",
-          href: "https://www.gouvernement.fr/",
-        },
-        {
-          label: "service-public.fr",
-          href: "https://www.service-public.fr/",
-        },
-        {
-          label: "data.gouv.fr",
-          href: "https://www.data.gouv.fr/",
-        },
-        {
-          label: "france.fr",
-          href: "https://www.france.fr/fr",
-        },
-      ],
-    }
-  },
-  methods: {
-    toggleShowItem(item) {
-      item.show = !item.show
+<script setup>
+const parameters = {
+  logoText: [
+    "Ministère ",
+    "du travail, ",
+    "du plein emploi ",
+    "et de l'insertion",
+  ],
+  logoImage: "/img/france-relance.svg",
+  logoImageAlt: "France Relance",
+  logoLabel:
+    "Retour à l’accueil du site - France Relance - Ministère du Travail, de l’Emploi et de l’Insertion",
+  logoLink:
+    "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
+  descText:
+    "#1jeune1solution\nUne initiative du Gouvernement pour accompagner, former, et faciliter l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30 ans, sur tous les territoires.",
+  ecosystemLinks: [
+    {
+      label: "legifrance.gouv.fr",
+      href: "https://legifrance.gouv.fr",
     },
-  },
+    {
+      label: "gouvernement.fr",
+      href: "https://gouvernement.fr",
+    },
+    {
+      label: "service-public.fr",
+      href: "https://service-public.fr",
+    },
+    {
+      label: "data.gouv.fr",
+      href: "https://data.gouv.fr",
+    },
+    { label: "france.fr", href: "https://www.france.fr/" },
+  ],
+  accessLinks: [
+    { label: "Accessibilité : non conforme", to: "/accessibilite" },
+    { label: "Conditions générales d’utilisation", to: "/cgu" },
+    { label: "Mentions légales", to: "/mentions-legales" },
+    { label: "Données personnelles", to: "/confidentialite" },
+    { label: "Statistiques", to: "/stats" },
+    { label: "Toutes les aides", to: "/aides" },
+    { label: "Nous contacter", to: "/contact" },
+  ],
 }
 </script>

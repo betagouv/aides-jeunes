@@ -20,14 +20,14 @@ export default {
 
   logement_chambre: new BooleanProperty({
     question: `Est-ce une chambre ?
-      <span class="help">
+      <span class="fr-hint-text">
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipé d'un WC.
       </span>`,
   }),
 
   participation_frais: new BooleanProperty({
     question: `Participez-vous aux frais du logement ?
-      <span class="help"
+      <span class="fr-hint-text"
         >Par exemple aux dépenses d'électricité, de téléphone, etc.</span
       >`,
   }),
@@ -80,7 +80,7 @@ export default {
   }),
   _primoAccedant: new BooleanProperty({
     question: `Êtes-vous primo-accédant pour cette propriété ? </br>
-      <span class="help"
+      <span class="fr-hint-text"
         >Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.</span
       >`,
   }),

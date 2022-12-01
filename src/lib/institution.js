@@ -18,9 +18,13 @@ export const mockResults = function (sublist) {
 
   let benefits = []
   if (filterSublist) {
-    benefits = filterSublist.map((benefit) => Benefits[benefit])
+    benefits = filterSublist
+      .map((benefit) => Benefits[benefit])
+      .filter((benefit) => benefit)
   } else {
-    benefits = Object.keys(Benefits).map((benefit) => Benefits[benefit])
+    benefits = Object.keys(Benefits)
+      .map((benefit) => Benefits[benefit])
+      .filter((benefit) => benefit)
   }
 
   const list = benefits.map((benefit) => {

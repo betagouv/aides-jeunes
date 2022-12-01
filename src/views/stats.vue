@@ -1,52 +1,52 @@
 <template>
-  <article class="text container">
-    <div class="aj-stats-container">
-      <h1>Statistiques d'usage</h1>
+  <article class="fr-article">
+    <h1>Statistiques d'usage</h1>
 
-      <div>
-        Les
-        <a
-          href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=day&date=yesterday"
-        >
-          statistiques d'usage de Mes Aides
-        </a>
-        sont publiques.
-      </div>
-      <div>
-        Comprenez comment nous évaluons la
-        <a
-          href="https://blog.beta.gouv.fr/dinsic/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public/"
-        >
-          performance de Mes Aides
-        </a>
-        et comment nous
-        <a
-          href="https://blog.beta.gouv.fr/dinsic/2017/05/03/mes-aides-datascience-public/"
-        >
-          améliorons notre simulateur
-        </a>
-        .
-      </div>
-      <div>
-        Les informations suivantes peuvent être retrouvées sur un
-        <a
-          target="_blank"
-          title="Statistiques d'impact du simulateur d'aides 1jeune1solution - Nouvelle fenêtre"
-          rel="noopener"
-          href="https://betagouv.github.io/mes-aides-analytics/"
-        >
-          site dédié
-        </a>
-        .
-      </div>
+    <p>
+      Les
+      <a
+        href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=day&date=yesterday"
+      >
+        statistiques d'usage de Mes Aides
+      </a>
+      sont publiques.
+    </p>
+    <p>
+      Comprenez comment nous évaluons la
+      <a
+        href="https://blog.beta.gouv.fr/dinsic/2016/11/04/mes-aides-metriques-pirates-tunnel-conversion-public/"
+      >
+        performance de Mes Aides
+      </a>
+      et comment nous
+      <a
+        href="https://blog.beta.gouv.fr/dinsic/2017/05/03/mes-aides-datascience-public/"
+      >
+        améliorons notre simulateur
+      </a>
+      .
+    </p>
+    <p>
+      Les informations suivantes peuvent être retrouvées sur un
+      <a
+        target="_blank"
+        title="Statistiques d'impact du simulateur d'aides 1jeune1solution - Nouvelle fenêtre"
+        rel="noopener"
+        href="https://betagouv.github.io/mes-aides-analytics/"
+      >
+        site dédié
+      </a>
+      .
+    </p>
 
-      <iframe
-        id="iframe"
-        src="https://betagouv.github.io/mes-aides-analytics/iframe"
-        scrolling="no"
-        @load="iframeLoaded"
-      />
-    </div>
+    <iframe
+      id="iframe"
+      title="Statistiques d'impact du simulateur d'aides 1jeune1solution"
+      class="fr-col-12"
+      src="https://betagouv.github.io/mes-aides-analytics/iframe"
+      scrolling="no"
+      @load="iframeLoaded"
+    />
   </article>
 </template>
 

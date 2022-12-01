@@ -1,34 +1,42 @@
 <template>
-  <div class="aj-unbox">
+  <div>
     <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
       <p v-show="accessStatus.fetching">
-        Récupération de la situation en cours…
+        <span
+          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+          aria-hidden="true"
+        ></span
+        ><span class="fr-ml-2w">Récupération en cours…</span>
       </p>
-      <p v-show="resultatStatus.updating"> Récupération de vos droits… </p>
+      <p v-show="resultatStatus.updating">
+        <span
+          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+          aria-hidden="true"
+        ></span
+        ><span class="fr-ml-2w">Récupération de vos droits…</span>
+      </p>
     </LoadingModal>
 
     <BackButton
-      class="aj-droit-details-back-button small"
+      class="fr-btn--secondary fr-btn--sm fr-mb-2w"
       data-testid="back-button"
       @click="goBack"
       >Retour aux résultats</BackButton
     >
 
-    <div class="aj-box normal-padding-bottom aj-results-details">
-      <DroitsDetails
-        v-if="droit"
-        :droit="droit"
-        :droits="droits"
-        :city="situation.menage.depcom"
-        :patrimoine-captured="patrimoineCaptured"
-        :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
-      />
+    <DroitsDetails
+      v-if="droit"
+      :droit="droit"
+      :droits="droits"
+      :city="situation.menage.depcom"
+      :patrimoine-captured="patrimoineCaptured"
+      :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
+    />
+    <div class="fr-text--center">
       <DroitsContributions v-if="droit" :droit="droit" />
     </div>
 
-    <div class="aj-box normal-padding-bottom aj-results-details-feedback-box">
-      <Feedback v-if="droit" />
-    </div>
+    <Feedback v-if="droit" />
   </div>
 </template>
 

@@ -1,92 +1,78 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <fieldset v-if="questionType === 'enum'">
-      <MutualizedStepTitle
-        title-wrapper="legend"
-        :question="question"
-        :show-more-info="showMoreInfo"
-        :help="step.help"
-      ></MutualizedStepTitle>
-      <div class="aj-selections">
-        <div
-          v-for="(item, index) in step.getItems(propertyData)"
-          :key="`${item.value}`"
-          class="aj-selection-wrapper"
-        >
-          <input
-            :id="`${item.value}`"
-            v-model="value"
-            type="radio"
-            :name="fieldName"
-            :value="item.value"
-            :autofocus="index === 0"
-          />
-          <label :for="`${item.value}`">
-            {{ item.label }}
-            <span v-if="item.hint" class="help">
-              {{ item.hint }}
-            </span>
-          </label>
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend">
+        <MutualizedStepTitle
+          :for-title-wrapper="fieldName ? fieldName : null"
+          :question="question"
+          :show-more-info="showMoreInfo"
+          :help="step.help"
+        ></MutualizedStepTitle>
+      </legend>
+      <div class="fr-fieldset__content">
+        <div class="fr-container fr-px-0">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
+              <div class="fr-form-group">
+                <div v-if="questionType === 'enum'">
+                  <div
+                    v-for="(item, index) in step.getItems(propertyData)"
+                    :key="`${item.value}`"
+                    class="fr-radio-group fr-radio-rich"
+                  >
+                    <input
+                      :id="`${item.value}`"
+                      v-model="value"
+                      type="radio"
+                      :name="fieldName"
+                      :value="item.value"
+                      :autofocus="index === 0"
+                    />
+                    <label :for="`${item.value}`" class="fr-label">
+                      <span
+                        >{{ item.label }}
+                        <i v-if="item.hint" class="fr-text--sm fr-ml-1w">{{
+                          item.hint
+                        }}</i></span
+                      >
+                    </label>
+                  </div>
+                </div>
+                <div v-else-if="questionType === 'number'">
+                  <InputNumber
+                    :id="fieldName"
+                    v-model="value"
+                    :min="step.min"
+                    :data-type="step.type"
+                  />
+                </div>
+                <InputDate
+                  v-else-if="questionType === 'date'"
+                  :id="fieldName"
+                  v-model="value"
+                />
+                <MultipleAnswers
+                  v-else-if="questionType === 'multiple'"
+                  v-model="value"
+                  :items="step.getItems(propertyData)"
+                />
+                <input
+                  v-else-if="questionType === 'text'"
+                  :id="fieldName"
+                  aria-labelledby="step-question"
+                  v-model="value"
+                  :data-testid="fieldName"
+                  type="text"
+                  class="fr-input"
+                />
+                <YesNoQuestion v-else v-model="value"></YesNoQuestion>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </fieldset>
 
-    <div v-else-if="questionType === 'number'">
-      <MutualizedStepTitle
-        :for-title-wrapper="fieldName"
-        :question="question"
-        :show-more-info="showMoreInfo"
-        :help="step.help"
-      ></MutualizedStepTitle>
-      <InputNumber
-        :id="fieldName"
-        v-model="value"
-        :min="step.min"
-        :data-type="step.type"
-      />
-    </div>
-
-    <div v-else-if="questionType === 'date'">
-      <MutualizedStepTitle
-        :for-title-wrapper="fieldName"
-        :question="question"
-        :show-more-info="showMoreInfo"
-        :help="step.help"
-      ></MutualizedStepTitle>
-      <InputDate :id="fieldName" v-model="value" required />
-    </div>
-
-    <fieldset v-else-if="questionType === 'multiple'">
-      <MutualizedStepTitle
-        title-wrapper="legend"
-        :question="question"
-        :show-more-info="showMoreInfo"
-        :help="step.help"
-      ></MutualizedStepTitle>
-      <MultipleAnswers v-model="value" :items="step.getItems(propertyData)" />
-    </fieldset>
-
-    <div v-else-if="questionType === 'text'">
-      <MutualizedStepTitle
-        :for-title-wrapper="fieldName"
-        :question="question"
-        :show-more-info="showMoreInfo"
-        :help="step.help"
-      ></MutualizedStepTitle>
-      <input
-        :id="fieldName"
-        v-model="value"
-        :data-testid="fieldName"
-        type="text"
-      />
-    </div>
-
-    <YesNoQuestion v-else v-model="value">
-      <span v-html="question" /><EnSavoirPlus v-if="showMoreInfo" />
-      <template v-if="step.help" #help>
-        <p v-html="step.help" />
-      </template>
-    </YesNoQuestion>
     <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit(false)" />
   </form>
 </template>
@@ -99,7 +85,6 @@ import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "@lib/utils"
-import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import Individu from "@lib/individu"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
@@ -112,7 +97,6 @@ export default {
   name: "MutualizedStep",
   components: {
     ActionButtons,
-    EnSavoirPlus,
     InputNumber,
     InputDate,
     MultipleAnswers,

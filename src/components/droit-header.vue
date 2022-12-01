@@ -1,16 +1,18 @@
 <template>
-  <div class="aj-droit-header">
-    <img class="aj-droit-illustration" :src="getBenefitImage(droit)" alt="" />
-
-    <div class="aj-droit-identity">
-      <h2 class="aj-question aj-benefit-label" itemprop="name">{{
+  <div class="aj-benefit-header fr-mb-4w">
+    <img
+      :src="getBenefitImage(droit)"
+      class="aj-institution-icon"
+      :alt="`Logo ${droit.institution.label}`"
+    />
+    <div class="aj-benefit-name">
+      <h2 class="fr-text--lead" itemprop="name">{{
         $filters.capitalize(droit.label)
       }}</h2>
-      <div class="aj-institution-label">{{
+      <div class="aj-benefit-institution">{{
         $filters.capitalize(droit.institution.label)
       }}</div>
     </div>
-
     <DroitEstime :droit="droit" />
   </div>
 </template>

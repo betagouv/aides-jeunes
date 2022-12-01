@@ -1,36 +1,67 @@
 <template>
-  <div class="field-group">
-    <label aria-level="2" class="aj-question" for="cp" role="heading"
-      >{{ codePostalLabel }}
-      <EnSavoirPlus />
-    </label>
-    <input
-      id="cp"
-      v-model="codePostalValue"
-      data-testid="postalCode"
-      data-type="number"
-      inputmode="numeric"
-      pattern="[0-9]*"
-      type="text"
-    />
-  </div>
+  <div>
+    <div>
+      <label class="fr-px-2v" for="cp">
+        <span class="fr-text--lead fr-text--bold">{{ codePostalLabel }}</span>
+        <EnSavoirPlus />
+        <span class="fr-hint-text fr-mt-1w"
+          >À la saisie d'un code postal valide, la liste des communes associées
+          sera affichée automatiquement.</span
+        >
+      </label>
 
-  <p v-if="retrievingCommunes">
-    <i aria-hidden="true" class="ri ri-loader-2-line ri-spin" />
-  </p>
-  <div v-show="communes?.length" class="field-group">
-    <label class="aj-question" for="commune"
-      >Veuillez sélectionner la ville qui correspond
-    </label>
-    <select id="commune" v-model="nomCommuneValue">
-      <option
-        v-for="(commune, index) in communes"
-        :key="`commune_${index}`"
-        :value="commune.nom"
-      >
-        {{ commune.nom }}
-      </option>
-    </select>
+      <div class="fr-container fr-px-0 fr-mt-2w">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <input
+              id="cp"
+              v-model="codePostalValue"
+              data-testid="postalCode"
+              data-type="number"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              type="text"
+              class="fr-input"
+              autocomplete="postal-code"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="retrievingCommunes" class="fr-mt-4w">
+      <span
+        class="fr-icon--xl fr-icon-refresh-line fr-icon-spin"
+        aria-hidden="true"
+      ></span>
+    </div>
+    <div v-show="communes?.length" class="fr-input-group fr-mb-2w fr-mt-4w">
+      <label class="fr-label fr-pr-3w" for="commune"
+        ><span class="fr-text--lead fr-text--bold"
+          >Veuillez sélectionner la ville qui correspond</span
+        >
+      </label>
+      <div class="fr-container fr-px-0 fr-mt-4w">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <select
+              id="commune"
+              v-model="nomCommuneValue"
+              class="fr-select"
+              ref="commune"
+            >
+              <option
+                v-for="(commune, index) in communes"
+                :key="`commune_${index}`"
+                :value="commune.nom"
+              >
+                {{ commune.nom }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,7 +101,7 @@ export default {
       this.communes = []
       if (cp?.length == 5) {
         this.$emit("update:codePostal", cp)
-        this.fetchCommune()
+        this.fetchCommune(true)
       }
     },
     nomCommuneValue: function (commune) {
@@ -95,7 +126,7 @@ export default {
         this.communes.find((c) => c.nom == this.nomCommuneValue)
       )
     },
-    async fetchCommune() {
+    async fetchCommune(focusCommune) {
       if (
         !this.codePostalValue ||
         this.codePostalValue.toString().length !== 5
@@ -121,6 +152,9 @@ export default {
             this.nomCommuneValue = Commune.getMostPopulated(communes).nom
           }
           this.communes = communes
+          if (focusCommune) {
+            this.$nextTick(() => this.$refs.commune.focus())
+          }
           return communes
         })
         .catch(() => {
@@ -133,9 +167,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.field-group {
-  margin-bottom: 2em;
-}
-</style>

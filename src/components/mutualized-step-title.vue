@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <component :is="titleWrapper" :for="forTitleWrapper">
-      <h2 class="aj-question">
-        <span data-testid="question" v-html="props.question" />
-        <EnSavoirPlus v-if="props.showMoreInfo" />
-      </h2>
-    </component>
-    <p v-if="props.help" v-html="props.help" />
-  </div>
+  <span
+    id="step-question"
+    data-testid="question"
+    v-html="props.question"
+    class="fr-text--lead"
+  />
+  <EnSavoirPlus v-if="props.showMoreInfo" />
+  <span v-if="props.help" v-html="props.help" class="fr-hint-text" />
 </template>
 
 <script lang="ts" setup>

@@ -1,20 +1,7 @@
 <template>
-  <p class="is-align-vertically-center">
-    <a
-      v-if="brokenLinkButtonState === 'show'"
-      class="text-center"
-      @click="alertBrokenLink()"
-      >Lien invalide ?</a
-    >
-    <span
-      v-else-if="brokenLinkButtonState === 'showThanksMessage'"
-      class="text-center"
-      >Merci pour votre aide ! Nous réglerons ce problème très
-      prochainement.</span
-    >
+  <p class="fr-text--center">
     <span v-if="showContributionLinks && isEditableBenefit()"
-      > -
-      <a
+      ><a
         :href="repositoryBenefitUrl()"
         target="_blank"
         rel="noreferrer"
@@ -57,15 +44,6 @@ export default {
     },
     netlifyContributionUrl() {
       return `${process.env.VITE_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
-    },
-    alertBrokenLink() {
-      this.brokenLinkButtonState = "showThanksMessage"
-      setTimeout(() => (this.brokenLinkButtonState = null), 5000)
-      this.$matomo?.trackEvent(
-        "General",
-        "Erreur lien aide invalide",
-        this.droit.label
-      )
     },
   },
 }

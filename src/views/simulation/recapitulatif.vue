@@ -1,63 +1,84 @@
 <template>
-  <div class="recapitulatif">
-    <div>
+  <div>
+    <div class="fr-mb-5w">
       <template
         v-for="(chapter, chapterIndex) in myChapters"
         :key="chapter.name"
       >
-        <div class="chapter-block">
-          <h2 class="aj-question">{{ chapter.label }}</h2>
+        <div class="chapter-block fr-mb-4w">
+          <h2 class="fr-display-sm fr-text--lead">{{ chapter.label }}</h2>
           <template
             v-for="(question, questionIndex) in chapter.questions"
             :key="`chapter_${chapterIndex}_question_${questionIndex}`"
           >
-            <div :class="question.rowClass" class="recapitulatif-row">
-              <div
-                :class="question.labelClass || 'question-col'"
-                v-html="question.label"
-              ></div>
-              <div
-                v-if="!['undefined', 'object'].includes(typeof question.value)"
-                class="value-col"
-              >
-                {{ question.value }}
-              </div>
-              <div v-if="!question.hideEdit" class="edit-col">
-                <router-link :to="question.path"> Modifier </router-link>
+            <div class="fr-container fr-px-0">
+              <div class="fr-grid-row fr-mb-3v">
+                <div class="fr-col-12 fr-col-sm-6" data-testid="question-row">
+                  <h3
+                    v-if="question.labelClass"
+                    class="fr-my-0 fr-text--md"
+                    v-html="question.label"
+                  ></h3>
+                  <p v-else class="fr-my-0" v-html="question.label"></p>
+                </div>
+                <div class="fr-col-12 fr-col-sm-4">
+                  <p
+                    v-if="
+                      !['undefined', 'object'].includes(typeof question.value)
+                    "
+                    class="fr-my-0"
+                  >
+                    {{ question.value }}
+                  </p>
+                </div>
+                <div class="fr-col-12 fr-col-sm-2 fr-print-hidden">
+                  <p v-if="!question.hideEdit" class="fr-my-0">
+                    <router-link
+                      :to="question.path"
+                      :title="`Modifier la réponse à la question ${question.label}`"
+                      >Modifier</router-link
+                    >
+                  </p>
+                </div>
               </div>
             </div>
-
+            <hr v-if="question.labelClass == 'individu-title'" />
             <div
               v-if="typeof question.value === 'object'"
-              class="recapitulatif-row recapitulatif-row-wrap"
+              class="fr-grid-row fr-mb-1w"
             >
               <div
                 v-for="(value, name) in question.value"
                 :key="name"
-                class="value-cell"
+                class="fr-col-3 fr-mb-1w fr-pb-1w"
               >
-                <div style="font-style: italic">{{ name }} :</div>
-                <div>{{ value }}</div>
+                <p class="fr-hint-text fr-my-0">{{ name }} :</p>
+                <p class="fr-my-0">{{ value }}</p>
               </div>
             </div>
           </template>
         </div>
       </template>
     </div>
-    <div class="aj-actions">
-      <BackButton @click="goBack"></BackButton>
-      <router-link
-        v-if="showResultButton"
-        class="button next-button"
-        to="/simulation/resultats"
-        >Accéder aux résultats
-      </router-link>
-      <router-link
-        v-else-if="store.lastUnansweredStep"
-        :to="store.lastUnansweredStep.path"
-        class="button next-button"
-        >Continuer
-      </router-link>
+    <div class="aj-action-buttons">
+      <ul class="fr-btns-group fr-btns-group--inline">
+        <li>
+          <BackButton @click="goBack" class="fr-btn--icon-center"></BackButton>
+        </li>
+        <li v-if="showResultButton">
+          <router-link class="fr-btn" to="/simulation/resultats"
+            >Accéder aux résultats
+          </router-link>
+        </li>
+        <li v-else-if="store.lastUnansweredStep">
+          <router-link
+            :to="store.lastUnansweredStep.path"
+            class="fr-btn"
+            data-testid="button-continue"
+            >Continuer
+          </router-link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -70,11 +91,18 @@ import ComplexeProperties from "@lib/properties/others/complexe-properties"
 import { chapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine, Step } from "@lib/types/property"
-import { computed, ComputedRef } from "vue"
+import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress"
 import { useStore } from "@/stores"
 import { categoriesRnc } from "@lib/resources"
 import { patrimoineTypes } from "@lib/resources"
+
+onMounted(() => {
+  document.body.setAttribute("data-action-buttons", "true")
+})
+onUnmounted(() => {
+  document.body.removeAttribute("data-action-buttons")
+})
 
 const store = useStore()
 const route = useRoute()

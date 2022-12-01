@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="fr-form-group">
     <p>
       Indiquez toutes les ressources <strong>nettes</strong> perçues
       <span v-if="individu._role !== 'demandeur'"
@@ -7,12 +7,7 @@
       >
       en France comme à l'étranger.
     </p>
-    <div
-      v-for="(type, index) in types"
-      :key="type.meta.id"
-      class="form__group"
-      s
-    >
+    <div v-for="(type, index) in types" :key="type.meta.id">
       <RessourceMontants
         v-if="isSimple(type.meta.id)"
         :individu="type.individu"

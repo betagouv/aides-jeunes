@@ -4,8 +4,8 @@
     v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     :aria-label="longLabel"
     :class="{
-      'button secondary': level === 'default',
-      'button primary': level === 'success',
+      'fr-btn fr-btn--secondary': level === 'default',
+      'fr-btn': level === 'success',
     }"
     :href="getURL(link)"
     class="text-center"
@@ -24,7 +24,7 @@ let typeLabels = {
   teleservice: "Faire une demande en ligne",
   form: "Accéder au formulaire papier",
   instructions: "Accéder aux instructions",
-  link: "Plus d'informations <i class='ri-share-box-line ri' aria-hidden='true' role='presentation'></i>",
+  link: "Plus d'informations",
 }
 
 let longLabels = {

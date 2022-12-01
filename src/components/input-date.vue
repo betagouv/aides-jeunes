@@ -1,55 +1,65 @@
 <template>
-  <div class="aj-input-date">
-    <div v-if="showDay" class="aj-input-date-component day">
-      <label class="aj-date-label">jour</label>
-      <input
-        :id="firstId"
-        ref="day"
-        v-model="day"
-        v-select-on-click
-        :data-testid="firstId"
-        aria-label="Jour"
-        autofocus
-        data-type="number"
-        inputmode="numeric"
-        max="31"
-        min="1"
-        pattern="[0-9]*"
-        placeholder="JJ"
-        type="text"
-      />
-    </div>
-    <div class="aj-input-date-component month">
-      <label class="aj-date-label">mois</label>
-      <input
-        ref="month"
-        v-model="month"
-        v-select-on-click
-        aria-label="Mois"
-        data-type="number"
-        inputmode="numeric"
-        max="12"
-        min="1"
-        pattern="[0-9]*"
-        placeholder="MM"
-        type="text"
-      />
-    </div>
-    <div class="aj-input-date-component year">
-      <label class="aj-date-label">année</label>
-      <input
-        ref="year"
-        v-model="year"
-        v-select-on-click
-        aria-label="Année"
-        class="year"
-        data-type="number"
-        inputmode="numeric"
-        min="1900"
-        pattern="[0-9]*"
-        placeholder="AAAA"
-        type="text"
-      />
+  <div class="fr-container fr-px-0">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div v-if="showDay" class="fr-col-3 fr-col-sm-3 fr-col-md-2 fr-col-lg-2">
+        <label class="fr-label fr-text--center" :for="firstId">
+          <span class="fr-hint-text fr-mb-1v">jour</span>
+          <input
+            :id="firstId"
+            class="fr-input"
+            ref="day"
+            v-model="day"
+            v-select-on-click
+            :data-testid="firstId"
+            aria-label="Jour"
+            autofocus
+            data-type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="JJ"
+            type="text"
+            autocomplete="bday-day"
+          />
+        </label>
+      </div>
+      <div class="fr-col-3 fr-col-sm-3 fr-col-md-2 fr-col-lg-2">
+        <label class="fr-label fr-text--center" for="month-input">
+          <span class="fr-hint-text fr-mb-1v">mois</span>
+          <input
+            id="month-input"
+            ref="month"
+            class="fr-input"
+            v-model="month"
+            v-select-on-click
+            aria-label="Mois"
+            data-type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="MM"
+            type="text"
+            autocomplete="bday-month"
+          />
+        </label>
+      </div>
+      <div class="fr-col-6 fr-col-sm-4 fr-col-md-4 fr-col-lg-4">
+        <label class="fr-label fr-text--center" for="year-input">
+          <span class="fr-hint-text fr-mb-1v">année</span>
+          <input
+            id="year-input"
+            ref="year"
+            v-model="year"
+            v-select-on-click
+            class="fr-input"
+            aria-label="Année"
+            data-type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="AAAA"
+            type="text"
+            autocomplete="bday-year"
+          />
+        </label>
+      </div>
     </div>
   </div>
 </template>

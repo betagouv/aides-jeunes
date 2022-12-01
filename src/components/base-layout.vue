@@ -1,11 +1,26 @@
 <template>
-  <div class="aj-website">
-    <div class="aj-website-content">
-      <Header1J1S />
-      <slot />
-    </div>
-    <FooterJ1S />
+  <div class="fr-skiplinks">
+    <nav class="fr-container" role="navigation" aria-label="Accès rapide">
+      <ul class="fr-skiplinks__list">
+        <li>
+          <router-link class="fr-link" to="#main">Contenu</router-link>
+        </li>
+        <li>
+          <router-link class="fr-link" to="#navigation-menu">Menu</router-link>
+        </li>
+        <li>
+          <router-link class="fr-link" to="#footer">Pied de page</router-link>
+        </li>
+      </ul>
+    </nav>
   </div>
+  <div class="aj-page--full-height">
+    <Header1J1S />
+    <main role="main" id="main" class="fr-container fr-container--fluid">
+      <slot />
+    </main>
+  </div>
+  <FooterJ1S />
 </template>
 
 <script>

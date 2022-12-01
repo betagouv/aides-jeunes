@@ -1,47 +1,45 @@
 <template>
   <form>
-    <div>
-      <p>
-        Sélectionnez les types de ressources perçues
-        <strong>
-          <span v-if="individu._role === 'conjoint'"
-            >par votre conjoint(e)</span
-          >
-          <span v-else-if="individu._role !== 'demandeur'"
-            >par {{ individu._firstName }}</span
-          >
-          depuis {{ store.dates.twelveMonthsAgo.label }}</strong
-        >. Vous pourrez ensuite saisir les montants.
-      </p>
-      <div
-        v-for="category in categories"
-        :key="category.id"
-        class="form__group"
-      >
-        <h2 class="aj-question">
+    <p>
+      Sélectionnez les types de ressources perçues
+      <strong>
+        <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
+        <span v-else-if="individu._role !== 'demandeur'"
+          >par {{ individu._firstName }}</span
+        >
+        depuis {{ store.dates.twelveMonthsAgo.label }}</strong
+      >. Vous pourrez ensuite saisir les montants.
+    </p>
+    <fieldset
+      v-for="category in categories"
+      :key="category.id"
+      class="fr-fieldset fr-mb-4w"
+    >
+      <legend class="fr-fieldset__legend">
+        <span class="fr-text--lead fr-text--bold">
           {{ $filters.capitalize(category.label) }}
-        </h2>
-        <div class="aj-selections">
-          <div
-            v-for="type in sort(typesByCategories[category.id])"
-            :key="type.id"
-            class="aj-selection-wrapper"
-          >
-            <input
-              :id="type.id"
-              v-model="selectedTypes[type.id]"
-              type="checkbox"
-            />
-            <label :for="type.id">
-              {{ type.label }}
-            </label>
-          </div>
+        </span>
+      </legend>
+      <div class="fr-fieldset__content">
+        <div
+          v-for="type in sort(typesByCategories[category.id])"
+          :key="type.id"
+          class="fr-checkbox-group"
+        >
+          <input
+            :id="type.id"
+            v-model="selectedTypes[type.id]"
+            type="checkbox"
+          />
+          <label :for="type.id" class="fr-label">
+            {{ type.label }}
+          </label>
         </div>
       </div>
-      <div class="form__group">
-        {{ countLabel }}
-      </div>
-    </div>
+    </fieldset>
+    <p class="fr-hint-text">
+      {{ countLabel }}
+    </p>
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

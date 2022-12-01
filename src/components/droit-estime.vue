@@ -5,32 +5,27 @@
       ($route.name !== 'aide' ||
         ($route.name === 'aide' && droit.source === 'javascript'))
     "
-    class="aj-droit-estime"
+    class="aj-benefit-amount"
   >
-    <div>
+    <div class="fr-text--center">
       <template v-if="isBenefitTypeNumber || isBenefitTypeString">
         <span>
-          <span class="aj-droit-estime-label font-normal font-base">
-            {{ droitEstime.label }}
-          </span>
-          <br />
-          <span
-            class="aj-droit-estime-value font-bold"
-            data-testid="droit-estime-value"
-          >
-            {{ droitEstime.value }}
-          </span> </span
+          {{ droitEstime.label }}
+        </span>
+        <br />
+        <strong class="fr-text--lead" data-testid="droit-estime-value">
+          {{ droitEstime.value }} </strong
         >&nbsp;
-        <span
+        <strong
           v-if="droitEstime.legend"
-          class="aj-droit-estime-legend"
+          class="fr-text--lead"
           data-testid="droit-estime-legend"
         >
           {{ droitEstime.legend }}
-        </span>
+        </strong>
       </template>
     </div>
-    <div class="aj-droit-estime-inattendu">
+    <div class="fr-text--center">
       <router-link
         v-if="showUnexpected"
         v-analytics="{
@@ -79,4 +74,3 @@ export default {
   },
 }
 </script>
-<style></style>

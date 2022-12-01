@@ -1,60 +1,62 @@
 <template>
-  <div class="aj-sommaire-container">
-    <div class="aj-sommaire-content">
-      <h3>Ma simulation</h3>
-      <div>
-        <div class="aj-progressBar-container">
-          <div class="aj-step-container">
-            <div
-              v-for="(chapter, index) in chapters"
-              :key="index"
-              class="aj-step"
-            >
-              <div
-                class="aj-step-icon"
-                :class="{
-                  'aj-step-done': chapter.done,
-                  'aj-step-inactive': !chapter.done,
-                  'aj-step-active': chapter.current,
-                }"
-              >
-                <img
-                  src="../assets/images/done.svg"
-                  class="aj-check-icon"
-                  alt=""
-                />
-              </div>
-              <router-link
-                :to="chapter.root"
-                class="aj-step-title"
-                :class="{
-                  'aj-active-title': chapter.current,
-                  'aj-disabled-title': disabledLink(chapter, index),
-                }"
-                :tabindex="disabledLink(chapter, index) ? -1 : 0"
-              >
-                {{ chapter.label }}
-              </router-link>
-            </div>
-          </div>
-          <div class="aj-progressBar"></div>
-        </div>
-
-        <div v-if="store.passSanityCheck" class="aj-btn-container">
-          <router-link
-            v-if="!isRecapitulatif"
-            class="button outline"
-            :to="{ name: 'recapitulatif' }"
-            data-testid="previous-or-recap-button"
-            >{{
-              isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
-            }}</router-link
+  <nav class="fr-sidemenu fr-col-lg-12" aria-label="Sommaire" role="navigation">
+    <div class="fr-sidemenu__inner">
+      <button
+        class="fr-sidemenu__btn fr-px-2w"
+        aria-controls="fr-sidemenu-wrapper"
+        aria-expanded="false"
+        ref="sideMenuButton"
+        >Sommaire</button
+      >
+      <div class="fr-collapse" id="fr-sidemenu-wrapper">
+        <h1
+          class="fr-sidemenu__title fr-text--regular fr-hidden fr-unhidden-md fr-pt-5w fr-px-2w"
+          >Ma simulation</h1
+        >
+        <ul class="fr-sidemenu__list">
+          <li
+            v-for="(chapter, index) in chapters"
+            :key="index"
+            class="fr-sidemenu__item"
           >
-          <BackButton v-else @click="goBack()">Retour</BackButton>
+            <router-link
+              v-if="!disabledLink(chapter, index)"
+              @click="mobileNavigationCollapse()"
+              :to="chapter.root"
+              tabindex="0"
+              class="fr-sidemenu__link fr-px-2w"
+              :aria-current="chapter.current ? chapter.current : null"
+              >{{ chapter.label }}</router-link
+            >
+            <span v-else class="fr-sidemenu__link fr-text--disabled fr-px-2w">{{
+              chapter.label
+            }}</span>
+          </li>
+        </ul>
+        <div>
+          <ul
+            v-if="store.passSanityCheck"
+            class="fr-btns-group fr-btns-group--inline-md fr-mt-5w fr-px-2w fr-px-md-0"
+          >
+            <li v-if="!isRecapitulatif">
+              <router-link
+                @click="mobileNavigationCollapse()"
+                class="fr-btn fr-btn--secondary"
+                :to="{ name: 'recapitulatif' }"
+                data-testid="previous-or-recap-button"
+                >{{
+                  isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
+                }}</router-link
+              >
+            </li>
+            <li v-else>
+              <BackButton @click="goBack()">Retour</BackButton>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -94,7 +96,11 @@ export default {
         : !chapter.done && !this.chapters[index - 1].done
     },
     goBack() {
+      this.mobileNavigationCollapse()
       window?.history.back()
+    },
+    mobileNavigationCollapse() {
+      this.$refs.sideMenuButton.setAttribute("aria-expanded", false)
     },
   },
 }

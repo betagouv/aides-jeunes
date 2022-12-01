@@ -21,11 +21,11 @@ const goRecap = () => {
 }
 
 const next = () => {
-  cy.get(".next-button").click()
+  cy.get(`a[data-testid="button-continue"]`).click()
 }
 
 const updateFromRecap = (buttonLabel) => {
-  cy.get(`div .question-col:contains('${buttonLabel}')`)
+  cy.get(`div[data-testid="question-row"]:contains('${buttonLabel}')`)
     .siblings()
     .contains("Modifier")
     .click()

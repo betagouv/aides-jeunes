@@ -1,104 +1,175 @@
 <template>
   <form>
-    <h2 data-testid="immobilier-title">
-      <i aria-hidden="true" class="ri ri-home-4-line" />
-      Immobilier
-    </h2>
+    <fieldset class="fr-fieldset">
+      <legend
+        class="fr-text--lead fr-text--bold"
+        data-testid="immobilier-title"
+      >
+        <span class="fr-icon-home-4-line fr-mr-2w" aria-hidden="true"></span>
+        <span>Immobilier</span>
+      </legend>
 
-    <YesNoQuestion v-model="hasTerrainsNonLoues" class="form__group">
-      Avez-vous des terrains <b>non loués</b> ?
-    </YesNoQuestion>
+      <div class="fr-fieldset__content">
+        <YesNoQuestion
+          id="patrimoine-terrain-non-loues"
+          v-model="hasTerrainsNonLoues"
+        >
+          Avez-vous des terrains <b>non loués</b> ?
+        </YesNoQuestion>
 
-    <div v-if="hasTerrainsNonLoues" class="form__group">
-      <label class="form__group">
-        Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
-        <InputNumber v-model="demandeur.valeur_terrains_non_loues[periodKey]" />
-      </label>
+        <div v-if="hasTerrainsNonLoues" class="form__group fr-my-4w">
+          <div>
+            <label
+              for="valeur_terrains_non_loues"
+              class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w"
+            >
+              Valeur <b>patrimoniale</b> totale de vos terrains <b>non loués</b>
+              <InputNumber
+                id="valeur_terrains_non_loues"
+                v-model="demandeur.valeur_terrains_non_loues[periodKey]"
+                class=""
+              />
+            </label>
+          </div>
 
-      <label class="form__group">
-        Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_locative_terrains_non_loues[periodKey]"
-        />
-      </label>
-      <p>
-        Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
-        ou de taxe foncière.
-      </p>
-    </div>
+          <div class="fr-mt-2w">
+            <label
+              id="valeur_locative_terrains_non_loues"
+              class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w"
+            >
+              Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
+              <InputNumber
+                id="valeur_locative_terrains_non_loues"
+                v-model="
+                  demandeur.valeur_locative_terrains_non_loues[periodKey]
+                "
+              />
+            </label>
+            <p class="fr-hint-text">
+              Pour trouver ces valeurs, consultez votre avis d'imposition de
+              taxe d'habitation ou de taxe foncière.
+            </p>
+          </div>
+        </div>
 
-    <YesNoQuestion v-model="hasBatisNonLoues" class="form__group">
-      Avez-vous des appartements/immeubles <b>non loués</b> ?
-      <template #help>
-        <p>
-          Sauf résidence principale et bâtiments de l'exploitation agricole.
-        </p>
-      </template>
-    </YesNoQuestion>
+        <YesNoQuestion
+          v-model="hasBatisNonLoues"
+          id="patrimoine-immeubles-non-loues"
+          class="form__group fr-my-4w"
+        >
+          Avez-vous des appartements/immeubles <b>non loués</b> ?
+          <template #help>
+            <p class="fr-hint-text">
+              Sauf résidence principale et bâtiments de l'exploitation agricole.
+            </p>
+          </template>
+        </YesNoQuestion>
 
-    <div v-if="hasBatisNonLoues" class="form__group">
-      <label class="form__group">
-        Valeur <b>patrimoniale</b> de vos appartements/immeubles
-        <b>non loués</b>
-        <InputNumber v-model="demandeur.valeur_immo_non_loue[periodKey]" />
-      </label>
+        <div v-if="hasBatisNonLoues" class="fr-my-4w">
+          <div>
+            <label for="valeur_immo_non_loue" class="fr-label">
+              Valeur <b>patrimoniale</b> de vos appartements/immeubles
+              <b>non loués</b>
+              <InputNumber
+                id="valeur_immo_non_loue"
+                v-model="demandeur.valeur_immo_non_loue[periodKey]"
+              />
+            </label>
+          </div>
 
-      <label class="form__group">
-        Valeur <b>locative</b> totale de vos appartements/immeubles
-        <b>non loués</b>
-        <InputNumber
-          v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
-        />
-      </label>
-      <p>
-        Pour la trouver, consultez votre avis d'imposition de taxe d'habitation
-        ou de taxe foncière.
-      </p>
-    </div>
+          <div class="fr-mt-2w">
+            <label for="valeur_locative_immo_non_loue" class="fr-label">
+              Valeur <b>locative</b> totale de vos appartements/immeubles
+              <b>non loués</b>
+              <InputNumber
+                id="valeur_locative_immo_non_loue"
+                v-model="demandeur.valeur_locative_immo_non_loue[periodKey]"
+              />
+            </label>
 
-    <label v-if="hasBiensLoues" class="form__group"
-      >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
-      <InputNumber v-model="demandeur.valeur_patrimoine_loue[periodKey]" />
-    </label>
+            <p class="fr-hint-text">
+              Pour la trouver, consultez votre avis d'imposition de taxe
+              d'habitation ou de taxe foncière.
+            </p>
+          </div>
 
-    <h2>
-      <i aria-hidden="true" class="ri ri-money-euro-box-line" />
-      Épargne
-    </h2>
+          <div class="fr-mt-2w">
+            <label
+              v-if="hasBiensLoues"
+              for="valeur_patrimoine_loue"
+              class="fr-label fr-mt-2w"
+              >Valeur <b>patrimoniale</b> de vos bien <b> loués</b>
+              <InputNumber
+                id="valeur_patrimoine_loue"
+                v-model="demandeur.valeur_patrimoine_loue[periodKey]"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
 
-    <label class="form__group">
-      Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
-      <InputNumber v-model="demandeur.livret_a[periodKey]" />
-    </label>
+    <fieldset class="fr-fieldset">
+      <legend
+        class="fr-text--lead fr-text--bold"
+        data-testid="immobilier-title"
+      >
+        <span
+          class="fr-icon-money-euro-box-line fr-mr-2w"
+          aria-hidden="true"
+        ></span>
+        <span>Épargne</span>
+      </legend>
+      <div class="fr-fieldset__content">
+        <div>
+          <label for="livret_a" class="fr-label">
+            Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
+            <InputNumber
+              id="livret_a"
+              v-model="demandeur.livret_a[periodKey]"
+            />
+          </label>
+        </div>
 
-    <label class="form__group">
-      Total des autres produits d'épargne produisant des revenus
-      <b>non imposables</b>
-      <InputNumber
-        v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
-      />
-      <span>
-        Assurance vie,
-        <abbr title="Compte d'épargne-logement">CEL</abbr>,
-        <abbr title="Livret de développement durable">LDD</abbr>,
-        <abbr title="Livret d'épargne populaire">LEP</abbr>, Livret jeune,
-        <abbr title="Plan d'épargne en actions">PEA</abbr>, plan d'épargne
-        d'entreprise, <abbr title="Plan d'épargne logement">PEL</abbr>,
-        <abbr title="Plan d'épargne populaire">PEP</abbr>.
-      </span>
-    </label>
+        <div class="fr-mt-2w">
+          <label for="epargne_revenus_non_imposables" class="fr-label">
+            Total des autres produits d'épargne produisant des revenus
+            <b>non imposables</b>
+            <InputNumber
+              id="epargne_revenus_non_imposables"
+              v-model="demandeur.epargne_revenus_non_imposables[periodKey]"
+            />
+            <span class="fr-hint-text">
+              Assurance vie,
+              <abbr title="Compte d'épargne-logement">CEL</abbr>,
+              <abbr title="Livret de développement durable">LDD</abbr>,
+              <abbr title="Livret d'épargne populaire">LEP</abbr>, Livret jeune,
+              <abbr title="Plan d'épargne en actions">PEA</abbr>, plan d'épargne
+              d'entreprise, <abbr title="Plan d'épargne logement">PEL</abbr>,
+              <abbr title="Plan d'épargne populaire">PEP</abbr>.
+            </span>
+          </label>
+        </div>
 
-    <label class="form__group">
-      Total de l'épargne produisant des revenus <b>imposables</b>
-      <InputNumber v-model="demandeur.epargne_revenus_imposables[periodKey]" />
-      <span>
-        Actions, comptes à terme,
-        <abbr title="Fonds communs de placement">FCP</abbr>, obligations, parts
-        sociales,
-        <abbr title="Société d'Investissement à CApital Variable">SICAV</abbr>,
-        etc.
-      </span>
-    </label>
+        <div class="fr-mt-2w">
+          <label for="epargne_revenus_imposables" class="fr-label">
+            Total de l'épargne produisant des revenus <b>imposables</b>
+            <InputNumber
+              id="epargne_revenus_imposables"
+              v-model="demandeur.epargne_revenus_imposables[periodKey]"
+            />
+            <span class="fr-hint-text">
+              Actions, comptes à terme,
+              <abbr title="Fonds communs de placement">FCP</abbr>, obligations,
+              parts sociales,
+              <abbr title="Société d'Investissement à CApital Variable"
+                >SICAV</abbr
+              >, etc.
+            </span>
+          </label>
+        </div>
+      </div>
+    </fieldset>
 
     <ActionButtons :on-submit="onSubmit" />
   </form>

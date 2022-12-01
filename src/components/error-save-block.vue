@@ -1,9 +1,6 @@
 <template>
-  <div id="error" class="alert alert-danger" role="alert">
-    <h2>
-      <i aria-hidden="true" class="ri ri-error-warning-fill" /> Une erreur est
-      survenue.
-    </h2>
+  <div class="fr-alert fr-alert--error" role="alert">
+    <h2 class="fr-text--lead"> Une erreur est survenue. </h2>
     <p>
       <a
         v-analytics="{ action: 'Support', category: 'Contact' }"
@@ -20,17 +17,18 @@
         }"
         >Signalez ce problème</a
       >
-      en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et
-      en joignant si possible une capture d'écran. Nous vous répondrons au plus
+      en décrivant ce que vous faisiez avant que cette erreur n'apparaisse en
+      joignant si possible une capture d'écran. Nous vous répondrons au plus
       vite et corrigerons le problème dès que possible.
     </p>
 
-    <p>Nous nous excusons pour la gène occasionée... </p>
+    <p>Veuillez nous excuser pour la gêne occasionnée.</p>
 
-    <small>
-      Informations techniques :
-      <pre v-html="error" />
-    </small>
+    <p
+      ><small>
+        Informations techniques :
+        <pre v-html="error" /></small
+    ></p>
   </div>
 </template>
 

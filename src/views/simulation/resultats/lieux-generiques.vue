@@ -1,38 +1,34 @@
 <template>
-  <div class="aj-unbox">
+  <router-link :to="{ name: 'resultats' }">
+    <BackButton class="fr-mb-4w" size="small">Retour aux résultats </BackButton>
+  </router-link>
+
+  <p v-show="updating">
+    <span
+      class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+      aria-hidden="true"
+    ></span
+    ><span class="fr-ml-2w">Récupération en cours…</span>
+  </p>
+  <div v-if="etablissements?.length">
+    <p>
+      Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
+      demandes et poser toutes vos questions.
+    </p>
+
+    <div v-for="(etablissement, index) in etablissements" :key="index">
+      <Etablissement :etablissement="etablissement" />
+    </div>
+  </div>
+  <div v-else>
+    <p v-if="error">
+      {{ error }}
+    </p>
     <router-link :to="{ name: 'resultats' }">
-      <BackButton class="aj-etablissements-back-button small"
+      <BackButton class="fr-mb-4w" size="small"
         >Retour aux résultats
       </BackButton>
     </router-link>
-
-    <p v-show="updating">
-      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
-      Récupération en cours…
-    </p>
-    <div v-if="etablissements?.length">
-      <p class="aj-etablissements-intro">
-        Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
-        demandes et poser toutes vos questions.
-      </p>
-
-      <div
-        v-for="(etablissement, index) in etablissements"
-        :key="index"
-        class="aj-etablissement-container"
-      >
-        <Etablissement :etablissement="etablissement" />
-      </div>
-    </div>
-    <div v-else>
-      <p v-if="error" class="aj-etablissements-intro">
-        {{ error }}
-      </p>
-      Revenir aux résultats
-      <router-link to="/simulation/resultats">
-        <i aria-hidden="true" class="ri ri-arrow-left-circle-fill" />
-      </router-link>
-    </div>
   </div>
 </template>
 

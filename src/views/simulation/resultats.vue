@@ -1,69 +1,72 @@
 <template>
-  <div class="aj-unbox">
-    <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-      <p v-show="accessStatus.fetching">
-        Récupération de la situation en cours…
+  <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
+    <p v-show="accessStatus.fetching">
+      Récupération de la situation en cours…
+    </p>
+    <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
+  </LoadingModal>
+
+  <WarningMessage v-if="hasWarning">
+    <div>
+      <h2 class="fr-text--lead"> Aucun résultat disponible </h2>
+      <h3 class="fr-text--lg">
+        La simulation à laquelle vous souhaitez accéder n‘est pas accessible.
+      </h3>
+      <p class="fr-text--lg">
+        Pour commencer votre simulation, rendez-vous sur la
+        <router-link to="home"> page d'accueil</router-link>
+        .
       </p>
-      <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
-    </LoadingModal>
+    </div>
+  </WarningMessage>
 
-    <WarningMessage v-if="hasWarning">
-      <div>
-        <h2>
-          <i aria-hidden="true" class="ri ri-error-warning-fill" /> Aucun
-          résultat disponible
-        </h2>
-        <h3>
-          La simulation à laquelle vous souhaitez accéder n‘est pas accessible.
-        </h3>
-        <p class="aj-results-intro">
-          Pour commencer votre simulation, rendez-vous sur la
-          <router-link to="home"> page d'accueil</router-link>
-          .
-        </p>
-      </div>
-    </WarningMessage>
+  <ErrorBlock v-if="hasError" />
+  <ErrorSaveBlock v-if="hasErrorSave" />
 
-    <ErrorBlock v-if="hasError" />
-    <ErrorSaveBlock v-if="hasErrorSave" />
+  <div v-show="shouldDisplayResults">
+    <div v-if="!isEmpty(droits)">
+      <p class="fr-text--lg">
+        D'après la situation que vous avez décrite, vous êtes a priori éligible
+        à ces aides.
+        <span id="print-disclaimer"
+          >Ces résultats sont fondés sur les seules informations que vous avez
+          indiquées et ne constituent en aucune façon un engagement de la part
+          des organismes cités.</span
+        >
+        Les montants avancés sont arrondis à une dizaine d'euros près :
+      </p>
+      <DroitsList :droits="droits" />
+    </div>
 
-    <div v-show="shouldDisplayResults">
-      <div v-if="!isEmpty(droits)">
-        <p class="aj-results-intro">
-          D'après la situation que vous avez décrite, vous êtes a priori
-          éligible à ces aides.
-          <span id="print-disclaimer"
-            >Ces résultats sont fondés sur les seules informations que vous avez
-            indiquées et ne constituent en aucune façon un engagement de la part
-            des organismes cités.</span
-          >
-          Les montants avancés sont arrondis à une dizaine d'euros près :
-        </p>
-        <DroitsList :droits="droits" />
-      </div>
+    <div v-show="isEmpty(droits)" class="fr-py-5w">
+      <h2 class="fr-text--lead">
+        Votre simulation n'a pas permis de découvrir de nouveaux droits.
+      </h2>
+      <p class="fr-text--lg">
+        Nous mettons à jour régulièrement le simulateur en ajoutant de nouvelles
+        aides. N'hésitez pas à faire une simulation dans les prochains mois.
+      </p>
+    </div>
 
-      <div v-show="isEmpty(droits)" class="frame-resultats">
-        <h2>
-          Votre simulation n'a pas permis de découvrir de nouveaux droits.
-        </h2>
-        <p class="aj-results-intro">
-          Nous mettons à jour régulièrement le simulateur en ajoutant de
-          nouvelles aides. N'hésitez pas à faire une simulation dans les
-          prochains mois.
-        </p>
-      </div>
+    <div class="fr-print-only">
+      <Recapitulatif />
+    </div>
 
-      <div class="aj-box-wrapper aj-results-summary">
-        <Recapitulatif />
-      </div>
+    <div class="fr-print-hidden">
+      <TrouverInterlocuteur />
 
-      <div class="aj-results-tools">
-        <TrouverInterlocuteur />
-        <OfflineResults
-          v-if="!resultatStatus.updating && !isEmpty(droits)"
-          :id="resultatsId"
-        />
-        <Feedback />
+      <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
+        <div class="fr-grid-row fr-grid-row--gutters">
+          <div class="fr-col-12 fr-col-md-5">
+            <OfflineResults
+              v-if="!resultatStatus.updating && !isEmpty(droits)"
+              :id="resultatsId"
+            />
+          </div>
+          <div class="fr-col-12 fr-col-md-7">
+            <Feedback />
+          </div>
+        </div>
       </div>
     </div>
   </div>

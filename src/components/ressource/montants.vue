@@ -1,48 +1,83 @@
 <template>
-  <div :key="type.meta.id" class="form__group">
-    <h2 v-if="!withoutHeader">
-      {{ type.meta.label }}
-    </h2>
-    <YesNoQuestion v-model="singleValue" class="form__group" html-heading="h3">
-      <span
-        v-html="
-          getQuestionLabel(
-            individu,
-            type.meta,
-            store.dates.twelveMonthsAgo.label
-          )
-        "
-      />
-    </YesNoQuestion>
-    <label v-if="type.displayMonthly === true" class="form__group">
-      Indiquez le montant <b>mensuel net</b> :
-      <InputNumber
-        :value="type.amounts[store.dates.thisMonth.id]"
-        @update:model-value="$emit('update', 'singleValue', index, $event)"
-      />
-    </label>
+  <fieldset :key="type.meta.id" class="fr-fieldset fr-mb-4w">
+    <legend class="fr-fieldset__legend">
+      <span class="fr-text--lead">
+        {{ type.meta.label }}
+      </span>
+    </legend>
+    <div class="fr-fieldset__content">
+      <YesNoQuestion
+        v-model="singleValue"
+        html-heading="h2"
+        :id="`${type.meta.id}_question`"
+      >
+        <span
+          v-html="
+            getQuestionLabel(
+              individu,
+              type.meta,
+              store.dates.twelveMonthsAgo.label
+            )
+          "
+        />
+      </YesNoQuestion>
 
-    <div v-if="type.displayMonthly === false" class="form__group">
-      <div>
-        Indiquez les montants <strong>nets mensuels</strong> que
-        {{ getLongLabel(individu, type.meta) }}
-      </div>
-      <div v-for="(month, monthIndex) in type.months" :key="month.id">
-        <label>
-          <MonthLabel :month="month" />
-          <InputNumber
-            :value="type.amounts[month.id]"
-            @update:model-value="
-              $emit('update', 'monthUpdate', index, {
-                value: $event,
-                monthIndex,
-              })
-            "
-          />
+      <div v-if="type.displayMonthly === true">
+        <label :for="`${type.meta.id}_monthly`" class="fr-label">
+          Indiquez le montant <b>mensuel net</b> :
         </label>
+        <div class="fr-container fr-px-0">
+          <div class="fr-grid-row">
+            <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
+              <InputNumber
+                :value="type.amounts[store.dates.thisMonth.id]"
+                :id="`${type.meta.id}_monthly`"
+                @update:model-value="
+                  $emit('update', 'singleValue', index, $event)
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-else-if="type.displayMonthly === false">
+        <p>
+          <span class="fr-hint-text fr-mb-1w"
+            >Pour faciliter la saisie des ressources sur 13 mois, lorsque un
+            montant est saisi pour un mois donné, les montants pour les périodes
+            précédents sont également mis à jour automatiquement. Ils peuvent
+            être modifiés ensuite.</span
+          >
+          Indiquez les montants <strong>nets mensuels</strong> que
+          {{ getLongLabel(individu, type.meta) }}
+        </p>
+        <div
+          v-for="(month, monthIndex) in type.months"
+          :key="month.id"
+          class="fr-mt-1w"
+        >
+          <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
+          <div class="fr-container fr-px-0">
+            <div class="fr-grid-row">
+              <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
+                <InputNumber
+                  :id="`${type.meta.id}_${month.id}`"
+                  :value="type.amounts[month.id]"
+                  @update:model-value="
+                    $emit('update', 'monthUpdate', index, {
+                      value: $event,
+                      monthIndex,
+                    })
+                  "
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </fieldset>
 </template>
 
 <script>
@@ -96,7 +131,6 @@ export default {
     individu: Object,
     type: Object,
     index: Number,
-    withoutHeader: Boolean,
   },
   emits: ["update"],
   setup() {

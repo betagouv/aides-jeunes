@@ -1,31 +1,46 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="field-group">
-      <label role="heading" aria-level="2" for="loyer" class="aj-question"
-        >{{ loyerQuestion.label }}
-        <span class="help">{{ loyerQuestion.hint }}</span>
+    <div>
+      <label for="loyer" class="fr-px-2v"
+        ><span class="fr-text--lead fr-text--bold">{{
+          loyerQuestion.label
+        }}</span>
+        <span class="fr-hint-text fr-px-2v fr-mt-2v">{{
+          loyerQuestion.hint
+        }}</span>
       </label>
-      <div class="aj-input-currency-wrapper">
-        <InputNumber
-          id="loyer"
-          v-model="loyerQuestion.selectedValue"
-          class="aj-input-euros"
-        />
+
+      <div class="fr-container fr-px-0">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-md-6 fr-col-md-5 fr-col-lg-5">
+            <InputNumber id="loyer" v-model="loyerQuestion.selectedValue" />
+          </div>
+        </div>
       </div>
     </div>
-    <div v-if="captureCharges">
-      <label role="heading" aria-level="2" for="charges" class="aj-question"
-        >{{ chargesQuestion.label }}
-        <span class="help">{{ chargesQuestion.hint }}</span>
+    <div v-if="captureCharges" class="fr-mt-6w">
+      <label for="charges" class="fr-px-2v">
+        <span class="fr-text--lead fr-text--bold">{{
+          chargesQuestion.label
+        }}</span>
+        <span class="fr-hint-text fr-px-2v fr-mt-2v">{{
+          chargesQuestion.hint
+        }}</span>
       </label>
-      <div class="aj-input-currency-wrapper">
-        <InputNumber
-          id="charges"
-          v-model="chargesQuestion.selectedValue"
-          data-testid="loyer"
-        />
+
+      <div class="fr-container fr-px-0">
+        <div class="fr-grid-row">
+          <div class="fr-col-12 fr-col-sm-5 fr-col-md-5 fr-col-lg-5">
+            <InputNumber
+              id="charges"
+              v-model="chargesQuestion.selectedValue"
+              data-testid="loyer"
+            />
+          </div>
+        </div>
       </div>
     </div>
+
     <ActionButtons :on-submit="onSubmit" />
   </form>
 </template>

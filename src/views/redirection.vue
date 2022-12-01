@@ -1,8 +1,11 @@
 <template>
   <article class="text container">
     <p v-if="updating">
-      <i aria-hidden="true" class="ri ri-loader-2-line ri-spin ri-2x" />
-      Récupération en cours…
+      <span
+        class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+        aria-hidden="true"
+      ></span
+      ><span class="fr-ml-2w">Récupération en cours…</span>
     </p>
     <div v-else>
       <div v-if="error">

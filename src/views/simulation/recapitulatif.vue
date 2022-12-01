@@ -77,7 +77,7 @@
           <router-link
             :to="store.lastUnansweredStep.path"
             class="fr-btn"
-            data-test-id="button-continue"
+            data-testid="button-continue"
             >Continuer
           </router-link>
         </li>

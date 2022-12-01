@@ -21,7 +21,7 @@ const goRecap = () => {
 }
 
 const next = () => {
-  cy.get(`a[data-test-id="button-continue"]`).click()
+  cy.get(`a[data-testid="button-continue"]`).click()
 }
 
 const updateFromRecap = (buttonLabel) => {

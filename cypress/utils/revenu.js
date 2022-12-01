@@ -6,9 +6,8 @@ const fill_ressources_types = (types = []) => {
     cy
       .get("form")
       .find(`input[type="checkbox"][id="${type}"]`)
-      .invoke("attr", "id")
-      .then((id) => {
-        return cy.get("form").find(`label[for="${id}"]`)
+      .then(() => {
+        return cy.get("form").find(`label[for="${type}"]`)
       })
       .click()
   )

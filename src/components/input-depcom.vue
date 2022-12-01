@@ -101,7 +101,7 @@ export default {
       this.communes = []
       if (cp?.length == 5) {
         this.$emit("update:codePostal", cp)
-        this.fetchCommune()
+        this.fetchCommune(true)
       }
     },
     nomCommuneValue: function (commune) {
@@ -126,7 +126,7 @@ export default {
         this.communes.find((c) => c.nom == this.nomCommuneValue)
       )
     },
-    async fetchCommune() {
+    async fetchCommune(focusCommune) {
       if (
         !this.codePostalValue ||
         this.codePostalValue.toString().length !== 5
@@ -152,7 +152,9 @@ export default {
             this.nomCommuneValue = Commune.getMostPopulated(communes).nom
           }
           this.communes = communes
-          this.$nextTick(() => this.$refs.commune.focus())
+          if (focusCommune) {
+            this.$nextTick(() => this.$refs.commune.focus())
+          }
           return communes
         })
         .catch(() => {

@@ -85,7 +85,6 @@ import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
 import Hint from "@/lib/hint"
 
 import { executeFunctionOrReturnValue } from "@lib/utils"
-import Individu from "@lib/individu"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"

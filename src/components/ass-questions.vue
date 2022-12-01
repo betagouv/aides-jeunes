@@ -52,6 +52,7 @@ export default {
   props: {
     individu: Object,
   },
+  emits: ["updateDate", "updateAssPrecondition"],
   computed: {
     capturePreconditionAss: function () {
       const dt = dayjs(this.individu.date_debut_chomage)

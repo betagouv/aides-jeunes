@@ -79,7 +79,7 @@ export default {
       return "/documents/iframe-integration.js"
     },
     fullScript() {
-      // eslint-disable-next-line no-useless-escape
+      /* eslint-disable no-useless-escape */
       return `<script src="${process.env.VITE_BASE_URL}${
         this.scriptPath
       }" ${this.options.join(" ")}><\/script>`

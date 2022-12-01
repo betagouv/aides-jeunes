@@ -46,12 +46,10 @@
 
 <script>
 import { sendError } from "@/plugins/mails"
-import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores"
 
 export default {
   name: "ErrorBlock",
-  components: { WarningMessage },
   setup() {
     return {
       store: useStore(),

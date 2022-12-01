@@ -53,8 +53,8 @@
         </div>
 
         <YesNoQuestion
-          v-model="hasBatisNonLoues"
           id="patrimoine-immeubles-non-loues"
+          v-model="hasBatisNonLoues"
           class="form__group fr-my-4w"
         >
           Avez-vous des appartements/immeubles <b>non loués</b> ?
@@ -243,6 +243,24 @@ export default {
       ...locals,
       periodKey,
     }
+  },
+  watch: {
+    hasTerrainsNonLoues: {
+      handler(value) {
+        if (!value) {
+          this.demandeur.valeur_terrains_non_loues = {}
+          this.demandeur.valeur_locative_terrains_non_loues = {}
+        }
+      },
+    },
+    hasBatisNonLoues: {
+      handler(value) {
+        if (!value) {
+          this.demandeur.valeur_immo_non_loue = {}
+          this.demandeur.valeur_locative_immo_non_loue = {}
+        }
+      },
+    },
   },
   methods: {
     onSubmit() {

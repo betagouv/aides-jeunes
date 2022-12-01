@@ -54,8 +54,8 @@
         </div>
       </div>
       <ul
-        class="fr-btns-group fr-btns-group--inline fr-text--center"
         v-if="!individu.display"
+        class="fr-btns-group fr-btns-group--inline fr-text--center"
       >
         <li
           ><button

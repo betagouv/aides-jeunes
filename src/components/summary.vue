@@ -2,13 +2,13 @@
   <nav class="fr-sidemenu fr-col-lg-12" aria-label="Sommaire" role="navigation">
     <div class="fr-sidemenu__inner">
       <button
+        ref="sideMenuButton"
         class="fr-sidemenu__btn fr-px-2w"
         aria-controls="fr-sidemenu-wrapper"
         aria-expanded="false"
-        ref="sideMenuButton"
         >Sommaire</button
       >
-      <div class="fr-collapse" id="fr-sidemenu-wrapper">
+      <div id="fr-sidemenu-wrapper" class="fr-collapse">
         <h1
           class="fr-sidemenu__title fr-text--regular fr-hidden fr-unhidden-md fr-pt-5w fr-px-2w"
           >Ma simulation</h1
@@ -21,11 +21,11 @@
           >
             <router-link
               v-if="!disabledLink(chapter, index)"
-              @click="mobileNavigationCollapse()"
               :to="chapter.root"
               tabindex="0"
               class="fr-sidemenu__link fr-px-2w"
               :aria-current="chapter.current ? chapter.current : null"
+              @click="mobileNavigationCollapse()"
               >{{ chapter.label }}</router-link
             >
             <span v-else class="fr-sidemenu__link fr-text--disabled fr-px-2w">{{
@@ -40,10 +40,10 @@
           >
             <li v-if="!isRecapitulatif">
               <router-link
-                @click="mobileNavigationCollapse()"
                 class="fr-btn fr-btn--secondary"
                 :to="{ name: 'recapitulatif' }"
                 data-testid="previous-or-recap-button"
+                @click="mobileNavigationCollapse()"
                 >{{
                   isResultsPage ? "Modifier ma simulation" : "Récapitulatif"
                 }}</router-link

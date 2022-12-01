@@ -102,8 +102,8 @@
                     </label>
                     <textarea
                       :id="`choiceComments_${droit.id}`"
-                      class="fr-input"
                       v-model="droit.choiceComments"
+                      class="fr-input"
                       placeholder="..."
                     />
                   </div>

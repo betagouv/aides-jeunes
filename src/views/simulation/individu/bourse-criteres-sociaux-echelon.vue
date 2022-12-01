@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <fieldset class="fr-fieldset">
-      <legend class="fr-fieldset__legend" id="step-question">
+      <legend id="step-question" class="fr-fieldset__legend">
         À quel échelon {{ getLabel("être") }} boursier ?
       </legend>
       <div class="fr-fieldset__content">

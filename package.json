@@ -13,7 +13,7 @@
     "build:lib": "babel ./lib --out-dir dist-server/lib --extensions '.ts,.js'",
     "build:data": "babel ./data --out-dir dist-server/data --extensions '.ts,.js'",
     "preview": "vite preview",
-    "lint": "eslint backend data iframes lib src ./*.ts",
+    "lint": "eslint backend data iframes lib src --ext ts,js,vue",
     "ci": "npm run stats && cd dist-server && NODE_ENV=production node ./backend/server.js",
     "cypress": "cypress run",
     "cypress:open": "cypress open",

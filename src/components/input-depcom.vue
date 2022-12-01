@@ -46,9 +46,9 @@
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select
               id="commune"
+              ref="commune"
               v-model="nomCommuneValue"
               class="fr-select"
-              ref="commune"
             >
               <option
                 v-for="(commune, index) in communes"

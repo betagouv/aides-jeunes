@@ -1,8 +1,8 @@
 <template>
   <dialog
+    id="fr-modal-email"
     aria-labelledby="fr-modal-email-title"
     role="dialog"
-    id="fr-modal-email"
     class="fr-modal"
   >
     <div class="fr-container fr-container--fluid fr-container-md">
@@ -12,10 +12,10 @@
             <div class="fr-modal__header">
               <button
                 v-analytics="{ action: 'Fermé bouton', category: 'Email' }"
-                @click="hide"
                 class="fr-btn--close fr-btn"
                 title="Fermer la fenêtre modale"
                 aria-controls="fr-modal-email"
+                @click="hide"
                 >Fermer</button
               >
             </div>
@@ -58,9 +58,9 @@
                   </label>
                   <input
                     id="email"
+                    ref="email"
                     v-model="email"
                     name="email"
-                    ref="email"
                     required
                     :aria-invalid="errorMessage"
                     :aria-describedBy="

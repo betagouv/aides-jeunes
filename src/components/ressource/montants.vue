@@ -7,9 +7,9 @@
     </legend>
     <div class="fr-fieldset__content">
       <YesNoQuestion
+        :id="`${type.meta.id}_question`"
         v-model="singleValue"
         html-heading="h2"
-        :id="`${type.meta.id}_question`"
       >
         <span
           v-html="
@@ -30,8 +30,8 @@
           <div class="fr-grid-row">
             <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
               <InputNumber
-                :value="type.amounts[store.dates.thisMonth.id]"
                 :id="`${type.meta.id}_monthly`"
+                :value="type.amounts[store.dates.thisMonth.id]"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
                 "

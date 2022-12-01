@@ -1,7 +1,7 @@
 <template>
   <nav
-    class="fr-nav"
     id="navigation-menu"
+    class="fr-nav"
     role="navigation"
     aria-label="Menu principal"
   >
@@ -34,8 +34,8 @@
             element.children &&
             element.children.some((subelement) => subelement?.children)
           "
-          class="fr-collapse fr-mega-menu"
           :id="`nav-menu-${index}`"
+          class="fr-collapse fr-mega-menu"
           tabindex="-1"
         >
           <div class="fr-container fr-container--fluid fr-container-lg">

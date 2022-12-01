@@ -15,8 +15,8 @@
     <div class="fr-form-group">
       <fieldset class="fr-fieldset fr-fieldset--inline">
         <legend
-          class="fr-fieldset__legend fr-text--regular"
           id="checkboxes-inline-legend"
+          class="fr-fieldset__legend fr-text--regular"
         >
           Plusieurs options s'offrent à vous pour personnaliser l'affichage du
           simulateur :
@@ -24,10 +24,10 @@
         <div class="fr-fieldset__content">
           <div class="fr-checkbox-group">
             <input
+              id="data-from-home"
+              v-model="options"
               type="checkbox"
               checked="true"
-              v-model="options"
-              id="data-from-home"
               value="data-from-home"
             />
             <label for="data-from-home" class="fr-label"
@@ -36,10 +36,10 @@
           </div>
           <div class="fr-checkbox-group">
             <input
+              id="data-with-logo"
+              v-model="options"
               type="checkbox"
               checked="true"
-              v-model="options"
-              id="data-with-logo"
               value="data-with-logo"
             />
             <label for="data-with-logo" class="fr-label"
@@ -85,13 +85,13 @@ export default {
       }" ${this.options.join(" ")}><\/script>`
     },
   },
-  mounted: function () {
-    this.setIframeContainer()
-  },
   watch: {
     options: function (): void {
       this.setIframeContainer()
     },
+  },
+  mounted: function () {
+    this.setIframeContainer()
   },
   methods: {
     setIframeContainer() {

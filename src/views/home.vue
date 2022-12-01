@@ -45,7 +45,7 @@
             class="fr-btn"
             data-testid="new-simulation"
             @click="newSituation()"
-            to="#"
+            to="/simulation/individu/demandeur/date_naissance"
           >
             {{ ctaLabel }}
           </router-link>

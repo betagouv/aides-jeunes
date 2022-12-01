@@ -20,7 +20,7 @@
     <h2>Direction de publication</h2>
 
     <p>
-      Le délégué générale à l’emploi et à la formation professionnelle et le
+      Le délégué général à l’emploi et à la formation professionnelle et le
       directeur interministériel du numérique.
     </p>
 

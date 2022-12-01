@@ -152,6 +152,7 @@ export default {
             this.nomCommuneValue = Commune.getMostPopulated(communes).nom
           }
           this.communes = communes
+          this.$nextTick(() => this.$refs.commune.focus())
           return communes
         })
         .catch(() => {
@@ -159,7 +160,6 @@ export default {
         })
         .finally(() => {
           this.retrievingCommunes = false
-          this.$nextTick(() => this.$refs.commune.focus())
         })
     },
   },

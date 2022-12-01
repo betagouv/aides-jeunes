@@ -25,7 +25,7 @@ const next = () => {
 }
 
 const updateFromRecap = (buttonLabel) => {
-  cy.get(`div[data-id="question-row"]:contains('${buttonLabel}')`)
+  cy.get(`div[data-testid="question-row"]:contains('${buttonLabel}')`)
     .siblings()
     .contains("Modifier")
     .click()

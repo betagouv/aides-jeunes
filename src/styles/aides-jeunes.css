@@ -237,6 +237,10 @@
   margin: auto;
 }
 
+.fr-input#date_naissance{
+  text-indent: 10px;
+}
+
 .fr-radio-group {
   margin-top: 0 !important;
 }

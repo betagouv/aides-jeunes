@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form @submit.prevent="next">
     <fieldset class="fr-fieldset">
       <legend class="fr-fieldset__legend fr-px-0">
         <span class="fr-text--lead">Mes enfants à charge</span>

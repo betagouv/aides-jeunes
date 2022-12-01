@@ -31,7 +31,7 @@
                     {{ question.value }}
                   </p>
                 </div>
-                <div class="fr-col-12 fr-col-sm-2">
+                <div class="fr-col-12 fr-col-sm-2 fr-print-hidden">
                   <p v-if="!question.hideEdit" class="fr-my-0">
                     <router-link
                       :to="question.path"

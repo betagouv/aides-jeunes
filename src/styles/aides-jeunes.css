@@ -274,8 +274,15 @@
     display: inherit !important;
   }
 
-  .fr-print-hidden {
+  .fr-print-hidden,
+  .fr-btn,
+  nav,
+  footer {
     display: none !important;
+  }
+
+  .fr-tile {
+    break-inside: avoid;
   }
 }
 

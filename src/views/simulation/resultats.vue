@@ -52,7 +52,7 @@
       <Recapitulatif />
     </div>
 
-    <div>
+    <div class="fr-print-hidden">
       <TrouverInterlocuteur />
 
       <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">

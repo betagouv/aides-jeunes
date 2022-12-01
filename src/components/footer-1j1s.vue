@@ -69,7 +69,12 @@
 
 <script setup>
 const parameters = {
-  logoText: ["Ministère du", "travail, de", "l'emploi et de", "l'insertion"],
+  logoText: [
+    "Ministère ",
+    "du travail, ",
+    "du plein emploi ",
+    "et de l'insertion",
+  ],
   logoImage: "/img/france-relance.svg",
   logoImageAlt: "France Relance",
   logoLabel:

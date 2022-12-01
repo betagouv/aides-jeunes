@@ -13,10 +13,7 @@
           >
             <div class="fr-container fr-px-0">
               <div class="fr-grid-row fr-mb-3v">
-                <div
-                  class="fr-col-12 fr-col-sm-6"
-                  data-testclass="question-row"
-                >
+                <div class="fr-col-12 fr-col-sm-6" data-testid="question-row">
                   <h3
                     v-if="question.labelClass"
                     class="fr-my-0 fr-text--md"

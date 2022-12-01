@@ -29,9 +29,8 @@
     <p>Ce site est hébergé par :</p>
     <address>
       OVH SAS<br />
-      2, rue Kellermann <br />
-      59100 Roubaix <br />
-      France
+      2, rue Kellermann - 59100 Roubaix - France<br />
+      Téléphone : +33 9 72 10 10 07
     </address>
 
     <h2>Accessibilité</h2>

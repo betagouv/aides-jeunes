@@ -8,7 +8,7 @@
       <ul>
         <li>
           la Délégation générale à l’emploi et à la formation professionnelle
-          (DGEFP) - 10-18 place des 5-Martyrs-du-Lycée-Buffon 75015 Paris et
+          (DGEFP) - 10-18, place des 5-Martyrs-du-Lycée-Buffon - 75015 Paris
         </li>
         <li>
           l'incubateur de services numériques de la Direction interministérielle
@@ -20,18 +20,18 @@
     <h2>Direction de publication</h2>
 
     <p>
-      Le délégué générale à l’emploi et à la formation professionnelle et le
+      Le délégué général à l’emploi et à la formation professionnelle et le
       directeur interministériel du numérique.
     </p>
 
     <h2>Hébergement du site</h2>
 
-    <p>
-      Ce site est hébergé par OVH SAS<br />
-      2 rue Kellermann,<br />
-      59100 Roubaix<br /><br />
-      Téléphone : +339 72 10 10 0
-    </p>
+    <p>Ce site est hébergé par :</p>
+    <address>
+      OVH SAS<br />
+      2, rue Kellermann - 59100 Roubaix - France<br />
+      Téléphone : +33 9 72 10 10 07
+    </address>
 
     <h2>Accessibilité</h2>
 

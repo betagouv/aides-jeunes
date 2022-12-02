@@ -13,11 +13,11 @@
               <div class="fr-header__navbar">
                 <button
                   v-if="!attributes?.collapse || $route.name !== 'home'"
+                  id="button-500"
                   class="fr-btn--menu fr-btn"
                   data-fr-opened="false"
                   aria-controls="modal-499"
                   aria-haspopup="menu"
-                  id="button-500"
                   title="Menu"
                 >
                   Menu
@@ -47,8 +47,8 @@
       </div>
     </div>
     <div
-      class="fr-header__menu fr-modal"
       id="modal-499"
+      class="fr-header__menu fr-modal"
       aria-labelledby="button-500"
     >
       <div class="fr-container">

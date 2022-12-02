@@ -2,11 +2,11 @@
   <span
     id="step-question"
     data-testid="question"
-    v-html="props.question"
     class="fr-text--lead"
+    v-html="props.question"
   />
   <EnSavoirPlus v-if="props.showMoreInfo" />
-  <span v-if="props.help" v-html="props.help" class="fr-hint-text" />
+  <span v-if="props.help" class="fr-hint-text" v-html="props.help" />
 </template>
 
 <script lang="ts" setup>

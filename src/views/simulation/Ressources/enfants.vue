@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="next" :data-testid="fieldName">
+  <form :data-testid="fieldName" @submit.prevent="next">
     <div v-for="enfant in enfants" :key="enfant.id" class="fr-form-group">
       <YesNoQuestion v-model="enfant._hasRessources">
         {{ $filters.capitalize(enfant._firstName) }} a-t-il/elle perçu des

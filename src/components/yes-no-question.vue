@@ -25,8 +25,8 @@
               "
             />
             <label
-              :for="`yes-${uniqueFieldName}`"
               :id="`label-yes-${uniqueFieldName}`"
+              :for="`yes-${uniqueFieldName}`"
               class="fr-label"
             >
               Oui
@@ -42,8 +42,8 @@
               :aria-labelledby="id ? `${id} label-no-${uniqueFieldName}` : null"
             />
             <label
-              :for="`no-${uniqueFieldName}`"
               :id="`label-no-${uniqueFieldName}`"
+              :for="`no-${uniqueFieldName}`"
               class="fr-label"
             >
               Non

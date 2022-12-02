@@ -12,8 +12,8 @@
           </div>
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <input
-              v-model="zipCode"
               id="cp-input"
+              v-model="zipCode"
               type="text"
               class="fr-input"
               @keyup.enter="computeDataSelected"
@@ -140,7 +140,7 @@ export default {
         this.selectedCommune = null
       }
     },
-    countFilteredBenefits(): Number {
+    countFilteredBenefits(): number {
       return Object.keys(this.institutionsGroups).reduce((acc, type) => {
         return (
           acc +

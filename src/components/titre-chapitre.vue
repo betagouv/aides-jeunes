@@ -24,14 +24,13 @@
 
 <script>
 import Chapters from "@lib/chapters"
-import MenuButton from "@/components/buttons/menu-button.vue"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 import { useStore } from "@/stores"
 import ResultatsMixin from "@/mixins/resultats"
 
 export default {
   name: "TitreChapitre",
-  components: { SendRecapEmailButton, MenuButton },
+  components: { SendRecapEmailButton },
   mixins: [ResultatsMixin],
   setup() {
     return {
@@ -41,9 +40,6 @@ export default {
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
-    },
-    showMenuButton() {
-      return this.$route.name !== "recapitulatif"
     },
   },
   methods: {

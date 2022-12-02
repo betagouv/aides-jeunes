@@ -39,6 +39,7 @@ export default {
     ResultatInattenduContratEngagementJeune,
     ResultatInattenduPpa,
     ResultatInattenduYearMinusTwo,
+    BackButton,
   },
   data: function () {
     let benefitKeyed = {}

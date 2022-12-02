@@ -53,8 +53,8 @@
         </div>
 
         <YesNoQuestion
-          v-model="hasBatisNonLoues"
           id="patrimoine-immeubles-non-loues"
+          v-model="hasBatisNonLoues"
           class="form__group fr-my-4w"
         >
           Avez-vous des appartements/immeubles <b>non loués</b> ?

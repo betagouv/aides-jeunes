@@ -6,10 +6,10 @@
           <span class="fr-hint-text fr-mb-1v">jour</span>
           <input
             :id="firstId"
-            class="fr-input"
             ref="day"
             v-model="day"
             v-select-on-click
+            class="fr-input"
             :data-testid="firstId"
             aria-label="Jour"
             autofocus
@@ -28,9 +28,9 @@
           <input
             id="month-input"
             ref="month"
-            class="fr-input"
             v-model="month"
             v-select-on-click
+            class="fr-input"
             aria-label="Mois"
             data-type="number"
             inputmode="numeric"

@@ -31,7 +31,7 @@
         </li>
         <li>
           <button
-            v-if="this.hasExistingSituation"
+            v-if="hasExistingSituation"
             v-analytics="{ action: ctaLabel, category: 'Home' }"
             class="fr-btn fr-btn--secondary"
             data-testid="new-simulation"
@@ -44,8 +44,8 @@
             v-analytics="{ action: ctaLabel, category: 'Home' }"
             class="fr-btn"
             data-testid="new-simulation"
-            @click="newSituation()"
             to="/simulation/individu/demandeur/date_naissance"
+            @click="newSituation()"
           >
             {{ ctaLabel }}
           </router-link>

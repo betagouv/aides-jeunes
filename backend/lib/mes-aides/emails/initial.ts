@@ -96,7 +96,7 @@ function renderAsHtml(followup, benefits, parameters) {
 export default async function render(followup) {
   const populated = await (followup.populated("simulation")
     ? Promise.resolve(followup)
-    : followup.populate("simulation").execPopulate())
+    : followup.populate("simulation"))
 
   const parameters = await openfiscaController.getParameters(
     populated.simulation.dateDeValeur

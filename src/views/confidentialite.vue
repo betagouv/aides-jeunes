@@ -4,259 +4,162 @@
 
     <h2>Traitements des données à caractère personnel</h2>
 
+    <h3>Identité et coordonnées du responsable de traitement</h3>
+
     <p>
-      MES-AIDES JEUNES est réalisé dans le cadre du Plan gouvernemental
+      MES AIDES JEUNES est réalisé dans le cadre du Plan gouvernemental
       1jeune1solution, par les équipes de l’incubateur des services numériques
       de la Direction interministérielle du Numérique (DINUM) et par la
       Délégation générale à l’emploi et à la formation professionnelle (DGEFP).
     </p>
 
     <p>
-      Le responsable de traitements des données à caractère personnel collectées
-      par le présent service est le même que
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.1jeune1solution.gouv.fr/confidentialite"
-        title="la plateforme 1jeune1solution : politique de confidentialité - Nouvelle fenêtre"
-        >la plateforme 1jeune1solution</a
-      >.
+      La présente politique de confidentialité définit et vous informe de la
+      manière dont la Délégation Générale de l’Emploi et de la Formation
+      Professionnelle (DGEFP) traite les données à caractère personnel en
+      conformité à le Règlement européen (UE) 2016/679 du Parlement européen et
+      du Conseil du 27 avril 2016 et la loi nᵒ 78-17 du 6 janvier 1978 relative
+      à l’informatique, aux fichiers et aux libertés.
     </p>
 
-    <h3>Pour quelles raisons nous utilisons des informations sur vous ?</h3>
+    <h3>Finalité du traitement et licéité</h3>
 
     <div>
       <p>
-        Dans le cadre de MES-AIDES JEUNES, nous utilisons vos informations
-        pour :
+        La DGEFP met en œuvre un traitement de données dans l’utilisation du
+        simulateur MES AIDES JEUNES ayant pour finalités :
       </p>
       <ul>
         <li>
-          Vous informer des différentes aides et accompagnements que vous pouvez
-          demander ;
+          La réalisation d’une simulation pour identifier et afficher les
+          différentes aides et accompagnements dont une personne de moins de 30
+          ans peut bénéficier sur la base de sa situation personnelle et
+          professionnelle ;
         </li>
         <li>
-          Vous aider à avoir une idée sur le montant des aides que vous pouvez
-          demander selon votre situation personnelle ;
+          L’accompagnement, le cas échéant, par MES AIDES JEUNES dans la
+          réalisation des démarches nécessaires pour l’obtention d’une aide et
+          pour améliorer l’accès aux aides ;
         </li>
         <li>
-          Vous aider à finir vos demandes pour améliorer votre accès à ces
-          aides ;
+          L’évaluation de l’efficacité du dispositif au travers d’enquêtes et de
+          statistiques relatives aux aides ;
         </li>
-        <li>
-          Nous aider à comprendre les raisons qui peuvent expliquer pourquoi
-          vous avez une difficulté à demander ou avoir accès à une aide.
-        </li>
-      </ul>
-    </div>
-
-    <h3>
-      De quelles informations avons-nous besoin pour vous informer sur vos
-      aides ?
-    </h3>
-
-    <div>
-      <p>
-        Nous utiliserons différents types d’informations notamment pour le
-        fonctionnement du simulateur :
-      </p>
-      <ul>
-        <li>
-          Les informations que vous nous communiquez pour répondre aux questions
-          du simulateur (date de naissance, nationalité, nombre d’enfants à
-          charge, prénom de l’enfant, mode de garde de l’enfant, données
-          financières, situation socio-professionnelle, situation patrimoniale,
-          ville d’habitation) ;
-        </li>
-        <li>
-          Des informations sensibles que vous nous communiquez pour répondre aux
-          questions du simulateur (handicap et taux d’incapacité) ;
-        </li>
-        <li>Votre adresse e-mail ;</li>
-        <li>
-          L’information sur votre accès aux différentes aides qui vous ont été
-          proposées par le simulateur ;
-        </li>
-        <li>
-          Les « Données d’hébergeur ou de connexion » (adresse IP, heure de
-          connexion etc.) ;
-        </li>
-      </ul>
-    </div>
-
-    <h3>Sommes-nous autorisés à utiliser vos informations personnelles ?</h3>
-
-    <p>
-      Nous sommes autorisés à utiliser vos informations personnelles pour des
-      motifs d’intérêt public (article 9 paragraphe 2-g du RGPD). Vous pouvez
-      retrouver ces motifs d’intérêt public importants à l’article 3 de l’arrêté
-      du 4 mai 2017 portant organisation de la délégation générale à l’emploi et
-      à la formation professionnelle.
-    </p>
-
-    <p>
-      Les données « d’hébergeur ou de connexion » sont spécifiquement traitées
-      en vertu de la loi LCEN n° 2004-575 du 21 juin 2004 pour la confiance dans
-      l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du 25
-      février 2011.
-    </p>
-
-    <h3>Combien de temps gardons-nous vos informations ?</h3>
-
-    <div class="fr-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Types de données</th>
-            <th>Durée de conservation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Données relatives aux Utilisateurs</td>
-            <td>7 jours</td>
-          </tr>
-          <tr>
-            <td>
-              Catégories spécifiques de données relatives aux Utilisateurs et à
-              leurs enfants
-            </td>
-            <td>7 jours</td>
-          </tr>
-          <tr>
-            <td>Données de contact des Utilisateurs</td>
-            <td>1 mois</td>
-          </tr>
-          <tr>
-            <td>Données relatives au sondage</td>
-            <td>6 mois</td>
-          </tr>
-          <tr>
-            <td>Données d’hébergeur</td>
-            <td>
-              <strong>1 an</strong>, conformément au décret n°2011-219 du 25
-              février 2011
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>
-      Quels sont les droits dont vous disposez sur vos informations et où les
-      utiliser ?
-    </h3>
-
-    <div>
-      <p>
-        Vous disposez de certains droits pour protéger vos informations et
-        notamment :
-      </p>
-      <ul>
-        <li>Vous êtes informés de notre utilisation de vos informations ;</li>
-        <li>Vous pouvez avoir accès aux informations ;</li>
-        <li>Vous pouvez rectifiez vos données si elles sont inexactes ;</li>
-        <li>Vous pouvez demander l’effacement de vos informations</li>
-      </ul>
-    </div>
-
-    <div>
-      <p>
-        Les données de connexion (adresse IP, heure et date de connexion) ne
-        permettent pas l’application des mêmes droits. Pour ces données, de
-        manière spécifique, vous pourrez :
-      </p>
-      <ul>
-        <li>Être informés de notre utilisation ;</li>
-        <li>Avoir accès aux informations ; </li>
-        <li>Rectifier vos données si elles sont inexactes.</li>
+        <li> La réalisation d’actions de communication et d’information. </li>
       </ul>
     </div>
 
     <p>
-      Pour les exercer, faites-nous parvenir une demande en précisant la date et
-      l’heure précise de la requête – ces éléments sont indispensables pour nous
-      permettre de retrouver votre recherche – par voie électronique à l’adresse
-      suivante :
+      La licéité du traitement est fondée sur l’exécution d’une mission
+      d’intérêt public dont est investie la DGEFP conformément à l’article 6,1,
+      e) du Règlement (UE) 2016/679 du 27 avril 2016.
+    </p>
+
+    <h3>Personnes concernées</h3>
+
+    <p
+      >Le traitement de données concerne les personnes qui utilisent le
+      simulateur, et plus spécifiquement les personnes de moins de 30 ans. Des
+      données sur les enfants et les parents de la personne qui utilise le
+      simulateur sont également collectées.
+    </p>
+
+    <h3>Catégories de données et sources traitées</h3>
+
+    <p
+      >Les données sont fournies directement par les personnes qui effectuent
+      une simulation d’aides.</p
+    >
+
+    <p> Les catégories de données concernées sont les suivantes : </p>
+
+    <ul>
+      <li
+        >Les données d’identification des personnes, ainsi que celles de leurs
+        enfants et de leurs parents ;</li
+      >
+      <li
+        >Les données relatives à la situation personnelle, ainsi que celles de
+        leurs enfants et de leurs parentsparents ;</li
+      >
+      <li
+        >Les données relatives à la situation professionnelle des
+        personnes ;</li
+      >
+      <li>Les données relatives à la situation du logement des personnes ;</li>
+      <li
+        >Les données d’ordre économique et financier, dont la situation fiscale
+        et les ressources financières.</li
+      >
+    </ul>
+
+    <h3>Destinataires des données</h3>
+
+    <p>
+      Sont destinataires des données, dans les conditions fixées par le
+      responsable de traitement et dans la limite de ce qui est strictement
+      nécessaire à l’exercice de leurs missions, les équipes de l’incubateur des
+      services numériques de la Direction interministérielle du Numérique
+      (DINUM), qui agissent en qualité de sous-traitant.
+    </p>
+
+    <h3>Durée de conservation</h3>
+
+    <p
+      >Les durées de conservation suivantes s’appliquent aux données
+      collectées :</p
+    >
+
+    <ul>
+      <li
+        >Les données collectées dans le cadre de l’utilisation du simulateur
+        sont conservées 7 jours à compter de l’utilisation du simulateur.
+        Néanmoins certaines données sont conservées pendant 2 ans afin de
+        réaliser des statistiques (notamment l’âge, la situation familiale, type
+        de contrat de travail, commune de résidence, etc.) ;</li
+      >
+      <li
+        >L’adresse électronique renseignée, le cas échéant, par l’utilisateur
+        pour recevoir la liste des offres auxquelles il est susceptible d’être
+        éligible et pour le sondage sont conservées 1 mois à compter de la
+        collecte ;</li
+      >
+      <li>Les réponses relatives au sondage sont conservées 6 mois ;</li>
+      <li
+        >Les données collectées dans le cadre de l’accompagnement sont
+        conservées le temps nécessaire à l’obtention de l’aide.</li
+      >
+    </ul>
+
+    <h3> Vos droits sur les données vous concernant </h3>
+
+    <p>
+      Vous pouvez accéder aux données à caractère personnel vous concernant.
+      Vous disposez également d’un droit de rectification, d’un droit à la
+      limitation du traitement de vos données à caractère personnel, et d’un
+      droit d’opposition.
     </p>
 
     <p>
+      Vous pouvez exercer ces droits, en adressant un courrier à l’attention du
+      Délégué à la Protection des Données de la Délégation Générale à l’Emploi
+      et à la Formation Professionnelle, 127 Rue de Grenelle, 75007 Paris ou par
+      courrier électronique à :
       <a
         v-mail="{
           subject: 'Mes données',
           body: emailBody,
         }"
-        >{{ contactEmail }}</a
-      >
+        >{{ contactEmail }}
+      </a>
     </p>
 
     <p>
-      En raison de l’obligation de sécurité et de confidentialité dans le
-      traitement des données à caractère personnel qui incombe au responsable de
-      traitement, votre demande ne sera traitée que si vous apportez la preuve
-      de votre identité.
+      Si vous estimez, après nous avoir contactés, que vos droits ne sont pas
+      respectés ou que le traitement n’est pas conforme à la réglementation sur
+      la protection des données à caractère personnel, vous pouvez adresser une
+      réclamation à la CNIL.
     </p>
-
-    <p>
-      Pour vous aider dans votre démarche, vous trouverez
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces"
-        title="ici - Nouvelle fenêtre"
-        >ici</a
-      >, un modèle de courrier élaboré par la CNIL.
-    </p>
-
-    <p>
-      Nous nous engageons à répondre dans un délai raisonnable qui ne saurait
-      dépasser 1 mois à compter de la réception de votre demande.
-    </p>
-
-    <h3>Partageons-nous vos informations ?</h3>
-
-    <p>
-      Nous nous engageons à ce que les informations soient traitées par les
-      seules personnes autorisées.
-    </p>
-
-    <h3>Sous-traitants</h3>
-
-    <p>
-      Certaines des informations sont envoyées à des sous-traitants pour
-      réaliser certaines missions. Nous nous sommes assurés de la mise en œuvre
-      par ses sous-traitants de garanties adéquates et du respect de conditions
-      strictes de confidentialité, d’usage et de protection des données.
-    </p>
-
-    <div class="fr-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Partenaire</th>
-            <th>Pays destinataire</th>
-            <th>Traitement réalisé</th>
-            <th>Garanties</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>OVH SAS</td>
-            <td>France</td>
-            <td>Hébergement</td>
-            <td>
-              <a
-                target="_blank"
-                rel="noopener"
-                href="https://www.ovh.com/fr/protection-donnees-personnelles"
-                title="OVH : protection des données personnelles - Nouvelle fenêtre"
-                >https://www.ovh.com/fr/protection-donnees-personnelles</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
     <h3>Sécurité et confidentialité des données</h3>
 

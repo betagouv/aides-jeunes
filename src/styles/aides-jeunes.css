@@ -237,8 +237,8 @@
   margin: auto;
 }
 
-.fr-input#date_naissance {
-  text-indent: 10px;
+.fr-input[type="text"]:placeholder-shown {
+  text-indent: 5px;
 }
 
 .fr-radio-group {

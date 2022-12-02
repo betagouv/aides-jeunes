@@ -1,5 +1,5 @@
 name: Caisse d’allocations familiales
-imgSrc: img/logo_caf.png
+imgSrc: img/institutions/logo_caf.png
 type: national
 etablissements:
   - caf

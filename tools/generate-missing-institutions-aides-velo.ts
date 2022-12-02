@@ -49,7 +49,7 @@ if (missingCommune.length) {
       const commune_slug = `ville_${normalizeName(commune.nom)}`
       const institution = {
         name: `Ville de ${commune.nom}`,
-        imgSrc: `img/logo_${commune_slug}.png`,
+        imgSrc: `img/institutions/logo_${commune_slug}.png`,
         prefix: "de la",
         type: "commune",
         code_insee: commune.code,
@@ -80,7 +80,7 @@ if (missingEPCI.length) {
         : EPCIMatch.nom
       const institution = {
         name: nom,
-        imgSrc: `img/logo_${epci_slug}.png`,
+        imgSrc: `img/institutions/logo_${epci_slug}.png`,
         prefix: "de la",
         type: "epci",
         code_siren: EPCIMatch.code,

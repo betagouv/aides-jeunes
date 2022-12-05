@@ -61,7 +61,7 @@
       <WarningMessage
         v-if="
           droit.isBaseRessourcesPatrimoine &&
-          !patrimoineCaptured &&
+          !store.hasPatrimoine &&
           !isString(droit.montant)
         "
         class="fr-print-hidden"
@@ -144,7 +144,6 @@ export default {
   props: {
     droit: Object,
     droits: Array,
-    patrimoineCaptured: Boolean,
     ressourcesYearMinusTwoCaptured: Boolean,
   },
   setup() {

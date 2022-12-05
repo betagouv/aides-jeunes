@@ -191,7 +191,7 @@ FollowupSchema.pre("save", async function (next) {
   }
   try {
     const followup = this
-    followup.version = 2
+    followup.version = 3
     followup.accessToken = await utils.generateToken()
     next()
   } catch {

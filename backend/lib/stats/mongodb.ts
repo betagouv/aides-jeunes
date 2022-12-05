@@ -87,7 +87,7 @@ function extractSurveySummary(db) {
       },
       {
         query: {
-          "surveys.type": "simulation-results",
+          "surveys.type": "benefit-action",
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
@@ -125,7 +125,7 @@ function extractSurveyDetails(db) {
       },
       {
         query: {
-          "surveys.type": "simulation-results",
+          "surveys.type": "benefit-action",
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },

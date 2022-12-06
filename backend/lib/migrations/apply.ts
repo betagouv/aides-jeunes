@@ -17,20 +17,20 @@ const limit = 50000
 const startDate = new Date().toISOString()
 
 const parser = new ArgumentParser({
-  addHelp: true,
+  add_help: true,
   description: "Outil de migration des situations en base de données",
 })
 
-parser.addArgument(["--all"], {
-  action: "storeTrue",
+parser.add_argument("--all", {
+  action: "store_true",
   help: `Migre toutes les simulations dans la base de données, par batch de ${limit}.`,
 })
 
-parser.addArgument(["--id"], {
+parser.add_argument("--id", {
   help: "Migre une simulation précise",
 })
 
-parser.addArgument(["--model"], {
+parser.add_argument("--model", {
   help: "Migre une simulation précise",
 })
 
@@ -91,7 +91,7 @@ function migrate(currentMigration, conditions) {
 }
 
 function main() {
-  const args = parser.parseArgs()
+  const args = parser.parse_args()
   const currentMigration = args.model
     ? modelMigration[args.model]
     : modelMigration.simulations

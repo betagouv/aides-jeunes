@@ -302,11 +302,8 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    patrimoine(patrimoine: any) {
-      this.simulation = {
-        ...this.simulation,
-        patrimoine,
-      }
+    setPatrimoine(patrimoine: any) {
+      this.simulation.patrimoine = patrimoine
       this.setDirty()
     },
     initialize() {

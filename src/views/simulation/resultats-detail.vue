@@ -29,7 +29,6 @@
       :droit="droit"
       :droits="droits"
       :city="situation.menage.depcom"
-      :patrimoine-captured="patrimoineCaptured"
       :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
     />
     <div class="fr-text--center">
@@ -74,9 +73,6 @@ export default {
         return droit.id === droitId
       })
       return droit
-    },
-    patrimoineCaptured() {
-      return this.store.hasPatrimoine !== undefined
     },
     ressourcesYearMinusTwoCaptured() {
       return this.store.ressourcesYearMinusTwoCaptured

@@ -244,6 +244,26 @@ export default {
       periodKey,
     }
   },
+  watch: {
+    hasTerrainsNonLoues: {
+      handler(value) {
+        if (!value) {
+          this.demandeur.valeur_terrains_non_loues = {}
+          this.demandeur.valeur_locative_terrains_non_loues = {}
+          this.store.setPatrimoine(undefined)
+        }
+      },
+    },
+    hasBatisNonLoues: {
+      handler(value) {
+        if (!value) {
+          this.demandeur.valeur_immo_non_loue = {}
+          this.demandeur.valeur_locative_immo_non_loue = {}
+          this.store.setPatrimoine(undefined)
+        }
+      },
+    },
+  },
   methods: {
     onSubmit() {
       const values = {}
@@ -263,7 +283,7 @@ export default {
         values.valeur_patrimoine_loue =
           this.demandeur.valeur_patrimoine_loue[this.periodKey]
       }
-      this.store.patrimoine(values)
+      this.store.setPatrimoine(values)
       this.$router.push("/simulation/resultats")
     },
   },

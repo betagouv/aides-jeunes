@@ -1,6 +1,6 @@
 <template>
   <button
-    class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+    class="copy-button fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
     @click="() => copyBenefitsList(benefitsList)"
     >Copier</button
   >
@@ -62,3 +62,10 @@ export default {
   },
 }
 </script>
+<style scoped>
+.copy-content,
+.copy-content * {
+  font-family: initial !important;
+  font-size: initial !important;
+}
+</style>

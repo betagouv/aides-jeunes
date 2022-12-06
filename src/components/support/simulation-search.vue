@@ -1,17 +1,18 @@
 <template>
   <form class="simulation-search" @submit="onSubmit">
-    <label for="simulationId" class="aj-question"
+    <label for="simulationId" class="fr-label fr-text--lead fr-mb-0"
       >Accéder à une simulation :</label
     >
-    <div class="simulation-search-input">
+    <div class="aj-flex-row">
       <input
         id="simulationId"
         v-model="situationId"
+        class="fr-input"
         type="text"
         placeholder="ID de la simulation"
         required
       />
-      <button class="button primary">Accéder</button>
+      <button class="fr-btn">Accéder</button>
     </div>
   </form>
 </template>
@@ -32,19 +33,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.simulation-search {
-  margin-bottom: 24px;
-
-  .simulation-search-input {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-
-    input {
-      max-width: 400px;
-    }
-  }
-}
-</style>

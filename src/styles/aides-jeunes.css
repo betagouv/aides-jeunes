@@ -312,3 +312,9 @@
   background-color: var(--blue-cumulus-main-526);
   transition: 0.2s;
 }
+
+.aj-flex-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

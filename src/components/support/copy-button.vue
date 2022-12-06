@@ -1,6 +1,8 @@
 <template>
-  <div class="copy-button" @click="() => copyBenefitsList(benefitsList)"
-    >Copier</div
+  <button
+    class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+    @click="() => copyBenefitsList(benefitsList)"
+    >Copier</button
   >
 </template>
 <script>
@@ -60,24 +62,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.copy-button {
-  color: var(--theme-primary);
-  text-decoration: underline;
-  cursor: pointer;
-}
-.copy-button:hover {
-  color: var(--dark-blue);
-  text-decoration: none;
-}
-.copy-button:active {
-  color: var(--blue);
-  font-size: 15px;
-}
-.copy-content,
-.copy-content * {
-  font-family: initial !important;
-  font-size: initial !important;
-}
-</style>

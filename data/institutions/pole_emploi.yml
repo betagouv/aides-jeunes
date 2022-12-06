@@ -1,5 +1,5 @@
 name: Pôle emploi
-imgSrc: img/logo_pole_emploi.png
+imgSrc: img/institutions/logo_pole_emploi.png
 etablissements:
   - pole_emploi
 type: national

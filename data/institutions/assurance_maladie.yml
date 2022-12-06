@@ -1,5 +1,5 @@
 name: Assurance maladie
-imgSrc: img/logo_assurance_maladie.png
+imgSrc: img/institutions/logo_assurance_maladie.png
 type: national
 etablissements:
   - cpam

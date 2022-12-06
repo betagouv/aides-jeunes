@@ -9,8 +9,8 @@ backend:
     uploadMedia: Nouvelle image {{path}}
     deleteMedia: Suppression de l'image {{path}}
 
-media_folder: public/img
-public_folder: img
+media_folder: public/img/institutions
+public_folder: img/institutions
 
 slug:
   encoding: ascii

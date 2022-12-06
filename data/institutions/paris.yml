@@ -1,5 +1,5 @@
 name: Ville de Paris
-imgSrc: img/logo_paris.png
+imgSrc: img/institutions/logo_paris.png
 prefix: de la
 repository: paris
 type: commune

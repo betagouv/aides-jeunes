@@ -37,10 +37,10 @@
     "tools:generate-missing-institutions-aides-velo": "babel-node -x \".ts\" ./tools/generate-missing-institutions-aides-velo",
     "tools:geographical-benefits-details": "node --experimental-json-modules dist-server/tools/geographical-benefits-details.js",
     "tools:get-all-steps": "node dist-server/tools/get-all-steps.js",
-    "tools:serve-mail": "npx babel-node -x '.ts' ./tools/mjml.ts",
-    "tools:test-benefits-geographical-constraint-consistency": "npx babel-node -x '.ts' ./tools/test-benefits-geographical-constraint-consistency.ts",
+    "tools:serve-mail": "babel-node -x '.ts' ./tools/mjml.ts",
+    "tools:test-benefits-geographical-constraint-consistency": "babel-node -x '.ts' ./tools/test-benefits-geographical-constraint-consistency.ts",
     "tools:test-definition-periods": "node dist-server/tools/test-definition-periods.js",
-    "migrate": "npx babel-node -x '.ts' ./backend/lib/migrations/apply.ts --all"
+    "migrate": "babel-node -x '.ts' ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
     "@actions/core": "^1.8.2",

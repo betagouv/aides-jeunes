@@ -40,7 +40,7 @@
     "tools:serve-mail": "npx babel-node -x '.ts' ./tools/mjml.ts",
     "tools:test-benefits-geographical-constraint-consistency": "npx babel-node -x '.ts' ./tools/test-benefits-geographical-constraint-consistency.ts",
     "tools:test-definition-periods": "node dist-server/tools/test-definition-periods.js",
-    "migrate": "node dist-server/backend/lib/migrations/apply.js --all"
+    "migrate": "npx babel-node -x '.ts' ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
     "@actions/core": "^1.8.2",

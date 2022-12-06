@@ -16,8 +16,6 @@ profils:
       - type: annee_etude
         values:
           - master_1
-      - type: annee_etude
-        values:
           - master_2
 conditions:
   - Être inscrit·e au sein d’un établissement d’enseignement supérieur privé ou

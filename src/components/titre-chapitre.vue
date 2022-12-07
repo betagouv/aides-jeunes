@@ -5,7 +5,7 @@
         <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
       <div
-        v-if="shouldDisplayResults && hasDroits"
+        v-if="shouldDisplayResults && hasDroits && showEmailButton"
         class="fr-col-12 fr-col-md-6 fr-col-lg-6"
       >
         <ul
@@ -40,6 +40,11 @@ export default {
   computed: {
     title() {
       return this.getTitleByRoute(this.$route)
+    },
+    showEmailButton() {
+      return (
+        this.store.recapEmailState !== "ok" && this.$route.name === "resultats"
+      )
     },
   },
   methods: {

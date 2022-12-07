@@ -71,6 +71,7 @@
               >Résultats de la simulation</a
             >
             <CopyButton
+              :followupId="accompagnement.simulation"
               :benefitsMap="benefitsMap"
               :benefitsList="accompagnement.benefits"
             />

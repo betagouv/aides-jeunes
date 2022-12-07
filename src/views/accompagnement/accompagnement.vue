@@ -15,7 +15,12 @@
       >Se connecter</a
     >
 
-    <SimulationSearch v-if="loggedIn" />
+    <div v-if="loggedIn" class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
+      <div class="fr-grid-row fr-grid-row--gutters">
+        <SimulationSearch class="fr-col-6" />
+        <SurveyEmailSearch class="fr-col-6" />
+      </div>
+    </div>
 
     <div v-if="loggedIn && accompagnements">
       <div class="fr-text--lead fr-mt-5w fr-mb-1w">Réponses au sondage</div>
@@ -128,10 +133,11 @@
 
 <script>
 import SimulationSearch from "@/components/support/simulation-search.vue"
+import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import { getBenefit } from "@/lib/institution"
 export default {
-  components: { SimulationSearch, CopyButton },
+  components: { SimulationSearch, SurveyEmailSearch, CopyButton },
   data: function () {
     return {
       benefitsMap: getBenefit,

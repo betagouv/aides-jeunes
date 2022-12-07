@@ -85,6 +85,10 @@
   margin-top: 0 !important;
 }
 
+.fr-badge.fr-badge--info {
+  padding: 2px 8px;
+}
+
 [data-text] {
   position: relative;
   z-index: 10;

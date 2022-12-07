@@ -51,7 +51,7 @@
                 class="fr-col-12 fr-col-lg-3"
                 :data-submenu="!category.link"
               >
-                <h5 class="fr-mega-menu__category">
+                <h2 class="fr-mega-menu__category">
                   <a
                     v-if="category.link"
                     class="fr-nav__link"
@@ -59,7 +59,7 @@
                     >{{ category.label }}</a
                   >
                   <span v-else class="fr-nav__link">{{ category.label }}</span>
-                </h5>
+                </h2>
                 <p v-if="category.legend" class="fr-p-2w">{{
                   category.legend
                 }}</p>

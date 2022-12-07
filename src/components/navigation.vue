@@ -16,13 +16,13 @@
           v-if="!element.children"
           class="fr-nav__link"
           :href="`${domain}${element.link}`"
-          :aria-current="element.active"
+          :aria-current="element.active || null"
           :title="element.active ? 'Onglet actif' : null"
           >{{ element.label }}</a
         >
         <button
           v-if="element.children"
-          :aria-current="element.active"
+          :aria-current="element.active || null"
           aria-expanded="false"
           :aria-controls="`nav-menu-${index}`"
           class="fr-nav__btn"
@@ -92,7 +92,7 @@
               <a
                 class="fr-nav__link"
                 :href="`${domain}${subelement.link}`"
-                :aria-current="subelement.active"
+                :aria-current="subelement.active || null"
                 :title="subelement.active ? 'Sous-onglet actif' : null"
                 >{{ subelement.label }}</a
               >

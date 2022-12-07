@@ -219,6 +219,10 @@
     order: 3;
     flex-basis: 100%;
   }
+
+  [data-text]:after {
+    display: none !important;
+  }
 }
 
 @keyframes spin {

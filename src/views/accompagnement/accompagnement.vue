@@ -3,7 +3,7 @@
     <h1>Suivis des utilisateurs</h1>
 
     <router-link
-      v-if="surveyId && loggedIn"
+      v-if="followupId && loggedIn"
       class="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line fr-mb-3w"
       to="/accompagnement"
       >Retour à la liste des suivis</router-link
@@ -139,8 +139,8 @@ export default {
     }
   },
   computed: {
-    surveyId() {
-      return this.$route.params.surveyId
+    followupId() {
+      return this.$route.params.followupId
     },
     connect() {
       return `/api/auth/redirect?redirect=${window.location}`
@@ -169,8 +169,8 @@ export default {
 
     fetchPollResults: async function () {
       this.retrievingCommunes = true
-      const uri = this.$route.params.surveyId
-        ? `/api/followups/id/${this.$route.params.surveyId}`
+      const uri = this.$route.params.followupId
+        ? `/api/followups/id/${this.$route.params.followupId}`
         : `/api/followups/surveys`
       try {
         const response = await fetch(uri, {

@@ -9,9 +9,9 @@
         >Sommaire</button
       >
       <div id="fr-sidemenu-wrapper" class="fr-collapse">
-        <h1
+        <h2
           class="fr-sidemenu__title fr-text--regular fr-hidden fr-unhidden-md fr-pt-5w fr-px-2w"
-          >Ma simulation</h1
+          >Ma simulation</h2
         >
         <ul class="fr-sidemenu__list">
           <li

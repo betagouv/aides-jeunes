@@ -16,9 +16,8 @@
         charge.
       </p>
       <ul class="fr-btns-group">
-        <li>
+        <li v-if="hasExistingSituation">
           <button
-            v-if="hasExistingSituation"
             v-analytics="{
               action: 'Reprendre ma simulation',
               category: 'Home',

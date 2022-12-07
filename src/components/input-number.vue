@@ -13,6 +13,7 @@
     :data-type="dataType"
     class="fr-input"
     inputmode="numeric"
+    :aria-label="id"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
     >Ce champ n'est pas valide.</WarningMessage

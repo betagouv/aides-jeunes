@@ -3,7 +3,7 @@ import Scolarite from "../../lib/scolarite"
 
 const fill_first_name = (prenom) => {
   cy.get("[data-testid='question']").invoke("text").should("contain", "prénom")
-
+  cy.checkA11y()
   // Verify if submit is blocked to avoid empty value
   cy.get('[data-testid="_firstName"]').clear()
   submit()
@@ -19,6 +19,7 @@ const fill_first_name = (prenom) => {
 
 const fill_date_naissance = (birthDate) => {
   cy.url().should("include", "date_naissance")
+  cy.checkA11y()
   cy.get("[data-testid='warning-message']").should("not.exist") // check openfisca missing benefits
   submit()
   cy.url().should("include", "date_naissance") // Stay on the same page as an answer is required
@@ -108,6 +109,7 @@ const fill_statut_marital = (maritalStatus) => {
 }
 
 const fill_conjoint_activite = (activity) => {
+  cy.checkA11y()
   cy.get("legend").invoke("text").should("contain", "est-il/elle")
   cy.get("label").invoke("text").should("contain", "Salarié")
   fill_activite(activity)

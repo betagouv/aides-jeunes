@@ -22,6 +22,7 @@ const fill_habite_chez_parents = (situation) => {
 
 const fill_depcom = (department, name = "depcom") => {
   cy.url().should("includes", name)
+  cy.checkA11y()
   cy.get('[data-testid="postalCode"]').type(department)
   cy.wait("@communes")
   submit()
@@ -45,6 +46,7 @@ const fill_proprietaire_proche_famille = (familyLink) => {
 
 const fill_loyer = (loyer, charges) => {
   cy.url().should("includes", "loyer")
+  cy.checkA11y()
   cy.get('input[data-testid="loyer"]').type(loyer)
   if (charges) {
     cy.get('input[data-testid="charges"]').type(charges)

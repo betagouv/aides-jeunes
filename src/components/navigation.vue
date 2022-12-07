@@ -17,7 +17,7 @@
           class="fr-nav__link"
           :href="`${domain}${element.link}`"
           :aria-current="element.active"
-          :title="element.active ? 'Onglet actif' : ''"
+          :title="element.active ? 'Onglet actif' : null"
           >{{ element.label }}</a
         >
         <button
@@ -26,7 +26,7 @@
           aria-expanded="false"
           :aria-controls="`nav-menu-${index}`"
           class="fr-nav__btn"
-          :title="element.active ? 'Onglet actif' : ''"
+          :title="element.active ? 'Onglet actif' : null"
           >{{ element.label }}</button
         >
         <div
@@ -93,7 +93,7 @@
                 class="fr-nav__link"
                 :href="`${domain}${subelement.link}`"
                 :aria-current="subelement.active"
-                :title="subelement.active ? 'Sous-onglet actif' : ''"
+                :title="subelement.active ? 'Sous-onglet actif' : null"
                 >{{ subelement.label }}</a
               >
             </li>

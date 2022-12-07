@@ -248,7 +248,7 @@ const router = createRouter({
       component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
-      path: "/accompagnement/:surveyId",
+      path: "/accompagnement/:followupId",
       name: "accompagnement",
       component: () => import("./views/accompagnement/accompagnement.vue"),
     },

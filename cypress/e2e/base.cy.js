@@ -6,14 +6,22 @@ import logement from "../utils/logement"
 import revenu from "../utils/revenu"
 import projet from "../utils/projet"
 import results from "../utils/results"
+import "cypress-axe"
 
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
+    cy.injectAxe()
   })
 
   it("Go to the recap during a basic situation and modify/continue the simulation", () => {
     navigate.goHome()
+
+    // Global accessibility check
+    cy.get(".cypress-wrapper").each(() => {
+      cy.checkA11y()
+    })
+
     profil.defaultIndivu()
     foyer.children(0)
     foyer.fill_en_couple(false)

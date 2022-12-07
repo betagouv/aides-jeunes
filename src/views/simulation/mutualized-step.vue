@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form class="cypress-wrapper" @submit.prevent="onSubmit">
     <fieldset class="fr-fieldset">
       <legend class="fr-fieldset__legend">
         <MutualizedStepTitle

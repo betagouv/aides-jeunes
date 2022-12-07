@@ -10,7 +10,7 @@
         aria-labelledby="progress-bar-description"
         aria-valuemin="0"
         aria-valuemax="100"
-        :aria-valuenow="progress.value * 100"
+        :aria-valuenow="progress * 100"
         :style="currentProgress"
         class="aj-progress-bar-foreground"
       ></div>

@@ -19,7 +19,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["jest"],
+    "types": ["jest", "cypress", "cypress-axe"],
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["dist-server/lib/*"],

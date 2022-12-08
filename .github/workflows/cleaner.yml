@@ -1,0 +1,14 @@
+name: "MongoDB cleaner"
+description: "Clean MongoDB each day by calling the cleaner script from package.json"
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_11_*_*_*
+    - cron: "0 11 * * *"
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run tools:cleaner

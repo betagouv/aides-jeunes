@@ -27,6 +27,7 @@
           :aria-controls="`nav-menu-${index}`"
           class="fr-nav__btn"
           :title="element.active ? 'Onglet actif' : null"
+          @keydown.esc="escapeKeyHandler"
           >{{ element.label }}</button
         >
         <div
@@ -37,6 +38,7 @@
           :id="`nav-menu-${index}`"
           class="fr-collapse fr-mega-menu"
           tabindex="-1"
+          @keydown.esc="escapeKeyHandler"
         >
           <div class="fr-container fr-container--fluid fr-container-lg">
             <button
@@ -82,6 +84,7 @@
           v-else-if="element.children"
           :id="`nav-menu-${index}`"
           class="fr-collapse fr-menu"
+          @keydown.esc="escapeKeyHandler"
         >
           <ul class="fr-menu__list">
             <li
@@ -104,6 +107,16 @@
   </nav>
 </template>
 <script setup>
+function escapeKeyHandler(event) {
+  if (event.target.getAttribute("aria-expanded")) {
+    // close standard drop-down menu
+    event.target.setAttribute("aria-expanded", false)
+  } else if (event.target.previousSibling.getAttribute("aria-expanded")) {
+    // close mega menu and put focus on opening button
+    event.target.previousSibling.focus({ focusVisible: true })
+    event.target.previousSibling.setAttribute("aria-expanded", false)
+  }
+}
 const domain = "https://www.1jeune1solution.gouv.fr"
 const navigation = [
   { label: "Accueil", link: "/" },

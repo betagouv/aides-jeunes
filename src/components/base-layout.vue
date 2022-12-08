@@ -1,10 +1,10 @@
 <template>
   <div class="fr-skiplinks">
     <nav
+      ref="skipLinks"
       class="fr-container"
       role="navigation"
       aria-label="Accès rapide"
-      ref="skipLinks"
     >
       <ul class="fr-skiplinks__list">
         <li>
@@ -42,10 +42,10 @@
     </Header1J1S>
     <main
       id="main"
+      ref="main"
       role="main"
       class="fr-container fr-container--fluid"
       tabindex="-1"
-      ref="main"
     >
       <slot />
     </main>
@@ -73,13 +73,6 @@ export default {
       store: useStore(),
     }
   },
-  created() {
-    this.$router.isReady().then(() => {
-      if (this.$route.query.debug === "parcours") {
-        this.store.setDebug(true)
-      }
-    })
-  },
   watch: {
     $route() {
       if (this.$route.hash) {
@@ -89,6 +82,13 @@ export default {
         }
       }
     },
+  },
+  created() {
+    this.$router.isReady().then(() => {
+      if (this.$route.query.debug === "parcours") {
+        this.store.setDebug(true)
+      }
+    })
   },
 }
 </script>

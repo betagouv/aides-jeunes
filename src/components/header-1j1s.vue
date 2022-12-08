@@ -67,7 +67,6 @@
 </template>
 <script setup>
 import { useAttrs } from "vue"
-import Navigation from "@/components/navigation.vue"
 const attributes = useAttrs()
 const parameters = {
   homeTo:

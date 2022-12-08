@@ -60,14 +60,13 @@
           Fermer
         </button>
         <div class="fr-header__menu-links"> </div>
-        <Navigation v-if="!attributes?.collapse" />
+        <slot v-if="!attributes?.collapse" />
       </div>
     </div>
   </header>
 </template>
 <script setup>
 import { useAttrs } from "vue"
-import Navigation from "@/components/navigation.vue"
 const attributes = useAttrs()
 const parameters = {
   homeTo:

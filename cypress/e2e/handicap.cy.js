@@ -6,10 +6,12 @@ import logement from "../utils/logement"
 import revenu from "../utils/revenu"
 import projet from "../utils/projet"
 import results from "../utils/results"
+import "cypress-axe"
 
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
+    cy.injectAxe()
   })
 
   it("accepts a situation with handicap", () => {

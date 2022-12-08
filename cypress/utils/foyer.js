@@ -4,6 +4,7 @@ import profil from "./profil"
 const children = (numberOfChildren) => {
   for (let i = 0; i < numberOfChildren; i++) {
     cy.url().should("includes", "enfants")
+    cy.checkA11y()
     cy.get('[data-testid="add-pac"]').click()
     profil.defaultChildren()
   }
@@ -22,6 +23,7 @@ const fill__situation = (situation) => {
 const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
   numberOfChildren
 ) => {
+  cy.checkA11y()
   cy.get('[data-testid="question"')
     .invoke("text")
     .should("contain", "la charge")
@@ -33,6 +35,7 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
 
 const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur =
   (numberOfChildren) => {
+    cy.checkA11y()
     cy.get("[data-testid='question']")
       .invoke("text")
       .should("contain", "des études supérieures")

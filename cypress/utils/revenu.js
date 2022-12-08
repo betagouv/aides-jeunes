@@ -2,6 +2,7 @@ import { submit } from "./form"
 
 const fill_ressources_types = (types = []) => {
   cy.url().should("includes", "ressources/types")
+  cy.checkA11y()
   types.forEach((type) =>
     cy
       .get("form")
@@ -16,6 +17,7 @@ const fill_ressources_types = (types = []) => {
 
 const fillConstantRevenu = (revenu) => {
   cy.get("div").as("salarySection")
+  cy.checkA11y()
   cy.get("@salarySection")
     .find('input[type="radio"][value="true"]')
     .first()
@@ -30,6 +32,7 @@ const fillConstantRevenu = (revenu) => {
 
 const fillInconstantRevenu = (revenus) => {
   cy.get("div").as("salarySection")
+  cy.checkA11y()
   cy.get("@salarySection")
     .find('input[type="radio"][value="false"]')
     .first()
@@ -49,10 +52,12 @@ const fillInconstantRevenu = (revenus) => {
 
 const fillRevenuBrut = (revenu) => {
   cy.get("form").find('input[type="number"]').type(revenu)
+  cy.checkA11y()
   submit()
 }
 
 const fillChildrenRessources = (childrenRessource) => {
+  cy.checkA11y()
   childrenRessource.forEach((childrenHasRessource, index) => {
     cy.get("[data-testid='_hasRessources']")
       .find(`input[value="${childrenHasRessource}"]`)

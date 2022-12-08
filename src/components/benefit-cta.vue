@@ -19,21 +19,23 @@
         v-if="showProximityCta"
         class="fr-col fr-btns-group fr-mx-0 fr-py-0 fr-px-0"
       >
-        <router-link
-          id="cta-proximity"
-          v-analytics="{
-            name: benefit.id,
-            action: 'show-locations',
-            category: 'General',
-          }"
-          class="fr-btn"
-          :to="{
-            name: 'resultatsLieuxDedies',
-            params: { benefit_id: benefit.id },
-          }"
-        >
-          À proximité de chez vous
-        </router-link>
+        <li>
+          <router-link
+            id="cta-proximity"
+            v-analytics="{
+              name: benefit.id,
+              action: 'show-locations',
+              category: 'General',
+            }"
+            class="fr-btn"
+            :to="{
+              name: 'resultatsLieuxDedies',
+              params: { benefit_id: benefit.id },
+            }"
+          >
+            À proximité de chez vous
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

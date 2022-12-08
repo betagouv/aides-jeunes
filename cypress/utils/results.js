@@ -13,6 +13,7 @@ const IdentifyBenefit = (id, name) => {
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
     { timeout: 10000 }
   ).as(`${id}-summary`)
+  cy.checkA11y()
   getBenefitSummary(id)
     .find('[itemprop="name"]')
     .invoke("text")
@@ -32,6 +33,7 @@ const hasPrimeActivite = () => {
     .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
+  cy.checkA11y()
   getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
   cy.get('[data-testid="droit-detail"]').as(id)
@@ -53,6 +55,7 @@ const captureFiscalResources = () => {
     .should("contain", "ressources")
   cy.get(`a[data-testid="benefit-ressources-link"]`).click()
   cy.get('input[type="number"]').first().type("50000")
+  cy.checkA11y()
   submit()
   cy.get(`${id}-summary`).should("not.exist")
 }
@@ -81,6 +84,7 @@ const hasHousingBenefit = () => {
   // Vérifie si la page patrimoine est bien affichée
   cy.get('[data-testid="patrimoine-link"]').click()
   cy.get('[data-testid="immobilier-title"]').should("exist")
+  cy.checkA11y()
   submit()
 }
 
@@ -103,6 +107,7 @@ const hasAAH = () => {
     .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
+  cy.checkA11y()
   getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
   cy.get('[data-testid="droit-detail"]').as(id)
@@ -126,6 +131,7 @@ const hasBourseCriteresSociaux = () => {
     .find('[data-testid="droit-estime-legend"]')
     .invoke("text")
     .should("match", /\/ mois/)
+  cy.checkA11y()
   getBenefitSummary(id).find('[data-testid="droit-estime-legend"]').click()
 
   cy.get('[data-testid="droit-detail"]').as(id)

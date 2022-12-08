@@ -6,10 +6,12 @@ import revenu from "../utils/revenu"
 import projet from "../utils/projet"
 import results from "../utils/results"
 import foyer from "../utils/foyer"
+import "cypress-axe"
 
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
+    cy.injectAxe()
   })
 
   it("accept a student situation", () => {

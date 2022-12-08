@@ -7,10 +7,12 @@ import profil from "../utils/profil"
 import projet from "../utils/projet"
 import results from "../utils/results"
 import revenu from "../utils/revenu"
+import "cypress-axe"
 
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
+    cy.injectAxe()
   })
 
   it("accepts a family situation", () => {

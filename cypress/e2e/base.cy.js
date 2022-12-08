@@ -18,7 +18,7 @@ context("Full simulation", () => {
     navigate.goHome()
 
     // Global accessibility check
-    cy.get(".cypress-wrapper").each(() => {
+    cy.get("main").then(() => {
       cy.checkA11y()
     })
 

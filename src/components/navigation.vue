@@ -1,6 +1,6 @@
 <template>
   <nav
-    id="navigation-menu"
+    id="navigation"
     class="fr-nav"
     role="navigation"
     aria-label="Menu principal"

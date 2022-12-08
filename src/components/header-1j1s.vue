@@ -60,7 +60,7 @@
           Fermer
         </button>
         <div class="fr-header__menu-links"> </div>
-        <Navigation v-if="!attributes?.collapse" />
+        <slot v-if="!attributes?.collapse" />
       </div>
     </div>
   </header>

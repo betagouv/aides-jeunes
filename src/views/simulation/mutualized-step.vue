@@ -44,6 +44,7 @@
                     v-model="value"
                     :min="step.min"
                     :data-type="step.type"
+                    ariaLabelledBy="step-question"
                   />
                 </div>
                 <InputDate

@@ -13,7 +13,7 @@
     :data-type="dataType"
     class="fr-input"
     inputmode="numeric"
-    :aria-label="id"
+    :aria-labelledby="ariaLabelledBy || null"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
     >Ce champ n'est pas valide.</WarningMessage
@@ -28,6 +28,7 @@ export default {
   props: {
     id: String,
     name: String,
+    ariaLabelledBy: String,
     min: Number,
     max: Number,
     dataType: { type: String, default: "amount" },

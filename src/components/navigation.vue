@@ -16,17 +16,18 @@
           v-if="!element.children"
           class="fr-nav__link"
           :href="`${domain}${element.link}`"
-          :aria-current="element.active"
-          :title="element.active ? 'Onglet actif' : ''"
+          :aria-current="element.active || null"
+          :title="element.active ? 'Onglet actif' : null"
           >{{ element.label }}</a
         >
         <button
           v-if="element.children"
-          :aria-current="element.active"
+          :aria-current="element.active || null"
           aria-expanded="false"
           :aria-controls="`nav-menu-${index}`"
           class="fr-nav__btn"
-          :title="element.active ? 'Onglet actif' : ''"
+          :title="element.active ? 'Onglet actif' : null"
+          @keydown.esc="escapeKeyHandler"
           >{{ element.label }}</button
         >
         <div
@@ -37,6 +38,7 @@
           :id="`nav-menu-${index}`"
           class="fr-collapse fr-mega-menu"
           tabindex="-1"
+          @keydown.esc="escapeKeyHandler"
         >
           <div class="fr-container fr-container--fluid fr-container-lg">
             <button
@@ -51,7 +53,7 @@
                 class="fr-col-12 fr-col-lg-3"
                 :data-submenu="!category.link"
               >
-                <h5 class="fr-mega-menu__category">
+                <h2 class="fr-mega-menu__category">
                   <a
                     v-if="category.link"
                     class="fr-nav__link"
@@ -59,7 +61,7 @@
                     >{{ category.label }}</a
                   >
                   <span v-else class="fr-nav__link">{{ category.label }}</span>
-                </h5>
+                </h2>
                 <p v-if="category.legend" class="fr-p-2w">{{
                   category.legend
                 }}</p>
@@ -82,6 +84,7 @@
           v-else-if="element.children"
           :id="`nav-menu-${index}`"
           class="fr-collapse fr-menu"
+          @keydown.esc="escapeKeyHandler"
         >
           <ul class="fr-menu__list">
             <li
@@ -92,8 +95,8 @@
               <a
                 class="fr-nav__link"
                 :href="`${domain}${subelement.link}`"
-                :aria-current="subelement.active"
-                :title="subelement.active ? 'Sous-onglet actif' : ''"
+                :aria-current="subelement.active || null"
+                :title="subelement.active ? 'Sous-onglet actif' : null"
                 >{{ subelement.label }}</a
               >
             </li>
@@ -104,6 +107,16 @@
   </nav>
 </template>
 <script setup>
+function escapeKeyHandler(event) {
+  if (event.target.getAttribute("aria-expanded")) {
+    // close standard drop-down menu
+    event.target.setAttribute("aria-expanded", false)
+  } else if (event.target.previousSibling.getAttribute("aria-expanded")) {
+    // close mega menu and put focus on opening button
+    event.target.previousSibling.focus({ focusVisible: true })
+    event.target.previousSibling.setAttribute("aria-expanded", false)
+  }
+}
 const domain = "https://www.1jeune1solution.gouv.fr"
 const navigation = [
   { label: "Accueil", link: "/" },

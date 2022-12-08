@@ -50,7 +50,7 @@
               <div
                 v-for="(value, name) in question.value"
                 :key="name"
-                class="fr-col-3 fr-mb-1w fr-pb-1w"
+                class="fr-col-6 fr-col-sm-4 fr-col-md-3 fr-mb-1w fr-pb-1w"
               >
                 <p class="fr-hint-text fr-my-0">{{ name }} :</p>
                 <p class="fr-my-0">{{ value }}</p>

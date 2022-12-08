@@ -1,6 +1,5 @@
 <template>
   <button
-    v-if="show"
     class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
@@ -25,13 +24,6 @@ export default {
     return {
       store: useStore(),
     }
-  },
-  computed: {
-    show() {
-      return (
-        this.store.recapEmailState !== "ok" && this.$route.name === "resultats"
-      )
-    },
   },
   methods: {
     showModal() {

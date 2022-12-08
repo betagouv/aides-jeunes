@@ -51,6 +51,7 @@
               path: `/aides`,
               hash: `#${institution.id}`,
             }"
+            :aria-current="none"
           >
             {{ institution.label }}
           </router-link>

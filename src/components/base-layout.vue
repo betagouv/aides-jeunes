@@ -3,13 +3,28 @@
     <nav class="fr-container" role="navigation" aria-label="Accès rapide">
       <ul class="fr-skiplinks__list">
         <li>
-          <router-link class="fr-link" to="#main">Contenu</router-link>
+          <router-link
+            class="fr-link"
+            :to="{ hash: '#main' }"
+            :aria-current="none"
+            >Contenu</router-link
+          >
         </li>
         <li>
-          <router-link class="fr-link" to="#navigation-menu">Menu</router-link>
+          <router-link
+            class="fr-link"
+            :to="{ hash: '#navigation-menu' }"
+            :aria-current="none"
+            >Menu</router-link
+          >
         </li>
         <li>
-          <router-link class="fr-link" to="#footer">Pied de page</router-link>
+          <router-link
+            class="fr-link"
+            :to="{ hash: '#footer' }"
+            :aria-current="none"
+            >Pied de page</router-link
+          >
         </li>
       </ul>
     </nav>

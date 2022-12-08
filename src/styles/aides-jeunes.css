@@ -85,6 +85,10 @@
   margin-top: 0 !important;
 }
 
+.fr-badge.fr-badge--info {
+  padding: 2px 8px;
+}
+
 [data-text] {
   position: relative;
   z-index: 10;
@@ -218,6 +222,10 @@
   .aj-benefit-name {
     order: 3;
     flex-basis: 100%;
+  }
+
+  [data-text]:after {
+    display: none !important;
   }
 }
 

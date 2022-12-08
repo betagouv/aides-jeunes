@@ -32,7 +32,7 @@
     "stats": "node ./dist-server/backend/lib/stats",
     "test": "NODE_PATH=. jest --testTimeout=20000",
     "tools:check-links-validity": "babel-node -x \".ts\" ./tools/check-links-validity.ts --ci",
-    "tools:cleaner": "node dist-server/tools/cleaner.js",
+    "tools:cleaner": "babel-node -x '.ts' ./tools/cleaner.ts",
     "tools:evaluate-benefits": "node dist-server/tools/evaluate-benefits",
     "tools:generate-missing-institutions-aides-velo": "babel-node -x \".ts\" ./tools/generate-missing-institutions-aides-velo",
     "tools:geographical-benefits-details": "node --experimental-json-modules dist-server/tools/geographical-benefits-details.js",

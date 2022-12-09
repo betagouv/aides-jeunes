@@ -13,7 +13,11 @@
       <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-md-5 fr-col-lg-5">
-            <InputNumber id="loyer" v-model="loyerQuestion.selectedValue" />
+            <InputNumber
+              id="loyer"
+              v-model="loyerQuestion.selectedValue"
+              disable-negative-value
+            />
           </div>
         </div>
       </div>
@@ -35,13 +39,14 @@
               id="charges"
               v-model="chargesQuestion.selectedValue"
               data-testid="loyer"
+              disable-negative-value
             />
           </div>
         </div>
       </div>
     </div>
 
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit" />
   </form>
 </template>
 
@@ -66,8 +71,30 @@ export default {
   data() {
     return Logement.getLoyerData(this.store.simulation.answers.all)
   },
+  computed: {
+    canSubmit() {
+      const loyerQuestion =
+        this.loyerQuestion.selectedValue != undefined &&
+        this.loyerQuestion.selectedValue >= 0
+      const chargesQuestion =
+        this.chargesQuestion.selectedValue != undefined &&
+        this.chargesQuestion.selectedValue >= 0
+      return this.captureCharges
+        ? loyerQuestion && chargesQuestion
+        : loyerQuestion
+    },
+  },
+  created() {
+    if (!this.loyerQuestion.selectedValue) {
+      this.loyerQuestion.selectedValue = 0
+    }
+    if (!this.chargesQuestion.selectedValue) {
+      this.chargesQuestion.selectedValue = 0
+    }
+  },
   methods: {
     onSubmit() {
+      if (!this.canSubmit) return
       this.store.answer({
         entityName: "menage",
         fieldName: "loyer",

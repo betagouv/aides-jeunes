@@ -42,6 +42,7 @@ export const createIndividuMixin = (props) => {
             id: this.$route.params.id,
             entityName: "individu",
             fieldName: this.fieldName,
+            path: this.$route.path,
             value: this.value,
           })
           this.$push()

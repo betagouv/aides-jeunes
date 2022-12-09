@@ -116,6 +116,7 @@ export default {
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: "ressources",
+        path: this.$route.path,
         value: Object.keys(this.selectedTypes).filter(
           (type) => this.selectedTypes[type]
         ),

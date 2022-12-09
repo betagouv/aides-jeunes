@@ -165,6 +165,7 @@ export default {
         id: this.$route.params.id,
         entityName: "individu",
         fieldName: this.$route.params.category,
+        path: this.$route.path,
         value: this.types.map((type) => {
           Object.keys(type.amounts).forEach(function (period) {
             if (type.amounts[period] === null || isNaN(type.amounts[period])) {
@@ -185,6 +186,7 @@ export default {
               id: this.$route.params.id,
               entityName: "individu",
               fieldName: extraId,
+              path: this.$route.path,
               value: type.extra[extraId],
             })
           })

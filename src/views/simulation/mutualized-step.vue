@@ -135,7 +135,7 @@ export default {
       return this.step.getQuestion(this.propertyData)
     },
     questionType() {
-      return this.step.questionType
+      return this.step?.questionType
     },
     showMoreInfo() {
       const showMoreInfo =
@@ -175,6 +175,7 @@ export default {
         id: this.id,
         entityName: this.entityName,
         fieldName: this.fieldName,
+        path: this.$route.path,
         value: nullifyUndefinedValue(this.value),
       })
       this.$push()

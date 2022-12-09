@@ -3,4 +3,5 @@ export interface answerLayout {
   entityName: any
   fieldName: any
   value: any
+  path: any
 }

@@ -3,7 +3,7 @@
     <h1>Suivis des utilisateurs</h1>
 
     <router-link
-      v-if="followupId && loggedIn"
+      v-if="(followupId || surveyEmail) && loggedIn"
       class="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line fr-mb-3w"
       to="/accompagnement"
       >Retour à la liste des suivis</router-link
@@ -15,15 +15,23 @@
       >Se connecter</a
     >
 
-    <div v-if="loggedIn" class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
+    <div
+      v-if="loggedIn && accompagnements && accompagnements.length > 1"
+      class="fr-container fr-px-0 fr-mb-0 fr-py-2w"
+    >
       <div class="fr-grid-row fr-grid-row--gutters">
         <SimulationSearch class="fr-col-6" />
         <SurveyEmailSearch class="fr-col-6" />
       </div>
     </div>
-
+    <WarningMessage v-if="loggedIn && error">{{ error }}</WarningMessage>
     <div v-if="loggedIn && accompagnements">
-      <div class="fr-text--lead fr-mt-5w fr-mb-1w">Réponses au sondage</div>
+      <div class="fr-text--lead fr-mt-5w fr-mb-1w"
+        >Réponses au sondage
+        <span v-if="surveyEmail"
+          >pour l'utilisateur <strong>{{ surveyEmail }}</strong></span
+        >
+      </div>
       <div class="fr-legend fr-mb-3w">
         <span
           class="fr-icon-success-line"
@@ -122,7 +130,9 @@
                 >({{ Math.round(answer.amount * 100) / 100
                 }}{{ answer.unit }})</b
               >
-              <div v-if="answer.comments">{{ answer.comments }}</div>
+              <div v-if="answer.comments" style="flex: 1">{{
+                answer.comments
+              }}</div>
             </li>
           </ul>
         </div>
@@ -135,19 +145,30 @@
 import SimulationSearch from "@/components/support/simulation-search.vue"
 import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
+import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/institution"
+
 export default {
-  components: { SimulationSearch, SurveyEmailSearch, CopyButton },
+  components: {
+    SimulationSearch,
+    SurveyEmailSearch,
+    CopyButton,
+    WarningMessage,
+  },
   data: function () {
     return {
       benefitsMap: getBenefit,
       accompagnements: undefined,
       loggedIn: undefined,
+      error: undefined,
     }
   },
   computed: {
     followupId() {
       return this.$route.params.followupId
+    },
+    surveyEmail() {
+      return this.$route.params.surveyEmail
     },
     connect() {
       return `/api/auth/redirect?redirect=${window.location}`
@@ -175,10 +196,14 @@ export default {
     },
 
     fetchPollResults: async function () {
-      this.retrievingCommunes = true
-      const uri = this.$route.params.followupId
-        ? `/api/followups/id/${this.$route.params.followupId}`
-        : `/api/followups/surveys`
+      let uri
+      if (this.$route.params.surveyEmail) {
+        uri = `/api/followups/email/${this.$route.params.surveyEmail}`
+      } else if (this.$route.params.followupId) {
+        uri = `/api/followups/id/${this.$route.params.followupId}`
+      } else {
+        uri = `/api/followups/surveys`
+      }
       try {
         const response = await fetch(uri, {
           method: "GET",
@@ -188,25 +213,41 @@ export default {
             "Content-Type": "application/json",
           },
         })
-        const output = await response.json()
-        for (let accompagnement of output) {
-          const surveyStates = {}
-          accompagnement.surveys[0].answers.map((survey) => {
-            surveyStates[survey.id] = {
-              status: survey.value,
-              comments: survey.comments,
+        const serverResponse = await response
+        if (serverResponse.status == 404 && this.$route.params.surveyEmail) {
+          this.loggedIn = true
+          this.error = "Aucun sondage ne correspond à cette adresse email"
+        } else if (
+          serverResponse.status == 404 &&
+          this.$route.params.followupId
+        ) {
+          this.loggedIn = true
+          this.error = "Aucun sondage ne correspond à cet identifiant"
+        } else {
+          const accompagnements = await serverResponse.json()
+          for (let accompagnement of accompagnements) {
+            const surveyStates = {}
+            if (accompagnement.surveys.length) {
+              accompagnement.surveys[0].answers.map((survey) => {
+                surveyStates[survey.id] = {
+                  status: survey.value,
+                  comments: survey.comments,
+                }
+              })
+              accompagnement.benefits.map((benefit) => {
+                if (benefit.id && surveyStates[benefit.id]) {
+                  benefit["status"] = surveyStates[benefit["id"]]["status"]
+                  benefit["comments"] = surveyStates[benefit["id"]]["comments"]
+                }
+              })
             }
-          })
-          accompagnement.benefits.map((benefit) => {
-            if (benefit.id && surveyStates[benefit.id]) {
-              benefit["status"] = surveyStates[benefit["id"]]["status"]
-              benefit["comments"] = surveyStates[benefit["id"]]["comments"]
-            }
-          })
+          }
+          this.accompagnements = accompagnements
+          this.loggedIn = true
+          this.error = undefined
         }
-        this.accompagnements = output
-        this.loggedIn = true
       } catch (status) {
+        console.log(status)
         this.accompagnements = []
         this.loggedIn = false
       }

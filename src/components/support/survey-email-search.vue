@@ -1,5 +1,5 @@
 <template>
-  <form class="simulation-search" @submit="onSubmit">
+  <form class="simulation-search" @submit.prevent="onSubmit">
     <label for="surveyEmail" class="fr-label fr-text--lead fr-mb-0"
       >Rechercher un sondage par adresse email :</label
     >
@@ -8,7 +8,7 @@
         id="surveyEmail"
         v-model="surveyEmail"
         class="fr-input"
-        type="text"
+        type="email"
         placeholder="Email de l'utilisateur"
         required
       />
@@ -22,13 +22,12 @@ export default {
   name: "SimulationSearch",
   data() {
     return {
-      situationId: "",
+      surveyEmail: "",
     }
   },
   methods: {
     onSubmit() {
-      const situationId = /([a-z0-9]{24})/.exec(this.situationId)[0]
-      window?.open(`/api/support/simulation/${situationId}`, "_blank").focus()
+      window.location.href = `/accompagnement/email/${this.surveyEmail}`
     },
   },
 }

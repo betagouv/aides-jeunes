@@ -36,7 +36,7 @@
       />
     </div>
 
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit" />
   </form>
 </template>
 
@@ -73,6 +73,19 @@ export default {
       individu,
       types: this.getTypes(individu),
     }
+  },
+  computed: {
+    canSubmit() {
+      return this.types.every((type) => {
+        return Object.keys(type.amounts).every((period) => {
+          return (
+            type.amounts[period] !== undefined &&
+            type.amounts[period] >= 0 &&
+            !isNaN(type.amounts[period])
+          )
+        })
+      })
+    },
   },
   watch: {
     $route(toRoute, fromRoute) {
@@ -161,6 +174,7 @@ export default {
       return complex.indexOf(type) === -1
     },
     onSubmit() {
+      if (!this.canSubmit) return
       this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",

@@ -50,7 +50,7 @@ export default {
         return this.value || this.modelValue
       },
       set(value) {
-        if (value || value === 0) {
+        if (value || value === (0 || "")) {
           this.error = false
           this.$emit("update:modelValue", value)
         } else {

@@ -13,7 +13,8 @@ conditions_generales:
     operator: <=
     value: 25
   - type: quotient_familial
-    ceiling: 800
+    value: 800
+    operator: "<="
     period: month
   - type: departements
     values:

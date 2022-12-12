@@ -15,7 +15,8 @@ conditions_generales:
     values:
       - "62"
   - type: quotient_familial
-    ceiling: 617
+    value: 617
+    operator: "<="
     period: year
 profils:
   - type: apprenti

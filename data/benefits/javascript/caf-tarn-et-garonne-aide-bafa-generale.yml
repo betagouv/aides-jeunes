@@ -20,7 +20,8 @@ conditions_generales:
       - "82"
   - type: quotient_familial
     period: month
-    ceiling: 820
+    value: 820
+    operator: "<="
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
 form: https://www.caf.fr/sites/default/files/caf/821/Documents/BAFA%20imprime%20NB.pdf

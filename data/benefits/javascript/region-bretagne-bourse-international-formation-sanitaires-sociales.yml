@@ -16,7 +16,8 @@ conditions_generales:
     values:
       - "53"
   - type: quotient_familial
-    ceiling: 25000
+    value: 25000
+    operator: "<="
     period: year
   - type: formation_sanitaire_social
 profils:

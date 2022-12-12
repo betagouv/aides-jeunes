@@ -16,7 +16,8 @@ conditions_generales:
       - "13"
   - type: quotient_familial
     period: month
-    ceiling: 1200
+    value: 1200
+    operator: "<="
 profils: []
 conditions:
   - Effectuer votre stage en France.

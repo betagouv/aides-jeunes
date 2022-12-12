@@ -8,7 +8,8 @@ conditions_generales:
     values:
       - "04"
   - type: quotient_familial
-    ceiling: 26631
+    value: 26631
+    operator: "<="
     period: year
 profils:
   - type: lyceen

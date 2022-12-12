@@ -9,7 +9,8 @@ conditions_generales:
     values:
       - "14"
   - type: quotient_familial
-    ceiling: 1000
+    value: 1000
+    operator: "<="
     period: month
   - type: age
     operator: ">="

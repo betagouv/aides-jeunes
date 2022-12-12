@@ -11,7 +11,8 @@ conditions:
 conditions_generales:
   - type: quotient_familial
     period: month
-    ceiling: 800
+    value: 800
+    operator: "<="
   - type: departements
     values:
       - "52"

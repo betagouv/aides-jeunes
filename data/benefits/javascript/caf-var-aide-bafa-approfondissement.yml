@@ -16,7 +16,8 @@ conditions_generales:
       - "83"
   - type: quotient_familial
     period: month
-    ceiling: 1000
+    value: 1000
+    operator: "<="
 profils: []
 conditions:
   - Être allocataire ou rattaché·e au dossier allocataire de vos parents, ou

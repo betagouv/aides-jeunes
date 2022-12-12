@@ -12,7 +12,7 @@
     :step="step"
     :data-type="dataType"
     class="fr-input"
-    inputmode="numeric"
+    inputmode="decimal"
     :aria-labelledby="ariaLabelledBy || null"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"

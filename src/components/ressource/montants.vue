@@ -149,11 +149,6 @@ export default {
         this.$emit("update", "displayMonthly", this.index, value)
       },
     },
-    computed: {
-      canSubmit() {
-        return this.singleValue && this.singleValue >= 0
-      },
-    },
   },
   methods: {
     getQuestionLabel,

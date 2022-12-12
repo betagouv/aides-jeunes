@@ -42,6 +42,7 @@
             <InputNumber
               id="liberaleLastBenef"
               :value="ressource.amounts[store.dates.lastYear.id]"
+              disable-negative-value
               @update:model-value="update(store.dates.lastYear.id, $event)"
             />
           </div>

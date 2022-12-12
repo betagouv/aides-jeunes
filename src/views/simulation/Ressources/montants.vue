@@ -100,6 +100,16 @@ export default {
       }
     },
   },
+  created() {
+    // initialise this.tpye.amounts to 0 if not defined or empty char
+    this.types.forEach((type) => {
+      Object.keys(type.amounts).forEach((period) => {
+        if (type.amounts[period] === null || type.amounts[period] === "") {
+          type.amounts[period] = 0
+        }
+      })
+    })
+  },
   methods: {
     getIndividuNom() {
       return Individu.label(this.individu, "nom")

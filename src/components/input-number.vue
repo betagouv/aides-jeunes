@@ -56,7 +56,7 @@ export default {
       set(value) {
         if (value !== undefined || value === 0) {
           this.error = false
-          this.$emit("update:modelValue", value)
+          this.$emit("update:modelValue", parseFloat(value))
         } else {
           this.error = true
           this.$emit("update:modelValue", undefined)

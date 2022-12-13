@@ -6,7 +6,7 @@ description: Grâce au Pass Abonné -28 (hebdo, mensuel ou annuel), vous
 prefix: le
 conditions_generales:
   - type: age
-    operator: <=
+    operator: <
     value: 28
   - type: regions
     values:

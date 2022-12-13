@@ -72,6 +72,10 @@ FollowupSchema.static("findByIdOrOldId", function (id) {
   }
 })
 
+FollowupSchema.static("findByEmail", function (email) {
+  return this.find({ email })
+})
+
 FollowupSchema.method("postInitialEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId

@@ -248,6 +248,11 @@ const router = createRouter({
       component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
+      path: "/accompagnement/email/:surveyEmail",
+      name: "search-accompagnement-email",
+      component: () => import("./views/accompagnement/accompagnement.vue"),
+    },
+    {
       path: "/accompagnement/:followupId",
       name: "accompagnement",
       component: () => import("./views/accompagnement/accompagnement.vue"),

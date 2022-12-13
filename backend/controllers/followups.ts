@@ -97,6 +97,18 @@ export function showSurveyResults(req: ajRequest, res: Response) {
     })
 }
 
+export function showSurveyResultByEmail(req: ajRequest, res: Response) {
+  Followup.findByEmail(req.params.email)
+    .then((simulations: any) => {
+      if (!simulations || !simulations.length) return res.sendStatus(404)
+      res.send(simulations)
+    })
+    .catch((error: Error) => {
+      console.error("error", error)
+      return res.sendStatus(400)
+    })
+}
+
 export function showSimulation(req: ajRequest, res: Response) {
   Followup.findByIdOrOldId(req.params.surveyId)
     .select(excludeFields)

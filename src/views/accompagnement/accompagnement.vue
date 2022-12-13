@@ -247,7 +247,6 @@ export default {
           this.error = undefined
         }
       } catch (status) {
-        console.log(status)
         this.accompagnements = []
         this.loggedIn = false
       }

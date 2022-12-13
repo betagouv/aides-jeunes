@@ -11,7 +11,7 @@ conditions_generales:
     values:
       - "75"
   - type: age
-    operator: <=
+    operator: <
     value: 28
 profils: []
 conditions:

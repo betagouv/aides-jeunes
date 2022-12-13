@@ -48,15 +48,12 @@ export default {
   computed: {
     model: {
       get() {
-        if (this.value === 0) {
-          return 0
-        }
-        return this.value || this.modelValue
+        return this.value || this.modelValue || 0
       },
       set(value) {
         if (value !== undefined || value === 0) {
           this.error = false
-          this.$emit("update:modelValue", parseFloat(value))
+          this.$emit("update:modelValue", value)
         } else {
           this.error = true
           this.$emit("update:modelValue", undefined)

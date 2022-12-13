@@ -58,7 +58,12 @@
         </h3>
         <p class="total-element">{{ institution.benefits.length }} aides :</p>
         <ul>
-          <li v-for="benefit in institution.benefits" :key="benefit.id">
+          <li
+            v-for="benefit in institution.benefits.sort((a, b) =>
+              a.label.localeCompare(b.label)
+            )"
+            :key="benefit.id"
+          >
             <router-link
               :to="{ name: 'aide', params: { benefitId: benefit.id } }"
             >

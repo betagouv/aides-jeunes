@@ -12,6 +12,7 @@ import benefits from "./data/all"
 
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup"
+import iframeRollup from "./rollup/iframe.rollup"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
@@ -51,6 +52,7 @@ export default defineConfig(async ({ mode }) => {
     },
     plugins: [
       generator,
+      iframeRollup,
       vue(),
       createHtmlPlugin({
         minify: true,

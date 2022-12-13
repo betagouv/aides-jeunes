@@ -4,7 +4,7 @@
   "description": "Simulateur de prestations sociales pour les jeunes",
   "scripts": {
     "serve": "nodemon --exec 'babel-node -x \".ts\"' backend/dev",
-    "build": "concurrently 'npm run build:server' 'npm run build:lib' 'npm run build:data' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
+    "build": "concurrently 'npm run build:server' 'npm run build:lib' 'npm run build:data' && concurrently 'npm run build:front' && npm run copy:templates",
     "clean:dist-server": "rm -fR dist-server",
     "copy:templates": "cp -R backend/lib/mes-aides/emails/templates dist-server/backend/lib/mes-aides/emails/templates",
     "build:iframes": "webpack --config iframes/iframes.config.ts",
@@ -125,7 +125,7 @@
     "nodemon": "^2.0.20",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
-    "rollup-plugin-visualizer": "^5.8.2",
+    "rollup-plugin-visualizer": "^5.8.3",
     "ts-jest": "^27.1.4",
     "typescript": "^4.8.3",
     "webpack": "^5.64.3",

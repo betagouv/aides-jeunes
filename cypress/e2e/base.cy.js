@@ -32,6 +32,22 @@ context("Full simulation", () => {
     foyer.fill_rsa_isolement_recent(false)
     navigate.goRecap()
     navigate.next()
+
+    // Test the monthly payments page as an owner
+    logement.fill__logementType("proprietaire")
+    logement.fill__primoAccedant(false)
+    logement.fill_loyer(800)
+    navigate.goRecap()
+    navigate.updateFromRecap("Êtes-vous ?")
+
+    // Test the monthly payments page as an owner first-time buyer
+    logement.fill__logementType("proprietaire")
+    logement.fill__primoAccedant(true)
+    logement.fill_loyer(800)
+    navigate.goRecap()
+    navigate.updateFromRecap("Êtes-vous ?")
+
+    // Continue the test as an homeless person
     logement.fill__logementType("sansDomicile")
     logement.fill_depcom("94120")
     logement.fill__nombreMoisEntreeLogement(-12)

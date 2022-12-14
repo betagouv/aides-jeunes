@@ -8,6 +8,10 @@ const fill__locationType = (_locationType) => {
   fillRadio("_locationType", _locationType)
 }
 
+const fill__primoAccedant = (_primoAccedant) => {
+  fillRadio("_primoAccedant", _primoAccedant)
+}
+
 const fill__nombreMoisEntreeLogement = (nombre) => {
   fillRadio("_nombreMoisEntreeLogement", nombre)
 }
@@ -61,6 +65,7 @@ const fill__en_france = (inFrance) => {
 export default {
   fill__logementType,
   fill__locationType,
+  fill__primoAccedant,
   fill__nombreMoisEntreeLogement,
   fill_depcom,
   fill_parisien,

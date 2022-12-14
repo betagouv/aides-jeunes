@@ -73,22 +73,28 @@ export default {
   },
   computed: {
     canSubmit() {
-      const loyerQuestion =
-        this.loyerQuestion.selectedValue != undefined &&
-        this.loyerQuestion.selectedValue >= 0
-      const chargesQuestion =
-        this.chargesQuestion.selectedValue != undefined &&
-        this.chargesQuestion.selectedValue >= 0
+      let loyerQuestion = null
+      if (this.loyerQuestion) {
+        loyerQuestion =
+          this.loyerQuestion.selectedValue != undefined &&
+          this.loyerQuestion.selectedValue >= 0
+      }
+      let chargesQuestion = null
+      if (this.chargesQuestion) {
+        chargesQuestion =
+          this.chargesQuestion.selectedValue != undefined &&
+          this.chargesQuestion.selectedValue >= 0
+      }
       return this.captureCharges
         ? loyerQuestion && chargesQuestion
         : loyerQuestion
     },
   },
   created() {
-    if (!this.loyerQuestion.selectedValue) {
+    if (this.loyerQuestion && !this.loyerQuestion.selectedValue) {
       this.loyerQuestion.selectedValue = 0
     }
-    if (!this.chargesQuestion.selectedValue) {
+    if (this.chargesQuestion && !this.chargesQuestion.selectedValue) {
       this.chargesQuestion.selectedValue = 0
     }
   },

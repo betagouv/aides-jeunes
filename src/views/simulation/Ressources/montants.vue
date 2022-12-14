@@ -36,7 +36,7 @@
       />
     </div>
 
-    <ActionButtons :on-submit="onSubmit" />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit" />
   </form>
 </template>
 
@@ -74,6 +74,19 @@ export default {
       types: this.getTypes(individu),
     }
   },
+  computed: {
+    canSubmit() {
+      return this.types.every((type) => {
+        return Object.keys(type.amounts).every((period) => {
+          return (
+            type.amounts[period] !== undefined &&
+            type.amounts[period] >= 0 &&
+            !isNaN(type.amounts[period])
+          )
+        })
+      })
+    },
+  },
   watch: {
     $route(toRoute, fromRoute) {
       if (toRoute.name !== "ressources/montants") {
@@ -86,6 +99,16 @@ export default {
         this.types = this.getTypes(this.individu)
       }
     },
+  },
+  created() {
+    // initialise this.tpye.amounts to 0 if not defined or empty char
+    this.types.forEach((type) => {
+      Object.keys(type.amounts).forEach((period) => {
+        if (type.amounts[period] === null || type.amounts[period] === "") {
+          type.amounts[period] = 0
+        }
+      })
+    })
   },
   methods: {
     getIndividuNom() {
@@ -161,6 +184,7 @@ export default {
       return complex.indexOf(type) === -1
     },
     onSubmit() {
+      if (!this.canSubmit) return
       this.store.answer({
         id: this.$route.params.id,
         entityName: "individu",

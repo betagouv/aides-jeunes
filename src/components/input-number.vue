@@ -36,6 +36,7 @@ export default {
     modelValue: { type: [Number, String] },
     step: { type: String, default: "any" },
     emit: { type: Boolean, default: true },
+    disableNegativeValue: { type: Boolean, default: false },
   },
   emits: ["input", "update:modelValue"],
   data: function () {
@@ -47,15 +48,20 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value || this.modelValue
+        return this.value || this.modelValue || 0
       },
       set(value) {
-        if (value || value === 0) {
+        if (value !== undefined || value === 0) {
           this.error = false
           this.$emit("update:modelValue", value)
         } else {
           this.error = true
           this.$emit("update:modelValue", undefined)
+        }
+        if (this.disableNegativeValue) {
+          if (value < 0) {
+            this.error = true
+          }
         }
       },
     },

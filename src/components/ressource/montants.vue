@@ -31,6 +31,7 @@
             <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
               <InputNumber
                 :id="`${type.meta.id}_monthly`"
+                disable-negative-value
                 :value="type.amounts[store.dates.thisMonth.id]"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
@@ -63,6 +64,7 @@
               <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                 <InputNumber
                   :id="`${type.meta.id}_${month.id}`"
+                  disable-negative-value
                   :value="type.amounts[month.id]"
                   @update:model-value="
                     $emit('update', 'monthUpdate', index, {

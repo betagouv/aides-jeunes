@@ -19,7 +19,7 @@
 
 <script>
 import WarningMessage from "@/components/warning-message.vue"
-import { isValidNumber } from "@/utils/validator"
+import { stringIsValidNumber, stringToNumber } from "@/utils/validator"
 export default {
   name: "InputNumber",
   components: { WarningMessage },
@@ -47,23 +47,12 @@ export default {
         return this.value || this.modelValue || ""
       },
       set(value) {
-        // remove space
-        value = value.replaceAll(/\s/g, "")
         if (
-          (value && isValidNumber(value, this.min, this.max)) ||
+          (value && stringIsValidNumber(value, this.min, this.max)) ||
           value === ""
         ) {
           this.error = false
-          value = value === "" ? "0" : value
-          const trailingZeros = value.match(/(\.|\,)0+/)
-          if (trailingZeros) {
-            this.$emit(
-              "update:modelValue",
-              parseFloat(value).toFixed(trailingZeros.length - 1)
-            )
-          } else {
-            this.$emit("update:modelValue", parseFloat(value))
-          }
+          this.$emit("update:modelValue", stringToNumber(value))
         } else {
           this.error = true
           this.$emit("update:modelValue", value)

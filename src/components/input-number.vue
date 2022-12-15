@@ -7,6 +7,7 @@
     :data-testid="id"
     :name="name"
     :data-type="dataType"
+    type="text"
     class="fr-input"
     :class="dataType !== 'count' ? 'fr-text--right' : ''"
     inputmode="decimal"

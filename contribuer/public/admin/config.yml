@@ -33,27 +33,31 @@ fields:
       - label: empty
         widget: hidden
         name: empty
+  field_numeric_value: &field_numeric_value
+    label: Valeur
+    name: value
+    widget: number
+    step: -1
+  field_numeric_operator: &field_numeric_operator
+    label: Opérateur
+    name: operator
+    widget: select
+    options:
+      - label: Supérieur à
+        value: ">"
+      - label: Supérieur ou égal à
+        value: ">="
+      - label: Égal à
+        value: "="
+      - label: Inférieur à
+        value: "<"
+      - label: Inférieur ou égal à
+        value: "<="
   field_number: &field_number
     widget: object
     fields:
-      - label: Opérateur
-        name: operator
-        widget: select
-        options:
-          - label: Supérieur à
-            value: ">"
-          - label: Supérieur ou égal à
-            value: ">="
-          - label: Égal à
-            value: "="
-          - label: Inférieur à
-            value: "<"
-          - label: Inférieur ou égal à
-            value: "<="
-      - label: Valeur
-        name: value
-        widget: number
-        step: -1
+      - *field_numeric_operator
+      - *field_numeric_value
   field_age: &field_age
     <<: *field_number
     label: Age
@@ -188,11 +192,9 @@ fields:
     name: quotient_familial
     widget: object
     fields:
-      - label: Plafond
-        name: value
-        widget: number
-        step: -1
-      - <<: *field_number
+      - *field_numeric_operator
+      - <<: *field_numeric_value
+        label: Montant
       - label: Période
         name: period
         widget: select

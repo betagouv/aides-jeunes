@@ -2,17 +2,14 @@
   <input
     :id="id"
     ref="result"
-    v-model.number="model"
+    v-model="model"
     v-select-on-click
     :data-testid="id"
-    type="number"
     :name="name"
-    :min="min"
-    :max="max"
-    :step="step"
     :data-type="dataType"
     class="fr-input"
-    inputmode="numeric"
+    :class="dataType !== 'count' ? 'fr-text--right' : ''"
+    inputmode="decimal"
     :aria-labelledby="ariaLabelledBy || null"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
@@ -29,14 +26,12 @@ export default {
     id: String,
     name: String,
     ariaLabelledBy: String,
-    min: Number,
-    max: Number,
+    min: {type: Number, default: null},
+    max: {type: Number, default: null},
     dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
     modelValue: { type: [Number, String] },
-    step: { type: String, default: "any" },
     emit: { type: Boolean, default: true },
-    disableNegativeValue: { type: Boolean, default: false },
   },
   emits: ["input", "update:modelValue"],
   data: function () {
@@ -48,35 +43,32 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value || this.modelValue || 0
+        return this.value || this.modelValue || ""
       },
       set(value) {
-        if (value !== undefined || value === 0) {
+        function isValidNumber(value, min=null, max=null) {
+          const validNumber = value.match(/^(-)?(\d)+((\.|,)(\d)+)?$/g) && !isNaN(parseFloat(value))
+          const floor = min == null || min <= parseFloat(value)
+          const ceiling = max == null || max >= parseFloat(value)
+          return validNumber && floor && ceiling
+        }
+        // remove space
+        value = value.replaceAll(/\s/g, "")
+        if(value && isValidNumber(value, this.min, this.max) || value === "") {
           this.error = false
-          this.$emit("update:modelValue", value)
+          value = (value === "") ? "0" : value
+          const trailingZeros = value.match(/(\.|\,)0+/)
+          if(trailingZeros) {
+            this.$emit("update:modelValue",  parseFloat(value).toFixed(trailingZeros.length - 1))  
+          } else {
+            this.$emit("update:modelValue",  parseFloat(value))
+          }
         } else {
           this.error = true
-          this.$emit("update:modelValue", undefined)
-        }
-        if (this.disableNegativeValue) {
-          if (value < 0) {
-            this.error = true
-          }
+          this.$emit("update:modelValue", value)
         }
       },
     },
   },
 }
 </script>
-
-<style scoped>
-.input-number-error {
-  color: #d63626;
-  color: var(--red);
-  padding-top: 5px;
-  padding-left: 15px;
-}
-input[type="number"]:not([data-type="count"]) {
-  text-align: right;
-}
-</style>

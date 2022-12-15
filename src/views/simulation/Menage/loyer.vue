@@ -16,7 +16,7 @@
             <InputNumber
               id="loyer"
               v-model="loyerQuestion.selectedValue"
-              disable-negative-value
+              :min="0"
             />
           </div>
         </div>
@@ -39,7 +39,7 @@
               id="charges"
               v-model="chargesQuestion.selectedValue"
               data-testid="loyer"
-              disable-negative-value
+              :min="0"
             />
           </div>
         </div>

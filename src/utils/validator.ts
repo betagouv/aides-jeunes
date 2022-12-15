@@ -12,6 +12,7 @@ export function stringIsValidNumber(value, min = null, max = null) {
 }
 
 export function stringToNumber(value) {
+  value = value.replaceAll(/\s/g, "").replaceAll(/,/g, ".")
   value = value === "" ? "0" : value
   const trailingZeros = value.match(/(\.|,)0+$/)
   if (trailingZeros) {

@@ -13,7 +13,7 @@ export function stringIsValidNumber(value, min = null, max = null) {
 
 export function stringToNumber(value) {
   value = value === "" ? "0" : value
-  const trailingZeros = value.match(/(\.|\,)0+$/)
+  const trailingZeros = value.match(/(\.|,)0+$/)
   if (trailingZeros) {
     return parseFloat(value).toFixed(trailingZeros.length - 1)
   } else {

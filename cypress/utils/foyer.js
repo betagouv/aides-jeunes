@@ -28,7 +28,7 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
     .invoke("text")
     .should("contain", "la charge")
   cy.get(
-    'input[type="number"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge"]'
+    'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge"]'
   ).type(numberOfChildren)
   submit()
 }
@@ -40,7 +40,7 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_sup
       .invoke("text")
       .should("contain", "des études supérieures")
     cy.get(
-      'input[type="number"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur"]'
+      'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur"]'
     ).type(numberOfChildren)
     submit()
   }

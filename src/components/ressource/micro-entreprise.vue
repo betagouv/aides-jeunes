@@ -15,7 +15,7 @@
             <InputNumber
               :id="`${ressource.meta.id}_microAmount`"
               :value="ressource.amounts[store.dates.lastYear.id]"
-              disable-negative-value
+              :min="0"
               @update:model-value="update(store.dates.lastYear.id, $event)"
             />
           </div>

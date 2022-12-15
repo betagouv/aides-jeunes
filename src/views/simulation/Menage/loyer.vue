@@ -69,7 +69,11 @@ export default {
     return { store: useStore() }
   },
   data() {
-    return Logement.getLoyerData(this.store.simulation.answers.all)
+    return {
+      ...Logement.getLoyerData(this.store.simulation.answers.all),
+      chargesQuestion: Logement.getLoyerData(this.store.simulation.answers.all)
+        .chargesQuestion,
+    }
   },
   computed: {
     canSubmit() {

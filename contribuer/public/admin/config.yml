@@ -189,9 +189,10 @@ fields:
     widget: object
     fields:
       - label: Plafond
-        name: ceiling
+        name: value
         widget: number
         step: -1
+      - <<: *field_number
       - label: Période
         name: period
         widget: select

@@ -26,7 +26,7 @@ const fillConstantRevenu = (revenu) => {
       return cy.get(`label[for="${id}"]`)
     })
     .click()
-  cy.get("@salarySection").find('input[type="number"]').type(revenu)
+  cy.get("@salarySection").find('input[type="text"]').type(revenu)
   submit()
 }
 
@@ -41,7 +41,7 @@ const fillInconstantRevenu = (revenus) => {
       return cy.get(`label[for="${id}"]`)
     })
     .click()
-  cy.get("@salarySection").find('input[type="number"]').as("inputs")
+  cy.get("@salarySection").find('input[type="text"]').as("inputs")
   cy.get("@inputs").its("length").should("equal", 13)
 
   revenus.forEach((revenu) => {
@@ -51,7 +51,7 @@ const fillInconstantRevenu = (revenus) => {
 }
 
 const fillRevenuBrut = (revenu) => {
-  cy.get("form").find('input[type="number"]').type(revenu)
+  cy.get("form").find('input[type="text"]').type(revenu)
   cy.checkA11y()
   submit()
 }

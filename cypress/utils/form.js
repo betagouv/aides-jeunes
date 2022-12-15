@@ -32,7 +32,7 @@ const fillCheckboxes = (url, values) => {
 const fillNumber = (url, value) => {
   cy.url().should("include", url)
   cy.checkA11y()
-  cy.get("form").find('input[type="number"]').type(value)
+  cy.get("form").find('input[type="text"]').type(value)
   submit()
 }
 

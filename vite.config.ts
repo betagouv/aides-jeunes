@@ -12,6 +12,7 @@ import benefits from "./data/all"
 
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup"
+import buildIframe from "./rollup/iframe.rollup"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
 
@@ -43,6 +44,35 @@ export default defineConfig(async ({ mode }) => {
     build: {
       rollupOptions: {
         plugins: [],
+        input: {
+          iframe: path.resolve(__dirname, "iframes/iframe-integration.js"),
+          main: path.resolve(__dirname, "src/main.ts"),
+        },
+        output: {
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: ({ name }) => {
+            /*
+            console.log("name", name)
+            if (name && /(iframe-integration\.js)$/.test(name)) {
+              return 'document/iframe-integration.js';
+            }
+            */
+            if (name === "iframe") {
+              return "document/iframe-integration.js"
+            }
+            return "assets/js/[name]-[hash].js"
+          },
+          assetFileNames: ({ name }) => {
+            if (name && /\.(gif|jpe?g|png|svg)$/.test(name)) {
+              return "assets/images/[name]-[hash][extname]"
+            } else if (name && /\.(css)$/.test(name)) {
+              return "assets/css/[name]-[hash][extname]"
+            } else if (name && /\.(woff2?)$/.test(name)) {
+              return "assets/fonts/[name]-[hash][extname]"
+            }
+            return "assets/[name]-[hash][extname]"
+          },
+        },
       },
       commonjsOptions: {
         exclude: ["lib"],
@@ -51,6 +81,7 @@ export default defineConfig(async ({ mode }) => {
     },
     plugins: [
       generator,
+      buildIframe(),
       vue(),
       createHtmlPlugin({
         minify: true,

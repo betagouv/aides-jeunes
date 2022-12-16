@@ -46,12 +46,7 @@ export default defineConfig(async ({ mode }) => {
         plugins: [],
         output: {
           chunkFileNames: "assets/js/[name]-[hash].js",
-          entryFileNames: ({ name }) => {
-            if (name === "iframe") {
-              return "document/iframe-integration.js"
-            }
-            return "assets/js/[name]-[hash].js"
-          },
+          entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: ({ name }) => {
             if (name && /\.(gif|jpe?g|png|svg)$/.test(name)) {
               return "assets/images/[name]-[hash][extname]"

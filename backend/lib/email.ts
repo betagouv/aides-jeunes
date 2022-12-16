@@ -81,7 +81,7 @@ function processSend(args) {
         process.exit(0)
       })
   } else if (args.multiple) {
-    if (args.type !== "survey") {
+    if (args.type !== "benefit-action-survey") {
       process.exit(0)
     }
     const limit = parseInt(args.multiple) || 1

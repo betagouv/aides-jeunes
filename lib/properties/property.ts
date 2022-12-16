@@ -202,6 +202,7 @@ export class NumberProperty extends Property {
   type: string
   unit?: string
   min?: number
+  max?: number
 
   constructor({
     type = "amount",
@@ -214,6 +215,7 @@ export class NumberProperty extends Property {
     this.type = type
     this.unit = numberPropertyConstruct.unit
     this.min = numberPropertyConstruct.min
+    this.max = numberPropertyConstruct.max
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -221,6 +223,7 @@ export class NumberProperty extends Property {
     return {
       type: "number",
       min: this.min,
+      max: this.max,
     }
   }
 

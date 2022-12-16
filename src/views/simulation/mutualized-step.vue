@@ -43,6 +43,7 @@
                     :id="fieldName"
                     v-model="value"
                     :min="step.min"
+                    :max="step.max"
                     :data-type="step.type"
                     ariaLabelledBy="step-question"
                   />

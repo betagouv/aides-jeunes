@@ -41,6 +41,8 @@ export default {
     questionType: "number",
     optional: true,
     type: "count",
+    min: 0,
+    max: 30,
     moreInfo:
       "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
   }),

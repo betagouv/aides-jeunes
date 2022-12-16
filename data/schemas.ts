@@ -98,10 +98,7 @@ export function compareSchema(data, schema, output, depth = []) {
             }
           } else {
             for (const subkey of data[key]) {
-              if (
-                typeof subkey == "object" &&
-                (subkey["values"]?.length || subkey["type"])
-              ) {
+              if (typeof subkey == "object" && subkey["type"]) {
                 const proxy = {}
                 proxy[subkey["type"]] = subkey["values"]
                 compareSchema(proxy, schema[key], output, [...depth, key])

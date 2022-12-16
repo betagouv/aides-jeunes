@@ -44,19 +44,9 @@ export default defineConfig(async ({ mode }) => {
     build: {
       rollupOptions: {
         plugins: [],
-        input: {
-          iframe: path.resolve(__dirname, "iframes/iframe-integration.js"),
-          main: path.resolve(__dirname, "src/main.ts"),
-        },
         output: {
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: ({ name }) => {
-            /*
-            console.log("name", name)
-            if (name && /(iframe-integration\.js)$/.test(name)) {
-              return 'document/iframe-integration.js';
-            }
-            */
             if (name === "iframe") {
               return "document/iframe-integration.js"
             }

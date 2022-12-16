@@ -85,7 +85,7 @@
                   <button
                     :disabled="recapEmailState === 'waiting'"
                     class="fr-btn"
-                    @click.prevent="getRecap(false)"
+                    @click.prevent="getRecap(true)"
                   >
                     J'accepte d'être recontacté·e par email
                   </button>
@@ -94,7 +94,7 @@
                   <button
                     :disabled="recapEmailState === 'waiting'"
                     class="fr-btn fr-btn--secondary"
-                    @click.prevent="getRecap(true)"
+                    @click.prevent="getRecap(false)"
                   >
                     Non merci, je préfère ne recevoir que le récapitulatif
                   </button>

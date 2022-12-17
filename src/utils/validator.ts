@@ -1,5 +1,5 @@
 export function stringIsValidNumber(value, min = null, max = null) {
-  value = value.replaceAll(/\s/g, "").replaceAll(/,/g, ".")
+  value = (value || "").replace(/\s/g, "").replace(/,/g, ".")
   // regex:
   // ^(-)?              may start with a minus sign
   // (\d)+              as at least one digit
@@ -12,7 +12,7 @@ export function stringIsValidNumber(value, min = null, max = null) {
 }
 
 export function stringToNumber(value) {
-  value = value.replaceAll(/\s/g, "").replaceAll(/,/g, ".")
+  value = (value || "").replace(/\s/g, "").replace(/,/g, ".")
   value = value === "" ? "0" : value
   const trailingZeros = value.match(/(\.)0+$/)
   if (trailingZeros) {

@@ -48,5 +48,9 @@
     "dist-server",
     "tools",
     "tests"
-  ]
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

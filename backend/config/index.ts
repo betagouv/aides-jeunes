@@ -66,7 +66,7 @@ const all: ConfigurationLayout = {
 
 let override = {}
 try {
-  override = import(`${__dirname}${env}.ts`)
+  override = import(`${__dirname}${env}.js`)
   console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
   console.warn(`No specific configuration for ${env}`)

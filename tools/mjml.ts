@@ -8,7 +8,7 @@ import "../backend/lib/mongo-connector"
 import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
 import "../backend/lib/mes-aides/emails/benefit-action-survey"
-
+import { __express } from "ejs"
 const port = process.env.PORT || 9001
 
 // Setup Express
@@ -16,8 +16,8 @@ const app = express()
 
 const typeKeys = ["simulation-results", "benefit-action-survey"]
 
-app.engine(".html", require("ejs").__express)
-app.set("views", __dirname + "/views")
+app.engine(".html", __express)
+app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
 app.route("/").get(function (req, res) {

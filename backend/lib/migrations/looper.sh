@@ -7,6 +7,7 @@ MAX_LOOP=1000
 
 loop_count=1
 
+# simulations / followups
 MODEL_MIGRATION=$1;
 
 echo "Migration de $MODEL_MIGRATION"

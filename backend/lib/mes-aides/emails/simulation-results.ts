@@ -27,11 +27,11 @@ function basicBenefitText(droit, parameters) {
 }
 
 const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/initial.txt"),
+  path.join(__dirname, "templates/simulation-results.txt"),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/initial.mjml"),
+  path.join(__dirname, "templates/simulation-results.mjml"),
   "utf8"
 )
 

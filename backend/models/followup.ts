@@ -7,8 +7,8 @@ import utils from "../lib/utils"
 
 import { SurveyLayout } from "../types/survey"
 
-import renderInitial from "../lib/mes-aides/emails/initial"
-import renderSurvey from "../lib/mes-aides/emails/survey"
+import renderSimulationResults from "../lib/mes-aides/emails/simulation-results"
+import renderBenefitActionSurvey from "../lib/mes-aides/emails/benefit-action-survey"
 
 import { MongooseLayout, FollowupModel } from "../types/models"
 
@@ -75,8 +75,7 @@ FollowupSchema.static("findByIdOrOldId", function (id) {
 FollowupSchema.static("findByEmail", function (email) {
   return this.find({ email })
 })
-
-FollowupSchema.method("postInitialEmail", function (messageId) {
+FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId
   if (!this.surveyOptin) {
@@ -86,24 +85,24 @@ FollowupSchema.method("postInitialEmail", function (messageId) {
   return this.save()
 })
 
-FollowupSchema.method("renderInitialEmail", function () {
-  return renderInitial(this)
+FollowupSchema.method("renderSimulationResultsEmail", function () {
+  return renderSimulationResults(this)
 })
 
-FollowupSchema.method("sendInitialEmail", function () {
+FollowupSchema.method("sendSimulationResultsEmail", function () {
   const followup = this
-  return this.renderInitialEmail()
+  return this.renderSimulationResultsEmail()
     .then((render) => {
       const email = new SendSmtpEmail()
       email.to = [{ email: followup.email }]
       email.subject = render.subject
       email.textContent = render.text
       email.htmlContent = render.html
-      email.tags = ["initial"]
+      email.tags = ["simulation-results"]
       return sendEmail(email)
     })
     .then((response) => {
-      return followup.postInitialEmail(response.messageId)
+      return followup.postSimulationResultsEmail(response.messageId)
     })
     .catch((err) => {
       console.log("error", err)
@@ -112,8 +111,8 @@ FollowupSchema.method("sendInitialEmail", function () {
     })
 })
 
-FollowupSchema.method("renderSurveyEmail", function (survey) {
-  return renderSurvey(survey)
+FollowupSchema.method("renderBenefitActionSurveyEmail", function (survey) {
+  return renderBenefitActionSurvey(survey)
 })
 
 FollowupSchema.method("createSurvey", function (type) {
@@ -126,8 +125,8 @@ FollowupSchema.method("createSurvey", function (type) {
 
 FollowupSchema.method("sendSurvey", function () {
   const followup = this
-  return this.createSurvey("initial").then((survey: SurveyLayout) => {
-    return this.renderSurveyEmail(followup)
+  return this.createSurvey("benefit-action").then((survey: SurveyLayout) => {
+    return this.renderBenefitActionSurveyEmail(followup)
       .then((render) => {
         const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]
@@ -161,7 +160,7 @@ FollowupSchema.method("sendSurvey", function () {
 
 FollowupSchema.method("mock", function () {
   const followup = this
-  return this.createSurvey("initial").then((survey) => {
+  return this.createSurvey("benefit-action").then((survey) => {
     const surveys = Array.from(followup.surveys)
     surveys.push(survey)
     followup.surveys = surveys
@@ -192,7 +191,7 @@ FollowupSchema.pre("save", async function (next) {
   }
   try {
     const followup = this
-    followup.version = 2
+    followup.version = 3
     followup.accessToken = await utils.generateToken()
     next()
   } catch {

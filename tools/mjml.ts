@@ -6,15 +6,15 @@ import api from "../backend/api"
 api()
 import "../backend/lib/mongo-connector"
 import Followup from "../backend/models/followup"
-import renderInitial from "../backend/lib/mes-aides/emails/initial"
-import "../backend/lib/mes-aides/emails/survey"
+import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
+import "../backend/lib/mes-aides/emails/benefit-action-survey"
 
 const port = process.env.PORT || 9001
 
 // Setup Express
 const app = express()
 
-const typeKeys = ["initial", "survey"]
+const typeKeys = ["simulation-results", "benefit-action-survey"]
 
 app.engine(".html", require("ejs").__express)
 app.set("views", __dirname + "/views")
@@ -24,10 +24,10 @@ app.route("/").get(function (req, res) {
   Followup.find()
     .sort({ createdAt: -1 })
     .limit(10)
-    .exec(function (err, docs) {
+    .exec(function (err, followups) {
       res.render("index", {
-        docs: docs,
-        typeKeys: typeKeys,
+        followups,
+        typeKeys,
       })
     })
 })
@@ -37,11 +37,11 @@ app.route("/mjml/:id/:type").get(function (req, res) {
     .populate("simulation")
     .exec(function (err, followup) {
       const p =
-        req.params.type == "initial"
-          ? renderInitial(followup)
+        req.params.type == "simulation-results"
+          ? renderSimulationResults(followup)
           : followup
               .createSurvey()
-              .then(() => followup.renderSurveyEmail(followup))
+              .then(() => followup.renderBenefitActionSurveyEmail(followup))
       p.then(function (result) {
         const mode = req.query.mode || "html"
         if (mode == "html") {

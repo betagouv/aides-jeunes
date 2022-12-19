@@ -7,27 +7,33 @@
     <div id="app">
       <h1>Service d'email local</h1>
       <span>
-        <p v-if="docs"> Nombre de suivis : {{ docs.length }}</p>
+        <p v-if="followups"> Nombre de suivis : {{ followups.length }}</p>
         <p>
           Pour ajouter un suivi, effectuer une simulation jusqu'au bout, cliquer
           sur le bouton <b>"Recevoir les résultats par email"</b> et enfin sur
           <b>"j'accepte d'être recontacté par email"</b></p
         >
       </span>
-      <ul v-if="docs && typeKeys">
+      <ul v-if="followups && typeKeys">
         <h2>Liste des suivis</h2>
-        <li v-for="doc in docs">
-          <h3>Suivi n°{{ doc._id}}</h3>
+        <li v-for="followup in followups">
+          <h3>Suivi n°{{ followup._id}}</h3>
           <ul v-for="typeKey in typeKeys">
             <li>
-              <span v-if="typeKey === 'initial'">Mail initial : </span>
+              <span v-if="typeKey === 'simulation-results'"
+                >Mail initial :
+              </span>
               <span v-else>Résultats simulation : </span>
               &nbsp;
-              <a :href="`mjml/${doc._id}/${typeKey}?mode=html`" target="_blank"
+              <a
+                :href="`mjml/${followup._id}/${typeKey}?mode=html`"
+                target="_blank"
                 >HTML</a
               >
               &nbsp;
-              <a :href="`mjml/${doc._id}/${typeKey}?mode=text`" target="_blank"
+              <a
+                :href="`mjml/${followup._id}/${typeKey}?mode=text`"
+                target="_blank"
                 >texte</a
               >
             </li>
@@ -39,9 +45,9 @@
       const { createApp, onMounted, ref } = Vue;
       const app = createApp({
       setup() {
-          const docs = ref(<%- JSON.stringify(docs) %>);
+          const followups = ref(<%- JSON.stringify(followups) %>);
           const typeKeys = ref(<%- JSON.stringify(typeKeys) %>);
-          return { docs, typeKeys };
+          return { followups, typeKeys };
       }
       });
       app.mount("#app");

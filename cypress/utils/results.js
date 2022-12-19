@@ -158,6 +158,26 @@ const hasAideVeloNationale = () => {
   IdentifyBenefit(id, name)
 }
 
+const receiveResultsEmail = () => {
+  cy.intercept({
+    method: "POST",
+    url: "/api/simulation/*/followup",
+  }).as("post-receive-results-email")
+
+  cy.get(".fr-btn:contains('Recevoir les résultats par email')")
+    .should("be.visible")
+    .click()
+  cy.get("input#email").should("be.visible").type("simon.hamery@beta.gouv.fr")
+  cy.get(".fr-btn:contains(J'accepte d'être recontacté·e par email)")
+    .should("be.visible")
+    .click()
+
+  cy.wait("@post-receive-results-email").should(({ request, response }) => {
+    expect(request.method).to.equal("POST")
+    expect(response.statusCode).to.equal(200)
+  })
+}
+
 export default {
   wait,
   back,
@@ -169,4 +189,5 @@ export default {
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
+  receiveResultsEmail,
 }

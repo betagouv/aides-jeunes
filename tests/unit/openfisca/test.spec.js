@@ -1,5 +1,5 @@
 const expect = require("expect")
-const { values } = require("lodash")
+const { values } = require("lodash-es")
 const Promise = require("bluebird")
 const fs = Promise.promisifyAll(require("fs"))
 import subject from "@root/backend/lib/openfisca/test"

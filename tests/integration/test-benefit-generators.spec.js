@@ -1,6 +1,6 @@
 import expect from "expect"
-import { buildAPA } from "../../data/benefits/dynamic/apa.js"
-import { buildFSL } from "../../data/benefits/dynamic/fsl.js"
+import { buildAPA } from "@root/data/benefits/dynamic/apa"
+import { buildFSL } from "@root/data/benefits/dynamic/fsl"
 import { compareSchema, getCollectionSchema } from "@root/data/schemas"
 const benefitSchema = getCollectionSchema("benefits_javascript")
 

@@ -3,7 +3,7 @@ import mapping from "./mapping/index"
 import { forEach, assign, pick, pickBy } from "lodash-es"
 import benefits from "../../../data/all"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag"
-
+import jsYaml from "js-yaml"
 function toStringOf(obj) {
   return obj.toString()
 }
@@ -32,9 +32,9 @@ function normalizeIDs(test) {
   })
 }
 
-function toYAML(test) {
+async function toYAML(test) {
   normalizeIDs(test)
-  return require("js-yaml").dump(test)
+  return await jsYaml.dump(test)
 }
 
 export const EXTENSION_VARIABLES = {
@@ -88,7 +88,7 @@ const TEST_ATTRIBUTES = [
   "relative_error_margin",
 ]
 
-export const generateTest = function generateYAMLTest(details, situation) {
+export const generateTest = function (details, situation) {
   const openfiscaRequest = mapping.buildOpenFiscaRequest(
     situation.toObject ? situation.toObject() : situation
   )
@@ -133,8 +133,8 @@ export const generateTest = function generateYAMLTest(details, situation) {
   return result
 }
 
-export function generateYAMLTest(details, situation) {
-  return toYAML(exports.generateTest(details, situation))
+export async function generateYAMLTest(details, situation) {
+  return await toYAML(generateTest(details, situation))
 }
 
 export default {

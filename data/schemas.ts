@@ -1,9 +1,9 @@
 import path from "path"
 import yaml from "js-yaml"
 import fs from "fs"
-import { get } from "jamstack-loader"
+import jamstackLoader from "jamstack-loader"
 const __dirname = new URL(".", import.meta.url).pathname
-const jamstack = get(
+const jamstack = jamstackLoader.get(
   path.join(__dirname, "../contribuer/public/admin/config.yml")
 )
 

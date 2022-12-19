@@ -31,7 +31,7 @@
     "prettier:fix": "prettier --write .",
     "start": "cd dist-server && NODE_ENV=production node ./backend/server.js",
     "stats": "node ./dist-server/backend/lib/stats",
-    "test": "NODE_PATH=. jest --testTimeout=20000",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
     "tools:check-links-validity": "babel-node -x \".ts\" ./tools/check-links-validity.ts --ci",
     "tools:cleaner": "babel-node -x '.ts' ./tools/cleaner.ts",
     "tools:evaluate-benefits": "node dist-server/tools/evaluate-benefits",
@@ -163,7 +163,8 @@
     },
     "globals": {
       "ts-jest": {
-        "isolatedModules": true
+        "isolatedModules": true,
+        "useESM": true
       }
     },
     "transformIgnorePatterns": [
@@ -176,6 +177,7 @@
       "@root/(.*)": "<rootDir>/$1"
     },
     "extensionsToTreatAsEsm": [
+      ".vue",
       ".ts"
     ],
     "testMatch": [
@@ -184,9 +186,7 @@
     "testURL": "http://localhost/",
     "preset": "ts-jest",
     "automock": false,
-    "setupFiles": [
-      "./tests/unit/mocks/config.js"
-    ]
+    "setupFiles": []
   },
   "engines": {
     "node": ">= 16"

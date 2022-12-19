@@ -1,10 +1,10 @@
-const expect = require("expect")
-const { values } = require("lodash-es")
-const Promise = require("bluebird")
-const fs = Promise.promisifyAll(require("fs"))
+import expect from "expect"
+import { values } from "lodash-es"
+import Promise from "bluebird"
+import fs from "fs"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
-const tmp = require("tmp")
+import tmp from "tmp"
 
 const details = {
   name: "Ideal name",
@@ -73,7 +73,7 @@ function run_cmd(cmd, args) {
 
 function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
-  return fs.writeFileAsync(tmpobj.fd, yaml, "utf8").then(function () {
+  return fs.writeFileSync(tmpobj.fd, yaml, "utf8").then(function () {
     const args = extension
       ? ["test", tmpobj.name, "--extensions", extension]
       : ["test", tmpobj.name]
@@ -83,13 +83,13 @@ function runOpenFiscaTest(yaml, extension) {
 }
 
 describe("openfisca generateYAMLTest", function () {
-  const result = subject.generateYAMLTest(details, situation)
-
   it("generates a non empty string", function () {
+    const result = subject.generateYAMLTest(details, situation)
     expect(result).toBeTruthy()
   })
 
-  it("contains provided output", function () {
+  it("contains provided output", async function () {
+    const result = await subject.generateYAMLTest(details, situation)
     expect(result).toContain("rsa: 545.48")
   })
 

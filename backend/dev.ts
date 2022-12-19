@@ -3,6 +3,7 @@ import { createServer as createViteServer } from "vite"
 import configure from "./configure"
 import mock from "../mock"
 
+const __dirname = new URL(".", import.meta.url).pathname
 const port = process.env.PORT || 8080
 
 async function createServer() {

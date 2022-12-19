@@ -5,6 +5,7 @@ import fs from "fs"
 const api = express()
 api.use(express.json())
 
+const __dirname = new URL(".", import.meta.url).pathname
 const routesPath = path.join(__dirname, "../routes")
 
 async function loadRoutes() {

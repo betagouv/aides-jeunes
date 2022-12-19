@@ -13,6 +13,7 @@ function dateDaysAgo(nb_days) {
   return date
 }
 
+const __dirname = new URL(".", import.meta.url).pathname
 const nineWeeksAgo = dateDaysAgo(7 * 9)
 const yesterday = dateDaysAgo(1)
 const today = dateDaysAgo(0)

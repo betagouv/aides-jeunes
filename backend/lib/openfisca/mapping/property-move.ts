@@ -1,4 +1,4 @@
-import { forEach, pickBy } from "lodash"
+import { forEach, pickBy } from "lodash-es"
 
 import common from "./common"
 

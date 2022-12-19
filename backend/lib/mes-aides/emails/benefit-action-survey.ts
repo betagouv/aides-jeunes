@@ -2,6 +2,8 @@ import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
 
+const __dirname = new URL(".", import.meta.url).pathname
+
 const mustache = consolidate.mustache
 import config from "../../../config/index"
 import { mjml } from "./index"

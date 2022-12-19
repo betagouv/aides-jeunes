@@ -1,6 +1,6 @@
 // @ts-ignore
-const communes = require("@etalab/decoupage-administratif/data/communes.json")
-const epci = require("@etalab/decoupage-administratif/data/epci.json")
+import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
+import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
 const communeMap = {}

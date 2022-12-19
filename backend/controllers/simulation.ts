@@ -1,4 +1,4 @@
-import { omit, filter, pick, assign } from "lodash"
+import { omit, filter, pick, assign } from "lodash-es"
 
 import config from "../config/index"
 import { generateSituation } from "../../lib/situations"

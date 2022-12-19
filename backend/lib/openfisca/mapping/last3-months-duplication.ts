@@ -1,4 +1,4 @@
-import { forEach, uniq } from "lodash"
+import { forEach, uniq } from "lodash-es"
 
 import common from "./common"
 

@@ -1,4 +1,4 @@
-import { concat } from "lodash"
+import { concat } from "lodash-es"
 
 import ressources from "../../lib/resources"
 import { forEachProperties } from "../../lib/mutualized-steps"

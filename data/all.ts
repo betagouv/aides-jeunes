@@ -3,6 +3,8 @@ import base from "./index"
 import jamstackLoader from "jamstack-loader"
 import path from "path"
 
+const __dirname = new URL(".", import.meta.url).pathname
+
 let configFile = path.join(__dirname, "../contribuer/public/admin/config.yml")
 let jamstack
 if (existsSync(configFile)) {

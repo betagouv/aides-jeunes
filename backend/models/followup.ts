@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { find } from "lodash"
+import { find } from "lodash-es"
 import validator from "validator"
 
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue"

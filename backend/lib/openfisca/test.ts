@@ -1,6 +1,6 @@
 import common from "./mapping/common"
 import mapping from "./mapping/index"
-import { forEach, assign, pick, pickBy } from "lodash"
+import { forEach, assign, pick, pickBy } from "lodash-es"
 import benefits from "../../../data/all"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag"
 

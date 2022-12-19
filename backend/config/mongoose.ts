@@ -3,6 +3,8 @@ import fs from "fs"
 import bluebird from "bluebird"
 import { ConfigurationLayout } from "../types/config"
 
+const __dirname = new URL(".", import.meta.url).pathname
+
 export default function (mongoose: any, config: ConfigurationLayout) {
   mongoose.Promise = bluebird
 

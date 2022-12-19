@@ -19,10 +19,9 @@ async function loadRoutes() {
   )
   routes.map((route) => route.default(api))
 }
-
-loadRoutes().then(() => {
-  api.all("*", function (req, res) {
-    res.sendStatus(404)
-  })
+await loadRoutes()
+api.all("*", function (req, res) {
+  res.sendStatus(404)
 })
+
 export default api

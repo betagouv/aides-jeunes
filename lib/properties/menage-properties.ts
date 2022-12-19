@@ -44,7 +44,7 @@ export default {
           const value = getAnswer(
             simulation.answers.current,
             "menage",
-            "statut_occupation_logement"
+            "_logementType"
           )
           return value?.startsWith("locataire")
         },

@@ -396,7 +396,7 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) => subject._logementType !== "proprietaire",
+        isActive: (subject) => subject._logementType === "locataire",
         steps: [
           new Step({
             entity: "menage",

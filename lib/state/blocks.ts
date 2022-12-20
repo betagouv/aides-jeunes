@@ -282,7 +282,6 @@ function extraBlock() {
           {
             isActive: (subject) => subject._interetEtudesEtranger,
             steps: [s("_interetEtudesEtranger")],
-            //steps: [s("_interetAidesSanitaireSocial", "projets")],
           },
         ],
       },

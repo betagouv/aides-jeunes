@@ -17,7 +17,8 @@ conditions_generales:
     values:
       - "32"
   - type: quotient_familial
-    ceiling: 30000
+    value: 30000
+    operator: "<="
     period: year
 profils:
   - type: enseignement_superieur

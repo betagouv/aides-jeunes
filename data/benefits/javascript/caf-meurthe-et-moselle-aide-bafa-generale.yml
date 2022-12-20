@@ -15,7 +15,8 @@ conditions_generales:
       - "54"
   - type: quotient_familial
     period: month
-    ceiling: 800
+    value: 800
+    operator: "<="
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/enfance-et-jeunesse/la-caf-peut-participer-au-financement-de-la-formation-au-bafa-ou-au-bafd
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#/autres?codePrestation=DBAFA#prestation-DBAFA-cnaf

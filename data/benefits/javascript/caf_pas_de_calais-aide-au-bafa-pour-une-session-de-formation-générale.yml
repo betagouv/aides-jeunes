@@ -16,7 +16,8 @@ conditions_generales:
       - "62"
   - type: quotient_familial
     period: month
-    ceiling: 1000
+    value: 1000
+    operator: "<="
 profils: []
 conditions:
   - Effectuer votre formation en externat et en demi-pension.

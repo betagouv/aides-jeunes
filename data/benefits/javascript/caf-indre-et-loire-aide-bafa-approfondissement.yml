@@ -13,7 +13,8 @@ conditions_generales:
     values:
       - "37"
   - type: quotient_familial
-    ceiling: 830
+    value: 830
+    operator: "<="
     period: month
 profils: []
 interestFlag: _interetBafa

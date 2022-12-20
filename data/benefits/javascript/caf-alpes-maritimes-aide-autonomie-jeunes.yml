@@ -8,7 +8,8 @@ conditions_generales:
     values:
       - "06"
   - type: quotient_familial
-    ceiling: 800
+    value: 800
+    operator: "<="
     period: month
   - type: age
     operator: ">="

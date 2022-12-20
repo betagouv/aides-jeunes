@@ -213,7 +213,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
         openfiscaResponse.foyers_fiscaux._.nbptr[periods.fiscalYear.id] || 1
       const periodDivider = condition.period === "month" ? 12 : 1
       const quotient_familial = rfr / nbptr / periodDivider
-      return quotient_familial <= condition.ceiling
+      return OPERATOR[condition.operator](quotient_familial, condition.value)
     },
     extra: [
       {

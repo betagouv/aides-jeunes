@@ -25,7 +25,8 @@ conditions_generales:
       - "19"
   - type: quotient_familial
     period: month
-    ceiling: 1200
+    value: 1200
+    operator: "<="
 profils: []
 link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
 instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa

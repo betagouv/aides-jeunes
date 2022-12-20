@@ -9,7 +9,8 @@ conditions_generales:
       - "93"
   - type: quotient_familial
     period: year
-    ceiling: 26000
+    value: 26000
+    operator: "<="
   - type: age
     operator: <=
     value: 30

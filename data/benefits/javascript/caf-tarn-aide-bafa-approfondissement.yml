@@ -14,7 +14,8 @@ conditions_generales:
     values:
       - "81"
   - type: quotient_familial
-    ceiling: 800
+    value: 800
+    operator: "<="
     period: month
 profils: []
 conditions:

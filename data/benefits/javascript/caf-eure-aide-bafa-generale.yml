@@ -15,7 +15,8 @@ conditions_generales:
     values:
       - "27"
   - type: quotient_familial
-    ceiling: 600
+    value: 600
+    operator: "<="
     period: month
   - type: regime_securite_sociale
     includes:

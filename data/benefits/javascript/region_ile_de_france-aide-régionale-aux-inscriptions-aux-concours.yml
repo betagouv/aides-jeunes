@@ -10,7 +10,8 @@ conditions_generales:
     values:
       - "11"
   - type: quotient_familial
-    ceiling: 10140
+    value: 10140
+    operator: "<="
     period: year
 profils:
   - type: etudiant

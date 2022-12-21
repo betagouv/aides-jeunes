@@ -101,6 +101,7 @@ import DroitMixin from "@/mixins/droit-mixin"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin"
 import WarningMessage from "@/components/warning-message.vue"
+import ABTestingService from "@/plugins/ab-testing-service"
 
 export default {
   name: "DroitsList",
@@ -119,9 +120,23 @@ export default {
   },
   computed: {
     list: function () {
-      return this.droits.filter((value) => {
-        return !this.filter || this.filter.includes(value.id)
-      })
+      return this.droits
+        .filter((value) => {
+          return !this.filter || this.filter.includes(value.id)
+        })
+        .map((droit) => {
+          if (droit.id === "css_participation_forfaitaire") {
+            const abtesting = ABTestingService.getEnvironment()
+            if (abtesting?.css_text?.value === "A") {
+              return {
+                ...droit,
+                description:
+                  "La Complémentaire Santé Solidaire rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.",
+              }
+            }
+          }
+          return droit
+        })
     },
   },
   methods: {

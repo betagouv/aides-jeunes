@@ -417,7 +417,7 @@ export const useStore = defineStore("store", {
         simulation.modifiedFrom = this.situationId
       }
 
-      simulation.abtesting = ABTestingService.getEnvironment()
+      simulation.abtesting = ABTestingService.getValues()
       simulation.finishedAt = new Date()
       return axios
         .post("/api/simulation", simulation)

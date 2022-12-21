@@ -178,6 +178,29 @@ const receiveResultsEmail = () => {
   })
 }
 
+const setupInterceptors = () => {
+  cy.intercept({
+    method: "GET",
+    url: "/api/simulation/*/results",
+  }).as("get-results")
+
+  cy.intercept({
+    method: "POST",
+    url: "/api/simulation",
+  }).as("post-simulation")
+}
+
+const checkResultsRequests = () => {
+  cy.wait("@post-simulation").should(({ request, response }) => {
+    expect(request.method).to.equal("POST")
+    expect(response.statusCode).to.equal(200)
+  })
+  cy.wait("@get-results").should(({ request, response }) => {
+    expect(request.method).to.equal("GET")
+    expect(response.statusCode).to.equal(200)
+  })
+}
+
 export default {
   wait,
   back,
@@ -190,4 +213,6 @@ export default {
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
   receiveResultsEmail,
+  setupInterceptors,
+  checkResultsRequests,
 }

@@ -22,6 +22,7 @@ context("Full simulation", () => {
       cy.checkA11y()
     })
 
+    results.setupInterceptors()
     profil.defaultIndivu()
     foyer.children(0)
     foyer.fill_en_couple(false)
@@ -66,6 +67,7 @@ context("Full simulation", () => {
     results.wait()
     results.hasPrimeActivite()
     results.captureFiscalResources()
+    results.checkResultsRequests()
     results.receiveResultsEmail()
   })
 })

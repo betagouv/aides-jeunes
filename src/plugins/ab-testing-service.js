@@ -43,7 +43,7 @@ function getEnvironment() {
   return ABTesting
 }
 
-function getValues(env) {
+function extractValueMap(env) {
   const experimentKeys = Object.keys(env)
   return experimentKeys.reduce((result, key) => {
     const experiment = env[key]
@@ -56,14 +56,14 @@ function getValues(env) {
 
 const ABTestingService = {
   getValues() {
-    return getValues(getEnvironment())
+    return extractValueMap(getEnvironment())
   },
   setVariante(key, value) {
-    const ABTesting = getEnvironment()
-    ABTesting[key].value = value
-    localStorage.setItem("ABTesting", JSON.stringify(ABTesting))
+    const ABTestingEnvironment = getEnvironment()
+    ABTestingEnvironment[key].value = value
+    localStorage.setItem("ABTesting", JSON.stringify(ABTestingEnvironment))
 
-    return getValues(ABTesting)
+    return extractValueMap(ABTestingEnvironment)
   },
 }
 

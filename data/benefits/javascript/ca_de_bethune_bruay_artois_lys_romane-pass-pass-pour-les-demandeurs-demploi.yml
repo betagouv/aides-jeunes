@@ -1,0 +1,21 @@
+label: pass pass pour les demandeurs d'emploi
+institution: ca_de_bethune_bruay_artois_lys_romane
+description: Ce titre vous donne accès en illimité aux transports en commun du
+  <a target="_blank" rel="noopener" title="Nouvelle fenêtre"
+  href="https://www.tadao.fr/affichage.php?id=683">réseau Tadao (bus et
+  TER)</a>.
+prefix: le
+conditions_generales:
+  - type: departements
+    values:
+      - "62"
+profils:
+  - type: chomeur
+    conditions: []
+type: float
+unit: €
+periodicite: mensuelle
+legend: à la place de 28 €
+montant: 5
+link: https://www.tadao.fr/713-Demandeur-d-emploi.html
+instructions: https://www.tadao.fr/713-Demandeur-d-emploi.html

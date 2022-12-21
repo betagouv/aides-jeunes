@@ -280,7 +280,7 @@ function extraBlock() {
               "prive_hors_contrat",
               "inconnu",
             ].includes(subject.statuts_etablissement_scolaire)) ||
-          subject._contrat_alternant == "apprenti",
+          subject._contrat_alternant === "apprenti",
         steps: [
           s("_interetEtudesEtranger"),
           {

@@ -126,8 +126,8 @@ export default {
         })
         .map((droit) => {
           if (droit.id === "css_participation_forfaitaire") {
-            const abtesting = ABTestingService.getEnvironment()
-            if (abtesting?.css_text?.value === "A") {
+            const abtesting = ABTestingService.getValues()
+            if (abtesting.css_text === "A") {
               return {
                 ...droit,
                 description:

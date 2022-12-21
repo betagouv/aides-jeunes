@@ -707,7 +707,7 @@ fields:
   field_benefit_source: &field_benefit_source
     name: source
     widget: hidden
-  field_exclude_epcis: &field_exclude_epcis
+  field_not_operator: &field_not_operator
     name: not
     widget: hidden
   # champs propre aux aides javascript
@@ -729,7 +729,7 @@ fields:
       - *field_beneficiaire_rsa
       - *field_attached_to_institution
       - *field_statut_occupation_logement
-      - *field_exclude_epcis
+      - *field_not_operator
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat

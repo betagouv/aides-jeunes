@@ -274,14 +274,17 @@ function extraBlock() {
       {
         isActive: (subject) =>
           subject.scolarite == "enseignement_superieur" &&
-          ["public", "prive_sous_contrat"].includes(
-            subject.statuts_etablissement_scolaire
-          ),
+          [
+            "public",
+            "prive_sous_contrat",
+            "prive_hors_contrat",
+            "inconnu",
+          ].includes(subject.statuts_etablissement_scolaire),
         steps: [
           s("_interetEtudesEtranger"),
           {
             isActive: (subject) => subject._interetEtudesEtranger,
-            steps: [s("_interetEtudesEtranger")],
+            steps: [s("_interetEtudesEtranger"), s("_dureeMoisEtudesEtranger")],
           },
         ],
       },

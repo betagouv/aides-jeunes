@@ -103,7 +103,7 @@ const parameters = {
     { label: "france.fr", href: "https://www.france.fr/" },
   ],
   accessLinks: [
-    { label: "Accessibilité : non conforme", to: "/accessibilite" },
+    { label: "Accessibilité : partiellement conforme", to: "/accessibilite" },
     { label: "Conditions générales d’utilisation", to: "/cgu" },
     { label: "Mentions légales", to: "/mentions-legales" },
     { label: "Données personnelles", to: "/confidentialite" },

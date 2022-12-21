@@ -18,7 +18,7 @@
     <p>
       Le service est
       <strong
-        >non conforme avec le référentiel général d’amélioration de
+        >partiellement conforme avec le référentiel général d’amélioration de
         l’accessibilité (RGAA), version 4.1</strong
       >
       en raison des non-conformités et des dérogations énumérées ci-dessous.
@@ -28,7 +28,7 @@
 
     <p
       >L’audit de conformité réalisé par une experte en accessibilité web de
-      l’entreprise SMILE révèle que 42,55 % des critères du RGAA version 4.1
+      l’entreprise SMILE révèle que 85,41 % des critères du RGAA version 4.1
       sont respectés.</p
     >
 
@@ -46,55 +46,28 @@
         concernent :
         <ul>
           <li
-            >Certaines images de décoration ne sont pas correctement ignorée aux
-            outils d’assistance.</li
-          >
-          <li
-            >Certains texte et composant d’interface de contraste
-            insuffisants.</li
-          >
-          <li
-            >Des composants d’interface riches ne respectant pas les
-            recommandations de structuration pour l’accessibilité.</li
-          >
-          <li
-            >Problème de manipulation au clavier sur les composants
-            d’interface.</li
+            >Problème de manipulation au clavier sur un composant d’interface
+            (menu).</li
           >
           <li>Changement de contexte sans avertir l’utilisateur.</li>
           <li>Erreurs de validation de code.</li>
-          <li>Manque d’information sur le title de la page.</li>
-          <li>Manque de structuration dans la page.</li>
-          <li>Certaines balises sont utilisées à des fins de présentation.</li>
+          <li>Manque d’information sur le titre de la page.</li>
           <li
-            >Lorsque les feuilles de styles sont désactivées, le contenu de la
-            page devient incohérent.</li
+            >Au niveau formulaire, étiquette manquante sur un champ de saisie,
+            et absence de contrôle à la saisie sur les différentes étapes de
+            simulateur.</li
           >
-          <li
-            >Des contenus avec une structuration (titres et intertitres,
-            paragraphes, liste) incorrecte, ou insuffisante pour une navigation
-            efficace avec un lecteur d’écran</li
-          >
-          <li>Contenu de page est inséré en css.</li>
-          <li>En zoom 200 % le menu principal est tronqué.</li>
           <li>L’ordre de tabulation n’est pas traité correctement.</li>
-          <li
-            >Au niveau formulaire, étiquettes mal relié aux champs, absence de
-            l’aide et de contrôle à la saisie.</li
-          >
-          <li>Parfois regroupement manquant.</li>
-          <li
-            >L’attribut « autocomplete » manquant sur les champs de saisie
-            personnels.</li
-          >
-          <li>Liens d’évitements manquant sur le site.</li>
         </ul>
       </li>
     </ul>
 
     <h2>Établissement de cette déclaration d’accessibilité</h2>
 
-    <p>Cette déclaration a été établie le 15 septembre 2022.</p>
+    <p
+      >Cette déclaration a été établie le 8 septembre 2022 et mis à jour le 14
+      décembre 2022.</p
+    >
 
     <h3>Technologies utilisées pour la réalisation du service</h3>
 
@@ -124,6 +97,9 @@
       <li>WCAG color contrast checker</li>
       <li>Headings maps</li>
       <li>web developer toolbar</li>
+      <li>Stylus</li>
+      <li>Validateur en ligne du W3C</li>
+      <li>Inspecteur navigateur</li>
     </ul>
 
     <h3>Pages du site ayant fait l’objet de la vérification de conformité</h3>

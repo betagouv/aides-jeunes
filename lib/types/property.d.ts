@@ -43,6 +43,7 @@ export interface NumberPropertyConstruct extends PropertyConstruct {
   type?: string
   unit?: string
   min?: number
+  max?: number
 }
 
 export interface RecapPropertyLine {

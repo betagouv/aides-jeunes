@@ -20,9 +20,13 @@ async function loadRoutes() {
   routes.map((route) => route.default(api))
 }
 
-loadRoutes().then(() => {
-  api.all("*", function (req, res) {
-    res.sendStatus(404)
+loadRoutes()
+  .then(() => {
+    api.all("*", function (req, res) {
+      res.sendStatus(404)
+    })
   })
-})
+  .catch((error) => {
+    console.error(`Failed to load routes with error: ${error}`)
+  })
 export default api

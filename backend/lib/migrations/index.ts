@@ -5,7 +5,7 @@ const migrationFilesByModelName = getMigrationsFiles()
 function getMigrationsFileNamesByModelName(modelName) {
   const __dirname = new URL(".", import.meta.url).pathname
   return fs.readdirSync(`${__dirname}/${modelName}`).filter(function (file) {
-    return file.match(/^to-v\d+\.js|ts$/)
+    return file.match(/^to-v\d+\.(js|ts)$/)
   })
 }
 

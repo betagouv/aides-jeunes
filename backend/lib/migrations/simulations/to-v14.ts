@@ -19,7 +19,6 @@ export default {
       }
       return result
     }, {})
-    console.log(simulation.abtesting)
     return simulation
   },
   version: VERSION,

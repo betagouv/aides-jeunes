@@ -58,7 +58,7 @@ const ABTestingService = {
   getValues() {
     return extractValueMap(getEnvironment())
   },
-  setVariante(key, value) {
+  setVariant(key, value) {
     const ABTestingEnvironment = getEnvironment()
     ABTestingEnvironment[key].value = value
     localStorage.setItem("ABTesting", JSON.stringify(ABTestingEnvironment))

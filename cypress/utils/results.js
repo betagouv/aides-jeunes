@@ -169,7 +169,7 @@ const receiveResultsEmail = () => {
   })
     .should("be.visible")
     .click()
-  cy.get("input#email").should("be.visible").type("simon.hamery@beta.gouv.fr")
+  cy.get("input#email").should("be.visible").type("prenom.nom@beta.gouv.fr")
   cy.get(".fr-btn:contains(J'accepte d'être recontacté·e par email)")
     .should("be.visible")
     .click()

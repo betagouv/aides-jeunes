@@ -13,6 +13,7 @@
         >
           <li>
             <SendRecapEmailButton
+              data-testid="send-email-button"
               text="Recevoir les résultats par email"
             ></SendRecapEmailButton>
           </li>

@@ -164,16 +164,29 @@ const receiveResultsEmail = () => {
     url: "/api/simulation/*/followup",
   }).as("post-receive-results-email")
 
-  cy.get(".fr-btn:contains('Recevoir les résultats par email')")
+  cy.get("[data-testid='send-email-button']", {
+    timeout: 20000,
+  })
     .should("be.visible")
     .click()
-  cy.get("input#email").should("be.visible").type("simon.hamery@beta.gouv.fr")
+  cy.get("input#email").should("be.visible").type("prenom.nom@beta.gouv.fr")
   cy.get(".fr-btn:contains(J'accepte d'être recontacté·e par email)")
     .should("be.visible")
     .click()
 
   cy.wait("@post-receive-results-email").should(({ request, response }) => {
     expect(request.method).to.equal("POST")
+    expect(response.statusCode).to.equal(200)
+  })
+}
+
+const checkResultsRequests = () => {
+  cy.wait("@post-simulation").should(({ request, response }) => {
+    expect(request.method).to.equal("POST")
+    expect(response.statusCode).to.equal(200)
+  })
+  cy.wait("@results").should(({ request, response }) => {
+    expect(request.method).to.equal("GET")
     expect(response.statusCode).to.equal(200)
   })
 }
@@ -190,4 +203,5 @@ export default {
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
   receiveResultsEmail,
+  checkResultsRequests,
 }

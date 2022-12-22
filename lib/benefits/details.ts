@@ -45,7 +45,7 @@ function getValueOfBoolean(value) {
 function formatDroitEstime(droit, parameters) {
   const droitEstime: droitEstimeLayout = {
     id: droit.id || undefined,
-    label: undefined,
+    label: droit.label || undefined,
     legend: getBenefitLegend(droit, parameters) || "",
     type: droit.type || "float",
     value: droit.montant || 1,

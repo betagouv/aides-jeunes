@@ -52,7 +52,7 @@ const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
       required: true,
     },
     version: { type: Number, default: version },
-    abtesting: Object,
+    abtesting: { type: Map, of: String },
     finishedAt: Date,
     createdAt: { type: Date, default: Date.now },
     modifiedFrom: String,

@@ -52,7 +52,7 @@ function extractValueMap(env) {
   return experimentKeys.reduce((result, key) => {
     const experiment = env[key]
     if (!experiment.deleted) {
-      result[experiment]
+      result[key] = experiment.value
     }
     return result
   }, {})

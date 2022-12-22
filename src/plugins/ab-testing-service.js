@@ -16,6 +16,7 @@ function getEnvironment() {
   }
   const ABTesting = JSON.parse(localStorage.getItem("ABTesting") || "{}")
 
+  // index doit être dans [1, 5]
   // // Prépare la variable d'AB testing
   // ABTesting.link = ABTesting.link || { index: 1 };
   // // Réparti les visiteurs l'AB testing avec cette variable
@@ -24,6 +25,9 @@ function getEnvironment() {
   // // Pour le désactiver
   // // et libérer une custom variable
   // // ABTesting.link.deleted = true;
+  ABTesting.css_text = ABTesting.css_text || { index: 1 }
+  ABTesting.css_text.value =
+    ABTesting.css_text.value || (Math.random() > 0.5 ? "A" : "B")
 
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]
@@ -48,7 +52,7 @@ function extractValueMap(env) {
   return experimentKeys.reduce((result, key) => {
     const experiment = env[key]
     if (!experiment.deleted) {
-      result[experiment]
+      result[key] = experiment.value
     }
     return result
   }, {})

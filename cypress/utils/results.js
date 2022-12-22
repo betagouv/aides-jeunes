@@ -164,7 +164,7 @@ const receiveResultsEmail = () => {
     url: "/api/simulation/*/followup",
   }).as("post-receive-results-email")
 
-  cy.get(".fr-btn:contains('Recevoir les résultats par email')", {
+  cy.get("[data-testid='send-email-button']", {
     timeout: 20000,
   })
     .should("be.visible")

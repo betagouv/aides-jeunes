@@ -23,7 +23,7 @@ function basicBenefitText(droit, parameters) {
     return droit.label
   }
 
-  return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
+  return `${droitEstime.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }
 
 const textTemplate = fs.readFileSync(

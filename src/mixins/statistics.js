@@ -1,3 +1,5 @@
+import ABTestingService from "@/plugins/ab-testing-service"
+
 const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
@@ -14,6 +16,7 @@ export default {
           benefits = [{ id: benefitId }]
         }
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
+        const abtesting = ABTestingService.getValues()
         const benefitsStats = []
         const totalResults = benefits.length
         benefits.forEach(function (benefit, i) {
@@ -21,6 +24,7 @@ export default {
             benefitsStats.push({
               benefit_id: benefit.id,
               hash_id: id,
+              abtesting,
               benefit_index: i + 1,
               page_total: totalResults,
               event_type: event,

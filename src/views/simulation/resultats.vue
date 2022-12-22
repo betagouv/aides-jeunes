@@ -108,6 +108,25 @@ export default {
   mounted() {
     this.store.updateCurrentAnswers(this.$route.path)
 
+    let vm = this
+    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
+      after(() => {
+        switch (name) {
+          case "setResults": {
+            store.calculs.resultats.droitsEligibles.forEach(function (d) {
+              vm.$matomo?.trackEvent("General", "show", d.id)
+            })
+            this.sendStatistics({ event: "show", benefits: this.droits })
+            break
+          }
+          case "saveComputationFailure": {
+            vm.$matomo?.trackEvent("General", "Error")
+            break
+          }
+        }
+      })
+    })
+
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.situationId) {
@@ -147,25 +166,6 @@ export default {
         }
       }
     }
-
-    let vm = this
-    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
-      after(() => {
-        switch (name) {
-          case "setResults": {
-            store.calculs.resultats.droitsEligibles.forEach(function (d) {
-              vm.$matomo?.trackEvent("General", "show", d.id)
-            })
-            this.sendStatistics({ event: "show", benefits: this.droits })
-            break
-          }
-          case "saveComputationFailure": {
-            vm.$matomo?.trackEvent("General", "Error")
-            break
-          }
-        }
-      })
-    })
   },
   beforeUnmount() {
     this.stopSubscription?.()

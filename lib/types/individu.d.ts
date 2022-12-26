@@ -20,7 +20,6 @@ export interface individuLayout {
 export interface individuGeneratorLayout {
   [id: string]: {
     src?: string
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    fn: Function
+    fn: (...args: unknown[]) => unknown
   }
 }

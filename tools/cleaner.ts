@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import es from "event-stream"
 
 // Loads

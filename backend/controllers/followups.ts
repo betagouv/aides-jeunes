@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Followup from "../models/followup"
 
 import pollResult from "../lib/mattermost-bot/poll-result"

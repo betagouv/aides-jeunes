@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { omit } from "lodash"
 import fs from "fs/promises"
 import mongodb from "./mongodb"

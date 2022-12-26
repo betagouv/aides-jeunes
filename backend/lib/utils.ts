@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import crypto from "crypto"
 
 async function generateToken(lengthInBytes = 48) {

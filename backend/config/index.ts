@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ConfigurationLayout } from "../types/config"
 
 const env = process.env.NODE_ENV || "development"

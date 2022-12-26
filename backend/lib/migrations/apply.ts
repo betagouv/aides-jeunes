@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import argparse from "argparse"
 
 const ArgumentParser = argparse.ArgumentParser

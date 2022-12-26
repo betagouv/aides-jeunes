@@ -1,7 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-/* global emit: true */
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare function emit(key, value)
 
 import { MongoClient } from "mongodb"

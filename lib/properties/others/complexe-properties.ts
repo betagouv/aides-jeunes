@@ -43,8 +43,8 @@ export default <{ [key: string]: any }>{
         .filter((question) => question)
         .map((question) => {
           return {
-            text: question.label,
-            hint: question.hint,
+            text: question?.label,
+            hint: question?.hint,
             answersFormat: {
               type: "number",
             },
@@ -52,8 +52,7 @@ export default <{ [key: string]: any }>{
         })
     },
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(propertyData: PropertyData): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
         {
@@ -110,7 +109,7 @@ export default <{ [key: string]: any }>{
       )
 
       return {
-        text: category.label,
+        text: category?.label,
         answerFormat,
       }
     },
@@ -165,8 +164,7 @@ export default <{ [key: string]: any }>{
   },
   enfants: {
     matcher: (step: any) => step.entity === "enfants",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(propertyData: PropertyData): RecapPropertyLine[] {
       const answer = getAnswer(propertyData.simulation.answers.all, "enfants")
       return [
         {

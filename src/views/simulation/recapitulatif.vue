@@ -243,7 +243,7 @@ function questionsPerStep(step: Step): RecapPropertyLine[] {
     ComplexeProperties[key].matcher(step)
   )
   if (match && ComplexeProperties[match].getRecap) {
-    return ComplexeProperties[match].getRecap(currentPropertyData, step)
+    return ComplexeProperties[match].getRecap(currentPropertyData)
   }
 
   return []

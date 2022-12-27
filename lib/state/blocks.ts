@@ -396,7 +396,10 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) => subject._logementType !== "sansDomicle",
+        isActive: (subject) =>
+          ["locataire", "sansDomicile", "heberge"].includes(
+            subject._logementType
+          ),
         steps: [
           new Step({
             entity: "menage",

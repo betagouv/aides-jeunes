@@ -22,6 +22,9 @@ function basicBenefitText(droit, parameters) {
   if (droitEstime.type === "bool") {
     return droit.label
   }
+  if (droitEstime.unit === "séances") {
+    return `${droit.label} : vous pouvez bénéficier de ${droitEstime.value} ${droitEstime.legend}`
+  }
 
   return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }

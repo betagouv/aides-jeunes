@@ -126,6 +126,15 @@ fields:
         name: values
         widget: list
         hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
+  field_epcis: &field_epcis
+    label: Condition géographique d'EPCI
+    name: epcis
+    widget: object
+    fields:
+      - label: Code SIREN des EPCI
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs EPCI, séparez les codes SIREN par une virgule.
   field_boursier: &field_boursier
     <<: *field_empty
     label: Boursier
@@ -723,6 +732,7 @@ fields:
       - *field_regions
       - *field_departements
       - *field_communes
+      - *field_epcis
       - *field_regime_securite_sociale
       - *field_quotient_familial
       - *field_formation_sanitaire_social

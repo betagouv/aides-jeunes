@@ -24,6 +24,7 @@ export class Property {
   moreInfo?: string | ((variation: any) => string)
   showMoreInfo?: boolean | ((propertyData: PropertyData) => boolean)
   recapHeader?: (propertyData: PropertyData) => RecapPropertyLine
+  getAnswerFormat: (propertyData: PropertyData) => any
 
   constructor({
     question,
@@ -43,7 +44,6 @@ export class Property {
     this.showMoreInfo = showMoreInfo
     this.showMoreInfo = showMoreInfo
     this.recapHeader = recapHeader
-
     if (getAnswerFormat) {
       this.getAnswerFormat = getAnswerFormat
     }
@@ -58,8 +58,7 @@ export class Property {
     return capitalize(this.getValueOrExecuteFunction("question", propertyData))
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData) {}
+  getAnswerData = () => {}
 
   getFormat(propertyData: PropertyData): any {
     return {
@@ -87,8 +86,7 @@ export class Property {
 }
 
 export class BooleanProperty extends Property {
-  // eslint-disable-next-line no-empty-pattern
-  getAnswerFormat({}: PropertyData): any {
+  getAnswerFormat = () => {
     return {
       type: "boolean",
       items: [
@@ -114,8 +112,7 @@ export class DateProperty extends Property {
     super({ ...propertyConstruct, questionType: "date" })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = () => {
     return {
       type: "date",
     }
@@ -159,7 +156,7 @@ export class EnumProperty extends ItemProperty {
     super({ ...itemPropertyConstruct, questionType: "enum" })
   }
 
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = (propertyData: PropertyData) => {
     const items = this.getValueOrExecuteFunction("items", propertyData)
     return {
       type: typeof items[0]?.value,
@@ -177,7 +174,7 @@ export class MultipleProperty extends ItemProperty {
     super({ ...itemPropertyConstruct, questionType: "multiple" })
   }
 
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = (propertyData: PropertyData) => {
     const items = this.getValueOrExecuteFunction("items", propertyData)
     return {
       type: `${typeof items[0]?.value}[]`,
@@ -218,8 +215,7 @@ export class NumberProperty extends Property {
     this.max = numberPropertyConstruct.max
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = () => {
     return {
       type: "number",
       min: this.min,
@@ -240,8 +236,7 @@ export class DepcomProperty extends Property {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = () => {
     return {
       type: {
         depcom: "string",
@@ -268,8 +263,7 @@ export class TextProperty extends Property {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat = () => {
     return {
       type: "string",
     }

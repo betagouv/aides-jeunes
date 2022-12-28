@@ -119,8 +119,8 @@ const fill_conjoint_activite = (activity) => {
   fill_activite(activity)
 }
 
-const fill_echelon_bourse = (bursaryLevel) => {
-  fillRange("echelon_bourse", bursaryLevel)
+const fill_bourse_criteres_sociaux_echelon = (bursaryLevel) => {
+  fillRange("bourse_criteres_sociaux_echelon", bursaryLevel)
 }
 
 const defaultIndivu = () => {
@@ -154,6 +154,11 @@ const publicStudent = () => {
   fill_alternant(false)
   fill_groupe_specialites_formation(GroupeSpecialiteType.groupe_330)
   // fill_echelon_bourse(5)
+  // fill_groupe_specialites_formation(
+  //   Scolarite.groupeSpecialitesFormation
+  //     .specialites_plurivalentes_sanitaires_et_sociales.value
+  // )
+  // fill_bourse_criteres_sociaux_echelon(7, "Boursier échelon 7")
   // fill_groupe_specialites_formation(
   //   Scolarite.groupeSpecialitesFormation
   //     .specialites_plurivalentes_sanitaires_et_sociales.value

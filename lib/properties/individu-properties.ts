@@ -279,7 +279,7 @@ export default {
     },
   }),
 
-  echelon_bourse: new SliderProperty({
+  bourse_criteres_sociaux_echelon: new SliderProperty({
     question: "Si vous êtes boursier, à quel échelon êtes-vous ?",
     questionType: "slider",
     min: -1,

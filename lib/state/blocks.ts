@@ -90,7 +90,7 @@ function individuBlockFactory(id, chapter?: string) {
               isActive: (subject) =>
                 subject.activite === "etudiant" &&
                 subject.scolarite === "enseignement_superieur",
-              steps: [r("echelon_bourse")],
+              steps: [r("bourse_criteres_sociaux_echelon")],
             },
             {
               isActive: (subject) => {

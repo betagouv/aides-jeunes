@@ -252,6 +252,12 @@
   text-indent: 5px;
 }
 
+.fr-input-slider {
+  background: var(--background-disabled-grey);
+  border-radius: 10px;
+
+}
+
 .fr-radio-group {
   margin-top: 0 !important;
 }

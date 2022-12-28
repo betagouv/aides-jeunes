@@ -5,6 +5,7 @@ import {
   MultipleProperty,
   NumberProperty,
   BooleanProperty,
+  SliderProperty,
 } from "./property"
 
 import Individu from "../individu"
@@ -274,6 +275,51 @@ export default {
             "préposition"
           )}${Individu.label(individu, "nom")} ?`
     },
+  }),
+
+  echelon_bourse: new SliderProperty({
+    question: "Si vous êtes boursier, à quel échelon êtes-vous ?",
+    questionType: "slider",
+    min: "-1",
+    max: "7",
+    items: [
+      {
+        label: "Non boursier",
+        value: "-1",
+      },
+      {
+        label: "Boursier échelon 0",
+        value: "0",
+      },
+      {
+        label: "Boursier échelon 1",
+        value: "1",
+      },
+      {
+        label: "Boursier échelon 2",
+        value: "2",
+      },
+      {
+        label: "Boursier échelon 3",
+        value: "3",
+      },
+      {
+        label: "Boursier échelon 4",
+        value: "4",
+      },
+      {
+        label: "Boursier échelon 5",
+        value: "5",
+      },
+      {
+        label: "Boursier échelon 6",
+        value: "6",
+      },
+      {
+        label: "Boursier échelon 7",
+        value: "7",
+      },
+    ],
   }),
 
   enceinte: new EnumProperty({

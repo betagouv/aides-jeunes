@@ -48,6 +48,17 @@
                     ariaLabelledBy="step-question"
                   />
                 </div>
+                <div v-else-if="questionType === 'slider'">
+                  <InputSlider
+                    :id="fieldName"
+                    v-model="value"
+                    type="range"
+                    :items="step.items"
+                    :min="step.min"
+                    :max="step.max"
+                    aria-labelledby="step-question"
+                  />
+                </div>
                 <InputDate
                   v-else-if="questionType === 'date'"
                   :id="fieldName"
@@ -89,6 +100,7 @@ import Hint from "@/lib/hint"
 import { executeFunctionOrReturnValue } from "@lib/utils"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
+import InputSlider from "@/components/input-slider.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "@lib/answers"
 import { useIndividu } from "@/composables/individu.ts"
@@ -100,6 +112,7 @@ export default {
     ActionButtons,
     InputNumber,
     InputDate,
+    InputSlider,
     MultipleAnswers,
     YesNoQuestion,
     MutualizedStepTitle,

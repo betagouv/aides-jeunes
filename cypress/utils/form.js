@@ -17,6 +17,13 @@ const fillRadio = (url, value, noSubmit) => {
   }
 }
 
+const fillRange = (url, value) => {
+  cy.url().should("include", url)
+  cy.checkA11y()
+  cy.get(`input[type="range"]`).invoke("val", value).trigger("change")
+  submit()
+}
+
 const fillCheckboxes = (url, values) => {
   urlInclude(url)
   cy.checkA11y()
@@ -60,6 +67,7 @@ const fillPatrimoine = () => {
 export default {
   submit,
   fillRadio,
+  fillRange,
   fillCheckboxes,
   fillNumber,
   fillPatrimoine,

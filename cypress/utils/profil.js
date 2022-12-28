@@ -1,4 +1,4 @@
-import { fillRadio, submit } from "./form"
+import { fillRadio, submit, fillRange } from "./form"
 import {
   GroupeSpecialiteType,
   MentionBaccalaureatType,
@@ -119,6 +119,10 @@ const fill_conjoint_activite = (activity) => {
   fill_activite(activity)
 }
 
+const fill_echelon_bourse = (bursaryLevel) => {
+  fillRange("echelon_bourse", bursaryLevel)
+}
+
 const defaultIndivu = () => {
   urlInclude("date_naissance")
   fill_date_naissance("12121980")
@@ -149,6 +153,11 @@ const publicStudent = () => {
   fill_stagiaire(false)
   fill_alternant(false)
   fill_groupe_specialites_formation(GroupeSpecialiteType.groupe_330)
+  // fill_echelon_bourse(5)
+  // fill_groupe_specialites_formation(
+  //   Scolarite.groupeSpecialitesFormation
+  //     .specialites_plurivalentes_sanitaires_et_sociales.value
+  // )
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

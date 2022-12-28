@@ -7,9 +7,9 @@
         v-select-on-click
         class="fr-input-slider"
         type="range"
-        :min="min || null"
-        :max="max || null"
-        :aria-labelledby="ariaLabelledBy || null"
+        :min="min"
+        :max="max"
+        :aria-labelledby="ariaLabelledBy"
       />
     </div>
     <p>{{ label }}</p>
@@ -31,22 +31,26 @@ export default {
   emits: ["input", "update:modelValue"],
   computed: {
     label() {
-      return this.modelValue
-        ? this.items?.find((item) => item.value === this.modelValue).label
-        : ""
+      if (this.modelValue !== null) {
+        const item = this.items.find((item) => item.value === this.modelValue)
+        if (item) {
+          return item.label
+        }
+      }
+      return "Valeur inconnue"
     },
     model: {
       get() {
-        return this.modelValue
+        return parseFloat(this.modelValue)
       },
       set(value) {
-        this.$emit("update:modelValue", value)
+        this.$emit("update:modelValue", parseFloat(value))
       },
     },
   },
   mounted() {
     if (!this.model) {
-      this.$emit("update:modelValue", this.items[0].value)
+      this.$emit("update:modelValue", parseFloat(this.items[0].value))
     }
   },
 }

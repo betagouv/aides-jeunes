@@ -11,8 +11,8 @@
         :max="max"
         :aria-labelledby="ariaLabelledBy"
       />
+      <p>{{ label }}</p>
     </div>
-    <p>{{ label }}</p>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     },
     model: {
       get() {
-        return parseFloat(this.modelValue)
+        return this.modelValue
       },
       set(value) {
         this.$emit("update:modelValue", parseFloat(value))
@@ -50,7 +50,7 @@ export default {
   },
   mounted() {
     if (!this.model) {
-      this.$emit("update:modelValue", parseFloat(this.items[0].value))
+      this.$emit("update:modelValue", this.items[5].value)
     }
   },
 }

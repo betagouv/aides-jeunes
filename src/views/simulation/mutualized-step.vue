@@ -56,7 +56,7 @@
                     :items="step.items"
                     :min="step.min"
                     :max="step.max"
-                    aria-labelledby="step-question"
+                    ariaLabelledBy="step-question"
                   />
                 </div>
                 <InputDate

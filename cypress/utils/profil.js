@@ -1,4 +1,4 @@
-import { fillRadio, submit } from "./form"
+import { fillRadio, submit, fillRange } from "./form"
 import Scolarite from "../../lib/scolarite"
 
 const fill_first_name = (prenom) => {
@@ -115,6 +115,10 @@ const fill_conjoint_activite = (activity) => {
   fill_activite(activity)
 }
 
+const fill_echelon_bourse = (bursaryLevel) => {
+  fillRange("echelon_bourse", bursaryLevel)
+}
+
 const defaultIndivu = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
@@ -143,6 +147,7 @@ const publicStudent = () => {
   fill_mention_baccalaureat("mention_tres_bien")
   fill_stagiaire(false)
   fill_alternant(false)
+  fill_echelon_bourse(5)
   fill_groupe_specialites_formation(
     Scolarite.groupeSpecialitesFormation
       .specialites_plurivalentes_sanitaires_et_sociales.value

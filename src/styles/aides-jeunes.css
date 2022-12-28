@@ -304,6 +304,12 @@
   text-indent: 5px;
 }
 
+.fr-input-slider {
+  background: var(--background-disabled-grey);
+  border-radius: 10px;
+
+}
+
 .fr-radio-group label {
   min-height: 50px !important;
 }

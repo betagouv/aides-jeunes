@@ -8,6 +8,7 @@ import {
 import {
   EnumItemProperty,
   ItemPropertyConstruct,
+  SliderPropertyConstruct,
   NumberPropertyConstruct,
   PropertyConstruct,
   PropertyData,
@@ -194,6 +195,30 @@ export class MultipleProperty extends ItemProperty {
         }
       })
       .join(", ")
+  }
+}
+
+export class SliderProperty extends ItemProperty {
+  min?: number
+  max?: number
+  constructor(sliderPropertyConstruct: SliderPropertyConstruct) {
+    super({ ...sliderPropertyConstruct, questionType: "slider" })
+    this.min = sliderPropertyConstruct.min
+    this.max = sliderPropertyConstruct.max
+  }
+
+  getAnswerFormat(propertyData: PropertyData): any {
+    const items = this.getValueOrExecuteFunction("items", propertyData)
+    return {
+      type: `${typeof items[0]?.value}[]`,
+      items,
+      min: this.min,
+      max: this.max,
+    }
+  }
+
+  displayValue(propertyData: PropertyData, value: any): string {
+    return value
   }
 }
 

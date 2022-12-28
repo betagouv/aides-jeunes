@@ -39,6 +39,13 @@ export interface ItemPropertyConstruct extends PropertyConstruct {
     | ((propertyData: PropertyData) => EnumItemProperty[])
 }
 
+export interface SliderPropertyConstruct
+  extends ItemPropertyConstruct,
+    PropertyConstruct {
+  min?: number
+  max?: number
+}
+
 export interface NumberPropertyConstruct extends PropertyConstruct {
   type?: string
   unit?: string

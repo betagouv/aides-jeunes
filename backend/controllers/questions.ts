@@ -3,12 +3,11 @@ import { generator } from "../../lib/dates.js"
 import { generateSituation } from "../../lib/situations.js"
 import Individu from "../../lib/individu.js"
 import { generateAllSteps } from "../../lib/state/generator.js"
-import { ressourceTypes } from "../../lib/resources.js"
+import { ressourceTypes, patrimoineQuestions } from "../../lib/resources.js"
 import SimpleProperties from "../../lib/properties/others/simple-properties.js"
 import ComplexeProperties from "../../lib/properties/others/complexe-properties.js"
 import DepcomProperties from "../../lib/properties/depcom-properties.js"
 import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
-
 import { questionLayout } from "../types/question.js"
 
 const COMPLEXE_STEPS = Object.values(ComplexeProperties)
@@ -160,6 +159,8 @@ export function getQuestions(req, res) {
     }
     return accum
   }, [])
+
+  result.push(patrimoineQuestions)
 
   return res.send(result)
 }

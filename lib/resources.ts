@@ -493,9 +493,72 @@ export const patrimoineTypes = [
   },
 ]
 
+export const patrimoineQuestions: any = [
+  {
+    questionFormat: {
+      text: "Avez-vous des terrains non loués ?",
+      answerFormat: {
+        type: "boolean",
+        items: [
+          {
+            label: "Oui",
+            value: true,
+          },
+          {
+            label: "Non",
+            value: false,
+          },
+        ],
+      },
+    },
+  },
+  {
+    questionFormat: {
+      text: "Avez-vous des appartements/immeubles non loués ?",
+      answerFormat: {
+        type: "boolean",
+        items: [
+          {
+            label: "Oui",
+            value: true,
+          },
+          {
+            label: "Non",
+            value: false,
+          },
+        ],
+      },
+    },
+  },
+  {
+    questionFormat: {
+      text: "Epargne",
+      items: [
+        {
+          label: "Livret A Aussi appelé Livret bleu.",
+          type: "number",
+        },
+        {
+          label:
+            "Total des autres produits d'épargne produisant des revenus non imposables",
+          type: "number",
+          hint: "Assurance vie, CEL, LDD, LEP, Livret jeune, PEA, plan d'épargne d'entreprise, PEL, PEP.",
+        },
+
+        {
+          label: "Total de l'épargne produisant des revenus imposables",
+          type: "number",
+          hint: "Actions, comptes à terme, FCP, obligations, parts sociales, SICAV, etc",
+        },
+      ],
+    },
+  },
+]
+
 export default {
   ressourceCategories,
   ressourceTypes,
   categoriesRnc,
   patrimoineTypes,
+  patrimoineQuestions,
 }

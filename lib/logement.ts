@@ -60,20 +60,19 @@ function isOwner(_logementType) {
   return _logementType === "proprietaire"
 }
 
-function captureCharges(_logementType, _locationType) {
-  return !(Logement.isOwner(_logementType) || _locationType === "meuble")
+function captureCharges(_logementType) {
+  return _logementType === "locataire"
 }
 
 export function getLoyerData(answers) {
   const _logementType = getAnswer(answers, "menage", "_logementType")
-  const _locationType = getAnswer(answers, "menage", "_primoAccedant")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
 
-  const isLocataire = !Logement.isOwner(_logementType)
-  const captureCharges = Logement.captureCharges(_logementType, _locationType)
+  const isNotOwner = !Logement.isOwner(_logementType)
+  const captureCharges = Logement.captureCharges(_logementType)
 
-  if (isLocataire) {
+  if (isNotOwner) {
     const loyerLabel = `Quel est le montant de votre ${
       coloc ? "part du " : ""
     }loyer ${

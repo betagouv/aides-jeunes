@@ -49,7 +49,7 @@
                   <span>{{ nationality(enfant.nationalite) }}</span>
                 </p>
                 <p class="fr-col-4 fr-m-0">
-                  <span class="fr-text--sm">Sa situation</span><br />
+                  <span class="fr-text--sm">Sa scolarité</span><br />
                   <span>{{ scolarite(enfant.scolarite) }}</span>
                 </p>
               </div>

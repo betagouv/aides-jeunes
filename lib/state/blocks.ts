@@ -8,42 +8,77 @@ import Scolarite from "../scolarite"
 import { BlockLayout } from "../types/blocks"
 
 function individuBlockFactory(id, chapter?: string) {
-  const r = (variable, chapter?: string) =>
+  const individuStep = (variable, chapter?: string) =>
     new Step({ entity: "individu", id, variable, chapter })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
+
+  function buildEnfantSteps() {
+    return [
+      individuStep("_firstName", chapter),
+      individuStep("garde_alternee"),
+      individuStep("activite"),
+      {
+        isActive: (subject) => subject.activite == "chomeur",
+        steps: [
+          individuStep("date_debut_chomage"),
+          individuStep("ass_precondition_remplie"),
+        ],
+      },
+      {
+        isActive: (subject) =>
+          !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
+        steps: [individuStep("inapte_travail")],
+      },
+      {
+        isActive: (subject) => subject.handicap,
+        steps: [individuStep("enfant_place")],
+      },
+      {
+        isActive: (subject, situation) => {
+          const age = Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          return 8 < age && age <= 25
+        },
+        steps: [individuStep("scolarite")],
+      },
+      individuStep("enfant_a_charge"),
+      individuStep("enceinte"),
+    ]
+  }
+
   return {
     subject: (situation) =>
       situation[id] ||
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      ...(enfant ? [r("_firstName", chapter)] : []),
-      r("date_naissance", demandeur ? "profil" : chapter),
-      r("nationalite"),
-      ...(conjoint ? [r("statut_marital")] : []),
-      ...(enfant ? [r("garde_alternee")] : []),
-      ...(!enfant ? [r("activite")] : []),
+      ...(enfant ? buildEnfantSteps() : []),
+      individuStep("date_naissance", demandeur ? "profil" : chapter),
+      individuStep("nationalite"),
+      ...(conjoint ? [individuStep("statut_marital")] : []),
       ...(demandeur
         ? [
             {
               isActive: (subject) => subject.activite == "etudiant",
               steps: [
-                r("scolarite"),
+                individuStep("scolarite"),
                 {
                   isActive: (subject) =>
                     ["lycee", "enseignement_superieur"].includes(
                       subject.scolarite
                     ),
-                  steps: [r("annee_etude")],
+                  steps: [individuStep("annee_etude")],
                 },
                 {
                   isActive: (subject) =>
                     ["college", "lycee", "enseignement_superieur"].includes(
                       subject.scolarite
                     ),
-                  steps: [r("statuts_etablissement_scolaire")],
+                  steps: [individuStep("statuts_etablissement_scolaire")],
                 },
                 {
                   isActive: (subject) =>
@@ -54,9 +89,9 @@ function individuBlockFactory(id, chapter?: string) {
                       "licence_1",
                       "licence_2",
                     ].includes(subject.annee_etude),
-                  steps: [r("mention_baccalaureat")],
+                  steps: [individuStep("mention_baccalaureat")],
                 },
-                r("stagiaire"),
+                individuStep("stagiaire"),
               ],
             },
             {
@@ -74,10 +109,13 @@ function individuBlockFactory(id, chapter?: string) {
                 return subject.activite === "etudiant" || jeune_actif
               },
               steps: [
-                r("alternant"),
+                individuStep("alternant"),
                 {
                   isActive: (subject) => subject.alternant,
-                  steps: [r("_contrat_alternant"), r("categorie_salarie")],
+                  steps: [
+                    individuStep("_contrat_alternant"),
+                    individuStep("categorie_salarie"),
+                  ],
                 },
               ],
             },
@@ -87,33 +125,20 @@ function individuBlockFactory(id, chapter?: string) {
                   subject.scolarite
                 )
               },
-              steps: [r("groupe_specialites_formation")],
+              steps: [individuStep("groupe_specialites_formation")],
             },
             {
               isActive: (subject) =>
                 subject.activite === "salarie" || subject.alternant,
-              steps: [r("_nombreMoisDebutContratDeTravail")],
+              steps: [individuStep("_nombreMoisDebutContratDeTravail")],
             },
           ]
         : []),
-      ...(!enfant
-        ? [
-            {
-              isActive: (subject) => subject.activite == "chomeur",
-              steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
-            },
-            {
-              isActive: (subject) =>
-                !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
-              steps: [r("inapte_travail")],
-            },
-          ]
-        : []),
-      r("handicap"),
+      individuStep("handicap"),
       {
         isActive: (subject) => subject.handicap,
         steps: [
-          r("taux_incapacite"),
+          individuStep("taux_incapacite"),
           {
             isActive: (subject, situation, parameters) =>
               !enfant &&
@@ -122,18 +147,14 @@ function individuBlockFactory(id, chapter?: string) {
                 parameters[
                   "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite"
                 ],
-            steps: [r("aah_restriction_substantielle_durable_acces_emploi")],
+            steps: [
+              individuStep(
+                "aah_restriction_substantielle_durable_acces_emploi"
+              ),
+            ],
           },
         ],
       },
-      ...(enfant
-        ? [
-            {
-              isActive: (subject) => subject.handicap,
-              steps: [r("enfant_place")],
-            },
-          ]
-        : []),
       ...(demandeur
         ? [
             {
@@ -144,21 +165,7 @@ function individuBlockFactory(id, chapter?: string) {
                 )
                 return 8 < age && age <= 25
               },
-              steps: [r("enfant_a_charge")],
-            },
-          ]
-        : []),
-      ...(enfant
-        ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
-              steps: [r("scolarite")],
+              steps: [individuStep("enfant_a_charge")],
             },
           ]
         : []),
@@ -183,11 +190,12 @@ function individuBlockFactory(id, chapter?: string) {
                   !enfant_a_charge
                 )
               },
-              steps: [r("rsa_jeune_condition_heures_travail_remplie")],
+              steps: [
+                individuStep("rsa_jeune_condition_heures_travail_remplie"),
+              ],
             },
           ]
         : []),
-      ...(enfant ? [r("enfant_a_charge")] : []),
       ...(demandeur
         ? [
             {
@@ -197,7 +205,7 @@ function individuBlockFactory(id, chapter?: string) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 ),
-              steps: [r("gir")],
+              steps: [individuStep("gir")],
             },
           ]
         : []),
@@ -211,11 +219,10 @@ function individuBlockFactory(id, chapter?: string) {
                 )
                 return age <= 25
               },
-              steps: [r("regime_securite_sociale")],
+              steps: [individuStep("regime_securite_sociale")],
             },
           ]
         : []),
-      ...(!enfant ? [r("enceinte")] : []),
     ],
   }
 }

@@ -14,126 +14,77 @@ function individuBlockFactory(id, chapter?: string) {
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
 
-  function buildEnfantSteps() {
+  function buildScolariteSteps() {
     return [
-      individuStep("_firstName", chapter),
-      individuStep("garde_alternee"),
-      individuStep("activite"),
       {
-        isActive: (subject) => subject.activite == "chomeur",
+        isActive: (subject) => subject.activite == "etudiant",
         steps: [
-          individuStep("date_debut_chomage"),
-          individuStep("ass_precondition_remplie"),
+          individuStep("scolarite"),
+          {
+            isActive: (subject) =>
+              ["lycee", "enseignement_superieur"].includes(subject.scolarite),
+            steps: [individuStep("annee_etude")],
+          },
+          {
+            isActive: (subject) =>
+              ["college", "lycee", "enseignement_superieur"].includes(
+                subject.scolarite
+              ),
+            steps: [individuStep("statuts_etablissement_scolaire")],
+          },
+          {
+            isActive: (subject) =>
+              ["bts_1", "but_1", "cpge_1", "licence_1", "licence_2"].includes(
+                subject.annee_etude
+              ),
+            steps: [individuStep("mention_baccalaureat")],
+          },
+          individuStep("stagiaire"),
         ],
       },
       {
-        isActive: (subject) =>
-          !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
-        steps: [individuStep("inapte_travail")],
-      },
-      {
-        isActive: (subject) => subject.handicap,
-        steps: [individuStep("enfant_place")],
-      },
-      {
-        isActive: (subject, situation) => {
+        isActive: (subject, situation, parameters) => {
           const age = Individu.age(
             subject,
             datesGenerator(situation.dateDeValeur).today.value
           )
-          return 8 < age && age <= 25
+          const jeune_actif =
+            subject.activite === "salarie" &&
+            age <=
+              parameters[
+                "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
+              ]
+          return subject.activite === "etudiant" || jeune_actif
         },
-        steps: [individuStep("scolarite")],
+        steps: [
+          individuStep("alternant"),
+          {
+            isActive: (subject) => subject.alternant,
+            steps: [
+              individuStep("_contrat_alternant"),
+              individuStep("categorie_salarie"),
+            ],
+          },
+        ],
       },
-      individuStep("enfant_a_charge"),
-      individuStep("enceinte"),
+      {
+        isActive: (subject) => {
+          return ["lycee", "enseignement_superieur", "inconnue"].includes(
+            subject.scolarite
+          )
+        },
+        steps: [individuStep("groupe_specialites_formation")],
+      },
+      {
+        isActive: (subject) =>
+          subject.activite === "salarie" || subject.alternant,
+        steps: [individuStep("_nombreMoisDebutContratDeTravail")],
+      },
     ]
   }
 
-  return {
-    subject: (situation) =>
-      situation[id] ||
-      situation.enfants?.find((enfant) => enfant.id === id) ||
-      {},
-    steps: [
-      ...(enfant ? buildEnfantSteps() : []),
-      individuStep("date_naissance", demandeur ? "profil" : chapter),
-      individuStep("nationalite"),
-      ...(conjoint ? [individuStep("statut_marital")] : []),
-      ...(demandeur
-        ? [
-            {
-              isActive: (subject) => subject.activite == "etudiant",
-              steps: [
-                individuStep("scolarite"),
-                {
-                  isActive: (subject) =>
-                    ["lycee", "enseignement_superieur"].includes(
-                      subject.scolarite
-                    ),
-                  steps: [individuStep("annee_etude")],
-                },
-                {
-                  isActive: (subject) =>
-                    ["college", "lycee", "enseignement_superieur"].includes(
-                      subject.scolarite
-                    ),
-                  steps: [individuStep("statuts_etablissement_scolaire")],
-                },
-                {
-                  isActive: (subject) =>
-                    [
-                      "bts_1",
-                      "but_1",
-                      "cpge_1",
-                      "licence_1",
-                      "licence_2",
-                    ].includes(subject.annee_etude),
-                  steps: [individuStep("mention_baccalaureat")],
-                },
-                individuStep("stagiaire"),
-              ],
-            },
-            {
-              isActive: (subject, situation, parameters) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const jeune_actif =
-                  subject.activite === "salarie" &&
-                  age <=
-                    parameters[
-                      "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
-                    ]
-                return subject.activite === "etudiant" || jeune_actif
-              },
-              steps: [
-                individuStep("alternant"),
-                {
-                  isActive: (subject) => subject.alternant,
-                  steps: [
-                    individuStep("_contrat_alternant"),
-                    individuStep("categorie_salarie"),
-                  ],
-                },
-              ],
-            },
-            {
-              isActive: (subject) => {
-                return ["lycee", "enseignement_superieur", "inconnue"].includes(
-                  subject.scolarite
-                )
-              },
-              steps: [individuStep("groupe_specialites_formation")],
-            },
-            {
-              isActive: (subject) =>
-                subject.activite === "salarie" || subject.alternant,
-              steps: [individuStep("_nombreMoisDebutContratDeTravail")],
-            },
-          ]
-        : []),
+  function buildHandicapSteps() {
+    return [
       individuStep("handicap"),
       {
         isActive: (subject) => subject.handicap,
@@ -155,75 +106,140 @@ function individuBlockFactory(id, chapter?: string) {
           },
         ],
       },
-      ...(demandeur
-        ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return 8 < age && age <= 25
-              },
-              steps: [individuStep("enfant_a_charge")],
-            },
-          ]
-        : []),
-      ...(demandeur
-        ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                const thisYear = datesGenerator(situation.dateDeValeur).thisYear
-                  .id
-                const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
-                return (
-                  20 <= age &&
-                  age < 25 &&
-                  !["etudiant", ...ACTIVITES_ACTIF].includes(
-                    subject.activite
-                  ) &&
-                  !subject.ass_precondition_remplie &&
-                  !enfant_a_charge
-                )
-              },
-              steps: [
-                individuStep("rsa_jeune_condition_heures_travail_remplie"),
-              ],
-            },
-          ]
-        : []),
-      ...(demandeur
-        ? [
-            {
-              isActive: (subject, situation) =>
-                60 <=
-                Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                ),
-              steps: [individuStep("gir")],
-            },
-          ]
-        : []),
-      ...(demandeur
-        ? [
-            {
-              isActive: (subject, situation) => {
-                const age = Individu.age(
-                  subject,
-                  datesGenerator(situation.dateDeValeur).today.value
-                )
-                return age <= 25
-              },
-              steps: [individuStep("regime_securite_sociale")],
-            },
-          ]
-        : []),
-    ],
+    ]
+  }
+
+  function buildEnfantAChargeStep() {
+    return [
+      {
+        isActive: (subject, situation) => {
+          const age = Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          return 8 < age && age <= 25
+        },
+        steps: [individuStep("enfant_a_charge")],
+      },
+    ]
+  }
+
+  function buildRsaJeuneStep() {
+    return [
+      {
+        isActive: (subject, situation) => {
+          const age = Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          const thisYear = datesGenerator(situation.dateDeValeur).thisYear.id
+          const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
+          return (
+            20 <= age &&
+            age < 25 &&
+            !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite) &&
+            !subject.ass_precondition_remplie &&
+            !enfant_a_charge
+          )
+        },
+        steps: [individuStep("rsa_jeune_condition_heures_travail_remplie")],
+      },
+    ]
+  }
+
+  function buildGirStep() {
+    return [
+      {
+        isActive: (subject, situation) =>
+          60 <=
+          Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          ),
+        steps: [individuStep("gir")],
+      },
+    ]
+  }
+
+  function buildRegimeSecuriteSocialeStep() {
+    return [
+      {
+        isActive: (subject, situation) => {
+          const age = Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          return age <= 25
+        },
+        steps: [individuStep("regime_securite_sociale")],
+      },
+    ]
+  }
+
+  function buildEnfantSteps() {
+    return [
+      individuStep("_firstName", chapter),
+      individuStep("date_naissance", demandeur ? "profil" : chapter),
+      individuStep("nationalite"),
+      individuStep("garde_alternee"),
+      ...(demandeur ? buildScolariteSteps() : []),
+      ...buildHandicapSteps(),
+      {
+        isActive: (subject) => subject.handicap,
+        steps: [individuStep("enfant_place")],
+      },
+      ...(demandeur ? buildEnfantAChargeStep() : []),
+      {
+        isActive: (subject, situation) => {
+          const age = Individu.age(
+            subject,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          return 8 < age && age <= 25
+        },
+        steps: [individuStep("scolarite")],
+      },
+      ...(demandeur ? buildRsaJeuneStep() : []),
+      individuStep("enfant_a_charge"),
+      ...(demandeur ? buildGirStep() : []),
+      ...(demandeur ? buildRegimeSecuriteSocialeStep() : []),
+    ]
+  }
+
+  function buildAdulteSteps() {
+    return [
+      individuStep("date_naissance", demandeur ? "profil" : chapter),
+      individuStep("nationalite"),
+      ...(conjoint ? [individuStep("statut_marital")] : []),
+      individuStep("activite"),
+      ...(demandeur ? buildScolariteSteps() : []),
+      {
+        isActive: (subject) => subject.activite == "chomeur",
+        steps: [
+          individuStep("date_debut_chomage"),
+          individuStep("ass_precondition_remplie"),
+        ],
+      },
+      {
+        isActive: (subject) =>
+          !["etudiant", ...ACTIVITES_ACTIF].includes(subject.activite),
+        steps: [individuStep("inapte_travail")],
+      },
+      ...buildHandicapSteps(),
+      ...(demandeur ? buildEnfantAChargeStep() : []),
+      ...(demandeur ? buildRsaJeuneStep() : []),
+      ...(demandeur ? buildGirStep() : []),
+      ...(demandeur ? buildRegimeSecuriteSocialeStep() : []),
+      individuStep("enceinte"),
+    ]
+  }
+
+  return {
+    subject: (situation) =>
+      situation[id] ||
+      situation.enfants?.find((enfant) => enfant.id === id) ||
+      {},
+    steps: [...(enfant ? buildEnfantSteps() : buildAdulteSteps())],
   }
 }
 

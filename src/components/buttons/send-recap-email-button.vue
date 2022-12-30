@@ -1,3 +1,21 @@
+<script setup>
+import { defineProps } from "vue"
+import { useStore } from "@/stores"
+
+defineProps({
+  text: {
+    type: String,
+    default: "Recevoir par email",
+  },
+})
+
+const store = useStore()
+
+const showModal = () => {
+  store.setRecapEmailState("show")
+}
+</script>
+
 <template>
   <button
     class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
@@ -8,26 +26,3 @@
     {{ text }}
   </button>
 </template>
-
-<script>
-import { useStore } from "@/stores"
-import { mapStores } from "pinia"
-
-export default {
-  name: "SendRecapEmailButton",
-  props: {
-    text: {
-      type: String,
-      default: "Recevoir par email",
-    },
-  },
-  computed: {
-    ...mapStores(useStore),
-  },
-  methods: {
-    showModal() {
-      this.storeStore.setRecapEmailState("show")
-    },
-  },
-}
-</script>

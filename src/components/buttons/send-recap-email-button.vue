@@ -11,6 +11,7 @@
 
 <script>
 import { useStore } from "@/stores"
+import { mapStores } from "pinia"
 
 export default {
   name: "SendRecapEmailButton",
@@ -20,14 +21,12 @@ export default {
       default: "Recevoir par email",
     },
   },
-  setup() {
-    return {
-      store: useStore(),
-    }
+  computed: {
+    ...mapStores(useStore),
   },
   methods: {
     showModal() {
-      this.store.setRecapEmailState("show")
+      this.storeStore.setRecapEmailState("show")
     },
   },
 }

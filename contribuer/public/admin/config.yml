@@ -117,6 +117,15 @@ fields:
         name: values
         widget: list
         hint: Pour saisir plusieurs département, séparez les codes des départements par une virgule.
+  field_epcis: &field_epcis
+    label: Condition géographique d'EPCI
+    name: epcis
+    widget: object
+    fields:
+      - label: Code SIREN des EPCI
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs EPCI, séparez les codes SIREN par une virgule.
   field_communes: &field_communes
     label: Condition géographique communale
     name: communes
@@ -725,6 +734,7 @@ fields:
       - *field_age
       - *field_regions
       - *field_departements
+      - *field_epcis
       - *field_communes
       - *field_regime_securite_sociale
       - *field_quotient_familial

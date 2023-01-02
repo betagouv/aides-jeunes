@@ -46,7 +46,7 @@ export default {
             "menage",
             "_logementType"
           )
-          return _logementType ==="locataire"
+          return value === "locataire"
         },
       },
       { value: -12, label: "Non" },

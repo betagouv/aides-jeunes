@@ -39,14 +39,14 @@ export default {
       { value: 12, label: "Oui" },
       {
         value: -2,
-        label: "Non, j'ai emmenagé il y a moins de 3 mois",
+        label: "Non, j'ai emménagé il y a moins de 3 mois",
         isRelevant: ({ simulation }) => {
           const value = getAnswer(
             simulation.answers.current,
             "menage",
-            "statut_occupation_logement"
+            "_logementType"
           )
-          return value?.startsWith("locataire")
+          return value === "locataire"
         },
       },
       { value: -12, label: "Non" },

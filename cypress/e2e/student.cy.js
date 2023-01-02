@@ -40,7 +40,7 @@ context("Full simulation", () => {
       "75001",
       "_bourseCriteresSociauxCommuneDomicileFamilial"
     )
-    logement.fill__nombreMoisEntreeLogement(12)
+    logement.fill__nombreMoisEntreeLogement(-2)
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)

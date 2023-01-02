@@ -1,11 +1,13 @@
 <template>
   <form>
     <div>
-      <router-link to="/simulation/resultats">
-        <BackButton class="fr-mb-4w" size="small"
-          >Revenir aux résultats
-        </BackButton>
-      </router-link>
+      <BackButton
+        class="fr-mb-4w"
+        size="small"
+        @click="$router.push({ path: '/simulation/resultats' })"
+      >
+        Revenir aux résultats
+      </BackButton>
     </div>
 
     <h2>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h2>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import Institution from "@/lib/institution"
+import Benefits from "@/lib/benefits"
 import BackButton from "@/components/buttons/back-button.vue"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
 import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"
@@ -43,7 +45,7 @@ export default {
   },
   data: function () {
     let benefitKeyed = {}
-    Institution.benefits.all.forEach((benefit) => {
+    Benefits.forEach((benefit) => {
       const benefit_temp = Object.assign(
         { type: benefit.institution.type },
         benefit

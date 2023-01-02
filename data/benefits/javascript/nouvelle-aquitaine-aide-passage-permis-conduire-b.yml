@@ -9,7 +9,6 @@ conditions:
   - Être diplômé de la filière professionnelle ou agricole.
   - Ou être en insertion professionnelle suivi par une mission locale.
   - Ou être scolarisé en Établissement Régional d’Enseignement Adapté (EREAS).
-  - Ou être en contrat d’engagement de Service Civique.
 link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 prefix: l’
@@ -34,4 +33,3 @@ profils:
   - type: etudiant
   - type: service_civique
   - type: chomeur
-  - type: inactif

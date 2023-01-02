@@ -710,6 +710,9 @@ fields:
   field_benefit_source: &field_benefit_source
     name: source
     widget: hidden
+  field_not_operator: &field_not_operator
+    name: not
+    widget: hidden
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
@@ -729,6 +732,7 @@ fields:
       - *field_beneficiaire_rsa
       - *field_attached_to_institution
       - *field_statut_occupation_logement
+      - *field_not_operator
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat

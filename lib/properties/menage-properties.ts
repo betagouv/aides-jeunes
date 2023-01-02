@@ -46,7 +46,7 @@ export default {
             "menage",
             "_logementType"
           )
-          return value?.startsWith("locataire")
+          return _logementType ==="locataire"
         },
       },
       { value: -12, label: "Non" },

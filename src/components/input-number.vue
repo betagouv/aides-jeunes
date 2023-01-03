@@ -2,7 +2,7 @@
   <input
     :id="id"
     ref="result"
-    v-model="model"
+    v-model.number="model"
     v-select-on-click
     :data-testid="id"
     :name="name"
@@ -12,6 +12,7 @@
     :class="dataType !== 'count' ? 'fr-text--right' : ''"
     inputmode="decimal"
     :aria-labelledby="ariaLabelledBy || null"
+    @input="normalizeInput($event)"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
     >Ce champ n'est pas valide.</WarningMessage
@@ -20,7 +21,6 @@
 
 <script>
 import WarningMessage from "@/components/warning-message.vue"
-import { stringIsValidNumber, stringToNumber } from "@/utils/validator"
 export default {
   name: "InputNumber",
   components: { WarningMessage },
@@ -32,7 +32,6 @@ export default {
     max: { type: Number, default: null },
     dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
-    modelValue: { type: [Number, String] },
     emit: { type: Boolean, default: true },
   },
   emits: ["input", "update:modelValue"],
@@ -45,20 +44,32 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value || this.modelValue || ""
+        return this.value || ""
       },
       set(value) {
-        if (
-          (value && stringIsValidNumber(value, this.min, this.max)) ||
-          value === ""
-        ) {
+        if (typeof value === "string") {
+          value = this.parseInputString(value)
+        }
+        value = value == "" ? 0 : value
+        const valid = !isNaN(parseFloat(value))
+        const floor = this.min == null || this.min <= parseFloat(value)
+        const ceiling = this.max == null || this.max >= parseFloat(value)
+        if (valid && floor && ceiling) {
           this.error = false
-          this.$emit("update:modelValue", stringToNumber(value))
+          this.$emit("update:modelValue", parseFloat(value))
         } else {
           this.error = true
           this.$emit("update:modelValue", value)
         }
       },
+    },
+  },
+  methods: {
+    normalizeInput(event) {
+      event.target.value = this.parseInputString(event.target.value)
+    },
+    parseInputString(value) {
+      return value.replace(/,/g, ".").replace(/[^\d-\.]/g, "")
     },
   },
 }

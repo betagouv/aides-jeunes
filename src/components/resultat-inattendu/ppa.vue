@@ -56,7 +56,7 @@
       <ul>
         <li>
           Retourner à la
-          <router-link to="/simulation/logement">
+          <router-link to="/simulation/menage/_logementType">
             page « Logement »
           </router-link>
           pour modifier ces informations

@@ -9,6 +9,7 @@ describe("input-number.vue", () => {
       { input: "1 022", result: 1022 },
       { input: "044", result: 44 },
       { input: "-1.45", result: -1.45 },
+      { input: "200.0", result: 200 },
       { input: "", result: 0 },
     ]
     for (const test of testSet) {
@@ -16,6 +17,28 @@ describe("input-number.vue", () => {
       InputNumber.computed.model.set.call(
         {
           $emit: (name, value) => (emitted = { name, value }),
+          parseInputString: InputNumber.methods.parseInputString,
+        },
+        test.input
+      )
+      expect(emitted.value).toEqual(test.result)
+    }
+  })
+  it("remove improper input from valid numbers", async () => {
+    const testSet = [
+      { input: "a1", result: 1 },
+      { input: "1a", result: 1 },
+      { input: "1.", result: 1 },
+      { input: "200.0", result: 200 },
+      { input: "1a2", result: 12 },
+      { input: "1.2.3", result: 1.2 },
+    ]
+    for (const test of testSet) {
+      let emitted
+      InputNumber.computed.model.set.call(
+        {
+          $emit: (name, value) => (emitted = { name, value }),
+          parseInputString: InputNumber.methods.parseInputString,
         },
         test.input
       )
@@ -24,14 +47,9 @@ describe("input-number.vue", () => {
   })
   it("reject invalid numbers", async () => {
     const testSet = [
-      { input: "a1", result: "a1" },
-      { input: "1a", result: "1a" },
-      { input: "1.", result: "1." },
-      { input: ".1", result: ".1" },
-      { input: "1.2.3", result: "1.2.3" },
-      { input: "1+2", result: "1+2" },
-      { input: "Infinity", result: "Infinity" },
-      { input: "1e25", result: "1e25" },
+      { input: "1+2", result: 12 },
+      { input: "Infinity", result: 0 },
+      { input: "1e25", result: 125 },
       { input: undefined, result: undefined },
       { input: null, result: null },
     ]
@@ -40,6 +58,7 @@ describe("input-number.vue", () => {
       InputNumber.computed.model.set.call(
         {
           $emit: (name, value) => (emitted = { name, value }),
+          parseInputString: InputNumber.methods.parseInputString,
         },
         test.input
       )
@@ -64,6 +83,7 @@ describe("input-number.vue", () => {
           min: test.min,
           max: test.max,
           $emit: (name, value) => (emitted = { name, value }),
+          parseInputString: InputNumber.methods.parseInputString,
         },
         test.input,
         test.min,

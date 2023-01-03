@@ -71,7 +71,14 @@ npm ci
 
 ## Openfisca
 
-`Warning MacOS :` go to next section
+There are 2 ways to run Openfisca:
+
+- either by installing its dependencies in a Python virual environment locally on your machine
+- or by using Docker to pull and build an image with the required dependencies
+
+Note that if you are using a Mac with a M1/M2 processor it is advised to use Docker since not all packages used by Openfisca can be installed locally.
+
+### Install Openfisca in a virtual environment
 
 :warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.13`.
 
@@ -88,31 +95,13 @@ Then, to start the OpenFisca server, simply run `source .venv/bin/activate` foll
 
 OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
 
-### Openfisca MacOs install and run
+### Install and run Openfisca in a docker container
 
-For both intel and apple silicon
+If you want to run Openfisca without having to install a specific version of Python or create a virtual environment you can use the docker file provided to run Openfisca in a container. From the root of the project run the following command to build the docker image:
 
 ```bash
-#Check the terminal isn't in rosetta mode. arch should return "arm64"
-arch
-brew install pyenv
-brew install pyenv-virtualenv
-brew install openssl
-#install proper python's version
-pyenv install 3.8.12
-pyenv global 3.8.12
-#inside project folder
-python -m venv .venv   # create the virtual environment in the .venv folder
-source .venv/bin/activate  # activate the virtual environment
+docker build -f openfisca/Dockerfile ./openfisca
 ```
-
-⚠️ Mac M1 `pip install -r openfisca/requirements-m1.txt --no-deps pandas`
-
-⚠️ Mac intel : `npm run install-openfisca`
-
-Then, to start the OpenFisca server, simply run source .venv/bin/activate followed by npm run openfisca
-
-⚠️ if you want to switch from rosetta to Arm, you have to reinstall everything (pyenv, python...) delete .venv and recreate it
 
 ### Development mode
 
@@ -140,11 +129,19 @@ First, start a Mongo server:
 npm run db
 ```
 
-Then, in another shell (you will have to run `source .venv/bin/activate`), start the Openfisca server:
+Then, in another shell you will need to start openfisca. If you installed it locally activate the virtual environment (run `source .venv/bin/activate`) and start the Openfisca server:
 
 ```sh
 OPENFISCA_WORKERS=1 npm run openfisca
 ```
+
+If instead you want to run Openfisca in a docker container run:
+
+```bash
+docker run -d -p 2000:2000 openfisca
+```
+
+(note that in that case Openfisca will run in the background and you will have to run `docker ps` and `docker stop XXXXX` where XXXXX is the container ID to stop Openfisca)
 
 Finally, in a third shell, start the server:
 

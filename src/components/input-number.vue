@@ -69,7 +69,7 @@ export default {
       event.target.value = this.parseInputString(event.target.value)
     },
     parseInputString(value) {
-      return value.replace(/,/g, ".").replace(/[^\d-\.]/g, "")
+      return value.replace(/,/g, ".").replace(/[^\d-.]/g, "")
     },
   },
 }

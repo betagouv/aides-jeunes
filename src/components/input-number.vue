@@ -32,6 +32,7 @@ export default {
     max: { type: Number, default: null },
     dataType: { type: String, default: "amount" },
     value: { type: [Number, String] },
+    modelValue: { type: [Number, String] },
     emit: { type: Boolean, default: true },
   },
   emits: ["input", "update:modelValue"],
@@ -44,7 +45,7 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value || ""
+        return this.value || this.modelValue || ""
       },
       set(value) {
         if (typeof value === "string") {

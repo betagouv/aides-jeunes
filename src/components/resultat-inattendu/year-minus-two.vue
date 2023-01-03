@@ -19,14 +19,16 @@
         ressources sur l'année {{ store.dates.fiscalYear.label }}.
       </small>
     </p>
-    <router-link
-      v-if="!aCharge"
-      class="fr-btn fr-btn--secondary"
-      to="/simulation/ressources/fiscales"
-    >
-      Déclarez vos ressources
-      {{ store.dates.fiscalYear.label }}
-    </router-link>
+    <p>
+      <router-link
+        v-if="!aCharge"
+        class="fr-btn fr-btn--secondary"
+        to="/simulation/ressources/fiscales"
+      >
+        Déclarez vos ressources
+        {{ store.dates.fiscalYear.label }}
+      </router-link>
+    </p>
   </div>
 </template>
 

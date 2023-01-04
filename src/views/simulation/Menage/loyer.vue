@@ -38,7 +38,6 @@
             <InputNumber
               id="charges"
               v-model="chargesQuestion.selectedValue"
-              data-testid="loyer"
               :min="0"
             />
           </div>

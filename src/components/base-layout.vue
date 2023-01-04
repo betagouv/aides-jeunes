@@ -11,7 +11,7 @@
           <router-link
             class="fr-link"
             :to="{ hash: '#main' }"
-            :aria-current="none"
+            aria-current="none"
             >Contenu</router-link
           >
         </li>
@@ -19,7 +19,7 @@
           <router-link
             class="fr-link"
             :to="{ hash: '#navigation' }"
-            :aria-current="none"
+            aria-current="none"
             >Menu</router-link
           >
         </li>
@@ -27,7 +27,7 @@
           <router-link
             class="fr-link"
             :to="{ hash: '#footer' }"
-            :aria-current="none"
+            aria-current="none"
             >Pied de page</router-link
           >
         </li>

@@ -3,6 +3,7 @@ import config from "../backend/config/index"
 import webpack from "webpack"
 
 process.env.BASE_URL = config.baseURL
+process.env.IFRAME_TITLE = config.iframeTitle
 
 export default {
   mode: "production",
@@ -13,5 +14,5 @@ export default {
     path: path.resolve(__dirname, "../public/documents"),
     filename: "[name].js",
   },
-  plugins: [new webpack.EnvironmentPlugin(["BASE_URL"])],
+  plugins: [new webpack.EnvironmentPlugin(["BASE_URL", "IFRAME_TITLE"])],
 }

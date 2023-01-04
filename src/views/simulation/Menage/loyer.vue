@@ -38,7 +38,6 @@
             <InputNumber
               id="charges"
               v-model="chargesQuestion.selectedValue"
-              data-testid="charges"
               :min="0"
             />
           </div>
@@ -69,11 +68,7 @@ export default {
     return { store: useStore() }
   },
   data() {
-    return {
-      ...Logement.getLoyerData(this.store.simulation.answers.all),
-      chargesQuestion: Logement.getLoyerData(this.store.simulation.answers.all)
-        .chargesQuestion,
-    }
+    return Logement.getLoyerData(this.store.simulation.answers.all)
   },
   computed: {
     canSubmit() {

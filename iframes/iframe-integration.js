@@ -2,7 +2,7 @@ import { iframeResize } from "iframe-resizer"
 
 const script = document.currentScript
 const page = script.getAttribute("data-from-home") !== null ? "" : "simulation"
-const src = new URL(`${process.env.VITE_BASE_URL}/${page}`)
+const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
 src.searchParams.set(
@@ -17,7 +17,7 @@ const iframe = document.createElement("iframe")
 const iframeAttributes = {
   id: "simulateur",
   src: src.toString(),
-  title: process.env.VITE_TITLE,
+  title: process.env.IFRAME_TITLE,
   style: "border: none; width: 100%; display: block; height: 700px",
   allow: "clipboard-write",
   allowfullscreen: true,

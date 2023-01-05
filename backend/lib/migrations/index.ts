@@ -1,6 +1,6 @@
 import fs from "fs"
 
-const migrationFilesByModelName = getMigrationsFiles()
+const migrationFilesByModelName = await getMigrationsFiles()
 
 function getMigrationsFileNamesByModelName(modelName) {
   const __dirname = new URL(".", import.meta.url).pathname

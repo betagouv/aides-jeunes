@@ -100,7 +100,7 @@ OpenFisca dependencies are specified in [openfisca/requirements.txt](https://git
 If you want to run Openfisca without having to install a specific version of Python or create a virtual environment you can use the docker file provided to run Openfisca in a container. From the root of the project run the following command to build the docker image:
 
 ```bash
-docker build -f openfisca/Dockerfile ./openfisca
+docker build -f openfisca/Dockerfile ./openfisca -t openfisca
 ```
 
 ### Development mode

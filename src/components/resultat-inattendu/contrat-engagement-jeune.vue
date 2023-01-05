@@ -9,13 +9,6 @@
       inexacte, vous pouvez prendre contact avec nous pour comprendre l'origine
       de l'écart.
     </p>
-
-    <router-link
-      class="button outline text-center back-button"
-      to="/simulation/resultats"
-    >
-      Retourner aux résultats
-    </router-link>
   </div>
 </template>
 

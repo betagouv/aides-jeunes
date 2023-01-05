@@ -456,7 +456,7 @@ export const useStore = defineStore("store", {
       this.calculs.updating = false
     },
     async mockResults(benefit: any) {
-      const { mockResults } = await import("@/lib/institution.js")
+      const { mockResults } = await import("@/lib/benefits.js")
       // @ts-ignore
       this.setResults(mockResults(benefit))
     },

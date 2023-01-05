@@ -168,7 +168,7 @@
 
 <script>
 import axios from "axios"
-import Institution from "@/lib/institution"
+import Benefits from "@/lib/benefits"
 import ContactEmailMixin from "@/mixins/contact-email"
 import ResultatsMixin from "@/mixins/resultats"
 
@@ -193,7 +193,7 @@ export default {
     let benefitKeyed = {}
     let benefits = []
 
-    Institution.forEach((benefit) => {
+    Benefits.forEach((benefit) => {
       const b = Object.assign({ type: benefit.institution.type }, benefit)
       b.label = capitalize(benefit.label)
 
@@ -221,7 +221,7 @@ export default {
       shortDescription: null,
       showConsentNotice: false,
       submitting: false,
-      institutions: Institution,
+      institutions: Benefits,
     }
   },
   computed: {

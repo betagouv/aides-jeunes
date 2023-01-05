@@ -21,7 +21,7 @@
 
 <script setup>
 import { useRoute } from "vue-router"
-import { getBenefit } from "@/lib/institution"
+import { getBenefit } from "@/lib/benefits"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 

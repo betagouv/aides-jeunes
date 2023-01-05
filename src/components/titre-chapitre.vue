@@ -54,6 +54,9 @@ export default {
       if (path === "/simulation/recapitulatif") {
         return "Récapitulatif"
       }
+      if (path.includes("simulation/resultat/inattendu/")) {
+        return "Montant inattendu"
+      }
 
       const current = path.replace(/\/en_savoir_plus/, "")
       const step =

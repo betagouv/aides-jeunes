@@ -1,15 +1,10 @@
 import { getAnswer } from "./answers"
 import { situationsMenageLayout } from "./types/situations"
-
-export enum StatutOccupationLogement {
-  primo_accedant = "primo_accedant",
-  proprietaire = "proprietaire",
-  locataire_vide = "locataire_vide",
-  locataire_meuble = "locataire_meuble",
-  loge_gratuitement = "loge_gratuitement",
-  locataire_foyer = "locataire_foyer",
-  sans_domicile = "sans_domicile",
-}
+import {
+  LogementType,
+  LocationType,
+  StatutOccupationLogement,
+} from "./enums/logement"
 
 function getStatutOccupationLogement({
   _logementType,
@@ -17,51 +12,37 @@ function getStatutOccupationLogement({
   _primoAccedant,
 }: situationsMenageLayout) {
   let statutOccupationLogement = _logementType
-  if (_logementType === "locataire") {
-    if (_locationType === "vide") {
-      statutOccupationLogement = "locataire_vide"
+  if (_logementType === LogementType.locataire) {
+    if (_locationType === LocationType.vide) {
+      statutOccupationLogement = StatutOccupationLogement.locataire_vide
     }
-    if (_locationType === "meuble") {
-      statutOccupationLogement = "locataire_meuble"
+    if (_locationType === LocationType.meuble) {
+      statutOccupationLogement = StatutOccupationLogement.locataire_meuble
     }
-    if (_locationType === "foyer") {
-      statutOccupationLogement = "locataire_foyer"
+    if (_locationType === LocationType.foyer) {
+      statutOccupationLogement = StatutOccupationLogement.locataire_foyer
     }
   }
-  if (_logementType === "proprietaire") {
+  if (_logementType === LogementType.proprietaire) {
     if (_primoAccedant === true) {
-      statutOccupationLogement = "primo_accedant"
+      statutOccupationLogement = StatutOccupationLogement.primo_accedant
     }
   }
-  if (_logementType === "heberge") {
-    statutOccupationLogement = "loge_gratuitement"
+  if (_logementType === LogementType.heberge) {
+    statutOccupationLogement = StatutOccupationLogement.loge_gratuitement
   }
-  if (_logementType === "sansDomicile") {
-    statutOccupationLogement = "sans_domicile"
+  if (_logementType === LogementType.sansDomicile) {
+    statutOccupationLogement = StatutOccupationLogement.sans_domicile
   }
   return statutOccupationLogement
 }
 
-export const STATUT_OCCUPATION_LABEL = {
-  primo_accedant: "Propriétaire primo-accédant",
-  proprietaire: "Propriétaire",
-  locataire_vide: "Locataire",
-  locataire_meuble: "Locataire de meublé ou hotel",
-  loge_gratuitement: "Logé gratuitement",
-  locataire_foyer: "Locataire foyer",
-  sans_domicile: "Sans domicile stable",
-}
-
-function getStatutOccupationLabel(statut) {
-  return STATUT_OCCUPATION_LABEL[statut]
-}
-
 function isOwner(_logementType) {
-  return _logementType === "proprietaire"
+  return _logementType === LogementType.proprietaire
 }
 
 function captureCharges(_logementType) {
-  return _logementType === "locataire"
+  return _logementType === LogementType.locataire
 }
 
 export function getLoyerData(answers) {
@@ -105,11 +86,9 @@ export function getLoyerData(answers) {
 
 const Logement = {
   getStatutOccupationLogement,
-  getStatutOccupationLabel,
   isOwner,
   captureCharges,
   getLoyerData,
-  STATUT_OCCUPATION_LABEL,
 }
 
 export default Logement

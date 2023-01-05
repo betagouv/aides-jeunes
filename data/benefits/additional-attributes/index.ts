@@ -136,7 +136,9 @@ export const additionalBenefitAttributes = {
       return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
     },
     legend: (parameters: openfiscaParametersLayout) =>
-      `au lieu de ${parameters["marche_travail.epargne.livret_a.taux"] * 100}%`,
+      `au lieu de ${
+        parameters["taxation_capital.epargne.livret_a.taux"] * 100
+      }%`,
   },
   occitanie_carte_transport_scolaire_lio,
 }

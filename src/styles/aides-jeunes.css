@@ -206,6 +206,10 @@
   .aj-action-buttons .fr-btns-group {
     justify-content: space-between !important;
   }
+
+  .fr-sidemenu__inner {
+    min-height: 0;
+  }
 }
 
 .aj-iframe-footer {
@@ -232,6 +236,15 @@
 
   [data-text]:after {
     display: none !important;
+  }
+
+  .fr-sidemenu__inner {
+    min-height: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .fr-sidemenu__inner {
+    min-height: 0;
   }
 }
 

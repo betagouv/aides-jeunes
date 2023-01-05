@@ -14,14 +14,13 @@ async function loadRoutes() {
       .readdirSync(routesPath)
       .filter((file) => /(.*)\.(ts|js$)/.test(file))
       .map(function (file) {
-        console.log(`"//////////"${routesPath}/${file}`)
         return import(`${routesPath}/${file}`)
       })
   )
   routes.map((route) => route.default(api))
 }
 
-loadRoutes()
+await loadRoutes()
   .then(() => {
     api.all("*", function (req, res) {
       res.sendStatus(404)

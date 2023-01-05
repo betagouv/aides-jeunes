@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ConfigurationLayout } from "../types/config"
+import { ConfigurationLayout } from "../types/config.js"
 const __dirname = new URL(".", import.meta.url).pathname
 
 const env = process.env.NODE_ENV || "development"

@@ -1,5 +1,5 @@
-import { getAnswer } from "./answers"
-import { situationsMenageLayout } from "./types/situations"
+import { getAnswer } from "./answers.js"
+import { situationsMenageLayout } from "./types/situations.js"
 
 export enum StatutOccupationLogement {
   primo_accedant = "primo_accedant",

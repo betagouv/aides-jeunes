@@ -1,7 +1,7 @@
-import resources from "./resources"
+import resources from "./resources.js"
 
-import { datesGeneratorLayout, dateLayout } from "../lib/types/dates"
-import { resourceLayout } from "./types/resources"
+import { datesGeneratorLayout, dateLayout } from "../lib/types/dates.js"
+import { resourceLayout } from "./types/resources.js"
 
 function getPeriodsForCurrentYear(dates: datesGeneratorLayout, ressourceType) {
   const periodKeys: dateLayout[] = []

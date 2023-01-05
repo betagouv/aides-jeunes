@@ -1,5 +1,5 @@
-import config from "../../config/index"
-import mapping from "./mapping/index"
+import config from "../../config/index.js"
+import mapping from "./mapping/index.js"
 import axios from "axios"
 
 export const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest

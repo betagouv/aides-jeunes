@@ -1,7 +1,7 @@
 import express from "express"
 import { createServer as createViteServer } from "vite"
-import configure from "./configure"
-import mock from "../mock"
+import configure from "./configure.js"
+import mock from "../mock.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const port = process.env.PORT || 8080

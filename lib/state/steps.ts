@@ -3,7 +3,7 @@ import {
   ComplexStepLayout,
   StepGeneratorLayout,
   ComplexStepGeneratorLayout,
-} from "../types/steps"
+} from "../types/steps.js"
 
 function Step(
   this: StepGeneratorLayout,

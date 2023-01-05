@@ -1,5 +1,5 @@
 import axios from "axios"
-import config from "../../config/index"
+import config from "../../config/index.js"
 
 async function post(text) {
   await axios

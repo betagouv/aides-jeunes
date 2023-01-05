@@ -1,8 +1,8 @@
 import { forEach, pickBy } from "lodash-es"
 
-import common from "./common"
+import common from "./common.js"
 
-import { propertyLayout } from "../../../types/properties"
+import { propertyLayout } from "../../../types/properties.js"
 
 const famillePropertiesGivenToIndividu = Object.keys(
   pickBy(common.requestedVariables, function (definition: propertyLayout) {

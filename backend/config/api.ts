@@ -14,7 +14,8 @@ async function loadRoutes() {
       .readdirSync(routesPath)
       .filter((file) => /(.*)\.(ts|js$)/.test(file))
       .map(function (file) {
-        return import(`${routesPath}/${file}`) //(api)
+        console.log(`"//////////"${routesPath}/${file}`)
+        return import(`${routesPath}/${file}`)
       })
   )
   routes.map((route) => route.default(api))

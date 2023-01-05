@@ -1,7 +1,7 @@
 import { cloneDeep } from "lodash-es"
 import dayjs from "dayjs"
 
-import { menageLayout } from "../../../../types/openfisca"
+import { menageLayout } from "../../../../types/openfisca.js"
 
 export function buildOpenFiscaMenage(situation): menageLayout {
   const openFiscaMenage = cloneDeep(situation.menage)

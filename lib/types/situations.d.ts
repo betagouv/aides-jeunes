@@ -1,4 +1,4 @@
-import { individuLayout } from "./individu"
+import { individuLayout } from "./individu.js"
 
 export interface situationsLayout {
   dateDeValeur: number

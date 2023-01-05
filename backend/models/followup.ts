@@ -2,15 +2,15 @@ import mongoose from "mongoose"
 import { find } from "lodash-es"
 import validator from "validator"
 
-import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue"
-import utils from "../lib/utils"
+import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
+import utils from "../lib/utils.js"
 
-import { SurveyLayout } from "../types/survey"
+import { SurveyLayout } from "../types/survey.js"
 
-import renderSimulationResults from "../lib/mes-aides/emails/simulation-results"
-import renderBenefitActionSurvey from "../lib/mes-aides/emails/benefit-action-survey"
+import renderSimulationResults from "../lib/mes-aides/emails/simulation-results.js"
+import renderBenefitActionSurvey from "../lib/mes-aides/emails/benefit-action-survey.js"
 
-import { MongooseLayout, FollowupModel } from "../types/models"
+import { MongooseLayout, FollowupModel } from "../types/models.js"
 
 const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {

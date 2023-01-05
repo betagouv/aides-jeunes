@@ -1,7 +1,7 @@
 import Sentry from "@sentry/node"
-import openfisca from "./getter"
+import openfisca from "./getter.js"
 
-import { openfiscaParametersLayout } from "../../../lib/types/parameters"
+import { openfiscaParametersLayout } from "../../../lib/types/parameters.js"
 
 export const parametersList: openfiscaParametersLayout = {
   "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal": 26,

@@ -1,6 +1,6 @@
 import express from "express"
-import { followup, resultRedirect } from "./controllers/followups"
-import { ajRequest } from "./types/express"
+import { followup, resultRedirect } from "./controllers/followups.js"
+import { ajRequest } from "./types/express.js"
 
 // Setup Express
 const app = express()

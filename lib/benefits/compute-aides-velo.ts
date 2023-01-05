@@ -1,6 +1,6 @@
 // @ts-ignore
 import aidesVelo from "aides-velo"
-import { generator } from "../dates"
+import { generator } from "../dates.js"
 
 const veloTypes = {
   velo_mecanique: "mécanique simple",

@@ -1,9 +1,9 @@
 import { concat, isNumber, some } from "lodash-es"
 import dayjs from "dayjs"
 
-import common from "../common"
-import individuRessources from "./ressources"
-import ressources from "../../../../../lib/resources"
+import common from "../common.js"
+import individuRessources from "./ressources.js"
+import ressources from "../../../../../lib/resources.js"
 
 const ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),

@@ -1,10 +1,10 @@
 import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
 
-import determineCustomizationIds from "./customization"
-import { computeJavascriptBenefits } from "./compute-javascript"
-import { computeAidesVeloBenefits } from "./compute-aides-velo"
+import determineCustomizationIds from "./customization.js"
+import { computeJavascriptBenefits } from "./compute-javascript.js"
+import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
 
-import { generator } from "../dates"
+import { generator } from "../dates.js"
 export const datesGenerator = generator
 
 /**

@@ -5,8 +5,8 @@ import consolidate from "consolidate"
 const __dirname = new URL(".", import.meta.url).pathname
 
 const mustache = consolidate.mustache
-import config from "../../../config/index"
-import { mjml } from "./index"
+import config from "../../../config/index.js"
+import { mjml } from "./index.js"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/benefit-action-survey.txt"),

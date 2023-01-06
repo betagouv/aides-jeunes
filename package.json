@@ -153,17 +153,23 @@
       "vue"
     ],
     "transform": {
-      "\\.[jt]sx?$": "ts-jest",
+      "^.+\\.(js|jsx|mjs)$": "babel-jest",
+      "\\.tsx?$": "ts-jest",
       "\\.vue$": "@vue/vue3-jest"
     },
     "globals": {
       "ts-jest": {
         "isolatedModules": true,
         "useESM": true
+      },
+      "vue-jest": {
+        "compilerOptions": {
+          "propsDestructureTransform": true
+        }
       }
     },
     "transformIgnorePatterns": [
-      "/\\./"
+      "node_modules"
     ],
     "moduleNameMapper": {
       "@lib/(.*)": "<rootDir>/lib/$1",
@@ -176,11 +182,7 @@
     ],
     "testMatch": [
       "**/tests/(integration|unit)/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
-    ],
-    "testURL": "http://localhost/",
-    "preset": "ts-jest",
-    "automock": false,
-    "setupFiles": []
+    ]
   },
   "engines": {
     "node": ">= 16"

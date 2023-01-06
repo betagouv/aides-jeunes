@@ -197,8 +197,8 @@ export default {
 
     fetchPollResults: async function () {
       let uri
-      if (this.$route.params.surveyEmail) {
-        uri = `/api/followups/email/${this.$route.params.surveyEmail}`
+      if (this.$route.query.surveyEmail) {
+        uri = `/api/followups/email/${this.$route.query.surveyEmail}`
       } else if (this.$route.params.followupId) {
         uri = `/api/followups/id/${this.$route.params.followupId}`
       } else {

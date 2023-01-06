@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      window.location.href = `/accompagnement/email/${this.surveyEmail}`
+      window.location.href = `/accompagnement/?surveyEmail=${this.surveyEmail}`
     },
   },
 }

@@ -246,17 +246,11 @@ const router = createRouter({
       path: "/accompagnement",
       name: "liste-accompagnements",
       component: () => import("./views/accompagnement/accompagnement.vue"),
-      meta: {
-        analyticsIgnore: true,
-      },
     },
     {
       path: "/accompagnement/:followupId",
       name: "accompagnement",
       component: () => import("./views/accompagnement/accompagnement.vue"),
-      meta: {
-        analyticsIgnore: true,
-      },
     },
     {
       path: "/init-ci",

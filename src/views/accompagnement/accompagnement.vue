@@ -168,7 +168,7 @@ export default {
       return this.$route.params.followupId
     },
     surveyEmail() {
-      return this.$route.params.surveyEmail
+      return this.$route.query.surveyEmail
     },
     connect() {
       return `/api/auth/redirect?redirect=${window.location}`

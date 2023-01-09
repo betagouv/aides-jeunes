@@ -1,0 +1,22 @@
+label: Abonnement pass pass / TADAO pour les - 26 ans
+institution: artois-mobilites
+description: Ce titre vous donne accès en illimité aux transports en commun du
+  <a target="_blank" rel="noopener" title="Nouvelle fenêtre"
+  href="https://www.tadao.fr/affichage.php?id=683">réseau Tadao (bus et
+  TER)</a>.
+prefix: le
+conditions_generales:
+  - type: age
+    operator: <
+    value: 26
+  - type: departements
+    values:
+      - "62"
+profils: []
+type: float
+unit: €
+periodicite: mensuelle
+legend: à la place de 28
+montant: 5
+link: https://www.tadao.fr/707-Jeunes-28--de-26-ans29.html
+instructions: https://www.tadao.fr/707-Jeunes-28--de-26-ans29.html

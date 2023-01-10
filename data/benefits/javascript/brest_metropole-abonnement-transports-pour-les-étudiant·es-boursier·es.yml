@@ -1,0 +1,28 @@
+label: Abonnement transports pour les étudiant·es boursier·es
+institution: brest_metropole
+description: L'abonnement est valable avec la carte d'ayant droit et vous permet
+  de voyager en illimité sur l'ensemble du réseau Bibus.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "29019"
+      - "29011"
+      - "29061"
+      - "29069"
+      - "29075"
+      - "29189"
+      - "29212"
+      - "29235"
+profils: []
+conditions:
+  - Être étudiant·e boursier·es.
+type: float
+unit: €
+periodicite: mensuelle
+legend: au lieu de 30
+montant: 23
+link: https://www.brest.fr/mes-demarches/famille/demande-de-carte-de-bus-a-tarif-solidaire-pour-les-etudiants-7137.html
+teleservice: https://www.brest.fr/mes-demarches/famille/demande-de-carte-de-bus-a-tarif-solidaire-pour-les-etudiants-7137.html
+instructions: ""
+floorAt: 1

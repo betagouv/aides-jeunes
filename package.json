@@ -39,7 +39,7 @@
     "tools:get-all-steps": "node dist-server/tools/get-all-steps.js",
     "tools:serve-mail": "babel-node -x '.ts' ./tools/mjml.ts",
     "tools:test-benefits-geographical-constraint-consistency": "babel-node -x '.ts' ./tools/test-benefits-geographical-constraint-consistency.ts",
-    "tools:test-definition-periods": "node dist-server/tools/test-definition-periods.js",
+    "tools:test-definition-periods": "babel-node -x '.ts' ./tools/test-definition-periods.ts",
     "migrate": "babel-node -x '.ts' ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {

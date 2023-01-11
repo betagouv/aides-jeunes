@@ -1,6 +1,6 @@
 <template>
   <nav class="fr-sidemenu fr-col-lg-12" aria-label="Sommaire" role="navigation">
-    <div class="fr-sidemenu__inner">
+    <div class="fr-sidemenu__inner aj-fr-sidemenu__inner">
       <button
         ref="sideMenuButton"
         class="fr-sidemenu__btn fr-px-2w"

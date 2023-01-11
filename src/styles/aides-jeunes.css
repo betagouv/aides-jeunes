@@ -184,8 +184,19 @@
   min-width: 70px;
 }
 
-.fr-sidemenu__inner {
-  min-height: 100vh;
+.aj-main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.aj-fr-col-12 {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.aj-fr-sidemenu__inner {
+  height: 100%;
 }
 
 @media (max-width: 576px) {

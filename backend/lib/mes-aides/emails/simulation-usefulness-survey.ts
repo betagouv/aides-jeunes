@@ -19,8 +19,8 @@ function renderAsText(followup) {
   const data = {
     ctaLink: `${config.baseURL}${followup.surveyPath}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
-    wasUsefulLinkYes: `${config.baseURL}${followup.surveyPath}${followup.wasUsefulPath}`,
-    wasUsefulLinkNo: `${config.baseURL}${followup.surveyPath}${followup.wasNotUsefulPath}`,
+    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
+    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
   }
 
   return mustache.render(textTemplate, data)
@@ -31,8 +31,8 @@ function renderAsHtml(followup) {
     ctaLink: `${config.baseURL}${followup.surveyPath}`,
     baseURL: config.baseURL,
     returnURL: `${config.baseURL}${followup.returnPath}`,
-    wasUsefulLinkYes: `${config.baseURL}${followup.surveyPath}${followup.wasUsefulPath}`,
-    wasUsefulLinkNo: `${config.baseURL}${followup.surveyPath}${followup.wasNotUsefulPath}`,
+    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
+    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
   }
 
   return mustache.render(mjmlTemplate, data).then(function (templateString) {

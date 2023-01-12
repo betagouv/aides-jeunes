@@ -134,23 +134,21 @@ export async function getFollowup(
   next()
 }
 
-export async function postAnswersSurvey(req: ajRequest, res: Response) {
-  try {
-    await req.followup.addSurvey(req.body, "benefit-action")
+export function postSurvey(req: ajRequest, res: Response) {
+  req.followup.updateSurvey("benefit-action", req.body).then(() => {
     res.sendStatus(201)
-    pollResult.postPollResult(followup, req.body)
-  } catch (err) {
-    console.error(err)
-    res.sendStatus(400)
-  }
+  })
+  pollResult.postPollResult(followup, req.body)
 }
 
-export async function updateWasUseful(req: ajRequest, res: Response) {
-  try {
-    await req.followup.setWasUseful(req.params.wasuseful)
+export function updateWasUseful(req: ajRequest, res: Response) {
+  const answers = [
+    {
+      id: "wasUseful",
+      value: req.params.wasuseful,
+    },
+  ]
+  req.followup.updateSurvey("simulation-usefulness", answers).then(() => {
     res.sendStatus(200)
-  } catch (err) {
-    console.error(err)
-    res.sendStatus(400)
-  }
+  })
 }

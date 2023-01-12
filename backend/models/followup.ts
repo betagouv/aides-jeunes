@@ -155,34 +155,27 @@ FollowupSchema.method("mock", function () {
   })
 })
 
+FollowupSchema.method("updateSurvey", function (type, answers) {
+  const surveys: SurveyLayout[] = Array.from(this.surveys)
+  const survey = surveys.find((s) => s.type === type)
+  if (typeof survey === "undefined") {
+    console.log("Could not find and update survey using its id")
+    return
+  }
+  Object.assign(survey, {
+    answers: answers,
+    repliedAt: Date.now(),
+  })
+  this.surveys = surveys
+  return this.save()
+})
+
 FollowupSchema.method("addSurvey", function (answers, type = null) {
   this.surveys.push({
     answers,
     repliedAt: Date.now(),
     type,
   })
-  return this.save()
-})
-
-FollowupSchema.method("setWasUseful", function (wasUseful) {
-  const survey = this.surveys.find((survey) =>
-    survey.answers.find((answer) => answer.id === "wasUseful")
-  )
-  // if there is no survey with a "wasUseful" answer, create one
-  if (!survey) {
-    this.surveys.push({
-      answers: [
-        {
-          id: "wasUseful",
-          value: wasUseful,
-        },
-      ],
-      repliedAt: Date.now(),
-      type: "simulation-usefulness",
-    })
-  } else {
-    survey.answers.find((answer) => answer.id === "wasUseful").value = wasUseful
-  }
   return this.save()
 })
 
@@ -209,11 +202,11 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {
-  return `&wasuseful=1`
+  return `/api/followups/surveys/${this.accessToken}/wasuseful/1`
 })
 
 FollowupSchema.virtual("wasNotUsefulPath").get(function (this: any) {
-  return `&wasuseful=0`
+  return `/api/followups/surveys/${this.accessToken}/wasuseful/0`
 })
 
 export default mongoose.model<MongooseLayout, FollowupModel>(

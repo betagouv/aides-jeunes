@@ -1,5 +1,5 @@
 import { forEach } from "lodash"
-import { getParameter } from "../../parameters"
+import { getParameter } from "../../parameters.js"
 
 const TAUX_CSG_CRDS = 0.029,
   ASSIETTE_COTIS = 0.9825,

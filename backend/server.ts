@@ -2,7 +2,7 @@
 
 import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
-import configure from "./configure"
+import configure from "./configure.js"
 
 const app: Application = express()
 

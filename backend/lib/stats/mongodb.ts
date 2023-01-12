@@ -6,7 +6,7 @@ declare function emit(key, value)
 
 import { MongoClient } from "mongodb"
 
-import config from "../../config/index"
+import config from "../../config/index.js"
 
 let client
 

@@ -195,6 +195,11 @@ jobs:
         run: |
           source .venv/bin/activate
           npm run test tests/unit/openfisca/test.spec.js
+      - name: Validate Iframe build
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          NODE_ENV=production && npm run test tests/integration/iframe-build.spec.js
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

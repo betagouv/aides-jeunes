@@ -1,12 +1,12 @@
 import cookieParser from "cookie-parser"
 import {
   showFromSurvey,
+  postSurvey,
   showSurveyResult,
   showSurveyResults,
   showSurveyResultByEmail,
   getFollowup,
   updateWasUseful,
-  postSurvey,
 } from "../controllers/followups"
 import githubController from "../controllers/github"
 

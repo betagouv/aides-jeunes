@@ -1,10 +1,10 @@
-import Ressource from "./ressource"
-import { ressourceTypes } from "./resources"
-import { generator as datesGenerator } from "./dates"
-import Scolarite from "./scolarite"
-import { individuLayout } from "./types/individu"
-import { situationsLayout } from "./types/situations"
-import Logement from "./logement"
+import Ressource from "./ressource.js"
+import { ressourceTypes } from "./resources.js"
+import { generator as datesGenerator } from "./dates.js"
+import Scolarite from "./scolarite.js"
+import { individuLayout } from "./types/individu.js"
+import { situationsLayout } from "./types/situations.js"
+import Logement from "./logement.js"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,

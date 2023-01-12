@@ -1,6 +1,6 @@
 // @ts-ignore
 import currency from "currency.js"
-import { droitEstimeLayout } from "../types/details"
+import { droitEstimeLayout } from "../types/details.js"
 
 const PERIODICITE_PONCTUELLE = "ponctuelle"
 const PERIODICITE_MENSUELLE = "mensuelle"

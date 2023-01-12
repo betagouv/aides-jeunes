@@ -6,10 +6,10 @@ const ArgumentParser = argparse.ArgumentParser
 import es from "event-stream"
 
 // Loads
-import { apply, getLatestVersionByModelName } from "./index"
+import { apply, getLatestVersionByModelName } from "./index.js"
 import "../mongo-connector"
-import Simulation from "../../models/simulation"
-import Followup from "../../models/followup"
+import Simulation from "../../models/simulation.js"
+import Followup from "../../models/followup.js"
 
 let counter = 0
 let errors = 0

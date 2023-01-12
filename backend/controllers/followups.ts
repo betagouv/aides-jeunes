@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import Followup from "../models/followup"
+import Followup from "../models/followup.js"
 
-import pollResult from "../lib/mattermost-bot/poll-result"
-import simulationController from "./simulation"
+import pollResult from "../lib/mattermost-bot/poll-result.js"
+import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
-import { ajRequest } from "../types/express"
-import config from "../config/index"
+import { ajRequest } from "../types/express.js"
+import config from "../config/index.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]

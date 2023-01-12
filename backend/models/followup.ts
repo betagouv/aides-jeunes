@@ -1,16 +1,15 @@
 import mongoose from "mongoose"
 import validator from "validator"
 
-import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue"
-import utils from "../lib/utils"
+import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
+import utils from "../lib/utils.js"
 
-import { SurveyLayout, SurveyType } from "../types/survey"
-
-import renderSimulationResults from "../lib/mes-aides/emails/simulation-results"
-import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness"
-import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action"
-import SurveySchema from "./survey-schema"
-import { MongooseLayout, FollowupModel } from "../types/models"
+import { SurveyLayout } from "../types/survey.js"
+import renderSimulationResults from "../lib/mes-aides/emails/simulation-results.js"
+import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness.js"
+import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"
+import SurveySchema from "./survey-schema.js"
+import { MongooseLayout, FollowupModel } from "../types/models.d.js"
 
 const FollowupSchema = new mongoose.Schema(
   {

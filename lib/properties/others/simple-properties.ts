@@ -1,6 +1,6 @@
-import { MultipleProperty } from "../property"
-import Individu from "../../individu"
-import { ressourceTypes } from "../../resources"
+import { MultipleProperty } from "../property.js"
+import Individu from "../../individu.js"
+import { ressourceTypes } from "../../resources.js"
 import { capitalize } from "vue"
 
 export default {

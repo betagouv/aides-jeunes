@@ -1,10 +1,10 @@
 import dayjs from "dayjs"
-import { generator } from "../dates"
-import { filterByInterestFlag } from "./filter-interest-flag"
-import Scolarite from "../scolarite"
+import { generator } from "../dates.js"
+import { filterByInterestFlag } from "./filter-interest-flag.js"
+import Scolarite from "../scolarite.js"
 
-import { situationsLayout } from "../types/situations"
-import { ConditionsLayout } from "../types/benefits"
+import { situationsLayout } from "../types/situations.js"
+import { ConditionsLayout } from "../types/benefits.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]

@@ -1,4 +1,4 @@
-import { chapterLayout } from "./types/chapters"
+import { chapterLayout } from "./types/chapters.js"
 
 const chapters: chapterLayout[] = [
   { label: "Mon profil", name: "profil" },

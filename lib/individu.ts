@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import cloneDeep from "lodash.clonedeep"
 
-import { individuLayout } from "./types/individu"
+import { individuLayout } from "./types/individu.js"
 
 function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)

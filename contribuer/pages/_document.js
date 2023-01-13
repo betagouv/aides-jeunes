@@ -32,6 +32,16 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <footer>
+            <p>
+              Dans tous les cas, nous sommes à votre disposition par{" "}
+              <a href="mailto:aides-jeunes@beta.gouv.fr&subject=Contribuer">
+                email
+              </a>
+              .
+            </p>
+            <p>L’équipe du simulateur d’aides pour les jeunes</p>
+          </footer>
         </body>
       </Html>
     )

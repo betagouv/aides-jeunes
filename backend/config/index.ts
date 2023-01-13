@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { ConfigurationLayout } from "../types/config.js"
+const __dirname = new URL(".", import.meta.url).pathname
 
 const env = process.env.NODE_ENV || "development"
 
@@ -65,7 +66,8 @@ const all: ConfigurationLayout = {
 
 let override = {}
 try {
-  override = require(`./${env}.js`)
+  const loaddedConfiguration = await import(`${__dirname}${env}.js`)
+  override = loaddedConfiguration?.default
   console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
   console.warn(`No specific configuration for ${env}`)

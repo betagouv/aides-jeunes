@@ -133,7 +133,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Restore contribuer node modules
+        uses: actions/cache@v2
+        id: restore-contribuer-dependencies
+        with:
+          path: contribuer/node_modules
+          key: ${{ runner.os }}-cache-contribuer-node-modules-${{ hashFiles('contribuer/package-lock.json') }}
       - name: Install dependencies
+        if: steps.restore-contribuer-dependencies.outputs.cache-hit != 'true'
         run: cd contribuer && npm ci --prefer-offline --no-audit
       - name: Build static site
         run: cd contribuer && npm run export

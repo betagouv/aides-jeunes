@@ -14,7 +14,7 @@ describe("types.vue", () => {
       { label: "Prime" },
       { label: "Stage" },
     ]
-    expect(Types.methods.sort(categories)).toEqual(result)
+    expect(Types.default.methods.sort(categories)).toEqual(result)
   })
 
   it("group ressource by types", () => {
@@ -32,6 +32,6 @@ describe("types.vue", () => {
         { label: "Revenus de stage", category: "Revenus" },
       ],
     }
-    expect(Types.methods.groupTypes(categories)).toEqual(result)
+    expect(Types.default.methods.groupTypes(categories)).toEqual(result)
   })
 })

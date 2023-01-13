@@ -14,10 +14,10 @@ describe("input-number.vue", () => {
     ]
     for (const test of testSet) {
       let emitted
-      InputNumber.computed.model.set.call(
+      InputNumber.default.computed.model.set.call(
         {
           $emit: (name, value) => (emitted = { name, value }),
-          parseInputString: InputNumber.methods.parseInputString,
+          parseInputString: InputNumber.default.methods.parseInputString,
         },
         test.input
       )
@@ -35,10 +35,10 @@ describe("input-number.vue", () => {
     ]
     for (const test of testSet) {
       let emitted
-      InputNumber.computed.model.set.call(
+      InputNumber.default.computed.model.set.call(
         {
           $emit: (name, value) => (emitted = { name, value }),
-          parseInputString: InputNumber.methods.parseInputString,
+          parseInputString: InputNumber.default.methods.parseInputString,
         },
         test.input
       )
@@ -55,10 +55,10 @@ describe("input-number.vue", () => {
     ]
     for (const test of testSet) {
       let emitted
-      InputNumber.computed.model.set.call(
+      InputNumber.default.computed.model.set.call(
         {
           $emit: (name, value) => (emitted = { name, value }),
-          parseInputString: InputNumber.methods.parseInputString,
+          parseInputString: InputNumber.default.methods.parseInputString,
         },
         test.input
       )
@@ -78,12 +78,12 @@ describe("input-number.vue", () => {
     for (const test of testSet) {
       let emitted
       const input = InputNumber
-      input.computed.model.set.call(
+      input.default.computed.model.set.call(
         {
           min: test.min,
           max: test.max,
           $emit: (name, value) => (emitted = { name, value }),
-          parseInputString: InputNumber.methods.parseInputString,
+          parseInputString: InputNumber.default.methods.parseInputString,
         },
         test.input,
         test.min,

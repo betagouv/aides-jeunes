@@ -127,6 +127,16 @@ jobs:
       - name: Build assets
         run: |
           npm run build
+  build_contribuer:
+    name: Build static site
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: cd contribuer && npm ci --prefer-offline --no-audit
+      - name: Build static site
+        run: cd contribuer && npm run export
   openfisca_test_generation:
     name: OpenFisca test generation
     needs: [install, install_openfisca]
@@ -308,6 +318,7 @@ jobs:
         lint,
         unit_tests,
         build,
+        build_contribuer,
         openfisca_test_generation,
         test_e2e,
       ]

@@ -26,6 +26,15 @@ function Home() {
             C’est par ici pour accéder à l’outil de contribution
           </a>
         </h3>
+        <h3>
+          <a
+            target="_blank"
+            rel="noopener"
+            href="https://drive.google.com/drive/folders/1dSsjM6LmLkaPPTe6aNLODtKcfeIruMlG"
+          >
+            C’est par ici pour accéder au guide de l’outil de contribution
+          </a>
+        </h3>
       </main>
     </>
   )

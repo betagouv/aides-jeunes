@@ -22,7 +22,7 @@ function Home() {
           grand nombre 🌍.
         </p>
         <h3>
-          <a href="/admin/#/">Outil de contribution</a>
+          <a href="/admin/index.html">Outil de contribution</a>
         </h3>
         <h3>
           <a

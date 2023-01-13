@@ -151,8 +151,14 @@ export function updateWasUseful(req: ajRequest, res: Response) {
   ]
   req.followup.updateSurvey("simulation-usefulness", answers).then(async () => {
     const { followup } = req
-    const survey = await followup.createSurvey("benefit-action")
-    followup.surveys.push(survey)
+    let survey = followup.surveys.find(
+      (survey) => survey.type === "benefit-action"
+    )
+    if (!survey) {
+      console.log('creating survey "benefit-action"')
+      survey = await followup.createSurvey("benefit-action")
+      followup.surveys.push(survey)
+    }
     followup.save().then(() => {
       res.redirect(`${config.baseURL}${followup.surveyPath}`)
     })

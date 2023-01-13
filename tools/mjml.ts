@@ -42,16 +42,18 @@ app.route("/mjml/:id/:type").get(function (req, res) {
     .populate("simulation")
     .exec(function (err, followup) {
       let p = {}
+      const survey = followup.surveys.find((s) =>
+        req.params.type.includes(s.type)
+      )
       if (req.params.type == "simulation-results") {
         p = renderSimulationResults(followup)
-      } else if (req.params.type == "simulation-usefulness-survey") {
+      } else if (
+        req.params.type == "simulation-usefulness-survey" ||
+        req.params.type == "benefit-action-survey"
+      ) {
         p = followup
-          .createSurvey()
-          .then(() => followup.renderSimulationUsefulnessSurveyEmail(followup))
-      } else if (req.params.type == "benefit-action-survey") {
-        p = followup
-          .createSurvey()
-          .then(() => followup.renderBenefitActionSurveyEmail(followup))
+          .createSurvey("benefit-action")
+          .then(() => followup.renderSurveyEmail(survey))
       }
       if (p instanceof Promise) {
         p.then(function (result) {

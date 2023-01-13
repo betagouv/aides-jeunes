@@ -9,16 +9,8 @@
     "start": "next start",
     "export": "npm run build && next export"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/betagouv/aides-jeunes.git"
-  },
   "author": "Thomas Guillet",
   "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/betagouv/aides-jeunes/issues"
-  },
-  "homepage": "https://github.com/betagouv/aides-jeunes/#readme",
   "dependencies": {
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",

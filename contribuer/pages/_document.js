@@ -4,8 +4,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
-        <body>
+        <Head>
           {process.env.NODE_ENV === "production" && (
             <script
               dangerouslySetInnerHTML={{
@@ -29,6 +28,8 @@ class MyDocument extends Document {
               }}
             />
           )}
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>

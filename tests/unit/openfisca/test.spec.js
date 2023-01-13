@@ -1,10 +1,11 @@
-const expect = require("expect")
-const { values } = require("lodash")
-const Promise = require("bluebird")
-const fs = Promise.promisifyAll(require("fs"))
+import expect from "expect"
+import { values } from "lodash-es"
+import Promise from "bluebird"
+import fs from "fs"
 import subject from "@root/backend/lib/openfisca/test"
 import resources from "@root/lib/resources"
-const tmp = require("tmp")
+import tmp from "tmp"
+import child_process from "child_process"
 
 const details = {
   name: "Ideal name",
@@ -42,7 +43,7 @@ describe("openfisca generateTest", function () {
 
 function run_cmd(cmd, args) {
   return new Promise(function (resolve, reject) {
-    const spawn = require("child_process").spawn
+    const spawn = child_process.spawn
     const child = spawn(cmd, args)
     let respErr = ""
     let respOut = ""
@@ -73,18 +74,17 @@ function run_cmd(cmd, args) {
 
 function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
-  return fs.writeFileAsync(tmpobj.fd, yaml, "utf8").then(function () {
-    const args = extension
-      ? ["test", tmpobj.name, "--extensions", extension]
-      : ["test", tmpobj.name]
+  fs.writeFileSync(tmpobj.fd, yaml, "utf8")
 
-    return run_cmd("openfisca", args)
-  })
+  const args = extension
+    ? ["test", tmpobj.name, "--extensions", extension]
+    : ["test", tmpobj.name]
+
+  return run_cmd("openfisca", args)
 }
 
 describe("openfisca generateYAMLTest", function () {
   const result = subject.generateYAMLTest(details, situation)
-
   it("generates a non empty string", function () {
     expect(result).toBeTruthy()
   })

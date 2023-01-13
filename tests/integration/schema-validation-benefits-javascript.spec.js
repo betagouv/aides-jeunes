@@ -1,10 +1,10 @@
-const path = require("path")
-const fs = require("fs")
+import path from "path"
+import fs from "fs"
 
 import { validateFile, getCollectionSchema } from "@root/data/schemas"
 const benefitSchema = getCollectionSchema("benefits_javascript")
 
-const dataDir = path.join(__dirname, "../../data")
+const dataDir = path.join(new URL(".", import.meta.url).pathname, "../../data")
 const benefitFiles = fs
   .readdirSync(`${dataDir}/benefits/javascript`)
   .filter((filename) => filename.match(/\.yml$/))

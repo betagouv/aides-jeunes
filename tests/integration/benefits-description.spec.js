@@ -8,6 +8,7 @@ import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
 import subject from "@root/data/all"
 
+const __dirname = new URL(".", import.meta.url).pathname
 const codesInstitutions = {
   region: regions.map((region) => region.code),
   departement: departements.map((departement) => departement.code),

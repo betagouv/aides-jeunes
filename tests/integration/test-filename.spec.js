@@ -1,6 +1,6 @@
-const fs = require("fs")
-const path = require("path")
-const expect = require("expect")
+import fs from "fs"
+import path from "path"
+import expect from "expect"
 
 describe("Test filenames rules", function () {
   const files = []
@@ -33,7 +33,7 @@ describe("Test filenames rules", function () {
     })
   }
 
-  getFiles(path.join(__dirname, "../.."))
+  getFiles(path.join(new URL(".", import.meta.url).pathname, "../.."))
 
   const result = files.filter((file) => {
     return ["ts", "js", "vue"].includes(file.extension)

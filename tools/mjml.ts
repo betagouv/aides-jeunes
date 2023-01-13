@@ -9,7 +9,8 @@ import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
 import { SurveyType } from "../backend/types/survey"
 import { ajRequest } from "../backend/types/express"
-
+import "../backend/lib/mes-aides/emails/benefit-action-survey"
+import { __express } from "ejs"
 const port = process.env.PORT || 9001
 
 // Setup Express
@@ -21,8 +22,8 @@ const typeKeys = [
   "benefit-action",
 ]
 
-app.engine(".html", require("ejs").__express)
-app.set("views", __dirname + "/views")
+app.engine(".html", __express)
+app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
 app.route("/").get(function (req, res) {

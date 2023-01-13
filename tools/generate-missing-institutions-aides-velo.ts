@@ -3,7 +3,7 @@ import fs from "fs"
 import benefits from "../data/all"
 import yaml from "js-yaml"
 import generator from "../data/benefits/aides-velo-generator"
-import epci from "@etalab/decoupage-administratif/data/epci.json"
+import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 const NAME_FORMATTER = {
   CA: "Communauté d'agglomération",

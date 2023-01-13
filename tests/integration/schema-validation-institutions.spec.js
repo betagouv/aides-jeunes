@@ -1,10 +1,10 @@
-const path = require("path")
-const fs = require("fs")
+import path from "path"
+import fs from "fs"
 
-const schemas = require("@root/data/schemas")
-const institutionSchema = schemas.getCollectionSchema("institutions")
+import { getCollectionSchema, validateFile } from "@root/data/schemas"
+const institutionSchema = getCollectionSchema("institutions")
 
-const dataDir = path.join(__dirname, "../../data")
+const dataDir = path.join(new URL(".", import.meta.url).pathname, "../../data")
 const institutionFiles = fs
   .readdirSync(`${dataDir}/institutions`)
   .filter((filename) => filename.match(/\.yml$/))
@@ -14,7 +14,7 @@ describe("Test Institutions schema", function () {
     describe(institutionFilename, function () {
       it("should respect institution schema", function () {
         expect(
-          schemas.validateFile(
+          validateFile(
             `data/institutions/${institutionFilename}`,
             institutionSchema
           )

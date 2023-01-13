@@ -8,7 +8,7 @@ describe("input-date.vue", () => {
     ]
     for (const test of testSet) {
       expect(
-        InputDate.computed.date.call({
+        InputDate.default.computed.date.call({
           year: test["year"],
           month: test["month"],
           day: test["day"],
@@ -25,7 +25,7 @@ describe("input-date.vue", () => {
     ]
     for (const test of testSet) {
       let emitted
-      InputDate.methods.update.call({
+      InputDate.default.methods.update.call({
         date: test.date,
         $emit: (name, value) => (emitted = { name, value }),
       })

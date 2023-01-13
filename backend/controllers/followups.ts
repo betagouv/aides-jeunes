@@ -139,7 +139,7 @@ export function postSurvey(req: ajRequest, res: Response) {
   req.followup.updateSurvey("benefit-action", req.body).then(() => {
     res.sendStatus(201)
   })
-  pollResult.postPollResult(followup, req.body)
+  pollResult.postPollResult(req.followup, req.body)
 }
 
 export function updateWasUseful(req: ajRequest, res: Response) {

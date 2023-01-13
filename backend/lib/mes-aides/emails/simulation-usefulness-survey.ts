@@ -46,7 +46,6 @@ function renderAsHtml(followup) {
 export default function render(followup) {
   return Promise.all([renderAsText(followup), renderAsHtml(followup)]).then(
     function (values) {
-      console.log("************** followup **********", followup)
       return {
         subject: `[${
           followup.simulation?._id || followup.simulation

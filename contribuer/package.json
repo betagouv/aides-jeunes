@@ -1,17 +1,28 @@
 {
-  "name": "contribuer2",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@mes-aides/contribuer",
+  "version": "1.0.0",
+  "description": "Faciliter la contribution au simulateur Mes Aides",
   "scripts": {
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "export": "npm run build && next export"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mes-aides/simulateur.git"
+  },
+  "author": "Thomas Guillet",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mes-aides/simulateur/issues"
+  },
+  "homepage": "https://github.com/mes-aides/simulateur/#readme",
   "dependencies": {
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
+    "netlify-identity-widget": "^1.9.2",
     "next": "13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"

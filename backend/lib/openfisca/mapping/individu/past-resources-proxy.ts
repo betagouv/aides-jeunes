@@ -1,4 +1,4 @@
-import { concat, isNumber, some } from "lodash"
+import { concat, isNumber, some } from "lodash-es"
 import dayjs from "dayjs"
 
 import common from "../common.js"

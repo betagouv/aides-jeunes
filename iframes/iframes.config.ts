@@ -2,6 +2,7 @@ import path from "path"
 import config from "../backend/config/index.ts"
 import webpack from "webpack"
 
+const __dirname = new URL(".", import.meta.url).pathname
 process.env.BASE_URL = config.baseURL
 process.env.IFRAME_TITLE = config.iframeTitle
 

@@ -6,7 +6,10 @@ export function toBase64(file: string) {
   return fs.readFileSync(file, "base64")
 }
 
-export const imageRoot = path.join(__dirname, "../../../../public/img/")
+export const imageRoot = path.join(
+  new URL(".", import.meta.url).pathname,
+  "../../../../public/img/"
+)
 
 export function mjml(template) {
   return Mjml(template, {

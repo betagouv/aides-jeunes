@@ -4,6 +4,7 @@ import fs from "fs"
 import { mjml } from "./index.js"
 import path from "path"
 
+const __dirname = new URL(".", import.meta.url).pathname
 const mustache = consolidate.mustache
 
 const textTemplate = fs.readFileSync(

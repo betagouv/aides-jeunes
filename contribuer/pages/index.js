@@ -22,9 +22,7 @@ function Home() {
           grand nombre 🌍.
         </p>
         <h3>
-          <a href="/admin/#/">
-            C’est par ici pour accéder à l’outil de contribution
-          </a>
+          <a href="/admin/#/">Outil de contribution</a>
         </h3>
         <h3>
           <a
@@ -32,7 +30,7 @@ function Home() {
             rel="noopener"
             href="https://drive.google.com/drive/folders/1dSsjM6LmLkaPPTe6aNLODtKcfeIruMlG"
           >
-            C’est par ici pour accéder au guide de l’outil de contribution
+            Guides de contribution
           </a>
         </h3>
       </main>

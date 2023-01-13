@@ -33,9 +33,9 @@ function normalizeIDs(test) {
   })
 }
 
-async function toYAML(test) {
+function toYAML(test) {
   normalizeIDs(test)
-  return await jsYaml.dump(test)
+  return jsYaml.dump(test)
 }
 
 export const EXTENSION_VARIABLES = {
@@ -134,8 +134,8 @@ export const generateTest = function (details, situation) {
   return result
 }
 
-export async function generateYAMLTest(details, situation) {
-  return await toYAML(exports.generateTest(details, situation))
+export function generateYAMLTest(details, situation) {
+  return toYAML(generateTest(details, situation))
 }
 
 export default {

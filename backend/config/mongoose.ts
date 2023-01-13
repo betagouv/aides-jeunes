@@ -14,6 +14,7 @@ export default function (mongoose: any, config: ConfigurationLayout) {
     })
 
   // Bootstrap models
+  const __dirname = new URL(".", import.meta.url).pathname
   const modelsPath = path.join(__dirname, "../models")
   fs.readdirSync(modelsPath).forEach(async (file) => {
     if (/(.*)\.(js$|coffee$)/.test(file)) {

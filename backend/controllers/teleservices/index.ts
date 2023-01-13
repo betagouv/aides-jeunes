@@ -11,7 +11,7 @@ import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer.js"
 import PNDS from "../../lib/teleservices/pnds.js"
 import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
 import dayjs from "dayjs"
-import "dayjs/locale/fr"
+import "dayjs/locale/fr.js"
 
 dayjs.locale("fr")
 

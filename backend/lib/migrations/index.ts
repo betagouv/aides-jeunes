@@ -1,14 +1,15 @@
 import fs from "fs"
 
-const migrationFilesByModelName = getMigrationsFiles()
+const __dirname = new URL(".", import.meta.url).pathname
+const migrationFilesByModelName = await getMigrationsFiles()
 
 function getMigrationsFileNamesByModelName(modelName) {
   return fs.readdirSync(`${__dirname}/${modelName}`).filter(function (file) {
-    return file.match(/^to-v\d+\.js|ts$/)
+    return file.match(/^to-v\d+\.(js|ts)$/)
   })
 }
 
-function getMigrationsFiles() {
+async function getMigrationsFiles() {
   const migrationFiles = {}
   for (const folderName of fs.readdirSync(__dirname)) {
     if (fs.statSync(`${__dirname}/${folderName}`).isDirectory()) {
@@ -16,8 +17,9 @@ function getMigrationsFiles() {
       for (const migrationFileName of getMigrationsFileNamesByModelName(
         folderName
       )) {
-        migrationFiles[folderName][migrationFileName] =
-          require(`${__dirname}/${folderName}/${migrationFileName}`).default
+        migrationFiles[folderName][migrationFileName] = await import(
+          `${__dirname}/${folderName}/${migrationFileName}`
+        )
       }
     }
   }

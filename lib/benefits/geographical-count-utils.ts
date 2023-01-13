@@ -1,4 +1,4 @@
-import epcis from "@etalab/decoupage-administratif/data/epci.json"
+import epcis from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 import institutionsMap from "../../data/all.js"
 

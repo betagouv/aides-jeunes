@@ -21,7 +21,7 @@ import SelectOnClickDirective from "./directives/select-on-click.js"
 // @ts-ignore
 import { iframeResizerContentWindow } from "iframe-resizer"
 
-import "dayjs/locale/fr"
+import "dayjs/locale/fr.js"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import dayjs from "dayjs"
 import { createPinia } from "pinia"

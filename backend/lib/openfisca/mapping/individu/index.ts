@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { isNaN, forEach, isUndefined, cloneDeep } from "lodash"
+import { isNaN, forEach, isUndefined, cloneDeep } from "lodash-es"
 
 import { formatDate } from "../utils.js"
 import individuRessource from "./ressources.js"

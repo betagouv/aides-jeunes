@@ -1,8 +1,5 @@
-import App from "next/app"
-import "../styles/main.css"
+import "@/styles/main.css"
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
-
-export default MyApp

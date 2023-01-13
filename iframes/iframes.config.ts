@@ -1,5 +1,5 @@
 import path from "path"
-import config from "../backend/config/index.ts"
+import config from "../backend/config/index.js"
 import webpack from "webpack"
 
 const __dirname = new URL(".", import.meta.url).pathname

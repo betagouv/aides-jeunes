@@ -5,6 +5,7 @@ import pollResult from "../lib/mattermost-bot/poll-result"
 import simulationController from "./simulation"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express"
+import config from "../config/index"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -148,7 +149,12 @@ export function updateWasUseful(req: ajRequest, res: Response) {
       value: req.params.wasuseful,
     },
   ]
-  req.followup.updateSurvey("simulation-usefulness", answers).then(() => {
-    res.sendStatus(200)
+  req.followup.updateSurvey("simulation-usefulness", answers).then(async () => {
+    const { followup } = req
+    const survey = await followup.createSurvey("benefit-action")
+    followup.surveys.push(survey)
+    followup.save().then(() => {
+      res.redirect(`${config.baseURL}${followup.surveyPath}`)
+    })
   })
 }

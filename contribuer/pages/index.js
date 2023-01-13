@@ -27,10 +27,10 @@ function Home() {
         <h3>
           <a
             target="_blank"
-            rel="noopener"
+            rel="noreferrer"
             href="https://drive.google.com/drive/folders/1dSsjM6LmLkaPPTe6aNLODtKcfeIruMlG"
           >
-            Guides de contribution
+            Guides de contribution (nouvelle fenêtre)
           </a>
         </h3>
       </main>

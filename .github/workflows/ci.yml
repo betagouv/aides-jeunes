@@ -142,7 +142,7 @@ jobs:
       - name: Install dependencies
         if: steps.restore-contribuer-dependencies.outputs.cache-hit != 'true'
         run: cd contribuer && npm ci --prefer-offline --no-audit
-      - name: Restore ${{ github.workspace }}/contribuer/.next/cache
+      - name: Restore contribuer/.next/cache
         uses: actions/cache@v2
         with:
           path: |

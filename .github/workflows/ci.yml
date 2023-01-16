@@ -128,7 +128,7 @@ jobs:
         run: |
           npm run build
   build_contribuer:
-    name: Build static site
+    name: Build contribuer/ static site
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

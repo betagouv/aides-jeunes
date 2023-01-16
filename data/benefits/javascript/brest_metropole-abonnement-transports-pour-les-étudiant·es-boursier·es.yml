@@ -7,16 +7,14 @@ conditions_generales:
   - type: communes
     values:
       - "29019"
-      - "29011"
-      - "29061"
-      - "29069"
-      - "29075"
-      - "29189"
-      - "29212"
-      - "29235"
-profils: []
-conditions:
-  - Être étudiant·e boursier·es.
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+conditions: []
 type: float
 unit: €
 periodicite: mensuelle

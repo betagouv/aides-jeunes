@@ -52,11 +52,10 @@ export function getLoyerData(answers) {
   const _locationType = getAnswer(answers, "menage", "_locationType")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
-
-  const isNotOwner = !Logement.isOwner(_logementType)
+  const isOwner = Logement.isOwner(_logementType)
   const captureCharges = Logement.captureCharges(_locationType)
 
-  if (isNotOwner) {
+  if (!isOwner) {
     const loyerLabel = `Quel est le montant de votre ${
       coloc ? "part du " : ""
     }loyer ${

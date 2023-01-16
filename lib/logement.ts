@@ -41,17 +41,20 @@ function isOwner(_logementType) {
   return _logementType === LogementType.proprietaire
 }
 
-function captureCharges(_logementType) {
-  return _logementType === LogementType.locataire
+function captureCharges(_locationType) {
+  return (
+    _locationType === LocationType.vide || _locationType === LocationType.foyer
+  )
 }
 
 export function getLoyerData(answers) {
   const _logementType = getAnswer(answers, "menage", "_logementType")
+  const _locationType = getAnswer(answers, "menage", "_locationType")
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
 
   const isNotOwner = !Logement.isOwner(_logementType)
-  const captureCharges = Logement.captureCharges(_logementType)
+  const captureCharges = Logement.captureCharges(_locationType)
 
   if (isNotOwner) {
     const loyerLabel = `Quel est le montant de votre ${

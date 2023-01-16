@@ -149,18 +149,21 @@ export function updateWasUseful(req: ajRequest, res: Response) {
       value: req.params.wasuseful,
     },
   ]
-  req.followup.updateSurvey("simulation-usefulness", answers).then(async () => {
-    const { followup } = req
-    let survey = followup.surveys.find(
-      (survey) => survey.type === "benefit-action"
-    )
-    if (!survey) {
-      console.log('creating survey "benefit-action"')
-      survey = await followup.createSurvey("benefit-action")
-      followup.surveys.push(survey)
-    }
-    followup.save().then(() => {
+  const { followup } = req
+  followup
+    .updateSurvey("simulation-usefulness", answers)
+    .then(() => {
+      let survey = followup.surveys.find(
+        (survey) => survey.type === "benefit-action"
+      )
+      if (survey) {
+        return res.redirect(`${config.baseURL}${followup.surveyPath}`)
+      }
+      return followup.createSurvey("benefit-action")
+    })
+    .then((survey) => followup.surveys.push(survey))
+    .then(() => followup.save())
+    .then(() => {
       res.redirect(`${config.baseURL}${followup.surveyPath}`)
     })
-  })
 }

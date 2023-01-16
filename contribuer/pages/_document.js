@@ -15,13 +15,13 @@ class MyDocument extends Document {
                     _paq.push(["enableLinkTracking"])
                     ;(function () {
                       var u = "https://stats.data.gouv.fr/"
-                      _paq.push(["setTrackerUrl", ${`${u}piwik.php`}])
+                      _paq.push(["setTrackerUrl", u + "piwik.php"])
                       _paq.push(["setSiteId", "240"])
                       var d = document,
                         g = d.createElement("script"),
                         s = d.getElementsByTagName("script")[0]
                       g.async = true
-                      g.src = ${`${u}piwik.js`}
+                      g.src = u + "piwik.js"
                       s.parentNode.insertBefore(g, s)
                     })()
                   `,

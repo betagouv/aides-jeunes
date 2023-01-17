@@ -6,8 +6,8 @@ description: La tarification solidaire offre la gratuité annuelle ou des
 prefix: la
 conditions_generales:
   - type: quotient_familial
-    operator: <
-    value: 611
+    operator: <=
+    value: 610
     period: month
   - type: quotient_familial
     operator: ">"
@@ -18,6 +18,6 @@ type: float
 unit: "%"
 periodicite: autre
 legend: de réduction sur l'abonnement mensuel TBM
-montant: 30
+montant: 50
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
 teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx

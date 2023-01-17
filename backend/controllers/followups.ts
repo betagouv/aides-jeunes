@@ -65,10 +65,7 @@ export function persist(req: ajRequest, res: Response) {
 }
 
 export function findFollowupByAccessToken(req: ajRequest, res: Response) {
-  Followup.findOne({ accessToken: req.params.accessToken }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-    res.send(followup)
-  })
+  res.send(req.followup)
 }
 
 export function showSurveyResult(req: ajRequest, res: Response) {

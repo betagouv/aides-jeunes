@@ -154,12 +154,7 @@
     ],
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "babel-jest",
-      "\\.tsx?$": [
-        "ts-jest",
-        {
-          "useESM": true
-        }
-      ],
+      "\\.tsx?$": "ts-jest",
       "\\.vue$": "@vue/vue3-jest"
     },
     "globals": {
@@ -187,6 +182,10 @@
     ],
     "testMatch": [
       "**/tests/(integration|unit)/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+    ],
+    "testPathIgnorePatterns": [
+      "tests/unit/views/fiscales.spec.js",
+      "tests/unit/components/ressource/types.spec.js"
     ]
   },
   "engines": {

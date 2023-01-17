@@ -7,7 +7,7 @@ import es from "event-stream"
 
 // Loads
 import { apply, getLatestVersionByModelName } from "./index.js"
-import "../mongo-connector"
+import "../mongo-connector.js"
 import Simulation from "../../models/simulation.js"
 import Followup from "../../models/followup.js"
 

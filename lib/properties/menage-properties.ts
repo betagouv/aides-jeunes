@@ -53,7 +53,7 @@ export default {
     ],
   }),
   _logementType: new EnumProperty({
-    question: "Êtes-vous ?",
+    question: "Êtes-vous ?",
     questionType: "enum",
     items: [
       {
@@ -79,13 +79,13 @@ export default {
     ],
   }),
   _primoAccedant: new BooleanProperty({
-    question: `Êtes-vous primo-accédant pour cette propriété ? </br>
+    question: `Êtes-vous primo-accédant pour cette propriété ? </br>
       <span class="fr-hint-text"
         >Un primo-accédant est une personne (ou un ménage) qui n’a pas été propriétaire de sa résidence principale dans les deux années qui viennent de s’écouler au moment où il achète son bien.</span
       >`,
   }),
   _locationType: new EnumProperty({
-    question: "Quel type de logement louez-vous ?",
+    question: "Quel type de logement louez-vous ?",
     items: [
       {
         label: "Non meublé",

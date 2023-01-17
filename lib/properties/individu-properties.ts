@@ -606,11 +606,11 @@ export default {
 
   _firstName: new TextProperty({
     question:
-      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
+      "Quel est le prénom de votre enfant ? Il servira uniquement à vous faciliter la saisie par la suite.",
   }),
 
   _interetsAidesVelo: new MultipleProperty({
-    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
+    question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
     items: [
       { value: "velo_mecanique", label: "Vélo mécanique simple" },
       { value: "velo_electrique", label: "Vélo électrique" },
@@ -623,7 +623,7 @@ export default {
 
   _interetAidesSanitaireSocial: new BooleanProperty({
     question:
-      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
+      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
   }),
 
   _interetBafa: new BooleanProperty({

@@ -1,27 +1,21 @@
-label: Tarification Solidaire des Transports Bordeaux Métropole
+label: Gratuité des Transports TBM avec la Tarification Solidaire Bordeaux Métropole
 institution: intercommunalite_bordeaux
-description: La tarification solidaire offre des réductions de 30 à 100% sur les
-  abonnements mensuels aux transports en commun, calculées selon le niveau de
-  ressources de la famille (réduction tarifaire de 100% pour un quotient
-  familial inférieur à 550, 50% pour un quotient familial entre 550 et 610, 30%
-  pour un quotient familial entre 610 et 942)
+description: La tarification solidaire offre la gratuité annuelle ou des
+  réductions de 30 à 50% sur les abonnements mensuels aux transports en commun,
+  calculées selon le niveau de ressources de la famille.
 prefix: la
 conditions_generales:
   - type: quotient_familial
     floor: 942
-    period: year
-  - type: quotient_familial
-    floor: 610
-    period: year
-  - type: quotient_familial
-    floor: 550
-    period: year
+    period: month
+    operator: <
+    value: 550
 profils: []
 conditions: []
-type: float
-unit: "%"
-periodicite: ponctuelle
-legend: de réduction sur l'abonnement TBM mensuel
-montant: 30
+type: bool
+unit: null
+periodicite: annuelle
+legend: ""
+montant: ""
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
 teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx

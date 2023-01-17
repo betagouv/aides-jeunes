@@ -69,7 +69,7 @@ export function getLoyerData(answers) {
         hint: "Montant en euros, sans déduire vos aides au logement si vous en avez.",
       },
       chargesQuestion: {
-        label: "Quel est le montant de vos charges locatives ?",
+        label: "Quel est le montant de vos charges locatives ?",
         selectedValue: loyer.charges_locatives,
         hint: "Montant en euros, cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes…",
       },
@@ -78,7 +78,7 @@ export function getLoyerData(answers) {
     return {
       captureCharges,
       loyerQuestion: {
-        label: "Quelles sont vos mensualités ?",
+        label: "Quelles sont vos mensualités ?",
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
         selectedValue: loyer.loyer,
       },

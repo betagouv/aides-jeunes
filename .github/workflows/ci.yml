@@ -145,7 +145,7 @@ jobs:
       - name: Validate Iframe build
         shell: bash
         run: |
-          NODE_ENV=production && npm run test tests/integration/iframe-build.spec.js
+          npm run test tests/integration/iframe-build.spec.js
   build_contribuer:
     name: Build contribuer/ static site
     runs-on: ubuntu-20.04

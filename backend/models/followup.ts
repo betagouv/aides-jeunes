@@ -170,15 +170,6 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
   return this.save()
 })
 
-FollowupSchema.method("addSurvey", function (answers, type = null) {
-  this.surveys.push({
-    answers,
-    repliedAt: Date.now(),
-    type,
-  })
-  return this.save()
-})
-
 FollowupSchema.pre("save", async function (next) {
   if (!this.isNew) {
     return next()

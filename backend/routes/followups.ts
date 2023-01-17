@@ -11,7 +11,7 @@ import {
 import githubController from "../controllers/github"
 
 const followupsRoutes = function (api) {
-  api.route("/followups/surveys/:accessToken").get(findFollowupByAccessToken)
+  api.route("/followups/surveys/:accessToken").get(getFollowup)
   api.route("/followups/surveys/:accessToken/answers").post(postSurvey)
   api
     .route("/followups/surveys")
@@ -28,6 +28,6 @@ const followupsRoutes = function (api) {
   api
     .route("/followups/surveys/:accessToken/wasuseful/:wasuseful")
     .get(updateWasUseful)
-  api.param("accessToken", getFollowup)
+  api.param("accessToken", followupByAccessToken)
 }
 export default followupsRoutes

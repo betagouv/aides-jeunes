@@ -64,7 +64,7 @@ export function persist(req: ajRequest, res: Response) {
     })
 }
 
-export function findFollowupByAccessToken(req: ajRequest, res: Response) {
+export function getFollowup(req: ajRequest, res: Response) {
   res.send(req.followup)
 }
 
@@ -119,7 +119,7 @@ export function showSimulation(req: ajRequest, res: Response) {
     })
 }
 
-export async function getFollowup(
+export async function followupByAccessToken(
   req: ajRequest,
   res: Response,
   next: NextFunction,

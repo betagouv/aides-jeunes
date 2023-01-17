@@ -153,16 +153,17 @@ export function updateWasUseful(req: ajRequest, res: Response) {
   followup
     .updateSurvey("simulation-usefulness", answers)
     .then(() => {
-      const survey = followup.surveys.find(
+      let survey = followup.surveys.find(
         (survey) => survey.type === "benefit-action"
       )
       if (survey) {
-        return res.redirect(`${config.baseURL}${followup.surveyPath}`)
+        return
       }
-      return followup.createSurvey("benefit-action")
+      return followup
+        .createSurvey("benefit-action")
+        .then((survey) => followup.surveys.push(survey))
+        .then(() => followup.save())
     })
-    .then((survey) => followup.surveys.push(survey))
-    .then(() => followup.save())
     .then(() => {
       res.redirect(`${config.baseURL}${followup.surveyPath}`)
     })

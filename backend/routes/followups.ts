@@ -1,6 +1,6 @@
 import cookieParser from "cookie-parser"
 import {
-  findFollowupByAccessToken,
+  followupByAccessToken,
   postSurvey,
   showSurveyResult,
   showSurveyResults,

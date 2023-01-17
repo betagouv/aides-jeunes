@@ -142,7 +142,7 @@ export function postSurvey(req: ajRequest, res: Response) {
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export function updateWasUseful(req: ajRequest, res: Response) {
+export async function updateWasUseful(req: ajRequest, res: Response) {
   const answers = [
     {
       id: "wasUseful",
@@ -150,21 +150,14 @@ export function updateWasUseful(req: ajRequest, res: Response) {
     },
   ]
   const { followup } = req
-  followup
-    .updateSurvey("simulation-usefulness", answers)
-    .then(() => {
-      let survey = followup.surveys.find(
-        (survey) => survey.type === "benefit-action"
-      )
-      if (survey) {
-        return
-      }
-      return followup
-        .createSurvey("benefit-action")
-        .then((survey) => followup.surveys.push(survey))
-        .then(() => followup.save())
-    })
-    .then(() => {
-      res.redirect(`${config.baseURL}${followup.surveyPath}`)
-    })
+  await followup.updateSurvey("simulation-usefulness", answers)
+  let survey = followup.surveys.find(
+    (survey) => survey.type === "benefit-action"
+  )
+  if (!survey) {
+    const newSurvey = await followup.createSurvey("benefit-action")
+    followup.surveys.push(newSurvey)
+    await followup.save()
+  }
+  res.redirect(`${config.baseURL}${followup.surveyPath}`)
 }

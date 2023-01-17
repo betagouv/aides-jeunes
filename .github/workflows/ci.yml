@@ -141,7 +141,7 @@ jobs:
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
       - name: Build assets
         run: |
-          npm run build
+          MES_AIDES_ROOT_URL="https://github-actions/" && npm run build
       - name: Validate Iframe build
         shell: bash
         run: |

@@ -1,6 +1,6 @@
 import cookieParser from "cookie-parser"
 import {
-  showFromSurvey,
+  findFollowupByAccessToken,
   postSurvey,
   showSurveyResult,
   showSurveyResults,
@@ -11,7 +11,7 @@ import {
 import githubController from "../controllers/github"
 
 const followupsRoutes = function (api) {
-  api.route("/followups/surveys/:surveyId").get(showFromSurvey)
+  api.route("/followups/surveys/:accessToken").get(findFollowupByAccessToken)
   api.route("/followups/surveys/:accessToken/answers").post(postSurvey)
   api
     .route("/followups/surveys")

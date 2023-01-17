@@ -103,7 +103,7 @@ function processSend(args) {
         return Promise.all(
           list.map(function (followup) {
             return followup
-              .sendSurvey()
+              .sendSurvey("benefit-action")
               .then(function (result) {
                 return { ok: result._id }
               })

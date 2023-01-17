@@ -9,6 +9,8 @@ import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
 import "../backend/lib/mes-aides/emails/simulation-usefulness-survey"
 import "../backend/lib/mes-aides/emails/benefit-action-survey"
+import { SurveyType } from "../backend/types/survey"
+import { ajRequest } from "../backend/types/express"
 
 const port = process.env.PORT || 9001
 
@@ -37,38 +39,49 @@ app.route("/").get(function (req, res) {
     })
 })
 
-app.route("/mjml/:id/:type").get(function (req, res) {
-  Followup.findByIdOrOldId(req.params.id)
-    .populate("simulation")
-    .exec(function (err, followup) {
-      let p = {}
-      const survey = followup.surveys.find((s) =>
-        req.params.type.includes(s.type)
-      )
-      if (req.params.type == "simulation-results") {
-        p = renderSimulationResults(followup)
-      } else if (
-        req.params.type == "simulation-usefulness-survey" ||
-        req.params.type == "benefit-action-survey"
-      ) {
-        p = followup
-          .createSurvey("benefit-action")
-          .then(() => followup.renderSurveyEmail(survey))
-      }
-      if (p instanceof Promise) {
-        p.then(function (result) {
-          const mode = req.query.mode || "html"
-          if (mode == "html") {
-            res.send(result[mode])
-          } else {
-            res
-              .set({ "Content-Type": "text/plain" })
-              .send(result[mode as string])
-          }
-        })
+const followupRendering = (req) => {
+  const followup = req.followup
+  if (req.params.type == "simulation-results") {
+    return renderSimulationResults(followup)
+  }
+  const surveyType: SurveyType = req.params.type.slice(0, -"-survey".length)
+  const survey = followup.surveys.find((s) => surveyType === s.type)
+  if (!survey) {
+    return followup
+      .createSurvey(surveyType)
+      .then((survey) => followup.surveys.push(survey))
+      .then(() => followup.save())
+      .then(() => {
+        return followup.renderSurveyEmail(surveyType)
+      })
+  } else {
+    return followup.renderSurveyEmail(surveyType)
+  }
+}
+
+app.route("/mjml/:id/:type").get(
+  function (req: ajRequest, res, next) {
+    Followup.findByIdOrOldId(req.params.id)
+      .populate("simulation")
+      .exec(function (err, followup) {
+        if (err) {
+          return next(err)
+        }
+        req.followup = followup
+        next()
+      })
+  },
+  function (req, res) {
+    followupRendering(req).then((result) => {
+      const mode = req.query.mode || "html"
+      if (mode == "html") {
+        res.send(result[mode])
+      } else {
+        res.set({ "Content-Type": "text/plain" }).send(result[mode as string])
       }
     })
-})
+  }
+)
 
 // Start server
 app.listen(port, function () {

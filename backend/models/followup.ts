@@ -91,8 +91,8 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
 })
 
-FollowupSchema.method("renderSurveyEmail", function (survey) {
-  switch (survey.type) {
+FollowupSchema.method("renderSurveyEmail", function (surveyType) {
+  switch (surveyType) {
     case "benefit-action":
       return renderBenefitActionSurvey(this)
     case "simulation-usefulness":
@@ -113,7 +113,7 @@ FollowupSchema.method("createSurvey", function (type: SurveyType) {
 FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
   return this.createSurvey(surveyType).then((survey: SurveyLayout) => {
-    return this.renderSurveyEmail(survey)
+    return this.renderSurveyEmail(surveyType)
       .then((render) => {
         const email = new SendSmtpEmail()
         email.to = [{ email: followup.email }]

@@ -64,9 +64,8 @@ export function persist(req: ajRequest, res: Response) {
     })
 }
 
-export function showFromSurvey(req: ajRequest, res: Response) {
-  // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
+export function findFollowupByAccessToken(req: ajRequest, res: Response) {
+  Followup.findOne({ accessToken: req.params.accessToken }).then((followup) => {
     if (!followup) return res.sendStatus(404)
     res.send(followup)
   })

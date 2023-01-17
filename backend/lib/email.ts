@@ -7,6 +7,7 @@ import mongooseConfig from "../config/mongoose"
 mongooseConfig(mongoose, config)
 
 import Followup from "../models/followup"
+import { SurveyType } from "../types/survey"
 
 const parser = new ArgumentParser({
   add_help: true,
@@ -29,7 +30,14 @@ const send_simulation_results = send_types.add_parser("simulation-results")
 const send_benefit_action_survey = send_types.add_parser(
   "benefit-action-survey"
 )
-const senders = [send_simulation_results, send_benefit_action_survey]
+const send_simulation_usefulness_survey = send_types.add_parser(
+  "simulation-usefulness-survey"
+)
+const senders = [
+  send_simulation_results,
+  send_benefit_action_survey,
+  send_simulation_usefulness_survey,
+]
 senders.forEach((send) => {
   send.add_argument("--id", {
     help: "Followup Id",
@@ -38,7 +46,6 @@ senders.forEach((send) => {
     action: "store_true",
     help: "Do not send emails",
   })
-
   send.add_argument("--multiple", {
     help: "Number of emails to send",
   })
@@ -54,37 +61,38 @@ reply.add_argument("--id", {
 })
 
 function processSend(args) {
-  if (args.id) {
-    Followup.findByIdOrOldId(args.id)
-      .then((f) => {
-        switch (args.type) {
+  const { id, type: emailType, multiple } = args
+
+  if (id) {
+    Followup.findByIdOrOldId(id)
+      .then((followup) => {
+        switch (emailType) {
           case "simulation-results":
-            return f.sendSimulationResultsEmail()
+            return followup.sendSimulationResultsEmail()
           case "benefit-action-survey":
-            if (args.mock) {
-              return f.mock()
-            } else {
-              return f.sendSurvey()
-            }
+          case "simulation-usefulness-survey": {
+            const surveyType: SurveyType = emailType.slice(0, -"-survey".length)
+            return followup.sendSurvey(surveyType)
+          }
           default:
-            return
+            throw new Error(`Unknown email type: ${emailType}`)
         }
       })
       .then((e) => {
         console.log("log!", e)
       })
-      .catch((e) => {
-        console.error("error!", e.traceback)
+      .catch((error) => {
+        console.error("error!", error, error.traceback)
       })
       .finally(() => {
         console.log("done")
         process.exit(0)
       })
-  } else if (args.multiple) {
-    if (args.type !== "benefit-action-survey") {
+  } else if (multiple) {
+    if (emailType !== "benefit-action-survey") {
       process.exit(0)
     }
-    const limit = parseInt(args.multiple) || 1
+    const limit = parseInt(multiple) || 1
     Followup.find({
       surveys: { $size: 0 },
       sentAt: {
@@ -98,7 +106,7 @@ function processSend(args) {
         return Promise.all(
           list.map(function (followup) {
             return followup
-              .sendSurvey()
+              .sendSurvey("benefit-action")
               .then(function (result) {
                 return { ok: result._id }
               })

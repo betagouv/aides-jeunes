@@ -5,6 +5,7 @@ import pollResult from "../lib/mattermost-bot/poll-result"
 import simulationController from "./simulation"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express"
+import config from "../config/index"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -63,12 +64,8 @@ export function persist(req: ajRequest, res: Response) {
     })
 }
 
-export function showFromSurvey(req: ajRequest, res: Response) {
-  // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-    res.send(followup)
-  })
+export function getFollowup(req: ajRequest, res: Response) {
+  res.send(req.followup)
 }
 
 export function showSurveyResult(req: ajRequest, res: Response) {
@@ -122,14 +119,41 @@ export function showSimulation(req: ajRequest, res: Response) {
     })
 }
 
+export async function followupByAccessToken(
+  req: ajRequest,
+  res: Response,
+  next: NextFunction,
+  accessToken: any
+) {
+  const followup = await Followup.findOne({ accessToken })
+  if (!followup) return res.sendStatus(404)
+  req.followup = followup
+  next()
+}
+
 export function postSurvey(req: ajRequest, res: Response) {
-  // TODO remove unecessary OR condition when tokens are widely used
-  Followup.findOne({ accessToken: req.params.surveyId }).then((followup) => {
-    if (!followup) return res.sendStatus(404)
-    const token = followup.surveys[followup.surveys.length - 1]._id
-    followup.updateSurvey(token, req.body).then(() => {
-      res.sendStatus(201)
-    })
-    pollResult.postPollResult(followup, req.body)
+  req.followup.updateSurvey("benefit-action", req.body).then(() => {
+    res.sendStatus(201)
   })
+  pollResult.postPollResult(req.followup, req.body)
+}
+
+export async function updateWasUseful(req: ajRequest, res: Response) {
+  const answers = [
+    {
+      id: "wasUseful",
+      value: req.params.wasuseful,
+    },
+  ]
+  const { followup } = req
+  await followup.updateSurvey("simulation-usefulness", answers)
+  const survey = followup.surveys.find(
+    (survey) => survey.type === "benefit-action"
+  )
+  if (!survey) {
+    const newSurvey = await followup.createSurvey("benefit-action")
+    followup.surveys.push(newSurvey)
+    await followup.save()
+  }
+  res.redirect(`${config.baseURL}${followup.surveyPath}`)
 }

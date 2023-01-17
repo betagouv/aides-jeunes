@@ -142,6 +142,10 @@ jobs:
       - name: Build assets
         run: |
           npm run build
+      - name: Validate Iframe build
+        shell: bash
+        run: |
+          NODE_ENV=production && npm run test tests/integration/iframe-build.spec.js
   build_contribuer:
     name: Build contribuer/ static site
     runs-on: ubuntu-20.04
@@ -195,11 +199,6 @@ jobs:
         run: |
           source .venv/bin/activate
           npm run test tests/unit/openfisca/test.spec.js
-      - name: Validate Iframe build
-        shell: bash
-        run: |
-          source .venv/bin/activate
-          NODE_ENV=production && npm run test tests/integration/iframe-build.spec.js
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

@@ -98,7 +98,7 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
     case "simulation-usefulness":
       return renderSimulationUsefulnessSurvey(this)
     default:
-      return Promise.reject(new Error("Unknown email type"))
+      return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))
   }
 })
 

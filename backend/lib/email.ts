@@ -75,11 +75,14 @@ function processSend(args) {
             return followup.sendSurvey(surveyType)
           }
           default:
-            throw new Error("Unknown type")
+            throw new Error(`Unknown email type: ${emailType}`)
         }
       })
+      .then((e) => {
+        console.log("log!", e)
+      })
       .catch((error) => {
-        console.error("error!", error)
+        console.error("error!", error, error.traceback)
       })
       .finally(() => {
         console.log("done")

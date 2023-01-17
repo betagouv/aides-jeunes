@@ -3,7 +3,6 @@ export interface MongooseLayout {
   [id: string]: any
 }
 export interface FollowupModel extends Model<MongooseLayout> {
-  setWasUseful(wasUseful: string): unknown
   findByIdOrOldId(id: string): any
   findByEmail(id: string): any
 }

@@ -150,7 +150,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   ]
   const { followup } = req
   await followup.updateSurvey("simulation-usefulness", answers)
-  let survey = followup.surveys.find(
+  const survey = followup.surveys.find(
     (survey) => survey.type === "benefit-action"
   )
   if (!survey) {

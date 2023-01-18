@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
-import { getEtablissements } from "../../lib/benefits/etablissements"
-import { HelpingInstitution } from "../../lib/types/helping-institution"
+import { getEtablissements } from "@lib/benefits/etablissements.js"
+import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 
 export const useHelpingInstitutionStore = defineStore("helping-institution", {
   state: () => ({

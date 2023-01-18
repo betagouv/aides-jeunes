@@ -34,11 +34,11 @@
 
 <script>
 import Etablissement from "@/components/etablissement.vue"
-import Individu from "@lib/individu"
-import ResultatsMixin from "@/mixins/resultats"
+import Individu from "@lib/individu.js"
+import ResultatsMixin from "@/mixins/resultats.js"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores"
-import { useHelpingInstitutionStore } from "@/stores/helping-institution"
+import { useStore } from "@/stores/index.js"
+import { useHelpingInstitutionStore } from "@/stores/helping-institution.js"
 
 const list = [
   {

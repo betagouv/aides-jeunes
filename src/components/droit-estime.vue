@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import { formatDroitEstime } from "@lib/benefits/details"
-import { useStore } from "@/stores"
+import { formatDroitEstime } from "@lib/benefits/details.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "DroitEstime",

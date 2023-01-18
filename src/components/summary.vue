@@ -61,7 +61,7 @@
 
 <script>
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "Summary",

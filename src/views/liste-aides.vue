@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import institutionsBenefits from "generator:institutions"
-import Commune from "@/lib/commune"
+import Commune from "@/lib/commune.js"
 
 const TYPES = {
   national: "Aides nationales",

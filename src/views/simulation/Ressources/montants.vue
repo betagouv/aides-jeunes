@@ -47,12 +47,12 @@ import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise.vu
 import RessourceProfessionLiberale from "@/components/ressource/profession-liberale.vue"
 import RessourceMontants from "@/components/ressource/montants.vue"
 
-import RessourceProcessor from "@/mixins/ressource-processor"
-import { ressourceTypes } from "@lib/resources"
-import Ressource from "@lib/ressource"
-import Individu from "@lib/individu"
-import { getAnswer } from "@lib/answers"
-import { useStore } from "@/stores"
+import RessourceProcessor from "@/mixins/ressource-processor.js"
+import { ressourceTypes } from "@lib/resources.js"
+import Ressource from "@lib/ressource.js"
+import Individu from "@lib/individu.js"
+import { getAnswer } from "@lib/answers.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RessourcesMontants",

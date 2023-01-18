@@ -39,6 +39,7 @@ module.exports = {
     "@typescript-eslint/no-useless-constructor": "error",
     "import/prefer-default-export": "off",
     "import/extensions": ["error", "ignorePackages"],
+    "import/named": "off",
     "import/no-unresolved": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-unused-vars": ["error"],

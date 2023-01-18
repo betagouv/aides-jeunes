@@ -126,11 +126,11 @@
 <script>
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import Situation from "../lib/situation"
-import DroitMixin from "../mixins/droit-mixin"
+import Situation from "@/lib/situation.js"
+import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "DroitsDetails",

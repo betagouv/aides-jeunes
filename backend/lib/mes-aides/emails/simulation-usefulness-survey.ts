@@ -1,9 +1,10 @@
-import fs from "fs"
-import path from "path"
+import config from "../../../config/index"
 import consolidate from "consolidate"
+import fs from "fs"
+import { mjml } from "./index"
+import path from "path"
 
 const mustache = consolidate.mustache
-import { mjml, followupLinksDataBuilder } from "./index"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/simulation-usefulness-survey.txt"),
@@ -14,32 +15,29 @@ const mjmlTemplate = fs.readFileSync(
   "utf8"
 )
 
-function renderAsText(followup) {
-  const data = followupLinksDataBuilder(followup, [
-    "ctaLink",
-    "returnURL",
-    "wasUsefulLinkYes",
-    "wasUsefulLinkNo",
-  ])
+const dataTemplate = (followup) => {
+  return {
+    baseUrl: config.baseURL,
+    ctaLink: `${config.baseURL}${followup.surveyPath}`,
+    returnURL: `${config.baseURL}${followup.returnPath}`,
+    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
+    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
+  }
+}
 
-  return mustache.render(textTemplate, data)
+function renderAsText(followup) {
+  return mustache.render(textTemplate, dataTemplate(followup))
 }
 
 function renderAsHtml(followup) {
-  const data = followupLinksDataBuilder(followup, [
-    "baseURL",
-    "ctaLink",
-    "returnURL",
-    "wasUsefulLinkYes",
-    "wasUsefulLinkNo",
-  ])
-
-  return mustache.render(mjmlTemplate, data).then(function (templateString) {
-    const output = mjml(templateString)
-    return {
-      html: output.html,
-    }
-  })
+  return mustache
+    .render(mjmlTemplate, dataTemplate(followup))
+    .then(function (templateString) {
+      const output = mjml(templateString)
+      return {
+        html: output.html,
+      }
+    })
 }
 
 export default function render(followup) {

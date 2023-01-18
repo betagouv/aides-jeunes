@@ -1,7 +1,7 @@
-import config from "../../../config/index"
+import config from "../../../config/index.js"
 import consolidate from "consolidate"
 import fs from "fs"
-import { mjml } from "./index"
+import { mjml } from "./index.js"
 import path from "path"
 
 const mustache = consolidate.mustache

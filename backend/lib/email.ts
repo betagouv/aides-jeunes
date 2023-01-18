@@ -69,8 +69,7 @@ function processSend(args) {
             return followup.sendSimulationResultsEmail()
           case "benefit-action":
           case "simulation-usefulness": {
-            const surveyType: SurveyType = emailType
-            return followup.sendSurvey(surveyType)
+            return followup.sendSurvey(emailType)
           }
           default:
             throw new Error(`Unknown email type: ${emailType}`)

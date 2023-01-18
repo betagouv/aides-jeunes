@@ -1,5 +1,5 @@
 import path from "path"
-import config from "../backend/config/index"
+import config from "../backend/config/index.ts"
 import webpack from "webpack"
 
 process.env.BASE_URL = config.baseURL

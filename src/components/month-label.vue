@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "MonthLabel",

@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import { sendError } from "@/plugins/mails"
-import { useStore } from "@/stores"
+import { sendError } from "@/plugins/mails.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "ErrorBlock",

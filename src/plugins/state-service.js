@@ -1,6 +1,6 @@
 import { next, current, chapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 const StateService = {
   install(app) {

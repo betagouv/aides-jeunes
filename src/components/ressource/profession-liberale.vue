@@ -53,9 +53,9 @@
 </template>
 
 <script>
-import TNSRessourceUpdator from "@/mixins/tns-ressource-updator"
+import TNSRessourceUpdator from "@/mixins/tns-ressource-updator.js"
 import InputNumber from "@/components/input-number.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RessourceProfessionLiberale",

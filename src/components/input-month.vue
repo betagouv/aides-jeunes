@@ -8,7 +8,7 @@
 
 <script>
 //This component is a simple sugar for InputDate.
-import InputDate from "@/components/input-date"
+import InputDate from "@/components/input-date.vue"
 
 export default {
   name: "InputMonth",

@@ -36,8 +36,8 @@ import {
   getEtablissements,
 } from "@lib/benefits/etablissements"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores"
-import ResultatsMixin from "@/mixins/resultats"
+import { useStore } from "@/stores/index.js"
+import ResultatsMixin from "@/mixins/resultats.js"
 
 export default {
   name: "Lieux",

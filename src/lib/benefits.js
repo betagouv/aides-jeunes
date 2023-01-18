@@ -1,4 +1,4 @@
-import BenefitsCategories from "@/lib/benefits-categories"
+import BenefitsCategories from "@/lib/benefits-categories.js"
 import Benefits from "generator:benefits"
 
 export function getBenefit(benefitId) {

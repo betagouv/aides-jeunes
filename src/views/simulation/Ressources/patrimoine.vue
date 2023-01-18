@@ -176,11 +176,11 @@
 </template>
 
 <script>
-import { patrimoineTypes } from "@lib/resources"
+import { patrimoineTypes } from "@lib/resources.js"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 const mapping = {
   hasTerrainsNonLoues: {

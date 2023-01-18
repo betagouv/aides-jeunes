@@ -112,7 +112,7 @@
 import axios from "axios"
 
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RecapEmailModal",

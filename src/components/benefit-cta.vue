@@ -43,7 +43,7 @@
 
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import { hasEtablissements } from "@lib/benefits/etablissements"
+import { hasEtablissements } from "@lib/benefits/etablissements.js"
 
 const types = ["teleservice", "form", "instructions"]
 export default {

@@ -168,19 +168,19 @@
 
 <script>
 import axios from "axios"
-import Benefits from "@/lib/benefits"
-import ContactEmailMixin from "@/mixins/contact-email"
-import ResultatsMixin from "@/mixins/resultats"
+import Benefits from "@/lib/benefits.js"
+import ContactEmailMixin from "@/mixins/contact-email.js"
+import ResultatsMixin from "@/mixins/resultats.js"
 
-import { sendMontantsAttendus } from "@/plugins/mails"
-import { capitalize } from "@lib/utils"
+import { sendMontantsAttendus } from "@/plugins/mails.js"
+import { capitalize } from "@lib/utils.js"
 import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/lib/contributions"
+} from "@/lib/contributions.js"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "Attendu",

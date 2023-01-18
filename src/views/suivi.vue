@@ -127,7 +127,7 @@
 
 <script>
 import axios from "axios"
-import { getBenefit } from "@/lib/benefits"
+import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"

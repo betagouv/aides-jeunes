@@ -7,7 +7,6 @@ import mongooseConfig from "../config/mongoose"
 mongooseConfig(mongoose, config)
 
 import Followup from "../models/followup"
-import { SurveyType } from "../types/survey"
 
 const parser = new ArgumentParser({
   add_help: true,

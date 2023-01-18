@@ -3,8 +3,7 @@ import path from "path"
 import consolidate from "consolidate"
 
 const mustache = consolidate.mustache
-import config from "../../../config/index"
-import { mjml } from "./index"
+import { mjml, followupLinksDataBuilder } from "./index"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/simulation-usefulness-survey.txt"),
@@ -16,24 +15,24 @@ const mjmlTemplate = fs.readFileSync(
 )
 
 function renderAsText(followup) {
-  const data = {
-    ctaLink: `${config.baseURL}${followup.surveyPath}`,
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
-    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
-  }
+  const data = followupLinksDataBuilder(followup, [
+    "ctaLink",
+    "returnURL",
+    "wasUsefulLinkYes",
+    "wasUsefulLinkNo",
+  ])
 
   return mustache.render(textTemplate, data)
 }
 
 function renderAsHtml(followup) {
-  const data = {
-    ctaLink: `${config.baseURL}${followup.surveyPath}`,
-    baseURL: config.baseURL,
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
-    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
-  }
+  const data = followupLinksDataBuilder(followup, [
+    "baseURL",
+    "ctaLink",
+    "returnURL",
+    "wasUsefulLinkYes",
+    "wasUsefulLinkNo",
+  ])
 
   return mustache.render(mjmlTemplate, data).then(function (templateString) {
     const output = mjml(templateString)

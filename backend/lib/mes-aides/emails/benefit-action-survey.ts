@@ -3,8 +3,7 @@ import path from "path"
 import consolidate from "consolidate"
 
 const mustache = consolidate.mustache
-import config from "../../../config/index"
-import { mjml } from "./index"
+import { mjml, followupLinksDataBuilder } from "./index"
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/benefit-action-survey.txt"),
@@ -16,20 +15,16 @@ const mjmlTemplate = fs.readFileSync(
 )
 
 function renderAsText(followup) {
-  const data = {
-    ctaLink: `${config.baseURL}${followup.surveyPath}`,
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-  }
-
+  const data = followupLinksDataBuilder(followup, ["ctaLink", "returnURL"])
   return mustache.render(textTemplate, data)
 }
 
 function renderAsHtml(followup) {
-  const data = {
-    ctaLink: `${config.baseURL}${followup.surveyPath}`,
-    baseURL: config.baseURL,
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-  }
+  const data = followupLinksDataBuilder(followup, [
+    "ctaLink",
+    "returnURL",
+    "baseURL",
+  ])
 
   return mustache.render(mjmlTemplate, data).then(function (templateString) {
     const output = mjml(templateString)

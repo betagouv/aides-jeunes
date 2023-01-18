@@ -1,6 +1,7 @@
 import fs from "fs"
 import Mjml from "mjml"
 import path from "path"
+import config from "../../../config/index"
 
 export function toBase64(file: string) {
   return fs.readFileSync(file, "base64")
@@ -8,19 +9,31 @@ export function toBase64(file: string) {
 
 export const imageRoot = path.join(__dirname, "../../../../public/img/")
 
-export const defaultAttachments = [
-  // {
-  //     ContentType: 'image/svg+xml',
-  //     Filename: 'logo.svg',
-  //     ContentID: "logo",
-  //     Base64Content: toBase64(path.join(exports.imageRoot, '../../src/assets/images/logo1j1s-france-relance.svg'))
-  // }, {
-  //     ContentType: 'image/png',
-  //     Filename: 'marianne.png',
-  //     ContentID: "marianne",
-  //     Base64Content: toBase64(path.join(exports.imageRoot, 'marianne.png'))
-  // }
-]
+export const followupLinksDataBuilder = (followup, links) => {
+  const data = {}
+  links.forEach((link) => {
+    switch (link) {
+      case "baseURL":
+        data[link] = config.baseURL
+        break
+      case "ctaLink":
+        data[link] = `${config.baseURL}${followup.surveyPath}`
+        break
+      case "returnURL":
+        data[link] = `${config.baseURL}${followup.returnPath}`
+        break
+      case "wasUsefulLinkYes":
+        data[link] = `${config.baseURL}${followup.wasUsefulPath}`
+        break
+      case "wasUsefulLinkNo":
+        data[link] = `${config.baseURL}${followup.wasNotUsefulPath}`
+        break
+      default:
+        break
+    }
+  })
+  return data
+}
 
 export function mjml(template) {
   return Mjml(template, {

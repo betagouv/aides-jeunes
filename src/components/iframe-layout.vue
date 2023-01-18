@@ -21,7 +21,7 @@
 
 <script>
 import Header1J1S from "@/components/header-1j1s.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 export default {
   name: "IFrameLayout",
   components: {

@@ -68,7 +68,7 @@
 <script>
 import Commune from "@/lib/commune.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "InputDepCom",

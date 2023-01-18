@@ -46,7 +46,7 @@
 
 <script>
 import { sendError } from "@/plugins/mails.js"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "ErrorBlock",

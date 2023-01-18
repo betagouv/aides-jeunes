@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import { formatDroitEstime } from "@lib/benefits/details.js"
-import { useStore } from "@/stores/index.js"
+import { formatDroitEstime } from "@lib/benefits/details.ts"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "DroitEstime",

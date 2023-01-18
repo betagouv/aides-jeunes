@@ -1,6 +1,7 @@
 import vue from "@vitejs/plugin-vue"
 import legacy from "@vitejs/plugin-legacy"
 import { createHtmlPlugin } from "vite-plugin-html"
+import resolve from "@rollup/plugin-node-resolve"
 
 import path from "path"
 import { defineConfig, loadEnv } from "vite"
@@ -52,6 +53,10 @@ export default defineConfig(async ({ mode }) => {
     plugins: [
       generator,
       vue(),
+      resolve({
+        extensions: [".js", ".ts"],
+      }),
+
       createHtmlPlugin({
         minify: true,
         inject: {

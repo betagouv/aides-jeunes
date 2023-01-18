@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Progress",

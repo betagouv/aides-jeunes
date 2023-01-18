@@ -28,7 +28,7 @@
 <script>
 import TNSRessourceUpdator from "@/mixins/tns-ressource-updator.js"
 import InputNumber from "@/components/input-number.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "RessourceMicroEntreprise",

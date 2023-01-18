@@ -1,7 +1,7 @@
-import { isStepAnswered } from "@lib/answers.js"
+import { isStepAnswered } from "@lib/answers.ts"
 import { computed, ComputedRef } from "vue"
 import { useRoute } from "vue-router"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 import { Step } from "@lib/types/property.d.js"
 
 export function useProgress(): ComputedRef<number> {

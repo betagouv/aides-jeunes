@@ -84,7 +84,7 @@ import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "SimulationResultats",

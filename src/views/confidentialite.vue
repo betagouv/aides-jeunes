@@ -217,7 +217,7 @@
 
 <script>
 import ContactEmailMixin from "@/mixins/contact-email.js"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Cgu",

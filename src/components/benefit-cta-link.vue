@@ -18,7 +18,7 @@
 
 <script>
 import StatisticsMixin from "@/mixins/statistics.js"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",

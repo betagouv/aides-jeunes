@@ -46,10 +46,10 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import { ressourceCategories, ressourceTypes } from "@lib/resources.js"
-import Ressource from "@lib/ressource.js"
-import { getAnswer } from "@lib/answers.js"
-import { useStore } from "@/stores/index.js"
+import { ressourceCategories, ressourceTypes } from "@lib/resources.ts"
+import Ressource from "@lib/ressource.ts"
+import { getAnswer } from "@lib/answers.ts"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "RessourceTypes",

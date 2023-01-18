@@ -28,7 +28,7 @@ import Progress from "@/components/progress.vue"
 import Summary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Simulation",

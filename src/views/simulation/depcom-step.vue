@@ -16,10 +16,10 @@ import ActionButtons from "@/components/action-buttons.vue"
 import InputDepCom from "@/components/input-depcom.vue"
 import WarningMessage from "@/components/warning-message.vue"
 
-import { getAnswer } from "@lib/answers.js"
+import { getAnswer } from "@lib/answers.ts"
 import DepcomProperties from "@lib/properties/depcom-properties"
 import Warning from "@/lib/warnings.js"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "SimulationDepcomStep",

@@ -4,8 +4,8 @@
 
 <script>
 import RessourceTypes from "@/components/ressource/types.vue"
-import Individu from "@lib/individu.js"
-import { useStore } from "@/stores/index.js"
+import Individu from "@lib/individu.ts"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "RessourcesTypes",

@@ -173,14 +173,14 @@ import ContactEmailMixin from "@/mixins/contact-email.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 
 import { sendMontantsAttendus } from "@/plugins/mails.js"
-import { capitalize } from "@lib/utils.js"
+import { capitalize } from "@lib/utils.ts"
 import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
 } from "@/lib/contributions.js"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Attendu",

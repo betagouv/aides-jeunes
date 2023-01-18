@@ -17,7 +17,7 @@
 <script>
 import RecapEmailModal from "@/components/modals/recap-email-modal.vue"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "OfflineResults",

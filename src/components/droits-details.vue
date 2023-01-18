@@ -130,7 +130,7 @@ import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "DroitsDetails",

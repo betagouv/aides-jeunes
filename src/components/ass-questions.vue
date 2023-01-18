@@ -40,7 +40,7 @@
 <script>
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputMonth from "@/components/input-month.vue"
-import { yearsAgo } from "@lib/utils.js"
+import { yearsAgo } from "@lib/utils.ts"
 import dayjs from "dayjs"
 
 export default {

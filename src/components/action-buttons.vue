@@ -27,8 +27,8 @@
 <script setup>
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps, onMounted, onUnmounted } from "vue"
-import { getAnswerIndexByPath } from "@lib/answers.js"
-import { useStore } from "@/stores/index.js"
+import { getAnswerIndexByPath } from "@lib/answers.ts"
+import { useStore } from "@/stores/index.ts"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
 

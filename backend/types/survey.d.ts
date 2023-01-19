@@ -1,6 +1,7 @@
 export enum SurveyType {
   benefitAction = "benefit-action",
   simulationUsefulness = "simulation-usefulness",
+  trackClicBenefitActionEmail = "track-clic-benefit-action-email",
 }
 
 export interface SurveyLayout {

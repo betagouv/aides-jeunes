@@ -1,7 +1,8 @@
 import mongoose from "mongoose"
-import { MongooseLayout, SurveyModel } from "../types/models"
+import { MongooseLayout } from "../types/models"
+import { SurveyType } from "../types/survey.d"
 
-const SurveySchema = new mongoose.Schema<MongooseLayout, SurveyModel>(
+const SurveySchema = new mongoose.Schema<MongooseLayout>(
   {
     _oldId: { type: String },
     accessToken: { type: String },
@@ -18,7 +19,11 @@ const SurveySchema = new mongoose.Schema<MongooseLayout, SurveyModel>(
     ],
     type: {
       type: String,
-      enum: ["benefit-action", "simulation-usefulness"],
+      enum: [
+        SurveyType.benefitAction,
+        SurveyType.simulationUsefulness,
+        SurveyType.trackClicBenefitActionEmail,
+      ],
     },
   },
   { minimize: false, id: false }

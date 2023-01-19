@@ -127,11 +127,11 @@ export default {
         .map((droit) => {
           if (droit.id === "css_participation_forfaitaire") {
             const abtesting = ABTestingService.getValues()
-            if (abtesting.css_text === "A") {
+            if (abtesting.css_text === "D") {
               return {
                 ...droit,
                 description:
-                  "La Complémentaire Santé Solidaire rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.",
+                  "La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.",
               }
             }
           }

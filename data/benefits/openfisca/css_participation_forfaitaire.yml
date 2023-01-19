@@ -3,8 +3,7 @@ institution: assurance_maladie
 description: La Complémentaire Santé Solidaire (CSS) est une protection
   complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie
   Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire
-  Santé (ACS) à compter du 1ᵉʳ novembre 2019. Une fois attribuée, la CSS est
-  accordée pour un an.
+  Santé (ACS). Une fois attribuée, la CSS est accordée pour un an.
 prefix: la
 conditions:
   - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou

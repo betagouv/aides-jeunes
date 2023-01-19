@@ -26,8 +26,11 @@ function getEnvironment() {
   // // et libérer une custom variable
   // // ABTesting.link.deleted = true;
   ABTesting.css_text = ABTesting.css_text || { index: 1 }
-  ABTesting.css_text.value =
-    ABTesting.css_text.value || (Math.random() > 0.5 ? "A" : "B")
+  ABTesting.css_text.value = ["C", "D"].includes(ABTesting.css_text.value)
+    ? ABTesting.css_text.value
+    : Math.random() > 0.5
+    ? "C"
+    : "D"
 
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]

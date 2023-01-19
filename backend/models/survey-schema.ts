@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
-import { MongooseLayout, SurveyModel } from "../types/models.d.js"
+import { MongooseLayout, FollowupModel } from "../types/models.d.js"
 
-const SurveySchema = new mongoose.Schema<MongooseLayout, SurveyModel>(
+const SurveySchema = new mongoose.Schema<MongooseLayout, FollowupModel>(
   {
     _oldId: { type: String },
     accessToken: { type: String },

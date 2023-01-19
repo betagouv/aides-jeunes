@@ -7,6 +7,7 @@ import mongooseConfig from "../config/mongoose.js"
 mongooseConfig(mongoose, config)
 
 import Followup from "../models/followup.js"
+import { SurveyType } from "../types/survey.d.js"
 
 const parser = new ArgumentParser({
   add_help: true,
@@ -67,8 +68,11 @@ function processSend(args) {
           case "simulation-results":
             return followup.sendSimulationResultsEmail()
           case "benefit-action":
+            return followup.sendSurvey(SurveyType.benefitAction)
           case "simulation-usefulness": {
-            return followup.sendSurvey(emailType)
+            return followup.sendSurvey(
+              SurveyType.trackClicSimulationUsefulnessEmail
+            )
           }
           default:
             throw new Error(`Unknown email type: ${emailType}`)

@@ -7,7 +7,7 @@ api()
 import "../backend/lib/mongo-connector"
 import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
-import { SurveyType } from "../backend/types/survey"
+import { SurveyType } from "../backend/types/survey.d"
 import { ajRequest } from "../backend/types/express"
 import "../backend/lib/mes-aides/emails/benefit-action"
 import { __express } from "ejs"
@@ -18,7 +18,7 @@ const app = express()
 
 const typeKeys = [
   "simulation-results",
-  "simulation-usefulness",
+  "track-clic-simulation-usefulness-email",
   "benefit-action",
 ]
 

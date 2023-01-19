@@ -146,7 +146,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
     },
   ]
   const { followup } = req
-  await followup.updateSurvey("simulation-usefulness", answers)
+  await followup.updateSurvey("track-clic-simulation-usefulness-email", answers)
   const survey = followup.surveys.find(
     (survey) => survey.type === "benefit-action"
   )

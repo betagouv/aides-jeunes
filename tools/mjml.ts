@@ -7,8 +7,6 @@ api()
 import "../backend/lib/mongo-connector"
 import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
-import "../backend/lib/mes-aides/emails/simulation-usefulness-survey"
-import "../backend/lib/mes-aides/emails/benefit-action-survey"
 import { SurveyType } from "../backend/types/survey"
 import { ajRequest } from "../backend/types/express"
 
@@ -19,8 +17,8 @@ const app = express()
 
 const typeKeys = [
   "simulation-results",
-  "simulation-usefulness-survey",
-  "benefit-action-survey",
+  "simulation-usefulness",
+  "benefit-action",
 ]
 
 app.engine(".html", require("ejs").__express)
@@ -44,7 +42,7 @@ const followupRendering = (req) => {
   if (req.params.type == "simulation-results") {
     return renderSimulationResults(followup)
   }
-  const surveyType: SurveyType = req.params.type.slice(0, -"-survey".length)
+  const surveyType: SurveyType = req.params.type
   const survey = followup.surveys.find((s) => surveyType === s.type)
   if (!survey) {
     return followup

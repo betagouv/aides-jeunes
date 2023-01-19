@@ -7,8 +7,8 @@ import utils from "../lib/utils"
 import { SurveyLayout, SurveyType } from "../types/survey"
 
 import renderSimulationResults from "../lib/mes-aides/emails/simulation-results"
-import renderSimulationUsefulnessSurvey from "../lib/mes-aides/emails/simulation-usefulness-survey"
-import renderBenefitActionSurvey from "../lib/mes-aides/emails/benefit-action-survey"
+import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness"
+import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action"
 import SurveySchema from "./survey-schema"
 import { MongooseLayout, FollowupModel } from "../types/models"
 
@@ -94,9 +94,9 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case "benefit-action":
-      return renderBenefitActionSurvey(this)
+      return renderBenefitActionEmail(this)
     case "simulation-usefulness":
-      return renderSimulationUsefulnessSurvey(this)
+      return renderSimulationUsefulnessEmail(this)
     default:
       return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))
   }

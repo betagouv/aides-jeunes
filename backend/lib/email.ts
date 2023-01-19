@@ -7,7 +7,6 @@ import mongooseConfig from "../config/mongoose"
 mongooseConfig(mongoose, config)
 
 import Followup from "../models/followup"
-import { SurveyType } from "../types/survey"
 
 const parser = new ArgumentParser({
   add_help: true,
@@ -27,16 +26,14 @@ const send_types = send.add_subparsers({
 })
 
 const send_simulation_results = send_types.add_parser("simulation-results")
-const send_benefit_action_survey = send_types.add_parser(
-  "benefit-action-survey"
-)
-const send_simulation_usefulness_survey = send_types.add_parser(
-  "simulation-usefulness-survey"
+const send_benefit_action = send_types.add_parser("benefit-action")
+const send_simulation_usefulness = send_types.add_parser(
+  "simulation-usefulness"
 )
 const senders = [
   send_simulation_results,
-  send_benefit_action_survey,
-  send_simulation_usefulness_survey,
+  send_benefit_action,
+  send_simulation_usefulness,
 ]
 senders.forEach((send) => {
   send.add_argument("--id", {
@@ -69,10 +66,9 @@ function processSend(args) {
         switch (emailType) {
           case "simulation-results":
             return followup.sendSimulationResultsEmail()
-          case "benefit-action-survey":
-          case "simulation-usefulness-survey": {
-            const surveyType: SurveyType = emailType.slice(0, -"-survey".length)
-            return followup.sendSurvey(surveyType)
+          case "benefit-action":
+          case "simulation-usefulness": {
+            return followup.sendSurvey(emailType)
           }
           default:
             throw new Error(`Unknown email type: ${emailType}`)
@@ -89,7 +85,7 @@ function processSend(args) {
         process.exit(0)
       })
   } else if (multiple) {
-    if (emailType !== "benefit-action-survey") {
+    if (emailType !== "benefit-action") {
       process.exit(0)
     }
     const limit = parseInt(multiple) || 1

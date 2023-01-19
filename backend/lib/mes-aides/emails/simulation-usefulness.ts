@@ -7,11 +7,11 @@ import path from "path"
 const mustache = consolidate.mustache
 
 const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/benefit-action-survey.txt"),
+  path.join(__dirname, "templates/simulation-usefulness.txt"),
   "utf8"
 )
 const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/benefit-action-survey.mjml"),
+  path.join(__dirname, "templates/simulation-usefulness.mjml"),
   "utf8"
 )
 
@@ -20,6 +20,8 @@ const dataTemplate = (followup) => {
     baseUrl: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPath}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
+    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
+    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
   }
 }
 

@@ -1,4 +1,4 @@
-import { StatutOccupationLogement } from "../../../lib/logement.js"
+import { StatutOccupationLogement } from "../../../lib/enums/logement.js"
 
 const DEFAULT_FSL = {
   type: "bool",

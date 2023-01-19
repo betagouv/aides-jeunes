@@ -18,7 +18,6 @@ const mjmlTemplate = fs.readFileSync(
 const dataTemplate = (followup) => {
   return {
     baseUrl: config.baseURL,
-    ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,

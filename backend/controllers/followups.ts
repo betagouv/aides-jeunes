@@ -139,7 +139,7 @@ export function postSurvey(req: ajRequest, res: Response) {
   pollResult.postPollResult(req.followup, req.body)
 }
 
-const benefitActionSurveyTrackerUpdate = async (followup: any) => {
+export async function benefitActionSurveyTrackerUpdate(followup: any) {
   const surveyTracker = followup.surveys.find(
     (survey) => survey.type === SurveyType.trackClicBenefitActionEmail
   )
@@ -153,6 +153,12 @@ const benefitActionSurveyTrackerUpdate = async (followup: any) => {
   await followup.save()
 }
 
+export async function accessSurvey(req: ajRequest, res: Response) {
+  const { followup } = req
+  await benefitActionSurveyTrackerUpdate(followup)
+  res.redirect(`${config.baseURL}${followup.surveyPath}`)
+}
+
 export async function updateWasUseful(req: ajRequest, res: Response) {
   const answers = [
     {
@@ -161,7 +167,6 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
     },
   ]
   const { followup } = req
-  await benefitActionSurveyTrackerUpdate(followup)
   await followup.updateSurvey("simulation-usefulness", answers)
   const survey = followup.surveys.find(
     (survey) => survey.type === "benefit-action"
@@ -169,7 +174,6 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   if (!survey) {
     const newSurvey = await followup.createSurvey("benefit-action")
     followup.surveys.push(newSurvey)
-    await followup.save()
   }
-  res.redirect(`${config.baseURL}${followup.surveyPath}`)
+  await accessSurvey(req, res)
 }

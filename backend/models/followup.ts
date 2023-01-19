@@ -192,6 +192,10 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
 })
 
+FollowupSchema.virtual("surveyPathTracker").get(function (this: any) {
+  return `/api/followups/surveys/${this.accessToken}/answers`
+})
+
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {
   return `/api/followups/surveys/${this.accessToken}/wasuseful/1`
 })

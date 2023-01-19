@@ -7,12 +7,14 @@ import {
   showSurveyResultByEmail,
   getFollowup,
   updateWasUseful,
+  accessSurvey,
 } from "../controllers/followups"
 import githubController from "../controllers/github"
 
 const followupsRoutes = function (api) {
   api.route("/followups/surveys/:accessToken").get(getFollowup)
   api.route("/followups/surveys/:accessToken/answers").post(postSurvey)
+  api.route("/followups/surveys/:accessToken/answers").get(accessSurvey)
   api
     .route("/followups/surveys")
     .get(cookieParser(), githubController.access)

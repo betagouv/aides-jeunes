@@ -139,14 +139,7 @@ export function postSurvey(req: ajRequest, res: Response) {
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export async function updateWasUseful(req: ajRequest, res: Response) {
-  const answers = [
-    {
-      id: "wasUseful",
-      value: req.params.wasuseful,
-    },
-  ]
-  const { followup } = req
+const benefitActionSurveyTrackerUpdate = async (followup: any) => {
   const surveyTracker = followup.surveys.find(
     (survey) => survey.type === SurveyType.trackClicBenefitActionEmail
   )
@@ -155,11 +148,20 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
       SurveyType.trackClicBenefitActionEmail
     )
     followup.surveys.push(tracker)
-    console.log("survey created : ", tracker)
-  } else {
-    await followup.updateSurvey(SurveyType.trackClicBenefitActionEmail, [])
   }
+  await followup.updateSurvey(SurveyType.trackClicBenefitActionEmail, [])
   await followup.save()
+}
+
+export async function updateWasUseful(req: ajRequest, res: Response) {
+  const answers = [
+    {
+      id: "wasUseful",
+      value: req.params.wasuseful,
+    },
+  ]
+  const { followup } = req
+  await benefitActionSurveyTrackerUpdate(followup)
   await followup.updateSurvey("simulation-usefulness", answers)
   const survey = followup.surveys.find(
     (survey) => survey.type === "benefit-action"

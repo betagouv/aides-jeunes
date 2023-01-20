@@ -10,6 +10,7 @@ import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-
 import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"
 import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
+import { EmailType } from "../types/email.d.js"
 
 const FollowupSchema = new mongoose.Schema(
   {
@@ -77,7 +78,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
       email.subject = render.subject
       email.textContent = render.text
       email.htmlContent = render.html
-      email.tags = ["simulation-results"]
+      email.tags = [EmailType.simulationResults]
       return sendEmail(email)
     })
     .then((response) => {

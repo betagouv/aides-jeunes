@@ -1,13 +1,12 @@
 import { ArgumentParser } from "argparse"
-
 import config from "../config/index.js"
+import { EmailType } from "../types/email.d.js"
+import Followup from "../models/followup.js"
 import mongoose from "mongoose"
-import mongooseConfig from "../config/mongoose.js"
+import mongooseConfig from "../config/mongoose"
+import { SurveyType } from "../types/survey.d.js"
 
 mongooseConfig(mongoose, config)
-
-import Followup from "../models/followup.js"
-import { SurveyType } from "../types/survey.d.js"
 
 const parser = new ArgumentParser({
   add_help: true,
@@ -26,10 +25,12 @@ const send_types = send.add_subparsers({
   dest: "type",
 })
 
-const send_simulation_results = send_types.add_parser("simulation-results")
-const send_benefit_action = send_types.add_parser("benefit-action")
+const send_simulation_results = send_types.add_parser(
+  EmailType.simulationResults
+)
+const send_benefit_action = send_types.add_parser(EmailType.benefitAction)
 const send_simulation_usefulness = send_types.add_parser(
-  "simulation-usefulness"
+  EmailType.simulationUsefulness
 )
 const senders = [
   send_simulation_results,
@@ -65,11 +66,11 @@ function processSend(args) {
     Followup.findByIdOrOldId(id)
       .then((followup) => {
         switch (emailType) {
-          case "simulation-results":
+          case EmailType.simulationResults:
             return followup.sendSimulationResultsEmail()
-          case "benefit-action":
+          case EmailType.benefitAction:
             return followup.sendSurvey(SurveyType.benefitAction)
-          case "simulation-usefulness": {
+          case EmailType.simulationUsefulness: {
             return followup.sendSurvey(
               SurveyType.trackClicSimulationUsefulnessEmail
             )

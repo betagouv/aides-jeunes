@@ -1,26 +1,25 @@
 #!/usr/bin/env node
 
-import express from "express"
-
+import { ajRequest } from "../backend/types/express.d.js"
 import api from "../backend/api"
-api()
-import "../backend/lib/mongo-connector"
+import { EmailType } from "../backend/types/email.d"
+
+import express from "express"
 import Followup from "../backend/models/followup"
 import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
 import { SurveyType } from "../backend/types/survey.d"
-import { ajRequest } from "../backend/types/express"
 import "../backend/lib/mes-aides/emails/benefit-action"
 import { __express } from "ejs"
+import "../backend/lib/mongo-connector"
+
+api()
+
 const port = process.env.PORT || 9001
 
 // Setup Express
 const app = express()
 
-const typeKeys = [
-  "simulation-results",
-  "track-clic-simulation-usefulness-email",
-  "benefit-action",
-]
+const typeKeys = EmailType
 
 app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
@@ -40,10 +39,14 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = (req) => {
   const followup = req.followup
-  if (req.params.type == "simulation-results") {
-    return renderSimulationResults(followup)
+  let surveyType: SurveyType = req.params.type
+  switch (req.params.type) {
+    case EmailType.simulationResults:
+      return renderSimulationResults(followup)
+    case EmailType.simulationUsefulness:
+      surveyType = SurveyType.trackClicSimulationUsefulnessEmail
+      break
   }
-  const surveyType: SurveyType = req.params.type
   const survey = followup.surveys.find((s) => surveyType === s.type)
   if (!survey) {
     return followup

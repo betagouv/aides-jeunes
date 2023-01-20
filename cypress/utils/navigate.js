@@ -25,11 +25,13 @@ const next = () => {
   cy.get(`a[data-testid="button-continue"]`).click()
 }
 
-const updateFromRecap = (buttonLabel) => {
-  cy.get(`div[data-testid="question-row"]:contains('${buttonLabel}')`)
-    .siblings()
-    .contains("Modifier")
-    .click()
+const updateFromRecap = (sectionTitle, buttonLabel) => {
+  cy.get(`div.chapter-block:contains('${sectionTitle}')`).within(() => {
+    cy.get(`div[data-testid="question-row"]:contains('${buttonLabel}')`)
+      .siblings()
+      .contains("Modifier")
+      .click()
+  })
 }
 export default {
   init,

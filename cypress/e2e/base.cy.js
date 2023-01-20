@@ -26,7 +26,7 @@ context("Full simulation", () => {
     foyer.children(0)
     foyer.fill_en_couple(false)
     navigate.goRecap()
-    navigate.updateFromRecap("Mes enfants à charge")
+    navigate.updateFromRecap("Mon foyer", "Mes enfants à charge")
     foyer.children(1)
     foyer.fill_en_couple(false)
     foyer.fill_rsa_isolement_recent(false)
@@ -38,14 +38,14 @@ context("Full simulation", () => {
     logement.fill__primoAccedant(false)
     logement.fill_loyer(800)
     navigate.goRecap()
-    navigate.updateFromRecap("Êtes-vous ?")
+    navigate.updateFromRecap("Mon logement", "Êtes-vous ?")
 
     // Test the monthly payments page as an owner first-time buyer
     logement.fill__logementType("proprietaire")
     logement.fill__primoAccedant(true)
     logement.fill_loyer(800)
     navigate.goRecap()
-    navigate.updateFromRecap("Êtes-vous ?")
+    navigate.updateFromRecap("Mon logement", "Êtes-vous ?")
 
     // Continue the test as an homeless person
     logement.fill__logementType("sansDomicile")

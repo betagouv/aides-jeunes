@@ -6,6 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
 import config from "../config/index.js"
+import { SurveyType } from "../types/survey.d.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -146,12 +147,15 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
     },
   ]
   const { followup } = req
-  await followup.updateSurvey("track-clic-simulation-usefulness-email", answers)
+  await followup.updateSurvey(
+    SurveyType.trackClicSimulationUsefulnessEmail,
+    answers
+  )
   const survey = followup.surveys.find(
-    (survey) => survey.type === "benefit-action"
+    (survey) => survey.type === SurveyType.benefitAction
   )
   if (!survey) {
-    const newSurvey = await followup.createSurvey("benefit-action")
+    const newSurvey = await followup.createSurvey(SurveyType.benefitAction)
     followup.surveys.push(newSurvey)
     await followup.save()
   }

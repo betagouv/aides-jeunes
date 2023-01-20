@@ -19,10 +19,7 @@ const SurveySchema = new mongoose.Schema<MongooseLayout>(
     ],
     type: {
       type: String,
-      enum: [
-        SurveyType.benefitAction,
-        SurveyType.trackClicSimulationUsefulnessEmail,
-      ],
+      enum: SurveyType,
     },
   },
   { minimize: false, id: false }

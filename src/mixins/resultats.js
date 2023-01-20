@@ -1,4 +1,4 @@
-import Simulation from "../lib/simulation"
+import Simulation from "@/lib/simulation.js"
 
 export default {
   computed: {

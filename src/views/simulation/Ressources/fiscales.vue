@@ -73,10 +73,10 @@
 </template>
 
 <script>
-import Individu from "@lib/individu"
-import { categoriesRnc } from "@lib/resources"
+import Individu from "@lib/individu.ts"
+import { categoriesRnc } from "@lib/resources.ts"
 import ActionButtons from "@/components/action-buttons.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "RessourcesFiscales",

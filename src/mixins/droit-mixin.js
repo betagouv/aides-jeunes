@@ -1,4 +1,4 @@
-import { capitalize } from "@lib/utils"
+import { capitalize } from "@lib/utils.ts"
 
 export default {
   methods: {

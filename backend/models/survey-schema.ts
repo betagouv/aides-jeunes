@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { MongooseLayout, SurveyModel } from "../types/models"
+import { MongooseLayout, SurveyModel } from "../types/models.d.js"
 
 const SurveySchema = new mongoose.Schema<MongooseLayout, SurveyModel>(
   {

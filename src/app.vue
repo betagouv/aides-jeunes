@@ -9,8 +9,8 @@
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 
-import context from "@/context"
-import { persistDataOnSessionStorage, useStore } from "@/stores"
+import context from "@/context/index.js"
+import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
 const BaseLayout = context.BaseLayout
 
 export default {

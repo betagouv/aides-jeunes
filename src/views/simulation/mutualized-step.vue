@@ -84,15 +84,15 @@ import ActionButtons from "@/components/action-buttons.vue"
 import MultipleAnswers from "@/components/multiple-answers.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
-import Hint from "@/lib/hint"
+import Hint from "@/lib/hint.js"
 
-import { executeFunctionOrReturnValue } from "@lib/utils"
+import { executeFunctionOrReturnValue } from "@lib/utils.ts"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
-import { getAnswer, nullifyUndefinedValue } from "@lib/answers"
+import { getAnswer, nullifyUndefinedValue } from "@lib/answers.ts"
 import { useIndividu } from "@/composables/individu.ts"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "MutualizedStep",

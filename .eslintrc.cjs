@@ -12,6 +12,7 @@ module.exports = {
     "plugin:prettier-vue/recommended",
     "prettier",
     "@vue/typescript",
+    "plugin:import/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018,
@@ -32,12 +33,14 @@ module.exports = {
     "vue/v-on-event-hyphenation": 0,
     "vue/multi-word-component-names": 0,
     "vue/attribute-hyphenation": 0,
-
     "max-classes-per-file": "off",
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "@typescript-eslint/no-useless-constructor": "error",
     "import/prefer-default-export": "off",
+    "import/extensions": ["error", "ignorePackages"],
+    "import/named": "off",
+    "import/no-unresolved": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-explicit-any": "off",

@@ -86,16 +86,15 @@
 <script lang="ts" setup>
 import { getPropertyOfStep } from "@lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useIndividu } from "@/composables/individu"
+import { useIndividu } from "@/composables/individu.js"
 import ComplexeProperties from "@lib/properties/others/complexe-properties"
 import { chapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
-import { RecapPropertyLine, Step } from "@lib/types/property"
+import { RecapPropertyLine, Step } from "@lib/types/property.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
-import { useProgress } from "@/composables/progress"
-import { useStore } from "@/stores"
-import { categoriesRnc } from "@lib/resources"
-import { patrimoineTypes } from "@lib/resources"
+import { useProgress } from "@/composables/progress.js"
+import { useStore } from "@/stores/index.ts"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources.ts"
 
 onMounted(() => {
   document.body.setAttribute("data-action-buttons", "true")

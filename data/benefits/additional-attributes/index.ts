@@ -2,11 +2,11 @@
 
 import dayjs from "dayjs"
 
-import { benefitLayout } from "../../types/benefits"
-import { openfiscaParametersLayout } from "../../../lib/types/parameters"
-import { situationsLayout } from "../../../lib/types/situations"
+import { benefitLayout } from "../../types/benefits.js"
+import { openfiscaParametersLayout } from "../../../lib/types/parameters.js"
+import { situationsLayout } from "../../../lib/types/situations.js"
 
-import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio"
+import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
 export const additionalBenefitAttributes = {
   css_participation_forfaitaire: {

@@ -1,7 +1,7 @@
 import { concat } from "lodash"
 
-import ressources from "../../lib/resources"
-import { forEachProperties } from "../../lib/mutualized-steps"
+import ressources from "../../lib/resources.js"
+import { forEachProperties } from "../../lib/mutualized-steps.js"
 
 const famille = []
 

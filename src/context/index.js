@@ -1,2 +1,2 @@
-import context from "./base"
+import context from "./base.js"
 export default context

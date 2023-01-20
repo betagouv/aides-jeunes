@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs"
 import bluebird from "bluebird"
-import { ConfigurationLayout } from "../types/config"
+import { ConfigurationLayout } from "../types/config.js"
 
 export default function (mongoose: any, config: ConfigurationLayout) {
   mongoose.Promise = bluebird

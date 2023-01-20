@@ -1,5 +1,5 @@
-import Individu from "@lib/individu"
-import { getAnswer } from "@lib/answers"
+import Individu from "@lib/individu.ts"
+import { getAnswer } from "@lib/answers.ts"
 
 export const createIndividuMixin = (props) => {
   const { fieldName = props, optional = false } = props

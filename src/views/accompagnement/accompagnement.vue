@@ -146,7 +146,7 @@ import SimulationSearch from "@/components/support/simulation-search.vue"
 import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { getBenefit } from "@/lib/benefits"
+import { getBenefit } from "@/lib/benefits.js"
 
 export default {
   components: {

@@ -1,7 +1,7 @@
-import { additionalBenefitAttributes } from "./benefits/additional-attributes/index"
-import aidesVeloGenerator from "./benefits/aides-velo-generator"
-import { buildFSL } from "./benefits/dynamic/fsl"
-import { buildAPA } from "./benefits/dynamic/apa"
+import { additionalBenefitAttributes } from "./benefits/additional-attributes/index.js"
+import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
+import { buildFSL } from "./benefits/dynamic/fsl.js"
+import { buildAPA } from "./benefits/dynamic/apa.js"
 
 function generateInstitutionId(institution) {
   return `${institution.type}_${

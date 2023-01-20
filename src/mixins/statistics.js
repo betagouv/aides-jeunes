@@ -1,4 +1,4 @@
-import ABTestingService from "@/plugins/ab-testing-service"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const uuid = `uid_${Math.random().toString(12).slice(2)}`
 

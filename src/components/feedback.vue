@@ -116,11 +116,11 @@ import {
   sendEcartSimulation,
   sendEcartInstructions,
   sendSuggestion,
-} from "@/plugins/mails"
-import { useStore } from "@/stores"
+} from "@/plugins/mails.js"
+import { useStore } from "@/stores/index.ts"
 import { useRoute } from "vue-router"
-import { formatDroitEstime } from "@lib/benefits/details"
-import { capitalize } from "@lib/utils"
+import { formatDroitEstime } from "@lib/benefits/details.ts"
+import { capitalize } from "@lib/utils.ts"
 
 export default {
   name: "Feedback",

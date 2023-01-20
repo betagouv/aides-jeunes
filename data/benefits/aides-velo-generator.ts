@@ -1,6 +1,6 @@
 // @ts-ignore
 import aidesVelo from "aides-velo"
-import { benefitVeloLayout } from "../../data/types/benefits.d"
+import { benefitVeloLayout } from "../../data/types/benefits.js"
 const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {

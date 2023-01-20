@@ -1,11 +1,11 @@
-import Individu from "../individu"
-import { ACTIVITES_ACTIF } from "../activite"
-import Ressource from "../ressource"
-import { generator as datesGenerator } from "../dates"
-import { Step, ComplexStep } from "./steps"
-import Scolarite from "../scolarite"
+import Individu from "../individu.js"
+import { ACTIVITES_ACTIF } from "../activite.js"
+import Ressource from "../ressource.js"
+import { generator as datesGenerator } from "../dates.js"
+import { Step, ComplexStep } from "./steps.js"
+import Scolarite from "../scolarite.js"
 
-import { BlockLayout } from "../types/blocks"
+import { BlockLayout } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
   const r = (variable, chapter?: string) =>

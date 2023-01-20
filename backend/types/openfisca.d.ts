@@ -1,5 +1,5 @@
-import { individuLayout } from "../../lib/types/individu"
-import { situationsLayout } from "../../lib/types/situations"
+import { individuLayout } from "../../lib/types/individu.js"
+import { situationsLayout } from "../../lib/types/situations.js"
 
 export interface openfiscaMappingLayout {
   individus: individuLayout[]

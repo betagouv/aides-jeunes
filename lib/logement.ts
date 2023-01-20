@@ -1,10 +1,10 @@
-import { getAnswer } from "./answers"
-import { situationsMenageLayout } from "./types/situations"
+import { getAnswer } from "./answers.js"
+import { situationsMenageLayout } from "./types/situations.js"
 import {
   LogementType,
   LocationType,
   StatutOccupationLogement,
-} from "./enums/logement"
+} from "./enums/logement.js"
 
 function getStatutOccupationLogement({
   _logementType,

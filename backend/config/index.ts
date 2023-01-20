@@ -68,7 +68,7 @@ let override = {}
 try {
   const loaddedConfiguration = await import(`${__dirname}${env}.js`)
   override = loaddedConfiguration?.default
-  console.info(`Using specific configuration for ${env}.`)
+  env !== "test" && console.info(`Using specific configuration for ${env}.`)
 } catch (e) {
   console.warn(`No specific configuration for ${env}`)
 }

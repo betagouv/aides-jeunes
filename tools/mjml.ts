@@ -50,8 +50,7 @@ const followupRendering = (req) => {
   const survey = followup.surveys.find((s) => surveyType === s.type)
   if (!survey) {
     return followup
-      .createSurvey(surveyType)
-      .then((survey) => followup.surveys.push(survey))
+      .addSurveyIfNecessary(surveyType)
       .then(() => followup.save())
       .then(() => {
         return followup.renderSurveyEmail(surveyType)

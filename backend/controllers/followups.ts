@@ -151,13 +151,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
     SurveyType.trackClicSimulationUsefulnessEmail,
     answers
   )
-  const survey = followup.surveys.find(
-    (survey) => survey.type === SurveyType.benefitAction
-  )
-  if (!survey) {
-    const newSurvey = await followup.createSurvey(SurveyType.benefitAction)
-    followup.surveys.push(newSurvey)
-    await followup.save()
-  }
+  await followup.addSurveyIfNecessary(SurveyType.benefitAction)
+  await followup.save()
   res.redirect(`${config.baseURL}${followup.surveyPath}`)
 }

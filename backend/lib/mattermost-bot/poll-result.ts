@@ -11,7 +11,7 @@ function parseCurrentDate() {
 }
 
 function postPollResult(simulation, answers) {
-  if (answers.length == 0) {
+  if (answers.length == 0 || !simulation?.benefits) {
     return
   }
   const score = {
@@ -29,6 +29,7 @@ function postPollResult(simulation, answers) {
       })[0] || {}
     orderedAnswers.push({ ...answerDetails, ...answer })
   }
+
   const result = [
     `#### Résultat du sondage de suivi d'utilisateur du ${parseCurrentDate()} - [Accéder au suivi](${
       process.env.MES_AIDES_ROOT_URL

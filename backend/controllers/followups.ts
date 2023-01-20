@@ -5,7 +5,6 @@ import pollResult from "../lib/mattermost-bot/poll-result"
 import simulationController from "./simulation"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express"
-import config from "../config/index"
 import { SurveyType } from "../types/survey.d"
 
 // TODO next line is to be updated once tokens are used globally

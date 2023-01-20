@@ -156,7 +156,7 @@ export async function benefitActionSurveyTrackerUpdate(followup: any) {
 export async function accessSurvey(req: ajRequest, res: Response) {
   const { followup } = req
   await benefitActionSurveyTrackerUpdate(followup)
-  res.redirect(`${config.baseURL}${followup.surveyPath}`)
+  res.redirect(followup.surveyPath)
 }
 
 export async function updateWasUseful(req: ajRequest, res: Response) {

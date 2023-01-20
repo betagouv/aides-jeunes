@@ -17,7 +17,6 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "db": "mongod --dbpath db",
-    "db-update": "./import-tests.sh",
     "front": "NODE_ENV=front-only npm run serve",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",

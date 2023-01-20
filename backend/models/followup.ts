@@ -110,9 +110,21 @@ FollowupSchema.method("createSurvey", function (type: SurveyType) {
   )
 })
 
+FollowupSchema.method(
+  "addSurveyIfNecessary",
+  async function (type: SurveyType) {
+    let survey = this.surveys.find((survey) => survey.type === type)
+    if (!survey) {
+      survey = await this.surveys.create({ type })
+      this.surveys.push(survey)
+    }
+    return survey
+  }
+)
+
 FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
-  return this.createSurvey(surveyType).then((survey: SurveyLayout) => {
+  return this.addSurveyIfNecessary(surveyType).then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
         const email = new SendSmtpEmail()
@@ -142,16 +154,6 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
         followup.surveys = surveys
         return followup.save()
       })
-  })
-})
-
-FollowupSchema.method("mock", function () {
-  const followup = this
-  return this.createSurvey("benefit-action").then((survey) => {
-    const surveys = Array.from(followup.surveys)
-    surveys.push(survey)
-    followup.surveys = surveys
-    return followup.save()
   })
 })
 

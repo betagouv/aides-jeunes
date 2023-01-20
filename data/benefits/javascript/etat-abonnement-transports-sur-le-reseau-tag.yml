@@ -1,0 +1,20 @@
+label: Abonnement transports sur le réseau TAG
+institution: grenoble-alpes-metropole
+description: L'abonnement vous permet de voyager en illimité sur le réseau grenoblois TAG.
+prefix: l’
+conditions_generales:
+  - type: quotient_familial
+    operator: <=
+    value: 755
+    period: month
+  - type: attached_to_institution
+profils: []
+conditions: []
+type: float
+unit: €
+periodicite: mensuelle
+legend: au lieu de 64 €
+montant: 20
+link: https://www.tag.fr/68-tarification-solidaire.htm
+instructions: https://www.tag.fr/68-tarification-solidaire.htm#par828
+floorAt: 1

@@ -37,10 +37,11 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = (req: ajRequest) => {
-  const followup = req.followup
+const followupRendering = async (req: ajRequest) => {
+  const { followup } = req
   const { type: emailType } = req.params
   let surveyType: SurveyType | undefined
+
   switch (emailType) {
     case EmailType.simulationResults:
       return renderSimulationResults(followup)
@@ -51,15 +52,17 @@ const followupRendering = (req: ajRequest) => {
       surveyType = SurveyType.benefitAction
       break
   }
+
+  if (!surveyType) {
+    return
+  }
+
   const survey = followup.surveys.find((s) => surveyType === s.type)
   if (!survey) {
-    return followup
-      .addSurveyIfNecessary(surveyType)
-      .then(() => followup.save())
-      .then(() => followup.renderSurveyEmail(surveyType))
-  } else {
-    return followup.renderSurveyEmail(surveyType)
+    await followup.addSurveyIfNecessary(surveyType)
+    await followup.save()
   }
+  return followup.renderSurveyEmail(surveyType)
 }
 
 app.route("/mjml/:id/:type").get(

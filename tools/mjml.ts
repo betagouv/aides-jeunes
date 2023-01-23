@@ -46,7 +46,7 @@ const followupRendering = async (req: ajRequest) => {
     case EmailType.simulationResults:
       return renderSimulationResults(followup)
     case EmailType.simulationUsefulness:
-      surveyType = SurveyType.trackClicSimulationUsefulnessEmail
+      surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
       break
     case EmailType.benefitAction:
       surveyType = SurveyType.benefitAction

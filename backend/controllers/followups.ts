@@ -148,7 +148,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   ]
   const { followup } = req
   await followup.updateSurvey(
-    SurveyType.trackClicSimulationUsefulnessEmail,
+    SurveyType.trackClickOnSimulationUsefulnessEmail,
     answers
   )
   await followup.addSurveyIfMissing(SurveyType.benefitAction)

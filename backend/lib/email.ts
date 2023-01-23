@@ -72,7 +72,7 @@ function processSend(args) {
             return followup.sendSurvey(SurveyType.benefitAction)
           case EmailType.simulationUsefulness: {
             return followup.sendSurvey(
-              SurveyType.trackClicSimulationUsefulnessEmail
+              SurveyType.trackClickOnSimulationUsefulnessEmail
             )
           }
           default:

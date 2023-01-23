@@ -95,7 +95,7 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyType.benefitAction:
       return renderBenefitActionEmail(this)
-    case SurveyType.trackClicSimulationUsefulnessEmail:
+    case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return renderSimulationUsefulnessEmail(this)
     default:
       return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))

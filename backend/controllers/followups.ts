@@ -5,7 +5,6 @@ import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
-import config from "../config/index.js"
 import { SurveyType } from "../types/survey.js"
 
 // TODO next line is to be updated once tokens are used globally
@@ -139,7 +138,7 @@ export function postSurvey(req: ajRequest, res: Response) {
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export async function updateWasUseful(req: ajRequest, res: Response) {
+export async function updateWasUseful(req: ajRequest) {
   const answers = [
     {
       id: "wasUseful",
@@ -149,20 +148,31 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   const { followup } = req
   await followup.updateSurvey(
     SurveyType.trackClickOnSimulationUsefulnessEmail,
-    answers
+    answers,
   )
   await followup.save()
-  res.redirect(`${config.baseURL}${followup.surveyPath}`)
+}
+
+async function updateBenefitActionTracker(req: ajRequest) {
+  const { followup } = req
+  await followup.addSurveyIfMissing(SurveyType.trackClickOnBenefitActionEmail)
+  await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail, []) // update "repliedAt" to now
 }
 
 export async function logSurveyLinkClick(req: ajRequest, res: Response) {
   const { surveyType } = req.params
-
+  const { followup } = req
   switch (surveyType) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
-      await updateWasUseful(req, res)
+      await updateWasUseful(req)
+      break
+    case SurveyType.benefitAction:
+      await updateBenefitActionTracker(req)
       break
     default:
       return res.sendStatus(404)
   }
+  await followup.addSurveyIfMissing(SurveyType.benefitAction)
+  await followup.save()
+  res.redirect(followup.surveyPath)
 }

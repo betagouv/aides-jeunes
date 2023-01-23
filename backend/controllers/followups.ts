@@ -140,10 +140,12 @@ export function postSurvey(req: ajRequest, res: Response) {
 }
 
 export async function updateWasUseful(req: ajRequest, res: Response) {
+  // Query parameters available : wasuseful (with value 1 or 0)
+  const { wasuseful } = req.query
   const answers = [
     {
       id: "wasUseful",
-      value: req.params.wasuseful,
+      value: wasuseful,
     },
   ]
   const { followup } = req
@@ -154,4 +156,18 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   await followup.addSurveyIfMissing(SurveyType.benefitAction)
   await followup.save()
   res.redirect(`${config.baseURL}${followup.surveyPath}`)
+}
+
+export async function accessSurvey(req: ajRequest, res: Response) {
+  const { surveyType } = req.params
+
+  switch (surveyType) {
+    case SurveyType.benefitAction:
+      break
+    case SurveyType.trackClicSimulationUsefulnessEmail:
+      updateWasUseful(req, res)
+      break
+    default:
+      return res.sendStatus(404)
+  }
 }

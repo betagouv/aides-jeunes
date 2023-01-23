@@ -6,9 +6,9 @@ import {
   showSurveyResults,
   showSurveyResultByEmail,
   getFollowup,
-  updateWasUseful,
+  accessSurvey,
 } from "../controllers/followups.js"
-import githubController from "../controllers/github.js"
+import githubController from "../controllers/github"
 
 const followupsRoutes = function (api) {
   api.route("/followups/surveys/:accessToken").get(getFollowup)
@@ -26,8 +26,8 @@ const followupsRoutes = function (api) {
     .get(cookieParser(), githubController.access)
     .get(showSurveyResultByEmail)
   api
-    .route("/followups/surveys/:accessToken/wasuseful/:wasuseful")
-    .get(updateWasUseful)
+    .route("/followups/surveys/:accessToken/surveyType/:surveyType")
+    .get(accessSurvey)
   api.param("accessToken", followupByAccessToken)
 }
 export default followupsRoutes

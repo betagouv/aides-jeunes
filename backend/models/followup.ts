@@ -110,21 +110,18 @@ FollowupSchema.method("createSurvey", function (type: SurveyType) {
   )
 })
 
-FollowupSchema.method(
-  "addSurveyIfNecessary",
-  async function (type: SurveyType) {
-    let survey = this.surveys.find((survey) => survey.type === type)
-    if (!survey) {
-      survey = await this.surveys.create({ type })
-      this.surveys.push(survey)
-    }
-    return survey
+FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
+  let survey = this.surveys.find((survey) => survey.type === type)
+  if (!survey) {
+    survey = await this.surveys.create({ type })
+    this.surveys.push(survey)
   }
-)
+  return survey
+})
 
 FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
-  return this.addSurveyIfNecessary(surveyType).then((survey: SurveyLayout) => {
+  return this.addSurveyIfMissing(surveyType).then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
         const email = new SendSmtpEmail()

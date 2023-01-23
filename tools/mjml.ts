@@ -37,14 +37,18 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = (req) => {
+const followupRendering = (req: ajRequest) => {
   const followup = req.followup
-  let surveyType: SurveyType = req.params.type
-  switch (req.params.type) {
+  const { type: emailType } = req.params
+  let surveyType: SurveyType | undefined
+  switch (emailType) {
     case EmailType.simulationResults:
       return renderSimulationResults(followup)
     case EmailType.simulationUsefulness:
       surveyType = SurveyType.trackClicSimulationUsefulnessEmail
+      break
+    case EmailType.benefitAction:
+      surveyType = SurveyType.benefitAction
       break
   }
   const survey = followup.surveys.find((s) => surveyType === s.type)
@@ -52,9 +56,7 @@ const followupRendering = (req) => {
     return followup
       .addSurveyIfNecessary(surveyType)
       .then(() => followup.save())
-      .then(() => {
-        return followup.renderSurveyEmail(surveyType)
-      })
+      .then(() => followup.renderSurveyEmail(surveyType))
   } else {
     return followup.renderSurveyEmail(surveyType)
   }

@@ -57,11 +57,8 @@ const followupRendering = async (req: ajRequest) => {
     return
   }
 
-  const survey = followup.surveys.find((s) => surveyType === s.type)
-  if (!survey) {
-    await followup.addSurveyIfMissing(surveyType)
-    await followup.save()
-  }
+  await followup.addSurveyIfMissing(surveyType)
+  await followup.save()
   return followup.renderSurveyEmail(surveyType)
 }
 

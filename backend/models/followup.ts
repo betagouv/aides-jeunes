@@ -147,11 +147,7 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
         survey.error = err
         return survey
       })
-      .then((survey) => {
-        const surveys = Array.from(followup.surveys)
-        surveys.push(survey)
-
-        followup.surveys = surveys
+      .then(() => {
         return followup.save()
       })
   })

@@ -44,7 +44,7 @@
       id="main"
       ref="main"
       role="main"
-      class="fr-container fr-container--fluid"
+      class="fr-container fr-container--fluid aj-main-container"
       tabindex="-1"
     >
       <slot />

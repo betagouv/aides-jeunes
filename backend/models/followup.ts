@@ -102,14 +102,6 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   }
 })
 
-FollowupSchema.method("createSurvey", function (type: SurveyType) {
-  return Promise.resolve(
-    this.surveys.create({
-      type,
-    })
-  )
-})
-
 FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
   let survey = this.surveys.find((survey) => survey.type === type)
   if (!survey) {

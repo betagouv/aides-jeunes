@@ -180,7 +180,7 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
 })
 
 FollowupSchema.virtual("surveyPathTracker").get(function (this: any) {
-  return `/api/followups/surveys/${this.accessToken}/surveyType/${SurveyType.benefitAction}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.benefitAction}`
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {

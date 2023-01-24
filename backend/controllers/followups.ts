@@ -162,8 +162,6 @@ export async function logSurveyLinkClick(req: ajRequest, res: Response) {
   const { surveyType } = req.params
 
   switch (surveyType) {
-    case SurveyType.benefitAction:
-      break
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       updateWasUseful(req, res)
       break

@@ -201,7 +201,7 @@
 .aj-fr-sidemenu__inner {
   height: 100%;
 }
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;
   }

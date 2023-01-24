@@ -3,12 +3,12 @@ import dayjs from "dayjs"
 import { version } from "@lib/simulation"
 import { generator as datesGenerator } from "@lib/dates"
 import { generateAllSteps } from "@lib/state/generator"
-import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers"
-import { categoriesRnc, patrimoineTypes } from "@lib/resources"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.ts"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources.ts"
 import isEqual from "lodash.isequal"
 import axios from "axios"
 import { generateSituation } from "@lib/situations"
-import ABTestingService from "@/plugins/ab-testing-service"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 import {
   Answer,
   Calculs,

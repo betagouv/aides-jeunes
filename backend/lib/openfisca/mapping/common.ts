@@ -1,9 +1,9 @@
 import dayjs from "dayjs"
-import { assign } from "lodash"
+import { assign } from "lodash-es"
 
-import benefits from "../../../../data/all"
-import { generator } from "../../../../lib/dates"
-import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript"
+import benefits from "../../../../data/all.js"
+import { generator } from "../../../../lib/dates.js"
+import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(

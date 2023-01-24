@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Hint from "@/lib/hint"
+import Hint from "@/lib/hint.js"
 import BackButton from "@/components/buttons/back-button.vue"
 
 export default {

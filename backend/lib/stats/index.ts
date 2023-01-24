@@ -3,8 +3,8 @@ import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"
 
-import piwik from "./piwik"
-import mongodb from "./mongodb"
+import piwik from "./piwik.js"
+import mongodb from "./mongodb.js"
 
 function dateDaysAgo(nb_days) {
   let date = new Date()
@@ -13,6 +13,7 @@ function dateDaysAgo(nb_days) {
   return date
 }
 
+const __dirname = new URL(".", import.meta.url).pathname
 const nineWeeksAgo = dateDaysAgo(7 * 9)
 const yesterday = dateDaysAgo(1)
 const today = dateDaysAgo(0)

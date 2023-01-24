@@ -28,8 +28,8 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import { createIndividuMixin } from "@/mixins/individu-mixin"
-import { useStore } from "@/stores"
+import { createIndividuMixin } from "@/mixins/individu-mixin.js"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "SimulationIndividuBourseCriteresSociauxEchelon",

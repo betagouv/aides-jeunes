@@ -71,10 +71,10 @@
 
 <script>
 import ActionButtons from "@/components/action-buttons.vue"
-import Nationality from "@/lib/nationality"
+import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import Scolarite from "@lib/scolarite"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "SimulationEnfants",

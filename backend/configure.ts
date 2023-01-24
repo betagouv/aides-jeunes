@@ -3,8 +3,8 @@ import morgan from "morgan"
 import * as Sentry from "@sentry/node"
 import errorHandler from "errorhandler"
 
-import api from "./api"
-import followups from "./followups"
+import api from "./api.js"
+import followups from "./followups.js"
 
 export default function (app: express.Application) {
   Sentry.init({

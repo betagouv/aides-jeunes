@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import Chapters from "@lib/chapters"
+import Chapters from "@lib/chapters.ts"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
-import { useStore } from "@/stores"
-import ResultatsMixin from "@/mixins/resultats"
+import { useStore } from "@/stores/index.ts"
+import ResultatsMixin from "@/mixins/resultats.js"
 
 export default {
   name: "TitreChapitre",

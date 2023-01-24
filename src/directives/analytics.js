@@ -1,4 +1,4 @@
-import analytics from "../mixins/statistics"
+import analytics from "@/mixins/statistics.js"
 
 const MailDirective = {
   beforeMount(el, binding) {

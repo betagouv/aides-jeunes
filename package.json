@@ -2,23 +2,21 @@
   "name": "mes-aides-jeunes",
   "version": "12.1.3",
   "description": "Simulateur de prestations sociales pour les jeunes",
+  "type": "module",
   "scripts": {
-    "serve": "nodemon --exec 'babel-node -x \".ts\"' backend/dev",
-    "build": "concurrently 'npm run build:server' 'npm run build:lib' 'npm run build:data' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
+    "serve": "nodemon --exec 'ts-node backend/dev'",
+    "build": "concurrently 'npm run build:server' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
     "clean:dist-server": "rm -fR dist-server",
     "copy:templates": "mkdir -p dist-server/backend/lib/mes-aides/emails/templates && cp backend/lib/mes-aides/emails/templates/* dist-server/backend/lib/mes-aides/emails/templates",
-    "build:iframes": "webpack --config iframes/iframes.config.ts",
+    "build:iframes": "NODE_OPTIONS='--loader ts-node/esm' webpack --config iframes/iframes.config.ts",
     "build:front": "vite build",
-    "build:server": "babel ./backend --out-dir dist-server/backend --extensions '.ts,.js'",
-    "build:lib": "babel ./lib --out-dir dist-server/lib --extensions '.ts,.js'",
-    "build:data": "babel ./data --out-dir dist-server/data --extensions '.ts,.js'",
+    "build:server": "tsc -p tsconfig.server.json",
     "preview": "vite preview",
     "lint": "eslint backend data iframes lib src --ext ts,js,vue",
     "ci": "npm run stats && cd dist-server && NODE_ENV=production node ./backend/server.js",
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "db": "mongod --dbpath db",
-    "db-update": "./import-tests.sh",
     "front": "NODE_ENV=front-only npm run serve",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
@@ -29,18 +27,18 @@
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "start": "cd dist-server && NODE_ENV=production node ./backend/server.js",
-    "stats": "node ./dist-server/backend/lib/stats",
-    "test": "NODE_PATH=. jest --testTimeout=20000",
-    "tools:check-links-validity": "babel-node -x \".ts\" ./tools/check-links-validity.ts --ci",
-    "tools:cleaner": "babel-node -x '.ts' ./tools/cleaner.ts",
-    "tools:evaluate-benefits": "node dist-server/tools/evaluate-benefits",
-    "tools:generate-missing-institutions-aides-velo": "babel-node -x \".ts\" ./tools/generate-missing-institutions-aides-velo",
-    "tools:geographical-benefits-details": "node --experimental-json-modules dist-server/tools/geographical-benefits-details.js",
-    "tools:get-all-steps": "node dist-server/tools/get-all-steps.js",
-    "tools:serve-mail": "babel-node -x '.ts' ./tools/mjml.ts",
-    "tools:test-benefits-geographical-constraint-consistency": "babel-node -x '.ts' ./tools/test-benefits-geographical-constraint-consistency.ts",
-    "tools:test-definition-periods": "babel-node -x '.ts' ./tools/test-definition-periods.ts",
-    "migrate": "babel-node -x '.ts' ./backend/lib/migrations/apply.ts --all"
+    "stats": "ts-node ./backend/lib/stats",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
+    "tools:check-links-validity": "ts-node ./tools/check-links-validity.ts --ci",
+    "tools:cleaner": "ts-node ./tools/cleaner.ts",
+    "tools:evaluate-benefits": "ts-node ./tools/evaluate-benefits",
+    "tools:generate-missing-institutions-aides-velo": "ts-node ./tools/generate-missing-institutions-aides-velo",
+    "tools:geographical-benefits-details": "ts-node ./tools/geographical-benefits-details",
+    "tools:get-all-steps": "ts-node ./tools/get-all-steps",
+    "tools:serve-mail": "ts-node ./tools/mjml",
+    "tools:test-benefits-geographical-constraint-consistency": "ts-node ./tools/test-benefits-geographical-constraint-consistency",
+    "tools:test-definition-periods": "ts-node ./tools/test-definition-periods",
+    "migrate": "ts-node ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
     "@actions/core": "^1.8.2",
@@ -80,6 +78,7 @@
     "pinia": "^2.0.16",
     "sib-api-v3-sdk": "^8.2.1",
     "tmp": "^0.2.1",
+    "ts-node": "^10.9.1",
     "validator": "^13.7.0",
     "vite": "^3.2.4",
     "vite-plugin-html": "^3.2.0",
@@ -90,18 +89,14 @@
     "webpack-dev-server": "^4.7.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.19.1",
-    "@babel/node": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
     "@types/bluebird": "^3.5.36",
     "@types/errorhandler": "^1.5.0",
     "@types/express": "^4.17.14",
     "@types/iframe-resizer": "^3.5.9",
     "@types/lodash": "^4.14.182",
-    "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.45",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -116,11 +111,13 @@
     "eslint": ">=7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-prettier-vue": "^3.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.5.1",
@@ -155,16 +152,23 @@
       "vue"
     ],
     "transform": {
-      "\\.[jt]sx?$": "ts-jest",
+      "^.+\\.(js|jsx|mjs)$": "babel-jest",
+      "\\.tsx?$": "ts-jest",
       "\\.vue$": "@vue/vue3-jest"
     },
     "globals": {
       "ts-jest": {
-        "isolatedModules": true
+        "isolatedModules": true,
+        "useESM": true
+      },
+      "vue-jest": {
+        "compilerOptions": {
+          "propsDestructureTransform": true
+        }
       }
     },
     "transformIgnorePatterns": [
-      "/\\./"
+      "node_modules"
     ],
     "moduleNameMapper": {
       "@lib/(.*)": "<rootDir>/lib/$1",
@@ -178,11 +182,9 @@
     "testMatch": [
       "**/tests/(integration|unit)/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
     ],
-    "testURL": "http://localhost/",
-    "preset": "ts-jest",
-    "automock": false,
-    "setupFiles": [
-      "./tests/unit/mocks/config.js"
+    "testPathIgnorePatterns": [
+      "tests/unit/views/fiscales.spec.js",
+      "tests/unit/components/ressource/types.spec.js"
     ]
   },
   "engines": {

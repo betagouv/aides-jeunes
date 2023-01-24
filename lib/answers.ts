@@ -1,4 +1,4 @@
-import { answerLayout } from "./types/answer"
+import { answerLayout } from "./types/answer.js"
 
 export function isStepAnswered(answers: answerLayout[], step) {
   return getStepAnswer(answers, step) !== undefined

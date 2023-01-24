@@ -1,12 +1,12 @@
-import { omit, filter, pick, assign } from "lodash"
+import { omit, filter, pick, assign } from "lodash-es"
 
-import config from "../config/index"
-import { generateSituation } from "../../lib/situations"
-import openfisca from "../lib/openfisca/index"
-import openfiscaTestLib from "../lib/openfisca/test"
-import { apply } from "../lib/migrations/index"
+import config from "../config/index.js"
+import { generateSituation } from "../../lib/situations.js"
+import openfisca from "../lib/openfisca/index.js"
+import openfiscaTestLib from "../lib/openfisca/test.js"
+import { apply } from "../lib/migrations/index.js"
 
-import Simulation from "../models/simulation"
+import Simulation from "../models/simulation.js"
 
 function setSimulationOnRequest(req, simulation) {
   req.simulation = apply(simulation)

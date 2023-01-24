@@ -22,8 +22,8 @@
     "types": ["jest", "cypress", "cypress-axe"],
     "paths": {
       "@/*": ["src/*"],
-      "@lib/*": ["dist-server/lib/*"],
-      "@data/*": ["dist-server/data/*"]
+      "@lib/*": ["lib/*"],
+      "@data/*": ["data/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
@@ -48,5 +48,9 @@
     "dist-server",
     "tools",
     "tests"
-  ]
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }

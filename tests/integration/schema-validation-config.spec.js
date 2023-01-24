@@ -1,8 +1,11 @@
-const path = require("path")
+import path from "path"
+import jamstackLoader from "jamstack-loader"
 
-const { get } = require("jamstack-loader")
-const jamstack = get(
-  path.join(__dirname, "../../contribuer/public/admin/config.yml")
+const jamstack = jamstackLoader.get(
+  path.join(
+    new URL(".", import.meta.url).pathname,
+    "../../contribuer/public/admin/config.yml"
+  )
 )
 
 describe("Test admin config", function () {

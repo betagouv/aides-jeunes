@@ -1,8 +1,8 @@
 // @ts-ignore
 import fs from "fs"
 import ProgressBar from "progress"
-import communesBase from "@etalab/decoupage-administratif/data/communes.json"
-import epcis from "@etalab/decoupage-administratif/data/epci.json"
+import communesBase from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
+import epcis from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 import Benefits from "../data/all.js"
 import { isGeographicallyIncluded } from "../lib/benefits/geographical-count-utils.js"

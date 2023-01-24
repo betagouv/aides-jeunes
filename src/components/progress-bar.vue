@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { computed, ComputedRef } from "vue"
 import { useRoute } from "vue-router"
-import { useProgress } from "@/composables/progress"
+import { useProgress } from "@/composables/progress.js"
 
 const route = useRoute()
 const progress: ComputedRef<number> = useProgress()

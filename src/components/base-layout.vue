@@ -59,7 +59,7 @@
 import Header1J1S from "@/components/header-1j1s.vue"
 import Navigation from "@/components/navigation.vue"
 import FooterJ1S from "@/components/footer-1j1s.vue"
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "BaseLayout",

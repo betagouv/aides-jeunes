@@ -1,10 +1,11 @@
-import config from "../../../config/index"
+import config from "../../../config/index.js"
 import consolidate from "consolidate"
 import fs from "fs"
-import { mjml } from "./index"
+import { mjml } from "./index.js"
 import path from "path"
 
 const mustache = consolidate.mustache
+const __dirname = new URL(".", import.meta.url).pathname
 
 const textTemplate = fs.readFileSync(
   path.join(__dirname, "templates/simulation-usefulness.txt"),

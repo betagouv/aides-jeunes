@@ -4,9 +4,9 @@ import "@gouvfr/dsfr/dist/utility/utility.min.css"
 import "@gouvfr/dsfr/dist/dsfr.module.min.js"
 import App from "./app.vue"
 
-import router from "./router"
+import router from "./router.js"
 
-import StateService from "./plugins/state-service"
+import StateService from "./plugins/state-service.js"
 
 import * as Sentry from "@sentry/vue"
 // @ts-ignore
@@ -14,14 +14,14 @@ import VueMatomo from "vue-matomo"
 
 import "@/styles/aides-jeunes.css"
 
-import AnalyticsDirective from "./directives/analytics"
-import MailDirective from "./directives/mail"
-import SelectOnClickDirective from "./directives/select-on-click"
+import AnalyticsDirective from "./directives/analytics.js"
+import MailDirective from "./directives/mail.js"
+import SelectOnClickDirective from "./directives/select-on-click.js"
 
 // @ts-ignore
 import { iframeResizerContentWindow } from "iframe-resizer"
 
-import "dayjs/locale/fr"
+import "dayjs/locale/fr.js"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import dayjs from "dayjs"
 import { createPinia } from "pinia"

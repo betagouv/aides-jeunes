@@ -1,5 +1,5 @@
-import openfisca from "../index"
-import common from "../mapping/common"
+import openfisca from "../index.js"
+import common from "../mapping/common.js"
 
 const entityGroups = {
   individus: [],
@@ -58,8 +58,7 @@ for (let i = 0; i < steps; i = i + 1) {
   defaultValues.push((i * max) / (steps - 1))
 }
 
-function build(situation, variable, values) {
-  values = values || defaultValues
+function build(situation, variable) {
   const periods = common.getPeriods(situation.dateDeValeur)
 
   const fullTimePeriodLength = 12 * 4
@@ -67,7 +66,7 @@ function build(situation, variable, values) {
     periods["threeYearsAgo"]
   }:${fullTimePeriodLength.toString()}`
 
-  return values.reduce((a, v) => {
+  return defaultValues.reduce((a, v) => {
     situation.demandeur[variable] = {}
     situation.demandeur[variable][fullTimePeriod] = fullTimePeriodLength * v
     const ss = openfisca.buildOpenFiscaRequest(situation)

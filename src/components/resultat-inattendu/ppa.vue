@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { useStore } from "@/stores"
+import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "ResultatInattenduPpa",

@@ -1,5 +1,5 @@
 import express from "express"
-import { followup, resultRedirect } from "./controllers/followups"
+import { followup, resultRedirect } from "./controllers/followups.js"
 
 // Setup Express
 const app = express()

@@ -1,8 +1,9 @@
-import common from "./mapping/common"
-import mapping from "./mapping/index"
-import { forEach, assign, pick, pickBy } from "lodash"
-import benefits from "../../../data/all"
-import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag"
+import common from "./mapping/common.js"
+import mapping from "./mapping/index.js"
+import { forEach, assign, pick, pickBy } from "lodash-es"
+import benefits from "../../../data/all.js"
+import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
+import jsYaml from "js-yaml"
 
 function toStringOf(obj) {
   return obj.toString()
@@ -34,7 +35,7 @@ function normalizeIDs(test) {
 
 function toYAML(test) {
   normalizeIDs(test)
-  return require("js-yaml").dump(test)
+  return jsYaml.dump(test)
 }
 
 export const EXTENSION_VARIABLES = {
@@ -88,7 +89,7 @@ const TEST_ATTRIBUTES = [
   "relative_error_margin",
 ]
 
-export const generateTest = function generateYAMLTest(details, situation) {
+export const generateTest = function (details, situation) {
   const openfiscaRequest = mapping.buildOpenFiscaRequest(
     situation.toObject ? situation.toObject() : situation
   )
@@ -134,7 +135,7 @@ export const generateTest = function generateYAMLTest(details, situation) {
 }
 
 export function generateYAMLTest(details, situation) {
-  return toYAML(exports.generateTest(details, situation))
+  return toYAML(generateTest(details, situation))
 }
 
 export default {

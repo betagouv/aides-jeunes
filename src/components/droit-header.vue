@@ -19,7 +19,7 @@
 
 <script>
 import DroitEstime from "./droit-estime.vue"
-import BenefitMixin from "@/mixins/benefit-image-mixin"
+import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 
 export default {
   name: "DroitHeader",

@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs"
 import bluebird from "bluebird"
-import { ConfigurationLayout } from "../types/config"
+import { ConfigurationLayout } from "../types/config.js"
 
 export default function (mongoose: any, config: ConfigurationLayout) {
   mongoose.Promise = bluebird
@@ -14,6 +14,7 @@ export default function (mongoose: any, config: ConfigurationLayout) {
     })
 
   // Bootstrap models
+  const __dirname = new URL(".", import.meta.url).pathname
   const modelsPath = path.join(__dirname, "../models")
   fs.readdirSync(modelsPath).forEach(async (file) => {
     if (/(.*)\.(js$|coffee$)/.test(file)) {

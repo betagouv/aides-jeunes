@@ -164,7 +164,7 @@ export async function accessSurvey(req: ajRequest, res: Response) {
   switch (surveyType) {
     case SurveyType.benefitAction:
       break
-    case SurveyType.trackClicSimulationUsefulnessEmail:
+    case SurveyType.trackClickOnSimulationUsefulnessEmail:
       updateWasUseful(req, res)
       break
     default:

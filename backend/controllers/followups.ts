@@ -155,7 +155,6 @@ export async function updateWasUseful(req: ajRequest) {
 
 async function updateTrackClickBenefitActionEmail(req: ajRequest) {
   const { followup } = req
-  await followup.addSurveyIfMissing(SurveyType.trackClickOnBenefitActionEmail)
   await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail, []) // update "repliedAt" to now
 }
 

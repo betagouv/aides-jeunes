@@ -8,7 +8,7 @@ import {
   getFollowup,
   logSurveyLinkClick,
 } from "../controllers/followups.js"
-import githubController from "../controllers/github"
+import githubController from "../controllers/github.js"
 
 const followupsRoutes = function (api) {
   api.route("/followups/surveys/:accessToken").get(getFollowup)

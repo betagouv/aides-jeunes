@@ -25,9 +25,7 @@ const followupsRoutes = function (api) {
     .route("/followups/email/:email")
     .get(cookieParser(), githubController.access)
     .get(showSurveyResultByEmail)
-  api
-    .route("/followups/surveys/:accessToken/surveyType/:surveyType")
-    .get(accessSurvey)
+  api.route("/followups/surveys/:accessToken/:surveyType").get(accessSurvey)
   api.param("accessToken", followupByAccessToken)
 }
 export default followupsRoutes

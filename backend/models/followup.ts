@@ -180,11 +180,11 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {
-  return `/api/followups/surveys/${this.accessToken}/surveyType/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful=1`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful=1`
 })
 
 FollowupSchema.virtual("wasNotUsefulPath").get(function (this: any) {
-  return `/api/followups/surveys/${this.accessToken}/surveyType/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful=0`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful=0`
 })
 
 export default mongoose.model<MongooseLayout, FollowupModel>(

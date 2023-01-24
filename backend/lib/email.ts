@@ -1,10 +1,10 @@
 import { ArgumentParser } from "argparse"
 import config from "../config/index.js"
-import { EmailType } from "../types/email.d.js"
+import { EmailType } from "../types/email.js"
 import Followup from "../models/followup.js"
 import mongoose from "mongoose"
-import mongooseConfig from "../config/mongoose"
-import { SurveyType } from "../types/survey.d.js"
+import mongooseConfig from "../config/mongoose.js"
+import { SurveyType } from "../types/survey.js"
 
 mongooseConfig(mongoose, config)
 

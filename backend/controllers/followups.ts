@@ -6,7 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
 import config from "../config/index.js"
-import { SurveyType } from "../types/survey.d.js"
+import { SurveyType } from "../types/survey.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]

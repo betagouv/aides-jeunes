@@ -158,7 +158,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   res.redirect(`${config.baseURL}${followup.surveyPath}`)
 }
 
-export async function accessSurvey(req: ajRequest, res: Response) {
+export async function logSurveyLinkClick(req: ajRequest, res: Response) {
   const { surveyType } = req.params
 
   switch (surveyType) {

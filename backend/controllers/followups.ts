@@ -153,7 +153,7 @@ export async function updateWasUseful(req: ajRequest) {
   await followup.save()
 }
 
-async function updateBenefitActionTracker(req: ajRequest) {
+async function updateTrackClickBenefitActionEmail(req: ajRequest) {
   const { followup } = req
   await followup.addSurveyIfMissing(SurveyType.trackClickOnBenefitActionEmail)
   await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail, []) // update "repliedAt" to now
@@ -167,7 +167,7 @@ export async function logSurveyLinkClick(req: ajRequest, res: Response) {
       await updateWasUseful(req)
       break
     case SurveyType.benefitAction:
-      await updateBenefitActionTracker(req)
+      await updateTrackClickBenefitActionEmail(req)
       break
     default:
       return res.sendStatus(404)

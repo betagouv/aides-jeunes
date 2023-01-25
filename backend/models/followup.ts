@@ -4,12 +4,13 @@ import validator from "validator"
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
-import { SurveyLayout, SurveyType } from "../types/survey.d.js"
+import { SurveyLayout, SurveyType } from "../types/survey.js"
 import renderSimulationResults from "../lib/mes-aides/emails/simulation-results.js"
 import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness.js"
 import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"
 import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
+import { EmailType } from "../types/email.js"
 
 const FollowupSchema = new mongoose.Schema(
   {
@@ -77,7 +78,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
       email.subject = render.subject
       email.textContent = render.text
       email.htmlContent = render.html
-      email.tags = ["simulation-results"]
+      email.tags = [EmailType.simulationResults]
       return sendEmail(email)
     })
     .then((response) => {
@@ -92,26 +93,27 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
-    case "benefit-action":
+    case SurveyType.benefitAction:
       return renderBenefitActionEmail(this)
-    case "simulation-usefulness":
+    case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return renderSimulationUsefulnessEmail(this)
     default:
       return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))
   }
 })
 
-FollowupSchema.method("createSurvey", function (type: SurveyType) {
-  return Promise.resolve(
-    this.surveys.create({
-      type,
-    })
-  )
+FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
+  let survey = this.surveys.find((survey) => survey.type === type)
+  if (!survey) {
+    survey = await this.surveys.create({ type })
+    this.surveys.push(survey)
+  }
+  return survey
 })
 
 FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
-  return this.createSurvey(surveyType).then((survey: SurveyLayout) => {
+  return this.addSurveyIfMissing(surveyType).then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
         const email = new SendSmtpEmail()
@@ -134,23 +136,9 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
         survey.error = err
         return survey
       })
-      .then((survey) => {
-        const surveys = Array.from(followup.surveys)
-        surveys.push(survey)
-
-        followup.surveys = surveys
+      .then(() => {
         return followup.save()
       })
-  })
-})
-
-FollowupSchema.method("mock", function () {
-  const followup = this
-  return this.createSurvey("benefit-action").then((survey) => {
-    const surveys = Array.from(followup.surveys)
-    surveys.push(survey)
-    followup.surveys = surveys
-    return followup.save()
   })
 })
 

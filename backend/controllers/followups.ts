@@ -140,7 +140,6 @@ export function postSurvey(req: ajRequest, res: Response) {
 }
 
 export async function updateWasUseful(req: ajRequest, res: Response) {
-  // Query parameters available : wasuseful (with value 1 or 0)
   const { wasuseful } = req.query
   const answers = [
     {
@@ -163,7 +162,7 @@ export async function logSurveyLinkClick(req: ajRequest, res: Response) {
 
   switch (surveyType) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
-      updateWasUseful(req, res)
+      await updateWasUseful(req, res)
       break
     default:
       return res.sendStatus(404)

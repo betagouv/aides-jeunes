@@ -56,7 +56,13 @@
             {{ institution.label }}
           </router-link>
         </h3>
-        <p class="total-element">{{ institution.benefits.length }} aides :</p>
+        <p class="total-element"
+          >{{
+            institution.benefits.length > 1
+              ? institution.benefits.length + " aides :"
+              : institution.benefits.length + " aide :"
+          }}
+        </p>
         <ul>
           <li v-for="benefit in institution.benefits" :key="benefit.id">
             <router-link

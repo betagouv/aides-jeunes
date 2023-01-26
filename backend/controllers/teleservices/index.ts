@@ -126,7 +126,10 @@ function metadataResponseGenerator(teleservice) {
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }
 
-    const token = jwt.sign(payload, req.simulation.token)
+    const token = jwt.sign(payload, req.simulation.token, {
+      algorithm: "HS256",
+      allowInsecureKeySizes: true,
+    })
 
     return res.json({
       fields: createClass(teleservice, req.simulation).toInternal(),
@@ -202,12 +205,17 @@ function attachPayloadSituation(req, res, next) {
  * It requires a situation
  */
 function verifyRequest(req, res, next) {
-  jwt.verify(req.token, req.simulation.token, function (err) {
-    if (err) {
-      return fail(res, err)
+  jwt.verify(
+    req.token,
+    req.simulation.token,
+    { algorithms: ["HS256"] },
+    function (err) {
+      if (err) {
+        return fail(res, err)
+      }
+      next()
     }
-    next()
-  })
+  )
 }
 
 /*

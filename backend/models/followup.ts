@@ -93,12 +93,20 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
-    case SurveyType.benefitAction:
+    case SurveyType.trackClickOnBenefitActionEmail:
       return renderBenefitActionEmail(this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return renderSimulationUsefulnessEmail(this)
+    case SurveyType.benefitAction:
+      return Promise.reject(
+        new Error(
+          `This surveyType "${surveyType}" is not supposed to be sent through an email`
+        )
+      )
     default:
-      return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))
+      return Promise.reject(
+        new Error(`This surveyType "${surveyType}" has no email template`)
+      )
   }
 })
 
@@ -177,6 +185,10 @@ FollowupSchema.virtual("returnPath").get(function (this: any) {
 
 FollowupSchema.virtual("surveyPath").get(function (this: any) {
   return `/suivi?token=${this.accessToken}`
+})
+
+FollowupSchema.virtual("surveyPathTracker").get(function (this: any) {
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnBenefitActionEmail}`
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {

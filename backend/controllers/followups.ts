@@ -5,7 +5,6 @@ import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
-import config from "../config/index.js"
 import { SurveyType } from "../types/survey.js"
 
 // TODO next line is to be updated once tokens are used globally
@@ -133,13 +132,13 @@ export async function followupByAccessToken(
 }
 
 export function postSurvey(req: ajRequest, res: Response) {
-  req.followup.updateSurvey("benefit-action", req.body).then(() => {
+  req.followup.updateSurvey(SurveyType.benefitAction, req.body).then(() => {
     res.sendStatus(201)
   })
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export async function updateWasUseful(req: ajRequest, res: Response) {
+export async function updateWasUseful(req: ajRequest) {
   const answers = [
     {
       id: "wasUseful",
@@ -151,19 +150,28 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
     SurveyType.trackClickOnSimulationUsefulnessEmail,
     answers
   )
-  await followup.addSurveyIfMissing(SurveyType.benefitAction)
   await followup.save()
-  res.redirect(`${config.baseURL}${followup.surveyPath}`)
+}
+
+async function updateTrackClickOnBenefitActionEmail(req: ajRequest) {
+  const { followup } = req
+  await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail)
 }
 
 export async function logSurveyLinkClick(req: ajRequest, res: Response) {
   const { surveyType } = req.params
-
+  const { followup } = req
   switch (surveyType) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
-      await updateWasUseful(req, res)
+      await updateWasUseful(req)
+      break
+    case SurveyType.trackClickOnBenefitActionEmail:
+      await updateTrackClickOnBenefitActionEmail(req)
       break
     default:
       return res.sendStatus(404)
   }
+  await followup.addSurveyIfMissing(SurveyType.benefitAction)
+  await followup.save()
+  res.redirect(followup.surveyPath)
 }

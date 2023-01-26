@@ -69,7 +69,9 @@ function processSend(args) {
           case EmailType.simulationResults:
             return followup.sendSimulationResultsEmail()
           case EmailType.benefitAction:
-            return followup.sendSurvey(SurveyType.benefitAction)
+            return followup.sendSurvey(
+              SurveyType.trackClickOnBenefitActionEmail
+            )
           case EmailType.simulationUsefulness: {
             return followup.sendSurvey(
               SurveyType.trackClickOnSimulationUsefulnessEmail
@@ -90,7 +92,7 @@ function processSend(args) {
         process.exit(0)
       })
   } else if (multiple) {
-    if (emailType !== "benefit-action") {
+    if (emailType !== EmailType.benefitAction) {
       process.exit(0)
     }
     const limit = parseInt(multiple) || 1
@@ -107,7 +109,7 @@ function processSend(args) {
         return Promise.all(
           list.map(function (followup) {
             return followup
-              .sendSurvey("benefit-action")
+              .sendSurvey(SurveyType.trackClickOnBenefitActionEmail)
               .then(function (result) {
                 return { ok: result._id }
               })

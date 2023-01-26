@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
 import { ajRequest } from "../backend/types/express.d.js"
-import api from "../backend/api"
+import api from "../backend/api.js"
 import { EmailType } from "../backend/types/email.js"
-
 import express from "express"
-import Followup from "../backend/models/followup"
-import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results"
+import Followup from "../backend/models/followup.js"
+import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results.js"
 import { SurveyType } from "../backend/types/survey.js"
-import "../backend/lib/mes-aides/emails/benefit-action"
+import "../backend/lib/mes-aides/emails/benefit-action.js"
 import { __express } from "ejs"
-import "../backend/lib/mongo-connector"
+import "../backend/lib/mongo-connector.js"
 
 api()
 
@@ -49,7 +48,7 @@ const followupRendering = async (req: ajRequest) => {
       surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
       break
     case EmailType.benefitAction:
-      surveyType = SurveyType.benefitAction
+      surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
   }
 

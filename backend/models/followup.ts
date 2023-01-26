@@ -97,8 +97,16 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
       return renderBenefitActionEmail(this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return renderSimulationUsefulnessEmail(this)
+    case SurveyType.benefitAction:
+      return Promise.reject(
+        new Error(
+          `This surveyType "${surveyType}" is not supposed to be sent through an email`
+        )
+      )
     default:
-      return Promise.reject(new Error(`Unknown survey type: ${surveyType}`))
+      return Promise.reject(
+        new Error(`This surveyType "${surveyType}" has no email template`)
+      )
   }
 })
 

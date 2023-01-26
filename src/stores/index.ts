@@ -344,6 +344,7 @@ export const useStore = defineStore("store", {
         value: `votre ${enfants.length}${
           enfants.length === 1 ? "ᵉʳ" : "ᵉ"
         } enfant`,
+        path: `/simulation/individu/enfant_${enfantId}/_firstName`,
       }
 
       // When you add a children you need to remove all current answer after the child validation

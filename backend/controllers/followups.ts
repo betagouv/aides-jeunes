@@ -144,7 +144,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   const answers = [
     {
       id: "wasUseful",
-      value: wasuseful,
+      value: Boolean(Number(wasuseful)),
     },
   ]
   const { followup } = req

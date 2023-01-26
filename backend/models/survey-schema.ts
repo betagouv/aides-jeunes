@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose, { Schema } from "mongoose"
 import { MongooseLayout } from "../types/models.d.js"
 import { SurveyType } from "../types/survey.js"
 
@@ -13,7 +13,7 @@ const SurveySchema = new mongoose.Schema<MongooseLayout>(
     answers: [
       {
         id: String,
-        value: String,
+        value: mongoose.Schema.Types.Mixed,
         comments: String,
       },
     ],

@@ -140,11 +140,10 @@ export function postSurvey(req: ajRequest, res: Response) {
 }
 
 export async function updateWasUseful(req: ajRequest, res: Response) {
-  const { wasuseful } = req.query
   const answers = [
     {
       id: "wasUseful",
-      value: Boolean(Number(wasuseful)),
+      value: req.query.wasuseful !== undefined,
     },
   ]
   const { followup } = req

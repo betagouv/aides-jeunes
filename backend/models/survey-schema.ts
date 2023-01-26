@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose from "mongoose"
 import { MongooseLayout } from "../types/models.d.js"
 import { SurveyType } from "../types/survey.js"
 

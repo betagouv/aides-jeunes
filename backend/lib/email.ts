@@ -108,8 +108,12 @@ function processSend(args) {
       .then((list) => {
         return Promise.all(
           list.map(function (followup) {
+            const surveyType =
+              Math.random() > 0.5
+                ? SurveyType.trackClickOnBenefitActionEmail
+                : SurveyType.trackClickOnSimulationUsefulnessEmail
             return followup
-              .sendSurvey(SurveyType.trackClickOnBenefitActionEmail)
+              .sendSurvey(surveyType)
               .then(function (result) {
                 return { ok: result._id }
               })

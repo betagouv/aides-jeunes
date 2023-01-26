@@ -132,7 +132,7 @@ export async function followupByAccessToken(
 }
 
 export function postSurvey(req: ajRequest, res: Response) {
-  req.followup.updateSurvey("benefit-action", req.body).then(() => {
+  req.followup.updateSurvey(SurveyType.benefitAction, req.body).then(() => {
     res.sendStatus(201)
   })
   pollResult.postPollResult(req.followup, req.body)

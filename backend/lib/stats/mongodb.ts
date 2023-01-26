@@ -7,6 +7,7 @@ declare function emit(key, value)
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
+import { SurveyType } from "../../types/survey.js"
 
 let client
 
@@ -87,7 +88,7 @@ function extractSurveySummary(db) {
       },
       {
         query: {
-          "surveys.type": "benefit-action",
+          "surveys.type": SurveyType.benefitAction,
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
@@ -125,7 +126,7 @@ function extractSurveyDetails(db) {
       },
       {
         query: {
-          "surveys.type": "benefit-action",
+          "surveys.type": SurveyType.benefitAction,
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },

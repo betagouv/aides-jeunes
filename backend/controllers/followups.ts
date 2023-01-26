@@ -143,7 +143,7 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   const answers = [
     {
       id: "wasUseful",
-      value: req.params.wasuseful,
+      value: req.query.wasuseful !== undefined,
     },
   ]
   const { followup } = req
@@ -154,4 +154,16 @@ export async function updateWasUseful(req: ajRequest, res: Response) {
   await followup.addSurveyIfMissing(SurveyType.benefitAction)
   await followup.save()
   res.redirect(`${config.baseURL}${followup.surveyPath}`)
+}
+
+export async function logSurveyLinkClick(req: ajRequest, res: Response) {
+  const { surveyType } = req.params
+
+  switch (surveyType) {
+    case SurveyType.trackClickOnSimulationUsefulnessEmail:
+      await updateWasUseful(req, res)
+      break
+    default:
+      return res.sendStatus(404)
+  }
 }

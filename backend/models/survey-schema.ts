@@ -13,7 +13,7 @@ const SurveySchema = new mongoose.Schema<MongooseLayout>(
     answers: [
       {
         id: String,
-        value: String,
+        value: mongoose.Schema.Types.Mixed,
         comments: String,
       },
     ],

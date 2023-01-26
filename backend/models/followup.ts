@@ -93,7 +93,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
-    case SurveyType.benefitAction:
+    case SurveyType.trackClickOnBenefitActionEmail:
       return renderBenefitActionEmail(this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return renderSimulationUsefulnessEmail(this)
@@ -180,7 +180,7 @@ FollowupSchema.virtual("surveyPath").get(function (this: any) {
 })
 
 FollowupSchema.virtual("surveyPathTracker").get(function (this: any) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.benefitAction}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnBenefitActionEmail}`
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {

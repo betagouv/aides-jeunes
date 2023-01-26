@@ -48,7 +48,7 @@ const followupRendering = async (req: ajRequest) => {
       surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
       break
     case EmailType.benefitAction:
-      surveyType = SurveyType.benefitAction
+      surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
   }
 

@@ -69,10 +69,9 @@ function processSend(args) {
           case EmailType.simulationResults:
             return followup.sendSimulationResultsEmail()
           case EmailType.benefitAction:
-            followup.addSurveyIfMissing(
+            return followup.sendSurvey(
               SurveyType.trackClickOnBenefitActionEmail
             )
-            return followup.sendSurvey(SurveyType.benefitAction)
           case EmailType.simulationUsefulness: {
             return followup.sendSurvey(
               SurveyType.trackClickOnSimulationUsefulnessEmail

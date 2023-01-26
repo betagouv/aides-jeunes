@@ -148,14 +148,14 @@ export async function updateWasUseful(req: ajRequest) {
   const { followup } = req
   await followup.updateSurvey(
     SurveyType.trackClickOnSimulationUsefulnessEmail,
-    answers,
+    answers
   )
   await followup.save()
 }
 
-async function updateTrackClickBenefitActionEmail(req: ajRequest) {
+async function updateTrackClickOnBenefitActionEmail(req: ajRequest) {
   const { followup } = req
-  await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail, []) // update "repliedAt" to now
+  await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail)
 }
 
 export async function logSurveyLinkClick(req: ajRequest, res: Response) {
@@ -165,8 +165,8 @@ export async function logSurveyLinkClick(req: ajRequest, res: Response) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       await updateWasUseful(req)
       break
-    case SurveyType.benefitAction:
-      await updateTrackClickBenefitActionEmail(req)
+    case SurveyType.trackClickOnBenefitActionEmail:
+      await updateTrackClickOnBenefitActionEmail(req)
       break
     default:
       return res.sendStatus(404)

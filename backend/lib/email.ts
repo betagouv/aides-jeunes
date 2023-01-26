@@ -32,6 +32,7 @@ const send_benefit_action = send_types.add_parser(EmailType.benefitAction)
 const send_simulation_usefulness = send_types.add_parser(
   EmailType.simulationUsefulness
 )
+const send_initial_survey = send_types.add_parser("initial-survey")
 const senders = [
   send_simulation_results,
   send_benefit_action,
@@ -41,17 +42,10 @@ senders.forEach((send) => {
   send.add_argument("--id", {
     help: "Followup Id",
   })
-  send.add_argument("--mock", {
-    action: "store_true",
-    help: "Do not send emails",
-  })
-  send.add_argument("--multiple", {
-    help: "Number of emails to send",
-  })
-  send.add_argument("--all", {
-    action: "store_true",
-    help: "Send multiple emails",
-  })
+})
+
+send_initial_survey.add_argument("--multiple", {
+  help: "Number of emails to send",
 })
 
 const reply = subparsers.add_parser("reply")
@@ -92,8 +86,8 @@ function processSend(args) {
         process.exit(0)
       })
   } else if (multiple) {
-    if (emailType !== EmailType.benefitAction) {
-      process.exit(0)
+    if (emailType !== "initial-survey") {
+      throw new Error("Multiple emails can only be sent for initial survey")
     }
     const limit = parseInt(multiple) || 1
     Followup.find({

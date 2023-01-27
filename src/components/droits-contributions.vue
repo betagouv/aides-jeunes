@@ -8,19 +8,35 @@
         title="Code source de l'aide - Nouvelle fenêtre"
         >Code source de l'aide</a
       >
-      -
-      <a
-        :href="netlifyContributionUrl()"
-        target="_blank"
-        rel="noreferrer"
-        title="Proposer une modification : outil de contribution - Nouvelle fenêtre"
-        >Proposer une modification</a
-      ></span
-    >
+      <span v-if="netlifyContributionUrl()">
+        -
+        <a
+          :href="netlifyContributionUrl()"
+          target="_blank"
+          rel="noreferrer"
+          title="Proposer une modification : outil de contribution - Nouvelle fenêtre"
+          >Proposer une modification</a
+        >
+      </span>
+    </span>
   </p>
 </template>
 
 <script>
+const benefitsUrlPatterns = [
+  {
+    pattern: /-fsl-eligibilite$/,
+    file: `${process.env.VITE_REPOSITORY_URL}/blob/master/data/benefits/dynamic/fsl.ts`,
+  },
+  {
+    pattern: /-apa-eligibilite$/,
+    file: `${process.env.VITE_REPOSITORY_URLl}/blob/master/data/benefits/dynamic/apa.ts`,
+  },
+  {
+    pattern: /^aidesvelo_/,
+    file: `https://github.com/mquandalle/mesaidesvelo/blob/master/src/aides.yaml`,
+  },
+]
 export default {
   name: "DroitsContributions",
   props: {
@@ -30,19 +46,24 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      brokenLinkButtonState: "show",
-    }
-  },
   methods: {
     isEditableBenefit() {
       return ["javascript", "openfisca"].includes(this.droit.source)
     },
     repositoryBenefitUrl() {
+      for (let category of benefitsUrlPatterns) {
+        if (this.droit.id.match(category.pattern)) {
+          return category.file
+        }
+      }
       return `${process.env.VITE_BENEFIT_URL}/${this.droit.source}/${this.droit.id}.yml`
     },
     netlifyContributionUrl() {
+      for (let category of benefitsUrlPatterns) {
+        if (this.droit.id.match(category.pattern)) {
+          return
+        }
+      }
       return `${process.env.VITE_NETLIFY_CONTRIBUTION_URL}/admin/#/collections/benefits_${this.droit.source}/entries/${this.droit.id}`
     },
   },

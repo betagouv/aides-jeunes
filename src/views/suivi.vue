@@ -230,6 +230,7 @@ export default {
         .then(function (response) {
           if (response.status === 201) {
             that.submitted = true
+            window.scrollTo(0, 0)
           }
         })
     },

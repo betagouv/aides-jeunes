@@ -48,6 +48,7 @@
                 v-if="recapEmailState === 'show'"
                 ref="form"
                 class="fr-form"
+                @submit.prevent="getRecap(true)"
               >
                 <div class="fr-form-group">
                   <label class="fr-label" for="email"

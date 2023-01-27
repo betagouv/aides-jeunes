@@ -48,22 +48,20 @@
     <mj-section>
       <mj-column align="center">
         <mj-button
-          width="100px"
+          width="130px"
           background-color="#5770be"
           color="white"
           href="{{&wasUsefulLinkYes}}"
-          align="right"
         >
           Oui
         </mj-button>
       </mj-column>
       <mj-column>
         <mj-button
-          width="100px"
+          width="130px"
           background-color="#5770be"
           color="white"
           href="{{&wasUsefulLinkNo}}"
-          align="left"
         >
           Non
         </mj-button>

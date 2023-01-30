@@ -98,11 +98,11 @@ function openfiscaResponse(req, res, next) {
     if (err)
       return next(
         Object.assign(err.response?.data || err, {
-          _id: req.situationId,
+          _id: req.simulationId,
         })
       )
 
-    res.send(Object.assign(result, { _id: req.situationId }))
+    res.send(Object.assign(result, { _id: req.simulationId }))
   })
 }
 
@@ -124,9 +124,9 @@ function results(req, res, next) {
 function openfiscaTrace(req, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
-      return next(Object.assign(err.response.data, { _id: req.situationId }))
+      return next(Object.assign(err.response.data, { _id: req.simulationId }))
 
-    res.send(Object.assign(result, { _id: req.situationId }))
+    res.send(Object.assign(result, { _id: req.simulationId }))
   })
 }
 

@@ -75,7 +75,7 @@ export default {
         window.localStorage.setItem(
           "trampoline",
           JSON.stringify({
-            situationId: this.store.calculs.resultats._id,
+            simulationId: this.store.calculs.resultats._id,
           })
         )
       }

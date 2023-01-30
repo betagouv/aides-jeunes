@@ -6,7 +6,7 @@
     La plupart des résultats que nous vous proposons sont automatiquement
     arrondis à une dizaine d'euros près.
   </p>
-  <ul :key="`${situationId}-${droits?.length}`">
+  <ul :key="`${simulationId}-${droits?.length}`">
     <li>
       <a
         v-analytics="{
@@ -43,9 +43,9 @@
     </li>
   </ul>
   <p
-    ><small v-if="situationId"
+    ><small v-if="simulationId"
       >Cette simulation a pour identifiant
-      <span class="preformatted">{{ situationId }}</span> (en savoir plus sur
+      <span class="preformatted">{{ simulationId }}</span> (en savoir plus sur
       <router-link to="/confidentialite"
         >le traitement de vos données personnelles
       </router-link>
@@ -53,7 +53,7 @@
     </small></p
   >
   <p
-    ><small v-if="situationId">
+    ><small v-if="simulationId">
       <button
         v-if="!showExpertLinks"
         class="fr-btn fr-btn--sm"
@@ -151,17 +151,17 @@ export default {
 
       return droits?.map((droit) => this.formatDroit(droit))
     },
-    situationId() {
-      return this.store.situationId
+    simulationId() {
+      return this.store.simulationId
     },
     sendMailEcartSimulation() {
-      return sendEcartSimulation(this.situationId, this.droits)
+      return sendEcartSimulation(this.simulationId, this.droits)
     },
     sendMailEcartInstruction() {
-      return sendEcartInstructions(this.situationId, this.droits)
+      return sendEcartInstructions(this.simulationId, this.droits)
     },
     sendMailSuggestion() {
-      return sendSuggestion(this.situationId)
+      return sendSuggestion(this.simulationId)
     },
   },
   methods: {

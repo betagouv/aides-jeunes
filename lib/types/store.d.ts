@@ -52,7 +52,7 @@ export interface Situation {
 }
 
 export interface PersistedStore {
-  situationId: string | null
+  simulationId: string | null
   simulation: Simulation
   calculs: Calculs
   ameliNoticationDone: boolean
@@ -61,7 +61,7 @@ export interface PersistedStore {
 }
 
 export interface Store {
-  situationId: string | null
+  simulationId: string | null
   simulation: Simulation
   message: {
     text: string | null

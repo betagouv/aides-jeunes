@@ -37,7 +37,7 @@ function defaultStore(): Store {
   const now = dayjs().format()
 
   return {
-    situationId: null,
+    simulationId: null,
     simulation: {
       answers: {
         all: [],
@@ -76,7 +76,7 @@ function getPersitedStateProperties(
   save = false
 ): PersistedStore {
   const persistedStoreData: PersistedStore = {
-    situationId: state.situationId,
+    simulationId: state.simulationId,
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
     ameliNoticationDone: state.ameliNoticationDone,
@@ -222,11 +222,11 @@ export const useStore = defineStore("store", {
       }, undefined)
     },
     fetchRepresentation() {
-      return (representation: string, situationId: string) => {
+      return (representation: string, simulationId: string) => {
         return axios
           .get(
             `/api/simulation/${
-              situationId || this.situationId
+              simulationId || this.simulationId
             }/${representation}`
           )
           .then((response) => response.data)
@@ -234,9 +234,9 @@ export const useStore = defineStore("store", {
     },
     hasResults(): boolean {
       return Boolean(
-        this.situationId &&
+        this.simulationId &&
           this.calculs.resultats._id &&
-          this.calculs.resultats._id === this.situationId
+          this.calculs.resultats._id === this.simulationId
       )
     },
     situation(): Situation {
@@ -406,16 +406,16 @@ export const useStore = defineStore("store", {
     setRecapEmailState(newState: string | undefined) {
       this.recapEmailState = newState
     },
-    setId(id: string) {
-      this.situationId = id
+    setSimulationId(id: string) {
+      this.simulationId = id
       this.calculs.dirty = false
     },
     save() {
       this.setRecapEmailState(undefined)
 
       const simulation = { ...this.simulation, _id: undefined }
-      if (this.situationId) {
-        simulation.modifiedFrom = this.situationId
+      if (this.simulationId) {
+        simulation.modifiedFrom = this.simulationId
       }
 
       simulation.abtesting = ABTestingService.getValues()
@@ -424,7 +424,7 @@ export const useStore = defineStore("store", {
         .post("/api/simulation", simulation)
         .then((result) => result.data)
         .then((payload) => payload._id)
-        .then((id) => this.setId(id))
+        .then((id) => this.setSimulationId(id))
     },
     reset(simulation: Simulation) {
       this.access.fetching = false
@@ -446,7 +446,7 @@ export const useStore = defineStore("store", {
         .get(`/api/simulation/${id}`)
         .then((result) => result.data)
         .then((payload) => this.reset(payload))
-        .then(() => this.setId(id))
+        .then(() => this.setSimulationId(id))
         .catch((e) => {
           console.log(e)
           this.saveAccessFailure()
@@ -476,7 +476,7 @@ export const useStore = defineStore("store", {
 
       return axios
         .get(
-          `/api/simulation/${this.situationId}/results${
+          `/api/simulation/${this.simulationId}/results${
             showPrivate ? "&showPrivate" : ""
           }`
         )

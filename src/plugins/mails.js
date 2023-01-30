@@ -6,12 +6,12 @@ const generateResultLines = (droits, customAmount) => {
     .join("\n")
 }
 
-export const sendEcartInstructions = (situationId, droitsEligibles) => {
-  if (!situationId) situationId = "??"
+export const sendEcartInstructions = (simulationId, droitsEligibles) => {
+  if (!simulationId) simulationId = "??"
   if (!droitsEligibles) droitsEligibles = []
 
   return {
-    subject: `Montants inattendus [${situationId}]`,
+    subject: `Montants inattendus [${simulationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -25,16 +25,16 @@ export const sendEcartInstructions = (situationId, droitsEligibles) => {
     Bonne journée,
 
     ————
-    ID : ${situationId} (à conserver impérativement pour traitement de votre demande)
+    ID : ${simulationId} (à conserver impérativement pour traitement de votre demande)
             ————`,
   }
 }
-export const sendEcartSimulation = (situationId, droitsEligibles) => {
-  if (!situationId) situationId = "??"
+export const sendEcartSimulation = (simulationId, droitsEligibles) => {
+  if (!simulationId) simulationId = "??"
   if (!droitsEligibles) droitsEligibles = []
 
   return {
-    subject: `Montants inattendus [${situationId}]`,
+    subject: `Montants inattendus [${simulationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -47,23 +47,23 @@ export const sendEcartSimulation = (situationId, droitsEligibles) => {
     Bonne journée,
 
     ————
-    ID : ${situationId} (à conserver impérativement pour traitement de votre demande)
+    ID : ${simulationId} (à conserver impérativement pour traitement de votre demande)
             ————`,
   }
 }
 
-export const sendSuggestion = (situationId) => {
-  if (!situationId) situationId = "??"
+export const sendSuggestion = (simulationId) => {
+  if (!simulationId) simulationId = "??"
   return {
-    subject: `[${situationId}] Suggestion`,
+    subject: `[${simulationId}] Suggestion`,
   }
 }
 
-export const sendError = (situationId, error) => {
-  if (!situationId) situationId = "??"
+export const sendError = (simulationId, error) => {
+  if (!simulationId) simulationId = "??"
   if (!error) error = "Impossible de récupérer l'erreur."
   return {
-    subject: `Problème technique [${situationId}]`,
+    subject: `Problème technique [${simulationId}]`,
     body: `Bonjour,
 
   J'ai tenté de XXX,
@@ -73,16 +73,16 @@ export const sendError = (situationId, error) => {
   Je vous joins également une capture d'écran pour faciliter la compréhension du problème.
 
   ————
-  ID : ${situationId}
+  ID : ${simulationId}
   Erreur : ${error}
   ————`,
   }
 }
 
-export const sendMontantsAttendus = (situationId) => {
-  if (!situationId) situationId = "??"
+export const sendMontantsAttendus = (simulationId) => {
+  if (!simulationId) simulationId = "??"
   return {
-    subject: `Montant attendus [${situationId}]`,
+    subject: `Montant attendus [${simulationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -93,7 +93,7 @@ export const sendMontantsAttendus = (situationId) => {
     Je vous joins le fichier de résultats pour faciliter la compréhension du problème.
 
   ————
-  ID : ${situationId}
+  ID : ${simulationId}
   ————`,
   }
 }

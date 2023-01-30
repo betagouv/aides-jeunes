@@ -272,10 +272,6 @@
     flex-direction: row;
     align-items: stretch;
   }
-
-  .aj-fr-sidemenu__inner {
-    height: 100%;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -289,10 +285,6 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-  }
-
-  .aj-fr-sidemenu__inner {
-    height: 100%;
   }
 }
 

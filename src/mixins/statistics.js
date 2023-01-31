@@ -12,9 +12,6 @@ export default {
         process.env.VITE_STATS_VERSION &&
         benefits?.length
       ) {
-        if (!benefits?.length) {
-          benefits = [{ id: benefitId }]
-        }
         const id = this?.$matomo ? this.$matomo.getVisitorId() : uuid
         const abtesting = ABTestingService.getValues()
         const benefitsStats = []

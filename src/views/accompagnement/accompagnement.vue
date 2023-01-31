@@ -147,6 +147,7 @@ import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/benefits.js"
+import axios from "axios"
 
 export default {
   components: {
@@ -205,50 +206,40 @@ export default {
         uri = `/api/followups/surveys`
       }
       try {
-        const response = await fetch(uri, {
-          method: "GET",
-          redirect: "error",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        })
-        const serverResponse = await response
-        if (serverResponse.status == 404 && this.$route.params.surveyEmail) {
-          this.loggedIn = true
-          this.error = "Aucun sondage ne correspond à cette adresse email"
-        } else if (
-          serverResponse.status == 404 &&
-          this.$route.params.followupId
-        ) {
-          this.loggedIn = true
-          this.error = "Aucun sondage ne correspond à cet identifiant"
-        } else {
-          const accompagnements = await serverResponse.json()
-          for (let accompagnement of accompagnements) {
-            const surveyStates = {}
-            if (accompagnement.surveys.length) {
-              accompagnement.surveys[0].answers.map((survey) => {
-                surveyStates[survey.id] = {
-                  status: survey.value,
-                  comments: survey.comments,
-                }
-              })
-              accompagnement.benefits.map((benefit) => {
-                if (benefit.id && surveyStates[benefit.id]) {
-                  benefit["status"] = surveyStates[benefit["id"]]["status"]
-                  benefit["comments"] = surveyStates[benefit["id"]]["comments"]
-                }
-              })
-            }
+        const { data: accompagnements } = await axios.get(uri)
+        for (let accompagnement of accompagnements) {
+          const surveyStates = {}
+          if (accompagnement.surveys.length) {
+            accompagnement.surveys[0].answers.map((survey) => {
+              surveyStates[survey.id] = {
+                status: survey.value,
+                comments: survey.comments,
+              }
+            })
+            accompagnement.benefits.map((benefit) => {
+              if (benefit.id && surveyStates[benefit.id]) {
+                benefit["status"] = surveyStates[benefit["id"]]["status"]
+                benefit["comments"] = surveyStates[benefit["id"]]["comments"]
+              }
+            })
           }
-          this.accompagnements = accompagnements
-          this.loggedIn = true
-          this.error = undefined
         }
-      } catch (status) {
-        this.accompagnements = []
-        this.loggedIn = false
+        this.accompagnements = accompagnements
+        this.loggedIn = true
+        this.error = undefined
+      } catch (error) {
+        if (error.response.status == 404) {
+          this.loggedIn = true
+          if (this.surveyEmail) {
+            this.error = "Aucun sondage ne correspond à cette adresse email"
+          } else if (this.followupId) {
+            this.error = "Aucun sondage ne correspond à cet identifiant"
+          }
+        } else {
+          this.loggedIn = false
+          this.error = "Erreur inconnue"
+        }
+        this.accompagnements = null
       }
       return this.accompagnements
     },

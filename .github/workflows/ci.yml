@@ -170,7 +170,7 @@ jobs:
         run: cd contribuer && npm run export
   openfisca_test_generation:
     name: OpenFisca test generation
-    needs: [install, install_openfisca]
+    needs: [install, install_openfisca, check_data_file_consistency]
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

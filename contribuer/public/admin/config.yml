@@ -188,7 +188,7 @@ fields:
       value: region
     - label: Département
       value: departement
-    - label: MSA
+    - label: MSA locale
       value: msa
     - label: CAF locale
       value: caf

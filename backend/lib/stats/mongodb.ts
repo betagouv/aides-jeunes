@@ -77,7 +77,7 @@ function extractSurveySummary(db) {
           already: 4,
         }
         const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === "benefit-action"
+          (s) => s.type === SurveyType.benefitAction
         )
         if (benefitActionSurvey.answers.length) {
           benefitActionSurvey.answers.sort(function (a, b) {
@@ -95,6 +95,9 @@ function extractSurveySummary(db) {
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
+        scope: {
+          SurveyType,
+        },
       }
     )
     .then((r) => r.results || r)
@@ -121,7 +124,7 @@ function extractSurveyDetails(db) {
           obj[b.id] = b.amount
         })
         const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === "benefit-action"
+          (s) => s.type === SurveyType.benefitAction
         )
         benefitActionSurvey.answers.forEach(function (a) {
           emit(`${a.id};${a.value}`, 1)
@@ -136,6 +139,9 @@ function extractSurveyDetails(db) {
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
+        scope: {
+          SurveyType,
+        },
       }
     )
     .then((r) => r.results || r)

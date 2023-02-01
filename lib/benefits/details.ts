@@ -87,9 +87,11 @@ function formatDroitEstime(droit, parameters) {
         }
         break
       case "séances":
+        delete droitEstime.label
         droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
         break
       case "%":
+        droitEstime.label = "Valeur estimée"
         droitEstime.value = `${droitEstime.value} ${droitEstime.unit}`
         break
       default:

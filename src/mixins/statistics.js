@@ -4,7 +4,7 @@ const uuid = `uid_${Math.random().toString(12).slice(2)}`
 
 export default {
   methods: {
-    sendStatistics: function ({ benefits, benefitId, event }) {
+    sendStatistics: function (benefits, event, benefitId) {
       if (
         window.navigator.doNotTrack !== "1" &&
         document.cookie.indexOf("piwik_ignore") < 0 &&

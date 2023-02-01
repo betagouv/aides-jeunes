@@ -116,7 +116,7 @@ export default {
             store.calculs.resultats.droitsEligibles.forEach(function (d) {
               vm.$matomo?.trackEvent("General", "show", d.id)
             })
-            this.sendStatistics({ event: "show", benefits: this.droits })
+            this.sendStatistics(this.droits, "show")
             break
           }
           case "saveComputationFailure": {

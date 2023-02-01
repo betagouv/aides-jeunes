@@ -1,6 +1,6 @@
 import analytics from "@/mixins/statistics.js"
 
-const MailDirective = {
+const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
       analytics.methods.sendStatistics(
@@ -27,4 +27,4 @@ const MailDirective = {
   },
 }
 
-export default MailDirective
+export default AnalyticsDirective

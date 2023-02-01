@@ -4,7 +4,6 @@ import configure from "./configure.js"
 import mock from "./mock.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
-const port = process.env.PORT || 8080
 
 async function createServer() {
   const app = express()
@@ -17,6 +16,8 @@ async function createServer() {
   } else {
     configure(app)
   }
+  const port = process.env.PORT || 8080
+
   app.use(vite.middlewares)
   app.listen(port, () => {
     console.log(

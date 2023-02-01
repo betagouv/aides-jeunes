@@ -7,12 +7,8 @@ import configure from "./configure.js"
 const __dirname = new URL(".", import.meta.url).pathname
 const app: Application = express()
 
-const port = process.env.PORT || 8080
-
-process.env.MES_AIDES_ROOT_URL =
-  process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
-
 configure(app)
+const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "../../dist")))
 app.route("/*").get(function (req, res) {

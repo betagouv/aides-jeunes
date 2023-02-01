@@ -35,14 +35,12 @@ function getEnvironment() {
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]
     if (data.deleted) {
-      window._paq.push(["setCustomDimension", data.index, "visit"])
+      window._paq.push(["deleteCustomDimension", data.index])
     } else {
       window._paq.push([
         "setCustomDimension",
         data.index,
-        name,
-        data.value,
-        "visit",
+        `${name}/${data.value}`,
       ])
     }
   })

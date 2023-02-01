@@ -188,8 +188,6 @@ fields:
       value: region
     - label: Département
       value: departement
-    - label: MSA locale
-      value: msa
     - label: CAF locale
       value: caf
     - label: EPCI (Métropole, inter-communauté, etc.)

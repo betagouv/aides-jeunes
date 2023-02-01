@@ -76,11 +76,14 @@ function extractSurveySummary(db) {
           nothing: 3,
           already: 4,
         }
-        if (this.surveys[0].answers.length) {
-          this.surveys[0].answers.sort(function (a, b) {
+        const benefitActionSurvey = this.surveys.find(
+          (s) => s.type === "benefit-action"
+        )
+        if (benefitActionSurvey.answers.length) {
+          benefitActionSurvey.answers.sort(function (a, b) {
             return m[a.value] > m[b.value]
           })
-          emit(this.surveys[0].answers[0].value, 1)
+          emit(benefitActionSurvey.answers[0].value, 1)
         }
       },
       function (k, values) {
@@ -117,7 +120,10 @@ function extractSurveyDetails(db) {
         this.benefits.forEach(function (b) {
           obj[b.id] = b.amount
         })
-        this.surveys[0].answers.forEach(function (a) {
+        const benefitActionSurvey = this.surveys.find(
+          (s) => s.type === "benefit-action"
+        )
+        benefitActionSurvey.answers.forEach(function (a) {
           emit(`${a.id};${a.value}`, 1)
         })
       },

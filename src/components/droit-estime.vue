@@ -29,7 +29,7 @@
       <router-link
         v-if="showUnexpected"
         v-analytics="{
-          name: droitEstime.label,
+          name: droit.id,
           action: 'show-unexpected',
           category: 'General',
         }"

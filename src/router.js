@@ -178,7 +178,7 @@ const router = createRouter({
           path: "resultat/inattendu/:id",
           component: () => import("./views/simulation/resultat-inattendu.vue"),
           meta: {
-            title: "Resultats Attendus ",
+            title: "Résultat inattendu",
           },
         },
         {

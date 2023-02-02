@@ -26,6 +26,7 @@ const institutions = {
   departement: [],
   epci: [],
   caf: [],
+  msa: [],
   commune: [],
   autre: [],
 }

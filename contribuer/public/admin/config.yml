@@ -190,6 +190,8 @@ fields:
       value: departement
     - label: CAF locale
       value: caf
+    - label: MSA locale
+      value: msa
     - label: EPCI (Métropole, inter-communauté, etc.)
       value: epci
     - label: Commune

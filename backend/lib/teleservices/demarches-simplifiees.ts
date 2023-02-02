@@ -42,7 +42,7 @@ DemarchesSimplifiees.prototype.toExternal = function () {
     "champ_Q2hhbXAtMzAzNDUxNw==": "0",
 
     // situation
-    "champ_Q2hhbXAtMzAzNDY0MA==": "J'ai XX ans et je suis YY.",
+    "champ_Q2hhbXAtMzAzNDY0MA==": situation,
 
     // email
     "champ_Q2hhbXAtMzAzNDQwMw==": "thomas@yolo.com",

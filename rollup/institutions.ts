@@ -48,7 +48,7 @@ for (const id in generator.institutionsMap) {
     institutionObject.location =
       epcis
         .find((element) => element.code === institution.code_siren)
-        ?.membres.map((commune) => commune.code) || []
+        .membres.map((commune) => commune.code) || []
   } else if (institution.type === "caf") {
     institutionObject.location = institution.department
   } else if (["region", "departement", "commune"].includes(institution.type)) {

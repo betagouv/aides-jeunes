@@ -87,6 +87,7 @@ const TYPES = {
   departement: "Aides départementales",
   epci: "EPCI (Métropole, inter-communauté, etc.)",
   caf: "CAF Locales",
+  msa: "MSA Locales",
   commune: "Aides communales",
   autre: "Autres aides",
 }
@@ -124,6 +125,9 @@ export default {
           ),
           caf: institutionsBenefits["caf"].filter(
             (caf) => caf.location == this.selectedCommune?.departement
+          ),
+          msa: institutionsBenefits["msa"].filter(
+            (msa) => msa.location == this.selectedCommune?.code
           ),
         }
       }

@@ -1,5 +1,3 @@
-import openfisca from "../openfisca/index.js"
-
 function DemarchesSimplifiees(simulation) {
   this.simulation = simulation
 }

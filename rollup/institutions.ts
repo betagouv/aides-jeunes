@@ -54,6 +54,11 @@ for (const id in generator.institutionsMap) {
   } else if (["region", "departement", "commune"].includes(institution.type)) {
     institutionObject.location = institution.code_insee
   }
+  if (!institutions[institution.type]) {
+    const msg = `The new institution type '${institution.type}' is required in rollup/institutions.ts`
+    console.error(msg)
+    throw new Error(msg)
+  }
   institutions[institution.type].push(institutionObject)
 }
 

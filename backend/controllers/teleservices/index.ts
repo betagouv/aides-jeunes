@@ -83,12 +83,12 @@ const teleservices = [
     },
   },
   {
-    name: "ds_une-demarche-a-preremplir",
+    name: "ds_aide-beaumont-en-verdunois",
     class: DemarchesSimplifiees,
     public: true,
     destination: {
       label: "Aller sur démarches-simplifiées.fr",
-      url: "/api/proxy/ds/une-demarche-a-preremplir?token={{token}}",
+      url: "/api/proxy/ds/aide-beaumont-en-verdunois?token={{token}}",
     },
   },
 ]

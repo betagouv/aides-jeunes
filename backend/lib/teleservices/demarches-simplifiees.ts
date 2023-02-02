@@ -30,7 +30,7 @@ DemarchesSimplifiees.prototype.toExternal = function () {
     "champ_Q2hhbXAtMzAzNDM5NQ==": "true",
 
     // activité
-    "champ_Q2hhbXAtMzAzNDM5Ng==": "actif",
+    "champ_Q2hhbXAtMzAzNDM5Ng==": "Actif occupé",
 
     // bafa
     "champ_Q2hhbXAtMzAzNDM5Nw==": "true",

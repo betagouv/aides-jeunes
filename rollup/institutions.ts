@@ -55,7 +55,8 @@ for (const id in generator.institutionsMap) {
     institutionObject.location = institution.code_insee
   }
   if (!institutions[institution.type]) {
-    const msg = `The new institution type '${institution.type}' is required in rollup/institutions.ts`
+    console.log(institution)
+    const msg = `The new institution type '${institution.type}' of '${institution.slug}' needs to be added in rollup/institutions.ts`
     console.error(msg)
     throw new Error(msg)
   }

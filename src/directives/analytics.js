@@ -1,18 +1,18 @@
 import analytics from "@/mixins/statistics.js"
 
-const MailDirective = {
+const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
-      analytics.methods.sendStatistics({
-        event: binding.value.action,
-        benefitId: binding.value.name,
-      })
+      analytics.methods.sendStatistics(
+        binding?.instance?.droits,
+        binding.value.action,
+        binding.value.name
+      )
       const matomo = binding?.instance?.$matomo
       if (!matomo) {
         return
       }
 
-      // $analytics.eventTrack(/* name -> action */'show', { category: 'General', label: d.label });
       matomo?.trackEvent(
         binding.value.category || "defaultCategory",
         binding.value.action,
@@ -27,4 +27,4 @@ const MailDirective = {
   },
 }
 
-export default MailDirective
+export default AnalyticsDirective

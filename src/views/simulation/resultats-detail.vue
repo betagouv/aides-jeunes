@@ -91,11 +91,7 @@ export default {
 
       droit && this.$matomo?.trackEvent("General", "showDetails", droit.id)
 
-      this.sendStatistics({
-        event: "showDetails",
-        benefitId: droitId,
-        benefits: this.droits,
-      })
+      this.sendStatistics(this.droits, "showDetails", droitId)
     }
   },
   methods: {

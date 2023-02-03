@@ -1,6 +1,6 @@
 root: ../../..
 
-hackJamstack: &hackJamstack
+hackJamstackLoader: &hackJamstackLoader
   extension: 'yml'
 
 benefitBase: &benefitBase
@@ -83,7 +83,7 @@ benefitProperties: &benefitProperties
 
 collections:
   - name: institutions
-    <<: *hackJamstack
+    <<: *hackJamstackLoader
     folder: "data/institutions"
     schema:
       type: object
@@ -127,7 +127,7 @@ collections:
                 enum: [epci, national, msa, caf, autre]
 
   - name: benefits_javascript
-    <<: *hackJamstack
+    <<: *hackJamstackLoader
     folder: "data/benefits/javascript"
     schema:
       <<: *benefitBase
@@ -141,7 +141,7 @@ collections:
           type: array
 
   - name: benefits_openfisca
-    <<: *hackJamstack
+    <<: *hackJamstackLoader
     folder: "data/benefits/openfisca"
     schema:
       <<: *benefitBase

@@ -26,6 +26,7 @@ benefitProperties: &benefitProperties
       - type: "null"
       - type: string
   imgSrc:
+    title: Logo de remplacement si nécessaire
     type: string
   interestFlag:
     oneOf:
@@ -38,6 +39,7 @@ benefitProperties: &benefitProperties
       - type: "null"
       - type: string
   label:
+    title: Nom de l'aide
     type: string
   legend:
     type: string
@@ -53,9 +55,14 @@ benefitProperties: &benefitProperties
   periodicite:
     type: string
   prefix:
+    title: Article défini
+    description: L'ajout d'un article défini permet la formation de phrase grammaticalement correcte.
+      Par exemple, dans la phrase « Comment obtenir l'aide exceptionnelle ? », on choisit le préfixe « l' ». Pour « Comment obtenir les aides au logement ? », on choisit le préfixe « les ».
     oneOf:
-      - type: "null"
-      - type: string
+      - title: Préfix
+        type: string
+      - title: Préfix nul
+        type: "null"
   private:
     type: boolean
   top:

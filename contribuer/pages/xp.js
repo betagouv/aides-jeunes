@@ -22,6 +22,21 @@ function Home() {
     netlifyIdentity.init()
   }, [])
 
+  const uiSchema = {
+    "ui:order": [
+      "label",
+      "prefix",
+      "imgSrc",
+      "institution",
+      "description",
+      "*",
+      "password",
+    ],
+    prefix: {
+      "ui:title": "Surname",
+    },
+  }
+
   return (
     <>
       <Head>
@@ -32,6 +47,7 @@ function Home() {
       {schema && (
         <Form
           schema={schema}
+          uiSchema={uiSchema}
           validator={validator}
           onChange={log("changed")}
           onSubmit={log("submitted")}

@@ -13,13 +13,11 @@ const log = (type) => console.log.bind(console, type)
 function Home() {
   const [schema, setSchema] = useState()
   useEffect(() => {
-    fetch("/test.yaml")
+    fetch("/admin/json_schema_config.yml")
       .then((r) => r.text())
       .then((t) => yaml.load(t))
       .then((d) => {
-        console.log(d)
-
-        setSchema(d.benefits_javascript)
+        setSchema(d.collections[1].schema)
       })
     netlifyIdentity.init()
   }, [])

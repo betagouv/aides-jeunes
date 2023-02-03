@@ -1,0 +1,134 @@
+store:
+  benefitProperties: &benefitProperties
+    conditions:
+      oneOf:
+        - type: "null"
+        - type: array
+          items:
+            type: string
+    description:
+      type: string
+    floorAt:
+      oneOf:
+        - type: "null"
+        - type: number
+    form:
+      type: string
+    imgSrc:
+      type: string
+    interestFlag:
+      oneOf:
+        - type: "null"
+        - type: string
+    institution:
+      type: string
+    instructions:
+      type: string
+    label:
+      type: string
+    legend:
+      type: string
+    link:
+      type: string
+    montant:
+      type: number
+    participation:
+      oneOf:
+        - type: boolean
+        - type: object
+          description: TORM 
+    periodicite:
+      type: string
+    prefix:
+      oneOf:
+        - type: "null"
+        - type: string
+    private:
+      type: boolean
+    top:
+      type: number
+    teleservice:
+      oneOf:
+        - type: string
+        - type: object
+          additionalProperties: false
+          properties:
+            name:
+              type: string
+            query:
+              type: object
+              additionalProperties: false
+              properties:
+                vers:
+                  type: string
+    type:
+      type: string
+    unit:
+      oneOf:
+        - type: "null"
+        - type: string
+
+
+institutions:
+  type: object
+  additionalProperties: false
+  properties:
+    code_insee:
+      type: string
+    code_siren:
+      type: string
+    department:
+      type: string
+    etablissements:
+      type: array
+    imgSrc:
+      type: string
+    name:
+      type: string
+    prefix:
+      type: string
+    repository:
+      type: string
+    type:
+      type: string
+    top:
+      type: number
+
+benefits_javascript:
+  type: object
+  title: "s k s"
+  additionalProperties: false
+  properties:
+    <<: *benefitProperties
+    conditions_generales:
+      type: array
+    profils:
+      type: array
+
+benefits_openfisca:
+  type: object
+  additionalProperties: false
+  properties:
+    <<: *benefitProperties
+    entity:
+      type: string
+    etablissements:
+      type: array
+    forms:
+      type: object
+    isBaseRessourcesPatrimoine:
+      type: boolean
+    isBaseRessourcesYearMinusTwo:
+      type: boolean
+    msa:
+      type: boolean
+    openfiscaPeriod:
+      type: string
+    openfisca_eligibility_source:
+      type: string
+    setToZeroRecently:
+      type: boolean
+    skip_schema_check:
+      type: boolean
+    teleservices:
+      type: object

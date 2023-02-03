@@ -26,6 +26,7 @@ const institutions = {
   departement: [],
   epci: [],
   caf: [],
+  msa: [],
   commune: [],
   autre: [],
 }
@@ -52,6 +53,12 @@ for (const id in generator.institutionsMap) {
     institutionObject.location = institution.department
   } else if (["region", "departement", "commune"].includes(institution.type)) {
     institutionObject.location = institution.code_insee
+  }
+  if (!institutions[institution.type]) {
+    console.log(institution)
+    const msg = `The new institution type '${institution.type}' of '${institution.slug}' needs to be added in rollup/institutions.ts`
+    console.error(msg)
+    throw new Error(msg)
   }
   institutions[institution.type].push(institutionObject)
 }

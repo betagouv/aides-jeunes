@@ -2,17 +2,7 @@ function DemarchesSimplifiees(simulation) {
   this.simulation = simulation
 }
 
-DemarchesSimplifiees.prototype.toInternal = function () {
-  return this.simulation.answers.current.map((item) => {
-    return {
-      label: item.fieldName || item.entityName,
-      value: JSON.stringify(item.value),
-    }
-  })
-}
-
-DemarchesSimplifiees.prototype.toExternal = function () {
-  this.simulation.dateDeValeur.toISOString()
+function generateData(simulation) {
   const situation = `J'ai ${"xx"} ans et je suis ${"yy"}`
   return {
     // civilité
@@ -51,10 +41,25 @@ DemarchesSimplifiees.prototype.toExternal = function () {
     "champ_Q2hhbXAtMzAzNDQwNQ==": "0612345678",
 
     // date de la simulation
-    "champ_Q2hhbXAtMzAzNDM5NA==": this.simulation.dateDeValeur
+    "champ_Q2hhbXAtMzAzNDM5NA==": simulation.dateDeValeur
       .toISOString()
       .slice(0, -8),
   }
+}
+
+DemarchesSimplifiees.prototype.toInternal = function () {
+  const data = generateData(this.simulation)
+  const keys = Object.keys(data)
+  return keys.map((label) => {
+    return {
+      label,
+      value: data[label],
+    }
+  })
+}
+
+DemarchesSimplifiees.prototype.toExternal = function () {
+  return generateData(this.simulation)
 }
 
 export default DemarchesSimplifiees

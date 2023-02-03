@@ -10,7 +10,7 @@ function getData() {
   )
 }
 
-function getValidator(collection, additionalAttributes) {
+function getValidator(collection, additionalAttributes = {}) {
   const schema = {
     ...collection.schema,
     properties: {

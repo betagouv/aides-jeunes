@@ -97,8 +97,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Run schema-validation-config.spec.js
-        run: npm run test -- tests/integration/schema-validation-config.spec.js
+      - name: Run yaml-files-schema-validation.spec.js
+        run: npm run test -- tests/integration/yaml-files-schema-validation.spec.js
   unit_tests:
     name: Unit tests
     needs: [install, check_data_file_consistency]

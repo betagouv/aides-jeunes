@@ -1,0 +1,169 @@
+root: ../../..
+
+hackJamstack: &hackJamstack
+  extension: 'yml'
+
+benefitBase: &benefitBase
+  required:
+    - label
+    - link
+
+benefitProperties: &benefitProperties
+  conditions:
+    oneOf:
+      - type: "null"
+      - type: array
+        items:
+          type: string
+  description:
+    type: string
+  floorAt:
+    oneOf:
+      - type: "null"
+      - type: number
+  form:
+    type: string
+  imgSrc:
+    type: string
+  interestFlag:
+    oneOf:
+      - type: "null"
+      - type: string
+  institution:
+    type: string
+  instructions:
+    type: string
+  label:
+    type: string
+  legend:
+    type: string
+  link:
+    type: string
+  montant:
+    type: number
+  participation:
+    oneOf:
+      - type: boolean
+      - type: object
+        description: TORM 
+  periodicite:
+    type: string
+  prefix:
+    oneOf:
+      - type: "null"
+      - type: string
+  private:
+    type: boolean
+  top:
+    type: number
+  teleservice:
+    oneOf:
+      - type: string
+      - type: object
+        additionalProperties: false
+        properties:
+          name:
+            type: string
+          query:
+            type: object
+            additionalProperties: false
+            properties:
+              vers:
+                type: string
+  type:
+    type: string
+  unit:
+    oneOf:
+      - type: "null"
+      - type: string
+
+collections:
+  - name: institutions
+    <<: *hackJamstack
+    folder: "data/institutions"
+    schema:
+      type: object
+      additionalProperties: false
+      required:
+        - code_siren
+        - name
+        - type
+      properties:
+        code_insee:
+          type: string
+#          pattern: .{2,5}
+        code_siren:
+          type: string
+          pattern: "^[1-9]{1}[0-9]{8}$"
+        department:
+          type: string
+        etablissements:
+          type: array
+        imgSrc:
+          type: string
+        name:
+          type: string
+        prefix:
+          type: string
+        repository:
+          type: string
+        type:
+          type: string
+        top:
+          type: number
+      allOf:
+        - anyOf:
+          - properties:
+              type:
+                enum: [departement, region, commune]
+            required:
+              - code_insee
+          - properties:
+              type:
+                enum: [epci, national, msa, caf, autre]
+
+  - name: benefits_javascript
+    <<: *hackJamstack
+    folder: "data/benefits/javascript"
+    schema:
+      <<: *benefitBase
+      type: object
+      additionalProperties: false
+      properties:
+        <<: *benefitProperties
+        conditions_generales:
+          type: array
+        profils:
+          type: array
+
+  - name: benefits_openfisca
+    <<: *hackJamstack
+    folder: "data/benefits/openfisca"
+    schema:
+      <<: *benefitBase
+      type: object
+      additionalProperties: false
+      properties:
+        <<: *benefitProperties
+        entity:
+          type: string
+        etablissements:
+          type: array
+        forms:
+          type: object
+        isBaseRessourcesPatrimoine:
+          type: boolean
+        isBaseRessourcesYearMinusTwo:
+          type: boolean
+        msa:
+          type: boolean
+        openfiscaPeriod:
+          type: string
+        openfisca_eligibility_source:
+          type: string
+        setToZeroRecently:
+          type: boolean
+        skip_schema_check:
+          type: boolean
+        teleservices:
+          type: object

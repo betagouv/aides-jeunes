@@ -22,7 +22,9 @@ benefitProperties: &benefitProperties
       - type: "null"
       - type: number
   form:
-    type: string
+    oneOf:
+      - type: "null"
+      - type: string
   imgSrc:
     type: string
   interestFlag:
@@ -32,7 +34,9 @@ benefitProperties: &benefitProperties
   institution:
     type: string
   instructions:
-    type: string
+    oneOf:
+      - type: "null"
+      - type: string
   label:
     type: string
   legend:

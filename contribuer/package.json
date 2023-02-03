@@ -16,7 +16,6 @@
     "@rjsf/mui": "^5.0.1",
     "@rjsf/utils": "^5.0.1",
     "@rjsf/validator-ajv8": "^5.0.1",
-    "babel-plugin-content-transformer": "^0.2.0",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
     "netlify-identity-widget": "^1.9.2",

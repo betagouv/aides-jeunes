@@ -1,8 +1,6 @@
 import Ajv from "ajv"
-import fs from "fs"
 import jamstackLoader from "jamstack-loader"
 import path from "path"
-import yaml from "js-yaml"
 
 const __dirname = new URL(".", import.meta.url).pathname
 

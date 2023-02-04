@@ -11,7 +11,7 @@ export const sendEcartInstructions = (situationId, droitsEligibles) => {
   if (!droitsEligibles) droitsEligibles = []
 
   return {
-    subject: `[${situationId}] Montants inattendus`,
+    subject: `Montants inattendus [${situationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -34,7 +34,7 @@ export const sendEcartSimulation = (situationId, droitsEligibles) => {
   if (!droitsEligibles) droitsEligibles = []
 
   return {
-    subject: `[${situationId}] Montants inattendus`,
+    subject: `Montants inattendus [${situationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
@@ -63,7 +63,7 @@ export const sendError = (situationId, error) => {
   if (!situationId) situationId = "??"
   if (!error) error = "Impossible de récupérer l'erreur."
   return {
-    subject: `[${situationId}] Problème technique`,
+    subject: `Problème technique [${situationId}]`,
     body: `Bonjour,
 
   J'ai tenté de XXX,
@@ -82,7 +82,7 @@ export const sendError = (situationId, error) => {
 export const sendMontantsAttendus = (situationId) => {
   if (!situationId) situationId = "??"
   return {
-    subject: `[${situationId}] - Montant attendus`,
+    subject: `Montant attendus [${situationId}]`,
     body: `Bonjour,
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :

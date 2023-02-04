@@ -1,4 +1,4 @@
-import { submit } from "./form"
+import { submit, fillPatrimoine } from "./form"
 
 const wait = () => {
   cy.wait("@results")
@@ -83,7 +83,7 @@ const hasHousingBenefit = () => {
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
   // Vérifie si la page patrimoine est bien affichée
   cy.get('[data-testid="patrimoine-link"]').click()
-  cy.get('[data-testid="immobilier-title"]').should("exist")
+  fillPatrimoine()
   cy.checkA11y()
   submit()
 }

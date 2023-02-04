@@ -1,5 +1,5 @@
 <template>
-  <div v-if="slots.default || slots.help">
+  <div v-if="slots.default || slots.help" :data-testid="id">
     <component
       :is="htmlHeading"
       :id="id"

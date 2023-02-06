@@ -127,7 +127,9 @@ export default {
             (caf) => caf.location == this.selectedCommune?.departement
           ),
           msa: institutionsBenefits["msa"].filter(
-            (msa) => msa.location == this.selectedCommune?.code
+            (msa) =>
+              msa.location &&
+              msa.location.includes(this.selectedCommune?.departement)
           ),
         }
       }

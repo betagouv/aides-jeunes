@@ -931,4 +931,8 @@ collections:
         name: department
         widget: hidden
         required: false
+      - label: Départements
+        name: departments
+        widget: hidden
+        required: false
       - *field_benefit_position

@@ -23,6 +23,7 @@ function transformInstitutions(collection: any[]) {
       label: data.name,
       imgSrc: data.imgSrc,
       department: data.department,
+      departments: data.departments,
       benefitsIds: [],
       type: data.type,
       top: data.top,

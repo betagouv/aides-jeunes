@@ -35,10 +35,10 @@ const all: ConfigurationLayout = {
     authorized_users: [
       "alizeeeeeee",
       "Allan-CodeWorks",
-      "charlottelecuit",
       "Cugniere",
       "guillett",
       "shamzic",
+      "yasmine-glitch",
       "Valandr",
     ],
   },

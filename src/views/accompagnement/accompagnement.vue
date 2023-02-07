@@ -227,8 +227,11 @@ export default {
           const accompagnements = await serverResponse.json()
           for (let accompagnement of accompagnements) {
             const surveyStates = {}
+            accompagnement.surveys = accompagnement.surveys.filter(
+              (survey) => survey?.type === "benefit-action"
+            )
             if (accompagnement.surveys.length) {
-              accompagnement.surveys[0].answers.map((survey) => {
+              accompagnement.surveys.at(-1).answers.map((survey) => {
                 surveyStates[survey.id] = {
                   status: survey.value,
                   comments: survey.comments,

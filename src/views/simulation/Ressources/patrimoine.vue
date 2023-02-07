@@ -206,7 +206,7 @@ export default {
   },
   data() {
     const situation = this.store.situation
-    let periodKey = "month:2012-01:120"
+    let periodKey = "month:2019-01:120"
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.store.peopleParentsFirst
 

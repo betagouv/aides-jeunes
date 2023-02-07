@@ -37,18 +37,22 @@ const fillNumber = (url, value) => {
 }
 
 const fillPatrimoine = () => {
+  cy.get('[data-testid="aide_logement"]').click()
+  cy.get('[data-testid="patrimoine-link"]').click()
   cy.get('[data-testid="immobilier-title"]').should("exist")
+  cy.checkA11y()
   cy.get(
     "[data-testid='patrimoine-terrain-non-loues'] label[for*='yes-field']"
   ).click()
-  cy.get("input#valeur_terrains_non_loues").type("1000")
-  cy.get("input#valeur_locative_terrains_non_loues").type("500")
+  cy.get("input#valeur_terrains_non_loues").type("500000")
+  cy.get("input#valeur_locative_terrains_non_loues").type("50000")
   cy.get(
     "[data-testid='patrimoine-immeubles-non-loues'] label[for*='yes-field']"
   ).click()
-  cy.get('[data-testid="livret_a"]').type("750")
-  cy.get('[data-testid="epargne_revenus_non_imposables"]').type("150")
-  cy.get('[data-testid="epargne_revenus_imposables"]').type("100")
+  cy.get('[data-testid="livret_a"]').type("5000")
+  cy.get('[data-testid="epargne_revenus_non_imposables"]').type("150000")
+  cy.get('[data-testid="epargne_revenus_imposables"]').type("100000")
+  submit()
 }
 
 export default {

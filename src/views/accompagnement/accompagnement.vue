@@ -60,8 +60,7 @@
       </div>
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
-          v-for="survey in accompagnement.surveys"
-          :key="survey._id"
+          :key="accompagnement.surveys._id"
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
@@ -70,7 +69,7 @@
               accompagnement.email
             }}</a>
             <span class="fr-tag">
-              Sondage le {{ formatDate(survey.repliedAt) }}
+              Sondage le {{ formatDate(accompagnement.surveys.repliedAt) }}
             </span>
             <span class="fr-tag">
               Simulation le {{ formatDate(accompagnement.createdAt) }}
@@ -227,11 +226,11 @@ export default {
           const accompagnements = await serverResponse.json()
           for (let accompagnement of accompagnements) {
             const surveyStates = {}
-            accompagnement.surveys = accompagnement.surveys.filter(
+            accompagnement.surveys = accompagnement.surveys.find(
               (survey) => survey?.type === "benefit-action"
             )
-            if (accompagnement.surveys.length) {
-              accompagnement.surveys.at(-1).answers.map((survey) => {
+            if (accompagnement.surveys) {
+              accompagnement.surveys.answers.map((survey) => {
                 surveyStates[survey.id] = {
                   status: survey.value,
                   comments: survey.comments,

@@ -60,7 +60,6 @@
       </div>
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
-          :key="accompagnement.surveys._id"
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >

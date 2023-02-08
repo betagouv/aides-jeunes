@@ -2,4 +2,5 @@ name: CAF de l'Aveyron
 imgSrc: img/institutions/logo_caf_aveyron.png
 type: caf
 code_siren: "776744005"
-department: "12"
+departments:
+  - "12"

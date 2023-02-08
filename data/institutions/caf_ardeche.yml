@@ -2,4 +2,5 @@ name: CAF de l'Ardèche
 imgSrc: img/institutions/logo_caf_ardeche.png
 type: caf
 code_siren: "534224282"
-department: "07"
+departments:
+  - "07"

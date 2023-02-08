@@ -2,4 +2,5 @@ name: CAF du Tarn
 imgSrc: img/institutions/logo_caf_tarn.png
 type: caf
 code_siren: "777187691"
-department: "81"
+departments:
+  - "81"

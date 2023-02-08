@@ -2,4 +2,5 @@ name: CAF de la Savoie
 imgSrc: img/institutions/logo_caf_savoie.png
 type: caf
 code_siren: "775653330"
-department: "73"
+departments:
+  - "73"

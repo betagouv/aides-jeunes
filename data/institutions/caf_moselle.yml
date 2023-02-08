@@ -2,4 +2,5 @@ name: CAF de Moselle
 imgSrc: img/institutions/logo_caf_moselle.png
 type: caf
 code_siren: "780004032"
-department: "57"
+departments:
+  - "57"

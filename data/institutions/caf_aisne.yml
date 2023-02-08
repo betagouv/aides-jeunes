@@ -2,4 +2,5 @@ name: CAF de l'Aisne
 imgSrc: img/institutions/logo_caf_aisne.png
 type: caf
 code_siren: "534155403"
-department: "02"
+departments:
+  - "02"

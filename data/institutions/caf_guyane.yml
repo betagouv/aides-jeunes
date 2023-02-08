@@ -2,4 +2,5 @@ name: CAF de Guyane
 imgSrc: img/institutions/logo_caf_guyane.png
 type: caf
 code_siren: "315190751"
-department: "973"
+departments:
+  - "973"

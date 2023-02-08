@@ -2,4 +2,5 @@ name: CAF de Saône-et-Loire
 imgSrc: img/institutions/logo_caf_saone_et_loire.png
 type: caf
 code_siren: "778600130"
-department: "71"
+departments:
+  - "71"

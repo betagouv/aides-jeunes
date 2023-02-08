@@ -2,4 +2,5 @@ name: CAF de la Loire
 imgSrc: img/institutions/logo_caf_loire.png
 type: caf
 code_siren: "534216080"
-department: "42"
+departments:
+  - "42"

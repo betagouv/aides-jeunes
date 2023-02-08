@@ -2,4 +2,5 @@ name: CAF de l'Ain
 imgSrc: img/institutions/logo_caf_ain.png
 type: caf
 code_siren: "779311224"
-department: "01"
+departments:
+  - "01"

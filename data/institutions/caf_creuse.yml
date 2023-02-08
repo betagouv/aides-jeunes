@@ -2,4 +2,5 @@ name: CAF de la Creuse
 imgSrc: img/institutions/logo_caf_creuse.png
 type: caf
 code_siren: "777998881"
-department: "23"
+departments:
+  - "23"

@@ -2,4 +2,5 @@ name: CAF du Puy-de-Dôme
 imgSrc: img/institutions/logo_caf_puy_de_dome.png
 type: caf
 code_siren: "775634264"
-department: "63"
+departments:
+  - "63"

@@ -2,4 +2,5 @@ name: CAF du Haut-Rhin
 imgSrc: img/institutions/logo_caf_haut_rhin.png
 type: caf
 code_siren: "778953844"
-department: "68"
+departments:
+  - "68"

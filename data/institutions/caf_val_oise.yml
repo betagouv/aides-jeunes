@@ -2,4 +2,5 @@ name: CAF du Val-d'Oise
 imgSrc: img/institutions/logo_caf_val_oise.png
 type: caf
 code_siren: "381002534"
-department: "95"
+departments:
+  - "95"

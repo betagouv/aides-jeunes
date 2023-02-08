@@ -2,4 +2,5 @@ name: CAF de la Nièvre
 imgSrc: img/institutions/logo_caf_nievre.png
 type: caf
 code_siren: "778477737"
-department: "58"
+departments:
+  - "58"

@@ -927,10 +927,6 @@ collections:
         name: repository
         widget: hidden
         required: false
-      - label: Département
-        name: department
-        widget: hidden
-        required: false
       - label: Départements
         name: departments
         widget: hidden

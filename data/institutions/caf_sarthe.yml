@@ -2,4 +2,5 @@ name: CAF de Sarthe
 imgSrc: img/institutions/logo_caf_sarthe.png
 type: caf
 code_siren: "786338871"
-department: "72"
+departments:
+  - "72"

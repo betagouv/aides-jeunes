@@ -2,4 +2,5 @@ name: CAF des Yvelines
 imgSrc: img/institutions/logo_caf_yvelines.png
 type: caf
 code_siren: "381067784"
-department: "78"
+departments:
+  - "78"

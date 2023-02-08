@@ -2,4 +2,5 @@ name: CAF de la Manche
 imgSrc: img/institutions/logo_caf_manche.png
 type: caf
 code_siren: "780860292"
-department: "50"
+departments:
+  - "50"

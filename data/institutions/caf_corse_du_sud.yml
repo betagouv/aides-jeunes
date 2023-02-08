@@ -2,4 +2,5 @@ name: CAF de Corse-du-Sud
 imgSrc: img/institutions/logo_caf_corse_du_sud.png
 type: caf
 code_siren: "782993133"
-department: "2A"
+departments:
+  - "2A"

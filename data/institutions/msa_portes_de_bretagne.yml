@@ -4,7 +4,5 @@ type: msa
 top: 10
 code_siren: "521826107"
 departments:
-  - "22"
-  - "29"
   - "35"
   - "56"

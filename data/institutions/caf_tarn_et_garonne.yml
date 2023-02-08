@@ -2,4 +2,5 @@ name: CAF du Tarn-et-Garonne
 imgSrc: img/institutions/logo_caf_tarn_et_garonne.png
 type: caf
 code_siren: "777306184"
-department: "82"
+departments:
+  - "82"

@@ -21,7 +21,7 @@ const today = dateDaysAgo(0)
 // ./documents/ allow CORS access thank to an NGINX rule
 const relative_path = path.join(
   __dirname,
-  "/../../../../dist/documents/stats.json"
+  "/../../../dist/documents/stats.json"
 )
 
 fs.mkdir(path.dirname(relative_path), { recursive: true }).then(() => {

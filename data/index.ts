@@ -61,6 +61,10 @@ export function generate(
   fslGenerator,
   apaGenerator
 ) {
+  console.log(collections.institutionTypes.items)
+  if (collections.institutions.items.length == 0) {
+    throw new Error("Aucun type d'institution")
+  }
   const institutions = transformInstitutions(collections.institutions.items)
 
   collections.benefits_javascript.items.forEach((benefit) => {

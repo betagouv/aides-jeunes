@@ -60,6 +60,7 @@
       </div>
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
+          v-if="accompagnement.surveys"
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
@@ -226,7 +227,8 @@ export default {
           for (let accompagnement of accompagnements) {
             const surveyStates = {}
             accompagnement.surveys = accompagnement.surveys.find(
-              (survey) => survey?.type === "benefit-action"
+              (survey) =>
+                survey?.type === "benefit-action" && survey?.answers.length
             )
             if (accompagnement.surveys) {
               accompagnement.surveys.answers.map((survey) => {

@@ -140,12 +140,13 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 import SimulationSearch from "@/components/support/simulation-search.vue"
 import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/benefits.js"
+import { FollowupLayout, SurveyType } from "@lib/types/survey.js"
 
 export default {
   components: {
@@ -212,42 +213,40 @@ export default {
             "Content-Type": "application/json",
           },
         })
-        const serverResponse = await response
-        if (serverResponse.status == 404 && this.$route.params.surveyEmail) {
-          this.loggedIn = true
-          this.error = "Aucun sondage ne correspond à cette adresse email"
-        } else if (
-          serverResponse.status == 404 &&
-          this.$route.params.followupId
-        ) {
-          this.loggedIn = true
-          this.error = "Aucun sondage ne correspond à cet identifiant"
+        this.error = undefined
+        this.loggedIn = true
+
+        if (response.status == 404) {
+          this.error = `Aucun sondage ne correspond à ${
+            this.$route.params.surveyEmail
+              ? "cette adresse email"
+              : "cet identifiant"
+          }`
         } else {
-          const accompagnements = await serverResponse.json()
-          for (let accompagnement of accompagnements) {
-            const surveyStates = {}
-            accompagnement.surveys = accompagnement.surveys.find(
-              (survey) =>
-                survey?.type === "benefit-action" && survey?.answers.length
-            )
-            if (accompagnement.surveys) {
-              accompagnement.surveys.answers.map((survey) => {
-                surveyStates[survey.id] = {
-                  status: survey.value,
-                  comments: survey.comments,
-                }
-              })
-              accompagnement.benefits.map((benefit) => {
-                if (benefit.id && surveyStates[benefit.id]) {
-                  benefit["status"] = surveyStates[benefit["id"]]["status"]
-                  benefit["comments"] = surveyStates[benefit["id"]]["comments"]
-                }
-              })
-            }
-          }
+          const accompagnements: FollowupLayout[] = await response.json()
           this.accompagnements = accompagnements
-          this.loggedIn = true
-          this.error = undefined
+            .map((accompagnement) => {
+              accompagnement.surveys = accompagnement.surveys.filter(
+                (survey) =>
+                  survey.type === SurveyType.benefitAction &&
+                  survey.answers.length
+              )
+              return accompagnement
+            })
+            .filter(({ surveys }) => surveys.length)
+          this.accompagnements.forEach(({ surveys, benefits }) => {
+            const surveyStates = {}
+            console.log(surveys[0].answers)
+            surveys[0].answers.forEach(({ id, value, comments }) => {
+              surveyStates[id] = { status: value, comments }
+            })
+            benefits.forEach((benefit) => {
+              if (benefit.id && surveyStates[benefit.id]) {
+                benefit.status = surveyStates[benefit.id].status
+                benefit.comments = surveyStates[benefit.id].comments
+              }
+            })
+          })
         }
       } catch (status) {
         this.accompagnements = []

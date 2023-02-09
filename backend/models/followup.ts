@@ -4,7 +4,7 @@ import validator from "validator"
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
-import { SurveyLayout, SurveyType } from "../types/survey.js"
+import { SurveyLayout, SurveyType } from "../../lib/types/survey.js"
 import renderSimulationResults from "../lib/mes-aides/emails/simulation-results.js"
 import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness.js"
 import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"

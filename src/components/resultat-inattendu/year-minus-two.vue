@@ -33,12 +33,10 @@
 </template>
 
 <script>
-import FeedbackUtils from "@/mixins/feedback-utils.js"
 import Situation from "@/lib/situation.js"
 import { useStore } from "@/stores/index.ts"
 export default {
   name: "ResultatInattenduYearMinusTwo",
-  mixins: [FeedbackUtils],
   props: {
     droit: Object,
   },

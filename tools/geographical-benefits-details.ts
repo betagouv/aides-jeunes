@@ -92,13 +92,6 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       }
       case "caf":
-        communes.forEach((commune) => {
-          const included = isGeographicallyIncluded(commune, institution)
-          if (included) {
-            apply(communeMap[commune.code], institution)
-          }
-        })
-        break
       case "msa":
         communes.forEach((commune) => {
           const included = isGeographicallyIncluded(commune, institution)

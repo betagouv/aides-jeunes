@@ -236,7 +236,6 @@ export default {
             .filter(({ surveys }) => surveys.length)
           this.accompagnements.forEach(({ surveys, benefits }) => {
             const surveyStates = {}
-            console.log(surveys[0].answers)
             surveys[0].answers.forEach(({ id, value, comments }) => {
               surveyStates[id] = { status: value, comments }
             })

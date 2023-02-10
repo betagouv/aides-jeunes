@@ -89,6 +89,22 @@ benefitProperties: &benefitProperties
       - type: string
 
 collections:
+  - name: test
+    <<: *hackJamstackLoader
+    folder: "data/test"
+    schema:
+      type: object
+      additionalProperties: false
+      properties:
+        Q2hhbXAtMzAzNDI4NQ==:
+          title: Adresse (Q2hhbXAtMzAzNDI4NQ==)
+          oneOf:
+            - title: Champs existant
+              type: string
+              enum: [A, B, C]
+            - title: Nouveau champ
+              type: string
+
   - name: institutions
     <<: *hackJamstackLoader
     folder: "data/institutions"

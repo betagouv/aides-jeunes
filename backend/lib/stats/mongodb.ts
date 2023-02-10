@@ -7,7 +7,7 @@ declare function emit(key, value)
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
-import { SurveyType } from "../../types/survey.js"
+import { SurveyType } from "../../../lib/types/survey.js"
 
 let client
 

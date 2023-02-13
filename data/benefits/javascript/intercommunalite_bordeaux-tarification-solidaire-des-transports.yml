@@ -1,0 +1,25 @@
+label: Tarification Solidaire des Transports
+institution: intercommunalite_bordeaux
+description: La tarification solidaire offre la gratuité annuelle ou des
+  réductions de 30 à 50% sur les abonnements mensuels aux transports en commun,
+  calculées selon le niveau de ressources de la famille.
+prefix: la
+conditions_generales:
+  - type: quotient_familial
+    operator: ">"
+    value: 942
+    period: month
+profils:
+  - type: situation_handicap
+    conditions:
+      - type: disability_rate
+        values: disability_50_to_80
+      - type: disability_rate
+        values: disability_over_80
+type: bool
+unit: €
+periodicite: autre
+legend: ""
+link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
+teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
+instructions: ""

@@ -60,7 +60,7 @@
       </div>
       <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
         <div
-          v-if="accompagnement.surveys"
+          v-if="accompagnement.surveys[0]"
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
@@ -69,7 +69,7 @@
               accompagnement.email
             }}</a>
             <span class="fr-tag">
-              Sondage le {{ formatDate(accompagnement.surveys.repliedAt) }}
+              Sondage le {{ formatDate(accompagnement.surveys[0].repliedAt) }}
             </span>
             <span class="fr-tag">
               Simulation le {{ formatDate(accompagnement.createdAt) }}

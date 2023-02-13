@@ -15,6 +15,7 @@ export interface individuLayout {
   groupe_specialites_formation?: any
   mention_baccalaureat?: string
   handicap?: boolean
+  taux_incapacite?: number
 }
 
 export interface individuGeneratorLayout {

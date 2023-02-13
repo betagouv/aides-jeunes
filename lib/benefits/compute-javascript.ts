@@ -69,6 +69,13 @@ const PROFILE_STRATEGY = {
   stagiaire: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.stagiaire === true
   },
+  situation_handicap: ({
+    situation,
+  }: {
+    situation: situationsLayout
+  }): boolean => {
+    return situation.demandeur?.handicap === true
+  },
 }
 
 const OPERATOR = {
@@ -242,6 +249,21 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
         openfiscaPeriod: "thisMonth",
       },
     ],
+  },
+  disability_rate: {
+    test: (condition, { situation }: { situation: situationsLayout }) => {
+      const taux_incapacite = situation?.demandeur?.taux_incapacite || 0
+      switch (condition.values) {
+        case "disability_under_50":
+          return taux_incapacite < 0.5
+        case "disability_50_to_80":
+          return taux_incapacite > 0.5 && taux_incapacite <= 0.8
+        case "disability_over_80":
+          return taux_incapacite > 0.8
+        default:
+          return false
+      }
+    },
   },
 }
 

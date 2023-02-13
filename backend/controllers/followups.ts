@@ -83,8 +83,12 @@ export function showSurveyResult(req: ajRequest, res: Response) {
 export function showSurveyResults(req: ajRequest, res: Response) {
   Followup.find({
     surveyOptin: true,
-    surveys: { $exists: true, $ne: [] },
-    "surveys.repliedAt": { $exists: true },
+    surveys: {
+      $elemMatch: {
+        repliedAt: { $exists: true },
+        type: SurveyType.benefitAction,
+      },
+    },
   })
     .skip(0)
     .limit(10)

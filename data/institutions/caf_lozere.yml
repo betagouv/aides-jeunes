@@ -2,4 +2,5 @@ name: CAF de Lozère
 imgSrc: img/institutions/logo_caf_lozere.png
 type: caf
 code_siren: "776115255"
-department: "48"
+departments:
+  - "48"

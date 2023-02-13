@@ -2,4 +2,5 @@ name: CAF de Paris
 imgSrc: img/institutions/logo_caf_paris.png
 type: caf
 code_siren: "380992255"
-department: "75"
+departments:
+  - "75"

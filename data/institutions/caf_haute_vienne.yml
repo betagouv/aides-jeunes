@@ -2,4 +2,5 @@ name: CAF de la Haute-Vienne
 imgSrc: img/institutions/logo_caf_haute_vienne.png
 type: caf
 code_siren: "778073189"
-department: "87"
+departments:
+  - "87"

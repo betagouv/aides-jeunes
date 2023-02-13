@@ -2,4 +2,5 @@ name: CAF du Territoire de Belfort
 imgSrc: img/institutions/logo_caf_territoire_de_belfort.png
 type: caf
 code_siren: "778714964"
-department: "90"
+departments:
+  - "90"

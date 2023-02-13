@@ -927,8 +927,8 @@ collections:
         name: repository
         widget: hidden
         required: false
-      - label: Département
-        name: department
+      - label: Départements
+        name: departments
         widget: hidden
         required: false
       - *field_benefit_position

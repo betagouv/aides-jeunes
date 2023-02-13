@@ -124,10 +124,14 @@ export default {
             (commune) => commune?.location == this.selectedCommune?.code
           ),
           caf: institutionsBenefits["caf"].filter(
-            (caf) => caf.location == this.selectedCommune?.departement
+            (caf) =>
+              caf.location &&
+              caf.location.includes(this.selectedCommune?.departement)
           ),
           msa: institutionsBenefits["msa"].filter(
-            (msa) => msa.location == this.selectedCommune?.code
+            (msa) =>
+              msa.location &&
+              msa.location.includes(this.selectedCommune?.departement)
           ),
         }
       }

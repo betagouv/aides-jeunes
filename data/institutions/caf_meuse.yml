@@ -2,4 +2,5 @@ name: CAF de la Meuse
 imgSrc: img/institutions/logo_caf_meuse.png
 type: caf
 code_siren: "783382344"
-department: "55"
+departments:
+  - "55"

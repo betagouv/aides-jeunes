@@ -2,4 +2,5 @@ name: CAF du Rhône
 imgSrc: img/institutions/logo_caf_rhone.png
 type: caf
 code_siren: "534037254"
-department: "69"
+departments:
+  - "69"

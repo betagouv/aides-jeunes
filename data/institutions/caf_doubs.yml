@@ -2,4 +2,5 @@ name: CAF du Doubs
 imgSrc: img/institutions/logo_caf_doubs.png
 type: caf
 code_siren: "534738778"
-department: "25"
+departments:
+  - "25"

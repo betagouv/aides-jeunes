@@ -2,4 +2,5 @@ name: CAF des Hautes-Pyrénées
 imgSrc: img/institutions/logo_caf_hautes_pyrenees.png
 type: caf
 code_siren: "777169046"
-department: "65"
+departments:
+  - "65"

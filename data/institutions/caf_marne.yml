@@ -2,4 +2,5 @@ name: CAF de Marne
 imgSrc: img/institutions/logo_caf_marne.png
 type: caf
 code_siren: "780428975"
-department: "51"
+departments:
+  - "51"

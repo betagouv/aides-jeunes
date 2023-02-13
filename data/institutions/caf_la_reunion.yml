@@ -2,4 +2,5 @@ name: CAF de La Réunion
 imgSrc: img/institutions/logo_caf_la_reunion.png
 type: caf
 code_siren: "314635368"
-department: "974"
+departments:
+  - "974"

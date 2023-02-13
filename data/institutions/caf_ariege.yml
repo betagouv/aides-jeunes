@@ -2,4 +2,5 @@ name: CAF de l'Ariège
 imgSrc: img/institutions/logo_caf_ariege.png
 type: caf
 code_siren: "776656209"
-department: "09"
+departments:
+  - "09"

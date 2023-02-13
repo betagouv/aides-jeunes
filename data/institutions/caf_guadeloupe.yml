@@ -2,4 +2,5 @@ name: CAF de Guadeloupe
 imgSrc: img/institutions/logo_caf_guadeloupe.png
 type: caf
 code_siren: "314560822"
-department: "971"
+departments:
+  - "971"

@@ -2,4 +2,5 @@ name: CAF des Deux-Sèvres
 imgSrc: img/institutions/logo_caf_deux_sevres.png
 type: caf
 code_siren: "781459599"
-department: "79"
+departments:
+  - "79"

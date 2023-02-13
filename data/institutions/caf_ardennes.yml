@@ -2,4 +2,5 @@ name: CAF des Ardennes
 imgSrc: img/institutions/logo_caf_ardennes.png
 type: caf
 code_siren: "780254702"
-department: "08"
+departments:
+  - "08"

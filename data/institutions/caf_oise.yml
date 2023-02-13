@@ -2,4 +2,5 @@ name: CAF de l'Oise
 imgSrc: img/institutions/logo_caf_oise.png
 type: caf
 code_siren: "534224613"
-department: "60"
+departments:
+  - "60"

@@ -2,4 +2,5 @@ name: CAF de la Charente-Maritime
 imgSrc: img/institutions/logo_caf_charente_maritime.png
 type: caf
 code_siren: "775564669"
-department: "17"
+departments:
+  - "17"

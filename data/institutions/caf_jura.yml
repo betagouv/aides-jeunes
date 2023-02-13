@@ -2,4 +2,5 @@ name: CAF du Jura
 imgSrc: img/institutions/logo_caf_jura.png
 type: caf
 code_siren: "778422832"
-department: "39"
+departments:
+  - "39"

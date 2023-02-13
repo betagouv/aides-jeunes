@@ -2,4 +2,5 @@ name: CAF du Val-de-Marne
 imgSrc: img/institutions/logo_caf_val_de_marne.png
 type: caf
 code_siren: "381202282"
-department: "94"
+departments:
+  - "94"

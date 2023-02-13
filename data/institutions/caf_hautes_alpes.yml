@@ -2,4 +2,5 @@ name: CAF des Hautes-Alpes
 imgSrc: img/institutions/logo_caf_hautes_alpes.png
 type: caf
 code_siren: "782437586"
-department: "05"
+departments:
+  - "05"

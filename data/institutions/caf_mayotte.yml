@@ -2,4 +2,5 @@ name: CAF de Mayotte
 imgSrc: img/institutions/logo_caf_mayotte.png
 type: caf
 code_siren: "751790916"
-department: "976"
+departments:
+  - "976"

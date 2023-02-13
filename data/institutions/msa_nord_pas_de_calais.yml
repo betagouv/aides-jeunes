@@ -3,3 +3,6 @@ imgSrc: img/institutions/logo_mutualite_sociale_agricole.png
 type: msa
 top: 10
 code_siren: "519482152"
+departments:
+  - "59"
+  - "62"

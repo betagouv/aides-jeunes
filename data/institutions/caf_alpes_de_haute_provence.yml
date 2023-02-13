@@ -2,4 +2,5 @@ name: CAF des Alpes-de-Haute-Provence
 imgSrc: img/institutions/logo_caf_alpes_de_haute_provence.png
 type: caf
 code_siren: "775549371"
-department: "04"
+departments:
+  - "04"

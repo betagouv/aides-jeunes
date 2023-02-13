@@ -2,4 +2,5 @@ name: CAF Seine et Marne
 imgSrc: img/institutions/logo_caf_seine_et_marne.png
 type: caf
 code_siren: "784971343"
-department: "77"
+departments:
+  - "77"

@@ -14,6 +14,12 @@ describe("benefit descriptions", function () {
           },
         ],
       },
+      institution_types: {
+        items: [
+          { slug: "national", name: "Organisation nationale" },
+          { slug: "region", name: "Région" },
+        ],
+      },
       benefits_javascript: {
         items: [
           { slug: "etat_benefit2", institution: "etat", source: "javascript" },

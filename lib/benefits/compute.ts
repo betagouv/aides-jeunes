@@ -46,7 +46,7 @@ export function round(amount, aide) {
   }
 
   const rounding = aide.floorAt || 1
-  const value = Math.floor(amount / rounding) * rounding
+  const value = Number((Math.floor(amount / rounding) * rounding).toFixed(2))
 
   if (amount && !value) {
     return Math.floor(amount)

@@ -53,7 +53,10 @@ export function persist(req: ajRequest, res: Response) {
     surveyOptin: req.body.surveyOptin,
   })
     .then((followup) => {
-      return followup.sendSimulationResultsEmail()
+      req.simulation.hasFollowup = true
+      return req.simulation
+        .save()
+        .then(() => followup.sendSimulationResultsEmail())
     })
     .then(() => {
       return res.send({ result: "OK" })

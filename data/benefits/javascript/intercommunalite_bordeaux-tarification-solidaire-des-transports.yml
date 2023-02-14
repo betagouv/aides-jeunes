@@ -9,6 +9,36 @@ conditions_generales:
     operator: ">"
     value: 942
     period: month
+  - type: communes
+    values:
+      - 33063
+      - 33281
+      - 33318
+      - 33522
+      - 33550
+      - 33449
+      - 33039
+      - 33192
+      - 33119
+      - 33162
+      - 33069
+      - 33249
+      - 33075
+      - 33167
+      - 33003
+      - 33056
+      - 33200
+      - 33519
+      - 33312
+      - 33013
+      - 33096
+      - 33273
+      - 33376
+      - 33032
+      - 33065
+      - 33004
+      - 33434
+      - 33487
 profils:
   - type: situation_handicap
     conditions:
@@ -19,7 +49,6 @@ profils:
 type: bool
 unit: €
 periodicite: autre
-legend: ""
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
 teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
 instructions: ""

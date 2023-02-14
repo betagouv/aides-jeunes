@@ -15,10 +15,10 @@ profils:
     conditions: []
 conditions:
   - Être inscrit·e à Pôle Emploi ou Cap Emploi.
-  - Intégrer une formation dont le coût est inférieur à 10 000€ TTC.
+  - Intégrer une formation dont le coût est inférieur à 10 000€ TTC/an.
   - Vous assurer que cette formation n’est financée par aucune autre structure.
 type: bool
 unit: €
 periodicite: autre
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle
+link: https://www.maregionsud.fr/vos-aides/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle
+instructions: https://www.maregionsud.fr/vos-aides/detail/pass-sud-formation-pour-financer-votre-formation-professionnelle

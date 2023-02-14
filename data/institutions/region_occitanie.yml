@@ -1,6 +1,6 @@
 name: Occitanie
 imgSrc: img/institutions/logo_occitanie.png
 repository: france-local
-type: region
+type: Région
 code_insee: "76"
 code_siren: "200053791"

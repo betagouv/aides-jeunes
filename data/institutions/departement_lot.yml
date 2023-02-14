@@ -1,6 +1,6 @@
 name: Département du Lôt
 imgSrc: img/institutions/logo_cd46.png
 prefix: le
-type: departement
+type: Département
 code_insee: "46"
 code_siren: "224600015"

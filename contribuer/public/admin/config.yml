@@ -16,7 +16,7 @@ slug:
   encoding: ascii
   clean_accents: true
 
-# local_backend: true
+local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -181,8 +181,8 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
-  field_geographical_type: &field_geographical_type
-    label: Type géographique
+  field_institution_type: &field_institution_type
+    label: Type d'institution
     name: type
     widget: relation
     value_field: name
@@ -277,7 +277,7 @@ fields:
       label: "Type :"
       default: "*"
       target: "type"
-      fields: *field_geographical_type
+      fields: *field_institution_type
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
@@ -890,7 +890,7 @@ collections:
             '(\.png|\.jpg|\.jpeg)',
             "Seul les images au format JPG et PNG sont supportées",
           ]
-      - *field_geographical_type
+      - *field_institution_type
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee

@@ -2,6 +2,6 @@ name: Ville de Paris
 imgSrc: img/institutions/logo_paris.png
 prefix: de la
 repository: paris
-type: commune
+type: Commune
 code_insee: "75056"
 code_siren: "217500016"

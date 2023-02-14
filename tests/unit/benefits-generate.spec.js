@@ -16,8 +16,14 @@ describe("benefit descriptions", function () {
       },
       institution_types: {
         items: [
-          { slug: "national", name: "Organisation nationale" },
+          { slug: "national", name: "national" },
           { slug: "region", name: "Région" },
+          { slug: "departement", name: "Département" },
+          { slug: "msa", name: "MSA locale" },
+          { slug: "caf", name: "CAF locale" },
+          { slug: "commune", name: "Commune" },
+          { slug: "epci", name: "EPCI (Métropole, inter-communauté, etc.)" },
+          { slug: "autre", name: "Autre" },
         ],
       },
       benefits_javascript: {

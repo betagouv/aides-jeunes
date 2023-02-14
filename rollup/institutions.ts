@@ -10,7 +10,7 @@ for (const benefit in generator.benefitsMap) {
   if (generator.benefitsMap[benefit].private) {
     continue
   }
-  const institution = generator.benefitsMap[benefit].institution.slug
+  const institution = generator.benefitsMap[benefit].institution.type
   if (!institutionsBenefits[institution]) {
     institutionsBenefits[institution] = []
   }
@@ -45,6 +45,7 @@ for (const id in generator.institutionsMap) {
     benefits: institutionsBenefits[institution.slug],
   }
   if (institution.type === "epci") {
+    console.log("Toooooooooooo", institution.type)
     institutionObject.location =
       epcis
         .find((element) => element.code === institution.code_siren)

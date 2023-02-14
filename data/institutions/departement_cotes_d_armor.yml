@@ -2,6 +2,6 @@ name: Côtes d'Armor
 imgSrc: img/institutions/logo_cd22.jpg
 prefix: des
 repository: france-local
-type: departement
+type: Département
 code_insee: "22"
 code_siren: "222200016"

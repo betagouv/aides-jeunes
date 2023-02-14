@@ -258,7 +258,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
           case "inferieur_50":
             return taux_incapacite < 0.5
           case "entre_50_et_80":
-            return taux_incapacite > 0.5 && taux_incapacite <= 0.8
+            return taux_incapacite >= 0.5 && taux_incapacite <= 0.8
           case "superieur_80":
             return taux_incapacite > 0.8
           default:

@@ -3,18 +3,6 @@ import aidesVelo from "aides-velo"
 import { benefitVeloLayout } from "../../data/types/benefits.js"
 const benefits: any[] = [...aidesVelo()]
 
-// Fix a bug in the "aides-velo" package where
-// the "Communauté de communes Loue Lison" benefit
-// is not registered correctly : collectivity.kind = "code insee" instead of "epci"
-
-const benefit: any = benefits.find(
-  (b) => b.title === "Communauté de communes Loue Lison"
-)
-if (benefit) {
-  benefit.collectivity.kind = "epci"
-  benefit.collectivity.code = "200068070"
-}
-
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {
     région: institutions.filter((i) => i.type === "region"),

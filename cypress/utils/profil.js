@@ -81,7 +81,7 @@ const fillHandicap = (handicap) => {
     fill_taux_incapacite(handicap.taux_incapacite)
     if (
       !handicap.taux_incapacite ||
-      (0.5 < handicap.taux_incapacite && handicap.taux_incapacite <= 0.8)
+      (0.5 < handicap.taux_incapacite && handicap.taux_incapacite < 0.8)
     ) {
       fill_aah_restriction_substantielle_durable_acces_emploi(handicap.aah)
     }

@@ -16,10 +16,10 @@ conditions_generales:
 profils:
   - type: situation_handicap
     conditions:
-      - type: disability_rate
+      - type: taux_incapacite
         values:
-          - disability_50_to_80
-          - disability_over_80
+          - entre_50_et_80
+          - superieur_80
 type: bool
 periodicite: ponctuelle
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx

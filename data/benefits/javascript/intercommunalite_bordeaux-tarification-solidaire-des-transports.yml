@@ -11,17 +11,16 @@ conditions_generales:
     period: month
   - type: epcis
     values:
-      - 243300316
+      - "243300316"
 profils:
   - type: situation_handicap
     conditions:
       - type: disability_rate
-        values: disability_50_to_80
-      - type: disability_rate
-        values: disability_over_80
+        values:
+          - disability_50_to_80
+          - disability_over_80
 type: bool
-unit: €
-periodicite: autre
+periodicite: ponctuelle
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
 teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
 instructions: ""

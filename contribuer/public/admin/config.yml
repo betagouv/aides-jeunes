@@ -222,7 +222,7 @@ fields:
       - label: Valeurs
         name: values
         widget: select
-        required: false
+        multiple: true
         options:
           - label: Inférieur à 50%
             value: disability_under_50

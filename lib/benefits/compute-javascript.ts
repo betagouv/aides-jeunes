@@ -253,16 +253,18 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
   disability_rate: {
     test: (condition, { situation }: { situation: situationsLayout }) => {
       const taux_incapacite = situation?.demandeur?.taux_incapacite || 0
-      switch (condition.values) {
-        case "disability_under_50":
-          return taux_incapacite < 0.5
-        case "disability_50_to_80":
-          return taux_incapacite > 0.5 && taux_incapacite <= 0.8
-        case "disability_over_80":
-          return taux_incapacite > 0.8
-        default:
-          return false
-      }
+      return condition.values.some((value) => {
+        switch (value) {
+          case "disability_under_50":
+            return taux_incapacite < 0.5
+          case "disability_50_to_80":
+            return taux_incapacite > 0.5 && taux_incapacite <= 0.8
+          case "disability_over_80":
+            return taux_incapacite > 0.8
+          default:
+            return false
+        }
+      })
     },
   },
 }

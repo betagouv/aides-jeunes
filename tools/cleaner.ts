@@ -86,6 +86,7 @@ function generateNewAll(answers, simulation) {
 
 function main() {
   const aMonthAgo = new Date().getTime() - 31 * 24 * 60 * 60 * 1000
+  const aWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
 
   let followup_count = 0
   Followup.find({
@@ -122,8 +123,18 @@ function main() {
 
   let simulation_count = 0
   Simulation.find({
-    dateDeValeur: { $lt: aMonthAgo },
-    status: "new",
+    $or: [
+      {
+        dateDeValeur: { $lt: aMonthAgo },
+        status: "new",
+        hasFollowup: { $exists: true },
+      },
+      {
+        dateDeValeur: { $lt: aWeekAgo },
+        status: "new",
+        hasFollowup: { $exists: false },
+      },
+    ],
   })
     .sort({ dateDeValeur: 1 })
     .cursor()

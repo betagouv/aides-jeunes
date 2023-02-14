@@ -227,10 +227,10 @@ fields:
         options:
           - label: Inférieur à 50%
             value: inferieur_50
-          - label: Entre 50% et 80%
+          - label: Supérieur ou égal à 50% et inférieur à 80%
             value: entre_50_et_80
-          - label: Supérieur à 80%
-            value: superieur_80
+          - label: Supérieur ou égal à 80%
+            value: superieur_ou_egal_80
   field_formation_sanitaire_social: &field_formation_sanitaire_social
     <<: *field_empty
     label: En formation sanitaire et sociale

@@ -223,6 +223,7 @@ fields:
         name: values
         widget: select
         multiple: true
+        required: false
         options:
           - label: Inférieur à 50%
             value: inferieur_50

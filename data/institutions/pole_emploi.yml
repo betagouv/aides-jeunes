@@ -2,5 +2,5 @@ name: Pôle emploi
 imgSrc: img/institutions/logo_pole_emploi.png
 etablissements:
   - pole_emploi
-type: national
+type: Organisation nationale
 code_siren: "130005481"

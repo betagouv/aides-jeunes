@@ -6,5 +6,5 @@ etablissements:
   - centre_social
   - edas
   - sdsei
-type: national
+type: Organisation nationale
 code_siren: "999999999"

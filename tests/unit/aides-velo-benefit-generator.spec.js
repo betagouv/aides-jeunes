@@ -1,6 +1,6 @@
 import expect from "expect"
 import benefits from "@root/data/all"
-
+import { createRequire } from "module"
 import generator from "@root/data/benefits/aides-velo-generator"
 
 describe("aides velo benefit generator", function () {
@@ -34,6 +34,7 @@ describe("aides velo benefit generator", function () {
       (b) => b.collectivity.kind === "epci"
     )
     if (missingEPCI.length) {
+      const require = createRequire(import.meta.url)
       var epci = require("@etalab/decoupage-administratif/data/epci.json")
 
       missingEPCI.forEach((b) => {

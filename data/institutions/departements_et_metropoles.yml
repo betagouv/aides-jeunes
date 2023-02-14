@@ -2,5 +2,5 @@ name: Départements et métropoles de France
 imgSrc: img/institutions/logo_etat_francais.png
 repository: france-local
 prefix: les
-type: national
+type: Organisation nationale
 code_siren: "999999998"

@@ -2,5 +2,5 @@ name: Rennes Métropole
 imgSrc: img/institutions/logo_rennes_metropole.png
 prefix: de
 repository: france-local
-type: epci
+type: EPCI (Métropole, inter-communauté, etc.)
 code_siren: "243500139"

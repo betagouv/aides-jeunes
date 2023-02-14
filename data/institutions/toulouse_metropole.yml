@@ -2,5 +2,5 @@ name: Toulouse Métropole
 imgSrc: img/institutions/logo_toulouse_metropole.png
 prefix: de
 repository: france-local
-type: epci
+type: EPCI (Métropole, inter-communauté, etc.)
 code_siren: "243100518"

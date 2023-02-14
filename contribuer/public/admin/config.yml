@@ -182,22 +182,13 @@ fields:
         label: Exclus
         name: excludes
   field_geographical_type: &field_geographical_type
-    - label: Organisation nationale
-      value: national
-    - label: Région
-      value: region
-    - label: Département
-      value: departement
-    - label: CAF locale
-      value: caf
-    - label: MSA locale
-      value: msa
-    - label: EPCI (Métropole, inter-communauté, etc.)
-      value: epci
-    - label: Commune
-      value: commune
-    - label: Autre
-      value: autre
+    label: Type géographique
+    name: type
+    widget: relation
+    value_field: name
+    search_fields: 
+      - name
+    collection: institution_types
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -899,10 +890,7 @@ collections:
             '(\.png|\.jpg|\.jpeg)',
             "Seul les images au format JPG et PNG sont supportées",
           ]
-      - label: Type géographique
-        name: type
-        widget: select
-        options: *field_geographical_type
+      - *field_geographical_type
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee
@@ -944,8 +932,9 @@ collections:
     slug: "{{name}}"
     extension: yml
     fields:
-      - label: Nom de votre type institution
+      - label: Nom de votre type d'institution
         hint: Commune, EPCI, CAF, MSA, autres, etc.
         name: name
         widget: string
+
 

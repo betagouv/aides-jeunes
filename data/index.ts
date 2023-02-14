@@ -61,9 +61,6 @@ export function generate(
   fslGenerator,
   apaGenerator
 ) {
-  console.log(Object.keys(collections))
-  //["benefits_javascript", "benefits_openfisca", "institutions", "institution_types" ]
-  console.log(collections.institution_types.items)
   if (collections.institutions.items.length == 0) {
     throw new Error("Aucun type d'institution")
   }

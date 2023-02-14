@@ -85,20 +85,7 @@
         </ul>
       </WarningMessage>
       <div class="fr-print-hidden">
-        <WarningMessage v-if="isString(droit.montant)">
-          <p>
-            L'application Mes Aides ne peut pas calculer le montant de cette
-            prestation, car
-            <span v-html="droit.uncomputability[droit.montant].reason.user" />
-            <br />
-            <strong
-              v-if="droit.uncomputability[droit.montant].solution"
-              v-html="droit.uncomputability[droit.montant].solution"
-            />
-          </p>
-        </WarningMessage>
         <BenefitCta :benefit="droit" :benefitsTotal="droits.length" />
-
         <a
           v-if="droit.msa"
           v-analytics="{

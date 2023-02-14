@@ -31,16 +31,6 @@ const situation = {
   },
 }
 
-describe("openfisca generateTest", function () {
-  const result = subject.generateTest(details, situation)
-
-  it("does not add rsa_non_calculable", function () {
-    expect(
-      typeof result.input.familles._.rsa_non_calculable[currentPeriod]
-    ).toBe("undefined")
-  })
-})
-
 function run_cmd(cmd, args) {
   return new Promise(function (resolve, reject) {
     const spawn = child_process.spawn

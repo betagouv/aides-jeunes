@@ -63,11 +63,6 @@ benefits.all
   .forEach((benefit) => {
     const item = benefit.openfisca_eligibility_source || benefit.id
     requestedVariables[item] = requestedVariables[item] || assign({}, benefit)
-    if (benefit.uncomputability) {
-      requestedVariables[`${benefit.id}_non_calculable`] = assign({}, benefit, {
-        type: "string",
-      })
-    }
 
     // Ajoute des variables dans la liste des paramètres à retourner par openfisca
     if (benefit.extra) {

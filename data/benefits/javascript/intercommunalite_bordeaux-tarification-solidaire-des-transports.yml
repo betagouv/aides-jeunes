@@ -1,8 +1,9 @@
 label: Tarification Solidaire des Transports
 institution: intercommunalite_bordeaux
-description: La tarification solidaire offre la gratuité annuelle ou des
-  réductions de 30 à 50% sur les abonnements mensuels aux transports en commun,
-  calculées selon le niveau de ressources de la famille.
+description:
+  La tarification solidaire de la métropole de Bordeaux propose 10 voyages à tarif réduit
+  pour les transports en commun aux personnes ayant un taux de handicap supérieur ou égal à 50%
+  sous réserve de présentation du justificatif correspondant.
 prefix: la
 conditions_generales:
   - type: quotient_familial

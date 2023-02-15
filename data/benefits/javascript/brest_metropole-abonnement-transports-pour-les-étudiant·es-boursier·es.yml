@@ -18,7 +18,7 @@ conditions: []
 type: float
 unit: €
 periodicite: mensuelle
-legend: au lieu de 30
+legend: au lieu de 30 € / mois
 montant: 16.8
 link: https://www.brest.fr/mes-demarches/famille/demande-de-carte-de-bus-a-tarif-solidaire-pour-les-etudiants-7137.html
 teleservice: https://eservices.brest.fr/Pages/DemandeCarteBusTarifSolidaire.aspx

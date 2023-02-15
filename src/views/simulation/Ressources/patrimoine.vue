@@ -34,7 +34,7 @@
 
           <div class="fr-mt-2w">
             <label
-              id="valeur_locative_terrains_non_loues"
+              for="valeur_locative_terrains_non_loues"
               class="fr-col-12 fr-col-xs-5 fr-col-lg-5 fr-mb-2w"
             >
               Valeur <b>locative</b> totale de vos terrains <b>non loués</b>
@@ -206,7 +206,7 @@ export default {
   },
   data() {
     const situation = this.store.situation
-    let periodKey = "month:2012-01:120"
+    let periodKey = "month:2019-01:120"
     let demandeur = Object.assign({}, situation.demandeur)
     let individus = this.store.peopleParentsFirst
 

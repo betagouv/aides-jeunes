@@ -81,11 +81,6 @@ const hasHousingBenefit = () => {
     .invoke("text")
     .should("match", description)
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
-  // Vérifie si la page patrimoine est bien affichée
-  cy.get('[data-testid="patrimoine-link"]').click()
-  cy.get('[data-testid="immobilier-title"]').should("exist")
-  cy.checkA11y()
-  submit()
 }
 
 const hasCSS = () => {
@@ -158,6 +153,17 @@ const hasAideVeloNationale = () => {
   IdentifyBenefit(id, name)
 }
 
+const hasRSA = () => {
+  const name = /Revenu de solidarité active/
+  const id = "rsa"
+  IdentifyBenefit(id, name)
+}
+
+const hasNotBenefit = (id) => {
+  cy.checkA11y()
+  cy.get(`[data-testid="${id}"]`, { timeout: 10000 }).should("not.exist")
+}
+
 const receiveResultsEmail = () => {
   cy.intercept({
     method: "POST",
@@ -199,6 +205,8 @@ export default {
   hasCSS,
   hasAAH,
   hasBourseCriteresSociaux,
+  hasRSA,
+  hasNotBenefit,
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,

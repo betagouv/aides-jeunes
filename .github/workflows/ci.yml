@@ -207,7 +207,7 @@ jobs:
           - 27017:27017
     strategy:
       matrix:
-        test: [base, family, student, handicap]
+        test: [base, family, handicap, patrimoine, student]
     steps:
       - name: Checkout
         uses: actions/checkout@v2

@@ -16,11 +16,22 @@ const mjmlTemplate = fs.readFileSync(
   "utf8"
 )
 
+const headerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/header.mjml"),
+  "utf8"
+)
+
+const footerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/footer.mjml"),
+  "utf8"
+)
+
 const dataTemplate = (followup) => {
   return {
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
+    partials: { header: headerTemplate, footer: footerTemplate },
   }
 }
 

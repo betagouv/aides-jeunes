@@ -5,20 +5,7 @@
     </mj-attributes>
   </mj-head>
   <mj-body>
-    <mj-section>
-      <mj-column width="40%">
-        <mj-image
-          alt="Logo Marianne de la République Française"
-          src="{{&baseURL}}/img/logo_rf.png"
-        />
-      </mj-column>
-      <mj-column width="40%">
-        <mj-image
-          alt="Logo de 1jeune1solution.gouv.fr"
-          src="{{&baseURL}}/img/logo1j1s-france-relance.png"
-        />
-      </mj-column>
-    </mj-section>
+    {{> header}}
     <mj-section>
       <mj-column>
         <mj-text>
@@ -51,37 +38,6 @@
         </mj-button>
       </mj-column>
     </mj-section>
-    <mj-section>
-      <mj-column>
-        <mj-text>
-          <span
-            >Retrouvez les détails de votre simulation en cliquant
-            <a href="{{&returnURL}}" target="_blank">ici</a>.</span
-          >
-          <br />
-          <span
-            >Nous améliorons ce simulateur en continu, et vous pouvez nous y
-            aider.</span
-          >
-          <br />
-          <span
-            >Vous pouvez toujours nous contacter à l'adresse suivante :
-            <a href="mailto:aides-jeunes@beta.gouv.fr"
-              >aides-jeunes@beta.gouv.fr</a
-            ></span
-          >
-        </mj-text>
-        <mj-text>
-          <span>Bonne journée,</span>
-          <br />
-          <span
-            >L'équipe du
-            <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
-              >simulateur de 1jeune1solution.gouv.fr</a
-            ></span
-          >
-        </mj-text>
-      </mj-column>
-    </mj-section>
+    {{> footer}}}
   </mj-body>
 </mjml>

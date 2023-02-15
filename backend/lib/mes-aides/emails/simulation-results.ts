@@ -40,6 +40,15 @@ const mjmlTemplate = fs.readFileSync(
   "utf8"
 )
 
+const headerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/header.mjml"),
+  "utf8"
+)
+
+const footerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/footer.mjml"),
+  "utf8"
+)
 function renderAsText(followup, benefits, parameters) {
   const data = {
     benefitTexts: benefits.map((benefit) =>
@@ -89,6 +98,7 @@ function renderAsHtml(followup, benefits, parameters) {
       droits: droits,
       baseURL: config.baseURL,
       returnURL: `${config.baseURL}${followup.returnPath}`,
+      partials: { header: headerTemplate, footer: footerTemplate },
     })
     .then(function (templateString) {
       const output = mjml(templateString)

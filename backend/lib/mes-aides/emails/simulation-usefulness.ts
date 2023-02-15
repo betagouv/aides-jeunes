@@ -16,6 +16,16 @@ const mjmlTemplate = fs.readFileSync(
   "utf8"
 )
 
+const headerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/header.mjml"),
+  "utf8"
+)
+
+const footerTemplate = fs.readFileSync(
+  path.join(__dirname, "templates/footer.mjml"),
+  "utf8"
+)
+
 const dataTemplate = (followup) => {
   return {
     baseURL: config.baseURL,
@@ -23,6 +33,7 @@ const dataTemplate = (followup) => {
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
+    partials: { header: headerTemplate, footer: footerTemplate },
   }
 }
 

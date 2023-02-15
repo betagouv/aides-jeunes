@@ -7,5 +7,4 @@ export default {
   _bourseCriteresSociauxCommuneDomicileFamilial: new DepcomProperty({
     question: "Quel est le code postal de la commune de vos parents ?",
   }),
-  default: [],
 }

@@ -3,13 +3,7 @@ institution: region_provence_alpes_cote_azur
 description: Grâce au chéquier PASS Santé Jeunes, accédez gratuitement à un
   ensemble de prestations chez les professionnels de santé et les psychologues
   libéraux.
-conditions:
-  - "Être dans l'un des cas suivants : inscrit·e dans un lycée, dans un centre
-    de formation d'apprentis (CFA), dans un établissement de formation sanitaire
-    et sociale, dans un établissement d'enseignement supérieur, dans une mission
-    locale, à Pôle Emploi, ou bien en stage de formation professionnelle, en
-    contrat de professionnalisation, en contrat Emploi d'avenir, ou encore au
-    service civique en Provence-Alpes-Côte d'Azur."
+prefix: le
 conditions_generales:
   - type: age
     operator: ">="
@@ -21,11 +15,17 @@ conditions_generales:
     values:
       - "93"
 profils: []
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sante-jeunes
-teleservice: https://passantejeunes.maregionsud.fr/Account/LogOn?ReturnUrl=%2fAccount%2fLogOn%3fReturnUrl%3d%252fAccount%252fLogOn%253fReturnUrl%253d%25252f
-form: ""
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/pass-sante-jeunes
-prefix: le
+conditions:
+  - "Être dans l'un des cas suivants : inscrit·e dans un lycée, dans un centre
+    de formation d'apprentis (CFA), dans un établissement de formation sanitaire
+    et sociale, dans un établissement d'enseignement supérieur, dans une mission
+    locale, à Pôle Emploi, ou bien en stage de formation professionnelle, en
+    contrat de professionnalisation, en contrat Emploi d'avenir, ou encore au
+    service civique en Provence-Alpes-Côte d'Azur."
 type: bool
 unit: €
 periodicite: autre
+link: https://www.maregionsud.fr/vos-aides/detail/pass-sante-jeunes
+teleservice: ""
+form: ""
+instructions: https://www.maregionsud.fr/vos-aides/detail/pass-sante-jeunes

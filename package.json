@@ -4,7 +4,7 @@
   "description": "Simulateur de prestations sociales pour les jeunes",
   "type": "module",
   "scripts": {
-    "serve": "nodemon --exec 'ts-node backend/dev'",
+    "serve": "nodemon --exec 'ts-node --transpiler ts-node/transpilers/swc backend/dev'",
     "build": "concurrently 'npm run build:server' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
     "clean:dist-server": "rm -fR dist-server",
     "copy:templates": "mkdir -p dist-server/backend/lib/mes-aides/emails/templates && cp backend/lib/mes-aides/emails/templates/* dist-server/backend/lib/mes-aides/emails/templates",
@@ -92,6 +92,8 @@
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
+    "@swc/cli": "^0.1.61",
+    "@swc/core": "^1.3.35",
     "@types/bluebird": "^3.5.36",
     "@types/errorhandler": "^1.5.0",
     "@types/express": "^4.17.14",

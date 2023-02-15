@@ -214,6 +214,23 @@ fields:
             value: month
           - label: Par an
             value: year
+  field_taux_incapacite: &field_taux_incapacite
+    label: Taux d'incapacité
+    name: taux_incapacite
+    widget: object
+    fields:
+      - label: Valeurs
+        name: values
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - label: Inférieur à 50%
+            value: inferieur_50
+          - label: Supérieur ou égal à 50% et inférieur à 80%
+            value: entre_50_et_80
+          - label: Supérieur ou égal à 80%
+            value: superieur_ou_egal_80
   field_formation_sanitaire_social: &field_formation_sanitaire_social
     <<: *field_empty
     label: En formation sanitaire et sociale
@@ -706,6 +723,18 @@ fields:
             collapsed: false
             types:
               - *field_age
+      - label: En situation de handicap
+        name: situation_handicap
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: []
+            widget: list
+            collapsed: false
+            types:
+              - *field_taux_incapacite
   field_private_benefit: &field_private_benefit
     label: Masquer l'aide
     name: private

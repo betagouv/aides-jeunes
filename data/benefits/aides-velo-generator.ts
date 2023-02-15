@@ -27,14 +27,14 @@ function generate_benefit_list(institutions) {
         case "code insee": {
           const institutionList = potentialInstitutions[b.collectivity.kind]
           b.institution = institutionList.find(
-            (i) => i.code_insee === b.collectivity?.value
+            (i) => i.code_insee === b.collectivity.value
           )?.slug
           break
         }
         case "epci": {
           const institutionList = potentialInstitutions[b.collectivity.kind]
           b.institution = institutionList.find(
-            (i) => i.code_siren === b.collectivity?.code
+            (i) => i.code_siren === b.collectivity.code
           )?.slug
           break
         }

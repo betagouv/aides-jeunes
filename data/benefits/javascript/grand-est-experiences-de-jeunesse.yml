@@ -3,13 +3,7 @@ institution: grand_est
 description: La Région accompagne les jeunes du Grand Est de 15 à 29 ans
   engagé·e·s sur un projet d’engagement citoyen ou porteurs d’un projet
   professionnalisant.
-conditions:
-  - Être porteur/porteuse de projets favorisant l’engagement citoyen, seul·e ou
-    en groupe, ou bien avoir un projet faisant apparaître un projet
-    professionnel clair, nécessitant un soutien.
-  - Remplir le dossier de candidature <a target="_blank" rel="noopener" title ="Candidater - Nouvelle fenêtre"
-    href="https://messervices.grandest.fr/account-management/crge-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fconnecte%2FF_TEL0004%2Fdepot%2Fsimple&jwtKey=jwt-crge-portail-depot-demande-aides&footer=https:%2F%2Fwww.grandest.fr%2Fmentions-legales%2F,Mentions%20l%C3%A9gales,_blank">à
-    ce lien</a> (attention, cette aide nécessite un passage en commission).
+prefix: l’aide
 conditions_generales:
   - type: age
     operator: ">="
@@ -21,11 +15,19 @@ conditions_generales:
     values:
       - "44"
 profils: []
-link: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
-instructions: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
-prefix: l’aide
+conditions:
+  - Être porteur/porteuse de projets favorisant l’engagement citoyen, seul·e ou
+    en groupe, ou bien avoir un projet faisant apparaître un projet
+    professionnel clair, nécessitant un soutien.
+  - Remplir le dossier de candidature <a target="_blank" rel="noopener" title
+    ="Candidater - Nouvelle fenêtre"
+    href="https://messervices.grandest.fr/account-management/crge-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fconnecte%2FF_TEL0004%2Fdepot%2Fsimple&jwtKey=jwt-crge-portail-depot-demande-aides&footer=https:%2F%2Fwww.grandest.fr%2Fmentions-legales%2F,Mentions%20l%C3%A9gales,_blank">à
+    ce lien</a> (attention, cette aide nécessite un passage en commission).
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 2000
+link: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/
+teleservice: https://messervices.grandest.fr/account-management/crge-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fconnecte%2FF_TEL0004%2Fdepot%2Fsimple&jwtKey=jwt-crge-portail-depot-demande-aides&footer=https:%2F%2Fwww.grandest.fr%2Fmentions-legales%2F,Mentions%20l%C3%A9gales,_blank
+instructions: https://www.grandest.fr/vos-aides-regionales/experience-de-jeunesse/

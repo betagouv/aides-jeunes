@@ -44,19 +44,17 @@ for (const id in generator.institutionsMap) {
     type: institution.type,
     benefits: institutionsBenefits[institution.slug],
   }
-  if (institution.type === "epci") {
-    console.log("Toooooooooooo", institution.type)
+  if (institution.type === "EPCI (Métropole, inter-communauté, etc.)") {
     institutionObject.location =
       epcis
         .find((element) => element.code === institution.code_siren)
         ?.membres.map((commune) => commune.code) || []
-  } else if (institution.type === "caf") {
+  } else if (institution.type === "CAF locale") {
     institutionObject.location = institution.department
-  } else if (["region", "departement", "commune"].includes(institution.type)) {
+  } else if (["Région", "Département", "Commune"].includes(institution.type)) {
     institutionObject.location = institution.code_insee
   }
   if (!institutions[institution.type]) {
-    console.log(institution)
     const msg = `The new institution type '${institution.type}' of '${institution.slug}' needs to be added in rollup/institutions.ts`
     console.error(msg)
     throw new Error(msg)

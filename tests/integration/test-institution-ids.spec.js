@@ -20,7 +20,7 @@ describe("Institution id", () => {
         institutionIds.push(id)
       })
 
-      if (institution.type === "epci") {
+      if (institution.type === "EPCI (Métropole, inter-communauté, etc.)") {
         it("has a unique siren code", () => {
           expect(institutionSirenCodes).not.toContain(institution.siren_code)
           institutionIds.push(institution.siren_code)

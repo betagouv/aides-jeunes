@@ -1,11 +1,14 @@
-import benefits from "../data/all"
+import benefits from "../data/all.js"
 
 benefits.all
   .filter((benefit) => {
     return (
-      ["region", "departement", "commune", "epci"].includes(
-        benefit.institution.type
-      ) && benefit.source === "javascript"
+      [
+        "Région",
+        "Département",
+        "Commune",
+        "EPCI (Métropole, inter-communauté, etc.)",
+      ].includes(benefit.institution.type) && benefit.source === "javascript"
     )
   })
   .forEach((benefit) => {

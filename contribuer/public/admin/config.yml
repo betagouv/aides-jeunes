@@ -16,7 +16,7 @@ slug:
   encoding: ascii
   clean_accents: true
 
-local_backend: true
+# local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -277,7 +277,15 @@ fields:
       label: "Type :"
       default: "*"
       target: "type"
-      fields: *field_institution_type
+      fields: 
+        - Organisation nationale
+        - Région  
+        - Département
+        - CAF locale
+        - MSA locale
+        - EPCI (Métropole, inter-communauté, etc.)
+        - Commune
+        - Autre  
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description

@@ -16,7 +16,7 @@ describe("benefit descriptions", function () {
       },
       institution_types: {
         items: [
-          { slug: "national", name: "national" },
+          { slug: "national", name: "Organisation nationale" },
           { slug: "region", name: "Région" },
           { slug: "departement", name: "Département" },
           { slug: "msa", name: "MSA locale" },

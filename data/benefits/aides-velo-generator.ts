@@ -5,10 +5,12 @@ const benefits = [...aidesVelo()]
 
 function generate_benefit_list(institutions) {
   const potentialInstitutions = {
-    région: institutions.filter((i) => i.type === "region"),
-    département: institutions.filter((i) => i.type === "departement"),
-    epci: institutions.filter((i) => i.type === "epci"),
-    "code insee": institutions.filter((i) => i.type === "commune"),
+    région: institutions.filter((i) => i.type === "Région"),
+    département: institutions.filter((i) => i.type === "Département"),
+    epci: institutions.filter(
+      (i) => i.type === "EPCI (Métropole, inter-communauté, etc.)"
+    ),
+    "code insee": institutions.filter((i) => i.type === "Commune"),
   }
 
   benefits.forEach((b: benefitVeloLayout) => {

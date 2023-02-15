@@ -27,7 +27,8 @@ function transformInstitutions(collection: any[]) {
       type: data.type,
       top: data.top,
       repository:
-        data.repository || (data.type === "national" ? null : "france-local"),
+        data.repository ||
+        (data.type === "Organisation nationale" ? null : "france-local"),
       etablissements: data.etablissements,
     }
     result[data.slug] = item
@@ -38,7 +39,7 @@ function transformInstitutions(collection: any[]) {
 function setTop(benefit, institution) {
   const default_top =
     institution.top ||
-    (institution.type === "national"
+    (institution.type === "Organisation nationale"
       ? 3
       : benefit.source == "aides-velo"
       ? 13

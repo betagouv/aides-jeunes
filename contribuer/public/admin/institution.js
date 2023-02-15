@@ -50,22 +50,21 @@ class InstitutionControl extends Relation.control {
   }
 
   componentDidMount() {
-    const defaultValue = this.props.field.get("filter").get("default", "*")
-    this.setState({
-      filter: defaultValue,
-      categories: this.props.field
-        .get("filter")
-        .get("fields")
-        .map((option) => {
-          return {
-            label: option.get("label"),
-            value: option.get("value"),
-          }
+      const defaultValue = this.props.field.get("filter").get("default", "*")
+      this.setState({
+          filter: defaultValue,
+          categories: this.props.field
+          .get("filter")
+          .get("fields")
+          .map((option) => {
+              return {
+                  label: option,
+                  value: option,
+                }
+            })
         })
-        .unshift({ value: "*", label: "Tous" }),
-    })
-  }
-  render() {
+    }
+    render() {
     const { field } = this.props
     const name = field.get("name")
     const style = h("link", { rel: "stylesheet", href: "/css/institution.css" })

@@ -53,13 +53,13 @@ function iterateGivenGeographicalRelevancy(apply) {
   institutionIds.forEach((id) => {
     const institution = Benefits.institutionsMap[id]
     switch (institution.type) {
-      case "national":
+      case "Organisation nationale":
         communes.forEach((commune) => {
           apply(communeMap[commune.code], institution)
         })
         break
-      case "region":
-      case "departement":
+      case "Région":
+      case "Département":
         communes.forEach((commune) => {
           const included = isGeographicallyIncluded(commune, institution)
           if (included) {
@@ -67,7 +67,7 @@ function iterateGivenGeographicalRelevancy(apply) {
           }
         })
         break
-      case "epci": {
+      case "EPCI (Métropole, inter-communauté, etc.)": {
         const epciInfo = epcis.find(
           (element) => element.code === institution.code_siren
         )
@@ -84,14 +84,14 @@ function iterateGivenGeographicalRelevancy(apply) {
         })
         break
       }
-      case "commune": {
+      case "Commune": {
         if (!communeMap[institution.code_insee]) {
           break
         }
         apply(communeMap[institution.code_insee], institution)
         break
       }
-      case "caf":
+      case "CAF locale":
         communes.forEach((commune) => {
           const included = isGeographicallyIncluded(commune, institution)
           if (included) {

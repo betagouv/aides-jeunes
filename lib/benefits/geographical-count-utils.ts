@@ -10,22 +10,22 @@ export function isGeographicallyIncluded(
   const typeInstitution = institution.type
   const idInstitution = institution.code_insee || institution.code_siren
 
-  if (typeInstitution == "national") {
+  if (typeInstitution == "Organisation nationale") {
     return true
-  } else if (typeInstitution == "region") {
-    const codeNiveauInstitution = commune[typeInstitution]
+  } else if (typeInstitution == "Région") {
+    const codeNiveauInstitution = commune.region
     return idInstitution == codeNiveauInstitution
-  } else if (typeInstitution == "departement") {
-    const codeNiveauInstitution = commune[typeInstitution]
+  } else if (typeInstitution == "Département") {
+    const codeNiveauInstitution = commune.departement
     return idInstitution == codeNiveauInstitution
-  } else if (typeInstitution == "epci") {
+  } else if (typeInstitution == "EPCI (Métropole, inter-communauté, etc.)") {
     const epciInfo =
       epciInfoParams || epcis.find((element) => element.code === idInstitution)
     if (epciInfo === undefined) {
       return false
     }
     return Boolean(epciInfo.membres.find((c) => c.code === commune.code))
-  } else if (typeInstitution == "commune") {
+  } else if (typeInstitution == "Commune") {
     return idInstitution == commune.code
   } else {
     return false

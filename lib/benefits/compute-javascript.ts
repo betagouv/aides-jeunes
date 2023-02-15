@@ -153,13 +153,13 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
       const institution = benefit.institution
 
       switch (institution.type) {
-        case "region":
+        case "Région":
           return situation.menage._region === institution.code_insee
-        case "departement":
+        case "Département":
           return situation.menage._departement === institution.code_insee
-        case "epci":
+        case "EPCI (Métropole, inter-communauté, etc.)":
           return situation.menage._epci === institution.code_siren
-        case "commune":
+        case "Commune":
           return situation.menage.depcom === institution.code_insee
       }
       return false

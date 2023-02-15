@@ -5,7 +5,7 @@ import api from "../backend/api.js"
 import { EmailType } from "../backend/types/email.js"
 import express from "express"
 import Followup from "../backend/models/followup.js"
-import renderSimulationResults from "../backend/lib/mes-aides/emails/simulation-results.js"
+import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/types/survey.js"
 import "../backend/lib/mes-aides/emails/benefit-action.js"
 import { __express } from "ejs"
@@ -43,7 +43,7 @@ const followupRendering = async (req: ajRequest) => {
 
   switch (emailType) {
     case EmailType.simulationResults:
-      return renderSimulationResults(followup)
+      return emailRender(EmailType.simulationResults, followup)
     case EmailType.simulationUsefulness:
       surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
       break

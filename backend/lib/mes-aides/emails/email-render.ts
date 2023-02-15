@@ -11,8 +11,22 @@ import {
   getBenefitImage,
 } from "../../../../lib/benefits/details.js"
 import { mjml } from "./index.js"
+import { EmailType } from "../../../types/email.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
+
+function readFile(filePath) {
+  return fs.readFileSync(path.join(__dirname, filePath), "utf8")
+}
+const benefitActionTemplate = readFile("templates/benefit-action.mjml")
+const emailTemplate = readFile("templates/email.mjml")
+const footerTemplate = readFile("templates/footer.mjml")
+const headerTemplate = readFile("templates/header.mjml")
+const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
+const simulationUsefulnessTemplate = readFile(
+  "templates/simulation-usefulness.mjml"
+)
+const textTemplate = readFile("templates/simulation-results.txt")
 
 function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)
@@ -31,24 +45,6 @@ function basicBenefitText(droit, parameters) {
   return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }
 
-const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/simulation-results.txt"),
-  "utf8"
-)
-const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/simulation-results.mjml"),
-  "utf8"
-)
-
-const headerTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/header.mjml"),
-  "utf8"
-)
-
-const footerTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/footer.mjml"),
-  "utf8"
-)
 function renderAsText(followup, benefits, parameters) {
   const data = {
     benefitTexts: benefits.map((benefit) =>
@@ -59,7 +55,7 @@ function renderAsText(followup, benefits, parameters) {
   return mustache.render(textTemplate, data)
 }
 
-function renderAsHtml(followup, benefits, parameters) {
+function renderAsHtml(emailType, followup, benefits, parameters) {
   const droits = map(benefits, function (droit) {
     let value = ""
     const droitEstime = formatDroitEstime(droit, parameters)
@@ -93,12 +89,26 @@ function renderAsHtml(followup, benefits, parameters) {
     })
   })
 
+  const emailTemplates = {
+    [EmailType.simulationResults]: simulationResultsTemplate,
+    [EmailType.benefitAction]: benefitActionTemplate,
+    [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
+  }
+  if (!(emailType in emailTemplates)) {
+    throw new Error(`Unknown email type: ${emailType}`)
+  }
+  const contentTemplate = emailTemplates[emailType]
+
   return mustache
-    .render(mjmlTemplate, {
+    .render(emailTemplate, {
       droits: droits,
       baseURL: config.baseURL,
       returnURL: `${config.baseURL}${followup.returnPath}`,
-      partials: { header: headerTemplate, footer: footerTemplate },
+      partials: {
+        header: headerTemplate,
+        content: contentTemplate,
+        footer: footerTemplate,
+      },
     })
     .then(function (templateString) {
       const output = mjml(templateString)
@@ -108,7 +118,7 @@ function renderAsHtml(followup, benefits, parameters) {
     })
 }
 
-export default async function render(followup) {
+export default async function emailRender(emailType, followup) {
   const populated = await (followup.populated("simulation")
     ? Promise.resolve(followup)
     : followup.populate("simulation"))
@@ -128,7 +138,7 @@ export default async function render(followup) {
 
   return Promise.all([
     renderAsText(followup, droitsEligibles, parameters),
-    renderAsHtml(followup, droitsEligibles, parameters),
+    renderAsHtml(emailType, followup, droitsEligibles, parameters),
   ]).then(function (values) {
     return {
       subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,

@@ -5,7 +5,7 @@ import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
 import { SurveyLayout, SurveyType } from "../../lib/types/survey.js"
-import renderSimulationResults from "../lib/mes-aides/emails/simulation-results.js"
+import renderEmail from "../lib/mes-aides/emails/email-render.js"
 import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness.js"
 import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"
 import SurveySchema from "./survey-schema.js"
@@ -66,7 +66,7 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
 })
 
 FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return renderSimulationResults(this)
+  return renderEmail(EmailType.simulationResults, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", function () {

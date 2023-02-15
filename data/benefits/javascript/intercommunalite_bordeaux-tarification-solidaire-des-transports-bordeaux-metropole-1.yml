@@ -5,6 +5,9 @@ description: La tarification solidaire offre la gratuité annuelle ou des
   calculées selon le niveau de ressources de la famille.
 prefix: la
 conditions_generales:
+  - type: epcis
+    values:
+      - "33"
   - type: quotient_familial
     operator: ">"
     period: month

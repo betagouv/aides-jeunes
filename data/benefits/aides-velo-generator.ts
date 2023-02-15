@@ -1,4 +1,3 @@
-// @ts-ignore
 import aidesVelo from "aides-velo"
 import { benefitVeloLayout } from "../../data/types/benefits.js"
 const benefits = [...aidesVelo()]

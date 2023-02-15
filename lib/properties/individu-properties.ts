@@ -572,11 +572,11 @@ export default {
         },
         {
           value: (0.5 + tauxMax) / 2,
-          label: `Entre 50% et ${tauxMax * 100}%`,
+          label: `De 50% à ${(tauxMax - 0.01) * 100}%`,
         },
         {
           value: (tauxMax + 1) / 2,
-          label: `Plus de ${tauxMax * 100}%`,
+          label: `${tauxMax * 100}% et plus`,
         },
       ]
     },

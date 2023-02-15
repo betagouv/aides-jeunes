@@ -15,7 +15,7 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 2400
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/validation-des-acquis-de-lexperience
+montant: 1800
+link: https://www.maregionsud.fr/vos-aides/detail/validation-des-acquis-de-lexperience
 teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/validation-des-acquis-de-lexperience
+instructions: https://www.maregionsud.fr/vos-aides/detail/validation-des-acquis-de-lexperience

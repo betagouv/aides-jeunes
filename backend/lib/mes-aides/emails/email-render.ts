@@ -56,39 +56,6 @@ function renderAsText(followup, benefits, parameters) {
 }
 
 function renderAsHtml(emailType, followup, benefits, parameters) {
-  const droits = map(benefits, function (droit) {
-    let value = ""
-    const droitEstime = formatDroitEstime(droit, parameters)
-
-    if (droitEstime.type === "float") {
-      value = `${droitEstime.value} ${droitEstime.legend}`
-    }
-
-    let ctaLink = ""
-    let ctaLabel = ""
-    if (droit.teleservice) {
-      ctaLink = droit.teleservice
-      ctaLabel = "Faire une demande en ligne"
-    } else if (droit.form) {
-      ctaLink = droit.form
-      ctaLabel = "Accéder au formulaire papier"
-    } else if (droit.instructions) {
-      ctaLink = droit.instructions
-      ctaLabel = "Accéder aux instructions"
-    } else {
-      ctaLink = droit.link
-      ctaLabel = "Plus d'informations"
-    }
-
-    return assign({}, droit, {
-      imgSrc: getBenefitImage(droit),
-      montant: value,
-      ctaLink: ctaLink,
-      ctaLabel: ctaLabel,
-      droitLabel: capitalize(droit.label),
-    })
-  })
-
   const emailTemplates = {
     [EmailType.simulationResults]: simulationResultsTemplate,
     [EmailType.benefitAction]: benefitActionTemplate,
@@ -98,18 +65,62 @@ function renderAsHtml(emailType, followup, benefits, parameters) {
     throw new Error(`Unknown email type: ${emailType}`)
   }
   const contentTemplate = emailTemplates[emailType]
+  let droits = null
 
-  return mustache
-    .render(emailTemplate, {
-      droits: droits,
+  if (emailType === EmailType.simulationResults) {
+    droits = map(benefits, function (droit) {
+      let value = ""
+      const droitEstime = formatDroitEstime(droit, parameters)
+
+      if (droitEstime.type === "float") {
+        value = `${droitEstime.value} ${droitEstime.legend}`
+      }
+
+      let ctaLink = ""
+      let ctaLabel = ""
+      if (droit.teleservice) {
+        ctaLink = droit.teleservice
+        ctaLabel = "Faire une demande en ligne"
+      } else if (droit.form) {
+        ctaLink = droit.form
+        ctaLabel = "Accéder au formulaire papier"
+      } else if (droit.instructions) {
+        ctaLink = droit.instructions
+        ctaLabel = "Accéder aux instructions"
+      } else {
+        ctaLink = droit.link
+        ctaLabel = "Plus d'informations"
+      }
+
+      return assign({}, droit, {
+        imgSrc: getBenefitImage(droit),
+        montant: value,
+        ctaLink: ctaLink,
+        ctaLabel: ctaLabel,
+        droitLabel: capitalize(droit.label),
+      })
+    })
+  }
+
+  const dataTemplate = (followup, droits, benefits, parameters) => {
+    return {
+      benefitTexts: benefits.map((benefit) =>
+        basicBenefitText(benefit, parameters)
+      ),
       baseURL: config.baseURL,
+      ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
+      droits: droits,
       returnURL: `${config.baseURL}${followup.returnPath}`,
       partials: {
         header: headerTemplate,
         content: contentTemplate,
         footer: footerTemplate,
       },
-    })
+    }
+  }
+
+  return mustache
+    .render(emailTemplate, dataTemplate(followup, droits, benefits, parameters))
     .then(function (templateString) {
       const output = mjml(templateString)
       return {

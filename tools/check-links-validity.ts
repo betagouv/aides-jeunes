@@ -165,10 +165,10 @@ ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  return `{comment}={${buildMessage(
+  return `"{comment}={${buildMessage(
     benefitWithErrors,
     githubRowFormat
-  )}} >> $GITHUB_OUTPUT`
+  )}}" >> $GITHUB_OUTPUT`
     .split("\n")
     .join("<br />")
 }

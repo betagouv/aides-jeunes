@@ -272,7 +272,7 @@ jobs:
           install: false
           spec: cypress/e2e/${{matrix.test}}.cy.js
       - name: Upload cypress videos
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-${{matrix.test}}

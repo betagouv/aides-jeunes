@@ -290,7 +290,7 @@ jobs:
         with:
           fetch-depth: 0
       - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/.github/has-openfisca-requirement-changes.sh" ; then echo "::set-output name=status::success" ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-openfisca-requirement-changes.sh" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_definition_periods:
     name: Openfisca definition periods tests
     needs:

@@ -1,4 +1,4 @@
-import { capitalize, map, assign } from "lodash-es"
+import { capitalize } from "lodash-es"
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
@@ -26,7 +26,46 @@ const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml"
 )
-const textTemplate = readFile("templates/simulation-results.txt")
+const emailTemplates = {
+  [EmailType.simulationResults]: simulationResultsTemplate,
+  [EmailType.benefitAction]: benefitActionTemplate,
+  [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
+}
+const simulationResultsTextTemplate = readFile(
+  "templates/simulation-results.txt"
+)
+const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
+const simulationUsefulnessTextTemplate = readFile(
+  "templates/simulation-usefulness.txt"
+)
+const textTemplates = {
+  [EmailType.simulationResults]: simulationResultsTextTemplate,
+  [EmailType.benefitAction]: benefitActionTextTemplate,
+  [EmailType.simulationUsefulness]: simulationUsefulnessTextTemplate,
+}
+
+const dataTempateBuilder = (
+  emailType,
+  followup,
+  formatedBenefits,
+  benefits,
+  parameters
+) => {
+  return {
+    benefitTexts: benefits.map((benefit) =>
+      basicBenefitText(benefit, parameters)
+    ),
+    baseURL: config.baseURL,
+    ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
+    droits: formatedBenefits,
+    returnURL: `${config.baseURL}${followup.returnPath}`,
+    partials: {
+      header: headerTemplate,
+      content: emailTemplates[emailType],
+      footer: footerTemplate,
+    },
+  }
+}
 
 function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)
@@ -45,82 +84,45 @@ function basicBenefitText(droit, parameters) {
   return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }
 
-function renderAsText(followup, benefits, parameters) {
-  const data = {
-    benefitTexts: benefits.map((benefit) =>
-      basicBenefitText(benefit, parameters)
-    ),
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-  }
-  return mustache.render(textTemplate, data)
+const formatBenefits = (benefits, parameters) => {
+  const formatedBenefits = benefits.map((benefit) => {
+    const benefitEstimated = formatDroitEstime(benefit, parameters)
+    const value =
+      benefitEstimated.type === "float"
+        ? `${benefitEstimated.value} ${benefitEstimated.legend}`
+        : ""
+    const { teleservice, form, instructions, link, label } = benefit
+    const ctaLink = teleservice || form || instructions || link
+    const ctaLabel = teleservice
+      ? "Faire une demande en ligne"
+      : form
+      ? "Accéder au formulaire papier"
+      : instructions
+      ? "Accéder aux instructions"
+      : "Plus d'informations"
+
+    return {
+      ...benefit,
+      imgSrc: getBenefitImage(benefit),
+      montant: value,
+      ctaLink,
+      ctaLabel,
+      benefitLabel: capitalize(label),
+    }
+  })
+  return formatedBenefits
 }
 
-function renderAsHtml(emailType, followup, benefits, parameters) {
-  const emailTemplates = {
-    [EmailType.simulationResults]: simulationResultsTemplate,
-    [EmailType.benefitAction]: benefitActionTemplate,
-    [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
-  }
+function renderAsText(emailType, dataTemplate) {
+  return mustache.render(textTemplates[emailType], dataTemplate)
+}
+
+function renderAsHtml(emailType, dataTemplate) {
   if (!(emailType in emailTemplates)) {
     throw new Error(`Unknown email type: ${emailType}`)
   }
-  const contentTemplate = emailTemplates[emailType]
-  let droits = null
-
-  if (emailType === EmailType.simulationResults) {
-    droits = map(benefits, function (droit) {
-      let value = ""
-      const droitEstime = formatDroitEstime(droit, parameters)
-
-      if (droitEstime.type === "float") {
-        value = `${droitEstime.value} ${droitEstime.legend}`
-      }
-
-      let ctaLink = ""
-      let ctaLabel = ""
-      if (droit.teleservice) {
-        ctaLink = droit.teleservice
-        ctaLabel = "Faire une demande en ligne"
-      } else if (droit.form) {
-        ctaLink = droit.form
-        ctaLabel = "Accéder au formulaire papier"
-      } else if (droit.instructions) {
-        ctaLink = droit.instructions
-        ctaLabel = "Accéder aux instructions"
-      } else {
-        ctaLink = droit.link
-        ctaLabel = "Plus d'informations"
-      }
-
-      return assign({}, droit, {
-        imgSrc: getBenefitImage(droit),
-        montant: value,
-        ctaLink: ctaLink,
-        ctaLabel: ctaLabel,
-        droitLabel: capitalize(droit.label),
-      })
-    })
-  }
-
-  const dataTemplate = (followup, droits, benefits, parameters) => {
-    return {
-      benefitTexts: benefits.map((benefit) =>
-        basicBenefitText(benefit, parameters)
-      ),
-      baseURL: config.baseURL,
-      ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
-      droits: droits,
-      returnURL: `${config.baseURL}${followup.returnPath}`,
-      partials: {
-        header: headerTemplate,
-        content: contentTemplate,
-        footer: footerTemplate,
-      },
-    }
-  }
-
   return mustache
-    .render(emailTemplate, dataTemplate(followup, droits, benefits, parameters))
+    .render(emailTemplate, dataTemplate)
     .then(function (templateString) {
       const output = mjml(templateString)
       return {
@@ -139,17 +141,30 @@ export default async function emailRender(emailType, followup) {
   )
 
   const situationResults = await populated.simulation.compute()
-  const droitsEligibles = situationResults.droitsEligibles
-  followup.benefits = droitsEligibles.map((benefit) => ({
+  const benefits = situationResults.droitsEligibles
+  followup.benefits = benefits.map((benefit) => ({
     id: benefit.id,
     amount: benefit.montant,
     unit: benefit.unit,
   }))
   followup.save()
 
+  const formatedBenefits =
+    emailType === EmailType.simulationResults
+      ? formatBenefits(benefits, parameters)
+      : null
+
+  const dataTemplate = dataTempateBuilder(
+    emailType,
+    followup,
+    formatedBenefits,
+    benefits,
+    parameters
+  )
+
   return Promise.all([
-    renderAsText(followup, droitsEligibles, parameters),
-    renderAsHtml(emailType, followup, droitsEligibles, parameters),
+    renderAsText(emailType, dataTemplate),
+    renderAsHtml(emailType, dataTemplate),
   ]).then(function (values) {
     return {
       subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,

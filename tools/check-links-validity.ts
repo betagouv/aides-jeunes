@@ -159,15 +159,14 @@ function basicFormat(data) {
 }
 
 function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${
-    benefitWithErrors.length
-  }) ont des liens dysfonctionnels :
+  return `Certaines aides référencées (${benefitWithErrors.length
+    }) ont des liens dysfonctionnels :
 
 ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  const issueContent = `comment=${buildMessage(
+  const issueContent = `${buildMessage(
     benefitWithErrors,
     githubRowFormat
   )

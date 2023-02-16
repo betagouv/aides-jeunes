@@ -3,6 +3,8 @@ import Config from "../backend/config/index"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
+import fs from "fs"
+import os from "os"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
@@ -157,44 +159,44 @@ function basicFormat(data) {
 }
 
 function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${benefitWithErrors.length
-    }) ont des liens dysfonctionnels :
+  return `Certaines aides référencées (${
+    benefitWithErrors.length
+  }) ont des liens dysfonctionnels :
 
 ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  return `{comment}={${buildMessage(
+  const issueContent = `comment=${buildMessage(
     benefitWithErrors,
     githubRowFormat
   )
     .split("\n")
-    .join("<br />")
-    }} >> $GITHUB_OUTPUT`
+    .join("<br />")}`
+
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    `comment=${issueContent}${os.EOL}`,
+    {
+      encoding: "utf8",
+    }
+  )
 }
 
-import * as fs from 'fs'
-import * as os from 'os'
-
 async function main() {
-  // const benefitData = await getBenefitData()
-  // const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  // const detectedErrors = results
-  //   .filter((i) => i.errors.length)
-  //   .sort((a, b) => -(a.priority - b.priority))
-  // if (detectedErrors.length > 0) {
-  //   if (process.argv.slice(2).includes("--ci")) {
-  //     console.log(buildGitHubIssueCommentText(detectedErrors))
-  //   } else if (detectedErrors) {
-  //     console.log(buildMessage(detectedErrors, basicFormat))
-  //   }
-  // }
-  // console.log("Terminé")
-
-  fs.appendFileSync(process.env.GITHUB_OUTPUT, `comment=value${os.EOL}`, {
-    encoding: 'utf8'
-  })
-  console.log(`"{name}={value}" >> $GITHUB_OUTPUT`)
+  const benefitData = await getBenefitData()
+  const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
+  const detectedErrors = results
+    .filter((i) => i.errors.length)
+    .sort((a, b) => -(a.priority - b.priority))
+  if (detectedErrors.length > 0) {
+    if (process.argv.slice(2).includes("--ci")) {
+      buildGitHubIssueCommentText(detectedErrors)
+    } else if (detectedErrors) {
+      console.log(buildMessage(detectedErrors, basicFormat))
+    }
+  }
+  console.log("Terminé")
 }
 
 main()

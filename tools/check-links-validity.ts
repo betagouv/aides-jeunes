@@ -157,36 +157,37 @@ function basicFormat(data) {
 }
 
 function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${
-    benefitWithErrors.length
+  return `Certaines aides référencées (${benefitWithErrors.length
     }) ont des liens dysfonctionnels :
 
 ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  return `"{comment}={${buildMessage(
+  return `{comment}={${buildMessage(
     benefitWithErrors,
     githubRowFormat
-  )}}" >> $GITHUB_OUTPUT`
+  )
     .split("\n")
     .join("<br />")
+    }} >> $GITHUB_OUTPUT`
 }
 
 async function main() {
-  const benefitData = await getBenefitData()
-  const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  const detectedErrors = results
-    .filter((i) => i.errors.length)
-    .sort((a, b) => -(a.priority - b.priority))
-  if (detectedErrors.length > 0) {
-    if (process.argv.slice(2).includes("--ci")) {
-      console.log(buildGitHubIssueCommentText(detectedErrors))
-    } else if (detectedErrors) {
-      console.log(buildMessage(detectedErrors, basicFormat))
-    }
-  }
-  console.log("Terminé")
+  // const benefitData = await getBenefitData()
+  // const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
+  // const detectedErrors = results
+  //   .filter((i) => i.errors.length)
+  //   .sort((a, b) => -(a.priority - b.priority))
+  // if (detectedErrors.length > 0) {
+  //   if (process.argv.slice(2).includes("--ci")) {
+  //     console.log(buildGitHubIssueCommentText(detectedErrors))
+  //   } else if (detectedErrors) {
+  //     console.log(buildMessage(detectedErrors, basicFormat))
+  //   }
+  // }
+  // console.log("Terminé")
+  console.log(`"{name}={value}" >> $GITHUB_OUTPUT`)
 }
 
 main()

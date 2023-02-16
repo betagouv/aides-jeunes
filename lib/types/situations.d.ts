@@ -1,10 +1,11 @@
 import { individuLayout } from "./individu.js"
+import { enfantLayout } from "./enfant.d.js"
 
 export interface situationsLayout {
   dateDeValeur: number
   version?: number
   demandeur?: individuLayout
-  enfants?: any[] | null
+  enfants: enfantLayout[]
   famille?: any
   menage: situationsMenageLayout
   parents?: any

@@ -2,9 +2,10 @@
 import { situationsLayout } from "./situations.js"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { individuLayout } from "./individu.js"
+import { ResourcesTypes } from "../enums/resources.js"
 
 export interface resourceLayout {
-  id: string
+  id: ResourcesTypes
   label: string
   category: string
   prefix?: string

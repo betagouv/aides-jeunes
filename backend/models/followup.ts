@@ -179,23 +179,23 @@ FollowupSchema.pre("save", async function (next) {
   }
 })
 
-FollowupSchema.virtual("returnPath").get(function (this: any) {
+FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })
 
-FollowupSchema.virtual("surveyPath").get(function (this: any) {
+FollowupSchema.virtual("surveyPath").get(function (this) {
   return `/suivi?token=${this.accessToken}`
 })
 
-FollowupSchema.virtual("surveyPathTracker").get(function (this: any) {
+FollowupSchema.virtual("surveyPathTracker").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnBenefitActionEmail}`
 })
 
-FollowupSchema.virtual("wasUsefulPath").get(function (this: any) {
+FollowupSchema.virtual("wasUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful`
 })
 
-FollowupSchema.virtual("wasNotUsefulPath").get(function (this: any) {
+FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}`
 })
 

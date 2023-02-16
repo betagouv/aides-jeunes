@@ -6,7 +6,7 @@ export interface situationsLayout {
   demandeur?: individuLayout
   enfants?: any[] | null
   famille?: any
-  menage?: situationsMenageLayout
+  menage: situationsMenageLayout
   parents?: any
   conjoint?: any
   answers?: any

@@ -3,9 +3,9 @@ import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations.js"
 import { individuLayout } from "../lib/types/individu.js"
-import { resourceLayout } from "./types/resources.js"
+import { resourceLayout, resourceCategoryLayout } from "./types/resources.js"
 
-export const ressourceCategories = [
+export const ressourceCategories: resourceCategoryLayout[] = [
   {
     id: "revenusActivite",
     label: "Revenus d'activité",

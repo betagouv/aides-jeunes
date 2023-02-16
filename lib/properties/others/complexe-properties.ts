@@ -4,6 +4,8 @@ import Individu from "../../individu.js"
 import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
+import { logementQuestionLayout } from "../../types/logement.d.js"
+import { StepGeneratorLayout } from "../../types/steps.d.js"
 import dayjs from "dayjs"
 
 export default <{ [key: string]: any }>{
@@ -40,7 +42,10 @@ export default <{ [key: string]: any }>{
     getFormat: (step: any, propertyData: PropertyData) => {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       return [loyerData.loyerQuestion, loyerData.chargesQuestion]
-        .filter((question) => question)
+        .filter(
+          (question): question is logementQuestionLayout =>
+            typeof question !== "undefined"
+        )
         .map((question) => {
           return {
             text: question.label,
@@ -91,7 +96,7 @@ export default <{ [key: string]: any }>{
       )
     },
 
-    getFormat(step: any, propertyData: PropertyData) {
+    getFormat(step: StepGeneratorLayout, propertyData: PropertyData) {
       const answerFormat = this.getResourcesTypesByCategoryId(
         step,
         propertyData.simulation.answers.all
@@ -106,11 +111,11 @@ export default <{ [key: string]: any }>{
       })
 
       const category = ressourceCategories.find(
-        (category: any) => category.id === step.variable
+        (category) => category.id === step.variable
       )
 
       return {
-        text: category.label,
+        text: category?.label,
         answerFormat,
       }
     },

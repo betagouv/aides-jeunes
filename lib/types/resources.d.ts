@@ -20,3 +20,8 @@ export interface resourceLayout {
     openfiscaPeriod: string
   }[]
 }
+
+export interface resourceCategoryLayout {
+  id: string
+  label: string
+}

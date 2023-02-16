@@ -144,7 +144,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -162,7 +162,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -173,7 +173,7 @@ export const ressourceTypes: resourceLayout[] = [
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -198,7 +198,7 @@ export const ressourceTypes: resourceLayout[] = [
     prefix: "la",
     sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {

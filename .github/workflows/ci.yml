@@ -256,14 +256,14 @@ jobs:
           cp dist-server/backend/config/continuous-integration.js dist-server/backend/config/production.js
           nohup Xvfb :99 &
       - name: Cypress install
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v4
         if: steps.restore-cypress.outputs.cache-hit != 'true'
         with:
           browser: chrome
           config-file: cypress.config.ts
           runTests: false
       - name: Cypress run
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v4
         with:
           browser: chrome
           config-file: cypress.config.ts

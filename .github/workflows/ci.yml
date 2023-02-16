@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Cache NPM install files
@@ -53,7 +53,7 @@ jobs:
         with:
           path: .venv
           key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup VirtualEnv
@@ -175,7 +175,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
@@ -211,7 +211,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
@@ -306,7 +306,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules

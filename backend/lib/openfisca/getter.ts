@@ -1,8 +1,8 @@
 import axios from "axios"
 import config from "../../config/index.js"
 
-function get(item, callback) {
-  axios
+function get(item: string, callback: Function): Promise<void> {
+  return axios
     .get(`${config.openfiscaURL}${item}`)
     .then((response) => response.data)
     .then(function (result) {

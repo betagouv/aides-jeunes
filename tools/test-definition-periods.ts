@@ -8,7 +8,7 @@ const openfiscaPeriodToDefinitionPeriod = {
   fiscalYear: "YEAR",
 }
 
-const openfiscaPromise = []
+const openfiscaPromise: Array<Promise<void>> = []
 Object.keys(Common.requestedVariables).forEach((variableId) => {
   openfiscaPromise.push(
     OpenfiscaGetter.get(`/variable/${variableId}`, (data) => {
@@ -20,4 +20,5 @@ Object.keys(Common.requestedVariables).forEach((variableId) => {
     })
   )
 })
+
 Promise.all(openfiscaPromise).then(() => console.log("Test done"))

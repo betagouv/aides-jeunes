@@ -157,18 +157,17 @@ function basicFormat(data) {
 }
 
 function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${
-    benefitWithErrors.length
-  }) ont des liens dysfonctionnels :
+  return `Certaines aides référencées (${benefitWithErrors.length
+    }) ont des liens dysfonctionnels :
 
 ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  return `::set-output name=comment::${buildMessage(
+  return `'{comment}={${buildMessage(
     benefitWithErrors,
     githubRowFormat
-  )}`
+  )}}' >> $GITHUB_OUTPUT`
     .split("\n")
     .join("<br />")
 }

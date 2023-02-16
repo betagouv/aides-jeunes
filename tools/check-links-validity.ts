@@ -173,6 +173,9 @@ function buildGitHubIssueCommentText(benefitWithErrors) {
     }} >> $GITHUB_OUTPUT`
 }
 
+import * as fs from 'fs'
+import * as os from 'os'
+
 async function main() {
   // const benefitData = await getBenefitData()
   // const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
@@ -187,6 +190,10 @@ async function main() {
   //   }
   // }
   // console.log("Terminé")
+
+  fs.appendFileSync(process.env.GITHUB_OUTPUT, `comment=value${os.EOL}`, {
+    encoding: 'utf8'
+  })
   console.log(`"{name}={value}" >> $GITHUB_OUTPUT`)
 }
 

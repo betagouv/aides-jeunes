@@ -1,4 +1,4 @@
-export interface datesGeneratorLayout {
+export interface typicalDatesLayout {
   today: {
     id: string
     value: any

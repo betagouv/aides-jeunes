@@ -113,7 +113,7 @@ export default <{ [key: string]: any }>{
       const category = ressourceCategories.find(
         (category) => category.id === step.variable
       )
-      console.log(step)
+
       return {
         text: category?.label,
         answerFormat,

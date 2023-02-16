@@ -8,7 +8,6 @@ function Step(
   this: StepLayout,
   { key, entity, id, variable, chapter }: StepLayout
 ) {
-  console.log({ key, entity, id, variable, chapter })
   this.path = entity
     ? `/simulation/${entity}${id ? `/${id}` : ""}${
         variable ? `/${variable}` : ""

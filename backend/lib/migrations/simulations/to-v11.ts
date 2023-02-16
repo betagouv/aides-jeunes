@@ -55,7 +55,9 @@ function replaceAutoEntrepeneurInRpnsRessources(answers) {
         }
 
         // Récupères le montant des 4 derniers mois et fait la moyenne des résultats pour calculer le revenu annuel
-        const year = Object.keys(result.amounts).find((key) => key.length === 4)
+        const year = Object.keys(result.amounts).find(
+          (key) => key.length === 4
+        )!
         const amountsByMonthKey = Object.keys(result.amounts).filter(
           (key) => key.length === 7
         )

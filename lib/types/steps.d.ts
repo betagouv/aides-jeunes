@@ -1,4 +1,5 @@
 export interface StepLayout {
+  path?: string
   key?: string
   entity?: string
   id?: string

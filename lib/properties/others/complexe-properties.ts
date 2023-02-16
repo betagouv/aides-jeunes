@@ -5,7 +5,7 @@ import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
 import { logementQuestionLayout } from "../../types/logement.d.js"
-import { StepGeneratorLayout } from "../../types/steps.d.js"
+import { StepLayout } from "../../types/steps.d.js"
 import dayjs from "dayjs"
 
 export default <{ [key: string]: any }>{
@@ -96,7 +96,7 @@ export default <{ [key: string]: any }>{
       )
     },
 
-    getFormat(step: StepGeneratorLayout, propertyData: PropertyData) {
+    getFormat(step: StepLayout, propertyData: PropertyData) {
       const answerFormat = this.getResourcesTypesByCategoryId(
         step,
         propertyData.simulation.answers.all

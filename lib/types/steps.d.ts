@@ -8,24 +8,9 @@ export interface StepLayout {
   isActive?: boolean
 }
 
-export interface StepGeneratorLayout {
-  path: string
-  key: string
-  entity: string
-  id: string
-  variable: string
-  chapter: string
-  isActive?: boolean
-}
-
-export interface ComplexStepLayout {
+export interface ComplexStepLayout extends StepLayout {
   route?: string
   variables?: StepLayout[]
-  chapter?: string
-  entity?: string
-  variable?: string
-  id?: string
-  isActive?: boolean
 }
 
 export interface ComplexStepGeneratorLayout {

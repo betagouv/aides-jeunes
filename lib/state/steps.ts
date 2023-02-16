@@ -1,7 +1,6 @@
 import {
   StepLayout,
   ComplexStepLayout,
-  StepGeneratorLayout,
   ComplexStepGeneratorLayout,
 } from "../types/steps.js"
 

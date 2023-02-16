@@ -7,7 +7,6 @@ import express from "express"
 import Followup from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/types/survey.js"
-import "../backend/lib/mes-aides/emails/benefit-action.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 

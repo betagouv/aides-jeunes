@@ -5,9 +5,7 @@ import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
 import { SurveyLayout, SurveyType } from "../../lib/types/survey.js"
-import renderEmail from "../lib/mes-aides/emails/email-render.js"
-import renderSimulationUsefulnessEmail from "../lib/mes-aides/emails/simulation-usefulness.js"
-import renderBenefitActionEmail from "../lib/mes-aides/emails/benefit-action.js"
+import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
 import { EmailType } from "../types/email.js"
@@ -66,7 +64,7 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
 })
 
 FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return renderEmail(EmailType.simulationResults, this)
+  return emailRender(EmailType.simulationResults, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", function () {
@@ -94,9 +92,9 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyType.trackClickOnBenefitActionEmail:
-      return renderBenefitActionEmail(this)
+      return emailRender(EmailType.benefitAction, this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
-      return renderSimulationUsefulnessEmail(this)
+      return emailRender(EmailType.simulationUsefulness, this)
     case SurveyType.benefitAction:
       return Promise.reject(
         new Error(

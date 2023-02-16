@@ -48,17 +48,16 @@ const dataTempateBuilder = (
   emailType,
   followup,
   formatedBenefits,
-  benefits,
-  parameters
+  benefitTexts
 ) => {
   return {
-    benefitTexts: benefits.map((benefit) =>
-      basicBenefitText(benefit, parameters)
-    ),
+    benefitTexts,
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     droits: formatedBenefits,
     returnURL: `${config.baseURL}${followup.returnPath}`,
+    wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
+    wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,
     partials: {
       header: headerTemplate,
       content: emailTemplates[emailType],
@@ -132,45 +131,66 @@ function renderAsHtml(emailType, dataTemplate) {
 }
 
 export default async function emailRender(emailType, followup) {
-  const populated = await (followup.populated("simulation")
-    ? Promise.resolve(followup)
-    : followup.populate("simulation"))
+  let benefits: any = null
+  let parameters: any = null
+  if (emailType === EmailType.simulationResults) {
+    const populated = await (followup.populated("simulation")
+      ? Promise.resolve(followup)
+      : followup.populate("simulation"))
 
-  const parameters = await openfiscaController.getParameters(
-    populated.simulation.dateDeValeur
-  )
+    parameters = await openfiscaController.getParameters(
+      populated.simulation.dateDeValeur
+    )
 
-  const situationResults = await populated.simulation.compute()
-  const benefits = situationResults.droitsEligibles
-  followup.benefits = benefits.map((benefit) => ({
-    id: benefit.id,
-    amount: benefit.montant,
-    unit: benefit.unit,
-  }))
-  followup.save()
+    const situationResults = await populated.simulation.compute()
+    benefits = situationResults.droitsEligibles
+    followup.benefits = benefits.map((benefit) => ({
+      id: benefit.id,
+      amount: benefit.montant,
+      unit: benefit.unit,
+    }))
+    followup.save()
+  }
 
   const formatedBenefits =
     emailType === EmailType.simulationResults
       ? formatBenefits(benefits, parameters)
-      : null
+      : {}
+
+  const benefitTexts =
+    emailType === EmailType.simulationResults
+      ? benefits.map((benefit) => basicBenefitText(benefit, parameters))
+      : {}
 
   const dataTemplate = dataTempateBuilder(
     emailType,
     followup,
     formatedBenefits,
-    benefits,
-    parameters
+    benefitTexts
   )
 
   return Promise.all([
     renderAsText(emailType, dataTemplate),
     renderAsHtml(emailType, dataTemplate),
-  ]).then(function (values) {
-    return {
-      subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
-      text: values[0],
-      html: values[1].html,
-      attachments: values[1].attachments,
+  ]).then((values) => {
+    if (emailType === EmailType.simulationResults) {
+      return {
+        subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+        text: values[0],
+        html: values[1].html,
+        attachments: values[1].attachments,
+      }
+    } else if (
+      emailType === EmailType.benefitAction ||
+      EmailType.simulationUsefulness
+    ) {
+      return {
+        subject: `[${
+          followup.simulation?._id || followup.simulation
+        }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
+        text: values[0],
+        html: values[1].html,
+      }
     }
   })
 }

@@ -50,7 +50,6 @@ export class Property {
   }
 
   getValueOrExecuteFunction(key: string, propertyData: PropertyData): any {
-    // @ts-ignore
     return typeof this[key] === "function" ? this[key](propertyData) : this[key]
   }
 

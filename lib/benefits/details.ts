@@ -1,4 +1,3 @@
-// @ts-ignore
 import currency from "currency.js"
 import { droitEstimeLayout } from "../types/details.js"
 

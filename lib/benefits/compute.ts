@@ -58,7 +58,6 @@ export function round(amount, aide) {
 export function computeAides(situation, id, openfiscaResponse, showPrivate) {
   const periods = generator(situation.dateDeValeur)
 
-  // @ts-ignore
   computeJavascriptBenefits(this, situation, openfiscaResponse)
 
   const customizationIds = determineCustomizationIds(situation)
@@ -77,7 +76,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
       ...(situation.enfants || [])
     )
   )
-  // @ts-ignore
+
   this.all
     .filter((benefit) => showPrivate || !benefit.private)
     .forEach((benefit) => {
@@ -92,7 +91,6 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         }) ||
         valueAt(benefit.id, situation.famille, period) !== undefined
       ) {
-        // @ts-ignore
         return result.droitsInjectes.push(
           // @ts-ignore
           assign({}, benefit, {
@@ -149,7 +147,6 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
     })
 
   if (situation.demandeur._interetsAidesVelo?.length) {
-    // @ts-ignore
     const aidesVeloList = this.all.filter((b) => b.source === "aides-velo")
     computeAidesVeloBenefits(
       aidesVeloList,

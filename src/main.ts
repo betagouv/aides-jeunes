@@ -9,7 +9,6 @@ import router from "./router.js"
 import StateService from "./plugins/state-service.js"
 
 import * as Sentry from "@sentry/vue"
-// @ts-ignore
 import VueMatomo from "vue-matomo"
 
 import "@/styles/aides-jeunes.css"

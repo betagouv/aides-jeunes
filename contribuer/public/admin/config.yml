@@ -961,3 +961,19 @@ collections:
         widget: hidden
         required: false
       - *field_benefit_position
+  - name: institution_types
+    label: Type d'Institutions
+    label_singular: institution type
+    identifier_field: name
+    folder: "data/institution_types"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{name}}"
+    extension: yml
+    fields:
+      - label: Nom de votre type d'institution
+        hint: Commune, EPCI, CAF, MSA, autres, etc.
+        name: name
+        widget: string

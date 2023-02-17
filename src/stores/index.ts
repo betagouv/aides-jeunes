@@ -312,7 +312,9 @@ export const useStore = defineStore("store", {
     async migrateSituationIdToSimulationId() {
       if (this.situationId) {
         await this.setSimulationId(this.situationId)
-        this.deleteSituationId()
+        if (this.simulationId) {
+          this.deleteSituationId()
+        }
       }
     },
     initialize() {

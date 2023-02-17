@@ -77,8 +77,8 @@ function getPersitedStateProperties(
   save = false
 ): PersistedStore {
   const persistedStoreData: PersistedStore = {
-    simulationId: state.simulationId || state.simulationId,
-    situationId: state.simulationId,
+    simulationId: state.simulationId || state.situationId,
+    situationId: state.situationId,
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
     ameliNoticationDone: state.ameliNoticationDone,

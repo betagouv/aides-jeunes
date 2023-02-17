@@ -306,15 +306,15 @@ export const useStore = defineStore("store", {
       this.simulation.patrimoine = patrimoine
       this.setDirty()
     },
-    deleteSituationId() {
-      delete this.situationId
-    },
+    // deleteSituationId() {
+    //   delete this.situationId
+    // },
     async migrateSituationIdToSimulationId() {
       if (this.situationId) {
         await this.setSimulationId(this.situationId)
-        if (this.simulationId) {
-          this.deleteSituationId()
-        }
+        // if (this.simulationId) {
+        //   this.deleteSituationId()
+        // }
       }
     },
     initialize() {

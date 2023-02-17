@@ -42,7 +42,7 @@ function getUsageData(fromDate, toDate) {
     })
     .then((response) => response.data)
     .then(formatPiwik)
-  //.catch(() => [])
+    .catch(() => [])
 }
 
 export default { getUsageData }

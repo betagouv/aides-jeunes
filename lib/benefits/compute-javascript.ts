@@ -22,7 +22,7 @@ const includesAndExcludesCondition = (condition, value) => {
 }
 const PROFILE_STRATEGY = {
   apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation?.demandeur?._contrat_alternant === "apprenti"
+    return situation.demandeur?._contrat_alternant === "apprenti"
   },
   beneficiaire_rsa: (data) => {
     return testRSARecipient(data)
@@ -252,7 +252,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
   },
   taux_incapacite: {
     test: (condition, { situation }: { situation: situationsLayout }) => {
-      const taux_incapacite = situation?.demandeur?.taux_incapacite || 0
+      const taux_incapacite = situation.demandeur?.taux_incapacite || 0
       return condition.values.some((value) => {
         switch (value) {
           case "inferieur_50":

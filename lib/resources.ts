@@ -90,7 +90,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "des",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
   {
@@ -99,7 +99,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "le",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.id !== "demandeur" || Boolean(situation.enfants.length)
+      return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
   {
@@ -111,7 +111,7 @@ export const ressourceTypes: resourceLayout[] = [
       return (
         individu.id !== "demandeur" ||
         Boolean(
-          situation.enfants.filter((enfant) => enfant.garde_alternee).length
+          situation.enfants?.filter((enfant) => enfant.garde_alternee).length
         )
       )
     },
@@ -211,7 +211,7 @@ export const ressourceTypes: resourceLayout[] = [
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
-        Boolean(situation.enfants.filter((enfant) => enfant.handicap).length)
+        Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
       )
     },
   },
@@ -223,7 +223,7 @@ export const ressourceTypes: resourceLayout[] = [
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.handicap ||
-        Boolean(situation.enfants.filter((enfant) => enfant.handicap).length)
+        Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
       )
     },
   },

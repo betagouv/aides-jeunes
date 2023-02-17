@@ -55,6 +55,7 @@ const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
     abtesting: { type: Map, of: String },
     finishedAt: Date,
     createdAt: { type: Date, default: Date.now },
+    hasFollowup: Boolean,
     modifiedFrom: String,
     status: {
       type: String,

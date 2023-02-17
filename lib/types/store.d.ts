@@ -62,6 +62,7 @@ export interface PersistedStore {
 
 export interface Store {
   simulationId: string | null
+  situationId: string | null
   simulation: Simulation
   message: {
     text: string | null

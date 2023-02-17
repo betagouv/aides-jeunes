@@ -38,6 +38,7 @@ function defaultStore(): Store {
 
   return {
     simulationId: null,
+    situationId: null,
     simulation: {
       answers: {
         all: [],

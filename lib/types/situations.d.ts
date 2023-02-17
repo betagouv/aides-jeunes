@@ -4,7 +4,7 @@ import { enfantLayout } from "./enfant.d.js"
 export interface situationsLayout {
   dateDeValeur: number
   version?: number
-  demandeur?: individuLayout
+  demandeur: individuLayout
   enfants: enfantLayout[]
   famille?: any
   menage: situationsMenageLayout

@@ -169,7 +169,7 @@ export function generateSituation(simulation, useAll?: any) {
         situation[answer.entityName][answer.fieldName] = answer.value
         if (answer.value) {
           situation.conjoint = generateDefaultIndividu("conjoint", "conjoint")
-        } else if (situation?.demandeur) {
+        } else if (situation.demandeur) {
           situation.demandeur.statut_marital = "celibataire"
         }
       } else if (situation[answer.entityName]) {

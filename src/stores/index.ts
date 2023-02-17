@@ -306,6 +306,15 @@ export const useStore = defineStore("store", {
       this.simulation.patrimoine = patrimoine
       this.setDirty()
     },
+    deleteSituationId() {
+      delete this.situationId
+    },
+    migrateSituationIdToSimulationId() {
+      if (this.situationId) {
+        this.setSimulationId(this.situationId)
+        this.deleteSituationId()
+      }
+    },
     initialize() {
       Object.assign(this, restoreLocal(), { saveSituationError: null })
     },

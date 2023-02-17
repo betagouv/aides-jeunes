@@ -35,11 +35,7 @@ export default {
     },
   },
   mounted() {
-    // migrate old situationId to simulationId
-    if (this.store.situationId) {
-      this.store.setSimulationId(this.store.situationId)
-      delete this.store.situationId
-    }
+    this.store.migrateSituationIdToSimulationId()
   },
 }
 </script>

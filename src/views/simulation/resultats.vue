@@ -106,6 +106,7 @@ export default {
     }
   },
   mounted() {
+    this.store.migrateSituationIdToSimulationId()
     this.store.updateCurrentAnswers(this.$route.path)
 
     let vm = this

@@ -212,8 +212,7 @@ jobs:
           MES_AIDES_ROOT_URL="https://github-actions/" npm run build:iframes
       - name: Validate Iframe build
         shell: bash
-        run: |
-          ./tools/iframe-build-control.sh"
+        run: ./tools/iframe-build-control.sh"
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

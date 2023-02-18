@@ -208,8 +208,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Build assets
-        run: |
-          MES_AIDES_ROOT_URL="https://github-actions/" npm run build:iframes
+        run: NODE_ENV=production npm run build:iframes
       - name: Validate Iframe build
         shell: bash
         run: "${GITHUB_WORKSPACE}/tools/iframe-build-control.sh"

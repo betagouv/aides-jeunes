@@ -213,7 +213,7 @@ jobs:
       - name: Validate Iframe build
         shell: bash
         run: |
-          if "${GITHUB_WORKSPACE}/tools/iframe-build-control.sh" ; then echo "::set-output name=status::success" ; fi
+          ./tools/iframe-build-control.sh"
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

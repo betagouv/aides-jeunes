@@ -1,5 +1,6 @@
 FILE=./public/documents/iframe-integration.js
 
+Set -e
 
 echo "Testing iframe build"
 if [ -f "$FILE" ]; then

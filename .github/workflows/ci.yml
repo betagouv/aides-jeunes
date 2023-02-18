@@ -141,11 +141,7 @@ jobs:
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
       - name: Build assets
         run: |
-          MES_AIDES_ROOT_URL="https://github-actions/" npm run build:iframes
-      - name: Validate Iframe build
-        shell: bash
-        run: |
-          if "${GITHUB_WORKSPACE}/tools/iframe-build-control.sh" ; then echo "::set-output name=status::success" ; fi
+          npm run build
   build_contribuer:
     name: Build contribuer/ static site
     runs-on: ubuntu-20.04
@@ -199,6 +195,25 @@ jobs:
         run: |
           source .venv/bin/activate
           npm run test tests/unit/openfisca/test.spec.js
+  iframe_build_control:
+    name: Iframe build control
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore node modules
+        uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Build assets
+        run: |
+          MES_AIDES_ROOT_URL="https://github-actions/" npm run build:iframes
+      - name: Validate Iframe build
+        shell: bash
+        run: |
+          if "${GITHUB_WORKSPACE}/tools/iframe-build-control.sh" ; then echo "::set-output name=status::success" ; fi
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

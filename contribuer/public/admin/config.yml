@@ -292,24 +292,25 @@ fields:
   field_institution_type: &field_institution_type
     label: Institution type
     name: type institution
-    widget: relation
+    widget: select
+    options: *field_geographical_type
     collection: institution_types
     value_field: "{{slug}}"
     display_fields: ["{{slug}}"]
     search_fields: [slug, name]
     allow_multiple: true
     options_length: -1
-    options: *field_geographical_type
     hint: Si votre type d'institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_institution: &field_institution
     label: Institution
     name: institution
     widget: relation
-    collection: institution
+    collection: institutions
     value_field: "{{slug}}"
     display_fields: ["{{slug}}"]
     search_fields: [slug, name ]
-    allow_multiple: false
+    allow_multiple: true
+    options_length: -1
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
@@ -935,10 +936,6 @@ collections:
             "Seul les images au format JPG et PNG sont supportées",
           ]
       - *field_institution_type
-      - label: Type géographique
-        name: type 
-        widget: select
-        options: *field_geographical_type
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee
@@ -984,3 +981,7 @@ collections:
         hint: Commune, EPCI, CAF, MSA, autres, etc.
         name: name
         widget: string
+      - label: Type géographique
+        name: type 
+        widget: select
+        options: *field_geographical_type

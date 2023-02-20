@@ -371,7 +371,7 @@ jobs:
         iframe_build_control,
         test_e2e,
       ]
-    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
+    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure')
     steps:
       - name: Send CI failed message
         shell: bash

@@ -103,19 +103,11 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate) {
         )
       }
 
-      let value = valueAt(
-        `${benefit.id}_non_calculable`,
-        computedRessources,
-        period
+      const source = benefit.openfisca_eligibility_source || benefit.id
+      const value = round(
+        valueAt(source, computedRessources, period, benefit),
+        benefit
       )
-
-      if (!value || value === "calculable") {
-        const source = benefit.openfisca_eligibility_source || benefit.id
-        value = round(
-          valueAt(source, computedRessources, period, benefit),
-          benefit
-        )
-      }
 
       if (!value || !customizationIds) {
         return

@@ -33,9 +33,6 @@ describe("computeAides", function () {
     openfiscaResult = {
       familles: {
         _: {
-          rsa_non_calculable: {
-            "2014-11": "error",
-          },
           rsa: {
             "2014-11": 0,
           },
@@ -137,19 +134,6 @@ describe("computeAides", function () {
       })
       expect(logement_social).toBeTruthy()
       expect(logement_social.montant).toBeTruthy()
-    })
-  })
-
-  describe("computeAides uncomputability highlighted", function () {
-    beforeEach(function () {
-      droits = compute(situation, "id", openfiscaResult)
-    })
-
-    it("should extract reason of uncomputability", function () {
-      const rsa = droits.droitsEligibles.find(function (element) {
-        return element.id === "rsa"
-      })
-      expect(rsa.montant).toEqual("error")
     })
   })
 

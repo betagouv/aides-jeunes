@@ -3,6 +3,8 @@ import Config from "../backend/config/index"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
+import fs from "fs"
+import os from "os"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
@@ -165,12 +167,17 @@ ${benefitWithErrors.map(rowFormat).join("\n")}`
 }
 
 function buildGitHubIssueCommentText(benefitWithErrors) {
-  return `::set-output name=comment::${buildMessage(
-    benefitWithErrors,
-    githubRowFormat
-  )}`
+  const issueContent = `${buildMessage(benefitWithErrors, githubRowFormat)
     .split("\n")
-    .join("<br />")
+    .join("<br />")}`
+
+  fs.appendFileSync(
+    process.env.GITHUB_OUTPUT,
+    `comment=${issueContent}${os.EOL}`,
+    {
+      encoding: "utf8",
+    }
+  )
 }
 
 async function main() {
@@ -181,7 +188,7 @@ async function main() {
     .sort((a, b) => -(a.priority - b.priority))
   if (detectedErrors.length > 0) {
     if (process.argv.slice(2).includes("--ci")) {
-      console.log(buildGitHubIssueCommentText(detectedErrors))
+      buildGitHubIssueCommentText(detectedErrors)
     } else if (detectedErrors) {
       console.log(buildMessage(detectedErrors, basicFormat))
     }

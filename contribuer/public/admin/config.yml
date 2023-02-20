@@ -289,17 +289,6 @@ fields:
     label: Nom de l'aide
     name: label
     widget: string
-  field_institution_type: &field_institution_type
-    label: Institution type
-    name: institution_type
-    widget: relation
-    collection: institution_types
-    value_field: "{{slug}}"
-    display_fields: ["{{name}}" ]
-    search_fields: [slug, name]
-    allow_multiple: false
-    options_length: -1
-    hint: Si votre type d'institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_institution: &field_institution
     label: Institution
     name: institution
@@ -939,7 +928,14 @@ collections:
             '(\.png|\.jpg|\.jpeg)',
             "Seul les images au format JPG et PNG sont supportées",
           ]
-      - *field_institution_type
+      - label: Institution type
+        name: type
+        widget: relation
+        collection: institution_types
+        value_field: "{{name}}"
+        search_fields: [slug, name]
+        allow_multiple: false
+        options_length: -1
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee

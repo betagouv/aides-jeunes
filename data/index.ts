@@ -62,7 +62,7 @@ export function generate(
   apaGenerator
 ) {
   const institutions = transformInstitutions(collections.institutions.items)
-  console.log(collections.institutionTypes.items)
+  console.log(collections.institutionTypes?.items)
   if (collections.institutions.items.length == 0) {
     throw new Error("Aucun type d'institution")
   }

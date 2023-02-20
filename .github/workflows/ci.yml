@@ -268,7 +268,7 @@ jobs:
           browser: chrome
           config-file: cypress.config.ts
           start: npm run ci
-          wait-on: "http://localhost:8080, http://localhost:2000/variables, http://127.0.0.1:27017"
+          wait-on: "http://127.0.0.1:8080, http://127.0.0.1:2000/variables, http://127.0.0.1:27017"
           install: false
           spec: cypress/e2e/${{matrix.test}}.cy.js
       - name: Upload cypress videos

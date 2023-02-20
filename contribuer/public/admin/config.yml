@@ -291,26 +291,30 @@ fields:
     widget: string
   field_institution_type: &field_institution_type
     label: Institution type
-    name: type institution
-    widget: select
-    options: *field_geographical_type
+    name: institution_type
+    widget: relation
     collection: institution_types
     value_field: "{{slug}}"
-    display_fields: ["{{slug}}"]
+    display_fields: ["{{name}}" ]
     search_fields: [slug, name]
-    allow_multiple: true
+    allow_multiple: false
     options_length: -1
     hint: Si votre type d'institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_institution: &field_institution
     label: Institution
     name: institution
-    widget: relation
+    widget: institution
     collection: institutions
     value_field: "{{slug}}"
-    display_fields: ["{{slug}}"]
+    display_fields: ["{{name}}"]
     search_fields: [slug, name ]
-    allow_multiple: true
+    allow_multiple: false
     options_length: -1
+    filter:
+      label: "Type :"
+      default: "*"
+      target: "type"
+      fields: *field_geographical_type
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
@@ -981,7 +985,3 @@ collections:
         hint: Commune, EPCI, CAF, MSA, autres, etc.
         name: name
         widget: string
-      - label: Type géographique
-        name: type 
-        widget: select
-        options: *field_geographical_type

@@ -13,7 +13,7 @@ const all: ConfigurationLayout = {
     process.env.MES_AIDES_ROOT_URL ||
     "https://mes-aides.1jeune1solution.beta.gouv.fr",
   openfiscaURL:
-    process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://localhost:2000",
+    process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",
   openfiscaAxeURL: "https://betagouv.github.io/mes-aides-changent",
   openfiscaPublicURL:
     process.env.OPENFISCA_PUBLIC_ROOT_URL ||

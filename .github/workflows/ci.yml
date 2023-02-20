@@ -265,7 +265,7 @@ jobs:
       - name: Check openfisca status
         shell: bash
         run: |
-          curl http://127.0.0.1:2000/variable/parisien
+          curl http://localhost:2000/variable/parisien
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:

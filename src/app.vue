@@ -34,8 +34,5 @@ export default {
       return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
     },
   },
-  mounted() {
-    this.store.migrateSituationIdToSimulationId()
-  },
 }
 </script>

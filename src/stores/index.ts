@@ -38,7 +38,6 @@ function defaultStore(): Store {
 
   return {
     simulationId: null,
-    situationId: null,
     simulation: {
       answers: {
         all: [],
@@ -306,15 +305,6 @@ export const useStore = defineStore("store", {
     setPatrimoine(patrimoine: any) {
       this.simulation.patrimoine = patrimoine
       this.setDirty()
-    },
-    deleteSituationId() {
-      delete this.situationId
-    },
-    async migrateSituationIdToSimulationId() {
-      if (this.situationId) {
-        await this.setSimulationId(this.situationId)
-        this.deleteSituationId()
-      }
     },
     initialize() {
       Object.assign(this, restoreLocal(), { saveSituationError: null })

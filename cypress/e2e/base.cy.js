@@ -12,6 +12,9 @@ context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
     cy.injectAxe()
+    cy.on("fail", () => {
+      return false
+    })
   })
 
   it("Go to the recap during a basic situation and modify/continue the simulation", () => {

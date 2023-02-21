@@ -55,4 +55,51 @@ export function formatBenefits(benefits, parameters) {
       benefitLabel: capitalize(droit.label),
     })
   })
+<<<<<<< HEAD
+=======
+
+  return mustache
+    .render(mjmlTemplate, {
+      droits: droits,
+      baseURL: config.baseURL,
+      returnURL: `${config.baseURL}${followup.returnPath}`,
+    })
+    .then(function (templateString) {
+      const output = mjml(templateString)
+      return {
+        html: output.html,
+      }
+    })
+}
+
+export default async function render(followup) {
+  const populated = await (followup.populated("simulation")
+    ? Promise.resolve(followup)
+    : followup.populate("simulation"))
+
+  const parameters = await openfiscaController.getParameters(
+    populated.simulation.dateDeValeur
+  )
+
+  const situationResults = await populated.simulation.compute()
+  const droitsEligibles = situationResults.droitsEligibles
+  followup.benefits = droitsEligibles.map((benefit) => ({
+    id: benefit.id,
+    amount: benefit.montant,
+    unit: benefit.unit,
+  }))
+  followup.save()
+
+  return Promise.all([
+    renderAsText(followup, droitsEligibles, parameters),
+    renderAsHtml(followup, droitsEligibles, parameters),
+  ]).then(function (values) {
+    return {
+      subject: `Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
+      text: values[0],
+      html: values[1].html,
+      attachments: values[1].attachments,
+    }
+  })
+>>>>>>> 3b9282283 (Changement ordre affichage sujet email)
 }

@@ -38,6 +38,7 @@
     "tools:serve-mail": "ts-node ./tools/mjml",
     "tools:test-benefits-geographical-constraint-consistency": "ts-node ./tools/test-benefits-geographical-constraint-consistency",
     "tools:test-definition-periods": "ts-node ./tools/test-definition-periods",
+    "tools:test-iframe-generation": "./tools/iframe-build-control.sh",
     "migrate": "ts-node ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {

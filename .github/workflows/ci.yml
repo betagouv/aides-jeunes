@@ -211,7 +211,7 @@ jobs:
         run: NODE_ENV=production npm run build:iframes
       - name: Validate Iframe build
         shell: bash
-        run: "${GITHUB_WORKSPACE}/tools/iframe-build-control.sh"
+        run: "npm run tools:test-iframe-generation"
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]

@@ -1,20 +1,11 @@
-import { capitalize, map, assign } from "lodash-es"
-import fs from "fs"
-import path from "path"
-import consolidate from "consolidate"
+import { assign, capitalize, map } from "lodash-es"
 
-const mustache = consolidate.mustache
-import config from "../../../config/index.js"
-import openfiscaController from "../../openfisca/parameters.js"
 import {
   formatDroitEstime,
   getBenefitImage,
 } from "../../../../lib/benefits/details.js"
-import { mjml } from "./index.js"
 
-const __dirname = new URL(".", import.meta.url).pathname
-
-function basicBenefitText(droit, parameters) {
+export function basicBenefitText(droit, parameters) {
   const droitEstime = formatDroitEstime(droit, parameters)
 
   if (droit.labelFunction) {
@@ -31,27 +22,8 @@ function basicBenefitText(droit, parameters) {
   return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
 }
 
-const textTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/simulation-results.txt"),
-  "utf8"
-)
-const mjmlTemplate = fs.readFileSync(
-  path.join(__dirname, "templates/simulation-results.mjml"),
-  "utf8"
-)
-
-function renderAsText(followup, benefits, parameters) {
-  const data = {
-    benefitTexts: benefits.map((benefit) =>
-      basicBenefitText(benefit, parameters)
-    ),
-    returnURL: `${config.baseURL}${followup.returnPath}`,
-  }
-  return mustache.render(textTemplate, data)
-}
-
-function renderAsHtml(followup, benefits, parameters) {
-  const droits = map(benefits, function (droit) {
+export function formatBenefits(benefits, parameters) {
+  return map(benefits, function (droit) {
     let value = ""
     const droitEstime = formatDroitEstime(droit, parameters)
 
@@ -80,51 +52,7 @@ function renderAsHtml(followup, benefits, parameters) {
       montant: value,
       ctaLink: ctaLink,
       ctaLabel: ctaLabel,
-      droitLabel: capitalize(droit.label),
+      benefitLabel: capitalize(droit.label),
     })
-  })
-
-  return mustache
-    .render(mjmlTemplate, {
-      droits: droits,
-      baseURL: config.baseURL,
-      returnURL: `${config.baseURL}${followup.returnPath}`,
-    })
-    .then(function (templateString) {
-      const output = mjml(templateString)
-      return {
-        html: output.html,
-      }
-    })
-}
-
-export default async function render(followup) {
-  const populated = await (followup.populated("simulation")
-    ? Promise.resolve(followup)
-    : followup.populate("simulation"))
-
-  const parameters = await openfiscaController.getParameters(
-    populated.simulation.dateDeValeur
-  )
-
-  const situationResults = await populated.simulation.compute()
-  const droitsEligibles = situationResults.droitsEligibles
-  followup.benefits = droitsEligibles.map((benefit) => ({
-    id: benefit.id,
-    amount: benefit.montant,
-    unit: benefit.unit,
-  }))
-  followup.save()
-
-  return Promise.all([
-    renderAsText(followup, droitsEligibles, parameters),
-    renderAsHtml(followup, droitsEligibles, parameters),
-  ]).then(function (values) {
-    return {
-      subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
-      text: values[0],
-      html: values[1].html,
-      attachments: values[1].attachments,
-    }
   })
 }

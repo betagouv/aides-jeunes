@@ -385,3 +385,7 @@
   align-items: center;
   gap: 16px;
 }
+
+.aj-iframe-content .aj-main-container {
+  min-height: 0vh !important;
+}

@@ -133,7 +133,7 @@ export const additionalBenefitAttributes = {
   },
   livret_epargne_populaire_taux: {
     labelFunction: function (b) {
-      return `${b.label} avec un taux de ${b.montant}% / an ${b.legend}`
+      return `${b.label} avec un taux de ${b.montant}% an ${b.legend}`
     },
     legend: (parameters: openfiscaParametersLayout) =>
       `au lieu de ${

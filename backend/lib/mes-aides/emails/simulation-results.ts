@@ -1,3 +1,5 @@
+import { capitalize } from "lodash-es"
+
 import {
   formatDroitEstime,
   getBenefitImage,

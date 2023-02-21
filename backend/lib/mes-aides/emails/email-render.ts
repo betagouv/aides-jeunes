@@ -1,4 +1,3 @@
-import { capitalize } from "lodash-es"
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"

@@ -67,6 +67,8 @@
 </template>
 <script setup>
 import { useAttrs } from "vue"
+import { useStore } from "@/stores/index.ts"
+const store = useStore()
 const attributes = useAttrs()
 const parameters = {
   homeTo:
@@ -78,7 +80,7 @@ const parameters = {
   quickLinks: [
     {
       label: "Retour à l'accueil du simulateur",
-      path: "/",
+      path: store.inIframe ? "/?iframe=true" : "/",
     },
   ],
 }

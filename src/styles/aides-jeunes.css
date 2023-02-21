@@ -385,3 +385,8 @@
   align-items: center;
   gap: 16px;
 }
+
+.aj-iframe-content .aj-main-container,
+.aj-iframe-content .aj-fr-col-12 {
+  min-height: 0vh !important;
+}

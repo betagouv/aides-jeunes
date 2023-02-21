@@ -13,9 +13,6 @@ context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
     cy.injectAxe()
-    cy.on("fail", () => {
-      return false
-    })
   })
 
   it("accept a basic situation", () => {

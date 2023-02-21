@@ -181,23 +181,6 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
-  field_geographical_type: &field_geographical_type
-    - label: Organisation nationale
-      value: national
-    - label: Région
-      value: region
-    - label: Département
-      value: departement
-    - label: CAF locale
-      value: caf
-    - label: MSA locale
-      value: msa
-    - label: EPCI (Métropole, inter-communauté, etc.)
-      value: epci
-    - label: Commune
-      value: commune
-    - label: Autre
-      value: autre
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -296,14 +279,13 @@ fields:
     collection: institutions
     value_field: "{{slug}}"
     display_fields: ["{{name}}"]
-    search_fields: [slug, name ]
+    search_fields: [slug, name]
     allow_multiple: false
     options_length: -1
     filter:
       label: "Type :"
       default: "*"
       target: "type"
-      fields: *field_geographical_type
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
@@ -928,14 +910,13 @@ collections:
             '(\.png|\.jpg|\.jpeg)',
             "Seul les images au format JPG et PNG sont supportées",
           ]
-      - label: Institution type
+      - label: Type géographique
         name: type
         widget: relation
         collection: institution_types
         value_field: "{{name}}"
         search_fields: [slug, name]
         allow_multiple: false
-        options_length: -1
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee
@@ -966,8 +947,8 @@ collections:
         required: false
       - *field_benefit_position
   - name: institution_types
-    label: Type d'Institutions
-    label_singular: institution type
+    label: Types d'institution
+    label_singular: institution types
     identifier_field: name
     folder: "data/institution_types"
     create: true

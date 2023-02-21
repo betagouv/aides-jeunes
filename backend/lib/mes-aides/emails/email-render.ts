@@ -6,10 +6,7 @@ import consolidate from "consolidate"
 const mustache = consolidate.mustache
 import config from "../../../config/index.js"
 import openfiscaController from "../../openfisca/parameters.js"
-import {
-  formatDroitEstime,
-  getBenefitImage,
-} from "../../../../lib/benefits/details.js"
+import { formatBenefits, basicBenefitText } from "./simulation-results.js"
 import { mjml } from "./index.js"
 import { EmailType } from "../../../types/email.js"
 
@@ -44,7 +41,7 @@ const textTemplates = {
   [EmailType.simulationUsefulness]: simulationUsefulnessTextTemplate,
 }
 
-const dataTempateBuilder = (
+const dataTemplateBuilder = (
   emailType,
   followup,
   formatedBenefits,
@@ -64,52 +61,6 @@ const dataTempateBuilder = (
       footer: footerTemplate,
     },
   }
-}
-
-function basicBenefitText(droit, parameters) {
-  const droitEstime = formatDroitEstime(droit, parameters)
-
-  if (droit.labelFunction) {
-    return droit.labelFunction({ ...droit, legend: droitEstime.legend })
-  }
-
-  if (droitEstime.type === "bool") {
-    return droit.label
-  }
-  if (droitEstime.unit === "séances") {
-    return `${droit.label} : vous pouvez bénéficier de ${droitEstime.value} ${droitEstime.legend}`
-  }
-
-  return `${droit.label} pour un montant de ${droitEstime.value} ${droitEstime.legend}`
-}
-
-const formatBenefits = (benefits, parameters) => {
-  const formatedBenefits = benefits.map((benefit) => {
-    const benefitEstimated = formatDroitEstime(benefit, parameters)
-    const value =
-      benefitEstimated.type === "float"
-        ? `${benefitEstimated.value} ${benefitEstimated.legend}`
-        : ""
-    const { teleservice, form, instructions, link, label } = benefit
-    const ctaLink = teleservice || form || instructions || link
-    const ctaLabel = teleservice
-      ? "Faire une demande en ligne"
-      : form
-      ? "Accéder au formulaire papier"
-      : instructions
-      ? "Accéder aux instructions"
-      : "Plus d'informations"
-
-    return {
-      ...benefit,
-      imgSrc: getBenefitImage(benefit),
-      montant: value,
-      ctaLink,
-      ctaLabel,
-      benefitLabel: capitalize(label),
-    }
-  })
-  return formatedBenefits
 }
 
 function renderAsText(emailType, dataTemplate) {
@@ -162,7 +113,7 @@ export default async function emailRender(emailType, followup) {
       ? benefits.map((benefit) => basicBenefitText(benefit, parameters))
       : {}
 
-  const dataTemplate = dataTempateBuilder(
+  const dataTemplate = dataTemplateBuilder(
     emailType,
     followup,
     formatedBenefits,
@@ -182,7 +133,7 @@ export default async function emailRender(emailType, followup) {
       }
     } else if (
       emailType === EmailType.benefitAction ||
-      EmailType.simulationUsefulness
+      emailType === EmailType.simulationUsefulness
     ) {
       return {
         subject: `[${

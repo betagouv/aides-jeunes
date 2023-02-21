@@ -11,8 +11,8 @@
         <br />
         <span
           >Nous aimerions savoir si cette simulation vous a été utile, et si
-          elle vous a permis de demander voire de bénéficier de nouvelles aides
-          : cela nous permettra de continuer à améliorer le simulateur !
+          elle vous a permis de demander voire de bénéficier de nouvelles
+          aides : cela nous permettra de continuer à améliorer le simulateur !
         </span>
       </p>
     </mj-text>
@@ -20,7 +20,7 @@
 </mj-section>
 <mj-section>
   <mj-text align="center" font-size="20px">
-    Votre simulation a-t-elle été utile ?
+    Votre simulation a-t-elle été utile ?
   </mj-text>
 </mj-section>
 <mj-section>

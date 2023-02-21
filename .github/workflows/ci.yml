@@ -256,19 +256,19 @@ jobs:
           cp dist-server/backend/config/continuous-integration.js dist-server/backend/config/production.js
           nohup Xvfb :99 &
       - name: Cypress install
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         if: steps.restore-cypress.outputs.cache-hit != 'true'
         with:
           browser: chrome
           config-file: cypress.config.ts
           runTests: false
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
           config-file: cypress.config.ts
           start: npm run ci
-          wait-on: "http://localhost:8080, http://localhost:2000/variable/parisien, http://127.0.0.1:27017"
+          wait-on: "http://127.0.0.1:8080, http://127.0.0.1:2000/variable/parisien, http://127.0.0.1:27017"
           install: false
           spec: cypress/e2e/${{matrix.test}}.cy.js
       - name: Upload cypress videos

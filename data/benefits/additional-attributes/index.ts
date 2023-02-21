@@ -28,25 +28,6 @@ export const additionalBenefitAttributes = {
     labelFunction: function (b: benefitLayout) {
       return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
     },
-    uncomputability: {
-      tns: {
-        reason: {
-          user: "vous avez des revenus en tant qu’indépendant·e",
-          admin: "le demandeur a des revenus en tant qu’indépendant·e",
-        },
-        solution:
-          'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale - Nouvelle fenêtre" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont vos revenus non salariés impacteront le montant de votre aide.',
-      },
-      conjoint_tns: {
-        reason: {
-          user: "votre conjoint·e a des revenus en tant qu’indépendant·e",
-          admin:
-            "le conjoint du demandeur a des revenus en tant qu’indépendant·e",
-        },
-        solution:
-          'Vous pouvez demander à bénéficier du RSA, mais c’est le président de votre conseil départemental qui <a target="_blank" rel="noopener" title="Article R262-23 du code de l’action sociale - Nouvelle fenêtre" href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000028251799&cidTexte=LEGITEXT000006074069">décidera</a> de la manière dont les revenus non salariés de votre conjoint·e impacteront le montant de votre aide.',
-      },
-    },
     customization: {
       D93: {
         link: "https://www.seine-saint-denis.fr/IMG/pdf/guide_rsa_a5_8p-2014.pdf",
@@ -83,24 +64,6 @@ export const additionalBenefitAttributes = {
           )
         : 0
       return situation?.demandeur?.activite === "etudiant" && salary >= 7000
-    },
-    uncomputability: {
-      primo_accedant: {
-        reason: {
-          user: 'vous êtes <abbr title="Non propriétaire de votre résidence principale dans les deux années précédant l’achat de votre résidence actuelle">primo-accédant</abbr> à la propriété de votre résidence principale',
-          admin: "le demandeur est primo-accédant de sa résidence principale",
-        },
-        solution:
-          'Le <a target="_blank" rel="noopener" title="simulateur de la CAF - Nouvelle fenêtre" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> pourra estimer vos droits sur la base de la valeur de votre bien.',
-      },
-      locataire_foyer: {
-        reason: {
-          user: "vous logez dans un foyer",
-          admin: "le demandeur loge dans un foyer",
-        },
-        solution:
-          'Le <a target="_blank" rel="noopener" title="simulateur de la CAF - Nouvelle fenêtre" href="https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/estimervosdroits/lelogement">simulateur de la CAF</a> vous donnera des estimations selon les différentes conventions possibles de votre foyer.',
-      },
     },
   },
   ppa: {

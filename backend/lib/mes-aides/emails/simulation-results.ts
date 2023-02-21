@@ -1,4 +1,4 @@
-import { capitalize } from "lodash-es"
+import { assign, capitalize, map } from "lodash-es"
 
 import {
   formatDroitEstime,

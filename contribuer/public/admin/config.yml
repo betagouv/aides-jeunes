@@ -181,6 +181,23 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
+  field_geographical_type: &field_geographical_type
+    - label: Organisation nationale
+      value: national
+    - label: Région
+      value: region
+    - label: Département
+      value: departement
+    - label: CAF locale
+      value: caf
+    - label: MSA locale
+      value: msa
+    - label: EPCI (Métropole, inter-communauté, etc.)
+      value: epci
+    - label: Commune
+      value: commune
+    - label: Autre
+      value: autre
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -286,6 +303,7 @@ fields:
       label: "Type :"
       default: "*"
       target: "type"
+      fields: *field_geographical_type
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description

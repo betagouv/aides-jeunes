@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     sendErrorMail() {
-      return sendError(this.store.situationId, this.errorText)
+      return sendError(this.store.simulationId, this.errorText)
     },
   },
 }

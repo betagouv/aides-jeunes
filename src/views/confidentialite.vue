@@ -237,8 +237,8 @@ export default {
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
 ${
-  this.situation && this.situationId
-    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.situationId}**.`
+  this.situation && this.simulationId
+    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.simulationId}**.`
     : ""
 }
 Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.

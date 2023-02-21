@@ -6,7 +6,7 @@
     <div class="aj-flex-row">
       <input
         id="simulationId"
-        v-model="situationId"
+        v-model="simulationId"
         class="fr-input"
         type="text"
         placeholder="ID de la simulation"
@@ -22,13 +22,13 @@ export default {
   name: "SimulationSearch",
   data() {
     return {
-      situationId: "",
+      simulationId: "",
     }
   },
   methods: {
     onSubmit() {
-      const situationId = /([a-z0-9]{24})/.exec(this.situationId)[0]
-      window?.open(`/api/support/simulation/${situationId}`, "_blank").focus()
+      const simulationId = /([a-z0-9]{24})/.exec(this.simulationId)[0]
+      window?.open(`/api/support/simulation/${simulationId}`, "_blank").focus()
     },
   },
 }

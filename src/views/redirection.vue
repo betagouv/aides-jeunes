@@ -14,11 +14,11 @@
           <a
             v-analytics="{ action: 'Support', category: 'Redirection' }"
             v-mail="{
-              subject: `[${situationId}] Problème redirection`,
+              subject: `[${simulationId}] Problème redirection`,
               body: `Bonjour,
 
         ————
-        ID : ${situationId}
+        ID : ${simulationId}
         Erreur : ${error}
         ————`,
             }"
@@ -75,29 +75,29 @@ export default {
   },
   data() {
     return {
-      situationId: null,
+      simulationId: null,
       error: null,
       teleservice: null,
       updating: true,
     }
   },
   mounted() {
-    this.situationId = window.sessionStorage.getItem("situationId")
-    if (!this.situationId) {
-      this.situationId = JSON.parse(
+    this.simulationId = window.sessionStorage.getItem("simulationId")
+    if (!this.simulationId) {
+      this.simulationId = JSON.parse(
         window.localStorage.getItem("trampoline")
-      ).situationId
+      ).simulationId
       window.localStorage.removeItem("trampoline")
-      window.sessionStorage.setItem("situationId", this.situationId)
+      window.sessionStorage.setItem("simulationId", this.simulationId)
     }
-    if (!this.situationId) {
+    if (!this.simulationId) {
       this.error = "Identifiant de simulation absent… Arrêt."
       this.updating = false
       return
     }
 
     this.store
-      .fetchRepresentation(this.$route.query.vers, this.situationId)
+      .fetchRepresentation(this.$route.query.vers, this.simulationId)
       .then((data) => {
         this.teleservice = data
       })

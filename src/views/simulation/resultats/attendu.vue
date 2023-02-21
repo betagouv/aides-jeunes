@@ -139,7 +139,7 @@
         <ul>
           <li>
             le contenu du formulaire et en indiquant l'identifiant suivant :
-            <span class="bold">{{ store.situationId }} .</span>
+            <span class="bold">{{ store.simulationId }} .</span>
           </li>
           <li>en téléchargeant le fichier avec le bouton ci-dessous.</li>
         </ul>
@@ -264,7 +264,7 @@ export default {
       }
     },
     testGenerationEndpoint() {
-      return `/api/simulation/${this.store.situationId}/openfisca-test`
+      return `/api/simulation/${this.store.simulationId}/openfisca-test`
     },
     resultToBase64() {
       return `data:text/octet-stream;charset=utf-8;base64,${window.btoa(
@@ -272,10 +272,10 @@ export default {
       )}`
     },
     filename() {
-      return `mes-aides-${this.store.situationId}.yml`
+      return `mes-aides-${this.store.simulationId}.yml`
     },
     sendMail() {
-      return sendMontantsAttendus(this.store.situationId)
+      return sendMontantsAttendus(this.store.simulationId)
     },
   },
   mounted() {

@@ -127,13 +127,18 @@ export default {
       })
     })
 
+    // Used for old links containing situationId instead of simulationId
+    if (this.$route.query?.situationId) {
+      this.$route.query.simulationId = this.$route.query.situationId
+    }
+
     if (this.mock(this.$route.params.droitId)) {
       return
-    } else if (this.$route.query?.situationId) {
-      if (this.store.situationId !== this.$route.query.situationId) {
-        this.store.fetch(this.$route.query.situationId).then(() => {
+    } else if (this.$route.query?.simulationId) {
+      if (this.store.simulationId !== this.$route.query.simulationId) {
+        this.store.fetch(this.$route.query.simulationId).then(() => {
           this.store.compute()
-          this.$router.replace({ situationId: null })
+          this.$router.replace({ simulationId: null })
         })
       } // Else nothing to do
     } else if (!this.store.passSanityCheck) {

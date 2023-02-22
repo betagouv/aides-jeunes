@@ -4,7 +4,7 @@ import { EmailType } from "../types/email.js"
 import Followup from "../models/followup.js"
 import mongoose from "mongoose"
 import mongooseConfig from "../config/mongoose.js"
-import { SurveyType } from "../../lib/types/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 
 mongooseConfig(mongoose, config)
 

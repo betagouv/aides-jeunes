@@ -125,7 +125,7 @@ export default async function emailRender(emailType, followup) {
   ]).then((values) => {
     if (emailType === EmailType.simulationResults) {
       return {
-        subject: `[${followup.simulation._id}] Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr`,
+        subject: `Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
         text: values[0],
         html: values[1].html,
         attachments: values[1].attachments,
@@ -135,9 +135,9 @@ export default async function emailRender(emailType, followup) {
       emailType === EmailType.simulationUsefulness
     ) {
       return {
-        subject: `[${
+        subject: `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? [${
           followup.simulation?._id || followup.simulation
-        }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
+        }]`,
         text: values[0],
         html: values[1].html,
       }

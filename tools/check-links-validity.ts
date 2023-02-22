@@ -172,7 +172,7 @@ function buildGitHubIssueCommentText(benefitWithErrors) {
     .join("<br />")}`
 
   fs.appendFileSync(
-    process.env.GITHUB_OUTPUT,
+    `${process.env.GITHUB_OUTPUT}`,
     `comment=${issueContent}${os.EOL}`,
     {
       encoding: "utf8",

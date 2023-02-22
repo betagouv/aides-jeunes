@@ -55,8 +55,6 @@ export function formatBenefits(benefits, parameters) {
       benefitLabel: capitalize(droit.label),
     })
   })
-<<<<<<< HEAD
-=======
 
   return mustache
     .render(mjmlTemplate, {
@@ -101,5 +99,4 @@ export default async function render(followup) {
       attachments: values[1].attachments,
     }
   })
->>>>>>> 3b9282283 (Changement ordre affichage sujet email)
 }

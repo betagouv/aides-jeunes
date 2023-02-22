@@ -53,6 +53,7 @@ FollowupSchema.static("findByIdOrOldId", function (id) {
 FollowupSchema.static("findByEmail", function (email) {
   return this.find({ email })
 })
+
 FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId
@@ -78,6 +79,35 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
       email.htmlContent = render.html
       email.tags = [EmailType.simulationResults]
       return sendEmail(email)
+    })
+    .then((response) => {
+      return followup.postSimulationResultsEmail(response.messageId)
+    })
+    .catch((err) => {
+      console.log("error", err)
+      followup.error = JSON.stringify(err, null, 2)
+      return followup.save()
+    })
+})
+
+FollowupSchema.method("renderNotificationEmail", function (){
+  return emailRender(EmailType.pricingNotification, this)
+})
+
+/**
+ * Method for Tous a bord notifications
+ */
+FollowupSchema.method("sendPricingNotificationEmail", function () {
+  const followup = this
+  return this.renderNotificationEmail()
+    .then((render) => {
+      const email = new SendSmtpEmail()
+      email.to = [{ email: followup.email }]
+      email.subject = render.subject
+      email.textContent = render.text
+      email.htmlContent = render.html
+      email.tags = [EmailType.pricingNotification]
+      return sendEmail(email) 
     })
     .then((response) => {
       return followup.postSimulationResultsEmail(response.messageId)

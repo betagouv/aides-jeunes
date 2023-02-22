@@ -195,6 +195,23 @@ jobs:
         run: |
           source .venv/bin/activate
           npm run test tests/unit/openfisca/test.spec.js
+  iframe_build_control:
+    name: Iframe build control
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Build assets
+        run: NODE_ENV=production npm run build:iframes
+      - name: Validate Iframe build
+        shell: bash
+        run: "npm run tools:test-iframe-generation"
   test_e2e:
     name: End-to-End Tests
     needs: [build, install_openfisca]
@@ -351,9 +368,10 @@ jobs:
         build,
         build_contribuer,
         openfisca_test_generation,
+        iframe_build_control,
         test_e2e,
       ]
-    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.test_e2e.result == 'failure')
+    if: always() && github.ref == 'refs/heads/master' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure')
     steps:
       - name: Send CI failed message
         shell: bash

@@ -105,8 +105,8 @@ function getQuestionsPerStep(
 
   const property =
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
-    DepcomProperties.default[step.variable] ||
-    SimpleProperties.default[step.variable]
+    DepcomProperties[step.variable] ||
+    SimpleProperties[step.variable]
 
   const individu = Individu.getById(individus, step.id)
 

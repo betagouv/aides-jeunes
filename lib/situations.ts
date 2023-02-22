@@ -169,7 +169,7 @@ export function generateSituation(simulation, useAll?: any) {
         situation[answer.entityName][answer.fieldName] = answer.value
         if (answer.value) {
           situation.conjoint = generateDefaultIndividu("conjoint", "conjoint")
-        } else if (situation?.demandeur) {
+        } else if (situation.demandeur) {
           situation.demandeur.statut_marital = "celibataire"
         }
       } else if (situation[answer.entityName]) {
@@ -196,9 +196,7 @@ export function generateSituation(simulation, useAll?: any) {
   if (simulation.patrimoine) {
     const periodKey = "month:2019-01:120"
     Object.keys(simulation.patrimoine).forEach((key) => {
-      if (situation?.demandeur) {
-        situation.demandeur[key] = { [periodKey]: simulation.patrimoine[key] }
-      }
+      situation.demandeur[key] = { [periodKey]: simulation.patrimoine[key] }
     })
   }
 

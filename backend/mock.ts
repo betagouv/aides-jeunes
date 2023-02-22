@@ -17,7 +17,7 @@ function sendToOpenfisca(situation, callback) {
   let request
   try {
     request = buildOpenFiscaRequest(situation)
-  } catch (e) {
+  } catch (e: any) {
     return callback({
       message: e.message,
       name: e.name,

@@ -1,8 +1,9 @@
 import config from "../../config/index.js"
+import { StatsLayout } from "./stats.d.js"
 
 import axios from "axios"
 
-function formatPiwik(data) {
+function formatPiwik(data): StatsLayout[] {
   const metrics = [
     {
       source: "nb_visits",

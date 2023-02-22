@@ -1,12 +1,11 @@
 import {
   StepLayout,
   ComplexStepLayout,
-  StepGeneratorLayout,
   ComplexStepGeneratorLayout,
 } from "../types/steps.js"
 
 function Step(
-  this: StepGeneratorLayout,
+  this: StepLayout,
   { key, entity, id, variable, chapter }: StepLayout
 ) {
   this.path = entity

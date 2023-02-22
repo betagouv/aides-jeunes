@@ -12,11 +12,10 @@ export interface benefitLayout {
 }
 
 export interface benefitVeloLayout extends Aide {
-  collectivity?: {
-    id: string
+  collectivity: {
     kind: string
     value: string
-    code: string
+    code?: string
   }
   institution?: string
   discard?: boolean

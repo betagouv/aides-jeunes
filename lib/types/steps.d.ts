@@ -1,39 +1,25 @@
 export interface StepLayout {
+  path?: string
   key?: string
-  entity?: any
-  id?: any
-  variable?: any
-  chapter?: any
+  entity?: string
+  id?: string
+  variable?: string
+  chapter?: string
   isActive?: boolean
 }
 
-export interface StepGeneratorLayout {
-  path: string
-  key: string
-  entity: any
-  id: string
-  variable: any
-  chapter: any
-  isActive?: boolean
-}
-
-export interface ComplexStepLayout {
-  route?: any
-  variables?: any
-  chapter?: any
-  entity?: any
-  variable?: any
-  id?: any
-  isActive?: boolean
+export interface ComplexStepLayout extends StepLayout {
+  route?: string
+  variables?: StepLayout[]
 }
 
 export interface ComplexStepGeneratorLayout {
   path: string
   key: string
-  entity: any
+  entity: string
   id: string
-  variable: any
-  chapter: any
-  substeps: any
+  variable: string
+  chapter: string
+  substeps: StepLayout[]
   isActive?: boolean
 }

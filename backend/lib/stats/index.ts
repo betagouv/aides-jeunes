@@ -31,6 +31,7 @@ fs.mkdir(path.dirname(relative_path), { recursive: true }).then(() => {
   ])
     .then(function (data) {
       return {
+        // @ts-ignore
         basic: [].concat(data[0].dailySituationCount, data[1]),
         survey: data[0].survey,
       }

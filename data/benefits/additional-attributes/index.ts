@@ -57,13 +57,13 @@ export const additionalBenefitAttributes = {
   aide_logement: {
     computeUnexpectedAmount: (situation: situationsLayout) => {
       // not ideal because we are not computing other incomes => but covers 90% of the cases
-      const salary: number = situation?.demandeur?.salaire_net
+      const salary: number = situation.demandeur?.salaire_net
         ? Object.values(situation.demandeur.salaire_net).reduce(
             (acc, value): number => acc + value,
             0
           )
         : 0
-      return situation?.demandeur?.activite === "etudiant" && salary >= 7000
+      return situation.demandeur?.activite === "etudiant" && salary >= 7000
     },
   },
   ppa: {

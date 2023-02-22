@@ -3,9 +3,9 @@ import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations.js"
 import { individuLayout } from "../lib/types/individu.js"
-import { resourceLayout } from "./types/resources.js"
+import { resourceLayout, resourceCategoryLayout } from "./types/resources.js"
 
-export const ressourceCategories = [
+export const ressourceCategories: resourceCategoryLayout[] = [
   {
     id: "revenusActivite",
     label: "Revenus d'activité",
@@ -110,7 +110,9 @@ export const ressourceTypes: resourceLayout[] = [
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
       return (
         individu.id !== "demandeur" ||
-        Boolean(situation.enfants?.filter((e) => e.garde_aternee).length)
+        Boolean(
+          situation.enfants?.filter((enfant) => enfant.garde_alternee).length
+        )
       )
     },
   },
@@ -144,7 +146,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -162,7 +164,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -173,7 +175,7 @@ export const ressourceTypes: resourceLayout[] = [
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {
@@ -198,7 +200,7 @@ export const ressourceTypes: resourceLayout[] = [
     prefix: "la",
     sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return (individu?.handicap && individu.handicap) === true
+      return individu.handicap === true
     },
   },
   {

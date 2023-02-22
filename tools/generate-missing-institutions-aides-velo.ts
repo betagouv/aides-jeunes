@@ -38,7 +38,7 @@ const missingCommune = missingInstitutionBenefits.filter(
 )
 if (missingCommune.length) {
   missingCommune.forEach((b) => {
-    let commune = null
+    let commune
     epci.some((item) => {
       commune = item.membres.find(
         (membre) => membre.code === b.collectivity.value

@@ -137,7 +137,6 @@ export const useStore = defineStore("store", {
     peopleParentsFirst(): any[] {
       return []
         .concat(
-          // @ts-ignore
           this.situation.demandeur,
           this.situation.conjoint,
           this.situation.enfants
@@ -172,7 +171,6 @@ export const useStore = defineStore("store", {
     ressourcesYearMinusTwoCaptured() {
       const yearMinusTwo = this.dates.fiscalYear.id
       const januaryYearMinusTwo = this.dates.fiscalYear12Months[0].id
-      // @ts-ignore
       return this.peopleParentsFirst.some((individu: any) => {
         return categoriesRnc.reduce((hasYm2RessourcesAccum, categorieRnc) => {
           if (!individu[categorieRnc.id]) {
@@ -458,7 +456,6 @@ export const useStore = defineStore("store", {
     },
     async mockResults(benefit: any) {
       const { mockResults } = await import("@/lib/benefits.js")
-      // @ts-ignore
       this.setResults(mockResults(benefit))
     },
     startComputation() {
@@ -511,7 +508,6 @@ export const useStore = defineStore("store", {
       next("/simulation")
     },
     setOpenFiscaParameters() {
-      // @ts-ignore
       const date = new Date(this.simulation.dateDeValeur)
       return axios
         .get(`/api/openfisca/parameters/${date.toISOString()}`)

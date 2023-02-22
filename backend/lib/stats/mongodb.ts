@@ -8,6 +8,7 @@ import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
 import { SurveyType } from "../../../lib/types/survey.js"
+import { MongoStatsLayout } from "./stats.d.js"
 
 let client
 
@@ -192,7 +193,7 @@ async function connect() {
     .then((client) => client.db())
 }
 
-function getStats(fromDate, toDate) {
+function getStats(fromDate, toDate): MongoStatsLayout | any {
   return connect()
     .then(function (db) {
       // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response

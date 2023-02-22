@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import range from "lodash.range"
 
-import { datesGeneratorLayout, dateLayout } from "./types/dates.js"
+import { typicalDatesLayout, dateLayout } from "./types/dates.js"
 
 function generateMonth(dt: any): dateLayout {
   return {
@@ -20,7 +20,7 @@ function generateYear(dt: any): dateLayout {
 
 export const generator = function datesGenerator(
   dateDeValeur: Date | number | string
-): datesGeneratorLayout {
+): typicalDatesLayout {
   const ref = dayjs(dateDeValeur)
   return {
     today: {

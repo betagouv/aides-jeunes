@@ -71,7 +71,7 @@ async function getHTTPStatus(link) {
       httpsAgent,
     })
     return res.status
-  } catch (err) {
+  } catch (err: any) {
     return err.response?.status || 499
   }
 }

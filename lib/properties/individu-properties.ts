@@ -627,7 +627,7 @@ export default {
   }),
 
   _interetBafa: new BooleanProperty({
-    question: `Prévoyez-vous de passer le <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> ou le <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
+    question: `Souhaitez-vous connaître les aides au <abbr title="Brevet d'aptitude aux fonctions d'animateur">BAFA</abbr> et au <abbr title="Brevet d'aptitude aux fonctions de directeur">BAFD</abbr> ?`,
   }),
 
   _interetEtudesEtranger: new BooleanProperty({

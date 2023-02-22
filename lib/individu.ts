@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 import cloneDeep from "lodash.clonedeep"
 
+import { situationsFamiliales } from "./situations-familiales.js"
 import { individuLayout } from "./types/individu.js"
 
 function isRoleParent(role: string) {
@@ -149,20 +150,7 @@ const Individu = {
     return isRoleParent(individu._role)
   },
 
-  situationsFamiliales: [
-    {
-      value: "marie", // Enum value 1 in OpenFisca
-      label: "Marié·e",
-    },
-    {
-      value: "pacse", // Enum value 5 in OpenFisca
-      label: "Pacsé·e",
-    },
-    {
-      value: "celibataire", // Enum value 2 in OpenFisca
-      label: "En union libre",
-    },
-  ],
+  situationsFamiliales,
 }
 
 export default Individu

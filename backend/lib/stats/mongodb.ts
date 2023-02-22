@@ -8,7 +8,7 @@ import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
 import { SurveyType } from "../../../lib/types/survey.js"
-import { MongoStatsLayout } from "./stats.d.js"
+import { MongoStatsLayout } from "../../types/stats.d.js"
 
 let client
 

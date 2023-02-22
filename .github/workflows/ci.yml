@@ -8,7 +8,7 @@ env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  PYTHON_VERSION: 3.7.12
+  PYTHON_VERSION: 3.8
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -52,7 +52,7 @@ jobs:
         id: python-dependencies
         with:
           path: .venv
-          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -189,7 +189,7 @@ jobs:
         id: python-dependencies
         with:
           path: .venv
-          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - name: Validate OpenFisca test generation
         shell: bash
         run: |
@@ -249,7 +249,7 @@ jobs:
         id: python-dependencies
         with:
           path: .venv
-          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - name: Cache build output
         uses: actions/cache@v3
         id: restore-build
@@ -338,7 +338,7 @@ jobs:
         id: python-dependencies
         with:
           path: .venv
-          key: ${{ runner.os }}-cache-python-dependencies-${{ hashFiles('**/openfisca/requirements.txt') }}
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - name: Cache server build output
         uses: actions/cache@v3
         id: restore-server-build

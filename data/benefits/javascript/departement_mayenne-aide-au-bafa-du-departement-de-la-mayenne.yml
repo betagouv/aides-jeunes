@@ -1,0 +1,33 @@
+label: Aide au BAFA du département de la Mayenne
+institution: departement_mayenne
+description: >-
+  Le Département de la Mayenne accorde une aide unique de 300 euros à toute
+  personne âgée de 16 à 26 ans s’engageant à suivre l’intégralité de la
+  formation BAFA. 
+
+  La demande d'aide doit être effectuée à la fin de la session de formation générale et au plus tard dans le mois suivant le dernier stage de formation.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "53"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 26
+profils: []
+conditions:
+  - "Être dans l'un des cas suivants : lycéen ou étudiant boursier, demandeur
+    d’emploi non indemnisé, bénéficiaire de minima sociaux, non imposable ou
+    rattaché à un foyer fiscal non imposable."
+  - Ne pas avoir reçu d’aide provenant d’une autre collectivité territoriale.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+montant: 300
+link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafa
+teleservice: https://www.demarches-simplifiees.fr/commencer/cd53-bafa
+instructions: ""

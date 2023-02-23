@@ -17,11 +17,18 @@ conditions_generales:
   - type: age
     operator: <=
     value: 26
-profils: []
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+  - type: enseignement_superieur
+    conditions:
+      - type: boursier
+  - type: chomeur
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
 conditions:
-  - "Être dans l'un des cas suivants : lycéen ou étudiant boursier, demandeur
-    d’emploi non indemnisé, bénéficiaire de minima sociaux, non imposable ou
-    rattaché à un foyer fiscal non imposable."
   - Ne pas avoir reçu d’aide provenant d’une autre collectivité territoriale.
 interestFlag: _interetBafa
 type: float

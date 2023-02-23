@@ -1,5 +1,5 @@
 import config from "../../config/index.js"
-import { StatsLayout } from "./stats.d.js"
+import { StatsLayout } from "../../types/stats.d.js"
 
 import axios from "axios"
 

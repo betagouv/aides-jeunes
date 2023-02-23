@@ -2,11 +2,11 @@
 
 import { ajRequest } from "../backend/types/express.d.js"
 import api from "../backend/api.js"
-import { EmailType } from "../backend/types/email.js"
+import { EmailType } from "../backend/enums/email.js"
 import express from "express"
 import Followup from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyType } from "../lib/types/survey.js"
+import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 

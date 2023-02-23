@@ -5,7 +5,7 @@ import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
-import { SurveyType } from "../../lib/types/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]

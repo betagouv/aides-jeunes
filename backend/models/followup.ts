@@ -4,11 +4,12 @@ import validator from "validator"
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
 import utils from "../lib/utils.js"
 
-import { SurveyLayout, SurveyType } from "../../lib/types/survey.js"
+import { SurveyLayout } from "../../lib/types/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
-import { EmailType } from "../types/email.js"
+import { EmailType } from "../enums/email.js"
 
 const FollowupSchema = new mongoose.Schema(
   {

@@ -5,11 +5,12 @@ import Mustache from "mustache"
 
 import config from "../../config/index.js"
 import { AidesJeunesPreremplissage } from "../../lib/teleservices/aides-jeunes-preremplissage.js"
+import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
+import DemarchesSimplifiees from "../../lib/teleservices/demarches-simplifiees.js"
 import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe.js"
 import OpenFiscaResponse from "../../lib/teleservices/openfisca-response.js"
 import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer.js"
 import PNDS from "../../lib/teleservices/pnds.js"
-import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
 import dayjs from "dayjs"
 import "dayjs/locale/fr.js"
 
@@ -79,6 +80,15 @@ const teleservices = [
     public: true,
     destination: {
       url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
+    },
+  },
+  {
+    name: "ds_aide-beaumont-en-verdunois",
+    class: DemarchesSimplifiees,
+    public: true,
+    destination: {
+      label: "Aller sur démarches-simplifiées.fr",
+      url: "/api/proxy/ds/aide-beaumont-en-verdunois?token={{token}}",
     },
   },
 ]

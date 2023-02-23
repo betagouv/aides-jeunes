@@ -7,7 +7,7 @@ import config from "../../../config/index.js"
 import openfiscaController from "../../openfisca/parameters.js"
 import { formatBenefits, basicBenefitText } from "./simulation-results.js"
 import { mjml } from "./index.js"
-import { EmailType } from "../../../types/email.js"
+import { EmailType } from "../../../enums/email.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 

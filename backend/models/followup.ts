@@ -9,7 +9,7 @@ import { SurveyType } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
-import { EmailType } from "../types/email.js"
+import { EmailType } from "../enums/email.js"
 
 const FollowupSchema = new mongoose.Schema(
   {

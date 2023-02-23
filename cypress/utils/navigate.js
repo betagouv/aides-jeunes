@@ -17,6 +17,10 @@ const goHome = () => {
   cy.get('[data-testid="new-simulation"]').click()
 }
 
+const goToIframe = () => {
+  cy.visit("http://localhost:8080/iframe")
+}
+
 const goRecap = () => {
   cy.get('[data-testid="previous-or-recap-button"]').click()
 }
@@ -36,6 +40,7 @@ const updateFromRecap = (sectionTitle, buttonLabel) => {
 export default {
   init,
   goHome,
+  goToIframe,
   goRecap,
   next,
   updateFromRecap,

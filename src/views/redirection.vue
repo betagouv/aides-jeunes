@@ -14,7 +14,7 @@
           <a
             v-analytics="{ action: 'Support', category: 'Redirection' }"
             v-mail="{
-              subject: `[${simulationId}] Problème redirection`,
+              subject: `Problème redirection [${simulationId}]`,
               body: `Bonjour,
 
         ————

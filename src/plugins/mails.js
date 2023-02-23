@@ -55,7 +55,7 @@ export const sendEcartSimulation = (simulationId, droitsEligibles) => {
 export const sendSuggestion = (simulationId) => {
   if (!simulationId) simulationId = "??"
   return {
-    subject: `[${simulationId}] Suggestion`,
+    subject: `Suggestion [${simulationId}]`,
   }
 }
 

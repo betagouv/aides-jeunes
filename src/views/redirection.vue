@@ -31,8 +31,9 @@
       <div v-else>
         <h1>Transmission de vos informations</h1>
         <p>
-          À titre expérimental, nous vous proposons de transmettre directement
-          les informations suivantes :
+          À titre expérimental sur le territoire de Saint-Louis à la Réunion,
+          Mes Aides vous propose de transmettre directement au CCAS (centre
+          communal d'action sociale) les informations suivantes :
         </p>
 
         <ul>
@@ -44,14 +45,14 @@
 
         <p>
           En continuant, vous acceptez de participer à cette expérimentation et
-          que les informations saisies soient transmises.
+          que les informations saisies soient transmises au CCAS.
         </p>
 
         <p>
           Dès lors, vous aurez un droit d'accès et de rectification sur les
-          informations nominatives stockées ou traitées informatiquement. Pour
-          exercer ce droit, vous devez vous y adresser, en justifiant de votre
-          identité.
+          informations nominatives stockées ou traitées informatiquement par le
+          CCAS de Saint-Louis. Pour exercer ce droit, vous devez vous y
+          adresser, en justifiant de votre identité.
         </p>
 
         <a :href="teleservice.destination.url" class="btn btn-primary btn-lg">{{

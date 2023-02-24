@@ -50,20 +50,20 @@ class InstitutionControl extends Relation.control {
   }
 
   componentDidMount() {
-    const defaultValue = this.props.field.get("filter").get("default", "*")
-    this.setState({
-      filter: defaultValue,
-      categories: this.props.field
-        .get("filter")
-        .get("fields")
-        .map((option) => {
-          return {
-            label: option.get("label"),
-            value: option.get("value"),
-          }
-        })
-        .unshift({ value: "*", label: "Tous" }),
-    })
+    const { query, forID } = this.props;
+    query(forID, "institution_types", ["name"], "").then(({ payload }) => {
+      const hits = payload.hits || [];
+      const institutionTypes = [{ value: "*", label: "Tous" }, ...hits.map(hit => {
+        return {
+          label: hit.data?.name,
+          value: hit.slug
+        }
+      })]
+      this.setState({
+        filter: "*",
+        categories: institutionTypes,
+      })
+    });
   }
   render() {
     const { field } = this.props

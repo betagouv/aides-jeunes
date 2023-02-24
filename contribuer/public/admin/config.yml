@@ -915,7 +915,6 @@ collections:
         collection: institution_types
         value_field: "{{name}}"
         search_fields: [slug, name]
-        allow_multiple: false
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee

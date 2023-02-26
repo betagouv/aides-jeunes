@@ -1,23 +1,24 @@
+import { ScolariteType } from "./enums/scolarite.js"
 export default {
   types: [
     {
-      value: "college",
+      value: ScolariteType.college,
       label: "Au collège",
     },
     {
-      value: "lycee",
+      value: ScolariteType.lycee,
       label: "Au lycée / En CAP / En CPA",
     },
     {
-      value: "enseignement_superieur",
+      value: ScolariteType.enseignement_superieur,
       label: "Dans l'enseignement supérieur",
     },
     {
-      value: "grande_ecole_du_numerique",
+      value: ScolariteType.grande_ecole_du_numerique,
       label: "Dans une grande école du numérique",
     },
     {
-      value: "inconnue",
+      value: ScolariteType.inconnue,
       label: "Autre",
     },
   ],

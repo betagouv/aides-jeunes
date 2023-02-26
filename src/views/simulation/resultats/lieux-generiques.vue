@@ -32,13 +32,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Etablissement from "@/components/etablissement.vue"
-import Individu from "@lib/individu.ts"
+import Individu from "@lib/individu.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores/index.ts"
-import { useHelpingInstitutionStore } from "@/stores/helping-institution.ts"
+import { useStore } from "@/stores/index.js"
+import { useHelpingInstitutionStore } from "@/stores/helping-institution.js"
+import { ActiviteType } from "@lib/enums/activite.js"
 
 const list = [
   {
@@ -51,7 +52,7 @@ const list = [
   },
   {
     isRelevant: (demandeur) => {
-      return demandeur.activite === "chomeur"
+      return demandeur.activite === ActiviteType.chomeur
     },
     types: ["pole_emploi"],
   },

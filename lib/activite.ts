@@ -1,6 +1,11 @@
-const ACTIVITES_ACTIF = ["service_civique", "salarie", "independant"]
+import { ActiviteType } from "./enums/activite.js"
+const ACTIVITES_ACTIF = [
+  ActiviteType.service_civique,
+  ActiviteType.salarie,
+  ActiviteType.independant,
+]
 
-function estActif(activite: string) {
+function estActif(activite: ActiviteType): boolean {
   return ACTIVITES_ACTIF.includes(activite)
 }
 

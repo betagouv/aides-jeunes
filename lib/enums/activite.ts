@@ -1,0 +1,15 @@
+export enum ActiviteType {
+  apprenti = "apprenti",
+  autre = "autre",
+  beneficiaire_rsa = "beneficiaire_rsa",
+  chomeur = "chomeur",
+  etudiant = "etudiant",
+  inactif = "inactif",
+  independant = "independant",
+  professionnalisation = "professionnalisation",
+  retraite = "retraite",
+  salarie = "salarie",
+  service_civique = "service_civique",
+  situation_handicap = "situation_handicap",
+  stagiaire = "stagiaire",
+}

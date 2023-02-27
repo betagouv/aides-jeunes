@@ -1,38 +1,59 @@
 import axios from "axios"
 
+import { getAnswer } from "../../../lib/answers.js"
+
 const sources = {
-  civilite: () => (Math.random() > 0.5 ? "Mme" : "M."),
-  pays: () => "FR",
-  region: () => "75",
-  date_naissance: () => "2000-01-01",
-  propre_declaration_fiscale: () => "true", // via enfant_a_charge
   activite: () => "Actif occupé",
   bafa: () => "true",
-  dernier_salaire: () => "33.10",
-  nb_enfants: () => "0",
-  situation: () => `J'ai ${"xx"} ans et je suis ${"yy"}`,
-  email: () => "thomas@yolo.com",
-  telephone: () => "0612345678",
+  civilite: () => (Math.random() > 0.5 ? "Mme" : "M."),
   date_de_valeur: (simulation) => {
     return simulation.dateDeValeur.toISOString().slice(0, -8)
   },
+  date_naissance: (simulation) => {
+    const dob = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "date_naissance",
+      "demandeur"
+    )
+    if (!dob) {
+      return
+    }
+
+    return new Date(dob).toISOString().slice(0, 10)
+  },
+  departement: () => "33",
+  dernier_salaire: () => "33.10",
+  email: () => "thomas@yolo.com",
+  epci: () => "243301165",
+  nb_enfants: () => "0",
+  pays: () => "FR",
+  propre_declaration_fiscale: () => "true", // via enfant_a_charge
+  region: () => "75",
+  situation: () => `J'ai ${"xx"} ans et je suis ${"yy"}`,
+  telephone: () => "0612345678",
 }
 
 const mappings = {
   "aide-beaumont-en-verdunois": {
     "champ_Q2hhbXAtMzAzNDI4NA==": sources.civilite,
-    "champ_Q2hhbXAtMzAzNDM0Mg==": sources.pays,
+    "champ_Q2hhbXAtMzAzNDI4Nw==": sources.departement,
     "champ_Q2hhbXAtMzAzNDM0MA==": sources.region,
+    "champ_Q2hhbXAtMzAzNDM0MQ==": sources.epci,
+    "champ_Q2hhbXAtMzAzNDM0Mg==": sources.pays,
     "champ_Q2hhbXAtMzAzNDM5Mw==": sources.date_naissance,
+    "champ_Q2hhbXAtMzAzNDM5NA==": sources.date_de_valeur,
     "champ_Q2hhbXAtMzAzNDM5NQ==": sources.propre_declaration_fiscale,
     "champ_Q2hhbXAtMzAzNDM5Ng==": sources.activite,
-    "champ_Q2hhbXAtMzAzNDM5Nw==": sources.bafa,
-    "champ_Q2hhbXAtMzAzNDQ2Ng==": sources.dernier_salaire,
-    "champ_Q2hhbXAtMzAzNDUxNw==": sources.nb_enfants,
     "champ_Q2hhbXAtMzAzNDY0MA==": sources.situation,
+    "champ_Q2hhbXAtMzAzNDM5Nw==": sources.bafa,
     "champ_Q2hhbXAtMzAzNDQwMw==": sources.email,
     "champ_Q2hhbXAtMzAzNDQwNQ==": sources.telephone,
-    "champ_Q2hhbXAtMzAzNDM5NA==": sources.date_de_valeur,
+    "champ_Q2hhbXAtMzAzNDQ2Ng==": sources.dernier_salaire,
+    "champ_Q2hhbXAtMzAzNDUxNw==": sources.nb_enfants,
+  },
+  "cd53-bafa": {
+    champ_Q2hhbXAtMzc2NDE0: sources.date_naissance,
   },
 }
 

@@ -9,7 +9,7 @@ function generate_benefit_list(institutions) {
     epci: institutions.filter((i) => i.type === "epci"),
     "code insee": institutions.filter((i) => i.type === "commune"),
   }
-  //@ts-ignore
+
   benefits.forEach((b: benefitVeloLayout) => {
     if (b && b.collectivity) {
       switch (b.collectivity.kind) {

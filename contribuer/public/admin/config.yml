@@ -181,23 +181,6 @@ fields:
       - <<: *field_select_regime_securite_sociale
         label: Exclus
         name: excludes
-  field_geographical_type: &field_geographical_type
-    - label: Organisation nationale
-      value: national
-    - label: Région
-      value: region
-    - label: Département
-      value: departement
-    - label: CAF locale
-      value: caf
-    - label: MSA locale
-      value: msa
-    - label: EPCI (Métropole, inter-communauté, etc.)
-      value: epci
-    - label: Commune
-      value: commune
-    - label: Autre
-      value: autre
   field_quotient_familial: &field_quotient_familial
     label: Quotient familial
     name: quotient_familial
@@ -301,9 +284,7 @@ fields:
     options_length: -1
     filter:
       label: "Type :"
-      default: "*"
       target: "type"
-      fields: *field_geographical_type
     hint: Si votre institution n'apparaît pas dans la liste, vous pouvez [l'ajouter ici](https://contribuer-aides-jeunes.netlify.app/admin/#/collections/institutions/new).
   field_description: &field_description
     label: Courte description
@@ -930,8 +911,10 @@ collections:
           ]
       - label: Type géographique
         name: type
-        widget: select
-        options: *field_geographical_type
+        widget: relation
+        collection: institution_types
+        value_field: "{{name}}"
+        search_fields: [slug, name]
       - label: Code INSEE
         hint: Pour les communes, départements, régions
         name: code_insee
@@ -961,3 +944,19 @@ collections:
         widget: hidden
         required: false
       - *field_benefit_position
+  - name: institution_types
+    label: Types d'institution
+    label_singular: Type d'institution
+    identifier_field: name
+    folder: "data/institution_types"
+    create: true
+    delete: false
+    editor:
+      preview: false
+    slug: "{{name}}"
+    extension: yml
+    fields:
+      - label: Nom de votre type d'institution
+        hint: Commune, EPCI, CAF, MSA, autres, etc.
+        name: name
+        widget: string

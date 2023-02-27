@@ -26,6 +26,14 @@ export enum EtudiantType {
   autre = "autre",
 }
 
+export enum MentionBaccalaureatType {
+  mention_assez_bien = "mention_assez_bien",
+  mention_bien = "mention_bien",
+  mention_tres_bien = "mention_tres_bien",
+  mention_tres_bien_felicitations_jury = "mention_tres_bien_felicitations_jury",
+  non_renseignee = "non_renseignee",
+}
+
 export enum GroupeSpecialiteType {
   groupe_330 = "groupe_330",
   groupe_230 = "groupe_230",

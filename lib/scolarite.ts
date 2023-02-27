@@ -1,4 +1,8 @@
-import { ScolariteType, GroupeSpecialiteType } from "./enums/scolarite.js"
+import {
+  GroupeSpecialiteType,
+  MentionBaccalaureatType,
+  ScolariteType,
+} from "./enums/scolarite.js"
 export default {
   types: [
     {
@@ -25,23 +29,23 @@ export default {
   mentionsBaccalaureat: [
     {
       label: "Mention assez bien",
-      value: "mention_assez_bien",
+      value: MentionBaccalaureatType.mention_assez_bien,
     },
     {
       label: "Mention bien",
-      value: "mention_bien",
+      value: MentionBaccalaureatType.mention_bien,
     },
     {
       label: "Mention très bien",
-      value: "mention_tres_bien",
+      value: MentionBaccalaureatType.mention_tres_bien,
     },
     {
       label: "Mention très bien avec félicitations du jury",
-      value: "mention_tres_bien_felicitations_jury",
+      value: MentionBaccalaureatType.mention_tres_bien_felicitations_jury,
     },
     {
       label: "Autre",
-      value: "non_renseignee",
+      value: MentionBaccalaureatType.non_renseignee,
     },
   ],
   // https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701

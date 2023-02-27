@@ -1,3 +1,4 @@
+import { SurveyType } from "../enums/survey.js"
 export interface SurveyAnswer {
   _id: string
   id: string

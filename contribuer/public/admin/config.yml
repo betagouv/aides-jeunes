@@ -560,6 +560,7 @@ fields:
             types:
               - *field_age
               - *field_formation_sanitaire_social
+              - *field_boursier
               - label: Année d'étude
                 name: annee_etude
                 widget: object

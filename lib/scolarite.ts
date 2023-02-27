@@ -1,4 +1,4 @@
-import { ScolariteType } from "./enums/scolarite.js"
+import { ScolariteType, GroupeSpecialiteType } from "./enums/scolarite.js"
 export default {
   types: [
     {
@@ -48,15 +48,15 @@ export default {
   groupeSpecialitesFormation: {
     specialites_plurivalentes_sanitaires_et_sociales: {
       label: "Sanitaire et social",
-      value: "groupe_330",
+      value: GroupeSpecialiteType.groupe_330,
     },
     specialites_pluritechnologiques_genie_civil_construction_bois: {
       label: "Génie civil, construction, bois",
-      value: "groupe_230",
+      value: GroupeSpecialiteType.groupe_230,
     },
     autre: {
       label: "Autre",
-      value: "aucun",
+      value: GroupeSpecialiteType.aucun,
     },
   },
 }

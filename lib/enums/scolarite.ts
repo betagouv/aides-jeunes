@@ -25,3 +25,9 @@ export enum EtudiantType {
   doctorat_3 = "doctorat_3",
   autre = "autre",
 }
+
+export enum GroupeSpecialiteType {
+  groupe_330 = "groupe_330",
+  groupe_230 = "groupe_230",
+  aucun = "aucun",
+}

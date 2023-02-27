@@ -31,6 +31,9 @@
                 >Mail de sondage d'utilité de la simulation
                 (simulation-usefulness) :
               </span>
+              <span v-else-if="typeKey === 'pricing-notification'"
+                >Notification admin proactive (pricing-notification) :
+              </span>
               &nbsp;
               <a
                 :href="`mjml/${followup._id}/${typeKey}?mode=html`"

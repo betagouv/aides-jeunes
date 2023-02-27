@@ -49,6 +49,8 @@ const followupRendering = async (req: ajRequest) => {
     case EmailType.benefitAction:
       surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
+    case EmailType.pricingNotification:
+      return emailRender(EmailType.pricingNotification, followup)
   }
 
   if (!surveyType) {

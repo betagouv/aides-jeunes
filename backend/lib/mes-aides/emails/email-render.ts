@@ -22,10 +22,14 @@ const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml"
 )
+const pricingNotificationTemplate = readFile(
+  "templates/pricing-notification.mjml"
+)
 const emailTemplates = {
   [EmailType.simulationResults]: simulationResultsTemplate,
   [EmailType.benefitAction]: benefitActionTemplate,
   [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
+  [EmailType.pricingNotification]: pricingNotificationTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
@@ -34,10 +38,14 @@ const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
 const simulationUsefulnessTextTemplate = readFile(
   "templates/simulation-usefulness.txt"
 )
+const pricingNotificationTextTemplate = readFile(
+  "templates/pricing-notification.txt"
+)
 const textTemplates = {
   [EmailType.simulationResults]: simulationResultsTextTemplate,
   [EmailType.benefitAction]: benefitActionTextTemplate,
   [EmailType.simulationUsefulness]: simulationUsefulnessTextTemplate,
+  [EmailType.pricingNotification]: pricingNotificationTextTemplate,
 }
 
 const dataTemplateBuilder = (
@@ -83,7 +91,10 @@ function renderAsHtml(emailType, dataTemplate) {
 export default async function emailRender(emailType, followup) {
   let benefits: any = null
   let parameters: any = null
-  if (emailType === EmailType.simulationResults) {
+  if (
+    emailType === EmailType.simulationResults ||
+    emailType === EmailType.pricingNotification
+  ) {
     const populated = await (followup.populated("simulation")
       ? Promise.resolve(followup)
       : followup.populate("simulation"))
@@ -138,6 +149,12 @@ export default async function emailRender(emailType, followup) {
         subject: `[${
           followup.simulation?._id || followup.simulation
         }] Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ?`,
+        text: values[0],
+        html: values[1].html,
+      }
+    } else if (emailType === EmailType.pricingNotification) {
+      return {
+        subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
         text: values[0],
         html: values[1].html,
       }

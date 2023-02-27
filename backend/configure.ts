@@ -8,9 +8,8 @@ import followups from "./followups.js"
 
 export default function (app: express.Application) {
   process.env.PORT = process.env.PORT || "8080"
-  const port = process.env.PORT
   process.env.MES_AIDES_ROOT_URL =
-    process.env.MES_AIDES_ROOT_URL || `http://localhost:${port}`
+    process.env.MES_AIDES_ROOT_URL || `http://localhost:${process.env.PORT}`
 
   Sentry.init({
     // Enable Sentry in production

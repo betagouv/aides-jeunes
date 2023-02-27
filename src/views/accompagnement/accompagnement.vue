@@ -146,7 +146,7 @@ import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/benefits.js"
-import { FollowupLayout } from "@lib/types/survey.js"
+import { FollowupLayout } from "@lib/types/survey.d.js"
 import { SurveyType } from "@lib/enums/survey.js"
 
 export default {

@@ -4,7 +4,19 @@ description: L'aide au BAFA pour une session d'approfondissement ou de
   qualification est une aide locale mise à disposition par la CAF de la Drôme
   pour vous aider à financer votre session en complément de l'aide nationale
   apportée par la CAF.
+conditions:
+  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
+    d’animateur de centre de vacances et de loisirs (BAFA).
+  - Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
+instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/vie-professionnelle/entree-dans-le-vie-active/aide-financiere-pour-passer-le-bafa
+link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/vie-professionnelle/entree-dans-le-vie-active/aide-financiere-pour-passer-le-bafa
 prefix: l’
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 106
+interestFlag: _interetBafa
 conditions_generales:
   - type: age
     operator: ">="
@@ -13,16 +25,4 @@ conditions_generales:
     values:
       - "26"
 profils: []
-conditions:
-  - Avoir commencé une formation pour obtenir le brevet d’aptitude à la fonction
-    d’animateur de centre de vacances et de loisirs (BAFA).
-  - Ne pas avoir déjà obtenu la totalité du financement par d'autres organismes.
-interestFlag: _interetBafa
-type: float
-unit: €
-periodicite: ponctuelle
-legend: maximum
-montant: 106
-link: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/vie-professionnelle/entree-dans-le-vie-active/aide-financiere-pour-passer-le-bafa
 teleservice: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire
-instructions: https://www.caf.fr/allocataires/caf-de-la-drome/offre-de-service/vie-professionnelle/entree-dans-le-vie-active/aide-financiere-pour-passer-le-bafa

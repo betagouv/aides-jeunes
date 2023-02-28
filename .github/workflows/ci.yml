@@ -197,6 +197,7 @@ jobs:
           npm run test tests/unit/openfisca/test.spec.js
   iframe_build_control:
     name: Iframe build control
+    needs: [install]
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

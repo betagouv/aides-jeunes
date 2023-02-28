@@ -1,5 +1,13 @@
-import { individuLayout } from "./individu.js"
+import { answerLayout } from "./answer.d.js"
 import { enfantLayout } from "./enfant.d.js"
+import { individuLayout } from "./individu.js"
+import { stepLayout } from "./steps.d.js"
+
+export interface JourneyLayout {
+  benefitIds: string[]
+  assumptions: answerLayout[]
+  steps: stepLayout[]
+}
 
 export interface situationsLayout {
   dateDeValeur: number
@@ -13,6 +21,7 @@ export interface situationsLayout {
   answers?: any
   patrimoine?: any
   ressourcesFiscales?: any
+  journey?: JourneyLayout
 }
 
 export interface situationsMenageLayout {

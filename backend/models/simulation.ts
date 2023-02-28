@@ -57,6 +57,7 @@ const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
     finishedAt: Date,
     createdAt: { type: Date, default: Date.now },
     hasFollowup: Boolean,
+    journey: String,
     modifiedFrom: String,
     status: {
       type: String,

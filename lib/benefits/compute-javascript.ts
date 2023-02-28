@@ -311,11 +311,14 @@ export function computeJavascriptBenefits(
   const periods = generator(situation.dateDeValeur)
   const data = { situation, openfiscaResponse, periods, age }
 
+  const journeyBenefits = situation?.journey?.benefitIds || []
+
   benefits.all
     .filter(
       (benefit) =>
         benefit.source === "javascript" &&
-        filterByInterestFlag(benefit, situation.demandeur)
+        filterByInterestFlag(benefit, situation.demandeur) &&
+        (!journeyBenefits.length || journeyBenefits.includes(benefit.id))
     )
     .forEach(function (benefit) {
       const profileEligibility = testProfileEligibility(benefit, data)

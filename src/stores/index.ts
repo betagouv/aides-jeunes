@@ -323,6 +323,9 @@ export const useStore = defineStore("store", {
     setDebug(debug: boolean) {
       this.debug = debug
     },
+    setSimulationJourney(journeyId: string) {
+      this.simulation.journey = journeyId
+    },
     addEnfant() {
       let enfantId
       let enfants

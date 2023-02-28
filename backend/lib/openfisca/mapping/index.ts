@@ -278,10 +278,14 @@ export function buildOpenFiscaRequest(sourceSituation) {
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
 
+  const journeyBenefits = situation?.journey?.benefitIds || []
   const prestationsWithInterest: Record<string, any> = pickBy(
     requestedVariables,
     function (definition) {
-      return filterByInterestFlag(definition, situation.demandeur)
+      return (
+        filterByInterestFlag(definition, situation.demandeur) &&
+        (!journeyBenefits.length || journeyBenefits.includes(definition.slug))
+      )
     }
   )
 

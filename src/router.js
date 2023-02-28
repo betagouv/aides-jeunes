@@ -230,6 +230,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/simulateurs-dedies",
+      name: "simulateurs-dedies",
+      component: () => import("./views/simulateurs-dedies.vue"),
+    },
+    {
       path: "/suivi",
       name: "suivi",
       component: () => import("./views/suivi.vue"),

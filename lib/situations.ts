@@ -5,6 +5,7 @@ import Scolarite from "./scolarite.js"
 import { individuLayout } from "./types/individu.js"
 import { situationsLayout } from "./types/situations.js"
 import Logement from "./logement.js"
+import { journeys } from "./journeys/index.js"
 
 const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
   id: id,
@@ -41,6 +42,7 @@ export function generateSituation(simulation, useAll?: any) {
   if (!simulation) {
     return {}
   }
+  const journey = journeys[simulation.journey]
   const dates = datesGenerator(simulation.dateDeValeur)
   const situation: situationsLayout = {
     dateDeValeur: simulation.dateDeValeur,
@@ -64,15 +66,17 @@ export function generateSituation(simulation, useAll?: any) {
       aide_logement_date_pret_conventionne: "2018-12-31",
     },
     parents: {},
+    journey,
   }
 
   if (!simulation) {
     return situation
   }
 
-  const allAnswers = useAll
-    ? simulation.answers.all
-    : simulation.answers.current
+  const allAnswers = [
+    ...(useAll ? simulation.answers.all : simulation.answers.current),
+    ...(journey ? journey.assumptions : []),
+  ]
   allAnswers.forEach((answer) => {
     if (answer.entityName === "individu") {
       if (answer.id === "enfants") {

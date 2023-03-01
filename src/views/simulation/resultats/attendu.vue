@@ -385,23 +385,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.aj-resultats-attendus {
-  select {
-    max-width: 100%;
-  }
-
-  .inline {
-    display: block;
-  }
-
-  .button {
-    margin-top: 0.85em;
-  }
-
-  bold {
-    font-weight: bold;
-  }
-}
-</style>

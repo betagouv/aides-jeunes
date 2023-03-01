@@ -23,16 +23,24 @@ const getIframe = () => {
     .then(cy.wrap)
 }
 
+const getIframeWindow = () => {
+  return cy
+    .get('iframe[id="simulateur"]')
+    .its("0.contentWindow")
+    .should("exist")
+}
+
 const loadIframe = () => {}
 
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
+    navigate.goToIframe()
     cy.injectAxe()
+    cy.get('iframe[id="simulateur"]').as("iframe")
   })
   it("accept a basic situation", () => {
-    navigate.goToIframe()
-    cy.get('iframe[id="simulateur"]')
+    cy.get("@iframe")
       .its("0.contentDocument")
       .should("not.be.empty")
       .its("body")
@@ -45,14 +53,16 @@ context("Full simulation", () => {
 
     cy.get("@iframeBody").find("[data-testid='new-simulation']").click()
 
+    /*
     cy.get("@iframeBody")
       .find("[data-testid='date_naissance']")
       .type("12121980")
+    */
 
-    cy.url().then((url) => {
-      cy.log(url)
-    })
-    //getIframe().find("[data-testid='new-simulation']").click()
-    //getIframe().find("[data-testid='date_naissance']").type("12121980")
+    cy.get("@iframeBody")
+      .first()
+      .within(($iframeBody) => {
+        profil.defaultIndivu()
+      })
   })
 })

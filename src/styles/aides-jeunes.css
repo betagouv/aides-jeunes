@@ -451,3 +451,10 @@
 .aj-progress-hide-route {
   display: none;
 }
+
+.aj-iframe-tracking-optout {
+  border-width: 0px;
+  overflow: hidden;
+  width: 100%;
+  background-color: white;
+}

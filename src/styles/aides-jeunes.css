@@ -390,3 +390,10 @@
 .aj-iframe-content .aj-fr-col-12 {
   min-height: 0vh !important;
 }
+
+.aj-iframe-tracking-optout {
+  border-width: 0px;
+  overflow: hidden;
+  width: 100%;
+  background-color: white;
+}

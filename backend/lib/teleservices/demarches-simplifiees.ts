@@ -22,7 +22,13 @@ const sources = {
 
     return new Date(dob).toISOString().slice(0, 10)
   },
-  departement: () => "33",
+  departement: (simulation) => {
+    const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
+    if (!depcom) {
+      return
+    }
+    return depcom._departement
+  },
   dernier_salaire: () => "33.10",
   email: () => "thomas@yolo.com",
   epci: () => "243301165",
@@ -54,6 +60,10 @@ const mappings = {
   },
   "cd53-bafa": {
     champ_Q2hhbXAtMzc2NDE0: sources.date_naissance,
+  },
+  cd53_sdem_vae: {
+    "champ_Q2hhbXAtMjMyMjc1NA==": sources.date_naissance,
+    "champ_Q2hhbXAtMjMyMjc2OQ==": sources.departement,
   },
 }
 

@@ -9,6 +9,14 @@ import { situationsLayout } from "../../../lib/types/situations.js"
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
 export const additionalBenefitAttributes = {
+  aidesvelo_aides_mayenne: {
+    teleservice: {
+      name: "redirection",
+      query: {
+        vers: "ds?benefit=cd53_sdem_vae",
+      },
+    },
+  },
   css_participation_forfaitaire: {
     extra: [
       {

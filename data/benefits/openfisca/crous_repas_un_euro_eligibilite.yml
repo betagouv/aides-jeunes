@@ -1,7 +1,8 @@
 label: repas du CROUS à 1€
 institution: etat
 description: Le repas du CROUS à 1€ permet aux étudiants en situation de précarité (boursier ou non boursier) de bénéficier de deux repas par jour au tarif de 1 euro.
-link: https://www.service-public.fr/particuliers/actualites/A16017#titreChapitre_-8978706415608410419
+link: https://www.service-public.fr/particuliers/actualites/A16017
+instructions: https://www.service-public.fr/particuliers/actualites/A16017
 prefix: le
 type: bool
 entity: individus

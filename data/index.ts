@@ -86,15 +86,13 @@ export function generate(
     ...aidesVeloBenefits.filter((b) => b.institution),
     ...apaBenefits,
     ...fslBenefits,
-  ].map((benefit) => {
-    return Object.assign({}, benefit, additionalBenefitAttributes[benefit.slug])
-  })
-
+  ]
   const benefitsMap = {}
 
   benefits = benefits.map((benefit) => {
     const institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
+    Object.assign(benefit, additionalBenefitAttributes[benefit.id])
     institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
     benefitsMap[benefit.id] = benefit

@@ -1,72 +1,69 @@
 <template>
-  <article class="text container">
-    <p v-if="updating">
-      <span
-        class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-        aria-hidden="true"
-      ></span
-      ><span class="fr-ml-2w">Récupération en cours…</span>
-    </p>
+  <article class="fr-article">
+    <LoadingModal v-if="updating">
+      <p>Récupération en cours…</p>
+    </LoadingModal>
+    <div v-else-if="error">
+      <h1>Oups, une erreur est apparue</h1>
+      <p>
+        <a
+          v-analytics="{ action: 'Support', category: 'Redirection' }"
+          v-mail="{
+            subject: `Problème redirection [${simulationId}]`,
+            body: `Bonjour,
+
+      ————
+      ID : ${simulationId}
+      Erreur : ${error}
+      ————`,
+          }"
+          >Signalez ce problème</a
+        >
+      </p>
+      <pre>{{ error }}</pre>
+    </div>
     <div v-else>
-      <div v-if="error">
-        <h1>Oups, une erreur est apparue</h1>
-        <p>
-          <a
-            v-analytics="{ action: 'Support', category: 'Redirection' }"
-            v-mail="{
-              subject: `Problème redirection [${simulationId}]`,
-              body: `Bonjour,
+      <h1>Transmission de vos informations</h1>
+      <p>
+        À titre expérimental, nous vous proposons de transmettre directement les
+        informations suivantes :
+      </p>
 
-        ————
-        ID : ${simulationId}
-        Erreur : ${error}
-        ————`,
-            }"
-            >Signalez ce problème</a
-          >
-        </p>
-        <pre>{{ error }}</pre>
-      </div>
+      <ul>
+        <li v-for="variable in teleservice.fields" :key="variable.label">
+          {{ variable.label }} :
+          {{ variable.formattedValue || variable.value }}
+        </li>
+      </ul>
 
-      <div v-else>
-        <h1>Transmission de vos informations</h1>
-        <p>
-          À titre expérimental, nous vous proposons de transmettre directement
-          les informations suivantes :
-        </p>
+      <p>
+        En continuant, vous acceptez de participer à cette expérimentation et
+        que les informations saisies soient transmises.
+      </p>
 
-        <ul>
-          <li v-for="variable in teleservice.fields" :key="variable.label">
-            {{ variable.label }} :
-            {{ variable.formattedValue || variable.value }}
-          </li>
-        </ul>
+      <p>
+        Dès lors, vous aurez un droit d'accès et de rectification sur les
+        informations nominatives stockées ou traitées informatiquement. Pour
+        exercer ce droit, vous devez vous y adresser, en justifiant de votre
+        identité.
+      </p>
 
-        <p>
-          En continuant, vous acceptez de participer à cette expérimentation et
-          que les informations saisies soient transmises.
-        </p>
-
-        <p>
-          Dès lors, vous aurez un droit d'accès et de rectification sur les
-          informations nominatives stockées ou traitées informatiquement. Pour
-          exercer ce droit, vous devez vous y adresser, en justifiant de votre
-          identité.
-        </p>
-
-        <a :href="teleservice.destination.url" class="btn btn-primary btn-lg">{{
-          teleservice.destination.label
-        }}</a>
-      </div>
+      <a :href="teleservice.destination.url" class="fr-btn">{{
+        teleservice.destination.label
+      }}</a>
     </div>
   </article>
 </template>
 
 <script>
+import LoadingModal from "@/components/loading-modal.vue"
 import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Redirection",
+  components: {
+    LoadingModal,
+  },
   setup() {
     return {
       store: useStore(),

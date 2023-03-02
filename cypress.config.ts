@@ -5,5 +5,4 @@ export default defineConfig({
     fixturesFolder: false,
     supportFile: false,
   },
-  //chromeWebSecurity: false,
 })

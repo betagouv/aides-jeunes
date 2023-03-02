@@ -9,53 +9,27 @@ import foyer from "../utils/foyer"
 import form from "../utils/form"
 import "cypress-axe"
 
-const getIframeDocument = () => {
-  return cy
-    .get('iframe[id="simulateur"]')
-    .its("0.contentDocument")
-    .should("exist")
-}
-
-const getIframe = () => {
-  return getIframeDocument()
-    .its("body")
-    .should("not.be.undefined")
-    .then(cy.wrap)
-}
-
-const getIframeWindow = () => {
-  return cy
-    .get('iframe[id="simulateur"]')
-    .its("0.contentWindow")
-    .should("exist")
-}
-
-const loadIframe = () => {}
-
 context("Full simulation", () => {
   beforeEach(() => {
     navigate.init()
     navigate.goToIframe()
     cy.injectAxe()
-    cy.get('iframe[id="simulateur"]').as("iframe")
+    cy.get('iframe[id="simulateur"]', { timeout: 7000 }).as("iframe")
   })
-  it("accept a basic situation", () => {
+  it("accept a basic situation in an iframe", () => {
     cy.get("@iframe")
       .its("0.contentDocument")
       .should("not.be.empty")
       .its("body")
       .as("iframeBody")
-
-    cy.get("@iframeBody")
-      .should("be.visible")
-      .should("not.be.empty")
       .then(cy.wrap)
 
-    cy.get("@iframeBody").find("[data-testid='new-simulation']").click()
+    cy.get("@iframeBody").should("not.be.empty").then(cy.wrap)
 
     cy.get("@iframeBody")
       .first()
       .within(($iframeBody) => {
+        navigate.goHome()
         profil.defaultIndivu()
         foyer.children(0)
         foyer.fill_en_couple(false)

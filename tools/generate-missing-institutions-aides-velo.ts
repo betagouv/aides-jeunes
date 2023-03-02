@@ -69,8 +69,10 @@ const missingEPCI = missingInstitutionBenefits.filter(
 )
 if (missingEPCI.length) {
   missingEPCI.forEach((b) => {
-    const EPCIMatch = epci.find((e) =>
-      e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
+    const EPCIMatch = epci.find(
+      (e) =>
+        e.code === b.collectivity.code ||
+        e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
     )
     if (EPCIMatch) {
       const epci_slug = normalizeName(EPCIMatch.nom)

@@ -421,3 +421,21 @@
   pointer-events: all;
   border: 1px solid #ffffff11;
 }
+
+.aj-debug-progress a:not(.aj-progress-inactive-step),
+.aj-debug-progress a:not(.aj-progress-inactive-step):active,
+.aj-debug-progress a:not(.aj-progress-inactive-step):visited {
+  color: var(--green);
+}
+.aj-progress-inactive-step,
+.aj-progress-inactive-step:active,
+.aj-progress-inactive-step:visited {
+  text-decoration: line-through;
+}
+.aj-progress-current-step {
+  font-weight: bold;
+}
+
+.aj-progress-hide-route {
+  display: none;
+}

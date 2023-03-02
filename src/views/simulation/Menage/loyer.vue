@@ -116,9 +116,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-.field-group {
-  margin-bottom: 2em;
-}
-</style>

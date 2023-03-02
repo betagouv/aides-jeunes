@@ -500,3 +500,9 @@
 .aj-progress-hide-route {
   display: none;
 }
+
+.aj-copy-content,
+.aj-copy-content * {
+  font-family: initial !important;
+  font-size: initial !important;
+}

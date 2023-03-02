@@ -9,7 +9,7 @@ describe("Test filenames rules", function () {
     const currentFiles = fs.readdirSync(dir)
     currentFiles.forEach((filename) => {
       if (
-        ["dist", "node_modules"].includes(filename) ||
+        ["dist", "dist-server", "node_modules", "out"].includes(filename) ||
         filename.startsWith(".")
       ) {
         return
@@ -40,7 +40,7 @@ describe("Test filenames rules", function () {
   })
 
   result.forEach((file) => {
-    describe(file.filename, function () {
+    describe(file.absolute, function () {
       it("should respect kebab-case rule", function () {
         expect(
           file.filename.match(/^(_?)([a-z][a-z0-9]*)(-[a-z0-9]+)*$/)

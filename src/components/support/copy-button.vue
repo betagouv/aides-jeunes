@@ -21,7 +21,7 @@ export default {
   methods: {
     copyBenefitsList: function (benefitsList) {
       const container = document.createElement("div")
-      container.className = "copy-content"
+      container.className = "aj-copy-content"
       const prepend = `Bonjour,\n\nJe vous écris car vous avez utilisé le simulateur d'aides du site 1jeune1solution.gouv.fr, et que vous avez effectué des démarches pour demander les aides qui se sont affichées en fin de simulation (identifiant de simulation : ${this.followupId}).\n\nIl s'agissait des aides suivantes :\n`
 
       const append = `Nous vous avons écrit la semaine qui a suivi la simulation pour savoir si vous aviez demandé les aides, et vous avez indiqué que`
@@ -62,10 +62,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-.copy-content,
-.copy-content * {
-  font-family: initial !important;
-  font-size: initial !important;
-}
-</style>

@@ -1,7 +1,8 @@
 import { submit } from "./form"
+import { urlInclude } from "./controllers"
 
 const fill_ressources_types = (types = []) => {
-  cy.url().should("includes", "ressources/types")
+  urlInclude("ressources/types")
   cy.checkA11y()
   types.forEach((type) =>
     cy

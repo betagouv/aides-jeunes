@@ -1,4 +1,5 @@
 import { submit, fillRadio } from "./form"
+import { urlInclude } from "./controllers"
 
 const fill__logementType = (_logementType) => {
   fillRadio("_logementType", _logementType)
@@ -25,7 +26,7 @@ const fill_habite_chez_parents = (situation) => {
 }
 
 const fill_depcom = (department, name = "depcom") => {
-  cy.url().should("includes", name)
+  urlInclude(name)
   cy.checkA11y()
   cy.get('[data-testid="postalCode"]').type(department)
   cy.wait("@communes")
@@ -49,7 +50,7 @@ const fill_proprietaire_proche_famille = (familyLink) => {
 }
 
 const fill_loyer = (loyer, charges) => {
-  cy.url().should("includes", "loyer")
+  urlInclude("loyer")
   cy.checkA11y()
   cy.get('input[data-testid="loyer"]').type(loyer)
   if (charges) {

@@ -74,7 +74,7 @@
                         <div
                           v-for="choice in droit.choices"
                           :key="choice.value"
-                          class="fr-radio-group fr-radio-rich"
+                          class="fr-radio-group fr-radio-rich fr-mt-1w"
                         >
                           <input
                             :id="`choices_${droit.id}_${choice.value}`"

@@ -18,7 +18,7 @@
                   <div
                     v-for="(item, index) in step.getItems(propertyData)"
                     :key="`${item.value}`"
-                    class="fr-radio-group fr-radio-rich"
+                    class="fr-radio-group fr-radio-rich fr-mt-1w"
                   >
                     <input
                       :id="`${item.value}`"

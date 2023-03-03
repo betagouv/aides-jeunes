@@ -305,10 +305,6 @@
   text-indent: 5px;
 }
 
-.fr-radio-group {
-  margin-top: 0;
-}
-
 .fr-radio-group label {
   min-height: 50px !important; // todo : remove !important when it's possible
 }

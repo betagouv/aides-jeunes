@@ -73,6 +73,7 @@
 
 .fr-btn {
   text-align: center;
+  max-width: 100% !important; // todo : remove !important when it's possible
 }
 
 .fr-btn--icon-center {

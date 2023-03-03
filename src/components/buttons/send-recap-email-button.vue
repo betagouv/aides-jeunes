@@ -1,8 +1,9 @@
 <template>
   <button
-    class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
+    class="fr-btn fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
+    :title="text"
     @click="showModal"
   >
     {{ text }}

@@ -335,14 +335,14 @@
 
 @media print {
   .fr-print-only {
-    display: inherit !important;
+    display: inherit;
   }
 
   .fr-print-hidden,
   .fr-btn,
   nav,
   footer {
-    display: none !important;
+    display: none;
   }
 
   .fr-tile {
@@ -377,11 +377,6 @@
   display: flex;
   align-items: center;
   gap: 16px;
-}
-
-.aj-iframe-content .aj-main-container,
-.aj-iframe-content .aj-fr-col-12 {
-  min-height: 0vh !important;
 }
 
 .aj-iframe-tracking-optout {

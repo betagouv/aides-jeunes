@@ -90,7 +90,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
 })
 
-FollowupSchema.method("renderNotificationEmail", function (){
+FollowupSchema.method("renderNotificationEmail", function () {
   return emailRender(EmailType.pricingNotification, this)
 })
 
@@ -107,7 +107,7 @@ FollowupSchema.method("sendPricingNotificationEmail", function () {
       email.textContent = render.text
       email.htmlContent = render.html
       email.tags = [EmailType.pricingNotification]
-      return sendEmail(email) 
+      return sendEmail(email, "tous-a-bord")
     })
     .then((response) => {
       return followup.postSimulationResultsEmail(response.messageId)

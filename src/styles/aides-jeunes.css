@@ -214,7 +214,7 @@
   }
 
   .aj-action-buttons .fr-btns-group {
-    justify-content: space-between !important;
+    justify-content: space-between;
   }
   .aj-main-container {
     flex: 1;

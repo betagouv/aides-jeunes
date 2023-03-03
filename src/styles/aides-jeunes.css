@@ -219,7 +219,7 @@
   .aj-main-container {
     flex: 1;
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column !important; // todo : remove !important when it's possible
     min-height: 0;
   }
 
@@ -252,7 +252,7 @@
   }
 
   [data-text]:after {
-    display: none !important;
+    display: none !important; // todo : remove !important when it's possible
   }
   .fr-sidemenu__inner {
     min-height: 0;
@@ -306,7 +306,7 @@
 }
 
 .fr-radio-group label {
-  min-height: 50px !important;
+  min-height: 50px !important; // todo : remove !important when it's possible
 }
 
 .fr-modal--large .fr-modal__content {

@@ -1,6 +1,6 @@
 <template>
   <Header1J1S v-if="headerCollapse" :collapse="headerCollapse" />
-  <main role="main" class="aj-iframe-content">
+  <main role="main">
     <slot />
   </main>
   <div class="aj-iframe-footer">

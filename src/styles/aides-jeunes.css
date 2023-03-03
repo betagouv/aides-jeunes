@@ -72,11 +72,11 @@
 }
 
 .fr-btn {
-  text-align: center !important;
+  text-align: center;
 }
 
 .fr-btn--icon-center {
-  justify-content: center !important;
+  justify-content: center;
 }
 
 .fr-btn-disabled {
@@ -87,7 +87,7 @@
 }
 
 .fr-fieldset__content {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 .fr-badge.fr-badge--info {

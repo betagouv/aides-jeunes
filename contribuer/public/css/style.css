@@ -119,26 +119,3 @@ body {
   margin-top: 0;
   font-weight: bold;
 }
-
-.aj-bandeau-demo-wrapper {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  width: 160px;
-  height: 160px;
-  pointer-events: none;
-}
-
-.aj-bandeau-demo-wrapper .aj-bandeau-lien-debug {
-  position: fixed;
-  inset: auto 30px 50px auto;
-  display: block;
-  background: #5770be;
-  padding: 5px 10px;
-  border-radius: 15px;
-  color: #ffffff;
-  z-index: 5000000;
-  pointer-events: all;
-  border: 1px solid #ffffff11;
-}

@@ -87,7 +87,7 @@
 }
 
 .fr-fieldset__content {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 .fr-badge.fr-badge--info {

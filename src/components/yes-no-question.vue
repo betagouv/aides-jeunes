@@ -13,7 +13,7 @@
     <div class="fr-container fr-px-0">
       <div class="fr-grid-row">
         <div class="fr-col-12 fr-col-sm-6 fr-col-md-6 fr-col-lg-6">
-          <div class="fr-radio-group fr-radio-rich fr-mb-2w">
+          <div class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w">
             <input
               :id="`yes-${uniqueFieldName}`"
               v-model="model"

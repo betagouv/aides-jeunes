@@ -4,17 +4,23 @@ import { getAnswer } from "../../../lib/answers.js"
 
 const sources = {
   activite: () => "Actif occupé",
+  adresse: () => "35 Rue Saint-Dominique 75007 Paris",
+  annee_etude: () => (Math.random() > 0.5 ? "Seconde" : "Première"),
   bafa: () => "true",
   civilite: () => (Math.random() > 0.5 ? "Mme" : "M."),
+  commune: (simulation) => {
+    const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
+    return depcom && [depcom._departement, depcom.depcom]
+  },
   date_de_valeur: (simulation) => {
     return simulation.dateDeValeur.toISOString().slice(0, -8)
   },
-  date_naissance: (simulation) => {
+  date_naissance: (simulation, id = "demandeur") => {
     const dob = getAnswer(
       simulation.answers.current,
       "individu",
       "date_naissance",
-      "demandeur"
+      id
     )
     if (!dob) {
       return
@@ -24,25 +30,46 @@ const sources = {
   },
   departement: (simulation) => {
     const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
-    if (!depcom) {
-      return
-    }
-    return depcom._departement
+    return depcom?._departement
   },
   dernier_salaire: () => "33.10",
   email: () => "thomas@yolo.com",
-  epci: () => "243301165",
-  nb_enfants: () => "0",
+  epci: (simulation) => {
+    const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
+    return depcom && [depcom._departement, depcom._epci]
+  },
+  nb_enfants: (simulation) => simulation.enfants.length.toString(),
   pays: () => "FR",
   propre_declaration_fiscale: () => "true", // via enfant_a_charge
-  region: () => "75",
+  region: (simulation) => {
+    const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
+    return depcom?._region
+  },
   situation: () => `J'ai ${"xx"} ans et je suis ${"yy"}`,
   telephone: () => "0612345678",
+}
+
+function enfants_beaumount(simulation) {
+  const mapping = {
+    "champ_Q2hhbXAtMzAzNDUxOQ==": sources.date_naissance,
+    "champ_Q2hhbXAtMzAzNDUyMA==": sources.annee_etude,
+  }
+  const fields = Object.keys(mapping)
+  return simulation.enfants.map((e) => {
+    const enfantId = `enfant_${e}`
+    return fields.reduce((a, v) => {
+      a[v] = mapping[v](simulation, enfantId)
+      return a
+    }, {})
+  })
+  return []
 }
 
 const mappings = {
   "aide-beaumont-en-verdunois": {
     "champ_Q2hhbXAtMzAzNDI4NA==": sources.civilite,
+    "champ_Q2hhbXAtMzAzNDI4NQ==": sources.adresse,
+    "champ_Q2hhbXAtMzAzNDI4Ng==": sources.commune,
     "champ_Q2hhbXAtMzAzNDI4Nw==": sources.departement,
     "champ_Q2hhbXAtMzAzNDM0MA==": sources.region,
     "champ_Q2hhbXAtMzAzNDM0MQ==": sources.epci,
@@ -57,6 +84,7 @@ const mappings = {
     "champ_Q2hhbXAtMzAzNDQwNQ==": sources.telephone,
     "champ_Q2hhbXAtMzAzNDQ2Ng==": sources.dernier_salaire,
     "champ_Q2hhbXAtMzAzNDUxNw==": sources.nb_enfants,
+    "champ_Q2hhbXAtMzAzNDUxOA==": enfants_beaumount,
   },
   "cd53-bafa": {
     champ_Q2hhbXAtMzc2NDE0: sources.date_naissance,

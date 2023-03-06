@@ -107,7 +107,7 @@
     "@vue/vue3-jest": "^27.0.0",
     "argparse": "^2.0.1",
     "concurrently": "^7.4.0",
-    "cypress": "^12.7.0",
+    "cypress": "^10.8.0",
     "cypress-axe": "^1.4.0",
     "eslint": ">=7.32.0",
     "eslint-config-prettier": "^8.3.0",

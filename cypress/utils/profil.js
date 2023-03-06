@@ -1,5 +1,6 @@
 import { fillRadio, submit } from "./form"
 import Scolarite from "../../lib/scolarite"
+import { urlInclude } from "./controllers"
 
 const fill_first_name = (prenom) => {
   cy.get("[data-testid='question']").invoke("text").should("contain", "prénom")
@@ -18,11 +19,11 @@ const fill_first_name = (prenom) => {
 }
 
 const fill_date_naissance = (birthDate) => {
-  cy.url().should("include", "date_naissance")
+  urlInclude("date_naissance")
   cy.checkA11y()
   cy.get("[data-testid='warning-message']").should("not.exist") // check openfisca missing benefits
   submit()
-  cy.url().should("include", "date_naissance") // Stay on the same page as an answer is required
+  urlInclude("date_naissance") // Stay on the same page as an answer is required
   cy.get("[data-testid='date_naissance']").type(birthDate)
   submit()
 }
@@ -116,6 +117,7 @@ const fill_conjoint_activite = (activity) => {
 }
 
 const defaultIndivu = () => {
+  urlInclude("date_naissance")
   fill_date_naissance("12121980")
   fill_nationalite("FR")
   fill_activite("salarie")

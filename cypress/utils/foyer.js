@@ -1,14 +1,15 @@
 import { fillRadio, submit } from "./form"
 import profil from "./profil"
+import { urlInclude } from "./controllers"
 
 const children = (numberOfChildren) => {
   for (let i = 0; i < numberOfChildren; i++) {
-    cy.url().should("includes", "enfants")
+    urlInclude("enfants")
     cy.checkA11y()
     cy.get('[data-testid="add-pac"]').click()
     profil.defaultChildren()
   }
-  cy.url().should("includes", "enfants")
+  urlInclude("enfants")
   submit()
 }
 

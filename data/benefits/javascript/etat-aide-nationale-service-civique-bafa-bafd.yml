@@ -1,0 +1,15 @@
+label: aide à la formation BAFA / BAFD dans le cadre du service civique
+institution: etat
+description: L’État propose une aide exceptionnelle pour aider le financement du
+  Brevet d’Aptitude aux Fonctions d’Animateurs (BAFA) et du Brevet d'Aptitude aux Fonctions de Directeur (BAFD).
+prefix: l’
+conditions_generales: []
+profils:
+  - type: service_civique
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 100
+link: https://www.jeunes.gouv.fr/une-aide-financiere-de-100eu-pour-les-volontaires-en-service-civique-pour-passer-leur-bafa-bafd
+instructions: https://www.asp-public.fr/aides/aide-a-la-formation-bafa-bafd-dans-le-cadre-du-service-civique

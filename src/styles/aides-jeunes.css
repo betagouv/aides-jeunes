@@ -1,6 +1,42 @@
 :root {
+  /* DSFR default theme */
+  --demo-wrapper-background-blue: #5770be;
   --text-disabled-grey: #666;
-  --background-blue: #5770be;
+  --blue-input-outline: #0a76f6;
+  --blue-france-sun-113-625: #000091;
+  --blue-france-sun-113-625-hover: #1212ff;
+  --blue-france-sun-113-625-active: #2323ff;
+  --blue-cumulus-main-526: #417dc4;
+  --blue-cumulus-925-125-hover: #a9c8fb;
+  --blue-cumulus-925-125-active: #8ab8f9;
+  --blue-cumulus-main-526: #417dc4;
+  --info-425-625: #0063cb;
+  --info-425-625-hover: #3b87ff;
+  --info-425-625-active: #6798ff;
+  --info-950-100: #e8edff;
+  --info-950-100-hover: #c2d1ff;
+  --info-950-100-active: #a9bfff;
+
+  /* Bordeaux métropole theme */
+  /* --demo-wrapper-background-blue: #a1d9e6;
+  --text-disabled-grey: #757575;
+  --blue-input-outline: #008080;
+  --blue-france-sun-113-625: #008391;
+  --blue-france-sun-113-625-hover: #476b70;
+  --blue-france-sun-113-625-active: #515e60;
+  --blue-cumulus-main-526: #089cb3; 
+  --blue-cumulus-925-125-hover: #068194;
+  --blue-cumulus-925-125-active: #036473;
+  --info-425-625: #008391;
+  --info-425-625-hover: #35b5ff;
+  --info-425-625-active: #0074b3;
+  --info-950-100: #e1ebed;
+  --info-950-100-hover: #cad8db;
+  --info-950-100-active: #7eb8bf; */
+}
+
+:root input {
+  outline-color: var(--blue-input-outline);
 }
 
 .fr-fieldset {

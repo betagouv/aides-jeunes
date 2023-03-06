@@ -4,13 +4,7 @@ description: La bourse Animazioni prend en charge une partie du coût de la
   formation pour les Brevets d’Aptitude aux Fonctions d’Animateur et de
   Directeur (BAFA et BAFD) et Brevet National de Sécurité et de Sauveteur
   Aquatique (BNSSA).
-conditions:
-  - Résider en Corse depuis 2 ans.
-  - Déposer une demande écrite motivée.
-  - Réaliser sa formation et ses stages d’approfondissement en Corse.
-  - Suivre sa formation dans un organisme de formation habilité par décision du
-    Ministre chargé de la jeunesse.
-  - Ne pas avoir débuté sa formation au moment du dépôt de la candidature.
+prefix: la
 conditions_generales:
   - type: age
     operator: ">="
@@ -22,11 +16,18 @@ conditions_generales:
     values:
       - "94"
 profils: []
-link: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
-instructions: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
-prefix: la
+conditions:
+  - Résider en Corse depuis 2 ans.
+  - Déposer une demande écrite motivée.
+  - Réaliser sa formation et ses stages d’approfondissement en Corse.
+  - Suivre sa formation dans un organisme de formation habilité par décision du
+    Ministre chargé de la jeunesse.
+  - Ne pas avoir débuté sa formation au moment du dépôt de la candidature.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: autre
 legend: maximum
 montant: 600
+link: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html
+instructions: https://www.isula.corsica/jeunesse/Bourse-Animazioni_a269.html

@@ -2,10 +2,8 @@ label: aide au BAFA pour une session de formation générale
 institution: caf_orne
 description: L'aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF de l'Orne pour vous aider à financer votre session en
-  complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  complément de l'aide nationale apportée par la CAF.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -17,12 +15,14 @@ conditions_generales:
     values:
       - "61"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-l-orne/offre-de-service/enfance-et-jeunesse/la-formation-bafa-bafd
-instructions: https://www.caf.fr/allocataires/caf-de-l-orne/offre-de-service/enfance-et-jeunesse/la-formation-bafa-bafd
-prefix: l’
+conditions:
+  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 350
-interestFlag: _interetBafa
+link: https://caf.fr/allocataires/caf-de-l-orne/offre-de-service/vie-personnelle/la-formation-bafa-bafd
+form: https://caf.fr/sites/default/files/medias/611/PDF/FormulaireDemandeBAFA.pdf
+instructions: https://caf.fr/allocataires/caf-de-l-orne/offre-de-service/vie-personnelle/la-formation-bafa-bafd

@@ -28,7 +28,7 @@ context("Full simulation", () => {
 
     cy.get("@iframeBody")
       .first()
-      .within(($iframeBody) => {
+      .within(() => {
         cy.get("@iframeBody").find("[data-testid='new-simulation']").click()
         profil.defaultIndivu()
         foyer.children(0)

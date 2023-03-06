@@ -41,9 +41,12 @@ function isOwner(_logementType) {
   return _logementType === LogementType.proprietaire
 }
 
-function captureCharges(_locationType) {
+function captureCharges(_logementType, _locationType) {
   return (
-    _locationType === LocationType.vide || _locationType === LocationType.foyer
+    _logementType !== LogementType.proprietaire && (
+      _locationType === LocationType.vide ||
+      _locationType === LocationType.foyer
+    )
   )
 }
 
@@ -53,7 +56,7 @@ export function getLoyerData(answers) {
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
   const isOwner = Logement.isOwner(_logementType)
-  const captureCharges = Logement.captureCharges(_locationType)
+  const captureCharges = Logement.captureCharges(_logementType, _locationType)
 
   if (!isOwner) {
     const loyerLabel = `Quel est le montant de votre ${

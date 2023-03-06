@@ -414,6 +414,12 @@
   border: 1px solid #ffffff11;
 }
 
+.aj-copy-content,
+.aj-copy-content * {
+  font-family: initial !important;
+  font-size: initial !important;
+}
+
 .aj-debug-progress a:not(.aj-progress-inactive-step),
 .aj-debug-progress a:not(.aj-progress-inactive-step):active,
 .aj-debug-progress a:not(.aj-progress-inactive-step):visited {

@@ -62,8 +62,8 @@ function processSend(args) {
         switch (emailType) {
           case EmailType.simulationResults:
             return followup.sendSimulationResultsEmail()
-          case EmailType.pricingNotification:
-            return followup.sendPricingNotificationEmail()
+          case EmailType.proactiveNotification:
+            return followup.sendProactiveNotificationEmail()
           case EmailType.benefitAction:
             return followup.sendSurvey(
               SurveyType.trackClickOnBenefitActionEmail

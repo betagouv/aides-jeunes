@@ -91,13 +91,13 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 })
 
 FollowupSchema.method("renderNotificationEmail", function () {
-  return emailRender(EmailType.pricingNotification, this)
+  return emailRender(EmailType.proactiveNotification, this)
 })
 
 /**
  * Method for Tous a bord notifications
  */
-FollowupSchema.method("sendPricingNotificationEmail", function () {
+FollowupSchema.method("sendProactiveNotificationEmail", function () {
   const followup = this
   return this.renderNotificationEmail()
     .then((render) => {
@@ -106,7 +106,7 @@ FollowupSchema.method("sendPricingNotificationEmail", function () {
       email.subject = render.subject
       email.textContent = render.text
       email.htmlContent = render.html
-      email.tags = [EmailType.pricingNotification]
+      email.tags = [EmailType.proactiveNotification]
       return sendEmail(email, "tous-a-bord")
     })
     .then((response) => {

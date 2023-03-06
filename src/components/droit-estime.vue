@@ -27,7 +27,7 @@
     </div>
     <div class="fr-text--center">
       <router-link
-        v-if="showUnexpected"
+        v-if="showUnexpectedLink"
         v-analytics="{
           name: droit.id,
           action: 'show-unexpected',
@@ -48,6 +48,10 @@ export default {
   name: "DroitEstime",
   props: {
     droit: Object,
+    showUnexpected: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup() {
     return {
@@ -64,11 +68,12 @@ export default {
     isBenefitTypeString() {
       return this.droitEstime.type === "string"
     },
-    showUnexpected() {
+    showUnexpectedLink() {
       return (
-        (this.droit.isBaseRessourcesYearMinusTwo &&
+        this.showUnexpected &&
+        ((this.droit.isBaseRessourcesYearMinusTwo &&
           !this.store.ressourcesYearMinusTwoCaptured) ||
-        this.droit.showUnexpectedAmount
+          this.droit.showUnexpectedAmount)
       )
     },
   },

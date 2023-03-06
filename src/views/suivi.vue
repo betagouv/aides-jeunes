@@ -60,7 +60,7 @@
             itemtype="http://schema.org/GovernmentService"
           >
             <div class="fr-p-4w">
-              <DroitHeader :droit="droit" />
+              <DroitHeader :droit="droit" :show-unexpected="false" />
 
               <fieldset class="fr-fieldset">
                 <legend class="fr-fieldset__legend">

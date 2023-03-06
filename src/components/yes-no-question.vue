@@ -32,7 +32,7 @@
               Oui
             </label>
           </div>
-          <div class="fr-radio-group fr-radio-rich">
+          <div class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w">
             <input
               :id="`no-${uniqueFieldName}`"
               v-model="model"
@@ -54,7 +54,7 @@
     </div>
   </div>
   <div v-else>
-    <div class="fr-radio-group fr-radio-rich">
+    <div class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w">
       <input
         :id="`yes-${uniqueFieldName}`"
         v-model="model"
@@ -64,7 +64,7 @@
       />
       <label :for="`yes-${uniqueFieldName}`" class="fr-label"> Oui </label>
     </div>
-    <div class="fr-radio-group fr-radio-rich">
+    <div class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w">
       <input
         :id="`no-${uniqueFieldName}`"
         v-model="model"

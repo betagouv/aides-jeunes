@@ -83,6 +83,7 @@ export function getLoyerData(answers) {
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
         selectedValue: loyer.loyer,
       },
+      chargesQuestion: null,
     }
   }
 }

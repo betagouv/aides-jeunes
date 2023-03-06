@@ -1,20 +1,17 @@
 label: e-pass jeunes
 institution: region_provence_alpes_cote_azur
-description:
-  L'e-pass jeunes est une carte et une application pour faciliter l'accès
-  de chaque jeune âgé de 15 à 25 ans scolarisé en région Provence-Alpes-Côte
-  d'Azur, à la culture et au sport avec 80 € et des bons plans.
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/e-pass-jeunes
+description: L'e-pass jeunes est une carte et une application pour faciliter
+  l'accès des jeunes âgés entre 13 et 25 ans scolarisés en région
+  Provence-Alpes-Côte d'Azur, à la culture et au sport avec 80 € et des bons
+  plans.
 prefix: l’
-type: bool
 conditions_generales:
   - type: regions
     values:
       - "93"
   - type: age
     operator: ">="
-    value: 15
+    value: 13
   - type: age
     operator: <=
     value: 25
@@ -22,4 +19,7 @@ profils:
   - type: etudiant
   - type: service_civique
   - type: apprenti
+type: bool
 periodicite: ponctuelle
+link: https://www.maregionsud.fr/vos-aides/detail/e-pass-jeunes
+instructions: https://e-passjeunes.maregionsud.fr/index

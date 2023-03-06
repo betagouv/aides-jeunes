@@ -11,6 +11,7 @@ import {
   findCommuneByInseeCode,
 } from "../../../mes-aides/distance.js"
 
+import { ActiviteType } from "../../../../../lib/enums/activite.js"
 import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
 
 const individuSchema: individuGeneratorLayout = {
@@ -23,7 +24,7 @@ const individuSchema: individuGeneratorLayout = {
   apprenti: {
     src: "_contrat_alternant",
     fn: function (contratAlternant) {
-      return contratAlternant === "apprenti"
+      return contratAlternant === ActiviteType.apprenti
     },
   },
   date_naissance: {
@@ -105,7 +106,7 @@ const individuSchema: individuGeneratorLayout = {
   professionnalisation: {
     src: "_contrat_alternant",
     fn: function (contratAlternant) {
-      return contratAlternant === "professionnalisation"
+      return contratAlternant === ActiviteType.professionnalisation
     },
   },
   regime_securite_sociale: {

@@ -3,6 +3,8 @@ import { generator } from "../dates.js"
 import { filterByInterestFlag } from "./filter-interest-flag.js"
 import Scolarite from "../scolarite.js"
 
+import { ActiviteType } from "../enums/activite.js"
+import { ScolariteType } from "../enums/scolarite.js"
 import { situationsLayout } from "../types/situations.js"
 import { ConditionsLayout } from "../types/benefits.js"
 
@@ -22,49 +24,54 @@ const includesAndExcludesCondition = (condition, value) => {
 }
 const PROFILE_STRATEGY = {
   apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?._contrat_alternant === "apprenti"
+    return situation.demandeur?._contrat_alternant === ActiviteType.apprenti
   },
   beneficiaire_rsa: (data) => {
     return testRSARecipient(data)
   },
   chomeur: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.activite === "chomeur"
+    return situation.demandeur?.activite === ActiviteType.chomeur
   },
   etudiant: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.activite === "etudiant"
+    return situation.demandeur?.activite === ActiviteType.etudiant
   },
   inactif: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.activite === "inactif"
+    return situation.demandeur?.activite === ActiviteType.inactif
   },
   independant: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.activite === "independant"
+    return situation.demandeur?.activite === ActiviteType.independant
   },
   enseignement_superieur: ({
     situation,
   }: {
     situation: situationsLayout
   }): boolean => {
-    return situation.demandeur?.scolarite === "enseignement_superieur"
+    return (
+      situation.demandeur?.scolarite === ScolariteType.enseignement_superieur
+    )
   },
   lyceen: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.scolarite === "lycee"
+    return situation.demandeur?.scolarite === ScolariteType.lycee
   },
   professionnalisation: ({
     situation,
   }: {
     situation: situationsLayout
   }): boolean => {
-    return situation.demandeur?._contrat_alternant === "professionnalisation"
+    return (
+      situation.demandeur?._contrat_alternant ===
+      ActiviteType.professionnalisation
+    )
   },
   salarie: ({ situation }: { situation: situationsLayout }): boolean => {
-    return situation.demandeur?.activite === "salarie"
+    return situation.demandeur?.activite === ActiviteType.salarie
   },
   service_civique: ({
     situation,
   }: {
     situation: situationsLayout
   }): boolean => {
-    return situation.demandeur?.activite === "service_civique"
+    return situation.demandeur?.activite === ActiviteType.service_civique
   },
   stagiaire: ({ situation }: { situation: situationsLayout }): boolean => {
     return situation.demandeur?.stagiaire === true

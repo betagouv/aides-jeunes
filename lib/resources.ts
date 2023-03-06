@@ -3,6 +3,7 @@ import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations.js"
 import { individuLayout } from "../lib/types/individu.js"
+import { ActiviteType } from "./enums/activite.js"
 import { resourceLayout, resourceCategoryLayout } from "./types/resources.js"
 
 export const ressourceCategories: resourceCategoryLayout[] = [
@@ -155,7 +156,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: situationsLayout, individu: individuLayout) => {
-      return individu.activite != "etudiant"
+      return individu.activite !== ActiviteType.etudiant
     },
   },
   {
@@ -327,7 +328,7 @@ export const ressourceTypes: resourceLayout[] = [
     prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
     isRelevant(situation: situationsLayout, individu: individuLayout) {
-      return individu.activite === "retraite"
+      return individu.activite === ActiviteType.retraite
     },
   },
   {
@@ -336,7 +337,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "pensions",
     prefix: "une",
     isRelevant(situation: situationsLayout, individu: individuLayout) {
-      return individu.activite === "retraite"
+      return individu.activite === ActiviteType.retraite
     },
   },
   {

@@ -10,7 +10,7 @@ import form from "../utils/form"
 import "cypress-axe"
 
 context("Full simulation", () => {
-  beforeEach(() => {
+  before(() => {
     navigate.init()
     navigate.goToIframe()
     cy.injectAxe()
@@ -23,9 +23,8 @@ context("Full simulation", () => {
       .should("not.be.empty")
       .its("body")
       .as("iframeBody")
-      .then(cy.wrap)
 
-    cy.get("@iframeBody").should("not.be.empty").then(cy.wrap)
+    cy.get("@iframeBody").should("not.be.empty")
 
     cy.get("@iframeBody")
       .first()

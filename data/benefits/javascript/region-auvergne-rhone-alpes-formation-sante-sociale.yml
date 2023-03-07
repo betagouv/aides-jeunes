@@ -3,21 +3,21 @@ institution: region_auvergne_rhone_alpes
 description: Cette aide vous permet d'éviter d'avoir à interrompre votre
   parcours de formation suite à une situation d'urgence (maladie, décès,
   chômage, divorce, etc.).
-prefix: l’
+conditions:
+  - Rencontrer un·e travailleur·euse social·e.
 conditions_generales:
   - type: formation_sanitaire_social
   - type: regions
     values:
       - "84"
 profils: []
-conditions:
-  - Rencontrer un·e travailleur·euse social·e.
+link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
+teleservice: ""
+form: ""
+prefix: l’
+instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 3000
-link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
-teleservice: ""
-form: ""
-instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social

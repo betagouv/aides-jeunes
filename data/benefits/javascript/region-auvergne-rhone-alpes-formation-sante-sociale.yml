@@ -12,10 +12,10 @@ conditions_generales:
       - "84"
 profils: []
 link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
+instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
 teleservice: ""
 form: ""
 prefix: l’
-instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
 type: float
 unit: €
 periodicite: ponctuelle

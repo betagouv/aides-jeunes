@@ -1,7 +1,7 @@
 <template>
   <div v-if="afficheBandeau" class="aj-bandeau-demo-wrapper">
     <a
-      class="bandeau-demo"
+      class="aj-bandeau-demo"
       target="_blank"
       title="Démo - Nouvelle fenêtre"
       rel="noopener"

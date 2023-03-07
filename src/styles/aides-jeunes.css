@@ -1,6 +1,5 @@
 :root {
   --text-disabled-grey: #666;
-  --background-blue: #5770be;
 }
 
 .fr-fieldset {
@@ -399,13 +398,28 @@
   width: 160px;
   height: 160px;
   pointer-events: none;
+  z-index: 1000;
 }
 
-.aj-bandeau-demo-wrapper .aj-bandeau-lien-debug {
+.aj-bandeau-demo {
+  position: absolute;
+  right: -45px;
+  top: 23px;
+  background: var(--blue-cumulus-main-526);
+  padding: 8px 48px;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  transform: rotate(45deg);
+  pointer-events: all;
+}
+
+.aj-lien-debug {
   position: fixed;
   inset: auto 30px 50px auto;
   display: block;
-  background: var(--background-blue);
+  background: var(--blue-cumulus-main-526);
   padding: 5px 10px;
   border-radius: 15px;
   color: #ffffff;

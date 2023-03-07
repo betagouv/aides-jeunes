@@ -13,7 +13,7 @@
         $filters.capitalize(droit.institution.label)
       }}</div>
     </div>
-    <DroitEstime :droit="droit" />
+    <DroitEstime :droit="droit" :show-unexpected="showUnexpected" />
   </div>
 </template>
 
@@ -29,6 +29,10 @@ export default {
   mixins: [BenefitMixin],
   props: {
     droit: Object,
+    showUnexpected: {
+      type: Boolean,
+      default: true,
+    },
   },
 }
 </script>

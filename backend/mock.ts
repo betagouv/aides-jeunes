@@ -102,6 +102,7 @@ function mock(app: express.Application) {
         { id: "ppa", amount: 42 },
         { id: "rsa", amount: 145 },
         { id: "aide_logement", amount: 125 },
+        { id: "livret_epargne_populaire_taux" },
       ],
     })
   })

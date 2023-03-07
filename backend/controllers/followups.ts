@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Followup from "../models/followup.js"
-
+import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
@@ -68,7 +68,12 @@ export function persist(req: ajRequest, res: Response) {
 }
 
 export function getFollowup(req: ajRequest, res: Response) {
-  res.send(req.followup)
+  res.send({
+    createdAt: req.followup.createdAt,
+    benefits: req.followup.benefits.filter(
+      (benefit) => benefit.id in Benefits.benefitsMap
+    ),
+  })
 }
 
 export function showSurveyResult(req: ajRequest, res: Response) {

@@ -21,9 +21,9 @@ profils:
     conditions: []
   - type: lyceen
     conditions: []
-type: bool
-unit: null
-periodicite: annuelle
 link: https://jeunes.auvergnerhonealpes.fr/106-pass-region.htm
 teleservice: https://auvergnerhonealpes.zecarte.fr/ARA/Forms/InscriptionBeneficiaire/InfosCarte.aspx
 instructions: https://www.auvergnerhonealpes.fr/aides/beneficier-des-avantages-du-passregion
+type: bool
+unit: null
+periodicite: annuelle

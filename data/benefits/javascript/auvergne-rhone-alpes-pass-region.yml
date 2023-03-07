@@ -5,7 +5,6 @@ description: Le Pass'Région est une carte délivrée par la Région
   la formation (gratuité des manuels scolaires, financement de l'équipement), la
   culture, le sport, la santé et, sous certaines conditions, une aide financière
   pour le permis.
-prefix: le
 conditions_generales:
   - type: age
     operator: ">="
@@ -24,6 +23,7 @@ profils:
 link: https://jeunes.auvergnerhonealpes.fr/106-pass-region.htm
 teleservice: https://auvergnerhonealpes.zecarte.fr/ARA/Forms/InscriptionBeneficiaire/InfosCarte.aspx
 instructions: https://www.auvergnerhonealpes.fr/aides/beneficier-des-avantages-du-passregion
+prefix: le
 type: bool
 unit: null
 periodicite: annuelle

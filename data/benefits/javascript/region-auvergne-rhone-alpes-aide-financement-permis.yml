@@ -1,6 +1,8 @@
 label: aide au financement du permis
 institution: region_auvergne_rhone_alpes
-description: Grâce à cette aide, bénéficiez du financement d'une partie de votre permis B.
+description: Grâce à cette aide, bénéficiez du financement d'une partie de votre
+  permis B. Cette aide est cumulable avec l'aide au permis du Pass'région
+  Auvergne-Rhône-Alpes.
 prefix: l’
 conditions_generales:
   - type: age

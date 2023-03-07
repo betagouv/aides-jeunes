@@ -1,10 +1,8 @@
-label: financement de formations dans le secteur de la santé
+label: financement de ma formation dans le secteur de la santé
 institution: region_auvergne_rhone_alpes
 description: La Région finance les formations pour devenir aide-soignant·e,
   auxiliaire de puériculture ou ambulancier·e.
-conditions:
-  - Constituer et déposer votre dossier auprès de l'intermédiaire designé par la
-    Région.
+prefix: le
 conditions_generales:
   - type: regions
     values:
@@ -15,10 +13,12 @@ profils:
     conditions: []
   - type: chomeur
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aide/335/289-financer-ma-formation-dans-le-secteur-de-la-sante-orientation-formation.htm
-instructions: https://www.auvergnerhonealpes.fr/aide/335/289-financer-ma-formation-dans-le-secteur-de-la-sante-orientation-formation.htm
-prefix: le
+conditions:
+  - Constituer et déposer votre dossier auprès de l'intermédiaire designé par la
+    Région.
+interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
 periodicite: ponctuelle
-interestFlag: _interetAidesSanitaireSocial
+link: https://www.auvergnerhonealpes.fr/aides/financer-ma-formation-dans-le-secteur-de-la-sante
+instructions: https://www.auvergnerhonealpes.fr/aides/financer-ma-formation-dans-le-secteur-de-la-sante

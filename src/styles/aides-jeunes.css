@@ -1,8 +1,17 @@
 :root {
+  /* 
+  Uncomment the theme you want to use 
+  between the three available themes :
+  - DSFR default theme
+  - Bordeaux métropole theme bleu
+  - Bordeaux métropole theme jaune
+  */
   /* DSFR default theme */
+  /*
   --demo-wrapper-background-blue: #5770be;
+  --text-button: #fff;
   --text-disabled-grey: #666;
-  --blue-input-outline: #0a76f6;
+  --input-outline: #0a76f6;
   --blue-france-sun-113-625: #000091;
   --blue-france-sun-113-625-hover: #1212ff;
   --blue-france-sun-113-625-active: #2323ff;
@@ -15,12 +24,16 @@
   --info-425-625-active: #6798ff;
   --info-950-100: #e8edff;
   --info-950-100-hover: #c2d1ff;
-  --info-950-100-active: #a9bfff;
+  --info-950-100-active: #a9bfff; 
+  --border-radius: 0rem; 
+  */
 
-  /* Bordeaux métropole theme */
-  /* --demo-wrapper-background-blue: #a1d9e6;
-  --text-disabled-grey: #757575;
-  --blue-input-outline: #008080;
+  /* Bordeaux métropole theme bleu */
+  /* 
+  --demo-wrapper-background-blue: #a1d9e6;
+  --text-button: #fff;
+  --text-disabled-grey: #666;
+  --input-outline: #008080;
   --blue-france-sun-113-625: #008391;
   --blue-france-sun-113-625-hover: #476b70;
   --blue-france-sun-113-625-active: #515e60;
@@ -32,11 +45,39 @@
   --info-425-625-active: #0074b3;
   --info-950-100: #e1ebed;
   --info-950-100-hover: #cad8db;
-  --info-950-100-active: #7eb8bf; */
+  --info-950-100-active: #7eb8bf;
+  --border-radius: 0.3rem;
+  */
+
+  /* Bordeaux métropole theme jaune */
+  /* 
+    --demo-wrapper-background-blue: #FBF1BC;
+    --text-button: #212427;
+    --text-disabled-grey: #666;
+    --input-outline: #FFD95F;
+    --blue-france-sun-113-625: #FFCC2A;
+    --blue-france-sun-113-625-hover: #FFD95F;
+    --blue-france-sun-113-625-active: #d6ab22;
+    --blue-cumulus-main-526: #F0D121;
+    --blue-cumulus-925-125-hover: #cfac3d;
+    --blue-cumulus-925-125-active: #b78a2e;
+    --info-425-625: #d4af37;
+    --info-425-625-hover: #c2a032;
+    --info-425-625-active: #9e8229;
+    --info-950-100: #FBF1BC;
+    --info-950-100-hover: #e8dc9e;
+    --info-950-100-active: #96893f;
+    --border-radius: 0.3rem; 
+    */
 }
 
-:root input {
-  outline-color: var(--blue-input-outline);
+:root input,
+:root select {
+  outline-color: var(--input-outline);
+}
+
+.aj-text-color {
+  color: var(--text-button);
 }
 
 .fr-fieldset {
@@ -110,6 +151,7 @@
 .fr-btn {
   text-align: center;
   max-width: 100% !important;
+  border-radius: var(--border-radius);
 }
 
 .fr-btn--icon-center {
@@ -343,6 +385,7 @@
 
 .fr-radio-group label {
   min-height: 50px !important;
+  border-radius: var(--border-radius);
 }
 
 .fr-modal--large .fr-modal__content {

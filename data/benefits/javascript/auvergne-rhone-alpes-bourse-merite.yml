@@ -4,7 +4,11 @@ description: La bourse au mérite permet de récompenser les lycéen·ne·s et l
   élèves en formation professionnelle méritants par un versement en une fois de
   500 euros. La demande doit être effectuée entre le jour des résultats du
   Bac/CAP/BP et le 31 octobre.
-prefix: la
+conditions:
+  - Être titulaire d’une mention « Très Bien » à la dernière session du
+    baccalauréat ou avoir au moins 16 sur 20 au Certificat d’Aptitude
+    Professionnelle (CAP) ou au Brevet professionnel (BP).
+  - Poursuivre un parcours d’études ou professionnel.
 conditions_generales:
   - type: regions
     values:
@@ -17,15 +21,11 @@ profils:
           - mention_tres_bien
           - mention_tres_bien_felicitations_jury
   - type: apprenti
-conditions:
-  - Être titulaire d’une mention « Très Bien » à la dernière session du
-    baccalauréat ou avoir au moins 16 sur 20 au Certificat d’Aptitude
-    Professionnelle (CAP) ou au Brevet professionnel (BP).
-  - Poursuivre un parcours d’études ou professionnel.
+link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
+teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
+prefix: la
 type: float
 unit: €
 periodicite: ponctuelle
-montant: 500
-link: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
-teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#BAM
 floorAt: 10
+montant: 500

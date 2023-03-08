@@ -117,6 +117,11 @@ export default {
               droitsEligibles: store.calculs.resultats.droitsEligibles,
               droits: this.droits,
             })
+            this.sendDisplayUnexpectedAmountLinkStatistics({
+              droits: this.droits,
+              ressourcesYearMinusTwoCaptured:
+                this.store.ressourcesYearMinusTwoCaptured,
+            })
             break
           }
           case "saveComputationFailure": {
@@ -184,6 +189,35 @@ export default {
         this.$matomo?.trackEvent("General", "show", droit.id)
       })
       this.sendStatistics(droits, "show")
+    },
+    sendDisplayUnexpectedAmountLinkStatistics({
+      droits,
+      ressourcesYearMinusTwoCaptured,
+    }) {
+      const droitsWithUnexpectedAmount = []
+
+      droits.forEach((droit) => {
+        const unexpectedAmountLinkDisplayed =
+          (droit.isBaseRessourcesYearMinusTwo &&
+            !ressourcesYearMinusTwoCaptured) ||
+          droit.showUnexpectedAmount
+
+        if (!unexpectedAmountLinkDisplayed) {
+          return
+        }
+
+        this.$matomo?.trackEvent(
+          "General",
+          "show-unexpected-amount-link",
+          droit.id
+        )
+        droitsWithUnexpectedAmount.push(droit)
+      })
+
+      this.sendStatistics(
+        droitsWithUnexpectedAmount,
+        "show-unexpected-amount-link"
+      )
     },
   },
 }

@@ -113,10 +113,10 @@ export default {
       after(() => {
         switch (name) {
           case "setResults": {
-            store.calculs.resultats.droitsEligibles.forEach(function (d) {
-              vm.$matomo?.trackEvent("General", "show", d.id)
+            this.sendShowStatistics({
+              droitsEligibles: store.calculs.resultats.droitsEligibles,
+              droits: this.droits,
             })
-            this.sendStatistics(this.droits, "show")
             break
           }
           case "saveComputationFailure": {
@@ -178,6 +178,12 @@ export default {
   methods: {
     isEmpty(array) {
       return !array || array.length === 0
+    },
+    sendShowStatistics({ droitsEligibles, droits }) {
+      droitsEligibles.forEach((droit) => {
+        this.$matomo?.trackEvent("General", "show", droit.id)
+      })
+      this.sendStatistics(droits, "show")
     },
   },
 }

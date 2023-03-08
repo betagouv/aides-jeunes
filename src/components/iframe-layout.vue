@@ -39,11 +39,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-html,
-body,
-.aj-page--full-height,
-.fr-modal--large .fr-modal__content {
-  height: unset !important;
-}
-</style>

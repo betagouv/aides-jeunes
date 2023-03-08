@@ -203,6 +203,7 @@
 
     <iframe
       id="tracking-optout"
+      class="aj-iframe-tracking-optout"
       title="Paramètres de suivi de l'utilisateur - stats.data.gouv.fr"
       src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
     >
@@ -254,17 +255,3 @@ Merci d'avance.
   },
 }
 </script>
-
-<style>
-table {
-  width: 100%;
-}
-
-#tracking-optout {
-  border-width: 0px;
-  overflow: hidden;
-  width: 100%;
-
-  background-color: white;
-}
-</style>

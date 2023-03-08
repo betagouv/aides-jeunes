@@ -19,12 +19,14 @@
       <li
         v-for="step in full"
         :key="step.key || step.path"
-        :class="{ 'hide-route': !showInactiveRoutes && !step.isActive }"
+        :class="{
+          'aj-progress-hide-route': !showInactiveRoutes && !step.isActive,
+        }"
       >
         <router-link
           :class="{
-            inactive: !step.isActive,
-            current: step.path == current,
+            'aj-progress-inactive-step': !step.isActive,
+            'aj-progress-current-step': step.path == current,
           }"
           :to="step.path"
         >
@@ -78,23 +80,3 @@ export default {
   },
 }
 </script>
-
-<style type="text/css">
-.aj-debug-progress a:not(.inactive),
-.aj-debug-progress a:not(.inactive):active,
-.aj-debug-progress a:not(.inactive):visited {
-  color: var(--green);
-}
-.inactive,
-.inactive:active,
-.inactive:visited {
-  text-decoration: line-through;
-}
-.current {
-  font-weight: bold;
-}
-
-.hide-route {
-  display: none;
-}
-</style>

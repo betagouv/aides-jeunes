@@ -1,6 +1,6 @@
 <template>
   <ProgressBar></ProgressBar>
-  <div class="fr-grid-row aj-fr-col-12">
+  <div class="fr-grid-row aj-column-container">
     <div class="fr-col-12 fr-col-md-3 aj-main-container">
       <Progress v-if="debug" />
       <Summary v-else />

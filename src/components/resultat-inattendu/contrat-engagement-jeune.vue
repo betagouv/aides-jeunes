@@ -18,9 +18,3 @@ export default {
   computed: {},
 }
 </script>
-
-<style scoped>
-.back-button {
-  margin-top: 16px !important;
-}
-</style>

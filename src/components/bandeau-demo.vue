@@ -1,7 +1,7 @@
 <template>
-  <div v-if="afficheBandeau" class="bandeau-demo-wrapper">
+  <div v-if="afficheBandeau" class="aj-bandeau-demo-wrapper">
     <a
-      class="bandeau-demo"
+      class="aj-bandeau-demo"
       target="_blank"
       title="Démo - Nouvelle fenêtre"
       rel="noopener"
@@ -9,7 +9,7 @@
     >
       Démo
     </a>
-    <a v-if="benefitLink" class="lien-debug" :href="benefitLink"
+    <a v-if="benefitLink" class="aj-bandeau-lien-debug" :href="benefitLink"
       >Accéder aux aides ajoutées</a
     >
   </div>
@@ -63,43 +63,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.bandeau-demo-wrapper {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  width: 160px;
-  height: 160px;
-  pointer-events: none;
-
-  .bandeau-demo {
-    position: absolute;
-    right: -39px;
-    top: 23px;
-    background: #5770be;
-    background: var(--theme-primary);
-    padding: 8px 48px;
-    border-radius: 0;
-    font-weight: 700;
-    font-size: 24px;
-    color: white;
-    transform: rotate(45deg);
-    pointer-events: all;
-  }
-
-  .lien-debug {
-    position: fixed;
-    inset: auto 30px 50px auto;
-    display: block;
-    background: #5770be;
-    padding: 5px 10px;
-    border-radius: 15px;
-    color: #ffffff;
-    z-index: 5000000;
-    pointer-events: all;
-    border: 1px solid #ffffff11;
-  }
-}
-</style>

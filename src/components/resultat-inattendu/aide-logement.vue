@@ -18,9 +18,3 @@ export default {
   name: "AideLogement",
 }
 </script>
-
-<style scoped>
-.back-button {
-  margin-top: 16px !important;
-}
-</style>

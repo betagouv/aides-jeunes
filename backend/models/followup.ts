@@ -38,17 +38,12 @@ const FollowupSchema = new mongoose.Schema(
     version: Number,
     error: { type: Object },
     accessToken: { type: String },
-    _oldId: { type: String },
   },
   { minimize: false, id: false }
 )
 
-FollowupSchema.static("findByIdOrOldId", function (id) {
-  if (id.length === 24) {
-    return this.findById(id)
-  } else {
-    return this.findOne({ _oldId: id })
-  }
+FollowupSchema.static("findById", function (id) {
+  return this.findById(id)
 })
 
 FollowupSchema.static("findByEmail", function (email) {

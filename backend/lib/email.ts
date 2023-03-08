@@ -57,7 +57,7 @@ function processSend(args) {
   const { id, type: emailType, multiple } = args
 
   if (id) {
-    Followup.findByIdOrOldId(id)
+    Followup.findById(id)
       .then((followup) => {
         switch (emailType) {
           case EmailType.simulationResults:
@@ -140,16 +140,7 @@ function main() {
       processSend(args)
       break
     case "reply":
-      Followup.findOne({
-        $or: [
-          {
-            "surveys._id": args.id,
-          },
-          {
-            "surveys._oldId": args.id,
-          },
-        ],
-      })
+      Followup.findOne({ "surveys._id": args.id })
         .then((e) => {
           console.log(e)
         })

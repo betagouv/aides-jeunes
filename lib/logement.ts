@@ -41,9 +41,10 @@ function isOwner(_logementType) {
   return _logementType === LogementType.proprietaire
 }
 
-function captureCharges(_locationType) {
+function captureCharges(_logementType, _locationType) {
   return (
-    _locationType === LocationType.vide || _locationType === LocationType.foyer
+    _logementType !== LogementType.proprietaire &&
+    [LocationType.vide, LocationType.foyer].includes(_locationType)
   )
 }
 
@@ -53,7 +54,7 @@ export function getLoyerData(answers) {
   const coloc = getAnswer(answers, "menage", "coloc")
   const loyer = getAnswer(answers, "menage", "loyer") || {}
   const isOwner = Logement.isOwner(_logementType)
-  const captureCharges = Logement.captureCharges(_locationType)
+  const captureCharges = Logement.captureCharges(_logementType, _locationType)
 
   if (!isOwner) {
     const loyerLabel = `Quel est le montant de votre ${
@@ -82,6 +83,7 @@ export function getLoyerData(answers) {
         hint: "Laissez ce champ à 0 € si vous ne remboursez pas actuellement de crédit pour votre logement.",
         selectedValue: loyer.loyer,
       },
+      chargesQuestion: null,
     }
   }
 }

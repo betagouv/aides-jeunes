@@ -44,7 +44,7 @@ export default {
     min: 0,
     max: 30,
     moreInfo:
-      "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l’impôt sur le revenu.",
+      "Une part fiscale est une unité représentative des personnes composant le foyer fiscal, servant au calcul de l'impôt sur le revenu. Pour trouver le nombre de parts fiscales dont vous disposez, vous pouvez vous référer à votre déclaration fiscale, où cette information est généralement indiquée.",
   }),
 
   rfr: new NumberProperty({

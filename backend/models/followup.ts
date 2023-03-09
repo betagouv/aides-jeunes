@@ -43,12 +43,13 @@ const FollowupSchema = new mongoose.Schema(
 )
 
 FollowupSchema.static("findById", function (id) {
-  return this.findById(id)
+  return this.find({ id })
 })
 
 FollowupSchema.static("findByEmail", function (email) {
   return this.find({ email })
 })
+
 FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId

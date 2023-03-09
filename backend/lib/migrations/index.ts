@@ -36,7 +36,7 @@ function getSortedMigrations(modelName) {
 }
 
 function getLatestVersion(migrations) {
-  return migrations[migrations.length - 1].version
+  return migrations[migrations.length - 1].default.version
 }
 
 export function getLatestVersionByModelName(modelName) {
@@ -49,9 +49,12 @@ export function apply(model) {
   const migrations = getSortedMigrations(folderName)
 
   migrations.forEach(function (migration: any) {
-    if (model.version === undefined || model.version < migration.version) {
-      model = migration.apply(model)
-      model.version = migration.version
+    if (
+      model.version === undefined ||
+      model.version < migration.default.version
+    ) {
+      model = migration.default.apply(model)
+      model.version = migration.default.version
     }
   })
   return model

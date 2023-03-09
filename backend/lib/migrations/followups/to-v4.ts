@@ -6,7 +6,7 @@ const VERSION = 4
 
 export default {
   apply(followup) {
-    delete followup._oldId
+    followup._oldId = undefined
     return followup
   },
   version: VERSION,

@@ -1,0 +1,19 @@
+:root {
+  --demo-wrapper-background-blue: #fbf1bc;
+  --text-button: #212427;
+  --text-disabled-grey: #666;
+  --input-outline: #ffd95f;
+  --blue-france-sun-113-625: #ffcc2a;
+  --blue-france-sun-113-625-hover: #ffd95f;
+  --blue-france-sun-113-625-active: #d6ab22;
+  --blue-cumulus-main-526: #f0d121;
+  --blue-cumulus-925-125-hover: #cfac3d;
+  --blue-cumulus-925-125-active: #b78a2e;
+  --info-425-625: #d4af37;
+  --info-425-625-hover: #c2a032;
+  --info-425-625-active: #9e8229;
+  --info-950-100: #fbf1bc;
+  --info-950-100-hover: #e8dc9e;
+  --info-950-100-active: #96893f;
+  --border-radius: 0.3rem;
+}

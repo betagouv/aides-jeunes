@@ -33,6 +33,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_STATS_VERSION: statistics?.version,
     VITE_NETLIFY_PR: process.env.BRANCH,
     VITE_1J1S_URL: "https://www.1jeune1solution.gouv.fr",
+    VITE_THEME_COLOR: "default", // bordeau-metropole / light-blue / default
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`

@@ -11,8 +11,19 @@ import StateService from "./plugins/state-service.js"
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
 
-import "@/styles/aides-jeunes.css"
+switch (process.env.VITE_THEME_COLOR) {
+  case "bordeau-metropole":
+    import("./styles/themes/bordeaux-metropole.css")
+    break
+  case "light-blue":
+    import("./styles/themes/light-blue.css")
+    break
+  default:
+    import("./styles/themes/default.css")
+    break
+}
 
+import "@/styles/aides-jeunes.css"
 import AnalyticsDirective from "./directives/analytics.js"
 import MailDirective from "./directives/mail.js"
 import SelectOnClickDirective from "./directives/select-on-click.js"

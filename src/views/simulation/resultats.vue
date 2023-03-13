@@ -113,14 +113,8 @@ export default {
       after(() => {
         switch (name) {
           case "setResults": {
-            this.sendShowStatistics({
-              droits: this.droits,
-            })
-            this.sendDisplayUnexpectedAmountLinkStatistics({
-              droits: this.droits,
-              ressourcesYearMinusTwoCaptured:
-                this.store.ressourcesYearMinusTwoCaptured,
-            })
+            this.sendShowStatistics()
+            this.sendDisplayUnexpectedAmountLinkStatistics()
             break
           }
           case "saveComputationFailure": {
@@ -183,22 +177,19 @@ export default {
     isEmpty(array) {
       return !array || array.length === 0
     },
-    sendShowStatistics({ droits }) {
-      droits.forEach((droit) => {
+    sendShowStatistics() {
+      this.droits.forEach((droit) => {
         this.$matomo?.trackEvent("General", "show", droit.id)
       })
-      this.sendStatistics(droits, "show")
+      this.sendStatistics(this.droits, "show")
     },
-    sendDisplayUnexpectedAmountLinkStatistics({
-      droits,
-      ressourcesYearMinusTwoCaptured,
-    }) {
+    sendDisplayUnexpectedAmountLinkStatistics() {
       const droitsWithUnexpectedAmount = []
 
-      droits.forEach((droit) => {
+      this.droits.forEach((droit) => {
         const unexpectedAmountLinkDisplayed =
           (droit.isBaseRessourcesYearMinusTwo &&
-            !ressourcesYearMinusTwoCaptured) ||
+            !this.ressourcesYearMinusTwoCaptured) ||
           droit.showUnexpectedAmount
 
         if (!unexpectedAmountLinkDisplayed) {

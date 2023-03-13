@@ -152,17 +152,8 @@ const publicStudent = () => {
   fill_mention_baccalaureat(MentionBaccalaureatType.mention_tres_bien)
   fill_stagiaire(false)
   fill_alternant(false)
+  fill_bourse_criteres_sociaux_echelon("Boursier échelon 7")
   fill_groupe_specialites_formation(GroupeSpecialiteType.groupe_330)
-  // fill_echelon_bourse(5)
-  // fill_groupe_specialites_formation(
-  //   Scolarite.groupeSpecialitesFormation
-  //     .specialites_plurivalentes_sanitaires_et_sociales.value
-  // )
-  // fill_bourse_criteres_sociaux_echelon(7, "Boursier échelon 7")
-  // fill_groupe_specialites_formation(
-  //   Scolarite.groupeSpecialitesFormation
-  //     .specialites_plurivalentes_sanitaires_et_sociales.value
-  // )
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

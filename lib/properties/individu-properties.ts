@@ -5,6 +5,7 @@ import {
   MultipleProperty,
   NumberProperty,
   BooleanProperty,
+  SliderProperty,
 } from "./property.js"
 
 import Individu from "../individu.js"

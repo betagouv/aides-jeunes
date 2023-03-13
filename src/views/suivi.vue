@@ -175,31 +175,29 @@ export default {
       )
     },
   },
-  mounted: function () {
-    axios
-      .get(`/api/followups/surveys/${this.$route.query.token}`)
-      .then((response) => {
-        this.followup = response.data
-        let followupBenefits = this.followup.benefits.map((benefit) =>
-          getBenefit(benefit.id)
-        )
+  mounted: async function () {
+    const { data: followup } = await axios.get(
+      `/api/followups/surveys/${this.$route.query.token}`
+    )
 
-        const benefitsNormalized = followupBenefits.map((benefit) => {
-          let montant = this.followup.benefits.find(
-            (followupBenefit) => followupBenefit.id === benefit.id
-          ).amount
+    this.followup = followup
+    const followupBenefits = this.followup.benefits.map((benefit) =>
+      getBenefit(benefit.id)
+    )
 
-          return {
-            ...benefit,
-            montant: montant,
-            choices: choices,
-            choiceValue: null,
-            choiceComments: "",
-          }
-        })
+    this.droits = followupBenefits.map((benefit) => {
+      const montant = this.followup.benefits.find(
+        ({ id }) => id === benefit.id
+      ).amount
 
-        this.droits = benefitsNormalized
-      })
+      return {
+        ...benefit,
+        montant,
+        choices,
+        choiceValue: null,
+        choiceComments: "",
+      }
+    })
   },
   methods: {
     isNegative,
@@ -211,25 +209,24 @@ export default {
       }
       return ""
     },
-    submit: function () {
-      let answers = this.droits.map((droit) => ({
+    submit: async function () {
+      const answers = this.droits.map((droit) => ({
         id: droit.id,
         value: droit.choiceValue,
         comments: droit.choiceComments,
       }))
 
-      let that = this
-      axios
-        .post(
-          `/api/followups/surveys/${this.$route.query.token}/answers`,
-          answers
-        )
-        .then(function (response) {
-          if (response.status === 201) {
-            that.submitted = true
-            window.scrollTo(0, 0)
-          }
-        })
+      const { status } = await axios.post(
+        `/api/followups/surveys/${this.$route.query.token}/answers`,
+        answers
+      )
+
+      if (status !== 201) {
+        return
+      }
+
+      this.submitted = true
+      window.scrollTo(0, 0)
     },
   },
 }

@@ -88,8 +88,8 @@ function individuBlockFactory(id, chapter?: string) {
             },
             {
               isActive: (subject) =>
-                subject.activite === "etudiant" &&
-                subject.scolarite === "enseignement_superieur",
+                subject.activite === ActiviteType.etudiant &&
+                subject.scolarite === ScolariteType.enseignement_superieur,
               steps: [r("bourse_criteres_sociaux_echelon")],
             },
             {

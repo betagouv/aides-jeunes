@@ -202,9 +202,6 @@ export default {
       })
   },
   methods: {
-    isBoolean: (val) => typeof val === "boolean",
-    isString: (val) => typeof val === "string",
-    isNumber: (val) => typeof val === "number",
     isNegative,
     prefix: function (droit) {
       if (droit.prefix) {

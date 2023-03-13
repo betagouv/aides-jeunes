@@ -15,7 +15,7 @@
                 <h3 class="last"
                   >Merci d'avoir rempli ce questionnaire&nbsp;!</h3
                 >
-                <div v-if="droits && showAccompanimentBlock === true">
+                <div v-if="showAccompanimentBlock">
                   <p class="fr-text--lg">
                     Vous avez besoin d'aide pour effectuer vos démarches ?
                     Prenez rendez-vous pour être accompagné·e par notre

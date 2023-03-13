@@ -1,3 +1,4 @@
+import storageService from "@/lib/storage-service.ts"
 /*
  * L'AB testing repose sur les custom variables de Matomo
  * https://matomo.org/docs/custom-variables/
@@ -14,7 +15,7 @@ function getEnvironment() {
   if (!window._paq) {
     return {}
   }
-  const ABTesting = JSON.parse(localStorage.getItem("ABTesting") || "{}")
+  const ABTesting = storageService.getItem("localStorage", "ABTesting") || {}
 
   // index doit être dans [1, 5]
   // // Prépare la variable d'AB testing
@@ -44,7 +45,7 @@ function getEnvironment() {
       ])
     }
   })
-  localStorage.setItem("ABTesting", JSON.stringify(ABTesting))
+  storageService.setItem("localStorage", "ABTesting", ABTesting)
   return ABTesting
 }
 
@@ -66,7 +67,7 @@ const ABTestingService = {
   setVariant(key, value) {
     const ABTestingEnvironment = getEnvironment()
     ABTestingEnvironment[key].value = value
-    localStorage.setItem("ABTesting", JSON.stringify(ABTestingEnvironment))
+    storageService.setItem("localStorage", "ABTesting", ABTestingEnvironment)
 
     return extractValueMap(ABTestingEnvironment)
   },

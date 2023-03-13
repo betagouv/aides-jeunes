@@ -1,5 +1,5 @@
 const init = () => {
-  cy.intercept("GET", "/api/simulation/*/results").as("results")
+  cy.intercept("GET", "/api/simulation/*/results?token=*").as("results")
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.intercept("POST", "/api/simulation").as("post-simulation")
   cy.visit("http://localhost:8080/init-ci")

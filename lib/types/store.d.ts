@@ -43,6 +43,7 @@ export interface Simulation {
   patrimoine?: Patrimoine
   ressourcesFiscales?: RessourcesFiscales
   abtesting?: any
+  simulationToken?: string | undefined
 }
 
 export interface Situation {

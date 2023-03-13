@@ -2,7 +2,7 @@
   <div class="fr-fieldset__content">
     <div class="fr-container fr-px-0">
       <input
-        :id="id"
+        :id="`${id}_input_range`"
         v-model="model"
         v-select-on-click
         class="fr-input-slider"
@@ -11,7 +11,7 @@
         :max="max"
         :aria-labelledby="ariaLabelledBy"
       />
-      <p>{{ label }}</p>
+      <p :id="`${id}_label`">{{ label }}</p>
     </div>
   </div>
 </template>

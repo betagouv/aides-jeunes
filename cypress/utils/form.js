@@ -20,7 +20,7 @@ const fillRadio = (url, value, noSubmit) => {
 const fillRange = (url, value) => {
   cy.url().should("include", url)
   cy.checkA11y()
-  cy.get(`input[type="range"]`).first().invoke("val", value).trigger("change")
+  cy.get(`#${url}_input_range`).invoke("val", value).trigger("change")
   submit()
 }
 

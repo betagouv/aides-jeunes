@@ -23,11 +23,16 @@
                   >
                   <p>
                     <a
+                      v-analytics="{
+                        name: currentPath,
+                        action: 'click-accompaniment-link',
+                        category: 'Accompaniment',
+                      }"
                       class="fr-btn fr-btn--lg"
                       href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
-                      >Prendre rendez-vous pour être aidé·e dans mes
-                      démarches</a
                     >
+                      Prendre rendez-vous pour être aidé·e dans mes démarches
+                    </a>
                   </p>
 
                   <p class="fr-mt-3w"
@@ -174,6 +179,9 @@ export default {
         ["failed", "nothing"].includes(droit.choiceValue)
       )
     },
+    currentPath: function () {
+      return this.$route.path
+    },
   },
   mounted: async function () {
     const { data: followup } = await axios.get(
@@ -227,6 +235,14 @@ export default {
 
       this.submitted = true
       window.scrollTo(0, 0)
+
+      if (this.showAccompanimentBlock) {
+        this.$matomo?.trackEvent(
+          "Accompaniment",
+          "show-accompaniment-link",
+          this.currentPath
+        )
+      }
     },
   },
 }

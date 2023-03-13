@@ -109,12 +109,11 @@ export default {
     this.store.updateCurrentAnswers(this.$route.path)
 
     let vm = this
-    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
+    this.stopSubscription = this.store.$onAction(({ after, name }) => {
       after(() => {
         switch (name) {
           case "setResults": {
             this.sendShowStatistics({
-              droitsEligibles: store.calculs.resultats.droitsEligibles,
               droits: this.droits,
             })
             this.sendDisplayUnexpectedAmountLinkStatistics({
@@ -184,8 +183,8 @@ export default {
     isEmpty(array) {
       return !array || array.length === 0
     },
-    sendShowStatistics({ droitsEligibles, droits }) {
-      droitsEligibles.forEach((droit) => {
+    sendShowStatistics({ droits }) {
+      droits.forEach((droit) => {
         this.$matomo?.trackEvent("General", "show", droit.id)
       })
       this.sendStatistics(droits, "show")

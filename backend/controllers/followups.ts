@@ -18,7 +18,7 @@ export function followup(
   next: NextFunction,
   id: string
 ) {
-  Followup.staticFindById(id)
+  Followup.findById(id)
     .populate("simulation")
     .exec(function (err: any, followup: any) {
       if (err) {
@@ -77,7 +77,7 @@ export function getFollowup(req: ajRequest, res: Response) {
 }
 
 export function showSurveyResult(req: ajRequest, res: Response) {
-  Followup.staticFindById(req.params.surveyId)
+  Followup.findById(req.params.surveyId)
     .then((simulation: any) => {
       if (!simulation) return res.sendStatus(404)
       res.send([simulation])
@@ -119,7 +119,7 @@ export function showSurveyResultByEmail(req: ajRequest, res: Response) {
 }
 
 export function showSimulation(req: ajRequest, res: Response) {
-  Followup.staticFindById(req.params.surveyId)
+  Followup.findById(req.params.surveyId)
     .select(excludeFields)
     .then((simulation: any) => {
       if (!simulation) return res.sendStatus(404)

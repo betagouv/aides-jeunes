@@ -7,6 +7,10 @@ const VERSION = 4
 export default {
   apply(followup) {
     followup._oldId = undefined
+    followup.surveys = followup.surveys.map((survey) => {
+      survey._oldId = undefined
+      return survey
+    })
     return followup
   },
   version: VERSION,

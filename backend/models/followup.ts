@@ -94,9 +94,6 @@ FollowupSchema.method("renderNotificationEmail", function () {
   return emailRender(EmailType.proactiveNotification, this)
 })
 
-/**
- * Method for Tous a bord notifications
- */
 FollowupSchema.method("sendProactiveNotificationEmail", function () {
   const followup = this
   return this.renderNotificationEmail()
@@ -107,7 +104,7 @@ FollowupSchema.method("sendProactiveNotificationEmail", function () {
       email.textContent = render.text
       email.htmlContent = render.html
       email.tags = [EmailType.proactiveNotification]
-      return sendEmail(email, "tous-a-bord")
+      return sendEmail(email)
     })
     .then((response) => {
       return followup.postSimulationResultsEmail(response.messageId)

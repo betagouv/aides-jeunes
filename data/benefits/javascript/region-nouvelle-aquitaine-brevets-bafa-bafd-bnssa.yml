@@ -16,8 +16,7 @@ conditions_generales:
     value: 30
 profils: []
 conditions:
-  - Vérifier que le revenu fiscal de référence de votre foyer est inférieur à 12
-    000 € par part fiscale.
+  - Vérifier que le revenu fiscal de référence de votre foyer est inférieur à 12000 € par part fiscale.
 interestFlag: _interetBafa
 type: float
 unit: €

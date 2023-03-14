@@ -42,10 +42,6 @@ const FollowupSchema = new mongoose.Schema(
   { minimize: false, id: false }
 )
 
-FollowupSchema.static("staticFindById", function (id) {
-  return this.findById(id)
-})
-
 FollowupSchema.static("findByEmail", function (email) {
   return this.find({ email })
 })

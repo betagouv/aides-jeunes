@@ -57,8 +57,8 @@ function processSend(args) {
   const { id, type: emailType, multiple } = args
 
   if (id) {
-    Followup.staticFindById(id)
-      .then((followup) => {
+    Followup.findById(id)
+      .then((followup: any) => {
         switch (emailType) {
           case EmailType.simulationResults:
             return followup.sendSimulationResultsEmail()

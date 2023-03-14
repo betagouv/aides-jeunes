@@ -62,7 +62,7 @@ const followupRendering = async (req: ajRequest) => {
 
 app.route("/mjml/:id/:type").get(
   function (req: ajRequest, res, next) {
-    Followup.staticFindById(req.params.id)
+    Followup.findById(req.params.id)
       .populate("simulation")
       .exec(function (err, followup) {
         if (err) {

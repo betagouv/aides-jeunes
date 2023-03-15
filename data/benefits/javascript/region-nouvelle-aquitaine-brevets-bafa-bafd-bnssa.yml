@@ -14,9 +14,12 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
+  - type: quotient_familial
+    operator: <=
+    value: 12000
+    period: year
 profils: []
-conditions:
-  - Vérifier que le revenu fiscal de référence de votre foyer est inférieur à 12 000€ par part fiscale.
+conditions: []
 interestFlag: _interetBafa
 type: float
 unit: €

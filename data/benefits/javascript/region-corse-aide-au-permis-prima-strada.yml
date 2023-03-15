@@ -4,16 +4,7 @@ description: "Grâce à l'aide Prima Strada, financez une partie de votre permis
   ou A1. A noter : le permis de conduire sera entièrement pris en charge pour
   tous les jeunes en situation de handicap. Cette aide n'est pas cumulable avec
   les aides existantes."
-conditions:
-  - Résider en Corse depuis 2 ans.
-  - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
-    choix (justifier de 20 heures minimum).
-  - Déposer une demande écrite motivée.
-  - Être rattaché·e à un foyer dont le revenu fiscal de référence est inférieur
-    à 18 500 € par part fiscale.
-  - Ne pas être concerné·e par l’attribution d’une aide de droit commun ou
-    d’une autre aide existante.
-  - Ne pas avoir débuté sa formation et ne pas avoir passé l’examen.
+prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
@@ -24,12 +15,23 @@ conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: quotient_familial
+    operator: <
+    value: 18500
+    period: year
 profils: []
-link: https://www.isula.corsica/jeunesse/Une-aide-pour-les-jeunes-pour-passer-le-permis-de-conduire-Prima-Strada_a80.html
-instructions: https://www.isula.corsica/jeunesse/attachment/2263155/
-prefix: l’
+conditions:
+  - Résider en Corse depuis 2 ans.
+  - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
+    choix (justifier de 20 heures minimum).
+  - Déposer une demande écrite motivée.
+  - Ne pas être concerné·e par l’attribution d’une aide de droit commun ou d’une
+    autre aide existante.
+  - Ne pas avoir débuté sa formation et ne pas avoir passé l’examen.
+interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: autre
 montant: 500
-interestFlag: _interetPermisDeConduire
+link: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html
+instructions: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html

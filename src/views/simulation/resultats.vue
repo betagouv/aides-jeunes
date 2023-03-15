@@ -109,14 +109,12 @@ export default {
     this.store.updateCurrentAnswers(this.$route.path)
 
     let vm = this
-    this.stopSubscription = this.store.$onAction(({ after, store, name }) => {
+    this.stopSubscription = this.store.$onAction(({ after, name }) => {
       after(() => {
         switch (name) {
           case "setResults": {
-            store.calculs.resultats.droitsEligibles.forEach(function (d) {
-              vm.$matomo?.trackEvent("General", "show", d.id)
-            })
-            this.sendStatistics(this.droits, "show")
+            this.sendShowStatistics()
+            this.sendDisplayUnexpectedAmountLinkStatistics()
             break
           }
           case "saveComputationFailure": {
@@ -178,6 +176,38 @@ export default {
   methods: {
     isEmpty(array) {
       return !array || array.length === 0
+    },
+    sendShowStatistics() {
+      this.droits.forEach((droit) => {
+        this.$matomo?.trackEvent("General", "show", droit.id)
+      })
+      this.sendStatistics(this.droits, "show")
+    },
+    sendDisplayUnexpectedAmountLinkStatistics() {
+      const droitsWithUnexpectedAmount = []
+
+      this.droits.forEach((droit) => {
+        const unexpectedAmountLinkDisplayed =
+          (droit.isBaseRessourcesYearMinusTwo &&
+            !this.ressourcesYearMinusTwoCaptured) ||
+          droit.showUnexpectedAmount
+
+        if (!unexpectedAmountLinkDisplayed) {
+          return
+        }
+
+        this.$matomo?.trackEvent(
+          "General",
+          "show-unexpected-amount-link",
+          droit.id
+        )
+        droitsWithUnexpectedAmount.push(droit)
+      })
+
+      this.sendStatistics(
+        droitsWithUnexpectedAmount,
+        "show-unexpected-amount-link"
+      )
     },
   },
 }

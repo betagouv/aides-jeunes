@@ -35,6 +35,9 @@ export default {
         this.droits
       )
     },
+    ressourcesYearMinusTwoCaptured() {
+      return this.store.ressourcesYearMinusTwoCaptured
+    },
   },
   methods: {
     eligibleBenefits() {

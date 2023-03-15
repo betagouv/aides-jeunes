@@ -16,8 +16,8 @@ import(
     !process.env.VITE_THEME_COLOR ? "default" : process.env.VITE_THEME_COLOR
   }.css`
 )
-
 import "@/styles/aides-jeunes.css"
+
 import AnalyticsDirective from "./directives/analytics.js"
 import MailDirective from "./directives/mail.js"
 import SelectOnClickDirective from "./directives/select-on-click.js"

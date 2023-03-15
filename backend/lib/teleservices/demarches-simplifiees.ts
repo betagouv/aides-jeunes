@@ -13,7 +13,7 @@ const sources = {
     return depcom && [depcom._departement, depcom.depcom]
   },
   date_de_valeur: (simulation) => {
-    return simulation.dateDeValeur.toISOString().slice(0, -8)
+    return dayjs(simulation.dateDeValeur).format("YYYY-MM-DDTHH:mm")
   },
   date_naissance: (simulation, id = "demandeur") => {
     const dob = getAnswer(

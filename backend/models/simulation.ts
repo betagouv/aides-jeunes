@@ -82,7 +82,8 @@ SimulationSchema.method("isAccessible", function (keychain) {
   return (
     ["demo", "investigation", "test"].includes(this.status) ||
     keychain?.[this.cookieName] === this.token ||
-    keychain?.token === this.token
+    keychain?.token === this.token ||
+    keychain?.authorization === `Basic ${Buffer.from(this.token, "base64")}`
   )
 })
 SimulationSchema.pre("save", async function (next) {

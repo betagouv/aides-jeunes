@@ -410,7 +410,9 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = false
     },
     setSimulationToken(token: string): void {
-      this.simulation.simulationToken = token
+      if (!navigator.cookieEnabled) {
+        this.simulation.simulationToken = Buffer.from(token, "base64")
+      }
     },
     save() {
       this.setRecapEmailState(undefined)
@@ -446,12 +448,13 @@ export const useStore = defineStore("store", {
       const token = this.getSimulationToken
 
       this.access.fetching = true
-      const params = {
-        ...(token && { token }),
+      const headers = {
+        ...(!navigator.cookieEnabled &&
+          token && { Authorization: `Basic ${token}` }),
       }
 
       return axios
-        .get(`/api/simulation/${id}`, { params })
+        .get(`/api/simulation/${id}`, { headers })
         .then((result) => result.data)
         .then((payload) => this.reset(payload))
         .then(() => this.setSimulationId(id))
@@ -481,8 +484,8 @@ export const useStore = defineStore("store", {
     compute(showPrivate: boolean) {
       this.startComputation()
       const token = this.getSimulationToken
-      const params = {
-        ...(token && { token }),
+      const headers = {
+        ...(token && { Authorization: `Basic ${token}` }),
       }
       return axios
         .get(
@@ -490,7 +493,7 @@ export const useStore = defineStore("store", {
             showPrivate ? "&showPrivate" : ""
           }`,
           {
-            params,
+            headers,
           }
         )
         .then((response) => {

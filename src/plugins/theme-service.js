@@ -1,6 +1,6 @@
-import bordeauxMetropole from "../styles/themes/bordeaux-metropole.css?inline"
-import lightBlue from "../styles/themes/light-blue.css?inline"
-import defaultTheme from "../styles/themes/default.css?inline"
+import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
+import lightBlue from "@/styles/themes/light-blue.css?inline"
+import defaultTheme from "@/styles/themes/default.css?inline"
 
 const themes = {
   "bordeaux-metropole": bordeauxMetropole,

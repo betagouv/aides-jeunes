@@ -410,9 +410,7 @@ export const useStore = defineStore("store", {
       this.calculs.dirty = false
     },
     setSimulationToken(token: string): void {
-      if (!navigator.cookieEnabled) {
-        this.simulation.simulationToken = token
-      }
+      this.simulation.simulationToken = token
     },
     save() {
       this.setRecapEmailState(undefined)
@@ -449,8 +447,7 @@ export const useStore = defineStore("store", {
 
       this.access.fetching = true
       const headers = {
-        ...(!navigator.cookieEnabled &&
-          token && { Authorization: `Bearer ${token}` }),
+        ...(token && { Authorization: `Bearer ${token}` }),
       }
 
       return axios

@@ -29,5 +29,8 @@ unit: €
 periodicite: autre
 montant: 300
 link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafa
-teleservice: https://www.demarches-simplifiees.fr/commencer/cd53-bafa
-instructions: ""
+teleservice:
+  name: redirection
+  query:
+    vers: ds?benefit=cd53-bafa
+skip_schema_check: true

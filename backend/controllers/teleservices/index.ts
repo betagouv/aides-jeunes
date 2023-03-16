@@ -5,11 +5,12 @@ import Mustache from "mustache"
 
 import config from "../../config/index.js"
 import { AidesJeunesPreremplissage } from "../../lib/teleservices/aides-jeunes-preremplissage.js"
+import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
+import DemarchesSimplifiees from "../../lib/teleservices/demarches-simplifiees.js"
 import OpenFiscaAxe from "../../lib/teleservices/openfisca-axe.js"
 import OpenFiscaResponse from "../../lib/teleservices/openfisca-response.js"
 import OpenFiscaTracer from "../../lib/teleservices/openfisca-tracer.js"
 import PNDS from "../../lib/teleservices/pnds.js"
-import AidesJeunesServiceLogement from "../../lib/teleservices/aides-jeunes-service-logement.js"
 import dayjs from "dayjs"
 import "dayjs/locale/fr.js"
 
@@ -81,12 +82,21 @@ const teleservices = [
       url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
     },
   },
+  {
+    name: "ds",
+    class: DemarchesSimplifiees,
+    public: true,
+    destination: {
+      label: "Aller sur démarches-simplifiées.fr",
+      url: "/api/proxy/ds?token={{token}}",
+    },
+  },
 ]
 
-function createClass(teleservice, simulation) {
+function createClass(teleservice, simulation, query) {
   // Create object dynamically, and apply constructor
   const ts = Object.create(teleservice.class.prototype)
-  teleservice.class.apply(ts, [simulation])
+  teleservice.class.apply(ts, [simulation, query])
 
   return ts
 }
@@ -123,23 +133,27 @@ function metadataResponseGenerator(teleservice) {
     const payload = {
       id: req.simulation._id,
       scope: teleservice.name,
+      query: req.query,
       exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expires after one hour
     }
 
     const token = jwt.sign(payload, req.simulation.token)
-
-    return res.json({
-      fields: createClass(teleservice, req.simulation).toInternal(),
-      destination: {
-        label: teleservice.destination.label,
-        url: Mustache.render(teleservice.destination.url, {
-          token: token,
-          baseURL: `${req.protocol}://${req.get("host")}`,
-          openfiscaAxeURL: config.openfiscaAxeURL,
-          openFiscaURL: config.openfiscaPublicURL,
-          openfiscaTracerURL: config.openfiscaTracerURL,
-        }),
-      },
+    return Promise.resolve(
+      createClass(teleservice, req.simulation, req.query).toInternal()
+    ).then(function (fields) {
+      return res.json({
+        fields,
+        destination: {
+          label: teleservice.destination.label,
+          url: Mustache.render(teleservice.destination.url, {
+            token,
+            baseURL: `${req.protocol}://${req.get("host")}`,
+            openfiscaAxeURL: config.openfiscaAxeURL,
+            openFiscaURL: config.openfiscaPublicURL,
+            openfiscaTracerURL: config.openfiscaTracerURL,
+          }),
+        },
+      })
     })
   }
 }
@@ -216,7 +230,9 @@ function verifyRequest(req, res, next) {
  */
 function exportRepresentation(req, res) {
   return Promise.resolve(
-    createClass(req.teleservice, req.simulation).toExternal(req)
+    createClass(req.teleservice, req.simulation, req.payload.query).toExternal(
+      req
+    )
   ).then(function (value) {
     return res.json(value)
   })

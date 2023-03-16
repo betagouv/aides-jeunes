@@ -2,6 +2,22 @@
   <component :is="layout">
     <BandeauDemo />
     <router-view />
+    <fieldset class="fr-fieldset__content">
+      <div
+        class="fr-radio-group fr-radio-rich fr-mt-1w"
+        v-for="item in $theme.values"
+      >
+        <input
+          :key="item"
+          :id="item"
+          type="radio"
+          name="theme"
+          :value="item"
+          @click="($event) => $theme.update($event.target.value)"
+          v-model="$theme.current"
+        /><label :for="item">{{ item }}</label>
+      </div>
+    </fieldset>
   </component>
 </template>
 

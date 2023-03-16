@@ -7,21 +7,10 @@ import App from "./app.vue"
 import router from "./router.js"
 
 import StateService from "./plugins/state-service.js"
+import ThemeService from "./plugins/theme-service.js"
 
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
-
-switch (process.env.VITE_THEME_COLOR) {
-  case "bordeau-metropole":
-    import("./styles/themes/bordeaux-metropole.css")
-    break
-  case "light-blue":
-    import("./styles/themes/light-blue.css")
-    break
-  default:
-    import("./styles/themes/default.css")
-    break
-}
 
 import "@/styles/aides-jeunes.css"
 import AnalyticsDirective from "./directives/analytics.js"
@@ -60,6 +49,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(Resizer)
 app.use(StateService)
+app.use(ThemeService)
 
 app.use(VueMatomo, {
   host: "https://stats.data.gouv.fr",

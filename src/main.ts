@@ -11,7 +11,7 @@ import StateService from "./plugins/state-service.js"
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
 
-import(`./styles/themes/${process.env.VITE_THEME_COLOR}.css`)
+import "@/styles/themes/default.css" // bordeaux-metropole // light-blue
 import "@/styles/aides-jeunes.css"
 
 import AnalyticsDirective from "./directives/analytics.js"

@@ -411,7 +411,7 @@ export const useStore = defineStore("store", {
     },
     setSimulationToken(token: string): void {
       if (!navigator.cookieEnabled) {
-        this.simulation.simulationToken = Buffer.from(token, "base64")
+        this.simulation.simulationToken = token
       }
     },
     save() {
@@ -450,7 +450,7 @@ export const useStore = defineStore("store", {
       this.access.fetching = true
       const headers = {
         ...(!navigator.cookieEnabled &&
-          token && { Authorization: `Basic ${token}` }),
+          token && { Authorization: `Bearer ${token}` }),
       }
 
       return axios
@@ -485,7 +485,7 @@ export const useStore = defineStore("store", {
       this.startComputation()
       const token = this.getSimulationToken
       const headers = {
-        ...(token && { Authorization: `Basic ${token}` }),
+        ...(token && { Authorization: `Bearer ${token}` }),
       }
       return axios
         .get(

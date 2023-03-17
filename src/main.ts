@@ -12,7 +12,6 @@ import ThemeService from "./plugins/theme-service.js"
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
 
-import "@/styles/themes/default.css" // bordeaux-metropole // light-blue
 import "@/styles/aides-jeunes.css"
 
 import AnalyticsDirective from "./directives/analytics.js"

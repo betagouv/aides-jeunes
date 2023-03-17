@@ -30,9 +30,9 @@ export default {
       options,
       update(newThemeLabel) {
         app.config.globalProperties.$theme.current = newThemeLabel
-        styleElement.textContent = options.find(
+        styleElement.textContent = options?.find(
           (option) => option.label === newThemeLabel
-        ).value
+        )?.value
       },
     }
   },

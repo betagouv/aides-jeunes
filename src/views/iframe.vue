@@ -99,18 +99,15 @@
 
 <script lang="ts">
 export default {
-  name: "IFrame",
   data() {
     return {
       contactEmail: process.env.VITE_CONTACT_EMAIL,
       options: ["data-from-home", "data-with-logo"],
       selectedTheme: null,
+      scriptPath: "/documents/iframe-integration.js",
     }
   },
   computed: {
-    scriptPath() {
-      return "/documents/iframe-integration.js"
-    },
     fullScript() {
       /* eslint-disable no-useless-escape */
       return `<script src="${process.env.VITE_BASE_URL}${

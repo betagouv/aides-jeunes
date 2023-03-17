@@ -1,27 +1,39 @@
 import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import lightBlue from "@/styles/themes/light-blue.css?inline"
-import defaultTheme from "@/styles/themes/default.css?inline"
+import defaultDsfr from "@/styles/themes/default-dsfr.css?inline"
 
-const themes = {
-  "bordeaux-metropole": bordeauxMetropole,
-  "light-blue": lightBlue,
-  default: defaultTheme,
-}
+const options = [
+  {
+    title: "Thème bleu foncé (DSFR)",
+    label: "theme-default-dsfr",
+    value: defaultDsfr,
+  },
+  {
+    title: "Thème bleu clair",
+    label: "theme-light-blue",
+    value: lightBlue,
+  },
+  {
+    title: "Thème Bordeaux Métropole",
+    label: "theme-bordeaux-metropole",
+    value: bordeauxMetropole,
+  },
+]
 
-const ThemeService = {
-  install: function (app) {
+export default {
+  install: (app) => {
     const styleElement = document.createElement("style")
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {
-      current: "default",
-      values: Object.keys(themes),
-      update(newTheme) {
-        app.config.globalProperties.$theme.current = newTheme
-        styleElement.textContent = themes[newTheme] || defaultTheme
+      current: "theme-default-dsfr",
+      options,
+      update(newThemeLabel) {
+        app.config.globalProperties.$theme.current = newThemeLabel
+        styleElement.textContent = options.find(
+          (option) => option.label === newThemeLabel
+        ).value
       },
     }
   },
 }
-
-export default ThemeService

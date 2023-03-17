@@ -26,7 +26,7 @@
           class="fr-fieldset__legend fr-text--regular"
         >
           Plusieurs options s'offrent à vous pour personnaliser l'affichage du
-          simulateur :
+          simulateur&nbsp;:
         </legend>
         <div class="fr-fieldset__content">
           <div class="fr-checkbox-group">
@@ -55,6 +55,32 @@
           </div>
         </div>
       </fieldset>
+      <fieldset class="fr-fieldset fr-fieldset--inline">
+        <legend
+          id="checkboxes-inline-legend"
+          class="fr-fieldset__legend fr-text--regular"
+        >
+          Différents thèmes couleur sont également disponibles&nbsp;:
+        </legend>
+        <div class="fr-row">
+          <div
+            v-for="(option, index) in $theme.options"
+            :key="index"
+            class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w"
+          >
+            <input
+              :id="option.label"
+              v-model="selectedTheme"
+              type="radio"
+              :value="option.label"
+              :checked="index === 0"
+            />
+            <label :for="option.label" class="fr-label">{{
+              option.title
+            }}</label>
+          </div>
+        </div>
+      </fieldset>
     </div>
     <h2>Prévisualisation</h2>
 
@@ -76,8 +102,9 @@ export default {
   name: "IFrame",
   data() {
     return {
-      options: ["data-from-home", "data-with-logo"],
       contactEmail: process.env.VITE_CONTACT_EMAIL,
+      options: ["data-from-home", "data-with-logo"],
+      selectedTheme: null,
     }
   },
   computed: {
@@ -94,6 +121,9 @@ export default {
   watch: {
     options: function (): void {
       this.setIframeContainer()
+    },
+    selectedTheme: function (theme) {
+      this.$theme.update(theme)
     },
   },
   mounted: function () {

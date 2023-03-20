@@ -90,6 +90,9 @@ const mappings = {
   "cd53-bafa": {
     champ_Q2hhbXAtMzc2NDE0: sources.date_naissance,
   },
+  cd53_dat_bafd: {
+    champ_Q2hhbXAtMzc2NDE0: sources.date_naissance,
+  },
   cd53_sdem_vae: {
     "champ_Q2hhbXAtMjMyMjc1NA==": sources.date_naissance,
     "champ_Q2hhbXAtMjMyMjc2OQ==": sources.departement,

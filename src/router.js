@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
+import { app } from "./main.ts"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -305,16 +306,22 @@ router.beforeEach((to, from, next) => {
     if (params.get("data-with-logo")) {
       store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
+
+    if (params.get("theme-default-dsfr")) {
+      app.config.globalProperties.$theme.update("theme-default-dsfr")
+    }
+
+    if (params.get("theme-bordeaux-metropole")) {
+      app.config.globalProperties.$theme.update("theme-bordeaux-metropole")
+    }
+
+    if (params.get("theme-light-blue")) {
+      app.config.globalProperties.$theme.update("theme-light-blue")
+    }
   }
 
   if (store.iframeOrigin) {
     store.setIframeOrigin(null)
-  }
-
-  // TODO Est-ce utile ?
-  const themeColor = params.get("themeColor")
-  if (themeColor) {
-    store.setThemeColor(themeColor)
   }
 
   if (to.meta.title) {

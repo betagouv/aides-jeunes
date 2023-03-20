@@ -560,9 +560,6 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     setIframeHeaderCollapse(collapse = false) {
       this.iframeHeaderCollapse = collapse
     },
-    setThemeColor(themeColor: string) {
-      this.themeColor = themeColor
-    },
     setTitle(newTitle: string) {
       this.title = newTitle
     },

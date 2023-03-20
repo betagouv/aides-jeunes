@@ -1,0 +1,23 @@
+label: Aide au BAFD
+institution: departement_mayenne
+description: Le Département de la Mayenne prend en charge une partie du coût de
+  la formation au brevet d’aptitude aux fonctions de directeur (BAFD), pour
+  toute personne s'engageant à suivre la formation, sans conditions de
+  ressources.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "53"
+profils: []
+conditions:
+  - Vous engager à assurer 3 mois d’activité de directeur en Mayenne dans les 3
+    ans qui suivent la formation.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: autre
+montant: 450
+link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd#:~:text=Afin%20d'encourager%20les%20personnes,fonctions%20de%20directeur%20(BAFD).
+teleservice: https://www.demarches-simplifiees.fr/commencer/cd53_dat_bafd
+instructions: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd#:~:text=Afin%20d'encourager%20les%20personnes,fonctions%20de%20directeur%20(BAFD).

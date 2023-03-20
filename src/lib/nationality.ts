@@ -1,47 +1,16 @@
+import { EeeCountryCode } from "./enums/nationality.js"
+
 let ZONE_LABEL = {
   fr: "française",
   ue: "UE",
   autre: "hors UE",
 }
 
-let EEE_COUNTRY_CODES = [
-  "AT",
-  "BE",
-  "BG",
-  "CY",
-  "CZ",
-  "DE",
-  "DK",
-  "EE",
-  "ES",
-  "FI",
-  "FR",
-  "GR",
-  "HR",
-  "HU",
-  "IE",
-  "IS",
-  "IT",
-  "LI",
-  "LU",
-  "LV",
-  "MT",
-  "NL",
-  "NO",
-  "PL",
-  "PT",
-  "RO",
-  "SE",
-  "SI",
-  "SK",
-  "UK",
-]
-
 function getNationalityFromCountryCode(countryCode) {
   switch (countryCode) {
-    case "DE":
+    case EeeCountryCode.DE:
       return "Européenne"
-    case "FR":
+    case EeeCountryCode.FR:
       return "Française"
     case "AF":
       return "Non européenne"
@@ -54,10 +23,10 @@ function getZone(countryCode) {
   }
   countryCode = countryCode.toUpperCase()
 
-  if (countryCode === "FR") {
+  if (countryCode === EeeCountryCode.FR) {
     return "fr"
   }
-  if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === "CH") {
+  if (EeeCountryCode.hasOwnProperty(countryCode) || countryCode === "CH") {
     return "ue"
   }
   if (countryCode === "AF") {

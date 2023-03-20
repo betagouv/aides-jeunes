@@ -1,6 +1,7 @@
 import axios from "axios"
+import { CommuneData, CityParams } from "@lib/types/commune.js"
 
-function sortByName(aCity, bCity) {
+function sortByName(aCity: CityParams, bCity: CityParams): number {
   if (aCity.nom < bCity.nom) return -1
   if (aCity.nom > bCity.nom) return 1
 
@@ -8,7 +9,7 @@ function sortByName(aCity, bCity) {
 }
 
 const Commune = {
-  get: function (postalCode) {
+  get: function (postalCode: number): Promise<string[]> {
     const uri = `/api/outils/communes/${postalCode}`
     return axios
       .get(uri)
@@ -19,7 +20,8 @@ const Commune = {
         return []
       })
   },
-  getMostPopulated: function (communes) {
+
+  getMostPopulated: function (communes: CommuneData[]) {
     return communes.reduce(
       (a, b) => (a?.population < b?.population ? b : a),
       communes?.[0] || {}

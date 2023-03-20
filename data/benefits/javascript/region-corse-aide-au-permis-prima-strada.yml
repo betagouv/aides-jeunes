@@ -9,10 +9,8 @@ conditions:
   - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
     choix (justifier de 20 heures minimum).
   - Déposer une demande écrite motivée.
-  - Être rattaché·e à un foyer dont le revenu fiscal de référence est inférieur
-    à 18 500 € par part fiscale.
-  - Ne pas être concerné·e par l’attribution d’une aide de droit commun ou
-    d’une autre aide existante.
+  - Ne pas être concerné·e par l’attribution d’une aide de droit commun ou d’une
+    autre aide existante.
   - Ne pas avoir débuté sa formation et ne pas avoir passé l’examen.
 conditions_generales:
   - type: age
@@ -24,9 +22,13 @@ conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: quotient_familial
+    operator: <
+    value: 18500
+    period: year
 profils: []
-link: https://www.isula.corsica/jeunesse/Une-aide-pour-les-jeunes-pour-passer-le-permis-de-conduire-Prima-Strada_a80.html
-instructions: https://www.isula.corsica/jeunesse/attachment/2263155/
+link: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html
+instructions: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html
 prefix: l’
 type: float
 unit: €

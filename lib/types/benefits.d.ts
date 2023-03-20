@@ -4,3 +4,9 @@ export interface ConditionsLayout {
     extra?: any[]
   }
 }
+
+export interface Benefit {
+  type?: string
+  montant?: number
+  mock?: boolean
+}

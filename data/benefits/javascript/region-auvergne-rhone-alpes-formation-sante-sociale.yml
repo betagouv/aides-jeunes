@@ -13,7 +13,7 @@ conditions_generales:
 profils: []
 link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
 instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-aide-exceptionnelle-pour-poursuivre-ma-formation-sante-social
-teleservice: ""
+teleservice: "https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-CONNEXION"
 form: ""
 prefix: l’
 type: float

@@ -4,17 +4,17 @@
     <router-view />
     <fieldset class="fr-fieldset__content">
       <div
-        class="fr-radio-group fr-radio-rich fr-mt-1w"
         v-for="item in $theme.values"
+        :key="item"
+        class="fr-radio-group fr-radio-rich fr-mt-1w"
       >
         <input
-          :key="item"
           :id="item"
+          v-model="$theme.current"
           type="radio"
           name="theme"
           :value="item"
           @click="($event) => $theme.update($event.target.value)"
-          v-model="$theme.current"
         /><label :for="item">{{ item }}</label>
       </div>
     </fieldset>

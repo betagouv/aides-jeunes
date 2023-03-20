@@ -6,12 +6,6 @@ description: Le Pass'Région est une carte délivrée par la Région
   culture, le sport, la santé et, sous certaines conditions, une aide financière
   pour le permis.
 conditions_generales:
-  - type: age
-    operator: ">="
-    value: 16
-  - type: age
-    operator: <=
-    value: 25
   - type: regions
     values:
       - "84"

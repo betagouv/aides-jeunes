@@ -20,6 +20,10 @@ conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: quotient_familial
+    operator: <
+    value: 18500
+    period: year    
 profils: []
 link: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html
 instructions: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html

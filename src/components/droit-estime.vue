@@ -26,7 +26,7 @@
       </template>
     </div>
     <div class="fr-text--center">
-      <a
+      <router-link
         v-if="showUnexpectedLink"
         v-analytics="{
           name: droit.id,
@@ -35,7 +35,7 @@
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
         >Montant inattendu ?
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

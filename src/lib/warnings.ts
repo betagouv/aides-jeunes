@@ -1,7 +1,11 @@
 const AJ_NOT_RELIABLE =
   "Attention, les calculs du simulateur sont peu fiables pour les communes de"
 
-const texts = {
+interface Texts {
+  aj_not_reliable(variation?: string): string | undefined
+}
+
+const texts: Texts = {
   aj_not_reliable(variation) {
     if (variation) {
       if (variation.startsWith("976")) {
@@ -17,7 +21,11 @@ const texts = {
   },
 }
 
-const Warning = {
+interface Warning {
+  get(attribute: string, variation?: string): string | undefined
+}
+
+const Warning: Warning = {
   get(attribute, variation) {
     return texts[attribute]?.(variation)
   },

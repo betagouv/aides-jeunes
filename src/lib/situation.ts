@@ -1,5 +1,7 @@
 import dayjs from "dayjs"
 import { situationsLayout } from "@lib/types/situations.js"
+import { enfantLayout } from "@lib/types/enfant.js"
+import { individuLayout } from "@lib/types/individu.js"
 
 const Situation = {
   getDemandeur: function (situation: situationsLayout) {
@@ -28,8 +30,8 @@ const Situation = {
     )
   },
 
-  setEnfants: function (situation, enfants) {
-    let individus = situation.individus
+  setEnfants: function (situation, enfants: enfantLayout) {
+    let individus: individuLayout[] = situation.individus
     individus = individus.filter(function (individu) {
       return "enfant" !== individu._role
     })

@@ -15,8 +15,8 @@ const Situation = {
   },
 
   aCharge: function (situation: situationsLayout) {
-    let demandeur = situation.demandeur
-    let period =
+    const demandeur = situation.demandeur
+    const period =
       situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
     return demandeur?.enfant_a_charge?.[period]
   },

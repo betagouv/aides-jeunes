@@ -1,6 +1,6 @@
 import { EeeCountryCode } from "./enums/nationality.js"
 
-let ZONE_LABEL = {
+const ZONE_LABEL = {
   fr: "française",
   ue: "UE",
   autre: "hors UE",
@@ -26,7 +26,10 @@ function getZone(countryCode: string): string {
   if (countryCode === EeeCountryCode.FR) {
     return "fr"
   }
-  if (EeeCountryCode.hasOwnProperty(countryCode) || countryCode === "CH") {
+  if (
+    Object.prototype.hasOwnProperty.call(EeeCountryCode, countryCode) ||
+    countryCode === "CH"
+  ) {
     return "ue"
   }
   if (countryCode === "AF") {

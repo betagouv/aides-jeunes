@@ -20,10 +20,10 @@ const AnalyticsDirective = {
         binding.value.value
       )
     }
-    el.addEventListener("click", el.myAnalyticsHandler)
+    el.addEventListener("mousedown", el.myAnalyticsHandler)
   },
   unmounted(el) {
-    el.removeEventListener("click", el.myAnalyticsHandler)
+    el.removeEventListener("mousedown", el.myAnalyticsHandler)
   },
 }
 

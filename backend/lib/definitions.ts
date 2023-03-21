@@ -18,7 +18,6 @@ allRessources.push("tns_autres_revenus_type_activite")
 const individuBase = [
   "_id",
   "id",
-  "bourse_criteres_sociaux_echelon",
   "_bourseCriteresSociauxCommuneDomicileFamilial",
   "_hasRessources",
   "_role",

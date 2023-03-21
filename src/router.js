@@ -63,14 +63,6 @@ const router = createRouter({
           component: () => import("./views/simulation/individu.vue"),
           children: [
             {
-              name: "bourse_criteres_sociaux_echelon",
-              path: "bourse_criteres_sociaux_echelon",
-              component: () =>
-                import(
-                  "./views/simulation/individu/bourse-criteres-sociaux-echelon.vue"
-                ),
-            },
-            {
               name: "ressources/types",
               path: "ressources/types",
               component: () =>

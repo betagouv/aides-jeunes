@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Situation from "@/lib/situation.js"
+import Situation from "@/lib/situation.ts"
 import { useStore } from "@/stores/index.ts"
 export default {
   name: "ResultatInattenduYearMinusTwo",

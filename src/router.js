@@ -1,7 +1,7 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
-import Simulation from "@/lib/simulation.js"
+import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
 
 const router = createRouter({

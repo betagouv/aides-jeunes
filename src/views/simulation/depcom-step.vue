@@ -18,7 +18,7 @@ import WarningMessage from "@/components/warning-message.vue"
 
 import { getAnswer } from "@lib/answers.ts"
 import DepcomProperties from "@lib/properties/depcom-properties"
-import Warning from "@/lib/warnings.js"
+import Warning from "@/lib/warnings.ts"
 import { useStore } from "@/stores/index.ts"
 
 export default {

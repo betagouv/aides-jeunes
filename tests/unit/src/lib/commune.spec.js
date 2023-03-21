@@ -1,4 +1,4 @@
-import Commune from "@/lib/commune.js"
+import Commune from "@/lib/commune.ts"
 
 describe("commune.js", () => {
   it("sort Communes following population criteria", () => {

@@ -3,6 +3,7 @@ import analytics from "@/mixins/statistics.js"
 const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
+      console.log(binding.value)
       analytics.methods.sendStatistics(
         binding?.instance?.droits,
         binding.value.action,
@@ -20,10 +21,10 @@ const AnalyticsDirective = {
         binding.value.value
       )
     }
-    el.addEventListener("mousedown", el.myAnalyticsHandler)
+    el.addEventListener("click", el.myAnalyticsHandler)
   },
   unmounted(el) {
-    el.removeEventListener("mousedown", el.myAnalyticsHandler)
+    el.removeEventListener("click", el.myAnalyticsHandler)
   },
 }
 

@@ -57,7 +57,7 @@
       </fieldset>
       <fieldset class="fr-fieldset fr-fieldset--inline">
         <legend
-          id="checkboxes-inline-legend"
+          id="radio-group-inline-legend"
           class="fr-fieldset__legend fr-text--regular"
         >
           Différents thèmes couleur sont également disponibles&nbsp;:

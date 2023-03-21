@@ -3,7 +3,6 @@ import analytics from "@/mixins/statistics.js"
 const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
-      console.log(binding.value)
       analytics.methods.sendStatistics(
         binding?.instance?.droits,
         binding.value.action,

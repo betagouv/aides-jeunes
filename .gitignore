@@ -69,3 +69,5 @@ cypress/videos
 openfisca/*.pyc
 
 public/documents/*
+
+vite.config.ts.timestamp-*

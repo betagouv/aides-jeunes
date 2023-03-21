@@ -1,10 +1,23 @@
-:root input,
-:root select {
-  outline-color: var(--input-outline);
+:root {
+  /* CSS redirections (DSFR override) */
+  --text-disabled-grey: #666;
+  --blue-france-sun-113-625: var(--main-color);
+  --blue-france-sun-113-625-hover: var(--main-color-hover);
+  --blue-france-sun-113-625-active: var(--main-color-active);
+  --blue-cumulus-main-526: var(--secondary-color);
+  --blue-cumulus-925-125-hover: var(--secondary-color-hover);
+  --blue-cumulus-925-125-active: var(--secondary-color-active);
+  --info-425-625: var(--info-main-color);
+  --info-425-625-hover: var(--info-main-color-hover);
+  --info-425-625-active: var(--info-main-color-active);
+  --info-950-100: var(--info-secondary-color);
+  --info-950-100-hover: var(--info-secondary-color-hover);
+  --info-950-100-active: var(--info-secondary-color-active);
 }
 
-:root {
-  --text-disabled-grey: #666;
+input,
+select {
+  outline-color: var(--input-outline);
 }
 
 .aj-text-color {

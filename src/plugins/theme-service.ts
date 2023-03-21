@@ -1,6 +1,6 @@
 import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import lightBlue from "@/styles/themes/light-blue.css?inline"
-import defaultDsfr from "@/styles/themes/default-dsfr.css?inline"
+import defaultDsfr from "@/styles/themes/default-dsfr.css"
 
 const options = [
   {

@@ -15,6 +15,13 @@
   --info-950-100-active: var(--info-secondary-color-active);
 }
 
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   font-family: var(--font-family);
 }

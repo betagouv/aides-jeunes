@@ -15,6 +15,10 @@
   --info-950-100-active: var(--info-secondary-color-active);
 }
 
+* {
+  font-family: var(--font-family);
+}
+
 input,
 select {
   outline-color: var(--input-outline);

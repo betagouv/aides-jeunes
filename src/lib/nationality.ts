@@ -6,7 +6,7 @@ let ZONE_LABEL = {
   autre: "hors UE",
 }
 
-function getNationalityFromCountryCode(countryCode) {
+function getNationalityFromCountryCode(countryCode: string) {
   switch (countryCode) {
     case EeeCountryCode.DE:
       return "Européenne"
@@ -17,7 +17,7 @@ function getNationalityFromCountryCode(countryCode) {
   }
 }
 
-function getZone(countryCode) {
+function getZone(countryCode: string): string {
   if (!countryCode) {
     return ""
   }
@@ -37,12 +37,12 @@ function getZone(countryCode) {
 }
 
 const Nationality = {
-  getLabel: function (nationality) {
+  getLabel: function (nationality: string): string {
     return ZONE_LABEL[getZone(nationality)]
   },
   getNationalityFromCountryCode: getNationalityFromCountryCode,
   getZone: getZone,
-  getCountryCodeByNationality: function (nationality) {
+  getCountryCodeByNationality: function (nationality: string): string {
     switch (nationality) {
       case "ue":
         return "DE"

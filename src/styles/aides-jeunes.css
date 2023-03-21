@@ -3,6 +3,10 @@
   outline-color: var(--input-outline);
 }
 
+:root {
+  --text-disabled-grey: #666;
+}
+
 .aj-text-color {
   color: var(--text-button);
 }
@@ -37,7 +41,7 @@
 }
 
 .fr-text--disabled {
-  color: var(--text-disabled-grey);
+  color: #666666;
 }
 
 .fr-icon-spin {

@@ -15,7 +15,7 @@
                 <h3 class="last"
                   >Merci d'avoir rempli ce questionnaire&nbsp;!</h3
                 >
-                <div v-if="droits && showAccompanimentBlock === true">
+                <div v-if="showAccompanimentBlock">
                   <p class="fr-text--lg">
                     Vous avez besoin d'aide pour effectuer vos démarches ?
                     Prenez rendez-vous pour être accompagné·e par notre
@@ -23,11 +23,16 @@
                   >
                   <p>
                     <a
+                      v-analytics="{
+                        name: currentPath,
+                        action: 'click-accompaniment-link',
+                        category: 'Accompaniment',
+                      }"
                       class="fr-btn fr-btn--lg"
                       href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
-                      >Prendre rendez-vous pour être aidé·e dans mes
-                      démarches</a
                     >
+                      Prendre rendez-vous pour être aidé·e dans mes démarches
+                    </a>
                   </p>
 
                   <p class="fr-mt-3w"
@@ -174,37 +179,35 @@ export default {
         ["failed", "nothing"].includes(droit.choiceValue)
       )
     },
+    currentPath: function () {
+      return this.$route.path
+    },
   },
-  mounted: function () {
-    axios
-      .get(`/api/followups/surveys/${this.$route.query.token}`)
-      .then((response) => {
-        this.followup = response.data
-        let followupBenefits = this.followup.benefits.map((benefit) =>
-          getBenefit(benefit.id)
-        )
+  mounted: async function () {
+    const { data: followup } = await axios.get(
+      `/api/followups/surveys/${this.$route.query.token}`
+    )
 
-        const benefitsNormalized = followupBenefits.map((benefit) => {
-          let montant = this.followup.benefits.find(
-            (followupBenefit) => followupBenefit.id === benefit.id
-          ).amount
+    this.followup = followup
+    const followupBenefits = this.followup.benefits.map((benefit) =>
+      getBenefit(benefit.id)
+    )
 
-          return {
-            ...benefit,
-            montant: montant,
-            choices: choices,
-            choiceValue: null,
-            choiceComments: "",
-          }
-        })
+    this.droits = followupBenefits.map((benefit) => {
+      const montant = this.followup.benefits.find(
+        ({ id }) => id === benefit.id
+      ).amount
 
-        this.droits = benefitsNormalized
-      })
+      return {
+        ...benefit,
+        montant,
+        choices,
+        choiceValue: null,
+        choiceComments: "",
+      }
+    })
   },
   methods: {
-    isBoolean: (val) => typeof val === "boolean",
-    isString: (val) => typeof val === "string",
-    isNumber: (val) => typeof val === "number",
     isNegative,
     prefix: function (droit) {
       if (droit.prefix) {
@@ -214,25 +217,32 @@ export default {
       }
       return ""
     },
-    submit: function () {
-      let answers = this.droits.map((droit) => ({
+    submit: async function () {
+      const answers = this.droits.map((droit) => ({
         id: droit.id,
         value: droit.choiceValue,
         comments: droit.choiceComments,
       }))
 
-      let that = this
-      axios
-        .post(
-          `/api/followups/surveys/${this.$route.query.token}/answers`,
-          answers
+      const { status } = await axios.post(
+        `/api/followups/surveys/${this.$route.query.token}/answers`,
+        answers
+      )
+
+      if (status !== 201) {
+        return
+      }
+
+      this.submitted = true
+      window.scrollTo(0, 0)
+
+      if (this.showAccompanimentBlock) {
+        this.$matomo?.trackEvent(
+          "Accompaniment",
+          "show-accompaniment-link",
+          this.currentPath
         )
-        .then(function (response) {
-          if (response.status === 201) {
-            that.submitted = true
-            window.scrollTo(0, 0)
-          }
-        })
+      }
     },
   },
 }

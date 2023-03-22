@@ -1,15 +1,12 @@
-label:
-  fonds d’Aide Régional aux étudiants et étudiantes du secteur sanitaire et du travail
-  social
+label: Aide individuelle régionale d'études des secteurs du sanitaire et du
+  travail social
 institution: region_provence_alpes_cote_azur
-description: Il s’agit d’une aide financière destinée à améliorer les conditions
-  de vie des élèves et étudiants et étudiantes inscrits ou inscrites dans une filière sanitaire ou du
-  travail social en Région Provence-Alpes-Côte d'Azur.
-conditions:
-  - Être stagiaire de la formation professionnelle inscrit ou inscrite en formation
-    sanitaire de niveau V (aide-soignant ou aide-soignante, auxiliaire de puériculture,
-    ambulancier ou ambulancière).
-  - Être bénéficiaire de la bourse régionale d’études sanitaires et sociales.
+description: L'aide est attribuée, sur critères sociaux, aux élèves et
+  étudiant·e·s confronté·es à des difficultés matérielles ne leur permettant pas
+  d'entreprendre ou de poursuivre une formation. Versée mensuellement, elle est
+  attribuée pour la durée de la formation dans la limite d’une année scolaire,
+  et renouvelable chaque année sur demande.
+prefix: le
 conditions_generales:
   - type: regions
     values:
@@ -20,13 +17,16 @@ profils:
     conditions: []
   - type: lyceen
     conditions: []
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/fonds-daide-regional-aux-etudiants-du-secteur-sanitaire-et-du-travail-social
-teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/fonds-daide-regional-aux-etudiants-du-secteur-sanitaire-et-du-travail-social
-prefix: le
-type: float
-unit: €
+conditions:
+  - Être inscrit·e dans un établissement des secteurs du sanitaire et du travail
+    social, agréés ou autorisés par la Région qui suivent leur formation en
+    cursus complet.
+interestFlag: _interetAidesSanitaireSocial
+type: bool
+unit: null
 periodicite: annuelle
 legend: maximum
-montant: 600
-interestFlag: _interetAidesSanitaireSocial
+montant: ""
+link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
+teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
+instructions: ""

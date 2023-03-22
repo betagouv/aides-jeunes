@@ -1,17 +1,16 @@
-label: carte Zou!
+label: carte ZOU ! Solidaire
 institution: region_provence_alpes_cote_azur
-description: Grâce à la carte Zou!, bénéficiez de 50% de réduction sur tous vos
-  déplacements en TER en région Sud Provence-Alpes-Côte d'Azur - vos
-  accompagnants (3 maximum) bénéficient également de cette réduction - et de 75%
-  de réduction sur votre trajet privilégié.
+description: Grâce à la carte ZOU ! Solidaire, bénéficiez de 50 à 90% de
+  réduction pendant 1 an sur les bus et trains ZOU ! en région Sud.
 prefix: la
 conditions_generales:
-  - type: age
-    operator: <=
-    value: 26
   - type: regions
     values:
       - "93"
+  - type: quotient_familial
+    operator: <=
+    value: 710
+    period: month
 profils: []
 conditions:
   - Effectuer des trajets ayant pour origine une gare située en région Sud
@@ -19,6 +18,6 @@ conditions:
   - Vous procurer la carte Zou! pour un montant de 15 €.
 type: bool
 periodicite: autre
-link: https://www.maregionsud.fr/toutes-vos-aides/detail/zou-hebdo-mensuel-annuel
-teleservice: https://zou.maregionsud.fr/services-en-ligne/
+link: https://zou.maregionsud.fr/commander-une-carte-zou-solidaire/
+teleservice: https://zou.monbus.mobi/inscription
 instructions: ""

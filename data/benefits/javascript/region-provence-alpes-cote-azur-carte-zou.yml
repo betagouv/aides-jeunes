@@ -15,7 +15,6 @@ profils: []
 conditions:
   - Effectuer des trajets ayant pour origine une gare située en région Sud
     Provence-Alpes-Côte d'Azur.
-  - Vous procurer la carte Zou! pour un montant de 15 €.
 type: bool
 periodicite: autre
 link: https://zou.maregionsud.fr/commander-une-carte-zou-solidaire/

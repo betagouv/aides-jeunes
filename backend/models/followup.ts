@@ -11,7 +11,23 @@ import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
 import { EmailType } from "../enums/email.js"
 
-const FollowupSchema = new mongoose.Schema(
+export interface FollowupInterface extends MongooseLayout {
+  simulation: mongoose.Types.ObjectId
+  email: string | any
+  createdAt: Date
+  sentAt: Date
+  messageId: string
+  surveySentAt: Date
+  benefits: any
+  surveyOptin: boolean
+  surveys: SurveyLayout[]
+  version: number
+  error: any
+  accessToken: string
+  _oldId: string
+}
+
+const FollowupSchema = new mongoose.Schema<FollowupInterface>(
   {
     simulation: {
       type: mongoose.Schema.Types.ObjectId,

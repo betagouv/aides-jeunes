@@ -17,4 +17,5 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.sncf-connect.com/app/catalogue/description/occitanie-frequencio-jeunes-31j
-form: https://www.sncf-connect.com/app/catalogue/pricing/ter/wishes?productId=68fc74a6-1591-4096-9a34-9c9e44a324b6
+teleservice: https://www.sncf-connect.com/app/catalogue/pricing/ter/wishes?productId=97e77870-8849-47b5-a657-0c73d703466d
+form: ""

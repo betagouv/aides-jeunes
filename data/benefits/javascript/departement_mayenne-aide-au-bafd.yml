@@ -18,6 +18,10 @@ type: float
 unit: €
 periodicite: autre
 montant: 450
-link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd#:~:text=Afin%20d'encourager%20les%20personnes,fonctions%20de%20directeur%20(BAFD).
-teleservice: https://www.demarches-simplifiees.fr/commencer/cd53_dat_bafd
-instructions: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd#:~:text=Afin%20d'encourager%20les%20personnes,fonctions%20de%20directeur%20(BAFD).
+link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd
+teleservice:
+  name: redirection
+  query:
+    vers: ds?benefit=cd53_dat_bafd
+instructions: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd
+skip_schema_check: true

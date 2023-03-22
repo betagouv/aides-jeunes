@@ -1,7 +1,6 @@
 export interface chapterLayout {
   label: string
   name: string
-  done?: boolean
-  current?: string
+  state?: string
   root?: string
 }

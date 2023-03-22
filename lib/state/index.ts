@@ -9,21 +9,14 @@ export function chapters(currentPath, journey, lastUnanswerPath?) {
   const currentStep =
     journey.find((item) => item.path == cleanPath) ||
     journey.find((item) => item.path === lastUnanswerPath)
-  const activeChapters = Chapters.getSommaireChapters().filter((c) =>
+  let activeChapters = Chapters.getSommaireChapters().filter((c) =>
     activeChaptersNames.includes(c.name)
   )
-  let isCurrentChapter
-  let passedChapter = true
-  return activeChapters.map((chapter) => {
-    isCurrentChapter = chapter.name === currentStep?.chapter
-    passedChapter = isCurrentChapter ? false : passedChapter
-    chapter.done = passedChapter
-    chapter.current = isCurrentChapter
-    chapter.root = activeJourney.find(
-      (item) => item.chapter == chapter.name
-    ).path
-    return chapter
-  })
+
+  activeChapters = computeChapterState(activeChapters, currentStep)
+  activeChapters = setChapterRootPath(activeChapters, activeJourney)
+
+  return activeChapters
 }
 
 export function current(currentPath, journey) {
@@ -44,4 +37,31 @@ export function next(current, journey) {
   return journey
     .slice(matches[matches.length - 1].index + 1)
     .filter((step) => step.isActive)[0]
+}
+
+
+function setChapterRootPath(chapters, journey) {
+  return chapters.map((chapter) => {
+    chapter.root = journey.find((item) => item.chapter == chapter.name).path
+    return chapter
+  })
+}
+
+function computeChapterState(chapters, currentStep) {
+  let isCurrentChapter
+  let passedChapter = false
+  return chapters.map((chapter) => {
+    isCurrentChapter = chapter.name === currentStep?.chapter
+
+    if (isCurrentChapter) {
+      chapter.state = "current"
+      passedChapter = true
+    } else if (passedChapter) {
+      chapter.state = "done"
+    } else {
+      chapter.state = "pending"
+    }
+
+    return chapter
+  })
 }

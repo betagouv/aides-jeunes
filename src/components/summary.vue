@@ -24,7 +24,7 @@
               :to="chapter.root"
               tabindex="0"
               class="fr-sidemenu__link fr-px-2w"
-              :aria-current="chapter.current ? chapter.current : null"
+              :aria-current="chapter.state === 'current' ? true : null"
               @click="mobileNavigationCollapse()"
               >{{ chapter.label }}</router-link
             >
@@ -93,7 +93,7 @@ export default {
     disabledLink(chapter, index) {
       return index === 0
         ? false
-        : !chapter.done && !this.chapters[index - 1].done
+        : chapter.state !== 'done' && this.chapters[index - 1].state !== 'done'
     },
     goBack() {
       this.mobileNavigationCollapse()

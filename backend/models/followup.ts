@@ -38,6 +38,7 @@ const FollowupSchema = new mongoose.Schema(
     version: Number,
     error: { type: Object },
     accessToken: { type: String },
+    _oldId: { type: String },
   },
   { minimize: false, id: false }
 )

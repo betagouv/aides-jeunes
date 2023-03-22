@@ -4,6 +4,7 @@ import { SurveyType } from "../../lib/enums/survey.js"
 
 const SurveySchema = new mongoose.Schema<MongooseLayout>(
   {
+    _oldId: { type: String },
     accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },
     messageId: { type: String },

@@ -26,8 +26,13 @@
   font-family: var(--font-family);
 }
 
+button,
 input,
-select {
+select,
+a,
+radio,
+input[type="checkbox"] + label:before,
+input[type="radio"] + label:before {
   outline-color: var(--input-outline);
 }
 

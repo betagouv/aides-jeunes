@@ -61,7 +61,6 @@ async function processSend(args) {
       if (!followup) {
         throw new Error("Followup not found")
       }
-      console.log(typeof followup)
 
       let emailPromise: Promise<void>
 

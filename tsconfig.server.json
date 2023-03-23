@@ -16,7 +16,12 @@
     "noImplicitThis": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": []
+    "types": [],
+    "paths": {
+      "@/*": ["src/*"],
+      "@lib/*": ["lib/*"],
+      "@data/*": ["data/*"]
+    }
   },
   "resolve": {
     "extensions": [".cjs", ".ts", ".js", ".json"]

@@ -6,8 +6,6 @@ description: Grâce à la bourse Mobighjovani, profitez d'une aide financière q
 conditions:
   - Résider en Corse depuis 2 ans.
   - Déposer une demande écrite motivée.
-  - Être rattaché·e à un foyer dont le revenu fiscal est inférieur à 18 500€
-    par part fiscale.
   - Ne pas avoir débuté son projet de mobilité au moment du dépôt de la
     candidature.
 conditions_generales:
@@ -20,9 +18,13 @@ conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: quotient_familial
+    operator: <
+    value: 18500
+    period: year
 profils: []
-link: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
-instructions: https://www.isula.corsica/jeunesse/Bourse-a-la-mobilite-Mobighjovani_a276.html
+link: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html
+instructions: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html
 prefix: la
 type: float
 unit: €

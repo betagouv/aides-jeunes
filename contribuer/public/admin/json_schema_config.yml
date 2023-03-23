@@ -58,6 +58,8 @@ benefitProperties: &benefitProperties
       - type: string
   private:
     type: boolean
+  skip_schema_check:
+    type: boolean
   top:
     type: number
   teleservice:
@@ -166,8 +168,6 @@ collections:
         openfisca_eligibility_source:
           type: string
         setToZeroRecently:
-          type: boolean
-        skip_schema_check:
           type: boolean
         teleservices:
           type: object

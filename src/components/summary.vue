@@ -20,7 +20,7 @@
             class="fr-sidemenu__item"
           >
             <router-link
-              v-if="!disabledLink(chapter, index)"
+              v-if="!disabledLink(chapter)"
               :to="chapter.root"
               tabindex="0"
               class="fr-sidemenu__link fr-px-2w"
@@ -91,11 +91,8 @@ export default {
     },
   },
   methods: {
-    disabledLink(chapter, index) {
-      return index === 0
-        ? false
-        : !this.isChapterDone(chapter) &&
-            !this.isChapterDone(this.chapters[index - 1])
+    disabledLink(chapter) {
+      return this.isChapterPending(chapter)
     },
     goBack() {
       this.mobileNavigationCollapse()
@@ -107,8 +104,8 @@ export default {
     isChapterCurrent(chapter) {
       return chapter.state === ChapterState.current
     },
-    isChapterDone(chapter) {
-      return chapter.state === ChapterState.done
+    isChapterPending(chapter) {
+      return chapter.state === ChapterState.pending
     },
   },
 }

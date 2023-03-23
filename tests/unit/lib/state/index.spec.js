@@ -20,22 +20,19 @@ describe("chapter", function () {
       {
         label: "Mon profil",
         name: "profil",
-        current: true,
-        done: false,
+        state: "current",
         root: "/path/to/some/page",
       },
       {
         label: "Mon logement",
         name: "logement",
-        current: false,
-        done: false,
+        state: "pending",
         root: "/path/to/yet/another/page",
       },
       {
         label: "Mes revenus",
         name: "revenus",
-        current: false,
-        done: false,
+        state: "pending",
         root: "/path/to/yet/another/page/again",
       },
     ])
@@ -49,22 +46,19 @@ describe("chapter", function () {
         {
           label: "Mon profil",
           name: "profil",
-          done: true,
-          current: false,
+          state: "done",
           root: "/path/to/some/page",
         },
         {
           label: "Mon logement",
           name: "logement",
-          current: true,
-          done: false,
+          state: "current",
           root: "/path/to/yet/another/page",
         },
         {
           label: "Mes revenus",
           name: "revenus",
-          current: false,
-          done: false,
+          state: "pending",
           root: "/path/to/yet/another/page/again",
         },
       ])
@@ -79,22 +73,19 @@ describe("chapter", function () {
         {
           label: "Mon profil",
           name: "profil",
-          done: true,
-          current: false,
+          state: "done",
           root: "/path/to/some/page",
         },
         {
           label: "Mon logement",
           name: "logement",
-          done: true,
-          current: false,
+          state: "done",
           root: "/path/to/yet/another/page",
         },
         {
           label: "Mes revenus",
           name: "revenus",
-          done: true,
-          current: false,
+          state: "done",
           root: "/path/to/yet/another/page/again",
         },
       ])
@@ -108,22 +99,19 @@ describe("chapter", function () {
           {
             label: "Mon profil",
             name: "profil",
-            done: true,
-            current: false,
+            state: "done",
             root: "/path/to/some/page",
           },
           {
             label: "Mon logement",
             name: "logement",
-            current: true,
-            done: false,
+            state: "current",
             root: "/path/to/yet/another/page",
           },
           {
             label: "Mes revenus",
             name: "revenus",
-            current: false,
-            done: false,
+            state: "pending",
             root: "/path/to/yet/another/page/again",
           },
         ])

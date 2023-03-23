@@ -24,7 +24,7 @@
               :to="chapter.root"
               tabindex="0"
               class="fr-sidemenu__link fr-px-2w"
-              :aria-current="chapter.current ? chapter.current : null"
+              :aria-current="isChapterCurrent(chapter) ? true : null"
               @click="mobileNavigationCollapse()"
               >{{ chapter.label }}</router-link
             >
@@ -62,6 +62,7 @@
 <script>
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.ts"
+import { ChapterState } from "@lib/enums/chapter"
 
 export default {
   name: "Summary",
@@ -93,7 +94,8 @@ export default {
     disabledLink(chapter, index) {
       return index === 0
         ? false
-        : !chapter.done && !this.chapters[index - 1].done
+        : !this.isChapterDone(chapter) &&
+            !this.isChapterDone(this.chapters[index - 1])
     },
     goBack() {
       this.mobileNavigationCollapse()
@@ -101,6 +103,12 @@ export default {
     },
     mobileNavigationCollapse() {
       this.$refs.sideMenuButton.setAttribute("aria-expanded", false)
+    },
+    isChapterCurrent(chapter) {
+      return chapter.state === ChapterState.current
+    },
+    isChapterDone(chapter) {
+      return chapter.state === ChapterState.done
     },
   },
 }

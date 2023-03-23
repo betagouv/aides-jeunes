@@ -1,4 +1,5 @@
 import Chapters from "../chapters.js"
+import { ChapterState } from "@lib/enums/chapter"
 
 export function chapters(currentPath, journey, lastUnanswerPath?) {
   const activeJourney = journey.filter((step) => step.isActive)
@@ -57,22 +58,19 @@ function setChapterRootPath(chapters, journey) {
   })
 }
 
-function computeChapterState(chapters, currentStep) {
+function computeChapterState(chapters: chapterLayout[], currentStep): chapterLayout[] {
   let isCurrentChapter
   let passedChapter = false
   return chapters.map((chapter) => {
     isCurrentChapter = chapter.name === currentStep?.chapter
 
     if (isCurrentChapter) {
-      chapter.current = true
-      chapter.done = false
+      chapter.state = ChapterState.current
       passedChapter = true
     } else if (passedChapter) {
-      chapter.done = false
-      chapter.current = false
+      chapter.state = ChapterState.pending
     } else {
-      chapter.done = true
-      chapter.current = false
+      chapter.state = ChapterState.done
     }
 
     return chapter

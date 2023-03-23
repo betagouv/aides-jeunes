@@ -33,8 +33,9 @@
           action: 'show-unexpected',
           category: 'General',
         }"
+        @click="triggerCustomClick"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-        >Montant inattendu ?
+        >Montant inattendu ?
       </router-link>
     </div>
   </div>
@@ -75,6 +76,11 @@ export default {
           !this.store.ressourcesYearMinusTwoCaptured) ||
           this.droit.showUnexpectedAmount)
       )
+    },
+  },
+  methods: {
+    triggerCustomClick(event) {
+      event.target.dispatchEvent(new CustomEvent("custom-click"))
     },
   },
 }

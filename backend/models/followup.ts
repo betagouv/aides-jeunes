@@ -24,7 +24,6 @@ export interface FollowupInterface extends MongooseLayout {
   version: number
   error: any
   accessToken: string
-  _oldId: string
 }
 
 const FollowupSchema = new mongoose.Schema<FollowupInterface>(

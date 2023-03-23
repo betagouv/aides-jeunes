@@ -4,6 +4,7 @@ import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
 import { app } from "./main.ts"
+import { ThemeType } from "./../lib/enums/themes.ts"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -307,16 +308,16 @@ router.beforeEach((to, from, next) => {
       store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
 
-    if (params.get("theme-default-dsfr")) {
-      app.config.globalProperties.$theme.update("theme-default-dsfr")
+    if (params.get(ThemeType.default)) {
+      app.config.globalProperties.$theme.update(ThemeType.default)
     }
 
-    if (params.get("theme-bordeaux-metropole")) {
-      app.config.globalProperties.$theme.update("theme-bordeaux-metropole")
+    if (params.get(ThemeType.bordeauxMetropole)) {
+      app.config.globalProperties.$theme.update(ThemeType.bordeauxMetropole)
     }
 
-    if (params.get("theme-light-blue")) {
-      app.config.globalProperties.$theme.update("theme-light-blue")
+    if (params.get(ThemeType.lightBlue)) {
+      app.config.globalProperties.$theme.update(ThemeType.lightBlue)
     }
   }
 

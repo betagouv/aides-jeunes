@@ -13,17 +13,12 @@ if (script.getAttribute("data-with-logo") !== null) {
   src.searchParams.set("data-with-logo", true)
 }
 
-if (script.getAttribute("theme-default-dsfr") !== null) {
-  src.searchParams.set("theme-default-dsfr", true)
-}
-
-if (script.getAttribute("theme-light-blue") !== null) {
-  src.searchParams.set("theme-light-blue", true)
-}
-
-if (script.getAttribute("theme-bordeaux-metropole") !== null) {
-  src.searchParams.set("theme-bordeaux-metropole", true)
-}
+const currentScript = document.currentScript
+const themeAttribute = currentScript?.attributes.find((attr) =>
+  attr.name.startsWith("theme-")
+)
+const selectedTheme = themeAttribute?.name ?? "theme-default-dsfr"
+src.searchParams.set(selectedTheme, true)
 
 const iframe = document.createElement("iframe")
 const iframeAttributes = {
@@ -36,7 +31,7 @@ const iframeAttributes = {
   webkitallowfullscreen: true,
   mozallowfullscreen: true,
 }
-for (var key in iframeAttributes) {
+for (const key in iframeAttributes) {
   iframe.setAttribute(key, iframeAttributes[key])
 }
 iframeResize({}, iframe)

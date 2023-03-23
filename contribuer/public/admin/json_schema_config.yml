@@ -101,8 +101,8 @@ collections:
         code_siren:
           type: string
           pattern: "^[1-9]{1}[0-9]{8}$"
-        department:
-          type: string
+        departments:
+          type: array
         etablissements:
           type: array
         imgSrc:

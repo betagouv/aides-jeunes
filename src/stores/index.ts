@@ -62,7 +62,6 @@ function defaultStore(): Store {
     dates: datesGenerator(now),
     ameliNoticationDone: false,
     title: null,
-    themeColor: null,
     inIframe: false,
     iframeOrigin: null,
     iframeHeaderCollapse: false,

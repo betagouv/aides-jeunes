@@ -1,29 +1,14 @@
 import Chapters from "../chapters.js"
 
 export function chapters(currentPath, journey, lastUnanswerPath?) {
-  const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
-  const activeJourney = journey.filter((s) => s.isActive)
-  const activeChaptersNames = activeJourney
-    .map((c) => c.chapter)
-    .filter((value, index, self) => self.indexOf(value) === index)
-  const currentStep =
-    journey.find((item) => item.path == cleanPath) ||
-    journey.find((item) => item.path === lastUnanswerPath)
-  const activeChapters = Chapters.getSommaireChapters().filter((c) =>
-    activeChaptersNames.includes(c.name)
-  )
-  let isCurrentChapter
-  let passedChapter = true
-  return activeChapters.map((chapter) => {
-    isCurrentChapter = chapter.name === currentStep?.chapter
-    passedChapter = isCurrentChapter ? false : passedChapter
-    chapter.done = passedChapter
-    chapter.current = isCurrentChapter
-    chapter.root = activeJourney.find(
-      (item) => item.chapter == chapter.name
-    ).path
-    return chapter
-  })
+  const activeJourney = journey.filter((step) => step.isActive)
+  const currentStep = getCurrentStep(currentPath, journey, lastUnanswerPath)
+
+  let chapters = getActiveChapters(activeJourney)
+  chapters = computeChapterState(chapters, currentStep)
+  chapters = setChapterRootPath(chapters, activeJourney)
+
+  return chapters
 }
 
 export function current(currentPath, journey) {
@@ -44,4 +29,52 @@ export function next(current, journey) {
   return journey
     .slice(matches[matches.length - 1].index + 1)
     .filter((step) => step.isActive)[0]
+}
+
+function getCurrentStep(currentPath, journey, lastUnanswerPath) {
+  const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
+  const currentStep =
+    journey.find((step) => step.path == cleanPath) ||
+    journey.find((step) => step.path === lastUnanswerPath)
+
+  return currentStep
+}
+
+function getActiveChapters(activeJourney) {
+  const activeChaptersNames = activeJourney
+    .map((step) => step.chapter)
+    .filter((chapter, index, self) => self.indexOf(chapter) === index)
+
+  return Chapters.getSommaireChapters().filter((chapter) =>
+    activeChaptersNames.includes(chapter.name)
+  )
+}
+
+function setChapterRootPath(chapters, journey) {
+  return chapters.map((chapter) => {
+    chapter.root = journey.find((step) => step.chapter == chapter.name).path
+    return chapter
+  })
+}
+
+function computeChapterState(chapters, currentStep) {
+  let isCurrentChapter
+  let passedChapter = false
+  return chapters.map((chapter) => {
+    isCurrentChapter = chapter.name === currentStep?.chapter
+
+    if (isCurrentChapter) {
+      chapter.current = true
+      chapter.done = false
+      passedChapter = true
+    } else if (passedChapter) {
+      chapter.done = false
+      chapter.current = false
+    } else {
+      chapter.done = true
+      chapter.current = false
+    }
+
+    return chapter
+  })
 }

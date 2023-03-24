@@ -1,7 +1,9 @@
 "use strict"
 
 export default {
-  baseURL: "http://localhost:8080",
+  baseURL:
+    process.env.DEPLOY_URL || // Netlify deploy apps
+    "http://localhost:8080",
   openfiscaAxeURL: "http://127.0.0.1:3000",
   openfiscaPublicURL: "http://127.0.0.1:2000",
   openfiscaTracerURL: "http://127.0.0.1:3000",

@@ -11,7 +11,6 @@ const all: ConfigurationLayout = {
   },
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
-    process.env.DEPLOY_URL || // Netlify deploy apps
     "https://mes-aides.1jeune1solution.beta.gouv.fr",
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",

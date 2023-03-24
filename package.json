@@ -8,7 +8,7 @@
     "build": "concurrently 'npm run build:server' && concurrently 'npm run build:iframes' 'npm run build:front' && npm run copy:templates",
     "clean:dist-server": "rm -fR dist-server",
     "copy:templates": "mkdir -p dist-server/backend/lib/mes-aides/emails/templates && cp backend/lib/mes-aides/emails/templates/* dist-server/backend/lib/mes-aides/emails/templates",
-    "build:iframes": "echo BASE_URL && echo DEPLOY_URL && NODE_OPTIONS='--loader ts-node/esm' webpack --config iframes/iframes.config.ts",
+    "build:iframes": "echo BASE_URL $BASE_URL && echo DEPLOY_URL $DEPLOY_URL && NODE_OPTIONS='--loader ts-node/esm' webpack --config iframes/iframes.config.ts",
     "build:front": "vite build",
     "build:server": "tsc -p tsconfig.server.json",
     "preview": "vite preview",

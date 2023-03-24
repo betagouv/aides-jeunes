@@ -1,4 +1,4 @@
-import { iframeResize } from "iframe-resizer"
+// import { iframeResize } from "iframe-resizer"
 
 const script = document.currentScript
 const page = script.getAttribute("data-from-home") !== null ? "" : "simulation"
@@ -44,6 +44,6 @@ for (const key in iframeAttributes) {
   iframe.setAttribute(key, iframeAttributes[key])
 }
 
-iframeResize({}, iframe)
+// iframeResize({}, iframe)
 
 script.before(iframe)

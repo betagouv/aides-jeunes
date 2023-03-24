@@ -2,21 +2,22 @@ import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import lightBlue from "@/styles/themes/light-blue.css?inline"
 import defaultDsfr from "@/styles/themes/default-dsfr.css"
 import * as Sentry from "@sentry/vue"
+import { ThemeType, ThemeTypeLabel } from "@/../lib/enums/themes.js"
 
 const options = [
   {
-    title: "Thème bleu foncé (DSFR)",
-    label: "theme-default-dsfr",
+    title: ThemeTypeLabel.default,
+    label: ThemeType.default,
     value: defaultDsfr,
   },
   {
-    title: "Thème bleu clair",
-    label: "theme-light-blue",
+    title: ThemeTypeLabel.lightBlue,
+    label: ThemeType.lightBlue,
     value: lightBlue,
   },
   {
-    title: "Thème Bordeaux Métropole",
-    label: "theme-bordeaux-metropole",
+    title: ThemeTypeLabel.bordeauxMetropole,
+    label: ThemeType.bordeauxMetropole,
     value: bordeauxMetropole,
   },
 ]
@@ -27,7 +28,7 @@ export default {
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {
-      current: "theme-default-dsfr",
+      current: ThemeType.default,
       options,
       update(newThemeLabel) {
         if (!options.find((option) => option.label === newThemeLabel)) {

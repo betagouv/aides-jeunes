@@ -6,13 +6,13 @@ const __dirname = new URL(".", import.meta.url).pathname
 process.env.BASE_URL = config.baseURL
 process.env.IFRAME_TITLE = config.iframeTitle
 
-console.log("iframe-integration config BASE_URL", process.env.BASE_URL)
-console.log(
+console.warn("iframe-integration config BASE_URL", process.env.BASE_URL)
+console.warn(
   "iframe-integration config MES_AIDES_ROOT_URL",
   process.env.MES_AIDES_ROOT_URL
 )
-console.log("iframe-integration config DEPLOY_URL", process.env.DEPLOY_URL)
-console.log("iframe-integration config DEPLOY_URL", process.env.DEPLOY_URL)
+console.warn("iframe-integration config DEPLOY_URL", process.env.DEPLOY_URL)
+console.warn("iframe-integration config DEPLOY_URL", process.env.DEPLOY_URL)
 
 export default {
   mode: "production",

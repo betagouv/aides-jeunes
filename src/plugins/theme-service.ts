@@ -1,6 +1,7 @@
 import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import lightBlue from "@/styles/themes/light-blue.css?inline"
 import defaultDsfr from "@/styles/themes/default-dsfr.css"
+import * as Sentry from "@sentry/vue"
 
 const options = [
   {
@@ -29,6 +30,10 @@ export default {
       current: "theme-default-dsfr",
       options,
       update(newThemeLabel) {
+        if (!options.find((option) => option.label === newThemeLabel)) {
+          Sentry.captureMessage(`Invalid theme label ${newThemeLabel}`)
+          return
+        }
         app.config.globalProperties.$theme.current = newThemeLabel
         styleElement.textContent = options.find(
           (option) => option.label === newThemeLabel

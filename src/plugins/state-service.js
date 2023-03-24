@@ -1,4 +1,4 @@
-import { next, current, chapters } from "@lib/state"
+import { next, current, getChapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
 import { useStore } from "@/stores/index.ts"
 
@@ -7,7 +7,7 @@ const StateService = {
     app.config.globalProperties.$state = {
       next,
       current,
-      chapters,
+      getChapters,
     }
 
     app.config.globalProperties.$push = function () {

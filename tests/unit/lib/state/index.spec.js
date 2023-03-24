@@ -1,6 +1,6 @@
 import expect from "expect"
 
-import { chapters } from "@lib/state"
+import { getChapters } from "@lib/state"
 
 describe("chapter", function () {
   const currentPath = "/path/to/some/page"
@@ -16,7 +16,7 @@ describe("chapter", function () {
   ]
 
   it("returns the active with corresponding states", function () {
-    expect(chapters(currentPath, journey)).toEqual([
+    expect(getChapters(currentPath, journey)).toEqual([
       {
         label: "Mon profil",
         name: "profil",
@@ -42,7 +42,7 @@ describe("chapter", function () {
     const currentPath = "/path/to/yet/another/page"
 
     it("returns the active with corresponding states", function () {
-      expect(chapters(currentPath, journey)).toEqual([
+      expect(getChapters(currentPath, journey)).toEqual([
         {
           label: "Mon profil",
           name: "profil",
@@ -69,7 +69,7 @@ describe("chapter", function () {
     const currentPath = "/path/to/unknown/page"
 
     it("returns the active with corresponding states", function () {
-      expect(chapters(currentPath, journey)).toEqual([
+      expect(getChapters(currentPath, journey)).toEqual([
         {
           label: "Mon profil",
           name: "profil",
@@ -95,7 +95,7 @@ describe("chapter", function () {
       const lastUnansweredStep = "/path/to/yet/another/page"
 
       it("returns the active with corresponding states", function () {
-        expect(chapters(currentPath, journey, lastUnansweredStep)).toEqual([
+        expect(getChapters(currentPath, journey, lastUnansweredStep)).toEqual([
           {
             label: "Mon profil",
             name: "profil",

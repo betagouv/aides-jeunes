@@ -4,8 +4,7 @@ import { StepLayout } from "@lib/types/steps.d.js"
 import { RouteLayout } from "@lib/types/route.d.js"
 import { ChapterState } from "../enums/chapter.js"
 
-
-export function chapters(
+export function getChapters(
   currentPath: string,
   journey: StepLayout[],
   lastUnanswerPath?: string

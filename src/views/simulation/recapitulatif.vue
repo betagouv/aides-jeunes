@@ -88,7 +88,7 @@ import { getPropertyOfStep } from "@lib/mutualized-steps"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useIndividu } from "@/composables/individu.js"
 import ComplexeProperties from "@lib/properties/others/complexe-properties"
-import { chapters } from "@lib/state"
+import { getChapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine, Step } from "@lib/types/property.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
@@ -198,24 +198,26 @@ const addPatrimoineResChapter = (resChapters) => {
 }
 
 const myChapters = computed(() => {
-  let resChapters = chapters(route.path, store.getAllSteps).map((chapter) => {
-    let questions = stepPerChapter(chapter.name).reduce(
-      (accum: RecapPropertyLine[], step: Step) => {
-        accum.push(
-          ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
-            recapLine.path = step.path
-            return recapLine
-          })
-        )
-        return accum
-      },
-      []
-    )
-    return {
-      label: chapter.label,
-      questions,
+  let resChapters = getChapters(route.path, store.getAllSteps).map(
+    (chapter) => {
+      let questions = stepPerChapter(chapter.name).reduce(
+        (accum: RecapPropertyLine[], step: Step) => {
+          accum.push(
+            ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
+              recapLine.path = step.path
+              return recapLine
+            })
+          )
+          return accum
+        },
+        []
+      )
+      return {
+        label: chapter.label,
+        questions,
+      }
     }
-  })
+  )
   resChapters = addFiscalResourcesResChapter(resChapters)
   resChapters = addPatrimoineResChapter(resChapters)
   return resChapters

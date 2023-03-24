@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     chapters() {
-      return this.$state.chapters(
+      return this.$state.getChapters(
         this.$route.path,
         this.store.getAllSteps,
         this.store.lastUnansweredStep?.path

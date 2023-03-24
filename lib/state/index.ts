@@ -26,7 +26,7 @@ export function current(
   return journey.find((item) => item.path == currentPath)
 }
 
-export function next(
+export function getNextStep(
   currentRoute: RouteLayout,
   journey: StepLayout[]
 ): StepLayout | undefined {

@@ -308,16 +308,11 @@ router.beforeEach((to, from, next) => {
       store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
 
-    if (params.get(ThemeType.default)) {
-      app.config.globalProperties.$theme.update(ThemeType.default)
-    }
-
-    if (params.get(ThemeType.bordeauxMetropole)) {
-      app.config.globalProperties.$theme.update(ThemeType.bordeauxMetropole)
-    }
-
-    if (params.get(ThemeType.lightBlue)) {
-      app.config.globalProperties.$theme.update(ThemeType.lightBlue)
+    for (const themeType of Object.values(ThemeType)) {
+      if (params.get(themeType)) {
+        app.config.globalProperties.$theme.update(themeType)
+        break
+      }
     }
   }
 

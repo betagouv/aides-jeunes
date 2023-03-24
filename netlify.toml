@@ -10,3 +10,4 @@
 
 [build.environment]
   NODE_VERSION = "16.13.0"
+  MES_AIDES_ROOT_URL = "$DEPLOY_URL"

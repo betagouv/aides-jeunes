@@ -119,8 +119,7 @@ export default {
     options: function (): void {
       this.setIframeContainer()
     },
-    selectedTheme: function (theme) {
-      this.$theme.update(theme)
+    selectedTheme: function (): void {
       this.setIframeContainer()
     },
   },

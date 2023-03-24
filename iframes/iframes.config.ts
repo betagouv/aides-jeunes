@@ -6,6 +6,8 @@ const __dirname = new URL(".", import.meta.url).pathname
 process.env.BASE_URL = config.baseURL
 process.env.IFRAME_TITLE = config.iframeTitle
 
+console.log("iframe-integration config", process.env.BASE_URL)
+
 export default {
   mode: "production",
   entry: {

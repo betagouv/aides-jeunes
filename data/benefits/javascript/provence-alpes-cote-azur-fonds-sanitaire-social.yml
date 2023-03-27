@@ -18,9 +18,7 @@ profils:
   - type: lyceen
     conditions: []
 conditions:
-  - Être inscrit·e dans un établissement des secteurs du sanitaire et du travail
-    social, agréés ou autorisés par la Région qui suivent leur formation en
-    cursus complet.
+  - Être inscrit·e et suivre une formation en cursus complet dans un établissement des secteurs du sanitaire et du travail social, agréé ou autorisé par la Région.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: null

@@ -16,4 +16,7 @@
   --info-secondary-color-active: #96893f;
   --border-radius: 0.3rem;
   --font-family: "Work Sans", sans-serif;
+  --main-btn-text-color: #212427;
+  --secondary-btn-text-color: #212427;
+  --secondary-btn-border-color: #212427;
 }

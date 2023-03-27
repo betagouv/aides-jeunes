@@ -1,6 +1,5 @@
 :root {
   --demo-wrapper-background-blue: #a1d9e6;
-  --text-button: #fff;
   --input-outline: #008080;
   --main-color: #008391;
   --main-color-hover: #476b70;
@@ -16,4 +15,5 @@
   --info-secondary-color-active: #7eb8bf;
   --border-radius: 0.3rem;
   --font-family: inherit;
+  --main-btn-text-color: #fff;
 }

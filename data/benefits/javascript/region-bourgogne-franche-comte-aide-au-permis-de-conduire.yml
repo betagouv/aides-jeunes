@@ -26,5 +26,5 @@ prefix: l’
 type: float
 unit: €
 periodicite: autre
-montant: 500
+montant: 300
 interestFlag: _interetPermisDeConduire

@@ -26,10 +26,7 @@ function getZone(countryCode: string): string {
   if (countryCode === EeeCountryCode.FR) {
     return "fr"
   }
-  if (
-    Object.prototype.hasOwnProperty.call(EeeCountryCode, countryCode) ||
-    countryCode === "CH"
-  ) {
+  if (countryCode in EeeCountryCode || countryCode === "CH") {
     return "ue"
   }
   if (countryCode === "AF") {

@@ -5,19 +5,23 @@ const MES_AIDES_PR_GITHUB =
   "https://api.github.com/repos/betagouv/aides-jeunes/pulls"
 const CONTRIBUTION_TAG = "netlify-cms"
 
+interface Contribution {
+  head: {
+    sha: string
+    label: string
+  }
+}
+
 export function reduceContribution<
   T extends { sha: string; filename: string; folder: string }
->(
-  acc: T[],
-  contribution: { head: { sha: string; label: string } },
-  type: string
-): T[] {
-  const splitLabel: string[] = contribution.head.label.split("/")
-  if (splitLabel[1] === type) {
+>(acc: T[], contribution: Contribution, type: string): T[] {
+  const { sha, label } = contribution.head
+  const [folder, filename] = label.split("/")
+  if (folder === type) {
     acc.push({
-      sha: contribution.head.sha,
-      filename: `${splitLabel[2]}.yml`,
-      folder: type,
+      sha,
+      filename: `${filename}.yml`,
+      folder,
     } as T)
   }
   return acc

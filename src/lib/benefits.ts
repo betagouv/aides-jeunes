@@ -1,5 +1,5 @@
 import BenefitsCategories from "@/lib/benefits-categories.js"
-import { Benefit } from "@lib/types/benefits.js"
+import { benefitLayout } from "@data/types/benefits.d.js"
 import Benefits from "generator:benefits"
 
 export function getBenefit(benefitId: number): number[] {
@@ -7,12 +7,11 @@ export function getBenefit(benefitId: number): number[] {
 }
 
 export const mockResults = function (sublist: string) {
-  let filterSublist: string[] | null
-
+  let filterSublist: string[] | null = []
   if (sublist) {
     filterSublist = BenefitsCategories[sublist] || sublist.split(",")
   } else {
-    filterSublist = null
+    filterSublist
   }
 
   const defaults = {
@@ -20,7 +19,7 @@ export const mockResults = function (sublist: string) {
     float: 1,
   }
 
-  let benefits: Benefit[] = []
+  let benefits: benefitLayout[] = []
 
   if (filterSublist) {
     benefits = filterSublist
@@ -32,7 +31,7 @@ export const mockResults = function (sublist: string) {
       .filter((benefit: string) => benefit)
   }
 
-  const list: Benefit[] = benefits.map((benefit) => {
+  const list: benefitLayout[] = benefits.map((benefit) => {
     return Object.assign({}, benefit, {
       montant: benefit.montant || defaults[benefit.type || "float"],
       mock: true,

@@ -2,7 +2,7 @@ const AJ_NOT_RELIABLE =
   "Attention, les calculs du simulateur sont peu fiables pour les communes de"
 
 interface Texts {
-  aj_not_reliable(variation?: string): string | undefined
+  aj_not_reliable(variation?: string): string
 }
 
 const texts: Texts = {
@@ -18,11 +18,12 @@ const texts: Texts = {
         return `${AJ_NOT_RELIABLE} Nouvelle-Calédonie.`
       }
     }
+    return ""
   },
 }
 
 interface Warning {
-  get(attribute: string, variation?: string): string | undefined
+  get(attribute: string, variation?: string): string
 }
 
 const Warning: Warning = {

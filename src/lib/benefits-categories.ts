@@ -1,4 +1,4 @@
-import { BenefitsCategoriesMapping } from "@lib/types/benefits-categories.js"
+import { BenefitsCategoriesMapping } from "@lib/types/benefits-categories.d.js"
 
 const benefitsCategoriesMapping: BenefitsCategoriesMapping = {
   aide_permis: [

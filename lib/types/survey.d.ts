@@ -36,5 +36,4 @@ export interface FollowupLayout {
   benefits: any
   messageId: string
   sentAt: string
-  _oldId?: string
 }

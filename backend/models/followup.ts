@@ -11,7 +11,23 @@ import SurveySchema from "./survey-schema.js"
 import { MongooseLayout, FollowupModel } from "../types/models.d.js"
 import { EmailType } from "../enums/email.js"
 
-const FollowupSchema = new mongoose.Schema(
+export interface FollowupInterface extends MongooseLayout {
+  simulation: mongoose.Types.ObjectId
+  email: string | any
+  createdAt: Date
+  sentAt: Date
+  messageId: string
+  surveySentAt: Date
+  benefits: any
+  surveyOptin: boolean
+  surveys: SurveyLayout[]
+  version: number
+  error: any
+  accessToken: string
+  _oldId: string
+}
+
+const FollowupSchema = new mongoose.Schema<FollowupInterface>(
   {
     simulation: {
       type: mongoose.Schema.Types.ObjectId,
@@ -43,17 +59,10 @@ const FollowupSchema = new mongoose.Schema(
   { minimize: false, id: false }
 )
 
-FollowupSchema.static("findByIdOrOldId", function (id) {
-  if (id.length === 24) {
-    return this.findById(id)
-  } else {
-    return this.findOne({ _oldId: id })
-  }
-})
-
 FollowupSchema.static("findByEmail", function (email) {
   return this.find({ email })
 })
+
 FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   this.sentAt = Date.now()
   this.messageId = messageId

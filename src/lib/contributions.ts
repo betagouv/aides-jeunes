@@ -35,13 +35,13 @@ export async function getGithubPRFiles({
   sha: string
   folder: string
   filename: string
-}): Promise<string[]> {
+}): Promise<Contribution> {
   const response = await fetch(
     `https://raw.githubusercontent.com/betagouv/aides-jeunes/${sha}/data/${folder}/${filename}`
   )
   const blob = await response.blob()
   const text = await blob.text()
-  const data: Promise<string[]> = load(text, { encoding: "utf-8" })
+  const data: Promise<Contribution> = load(text, { encoding: "utf-8" })
   return data
 }
 

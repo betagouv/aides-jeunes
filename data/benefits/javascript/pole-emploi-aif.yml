@@ -2,18 +2,18 @@ label: aide Individuelle à la Formation (AIF)
 institution: pole_emploi
 description: Pôle Emploi peut prendre en charge tout ou partie du coût de votre
   formation si elle est nécessaire pour votre retour à l’emploi.
-prefix: l’
 conditions_generales: []
-profils:
-  - type: chomeur
-    conditions: []
 conditions:
   - Demander un devis à l’organisme de formation et le transmettre à votre
     conseiller ou conseillère Pôle Emploi.
-interestFlag: null
+profils:
+  - type: chomeur
+    conditions: []
+link: https://www.pole-emploi.fr/candidat/en-formation/mes-aides-financieres/laide-individuelle-a-la-formatio.html
+instructions: https://www.pole-emploi.fr/candidat/en-formation/mes-aides-financieres/laide-individuelle-a-la-formatio.html
+prefix: l’
 type: bool
 unit: €
 periodicite: ponctuelle
-link: https://www.pole-emploi.fr/candidat/en-formation/mes-aides-financieres/laide-individuelle-a-la-formatio.html
-instructions: https://www.pole-emploi.fr/candidat/en-formation/mes-aides-financieres/laide-individuelle-a-la-formatio.html
+interestFlag: null
 top: 10

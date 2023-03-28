@@ -103,7 +103,7 @@ export default {
     return {
       contactEmail: process.env.VITE_CONTACT_EMAIL,
       options: ["data-from-home", "data-with-logo"],
-      selectedTheme: "theme-default-dsfr",
+      selectedTheme: "default-dsfr",
       scriptPath: "/documents/iframe-integration.js",
     }
   },
@@ -112,7 +112,9 @@ export default {
       /* eslint-disable no-useless-escape */
       return `<script src="${process.env.VITE_BASE_URL}${
         this.scriptPath
-      }" ${this.options.join(" ")} ${this.selectedTheme}><\/script>`
+      }" ${this.options.join(" ")} data-theme="${
+        this.selectedTheme
+      }""><\/script>`
     },
   },
   watch: {
@@ -133,8 +135,8 @@ export default {
       for (let option of this.options) {
         externalScript.setAttribute(option, "")
       }
-      externalScript.setAttribute(this.selectedTheme, "")
-      document.getElementById("dest").replaceChildren(...[externalScript])
+      externalScript.setAttribute("data-theme", this.selectedTheme)
+      document.getElementById("dest")?.replaceChildren(...[externalScript])
     },
   },
 }

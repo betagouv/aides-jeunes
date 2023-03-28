@@ -299,20 +299,16 @@ router.beforeEach((to, from, next) => {
       return store.redirection((route) => next(route))
     }
 
-    const iframe = params.get("iframe")
-    if (iframe != null) {
+    if (params.has("iframe")) {
       store.setIframeOrigin(null)
     }
 
-    if (params.get("data-with-logo")) {
+    if (params.has("data-with-logo")) {
       store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
 
-    for (const themeType of Object.values(ThemeType)) {
-      if (params.get(themeType)) {
-        app.config.globalProperties.$theme.update(themeType)
-        break
-      }
+    if (params.has("data-theme")) {
+      app.config.globalProperties.$theme.update(params.get("data-theme"))
     }
   }
 

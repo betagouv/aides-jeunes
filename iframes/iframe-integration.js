@@ -12,13 +12,8 @@ src.searchParams.set(
 if (script.getAttribute("data-with-logo") !== null) {
   src.searchParams.set("data-with-logo", true)
 }
-
-const themeAttribute = Array.from(script.attributes).find((attribute) =>
-  attribute.name.startsWith("theme-")
-)
-const selectedTheme = themeAttribute?.name || "theme-default-dsfr"
-
-src.searchParams.set(selectedTheme, true)
+const selectedTheme = script.dataset.theme || "default-dsfr"
+src.searchParams.set("data-theme", selectedTheme)
 
 const iframe = document.createElement("iframe")
 const iframeAttributes = {

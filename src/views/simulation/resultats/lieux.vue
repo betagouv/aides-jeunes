@@ -4,8 +4,8 @@
       >Retour à l'aide
     </BackButton>
     <p class="fr-text--lg">
-      Vous pouvez y être accompagné·e pour faire votre demande et poser toutes
-      vos questions.
+      Vous pouvez y être accompagné ou accompagnée pour faire votre demande et
+      poser toutes vos questions.
     </p>
     <p v-show="updating">
       <span

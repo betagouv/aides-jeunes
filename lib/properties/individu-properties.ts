@@ -39,15 +39,15 @@ export default {
     items: [
       {
         value: ActiviteType.etudiant,
-        label: "Scolarisé·e, étudiant·e, alternant·e",
+        label: "En étude ou en alternance",
       },
       {
         value: ActiviteType.salarie,
-        label: "Salarié·e",
+        label: "Salarié ou salariée",
       },
       {
         value: ActiviteType.independant,
-        label: "Indépendant·e",
+        label: "Indépendant ou indépendante",
       },
       {
         value: ActiviteType.service_civique,
@@ -55,11 +55,11 @@ export default {
       },
       {
         value: ActiviteType.chomeur,
-        label: "Inscrit·e comme demandeur d’emploi",
+        label: "Inscrit ou inscrite comme demandeur d’emploi",
       },
       {
         value: ActiviteType.retraite,
-        label: "Retraité·e",
+        label: "Retraité ou retraitée",
         isRelevant: ({ individu, periods }) =>
           Individu.age(individu, periods.today.value) > 30,
       },
@@ -69,7 +69,7 @@ export default {
       },
     ],
     moreInfo:
-      "Lorsque vous êtes étudiant·e salarié·e, vous devez sélectionner « Étudiant·e en formation ou alternance ».",
+      "Lorsque vous étudiez et que vous travaillez, vous devez sélectionner « En étude ou en alternance ».",
   }),
 
   alternant: new BooleanProperty({
@@ -333,7 +333,7 @@ export default {
       return `${Individu.label(
         individu,
         "être"
-      )} placé·e en structure spécialisée ou famille d'accueil ?`
+      )} placé ou placée en structure spécialisée ou famille d'accueil ?`
     },
   }),
 
@@ -382,20 +382,23 @@ export default {
     moreInfo: (variation) => {
       if (variation?.includes("enfant")) {
         return `Votre enfant est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
+          et que celle-ci lui a également attribué un « taux d'incapacité » lié à son handicap.`
       } else if (variation?.includes("conjoint")) {
         return `Votre conjoint est « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci l'a reconnu comme tel·le et qu'elle lui a également attribué un « taux d'incapacité » lié à son handicap.`
+          et que celle-ci lui a également attribué un « taux d'incapacité » lié à son handicap.`
       } else {
         return `Vous êtes « en situation de handicap » lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées)\
-          et que celle-ci vous a reconnu comme tel·le et qu'elle vous a également attribué un « taux d'incapacité » lié à votre handicap.`
+          et que celle-ci vous a également attribué un « taux d'incapacité » lié à votre handicap.`
       }
     },
   }),
 
   inapte_travail: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} reconnu·e inapte au travail ?`
+      return `${Individu.label(
+        individu,
+        "être"
+      )} reconnu ou reconnue inapte au travail ?`
     },
     moreInfo:
       "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela.",
@@ -474,8 +477,8 @@ export default {
   scolarite: new EnumProperty({
     question: ({ individu }) => {
       return individu._role == "demandeur"
-        ? "Où êtes-vous scolarisé·e ?"
-        : `Où sera scolarisé·e ${individu._firstName} à la rentrée prochaine ?`
+        ? "Où êtes-vous scolarisé ou scolarisée ?"
+        : `Où sera scolarisé ou scolarisée ${individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
     items: Scolarite.types,
@@ -541,7 +544,7 @@ export default {
   }),
 
   statut_marital: new EnumProperty({
-    question: "Quelle est votre relation avec votre conjoint·e ?",
+    question: "Quelle est votre relation avec votre conjoint ou conjointe ?",
     questionType: "enum",
     items: Individu.situationsFamiliales,
   }),
@@ -626,7 +629,7 @@ export default {
 
   _interetAidesSanitaireSocial: new BooleanProperty({
     question:
-      "Êtes-vous intéressé·e par les aides concernant les formations du secteur sanitaire et social ?",
+      "Êtes-vous intéressé ou intéressée par les aides concernant les formations du secteur sanitaire et social ?",
   }),
 
   _interetBafa: new BooleanProperty({

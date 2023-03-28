@@ -34,21 +34,21 @@ export default {
   proprietaire_proche_famille: new BooleanProperty({
     question: `Avez-vous un lien de parenté direct avec votre propriétaire ?
       <span class="fr-hint-text"
-        >Est-il un ascendant ou descendant de vous ou votre conjoint·e (enfant,
+        >Est-il un ascendant ou descendant de vous ou votre conjoint ou conjointe (enfant,
         grand-parent…) ?</span
       >`,
   }),
 
   rsa_isolement_recent: new BooleanProperty({
-    question: "Vivez-vous seul·e depuis plus de 18 mois ?",
+    question: "Vivez-vous seul ou seule depuis plus de 18 mois ?",
   }),
 
   en_couple: new EnumProperty({
-    question: "Vivez-vous seul·e ou en couple ?",
+    question: "Vivez-vous seul ou seule ou bien en couple ?",
     questionType: "enum",
     items: [
       {
-        label: "Je vis seul·e",
+        label: "Je vis seul ou seule",
         value: false,
       },
       {

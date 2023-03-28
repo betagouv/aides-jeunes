@@ -503,7 +503,7 @@ export const useStore = defineStore("store", {
     },
     redirection(next: (path: string) => void) {
       this.setMessage(
-        `Vous avez été redirigé·e sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VITE_CONTACT_EMAIL}">${process.env.VITE_CONTACT_EMAIL}</a>.`
+        `Vous avez été redirigé ou redirigée sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VITE_CONTACT_EMAIL}">${process.env.VITE_CONTACT_EMAIL}</a>.`
       )
       next("/simulation")
     },

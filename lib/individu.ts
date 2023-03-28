@@ -13,7 +13,7 @@ function ressourceHeader(individu: individuLayout) {
     case "demandeur":
       return "Vos ressources personnelles uniquement"
     case "conjoint":
-      return "Les ressources de votre conjoint·e"
+      return "Les ressources de votre conjoint ou conjointe"
     default:
       return `Les ressources ${Individu.label(
         individu,
@@ -95,7 +95,7 @@ const Individu = {
       },
       nom: {
         demandeur: () => "vous",
-        conjoint: () => "votre conjoint·e",
+        conjoint: () => "votre conjoint ou conjointe",
         enfant: () => `${individu._firstName}`,
       },
       préposition: {
@@ -108,17 +108,17 @@ const Individu = {
       },
       avoir: {
         demandeur: () => "avez-vous",
-        conjoint: () => "votre conjoint·e a-t-il/elle",
+        conjoint: () => "votre conjoint ou conjointe a-t-il/elle",
         enfant: () => `${individu._firstName} a-t-il/elle`,
       },
       percevoir: {
         demandeur: () => "percevez-vous",
-        conjoint: () => "votre conjoint·e perçoit-il/elle",
+        conjoint: () => "votre conjoint ou conjointe perçoit-il/elle",
         enfant: () => `${individu._firstName} perçoit-il/elle`,
       },
       être: {
         demandeur: () => "êtes-vous",
-        conjoint: () => "votre conjoint·e est-il/elle",
+        conjoint: () => "votre conjoint ou conjointe est-il/elle",
         enfant: () => `${individu._firstName} est-il/elle`,
       },
     }

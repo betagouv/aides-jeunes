@@ -298,7 +298,7 @@ export default {
         value: "pas_enceinte",
       },
       {
-        label: "Pas concerné·e",
+        label: "Pas concerné",
         value: "pas_concerne",
       },
     ],

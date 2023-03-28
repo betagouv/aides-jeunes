@@ -13,8 +13,7 @@ if (script.getAttribute("data-with-logo") !== null) {
   src.searchParams.set("data-with-logo", true)
 }
 
-const currentScript = document.currentScript
-const themeAttribute = Array.from(currentScript.attributes).find((attribute) =>
+const themeAttribute = Array.from(script.attributes).find((attribute) =>
   attribute.name.startsWith("theme-")
 )
 const selectedTheme = themeAttribute?.name || "theme-default-dsfr"

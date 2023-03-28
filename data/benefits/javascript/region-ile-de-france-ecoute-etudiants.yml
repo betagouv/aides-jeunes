@@ -3,7 +3,6 @@ institution: region_ile_de_france
 description: Cette aide vous permet d'évaluer votre état psychologique,
   d'obtenir des ressources pour vous accompagner et de bénéficier de
   consultations gratuites avec des psychologues si besoin.
-prefix: l’
 conditions_generales:
   - type: regions
     values:
@@ -11,10 +10,11 @@ conditions_generales:
 profils:
   - type: etudiant
     conditions: []
+link: https://www.iledefrance.fr/ecoute-etudiants-ile-de-france-plateforme-daide-pour-les-etudiants-en-souffrance
+teleservice: https://ecouteetudiants-iledefrance.fr/home
+prefix: l’
 type: float
 unit: séances
 periodicite: autre
 legend: maximum
 montant: 3
-link: https://www.iledefrance.fr/ecoute-etudiants-ile-de-france-plateforme-daide-pour-les-etudiants-en-souffrance
-teleservice: https://ecouteetudiants-iledefrance.fr/home

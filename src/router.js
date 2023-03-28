@@ -4,7 +4,6 @@ import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
 import { app } from "./main.ts"
-import { ThemeType } from "./../lib/enums/themes.ts"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

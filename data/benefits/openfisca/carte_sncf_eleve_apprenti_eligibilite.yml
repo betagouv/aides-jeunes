@@ -1,12 +1,13 @@
-label: carte SNCF élèves et apprenti·e·s
+label: carte SNCF élèves et apprentis
 institution: sncf
-description: "La carte SNCF élèves et apprenti·e·s permet d'obtenir des réductions sur ses trajets TGV INOUI et INTERCITES."
+description: La carte SNCF élèves et apprentis permet d'obtenir des réductions
+  sur ses trajets TGV INOUI et INTERCITES.
+prefix: la
 conditions:
   - Demander la carte directement dans la boutique SNCF de votre choix.
-link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
-instructions: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
-prefix: la
 type: bool
 periodicite: annuelle
+link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
+instructions: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
 entity: individus
 openfiscaPeriod: thisMonth

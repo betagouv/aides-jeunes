@@ -1,19 +1,20 @@
 label: contrat d'Engagement Jeunes
 institution: etat
 description: Le Contrat d'Engagement Jeune est un parcours de 6 à 12 mois pour
-  vous aider à trouver un emploi. Concrètement, c'est un accompagnement par un·e
-  conseiller·e dédié·e, un programme intensif de 15 à 20 heures par semaine
+  vous aider à trouver un emploi. Concrètement, c'est un accompagnement par un
+  ou une conseillère dédiée, un programme intensif de 15 à 20 heures par semaine
   composé de différents types d’activités, et une allocation en fonction de vos
   ressources.
 prefix: la
 conditions:
-  - Faire votre demande d´accompagnement auprès de votre <a target="_blank"
+  - Faire votre demande d'accompagnement auprès de votre <a target="_blank"
     title="Missions Locales - Nouvelle fenêtre" rel="noopener"
     href="https://www.unml.info/les-missions-locales/annuaire/">Mission
-    Locale</a> ou de votre <a target="_blank" title="Agences Pôle Emploi - Nouvelle fenêtre" rel="noopener"
+    Locale</a> ou de votre <a target="_blank" title="Agences Pôle Emploi -
+    Nouvelle fenêtre" rel="noopener"
     href="https://www.pole-emploi.fr/annuaire/votre-pole-emploi.html">agence
     Pôle Emploi</a>.
-  - Être indépendant·e, notamment ne pas bénéficier d'un soutien financier
+  - Être indépendant, notamment ne pas bénéficier d'un soutien financier
     familial.
 type: float
 unit: €
@@ -22,6 +23,6 @@ link: https://www.service-public.fr/particuliers/vosdroits/F32700
 instructions: https://www.service-public.fr/particuliers/vosdroits/F32700
 entity: individus
 openfiscaPeriod: thisMonth
-setToZeroRecently: true
 etablissements:
   - mission_locale
+setToZeroRecently: true

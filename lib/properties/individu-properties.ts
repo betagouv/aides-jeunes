@@ -283,8 +283,8 @@ export default {
     question: ({ individu }) => {
       return `${
         individu._role === "demandeur"
-          ? "Êtes-vous enceinte ?"
-          : "Est-ce que votre partenaire est enceinte ?"
+          ? "Portez-vous actuellement un enfant ?"
+          : "Est-ce que votre partenaire porte actuellement un enfant ?"
       }`
     },
     questionType: "enum",

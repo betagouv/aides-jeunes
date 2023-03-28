@@ -45,7 +45,7 @@ import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
 import ResultatsMixin from "@/mixins/resultats.js"
-import StatisticsMixin from "@/mixins/statistics.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.ts"
 

@@ -18,7 +18,7 @@
 
 <script>
 import ResultatsMixin from "@/mixins/resultats.js"
-import StatisticsMixin from "@/mixins/statistics.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 import { useStore } from "@/stores/index.ts"
 
 let typeLabels = {

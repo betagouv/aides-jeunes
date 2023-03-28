@@ -4,3 +4,7 @@ export interface ConditionsLayout {
     extra?: any[]
   }
 }
+
+export interface BenefitLayout {
+  id: string
+}

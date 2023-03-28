@@ -70,3 +70,12 @@ export function displayValue(value, question, component) {
       return displayYesNoValue(value)
   }
 }
+
+export function getEnvVariable(variable: string): string {
+  const value = process.env[variable]
+  if (!value) {
+    throw new Error(`Variable ${variable} is not defined`)
+  }
+
+  return value
+}

@@ -1,17 +1,14 @@
 label: forfait Navigo Jeunes Weekend
 institution: region_ile_de_france
-description: Le forfait Navigo Jeunes Weekend est réservé aux usager·e·s de
-  moins de 26 ans, valable sur une journée, le samedi, le dimanche ou un jour
-  férié. Il est utilisable sur l’ensemble du réseau de la région Île-de-France,
-  sauf Orlyval, Fileo, le TGV, et les lignes qui n'appliquent pas la
-  tarification francilienne. Il permet également de bénéficier <a
-  target="_blank" title="avantages culture - Nouvelle fenêtre" rel="noopener" href="
+description: Le forfait Navigo Jeunes Weekend est valable sur une journée, le
+  samedi, le dimanche ou un jour férié. Il est utilisable sur l’ensemble du
+  réseau de la région Île-de-France, sauf Orlyval, Fileo, le TGV, et les lignes
+  qui n'appliquent pas la tarification francilienne. Il permet également de
+  bénéficier <a target="_blank" title="avantages culture - Nouvelle fenêtre"
+  rel="noopener" href="
   https://www.iledefrance-mobilites.fr/navigo-avantages-culture">d'avantages
   culture</a>.
-conditions:
-  - Acquérir le forfait Navigo Jeunes Weekend pour le prix journalier de 4,10€
-    sur les zones 1-3, 8,95€ sur les zones 1-5 et 5,25€ sur les zones 3-5, et le
-    charger sur un Passe Navigo ou l'Application Île-de-France Mobilités.
+prefix: le
 conditions_generales:
   - type: age
     operator: <=
@@ -20,9 +17,12 @@ conditions_generales:
     values:
       - "11"
 profils: []
-link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir
-instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir
-prefix: le
+conditions:
+  - Acquérir le forfait Navigo Jeunes Weekend pour le prix journalier de 4,10€
+    sur les zones 1-3, 8,95€ sur les zones 1-5 et 5,25€ sur les zones 3-5, et le
+    charger sur un Passe Navigo ou l'Application Île-de-France Mobilités.
 type: bool
 unit: €
 periodicite: autre
+link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir
+instructions: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/navigo-jeunes-week-end#comment-l-obtenir

@@ -7,7 +7,7 @@
   >
     <div class="fr-container fr-container--fluid fr-container-md">
       <div class="fr-grid-row fr-grid-row--center">
-        <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-col-12 fr-col-md-8 fr-col-lg-7">
           <div class="fr-modal__body">
             <div class="fr-modal__header">
               <button

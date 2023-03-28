@@ -6,7 +6,7 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
-import analytics from "@/mixins/statistics.js"
+import analytics from "@/mixins/statistics.ts"
 
 export default {
   name: "AnalyticRouterLink",

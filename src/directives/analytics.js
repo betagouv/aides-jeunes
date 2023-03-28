@@ -1,4 +1,4 @@
-import analytics from "@/mixins/statistics.js"
+import analytics from "@/mixins/statistics.ts"
 
 const AnalyticsDirective = {
   beforeMount(el, binding) {

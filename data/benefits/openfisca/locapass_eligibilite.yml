@@ -1,14 +1,14 @@
 label: Loca-Pass
-teleservice: https://locapass.actionlogement.fr
-prefix: l’aide
-entity: individus
-openfiscaPeriod: thisMonth
 institution: action_logement
 description: L'avance LOCA-PASS® est une aide gratuite sous forme d'un prêt à 0
   % pour financer tout ou partie de votre dépôt de garantie.
+prefix: l’aide
 conditions:
-  - Ne pas être employé·e par une entreprise publique.
-link: https://www.actionlogement.fr/l-avance-loca-pass?utm_source=mes-aides-jeunes&utm_medium=resultats
+  - Ne pas être fonctionnaire.
 type: bool
-floorAt: 0.01
 periodicite: ponctuelle
+link: https://www.actionlogement.fr/l-avance-loca-pass?utm_source=mes-aides-jeunes&utm_medium=resultats
+teleservice: https://locapass.actionlogement.fr
+floorAt: 0.01
+entity: individus
+openfiscaPeriod: thisMonth

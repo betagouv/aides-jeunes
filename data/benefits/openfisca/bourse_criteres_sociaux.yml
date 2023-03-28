@@ -3,14 +3,14 @@ institution: etat
 description: La bourse d'enseignement supérieur sur critères sociaux (BCS) est
   accordée aux étudiants et étudiantes qui ont des difficultés matérielles pour
   poursuivre des études supérieures.
-prefix: une
 conditions:
   - Ne pas en avoir déjà bénéficié 7 (sept) fois.
-type: float
-unit: €
-periodicite: mensuelle
 link: https://www.service-public.fr/particuliers/vosdroits/F12214
 instructions: https://www.service-public.fr/particuliers/vosdroits/F12214
+prefix: une
+type: float
+unit: "€"
 floorAt: 0.01
+periodicite: mensuelle
 entity: individus
 openfiscaPeriod: thisMonth

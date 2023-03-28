@@ -18,8 +18,8 @@
                 <div v-if="showAccompanimentBlock">
                   <p class="fr-text--lg">
                     Vous avez besoin d'aide pour effectuer vos démarches ?
-                    Prenez rendez-vous pour être accompagné·e par notre
-                    équipe.</p
+                    Prenez rendez-vous pour être accompagné ou accompagnée par
+                    notre équipe.</p
                   >
                   <p>
                     <a
@@ -31,14 +31,15 @@
                       class="fr-btn fr-btn--lg"
                       href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
                     >
-                      Prendre rendez-vous pour être aidé·e dans mes démarches
+                      Prendre rendez-vous pour être aidé ou aidée dans mes
+                      démarches
                     </a>
                   </p>
 
                   <p class="fr-mt-3w"
                     >La prise de rendez-vous se fait en quelques minutes et vous
                     permet de bénéficier d'un accompagnement d'une quinzaine de
-                    minutes par un·e membre de notre équipe</p
+                    minutes par une personne de notre équipe</p
                   >
                 </div>
               </div>

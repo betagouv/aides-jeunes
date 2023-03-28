@@ -7,7 +7,7 @@
         principal.</strong
       >
       <strong v-else-if="isHebergeParticipeFrais"
-        >hébergé·e en participant aux frais du logement.</strong
+        >hébergé ou hébergée en participant aux frais du logement.</strong
       >
     </p>
 
@@ -20,8 +20,8 @@
 
       <blockquote>
         <i
-          >Vous (ou votre conjoint·e) êtes propriétaire de votre logement
-          principal ou êtes logé·e·s gratuitement ?</i
+          >Vous (ou votre conjoint ou conjointe) êtes propriétaire de votre
+          logement principal ou êtes logés gratuitement ?</i
         >
       </blockquote>
 
@@ -34,7 +34,7 @@
             principal.</strong
           >
           <strong v-else-if="isHebergeParticipeFrais"
-            >hébergé·e en participant aux frais du logement.</strong
+            >hébergé ou hébergée en participant aux frais du logement.</strong
           >
         </li>
         <li>

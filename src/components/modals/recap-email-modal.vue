@@ -88,7 +88,7 @@
                     class="fr-btn"
                     @click.prevent="getRecap(true)"
                   >
-                    J'accepte d'être recontacté·e par email
+                    J'accepte d'être recontacté ou recontactée par email
                   </button>
                 </li>
                 <li>

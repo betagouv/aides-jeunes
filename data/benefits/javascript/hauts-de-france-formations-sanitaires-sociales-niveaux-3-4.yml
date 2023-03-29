@@ -4,10 +4,10 @@ description: Cette aide permet d'offrir la gratuité d'accès aux formations
   professionnelles sanitaires et sociales (SASO) de niveau 3 et 4 à toute
   personne cherchant à s'insérer sur le marché du travail.
 conditions:
-  - "Choisir l'une de ces formations : technicien·ne de l'intervention sociale
-    et familiale, moniteur/monitrice éducateur/éducatrice, accompagnant·e
-    éducatif et social, aide-soignant·e, auxiliaire de puériculture,
-    ambulancier·e."
+  - "Choisir l'une de ces formations : technicien ou technicienne de l'intervention sociale
+    et familiale, moniteur éducateur ou monitrice éducatrice, accompagnant ou accompagnante
+    éducatif et social, aide-soignant ou aide-soignante, auxiliaire de puériculture,
+    ambulancier ou ambulancière."
   - Vous rapprocher de l'institut de formation souhaitée.
 conditions_generales:
   - type: regions

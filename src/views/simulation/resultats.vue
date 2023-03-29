@@ -85,6 +85,7 @@ import StatisticsMixin from "@/mixins/statistics.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   name: "SimulationResultats",
@@ -177,7 +178,7 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.sendEventsToRecorder(this.droits, "show")
+      this.sendEventsToRecorder(this.droits, BehaviourEventTypes.show)
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
       const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
@@ -191,7 +192,7 @@ export default {
 
       this.sendEventsToRecorder(
         droitsWithUnexpectedAmount,
-        "show-unexpected-amount-link"
+        BehaviourEventTypes.showUnexpectedAmountLink
       )
     },
   },

@@ -25,7 +25,7 @@
             class="fr-btn"
             :analytics="{
               name: benefit.id,
-              action: 'show-locations',
+              action: eventTypeShowLocations,
               category: 'General',
             }"
             :to="{
@@ -44,8 +44,8 @@
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
-const types = ["teleservice", "form", "instructions"]
 export default {
   name: "BenefitCta",
   components: {
@@ -58,11 +58,18 @@ export default {
   data: function () {
     return {
       levels: ["success", "default"],
+      eventTypeShowLocations: BehaviourEventTypes.showLocations,
     }
   },
   computed: {
     ctas() {
-      return types
+      const ctaBehaviourTypes = [
+        BehaviourEventTypes.teleservice,
+        BehaviourEventTypes.form,
+        BehaviourEventTypes.instructions,
+      ]
+
+      return ctaBehaviourTypes
         .map((type) => {
           const linkGenerator = this.benefit[`${type}Generator`]
           const link = this.benefit[type] || (linkGenerator && linkGenerator())

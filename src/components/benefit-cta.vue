@@ -24,7 +24,7 @@
             id="cta-proximity"
             v-analytics="{
               name: benefit.id,
-              action: 'show-locations',
+              action: BehaviourEventTypes.showLocations,
               category: 'General',
             }"
             class="fr-btn"
@@ -44,13 +44,14 @@
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
-const types = ["teleservice", "form", "instructions"]
 export default {
   name: "BenefitCta",
   components: {
     BenefitCtaLink,
   },
+  mixins: [StatisticsMixin],
   props: {
     benefit: Object,
   },
@@ -61,7 +62,13 @@ export default {
   },
   computed: {
     ctas() {
-      return types
+      const ctaBehaviourTypes = [
+        this.BehaviourEventTypes.teleservice,
+        this.BehaviourEventTypes.form,
+        this.BehaviourEventTypes.instructions,
+      ]
+
+      return ctaBehaviourTypes
         .map((type) => {
           const linkGenerator = this.benefit[`${type}Generator`]
           const link = this.benefit[type] || (linkGenerator && linkGenerator())

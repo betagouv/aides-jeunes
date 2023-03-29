@@ -7,6 +7,7 @@ import {
   IMatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 export default {
   methods: {
@@ -39,4 +40,7 @@ export default {
       sendEventToMatomo(event, this.$matomo)
     },
   },
+  data: () => ({
+    BehaviourEventTypes,
+  }),
 }

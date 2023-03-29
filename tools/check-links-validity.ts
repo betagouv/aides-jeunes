@@ -6,6 +6,8 @@ import Bluebird from "bluebird"
 import fs from "fs"
 import os from "os"
 
+import { BehaviourEventTypes } from "../lib/enums/behaviour-event-types"
+
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
 
@@ -113,7 +115,12 @@ async function getBenefitData() {
   const priorityMap = await getPriorityStats()
 
   const data = Benefits.all.map((benefit) => {
-    const linkMap = ["link", "instructions", "form", "teleservice"]
+    const linkMap = [
+      BehaviourEventTypes.link,
+      BehaviourEventTypes.instructions,
+      BehaviourEventTypes.form,
+      BehaviourEventTypes.teleservice,
+    ]
       .filter(
         (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"
       )

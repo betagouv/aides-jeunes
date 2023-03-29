@@ -30,7 +30,7 @@
         v-if="showUnexpectedLink"
         v-analytics="{
           name: droit.id,
-          action: 'show-unexpected',
+          action: BehaviourEventTypes.showUnexpected,
           category: 'General',
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
@@ -43,9 +43,11 @@
 <script>
 import { formatDroitEstime } from "@lib/benefits/details.ts"
 import { useStore } from "@/stores/index.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "DroitEstime",
+  mixins: [StatisticsMixin],
   props: {
     droit: Object,
     showUnexpected: {

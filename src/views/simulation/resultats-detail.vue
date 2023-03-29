@@ -48,6 +48,7 @@ import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.ts"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   components: {
@@ -86,7 +87,11 @@ export default {
     } else {
       const droitId = this.$route.params.droitId
 
-      this.sendEventsToRecorder(this.droits, "showDetails", droitId)
+      this.sendEventsToRecorder(
+        this.droits,
+        BehaviourEventTypes.showDetails,
+        droitId
+      )
     }
   },
   methods: {

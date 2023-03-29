@@ -64,7 +64,7 @@
         :key="index"
         v-analytics="{
           name: droit.label,
-          action: 'link-ineligible',
+          action: BehaviourEventTypes.linkIneligible,
           category: 'General',
         }"
         class="droits-list-item"
@@ -100,6 +100,7 @@
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -109,7 +110,7 @@ export default {
     WarningMessage,
     DroitEstime,
   },
-  mixins: [DroitMixin, BenefitMixin],
+  mixins: [DroitMixin, BenefitMixin, StatisticsMixin],
   props: {
     droits: Array,
     ineligible: Boolean,

@@ -90,7 +90,7 @@
           v-if="droit.msa"
           v-analytics="{
             name: droit.label,
-            action: 'msa',
+            action: BehaviourEventTypes.msa,
             category: 'General',
           }"
           class="aj-droit-pro-agricole"
@@ -115,6 +115,7 @@ import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 import DroitHeader from "@/components/droit-header.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
@@ -127,7 +128,7 @@ export default {
     BenefitCta,
     BenefitCtaLink,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, StatisticsMixin],
   props: {
     droit: Object,
     droits: Array,

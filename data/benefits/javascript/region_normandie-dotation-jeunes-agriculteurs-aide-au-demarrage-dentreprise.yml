@@ -1,0 +1,43 @@
+label: Dotation Jeunes Agriculteurs - Aide au démarrage d'entreprise
+institution: region_normandie
+description: Cette aide cofinancée par l’Union européenne avec le fonds européen
+  agricole pour le développement rural (FEADER) vise à favoriser le
+  renouvellement des générations en agriculture et à soutenir la création d'un
+  tissu d'exploitations en milieu rural en accompagnant la dynamique
+  d'installation en région Normandie pour de jeunes agriculteurs.
+prefix: la
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 39
+  - type: age
+    operator: <=
+    value: 40
+  - type: regions
+    values:
+      - "28"
+  - type: regime_securite_sociale
+    includes:
+      - regime_agricole
+    excludes:
+      - regime_general
+      - autres_regimes
+profils: []
+conditions:
+  - Vous installer pour la première fois comme chef d’exploitation à titre
+    individuel ou comme associé exploitant non salarié d'une société.
+  - Vous installer dans une exploitation qui répond à la définition européenne
+    de micro ou petite entreprise.
+  - Justifier de la capacité professionnelle agricole (CPA).
+  - Présenter un plan d’entreprise (PE).
+  - Respecter le seuil plancher pour l’accès à la DJA fixé à une taille
+    économique de l’exploitation supérieure ou égale à 10 000 euros de potentiel
+    de production brute standard (PBS) par exploitation et le seuil plafond fixé
+    à une taille économique de l’exploitation inférieure ou égale à 1 200 000
+    euros de PBS par associé exploitant.
+type: float
+unit: €
+periodicite: autre
+montant: 30000
+link: https://www.normandie.fr/dotation-jeunes-agriculteurs-aide-au-demarrage-dentreprises-cofinance-par-le-feader#:~:text=le%20territoire%20fran%C3%A7ais.-,Caract%C3%A9ristiques%20de%20l'aide,une%20installation%20en%20zone%20d%C3%A9favoris%C3%A9e
+teleservice: https://www.demarches-simplifiees.fr/commencer/test/2282d4a7-30b3-4852-bc2f-2d52aa23f753

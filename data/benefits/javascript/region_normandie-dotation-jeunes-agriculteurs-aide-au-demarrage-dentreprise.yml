@@ -9,7 +9,7 @@ prefix: la
 conditions_generales:
   - type: age
     operator: ">="
-    value: 18
+    value: 39
   - type: age
     operator: <=
     value: 40

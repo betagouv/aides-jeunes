@@ -15,53 +15,42 @@ describe("chapter", function () {
     },
   ]
 
-  it("returns the active with corresponding states", function () {
-    expect(getChapters(currentPath, journey)).toEqual([
+  function mockChaptersWithStates(profilState, logementState, revenusState) {
+    return [
       {
         label: "Mon profil",
         name: "profil",
-        state: "current",
+        state: profilState,
         root: "/path/to/some/page",
       },
       {
         label: "Mon logement",
         name: "logement",
-        state: "pending",
+        state: logementState,
         root: "/path/to/yet/another/page",
       },
       {
         label: "Mes revenus",
         name: "revenus",
-        state: "pending",
+        state: revenusState,
         root: "/path/to/yet/another/page/again",
       },
-    ])
+    ]
+  }
+
+  it("returns the active with corresponding states", function () {
+    expect(getChapters(currentPath, journey)).toEqual(
+      mockChaptersWithStates("current", "pending", "pending")
+    )
   })
 
   describe("when currentPath is at more advanced step", function () {
     const currentPath = "/path/to/yet/another/page"
 
     it("returns the active with corresponding states", function () {
-      expect(getChapters(currentPath, journey)).toEqual([
-        {
-          label: "Mon profil",
-          name: "profil",
-          state: "done",
-          root: "/path/to/some/page",
-        },
-        {
-          label: "Mon logement",
-          name: "logement",
-          state: "current",
-          root: "/path/to/yet/another/page",
-        },
-        {
-          label: "Mes revenus",
-          name: "revenus",
-          state: "pending",
-          root: "/path/to/yet/another/page/again",
-        },
-      ])
+      expect(getChapters(currentPath, journey)).toEqual(
+        mockChaptersWithStates("done", "current", "pending")
+      )
     })
   })
 
@@ -69,52 +58,18 @@ describe("chapter", function () {
     const currentPath = "/path/to/unknown/page"
 
     it("returns the active with corresponding states", function () {
-      expect(getChapters(currentPath, journey)).toEqual([
-        {
-          label: "Mon profil",
-          name: "profil",
-          state: "done",
-          root: "/path/to/some/page",
-        },
-        {
-          label: "Mon logement",
-          name: "logement",
-          state: "done",
-          root: "/path/to/yet/another/page",
-        },
-        {
-          label: "Mes revenus",
-          name: "revenus",
-          state: "done",
-          root: "/path/to/yet/another/page/again",
-        },
-      ])
+      expect(getChapters(currentPath, journey)).toEqual(
+        mockChaptersWithStates("done", "done", "done")
+      )
     })
 
     describe("when lastUnansweredStep is provided", function () {
       const lastUnansweredStep = "/path/to/yet/another/page"
 
       it("returns the active with corresponding states", function () {
-        expect(getChapters(currentPath, journey, lastUnansweredStep)).toEqual([
-          {
-            label: "Mon profil",
-            name: "profil",
-            state: "done",
-            root: "/path/to/some/page",
-          },
-          {
-            label: "Mon logement",
-            name: "logement",
-            state: "current",
-            root: "/path/to/yet/another/page",
-          },
-          {
-            label: "Mes revenus",
-            name: "revenus",
-            state: "pending",
-            root: "/path/to/yet/another/page/again",
-          },
-        ])
+        expect(getChapters(currentPath, journey, lastUnansweredStep)).toEqual(
+          mockChaptersWithStates("done", "current", "pending")
+        )
       })
     })
   })

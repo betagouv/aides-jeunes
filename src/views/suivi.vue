@@ -137,6 +137,7 @@ import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -155,6 +156,7 @@ export default {
     DroitHeader,
     LoadingModal,
   },
+  mixins: [StatisticsMixin],
   data: function () {
     return {
       submitted: false,
@@ -238,7 +240,7 @@ export default {
       window.scrollTo(0, 0)
 
       if (this.showAccompanimentBlock) {
-        this.$matomo?.trackEvent(
+        this.sendEventToMatomo(
           "Accompaniment",
           "show-accompaniment-link",
           this.currentPath

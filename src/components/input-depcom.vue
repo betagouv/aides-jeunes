@@ -69,12 +69,14 @@
 import Commune from "@/lib/commune.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores/index.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "InputDepCom",
   components: {
     EnSavoirPlus,
   },
+  mixins: [StatisticsMixin],
   props: {
     codePostal: String,
     codePostalLabel: String,
@@ -137,7 +139,7 @@ export default {
       return Commune.get(this.codePostalValue)
         .then((communes) => {
           if (communes.length <= 0) {
-            this.$matomo?.trackEvent(
+            this.sendEventToMatomo(
               "General",
               "Depcom introuvable",
               `Code postal : ${this.codePostalValue}`

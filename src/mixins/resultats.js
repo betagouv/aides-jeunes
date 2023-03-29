@@ -1,6 +1,8 @@
 import Simulation from "@/lib/simulation.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
+  mixins: [StatisticsMixin],
   computed: {
     droits() {
       return this.resultats?.droitsEligibles
@@ -49,11 +51,12 @@ export default {
     restoreLatest() {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
-        this.$matomo?.trackEvent("General", "redirection", this.$route.path)
+        this.sendEventToMatomo("General", "redirection", this.$route.path)
+
         return this.store.redirection((route) => this.$router.push(route))
       }
 
-      this.$matomo?.trackEvent("General", "compute", this.$route.path)
+      this.sendEventToMatomo("General", "compute", this.$route.path)
       this.store.fetch(lastestSimulation).then(() => this.store.compute())
 
       return lastestSimulation

@@ -85,13 +85,8 @@ export default {
       this.restoreLatest()
     } else {
       const droitId = this.$route.params.droitId
-      const droit = this.droits.find(function (droit) {
-        return droit.id === droitId
-      })
 
-      droit && this.$matomo?.trackEvent("General", "showDetails", droit.id)
-
-      this.sendStatistics(this.droits, "showDetails", droitId)
+      this.sendEventsToRecorder(this.droits, "showDetails", droitId)
     }
   },
   methods: {

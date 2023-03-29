@@ -18,7 +18,6 @@
 
 <script>
 import ResultatsMixin from "@/mixins/resultats.js"
-import StatisticsMixin from "@/mixins/statistics.ts"
 import { useStore } from "@/stores/index.ts"
 
 let typeLabels = {
@@ -36,7 +35,7 @@ let longLabels = {
 export default {
   name: "BenefitCtaLink",
   components: {},
-  mixins: [ResultatsMixin, StatisticsMixin],
+  mixins: [ResultatsMixin],
   props: {
     analyticsName: String,
     benefit: Object,

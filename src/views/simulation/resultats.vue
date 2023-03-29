@@ -108,7 +108,6 @@ export default {
   mounted() {
     this.store.updateCurrentAnswers(this.$route.path)
 
-    let vm = this
     this.stopSubscription = this.store.$onAction(({ after, name }) => {
       after(() => {
         switch (name) {
@@ -118,7 +117,7 @@ export default {
             break
           }
           case "saveComputationFailure": {
-            vm.$matomo?.trackEvent("General", "Error")
+            this.sendEventToMatomo("General", "Error")
             break
           }
         }
@@ -155,7 +154,7 @@ export default {
           })
           .catch((error) => {
             this.store.setSaveSituationError(error.response?.data || error)
-            this.$matomo?.trackEvent("General", "Erreur sauvegarde simulation")
+            this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
           })
       } else if (!this.store.hasResults) {
         if (this.store.simulation.teleservice) {
@@ -178,33 +177,19 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.droits.forEach((droit) => {
-        this.$matomo?.trackEvent("General", "show", droit.id)
-      })
-      this.sendStatistics(this.droits, "show")
+      this.sendEventsToRecorder(this.droits, "show")
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
-      const droitsWithUnexpectedAmount = []
-
-      this.droits.forEach((droit) => {
+      const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
         const unexpectedAmountLinkDisplayed =
           (droit.isBaseRessourcesYearMinusTwo &&
             !this.ressourcesYearMinusTwoCaptured) ||
           droit.showUnexpectedAmount
 
-        if (!unexpectedAmountLinkDisplayed) {
-          return
-        }
-
-        this.$matomo?.trackEvent(
-          "General",
-          "show-unexpected-amount-link",
-          droit.id
-        )
-        droitsWithUnexpectedAmount.push(droit)
+        return unexpectedAmountLinkDisplayed
       })
 
-      this.sendStatistics(
+      this.sendEventsToRecorder(
         droitsWithUnexpectedAmount,
         "show-unexpected-amount-link"
       )

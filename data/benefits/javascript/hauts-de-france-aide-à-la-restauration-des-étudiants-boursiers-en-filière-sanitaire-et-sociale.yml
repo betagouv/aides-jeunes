@@ -10,8 +10,8 @@ conditions:
     la Région et reconnu par le ministère de l'Enseignement supérieur dans les
     Hauts-de-France, ou dans un établissement dispensant une formation sanitaire
     ou sociale géré par la Région.
-  - Être boursier·e de la Région Hauts-de-France, à l'un des échelons de bourse
-    4, 5, 6, 7 ou bien être signalé·e par le service social du CROUS.
+  - Avoir droit à une bourse de la Région Hauts-de-France, à l'un des échelons de bourse
+    4, 5, 6, 7 ou bien être signalé ou signalée par le service social du CROUS.
 conditions_generales:
   - type: regions
     values:

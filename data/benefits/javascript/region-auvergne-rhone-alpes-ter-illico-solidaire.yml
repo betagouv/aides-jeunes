@@ -6,10 +6,9 @@ description: Grâce à la carte gratuite TER Illico Solidaire, bénéficiez pend
 conditions:
   - "Être dans l'une des situations suivantes : inscrit à Pôle Emploi (indemnisé
     en dessous du SMIC ou non indemnisé) ; avoir moins de 26 ans et être
-    inscrit·e en mission locale et participer à un dispositif régional ou
+    inscrit en mission locale et participer à un dispositif régional ou
     national de formation ou d’accompagnement renforcé ; être titulaire d’un
-    contrat aidé ; être bénéficiaire du RSA ou de l’ASPA ; être demandeur·euse
-    d'asile."
+    contrat aidé ; être bénéficiaire du RSA ou de l’ASPA ; avoir fait une demande d'asile."
 conditions_generales:
   - type: regions
     values:

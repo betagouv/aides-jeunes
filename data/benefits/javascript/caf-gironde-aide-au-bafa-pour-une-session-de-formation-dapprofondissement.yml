@@ -19,7 +19,7 @@ conditions_generales:
       - "33"
 profils: []
 conditions:
-  - Etre inscrit·e pour le stage ou l'avoir réalisé dans un organisme habilité
+  - Etre inscrit ou inscrite pour le stage ou l'avoir réalisé dans un organisme habilité
     par le Ministère de la jeunesse et des sports.
   - Effectuer votre demande dans un délai de 3 mois après votre inscription.
 interestFlag: _interetBafa

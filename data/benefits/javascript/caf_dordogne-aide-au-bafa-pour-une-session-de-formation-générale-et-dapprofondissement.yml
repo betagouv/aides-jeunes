@@ -15,7 +15,7 @@ conditions_generales:
       - "24"
 profils: []
 conditions:
-  - Être ressortissant·e du régime général.
+  - Être ressortissant ou ressortissante du régime général.
   - Être sur le dossier CAF de ses parents ou avoir au moins un enfant à charge.
   - Être bénéficiaire d’une prestation familiale (RSA, l’AAH, APL, ARS pour un
     enfant).

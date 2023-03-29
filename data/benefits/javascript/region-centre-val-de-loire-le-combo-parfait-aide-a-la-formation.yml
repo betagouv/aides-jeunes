@@ -20,7 +20,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être inscrit·e à une formation Combo Parfait.
+  - Être inscrit ou inscrite à une formation Combo Parfait.
 type: float
 unit: €
 periodicite: mensuelle

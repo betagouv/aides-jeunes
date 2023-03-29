@@ -13,7 +13,7 @@ conditions_generales:
       - "63"
 profils: []
 conditions:
-  - Etre inscrit·e à la session de formation générale BAFA.
+  - Etre inscrit ou inscrite à la session de formation générale BAFA.
 interestFlag: _interetBafa
 type: float
 unit: €

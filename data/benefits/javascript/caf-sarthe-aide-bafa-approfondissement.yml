@@ -18,7 +18,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Être inscrit·e pour le troisième module de formation à une session
+  - Être inscrit ou inscrite pour le troisième module de formation à une session
     d’approfondissement centrée sur le handicap, la petite enfance, l'accueil de
     loisirs et le temps périscolaire.
 interestFlag: _interetBafa

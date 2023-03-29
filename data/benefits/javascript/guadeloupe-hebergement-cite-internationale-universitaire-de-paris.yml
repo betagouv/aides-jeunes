@@ -18,7 +18,7 @@ profils:
           - master_1
           - master_2
 conditions:
-  - Être inscrit·e au sein d’un établissement d’enseignement supérieur privé ou
+  - Être inscrit ou inscrite au sein d’un établissement d’enseignement supérieur privé ou
     public relevant de l’Académie de Paris, Créteil ou de Versailles.
 interestFlag: _interetEtudesEtranger
 type: bool

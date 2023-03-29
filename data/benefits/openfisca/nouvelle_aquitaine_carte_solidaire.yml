@@ -14,7 +14,8 @@ teleservice: https://cartesolidaire-nouvelle-aquitaine.cba.fr/
 instructions: ""
 entity: individus
 openfiscaPeriod: thisMonth
-type: quotient_familial
+conditions:
+  - type: quotient_familial
     period: month
     value: 870
     operator: "<"

@@ -14,7 +14,7 @@ profils:
   - type: stagiaire
     conditions: []
 conditions:
-  - Être en formation professionnelle engagé·e en parcours "Région Formation".
+  - Être en formation professionnelle dans le cadre du parcours "Région Formation".
   - Vous rapprocher de votre organisme de formation pour monter le dossier.
 type: bool
 unit: €

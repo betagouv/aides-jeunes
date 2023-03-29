@@ -7,8 +7,7 @@ institution: action_logement
 description: La garantie Visale est une caution accordée par Action logement au
   locataire qui veut louer un logement. Elle couvre les loyers et charges
   impayés de la résidence principale du locataire jusqu'à 36 mensualités.
-conditions:
-  - Ne pas être employé·e par une entreprise publique.
+conditions: []
 link: https://www.service-public.fr/particuliers/vosdroits/F33453
 type: bool
 periodicite: ponctuelle

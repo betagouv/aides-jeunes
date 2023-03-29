@@ -11,7 +11,7 @@ profils:
   - type: salarie
     conditions: []
 conditions:
-  - Être sorti·e de formation depuis moins de 6 mois.
+  - Avoir terminé une formation depuis moins de 6 mois.
 type: float
 unit: €
 periodicite: annuelle

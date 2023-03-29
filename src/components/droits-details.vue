@@ -85,7 +85,7 @@
         </ul>
       </WarningMessage>
       <div class="fr-print-hidden">
-        <BenefitCta :benefit="droit" :benefitsTotal="droits.length" />
+        <BenefitCta :benefit="droit" />
         <a
           v-if="droit.msa"
           v-analytics="{

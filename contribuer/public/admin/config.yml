@@ -464,7 +464,7 @@ fields:
     collapsed: false
     default: []
     types:
-      - label: Lycéen·ne
+      - label: Lycéen ou lycéenne
         name: lyceen
         widget: object
         fields:
@@ -547,7 +547,7 @@ fields:
                         value: doctorat_3
                       - label: Autre
                         value: autre
-      - label: Scolarisé·e
+      - label: Scolarisé ou scolarisée
         name: etudiant
         widget: object
         fields:
@@ -618,7 +618,7 @@ fields:
               - *field_formation_sanitaire_social
               - *field_age
               - *field_boursier
-      - label: Apprenti·e
+      - label: Apprenti ou apprentie
         name: apprenti
         widget: object
         fields:
@@ -657,7 +657,7 @@ fields:
             collapsed: false
             types:
               - *field_age
-      - label: Salarié·e
+      - label: Salarié ou salariée
         name: salarie
         widget: object
         fields:
@@ -669,7 +669,7 @@ fields:
             collapsed: false
             types:
               - *field_age
-      - label: Travailleur·euse indépendant·e
+      - label: Travailleur indépendant ou travailleuse indépendante
         name: independant
         widget: object
         fields:

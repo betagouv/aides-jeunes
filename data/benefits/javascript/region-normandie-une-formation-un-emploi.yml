@@ -3,7 +3,7 @@ institution: region_normandie
 description: La Région finance la formation en alternance des personnes en
   recherche d'emploi qui seront embauché·e·s par la suite en entreprise pour une
   durée minimum de 6 mois. Elle assure également la rémunération des stagiaires
-  non indemnisé·e·s par Pôle Emploi.
+  non indemnisés par Pôle Emploi.
 prefix: l’aide
 conditions_generales:
   - type: regions

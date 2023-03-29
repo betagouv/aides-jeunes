@@ -24,7 +24,7 @@ profils:
         operator: <=
         value: 25
 conditions:
-  - Etre à la charge de vos parents et résidant chez eux.
+  - Etre à la charge de vos parents et résider chez eux.
   - Etre titulaire du Bac et poursuivre des études supérieures en France ou à
     Monaco et, en cas de cumul des études avec une activité professionnelle,
     avoir un revenu inférieur ou égal à 55 % du smic.

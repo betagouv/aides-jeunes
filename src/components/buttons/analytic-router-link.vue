@@ -1,18 +1,12 @@
 <template>
-  <router-link @click="toto" :to="{}"> Montant inattendu ? </router-link>
+  <router-link :to="{}" @click="handleClick"> Montant inattendu ? </router-link>
 </template>
 
 <script>
-import { trackMatomoEvent } from "../../../src/directives/analytics.js"
-import sendStatistics from "../../../src/directives/analytics.js"
 import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "AnalyticRouterLink",
-  components: {
-    sendStatistics,
-    trackMatomoEvent,
-  },
   props: {
     name: String,
     category: String,
@@ -33,7 +27,7 @@ export default {
     },
   },
   methods: {
-    toto() {
+    handleClick() {
       this.droits, this.name, this.action
     },
   },

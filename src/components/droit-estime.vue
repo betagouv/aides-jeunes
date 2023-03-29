@@ -26,17 +26,7 @@
       </template>
     </div>
     <div class="fr-text--center">
-      <router-link
-        v-if="showUnexpectedLink"
-        v-analytics="{
-          name: droit.id,
-          action: 'show-unexpected',
-          category: 'General',
-        }"
-        @click="triggerCustomClick"
-        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-        >Montant inattendu ?
-      </router-link>
+      <AnalyticRouterLink :name="droit.id" :action="'show-unexpected'" />
     </div>
   </div>
 </template>
@@ -44,9 +34,13 @@
 <script>
 import { formatDroitEstime } from "@lib/benefits/details.ts"
 import { useStore } from "@/stores/index.ts"
+import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 
 export default {
   name: "DroitEstime",
+  components: {
+    AnalyticRouterLink,
+  },
   props: {
     droit: Object,
     showUnexpected: {
@@ -76,11 +70,6 @@ export default {
           !this.store.ressourcesYearMinusTwoCaptured) ||
           this.droit.showUnexpectedAmount)
       )
-    },
-  },
-  methods: {
-    triggerCustomClick(event) {
-      event.target.dispatchEvent(new CustomEvent("custom-click"))
     },
   },
 }

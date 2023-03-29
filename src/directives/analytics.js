@@ -1,30 +1,15 @@
 import analytics from "@/mixins/statistics.js"
 
-const AnalyticsDirective = {
-  beforeMount(el, binding) {
-    el.myAnalyticsHandler = () => {
-      analytics.methods.sendStatistics(
-        binding?.instance?.droits,
-        binding.value.action,
-        binding.value.name
-      )
-      const matomo = binding?.instance?.$matomo
-      if (!matomo) {
-        return
-      }
-
-      matomo?.trackEvent(
-        binding.value.category || "defaultCategory",
-        binding.value.action,
-        binding.value.name,
-        binding.value.value
-      )
-    }
-    el.addEventListener("custom-click", el.myAnalyticsHandler)
-  },
-  unmounted(el) {
-    el.removeEventListener("custom-click", el.myAnalyticsHandler)
-  },
+function sendStatistics(instance, action, name) {
+  analytics.methods.sendStatistics(instance?.droits, action, name)
 }
 
-export default AnalyticsDirective
+export function trackMatomoEvent(instance, category, action, name, value) {
+  const matomo = instance?.$matomo
+  if (!matomo) {
+    return
+  }
+  matomo.trackEvent(category || "defaultCategory", action, name, value)
+}
+
+export default sendStatistics

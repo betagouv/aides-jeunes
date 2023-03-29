@@ -24,7 +24,7 @@ profils:
   - type: professionnalisation
     conditions: []
 conditions:
-  - Etre scolarisé·e en région Provence-Alpes-Côte d’Azur.
+  - Etre scolarisé ou scolarisée en région Provence-Alpes-Côte d’Azur.
   - Vous procurer le pass ZOU ! dont le prix varie de 35 €/an à 70 €/an.
 type: bool
 unit: €

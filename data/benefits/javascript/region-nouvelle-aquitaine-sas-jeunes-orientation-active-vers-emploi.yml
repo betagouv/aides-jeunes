@@ -19,7 +19,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être accompagné·e par une Mission Locale du Limousin et effectuer votre
+  - Être accompagné ou accompagnée par une Mission Locale du Limousin et effectuer votre
     demande auprès d'eux.
 type: bool
 unit: €

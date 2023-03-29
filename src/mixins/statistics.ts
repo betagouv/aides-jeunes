@@ -13,7 +13,7 @@ export default {
     sendEventsToRecorder: function (
       benefits: BenefitType[] = [],
       event_type: string,
-      benefitId: string | undefined = undefined,
+      benefitId: string | undefined = undefined
     ) {
       const event: IRecorderEvent = {
         benefits,

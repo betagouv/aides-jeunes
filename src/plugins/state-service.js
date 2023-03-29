@@ -1,6 +1,7 @@
 import { getNextStep, current, getChapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
 import { useStore } from "@/stores/index.ts"
+import { sendEventToMatomo } from "@/lib/statistics-service/matomo.ts"
 
 const StateService = {
   install(app) {
@@ -16,10 +17,13 @@ const StateService = {
       store.updateCurrentAnswers(nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
-          this.$matomo?.trackEvent(
-            "Parcours",
-            "Navigation cancelled",
-            failure.toString()
+          sendEventToMatomo(
+            {
+              category: "Parcours",
+              action: "Navigation cancelled",
+              label: failure.toString(),
+            },
+            this.$matomo
           )
         } else {
           throw new Error(failure)

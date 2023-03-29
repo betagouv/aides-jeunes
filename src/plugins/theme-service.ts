@@ -31,14 +31,13 @@ export default {
       current: ThemeType.default,
       options,
       update(newThemeLabel) {
-        if (!options.find((option) => option.label === newThemeLabel)) {
+        const match = options.find((option) => option.label === newThemeLabel)
+        if (!match) {
           Sentry.captureMessage(`Invalid theme label ${newThemeLabel}`)
           return
         }
-        app.config.globalProperties.$theme.current = newThemeLabel
-        styleElement.textContent = options.find(
-          (option) => option.label === newThemeLabel
-        )?.value
+        this.current = newThemeLabel
+        styleElement.textContent = match.value
       },
     }
   },

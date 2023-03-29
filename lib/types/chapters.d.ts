@@ -1,7 +1,8 @@
+import { ChapterState } from "@lib/enums/chapter"
+
 export interface chapterLayout {
   label: string
   name: string
-  done?: boolean
-  current?: string
+  state?: ChapterState
   root?: string
 }

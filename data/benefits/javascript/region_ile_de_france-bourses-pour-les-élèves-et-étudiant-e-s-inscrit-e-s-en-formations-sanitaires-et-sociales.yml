@@ -1,5 +1,5 @@
 label:
-  bourses pour les élèves et étudiants ou étudiantes inscrit ou inscrites en formations
+  bourses pour les élèves et étudiants ou étudiantes inscrits ou inscrites en formations
   sanitaires et sociales
 institution: region_ile_de_france
 description: La Région Ile-de-France verse, sous conditions de ressources, une
@@ -7,7 +7,7 @@ description: La Région Ile-de-France verse, sous conditions de ressources, une
 conditions:
   - Etre de nationalité française ou ressortissant ou ressortissante d'un pays de l'Union
     européenne ou étranger en situation régulière en France.
-  - Être élève ou étudiant·e en formation initiale, inscrit ou inscrite en cursus
+  - Être élève ou étudier en formation initiale, inscrit ou inscrite en cursus
     complet dans un établissement dont la formation est agréée par la Région
     Ile-de-France.
 conditions_generales:

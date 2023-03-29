@@ -8,7 +8,7 @@ conditions:
     être inscrit ou inscrite et suivi ou suivie en mission locale, signataire d’un parcours
     contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA), dont
     le projet professionnel, attesté par le conseiller de la mission locale,
-    nécessite l’obtention du permis; ou être demandeur·euse d’emploi résidant
+    nécessite l’obtention du permis; ou être demandeur ou demandeuse d’emploi résidant
     dans un quartier politique de la ville ou en zone rurale."
 conditions_generales:
   - type: regions

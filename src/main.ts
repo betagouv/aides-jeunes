@@ -75,5 +75,3 @@ dayjs.extend(customParseFormat)
 app.use(pinia)
 app.use(router)
 app.mount(document.body)
-
-export { app }

@@ -133,7 +133,7 @@ export default {
       let externalScript = document.createElement("script")
       externalScript.setAttribute("src", this.scriptPath)
       for (let option of this.options) {
-        externalScript.setAttribute(option, "")
+        externalScript.setAttribute(option, true)
       }
       externalScript.setAttribute("data-theme", this.selectedTheme)
       document.getElementById("dest")?.replaceChildren(...[externalScript])

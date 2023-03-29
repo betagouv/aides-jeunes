@@ -3,7 +3,6 @@ import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
-import { app } from "./main.ts"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -273,7 +272,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const params = new URLSearchParams(document.location.search.substring(1))
   const store = useStore()
   if (!from.name) {
     if (
@@ -297,22 +295,6 @@ router.beforeEach((to, from, next) => {
     ) {
       return store.redirection((route) => next(route))
     }
-
-    if (params.has("iframe")) {
-      store.setIframeOrigin(null)
-    }
-
-    if (params.has("data-with-logo")) {
-      store.setIframeHeaderCollapse(params.get("data-with-logo"))
-    }
-
-    if (params.has("data-theme")) {
-      app.config.globalProperties.$theme.update(params.get("data-theme"))
-    }
-  }
-
-  if (store.iframeOrigin) {
-    store.setIframeOrigin(null)
   }
 
   if (to.meta.title) {

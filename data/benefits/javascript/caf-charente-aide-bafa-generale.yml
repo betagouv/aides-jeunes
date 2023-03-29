@@ -20,7 +20,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Signer un contrat d’engagement pour le suivi intégral de la formation.
   - Effectuer votre stage auprès d’un <a target="_blank" title="Organismes
     Conventionnés- Nouvelle fenêtre" rel="noopener"

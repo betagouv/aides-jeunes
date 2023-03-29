@@ -16,7 +16,7 @@ conditions_generales:
       - "45"
 profils: []
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Adresser votre demande à la CAF, dans un délai maximum de trois mois après
     la date de début de la formation générale.
 interestFlag: _interetBafa

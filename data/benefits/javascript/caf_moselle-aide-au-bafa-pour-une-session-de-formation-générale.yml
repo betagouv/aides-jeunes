@@ -16,7 +16,7 @@ conditions_generales:
       - regime_agricole
 profils: []
 conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents.
 interestFlag: _interetBafa
 type: float
 unit: €

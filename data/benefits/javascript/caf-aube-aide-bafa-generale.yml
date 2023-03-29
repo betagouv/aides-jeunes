@@ -17,7 +17,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Avoir effectué, après la session théorique de 8 jours, le stage pratique
     dans un organisme de vacances et/ou de loisirs aubois.
 interestFlag: _interetBafa

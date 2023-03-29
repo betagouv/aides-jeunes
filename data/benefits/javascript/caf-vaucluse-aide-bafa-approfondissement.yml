@@ -21,7 +21,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents.
   - Envoyer à votre CAF le formulaire ci-dessous par courrier.
 interestFlag: _interetBafa
 type: float

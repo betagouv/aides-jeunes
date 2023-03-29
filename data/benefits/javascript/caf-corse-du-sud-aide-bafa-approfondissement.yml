@@ -17,7 +17,7 @@ conditions_generales:
       - 2A
 profils: []
 conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents, ou
+  - Être allocataire ou rattaché au dossier allocataire de vos parents, ou
     bien être sans emploi.
   - Remplir les conditions d'attribution de l'aide légale de la CNAF.
 interestFlag: _interetBafa

@@ -17,7 +17,7 @@ conditions_generales:
       - "45"
 profils: []
 conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents.
   - Adresser votre demande à la CAF, dans un délai maximum de trois mois après
     la date de début de la session d'approfondissement.
 interestFlag: _interetBafa

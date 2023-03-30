@@ -1,0 +1,14 @@
+label: Tarification Solidaire de Transport
+institution: intercommunalite_bordeaux
+description: La tarification solidaire permet d'adapter le prix payé par
+  l’usager en fonction des ressources de son foyer.
+prefix: la
+type: float
+unit: "%"
+periodicite: annuelle
+link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx
+teleservice: https://tarificationsolidaire.bordeaux-metropole.fr/Identite.aspx
+instructions: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationCompte.aspx
+floorAt: 0.01
+entity: individus
+openfiscaPeriod: thisMonth

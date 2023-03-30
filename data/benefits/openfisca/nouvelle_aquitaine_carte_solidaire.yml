@@ -8,7 +8,6 @@ prefix: la
 type: bool
 unit: null
 periodicite: ponctuelle
-legend: ""
 link: https://transports.nouvelle-aquitaine.fr/les-offres/la-carte-solidaire
 teleservice: https://cartesolidaire-nouvelle-aquitaine.cba.fr/
 instructions: ""

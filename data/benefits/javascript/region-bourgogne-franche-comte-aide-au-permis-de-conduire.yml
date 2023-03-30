@@ -9,7 +9,7 @@ conditions:
   - Être engagé·e dans un parcours de formation (niveau IV ou inférieur) ou
     demandeur d’emploi (sous conditions) ou en mission de Service civique ou
     Contrat d'Engagement Jeune.
-  - Être prêt à effectuer 15h de bénévolat dans une association de Bourgogne-Franche-Comté de votre choix
+  - Être prêt à effectuer 15h de bénévolat dans une association de Bourgogne-Franche-Comté de votre choix.
 conditions_generales:
   - type: age
     operator: ">="

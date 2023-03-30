@@ -4,13 +4,18 @@ description: Grâce à la carte gratuite TER Illico Solidaire, bénéficiez pend
   1 an de 75% de réduction sur les billets TER tarif normal en
   Auvergne-Rhône-Alpes.
 conditions:
-  - "Être dans l'une des situations suivantes : demandeur·euse d’emploi indemnisé·e en dessous du SMIC ou non
-    indemnisé·e ; avoir moins de 26 ans et être inscrit·e en mission locale et participer à un dispositif régional ou national de formation ou
-    d’accompagnement renforcé ; être titulaire d’un contrat aidé ; être bénéficiaire du RSA ou de l’ASPA ; être demandeur·euse d'asile."
+  - "Être dans l'une des situations suivantes : inscrit à Pôle Emploi (indemnisé
+    en dessous du SMIC ou non indemnisé) ; avoir moins de 26 ans et être
+    inscrit en mission locale et participer à un dispositif régional ou
+    national de formation ou d’accompagnement renforcé ; être titulaire d’un
+    contrat aidé ; être bénéficiaire du RSA ou de l’ASPA ; avoir fait une demande d'asile."
 conditions_generales:
   - type: regions
     values:
       - "84"
+  - type: age
+    operator: <=
+    value: 26
 profils: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-solidaire
 teleservice: https://illicosolidaire.cba.fr/

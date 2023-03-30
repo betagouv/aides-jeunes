@@ -98,16 +98,21 @@
 </template>
 
 <script lang="ts">
+import { useIframeStore } from "@/stores/iframeStore.js"
+
 export default {
   data() {
     return {
       contactEmail: process.env.VITE_CONTACT_EMAIL,
       options: ["data-from-home", "data-with-logo"],
-      selectedTheme: "default-dsfr",
+      selectedTheme: useIframeStore().getSelectedTheme,
       scriptPath: "/documents/iframe-integration.js",
     }
   },
   computed: {
+    iframeStore() {
+      return useIframeStore()
+    },
     fullScript() {
       /* eslint-disable no-useless-escape */
       return `<script src="${process.env.VITE_BASE_URL}${
@@ -121,11 +126,13 @@ export default {
     options: function (): void {
       this.setIframeContainer()
     },
-    selectedTheme: function (): void {
+    selectedTheme: function (selectedTheme): void {
+      this.iframeStore.setSelectedTheme(selectedTheme)
       this.setIframeContainer()
     },
   },
   mounted: function () {
+    this.selectedTheme = this.iframeStore.getSelectedTheme
     this.setIframeContainer()
   },
   methods: {

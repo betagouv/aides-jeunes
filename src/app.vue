@@ -29,6 +29,11 @@ export default {
       store,
     }
   },
+  computed: {
+    layout: function () {
+      return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
+    },
+  },
   mounted() {
     const params = new URLSearchParams(document.location.search.substring(1))
     if (params.has("iframe")) {
@@ -44,11 +49,6 @@ export default {
     if (this.store.iframeOrigin) {
       this.store.setIframeOrigin(null)
     }
-  },
-  computed: {
-    layout: function () {
-      return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
-    },
   },
 }
 </script>

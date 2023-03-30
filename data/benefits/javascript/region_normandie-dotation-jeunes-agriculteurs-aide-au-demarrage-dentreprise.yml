@@ -44,3 +44,4 @@ teleservice:
   name: redirection
   query:
     vers: ds?benefit=2282d4a7-30b3-4852-bc2f-2d52aa23f753
+skip_schema_check: true

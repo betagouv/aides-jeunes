@@ -15,6 +15,23 @@
   --info-950-100-active: var(--info-secondary-color-active);
   --secondary-btn-text-color: var(--main-color);
   --secondary-btn-border-color: var(--main-color);
+  --tool-link-color: var(--main-color);
+  --tool-link-background-color: transparent;
+  --tool-link-background-color-hover: var(--background-raised-grey-hover);
+  --sidemenu-active-link-text-color: var(--main-color);
+}
+
+.fr-header__tools-links .fr-btn {
+  color: var(--tool-link-color);
+  background-color: var(--tool-link-background-color);
+}
+
+.fr-header__tools-links .fr-btn:hover {
+  background-color: var(--tool-link-background-color-hover);
+}
+
+.fr-sidemenu__link[aria-current="true"] {
+  color: var(--sidemenu-active-link-text-color);
 }
 
 @font-face {

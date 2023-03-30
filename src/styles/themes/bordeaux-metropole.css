@@ -19,4 +19,8 @@
   --main-btn-text-color: #212427;
   --secondary-btn-text-color: #212427;
   --secondary-btn-border-color: #212427;
+  --tool-link-color: #ffffff;
+  --tool-link-background-color: #212427;
+  --tool-link-background-color-hover: #4e5257;
+  --sidemenu-active-link-text-color: #212427;
 }

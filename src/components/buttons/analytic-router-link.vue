@@ -1,9 +1,12 @@
 <template>
-  <router-link :to="{}" @click="handleClick"> Montant inattendu ? </router-link>
+  <router-link :to="to" @click="handleClick">
+    <slot> </slot>
+  </router-link>
 </template>
 
 <script>
 import { useStore } from "@/stores/index.ts"
+import analytics from "@/mixins/statistics.js"
 
 export default {
   name: "AnalyticRouterLink",
@@ -12,6 +15,10 @@ export default {
     category: String,
     action: String,
     value: String,
+    to: {
+      type: [String, Object],
+      required: true,
+    },
   },
   setup() {
     return {
@@ -28,7 +35,8 @@ export default {
   },
   methods: {
     handleClick() {
-      this.droits, this.name, this.action
+      analytics.methods.sendStatistics(this.droits, this.action, this.name)
+      this.$matomo?.trackEvent(this.category, this.action, this.name)
     },
   },
 }

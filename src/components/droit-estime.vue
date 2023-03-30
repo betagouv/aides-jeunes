@@ -26,7 +26,14 @@
       </template>
     </div>
     <div class="fr-text--center">
-      <AnalyticRouterLink :name="droit.id" :action="'show-unexpected'" />
+      <AnalyticRouterLink
+        :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
+        :name="droit.id"
+        :action="'show-unexpected'"
+        :category="'General'"
+      >
+        Montant inattendu ?
+      </AnalyticRouterLink>
     </div>
   </div>
 </template>

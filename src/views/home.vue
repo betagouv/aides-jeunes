@@ -15,6 +15,9 @@
         ressources et de celles de vos parents si vous êtes encore à leur
         charge.
       </p>
+      <a href="api/auth/login">Lien</a>
+       
+      <a v-if="logout" :href="logout">Logout</a>
       <ul class="fr-btns-group">
         <li v-if="hasExistingSituation">
           <button
@@ -63,6 +66,8 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
+import { ref } from "vue"
+import axios from "axios"
 
 export default {
   name: "Home",
@@ -70,6 +75,8 @@ export default {
     return {
       store: useStore(),
       context: process.env.VITE_CONTEXT,
+      data: ref({}),
+      logout: ref(""),
     }
   },
   computed: {
@@ -89,6 +96,21 @@ export default {
         ? process.env.VITE_BENEFIT_COUNT
         : "plus de 700"
     },
+  },
+  async mounted() {
+    const search = new URLSearchParams(document.location.search)
+    if (!search.has("code")) {
+      return
+    }
+    const code = search.get("code")
+    const response = await axios.get(`/api/auth/callback?code=${code}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    this.data = response.data
+    this.logout = this.data.logout
+    console.log("response.data", response.data)
   },
   methods: {
     newSituation() {

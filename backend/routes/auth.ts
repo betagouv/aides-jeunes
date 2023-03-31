@@ -1,6 +1,5 @@
 import axios from "axios"
 
-const storage = {}
 const fcRoot = "https://fcp.integ01.dev-franceconnect.fr"
 const fcClientId =
   "211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e"
@@ -15,10 +14,6 @@ const fcScopes = [
   "mesri_admission",
   "mesri_etablissements",
 ].join(" ")
-const code = ""
-const token = ""
-const userinfo = ""
-const id_token_hint = ""
 
 export default function (api) {
   api.route("/auth/callback").get(async (req, res) => {

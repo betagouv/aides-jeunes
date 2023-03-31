@@ -12,7 +12,8 @@ src.searchParams.set(
 if (script.dataset["with-logo"] !== null) {
   src.searchParams.set("data-with-logo", true)
 }
-const selectedTheme = script.dataset.theme || "default-dsfr"
+const selectedTheme =
+  localStorage.getItem("theme") || script.dataset.theme || "default-dsfr"
 src.searchParams.set("theme", selectedTheme)
 
 const iframe = document.createElement("iframe")

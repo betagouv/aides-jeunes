@@ -1,15 +1,19 @@
 import { defineStore } from "pinia"
+import { useLocalStorage } from "@vueuse/core"
+
 export const useIframeStore = defineStore({
   id: "useIframeStore",
-  state: () => ({
-    selectedTheme: "default-dsfr",
-  }),
+  state: () => {
+    return {
+      theme: useLocalStorage("theme", "default-dsfr"),
+    }
+  },
   getters: {
-    getSelectedTheme: (state) => state.selectedTheme,
+    getTheme: (state) => state.theme,
   },
   actions: {
-    setSelectedTheme(theme: string) {
-      this.selectedTheme = theme
+    setTheme(theme: string) {
+      this.theme = theme
     },
   },
 })

@@ -73,7 +73,7 @@
               v-model="selectedTheme"
               type="radio"
               :value="option.label"
-              :checked="index === 0"
+              :checked="selectedTheme === option.label"
             />
             <label :for="option.label" class="fr-label">{{
               option.title
@@ -105,13 +105,20 @@ export default {
     return {
       contactEmail: process.env.VITE_CONTACT_EMAIL,
       options: ["data-from-home", "data-with-logo"],
-      selectedTheme: useIframeStore().getSelectedTheme,
       scriptPath: "/documents/iframe-integration.js",
     }
   },
   computed: {
     iframeStore() {
       return useIframeStore()
+    },
+    selectedTheme: {
+      get() {
+        return this.iframeStore.theme
+      },
+      set(value) {
+        this.iframeStore.setTheme(value)
+      },
     },
     fullScript() {
       /* eslint-disable no-useless-escape */
@@ -126,13 +133,12 @@ export default {
     options: function (): void {
       this.setIframeContainer()
     },
-    selectedTheme: function (selectedTheme): void {
-      this.iframeStore.setSelectedTheme(selectedTheme)
+    selectedTheme: function (): void {
       this.setIframeContainer()
     },
   },
   mounted: function () {
-    this.selectedTheme = this.iframeStore.getSelectedTheme
+    this.selectedTheme = this.iframeStore.getTheme
     this.setIframeContainer()
   },
   methods: {

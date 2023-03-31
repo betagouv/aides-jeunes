@@ -98,7 +98,7 @@
 </template>
 
 <script lang="ts">
-import { useIframeStore } from "@/stores/iframeStore.js"
+import { useIframeStore } from "@/stores/iframe-store.js"
 
 export default {
   data() {

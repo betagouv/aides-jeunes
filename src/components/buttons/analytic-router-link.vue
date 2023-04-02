@@ -1,6 +1,6 @@
 <template>
   <router-link :to="to" @click="handleClick">
-    <slot> </slot>
+    <slot />
   </router-link>
 </template>
 

@@ -1,7 +1,8 @@
 import IndividuMethods from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
-import Ressource from "../ressource.js"
-import Resources from "../resources.js"
+
+import { ressourceCategories } from "../resources.js"
+import { getIndividuRessourceTypesByCategory } from "../ressource.js"
 import { datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import ScolariteCategories from "../scolarite.js"
@@ -530,19 +531,16 @@ function resourceBlocks(situation) {
           id: individuId,
         }),
       ].concat(
-        Resources.ressourceCategories.map((category) => {
+        ressourceCategories.map((category) => {
           return {
             isActive: (situation) => {
-              const ressourceMap =
-                Ressource.getIndividuRessourceTypesByCategory(
-                  individu,
-                  category.id,
-                  situation
-                )
-              const selectedRessources = Object.keys(ressourceMap).filter(
-                (k) => ressourceMap[k]
+              const ressourceMap = getIndividuRessourceTypesByCategory(
+                individu,
+                category.id,
+                situation
               )
-              return selectedRessources.length
+              return Object.keys(ressourceMap).filter((k) => ressourceMap[k])
+                .length
             },
             steps: [
               new ComplexStepGenerator({

@@ -7,8 +7,8 @@
     }"
     :aria-label="longLabel"
     :to="getURL(link)"
-    :target="_blank"
-    :rel="noopener"
+    target="_blank"
+    rel="noopener"
     @click="onClick(link)"
   >
     {{ label }}
@@ -19,7 +19,7 @@
 import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { useStore } from "@/stores/index.ts"
-import AnalyticRouterLink from "./buttons/analytic-router-link.vue"
+import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",

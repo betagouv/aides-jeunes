@@ -41,7 +41,7 @@
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
-import AnalyticRouterLink from "./buttons/analytic-router-link.vue"
+import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 
 const types = ["teleservice", "form", "instructions"]
 export default {

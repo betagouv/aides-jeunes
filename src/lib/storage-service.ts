@@ -11,16 +11,13 @@ export class StorageService {
     this.storageAvailable = this.available()
   }
   available(): boolean {
-    if (typeof this.storageAvailable !== "undefined") {
-      return this.storageAvailable
-    }
     try {
       const storage: Storage | null = window[this.storageType]
       const storageTest = "__storage_test__"
       storage.setItem(storageTest, storageTest)
       const storedValue = storage.getItem(storageTest)
       storage.removeItem(storageTest)
-      return storedValue == storageTest
+      return storedValue === storageTest
     } catch (e) {
       return false
     }

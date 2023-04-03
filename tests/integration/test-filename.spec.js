@@ -48,4 +48,15 @@ describe("Test filenames rules", function () {
       })
     })
   })
+
+  const benefitsFiles = files.filter((file) =>
+    file.absolute.match(/data\/(institutions|benefits\/(javascript|openfisca))/)
+  )
+  benefitsFiles.forEach((file) => {
+    describe(file.absolute, function () {
+      it("institution and benefit files should use yml extension", function () {
+        expect(file.extension === "yml").toBeTruthy()
+      })
+    })
+  })
 })

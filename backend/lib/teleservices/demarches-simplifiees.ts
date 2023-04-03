@@ -97,6 +97,10 @@ const mappings = {
     "champ_Q2hhbXAtMjMyMjc1NA==": sources.date_naissance,
     "champ_Q2hhbXAtMjMyMjc2OQ==": sources.departement,
   },
+  r28_dja: {
+    "champ_Q2hhbXAtMzE5MDUwOQ==": sources.date_naissance,
+    "champ_Q2hhbXAtMzE5MDU4Ng==": sources.departement,
+  },
 }
 
 function DemarchesSimplifiees(simulation, query) {

@@ -20,21 +20,18 @@
         class="fr-col fr-btns-group fr-mx-0 fr-py-0 fr-px-0"
       >
         <li>
-          <router-link
+          <AnalyticRouterLink
             id="cta-proximity"
-            v-analytics="{
-              name: benefit.id,
-              action: 'show-locations',
-              category: 'General',
-            }"
             class="fr-btn"
+            :name="benefit.id"
+            :action="'show-locations'"
+            :category="'General'"
             :to="{
               name: 'resultatsLieuxDedies',
               params: { benefit_id: benefit.id },
             }"
-          >
-            À proximité de chez vous
-          </router-link>
+            >À proximité de chez vous
+          </AnalyticRouterLink>
         </li>
       </ul>
     </div>
@@ -44,12 +41,14 @@
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
+import AnalyticRouterLink from "./buttons/analytic-router-link.vue"
 
 const types = ["teleservice", "form", "instructions"]
 export default {
   name: "BenefitCta",
   components: {
     BenefitCtaLink,
+    AnalyticRouterLink,
   },
   props: {
     benefit: Object,

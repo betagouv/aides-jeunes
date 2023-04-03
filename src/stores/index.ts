@@ -83,7 +83,6 @@ function getPersitedStateProperties(
     calculs: state.calculs || defaultCalculs(),
     ameliNoticationDone: state.ameliNoticationDone,
     recapEmailState: state.recapEmailState,
-    theme: state.theme,
   }
   if (!save) {
     persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)

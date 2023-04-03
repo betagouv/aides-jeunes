@@ -1,6 +1,7 @@
 import Individu from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
-import Ressource from "../ressource.js"
+import { ressourceCategories } from "../resources.js"
+import { getIndividuRessourceTypesByCategory } from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { Step, ComplexStep } from "./steps.js"
 import Scolarite from "../scolarite.js"
@@ -305,9 +306,7 @@ function kidBlock(situation) {
     steps: [
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
-            return {
-              steps: [individuBlockFactory(e.id, "foyer")],
-            }
+            return individuBlockFactory(e.id, "foyer")
           })
         : []),
       new Step({ entity: "enfants", chapter: "foyer" }),
@@ -437,42 +436,51 @@ function resourceBlocks(situation) {
           id: individuId,
         }),
       ].concat(
-        Ressource.getIndividuRessourceCategories(individu, situation).map(
-          (category) =>
-            new ComplexStep({
-              route: `individu/${individuId}/ressources/montants/${category}`,
-              entity: "individu",
-              variable: category,
-              id: individuId,
-            })
-        )
+        ressourceCategories.map((category) => {
+          return {
+            isActive: (situation) => {
+              const ressourceMap = getIndividuRessourceTypesByCategory(
+                individu,
+                category.id,
+                situation
+              )
+              return Object.keys(ressourceMap).filter((k) => ressourceMap[k])
+                .length
+            },
+            steps: [
+              new ComplexStep({
+                route: `individu/${individuId}/ressources/montants/${category.id}`,
+                entity: "individu",
+                variable: category.id,
+                id: individuId,
+              }),
+            ],
+          }
+        })
       ),
     }
   }
-  return {
-    steps: [
-      individuResourceBlock("demandeur"),
-      ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants?.length
-        ? [
-            new Step({
-              entity: "individu",
-              variable: "_hasRessources",
-              id: "enfants",
-            }),
-          ]
-        : []),
-      {
-        steps: situation.enfants
-          ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
-                : { steps: [] }
-            })
-          : [],
-      },
-    ],
-  }
+  return [
+    individuResourceBlock("demandeur"),
+    ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
+    ...(situation.enfants?.length
+      ? [
+          new Step({
+            entity: "individu",
+            variable: "_hasRessources",
+            id: "enfants",
+          }),
+        ]
+      : []),
+    ...(situation.enfants
+      ? situation.enfants.map((e) => {
+          return {
+            isActive: () => e._hasRessources,
+            steps: [individuResourceBlock(e.id)],
+          }
+        })
+      : []),
+  ]
 }
 
 export function generateBlocks(situation): BlockLayout[] {
@@ -538,7 +546,7 @@ export function generateBlocks(situation): BlockLayout[] {
       ],
     },
     housingBlock(),
-    resourceBlocks(situation),
+    ...resourceBlocks(situation),
     {
       isActive: (situation) => {
         const parents_ok =

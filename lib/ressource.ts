@@ -1,7 +1,6 @@
 import resources from "./resources.js"
 
 import { typicalDatesLayout, dateLayout } from "../lib/types/dates.js"
-import { resourceLayout } from "./types/resources.js"
 
 function getPeriodsForCurrentYear(dates: typicalDatesLayout, ressourceType) {
   const periodKeys: dateLayout[] = []
@@ -102,24 +101,6 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
   return Boolean(ressource)
 }
 
-function getIndividuRessourceCategories(individu, situation) {
-  return [
-    ...new Set(
-      resources.ressourceTypes
-        .filter(
-          (ressourceType: resourceLayout) =>
-            isSelectedForCurrentYear(
-              individu[ressourceType.id],
-              ressourceType
-            ) &&
-            isRessourceOnMainScreen(ressourceType) &&
-            isRessourceRelevant(ressourceType, situation, individu)
-        )
-        .map((r) => r.category)
-    ),
-  ]
-}
-
 function getIndividuRessourceTypes(individu, situation) {
   return resources.ressourceTypes
     .filter((ressourceType) => {
@@ -137,7 +118,11 @@ function getIndividuRessourceTypes(individu, situation) {
     }, {})
 }
 
-function getIndividuRessourceTypesByCategory(individu, category, situation) {
+export function getIndividuRessourceTypesByCategory(
+  individu,
+  category,
+  situation
+) {
   return resources.ressourceTypes
     .filter((ressourceType) => {
       return (
@@ -168,7 +153,6 @@ export default {
   isRessourceOnMainScreen,
   isSelectedForCurrentYear,
   setDefaultValueForCurrentYear,
-  getIndividuRessourceCategories,
   getIndividuRessourceTypes,
   getIndividuRessourceTypesByCategory,
   unsetForCurrentYear,

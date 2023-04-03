@@ -230,6 +230,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/parcours",
+      name: "parcours",
+      component: () => import("./views/parcours.vue"),
+    },
+    {
       path: "/suivi",
       name: "suivi",
       component: () => import("./views/suivi.vue"),

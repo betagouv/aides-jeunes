@@ -11,7 +11,7 @@ const sources = {
   civilite: () => (Math.random() > 0.5 ? "Mme" : "M."),
   commune: (simulation) => {
     const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
-    return depcom && [depcom._departement, depcom.depcom]
+    return depcom && [depcom._codePostal, depcom.depcom]
   },
   date_de_valeur: (simulation) => {
     return dayjs(simulation.dateDeValeur).format("YYYY-MM-DDTHH:mm")
@@ -99,7 +99,7 @@ const mappings = {
   },
   r28_dja: {
     "champ_Q2hhbXAtMzE5MDUwOQ==": sources.date_naissance,
-    "champ_Q2hhbXAtMzE5MDU4Ng==": sources.departement,
+    "champ_Q2hhbXAtMzE5MDU4Ng==": sources.commune,
   },
 }
 

@@ -1,41 +1,47 @@
-type StorageType = "localStorage" | "sessionStorage"
-
-const availableStorages: { StorageType?: boolean } = {}
-
-function storageAvailable(type: StorageType): boolean {
-  if (type in availableStorages) {
-    return availableStorages[type]
-  }
-
-  try {
-    const storage: Storage | null = window[type]
-    const storageTest = "__storage_test__"
-    storage.setItem(storageTest, storageTest)
-    storage.removeItem(storageTest)
-    availableStorages[type] = true
-  } catch (e) {
-    availableStorages[type] = false
-  }
-  return availableStorages[type]
+enum StorageType {
+  localStorage = "localStorage",
+  sessionStorage = "sessionStorage",
 }
 
-function setItem(type: StorageType, key: string, value: any): void {
-  if (storageAvailable(type)) {
-    window[type].setItem(key, JSON.stringify(value))
+export class StorageService {
+  private storageAvailable: boolean
+  private storageType: StorageType
+  constructor(type) {
+    this.storageType = type
+    this.storageAvailable = this.available()
   }
-}
-
-function getItem(type: StorageType, key: string): any | null {
-  if (storageAvailable(type)) {
-    const item = window[type].getItem(key)
-    if (item) {
-      return JSON.parse(item)
+  available(): boolean {
+    if (typeof this.storageAvailable !== "undefined") {
+      return this.storageAvailable
+    }
+    try {
+      const storage: Storage | null = window[this.storageType]
+      const storageTest = "__storage_test__"
+      storage.setItem(storageTest, storageTest)
+      const storedValue = storage.getItem(storageTest)
+      storage.removeItem(storageTest)
+      return storedValue == storageTest
+    } catch (e) {
+      return false
     }
   }
-  return null
+  setItem(key: string, value: any) {
+    if (this.storageAvailable) {
+      window[this.storageType].setItem(key, JSON.stringify(value))
+    }
+  }
+  getItem(key: string): any | null {
+    if (this.storageAvailable) {
+      const item = window[this.storageType].getItem(key)
+      if (item) {
+        return JSON.parse(item)
+      }
+    }
+    return null
+  }
 }
 
 export default {
-  setItem,
-  getItem,
+  local: new StorageService(StorageType.localStorage),
+  session: new StorageService(StorageType.sessionStorage),
 }

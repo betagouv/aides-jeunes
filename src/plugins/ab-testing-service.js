@@ -15,7 +15,7 @@ function getEnvironment() {
   if (!window._paq) {
     return {}
   }
-  const ABTesting = storageService.getItem("localStorage", "ABTesting") || {}
+  const ABTesting = storageService.local.getItem("ABTesting") || {}
 
   // index doit être dans [1, 5]
   // // Prépare la variable d'AB testing
@@ -45,7 +45,7 @@ function getEnvironment() {
       ])
     }
   })
-  storageService.setItem("localStorage", "ABTesting", ABTesting)
+  storageService.local.setItem("ABTesting", ABTesting)
   return ABTesting
 }
 
@@ -67,7 +67,7 @@ const ABTestingService = {
   setVariant(key, value) {
     const ABTestingEnvironment = getEnvironment()
     ABTestingEnvironment[key].value = value
-    storageService.setItem("localStorage", "ABTesting", ABTestingEnvironment)
+    storageService.local.setItem("ABTesting", ABTestingEnvironment)
 
     return extractValueMap(ABTestingEnvironment)
   },

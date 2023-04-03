@@ -58,6 +58,7 @@
 <script>
 import LoadingModal from "@/components/loading-modal.vue"
 import { useStore } from "@/stores/index.ts"
+import storageService from "@/lib/storage-service.ts"
 
 export default {
   name: "Redirection",
@@ -78,13 +79,13 @@ export default {
     }
   },
   mounted() {
-    this.simulationId = window.sessionStorage.getItem("simulationId")
+    this.simulationId = storageService.session.getItem("simulationId")
     if (!this.simulationId) {
       this.simulationId = JSON.parse(
-        window.localStorage.getItem("trampoline")
+        storageService.local.getItem("trampoline")
       ).simulationId
-      window.localStorage.removeItem("trampoline")
-      window.sessionStorage.setItem("simulationId", this.simulationId)
+      storageService.local.removeItem("trampoline")
+      storageService.session.setItem("simulationId", this.simulationId)
     }
     if (!this.simulationId) {
       this.error = "Identifiant de simulation absent… Arrêt."

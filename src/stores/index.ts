@@ -92,7 +92,7 @@ function getPersitedStateProperties(
 }
 
 function restoreLocal() {
-  let state = storageService.getItem("sessionStorage", "store")
+  let state = storageService.session.getItem("store")
   if (!state || !state.simulation || !state.simulation.dateDeValeur) {
     state = defaultStore()
   }
@@ -113,8 +113,7 @@ export function persistDataOnSessionStorage({
     if (name === "initialize") {
       return
     }
-    storageService.setItem(
-      "sessionStorage",
+    storageService.session.setItem(
       "store",
       getPersitedStateProperties(store, true)
     )

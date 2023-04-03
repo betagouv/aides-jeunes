@@ -11,7 +11,7 @@ const sources = {
   civilite: () => (Math.random() > 0.5 ? "Mme" : "M."),
   commune: (simulation) => {
     const depcom = getAnswer(simulation.answers.current, "menage", "depcom")
-    return depcom && [depcom._codePostal, depcom.depcom]
+    return depcom && [depcom._departement, depcom.depcom]
   },
   date_de_valeur: (simulation) => {
     return dayjs(simulation.dateDeValeur).format("YYYY-MM-DDTHH:mm")

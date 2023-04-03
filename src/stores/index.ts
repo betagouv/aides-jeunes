@@ -19,6 +19,7 @@ import {
   Situation,
   Store,
 } from "@lib/types/store"
+import { ThemeType } from "@lib/enums/themes"
 
 function defaultCalculs(): Calculs {
   return {
@@ -82,6 +83,7 @@ function getPersitedStateProperties(
     calculs: state.calculs || defaultCalculs(),
     ameliNoticationDone: state.ameliNoticationDone,
     recapEmailState: state.recapEmailState,
+    theme: state.theme,
   }
   if (!save) {
     persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)
@@ -118,6 +120,21 @@ export function persistDataOnSessionStorage({
     )
   })
 }
+
+export const useSettingsStore = defineStore("settingsStore", {
+  state: () => ({ theme: ThemeType.default }),
+  getters: {
+    getTheme(): string {
+      return this.theme
+    },
+  },
+  actions: {
+    setTheme(theme: string) {
+      localStorage.setItem("theme", theme)
+      this.theme = theme
+    },
+  },
+})
 
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
@@ -562,5 +579,8 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     setTitle(newTitle: string) {
       this.title = newTitle
     },
+    // setTheme(theme: string): void {
+    //   this.theme = theme
+    // },
   },
 })

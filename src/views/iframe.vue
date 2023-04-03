@@ -98,9 +98,14 @@
 </template>
 
 <script lang="ts">
-import { useIframeStore } from "@/stores/iframe-store.js"
+import { useSettingsStore } from "@/stores/index.js"
 
 export default {
+  setup() {
+    return {
+      settingsStore: useSettingsStore(),
+    }
+  },
   data() {
     return {
       contactEmail: process.env.VITE_CONTACT_EMAIL,
@@ -109,15 +114,12 @@ export default {
     }
   },
   computed: {
-    iframeStore() {
-      return useIframeStore()
-    },
     selectedTheme: {
       get() {
-        return this.iframeStore.theme
+        return this.settingsStore.theme
       },
       set(value) {
-        this.iframeStore.setTheme(value)
+        this.settingsStore.setTheme(value)
       },
     },
     fullScript() {
@@ -138,7 +140,7 @@ export default {
     },
   },
   mounted: function () {
-    this.selectedTheme = this.iframeStore.getTheme
+    this.selectedTheme = this.settingsStore.getTheme
     this.setIframeContainer()
   },
   methods: {

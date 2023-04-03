@@ -16,12 +16,6 @@ conditions_generales:
   - type: regions
     values:
       - "28"
-  - type: regime_securite_sociale
-    includes:
-      - regime_agricole
-    excludes:
-      - regime_general
-      - autres_regimes
 profils: []
 conditions:
   - Vous installer pour la première fois comme chef d’exploitation à titre

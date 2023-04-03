@@ -51,7 +51,6 @@
     "@sentry/vue": "^6.14.0",
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue": "^3.0.1",
-    "@vueuse/core": "^9.13.0",
     "aides-velo": "3.0.9",
     "axios": "^0.27.2",
     "communes-lonlat": "^1.1.0",

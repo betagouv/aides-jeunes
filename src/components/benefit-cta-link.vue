@@ -1,25 +1,25 @@
 <template>
-  <a
-    :id="`cta-${type}`"
-    v-analytics="{ name: analyticsName, action: type, category: 'General' }"
-    :aria-label="longLabel"
+  <AnalyticRouterLink
+    id="`cta-${type}`"
     :class="{
       'fr-btn fr-btn--secondary': level === 'default',
       'fr-btn': level === 'success',
     }"
-    :href="getURL(link)"
-    class="text-center"
-    rel="noopener"
-    target="_blank"
+    :aria-label="longLabel"
+    :to="getURL(link)"
+    :target="_blank"
+    :rel="noopener"
     @click="onClick(link)"
-    v-html="label"
-  />
+  >
+    {{ label }}
+  </AnalyticRouterLink>
 </template>
 
 <script>
 import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { useStore } from "@/stores/index.ts"
+import AnalyticRouterLink from "./buttons/analytic-router-link.vue"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
@@ -35,7 +35,9 @@ let longLabels = {
 
 export default {
   name: "BenefitCtaLink",
-  components: {},
+  components: {
+    AnalyticRouterLink,
+  },
   mixins: [ResultatsMixin, StatisticsMixin],
   props: {
     analyticsName: String,

@@ -579,8 +579,5 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     setTitle(newTitle: string) {
       this.title = newTitle
     },
-    // setTheme(theme: string): void {
-    //   this.theme = theme
-    // },
   },
 })

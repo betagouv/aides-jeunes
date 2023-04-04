@@ -1,7 +1,7 @@
 export interface answerLayout {
-  id: any
+  id?: any
   entityName: any
   fieldName: any
   value: any
-  path: any
+  path?: any
 }

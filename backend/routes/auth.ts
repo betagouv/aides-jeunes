@@ -1,4 +1,5 @@
 import axios from "axios"
+import { answerLayout } from "@/../lib/types/answer.js"
 
 const fcRoot = "https://fcp.integ01.dev-franceconnect.fr"
 const fcClientId =
@@ -6,14 +7,24 @@ const fcClientId =
 const fcClientSecret =
   "2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b"
 const fcScopes = [
-  "openid",
-  "profile",
+  "birthdate",
+  "email",
   "mesri_identifiant",
   "mesri_inscription_etudiant",
   "mesri_inscription_autre",
   "mesri_admission",
   "mesri_etablissements",
+  "openid",
+  "profile",
 ].join(" ")
+
+interface payloadLayout {
+  simulation?: any
+  mesri?: any
+  token?: any
+  userinfo?: any
+  logout?: string
+}
 
 export default function (api) {
   api.route("/auth/callback").get(async (req, res) => {
@@ -42,8 +53,8 @@ export default function (api) {
           },
         }
       )
-
-      const data = {
+      const data: payloadLayout = {
+        simulation: null,
         mesri: {},
         token: response.data,
         userinfo: userinfo.data,
@@ -51,25 +62,58 @@ export default function (api) {
       }
 
       try {
-        const mesri = await axios.get(
+        const mesri = { data: "none" } /*await axios.get(
           `https://particulier-test.api.gouv.fr/api/v2/etudiants`,
           {
             headers: {
               Authorization: `Bearer ${response.data.access_token}`,
             },
           }
-        )
+        )//*/
         data.mesri = mesri.data
-      } catch (error) {
+      } catch (error: any) {
         data.mesri = {
           error,
         }
       }
 
+      const answers: answerLayout[] = []
+      answers.push({
+        entityName: "franceconnect",
+        fieldName: "userinfo",
+        value: {
+          userinfo: userinfo.data,
+        },
+      })
+      answers.push({
+        entityName: "individu",
+        id: "demandeur",
+        fieldName: "date_naissance",
+        value: userinfo.data.birthdate,
+      })
+
+      const simulation = await axios.post(
+        `${process.env.MES_AIDES_ROOT_URL}/api/simulation`,
+        {
+          dateDeValeur: new Date(),
+          answers: {
+            all: answers,
+            current: [],
+          },
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+
+      data.simulation = simulation.data
+
       res.json(data)
-    } catch (e) {
+    } catch (e: any) {
       console.log(e)
-      res.json({ error: e })
+      res.json({ error: e.toString() })
     }
   })
   api.route("/auth/login").get(async (req, res) => {

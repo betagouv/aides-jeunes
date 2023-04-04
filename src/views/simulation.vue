@@ -15,6 +15,14 @@
       <WarningMessage v-if="store.message.text" data-testid="warning-message">
         <div v-html="store.message.text" />
       </WarningMessage>
+      <div v-if="displayFranceConnect" class="fr-alert fr-alert--info fr-my-1w">
+        <p>Go pour du pré-remplissage avec France Connect !</p>
+        <button
+          @click="franceconnect"
+          class="franceconnect-button"
+          href="api/auth/login"
+        />
+      </div>
       <div>
         <router-view :key="$route.path" />
       </div>
@@ -56,12 +64,33 @@ export default {
     debug() {
       return this.store.getDebug
     },
+    displayFranceConnect() {
+      return (
+        this.store.getAllSteps[1].path == this.$route.path &&
+        this.store.simulation.answers.all.length &&
+        this.store.simulation.answers.all[0].entityName !== "franceconnect"
+      )
+    },
   },
   methods: {
     disableDebug() {
       this.store.setDebug(false)
       this.$router.replace({ debug: null })
     },
+    franceconnect() {
+      document.location = "api/auth/login"
+    },
   },
 }
 </script>
+
+<style type="text/css">
+.franceconnect-button {
+  width: 185px;
+  height: 48px;
+  background-image: url("/public/img/france-connect.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+</style>

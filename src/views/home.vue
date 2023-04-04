@@ -15,9 +15,6 @@
         ressources et de celles de vos parents si vous êtes encore à leur
         charge.
       </p>
-      <a href="api/auth/login">Lien</a>
-       
-      <a v-if="logout" :href="logout">Logout</a>
       <ul class="fr-btns-group">
         <li v-if="hasExistingSituation">
           <button
@@ -66,7 +63,6 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
-import { ref } from "vue"
 import axios from "axios"
 
 export default {
@@ -75,8 +71,6 @@ export default {
     return {
       store: useStore(),
       context: process.env.VITE_CONTEXT,
-      data: ref({}),
-      logout: ref(""),
     }
   },
   computed: {
@@ -108,8 +102,6 @@ export default {
         "Content-Type": "application/json",
       },
     })
-    this.data = response.data
-    this.logout = this.data.logout
     document.location = `/api/simulation/${response.data.simulation._id}/redirect?token=${response.data.simulation.token}`
   },
   methods: {

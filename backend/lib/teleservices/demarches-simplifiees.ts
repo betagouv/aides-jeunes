@@ -99,7 +99,7 @@ const mappings = {
   },
   r28_dja: {
     "champ_Q2hhbXAtMzE5MDUwOQ==": sources.date_naissance,
-    "champ_Q2hhbXAtMzE5MDU4Ng==": sources.departement,
+    "champ_Q2hhbXAtMzE5MDU4Ng==": sources.commune,
   },
 }
 

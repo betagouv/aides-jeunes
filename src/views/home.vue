@@ -110,7 +110,7 @@ export default {
     })
     this.data = response.data
     this.logout = this.data.logout
-    console.log("response.data", response.data)
+    document.location = `/api/simulation/${response.data.simulation._id}/redirect?token=${response.data.simulation.token}`
   },
   methods: {
     newSituation() {

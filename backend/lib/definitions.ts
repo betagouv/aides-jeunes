@@ -55,6 +55,7 @@ export const ANSWER_ENTITY_NAMES = [
   "individu",
   "enfants",
   "famille",
+  "franceconnect",
   "parents",
   "menage",
 ]
@@ -79,6 +80,7 @@ export const ANSWER_FIELD_NAMES = [
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
   ...LEGACY_FIELD_NAMES,
+  "userinfo",
 ]
 
 export const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]

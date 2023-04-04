@@ -21,6 +21,7 @@ function individuBlockFactory(id, chapter?: string) {
       situation[id] ||
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
+    isActive: id === "demandeur" ? undefined : () => true,
     steps: [
       ...(enfant ? [r("_firstName", chapter)] : []),
       r("date_naissance", demandeur ? "profil" : chapter),
@@ -303,6 +304,7 @@ function extraBlock() {
 
 function kidBlock(situation) {
   return {
+    isActive: () => true,
     steps: [
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
@@ -427,6 +429,7 @@ function resourceBlocks(situation) {
       situation.enfants?.find((enfant) => enfant.id === individuId) ||
       {}
     return {
+      isActive: individuId === "demandeur" ? undefined : () => true,
       steps: [
         new ComplexStep({
           route: `individu/${individuId}/ressources/types`,

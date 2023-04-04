@@ -6,6 +6,7 @@ import logement from "../utils/logement"
 import revenu from "../utils/revenu"
 import projet from "../utils/projet"
 import results from "../utils/results"
+import statistics from "../utils/statistics"
 import "cypress-axe"
 
 context("Full simulation", () => {
@@ -16,6 +17,7 @@ context("Full simulation", () => {
 
   it("Go to the recap during a basic situation and modify/continue the simulation", () => {
     navigate.goHome()
+    statistics.init()
 
     // Global accessibility check
     cy.get("main").then(() => {
@@ -64,6 +66,8 @@ context("Full simulation", () => {
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetAidesSanitaireSocial(false)
     results.wait()
+    statistics.wait()
+
     results.hasPrimeActivite()
     results.captureFiscalResources()
     results.checkResultsRequests()

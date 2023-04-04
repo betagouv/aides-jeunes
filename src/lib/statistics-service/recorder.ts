@@ -22,6 +22,10 @@ interface IStatisticsRecord {
 }
 
 function skipSendEventToRecorder(event: IRecorderEvent): boolean {
+  throw new Error(
+    `ERROR -- 132 ${process.env.VITE_STATS_URL} ${skipSendStatistics()} ${process.env.NODE_ENV}`
+  )
+
   if (skipSendStatistics()) {
     return true
   }

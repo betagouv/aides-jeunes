@@ -76,4 +76,8 @@ try {
 }
 
 const config = Object.assign(all, override)
+
+console.log("Configuration override:", JSON.stringify(override, null, 2))
+console.log("Configuration:", JSON.stringify(config, null, 2))
+
 export default config

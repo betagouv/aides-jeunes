@@ -13,7 +13,7 @@
     "build:server": "tsc -p tsconfig.server.json",
     "preview": "vite preview",
     "lint": "eslint backend data iframes lib src --ext ts,js,vue",
-    "ci": "npm run stats && cd dist-server && NODE_ENV=production node ./backend/server.js",
+    "ci": "npm run stats && cd dist-server && NODE_ENV=continuous-integration node ./backend/server.js",
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "db": "mongod --dbpath db",

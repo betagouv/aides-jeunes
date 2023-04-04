@@ -67,8 +67,7 @@ export default {
     displayFranceConnect() {
       return (
         this.store.getAllSteps[1].path == this.$route.path &&
-        this.store.simulation.answers.all.length &&
-        this.store.simulation.answers.all[0].entityName !== "franceconnect"
+        this.store.simulation.answers.all.length == 0
       )
     },
   },

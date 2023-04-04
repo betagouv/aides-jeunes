@@ -1,14 +1,51 @@
 <template>
   <article class="fr-article">
-    {{ steps.length }} - {{ s_counter(steps) }}
-    <StepView v-for="(step, index) in steps" :key="index" :step="step" />
-    <pre>
-    {{ JSON.stringify(steps, null, 4) }}
-    </pre>
+    <h1>Détails du parcours</h1>
+    <h2>Informations</h2>
+    <div>
+      <div
+        >{{ steps.length }} blocs de premier niveau -
+        {{ s_counter(steps) }} étapes au total</div
+      >
+      <div
+        ><span class="fr-icon-question-line" aria-hidden="true" /> indique une
+        question affichée de façon conditionnelle.</div
+      >
+      <div class="fr-checkbox-group">
+        <input
+          id="conjoint"
+          v-model="conjoint"
+          type="checkbox"
+          checked="true"
+          value="conjoint"
+        />
+        <label for="conjoint" class="fr-label"
+          >Ajouter les questions lorsque que la personne est en couple.</label
+        >
+      </div>
+      <div class="fr-checkbox-group">
+        <input
+          id="enfants"
+          v-model="enfants"
+          type="checkbox"
+          checked="true"
+          value="enfants"
+        />
+        <label for="enfants" class="fr-label"
+          >Ajouter les questions lorsque qu'il y a un enfant dans la
+          famille.</label
+        >
+      </div>
+    </div>
+    <h2>Étapes</h2>
+    <div>
+      <StepView v-for="(step, index) in steps" :key="step" :step="step" />
+    </div>
   </article>
 </template>
 
 <script>
+import { ref } from "vue"
 import { useStore } from "@/stores/index.ts"
 import { generateBlocks } from "@/../lib/state/blocks.ts"
 import StepView from "@/components/step-view.vue"
@@ -27,12 +64,18 @@ export default {
   setup() {
     return {
       store: useStore(),
-      steps: generateBlocks({
-        demandeur: { id: "demandeur" }, //*
-        conjoint: { id: "conjoint" },
-        enfants: [{ id: "enfant_0" }], //*/,
-      }),
+      conjoint: ref(false),
+      enfants: ref(false),
     }
+  },
+  computed: {
+    steps() {
+      return generateBlocks({
+        demandeur: { id: "demandeur" },
+        conjoint: this.conjoint ? { id: "conjoint" } : undefined,
+        enfants: this.enfants ? [{ id: "enfant_0" }] : undefined,
+      })
+    },
   },
   methods: {
     s_counter(steps) {

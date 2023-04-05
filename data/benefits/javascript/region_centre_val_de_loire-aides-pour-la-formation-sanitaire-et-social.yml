@@ -1,8 +1,8 @@
 label: bourses pour les formations sanitaires et sociales
 institution: region_centre_val_de_loire
 description: La Région attribue des bourses d’études pour les personnes rentrant
-  en formation dans un lycée professionnel ou un institut régional agréé,
-  soumises à conditions de ressources.
+  en formation dans un institut régional agréé, soumises à conditions de
+  ressources.
 prefix: les
 conditions_generales:
   - type: regions

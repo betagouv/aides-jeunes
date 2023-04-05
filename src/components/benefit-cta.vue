@@ -24,8 +24,8 @@
             id="cta-proximity"
             class="fr-btn"
             :analytics="{
-              name: droit.id,
-              action: 'show-unexpected',
+              name: benefit.id,
+              action: 'show-locations',
               category: 'General',
             }"
             :to="{

@@ -14,7 +14,6 @@ export default {
     name: String,
     category: String,
     action: String,
-    value: String,
     to: {
       type: [String, Object],
       required: true,

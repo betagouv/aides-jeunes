@@ -28,10 +28,12 @@
     <div class="fr-text--center">
       <AnalyticRouterLink
         v-if="showUnexpectedLink"
+        :analytics="{
+          name: droit.id,
+          action: 'show-unexpected',
+          category: 'General',
+        }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-        :name="droit.id"
-        :action="'show-unexpected'"
-        :category="'General'"
       >
         Montant inattendu ?
       </AnalyticRouterLink>

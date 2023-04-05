@@ -11,9 +11,11 @@ import analytics from "@/mixins/statistics.js"
 export default {
   name: "AnalyticRouterLink",
   props: {
-    name: String,
-    category: String,
-    action: String,
+    analytics: {
+      name: String,
+      category: String,
+      action: String,
+    },
     to: {
       type: [String, Object],
       required: true,
@@ -34,8 +36,16 @@ export default {
   },
   methods: {
     handleClick() {
-      analytics.methods.sendStatistics(this.droits, this.action, this.name)
-      this.$matomo?.trackEvent(this.category, this.action, this.name)
+      analytics.methods.sendStatistics(
+        this.droits,
+        this.analytics.action,
+        this.analytics.name
+      )
+      this.$matomo?.trackEvent(
+        this.analytics.category,
+        this.analytics.action,
+        this.analytics.name
+      )
     },
   },
 }

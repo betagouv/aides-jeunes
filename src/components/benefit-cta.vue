@@ -23,9 +23,11 @@
           <AnalyticRouterLink
             id="cta-proximity"
             class="fr-btn"
-            :name="benefit.id"
-            :action="'show-locations'"
-            :category="'General'"
+            :analytics="{
+              name: droit.id,
+              action: 'show-unexpected',
+              category: 'General',
+            }"
             :to="{
               name: 'resultatsLieuxDedies',
               params: { benefit_id: benefit.id },

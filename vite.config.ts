@@ -1,6 +1,7 @@
 import vue from "@vitejs/plugin-vue"
 import legacy from "@vitejs/plugin-legacy"
 import { createHtmlPlugin } from "vite-plugin-html"
+import { sentryVitePlugin } from "@sentry/vite-plugin"
 
 import path from "path"
 import { defineConfig, loadEnv } from "vite"
@@ -14,6 +15,20 @@ import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup"
 
 const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
+
+function createSentryPlugin() {
+  if (!process.env.SENTRY_AUTH_TOKEN) {
+    return null
+  }
+
+  return sentryVitePlugin({
+    org: "betagouv",
+    project: "aides-jeunes-front",
+    include: "./dist",
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+    url: "https://sentry.incubateur.net/",
+  })
+}
 
 export default defineConfig(async ({ mode }) => {
   process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""))
@@ -49,6 +64,7 @@ export default defineConfig(async ({ mode }) => {
         exclude: ["lib"],
       },
       emptyOutDir: false,
+      sourcemap: true,
     },
     plugins: [
       generator,
@@ -68,6 +84,7 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
+      createSentryPlugin(),
     ],
     resolve: {
       preferBuiltins: false,

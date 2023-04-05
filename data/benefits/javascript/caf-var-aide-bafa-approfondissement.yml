@@ -20,7 +20,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents, ou
+  - Être allocataire ou rattaché au dossier allocataire de vos parents, ou
     stagiaire.
 interestFlag: _interetBafa
 type: float

@@ -1,7 +1,7 @@
-label: pass Mutuelle Etudiant·e
+label: pass Mutuelle Etudiant
 institution: region_occitanie
 description: La Région propose une aide spécifique pour favoriser l’accès aux
-  soins des étudiant·e·s n'étant pas déjà couvert·e·s par une mutuelle.
+  soins des étudiants et étudiantes ne bénéficiant pas d'une couverture par une mutuelle.
 prefix: le
 conditions_generales:
   - type: regions

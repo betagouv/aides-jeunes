@@ -21,7 +21,7 @@ profils:
 conditions:
   - Compléter <a target="_blank" rel="noopener" title="attestation - Nouvelle fenêtre"
     href="https://les-aides.nouvelle-aquitaine.fr/sites/default/files/2021-05/Attestation_Structure-Formation_FSF.pdf">l'attestation</a>
-    avec votre référent·e de formation.
+    avec votre référent ou référente de formation.
 type: float
 unit: €
 periodicite: annuelle

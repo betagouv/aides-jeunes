@@ -22,7 +22,7 @@ conditions_generales:
 profils: []
 interestFlag: _interetBafa
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
 type: float
 unit: €
 periodicite: ponctuelle

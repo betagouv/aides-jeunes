@@ -11,7 +11,7 @@ profils:
   - type: apprenti
     conditions: []
 conditions:
-  - Être inscrit·e en apprentissage niveau CAP, BEP ou baccalauréat dans un établissement d’enseignement et de formation
+  - Être inscrit ou inscrite en apprentissage niveau CAP, BEP ou baccalauréat dans un établissement d’enseignement et de formation
     professionnelle faisant partie du Consortium régional.
 interestFlag: _interetEtudesEtranger
 type: bool

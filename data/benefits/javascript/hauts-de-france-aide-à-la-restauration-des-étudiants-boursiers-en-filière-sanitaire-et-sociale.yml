@@ -1,16 +1,17 @@
-label: aide à la restauration des étudiant·e·s boursier·e·s en filière sanitaire
+label:
+  aide à la restauration des étudiants et étudiantes ayants droit à une bourse en filière sanitaire
   et sociale
 institution: hauts_de_france
 description: Cette aide vise à offrir la gratuité des repas dans les restaurants
-  universitaires aux étudiant·e·s boursier·e·s en filière sanitaire et sociale
+  universitaires aux étudiants et étudiantes ayants droit à une bourse en filière sanitaire et sociale
   (3,30 € par repas dans la limite de 100 repas sur l'année scolaire).
 conditions:
-  - Être inscrit·e dans un établissement d'enseignement supérieur partenaire de
+  - Être inscrit ou inscrite dans un établissement d'enseignement supérieur partenaire de
     la Région et reconnu par le ministère de l'Enseignement supérieur dans les
     Hauts-de-France, ou dans un établissement dispensant une formation sanitaire
     ou sociale géré par la Région.
-  - Être boursier·e de la Région Hauts-de-France, à l'un des échelons de bourse
-    4, 5, 6, 7 ou bien être signalé·e par le service social du CROUS.
+  - Avoir droit à une bourse de la Région Hauts-de-France, à l'un des échelons de bourse
+    4, 5, 6, 7 ou bien être signalé ou signalée par le service social du CROUS.
 conditions_generales:
   - type: regions
     values:

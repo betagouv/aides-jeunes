@@ -5,9 +5,9 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   session d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la CAF.
 conditions:
-  - Être considéré·e à charge de vos parents ou être placé·e par décision
+  - Être considéré à charge de vos parents ou être placé par décision
     judiciaire sous l'autorité des services de l'Etat.
-  - Être allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents.
 conditions_generales:
   - type: age
     operator: ">="

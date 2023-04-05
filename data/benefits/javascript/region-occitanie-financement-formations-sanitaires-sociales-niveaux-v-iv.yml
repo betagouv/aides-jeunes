@@ -1,14 +1,14 @@
 label: financement des formations sanitaires et sociales de niveaux V et IV
 institution: region_occitanie
 description: La Région Occitanie finance gratuitement les formations sanitaires
-  et sociales de niveaux V et IV pour les élèves inscrit·e·s en formation
-  d'aide-soignant·e, auxiliaire de puériculture, ambulancier·e,
-  accompagnant·e éducatif·ve et social·e, moniteur·rice éducateur·rice ou
-  technicien·ne en intervention sociale et familiale.
+  et sociales de niveaux V et IV pour les élèves inscrits ou inscrites en formation
+  d'aide-soignant ou aide-soignante, auxiliaire de puériculture, ambulancier ou ambulancière,
+  accompagnante ou accompagnant éducatif et social, moniteur éducateur ou monitrice éducatrice,
+  technicien ou technicienne en intervention sociale et familiale.
 conditions:
-  - Être inscrit·e dans un établissement de formation agréé par la Région
+  - Être inscrit ou inscrite dans un établissement de formation agréé par la Région
     Occitanie.
-  - Être en poursuite de scolarité ou inscrit·e comme demandeur·euse d’emploi
+  - Être en poursuite de scolarité ou en recherche d’emploi
     avant la date d’entrée en formation.
 conditions_generales:
   - type: regions

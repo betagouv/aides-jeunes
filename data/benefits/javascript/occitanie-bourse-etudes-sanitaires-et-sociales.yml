@@ -1,10 +1,11 @@
 label: bourse d’Etudes Sanitaires et Sociales
 institution: region_occitanie
-description: Cette bourse est destinée aux élèves et étudiant·e·s inscrit·e·s en
+description:
+  Cette bourse est destinée aux élèves et étudiants et étudiantes inscrits ou inscrites en
   formations paramédicales, de sages-femmes ou en travail social dans un centre
   de formation agréé par la Région Occitanie/Pyrénées-Méditerranée.
 conditions:
-  - Être inscrit·e en formation sanitaire ou sociale dans un <a target="_blank"
+  - Être inscrit ou inscrite en formation sanitaire ou sociale dans un <a target="_blank"
     rel="noopener" title ="Centre de formation agréé - Nouvelle fenêtre"
     href="https://www.laregion.fr/bourses-etudes-sanitaires-sociales#centres">centre
     de formation agréé</a> par la Région Occitanie/Pyrénées-Méditerranée.

@@ -1,18 +1,19 @@
-label: fonds régional d'aide d'urgence pour les étudiant·e·s du secteur
+label:
+  fonds régional d'aide d'urgence pour les étudiants et étudiantes du secteur
   sanitaire et social
 institution: hauts_de_france
 description: Cette aide vise à apporter rapidement une aide financière
-  ponctuelle et personnalisée aux étudiant·e·s du secteur sanitaire et social en
+  ponctuelle et personnalisée aux étudiants et étudiantes du secteur sanitaire et social en
   difficulté financière. Elle est renouvelable une fois durant l'année scolaire.
 conditions:
-  - Être inscrit·e dans un établissement de formation des travailleurs sociaux
+  - Être inscrit ou inscrite dans un établissement de formation des travailleurs sociaux
     et professions de santé des Hauts-de-France agréé et financé par la Région.
   - Suivre l'une des <a target="_blank" title ="Formations éligibles - Nouvelle fenêtre"
     rel="noopener"href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667">formations
     éligibles</a> à la Bourse d'Etudes Sanitaires et Sociales (BESS).
   - Rencontrer des difficultés financières.
-  - Faire valider votre dossier par par un·e travailleur/euse social·e
-    habilité·e (Conseil Départemental, Mission Locale, Etablissement, CROUS…).
+  - Faire valider votre dossier par par une personne travailleuse sociale
+    habilitée (Conseil Départemental, Mission Locale, Etablissement, CROUS…).
 conditions_generales:
   - type: regions
     values:

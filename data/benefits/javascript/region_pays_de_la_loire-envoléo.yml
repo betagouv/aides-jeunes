@@ -15,7 +15,7 @@ profils:
   - type: enseignement_superieur
     conditions: []
 conditions:
-  - Être présélectionné·e par votre établissement de formation pour candidater
+  - Être présélectionné ou présélectionnée par votre établissement de formation pour candidater
     au programme.
 interestFlag: _interetEtudesEtranger
 type: float

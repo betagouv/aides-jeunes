@@ -18,7 +18,7 @@ conditions_generales:
     operator: <=
 profils: []
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Etre stagiaire ou bénéficiaire de l'aide au logement au moment du stage.
 interestFlag: _interetBafa
 type: float

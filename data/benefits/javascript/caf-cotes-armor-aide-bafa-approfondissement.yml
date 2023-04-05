@@ -14,7 +14,7 @@ conditions_generales:
       - "22"
 profils: []
 conditions:
-  - Etre allocataire ou rattaché·e au dossier allocataire de vos parents.
+  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
   - Percevoir une prestation légale de la CAF des Côtes d’Armor.
   - Avoir réalisé les 3 stages de formation.
 interestFlag: _interetBafa

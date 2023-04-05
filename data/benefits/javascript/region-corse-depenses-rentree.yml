@@ -1,6 +1,7 @@
 label: aide aux dépenses de rentrée
 institution: region_corse
-description: La Région aide financièrement les élèves boursier·e·s dans l'achat
+description:
+  La Région aide financièrement les élèves ayants droit à une bourse dans l'achat
   de leur matériel scolaire.
 conditions:
   - Contacter <a target="_blank" rel="noopener" title="votre CROUS - Nouvelle fenêtre"

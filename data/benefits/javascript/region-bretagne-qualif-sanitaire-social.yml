@@ -14,7 +14,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être étudiant·e dans le secteur sanitaire et social.
+  - Être étudiant ou étudiante dans le secteur sanitaire et social.
   - Vérifier que vos ressources correspondent aux seuils fixés par la région.
 interestFlag: _interetAidesSanitaireSocial
 type: float

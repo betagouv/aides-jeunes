@@ -1,6 +1,7 @@
 label: étudier au Québec
 institution: region_la_reunion
-description: La Région propose une aide financière aux étudiant·e·s souhaitant
+description:
+  La Région propose une aide financière aux étudiants et étudiantes souhaitant
   partir étudier au Québec.
 prefix: l’aide
 conditions_generales:

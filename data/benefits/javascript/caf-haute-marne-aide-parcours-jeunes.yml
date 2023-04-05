@@ -6,7 +6,7 @@ description: Vous devez faire face à des dépenses supplémentaires suite à un
 conditions:
   - Être allocataire de la CAF de la Haute-Marne et ouvrir droit à l'action
     sociale de la CAF.
-  - Être toujours rattaché·e au dossier du/des parent(s) bénéficiaire(s)
+  - Être toujours rattaché au dossier du/des parent(s) bénéficiaire(s)
     potentiel(s) de l'action sociale de la CAF.
 conditions_generales:
   - type: quotient_familial

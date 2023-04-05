@@ -36,6 +36,11 @@ export class StorageService {
     }
     return null
   }
+  removeItem(key: string) {
+    if (this.storageAvailable) {
+      window[this.storageType].removeItem(key)
+    }
+  }
 }
 
 export default {

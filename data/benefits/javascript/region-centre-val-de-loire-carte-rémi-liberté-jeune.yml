@@ -19,7 +19,7 @@ conditions_generales:
       - "24"
 profils: []
 conditions:
-  - Vous procurer en ligne la carte RÉMI liberté jeune pour un montant annuel de
+  - Vous procurer en ligne la carte Rémi Liberté Jeune pour un montant annuel de
     20€ ou gratuitement si vous êtes éligible à YEP'S.
 type: bool
 unit: €

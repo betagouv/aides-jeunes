@@ -5,7 +5,13 @@
       >Notre simulateur est intégrable de manière transparente en ajoutant une
       simple ligne de code à votre page Web.</p
     >
-
+    <p
+      >Le script de son intégration est accessible
+      <a
+        href="https://github.com/betagouv/aides-jeunes/blob/master/iframes/iframe-integration.js"
+        >ici.</a
+      ></p
+    >
     <h2>Code d'intégration</h2>
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>
 
@@ -49,7 +55,6 @@
         </div>
       </fieldset>
     </div>
-
     <h2>Prévisualisation</h2>
 
     <div id="dest" class="fr-col-11 fr-m-auto"></div>

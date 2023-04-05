@@ -27,6 +27,7 @@
     </div>
     <div class="fr-text--center">
       <AnalyticRouterLink
+        v-if="showUnexpectedLink"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
         :name="droit.id"
         :action="'show-unexpected'"

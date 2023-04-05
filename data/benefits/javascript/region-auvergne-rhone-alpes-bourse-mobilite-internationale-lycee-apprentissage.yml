@@ -3,12 +3,7 @@ institution: region_auvergne_rhone_alpes
 description: Cette aide participe à votre projet de stage à l'étranger. Le
   financement correspond à une durée de 3 semaines, quelle que soit la durée
   effective du stage au sein de la même entreprise.
-conditions:
-  - Effectuer votre demande en ligne sur le site de la Région 3 mois au plus et
-    un mois au moins avant la date de départ effective en stage à l'étranger.
-  - Après transmission de votre dossier en ligne à l'établissement de formation,
-    vous devez renvoyer, en ligne, à votre établissement, votre attestation de
-    stage dans les 18 mois maximum.
+prefix: la
 conditions_generales:
   - type: regions
     values:
@@ -18,14 +13,19 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aide/93/89-se-former-a-l-etranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis-education-lycees.htm
-teleservice: https://sicorra.auvergnerhonealpes.fr/public
-form: ""
-instructions: https://www.auvergnerhonealpes.fr/aide/93/89-se-former-a-l-etranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis-education-lycees.htm
-prefix: la
+conditions:
+  - Effectuer votre demande en ligne sur le site de la Région 3 mois au plus et
+    un mois au moins avant la date de départ effective en stage à l'étranger.
+  - Après transmission de votre dossier en ligne à l'établissement de formation,
+    vous devez renvoyer, en ligne, à votre établissement, votre attestation de
+    stage dans les 18 mois maximum.
+interestFlag: _interetEtudesEtranger
 type: float
 unit: €
 periodicite: autre
 legend: maximum
 montant: 470
-interestFlag: _interetEtudesEtranger
+link: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis
+teleservice: https://sicorra.auvergnerhonealpes.fr/public
+form: ""
+instructions: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis

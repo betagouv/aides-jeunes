@@ -42,13 +42,24 @@ function validateCookieToken(github_payload) {
   })
 }
 
+const MAX_ATTEMPTS = 3
+
 const access = async (req, res, next) => {
   let github_payload = req.cookies && req.cookies["github_token"]
+  let attemptCount = parseInt(req.cookies["attemptCount"]) || 0
+
+  if (attemptCount >= MAX_ATTEMPTS) {
+    return res.redirect("/error")
+  }
+
   if (req.query.code) {
     const result = await validateToken(req)
     if (result.status === 200 && result.data.access_token) {
       github_payload = result.data
       res.cookie("github_token", github_payload)
+    } else {
+      attemptCount++
+      res.cookie("attemptCount", attemptCount)
     }
   }
   if (github_payload) {
@@ -57,11 +68,13 @@ const access = async (req, res, next) => {
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
       } else {
-        return res.redirect("/accompagnement?error=access_denied")
+        attemptCount++
+        res.cookie("attemptCount", attemptCount)
       }
-      // If cookie validation fails an error will be triggered
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (e) {
+      attemptCount++
+      res.cookie("attemptCount", attemptCount)
+    }
   }
   return authenticate(req, res)
 }

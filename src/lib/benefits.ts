@@ -2,7 +2,7 @@ import BenefitsCategories from "@/lib/benefits-categories.js"
 import { benefitLayout } from "@data/types/benefits.d.js"
 import Benefits from "generator:benefits"
 
-export function getBenefit(benefitId: number): number[] {
+export function getBenefit(benefitId) {
   return Benefits[benefitId]
 }
 

@@ -9,8 +9,9 @@
       Le script de son intégration est accessible
       <a
         href="https://github.com/betagouv/aides-jeunes/blob/master/iframes/iframe-integration.js"
-        >ici.
-      </a>
+        target="_blank"
+        >sur le dépôt hébergeant notre code </a
+      >.
     </p>
     <h2>Code d'intégration</h2>
     <p>Voici le code à copier-coller sur votre site&nbsp;:</p>

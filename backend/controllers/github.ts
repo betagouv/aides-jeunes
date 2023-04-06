@@ -56,6 +56,8 @@ const access = async (req, res, next) => {
       const result = await validateCookieToken(github_payload)
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
+      } else {
+        return res.redirect("/accompagnement?error=access_denied")
       }
       // If cookie validation fails an error will be triggered
       // eslint-disable-next-line no-empty

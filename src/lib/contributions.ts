@@ -10,19 +10,23 @@ interface Contribution {
     sha: string
     label: string
   }
+  filename: string
+  folder: string
 }
 
-export function reduceContribution<
-  T extends { sha: string; filename: string; folder: string }
->(acc: T[], contribution: Contribution, type: string): T[] {
+export function reduceContribution(
+  acc: Contribution[],
+  contribution: Contribution,
+  type: string
+): Contribution[] {
   const { sha, label } = contribution.head
   const [folder, filename] = label.split("/")
   if (folder === type) {
     acc.push({
-      sha,
+      head: { sha, label },
       filename: `${filename}.yml`,
       folder,
-    } as T)
+    })
   }
   return acc
 }

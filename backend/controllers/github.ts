@@ -1,5 +1,4 @@
 import axios from "axios"
-import url from "url"
 import config from "../config/index.js"
 
 function current_uri(req) {

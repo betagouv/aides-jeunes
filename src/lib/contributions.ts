@@ -14,7 +14,7 @@ interface Contribution {
   folder: string
 }
 
-export function reduceContribution(
+export function reduceContributions(
   acc: Contribution[],
   contribution: Contribution,
   type: string

@@ -26,16 +26,17 @@
       </template>
     </div>
     <div class="fr-text--center">
-      <router-link
+      <AnalyticRouterLink
         v-if="showUnexpectedLink"
-        v-analytics="{
+        :analytics="{
           name: droit.id,
           action: 'show-unexpected',
           category: 'General',
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
-        >Montant inattendu ?
-      </router-link>
+      >
+        Montant inattendu ?
+      </AnalyticRouterLink>
     </div>
   </div>
 </template>
@@ -43,9 +44,13 @@
 <script>
 import { formatDroitEstime } from "@lib/benefits/details.ts"
 import { useStore } from "@/stores/index.ts"
+import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 
 export default {
   name: "DroitEstime",
+  components: {
+    AnalyticRouterLink,
+  },
   props: {
     droit: Object,
     showUnexpected: {

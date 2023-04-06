@@ -10,8 +10,6 @@ export const mockResults = function (sublist: string) {
   let filterSublist: string[] | null = []
   if (sublist) {
     filterSublist = BenefitsCategories[sublist] || sublist.split(",")
-  } else {
-    filterSublist
   }
 
   const defaults = {

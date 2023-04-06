@@ -9,15 +9,15 @@ function current_uri(req) {
 }
 
 function authenticate(req, res) {
-  return res.redirect(
-    url.format({
-      pathname: config.github.authorize_url,
-      query: {
-        client_id: config.github.client_id,
-        redirect_uri: current_uri(req),
-      },
-    })
-  )
+  const params = new URLSearchParams({
+    client_id: config.github.client_id,
+    redirect_uri: current_uri(req),
+  })
+
+  const url = new URL(config.github.authorize_url)
+  url.search = params.toString()
+
+  return res.redirect(url.toString())
 }
 
 function validateToken(req) {

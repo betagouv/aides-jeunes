@@ -178,7 +178,7 @@ import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/lib/contributions.js"
+} from "@/lib/contributions.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 

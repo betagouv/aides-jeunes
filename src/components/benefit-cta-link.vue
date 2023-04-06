@@ -20,6 +20,7 @@
 import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { useStore } from "@/stores/index.ts"
+import storageService from "@/lib/storage-service.ts"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
@@ -72,12 +73,9 @@ export default {
     },
     onClick(link) {
       if (typeof link === "object") {
-        window.localStorage.setItem(
-          "trampoline",
-          JSON.stringify({
-            simulationId: this.store.calculs.resultats._id,
-          })
-        )
+        storageService.local.setItem("trampoline", {
+          simulationId: this.store.calculs.resultats._id,
+        })
       }
     },
   },

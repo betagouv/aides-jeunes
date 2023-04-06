@@ -45,7 +45,13 @@ function attachAccessCookie(req, res, next?) {
 }
 
 function validateAccess(req, res, next) {
-  if (req.simulation?.isAccessible({ ...req.cookies, ...req.query }))
+  if (
+    req.simulation?.isAccessible({
+      ...req.cookies,
+      ...req.query,
+      ...req.headers,
+    })
+  )
     return next()
   res.status(403).send({ error: "You do not have access to this situation." })
 }

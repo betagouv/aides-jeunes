@@ -50,12 +50,14 @@ if (process.env.NODE_ENV === "production") {
 app.use(Resizer)
 app.use(StateService)
 
-app.use(VueMatomo, {
-  host: "https://stats.data.gouv.fr",
-  trackerFileName: "piwik",
-  siteId: process.env.VITE_MATOMO_ID,
-  router: router,
-})
+if (navigator.cookieEnabled) {
+  app.use(VueMatomo, {
+    host: "https://stats.data.gouv.fr",
+    trackerFileName: "piwik",
+    siteId: process.env.VITE_MATOMO_ID,
+    router: router,
+  })
+}
 
 app.config.globalProperties.$filters = {
   capitalize(value: string) {

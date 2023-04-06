@@ -9,6 +9,7 @@ import isEqual from "lodash.isequal"
 import axios from "axios"
 import { generateSituation } from "@lib/situations"
 import ABTestingService from "@/plugins/ab-testing-service.js"
+import storageService from "@/lib/storage-service.ts"
 import {
   Answer,
   Calculs,
@@ -45,6 +46,7 @@ function defaultStore(): Store {
       },
       dateDeValeur: new Date(),
       version,
+      simulationToken: undefined,
     },
     message: {
       text: null,
@@ -90,11 +92,7 @@ function getPersitedStateProperties(
 }
 
 function restoreLocal() {
-  let state
-  if (window.sessionStorage.store) {
-    state = JSON.parse(window.sessionStorage.store)
-  }
-
+  let state = storageService.session.getItem("store")
   if (!state || !state.simulation || !state.simulation.dateDeValeur) {
     state = defaultStore()
   }
@@ -115,10 +113,9 @@ export function persistDataOnSessionStorage({
     if (name === "initialize") {
       return
     }
-    const persitedStateProperties = getPersitedStateProperties(store, true)
-    window.sessionStorage.setItem(
+    storageService.session.setItem(
       "store",
-      JSON.stringify(persitedStateProperties)
+      getPersitedStateProperties(store, true)
     )
   })
 }
@@ -239,6 +236,9 @@ export const useStore = defineStore("store", {
     },
     situation(): Situation {
       return generateSituation(this.simulation, true)
+    },
+    getSimulationToken(): string | undefined {
+      return this.simulation.simulationToken
     },
   },
   actions: {
@@ -408,6 +408,9 @@ export const useStore = defineStore("store", {
       this.simulationId = id
       this.calculs.dirty = false
     },
+    setSimulationToken(token: string): void {
+      this.simulation.simulationToken = token
+    },
     save() {
       this.setRecapEmailState(undefined)
 
@@ -421,8 +424,10 @@ export const useStore = defineStore("store", {
       return axios
         .post("/api/simulation", simulation)
         .then((result) => result.data)
-        .then((payload) => payload._id)
-        .then((id) => this.setSimulationId(id))
+        .then((payload) => {
+          this.setSimulationId(payload._id)
+          this.setSimulationToken(payload.token)
+        })
     },
     reset(simulation: Simulation) {
       this.access.fetching = false
@@ -437,11 +442,15 @@ export const useStore = defineStore("store", {
     },
     fetch(id: string) {
       this.setRecapEmailState(undefined)
+      const token = this.getSimulationToken
 
       this.access.fetching = true
+      const headers = {
+        ...(token && { Authorization: `Bearer ${token}` }),
+      }
 
       return axios
-        .get(`/api/simulation/${id}`)
+        .get(`/api/simulation/${id}`, { headers })
         .then((result) => result.data)
         .then((payload) => this.reset(payload))
         .then(() => this.setSimulationId(id))
@@ -470,12 +479,18 @@ export const useStore = defineStore("store", {
     },
     compute(showPrivate: boolean) {
       this.startComputation()
-
+      const token = this.getSimulationToken
+      const headers = {
+        ...(token && { Authorization: `Bearer ${token}` }),
+      }
       return axios
         .get(
           `/api/simulation/${this.simulationId}/results${
             showPrivate ? "&showPrivate" : ""
-          }`
+          }`,
+          {
+            headers,
+          }
         )
         .then((response) => {
           return response.data

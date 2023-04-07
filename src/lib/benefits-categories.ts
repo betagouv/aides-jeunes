@@ -1,4 +1,6 @@
-export default {
+import { BenefitsCategoriesMapping } from "@lib/types/benefits-categories.d.js"
+
+const benefitsCategoriesMapping: BenefitsCategoriesMapping = {
   aide_permis: [
     "aide_financement_permis_apprenti",
     "aide_permis_demandeur_emploi",
@@ -18,3 +20,5 @@ export default {
     "pret_formation_permis_eligibilite",
   ],
 }
+
+export default benefitsCategoriesMapping

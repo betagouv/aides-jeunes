@@ -1,63 +1,32 @@
-let ZONE_LABEL = {
+import { EeeCountryCode } from "./enums/nationality.js"
+
+const ZONE_LABEL = {
   fr: "française",
   ue: "UE",
   autre: "hors UE",
 }
 
-let EEE_COUNTRY_CODES = [
-  "AT",
-  "BE",
-  "BG",
-  "CY",
-  "CZ",
-  "DE",
-  "DK",
-  "EE",
-  "ES",
-  "FI",
-  "FR",
-  "GR",
-  "HR",
-  "HU",
-  "IE",
-  "IS",
-  "IT",
-  "LI",
-  "LU",
-  "LV",
-  "MT",
-  "NL",
-  "NO",
-  "PL",
-  "PT",
-  "RO",
-  "SE",
-  "SI",
-  "SK",
-  "UK",
-]
-
-function getNationalityFromCountryCode(countryCode) {
+function getNationalityFromCountryCode(countryCode: string) {
   switch (countryCode) {
-    case "DE":
+    case EeeCountryCode.DE:
       return "Européenne"
-    case "FR":
+    case EeeCountryCode.FR:
       return "Française"
     case "AF":
       return "Non européenne"
   }
 }
 
-function getZone(countryCode) {
+function getZone(countryCode: string): string {
   if (!countryCode) {
     return ""
   }
   countryCode = countryCode.toUpperCase()
 
-  if (countryCode === "FR") {
+  if (countryCode === EeeCountryCode.FR) {
     return "fr"
   }
-  if (EEE_COUNTRY_CODES.includes(countryCode) || countryCode === "CH") {
+  if (countryCode in EeeCountryCode || countryCode === "CH") {
     return "ue"
   }
   if (countryCode === "AF") {
@@ -68,12 +37,12 @@ function getZone(countryCode) {
 }
 
 const Nationality = {
-  getLabel: function (nationality) {
+  getLabel: function (nationality: string): string {
     return ZONE_LABEL[getZone(nationality)]
   },
   getNationalityFromCountryCode: getNationalityFromCountryCode,
   getZone: getZone,
-  getCountryCodeByNationality: function (nationality) {
+  getCountryCodeByNationality: function (nationality: string): string {
     switch (nationality) {
       case "ue":
         return "DE"

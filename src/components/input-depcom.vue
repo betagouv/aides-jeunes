@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import Commune from "@/lib/commune.js"
+import Commune from "@/lib/commune.ts"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores/index.ts"
 

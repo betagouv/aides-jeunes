@@ -84,7 +84,7 @@ import ActionButtons from "@/components/action-buttons.vue"
 import MultipleAnswers from "@/components/multiple-answers.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
-import Hint from "@/lib/hint.js"
+import Hint from "@/lib/hint.ts"
 
 import { executeFunctionOrReturnValue } from "@lib/utils.ts"
 import InputNumber from "@/components/input-number.vue"

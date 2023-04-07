@@ -8,7 +8,9 @@ type Aide = {
 
 export interface benefitLayout {
   label: string
-  montant: any
+  type?: string
+  montant?: number
+  mock?: boolean
 }
 
 export interface benefitVeloLayout extends Aide {

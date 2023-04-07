@@ -113,7 +113,7 @@
 <script>
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import Situation from "@/lib/situation.js"
+import Situation from "@/lib/situation.ts"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import WarningMessage from "@/components/warning-message.vue"

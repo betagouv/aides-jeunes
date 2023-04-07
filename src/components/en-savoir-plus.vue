@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Hint from "@/lib/hint.js"
+import Hint from "@/lib/hint.ts"
 
 export default {
   name: "EnSavoirPlus",

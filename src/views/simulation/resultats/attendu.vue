@@ -168,7 +168,7 @@
 
 <script>
 import axios from "axios"
-import Benefits from "@/lib/benefits.js"
+import Benefits from "@/lib/benefits.ts"
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 
@@ -178,7 +178,7 @@ import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/lib/contributions.js"
+} from "@/lib/contributions.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Benefits from "@/lib/benefits.js"
+import Benefits from "@/lib/benefits.ts"
 import BackButton from "@/components/buttons/back-button.vue"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
 import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"

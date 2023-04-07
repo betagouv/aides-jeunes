@@ -37,7 +37,7 @@ const all: ConfigurationLayout = {
       "Allan-CodeWorks",
       "Cugniere",
       "guillett",
-      "shamzic",
+      "Shamzic",
       "yasmine-glitch",
       "Valandr",
     ],

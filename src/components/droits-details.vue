@@ -12,7 +12,7 @@
         <span>&nbsp;</span>
         <BenefitCtaLink
           v-if="droit.link"
-          :analytics-name="droit.label"
+          :analytics-name="droit.id"
           :benefit="droit"
           :link="droit.link"
           itemprop="termsOfService"

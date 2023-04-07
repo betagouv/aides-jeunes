@@ -15,6 +15,21 @@
       >Se connecter</a
     >
 
+    <div v-if="$route.query.authorization === 'false'" class="fr-mt-4w">
+      <div class="fr-alert fr-alert--warning">
+        <h3 class="fr-alert__title"
+          >Vous n'êtes pas autorisé à vous connecter.</h3
+        >
+        <p
+          >Contactez un administrateur pour ajouter votre utilisateur à la liste
+          des utilisateurs autorisés ou essayez de
+          <a href="https://github.com/login" target="_blank">
+            vous connecter avec un autre compte Github</a
+          >.
+        </p>
+      </div>
+    </div>
+
     <div
       v-if="loggedIn && followups && followups.length > 1"
       class="fr-container fr-px-0 fr-mb-0 fr-py-2w"

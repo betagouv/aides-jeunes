@@ -57,38 +57,17 @@
 
 <script>
 import Header1J1S from "@/components/header-1j1s.vue"
-import Navigation from "@/components/navigation.vue"
 import FooterJ1S from "@/components/footer-1j1s.vue"
-import { useStore } from "@/stores/index.ts"
+import Navigation from "@/components/navigation.vue"
+import layoutRouteMixin from "@/mixins/layout-route-mixin.js"
 
 export default {
   name: "BaseLayout",
   components: {
-    Navigation,
     FooterJ1S,
     Header1J1S,
+    Navigation,
   },
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  watch: {
-    $route() {
-      if (this.$route.hash) {
-        const anchor = this.$route.hash.replace(/^#/, "")
-        if (typeof this.$refs[anchor] !== "undefined") {
-          this.$refs[anchor].focus()
-        }
-      }
-    },
-  },
-  created() {
-    this.$router.isReady().then(() => {
-      if (this.$route.query.debug === "parcours") {
-        this.store.setDebug(true)
-      }
-    })
-  },
+  mixins: [layoutRouteMixin],
 }
 </script>

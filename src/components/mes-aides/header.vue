@@ -1,5 +1,5 @@
 <template>
-  <header class="fr-header" role="banner">
+  <div class="fr-header" role="banner">
     <div class="fr-header__body">
       <div class="fr-container">
         <div class="fr-header__body-row">
@@ -49,28 +49,8 @@
           aria-label="fermer la navigation"
           >Fermer</button
         >
-        <nav
-          id="header-navigation"
-          class="fr-nav"
-          role="navigation"
-          aria-label="Menu principal"
-        >
-          <ul class="fr-nav__list">
-            <li class="fr-nav__item">
-              <a href="https://mes-aides.gouv.fr" class="fr-nav__link"
-                >Accueil</a
-              >
-            </li>
-            <li class="fr-nav__item">
-              <a
-                href="https://mes-aides.gouv.fr/questions-frequentes"
-                class="fr-nav__link"
-                >Questions fréquentes</a
-              >
-            </li>
-          </ul>
-        </nav>
+        <slot />
       </div>
     </div>
-  </header>
+  </div>
 </template>

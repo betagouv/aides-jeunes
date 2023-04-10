@@ -27,7 +27,9 @@
     </nav>
   </div>
   <div class="aj-page--full-height">
-    <HeaderMesAides />
+    <Header>
+      <div ref="navigation" tabindex="-1"> <Navigation /></div>
+    </Header>
     <main
       id="main"
       ref="main"
@@ -41,13 +43,15 @@
 </template>
 
 <script>
-import HeaderMesAides from "@/components/header-mes-aides.vue"
+import Header from "@/components/mes-aides/header.vue"
 import layoutRouteMixin from "@/mixins/layout-route-mixin.js"
+import Navigation from "@/components/mes-aides/navigation.vue"
 
 export default {
   name: "MesAidesLayout",
   components: {
-    HeaderMesAides,
+    Header,
+    Navigation,
   },
   mixins: [layoutRouteMixin],
 }

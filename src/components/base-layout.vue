@@ -58,7 +58,7 @@
 <script>
 import Header1J1S from "@/components/1j1s/header-1j1s.vue"
 import FooterJ1S from "@/components/1j1s/footer-1j1s.vue"
-import Navigation from "@/components/navigation.vue"
+import Navigation from "@/components/1j1s/navigation-1j1s.vue"
 import layoutRouteMixin from "@/mixins/layout-route-mixin.js"
 
 export default {

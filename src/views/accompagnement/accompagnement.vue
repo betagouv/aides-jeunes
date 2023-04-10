@@ -15,7 +15,7 @@
       >Se connecter</a
     >
 
-    <div v-if="$route.query.authorization === 'false'" class="fr-mt-4w">
+    <div v-if="!userAccessAuthorized" class="fr-mt-4w">
       <div class="fr-alert fr-alert--warning">
         <h3 class="fr-alert__title"
           >Vous n'êtes pas autorisé à vous connecter.</h3
@@ -186,6 +186,9 @@ export default {
     },
     connect() {
       return `/api/auth/redirect?redirect=${window.location}`
+    },
+    userAccessAuthorized() {
+      return this.$route.query.authorization === "true"
     },
   },
   watch: {

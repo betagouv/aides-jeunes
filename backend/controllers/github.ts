@@ -52,7 +52,6 @@ const access = async (req, res, next) => {
       res.cookie("github_token", github_payload)
     }
   }
-  console.log("github_payload", github_payload)
   if (github_payload) {
     try {
       const result = await validateCookieToken(github_payload)

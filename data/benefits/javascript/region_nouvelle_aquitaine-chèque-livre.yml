@@ -13,7 +13,7 @@ profils:
   - type: lyceen
     conditions: []
   - type: apprenti
-  - conditions: []
+    conditions: []
 link: https://www.mesdemarches.aidesrentree.fr/Beneficiaires/Views/Accueil.aspx
 teleservice: https://www.mesdemarches.aidesrentree.fr/Beneficiaires/views/Inscription/Identite.aspx
 form: ""

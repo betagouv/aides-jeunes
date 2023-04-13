@@ -127,37 +127,60 @@ const navigation = [
       { label: "Stages", link: "/stages" },
       { label: "Contrats d’alternance", link: "/apprentissage" },
       { label: "Jobs étudiants", link: "/jobs-etudiants" },
-      { label: "Emplois en Europe", link: "/europe" },
+      { label: "Expérience en Europe", link: "/europe" },
     ],
   },
   {
     label: "Formations et orientation",
     children: [
       { label: "Formations", link: "/formations" },
+      {
+        label: "Formations en apprentissage",
+        link: "/formations/apprentissage",
+      },
       { label: "Découvrir les métiers", link: "/decouvrir-les-metiers" },
-      { label: "Participer à un évènement", link: "/evenements" },
+      { label: "Participer à des évènements", link: "/evenements" },
     ],
   },
-  {
-    label: "Aides et accompagnement",
-    active: true,
-    children: [
-      { label: "Contrat Engagement Jeune", link: "/contrat-engagement-jeune" },
-      { label: "Mes aides financières", link: "/mes-aides", active: true },
-      { label: "Mes aides au logement", link: "/logements/aides-logement" },
-      { label: "Le mentorat", link: "/mentorat" },
-      { label: "Je crée mon CV personnalisé", link: "/creer-mon-cv" },
-      { label: "Entreprendre", link: "/entreprendre" },
-      { label: "Accompagnement", link: "/accompagnement" },
-      { label: "Les mesures jeunes", link: "/espace-jeune" },
-    ],
-  },
-
   {
     label: "Engagement",
     children: [
-      { label: "Le service civique", link: "/service-civique" },
-      { label: "Le bénévolat", link: "/benevolat" },
+      { label: "Bénévolat", link: "/benevolat" },
+      { label: "Service civique", link: "/service-civique" },
+    ],
+  },
+  {
+    label: "Logement",
+    children: [
+      { label: "Annonces", link: "/logement/annonces" },
+      {
+        label: "Aides financières au logement",
+        link: "/logements/aides-logement",
+      },
+      { label: "Découvrir tous nos conseils", link: "/logements/conseils" },
+    ],
+  },
+  {
+    label: "Accompagnement",
+    children: [
+      { label: "Contrat Engagement Jeune", link: "/contrat-engagement-jeune" },
+      { label: "Échanger avec un mentor", link: "/mentorat" },
+      {
+        label: "Trouver une structure d'accompagnement",
+        link: "/accompagnement",
+      },
+      {
+        label: "Entreprendre : financements, aides et accompagnements",
+        link: "/entreprendre",
+      },
+    ],
+  },
+  {
+    label: "Aides et outils",
+    active: true,
+    children: [
+      { label: "Mes aides financières", link: "/mes-aides", active: true },
+      { label: "Je crée son CV personnalisé", link: "/creer-mon-cv" },
     ],
   },
   {

@@ -19,7 +19,6 @@ teleservice: https://www.mesdemarches.aidesrentree.fr/Beneficiaires/views/Inscri
 form: ""
 instructions: ""
 prefix: le
-conditions: []
 type: float
 unit: €
 periodicite: ponctuelle

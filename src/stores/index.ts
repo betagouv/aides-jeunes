@@ -120,21 +120,6 @@ export function persistDataOnSessionStorage({
   })
 }
 
-export const useSettingsStore = defineStore("settingsStore", {
-  state: () => ({ theme: ThemeType.default }),
-  getters: {
-    getTheme(): string {
-      return this.theme
-    },
-  },
-  actions: {
-    setTheme(theme: string) {
-      localStorage.setItem("theme", theme)
-      this.theme = theme
-    },
-  },
-})
-
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
   getters: {

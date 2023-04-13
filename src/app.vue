@@ -9,11 +9,9 @@
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
-import {
-  persistDataOnSessionStorage,
-  useSettingsStore,
-  useStore,
-} from "@/stores/index.ts"
+import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
+import storageService from "@/lib/storage-service.ts"
+
 const BaseLayout = context.BaseLayout
 
 export default {
@@ -28,10 +26,8 @@ export default {
     store.$onAction(persistDataOnSessionStorage)
     store.initialize()
     store.setOpenFiscaParameters()
-    const settingsStore = useSettingsStore()
     return {
       store,
-      settingsStore,
     }
   },
   computed: {
@@ -48,10 +44,9 @@ export default {
     if (params.has("data-with-logo")) {
       this.store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
-    const savedTheme = localStorage.getItem("theme")
+    const savedTheme = storageService.local.getItem("theme")
     if (savedTheme) {
-      this.settingsStore.setTheme(savedTheme)
-      params.set("theme", this.settingsStore.getTheme)
+      params.set("theme", savedTheme)
     }
 
     if (params.has("theme")) {

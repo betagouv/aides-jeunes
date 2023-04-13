@@ -1,3 +1,44 @@
+<script setup lang="ts">
+import storageService from "@/lib/storage-service.js"
+import { computed, onMounted, ref, watch } from "vue"
+import { ThemeTypeLabel } from "@lib/enums/themes"
+
+const selectedTheme = ref(
+  storageService.local.getItem("theme") || ThemeTypeLabel.default
+)
+const options = ref(["data-from-home", "data-with-logo"])
+const scriptPath = "/documents/iframe-integration.js"
+const contactEmail = process.env.VITE_CONTACT_EMAIL
+const fullScript = computed(() => {
+  return `<script src="${
+    process.env.VITE_BASE_URL
+  }${scriptPath}" ${options.value.join(" ")} data-theme="${
+    selectedTheme.value
+  }""><\/script>`
+})
+
+const setIframeContainer = () => {
+  const externalScript = document.createElement("script")
+  externalScript.setAttribute("src", scriptPath)
+  options.value.forEach((option) => externalScript.setAttribute(option, ""))
+  externalScript.setAttribute("data-theme", selectedTheme.value)
+  const dest = document.getElementById("dest")
+  if (dest) {
+    dest.innerHTML = ""
+    dest.appendChild(externalScript)
+  }
+}
+
+onMounted(setIframeContainer)
+
+watch(options, setIframeContainer)
+
+watch(selectedTheme, (newTheme) => {
+  storageService.local.setItem("theme", newTheme)
+  setIframeContainer()
+})
+</script>
+
 <template>
   <article class="fr-article">
     <h1>Intégrez le simulateur sur votre site&nbsp;!</h1>
@@ -96,63 +137,3 @@
     </p>
   </article>
 </template>
-
-<script lang="ts">
-import { useSettingsStore } from "@/stores/index.js"
-
-export default {
-  setup() {
-    return {
-      settingsStore: useSettingsStore(),
-    }
-  },
-  data() {
-    return {
-      contactEmail: process.env.VITE_CONTACT_EMAIL,
-      options: ["data-from-home", "data-with-logo"],
-      scriptPath: "/documents/iframe-integration.js",
-    }
-  },
-  computed: {
-    selectedTheme: {
-      get() {
-        return this.settingsStore.theme
-      },
-      set(value) {
-        this.settingsStore.setTheme(value)
-      },
-    },
-    fullScript() {
-      /* eslint-disable no-useless-escape */
-      return `<script src="${process.env.VITE_BASE_URL}${
-        this.scriptPath
-      }" ${this.options.join(" ")} data-theme="${
-        this.selectedTheme
-      }""><\/script>`
-    },
-  },
-  watch: {
-    options: function (): void {
-      this.setIframeContainer()
-    },
-    selectedTheme: function (): void {
-      this.setIframeContainer()
-    },
-  },
-  mounted: function () {
-    this.selectedTheme = this.settingsStore.getTheme
-    this.setIframeContainer()
-  },
-  methods: {
-    setIframeContainer() {
-      let externalScript = document.createElement("script")
-      externalScript.setAttribute("src", this.scriptPath)
-      for (let option of this.options) {
-        externalScript.setAttribute(option, "")
-      }
-      externalScript.setAttribute("data-theme", this.selectedTheme)
-      document.getElementById("dest")?.replaceChildren(...[externalScript])
-    },
-  },
-}
-</script>

@@ -19,7 +19,6 @@ import {
   Situation,
   Store,
 } from "@lib/types/store"
-import { ThemeType } from "@lib/enums/themes"
 
 function defaultCalculs(): Calculs {
   return {

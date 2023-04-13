@@ -12,6 +12,7 @@ export default {
   name: "AnalyticRouterLink",
   props: {
     analytics: {
+      type: Object,
       name: String,
       category: String,
       action: String,

@@ -94,7 +94,7 @@ async function sendMultipleEmails(emailType, limit) {
     throw new Error("Multiple emails can only be sent for initial survey")
   }
 
-  Followup.find({
+  const followups = await Followup.find({
     surveys: { $size: 0 },
     sentAt: {
       $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
@@ -103,27 +103,24 @@ async function sendMultipleEmails(emailType, limit) {
   })
     .sort({ createdAt: 1 })
     .limit(limit)
-    .then((list) => {
-      return Promise.all(
-        list.map(function (followup) {
-          const surveyType =
-            Math.random() > 0.5
-              ? SurveyType.trackClickOnBenefitActionEmail
-              : SurveyType.trackClickOnSimulationUsefulnessEmail
-          return followup
-            .sendSurvey(surveyType)
-            .then(function (result) {
-              return { ok: result._id }
-            })
-            .catch(function (error) {
-              return { ko: error }
-            })
-        })
-      )
+
+  const results = await Promise.all(
+    followups.map(async (followup) => {
+      const surveyType =
+        Math.random() > 0.5
+          ? SurveyType.trackClickOnBenefitActionEmail
+          : SurveyType.trackClickOnSimulationUsefulnessEmail
+
+      try {
+        const result = await followup.sendSurvey(surveyType)
+        return { ok: result._id }
+      } catch (error) {
+        return { ko: error }
+      }
     })
-    .then((list) => {
-      console.log(list)
-    })
+  )
+
+  console.log(results)
 }
 
 async function main() {

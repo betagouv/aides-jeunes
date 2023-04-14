@@ -48,11 +48,12 @@ send_initial_survey.add_argument("--multiple", {
   help: "Number of emails to send",
 })
 
-async function processSend(args) {
-  const { id, type: emailType, multiple } = args
-  if (id) {
+async function processSendEmails(emailType, followupId, multiple) {
+  if (followupId) {
     try {
-      const followup: FollowupInterface | null = await Followup.findById(id)
+      const followup: FollowupInterface | null = await Followup.findById(
+        followupId
+      )
       if (!followup) {
         throw new Error("Followup not found")
       }
@@ -133,17 +134,27 @@ async function processSend(args) {
   }
 }
 
-function main() {
-  const args = parser.parse_args()
+async function main() {
+  try {
+    const args = parser.parse_args()
+    const multiple = args.multiple ? parseInt(args.multiple) : null
 
-  switch (args.command) {
-    case "send":
-      processSend(args)
-      break
-    default:
-      parser.printHelp()
-      process.exit(1)
+    switch (args.command) {
+      case "send":
+        await processSendEmails(args.type, args.id, multiple)
+
+        console.log("Done")
+        break
+      default:
+        parser.print_help()
+    }
+  } catch (error) {
+    console.error("Error:", error)
+    parser.print_help()
+  } finally {
+    await mongoose.connection.close()
+    console.log("DB disconnected")
   }
 }
 
-main()
+await main()

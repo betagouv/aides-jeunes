@@ -50,42 +50,7 @@ send_initial_survey.add_argument("--multiple", {
 
 async function processSendEmails(emailType, followupId, multiple) {
   if (followupId) {
-    try {
-      const followup: FollowupInterface | null = await Followup.findById(
-        followupId
-      )
-      if (!followup) {
-        throw new Error("Followup not found")
-      }
-
-      let emailPromise: Promise<void>
-
-      switch (emailType) {
-        case EmailType.simulationResults:
-          emailPromise = followup.sendSimulationResultsEmail()
-          break
-        case EmailType.benefitAction:
-          emailPromise = followup.sendSurvey(
-            SurveyType.trackClickOnBenefitActionEmail
-          )
-          break
-        case EmailType.simulationUsefulness:
-          emailPromise = followup.sendSurvey(
-            SurveyType.trackClickOnSimulationUsefulnessEmail
-          )
-          break
-        default:
-          throw new Error(`Unknown email type: ${emailType}`)
-      }
-
-      const email = await emailPromise
-      console.log("Email sent", email)
-    } catch (error) {
-      console.error("Error:", error)
-    } finally {
-      console.log("Done")
-      process.exit(0)
-    }
+    await processSingleEmail(emailType, followupId)
   } else if (multiple) {
     if (emailType !== "initial-survey") {
       throw new Error("Multiple emails can only be sent for initial survey")
@@ -132,6 +97,36 @@ async function processSendEmails(emailType, followupId, multiple) {
     parser.printHelp()
     process.exit(1)
   }
+}
+
+async function processSingleEmail(emailType, followupId) {
+  const followup: FollowupInterface | null = await Followup.findById(followupId)
+  if (!followup) {
+    throw new Error("Followup not found")
+  }
+
+  let emailPromise: Promise<void>
+
+  switch (emailType) {
+    case EmailType.simulationResults:
+      emailPromise = followup.sendSimulationResultsEmail()
+      break
+    case EmailType.benefitAction:
+      emailPromise = followup.sendSurvey(
+        SurveyType.trackClickOnBenefitActionEmail
+      )
+      break
+    case EmailType.simulationUsefulness:
+      emailPromise = followup.sendSurvey(
+        SurveyType.trackClickOnSimulationUsefulnessEmail
+      )
+      break
+    default:
+      throw new Error(`Unknown email type: ${emailType}`)
+  }
+
+  const email = await emailPromise
+  console.log("Email sent", email)
 }
 
 async function main() {

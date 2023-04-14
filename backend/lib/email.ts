@@ -52,47 +52,7 @@ async function processSendEmails(emailType, followupId, multiple) {
   if (followupId) {
     await processSingleEmail(emailType, followupId)
   } else if (multiple) {
-    if (emailType !== "initial-survey") {
-      throw new Error("Multiple emails can only be sent for initial survey")
-    }
-    const limit = parseInt(multiple) || 1
-    Followup.find({
-      surveys: { $size: 0 },
-      sentAt: {
-        $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
-      },
-      surveyOptin: true,
-    })
-      .sort({ createdAt: 1 })
-      .limit(limit)
-      .then((list) => {
-        return Promise.all(
-          list.map(function (followup) {
-            const surveyType =
-              Math.random() > 0.5
-                ? SurveyType.trackClickOnBenefitActionEmail
-                : SurveyType.trackClickOnSimulationUsefulnessEmail
-            return followup
-              .sendSurvey(surveyType)
-              .then(function (result) {
-                return { ok: result._id }
-              })
-              .catch(function (error) {
-                return { ko: error }
-              })
-          })
-        )
-      })
-      .then((list) => {
-        console.log(list)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-      .finally(() => {
-        console.log("done")
-        process.exit(0)
-      })
+    await sendMultipleEmails(emailType, multiple)
   } else {
     parser.printHelp()
     process.exit(1)
@@ -127,6 +87,43 @@ async function processSingleEmail(emailType, followupId) {
 
   const email = await emailPromise
   console.log("Email sent", email)
+}
+
+async function sendMultipleEmails(emailType, limit) {
+  if (emailType !== "initial-survey") {
+    throw new Error("Multiple emails can only be sent for initial survey")
+  }
+
+  Followup.find({
+    surveys: { $size: 0 },
+    sentAt: {
+      $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
+    },
+    surveyOptin: true,
+  })
+    .sort({ createdAt: 1 })
+    .limit(limit)
+    .then((list) => {
+      return Promise.all(
+        list.map(function (followup) {
+          const surveyType =
+            Math.random() > 0.5
+              ? SurveyType.trackClickOnBenefitActionEmail
+              : SurveyType.trackClickOnSimulationUsefulnessEmail
+          return followup
+            .sendSurvey(surveyType)
+            .then(function (result) {
+              return { ok: result._id }
+            })
+            .catch(function (error) {
+              return { ko: error }
+            })
+        })
+      )
+    })
+    .then((list) => {
+      console.log(list)
+    })
 }
 
 async function main() {

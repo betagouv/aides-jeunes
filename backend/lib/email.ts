@@ -48,11 +48,6 @@ send_initial_survey.add_argument("--multiple", {
   help: "Number of emails to send",
 })
 
-const reply = subparsers.add_parser("reply")
-reply.add_argument("--id", {
-  help: "Survey Id",
-})
-
 async function processSend(args) {
   const { id, type: emailType, multiple } = args
   if (id) {
@@ -140,21 +135,10 @@ async function processSend(args) {
 
 function main() {
   const args = parser.parse_args()
+
   switch (args.command) {
     case "send":
       processSend(args)
-      break
-    case "reply":
-      Followup.findOne({ "surveys._id": args.id })
-        .then((e) => {
-          console.log(e)
-        })
-        .catch((e) => {
-          console.error(e)
-        })
-        .finally(() => {
-          process.exit(0)
-        })
       break
     default:
       parser.printHelp()

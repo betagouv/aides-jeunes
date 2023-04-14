@@ -59,7 +59,7 @@ const access = async (req, res, next) => {
         return next()
       } else {
         res.clearCookie("github_token")
-        return res.redirect("/accompagnement?authorization=false")
+        return res.redirect("/accompagnement?unauthorized")
       }
     } catch (e) {
       console.error("error", e)
@@ -70,7 +70,7 @@ const access = async (req, res, next) => {
 
 const postAuthRedirect = (req, res) => {
   if (req.query.redirect) {
-    return res.redirect(req.query.redirect)
+    res.redirect("/accompagnement")
   } else {
     return res.redirect("/")
   }

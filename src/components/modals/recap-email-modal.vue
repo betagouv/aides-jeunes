@@ -114,12 +114,14 @@ import axios from "axios"
 
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "RecapEmailModal",
   components: {
     WarningMessage,
   },
+  mixins: [StatisticsMixin],
   props: {
     id: String,
   },
@@ -147,12 +149,8 @@ export default {
       if (!this.$refs.form.checkValidity()) {
         this.errorMessage = true
         this.$refs.email.focus()
-        this.$matomo &&
-          this.$matomo.trackEvent(
-            "General",
-            "Invalid form",
-            this.$route.fullPath
-          )
+        this.sendEventToMatomo("General", "Invalid form", this.$route.fullPath)
+
         return
       }
 

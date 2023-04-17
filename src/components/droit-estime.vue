@@ -30,7 +30,7 @@
         v-if="showUnexpectedLink"
         :analytics="{
           name: droit.id,
-          action: 'show-unexpected',
+          action: eventTypeShowUnexpected,
           category: 'General',
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
@@ -45,11 +45,17 @@
 import { formatDroitEstime } from "@lib/benefits/details.ts"
 import { useStore } from "@/stores/index.ts"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   name: "DroitEstime",
   components: {
     AnalyticRouterLink,
+  },
+  data() {
+    return {
+      eventTypeShowUnexpected: BehaviourEventTypes.showUnexpected,
+    }
   },
   props: {
     droit: Object,

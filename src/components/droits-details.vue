@@ -12,12 +12,12 @@
         <span>&nbsp;</span>
         <BenefitCtaLink
           v-if="droit.link"
-          :analytics-name="droit.label"
+          :analytics-name="droit.id"
           :benefit="droit"
           :link="droit.link"
           itemprop="termsOfService"
           level="'inline'"
-          type="link"
+          :type="eventTypeLink"
         />
       </p>
       <div
@@ -85,12 +85,12 @@
         </ul>
       </WarningMessage>
       <div class="fr-print-hidden">
-        <BenefitCta :benefit="droit" :benefitsTotal="droits.length" />
+        <BenefitCta :benefit="droit" />
         <a
           v-if="droit.msa"
           v-analytics="{
             name: droit.label,
-            action: 'msa',
+            action: eventTypeMSA,
             category: 'General',
           }"
           class="aj-droit-pro-agricole"
@@ -118,6 +118,7 @@ import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   name: "DroitsDetails",
@@ -126,6 +127,12 @@ export default {
     DroitHeader,
     BenefitCta,
     BenefitCtaLink,
+  },
+  data() {
+    return {
+      eventTypeMSA: BehaviourEventTypes.msa,
+      eventTypeLink: BehaviourEventTypes.link,
+    }
   },
   mixins: [DroitMixin],
   props: {

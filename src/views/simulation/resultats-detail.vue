@@ -45,9 +45,10 @@ import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
 import ResultatsMixin from "@/mixins/resultats.js"
-import StatisticsMixin from "@/mixins/statistics.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   components: {
@@ -85,13 +86,12 @@ export default {
       this.restoreLatest()
     } else {
       const droitId = this.$route.params.droitId
-      const droit = this.droits.find(function (droit) {
-        return droit.id === droitId
-      })
 
-      droit && this.$matomo?.trackEvent("General", "showDetails", droit.id)
-
-      this.sendStatistics(this.droits, "showDetails", droitId)
+      this.sendEventsToRecorder(
+        this.droits,
+        BehaviourEventTypes.showDetails,
+        droitId
+      )
     }
   },
   methods: {

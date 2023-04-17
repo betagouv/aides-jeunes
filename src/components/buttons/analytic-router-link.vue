@@ -6,10 +6,11 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
-import analytics from "@/mixins/statistics.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "AnalyticRouterLink",
+  mixins: [StatisticsMixin],
   props: {
     analytics: {
       name: String,
@@ -36,12 +37,12 @@ export default {
   },
   methods: {
     handleClick() {
-      analytics.methods.sendStatistics(
+      this.sendEventsToRecorder(
         this.droits,
         this.analytics.action,
         this.analytics.name
       )
-      this.$matomo?.trackEvent(
+      this.sendEventToMatomo(
         this.analytics.category,
         this.analytics.action,
         this.analytics.name

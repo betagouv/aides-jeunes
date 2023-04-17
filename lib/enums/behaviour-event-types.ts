@@ -1,0 +1,17 @@
+export enum BehaviourEventTypes {
+  show = "show",
+  showDetails = "showDetails",
+  form = "form",
+  instructions = "instructions",
+  link = "link",
+  msa = "msa",
+  showLocations = "show-locations",
+  teleservice = "teleservice",
+  linkIneligible = "link-ineligible",
+  showUnexpected = "show-unexpected",
+  close = "close",
+  retourLogement = "retour-logement",
+  simulationCaf = "simulation-caf",
+  email = "email",
+  showUnexpectedAmountLink = "show-unexpected-amount-link",
+}

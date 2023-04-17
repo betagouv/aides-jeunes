@@ -64,7 +64,7 @@
         :key="index"
         v-analytics="{
           name: droit.label,
-          action: 'link-ineligible',
+          action: eventTypeLinkIneligible,
           category: 'General',
         }"
         class="droits-list-item"
@@ -102,6 +102,7 @@ import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 import WarningMessage from "@/components/warning-message.vue"
 import ABTestingService from "@/plugins/ab-testing-service.js"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types"
 
 export default {
   name: "DroitsList",
@@ -116,7 +117,9 @@ export default {
     filter: Array,
   },
   data: function () {
-    return {}
+    return {
+      eventTypeLinkIneligible: BehaviourEventTypes.linkIneligible,
+    }
   },
   computed: {
     list: function () {

@@ -12,9 +12,11 @@
 
 <script>
 import Hint from "@/lib/hint.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "EnSavoirPlus",
+  mixins: [StatisticsMixin],
   computed: {
     attribute: function () {
       return this.$route.path.substring(this.$route.path.lastIndexOf("/") + 1)
@@ -28,7 +30,7 @@ export default {
   },
   methods: {
     trackInterest() {
-      this.$matomo?.trackEvent("Parcours", "En savoir plus", this.$route.path)
+      this.sendEventToMatomo("Parcours", "En savoir plus", this.$route.path)
     },
   },
 }

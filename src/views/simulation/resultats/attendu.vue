@@ -171,6 +171,7 @@ import axios from "axios"
 import Benefits from "@/lib/benefits.ts"
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import ResultatsMixin from "@/mixins/resultats.js"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 import { sendMontantsAttendus } from "@/plugins/mails.js"
 import { capitalize } from "@lib/utils.ts"
@@ -185,7 +186,7 @@ import { useStore } from "@/stores/index.ts"
 export default {
   name: "Attendu",
   components: { WarningMessage },
-  mixins: [ContactEmailMixin, ResultatsMixin],
+  mixins: [ContactEmailMixin, ResultatsMixin, StatisticsMixin],
   setup() {
     return { store: useStore() }
   },
@@ -286,7 +287,7 @@ export default {
       this.selection = [].concat(...this.selection).concat({ id: null })
     },
     trackMontantAttendu(type) {
-      this.$matomo?.trackEvent("Montant attendu", type, this.$route.path)
+      this.sendEventToMatomo("Montant attendu", type, this.$route.path)
     },
     remove(index) {
       const next = this.selection.slice()

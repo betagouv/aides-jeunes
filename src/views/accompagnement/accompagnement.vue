@@ -15,8 +15,23 @@
       >Se connecter</a
     >
 
+    <div v-if="unauthorizedUserAccess" class="fr-mt-4w">
+      <div class="fr-alert fr-alert--warning">
+        <h3 class="fr-alert__title fr-mt-0"
+          >Vous n'êtes pas autorisé à vous connecter.</h3
+        >
+        <p
+          >Contactez un administrateur pour ajouter votre utilisateur à la liste
+          des utilisateurs autorisés ou essayez de
+          <a href="https://github.com/login" target="_blank">
+            vous connecter avec un autre compte Github</a
+          >.
+        </p>
+      </div>
+    </div>
+
     <div
-      v-if="loggedIn && accompagnements && accompagnements.length > 1"
+      v-if="loggedIn && followups && followups.length > 1"
       class="fr-container fr-px-0 fr-mb-0 fr-py-2w"
     >
       <div class="fr-grid-row fr-grid-row--gutters">
@@ -25,7 +40,7 @@
       </div>
     </div>
     <WarningMessage v-if="loggedIn && error">{{ error }}</WarningMessage>
-    <div v-if="loggedIn && accompagnements">
+    <div v-if="loggedIn && followups">
       <div class="fr-text--lead fr-mt-5w fr-mb-1w"
         >Réponses au sondage
         <span v-if="surveyEmail"
@@ -58,38 +73,36 @@
         ></span
         ><span class="fr-ml-1w fr-mr-2w">Déjà perçue</span>
       </div>
-      <div v-for="accompagnement in accompagnements" :key="accompagnement._id">
+      <div v-for="followup in followups" :key="followup._id">
         <div
-          v-if="accompagnement.surveys[0]"
+          v-if="followup.surveys[0]"
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
           <div class="aj-flex-row fr-mb-2w">
-            <a :href="`mailto:${accompagnement.email}`">{{
-              accompagnement.email
-            }}</a>
+            <a :href="`mailto:${followup.email}`">{{ followup.email }}</a>
             <span class="fr-tag">
-              Sondage le {{ formatDate(accompagnement.surveys[0].repliedAt) }}
+              Sondage le {{ formatDate(followup.surveys[0].repliedAt) }}
             </span>
             <span class="fr-tag">
-              Simulation le {{ formatDate(accompagnement.createdAt) }}
+              Simulation le {{ formatDate(followup.createdAt) }}
             </span>
-            <router-link :to="`/accompagnement/${accompagnement._id}`"
+            <router-link :to="`/accompagnement/${followup._id}`"
               >Permalink</router-link
             >
             <a
-              :href="`/api/support/simulation/${accompagnement.simulation}`"
+              :href="`/api/support/simulation/${followup.simulation}`"
               target="_blank"
               >Résultats de la simulation</a
             >
             <CopyButton
-              :followupId="accompagnement.simulation"
+              :followupId="followup.simulation"
               :benefitsMap="benefitsMap"
-              :benefitsList="accompagnement.benefits"
+              :benefitsList="followup.benefits"
             />
           </div>
           <ul
-            v-for="answer in accompagnement.benefits"
+            v-for="answer in followup.benefits"
             :key="answer.id"
             class="fr-toggle__list"
           >
@@ -159,7 +172,7 @@ export default {
   data: function () {
     return {
       benefitsMap: getBenefit,
-      accompagnements: undefined,
+      followups: undefined as FollowupLayout[] | undefined,
       loggedIn: undefined,
       error: undefined,
     }
@@ -174,12 +187,15 @@ export default {
     connect() {
       return `/api/auth/redirect?redirect=${window.location}`
     },
+    unauthorizedUserAccess() {
+      return this.$route.query.unauthorized !== undefined
+    },
   },
   watch: {
     $route: {
       immediate: true,
       async handler() {
-        this.accompagnements = await this.fetchPollResults()
+        this.followups = await this.fetchPollResults()
       },
     },
   },
@@ -224,18 +240,18 @@ export default {
               : "cet identifiant"
           }`
         } else {
-          const accompagnements: FollowupLayout[] = await response.json()
-          this.accompagnements = accompagnements
-            .map((accompagnement) => {
-              accompagnement.surveys = accompagnement.surveys.filter(
+          const followups: FollowupLayout[] = await response.json()
+          this.followups = followups
+            .map((followup) => {
+              followup.surveys = followup.surveys.filter(
                 (survey) =>
                   survey.type === SurveyType.benefitAction &&
                   survey.answers.length
               )
-              return accompagnement
+              return followup
             })
             .filter(({ surveys }) => surveys.length)
-          this.accompagnements.forEach(({ surveys, benefits }) => {
+          this.followups.forEach(({ surveys, benefits }) => {
             const surveyStates = {}
             surveys[0].answers.forEach(({ id, value, comments }) => {
               surveyStates[id] = { status: value, comments }
@@ -249,10 +265,10 @@ export default {
           })
         }
       } catch (status) {
-        this.accompagnements = []
+        this.followups = []
         this.loggedIn = false
       }
-      return this.accompagnements
+      return this.followups
     },
   },
 }

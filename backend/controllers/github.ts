@@ -1,5 +1,4 @@
 import axios from "axios"
-import url from "url"
 import config from "../config/index.js"
 
 function current_uri(req) {
@@ -9,15 +8,15 @@ function current_uri(req) {
 }
 
 function authenticate(req, res) {
-  return res.redirect(
-    url.format({
-      pathname: config.github.authorize_url,
-      query: {
-        client_id: config.github.client_id,
-        redirect_uri: current_uri(req),
-      },
-    })
-  )
+  const params = new URLSearchParams({
+    client_id: config.github.client_id,
+    redirect_uri: current_uri(req),
+  })
+
+  const url = new URL(config.github.authorize_url)
+  url.search = params.toString()
+
+  return res.redirect(url.toString())
 }
 
 function validateToken(req) {
@@ -45,6 +44,7 @@ function validateCookieToken(github_payload) {
 
 const access = async (req, res, next) => {
   let github_payload = req.cookies && req.cookies["github_token"]
+
   if (req.query.code) {
     const result = await validateToken(req)
     if (result.status === 200 && result.data.access_token) {
@@ -57,17 +57,20 @@ const access = async (req, res, next) => {
       const result = await validateCookieToken(github_payload)
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
+      } else {
+        res.clearCookie("github_token")
+        return res.redirect("/accompagnement?unauthorized")
       }
-      // If cookie validation fails an error will be triggered
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (e) {
+      console.error("error", e)
+    }
   }
   return authenticate(req, res)
 }
 
 const postAuthRedirect = (req, res) => {
   if (req.query.redirect) {
-    return res.redirect(req.query.redirect)
+    res.redirect("/accompagnement")
   } else {
     return res.redirect("/")
   }

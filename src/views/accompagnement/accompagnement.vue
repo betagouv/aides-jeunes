@@ -17,7 +17,7 @@
 
     <div v-if="unauthorizedUserAccess" class="fr-mt-4w">
       <div class="fr-alert fr-alert--warning">
-        <h3 class="fr-alert__title"
+        <h3 class="fr-alert__title fr-mt-0"
           >Vous n'êtes pas autorisé à vous connecter.</h3
         >
         <p

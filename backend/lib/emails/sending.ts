@@ -3,7 +3,7 @@ import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup, { FollowupInterface } from "../../models/followup.js"
 
 async function sendMultipleEmails(emailType, limit) {
-  if (emailType !== "initial-survey") {
+  if (emailType !== EmailType.initialSurvey) {
     throw new Error("Multiple emails can only be sent for initial survey")
   }
 

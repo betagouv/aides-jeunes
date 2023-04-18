@@ -18,31 +18,26 @@ const subparsers = parser.add_subparsers({
 })
 
 const send = subparsers.add_parser("send")
-
 const send_types = send.add_subparsers({
   title: "Type",
   dest: "type",
 })
 
-const send_simulation_results = send_types.add_parser(
-  EmailType.simulationResults
-)
-const send_benefit_action = send_types.add_parser(EmailType.benefitAction)
-const send_simulation_usefulness = send_types.add_parser(
-  EmailType.simulationUsefulness
-)
-const send_initial_survey = send_types.add_parser("initial-survey")
-const senders = [
-  send_simulation_results,
-  send_benefit_action,
-  send_simulation_usefulness,
+// Single emails types parsers
+const singleEmailTypes = [
+  EmailType.simulationResults,
+  EmailType.benefitAction,
+  EmailType.simulationUsefulness,
 ]
-senders.forEach((send) => {
-  send.add_argument("--id", {
+singleEmailTypes.forEach((emailType) => {
+  const parser = send_types.add_parser(emailType)
+  parser.add_argument("--id", {
     help: "Followup Id",
   })
 })
 
+// Multiple emails types parsers
+const send_initial_survey = send_types.add_parser(EmailType.initialSurvey)
 send_initial_survey.add_argument("--multiple", {
   help: "Number of emails to send",
 })

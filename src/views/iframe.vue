@@ -1,3 +1,45 @@
+<script setup lang="ts">
+import storageService from "@/lib/storage-service.js"
+import { computed, onMounted, ref, watch } from "vue"
+import { ThemeType } from "@lib/enums/themes"
+
+const selectedTheme = ref(
+  storageService.local.getItem("theme") || ThemeType.default
+)
+const options = ref(["data-from-home", "data-with-logo"])
+const scriptPath = "/documents/iframe-integration.js"
+const contactEmail = process.env.VITE_CONTACT_EMAIL
+const fullScript = computed(() => {
+  return `<script src="${
+    process.env.VITE_BASE_URL
+  }${scriptPath}" ${options.value.join(" ")} data-theme="${
+    selectedTheme.value
+    // eslint-disable-next-line no-useless-escape
+  }""><\/script>`
+})
+
+const setIframeContainer = () => {
+  const externalScript = document.createElement("script")
+  externalScript.setAttribute("src", scriptPath)
+  options.value.forEach((option) => externalScript.setAttribute(option, ""))
+  externalScript.setAttribute("data-theme", selectedTheme.value)
+  const dest = document.getElementById("dest")
+  if (dest) {
+    dest.innerHTML = ""
+    dest.appendChild(externalScript)
+  }
+}
+
+onMounted(setIframeContainer)
+
+watch(options, setIframeContainer)
+
+watch(selectedTheme, (newTheme) => {
+  storageService.local.setItem("theme", newTheme)
+  setIframeContainer()
+})
+</script>
+
 <template>
   <article class="fr-article">
     <h1>Intégrez le simulateur sur votre site&nbsp;!</h1>
@@ -26,7 +68,7 @@
           class="fr-fieldset__legend fr-text--regular"
         >
           Plusieurs options s'offrent à vous pour personnaliser l'affichage du
-          simulateur :
+          simulateur&nbsp;:
         </legend>
         <div class="fr-fieldset__content">
           <div class="fr-checkbox-group">
@@ -55,6 +97,32 @@
           </div>
         </div>
       </fieldset>
+      <fieldset class="fr-fieldset fr-fieldset--inline">
+        <legend
+          id="radio-group-inline-legend"
+          class="fr-fieldset__legend fr-text--regular"
+        >
+          Différents thèmes couleur sont également disponibles&nbsp;:
+        </legend>
+        <div class="fr-row">
+          <div
+            v-for="(option, index) in $theme.options"
+            :key="index"
+            class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w"
+          >
+            <input
+              :id="option.label"
+              v-model="selectedTheme"
+              type="radio"
+              :value="option.label"
+              :checked="selectedTheme === option.label"
+            />
+            <label :for="option.label" class="fr-label">{{
+              option.title
+            }}</label>
+          </div>
+        </div>
+      </fieldset>
     </div>
     <h2>Prévisualisation</h2>
 
@@ -70,44 +138,3 @@
     </p>
   </article>
 </template>
-
-<script lang="ts">
-export default {
-  name: "IFrame",
-  data() {
-    return {
-      options: ["data-from-home", "data-with-logo"],
-      contactEmail: process.env.VITE_CONTACT_EMAIL,
-    }
-  },
-  computed: {
-    scriptPath() {
-      return "/documents/iframe-integration.js"
-    },
-    fullScript() {
-      /* eslint-disable no-useless-escape */
-      return `<script src="${process.env.VITE_BASE_URL}${
-        this.scriptPath
-      }" ${this.options.join(" ")}><\/script>`
-    },
-  },
-  watch: {
-    options: function (): void {
-      this.setIframeContainer()
-    },
-  },
-  mounted: function () {
-    this.setIframeContainer()
-  },
-  methods: {
-    setIframeContainer() {
-      let externalScript = document.createElement("script")
-      externalScript.setAttribute("src", this.scriptPath)
-      for (let option of this.options) {
-        externalScript.setAttribute(option, "")
-      }
-      document.getElementById("dest").replaceChildren(...[externalScript])
-    },
-  },
-}
-</script>

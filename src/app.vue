@@ -8,9 +8,10 @@
 <script>
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
-
 import context from "@/context/index.js"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
+import storageService from "@/lib/storage-service.ts"
+
 const BaseLayout = context.BaseLayout
 
 export default {
@@ -33,6 +34,30 @@ export default {
     layout: function () {
       return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
     },
+  },
+  mounted() {
+    const params = new URLSearchParams(document.location.search.substring(1))
+    if (params.has("iframe")) {
+      this.store.setIframeOrigin(null)
+    }
+
+    if (params.has("data-with-logo")) {
+      this.store.setIframeHeaderCollapse(params.get("data-with-logo"))
+    }
+    const savedTheme = storageService.local.getItem("theme")
+    if (savedTheme) {
+      params.set("theme", savedTheme)
+    }
+
+    if (params.has("theme")) {
+      // Met à jour le thème uniquement si on est dans une iframe
+      if (window.parent !== window) {
+        this.$theme.update(params.get("theme"))
+      }
+    }
+    if (this.store.iframeOrigin) {
+      this.store.setIframeOrigin(null)
+    }
   },
 }
 </script>

@@ -7,6 +7,7 @@ import App from "./app.vue"
 import router from "./router.js"
 
 import StateService from "./plugins/state-service.js"
+import ThemeService from "./plugins/theme-service.js"
 
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
@@ -49,6 +50,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(Resizer)
 app.use(StateService)
+app.use(ThemeService)
 
 if (navigator.cookieEnabled) {
   app.use(VueMatomo, {

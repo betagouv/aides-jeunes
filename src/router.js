@@ -272,7 +272,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const params = new URLSearchParams(document.location.search.substring(1))
   const store = useStore()
   if (!from.name) {
     if (
@@ -296,25 +295,6 @@ router.beforeEach((to, from, next) => {
     ) {
       return store.redirection((route) => next(route))
     }
-
-    const iframe = params.get("iframe")
-    if (iframe != null) {
-      store.setIframeOrigin(null)
-    }
-
-    if (params.get("data-with-logo")) {
-      store.setIframeHeaderCollapse(params.get("data-with-logo"))
-    }
-  }
-
-  if (store.iframeOrigin) {
-    store.setIframeOrigin(null)
-  }
-
-  // TODO Est-ce utile ?
-  const themeColor = params.get("themeColor")
-  if (themeColor) {
-    store.setThemeColor(themeColor)
   }
 
   if (to.meta.title) {

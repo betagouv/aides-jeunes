@@ -13,6 +13,7 @@ export default {
   mixins: [StatisticsMixin],
   props: {
     analytics: {
+      type: Object,
       name: String,
       category: String,
       action: String,

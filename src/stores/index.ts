@@ -62,7 +62,6 @@ function defaultStore(): Store {
     dates: datesGenerator(now),
     ameliNoticationDone: false,
     title: null,
-    themeColor: null,
     inIframe: false,
     iframeOrigin: null,
     iframeHeaderCollapse: false,
@@ -559,9 +558,6 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     },
     setIframeHeaderCollapse(collapse = false) {
       this.iframeHeaderCollapse = collapse
-    },
-    setThemeColor(themeColor: string) {
-      this.themeColor = themeColor
     },
     setTitle(newTitle: string) {
       this.title = newTitle

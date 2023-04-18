@@ -1,0 +1,19 @@
+:root {
+  --demo-wrapper-background-blue: #a1d9e6;
+  --input-outline: #008080;
+  --main-color: #008391;
+  --main-color-hover: #476b70;
+  --main-color-active: #515e60;
+  --secondary-color: #089cb3;
+  --secondary-color-hover: #068194;
+  --secondary-color-active: #036473;
+  --info-main-color: #008391;
+  --info-main-color-hover: #35b5ff;
+  --info-main-color-active: #0074b3;
+  --info-secondary-color: #e1ebed;
+  --info-secondary-color-hover: #cad8db;
+  --info-secondary-color-active: #7eb8bf;
+  --border-radius: 0.3rem;
+  --font-family: inherit;
+  --main-btn-text-color: #fff;
+}

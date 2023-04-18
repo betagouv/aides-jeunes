@@ -1,5 +1,65 @@
 :root {
+  /* CSS redirections (DSFR override) */
   --text-disabled-grey: #666;
+  --blue-france-sun-113-625: var(--main-color);
+  --blue-france-sun-113-625-hover: var(--main-color-hover);
+  --blue-france-sun-113-625-active: var(--main-color-active);
+  --blue-cumulus-main-526: var(--secondary-color);
+  --blue-cumulus-925-125-hover: var(--secondary-color-hover);
+  --blue-cumulus-925-125-active: var(--secondary-color-active);
+  --info-425-625: var(--info-main-color);
+  --info-425-625-hover: var(--info-main-color-hover);
+  --info-425-625-active: var(--info-main-color-active);
+  --info-950-100: var(--info-secondary-color);
+  --info-950-100-hover: var(--info-secondary-color-hover);
+  --info-950-100-active: var(--info-secondary-color-active);
+  --secondary-btn-text-color: var(--main-color);
+  --secondary-btn-border-color: var(--main-color);
+  --tool-link-color: var(--main-color);
+  --tool-link-background-color: transparent;
+  --tool-link-background-color-hover: var(--background-raised-grey-hover);
+  --sidemenu-active-link-text-color: var(--main-color);
+}
+
+.fr-header__tools-links .fr-btn {
+  color: var(--tool-link-color);
+  background-color: var(--tool-link-background-color);
+}
+
+.fr-header__tools-links .fr-btn:hover {
+  background-color: var(--tool-link-background-color-hover);
+}
+
+.fr-sidemenu__link[aria-current="true"] {
+  color: var(--sidemenu-active-link-text-color);
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: var(--font-family);
+}
+
+[tabindex],
+a,
+button,
+input,
+select,
+radio,
+details,
+input[type="checkbox"] + label:before,
+input[type="image"],
+input[type="radio"] + label:before,
+input[type="reset"],
+input[type="submit"],
+select,
+textarea {
+  outline-color: var(--input-outline);
 }
 
 .fr-fieldset {
@@ -32,7 +92,7 @@
 }
 
 .fr-text--disabled {
-  color: var(--text-disabled-grey);
+  color: #666666;
 }
 
 .fr-icon-spin {
@@ -73,6 +133,8 @@
 .fr-btn {
   text-align: center;
   max-width: 100% !important;
+  border-radius: var(--border-radius);
+  color: var(--main-btn-text-color);
 }
 
 .fr-btn--icon-center {
@@ -84,6 +146,11 @@
   --active: var(--background-disabled-grey);
   background-color: var(--background-disabled-grey);
   color: var(--text-disabled-grey);
+}
+
+.fr-btn--secondary {
+  box-shadow: inset 0 0 0 1px var(--secondary-btn-border-color);
+  color: var(--secondary-btn-text-color);
 }
 
 .fr-fieldset__content {
@@ -306,6 +373,7 @@
 
 .fr-radio-group label {
   min-height: 50px !important;
+  border-radius: var(--border-radius);
 }
 
 .fr-modal--large .fr-modal__content {

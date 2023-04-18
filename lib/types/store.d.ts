@@ -79,7 +79,6 @@ export interface Store {
   dates: any
   ameliNoticationDone: boolean
   title: string | null
-  themeColor: string | null
   inIframe: boolean
   iframeOrigin: string | null
   iframeHeaderCollapse: boolean

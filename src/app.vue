@@ -12,8 +12,7 @@ import context from "@/context/index.js"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
 import storageService from "@/lib/storage-service.ts"
 
-const BaseLayout = context.BaseLayout
-const MesAidesLayout = context.MesAidesLayout
+const { BaseLayout, MesAidesLayout } = context
 
 export default {
   name: "App",

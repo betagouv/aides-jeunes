@@ -2,7 +2,6 @@ import mongoose from "mongoose"
 import validator from "validator"
 
 import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
-import utils from "../lib/utils.js"
 
 import { SurveyLayout } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
@@ -169,20 +168,6 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
   })
   this.surveys = surveys
   return this.save()
-})
-
-FollowupSchema.pre("save", async function (next) {
-  if (!this.isNew) {
-    return next()
-  }
-  try {
-    const followup = this
-    followup.version = 3
-    followup.accessToken = await utils.generateToken()
-    next()
-  } catch {
-    next()
-  }
 })
 
 FollowupSchema.virtual("returnPath").get(function (this) {

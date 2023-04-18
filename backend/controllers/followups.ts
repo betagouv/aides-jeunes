@@ -6,6 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
 import { SurveyType } from "../../lib/enums/survey.js"
+import utils from "../lib/utils.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -51,6 +52,8 @@ export async function persist(req: ajRequest, res: Response) {
       simulation: req.simulation,
       email: req.body.email,
       surveyOptin: req.body.surveyOptin,
+      version: 3,
+      accessToken: await utils.generateToken()
     })
 
     req.simulation.hasFollowup = true

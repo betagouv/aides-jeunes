@@ -84,6 +84,10 @@ export async function sendEventToRecorder(
       body,
     })
   } catch (e) {
-    console.error(e)
+    if (e instanceof TypeError && e.message === "Failed to fetch") {
+      console.debug("Event to recorder", event)
+    } else {
+      console.error(e)
+    }
   }
 }

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import storageService from "@/lib/storage-service.js"
 import { computed, onMounted, ref, watch } from "vue"
-import { ThemeTypeLabel } from "@lib/enums/themes"
+import { ThemeType } from "@lib/enums/themes"
 
 const selectedTheme = ref(
-  storageService.local.getItem("theme") || ThemeTypeLabel.default
+  storageService.local.getItem("theme") || ThemeType.default
 )
 const options = ref(["data-from-home", "data-with-logo"])
 const scriptPath = "/documents/iframe-integration.js"

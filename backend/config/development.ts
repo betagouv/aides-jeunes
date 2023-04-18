@@ -15,5 +15,8 @@ export default {
   matomo: {
     id: 170,
   },
-  statistics: {},
+  statistics: {
+    url: "http://localhost:4000/benefits",
+    version: 2,
+  },
 }

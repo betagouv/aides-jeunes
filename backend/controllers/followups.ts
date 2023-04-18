@@ -41,29 +41,28 @@ export function resultRedirect(req: ajRequest, res: Response) {
   res.redirect(req.simulation.returnPath)
 }
 
-export function persist(req: ajRequest, res: Response) {
+export async function persist(req: ajRequest, res: Response) {
   if (!req.body.email || !req.body.email.length) {
     return res.status(400).send({ result: "KO" })
   }
 
-  Followup.create({
-    simulation: req.simulation,
-    email: req.body.email,
-    surveyOptin: req.body.surveyOptin,
-  })
-    .then((followup) => {
-      req.simulation.hasFollowup = true
-      return req.simulation
-        .save()
-        .then(() => followup.sendSimulationResultsEmail())
+  try {
+    const followup = await Followup.create({
+      simulation: req.simulation,
+      email: req.body.email,
+      surveyOptin: req.body.surveyOptin,
     })
-    .then(() => {
-      return res.send({ result: "OK" })
-    })
-    .catch((error) => {
-      console.error("error", error)
-      return res.status(400).send({ result: "KO" })
-    })
+
+    req.simulation.hasFollowup = true
+
+    await req.simulation.save()
+    await followup.sendSimulationResultsEmail()
+
+    return res.send({ result: "OK" })
+  } catch (error) {
+    console.error("error", error)
+    return res.status(400).send({ result: "KO" })
+  }
 }
 
 export function getFollowup(req: ajRequest, res: Response) {

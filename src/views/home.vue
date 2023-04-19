@@ -63,7 +63,6 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
-import axios from "axios"
 
 export default {
   name: "Home",
@@ -90,19 +89,6 @@ export default {
         ? process.env.VITE_BENEFIT_COUNT
         : "plus de 700"
     },
-  },
-  async mounted() {
-    const search = new URLSearchParams(document.location.search)
-    if (!search.has("code")) {
-      return
-    }
-    const code = search.get("code")
-    const response = await axios.get(`/api/auth/callback?code=${code}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    document.location = `/api/simulation/${response.data.simulation._id}/redirect?token=${response.data.simulation.token}`
   },
   methods: {
     newSituation() {

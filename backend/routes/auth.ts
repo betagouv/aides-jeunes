@@ -1,6 +1,6 @@
 import axios from "axios"
 import { answerLayout } from "@/../lib/types/answer.js"
-import config from "@/../backend/config/index.js"
+import config from "../config/index.js"
 
 const fcRoot = config.franceConnect.root
 const fcClientId = config.franceConnect.clientId

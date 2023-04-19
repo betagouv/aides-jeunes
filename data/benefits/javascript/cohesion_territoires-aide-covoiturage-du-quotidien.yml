@@ -1,8 +1,8 @@
 label: Aide covoiturage du quotidien
-institution: cohesion_territoires
+institution: etat
 description: Depuis le 1er janvier 2023, les conducteurs qui se lancent dans le
   covoiturage courte-distance du quotidien recevront une prime de 100 € via les
-  plateformes de covoi­turage, sous la forme d’un versement progressif.
+  plateformes de covoiturage, sous la forme d’un versement progressif.
 prefix: l’
 conditions_generales: []
 profils: []
@@ -10,8 +10,7 @@ conditions:
   - Avoir le permis de conduire.
   - Effectuer un premier trajet en covoiturage en tant que conducteur en 2023,
     puis effectuer 9 autres trajets dans les 3 mois suivants.
-  - Réaliser son trajet en France dont la distance est inférieure ou égale à
-    80km.
+  - Effectuer un trajet d'une distance inférieure ou égale à 80km, en France.
   - Effectuer son trajet en utilisant un opérateur de covoiturage éligible.
 type: float
 unit: €

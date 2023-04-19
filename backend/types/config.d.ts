@@ -4,6 +4,12 @@ export interface ConfigurationLayout {
     delay: number
   }
   baseURL: string
+  franceConnect: {
+    root: string
+    clientId: string
+    clientSecret: string
+    scopes: string
+  }
   openfiscaURL: string
   openfiscaAxeURL: string
   openfiscaPublicURL: string

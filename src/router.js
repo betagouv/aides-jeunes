@@ -28,6 +28,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/callback",
+      name: "callback",
+      component: () => import("./views/callback.vue"),
+    },
+    {
       path: "/simulation",
       name: "simulation",
       redirect: "/simulation/individu/demandeur/date_naissance",

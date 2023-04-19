@@ -12,6 +12,21 @@ const all: ConfigurationLayout = {
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
     "https://mes-aides.1jeune1solution.beta.gouv.fr",
+  franceConnect: {
+    root: "https://fcp.integ01.dev-franceconnect.fr",
+    clientId:
+      "211286433e39cce01db448d80181bdfd005554b19cd51b3fe7943f6b3b86ab6e",
+    clientSecret:
+      "2791a731e6a59f56b6b4dd0d08c9b1f593b5f3658b9fd731cb24248e2669af4b",
+    scopes: [
+      "birthdate",
+      "email",
+      "mesri_inscription_etudiant",
+      "mesri_inscription_autre",
+      "mesri_admission",
+      "mesri_etablissements",
+    ].join(" "),
+  },
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",
   openfiscaAxeURL: "https://betagouv.github.io/mes-aides-changent",

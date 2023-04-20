@@ -20,7 +20,7 @@ const extractHHMM = (dateString: string) => {
       aria-hidden="true"
     ></span>
     <span
-      > {{ etablissement.adresse.lignes.join(", ") }}
+      > Adresse : {{ etablissement.adresse.lignes.join(", ") }}
       {{ etablissement.adresse.codePostal }}
       {{ etablissement.adresse.commune }}</span
     >

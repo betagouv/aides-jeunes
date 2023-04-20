@@ -47,13 +47,23 @@ export async function persist(req: ajRequest, res: Response) {
     return res.status(400).send({ result: "KO" })
   }
 
+  const simulation = req.simulation
+
   try {
+    const situationResults = await simulation.compute()
+    const benefits = situationResults.droitsEligibles.map((benefit) => ({
+      id: benefit.id,
+      amount: benefit.montant,
+      unit: benefit.unit,
+    }))
+
     const followup = await Followup.create({
-      simulation: req.simulation,
+      simulation,
       email: req.body.email,
       surveyOptin: req.body.surveyOptin,
       version: 3,
-      accessToken: await utils.generateToken()
+      accessToken: await utils.generateToken(),
+      benefits,
     })
 
     req.simulation.hasFollowup = true

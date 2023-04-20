@@ -26,6 +26,7 @@ const all: ConfigurationLayout = {
       "mesri_admission",
       "mesri_etablissements",
     ].join(" "),
+    mesriEndpoint: "https://staging.particulier.api.gouv.fr/api/v2/etudiants",
   },
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",

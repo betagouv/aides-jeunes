@@ -79,9 +79,11 @@ export const ANSWER_FIELD_NAMES = [
   ...parents,
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
-  ...LEGACY_FIELD_NAMES,
+  // France Connect
   "idtoken",
+  "mesri",
   "userinfo",
+  ...LEGACY_FIELD_NAMES,
 ]
 
 export const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]

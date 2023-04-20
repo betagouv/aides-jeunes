@@ -33,6 +33,13 @@ const router = createRouter({
       component: () => import("./views/callback.vue"),
     },
     {
+      path: "/logout-callback",
+      name: "logout-callback",
+      beforeEnter(to, from, next) {
+        document.location = `/api/auth${to.href}`
+      },
+    },
+    {
       path: "/simulation",
       name: "simulation",
       redirect: "/simulation/individu/demandeur/date_naissance",

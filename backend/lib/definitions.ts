@@ -80,6 +80,7 @@ export const ANSWER_FIELD_NAMES = [
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
   ...LEGACY_FIELD_NAMES,
+  "idtoken",
   "userinfo",
 ]
 

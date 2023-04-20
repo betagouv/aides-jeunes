@@ -119,19 +119,6 @@ export async function fetchUserInfo(req, res) {
       simulation: null,
     }
 
-    try {
-      const mesri = await axios.get(
-        `https://staging.particulier.api.gouv.fr/api/v2/etudiants`,
-        {
-          headers: {
-            Authorization: `Bearer ${req.fc_token}`,
-          },
-        }
-      )
-    } catch (error: any) {
-      console.error(error)
-    }
-
     const answers: answerLayout[] = []
     answers.push({
       entityName: "franceconnect",
@@ -143,6 +130,23 @@ export async function fetchUserInfo(req, res) {
       fieldName: "idtoken",
       value: req.FCIDToken,
     })
+
+    try {
+      const mesri = await axios.get(config.franceConnect.mesriEndpoint, {
+        headers: {
+          Authorization: `Bearer ${req.fc_token}`,
+        },
+      })
+
+      answers.push({
+        entityName: "franceconnect",
+        fieldName: "mesri",
+        value: mesri.data,
+      })
+    } catch (error: any) {
+      console.error(error)
+    }
+
     answers.push({
       entityName: "individu",
       id: "demandeur",

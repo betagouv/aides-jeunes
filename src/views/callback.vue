@@ -1,38 +1,19 @@
 <template>
-  <div v-if="data">
-    <br />
-    <div
-      ><button @click="continueFC" class="fr-btn fr-btn--sm"
-        >Continuer</button
-      ></div
-    >
-    <br />
-    <div
-      ><button @click="logoutFC" class="fr-btn fr-btn--sm">Logout</button></div
-    >
-    <pre>{{ JSON.stringify(data, null, 2) }}</pre>
-  </div>
-  <div v-if="!data || !!data.error">
-    <router-link to="simulation/individu/demandeur/date_naissance"
-      >Recommencer une simulation</router-link
-    >
-  </div>
+  <LoadingModal> Récupération de vos informations en cours… </LoadingModal>
 </template>
 
 <script>
 import axios from "axios"
-import { ref } from "vue"
+
+import LoadingModal from "@/components/loading-modal.vue"
 
 export default {
   name: "Callback",
-  setup() {
-    return {
-      data: ref({}),
-    }
+  components: {
+    LoadingModal,
   },
   async mounted() {
     const search = new URLSearchParams(document.location.search)
-    console.log(this.data)
     if (!search.has("code")) {
       return
     }
@@ -46,17 +27,8 @@ export default {
         },
       }
     )
-    this.data = response.data
-  },
-  methods: {
-    continueFC() {
-      console.log("ok continue")
-      alert("continue")
-      document.location = `/api/simulation/${this.data.simulation._id}/redirect?token=${this.data.simulation.token}`
-    },
-    logoutFC() {
-      document.location = "api/auth/logout"
-    },
+
+    document.location = `/api/simulation/${response.data.simulation._id}/redirect?token=${response.data.simulation.token}`
   },
 }
 </script>

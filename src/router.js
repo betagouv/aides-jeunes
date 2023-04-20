@@ -35,7 +35,7 @@ const router = createRouter({
     {
       path: "/logout-callback",
       name: "logout-callback",
-      beforeEnter(to, from, next) {
+      beforeEnter(to) {
         document.location = `/api/auth${to.href}`
       },
     },

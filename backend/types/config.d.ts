@@ -8,6 +8,7 @@ export interface ConfigurationLayout {
     root: string
     clientId: string
     clientSecret: string
+    mesriEndpoint: string
     scopes: string
   }
   openfiscaURL: string

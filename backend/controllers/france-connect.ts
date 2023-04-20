@@ -70,10 +70,8 @@ export async function callback(req, res, next) {
         },
       }
     )
-    console.log(response.data)
 
     jwt.verify(response.data.id_token, fcClientSecret, (err, decoded) => {
-      console.log(err, decoded)
       if (err) {
         return res.json({
           error: "id_token can't be veririfed",

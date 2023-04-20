@@ -76,9 +76,6 @@ export default {
       this.store.setDebug(false)
       this.$router.replace({ debug: null })
     },
-    franceconnect() {
-      document.location = "api/auth/login"
-    },
   },
 }
 </script>

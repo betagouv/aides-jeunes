@@ -18,6 +18,7 @@
     "cypress:open": "cypress open",
     "db": "mongod --dbpath db",
     "front": "NODE_ENV=front-only npm run serve",
+    "format": "npm run prettier:fix && npm run lint:fix",
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "lint:fix": "eslint backend data iframes lib src --ext ts,js,vue --fix",

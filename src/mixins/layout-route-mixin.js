@@ -11,7 +11,6 @@ export default {
       if (this.$route.hash) {
         const anchor = this.$route.hash.replace(/^#/, "")
         if (typeof this.$refs[anchor] !== "undefined") {
-          console.log("focus anchor", anchor, this.$refs[anchor])
           this.$refs[anchor].focus()
         }
       }

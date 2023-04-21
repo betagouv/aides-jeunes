@@ -1,4 +1,5 @@
 import { ref, computed } from "vue"
+import Etablissement from "@/../lib/types/etablissement.d.js"
 import {
   getBenefitEtablissements,
   getEtablissements,
@@ -10,10 +11,10 @@ export function useEtablissements() {
   const store = useStore()
   const $route = useRoute()
 
-  const etablissements: any = ref([])
-  const currentEtablissement: any = computed(() => {
+  const etablissements = ref<Etablissement[]>([])
+  const currentEtablissement = computed(() => {
     return etablissements.value.find(
-      (etablissement: any) =>
+      (etablissement: Etablissement) =>
         etablissement.id === $route.params.etablissement_id
     )
   })

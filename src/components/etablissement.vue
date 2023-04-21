@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { defineProps } from "vue"
+import Etablissement from "@/../lib/types/etablissement.d.js"
 
 defineProps({
-  etablissement: { type: Object, required: true },
+  etablissement: {
+    type: Object as () => Etablissement,
+    required: true,
+  },
 })
 </script>
 

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue"
+import Etablissement from "@/../lib/types/etablissement.d.js"
 
 const props = defineProps({
-  etablissement: { type: Object, required: true },
+  etablissement: {
+    type: Object as () => Etablissement,
+    required: true,
+  },
 })
 
 const hasContact = computed(() => {

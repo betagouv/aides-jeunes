@@ -128,12 +128,6 @@ export default {
     BenefitCta,
     BenefitCtaLink,
   },
-  data() {
-    return {
-      eventTypeMSA: BehaviourEventTypes.msa,
-      eventTypeLink: BehaviourEventTypes.link,
-    }
-  },
   mixins: [DroitMixin],
   props: {
     droit: Object,
@@ -143,6 +137,12 @@ export default {
   setup() {
     return {
       store: useStore(),
+    }
+  },
+  data() {
+    return {
+      eventTypeMSA: BehaviourEventTypes.msa,
+      eventTypeLink: BehaviourEventTypes.link,
     }
   },
   computed: {

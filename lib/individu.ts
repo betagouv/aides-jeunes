@@ -9,7 +9,7 @@ function isRoleParent(role: string) {
 }
 
 function isWithoutParent(situation) {
-  return ["decedes", "sans_autorite"].includes(situation.parents._situation)
+  return ["decedes", "sans_autorite"].includes(situation.parents?._situation)
 }
 
 function ressourceHeader(individu: individuLayout) {

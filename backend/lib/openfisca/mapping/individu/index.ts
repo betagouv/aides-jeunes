@@ -5,6 +5,7 @@ import { formatDate } from "../utils.js"
 import individuRessource from "./ressources.js"
 import pastResourcesProxy from "./past-resources-proxy.js"
 import { estActif } from "../../../../../lib/activite.js"
+import Individu from "../../../../../lib/individu.js"
 
 import {
   computeDistanceCommunes,
@@ -51,13 +52,7 @@ const individuSchema: individuGeneratorLayout = {
   },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
-      if (
-        ["decedes", "sans_autorite"].indexOf(situation.parents._situation) >= 0
-      ) {
-        return 0
-      }
-
-      if (individu.habite_chez_parents) {
+      if (Individu.isWithoutParent(situation) || individu.habite_chez_parents) {
         return 0
       }
 

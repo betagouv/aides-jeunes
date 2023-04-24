@@ -166,7 +166,7 @@ const router = createRouter({
           },
         },
         {
-          name: "etablissementInformationsByBenefit",
+          name: "benefitEtablissementInformations",
           path: "resultats/:benefit_id/lieux/:etablissement_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
@@ -176,7 +176,7 @@ const router = createRouter({
           },
         },
         {
-          name: "etablissementInformations",
+          name: "situationEtablissementInformations",
           path: "resultats/lieux/:etablissement_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),

@@ -27,7 +27,7 @@ const hasBenefitId = computed(() => {
         v-if="hasBenefitId"
         class="fr-link fr-link--sm"
         :to="{
-          name: 'etablissementInformationsByBenefit',
+          name: 'benefitEtablissementInformations',
           params: {
             etablissement_id: etablissement.id,
           },
@@ -38,7 +38,7 @@ const hasBenefitId = computed(() => {
         v-else
         class="fr-link fr-link--sm"
         :to="{
-          name: 'etablissementInformations',
+          name: 'situationEtablissementInformations',
           params: {
             etablissement_id: etablissement.id,
           },

@@ -35,7 +35,7 @@ onMounted(() => {
       ></span
       ><span class="fr-ml-2w">Récupération des informations en cours…</span>
     </p>
-    <etablissement-informations
+    <EtablissementInformations
       v-if="currentEtablissement && !updating"
       :key="currentEtablissement.id"
       :etablissement="currentEtablissement"

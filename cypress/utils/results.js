@@ -44,6 +44,30 @@ const hasPrimeActivite = () => {
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
 }
 
+const hasPrimeActiviteNearbyPlaces = () => {
+  cy.get("#cta-proximity").should("be.visible").click()
+  cy.get("#cta-proximity").should("not.exist")
+  cy.get('[data-testid="etablissement-title"]').should(
+    "contain",
+    "Caisse d'allocations familiales"
+  )
+  cy.get('[data-testid="etablissement-informations-link"]').should(
+    "contain",
+    "Voir les informations"
+  )
+}
+
+const hasSituationNearbyPlaces = () => {
+  cy.get('[data-testid="nearby-help"]').should("be.visible").click()
+  cy.get('[data-testid="nearby-help"]').should("not.exist")
+  cy.get('[data-testid="etablissement-title"]')
+    .first()
+    .should("contain", "Mairie - Fontenay-sous-Bois")
+  cy.get('[data-testid="etablissement-informations-link"]')
+    .first()
+    .should("contain", "Voir les informations")
+}
+
 const captureFiscalResources = () => {
   const name = /Livret d’épargne populaire/
   const id = "livret_epargne_populaire_taux"
@@ -201,6 +225,8 @@ export default {
   wait,
   back,
   hasPrimeActivite,
+  hasPrimeActiviteNearbyPlaces,
+  hasSituationNearbyPlaces,
   hasHousingBenefit,
   hasCSS,
   hasAAH,

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defineProps, computed } from "vue"
+import { defineProps, computed, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 import { useRouter } from "vue-router"
 
 defineProps({
   etablissement: {
-    type: Object as () => HelpingInstitution,
+    type: Object as PropType<HelpingInstitution>,
     required: true,
   },
 })

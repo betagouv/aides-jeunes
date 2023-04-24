@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { defineProps } from "vue"
-import Etablissement from "@/../lib/types/etablissement.d.js"
+import { defineProps, computed } from "vue"
+import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import { useRouter } from "vue-router"
 
 defineProps({
   etablissement: {
-    type: Object as () => Etablissement,
+    type: Object as () => HelpingInstitution,
     required: true,
   },
+})
+
+const $router = useRouter()
+
+const hasBenefitId = computed(() => {
+  return $router.currentRoute.value.params.benefit_id
 })
 </script>
 
@@ -17,6 +24,18 @@ defineProps({
         {{ etablissement.nom }}
       </h2>
       <router-link
+        v-if="hasBenefitId"
+        class="fr-link fr-link--sm"
+        :to="{
+          name: 'etablissementInformationsByBenefit',
+          params: {
+            etablissement_id: etablissement.id,
+          },
+        }"
+        >Voir les informations
+      </router-link>
+      <router-link
+        v-else
         class="fr-link fr-link--sm"
         :to="{
           name: 'etablissementInformations',

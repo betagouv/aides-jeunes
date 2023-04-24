@@ -91,6 +91,13 @@ function anonymizeSimulation(simulation) {
   return simulation
 }
 
+function anonymizeFollowup(followup) {
+  followup.email = undefined
+  followup.error = undefined
+
+  return followup
+}
+
 async function main() {
   const aMonthAgo = Date.now() - 31 * 24 * 60 * 60 * 1000
   const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
@@ -104,13 +111,13 @@ async function main() {
     .cursor()
 
   for await (const followup of followupsCursor) {
-    followup.email = undefined
+    const followupAnonymized = anonymizeFollowup(followup)
 
     try {
-      await followup.save()
+      await followupAnonymized.save()
       followup_count += 1
     } catch (err) {
-      console.error(`Cannot save followup: ${followup.id}`)
+      console.error(`Cannot save followup: ${followupAnonymized.id}`)
       console.trace(err)
     }
   }

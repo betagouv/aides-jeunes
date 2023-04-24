@@ -5,6 +5,7 @@ import { formatDate } from "../utils.js"
 import individuRessource from "./ressources.js"
 import pastResourcesProxy from "./past-resources-proxy.js"
 import { estActif } from "../../../../../lib/activite.js"
+import Individu from "../../../../../lib/individu.js"
 
 import {
   computeDistanceCommunes,
@@ -51,7 +52,8 @@ const individuSchema: individuGeneratorLayout = {
   },
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
-      if (individu.habite_chez_parents) {
+      // distance to parent's home is 0 if the user lives with his parents or has no parents
+      if (Individu.isWithoutParent(situation) || individu.habite_chez_parents) {
         return 0
       }
 

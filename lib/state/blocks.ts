@@ -384,10 +384,7 @@ function housingBlock() {
           return (
             demandeur.activite === ActiviteType.etudiant &&
             !demandeur.habite_chez_parents &&
-            (!situation.parents ||
-              ["decedes", "sans_autorite"].indexOf(
-                situation.parents._situation
-              ) < 0)
+            (!situation.parents || !Individu.isWithoutParent(situation))
           )
         },
         steps: [
@@ -512,9 +509,7 @@ export function generateBlocks(situation): BlockLayout[] {
         {
           subject: (demandeur, situation) => situation.parents,
           isActive: (parents, situation) => {
-            const parents_ok =
-              !parents ||
-              ["decedes", "sans_autorite"].indexOf(parents._situation) < 0
+            const parents_ok = !parents || !Individu.isWithoutParent(situation)
 
             const demandeur_ok =
               situation.demandeur.activite === ActiviteType.etudiant &&
@@ -542,8 +537,7 @@ export function generateBlocks(situation): BlockLayout[] {
     {
       isActive: (situation) => {
         const parents_ok =
-          !situation.parents ||
-          ["decedes", "sans_autorite"].indexOf(situation.parents._situation) < 0
+          !situation.parents || !Individu.isWithoutParent(situation)
         return parents_ok
       },
       steps: [

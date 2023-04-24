@@ -8,6 +8,10 @@ function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)
 }
 
+function isWithoutParent(situation) {
+  return ["decedes", "sans_autorite"].includes(situation.parents?._situation)
+}
+
 function ressourceHeader(individu: individuLayout) {
   switch (individu._role) {
     case "demandeur":
@@ -145,7 +149,7 @@ const Individu = {
   },
 
   isRoleParent,
-
+  isWithoutParent,
   isParent: function (individu: individuLayout) {
     return isRoleParent(individu._role)
   },

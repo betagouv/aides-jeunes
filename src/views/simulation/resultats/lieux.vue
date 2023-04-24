@@ -17,7 +17,11 @@ const goBackToBenefitDetails = () => {
 </script>
 <template>
   <div>
-    <BackButton class="fr-mb-2w" size="small" @click="goBackToBenefitDetails()"
+    <BackButton
+      class="fr-mb-2w"
+      size="small"
+      data-testid="back-button"
+      @click="goBackToBenefitDetails()"
       >Retour à l'aide
     </BackButton>
     <p class="fr-text--lg">

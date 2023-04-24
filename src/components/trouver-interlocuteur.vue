@@ -16,6 +16,7 @@
                 name: 'resultatsLieuxGeneriques',
               }"
               class="fr-btn"
+              data-testid="nearby-help"
             >
               Trouver de l'aide
             </router-link>

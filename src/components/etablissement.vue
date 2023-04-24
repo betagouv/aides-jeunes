@@ -20,31 +20,33 @@ const hasBenefitId = computed(() => {
 <template>
   <div class="fr-tile fr-tile--horizontal fr-mb-6w">
     <div v-if="etablissement" class="fr-container fr-p-4w">
-      <h2 class="fr-tile__title fr-mb-3w">
+      <h2 class="fr-tile__title fr-mb-3w" data-testid="etablissement-title">
         {{ etablissement.nom }}
       </h2>
-      <router-link
-        v-if="hasBenefitId"
-        class="fr-link fr-link--sm"
-        :to="{
-          name: 'benefitEtablissementInformations',
-          params: {
-            etablissement_id: etablissement.id,
-          },
-        }"
-        >Voir les informations
-      </router-link>
-      <router-link
-        v-else
-        class="fr-link fr-link--sm"
-        :to="{
-          name: 'situationEtablissementInformations',
-          params: {
-            etablissement_id: etablissement.id,
-          },
-        }"
-        >Voir les informations
-      </router-link>
+      <span data-testid="etablissement-informations-link">
+        <router-link
+          v-if="hasBenefitId"
+          class="fr-link fr-link--sm"
+          :to="{
+            name: 'benefitEtablissementInformations',
+            params: {
+              etablissement_id: etablissement.id,
+            },
+          }"
+          >Voir les informations
+        </router-link>
+        <router-link
+          v-else
+          class="fr-link fr-link--sm"
+          :to="{
+            name: 'situationEtablissementInformations',
+            params: {
+              etablissement_id: etablissement.id,
+            },
+          }"
+          >Voir les informations
+        </router-link>
+      </span>
     </div>
     <p v-else> Aucune information disponible sur cet établissement</p>
   </div>

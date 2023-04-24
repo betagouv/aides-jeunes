@@ -92,8 +92,8 @@ function anonymizeSimulation(simulation) {
 }
 
 async function main() {
-  const aMonthAgo = new Date().getTime() - 31 * 24 * 60 * 60 * 1000
-  const aWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
+  const aMonthAgo = Date.now() - 31 * 24 * 60 * 60 * 1000
+  const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 
   let followup_count = 0
   const followupsCursor = await Followup.find({

@@ -74,7 +74,7 @@ export function useEtablissements() {
   }
 
   const loadEtablissements = async () => {
-    let types: any = null
+    let etablissementTypes: any = null
 
     if ($route.params.benefit_id) {
       const benefits =
@@ -82,14 +82,17 @@ export function useEtablissements() {
       benefit.value = benefits
         ? benefits.find((b: any) => b.id === $route.params.benefit_id)
         : null
-      types = getBenefitEtablissements(benefit.value)
+      etablissementTypes = getBenefitEtablissements(benefit.value)
     } else {
-      types = getSituationEtablissements()
+      etablissementTypes = getSituationEtablissements()
     }
 
-    const apiEtablissements = await getEtablissements(city, types)
+    const apiEtablissements = await getEtablissements(city, etablissementTypes)
     etablissements.value = apiEtablissements.sort((a, b) => {
-      return types.indexOf(a.pivotLocal) - types.indexOf(b.pivotLocal)
+      return (
+        etablissementTypes.indexOf(a.pivotLocal) -
+        etablissementTypes.indexOf(b.pivotLocal)
+      )
     })
     updating.value = false
   }

@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
-import es from "event-stream"
+import mongoose from "mongoose"
 
-// Loads
-// import expect from "expect"
-import("../backend/lib/mongo-connector")
+import config from "../backend/config/index.js"
+import mongooseConfig from "../backend/config/mongoose.js"
 import Simulation from "../backend/models/simulation"
 import Followup from "../backend/models/followup"
 
@@ -80,49 +78,47 @@ function getAnonymizedAnswer(answer, simulation) {
   }
 }
 
-function generateNewAll(answers, simulation) {
-  return answers.map((a) => getAnonymizedAnswer(a, simulation)).filter((a) => a)
+function anonymizeSimulation(simulation) {
+  const answers = simulation.answers.all
+  const answersAnonymized = answers.map((answer) => getAnonymizedAnswer(answer, simulation)).filter((answer) => answer)
+
+  simulation.answers = {
+    all: answersAnonymized,
+    current: [],
+  }
+  simulation.status = "anonymized"
+
+  return simulation
 }
 
-function main() {
+async function main() {
   const aMonthAgo = new Date().getTime() - 31 * 24 * 60 * 60 * 1000
   const aWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000
 
   let followup_count = 0
-  Followup.find({
+  const followupsCursor = await Followup.find({
     createdAt: { $lt: aMonthAgo },
     email: { $exists: true },
   })
     .sort({ _id: -1 })
     .cursor()
-    .pipe(
-      es.map(function (model, done) {
-        model.email = undefined
 
-        model.save(function (err) {
-          if (err) {
-            console.log(
-              `Cannot save ${model.constructor.modelName} ${model.id}`
-            )
-            console.trace(err)
-          }
-          followup_count += 1
-          done()
-        })
-      })
-    )
-    .on("end", function () {
-      console.log(["Terminé", "Followup", followup_count].join(";"))
-      process.exit()
-    })
-    .on("error", function (err) {
+  for await (const followup of followupsCursor) {
+    followup.email = undefined
+
+    try {
+      await followup.save()
+      followup_count += 1
+    } catch (err) {
+      console.error(`Cannot save followup: ${followup.id}`)
       console.trace(err)
-      process.exit()
-    })
-    .resume()
+    }
+  }
+
+  console.log(["Terminé", "Followup", followup_count].join(";"))
 
   let simulation_count = 0
-  Simulation.find({
+  const simulationsCursor = await Simulation.find({
     $or: [
       {
         dateDeValeur: { $lt: aMonthAgo },
@@ -138,37 +134,27 @@ function main() {
   })
     .sort({ dateDeValeur: 1 })
     .cursor()
-    .pipe(
-      es.map(function (model, done) {
-        model.status = "anonymized"
 
-        const newAll = generateNewAll(model.answers.all, model)
-        model.answers = {
-          all: newAll,
-          current: [],
-        }
+  for await (const simulation of simulationsCursor) {
+    const anonymizedSimulation = anonymizeSimulation(simulation)
 
-        model.save(function (err) {
-          if (err) {
-            console.log(
-              `Cannot save ${model.constructor.modelName} ${model.id}`
-            )
-            console.trace(err)
-          }
-          simulation_count += 1
-          done()
-        })
-      })
-    )
-    .on("end", function () {
-      console.log(["Terminé", "Simulation", simulation_count].join(";"))
-      process.exit()
-    })
-    .on("error", function (err) {
-      console.trace(err)
-      process.exit()
-    })
-    .resume()
+    try {
+      await anonymizedSimulation.save()
+      simulation_count += 1
+    } catch (err) {
+      console.error(`Cannot save simulation: ${anonymizedSimulation.id}`)
+    }
+  }
+
+  console.log(["Terminé", "Simulation", simulation_count].join(";"))
 }
 
-main()
+try {
+  mongooseConfig(mongoose, config)
+  await main()
+} catch (err) {
+  console.error(err)
+} finally {
+  await mongoose.connection.close()
+  console.log("DB disconnected")
+}

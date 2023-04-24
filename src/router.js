@@ -166,8 +166,18 @@ const router = createRouter({
           },
         },
         {
-          name: "etablissementInformations",
+          name: "etablissementInformationsByBenefit",
           path: "resultats/:benefit_id/lieux/:etablissement_id/informations",
+          component: () =>
+            import("./views/simulation/resultats/lieu-informations.vue"),
+          meta: {
+            headTitle:
+              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
+          },
+        },
+        {
+          name: "etablissementInformations",
+          path: "resultats/lieux/:etablissement_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {

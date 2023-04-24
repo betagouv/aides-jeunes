@@ -19,12 +19,19 @@ export function useEtablissements() {
 
   const city = store.situation.menage.depcom
 
-  interface EtablissementType {
+  const currentEtablissement = computed(() => {
+    return etablissements.value.find(
+      (etablissement: HelpingInstitution) =>
+        etablissement.id === $route.params.etablissement_id
+    )
+  })
+
+  interface Etablissement {
     isRelevant?: (demandeur: any, situation: any) => boolean
     types: string[]
   }
 
-  const etablissementTypes: EtablissementType[] = [
+  const etablissementsList: Etablissement[] = [
     {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
@@ -53,14 +60,14 @@ export function useEtablissements() {
     },
   ]
 
-  const getEtablissementsTypesBySituation = () => {
+  const getSituationEtablissements = () => {
     const relevantTypes: string[] = []
-    for (const item of etablissementTypes) {
-      const isRelevant = item.isRelevant
-        ? item.isRelevant(store.situation.demandeur, store.situation)
+    for (const etablissement of etablissementsList) {
+      const isRelevant = etablissement.isRelevant
+        ? etablissement.isRelevant(store.situation.demandeur, store.situation)
         : true
       if (isRelevant) {
-        relevantTypes.push(...item.types)
+        relevantTypes.push(...etablissement.types)
       }
     }
     return relevantTypes
@@ -77,7 +84,7 @@ export function useEtablissements() {
         : null
       types = getBenefitEtablissements(benefit.value)
     } else {
-      types = getEtablissementsTypesBySituation()
+      types = getSituationEtablissements()
     }
 
     const apiEtablissements = await getEtablissements(city, types)
@@ -88,13 +95,6 @@ export function useEtablissements() {
   }
 
   loadEtablissements()
-
-  const currentEtablissement = computed(() => {
-    return etablissements.value.find(
-      (etablissement: HelpingInstitution) =>
-        etablissement.id === $route.params.etablissement_id
-    )
-  })
 
   return {
     etablissements,

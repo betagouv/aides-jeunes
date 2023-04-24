@@ -19,7 +19,12 @@ export function useEtablissements() {
 
   const city = store.situation.menage.depcom
 
-  const list = [
+  interface EtablissementType {
+    isRelevant?: (demandeur: any, situation: any) => boolean
+    types: string[]
+  }
+
+  const etablissementTypes: EtablissementType[] = [
     {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
@@ -49,15 +54,15 @@ export function useEtablissements() {
   ]
 
   const getEtablissementsTypesBySituation = () => {
-    let relevantTypes: string[] = []
-    list.forEach((item) => {
-      const isRelevant =
-        !item.isRelevant ||
-        item.isRelevant(store.situation.demandeur, store.situation)
+    const relevantTypes: string[] = []
+    for (const item of etablissementTypes) {
+      const isRelevant = item.isRelevant
+        ? item.isRelevant(store.situation.demandeur, store.situation)
+        : true
       if (isRelevant) {
-        relevantTypes = relevantTypes.concat(...item.types)
+        relevantTypes.push(...item.types)
       }
-    })
+    }
     return relevantTypes
   }
 

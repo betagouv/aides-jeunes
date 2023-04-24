@@ -50,10 +50,10 @@ export function getBenefitEtablissements(benefit) {
   return benefit.institution.etablissements || []
 }
 
-export async function getEtablissements(depcom, types) {
+export async function getEtablissements(depcom, etablissementTypes) {
   try {
     const response = await axios.get(
-      `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
+      `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${etablissementTypes.join(
         "+"
       )}`
     )

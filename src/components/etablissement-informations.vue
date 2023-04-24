@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, defineProps } from "vue"
+import { computed, defineProps, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 
 const props = defineProps({
   etablissement: {
-    type: Object as () => HelpingInstitution,
+    type: Object as PropType<HelpingInstitution>,
     required: true,
   },
 })

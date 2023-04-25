@@ -56,6 +56,7 @@ async function sendMultipleTousABordNotificationEmails(limit) {
         id: "pass-pass-pour-les-demandeurs-demploi",
       },
     },
+    "tousABordNotificationEmail.sentAt": { $exists: false },
     sentAt: {
       $lt: new Date(
         new Date().getTime() - DelayBeforeTousABordNotificationEmail

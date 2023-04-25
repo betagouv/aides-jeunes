@@ -23,6 +23,7 @@ export interface FollowupInterface extends MongooseLayout {
   version: number
   error: any
   accessToken: string
+  tousABordNotificationEmail: any
 }
 
 const FollowupSchema = new mongoose.Schema<FollowupInterface>(
@@ -52,6 +53,10 @@ const FollowupSchema = new mongoose.Schema<FollowupInterface>(
     version: Number,
     error: { type: Object },
     accessToken: { type: String },
+    tousABordNotificationEmail: {
+      sentAt: { type: Date },
+      messageId: { type: String },
+    },
   },
   { minimize: false, id: false }
 )
@@ -67,6 +72,14 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
     this.email = undefined
   }
   this.error = undefined
+  return this.save()
+})
+
+FollowupSchema.method("postTousABordNotificationEmail", function (messageId) {
+  this.tousABordNotificationEmail = {
+    sentAt: Date.now(),
+    messageId: messageId,
+  }
   return this.save()
 })
 
@@ -111,6 +124,9 @@ FollowupSchema.method("sendTousABordNotificationEmail", function () {
       email.htmlContent = render.html
       email.tags = [EmailType.tousABordNotification]
       return sendEmail(email)
+    })
+    .then((response) => {
+      return followup.postTousABordNotificationEmail(response.messageId)
     })
     .catch((err) => {
       console.log("error", err)

@@ -51,16 +51,11 @@ export function getBenefitEtablissements(benefit) {
 }
 
 export async function getEtablissements(depcom, etablissementTypes) {
-  try {
-    const response = await axios.get(
-      `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${etablissementTypes.join(
-        "+"
-      )}`
-    )
-    const etablissements = response.data.features
-    return etablissements.map(normalize)
-  } catch (error) {
-    console.error(error)
-    return []
-  }
+  const response = await axios.get(
+    `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${etablissementTypes.join(
+      "+"
+    )}`
+  )
+  const etablissements = response.data.features
+  return etablissements.map(normalize)
 }

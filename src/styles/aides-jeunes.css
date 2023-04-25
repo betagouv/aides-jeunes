@@ -269,6 +269,12 @@ textarea {
 .aj-fr-sidemenu__inner {
   height: 100%;
 }
+
+.aj-responsive-icon-places,
+[class*=" fr-icon-"]:before {
+  --icon-size: 2rem;
+}
+
 @media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;
@@ -297,6 +303,10 @@ textarea {
   .aj-column-container {
     min-height: 100vh;
     align-content: baseline;
+  }
+  .aj-responsive-icon-places,
+  [class*=" fr-icon-"]:before {
+    --icon-size: 1.5rem;
   }
 }
 

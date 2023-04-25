@@ -106,6 +106,12 @@
           />Démarches pour les professions agricoles
         </a>
       </div>
+      <div class="fr-print-hidden">
+        <div class="fr-mt-4w">
+          <hr class="fr-hr fr-py-2w" />
+          <DroitDetailsLieux :benefit="droit" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -116,6 +122,7 @@ import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.ts"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
+import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
@@ -125,6 +132,7 @@ export default {
   components: {
     WarningMessage,
     DroitHeader,
+    DroitDetailsLieux,
     BenefitCta,
     BenefitCtaLink,
   },

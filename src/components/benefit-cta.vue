@@ -40,14 +40,12 @@
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
-import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   name: "BenefitCta",
   components: {
     BenefitCtaLink,
-    AnalyticRouterLink,
   },
   props: {
     benefit: Object,

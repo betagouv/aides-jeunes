@@ -41,6 +41,13 @@ const answers = {
   current: { type: [answer], required: true },
 }
 
+export enum SimulationStatusEnum {
+  NEW = "new",
+  TEST = "test",
+  INVESTIGATION = "investigation",
+  ANONYMIZED = "anonymized",
+}
+
 const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
   {
     answers: { type: answers, required: true },
@@ -59,8 +66,8 @@ const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
     modifiedFrom: String,
     status: {
       type: String,
-      default: "new",
-      enum: ["new", "test", "investigation", "anonymized"],
+      default: SimulationStatusEnum.NEW,
+      enum: Object.values(SimulationStatusEnum),
     },
     teleservice: String,
     token: String,

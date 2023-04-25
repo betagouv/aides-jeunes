@@ -1,3 +1,5 @@
+import { SimulationStatusEnum } from "../backend/models/simulation.js"
+
 function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {
     case "famille": {
@@ -81,7 +83,7 @@ export function anonymizeSimulation(simulation) {
     all: answersAnonymized,
     current: [],
   }
-  simulation.status = "anonymized"
+  simulation.status = SimulationStatusEnum.ANONYMIZED
 
   return simulation
 }

@@ -2,6 +2,7 @@ import {
   anonymizeSimulation,
   anonymizeFollowup,
 } from "../../../lib/cleaner-functions"
+import { SimulationStatusEnum } from "../../../backend/models/simulation"
 
 const anId = "123"
 
@@ -25,7 +26,7 @@ describe("anonymizeSimulation", () => {
   it("should anonymize simulation", () => {
     const simulation = {
       id: anId,
-      status: "new",
+      status: SimulationStatusEnum.NEW,
       dateDeValeur: "2023-04-20T13:36:57.634Z",
       answers: {
         all: [
@@ -141,7 +142,7 @@ describe("anonymizeSimulation", () => {
     const anonymizedSimulation = anonymizeSimulation(simulation)
 
     expect(anonymizedSimulation.id).toEqual(anId)
-    expect(anonymizedSimulation.status).toEqual("anonymized")
+    expect(anonymizedSimulation.status).toEqual(SimulationStatusEnum.ANONYMIZED)
     expect(anonymizedSimulation.answers.current).toEqual([])
 
     const anonymizedAnswers = anonymizedSimulation.answers.all

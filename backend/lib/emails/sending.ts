@@ -2,15 +2,23 @@ import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup, { FollowupInterface } from "../../models/followup.js"
 
+const oneDay = 24 * 60 * 60 * 1000
+const DelayBeforeInitialEmail = 6.5 * oneDay
 async function sendMultipleEmails(emailType, limit) {
-  if (emailType !== EmailType.initialSurvey) {
-    throw new Error("Multiple emails can only be sent for initial survey")
+  switch (emailType) {
+    case EmailType.initialSurvey:
+      await sendMultipleInitialEmails(limit)
+      break
+    default:
+      throw new Error("Unknown email type for multiple emails")
   }
+}
 
+async function sendMultipleInitialEmails(limit) {
   const followups = await Followup.find({
     surveys: { $size: 0 },
     sentAt: {
-      $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
+      $lt: new Date(new Date().getTime() - DelayBeforeInitialEmail),
     },
     surveyOptin: true,
   })

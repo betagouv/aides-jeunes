@@ -1,0 +1,12 @@
+Vous avez récemment fait une simulation sur le site 1jeune1solution.gouv.fr et vous avez accepté que nous vous recontactions.
+
+En tant que personne inscrite à Pôle emploi, vous bénéficiez d’un abonnement pass pass à 5€ / mois (au lieu de 28€ / mois) pour vous déplacer en illimité en bus et TER sur tout le réseau TADAO. Pour accéder aux instructions, rendez-vous sur le site de TADAO.
+
+Nous vous écrivons dans le cadre d’une expérimentation. Pour en savoir plus, consultez notre site tous-a-bord.gouv.fr ou écrivez-nous à tousabord@beta.gouv.fr . 
+
+Retrouvez les détails de votre simulation en cliquant ici : {{&returnURL}}
+
+Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : aides-jeunes@beta.gouv.fr
+
+Bonne journée,
+L'équipe du simulateur de 1jeune1solution.gouv.fr

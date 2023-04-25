@@ -74,6 +74,10 @@ FollowupSchema.method("renderSimulationResultsEmail", function () {
   return emailRender(EmailType.simulationResults, this)
 })
 
+FollowupSchema.method("renderTousABordNotificationEmail", function () {
+  return emailRender(EmailType.tousABordNotification, this)
+})
+
 FollowupSchema.method("sendSimulationResultsEmail", function () {
   const followup = this
   return this.renderSimulationResultsEmail()
@@ -88,6 +92,25 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
     .then((response) => {
       return followup.postSimulationResultsEmail(response.messageId)
+    })
+    .catch((err) => {
+      console.log("error", err)
+      followup.error = JSON.stringify(err, null, 2)
+      return followup.save()
+    })
+})
+
+FollowupSchema.method("sendTousABordNotificationEmail", function () {
+  const followup = this
+  return this.renderTousABordNotificationEmail()
+    .then((render) => {
+      const email = new SendSmtpEmail()
+      email.to = [{ email: followup.email }]
+      email.subject = render.subject
+      email.textContent = render.text
+      email.htmlContent = render.html
+      email.tags = [EmailType.tousABordNotification]
+      return sendEmail(email)
     })
     .catch((err) => {
       console.log("error", err)

@@ -4,10 +4,15 @@ import Followup, { FollowupInterface } from "../../models/followup.js"
 
 const oneDay = 24 * 60 * 60 * 1000
 const DelayBeforeInitialEmail = 6.5 * oneDay
+const DelayBeforeTousABordNotificationEmail = 2 * oneDay
+
 async function sendMultipleEmails(emailType, limit) {
   switch (emailType) {
     case EmailType.initialSurvey:
       await sendMultipleInitialEmails(limit)
+      break
+    case EmailType.tousABordNotification:
+      await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
       throw new Error("Unknown email type for multiple emails")
@@ -41,6 +46,37 @@ async function sendMultipleInitialEmails(limit) {
     })
   )
 
+  console.log(results)
+}
+
+async function sendMultipleTousABordNotificationEmails(limit) {
+  const followups = await Followup.find({
+    benefits: {
+      $elemMatch: {
+        id: "pass-pass-pour-les-demandeurs-demploi",
+      },
+    },
+    sentAt: {
+      $lt: new Date(
+        new Date().getTime() - DelayBeforeTousABordNotificationEmail
+      ),
+    },
+    email: { $exists: true },
+    surveyOptin: true,
+  })
+    .sort({ createdAt: 1 })
+    .limit(limit)
+
+  const results = await Promise.all(
+    followups.map(async (followup) => {
+      try {
+        const result = await followup.sendTousABordNotificationEmail()
+        return { ok: result._id }
+      } catch (error) {
+        return { ko: error }
+      }
+    })
+  )
   console.log(results)
 }
 

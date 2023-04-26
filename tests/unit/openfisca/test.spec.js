@@ -80,6 +80,7 @@ describe("openfisca generateYAMLTest", function () {
   })
 
   it("contains provided output", function () {
+    throw new Error("Sentry test")
     expect(result).toContain("rsa: 545.48")
   })
 

@@ -137,6 +137,9 @@ textarea {
   color: var(--main-btn-text-color);
 }
 
+.fr-btn--close {
+  color: var(--main-color);
+}
 .fr-btn--icon-center {
   justify-content: center;
 }

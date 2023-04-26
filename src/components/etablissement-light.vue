@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { defineProps, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import { useRoute } from "vue-router"
 
+const $route = useRoute()
 defineProps({
   etablissement: {
     type: Object as PropType<HelpingInstitution>,
@@ -27,6 +29,19 @@ defineProps({
           </h6>
           <span data-testid="etablissement-informations-link">
             <router-link
+              v-if="$route.name === 'aide'"
+              class="fr-link fr-link--sm"
+              :to="{
+                name: 'helpBenefitEtablissementInformationsLight',
+                params: {
+                  etablissement_id: etablissement.id,
+                  droitId: $route.params.benefitId,
+                },
+              }"
+              >Voir les informations
+            </router-link>
+            <router-link
+              v-else
               class="fr-link fr-link--sm"
               :to="{
                 name: 'benefitEtablissementInformationsLight',

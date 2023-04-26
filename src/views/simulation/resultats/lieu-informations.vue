@@ -2,10 +2,11 @@
 import EtablissementInformations from "@/components/etablissement-informations.vue"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useEtablissements } from "@/composables/use-etablissements.js"
-import { useRouter } from "vue-router"
-import { onMounted } from "vue"
+import { useRouter, useRoute } from "vue-router"
+import { onMounted, computed } from "vue"
 
 const $router = useRouter()
+const $route = useRoute()
 const { benefit, currentEtablissement, updating } = useEtablissements()
 const goBackToNearbyPlaces = () => {
   if (benefit?.id) {
@@ -18,12 +19,18 @@ const goBackToNearbyPlaces = () => {
 onMounted(() => {
   updating.value = true
 })
+
+const backButtonLabel = computed(() =>
+  $route.name === "helpBenefitEtablissementInformationsLight"
+    ? "Retour au détail de l'aide"
+    : "Retour aux lieux à proximité"
+)
 </script>
 
 <template>
-  <div>
-    <BackButton class="fr-mb-2w" size="small" @click="goBackToNearbyPlaces"
-      >Retour au lieux à proximité
+  <div class="fr-pt-2w">
+    <BackButton class="fr-mb-2w" size="small" @click="goBackToNearbyPlaces">
+      {{ backButtonLabel }}
     </BackButton>
     <h5 class="fr-h5 fr-mt-2w fr-mb-4w">
       {{ currentEtablissement?.nom }}

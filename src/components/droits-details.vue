@@ -109,7 +109,7 @@
       <div class="fr-print-hidden">
         <div class="fr-mt-4w">
           <hr class="fr-hr fr-py-2w" />
-          <DroitDetailsLieux :benefit="droit" />
+          <DroitDetailsLieux v-if="droit" :benefit="droit" />
         </div>
       </div>
     </div>

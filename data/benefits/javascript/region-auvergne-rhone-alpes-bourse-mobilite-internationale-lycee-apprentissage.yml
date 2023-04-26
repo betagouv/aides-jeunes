@@ -18,10 +18,10 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aide/93/89-se-former-a-l-etranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis-education-lycees.htm
+link: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis
 teleservice: https://sicorra.auvergnerhonealpes.fr/public
 form: ""
-instructions: https://www.auvergnerhonealpes.fr/aide/93/89-se-former-a-l-etranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis-education-lycees.htm
+instructions: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis
 prefix: la
 type: float
 unit: €

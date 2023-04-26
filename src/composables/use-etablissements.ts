@@ -104,5 +104,6 @@ export function useEtablissements() {
     currentEtablissement,
     updating,
     benefit,
+    loadEtablissements,
   }
 }

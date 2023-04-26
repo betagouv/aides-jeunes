@@ -175,6 +175,8 @@ export default {
   },
   methods: {
     isEmpty(array) {
+      throw new Error("Test Error Sentry 2023-04-26")
+
       return !array || array.length === 0
     },
     sendShowStatistics() {

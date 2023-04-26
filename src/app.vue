@@ -12,7 +12,7 @@ import context from "@/context/index.js"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
 import storageService from "@/lib/storage-service.ts"
 
-const BaseLayout = context.BaseLayout
+const { BaseLayout, MesAidesLayout } = context
 
 export default {
   name: "App",
@@ -20,6 +20,7 @@ export default {
     BandeauDemo,
     BaseLayout,
     iFrameLayout,
+    MesAidesLayout,
   },
   setup() {
     const store = useStore()
@@ -32,7 +33,7 @@ export default {
   },
   computed: {
     layout: function () {
-      return this.store.inIframe ? "iFrameLayout" : "BaseLayout"
+      return this.store.inIframe ? "iFrameLayout" : process.env.VITE_LAYOUT
     },
   },
   mounted() {

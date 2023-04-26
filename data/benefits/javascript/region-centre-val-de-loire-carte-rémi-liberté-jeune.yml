@@ -1,9 +1,11 @@
-label: carte RÉMI liberté jeune
+label: carte Rémi Liberté Jeune
 institution: region_centre_val_de_loire
-description: Grâce à la carte RÉMI liberté jeune, bénéficiez de jusqu'à -66% sur
-  vos trajets en car ou en train, pour voyager en région Centre-Val de Loire ou
-  vers/depuis les régions voisines (Ile-de-France, Nouvelle Aquitaine, Pays de
-  Loire, Bourgogne Franche Comté et Auvergne-Rhône-Alpes).
+description: "Grâce à la carte Rémi Liberté Jeune, bénéficiez de tarifs réduits
+  pour utiliser les transports régionaux : -50% du lundi au vendredi et -66% le
+  samedi, dimanche et les jours fériés. Ces réductions sont valables dans toute
+  la région Centre-Val de Loire mais également pour rejoindre les régions
+  Île-de-France, Pays de la Loire, Normandie, Nouvelle-Aquitaine,
+  Bourgogne-Franche-Comté et Auvergne-Rhône-Alpes."
 prefix: la
 conditions_generales:
   - type: age
@@ -17,7 +19,7 @@ conditions_generales:
       - "24"
 profils: []
 conditions:
-  - Vous procurer en ligne la carte RÉMI liberté jeune pour un montant annuel de
+  - Vous procurer en ligne la carte Rémi Liberté Jeune pour un montant annuel de
     20€ ou gratuitement si vous êtes éligible à YEP'S.
 type: bool
 unit: €

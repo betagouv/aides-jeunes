@@ -1,0 +1,24 @@
+label: Bourse mobilité internationale - Création d'entreprise
+institution: region_auvergne_rhone_alpes
+description: Cette aide permet aux étudiants-entrepreneurs ou jeunes diplômés
+  d'enrichir et de concrétiser un projet de création d'entreprise en le
+  confrontant à une expérience internationale.
+prefix: la
+conditions_generales:
+  - type: regions
+    values:
+      - "84"
+profils:
+  - type: enseignement_superieur
+    conditions:
+      - type: annee_etude
+        values:
+          - master_1
+          - master_2
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: autre
+montant: 1500
+link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-bourse-de-mobilite-internationale-pour-mon-projet-de-creation-dentreprise
+instructions: https://www.auvergnerhonealpes.fr/aides/obtenir-une-bourse-de-mobilite-internationale-pour-mon-projet-de-creation-dentreprise

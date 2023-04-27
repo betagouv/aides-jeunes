@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { useEtablissements } from "@/composables/use-etablissements.js"
 import EtablissementLight from "@/components/etablissement-light.vue"
-const { etablissements, updating, benefit } = useEtablissements()
-import { computed, ref, defineProps } from "vue"
+const { etablissements, updating } = useEtablissements()
+import { computed, ref } from "vue"
 
 const showEtablissements = ref(false)
-
-defineProps({
-  benefit: Object,
-})
 
 const etablissementsPreview = computed(() => {
   return etablissements?.value?.slice(0, 2)

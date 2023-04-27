@@ -379,4 +379,4 @@ jobs:
       - name: Send CI failed message
         shell: bash
         run: |
-          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-danger: La CI a rencontré un problème sur la branche master ([lien](https://github.com/betagouv/aides-jeunes/actions/workflows/ci.yml?query=branch%3Amaster+is%3Afailure))"}' ${{ secrets.MATTERMOST_POST_URL }}
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-danger: [équipe-tech] La CI a rencontré un problème sur la branche master ([lien](https://github.com/betagouv/aides-jeunes/actions/workflows/ci.yml?query=branch%3Amaster+is%3Afailure))"}' ${{ secrets.MATTERMOST_ALERTING_URL }}

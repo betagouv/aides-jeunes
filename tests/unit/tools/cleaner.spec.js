@@ -2,7 +2,7 @@ import {
   anonymizeSimulation,
   anonymizeFollowup,
 } from "../../../lib/cleaner-functions"
-import { SimulationStatusEnum } from "../../../backend/models/simulation"
+import { SimulationStatusEnum } from "../../../lib/enums/simulation"
 
 const anId = "123"
 

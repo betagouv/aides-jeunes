@@ -12,6 +12,7 @@ import {
 } from "../lib/definitions.js"
 
 import { MongooseLayout, SimulationModel } from "../types/models.js"
+import { SimulationStatusEnum } from "../../lib/enums/simulation.js"
 
 const computeBenefits = computeAides.bind(benefits)
 
@@ -39,13 +40,6 @@ const answer = {
 const answers = {
   all: { type: [answer], required: true },
   current: { type: [answer], required: true },
-}
-
-export enum SimulationStatusEnum {
-  NEW = "new",
-  TEST = "test",
-  INVESTIGATION = "investigation",
-  ANONYMIZED = "anonymized",
 }
 
 const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(

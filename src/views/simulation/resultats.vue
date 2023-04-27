@@ -218,7 +218,7 @@ export default {
       this.sendEventToMatomo(
         "General",
         "Accès simulation anonymisée",
-        daysSinceDate(Date.parse(this.store.simulation.dateDeValeur))
+        daysSinceDate(new Date(this.store.simulation.dateDeValeur))
       )
     },
   },

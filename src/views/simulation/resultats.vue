@@ -101,6 +101,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import { daysSinceDate } from "@lib/utils.ts"
 
 export default {
   name: "SimulationResultats",
@@ -217,12 +218,7 @@ export default {
       this.sendEventToMatomo(
         "General",
         "Accès simulation anonymisée",
-        Math.ceil(
-          (Date.now() - Date.parse(this.store.simulation.dateDeValeur)) /
-            1000 /
-            3600 /
-            24
-        )
+        daysSinceDate(Date.parse(this.store.simulation.dateDeValeur))
       )
     },
   },

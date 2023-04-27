@@ -20,9 +20,24 @@
     </div>
   </WarningMessage>
 
+  <WarningMessage v-if="simulationAnonymized()">
+    <div>
+      <h2 class="fr-text--lead">
+        Vos résultats de simulation ne sont plus disponibles
+      </h2>
+      <h3 class="fr-text--lg">
+        La simulation à laquelle vous souhaitez accéder n‘est plus accessible.
+      </h3>
+      <p class="fr-text--lg">
+        Pour commencer une nouvelle simulation, rendez-vous sur la
+        <router-link to="home"> page d'accueil</router-link>
+        .
+      </p>
+    </div>
+  </WarningMessage>
+
   <ErrorBlock v-if="hasError" />
   <ErrorSaveBlock v-if="hasErrorSave" />
-
   <div v-show="shouldDisplayResults">
     <div v-if="!isEmpty(droits)">
       <p class="fr-text--lg">
@@ -129,13 +144,16 @@ export default {
     if (this.$route.query?.situationId) {
       this.$route.query.simulationId = this.$route.query.situationId
     }
-
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.simulationId) {
       if (this.store.simulationId !== this.$route.query.simulationId) {
         this.store.fetch(this.$route.query.simulationId).then(() => {
-          this.store.compute()
+          if (this.simulationAnonymized()) {
+            this.sendAccessToAnonymizedResults()
+          } else {
+            this.store.compute()
+          }
           this.$router.replace({ simulationId: null })
         })
       } // Else nothing to do
@@ -193,6 +211,18 @@ export default {
       this.sendEventsToRecorder(
         droitsWithUnexpectedAmount,
         BehaviourEventTypes.showUnexpectedAmountLink
+      )
+    },
+    sendAccessToAnonymizedResults() {
+      this.sendEventToMatomo(
+        "General",
+        "Accès simulation anonymisée",
+        Math.ceil(
+          (Date.now() - Date.parse(this.store.simulation.dateDeValeur)) /
+            1000 /
+            3600 /
+            24
+        )
       )
     },
   },

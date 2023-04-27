@@ -24,7 +24,7 @@ import storageService from "@/lib/storage-service.ts"
 let typeLabels = {
   teleservice: "Faire une demande en ligne",
   form: "Accéder au formulaire papier",
-  instructions: "Accéder aux instructions",
+  instructions: "Accéder aux instructions détaillées",
   link: "Plus d'informations",
 }
 

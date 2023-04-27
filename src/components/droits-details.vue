@@ -84,28 +84,7 @@
           </li>
         </ul>
       </WarningMessage>
-      <div class="fr-print-hidden">
-        <BenefitCta :benefit="droit" />
-        <a
-          v-if="droit.msa"
-          v-analytics="{
-            name: droit.label,
-            action: eventTypeMSA,
-            category: 'General',
-          }"
-          class="aj-droit-pro-agricole"
-          href="https://www.msa.fr/lfy/espace-prive"
-          rel="noopener"
-          target="_blank"
-          title="Démarches pour les professions agricoles - Nouvelle fenêtre"
-        >
-          <img
-            alt=""
-            src="@/assets/images/doigt.svg"
-            class="fr-mr-1w"
-          />Démarches pour les professions agricoles
-        </a>
-      </div>
+      <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
       <div class="fr-print-hidden">
         <div class="fr-mt-4w">
           <hr class="fr-hr fr-py-2w" />
@@ -117,7 +96,7 @@
 </template>
 
 <script>
-import BenefitCta from "./benefit-cta.vue"
+import BenefitCtaLight from "./benefit-cta-light.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.ts"
 import DroitMixin from "@/mixins/droit-mixin.js"
@@ -133,7 +112,7 @@ export default {
     WarningMessage,
     DroitHeader,
     DroitDetailsLieux,
-    BenefitCta,
+    BenefitCtaLight,
     BenefitCtaLink,
   },
   mixins: [DroitMixin],

@@ -1,6 +1,7 @@
 :root {
   /* CSS redirections (DSFR override) */
   --text-disabled-grey: #666;
+  --background-info-container: #f9f8f6;
   --blue-france-sun-113-625: var(--main-color);
   --blue-france-sun-113-625-hover: var(--main-color-hover);
   --blue-france-sun-113-625-active: var(--main-color-active);
@@ -247,6 +248,10 @@ textarea {
 
 .aj-benefit-amount {
   min-width: 120px;
+}
+
+.aj-benefit-cta-light-container {
+  background-color: var(--background-info-container);
 }
 
 .aj-institution-icon {

@@ -6,7 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
 import { SurveyType } from "../../lib/enums/survey.js"
-import utils from "../lib/utils.js"
+import { FollowupFactory } from "../lib/followup-factory.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -50,25 +50,12 @@ export async function persist(req: ajRequest, res: Response) {
   const simulation = req.simulation
 
   try {
-    const situationResults = await simulation.compute()
-    const benefits = situationResults.droitsEligibles.map((benefit) => ({
-      id: benefit.id,
-      amount: benefit.montant,
-      unit: benefit.unit,
-    }))
-
-    const followup = await Followup.create({
+    const followup = await FollowupFactory.create(
       simulation,
-      email: req.body.email,
-      surveyOptin: req.body.surveyOptin,
-      version: 3,
-      accessToken: await utils.generateToken(),
-      benefits,
-    })
+      req.body.email,
+      req.body.surveyOptin
+    )
 
-    req.simulation.hasFollowup = true
-
-    await req.simulation.save()
     await followup.sendSimulationResultsEmail()
 
     return res.send({ result: "OK" })

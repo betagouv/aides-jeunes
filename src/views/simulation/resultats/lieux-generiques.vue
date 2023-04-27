@@ -7,9 +7,12 @@ const { etablissements, updating } = useEtablissements()
 </script>
 
 <template>
-  <router-link :to="{ name: 'resultats' }">
-    <BackButton class="fr-mb-4w" size="small">Retour aux résultats </BackButton>
-  </router-link>
+  <BackButton
+    class="fr-mb-4w"
+    size="small"
+    @click="$router.push({ name: 'resultats' })"
+    >Retour aux résultats
+  </BackButton>
 
   <p v-show="updating">
     <span

@@ -24,12 +24,11 @@ export function followup(
       if (err) {
         return next(err)
       }
-      // TODO remove unecessary condition when tokens are widely used
+      // no matching followup or wrong or missing access token
       if (
-        !followup?.simulation?._id ||
-        (req?.query?.token && followup?.accessToken !== req.query.token)
+        !followup?.accessToken ||
+        followup.accessToken !== req?.query?.token
       ) {
-        // no id specified or not matching access token
         return res.redirect("/")
       }
       req.followup = followup

@@ -20,7 +20,7 @@
     </div>
   </WarningMessage>
 
-  <WarningMessage v-if="simulationAnonymized()">
+  <div class="fr-alert fr-alert--info fr-my-1w" v-if="simulationAnonymized()">
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -34,7 +34,7 @@
         .
       </p>
     </div>
-  </WarningMessage>
+  </div>
 
   <ErrorBlock v-if="hasError" />
   <ErrorSaveBlock v-if="hasErrorSave" />

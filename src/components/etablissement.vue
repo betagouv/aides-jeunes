@@ -2,6 +2,7 @@
 import { defineProps, computed, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 import { useRouter } from "vue-router"
+import EtablissementInformations from "./etablissement-informations.vue"
 
 defineProps({
   etablissement: {
@@ -23,7 +24,10 @@ const hasBenefitId = computed(() => {
       <h2 class="fr-tile__title fr-mb-3w" data-testid="etablissement-title">
         {{ etablissement.nom }}
       </h2>
-      <span data-testid="etablissement-informations-link">
+      <span v-if="$route.name === 'resultatsLieuxGeneriques'">
+        <etablissement-informations :etablissement="etablissement" />
+      </span>
+      <span v-else data-testid="etablissement-informations-link">
         <router-link
           v-if="hasBenefitId"
           class="fr-link fr-link--sm"

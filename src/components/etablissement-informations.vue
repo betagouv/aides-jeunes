@@ -37,7 +37,7 @@ const extractHHMM = (dateString: string) => {
     {{ etablissement.telephone }}
   </div>
   <div v-if="etablissement.horaires" class="fr-mb-3w">
-    <div class="fr-mb-2w">
+    <div class="fr-my-2w">
       <span
         class="fr-icon--sm fr-icon-time-line fr-mr-1w"
         aria-hidden="true"

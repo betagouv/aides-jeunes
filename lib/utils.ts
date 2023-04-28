@@ -79,3 +79,7 @@ export function getEnvVariable(variable: string): string {
 
   return value
 }
+
+export function daysSinceDate(pastDate: Date) {
+  return Math.floor((Date.now() - pastDate.getTime()) / 1000 / 3600 / 24)
+}

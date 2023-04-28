@@ -2,9 +2,8 @@ import mongoose from "mongoose"
 
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
-import Simulation, {
-  SimulationStatusEnum,
-} from "../backend/models/simulation.js"
+import Simulation from "../backend/models/simulation.js"
+import { SimulationStatusEnum } from "../lib/enums/simulation.js"
 import Followup from "../backend/models/followup"
 import {
   anonymizeSimulation,

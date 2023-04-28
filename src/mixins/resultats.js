@@ -1,5 +1,6 @@
 import Simulation from "@/lib/simulation.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
+import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 
 export default {
   mixins: [StatisticsMixin],
@@ -33,8 +34,12 @@ export default {
     },
     shouldDisplayResults() {
       return (
-        !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
-        this.droits
+        !(
+          this.resultatStatus.updating ||
+          this.hasWarning ||
+          this.hasError ||
+          this.simulationAnonymized()
+        ) && this.droits
       )
     },
     ressourcesYearMinusTwoCaptured() {
@@ -57,7 +62,11 @@ export default {
       }
 
       this.sendEventToMatomo("General", "compute", this.$route.path)
-      this.store.fetch(lastestSimulation).then(() => this.store.compute())
+      this.store.fetch(lastestSimulation).then(() => {
+        if (!this.simulationAnonymized()) {
+          this.store.compute()
+        }
+      })
 
       return lastestSimulation
     },
@@ -66,6 +75,9 @@ export default {
         this.store.mockResults(detail || this.$route.query.debug)
       }
       return this.$route.query.debug !== undefined
+    },
+    simulationAnonymized() {
+      return this.store.simulation.status === SimulationStatusEnum.ANONYMIZED
     },
   },
 }

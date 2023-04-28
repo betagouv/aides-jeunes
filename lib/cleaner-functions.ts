@@ -1,4 +1,4 @@
-import { SimulationStatusEnum } from "../backend/models/simulation.js"
+import { SimulationStatusEnum } from "./enums/simulation.js"
 
 function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {

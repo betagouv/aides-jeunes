@@ -1,5 +1,55 @@
+<script setup lang="ts">
+import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { defineProps, computed, PropType } from "vue"
+
+const props = defineProps({
+  benefit: Object as PropType<any>,
+})
+
+const levels = ["success", "default"]
+
+const ctas = computed(() => {
+  const ctaBehaviourTypes = [
+    BehaviourEventTypes.teleservice,
+    BehaviourEventTypes.form,
+    BehaviourEventTypes.instructions,
+  ]
+
+  return (
+    ctaBehaviourTypes
+      .map((type) => {
+        const linkGenerator = props.benefit[`${type}Generator`]
+        const link = props.benefit[type] || (linkGenerator && linkGenerator())
+        return {
+          type,
+          link,
+        }
+      })
+      .filter(function (item) {
+        return item.link
+      })
+      .slice(0, 2)
+      // add a form link to the end of the list if there is no form link
+      .concat([
+        {
+          type: BehaviourEventTypes.form,
+          link: "test.Fr",
+        },
+        {
+          type: BehaviourEventTypes.instructions,
+          link: "test.Fr",
+        },
+      ])
+  )
+})
+</script>
+
 <template>
-  <div class="fr-container fr-py-2w aj-benefit-cta-light-container">
+  <div
+    v-if="ctas.length > 0"
+    class="fr-container fr-py-2w aj-benefit-cta-light-container"
+  >
     <h6>Comment l'obtenir ?</h6>
     <div class="fr-grid-row fr-mb-2w">
       <div
@@ -36,65 +86,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
-import { hasEtablissements } from "@lib/benefits/etablissements.ts"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
-
-export default {
-  name: "BenefitCta",
-  components: {
-    BenefitCtaLinkLight,
-  },
-  props: {
-    benefit: Object,
-  },
-  data: function () {
-    return {
-      levels: ["success", "default"],
-      eventTypeShowLocations: BehaviourEventTypes.showLocations,
-    }
-  },
-  computed: {
-    ctas() {
-      const ctaBehaviourTypes = [
-        BehaviourEventTypes.teleservice,
-        BehaviourEventTypes.form,
-        BehaviourEventTypes.instructions,
-      ]
-
-      return (
-        ctaBehaviourTypes
-          .map((type) => {
-            const linkGenerator = this.benefit[`${type}Generator`]
-            const link =
-              this.benefit[type] || (linkGenerator && linkGenerator())
-            return {
-              type,
-              link,
-            }
-          })
-          .filter(function (item) {
-            return item.link
-          })
-          .slice(0, 2)
-          // add a form link to the end of the list if there is no form link
-          .concat([
-            {
-              type: BehaviourEventTypes.form,
-              link: "test.Fr",
-            },
-            {
-              type: BehaviourEventTypes.instructions,
-              link: "test.Fr",
-            },
-          ])
-      )
-    },
-    showProximityCta() {
-      return hasEtablissements(this.benefit) && this.$route.name !== "aide"
-    },
-  },
-}
-</script>

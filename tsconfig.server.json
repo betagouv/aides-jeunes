@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["lib/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@backend": ["backend/*"]
     }
   },
   "resolve": {

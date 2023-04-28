@@ -23,7 +23,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["lib/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@backend": ["backend/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

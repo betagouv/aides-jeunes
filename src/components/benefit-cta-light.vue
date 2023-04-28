@@ -71,7 +71,7 @@ const ctas = computed(() => {
         v-if="benefit.msa"
         v-analytics="{
           name: benefit.label,
-          action: eventTypeMSA,
+          action: BehaviourEventTypes.msa,
           category: 'General',
         }"
         class="aj-droit-pro-agricole"

@@ -13,7 +13,7 @@ const etablissementsPreview = computed(() => {
 
 <template>
   <div v-if="!updating">
-    <h5> Comment me faire accompagner près de chez moi ?</h5>
+    <h6 class="fr-h6"> Comment me faire accompagner près de chez moi ?</h6>
     <p>
       Vous pouvez vous faire accompagner pour faire votre demande et poser
       toutes vos questions.

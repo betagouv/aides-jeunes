@@ -7,7 +7,17 @@ const props = defineProps({
   benefit: Object as PropType<any>,
 })
 
-const levels = ["success", "default"]
+const ctaForm = computed(() => {
+  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.form)
+})
+
+const ctaTeleservice = computed(() => {
+  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.teleservice)
+})
+
+const ctaInstructions = computed(() => {
+  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.instructions)
+})
 
 const ctas = computed(() => {
   const ctaBehaviourTypes = [
@@ -50,19 +60,34 @@ const ctas = computed(() => {
     v-if="ctas.length > 0"
     class="fr-container fr-py-2w aj-benefit-cta-light-container"
   >
-    <h6>Comment l'obtenir ?</h6>
-    <div class="fr-grid-row fr-mb-2w">
-      <div
-        v-for="(cta, index) in ctas"
-        :key="index"
-        class="fr-col fr-col-md-5 fr-mr-2w fr-my-1w"
-      >
+    <h5 class="fr-h5">Comment l'obtenir ?</h5>
+    <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">
+      <div class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w">
         <BenefitCtaLinkLight
+          v-if="ctaTeleservice"
           :analytics-name="benefit.id"
           :benefit="benefit"
-          :link="cta.link"
-          :type="cta.type"
-          :level="levels[index]"
+          :link="ctaTeleservice.link"
+          :type="ctaTeleservice.type"
+          class="fr-btn fr-btn--sm"
+        />
+        <BenefitCtaLinkLight
+          v-if="ctaForm"
+          :analytics-name="benefit.id"
+          :benefit="benefit"
+          :link="ctaForm.link"
+          :type="ctaForm.type"
+          class="fr-btn fr-btn--secondary fr-btn--sm"
+        />
+      </div>
+      <div class="fr-col fr-my-1w">
+        <BenefitCtaLinkLight
+          v-if="ctaInstructions"
+          class="aj-a"
+          :analytics-name="benefit.id"
+          :benefit="benefit"
+          :link="ctaInstructions.link"
+          :type="ctaInstructions.type"
         />
       </div>
     </div>

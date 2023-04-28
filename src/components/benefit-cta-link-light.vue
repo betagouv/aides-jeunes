@@ -3,12 +3,8 @@
     :id="`cta-${type}`"
     v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     :aria-label="longLabel"
-    :class="{
-      'fr-btn fr-btn--secondary': level === 'default',
-      'fr-btn': level === 'success',
-    }"
     :href="getURL(link)"
-    class="text-center"
+    class="text-center fr-my-1w"
     rel="noopener"
     target="_blank"
     @click="onClick(link)"

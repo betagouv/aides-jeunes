@@ -7,7 +7,7 @@
         :key="index"
         class="fr-col fr-col-md-5 fr-mr-2w fr-my-1w"
       >
-        <BenefitCtaLink
+        <BenefitCtaLinkLight
           :analytics-name="benefit.id"
           :benefit="benefit"
           :link="cta.link"
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import BenefitCtaLink from "./benefit-cta-link.vue"
+import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
 import { hasEtablissements } from "@lib/benefits/etablissements.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
 export default {
   name: "BenefitCta",
   components: {
-    BenefitCtaLink,
+    BenefitCtaLinkLight,
   },
   props: {
     benefit: Object,

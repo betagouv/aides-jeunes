@@ -23,7 +23,7 @@ defineProps({
             aria-hidden="true"
           ></span>
         </div>
-        <div class="fr-grid-col">
+        <div class="fr-grid-col fr-col-12 fr-col-sm-10">
           <h6 class="fr-h6 fr-mb-1v" data-testid="etablissement-title">
             {{ etablissement.nom }}
           </h6>

@@ -86,14 +86,18 @@ export function useEtablissements() {
     } else {
       etablissementTypes = getSituationEtablissements()
     }
-
-    const apiEtablissements = await getEtablissements(city, etablissementTypes)
-    etablissements.value = apiEtablissements.sort((a, b) => {
-      return (
-        etablissementTypes.indexOf(a.pivotLocal) -
-        etablissementTypes.indexOf(b.pivotLocal)
+    if (etablissementTypes.length > 0) {
+      const apiEtablissements = await getEtablissements(
+        city,
+        etablissementTypes
       )
-    })
+      etablissements.value = apiEtablissements.sort((a, b) => {
+        return (
+          etablissementTypes.indexOf(a.pivotLocal) -
+          etablissementTypes.indexOf(b.pivotLocal)
+        )
+      })
+    }
     updating.value = false
   }
 

@@ -26,32 +26,19 @@ const ctas = computed(() => {
     BehaviourEventTypes.instructions,
   ]
 
-  return (
-    ctaBehaviourTypes
-      .map((type) => {
-        const linkGenerator = props.benefit[`${type}Generator`]
-        const link = props.benefit[type] || (linkGenerator && linkGenerator())
-        return {
-          type,
-          link,
-        }
-      })
-      .filter(function (item) {
-        return item.link
-      })
-      .slice(0, 2)
-      // add a form link to the end of the list if there is no form link
-      .concat([
-        {
-          type: BehaviourEventTypes.form,
-          link: "test.Fr",
-        },
-        {
-          type: BehaviourEventTypes.instructions,
-          link: "test.Fr",
-        },
-      ])
-  )
+  return ctaBehaviourTypes
+    .map((type) => {
+      const linkGenerator = props.benefit[`${type}Generator`]
+      const link = props.benefit[type] || (linkGenerator && linkGenerator())
+      return {
+        type,
+        link,
+      }
+    })
+    .filter(function (item) {
+      return item.link
+    })
+    .slice(0, 2)
 })
 </script>
 

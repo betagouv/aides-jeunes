@@ -76,5 +76,23 @@ describe("FollowupFactory", () => {
       await FollowupFactory.create(mockSimulation, mockEmail, mockSurveyOptin)
       expect(mockSimulation.save).toHaveBeenCalledTimes(1)
     })
+
+    describe("when the simulation compute fails", () => {
+      beforeEach(() => {
+        mockCompute = jest.fn().mockRejectedValue(new Error("Compute error"))
+
+        mockSimulation = {
+          compute: mockCompute,
+          hasFollowup: false,
+          save: jest.fn(),
+        }
+      })
+
+      it("throws an error", async () => {
+        await expect(
+          FollowupFactory.create(mockSimulation, mockEmail, mockSurveyOptin)
+        ).rejects.toThrow("Compute error")
+      })
+    })
   })
 })

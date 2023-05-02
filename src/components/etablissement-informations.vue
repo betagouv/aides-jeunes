@@ -18,7 +18,11 @@ const extractHHMM = (dateString: string) => {
 }
 </script>
 <template>
-  <address v-if="etablissement.adresse" class="fr-hint-text fr-mb-3w">
+  <address
+    v-if="etablissement.adresse"
+    class="fr-hint-text fr-mb-3w"
+    data-testid="etablissement-address"
+  >
     <span
       class="fr-icon--sm fr-icon-map-pin-2-line fr-mr-1w"
       aria-hidden="true"

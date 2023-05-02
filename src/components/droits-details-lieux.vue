@@ -12,7 +12,7 @@ const etablissementsPreview = computed(() => {
 </script>
 
 <template>
-  <div v-if="!updating">
+  <div v-if="!updating" data-testid="nearby-places">
     <h6 class="fr-h6"> Comment me faire accompagner près de chez moi ?</h6>
     <p>
       Vous pouvez vous faire accompagner pour faire votre demande et poser
@@ -37,6 +37,7 @@ const etablissementsPreview = computed(() => {
         <EtablissementLight :etablissement="etablissement" />
       </div>
       <button
+        v-if="etablissements.length > 2"
         class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"
         @click="showEtablissements = !showEtablissements"
       >

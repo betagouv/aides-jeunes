@@ -75,12 +75,12 @@ export function useEtablissements() {
 
   const loadEtablissements = async () => {
     let etablissementTypes: any = null
-
-    if ($route.params.benefit_id) {
+    const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
+    if (benefitId) {
       const benefits =
         !store.calculs.dirty && store.calculs.resultats.droitsEligibles
       benefit.value = benefits
-        ? benefits.find((b: any) => b.id === $route.params.benefit_id)
+        ? benefits.find((b: any) => b.id === benefitId)
         : null
       etablissementTypes = getBenefitEtablissements(benefit.value)
     } else {

@@ -1,10 +1,11 @@
+import dayjs from "dayjs"
+
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup, { FollowupInterface } from "../../models/followup.js"
 
-const oneDay = 24 * 60 * 60 * 1000
-const DelayBeforeInitialEmail = 6.5 * oneDay
-const DelayBeforeTousABordNotificationEmail = 2 * oneDay
+const DaysBeforeInitialEmail = 7
+const DaysBeforeTousABordNotificationEmail = 2
 
 async function sendMultipleEmails(emailType, limit) {
   switch (emailType) {
@@ -23,7 +24,7 @@ async function sendMultipleInitialEmails(limit) {
   const followups = await Followup.find({
     surveys: { $size: 0 },
     sentAt: {
-      $lt: new Date(new Date().getTime() - DelayBeforeInitialEmail),
+      $lt: dayjs().subtract(DaysBeforeInitialEmail, "day").toDate(),
     },
     surveyOptin: true,
   })
@@ -58,9 +59,9 @@ async function sendMultipleTousABordNotificationEmails(limit) {
     },
     "tousABordNotificationEmail.sentAt": { $exists: false },
     sentAt: {
-      $lt: new Date(
-        new Date().getTime() - DelayBeforeTousABordNotificationEmail
-      ),
+      $lt: dayjs()
+        .subtract(DaysBeforeTousABordNotificationEmail, "day")
+        .toDate(),
     },
     email: { $exists: true },
     surveyOptin: true,

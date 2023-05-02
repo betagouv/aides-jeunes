@@ -100,6 +100,11 @@ const individuSchema: individuGeneratorLayout = {
         .format("YYYY-MM-DD")
     },
   },
+  orphelin: {
+    fn: function (_, situation) {
+      return Individu.isWithoutParent(situation)
+    },
+  },
   peec_employeur: {
     fn: function () {
       return true

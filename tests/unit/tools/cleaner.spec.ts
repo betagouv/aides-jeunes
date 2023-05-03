@@ -166,3 +166,33 @@ describe("anonymizeSimulation", () => {
     )
   })
 })
+
+describe("franceConnectAnonymizeSimulation", () => {
+  it("should remove franceconnect answers and return a new simulation object", () => {
+    const initialSimulation = {
+      answers: {
+        all: [
+          { entityName: "franceconnect", value: "someValue" },
+          { entityName: "famille", value: "otherValue" },
+          { entityName: "franceconnect", value: "anotherValue" },
+          { entityName: "individu", value: "thirdValue" },
+        ],
+        current: [],
+      },
+    }
+
+    const expectedSimulation = {
+      answers: {
+        all: [
+          { entityName: "famille", value: "otherValue" },
+          { entityName: "individu", value: "thirdValue" },
+        ],
+        current: [],
+      },
+    }
+
+    const result = franceConnectAnonymizeSimulation(initialSimulation)
+
+    expect(result).toEqual(expectedSimulation)
+  })
+})

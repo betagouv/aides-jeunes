@@ -94,3 +94,17 @@ export function anonymizeFollowup(followup) {
 
   return followup
 }
+
+export function franceConnectAnonymizeSimulation(simulation) {
+  const answers = simulation.answers.all
+  const answersAnonymized = answers
+    .map((answer) => (answer.entityName === "franceconnect" ? null : answer))
+    .filter((answer) => answer)
+
+  simulation.answers = {
+    all: answersAnonymized,
+    current: [],
+  }
+
+  return simulation
+}

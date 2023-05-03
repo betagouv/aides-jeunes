@@ -9,7 +9,8 @@ import Followup from "../backend/models/followup"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
-} from "../lib/cleaner-functions"
+  franceConnectAnonymizeSimulation,
+} from "../lib/cleaner-functions.js"
 
 
 async function anonymizeFollowups() {
@@ -38,7 +39,7 @@ async function anonymizeFollowups() {
   console.log(["Terminé", "Followup", followup_count].join(";"))
 }
 
-async function anonymizeSimulations() {
+async function defaultAnonymizeSimulations() {
   const aMonthAgo = dayjs().subtract(31, "day").valueOf()
   const aWeekAgo = dayjs().subtract(7, "day").valueOf()
 
@@ -74,9 +75,35 @@ async function anonymizeSimulations() {
   console.log(["Terminé", "Simulation", simulation_count].join(";"))
 }
 
+async function franceConnectAnonymizeSimulations() {
+  const aDayAgo = dayjs().subtract(1, "day").valueOf()
+
+  let simulation_count = 0
+  const simulationsCursor = await Simulation.find({
+    dateDeValeur: { $lt: aDayAgo },
+    "answers.entityName": "franceconnect",
+  })
+
+  for await (const simulation of simulationsCursor) {
+    const anonymizedSimulation = franceConnectAnonymizeSimulation(simulation)
+
+    try {
+      await anonymizedSimulation.save()
+      simulation_count += 1
+    } catch (err) {
+      console.error(`Cannot save simulation: ${anonymizedSimulation.id}`)
+    }
+  }
+
+  console.log(
+    ["Terminé", "Simulation France Connect", simulation_count].join(";")
+  )
+}
+
 async function main() {
   await anonymizeFollowups()
-  await anonymizeSimulations()
+  await defaultAnonymizeSimulations()
+  await franceConnectAnonymizeSimulations()
 }
 
 try {

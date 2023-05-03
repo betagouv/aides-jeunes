@@ -85,10 +85,10 @@
         </ul>
       </WarningMessage>
       <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
-      <div class="fr-print-hidden">
+      <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
         <div class="fr-mt-4w">
           <hr class="fr-hr fr-py-2w" />
-          <DroitDetailsLieux v-if="droit" :benefit="droit" />
+          <DroitDetailsLieux :benefit="droit" />
         </div>
       </div>
     </div>
@@ -135,6 +135,9 @@ export default {
   computed: {
     aCharge() {
       return Situation.aCharge(this.store.situation)
+    },
+    showDetailsLieux() {
+      return this.$route.name !== "aide"
     },
   },
 }

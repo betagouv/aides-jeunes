@@ -83,6 +83,9 @@ function renderAsHtml(emailType, dataTemplate) {
 export default async function emailRender(emailType, followup) {
   let benefits: any = null
   let parameters: any = null
+  let formatedBenefits: any = {}
+  let benefitTexts: any = {}
+
   if (emailType === EmailType.simulationResults) {
     const populated = await (followup.populated("simulation")
       ? Promise.resolve(followup)
@@ -94,23 +97,12 @@ export default async function emailRender(emailType, followup) {
 
     const situationResults = await populated.simulation.compute()
     benefits = situationResults.droitsEligibles
-    followup.benefits = benefits.map((benefit) => ({
-      id: benefit.id,
-      amount: benefit.montant,
-      unit: benefit.unit,
-    }))
-    followup.save()
+
+    formatedBenefits = formatBenefits(benefits, parameters)
+    benefitTexts = benefits.map((benefit) =>
+      basicBenefitText(benefit, parameters)
+    )
   }
-
-  const formatedBenefits =
-    emailType === EmailType.simulationResults
-      ? formatBenefits(benefits, parameters)
-      : {}
-
-  const benefitTexts =
-    emailType === EmailType.simulationResults
-      ? benefits.map((benefit) => basicBenefitText(benefit, parameters))
-      : {}
 
   const dataTemplate = dataTemplateBuilder(
     emailType,

@@ -6,6 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { ajRequest } from "../types/express.js"
 import { SurveyType } from "../../lib/enums/survey.js"
+import { FollowupFactory } from "../lib/followup-factory.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -41,29 +42,27 @@ export function resultRedirect(req: ajRequest, res: Response) {
   res.redirect(req.simulation.returnPath)
 }
 
-export function persist(req: ajRequest, res: Response) {
+export async function persist(req: ajRequest, res: Response) {
   if (!req.body.email || !req.body.email.length) {
     return res.status(400).send({ result: "KO" })
   }
 
-  Followup.create({
-    simulation: req.simulation,
-    email: req.body.email,
-    surveyOptin: req.body.surveyOptin,
-  })
-    .then((followup) => {
-      req.simulation.hasFollowup = true
-      return req.simulation
-        .save()
-        .then(() => followup.sendSimulationResultsEmail())
-    })
-    .then(() => {
-      return res.send({ result: "OK" })
-    })
-    .catch((error) => {
-      console.error("error", error)
-      return res.status(400).send({ result: "KO" })
-    })
+  const simulation = req.simulation
+
+  try {
+    const followup = await FollowupFactory.create(
+      simulation,
+      req.body.email,
+      req.body.surveyOptin
+    )
+
+    await followup.sendSimulationResultsEmail()
+
+    return res.send({ result: "OK" })
+  } catch (error) {
+    console.error("error", error)
+    return res.status(400).send({ result: "KO" })
+  }
 }
 
 export function getFollowup(req: ajRequest, res: Response) {

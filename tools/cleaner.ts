@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import dayjs from "dayjs"
 
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
@@ -10,9 +11,9 @@ import {
   anonymizeFollowup,
 } from "../lib/cleaner-functions"
 
-async function main() {
-  const aMonthAgo = Date.now() - 31 * 24 * 60 * 60 * 1000
-  const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
+
+async function anonymizeFollowups() {
+  const aMonthAgo = dayjs().subtract(31, "day").valueOf()
 
   let followup_count = 0
   const followupsCursor = await Followup.find({
@@ -35,6 +36,11 @@ async function main() {
   }
 
   console.log(["Terminé", "Followup", followup_count].join(";"))
+}
+
+async function anonymizeSimulations() {
+  const aMonthAgo = dayjs().subtract(31, "day").valueOf()
+  const aWeekAgo = dayjs().subtract(7, "day").valueOf()
 
   let simulation_count = 0
   const simulationsCursor = await Simulation.find({
@@ -66,6 +72,11 @@ async function main() {
   }
 
   console.log(["Terminé", "Simulation", simulation_count].join(";"))
+}
+
+async function main() {
+  await anonymizeFollowups()
+  await anonymizeSimulations()
 }
 
 try {

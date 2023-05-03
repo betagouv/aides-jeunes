@@ -70,10 +70,10 @@ export default {
       if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
+      return link
     },
     onClick(link) {
       if (typeof link === "object") {
-        console.log("n,n,n,n,===>", this.store.calculs.resultats._id)
         storageService.local.setItem("trampoline", {
           simulationId: this.store.calculs.resultats._id,
         })

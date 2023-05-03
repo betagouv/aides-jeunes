@@ -20,7 +20,7 @@
     </div>
   </WarningMessage>
 
-  <div class="fr-alert fr-alert--info fr-my-1w" v-if="simulationAnonymized()">
+  <div v-if="simulationAnonymized()" class="fr-alert fr-alert--info fr-my-1w">
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles

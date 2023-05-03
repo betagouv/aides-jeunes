@@ -71,6 +71,8 @@ const LEGACY_FIELD_NAMES = [
   "duree_possession_titre_sejour",
 ]
 
+const FRANCE_CONNECT_FIELD_NAMES = ["idtoken", "mesri", "userinfo"]
+
 export const ANSWER_FIELD_NAMES = [
   "age", // For anonymized answers
   ...famille,
@@ -79,10 +81,7 @@ export const ANSWER_FIELD_NAMES = [
   ...parents,
   ...ressources.ressourceCategories.map((category) => category.id),
   "ressources",
-  // France Connect
-  "idtoken",
-  "mesri",
-  "userinfo",
+  ...FRANCE_CONNECT_FIELD_NAMES,
   ...LEGACY_FIELD_NAMES,
 ]
 

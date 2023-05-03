@@ -64,14 +64,16 @@ export default {
   },
   methods: {
     getURL(link) {
+      if (!this.store.calculs.resultats._id) {
+        return this.benefit.link
+      }
       if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
-
-      return link
     },
     onClick(link) {
       if (typeof link === "object") {
+        console.log("n,n,n,n,===>", this.store.calculs.resultats._id)
         storageService.local.setItem("trampoline", {
           simulationId: this.store.calculs.resultats._id,
         })

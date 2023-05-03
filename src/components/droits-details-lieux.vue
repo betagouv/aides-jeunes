@@ -45,7 +45,7 @@ const etablissementsPreview = computed(() => {
         <span v-else>Afficher tous les lieux</span>
       </button>
     </div>
-    <div v-if="etablissements.length === 0">
+    <div v-if="etablissements.length === 0 && !updating">
       <p class="fr-italic fr-my-2w">
         <cite>Aucun lieu n'a pu être trouvé à proximité de chez vous.</cite>
       </p>

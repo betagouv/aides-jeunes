@@ -12,7 +12,7 @@ const etablissementsPreview = computed(() => {
 </script>
 
 <template>
-  <div v-if="!updating" data-testid="nearby-places">
+  <div data-testid="nearby-places">
     <h6 class="fr-h6"> Comment me faire accompagner près de chez moi ?</h6>
     <p>
       Vous pouvez vous faire accompagner pour faire votre demande et poser

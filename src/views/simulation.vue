@@ -17,10 +17,11 @@
       </WarningMessage>
       <div v-if="displayFranceConnect" class="fr-alert fr-alert--info fr-my-1w">
         <p>Go pour du pré-remplissage avec France Connect !</p>
-        <button
-          @click="franceconnect"
+        <a
           class="franceconnect-button"
           href="api/auth/login"
+          aria-label="France Connect"
+          role="link"
         />
       </div>
       <div>
@@ -82,6 +83,7 @@ export default {
 
 <style type="text/css">
 .franceconnect-button {
+  display: block;
   width: 185px;
   height: 48px;
   background-image: url("/public/img/france-connect.svg");

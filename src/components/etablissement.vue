@@ -3,6 +3,17 @@ import { defineProps, computed, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 import { useRouter } from "vue-router"
 import EtablissementInformations from "./etablissement-informations.vue"
+import ABTestingService from "@/plugins/ab-testing-service.js"
+
+interface ABTestingServiceType {
+  getValues(): any
+  setVariant(key: any, value: any): any
+}
+
+const abTestingValue = computed(() => {
+  const abTest: ABTestingServiceType = ABTestingService
+  return abTest.getValues().css_text
+})
 
 defineProps({
   etablissement: {
@@ -24,7 +35,11 @@ const hasBenefitId = computed(() => {
       <h2 class="fr-tile__title fr-mb-3w" data-testid="etablissement-title">
         {{ etablissement.nom }}
       </h2>
-      <span v-if="$route.name === 'resultatsLieuxGeneriques'">
+      <span
+        v-if="
+          $route.name === 'resultatsLieuxGeneriques' || abTestingValue === 'D'
+        "
+      >
         <etablissement-informations :etablissement="etablissement" />
       </span>
       <span v-else data-testid="etablissement-informations-link">

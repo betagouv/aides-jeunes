@@ -84,7 +84,29 @@
           </li>
         </ul>
       </WarningMessage>
-      <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
+      <div v-if="abtestingValue === 'D'" class="fr-print-hidden">
+        <BenefitCta :benefit="droit" class="fr-mt-4w" :type="eventTypeMSA" />
+        <a
+          v-if="droit.msa"
+          v-analytics="{
+            name: droit.label,
+            action: eventTypeMSA,
+            category: 'General',
+          }"
+          class="aj-droit-pro-agricole"
+          href="https://www.msa.fr/lfy/espace-prive"
+          rel="noopener"
+          target="_blank"
+          title="Démarches pour les professions agricoles - Nouvelle fenêtre"
+        >
+          <img
+            alt=""
+            src="@/assets/images/doigt.svg"
+            class="fr-mr-1w"
+          />Démarches pour les professions agricoles
+        </a>
+      </div>
+      <BenefitCtaLight v-else :benefit="droit" class="fr-mt-4w" />
       <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
         <div class="fr-mt-4w">
           <hr class="fr-hr fr-py-2w" />
@@ -97,6 +119,7 @@
 
 <script>
 import BenefitCtaLight from "./benefit-cta-light.vue"
+import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.ts"
 import DroitMixin from "@/mixins/droit-mixin.js"
@@ -105,6 +128,7 @@ import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "DroitsDetails",
@@ -113,6 +137,7 @@ export default {
     DroitHeader,
     DroitDetailsLieux,
     BenefitCtaLight,
+    BenefitCta,
     BenefitCtaLink,
   },
   mixins: [DroitMixin],
@@ -138,6 +163,9 @@ export default {
     },
     showDetailsLieux() {
       return this.$route.name !== "aide"
+    },
+    abtestingValue() {
+      return ABTestingService.getValues().css_text
     },
   },
 }

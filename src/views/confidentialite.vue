@@ -188,6 +188,23 @@
       l’internaute sur d’autres sites.
     </p>
 
+    <div v-for="cookie in cookies" :key="cookie.location">
+      <div>{{ cookie.location }} </div>
+      <table>
+        <tr>
+          <th>Nom</th>
+          <th>Durée de vie</th>
+          <th>Finalité</th>
+        </tr>
+        <tr v-for="item in cookie.items" :key="item.name">
+          <td>{{ item.name }}</td>
+          <td>{{ item.lifetime }}</td>
+          <td>{{ item.purpose }}</td>
+        </tr>
+      </table>
+      <br />
+    </div>
+
     <div>
       <p>Il convient d’indiquer que :</p>
       <ul>
@@ -226,6 +243,66 @@ export default {
   setup() {
     return {
       store: useStore(),
+      cookies: [
+        {
+          location: "Sur ce site",
+          items: [
+            {
+              name: "_pk_id.*",
+              lifetime: "13 mois",
+              purpose: "Matomo : Identifiant de visiteur unique",
+            },
+            {
+              name: "_pk_ses.*",
+              lifetime: "30 minutes",
+              purpose: "Matomo : Informations de visite",
+            },
+            {
+              name: "mtm_consent",
+              lifetime: "30 ans",
+              purpose: "Matomo : Enregistrement du don de consentement",
+            },
+            {
+              name: "mtm_consent_removed",
+              lifetime: "30 ans",
+              purpose: "Matomo : Enregistrement du non-consentement",
+            },
+            {
+              name: "lastestSimulation",
+              lifetime: "7 jours",
+              purpose: "Simulation : Identifiant de la dernière simulation",
+            },
+            {
+              name: "simulation_*",
+              lifetime: "7 jours",
+              purpose:
+                "Simulation : Secret permettant de gérer la légimité des accès",
+            },
+            {
+              name: "github_token",
+              lifetime: "Session",
+              purpose:
+                "Outil d’accompagnement : Secret permettant de gérer les accès",
+            },
+          ],
+        },
+        {
+          location: "Sur stats.data.gouv.fr",
+          items: [
+            {
+              name: "matomo_sessid",
+              lifetime: "14 jours",
+              purpose: "Matomo : Visiteur unique",
+            },
+            {
+              name: "piwik_ignore ",
+              lifetime: "30 ans",
+              purpose:
+                "Matomo : Enregistrement de la demande d’exclusion du suivi",
+            },
+          ],
+        },
+      ],
     }
   },
   computed: {

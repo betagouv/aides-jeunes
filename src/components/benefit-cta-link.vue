@@ -64,11 +64,11 @@ export default {
   },
   methods: {
     hasFinishedSimulation() {
-      return !this.store.calculs.resultats._id
+      return this.store.calculs.resultats._id
     },
 
     getURL(link) {
-      if (this.hasFinishedSimulation()) {
+      if (!this.hasFinishedSimulation()) {
         return this.benefit.link
       }
       if (typeof link === "object") {
@@ -79,7 +79,7 @@ export default {
     onClick(link) {
       if (typeof link === "object") {
         storageService.local.setItem("trampoline", {
-          simulationId: this.store.calculs.resultats._id,
+          simulationId: this.hasFinishedSimulation(),
         })
       }
     },

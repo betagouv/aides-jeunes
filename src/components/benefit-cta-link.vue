@@ -63,8 +63,12 @@ export default {
     },
   },
   methods: {
+    hasFinishedSimulation() {
+      return !this.store.calculs.resultats._id
+    },
+
     getURL(link) {
-      if (!this.store.calculs.resultats._id) {
+      if (this.hasFinishedSimulation()) {
         return this.benefit.link
       }
       if (typeof link === "object") {

@@ -137,7 +137,8 @@ textarea {
   color: var(--main-btn-text-color);
 }
 
-.fr-btn--close {
+.fr-btn--close,
+.fr-btn--tertiary-no-outline {
   color: var(--main-color);
 }
 .fr-btn--icon-center {

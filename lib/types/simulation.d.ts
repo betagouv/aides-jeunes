@@ -1,4 +1,7 @@
-import { SimulationStatusEnum } from "../enums/simulation.js"
+import {
+  SimulationStatusEnum,
+  SimulationFranceConnectStatusEnum,
+} from "../enums/simulation.js"
 
 export interface Answer {
   id: string
@@ -25,6 +28,7 @@ export interface SimulationInterface {
   hasFollowup?: boolean
   modifiedFrom?: string
   status: SimulationStatusEnum
+  franceConnectStatus: SimulationFranceConnectStatusEnum
   teleservice?: string
   token: string
 }

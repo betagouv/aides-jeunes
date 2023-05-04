@@ -4,14 +4,16 @@ import dayjs from "dayjs"
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
 import Simulation from "../backend/models/simulation.js"
-import { SimulationStatusEnum } from "../lib/enums/simulation.js"
-import Followup from "../backend/models/followup"
+import {
+  SimulationStatusEnum,
+  SimulationFranceConnectStatusEnum,
+} from "../lib/enums/simulation.js"
+import Followup from "../backend/models/followup.js"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
   franceConnectAnonymizeSimulation,
 } from "../lib/cleaner-functions.js"
-
 
 async function anonymizeFollowups() {
   const aMonthAgo = dayjs().subtract(31, "day").valueOf()
@@ -81,7 +83,10 @@ async function franceConnectAnonymizeSimulations() {
   let simulation_count = 0
   const simulationsCursor = await Simulation.find({
     dateDeValeur: { $lt: aDayAgo },
-    "answers.entityName": "franceconnect",
+    "answers.all": {
+      $elemMatch: { value: { $exists: true }, entityName: "franceconnect" },
+    },
+    franceConnectStatus: SimulationFranceConnectStatusEnum.FETCHED,
   })
 
   for await (const simulation of simulationsCursor) {

@@ -4,3 +4,8 @@ export enum SimulationStatusEnum {
   INVESTIGATION = "investigation",
   ANONYMIZED = "anonymized",
 }
+
+export enum SimulationFranceConnectStatusEnum {
+  FETCHED = "fetched",
+  ANONYMIZED = "anonymized",
+}

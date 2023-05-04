@@ -1,4 +1,7 @@
-import { SimulationStatusEnum } from "./enums/simulation.js"
+import {
+  SimulationStatusEnum,
+  SimulationFranceConnectStatusEnum,
+} from "./enums/simulation.js"
 
 function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {
@@ -98,13 +101,22 @@ export function anonymizeFollowup(followup) {
 export function franceConnectAnonymizeSimulation(simulation) {
   const answers = simulation.answers.all
   const answersAnonymized = answers
-    .map((answer) => (answer.entityName === "franceconnect" ? null : answer))
+    .map((answer) => {
+      if (answer.entityName !== "franceconnect") {
+        return answer
+      }
+
+      answer.value = undefined
+      return answer
+    })
     .filter((answer) => answer)
 
   simulation.answers = {
     all: answersAnonymized,
     current: [],
   }
+
+  simulation.franceConnectStatus = SimulationFranceConnectStatusEnum.ANONYMIZED
 
   return simulation
 }

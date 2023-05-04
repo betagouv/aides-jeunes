@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken"
 
 import config from "../config/index.js"
 import { answerLayout } from "../../lib/types/answer.js"
+import { SimulationFranceConnectStatusEnum } from "../../lib/enums/simulation.js"
 
 export const enum CookiesKeys {
   fcState = "fc_state",
@@ -112,6 +113,7 @@ async function createSimulationFromAnswer(answers) {
     `${process.env.MES_AIDES_ROOT_URL}/api/simulation`,
     {
       dateDeValeur: new Date(),
+      franceConnectStatus: SimulationFranceConnectStatusEnum.FETCHED,
       answers: {
         all: answers,
         current: [],

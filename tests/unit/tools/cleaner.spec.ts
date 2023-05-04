@@ -2,8 +2,12 @@ import { expect } from "@jest/globals"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
+  franceConnectAnonymizeSimulation,
 } from "@root/lib/cleaner-functions.js"
-import { SimulationStatusEnum } from "@root/lib/enums/simulation.js"
+import {
+  SimulationStatusEnum,
+  SimulationFranceConnectStatusEnum,
+} from "@root/lib/enums/simulation.js"
 
 const anId = "123"
 
@@ -179,16 +183,20 @@ describe("franceConnectAnonymizeSimulation", () => {
         ],
         current: [],
       },
+      franceConnectStatus: SimulationFranceConnectStatusEnum.FETCHED,
     }
 
     const expectedSimulation = {
       answers: {
         all: [
+          { entityName: "franceconnect", value: undefined },
           { entityName: "famille", value: "otherValue" },
+          { entityName: "franceconnect", value: undefined },
           { entityName: "individu", value: "thirdValue" },
         ],
         current: [],
       },
+      franceConnectStatus: SimulationFranceConnectStatusEnum.ANONYMIZED,
     }
 
     const result = franceConnectAnonymizeSimulation(initialSimulation)

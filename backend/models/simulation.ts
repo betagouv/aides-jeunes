@@ -13,7 +13,10 @@ import {
 
 import { SimulationInterface } from "../../lib/types/simulation.d.js"
 import { SimulationModel } from "../types/models.js"
-import { SimulationStatusEnum } from "../../lib/enums/simulation.js"
+import {
+  SimulationStatusEnum,
+  SimulationFranceConnectStatusEnum,
+} from "../../lib/enums/simulation.js"
 
 const computeBenefits = computeAides.bind(benefits)
 
@@ -66,6 +69,10 @@ const SimulationSchema = new mongoose.Schema<
       type: String,
       default: SimulationStatusEnum.NEW,
       enum: Object.values(SimulationStatusEnum),
+    },
+    franceConnectStatus: {
+      type: String,
+      enum: Object.values(SimulationFranceConnectStatusEnum),
     },
     teleservice: String,
     token: String,

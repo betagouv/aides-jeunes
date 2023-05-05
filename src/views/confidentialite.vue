@@ -188,21 +188,24 @@
       l’internaute sur d’autres sites.
     </p>
 
-    <div v-for="cookie in cookies" :key="cookie.location">
-      <div>{{ cookie.location }} </div>
+    <div class="fr-table" v-for="cookie in cookies" :key="cookie.location">
       <table>
-        <tr>
-          <th>Nom</th>
-          <th>Durée de vie</th>
-          <th>Finalité</th>
-        </tr>
-        <tr v-for="item in cookie.items" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.lifetime }}</td>
-          <td>{{ item.purpose }}</td>
-        </tr>
+        <caption>{{ cookie.location }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Durée de vie</th>
+            <th scope="col">Finalité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in cookie.items" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.lifetime }}</td>
+            <td>{{ item.purpose }}</td>
+          </tr>
+        </tbody>
       </table>
-      <br />
     </div>
 
     <div>

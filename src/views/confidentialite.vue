@@ -188,7 +188,7 @@
       l’internaute sur d’autres sites.
     </p>
 
-    <div class="fr-table" v-for="cookie in cookies" :key="cookie.location">
+    <div class="fr-table" :key="cookie.location" v-for="cookie in cookies">
       <table>
         <caption>{{ cookie.location }}</caption>
         <thead>

@@ -14,6 +14,6 @@ function generate_stats {
   cp $DEST/$2_$NOW.csv $DEST/$2.csv
 }
 
-generate_stats month monthly
+generate_stats month,activite monthly_activite
+generate_stats month,age monthly_age
 generate_stats month,depcom100kp,departement,region monthly_geo
-generate_stats month,depcom100kp,departement,region,_interetsAidesVelo _interetsAidesVelo

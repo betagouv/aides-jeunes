@@ -4,6 +4,10 @@ function month(simulation) {
   return simulation.dateDeValeur.toISOString().slice(0, 7)
 }
 
+function year(simulation) {
+  return simulation.dateDeValeur.toISOString().slice(0, 4)
+}
+
 function age(simulation) {
   const ageAnswer =
     simulation.answers &&
@@ -22,7 +26,7 @@ function age(simulation) {
   return dobAnwser
     ? Math.round(
         (simulation.dateDeValeur - ISODate(dobAnwser.value)) /
-          (365.25 / 24 / 60 / 60 / 1000),
+          (365.25 * 24 * 60 * 60 * 1000),
         0
       )
     : "#N/A"
@@ -147,6 +151,7 @@ const props = {
   epci,
   region,
   month,
+  year,
 }
 
 function genericGetter(propName, simulation) {

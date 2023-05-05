@@ -236,9 +236,20 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import { useStore } from "@/stores/index.ts"
+
+interface CookieDetails {
+  name: string
+  lifetime: string
+  purpose: string
+}
+
+interface Cookies {
+  location: string
+  items: CookieDetails[]
+}
 
 export default {
   name: "Cgu",
@@ -305,7 +316,7 @@ export default {
             },
           ],
         },
-      ],
+      ] as Cookies,
     }
   },
   computed: {

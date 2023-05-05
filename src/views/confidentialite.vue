@@ -320,17 +320,14 @@ export default {
     }
   },
   computed: {
-    situation() {
-      return this.store.situation
-    },
     emailBody() {
       return `Bonjour,
 
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
 ${
-  this.situation && this.simulationId
-    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.simulationId}**.`
+  this.store.simulationId
+    ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.store.simulationId}**.`
     : ""
 }
 Voici quelques éléments que j'ai renseigné sur celle-ci pour vous aider à l'identifier.

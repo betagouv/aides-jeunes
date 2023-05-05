@@ -329,7 +329,7 @@ export default {
 J'ai effectué une simulation sur Mes Aides le **JJ/MM/AAAA à HH:MM:SS**.
 
 ${
-  this.store.situation && this.store.simulationId
+  this.store.simulationId
     ? `La dernière simulation que j'ai effectuée porte l'identifiant **${this.store.simulationId}**.`
     : ""
 }

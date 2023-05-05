@@ -320,9 +320,6 @@ export default {
     }
   },
   computed: {
-    situation() {
-      return this.store.situation
-    },
     emailBody() {
       return `Bonjour,
 

@@ -218,19 +218,28 @@
       </ul>
     </div>
 
-    <MatomoOptOut />
+    <iframe
+      id="tracking-optout"
+      class="aj-iframe-tracking-optout"
+      title="Paramètres de suivi de l'utilisateur - stats.data.gouv.fr"
+      src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
+    >
+      Vous pouvez choisir de
+      <a
+        href="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
+        >refuser ce suivi</a
+      >.
+    </iframe>
   </article>
 </template>
 
 <script>
 import ContactEmailMixin from "@/mixins/contact-email.js"
-import MatomoOptOut from "@/components/matomo-opt-out.vue"
 import { useStore } from "@/stores/index.ts"
 
 export default {
   name: "Cgu",
   mixins: [ContactEmailMixin],
-  components: { MatomoOptOut },
   setup() {
     return {
       store: useStore(),

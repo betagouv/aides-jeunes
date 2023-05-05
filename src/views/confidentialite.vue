@@ -298,7 +298,7 @@ export default {
               purpose: "Matomo : Visiteur unique",
             },
             {
-              name: "piwik_ignore ",
+              name: "piwik_ignore",
               lifetime: "30 ans",
               purpose:
                 "Matomo : Enregistrement de la demande d’exclusion du suivi",

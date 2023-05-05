@@ -16,7 +16,7 @@ const goBackToBenefitDetails = () => {
 }
 </script>
 <template>
-  <div>
+  <div data-testid="lieux">
     <BackButton
       class="fr-mb-2w"
       size="small"

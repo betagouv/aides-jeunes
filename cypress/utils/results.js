@@ -44,16 +44,34 @@ const hasPrimeActivite = () => {
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
 }
 
-const hasPrimeActiviteNearbyPlaces = () => {
-  cy.get('[data-testid="nearby-places"]').should("be.visible")
-  cy.get('[data-testid="etablissement-title"]').should(
-    "contain",
-    "Caisse d'allocations familiales"
-  )
-  cy.get('[data-testid="etablissement-informations-link"]').should(
-    "contain",
-    "Voir les informations"
-  )
+const hasPrimeActiviteNearbyPlacesWithABTesting = () => {
+  cy.window()
+    .its("localStorage.ABTesting")
+    .then((abtestingValue) => {
+      const abtestingObject = JSON.parse(abtestingValue).css_text.value
+      if (abtestingObject === "D") {
+        // Historical version
+        cy.get("#cta-proximity").should("be.visible").click()
+        cy.get("#cta-proximity").should("not.exist")
+        cy.get('[data-testid="lieux"]').should("be.visible")
+        cy.get('[data-testid="etablissement-title"]').should(
+          "contain",
+          "Caisse d'allocations familiales"
+        )
+        back()
+      } else {
+        // Refonte UX
+        cy.get('[data-testid="nearby-places"]').should("be.visible")
+        cy.get('[data-testid="etablissement-title"]').should(
+          "contain",
+          "Caisse d'allocations familiales"
+        )
+        cy.get('[data-testid="etablissement-informations-link"]').should(
+          "contain",
+          "Voir les informations"
+        )
+      }
+    })
 }
 
 const hasSituationNearbyPlaces = () => {
@@ -222,7 +240,7 @@ export default {
   wait,
   back,
   hasPrimeActivite,
-  hasPrimeActiviteNearbyPlaces,
+  hasPrimeActiviteNearbyPlacesWithABTesting,
   hasSituationNearbyPlaces,
   hasHousingBenefit,
   hasCSS,

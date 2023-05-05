@@ -27,28 +27,30 @@ const etablissementsPreview = computed(() => {
         >Récupération des lieux à proximité en cours…</span
       >
     </p>
-    <div v-if="etablissements?.length && !updating" class="fr-mt-2w">
-      <div
-        v-for="(etablissement, index) in showEtablissements
-          ? etablissements
-          : etablissementsPreview"
-        :key="index"
-      >
-        <EtablissementLight :etablissement="etablissement" />
+    <span v-if="!updating">
+      <div v-if="etablissements?.length" class="fr-mt-2w">
+        <div
+          v-for="(etablissement, index) in showEtablissements
+            ? etablissements
+            : etablissementsPreview"
+          :key="index"
+        >
+          <EtablissementLight :etablissement="etablissement" />
+        </div>
+        <button
+          v-if="etablissements.length > 2"
+          class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"
+          @click="showEtablissements = !showEtablissements"
+        >
+          <span v-if="showEtablissements">Réduire l'affichage des lieux</span>
+          <span v-else>Afficher tous les lieux</span>
+        </button>
       </div>
-      <button
-        v-if="etablissements.length > 2"
-        class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"
-        @click="showEtablissements = !showEtablissements"
-      >
-        <span v-if="showEtablissements">Réduire l'affichage des lieux</span>
-        <span v-else>Afficher tous les lieux</span>
-      </button>
-    </div>
-    <div v-if="etablissements.length === 0">
-      <p class="fr-italic fr-my-2w">
-        <cite>Aucun lieu n'a pu être trouvé à proximité de chez vous.</cite>
-      </p>
-    </div>
+      <div v-if="etablissements.length === 0">
+        <p class="fr-italic fr-my-2w">
+          <cite>Aucun lieu n'a pu être trouvé à proximité de chez vous.</cite>
+        </p>
+      </div>
+    </span>
   </div>
 </template>

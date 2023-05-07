@@ -12,3 +12,4 @@ instructions: https://tarificationsolidaire.bordeaux-metropole.fr/infosCreationC
 floorAt: 0.01
 entity: individus
 openfiscaPeriod: thisMonth
+private: true

@@ -4,7 +4,7 @@ import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup, { FollowupInterface } from "../../models/followup.js"
 
-const DaysBeforeInitialEmail = 7
+const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
 async function sendMultipleEmails(emailType, limit) {

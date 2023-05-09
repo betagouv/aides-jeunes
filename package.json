@@ -119,12 +119,12 @@
     "eslint-plugin-prettier-vue": "^3.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
+    "lint-staged": "^13.2.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.5.1",
-    "pretty-quick": "^3.1.2",
     "rollup-plugin-visualizer": "^5.8.2",
     "ts-jest": "^27.1.4",
     "typescript": "^4.8.3",
@@ -189,6 +189,12 @@
     "testPathIgnorePatterns": [
       "tests/unit/views/fiscales.spec.js",
       "tests/unit/components/ressource/types.spec.js"
+    ]
+  },
+  "lint-staged": {
+    "*.(js|json|ts|vue|yaml)": "prettier --write",
+    "*.(js|ts|vue)": [
+      "eslint  --max-warnings 0 --fix"
     ]
   },
   "engines": {

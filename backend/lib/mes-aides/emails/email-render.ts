@@ -48,6 +48,8 @@ const textTemplates = {
   [EmailType.tousABordNotification]: tousABordNotificationTextTemplate,
 }
 
+const APIEmailRenderURL = "/api/email/"
+
 const dataTemplateBuilder = (
   emailType,
   followup,
@@ -60,6 +62,7 @@ const dataTemplateBuilder = (
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
+    emailRenderURL: `${config.baseURL}${APIEmailRenderURL}${followup._id}/${emailType}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,

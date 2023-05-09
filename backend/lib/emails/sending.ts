@@ -22,7 +22,19 @@ async function sendMultipleEmails(emailType, limit) {
 
 async function sendMultipleInitialEmails(limit) {
   const followups = await Followup.find({
-    surveys: { $size: 0 },
+    surveys: {
+      $not: {
+        $elemMatch: {
+          type: {
+            $in: [
+              SurveyType.benefitAction,
+              SurveyType.trackClickOnSimulationUsefulnessEmail,
+              SurveyType.trackClickOnBenefitActionEmail,
+            ],
+          },
+        },
+      },
+    },
     sentAt: {
       $lt: dayjs().subtract(DaysBeforeInitialEmail, "day").toDate(),
     },

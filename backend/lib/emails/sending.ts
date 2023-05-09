@@ -57,7 +57,6 @@ async function sendMultipleTousABordNotificationEmails(limit) {
         id: "pass-pass-pour-les-demandeurs-demploi",
       },
     },
-    "tousABordNotificationEmail.sentAt": { $exists: false },
     sentAt: {
       $lt: dayjs()
         .subtract(DaysBeforeTousABordNotificationEmail, "day")
@@ -65,6 +64,13 @@ async function sendMultipleTousABordNotificationEmails(limit) {
     },
     email: { $exists: true },
     surveyOptin: true,
+    surveys: {
+      $not: {
+        $elemMatch: {
+          type: SurveyType.tousABordNotification,
+        },
+      },
+    },
   })
     .sort({ createdAt: 1 })
     .limit(limit)
@@ -72,7 +78,9 @@ async function sendMultipleTousABordNotificationEmails(limit) {
   const results = await Promise.all(
     followups.map(async (followup) => {
       try {
-        const result = await followup.sendTousABordNotificationEmail()
+        const result = await followup.sendSurvey(
+          SurveyType.tousABordNotification
+        )
         return { ok: result._id }
       } catch (error) {
         return { ko: error }

@@ -53,10 +53,6 @@ const FollowupSchema = new mongoose.Schema<FollowupInterface>(
     version: Number,
     error: { type: Object },
     accessToken: { type: String },
-    tousABordNotificationEmail: {
-      sentAt: { type: Date },
-      messageId: { type: String },
-    },
   },
   { minimize: false, id: false }
 )
@@ -75,20 +71,8 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   return this.save()
 })
 
-FollowupSchema.method("postTousABordNotificationEmail", function (messageId) {
-  this.tousABordNotificationEmail = {
-    sentAt: Date.now(),
-    messageId: messageId,
-  }
-  return this.save()
-})
-
 FollowupSchema.method("renderSimulationResultsEmail", function () {
   return emailRender(EmailType.simulationResults, this)
-})
-
-FollowupSchema.method("renderTousABordNotificationEmail", function () {
-  return emailRender(EmailType.tousABordNotification, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", function () {
@@ -113,34 +97,14 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
 })
 
-FollowupSchema.method("sendTousABordNotificationEmail", function () {
-  const followup = this
-  return this.renderTousABordNotificationEmail()
-    .then((render) => {
-      const email = new SendSmtpEmail()
-      email.to = [{ email: followup.email }]
-      email.subject = render.subject
-      email.textContent = render.text
-      email.htmlContent = render.html
-      email.tags = [EmailType.tousABordNotification]
-      return sendEmail(email)
-    })
-    .then((response) => {
-      return followup.postTousABordNotificationEmail(response.messageId)
-    })
-    .catch((err) => {
-      console.log("error", err)
-      followup.error = JSON.stringify(err, null, 2)
-      return followup.save()
-    })
-})
-
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyType.trackClickOnBenefitActionEmail:
       return emailRender(EmailType.benefitAction, this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return emailRender(EmailType.simulationUsefulness, this)
+    case SurveyType.tousABordNotification:
+      return emailRender(EmailType.tousABordNotification, this)
     case SurveyType.benefitAction:
       return Promise.reject(
         new Error(

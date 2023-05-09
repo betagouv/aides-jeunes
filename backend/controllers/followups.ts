@@ -171,17 +171,26 @@ async function updateTrackClickOnBenefitActionEmail(req: ajRequest) {
 export async function logSurveyLinkClick(req: ajRequest, res: Response) {
   const { surveyType } = req.params
   const { followup } = req
+
   switch (surveyType) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       await updateWasUseful(req)
-      break
+      await followup.addSurveyIfMissing(SurveyType.benefitAction)
+      await followup.save()
+
+      return res.redirect(followup.surveyPath)
     case SurveyType.trackClickOnBenefitActionEmail:
       await updateTrackClickOnBenefitActionEmail(req)
-      break
+      await followup.addSurveyIfMissing(SurveyType.benefitAction)
+      await followup.save()
+
+      return res.redirect(followup.surveyPath)
+
+    case SurveyType.tousABordNotification:
+      await followup.updateSurvey(SurveyType.tousABordNotification)
+
+      return res.redirect("https://www.tadao.fr/713-Demandeur-d-emploi.html")
     default:
       return res.sendStatus(404)
   }
-  await followup.addSurveyIfMissing(SurveyType.benefitAction)
-  await followup.save()
-  res.redirect(followup.surveyPath)
 }

@@ -181,6 +181,10 @@ FollowupSchema.virtual("surveyPath").get(function (this) {
   return `/suivi?token=${this.accessToken}`
 })
 
+FollowupSchema.virtual("tousABordNotificationCta").get(function (this) {
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.tousABordNotification}`
+})
+
 FollowupSchema.virtual("surveyPathTracker").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnBenefitActionEmail}`
 })

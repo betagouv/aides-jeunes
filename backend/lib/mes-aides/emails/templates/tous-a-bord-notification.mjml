@@ -15,9 +15,7 @@
           abonnement pass pass à 5€ / mois (au lieu de 28€ / mois) pour vous
           déplacer en illimité en bus et TER sur tout le réseau TADAO. Pour
           accéder aux instructions, rendez-vous sur
-          <a href="https://www.tadao.fr/713-Demandeur-d-emploi.html">
-            le site de TADAO.</a
-          >
+          <a href="{{&tousABordNotificationCta}}"> le site de TADAO.</a>
         </span>
         <br /><br />
         <span

@@ -61,17 +61,15 @@ export default {
         this.benefit.prefix?.endsWith("’") ? "" : " "
       }${this.benefit.label} - Nouvelle fenêtre`
     },
-  },
-  methods: {
     hasFinishedSimulation() {
       return this.store.calculs.resultats._id
     },
-
+  },
+  methods: {
     getURL(link) {
-      if (!this.hasFinishedSimulation()) {
+      if (typeof link === "object" && !this.hasFinishedSimulation) {
         return this.benefit.link
-      }
-      if (typeof link === "object") {
+      } else if (typeof link === "object" && this.hasFinishedSimulation) {
         return this.$router.resolve(link).href
       }
       return link
@@ -79,7 +77,7 @@ export default {
     onClick(link) {
       if (typeof link === "object") {
         storageService.local.setItem("trampoline", {
-          simulationId: this.hasFinishedSimulation(),
+          simulationId: this.hasFinishedSimulation,
         })
       }
     },

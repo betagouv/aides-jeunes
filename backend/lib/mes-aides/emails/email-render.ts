@@ -143,7 +143,7 @@ export default async function emailRender(emailType, followup) {
       }
     } else if (emailType === EmailType.tousABordNotification) {
       return {
-        subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
+        subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
         text: values[0],
         html: values[1].html,
       }

@@ -168,29 +168,51 @@ async function updateTrackClickOnBenefitActionEmail(req: ajRequest) {
   await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail)
 }
 
-export async function logSurveyLinkClick(req: ajRequest, res: Response) {
+async function updateSurveyInFollowup(req: ajRequest) {
   const { surveyType } = req.params
   const { followup } = req
 
   switch (surveyType) {
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       await updateWasUseful(req)
-      await followup.addSurveyIfMissing(SurveyType.benefitAction)
-      await followup.save()
-
-      return res.redirect(followup.surveyPath)
+      break
     case SurveyType.trackClickOnBenefitActionEmail:
       await updateTrackClickOnBenefitActionEmail(req)
+      break
+    case SurveyType.tousABordNotification:
+      await followup.updateSurvey(SurveyType.tousABordNotification)
+      break
+    default:
+      throw new Error("Unknown survey type")
+  }
+}
+
+async function getRedirectUrl(req: ajRequest) {
+  const { surveyType } = req.params
+  const { followup } = req
+
+  switch (surveyType) {
+    case SurveyType.trackClickOnSimulationUsefulnessEmail:
+    case SurveyType.trackClickOnBenefitActionEmail:
       await followup.addSurveyIfMissing(SurveyType.benefitAction)
       await followup.save()
 
-      return res.redirect(followup.surveyPath)
-
+      return followup.surveyPath
     case SurveyType.tousABordNotification:
-      await followup.updateSurvey(SurveyType.tousABordNotification)
-
-      return res.redirect("https://www.tadao.fr/713-Demandeur-d-emploi.html")
+      return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
-      return res.sendStatus(404)
+      throw new Error("Unknown survey type")
+  }
+}
+
+export async function logSurveyLinkClick(req: ajRequest, res: Response) {
+  try {
+    await updateSurveyInFollowup(req)
+    const redirectUrl = await getRedirectUrl(req)
+
+    res.redirect(redirectUrl)
+  } catch (error) {
+    console.error("error", error)
+    return res.sendStatus(404)
   }
 }

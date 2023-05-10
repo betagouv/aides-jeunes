@@ -132,7 +132,7 @@ export default {
   },
   data() {
     return {
-      email: this.store.getFCUserInfoValueByFieldName("email"),
+      email: this.store.getFCUserInfoEmailValue,
       errorMessage: undefined,
     }
   },

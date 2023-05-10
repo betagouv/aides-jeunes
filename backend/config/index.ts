@@ -59,7 +59,7 @@ const all: ConfigurationLayout = {
     },
   },
   sentry: {
-    dsn: undefined,
+    dsn: process.env.SENTRY_BACKEND_URL || undefined,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",

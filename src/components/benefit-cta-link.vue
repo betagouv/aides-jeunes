@@ -77,7 +77,7 @@ export default {
     onClick(link) {
       if (typeof link === "object") {
         storageService.local.setItem("trampoline", {
-          simulationId: this.hasFinishedSimulation,
+          simulationId: this.store.calculs.resultats._id,
         })
       }
     },

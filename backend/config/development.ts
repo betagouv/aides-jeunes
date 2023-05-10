@@ -19,4 +19,12 @@ export default {
     url: "http://localhost:4000/benefits",
     version: 2,
   },
+  mongo: {
+    uri:
+      process.env.MONGODB_URL || "mongodb://localhost:27017/dev-aides-jeunes",
+    options: {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    },
+  },
 }

@@ -188,7 +188,7 @@ function manageMissingDBOrCollection(error) {
 }
 
 async function connect() {
-  return await MongoClient.connect(config.mongo.uri)
+  return await MongoClient.connect(config.mongo.uri as string)
     .then(saveClient)
     .then((client) => client.db())
 }

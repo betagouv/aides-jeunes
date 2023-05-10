@@ -29,7 +29,7 @@ export interface ConfigurationLayout {
     version: number
   }
   mongo: {
-    uri: string
+    uri?: string
     options: {
       useUnifiedTopology: boolean
       useNewUrlParser: boolean

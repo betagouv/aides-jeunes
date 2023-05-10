@@ -6,6 +6,10 @@ import { ConfigurationLayout } from "../types/config.js"
 export default function (mongoose: any, config: ConfigurationLayout) {
   mongoose.Promise = bluebird
 
+  if (!config.mongo.uri) {
+    throw new Error("Please provide a `MONGODB_URL` environment variable")
+  }
+
   mongoose
     .connect(config.mongo.uri, config.mongo.options)
     .then(() => console.info("DB connected"))

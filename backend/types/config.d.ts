@@ -39,4 +39,7 @@ export interface ConfigurationLayout {
   mattermost_post_url: string
   teleserviceAccessTokens?: any
   iframeTitle: string
+  sentry: {
+    dsn: string | undefined
+  }
 }

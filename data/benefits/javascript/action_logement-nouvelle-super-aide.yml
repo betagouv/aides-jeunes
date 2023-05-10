@@ -1,0 +1,29 @@
+label: nouvelle super aide
+institution: action_logement
+description: Cette aide est vraiment formidable
+prefix: une
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+  - type: communes
+    values:
+      - "67482"
+profils:
+  - type: lyceen
+    conditions:
+      - type: boursier
+  - type: chomeur
+    conditions: []
+conditions:
+  - Être né.e un jour impair.
+type: float
+unit: €
+periodicite: autre
+link: https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml
+teleservice: https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml
+form: https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml
+instructions: https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml

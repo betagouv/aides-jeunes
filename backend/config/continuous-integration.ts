@@ -14,7 +14,7 @@ export default Object.assign(development, {
     id: -1,
   },
   sentry: {
-    privateDsn: "https://userID:password@sentry.data.gouv.fr/17",
+    dsn: "https://userID:password@sentry.data.gouv.fr/17",
   },
   statistics: {},
 })

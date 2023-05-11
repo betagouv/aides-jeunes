@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/node"
 import errorHandler from "errorhandler"
 
 import api from "./api.js"
+import config from "./config/index.js"
 import followups from "./followups.js"
 
 export default function (app: express.Application) {
@@ -11,14 +12,9 @@ export default function (app: express.Application) {
   process.env.MES_AIDES_ROOT_URL =
     process.env.MES_AIDES_ROOT_URL || `http://localhost:${process.env.PORT}`
 
-  Sentry.init({
-    // Enable Sentry in production
-    // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
-    dsn:
-      process.env.NODE_ENV === "production"
-        ? "https://b44fa037e37b4b9eb1a050675b253dce@sentry.incubateur.net/17"
-        : undefined,
-  })
+  // Enable Sentry in production
+  // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
+  Sentry.init(config.sentry)
 
   // The request handler must be the first middleware on the app
   app.use(Sentry.Handlers.requestHandler())

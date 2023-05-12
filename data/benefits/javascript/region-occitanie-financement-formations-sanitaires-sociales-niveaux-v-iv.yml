@@ -1,22 +1,20 @@
 label: financement des formations sanitaires et sociales de niveaux V et IV
 institution: region_occitanie
 description: La Région Occitanie finance gratuitement les formations sanitaires
-  et sociales de niveaux V et IV pour les élèves inscrits ou inscrites en formation
-  d'aide-soignant ou aide-soignante, auxiliaire de puériculture, ambulancier ou ambulancière,
-  accompagnante ou accompagnant éducatif et social, moniteur éducateur ou monitrice éducatrice,
-  technicien ou technicienne en intervention sociale et familiale.
-conditions:
-  - Être inscrit ou inscrite dans un établissement de formation agréé par la Région
-    Occitanie.
-  - Être en poursuite de scolarité ou en recherche d’emploi
-    avant la date d’entrée en formation.
+  et sociales de niveaux V et IV pour les élèves inscrits ou inscrites en
+  formation d'aide-soignant ou aide-soignante, auxiliaire de puériculture,
+  ambulancier ou ambulancière, accompagnante ou accompagnant éducatif et social,
+  moniteur éducateur ou monitrice éducatrice, technicien ou technicienne en
+  intervention sociale et familiale.
+prefix: le
 conditions_generales:
   - type: regions
     values:
       - "76"
 profils:
   - type: enseignement_superieur
-    conditions: []
+    conditions:
+      - type: formation_sanitaire_social
   - type: chomeur
     conditions: []
   - type: lyceen
@@ -24,11 +22,15 @@ profils:
       - type: annee_etude
         values:
           - terminale
-link: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
-form: ""
-instructions: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
-prefix: le
+conditions:
+  - Être inscrit ou inscrite dans un établissement de formation agréé par la
+    Région Occitanie.
+  - Être en poursuite de scolarité ou en recherche d’emploi avant la date
+    d’entrée en formation.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
 periodicite: autre
+link: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
+form: ""
+instructions: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV

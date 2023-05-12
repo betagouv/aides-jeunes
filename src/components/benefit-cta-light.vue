@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { BenefitType } from "@lib/types/benefits"
 import { defineProps, computed, PropType } from "vue"
 
 const props = defineProps({
-  benefit: Object as PropType<any>,
+  benefit: Object as PropType<BenefitType>,
 })
 
 const ctaForm = computed(() => {
-  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.form)
+  return ctas.value.find((cta) => cta?.type === BehaviourEventTypes.form)
 })
 
 const ctaTeleservice = computed(() => {
-  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.teleservice)
+  return ctas.value.find((cta) => cta?.type === BehaviourEventTypes.teleservice)
 })
 
 const ctaInstructions = computed(() => {
-  return ctas.value.find((cta) => cta.type === BehaviourEventTypes.instructions)
+  return ctas.value.find(
+    (cta) => cta?.type === BehaviourEventTypes.instructions
+  )
 })
 
 const ctas = computed(() => {
@@ -28,15 +31,17 @@ const ctas = computed(() => {
 
   return ctaBehaviourTypes
     .map((type) => {
-      const linkGenerator = props.benefit[`${type}Generator`]
-      const link = props.benefit[type] || (linkGenerator && linkGenerator())
-      return {
-        type,
-        link,
+      if (props.benefit) {
+        const linkGenerator = props.benefit[`${type}Generator`]
+        const link = props.benefit[type] || (linkGenerator && linkGenerator())
+        return {
+          type,
+          link,
+        }
       }
     })
     .filter(function (item) {
-      return item.link
+      return item?.link
     })
     .slice(0, 2)
 })
@@ -44,7 +49,7 @@ const ctas = computed(() => {
 
 <template>
   <div
-    v-if="ctas.length > 0"
+    v-if="ctas.length > 0 && benefit"
     class="fr-container fr-py-2w aj-benefit-cta-light-container"
   >
     <h5 class="fr-h5">Comment l'obtenir ?</h5>

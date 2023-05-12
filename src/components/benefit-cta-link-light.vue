@@ -3,6 +3,7 @@ import { useStore } from "@/stores/index.js"
 import storageService from "@/lib/storage-service.js"
 import { PropType, computed, defineProps } from "vue"
 import { useRouter } from "vue-router"
+import { BenefitType } from "@lib/types/benefits"
 
 const store = useStore()
 const $router = useRouter()
@@ -21,7 +22,7 @@ const longLabels = {
 
 const props = defineProps({
   analyticsName: String,
-  benefit: Object as PropType<any>,
+  benefit: Object as PropType<BenefitType>,
   level: String,
   type: String,
   link: String,
@@ -36,9 +37,9 @@ const label = computed(() => {
 
 const longLabel = computed(() => {
   if (props.type)
-    return `${longLabels[props.type]} pour ${props.benefit.prefix || ""}${
-      props.benefit.prefix?.endsWith("’") ? "" : " "
-    }${props.benefit.label} - Nouvelle fenêtre`
+    return `${longLabels[props.type]} pour ${props.benefit?.prefix || ""}${
+      props.benefit?.prefix?.endsWith("’") ? "" : " "
+    }${props.benefit?.label} - Nouvelle fenêtre`
   return ""
 })
 const getURL = (link) => {

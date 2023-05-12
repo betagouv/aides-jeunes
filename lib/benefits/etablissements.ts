@@ -53,7 +53,7 @@ export function getBenefitEtablissements(benefit) {
 export async function getEtablissements(depcom, types) {
   return axios
     .get(
-      `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
+      `https://plateforme.adresse.data.gouv.fr/api-annuaire/v3/communes/${depcom}/${types.join(
         "+"
       )}`
     )

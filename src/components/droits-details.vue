@@ -85,7 +85,7 @@
         </ul>
       </WarningMessage>
       <div v-if="abtestingValue === 'D'" class="fr-print-hidden">
-        <BenefitCta :benefit="droit" class="fr-mt-4w" :type="eventTypeMSA" />
+        <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <a
           v-if="droit.msa"
           v-analytics="{

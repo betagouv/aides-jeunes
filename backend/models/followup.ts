@@ -23,6 +23,7 @@ export interface FollowupInterface extends MongooseLayout {
   version: number
   error: any
   accessToken: string
+  tousABordNotificationEmail: any
 }
 
 const FollowupSchema = new mongoose.Schema<FollowupInterface>(
@@ -102,6 +103,8 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
       return emailRender(EmailType.benefitAction, this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
       return emailRender(EmailType.simulationUsefulness, this)
+    case SurveyType.tousABordNotification:
+      return emailRender(EmailType.tousABordNotification, this)
     case SurveyType.benefitAction:
       return Promise.reject(
         new Error(
@@ -176,6 +179,10 @@ FollowupSchema.virtual("returnPath").get(function (this) {
 
 FollowupSchema.virtual("surveyPath").get(function (this) {
   return `/suivi?token=${this.accessToken}`
+})
+
+FollowupSchema.virtual("tousABordNotificationCta").get(function (this) {
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.tousABordNotification}`
 })
 
 FollowupSchema.virtual("surveyPathTracker").get(function (this) {

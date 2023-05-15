@@ -1,16 +1,42 @@
+import dayjs from "dayjs"
+
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup, { FollowupInterface } from "../../models/followup.js"
 
-async function sendMultipleEmails(emailType, limit) {
-  if (emailType !== EmailType.initialSurvey) {
-    throw new Error("Multiple emails can only be sent for initial survey")
-  }
+const DaysBeforeInitialEmail = 6
+const DaysBeforeTousABordNotificationEmail = 2
 
+async function sendMultipleEmails(emailType, limit) {
+  switch (emailType) {
+    case EmailType.initialSurvey:
+      await sendMultipleInitialEmails(limit)
+      break
+    case EmailType.tousABordNotification:
+      await sendMultipleTousABordNotificationEmails(limit)
+      break
+    default:
+      throw new Error("Unknown email type for multiple emails")
+  }
+}
+
+async function sendMultipleInitialEmails(limit) {
   const followups = await Followup.find({
-    surveys: { $size: 0 },
+    surveys: {
+      $not: {
+        $elemMatch: {
+          type: {
+            $in: [
+              SurveyType.benefitAction,
+              SurveyType.trackClickOnSimulationUsefulnessEmail,
+              SurveyType.trackClickOnBenefitActionEmail,
+            ],
+          },
+        },
+      },
+    },
     sentAt: {
-      $lt: new Date(new Date().getTime() - 6.5 * 24 * 60 * 60 * 1000),
+      $lt: dayjs().subtract(DaysBeforeInitialEmail, "day").toDate(),
     },
     surveyOptin: true,
   })
@@ -33,6 +59,46 @@ async function sendMultipleEmails(emailType, limit) {
     })
   )
 
+  console.log(results)
+}
+
+async function sendMultipleTousABordNotificationEmails(limit) {
+  const followups = await Followup.find({
+    benefits: {
+      $elemMatch: {
+        id: "pass-pass-pour-les-demandeurs-demploi",
+      },
+    },
+    sentAt: {
+      $lt: dayjs()
+        .subtract(DaysBeforeTousABordNotificationEmail, "day")
+        .toDate(),
+    },
+    email: { $exists: true },
+    surveyOptin: true,
+    surveys: {
+      $not: {
+        $elemMatch: {
+          type: SurveyType.tousABordNotification,
+        },
+      },
+    },
+  })
+    .sort({ createdAt: 1 })
+    .limit(limit)
+
+  const results = await Promise.all(
+    followups.map(async (followup) => {
+      try {
+        const result = await followup.sendSurvey(
+          SurveyType.tousABordNotification
+        )
+        return { ok: result._id }
+      } catch (error) {
+        return { ko: error }
+      }
+    })
+  )
   console.log(results)
 }
 

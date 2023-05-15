@@ -22,10 +22,14 @@ const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml"
 )
+const tousABordNotificationTemplate = readFile(
+  "templates/tous-a-bord-notification.mjml"
+)
 const emailTemplates = {
   [EmailType.simulationResults]: simulationResultsTemplate,
   [EmailType.benefitAction]: benefitActionTemplate,
   [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
+  [EmailType.tousABordNotification]: tousABordNotificationTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
@@ -34,10 +38,14 @@ const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
 const simulationUsefulnessTextTemplate = readFile(
   "templates/simulation-usefulness.txt"
 )
+const tousABordNotificationTextTemplate = readFile(
+  "templates/tous-a-bord-notification.txt"
+)
 const textTemplates = {
   [EmailType.simulationResults]: simulationResultsTextTemplate,
   [EmailType.benefitAction]: benefitActionTextTemplate,
   [EmailType.simulationUsefulness]: simulationUsefulnessTextTemplate,
+  [EmailType.tousABordNotification]: tousABordNotificationTextTemplate,
 }
 
 const dataTemplateBuilder = (
@@ -50,6 +58,7 @@ const dataTemplateBuilder = (
     benefitTexts,
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
+    tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
@@ -130,6 +139,12 @@ export default async function emailRender(emailType, followup) {
         subject: `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? [${
           followup.simulation?._id || followup.simulation
         }]`,
+        text: values[0],
+        html: values[1].html,
+      }
+    } else if (emailType === EmailType.tousABordNotification) {
+      return {
+        subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
         text: values[0],
         html: values[1].html,
       }

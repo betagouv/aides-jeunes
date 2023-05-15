@@ -167,7 +167,7 @@ export default {
       return this.$route.name !== "aide"
     },
     abtestingValue() {
-      return ABTestingService.getValues().css_text
+      return ABTestingService.getValues().benefit_result_page
     },
   },
 }

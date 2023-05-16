@@ -8,6 +8,7 @@ import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
 import { ActiviteType } from "@lib/enums/activite.js"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import * as Sentry from "@sentry/vue"
 
 export function useEtablissements() {
   const store = useStore()
@@ -74,6 +75,11 @@ export function useEtablissements() {
   }
 
   const loadEtablissements = async () => {
+    if (!city) {
+      Sentry.captureMessage(`Depcom required to loadEtablissement()`)
+      updating.value = false
+      return
+    }
     let etablissementTypes: any = null
     const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
     if (benefitId) {

@@ -31,7 +31,11 @@ export class StorageService {
     if (this.storageAvailable) {
       const item = window[this.storageType].getItem(key)
       if (item) {
-        return JSON.parse(item)
+        try {
+          return JSON.parse(item)
+        } catch (e) {
+          console.warn(`Failed to access storage ${e}`)
+        }
       }
     }
     return null

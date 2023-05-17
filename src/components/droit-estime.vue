@@ -49,6 +49,11 @@ export default {
   components: {
     AnalyticRouterLink,
   },
+  data() {
+    return {
+      eventTypeShowUnexpected: BehaviourEventTypes.showUnexpected,
+    }
+  },
   props: {
     droit: Object,
     showUnexpected: {
@@ -59,11 +64,6 @@ export default {
   setup() {
     return {
       store: useStore(),
-    }
-  },
-  data() {
-    return {
-      eventTypeShowUnexpected: BehaviourEventTypes.showUnexpected,
     }
   },
   computed: {

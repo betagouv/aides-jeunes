@@ -22,7 +22,7 @@ export class StorageService {
       return false
     }
   }
-  setItem(key: string, value: any) {
+  setItem(key: string, value: any = null) {
     if (this.storageAvailable) {
       window[this.storageType].setItem(key, JSON.stringify(value))
     }
@@ -31,7 +31,13 @@ export class StorageService {
     if (this.storageAvailable) {
       const item = window[this.storageType].getItem(key)
       if (item) {
-        return JSON.parse(item)
+        try {
+          return JSON.parse(item)
+        } catch (e) {
+          throw new Error(
+            `Failed to parse ${this.storageType} storage item ${key}`
+          )
+        }
       }
     }
     return null

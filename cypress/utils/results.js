@@ -44,7 +44,7 @@ const hasPrimeActivite = () => {
   cy.get(`@${id}`).get('[itemprop="termsOfService"]').should("be.visible")
 }
 
-const hasPrimeActiviteNearbyPlacesWithABTesting = () => {
+const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="etablissement-title"]').should(
     "contain",
@@ -222,7 +222,7 @@ export default {
   wait,
   back,
   hasPrimeActivite,
-  hasPrimeActiviteNearbyPlacesWithABTesting,
+  hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,
   hasHousingBenefit,
   hasCSS,

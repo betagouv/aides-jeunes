@@ -65,7 +65,7 @@ context("Full simulation", () => {
     projet.fill__interetAidesSanitaireSocial(false)
     results.wait()
     results.hasPrimeActivite()
-    results.hasPrimeActiviteNearbyPlacesWithABTesting()
+    results.hasPrimeActiviteNearbyPlaces()
     results.captureFiscalResources()
     results.checkResultsRequests()
     results.receiveResultsEmail()

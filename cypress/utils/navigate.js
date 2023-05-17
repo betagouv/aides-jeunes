@@ -1,5 +1,4 @@
 const init = () => {
-  localStorage.setItem("ABTesting", '{"benefit_result_page":{"value":"C"}}')
   cy.intercept("GET", "/api/simulation/*/results").as("results")
   cy.intercept("GET", "/api/outils/communes/*").as("communes")
   cy.intercept("POST", "/api/simulation").as("post-simulation")

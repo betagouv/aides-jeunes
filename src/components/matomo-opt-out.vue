@@ -25,10 +25,10 @@
           </span>
         </label>
         <input
+          id="isUserTracked"
           type="checkbox"
           :checked="isUserTracked"
           name="isUserTracked"
-          id="isUserTracked"
           @change="toggleTracking"
         />
       </div>

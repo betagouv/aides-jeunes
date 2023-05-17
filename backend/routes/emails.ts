@@ -24,7 +24,7 @@ const emailRoutes = function (api) {
     }
 
     if (!surveyType) {
-      return
+      throw new Error(`Unknown email type: ${emailType}`)
     }
 
     return followup.renderSurveyEmail(surveyType)

@@ -22,7 +22,7 @@ export class StorageService {
       return false
     }
   }
-  setItem(key: string, value: any) {
+  setItem(key: string, value: any = null) {
     if (this.storageAvailable) {
       window[this.storageType].setItem(key, JSON.stringify(value))
     }
@@ -34,7 +34,9 @@ export class StorageService {
         try {
           return JSON.parse(item)
         } catch (e) {
-          console.warn(`Failed to access storage ${e}`)
+          throw new Error(
+            `Failed to parse ${this.storageType} storage item ${key}`
+          )
         }
       }
     }

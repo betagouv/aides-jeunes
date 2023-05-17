@@ -29,13 +29,9 @@ function getEnvironment() {
 
   // Définition de la valeur d'AB testing pour la refonte de la page de résultats d'une aide
   ABTesting.benefit_result_page = ABTesting.benefit_result_page || {}
-  ABTesting.benefit_result_page.value = ["OldUI", "NewUI"].includes(
-    ABTesting.benefit_result_page.value
-  )
-    ? ABTesting.benefit_result_page.value
-    : Math.random() > 0.5
-    ? "OldUI"
-    : "NewUI"
+  ABTesting.benefit_result_page.value =
+    ABTesting.benefit_result_page.value ||
+    (Math.random() > 0.5 ? "OldUI" : "NewUI")
 
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]

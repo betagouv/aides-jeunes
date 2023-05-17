@@ -79,10 +79,13 @@ export default {
     }
   },
   mounted() {
-    this.simulationId =
-      storageService.session.getItem("simulationId") ||
-      storageService.local.getItem("trampoline")?.simulationId
-
+    this.simulationId = storageService.session.getItem("simulationId")
+    if (!this.simulationId) {
+      this.simulationId =
+        storageService.local.getItem("trampoline")?.simulationId
+      storageService.local.removeItem("trampoline")
+      storageService.session.setItem("simulationId", this.simulationId)
+    }
     if (!this.simulationId) {
       const { vers } = this.$route.query
       if (vers) {

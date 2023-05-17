@@ -217,7 +217,7 @@ import ContactEmailMixin from "@/mixins/contact-email.js"
 import MatomoOptOut from "@/components/matomo-opt-out.vue"
 import { useStore } from "@/stores/index.ts"
 
-interface CookieDetails {
+interface Cookies {
   name: string
   lifetime: string
   purpose: string
@@ -279,7 +279,7 @@ export default {
           purpose:
             "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
         },
-      ] as CookieDetails,
+      ] as Cookies,
     }
   },
   computed: {

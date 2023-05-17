@@ -79,23 +79,22 @@ export default {
     }
   },
   mounted() {
-    this.simulationId = storageService.session.getItem("simulationId")
+    this.simulationId =
+      storageService.session.getItem("simulationId") ||
+      storageService.local.getItem("trampoline")?.simulationId
 
     if (!this.simulationId) {
-      this.simulationId =
-        storageService.local.getItem("trampoline")?.simulationId
-      storageService.local.removeItem("trampoline")
-      storageService.session.setItem("simulationId", this.simulationId)
-    }
-
-    if (!this.simulationId) {
-      const [teleservice, procedure] = this.$route.query.vers.split("?benefit=")
-      if (teleservice === "ds") {
-        document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
-      } else {
-        this.error = "Identifiant de simulation absent… Arrêt."
-        this.updating = false
+      const { vers } = this.$route.query
+      if (vers) {
+        const [teleservice, procedure] = vers.split("?benefit=")
+        if (teleservice === "ds") {
+          document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
+          return
+        }
       }
+
+      this.error = "Identifiant de simulation absent… Arrêt."
+      this.updating = false
       return
     }
 

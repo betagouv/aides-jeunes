@@ -84,7 +84,7 @@
           </li>
         </ul>
       </WarningMessage>
-      <div v-if="abtestingValue === 'D'" class="fr-print-hidden">
+      <div v-if="abtestingValue === 'OldUI'" class="fr-print-hidden">
         <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <a
           v-if="droit.msa"

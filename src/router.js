@@ -301,7 +301,7 @@ const router = createRouter({
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
-        ABTestingService.setVariant("benefit_result_page", "C")
+        ABTestingService.setVariant("benefit_result_page", "NewUI")
         return "/"
       },
     },

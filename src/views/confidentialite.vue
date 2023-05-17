@@ -250,16 +250,10 @@ export default {
             "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
         },
         {
-          name: "mtm_consent",
-          lifetime: "30 ans",
-          purpose:
-            "Permet le stockage de votre consentement au dépôt de cookie",
-        },
-        {
           name: "mtm_consent_removed",
           lifetime: "30 ans",
           purpose:
-            "Permet le stockage de votre consentement au dépôt de cookie",
+            "Permet le stockage de votre non-consentement au dépôt des cookies Matomo pour le suivi statistique",
         },
         {
           name: "lastestSimulation",

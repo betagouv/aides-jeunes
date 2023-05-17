@@ -84,7 +84,7 @@
           </li>
         </ul>
       </WarningMessage>
-      <div v-if="abtestingValue === 'OldUI'" class="fr-print-hidden">
+      <div v-if="experimentNewUI === 'OldUI'" class="fr-print-hidden">
         <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <a
           v-if="droit.msa"
@@ -166,7 +166,7 @@ export default {
     showDetailsLieux() {
       return this.$route.name !== "aide"
     },
-    abtestingValue() {
+    experimentNewUI() {
       return ABTestingService.getValues().benefit_result_page
     },
   },

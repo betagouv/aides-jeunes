@@ -169,7 +169,7 @@
       données.
     </p>
 
-    <h3>Cookies</h3>
+    <h3 id="cookies">Cookies</h3>
 
     <p>
       Un cookie est un fichier déposé sur votre terminal lors de la visite d’un

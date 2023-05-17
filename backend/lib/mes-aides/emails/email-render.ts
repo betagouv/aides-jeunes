@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
+import jwt from "jsonwebtoken"
 
 const mustache = consolidate.mustache
 import config from "../../../config/index.js"
@@ -48,7 +49,13 @@ const textTemplates = {
   [EmailType.tousABordNotification]: tousABordNotificationTextTemplate,
 }
 
-const APIEmailRenderURL = "/api/email/"
+const buildAPIEmailRenderURLToken = (followupId, emailType) => {
+  const payload = {
+    followupId,
+    emailType,
+  }
+  return jwt.sign(payload, config.sessionSecret)
+}
 
 const dataTemplateBuilder = (
   emailType,
@@ -56,13 +63,15 @@ const dataTemplateBuilder = (
   formatedBenefits,
   benefitTexts
 ) => {
+  const emailRenderToken = buildAPIEmailRenderURLToken(followup._id, emailType)
+  const APIEmailRenderURL = "/api/email/"
   return {
     benefitTexts,
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
-    emailRenderURL: `${config.baseURL}${APIEmailRenderURL}${followup._id}/${emailType}`,
+    emailRenderURL: `${config.baseURL}${APIEmailRenderURL}${emailRenderToken}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,

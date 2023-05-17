@@ -3,11 +3,11 @@ import { ajRequest } from "../../backend/types/express.d.js"
 import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../../lib/enums/survey.js"
+import jwt from "jsonwebtoken"
+import config from "../config/index.js"
 
 const emailRoutes = function (api) {
-  const renderFollowupEmail = async (req: ajRequest) => {
-    const { followup } = req
-    const { type: emailType } = req.params
+  const renderFollowupEmail = async (followup, emailType) => {
     let surveyType: SurveyType | undefined
 
     switch (emailType) {
@@ -30,22 +30,23 @@ const emailRoutes = function (api) {
     return followup.renderSurveyEmail(surveyType)
   }
 
-  api
-    .route("/email/:followupId/:type")
-    .get(async (req: ajRequest, res, next) => {
-      try {
-        const followup = await Followup.findById(
-          req.params.followupId
-        ).populate("simulation")
-        if (!followup) {
-          return res.sendStatus(404)
-        }
-        req.followup = followup
-        const result = await renderFollowupEmail(req)
-        res.send(result["html"])
-      } catch (err) {
-        next(err)
+  api.route("/email/:token").get(async (req: ajRequest, res, next) => {
+    try {
+      const { followupId, emailType } = jwt.verify(
+        req.params.token,
+        config.sessionSecret
+      )
+      const followup = await Followup.findById(followupId).populate(
+        "simulation"
+      )
+      if (!followup) {
+        return res.sendStatus(404)
       }
-    })
+      const result = await renderFollowupEmail(followup, emailType)
+      res.send(result["html"])
+    } catch (err) {
+      next(err)
+    }
+  })
 }
 export default emailRoutes

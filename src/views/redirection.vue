@@ -82,7 +82,7 @@ export default {
     this.simulationId = storageService.session.getItem("simulationId")
     if (!this.simulationId) {
       this.simulationId =
-        storageService.local.getItem("trampoline").simulationId
+        storageService.local.getItem("trampoline")?.simulationId
       storageService.local.removeItem("trampoline")
       storageService.session.setItem("simulationId", this.simulationId)
     }

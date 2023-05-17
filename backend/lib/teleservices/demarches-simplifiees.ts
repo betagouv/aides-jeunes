@@ -125,8 +125,8 @@ function generateData(simulation, benefit) {
 }
 
 DemarchesSimplifiees.prototype.toInternal = async function () {
-  const data = generateData(this.simulation, this.query.benefit)
-  const meta = await getMetaData(this.query.benefit)
+  const data = generateData(this.simulation, this.query.procedure)
+  const meta = await getMetaData(this.query.procedure)
 
   const fieldLabelMap = meta.revision.champDescriptors.reduce((a, v) => {
     a[v.id] = v.label
@@ -144,13 +144,13 @@ DemarchesSimplifiees.prototype.toInternal = async function () {
 }
 
 DemarchesSimplifiees.prototype.toExternal = async function () {
-  const meta = await getMetaData(this.query.benefit)
+  const meta = await getMetaData(this.query.procedure)
   return {
     teleservice: {
       id: meta.number,
-      slug: this.query.benefit,
+      slug: this.query.procedure,
     },
-    data: generateData(this.simulation, this.query.benefit),
+    data: generateData(this.simulation, this.query.procedure),
   }
 }
 

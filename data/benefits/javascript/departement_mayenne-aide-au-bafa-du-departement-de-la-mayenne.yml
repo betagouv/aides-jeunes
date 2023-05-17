@@ -32,5 +32,5 @@ link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafa
 teleservice:
   name: redirection
   query:
-    vers: ds?benefit=cd53-bafa
+    vers: ds?procedure=cd53-bafa
 skip_schema_check: true

@@ -37,5 +37,5 @@ link: https://www.normandie.fr/dotation-jeunes-agriculteurs-aide-au-demarrage-de
 teleservice:
   name: redirection
   query:
-    vers: ds?procedure=r28_dja
+    vers: ds?benefit=r28_dja
 skip_schema_check: true

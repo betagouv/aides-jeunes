@@ -208,19 +208,6 @@
       </table>
     </div>
 
-    <div>
-      <p>Il convient d’indiquer que :</p>
-      <ul>
-        <li>
-          Les données collectées ne sont pas recoupées avec d’autres traitements
-        </li>
-        <li>
-          Les cookies ne permettent pas de suivre la navigation de l’internaute
-          sur d’autres sites
-        </li>
-      </ul>
-    </div>
-
     <iframe
       id="tracking-optout"
       class="aj-iframe-tracking-optout"
@@ -264,39 +251,50 @@ export default {
             {
               name: "_pk_id.*",
               lifetime: "13 mois",
-              purpose: "Matomo : Identifiant de visiteur unique",
+              purpose:
+                "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience Matomo est active)",
+            },
+            {
+              name: "_pk_ref.*",
+              lifetime: "6 mois",
+              purpose:
+                "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience Matomo est active)",
             },
             {
               name: "_pk_ses.*",
               lifetime: "30 minutes",
-              purpose: "Matomo : Informations de visite",
+              purpose:
+                "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
             },
             {
               name: "mtm_consent",
               lifetime: "30 ans",
-              purpose: "Matomo : Enregistrement du don de consentement",
+              purpose:
+                "Permet le stockage de votre consentement au dépôt de cookie",
             },
             {
               name: "mtm_consent_removed",
               lifetime: "30 ans",
-              purpose: "Matomo : Enregistrement du non-consentement",
+              purpose:
+                "Permet le stockage de votre consentement au dépôt de cookie",
             },
             {
               name: "lastestSimulation",
               lifetime: "7 jours",
-              purpose: "Simulation : Identifiant de la dernière simulation",
+              purpose:
+                "Permet le stockage de l'identifiant de votre dernière simulation",
             },
             {
               name: "simulation_*",
               lifetime: "7 jours",
               purpose:
-                "Simulation : Secret permettant de gérer la légimité des accès",
+                "Permet le stockage du secret associé à une simulation et de valider l'accès aux résultats de simulation",
             },
             {
               name: "github_handle_token",
               lifetime: "Session",
               purpose:
-                "Outil d’accompagnement : Secret permettant de gérer les accès",
+                "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
             },
           ],
         },
@@ -306,13 +304,13 @@ export default {
             {
               name: "matomo_sessid",
               lifetime: "14 jours",
-              purpose: "Matomo : Visiteur unique",
+              purpose:
+                "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience Matomo est active)",
             },
             {
               name: "piwik_ignore",
               lifetime: "30 ans",
-              purpose:
-                "Matomo : Enregistrement de la demande d’exclusion du suivi",
+              purpose: "Permet d'ignorer la mesure d'audience Matomo",
             },
           ],
         },

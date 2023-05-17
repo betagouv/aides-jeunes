@@ -21,7 +21,7 @@ export default {
   },
   mongo: {
     uri:
-      process.env.MONGODB_URL || "mongodb://localhost:27017/dev-aides-jeunes",
+      process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,

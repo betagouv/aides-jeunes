@@ -49,12 +49,12 @@ const textTemplates = {
   [EmailType.tousABordNotification]: tousABordNotificationTextTemplate,
 }
 
-const buildAPIEmailRenderURLToken = (followupId, emailType) => {
+const buildAPIEmailRenderPath = (followupId, emailType) => {
   const payload = {
     followupId,
     emailType,
   }
-  return jwt.sign(payload, config.sessionSecret)
+  return `/api/email/${jwt.sign(payload, config.sessionSecret)}`
 }
 
 const dataTemplateBuilder = (
@@ -63,15 +63,14 @@ const dataTemplateBuilder = (
   formatedBenefits,
   benefitTexts
 ) => {
-  const emailRenderToken = buildAPIEmailRenderURLToken(followup._id, emailType)
-  const APIEmailRenderURL = "/api/email/"
+  const emailRenderPath = buildAPIEmailRenderPath(followup._id, emailType)
   return {
     benefitTexts,
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
-    emailRenderURL: `${config.baseURL}${APIEmailRenderURL}${emailRenderToken}`,
+    emailRenderURL: `${config.baseURL}${emailRenderPath}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,

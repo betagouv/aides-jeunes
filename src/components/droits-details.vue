@@ -84,7 +84,16 @@
           </li>
         </ul>
       </WarningMessage>
-      <div v-if="experimentNewUI === 'OldUI'" class="fr-print-hidden">
+      <div v-if="experimentNewUI" class="fr-print-hidden">
+        <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
+        <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
+          <div class="fr-mt-4w">
+            <hr class="fr-hr fr-py-2w" />
+            <DroitDetailsLieux :benefit="droit" />
+          </div>
+        </div>
+      </div>
+      <div v-else lass="fr-print-hidden">
         <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <a
           v-if="droit.msa"
@@ -105,15 +114,6 @@
             class="fr-mr-1w"
           />Démarches pour les professions agricoles
         </a>
-      </div>
-      <div v-else lass="fr-print-hidden">
-        <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
-        <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
-          <div class="fr-mt-4w">
-            <hr class="fr-hr fr-py-2w" />
-            <DroitDetailsLieux :benefit="droit" />
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -167,7 +167,7 @@ export default {
       return this.$route.name !== "aide"
     },
     experimentNewUI() {
-      return ABTestingService.getValues().benefit_result_page
+      return ABTestingService.getValues().benefit_result_page === "NewUI"
     },
   },
 }

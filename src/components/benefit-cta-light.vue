@@ -54,7 +54,10 @@ const ctas = computed(() => {
   >
     <h5 class="fr-h5">Comment l'obtenir ?</h5>
     <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">
-      <div class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w">
+      <div
+        v-if="ctaTeleservice || ctaForm"
+        class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
+      >
         <BenefitCtaLinkLight
           v-if="ctaTeleservice"
           :analytics-name="benefit.id"

@@ -8,16 +8,23 @@ import { BenefitType } from "@lib/types/benefits"
 const store = useStore()
 const $router = useRouter()
 
-const typeLabels = {
-  teleservice: "Faire une demande en ligne",
-  form: "Accéder au formulaire papier",
-  instructions: "Voir les instructions détaillées",
-  link: "Plus d'informations",
-}
-
-const longLabels = {
-  ...typeLabels,
-  link: "Plus d'informations",
+const labels = {
+  teleservice: {
+    short: "Faire une demande en ligne",
+    long: "Faire une demande en ligne pour",
+  },
+  form: {
+    short: "Accéder au formulaire papier",
+    long: "Accéder au formulaire papier pour",
+  },
+  instructions: {
+    short: "Voir les instructions détaillées",
+    long: "Voir les instructions détaillées pour",
+  },
+  link: {
+    short: "Plus d'informations",
+    long: "Plus d'informations pour",
+  },
 }
 
 const props = defineProps({
@@ -28,26 +35,27 @@ const props = defineProps({
   link: String,
 })
 
-const label = computed(() => {
-  if (props.type) {
-    return typeLabels[props.type]
-  }
-  return null
-})
+const label = computed(() => (props.type ? labels[props.type].short : null))
 
 const longLabel = computed(() => {
-  if (props.type)
-    return `${longLabels[props.type]} pour ${props.benefit?.prefix || ""}${
-      props.benefit?.prefix?.endsWith("’") ? "" : " "
-    }${props.benefit?.label} - Nouvelle fenêtre`
+  if (props.type) {
+    const prefix = props.benefit?.prefix || ""
+    const label = props.benefit?.label || ""
+    const endsWithQuote = prefix.endsWith("’")
+    return `${labels[props.type].long} ${prefix}${
+      endsWithQuote ? "" : " "
+    }${label} - Nouvelle fenêtre`
+  }
   return ""
 })
+
 const getURL = (link) => {
   if (typeof link === "object") {
     return $router.resolve(link).href
   }
   return link
 }
+
 const onClick = (link) => {
   if (typeof link === "object") {
     storageService.local.setItem("trampoline", {

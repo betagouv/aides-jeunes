@@ -27,12 +27,12 @@ export function useEtablissements() {
     )
   })
 
-  interface Etablissement {
+  interface EtablissementTypeCriteria {
     isRelevant?: (demandeur: any, situation: any) => boolean
     types: string[]
   }
 
-  const etablissementsList: Etablissement[] = [
+  const etablissementsList: EtablissementTypeCriteria[] = [
     {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = Individu.age(demandeur, situation.dateDeValeur)

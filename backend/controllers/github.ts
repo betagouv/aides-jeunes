@@ -1,5 +1,6 @@
 import axios from "axios"
 import config from "../config/index.js"
+import jwt from "jsonwebtoken"
 
 function current_uri(req) {
   return `${req.protocol}://${req.hostname}${
@@ -33,36 +34,40 @@ function validateToken(req) {
   )
 }
 
-function validateCookieToken(github_payload) {
+function validateCookieToken(token) {
+  const verifiedToken = jwt.verify(token, config.sessionSecret)
   return axios.get(config.github.authenticated_url, {
     headers: {
       Accept: "application/json",
-      Authorization: `token ${github_payload.access_token}`,
+      Authorization: `token ${verifiedToken.access_token}`,
     },
   })
 }
 
 const access = async (req, res, next) => {
-  let github_payload = req.cookies && req.cookies["github_token"]
-
+  let github_signed_token = req.cookies && req.cookies["github_signed_token"]
   if (req.query.code) {
     const result = await validateToken(req)
     if (result.status === 200 && result.data.access_token) {
-      github_payload = result.data
-      res.cookie("github_token", github_payload)
+      const payload = {
+        access_token: result.data.access_token,
+      }
+      github_signed_token = jwt.sign(payload, config.sessionSecret)
+      res.cookie("github_signed_token", github_signed_token)
     }
   }
-  if (github_payload) {
+  if (github_signed_token) {
     try {
-      const result = await validateCookieToken(github_payload)
+      const result = await validateCookieToken(github_signed_token)
       if (config.github.authorized_users.includes(result.data.login)) {
         return next()
       } else {
-        res.clearCookie("github_token")
+        res.clearCookie("github_signed_token")
         return res.redirect("/accompagnement?unauthorized")
       }
     } catch (e) {
       console.error("error", e)
+      return res.redirect("/accompagnement?error")
     }
   }
   return authenticate(req, res)

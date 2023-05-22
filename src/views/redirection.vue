@@ -78,22 +78,31 @@ export default {
       updating: true,
     }
   },
-  mounted() {
-    this.simulationId =
-      storageService.session.getItem("simulationId") ||
-      storageService.local.getItem("trampoline")?.simulationId
-
-    if (!this.simulationId) {
+  methods: {
+    handleNoSimulationId() {
       const { vers } = this.$route.query
       if (vers) {
         const [teleservice, procedure] = vers.split("?procedure=")
         if (teleservice === "ds") {
           document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
+        } else {
+          this.error = "Identifiant de simulation absent… Arrêt."
+          this.updating = false
+          return
         }
       }
+    },
+    fetchSimulationId() {
+      this.simulationId =
+        storageService.session.getItem("simulationId") ||
+        storageService.local.getItem("trampoline")?.simulationId
+    },
+  },
+  mounted() {
+    this.fetchSimulationId()
 
-      this.error = "Identifiant de simulation absent… Arrêt."
-      this.updating = false
+    if (!this.simulationId) {
+      this.handleNoSimulationId()
       return
     }
 

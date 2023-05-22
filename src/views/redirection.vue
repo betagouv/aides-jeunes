@@ -78,24 +78,6 @@ export default {
       updating: true,
     }
   },
-  methods: {
-    handleNoSimulationId() {
-      const route = this.$route.query.vers
-      const [teleservice, procedure] = route.split("?procedure=")
-      if (teleservice === "ds") {
-        document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
-      } else {
-        this.error = "Identifiant de simulation absent… Arrêt."
-        this.updating = false
-        return
-      }
-    },
-    fetchSimulationId() {
-      this.simulationId =
-        storageService.session.getItem("simulationId") ||
-        storageService.local.getItem("trampoline")?.simulationId
-    },
-  },
   mounted() {
     this.fetchSimulationId()
 
@@ -115,6 +97,24 @@ export default {
       .finally(() => {
         this.updating = false
       })
+  },
+  methods: {
+    handleNoSimulationId() {
+      const route = this.$route.query.vers
+      const [teleservice, procedure] = route.split("?procedure=")
+      if (teleservice === "ds") {
+        document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
+      } else {
+        this.error = "Identifiant de simulation absent… Arrêt."
+        this.updating = false
+        return
+      }
+    },
+    fetchSimulationId() {
+      this.simulationId =
+        storageService.session.getItem("simulationId") ||
+        storageService.local.getItem("trampoline")?.simulationId
+    },
   },
 }
 </script>

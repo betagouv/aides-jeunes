@@ -80,16 +80,14 @@ export default {
   },
   methods: {
     handleNoSimulationId() {
-      const { vers } = this.$route.query
-      if (vers) {
-        const [teleservice, procedure] = vers.split("?procedure=")
-        if (teleservice === "ds") {
-          document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
-        } else {
-          this.error = "Identifiant de simulation absent… Arrêt."
-          this.updating = false
-          return
-        }
+      const route = this.$route.query.vers
+      const [teleservice, procedure] = route.split("?procedure=")
+      if (teleservice === "ds") {
+        document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
+      } else {
+        this.error = "Identifiant de simulation absent… Arrêt."
+        this.updating = false
+        return
       }
     },
     fetchSimulationId() {

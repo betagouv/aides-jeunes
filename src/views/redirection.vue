@@ -79,8 +79,11 @@ export default {
     }
   },
   mounted() {
-    this.fetchSimulationId()
+    this.simulationId = storageService.session.getItem("simulationId")
 
+    if (!this.simulationId) {
+      this.fetchSimulationId()
+    }
     if (!this.simulationId) {
       this.handleNoSimulationId()
       return
@@ -112,8 +115,9 @@ export default {
     },
     fetchSimulationId() {
       this.simulationId =
-        storageService.session.getItem("simulationId") ||
         storageService.local.getItem("trampoline")?.simulationId
+      storageService.local.removeItem("trampoline")
+      storageService.session.setItem("simulationId", this.simulationId)
     },
   },
 }

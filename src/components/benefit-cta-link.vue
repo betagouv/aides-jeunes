@@ -61,15 +61,10 @@ export default {
         this.benefit.prefix?.endsWith("’") ? "" : " "
       }${this.benefit.label} - Nouvelle fenêtre`
     },
-    hasFinishedSimulation() {
-      return this.store.calculs.resultats._id
-    },
   },
   methods: {
     getURL(link) {
-      if (typeof link === "object" && !this.hasFinishedSimulation) {
-        return this.benefit.link
-      } else if (typeof link === "object" && this.hasFinishedSimulation) {
+      if (typeof link === "object") {
         return this.$router.resolve(link).href
       }
       return link

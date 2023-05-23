@@ -173,6 +173,10 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
   return this.save()
 })
 
+FollowupSchema.virtual("emailRenderPath").get(function (this) {
+  return `/api/email/followups/${this._id}?accessToken=${this.accessToken}&emailType=`
+})
+
 FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })

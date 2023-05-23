@@ -1,6 +1,5 @@
+// import { followupByAccessToken } from "../../backend/controllers/followups.js"
 import Followup from "../../backend/models/followup.js"
-import jwt from "jsonwebtoken"
-import config from "../config/index.js"
 import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../../lib/enums/survey.js"
@@ -30,11 +29,10 @@ const renderFollowupEmail = async (followup, emailType) => {
 
 const getEtmail = async (req, res, next) => {
   try {
-    const { followupId, emailType } = jwt.verify(
-      req.params.token,
-      config.sessionSecret
+    const followup = await Followup.findById(req.params.followupId).populate(
+      "simulation"
     )
-    const followup = await Followup.findById(followupId).populate("simulation")
+    const { emailType } = req.query
     if (!followup) {
       return res.sendStatus(404)
     }

@@ -187,6 +187,7 @@ textarea {
 .aj-page--full-height {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .aj-hero-section {
@@ -199,6 +200,7 @@ textarea {
 .aj-hero-section--text {
   background-color: white;
   height: 100%;
+  flex: 1;
 }
 
 .aj-hero-section--text h1 {
@@ -255,7 +257,7 @@ textarea {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  
 }
 
 .aj-column-container {

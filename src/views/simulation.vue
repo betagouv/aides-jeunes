@@ -16,6 +16,18 @@
         <div v-html="store.message.text" />
       </WarningMessage>
       <div
+        v-if="franceConnectConnected"
+        class="fr-alert fr-alert--info fr-my-1w"
+      >
+        <a
+          href="/api/france-connect/logout"
+          aria-label="FranceConnect"
+          role="link"
+        >
+          Se déconnecter de FranceConnect
+        </a>
+      </div>
+      <div
         v-if="franceConnectError"
         class="fr-alert fr-alert--warning fr-my-1w"
       >
@@ -99,6 +111,9 @@ export default {
     },
     franceConnectError() {
       return this.$route.query.error == "france_connect_error"
+    },
+    franceConnectConnected() {
+      return this.$cookies.get("fc_id_token_hint")
     },
   },
   methods: {

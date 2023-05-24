@@ -192,7 +192,7 @@
     ]
   },
   "lint-staged": {
-    "*.(js|json|ts|vue|yaml)": "prettier --write",
+    "*.(css|js|json|ts|vue|yaml)": "prettier --write",
     "*.(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
     ]

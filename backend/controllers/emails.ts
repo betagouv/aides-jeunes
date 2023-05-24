@@ -4,7 +4,7 @@ import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 
-const renderFollowupEmail = async (followup, emailType) => {
+const renderFollowupEmailByType = async (followup, emailType) => {
   let surveyType: SurveyType | undefined
 
   switch (emailType) {
@@ -27,7 +27,7 @@ const renderFollowupEmail = async (followup, emailType) => {
   return followup.renderSurveyEmail(surveyType)
 }
 
-const getEtmail = async (req, res, next) => {
+const getFollowupEmail = async (req, res, next) => {
   try {
     const followup = await Followup.findById(req.params.followupId).populate(
       "simulation"
@@ -36,7 +36,7 @@ const getEtmail = async (req, res, next) => {
     if (!followup) {
       return res.sendStatus(404)
     }
-    const result = await renderFollowupEmail(followup, emailType)
+    const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])
   } catch (err) {
     next(err)
@@ -44,5 +44,5 @@ const getEtmail = async (req, res, next) => {
 }
 
 export default {
-  getEtmail,
+  getFollowupEmail,
 }

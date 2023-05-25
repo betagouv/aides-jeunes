@@ -2,6 +2,8 @@
 import { defineProps, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
 import { useRoute } from "vue-router"
+import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 const $route = useRoute()
 defineProps({
@@ -28,9 +30,14 @@ defineProps({
             {{ etablissement.nom }}
           </p>
           <span data-testid="etablissement-informations-link">
-            <router-link
+            <AnalyticRouterLink
               v-if="$route.name === 'aide'"
               class="fr-link fr-link--sm"
+              :analytics="{
+                name: etablissement.id,
+                action: BehaviourEventTypes.showNewLocation,
+                category: 'General',
+              }"
               :to="{
                 name: 'helpBenefitEtablissementInformationsLight',
                 params: {
@@ -39,10 +46,15 @@ defineProps({
                 },
               }"
               >Voir les informations
-            </router-link>
-            <router-link
+            </AnalyticRouterLink>
+            <AnalyticRouterLink
               v-else
               class="fr-link fr-link--sm"
+              :analytics="{
+                name: etablissement.id,
+                action: BehaviourEventTypes.showNewLocation,
+                category: 'General',
+              }"
               :to="{
                 name: 'benefitEtablissementInformationsLight',
                 params: {
@@ -50,7 +62,7 @@ defineProps({
                 },
               }"
               >Voir les informations
-            </router-link>
+            </AnalyticRouterLink>
           </span>
         </div>
       </div>

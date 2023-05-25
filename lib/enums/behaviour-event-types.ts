@@ -6,6 +6,7 @@ export enum BehaviourEventTypes {
   link = "link",
   msa = "msa",
   showLocations = "show-locations",
+  showNewLocation = "show-new-location",
   teleservice = "teleservice",
   linkIneligible = "link-ineligible",
   showUnexpected = "show-unexpected",

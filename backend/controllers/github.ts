@@ -2,75 +2,111 @@ import axios from "axios"
 import config from "../config/index.js"
 import jwt from "jsonwebtoken"
 
-function current_uri(req) {
-  return `${req.protocol}://${req.hostname}${
-    process.env.NODE_ENV == "development" ? ":8080" : ""
-  }${req.originalUrl}`
+const JWT_EXPIRATION_DELAY = 6 * 30 * 24 * 60 * 60 // 6 months
+
+const {
+  client_id,
+  client_secret,
+  authorize_url,
+  access_token_url,
+  authenticated_url,
+  authorized_users,
+} = config.github
+
+const { sessionSecret } = config
+
+const current_uri = (req) => {
+  const port = process.env.NODE_ENV === "development" ? ":8080" : ""
+  return `${req.protocol}://${req.hostname}${port}${req.originalUrl}`
 }
 
-function authenticate(req, res) {
+const authenticate = (req, res) => {
   const params = new URLSearchParams({
-    client_id: config.github.client_id,
+    client_id,
     redirect_uri: current_uri(req),
   })
 
-  const url = new URL(config.github.authorize_url)
+  const url = new URL(authorize_url)
   url.search = params.toString()
 
-  return res.redirect(url.toString())
+  res.redirect(url.toString())
 }
 
-function validateToken(req) {
-  return axios.post(
-    config.github.access_token_url,
-    {
-      client_id: config.github.client_id,
-      client_secret: config.github.client_secret,
-      code: req.query.code,
-    },
-    {
-      headers: { Accept: "application/json" },
-    }
-  )
+const postCodeValidation = async (code) => {
+  try {
+    const response = await axios.post(
+      access_token_url,
+      {
+        client_id,
+        client_secret,
+        code,
+      },
+      {
+        headers: { Accept: "application/json" },
+      }
+    )
+    return response.data.access_token
+  } catch (error) {
+    console.error("Error in postCodeValidation: ", error)
+    throw error
+  }
 }
 
-function validateCookieToken(token) {
-  const verifiedToken = jwt.verify(token, config.sessionSecret)
-  return axios.get(config.github.authenticated_url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `token ${verifiedToken.access_token}`,
-    },
-  })
+const getAccessTokenValidation = async (token) => {
+  try {
+    const response = await axios.get(authenticated_url, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `token ${token}`,
+      },
+    })
+    return response.data.login
+  } catch (error) {
+    console.error("Error in getAccessTokenValidation: ", error)
+    throw error
+  }
 }
 
 const access = async (req, res, next) => {
-  let github_signed_token = req.cookies && req.cookies["github_signed_token"]
-  if (req.query.code) {
-    const result = await validateToken(req)
-    if (result.status === 200 && result.data.access_token) {
-      const payload = {
-        access_token: result.data.access_token,
-      }
-      github_signed_token = jwt.sign(payload, config.sessionSecret)
-      res.cookie("github_signed_token", github_signed_token)
-    }
-  }
-  if (github_signed_token) {
-    try {
-      const result = await validateCookieToken(github_signed_token)
-      if (config.github.authorized_users.includes(result.data.login)) {
-        return next()
+  try {
+    const { cookies } = req
+    let github_login_token = cookies && cookies["github_login_token"]
+    const githubCode = req.query.code
+
+    if (githubCode) {
+      const accessResponse = await postCodeValidation(githubCode)
+      const login = await getAccessTokenValidation(accessResponse)
+      const isAuthorized = authorized_users.includes(login)
+
+      if (isAuthorized) {
+        github_login_token = jwt.sign({ login }, sessionSecret, {
+          expiresIn: JWT_EXPIRATION_DELAY,
+        })
+        res.cookie("github_login_token", github_login_token)
       } else {
-        res.clearCookie("github_signed_token")
+        res.clearCookie("github_login_token")
         return res.redirect("/accompagnement?unauthorized")
       }
-    } catch (e) {
-      console.error("error", e)
-      return res.redirect("/accompagnement?error")
     }
+
+    if (github_login_token) {
+      const { login } = jwt.verify(github_login_token, sessionSecret)
+      const isAuthorized = authorized_users.includes(login)
+
+      if (isAuthorized) {
+        return next()
+      } else {
+        res.clearCookie("github_login_token")
+        return res.redirect("/accompagnement?unauthorized")
+      }
+    }
+
+    return authenticate(req, res)
+  } catch (error) {
+    console.error("Error in access:", error)
+    res.clearCookie("github_signed_token")
+    return res.redirect("/accompagnement?error")
   }
-  return authenticate(req, res)
 }
 
 const postAuthRedirect = (req, res) => {

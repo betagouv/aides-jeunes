@@ -31,24 +31,6 @@ defineProps({
           </p>
           <span data-testid="etablissement-informations-link">
             <AnalyticRouterLink
-              v-if="$route.name === 'aide'"
-              class="fr-link fr-link--sm"
-              :analytics="{
-                name: etablissement.id,
-                action: BehaviourEventTypes.showNewLocation,
-                category: 'General',
-              }"
-              :to="{
-                name: 'helpBenefitEtablissementInformationsLight',
-                params: {
-                  etablissement_id: etablissement.id,
-                  droitId: $route.params.benefitId,
-                },
-              }"
-              >Voir les informations
-            </AnalyticRouterLink>
-            <AnalyticRouterLink
-              v-else
               class="fr-link fr-link--sm"
               :analytics="{
                 name: etablissement.id,

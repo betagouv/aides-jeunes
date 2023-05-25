@@ -17,9 +17,9 @@
       La présente politique de confidentialité définit et vous informe de la
       manière dont la Délégation Générale de l’Emploi et de la Formation
       Professionnelle (DGEFP) traite les données à caractère personnel en
-      conformité à le Règlement européen (UE) 2016/679 du Parlement européen et
-      du Conseil du 27 avril 2016 et la loi nᵒ 78-17 du 6 janvier 1978 relative
-      à l’informatique, aux fichiers et aux libertés.
+      conformité avec le Règlement européen (UE) 2016/679 du Parlement européen
+      et du Conseil du 27 avril 2016 et la loi nᵒ 78-17 du 6 janvier 1978
+      relative à l’informatique, aux fichiers et aux libertés.
     </p>
 
     <h3>Finalité du traitement et licéité</h3>
@@ -80,7 +80,7 @@
       >
       <li
         >Les données relatives à la situation personnelle, ainsi que celles de
-        leurs enfants et de leurs parentsparents ;</li
+        leurs enfants et de leurs parents ;</li
       >
       <li
         >Les données relatives à la situation professionnelle des

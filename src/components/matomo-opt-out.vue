@@ -3,8 +3,8 @@
     <p v-if="doNotTrack">
       Vous n'êtes pas suivi car votre navigateur signale que vous ne le
       souhaitez pas. Il s'agit d'un paramètre de votre navigateur, vous ne
-      pourrez donc pas vous inscrire tant que vous n'aurez pas désactivé la
-      fonction « Ne pas suivre ».
+      pourrez donc pas accepter le suivi de vos actions tant que vous n'aurez
+      pas désactivé la fonction « Ne pas suivre ».
     </p>
     <div v-else>
       <p>
@@ -48,13 +48,9 @@ const toggleTracking = (event) => {
 }
 
 onMounted(() => {
-  if (!window._paq) {
-    return
-  }
-
-  window._paq.push([
+  window._paq?.push([
     function () {
-      isUserTracked.value = !doNotTrack && !this.isUserOptedOut()
+      isUserTracked.value = !this.isUserOptedOut()
     },
   ])
 })

@@ -4,13 +4,15 @@ import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
 import Simulation from "../backend/models/simulation.js"
 import { SimulationStatusEnum } from "../lib/enums/simulation.js"
-import Followup from "../backend/models/followup"
+import Followup from "../backend/models/followup.js"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
-} from "../lib/cleaner-functions"
+} from "../lib/cleaner-functions.js"
 
 async function main() {
+  const twoYearsAgo = Date.now() - 2 * 365 * 24 * 60 * 60 * 1000
+  const sixMonthsAgo = Date.now() - 6 * 30 * 24 * 60 * 60 * 1000
   const aMonthAgo = Date.now() - 31 * 24 * 60 * 60 * 1000
   const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 
@@ -31,6 +33,18 @@ async function main() {
     } catch (err) {
       console.error(`Cannot save followup: ${followupAnonymized.id}`)
       console.trace(err)
+    }
+  }
+
+  const oldFollowupsCursor = await Followup.find({
+    createdAt: { $lt: sixMonthsAgo },
+  }).cursor()
+  for await (const oldFollowup of oldFollowupsCursor) {
+    try {
+      await Followup.deleteOne({ _id: oldFollowup._id })
+      console.log(`Deleted followup: ${oldFollowup._id}`)
+    } catch (err) {
+      console.error(`Error deleting followup: ${oldFollowup._id}`, err)
     }
   }
 
@@ -62,6 +76,18 @@ async function main() {
       simulation_count += 1
     } catch (err) {
       console.error(`Cannot save simulation: ${anonymizedSimulation.id}`)
+    }
+  }
+
+  const oldSimulationsCursor = await Simulation.find({
+    dateDeValeur: { $lt: twoYearsAgo },
+  }).cursor()
+  for await (const oldSimulation of oldSimulationsCursor) {
+    try {
+      await Simulation.deleteOne({ _id: oldSimulation._id })
+      console.log(`Deleted simulation: ${oldSimulation._id}`)
+    } catch (err) {
+      console.error(`Error deleting simulation: ${oldSimulation._id}`, err)
     }
   }
 

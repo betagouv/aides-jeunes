@@ -17,11 +17,7 @@ const renderFollowupEmailByType = async (followup, emailType) => {
       surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
     default:
-      return
-  }
-
-  if (!surveyType) {
-    throw new Error(`Unknown email type: ${emailType}`)
+      throw new Error(`Unknown email type: ${emailType}`)
   }
 
   return followup.renderSurveyEmail(surveyType)

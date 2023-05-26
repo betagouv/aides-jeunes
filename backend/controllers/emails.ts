@@ -29,9 +29,6 @@ const getFollowupEmail = async (req, res, next) => {
       "simulation"
     )
     const { emailType } = req.query
-    if (!followup) {
-      return res.sendStatus(404)
-    }
     const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])
   } catch (err) {

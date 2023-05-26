@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { defineProps, PropType } from "vue"
 import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
-import { useRoute } from "vue-router"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
-const $route = useRoute()
 defineProps({
   etablissement: {
     type: Object as PropType<HelpingInstitution>,

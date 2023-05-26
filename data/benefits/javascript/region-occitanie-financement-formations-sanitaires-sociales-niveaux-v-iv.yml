@@ -23,7 +23,7 @@ profils:
         values:
           - terminale
 conditions:
-  - Être inscrit ou inscrite dans un établissement de formation agréé par la
+  - Êtudier dans un établissement de formation agréé par la
     Région Occitanie.
   - Être en poursuite de scolarité ou en recherche d’emploi avant la date
     d’entrée en formation.
@@ -32,5 +32,4 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV
-form: ""
 instructions: https://www.laregion.fr/Financement-des-formations-sanitaires-et-sociales-de-niveaux-V-et-IV

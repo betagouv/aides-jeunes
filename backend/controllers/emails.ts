@@ -25,9 +25,7 @@ const renderFollowupEmailByType = async (followup, emailType) => {
 
 const getFollowupEmail = async (req, res, next) => {
   try {
-    const followup = await Followup.findById(req.params.followupId).populate(
-      "simulation"
-    )
+    const followup = await Followup.findById(req.params.followupId)
     const { emailType } = req.query
     const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])

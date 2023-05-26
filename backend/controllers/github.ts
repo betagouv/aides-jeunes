@@ -32,7 +32,7 @@ const authenticate = (req, res) => {
   res.redirect(url.toString())
 }
 
-const postCodeValidation = async (code) => {
+const retrieveGithubAccessToken = async (code) => {
   try {
     const response = await axios.post(
       access_token_url,
@@ -47,12 +47,12 @@ const postCodeValidation = async (code) => {
     )
     return response.data.access_token
   } catch (error) {
-    console.error("Error in postCodeValidation: ", error)
+    console.error("Error in retrieveGithubAccessToken: ", error)
     throw error
   }
 }
 
-const getAccessTokenValidation = async (token) => {
+const getGithubUsername = async (token) => {
   try {
     const response = await axios.get(authenticated_url, {
       headers: {
@@ -62,7 +62,7 @@ const getAccessTokenValidation = async (token) => {
     })
     return response.data.login
   } catch (error) {
-    console.error("Error in getAccessTokenValidation: ", error)
+    console.error("Error in getGithubUsername: ", error)
     throw error
   }
 }
@@ -74,8 +74,8 @@ const access = async (req, res, next) => {
     const githubCode = req.query.code
 
     if (githubCode) {
-      const accessResponse = await postCodeValidation(githubCode)
-      const login = await getAccessTokenValidation(accessResponse)
+      const githubAccessToken = await retrieveGithubAccessToken(githubCode)
+      const login = await getGithubUsername(githubAccessToken)
       const isAuthorized = authorized_users.includes(login)
 
       if (isAuthorized) {

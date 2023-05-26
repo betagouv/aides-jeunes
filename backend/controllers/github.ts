@@ -70,7 +70,7 @@ const getGithubUsername = async (token) => {
 const access = async (req, res, next) => {
   try {
     const { cookies } = req
-    let github_login_token = cookies && cookies["github_login_token"]
+    let github_handle_token = cookies && cookies["github_handle_token"]
     const githubCode = req.query.code
 
     if (githubCode) {
@@ -79,24 +79,24 @@ const access = async (req, res, next) => {
       const isAuthorized = authorized_users.includes(login)
 
       if (isAuthorized) {
-        github_login_token = jwt.sign({ login }, sessionSecret, {
+        github_handle_token = jwt.sign({ login }, sessionSecret, {
           expiresIn: JWT_EXPIRATION_DELAY,
         })
-        res.cookie("github_login_token", github_login_token)
+        res.cookie("github_handle_token", github_handle_token)
       } else {
-        res.clearCookie("github_login_token")
+        res.clearCookie("github_handle_token")
         return res.redirect("/accompagnement?unauthorized")
       }
     }
 
-    if (github_login_token) {
-      const { login } = jwt.verify(github_login_token, sessionSecret)
+    if (github_handle_token) {
+      const { login } = jwt.verify(github_handle_token, sessionSecret)
       const isAuthorized = authorized_users.includes(login)
 
       if (isAuthorized) {
         return next()
       } else {
-        res.clearCookie("github_login_token")
+        res.clearCookie("github_handle_token")
         return res.redirect("/accompagnement?unauthorized")
       }
     }

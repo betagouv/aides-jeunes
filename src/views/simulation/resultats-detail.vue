@@ -87,7 +87,7 @@ export default {
     } else {
       const droitId = this.$route.params.droitId
 
-      this.sendEventsToRecorder(
+      this.sendBenefitsStatistics(
         this.droits,
         BehaviourEventTypes.showDetails,
         droitId

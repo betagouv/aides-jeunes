@@ -197,7 +197,7 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.sendEventsToRecorder(this.droits, BehaviourEventTypes.show)
+      this.sendBenefitsStatistics(this.droits, BehaviourEventTypes.show)
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
       const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
@@ -209,7 +209,7 @@ export default {
         return unexpectedAmountLinkDisplayed
       })
 
-      this.sendEventsToRecorder(
+      this.sendBenefitsStatistics(
         droitsWithUnexpectedAmount,
         BehaviourEventTypes.showUnexpectedAmountLink
       )

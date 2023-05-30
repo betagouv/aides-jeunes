@@ -38,13 +38,8 @@ export default {
   },
   methods: {
     handleClick() {
-      this.sendEventsToRecorder(
+      this.sendBenefitsStatistics(
         this.droits,
-        this.analytics.action,
-        this.analytics.name
-      )
-      this.sendEventToMatomo(
-        this.analytics.category,
         this.analytics.action,
         this.analytics.name
       )

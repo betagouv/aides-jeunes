@@ -1,0 +1,27 @@
+label: Bourse communale au permis de conduire
+institution: ville_montpellier
+description: Le Service Jeunesse de la Ville propose le dispositif d’aide au
+  permis de conduire de catégorie B pour améliorer l'intégration des
+  jeunes en difficulté financière dans la vie professionnelle et sociale.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "34172"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 29
+profils: []
+conditions:
+  - Résider à Montpellier depuis plus d'1 an.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: ""
+montant: 200
+link: https://mes-aides.pole-emploi.fr/mairie-de-montpellier/bourse-communale-au-permis-de-conduire-montpellier
+instructions: https://mes-aides.pole-emploi.fr/mairie-de-montpellier/bourse-communale-au-permis-de-conduire-montpellier

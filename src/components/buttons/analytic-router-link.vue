@@ -15,7 +15,6 @@ export default {
     analytics: {
       type: Object,
       name: String,
-      category: String,
       action: String,
     },
     to: {

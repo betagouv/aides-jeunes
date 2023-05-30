@@ -26,7 +26,6 @@
             :analytics="{
               name: benefit.id,
               action: eventTypeShowLocations,
-              category: 'General',
             }"
             :to="{
               name: 'resultatsLieuxDedies',

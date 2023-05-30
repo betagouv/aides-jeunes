@@ -31,7 +31,6 @@
         :analytics="{
           name: droit.id,
           action: eventTypeShowUnexpected,
-          category: 'General',
         }"
         :to="{ name: 'resultatInattendu', params: { id: droit.id } }"
       >

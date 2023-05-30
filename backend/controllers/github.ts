@@ -52,7 +52,7 @@ const retrieveGithubAccessToken = async (code) => {
   }
 }
 
-const getGithubUsername = async (token) => {
+const getGithubHandle = async (token) => {
   try {
     const response = await axios.get(authenticated_url, {
       headers: {
@@ -62,7 +62,7 @@ const getGithubUsername = async (token) => {
     })
     return response.data.login
   } catch (error) {
-    console.error("Error in getGithubUsername: ", error)
+    console.error("Error in getGithubHandle: ", error)
     throw error
   }
 }
@@ -75,11 +75,11 @@ const access = async (req, res, next) => {
 
     if (githubCode) {
       const githubAccessToken = await retrieveGithubAccessToken(githubCode)
-      const login = await getGithubUsername(githubAccessToken)
-      const isAuthorized = authorized_users.includes(login)
+      const githubHandle = await getGithubHandle(githubAccessToken)
+      const isAuthorized = authorized_users.includes(githubHandle)
 
       if (isAuthorized) {
-        github_handle_token = jwt.sign({ login }, sessionSecret, {
+        github_handle_token = jwt.sign({ githubHandle }, sessionSecret, {
           expiresIn: JWT_EXPIRATION_DELAY,
         })
         res.cookie("github_handle_token", github_handle_token)
@@ -90,8 +90,8 @@ const access = async (req, res, next) => {
     }
 
     if (github_handle_token) {
-      const { login } = jwt.verify(github_handle_token, sessionSecret)
-      const isAuthorized = authorized_users.includes(login)
+      const { githubHandle } = jwt.verify(github_handle_token, sessionSecret)
+      const isAuthorized = authorized_users.includes(githubHandle)
 
       if (isAuthorized) {
         return next()

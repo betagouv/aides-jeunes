@@ -20,7 +20,7 @@ conditions_generales:
 profils: []
 conditions:
   - Résider dans le Pas-de-Calais.
-  - Avoir obtenu son code de la route depuis moins de 3 mois.
+  - Avoir obtenu votre code de la route depuis moins de 3 mois.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

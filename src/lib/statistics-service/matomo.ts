@@ -1,5 +1,7 @@
 import { skipSendStatistics } from "./shared.js"
 
+const isProduction = process.env.NODE_ENV === "production"
+
 export interface IMatomoEvent {
   category: string
   action: string
@@ -23,7 +25,8 @@ function skipSendEventToMatomo(matomo: IMatomo | undefined): boolean {
 
 export function sendEventToMatomo(event: IMatomoEvent, matomo: IMatomo): void {
   if (skipSendEventToMatomo(matomo)) {
-    return console.debug("Skip sending event to Matomo", event)
+    !isProduction && console.debug("Skip sending event to Matomo", event)
+    return
   }
 
   matomo.trackEvent(event.category, event.action, event.label, event.value)

@@ -293,7 +293,7 @@ export default {
                 "Simulation : Secret permettant de gérer la légimité des accès",
             },
             {
-              name: "github_signed_token",
+              name: "github_login_token",
               lifetime: "Session",
               purpose:
                 "Outil d’accompagnement : Secret permettant de gérer les accès",

@@ -104,7 +104,7 @@ const access = async (req, res, next) => {
     return authenticate(req, res)
   } catch (error) {
     console.error("Error in access:", error)
-    res.clearCookie("github_signed_token")
+    res.clearCookie("github_handle_token")
     return res.redirect("/accompagnement?error")
   }
 }

@@ -1,8 +1,9 @@
 label: "Aide au financement du permis de conduire : Permis Citoyen"
 institution: departement_pas_de_calais
-description: Le Permis citoyen, c’est 400 € pour financer son permis de conduire en
+description:
+  Le Permis citoyen, c’est 400 € pour financer son permis de conduire en
   contrepartie d’un engagement citoyen bénévole de 35h auprès d’une association
-  du Pas-de-Calais. 
+  du Pas-de-Calais.
 
   Une bonification de 200 € peut être accordée aux jeunes en situation de handicap si la mobilisation d'un financement par la MDPH n'est pas possible.
 prefix: l’

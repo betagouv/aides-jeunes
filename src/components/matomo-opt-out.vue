@@ -1,12 +1,6 @@
 <template>
   <div>
-    <p v-if="doNotTrack">
-      Vous n'êtes pas suivi car votre navigateur signale que vous ne le
-      souhaitez pas. Il s'agit d'un paramètre de votre navigateur, vous ne
-      pourrez donc pas accepter le suivi de vos actions tant que vous n'aurez
-      pas désactivé la fonction « Ne pas suivre ».
-    </p>
-    <div v-else>
+    <div>
       <p>
         Vous pouvez vous opposer au suivi de votre navigation sur ce site web.
         Cela protégera votre vie privée, mais nous empêchera également
@@ -40,7 +34,6 @@
 import { onMounted, ref } from "vue"
 
 const isUserTracked = ref()
-const doNotTrack = window.navigator.doNotTrack === "1"
 
 const toggleTracking = (event) => {
   isUserTracked.value = event.target.checked

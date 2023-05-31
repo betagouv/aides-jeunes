@@ -50,6 +50,7 @@ const toggleTracking = (event) => {
 onMounted(() => {
   window._paq?.push([
     function () {
+      // https://developer.matomo.org/guides/tracking-javascript-guide#optional-creating-a-custom-opt-out-form
       isUserTracked.value = !this.isUserOptedOut()
     },
   ])

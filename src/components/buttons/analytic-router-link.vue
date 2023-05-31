@@ -12,10 +12,13 @@ export default {
   name: "AnalyticRouterLink",
   mixins: [StatisticsMixin],
   props: {
-    analytics: {
-      type: Object,
-      name: String,
-      action: String,
+    analyticName: {
+      type: String,
+      required: true,
+    },
+    analyticAction: {
+      type: String,
+      required: true,
     },
     to: {
       type: [String, Object],
@@ -39,8 +42,8 @@ export default {
     handleClick() {
       this.sendBenefitsStatistics(
         this.droits,
-        this.analytics.action,
-        this.analytics.name
+        this.analyticAction,
+        this.analyticName
       )
     },
   },

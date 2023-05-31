@@ -79,6 +79,7 @@
     "morgan": "^1.10.0",
     "pinia": "^2.0.16",
     "sib-api-v3-sdk": "^8.2.1",
+    "smtp-tester": "^2.0.1",
     "tmp": "^0.2.1",
     "ts-node": "^10.9.1",
     "validator": "^13.7.0",

@@ -1,0 +1,45 @@
+label: Aide au financement du permis de conduire
+institution: ville_lille
+description: Cette aide s’adresse aux Lillois et Lilloises en recherche active
+  d’emploi, âgés de 18 à 25 ans (ou 30 ans s’il s’agit d’une création
+  d’entreprise ou de son propre emploi) et non imposables sur le revenu. Si vous
+  remplissez les conditions, votre demande est à effectuer au 06 25 20 74 02 ou
+  en écrivant à jeunesse@mairie-lille.fr.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "59350"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+conditions:
+  - Justifier de l’une des situations suivantes :  Etre inscrit dans une
+    formation professionnelle (alternance, apprentissage, attestation de
+    formation). Etre en situation professionnelle précaire (bulletins de salaire
+    / contrat de travail). Etre suivi par la Mission Locale dans le cadre d’un
+    parcours d’insertion professionnelle (contrat d’insertion).
+  - Effectuer 25 heures de travail bénévole auprès d’associations ou
+    d’institutions Lilloises.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: ""
+montant: 1000
+link: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-parcours-permis
+instructions: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-parcours-permis

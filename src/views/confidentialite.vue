@@ -169,7 +169,7 @@
       données.
     </p>
 
-    <h3>Cookies</h3>
+    <h3 id="cookies">Cookies</h3>
 
     <p>
       Un cookie est un fichier déposé sur votre terminal lors de la visite d’un
@@ -188,9 +188,9 @@
       l’internaute sur d’autres sites.
     </p>
 
-    <div v-for="cookie in cookies" :key="cookie.location" class="fr-table">
+    <div class="fr-table">
       <table>
-        <caption>{{ cookie.location }}</caption>
+        <caption>Sur ce site</caption>
         <thead>
           <tr>
             <th scope="col">Nom</th>
@@ -199,7 +199,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cookie.items" :key="item.name">
+          <tr v-for="item in cookies" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.lifetime }}</td>
             <td>{{ item.purpose }}</td>
@@ -208,115 +208,72 @@
       </table>
     </div>
 
-    <div>
-      <p>Il convient d’indiquer que :</p>
-      <ul>
-        <li>
-          Les données collectées ne sont pas recoupées avec d’autres traitements
-        </li>
-        <li>
-          Les cookies ne permettent pas de suivre la navigation de l’internaute
-          sur d’autres sites
-        </li>
-      </ul>
-    </div>
-
-    <iframe
-      id="tracking-optout"
-      class="aj-iframe-tracking-optout"
-      title="Paramètres de suivi de l'utilisateur - stats.data.gouv.fr"
-      src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
-    >
-      Vous pouvez choisir de
-      <a
-        href="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr"
-        >refuser ce suivi</a
-      >.
-    </iframe>
+    <MatomoOptOut />
   </article>
 </template>
 
 <script lang="ts">
 import ContactEmailMixin from "@/mixins/contact-email.js"
+import MatomoOptOut from "@/components/matomo-opt-out.vue"
 import { useStore } from "@/stores/index.ts"
 
-interface CookieDetails {
+interface Cookie {
   name: string
   lifetime: string
   purpose: string
 }
 
-interface Cookies {
-  location: string
-  items: CookieDetails[]
-}
-
 export default {
   name: "Cgu",
+  components: { MatomoOptOut },
   mixins: [ContactEmailMixin],
   setup() {
     return {
       store: useStore(),
       cookies: [
         {
-          location: "Sur ce site",
-          items: [
-            {
-              name: "_pk_id.*",
-              lifetime: "13 mois",
-              purpose: "Matomo : Identifiant de visiteur unique",
-            },
-            {
-              name: "_pk_ses.*",
-              lifetime: "30 minutes",
-              purpose: "Matomo : Informations de visite",
-            },
-            {
-              name: "mtm_consent",
-              lifetime: "30 ans",
-              purpose: "Matomo : Enregistrement du don de consentement",
-            },
-            {
-              name: "mtm_consent_removed",
-              lifetime: "30 ans",
-              purpose: "Matomo : Enregistrement du non-consentement",
-            },
-            {
-              name: "lastestSimulation",
-              lifetime: "7 jours",
-              purpose: "Simulation : Identifiant de la dernière simulation",
-            },
-            {
-              name: "simulation_*",
-              lifetime: "7 jours",
-              purpose:
-                "Simulation : Secret permettant de gérer la légimité des accès",
-            },
-            {
-              name: "github_handle_token",
-              lifetime: "Session",
-              purpose:
-                "Outil d’accompagnement : Secret permettant de gérer les accès",
-            },
-          ],
+          name: "_pk_id.*",
+          lifetime: "13 mois",
+          purpose:
+            "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience Matomo est active)",
         },
         {
-          location: "Sur stats.data.gouv.fr",
-          items: [
-            {
-              name: "matomo_sessid",
-              lifetime: "14 jours",
-              purpose: "Matomo : Visiteur unique",
-            },
-            {
-              name: "piwik_ignore",
-              lifetime: "30 ans",
-              purpose:
-                "Matomo : Enregistrement de la demande d’exclusion du suivi",
-            },
-          ],
+          name: "_pk_ref.*",
+          lifetime: "6 mois",
+          purpose:
+            "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience Matomo est active)",
         },
-      ] as Cookies,
+        {
+          name: "_pk_ses.*",
+          lifetime: "30 minutes",
+          purpose:
+            "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
+        },
+        {
+          name: "mtm_consent_removed",
+          lifetime: "30 ans",
+          purpose:
+            "Permet le stockage de votre non-consentement au dépôt des cookies Matomo pour le suivi statistique",
+        },
+        {
+          name: "lastestSimulation",
+          lifetime: "7 jours",
+          purpose:
+            "Permet le stockage de l'identifiant de votre dernière simulation",
+        },
+        {
+          name: "simulation_*",
+          lifetime: "7 jours",
+          purpose:
+            "Permet le stockage du secret associé à une simulation et de valider l'accès aux résultats de simulation",
+        },
+        {
+          name: "github_handle_token",
+          lifetime: "Session",
+          purpose:
+            "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
+        },
+      ] as Cookie[],
     }
   },
   computed: {

@@ -14,7 +14,7 @@
         vous et les autres utilisateurs.
       </p>
       <div>
-        <label for="isUserTracked">
+        <label for="userTracking">
           <span v-if="isUserTracked"
             >Vous êtes actuellement suivi. Vous pouvez décocher cette case pour
             déactiver le suivi.
@@ -25,10 +25,10 @@
           </span>
         </label>
         <input
-          id="isUserTracked"
+          id="userTracking"
           type="checkbox"
           :checked="isUserTracked"
-          name="isUserTracked"
+          name="userTracking"
           @change="toggleTracking"
         />
       </div>

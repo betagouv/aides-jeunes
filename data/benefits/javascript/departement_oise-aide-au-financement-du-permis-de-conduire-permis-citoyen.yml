@@ -1,0 +1,30 @@
+label: "Aide au financement du permis de conduire : Permis Citoyen"
+institution: departement_oise
+description: Ce dispositif permet aux Oisiens de moins de 20 ans de financer
+  leur permis de conduire en contrepartie d’une mission bénévole de 70 heures
+  dans une collectivité ou une association de l’Oise.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "60"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 19
+profils: []
+conditions:
+  - Passer votre permis de conduire pour la première fois (la candidature doit
+    être acceptée avant la présentation aux épreuves de conduite) ou avoir
+    obtenu votre permis de manière anticipée, grâce au dispositif de conduite
+    accompagnée, durant la période maximale de 12 mois antérieure à l’obtention
+    de votre majorité légale.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+montant: 600
+link: https://www.oise.fr/les-pass-citoyens-du-conseil-departemental-de-loise/le-passpermis-citoyen
+form: https://www.oise.fr/fileadmin/user_upload/docs/pass-citoyens/pass-permis-citoyen/Dossier-de-candidature-Pass-Permis-Citoyen-oise.fr.pdf

@@ -1,17 +1,20 @@
 label: aide au financement du permis
 institution: msa_nord_pas_de_calais
-description:
-  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Nord Pas-de-Calais pour favoriser l’autonomie et l’insertion des jeunes de 16 à 25 ans en finançant
-  <a target="_blank" rel="noopener" title="le permis voiture (B) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
+description: Cette aide est un coup de pouce de la Mutualité Sociale Agricole
+  (MSA) Nord Pas-de-Calais pour favoriser l’autonomie et l’insertion des jeunes
+  de 16 à 25 ans en finançant <a target="_blank" rel="noopener" title="le permis
+  voiture (B) - Nouvelle fenêtre"
+  href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis
+  voiture (B)</a>.
+prefix: l’
 conditions:
   - Avoir obtenu le code de la route.
-link: https://nord-pasdecalais.msa.fr/lfy/aide-au-permis
-form: https://nord-pasdecalais.msa.fr/lfy/documents/98870/58000036/Formulaire+Aide+au+permis
-prefix: l’
+interestFlag: _interetPermisDeConduire
 type: float
-unit: "€"
+unit: €
+periodicite: ponctuelle
+link: https://nord-pasdecalais.msa.fr/lfp/aide-au-permis-bsr
+form: https://nord-pasdecalais.msa.fr/lfy/documents/98870/58000036/Formulaire+Aide+au+permis
 floorAt: 1
 entity: individus
 openfiscaPeriod: thisMonth
-periodicite: ponctuelle
-interestFlag: _interetPermisDeConduire

@@ -16,8 +16,14 @@ export interface ConfigurationLayout {
   openfiscaPublicURL: string
   openfiscaTracerURL: string
   netlifyContributionURL: string
-  sendInBlue: {
-    apiKey: string
+  smtp: {
+    host?: string
+    port?: number
+    secure?: boolean // true for 465, false for other ports
+    auth?: {
+      user?: string
+      pass?: string
+    }
   }
   github: {
     repository_url: string

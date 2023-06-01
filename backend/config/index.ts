@@ -36,8 +36,14 @@ const all: ConfigurationLayout = {
   netlifyContributionURL:
     process.env.NETLIFY_CONTRIBUTION_URL ||
     "https://contribuer-aides-jeunes.netlify.app",
-  sendInBlue: {
-    apiKey: process.env.SEND_IN_BLUE_PRIVATE_KEY || "privateKey",
+  smtp: {
+    host: process.env.SMTP_HOST,
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
   },
   github: {
     repository_url: "https://github.com/betagouv/aides-jeunes",

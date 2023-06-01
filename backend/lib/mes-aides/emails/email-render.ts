@@ -60,6 +60,7 @@ const dataTemplateBuilder = (
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
+    emailRenderURL: `${config.baseURL}${followup.emailRenderPath}${emailType}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
     wasUsefulLinkYes: `${config.baseURL}${followup.wasUsefulPath}`,
     wasUsefulLinkNo: `${config.baseURL}${followup.wasNotUsefulPath}`,

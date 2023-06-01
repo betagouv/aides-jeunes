@@ -1,5 +1,3 @@
-// import { followupByAccessToken } from "../../backend/controllers/followups.js"
-import Followup from "../../backend/models/followup.js"
 import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../../lib/enums/survey.js"
@@ -25,8 +23,8 @@ const renderFollowupEmailByType = async (followup, emailType) => {
 
 const getFollowupEmail = async (req, res, next) => {
   try {
-    const followup = await Followup.findById(req.params.followupId)
     const { emailType } = req.query
+    const followup = req.followup
     const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])
   } catch (err) {

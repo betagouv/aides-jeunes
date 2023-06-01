@@ -239,6 +239,14 @@ export const useStore = defineStore("store", {
     getSimulationToken(): string | undefined {
       return this.simulation.simulationToken
     },
+    getFCUserInfoEmailValue() {
+      const userinfo = this.simulation.answers.all.find(
+        (answer) =>
+          answer.entityName === "franceconnect" &&
+          answer.fieldName === "userinfo"
+      )
+      return userinfo?.value["email"]
+    },
   },
   actions: {
     setDirty() {

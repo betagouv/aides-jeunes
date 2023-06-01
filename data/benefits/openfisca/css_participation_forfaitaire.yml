@@ -1,9 +1,6 @@
 label: complémentaire santé solidaire
 institution: assurance_maladie
-description: La Complémentaire Santé Solidaire (CSS) est une protection
-  complémentaire santé (mutuelle). Elle remplace la Complémentaire Maladie
-  Universelle Complémentaire (CMU-C) et l’Aide au paiement d’une Complémentaire
-  Santé (ACS). Une fois attribuée, la CSS est accordée pour un an.
+description: La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.
 prefix: la
 conditions:
   - Résider <abbr title="Métropole, Guadeloupe, Guyane, Martinique ou

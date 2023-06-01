@@ -11,6 +11,12 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
+  - type: communes
+    values:
+      - "06000"
+      - "06100"
+      - "06200"
+      - "06300"
 profils: []
 conditions:
   - Être non-imposable.

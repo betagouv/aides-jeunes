@@ -300,19 +300,19 @@ export default {
           name: "github_handle_token",
           lifetime: "Session",
           purpose:
-            "Permet le stockage sécurisé de l'identifiant GitHub et valider l'accès à l'outil d’accompagnement",
+            "Permet le stockage sécurisé de l'identifiant GitHub et de valider l'accès à l'outil d’accompagnement",
         },
         {
           name: "fc_state",
           lifetime: "Session",
           purpose:
-            "Ce cookie permet de vérifier que l'utilisateur qui envoie une requête d'authentification FranceConnect est le même que celui qui recoit le jeton d'authentification.",
+            "Ce cookie permet de vérifier que l'utilisateur qui envoie une requête d'authentification FranceConnect est le même que celui qui reçoit le jeton d'authentification.",
         },
         {
           name: "fc_nonce",
           lifetime: "Session",
           purpose:
-            "Ce cookie permet d'authentifier, puis vérifier que le token que FranceConnect nous a retourné n'a pas été modifier par un tier.",
+            "Ce cookie permet d'authentifier, puis vérifier que le token que FranceConnect nous a retourné n'a pas été modifié par un tier.",
         },
         {
           name: "fc_id_token_hint",

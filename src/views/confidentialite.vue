@@ -217,26 +217,6 @@
 
     <div class="fr-table">
       <table>
-        <caption>Cookies techniques</caption>
-        <thead>
-          <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Durée de vie</th>
-            <th scope="col">Finalité</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in technical_cookies" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td>{{ item.lifetime }}</td>
-            <td>{{ item.purpose }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="fr-table">
-      <table>
         <caption>Cookies de mesure d'audience</caption>
         <thead>
           <tr>

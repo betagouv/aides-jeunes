@@ -11,6 +11,10 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
+  - type: communes
+    values:
+      - "44320"
+      - "44680"
 profils: []
 conditions:
   - Avoir un projet scolaire ou professionnel.

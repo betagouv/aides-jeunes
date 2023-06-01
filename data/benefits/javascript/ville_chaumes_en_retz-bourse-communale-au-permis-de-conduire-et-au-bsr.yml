@@ -1,0 +1,26 @@
+label: Bourse communale au permis de conduire et au BSR
+institution: ville_chaumes_en_retz
+description: Aide financière (sous condition de ressources) pouvant aller
+  jusqu'à 800€ pour les jeunes de plus de 14 ans (BSR) et de plus de 17 ans et
+  jusqu'à 25 ans (permis de conduire).
+prefix: la
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Avoir un projet scolaire ou professionnel.
+  - Être domicilié sur la commune.
+  - S'inscrire dans l'auto-école de la commune.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 800
+link: https://mes-aides.pole-emploi.fr/mairie-de-chaumes-en-retz/bourse-communale-au-permis-de-conduire-et-au-bsr-chaumes-en-retz
+instructions: https://mes-aides.pole-emploi.fr/mairie-de-chaumes-en-retz/bourse-communale-au-permis-de-conduire-et-au-bsr-chaumes-en-retz

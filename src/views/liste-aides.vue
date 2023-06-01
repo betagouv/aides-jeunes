@@ -51,7 +51,7 @@
               path: `/aides`,
               hash: `#${institution.id}`,
             }"
-            :aria-current="none"
+            aria-current="none"
           >
             {{ institution.label }}
           </router-link>
@@ -118,7 +118,7 @@ export default {
               departement.location == this.selectedCommune?.departement
           ),
           epci: institutionsBenefits["epci"].filter((epci) =>
-            epci?.location.includes(this.selectedCommune.code)
+            epci?.location.includes(this.selectedCommune?.code)
           ),
           commune: institutionsBenefits["commune"].filter(
             (commune) => commune?.location == this.selectedCommune?.code

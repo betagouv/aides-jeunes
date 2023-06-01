@@ -15,7 +15,7 @@ const fullScript = computed(() => {
   }${scriptPath}" ${options.value.join(" ")} data-theme="${
     selectedTheme.value
     // eslint-disable-next-line no-useless-escape
-  }""><\/script>`
+  }"><\/script>`
 })
 
 const setIframeContainer = () => {

@@ -12,11 +12,13 @@ export default {
   name: "AnalyticRouterLink",
   mixins: [StatisticsMixin],
   props: {
-    analytics: {
-      type: Object,
-      name: String,
-      category: String,
-      action: String,
+    analyticName: {
+      type: String,
+      required: true,
+    },
+    analyticAction: {
+      type: String,
+      required: true,
     },
     to: {
       type: [String, Object],
@@ -38,15 +40,10 @@ export default {
   },
   methods: {
     handleClick() {
-      this.sendEventsToRecorder(
+      this.sendBenefitsStatistics(
         this.droits,
-        this.analytics.action,
-        this.analytics.name
-      )
-      this.sendEventToMatomo(
-        this.analytics.category,
-        this.analytics.action,
-        this.analytics.name
+        this.analyticAction,
+        this.analyticName
       )
     },
   },

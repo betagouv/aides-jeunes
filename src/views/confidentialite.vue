@@ -273,6 +273,12 @@ export default {
           purpose:
             "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
         },
+        {
+          name: "fc_*",
+          lifetime: "Session",
+          purpose:
+            "Permet le stockage des secrets de connexion à FranceConnect",
+        },
       ] as Cookie[],
     }
   },

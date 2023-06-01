@@ -169,7 +169,7 @@
       données.
     </p>
 
-    <h3 id="cookies">Cookies</h3>
+    <h3 id="cookies">Types de cookie utilisés sur le site Mes aides jeunes</h3>
 
     <p>
       Un cookie est un fichier déposé sur votre terminal lors de la visite d’un
@@ -177,6 +177,33 @@
       navigation et de vous adresser des services adaptés à votre terminal
       (ordinateur, mobile ou tablette).
     </p>
+
+    <p>
+      Des cookies techniques permettent aux services principaux du site de
+      fonctionner de manière optimale. Vous pouvez techniquement les bloquer en
+      utilisant les paramètres de votre navigateur mais votre expérience sur le
+      site risque d’être dégradée.
+    </p>
+
+    <div class="fr-table">
+      <table>
+        <caption>Cookies techniques</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Durée de vie</th>
+            <th scope="col">Finalité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in technical_cookies" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.lifetime }}</td>
+            <td>{{ item.purpose }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <p>
       Le site dépose des cookies de mesure d’audience en utilisant Matomo
@@ -190,7 +217,7 @@
 
     <div class="fr-table">
       <table>
-        <caption>Sur ce site</caption>
+        <caption>Cookies techniques</caption>
         <thead>
           <tr>
             <th scope="col">Nom</th>
@@ -199,7 +226,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cookies" :key="item.name">
+          <tr v-for="item in technical_cookies" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.lifetime }}</td>
+            <td>{{ item.purpose }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fr-table">
+      <table>
+        <caption>Cookies de mesure d'audience</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Durée de vie</th>
+            <th scope="col">Finalité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in analytic_cookies" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.lifetime }}</td>
             <td>{{ item.purpose }}</td>
@@ -230,7 +277,7 @@ export default {
   setup() {
     return {
       store: useStore(),
-      cookies: [
+      analytic_cookies: [
         {
           name: "_pk_id.*",
           lifetime: "13 mois",
@@ -249,6 +296,8 @@ export default {
           purpose:
             "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
         },
+      ] as Cookie[],
+      technical_cookies: [
         {
           name: "mtm_consent_removed",
           lifetime: "30 ans",
@@ -271,13 +320,31 @@ export default {
           name: "github_handle_token",
           lifetime: "Session",
           purpose:
-            "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
+            "Permet le stockage sécurisé de l'identifiant GitHub et valider l'accès à l'outil d’accompagnement",
         },
         {
-          name: "fc_*",
+          name: "fc_state",
           lifetime: "Session",
           purpose:
-            "Permet le stockage des secrets de connexion à FranceConnect",
+            "Ce cookie permet de vérifier que l'utilisateur qui envoie une requête d'authentification FranceConnect est le même que celui qui recoit le jeton d'authentification.",
+        },
+        {
+          name: "fc_nonce",
+          lifetime: "Session",
+          purpose:
+            "Ce cookie permet d'authentifier, puis vérifier que le token que FranceConnect nous a retourné n'a pas été modifier par un tier.",
+        },
+        {
+          name: "fc_id_token_hint",
+          lifetime: "Session",
+          purpose:
+            "Ce cookie contient l'identifiant FranceConnect technique qui permet la déconnexion de l'utilisateur.",
+        },
+        {
+          name: "fc_logout_state",
+          lifetime: "Session",
+          purpose:
+            "Ce cookie est similaire à fc_state, mais pour l'action de déconnexion à FranceConnect.",
         },
       ] as Cookie[],
     }

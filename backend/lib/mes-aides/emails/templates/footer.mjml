@@ -28,5 +28,11 @@
         ></span
       >
     </mj-text>
+    <mj-text>
+      <span
+        >Accédez à une version en ligne de cet email en cliquant
+        <a href="{{&emailRenderURL}}" target="_blank">ici</a>.</span
+      >
+    </mj-text>
   </mj-column>
 </mj-section>

@@ -13,12 +13,10 @@ conditions_generales:
     value: 25
   - type: communes
     values:
-      - "44320"
-      - "44680"
+      - "44005"
 profils: []
 conditions:
   - Avoir un projet scolaire ou professionnel.
-  - Être domicilié sur la commune.
   - S'inscrire dans l'auto-école de la commune.
 interestFlag: _interetPermisDeConduire
 type: float
@@ -26,5 +24,5 @@ unit: €
 periodicite: autre
 legend: maximum
 montant: 800
-link: https://mes-aides.pole-emploi.fr/mairie-de-chaumes-en-retz/bourse-communale-au-permis-de-conduire-et-au-bsr-chaumes-en-retz
-instructions: https://mes-aides.pole-emploi.fr/mairie-de-chaumes-en-retz/bourse-communale-au-permis-de-conduire-et-au-bsr-chaumes-en-retz
+link: https://www.chaumesenretz.fr/vie-sociale/bourse-au-permis/
+instructions: https://www.chaumesenretz.fr/vie-sociale/bourse-au-permis/

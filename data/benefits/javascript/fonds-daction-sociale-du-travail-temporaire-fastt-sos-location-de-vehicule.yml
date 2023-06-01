@@ -1,0 +1,19 @@
+label: SOS location de véhicule
+institution: fonds-daction-sociale-du-travail-temporaire-fastt
+description: Le service FASTT SOS Location de véhicule aide les intérimaires
+  dans leurs déplacements en mission, à louer un véhicule (voiture ou
+  cyclomoteur) à prix réduit et pour une durée limitée pour vous rendre sur leur
+  lieu de mission d'intérim.
+prefix: le
+conditions_generales: []
+profils: []
+conditions:
+  - Avoir le statut de travailleur intérimaire au moment de la location et avoir
+    le permis de conduire.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: / jour
+montant: 10
+link: https://mes-aides.pole-emploi.fr/fonds-d-action-sociale-du-travail-temporairefastt/sos-location-de-vehicule
+teleservice: https://espace.fastt.org/Account/Login/Register

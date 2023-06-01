@@ -101,7 +101,6 @@ import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 import WarningMessage from "@/components/warning-message.vue"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types"
 
 export default {
@@ -123,23 +122,9 @@ export default {
   },
   computed: {
     list: function () {
-      return this.droits
-        .filter((value) => {
-          return !this.filter || this.filter.includes(value.id)
-        })
-        .map((droit) => {
-          if (droit.id === "css_participation_forfaitaire") {
-            const abtesting = ABTestingService.getValues()
-            if (abtesting.css_text === "D") {
-              return {
-                ...droit,
-                description:
-                  "La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.",
-              }
-            }
-          }
-          return droit
-        })
+      return this.droits.filter((value) => {
+        return !this.filter || this.filter.includes(value.id)
+      })
     },
   },
   methods: {

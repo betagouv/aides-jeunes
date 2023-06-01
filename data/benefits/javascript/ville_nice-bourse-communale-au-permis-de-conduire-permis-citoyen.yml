@@ -1,0 +1,25 @@
+label: "Bourse communale au permis de conduire : Permis Citoyen"
+institution: ville_nice
+description: Aide financière pour les jeunes niçois ne disposant pas de
+  ressources personnelles ou familiales suffisantes et étant inscrits dans une
+  démarche de formation ou d’emploi.
+prefix: la
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Être non-imposable.
+  - Avoir préalablement réussi le code de la route.
+  - S’engager à la réalisation de 30 heures de bénévolat dans un service public
+    ou un organisme à but non lucratif.
+type: float
+unit: €
+periodicite: autre
+montant: 450
+link: https://mes-aides.pole-emploi.fr/mairie-de-nice/bourse-communale-au-permis-de-conduire-permis-citoyen-nice
+instructions: https://mes-aides.pole-emploi.fr/mairie-de-nice/bourse-communale-au-permis-de-conduire-permis-citoyen-nice

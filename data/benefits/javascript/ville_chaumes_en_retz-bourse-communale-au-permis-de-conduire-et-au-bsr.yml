@@ -7,7 +7,7 @@ prefix: la
 conditions_generales:
   - type: age
     operator: ">="
-    value: 17
+    value: 14
   - type: age
     operator: <=
     value: 25

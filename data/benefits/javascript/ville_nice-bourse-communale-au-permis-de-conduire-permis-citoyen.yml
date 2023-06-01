@@ -1,6 +1,7 @@
-label: "Bourse communale au permis de conduire : Permis Citoyen"
+label: Bourse communale au permis de conduire - Permis Citoyen
 institution: ville_nice
-description: La Région propose une aide financière pour les jeunes niçois ne disposant pas de
+description:
+  La Région propose une aide financière pour les jeunes niçois ne disposant pas de
   ressources personnelles ou familiales suffisantes et étant inscrits dans une
   démarche de formation ou d’emploi.
 prefix: la
@@ -13,10 +14,7 @@ conditions_generales:
     value: 25
   - type: communes
     values:
-      - "06000"
-      - "06100"
-      - "06200"
-      - "06300"
+      - "06088"
 profils: []
 conditions:
   - Être non-imposable.
@@ -28,5 +26,5 @@ type: float
 unit: €
 periodicite: autre
 montant: 450
-link: https://mes-aides.pole-emploi.fr/mairie-de-nice/bourse-communale-au-permis-de-conduire-permis-citoyen-nice
-instructions: https://mes-aides.pole-emploi.fr/mairie-de-nice/bourse-communale-au-permis-de-conduire-permis-citoyen-nice
+link: https://www.nice.fr/fr/actualites/dispositif-d-aide-au-permis-de-conduire?type=articles
+instructions: https://www.nice.fr/fr/actualites/dispositif-d-aide-au-permis-de-conduire?type=articles

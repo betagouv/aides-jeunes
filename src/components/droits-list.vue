@@ -122,20 +122,9 @@ export default {
   },
   computed: {
     list: function () {
-      return this.droits
-        .filter((value) => {
-          return !this.filter || this.filter.includes(value.id)
-        })
-        .map((droit) => {
-          if (droit.id === "css_participation_forfaitaire") {
-            return {
-              ...droit,
-              description:
-                "La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n'est pas prise en charge par l'Assurance Maladie.",
-            }
-          }
-          return droit
-        })
+      return this.droits.filter((value) => {
+        return !this.filter || this.filter.includes(value.id)
+      })
     },
   },
   methods: {

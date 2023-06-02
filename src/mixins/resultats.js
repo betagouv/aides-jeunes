@@ -12,6 +12,11 @@ export default {
       return this.droits.length > 0
     },
     resultatsId() {
+      console.log("this.store", this.store)
+      console.log(
+        "this.resultats",
+        this.store.calculs.dirty && this.store.calculs.resultats
+      )
       return this.resultats?._id || "???"
     },
     accessStatus() {

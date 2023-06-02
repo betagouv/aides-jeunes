@@ -45,7 +45,10 @@
   <p
     ><small v-if="simulationId"
       >Cette simulation a pour identifiant
-      <span class="preformatted">{{ simulationId }}</span> (en savoir plus sur
+      <span data-testid="simulation-id" class="preformatted">{{
+        simulationId
+      }}</span>
+      (en savoir plus sur
       <router-link to="/confidentialite"
         >le traitement de vos données personnelles
       </router-link>

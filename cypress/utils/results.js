@@ -1,4 +1,4 @@
-import { submit } from "./form"
+import { submit } from "./form.js"
 
 const wait = () => {
   cy.wait("@results")
@@ -196,7 +196,9 @@ const receiveResultsEmail = () => {
   })
     .should("be.visible")
     .click()
-  cy.get("input#email").should("be.visible").type("prenom.nom@beta.gouv.fr")
+  cy.get("input#email")
+    .should("be.visible")
+    .type("prenom.nom@beta.gouv.fr", { force: true })
   cy.get(".fr-btn:contains(J'accepte d'être recontacté)")
     .should("be.visible")
     .click()
@@ -205,6 +207,8 @@ const receiveResultsEmail = () => {
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)
   })
+
+  cy.get(".fr-alert__title").should("contain", "Succès")
 }
 
 const checkResultsRequests = () => {

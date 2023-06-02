@@ -109,6 +109,7 @@ const getRecap = async (surveyOptin) => {
               type="email"
               class="fr-input"
               autocomplete="email"
+              :disabled="recapEmailState === 'waiting'"
             />
           </div>
           <WarningMessage

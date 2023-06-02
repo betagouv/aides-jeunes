@@ -206,8 +206,7 @@
     </div>
 
     <p>
-      Le site dépose des cookies de mesure d’audience en utilisant Matomo
-      (nombre de visites, pages consultées), respectant les conditions
+      Le site dépose des cookies de mesure d’audience, respectant les conditions
       d’exemption du consentement de l’internaute définies par la recommandation
       « Cookies » de la Commission nationale informatique et libertés (CNIL).
       Cela signifie, notamment, que ces cookies ne servent qu’à la production de
@@ -262,19 +261,19 @@ export default {
           name: "_pk_id.*",
           lifetime: "13 mois",
           purpose:
-            "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience Matomo est active)",
+            "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience est active)",
         },
         {
           name: "_pk_ref.*",
           lifetime: "6 mois",
           purpose:
-            "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience Matomo est active)",
+            "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience est active)",
         },
         {
           name: "_pk_ses.*",
           lifetime: "30 minutes",
           purpose:
-            "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
+            "Permet le stockage temporaire de vos données de visite (si la mesure d'audience est active)",
         },
       ] as Cookie[],
       technical_cookies: [
@@ -282,7 +281,7 @@ export default {
           name: "mtm_consent_removed",
           lifetime: "30 ans",
           purpose:
-            "Permet le stockage de votre non-consentement au dépôt des cookies Matomo pour le suivi statistique",
+            "Permet le stockage de votre non-consentement au dépôt des cookies pour la mesure d'audience",
         },
         {
           name: "lastestSimulation",
@@ -300,31 +299,7 @@ export default {
           name: "github_handle_token",
           lifetime: "Session",
           purpose:
-            "Permet le stockage sécurisé de l'identifiant GitHub et de valider l'accès à l'outil d’accompagnement",
-        },
-        {
-          name: "fc_state",
-          lifetime: "Session",
-          purpose:
-            "Ce cookie permet de vérifier que l'utilisateur qui envoie une requête d'authentification FranceConnect est le même que celui qui reçoit le jeton d'authentification.",
-        },
-        {
-          name: "fc_nonce",
-          lifetime: "Session",
-          purpose:
-            "Ce cookie permet d'authentifier, puis vérifier que le token que FranceConnect nous a retourné n'a pas été modifié par un tier.",
-        },
-        {
-          name: "fc_id_token_hint",
-          lifetime: "Session",
-          purpose:
-            "Ce cookie contient l'identifiant FranceConnect technique qui permet la déconnexion de l'utilisateur.",
-        },
-        {
-          name: "fc_logout_state",
-          lifetime: "Session",
-          purpose:
-            "Ce cookie est similaire à fc_state, mais pour l'action de déconnexion à FranceConnect.",
+            "Permet de sécuriser l'accès à l'espace d'administration du simulateur",
         },
       ] as Cookie[],
     }

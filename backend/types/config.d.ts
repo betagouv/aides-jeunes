@@ -19,7 +19,7 @@ export interface ConfigurationLayout {
   smtp: {
     host?: string
     port?: any
-    secure?: boolean // true for 465, false for other ports
+    secure?: boolean
     auth?: {
       user?: string
       pass?: string

@@ -267,7 +267,7 @@ export default {
           name: "_pk_ref.*",
           lifetime: "6 mois",
           purpose:
-            "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience est active)",
+            "Permet le stockage de l'url du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience est active)",
         },
         {
           name: "_pk_ses.*",

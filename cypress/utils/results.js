@@ -210,6 +210,13 @@ const receiveResultsEmail = () => {
 
   cy.get(".fr-alert__title").should("contain", "Succès")
   back()
+  cy.get('[class="preformatted"')
+    .invoke("text")
+    .then((simulationId) => {
+      cy.task("getLastEmail", email)
+        .its("headers.subject")
+        .should("includes", simulationId)
+    })
 }
 
 const checkResultsRequests = () => {

@@ -18,7 +18,7 @@ export interface ConfigurationLayout {
   netlifyContributionURL: string
   smtp: {
     host?: string
-    port?: number
+    port?: any
     secure?: boolean // true for 465, false for other ports
     auth?: {
       user?: string

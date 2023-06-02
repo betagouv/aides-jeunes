@@ -1,5 +1,6 @@
 import config from "../config/index.js"
 import nodemailer from "nodemailer"
+
 const transporter = nodemailer.createTransport(config.smtp)
 
 export function sendMail(email) {

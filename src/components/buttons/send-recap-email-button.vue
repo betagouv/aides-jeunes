@@ -3,7 +3,7 @@
     class="fr-btn fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
-    @click="showModal"
+    @click="sendRecapEmailButtonClick"
   >
     {{ text }}
   </button>
@@ -11,6 +11,7 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "SendRecapEmailButton",
@@ -23,11 +24,17 @@ export default {
   setup() {
     return {
       store: useStore(),
+      experimentNewRecapEmail:
+        ABTestingService.getValues().recap_email === "NewPage",
     }
   },
   methods: {
-    showModal() {
-      this.store.setRecapEmailState("show")
+    sendRecapEmailButtonClick() {
+      if (this.experimentNewRecapEmail) {
+        this.$router.push({ name: "resultatsRecapEmail" })
+      } else {
+        this.store.setRecapEmailState("show")
+      }
     },
   },
 }

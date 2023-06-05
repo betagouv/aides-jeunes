@@ -1,8 +1,10 @@
 label: SOS location de cyclomoteur
 institution: fonds-daction-sociale-du-travail-temporaire-fastt
-description: Le service FASTT SOS Location de véhicule aide les intérimaires
-  dans leurs déplacements en mission, à louer un cyclomoteur à prix réduit et
-  pour une durée limitée pour vous rendre sur leur lieu de mission d'intérim.
+description: Le service FASTT SOS Location de cyclomoteur aide les intérimaires
+  dans leurs déplacements en mission, à louer un cyclomoteur (scooters et mobylettes)
+  à prix réduit (3 euros par jour maximum), pour une durée limitée (jusqu’à 60 jours par an)
+  pour se rendre sur leur lieu de mission d'intérim.
+  L’assurance ne couvre pas les usages professionnels (livraison ou autres).
 prefix: le
 conditions_generales: []
 profils:

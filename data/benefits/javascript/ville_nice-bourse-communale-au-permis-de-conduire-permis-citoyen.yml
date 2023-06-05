@@ -14,7 +14,11 @@ conditions_generales:
     value: 25
   - type: communes
     values:
-      - "06088"
+      - "06000"
+      - "06100"
+      - "06200"
+      - "06206"
+      - "06300"
 profils: []
 conditions:
   - Être non-imposable.

@@ -169,7 +169,7 @@
       données.
     </p>
 
-    <h3 id="cookies">Cookies</h3>
+    <h3 id="cookies">Types de cookie utilisés sur le site Mes aides jeunes</h3>
 
     <p>
       Un cookie est un fichier déposé sur votre terminal lors de la visite d’un
@@ -179,8 +179,34 @@
     </p>
 
     <p>
-      Le site dépose des cookies de mesure d’audience en utilisant Matomo
-      (nombre de visites, pages consultées), respectant les conditions
+      Des cookies techniques permettent aux services principaux du site de
+      fonctionner de manière optimale. Vous pouvez techniquement les bloquer en
+      utilisant les paramètres de votre navigateur mais votre expérience sur le
+      site risque d’être dégradée.
+    </p>
+
+    <div class="fr-table">
+      <table>
+        <caption>Cookies techniques</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Durée de vie</th>
+            <th scope="col">Finalité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in technical_cookies" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.lifetime }}</td>
+            <td>{{ item.purpose }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Le site dépose des cookies de mesure d’audience, respectant les conditions
       d’exemption du consentement de l’internaute définies par la recommandation
       « Cookies » de la Commission nationale informatique et libertés (CNIL).
       Cela signifie, notamment, que ces cookies ne servent qu’à la production de
@@ -190,7 +216,7 @@
 
     <div class="fr-table">
       <table>
-        <caption>Sur ce site</caption>
+        <caption>Cookies de mesure d'audience</caption>
         <thead>
           <tr>
             <th scope="col">Nom</th>
@@ -199,7 +225,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cookies" :key="item.name">
+          <tr v-for="item in analytic_cookies" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.lifetime }}</td>
             <td>{{ item.purpose }}</td>
@@ -230,30 +256,32 @@ export default {
   setup() {
     return {
       store: useStore(),
-      cookies: [
+      analytic_cookies: [
         {
           name: "_pk_id.*",
           lifetime: "13 mois",
           purpose:
-            "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience Matomo est active)",
+            "Permet le stockage de votre identifiant unique de visite (si la mesure d'audience est active)",
         },
         {
           name: "_pk_ref.*",
           lifetime: "6 mois",
           purpose:
-            "Permet le stockage du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience Matomo est active)",
+            "Permet le stockage de l'url du site à partir duquel vous êtes arrivé sur notre simulateur (si la mesure d'audience est active)",
         },
         {
           name: "_pk_ses.*",
           lifetime: "30 minutes",
           purpose:
-            "Permet le stockage temporaire de vos données de visite (si la mesure d'audience Matomo est active)",
+            "Permet le stockage temporaire de vos données de visite (si la mesure d'audience est active)",
         },
+      ] as Cookie[],
+      technical_cookies: [
         {
           name: "mtm_consent_removed",
           lifetime: "30 ans",
           purpose:
-            "Permet le stockage de votre non-consentement au dépôt des cookies Matomo pour le suivi statistique",
+            "Permet le stockage de votre non-consentement au dépôt des cookies pour la mesure d'audience",
         },
         {
           name: "lastestSimulation",
@@ -271,13 +299,7 @@ export default {
           name: "github_handle_token",
           lifetime: "Session",
           purpose:
-            "Permet le stockage du secret permettant de gérer les accès à l'outil d’accompagnement",
-        },
-        {
-          name: "fc_*",
-          lifetime: "Session",
-          purpose:
-            "Permet le stockage des secrets de connexion à FranceConnect",
+            "Permet de sécuriser l'accès à l'espace d'administration du simulateur",
         },
       ] as Cookie[],
     }

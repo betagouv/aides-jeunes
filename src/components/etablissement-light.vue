@@ -30,11 +30,8 @@ defineProps({
           <span data-testid="etablissement-informations-link">
             <AnalyticRouterLink
               class="fr-link fr-link--sm"
-              :analytics="{
-                name: etablissement.id,
-                action: BehaviourEventTypes.showNewLocation,
-                category: 'General',
-              }"
+              :analytic-name="etablissement.id"
+              :analytic-action="BehaviourEventTypes.showNewLocation"
               :to="{
                 name: 'benefitEtablissementInformationsLight',
                 params: {

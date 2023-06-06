@@ -25,7 +25,7 @@ const goBack = () => {
   router.push({ path: "/simulation/resultats" })
 }
 
-const getRecap = async (surveyOptin) => {
+const sendEmailRecap = async (surveyOptin) => {
   try {
     store.setRecapEmailState("waiting")
     if (emailRef.value && !emailRef.value.checkValidity()) {
@@ -92,7 +92,7 @@ const getRecap = async (surveyOptin) => {
             ><span class="fr-ml-2w">Envoi en cours…</span></p
           >
         </div>
-        <form class="fr-form fr-my-2w" @submit.prevent="getRecap(true)">
+        <form class="fr-form fr-my-2w" @submit.prevent="sendEmailRecap(true)">
           <div class="fr-form-group">
             <label class="fr-label" for="email"
               >Votre email
@@ -126,7 +126,7 @@ const getRecap = async (surveyOptin) => {
             <button
               :disabled="recapEmailState === 'waiting'"
               class="fr-btn"
-              @click.prevent="getRecap(true)"
+              @click.prevent="sendEmailRecap(true)"
             >
               J'accepte d'être recontacté ou recontactée par email
             </button>
@@ -135,7 +135,7 @@ const getRecap = async (surveyOptin) => {
             <button
               :disabled="recapEmailState === 'waiting'"
               class="fr-btn fr-btn--secondary"
-              @click.prevent="getRecap(false)"
+              @click.prevent="sendEmailRecap(false)"
             >
               Non merci, je préfère ne recevoir que le récapitulatif
             </button>

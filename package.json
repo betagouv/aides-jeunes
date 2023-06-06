@@ -85,6 +85,7 @@
     "vite": "^4.2.1",
     "vite-plugin-html": "^3.2.0",
     "vue": "^3.2.47",
+    "vue-cookies": "^1.8.3",
     "vue-matomo": "^4.2.0",
     "vue-router": "^4.1.6",
     "webpack-cli": "^4.10.0",
@@ -192,7 +193,9 @@
     ]
   },
   "lint-staged": {
-    "*.(js|json|ts|vue|yaml)": "prettier --write",
+    "*": [
+      "prettier --ignore-unknown --write"
+    ],
     "*.(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
     ]

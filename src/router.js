@@ -28,6 +28,18 @@ const router = createRouter({
       },
     },
     {
+      path: "/callback",
+      name: "callback",
+      component: () => import("./views/france-connect-callback.vue"),
+    },
+    {
+      path: "/logout-callback",
+      name: "logout-callback",
+      beforeEnter(to) {
+        document.location = `/api/france-connect${to.href}`
+      },
+    },
+    {
       path: "/simulation",
       name: "simulation",
       redirect: "/simulation/individu/demandeur/date_naissance",

@@ -5,6 +5,8 @@ import { BenefitType } from "@lib/types/benefits"
 import { skipSendStatistics } from "./shared.js"
 import { IMatomo } from "./matomo.js"
 
+const isProduction = process.env.NODE_ENV === "production"
+
 export interface IRecorderEvent {
   benefits: BenefitType[]
   benefitId?: string
@@ -47,7 +49,8 @@ export async function sendEventToRecorder(
   matomo: IMatomo | undefined = undefined
 ): Promise<void> {
   if (skipSendEventToRecorder(event)) {
-    return console.debug("Skip sending event to recorder", event)
+    !isProduction && console.debug("Skip sending event to recorder", event)
+    return
   }
 
   const { benefits, benefitId, event_type } = event
@@ -85,7 +88,7 @@ export async function sendEventToRecorder(
     })
   } catch (e) {
     if (e instanceof TypeError && e.message === "Failed to fetch") {
-      console.debug("Event to recorder", event)
+      !isProduction && console.debug("Event to recorder", event)
     } else {
       console.error(e)
     }

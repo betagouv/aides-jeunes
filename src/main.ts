@@ -11,6 +11,7 @@ import ThemeService from "./plugins/theme-service.js"
 
 import * as Sentry from "@sentry/vue"
 import VueMatomo from "vue-matomo"
+import VueCookies from "vue-cookies"
 
 import "@/styles/aides-jeunes.css"
 
@@ -51,6 +52,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(Resizer)
 app.use(StateService)
 app.use(ThemeService)
+app.use(VueCookies)
 
 if (navigator.cookieEnabled) {
   app.use(VueMatomo, {

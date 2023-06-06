@@ -132,7 +132,7 @@ export default {
   },
   data() {
     return {
-      email: undefined,
+      email: this.store.getFCUserInfoEmailValue,
       errorMessage: undefined,
     }
   },

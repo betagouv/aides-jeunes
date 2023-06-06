@@ -15,7 +15,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Avoir le statut de travailleur intérimaire au moment de la location
+  - Avoir le statut de travailleur intérimaire au moment de la location.
   - Pour les intérimaires nés après 1988 il est nécessaire d’être titulaire du
     Brevet de Sécurité Routière (BSR).
 type: float

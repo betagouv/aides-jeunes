@@ -22,6 +22,6 @@ link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd
 teleservice:
   name: redirection
   query:
-    vers: ds?benefit=cd53_dat_bafd
+    vers: ds?procedure=cd53_dat_bafd
 instructions: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd
 skip_schema_check: true

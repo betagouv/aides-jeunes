@@ -14,7 +14,7 @@ export const additionalBenefitAttributes = {
     teleservice: {
       name: "redirection",
       query: {
-        vers: "ds?benefit=cd53_sdem_vae",
+        vers: "ds?procedure=cd53_sdem_vae",
       },
     },
   },

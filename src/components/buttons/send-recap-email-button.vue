@@ -3,7 +3,7 @@
     class="fr-btn fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
-    @click="sendRecapEmailButtonClick"
+    @click="goToEmailForm"
   >
     {{ text }}
   </button>
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    sendRecapEmailButtonClick() {
+    goToEmailForm() {
       if (this.experimentNewRecapEmail) {
         this.$router.push({ name: "resultatsRecapEmail" })
       } else {

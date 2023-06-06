@@ -35,14 +35,14 @@ async function main() {
       console.error(`Cannot save followup: ${followupAnonymized.id}`)
       console.trace(err)
     }
-    console.log(["Terminé", "Followup", followup_count].join(";"))
   }
+  console.log(["Terminé", "Followup", followup_count].join(";"))
 
   const deleteSixMonthsOldFollowups = await Followup.deleteMany({
     createdAt: { $lt: sixMonthsAgo },
   })
 
-  console.log(`Deleted ${deleteSixMonthsOldFollowups.deletedCount}`)
+  console.log(`Deleted ${deleteSixMonthsOldFollowups.deletedCount} followups`)
 
   let simulation_count = 0
   const simulationsCursor = await Simulation.find({
@@ -71,13 +71,15 @@ async function main() {
     } catch (err) {
       console.error(`Cannot save simulation: ${anonymizedSimulation.id}`)
     }
-    console.log(["Terminé", "Simulation", simulation_count].join(";"))
   }
+  console.log(["Terminé", "Simulation", simulation_count].join(";"))
 
   const deleteTwoYearsOldSimulations = await Simulation.deleteMany({
     dateDeValeur: { $lt: twoYearsAgo },
   })
-  console.log(`Deleted ${deleteTwoYearsOldSimulations.deletedCount}`)
+  console.log(
+    `Deleted ${deleteTwoYearsOldSimulations.deletedCount} simulations`
+  )
 }
 
 try {

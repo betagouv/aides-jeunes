@@ -145,5 +145,3 @@ const getRecap = async (surveyOptin) => {
     </div>
   </div>
 </template>
-
-<script></script>

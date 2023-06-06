@@ -84,8 +84,16 @@
           </li>
         </ul>
       </WarningMessage>
-      <div class="fr-print-hidden">
-        <BenefitCta :benefit="droit" />
+      <div v-if="experimentNewUI" class="fr-print-hidden">
+        <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
+        <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
+          <div class="fr-mt-4w">
+            <DroitDetailsLieux :benefit="droit" />
+          </div>
+        </div>
+      </div>
+      <div v-else lass="fr-print-hidden">
+        <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <a
           v-if="droit.msa"
           v-analytics="{
@@ -111,20 +119,25 @@
 </template>
 
 <script>
+import BenefitCtaLight from "./benefit-cta-light.vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.ts"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
+import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "DroitsDetails",
   components: {
     WarningMessage,
     DroitHeader,
+    DroitDetailsLieux,
+    BenefitCtaLight,
     BenefitCta,
     BenefitCtaLink,
   },
@@ -148,6 +161,12 @@ export default {
   computed: {
     aCharge() {
       return Situation.aCharge(this.store.situation)
+    },
+    showDetailsLieux() {
+      return this.$route.name !== "aide"
+    },
+    experimentNewUI() {
+      return ABTestingService.getValues().benefit_result_page === "NewUI"
     },
   },
 }

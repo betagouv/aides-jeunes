@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
+import ABTestingService from "./plugins/ab-testing-service.js"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -178,6 +179,36 @@ const router = createRouter({
           },
         },
         {
+          name: "benefitEtablissementInformations",
+          path: "resultats/:benefit_id/lieux/:etablissement_id/informations",
+          component: () =>
+            import("./views/simulation/resultats/lieu-informations.vue"),
+          meta: {
+            headTitle:
+              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
+          },
+        },
+        {
+          name: "benefitEtablissementInformationsLight",
+          path: "resultats/:droitId/:etablissement_id/informations",
+          component: () =>
+            import("./views/simulation/resultats/lieu-informations.vue"),
+          meta: {
+            headTitle:
+              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
+          },
+        },
+        {
+          name: "situationEtablissementInformations",
+          path: "resultats/lieux/:etablissement_id/informations",
+          component: () =>
+            import("./views/simulation/resultats/lieu-informations.vue"),
+          meta: {
+            headTitle:
+              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
+          },
+        },
+        {
           name: "resultatInattendu",
           path: "resultat/inattendu/:id",
           component: () => import("./views/simulation/resultat-inattendu.vue"),
@@ -260,6 +291,7 @@ const router = createRouter({
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
+        ABTestingService.setVariant("benefit_result_page", "NewUI")
         return "/"
       },
     },

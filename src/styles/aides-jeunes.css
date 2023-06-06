@@ -1,6 +1,7 @@
 :root {
   /* CSS redirections (DSFR override) */
   --text-disabled-grey: #666;
+  --background-info-container: #f9f8f6;
   --blue-france-sun-113-625: var(--main-color);
   --blue-france-sun-113-625-hover: var(--main-color-hover);
   --blue-france-sun-113-625-active: var(--main-color-active);
@@ -249,6 +250,10 @@ textarea {
   min-width: 120px;
 }
 
+.aj-benefit-cta-light-container {
+  background-color: var(--background-info-container);
+}
+
 .aj-institution-icon {
   width: 70px;
   min-width: 70px;
@@ -269,6 +274,12 @@ textarea {
 .aj-fr-sidemenu__inner {
   height: 100%;
 }
+
+.aj-responsive-icon-places,
+[class*=" fr-icon-"]:before {
+  --icon-size: 2rem;
+}
+
 @media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;
@@ -297,6 +308,10 @@ textarea {
   .aj-column-container {
     min-height: 100vh;
     align-content: baseline;
+  }
+  .aj-responsive-icon-places,
+  [class*=" fr-icon-"]:before {
+    --icon-size: 1.5rem;
   }
 }
 
@@ -523,4 +538,8 @@ textarea {
 
 .aj-progress-hide-route {
   display: none;
+}
+
+.aj-a {
+  color: var(--main-color);
 }

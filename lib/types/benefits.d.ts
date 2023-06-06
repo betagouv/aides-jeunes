@@ -7,4 +7,7 @@ export interface ConditionsLayout {
 
 export interface BenefitType {
   id: string
+  label?: string
+  msa?: boolean
+  prefix?: string
 }

@@ -10,7 +10,7 @@ link: https://www.demarches-simplifiees.fr/commencer/aide-beaumont-en-verdunois
 teleservice:
   name: redirection
   query:
-    vers: ds?benefit=aide-beaumont-en-verdunois
+    vers: ds?procedure=aide-beaumont-en-verdunois
 prefix: l’
 periodicite: ponctuelle
 type: bool

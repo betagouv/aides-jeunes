@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import dayjs from "dayjs"
 
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
@@ -11,10 +12,10 @@ import {
 } from "../lib/cleaner-functions.js"
 
 async function main() {
-  const twoYearsAgo = Date.now() - 2 * 365 * 24 * 60 * 60 * 1000
-  const sixMonthsAgo = Date.now() - 6 * 30 * 24 * 60 * 60 * 1000
-  const aMonthAgo = Date.now() - 31 * 24 * 60 * 60 * 1000
-  const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
+  const twoYearsAgo = dayjs().subtract(2, "year").valueOf()
+  const sixMonthsAgo = dayjs().subtract(6, "month").valueOf()
+  const aMonthAgo = dayjs().subtract(31, "day").valueOf()
+  const aWeekAgo = dayjs().subtract(7, "day").valueOf()
 
   let followup_count = 0
   const followupsCursor = await Followup.find({

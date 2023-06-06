@@ -25,7 +25,7 @@ export default {
     return {
       store: useStore(),
       experimentNewRecapEmail:
-        ABTestingService.getValues().recap_email === "NewPage",
+        ABTestingService.getValues().recap_email_form === "Page",
     }
   },
   methods: {

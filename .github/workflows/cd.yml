@@ -7,8 +7,32 @@ env:
   SSH_USER: root
 
 jobs:
+  unit_testing:
+    name: Unit testing
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache NPM install files
+        uses: actions/cache@v3
+        id: restore-npm-install-packages
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-cache-npm-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.restore-dependencies.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit
+      - name: Jest
+        run: npm run test
   deploy_production:
     if: github.ref == 'refs/heads/master'
+    needs: [unit_testing]
     name: Production deployment
     runs-on: ubuntu-20.04
     steps:
@@ -21,6 +45,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key
   deploy_preproduction:
     if: github.ref == 'refs/heads/dev'
+    needs: [unit_testing]
     name: Preproduction Deployment
     runs-on: ubuntu-20.04
     steps:

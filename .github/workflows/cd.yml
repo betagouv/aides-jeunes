@@ -2,8 +2,6 @@ name: "Continuous Deployment"
 on:
   push:
     branches: [master, dev]
-  # to be removed before merge
-  pull_request:
 env:
   SSH_HOST: solstice.mes-aides.1jeune1solution.beta.gouv.fr
   SSH_USER: root
@@ -27,16 +25,13 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Check current directory
-        run: ls -la
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
       - name: Jest
         run: npm run test
   deploy_production:
-    # "false" to be removed before merge
-    if: false && github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: [unit_testing]
     name: Production deployment
     runs-on: ubuntu-20.04
@@ -49,8 +44,7 @@ jobs:
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key
   deploy_preproduction:
-    # "false" to be removed before merge
-    if: false && github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev'
     needs: [unit_testing]
     name: Preproduction Deployment
     runs-on: ubuntu-20.04

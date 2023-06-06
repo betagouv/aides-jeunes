@@ -57,4 +57,19 @@ export default {
       },
     ],
   }),
+
+  en_couple_new: new EnumProperty({
+    question: "Vivez-vous en couple ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Oui",
+        value: true,
+      },
+      {
+        label: "Non",
+        value: false,
+      },
+    ],
+  }),
 }

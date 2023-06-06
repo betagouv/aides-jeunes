@@ -33,6 +33,12 @@ function getEnvironment() {
     ABTesting.benefit_result_page.value ||
     (Math.random() > 0.5 ? "OldUI" : "NewUI")
 
+  // Définition de la valeur d'AB testing pour la question de la vie en couple
+  ABTesting.en_couple_step = ABTesting.en_couple_step || {}
+  ABTesting.en_couple_step.value =
+    ABTesting.en_couple_step.value ||
+    (Math.random() > 0.5 ? "OldQuestion" : "NewQuestion")
+
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]
     if (data.deleted) {

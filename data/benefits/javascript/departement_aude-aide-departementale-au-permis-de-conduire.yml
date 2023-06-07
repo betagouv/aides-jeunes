@@ -1,0 +1,30 @@
+label: aide départementale au permis de conduire
+institution: departement_aude
+description: Le Département aide les jeunes de 18 à 25 ans qui ont des problèmes
+  financiers ou d’insertion et qui ont un projet professionnel (contrat
+  d’apprentissage, emploi, stage…) à financer leur permis de conduire. Pour
+  effectuer une demande, vous devez être accompagné par un référent de l'une des
+  deux Missions Locales du département de l'Aude.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Etre éligible aux critères du Fonds d'Aide au Jeunes du département de
+    l'Aude.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 500
+link: https://www.aude.fr/quelles-aides-pour-passer-mon-permis
+instructions: https://www.aude.fr/quelles-aides-pour-passer-mon-permis

@@ -1,10 +1,10 @@
 label: aide départementale au permis de conduire
 institution: departement_aude
-description: Le Département aide les jeunes de 18 à 25 ans qui ont des problèmes
+description: Le Département aide les jeunes qui ont des problèmes
   financiers ou d’insertion et qui ont un projet professionnel (contrat
   d’apprentissage, emploi, stage…) à financer leur permis de conduire. Pour
-  effectuer une demande, vous devez être accompagné par un référent de l'une des
-  deux Missions Locales du département de l'Aude.
+  effectuer une demande, vous devez être accompagné par un·e référent·e de l'une des
+  deux Missions Locales du département.
 prefix: l’
 conditions_generales:
   - type: departements

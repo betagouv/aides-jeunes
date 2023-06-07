@@ -1,13 +1,13 @@
 <template>
   <div class="fr-container--fluid fr-px-0 fr-py-2w">
-    <div class="fr-grid-row">
+    <div
+      v-if="shouldDisplayResults && hasDroits && showEmailButton"
+      class="fr-grid-row"
+    >
       <div class="fr-col-12 fr-col-md-6 fr-col-lg-6">
         <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
-      <div
-        v-if="shouldDisplayResults && hasDroits && showEmailButton"
-        class="fr-col-12 fr-col-md-6 fr-col-lg-6"
-      >
+      <div class="fr-col-12 fr-col-md-6 fr-col-lg-6">
         <ul
           class="fr-btns-group fr-btns-group--inline-md fr-btns-group--right fr-mt-1w fr-px-0"
         >
@@ -18,6 +18,11 @@
             ></SendRecapEmailButton>
           </li>
         </ul>
+      </div>
+    </div>
+    <div v-else class="fr-grid-row">
+      <div class="fr-col-12 fr-col-md-12 fr-col-lg-12">
+        <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
     </div>
   </div>

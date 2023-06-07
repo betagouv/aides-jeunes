@@ -48,9 +48,7 @@ export default {
       return this.getTitleByRoute(this.$route)
     },
     showEmailButton() {
-      return (
-        this.store.recapEmailState !== "ok" && this.$route.name === "resultats"
-      )
+      return this.$route.name === "resultats"
     },
   },
   methods: {

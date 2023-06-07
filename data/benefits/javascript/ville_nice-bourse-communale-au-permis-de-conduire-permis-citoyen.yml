@@ -1,0 +1,35 @@
+label: Bourse communale au permis de conduire - Permis Citoyen
+institution: ville_nice
+description:
+  La ville de Nice propose une aide financière pour les jeunes niçois âgés de 17 à 25 ans, ne disposant pas de
+  ressources personnelles ou familiales suffisantes et qui s'inscrivent dans une démarche de formation ou d’emploi.
+  L’instruction des dossiers de candidature se fait au Point d’Accueil et d’Ecoute Jeunes de la Ville de Nice ou
+  au sein de la Mission Locale Nice Cote d’Azur pour les jeunes déjà suivis.
+prefix: la
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 25
+  - type: communes
+    values:
+      - "06000"
+      - "06100"
+      - "06200"
+      - "06206"
+      - "06300"
+profils: []
+conditions:
+  - Être non-imposable.
+  - Avoir préalablement réussi le code de la route.
+  - S’engager à la réalisation de 30 heures de bénévolat dans un service public
+    ou un organisme à but non lucratif.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+montant: 450
+link: https://www.nice.fr/fr/actualites/dispositif-d-aide-au-permis-de-conduire?type=articles
+instructions: https://www.nice.fr/fr/actualites/dispositif-d-aide-au-permis-de-conduire?type=articles

@@ -68,7 +68,7 @@ const hasSituationNearbyPlaces = () => {
 const captureFiscalResources = () => {
   const name = /Livret d’épargne populaire/
   const id = "livret_epargne_populaire_taux"
-  cy.get('[data-testid="back-button"]').click()
+  back()
   IdentifyBenefit(id, name)
   getBenefitSummary(id).click()
   cy.get(`div[data-testid="benefit-detail-warning"]`)
@@ -209,6 +209,7 @@ const receiveResultsEmail = () => {
   })
 
   cy.get(".fr-alert__title").should("contain", "Succès")
+  back()
 }
 
 const checkResultsRequests = () => {

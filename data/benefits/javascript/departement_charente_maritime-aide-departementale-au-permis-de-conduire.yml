@@ -1,11 +1,11 @@
 label: aide départementale au permis de conduire
 institution: departement_charente_maritime
-description: "Le Département aide les jeunes de 18 à 25 ans éligibles aux
+description: Le Département aide les jeunes éligibles aux
   critères du Fonds d'aide aux jeunes à financer leur permis de conduire. Pour
   effectuer une demande, vous devez être accompagné par un référent : Mission
   Locale, Comité local pour le logement autonome des jeunes, Foyer jeunes
   travailleurs, etc. Si vous n'avez pas de référent, contactez l'un des
-  organismes listés dans la page d'information."
+  organismes listés dans la page d'information.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -13,7 +13,7 @@ conditions_generales:
       - "17"
   - type: age
     operator: ">="
-    value: 16
+    value: 18
   - type: age
     operator: <=
     value: 25
@@ -24,7 +24,7 @@ conditions:
     d'aide aux jeunes).
   - "Etre engagé dans une mission bénévole de 40 à 50 heures auprès d’un
     organisme local à vocation sociale ou humanitaire (ex : Restos du Cœur,
-    Croix Rouge,…)."
+    Croix Rouge etc.)"
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

@@ -1,0 +1,29 @@
+label: Bourse communale au permis de conduire et au BSR
+institution: ville_chaumes_en_retz
+description:
+  Ce dispositif permet aux jeunes Calmétiens âgés de 14 à 25 ans et dont les ressources sont modestes de financer
+  leur BSR ou leur permis de conduire en contrepartie d’une mission bénévole de 20 heures
+  dans une association de la ville. Pour faire une demande de bourse, adressez-vous à la mairie. Les dossiers reçus sont examinés par le conseil municipal qui rend sa décision.
+prefix: la
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 14
+  - type: age
+    operator: <=
+    value: 25
+  - type: communes
+    values:
+      - "44005"
+profils: []
+conditions:
+  - Avoir un projet scolaire ou professionnel.
+  - S'inscrire dans l'auto-école de la commune.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 800
+link: https://www.chaumesenretz.fr/vie-sociale/bourse-au-permis/
+instructions: https://www.chaumesenretz.fr/vie-sociale/bourse-au-permis/

@@ -63,7 +63,7 @@ export default {
         return "Montant inattendu"
       }
       if (path === "/simulation/resultats/recapitulatif_email") {
-        return ""
+        return "Recevoir un récapitulatif par email"
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

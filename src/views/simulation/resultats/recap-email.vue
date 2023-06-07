@@ -55,93 +55,85 @@ const sendEmailRecap = async (surveyOptin) => {
 </script>
 
 <template>
-  <div class="fr-container">
-    <div class="fr-grid-row">
-      <BackButton
-        class="fr-btn--secondary fr-btn--sm fr-mb-2w"
-        data-testid="back-button"
-        @click="goBack"
-        >Retour aux résultats</BackButton
-      >
-      <div class="">
-        <h1 id="fr-modal-email-title" class="fr-modal__title"
-          >Recevoir un récapitulatif par email</h1
-        >
-        <p>
-          Si vous le souhaitez nous pouvons vous recontacter à deux reprises
-          pour faire le point sur les démarches que vous avez faites et les
-          blocages que vous avez rencontrés.
-        </p>
+  <div class="fr-grid-row">
+    <BackButton
+      class="fr-btn--secondary fr-btn--sm fr-mb-2w"
+      data-testid="back-button"
+      @click="goBack"
+      >Retour aux résultats</BackButton
+    >
+    <div>
+      <p>
+        Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
+        faire le point sur les démarches que vous avez faites et les blocages
+        que vous avez rencontrés.
+      </p>
 
-        <div
-          v-if="recapEmailState === 'error'"
-          class="fr-alert fr-alert--error"
+      <div v-if="recapEmailState === 'error'" class="fr-alert fr-alert--error">
+        <p>Une erreur s'est produite</p>
+      </div>
+      <div v-if="recapEmailState === 'ok'" class="fr-alert fr-alert--success">
+        <h3 class="fr-alert__title">Succès de l'envoi</h3>
+        <p>Un récapitulatif vous a été envoyé par email</p>
+      </div>
+      <div v-if="recapEmailState === 'waiting'">
+        <p
+          ><span
+            class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
+            aria-hidden="true"
+          ></span
+          ><span class="fr-ml-2w">Envoi en cours…</span></p
         >
-          <p>Une erreur s'est produite</p>
+      </div>
+      <form class="fr-form fr-my-2w" @submit.prevent="sendEmailRecap(true)">
+        <div class="fr-form-group">
+          <label class="fr-label" for="email"
+            >Votre email
+            <span class="fr-hint-text">Format attendu : nom@domaine.fr</span>
+          </label>
+          <input
+            id="email"
+            ref="emailRef"
+            v-model="emailValue"
+            name="email"
+            required
+            :aria-invalid="errorMessage"
+            :aria-describedBy="errorMessage ? 'invalid-email-warning' : null"
+            type="email"
+            class="fr-input"
+            autocomplete="email"
+            :disabled="recapEmailState === 'waiting'"
+          />
         </div>
-        <div v-if="recapEmailState === 'ok'" class="fr-alert fr-alert--success">
-          <h3 class="fr-alert__title">Succès de l'envoi</h3>
-          <p>Un récapitulatif vous a été envoyé par email</p>
-        </div>
-        <div v-if="recapEmailState === 'waiting'">
-          <p
-            ><span
-              class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-              aria-hidden="true"
-            ></span
-            ><span class="fr-ml-2w">Envoi en cours…</span></p
+        <WarningMessage
+          v-if="errorMessage"
+          id="invalid-email-warning"
+          class="fr-mt-2w"
+          >Une adresse email valide doit être indiquée.
+        </WarningMessage>
+      </form>
+    </div>
+    <div class="">
+      <ul class="fr-btns-group">
+        <li>
+          <button
+            :disabled="recapEmailState === 'waiting'"
+            class="fr-btn"
+            @click.prevent="sendEmailRecap(true)"
           >
-        </div>
-        <form class="fr-form fr-my-2w" @submit.prevent="sendEmailRecap(true)">
-          <div class="fr-form-group">
-            <label class="fr-label" for="email"
-              >Votre email
-              <span class="fr-hint-text">Format attendu : nom@domaine.fr</span>
-            </label>
-            <input
-              id="email"
-              ref="emailRef"
-              v-model="emailValue"
-              name="email"
-              required
-              :aria-invalid="errorMessage"
-              :aria-describedBy="errorMessage ? 'invalid-email-warning' : null"
-              type="email"
-              class="fr-input"
-              autocomplete="email"
-              :disabled="recapEmailState === 'waiting'"
-            />
-          </div>
-          <WarningMessage
-            v-if="errorMessage"
-            id="invalid-email-warning"
-            class="fr-mt-2w"
-            >Une adresse email valide doit être indiquée.
-          </WarningMessage>
-        </form>
-      </div>
-      <div class="">
-        <ul class="fr-btns-group">
-          <li>
-            <button
-              :disabled="recapEmailState === 'waiting'"
-              class="fr-btn"
-              @click.prevent="sendEmailRecap(true)"
-            >
-              J'accepte d'être recontacté ou recontactée par email
-            </button>
-          </li>
-          <li>
-            <button
-              :disabled="recapEmailState === 'waiting'"
-              class="fr-btn fr-btn--secondary"
-              @click.prevent="sendEmailRecap(false)"
-            >
-              Non merci, je préfère ne recevoir que le récapitulatif
-            </button>
-          </li>
-        </ul>
-      </div>
+            J'accepte d'être recontacté ou recontactée par email
+          </button>
+        </li>
+        <li>
+          <button
+            :disabled="recapEmailState === 'waiting'"
+            class="fr-btn fr-btn--secondary"
+            @click.prevent="sendEmailRecap(false)"
+          >
+            Non merci, je préfère ne recevoir que le récapitulatif
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

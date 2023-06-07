@@ -1,0 +1,35 @@
+label: aide départementale au permis de conduire
+institution: departement_charente_maritime
+description: "Le Département aide les jeunes éligibles aux
+  critères du Fonds d'aide aux jeunes à financer leur permis de conduire. Pour
+  effectuer une demande, vous devez être accompagné par un référent : Mission
+  Locale, Comité local pour le logement autonome des jeunes, Foyer jeunes
+  travailleurs, etc. Si vous n'avez pas de référent, contactez l'un des
+  organismes listés dans la page d'information."
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "17"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Avoir validé l'examen du code de la route.
+  - Avoir un projet d'emploi ou de formation validé par un référent FAJ (Fonds
+    d'aide aux jeunes).
+  - "Etre engagé dans une mission bénévole de 40 à 50 heures auprès d’un
+    organisme local à vocation sociale ou humanitaire (ex : Restos du Cœur,
+    Croix Rouge etc.)."
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1500
+link: https://la.charente-maritime.fr/fiches-aides/aide-au-permis-conduire
+instructions: https://la.charente-maritime.fr/fiches-aides/aide-au-permis-conduire

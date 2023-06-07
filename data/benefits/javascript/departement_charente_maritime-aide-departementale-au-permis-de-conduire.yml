@@ -1,11 +1,11 @@
 label: aide départementale au permis de conduire
 institution: departement_charente_maritime
-description: Le Département aide les jeunes éligibles aux
+description: "Le Département aide les jeunes éligibles aux
   critères du Fonds d'aide aux jeunes à financer leur permis de conduire. Pour
   effectuer une demande, vous devez être accompagné par un référent : Mission
   Locale, Comité local pour le logement autonome des jeunes, Foyer jeunes
   travailleurs, etc. Si vous n'avez pas de référent, contactez l'un des
-  organismes listés dans la page d'information.
+  organismes listés dans la page d'information."
 prefix: l’
 conditions_generales:
   - type: departements

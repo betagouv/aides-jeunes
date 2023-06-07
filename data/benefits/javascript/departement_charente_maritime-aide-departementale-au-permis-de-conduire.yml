@@ -24,7 +24,7 @@ conditions:
     d'aide aux jeunes).
   - "Etre engagé dans une mission bénévole de 40 à 50 heures auprès d’un
     organisme local à vocation sociale ou humanitaire (ex : Restos du Cœur,
-    Croix Rouge etc.)"
+    Croix Rouge etc.)."
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

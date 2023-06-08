@@ -1,4 +1,3 @@
-import expect from "expect"
 import { buildAPA } from "@root/data/benefits/dynamic/apa"
 import { buildFSL } from "@root/data/benefits/dynamic/fsl"
 import { compareSchema, getCollectionSchema } from "@root/data/schemas"

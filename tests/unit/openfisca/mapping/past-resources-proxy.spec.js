@@ -1,5 +1,4 @@
 import subject from "@root/backend/lib/openfisca/mapping/individu/past-resources-proxy"
-import expect from "expect"
 
 describe("openfisca past resource proxy", function () {
   const date = new Date("2019-02-14")

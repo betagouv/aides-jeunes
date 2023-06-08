@@ -1,5 +1,4 @@
 import { additionalProps } from "@root/backend/lib/openfisca/mapping/individu"
-import expect from "expect"
 
 const situation = {
   demandeur: { _bourseCriteresSociauxCommuneDomicileFamilial: "38185" },

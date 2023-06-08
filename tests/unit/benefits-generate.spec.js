@@ -1,4 +1,3 @@
-import expect from "expect"
 import subject from "@root/data"
 
 describe("benefit descriptions", function () {

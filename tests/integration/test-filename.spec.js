@@ -1,6 +1,5 @@
 import fs from "fs"
 import path from "path"
-import expect from "expect"
 
 describe("Test filenames rules", function () {
   const files = []

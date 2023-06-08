@@ -1,5 +1,3 @@
-import expect from "expect"
-
 import Benefits from "../../data/index.js"
 import jamstackLoader from "jamstack-loader"
 const configFile = "contribuer/public/admin/config.yml"

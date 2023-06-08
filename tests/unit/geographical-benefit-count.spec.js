@@ -1,4 +1,3 @@
-import expect from "expect"
 import { isGeographicallyIncluded } from "@root/lib/benefits/geographical-count-utils"
 
 describe("geographical benefit count", function () {

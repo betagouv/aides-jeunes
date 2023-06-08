@@ -181,6 +181,7 @@
       "@lib/(.*)": "<rootDir>/lib/$1",
       "@/(.*)": "<rootDir>/src/$1",
       "^(?!.*currency\\.js)(.+)\\.js$": "$1",
+      "^((\\.|@|\\/).+)\\.js$": "$1",
       "@root/(.*)": "<rootDir>/$1",
       "@backend/(.*)": "<rootDir>/backend/$1"
     },

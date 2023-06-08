@@ -1,6 +1,7 @@
 label: "Bourse communale pour le permis de conduire : permis citoyen"
 institution: ville-dangers
-description: La ville d'Angers propose une aide financière au permis B pour les jeunes Angevin·e·s ne disposant pas de ressources suffisantes et qui s'inscrivent dans une démarche de formation ou
+description:
+  La ville d'Angers propose une aide financière au permis B pour les jeunes Angevin·e·s ne disposant pas de ressources suffisantes et qui s'inscrivent dans une démarche de formation ou
   d’emploi. L'aide est conditionnée à un apport personnel d’au moins 20% du montant total du permis. L’instruction des demandes se fait au Centre
   Communale d'Action Sociale de la ville.
 prefix: la

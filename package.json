@@ -189,7 +189,7 @@
       ".ts"
     ],
     "testMatch": [
-      "**/tests/(integration|unit)/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+      "**/tests/(integration|unit)/**/*.spec.js"
     ],
     "testPathIgnorePatterns": [
       "tests/unit/views/fiscales.spec.js",

@@ -373,6 +373,23 @@ function housingBlock() {
       },
       new Step({ entity: "menage", variable: "depcom" }),
       {
+        isActive: (_subject, situation) => {
+          const age = Individu.age(
+            situation.demandeur,
+            datesGenerator(situation.dateDeValeur).today.value
+          )
+          const proprietaire =
+            situation.menage.statut_occupation_logement === "proprietaire"
+          return age >= 18 && !proprietaire
+        },
+        steps: [
+          new Step({
+            entity: "menage",
+            variable: "_difficultes_acces_ou_frais_logement",
+          }),
+        ],
+      },
+      {
         isActive: (subject) =>
           subject.depcom?.startsWith("75") &&
           subject._logementType != "sansDomicile",

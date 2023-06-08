@@ -32,6 +32,10 @@ export default {
       >`,
   }),
 
+  _difficultes_acces_ou_frais_logement: new BooleanProperty({
+    question: `Rencontrez-vous des difficultés importantes pour accéder à un logement ou pour payer les frais liés à votre logement ?`,
+  }),
+
   _nombreMoisEntreeLogement: new EnumProperty({
     question: "Prévoyez-vous de déménager prochainement ?",
     questionType: "enum",

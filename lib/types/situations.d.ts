@@ -19,6 +19,7 @@ export interface situationsMenageLayout {
   aide_logement_date_pret_conventionne: string
   _departement?: string
   depcom?: string
+  _difficultes_acces_ou_frais_logement?: string
   _epci?: string
   _locationType?: string | any
   _logementType?: string | any

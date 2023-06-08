@@ -1,0 +1,26 @@
+label: "Aide au financement du permis de conduire : Permis citoyen"
+institution: departement_landes
+description: Ce dispositif permet aux jeunes Landais de financer
+  leur permis de conduire en contrepartie d’une mission bénévole de 40 heures
+  réalisée dans une collectivité ou une association des Landes. Les demandes de
+  bourse sont à effectuer en ligne.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "40"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 30
+profils: []
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 450
+link: https://www.landes.fr/detail-aide?id_aide=161
+teleservice: https://mesdemarches.landes.fr/prod-web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL

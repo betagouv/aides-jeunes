@@ -18,7 +18,7 @@ conditions_generales:
     value: 25
 profils: []
 conditions:
-  - Etre éligible aux critères du Fonds d'Aide au Jeunes du département de
+  - Etre éligible aux critères du Fonds d'Aide aux Jeunes du département de
     l'Aude.
   - Faire votre demande auprès de votre Mission Locale.
 interestFlag: _interetPermisDeConduire

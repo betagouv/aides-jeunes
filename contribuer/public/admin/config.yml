@@ -257,7 +257,10 @@ fields:
       - <<: *field_select_statut_occupation_logement
         label: Exclus
         name: excludes
-
+  field_difficultes_acces_ou_frais_logement: &field_difficultes_acces_ou_frais_logement
+    <<: *field_empty
+    label: En formation sanitaire et sociale
+    name: difficultes_acces_ou_frais_logement
   # common fields
   field_benefit_image: &field_benefit_image
     label: Logo
@@ -756,6 +759,7 @@ fields:
       - *field_attached_to_institution
       - *field_statut_occupation_logement
       - *field_not_operator
+      - *field_difficultes_acces_ou_frais_logement
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat

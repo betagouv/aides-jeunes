@@ -1,9 +1,17 @@
 <template>
   <button
+    v-if="experimentNewRecapEmail"
+    class="fr-btn fr-icon-mail-line fr-px-3v"
+    @click="goToEmailFormPage"
+  >
+    {{ text }}
+  </button>
+  <button
+    v-else
     class="fr-btn fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
-    @click="goToEmailForm"
+    @click="goToEmailFormModal"
   >
     {{ text }}
   </button>
@@ -29,12 +37,11 @@ export default {
     }
   },
   methods: {
-    goToEmailForm() {
-      if (this.experimentNewRecapEmail) {
-        this.$router.push({ name: "resultatsRecapEmail" })
-      } else {
-        this.store.setRecapEmailState("show")
-      }
+    goToEmailFormPage() {
+      this.$router.push({ name: "resultatsRecapEmail" })
+    },
+    goToEmailFormModal() {
+      this.store.setRecapEmailState("show")
     },
   },
 }

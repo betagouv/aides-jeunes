@@ -1,0 +1,30 @@
+label: "Aide départementale au permis de conduire : Pass'Engagement"
+institution: departement_cotes_d_armor
+description: Le département des Côtes d'Armor propose aux jeunes de s'engager
+  bénévolement dans une association ou un centre social à raison de 2 heures
+  minimum par semaine, en échange de l'octroi d'une bourse pouvant aller jusqu'à
+  1200 € pour soutenir un projet personnel ou professionnel. Ce dispositif peut
+  être demandé pour financer le permis de conduire B.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "22"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Résider depuis plus de six mois dans le département des Côtes d'Armor.
+  - Effectuer votre demande d'aide entre le 1er septembre et le 1er juin.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 1200
+link: https://cotesdarmor.fr/pass-engagement
+form: https://cotesdarmor.fr/sites/default/files/2023-03/PassEngagement_Dossier_candidature_attestations_autorisation_23_BATWeb_0.pdf

@@ -1,5 +1,5 @@
-import { submit } from "./form"
-import { urlInclude } from "./controllers"
+import { submit } from "./form.js"
+import { urlInclude } from "./controllers.js"
 
 const fill_ressources_types = (types = []) => {
   urlInclude("ressources/types")

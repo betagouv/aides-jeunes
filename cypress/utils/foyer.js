@@ -1,6 +1,6 @@
-import { fillRadio, submit } from "./form"
-import profil from "./profil"
-import { urlInclude } from "./controllers"
+import { fillRadio, submit } from "./form.js"
+import profil from "./profil.js"
+import { urlInclude } from "./controllers.js"
 
 const children = (numberOfChildren) => {
   for (let i = 0; i < numberOfChildren; i++) {

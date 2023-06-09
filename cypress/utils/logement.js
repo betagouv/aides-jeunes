@@ -1,5 +1,5 @@
-import { submit, fillRadio } from "./form"
-import { urlInclude } from "./controllers"
+import { submit, fillRadio } from "./form.js"
+import { urlInclude } from "./controllers.js"
 
 const fill__logementType = (_logementType) => {
   fillRadio("_logementType", _logementType)

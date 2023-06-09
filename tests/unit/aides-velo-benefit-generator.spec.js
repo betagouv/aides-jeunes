@@ -1,13 +1,14 @@
 import benefits from "@root/data/all"
 
 import generator from "@root/data/benefits/aides-velo-generator"
+import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 describe("aides velo benefit generator", function () {
   const list = generator(Object.values(benefits.institutionsMap))
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {
-      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèçâôû-]+$/)
+      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèëçâôû-]+$/)
     })
 
     it("verify description exists", function () {
@@ -33,8 +34,6 @@ describe("aides velo benefit generator", function () {
       (b) => b.collectivity.kind === "epci"
     )
     if (missingEPCI.length) {
-      var epci = require("@etalab/decoupage-administratif/data/epci.json")
-
       missingEPCI.forEach((b) => {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))

@@ -1,5 +1,3 @@
-import expect from "expect"
-
 import entities from "@root/backend/lib/definitions"
 const { famille, individu, menage, parents } = entities
 

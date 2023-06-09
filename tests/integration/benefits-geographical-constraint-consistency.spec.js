@@ -1,4 +1,3 @@
-import expect from "expect"
 import testGeographicalRelevancy from "@root/tools/test-benefits-geographical-constraint-consistency"
 
 describe("geographical constraint", function () {

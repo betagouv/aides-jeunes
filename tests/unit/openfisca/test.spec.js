@@ -1,4 +1,3 @@
-import expect from "expect"
 import { values } from "lodash-es"
 import Promise from "bluebird"
 import fs from "fs"

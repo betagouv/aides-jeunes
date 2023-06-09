@@ -1,5 +1,4 @@
 import subject from "@root/backend/lib/openfisca/mapping/property-move"
-import expect from "expect"
 
 describe("openfisca mapping property move", function () {
   describe("movePropertyValuesToGroupEntity", function () {

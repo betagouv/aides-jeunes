@@ -1,4 +1,3 @@
-import expect from "expect"
 import benefits from "@root/data/all"
 
 import generator from "@root/data/benefits/aides-velo-generator"

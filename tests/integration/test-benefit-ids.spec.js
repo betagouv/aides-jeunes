@@ -1,5 +1,3 @@
-import expect from "expect"
-
 import Benefits from "../../data/index.js"
 import jamstackLoader from "jamstack-loader"
 import aidesVeloGenerator from "../../data/benefits/aides-velo-generator.js"

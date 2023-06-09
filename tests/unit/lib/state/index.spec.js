@@ -1,5 +1,3 @@
-import expect from "expect"
-
 import { getChapters } from "@lib/state"
 
 describe("chapter", function () {

@@ -34,7 +34,6 @@ describe("aides velo benefit generator", function () {
       (b) => b.collectivity.kind === "epci"
     )
     if (missingEPCI.length) {
-
       missingEPCI.forEach((b) => {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))

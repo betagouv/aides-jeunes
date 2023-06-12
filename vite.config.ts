@@ -14,7 +14,14 @@ import benefits from "./data/all"
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup"
 
-const { baseURL, github, matomo, netlifyContributionURL, statistics } = config
+const {
+  baseURL,
+  github,
+  matomo,
+  netlifyContributionURL,
+  statistics,
+  franceConnect,
+} = config
 
 function createSentryPlugin() {
   if (!process.env.SENTRY_AUTH_TOKEN) {
@@ -55,7 +62,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_1J1S_URL: "https://www.1jeune1solution.gouv.fr",
     VITE_LAYOUT: LayoutType.BaseLayout,
     // For now FranceConnect require an additional query params to be enabled
-    VITE_FRANCE_CONNECT_ENABLED: Boolean(process.env.FRANCE_CONNECT_CLIENT_ID),
+    VITE_FRANCE_CONNECT_ENABLED: Boolean(franceConnect.clientId),
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`

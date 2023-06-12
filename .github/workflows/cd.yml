@@ -3,8 +3,10 @@ on:
   push:
     branches: [master, dev]
 env:
-  SSH_HOST: solstice.mes-aides.1jeune1solution.beta.gouv.fr
-  SSH_USER: root
+  SOLSTICE_SSH_HOST: solstice.mes-aides.1jeune1solution.beta.gouv.fr
+  SOLSTICE_SSH_USER: root
+  ECLIPSE_SSH_HOST: monitor.eclipse.mes-aides.incubateur.net
+  ECLIPSE_SSH_USER: debian
 
 jobs:
   unit_testing:
@@ -30,10 +32,10 @@ jobs:
         run: npm ci --prefer-offline --no-audit
       - name: Jest
         run: npm run test
-  deploy_production:
+  deploy_solstice_production:
     if: github.ref == 'refs/heads/master'
     needs: [unit_testing]
-    name: Production deployment
+    name: Solstice Production deployment
     runs-on: ubuntu-20.04
     steps:
       - name: Production deployment
@@ -42,11 +44,11 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key
-  deploy_preproduction:
+          ssh -o StrictHostKeyChecking=no ${{ env.SOLSTICE_SSH_USER }}@${{ env.SOLSTICE_SSH_HOST }} -i ~/.ssh/deployment.key
+  deploy_solstice_preproduction:
     if: github.ref == 'refs/heads/dev'
     needs: [unit_testing]
-    name: Preproduction Deployment
+    name: Solstice Preproduction Deployment
     runs-on: ubuntu-20.04
     steps:
       - name: Preproduction Deployment
@@ -55,4 +57,30 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{ secrets.PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -o StrictHostKeyChecking=no ${{ env.SSH_USER }}@${{ env.SSH_HOST }} -i ~/.ssh/deployment.key
+          ssh -o StrictHostKeyChecking=no ${{ env.SOLSTICE_SSH_USER }}@${{ env.SOLSTICE_SSH_HOST }} -i ~/.ssh/deployment.key
+  deploy_eclipse_production:
+    if: github.ref == 'refs/heads/master'
+    needs: [unit_testing]
+    name: Eclipse Production deployment
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Production deployment
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SOLSTICE_PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          ssh -o StrictHostKeyChecking=no ${{ env.ECLIPSE_SSH_USER }}@${{ env.ECLIPSE_SSH_HOST }} -i ~/.ssh/deployment.key
+  deploy_eclipse_preproduction:
+    if: github.ref == 'refs/heads/dev'
+    needs: [unit_testing]
+    name: Eclipse Preproduction Deployment
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Preproduction Deployment
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SOLSTICE_PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
+          chmod 600 ~/.ssh/deployment.key
+          ssh -o StrictHostKeyChecking=no ${{ env.ECLIPSE_SSH_USER }}@${{ env.ECLIPSE_SSH_HOST }} -i ~/.ssh/deployment.key

@@ -137,11 +137,7 @@ export default {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {
       if (this.store.simulation.teleservice) {
-        this.store
-          .fetchRepresentation(this.store.simulation.teleservice)
-          .then((representation) => {
-            window.location.href = representation.destination.url
-          })
+        await this.redirectToTeleservice()
       } else {
         this.store.compute()
       }
@@ -232,6 +228,13 @@ export default {
         this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
       }
     },
+  },
+  async redirectToTeleservice() {
+    const representation = await this.store.fetchRepresentation(
+      this.store.simulation.teleservice
+    )
+
+    window.location.href = representation.destination.url
   },
 }
 </script>

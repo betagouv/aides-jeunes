@@ -135,20 +135,7 @@ export default {
       this.restoreLatest()
     } else {
       if (this.store.calculs.dirty) {
-        const vm = this
-        this.store.setSaveSituationError(null)
-        this.store
-          .save()
-          .then(() => {
-            if (vm.store.access.forbidden) {
-              return
-            }
-            return vm.store.compute()
-          })
-          .catch((error) => {
-            this.store.setSaveSituationError(error.response?.data || error)
-            this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
-          })
+        await this.saveSimulation()
       } else if (!this.store.hasResults) {
         if (this.store.simulation.teleservice) {
           this.store
@@ -233,6 +220,19 @@ export default {
       }
 
       this.$router.replace({ simulationId: null })
+    },
+    async saveSimulation() {
+      try {
+        this.store.setSaveSituationError(null)
+        await this.store.save()
+
+        if (!this.store.access.forbidden) {
+          this.store.compute()
+        }
+      } catch (error) {
+        this.store.setSaveSituationError(error.response?.data || error)
+        this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
+      }
     },
   },
 }

@@ -124,11 +124,8 @@ export default {
   },
   mounted() {
     this.initializeStore()
+    this.handleLegacySituationId()
 
-    // Used for old links containing situationId instead of simulationId
-    if (this.$route.query?.situationId) {
-      this.$route.query.simulationId = this.$route.query.situationId
-    }
     if (this.mock(this.$route.params.droitId)) {
       return
     } else if (this.$route.query?.simulationId) {
@@ -223,6 +220,12 @@ export default {
           }
         })
       })
+    },
+    handleLegacySituationId() {
+      // Used for old links containing situationId instead of simulationId
+      if (this.$route.query?.situationId) {
+        this.store.setSimulationId(this.$route.query.situationId)
+      }
     },
   },
 }

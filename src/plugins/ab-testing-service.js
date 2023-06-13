@@ -39,6 +39,11 @@ function getEnvironment() {
     ABTesting.en_couple_step.value ||
     (Math.random() > 0.5 ? "OldQuestion" : "NewQuestion")
 
+  // Définition de la valeur d'AB testing pour le formulaire du récapitulatif par email
+  ABTesting.recap_email_form = ABTesting.recap_email_form || {}
+  ABTesting.recap_email_form.value =
+    ABTesting.recap_email_form.value || (Math.random() > 0.5 ? "Modal" : "Page")
+
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]
     if (data.deleted) {

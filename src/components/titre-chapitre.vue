@@ -48,9 +48,7 @@ export default {
       return this.getTitleByRoute(this.$route)
     },
     showEmailButton() {
-      return (
-        this.store.recapEmailState !== "ok" && this.$route.name === "resultats"
-      )
+      return this.$route.name === "resultats"
     },
   },
   methods: {
@@ -61,6 +59,9 @@ export default {
       }
       if (path.includes("simulation/resultat/inattendu/")) {
         return "Montant inattendu"
+      }
+      if (path === "/simulation/resultats/recapitulatif_email") {
+        return "Recevoir un récapitulatif par email"
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

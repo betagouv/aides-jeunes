@@ -241,6 +241,15 @@ const router = createRouter({
           path: "resultats/:droitId",
           component: () => import("./views/simulation/resultats-detail.vue"),
         },
+        {
+          name: "resultatsRecapEmail",
+          path: "resultats/recapitulatif_email",
+          component: () =>
+            import("./views/simulation/resultats/recap-email.vue"),
+          meta: {
+            headTitle: `Recevez par email le récapitulatif de vos réponses avec le simulateur d'aides ${context.name}`,
+          },
+        },
       ],
     },
     {
@@ -293,6 +302,7 @@ const router = createRouter({
       redirect: () => {
         ABTestingService.setVariant("benefit_result_page", "NewUI")
         ABTestingService.setVariant("en_couple_step", "NewQuestion")
+        ABTestingService.setVariant("recap_email_form", "Page")
         return "/"
       },
     },

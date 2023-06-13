@@ -126,7 +126,8 @@ export default {
     this.initializeStore()
     this.handleLegacySituationId()
 
-    if (this.mock(this.$route.params.droitId)) {
+    if (this.mockResultsNeeded()) {
+      this.mock(this.$route.params.droitId)
       return
     } else if (this.$route.query?.simulationId) {
       if (this.store.simulationId !== this.$route.query.simulationId) {

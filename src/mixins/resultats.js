@@ -70,11 +70,13 @@ export default {
 
       return lastestSimulation
     },
+    mockResultsNeeded() {
+      return this.$route.query.debug !== undefined
+    },
     mock(detail) {
-      if (this.$route.query.debug !== undefined) {
+      if (this.mockResultsNeeded()) {
         this.store.mockResults(detail || this.$route.query.debug)
       }
-      return this.$route.query.debug !== undefined
     },
     simulationAnonymized() {
       return this.store.simulation.status === SimulationStatusEnum.ANONYMIZED

@@ -123,23 +123,7 @@ export default {
     }
   },
   mounted() {
-    this.store.updateCurrentAnswers(this.$route.path)
-
-    this.stopSubscription = this.store.$onAction(({ after, name }) => {
-      after(() => {
-        switch (name) {
-          case "setResults": {
-            this.sendShowStatistics()
-            this.sendDisplayUnexpectedAmountLinkStatistics()
-            break
-          }
-          case "saveComputationFailure": {
-            this.sendEventToMatomo("General", "Error")
-            break
-          }
-        }
-      })
-    })
+    this.initializeStore()
 
     // Used for old links containing situationId instead of simulationId
     if (this.$route.query?.situationId) {
@@ -220,6 +204,25 @@ export default {
         "Accès simulation anonymisée",
         daysSinceDate(new Date(this.store.simulation.dateDeValeur))
       )
+    },
+    initializeStore() {
+      this.store.updateCurrentAnswers(this.$route.path)
+
+      this.stopSubscription = this.store.$onAction(({ after, name }) => {
+        after(() => {
+          switch (name) {
+            case "setResults": {
+              this.sendShowStatistics()
+              this.sendDisplayUnexpectedAmountLinkStatistics()
+              break
+            }
+            case "saveComputationFailure": {
+              this.sendEventToMatomo("General", "Error")
+              break
+            }
+          }
+        })
+      })
     },
   },
 }

@@ -1,12 +1,11 @@
 /// <reference types="Cypress" />
-
-import foyer from "../utils/foyer"
-import logement from "../utils/logement"
-import navigate from "../utils/navigate"
-import profil from "../utils/profil"
-import projet from "../utils/projet"
-import results from "../utils/results"
-import revenu from "../utils/revenu"
+import foyer from "../utils/foyer.js"
+import logement from "../utils/logement.js"
+import navigate from "../utils/navigate.js"
+import profil from "../utils/profil.js"
+import projet from "../utils/projet.js"
+import results from "../utils/results.js"
+import revenu from "../utils/revenu.js"
 import "cypress-axe"
 
 context("Full simulation", () => {

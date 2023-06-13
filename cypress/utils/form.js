@@ -1,4 +1,4 @@
-import { urlInclude } from "./controllers"
+import { urlInclude } from "./controllers.js"
 
 const submit = () => cy.get('button[type="submit"]').click()
 

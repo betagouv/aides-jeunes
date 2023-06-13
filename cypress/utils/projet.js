@@ -1,4 +1,4 @@
-import { fillRadio, fillCheckboxes, fillNumber } from "./form"
+import { fillRadio, fillCheckboxes, fillNumber } from "./form.js"
 
 const fill__interetAidesSanitaireSocial = (expect) => {
   fillRadio("_interetAidesSanitaireSocial", expect)

@@ -1,4 +1,4 @@
-import { submit } from "./form"
+import { submit } from "./form.js"
 
 const wait = () => {
   cy.wait("@results")

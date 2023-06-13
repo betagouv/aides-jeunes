@@ -1,9 +1,9 @@
-import { fillRadio, submit } from "./form"
+import { fillRadio, submit } from "./form.js"
 import {
   GroupeSpecialiteType,
   MentionBaccalaureatType,
-} from "../../lib/enums/scolarite"
-import { urlInclude } from "./controllers"
+} from "../../lib/enums/scolarite.ts"
+import { urlInclude } from "./controllers.js"
 
 const fill_first_name = (prenom) => {
   cy.get("[data-testid='question']").invoke("text").should("contain", "prénom")

@@ -69,7 +69,6 @@
 import { useAttrs } from "vue"
 import { useStore } from "@/stores/index.ts"
 const store = useStore()
-store.setIframeOrigin()
 const attributes = useAttrs()
 const parameters = {
   homeTo:

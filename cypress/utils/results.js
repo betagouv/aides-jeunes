@@ -196,9 +196,9 @@ const receiveResultsEmail = () => {
   })
     .should("be.visible")
     .click()
-  cy.get("input#email")
-    .should("be.visible")
-    .type("prenom.nom@beta.gouv.fr", { force: true })
+
+  const email = "prenom.nom@beta.gouv.fr"
+  cy.get("input#email").should("be.visible").type(email, { force: true })
   cy.get(".fr-btn:contains(J'accepte d'être recontacté)")
     .should("be.visible")
     .click()

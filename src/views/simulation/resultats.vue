@@ -133,19 +133,17 @@ export default {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
       this.restoreLatest()
-    } else {
-      if (this.store.calculs.dirty) {
-        await this.saveSimulation()
-      } else if (!this.store.hasResults) {
-        if (this.store.simulation.teleservice) {
-          this.store
-            .fetchRepresentation(this.store.simulation.teleservice)
-            .then((representation) => {
-              window.location.href = representation.destination.url
-            })
-        } else {
-          this.store.compute()
-        }
+    } else if (this.store.calculs.dirty) {
+      await this.saveSimulation()
+    } else if (!this.store.hasResults) {
+      if (this.store.simulation.teleservice) {
+        this.store
+          .fetchRepresentation(this.store.simulation.teleservice)
+          .then((representation) => {
+            window.location.href = representation.destination.url
+          })
+      } else {
+        this.store.compute()
       }
     }
   },

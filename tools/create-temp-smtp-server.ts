@@ -9,6 +9,9 @@ user: ${account.user}
 pass: ${account.pass}
 
 Use these envvar to send emails:
-SMTP_USER=${account.user} SMTP_PASS=${account.pass} SMTP_HOST=${smtp.host} SMTP_PORT=${smtp.port}
+SMTP_USER=${account.user}
+SMTP_PASS=${account.pass}
+SMTP_HOST=${smtp.host}
+SMTP_PORT=${smtp.port}
 `)
 })

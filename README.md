@@ -164,8 +164,7 @@ We use the framework [MJML](https://mjml.io/) to design and integrate the templa
 
 The development server for emails can be easily start with: `npm run tools:serve-mail`
 
-If you want to verify the email sending, the variable `SMTP_*` should be configured in your `.env` file.
-You can use `ts-node tools/create-temp-smtp-server.ts` to generate a test account on `https://ethereal.email`.
+If you want to verify the email sending process, you can generate a set of the required `SMTP_*` environment variables by running `ts-node tools/create-temp-smtp-server.ts` to generate a test account on `https://ethereal.email`.
 
 ## Linting and format
 

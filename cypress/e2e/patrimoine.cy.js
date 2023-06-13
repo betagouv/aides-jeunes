@@ -41,6 +41,7 @@ context("Full simulation", () => {
         logement.fill_proprietaire_proche_famille(false)
         logement.fill_loyer(600, 100)
         logement.fill_depcom("34000")
+        logement.fill__difficultes_acces_ou_frais_logement(false)
         logement.fill__nombreMoisEntreeLogement(-2)
 
         revenu.fill_ressources_types(["salaire_net"])

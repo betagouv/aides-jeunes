@@ -378,6 +378,9 @@ function formatBenefit(
         StatutOccupationLogement.sans_domicile,
       ],
     },
+    {
+      type: "difficultes_acces_ou_frais_logement",
+    },
   ]
   return Object.assign(
     {},

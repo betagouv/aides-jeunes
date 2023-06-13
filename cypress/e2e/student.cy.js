@@ -34,6 +34,7 @@ context("Full simulation", () => {
     logement.fill_proprietaire_proche_famille(false)
     logement.fill_loyer(600, 100)
     logement.fill_depcom("75001")
+    logement.fill__difficultes_acces_ou_frais_logement(false)
     logement.fill_parisien(true)
     logement.fill__en_france(true)
     logement.fill_depcom(

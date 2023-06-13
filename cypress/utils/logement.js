@@ -33,6 +33,15 @@ const fill_depcom = (department, name = "depcom") => {
   submit()
 }
 
+const fill__difficultes_acces_ou_frais_logement = (
+  difficultes_acces_ou_frais_logement
+) => {
+  fillRadio(
+    "_difficultes_acces_ou_frais_logement",
+    difficultes_acces_ou_frais_logement
+  )
+}
+
 const fill_parisien = (parisien) => {
   fillRadio("parisien", parisien)
 }
@@ -69,6 +78,7 @@ export default {
   fill__primoAccedant,
   fill__nombreMoisEntreeLogement,
   fill_depcom,
+  fill__difficultes_acces_ou_frais_logement,
   fill_parisien,
   fill_coloc,
   fill_logement_chambre,

@@ -220,6 +220,11 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
       )
     },
   },
+  difficultes_acces_ou_frais_logement: {
+    test: (_, { situation }) => {
+      return situation.menage._difficultes_acces_ou_frais_logement === true
+    },
+  },
   quotient_familial: {
     test: (condition, { openfiscaResponse, periods }) => {
       const rfr = openfiscaResponse.foyers_fiscaux._.rfr[periods.fiscalYear.id]

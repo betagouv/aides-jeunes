@@ -50,6 +50,7 @@ context("Full simulation", () => {
     // Continue the test as an homeless person
     logement.fill__logementType("sansDomicile")
     logement.fill_depcom("94120")
+    logement.fill__difficultes_acces_ou_frais_logement(true)
     logement.fill__nombreMoisEntreeLogement(-12)
     revenu.fill_ressources_types([
       "salaire_net",

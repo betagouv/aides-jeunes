@@ -259,7 +259,7 @@ fields:
         name: excludes
   field_difficultes_acces_ou_frais_logement: &field_difficultes_acces_ou_frais_logement
     <<: *field_empty
-    label: En formation sanitaire et sociale
+    label: Difficultés importantes pour accéder à un logement ou pour payer les frais liés à un logement
     name: difficultes_acces_ou_frais_logement
   # common fields
   field_benefit_image: &field_benefit_image

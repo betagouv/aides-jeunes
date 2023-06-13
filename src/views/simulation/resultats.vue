@@ -122,7 +122,7 @@ export default {
       store: useStore(),
     }
   },
-  mounted() {
+  async mounted() {
     this.initializeStore()
     this.handleLegacySituationId()
 
@@ -130,16 +130,7 @@ export default {
       this.mock(this.$route.params.droitId)
       return
     } else if (this.$route.query?.simulationId) {
-      if (this.store.simulationId !== this.$route.query.simulationId) {
-        this.store.fetch(this.$route.query.simulationId).then(() => {
-          if (this.simulationAnonymized()) {
-            this.sendAccessToAnonymizedResults()
-          } else {
-            this.store.compute()
-          }
-          this.$router.replace({ simulationId: null })
-        })
-      } // Else nothing to do
+      await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
       this.restoreLatest()
     } else {
@@ -227,6 +218,21 @@ export default {
       if (this.$route.query?.situationId) {
         this.store.setSimulationId(this.$route.query.situationId)
       }
+    },
+    async handleSimulationIdQuery() {
+      if (this.store.simulationId === this.$route.query.simulationId) {
+        return
+      }
+
+      await this.store.fetch(this.$route.query.simulationId)
+
+      if (this.simulationAnonymized()) {
+        this.sendAccessToAnonymizedResults()
+      } else {
+        this.store.compute()
+      }
+
+      this.$router.replace({ simulationId: null })
     },
   },
 }

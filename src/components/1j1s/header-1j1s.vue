@@ -69,7 +69,7 @@
 import { useAttrs } from "vue"
 import { useStore } from "@/stores/index.ts"
 const store = useStore()
-//store.setIframeOrigin();
+store.setIframeOrigin()
 const attributes = useAttrs()
 const parameters = {
   homeTo:
@@ -81,9 +81,8 @@ const parameters = {
   quickLinks: [
     {
       label: "Retour à l'accueil du simulateur",
-      path: store.inIframe ? "/iframe=true" : "/",
+      path: store.inIframe ? "/?iframe=true&data-with-logo=true" : "/",
     },
   ],
 }
-console.log("Testttttt=====>", store.inIframe)
 </script>

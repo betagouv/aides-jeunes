@@ -31,6 +31,7 @@ const lieuxPreview = computed(() => {
         <LieuLight :lieu="lieu" />
       </div>
       <button
+        v-if="lieux?.length > 1"
         class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"
         @click="showLieux = !showLieux"
       >

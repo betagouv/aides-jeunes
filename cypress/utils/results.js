@@ -46,11 +46,11 @@ const hasPrimeActivite = () => {
 
 const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
-  cy.get('[data-testid="etablissement-title"]').should(
+  cy.get('[data-testid="lieu-title"]').should(
     "contain",
     "Caisse d'allocations familiales"
   )
-  cy.get('[data-testid="etablissement-informations-link"]').should(
+  cy.get('[data-testid="lieu-informations-link"]').should(
     "contain",
     "Voir les informations"
   )
@@ -59,10 +59,10 @@ const hasPrimeActiviteNearbyPlaces = () => {
 const hasSituationNearbyPlaces = () => {
   cy.get('[data-testid="nearby-help"]').should("be.visible").click()
   cy.get('[data-testid="nearby-help"]').should("not.exist")
-  cy.get('[data-testid="etablissement-title"]')
+  cy.get('[data-testid="lieu-title"]')
     .first()
     .should("contain", "Mairie - Fontenay-sous-Bois")
-  cy.get('[data-testid="etablissement-address"]').first().should("be.visible")
+  cy.get('[data-testid="lieu-address"]').first().should("be.visible")
 }
 
 const captureFiscalResources = () => {

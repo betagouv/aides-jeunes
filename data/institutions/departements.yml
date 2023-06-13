@@ -1,6 +1,6 @@
 name: Les conseils départementaux
 imgSrc: img/institutions/logo_cd_generique.png
-etablissements:
+lieux:
   - mds
   - cdas
   - centre_social

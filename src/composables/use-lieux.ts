@@ -1,38 +1,34 @@
 import { ref, computed } from "vue"
-import {
-  getBenefitEtablissements,
-  getEtablissements,
-} from "@lib/benefits/etablissements"
+import { getBenefitLieux, getLieux } from "@lib/benefits/lieux"
 import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
 import { ActiviteType } from "@lib/enums/activite.js"
-import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import { LieuLayout } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
 
-export function useEtablissements() {
+export function useLieux() {
   const store = useStore()
   const $route = useRoute()
 
-  const etablissements = ref<HelpingInstitution[]>([])
+  const lieux = ref<LieuLayout[]>([])
   const benefit = ref<any>(null)
   const updating = ref<boolean>(true)
 
   const city = store.situation.menage.depcom
 
-  const currentEtablissement = computed(() => {
-    return etablissements.value.find(
-      (etablissement: HelpingInstitution) =>
-        etablissement.id === $route.params.etablissement_id
+  const currentLieu = computed(() => {
+    return lieux.value.find(
+      (lieu: LieuLayout) => lieu.id === $route.params.lieu_id
     )
   })
 
-  interface EtablissementTypeCriteria {
+  interface LieuTypeCriteria {
     isRelevant?: (demandeur: any, situation: any) => boolean
     types: string[]
   }
 
-  const etablissementsList: EtablissementTypeCriteria[] = [
+  const lieuxList: LieuTypeCriteria[] = [
     {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
@@ -61,26 +57,26 @@ export function useEtablissements() {
     },
   ]
 
-  const getSituationEtablissements = () => {
+  const getSituationLieux = () => {
     const relevantTypes: string[] = []
-    for (const etablissement of etablissementsList) {
-      const isRelevant = etablissement.isRelevant
-        ? etablissement.isRelevant(store.situation.demandeur, store.situation)
+    for (const lieu of lieuxList) {
+      const isRelevant = lieu.isRelevant
+        ? lieu.isRelevant(store.situation.demandeur, store.situation)
         : true
       if (isRelevant) {
-        relevantTypes.push(...etablissement.types)
+        relevantTypes.push(...lieu.types)
       }
     }
     return relevantTypes
   }
 
-  const loadEtablissements = async () => {
+  const loadLieux = async () => {
     if (!city) {
-      Sentry.captureMessage(`Depcom required to loadEtablissement()`)
+      Sentry.captureMessage(`Depcom required to loadLieux()`)
       updating.value = false
       return
     }
-    let etablissementTypes: any = null
+    let lieuTypes: any = null
     const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
     if (benefitId) {
       const benefits =
@@ -88,30 +84,24 @@ export function useEtablissements() {
       benefit.value = benefits
         ? benefits.find((b: any) => b.id === benefitId)
         : null
-      etablissementTypes = getBenefitEtablissements(benefit.value)
+      lieuTypes = getBenefitLieux(benefit.value)
     } else {
-      etablissementTypes = getSituationEtablissements()
+      lieuTypes = getSituationLieux()
     }
-    if (etablissementTypes.length > 0) {
-      const apiEtablissements = await getEtablissements(
-        city,
-        etablissementTypes
-      )
-      etablissements.value = apiEtablissements.sort((a, b) => {
-        return (
-          etablissementTypes.indexOf(a.pivotLocal) -
-          etablissementTypes.indexOf(b.pivotLocal)
-        )
+    if (lieuTypes.length > 0) {
+      const apiLieux = await getLieux(city, lieuTypes)
+      lieux.value = apiLieux.sort((a, b) => {
+        return lieuTypes.indexOf(a.pivotLocal) - lieuTypes.indexOf(b.pivotLocal)
       })
     }
     updating.value = false
   }
 
-  loadEtablissements()
+  loadLieux()
 
   return {
-    etablissements,
-    currentEtablissement,
+    lieux,
+    currentLieu,
     updating,
     benefit,
   }

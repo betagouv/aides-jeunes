@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Etablissement from "@/components/etablissement.vue"
+import Lieu from "@/components/lieu.vue"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useEtablissements } from "@/composables/use-etablissements.js"
+import { useLieux } from "@/composables/use-lieux.js"
 
-const { etablissements, updating } = useEtablissements()
+const { lieux, updating } = useLieux()
 </script>
 
 <template>
@@ -21,14 +21,14 @@ const { etablissements, updating } = useEtablissements()
     ></span
     ><span class="fr-ml-2w">Récupération en cours…</span>
   </p>
-  <div v-if="etablissements?.length">
+  <div v-if="lieux?.length">
     <p>
       Voici les lieux où vous pouvez y être accompagné(e) pour faire vos
       demandes et poser toutes vos questions.
     </p>
 
-    <div v-for="(etablissement, index) in etablissements" :key="index">
-      <Etablissement :etablissement="etablissement" />
+    <div v-for="(lieu, index) in lieux" :key="index">
+      <Lieu :lieu="lieu" />
     </div>
   </div>
 </template>

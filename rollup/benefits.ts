@@ -4,7 +4,7 @@ const benefits = {}
 const excludeKeys = [
   "conditions_generales",
   "entity",
-  "etablissements",
+  "lieux",
   "forms",
   "interestFlag",
   "openfisca_eligibility_source",
@@ -24,7 +24,7 @@ for (const benefit in generator.benefitsMap) {
     label: benefits[benefit].institution.label,
     imgSrc: benefits[benefit].institution.imgSrc,
   }
-  for (let key of excludeKeys) {
+  for (const key of excludeKeys) {
     if (benefits[benefit][key]) {
       delete benefits[benefit][key]
     }

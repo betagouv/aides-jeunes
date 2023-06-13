@@ -1,6 +1,6 @@
 name: Assurance retraite
 imgSrc: img/institutions/logo_assurance_retraite.png
 type: national
-etablissements:
+lieux:
   - carsat
 code_siren: "180035032"

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed, defineProps, PropType } from "vue"
-import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import { LieuLayout } from "@lib/types/lieu.d.js"
 
 const props = defineProps({
-  etablissement: {
-    type: Object as PropType<HelpingInstitution>,
+  lieu: {
+    type: Object as PropType<LieuLayout>,
     required: true,
   },
 })
 
 const hasContact = computed(() => {
-  return props.etablissement?.url || props.etablissement?.telephone
+  return props.lieu?.url || props.lieu?.telephone
 })
 
 const extractHHMM = (dateString: string) => {
@@ -19,28 +19,28 @@ const extractHHMM = (dateString: string) => {
 </script>
 <template>
   <address
-    v-if="etablissement.adresse"
+    v-if="lieu.adresse"
     class="fr-hint-text fr-mb-3w"
-    data-testid="etablissement-address"
+    data-testid="lieu-address"
   >
     <span
       class="fr-icon--sm fr-icon-map-pin-2-line fr-mr-1w"
       aria-hidden="true"
     ></span>
     <span
-      > Adresse : {{ etablissement.adresse.lignes.join(", ") }}
-      {{ etablissement.adresse.codePostal }}
-      {{ etablissement.adresse.commune }}</span
+      > Adresse : {{ lieu.adresse.lignes.join(", ") }}
+      {{ lieu.adresse.codePostal }}
+      {{ lieu.adresse.commune }}</span
     >
   </address>
-  <div v-if="etablissement.telephone" class="fr-hidden fr-unhidden-sm fr-mb-3w">
+  <div v-if="lieu.telephone" class="fr-hidden fr-unhidden-sm fr-mb-3w">
     <span
       class="fr-icon--sm fr-icon-phone-fill fr-mr-1w"
       aria-hidden="true"
     ></span>
-    {{ etablissement.telephone }}
+    {{ lieu.telephone }}
   </div>
-  <div v-if="etablissement.horaires" class="fr-mb-3w">
+  <div v-if="lieu.horaires" class="fr-mb-3w">
     <div class="fr-my-2w">
       <span
         class="fr-icon--sm fr-icon-time-line fr-mr-1w"
@@ -51,7 +51,7 @@ const extractHHMM = (dateString: string) => {
     <div class="fr-container fr-container--fluid fr-px-6v">
       <div class="fr-grid-row fr-grid-row--gutters">
         <div
-          v-for="plage_jour in etablissement.horaires"
+          v-for="plage_jour in lieu.horaires"
           :key="plage_jour.du"
           class="fr-col-6 fr-col-lg-4"
         >
@@ -76,15 +76,15 @@ const extractHHMM = (dateString: string) => {
       v-if="hasContact"
       class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right"
     >
-      <li v-if="etablissement.url">
+      <li v-if="lieu.url">
         <a
           v-analytics="{
-            name: etablissement.id,
+            name: lieu.id,
             action: 'Site internet',
             category: 'Partenaire',
           }"
-          :aria-label="`Site internet : ${etablissement.nom} - Nouvelle fenêtre`"
-          :href="etablissement.url"
+          :aria-label="`Site internet : ${lieu.nom} - Nouvelle fenêtre`"
+          :href="lieu.url"
           class="fr-btn"
           rel="noopener"
           target="_blank"
@@ -92,19 +92,19 @@ const extractHHMM = (dateString: string) => {
           Site internet
         </a>
       </li>
-      <li v-if="etablissement.telephone">
+      <li v-if="lieu.telephone">
         <a
           v-analytics="{
-            name: etablissement.id,
+            name: lieu.id,
             action: 'Téléphone',
             category: 'Partenaire',
           }"
-          :href="`tel:${etablissement.telephone}`"
+          :href="`tel:${lieu.telephone}`"
           class="fr-btn fr-hidden-sm"
           rel="noopener"
           target="_blank"
         >
-          {{ etablissement.telephone }}
+          {{ lieu.telephone }}
         </a>
       </li>
     </ul>

@@ -19,7 +19,7 @@ export interface ConfigurationLayout {
   smtp: {
     host?: string
     port?: any
-    secure?: boolean
+    requireTLS?: boolean
     auth?: {
       user?: string
       pass?: string

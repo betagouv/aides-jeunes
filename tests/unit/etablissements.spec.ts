@@ -1,9 +1,9 @@
-import { normalize } from "@root/lib/benefits/etablissements"
+import { normalize } from "@root/lib/benefits/lieux"
 
 describe("isEqual function", () => {
   const testSet = [
     {
-      etablissement: {
+      lieu: {
         properties: {
           adresses: [
             {
@@ -58,7 +58,7 @@ describe("isEqual function", () => {
   ]
   for (let test of testSet) {
     it("compares simple values", () => {
-      expect(normalize(test.etablissement)).toEqual(test.result)
+      expect(normalize(test.lieu)).toEqual(test.result)
     })
   }
 })

@@ -39,7 +39,7 @@ const all: ConfigurationLayout = {
   smtp: {
     host: process.env.SMTP_HOST || "localhost",
     port: process.env.SMTP_PORT || "7777",
-    requireTLS: true,
+    requireTLS: false,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,

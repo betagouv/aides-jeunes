@@ -10,6 +10,15 @@ export default Object.assign(development, {
     loiret_APA_test: "loiret_APA_test",
     loiret_APA: "loiret_APA",
   },
+  smtp: {
+    host: process.env.SMTP_HOST || "localhost",
+    port: process.env.SMTP_PORT || "7777",
+    requireTLS: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  },
   matomo: {
     id: -1,
   },

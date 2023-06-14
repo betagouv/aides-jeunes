@@ -196,9 +196,9 @@ const receiveResultsEmail = () => {
   })
     .should("be.visible")
     .click()
-  cy.get("input#email")
-    .should("be.visible")
-    .type("prenom.nom@beta.gouv.fr", { force: true })
+
+  const email = "prenom.nom@beta.gouv.fr"
+  cy.get("input#email").should("be.visible").type(email, { force: true })
   cy.get(".fr-btn:contains(J'accepte d'être recontacté)")
     .should("be.visible")
     .click()
@@ -210,6 +210,13 @@ const receiveResultsEmail = () => {
 
   cy.get(".fr-alert__title").should("contain", "Succès")
   back()
+  cy.get('[data-testid="simulation-id"')
+    .invoke("text")
+    .then((simulationId) => {
+      cy.task("getLastEmail", email)
+        .its("headers.subject")
+        .should("includes", simulationId)
+    })
 }
 
 const checkResultsRequests = () => {

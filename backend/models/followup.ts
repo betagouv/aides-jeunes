@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import validator from "validator"
 
-import { SendSmtpEmail, sendEmail } from "../lib/send-in-blue.js"
+import { sendMail } from "../lib/smtp.js"
 
 import { SurveyLayout } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
@@ -79,13 +79,15 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
   const followup = this
   return this.renderSimulationResultsEmail()
     .then((render) => {
-      const email = new SendSmtpEmail()
-      email.to = [{ email: followup.email }]
-      email.subject = render.subject
-      email.textContent = render.text
-      email.htmlContent = render.html
-      email.tags = [EmailType.simulationResults]
-      return sendEmail(email)
+      return sendMail({
+        to: followup.email,
+        subject: render.subject,
+        text: render.text,
+        html: render.html,
+        headers: {
+          "x-tm-tags": `["${EmailType.simulationResults}"]`,
+        },
+      })
     })
     .then((response) => {
       return followup.postSimulationResultsEmail(response.messageId)
@@ -132,13 +134,15 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   return this.addSurveyIfMissing(surveyType).then((survey: SurveyLayout) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
-        const email = new SendSmtpEmail()
-        email.to = [{ email: followup.email }]
-        email.subject = render.subject
-        email.textContent = render.text
-        email.htmlContent = render.html
-        email.tags = ["survey", surveyType]
-        return sendEmail(email)
+        return sendMail({
+          to: followup.email,
+          subject: render.subject,
+          text: render.text,
+          html: render.html,
+          headers: {
+            "x-tm-tags": `["survey", "${surveyType}"]`,
+          },
+        })
           .then((response) => {
             return response.messageId
           })

@@ -164,8 +164,7 @@ We use the framework [MJML](https://mjml.io/) to design and integrate the templa
 
 The development server for emails can be easily start with: `npm run tools:serve-mail`
 
-If you want to verify the email sending, the variable `SEND_IN_BLUE_PRIVATE_KEY=API_SECRET` should be configured in your `.env` file.
-You can create a free account [here](https://app.sendinblue.com/account/register/profile) or request one on the mattermost channel.
+If you want to verify the email sending process, you can generate a set of the required `SMTP_*` environment variables by running `ts-node tools/create-temp-smtp-server.ts` to generate a test account on `https://ethereal.email`.
 
 ## Linting and format
 

@@ -17,12 +17,12 @@ export interface ConfigurationLayout {
   openfiscaTracerURL: string
   netlifyContributionURL: string
   smtp: {
-    host?: string
-    port?: any
-    requireTLS?: boolean
-    auth?: {
-      user?: string
-      pass?: string
+    host: string
+    port: string | number
+    requireTLS: boolean
+    auth: {
+      user: string | undefined
+      pass: string | undefined
     }
   }
   github: {

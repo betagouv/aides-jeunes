@@ -80,7 +80,7 @@ const parameters = {
   quickLinks: [
     {
       label: "Retour à l'accueil du simulateur",
-      path: store.inIframe ? "/?iframe=true" : "/",
+      path: store.inIframe ? "/?iframe=true&data-with-logo=true" : "/",
     },
   ],
 }

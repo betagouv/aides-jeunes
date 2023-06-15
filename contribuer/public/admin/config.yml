@@ -914,7 +914,7 @@ collections:
             '(\.png|\.jpg|\.jpeg)',
             "Seul les images au format JPG et PNG sont supportées",
           ]
-      - label: Type géographique
+      - label: Type d'institution
         name: type
         widget: relation
         collection: institution_types

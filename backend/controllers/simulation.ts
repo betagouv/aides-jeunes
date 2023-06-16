@@ -7,6 +7,8 @@ import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
+import Followup, { FollowupInterface } from "../models/followup.js"
+import allBenefits from "../../data/all.js"
 
 function setSimulationOnRequest(req, simulation) {
   req.simulation = apply(simulation)
@@ -178,6 +180,50 @@ function redirect(req, res) {
   )
 }
 
+function enrichBenefitsList(benefits) {
+  return benefits
+    .map((benefit) => {
+      const fullBenefit = allBenefits.all.find(
+        (b) => b.slug === benefit.id || b.id === benefit.id
+      )
+
+      if (!fullBenefit) {
+        // This case handle when a benefit has been removed
+        return
+      }
+
+      return {
+        ...fullBenefit,
+        ...benefit,
+        montant: benefit.amount,
+      }
+    })
+    .filter((b) => b)
+}
+
+async function getLatestFollowup(req, res) {
+  const followup = (await Followup.findOne(
+    {
+      simulation: req.simulation._id,
+    },
+    null,
+    { sort: { createdAt: -1 } }
+  )) as FollowupInterface
+
+  if (!followup) {
+    return res.status(404).send({ error: "No followup found" })
+  }
+
+  try {
+    followup.benefits = enrichBenefitsList(followup.benefits)
+
+    return res.send(followup)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send({ error: "Error while fetching followup" })
+  }
+}
+
 export default {
   simulation,
   attachAccessCookie,
@@ -190,4 +236,5 @@ export default {
   openfiscaTest,
   redirect,
   results,
+  getLatestFollowup,
 }

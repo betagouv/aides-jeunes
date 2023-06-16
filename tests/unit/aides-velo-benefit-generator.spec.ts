@@ -1,6 +1,7 @@
-import benefits from "@root/data/all"
+import { expect } from "@jest/globals"
+import benefits from "@root/data/all.js"
 
-import generator from "@root/data/benefits/aides-velo-generator"
+import generator from "@root/data/benefits/aides-velo-generator.js"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 describe("aides velo benefit generator", function () {
@@ -30,7 +31,7 @@ describe("aides velo benefit generator", function () {
       console.log(missingCommune.map((b) => b.description).join("\n"))
     }
 
-    const missingEPCI = missingInstitutionBenefits.filter(
+    const missingEPCI: any[] = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "epci"
     )
     if (missingEPCI.length) {
@@ -38,11 +39,10 @@ describe("aides velo benefit generator", function () {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
         )
-        b.debug = `code_siren:  '${EPCIMatch?.code}'`
+        console.log(
+          (b) => `${b.description} - ${`code_siren:  '${EPCIMatch?.code}'`}`
+        )
       })
-      console.log(
-        missingEPCI.map((b) => `${b.description} - ${b.debug}`).join("\n")
-      )
     }
 
     const missingOtherInstitution = missingInstitutionBenefits.filter(

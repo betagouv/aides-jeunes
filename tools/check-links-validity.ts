@@ -1,10 +1,8 @@
-import Benefits from "../data/all"
-import Config from "../backend/config/index"
+import Benefits from "../data/all.js"
+import Config from "../backend/config/index.js"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
-import fs from "fs"
-import os from "os"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
@@ -25,7 +23,7 @@ const customBenefitsFiles = [
 ]
 
 function setEditLink(benefit) {
-  for (let category of customBenefitsFiles) {
+  for (const category of customBenefitsFiles) {
     if (benefit.id.match(category.pattern)) {
       return category.file
     }
@@ -110,7 +108,7 @@ async function getPriorityStats() {
 }
 
 async function getBenefitData() {
-  const priorityMap = await getPriorityStats()
+  const priorityMap = false && (await getPriorityStats())
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
@@ -144,55 +142,24 @@ async function getBenefitData() {
   return data.sort((a, b) => +(a.priority - b.priority))
 }
 
-function githubRowFormat(data) {
-  const errors = data.errors.map(
-    (e) => ` - [${e.type}](${e.link}) (${e.status})`
-  )
-  const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
-  return [details, ...errors].join("\n")
-}
-
-function basicFormat(data) {
-  const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
-  const details = `- ${data.label} / ${data.institution} (${data.priority} affichages)`
-  return [details, ...errors].join("\n")
-}
-
-function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${
-    benefitWithErrors.length
-  }) ont des liens dysfonctionnels :
-
-${benefitWithErrors.map(rowFormat).join("\n")}`
-}
-
-function buildGitHubIssueCommentText(benefitWithErrors) {
-  const issueContent = `${buildMessage(benefitWithErrors, githubRowFormat)
-    .split("\n")
-    .join("<br />")}`
-
-  fs.appendFileSync(
-    `${process.env.GITHUB_OUTPUT}`,
-    `comment=${issueContent}${os.EOL}`,
-    {
-      encoding: "utf8",
-    }
-  )
-}
-
 async function main() {
-  const benefitData = await getBenefitData()
+  const k = `carte_sncf_eleve_apprenti_eligibilite
+grand-est-experiences-de-jeunesse
+aide-au-bafa-pour-une-session-de-formation-générale-caf-de-la-haute-savoie`.split(
+    "\n"
+  )
+  const benefitData = (await getBenefitData())
+    .filter((d) => {
+      return k.indexOf(d.id) >= 0
+    })
+    .slice(0, 3)
+
   const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
+  console.log(results[2])
   const detectedErrors = results
     .filter((i) => i.errors.length)
     .sort((a, b) => -(a.priority - b.priority))
-  if (detectedErrors.length > 0) {
-    if (process.argv.slice(2).includes("--ci")) {
-      buildGitHubIssueCommentText(detectedErrors)
-    } else if (detectedErrors) {
-      console.log(buildMessage(detectedErrors, basicFormat))
-    }
-  }
+  console.log(detectedErrors)
   console.log("Terminé")
 }
 

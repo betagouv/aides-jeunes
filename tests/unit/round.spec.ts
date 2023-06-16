@@ -2,7 +2,7 @@ import { expect } from "@jest/globals"
 import { round } from "@root/lib/benefits/compute.js"
 
 describe("round", function () {
-  it('should not round for type "bool"', function () {
+  it('should! not round for type "bool"', function () {
     expect(round(true, { type: "bool" })).toEqual(true)
   })
 

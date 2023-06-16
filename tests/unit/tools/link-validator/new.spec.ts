@@ -20,7 +20,7 @@ function makeBenefitData(props) {
 describe("process for new link results", () => {
   describe("process for new link results", () => {
     it("should anonymize followup", () => {
-      const operations = process([], makeBenefitData())
+      const operations = process(makeBenefitData())
 
       expect(operations).toHaveLength(1)
     })

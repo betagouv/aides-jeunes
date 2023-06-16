@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import fs from "fs"
 
 import regions from "@etalab/decoupage-administratif/data/regions.json"
@@ -5,7 +6,7 @@ import departements from "@etalab/decoupage-administratif/data/departements.json
 import communes from "@etalab/decoupage-administratif/data/communes.json"
 import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
-import subject from "@root/data/all"
+import subject from "@root/data/all.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const codesInstitutions = {

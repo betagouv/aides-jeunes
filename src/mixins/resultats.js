@@ -35,12 +35,8 @@ export default {
     },
     shouldDisplayResults() {
       return (
-        !(
-          this.resultatStatus.updating ||
-          this.hasWarning ||
-          this.hasError ||
-          this.simulationAnonymized()
-        ) && this.droits
+        !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
+        this.droits
       )
     },
     ressourcesYearMinusTwoCaptured() {
@@ -71,8 +67,11 @@ export default {
         "compute",
         this.$route.path
       )
-      this.store.fetch(lastestSimulationId).then(() => {
-        if (!this.simulationAnonymized()) {
+
+      this.store.fetch(lastestSimulationId).then(async () => {
+        if (this.simulationAnonymized) {
+          await this.store.retrieveResultsAlreadyComputed()
+        } else {
           this.store.computeResults()
         }
       })
@@ -87,6 +86,9 @@ export default {
     },
     simulationAnonymized() {
       return this.store.simulation.status === SimulationStatusEnum.ANONYMIZED
+    },
+    displaySimulationUnavailable() {
+      return this.simulationAnonymized() && !this.store.followup
     },
   },
 }

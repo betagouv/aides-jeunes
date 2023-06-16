@@ -502,6 +502,25 @@ export const useStore = defineStore("store", {
           this.saveComputationFailure(error)
         })
     },
+    async retrieveResultsAlreadyComputed() {
+      try {
+        this.startComputation()
+        const token = this.getSimulationToken
+        const headers = token ? { Authorization: `Bearer ${token}` } : undefined
+
+        const { data } = await axios.get(
+          `/api/simulation/${this.simulationId}/followup`,
+          {
+            headers,
+          }
+        )
+
+        this.followup = data
+        this.setResults({ droitsEligibles: this.followup.benefits })
+      } catch (error) {
+        this.saveComputationFailure(error)
+      }
+    },
     setMessage(message: string, counter?: number) {
       this.message = {
         text: message,

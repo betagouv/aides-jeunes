@@ -20,7 +20,10 @@
     </div>
   </WarningMessage>
 
-  <div v-if="simulationAnonymized()" class="fr-alert fr-alert--info fr-my-1w">
+  <div
+    v-if="displaySimulationUnavailable()"
+    class="fr-alert fr-alert--info fr-my-1w"
+  >
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -202,7 +205,10 @@ export default {
       }
     },
     async handleSimulationIdQuery() {
-      if (this.store.simulationId === this.$route.query.simulationId) {
+      if (
+        this.store.simulationId === this.$route.query.simulationId &&
+        this.store.hasResults
+      ) {
         return
       }
 
@@ -210,6 +216,7 @@ export default {
 
       if (this.simulationAnonymized()) {
         this.sendAccessToAnonymizedResults()
+        await this.store.retrieveResultsAlreadyComputed()
       } else {
         this.store.computeResults()
       }

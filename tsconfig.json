@@ -24,7 +24,8 @@
       "@/*": ["src/*"],
       "@lib/*": ["lib/*"],
       "@data/*": ["data/*"],
-      "@backend": ["backend/*"]
+      "@backend": ["backend/*"],
+      "@root/*": ["*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

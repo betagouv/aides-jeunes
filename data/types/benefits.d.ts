@@ -22,5 +22,9 @@ export interface benefitVeloLayout extends Aide {
   }
   institution?: string
   discard?: boolean
-  id?: string
+  id: string
+
+  source?: string
+  url?: string
+  link?: string
 }

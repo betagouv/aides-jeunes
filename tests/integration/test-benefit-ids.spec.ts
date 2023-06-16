@@ -1,6 +1,7 @@
-import Benefits from "../../data/index.js"
+import { expect } from "@jest/globals"
+import Benefits from "@root/data/index.js"
 import jamstackLoader from "jamstack-loader"
-import aidesVeloGenerator from "../../data/benefits/aides-velo-generator.js"
+import aidesVeloGenerator from "@root/data/benefits/aides-velo-generator.js"
 
 const configFile = "contribuer/public/admin/config.yml"
 
@@ -33,7 +34,7 @@ describe("Benefit id", () => {
     benefit.id = Benefits.generateBenefitId(benefit)
     return benefit
   })
-  const benefitsIds = []
+  const benefitsIds: string[] = []
 
   for (const benefit of benefits) {
     describe(`${benefit.source} - ${benefit.id}`, () => {

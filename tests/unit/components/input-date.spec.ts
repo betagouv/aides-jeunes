@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import InputDate from "@/components/input-date.vue"
 
 describe("input-date.vue", () => {

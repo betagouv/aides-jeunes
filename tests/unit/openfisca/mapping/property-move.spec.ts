@@ -1,9 +1,10 @@
-import subject from "@root/backend/lib/openfisca/mapping/property-move"
+import { expect } from "@jest/globals"
+import subject from "@root/backend/lib/openfisca/mapping/property-move.js"
 
 describe("openfisca mapping property move", function () {
   describe("movePropertyValuesToGroupEntity", function () {
     describe("situation with data", function () {
-      const testCase = {
+      const testCase: any = {
         individus: {
           bob: {
             aide_logement: {
@@ -32,7 +33,7 @@ describe("openfisca mapping property move", function () {
       })
     })
     describe("situation without data", function () {
-      const testCase = {
+      const testCase: any = {
         individus: {},
         familles: { _: {} },
         foyers_fiscaux: {},

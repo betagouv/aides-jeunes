@@ -1,4 +1,5 @@
-import Commune from "@/lib/commune.ts"
+import { expect } from "@jest/globals"
+import Commune from "@/lib/commune.js"
 
 describe("commune.js", () => {
   it("sort Communes following population criteria", () => {

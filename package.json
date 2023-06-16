@@ -192,7 +192,6 @@
       "**/tests/(integration|unit)/**/*.spec.ts"
     ],
     "testPathIgnorePatterns": [
-      "tests/unit/views/fiscales.spec.ts",
       "tests/unit/components/ressource/types.spec.ts"
     ]
   },

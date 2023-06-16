@@ -1,15 +1,15 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
-import { version } from "@lib/simulation"
-import { generator as datesGenerator } from "@lib/dates"
-import { generateAllSteps } from "@lib/state/generator"
-import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.ts"
-import { categoriesRnc, patrimoineTypes } from "@lib/resources.ts"
+import { version } from "@lib/simulation.js"
+import { generator as datesGenerator } from "@lib/dates.js"
+import { generateAllSteps } from "@lib/state/generator.js"
+import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
 import isEqual from "lodash.isequal"
 import axios from "axios"
-import { generateSituation } from "@lib/situations"
+import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
-import storageService from "@/lib/storage-service.ts"
+import storageService from "@/lib/storage-service.js"
 import {
   Answer,
   Calculs,
@@ -18,7 +18,7 @@ import {
   Simulation,
   Situation,
   Store,
-} from "@lib/types/store"
+} from "@lib/types/store.d.js"
 import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 
 function defaultCalculs(): Calculs {
@@ -77,7 +77,7 @@ function getPersitedStateProperties(
   save = false
 ): PersistedStore {
   const persistedStoreData: PersistedStore = {
-    simulationId: state.simulationId || state.situationId,
+    simulationId: state.simulationId,
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
     recapEmailState: state.recapEmailState,
@@ -205,7 +205,7 @@ export const useStore = defineStore("store", {
         return undefined
       }
 
-      return patrimoineTypes.reduce((accum, ressource) => {
+      return patrimoineTypes.reduce((accum: boolean | undefined, ressource) => {
         if (!demandeur[ressource.id]) {
           return accum
         }
@@ -280,7 +280,7 @@ export const useStore = defineStore("store", {
     },
     updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps
-      const currentAnswers = []
+      const currentAnswers: any = []
       let i = 0
       let currentStep = steps[0]
       while (currentStep && currentStep.path !== newPath) {

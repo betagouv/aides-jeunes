@@ -214,7 +214,7 @@ export default {
 
       await this.store.fetch(this.$route.query.simulationId)
 
-      if (this.simulationAnonymized()) {
+      if (this.simulationAnonymized) {
         this.sendAccessToAnonymizedResults()
         await this.store.retrieveResultsAlreadyComputed()
       } else {

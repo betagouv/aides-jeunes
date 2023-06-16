@@ -1,6 +1,5 @@
 import Simulation from "@/lib/simulation.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
-import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
@@ -41,6 +40,9 @@ export default {
     },
     ressourcesYearMinusTwoCaptured() {
       return this.store.ressourcesYearMinusTwoCaptured
+    },
+    simulationAnonymized() {
+      return this.store.simulationAnonymized
     },
   },
   methods: {
@@ -84,11 +86,8 @@ export default {
         this.store.mockResults(detail || this.$route.query.debug)
       }
     },
-    simulationAnonymized() {
-      return this.store.simulation.status === SimulationStatusEnum.ANONYMIZED
-    },
     displaySimulationUnavailable() {
-      return this.simulationAnonymized() && !this.store.followup
+      return this.simulationAnonymized && !this.store.followup
     },
   },
 }

@@ -19,6 +19,7 @@ import {
   Situation,
   Store,
 } from "@lib/types/store"
+import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 
 function defaultCalculs(): Calculs {
   return {
@@ -246,6 +247,9 @@ export const useStore = defineStore("store", {
           answer.fieldName === "userinfo"
       )
       return userinfo?.value["email"]
+    },
+    simulationAnonymized(): boolean {
+      return this.simulation.status === SimulationStatusEnum.ANONYMIZED
     },
   },
   actions: {

@@ -155,7 +155,7 @@ aide-au-bafa-pour-une-session-de-formation-générale-caf-de-la-haute-savoie`.sp
     .slice(0, 3)
 
   const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  console.log(results[2])
+  console.log(JSON.stringify(results, null, 2))
   const detectedErrors = results
     .filter((i) => i.errors.length)
     .sort((a, b) => -(a.priority - b.priority))

@@ -1,8 +1,9 @@
+import { expect } from "@jest/globals"
 import fs from "fs"
 import path from "path"
 
 describe("Test filenames rules", function () {
-  const files = []
+  const files: { filename: string; absolute: string; extension: string }[] = []
 
   function getFiles(dir) {
     const currentFiles = fs.readdirSync(dir)

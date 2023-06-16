@@ -194,7 +194,7 @@ jobs:
         shell: bash
         run: |
           source .venv/bin/activate
-          npm run test tests/unit/openfisca/test.spec.js
+          npm run test tests/unit/openfisca/test.spec.ts
   iframe_build_control:
     name: Iframe build control
     needs: [install]

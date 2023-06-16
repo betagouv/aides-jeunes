@@ -193,6 +193,10 @@
       "**/tests/(integration|unit)/**/*.spec.ts"
     ],
     "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/",
+      "<rootDir>/dist-server/",
+      "<rootDir>/src/",
       "tests/unit/views/fiscales.spec.ts",
       "tests/unit/components/ressource/types.spec.ts"
     ]

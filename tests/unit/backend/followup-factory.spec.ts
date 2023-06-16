@@ -1,8 +1,8 @@
-import { jest } from "@jest/globals"
+import { expect, jest } from "@jest/globals"
 
-import { FollowupFactory } from "@backend/lib/followup-factory.ts"
-import Followup from "@backend/models/followup.ts"
-import utils from "@backend/lib/utils.ts"
+import { FollowupFactory } from "@backend/lib/followup-factory.js"
+import Followup from "@backend/models/followup.js"
+import utils from "@backend/lib/utils.js"
 
 describe("FollowupFactory", () => {
   describe("create", () => {
@@ -16,11 +16,13 @@ describe("FollowupFactory", () => {
 
     beforeEach(() => {
       // Mock dependencies
-      mockCompute = jest.fn().mockResolvedValue({
-        droitsEligibles: [
-          { id: "1", montant: 100, unit: "month" },
-          { id: "2", montant: 200, unit: "month" },
-        ],
+      mockCompute = jest.fn().mockImplementation(() => {
+        return {
+          droitsEligibles: [
+            { id: "1", montant: 100, unit: "month" },
+            { id: "2", montant: 200, unit: "month" },
+          ],
+        }
       })
 
       mockSimulation = {
@@ -79,7 +81,9 @@ describe("FollowupFactory", () => {
 
     describe("when the simulation compute fails", () => {
       beforeEach(() => {
-        mockCompute = jest.fn().mockRejectedValue(new Error("Compute error"))
+        mockCompute = jest
+          .fn<() => Promise<never>>()
+          .mockRejectedValue(new Error("Compute error"))
 
         mockSimulation = {
           compute: mockCompute,

@@ -10,7 +10,7 @@ const benefitFiles = fs
   .filter((filename) => filename.match(/\.yml$/))
 
 describe("Test OpenFisca Benefit schema", function () {
-  for (let benefitFilename of benefitFiles) {
+  for (const benefitFilename of benefitFiles) {
     describe(benefitFilename, function () {
       it("should respect OpenFisca Benefit schema", function () {
         expect(

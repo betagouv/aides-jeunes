@@ -10,7 +10,7 @@ const benefitFiles = fs
   .filter((filename) => filename.match(/\.yml$/))
 
 describe("Test Javascript Benefit schema", function () {
-  for (let benefitFilename of benefitFiles) {
+  for (const benefitFilename of benefitFiles) {
     describe(benefitFilename, function () {
       it("should respect Javascript Benefit schema", function () {
         expect(

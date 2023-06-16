@@ -10,7 +10,7 @@ const institutionFiles = fs
   .filter((filename) => filename.match(/\.yml$/))
 
 describe("Test Institutions schema", function () {
-  for (let institutionFilename of institutionFiles) {
+  for (const institutionFilename of institutionFiles) {
     describe(institutionFilename, function () {
       it("should respect institution schema", function () {
         expect(

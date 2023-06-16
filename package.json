@@ -182,6 +182,7 @@
       "@backend/(.*).js": "<rootDir>/backend/$1",
       "@lib/(.*).js": "<rootDir>/lib/$1",
       "@/(.*).js": "<rootDir>/src/$1",
+      "@/(.*).vue": "<rootDir>/src/$1.vue",
       "^(?!.*currency\\.js)(.+)\\.js$": "$1"
     },
     "extensionsToTreatAsEsm": [

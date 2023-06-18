@@ -1,6 +1,6 @@
 <template>
   <fieldset :key="type.meta.id" class="fr-fieldset fr-mb-4w">
-    <legend class="fr-fieldset__legend">
+    <legend class="fr-fieldset__legend fr-px-0">
       <span class="fr-text--lead">
         {{ type.meta.label }}
       </span>

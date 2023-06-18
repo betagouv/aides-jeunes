@@ -69,7 +69,7 @@
               <DroitHeader :droit="droit" :show-unexpected="false" />
 
               <fieldset class="fr-fieldset">
-                <legend class="fr-fieldset__legend">
+                <legend class="fr-fieldset__legend fr-px-0">
                   Qu'avez-vous fait pour {{ prefix(droit)
                   }}{{ droit.label }}&nbsp;?
                 </legend>

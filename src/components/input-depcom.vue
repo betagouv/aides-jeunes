@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <label class="fr-px-2v" for="cp">
+      <label class="fr-px-0" for="cp">
         <span class="fr-text--lead fr-text--bold">{{ codePostalLabel }}</span>
         <EnSavoirPlus />
         <span class="fr-hint-text fr-mt-1w"

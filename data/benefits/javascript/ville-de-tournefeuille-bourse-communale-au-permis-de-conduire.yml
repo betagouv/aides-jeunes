@@ -1,0 +1,39 @@
+label: Bourse communale au permis de conduire
+institution: ville-de-tournefeuille
+description: Toulouse Métropole cofinance le permis de conduire pour 10
+  tournefeuillais inscrits à la Mission Locale. La métropole finance 1 000 € par
+  permis et par jeune, et la ville de Tournefeuille ajoute 500 €. En
+  contrepartie de cette aide, les jeunes s’engagent à réaliser 70h de travail
+  d’intérêt général dans la collectivité. Pour effectuer votre demande d'aide,
+  rapprochez-vous de la mairie de de Tournefeuille.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "31557"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: apprenti
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: service_civique
+    conditions: []
+conditions:
+  - Etre suivi par la Mission Locale.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 1500
+link: https://www.mairie-tournefeuille.fr/actualite/solidarite-le-permis-de-conduire-finance-pour-10-jeunes/
+instructions: https://www.mairie-tournefeuille.fr/actualite/solidarite-le-permis-de-conduire-finance-pour-10-jeunes/

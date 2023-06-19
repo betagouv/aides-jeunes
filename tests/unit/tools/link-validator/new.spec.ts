@@ -1,28 +1,25 @@
-import { process } from "../../../../lib/benefits/link-validity.js"
+import { determineOperations } from "../../../../lib/benefits/link-validity.js"
+import { makeBenefitData } from "./utils.js"
 
-function makeBenefitData(props) {
-  return {
-    id: "benefit_id",
-    label: "Texte de l'aide",
-    institution: "institution_label",
-    priority: 0,
-    links: [
-      {
-        link: "https://li.nk",
-        type: "institution",
-      },
-    ],
-    editLink: "https://edit.link",
-    ...props,
-  }
-}
-
-describe("process for new link results", () => {
-  describe("process for new link results", () => {
-    it("should anonymize followup", () => {
-      const operations = process(makeBenefitData())
+describe("check-link-validity script", () => {
+  describe("with new errors", () => {
+    it("should add an row to process manually", () => {
+      const bogusLink = {
+        link: "https://li.nk/ko",
+        type: "link",
+        status: 403,
+        ok: false,
+      }
+      const benefitData = makeBenefitData({ links: [bogusLink] })
+      const operations = determineOperations({}, benefitData)
 
       expect(operations).toHaveLength(1)
+      const operation = operations[0]
+      expect(operation).toHaveProperty("type", "addition")
+      expect(operation).toHaveProperty("record")
+      const fields = operation.record.fields
+      expect(fields).toHaveProperty("Aide", benefitData.id)
+      expect(fields).toHaveProperty("Lien", bogusLink.link)
     })
   })
 })

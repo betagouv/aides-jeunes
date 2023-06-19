@@ -1,5 +1,7 @@
 import Benefits from "../data/all.js"
 import Config from "../backend/config/index.js"
+import { determineOperations } from "../lib/benefits/link-validity.js"
+
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
@@ -142,6 +144,53 @@ async function getBenefitData() {
   return data.sort((a, b) => +(a.priority - b.priority))
 }
 
+const docId = process.env.GRIST_DOC_ID
+const apiKey = process.env.GRIST_API_KEY
+const baseURL = "grist.incubateur.net"
+const tableId = "VeilleXP"
+
+const docUrl = `https://${baseURL}/api/docs/${docId}`
+const recordsUrl = `${docUrl}/tables/${tableId}/records`
+
+import { GristResponse } from "../lib/types/link-validity.js"
+
+const gristConfig = {
+  headers: {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  },
+}
+
+const Grist = {
+  get: async () => {
+    const response = await axios.get<GristResponse>(
+      recordsUrl + '?filter={"Corrige": [false]}',
+      gristConfig
+    )
+    return response.data
+  },
+  add: async (records) => {
+    const response = await axios.post<GristResponse>(
+      recordsUrl,
+      {
+        records,
+      },
+      gristConfig
+    )
+    return response.data
+  },
+  update: async (records) => {
+    const response = await axios.put<GristResponse>(
+      recordsUrl,
+      {
+        records,
+      },
+      gristConfig
+    )
+    return response.data
+  },
+}
+
 async function main() {
   const k = `carte_sncf_eleve_apprenti_eligibilite
 grand-est-experiences-de-jeunesse
@@ -154,12 +203,41 @@ aide-au-bafa-pour-une-session-de-formation-générale-caf-de-la-haute-savoie`.sp
     })
     .slice(0, 3)
 
+  const rawExistingWarnings = await Grist.get()
+  const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
+    const fields = record.fields
+    a[fields.Aide] = a[fields.Aide] || {}
+    a[fields.Aide][fields.Type] = record
+    return a
+  }, {})
+
   const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  console.log(JSON.stringify(results, null, 2))
-  const detectedErrors = results
-    .filter((i) => i.errors.length)
-    .sort((a, b) => -(a.priority - b.priority))
-  console.log(detectedErrors)
+  const operationsList = results.map((r) =>
+    determineOperations(existingWarnings, r)
+  )
+
+  const recordsToAdd: any[] = []
+  const recordsToUpdate: any[] = []
+  const m = {
+    addition: recordsToAdd,
+  }
+  operationsList.forEach((operations) => {
+    operations.forEach((operation) => {
+      m[operation.type].push(operation.record)
+    })
+  })
+  console.log(JSON.stringify(recordsToAdd, null, 2))
+  console.log(JSON.stringify(recordsToUpdate, null, 2))
+  try {
+    if (recordsToAdd.length) {
+      await Grist.add(recordsToAdd)
+    }
+    if (recordsToUpdate.length) {
+      await Grist.update(recordsToUpdate)
+    }
+  } catch (e) {
+    console.log(e)
+  }
   console.log("Terminé")
 }
 

@@ -14,3 +14,26 @@ export interface benefitData {
   editLink: string
   errors: benefitLink[]
 }
+
+interface GristData {
+  id: number
+  fields: {
+    Priorite: string
+    Date_d_ajout: number
+    Dans_une_PR: boolean
+    Corrige: boolean
+    Date_PR: number
+    Date_correction: number
+    PR: string
+    Date_erreur_de_detection: string
+    Aide: string
+    Type: string
+    Lien: string
+    Erreur: number
+    Erreur_de_detection: boolean
+  }
+}
+
+interface GristResponse {
+  records: GristData[]
+}

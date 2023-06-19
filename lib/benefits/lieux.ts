@@ -1,13 +1,14 @@
 import axios from "axios"
 
-export function normalize(lieuFeature) {
-  const lieu = lieuFeature.properties
+export function normalize(lieu) {
+  const { url, horaires, adresses } = lieu.properties
+  const normalizedLieu = { ...lieu.properties }
 
-  if (lieu.url === "https://www.maisondeservicesaupublic.fr") {
-    delete lieu.url
+  if (url === "https://www.maisondeservicesaupublic.fr") {
+    delete normalizedLieu.url
   }
 
-  if (lieu.horaires) {
+  if (horaires) {
     const mapping = {
       lundi: 1,
       mardi: 2,
@@ -17,20 +18,17 @@ export function normalize(lieuFeature) {
       samedi: 6,
       dimanche: 7,
     }
-    lieu.horaires = lieu.horaires.sort(
+    normalizedLieu.horaires = horaires.sort(
       (a, b) => mapping[a.du.toLowerCase()] - mapping[b.du.toLowerCase()]
     )
   }
 
-  lieu.adresse = lieu.adresses.find((adress) => adress.type === "physique")
-  if (!lieu.adresse) {
-    lieu.adresse = lieu.adresses.find((adress) => adress.type === "géopostale")
-  }
-  if (!lieu.adresse) {
-    lieu.adresse = lieu.adresses[0]
-  }
+  normalizedLieu.adresse =
+    adresses.find((adress) => adress.type === "physique") ||
+    adresses.find((adress) => adress.type === "géopostale") ||
+    adresses[0]
 
-  return lieu
+  return normalizedLieu
 }
 
 export function hasLieux(benefit) {

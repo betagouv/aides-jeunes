@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <fieldset class="fr-fieldset">
-      <legend class="fr-fieldset__legend">
+      <legend class="fr-fieldset__legend fr-px-0">
         <MutualizedStepTitle
           :for-title-wrapper="fieldName ? fieldName : null"
           :question="question"

@@ -122,70 +122,24 @@ export default {
       store: useStore(),
     }
   },
-  mounted() {
-    this.store.updateCurrentAnswers(this.$route.path)
+  async mounted() {
+    this.initializeStore()
+    this.handleLegacySituationId()
 
-    this.stopSubscription = this.store.$onAction(({ after, name }) => {
-      after(() => {
-        switch (name) {
-          case "setResults": {
-            this.sendShowStatistics()
-            this.sendDisplayUnexpectedAmountLinkStatistics()
-            break
-          }
-          case "saveComputationFailure": {
-            this.sendEventToMatomo("General", "Error")
-            break
-          }
-        }
-      })
-    })
-
-    // Used for old links containing situationId instead of simulationId
-    if (this.$route.query?.situationId) {
-      this.$route.query.simulationId = this.$route.query.situationId
-    }
-    if (this.mock(this.$route.params.droitId)) {
+    if (this.mockResultsNeeded()) {
+      this.mock(this.$route.params.droitId)
       return
     } else if (this.$route.query?.simulationId) {
-      if (this.store.simulationId !== this.$route.query.simulationId) {
-        this.store.fetch(this.$route.query.simulationId).then(() => {
-          if (this.simulationAnonymized()) {
-            this.sendAccessToAnonymizedResults()
-          } else {
-            this.store.compute()
-          }
-          this.$router.replace({ simulationId: null })
-        })
-      } // Else nothing to do
+      await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
       this.restoreLatest()
-    } else {
-      if (this.store.calculs.dirty) {
-        const vm = this
-        this.store.setSaveSituationError(null)
-        this.store
-          .save()
-          .then(() => {
-            if (vm.store.access.forbidden) {
-              return
-            }
-            return vm.store.compute()
-          })
-          .catch((error) => {
-            this.store.setSaveSituationError(error.response?.data || error)
-            this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
-          })
-      } else if (!this.store.hasResults) {
-        if (this.store.simulation.teleservice) {
-          this.store
-            .fetchRepresentation(this.store.simulation.teleservice)
-            .then((representation) => {
-              window.location.href = representation.destination.url
-            })
-        } else {
-          this.store.compute()
-        }
+    } else if (this.store.calculs.dirty) {
+      await this.saveSimulation()
+    } else if (!this.store.hasResults) {
+      if (this.store.simulation.teleservice) {
+        await this.redirectToTeleservice()
+      } else {
+        this.store.compute()
       }
     }
   },
@@ -221,6 +175,66 @@ export default {
         daysSinceDate(new Date(this.store.simulation.dateDeValeur))
       )
     },
+    initializeStore() {
+      this.store.updateCurrentAnswers(this.$route.path)
+
+      this.stopSubscription = this.store.$onAction(({ after, name }) => {
+        after(() => {
+          switch (name) {
+            case "setResults": {
+              this.sendShowStatistics()
+              this.sendDisplayUnexpectedAmountLinkStatistics()
+              break
+            }
+            case "saveComputationFailure": {
+              this.sendEventToMatomo("General", "Error")
+              break
+            }
+          }
+        })
+      })
+    },
+    handleLegacySituationId() {
+      // Used for old links containing situationId instead of simulationId
+      if (this.$route.query?.situationId) {
+        this.store.setSimulationId(this.$route.query.situationId)
+      }
+    },
+    async handleSimulationIdQuery() {
+      if (this.store.simulationId === this.$route.query.simulationId) {
+        return
+      }
+
+      await this.store.fetch(this.$route.query.simulationId)
+
+      if (this.simulationAnonymized()) {
+        this.sendAccessToAnonymizedResults()
+      } else {
+        this.store.compute()
+      }
+
+      this.$router.replace({ simulationId: null })
+    },
+    async saveSimulation() {
+      try {
+        this.store.setSaveSituationError(null)
+        await this.store.save()
+
+        if (!this.store.access.forbidden) {
+          this.store.compute()
+        }
+      } catch (error) {
+        this.store.setSaveSituationError(error.response?.data || error)
+        this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
+      }
+    },
+  },
+  async redirectToTeleservice() {
+    const representation = await this.store.fetchRepresentation(
+      this.store.simulation.teleservice
+    )
+
+    window.location.href = representation.destination.url
   },
 }
 </script>

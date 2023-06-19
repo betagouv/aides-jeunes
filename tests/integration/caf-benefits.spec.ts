@@ -1,6 +1,6 @@
 import data from "@root/data/all"
 
-for (let benefit of data.all) {
+for (const benefit of data.all) {
   if (benefit.institution.type == "caf") {
     describe(`CAF benefit ${benefit.slug}`, () => {
       it("should be restricted to exactly one departement", () => {

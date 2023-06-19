@@ -190,11 +190,11 @@
       ".ts"
     ],
     "testMatch": [
-      "**/tests/(integration|unit)/**/*.spec.js"
+      "**/tests/(integration|unit)/**/*.spec.ts"
     ],
     "testPathIgnorePatterns": [
-      "tests/unit/views/fiscales.spec.js",
-      "tests/unit/components/ressource/types.spec.js"
+      "tests/unit/views/fiscales.spec.ts",
+      "tests/unit/components/ressource/types.spec.ts"
     ]
   },
   "lint-staged": {

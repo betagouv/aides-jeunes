@@ -28,7 +28,7 @@ function transformInstitutions(collection: any[]) {
       top: data.top,
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
-      lieux: data.lieux,
+      lieuxTypes: data.lieuxTypes,
     }
     result[data.slug] = item
     return result

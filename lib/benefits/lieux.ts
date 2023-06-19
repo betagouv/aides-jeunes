@@ -34,14 +34,14 @@ export function normalize(lieuFeature) {
 }
 
 export function hasLieux(benefit) {
-  return benefit.lieux?.length || benefit.institution.lieux?.length
+  return benefit.lieuxTypes?.length || benefit.institution.lieuxTypes?.length
 }
 
-export function getBenefitLieux(benefit) {
-  if (benefit.lieux?.length) {
-    return benefit.lieux
+export function getBenefitLieuxTypes(benefit) {
+  if (benefit.lieuxTypes?.length) {
+    return benefit.lieuxTypes
   } else {
-    return benefit.institution.lieux || []
+    return benefit.institution.lieuxTypes || []
   }
 }
 

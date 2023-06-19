@@ -1,6 +1,6 @@
 name: Caisse d’allocations familiales
 imgSrc: img/institutions/logo_caf.png
 type: national
-lieux:
+lieuxTypes:
   - caf
 code_siren: "180035065"

@@ -1,5 +1,5 @@
 import { ref, computed } from "vue"
-import { getBenefitLieux, getLieux } from "@lib/benefits/lieux"
+import { getBenefitLieuxTypes, getLieux } from "@lib/benefits/lieux"
 import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
@@ -84,7 +84,7 @@ export function useLieux() {
       benefit.value = benefits
         ? benefits.find((b: any) => b.id === benefitId)
         : null
-      lieuTypes = getBenefitLieux(benefit.value)
+      lieuTypes = getBenefitLieuxTypes(benefit.value)
     } else {
       lieuTypes = getSituationLieux()
     }

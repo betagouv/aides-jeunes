@@ -40,10 +40,6 @@ export function hasLieux(benefit) {
 export function getBenefitLieux(benefit) {
   if (benefit.lieux?.length) {
     return benefit.lieux
-  } else if (benefit.etablissements?.length) {
-    return benefit.etablissements
-  } else if (benefit.institution?.etablissements?.length) {
-    return benefit.institution.etablissements
   } else {
     return benefit.institution.lieux || []
   }

@@ -1,0 +1,31 @@
+label: Bourse communale au permis de conduire
+institution: communaute-de-communes-sud-herault
+description: Afin de répondre aux difficultés de mobilité des jeunes, la
+  communauté de communes Sud-Hérault propose une aide au financement du permis
+  de conduire de 150 à 500€. Cette aide, dont le montant varie selon les
+  ressources du jeune et de sa famille, est attribuée en contrepartie d’un
+  engagement citoyen de 35 à 70h dans une association. L’instruction des
+  dossiers de candidature se fait auprès d’Info Jeunes Sud-Hérault.
+prefix: la
+conditions_generales:
+  - type: epcis
+    values:
+      - "200042653"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Etre candidat à l’examen du permis de conduire pour la première fois.
+  - Avoir un projet établi (scolaire, professionnel et/ou de vie).
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 500
+link: https://www.cc-sud-herault.fr/actualite/permis-citoyen-2022/
+instructions: https://www.cc-sud-herault.fr/actualite/permis-citoyen-2022/

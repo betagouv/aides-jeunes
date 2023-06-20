@@ -4,7 +4,7 @@ const benefits = {}
 const excludeKeys = [
   "conditions_generales",
   "entity",
-  "lieux",
+  "lieuxTypes",
   "forms",
   "interestFlag",
   "openfisca_eligibility_source",

@@ -5,9 +5,6 @@ export function determineOperations(
   checkResult: benefitData
 ): any {
   const operations: any[] = []
-  if (existingWarnings[checkResult.id]) {
-    // check OK
-  }
 
   checkResult.links.forEach((item) => {
     if (!item.ok) {
@@ -20,6 +17,25 @@ export function determineOperations(
           item.status
         ) {
           // Remove old and add new
+          operations.push({
+            type: "delete",
+            record: {
+              id: existingWarnings[checkResult.id][item.type].id,
+            },
+          })
+
+          operations.push({
+            type: "addition",
+            record: {
+              fields: {
+                Aide: checkResult.id,
+                Priorite: checkResult.priority,
+                Erreur: item.status,
+                Lien: item.link,
+                Type: item.type,
+              },
+            },
+          })
         } else {
           existingWarnings[checkResult.id][item.type].keep = true
         }
@@ -37,6 +53,19 @@ export function determineOperations(
           },
         })
       }
+    } else if (existingWarnings[checkResult.id]) {
+      // check OK
+      operations.push({
+        type: "update",
+        record: {
+          id: existingWarnings[checkResult.id].link.id,
+          fields: {
+            Aide: checkResult.id,
+            Priorite: checkResult.priority,
+            Corrige: true,
+          },
+        },
+      })
     }
   })
   return operations

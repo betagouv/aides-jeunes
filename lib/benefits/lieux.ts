@@ -1,4 +1,5 @@
 import axios from "axios"
+import Sentry from "@sentry/node"
 
 export function normalize(lieu) {
   const { url, horaires, adresses } = lieu.properties
@@ -53,7 +54,7 @@ export async function fetchLieux(
     const lieux = response.data.features.map(normalize)
     return lieux
   } catch (error) {
-    console.error(`Error fetching ${url}: ${error}`)
+    Sentry.captureMessage(`Error fetching ${url}: ${error}`)
     return []
   }
 }

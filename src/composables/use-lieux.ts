@@ -4,22 +4,23 @@ import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
 import { ActiviteType } from "@lib/enums/activite.js"
-import { LieuLayout } from "@lib/types/lieu.d.js"
+import { lieuLayout } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
+import { benefitLayout } from "@data/types/benefits"
 
 export function useLieux() {
   const store = useStore()
   const $route = useRoute()
 
-  const lieux = ref<LieuLayout[]>([])
-  const benefit = ref<any>(null)
+  const lieux = ref<lieuLayout[]>([])
+  const benefit = ref<benefitLayout | null>(null)
   const updating = ref<boolean>(true)
 
   const city = store.situation.menage.depcom
 
   const currentLieu = computed(() => {
     return lieux.value.find(
-      (lieu: LieuLayout) => lieu.id === $route.params.lieu_id
+      (lieu: lieuLayout) => lieu.id === $route.params.lieu_id
     )
   })
 
@@ -82,24 +83,25 @@ export function useLieux() {
       updating.value = false
       return
     }
-    let lieuTypes: any = null
+
     const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
-    if (benefitId) {
-      const benefits =
-        !store.calculs.dirty && store.calculs.resultats.droitsEligibles
-      benefit.value = benefits
-        ? benefits.find((b: any) => b.id === benefitId)
-        : null
-      lieuTypes = getBenefitLieuxTypes(benefit.value)
-    } else {
-      lieuTypes = getRelevantLieuxTypesBySituation()
-    }
+    const benefits =
+      !store.calculs.dirty && store.calculs.resultats.droitsEligibles
+    const benefit =
+      (benefits &&
+        benefits?.find((benefit: any) => benefit.id === benefitId)) ||
+      null
+    const lieuTypes = benefit
+      ? getBenefitLieuxTypes(benefit)
+      : getRelevantLieuxTypesBySituation()
+
     if (lieuTypes.length > 0) {
       const apiLieux = await fetchLieux(city, lieuTypes)
       lieux.value = apiLieux.sort((a, b) => {
         return lieuTypes.indexOf(a.pivotLocal) - lieuTypes.indexOf(b.pivotLocal)
       })
     }
+
     updating.value = false
   }
 

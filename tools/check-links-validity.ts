@@ -110,7 +110,7 @@ async function getPriorityStats() {
 }
 
 async function getBenefitData() {
-  const priorityMap = false && (await getPriorityStats())
+  const priorityMap = await getPriorityStats()
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
@@ -192,16 +192,7 @@ const Grist = {
 }
 
 async function main() {
-  const k = `carte_sncf_eleve_apprenti_eligibilite
-grand-est-experiences-de-jeunesse
-aide-au-bafa-pour-une-session-de-formation-générale-caf-de-la-haute-savoie`.split(
-    "\n"
-  )
-  const benefitData = (await getBenefitData())
-    .filter((d) => {
-      return k.indexOf(d.id) >= 0
-    })
-    .slice(0, 3)
+  const benefitData = await getBenefitData()
 
   const rawExistingWarnings = await Grist.get()
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
@@ -226,8 +217,6 @@ aide-au-bafa-pour-une-session-de-formation-générale-caf-de-la-haute-savoie`.sp
       m[operation.type].push(operation.record)
     })
   })
-  console.log(JSON.stringify(recordsToAdd, null, 2))
-  console.log(JSON.stringify(recordsToUpdate, null, 2))
   try {
     if (recordsToAdd.length) {
       await Grist.add(recordsToAdd)

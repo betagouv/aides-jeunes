@@ -28,7 +28,7 @@ export function useLieux() {
     types: string[]
   }
 
-  const lieuxList: LieuTypeCriteria[] = [
+  const lieuTypeCriterias: LieuTypeCriteria[] = [
     {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = Individu.age(demandeur, situation.dateDeValeur)
@@ -57,16 +57,22 @@ export function useLieux() {
     },
   ]
 
-  const getSituationLieux = () => {
+  const getRelevantLieuxTypesBySituation = (): string[] => {
     const relevantTypes: string[] = []
-    for (const lieu of lieuxList) {
-      const isRelevant = lieu.isRelevant
-        ? lieu.isRelevant(store.situation.demandeur, store.situation)
+
+    for (const lieuTypeCriteria of lieuTypeCriterias) {
+      const isRelevant = lieuTypeCriteria.isRelevant
+        ? lieuTypeCriteria.isRelevant(
+            store.situation.demandeur,
+            store.situation
+          )
         : true
+
       if (isRelevant) {
-        relevantTypes.push(...lieu.types)
+        relevantTypes.push(...lieuTypeCriteria.types)
       }
     }
+
     return relevantTypes
   }
 
@@ -86,7 +92,7 @@ export function useLieux() {
         : null
       lieuTypes = getBenefitLieuxTypes(benefit.value)
     } else {
-      lieuTypes = getSituationLieux()
+      lieuTypes = getRelevantLieuxTypesBySituation()
     }
     if (lieuTypes.length > 0) {
       const apiLieux = await getLieux(city, lieuTypes)

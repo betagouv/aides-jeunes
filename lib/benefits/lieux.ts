@@ -35,12 +35,9 @@ export function hasLieux(benefit) {
   return benefit.lieuxTypes?.length || benefit.institution.lieuxTypes?.length
 }
 
-export function getBenefitLieuxTypes(benefit) {
-  if (benefit.lieuxTypes?.length) {
-    return benefit.lieuxTypes
-  } else {
-    return benefit.institution.lieuxTypes || []
-  }
+export function getBenefitLieuxTypes(benefit: any): string[] {
+  const lieuxTypes = benefit.lieuxTypes || benefit.institution.lieuxTypes || []
+  return lieuxTypes
 }
 
 export async function fetchLieux(

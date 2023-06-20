@@ -1,5 +1,5 @@
 import { ref, computed } from "vue"
-import { getBenefitLieuxTypes, getLieux } from "@lib/benefits/lieux"
+import { getBenefitLieuxTypes, fetchLieux } from "@lib/benefits/lieux"
 import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
@@ -95,7 +95,7 @@ export function useLieux() {
       lieuTypes = getRelevantLieuxTypesBySituation()
     }
     if (lieuTypes.length > 0) {
-      const apiLieux = await getLieux(city, lieuTypes)
+      const apiLieux = await fetchLieux(city, lieuTypes)
       lieux.value = apiLieux.sort((a, b) => {
         return lieuTypes.indexOf(a.pivotLocal) - lieuTypes.indexOf(b.pivotLocal)
       })

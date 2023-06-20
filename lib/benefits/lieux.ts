@@ -43,17 +43,20 @@ export function getBenefitLieuxTypes(benefit) {
   }
 }
 
-export async function getLieux(depcom, types) {
-  return axios
-    .get(
-      `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
-        "+"
-      )}`
-    )
-    .then((response) => {
-      return response.data.features
-    })
-    .then((lieux) => {
-      return lieux.map(normalize)
-    })
+export async function fetchLieux(
+  depcom: string,
+  types: string[]
+): Promise<any[]> {
+  const url = `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
+    "+"
+  )}`
+
+  try {
+    const response = await axios.get(url)
+    const lieux = response.data.features.map(normalize)
+    return lieux
+  } catch (error) {
+    console.error(`Error fetching ${url}: ${error}`)
+    return []
+  }
 }

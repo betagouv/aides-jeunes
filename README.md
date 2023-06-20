@@ -20,7 +20,7 @@
   - Continuous integration and deployment
 - Netlify
   - Deloy previews
-- SendInBlue
+- SMTP server
 - Matomo ([stats.data.gouv.fr](https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30))
   - [Dedicated site for usage data and impac][https://betagouv.github.io/mes-aides-analytics/] [source](https://github.com/betagouv/mes-aides-analytics)
 - Sentry
@@ -160,7 +160,7 @@ You can safely use `npm test && npm run cypress` to drive your developments.
 
 ## Email
 
-We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Sendinblue](https://fr.sendinblue.com/) is our service to send emails.
+We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Tipimail](https://fr.tipimail.com) is our service to send emails.
 
 The development server for emails can be easily start with: `npm run tools:serve-mail`
 

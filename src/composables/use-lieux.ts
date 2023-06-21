@@ -84,7 +84,7 @@ export function useLieux() {
       return
     }
 
-    const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
+    const benefitId = $route.params.benefitId
     const storeBenefits =
       !store.calculs.dirty && store.calculs.resultats.droitsEligibles
     benefit.value =

@@ -172,7 +172,7 @@ const router = createRouter({
         },
         {
           name: "resultatsLieuxDedies",
-          path: "resultats/:benefit_id/lieux",
+          path: "resultats/:benefitId/lieux",
           component: () => import("./views/simulation/resultats/lieux.vue"),
           meta: {
             headTitle: `Trouver des lieux d'informations près de chez vous avec le simulateur d'aides ${context.name}`,
@@ -180,7 +180,7 @@ const router = createRouter({
         },
         {
           name: "benefitLieuInformations",
-          path: "resultats/:benefit_id/lieux/:lieu_id/informations",
+          path: "resultats/:benefitId/lieux/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {
@@ -190,7 +190,7 @@ const router = createRouter({
         },
         {
           name: "benefitLieuInformationsLight",
-          path: "resultats/:droitId/:lieu_id/informations",
+          path: "resultats/:benefitId/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {
@@ -238,7 +238,7 @@ const router = createRouter({
         },
         {
           name: "resultatsDetails",
-          path: "resultats/:droitId",
+          path: "resultats/:benefitId",
           component: () => import("./views/simulation/resultats-detail.vue"),
         },
         {

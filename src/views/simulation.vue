@@ -107,7 +107,7 @@ export default {
         process.env.VITE_FRANCE_CONNECT_ENABLED &&
         this.store.getAllSteps[1].path === this.$route.path &&
         this.store.simulation.answers.all.length === 0 &&
-        !this.franceConnectConnected()
+        !this.franceConnectConnected
       )
     },
     franceConnectError() {

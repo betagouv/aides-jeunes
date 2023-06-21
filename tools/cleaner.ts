@@ -75,7 +75,7 @@ async function main() {
   console.log(["Terminé", "Simulation", simulation_count].join(";"))
 
   const deleteTwoYearsOldSimulations = await Simulation.deleteMany({
-    dateDeValeur: { $lt: twoYearsAgo },
+    createdAt: { $lt: twoYearsAgo },
   })
   console.log(
     `Deleted ${deleteTwoYearsOldSimulations.deletedCount} simulations`

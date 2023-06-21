@@ -7,8 +7,9 @@ import { onMounted } from "vue"
 
 const $router = useRouter()
 const { benefit, currentLieu, updating } = useLieux()
+
 const goBack = () => {
-  if (benefit.value.id) {
+  if (benefit?.value?.id) {
     const path = `/simulation/resultats/${benefit.value.id}`
     $router.push(path)
   } else {

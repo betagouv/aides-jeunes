@@ -7,6 +7,7 @@ type Aide = {
 }
 
 export interface benefitLayout {
+  id: string
   label: string
   type?: string
   montant?: number

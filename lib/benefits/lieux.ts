@@ -1,6 +1,4 @@
 import axios from "axios"
-import Sentry from "@sentry/node"
-
 export function normalize(lieu) {
   const { url, horaires, adresses } = lieu.properties
   const normalizedLieu = { ...lieu.properties }
@@ -48,13 +46,7 @@ export async function fetchLieux(
   const url = `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
     "+"
   )}`
-
-  try {
-    const response = await axios.get(url)
-    const lieux = response.data.features.map(normalize)
-    return lieux
-  } catch (error) {
-    Sentry.captureMessage(`Error fetching ${url}: ${error}`)
-    return []
-  }
+  const response = await axios.get(url)
+  const lieux = response.data.features.map(normalize)
+  return lieux
 }

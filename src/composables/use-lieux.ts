@@ -85,21 +85,30 @@ export function useLieux() {
     }
 
     const benefitId = $route.params.benefit_id || $route.params.droitId // Problème historique => Todo : uniformiser les paramètres des routes avec benefit_id
-    const benefits =
+    const storeBenefits =
       !store.calculs.dirty && store.calculs.resultats.droitsEligibles
-    const benefit =
-      (benefits &&
-        benefits?.find((benefit: any) => benefit.id === benefitId)) ||
+    benefit.value =
+      (storeBenefits &&
+        storeBenefits?.find(
+          (storeBenefit: any) => storeBenefit.id === benefitId
+        )) ||
       null
-    const lieuTypes = benefit
-      ? getBenefitLieuxTypes(benefit)
+
+    const lieuTypes = benefit.value
+      ? getBenefitLieuxTypes(benefit.value)
       : getRelevantLieuxTypesBySituation()
 
     if (lieuTypes.length > 0) {
-      const apiLieux = await fetchLieux(city, lieuTypes)
-      lieux.value = apiLieux.sort((a, b) => {
-        return lieuTypes.indexOf(a.pivotLocal) - lieuTypes.indexOf(b.pivotLocal)
-      })
+      try {
+        const apiLieux = await fetchLieux(city, lieuTypes)
+        lieux.value = apiLieux.sort((a, b) => {
+          return (
+            lieuTypes.indexOf(a.pivotLocal) - lieuTypes.indexOf(b.pivotLocal)
+          )
+        })
+      } catch (error) {
+        Sentry.captureMessage(`Error loadLieux() : ${error}`)
+      }
     }
 
     updating.value = false

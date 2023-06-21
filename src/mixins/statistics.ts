@@ -8,8 +8,7 @@ import {
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
-
-const BenefitMatomoEventCategory = "General"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 export default {
   methods: {
@@ -27,7 +26,7 @@ export default {
       sendEventToRecorder(event, this.$matomo)
     },
     sendEventToMatomo: function (
-      category: string,
+      category: EventCategories,
       action: string,
       label: string,
       value?: string
@@ -53,11 +52,7 @@ export default {
           continue
         }
 
-        this.sendEventToMatomo(
-          BenefitMatomoEventCategory,
-          event_type,
-          benefit.id
-        )
+        this.sendEventToMatomo(EventCategories.GENERAL, event_type, benefit.id)
       }
     },
   },

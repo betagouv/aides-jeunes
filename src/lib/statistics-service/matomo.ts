@@ -1,9 +1,10 @@
 import { skipSendStatistics } from "./shared.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
 export interface IMatomoEvent {
-  category: string
+  category: EventCategories
   action: string
   label: string
   value?: string
@@ -11,7 +12,7 @@ export interface IMatomoEvent {
 
 export interface IMatomo {
   trackEvent: (
-    category: string,
+    category: EventCategories,
     action: string,
     label: string,
     value?: string

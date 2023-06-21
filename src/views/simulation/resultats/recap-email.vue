@@ -6,6 +6,7 @@ import { computed, ref } from "vue"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 const router = useRouter()
 const store = useStore()
@@ -32,7 +33,7 @@ const sendEmailRecap = async (surveyOptin) => {
       errorMessage.value = true
       emailRef.value.focus()
       StatisticsMixin.methods.sendEventToMatomo(
-        "General",
+        EventCategories.GENERAL,
         "Invalid form",
         router.currentRoute.value.fullPath
       )

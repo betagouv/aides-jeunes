@@ -102,6 +102,7 @@ import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 import { daysSinceDate } from "@lib/utils.ts"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
   name: "SimulationResultats",
@@ -170,7 +171,7 @@ export default {
     },
     sendAccessToAnonymizedResults() {
       this.sendEventToMatomo(
-        "General",
+        EventCategories.GENERAL,
         "Accès simulation anonymisée",
         daysSinceDate(new Date(this.store.simulation.dateDeValeur))
       )
@@ -187,7 +188,7 @@ export default {
               break
             }
             case "saveComputationFailure": {
-              this.sendEventToMatomo("General", "Error")
+              this.sendEventToMatomo(EventCategories.GENERAL, "Error")
               break
             }
           }
@@ -225,7 +226,10 @@ export default {
         }
       } catch (error) {
         this.store.setSaveSituationError(error.response?.data || error)
-        this.sendEventToMatomo("General", "Erreur sauvegarde simulation")
+        this.sendEventToMatomo(
+          EventCategories.GENERAL,
+          "Erreur sauvegarde simulation"
+        )
       }
     },
   },

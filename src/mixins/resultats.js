@@ -1,6 +1,7 @@
 import Simulation from "@/lib/simulation.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
 import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
   mixins: [StatisticsMixin],
@@ -56,12 +57,20 @@ export default {
     restoreLatest() {
       const lastestSimulation = Simulation.getLatest()
       if (!lastestSimulation) {
-        this.sendEventToMatomo("General", "redirection", this.$route.path)
+        this.sendEventToMatomo(
+          EventCategories.GENERAL,
+          "redirection",
+          this.$route.path
+        )
 
         return this.store.redirection((route) => this.$router.push(route))
       }
 
-      this.sendEventToMatomo("General", "compute", this.$route.path)
+      this.sendEventToMatomo(
+        EventCategories.GENERAL,
+        "compute",
+        this.$route.path
+      )
       this.store.fetch(lastestSimulation).then(() => {
         if (!this.simulationAnonymized()) {
           this.store.compute()

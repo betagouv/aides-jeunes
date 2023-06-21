@@ -182,6 +182,7 @@ import {
 } from "@/lib/contributions.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
   name: "Attendu",
@@ -287,7 +288,11 @@ export default {
       this.selection = [].concat(...this.selection).concat({ id: null })
     },
     trackMontantAttendu(type) {
-      this.sendEventToMatomo("Montant attendu", type, this.$route.path)
+      this.sendEventToMatomo(
+        EventCategories.MONTANT_ATTENDU,
+        type,
+        this.$route.path
+      )
     },
     remove(index) {
       const next = this.selection.slice()

@@ -115,6 +115,7 @@ import axios from "axios"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
   name: "RecapEmailModal",
@@ -149,7 +150,11 @@ export default {
       if (!this.$refs.form.checkValidity()) {
         this.errorMessage = true
         this.$refs.email.focus()
-        this.sendEventToMatomo("General", "Invalid form", this.$route.fullPath)
+        this.sendEventToMatomo(
+          EventCategories.GENERAL,
+          "Invalid form",
+          this.$route.fullPath
+        )
 
         return
       }

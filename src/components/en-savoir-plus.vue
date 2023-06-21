@@ -13,6 +13,7 @@
 <script>
 import Hint from "@/lib/hint.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
+import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
   name: "EnSavoirPlus",
@@ -30,7 +31,11 @@ export default {
   },
   methods: {
     trackInterest() {
-      this.sendEventToMatomo("Parcours", "En savoir plus", this.$route.path)
+      this.sendEventToMatomo(
+        EventCategories.PARCOURS,
+        "En savoir plus",
+        this.$route.path
+      )
     },
   },
 }

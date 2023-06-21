@@ -18,21 +18,13 @@ export function determineOperations(
         ) {
           // Remove old and add new
           operations.push({
-            type: "delete",
+            type: "update",
             record: {
-              id: existingWarnings[checkResult.id][item.type].id,
-            },
-          })
-
-          operations.push({
-            type: "addition",
-            record: {
+              id: existingWarnings[checkResult.id].link.id,
               fields: {
                 Aide: checkResult.id,
                 Priorite: checkResult.priority,
-                Erreur: item.status,
-                Lien: item.link,
-                Type: item.type,
+                Corrige: true,
               },
             },
           })

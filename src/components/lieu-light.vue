@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { defineProps, PropType } from "vue"
-import { HelpingInstitution } from "@lib/types/helping-institution.d.js"
+import { LieuLayout } from "@lib/types/lieu.d.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 defineProps({
-  etablissement: {
-    type: Object as PropType<HelpingInstitution>,
+  lieu: {
+    type: Object as PropType<LieuLayout>,
     required: true,
   },
 })
@@ -14,7 +14,7 @@ defineProps({
 
 <template>
   <div>
-    <div v-if="etablissement" class="fr-container fr-py-4v">
+    <div v-if="lieu" class="fr-container fr-py-4v">
       <div class="fr-grid-row fr-grid-row--top">
         <div class="fr-col-2 fr-col-sm-1 fr-mt-1v fr-mr-1w">
           <span
@@ -24,18 +24,18 @@ defineProps({
           ></span>
         </div>
         <div class="fr-grid-col fr-col-12 fr-col-sm-10">
-          <p class="fr-text--bold fr-mb-1v" data-testid="etablissement-title">
-            {{ etablissement.nom }}
+          <p class="fr-text--bold fr-mb-1v" data-testid="lieu-title">
+            {{ lieu.nom }}
           </p>
-          <span data-testid="etablissement-informations-link">
+          <span data-testid="lieu-informations-link">
             <AnalyticRouterLink
               class="fr-link fr-link--sm"
-              :analytic-name="etablissement.id"
+              :analytic-name="lieu.id"
               :analytic-action="BehaviourEventTypes.showNewLocation"
               :to="{
-                name: 'benefitEtablissementInformationsLight',
+                name: 'benefitLieuInformationsLight',
                 params: {
-                  etablissement_id: etablissement.id,
+                  lieu_id: lieu.id,
                 },
               }"
               >Voir les informations

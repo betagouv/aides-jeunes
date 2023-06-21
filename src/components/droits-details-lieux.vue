@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { useEtablissements } from "@/composables/use-etablissements.js"
-import EtablissementLight from "@/components/etablissement-light.vue"
-const { etablissements } = useEtablissements()
+import { useLieux } from "@/composables/use-lieux.js"
+import LieuLight from "@/components/lieu-light.vue"
 import { computed, ref } from "vue"
 
-const showEtablissements = ref(false)
+const { lieux } = useLieux()
 
-const etablissementsPreview = computed(() => {
-  return etablissements?.value?.slice(0, 2)
+const showLieux = ref(false)
+
+const lieuxPreview = computed(() => {
+  return lieux?.value?.slice(0, 2)
 })
 </script>
 
 <template>
   <div
-    v-if="etablissements?.length > 0"
+    v-if="lieux?.length > 0"
     data-testid="nearby-places"
     class="fr-hr fr-py-2w"
   >
@@ -22,20 +23,19 @@ const etablissementsPreview = computed(() => {
       Vous pouvez vous faire accompagner pour faire votre demande et poser
       toutes vos questions.
     </p>
-    <div v-if="etablissements?.length" class="fr-mt-2w">
+    <div v-if="lieux?.length" class="fr-mt-2w">
       <div
-        v-for="(etablissement, index) in showEtablissements
-          ? etablissements
-          : etablissementsPreview"
+        v-for="(lieu, index) in showLieux ? lieux : lieuxPreview"
         :key="index"
       >
-        <EtablissementLight :etablissement="etablissement" />
+        <LieuLight :lieu="lieu" />
       </div>
       <button
+        v-if="lieux?.length > 1"
         class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"
-        @click="showEtablissements = !showEtablissements"
+        @click="showLieux = !showLieux"
       >
-        <span v-if="showEtablissements">Réduire l'affichage des lieux</span>
+        <span v-if="showLieux">Réduire l'affichage des lieux</span>
         <span v-else>Afficher tous les lieux</span>
       </button>
     </div>

@@ -39,7 +39,7 @@
 
 <script>
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import { hasEtablissements } from "@lib/benefits/etablissements.ts"
+import { hasLieux } from "@lib/benefits/lieux.ts"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 
@@ -81,7 +81,7 @@ export default {
         .slice(0, 2)
     },
     showProximityCta() {
-      return hasEtablissements(this.benefit) && this.$route.name !== "aide"
+      return hasLieux(this.benefit) && this.$route.name !== "aide"
     },
   },
 }

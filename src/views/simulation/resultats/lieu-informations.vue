@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import EtablissementInformations from "@/components/etablissement-informations.vue"
+import LieuInformations from "@/components/lieu-informations.vue"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useEtablissements } from "@/composables/use-etablissements.js"
+import { useLieux } from "@/composables/use-lieux.js"
 import { useRouter } from "vue-router"
 import { onMounted } from "vue"
 
 const $router = useRouter()
-const { benefit, currentEtablissement, updating } = useEtablissements()
+const { benefit, currentLieu, updating } = useLieux()
+
 const goBack = () => {
-  if (benefit.value.id) {
+  if (benefit?.value?.id) {
     const path = `/simulation/resultats/${benefit.value.id}`
     $router.push(path)
   } else {
@@ -26,7 +27,7 @@ onMounted(() => {
       Retour au détail de l'aide
     </BackButton>
     <h5 class="fr-h5 fr-mt-2w fr-mb-4w">
-      {{ currentEtablissement?.nom }}
+      {{ currentLieu?.nom }}
     </h5>
     <p v-show="updating">
       <span
@@ -35,10 +36,10 @@ onMounted(() => {
       ></span
       ><span class="fr-ml-2w">Récupération des informations en cours…</span>
     </p>
-    <EtablissementInformations
-      v-if="currentEtablissement && !updating"
-      :key="currentEtablissement.id"
-      :etablissement="currentEtablissement"
+    <LieuInformations
+      v-if="currentLieu && !updating"
+      :key="currentLieu.id"
+      :lieu="currentLieu"
     />
   </div>
 </template>

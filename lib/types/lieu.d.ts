@@ -1,4 +1,4 @@
-export interface HelpingInstitution {
+export interface lieuLayout {
   id: string
   nom: string
   telephone: string

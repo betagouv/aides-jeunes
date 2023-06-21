@@ -28,7 +28,7 @@ function transformInstitutions(collection: any[]) {
       top: data.top,
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
-      etablissements: data.etablissements,
+      lieuxTypes: data.lieuxTypes,
     }
     result[data.slug] = item
     return result
@@ -62,7 +62,6 @@ export function generate(
   apaGenerator
 ) {
   const institutions = transformInstitutions(collections.institutions.items)
-
   collections.benefits_javascript.items.forEach((benefit) => {
     benefit.source = "javascript"
   })

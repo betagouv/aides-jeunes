@@ -791,8 +791,8 @@ fields:
     name: forms
     widget: hidden
   field_benefit_institution: &field_benefit_institution
-    label: Référence aux institutions supervisant l'aide
-    name: etablissements
+    label: Référence aux types de lieux à proximité supervisant l'aide
+    name: lieuxTypes
     widget: hidden
   field_benefit_set_to_zero_recently: &field_benefit_set_to_zero_recently
     label: L'aide OpenFisca a été remise à zéro récemment
@@ -937,8 +937,8 @@ collections:
         name: prefix
         widget: hidden
         required: false
-      - label: Etablissements
-        name: etablissements
+      - label: Types de lieux à proximité
+        name: lieuxTypes
         widget: hidden
         required: false
       - label: repository

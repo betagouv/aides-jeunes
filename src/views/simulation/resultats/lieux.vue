@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Etablissement from "@/components/etablissement.vue"
+import Lieu from "@/components/lieu.vue"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useEtablissements } from "@/composables/use-etablissements.js"
+import { useLieux } from "@/composables/use-lieux.js"
 import { useRouter } from "vue-router"
 
 const $router = useRouter()
-const { etablissements, updating, benefit } = useEtablissements()
+const { lieux, updating, benefit } = useLieux()
 const goBackToBenefitDetails = () => {
   if (benefit?.id) {
     const path = `/simulation/resultats/${benefit.id}`
@@ -35,9 +35,9 @@ const goBackToBenefitDetails = () => {
       ></span
       ><span class="fr-ml-2w">Récupération en cours…</span>
     </p>
-    <div v-if="etablissements?.length">
-      <div v-for="(etablissement, index) in etablissements" :key="index">
-        <Etablissement :etablissement="etablissement" />
+    <div v-if="lieux?.length">
+      <div v-for="(lieu, index) in lieux" :key="index">
+        <Lieu :lieu="lieu" />
       </div>
     </div>
     <div v-else>

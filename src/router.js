@@ -179,8 +179,8 @@ const router = createRouter({
           },
         },
         {
-          name: "benefitEtablissementInformations",
-          path: "resultats/:benefit_id/lieux/:etablissement_id/informations",
+          name: "benefitLieuInformations",
+          path: "resultats/:benefit_id/lieux/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {
@@ -189,8 +189,8 @@ const router = createRouter({
           },
         },
         {
-          name: "benefitEtablissementInformationsLight",
-          path: "resultats/:droitId/:etablissement_id/informations",
+          name: "benefitLieuInformationsLight",
+          path: "resultats/:droitId/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {
@@ -199,8 +199,8 @@ const router = createRouter({
           },
         },
         {
-          name: "situationEtablissementInformations",
-          path: "resultats/lieux/:etablissement_id/informations",
+          name: "situationLieuInformations",
+          path: "resultats/lieux/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {

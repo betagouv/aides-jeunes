@@ -2,7 +2,7 @@ import Followup from "../models/followup.js"
 import utils from "../lib/utils.js"
 
 const DefaultVersion = 3
-const TokenLength = 12
+const TokenLength = 17
 
 export const FollowupFactory = {
   create: async (simulation, email, surveyOptin) => {

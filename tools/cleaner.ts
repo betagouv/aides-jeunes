@@ -38,7 +38,7 @@ async function anonymizeFollowups() {
     }
   }
 
-  console.log(["Terminé", "Followup", followup_count].join(";"))
+  console.log(`Followup anonymisées ${followup_count}`)
 }
 
 async function defaultAnonymizeSimulations() {
@@ -74,7 +74,7 @@ async function defaultAnonymizeSimulations() {
     }
   }
 
-  console.log(["Terminé", "Simulation", simulation_count].join(";"))
+  console.log(`Simulations anonymisées ${simulation_count}`)
 }
 
 async function franceConnectAnonymizeSimulations() {
@@ -100,9 +100,7 @@ async function franceConnectAnonymizeSimulations() {
     }
   }
 
-  console.log(
-    ["Terminé", "Simulation France Connect", simulation_count].join(";")
-  )
+  console.log(`Simulations FranceConnect anonymisées: ${simulation_count}`)
 }
 
 async function main() {

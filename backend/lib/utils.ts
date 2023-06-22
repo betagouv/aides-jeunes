@@ -1,9 +1,13 @@
-/* eslint-disable no-console */
-import crypto from "crypto"
+const ALPHABET =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~"
 
 async function generateToken(lengthInBytes = 48) {
-  const bytes = await crypto.randomBytes(lengthInBytes)
-  return bytes.toString("base64").replace(/\//g, "_").replace(/\+/g, "-")
+  let result = ""
+  for (let i = 0; i < lengthInBytes; i++) {
+    const randomIndex = Math.floor(Math.random() * ALPHABET.length)
+    result += ALPHABET.charAt(randomIndex)
+  }
+  return result
 }
 
 export default { generateToken }

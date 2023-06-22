@@ -46,13 +46,20 @@ describe("check-link-validity script", () => {
         },
       }
       const operations = determineOperations(existing, benefitData)
-      expect(operations).toHaveLength(1)
-      const operation = operations[0]
-      expect(operation).toHaveProperty("type", "update")
-      expect(operation).toHaveProperty("record")
-      expect(operation.record).toHaveProperty("id", 42)
-      const fields = operation.record.fields
+      expect(operations).toHaveLength(2)
+
+      const updateOperation = operations[0]
+      expect(updateOperation).toHaveProperty("type", "update")
+      expect(updateOperation).toHaveProperty("record")
+      expect(updateOperation.record).toHaveProperty("id", 42)
+      const fields = updateOperation.record.fields
       expect(fields).toHaveProperty("Corrige", true)
+
+      const addOperation = operations[1]
+      expect(addOperation).toHaveProperty("type", "addition")
+      const addFields = addOperation.record.fields
+      expect(addFields).toHaveProperty("Lien", bogusLink.link)
+      expect(addFields).toHaveProperty("Erreur", bogusLink.status)
     })
   })
 })

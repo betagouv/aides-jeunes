@@ -1,9 +1,9 @@
-label: "Bourse communale au permis de conduire : Pass'Permis"
+label: "Bourse communale au permis de conduire : Pass’Permis"
 institution: ville-de-roubaix
-description: "Cette aide permet aux  jeunes roubaisien·es aux ressources modestes et
-  qui s'inscrivent dans une démarche d’insertion professionnelle de
-  bénéficier du financement d'une partie de leur permis B, en échange de 35
-heures de travail bénévole dans un service de la Ville. Deux sessions d'inscription ont lieu chaque année : en mai et en novembre."
+description:
+  "Cette aide permet aux  jeunes roubaisien·es aux ressources modestes et qui s’inscrivent dans une démarche d’insertion professionnelle
+  de bénéficier du financement d'une partie de leur permis B, en échange de 35 heures de travail bénévole dans un service de la Ville.
+  Deux sessions d'inscription ont lieu chaque année : en mai et en novembre."
 prefix: la
 conditions_generales:
   - type: communes

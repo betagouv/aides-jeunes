@@ -80,7 +80,8 @@ export default {
     },
   },
   mounted() {
-    if (this.mock(this.$route.params.benefitId)) {
+    if (this.mockResultsNeeded()) {
+      this.mock(this.$route.params.benefitId)
       return
     } else if (!this.droits) {
       this.restoreLatest()

@@ -1,11 +1,11 @@
 label: Aide départementale au Permis de conduire
 institution: departement_orne
-description: "Le Département aide les jeunes qui rencontrent des difficultés
+description: Le Département aide les jeunes qui rencontrent des difficultés
   d’insertion et qui ont un projet professionnel (contrat d’apprentissage,
   emploi, stage…) à financer leur permis de conduire. Pour effectuer une
   demande, vous devez être accompagné par un·e référent·e : Mission Locale,
   CCAS, etc. Si vous n'avez pas de référent·e, contactez l'une des structures
-  listées dans le règlement du FAJ."
+  listées dans le règlement du FAJ.
 prefix: l’
 conditions_generales:
   - type: departements

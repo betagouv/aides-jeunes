@@ -54,6 +54,5 @@ export interface ConfigurationLayout {
   iframeTitle: string
   sentry: {
     dsn: string | undefined
-    authToken: string | undefined
   }
 }

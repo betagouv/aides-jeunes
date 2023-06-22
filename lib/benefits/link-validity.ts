@@ -16,7 +16,7 @@ export function determineOperations(
           existingWarnings[checkResult.id][item.type].fields.Erreur !==
           item.status
         ) {
-          // Remove old and add new
+          // Remove old
           operations.push({
             type: "update",
             record: {
@@ -55,6 +55,20 @@ export function determineOperations(
             Aide: checkResult.id,
             Priorite: checkResult.priority,
             Corrige: true,
+          },
+        },
+      })
+
+      //and add new
+      operations.push({
+        type: "addition",
+        record: {
+          fields: {
+            Aide: checkResult.id,
+            Priorite: checkResult.priority,
+            Erreur: item.status,
+            Lien: item.link,
+            Type: item.type,
           },
         },
       })

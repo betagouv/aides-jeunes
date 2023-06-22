@@ -21,10 +21,11 @@ const {
   netlifyContributionURL,
   statistics,
   franceConnect,
+  sentry,
 } = config
 
 function createSentryPlugin() {
-  if (!process.env.SENTRY_AUTH_TOKEN) {
+  if (!sentry.authToken) {
     return null
   }
 
@@ -32,7 +33,7 @@ function createSentryPlugin() {
     org: "betagouv",
     project: "aides-jeunes-front",
     include: "./dist",
-    authToken: process.env.SENTRY_AUTH_TOKEN,
+    authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
   })
 }

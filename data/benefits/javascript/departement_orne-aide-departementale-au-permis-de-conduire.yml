@@ -3,9 +3,8 @@ institution: departement_orne
 description: Le Département aide les jeunes qui rencontrent des difficultés
   d’insertion et qui ont un projet professionnel (contrat d’apprentissage,
   emploi, stage…) à financer leur permis de conduire. Pour effectuer une
-  demande, vous devez être accompagné par un·e référent·e : Mission Locale,
-  CCAS, etc. Si vous n'avez pas de référent·e, contactez l'une des structures
-  listées dans le règlement du FAJ.
+  demande, vous devez être accompagné par un·e référent·e. Si vous n’avez pas de référent·e, contactez l’une des structures
+  listées dans le règlement du Fonds d’Aide aux Jeunes (FAJ).
 prefix: l’
 conditions_generales:
   - type: departements

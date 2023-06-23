@@ -484,21 +484,16 @@ export const useStore = defineStore("store", {
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    compute(showPrivate: boolean) {
+    computeResults() {
       this.startComputation()
       const token = this.getSimulationToken
       const headers = {
         ...(token && { Authorization: `Bearer ${token}` }),
       }
       return axios
-        .get(
-          `/api/simulation/${this.simulationId}/results${
-            showPrivate ? "&showPrivate" : ""
-          }`,
-          {
-            headers,
-          }
-        )
+        .get(`/api/simulation/${this.simulationId}/results`, {
+          headers,
+        })
         .then((response) => {
           return response.data
         })

@@ -55,8 +55,8 @@ export default {
       )
     },
     restoreLatest() {
-      const lastestSimulation = Simulation.getLatest()
-      if (!lastestSimulation) {
+      const lastestSimulationId = Simulation.getLatestId()
+      if (!lastestSimulationId) {
         this.sendEventToMatomo(
           EventCategories.GENERAL,
           "redirection",
@@ -71,13 +71,11 @@ export default {
         "compute",
         this.$route.path
       )
-      this.store.fetch(lastestSimulation).then(() => {
+      this.store.fetch(lastestSimulationId).then(() => {
         if (!this.simulationAnonymized()) {
-          this.store.compute()
+          this.store.computeResults()
         }
       })
-
-      return lastestSimulation
     },
     mockResultsNeeded() {
       return this.$route.query.debug !== undefined

@@ -140,7 +140,7 @@ export default {
       if (this.store.simulation.teleservice) {
         await this.redirectToTeleservice()
       } else {
-        this.store.compute()
+        this.store.computeResults()
       }
     }
   },
@@ -211,7 +211,7 @@ export default {
       if (this.simulationAnonymized()) {
         this.sendAccessToAnonymizedResults()
       } else {
-        this.store.compute()
+        this.store.computeResults()
       }
 
       this.$router.replace({ simulationId: null })
@@ -222,7 +222,7 @@ export default {
         await this.store.save()
 
         if (!this.store.access.forbidden) {
-          this.store.compute()
+          this.store.computeResults()
         }
       } catch (error) {
         this.store.setSaveSituationError(error.response?.data || error)

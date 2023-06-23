@@ -1,5 +1,5 @@
 export default {
-  getLatest: function (): string | undefined {
+  getLatestId: function (): string | undefined {
     return document.cookie
       .split("; ")
       .reduce<Record<string, string>>((accum, pair) => {

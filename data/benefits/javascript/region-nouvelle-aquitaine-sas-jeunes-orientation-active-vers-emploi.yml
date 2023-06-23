@@ -4,11 +4,9 @@ description: La Région propose un accompagnement individualisé pour construire
   son parcours vers un emploi.
 prefix: le
 conditions_generales:
-  - type: departements
+  - type: regions
     values:
-      - "19"
-      - "23"
-      - "87"
+      - "75"
   - type: age
     operator: ">="
     value: 17

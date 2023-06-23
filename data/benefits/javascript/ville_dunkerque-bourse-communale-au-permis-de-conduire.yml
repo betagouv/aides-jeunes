@@ -9,7 +9,11 @@ prefix: la
 conditions_generales:
   - type: communes
     values:
-      - "59183"
+      - "59140"
+      - "59240"
+      - "59279"
+      - "59430"
+      - "59640"
   - type: age
     operator: ">="
     value: 16
@@ -23,6 +27,8 @@ conditions_generales:
 profils: []
 conditions:
   - Avoir un quotient familial mensuel inférieur ou égal à 1027 €.
+  - Résider dans la ville de Dunkerque ou une commune associée depuis au moins deux ans.
+  - Effectuer 50 heures de bénévolat dans une association partenaire liée à la convention, ou dans une mission d'intérêt général proposé par les services municipaux ou mutualisés.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

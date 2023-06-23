@@ -1,12 +1,10 @@
 label: Abonnement transports pour les étudiants et étudiantes ayant droit à une bourse
-institution: brest_metropole
+institution: intercommunalite_brest_metropole
 description: L'abonnement est valable avec la carte d'ayant droit et vous permet
   de voyager en illimité sur l'ensemble du réseau Bibus.
 prefix: l’
 conditions_generales:
-  - type: communes
-    values:
-      - "29019"
+  - type: attached_to_institution
 profils:
   - type: lyceen
     conditions:

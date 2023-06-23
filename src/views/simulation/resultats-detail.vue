@@ -79,12 +79,12 @@ export default {
       return this.store.ressourcesYearMinusTwoCaptured
     },
   },
-  mounted() {
+  async mounted() {
     if (this.mockResultsNeeded()) {
       this.mock(this.$route.params.benefitId)
       return
     } else if (!this.droits) {
-      this.restoreLatest()
+      await this.restoreLatest()
     } else {
       const benefitId = this.$route.params.benefitId
 

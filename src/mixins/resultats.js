@@ -52,7 +52,7 @@ export default {
         this.store.calculs.resultats.droitsEligibles
       )
     },
-    restoreLatest() {
+    async restoreLatest() {
       const lastestSimulationId = Simulation.getLatestId()
       if (!lastestSimulationId) {
         this.sendEventToMatomo(
@@ -70,13 +70,13 @@ export default {
         this.$route.path
       )
 
-      this.store.fetch(lastestSimulationId).then(async () => {
-        if (this.simulationAnonymized) {
-          await this.store.retrieveResultsAlreadyComputed()
-        } else {
-          this.store.computeResults()
-        }
-      })
+      await this.store.fetch(lastestSimulationId)
+
+      if (this.simulationAnonymized) {
+        await this.store.retrieveResultsAlreadyComputed()
+      } else {
+        this.store.computeResults()
+      }
     },
     mockResultsNeeded() {
       return this.$route.query.debug !== undefined

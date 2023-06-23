@@ -6,7 +6,7 @@
     La plupart des résultats que nous vous proposons sont automatiquement
     arrondis à une dizaine d'euros près.
   </p>
-  <ul :key="`${simulationId}-${droits?.length}`">
+  <ul :key="`${simulationId}-${benefits?.length}`">
     <li>
       <a
         v-analytics="{
@@ -142,26 +142,26 @@ export default {
     }
   },
   computed: {
-    droits() {
-      const droitId = this.route.params.droitId
-      const droits = droitId
+    benefits() {
+      const benefitId = this.route.params.benefitId
+      const benefits = benefitId
         ? [
             this.store.calculs.resultats?.droitsEligibles?.find((droit) => {
-              return droit.id === droitId
+              return droit.id === benefitId
             }),
           ]
         : this.store.calculs.resultats.droitsEligibles
 
-      return droits?.map((droit) => this.formatDroit(droit))
+      return benefits?.map((droit) => this.formatDroit(droit))
     },
     simulationId() {
       return this.store.simulationId
     },
     sendMailEcartSimulation() {
-      return sendEcartSimulation(this.simulationId, this.droits)
+      return sendEcartSimulation(this.simulationId, this.benefits)
     },
     sendMailEcartInstruction() {
-      return sendEcartInstructions(this.simulationId, this.droits)
+      return sendEcartInstructions(this.simulationId, this.benefits)
     },
     sendMailSuggestion() {
       return sendSuggestion(this.simulationId)

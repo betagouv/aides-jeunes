@@ -69,9 +69,9 @@ export default {
       return this.store.situation
     },
     droit() {
-      const droitId = this.$route.params.droitId
+      const benefitId = this.$route.params.benefitId
       const droit = (this.droits || []).find(function (droit) {
-        return droit.id === droitId
+        return droit.id === benefitId
       })
       return droit
     },
@@ -81,17 +81,17 @@ export default {
   },
   mounted() {
     if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.droitId)
+      this.mock(this.$route.params.benefitId)
       return
     } else if (!this.droits) {
       this.restoreLatest()
     } else {
-      const droitId = this.$route.params.droitId
+      const benefitId = this.$route.params.benefitId
 
       this.sendBenefitsStatistics(
         this.droits,
         BehaviourEventTypes.showDetails,
-        droitId
+        benefitId
       )
     }
   },

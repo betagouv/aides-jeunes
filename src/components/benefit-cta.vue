@@ -27,7 +27,7 @@
             :analytic-action="eventTypeShowLocations"
             :to="{
               name: 'resultatsLieuxDedies',
-              params: { benefit_id: benefit.id },
+              params: { benefitId: benefit.id },
             }"
             >À proximité de chez vous
           </AnalyticRouterLink>

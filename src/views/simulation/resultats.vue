@@ -128,7 +128,7 @@ export default {
     this.handleLegacySituationId()
 
     if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.droitId)
+      this.mock(this.$route.params.benefitId)
       return
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()

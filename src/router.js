@@ -13,20 +13,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: context.Home,
-      beforeEnter(to, from, next) {
-        const store = useStore()
-        let referrer = document.referrer
-        // TODO Est-toujours utile ?
-        if (
-          !store.ameliNoticationDone &&
-          (referrer.match(/ameli\.fr/) ||
-            referrer.match(/mes-aides\.org\/ameli/))
-        ) {
-          store.setAmeliNoticationDone()
-          return next("/ameli")
-        }
-        next()
-      },
     },
     {
       path: "/callback",

@@ -60,7 +60,6 @@ function defaultStore(): Store {
     },
     calculs: defaultCalculs(),
     dates: datesGenerator(now),
-    ameliNoticationDone: false,
     title: null,
     inIframe: false,
     iframeOrigin: null,
@@ -80,7 +79,6 @@ function getPersitedStateProperties(
     simulationId: state.simulationId || state.situationId,
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
-    ameliNoticationDone: state.ameliNoticationDone,
     recapEmailState: state.recapEmailState,
   }
   if (!save) {
@@ -440,7 +438,6 @@ export const useStore = defineStore("store", {
       this.access.fetching = false
       this.simulation = simulation
       this.dates = datesGenerator(simulation.dateDeValeur || new Date())
-      this.ameliNoticationDone = false
       this.calculs.dirty = false
     },
     saveAccessFailure() {
@@ -556,9 +553,6 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     },
     setSaveSituationError(saveSituationError: string) {
       this.saveSituationError = saveSituationError
-    },
-    setAmeliNoticationDone() {
-      this.ameliNoticationDone = true
     },
     setIframeOrigin(newOrigin: string) {
       this.inIframe = true

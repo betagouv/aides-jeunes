@@ -64,11 +64,17 @@ export default function (api) {
     teleservices.verifyRequest,
     teleservices.exportRepresentation
   )
-  api.use("/simulation/:simulationId", route)
+
+  const specificSimulationRoutes = express.Router({ mergeParams: true })
+  api.use("/simulation/", specificSimulationRoutes)
+  specificSimulationRoutes.use("/:simulationId/", route)
 
   /*
    ** Param injection
    */
-  route.param("simulationId", simulationController.simulation)
+  specificSimulationRoutes.param(
+    "simulationId",
+    simulationController.simulation
+  )
   api.param("signedPayload", teleservices.decodePayload)
 }

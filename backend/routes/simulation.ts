@@ -69,6 +69,6 @@ export default function (api) {
   /*
    ** Param injection
    */
-  api.param("simulationId", simulationController.simulation)
+  route.param("simulationId", simulationController.simulation)
   api.param("signedPayload", teleservices.decodePayload)
 }

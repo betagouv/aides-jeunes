@@ -41,7 +41,7 @@ const router = createRouter({
           beforeEnter(to, from, next) {
             const store = useStore()
             store
-              .fetch(Simulation.getLatest())
+              .fetch(Simulation.getLatestId())
               .then(() => {
                 next(`/simulation${to.query.to || ""}`)
               })

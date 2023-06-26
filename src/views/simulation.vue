@@ -1,11 +1,15 @@
 <template>
   <ProgressBar></ProgressBar>
   <div class="fr-grid-row aj-column-container">
-    <div class="fr-col-12 fr-col-md-3 aj-main-container">
+    <div v-if="showSummary" class="fr-col-12 fr-col-md-3 aj-main-container">
       <Progress v-if="debug" />
       <Summary v-else />
     </div>
-    <div class="fr-col-12 fr-col-md-9 fr-p-2w">
+    <div
+      :class="`fr-col-12 fr-p-2w ${
+        showSummary ? 'fr-col-md-9' : 'fr-col-md-12'
+      }`"
+    >
       <TitreChapitre />
       <div v-if="debug" class="fr-mb-md-2w">
         <button class="fr-btn fr-btn--sm" @click="disableDebug"
@@ -96,7 +100,7 @@ export default {
   },
   computed: {
     showSummary() {
-      return this.$route.path !== "/simulation/recapitulatif"
+      return !this.store.simulationAnonymized
     },
     debug() {
       return this.store.getDebug

@@ -1,6 +1,5 @@
 import Simulation from "@/lib/simulation.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
-import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 import { EventCategories } from "@lib/enums/event-categories.ts"
 
 export default {
@@ -35,16 +34,15 @@ export default {
     },
     shouldDisplayResults() {
       return (
-        !(
-          this.resultatStatus.updating ||
-          this.hasWarning ||
-          this.hasError ||
-          this.simulationAnonymized()
-        ) && this.droits
+        !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
+        this.droits
       )
     },
     ressourcesYearMinusTwoCaptured() {
       return this.store.ressourcesYearMinusTwoCaptured
+    },
+    simulationAnonymized() {
+      return this.store.simulationAnonymized
     },
   },
   methods: {
@@ -54,9 +52,9 @@ export default {
         this.store.calculs.resultats.droitsEligibles
       )
     },
-    restoreLatest() {
-      const lastestSimulation = Simulation.getLatest()
-      if (!lastestSimulation) {
+    async restoreLatest() {
+      const lastestSimulationId = Simulation.getLatestId()
+      if (!lastestSimulationId) {
         this.sendEventToMatomo(
           EventCategories.GENERAL,
           "redirection",
@@ -71,13 +69,14 @@ export default {
         "compute",
         this.$route.path
       )
-      this.store.fetch(lastestSimulation).then(() => {
-        if (!this.simulationAnonymized()) {
-          this.store.compute()
-        }
-      })
 
-      return lastestSimulation
+      await this.store.fetch(lastestSimulationId)
+
+      if (this.simulationAnonymized) {
+        await this.store.retrieveResultsAlreadyComputed()
+      } else {
+        this.store.computeResults()
+      }
     },
     mockResultsNeeded() {
       return this.$route.query.debug !== undefined
@@ -87,8 +86,8 @@ export default {
         this.store.mockResults(detail || this.$route.query.debug)
       }
     },
-    simulationAnonymized() {
-      return this.store.simulation.status === SimulationStatusEnum.ANONYMIZED
+    displaySimulationUnavailable() {
+      return this.simulationAnonymized && !this.store.followup
     },
   },
 }

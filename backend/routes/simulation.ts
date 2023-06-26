@@ -26,6 +26,7 @@ export default function (api) {
   route.get("/", simulationController.show)
   route.get("/openfisca-response", simulationController.openfiscaResponse)
   route.get("/results", simulationController.results)
+  route.get("/followup", simulationController.getLatestFollowup)
 
   route.get(
     "/redirect",

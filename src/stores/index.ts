@@ -19,6 +19,7 @@ import {
   Situation,
   Store,
 } from "@lib/types/store"
+import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
 
 function defaultCalculs(): Calculs {
   return {
@@ -244,6 +245,9 @@ export const useStore = defineStore("store", {
           answer.fieldName === "userinfo"
       )
       return userinfo?.value["email"]
+    },
+    simulationAnonymized(): boolean {
+      return this.simulation.status === SimulationStatusEnum.ANONYMIZED
     },
   },
   actions: {
@@ -481,21 +485,16 @@ export const useStore = defineStore("store", {
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    compute(showPrivate: boolean) {
+    computeResults() {
       this.startComputation()
       const token = this.getSimulationToken
       const headers = {
         ...(token && { Authorization: `Bearer ${token}` }),
       }
       return axios
-        .get(
-          `/api/simulation/${this.simulationId}/results${
-            showPrivate ? "&showPrivate" : ""
-          }`,
-          {
-            headers,
-          }
-        )
+        .get(`/api/simulation/${this.simulationId}/results`, {
+          headers,
+        })
         .then((response) => {
           return response.data
         })
@@ -503,6 +502,25 @@ export const useStore = defineStore("store", {
         .catch((error) => {
           this.saveComputationFailure(error)
         })
+    },
+    async retrieveResultsAlreadyComputed() {
+      try {
+        this.startComputation()
+        const token = this.getSimulationToken
+        const headers = token ? { Authorization: `Bearer ${token}` } : undefined
+
+        const { data } = await axios.get(
+          `/api/simulation/${this.simulationId}/followup`,
+          {
+            headers,
+          }
+        )
+
+        this.followup = data
+        this.setResults({ droitsEligibles: this.followup.benefits })
+      } catch (error) {
+        this.saveComputationFailure(error)
+      }
     },
     setMessage(message: string, counter?: number) {
       this.message = {

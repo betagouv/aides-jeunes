@@ -48,7 +48,9 @@ export default {
       return this.getTitleByRoute(this.$route)
     },
     showEmailButton() {
-      return this.$route.name === "resultats"
+      return (
+        this.$route.name === "resultats" && !this.store.simulationAnonymized
+      )
     },
   },
   methods: {
@@ -66,7 +68,7 @@ export default {
 
       const current = path.replace(/\/en_savoir_plus/, "")
       const step =
-        this.store.passSanityCheck &&
+        (this.store.passSanityCheck || this.store.simulationAnonymized) &&
         this.$state.current(current, this.store.getAllSteps)
       const chapterName = step?.chapter || ""
       return Chapters.getLabel(chapterName)

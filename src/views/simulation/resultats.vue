@@ -20,7 +20,10 @@
     </div>
   </WarningMessage>
 
-  <div v-if="simulationAnonymized()" class="fr-alert fr-alert--info fr-my-1w">
+  <div
+    v-if="displaySimulationUnavailable()"
+    class="fr-alert fr-alert--info fr-my-1w"
+  >
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -133,14 +136,14 @@ export default {
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
-      this.restoreLatest()
+      await this.restoreLatest()
     } else if (this.store.calculs.dirty) {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {
       if (this.store.simulation.teleservice) {
         await this.redirectToTeleservice()
       } else {
-        this.store.compute()
+        this.store.computeResults()
       }
     }
   },
@@ -202,16 +205,20 @@ export default {
       }
     },
     async handleSimulationIdQuery() {
-      if (this.store.simulationId === this.$route.query.simulationId) {
+      if (
+        this.store.simulationId === this.$route.query.simulationId &&
+        this.store.hasResults
+      ) {
         return
       }
 
       await this.store.fetch(this.$route.query.simulationId)
 
-      if (this.simulationAnonymized()) {
+      if (this.simulationAnonymized) {
         this.sendAccessToAnonymizedResults()
+        await this.store.retrieveResultsAlreadyComputed()
       } else {
-        this.store.compute()
+        this.store.computeResults()
       }
 
       this.$router.replace({ simulationId: null })
@@ -222,7 +229,7 @@ export default {
         await this.store.save()
 
         if (!this.store.access.forbidden) {
-          this.store.compute()
+          this.store.computeResults()
         }
       } catch (error) {
         this.store.setSaveSituationError(error.response?.data || error)

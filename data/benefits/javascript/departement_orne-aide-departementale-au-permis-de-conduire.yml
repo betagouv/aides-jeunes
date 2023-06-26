@@ -15,9 +15,10 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
-profils:
-  - type: beneficiaire_rsa
-    conditions: []
+  - type: quotient_familial
+    value: 525
+    operator: "<="
+    period: month
 conditions:
   - Etre éligible aux critères du FAJ.
 interestFlag: _interetPermisDeConduire

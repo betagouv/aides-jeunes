@@ -131,9 +131,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_gard: {
     label: "du département du Gard",
-    link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
+    link: "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
     instructions:
-      "https://www.gard.fr/fileadmin/mediatheque/documents_2020/logement/doc_fond_solidarite_logement-2020.pdf",
+      "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
   },
   departement_haute_garonne: {
     label: "du département de la Haute-Garonne",

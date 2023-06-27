@@ -1,4 +1,6 @@
 import cookieParser from "cookie-parser"
+import express from "express"
+
 import {
   followupByAccessToken,
   postSurvey,
@@ -12,7 +14,9 @@ import githubController from "../controllers/github.js"
 
 const followupsRoutes = function (api) {
   api.route("/followups/surveys/:accessToken").get(getFollowup)
-  api.route("/followups/surveys/:accessToken/answers").post(postSurvey)
+  api
+    .route("/followups/surveys/:accessToken/answers")
+    .post(express.json(), postSurvey)
   api
     .route("/followups/surveys")
     .get(cookieParser(), githubController.access)

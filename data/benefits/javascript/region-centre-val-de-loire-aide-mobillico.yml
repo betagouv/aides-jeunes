@@ -29,4 +29,5 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.centre-valdeloire.fr/mobillico
-teleservice: https://nosaidesenligneregion.centre-valdeloire.fr/account-management/crcvl-demandeurs/ux/#/login?redirectTo=https:%2F%2Fnosaidesenligneregion.centre-valdeloire.fr%2Faides%2F%23%2Fcrcvl%2Fconnecte%2FF_TRANSMOBILICO%2Fdepot%2Fsimple&jwtKey=jwt-crcvl-portail-depot-demande-aides&footer=https:%2F%2Fnosaidesenligneregion.centre-valdeloire.fr%2Faides%2F%23%2Fcrcvl%2Fmentions-legales,Protection%20des%20donn%C3%A9es,_self
+teleservice: ""
+instructions: https://www.centre-valdeloire.fr/mobillico

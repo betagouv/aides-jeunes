@@ -37,7 +37,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    link: "https://www.departement06.fr/aides-a-l-insertion/fsl-2607.html",
+    link: "https://www.departement06.fr/insertion-emploi/fonds-de-solidarite-pour-le-logement-fsl-2597.html",
     excludedEPCI: "200030195",
   },
   intercommunalite_nice_cote_d_azur: {

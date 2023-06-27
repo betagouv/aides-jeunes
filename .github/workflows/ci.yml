@@ -8,7 +8,7 @@ env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  PYTHON_VERSION: 3.8.17
+  PYTHON_VERSION: 3.9.9
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

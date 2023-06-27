@@ -18,9 +18,8 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_allier: {
     label: "du département de l’Allier",
-    link: "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
-    instructions:
-      "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
+    link: "https://www.allier.fr/aide/63/1151-les-aides.htm",
+    instructions: "https://www.allier.fr/aide/63/1151-les-aides.htm",
   },
   departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",

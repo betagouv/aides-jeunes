@@ -42,8 +42,8 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   intercommunalite_nice_cote_d_azur: {
     label: "de la Métropole Nice Côte d’Azur",
-    link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
-    form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
+    link: "https://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
+    form: "https://www.nicecotedazur.org/wp-content/uploads/2020/12/Dossier_de_demande_aide_au_maintien_des_locataires.pdf",
   },
   departement_ardeche: {
     label: "du département de l’Ardèche",

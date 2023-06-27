@@ -14,9 +14,9 @@ profils:
     conditions: []
   - type: enseignement_superieur
     conditions: []
-link: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
+link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
 teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
-instructions: https://www.maregionsud.fr/aides-et-appels-a-projets/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
+instructions: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
 prefix: la
 type: bool
 unit: €

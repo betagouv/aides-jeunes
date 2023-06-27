@@ -192,8 +192,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   intercommunalite_orleans_metropole: {
     label: "de Orléans Métropole",
-    link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
-    form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
+    link: "https://www.orleans-metropole.fr/urbanisme-habitat/fonds-unifie-logement-ful",
+    instructions:
+      "https://www.orleans-metropole.fr/urbanisme-habitat/fonds-unifie-logement-ful",
   },
   departement_maine_et_loire: {
     label: "du département du Maine-et-Loire",

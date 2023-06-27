@@ -18,6 +18,17 @@ export default function (api) {
       simulationController.show
     )
 
+  api.options("/simulation/via/:signedPayload", cors())
+  api.get(
+    "/simulation/via/:signedPayload",
+    cors({ origin: "*" }),
+    teleservices.checkCredentials,
+    teleservices.attachPayloadSituation,
+    teleservices.verifyRequest,
+    teleservices.exportRepresentation
+  )
+  api.param("signedPayload", teleservices.decodePayload)
+
   const route = express.Router({ mergeParams: true })
   route.use(cookieParser())
 
@@ -55,20 +66,6 @@ export default function (api) {
     )
   })
 
-  api.options("/simulation/via/:signedPayload", cors())
-  api.get(
-    "/simulation/via/:signedPayload",
-    cors({ origin: "*" }),
-    teleservices.checkCredentials,
-    teleservices.attachPayloadSituation,
-    teleservices.verifyRequest,
-    teleservices.exportRepresentation
-  )
+  route.param("simulationId", simulationController.simulation)
   api.use("/simulation/:simulationId", route)
-
-  /*
-   ** Param injection
-   */
-  api.param("simulationId", simulationController.simulation)
-  api.param("signedPayload", teleservices.decodePayload)
 }

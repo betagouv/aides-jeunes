@@ -66,7 +66,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_aveyron: {
     label: "du département de l’Aveyron",
-    link: "https://aveyron.fr/pages/logement/des%20aides%20pour%20acc%C3%A9der%20%C3%A0%20un%20logement%20ou%20sy%20maintenir",
+    link: "https://aveyron.fr/pages/logement/des-aides-pour-acceder-a-un-logement-ou-s-y-maintenir",
   },
   departement_bouches_du_rhone: {
     label: "du département Des Bouches-du-Rhône",

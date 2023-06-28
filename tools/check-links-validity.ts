@@ -147,7 +147,7 @@ async function getBenefitData() {
 const docId = process.env.GRIST_DOC_ID
 const apiKey = process.env.GRIST_API_KEY
 const baseURL = "grist.incubateur.net"
-const tableId = "VeilleXP"
+const tableId = "Veille"
 
 const docUrl = `https://${baseURL}/api/docs/${docId}`
 const recordsUrl = `${docUrl}/tables/${tableId}/records`
@@ -162,11 +162,12 @@ const gristConfig = {
 }
 
 const Grist = {
-  get: async () => {
-    const response = await axios.get<GristResponse>(
-      recordsUrl + '?filter={"Corrige": [false]}',
-      gristConfig
-    )
+  get: async (filter?: any) => {
+    let url = recordsUrl
+    if (filter) {
+      url += "?filter=" + JSON.stringify(filter)
+    }
+    const response = await axios.get<GristResponse>(url, gristConfig)
     return response.data
   },
   add: async (records) => {
@@ -192,9 +193,18 @@ const Grist = {
 }
 
 async function main() {
+  const raw = await Grist.get()
+  const rawExistingWarnings = await Grist.get({ Corrige: [false] })
+
+  console.log("rawExistingWarnings ===>", rawExistingWarnings)
+  console.log("raw ===>", raw)
+
+  console.log("===>", rawExistingWarnings.records.length)
+  console.log("===>", raw.records.length)
+
+  return
   const benefitData = await getBenefitData()
 
-  const rawExistingWarnings = await Grist.get()
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
     a[fields.Aide] = a[fields.Aide] || {}
@@ -217,6 +227,8 @@ async function main() {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
+  console.log("Okkkk===>", recordsByOperationTypes)
+  return
   try {
     if (recordsByOperationTypes.addition.length) {
       await Grist.add(recordsByOperationTypes.addition)

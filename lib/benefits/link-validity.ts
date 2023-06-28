@@ -22,9 +22,20 @@ export function determineOperations(
             record: {
               id: existingWarnings[checkResult.id].link.id,
               fields: {
+                Corrige: true,
+              },
+            },
+          })
+          // Add new
+          operations.push({
+            type: "addition",
+            record: {
+              fields: {
                 Aide: checkResult.id,
                 Priorite: checkResult.priority,
-                Corrige: true,
+                Erreur: item.status,
+                Lien: item.link,
+                Type: item.type,
               },
             },
           })
@@ -52,23 +63,7 @@ export function determineOperations(
         record: {
           id: existingWarnings[checkResult.id].link.id,
           fields: {
-            Aide: checkResult.id,
-            Priorite: checkResult.priority,
             Corrige: true,
-          },
-        },
-      })
-
-      //and add new
-      operations.push({
-        type: "addition",
-        record: {
-          fields: {
-            Aide: checkResult.id,
-            Priorite: checkResult.priority,
-            Erreur: item.status,
-            Lien: item.link,
-            Type: item.type,
           },
         },
       })

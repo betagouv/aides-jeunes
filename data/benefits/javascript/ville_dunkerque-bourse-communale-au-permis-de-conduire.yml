@@ -1,10 +1,8 @@
 label: Bourse communale au permis de conduire
 institution: ville_dunkerque
-description: Les jeunes de 16 à 30 ans résidant à Dunkerque depuis au moins deux
-  ans et dont les ressources sont modestes peuvent bénéficier du financement
+description: La ville de Dunkerque permet à certains jeunes aux ressources  modestes de bénéficier du financement
   d'une partie de leur permis B, en échange de 50 heures de travail bénévole
-  dans une association ou un service municipal. L’aide est versée directement à
-  l’auto-école une fois la totalité des heures de bénévolat réalisée.
+  dans une association ou un service municipal. L’aide est versée directement à l’auto-école une fois la totalité des heures de bénévolat réalisée.
 prefix: la
 conditions_generales:
   - type: communes
@@ -26,7 +24,6 @@ conditions_generales:
     period: month
 profils: []
 conditions:
-  - Avoir un quotient familial mensuel inférieur ou égal à 1027 €.
   - Résider dans la ville de Dunkerque ou une commune associée depuis au moins deux ans.
   - Effectuer 50 heures de bénévolat dans une association partenaire liée à la convention, ou dans une mission d'intérêt général proposé par les services municipaux ou mutualisés.
 interestFlag: _interetPermisDeConduire

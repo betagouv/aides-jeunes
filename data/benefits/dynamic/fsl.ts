@@ -23,10 +23,8 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",
-    link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
-    form: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/formulaire/Insertion/Acc%C3%A8s_au_logement/IMPRIME_FSL_12-2019.pdf",
-    instructions:
-      "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/mesure-daccompagnement-social-personnalise.html#c6266",
+    link: "https://www.mondepartement04.fr/insertion/acces-au-logement",
+    instructions: "https://www.mondepartement04.fr/insertion/acces-au-logement",
   },
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",

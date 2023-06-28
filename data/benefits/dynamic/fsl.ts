@@ -264,7 +264,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_rhone: {
     label: "du département du Rhône",
-    link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
+    link: "https://www.rhone.fr/jcms/pl01_2012545/fr/etre-aide-ou-accompagne-pour-rester-dans-mon-logement",
     excludedEPCI: "200046977",
   },
   intercommunalite_metropole_lyon: {

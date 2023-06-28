@@ -209,12 +209,14 @@ async function main() {
 
   const recordsToAdd: any[] = []
   const recordsToUpdate: any[] = []
-  const m = {
+  const recordsByOperationTypes = {
     addition: recordsToAdd,
+    update: recordsToUpdate,
   }
+
   operationsList.forEach((operations) => {
     operations.forEach((operation) => {
-      m[operation.type].push(operation.record)
+      recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
   try {

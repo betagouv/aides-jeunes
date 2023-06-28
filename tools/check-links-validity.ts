@@ -203,28 +203,26 @@ async function main() {
   }, {})
 
   const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  const operationsList = results.map((r) =>
+  const operationsToPerformForEachBenefit = results.map((r) =>
     determineOperations(existingWarnings, r)
   )
 
-  const recordsToAdd: any[] = []
-  const recordsToUpdate: any[] = []
   const recordsByOperationTypes = {
-    addition: recordsToAdd,
-    update: recordsToUpdate,
+    addition: [],
+    update: [],
   }
 
-  operationsList.forEach((operations) => {
-    operations.forEach((operation) => {
+  operationsToPerformForEachBenefit.forEach((operationsForABenefit) => {
+    operationsForABenefit.forEach((operation) => {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
   try {
-    if (recordsToAdd.length) {
-      await Grist.add(recordsToAdd)
+    if (recordsByOperationTypes.addition.length) {
+      await Grist.add(recordsByOperationTypes.addition)
     }
-    if (recordsToUpdate.length) {
-      await Grist.update(recordsToUpdate)
+    if (recordsByOperationTypes.update.length) {
+      await Grist.update(recordsByOperationTypes.update)
     }
   } catch (e) {
     console.log(e)

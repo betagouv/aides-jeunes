@@ -20,7 +20,7 @@ export function determineOperations(
           operations.push({
             type: "update",
             record: {
-              id: existingWarnings[checkResult.id].link.id,
+              id: existingWarnings[checkResult.id],
               fields: {
                 Corrige: true,
               },
@@ -61,7 +61,7 @@ export function determineOperations(
       operations.push({
         type: "update",
         record: {
-          id: existingWarnings[checkResult.id].link.id,
+          id: existingWarnings[checkResult.id],
           fields: {
             Corrige: true,
           },

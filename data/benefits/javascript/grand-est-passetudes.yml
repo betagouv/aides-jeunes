@@ -9,14 +9,9 @@ conditions_generales:
   - type: age
     operator: <=
     value: 26
-  - type: departements
+  - type: regions
     values:
-      - "21"
-      - "25"
-      - "58"
-      - "70"
-      - "89"
-      - "90"
+      - "44"
 profils:
   - type: enseignement_superieur
     conditions: []

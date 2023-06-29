@@ -123,7 +123,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
     link: "https://www.finistere.fr/A-votre-service/Habitat-Logement/Acces-et-maintien-dans-un-logement-FSL",
     excludedEPCI: "242900314",
   },
-  brest_metropole: {
+  intercommunalite_brest_metropole: {
     label: "de Brest Métropole",
     link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
     instructions:

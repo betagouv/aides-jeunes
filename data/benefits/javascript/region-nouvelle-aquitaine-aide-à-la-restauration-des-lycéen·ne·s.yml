@@ -5,13 +5,9 @@ description: La Région propose un tarif réduit pour la restauration des
   EREA.
 prefix: l’
 conditions_generales:
-  - type: departements
+  - type: regions
     values:
-      - "24"
-      - "33"
-      - "40"
-      - "47"
-      - "64"
+      - "75"
 profils:
   - type: lyceen
     conditions: []

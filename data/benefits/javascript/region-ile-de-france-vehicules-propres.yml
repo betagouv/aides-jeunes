@@ -9,12 +9,9 @@ conditions:
   - Déposer votre demande au plus tard dans les 3 mois suivant l’achat du
     véhicule propre et la destruction de l'ancien.
 conditions_generales:
-  - type: departements
+  - type: regions
     values:
-      - "77"
-      - "78"
-      - "91"
-      - "95"
+      - "11"
 profils: []
 link: https://www.iledefrance.fr/remplacement-des-voitures-des-particuliers-par-des-vehicules-propres
 teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self

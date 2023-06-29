@@ -13,6 +13,7 @@ export default function (api) {
     .post(
       cors({ origin: "*" }),
       cookieParser(),
+      express.json(),
       simulationController.create,
       simulationController.attachAccessCookie,
       simulationController.show
@@ -42,10 +43,14 @@ export default function (api) {
     simulationController.openfiscaRequest
   )
 
-  route.post("/openfisca-test", simulationController.openfiscaTest)
+  route.post(
+    "/openfisca-test",
+    express.json(),
+    simulationController.openfiscaTest
+  )
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
-  route.post("/followup", persist)
+  route.post("/followup", express.json(), persist)
 
   teleservices.names.forEach(function (name) {
     route.get(

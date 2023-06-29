@@ -13,8 +13,8 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
-link: https://www.yeps.fr/blog/articles/730CAD0E-801F-4D86-8E8C-8F1B701A82B2
-instructions: https://www.yeps.fr/blog/articles/730CAD0E-801F-4D86-8E8C-8F1B701A82B2
+link: https://www.yeps.fr/offre/apprenti-e-partez-pour-un-stage-en-europe-et-ajoutez-une-experience-europeenne-a-votre-formation/
+instructions: https://www.yeps.fr/offre/apprenti-e-partez-pour-un-stage-en-europe-et-ajoutez-une-experience-europeenne-a-votre-formation/
 prefix: l’
 type: bool
 unit: €

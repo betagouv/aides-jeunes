@@ -110,7 +110,7 @@ async function getPriorityStats() {
 }
 
 async function getBenefitData() {
-  const priorityMap = await getPriorityStats()
+  const priorityMap = noPriority ? {} : await getPriorityStats()
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
@@ -192,7 +192,22 @@ const Grist = {
   },
 }
 
+const dryRun = process.argv.includes("--dry-run")
+const noPriority = process.argv.includes("--no-priority")
+const benefitsToAnalyze = determineBenefitsToAnalize()
+function determineBenefitsToAnalize() {
+  if (process.argv.includes("--only")) {
+    return process.argv.slice(process.argv.indexOf("--only") + 1)
+  } else {
+    return []
+  }
+}
 async function main() {
+  console.log("=====>", {
+    dryRun,
+    noPriority,
+    benefitsToAnalyze,
+  })
   if (!docId) {
     throw new Error("Missing GRIST_DOC_ID")
   }
@@ -201,7 +216,13 @@ async function main() {
   }
   const rawExistingWarnings = await Grist.get({ Corrige: [false] })
   const benefitData = await getBenefitData()
-  const filteredBenefitData = benefitData.filter((benefit) => benefit.id)
+  const filteredBenefitData = benefitData.filter((benefit) => {
+    if (benefitsToAnalyze.length === 0) {
+      return true
+    } else {
+      return benefitsToAnalyze.includes(benefit.id)
+    }
+  })
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
     a[fields.Aide] = a[fields.Aide] || {}
@@ -225,15 +246,20 @@ async function main() {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
-  try {
-    if (recordsByOperationTypes.addition.length) {
-      await Grist.add(recordsByOperationTypes.addition)
+  if (dryRun) {
+    console.log("== recordsByOperationTypes ===>")
+    console.log(JSON.stringify(recordsByOperationTypes, null, 2))
+  } else {
+    try {
+      if (recordsByOperationTypes.addition.length) {
+        await Grist.add(recordsByOperationTypes.addition)
+      }
+      if (recordsByOperationTypes.update.length) {
+        await Grist.update(recordsByOperationTypes.update)
+      }
+    } catch (e) {
+      console.log(e)
     }
-    if (recordsByOperationTypes.update.length) {
-      await Grist.update(recordsByOperationTypes.update)
-    }
-  } catch (e) {
-    console.log(e)
   }
   console.log("Terminé")
 }

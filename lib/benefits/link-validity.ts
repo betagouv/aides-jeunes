@@ -17,16 +17,6 @@ export function determineOperations(
           item.status
         ) {
           operations.push({
-            type: "update",
-            record: {
-              id: existingWarnings[checkResult.id][item.type].id,
-              fields: {
-                Corrige: true,
-              },
-            },
-          })
-
-          operations.push({
             type: "addition",
             record: {
               fields: {
@@ -55,16 +45,6 @@ export function determineOperations(
           },
         })
       }
-    } else if (existingWarnings?.[checkResult.id]?.[item.type]) {
-      operations.push({
-        type: "update",
-        record: {
-          id: existingWarnings[checkResult.id][item.type].id,
-          fields: {
-            Corrige: true,
-          },
-        },
-      })
     }
   })
   return operations

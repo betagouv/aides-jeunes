@@ -194,42 +194,43 @@ const Grist = {
 
 const dryRun = process.argv.includes("--dry-run")
 const noPriority = process.argv.includes("--no-priority")
-const benefitsToAnalyze = determineBenefitsToAnalize()
-function determineBenefitsToAnalize() {
+const benefitIdsToAnalyze = determineBenefitIdsToAnalyze()
+function determineBenefitIdsToAnalyze() {
   if (process.argv.includes("--only")) {
     return process.argv.slice(process.argv.indexOf("--only") + 1)
-  } else {
-    return []
   }
 }
+function determineBenefitsToAnalyze(benefitData) {
+  if (benefitIdsToAnalyze) {
+    return benefitData.filter((benefit) =>
+      benefitIdsToAnalyze.includes(benefit.id)
+    )
+  } else {
+    return benefitData
+  }
+}
+
 async function main() {
-  console.log("=====>", {
-    dryRun,
-    noPriority,
-    benefitsToAnalyze,
-  })
   if (!docId) {
     throw new Error("Missing GRIST_DOC_ID")
   }
   if (!apiKey) {
     throw new Error("Missing GRIST_API_KEY")
   }
-  const rawExistingWarnings = await Grist.get({ Corrige: [false] })
-  const benefitData = await getBenefitData()
-  const filteredBenefitData = benefitData.filter((benefit) => {
-    if (benefitsToAnalyze.length === 0) {
-      return true
-    } else {
-      return benefitsToAnalyze.includes(benefit.id)
-    }
+  const rawExistingWarnings = await Grist.get({
+    Corrige: [false],
+    Aide: benefitIdsToAnalyze,
   })
+  const benefitData = await getBenefitData()
+  const benefitsToAnalyze = determineBenefitsToAnalyze(benefitData)
+
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
     a[fields.Aide] = a[fields.Aide] || {}
     a[fields.Aide][fields.Type] = record
     return a
   }, {})
-  const results = await Bluebird.map(filteredBenefitData, checkURL, {
+  const results = await Bluebird.map(benefitsToAnalyze, checkURL, {
     concurrency: 3,
   })
 
@@ -240,12 +241,22 @@ async function main() {
     addition: [],
     update: [],
   }
-
   operationsToPerformForEachBenefit.forEach((operationsForABenefit) => {
     operationsForABenefit.forEach((operation) => {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
+  // Implicit cleaning updates
+  rawExistingWarnings.records
+    .filter((r) => !r.keep)
+    .forEach((record) => {
+      recordsByOperationTypes.update.push({
+        id: record.id,
+        fields: {
+          Corrige: true,
+        },
+      })
+    })
   if (dryRun) {
     console.log("== recordsByOperationTypes ===>")
     console.log(JSON.stringify(recordsByOperationTypes, null, 2))

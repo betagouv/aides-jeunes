@@ -17,6 +17,7 @@ export interface benefitData {
 
 interface GristData {
   id: number
+  keep?: boolean
   fields: {
     Priorite: string
     Date_d_ajout: number

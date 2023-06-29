@@ -11,18 +11,20 @@ describe("check-link-validity script", () => {
         ok: false,
       }
       const benefitData = makeBenefitData({ links: [bogusLink] })
+      const warningRecord = {
+        id: 42,
+        fields: {
+          Erreur: bogusLink.status,
+        },
+      }
       const existing = {
         [benefitData.id]: {
-          [bogusLink.type]: {
-            id: 42,
-            fields: {
-              Erreur: bogusLink.status,
-            },
-          },
+          [bogusLink.type]: warningRecord,
         },
       }
       const operations = determineOperations(existing, benefitData)
       expect(operations).toHaveLength(0)
+      expect(warningRecord).toHaveProperty("keep", true)
     })
   })
 
@@ -35,24 +37,20 @@ describe("check-link-validity script", () => {
         ok: true,
       }
       const benefitData = makeBenefitData({ links: [bogusLink] })
+      const warningRecord = {
+        id: 42,
+        fields: {
+          Erreur: 403,
+        },
+      }
       const existing = {
         [benefitData.id]: {
-          [bogusLink.type]: {
-            id: 42,
-            fields: {
-              Erreur: 403,
-            },
-          },
+          [bogusLink.type]: warningRecord,
         },
       }
       const operations = determineOperations(existing, benefitData)
-      expect(operations).toHaveLength(1)
-
-      const updateOperation = operations[0]
-      expect(updateOperation).toHaveProperty("type", "update")
-      expect(updateOperation).toHaveProperty("record")
-      expect(updateOperation.record).toHaveProperty("id", 42)
-      expect(updateOperation.record.fields).toHaveProperty("Corrige", true)
+      expect(operations).toHaveLength(0)
+      expect(warningRecord.keep).toBeFalsy()
     })
   })
 })

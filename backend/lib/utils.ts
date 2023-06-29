@@ -1,10 +1,12 @@
+import { randomInt } from "crypto"
+
 const ALPHABET =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~"
 
-async function generateToken(lengthInBytes = 48) {
+async function generateToken(length = 48) {
   let result = ""
-  for (let i = 0; i < lengthInBytes; i++) {
-    const randomIndex = Math.floor(Math.random() * ALPHABET.length)
+  for (let i = 0; i < length; i++) {
+    const randomIndex = randomInt(ALPHABET.length)
     result += ALPHABET.charAt(randomIndex)
   }
   return result

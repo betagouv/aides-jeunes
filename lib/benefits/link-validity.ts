@@ -16,17 +16,16 @@ export function determineOperations(
           existingWarnings[checkResult.id][item.type].fields.Erreur !==
           item.status
         ) {
-          // Remove old
           operations.push({
             type: "update",
             record: {
-              id: existingWarnings[checkResult.id],
+              id: existingWarnings[checkResult.id][item.type].id,
               fields: {
                 Corrige: true,
               },
             },
           })
-          // Add new
+
           operations.push({
             type: "addition",
             record: {
@@ -56,12 +55,11 @@ export function determineOperations(
           },
         })
       }
-    } else if (existingWarnings[checkResult.id]) {
-      // check OK
+    } else if (existingWarnings?.[checkResult.id]?.[item.type]) {
       operations.push({
         type: "update",
         record: {
-          id: existingWarnings[checkResult.id],
+          id: existingWarnings[checkResult.id][item.type].id,
           fields: {
             Corrige: true,
           },

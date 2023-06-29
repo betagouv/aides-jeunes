@@ -193,21 +193,28 @@ const Grist = {
 }
 
 async function main() {
-  const benefitData = await getBenefitData()
-
+  if (!docId) {
+    throw new Error("Missing GRIST_DOC_ID")
+  }
+  if (!apiKey) {
+    throw new Error("Missing GRIST_API_KEY")
+  }
   const rawExistingWarnings = await Grist.get({ Corrige: [false] })
+  const benefitData = await getBenefitData()
+  const filteredBenefitData = benefitData.filter((benefit) => benefit.id)
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
     a[fields.Aide] = a[fields.Aide] || {}
     a[fields.Aide][fields.Type] = record
     return a
   }, {})
+  const results = await Bluebird.map(filteredBenefitData, checkURL, {
+    concurrency: 3,
+  })
 
-  const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
   const operationsToPerformForEachBenefit = results.map((r) =>
     determineOperations(existingWarnings, r)
   )
-
   const recordsByOperationTypes = {
     addition: [],
     update: [],

@@ -1,6 +1,7 @@
 import Benefits from "../data/all.js"
 import Config from "../backend/config/index.js"
 import { determineOperations } from "../lib/benefits/link-validity.js"
+import { GristResponse, GristUpdate } from "../lib/types/link-validity.js"
 
 import axios from "axios"
 import https from "https"
@@ -152,8 +153,6 @@ const tableId = "Veille"
 const docUrl = `https://${baseURL}/api/docs/${docId}`
 const recordsUrl = `${docUrl}/tables/${tableId}/records`
 
-import { GristResponse } from "../lib/types/link-validity.js"
-
 const gristConfig = {
   headers: {
     Authorization: `Bearer ${apiKey}`,
@@ -237,7 +236,8 @@ async function main() {
   const operationsToPerformForEachBenefit = results.map((r) =>
     determineOperations(existingWarnings, r)
   )
-  const recordsByOperationTypes = {
+  type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
+  const recordsByOperationTypes: recordsByOperationTypesType = {
     addition: [],
     update: [],
   }

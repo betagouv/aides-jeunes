@@ -193,18 +193,9 @@ const Grist = {
 }
 
 async function main() {
-  const raw = await Grist.get()
-  const rawExistingWarnings = await Grist.get({ Corrige: [false] })
-
-  console.log("rawExistingWarnings ===>", rawExistingWarnings)
-  console.log("raw ===>", raw)
-
-  console.log("===>", rawExistingWarnings.records.length)
-  console.log("===>", raw.records.length)
-
-  return
   const benefitData = await getBenefitData()
 
+  const rawExistingWarnings = await Grist.get({ Corrige: [false] })
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
     a[fields.Aide] = a[fields.Aide] || {}
@@ -227,8 +218,6 @@ async function main() {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
-  console.log("Okkkk===>", recordsByOperationTypes)
-  return
   try {
     if (recordsByOperationTypes.addition.length) {
       await Grist.add(recordsByOperationTypes.addition)

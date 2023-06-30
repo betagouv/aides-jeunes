@@ -172,9 +172,7 @@ const Grist = {
   add: async (records) => {
     const response = await axios.post<GristResponse>(
       recordsUrl,
-      {
-        records,
-      },
+      { records },
       gristConfig
     )
     return response.data
@@ -182,9 +180,7 @@ const Grist = {
   update: async (records) => {
     const response = await axios.patch<GristResponse>(
       recordsUrl,
-      {
-        records,
-      },
+      { records },
       gristConfig
     )
     return response.data
@@ -193,10 +189,10 @@ const Grist = {
 
 const dryRun = process.argv.includes("--dry-run")
 const noPriority = process.argv.includes("--no-priority")
-const benefitsFromCLI = getBenefitsFromCLI()
+const benefitIdsFromCLI = getBenefitIdsFromCLI()
 const pullRequestURL = determinePullRequestURL()
 
-function getBenefitsFromCLI(): string[] | undefined {
+function getBenefitIdsFromCLI(): string[] | undefined {
   if (process.argv.includes("--only")) {
     return process.argv.slice(process.argv.indexOf("--only") + 1)
   }
@@ -236,12 +232,13 @@ async function main() {
   }
   const rawExistingWarnings = await Grist.get({
     Corrige: [false],
-    Aide: benefitsFromCLI,
+    Aide: benefitIdsFromCLI,
   })
   const benefitData = await getBenefitData(noPriority)
+
   const benefitsToAnalyze = filterBenefitDataToProcess(
     benefitData,
-    benefitsFromCLI,
+    benefitIdsFromCLI,
     pullRequestURL
       ? rawExistingWarnings.records.map((r) => r.fields.Aide)
       : undefined

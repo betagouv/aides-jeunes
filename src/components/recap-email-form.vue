@@ -26,6 +26,7 @@ const sendEmailRecap = async (surveyOptin) => {
   try {
     store.setRecapEmailState("waiting")
     if (emailRef.value && !emailRef.value.checkValidity()) {
+      store.setRecapEmailState(undefined)
       errorMessage.value = true
       emailRef.value.focus()
       StatisticsMixin.methods.sendEventToMatomo(

@@ -22,11 +22,16 @@ const simulationId = computed(() => {
   return !store.calculs.dirty && store.calculs.resultats?._id
 })
 
+const checkPhoneValidity = () => {
+  const regex = new RegExp("^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$")
+  return regex.test(phoneValue.value) && phoneRef.value?.checkValidity()
+}
+
 const sendEmailRecap = async (surveyOptin) => {
   try {
-    store.setRecapSmsState("waiting")
-    if (phoneRef.value && !phoneRef.value.checkValidity()) {
+    if (phoneRef.value && !checkPhoneValidity()) {
       errorMessage.value = true
+      store.setRecapSmsState(undefined)
       phoneRef.value.focus()
       StatisticsMixin.methods.sendEventToMatomo(
         EventCategories.GENERAL,

@@ -160,12 +160,6 @@ const gristConfig = {
   },
 }
 
-const GristRecordsCall = (method) => {
-  return async (records) => {
-    const response = await method(recordsUrl, { records }, gristConfig)
-    return response.data
-  }
-}
 const Grist = {
   get: async (filter?: any) => {
     let url = recordsUrl
@@ -175,8 +169,22 @@ const Grist = {
     const response = await axios.get<GristResponse>(url, gristConfig)
     return response.data
   },
-  add: GristRecordsCall<GristResponse>(axios.post),
-  update: GristRecordsCall<GristResponse>(axios.patch),
+  add: async (records) => {
+    const response = await axios.post<GristResponse>(
+      recordsUrl,
+      { records },
+      gristConfig
+    )
+    return response.data
+  },
+  update: async (records) => {
+    const response = await axios.patch<GristResponse>(
+      recordsUrl,
+      { records },
+      gristConfig
+    )
+    return response.data
+  },
 }
 
 const dryRun = process.argv.includes("--dry-run")

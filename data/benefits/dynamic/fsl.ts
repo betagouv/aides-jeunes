@@ -14,7 +14,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_aisne: {
     label: "du département de l’Aisne",
-    link: "http://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
+    link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
   },
   departement_allier: {
     label: "du département de l’Allier",
@@ -128,9 +128,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_gard: {
     label: "du département du Gard",
-    link: "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
+    link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
     instructions:
-      "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
+      "https://www.gard.fr/fileadmin/mediatheque/documents_2020/logement/doc_fond_solidarite_logement-2020.pdf",
   },
   departement_haute_garonne: {
     label: "du département de la Haute-Garonne",

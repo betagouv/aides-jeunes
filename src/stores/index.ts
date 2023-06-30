@@ -68,6 +68,7 @@ function defaultStore(): Store {
     saveSituationError: null,
     openFiscaParameters: {},
     recapEmailState: undefined,
+    recapSmsState: undefined,
     external_id: undefined,
   }
 }
@@ -81,6 +82,7 @@ function getPersitedStateProperties(
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
     recapEmailState: state.recapEmailState,
+    recapSmsState: state.recapSmsState,
   }
   if (!save) {
     persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)
@@ -121,6 +123,9 @@ export function persistDataOnSessionStorage({
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
   getters: {
+    DEV_SHOW_SMS_TAB(): boolean {
+      return false // mettre cette valeur à true pour afficher l'onglet d'envoi de récapitulatif par SMS
+    },
     passSanityCheck(): boolean {
       return Boolean(
         this.situation.demandeur && this.situation.demandeur.date_naissance
@@ -406,6 +411,9 @@ export const useStore = defineStore("store", {
     setRecapEmailState(newState: string | undefined) {
       this.recapEmailState = newState
     },
+    setRecapSmsState(newState: string | undefined) {
+      this.recapSmsState = newState
+    },
     setSimulationId(id: string) {
       this.simulationId = id
       this.calculs.dirty = false
@@ -415,6 +423,7 @@ export const useStore = defineStore("store", {
     },
     save() {
       this.setRecapEmailState(undefined)
+      this.setRecapSmsState(undefined)
 
       const simulation = { ...this.simulation, _id: undefined }
       if (this.simulationId) {
@@ -443,6 +452,7 @@ export const useStore = defineStore("store", {
     },
     fetch(id: string) {
       this.setRecapEmailState(undefined)
+      this.setRecapSmsState(undefined)
       const token = this.getSimulationToken
 
       this.access.fetching = true

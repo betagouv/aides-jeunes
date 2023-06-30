@@ -14,7 +14,7 @@
           <li>
             <SendRecapEmailButton
               data-testid="send-email-button"
-              text="Recevoir les résultats par email"
+              :text="emailButtonTitle"
             ></SendRecapEmailButton>
           </li>
         </ul>
@@ -52,6 +52,16 @@ export default {
         this.$route.name === "resultats" && !this.store.simulationAnonymized
       )
     },
+    emailButtonTitle() {
+      return this.store.DEV_SHOW_SMS_TAB
+        ? "Recevoir les résultats par email/SMS"
+        : "Recevoir les résultats par email"
+    },
+    emailModalTitle() {
+      return this.store.DEV_SHOW_SMS_TAB
+        ? "Recevoir un récapitulatif"
+        : "Recevoir un récapitulatif par email"
+    },
   },
   methods: {
     getTitleByRoute(route) {
@@ -63,7 +73,7 @@ export default {
         return "Montant inattendu"
       }
       if (path === "/simulation/resultats/recapitulatif_email") {
-        return "Recevoir un récapitulatif par email"
+        return this.emailModalTitle
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

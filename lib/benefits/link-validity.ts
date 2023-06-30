@@ -94,23 +94,20 @@ export async function getBenefitData(noPriority: boolean) {
   return data.sort((a, b) => +(a.priority - b.priority))
 }
 
-export function determineOperations(
+export function getRequiredAdditionsAndTouchWarningsToKeep(
   existingWarnings,
   checkResult: benefitData
 ): any {
-  const operations: any[] = []
+  const recordsToAdd: any[] = []
   checkResult.links.forEach((item) => {
     if (!item.ok) {
-      const additionOperation = {
-        type: "addition",
-        record: {
-          fields: {
-            Aide: checkResult.id,
-            Priorite: checkResult.priority,
-            Erreur: item.status,
-            Lien: item.link,
-            Type: item.type,
-          },
+      const record = {
+        fields: {
+          Aide: checkResult.id,
+          Priorite: checkResult.priority,
+          Erreur: item.status,
+          Lien: item.link,
+          Type: item.type,
         },
       }
       const warning = existingWarnings?.[checkResult.id]?.[item.type]
@@ -118,12 +115,12 @@ export function determineOperations(
         if (warning.fields.Erreur === item.status) {
           warning.keep = true
         } else {
-          operations.push(additionOperation)
+          recordsToAdd.push(record)
         }
       } else {
-        operations.push(additionOperation)
+        recordsToAdd.push(record)
       }
     }
   })
-  return operations
+  return recordsToAdd
 }

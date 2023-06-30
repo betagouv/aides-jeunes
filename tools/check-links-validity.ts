@@ -1,5 +1,5 @@
 import {
-  determineOperations,
+  getRequiredAdditionsAndTouchWarningsToKeep,
   getBenefitData,
 } from "../lib/benefits/link-validity.js"
 import { GristResponse, GristUpdate } from "../lib/types/link-validity.js"
@@ -175,27 +175,37 @@ async function main() {
     update: [],
   }
 
-  const operationsToPerformForEachBenefit = results.map((r) =>
-    determineOperations(existingWarnings, r)
+  const additionsByBenefit = results.map((linkCheckResult) =>
+    getRequiredAdditionsAndTouchWarningsToKeep(
+      existingWarnings,
+      linkCheckResult
+    )
   )
-  operationsToPerformForEachBenefit.forEach((operationsForABenefit) => {
-    operationsForABenefit.forEach((operation) => {
-      recordsByOperationTypes[operation.type].push(operation.record)
-    })
-  })
 
   const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
-  const updateFields = pullRequestURL
-    ? { PR: pullRequestURL }
-    : { Corrige: true }
-  untouchedWarnings.forEach((record) => {
-    if (record.fields.PR !== updateFields.PR) {
+  if (pullRequestURL) {
+    untouchedWarnings.forEach((record) => {
+      if (!record.fields.PR) {
+        return
+      }
       recordsByOperationTypes.update.push({
         id: record.id,
-        fields: updateFields,
+        fields: { PR: pullRequestURL },
       })
-    }
-  })
+    })
+  } else {
+    additionsByBenefit.forEach((additionsForABenefit) => {
+      additionsForABenefit.forEach((recordToAdd) => {
+        recordsByOperationTypes.addition.push(recordToAdd)
+      })
+    })
+    untouchedWarnings.forEach((record) => {
+      recordsByOperationTypes.update.push({
+        id: record.id,
+        fields: { Corrige: true },
+      })
+    })
+  }
 
   if (dryRun) {
     console.log("== recordsByOperationTypes ===>")

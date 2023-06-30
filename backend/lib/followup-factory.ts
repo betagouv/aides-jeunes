@@ -10,7 +10,8 @@ export const FollowupFactory = {
   create: async (
     simulation: Simulation,
     email: string,
-    surveyOptin: boolean
+    surveyOptin: boolean,
+    phone?: string
   ): Promise<Followup> => {
     const situationResults = await simulation.compute()
     const benefits = situationResults.droitsEligibles.map((benefit) => ({
@@ -22,6 +23,7 @@ export const FollowupFactory = {
     const followup = await Followups.create({
       simulation,
       email,
+      phone,
       surveyOptin,
       accessToken,
       benefits,

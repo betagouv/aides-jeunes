@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 import validator from "validator"
 
 import { sendMail } from "../lib/smtp.js"
+import fetch from "node-fetch"
 
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
@@ -23,6 +24,14 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
       validate: {
         validator: validator.isEmail,
         message: "{VALUE} n'est pas un email valide",
+        isAsync: false,
+      },
+    },
+    phone: {
+      type: String,
+      validate: {
+        validator: validator.isMobilePhone,
+        message: "{VALUE} n'est pas un numéro de téléphone valide",
         isAsync: false,
       },
     },
@@ -57,6 +66,16 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
   return this.save()
 })
 
+FollowupSchema.method("postSimulationResultsSms", function (messageId) {
+  this.sentAt = Date.now()
+  this.messageId = messageId
+  if (!this.surveyOptin) {
+    this.phone = undefined
+  }
+  this.error = undefined
+  return this.save()
+})
+
 FollowupSchema.method("renderSimulationResultsEmail", function () {
   return emailRender(EmailCategory.SimulationResults, this)
 })
@@ -83,6 +102,31 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
       followup.error = JSON.stringify(err, null, 2)
       return followup.save()
     })
+})
+
+FollowupSchema.method("renderSimulationResultsSmsUrl", function () {
+  const username = process.env.SMS_SERVICE_USERNAME
+  const password = process.env.SMS_SERVICE_PASSWORD
+  const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+  const encodedText = encodeURIComponent(text)
+  const phone = this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
+  return `https://europe.ipx.com/restapi/v1/sms/send?destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
+})
+
+FollowupSchema.method("sendSimulationResultsSms", async function () {
+  try {
+    const renderUrl = this.renderSimulationResultsSmsUrl()
+    const response = await fetch(renderUrl)
+    if (response.status !== 200) {
+      throw new Error(`Erreur HTTP: ${response.status}`)
+    }
+    const data: any = await response.json()
+    return this.postSimulationResultsSms(data.messageIds[0])
+  } catch (err) {
+    console.log("error", err)
+    this.error = JSON.stringify(err, null, 2)
+    return this.save()
+  }
 })
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
@@ -123,22 +167,24 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
   return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
-        return sendMail({
-          to: followup.email,
-          subject: render.subject,
-          text: render.text,
-          html: render.html,
-          headers: {
-            "x-tm-tags": `["survey", "${surveyType}"]`,
-          },
-        })
-          .then((response) => {
-            return response.messageId
-          })
-          .then((messageId) => {
-            survey.messageId = messageId
-            return survey
-          })
+        return sendMail
+          ? sendMail({
+              to: followup.email,
+              subject: render.subject,
+              text: render.text,
+              html: render.html,
+              headers: {
+                "x-tm-tags": `["survey", "${surveyType}"]`,
+              },
+            })
+          : Promise.resolve({ messageId: "fake-message-id" })
+              .then((response) => {
+                return response.messageId
+              })
+              .then((messageId) => {
+                survey.messageId = messageId
+                return survey
+              })
       })
       .catch((err: Error) => {
         console.log("error", err)

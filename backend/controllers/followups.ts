@@ -39,20 +39,25 @@ export function resultRedirect(req: Request, res: Response) {
 }
 
 export async function persist(req: Request, res: Response) {
-  if (!req.body.email || !req.body.email.length) {
+  if (!(req.body.email.length || req.body.phone.length)) {
     return res.status(400).send({ result: "KO" })
   }
 
   const simulation = req.simulation
 
   try {
+    const { surveyOptin, email, phone } = req.body
     const followup = (await FollowupFactory.create(
       simulation,
-      req.body.email,
-      req.body.surveyOptin
+      surveyOptin,
+      email,
+      phone
     )) as Followup
-
-    await followup.sendSimulationResultsEmail()
+    if (email) {
+      await followup.sendSimulationResultsEmail()
+    } else if (phone) {
+      await followup.sendSimulationResultsSms()
+    }
 
     return res.send({ result: "OK" })
   } catch (error) {

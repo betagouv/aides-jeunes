@@ -1,6 +1,7 @@
-import Benefits from "../data/all.js"
-import Config from "../backend/config/index.js"
-import { determineOperations } from "../lib/benefits/link-validity.js"
+import {
+  determineOperations,
+  getBenefitData,
+} from "../lib/benefits/link-validity.js"
 import { GristResponse, GristUpdate } from "../lib/types/link-validity.js"
 
 import axios from "axios"
@@ -9,32 +10,6 @@ import Bluebird from "bluebird"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
-
-const customBenefitsFiles = [
-  {
-    pattern: /-fsl-eligibilite$/,
-    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/fsl.ts`,
-  },
-  {
-    pattern: /-apa-eligibilite$/,
-    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/apa.ts`,
-  },
-  {
-    pattern: /^aidesvelo_/,
-    file: `https://github.com/mquandalle/mesaidesvelo/blob/master/src/aides.yaml`,
-  },
-]
-
-function setEditLink(benefit) {
-  for (const category of customBenefitsFiles) {
-    if (benefit.id.match(category.pattern)) {
-      return category.file
-    }
-  }
-  return ["openfisca", "javascript"].includes(benefit.source)
-    ? `https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_${benefit.source}/entries/${benefit.id}`
-    : undefined
-}
 
 async function checkURL(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
@@ -81,70 +56,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function getPriorityStats() {
-  const stats = await axios
-    .get("https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics")
-    .then((r) => r.data)
-  const statTotal = stats.map((v) => {
-    const p = v.events?.showDetails || {}
-    const totals = Object.keys(p)
-    return {
-      benefit: v.benefit,
-      count: totals.reduce((at, t) => {
-        const indexes = Object.keys(p[t])
-        return (
-          at +
-          indexes.reduce((ai, i) => {
-            return ai + p[t][i]
-          }, 0)
-        )
-      }, 0),
-    }
-  })
-
-  const statByBenefitId = statTotal.reduce((a, v) => {
-    a[v.benefit] = v.count
-    return a
-  }, {})
-
-  return statByBenefitId
-}
-
-async function getBenefitData() {
-  const priorityMap = noPriority ? {} : await getPriorityStats()
-
-  const data = Benefits.all.map((benefit) => {
-    const linkMap = ["link", "instructions", "form", "teleservice"]
-      .filter(
-        (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"
-      )
-      .reduce((a, linkType) => {
-        const link = benefit[linkType]
-        a[link] = a[link] || { link, types: [] }
-        a[link].types.push(linkType)
-
-        return a
-      }, {})
-
-    const links = Object.values(linkMap).map((v: any) => {
-      return {
-        link: v.link,
-        type: v.types.join(" / "),
-      }
-    })
-
-    return {
-      id: benefit.id,
-      label: benefit.label,
-      institution: benefit.institution.label,
-      priority: priorityMap[benefit.id] || 0,
-      links,
-      editLink: setEditLink(benefit),
-    }
-  })
-  return data.sort((a, b) => +(a.priority - b.priority))
-}
-
 const docId = process.env.GRIST_DOC_ID
 const apiKey = process.env.GRIST_API_KEY
 const baseURL = "grist.incubateur.net"
@@ -180,7 +91,7 @@ const Grist = {
     return response.data
   },
   update: async (records) => {
-    const response = await axios.put<GristResponse>(
+    const response = await axios.patch<GristResponse>(
       recordsUrl,
       {
         records,
@@ -193,20 +104,38 @@ const Grist = {
 
 const dryRun = process.argv.includes("--dry-run")
 const noPriority = process.argv.includes("--no-priority")
-const benefitIdsToAnalyze = determineBenefitIdsToAnalyze()
-function determineBenefitIdsToAnalyze() {
+const benefitsFromCLI = getBenefitsFromCLI()
+const pullRequestURL = determinePullRequestURL()
+
+function getBenefitsFromCLI(): string[] | undefined {
   if (process.argv.includes("--only")) {
     return process.argv.slice(process.argv.indexOf("--only") + 1)
   }
 }
-function determineBenefitsToAnalyze(benefitData) {
-  if (benefitIdsToAnalyze) {
-    return benefitData.filter((benefit) =>
-      benefitIdsToAnalyze.includes(benefit.id)
-    )
-  } else {
-    return benefitData
+
+function determinePullRequestURL() {
+  if (!process.env.GITHUB_REF) {
+    return
   }
+  const { GITHUB_REF, GITHUB_REPOSITORY, GITHUB_SERVER_URL } = process.env
+  const pullRequestNumber = GITHUB_REF.match(
+    /(?:refs\/pull\/)(?<number>[\d]+)\/merge/
+  )?.groups?.number
+  return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/pull/${pullRequestNumber}`
+}
+
+function filterBenefitDataToProcess(
+  benefitData,
+  ...benefitLimitations: (string[] | undefined)[]
+) {
+  let subset = benefitData
+  benefitLimitations.forEach((ids) => {
+    if (!ids) {
+      return
+    }
+    subset = subset.filter((benefit) => ids.includes(benefit.id))
+  })
+  return subset
 }
 
 async function main() {
@@ -218,10 +147,16 @@ async function main() {
   }
   const rawExistingWarnings = await Grist.get({
     Corrige: [false],
-    Aide: benefitIdsToAnalyze,
+    Aide: benefitsFromCLI,
   })
-  const benefitData = await getBenefitData()
-  const benefitsToAnalyze = determineBenefitsToAnalyze(benefitData)
+  const benefitData = await getBenefitData(noPriority)
+  const benefitsToAnalyze = filterBenefitDataToProcess(
+    benefitData,
+    benefitsFromCLI,
+    pullRequestURL
+      ? rawExistingWarnings.records.map((r) => r.fields.Aide)
+      : undefined
+  )
 
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
     const fields = record.fields
@@ -229,34 +164,39 @@ async function main() {
     a[fields.Aide][fields.Type] = record
     return a
   }, {})
+
   const results = await Bluebird.map(benefitsToAnalyze, checkURL, {
     concurrency: 3,
   })
 
-  const operationsToPerformForEachBenefit = results.map((r) =>
-    determineOperations(existingWarnings, r)
-  )
   type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
   const recordsByOperationTypes: recordsByOperationTypesType = {
     addition: [],
     update: [],
   }
+
+  const operationsToPerformForEachBenefit = results.map((r) =>
+    determineOperations(existingWarnings, r)
+  )
   operationsToPerformForEachBenefit.forEach((operationsForABenefit) => {
     operationsForABenefit.forEach((operation) => {
       recordsByOperationTypes[operation.type].push(operation.record)
     })
   })
-  // Implicit cleaning updates
-  rawExistingWarnings.records
-    .filter((r) => !r.keep)
-    .forEach((record) => {
+
+  const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
+  const updateFields = pullRequestURL
+    ? { PR: pullRequestURL }
+    : { Corrige: true }
+  untouchedWarnings.forEach((record) => {
+    if (record.fields.PR !== updateFields.PR) {
       recordsByOperationTypes.update.push({
         id: record.id,
-        fields: {
-          Corrige: true,
-        },
+        fields: updateFields,
       })
-    })
+    }
+  })
+
   if (dryRun) {
     console.log("== recordsByOperationTypes ===>")
     console.log(JSON.stringify(recordsByOperationTypes, null, 2))

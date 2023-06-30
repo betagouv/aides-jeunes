@@ -357,6 +357,39 @@ jobs:
       - name: Test definition periods
         shell: bash
         run: npm run tools:test-definition-periods
+  test_benefit_file_changes:
+    name: Lint
+    needs: [unit_tests]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - id: stop-early
+        run: if [ "git diff origin/master... --name-only data/benefits/ | wc --lines" -ne 0 ]; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+  test_benefit_link_improvements:
+    name: Openfisca definition periods tests
+    needs: [test_benefit_file_changes]
+    if: needs.test_benefit_file_changes.outputs.status == 'success'
+    runs-on: ubuntu-20.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Test
+        shell: bash
+        run: npm run tools:check-links-validity -- --no-priority
   ci_failed:
     name: Detect failure
     runs-on: ubuntu-20.04

@@ -12,12 +12,7 @@ jobs:
       - run: npm ci
       - id: invalid_links
         run: npm run tools:check-links-validity
-        timeout-minutes: 20
-      - if: steps.invalid_links.outputs.comment
-        uses: ./.github/actions/reopen-issue-with-comment
-        with:
-          issue number: 2945
-          comment: ${{ steps.invalid_links.outputs.comment }}
+        timeout-minutes: 60
       - if: steps.invalid_links.outputs.comment
         name: Send dead links info message
         shell: bash

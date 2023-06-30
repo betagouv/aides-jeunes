@@ -2,8 +2,8 @@ name: Check links validity
 on:
   workflow_dispatch:
   schedule:
-    # https://crontab.guru/#0_11_*_*_1
-    - cron: "0 11 * * 1"
+    # https://crontab.guru/#30_8_*_*_*
+    - cron: "30 8 * * *"
 jobs:
   run:
     runs-on: ubuntu-20.04

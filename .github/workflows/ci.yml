@@ -371,7 +371,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - id: stop-early
-        run: if [ "git diff origin/master... --name-only data/benefits/ | wc --lines" -ne 0 ]; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+        run: if [ "$(git diff origin/master... --name-only data/benefits/ | wc --lines)" -ne 0 ]; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_benefit_link_improvements:
     name: Test benefit link improvements
     needs: [test_benefit_file_changes]

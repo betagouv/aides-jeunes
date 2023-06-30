@@ -5,45 +5,29 @@ export function determineOperations(
   checkResult: benefitData
 ): any {
   const operations: any[] = []
-
   checkResult.links.forEach((item) => {
     if (!item.ok) {
-      if (
-        existingWarnings[checkResult.id] &&
-        existingWarnings[checkResult.id][item.type]
-      ) {
-        if (
-          existingWarnings[checkResult.id][item.type].fields.Erreur !==
-          item.status
-        ) {
-          operations.push({
-            type: "addition",
-            record: {
-              fields: {
-                Aide: checkResult.id,
-                Priorite: checkResult.priority,
-                Erreur: item.status,
-                Lien: item.link,
-                Type: item.type,
-              },
-            },
-          })
+      const additionOperation = {
+        type: "addition",
+        record: {
+          fields: {
+            Aide: checkResult.id,
+            Priorite: checkResult.priority,
+            Erreur: item.status,
+            Lien: item.link,
+            Type: item.type,
+          },
+        },
+      }
+      const warning = existingWarnings?.[checkResult.id]?.[item.type]
+      if (warning) {
+        if (warning.fields.Erreur === item.status) {
+          warning.keep = true
         } else {
-          existingWarnings[checkResult.id][item.type].keep = true
+          operations.push(additionOperation)
         }
       } else {
-        operations.push({
-          type: "addition",
-          record: {
-            fields: {
-              Aide: checkResult.id,
-              Priorite: checkResult.priority,
-              Erreur: item.status,
-              Lien: item.link,
-              Type: item.type,
-            },
-          },
-        })
+        operations.push(additionOperation)
       }
     }
   })

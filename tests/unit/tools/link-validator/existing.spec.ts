@@ -1,4 +1,4 @@
-import { determineOperations } from "../../../../lib/benefits/link-validity.js"
+import { getRequiredAdditionsAndTouchWarningsToKeep } from "../../../../lib/benefits/link-validity.js"
 import { makeBenefitData } from "./utils.js"
 
 describe("check-link-validity script", () => {
@@ -22,8 +22,11 @@ describe("check-link-validity script", () => {
           [bogusLink.type]: warningRecord,
         },
       }
-      const operations = determineOperations(existing, benefitData)
-      expect(operations).toHaveLength(0)
+      const records = getRequiredAdditionsAndTouchWarningsToKeep(
+        existing,
+        benefitData
+      )
+      expect(records).toHaveLength(0)
       expect(warningRecord).toHaveProperty("keep", true)
     })
   })
@@ -48,8 +51,11 @@ describe("check-link-validity script", () => {
           [bogusLink.type]: warningRecord,
         },
       }
-      const operations = determineOperations(existing, benefitData)
-      expect(operations).toHaveLength(0)
+      const records = getRequiredAdditionsAndTouchWarningsToKeep(
+        existing,
+        benefitData
+      )
+      expect(records).toHaveLength(0)
       expect(warningRecord.keep).toBeFalsy()
     })
   })

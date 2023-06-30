@@ -14,7 +14,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_aisne: {
     label: "du département de l’Aisne",
-    link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
+    link: "http://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
   },
   departement_allier: {
     label: "du département de l’Allier",

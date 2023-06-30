@@ -358,7 +358,7 @@ jobs:
         shell: bash
         run: npm run tools:test-definition-periods
   test_benefit_file_changes:
-    name: Lint
+    name: Test benefit file changes
     needs: [unit_tests]
     runs-on: ubuntu-20.04
     steps:
@@ -373,7 +373,7 @@ jobs:
       - id: stop-early
         run: if [ "git diff origin/master... --name-only data/benefits/ | wc --lines" -ne 0 ]; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_benefit_link_improvements:
-    name: Openfisca definition periods tests
+    name: Test benefit link improvements
     needs: [test_benefit_file_changes]
     if: needs.test_benefit_file_changes.outputs.status == 'success'
     runs-on: ubuntu-20.04

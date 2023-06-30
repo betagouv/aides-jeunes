@@ -392,6 +392,9 @@ jobs:
       - name: Test
         shell: bash
         run: npm run tools:check-links-validity -- --no-priority
+        env:
+          GRIST_DOC_ID: ${{ secrets.GRIST_DOC_ID }}
+          GRIST_API_KEY: ${{ secrets.GRIST_API_KEY }}
   ci_failed:
     name: Detect failure
     runs-on: ubuntu-20.04

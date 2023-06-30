@@ -377,7 +377,7 @@ jobs:
   test_benefit_link_improvements:
     name: Test benefit link improvements
     needs: [test_benefit_file_changes]
-    if: needs.test_benefit_file_changes.outputs.status == 'success'
+    #    if: needs.test_benefit_file_changes.outputs.status == 'success'
     runs-on: ubuntu-20.04
     timeout-minutes: 60
     steps:

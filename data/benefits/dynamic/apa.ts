@@ -39,7 +39,7 @@ export const APA_BY_CODE = {
   departement_haute_garonne: {
     label: "du département de Haute Garonne",
     link: "https://www.haute-garonne.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa",
-    form: "https://www.haute-garonne.fr/sites/default/files/20172707-formulaire-demande-_apa.pdf",
+    form: "https://www.haute-garonne.fr/cd31/dl/997",
   },
   departement_gironde: {
     label: "du département de Gironde",

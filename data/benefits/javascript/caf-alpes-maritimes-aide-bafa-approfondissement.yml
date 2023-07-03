@@ -12,9 +12,9 @@ conditions_generales:
     values:
       - "06"
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/le-financement-du-bafa
-form: https://www.caf.fr/sites/default/files/caf/061/Documents/OFFRESCE/ENFANCEJEUNESSE/2021/Demande%20bourse%20BAFA_200421.pdf
-instructions: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/enfance-et-jeunesse/le-financement-du-bafa
+link: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/vie-personnelle/votre-enfant-16-ans-et-et-vous-souhaitez-le-soutenir-dans-ses-projets
+form: https://www.caf.fr/sites/default/files/medias/061/Vie%20perso/2023/Demande-bourse-BAFA.pdf
+instructions: https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/vie-personnelle/votre-enfant-16-ans-et-et-vous-souhaitez-le-soutenir-dans-ses-projets
 prefix: l’
 type: float
 unit: €

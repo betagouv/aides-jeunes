@@ -18,16 +18,13 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_allier: {
     label: "du département de l’Allier",
-    link: "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
-    instructions:
-      "https://www.allier.gouv.fr/exploitation-a603.html#!/particuliers/page/F1334",
+    link: "https://www.allier.fr/aide/63/1151-les-aides.htm",
+    instructions: "https://www.allier.fr/aide/63/1151-les-aides.htm",
   },
   departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",
-    link: "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/fonds-social-daide-au-logement-fsl.html",
-    form: "http://www.mondepartement04.fr/fileadmin/mediatheque/cg04/formulaire/Insertion/Acc%C3%A8s_au_logement/IMPRIME_FSL_12-2019.pdf",
-    instructions:
-      "http://www.mondepartement04.fr/rechercher-plus-daides/habitat-logement-urbanisme/fsl-masp/mesure-daccompagnement-social-personnalise.html#c6266",
+    link: "https://www.mondepartement04.fr/insertion/acces-au-logement",
+    instructions: "https://www.mondepartement04.fr/insertion/acces-au-logement",
   },
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
@@ -37,13 +34,13 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    link: "https://www.departement06.fr/aides-a-l-insertion/fsl-2607.html",
+    link: "https://www.departement06.fr/insertion-emploi/fonds-de-solidarite-pour-le-logement-fsl-2597.html",
     excludedEPCI: "200030195",
   },
   intercommunalite_nice_cote_d_azur: {
     label: "de la Métropole Nice Côte d’Azur",
-    link: "http://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
-    form: "http://www.nicecotedazur.org/uploads/media_items/locataire.original.pdf",
+    link: "https://www.nicecotedazur.org/habitat-urbanisme/le-logement/fonds-de-solidarit%C3%A9-pour-le-logement",
+    form: "https://www.nicecotedazur.org/wp-content/uploads/2020/12/Dossier_de_demande_aide_au_maintien_des_locataires.pdf",
   },
   departement_ardeche: {
     label: "du département de l’Ardèche",
@@ -67,7 +64,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_aveyron: {
     label: "du département de l’Aveyron",
-    link: "https://aveyron.fr/pages/logement/des%20aides%20pour%20acc%C3%A9der%20%C3%A0%20un%20logement%20ou%20sy%20maintenir",
+    link: "https://aveyron.fr/pages/logement/des-aides-pour-acceder-a-un-logement-ou-s-y-maintenir",
   },
   departement_bouches_du_rhone: {
     label: "du département Des Bouches-du-Rhône",
@@ -131,9 +128,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_gard: {
     label: "du département du Gard",
-    link: "https://www.gard.fr/au-quotidien/bien-se-loger/locataires/fonds-solidarite-logement.html",
+    link: "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
     instructions:
-      "https://www.gard.fr/fileadmin/mediatheque/documents_2020/logement/doc_fond_solidarite_logement-2020.pdf",
+      "https://www.gard.fr/le-gard-pour-vous/des-difficultes-a-faire-face-a-son-loyer/",
   },
   departement_haute_garonne: {
     label: "du département de la Haute-Garonne",
@@ -192,8 +189,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   intercommunalite_orleans_metropole: {
     label: "de Orléans Métropole",
-    link: "http://www.orleans-metropole.fr/1679/fonds-unifie-logement-ful.htm",
-    form: "http://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/document/urbanisme/habitat/FUL_-formulaires_de_demande.pdf",
+    link: "https://www.orleans-metropole.fr/urbanisme-habitat/fonds-unifie-logement-ful",
+    instructions:
+      "https://www.orleans-metropole.fr/urbanisme-habitat/fonds-unifie-logement-ful",
   },
   departement_maine_et_loire: {
     label: "du département du Maine-et-Loire",
@@ -264,7 +262,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_rhone: {
     label: "du département du Rhône",
-    link: "https://www.rhone.fr/solidarites/logement/aides_au_logement/le_fonds_de_solidarite_logement",
+    link: "https://www.rhone.fr/jcms/pl01_2012545/fr/etre-aide-ou-accompagne-pour-rester-dans-mon-logement",
     excludedEPCI: "200046977",
   },
   intercommunalite_metropole_lyon: {

@@ -1,8 +1,8 @@
 label: aide au BAFA pour une session de formation générale
 institution: caf_hautes_pyrenees
-description: L'aide à la formation du BAFA est une aide locale mise à
+description: L’aide à la formation du BAFA est une aide locale mise à
   disposition par la CAF des Hautes-Pyrénées pour vous aider à financer votre
-  session en complément de l'aide
+  session en complément de l’aide
   nationale apportée par la CAF.
 conditions:
   - Être allocataire ou rattaché au dossier allocataire de vos parents.
@@ -18,9 +18,9 @@ conditions_generales:
     value: 750
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur#:~:text=La%20Caf%20des%20Hautes%2DPyr%C3%A9n%C3%A9es,en%20fonction%20de%20votre%20situation
+link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 form: https://www.caf.fr/sites/default/files/medias/651/formulaire%20BAFA%20-%20feverier%202023_0.pdf
-instructions: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur#:~:text=La%20Caf%20des%20Hautes%2DPyr%C3%A9n%C3%A9es,en%20fonction%20de%20votre%20situation
+instructions: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur
 prefix: l’
 type: float
 unit: €

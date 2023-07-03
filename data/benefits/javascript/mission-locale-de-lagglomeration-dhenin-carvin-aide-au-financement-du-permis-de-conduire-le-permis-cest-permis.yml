@@ -1,0 +1,35 @@
+label: "Aide au financement du permis de conduire : le permis, c'est permis !"
+institution: mission-locale-de-lagglomeration-dhenin-carvin
+description: Les jeunes en difficulté d'insertion peuvent bénéficier du
+  financement d'une partie de leurs leçons de conduite par la Mission Locale
+  d'Hénin-Carvin. Pour bénéficier de cette aide, vous devez être en
+  accompagnement PACEA (Parcours contractualisé d'accompagnement vers l'emploi
+  et l'autonomie) ou CEJ (Contrat d'Engagement Jeune) au sein de la Mission
+  Locale.
+prefix: l’
+conditions_generales:
+  - type: epcis
+    values:
+      - "246200299"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+    conditions: []
+conditions:
+  - Avoir obtenu le code de la route.
+  - Etre inscrit dans une auto-école partenaire.
+  - Effectuer 35 heures de bénévolat, des immersions professionnelles et un
+    atelier de prévention et de sécurité routière.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 800
+link: https://www.mlhenincarvin.fr/activitessociales/#1484207394400-9eaf97dc-02c7
+instructions: https://www.mlhenincarvin.fr/contactez-nous/

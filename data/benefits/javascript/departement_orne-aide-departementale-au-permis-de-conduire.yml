@@ -1,0 +1,31 @@
+label: Aide départementale au Permis de conduire
+institution: departement_orne
+description: Le Département aide les jeunes qui rencontrent des difficultés
+  d’insertion et qui ont un projet professionnel (contrat d’apprentissage,
+  emploi, stage…) à financer leur permis de conduire. Pour faire la demande, vous devez être accompagné·e par un·e référent·e. Si vous n’avez pas de référent·e, vous pouvez contacter l’une des structures
+  listées dans le règlement du Fonds d’Aide aux Jeunes (FAJ).
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "61"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+  - type: quotient_familial
+    value: 525
+    operator: "<="
+    period: month
+conditions:
+  - Etre éligible aux critères du FAJ.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 250
+link: https://www.orne.fr/services/insertion/insertion
+instructions: https://www.orne.fr/sites/default/files/2019-11/ri_faj_mars_2015_v2.pdf

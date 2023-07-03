@@ -6,7 +6,7 @@ description: L'aide à la formation du BAFA est une aide locale mise à
   nationale apportée par la CAF.
 conditions:
   - Effectuer votre stage dans son intégralité.
-  - Déposer votre demande  dans les 6 mois suivant la fin du stage.
+  - Déposer votre demande dans les 6 mois suivant la fin du stage.
 conditions_generales:
   - type: age
     operator: ">="
@@ -21,8 +21,8 @@ conditions_generales:
     values:
       - "66"
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/enfance-et-jeunesse/l-aide-aux-stagiaires-en-formation-bafa
-instructions: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/enfance-et-jeunesse/l-aide-aux-stagiaires-en-formation-bafa
+link: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-1
+instructions: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-1
 prefix: l’
 type: float
 unit: €

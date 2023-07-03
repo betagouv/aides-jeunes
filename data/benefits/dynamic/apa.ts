@@ -100,13 +100,11 @@ export const APA_BY_CODE = {
   },
   departement_bas_rhin: {
     label: "du département du Bas-Rhin",
-    link: "http://www.bas-rhin.fr/acces-direct/guide-aides/detail-guide-aides/381/Allocation-personnalisee-d-autonomie--APA--a-domicile",
-    form: "http://www.bas-rhin.fr/eCommunityDocuments/%7BE34C4D98-631D-459B-AA4E-61C91D2F7BA0%7D/3759/document_conseil-departemental-bas-rhin-formulaire-demande-apa.pdf",
+    link: "https://www.alsace.eu/aides-et-services/personnes-agees/beneficier-d-aides/",
   },
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",
-    link: "https://www.haut-rhin.fr/content/vivre-%C3%A0-domicile-1#:~:text=L'Allocation%20personnalis%C3%A9e%20d'autonomie%20%C3%A0%20domicile%20(APA),%C3%A0%20leur%20perte%20d'autonomie.",
-    form: "https://www.haut-rhin.fr/sites/cea/files/FORMULAIRE%20APA_1.pdf",
+    link: "https://www.alsace.eu/aides-et-services/personnes-agees/beneficier-d-aides/",
   },
   departement_paris: {
     label: "de Paris",

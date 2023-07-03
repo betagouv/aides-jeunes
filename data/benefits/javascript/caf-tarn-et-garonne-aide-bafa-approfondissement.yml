@@ -23,9 +23,9 @@ conditions_generales:
     value: 820
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
-form: https://www.caf.fr/sites/default/files/caf/821/Documents/BAFA%20imprime%20NB.pdf
-instructions: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/enfance-et-jeunesse/la-formation-au-bafa
+link: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/vie-personnelle/vous-avez-des-enfants-adolescents-et-souhaitez-les-accompagner-dans-leur-autonomie/la-formation-au-bafa
+form: https://www.caf.fr/sites/default/files/medias/821/Vie%20personnelle/BAFA_approfondissement.pdf
+instructions: https://www.caf.fr/allocataires/caf-de-tarn-et-garonne/offre-de-service/vie-personnelle/vous-avez-des-enfants-adolescents-et-souhaitez-les-accompagner-dans-leur-autonomie/la-formation-au-bafa
 prefix: l’
 type: float
 unit: €

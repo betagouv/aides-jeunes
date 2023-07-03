@@ -21,7 +21,7 @@ conditions_generales:
       - "90"
 profils: []
 link: https://www.caf.fr/allocataires/caf-du-territoire-de-belfort/offre-de-service/vie-professionnelle/la-bourse-de-stage-d-animateur-ou-de-directeur-de-centres-de-vacances-et-de-loisirs
-form: https://www.caf.fr/sites/default/files/caf/901/BAFA/BAFA%20BASE.pdf
+form: https://www.caf.fr/sites/default/files/medias/901/IMPRIMES/BAFA%20BASE.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-territoire-de-belfort/offre-de-service/vie-professionnelle/la-bourse-de-stage-d-animateur-ou-de-directeur-de-centres-de-vacances-et-de-loisirs
 prefix: l’
 type: float

@@ -293,10 +293,9 @@ async function main() {
     })
   }
 
-  if (dryRun) {
-    console.log("== recordsByOperationTypes ===>")
-    console.log(JSON.stringify(recordsByOperationTypes, null, 2))
-  } else {
+  console.log("== recordsByOperationTypes ==")
+  console.log(JSON.stringify(recordsByOperationTypes, null, 2))
+  if (!dryRun) {
     try {
       if (recordsByOperationTypes.addition.length) {
         await Grist.add(recordsByOperationTypes.addition)

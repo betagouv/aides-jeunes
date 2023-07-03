@@ -72,8 +72,8 @@ export const APA_BY_CODE = {
   },
   departement_loire_atlantique: {
     label: "du département de Loire Atlantique",
-    link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421",
-    form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf",
+    link: "https://www.loire-atlantique.fr/44/seniors-personnes-agees/l-allocation-personnalisee-d-autonomie-apa-a-domicile/c_1273554",
+    form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-09/formulaire_de_demande_daide_2018.pdf",
   },
   departement_loiret: {
     label: "du département du Loiret",

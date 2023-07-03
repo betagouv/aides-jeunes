@@ -23,8 +23,9 @@ export const APA_BY_CODE = {
   },
   departement_calvados: {
     label: "du département du Calvados",
-    teleservice: "https://teleservices.calvados.fr/demandes-apa/",
-    link: "https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html",
+    teleservice:
+      "https://portail.teleservices.calvados.fr/action-sociale/allocation-personnalisee-dautonomie-apa/",
+    link: "https://www.calvados.fr/contents/fiche/fiches-aide--services/lallocation-personnalisee-dauton.html",
   },
   departement_eure_et_loir: {
     label: "du département d'Eure et Loir",

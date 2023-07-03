@@ -87,7 +87,7 @@ export const APA_BY_CODE = {
   departement_nord: {
     label: "du département du Nord",
     link: "https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa",
-    form: "https://lenord.fr/upload/docs/application/pdf/2018-04/formulaire_apa_2018-04-27_16-30-55_949.pdf",
+    form: "https://info.lenord.fr/upload/attachments/demande_daides_a_lautonomie_interactif-62b03b42368e9.pdf",
   },
   departement_pas_de_calais: {
     label: "du département du Pas de Calais",

@@ -28,8 +28,8 @@ conditions_generales:
     value: 1200
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
-instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/enfance-et-jeunesse/le-bafa
+link: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/thematique-libre/aides-aux-vacances-et-aux-loisirs/le-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-correze/offre-de-service/thematique-libre/aides-aux-vacances-et-aux-loisirs/le-bafa
 prefix: l’
 type: float
 unit: €

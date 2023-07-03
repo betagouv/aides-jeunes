@@ -135,8 +135,8 @@ export const APA_BY_CODE = {
   },
   departement_seine_saint_denis: {
     label: "du département de Seine Saint Denis",
-    link: "https://seinesaintdenis.fr/Allocation-Departementale-Personnalisee-d-Autonomie.html",
-    form: "https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa.pdf",
+    link: "https://seinesaintdenis.fr/l-allocation-departementale-personnalisee-autonomie-adpa",
+    form: "https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa-2.pdf",
   },
   departement_val_de_marne: {
     label: "du département du Val de Marne",

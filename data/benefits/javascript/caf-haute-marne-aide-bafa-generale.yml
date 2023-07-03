@@ -16,8 +16,8 @@ conditions_generales:
     values:
       - "52"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
-instructions: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/enfance-et-jeunesse
+link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/vie-personnelle/enfance-et-jeunesse/bafa-et-bafd
+instructions: https://www.caf.fr/allocataires/caf-de-la-haute-marne/offre-de-service/vie-personnelle/enfance-et-jeunesse/bafa-et-bafd
 prefix: l’
 type: float
 unit: €

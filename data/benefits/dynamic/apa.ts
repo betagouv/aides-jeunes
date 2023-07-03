@@ -92,8 +92,8 @@ export const APA_BY_CODE = {
   },
   departement_pas_de_calais: {
     label: "du département du Pas de Calais",
-    link: "http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
-    form: "http://www.pasdecalais.fr/content/download/79774/1263503/file/Dossier+de+demande+APA.pdf",
+    link: "https://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
+    form: "https://www.pasdecalais.fr/content/download/16113/164597/file/NOM+SUR+TRANCHE-DEMANDE+APA+Bleu+Prusse+REF+KIMOCE+760254+BLEU+Derni%C3%A8re+version.pdf",
   },
   departement_pyrenees_atlantiques: {
     label: "du département des Pyrénées Atlantiques",

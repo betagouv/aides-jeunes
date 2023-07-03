@@ -17,9 +17,9 @@ conditions_generales:
     value: 856
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
-form: https://www.caf.fr/sites/default/files/caf/471/Documents/offre_de_service/enfance_jeunesse/Demande%20Bafa.pdf
-instructions: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
+link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/vie-personnelle/je-suis-jeune-la-caf-est-mes-cotes/je-passe-le-bafa
+form: https://www.caf.fr/sites/default/files/medias/471/Vie%20perso/Je%20suis%20jeune/Demande%20Bafa.pdf
+instructions: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/vie-personnelle/je-suis-jeune-la-caf-est-mes-cotes/je-passe-le-bafa
 prefix: l’
 type: float
 unit: €

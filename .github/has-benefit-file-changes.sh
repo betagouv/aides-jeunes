@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 
-git --version
-result=$(git diff origin/master... --name-only -- data/benefits)
+result=$(git diff origin/master... --name-only -- data/benefits/dynamic/fsl.ts)
 echo $result
 
 if [ -z "$result" ]

@@ -12,9 +12,8 @@ export const APA_BY_CODE = {
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    teleservice:
-      "https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html",
-    link: "https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html",
+    link: "https://www.departement06.fr/laide-aux-seniors-vous-accompagne-au-quotidien-dans-de-multiples-demarches/l-apa-dans-les-alpes-maritimes-2578.html",
+    teleservice: "https://mesdemarches06.fr/solidarite-social/",
   },
   departement_bouches_du_rhone: {
     label: "du département des Bouches du Rhône",

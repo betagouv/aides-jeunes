@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-result=$(git diff origin/master... --name-only -- data/benefits/dynamic/fsl.ts)
+result=$(git diff origin/master... --name-only openfisca/requirements.txt)
 echo $result
 
 if [ -z "$result" ]

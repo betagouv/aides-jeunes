@@ -18,8 +18,10 @@ profils: []
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
 interestFlag: _interetBafa
-type: bool
+type: float
+unit: %
 periodicite: ponctuelle
+montant: 90
 link: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad
-form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202022.pdf
+form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202023.docx
 instructions: https://www.caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad

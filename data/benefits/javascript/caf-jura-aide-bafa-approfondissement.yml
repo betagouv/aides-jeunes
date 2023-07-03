@@ -20,10 +20,8 @@ conditions_generales:
 profils: []
 interestFlag: _interetBafa
 type: float
-unit: €
+unit: %
 periodicite: ponctuelle
-legend: ""
-montant: 150
+montant: 90
 link: https://caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad
-form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202022.pdf
-instructions: ""
+form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202023.docx

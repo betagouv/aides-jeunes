@@ -271,7 +271,7 @@ async function main() {
   const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
   if (pullRequestURL) {
     untouchedWarnings.forEach((record) => {
-      if (!record.fields.PR) {
+      if (record.fields.PR?.length) {
         return
       }
       recordsByOperationTypes.update.push({

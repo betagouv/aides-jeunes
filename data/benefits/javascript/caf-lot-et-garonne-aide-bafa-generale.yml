@@ -17,8 +17,8 @@ conditions_generales:
     value: 856
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/enfance-et-jeunesse/bafa
-instructions: https://www.caf.fr/sites/default/files/caf/471/Bafa_conditions_2021.pdf
+link: https://www.caf.fr/allocataires/caf-du-lot-et-garonne/offre-de-service/vie-personnelle/je-suis-jeune-la-caf-est-mes-cotes/je-passe-le-bafa
+instructions: https://www.caf.fr/sites/default/files/medias/471/Vie%20perso/Je%20suis%20jeune/Bafa_0.pdf
 prefix: l’
 type: float
 unit: €

@@ -18,9 +18,9 @@ conditions_generales:
     value: 750
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/solidarite-et-insertion/vous-souhaitez-financer-votre-formation-d-animateur
-form: https://www.caf.fr/sites/default/files/caf/651/Images/Actualite/Plaquette%20social/FORMULAIRE%20DEMANDE%20AIDE%20EXCEPTIONNELLE%20A%20LA%20FORMATION%20BAFA%20proposition.pdf
-instructions: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/solidarite-et-insertion/vous-souhaitez-financer-votre-formation-d-animateur
+link: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur#:~:text=La%20Caf%20des%20Hautes%2DPyr%C3%A9n%C3%A9es,en%20fonction%20de%20votre%20situation
+form: https://www.caf.fr/sites/default/files/medias/651/formulaire%20BAFA%20-%20feverier%202023_0.pdf
+instructions: https://www.caf.fr/allocataires/caf-des-hautes-pyrenees/offre-de-service/vie-personnelle/vous-souhaitez-financer-votre-formation-d-animateur-bafa-brevet-d-aptitude-aux-fonctions-d-animateur#:~:text=La%20Caf%20des%20Hautes%2DPyr%C3%A9n%C3%A9es,en%20fonction%20de%20votre%20situation
 prefix: l’
 type: float
 unit: €

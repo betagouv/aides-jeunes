@@ -308,7 +308,7 @@ jobs:
         with:
           fetch-depth: 0
       - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/.github/has-openfisca-requirement-changes.sh" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh openfisca/requirements.txt" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_definition_periods:
     name: Openfisca definition periods tests
     needs:
@@ -375,7 +375,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - id: has-changes
-        run: if "${GITHUB_WORKSPACE}/.github/has-benefit-file-changes.sh" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh data/benefits" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_benefit_link_improvements:
     name: Test benefit link improvements
     needs: [test_benefit_file_changes]

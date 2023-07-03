@@ -56,8 +56,8 @@ export const APA_BY_CODE = {
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",
-    link: "http://www.ille-et-vilaine.fr/fr/demande-apa",
-    form: "http://www.ille-et-vilaine.fr/sites/default/files/asset/document/faire_demande_allocation_apa_juillet_2014.pdf",
+    link: "https://www.ille-et-vilaine.fr/actualite/bien-vieillir-chez-soi-avec-l-apa",
+    form: "https://www.ille-et-vilaine.fr/sites/default/files/asset/document/depliant_allocation_personnalisee_autonomie_apa_2022.pdf",
   },
   departement_isere: {
     label: "du département de l'Isère",

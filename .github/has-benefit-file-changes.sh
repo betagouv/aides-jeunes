@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+git --version
 result=$(git diff origin/master... --name-only -- data/benefits)
 echo $result
 

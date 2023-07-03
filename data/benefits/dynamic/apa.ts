@@ -128,8 +128,8 @@ export const APA_BY_CODE = {
   },
   departement_hauts_de_seine: {
     label: "du département de Hauts de Seine",
-    link: "http://www.hauts-de-seine.fr/solidarites/personnes-agees/maintien-a-domicile/comment-beneficier-de-lapa/",
-    form: "http://www.hauts-de-seine.fr/fileadmin/PDF/Solidarites/Autonomie/APA_DossierDemandeDom_dec2018.pdf",
+    link: "https://www.78-92.fr/annuaire/aides-et-services/detail/apa-allocation-personnalisee-d-autonomie-a-domicile",
+    form: "https://www.78-92.fr/fileadmin/user_upload/Dispositifs/HAUTS_DE_SEINE/PSOL/APA/2020-06-V3_Formulaire_de_demande_APA_Dom.pdf",
   },
   departement_seine_saint_denis: {
     label: "du département de Seine Saint Denis",

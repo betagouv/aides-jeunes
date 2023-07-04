@@ -39,7 +39,7 @@ export function resultRedirect(req: Request, res: Response) {
 }
 
 export async function persist(req: Request, res: Response) {
-  if (!(req.body.email.length || req.body.phone.length)) {
+  if (!(req.body.email?.length || req.body.phone?.length)) {
     return res.status(400).send({ result: "KO" })
   }
 

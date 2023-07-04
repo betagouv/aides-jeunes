@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import validator from "validator"
 
 import { sendMail } from "../lib/smtp.js"
-import fetch from "node-fetch"
+import axios from "axios"
 
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
@@ -116,11 +116,10 @@ FollowupSchema.method("renderSimulationResultsSmsUrl", function () {
 FollowupSchema.method("sendSimulationResultsSms", async function () {
   try {
     const renderUrl = this.renderSimulationResultsSmsUrl()
-    const response = await fetch(renderUrl)
-    if (response.status !== 200) {
-      throw new Error(`Erreur HTTP: ${response.status}`)
+    const { data, status } = await axios.get(renderUrl)
+    if (status !== 200) {
+      throw new Error(`Send SMS error status ${status}`)
     }
-    const data: any = await response.json()
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
     console.log("error", err)

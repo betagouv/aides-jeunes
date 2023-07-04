@@ -29,8 +29,8 @@ export const APA_BY_CODE = {
   departement_eure_et_loir: {
     label: "du département d'Eure et Loir",
     link: "https://mesdemarches.eurelien.fr/seniors/seniors-plus-de-60-ans-besoin-daide-pour/jai-besoin-dun-soutien-financier-pour-as/",
-    teleservice: "https://formulaires.mesdemarches.eurelien.fr/primo-demande-apa/",
-  },
+    teleservice:
+      "https://formulaires.mesdemarches.eurelien.fr/primo-demande-apa/",
   },
   departement_finistere: {
     label: "du département du Finistère",
@@ -50,9 +50,8 @@ export const APA_BY_CODE = {
   departement_herault: {
     institution: "departement",
     label: "du département de l'Hérault",
-    link: "https://www.herault.gouv.fr/Demarches-administratives/Toutes-les-demarches-pour-les-particuliers/Service-Public-pour-les-particuliers#!/particuliers/page/F10009",
-    instructions:
-      "http://www.herault.fr/lallocation-personnalisee-dautonomie-apa",
+    link: "https://mda.herault.fr/1397-allocation-personnalisee-a-l-autonomie-apa.htm",
+    form: "https://mda.herault.fr/cms_viewFile.php?idtf=9622&path=dossier_demande_APA_2021.pdf",
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",

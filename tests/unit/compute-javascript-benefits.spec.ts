@@ -110,12 +110,16 @@ describe("computeAides", function () {
           type: "departements",
           values: ["64", "45", "12"],
         },
+        // disable test of behaviour with missing parameter
+        // @ts-ignore
         { situation: { menage: {} } }
       )
     ).toBe(false)
   })
 
   it("verify the result when no test are provided", function () {
+    // disable test of behaviour with invalid parameter
+    // @ts-ignore
     expect(testGeographicalEligibility({}, { commune: null })).toBe(true)
   })
 

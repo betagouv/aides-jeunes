@@ -57,9 +57,9 @@ function setDefaults(benefit, institution) {
 export function generate(
   collections,
   additionalBenefitAttributes,
-  aidesVeloBenefitListGenerator,
-  fslGenerator,
-  apaGenerator
+  aidesVeloBenefitListGenerator?,
+  fslGenerator?,
+  apaGenerator?
 ) {
   const institutions = transformInstitutions(collections.institutions.items)
   collections.benefits_javascript.items.forEach((benefit) => {

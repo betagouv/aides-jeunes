@@ -12,24 +12,25 @@ export const APA_BY_CODE = {
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    teleservice:
-      "https://www.departement06.fr/dossier-de-demande-d-allocation-personnalisee-d-autonomie-a-domicile-14249.html",
-    link: "https://www.departement06.fr/aides-aux-personnes-agees/allocation-personnalisee-d-autonomie-apa-2578.html",
+    link: "https://www.departement06.fr/laide-aux-seniors-vous-accompagne-au-quotidien-dans-de-multiples-demarches/l-apa-dans-les-alpes-maritimes-2578.html",
+    teleservice: "https://mesdemarches06.fr/solidarite-social/",
   },
   departement_bouches_du_rhone: {
     label: "du département des Bouches du Rhône",
-    link: "https://www.departement13.fr/le-13-en-action/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/",
-    form: "https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/dossier_APA.pdf",
+    link: "https://www.departement13.fr/nos-actions/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/",
+    form: "https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/8590_Chemise_APA.pdf",
   },
   departement_calvados: {
     label: "du département du Calvados",
-    teleservice: "https://teleservices.calvados.fr/demandes-apa/",
-    link: "https://www.calvados.fr/contents/fiche/fiches-aide--services/lapa-en-ligne.html",
+    teleservice:
+      "https://portail.teleservices.calvados.fr/action-sociale/allocation-personnalisee-dautonomie-apa/",
+    link: "https://www.calvados.fr/contents/fiche/fiches-aide--services/lallocation-personnalisee-dauton.html",
   },
   departement_eure_et_loir: {
     label: "du département d'Eure et Loir",
-    link: "https://eurelien.fr/guide/autonomie",
-    form: "https://www.eurelien.fr/sites/default/files/mda-dossier-dallocation-personnalisee-dautonomie.pdf",
+    link: "https://mesdemarches.eurelien.fr/seniors/seniors-plus-de-60-ans-besoin-daide-pour/jai-besoin-dun-soutien-financier-pour-as/",
+    teleservice:
+      "https://formulaires.mesdemarches.eurelien.fr/primo-demande-apa/",
   },
   departement_finistere: {
     label: "du département du Finistère",
@@ -39,7 +40,7 @@ export const APA_BY_CODE = {
   departement_haute_garonne: {
     label: "du département de Haute Garonne",
     link: "https://www.haute-garonne.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa",
-    form: "https://www.haute-garonne.fr/sites/default/files/20172707-formulaire-demande-_apa.pdf",
+    form: "https://www.haute-garonne.fr/cd31/dl/997",
   },
   departement_gironde: {
     label: "du département de Gironde",
@@ -49,14 +50,12 @@ export const APA_BY_CODE = {
   departement_herault: {
     institution: "departement",
     label: "du département de l'Hérault",
-    link: "https://www.herault.gouv.fr/Demarches-administratives/Toutes-les-demarches-pour-les-particuliers/Service-Public-pour-les-particuliers#!/particuliers/page/F10009",
-    instructions:
-      "http://www.herault.fr/lallocation-personnalisee-dautonomie-apa",
+    link: "https://mda.herault.fr/1397-allocation-personnalisee-a-l-autonomie-apa.htm",
+    form: "https://mda.herault.fr/cms_viewFile.php?idtf=9622&path=dossier_demande_APA_2021.pdf",
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",
-    link: "http://www.ille-et-vilaine.fr/fr/demande-apa",
-    form: "http://www.ille-et-vilaine.fr/sites/default/files/asset/document/faire_demande_allocation_apa_juillet_2014.pdf",
+    link: "https://www.ille-et-vilaine.fr/actualite/bien-vieillir-chez-soi-avec-l-apa",
   },
   departement_isere: {
     label: "du département de l'Isère",
@@ -71,8 +70,8 @@ export const APA_BY_CODE = {
   },
   departement_loire_atlantique: {
     label: "du département de Loire Atlantique",
-    link: "https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/personne-agee/l-allocation-personnalisee-d-autonomie-apa-a-domicile-fr-p1_315752?portal=aca_6941&category=p2_807421",
-    form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2014-02/personnes_agees_for_apa_2006_10_03__16_42_50_200.pdf",
+    link: "https://www.loire-atlantique.fr/44/seniors-personnes-agees/l-allocation-personnalisee-d-autonomie-apa-a-domicile/c_1273554",
+    form: "https://www.loire-atlantique.fr/upload/docs/application/pdf/2020-09/formulaire_de_demande_daide_2018.pdf",
   },
   departement_loiret: {
     label: "du département du Loiret",
@@ -87,12 +86,12 @@ export const APA_BY_CODE = {
   departement_nord: {
     label: "du département du Nord",
     link: "https://lenord.fr/jcms/prd2_335926/allocation-personnalisee-d-autonomie-apa",
-    form: "https://lenord.fr/upload/docs/application/pdf/2018-04/formulaire_apa_2018-04-27_16-30-55_949.pdf",
+    form: "https://info.lenord.fr/upload/attachments/demande_daides_a_lautonomie_interactif-62b03b42368e9.pdf",
   },
   departement_pas_de_calais: {
     label: "du département du Pas de Calais",
-    link: "http://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
-    form: "http://www.pasdecalais.fr/content/download/79774/1263503/file/Dossier+de+demande+APA.pdf",
+    link: "https://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
+    form: "https://www.pasdecalais.fr/content/download/16113/164597/file/NOM+SUR+TRANCHE-DEMANDE+APA+Bleu+Prusse+REF+KIMOCE+760254+BLEU+Derni%C3%A8re+version.pdf",
   },
   departement_pyrenees_atlantiques: {
     label: "du département des Pyrénées Atlantiques",
@@ -101,13 +100,13 @@ export const APA_BY_CODE = {
   },
   departement_bas_rhin: {
     label: "du département du Bas-Rhin",
-    link: "http://www.bas-rhin.fr/acces-direct/guide-aides/detail-guide-aides/381/Allocation-personnalisee-d-autonomie--APA--a-domicile",
-    form: "http://www.bas-rhin.fr/eCommunityDocuments/%7BE34C4D98-631D-459B-AA4E-61C91D2F7BA0%7D/3759/document_conseil-departemental-bas-rhin-formulaire-demande-apa.pdf",
+    link: "https://www.alsace.eu/aides-et-services/personnes-agees/beneficier-d-aides/",
+    form: "https://www.alsace.eu/media/5645/cea-formulaire-notice-renseignements-medicaux-apa-bas-rhin.pdf",
   },
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",
-    link: "https://www.haut-rhin.fr/content/vivre-%C3%A0-domicile-1#:~:text=L'Allocation%20personnalis%C3%A9e%20d'autonomie%20%C3%A0%20domicile%20(APA),%C3%A0%20leur%20perte%20d'autonomie.",
-    form: "https://www.haut-rhin.fr/sites/cea/files/FORMULAIRE%20APA_1.pdf",
+    link: "https://www.alsace.eu/aides-et-services/personnes-agees/beneficier-d-aides/",
+    form: "https://www.alsace.eu/media/5644/cea-formulaire-notice-renseignements-medicaux-apa-haut-rhin.pdf",
   },
   departement_paris: {
     label: "de Paris",
@@ -131,13 +130,13 @@ export const APA_BY_CODE = {
   },
   departement_hauts_de_seine: {
     label: "du département de Hauts de Seine",
-    link: "http://www.hauts-de-seine.fr/solidarites/personnes-agees/maintien-a-domicile/comment-beneficier-de-lapa/",
-    form: "http://www.hauts-de-seine.fr/fileadmin/PDF/Solidarites/Autonomie/APA_DossierDemandeDom_dec2018.pdf",
+    link: "https://www.78-92.fr/annuaire/aides-et-services/detail/apa-allocation-personnalisee-d-autonomie-a-domicile",
+    form: "https://www.78-92.fr/fileadmin/user_upload/Dispositifs/HAUTS_DE_SEINE/PSOL/APA/2020-06-V3_Formulaire_de_demande_APA_Dom.pdf",
   },
   departement_seine_saint_denis: {
     label: "du département de Seine Saint Denis",
-    link: "https://seinesaintdenis.fr/Allocation-Departementale-Personnalisee-d-Autonomie.html",
-    form: "https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa.pdf",
+    link: "https://seinesaintdenis.fr/l-allocation-departementale-personnalisee-autonomie-adpa",
+    form: "https://seinesaintdenis.fr/IMG/pdf/formulaire_demande_adpa-2.pdf",
   },
   departement_val_de_marne: {
     label: "du département du Val de Marne",

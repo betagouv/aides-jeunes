@@ -99,7 +99,7 @@ const simulation = {
 }
 describe("The situation", function () {
   it('should contain a value for `pensions_alimentaires_percues` during last 12 month and and during the fiscal year"', function () {
-    const situation = generateSituation(simulation, true)
+    const situation: any = generateSituation(simulation, true)
 
     expect(situation.demandeur.pensions_alimentaires_percues["2019"]).toEqual(
       2400

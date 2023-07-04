@@ -28,7 +28,9 @@ export const APA_BY_CODE = {
   },
   departement_eure_et_loir: {
     label: "du département d'Eure et Loir",
-    link: "https://eurelien.fr/mon-quotidien/seniors/",
+    link: "https://mesdemarches.eurelien.fr/seniors/seniors-plus-de-60-ans-besoin-daide-pour/jai-besoin-dun-soutien-financier-pour-as/",
+    teleservice: "https://formulaires.mesdemarches.eurelien.fr/primo-demande-apa/",
+  },
   },
   departement_finistere: {
     label: "du département du Finistère",

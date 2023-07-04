@@ -8,9 +8,7 @@ description: Afin de répondre aux difficultés de mobilité des jeunes, la
   dossiers de candidature se fait auprès d’Info Jeunes Sud-Hérault.
 prefix: la
 conditions_generales:
-  - type: epcis
-    values:
-      - "200042653"
+  - type: attached_to_institution
   - type: age
     operator: ">="
     value: 18

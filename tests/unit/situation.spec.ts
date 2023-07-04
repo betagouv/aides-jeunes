@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import { generateSituation } from "@root/lib/situations.js"
 import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping/index.js"
 

@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import { isGeographicallyIncluded } from "@root/lib/benefits/geographical-count-utils.js"
 
 describe("geographical benefit count", function () {

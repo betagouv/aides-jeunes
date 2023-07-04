@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping/index.js"
 import {
   testProfileEligibility,

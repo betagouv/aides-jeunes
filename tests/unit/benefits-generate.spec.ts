@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import subject from "@root/data/index.js"
 
 describe("benefit descriptions", function () {

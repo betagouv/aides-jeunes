@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import { computeAides } from "@root/lib/benefits/compute.js"
 import benefits from "@root/data/all.js"
 

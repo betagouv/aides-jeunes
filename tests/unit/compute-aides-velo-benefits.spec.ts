@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo.js"
 
 describe("computeAidesVeloBenefits", function () {

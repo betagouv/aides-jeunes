@@ -1,4 +1,4 @@
-import entities from "@root/backend/lib/definitions"
+import entities from "@root/backend/lib/definitions.js"
 const { famille, individu, menage, parents } = entities
 
 describe("Tests definitions", function () {

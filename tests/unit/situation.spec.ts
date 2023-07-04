@@ -1,5 +1,5 @@
-import { generateSituation } from "@root/lib/situations"
-import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping"
+import { generateSituation } from "@root/lib/situations.js"
+import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping/index.js"
 
 const simulation = {
   answers: {

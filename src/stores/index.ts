@@ -19,7 +19,7 @@ import {
   Situation,
   Store,
 } from "@lib/types/store.d.js"
-import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
+import { SimulationStatusEnum } from "@lib/enums/simulation.js"
 
 function defaultCalculs(): Calculs {
   return {

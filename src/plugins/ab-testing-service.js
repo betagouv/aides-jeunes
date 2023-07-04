@@ -1,4 +1,4 @@
-import storageService from "@/lib/storage-service.ts"
+import storageService from "@/lib/storage-service.js"
 /*
  * L'AB testing repose sur les custom variables de Matomo
  * https://matomo.org/docs/custom-variables/

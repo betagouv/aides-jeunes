@@ -1,4 +1,4 @@
-import subject from "@root/data"
+import subject from "@root/data/index.js"
 
 describe("benefit descriptions", function () {
   it("exists", function () {

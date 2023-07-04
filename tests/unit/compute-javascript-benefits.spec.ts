@@ -1,10 +1,10 @@
-import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping"
+import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping/index.js"
 import {
   testProfileEligibility,
   testGeographicalEligibility,
   computeJavascriptBenefits,
-} from "@root/lib/benefits/compute-javascript"
-import benefits from "@root/data/all"
+} from "@root/lib/benefits/compute-javascript.js"
+import benefits from "@root/data/all.js"
 
 describe("computeAides", function () {
   let benefit

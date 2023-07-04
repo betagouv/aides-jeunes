@@ -1,4 +1,11 @@
 import storageService from "@/lib/storage-service.js"
+
+declare global {
+  interface Window {
+    _paq: [string, number, string?][]
+  }
+}
+
 /*
  * L'AB testing repose sur les custom variables de Matomo
  * https://matomo.org/docs/custom-variables/

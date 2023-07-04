@@ -107,6 +107,7 @@ export const APA_BY_CODE = {
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",
     link: "https://www.alsace.eu/aides-et-services/personnes-agees/beneficier-d-aides/",
+    form: "https://www.alsace.eu/media/5644/cea-formulaire-notice-renseignements-medicaux-apa-haut-rhin.pdf",
   },
   departement_paris: {
     label: "de Paris",

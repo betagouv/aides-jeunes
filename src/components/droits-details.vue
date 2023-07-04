@@ -129,7 +129,7 @@ import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
-import ABTestingService from "@/plugins/ab-testing-service.js"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 export default {
   name: "DroitsDetails",

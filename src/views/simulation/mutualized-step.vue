@@ -93,7 +93,7 @@ import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "@lib/answers.ts"
 import { useIndividu } from "@/composables/individu.ts"
 import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.js"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 export default {
   name: "MutualizedStep",

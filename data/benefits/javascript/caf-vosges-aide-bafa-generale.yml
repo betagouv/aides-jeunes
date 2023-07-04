@@ -22,8 +22,8 @@ conditions_generales:
     value: 670
     operator: "<="
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
-instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/enfance-et-jeunesse/les-bourses-bafa-et-bafd
+link: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/vie-personnelle/l-aide-aux-temps-libres/les-bourses-bafa-et-bafd
+instructions: https://www.caf.fr/allocataires/caf-des-vosges/offre-de-service/vie-personnelle/l-aide-aux-temps-libres/les-bourses-bafa-et-bafd
 prefix: l’
 type: float
 unit: €

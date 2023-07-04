@@ -1,7 +1,7 @@
 label: aide au BAFA pour une session de formation d'approfondissement
 institution: caf_jura
 description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF du Jura pour vous aider à financer votre session
+  disposition par la CAF du Jura pour vous aider à financer en grande partie votre session
   d’approfondissement ou de qualification en complément de l'aide
   nationale apportée par la CAF.
 prefix: l’
@@ -20,10 +20,8 @@ conditions_generales:
 profils: []
 interestFlag: _interetBafa
 type: float
-unit: €
+unit: "%"
 periodicite: ponctuelle
-legend: ""
-montant: 150
+montant: 90
 link: https://caf.fr/allocataires/caf-du-jura/offre-de-service/vie-personnelle/l-aide-la-formation-bafabafad
-form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202022.pdf
-instructions: ""
+form: https://caf.fr/sites/default/files/medias/391/Documents/Formulaire%20BAFA%20fonds%20locaux%202023.docx

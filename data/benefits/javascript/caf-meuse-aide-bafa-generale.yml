@@ -12,12 +12,11 @@ conditions_generales:
     values:
       - "55"
 profils: []
-link: https://www.caf.fr/allocataires/caf-de-la-meuse/offre-de-service/enfance-et-jeunesse/l-aide-a-la-formation-bafa-bafd
-form: ""
-instructions: https://www.caf.fr/sites/default/files/caf/551/Documents/Offre%20de%20service/enfance%20jeunesse/BAFA%20BAFD/notice_BAFA_BAFD%20202101.pdf
+link: https://caf.fr/allocataires/caf-de-la-meuse/offre-de-service/vie-professionnelle/l-aide-la-formation-bafa-bafd
+instructions: https://caf.fr/allocataires/caf-de-la-meuse/offre-de-service/vie-professionnelle/l-aide-la-formation-bafa-bafd
 prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
-montant: 100
+montant: 200
 interestFlag: _interetBafa

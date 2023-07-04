@@ -1,0 +1,33 @@
+label: Bourse communale au permis de conduire
+institution: ville_dunkerque
+description:
+  La ville de Dunkerque permet à certains jeunes aux ressources  modestes de bénéficier du financement
+  d'une partie de leur permis B, en échange de 50 heures de travail bénévole
+  dans une association ou un service municipal. L’aide est versée directement à l’auto-école une fois la totalité des heures de bénévolat réalisée.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "59183"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 30
+  - type: quotient_familial
+    operator: <=
+    value: 1027
+    period: month
+profils: []
+conditions:
+  - Résider dans la ville de Dunkerque ou une commune associée depuis au moins deux ans.
+  - Effectuer 50 heures de bénévolat dans une association partenaire liée à la convention, ou dans une mission d'intérêt général proposé par les services municipaux ou mutualisés.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+montant: 600
+link: https://www.ville-dunkerque.fr/vous/jeunes-12-30-ans/parcours-de-reussite-jai-besoin-dun-coup-de-pouce
+form: https://www.ville-dunkerque.fr/fileadmin/user_upload/Jeunes_a_Dunkerque/Dossier_Mon_parcours_de_reussite_2023/Dossier_Mon_parcours_de_reussite_2023_2024.pdf
+instructions: https://www.ville-dunkerque.fr/fileadmin/user_upload/Jeunes_a_Dunkerque/Dossier_Mon_parcours_de_reussite_2023/Fiche_Aide_aux_permis_BAFA_BAFD_BNSSA.pdf

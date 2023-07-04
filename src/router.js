@@ -155,15 +155,6 @@ const router = createRouter({
           meta: {
             headTitle: `Trouver de l'aide près de chez vous avec le simulateur d'aides ${context.name}`,
           },
-          beforeEnter(_to, _from, next) {
-            const store = useStore()
-            if (!store.hasResults) {
-              store.fetch(Simulation.getLatestId()).then(() => {
-                next()
-              })
-            }
-            next()
-          },
         },
         {
           name: "resultatsLieuxDedies",

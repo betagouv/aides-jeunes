@@ -1,8 +1,9 @@
-label: aide à l'achat d'équipement
+label: prêt à taux zéro pour l'achat d'équipement mobilier et ménager
 institution: caf_nord
-description: La Caf vous propose un prêt équipement à taux 0 pour l'achat d’un
+description: La Caf vous propose un prêt sans intérêts pour l'achat d’un
   ordinateur, d'électroménager, d'équipement mobilier, de matériel de
-  puériculture, ou d'un vélo pour vous ou pour votre enfant.
+  puériculture, ou d'un vélo pour vous ou pour votre enfant. Le prêt est
+  remboursable à raison de 28 € par mois sur les prestations Caf, pendant 36 mois.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -23,4 +24,4 @@ periodicite: autre
 legend: maximum
 montant: 1000
 link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/logement/le-pret-caf-equipement-mobiliermenager#:~:text=Quel%20montant%20%3F,%C3%A0%20taux%20z%C3%A9ro%2C%20sans%20int%C3%A9r%C3%AAt.
-form: https://www.caf.fr/sites/default/files/medias/598/Documents/Pr%C3%AAt%20%C3%A9quipement/Pret_equipement_Caf.pdf
+form: https://www.caf.fr/sites/default/files/medias/598/Documents/Pr%C3%AAt%20%C3%A9quipement/DEQUIP_2023.pdf

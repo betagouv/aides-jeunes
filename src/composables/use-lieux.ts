@@ -7,6 +7,7 @@ import { ActiviteType } from "@lib/enums/activite.js"
 import { lieuLayout } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
 import { benefitLayout } from "@data/types/benefits"
+import Simulation from "@/lib/simulation.js"
 
 export function useLieux() {
   const store = useStore()
@@ -15,8 +16,6 @@ export function useLieux() {
   const lieux = ref<lieuLayout[]>([])
   const benefit = ref<benefitLayout | null>(null)
   const updating = ref<boolean>(true)
-
-  const city = store.situation.menage.depcom
 
   const currentLieu = computed(() => {
     return lieux.value.find(
@@ -78,6 +77,13 @@ export function useLieux() {
   }
 
   const loadLieux = async () => {
+    let city = store.situation.menage.depcom
+    const simulationId = Simulation.getLatestId()
+    if (!store.hasResults && !city && simulationId) {
+      await store.fetch(simulationId)
+      city = store.situation.menage.depcom
+    }
+
     if (!city) {
       Sentry.captureMessage(`Depcom required to loadLieux()`)
       updating.value = false
@@ -121,5 +127,6 @@ export function useLieux() {
     currentLieu,
     updating,
     benefit,
+    loadLieux,
   }
 }

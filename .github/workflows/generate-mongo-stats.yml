@@ -1,0 +1,17 @@
+name: Generate daily MongoDB statistics
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run script
+        run: |
+          chmod +x generate_mongo_stats.sh
+          sh ./tools/generate_mongo_stats.sh

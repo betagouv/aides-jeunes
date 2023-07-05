@@ -143,6 +143,7 @@ const dryRun = process.argv.includes("--dry-run")
 const noPriority = process.argv.includes("--no-priority")
 const benefitIdsFromCLI = getBenefitIdsFromCLI()
 const pullRequestURL = determinePullRequestURL()
+const processingPR = Boolean(pullRequestURL)
 
 function getBenefitIdsFromCLI(): string[] | undefined {
   if (process.argv.includes("--only")) {
@@ -192,7 +193,7 @@ async function main() {
   const benefitsToAnalyze = filterBenefitDataToProcess(
     benefitData,
     benefitIdsFromCLI,
-    pullRequestURL
+    processingPR
       ? rawExistingWarnings.records.map((r) => r.fields.Aide)
       : undefined
   )
@@ -222,7 +223,7 @@ async function main() {
   )
 
   const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
-  if (pullRequestURL) {
+  if (processingPR) {
     untouchedWarnings.forEach((record) => {
       if (record.fields.PR?.length) {
         return

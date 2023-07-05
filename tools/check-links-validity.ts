@@ -38,15 +38,8 @@ function setEditLink(benefit) {
 }
 
 async function checkURL(benefit) {
-  const results = await Bluebird.map(benefit.links, fetchStatus)
-  const errors = results.filter((r) => !r.ok)
-  console.log(
-    `${benefit.label} (${benefit.institution})\n${results
-      .map((e) => (e.ok ? `- ✅ ${e.type}` : `- ❌ ${e.type} ${e.link}`))
-      .join("\n")}`
-  )
-
-  return { ...benefit, errors }
+  await Bluebird.map(benefit.links, fetchStatus)
+  return benefit
 }
 
 async function fetchStatus(ressource) {

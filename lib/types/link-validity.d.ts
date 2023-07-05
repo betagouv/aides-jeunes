@@ -12,7 +12,6 @@ export interface benefitData {
   priority: number
   links: benefitLink[]
   editLink: string
-  errors: benefitLink[]
 }
 
 interface GristFields {

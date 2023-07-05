@@ -84,7 +84,8 @@ function extractSurveySummary(db) {
           benefitActionSurvey.answers.sort(function (a, b) {
             return m[a.value] > m[b.value]
           })
-          emit(benefitActionSurvey.answers[0].value, 1)
+          const month = benefitActionSurvey.repliedAt.toISOString().slice(7)
+          emit(month + ";" + benefitActionSurvey.answers[0].value, 1)
         }
       },
       function (k, values) {

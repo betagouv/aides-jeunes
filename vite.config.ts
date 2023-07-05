@@ -35,6 +35,9 @@ function createSentryPlugin() {
     include: "./dist",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
+    sourcemaps: {
+      assets: "./dist/**",
+    },
   })
 }
 

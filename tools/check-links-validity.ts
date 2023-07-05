@@ -1,7 +1,8 @@
 import Benefits from "../data/all.js"
 import config from "../backend/config/index.js"
 import { getRequiredAdditionsAndTouchWarningsToKeep } from "../lib/benefits/link-validity.js"
-import { GristResponse, GristUpdate } from "../lib/types/link-validity.js"
+import { GristUpdate } from "../lib/types/link-validity.js"
+import { Grist } from "../lib/grist.js"
 
 import axios from "axios"
 import https from "https"
@@ -145,48 +146,6 @@ async function getBenefitData(noPriority: boolean) {
   return data.sort((a, b) => +(a.priority - b.priority))
 }
 
-const docId = process.env.GRIST_DOC_ID
-const apiKey = process.env.GRIST_API_KEY
-const baseURL = "grist.incubateur.net"
-const tableId = "Veille"
-
-const docUrl = `https://${baseURL}/api/docs/${docId}`
-const recordsUrl = `${docUrl}/tables/${tableId}/records`
-
-const gristConfig = {
-  headers: {
-    Authorization: `Bearer ${apiKey}`,
-    "Content-Type": "application/json",
-  },
-}
-
-const Grist = {
-  get: async (filter?: any) => {
-    let url = recordsUrl
-    if (filter) {
-      url += "?filter=" + JSON.stringify(filter)
-    }
-    const response = await axios.get<GristResponse>(url, gristConfig)
-    return response.data
-  },
-  add: async (records) => {
-    const response = await axios.post<GristResponse>(
-      recordsUrl,
-      { records },
-      gristConfig
-    )
-    return response.data
-  },
-  update: async (records) => {
-    const response = await axios.patch<GristResponse>(
-      recordsUrl,
-      { records },
-      gristConfig
-    )
-    return response.data
-  },
-}
-
 const dryRun = process.argv.includes("--dry-run")
 const noPriority = process.argv.includes("--no-priority")
 const benefitIdsFromCLI = getBenefitIdsFromCLI()
@@ -224,13 +183,14 @@ function filterBenefitDataToProcess(
 }
 
 async function main() {
-  if (!docId) {
+  if (!process.env.GRIST_DOC_ID) {
     throw new Error("Missing GRIST_DOC_ID")
   }
-  if (!apiKey) {
+  if (!process.env.GRIST_API_KEY) {
     throw new Error("Missing GRIST_API_KEY")
   }
-  const rawExistingWarnings = await Grist.get({
+  const gristAPI = Grist(process.env.GRIST_DOC_ID, process.env.GRIST_API_KEY)
+  const rawExistingWarnings = await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
   })
@@ -298,10 +258,10 @@ async function main() {
   if (!dryRun) {
     try {
       if (recordsByOperationTypes.addition.length) {
-        await Grist.add(recordsByOperationTypes.addition)
+        await gristAPI.add(recordsByOperationTypes.addition)
       }
       if (recordsByOperationTypes.update.length) {
-        await Grist.update(recordsByOperationTypes.update)
+        await gristAPI.update(recordsByOperationTypes.update)
       }
     } catch (e) {
       console.log(e)

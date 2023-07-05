@@ -22,9 +22,9 @@ conditions:
   - Avoir validé l'examen du code de la route.
   - Avoir un projet d'emploi ou de formation validé par un référent FAJ (Fonds
     d'aide aux jeunes).
-  - "Etre engagé dans une mission bénévole de 40 à 50 heures auprès d’un
-    organisme local à vocation sociale ou humanitaire (ex : Restos du Cœur,
-    Croix Rouge etc.)."
+conditions_benevoles:
+  - "40 à 50 heures de bénévolat auprès d’un organisme local à vocation sociale
+    ou humanitaire (ex : Restos du Cœur, Croix Rouge etc.)."
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

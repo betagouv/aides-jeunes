@@ -55,10 +55,10 @@ export async function persist(req: Request, res: Response) {
     )) as Followup
     if (email) {
       await followup.sendSimulationResultsEmail()
-    } else if (phone) {
+    }
+    if (phone) {
       await followup.sendSimulationResultsSms()
     }
-
     return res.send({ result: "OK" })
   } catch (error) {
     console.error("error", error)

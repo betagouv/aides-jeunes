@@ -178,7 +178,7 @@
       "node_modules"
     ],
     "moduleNameMapper": {
-      "@root/(.*).js": "<rootDir>/$1.ts",
+      "@root/(.*).js": "<rootDir>/$1",
       "@backend/(.*).js": "<rootDir>/backend/$1",
       "@lib/(.*).js": "<rootDir>/lib/$1",
       "@/(.*).js": "<rootDir>/src/$1",

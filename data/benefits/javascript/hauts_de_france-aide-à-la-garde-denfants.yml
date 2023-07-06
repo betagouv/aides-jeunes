@@ -1,4 +1,4 @@
-label: Aide à la garde d'enfants
+label: aide à la garde d'enfants
 institution: hauts_de_france
 description: Cette aide permet de faciliter l'accès aux services de garde
   d'enfants pour le(s) parent(s) aux revenus modestes.
@@ -7,12 +7,19 @@ conditions:
     Hauts-de-France.
   - Recourir à un mode de garde déclaré.
   - Recourir à une garde d'au moins 20 heures par semaine.
+conditions_generales:
+  - type: regions
+    values:
+      - "32"
+profils:
+  - type: salarie
+    conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=636
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=AGE%2009%2F21
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=636
 prefix: l’
 type: float
 unit: €
-openfiscaPeriod: thisMonth
 periodicite: mensuelle
-entity: familles
+legend: maximum
+montant: 30

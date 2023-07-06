@@ -11,9 +11,6 @@ function processBlock(
   if (block instanceof Step) {
     block.isActive = isActive
     journey.push(block)
-  } else if (typeof block == "string") {
-    console.warn(`string step should no longer be used: ${block}`)
-    journey.push({ isActive, path: block })
   } else {
     if (!block.steps) {
       throw Error(`${block} (${block instanceof Array ? "array" : "?"})`)

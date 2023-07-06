@@ -615,6 +615,5 @@ export function generateBlocks(situation): BlockLayout[] {
     {
       steps: [new Step({ entity: "resultats", chapter: "resultats" })],
     },
-    new Step({ entity: "resultats" }),
   ]
 }

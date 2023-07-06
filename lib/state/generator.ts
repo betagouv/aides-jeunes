@@ -82,6 +82,5 @@ export function generateAllSteps(
     return []
   }
 
-  fullSteps.pop()
   return assignLastChapterToSteps(fullSteps)
 }

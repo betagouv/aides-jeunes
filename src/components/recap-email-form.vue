@@ -24,9 +24,9 @@ const simulationId = computed(() => {
 
 const sendEmailRecap = async (surveyOptin) => {
   try {
-    store.setRecapEmailState("waiting")
+    store.setFormRecapEmailState("waiting")
     if (emailRef.value && !emailRef.value.checkValidity()) {
-      store.setRecapEmailState(undefined)
+      store.setFormRecapEmailState(undefined)
       errorMessage.value = true
       emailRef.value.focus()
       StatisticsMixin.methods.sendEventToMatomo(
@@ -44,7 +44,7 @@ const sendEmailRecap = async (surveyOptin) => {
       surveyOptin,
     }
     await axios.post(uri, payload)
-    store.setRecapEmailState("ok")
+    store.setFormRecapEmailState("ok")
     emailValue.value = ""
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategories.FOLLOWUP,
@@ -52,7 +52,7 @@ const sendEmailRecap = async (surveyOptin) => {
       ABTestingService.getValues().recap_email_form
     )
   } catch (error) {
-    store.setRecapEmailState("error")
+    store.setFormRecapEmailState("error")
   }
 }
 </script>

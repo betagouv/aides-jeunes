@@ -103,8 +103,16 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
   try {
     store.setRecapSmsState("waiting")
     store.setRecapEmailState("waiting")
-    if (!inputPhoneIsValid()) return
-    if (!inputEmailIsValid()) return
+    if (!inputEmailIsValid()) {
+      store.setRecapEmailState(undefined)
+      store.setRecapSmsState(undefined)
+      return
+    }
+    if (!inputPhoneIsValid()) {
+      store.setRecapEmailState(undefined)
+      store.setRecapSmsState(undefined)
+      return
+    }
     postFollowup(surveyOptin, emailValue.value, phoneValue.value)
     store.setRecapSmsState("ok")
     store.setRecapEmailState("ok")

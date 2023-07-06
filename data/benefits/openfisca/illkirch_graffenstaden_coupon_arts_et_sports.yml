@@ -1,8 +1,9 @@
 label: coupon Arts et Sports
 institution: ville_illkirch_graffenstaden
-description: Le Coupon Arts et Sports favorise l’accès à une pratique sportive et/ou artistique
-pour les enfants mineurs illkirchois grâce à un allègement des frais d’inscription.
-La famille reçoit un ou plusieurs coupons en fonction de son quotient familial.
+description:
+  Le Coupon Arts et Sports favorise l’accès à une pratique sportive et/ou artistique
+  pour les enfants mineurs illkirchois grâce à un allègement des frais d’inscription.
+  La famille reçoit un ou plusieurs coupons en fonction de son quotient familial.
 link: http://www.illkirch.eu/solidarite-et-sante/ccas/
 instructions: http://www.illkirch.eu/wp-content/uploads/coupon-arts-et-sports-2021.pdf
 prefix: le

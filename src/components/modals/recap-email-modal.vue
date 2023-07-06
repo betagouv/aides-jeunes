@@ -144,7 +144,7 @@ export default {
   },
   methods: {
     hide() {
-      this.store.setRecapEmailState(undefined)
+      this.store.setFormRecapEmailState(undefined)
     },
     getRecap(surveyOptin) {
       if (!this.$refs.form.checkValidity()) {
@@ -165,14 +165,14 @@ export default {
         surveyOptin,
       }
 
-      this.store.setRecapEmailState("waiting")
+      this.store.setFormRecapEmailState("waiting")
       return axios
         .post(uri, payload)
         .then(() => {
           this.store.setRecapEmailState("ok")
         })
         .catch(() => {
-          this.store.setRecapEmailState("error")
+          this.store.setFormRecapEmailState("error")
         })
     },
   },

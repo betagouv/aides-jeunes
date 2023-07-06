@@ -68,7 +68,7 @@ function defaultStore(): Store {
     saveSituationError: null,
     openFiscaParameters: {},
     recapEmailState: undefined,
-    recapSmsState: undefined,
+    recapPhoneState: undefined,
     external_id: undefined,
   }
 }
@@ -82,7 +82,7 @@ function getPersitedStateProperties(
     simulation: state.simulation,
     calculs: state.calculs || defaultCalculs(),
     recapEmailState: state.recapEmailState,
-    recapSmsState: state.recapSmsState,
+    recapPhoneState: state.recapPhoneState,
   }
   if (!save) {
     persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)
@@ -408,11 +408,15 @@ export const useStore = defineStore("store", {
     updateError(error: string) {
       this.error = error
     },
-    setRecapEmailState(newState: string | undefined) {
+    setFormRecapEmailState(newState: string | undefined) {
       this.recapEmailState = newState
     },
-    setRecapSmsState(newState: string | undefined) {
-      this.recapSmsState = newState
+    setFormRecapPhoneState(newState: string | undefined) {
+      this.recapPhoneState = newState
+    },
+    setFormRecapState(newState: string | undefined) {
+      this.recapPhoneState = newState
+      this.recapEmailState = newState
     },
     setSimulationId(id: string) {
       this.simulationId = id
@@ -422,8 +426,7 @@ export const useStore = defineStore("store", {
       this.simulation.simulationToken = token
     },
     save() {
-      this.setRecapEmailState(undefined)
-      this.setRecapSmsState(undefined)
+      this.setFormRecapState(undefined)
 
       const simulation = { ...this.simulation, _id: undefined }
       if (this.simulationId) {
@@ -451,8 +454,8 @@ export const useStore = defineStore("store", {
       this.access.forbidden = true
     },
     fetch(id: string) {
-      this.setRecapEmailState(undefined)
-      this.setRecapSmsState(undefined)
+      this.setFormRecapEmailState(undefined)
+      this.setFormRecapPhoneState(undefined)
       const token = this.getSimulationToken
 
       this.access.fetching = true

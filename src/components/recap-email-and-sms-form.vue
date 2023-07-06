@@ -17,7 +17,7 @@ const emailRef = ref<HTMLFormElement>()
 const emailInputErrorMessage = ref<boolean>()
 const phoneInputErrorMessage = ref<boolean>()
 
-const recapSmsState = computed(() => store.recapSmsState)
+const recapPhoneState = computed(() => store.recapPhoneState)
 const recapEmailState = computed(() => store.recapEmailState)
 const emailFilled = computed(() => emailValue.value?.length ?? 0 > 0)
 const phoneFilled = computed(() => phoneValue.value?.length ?? 0 > 0)
@@ -44,14 +44,13 @@ const sendRecap = async (surveyOptin) => {
   } else if (emailFilled.value && !phoneFilled.value) {
     sendRecapByEmail(surveyOptin)
     phoneInputErrorMessage.value = false
-    store.setRecapSmsState(undefined)
+    store.setFormRecapPhoneState(undefined)
   } else if (!emailFilled.value && phoneFilled.value) {
     sendRecapBySms(surveyOptin)
     emailInputErrorMessage.value = false
-    store.setRecapEmailState(undefined)
+    store.setFormRecapEmailState(undefined)
   } else {
-    store.setRecapSmsState(undefined)
-    store.setRecapEmailState(undefined)
+    store.setFormRecapState(undefined)
     phoneInputErrorMessage.value = true
     emailInputErrorMessage.value = true
   }
@@ -60,7 +59,7 @@ const sendRecap = async (surveyOptin) => {
 const inputPhoneIsValid = () => {
   if (phoneRef.value && !regexAndPhoneTypeIsValid()) {
     phoneInputErrorMessage.value = true
-    store.setRecapSmsState(undefined)
+    store.setFormRecapPhoneState(undefined)
     phoneRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategories.GENERAL,
@@ -75,7 +74,7 @@ const inputPhoneIsValid = () => {
 
 const inputEmailIsValid = () => {
   if (emailRef.value && !emailRef.value.checkValidity()) {
-    store.setRecapEmailState(undefined)
+    store.setFormRecapEmailState(undefined)
     emailInputErrorMessage.value = true
     emailRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
@@ -101,35 +100,30 @@ const postFollowup = async (surveyOptin, email?, phone?) => {
 
 const sendRecapByEmailAndSms = async (surveyOptin) => {
   try {
-    store.setRecapSmsState("waiting")
-    store.setRecapEmailState("waiting")
+    store.setFormRecapState("waiting")
     if (!inputEmailIsValid()) {
-      store.setRecapEmailState(undefined)
-      store.setRecapSmsState(undefined)
+      store.setFormRecapState(undefined)
       return
     }
     if (!inputPhoneIsValid()) {
-      store.setRecapEmailState(undefined)
-      store.setRecapSmsState(undefined)
+      store.setFormRecapState(undefined)
       return
     }
     postFollowup(surveyOptin, emailValue.value, phoneValue.value)
-    store.setRecapSmsState("ok")
-    store.setRecapEmailState("ok")
+    store.setFormRecapState("ok")
     phoneValue.value = undefined
     emailValue.value = undefined
   } catch (error) {
-    store.setRecapSmsState("error")
-    store.setRecapEmailState("error")
+    store.setFormRecapState("error")
   }
 }
 
 const sendRecapBySms = async (surveyOptin) => {
   try {
-    store.setRecapSmsState("waiting")
+    store.setFormRecapPhoneState("waiting")
     if (!inputPhoneIsValid()) return
     postFollowup(surveyOptin, undefined, phoneValue.value)
-    store.setRecapSmsState("ok")
+    store.setFormRecapPhoneState("ok")
     phoneValue.value = undefined
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategories.FOLLOWUP,
@@ -137,16 +131,16 @@ const sendRecapBySms = async (surveyOptin) => {
       ABTestingService.getValues().recap_sms_form
     )
   } catch (error) {
-    store.setRecapSmsState("error")
+    store.setFormRecapPhoneState("error")
   }
 }
 
 const sendRecapByEmail = async (surveyOptin) => {
   try {
-    store.setRecapEmailState("waiting")
+    store.setFormRecapEmailState("waiting")
     if (!inputEmailIsValid()) return
     postFollowup(surveyOptin, emailValue.value)
-    store.setRecapEmailState("ok")
+    store.setFormRecapEmailState("ok")
     emailValue.value = undefined
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategories.FOLLOWUP,
@@ -154,41 +148,41 @@ const sendRecapByEmail = async (surveyOptin) => {
       ABTestingService.getValues().recap_sms_form
     )
   } catch (error) {
-    store.setRecapEmailState("error")
+    store.setFormRecapEmailState("error")
   }
 }
 </script>
 
 <template>
   <div>
-    <div v-if="recapSmsState === 'error'" class="fr-alert fr-alert--error">
+    <div v-if="recapPhoneState === 'error'" class="fr-alert fr-alert--error">
       <p>Une erreur s'est produite dans l'envoi par SMS</p>
     </div>
     <div v-if="recapEmailState === 'error'" class="fr-alert fr-alert--error">
       <p>Une erreur s'est produite dans l'envoi par l'email</p>
     </div>
     <div
-      v-if="recapSmsState === 'ok' && recapEmailState === 'ok'"
+      v-if="recapPhoneState === 'ok' && recapEmailState === 'ok'"
       class="fr-alert fr-alert--success"
     >
       <h3 class="fr-alert__title">Succès de l'envoi</h3>
       <p>Un récapitulatif vous a été envoyé par email et par SMS</p>
     </div>
     <div
-      v-else-if="recapSmsState === 'ok' && recapEmailState != 'ok'"
+      v-else-if="recapPhoneState === 'ok' && recapEmailState != 'ok'"
       class="fr-alert fr-alert--success"
     >
       <h3 class="fr-alert__title">Succès de l'envoi</h3>
       <p>Un récapitulatif vous a été envoyé par SMS</p>
     </div>
     <div
-      v-else-if="recapEmailState === 'ok' && recapSmsState != 'ok'"
+      v-else-if="recapEmailState === 'ok' && recapPhoneState != 'ok'"
       class="fr-alert fr-alert--success"
     >
       <h3 class="fr-alert__title">Succès de l'envoi</h3>
       <p>Un récapitulatif vous a été envoyé par email</p>
     </div>
-    <div v-if="recapSmsState === 'waiting' || recapEmailState === 'waiting'">
+    <div v-if="recapPhoneState === 'waiting' || recapEmailState === 'waiting'">
       <p
         ><span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
@@ -245,7 +239,7 @@ const sendRecapByEmail = async (surveyOptin) => {
           type="tel"
           class="fr-input"
           autocomplete="tel"
-          :disabled="recapSmsState === 'waiting'"
+          :disabled="recapPhoneState === 'waiting'"
         />
       </div>
       <WarningMessage
@@ -260,7 +254,7 @@ const sendRecapByEmail = async (surveyOptin) => {
     <ul class="fr-btns-group">
       <li>
         <button
-          :disabled="recapSmsState === 'waiting'"
+          :disabled="recapPhoneState === 'waiting'"
           class="fr-btn"
           @click.prevent="sendRecap(true)"
         >
@@ -269,7 +263,7 @@ const sendRecapByEmail = async (surveyOptin) => {
       </li>
       <li>
         <button
-          :disabled="recapSmsState === 'waiting'"
+          :disabled="recapPhoneState === 'waiting'"
           class="fr-btn fr-btn--secondary"
           @click.prevent="sendRecap(false)"
         >

@@ -55,7 +55,7 @@ export interface PersistedStore {
   simulation: Simulation
   calculs: Calculs
   recapEmailState: string | undefined
-  recapSmsState: string | undefined
+  recapPhoneState: string | undefined
   dates?: any
 }
 
@@ -82,6 +82,6 @@ export interface Store {
   saveSituationError: string | null
   openFiscaParameters: OpenfiscaParameters
   recapEmailState: string | undefined
-  recapSmsState: string | undefined
+  recapPhoneState: string | undefined
   external_id?: string
 }

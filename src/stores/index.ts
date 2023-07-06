@@ -195,24 +195,17 @@ export const useStore = defineStore("store", {
       )
     },
     /* This function returns
-     * - undefined if demandeur do not have any patrimoine ressource
-     * - false if those ressources are all null else
+     * - false if demandeur has not declared a patrimoine or its value is zero
      * - true
      */
-    hasPatrimoine(): any {
-      const demandeur = this.situation.demandeur
-      if (!demandeur) {
-        return undefined
-      }
-
-      return patrimoineTypes.reduce((accum: boolean | undefined, ressource) => {
-        if (!demandeur[ressource.id]) {
-          return accum
-        }
-        return (
-          accum || Object.values(demandeur[ressource.id]).some((value) => value)
-        )
-      }, undefined)
+    hasPatrimoine(): boolean {
+      return patrimoineTypes.some(
+        (ressource) =>
+          this.situation?.demandeur[ressource.id] &&
+          Object.values(this.situation?.demandeur[ressource.id]).some(
+            (value) => value
+          )
+      )
     },
     fetchRepresentation() {
       return (representation: string, simulationId: string) => {

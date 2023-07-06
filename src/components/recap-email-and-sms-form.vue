@@ -19,12 +19,17 @@ const phoneInputErrorMessage = ref<boolean>()
 
 const recapSmsState = computed(() => store.recapSmsState)
 const recapEmailState = computed(() => store.recapEmailState)
+const emailFilled = computed(() => emailValue.value?.length ?? 0 > 0)
+const phoneFilled = computed(() => phoneValue.value?.length ?? 0 > 0)
+const emailAndPhoneFilled = computed(
+  () => emailFilled.value && phoneFilled.value
+)
 
 const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
-const checkPhoneValidity = () => {
+const regexAndPhoneTypeIsValid = () => {
   const regex = new RegExp("^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$")
   return (
     phoneValue.value &&
@@ -34,41 +39,88 @@ const checkPhoneValidity = () => {
 }
 
 const sendRecap = async (surveyOptin) => {
-  if (emailValue.value && emailValue.value.length > 0) {
+  if (emailAndPhoneFilled.value) {
+    sendRecapByEmailAndSms(surveyOptin)
+  } else if (emailFilled.value && !phoneFilled.value) {
     sendRecapByEmail(surveyOptin)
-  } else {
-    emailInputErrorMessage.value = false
-    store.setRecapEmailState(undefined)
-  }
-  if (phoneValue.value && phoneValue.value.length > 0) {
-    sendRecapBySms(surveyOptin)
-  } else {
     phoneInputErrorMessage.value = false
     store.setRecapSmsState(undefined)
+  } else if (!emailFilled.value && phoneFilled.value) {
+    sendRecapBySms(surveyOptin)
+    emailInputErrorMessage.value = false
+    store.setRecapEmailState(undefined)
+  } else {
+    store.setRecapSmsState(undefined)
+    store.setRecapEmailState(undefined)
+    phoneInputErrorMessage.value = true
+    emailInputErrorMessage.value = true
   }
 }
+
+const inputPhoneIsValid = () => {
+  if (phoneRef.value && !regexAndPhoneTypeIsValid()) {
+    phoneInputErrorMessage.value = true
+    store.setRecapSmsState(undefined)
+    phoneRef.value.focus()
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategories.GENERAL,
+      "Invalid phone form",
+      router.currentRoute.value.fullPath
+    )
+    return false
+  }
+  phoneInputErrorMessage.value = false
+  return true
+}
+
+const inputEmailIsValid = () => {
+  if (emailRef.value && !emailRef.value.checkValidity()) {
+    store.setRecapEmailState(undefined)
+    emailInputErrorMessage.value = true
+    emailRef.value.focus()
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategories.GENERAL,
+      "Invalid email form",
+      router.currentRoute.value.fullPath
+    )
+    return false
+  }
+  emailInputErrorMessage.value = false
+  return true
+}
+
+const postFollowup = async (surveyOptin, email?, phone?) => {
+  const uri = `/api/simulation/${simulationId.value}/followup`
+  const payload = {
+    surveyOptin,
+    phone,
+    email,
+  }
+  await axios.post(uri, payload)
+}
+
+const sendRecapByEmailAndSms = async (surveyOptin) => {
+  try {
+    store.setRecapSmsState("waiting")
+    store.setRecapEmailState("waiting")
+    if (!inputPhoneIsValid()) return
+    if (!inputEmailIsValid()) return
+    postFollowup(surveyOptin, emailValue.value, phoneValue.value)
+    store.setRecapSmsState("ok")
+    store.setRecapEmailState("ok")
+    phoneValue.value = undefined
+    emailValue.value = undefined
+  } catch (error) {
+    store.setRecapSmsState("error")
+    store.setRecapEmailState("error")
+  }
+}
+
 const sendRecapBySms = async (surveyOptin) => {
   try {
     store.setRecapSmsState("waiting")
-    if (phoneRef.value && !checkPhoneValidity()) {
-      phoneInputErrorMessage.value = true
-      store.setRecapSmsState(undefined)
-      phoneRef.value.focus()
-      StatisticsMixin.methods.sendEventToMatomo(
-        EventCategories.GENERAL,
-        "Invalid phone form",
-        router.currentRoute.value.fullPath
-      )
-      return
-    }
-    phoneInputErrorMessage.value = false
-
-    const uri = `/api/simulation/${simulationId.value}/followup`
-    const payload = {
-      phone: phoneValue.value,
-      surveyOptin,
-    }
-    await axios.post(uri, payload)
+    if (!inputPhoneIsValid()) return
+    postFollowup(surveyOptin, undefined, phoneValue.value)
     store.setRecapSmsState("ok")
     phoneValue.value = undefined
     StatisticsMixin.methods.sendEventToMatomo(
@@ -84,25 +136,8 @@ const sendRecapBySms = async (surveyOptin) => {
 const sendRecapByEmail = async (surveyOptin) => {
   try {
     store.setRecapEmailState("waiting")
-    if (emailRef.value && !emailRef.value.checkValidity()) {
-      store.setRecapEmailState(undefined)
-      emailInputErrorMessage.value = true
-      emailRef.value.focus()
-      StatisticsMixin.methods.sendEventToMatomo(
-        EventCategories.GENERAL,
-        "Invalid email form",
-        router.currentRoute.value.fullPath
-      )
-      return
-    }
-    emailInputErrorMessage.value = false
-
-    const uri = `/api/simulation/${simulationId.value}/followup`
-    const payload = {
-      email: emailValue.value,
-      surveyOptin,
-    }
-    await axios.post(uri, payload)
+    if (!inputEmailIsValid()) return
+    postFollowup(surveyOptin, emailValue.value)
     store.setRecapEmailState("ok")
     emailValue.value = undefined
     StatisticsMixin.methods.sendEventToMatomo(
@@ -186,7 +221,7 @@ const sendRecapByEmail = async (surveyOptin) => {
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
-          >Votre numéro de téléphone portable (facultatif)
+          >Votre numéro de téléphone portable
           <span class="fr-hint-text">Format attendu : 06 12 23 42 78</span>
         </label>
         <input

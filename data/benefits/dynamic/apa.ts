@@ -80,8 +80,10 @@ export const APA_BY_CODE = {
   },
   departement_moselle: {
     label: "du département de Moselle",
-    link: "http://www.moselle.fr/moselleetvous/pages/fiche_senior_apa.aspx",
-    form: "http://www.moselle.fr/sitecollectiondocuments/lamoselleetvous/solidarite/seniors/formulaire_demande_apa_domicile.pdf",
+    link: "https://www.moselle.fr/jcms/pl_9352/fr/allocation-personnalisee-d-autonomie-apa",
+    teleservice:
+      "https://connexion.contact.moselle.fr/login/?nonce=_62469FDBFF56B08DAB5BD63EDD3F13B9&next=/idp/saml2/continue%3Fnonce%3D_62469FDBFF56B08DAB5BD63EDD3F13B9",
+    form: "https://www.moselle.fr/upload/docs/application/pdf/2018-08/formulaire_demande_apa_domicile.pdf",
   },
   departement_nord: {
     label: "du département du Nord",

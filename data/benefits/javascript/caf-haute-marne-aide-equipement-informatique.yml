@@ -1,15 +1,11 @@
-label: aide à l’équipement informatique pour les jeunes
+label: prêt à taux zéro pour l’équipement informatique des jeunes
 institution: caf_haute_marne
 description: La CAF de la Haute-Marne propose une aide à l'équipement
-  informatique destinée aux jeunes de 10 à 15 ans dont le matériel n'est pas mis
-  à disposition par l'école/le collège. L'aide concerne l’acquisition d’un
-  ordinateur (dans la limite de 600€) et d’une imprimante et ses consommables
-  (dans la limite de 200 €), sous réserve des disponibilités budgétaires de la
-  CAF.
+  informatique destinée aux jeunes de 10 à 18 ans. Il s'agit d'un prêt sans intérêt
+  d’un montant maximum de 500€ pour l’acquisition de matériel informatique, avec
+  remboursement de 35€ par mois. Une seule aide peut être accordée par foyer et par période
+  de cinq ans.
 conditions:
-  - Transmettre une attestation de l’école garantissant que le matériel
-    informatique n’est pas mis à disposition par l’école/le collège à la
-    famille, et qu’il est indispensable à la réalisation des devoirs.
   - Transmettre une attestation des parents attestant que le foyer n’est pas
     équipé d’un ordinateur, ou que l’équipement est insuffisant compte-tenu de
     la composition de la famille.
@@ -19,7 +15,7 @@ conditions_generales:
     value: 10
   - type: age
     operator: <
-    value: 15
+    value: 18
   - type: departements
     values:
       - "52"
@@ -28,11 +24,11 @@ conditions_generales:
     operator: "<="
     period: month
 profils: []
-link: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
-instructions: https://clg-vincenot.monbureaunumerique.fr/lectureFichiergw.do?ID_FICHIER=5901#:~:text=La%20Caisse%20d'Allocations%20Familiales,vous%20soutenir%20dans%20cette%20acquisition.&text=Pour%20les%20allocataires%20avec%20un,aller%20jusqu'%C3%A0%20800%E2%82%AC.
+link: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202022_actualisation%2015.12.2022_0.pdf
+instructions: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202022_actualisation%2015.12.2022_0.pdf
 prefix: l’
 type: float
 unit: €
 periodicite: autre
 legend: maximum
-montant: 600
+montant: 500

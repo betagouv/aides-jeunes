@@ -786,10 +786,6 @@ fields:
     label: Aide restreinte aux usagers de la MSA
     name: msa
     widget: hidden
-  field_benefit_forms: &field_benefit_forms
-    label: Liens vers des formulaires de demande de l'aide
-    name: forms
-    widget: hidden
   field_benefit_institution: &field_benefit_institution
     label: Référence aux types de lieux à proximité supervisant l'aide
     name: lieuxTypes
@@ -883,7 +879,6 @@ collections:
       - *field_benefit_teleservices
       - *field_benefit_ressources_year_minus_two
       - *field_benefit_msa_specific
-      - *field_benefit_forms
       - *field_benefit_partial_support
       - *field_benefit_institution
       - *field_benefit_set_to_zero_recently

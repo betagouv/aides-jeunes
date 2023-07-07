@@ -7,9 +7,6 @@ conditions:
   - Pour les élèves scolarisés en lycée public, la demande se fait en ligne sur le portail Scolarité-Services.
 link: https://www.service-public.fr/particuliers/vosdroits/F616
 form: https://www.service-public.fr/simulateur/calcul/11319
-forms:
-  2017-18: https://www.service-public.fr/simulateur/calcul/11319
-  2018-19: https://www.service-public.fr/simulateur/calcul/11319
 isBaseRessourcesYearMinusTwo: true
 prefix: la
 type: float

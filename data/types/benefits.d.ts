@@ -15,16 +15,23 @@ export interface benefitLayout {
 }
 
 export interface benefitVeloLayout extends Aide {
+  id: string
+  title: string
+  description: string
+  url?: string
   collectivity: {
     kind: string
     value: string
     code?: string
   }
   institution?: string
+
   discard?: boolean
-  id: string
 
   source?: string
-  url?: string
+
   link?: string
+  external_id?: string
+  type?: string
+  periodicite?: string
 }

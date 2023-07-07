@@ -23,12 +23,11 @@ conditions_generales:
     operator: <=
     value: 25
 profils: []
-link: https://www.caf.fr/sites/default/files/caf/521/Flyer%20Parcours%20Jeunes%202021.pdf#pdfjs.action=download
-instructions: https://www.caf.fr/sites/default/files/caf/521/Flyer%20Parcours%20Jeunes%202021.pdf#pdfjs.action=download
+link: https://www.caf.fr/allocataires/caf-de-la-haute-marne/actualites-departementales/aide-au-parcours-des-jeunes
+instructions: https://www.caf.fr/sites/default/files/medias/521/actualit%C3%A9s/Parcours%20Jeunes.pdf
 prefix: l’
 type: float
 unit: €
 periodicite: autre
 legend: maximum
 montant: 500
-interestFlag: _interetBafa

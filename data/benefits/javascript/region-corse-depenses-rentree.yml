@@ -2,7 +2,8 @@ label: aide aux dépenses de rentrée
 institution: region_corse
 description:
   La Région aide financièrement les élèves ayants droit à une bourse dans l'achat
-  de leur matériel scolaire.
+  de leur matériel scolaire. L’aide est versée automatiquement par le Crous de Corse,
+  à tous les boursiers, inscrits dans un cursus post-bac jusqu’au Master de l’Académie de Corse.
 conditions:
   - Contacter <a target="_blank" rel="noopener" title="votre CROUS - Nouvelle fenêtre"
     href="https://www.crous-corse.fr/contact/">votre CROUS</a>.
@@ -14,8 +15,8 @@ profils:
   - type: enseignement_superieur
     conditions:
       - type: boursier
-link: https://www.crous-corse.fr/bourses/aide-aux-depenses-de-rentree/
-instructions: https://www.crous-corse.fr/bourses/aide-aux-depenses-de-rentree/
+link: https://www.isula.corsica/Aides-financees-par-la-Collectivite-de-Corse-et-deleguees-par-conventions-a-l-Universita-di-Corsica-et-au-CROUS-de-Corse_a2406.html
+instructions: https://www.isula.corsica/Aides-financees-par-la-Collectivite-de-Corse-et-deleguees-par-conventions-a-l-Universita-di-Corsica-et-au-CROUS-de-Corse_a2406.html
 prefix: l’
 type: float
 unit: €

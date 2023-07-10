@@ -2,7 +2,7 @@ import { expect } from "@jest/globals"
 import bulk from "@root/backend/lib/openfisca/bulk/index.js"
 const { build, extractResults } = bulk
 
-const situation: any = {
+const situation = {
   dateDeValeur: "2021-01",
   demandeur: { id: "demandeur" },
   famille: {},

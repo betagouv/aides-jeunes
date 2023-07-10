@@ -48,8 +48,7 @@
     "lib",
     "dist",
     "dist-server",
-    "tools",
-    "tests"
+    "tools"
   ],
   "ts-node": {
     "esm": true,

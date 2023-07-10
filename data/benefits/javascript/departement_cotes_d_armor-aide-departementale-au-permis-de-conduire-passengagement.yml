@@ -20,9 +20,9 @@ profils: []
 conditions:
   - Résider depuis plus de six mois dans le département des Côtes d'Armor.
   - Effectuer votre demande d'aide entre le 1er septembre et le 1er juin.
-conditions_benevoles:
-  - "Etre engagé dans une mission bénévole de 2 heures minimum par semaine dans
-    une association ou un centre social."
+voluntary_conditions:
+  - Être engagé dans une mission bénévole de 2 heures minimum par semaine dans
+    une association ou un centre social.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

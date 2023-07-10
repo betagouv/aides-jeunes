@@ -104,15 +104,26 @@ describe("computeAides", function () {
   })
 
   it("verify the result when commune is undefined", function () {
+    const situationMissingCommune = {
+      dateDeValeur: Date.now(),
+      demandeur: {
+        id: "demandeur",
+        date_naissance: "2000-01-01",
+        activite: "salarie",
+        enfant_a_charge: undefined,
+        nationalite: undefined,
+        _role: "",
+      },
+      enfants: [],
+      menage: {},
+    }
     expect(
       testGeographicalEligibility(
         {
           type: "departements",
           values: ["64", "45", "12"],
         },
-        // disable test of behaviour with missing parameter
-        // @ts-ignore
-        { situation: { menage: {} } }
+        { situation: situationMissingCommune }
       )
     ).toBe(false)
   })

@@ -21,6 +21,8 @@ conditions:
   - Avoir déjà effectué la JAPD (Journée d'Appel de Préparation à la Défense).
   - Etre prêt à participer à un atelier d’éloquence afin de préparer l’oral à la
     commission d’attribution de la bourse.
+conditions_benevoles:
+  - Réaliser 35 heures d'action bénévole dans un service de la Ville de Roubaix.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

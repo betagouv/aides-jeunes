@@ -5,6 +5,8 @@ description:
   d'une partie de leur permis B, en échange de 50 heures de travail bénévole
   dans une association ou un service municipal. L’aide est versée directement à l’auto-école une fois la totalité des heures de bénévolat réalisée.
 prefix: la
+conditions_benevoles:
+  - "Etre engagé dans une mission bénévole de 50 heures minimum dans une association ou un service municipal."
 conditions_generales:
   - type: communes
     values:

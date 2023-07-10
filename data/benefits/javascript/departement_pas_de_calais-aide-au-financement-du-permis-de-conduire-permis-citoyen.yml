@@ -17,6 +17,9 @@ conditions_generales:
   - type: age
     operator: <=
     value: 25
+conditions_benevoles:
+  - "Etre engagé dans une mission bénévole de 35 heures minimum dans une
+    association du Pas-de-Calais."
 profils: []
 conditions:
   - Résider dans le Pas-de-Calais.

@@ -35,6 +35,7 @@ conditions:
   - Résider à Angers depuis au moins une année de manière continue.
   - Etre engagé·e dans un parcours d’insertion professionnelle.
   - Etre inscrit·e dans une auto-école partenaire du CCAS et participer à une journée obligatoire de sécurité routière.
+conditions_benevoles:
   - S'engager à réaliser au moins 20 heures de bénévolat dans une association ou
     une collectivité.
 interestFlag: _interetPermisDeConduire

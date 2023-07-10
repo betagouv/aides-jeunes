@@ -21,6 +21,9 @@ conditions:
     obtenu votre permis de manière anticipée, grâce au dispositif de conduite
     accompagnée, durant la période maximale de 12 mois antérieure à l’obtention
     de votre majorité légale.
+conditions_benevoles:
+  - "Etre engagé dans une mission bénévole de 70 heures minimum dans une
+    collectivité ou une association de l’Oise."
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

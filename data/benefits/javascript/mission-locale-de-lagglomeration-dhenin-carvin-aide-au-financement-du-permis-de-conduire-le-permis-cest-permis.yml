@@ -23,8 +23,10 @@ profils:
 conditions:
   - Avoir obtenu le code de la route.
   - Etre inscrit dans une auto-école partenaire.
-  - Effectuer 35 heures de bénévolat, des immersions professionnelles et un
+  - Effectuer des immersions professionnelles et un
     atelier de prévention et de sécurité routière.
+conditions_benevoles:
+  - Effectuer 35 heures de bénévolat.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

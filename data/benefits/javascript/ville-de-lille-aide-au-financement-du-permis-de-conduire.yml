@@ -33,6 +33,7 @@ conditions:
     formation). Etre en situation professionnelle précaire (bulletins de salaire
     / contrat de travail). Etre suivi par la Mission Locale dans le cadre d’un
     parcours d’insertion professionnelle (contrat d’insertion).
+conditions_benevoles:
   - Effectuer 25 heures de travail bénévole auprès d’associations ou
     d’institutions Lilloises.
 interestFlag: _interetPermisDeConduire

@@ -16,8 +16,6 @@ export interface benefitLayout {
 
 export interface benefitVeloLayout extends Aide {
   id: string
-  title: string
-  description: string
   url?: string
   collectivity: {
     kind: string

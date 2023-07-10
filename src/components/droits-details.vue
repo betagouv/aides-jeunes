@@ -149,6 +149,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 import ABTestingService from "@/plugins/ab-testing-service.ts"
+import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.ts"
 
 export default {
   name: "DroitsDetails",
@@ -169,6 +170,7 @@ export default {
   setup() {
     return {
       store: useStore(),
+      volontaryOrganisations: useVolontaryOrganisations(),
     }
   },
   data() {
@@ -186,6 +188,9 @@ export default {
     },
     experimentNewUI() {
       return ABTestingService.getValues().benefit_result_page === "NewUI"
+    },
+    volontaryOrganisationsLink() {
+      return this.volontaryOrganisations.volontaryOrganisationsLink.value
     },
   },
 }

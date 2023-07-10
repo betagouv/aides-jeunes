@@ -103,20 +103,20 @@ describe("computeAides", function () {
     ).toBe(false)
   })
 
+  const situationMissingCommune = {
+    dateDeValeur: Date.now(),
+    demandeur: {
+      id: "demandeur",
+      date_naissance: "2000-01-01",
+      activite: "salarie",
+      enfant_a_charge: undefined,
+      nationalite: undefined,
+      _role: "",
+    },
+    enfants: [],
+    menage: {},
+  }
   it("verify the result when commune is undefined", function () {
-    const situationMissingCommune = {
-      dateDeValeur: Date.now(),
-      demandeur: {
-        id: "demandeur",
-        date_naissance: "2000-01-01",
-        activite: "salarie",
-        enfant_a_charge: undefined,
-        nationalite: undefined,
-        _role: "",
-      },
-      enfants: [],
-      menage: {},
-    }
     expect(
       testGeographicalEligibility(
         {
@@ -129,9 +129,9 @@ describe("computeAides", function () {
   })
 
   it("verify the result when no test are provided", function () {
-    // disable test of behaviour with invalid parameter
-    // @ts-ignore
-    expect(testGeographicalEligibility({}, { commune: null })).toBe(true)
+    expect(
+      testGeographicalEligibility({}, { situation: situationMissingCommune })
+    ).toBe(true)
   })
 
   it("verify the result when a commune is not in benefit's department", function () {

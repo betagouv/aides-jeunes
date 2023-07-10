@@ -2,10 +2,13 @@ import { expect } from "@jest/globals"
 import benefits from "@root/data/all.js"
 
 import generator from "@root/data/benefits/aides-velo-generator.js"
+import { benefitVeloLayout } from "@root/data/types/benefits.js"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 describe("aides velo benefit generator", function () {
-  const list = generator(Object.values(benefits.institutionsMap))
+  const list: benefitVeloLayout[] = generator(
+    Object.values(benefits.institutionsMap)
+  )
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {
@@ -31,7 +34,7 @@ describe("aides velo benefit generator", function () {
       console.log(missingCommune.map((b) => b.description).join("\n"))
     }
 
-    const missingEPCI: any[] = missingInstitutionBenefits.filter(
+    const missingEPCI = missingInstitutionBenefits.filter(
       (b) => b.collectivity.kind === "epci"
     )
     if (missingEPCI.length) {

@@ -2,7 +2,7 @@ import { ref } from "vue"
 import { useStore } from "@/stores/index.js"
 import * as Sentry from "@sentry/vue"
 import Simulation from "@/lib/simulation.js"
-import communesLonLat from "communes-lonlat"
+import axios from "axios"
 
 export function useVolontaryOrganisations() {
   const store = useStore()
@@ -25,20 +25,26 @@ export function useVolontaryOrganisations() {
       updating.value = false
       return
     }
-
-    const longLat = communesLonLat.find(
-      (commune) => commune.code === cityInseeCode
-    )
-
-    if (!longLat) {
+    let centerCoordinates = null
+    try {
+      const response = await axios.get(
+        `/api/outils/communes/${cityPostcode}/centerCoordinates`
+      )
+      centerCoordinates = response.data
+    } catch (error) {
       Sentry.captureMessage(
-        `LongLat not found for cityInseeCode ${cityInseeCode}`
+        `Center coordinates not found for city postcode ${cityPostcode}`
       )
       updating.value = false
       return
     }
-    const cityLong = longLat.centre.coordinates[0]
-    const cityLat = longLat.centre.coordinates[1]
+
+    if (!centerCoordinates) {
+      updating.value = false
+      return
+    }
+    const cityLong = centerCoordinates[0]
+    const cityLat = centerCoordinates[1]
 
     volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations?city=${cityPostcode}&aroundLatLng=${cityLat},${cityLong}`
     updating.value = false

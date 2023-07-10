@@ -5,6 +5,8 @@ import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
+import { PeriodsLayout } from "../../../../lib/types/dates.d.js"
+
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
@@ -37,8 +39,7 @@ function getIndividusSortedParentsFirst(situation) {
     })
 }
 
-function getPeriods(dateDeValeur): any {
-  dateDeValeur = dayjs(dateDeValeur)
+function getPeriods(dateDeValeur: Date): PeriodsLayout {
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
   return keys.reduce((result, key) => {
@@ -47,7 +48,7 @@ function getPeriods(dateDeValeur): any {
       ? dateMap[key].id
       : dateMap[key].map((i) => i.id)
     return result
-  }, {})
+  }, {} as PeriodsLayout)
 }
 
 function appendExtraVariables(requestedVariables, extraVariables) {

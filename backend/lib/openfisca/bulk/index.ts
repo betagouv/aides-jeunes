@@ -7,15 +7,18 @@ const entityGroups = {
   foyers_fiscaux: ["declarants", "personnes_a_charge"],
   menages: ["personne_de_reference", "conjoint", "enfants"],
 }
+interface EntitiesBulkValues {
+  individus: any
+  familles: any
+  foyer_fiscaux: any
+  menages: any
+}
 
-function init() {
-  const result = Object.keys(entityGroups).reduce((accum, entityName) => {
+function init(): EntitiesBulkValues {
+  return Object.keys(entityGroups).reduce((accum, entityName) => {
     accum[entityName] = {}
     return accum
-  }, {})
-  result["individus"] = {}
-
-  return result
+  }, {} as Record<keyof EntitiesBulkValues, Record<string, any>>)
 }
 
 function prefix(prefix, situation) {
@@ -58,14 +61,13 @@ for (let i = 0; i < steps; i = i + 1) {
   defaultValues.push((i * max) / (steps - 1))
 }
 
-function build(situation, variable) {
+function build(situation, variable: string) {
   const periods = common.getPeriods(situation.dateDeValeur)
 
   const fullTimePeriodLength = 12 * 4
   const fullTimePeriod = `month:${
     periods["threeYearsAgo"]
   }:${fullTimePeriodLength.toString()}`
-
   return defaultValues.reduce((a, v) => {
     situation.demandeur[variable] = {}
     situation.demandeur[variable][fullTimePeriod] = fullTimePeriodLength * v

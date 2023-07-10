@@ -15,8 +15,6 @@ unit: €
 entity: individus
 openfiscaPeriod: thisMonth
 isBaseRessourcesYearMinusTwo: true
-forms:
-  mdph: https://www.formulaires.modernisation.gouv.fr/gf/cerfa_13788.do
 msa: true
 periodicite: mensuelle
 floorAt: 10

@@ -24,6 +24,3 @@ floorAt: 10
 entity: familles
 openfiscaPeriod: thisMonth
 msa: true
-forms:
-  caf: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation/allocationdesoutienfamilial/!ut/p/a1/
-  msa: http://www.msa.fr/lfr/documents/11566/48472/Demande+d%27allocation+de+soutien+familial+%28ASF%29.pdf

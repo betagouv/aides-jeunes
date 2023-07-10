@@ -37,7 +37,7 @@ function setEditLink(benefit) {
     : undefined
 }
 
-async function checkURL(benefit) {
+async function checkBenefitUrls(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
   console.log(
     `${benefit.label} (${benefit.institution})\n${results
@@ -210,7 +210,7 @@ async function main() {
     return a
   }, {})
 
-  const results = await Bluebird.map(benefitsToAnalyze, checkURL, {
+  const results = await Bluebird.map(benefitsToAnalyze, checkBenefitUrls, {
     concurrency: 3,
   })
 

@@ -10,7 +10,7 @@ conditions:
   - Ne pas être éligible à l’obtention d’une aide de droit commun ou d’une
     autre aide existante.
   - Ne pas avoir débuté sa formation et ne pas avoir passé l’examen.
-conditions_benevoles:
+voluntary_conditions:
   - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
     choix (justifier de 20 heures minimum).
 conditions_generales:

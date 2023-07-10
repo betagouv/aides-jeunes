@@ -738,6 +738,12 @@ fields:
   field_not_operator: &field_not_operator
     name: not
     widget: hidden
+  field_voluntary_conditions: &field_voluntary_conditions
+    label: Conditions bénévoles à satisfaire
+    name: voluntary_conditions
+    hint: Un lien dynamique vers la plateforme jeveuxaider.gouv.fr s'ajoutera à la suite de ces conditions pour orienter l'utilisateur vers des organismes de bénévolat à proximité
+    required: false
+    widget: string
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément
@@ -760,12 +766,6 @@ fields:
       - *field_statut_occupation_logement
       - *field_not_operator
       - *field_difficultes_acces_ou_frais_logement
-  field_conditions_benevoles: &field_conditions_benevoles
-    label: Conditions bénévoles à satisfaire
-    name: conditions_benevoles
-    hint: Un lien dynamique vers la plateforme JeVeuxAider s'ajoutera à la suite de ces conditions pour orienter l'utilisateur vers des organismes de bénévolat à proximité
-    required: false
-    widget: string
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat
@@ -829,7 +829,7 @@ collections:
       - *field_description
       - *field_definite_article
       - *field_general_conditions
-      - *field_conditions_benevoles
+      - *field_voluntary_conditions
       - *field_eligibility_profile
       - *field_unmodeled_conditions
       - *field_specific_interest
@@ -867,6 +867,7 @@ collections:
       - *field_description
       - *field_definite_article
       - *field_unmodeled_conditions
+      - *field_voluntary_conditions
       - *field_specific_interest
       - *field_result_type
       - *field_result_unit

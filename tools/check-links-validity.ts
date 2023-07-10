@@ -214,18 +214,17 @@ async function main() {
     concurrency: 3,
   })
 
-  type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
-  const recordsByOperationTypes: recordsByOperationTypesType = {
-    addition: [],
-    update: [],
-  }
-
   const additionsByBenefit = results.map((linkCheckResult) =>
     getRequiredAdditionsAndTouchWarningsToKeep(
       existingWarnings,
       linkCheckResult
     )
   )
+  type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
+  const recordsByOperationTypes: recordsByOperationTypesType = {
+    addition: [],
+    update: [],
+  }
 
   const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
   if (processingPR) {

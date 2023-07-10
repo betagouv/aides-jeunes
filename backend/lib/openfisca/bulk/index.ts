@@ -18,7 +18,7 @@ function init(): EntitiesBulkValues {
   return Object.keys(entityGroups).reduce((accum, entityName) => {
     accum[entityName] = {}
     return accum
-  }, {} as Record<keyof EntitiesBulkValues, Record<string, any>>)
+  }, {} as EntitiesBulkValues)
 }
 
 function prefix(prefix, situation) {

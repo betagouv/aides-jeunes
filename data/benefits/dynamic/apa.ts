@@ -97,8 +97,8 @@ export const APA_BY_CODE = {
   },
   departement_pyrenees_atlantiques: {
     label: "du département des Pyrénées Atlantiques",
-    link: "http://www.le64.fr/solidarite/autonomie/soutien-a-domicile/compenser-la-dependance-par-lapa.html",
-    form: "http://www.le64.fr/fileadmin/mediatheque/cg64/documents/actualites/APA_2017/dossier_APA_modifi%C3%A9_juin_2017.pdf",
+    link: "https://www.objectif-autonomie.fr/demande-apa/64-pyrenees-atlantiques-pau#:~:text=L'APA%20%C3%A0%20domicile%20est,malgr%C3%A9%20la%20perte%20d'autonomie.",
+    form: "https://assets-global.website-files.com/61f94b48d9035933cac28171/621f483fbe4b0d798fb5f45d_apa.pdf",
   },
   departement_bas_rhin: {
     label: "du département du Bas-Rhin",

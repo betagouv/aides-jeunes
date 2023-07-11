@@ -48,7 +48,6 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then(formatMongo)
 }
 
@@ -102,7 +101,6 @@ function extractSurveySummary(db) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then((summary) =>
       summary.reduce(
         (set, row) => {
@@ -150,7 +148,6 @@ function extractSurveyDetails(db) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then((results) => {
       const groupMap = results.reduce(function (total, p) {
         const fields = p._id.split(";")

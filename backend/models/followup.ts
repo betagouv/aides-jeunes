@@ -117,8 +117,7 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
   try {
     const renderUrl = this.renderSimulationResultsSmsUrl()
     const { data, status } = await axios.get(renderUrl)
-    console.log("data", data)
-    if (status !== 200) {
+    if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`Send SMS error status ${status}`)
     }
     return this.postSimulationResultsSms(data.messageIds[0])

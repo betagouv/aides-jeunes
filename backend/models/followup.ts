@@ -9,6 +9,7 @@ import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../enums/email.js"
+import config from "../config/index.js"
 
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
@@ -104,25 +105,32 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
     })
 })
 
-FollowupSchema.method("renderSimulationResultsSmsUrl", function () {
-  const username = process.env.SMS_SERVICE_USERNAME
-  const password = process.env.SMS_SERVICE_PASSWORD
-  const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
-  const encodedText = encodeURIComponent(text)
-  const phone = this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
-  return `https://europe.ipx.com/restapi/v1/sms/send?destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
-})
+FollowupSchema.method(
+  "renderSimulationResultsSmsUrl",
+  function (username, password) {
+    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+    const encodedText = encodeURIComponent(text)
+    const phone =
+      this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
+    return `${config.smsService.url}?destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
+  }
+)
 
 FollowupSchema.method("sendSimulationResultsSms", async function () {
   try {
-    const renderUrl = this.renderSimulationResultsSmsUrl()
+    const username = config.smsService.username
+    const password = config.smsService.password
+    if (!username || !password) {
+      throw new Error("Missing SMS service credentials")
+    }
+    const renderUrl = this.renderSimulationResultsSmsUrl(username, password)
     const { data, status } = await axios.get(renderUrl)
     if (status !== 200 || data.responseCode !== 0) {
-      throw new Error(`Send SMS error status ${status}`)
+      throw new Error(`Send SMS data error :${data}`)
     }
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
-    console.log("error", err)
+    console.error("error", err)
     this.error = JSON.stringify(err, null, 2)
     return this.save()
   }

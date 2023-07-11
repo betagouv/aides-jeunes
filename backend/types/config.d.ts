@@ -58,4 +58,9 @@ export interface Configuration {
     authToken?: string
     project?: string
   }
+  smsService: {
+    username: string
+    password: string
+    url: string
+  }
 }

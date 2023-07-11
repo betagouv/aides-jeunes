@@ -84,7 +84,8 @@ function extractSurveySummary(db) {
           benefitActionSurvey.answers.sort(function (a, b) {
             return m[a.value] > m[b.value]
           })
-          emit(benefitActionSurvey.answers[0].value, 1)
+          const month = benefitActionSurvey.repliedAt.toISOString().slice(0, 7)
+          emit(month + ";" + benefitActionSurvey.answers[0].value, 1)
         }
       },
       function (k, values) {
@@ -105,12 +106,16 @@ function extractSurveySummary(db) {
     .then((summary) =>
       summary.reduce(
         (set, row) => {
-          set[row._id] = row.value
-          set.total += row.value
-
+          const [month, answer] = row._id.split(";")
+          set.summary[answer] = row.value
+          set.summary.total += row.value
+          if (!set.historical[month]) {
+            set.historical[month] = {}
+          }
+          set.historical[month][answer] = row.value
           return set
         },
-        { total: 0 }
+        { summary: { total: 0 }, historical: {} }
       )
     )
 }
@@ -193,29 +198,26 @@ async function connect() {
     .then((client) => client.db())
 }
 
-function getStats(fromDate, toDate): MongoStatsLayout | any {
-  return connect()
-    .then(function (db) {
-      // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
-      // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
-      return extractSimulationDailyCount(db, fromDate, toDate).then(
-        (dailies) => {
-          return extractSurveySummary(db).then((summary) => {
-            return extractSurveyDetails(db).then((details) => {
-              return {
-                dailySituationCount: dailies,
-                survey: {
-                  summary,
-                  details,
-                },
-              }
-            })
-          })
-        }
-      )
-    })
-    .catch(manageMissingDBOrCollection)
-    .finally(closeClient)
+async function getStats(fromDate, toDate): Promise<MongoStatsLayout | any> {
+  try {
+    const db = await connect()
+    const dailies = await extractSimulationDailyCount(db, fromDate, toDate)
+    const survey = await extractSurveySummary(db)
+    const details = await extractSurveyDetails(db)
+
+    return {
+      dailySituationCount: dailies,
+      survey: {
+        summary: survey.summary,
+        historical: survey.historical,
+        details,
+      },
+    }
+  } catch (error) {
+    return manageMissingDBOrCollection(error)
+  } finally {
+    closeClient()
+  }
 }
 
 export default { connect, closeClient, getStats }

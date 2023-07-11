@@ -1,4 +1,4 @@
-label: Aide à l'acquisition d'un ordinateur portable
+label: Aide à l’acquisition d’un ordinateur portable
 institution: region_pays_de_la_loire
 description: La Région Pays de la Loire offre un ordinateur à tous les lycéens
   entrant en classe de Seconde et à tous les élèves en 1ère année de CAP, dans
@@ -7,7 +7,7 @@ description: La Région Pays de la Loire offre un ordinateur à tous les lycéen
   de leurs études.
 link: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
 instructions: https://www.paysdelaloire.fr/jeunesse-et-education/un-ordinateur-portable-fourni-par-la-region-aux-eleves-de-seconde-et-1ere-annee-de-cap
-teleservice : https://enquete.paysdelaloire.fr/surveyserver/s/paysdelaloire/176-DL-MonOrdiAuLycee/inscription.htm#3
+teleservice: https://enquete.paysdelaloire.fr/surveyserver/s/paysdelaloire/176-DL-MonOrdiAuLycee/inscription.htm#3
 prefix: l’
 type: bool
 conditions_generales:

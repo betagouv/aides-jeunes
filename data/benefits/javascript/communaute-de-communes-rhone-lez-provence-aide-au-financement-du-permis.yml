@@ -1,0 +1,31 @@
+label: Aide au financement du permis de conduire
+institution: cc-rhone-lez-provence
+description:
+  La Communauté de Communes Rhône Lez Provence met en place une aide financière
+  pour favoriser l’insertion professionnelle des jeunes par l'accès au permis
+  de conduire. Cette aide est attribuée en contrepartie d'un stage d’une durée
+  de 10 à 15 jours réalisé au sein de la collectivité. 
+prefix: l'
+conditions_generales:
+  - type: epci
+    values:
+      - "200000628"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: "<="
+    value: 25
+profils: []
+conditions:
+  - Résider sur une des 5 communes de Rhône Lez Provence depuis plus de 2 ans.
+  - Etre engagé·e dans un parcours d’insertion professionnelle.
+  - Etre inscrit dans une auto-école basée dans l'une des 5 communes du territoire.
+  - Signer un engagement de stage dans la collectivité.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+montant: 500
+link: https://ccrlp.fr/aide-permis/
+instructions: https://ccrlp.fr/aide-permis/

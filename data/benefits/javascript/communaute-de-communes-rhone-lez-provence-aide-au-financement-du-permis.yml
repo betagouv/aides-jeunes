@@ -1,15 +1,12 @@
 label: Aide au financement du permis de conduire
 institution: cc-rhone-lez-provence
-description:
-  La Communauté de Communes Rhône Lez Provence met en place une aide financière
+description: La Communauté de Communes Rhône Lez Provence met en place une aide financière
   pour favoriser l’insertion professionnelle des jeunes par l'accès au permis
   de conduire. Cette aide est attribuée en contrepartie d'un stage d’une durée
-  de 10 à 15 jours réalisé au sein de la collectivité. 
+  de 10 à 15 jours réalisé au sein de la collectivité.
 prefix: l'
 conditions_generales:
-  - type: epci
-    values:
-      - "200000628"
+  - type: attached_to_institution
   - type: age
     operator: ">="
     value: 18

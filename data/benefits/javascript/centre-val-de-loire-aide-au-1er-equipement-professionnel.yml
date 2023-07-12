@@ -14,8 +14,8 @@ profils:
       - type: annee_etude
         values:
           - cap_1
+          - seconde
           - premiere
-          - terminale
 conditions:
   - Être en 1ère année de bac pro ou de CAP, ou bien être en 2ème année après avoir
     suivi un autre cursus.

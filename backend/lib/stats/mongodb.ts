@@ -84,7 +84,8 @@ function extractSurveySummary(db) {
             return m[a.value] > m[b.value]
           })
           const month = benefitActionSurvey.repliedAt.toISOString().slice(0, 7)
-          emit(month + ";" + benefitActionSurvey.answers[0].value, 1)
+          const answer = benefitActionSurvey.answers[0].value
+          emit({ month, answer }, 1)
         }
       },
       function (k, values) {
@@ -104,7 +105,7 @@ function extractSurveySummary(db) {
     .then((summary) =>
       summary.reduce(
         (set, row) => {
-          const [month, answer] = row._id.split(";")
+          const { month, answer } = row._id
           set.summary[answer] = row.value
           set.summary.total += row.value
           if (!set.historical[month]) {

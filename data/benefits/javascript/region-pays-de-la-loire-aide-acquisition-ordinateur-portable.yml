@@ -21,5 +21,4 @@ profils:
         values:
           - cap_1
           - seconde
-private: true
 periodicite: ponctuelle

@@ -1,20 +1,23 @@
 label: aide au premier équipement professionnel
 institution: region_centre_val_de_loire
-description: L'aide au premier équipement professionnel est une aide financière
-  qui vous est versée si vous êtes lycéen ou lycéenne. Elle vous aidera à acheter
-  l’équipement professionnel indispensable à votre activité (outillage,
-  vêtements ou équipements spéciaux).
+description: L'aide au premier équipement professionnel est versée aux personnes
+  inscrites en 1ère année de bac pro ou de CAP et dont la formation nécessite
+  l'achat d'un équipement professionnel (outillage, vêtements ou équipements spéciaux).
 prefix: l’
 conditions_generales:
   - type: regions
     values:
       - "24"
 profils:
-  - type: lyceen
-    conditions: []
+  - type: etudiant
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_1
+          - seconde
+          - premiere
 conditions:
-  - Être lycéen ou lycéenne en 1ère année de bac pro dont la formation professionnelle
-    nécessite l’achat d’équipements, ou bien être en 2ème année après avoir
+  - Être en 1ère année de bac pro ou de CAP, ou bien être en 2ème année après avoir
     suivi un autre cursus.
 type: float
 unit: €

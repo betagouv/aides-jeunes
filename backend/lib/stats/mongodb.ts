@@ -107,14 +107,14 @@ function extractSurveySummary(db) {
         (set, row) => {
           const { month, answer } = row._id
           set.summary[answer] = row.value
-          set.summary.total += row.value
+          set.total += row.value
           if (!set.historical[month]) {
             set.historical[month] = {}
           }
           set.historical[month][answer] = row.value
           return set
         },
-        { summary: { total: 0 }, historical: {} }
+        { summary: {}, historical: {}, total: 0 }
       )
     )
 }
@@ -204,8 +204,7 @@ async function getStats(fromDate, toDate): Promise<MongoStatsLayout | any> {
     return {
       dailySituationCount: dailies,
       survey: {
-        summary: survey.summary,
-        historical: survey.historical,
+        ...survey,
         details,
       },
     }

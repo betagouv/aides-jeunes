@@ -1,10 +1,17 @@
+import { expect } from "@jest/globals"
 import { values } from "lodash-es"
 import Promise from "bluebird"
 import fs from "fs"
-import subject from "@root/backend/lib/openfisca/test"
-import resources from "@root/lib/resources"
+import subject from "@root/backend/lib/openfisca/test.js"
+import resources from "@root/lib/resources.js"
 import tmp from "tmp"
 import child_process from "child_process"
+
+interface CommandOutputInterface {
+  stdout: string
+  stderr: string
+  error?: string
+}
 
 const details = {
   name: "Ideal name",
@@ -30,7 +37,7 @@ const situation = {
   },
 }
 
-function run_cmd(cmd, args) {
+function run_cmd(cmd, args): Promise<CommandOutputInterface> {
   return new Promise(function (resolve, reject) {
     const spawn = child_process.spawn
     const child = spawn(cmd, args)
@@ -44,7 +51,7 @@ function run_cmd(cmd, args) {
       respErr += buffer.toString()
     })
     child.on("exit", function (code) {
-      const result = {
+      const result: CommandOutputInterface = {
         stdout: respOut,
         stderr: respErr,
       }
@@ -82,9 +89,9 @@ describe("openfisca generateYAMLTest", function () {
     expect(result).toContain("rsa: 545.48")
   })
 
-  function validateYAMLRun(payload, extension) {
+  function validateYAMLRun(payload, extension?: string) {
     return runOpenFiscaTest(payload, extension)
-      .catch(function (failure) {
+      .catch(function (failure: CommandOutputInterface) {
         expect(failure).toBeFalsy()
 
         return failure

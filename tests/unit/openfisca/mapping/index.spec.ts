@@ -1,4 +1,5 @@
-import subject from "@root/backend/lib/openfisca/mapping"
+import { expect } from "@jest/globals"
+import subject from "@root/backend/lib/openfisca/mapping/index.js"
 
 const situation = {
   dateDeValeur: new Date("2017-10-02"),

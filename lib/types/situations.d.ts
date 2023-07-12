@@ -16,7 +16,7 @@ export interface situationsLayout {
 }
 
 export interface situationsMenageLayout {
-  aide_logement_date_pret_conventionne: string
+  aide_logement_date_pret_conventionne?: string
   _departement?: string
   depcom?: string
   _difficultes_acces_ou_frais_logement?: string

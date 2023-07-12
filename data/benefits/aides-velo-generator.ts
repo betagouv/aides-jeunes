@@ -2,7 +2,7 @@ import aidesVelo from "aides-velo"
 import { benefitVeloLayout } from "../../data/types/benefits.js"
 const benefits = [...aidesVelo()]
 
-function generate_benefit_list(institutions) {
+function generate_benefit_list(institutions): benefitVeloLayout[] {
   const potentialInstitutions = {
     région: institutions.filter((i) => i.type === "region"),
     département: institutions.filter((i) => i.type === "departement"),
@@ -42,8 +42,8 @@ function generate_benefit_list(institutions) {
   })
 
   return benefits
-    .filter((b: any) => !b.discard)
-    .map((b?: any) => {
+    .filter((b: benefitVeloLayout) => !b.discard)
+    .map((b: benefitVeloLayout) => {
       const description =
         b.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
           ? b.description

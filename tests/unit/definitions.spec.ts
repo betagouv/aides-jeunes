@@ -1,4 +1,5 @@
-import entities from "@root/backend/lib/definitions"
+import { expect } from "@jest/globals"
+import entities from "@root/backend/lib/definitions.js"
 const { famille, individu, menage, parents } = entities
 
 describe("Tests definitions", function () {

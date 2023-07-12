@@ -19,7 +19,7 @@
 
 <script>
 import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.js"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 export default {
   name: "SendRecapEmailButton",

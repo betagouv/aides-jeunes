@@ -1,4 +1,5 @@
-import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo"
+import { expect } from "@jest/globals"
+import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo.js"
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {

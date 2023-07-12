@@ -1,4 +1,5 @@
-import subject from "@root/backend/lib/openfisca/mapping"
+import { expect } from "@jest/globals"
+import subject from "@root/backend/lib/openfisca/mapping/index.js"
 
 describe("openfisca dispatchIndividuals", function () {
   function buildSituation(props) {
@@ -13,7 +14,7 @@ describe("openfisca dispatchIndividuals", function () {
     const situation = buildSituation({
       demandeur: { id: "demandeur" },
     })
-    const result = subject.dispatchIndividuals(situation)
+    const result: any = subject.dispatchIndividuals(situation)
 
     it("sets a single parent", function () {
       expect(result.familles._.parents).toEqual(["demandeur"])
@@ -25,7 +26,7 @@ describe("openfisca dispatchIndividuals", function () {
       demandeur: { id: "demandeur" },
       enfants: [{ id: "e1" }],
     })
-    const result = subject.dispatchIndividuals(situation)
+    const result: any = subject.dispatchIndividuals(situation)
 
     it("sets a single parent", function () {
       expect(result.familles._.parents).toEqual([situation.demandeur.id])
@@ -43,7 +44,7 @@ describe("openfisca dispatchIndividuals", function () {
         enfant_a_charge: { 2013: true },
       },
     })
-    const result = subject.dispatchIndividuals(situation)
+    const result: any = subject.dispatchIndividuals(situation)
 
     it("adds a parent without", function () {
       expect(result.individus.parent1).toEqual({})
@@ -68,7 +69,7 @@ describe("openfisca dispatchIndividuals", function () {
         id: "conjoint",
       },
     })
-    const result = subject.dispatchIndividuals(situation)
+    const result: any = subject.dispatchIndividuals(situation)
 
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])

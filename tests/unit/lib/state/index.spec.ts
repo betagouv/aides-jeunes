@@ -1,4 +1,5 @@
-import { getChapters } from "@lib/state"
+import { expect } from "@jest/globals"
+import { getChapters } from "@lib/state/index.js"
 
 describe("chapter", function () {
   const currentPath = "/path/to/some/page"

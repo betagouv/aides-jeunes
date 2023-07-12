@@ -1,4 +1,5 @@
-import Benefits from "../../data/index.js"
+import { expect } from "@jest/globals"
+import Benefits from "@root/data/index.js"
 import jamstackLoader from "jamstack-loader"
 const configFile = "contribuer/public/admin/config.yml"
 import epci from "@etalab/decoupage-administratif/data/epci.json"
@@ -6,7 +7,7 @@ import epci from "@etalab/decoupage-administratif/data/epci.json"
 describe("Institution id", () => {
   const jamstack = jamstackLoader.get(configFile)
   const institutions = jamstack.collections.institutions.items
-  const institutionIds = []
+  const institutionIds: string[] = []
   const institutionSirenCodes = []
   const epciSirenCodes = epci.map((epci) => epci.code)
 

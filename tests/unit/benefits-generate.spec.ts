@@ -1,4 +1,5 @@
-import subject from "@root/data"
+import { expect } from "@jest/globals"
+import subject from "@root/data/index.js"
 
 describe("benefit descriptions", function () {
   it("exists", function () {
@@ -27,7 +28,7 @@ describe("benefit descriptions", function () {
     }
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
-    const result = subject.fn(collections, additionalBenefitAttributes)
+    const result: any = subject.fn(collections, additionalBenefitAttributes)
 
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")

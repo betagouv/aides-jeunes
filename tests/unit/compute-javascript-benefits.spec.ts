@@ -1,10 +1,11 @@
-import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping"
+import { expect } from "@jest/globals"
+import { buildOpenFiscaRequest } from "@root/backend/lib/openfisca/mapping/index.js"
 import {
   testProfileEligibility,
   testGeographicalEligibility,
   computeJavascriptBenefits,
-} from "@root/lib/benefits/compute-javascript"
-import benefits from "@root/data/all"
+} from "@root/lib/benefits/compute-javascript.js"
+import benefits from "@root/data/all.js"
 
 describe("computeAides", function () {
   let benefit
@@ -102,6 +103,19 @@ describe("computeAides", function () {
     ).toBe(false)
   })
 
+  const situationMissingCommune = {
+    dateDeValeur: Date.now(),
+    demandeur: {
+      id: "demandeur",
+      date_naissance: "2000-01-01",
+      activite: "salarie",
+      enfant_a_charge: undefined,
+      nationalite: undefined,
+      _role: "",
+    },
+    enfants: [],
+    menage: {},
+  }
   it("verify the result when commune is undefined", function () {
     expect(
       testGeographicalEligibility(
@@ -109,13 +123,15 @@ describe("computeAides", function () {
           type: "departements",
           values: ["64", "45", "12"],
         },
-        { situation: { menage: {} } }
+        { situation: situationMissingCommune }
       )
     ).toBe(false)
   })
 
   it("verify the result when no test are provided", function () {
-    expect(testGeographicalEligibility({}, { commune: null })).toBe(true)
+    expect(
+      testGeographicalEligibility({}, { situation: situationMissingCommune })
+    ).toBe(true)
   })
 
   it("verify the result when a commune is not in benefit's department", function () {

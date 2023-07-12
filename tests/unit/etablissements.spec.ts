@@ -1,4 +1,5 @@
-import { normalize } from "@root/lib/benefits/lieux"
+import { expect } from "@jest/globals"
+import { normalize } from "@root/lib/benefits/lieux.js"
 
 describe("isEqual function", () => {
   const testSet = [
@@ -56,7 +57,7 @@ describe("isEqual function", () => {
       },
     },
   ]
-  for (let test of testSet) {
+  for (const test of testSet) {
     it("compares simple values", () => {
       expect(normalize(test.lieu)).toEqual(test.result)
     })

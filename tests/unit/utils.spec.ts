@@ -1,4 +1,5 @@
-import { getEnvVariable } from "@lib/utils.ts"
+import { expect } from "@jest/globals"
+import { getEnvVariable } from "@lib/utils.js"
 
 describe("getEnvVariable", () => {
   afterEach(() => {

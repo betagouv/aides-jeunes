@@ -1,7 +1,8 @@
+import { expect } from "@jest/globals"
 import path from "path"
 import fs from "fs"
 
-import { getCollectionSchema, validateFile } from "@root/data/schemas"
+import { getCollectionSchema, validateFile } from "@root/data/schemas.js"
 const institutionSchema = getCollectionSchema("institutions")
 
 const dataDir = path.join(new URL(".", import.meta.url).pathname, "../../data")

@@ -1,7 +1,8 @@
+import { expect } from "@jest/globals"
 import path from "path"
 import fs from "fs"
 
-import { validateFile, getCollectionSchema } from "@root/data/schemas"
+import { validateFile, getCollectionSchema } from "@root/data/schemas.js"
 const benefitSchema = getCollectionSchema("benefits_openfisca")
 
 const dataDir = path.join(new URL(".", import.meta.url).pathname, "../../data")

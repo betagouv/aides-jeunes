@@ -1,5 +1,6 @@
-import { computeAides } from "@root/lib/benefits/compute"
-import benefits from "@root/data/all"
+import { expect } from "@jest/globals"
+import { computeAides } from "@root/lib/benefits/compute.js"
+import benefits from "@root/data/all.js"
 
 const compute = computeAides.bind(benefits)
 

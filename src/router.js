@@ -3,7 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.js"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

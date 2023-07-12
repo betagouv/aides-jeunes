@@ -55,7 +55,7 @@ export function round(amount, aide) {
   }
 }
 
-export function computeAides(situation, id, openfiscaResponse, showPrivate) {
+export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
   const periods = generator(situation.dateDeValeur)
 
   computeJavascriptBenefits(this, situation, openfiscaResponse)

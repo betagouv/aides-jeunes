@@ -1,6 +1,14 @@
+import { expect } from "@jest/globals"
 import { createPinia, setActivePinia } from "pinia"
-import { useStore } from "@root/src/stores"
-import { getAnswerIndex } from "@lib/answers"
+import { useStore } from "@root/src/stores/index.js"
+import { getAnswerIndex } from "@lib/answers.js"
+
+interface testAnswerLayout {
+  id: string
+  entityName: string
+  fieldName: string
+  value: string | boolean
+}
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -55,7 +63,7 @@ describe("Answers tests", () => {
   // Store answer tests
   it("Store should not be dirty when the answer value is the same", () => {
     const store = initStore()
-    const newAnswer = {
+    const newAnswer: testAnswerLayout = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
@@ -67,7 +75,7 @@ describe("Answers tests", () => {
 
   it("Store should not be dirty when multiple answers values are the same", () => {
     const store = initStore()
-    let newAnswer = {
+    let newAnswer: testAnswerLayout = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
@@ -86,7 +94,7 @@ describe("Answers tests", () => {
 
   it("Store should be dirty when the answer value is different", () => {
     const store = initStore()
-    const newAnswer = {
+    const newAnswer: testAnswerLayout = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
@@ -98,7 +106,7 @@ describe("Answers tests", () => {
 
   it("Store should be dirty when multiple answers values are different", () => {
     const store = initStore()
-    let newAnswer = {
+    let newAnswer: testAnswerLayout = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",

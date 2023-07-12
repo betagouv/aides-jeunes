@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals"
 import InputNumber from "@/components/input-number.vue"
 
 describe("input-number.vue", () => {

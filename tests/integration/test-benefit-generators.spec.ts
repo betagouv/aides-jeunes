@@ -1,6 +1,7 @@
-import { buildAPA } from "@root/data/benefits/dynamic/apa"
-import { buildFSL } from "@root/data/benefits/dynamic/fsl"
-import { compareSchema, getCollectionSchema } from "@root/data/schemas"
+import { expect } from "@jest/globals"
+import { buildAPA } from "@root/data/benefits/dynamic/apa.js"
+import { buildFSL } from "@root/data/benefits/dynamic/fsl.js"
+import { compareSchema, getCollectionSchema } from "@root/data/schemas.js"
 const benefitSchema = getCollectionSchema("benefits_javascript")
 
 describe("Javascript benefit generator", () => {

@@ -1,8 +1,9 @@
+import { expect } from "@jest/globals"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
-} from "../../../lib/cleaner-functions"
-import { SimulationStatusEnum } from "../../../lib/enums/simulation"
+} from "@root/lib/cleaner-functions.js"
+import { SimulationStatusEnum } from "@root/lib/enums/simulation.js"
 
 const anId = "123"
 

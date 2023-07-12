@@ -25,6 +25,7 @@ const options = [
 export default {
   install: (app) => {
     const styleElement = document.createElement("style")
+    styleElement.textContent = defaultDsfr
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {

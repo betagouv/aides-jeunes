@@ -132,7 +132,7 @@ function extractSurveyDetails(db) {
           (s) => s.type === SurveyType.benefitAction
         )
         benefitActionSurvey.answers.forEach(function (a) {
-          emit(`${a.id};${a.value}`, 1)
+          emit({ id: a.id, state: a.value }, 1)
         })
       },
       function (k, values) {
@@ -151,9 +151,7 @@ function extractSurveyDetails(db) {
     )
     .then((results) => {
       const groupMap = results.reduce(function (total, p) {
-        const fields = p._id.split(";")
-        const id = fields[0]
-        const state = fields[1]
+        const { id, state } = p._id
         total[id] = total[id] || { total: 0 }
         total[id][state] = p.value
         total[id].total += p.value

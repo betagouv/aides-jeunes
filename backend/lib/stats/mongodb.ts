@@ -108,9 +108,7 @@ function extractSurveySummary(db) {
           const { month, answer } = row._id
           set.summary[answer] = (set.summary[answer] || 0) + row.value
           set.total += row.value
-          if (!set.historical[month]) {
-            set.historical[month] = {}
-          }
+ set.historical[month] = set.historical[month] || {};
           set.historical[month][answer] = row.value
           return set
         },

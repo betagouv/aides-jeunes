@@ -8,11 +8,11 @@ import { defineConfig, loadEnv } from "vite"
 
 const __dirname = new URL(".", import.meta.url).pathname
 
-import config from "./backend/config/index"
-import benefits from "./data/all"
+import config from "./backend/config/index.js"
+import benefits from "./data/all.js"
 
 import { visualizer } from "rollup-plugin-visualizer"
-import generator from "./rollup/generator.rollup"
+import generator from "./rollup/generator.rollup.js"
 
 const {
   baseURL,
@@ -32,11 +32,11 @@ function createSentryPlugin() {
   return sentryVitePlugin({
     org: "betagouv",
     project: "aides-jeunes-front",
-    include: "./dist",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
       assets: "./dist/**",
+      filesToDeleteAfterUpload: "./dist/**.map",
     },
   })
 }
@@ -76,14 +76,28 @@ export default defineConfig(async ({ mode }) => {
       strictPort: true,
     },
     build: {
+      manifest: true,
       rollupOptions: {
         plugins: [],
+        output: {
+          assetFileNames: (assetInfo) => {
+            const extension = (assetInfo.name || "").match(/.*\.([a-z0-9]*)$/i)
+            if (extension && extension[1]) {
+              return `assets/${extension[1]}/[name]-[hash][extname]`
+            } else {
+              return `assets/other/[name]-[hash][extname]`
+            }
+          },
+          chunkFileNames: () => {
+            return `assets/js/[name]-[hash].js`
+          },
+        },
       },
       commonjsOptions: {
         exclude: ["lib"],
       },
-      emptyOutDir: false,
-      sourcemap: true,
+      emptyOutDir: true,
+      sourcemap: !!sentry.authToken,
     },
     plugins: [
       generator,

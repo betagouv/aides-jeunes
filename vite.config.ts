@@ -14,7 +14,7 @@ import benefits from "./data/all.js"
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup.js"
 
-let chunks = []
+const buildId = Date.now().toString()
 
 const {
   baseURL,
@@ -26,20 +26,17 @@ const {
   sentry,
 } = config
 
-function createSentryPlugin(options) {
-  console.log(chunks.length)
+function createSentryPlugin() {
   if (!sentry.authToken) {
     return null
   }
-  console.log("sentry initialized")
   return sentryVitePlugin({
-    debug: true,
     org: "betagouv",
     project: "aides-jeunes-front",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
-      //assets: chunks,
+      assets: `./dist/assets/js/${buildId}/*`,
       filesToDeleteAfterUpload: "./dist/assets/js/**.map",
     },
   })
@@ -94,7 +91,7 @@ export default defineConfig(async ({ mode }) => {
             }
           },
           chunkFileNames: () => {
-            return `assets/js/[name]-[hash].js`
+            return `assets/js/${buildId}/[name]-[hash].js`
           },
         },
       },
@@ -102,16 +99,10 @@ export default defineConfig(async ({ mode }) => {
         exclude: ["lib"],
       },
       emptyOutDir: false,
-      sourcemap: true,//!!sentry.authToken,
+      sourcemap: true, //!!sentry.authToken,
     },
     plugins: [
       generator,
-      {
-        name: "sourcemap-identifier",
-        writeBundle(options, bundle) {
-          chunks = Object.keys(bundle)
-        }
-      },
       vue(),
       createHtmlPlugin({
         minify: true,
@@ -128,7 +119,7 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
-      createSentryPlugin(chunks),
+      createSentryPlugin(),
     ],
     resolve: {
       preferBuiltins: false,

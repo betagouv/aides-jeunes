@@ -32,7 +32,7 @@ function createSentryPlugin() {
   }
   return sentryVitePlugin({
     org: "betagouv",
-    project: "aides-jeunes-front",
+    project: "aides-jeunes-preprod-front",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {

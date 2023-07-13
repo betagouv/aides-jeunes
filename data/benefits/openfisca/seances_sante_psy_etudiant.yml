@@ -9,7 +9,7 @@ link: https://www.service-public.fr/particuliers/actualites/A14726
 instructions: https://santepsy.etudiant.gouv.fr
 conditions:
   - avoir obtenu une lettre d'orientation délivrée par votre Service de Santé Universitaire
-  ou par un médecin généraliste.
+    ou par un médecin généraliste.
 prefix: l’
 unit: séances
 type: float

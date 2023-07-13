@@ -210,6 +210,9 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
       testCase.foyers_fiscaux._.rfr = {
         [periods.fiscalYear]: parents.rfr,
       }
+      testCase.foyers_fiscaux._.rni = {
+        [periods.lastYear]: parents.rfr,
+      }
     }
     if (parents.nbptr) {
       testCase.foyers_fiscaux._.nbptr = {

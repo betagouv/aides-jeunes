@@ -46,6 +46,7 @@ node_modules
 # Compiled assets
 dist
 dist-server
+dist-sourcemap
 
 .project
 .sass-cache

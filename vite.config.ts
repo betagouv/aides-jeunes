@@ -36,7 +36,7 @@ function createSentryPlugin() {
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
-      assets: `./dist/assets/js/${buildId}/*`,
+      assets: `./dist/assets/${buildId}/js/*.{js,map}`,
     },
   })
 }
@@ -84,13 +84,13 @@ export default defineConfig(async ({ mode }) => {
           assetFileNames: (assetInfo) => {
             const extension = (assetInfo.name || "").match(/.*\.([a-z0-9]*)$/i)
             if (extension && extension[1]) {
-              return `assets/${extension[1]}/[name]-[hash][extname]`
+              return `assets/${buildId}/${extension[1]}/[name]-[hash][extname]`
             } else {
-              return `assets/other/[name]-[hash][extname]`
+              return `assets/${buildId}/other/[name]-[hash][extname]`
             }
           },
           chunkFileNames: () => {
-            return `assets/js/${buildId}/[name]-[hash].js`
+            return `assets/${buildId}/js/[name]-[hash].js`
           },
         },
       },

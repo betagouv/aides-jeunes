@@ -92,6 +92,9 @@ export default defineConfig(async ({ mode }) => {
           chunkFileNames: () => {
             return `assets/${buildId}/js/[name]-[hash].js`
           },
+          entryFileNames: () => {
+            return `assets/${buildId}/js/[name]-[hash].js`
+          },
         },
       },
       commonjsOptions: {

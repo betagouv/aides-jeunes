@@ -1,10 +1,15 @@
 label: Santé Psy Étudiant
 institution: etat
-description: Vous êtes étudiant et vous ressentez le besoin d'une aide psychologique ? Vous pouvez bénéficier de 8 consultations gratuites avec un psychologue, sans avance de frais. Tous les étudiants qui le souhaitent peuvent en bénéficier.
+description: Vous êtes étudiant et vous ressentez le besoin d'une aide psychologique ?
+  Vous pouvez bénéficier de consultations de 45min gratuites avec un psychologue,
+  sans avance de frais. Consultez votre Service de santé universitaire (SSU) ou
+  votre médecin généraliste, muni de votre carte d'étudiant, afin d'obtenir une lettre
+  d'orientation ouvrant droit aux séances gratuites de suivi psychologique.
 link: https://www.service-public.fr/particuliers/actualites/A14726
 instructions: https://santepsy.etudiant.gouv.fr
 conditions:
-  - avoir pris contact avec un médecin.
+  - avoir obtenu une lettre d'orientation délivrée par votre Service de Santé Universitaire
+  ou par un médecin généraliste.
 prefix: l’
 unit: séances
 type: float

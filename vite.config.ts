@@ -14,6 +14,8 @@ import benefits from "./data/all.js"
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup.js"
 
+let chunks = []
+
 const {
   baseURL,
   github,
@@ -24,19 +26,21 @@ const {
   sentry,
 } = config
 
-function createSentryPlugin() {
+function createSentryPlugin(options) {
+  console.log(chunks.length)
   if (!sentry.authToken) {
     return null
   }
-
+  console.log("sentry initialized")
   return sentryVitePlugin({
+    debug: true,
     org: "betagouv",
     project: "aides-jeunes-front",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
-      assets: "./dist/**",
-      filesToDeleteAfterUpload: "./dist/**.map",
+      //assets: chunks,
+      filesToDeleteAfterUpload: "./dist/assets/js/**.map",
     },
   })
 }
@@ -70,6 +74,7 @@ export default defineConfig(async ({ mode }) => {
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
+
   return {
     server: {
       port: 8080,
@@ -97,10 +102,16 @@ export default defineConfig(async ({ mode }) => {
         exclude: ["lib"],
       },
       emptyOutDir: false,
-      sourcemap: !!sentry.authToken,
+      sourcemap: true,//!!sentry.authToken,
     },
     plugins: [
       generator,
+      {
+        name: "sourcemap-identifier",
+        writeBundle(options, bundle) {
+          chunks = Object.keys(bundle)
+        }
+      },
       vue(),
       createHtmlPlugin({
         minify: true,
@@ -117,7 +128,7 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
-      createSentryPlugin(),
+      createSentryPlugin(chunks),
     ],
     resolve: {
       preferBuiltins: false,

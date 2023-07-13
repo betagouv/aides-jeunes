@@ -37,7 +37,6 @@ function createSentryPlugin() {
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
       assets: `./dist/assets/js/${buildId}/*`,
-      filesToDeleteAfterUpload: "./dist/assets/js/**.map",
     },
   })
 }

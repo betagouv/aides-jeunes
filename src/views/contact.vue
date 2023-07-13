@@ -21,6 +21,7 @@
         >courriel à l'adresse suivante {{ contactEmail }}</a
       >.
     </p>
+    <button class="fr-btn" @click="triggerError">Trigger error</button>
   </article>
 </template>
 <script>

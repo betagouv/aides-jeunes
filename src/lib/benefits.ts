@@ -7,7 +7,7 @@ export function getBenefit(benefitId) {
 }
 
 export const mockResults = function (sublist: string) {
-  let filterSublist: string[] | null = []
+  let filterSublist: string[] | null = null
   if (sublist) {
     filterSublist = BenefitsCategories[sublist] || sublist.split(",")
   }

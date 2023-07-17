@@ -376,8 +376,8 @@ jobs:
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - id: has-changes
         run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh data/benefits" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
-  test_benefit_link_improvements:
-    name: Test benefit link improvements
+  check_benefit_link_improvements:
+    name: Check benefit link improvements and update link table if necessary
     needs: [test_benefit_file_changes]
     if: needs.test_benefit_file_changes.outputs.status == 'success'
     runs-on: ubuntu-20.04

@@ -6,26 +6,23 @@ export function getRequiredAdditionsAndTouchWarningsToKeep(
 ): any {
   const recordsToAdd: any[] = []
   checkResult.links.forEach((item) => {
-    if (!item.ok) {
-      const record = {
-        fields: {
-          Aide: checkResult.id,
-          Priorite: checkResult.priority,
-          Erreur: item.status,
-          Lien: item.link,
-          Type: item.type,
-        },
-      }
-      const warning = existingWarnings?.[checkResult.id]?.[item.type]
-      if (warning) {
-        if (warning.fields.Erreur === item.status) {
-          warning.keep = true
-        } else {
-          recordsToAdd.push(record)
-        }
-      } else {
-        recordsToAdd.push(record)
-      }
+    if (item.ok) {
+      return
+    }
+    const record = {
+      fields: {
+        Aide: checkResult.id,
+        Priorite: checkResult.priority,
+        Erreur: item.status,
+        Lien: item.link,
+        Type: item.type,
+      },
+    }
+    const existingWarning = existingWarnings?.[checkResult.id]?.[item.type]
+    if (existingWarning?.fields?.Erreur === item.status) {
+      existingWarning.keep = true
+    } else {
+      recordsToAdd.push(record)
     }
   })
   return recordsToAdd

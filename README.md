@@ -178,13 +178,13 @@ SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%2
 With the `deploy` key at hand, linked to the deploment script it is possible kick of a now deployment thanks to:
 
 ```sh
-ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr -i deploy
+ssh root@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr -i deploy
 ```
 
 For more, a normal/manual root connection is required.
 
 ```sh
-ssh root@solstice.mes-aides.1jeune1solution.beta.gouv.fr
+ssh root@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
 ```
 
 # Other tools scripts & tips

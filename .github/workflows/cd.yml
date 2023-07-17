@@ -3,8 +3,8 @@ on:
   push:
     branches: [master, dev]
 env:
-  SOLSTICE_SSH_HOST: solstice.mes-aides.1jeune1solution.beta.gouv.fr
-  SOLSTICE_SSH_USER: root
+  EQUINOXE_SSH_HOST: equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
+  EQUINOXE_SSH_USER: debian
   ECLIPSE_SSH_HOST: monitor.eclipse.mes-aides.incubateur.net
   ECLIPSE_SSH_USER: debian
 
@@ -32,32 +32,32 @@ jobs:
         run: npm ci --prefer-offline --no-audit
       - name: Jest
         run: npm run test
-  deploy_solstice_production:
+  deploy_equinoxe_production:
     if: github.ref == 'refs/heads/master'
     needs: [unit_testing]
-    name: Solstice Production deployment
+    name: Equinoxe Production deployment
     runs-on: ubuntu-20.04
     steps:
       - name: Production deployment
         shell: bash
         run: |
           mkdir -p ~/.ssh/
-          echo "${{ secrets.PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
+          echo "${{ secrets.EQUINOXE_PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -o StrictHostKeyChecking=no ${{ env.SOLSTICE_SSH_USER }}@${{ env.SOLSTICE_SSH_HOST }} -i ~/.ssh/deployment.key
-  deploy_solstice_preproduction:
+          ssh -o StrictHostKeyChecking=no ${{ env.EQUINOXE_SSH_USER }}@${{ env.EQUINOXE_SSH_HOST }} -i ~/.ssh/deployment.key
+  deploy_equinoxe_preproduction:
     if: github.ref == 'refs/heads/dev'
     needs: [unit_testing]
-    name: Solstice Preproduction Deployment
+    name: Equinoxe Preproduction Deployment
     runs-on: ubuntu-20.04
     steps:
       - name: Preproduction Deployment
         shell: bash
         run: |
           mkdir -p ~/.ssh/
-          echo "${{ secrets.PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
+          echo "${{ secrets.EQUINOXE_PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
-          ssh -o StrictHostKeyChecking=no ${{ env.SOLSTICE_SSH_USER }}@${{ env.SOLSTICE_SSH_HOST }} -i ~/.ssh/deployment.key
+          ssh -o StrictHostKeyChecking=no ${{ env.EQUINOXE_SSH_USER }}@${{ env.EQUINOXE_SSH_HOST }} -i ~/.ssh/deployment.key
   deploy_eclipse_production:
     if: github.ref == 'refs/heads/master'
     needs: [unit_testing]

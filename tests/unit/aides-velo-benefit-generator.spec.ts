@@ -12,7 +12,7 @@ describe("aides velo benefit generator", function () {
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {
-      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèëçâôûœ-]+$/)
+      expect(benefit.id).toMatch(/^[a-z0-9_\-àâäéèêëîïôöùûüÿçœ]+$/i)
     })
 
     it("verify description exists", function () {

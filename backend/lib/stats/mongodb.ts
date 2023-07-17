@@ -48,7 +48,6 @@ function extractSimulationDailyCount(db, fromDate, toDate) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then(formatMongo)
 }
 
@@ -84,7 +83,9 @@ function extractSurveySummary(db) {
           benefitActionSurvey.answers.sort(function (a, b) {
             return m[a.value] > m[b.value]
           })
-          emit(benefitActionSurvey.answers[0].value, 1)
+          const month = benefitActionSurvey.repliedAt.toISOString().slice(0, 7)
+          const answer = benefitActionSurvey.answers[0].value
+          emit({ month, answer }, 1)
         }
       },
       function (k, values) {
@@ -101,16 +102,17 @@ function extractSurveySummary(db) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then((summary) =>
       summary.reduce(
         (set, row) => {
-          set[row._id] = row.value
+          const { month, answer } = row._id
+          set.summary[answer] = (set.summary[answer] || 0) + row.value
           set.total += row.value
-
+          set.historical[month] = set.historical[month] || {}
+          set.historical[month][answer] = row.value
           return set
         },
-        { total: 0 }
+        { summary: {}, historical: {}, total: 0 }
       )
     )
 }
@@ -128,7 +130,7 @@ function extractSurveyDetails(db) {
           (s) => s.type === SurveyType.benefitAction
         )
         benefitActionSurvey.answers.forEach(function (a) {
-          emit(`${a.id};${a.value}`, 1)
+          emit({ id: a.id, state: a.value }, 1)
         })
       },
       function (k, values) {
@@ -145,12 +147,9 @@ function extractSurveyDetails(db) {
         },
       }
     )
-    .then((r) => r.results || r)
     .then((results) => {
       const groupMap = results.reduce(function (total, p) {
-        const fields = p._id.split(";")
-        const id = fields[0]
-        const state = fields[1]
+        const { id, state } = p._id
         total[id] = total[id] || { total: 0 }
         total[id][state] = p.value
         total[id].total += p.value
@@ -193,29 +192,25 @@ async function connect() {
     .then((client) => client.db())
 }
 
-function getStats(fromDate, toDate): MongoStatsLayout | any {
-  return connect()
-    .then(function (db) {
-      // MongoDB 2.4 (production) does not embed metadata of the operation, the result is directly available in the response
-      // MongoDB 3.4 (dev environment) returns results with metadata and are available in the results property
-      return extractSimulationDailyCount(db, fromDate, toDate).then(
-        (dailies) => {
-          return extractSurveySummary(db).then((summary) => {
-            return extractSurveyDetails(db).then((details) => {
-              return {
-                dailySituationCount: dailies,
-                survey: {
-                  summary,
-                  details,
-                },
-              }
-            })
-          })
-        }
-      )
-    })
-    .catch(manageMissingDBOrCollection)
-    .finally(closeClient)
+async function getStats(fromDate, toDate): Promise<MongoStatsLayout | any> {
+  try {
+    const db = await connect()
+    const dailies = await extractSimulationDailyCount(db, fromDate, toDate)
+    const survey = await extractSurveySummary(db)
+    const details = await extractSurveyDetails(db)
+
+    return {
+      dailySituationCount: dailies,
+      survey: {
+        ...survey,
+        details,
+      },
+    }
+  } catch (error) {
+    return manageMissingDBOrCollection(error)
+  } finally {
+    closeClient()
+  }
 }
 
 export default { connect, closeClient, getStats }

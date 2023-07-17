@@ -8,12 +8,14 @@ import {
 function buildPRProcessor(pullRequestURL) {
   function processPR(checkResult, linkInfo, existingWarning, { update }) {
     if (linkInfo.ok && existingWarning) {
-      update.push({
-        id: existingWarning.id,
-        fields: {
-          PR: pullRequestURL,
-        },
-      })
+      if (existingWarning.fields.PR != pullRequestURL) {
+        update.push({
+          id: existingWarning.id,
+          fields: {
+            PR: pullRequestURL,
+          },
+        })
+      }
     }
   }
   return processPR

@@ -42,9 +42,7 @@ describe("aides velo benefit generator", function () {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
         )
-        console.log(
-          (b) => `${b.description} - ${`code_siren:  '${EPCIMatch?.code}'`}`
-        )
+        console.log(`${b.description} - ${`code_siren:  '${EPCIMatch?.code}'`}`)
       })
     }
 

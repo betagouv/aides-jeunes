@@ -1,4 +1,4 @@
-import { getRequiredAdditionsAndTouchWarningsToKeep } from "../../../../lib/benefits/link-validity.js"
+import { determineOperationsOnBenefitLinkError } from "../../../../lib/benefits/link-validity.js"
 import { makeBenefitData } from "./utils.js"
 
 describe("check-link-validity script", () => {
@@ -11,13 +11,10 @@ describe("check-link-validity script", () => {
         ok: false,
       }
       const benefitData = makeBenefitData({ links: [bogusLink] })
-      const records = getRequiredAdditionsAndTouchWarningsToKeep(
-        {},
-        benefitData
-      )
+      const operations = determineOperationsOnBenefitLinkError({}, benefitData)
 
-      expect(records).toHaveLength(1)
-      const record = records[0]
+      expect(operations.add).toHaveLength(1)
+      const record = operations.add[0]
       const fields = record.fields
       expect(fields).toHaveProperty("Aide", benefitData.id)
       expect(fields).toHaveProperty("Lien", bogusLink.link)

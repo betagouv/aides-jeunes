@@ -1,29 +1,83 @@
-import { benefitData } from "../types/link-validity.js"
+import {
+  benefitData,
+  GristData,
+  GristAddition,
+  GristUpdate,
+} from "../types/link-validity.js"
 
-export function getRequiredAdditionsAndTouchWarningsToKeep(
-  existingWarnings,
-  checkResult: benefitData
-): any {
-  const recordsToAdd: any[] = []
-  checkResult.links.forEach((item) => {
-    if (item.ok) {
-      return
+function buildPRProcessor(pullRequestURL) {
+  function processPR(checkResult, linkInfo, existingWarning, { update }) {
+    if (linkInfo.ok && existingWarning) {
+      update.push({
+        id: existingWarning.id,
+        fields: {
+          PR: pullRequestURL,
+        },
+      })
     }
-    const record = {
-      fields: {
-        Aide: checkResult.id,
-        Priorite: checkResult.priority,
-        Erreur: item.status,
-        Lien: item.link,
-        Type: item.type,
-      },
+  }
+  return processPR
+}
+
+function processCron(
+  checkResult,
+  linkInfo,
+  existingWarning,
+  { add, keep, update }
+) {
+  if (linkInfo.ok) {
+    if (existingWarning) {
+      update.push({
+        id: existingWarning.id,
+        fields: {
+          Corrige: true,
+        },
+      })
     }
-    const existingWarning = existingWarnings?.[checkResult.id]?.[item.type]
-    if (existingWarning?.fields?.Erreur === item.status) {
-      existingWarning.keep = true
+    return
+  }
+
+  const newRecord = {
+    fields: {
+      Aide: checkResult.id,
+      Priorite: checkResult.priority,
+      Erreur: linkInfo.status,
+      Lien: linkInfo.link,
+      Type: linkInfo.type,
+    },
+  }
+  if (!existingWarning) {
+    add.push(newRecord)
+  } else {
+    if (existingWarning.fields.Erreur === linkInfo.status) {
+      keep.push(existingWarning)
     } else {
-      recordsToAdd.push(record)
+      update.push({
+        id: existingWarning.id,
+        fields: {
+          Corrige: true,
+        },
+      })
+      add.push(newRecord)
     }
+  }
+}
+
+export function determineOperationsOnBenefitLinkError(
+  existingWarnings,
+  checkResult: benefitData,
+  pullRequestURL?: string
+) {
+  const processor = pullRequestURL
+    ? buildPRProcessor(pullRequestURL)
+    : processCron
+  const add: GristAddition[] = []
+  const keep: GristData[] = []
+  const update: GristUpdate[] = []
+  const result = { add, keep, update }
+  checkResult.links.forEach((link) => {
+    const existingWarning = existingWarnings?.[checkResult.id]?.[link.type]
+    processor(checkResult, link, existingWarning, result)
   })
-  return recordsToAdd
+  return result
 }

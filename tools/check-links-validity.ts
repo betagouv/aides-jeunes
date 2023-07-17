@@ -1,6 +1,6 @@
 import Benefits from "../data/all.js"
 import config from "../backend/config/index.js"
-import { getRequiredAdditionsAndTouchWarningsToKeep } from "../lib/benefits/link-validity.js"
+import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
 import { GristUpdate } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 
@@ -194,7 +194,6 @@ async function main() {
     Aide: benefitIdsFromCLI,
   })
   const benefitData = await getBenefitData(noPriority)
-
   const benefitsToAnalyze = filterBenefitDataToProcess(
     benefitData,
     benefitIdsFromCLI,
@@ -214,49 +213,35 @@ async function main() {
     concurrency: 3,
   })
 
-  const additionsByBenefit = results.map((linkCheckResult) =>
-    getRequiredAdditionsAndTouchWarningsToKeep(
+  const operationLists = results.map((linkCheckResult) =>
+    determineOperationsOnBenefitLinkError(
       existingWarnings,
-      linkCheckResult
+      linkCheckResult,
+      pullRequestURL
     )
   )
   type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
   const recordsByOperationTypes: recordsByOperationTypesType = {
-    addition: [],
+    add: [],
     update: [],
+    keep: [],
   }
 
-  const untouchedWarnings = rawExistingWarnings.records.filter((r) => !r.keep)
-  if (processingPR) {
-    untouchedWarnings.forEach((record) => {
-      if (record.fields.PR?.length) {
-        return
-      }
-      recordsByOperationTypes.update.push({
-        id: record.id,
-        fields: { PR: pullRequestURL },
+  const operationTypes = Object.keys(recordsByOperationTypes)
+  operationLists.forEach((operations) => {
+    operationTypes.forEach((operationType) => {
+      operations[operationType].forEach((record) => {
+        recordsByOperationTypes[operationType].push(record)
       })
     })
-  } else {
-    additionsByBenefit.forEach((additionsForABenefit) => {
-      additionsForABenefit.forEach((recordToAdd) => {
-        recordsByOperationTypes.addition.push(recordToAdd)
-      })
-    })
-    untouchedWarnings.forEach((record) => {
-      recordsByOperationTypes.update.push({
-        id: record.id,
-        fields: { Corrige: true },
-      })
-    })
-  }
+  })
 
   console.log("== recordsByOperationTypes ==")
   console.log(JSON.stringify(recordsByOperationTypes, null, 2))
   if (!dryRun) {
     try {
-      if (recordsByOperationTypes.addition.length) {
-        await gristAPI.add(recordsByOperationTypes.addition)
+      if (recordsByOperationTypes.add.length) {
+        await gristAPI.add(recordsByOperationTypes.add)
       }
       if (recordsByOperationTypes.update.length) {
         await gristAPI.update(recordsByOperationTypes.update)

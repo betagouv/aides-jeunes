@@ -1,4 +1,4 @@
-import { getRequiredAdditionsAndTouchWarningsToKeep } from "../../../../lib/benefits/link-validity.js"
+import { determineOperationsOnBenefitLinkError } from "../../../../lib/benefits/link-validity.js"
 import { makeBenefitData } from "./utils.js"
 
 describe("check-link-validity script", () => {
@@ -22,12 +22,13 @@ describe("check-link-validity script", () => {
           [bogusLink.type]: warningRecord,
         },
       }
-      const records = getRequiredAdditionsAndTouchWarningsToKeep(
+      const operations = determineOperationsOnBenefitLinkError(
         existing,
         benefitData
       )
-      expect(records).toHaveLength(0)
-      expect(warningRecord).toHaveProperty("keep", true)
+      expect(operations.add).toHaveLength(0)
+      expect(operations.keep).toHaveLength(1)
+      expect(operations.keep[0]).toEqual(warningRecord)
     })
   })
 
@@ -43,6 +44,7 @@ describe("check-link-validity script", () => {
       const warningRecord = {
         id: 42,
         fields: {
+          Type: "link",
           Erreur: 403,
         },
       }
@@ -51,12 +53,13 @@ describe("check-link-validity script", () => {
           [bogusLink.type]: warningRecord,
         },
       }
-      const records = getRequiredAdditionsAndTouchWarningsToKeep(
+      const operations = determineOperationsOnBenefitLinkError(
         existing,
         benefitData
       )
-      expect(records).toHaveLength(0)
-      expect(warningRecord.keep).toBeFalsy()
+      expect(operations.add).toHaveLength(0)
+      expect(operations.update).toHaveLength(1)
+      expect(operations.update[0].id).toEqual(warningRecord.id)
     })
   })
 })

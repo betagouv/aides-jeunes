@@ -32,12 +32,15 @@ interface GristFields {
 
 interface GristData {
   id: number
-  keep?: boolean
   fields: GristFields
 }
 
 interface GristUpdate {
   id: number
+  fields: Partial<GristFields>
+}
+
+interface GristAddition {
   fields: Partial<GristFields>
 }
 

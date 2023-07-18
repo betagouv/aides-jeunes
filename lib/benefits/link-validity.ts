@@ -11,7 +11,7 @@ function buildPullRequestProcessor(pullRequestURL) {
       if (existingWarning.fields.PR != pullRequestURL) {
         operations.push({
           type: "update",
-          record: {
+          data: {
             id: existingWarning.id,
             fields: {
               PR: pullRequestURL,
@@ -34,7 +34,7 @@ function processCron(
     if (existingWarning) {
       operations.push({
         type: "update",
-        record: {
+        data: {
           id: existingWarning.id,
           fields: {
             Corrige: true,
@@ -45,7 +45,7 @@ function processCron(
     return
   }
 
-  const record = {
+  const data = {
     fields: {
       Aide: checkResult.id,
       Priorite: checkResult.priority,
@@ -57,13 +57,13 @@ function processCron(
   if (!existingWarning) {
     operations.push({
       type: "add",
-      record,
+      data,
     })
   } else {
     if (existingWarning.fields.Erreur !== linkInfo.status) {
       operations.push({
         type: "update",
-        record: {
+        data: {
           id: existingWarning.id,
           fields: {
             Corrige: true,
@@ -72,7 +72,7 @@ function processCron(
       })
       operations.push({
         type: "add",
-        record,
+        data,
       })
     }
   }

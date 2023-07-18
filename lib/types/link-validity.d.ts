@@ -30,15 +30,21 @@ interface GristFields {
   Erreur_de_detection: boolean
 }
 
-interface GristData {
+interface GristRecord {
   id: number
   fields: GristFields
 }
 
+interface GristResponse {
+  records: GristRecord[]
+}
+
+interface GristData {
+  id?: number
+  fields: Partial<GristFields>
+}
+
 interface GristOperation {
   type: string
-  record: {
-    id?: number
-    fields: Partial<GristFields>
-  }
+  data: GristData
 }

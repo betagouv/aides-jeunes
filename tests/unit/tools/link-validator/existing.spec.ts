@@ -56,7 +56,7 @@ describe("check-link-validity script", () => {
         benefitData
       )
       expect(operations).toHaveLength(1)
-      expect(operations[0].record.id).toEqual(warningRecord.id)
+      expect(operations[0].data.id).toEqual(warningRecord.id)
     })
   })
 })

@@ -14,9 +14,9 @@ describe("check-link-validity script", () => {
       const operations = determineOperationsOnBenefitLinkError({}, benefitData)
 
       expect(operations).toHaveLength(1)
-      const { type, record } = operations[0]
+      const { type, data } = operations[0]
       expect(type).toEqual("add")
-      const fields = record.fields
+      const fields = data.fields
       expect(fields).toHaveProperty("Aide", benefitData.id)
       expect(fields).toHaveProperty("Lien", bogusLink.link)
     })

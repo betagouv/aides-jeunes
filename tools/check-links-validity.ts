@@ -1,7 +1,7 @@
 import Benefits from "../data/all.js"
 import config from "../backend/config/index.js"
 import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
-import { GristUpdate } from "../lib/types/link-validity.js"
+import { GristData } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 
 import axios from "axios"
@@ -220,15 +220,15 @@ async function main() {
       pullRequestURL
     )
   )
-  type recordsByOperationTypesType = { [operationType: string]: GristUpdate[] }
+  type recordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: recordsByOperationTypesType = {
     add: [],
     update: [],
   }
 
   benefitOperationsList.forEach((operations) => {
-    operations.forEach(({ type, record }) => {
-      recordsByOperationTypes[type].push(record)
+    operations.forEach(({ type, data }) => {
+      recordsByOperationTypes[type].push(data)
     })
   })
 

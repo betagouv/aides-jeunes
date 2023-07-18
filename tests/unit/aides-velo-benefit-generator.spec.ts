@@ -12,7 +12,7 @@ describe("aides velo benefit generator", function () {
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {
-      expect(benefit.id).toMatch(/^[0-9a-zA-Z_éàèëçâôûœ-]+$/)
+      expect(benefit.id).toMatch(/^[a-z0-9_\-àâäéèêëîïôöùûüÿçœ]+$/i)
     })
 
     it("verify description exists", function () {
@@ -42,9 +42,7 @@ describe("aides velo benefit generator", function () {
         const EPCIMatch = epci.find((e) =>
           e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
         )
-        console.log(
-          (b) => `${b.description} - ${`code_siren:  '${EPCIMatch?.code}'`}`
-        )
+        console.log(`${b.description} - ${`code_siren:  '${EPCIMatch?.code}'`}`)
       })
     }
 

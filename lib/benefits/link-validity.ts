@@ -1,45 +1,51 @@
-import {
-  benefitData,
-  GristData,
-  GristAddition,
-  GristUpdate,
-} from "../types/link-validity.js"
+import { benefitData, GristOperation } from "../types/link-validity.js"
 
-function buildPRProcessor(pullRequestURL) {
-  function processPR(checkResult, linkInfo, existingWarning, { update }) {
+function buildPullRequestProcessor(pullRequestURL) {
+  function processPullRequest(
+    checkResult,
+    linkInfo,
+    existingWarning,
+    operations: GristOperation[]
+  ) {
     if (linkInfo.ok && existingWarning) {
       if (existingWarning.fields.PR != pullRequestURL) {
-        update.push({
-          id: existingWarning.id,
-          fields: {
-            PR: pullRequestURL,
+        operations.push({
+          type: "update",
+          record: {
+            id: existingWarning.id,
+            fields: {
+              PR: pullRequestURL,
+            },
           },
         })
       }
     }
   }
-  return processPR
+  return processPullRequest
 }
 
 function processCron(
   checkResult,
   linkInfo,
   existingWarning,
-  { add, keep, update }
+  operations: GristOperation[]
 ) {
   if (linkInfo.ok) {
     if (existingWarning) {
-      update.push({
-        id: existingWarning.id,
-        fields: {
-          Corrige: true,
+      operations.push({
+        type: "update",
+        record: {
+          id: existingWarning.id,
+          fields: {
+            Corrige: true,
+          },
         },
       })
     }
     return
   }
 
-  const newRecord = {
+  const record = {
     fields: {
       Aide: checkResult.id,
       Priorite: checkResult.priority,
@@ -49,18 +55,25 @@ function processCron(
     },
   }
   if (!existingWarning) {
-    add.push(newRecord)
+    operations.push({
+      type: "add",
+      record,
+    })
   } else {
-    if (existingWarning.fields.Erreur === linkInfo.status) {
-      keep.push(existingWarning)
-    } else {
-      update.push({
-        id: existingWarning.id,
-        fields: {
-          Corrige: true,
+    if (existingWarning.fields.Erreur !== linkInfo.status) {
+      operations.push({
+        type: "update",
+        record: {
+          id: existingWarning.id,
+          fields: {
+            Corrige: true,
+          },
         },
       })
-      add.push(newRecord)
+      operations.push({
+        type: "add",
+        record,
+      })
     }
   }
 }
@@ -71,15 +84,12 @@ export function determineOperationsOnBenefitLinkError(
   pullRequestURL?: string
 ) {
   const processor = pullRequestURL
-    ? buildPRProcessor(pullRequestURL)
+    ? buildPullRequestProcessor(pullRequestURL)
     : processCron
-  const add: GristAddition[] = []
-  const keep: GristData[] = []
-  const update: GristUpdate[] = []
-  const result = { add, keep, update }
+  const operations: GristOperation[] = []
   checkResult.links.forEach((link) => {
     const existingWarning = existingWarnings?.[checkResult.id]?.[link.type]
-    processor(checkResult, link, existingWarning, result)
+    processor(checkResult, link, existingWarning, operations)
   })
-  return result
+  return operations
 }

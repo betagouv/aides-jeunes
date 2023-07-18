@@ -26,9 +26,7 @@ describe("check-link-validity script", () => {
         existing,
         benefitData
       )
-      expect(operations.add).toHaveLength(0)
-      expect(operations.keep).toHaveLength(1)
-      expect(operations.keep[0]).toEqual(warningRecord)
+      expect(operations).toHaveLength(0)
     })
   })
 
@@ -57,9 +55,8 @@ describe("check-link-validity script", () => {
         existing,
         benefitData
       )
-      expect(operations.add).toHaveLength(0)
-      expect(operations.update).toHaveLength(1)
-      expect(operations.update[0].id).toEqual(warningRecord.id)
+      expect(operations).toHaveLength(1)
+      expect(operations[0].record.id).toEqual(warningRecord.id)
     })
   })
 })

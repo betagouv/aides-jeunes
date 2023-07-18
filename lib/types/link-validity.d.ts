@@ -35,15 +35,10 @@ interface GristData {
   fields: GristFields
 }
 
-interface GristUpdate {
-  id: number
-  fields: Partial<GristFields>
-}
-
-interface GristAddition {
-  fields: Partial<GristFields>
-}
-
-interface GristResponse {
-  records: GristData[]
+interface GristOperation {
+  type: string
+  record: {
+    id?: number
+    fields: Partial<GristFields>
+  }
 }

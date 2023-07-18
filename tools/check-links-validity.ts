@@ -213,7 +213,7 @@ async function main() {
     concurrency: 3,
   })
 
-  const operationLists = results.map((linkCheckResult) =>
+  const benefitOperationsList = results.map((linkCheckResult) =>
     determineOperationsOnBenefitLinkError(
       existingWarnings,
       linkCheckResult,
@@ -224,15 +224,11 @@ async function main() {
   const recordsByOperationTypes: recordsByOperationTypesType = {
     add: [],
     update: [],
-    keep: [],
   }
 
-  const operationTypes = Object.keys(recordsByOperationTypes)
-  operationLists.forEach((operations) => {
-    operationTypes.forEach((operationType) => {
-      operations[operationType].forEach((record) => {
-        recordsByOperationTypes[operationType].push(record)
-      })
+  benefitOperationsList.forEach((operations) => {
+    operations.forEach(({ type, record }) => {
+      recordsByOperationTypes[type].push(record)
     })
   })
 

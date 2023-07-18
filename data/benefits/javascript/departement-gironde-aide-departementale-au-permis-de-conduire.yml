@@ -18,7 +18,6 @@ conditions_generales:
     value: 25
 profils:
   - type: chomeur
-  - type: autre
   - type: beneficiaire_rsa
   - type: service_civique
 conditions:

@@ -1,0 +1,33 @@
+label: Aide départementale au Permis de conduire
+institution: departement_gironde
+description: Le Département facilite l’accès au permis de conduire pour des
+  jeunes en difficultés sociale et financière, domiciliés sur les territoires
+  ruraux où l’offre de transport collectif est peu développée. Cette aide est
+  versée en contrepartie d'un engagement bénévole au sein d'une association ou
+  d'une collectivité.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "33"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+  - type: autre
+  - type: beneficiaire_rsa
+  - type: service_civique
+conditions:
+  - Etre éligible aux critères du Fonds d'Aide au Jeunes.
+  - Résider dans une commune de la Gironde qui ne se situe pas au sein de la Métropole.
+  - Réaliser 70 heures de bénévolat auprès d’une association ou d'une collectivité locale.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+link: https://www.gironde.fr/acteurs-jeunesse/les-actions/aide-departementale-au-permis-de-conduire
+instructions: https://www.gironde.fr/acteurs-jeunesse/les-actions/aide-departementale-au-permis-de-conduire

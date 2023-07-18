@@ -24,6 +24,7 @@ const normalizeName = (name) => {
 const createYamlFile = (name, content) => {
   const fileContent = yaml.dump(content, {
     skipInvalid: true,
+    quotingType: '"',
   })
 
   fs.writeFileSync(`./data/institutions/${name}.yml`, fileContent)

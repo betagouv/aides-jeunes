@@ -741,9 +741,19 @@ fields:
   field_voluntary_conditions: &field_voluntary_conditions
     label: Conditions bénévoles à satisfaire
     name: voluntary_conditions
-    hint: Un lien dynamique vers la plateforme jeveuxaider.gouv.fr s'ajoutera à la suite de ces conditions pour orienter l'utilisateur vers des organismes de bénévolat à proximité
+    hint: Un lien dynamique vers la plateforme jeveuxaider.gouv.fr s'ajoutera à la suite de la dernière condition pour orienter l'utilisateur vers des organismes de bénévolat à proximité
     required: false
-    widget: string
+    widget: list
+    collapsed: false
+    field:
+      label: Texte
+      name: text
+      widget: string
+      pattern:
+        [
+          '\.$',
+          "La condition doit commencer par un verbe à l'infinitif et se terminer par un point",
+        ]
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément

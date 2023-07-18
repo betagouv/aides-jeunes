@@ -26,7 +26,7 @@
       >
         <strong>Pour en bénéficier, vous devez également : </strong>
         <ul
-          v-if="droit.voluntary_conditions?.length"
+          v-if="droit.voluntary_conditions?.length > 0"
           class="fr-toggle__list fr-px-0"
         >
           <li
@@ -35,7 +35,12 @@
           >
             <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
             <span v-html="voluntary_condition" />
-            <span v-if="volontaryOrganisationsLink">
+            <span
+              v-if="
+                volontaryOrganisationsLink &&
+                index === droit.voluntary_conditions.length - 1
+              "
+            >
               La liste des associations à proximité est disponible sur la
               plateforme
               <a :href="volontaryOrganisationsLink" target="_blank"

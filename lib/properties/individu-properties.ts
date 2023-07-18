@@ -228,7 +228,7 @@ export default {
     },
     questionType: "number",
     moreInfo:
-      "Lorsque les parents sont séparés, il faut prendre les ressources du parent ayant à la charge l'étudiant. Si l'étudiant est en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
+      "Lorsque vos parents sont séparés, il faut prendre les ressources du parent qui vous a à charge. Si vous êtes encore mineur et en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
     showMoreInfo: ({ simulation }) => {
       const _situation = getAnswer(
         simulation.answers.current,

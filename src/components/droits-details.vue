@@ -21,12 +21,12 @@
         />
       </p>
       <div
-        v-if="droit.conditions?.length || droit.voluntary_conditions?.length"
+        v-if="showConditions(droit)"
         class="fr-highlight fr-ml-0 fr-py-2w fr-mb-2w"
       >
         <strong>Pour en bénéficier, vous devez également : </strong>
         <ul
-          v-if="droit.voluntary_conditions?.length > 0"
+          v-if="showVoluntaryConditions(droit)"
           class="fr-toggle__list fr-px-0"
         >
           <li
@@ -35,12 +35,7 @@
           >
             <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
             <span v-html="voluntary_condition" />
-            <span
-              v-if="
-                volontaryOrganisationsLink &&
-                index === droit.voluntary_conditions.length - 1
-              "
-            >
+            <span v-if="showVoluntaryOrganisationsLink(droit, index)">
               La liste des associations à proximité est disponible sur la
               plateforme
               <a :href="volontaryOrganisationsLink" target="_blank"
@@ -49,7 +44,7 @@
             </span>
           </li>
         </ul>
-        <ul v-if="droit.conditions?.length" class="fr-toggle__list fr-px-0">
+        <ul v-if="showBaseConditions(droit)" class="fr-toggle__list fr-px-0">
           <li v-for="(condition, index) in droit.conditions" :key="index">
             <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
             <span v-html="condition" />
@@ -196,6 +191,21 @@ export default {
     },
     volontaryOrganisationsLink() {
       return this.volontaryOrganisations.volontaryOrganisationsLink.value
+    },
+    showVoluntaryOrganisationsLink() {
+      return (droit, index) =>
+        this.volontaryOrganisationsLink &&
+        index === droit.voluntary_conditions.length - 1
+    },
+    showConditions() {
+      return (droit) =>
+        droit.conditions?.length || droit.voluntary_conditions?.length
+    },
+    showBaseConditions() {
+      return (droit) => droit.conditions?.length
+    },
+    showVoluntaryConditions() {
+      return (droit) => droit.voluntary_conditions?.length
     },
   },
 }

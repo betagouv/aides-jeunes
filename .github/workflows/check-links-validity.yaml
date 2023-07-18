@@ -18,3 +18,6 @@ jobs:
         shell: bash
         run: |
           curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-info: La liste des aides avec des liens invalides a été mise à jour ici : [lien](https://github.com/betagouv/aides-jeunes/issues/2945)"}' ${{ secrets.MATTERMOST_POST_URL }}
+        env:
+          GRIST_DOC_ID: ${{ secrets.GRIST_DOC_ID }}
+          GRIST_API_KEY: ${{ secrets.GRIST_API_KEY }}

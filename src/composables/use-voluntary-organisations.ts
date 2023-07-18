@@ -21,7 +21,7 @@ export function useVolontaryOrganisations() {
     }
 
     if (!cityInseeCode) {
-      Sentry.captureMessage(`Depcom required to buildVolontaryOrganisations()`)
+      volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
       updating.value = false
       return
     }

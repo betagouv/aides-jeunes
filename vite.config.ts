@@ -8,11 +8,13 @@ import { defineConfig, loadEnv } from "vite"
 
 const __dirname = new URL(".", import.meta.url).pathname
 
-import config from "./backend/config/index"
-import benefits from "./data/all"
+import config from "./backend/config/index.js"
+import benefits from "./data/all.js"
 
 import { visualizer } from "rollup-plugin-visualizer"
-import generator from "./rollup/generator.rollup"
+import generator from "./rollup/generator.rollup.js"
+
+const buildId = Date.now().toString()
 
 const {
   baseURL,
@@ -28,15 +30,13 @@ function createSentryPlugin() {
   if (!sentry.authToken) {
     return null
   }
-
   return sentryVitePlugin({
     org: "betagouv",
-    project: "aides-jeunes-front",
-    include: "./dist",
+    project: "aides-jeunes-preprod-front",
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
-      assets: "./dist/**",
+      assets: `./dist/assets/${buildId}/js/*.{js,map}`,
     },
   })
 }
@@ -70,14 +70,32 @@ export default defineConfig(async ({ mode }) => {
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
+
   return {
     server: {
       port: 8080,
       strictPort: true,
     },
     build: {
+      manifest: true,
       rollupOptions: {
         plugins: [],
+        output: {
+          assetFileNames: (assetInfo) => {
+            const extension = (assetInfo.name || "").match(/.*\.([a-z0-9]*)$/i)
+            if (extension && extension[1]) {
+              return `assets/${buildId}/${extension[1]}/[name]-[hash][extname]`
+            } else {
+              return `assets/${buildId}/other/[name]-[hash][extname]`
+            }
+          },
+          chunkFileNames: () => {
+            return `assets/${buildId}/js/[name]-[hash].js`
+          },
+          entryFileNames: () => {
+            return `assets/${buildId}/js/[name]-[hash].js`
+          },
+        },
       },
       commonjsOptions: {
         exclude: ["lib"],

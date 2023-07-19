@@ -1,28 +1,20 @@
 label: bourses sanitaires et sociales
 institution: martinique
-description: La Collectivité Territoriale de Martinique verse des bourses aux
-  étudiants et étudiantes inscrits ou inscrites en formation sanitaire et sociale, école paramédicale
-  ou de sage-femme dans les établissements agréés dispensant des formations
-  sociales et sanitaires en Martinique.
-conditions:
-  - Être de nationalité française ou d’un pays de l’Union Européenne.
-  - Remplir les <a target="_blank" rel="noopener" title ="Critères d'éligibilité - Nouvelle fenêtre"
-    href="https://www.collectivitedemartinique.mq/wp-content/uploads/2021/07/Pr_Broch_a5_Espace-Etudiants_Form-Sanitaires_2107.pdf">critères
-    d'éligibilité</a>.
+description: "La Collectivité Territoriale de Martinique verse des bourses aux
+  personnes inscrites dans une formation sanitaire ou sociale dispensée par un
+  établissement agréé et préparant à un diplôme d'Etat : formation initiale
+  en travail social, formation paramédicale ou formation de sage-femme. La bourse
+  est attribuée selon la situation matérielle de la personne qui fait la demande
+  si elle est indépendante financièrement, ou de sa famille."
+prefix: les
 conditions_generales:
   - type: regions
     values:
       - "02"
-  - type: formation_sanitaire_social
-profils:
-  - type: enseignement_superieur
-    conditions: []
-link: https://www.collectivitedemartinique.mq/wp-content/uploads/2021/07/Pr_Broch_a5_Espace-Etudiants_Form-Sanitaires_2107.pdf
-teleservice: https://etudiants.collectivitedemartinique.mq/
-prefix: les
-type: float
-unit: €
+profils: []
+link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2023-2024-15-juillet-2023
+instructions: https://www.spot.mq/sites/default/files/Documents/REGLEMENT_AidesEtudiantsEleves_extrait.pdf
+teleservice: https://www.demarches-simplifiees.fr/commencer/ctm-demande-bss-2023-2024
+type: bool
 periodicite: annuelle
-legend: maximum
-montant: 4339
 interestFlag: _interetAidesSanitaireSocial

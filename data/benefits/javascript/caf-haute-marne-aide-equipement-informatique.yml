@@ -24,8 +24,8 @@ conditions_generales:
     operator: "<="
     period: month
 profils: []
-link: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202022_actualisation%2015.12.2022_0.pdf
-instructions: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202022_actualisation%2015.12.2022_0.pdf
+link: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202023_actualisation%2001.07.2023_0.pdf#page=36
+instructions: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202023_actualisation%2001.07.2023_0.pdf#page=36
 prefix: l’
 type: float
 unit: €

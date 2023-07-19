@@ -19,7 +19,6 @@ export function useVolontaryOrganisations() {
     }
 
     if (!cityPostalCode) {
-      console.log("No city postal code found")
       volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
       updating.value = false
       return
@@ -40,6 +39,7 @@ export function useVolontaryOrganisations() {
     }
 
     if (!centerCoordinatesFromPostalCode) {
+      volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
       updating.value = false
       return
     }

@@ -415,8 +415,8 @@ export const useStore = defineStore("store", {
       this.recapPhoneState = newState
     },
     setFormRecapState(newState: string | undefined) {
-      this.recapPhoneState = newState
-      this.recapEmailState = newState
+      this.setFormRecapPhoneState(newState)
+      this.setFormRecapEmailState(newState)
     },
     setSimulationId(id: string) {
       this.simulationId = id

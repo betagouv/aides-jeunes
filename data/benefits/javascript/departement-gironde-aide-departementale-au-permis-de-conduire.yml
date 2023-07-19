@@ -25,7 +25,10 @@ conditions:
   - Résider dans une commune de la Gironde qui ne se situe pas au sein de la Métropole.
   - Réaliser 70 heures de bénévolat auprès d’une association ou d'une collectivité locale.
 interestFlag: _interetPermisDeConduire
-type: bool
+type: float
+montant: 75
+unit: "%"
+legend: "du prix du permis"
 periodicite: ponctuelle
 link: https://www.gironde.fr/acteurs-jeunesse/les-actions/aide-departementale-au-permis-de-conduire
 instructions: https://www.gironde.fr/acteurs-jeunesse/les-actions/aide-departementale-au-permis-de-conduire

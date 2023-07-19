@@ -209,16 +209,21 @@ async function main() {
     return a
   }, {})
 
-  const results = await Bluebird.map(benefitsToAnalyze, checkBenefitUrls, {
-    concurrency: 3,
-  })
+  const benefitLinksCheckResults = await Bluebird.map(
+    benefitsToAnalyze,
+    checkBenefitUrls,
+    {
+      concurrency: 3,
+    }
+  )
 
-  const benefitOperationsList = results.map((linkCheckResult) =>
-    determineOperationsOnBenefitLinkError(
-      existingWarnings,
-      linkCheckResult,
-      pullRequestURL
-    )
+  const benefitOperationsList = benefitLinksCheckResults.map(
+    (benefitLinksCheckResult) =>
+      determineOperationsOnBenefitLinkError(
+        existingWarnings,
+        benefitLinksCheckResult,
+        pullRequestURL
+      )
   )
   type recordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: recordsByOperationTypesType = {

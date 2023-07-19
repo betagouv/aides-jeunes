@@ -2,7 +2,7 @@ import { benefitData, GristOperation } from "../types/link-validity.js"
 
 function buildPullRequestProcessor(pullRequestURL) {
   function processPullRequest(
-    checkResult,
+    _,
     linkInfo,
     existingWarning,
     operations: GristOperation[]
@@ -25,7 +25,7 @@ function buildPullRequestProcessor(pullRequestURL) {
 }
 
 function processCron(
-  checkResult,
+  { id, priority },
   linkInfo,
   existingWarning,
   operations: GristOperation[]
@@ -47,8 +47,8 @@ function processCron(
 
   const data = {
     fields: {
-      Aide: checkResult.id,
-      Priorite: checkResult.priority,
+      Aide: id,
+      Priorite: priority,
       Erreur: linkInfo.status,
       Lien: linkInfo.link,
       Type: linkInfo.type,
@@ -80,16 +80,17 @@ function processCron(
 
 export function determineOperationsOnBenefitLinkError(
   existingWarnings,
-  checkResult: benefitData,
+  benefitLinksCheckResult: benefitData,
   pullRequestURL?: string
 ) {
   const processor = pullRequestURL
     ? buildPullRequestProcessor(pullRequestURL)
     : processCron
   const operations: GristOperation[] = []
-  checkResult.links.forEach((link) => {
-    const existingWarning = existingWarnings?.[checkResult.id]?.[link.type]
-    processor(checkResult, link, existingWarning, operations)
+  const benefitId = benefitLinksCheckResult.id
+  benefitLinksCheckResult.links.forEach((link) => {
+    const existingWarning = existingWarnings?.[benefitId]?.[link.type]
+    processor(benefitLinksCheckResult, link, existingWarning, operations)
   })
   return operations
 }

@@ -1,24 +1,28 @@
-label: bourse régionale d’études dans les filières sanitaires et du travail social
+label: Aide individuelle régionale d'études des secteurs du sanitaire et du
+  travail social
 institution: region_provence_alpes_cote_azur
-description: Cette aide financière accordée sur critères sociaux s’adresse aux
-  étudiants et étudiantes et élèves des filières sanitaires et du travail social dont les
-  revenus familiaux ou personnels sont reconnus insuffisants au regard de leurs
-  charges.
+description:
+  L'aide est attribuée, sur critères sociaux, à toute personne élève ou étudiante confrontée à des difficultés matérielles ne lui permettant pas
+  d'entreprendre ou de poursuivre une formation. Versée mensuellement, elle est
+  attribuée pour la durée de la formation dans la limite d’une année scolaire,
+  et renouvelable chaque année sur demande.
+prefix: le
 conditions_generales:
   - type: regions
     values:
       - "93"
   - type: formation_sanitaire_social
 profils:
-  - type: lyceen
-    conditions: []
   - type: enseignement_superieur
     conditions: []
+  - type: lyceen
+    conditions: []
+conditions:
+  - Être inscrit et suivre une formation en cursus complet dans un établissement des secteurs du sanitaire et du travail social, agréé ou autorisé par la Région.
+interestFlag: _interetAidesSanitaireSocial
+type: bool
+unit: null
+periodicite: annuelle
 link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
 teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
-instructions: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
-prefix: la
-type: bool
-unit: €
-periodicite: autre
-interestFlag: _interetAidesSanitaireSocial
+instructions: ""

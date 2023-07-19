@@ -28,7 +28,7 @@ export function useVolontaryOrganisations() {
     let centerCoordinatesFromPostalCode = null
     try {
       const response = await axios.get(
-        `/api/outils/communes/${cityPostalCode}/centerCoordinates`
+        `/api/outils/codePostal/${cityPostalCode}/centerCoordinates`
       )
       centerCoordinatesFromPostalCode = response.data
     } catch (error) {

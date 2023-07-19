@@ -11,20 +11,20 @@ export function useVolontaryOrganisations() {
   const updating = ref<boolean>(true)
 
   const buildVolontaryOrganisationsLink = async () => {
-    let cityInseeCode = store.situation.menage.depcom
     let cityPostalCode = store.situation.menage._codePostal
     const simulationId = Simulation.getLatestId()
-    if (!store.hasResults && !cityInseeCode && simulationId) {
+    if (!store.hasResults && !cityPostalCode && simulationId) {
       await store.fetch(simulationId)
-      cityInseeCode = store.situation.menage.depcom
       cityPostalCode = store.situation.menage._codePostal
     }
 
-    if (!cityInseeCode) {
+    if (!cityPostalCode) {
+      console.log("No city postal code found")
       volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
       updating.value = false
       return
     }
+
     let centerCoordinatesFromPostalCode = null
     try {
       const response = await axios.get(

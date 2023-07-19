@@ -1,53 +1,65 @@
 import { ref } from "vue"
 import { useStore } from "@/stores/index.js"
-import * as Sentry from "@sentry/vue"
 import Simulation from "@/lib/simulation.js"
 import axios from "axios"
+
+type CoordinatesLayout = [number, number]
 
 export function useVolontaryOrganisations() {
   const store = useStore()
 
-  const volontaryOrganisationsLink = ref<string>()
+  const volontaryOrganisationsLink = ref<string>("")
   const updating = ref<boolean>(true)
 
-  const buildVolontaryOrganisationsLink = async () => {
-    let cityPostalCode = store.situation.menage._codePostal
+  const fetchPostalCodeFromStore = async (): Promise<string> => {
+    let postalCode = store.situation.menage._codePostal
+
     const simulationId = Simulation.getLatestId()
-    if (!store.hasResults && !cityPostalCode && simulationId) {
+    if (!store.hasResults && !postalCode && simulationId) {
       await store.fetch(simulationId)
-      cityPostalCode = store.situation.menage._codePostal
+      postalCode = store.situation.menage._codePostal
     }
+    return postalCode
+  }
 
-    if (!cityPostalCode) {
-      volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
-      updating.value = false
-      return
+  const fetchCenterCoordinatesFromPostalCode = async (
+    postalCode
+  ): Promise<CoordinatesLayout> => {
+    const response = await axios.get(
+      `/api/outils/codePostal/${postalCode}/centerCoordinates`
+    )
+    const centerCoordinates: CoordinatesLayout = response.data
+
+    const hasValidCoordinates =
+      centerCoordinates && centerCoordinates.length === 2
+
+    if (!hasValidCoordinates) {
+      throw new Error(
+        `Can't find center coordinates for this postal code ${postalCode}`
+      )
     }
+    return centerCoordinates
+  }
 
-    let centerCoordinatesFromPostalCode = null
+  async function buildVolontaryOrganisationsLink() {
+    const baseUrl = "https://www.jeveuxaider.gouv.fr/organisations"
     try {
-      const response = await axios.get(
-        `/api/outils/codePostal/${cityPostalCode}/centerCoordinates`
-      )
-      centerCoordinatesFromPostalCode = response.data
+      const postalCode: string = await fetchPostalCodeFromStore()
+
+      if (!postalCode) {
+        throw new Error("Can't find postal code")
+      }
+
+      const centerCoordinates: CoordinatesLayout =
+        await fetchCenterCoordinatesFromPostalCode(postalCode)
+
+      volontaryOrganisationsLink.value = `${baseUrl}?city=${postalCode}&aroundLatLng=${centerCoordinates[1]},${centerCoordinates[0]}`
+
+      updating.value = false
     } catch (error) {
-      Sentry.captureMessage(
-        `Center coordinates not found for city postalcode ${cityPostalCode}`
-      )
+      volontaryOrganisationsLink.value = baseUrl
       updating.value = false
-      return
     }
-
-    if (!centerCoordinatesFromPostalCode) {
-      volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations`
-      updating.value = false
-      return
-    }
-    const cityLong = centerCoordinatesFromPostalCode[0]
-    const cityLat = centerCoordinatesFromPostalCode[1]
-
-    volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations?city=${cityPostalCode}&aroundLatLng=${cityLat},${cityLong}`
-    updating.value = false
   }
 
   buildVolontaryOrganisationsLink()

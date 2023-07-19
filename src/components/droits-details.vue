@@ -21,11 +21,30 @@
         />
       </p>
       <div
-        v-if="droit.conditions?.length"
+        v-if="showConditions(droit)"
         class="fr-highlight fr-ml-0 fr-py-2w fr-mb-2w"
       >
         <strong>Pour en bénéficier, vous devez également : </strong>
-        <ul class="fr-toggle__list fr-px-0">
+        <ul
+          v-if="showVoluntaryConditions(droit)"
+          class="fr-toggle__list fr-px-0"
+        >
+          <li
+            v-for="(voluntary_condition, index) in droit.voluntary_conditions"
+            :key="index"
+          >
+            <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
+            <span v-html="voluntary_condition" />
+            <span v-if="showVoluntaryOrganisationsLink(droit, index)">
+              La liste des associations à proximité est disponible sur la
+              plateforme
+              <a :href="volontaryOrganisationsLink" target="_blank"
+                >JeVeuxAider.gouv.fr</a
+              >
+            </span>
+          </li>
+        </ul>
+        <ul v-if="showBaseConditions(droit)" class="fr-toggle__list fr-px-0">
           <li v-for="(condition, index) in droit.conditions" :key="index">
             <img alt="" src="@/assets/images/doigt.svg" class="fr-mr-1w" />
             <span v-html="condition" />
@@ -130,6 +149,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
 import ABTestingService from "@/plugins/ab-testing-service.ts"
+import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.ts"
 
 export default {
   name: "DroitsDetails",
@@ -150,6 +170,7 @@ export default {
   setup() {
     return {
       store: useStore(),
+      volontaryOrganisations: useVolontaryOrganisations(),
     }
   },
   data() {
@@ -167,6 +188,24 @@ export default {
     },
     experimentNewUI() {
       return ABTestingService.getValues().benefit_result_page === "NewUI"
+    },
+    volontaryOrganisationsLink() {
+      return this.volontaryOrganisations.volontaryOrganisationsLink.value
+    },
+    showVoluntaryOrganisationsLink() {
+      return (droit, index) =>
+        this.volontaryOrganisationsLink &&
+        index === droit.voluntary_conditions.length - 1
+    },
+    showConditions() {
+      return (droit) =>
+        droit.conditions?.length || droit.voluntary_conditions?.length
+    },
+    showBaseConditions() {
+      return (droit) => droit.conditions?.length
+    },
+    showVoluntaryConditions() {
+      return (droit) => droit.voluntary_conditions?.length
     },
   },
 }

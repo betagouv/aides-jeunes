@@ -19,6 +19,7 @@ conditions_generales:
 profils: []
 conditions:
   - Effectuer la demande de bourse avant de vous inscrire à l'auto-école et obtenir le code de la route.
+voluntary_conditions:
   - Réaliser 60 heures d'action bénévole dans une association basée à
     Carcassonne.
 interestFlag: _interetPermisDeConduire

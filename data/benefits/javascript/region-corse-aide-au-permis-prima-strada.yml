@@ -6,12 +6,13 @@ description: "Grâce à l'aide Prima Strada, financez une partie de votre permis
   les aides existantes."
 conditions:
   - Résider en Corse depuis 2 ans.
-  - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
-    choix (justifier de 20 heures minimum).
   - Déposer une demande écrite motivée.
   - Ne pas être éligible à l’obtention d’une aide de droit commun ou d’une
     autre aide existante.
   - Ne pas avoir débuté sa formation et ne pas avoir passé l’examen.
+voluntary_conditions:
+  - Justifier d’un engagement citoyen et/ou bénévole dans une structure de son
+    choix (justifier de 20 heures minimum).
 conditions_generales:
   - type: age
     operator: ">="

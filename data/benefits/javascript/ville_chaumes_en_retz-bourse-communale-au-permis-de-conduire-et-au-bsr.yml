@@ -5,6 +5,9 @@ description:
   leur BSR ou leur permis de conduire en contrepartie d’une mission bénévole de 20 heures
   dans une association de la ville. Pour faire une demande de bourse, adressez-vous à la mairie. Les dossiers reçus sont examinés par le conseil municipal qui rend sa décision.
 prefix: la
+voluntary_conditions:
+  - Être engagé dans une mission bénévole de 20 heures minimum dans une
+    association de la ville.
 conditions_generales:
   - type: age
     operator: ">="

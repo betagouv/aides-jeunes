@@ -15,6 +15,9 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
+voluntary_conditions:
+  - Être engagé dans une mission bénévole de 40 heures minimum dans une
+    collectivité ou une association des Landes.
 profils: []
 interestFlag: _interetPermisDeConduire
 type: float

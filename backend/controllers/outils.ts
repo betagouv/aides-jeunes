@@ -48,8 +48,8 @@ export default {
     res.send(find(req.params.codePostal))
   },
   centerCoordinatesFromPostalCode: function (req, res) {
-    const postCode = find(req.params.codePostal)
-    const commune = communesLonLat.find((c) => c.code === postCode[0].code)
+    const postalCode = find(req.params.codePostal)[0].code
+    const commune = communesLonLat.find((c) => c.code === postalCode)
     res.send(commune.centre.coordinates)
   },
 }

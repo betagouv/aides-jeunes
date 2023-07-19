@@ -12,12 +12,12 @@ export function useVolontaryOrganisations() {
 
   const buildVolontaryOrganisationsLink = async () => {
     let cityInseeCode = store.situation.menage.depcom
-    let cityPostcode = store.situation.menage._codePostal
+    let cityPostalCode = store.situation.menage._codePostal
     const simulationId = Simulation.getLatestId()
     if (!store.hasResults && !cityInseeCode && simulationId) {
       await store.fetch(simulationId)
       cityInseeCode = store.situation.menage.depcom
-      cityPostcode = store.situation.menage._codePostal
+      cityPostalCode = store.situation.menage._codePostal
     }
 
     if (!cityInseeCode) {
@@ -28,12 +28,12 @@ export function useVolontaryOrganisations() {
     let centerCoordinatesFromPostalCode = null
     try {
       const response = await axios.get(
-        `/api/outils/communes/${cityPostcode}/centerCoordinates`
+        `/api/outils/communes/${cityPostalCode}/centerCoordinates`
       )
       centerCoordinatesFromPostalCode = response.data
     } catch (error) {
       Sentry.captureMessage(
-        `Center coordinates not found for city postcode ${cityPostcode}`
+        `Center coordinates not found for city postalcode ${cityPostalCode}`
       )
       updating.value = false
       return
@@ -46,7 +46,7 @@ export function useVolontaryOrganisations() {
     const cityLong = centerCoordinatesFromPostalCode[0]
     const cityLat = centerCoordinatesFromPostalCode[1]
 
-    volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations?city=${cityPostcode}&aroundLatLng=${cityLat},${cityLong}`
+    volontaryOrganisationsLink.value = `https://www.jeveuxaider.gouv.fr/organisations?city=${cityPostalCode}&aroundLatLng=${cityLat},${cityLong}`
     updating.value = false
   }
 

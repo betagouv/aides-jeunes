@@ -12,7 +12,7 @@ conditions_generales:
       - "02"
 profils: []
 link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2023-2024-15-juillet-2023
-instructions: https://www.spot.mq/sites/default/files/Documents/REGLEMENT_AidesEtudiantsEleves_extrait.pdf
+instructions: https://www.spot.mq/sites/default/files/Documents/REGLEMENT_AidesEtudiantsEleves_extrait.pdf#page=23
 teleservice: https://www.demarches-simplifiees.fr/commencer/ctm-demande-bss-2023-2024
 type: bool
 periodicite: annuelle

@@ -67,6 +67,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_LAYOUT: LayoutType.BaseLayout,
     // For now FranceConnect require an additional query params to be enabled
     VITE_FRANCE_CONNECT_ENABLED: Boolean(franceConnect.clientId),
+    VITE_SHOW_SMS_TAB: process.env.SHOW_SMS_TAB || undefined,
   }
   viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
   viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`

@@ -3,13 +3,11 @@ import RecapEmailForm from "@/components/recap-email-form.vue"
 import RecapEmailAndSmsForm from "@/components/recap-email-and-sms-form.vue"
 import { useRouter } from "vue-router"
 import BackButton from "@/components/buttons/back-button.vue"
-import { ref } from "vue"
-import { useStore } from "@/stores/index.js"
-
-const store = useStore()
+import { computed } from "vue"
 
 const router = useRouter()
-const showEmailForm = ref(store.DEV_SHOW_SMS_TAB === false)
+
+const showSmsTab = computed(() => process.env.VITE_SHOW_SMS_TAB)
 
 const goBack = () => {
   router.push({ path: "/simulation/resultats" })
@@ -26,7 +24,7 @@ const goBack = () => {
     </BackButton>
 
     <nav
-      v-if="store.DEV_SHOW_SMS_TAB"
+      v-if="showSmsTab"
       id="header-navigation"
       class="fr-nav fr-mb-2w fr-ml-2w"
       role="navigation"
@@ -38,11 +36,11 @@ const goBack = () => {
       faire le point sur les démarches que vous avez faites et les blocages que
       vous avez rencontrés.
     </p>
-    <template v-if="showEmailForm">
-      <RecapEmailForm></RecapEmailForm>
+    <template v-if="showSmsTab">
+      <RecapEmailAndSmsForm></RecapEmailAndSmsForm>
     </template>
     <template v-else>
-      <RecapEmailAndSmsForm></RecapEmailAndSmsForm>
+      <RecapEmailForm></RecapEmailForm>
     </template>
   </div>
 </template>

@@ -5,6 +5,8 @@ export default {
   bourse_criteres_sociaux_nombre_enfants_a_charge: new NumberProperty({
     question:
       "Combien d'enfants (vous y compris) sont à la charge de vos parents ?",
+    moreInfo:
+      "Lorsque vos parents sont séparés, il faut indiquer le nombre d'enfants à la charge du parent qui vous a à charge. Si vous êtes encore mineur et en garde alternée, il faut faire la somme des enfants à la charge des deux foyers fiscaux des parents séparés.",
     questionType: "number",
     min: 1,
     type: "count",

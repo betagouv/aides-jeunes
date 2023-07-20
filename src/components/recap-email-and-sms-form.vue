@@ -59,7 +59,6 @@ const sendRecap = async (surveyOptin) => {
 const inputPhoneIsValid = () => {
   if (phoneRef.value && !regexAndPhoneTypeIsValid()) {
     phoneInputErrorMessage.value = true
-    store.setFormRecapPhoneState(undefined)
     phoneRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategories.GENERAL,
@@ -74,7 +73,6 @@ const inputPhoneIsValid = () => {
 
 const inputEmailIsValid = () => {
   if (emailRef.value && !emailRef.value.checkValidity()) {
-    store.setFormRecapEmailState(undefined)
     emailInputErrorMessage.value = true
     emailRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
@@ -121,7 +119,10 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
 const sendRecapBySms = async (surveyOptin) => {
   try {
     store.setFormRecapPhoneState("waiting")
-    if (!inputPhoneIsValid()) return
+    if (!inputPhoneIsValid()) {
+      store.setFormRecapPhoneState(undefined)
+      return
+    }
     postFollowup(surveyOptin, undefined, phoneValue.value)
     store.setFormRecapPhoneState("ok")
     phoneValue.value = undefined
@@ -138,7 +139,10 @@ const sendRecapBySms = async (surveyOptin) => {
 const sendRecapByEmail = async (surveyOptin) => {
   try {
     store.setFormRecapEmailState("waiting")
-    if (!inputEmailIsValid()) return
+    if (!inputEmailIsValid()) {
+      store.setFormRecapEmailState(undefined)
+      return
+    }
     postFollowup(surveyOptin, emailValue.value)
     store.setFormRecapEmailState("ok")
     emailValue.value = undefined

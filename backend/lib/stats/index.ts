@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"

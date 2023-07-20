@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ConfigurationLayout } from "../types/config.js"
 const __dirname = new URL(".", import.meta.url).pathname
 

@@ -1,21 +1,15 @@
 import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"
+import dayjs from "dayjs"
 
 import piwik from "./piwik.js"
 import mongodb from "./mongodb.js"
 
-function dateDaysAgo(nb_days) {
-  let date = new Date()
-  date = new Date(date.toISOString().slice(0, 10))
-  date.setDate(date.getDate() - nb_days)
-  return date
-}
-
 const __dirname = new URL(".", import.meta.url).pathname
-const nineWeeksAgo = dateDaysAgo(7 * 9)
-const yesterday = dateDaysAgo(1)
-const today = dateDaysAgo(0)
+const nineWeeksAgo = dayjs().subtract(9, "week").toDate()
+const yesterday = dayjs().subtract(1, "day").toDate()
+const today = dayjs().toDate()
 
 // ./documents/ allow CORS access thank to an NGINX rule
 const relative_path = path.join(

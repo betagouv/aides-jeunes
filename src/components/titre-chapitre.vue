@@ -53,12 +53,12 @@ export default {
       )
     },
     emailButtonTitle() {
-      return this.store.DEV_SHOW_SMS_TAB
+      return process.env.VITE_SHOW_SMS_TAB
         ? "Recevoir les résultats par email/SMS"
         : "Recevoir les résultats par email"
     },
     emailModalTitle() {
-      return this.store.DEV_SHOW_SMS_TAB
+      return process.env.VITE_SHOW_SMS_TAB
         ? "Recevoir un récapitulatif"
         : "Recevoir un récapitulatif par email"
     },

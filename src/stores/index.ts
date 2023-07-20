@@ -123,9 +123,6 @@ export function persistDataOnSessionStorage({
 export const useStore = defineStore("store", {
   state: () => defaultStore(),
   getters: {
-    DEV_SHOW_SMS_TAB(): boolean {
-      return false // mettre cette valeur à true pour afficher l'onglet d'envoi de récapitulatif par SMS
-    },
     passSanityCheck(): boolean {
       return Boolean(
         this.situation.demandeur && this.situation.demandeur.date_naissance

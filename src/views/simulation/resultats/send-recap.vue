@@ -7,7 +7,9 @@ import { computed } from "vue"
 
 const router = useRouter()
 
-const showSmsTab = computed(() => process.env.VITE_SHOW_SMS_TAB)
+const showSmsTab = computed(() => {
+  return process.env.VITE_SHOW_SMS_TAB
+})
 
 const goBack = () => {
   router.push({ path: "/simulation/resultats" })

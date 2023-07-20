@@ -1,16 +1,16 @@
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import range from "lodash.range"
 
 import { typicalDatesLayout, dateLayout } from "./types/dates.js"
 
-function generateMonth(dt: any): dateLayout {
+function generateMonth(dt: Dayjs): dateLayout {
   return {
     id: dt.format("YYYY-MM"),
     label: dt.format("MMMM YYYY"),
   }
 }
 
-function generateYear(dt: any): dateLayout {
+function generateYear(dt: Dayjs): dateLayout {
   const key = dt.format("YYYY")
   return {
     id: key,

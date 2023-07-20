@@ -29,10 +29,10 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
       },
       0)
       if (sumOverLast12Months) {
-        const months = [].concat(
-          periods.fiscalYear12Months,
-          periods.previousFiscalYear12Months
-        )
+        const months = [
+          ...periods.fiscalYear12Months,
+          ...periods.previousFiscalYear12Months,
+        ]
         months.forEach(function (month) {
           result[month] = sumOverLast12Months / 12
         })
@@ -61,10 +61,10 @@ function extendFiscalDataBackward(individu, dateDeValeur) {
       const result = individu[ressource.id]
       const monthlyValue = result[fy] / 12
 
-      const months = [].concat(
-        periods.fiscalYear12Months,
-        periods.previousFiscalYear12Months
-      )
+      const months = [
+        ...periods.fiscalYear12Months,
+        ...periods.previousFiscalYear12Months,
+      ]
       months.forEach(function (month) {
         result[month] = monthlyValue
       })

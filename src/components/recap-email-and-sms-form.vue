@@ -39,20 +39,24 @@ const regexAndPhoneTypeIsValid = () => {
 }
 
 const sendRecap = async (surveyOptin) => {
-  if (emailAndPhoneFilled.value) {
-    sendRecapByEmailAndSms(surveyOptin)
-  } else if (emailFilled.value && !phoneFilled.value) {
-    sendRecapByEmail(surveyOptin)
-    phoneInputErrorMessage.value = false
-    store.setFormRecapPhoneState(undefined)
-  } else if (!emailFilled.value && phoneFilled.value) {
-    sendRecapBySms(surveyOptin)
-    emailInputErrorMessage.value = false
-    store.setFormRecapEmailState(undefined)
-  } else {
-    store.setFormRecapState(undefined)
-    phoneInputErrorMessage.value = true
-    emailInputErrorMessage.value = true
+  try {
+    if (emailAndPhoneFilled.value) {
+      sendRecapByEmailAndSms(surveyOptin)
+    } else if (emailFilled.value && !phoneFilled.value) {
+      sendRecapByEmail(surveyOptin)
+      phoneInputErrorMessage.value = false
+      store.setFormRecapPhoneState(undefined)
+    } else if (!emailFilled.value && phoneFilled.value) {
+      sendRecapBySms(surveyOptin)
+      emailInputErrorMessage.value = false
+      store.setFormRecapEmailState(undefined)
+    } else {
+      store.setFormRecapState(undefined)
+      phoneInputErrorMessage.value = true
+      emailInputErrorMessage.value = true
+    }
+  } catch (error) {
+    store.setFormRecapState("error")
   }
 }
 
@@ -97,63 +101,59 @@ const postFollowup = async (surveyOptin, email?, phone?) => {
 }
 
 const sendRecapByEmailAndSms = async (surveyOptin) => {
-  try {
-    store.setFormRecapState("waiting")
-    if (!inputEmailIsValid()) {
-      store.setFormRecapState(undefined)
-      return
-    }
-    if (!inputPhoneIsValid()) {
-      store.setFormRecapState(undefined)
-      return
-    }
-    postFollowup(surveyOptin, emailValue.value, phoneValue.value)
-    store.setFormRecapState("ok")
-    phoneValue.value = undefined
-    emailValue.value = undefined
-  } catch (error) {
-    store.setFormRecapState("error")
+  store.setFormRecapState("waiting")
+  if (!inputEmailIsValid() || !inputPhoneIsValid()) {
+    store.setFormRecapState(undefined)
+    throw new Error("Invalid email or phone number")
   }
+  postFollowup(surveyOptin, emailValue.value, phoneValue.value)
+  store.setFormRecapState("ok")
+  phoneValue.value = undefined
+  emailValue.value = undefined
 }
 
 const sendRecapBySms = async (surveyOptin) => {
-  try {
-    store.setFormRecapPhoneState("waiting")
-    if (!inputPhoneIsValid()) {
-      store.setFormRecapPhoneState(undefined)
-      return
-    }
-    postFollowup(surveyOptin, undefined, phoneValue.value)
-    store.setFormRecapPhoneState("ok")
-    phoneValue.value = undefined
-    StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.FOLLOWUP,
-      "Formulaire validé",
-      ABTestingService.getValues().recap_sms_form
-    )
-  } catch (error) {
-    store.setFormRecapPhoneState("error")
+  store.setFormRecapPhoneState("waiting")
+  if (!inputPhoneIsValid()) {
+    store.setFormRecapPhoneState(undefined)
+    throw new Error("Invalid phone number")
   }
+  try {
+  postFollowup(surveyOptin, undefined, phoneValue.value)
+  } catch (error) {
+    console.error(error)
+    store.setFormRecapPhoneState("error")
+    throw new Error("Error while sending recap (sms)")
+  }
+  store.setFormRecapPhoneState("ok")
+  phoneValue.value = undefined
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategories.FOLLOWUP,
+    "Formulaire validé",
+    ABTestingService.getValues().recap_sms_form
+  )
 }
 
 const sendRecapByEmail = async (surveyOptin) => {
-  try {
-    store.setFormRecapEmailState("waiting")
-    if (!inputEmailIsValid()) {
-      store.setFormRecapEmailState(undefined)
-      return
-    }
-    postFollowup(surveyOptin, emailValue.value)
-    store.setFormRecapEmailState("ok")
-    emailValue.value = undefined
-    StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.FOLLOWUP,
-      "Formulaire validé",
-      ABTestingService.getValues().recap_sms_form
-    )
-  } catch (error) {
-    store.setFormRecapEmailState("error")
+  store.setFormRecapEmailState("waiting")
+  if (!inputEmailIsValid()) {
+    store.setFormRecapEmailState(undefined)
+    throw new Error("invalid email")
   }
+  try {
+    postFollowup(surveyOptin, emailValue.value)
+  } catch (error) {
+    console.error(error)
+    store.setFormRecapEmailState("error")
+    throw new Error("Error while sending recap (email)")
+  }
+  store.setFormRecapEmailState("ok")
+  emailValue.value = undefined
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategories.FOLLOWUP,
+    "Formulaire validé",
+    ABTestingService.getValues().recap_sms_form
+  )
 }
 </script>
 

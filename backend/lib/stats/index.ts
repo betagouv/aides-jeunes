@@ -17,24 +17,21 @@ const relative_path = path.join(
   "/../../../dist/documents/stats.json"
 )
 
-fs.mkdir(path.dirname(relative_path), { recursive: true }).then(() => {
-  Promise.all([
+try {
+  await fs.mkdir(path.dirname(relative_path), { recursive: true })
+  const [mongoData, piwikData] = await Promise.all([
     mongodb.getStats(nineWeeksAgo, today),
     piwik.getUsageData(nineWeeksAgo, yesterday),
   ])
-    .then(function (data) {
-      return {
-        // @ts-ignore
-        basic: [].concat(data[0].dailySituationCount, data[1]),
-        survey: data[0].survey,
-      }
-    })
-    .then(function (data) {
-      return fs.writeFile(relative_path, JSON.stringify(data, null, 2), "utf-8")
-    })
-    .catch(function (error) {
-      console.error("error", error)
-      process.exitCode = 1
-    })
-    .finally(mongodb.closeClient)
-})
+
+  const data = {
+    basic: [...mongoData.dailySituationCount, ...piwikData],
+    survey: mongoData.survey,
+  }
+  await fs.writeFile(relative_path, JSON.stringify(data, null, 2), "utf-8")
+} catch (error) {
+  console.error("error", error)
+  process.exitCode = 1
+} finally {
+  mongodb.closeClient()
+}

@@ -11,7 +11,6 @@ const nineWeeksAgo = dayjs().subtract(9, "week").toDate()
 const yesterday = dayjs().subtract(1, "day").toDate()
 const today = dayjs().toDate()
 
-// ./documents/ allow CORS access thank to an NGINX rule
 const relative_path = path.join(
   __dirname,
   "/../../../dist/documents/stats.json"

@@ -3,6 +3,30 @@ import { StatsLayout } from "../../types/stats.d.js"
 
 import axios from "axios"
 
+interface PiwikParamsInterface {
+  period: string;
+  date: string;
+}
+
+const baseParams = {
+  module: "API",
+  method: "API.get",
+  format: "JSON",
+  idSite: config.matomo.id,
+}
+
+async function callMatomoAPI(params: PiwikParamsInterface) {
+  const response = await axios.request({
+    url: "https://stats.data.gouv.fr/index.php",
+    params: {
+      ...baseParams,
+      ...params,
+    },
+  })
+
+  return response.data
+}
+
 function formatPiwik(data): StatsLayout[] {
   const metrics = [
     {
@@ -25,24 +49,20 @@ function formatPiwik(data): StatsLayout[] {
   })
 }
 
-function getUsageData(fromDate, toDate) {
-  return axios
-    .request({
-      url: "https://stats.data.gouv.fr/index.php",
-      params: {
-        module: "API",
-        method: "API.get",
-        format: "JSON",
-        idSite: config.matomo.id,
-        period: "day",
-        date: `${fromDate.toISOString().slice(0, 10)},${toDate
-          .toISOString()
-          .slice(0, 10)}`,
-      },
-    })
-    .then((response) => response.data)
-    .then(formatPiwik)
-    .catch(() => [])
+async function getUsageData(fromDate: Date, toDate: Date) {
+  const dateRange = `${fromDate.toISOString().slice(0, 10)},${toDate.toISOString().slice(0, 10)}`
+  const piwikparamsInterface = {
+    period: "day",
+    date: dateRange,
+  }
+
+  try {
+    const data = await callMatomoAPI(piwikparamsInterface)
+    return formatPiwik(data)
+  } catch (error) {
+    console.error(error)
+    return []
+  }
 }
 
-export default { getUsageData }
+export default { getUsageData, callMatomoAPI }

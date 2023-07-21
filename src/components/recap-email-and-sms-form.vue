@@ -41,13 +41,13 @@ const regexAndPhoneTypeIsValid = () => {
 const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
-      sendRecapByEmailAndSms(surveyOptin)
+      await sendRecapByEmailAndSms(surveyOptin)
     } else if (emailFilled.value && !phoneFilled.value) {
-      sendRecapByEmail(surveyOptin)
+      await sendRecapByEmail(surveyOptin)
       phoneInputErrorMessage.value = false
       store.setFormRecapPhoneState(undefined)
     } else if (!emailFilled.value && phoneFilled.value) {
-      sendRecapBySms(surveyOptin)
+      await sendRecapBySms(surveyOptin)
       emailInputErrorMessage.value = false
       store.setFormRecapEmailState(undefined)
     } else {
@@ -56,7 +56,7 @@ const sendRecap = async (surveyOptin) => {
       emailInputErrorMessage.value = true
     }
   } catch (error) {
-    store.setFormRecapState("error")
+    console.error(error)
   }
 }
 
@@ -97,7 +97,7 @@ const postFollowup = async (surveyOptin, email?, phone?) => {
     phone,
     email,
   }
-  await axios.post(uri, payload)
+  return await axios.post(uri, payload)
 }
 
 const sendRecapByEmailAndSms = async (surveyOptin) => {
@@ -106,7 +106,13 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     store.setFormRecapState(undefined)
     throw new Error("Invalid email or phone number")
   }
-  postFollowup(surveyOptin, emailValue.value, phoneValue.value)
+  try {
+    await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
+  } catch (error) {
+    console.error(error)
+    store.setFormRecapState("error")
+    throw new Error("Error while sending recap (email and sms)")
+  }
   store.setFormRecapState("ok")
   phoneValue.value = undefined
   emailValue.value = undefined
@@ -119,7 +125,7 @@ const sendRecapBySms = async (surveyOptin) => {
     throw new Error("Invalid phone number")
   }
   try {
-  postFollowup(surveyOptin, undefined, phoneValue.value)
+    postFollowup(surveyOptin, undefined, phoneValue.value)
   } catch (error) {
     console.error(error)
     store.setFormRecapPhoneState("error")
@@ -159,11 +165,20 @@ const sendRecapByEmail = async (surveyOptin) => {
 
 <template>
   <div>
-    <div v-if="recapPhoneState === 'error'" class="fr-alert fr-alert--error">
-      <p>Une erreur s'est produite dans l'envoi par SMS</p>
-    </div>
-    <div v-if="recapEmailState === 'error'" class="fr-alert fr-alert--error">
-      <p>Une erreur s'est produite dans l'envoi par l'email</p>
+    <div
+      v-if="recapPhoneState === 'error' || recapEmailState === 'error'"
+      class="fr-alert fr-alert--error"
+    >
+      <p>
+        Une erreur s'est produite dans l'envoi par
+        {{
+          recapPhoneState === "error" && recapEmailState === "error"
+            ? "email et par SMS"
+            : recapPhoneState === "error"
+            ? "SMS"
+            : "email"
+        }}
+      </p>
     </div>
     <div
       v-if="recapPhoneState === 'ok' && recapEmailState === 'ok'"

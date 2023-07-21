@@ -11,13 +11,13 @@ const nineWeeksAgo = dayjs().subtract(9, "week").toDate()
 const yesterday = dayjs().subtract(1, "day").toDate()
 const today = dayjs().toDate()
 
-const relative_path = path.join(
+const statsFilePath = path.join(
   __dirname,
   "/../../../dist/documents/stats.json"
 )
 
 try {
-  await fs.mkdir(path.dirname(relative_path), { recursive: true })
+  await fs.mkdir(path.dirname(statsFilePath), { recursive: true })
   const [mongoData, piwikData] = await Promise.all([
     mongodb.getStats(nineWeeksAgo, today),
     piwik.getUsageData(nineWeeksAgo, yesterday),
@@ -27,7 +27,7 @@ try {
     basic: [...mongoData.dailySituationCount, ...piwikData],
     survey: mongoData.survey,
   }
-  await fs.writeFile(relative_path, JSON.stringify(data, null, 2), "utf-8")
+  await fs.writeFile(statsFilePath, JSON.stringify(data, null, 2), "utf-8")
 } catch (error) {
   console.error("error", error)
   process.exitCode = 1

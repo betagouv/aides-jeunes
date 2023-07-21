@@ -1,10 +1,12 @@
-import Benefits from "../data/all"
-import Config from "../backend/config/index"
+import Benefits from "../data/all.js"
+import config from "../backend/config/index.js"
+import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
+import { GristData } from "../lib/types/link-validity.js"
+import { Grist } from "../lib/grist.js"
+
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
-import fs from "fs"
-import os from "os"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
@@ -12,11 +14,11 @@ const httpsAgent = new https.Agent({ rejectUnauthorized: false })
 const customBenefitsFiles = [
   {
     pattern: /-fsl-eligibilite$/,
-    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/fsl.ts`,
+    file: `${config.github.repository_url}/blob/master/data/benefits/dynamic/fsl.ts`,
   },
   {
     pattern: /-apa-eligibilite$/,
-    file: `${Config.github.repository_url}/blob/master/data/benefits/dynamic/apa.ts`,
+    file: `${config.github.repository_url}/blob/master/data/benefits/dynamic/apa.ts`,
   },
   {
     pattern: /^aidesvelo_/,
@@ -25,7 +27,7 @@ const customBenefitsFiles = [
 ]
 
 function setEditLink(benefit) {
-  for (let category of customBenefitsFiles) {
+  for (const category of customBenefitsFiles) {
     if (benefit.id.match(category.pattern)) {
       return category.file
     }
@@ -35,16 +37,14 @@ function setEditLink(benefit) {
     : undefined
 }
 
-async function checkURL(benefit) {
+async function checkBenefitUrls(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
-  const errors = results.filter((r) => !r.ok)
   console.log(
     `${benefit.label} (${benefit.institution})\n${results
       .map((e) => (e.ok ? `- ✅ ${e.type}` : `- ❌ ${e.type} ${e.link}`))
       .join("\n")}`
   )
-
-  return { ...benefit, errors }
+  return benefit
 }
 
 async function fetchStatus(ressource) {
@@ -109,8 +109,8 @@ async function getPriorityStats() {
   return statByBenefitId
 }
 
-async function getBenefitData() {
-  const priorityMap = await getPriorityStats()
+async function getBenefitData(noPriority: boolean) {
+  const priorityMap = noPriority ? {} : await getPriorityStats()
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
@@ -144,53 +144,111 @@ async function getBenefitData() {
   return data.sort((a, b) => +(a.priority - b.priority))
 }
 
-function githubRowFormat(data) {
-  const errors = data.errors.map(
-    (e) => ` - [${e.type}](${e.link}) (${e.status})`
-  )
-  const details = `- [ ] [Modifier](${data.editLink}) ${data.label} / ${data.institution} (${data.priority} affichages)`
-  return [details, ...errors].join("\n")
+const dryRun = process.argv.includes("--dry-run")
+const noPriority = process.argv.includes("--no-priority")
+const benefitIdsFromCLI = getBenefitIdsFromCLI()
+const pullRequestURL = determinePullRequestURL()
+const processingPR = Boolean(pullRequestURL)
+
+function getBenefitIdsFromCLI(): string[] | undefined {
+  if (process.argv.includes("--only")) {
+    return process.argv.slice(process.argv.indexOf("--only") + 1)
+  }
 }
 
-function basicFormat(data) {
-  const errors = data.errors.map((e) => ` - ${e.status} ${e.type} ${e.link}`)
-  const details = `- ${data.label} / ${data.institution} (${data.priority} affichages)`
-  return [details, ...errors].join("\n")
+function determinePullRequestURL() {
+  if (!process.env.GITHUB_REF) {
+    return
+  }
+  const { GITHUB_REF, GITHUB_REPOSITORY, GITHUB_SERVER_URL } = process.env
+  const pullRequestNumber = GITHUB_REF.match(
+    /(?:refs\/pull\/)(?<number>[\d]+)\/merge/
+  )?.groups?.number
+  return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/pull/${pullRequestNumber}`
 }
 
-function buildMessage(benefitWithErrors, rowFormat) {
-  return `Certaines aides référencées (${
-    benefitWithErrors.length
-  }) ont des liens dysfonctionnels :
-
-${benefitWithErrors.map(rowFormat).join("\n")}`
-}
-
-function buildGitHubIssueCommentText(benefitWithErrors) {
-  const issueContent = `${buildMessage(benefitWithErrors, githubRowFormat)
-    .split("\n")
-    .join("<br />")}`
-
-  fs.appendFileSync(
-    `${process.env.GITHUB_OUTPUT}`,
-    `comment=${issueContent}${os.EOL}`,
-    {
-      encoding: "utf8",
+function filterBenefitDataToProcess(
+  benefitData,
+  ...benefitLimitations: (string[] | undefined)[]
+) {
+  let subset = benefitData
+  benefitLimitations.forEach((ids) => {
+    if (!ids) {
+      return
     }
-  )
+    subset = subset.filter((benefit) => ids.includes(benefit.id))
+  })
+  return subset
 }
 
 async function main() {
-  const benefitData = await getBenefitData()
-  const results = await Bluebird.map(benefitData, checkURL, { concurrency: 3 })
-  const detectedErrors = results
-    .filter((i) => i.errors.length)
-    .sort((a, b) => -(a.priority - b.priority))
-  if (detectedErrors.length > 0) {
-    if (process.argv.slice(2).includes("--ci")) {
-      buildGitHubIssueCommentText(detectedErrors)
-    } else if (detectedErrors) {
-      console.log(buildMessage(detectedErrors, basicFormat))
+  if (!process.env.GRIST_DOC_ID) {
+    throw new Error("Missing GRIST_DOC_ID")
+  }
+  if (!process.env.GRIST_API_KEY) {
+    throw new Error("Missing GRIST_API_KEY")
+  }
+  const gristAPI = Grist(process.env.GRIST_DOC_ID, process.env.GRIST_API_KEY)
+  const rawExistingWarnings = await gristAPI.get({
+    Corrige: [false],
+    Aide: benefitIdsFromCLI,
+  })
+  const benefitData = await getBenefitData(noPriority)
+  const benefitsToAnalyze = filterBenefitDataToProcess(
+    benefitData,
+    benefitIdsFromCLI,
+    processingPR
+      ? rawExistingWarnings.records.map((r) => r.fields.Aide)
+      : undefined
+  )
+
+  const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
+    const fields = record.fields
+    a[fields.Aide] = a[fields.Aide] || {}
+    a[fields.Aide][fields.Type] = record
+    return a
+  }, {})
+
+  const benefitLinksCheckResults = await Bluebird.map(
+    benefitsToAnalyze,
+    checkBenefitUrls,
+    {
+      concurrency: 3,
+    }
+  )
+
+  const benefitOperationsList = benefitLinksCheckResults.map(
+    (benefitLinksCheckResult) =>
+      determineOperationsOnBenefitLinkError(
+        existingWarnings,
+        benefitLinksCheckResult,
+        pullRequestURL
+      )
+  )
+  type recordsByOperationTypesType = { [operationType: string]: GristData[] }
+  const recordsByOperationTypes: recordsByOperationTypesType = {
+    add: [],
+    update: [],
+  }
+
+  benefitOperationsList.forEach((operations) => {
+    operations.forEach(({ type, data }) => {
+      recordsByOperationTypes[type].push(data)
+    })
+  })
+
+  console.log("== recordsByOperationTypes ==")
+  console.log(JSON.stringify(recordsByOperationTypes, null, 2))
+  if (!dryRun) {
+    try {
+      if (recordsByOperationTypes.add.length) {
+        await gristAPI.add(recordsByOperationTypes.add)
+      }
+      if (recordsByOperationTypes.update.length) {
+        await gristAPI.update(recordsByOperationTypes.update)
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
   console.log("Terminé")

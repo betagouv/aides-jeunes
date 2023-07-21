@@ -308,7 +308,7 @@ jobs:
         with:
           fetch-depth: 0
       - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/.github/has-openfisca-requirement-changes.sh" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh openfisca/requirements.txt" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
   test_definition_periods:
     name: Openfisca definition periods tests
     needs:
@@ -357,6 +357,46 @@ jobs:
       - name: Test definition periods
         shell: bash
         run: npm run tools:test-definition-periods
+  test_benefit_file_changes:
+    name: Test benefit file changes
+    needs: [install]
+    runs-on: ubuntu-20.04
+    outputs:
+      status: ${{ steps.has-changes.outputs.status }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - id: has-changes
+        run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh data/benefits" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+  check_benefit_link_improvements:
+    name: Check benefit link improvements and update link table if necessary
+    needs: [test_benefit_file_changes]
+    if: needs.test_benefit_file_changes.outputs.status == 'success'
+    runs-on: ubuntu-20.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Test
+        shell: bash
+        run: npm run tools:check-links-validity -- --no-priority
+        env:
+          GRIST_DOC_ID: ${{ secrets.GRIST_DOC_ID }}
+          GRIST_API_KEY: ${{ secrets.GRIST_API_KEY }}
   ci_failed:
     name: Detect failure
     runs-on: ubuntu-20.04

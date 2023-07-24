@@ -1,11 +1,12 @@
+import axios from "axios"
+
 import config from "../../config/index.js"
 import { StatsLayout } from "../../types/stats.d.js"
 
-import axios from "axios"
-
 interface PiwikParamsInterface {
-  period: string;
-  date: string;
+  period: string
+  date: string
+  method?: string
 }
 
 const baseParams = {
@@ -50,7 +51,9 @@ function formatPiwik(data): StatsLayout[] {
 }
 
 async function getUsageData(fromDate: Date, toDate: Date) {
-  const dateRange = `${fromDate.toISOString().slice(0, 10)},${toDate.toISOString().slice(0, 10)}`
+  const dateRange = `${fromDate.toISOString().slice(0, 10)},${toDate
+    .toISOString()
+    .slice(0, 10)}`
   const piwikparamsInterface = {
     period: "day",
     date: dateRange,
@@ -65,4 +68,4 @@ async function getUsageData(fromDate: Date, toDate: Date) {
   }
 }
 
-export default { getUsageData, callMatomoAPI }
+export { getUsageData, callMatomoAPI }

@@ -36,18 +36,21 @@ function getEnvironment() {
 
   // Définition de la valeur d'AB testing pour la refonte de la page de résultats d'une aide
   ABTesting.benefit_result_page = ABTesting.benefit_result_page || {}
+  ABTesting.benefit_result_page.index = 2
   ABTesting.benefit_result_page.value =
     ABTesting.benefit_result_page.value ||
     (Math.random() > 0.5 ? "OldUI" : "NewUI")
 
   // Définition de la valeur d'AB testing pour la question de la vie en couple
   ABTesting.en_couple_step = ABTesting.en_couple_step || {}
+  ABTesting.en_couple_step.index = 3
   ABTesting.en_couple_step.value =
     ABTesting.en_couple_step.value ||
     (Math.random() > 0.5 ? "OldQuestion" : "NewQuestion")
 
   // Définition de la valeur d'AB testing pour le formulaire du récapitulatif par email
   ABTesting.recap_email_form = ABTesting.recap_email_form || {}
+  ABTesting.recap_email_form.index = 4
   ABTesting.recap_email_form.value =
     ABTesting.recap_email_form.value || (Math.random() > 0.5 ? "Modal" : "Page")
 

@@ -101,15 +101,27 @@ const getMatomoEventsData = async (
   }
 }
 
+function returnEmptyDataIfError(result) {
+  if (result.status === "rejected") {
+    console.error(result.reason)
+    return {}
+  }
+
+  return result.value
+}
+
 const getFunnelData = async () => {
   const beginRange = dayjs().startOf("month").subtract(1, "month")
   const endRange = dayjs().startOf("month").subtract(1, "day")
   const dateKey = beginRange.format("YYYY-MM")
 
-  const matomoVisitsData = await getMatomoVisitsData(beginRange, endRange)
-  const simulationData = await getSimulationsData(beginRange, endRange)
-  const followupData = await getFollowupsData(beginRange, endRange)
-  const matomoEventData = await getMatomoEventsData(beginRange, endRange)
+  const [matomoVisitsData, simulationData, followupData, matomoEventData] =
+    await Promise.allSettled([
+      getMatomoVisitsData(beginRange, endRange),
+      getSimulationsData(beginRange, endRange),
+      getFollowupsData(beginRange, endRange),
+      getMatomoEventsData(beginRange, endRange),
+    ]).then((results) => results.map(returnEmptyDataIfError))
 
   await mongoose.connection.close()
 

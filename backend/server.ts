@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
 import configure from "./configure.js"

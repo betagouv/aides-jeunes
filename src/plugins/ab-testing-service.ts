@@ -33,6 +33,7 @@ function getEnvironment() {
   // // Pour le désactiver
   // // et libérer une custom variable
   // // ABTesting.link.deleted = true;
+  // cf. https://stats.data.gouv.fr/index.php?module=CustomDimensions&action=manage&idSite=165
 
   // Définition de la valeur d'AB testing pour la refonte de la page de résultats d'une aide
   ABTesting.benefit_result_page = ABTesting.benefit_result_page || {}

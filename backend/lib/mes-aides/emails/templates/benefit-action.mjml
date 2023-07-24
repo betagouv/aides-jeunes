@@ -10,6 +10,11 @@
         >
         <br />
         <span
+          >Retrouvez les détails de votre simulation
+          <a href="{{&returnURL}}" target="_blank">en cliquant ici</a>.
+        </span>
+        <br />
+        <span
           >Nous aimerions savoir si cette simulation vous a été utile, et si
           elle vous a permis de demander voire de bénéficier de nouvelles
           aides : cela nous permettra de continuer à améliorer le simulateur !

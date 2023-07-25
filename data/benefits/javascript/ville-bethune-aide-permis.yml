@@ -1,0 +1,31 @@
+label: Bourse communale au permis de conduire
+institution: ville-bethune
+description: Ce dispositif proposé par la ville de Béthune finance 80 % du coût
+  total de la formation. En contrepartie,le bénéficiaire s’engage à effectuer
+  50h de bénévolat pour la Ville, le plus souvent au bénéfice des associations
+  béthunoises.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "11069"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Effectuer la demande de bourse avant de vous inscrire à l'auto-école et obtenir le code de la route.
+voluntary_conditions:
+  - Réaliser 60 heures d'action bénévole dans une association basée à
+    Carcassonne.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 700
+link: https://www.carcassonne.org/article-page/bourse-au-permis-0
+instructions: https://www.carcassonne.org/article-page/bourse-au-permis-0

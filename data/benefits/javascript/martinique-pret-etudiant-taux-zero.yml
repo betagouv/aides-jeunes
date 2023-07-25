@@ -9,15 +9,15 @@ description:
 conditions:
   - Être de nationalité française ou ressortissant de l’un des États membres de
     l’Union Européenne.
+  - Avoir moins de 30 ans, à moins d'avoir des enfants à charge (limite d'âge reculée
+    d'un an par enfant à charge) ou d'être étudiant en situation de handicap (aucune
+    limite d'âge).
   - Procéder au remboursement du prêt accordé au plus tard à compter de l'année
     suivant l'obtention du diplôme préparé ou la fin des études.
   - Avoir remboursé intégralement la dette au plus tard six ans après la date de
     début du paiement de la créance.
 prefix: le
 conditions_generales:
-  - type: age
-    operator: <
-    value: 30
   - type: regions
     values:
       - "02"

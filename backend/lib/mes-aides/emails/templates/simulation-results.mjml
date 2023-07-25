@@ -10,6 +10,11 @@
         </span>
         <br />
         <span
+          >Retrouvez les détails de votre simulation
+          <a href="{{&returnURL}}" target="_blank">en cliquant ici</a>.
+        </span>
+        <br />
+        <span
           >D'après la situation que vous avez décrite, vous êtes a priori
           éligible aux aides suivantes :</span
         >

@@ -2,11 +2,6 @@
   <mj-column>
     <mj-text>
       <span
-        >Retrouvez les détails de votre simulation en cliquant
-        <a href="{{&returnURL}}" target="_blank">ici</a>.</span
-      >
-      <br />
-      <span
         >Nous améliorons ce simulateur en continu, et vous pouvez nous y
         aider.</span
       >

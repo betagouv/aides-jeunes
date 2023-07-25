@@ -21,9 +21,11 @@
 import { useStore } from "@/stores/index.ts"
 import ABTestingService from "@/plugins/ab-testing-service.ts"
 import { EventCategories } from "@lib/enums/event-categories.ts"
+import StatisticsMixin from "@/mixins/statistics.ts"
 
 export default {
   name: "SendRecapEmailButton",
+  mixins: [StatisticsMixin],
   props: {
     text: {
       type: String,
@@ -40,8 +42,8 @@ export default {
   methods: {
     sendEvent() {
       this.sendEventToMatomo(
-        EventCategories.GENERAL,
-        "Clic : bouton d'accès au récapitulatif par email",
+        EventCategories.FOLLOWUP,
+        "Affiche le formulaire",
         ABTestingService.getValues().recap_email_form
       )
     },

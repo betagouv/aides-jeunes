@@ -7,6 +7,7 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategories } from "@lib/enums/event-categories.ts"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 const router = useRouter()
 const store = useStore()
@@ -49,6 +50,11 @@ const sendEmailRecap = async (surveyOptin) => {
     await axios.post(uri, payload)
     store.setRecapEmailState("ok")
     emailValue.value = ""
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategories.FOLLOWUP,
+      "Formulaire validé",
+      ABTestingService.getValues().recap_email_form
+    )
   } catch (error) {
     store.setRecapEmailState("error")
   }

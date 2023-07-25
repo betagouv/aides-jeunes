@@ -41,7 +41,7 @@ export default {
     sendEvent() {
       this.sendEventToMatomo(
         EventCategories.GENERAL,
-        "Recap",
+        "Clic : bouton d'accès au récapitulatif par email",
         ABTestingService.getValues().recap_email_form
       )
     },

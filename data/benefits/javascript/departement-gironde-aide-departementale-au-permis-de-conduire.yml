@@ -23,6 +23,7 @@ profils:
 conditions:
   - Etre éligible aux critères du Fonds d'Aide au Jeunes.
   - Résider dans une commune de la Gironde qui ne se situe pas au sein de la Métropole.
+voluntary_conditions:
   - Réaliser 70 heures de bénévolat auprès d’une association ou d'une collectivité locale.
 interestFlag: _interetPermisDeConduire
 type: float

@@ -233,3 +233,81 @@ describe("computeAides", function () {
     ).toBe(0)
   })
 })
+
+describe("Test condition taux_incapacite", function () {
+  let situation_handicap
+  let benefit_situation_handicap
+
+  beforeEach(() => {
+    situation_handicap = {
+      demandeur: {
+        activite: "situation_handicap",
+        taux_incapacite: 0.3,
+      },
+    }
+    benefit_situation_handicap = {
+      profils: [
+        {
+          type: "situation_handicap",
+          conditions: [
+            {
+              type: "taux_incapacite",
+              value: 0.5,
+              operator: ">=",
+            },
+          ],
+        },
+      ],
+    }
+  })
+
+  it("Checks that someone with incapacite 30 is not eligible with 50+", function () {
+    expect(
+      testProfileEligibility(benefit_situation_handicap, {
+        situation: situation_handicap,
+      })
+    ).toBe(false)
+  })
+
+  it("Checks that someone with incapacite 50 is eligible with >= 50", function () {
+    situation_handicap.demandeur.taux_incapacite = 0.5
+
+    expect(
+      testProfileEligibility(benefit_situation_handicap, {
+        situation: situation_handicap,
+      })
+    ).toBe(false)
+  })
+
+  it("Checks that someone with incapacite 50 is not eligible with > 50", function () {
+    situation_handicap.demandeur.taux_incapacite = 0.5
+    benefit_situation_handicap.profils[0].conditions[0].operator = ">"
+
+    expect(
+      testProfileEligibility(benefit_situation_handicap, {
+        situation: situation_handicap,
+      })
+    ).toBe(false)
+  })
+
+  it("Checks that someone with incapacite 81 is not eligible with > 50 AND < 80", function () {
+    situation_handicap.demandeur.taux_incapacite = 0.81
+    benefit_situation_handicap.profils[0].conditions = [
+      {
+        type: "taux_incapacite",
+        value: 0.5,
+        operator: ">",
+      },
+      {
+        type: "taux_incapacite",
+        value: 0.8,
+        operator: "<",
+      },
+    ]
+    expect(
+      testProfileEligibility(benefit_situation_handicap, {
+        situation: situation_handicap,
+      })
+    ).toBe(false)
+  })
+})

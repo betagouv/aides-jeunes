@@ -10,6 +10,14 @@ import {
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
 
+declare global {
+  interface Window {
+    Piwik: {
+      getTracker(): any
+    }
+  }
+}
+
 export default {
   methods: {
     sendEventsToRecorder: function (
@@ -23,7 +31,7 @@ export default {
         event_type,
       }
 
-      sendEventToRecorder(event, this.$matomo)
+      sendEventToRecorder(event, window.Piwik.getTracker())
     },
     sendEventToMatomo: function (
       category: EventCategories,
@@ -38,7 +46,7 @@ export default {
         value,
       }
 
-      sendEventToMatomo(event, this.$matomo)
+      sendEventToMatomo(event, window.Piwik.getTracker())
     },
     sendBenefitsStatistics: function (
       benefits: BenefitType[] = [],

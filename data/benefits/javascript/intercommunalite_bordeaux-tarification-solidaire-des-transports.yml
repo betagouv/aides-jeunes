@@ -15,9 +15,8 @@ profils:
   - type: situation_handicap
     conditions:
       - type: taux_incapacite
-        values:
-          - entre_50_et_80
-          - superieur_ou_egal_80
+        operator: ">="
+        value: 0.5
 type: bool
 periodicite: ponctuelle
 link: https://tarificationsolidaire.bordeaux-metropole.fr/Accueil.aspx

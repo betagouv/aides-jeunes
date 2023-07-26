@@ -13,8 +13,8 @@ conditions:
     d'un an par enfant à charge) ou d'être étudiant en situation de handicap (aucune
     limite d'âge). Pour les personnes âgées de plus de 30 ans, les demandes sont examinées
     la Commission d'Aide aux Etudiants.
-  - Etre domicilié fiscalement en Martinique (soi-même ou ses parents).
-  - Etre inscrit dans une formation ne bénéficiant pas d'aides de la Collectivité.
+  - Être domicilié fiscalement en Martinique (soi-même ou ses parents).
+  - Être inscrit dans une formation ne bénéficiant pas d'aides de la Collectivité.
 prefix: l’
 conditions_generales:
   - type: regions

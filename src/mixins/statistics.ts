@@ -11,6 +11,14 @@ import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
 import * as Sentry from "@sentry/vue"
 
+declare global {
+  interface Window {
+    Piwik: {
+      getTracker(): any
+    }
+  }
+}
+
 export default {
   methods: {
     sendEventsToRecorder: function (

@@ -9,6 +9,15 @@ import {
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
+import * as Sentry from "@sentry/vue"
+
+declare global {
+  interface Window {
+    Piwik: {
+      getTracker(): any
+    }
+  }
+}
 
 export default {
   methods: {
@@ -22,8 +31,17 @@ export default {
         benefitId,
         event_type,
       }
-
-      sendEventToRecorder(event, this.$matomo)
+      try {
+        const matomoTracker = window.Piwik.getTracker()
+        if (matomoTracker) {
+          sendEventToRecorder(event, matomoTracker)
+        } else {
+          throw new Error("matomo tracker is not defined")
+        }
+      } catch (error) {
+        console.error("matomoTracker error: ", error)
+        Sentry.captureException(`matomoTracker error: ${error}`)
+      }
     },
     sendEventToMatomo: function (
       category: EventCategories,
@@ -37,8 +55,17 @@ export default {
         label,
         value,
       }
-
-      sendEventToMatomo(event, this.$matomo)
+      try {
+        const matomoTracker = window.Piwik.getTracker()
+        if (matomoTracker) {
+          sendEventToMatomo(event, matomoTracker)
+        } else {
+          throw new Error("matomo tracker is not defined")
+        }
+      } catch (error) {
+        console.error("matomoTracker error: ", error)
+        Sentry.captureException(`matomoTracker error: ${error}`)
+      }
     },
     sendBenefitsStatistics: function (
       benefits: BenefitType[] = [],

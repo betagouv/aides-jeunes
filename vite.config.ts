@@ -27,12 +27,12 @@ const {
 } = config
 
 function createSentryPlugin() {
-  if (!sentry.authToken) {
+  if (!sentry.authToken || !sentry.project) {
     return null
   }
   return sentryVitePlugin({
     org: "betagouv",
-    project: "aides-jeunes-preprod-front",
+    project: sentry.project,
     authToken: sentry.authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {

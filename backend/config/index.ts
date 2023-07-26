@@ -80,6 +80,7 @@ const all: ConfigurationLayout = {
   sentry: {
     dsn: process.env.SENTRY_BACKEND_URL || undefined,
     authToken: process.env.SENTRY_AUTH_TOKEN || undefined,
+    project: process.env.SENTRY_PROJECT || undefined,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",

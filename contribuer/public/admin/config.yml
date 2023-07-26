@@ -200,20 +200,14 @@ fields:
   field_taux_incapacite: &field_taux_incapacite
     label: Taux d'incapacité
     name: taux_incapacite
-    widget: object
     fields:
-      - label: Valeurs
-        name: values
-        widget: select
-        multiple: true
-        required: false
-        options:
-          - label: Inférieur à 50%
-            value: inferieur_50
-          - label: Supérieur ou égal à 50% et inférieur à 80%
-            value: entre_50_et_80
-          - label: Supérieur ou égal à 80%
-            value: superieur_ou_egal_80
+      - *field_numeric_operator
+      - <<: *field_numeric_value
+        label: Taux
+        value_type: float
+        min: 0
+        max: 1
+        hint: Le taux est exprimé par un nombre entre 0 et 1. Exemple 0.8 pour 80%.
   field_formation_sanitaire_social: &field_formation_sanitaire_social
     <<: *field_empty
     label: En formation sanitaire et sociale

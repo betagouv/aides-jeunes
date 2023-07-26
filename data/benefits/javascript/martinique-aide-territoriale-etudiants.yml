@@ -1,12 +1,11 @@
 label: Aide territoriale aux étudiants
 institution: martinique
 description:
-  L'aide territoriale aux étudiants (ATE) est une allocation annuelle non remboursable,
-  accordée par la Collectivité Territoriale de Martinique, en fonction des ressources
-  du foyer, à des étudiants inscrits dans un cursus post Bac jusqu'au Master. Sont pris
-  en compte le revenu imposable à l’impôt sur le revenu et le nombre de parts fiscales
-  figurant sur l’avis d’imposition des parents ou de l’étudiant s’il a fait sa propre
-  déclaration d'impôts."
+  L'aide territoriale aux étudiants est une allocation annuelle non remboursable,
+  accordée en fonction des ressources du foyer, à des étudiants inscrits dans un
+  cursus post Bac jusqu'au Master. Sont pris en compte le revenu imposable à l’impôt
+  sur le revenu et le nombre de parts fiscales figurant sur l’avis d’imposition des
+  parents ou de l’étudiant s’il a fait sa propre déclaration d'impôts."
 conditions:
   - Être de nationalité française ou ressortissant de l’un des États membres de
     l’Union Européenne.
@@ -16,7 +15,7 @@ conditions:
     la Commission d'Aide aux Etudiants.
   - Etre domicilié fiscalement en Martinique (soi-même ou ses parents).
   - Etre inscrit dans une formation ne bénéficiant pas d'aides de la Collectivité.
-prefix: l'
+prefix: l’
 conditions_generales:
   - type: regions
     values:

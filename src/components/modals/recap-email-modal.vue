@@ -116,6 +116,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
 import { EventCategories } from "@lib/enums/event-categories.ts"
+import ABTestingService from "@/plugins/ab-testing-service.ts"
 
 export default {
   name: "RecapEmailModal",
@@ -170,6 +171,11 @@ export default {
         .post(uri, payload)
         .then(() => {
           this.store.setRecapEmailState("ok")
+          this.sendEventToMatomo(
+            EventCategories.FOLLOWUP,
+            "Formulaire validé",
+            ABTestingService.getValues().recap_email_form
+          )
         })
         .catch(() => {
           this.store.setRecapEmailState("error")

@@ -104,6 +104,7 @@ const getMatomoEventsData = async (
 function returnEmptyDataIfError(result) {
   if (result.status === "rejected") {
     console.error(result.reason)
+    console.warn("Returning empty data")
     return {}
   }
 

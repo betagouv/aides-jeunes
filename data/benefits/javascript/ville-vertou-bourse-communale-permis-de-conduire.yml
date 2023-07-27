@@ -1,6 +1,6 @@
 label: Bourse communale au permis de conduire
 institution: ville_vertou
-description: Les jeunes de 17 à 21 ans résidant à Vertou peuvent bénéficier
+description: Les jeunes de 16 à 21 ans résidant à Vertou peuvent bénéficier
   du financement d'une partie de leur permis B, en échange de 50 heures de
   travail bénévole dans une association.
 prefix: la
@@ -10,7 +10,7 @@ conditions_generales:
       - "44215"
   - type: age
     operator: ">="
-    value: 17
+    value: 16
   - type: age
     operator: <=
     value: 21

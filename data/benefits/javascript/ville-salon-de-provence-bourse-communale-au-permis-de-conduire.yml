@@ -1,6 +1,7 @@
 label: Bourse communale au permis de conduire
 institution: ville_salon_de_provence
-description: Les jeunes de 18 à 25 ans résidant à Salon de Provence peuvent bénéficier
+description:
+  Les jeunes de 18 à 25 ans résidant à Salon de Provence peuvent bénéficier
   du financement d’une partie de leur permis B, en échange de 70 heures de
   travail bénévole dans une association.
 prefix: la

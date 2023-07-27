@@ -1,0 +1,31 @@
+label: Bourse communale au permis de conduire
+institution: ville_vertou
+description: Les jeunes de 17 à 21 ans résidant à Vertou peuvent bénéficier
+  du financement d'une partie de leur permis B, en échange de 50 heures de
+  travail bénévole dans une association.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "44215"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: <=
+    value: 21
+profils: []
+conditions:
+  - Effectuer la demande de bourse avant le 20 novembre.
+  - Effectuer sa demande de bourse avant de commencer le permis.
+voluntary_conditions:
+  - Réaliser 50 heures d'action bénévole dans une association basée à
+    Vertou.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1000
+link: https://vertou.fr/vivre/famille-et-jeunesse/jeunesse-11-a-21-ans/soutien-a-lautonomie/mon-passeport-liberte/?hilite=permis
+form: https://vertou.fr/wp-content/uploads/2022/10/Dossier-inscription-mon-passeport-liberte-oct-nov-2022.pdf

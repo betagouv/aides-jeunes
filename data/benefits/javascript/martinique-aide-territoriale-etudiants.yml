@@ -1,0 +1,37 @@
+label: Aide territoriale aux étudiants
+institution: martinique
+description:
+  L'aide territoriale aux étudiants est une allocation annuelle non remboursable,
+  accordée en fonction des ressources du foyer, à des étudiants inscrits dans un
+  cursus post Bac jusqu'au Master. Sont pris en compte le revenu imposable à l’impôt
+  sur le revenu et le nombre de parts fiscales figurant sur l’avis d’imposition des
+  parents ou de l’étudiant s’il a fait sa propre déclaration d'impôts."
+conditions:
+  - Être de nationalité française ou ressortissant de l’un des États membres de
+    l’Union Européenne.
+  - Avoir moins de 30 ans, à moins d'avoir des enfants à charge (limite d'âge reculée
+    d'un an par enfant à charge) ou d'être étudiant en situation de handicap (aucune
+    limite d'âge). Pour les personnes âgées de plus de 30 ans, les demandes sont examinées
+    la Commission d'Aide aux Etudiants.
+  - Être domicilié fiscalement en Martinique (soi-même ou ses parents).
+  - Être inscrit dans une formation ne bénéficiant pas d'aides de la Collectivité.
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "02"
+  - type: quotient_familial
+    operator: "<="
+    value: 28000
+    period: year
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2023-2024-15-juillet-2023
+instructions: https://www.spot.mq/sites/default/files/Documents/REGLEMENT_AidesEtudiantsEleves_extrait.pdf#page=4
+teleservice: https://www.demarches-simplifiees.fr/commencer/ctm-demande-ate-2023-2024
+type: float
+unit: €
+montant: 2500
+legend: maximum
+periodicite: annuelle

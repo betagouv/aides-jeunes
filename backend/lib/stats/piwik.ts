@@ -18,7 +18,7 @@ const baseParams = {
 
 async function callMatomoAPI(params: PiwikParamsInterface) {
   const response = await axios.request({
-    url: "https://stats.data.gouv.fr/index.php",
+    url: config.matomo.url,
     params: {
       ...baseParams,
       ...params,

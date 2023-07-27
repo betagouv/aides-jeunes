@@ -36,6 +36,7 @@ export interface ConfigurationLayout {
   }
   matomo: {
     id: number
+    url: string
   }
   statistics: {
     url: string

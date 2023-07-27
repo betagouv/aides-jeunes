@@ -14,6 +14,7 @@ export default {
   },
   matomo: {
     id: 170,
+    url: "https://stats.data.gouv.fr",
   },
   statistics: {
     url: "http://localhost:4000/benefits",

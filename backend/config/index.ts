@@ -63,6 +63,7 @@ const all: ConfigurationLayout = {
   },
   matomo: {
     id: Number(process.env.MATOMO_ID) || 165,
+    url: process.env.MATOMO_URL || "https://stats.data.gouv.fr",
   },
   statistics: {
     url:

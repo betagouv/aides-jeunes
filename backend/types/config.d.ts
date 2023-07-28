@@ -55,5 +55,6 @@ export interface ConfigurationLayout {
   sentry: {
     dsn: string | undefined
     authToken?: string
+    project?: string
   }
 }

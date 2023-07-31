@@ -265,18 +265,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
   taux_incapacite: {
     test: (condition, { situation }: { situation: situationsLayout }) => {
       const taux_incapacite = situation.demandeur?.taux_incapacite || 0
-      return condition.values.some((value) => {
-        switch (value) {
-          case "inferieur_50":
-            return taux_incapacite < 0.5
-          case "entre_50_et_80":
-            return taux_incapacite >= 0.5 && taux_incapacite < 0.8
-          case "superieur_ou_egal_80":
-            return taux_incapacite >= 0.8
-          default:
-            return false
-        }
-      })
+      return OPERATOR[condition.operator](taux_incapacite, condition.value)
     },
   },
 }

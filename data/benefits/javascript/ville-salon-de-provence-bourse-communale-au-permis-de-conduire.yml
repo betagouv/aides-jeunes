@@ -1,0 +1,35 @@
+label: Bourse communale au permis de conduire
+institution: ville_salon_de_provence
+description:
+  Les jeunes de 18 à 25 ans résidant à Salon de Provence peuvent bénéficier
+  du financement d’une partie de leur permis B, en échange de 70 heures de
+  travail bénévole dans une association.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "13103"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils: []
+conditions:
+  - Résider à Salon de Provence depuis au moins un an.
+  - Justifier d’une situation d’insertion professionnelle et/ou sociale.
+  - Avoir un projet professionnel, une motivation dans lesquels s’inscrit le besoin de passer
+    le permis de conduire.
+voluntary_conditions:
+  - Réaliser 70 heures d’action bénévole dans une association basée à
+    Salon de Provence.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 700
+link: https://www.salondeprovence.fr/services-au-quotidien/jeunesse/bourses-municipales/bourse-permis-de-conduire
+instructions: https://www.salondeprovence.fr/wp-content/uploads/2021/08/Reglement_Bourse_Municipale_au_Permis.pdf
+form: https://www.salondeprovence.fr/wp-content/uploads/2023/02/Dossier-du-candidat-MAJ-JANV-2023-BOURSE-MUNICIPALE-AU-PERMIS.pdf

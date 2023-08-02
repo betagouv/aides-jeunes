@@ -1,4 +1,4 @@
-label: aide départementale au permis de conduire
+label: fonds d'aide au jeunes mobilité
 institution: departement_aude
 description: Le Département aide les jeunes qui ont des problèmes
   financiers ou d’insertion et qui ont un projet professionnel (contrat
@@ -20,12 +20,12 @@ profils: []
 conditions:
   - Etre éligible aux critères du Fonds d'Aide aux Jeunes du département de
     l'Aude.
-  - Faire votre demande auprès de votre Mission Locale.
+  - Faire votre demande auprès de la Mission Locale ou du Centre médico-social de votre secteur.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 500
-link: https://www.aude.fr/quelles-aides-pour-passer-mon-permis
-instructions: https://www.aude.fr/quelles-aides-pour-passer-mon-permis
+link: https://www.aude.fr/annuaire-des-aides-au-permis-pour-les-jeunes/fonds-aide-aux-jeunes-faj-mobilite
+instructions: https://www.aude.fr/annuaire-des-aides-au-permis-pour-les-jeunes/fonds-aide-aux-jeunes-faj-mobilite

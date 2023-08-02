@@ -1,6 +1,7 @@
 label: aide personnalisée au retour à l'emploi - Mobilité
 institution: departement_aude
-description: Le Département aide les jeunes qui perçoivent le revenu de solidarité
+description:
+  Le Département aide les jeunes qui perçoivent le revenu de solidarité
   active (RSA) dans le financement de leur permis de conduire. Cette aide est soumise
   à l'évaluation sociale du centre médico-social référent.
 prefix: l’

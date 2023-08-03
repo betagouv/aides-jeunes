@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import DroitMixin from "@/mixins/droit-mixin.js"
+import DroitMixin from "@/mixins/droit-mixin.ts"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.ts"
 import WarningMessage from "@/components/warning-message.vue"

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ResultatsMixin from "@/mixins/resultats.js"
+import ResultatsMixin from "@/mixins/resultats.ts"
 import { useStore } from "@/stores/index.ts"
 import storageService from "@/lib/storage-service.ts"
 

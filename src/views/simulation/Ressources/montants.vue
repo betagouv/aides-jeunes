@@ -47,7 +47,7 @@ import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise.vu
 import RessourceProfessionLiberale from "@/components/ressource/profession-liberale.vue"
 import RessourceMontants from "@/components/ressource/montants.vue"
 
-import RessourceProcessor from "@/mixins/ressource-processor.js"
+import RessourceProcessor from "@/mixins/ressource-processor.ts"
 import { ressourceTypes } from "@lib/resources.ts"
 import Ressource from "@lib/ressource.ts"
 import Individu from "@lib/individu.ts"

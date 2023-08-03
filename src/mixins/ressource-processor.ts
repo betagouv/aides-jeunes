@@ -15,7 +15,7 @@ function getDisplayMonthly(months, amounts) {
   }
 }
 
-function update(type, newValue, monthIndex, force) {
+function update(type, newValue, monthIndex, force?) {
   const oldValue = type.amounts[type.months[monthIndex].id]
 
   // Including month at index
@@ -66,7 +66,7 @@ export default {
       if (!types.length) {
         return
       } else if (single) {
-        let updatedRessources = {}
+        const updatedRessources = {}
         this.types.forEach((t) => {
           updatedRessources[t.meta.id] = Object.assign(
             {},
@@ -86,7 +86,7 @@ export default {
         })
       } else {
         this.types.forEach((t) => {
-          let updatedRessources = {}
+          const updatedRessources = {}
           updatedRessources[t.meta.id] = Object.assign(
             {},
             t.individu[t.meta.id]

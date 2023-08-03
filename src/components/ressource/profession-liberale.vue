@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import TNSRessourceUpdator from "@/mixins/tns-ressource-updator.js"
+import TNSRessourceUpdator from "@/mixins/tns-ressource-updator.ts"
 import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.ts"
 

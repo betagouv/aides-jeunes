@@ -32,7 +32,7 @@
 import Chapters from "@lib/chapters.ts"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 import { useStore } from "@/stores/index.ts"
-import ResultatsMixin from "@/mixins/resultats.js"
+import ResultatsMixin from "@/mixins/resultats.ts"
 
 export default {
   name: "TitreChapitre",

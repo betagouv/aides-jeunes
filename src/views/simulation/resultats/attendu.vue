@@ -170,7 +170,7 @@
 import axios from "axios"
 import Benefits from "@/lib/benefits.ts"
 import ContactEmailMixin from "@/mixins/contact-email.ts"
-import ResultatsMixin from "@/mixins/resultats.js"
+import ResultatsMixin from "@/mixins/resultats.ts"
 import StatisticsMixin from "@/mixins/statistics.ts"
 
 import { sendMontantsAttendus } from "@/plugins/mails.ts"

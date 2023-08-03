@@ -44,7 +44,7 @@
 
 <script>
 import HeaderMesAides from "@/components/mes-aides/header-mes-aides.vue"
-import layoutRouteMixin from "@/mixins/layout-route-mixin.js"
+import layoutRouteMixin from "@/mixins/layout-route-mixin.ts"
 import NavigationMesAides from "@/components/mes-aides/navigation-mes-aides.vue"
 
 export default {

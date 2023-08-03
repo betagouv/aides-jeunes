@@ -1,4 +1,4 @@
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 export default {
   setup() {

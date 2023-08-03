@@ -99,7 +99,7 @@
 <script>
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
-import BenefitMixin from "@/mixins/benefit-image-mixin.js"
+import BenefitMixin from "@/mixins/benefit-image-mixin.ts"
 import WarningMessage from "@/components/warning-message.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types"
 

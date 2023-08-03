@@ -1,0 +1,32 @@
+label: aide personnalisée au retour à l'emploi - Mobilité
+institution: departement_aude
+description: Le Département aide les jeunes qui perçoivent le revenu de solidarité
+  active (RSA) dans le financement de leur permis de conduire. Cette aide est soumise
+  à l'évaluation sociale du centre médico-social référent.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: beneficiaire_rsa
+    conditions: []
+conditions:
+  - Faire votre demande auprès de la Mission Locale ou du Centre médico-social de votre secteur.
+  - Avoir un revenu inférieur à 500 euros durant les 3 derniers mois.
+  - Être dans une démarche d'insertion active et pouvoir justifier soit d'un contrat de travail,
+    d'une promesse d'embauche, d'un entretien ou d'une inscription à une formation qualifiante.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 500
+link: https://www.aude.fr/annuaire-des-aides-au-permis-pour-les-jeunes/aide-personnalisee-au-retour-emploi-apre-mobilite
+instructions: https://www.aude.fr/annuaire-des-aides-au-permis-pour-les-jeunes/aide-personnalisee-au-retour-emploi-apre-mobilite

@@ -1,0 +1,38 @@
+label: Aide au permis de conduire
+institution: intercommunalite_toulon_provence_mediterranee
+description:
+  La métropole Toulon Provence Méditerranée aide les personnes demandeuses
+  d'emploi et les jeunes suivis en Mission Locale à financer une partie de leurs
+  heures de conduite.
+prefix: l'
+conditions_generales:
+  - type: epcis
+    values:
+      - "248300543"
+profils:
+  - type: chomeur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+    - type: professionnalisation
+    conditions: []
+     - type: apprenti
+    conditions: []
+    - type: service civique
+    conditions: []
+    - type: beneficiaire_rsa
+    conditions: []
+conditions:
+  - Être domicilié sur l'une des douze communes de Toulon Provence Méditerranée.
+  - Avoir un projet professionnel ou de formation pour lequel le permis de conduire
+    est nécessaire.
+  - Avoir obtenu le code de la route.
+  - Avoir réalisé et payé au minimum ses dix premières heures de conduite.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 450
+link: https://metropoletpm.fr/node/602
+instructions: https://metropoletpm.fr/node/602

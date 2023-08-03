@@ -8,8 +8,8 @@
   </div>
 </template>
 
-<script>
-import Hint from "@/lib/hint.ts"
+<script lang="ts">
+import Hint from "@/lib/hint.js"
 import BackButton from "@/components/buttons/back-button.vue"
 
 export default {

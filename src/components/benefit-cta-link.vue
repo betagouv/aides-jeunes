@@ -16,10 +16,10 @@
   />
 </template>
 
-<script>
-import ResultatsMixin from "@/mixins/resultats.ts"
-import { useStore } from "@/stores/index.ts"
-import storageService from "@/lib/storage-service.ts"
+<script lang="ts">
+import ResultatsMixin from "@/mixins/resultats.js"
+import { useStore } from "@/stores/index.js"
+import storageService from "@/lib/storage-service.js"
 
 let typeLabels = {
   teleservice: "Faire une demande en ligne",

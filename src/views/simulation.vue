@@ -71,13 +71,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TitreChapitre from "@/components/titre-chapitre.vue"
 import Progress from "@/components/progress.vue"
 import Summary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "Simulation",

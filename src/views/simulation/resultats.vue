@@ -90,7 +90,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DroitsList from "@/components/droits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
@@ -98,14 +98,14 @@ import Feedback from "@/components/feedback.vue"
 import OfflineResults from "@/components/offline-results.vue"
 import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
+import ResultatsMixin from "@/mixins/resultats.js"
+import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
-import { useStore } from "@/stores/index.ts"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
-import { daysSinceDate } from "@lib/utils.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import { useStore } from "@/stores/index.js"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { daysSinceDate } from "@lib/utils.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 export default {
   name: "SimulationResultats",

@@ -69,12 +69,12 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
-import Nationality from "@/lib/nationality.ts"
+import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import Scolarite from "@lib/scolarite"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "SimulationEnfants",

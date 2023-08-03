@@ -65,9 +65,9 @@
     </div>
   </header>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useAttrs } from "vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 const store = useStore()
 const attributes = useAttrs()
 const parameters = {

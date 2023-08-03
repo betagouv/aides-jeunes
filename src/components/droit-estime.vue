@@ -38,11 +38,11 @@
   </div>
 </template>
 
-<script>
-import { formatDroitEstime } from "@lib/benefits/details.ts"
-import { useStore } from "@/stores/index.ts"
+<script lang="ts">
+import { formatDroitEstime } from "@lib/benefits/details.js"
+import { useStore } from "@/stores/index.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 export default {
   name: "DroitEstime",

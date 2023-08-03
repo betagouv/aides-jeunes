@@ -59,9 +59,9 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 import { ChapterState } from "@lib/enums/chapter"
 
 export default {

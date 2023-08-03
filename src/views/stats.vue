@@ -50,7 +50,7 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 import iframeResize from "iframe-resizer/js/iframeResizer"
 
 export default {

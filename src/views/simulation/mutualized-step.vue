@@ -79,21 +79,21 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
 import MultipleAnswers from "@/components/multiple-answers.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import MutualizedStepTitle from "@/components/mutualized-step-title.vue"
-import Hint from "@/lib/hint.ts"
+import Hint from "@/lib/hint.js"
 
-import { executeFunctionOrReturnValue } from "@lib/utils.ts"
+import { executeFunctionOrReturnValue } from "@lib/utils.js"
 import InputNumber from "@/components/input-number.vue"
 import InputDate from "@/components/input-date.vue"
 import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
-import { getAnswer, nullifyUndefinedValue } from "@lib/answers.ts"
-import { useIndividu } from "@/composables/individu.ts"
-import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
+import { getAnswer, nullifyUndefinedValue } from "@lib/answers.js"
+import { useIndividu } from "@/composables/individu.js"
+import { useStore } from "@/stores/index.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "MutualizedStep",

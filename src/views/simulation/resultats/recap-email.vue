@@ -6,8 +6,8 @@ import { computed, ref } from "vue"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
+import { EventCategories } from "@lib/enums/event-categories.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()

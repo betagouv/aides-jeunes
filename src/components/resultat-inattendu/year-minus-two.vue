@@ -32,9 +32,9 @@
   </div>
 </template>
 
-<script>
-import Situation from "@/lib/situation.ts"
-import { useStore } from "@/stores/index.ts"
+<script lang="ts">
+import Situation from "@/lib/situation.js"
+import { useStore } from "@/stores/index.js"
 export default {
   name: "ResultatInattenduYearMinusTwo",
   props: {

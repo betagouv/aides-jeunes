@@ -2,10 +2,10 @@
   <RessourceTypes :individu="individu" />
 </template>
 
-<script>
+<script lang="ts">
 import RessourceTypes from "@/components/ressource/types.vue"
-import Individu from "@lib/individu.ts"
-import { useStore } from "@/stores/index.ts"
+import Individu from "@lib/individu.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RessourcesTypes",

@@ -61,8 +61,8 @@
   </div>
 </template>
 
-<script>
-import { useStore } from "@/stores/index.ts"
+<script lang="ts">
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "Home",

@@ -39,16 +39,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DroitsDetails from "../../components/droits-details.vue"
 import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
+import ResultatsMixin from "@/mixins/resultats.js"
+import StatisticsMixin from "@/mixins/statistics.js"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores/index.ts"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import { useStore } from "@/stores/index.js"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 export default {
   components: {

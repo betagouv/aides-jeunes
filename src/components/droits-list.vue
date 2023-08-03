@@ -96,10 +96,10 @@
   </div>
 </template>
 
-<script>
-import DroitMixin from "@/mixins/droit-mixin.ts"
+<script lang="ts">
+import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
-import BenefitMixin from "@/mixins/benefit-image-mixin.ts"
+import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 import WarningMessage from "@/components/warning-message.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types"
 

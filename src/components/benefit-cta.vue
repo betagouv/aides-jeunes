@@ -37,11 +37,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import { hasLieux } from "@lib/benefits/lieux.ts"
+import { hasLieux } from "@lib/benefits/lieux.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 
 export default {
   name: "BenefitCta",

@@ -4,9 +4,9 @@
   </router-link>
 </template>
 
-<script>
-import { useStore } from "@/stores/index.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
+<script lang="ts">
+import { useStore } from "@/stores/index.js"
+import StatisticsMixin from "@/mixins/statistics.js"
 
 export default {
   name: "AnalyticRouterLink",

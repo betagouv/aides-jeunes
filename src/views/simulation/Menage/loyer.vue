@@ -49,11 +49,11 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
 import InputNumber from "@/components/input-number.vue"
 import Logement from "@lib/logement"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "SimulationMenageDepCom",

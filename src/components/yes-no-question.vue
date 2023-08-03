@@ -77,7 +77,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useSlots } from "vue"
 export default {
   name: "YesNoQuestion",

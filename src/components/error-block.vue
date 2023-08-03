@@ -44,9 +44,9 @@
   </div>
 </template>
 
-<script>
-import { sendError } from "@/plugins/mails.ts"
-import { useStore } from "@/stores/index.ts"
+<script lang="ts">
+import { sendError } from "@/plugins/mails.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "ErrorBlock",

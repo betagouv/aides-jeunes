@@ -17,9 +17,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DroitEstime from "./droit-estime.vue"
-import BenefitMixin from "@/mixins/benefit-image-mixin.ts"
+import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 
 export default {
   name: "DroitHeader",

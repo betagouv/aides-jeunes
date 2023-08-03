@@ -1,8 +1,8 @@
 import { getNextStep, current, getChapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
-import { useStore } from "@/stores/index.ts"
-import { sendEventToMatomo } from "@/lib/statistics-service/matomo.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import { useStore } from "@/stores/index.js"
+import { sendEventToMatomo } from "@/lib/statistics-service/matomo.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 const StateService = {
   install(app) {

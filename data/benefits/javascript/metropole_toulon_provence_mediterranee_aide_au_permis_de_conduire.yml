@@ -14,13 +14,13 @@ profils:
     conditions: []
   - type: stagiaire
     conditions: []
-    - type: professionnalisation
+  - type: professionnalisation
     conditions: []
-     - type: apprenti
+  - type: apprenti
     conditions: []
-    - type: service civique
+  - type: service civique
     conditions: []
-    - type: beneficiaire_rsa
+  - type: beneficiaire_rsa
     conditions: []
 conditions:
   - Être domicilié sur l'une des douze communes de Toulon Provence Méditerranée.

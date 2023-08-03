@@ -8,7 +8,7 @@
 <script>
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
-import context from "@/context/index.js"
+import context from "@/context/index.ts"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.ts"
 import storageService from "@/lib/storage-service.ts"
 

@@ -1,6 +1,6 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
-import context from "./context/index.js"
+import context from "./context/index.ts"
 import Simulation from "@/lib/simulation.ts"
 import { useStore } from "@/stores/index.ts"
 import ABTestingService from "@/plugins/ab-testing-service.ts"

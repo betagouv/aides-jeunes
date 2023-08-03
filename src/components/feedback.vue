@@ -119,7 +119,7 @@ import {
   sendEcartSimulation,
   sendEcartInstructions,
   sendSuggestion,
-} from "@/plugins/mails.js"
+} from "@/plugins/mails.ts"
 import { useStore } from "@/stores/index.ts"
 import { useRoute } from "vue-router"
 import { formatDroitEstime } from "@lib/benefits/details.ts"

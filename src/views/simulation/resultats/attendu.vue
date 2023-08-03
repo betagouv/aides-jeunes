@@ -173,7 +173,7 @@ import ContactEmailMixin from "@/mixins/contact-email.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.ts"
 
-import { sendMontantsAttendus } from "@/plugins/mails.js"
+import { sendMontantsAttendus } from "@/plugins/mails.ts"
 import { capitalize } from "@lib/utils.ts"
 import {
   fetchContributions,

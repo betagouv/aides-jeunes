@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { sendError } from "@/plugins/mails.js"
+import { sendError } from "@/plugins/mails.ts"
 import { useStore } from "@/stores/index.ts"
 
 export default {

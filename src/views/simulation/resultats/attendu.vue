@@ -169,7 +169,7 @@
 <script>
 import axios from "axios"
 import Benefits from "@/lib/benefits.ts"
-import ContactEmailMixin from "@/mixins/contact-email.js"
+import ContactEmailMixin from "@/mixins/contact-email.ts"
 import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.ts"
 

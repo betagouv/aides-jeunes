@@ -24,7 +24,7 @@
   </article>
 </template>
 <script>
-import ContactEmailMixin from "@/mixins/contact-email.js"
+import ContactEmailMixin from "@/mixins/contact-email.ts"
 
 export default {
   name: "Contact",

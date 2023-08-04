@@ -1,14 +1,14 @@
 <template>
   <button
     v-if="experimentNewRecapEmail"
-    class="fr-btn fr-icon-mail-line fr-px-3v"
+    class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     @click="goToEmailFormPage"
   >
     {{ text }}
   </button>
   <button
     v-else
-    class="fr-btn fr-icon-mail-line fr-px-3v"
+    class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
     @click="goToEmailFormModal"

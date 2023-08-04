@@ -166,23 +166,23 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios"
-import Benefits from "@/lib/benefits.ts"
+import Benefits from "@/lib/benefits.js"
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import ResultatsMixin from "@/mixins/resultats.js"
-import StatisticsMixin from "@/mixins/statistics.ts"
+import StatisticsMixin from "@/mixins/statistics.js"
 
 import { sendMontantsAttendus } from "@/plugins/mails.js"
-import { capitalize } from "@lib/utils.ts"
+import { capitalize } from "@lib/utils.js"
 import {
   fetchContributions,
   reduceContributions,
   getGithubPRFiles,
-} from "@/lib/contributions.ts"
+} from "@/lib/contributions.js"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import { useStore } from "@/stores/index.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 export default {
   name: "Attendu",

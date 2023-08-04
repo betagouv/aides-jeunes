@@ -109,14 +109,14 @@
   </dialog>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios"
 
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
+import { useStore } from "@/stores/index.js"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "RecapEmailModal",

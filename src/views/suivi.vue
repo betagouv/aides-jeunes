@@ -131,14 +131,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios"
-import { getBenefit } from "@/lib/benefits.ts"
+import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import dayjs from "dayjs"
-import StatisticsMixin from "@/mixins/statistics.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },

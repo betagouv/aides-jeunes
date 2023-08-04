@@ -1,9 +1,9 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
-import Simulation from "@/lib/simulation.ts"
-import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
+import Simulation from "@/lib/simulation.js"
+import { useStore } from "@/stores/index.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

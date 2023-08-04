@@ -93,8 +93,8 @@ import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine, Step } from "@lib/types/property.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress.js"
-import { useStore } from "@/stores/index.ts"
-import { categoriesRnc, patrimoineTypes } from "@lib/resources.ts"
+import { useStore } from "@/stores/index.js"
+import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
 
 onMounted(() => {
   document.body.setAttribute("data-action-buttons", "true")

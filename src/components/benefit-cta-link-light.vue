@@ -3,7 +3,7 @@ import { useStore } from "@/stores/index.js"
 import storageService from "@/lib/storage-service.js"
 import { PropType, computed, defineProps } from "vue"
 import { useRouter } from "vue-router"
-import { BenefitType } from "@lib/types/benefits"
+import { BenefitType } from "@lib/types/benefits.d.js"
 
 const store = useStore()
 const $router = useRouter()

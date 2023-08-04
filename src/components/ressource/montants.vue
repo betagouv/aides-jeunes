@@ -82,12 +82,12 @@
   </fieldset>
 </template>
 
-<script>
+<script lang="ts">
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
-import Individu from "@lib/individu.ts"
+import Individu from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
   let verbForms = {

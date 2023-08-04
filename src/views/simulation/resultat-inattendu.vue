@@ -20,8 +20,8 @@
   </form>
 </template>
 
-<script>
-import Benefits from "@/lib/benefits.ts"
+<script lang="ts">
+import Benefits from "@/lib/benefits.js"
 import BackButton from "@/components/buttons/back-button.vue"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
 import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"

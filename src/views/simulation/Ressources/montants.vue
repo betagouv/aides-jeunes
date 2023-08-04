@@ -40,7 +40,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
 import RessourceExploitantAgricole from "@/components/ressource/exploitant-agricole.vue"
 import RessourceMicroEntreprise from "@/components/ressource/micro-entreprise.vue"
@@ -48,11 +48,11 @@ import RessourceProfessionLiberale from "@/components/ressource/profession-liber
 import RessourceMontants from "@/components/ressource/montants.vue"
 
 import RessourceProcessor from "@/mixins/ressource-processor.js"
-import { ressourceTypes } from "@lib/resources.ts"
-import Ressource from "@lib/ressource.ts"
-import Individu from "@lib/individu.ts"
-import { getAnswer } from "@lib/answers.ts"
-import { useStore } from "@/stores/index.ts"
+import { ressourceTypes } from "@lib/resources.js"
+import Ressource from "@lib/ressource.js"
+import Individu from "@lib/individu.js"
+import { getAnswer } from "@lib/answers.js"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RessourcesMontants",

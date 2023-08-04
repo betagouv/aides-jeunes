@@ -137,19 +137,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import BenefitCtaLight from "./benefit-cta-light.vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import Situation from "@/lib/situation.ts"
+import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import { useStore } from "@/stores/index.ts"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
-import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.ts"
+import { useStore } from "@/stores/index.js"
+import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
+import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
 
 export default {
   name: "DroitsDetails",

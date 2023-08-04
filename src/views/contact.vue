@@ -23,7 +23,7 @@
     </p>
   </article>
 </template>
-<script>
+<script lang="ts">
 import ContactEmailMixin from "@/mixins/contact-email.js"
 
 export default {

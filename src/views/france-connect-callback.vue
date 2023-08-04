@@ -2,7 +2,7 @@
   <LoadingModal> Récupération de vos informations en cours… </LoadingModal>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios"
 import * as Sentry from "@sentry/vue"
 

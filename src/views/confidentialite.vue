@@ -241,7 +241,7 @@
 <script lang="ts">
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import MatomoOptOut from "@/components/matomo-opt-out.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 interface Cookie {
   name: string

@@ -22,7 +22,7 @@
   </p>
 </template>
 
-<script>
+<script lang="ts">
 const benefitsUrlPatterns = [
   {
     pattern: /-fsl-eligibilite$/,

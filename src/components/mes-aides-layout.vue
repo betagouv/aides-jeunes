@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import HeaderMesAides from "@/components/mes-aides/header-mes-aides.vue"
 import layoutRouteMixin from "@/mixins/layout-route-mixin.js"
 import NavigationMesAides from "@/components/mes-aides/navigation-mes-aides.vue"

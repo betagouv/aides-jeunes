@@ -29,7 +29,7 @@ export function current(
 export function getNextStep(
   currentRoute: RouteLayout,
   journey: StepLayout[]
-): StepLayout | undefined {
+): StepLayout {
   const matches = journey
     .map((element, index) => {
       return { element, index }

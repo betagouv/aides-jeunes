@@ -271,7 +271,7 @@ export const useStore = defineStore("store", {
         ),
       }
     },
-    updateCurrentAnswers(newPath: string) {
+    updateCurrentAnswers(newPath: string | undefined) {
       const steps = this.getAllSteps
       const currentAnswers: any = []
       let i = 0

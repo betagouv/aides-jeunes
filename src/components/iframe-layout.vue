@@ -19,9 +19,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Header1J1S from "@/components/1j1s/header-1j1s.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 export default {
   name: "IFrameLayout",
   components: {

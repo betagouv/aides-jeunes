@@ -19,9 +19,9 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRoute } from "vue-router"
-import { getBenefit } from "@/lib/benefits.ts"
+import { getBenefit } from "@/lib/benefits.js"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 

@@ -175,12 +175,12 @@
   </form>
 </template>
 
-<script>
-import { patrimoineTypes } from "@lib/resources.ts"
+<script lang="ts">
+import { patrimoineTypes } from "@lib/resources.js"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 const mapping = {
   hasTerrainsNonLoues: {

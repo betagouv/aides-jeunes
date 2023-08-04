@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Header1J1S from "@/components/1j1s/header-1j1s.vue"
 import Footer1J1S from "@/components/1j1s/footer-1j1s.vue"
 import Navigation from "@/components/1j1s/navigation-1j1s.vue"

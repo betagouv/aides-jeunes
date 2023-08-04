@@ -106,7 +106,7 @@
     </ul>
   </nav>
 </template>
-<script setup>
+<script setup lang="ts">
 function escapeKeyHandler(event) {
   if (event.target.getAttribute("aria-expanded")) {
     // close standard drop-down menu

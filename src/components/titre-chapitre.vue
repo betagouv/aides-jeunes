@@ -28,10 +28,10 @@
   </div>
 </template>
 
-<script>
-import Chapters from "@lib/chapters.ts"
+<script lang="ts">
+import Chapters from "@lib/chapters.js"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 
 export default {

@@ -19,7 +19,7 @@
   >
 </template>
 
-<script>
+<script lang="ts">
 import WarningMessage from "@/components/warning-message.vue"
 export default {
   name: "InputNumber",

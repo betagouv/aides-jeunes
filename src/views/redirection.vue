@@ -55,10 +55,10 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 import LoadingModal from "@/components/loading-modal.vue"
-import { useStore } from "@/stores/index.ts"
-import storageService from "@/lib/storage-service.ts"
+import { useStore } from "@/stores/index.js"
+import storageService from "@/lib/storage-service.js"
 
 export default {
   name: "Redirection",

@@ -17,11 +17,11 @@
   </button>
 </template>
 
-<script>
-import { useStore } from "@/stores/index.ts"
-import ABTestingService from "@/plugins/ab-testing-service.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
+<script lang="ts">
+import { useStore } from "@/stores/index.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
+import StatisticsMixin from "@/mixins/statistics.js"
 
 export default {
   name: "SendRecapEmailButton",

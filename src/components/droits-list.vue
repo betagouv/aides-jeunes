@@ -96,7 +96,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"

@@ -72,11 +72,11 @@
   </form>
 </template>
 
-<script>
-import Individu from "@lib/individu.ts"
-import { categoriesRnc } from "@lib/resources.ts"
+<script lang="ts">
+import Individu from "@lib/individu.js"
+import { categoriesRnc } from "@lib/resources.js"
 import ActionButtons from "@/components/action-buttons.vue"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 
 export default {
   name: "RessourcesFiscales",

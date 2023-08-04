@@ -65,12 +65,12 @@
   </div>
 </template>
 
-<script>
-import Commune from "@/lib/commune.ts"
+<script lang="ts">
+import Commune from "@/lib/commune.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
-import { useStore } from "@/stores/index.ts"
-import StatisticsMixin from "@/mixins/statistics.ts"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import { useStore } from "@/stores/index.js"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 export default {
   name: "InputDepCom",

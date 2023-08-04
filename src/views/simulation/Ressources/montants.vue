@@ -26,7 +26,7 @@
         :individu="type.individu"
         :ressource="type"
         @update="updateTNSAmount"
-        @updateExtra="updateTNSExtra"
+        @update-extra="updateTNSExtra"
       />
       <RessourceExploitantAgricole
         v-if="type.meta.id === 'rpns_benefice_exploitant_agricole'"

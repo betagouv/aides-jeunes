@@ -2,8 +2,8 @@
   <ProgressBar></ProgressBar>
   <div class="fr-grid-row aj-column-container">
     <div v-if="showSummary" class="fr-col-12 fr-col-md-3 aj-main-container">
-      <Progress v-if="debug" />
-      <Summary v-else />
+      <ProgressDebugger v-if="debug" />
+      <ChaptersSummary v-else />
     </div>
     <div
       :class="`fr-col-12 fr-p-2w ${
@@ -73,8 +73,8 @@
 
 <script lang="ts">
 import TitreChapitre from "@/components/titre-chapitre.vue"
-import Progress from "@/components/progress.vue"
-import Summary from "@/components/summary.vue"
+import ProgressDebugger from "@/components/progress.vue"
+import ChaptersSummary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
@@ -85,8 +85,8 @@ export default {
     WarningMessage,
     ProgressBar,
     TitreChapitre,
-    Progress,
-    Summary,
+    ProgressDebugger,
+    ChaptersSummary,
   },
   setup() {
     return {

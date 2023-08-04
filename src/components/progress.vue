@@ -46,7 +46,7 @@
 import { useStore } from "@/stores/index.js"
 
 export default {
-  name: "Progress",
+  name: "ProgressDebugger",
   setup() {
     return {
       store: useStore(),

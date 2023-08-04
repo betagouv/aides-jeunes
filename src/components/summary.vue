@@ -65,7 +65,7 @@ import { useStore } from "@/stores/index.js"
 import { ChapterState } from "@lib/enums/chapter"
 
 export default {
-  name: "Summary",
+  name: "ChaptersSummary",
   components: { BackButton },
   setup() {
     return {

@@ -96,9 +96,9 @@
               >Résultats de la simulation</a
             >
             <CopyButton
-              :followupId="followup.simulation"
-              :benefitsMap="benefitsMap"
-              :benefitsList="followup.benefits"
+              :followup-id="followup.simulation"
+              :benefits-map="benefitsMap"
+              :benefits-list="followup.benefits"
             />
           </div>
           <ul

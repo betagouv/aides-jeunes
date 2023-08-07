@@ -4,10 +4,10 @@
       v-model:codePostal="codePostal"
       v-model:nomCommune="nomCommune"
       v-model:matchingCommune="matchingCommune"
-      :codePostalLabel="question"
+      :code-postal-label="question"
     />
     <WarningMessage v-if="warningMessage">{{ warningMessage }}</WarningMessage>
-    <ActionButtons :on-submit="onSubmit" :disableSubmit="!canSubmit(false)" />
+    <ActionButtons :on-submit="onSubmit" :disable-submit="!canSubmit(false)" />
   </form>
 </template>
 

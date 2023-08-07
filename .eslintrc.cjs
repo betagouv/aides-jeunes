@@ -33,12 +33,9 @@ module.exports = {
     "import/named": "off",
     "import/no-unresolved": "off",
     "no-irregular-whitespace": 0,
-    "vue/attribute-hyphenation": "off",
     "vue/multi-word-component-names": "off",
-    "vue/no-reserved-component-names": "off",
     "vue/no-v-html": "off",
     "vue/require-default-prop": "off",
-    "vue/v-on-event-hyphenation": "off",
   },
   ignorePatterns: [
     "contribuer",

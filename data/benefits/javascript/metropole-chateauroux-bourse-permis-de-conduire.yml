@@ -1,0 +1,55 @@
+label: Bourse au permis de conduire
+institution: intercommunalite_chateauroux
+description:
+  La Métropole de Châteauroux aide au financement partiel du code de la route et/ou
+  du permis de conduire, en échange d’heures bénévoles réalisées pour une action citoyenne.
+  Les lycéens ne peuvent être éligibles à ce dispositif à l’exception de ceux qui sont en
+  Terminale professionnelle.
+prefix: la
+conditions_generales:
+  - type: epcis
+    values:
+      - "243600327"
+  - type: age
+    operator: ">="
+    value: 18
+profils:
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+          - cap_2
+  - type: stagiaire
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: situation_handicap
+    conditions: []
+conditions:
+  - Résider au sein de la Métropole de Châteauroux depuis au moins un an.
+  - Faire sa demande d'aide auprès de la Mission Locale pour les personnes âgées de moins de 25 ans
+    et auprès du Centre communal d'action sociale pour les personnes âgées de plus de 25 ans.
+  - Attester sur l’honneur ne jamais avoir été détenteur d’un permis de conduire européen (permis B).
+voluntary_conditions:
+  - Réaliser 50 heures d’action bénévole dans une association basée à Châteauroux.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: autre
+legend: maximum
+montant: 600
+link: https://www.chateauroux-metropole.fr/vie-pratique-les-services/mon-enfant-portail-famille/bourses-jeunesse-brigitte-flament-permis-bafa
+instructions: https://www.chateauroux-metropole.fr/vie-pratique-les-services/mon-enfant-portail-famille/bourses-jeunesse-brigitte-flament-permis-bafa

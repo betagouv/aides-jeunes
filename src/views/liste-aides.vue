@@ -80,6 +80,7 @@
 <script lang="ts">
 import institutionsBenefits from "generator:institutions"
 import Commune from "@/lib/commune.js"
+import { CommuneInterface } from "@lib/types/commune.d.js"
 
 const TYPES = {
   national: "Aides nationales",
@@ -96,7 +97,7 @@ export default {
   data() {
     return {
       zipCode: "" as string,
-      selectedCommune: null as typeof Commune,
+      selectedCommune: null as CommuneInterface | null,
       benefitsIncluded: [] as Array<any>,
       benefitsCount: process.env.VITE_BENEFIT_COUNT as string,
       types: TYPES,
@@ -149,7 +150,6 @@ export default {
     async computeDataSelected(): Promise<void> {
       if (this.zipCode.match(/^[0-9]{5}$/)) {
         const res = await Commune.get(this.zipCode)
-        console.log(res[0])
         this.selectedCommune = res[0]
       } else {
         this.selectedCommune = null

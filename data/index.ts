@@ -4,8 +4,9 @@ import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
 
 import { JamstackLayout } from "./types/jamstack.d.js"
+import { InstitutionLayout } from "./types/institutions.d.js"
 
-function generateInstitutionId(institution) {
+function generateInstitutionId(institution: InstitutionLayout) {
   return `${institution.type}_${
     institution.code_insee || institution.code_siren || institution.slug
   }`
@@ -37,7 +38,7 @@ function transformInstitutions(collection: any[]) {
   }, {})
 }
 
-function setTop(benefit, institution) {
+function setTop(benefit, institution: InstitutionLayout) {
   const default_top =
     institution.top ||
     (institution.type === "national"
@@ -49,7 +50,7 @@ function setTop(benefit, institution) {
   return benefit.top || default_top
 }
 
-function setDefaults(benefit, institution) {
+function setDefaults(benefit, institution: InstitutionLayout) {
   benefit.id = generateBenefitId(benefit)
   benefit.top = setTop(benefit, institution)
   benefit.floorAt = benefit.floorAt || 1

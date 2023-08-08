@@ -14,3 +14,21 @@ declare module "generator:institutions" {
   const institutionMap: RollupInstitutionMapInterface
   export default institutionMap
 }
+
+declare module "vue" {
+  interface ComponentCustomProperties {
+    $theme: {
+      current: string
+      options: {
+        title: string
+        label: string
+        value: string
+      }[]
+      update(string): void
+    }
+    $filters: {
+      capitalize(string): string
+    }
+  }
+}
+export {}

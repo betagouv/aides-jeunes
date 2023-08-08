@@ -107,7 +107,7 @@ export default {
     benefits(): Array<any> {
       return []
     },
-    institutionsGroups(): any {
+    institutionsGroups() {
       if (this.selectedCommune) {
         return {
           national: institutionsBenefits["national"],
@@ -119,20 +119,16 @@ export default {
               departement.location == this.selectedCommune?.departement
           ),
           epci: institutionsBenefits["epci"].filter((epci) =>
-            epci?.location.includes(this.selectedCommune?.code)
+            epci.location?.includes(this.selectedCommune?.code)
           ),
           commune: institutionsBenefits["commune"].filter(
-            (commune) => commune?.location == this.selectedCommune?.code
+            (commune) => commune.location == this.selectedCommune?.code
           ),
-          caf: institutionsBenefits["caf"].filter(
-            (caf) =>
-              caf.location &&
-              caf.location.includes(this.selectedCommune?.departement)
+          caf: institutionsBenefits["caf"].filter((caf) =>
+            caf.location?.includes(this.selectedCommune?.departement)
           ),
-          msa: institutionsBenefits["msa"].filter(
-            (msa) =>
-              msa.location &&
-              msa.location.includes(this.selectedCommune?.departement)
+          msa: institutionsBenefits["msa"].filter((msa) =>
+            msa.location?.includes(this.selectedCommune?.departement)
           ),
         }
       }

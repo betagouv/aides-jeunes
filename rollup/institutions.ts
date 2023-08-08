@@ -4,6 +4,25 @@ import { createRequire } from "module"
 const require = createRequire(import.meta.url)
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
+interface RollupInstitutionInterface {
+  id: string
+  label: string
+  type: string
+  benefits: { label: string; id: string }[]
+  location?: string[]
+}
+
+export interface RollupInstitutionMapInterface {
+  national: RollupInstitutionInterface[]
+  region: RollupInstitutionInterface[]
+  departement: RollupInstitutionInterface[]
+  epci: RollupInstitutionInterface[]
+  caf: RollupInstitutionInterface[]
+  msa: RollupInstitutionInterface[]
+  commune: RollupInstitutionInterface[]
+  autre: RollupInstitutionInterface[]
+}
+
 const institutionsBenefits = {}
 
 for (const benefit in generator.benefitsMap) {
@@ -20,7 +39,7 @@ for (const benefit in generator.benefitsMap) {
   })
 }
 
-const institutions = {
+const institutions: RollupInstitutionMapInterface = {
   national: [],
   region: [],
   departement: [],
@@ -38,7 +57,7 @@ for (const id in generator.institutionsMap) {
   if (!institutionsBenefits[institution.slug]) {
     continue
   }
-  const institutionObject = {
+  const institutionObject: RollupInstitutionInterface = {
     id: institution.slug,
     label: institution.label,
     type: institution.type,
@@ -55,7 +74,6 @@ for (const id in generator.institutionsMap) {
     institutionObject.location = institution.code_insee
   }
   if (!institutions[institution.type]) {
-    console.log(institution)
     const msg = `The new institution type '${institution.type}' of '${institution.slug}' needs to be added in rollup/institutions.ts`
     console.error(msg)
     throw new Error(msg)

@@ -64,9 +64,7 @@ if (navigator.cookieEnabled) {
 }
 
 app.config.globalProperties.$filters = {
-  capitalize(value: string) {
-    if (!value) return ""
-    value = value.toString()
+  capitalize(value: string = "") {
     return value.charAt(0).toUpperCase() + value.slice(1)
   },
 }

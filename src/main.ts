@@ -68,6 +68,22 @@ app.config.globalProperties.$filters = {
     return value.charAt(0).toUpperCase() + value.slice(1)
   },
 }
+declare module "vue" {
+  export interface ComponentCustomProperties {
+    $theme: {
+      current: string
+      options: {
+        title: string
+        label: string
+        value: string
+      }[]
+      update(string): void
+    }
+    $filters: {
+      capitalize(string): string
+    }
+  }
+}
 
 dayjs.locale("fr")
 dayjs.extend(customParseFormat)

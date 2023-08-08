@@ -20,7 +20,6 @@ export default {
     }
     const code = search.get("code")
     const state = search.get("state")
-    let simulation = null
 
     try {
       const response = await axios.get(
@@ -32,7 +31,10 @@ export default {
         }
       )
 
-      simulation = response.data.simulation
+      const simulation: { _id: string; token: string } =
+        response.data.simulation
+      // Redirection through `$router` is not working here, `document.location` is used instead
+      document.location = `/api/simulation/${simulation._id}/redirect?token=${simulation.token}`
     } catch (error) {
       Sentry.captureException(error)
       return this.$router.push({
@@ -40,9 +42,6 @@ export default {
         query: { error: "france_connect_error" },
       })
     }
-
-    // Redirection through `$router` is not working here, `document.location` is used instead
-    document.location = `/api/simulation/${simulation._id}/redirect?token=${simulation.token}`
   },
 }
 </script>

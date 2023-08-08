@@ -27,8 +27,12 @@ export default {
   },
   methods: {
     onSubmit() {
-      const simulationId = /([a-z0-9]{24})/.exec(this.simulationId)[0]
-      window?.open(`/api/support/simulation/${simulationId}`, "_blank").focus()
+      const simulationId = /([a-z0-9]{24})/.exec(this.simulationId)
+      if (simulationId?.length) {
+        window
+          .open(`/api/support/simulation/${simulationId[0]}`, "_blank")
+          ?.focus()
+      }
     },
   },
 }

@@ -4,7 +4,16 @@ const DEFAULT_APA = {
   periodicite: "ponctuelle",
 }
 
-export const APA_BY_CODE = {
+export const APA_BY_CODE: {
+  [key: string]: {
+    label: string
+    link: string
+    form?: string
+    teleservice?: string
+    institution?: string
+    instructions?: string
+  }
+} = {
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
     link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
@@ -152,7 +161,7 @@ export const APA_BY_CODE = {
   },
 }
 
-function formatBenefit(institution) {
+function formatBenefit(institution: string) {
   const customizationBenefit = APA_BY_CODE[institution]
   return {
     id: `${institution.replace(/_/g, "-")}-apa-eligibilite`,

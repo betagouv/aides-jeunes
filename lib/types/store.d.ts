@@ -21,6 +21,7 @@ export interface Answer {
   entityName: string
   fieldName: string
   value: any
+  path: string
 }
 
 export interface Patrimoine {

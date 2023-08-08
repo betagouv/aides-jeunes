@@ -2,7 +2,13 @@ import storageService from "@/lib/storage-service.js"
 
 declare global {
   interface Window {
-    _paq?: [string, number, string?][]
+    _paq?: [
+      string | (() => void),
+      (number | string)?,
+      string?,
+      string?,
+      string?
+    ][]
   }
 }
 

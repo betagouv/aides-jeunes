@@ -3,6 +3,8 @@ import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
 
+import { JamstackLayout } from "./types/jamstack.d.js"
+
 function generateInstitutionId(institution) {
   return `${institution.type}_${
     institution.code_insee || institution.code_siren || institution.slug
@@ -111,7 +113,7 @@ export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam) =>
+  generate: (jam: JamstackLayout) =>
     generate(
       jam.collections,
       additionalBenefitAttributes,

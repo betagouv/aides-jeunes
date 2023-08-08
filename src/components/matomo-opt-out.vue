@@ -37,7 +37,7 @@ const isUserTracked = ref()
 
 const toggleTracking = (event) => {
   isUserTracked.value = event.target.checked
-  window._paq.push([event.target.checked ? "forgetUserOptOut" : "optUserOut"])
+  window._paq?.push([event.target.checked ? "forgetUserOptOut" : "optUserOut"])
 }
 
 onMounted(() => {

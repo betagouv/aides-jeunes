@@ -61,7 +61,7 @@ const localOnSubmit = (event) => {
 }
 
 const goBack = () => {
-  window._paq.push([
+  window._paq?.push([
     "trackEvent",
     "Parcours",
     "Bouton précédent",

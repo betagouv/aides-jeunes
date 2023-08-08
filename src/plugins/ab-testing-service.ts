@@ -2,7 +2,7 @@ import storageService from "@/lib/storage-service.js"
 
 declare global {
   interface Window {
-    _paq: [string, number, string?][]
+    _paq?: [string, number, string?][]
   }
 }
 
@@ -58,9 +58,9 @@ function getEnvironment() {
   Object.keys(ABTesting).forEach(function (name) {
     const data = ABTesting[name]
     if (data.deleted) {
-      window._paq.push(["deleteCustomDimension", data.index])
+      window._paq!.push(["deleteCustomDimension", data.index])
     } else {
-      window._paq.push([
+      window._paq!.push([
         "setCustomDimension",
         data.index,
         `${name}/${data.value}`,

@@ -26,6 +26,6 @@ import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 
 const route = useRoute()
-const benefitId = route.params.benefitId
+const benefitId = route.params.benefitId as string
 const benefit = getBenefit(benefitId)
 </script>

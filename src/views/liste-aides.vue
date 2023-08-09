@@ -77,12 +77,16 @@
   </article>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, computed, watch } from "vue"
 import institutionsBenefits from "generator:institutions"
 import Commune from "@/lib/commune.js"
 import { CommuneInterface } from "@lib/types/commune.d.js"
 
-const TYPES = {
+const zipCode = ref("")
+const selectedCommune = ref<CommuneInterface | null>()
+const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
+const types = {
   national: "Aides nationales",
   region: "Aides régionales",
   departement: "Aides départementales",
@@ -93,76 +97,56 @@ const TYPES = {
   autre: "Autres aides",
 }
 
-export default {
-  data() {
+const institutionsGroups = computed(() => {
+  if (selectedCommune.value) {
     return {
-      zipCode: "" as string,
-      selectedCommune: null as CommuneInterface | null,
-      benefitsIncluded: [] as Array<any>,
-      benefitsCount: process.env.VITE_BENEFIT_COUNT as string,
-      types: TYPES,
+      national: institutionsBenefits["national"],
+      region: institutionsBenefits["region"].filter(
+        (region) => region.location === selectedCommune.value!.region
+      ),
+      departement: institutionsBenefits["departement"].filter(
+        (departement) =>
+          departement.location === selectedCommune.value!.departement
+      ),
+      epci: institutionsBenefits["epci"].filter((epci) =>
+        epci.location?.includes(selectedCommune.value!.code)
+      ),
+      commune: institutionsBenefits["commune"].filter(
+        (commune) => commune.location === selectedCommune.value!.code
+      ),
+      caf: institutionsBenefits["caf"].filter((caf) =>
+        caf.location?.includes(selectedCommune.value!.departement)
+      ),
+      msa: institutionsBenefits["msa"].filter((msa) =>
+        msa.location?.includes(selectedCommune.value!.departement)
+      ),
     }
-  },
-  computed: {
-    benefits(): Array<any> {
-      return []
-    },
-    institutionsGroups() {
-      if (this.selectedCommune) {
-        return {
-          national: institutionsBenefits["national"],
-          region: institutionsBenefits["region"].filter(
-            (region) => region.location == this.selectedCommune?.region
-          ),
-          departement: institutionsBenefits["departement"].filter(
-            (departement) =>
-              departement.location == this.selectedCommune?.departement
-          ),
-          epci: institutionsBenefits["epci"].filter((epci) =>
-            epci.location?.includes(this.selectedCommune?.code)
-          ),
-          commune: institutionsBenefits["commune"].filter(
-            (commune) => commune.location == this.selectedCommune?.code
-          ),
-          caf: institutionsBenefits["caf"].filter((caf) =>
-            caf.location?.includes(this.selectedCommune?.departement)
-          ),
-          msa: institutionsBenefits["msa"].filter((msa) =>
-            msa.location?.includes(this.selectedCommune?.departement)
-          ),
-        }
-      }
-      return institutionsBenefits
-    },
-  },
-  watch: {
-    zipCode: function (newZipCode): void {
-      if ([0, 5].includes(newZipCode.length)) {
-        this.computeDataSelected()
-      }
-    },
-  },
-  methods: {
-    async computeDataSelected(): Promise<void> {
-      if (this.zipCode.match(/^[0-9]{5}$/)) {
-        const res = await Commune.get(this.zipCode)
-        this.selectedCommune = res[0]
-      } else {
-        this.selectedCommune = null
-      }
-    },
-    countFilteredBenefits(): number {
-      return Object.keys(this.institutionsGroups).reduce((acc, type) => {
-        return (
-          acc +
-          this.institutionsGroups[type].reduce(
-            (benefitsCount, institution) =>
-              benefitsCount + institution.benefits.length,
-            0
-          )
-        )
-      }, 0)
-    },
-  },
+  }
+  return institutionsBenefits
+})
+async function computeDataSelected() {
+  if (zipCode.value.match(/^[0-9]{5}$/)) {
+    const res = await Commune.get(zipCode.value)
+    selectedCommune.value = res[0]
+  } else {
+    selectedCommune.value = null
+  }
+}
+watch(zipCode, (newZipCode: string) => {
+  if ([0, 5].includes(newZipCode.length)) {
+    computeDataSelected()
+  }
+})
+function countFilteredBenefits(): number {
+  return Object.keys(institutionsGroups.value).reduce((acc, type) => {
+    return (
+      acc +
+      institutionsGroups.value[type].reduce(
+        (benefitsCount, institution) =>
+          benefitsCount + institution.benefits.length,
+        0
+      )
+    )
+  }, 0)
 }
 </script>

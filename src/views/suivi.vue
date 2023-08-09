@@ -5,7 +5,7 @@
     </div>
     <div>
       <div>
-        <LoadingModal v-if="!droits">
+        <LoadingModal v-if="!droits.length">
           <p> Récupération de la situation en cours… </p>
         </LoadingModal>
         <div v-if="submitted" class="fr-text--center">
@@ -151,6 +151,13 @@ function isNegative(value) {
   return value === "failed" || value === "nothing"
 }
 
+interface FollowupBenefit {
+  id: string
+  amount?: number
+  value?: string
+  prefix?: string
+}
+
 export default {
   name: "Suivi",
   components: {
@@ -161,7 +168,7 @@ export default {
   data: function () {
     return {
       submitted: false,
-      droits: null,
+      droits: [] as FollowupBenefit[],
       followup: null,
     }
   },
@@ -172,7 +179,7 @@ export default {
       )
     },
     isComplete: function () {
-      let choiceValues = this.droits.map((droit) => droit.choiceValue)
+      const choiceValues = this.droits.map((droit) => droit.choiceValue)
       return (
         choiceValues.filter((choiceValue) => choiceValue).length ===
         this.droits.length
@@ -191,8 +198,7 @@ export default {
     const { data: followup } = await axios.get(
       `/api/followups/surveys/${this.$route.query.token}`
     )
-
-    this.followup = followup
+    this.followup = followup as FollowupBenefit
     const followupBenefits = this.followup.benefits.map((benefit) =>
       getBenefit(benefit.id)
     )

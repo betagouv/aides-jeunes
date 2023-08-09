@@ -131,14 +131,17 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue"
+import { useRoute } from "vue-router"
 import axios from "axios"
+import dayjs from "dayjs"
 import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
-import dayjs from "dayjs"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -151,109 +154,104 @@ function isNegative(value) {
   return value === "failed" || value === "nothing"
 }
 
-interface FollowupBenefit {
-  id: string
-  amount?: number
-  value?: string
-  prefix?: string
+interface FollowupBenefit extends StandardBenefit {
+  choices: { value: string; label: string }[]
+  choiceValue: string | null
+  choiceComments: string
+}
+interface SurveyLayout {
+  createdAt: string
+  benefits: {
+    id: string
+    amount: number | boolean
+  }[]
 }
 
-export default {
-  name: "Suivi",
-  components: {
-    DroitHeader,
-    LoadingModal,
-  },
-  mixins: [StatisticsMixin],
-  data: function () {
+const route = useRoute()
+const submitted = ref(false)
+const droits = ref<FollowupBenefit[]>([])
+const followup = ref<SurveyLayout | null>(null)
+
+const createdAt = computed(() => {
+  return (
+    followup.value && dayjs(followup.value.createdAt).format("DD MMMM YYYY")
+  )
+})
+
+const isComplete = computed(() => {
+  const choiceValues = droits.value.map((droit) => droit.choiceValue)
+  return (
+    choiceValues.filter((choiceValue) => choiceValue).length ===
+    droits.value.length
+  )
+})
+
+const showAccompanimentBlock = computed(() => {
+  return droits.value.some(
+    (droit) => droit.choiceValue === "failed" || droit.choiceValue === "nothing"
+  )
+})
+
+const currentPath = computed(() => {
+  return route.path
+})
+
+onMounted(async () => {
+  const { data: followupData } = await axios.get(
+    `/api/followups/surveys/${route.query.token}`
+  )
+  followup.value = followupData as SurveyLayout
+  const followupBenefits: StandardBenefit[] = followup.value.benefits.map(
+    (benefit) => getBenefit(benefit.id)
+  )
+
+  droits.value = followupBenefits.map((benefit) => {
+    const montant = followup.value!.benefits.find(
+      ({ id }) => id === benefit.id
+    )?.amount
+
     return {
-      submitted: false,
-      droits: [] as FollowupBenefit[],
-      followup: null,
+      ...benefit,
+      montant,
+      choices,
+      choiceValue: null,
+      choiceComments: "",
     }
-  },
-  computed: {
-    createdAt: function () {
-      return (
-        this.followup && dayjs(this.followup.createdAt).format("DD MMMM YYYY")
-      )
-    },
-    isComplete: function () {
-      const choiceValues = this.droits.map((droit) => droit.choiceValue)
-      return (
-        choiceValues.filter((choiceValue) => choiceValue).length ===
-        this.droits.length
-      )
-    },
-    showAccompanimentBlock: function () {
-      return this.droits.some((droit) =>
-        ["failed", "nothing"].includes(droit.choiceValue)
-      )
-    },
-    currentPath: function () {
-      return this.$route.path
-    },
-  },
-  mounted: async function () {
-    const { data: followup } = await axios.get(
-      `/api/followups/surveys/${this.$route.query.token}`
+  }) as FollowupBenefit[]
+})
+
+const prefix = (droit: FollowupBenefit) => {
+  if (droit.prefix) {
+    return `${droit.prefix}${droit.prefix.endsWith("’") ? "" : " "}`
+  }
+  return ""
+}
+
+const submit = async () => {
+  const answers = droits.value.map((droit) => ({
+    id: droit.id,
+    value: droit.choiceValue,
+    comments: droit.choiceComments,
+  }))
+
+  const { status } = await axios.post(
+    `/api/followups/surveys/${route.query.token}/answers`,
+    answers
+  )
+
+  if (status !== 201) {
+    return
+  }
+
+  submitted.value = true
+  window.scrollTo(0, 0)
+
+  if (showAccompanimentBlock.value) {
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategories.ACCOMPAGNEMENT,
+      "show-accompaniment-link",
+      currentPath.value
     )
-    this.followup = followup as FollowupBenefit
-    const followupBenefits = this.followup.benefits.map((benefit) =>
-      getBenefit(benefit.id)
-    )
-
-    this.droits = followupBenefits.map((benefit) => {
-      const montant = this.followup.benefits.find(
-        ({ id }) => id === benefit.id
-      ).amount
-
-      return {
-        ...benefit,
-        montant,
-        choices,
-        choiceValue: null,
-        choiceComments: "",
-      }
-    })
-  },
-  methods: {
-    isNegative,
-    prefix: function (droit) {
-      if (droit.prefix) {
-        return `${droit.prefix}${
-          droit.prefix[droit.prefix.length - 1] == "’" ? "" : " "
-        }`
-      }
-      return ""
-    },
-    submit: async function () {
-      const answers = this.droits.map((droit) => ({
-        id: droit.id,
-        value: droit.choiceValue,
-        comments: droit.choiceComments,
-      }))
-
-      const { status } = await axios.post(
-        `/api/followups/surveys/${this.$route.query.token}/answers`,
-        answers
-      )
-
-      if (status !== 201) {
-        return
-      }
-
-      this.submitted = true
-      window.scrollTo(0, 0)
-
-      if (this.showAccompanimentBlock) {
-        this.sendEventToMatomo(
-          EventCategories.ACCOMPAGNEMENT,
-          "show-accompaniment-link",
-          this.currentPath
-        )
-      }
-    },
-  },
+  }
 }
 </script>

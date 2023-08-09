@@ -1,21 +1,17 @@
-import BenefitsCategories from "@/lib/benefits-categories.js"
-import { benefitLayout } from "@data/types/benefits.d.js"
+import { benefitLayout, StandardBenefit } from "@data/types/benefits.d.js"
 import Benefits from "generator:benefits"
 
-export function getBenefit(benefitId) {
+export function getBenefit(benefitId: string): StandardBenefit {
   return Benefits[benefitId]
 }
 
 export const mockResults = function (sublist: string) {
-  let filterSublist: string[] | null = null
-  if (sublist) {
-    filterSublist = BenefitsCategories[sublist] || sublist.split(",")
-  }
-
   const defaults = {
     bool: true,
     float: 1,
   }
+
+  const filterSublist: string[] | null = sublist ? sublist.split(",") : null
 
   let benefits: benefitLayout[] = []
 

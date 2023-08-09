@@ -17,3 +17,9 @@ declare module "generator:institutions" {
   const institutionMap: RollupInstitutionMapInterface
   export default institutionMap
 }
+
+declare module "generator:benefits" {
+  import { BenefitsMap } from "../data/types/benefits.js"
+  const benefitsMap: BenefitsMap
+  export default benefitsMap
+}

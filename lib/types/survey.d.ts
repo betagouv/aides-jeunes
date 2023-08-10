@@ -37,3 +37,11 @@ export interface FollowupLayout {
   messageId: string
   sentAt: string
 }
+
+interface FetchSurveyLayout {
+  createdAt: string
+  benefits: {
+    id: string
+    amount: number | boolean
+  }[]
+}

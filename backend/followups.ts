@@ -5,8 +5,8 @@ import { followup, resultRedirect } from "./controllers/followups.js"
 const app = express()
 const router = express.Router()
 
-router.param("followupId", followup)
-router.get("/:followupId", resultRedirect)
+router.param("followupId", followup as any)
+router.get("/:followupId", resultRedirect as any)
 app.use(router)
 
 export default app

@@ -1,11 +1,12 @@
-import Followup from "../models/followup.js"
+import Followup, { FollowupMongoInterface } from "../models/followup.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
-import { Response, NextFunction } from "express"
-import { ajRequest } from "../types/express.js"
+import { Response, NextFunction, Request } from "express"
+import { FollowupRequest, SimulationRequest } from "../types/express.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
+import { FetchSurveyLayout } from "../../lib/types/survey.d.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -13,14 +14,14 @@ const excludeFields = ["accessToken", "surveys.accessToken"]
   .replace(/^/, "-")
 
 export function followup(
-  req: ajRequest,
+  req: FollowupRequest,
   res: Response,
   next: NextFunction,
   id: string
 ) {
   Followup.findById(id)
     .populate("simulation")
-    .exec(function (err: any, followup: any) {
+    .exec(function (err: any, followup: FollowupMongoInterface) {
       if (err) {
         return next(err)
       }
@@ -36,12 +37,12 @@ export function followup(
     })
 }
 
-export function resultRedirect(req: ajRequest, res: Response) {
+export function resultRedirect(req: SimulationRequest, res: Response) {
   simulationController.attachAccessCookie(req, res)
   res.redirect(req.simulation.returnPath)
 }
 
-export async function persist(req: ajRequest, res: Response) {
+export async function persist(req: SimulationRequest, res: Response) {
   if (!req.body.email || !req.body.email.length) {
     return res.status(400).send({ result: "KO" })
   }
@@ -64,16 +65,16 @@ export async function persist(req: ajRequest, res: Response) {
   }
 }
 
-export function getFollowup(req: ajRequest, res: Response) {
+export function getFollowup(req: FollowupRequest, res: Response) {
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(
       (benefit) => benefit.id in Benefits.benefitsMap
     ),
-  })
+  } as FetchSurveyLayout)
 }
 
-export function showSurveyResult(req: ajRequest, res: Response) {
+export function showSurveyResult(req: Request, res: Response) {
   Followup.findById(req.params.surveyId)
     .then((simulation: any) => {
       if (!simulation) return res.sendStatus(404)
@@ -85,7 +86,7 @@ export function showSurveyResult(req: ajRequest, res: Response) {
     })
 }
 
-export function showSurveyResults(req: ajRequest, res: Response) {
+export function showSurveyResults(req: Request, res: Response) {
   Followup.find({
     surveyOptin: true,
     surveys: {
@@ -98,12 +99,12 @@ export function showSurveyResults(req: ajRequest, res: Response) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
-    .then((followup) => {
+    .then((followup: FollowupMongoInterface[]) => {
       res.send(followup)
     })
 }
 
-export function showSurveyResultByEmail(req: ajRequest, res: Response) {
+export function showSurveyResultByEmail(req: Request, res: Response) {
   Followup.findByEmail(req.params.email)
     .then((simulations: any) => {
       if (!simulations || !simulations.length) return res.sendStatus(404)
@@ -115,7 +116,7 @@ export function showSurveyResultByEmail(req: ajRequest, res: Response) {
     })
 }
 
-export function showSimulation(req: ajRequest, res: Response) {
+export function showSimulation(req: Request, res: Response) {
   Followup.findById(req.params.surveyId)
     .select(excludeFields)
     .then((simulation: any) => {
@@ -129,25 +130,27 @@ export function showSimulation(req: ajRequest, res: Response) {
 }
 
 export async function followupByAccessToken(
-  req: ajRequest,
+  req: FollowupRequest,
   res: Response,
   next: NextFunction,
   accessToken: any
 ) {
-  const followup = await Followup.findOne({ accessToken })
+  const followup: FollowupMongoInterface | null = await Followup.findOne({
+    accessToken,
+  })
   if (!followup) return res.sendStatus(404)
   req.followup = followup
   next()
 }
 
-export function postSurvey(req: ajRequest, res: Response) {
+export function postSurvey(req: FollowupRequest, res: Response) {
   req.followup.updateSurvey(SurveyType.benefitAction, req.body).then(() => {
     res.sendStatus(201)
   })
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export async function updateWasUseful(req: ajRequest) {
+export async function updateWasUseful(req: FollowupRequest) {
   const answers = [
     {
       id: "wasUseful",
@@ -162,12 +165,12 @@ export async function updateWasUseful(req: ajRequest) {
   await followup.save()
 }
 
-async function updateTrackClickOnBenefitActionEmail(req: ajRequest) {
+async function updateTrackClickOnBenefitActionEmail(req: FollowupRequest) {
   const { followup } = req
   await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail)
 }
 
-async function updateSurveyInFollowup(req: ajRequest) {
+async function updateSurveyInFollowup(req: FollowupRequest) {
   const { surveyType } = req.params
   const { followup } = req
 
@@ -186,7 +189,7 @@ async function updateSurveyInFollowup(req: ajRequest) {
   }
 }
 
-async function getRedirectUrl(req: ajRequest) {
+async function getRedirectUrl(req: FollowupRequest) {
   const { surveyType } = req.params
   const { followup } = req
 
@@ -204,7 +207,7 @@ async function getRedirectUrl(req: ajRequest) {
   }
 }
 
-export async function logSurveyLinkClick(req: ajRequest, res: Response) {
+export async function logSurveyLinkClick(req: FollowupRequest, res: Response) {
   try {
     await updateSurveyInFollowup(req)
     const redirectUrl = await getRedirectUrl(req)

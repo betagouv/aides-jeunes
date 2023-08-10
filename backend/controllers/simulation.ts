@@ -7,7 +7,8 @@ import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
-import Followup, { FollowupInterface } from "../models/followup.js"
+import Followup from "../models/followup.js"
+import { FollowupInterface } from "../../lib/types/followup.d.js"
 import allBenefits from "../../data/all.js"
 
 function setSimulationOnRequest(req, simulation) {

@@ -50,7 +50,7 @@ export default function (api) {
   )
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
-  route.post("/followup", express.json(), persist)
+  route.post("/followup", express.json(), persist as any)
 
   teleservices.names.forEach(function (name) {
     route.get(

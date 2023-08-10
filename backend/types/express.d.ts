@@ -1,7 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as express from "express"
+import { Request } from "express"
+import { FollowupMongoInterface } from "../models/followup.js"
+import { SimulationInterface } from "../models/simulation.js"
 
-interface ajRequest extends express.Request {
-  followup?: any
-  simulation?: any
+export interface SimulationRequest extends Request {
+  simulation: SimulationInterface
+}
+
+export interface FollowupRequest extends Request {
+  followup: FollowupMongoInterface
 }

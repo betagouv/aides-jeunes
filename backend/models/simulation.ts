@@ -42,6 +42,26 @@ const answers = {
   current: { type: [answer], required: true },
 }
 
+export interface SimulationInterface {
+  _id: mongoose.Types.ObjectId
+  answers: any
+  enfants: number[]
+  ressourcesFiscales?: any
+  patrimoine?: any
+  dateDeValeur: Date
+  version: number
+  abtesting?: any
+  finishedAt: Date
+  createdAt: Date
+  hasFollowup?: boolean
+  modifiedFrom?: string
+  status: SimulationStatusEnum
+  teleservice?: string
+  token: string
+  cookieName: string
+  returnPath: string
+}
+
 const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
   {
     answers: { type: answers, required: true },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { ajRequest } from "../backend/types/express.d.js"
+import { FollowupRequest } from "../backend/types/express.d.js"
 import api from "../backend/api.js"
 import { EmailType } from "../backend/enums/email.js"
 import express from "express"
@@ -35,7 +35,7 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = async (req: ajRequest) => {
+const followupRendering = async (req) => {
   const { followup } = req
   const emailType = req.params.type as EmailType
   let surveyType: SurveyType | undefined
@@ -61,7 +61,7 @@ const followupRendering = async (req: ajRequest) => {
 }
 
 app.route("/mjml/:id/:type").get(
-  function (req: ajRequest, res, next) {
+  function (req: FollowupRequest, res, next) {
     Followup.findById(req.params.id)
       .populate("simulation")
       .exec(function (err, followup) {

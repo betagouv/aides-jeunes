@@ -15,7 +15,7 @@ export default function (api) {
     (req, res, next) => {
       simulationController.simulation(req, res, next, req.params.simulationId)
     },
-    supportController
+    supportController as any
   )
 
   api.use("/support", route)

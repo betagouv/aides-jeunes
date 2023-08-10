@@ -79,7 +79,7 @@ export default function (api) {
    */
   specificSimulationRoutes.param(
     "simulationId",
-    simulationController.simulation
+    simulationController.simulation as any
   )
   api.param("signedPayload", teleservices.decodePayload)
 }

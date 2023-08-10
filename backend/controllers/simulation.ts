@@ -10,16 +10,23 @@ import Simulation from "../models/simulation.js"
 import Followup from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import allBenefits from "../../data/all.js"
+import { SimulatorRequest } from "../types/express.d.js"
+import { Request } from "express"
 
-function setSimulationOnRequest(req, simulation) {
+function setSimulationOnRequest(req: SimulatorRequest, simulation) {
   req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
 
-function simulation(req, res, next, simulationOrSimulationId) {
+function simulation(
+  req: SimulatorRequest | Request,
+  res,
+  next,
+  simulationOrSimulationId
+) {
   if (simulationOrSimulationId?._id) {
     const simulation = simulationOrSimulationId
-    setSimulationOnRequest(req, simulation)
+    setSimulationOnRequest(req as SimulatorRequest, simulation)
     return next()
   }
 
@@ -27,27 +34,31 @@ function simulation(req, res, next, simulationOrSimulationId) {
   Simulation.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)
-    setSimulationOnRequest(req, simulation)
+    setSimulationOnRequest(req as SimulatorRequest, simulation)
     next()
   })
 }
 
-function attachAccessCookie(req, res, next?) {
+function attachAccessCookie(req: SimulatorRequest, res, next?) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
     sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
     secure: config.baseURL.startsWith("https"),
   }
-  res.cookie(req.simulation.cookieName, req.simulation.token, cookiesParameters)
+  res.cookie(
+    req.simulation?.cookieName,
+    req.simulation?.token,
+    cookiesParameters
+  )
   res.cookie(
     "lastestSimulation",
-    req.simulation._id.toString(),
+    req.simulation?._id.toString(),
     cookiesParameters
   )
   next && next()
 }
 
-function validateAccess(req, res, next) {
+function validateAccess(req: SimulatorRequest, res, next) {
   if (
     req.simulation?.isAccessible({
       ...req.cookies,
@@ -59,11 +70,11 @@ function validateAccess(req, res, next) {
   res.status(403).send({ error: "You do not have access to this situation." })
 }
 
-function show(req, res) {
+function show(req: SimulatorRequest, res) {
   res.send(req.simulation)
 }
 
-function clearCookies(req, res) {
+function clearCookies(req: SimulatorRequest, res) {
   const limit = 10
 
   const keys = Object.keys(req.cookies)
@@ -83,7 +94,7 @@ function clearCookies(req, res) {
   }
 }
 
-function create(req, res, next) {
+function create(req: SimulatorRequest, res, next) {
   if (req.body._id)
     return res.status(403).send({
       error:
@@ -102,7 +113,7 @@ function create(req, res, next) {
   )
 }
 
-function openfiscaResponse(req, res, next) {
+function openfiscaResponse(req: SimulatorRequest, res, next) {
   return openfisca.calculate(req.situation, function (err, result) {
     if (err)
       return next(
@@ -115,22 +126,22 @@ function openfiscaResponse(req, res, next) {
   })
 }
 
-function results(req, res, next) {
+function results(req: SimulatorRequest, res, next) {
   return req.simulation
     .compute()
     .then((results) => {
-      return res.send(Object.assign(results, { _id: req.simulation._id }))
+      return res.send(Object.assign(results, { _id: req.simulation?._id }))
     })
     .catch((err) => {
       return next(
         Object.assign(err?.response?.data || err, {
-          _id: req.simulation._id,
+          _id: req.simulation?._id,
         })
       )
     })
 }
 
-function openfiscaTrace(req, res, next) {
+function openfiscaTrace(req: SimulatorRequest, res, next) {
   return openfisca.trace(req.situation, function (err, result) {
     if (err)
       return next(Object.assign(err.response.data, { _id: req.simulationId }))
@@ -139,7 +150,7 @@ function openfiscaTrace(req, res, next) {
   })
 }
 
-function openfiscaRequest(req, res) {
+function openfiscaRequest(req: SimulatorRequest, res) {
   res.send(openfisca.buildOpenFiscaRequest(req.situation))
 }
 
@@ -157,7 +168,7 @@ const DETAILS_ATTRIBUTES = [
   "output",
 ]
 
-function openfiscaTest(req, res) {
+function openfiscaTest(req: SimulatorRequest, res) {
   const details = assign(
     {},
     DETAILS_DEFAULT_ATTRIBUTES,
@@ -175,7 +186,7 @@ function openfiscaTest(req, res) {
   res.type("yaml").send(openfiscaTestLib.generateYAMLTest(details, situation))
 }
 
-function redirect(req, res) {
+function redirect(req: SimulatorRequest, res) {
   res.redirect(
     `/simulation/redirect${req?.query?.to ? `?to=${req.query.to}` : ""}`
   )
@@ -202,10 +213,10 @@ function enrichBenefitsList(benefits) {
     .filter((b) => b)
 }
 
-async function getLatestFollowup(req, res) {
+async function getLatestFollowup(req: SimulatorRequest, res) {
   const followup = (await Followup.findOne(
     {
-      simulation: req.simulation._id,
+      simulation: req.simulation?._id,
     },
     null,
     { sort: { createdAt: -1 } }

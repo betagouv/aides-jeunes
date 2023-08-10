@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { FollowupRequest } from "../backend/types/express.d.js"
 import api from "../backend/api.js"
 import { EmailType } from "../backend/enums/email.js"
 import express from "express"
@@ -9,6 +8,7 @@ import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
+import { SimulatorRequest } from "../backend/types/express.js"
 
 api()
 
@@ -35,7 +35,7 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = async (req) => {
+const followupRendering = async (req: SimulatorRequest) => {
   const { followup } = req
   const emailType = req.params.type as EmailType
   let surveyType: SurveyType | undefined
@@ -61,18 +61,20 @@ const followupRendering = async (req) => {
 }
 
 app.route("/mjml/:id/:type").get(
-  function (req: FollowupRequest, res, next) {
+  function (req, res, next) {
     Followup.findById(req.params.id)
       .populate("simulation")
       .exec(function (err, followup) {
         if (err) {
           return next(err)
         }
+        // @ts-ignore
         req.followup = followup
         next()
       })
   },
   function (req, res) {
+    // @ts-ignore
     followupRendering(req).then((result) => {
       const mode = req.query.mode || "html"
       if (mode == "html") {

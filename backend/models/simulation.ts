@@ -60,6 +60,9 @@ export interface SimulationInterface {
   token: string
   cookieName: string
   returnPath: string
+  isAccessible(keychain: Record<string, string>): boolean
+  getSituation(): any
+  compute(): Promise<any>
 }
 
 const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(

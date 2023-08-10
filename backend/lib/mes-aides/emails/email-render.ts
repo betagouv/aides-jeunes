@@ -49,7 +49,7 @@ const textTemplates = {
 }
 
 const dataTemplateBuilder = (
-  emailType,
+  emailType: EmailType,
   followup,
   formatedBenefits,
   benefitTexts
@@ -72,11 +72,11 @@ const dataTemplateBuilder = (
   }
 }
 
-function renderAsText(emailType, dataTemplate) {
+function renderAsText(emailType: EmailType, dataTemplate) {
   return mustache.render(textTemplates[emailType], dataTemplate)
 }
 
-function renderAsHtml(emailType, dataTemplate) {
+function renderAsHtml(emailType: EmailType, dataTemplate) {
   if (!(emailType in emailTemplates)) {
     throw new Error(`Unknown email type: ${emailType}`)
   }
@@ -90,7 +90,7 @@ function renderAsHtml(emailType, dataTemplate) {
     })
 }
 
-export default async function emailRender(emailType, followup) {
+export default async function emailRender(emailType: EmailType, followup) {
   let benefits: any = null
   let parameters: any = null
   let formatedBenefits: any = {}

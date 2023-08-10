@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Express } from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -6,7 +6,7 @@ import { persist } from "../controllers/followups.js"
 import simulationController from "../controllers/simulation.js"
 import teleservices from "../controllers/teleservices/index.js"
 
-export default function (api) {
+export default function (api: Express) {
   api.options("/simulation", cors())
   api
     .route("/simulation")
@@ -50,7 +50,7 @@ export default function (api) {
   )
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
-  route.post("/followup", express.json(), persist as any)
+  route.post("/followup", express.json(), persist)
 
   teleservices.names.forEach(function (name) {
     route.get(
@@ -79,7 +79,7 @@ export default function (api) {
    */
   specificSimulationRoutes.param(
     "simulationId",
-    simulationController.simulation as any
+    simulationController.simulation
   )
   api.param("signedPayload", teleservices.decodePayload)
 }

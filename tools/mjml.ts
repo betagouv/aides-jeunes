@@ -68,13 +68,11 @@ app.route("/mjml/:id/:type").get(
         if (err) {
           return next(err)
         }
-        // @ts-ignore
         req.followup = followup
         next()
       })
   },
   function (req, res) {
-    // @ts-ignore
     followupRendering(req).then((result) => {
       const mode = req.query.mode || "html"
       if (mode == "html") {

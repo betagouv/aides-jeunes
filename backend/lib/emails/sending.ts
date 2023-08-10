@@ -7,7 +7,7 @@ import Followup, { FollowupInterface } from "../../models/followup.js"
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
-async function sendMultipleEmails(emailType: EmailType, limit) {
+async function sendMultipleEmails(emailType: EmailType, limit: number) {
   switch (emailType) {
     case EmailType.initialSurvey:
       await sendMultipleInitialEmails(limit)
@@ -20,7 +20,7 @@ async function sendMultipleEmails(emailType: EmailType, limit) {
   }
 }
 
-async function sendMultipleInitialEmails(limit) {
+async function sendMultipleInitialEmails(limit: number) {
   const followups = await Followup.find({
     surveys: {
       $not: {
@@ -62,7 +62,7 @@ async function sendMultipleInitialEmails(limit) {
   console.log(results)
 }
 
-async function sendMultipleTousABordNotificationEmails(limit) {
+async function sendMultipleTousABordNotificationEmails(limit: number) {
   const followups = await Followup.find({
     benefits: {
       $elemMatch: {
@@ -102,7 +102,7 @@ async function sendMultipleTousABordNotificationEmails(limit) {
   console.log(results)
 }
 
-async function processSingleEmail(emailType: EmailType, followupId) {
+async function processSingleEmail(emailType: EmailType, followupId: string) {
   const followup: FollowupInterface | null = await Followup.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
@@ -134,8 +134,8 @@ async function processSingleEmail(emailType: EmailType, followupId) {
 
 export async function processSendEmails(
   emailType: EmailType,
-  followupId,
-  multiple
+  followupId: string,
+  multiple: number | null
 ) {
   if (followupId) {
     await processSingleEmail(emailType, followupId)

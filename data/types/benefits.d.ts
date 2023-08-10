@@ -1,3 +1,5 @@
+import { InstitutionLayout } from "./institutions.d.js"
+
 // extends "Aide" type defined in "aides-velo" package
 type Aide = {
   title: string

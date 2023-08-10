@@ -92,7 +92,7 @@ export function generate(
   const fslBenefits = fslGenerator ? fslGenerator() : []
   const apaBenefits = apaGenerator ? apaGenerator() : []
 
-  let benefits: StandardBenefit[] = [
+  const benefitsCollections = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
@@ -101,7 +101,7 @@ export function generate(
   ]
   const benefitsMap: BenefitsMap = {}
 
-  benefits = benefits.map((benefit) => {
+  const benefits: StandardBenefit[] = benefitsCollections.map((benefit) => {
     const institution: InstitutionLayout = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
     Object.assign(benefit, additionalBenefitAttributes[benefit.id])

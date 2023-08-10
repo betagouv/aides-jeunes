@@ -18,8 +18,10 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from "vue"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
+import { StandardBenefit } from "@data/types/benefits"
 
 export default {
   name: "DroitHeader",
@@ -28,7 +30,7 @@ export default {
   },
   mixins: [BenefitMixin],
   props: {
-    droit: Object,
+    droit: { type: Object as PropType<StandardBenefit>, required: true },
     showUnexpected: {
       type: Boolean,
       default: true,

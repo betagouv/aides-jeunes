@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
-import { BenefitType } from "@lib/types/benefits.d.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
 const props = defineProps({
-  benefit: Object as PropType<BenefitType>,
+  benefit: Object as PropType<StandardBenefit>,
 })
 
 const ctaForm = computed(() => {

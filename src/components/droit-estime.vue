@@ -43,6 +43,8 @@ import { formatDroitEstime } from "@lib/benefits/details.js"
 import { useStore } from "@/stores/index.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
+import { PropType } from "vue"
 
 export default {
   name: "DroitEstime",
@@ -50,7 +52,10 @@ export default {
     AnalyticRouterLink,
   },
   props: {
-    droit: Object,
+    droit: {
+      type: Object as PropType<StandardBenefit>,
+      required: true,
+    },
     showUnexpected: {
       type: Boolean,
       default: true,

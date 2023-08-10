@@ -1,4 +1,4 @@
-import { BenefitType } from "@lib/types/benefits"
+import { StandardBenefit } from "@data/types/benefits.d.js"
 import {
   IRecorderEvent,
   sendEventToRecorder,
@@ -21,7 +21,7 @@ declare global {
 export default {
   methods: {
     sendEventsToRecorder: function (
-      benefits: BenefitType[] = [],
+      benefits: StandardBenefit[] = [],
       event_type: string,
       benefitId: string | undefined = undefined
     ) {
@@ -53,7 +53,7 @@ export default {
       }
     },
     sendBenefitsStatistics: function (
-      benefits: BenefitType[] = [],
+      benefits: StandardBenefit[] = [],
       event_type: string,
       benefitId: string | undefined = undefined
     ) {

@@ -37,7 +37,7 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = async (req: ajRequest) => {
   const { followup } = req
-  const { type: emailType } = req.params
+  const emailType = req.params.type as EmailType
   let surveyType: SurveyType | undefined
 
   switch (emailType) {
@@ -49,10 +49,10 @@ const followupRendering = async (req: ajRequest) => {
     case EmailType.benefitAction:
       surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
-  }
-
-  if (!surveyType) {
-    return
+    default:
+      return {
+        html: `Failed to render email, unknown email type: ${emailType}`,
+      }
   }
 
   await followup.addSurveyIfMissing(surveyType)

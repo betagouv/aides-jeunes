@@ -7,7 +7,7 @@ import Followup, { FollowupInterface } from "../../models/followup.js"
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
-async function sendMultipleEmails(emailType, limit) {
+async function sendMultipleEmails(emailType: EmailType, limit) {
   switch (emailType) {
     case EmailType.initialSurvey:
       await sendMultipleInitialEmails(limit)
@@ -16,7 +16,7 @@ async function sendMultipleEmails(emailType, limit) {
       await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
-      throw new Error("Unknown email type for multiple emails")
+      throw new Error(`Unknown email type ${emailType} for multiple emails`)
   }
 }
 
@@ -102,7 +102,7 @@ async function sendMultipleTousABordNotificationEmails(limit) {
   console.log(results)
 }
 
-async function processSingleEmail(emailType, followupId) {
+async function processSingleEmail(emailType: EmailType, followupId) {
   const followup: FollowupInterface | null = await Followup.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
@@ -132,7 +132,11 @@ async function processSingleEmail(emailType, followupId) {
   console.log("Email sent", email)
 }
 
-export async function processSendEmails(emailType, followupId, multiple) {
+export async function processSendEmails(
+  emailType: EmailType,
+  followupId,
+  multiple
+) {
   if (followupId) {
     await processSingleEmail(emailType, followupId)
   } else if (multiple) {

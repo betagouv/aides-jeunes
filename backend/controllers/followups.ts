@@ -6,7 +6,7 @@ import { Response, NextFunction } from "express"
 import { SurveyType } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurveyLayout } from "../../lib/types/survey.d.js"
-import { SimulatorRequest } from "../types/express.d.js"
+import Request from "../types/express.d.js"
 
 // TODO next line is to be updated once tokens are used globally
 const excludeFields = ["accessToken", "surveys.accessToken"]
@@ -14,7 +14,7 @@ const excludeFields = ["accessToken", "surveys.accessToken"]
   .replace(/^/, "-")
 
 export function followup(
-  req: SimulatorRequest,
+  req: Request,
   res: Response,
   next: NextFunction,
   id: string
@@ -37,12 +37,12 @@ export function followup(
     })
 }
 
-export function resultRedirect(req: SimulatorRequest, res: Response) {
+export function resultRedirect(req: Request, res: Response) {
   simulationController.attachAccessCookie(req, res)
   res.redirect(req.simulation!.returnPath)
 }
 
-export async function persist(req: SimulatorRequest, res: Response) {
+export async function persist(req: Request, res: Response) {
   if (!req.body.email || !req.body.email.length) {
     return res.status(400).send({ result: "KO" })
   }
@@ -65,7 +65,7 @@ export async function persist(req: SimulatorRequest, res: Response) {
   }
 }
 
-export function getFollowup(req: SimulatorRequest, res: Response) {
+export function getFollowup(req: Request, res: Response) {
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(
@@ -74,7 +74,7 @@ export function getFollowup(req: SimulatorRequest, res: Response) {
   } as FetchSurveyLayout)
 }
 
-export function showSurveyResult(req: SimulatorRequest, res: Response) {
+export function showSurveyResult(req: Request, res: Response) {
   Followup.findById(req.params.surveyId)
     .then((simulation: any) => {
       if (!simulation) return res.sendStatus(404)
@@ -86,7 +86,7 @@ export function showSurveyResult(req: SimulatorRequest, res: Response) {
     })
 }
 
-export function showSurveyResults(req: SimulatorRequest, res: Response) {
+export function showSurveyResults(req: Request, res: Response) {
   Followup.find({
     surveyOptin: true,
     surveys: {
@@ -104,7 +104,7 @@ export function showSurveyResults(req: SimulatorRequest, res: Response) {
     })
 }
 
-export function showSurveyResultByEmail(req: SimulatorRequest, res: Response) {
+export function showSurveyResultByEmail(req: Request, res: Response) {
   Followup.findByEmail(req.params.email)
     .then((simulations: any) => {
       if (!simulations || !simulations.length) return res.sendStatus(404)
@@ -116,7 +116,7 @@ export function showSurveyResultByEmail(req: SimulatorRequest, res: Response) {
     })
 }
 
-export function showSimulation(req: SimulatorRequest, res: Response) {
+export function showSimulation(req: Request, res: Response) {
   Followup.findById(req.params.surveyId)
     .select(excludeFields)
     .then((simulation: any) => {
@@ -130,7 +130,7 @@ export function showSimulation(req: SimulatorRequest, res: Response) {
 }
 
 export async function followupByAccessToken(
-  req: SimulatorRequest,
+  req: Request,
   res: Response,
   next: NextFunction,
   accessToken: any
@@ -143,14 +143,14 @@ export async function followupByAccessToken(
   next()
 }
 
-export function postSurvey(req: SimulatorRequest, res: Response) {
+export function postSurvey(req: Request, res: Response) {
   req.followup.updateSurvey(SurveyType.benefitAction, req.body).then(() => {
     res.sendStatus(201)
   })
   pollResult.postPollResult(req.followup, req.body)
 }
 
-export async function updateWasUseful(req: SimulatorRequest) {
+export async function updateWasUseful(req: Request) {
   const answers = [
     {
       id: "wasUseful",
@@ -165,12 +165,12 @@ export async function updateWasUseful(req: SimulatorRequest) {
   await followup.save()
 }
 
-async function updateTrackClickOnBenefitActionEmail(req: SimulatorRequest) {
+async function updateTrackClickOnBenefitActionEmail(req: Request) {
   const { followup } = req
   await followup.updateSurvey(SurveyType.trackClickOnBenefitActionEmail)
 }
 
-async function updateSurveyInFollowup(req: SimulatorRequest) {
+async function updateSurveyInFollowup(req: Request) {
   const { surveyType } = req.params
   const { followup } = req
 
@@ -189,7 +189,7 @@ async function updateSurveyInFollowup(req: SimulatorRequest) {
   }
 }
 
-async function getRedirectUrl(req: SimulatorRequest) {
+async function getRedirectUrl(req: Request) {
   const { surveyType } = req.params
   const { followup } = req
 
@@ -207,7 +207,7 @@ async function getRedirectUrl(req: SimulatorRequest) {
   }
 }
 
-export async function logSurveyLinkClick(req: SimulatorRequest, res: Response) {
+export async function logSurveyLinkClick(req: Request, res: Response) {
   try {
     await updateSurveyInFollowup(req)
     const redirectUrl = await getRedirectUrl(req)

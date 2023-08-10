@@ -3,7 +3,7 @@ import { FollowupMongoInterface } from "../models/followup.js"
 import { SimulationInterface } from "../models/simulation.js"
 
 declare global {
-  namespace Express {
+  export namespace Express {
     interface Request {
       simulation: SimulationInterface
       followup: FollowupMongoInterface
@@ -12,9 +12,5 @@ declare global {
     }
   }
 }
-export interface SimulatorRequest extends Request {
-  simulation: SimulationInterface
-  followup: FollowupMongoInterface
-  situation: any
-  simulationId: string
-}
+
+export default Request

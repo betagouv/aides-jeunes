@@ -8,7 +8,7 @@ import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
-import { SimulatorRequest } from "../backend/types/express.js"
+import Request from "../backend/types/express.d.js"
 
 api()
 
@@ -35,7 +35,7 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = async (req: SimulatorRequest) => {
+const followupRendering = async (req: Request) => {
   const { followup } = req
   const emailType = req.params.type as EmailType
   let surveyType: SurveyType | undefined

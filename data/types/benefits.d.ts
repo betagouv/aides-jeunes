@@ -80,7 +80,7 @@ export interface StandardBenefit {
   unit: string
   periodicite: string
   legend: string | ((openfiscaParametersLayout) => string)
-  montant: number
+  montant: number | string | boolean
   interestFlag: string
   conditions_generales: any
   profils: string[]
@@ -94,7 +94,7 @@ export interface StandardBenefit {
   private: boolean
   instructionsGenerator: (number) => string
   voluntary_conditions: any
-  imgSrc: string
+  imgSrc?: string
   participation: boolean | any
   entity: string
   openfiscaPeriod: string

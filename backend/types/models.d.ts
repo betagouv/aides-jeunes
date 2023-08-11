@@ -7,15 +7,16 @@ export interface FollowupModel extends Model<MongooseLayout> {
   findByEmail(id: string): any
 }
 
-export interface SimulationModel extends Simulation {
+export interface SimulationModel extends Model<Simulation> {
   _id: mongoose.Types.ObjectId
   cookieName: string
+  token: string
   returnPath: string
   isAccessible(keychain: Record<string, string>): boolean
   getSituation(): any
   compute(): Promise<any>
   findById(
-    simulationId: mongoose.Types.ObjectId,
+    simulationId: mongoose.Types.ObjectId | string,
     callback: (error: Error, followup: SimulationModel) => void
   )
   cookiePrefix(): string

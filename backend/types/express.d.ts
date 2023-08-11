@@ -1,11 +1,11 @@
 import { Request } from "express"
 import { FollowupMongoInterface } from "../models/followup.js"
-import { SimulationInterface } from "../models/simulation.js"
+import { SimulationModel } from "./models.d.js"
 
 declare global {
   export namespace Express {
     interface Request {
-      simulation: SimulationInterface
+      simulation: SimulationModel
       followup: FollowupMongoInterface
       situation: any
       simulationId: string

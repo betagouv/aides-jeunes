@@ -1,5 +1,5 @@
 import Followup from "../models/followup.js"
-import { SimulationModel } from "../types/models.js"
+import { FollowupModel, SimulationModel } from "../types/models.js"
 import utils from "../lib/utils.js"
 
 const DefaultVersion = 3
@@ -10,7 +10,7 @@ export const FollowupFactory = {
     simulation: SimulationModel,
     email: string,
     surveyOptin: boolean
-  ): Promise<any> => {
+  ): Promise<FollowupModel> => {
     const situationResults = await simulation.compute()
     const benefits = situationResults.droitsEligibles.map((benefit) => ({
       id: benefit.id,

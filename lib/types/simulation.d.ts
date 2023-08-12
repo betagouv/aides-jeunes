@@ -8,7 +8,7 @@ export interface Answer {
   path: string
 }
 
-export interface Simulation {
+export interface SimulationInterface {
   _id: string
   answers: {
     all: Answer[]

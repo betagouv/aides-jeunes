@@ -7,17 +7,12 @@ import { SurveyLayout } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
-import { MongooseLayout } from "../types/models.d.js"
 import { EmailType } from "../enums/email.js"
 
 import { FollowupInterface } from "../../lib/types/followup.d.js"
-export interface FollowupMongoInterface
-  extends Omit<FollowupInterface & MongooseLayout, "_id"> {
-  _id: mongoose.Types.ObjectId
-  simulation: mongoose.Types.ObjectId
-}
+import { FollowupModel } from "../types/models.d.js"
 
-const FollowupSchema = new mongoose.Schema<FollowupMongoInterface>(
+const FollowupSchema = new mongoose.Schema<FollowupInterface, FollowupModel>(
   {
     simulation: {
       type: mongoose.Schema.Types.ObjectId,
@@ -196,7 +191,7 @@ FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}`
 })
 
-export default mongoose.model<MongooseLayout, FollowupMongoInterface>(
+export default mongoose.model<FollowupInterface, FollowupModel>(
   "Followup",
   FollowupSchema
 )

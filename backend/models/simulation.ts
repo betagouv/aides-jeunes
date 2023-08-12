@@ -11,7 +11,7 @@ import {
   ANSWER_BASIC_IDS,
 } from "../lib/definitions.js"
 
-import { Simulation } from "../../lib/types/simulation.d.js"
+import { SimulationInterface } from "../../lib/types/simulation.d.js"
 import { SimulationModel } from "../types/models.js"
 import { SimulationStatusEnum } from "../../lib/enums/simulation.js"
 
@@ -43,7 +43,10 @@ const answers = {
   current: { type: [answer], required: true },
 }
 
-const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
+const SimulationSchema = new mongoose.Schema<
+  SimulationInterface,
+  SimulationModel
+>(
   {
     answers: { type: answers, required: true },
     enfants: [Number],
@@ -125,7 +128,7 @@ SimulationSchema.method("compute", function (showPrivate) {
   })
 })
 
-export default mongoose.model<Simulation, SimulationModel>(
+export default mongoose.model<SimulationInterface, SimulationModel>(
   "Simulation",
   SimulationSchema
 )

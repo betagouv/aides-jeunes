@@ -2,7 +2,8 @@ import dayjs from "dayjs"
 
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
-import Followup, { FollowupMongoInterface } from "../../models/followup.js"
+import Followup from "../../models/followup.js"
+import { FollowupModel } from "../../types/models.d.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -103,9 +104,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
 }
 
 async function processSingleEmail(emailType: EmailType, followupId: string) {
-  const followup: FollowupMongoInterface | null = await Followup.findById(
-    followupId
-  )
+  const followup: FollowupModel | null = await Followup.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
   }

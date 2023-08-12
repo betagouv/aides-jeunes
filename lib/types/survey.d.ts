@@ -23,23 +23,8 @@ export interface SurveyLayout {
   type: SurveyType
 }
 
-export interface FollowupLayout {
-  _id: string
-  simulation: string
-  email: string
-  surveyOptin: boolean
-  createdAt: string
-  surveys: SurveyLayout[]
-  version: number
-  accessToken: string
-  __v: number
-  benefits: any
-  messageId: string
-  sentAt: string
-}
-
 interface FetchSurveyLayout {
-  createdAt: string
+  createdAt: string | Date
   benefits: {
     id: string
     amount: number | boolean

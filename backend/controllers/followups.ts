@@ -1,4 +1,6 @@
-import Followup, { FollowupMongoInterface } from "../models/followup.js"
+import Followup from "../models/followup.js"
+import { FollowupModel } from "../types/models.d.js"
+import { FollowupInterface } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
@@ -21,7 +23,7 @@ export function followup(
 ) {
   Followup.findById(id)
     .populate("simulation")
-    .exec(function (err: any, followup: FollowupMongoInterface) {
+    .exec(function (err: any, followup: any) {
       if (err) {
         return next(err)
       }
@@ -99,7 +101,7 @@ export function showSurveyResults(req: Request, res: Response) {
     .skip(0)
     .limit(10)
     .sort({ "surveys.repliedAt": -1 })
-    .then((followup: FollowupMongoInterface[]) => {
+    .then((followup: FollowupInterface[]) => {
       res.send(followup)
     })
 }
@@ -135,7 +137,7 @@ export async function followupByAccessToken(
   next: NextFunction,
   accessToken: any
 ) {
-  const followup: FollowupMongoInterface | null = await Followup.findOne({
+  const followup: FollowupModel | null = await Followup.findOne({
     accessToken,
   })
   if (!followup) return res.sendStatus(404)

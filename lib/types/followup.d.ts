@@ -1,7 +1,7 @@
 import { SurveyLayout } from "./survey.js"
 export interface FollowupInterface {
   _id: string
-  simulation: string
+  simulation: any
   email?: string
   createdAt: Date
   sentAt: Date

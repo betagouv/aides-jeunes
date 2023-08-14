@@ -22,7 +22,7 @@ async function sendMultipleEmails(emailType: EmailType, limit: number) {
 }
 
 async function sendMultipleInitialEmails(limit: number) {
-  const followups = await Followup.find({
+  const followups: any[] = await Followup.find({
     surveys: {
       $not: {
         $elemMatch: {
@@ -44,8 +44,8 @@ async function sendMultipleInitialEmails(limit: number) {
     .sort({ createdAt: 1 })
     .limit(limit)
 
-  const results = await Promise.all(
-    followups.map(async (followup) => {
+  const results: { ok?: any; ko?: any }[] = await Promise.all(
+    followups.map(async (followup: IFollowupModel) => {
       const surveyType =
         Math.random() > 0.5
           ? SurveyType.trackClickOnBenefitActionEmail
@@ -89,7 +89,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     .limit(limit)
 
   const results = await Promise.all(
-    followups.map(async (followup) => {
+    followups.map(async (followup: any) => {
       try {
         const result = await followup.sendSurvey(
           SurveyType.tousABordNotification

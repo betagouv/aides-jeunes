@@ -10,10 +10,10 @@ export interface MongooseLayout {
 export interface IFollowupMethods {
   postSimulationResultsEmail(messageId: string): void
   renderSimulationResultsEmail(): any
-  sendSimulationResultsEmail(): void
+  sendSimulationResultsEmail(): Promise<void>
   renderSurveyEmail(surveyType: SurveyType): any
   addSurveyIfMissing(surveyType: SurveyType): Promise<any>
-  sendSurvey(surveyType: SurveyType): void
+  sendSurvey(surveyType: SurveyType): Promise<any>
 
   updateSurvey(action: SurveyType, data?: any)
 

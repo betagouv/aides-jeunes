@@ -43,7 +43,7 @@ const FollowupSchema = new mongoose.Schema<FollowupInterface, IFollowupModel>(
   { minimize: false, id: false }
 )
 
-FollowupSchema.static("findByEmail", function (email) {
+FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
 })
 

@@ -64,7 +64,7 @@ app.route("/mjml/:id/:type").get(
   function (req, res, next) {
     Followup.findById(req.params.id)
       .populate("simulation")
-      .exec(function (err, followup) {
+      .exec(function (err, followup: any) {
         if (err) {
           return next(err)
         }

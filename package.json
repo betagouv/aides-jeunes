@@ -75,7 +75,7 @@
     "lodash.range": "^3.2.0",
     "mjml": "^4.10.4",
     "mongodb": "^4.1.4",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.11.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.3",
     "pinia": "^2.0.16",

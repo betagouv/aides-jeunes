@@ -1,5 +1,5 @@
 import Followup from "../models/followup.js"
-import { FollowupModel } from "../types/models.d.js"
+import { IFollowup } from "../types/models.d.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
@@ -52,11 +52,11 @@ export async function persist(req: Request, res: Response) {
   const simulation = req.simulation
 
   try {
-    const followup = await FollowupFactory.create(
+    const followup = (await FollowupFactory.create(
       simulation,
       req.body.email,
       req.body.surveyOptin
-    )
+    )) as IFollowup
 
     await followup.sendSimulationResultsEmail()
 
@@ -137,7 +137,7 @@ export async function followupByAccessToken(
   next: NextFunction,
   accessToken: any
 ) {
-  const followup: FollowupModel | null = await Followup.findOne({
+  const followup: IFollowup | null = await Followup.findOne({
     accessToken,
   })
   if (!followup) return res.sendStatus(404)

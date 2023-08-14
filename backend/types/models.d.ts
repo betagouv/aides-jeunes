@@ -1,4 +1,4 @@
-import mongoose, { Model } from "mongoose"
+import mongoose, { Model, HydratedDocument } from "mongoose"
 import { FollowupInterface } from "@lib/types/followup.d.js"
 import { SimulationInterface } from "@lib/types/simulation.d.js"
 import { SurveyType } from "@lib/enums/survey.js"
@@ -7,31 +7,37 @@ export interface MongooseLayout {
   [id: string]: any
 }
 
-export interface FollowupModel extends Model<FollowupInterface> {
-  _id: mongoose.Schema.Types.ObjectId
-  simulation: any
-  accessToken: string
-  surveyPath: string
-  createdAt: Date
-  findByEmail(id: string): any
-  updateSurvey(action: SurveyType, data?: any)
-  addSurveyIfMissing(action: SurveyType): void
+export interface IFollowupMethods {
+  postSimulationResultsEmail(messageId: string): void
+  renderSimulationResultsEmail(): any
   sendSimulationResultsEmail(): void
-  create(parameters: {
-    simulation: SimulationModel
-    email: string
-    surveyOptin: boolean
-    accessToken: string
-    benefits: {
-      id: string
-      amount: string
-      unit: string
-    }
-    version: number
-  }): Promise<FollowupModel>
-  benefits?: any
-  save(): void
+  renderSurveyEmail(surveyType: SurveyType): any
+  addSurveyIfMissing(surveyType: SurveyType): Promise<any>
+  sendSurvey(surveyType: SurveyType): void
+
+  updateSurvey(action: SurveyType, data?: any)
+
+  save()
 }
+export interface IFollowupModel
+  extends Model<FollowupInterface>,
+    FollowupInterface,
+    IFollowupMethods {
+  findByEmail(
+    email: string
+  ): Promise<HydratedDocument<FollowupInterface, IFollowupMethods>>
+  emailRenderPath: string
+  returnPath: string
+  surveyPath: string
+  tousABordNotificationCta: string
+  surveyPathTracker: string
+  wasUsefulPath: string
+  wasNotUsefulPath: string
+}
+export interface IFollowup
+  extends FollowupInterface,
+    IFollowupMethods,
+    IFollowupModel {}
 
 export interface SimulationModel extends Model<SimulationInterface> {
   _id: mongoose.Types.ObjectId

@@ -1,5 +1,6 @@
 import Followup from "../models/followup.js"
-import { FollowupModel, SimulationModel } from "../types/models.js"
+import { SimulationModel } from "../types/models.js"
+import { FollowupInterface } from "@lib/types/followup.js"
 import utils from "../lib/utils.js"
 
 const DefaultVersion = 3
@@ -10,7 +11,7 @@ export const FollowupFactory = {
     simulation: SimulationModel,
     email: string,
     surveyOptin: boolean
-  ): Promise<FollowupModel> => {
+  ): Promise<FollowupInterface> => {
     const situationResults = await simulation.compute()
     const benefits = situationResults.droitsEligibles.map((benefit) => ({
       id: benefit.id,

@@ -10,9 +10,9 @@ import SurveySchema from "./survey-schema.js"
 import { EmailType } from "../enums/email.js"
 
 import { FollowupInterface } from "../../lib/types/followup.d.js"
-import { FollowupModel } from "../types/models.d.js"
+import { IFollowupModel } from "../types/models.d.js"
 
-const FollowupSchema = new mongoose.Schema<FollowupInterface, FollowupModel>(
+const FollowupSchema = new mongoose.Schema<FollowupInterface, IFollowupModel>(
   {
     simulation: {
       type: mongoose.Schema.Types.ObjectId,
@@ -191,7 +191,5 @@ FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}`
 })
 
-export default mongoose.model<FollowupInterface, FollowupModel>(
-  "Followup",
-  FollowupSchema
-)
+//export default mongoose.model<FollowupInterface, IFollowupModel>(
+export default mongoose.model<any, IFollowupModel>("Followup", FollowupSchema)

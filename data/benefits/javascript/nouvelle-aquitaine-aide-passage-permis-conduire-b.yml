@@ -33,11 +33,11 @@ conditions_generales:
     value: 26
 profils:
   - type: lyceen
-      conditions:
-        - type: annee_etude
-          values:
-            - cap_2
-            - terminale
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_2
+          - terminale
   - type: service_civique
   - type: chomeur
   - type: apprenti

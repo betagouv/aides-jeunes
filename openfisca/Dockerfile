@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 RUN mkdir /usr/src/openfisca
 WORKDIR /usr/src/openfisca

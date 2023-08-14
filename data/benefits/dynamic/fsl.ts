@@ -342,7 +342,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_val_d_oise: {
     label: "du département du Val d’Oise",
-    link: "https://www.valdoise.fr/aide-et-service/11/6-fonds-de-solidarite-logement-aide-a-l-acces-au-logement.htm",
+    link: "https://www.valdoise.fr/aideEtService/21/176-fonds-de-solidarite-logement-aide-aux-impayes-de-loyers.htm",
   },
   departement_la_reunion: {
     label: "du département de la Réunion",

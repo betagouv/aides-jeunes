@@ -1,0 +1,33 @@
+label: "Permis jeune et solidaire : un coup de pouce pour les jeunes"
+institution: ville_talence
+description:
+  En échange d’un engagement citoyen de volontariat dans des associations de la ville,
+  la municipalité de Talence s’engage à rembourser 700€ pour l’obtention du permis
+  de conduire B. Sans condition de ressources, cette aide est attribuée tout au long
+  de l’année. Pour en bénéficier, il faut contacter et rencontrer l’équipe d’Infos Jeunes
+  Campus Talence qui vous accompagnera tout au long de la démarche.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "33522"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: "<="
+    value: 25
+profils: []
+conditions:
+  - Résider à Talence depuis au moins trois ans de manière continue.
+  - Avoir obtenu son code de la route.
+  - Passer son permis de conduire dans l’une des sept auto-écoles talençaises.
+voluntary_conditions:
+  - S'engager à réaliser 70 heures de bénévolat dans une association basée à Talence.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 700
+link: https://www.talence.fr/permis-jeune/
+instructions: https://www.talence.fr/permis-jeune/

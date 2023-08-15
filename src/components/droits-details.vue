@@ -138,6 +138,7 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from "vue"
 import BenefitCtaLight from "./benefit-cta-light.vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
@@ -150,6 +151,7 @@ import { useStore } from "@/stores/index.js"
 import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
 
 export default {
   name: "DroitsDetails",
@@ -163,7 +165,10 @@ export default {
   },
   mixins: [DroitMixin],
   props: {
-    droit: Object,
+    droit: {
+      type: Object as PropType<StandardBenefit>,
+      required: true,
+    },
     droits: Array,
     ressourcesYearMinusTwoCaptured: Boolean,
   },

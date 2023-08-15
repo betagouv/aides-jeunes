@@ -4,10 +4,3 @@ export interface ConditionsLayout {
     extra?: any[]
   }
 }
-
-export interface BenefitType {
-  id: string
-  label?: string
-  msa?: boolean
-  prefix?: string
-}

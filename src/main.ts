@@ -64,11 +64,25 @@ if (navigator.cookieEnabled) {
 }
 
 app.config.globalProperties.$filters = {
-  capitalize(value: string) {
-    if (!value) return ""
-    value = value.toString()
+  capitalize(value: string = "") {
     return value.charAt(0).toUpperCase() + value.slice(1)
   },
+}
+declare module "vue" {
+  export interface ComponentCustomProperties {
+    $theme: {
+      current: string
+      options: {
+        title: string
+        label: string
+        value: string
+      }[]
+      update(string): void
+    }
+    $filters: {
+      capitalize(string): string
+    }
+  }
 }
 
 dayjs.locale("fr")

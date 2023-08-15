@@ -1,8 +1,9 @@
 import mongoose from "mongoose"
 import { MongooseLayout } from "../types/models.d.js"
 import { SurveyType } from "../../lib/enums/survey.js"
+import { SurveyLayout } from "../../lib/types/survey.d.js"
 
-const SurveySchema = new mongoose.Schema<MongooseLayout>(
+const SurveySchema = new mongoose.Schema<MongooseLayout, SurveyLayout>(
   {
     accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },

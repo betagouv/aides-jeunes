@@ -1,11 +1,11 @@
 import cookieParser from "cookie-parser"
-import express from "express"
+import express, { Express } from "express"
 
 import githubController from "../controllers/github.js"
 import supportController from "../controllers/support.js"
 import simulationController from "../controllers/simulation.js"
 
-export default function (api) {
+export default function (api: Express) {
   const route = express.Router({ mergeParams: true })
   route.use(cookieParser())
   route.use(githubController.access)

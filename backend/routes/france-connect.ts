@@ -1,7 +1,8 @@
 import cookieParser from "cookie-parser"
 import * as franceConnectController from "../controllers/france-connect.js"
+import { Express } from "express"
 
-export default function (api) {
+export default function (api: Express) {
   api.route("/france-connect/login").get(franceConnectController.login)
 
   api

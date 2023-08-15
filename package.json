@@ -143,9 +143,6 @@
     "roots": [
       "<rootDir>/tests"
     ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
     "testEnvironment": "node",
     "moduleFileExtensions": [
       "js",

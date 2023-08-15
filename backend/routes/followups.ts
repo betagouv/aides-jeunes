@@ -1,5 +1,5 @@
 import cookieParser from "cookie-parser"
-import express from "express"
+import express, { Express } from "express"
 
 import {
   followupByAccessToken,
@@ -12,7 +12,7 @@ import {
 } from "../controllers/followups.js"
 import githubController from "../controllers/github.js"
 
-const followupsRoutes = function (api) {
+const followupsRoutes = function (api: Express) {
   api.route("/followups/surveys/:accessToken").get(getFollowup)
   api
     .route("/followups/surveys/:accessToken/answers")

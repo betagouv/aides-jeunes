@@ -1,11 +1,17 @@
 import Followup from "../models/followup.js"
+import { SimulationModel } from "../types/models.js"
+import { FollowupInterface } from "@lib/types/followup.js"
 import utils from "../lib/utils.js"
 
 const DefaultVersion = 3
 const TokenLength = 17
 
 export const FollowupFactory = {
-  create: async (simulation, email, surveyOptin) => {
+  create: async (
+    simulation: SimulationModel,
+    email: string,
+    surveyOptin: boolean
+  ): Promise<FollowupInterface> => {
     const situationResults = await simulation.compute()
     const benefits = situationResults.droitsEligibles.map((benefit) => ({
       id: benefit.id,

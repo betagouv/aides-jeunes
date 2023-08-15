@@ -2,7 +2,21 @@ import storageService from "@/lib/storage-service.js"
 
 declare global {
   interface Window {
-    _paq?: [string, number, string?][]
+    _paq?: [
+      string | (() => void),
+      (number | string)?,
+      string?,
+      string?,
+      string?
+    ][]
+  }
+}
+
+interface ABTestingLayout {
+  [key: string]: {
+    index: number
+    value: string
+    deleted?: boolean
   }
 }
 
@@ -22,7 +36,8 @@ function getEnvironment() {
   if (!window._paq) {
     return {}
   }
-  const ABTesting = storageService.local.getItem("ABTesting") || {}
+  const ABTesting: ABTestingLayout =
+    storageService.local.getItem("ABTesting") || {}
 
   // index doit être dans [1, 5]
   // // Prépare la variable d'AB testing
@@ -71,7 +86,7 @@ function getEnvironment() {
   return ABTesting
 }
 
-function extractValueMap(env) {
+function extractValueMap(env: ABTestingLayout): { [key: string]: string } {
   const experimentKeys = Object.keys(env)
   return experimentKeys.reduce((result, key) => {
     const experiment = env[key]

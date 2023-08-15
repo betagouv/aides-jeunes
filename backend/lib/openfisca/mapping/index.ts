@@ -242,7 +242,6 @@ export function buildOpenFiscaRequest(sourceSituation) {
 
   const periods = common.getPeriods(situation.dateDeValeur)
   const requestedVariables = { ...common.requestedVariables }
-
   const prestationsFinancieres = pickBy(
     requestedVariables,
     function (definition: any) {

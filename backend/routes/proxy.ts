@@ -1,6 +1,7 @@
 import axios from "axios"
+import { Express } from "express"
 
-export default function (api) {
+export default function (api: Express) {
   api.route("/proxy/ds").get(async (req, res) => {
     const dataURL = `${process.env.MES_AIDES_ROOT_URL}/api/simulation/via/${req.query.token}`
     const dataResponse = await axios.get(dataURL)

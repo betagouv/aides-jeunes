@@ -1,9 +1,8 @@
 export interface droitEstimeLayout {
-  id: any
-  label?: any
-  legend: any
-  type: any
-  value: any
-  unit: any
-  icon?: any
+  id?: string
+  label?: string
+  legend: string
+  type: string
+  value: number | string | boolean
+  unit: string
 }

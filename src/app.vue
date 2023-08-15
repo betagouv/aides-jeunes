@@ -33,7 +33,9 @@ export default {
   },
   computed: {
     layout: function () {
-      return this.store.inIframe ? "iFrameLayout" : process.env.VITE_LAYOUT
+      return this.store.inIframe
+        ? "iFrameLayout"
+        : (process.env.VITE_LAYOUT as string)
     },
   },
   mounted() {

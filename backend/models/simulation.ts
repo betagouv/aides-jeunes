@@ -11,7 +11,8 @@ import {
   ANSWER_BASIC_IDS,
 } from "../lib/definitions.js"
 
-import { MongooseLayout, SimulationModel } from "../types/models.js"
+import { SimulationInterface } from "../../lib/types/simulation.d.js"
+import { SimulationModel } from "../types/models.js"
 import { SimulationStatusEnum } from "../../lib/enums/simulation.js"
 
 const computeBenefits = computeAides.bind(benefits)
@@ -42,7 +43,10 @@ const answers = {
   current: { type: [answer], required: true },
 }
 
-const SimulationSchema = new mongoose.Schema<MongooseLayout, SimulationModel>(
+const SimulationSchema = new mongoose.Schema<
+  SimulationInterface,
+  SimulationModel
+>(
   {
     answers: { type: answers, required: true },
     enfants: [Number],
@@ -124,7 +128,7 @@ SimulationSchema.method("compute", function (showPrivate) {
   })
 })
 
-export default mongoose.model<MongooseLayout, SimulationModel>(
+export default mongoose.model<SimulationInterface, SimulationModel>(
   "Simulation",
   SimulationSchema
 )

@@ -1,5 +1,7 @@
 import currency from "currency.js"
 import { droitEstimeLayout } from "../types/details.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
+import { openfiscaParametersLayout } from "@lib/types/parameters.d.js"
 
 const PERIODICITE_PONCTUELLE = "ponctuelle"
 const PERIODICITE_MENSUELLE = "mensuelle"
@@ -13,7 +15,10 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
   [PERIODICITE_AUTRE]: "",
 }
 
-function getBenefitLegend(benefit, parameters) {
+function getBenefitLegend(
+  benefit: StandardBenefit,
+  parameters: openfiscaParametersLayout
+): string {
   if (benefit.legend) {
     if (typeof benefit.legend === "function") {
       return benefit.legend(parameters)
@@ -21,7 +26,7 @@ function getBenefitLegend(benefit, parameters) {
       return benefit.legend
     }
   }
-  return LEGENDE_PERIODICITE_AIDE_ENUM[benefit.periodicite] || undefined
+  return LEGENDE_PERIODICITE_AIDE_ENUM[benefit.periodicite] || ""
 }
 
 function formatCurrency(value, unit, precision) {
@@ -33,36 +38,38 @@ function formatCurrency(value, unit, precision) {
   }).format()
 }
 
-function getDecimalPrecision(droit) {
+function getDecimalPrecision(droit: StandardBenefit) {
   return droit.floorAt < 1 ? 2 : 0
 }
 
-function getValueOfBoolean(value) {
+function getValueOfBoolean(value: boolean) {
   return value ? "Éligible" : "Non éligible"
 }
 
-function formatDroitEstime(droit, parameters) {
+function formatDroitEstime(
+  droit: StandardBenefit,
+  parameters: openfiscaParametersLayout
+) {
   const droitEstime: droitEstimeLayout = {
-    id: droit.id || undefined,
-    label: droit.label || undefined,
-    legend: getBenefitLegend(droit, parameters) || "",
+    id: droit.id,
+    label: droit.label,
+    legend: getBenefitLegend(droit, parameters),
     type: droit.type || "float",
     value: droit.montant || 1,
     unit: droit.unit || "€",
-    icon: undefined,
   }
   switch (droit.type) {
     case "float":
     case "string":
       break
     case "bool":
-      droitEstime.value = getValueOfBoolean(droit.montant)
+      droitEstime.value = getValueOfBoolean(droit.montant as boolean)
       break
     case "mixed":
       if (typeof droitEstime.value === "boolean") {
         droitEstime.type = "bool"
         droitEstime.legend = ""
-        droitEstime.value = getValueOfBoolean(droit.montant)
+        droitEstime.value = getValueOfBoolean(droit.montant as boolean)
       } else {
         droitEstime.type = "float"
         droitEstime.unit = "€"
@@ -102,7 +109,7 @@ function formatDroitEstime(droit, parameters) {
   return droitEstime
 }
 
-const getBenefitImage = (droit) => {
+const getBenefitImage = (droit: StandardBenefit) => {
   return `/${droit.imgSrc ? droit.imgSrc : droit.institution.imgSrc}`
 }
 

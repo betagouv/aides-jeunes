@@ -1,6 +1,7 @@
 import generator from "../data/all.js"
+import { BenefitsMap } from "../data/types/benefits.js"
 
-const benefits = {}
+const benefits: BenefitsMap = {}
 const excludeKeys = [
   "conditions_generales",
   "entity",
@@ -15,7 +16,7 @@ const excludeKeys = [
 ]
 
 for (const benefit in generator.benefitsMap) {
-  if (benefit.private) {
+  if (generator.benefitsMap[benefit].private) {
     continue
   }
   benefits[benefit] = generator.benefitsMap[benefit]

@@ -2,12 +2,13 @@ import dayjs from "dayjs"
 
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
-import Followup, { FollowupInterface } from "../../models/followup.js"
+import Followup from "../../models/followup.js"
+import { IFollowupModel } from "../../types/models.d.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
-async function sendMultipleEmails(emailType, limit) {
+async function sendMultipleEmails(emailType: EmailType, limit: number) {
   switch (emailType) {
     case EmailType.initialSurvey:
       await sendMultipleInitialEmails(limit)
@@ -16,12 +17,12 @@ async function sendMultipleEmails(emailType, limit) {
       await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
-      throw new Error("Unknown email type for multiple emails")
+      throw new Error(`Unknown email type ${emailType} for multiple emails`)
   }
 }
 
-async function sendMultipleInitialEmails(limit) {
-  const followups = await Followup.find({
+async function sendMultipleInitialEmails(limit: number) {
+  const followups: any[] = await Followup.find({
     surveys: {
       $not: {
         $elemMatch: {
@@ -43,8 +44,8 @@ async function sendMultipleInitialEmails(limit) {
     .sort({ createdAt: 1 })
     .limit(limit)
 
-  const results = await Promise.all(
-    followups.map(async (followup) => {
+  const results: { ok?: any; ko?: any }[] = await Promise.all(
+    followups.map(async (followup: IFollowupModel) => {
       const surveyType =
         Math.random() > 0.5
           ? SurveyType.trackClickOnBenefitActionEmail
@@ -62,7 +63,7 @@ async function sendMultipleInitialEmails(limit) {
   console.log(results)
 }
 
-async function sendMultipleTousABordNotificationEmails(limit) {
+async function sendMultipleTousABordNotificationEmails(limit: number) {
   const followups = await Followup.find({
     benefits: {
       $elemMatch: {
@@ -88,7 +89,7 @@ async function sendMultipleTousABordNotificationEmails(limit) {
     .limit(limit)
 
   const results = await Promise.all(
-    followups.map(async (followup) => {
+    followups.map(async (followup: any) => {
       try {
         const result = await followup.sendSurvey(
           SurveyType.tousABordNotification
@@ -102,8 +103,8 @@ async function sendMultipleTousABordNotificationEmails(limit) {
   console.log(results)
 }
 
-async function processSingleEmail(emailType, followupId) {
-  const followup: FollowupInterface | null = await Followup.findById(followupId)
+async function processSingleEmail(emailType: EmailType, followupId: string) {
+  const followup: IFollowupModel | null = await Followup.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
   }
@@ -132,7 +133,11 @@ async function processSingleEmail(emailType, followupId) {
   console.log("Email sent", email)
 }
 
-export async function processSendEmails(emailType, followupId, multiple) {
+export async function processSendEmails(
+  emailType: EmailType,
+  followupId: string,
+  multiple: number | null
+) {
   if (followupId) {
     await processSingleEmail(emailType, followupId)
   } else if (multiple) {

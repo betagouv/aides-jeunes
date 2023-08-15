@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { ajRequest } from "../backend/types/express.d.js"
 import api from "../backend/api.js"
 import { EmailType } from "../backend/enums/email.js"
 import express from "express"
@@ -9,6 +8,7 @@ import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
+import Request from "../backend/types/express.d.js"
 
 api()
 
@@ -35,9 +35,9 @@ app.route("/").get(function (req, res) {
     })
 })
 
-const followupRendering = async (req: ajRequest) => {
+const followupRendering = async (req: Request) => {
   const { followup } = req
-  const { type: emailType } = req.params
+  const emailType = req.params.type as EmailType
   let surveyType: SurveyType | undefined
 
   switch (emailType) {
@@ -49,10 +49,10 @@ const followupRendering = async (req: ajRequest) => {
     case EmailType.benefitAction:
       surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
-  }
-
-  if (!surveyType) {
-    return
+    default:
+      return {
+        html: `Failed to render email, unknown email type: ${emailType}`,
+      }
   }
 
   await followup.addSurveyIfMissing(surveyType)
@@ -61,10 +61,10 @@ const followupRendering = async (req: ajRequest) => {
 }
 
 app.route("/mjml/:id/:type").get(
-  function (req: ajRequest, res, next) {
+  function (req, res, next) {
     Followup.findById(req.params.id)
       .populate("simulation")
-      .exec(function (err, followup) {
+      .exec(function (err, followup: any) {
         if (err) {
           return next(err)
         }

@@ -2,13 +2,7 @@ import { expect } from "@jest/globals"
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
 import { getAnswerIndex } from "@lib/answers.js"
-
-interface testAnswerLayout {
-  id: string
-  entityName: string
-  fieldName: string
-  value: string | boolean
-}
+import { Answer } from "@lib/types/store.d.js"
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -63,62 +57,62 @@ describe("Answers tests", () => {
   // Store answer tests
   it("Store should not be dirty when the answer value is the same", () => {
     const store = initStore()
-    const newAnswer: testAnswerLayout = {
+    const newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should not be dirty when multiple answers values are the same", () => {
     const store = initStore()
-    let newAnswer: testAnswerLayout = {
+    let newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: false,
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should be dirty when the answer value is different", () => {
     const store = initStore()
-    const newAnswer: testAnswerLayout = {
+    const newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })
 
   it("Store should be dirty when multiple answers values are different", () => {
     const store = initStore()
-    let newAnswer: testAnswerLayout = {
+    let newAnswer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: true,
-    }
+    } as unknown as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })

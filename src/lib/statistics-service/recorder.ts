@@ -1,6 +1,6 @@
 import ABTestingService from "@/plugins/ab-testing-service.js"
-import { getEnvVariable } from "@lib/utils"
-import { BenefitType } from "@lib/types/benefits"
+import { getEnvVariable } from "@lib/utils.js"
+import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
 import { IMatomo } from "./matomo.js"
@@ -8,7 +8,7 @@ import { IMatomo } from "./matomo.js"
 const isProduction = process.env.NODE_ENV === "production"
 
 export interface IRecorderEvent {
-  benefits: BenefitType[]
+  benefits: StandardBenefit[]
   benefitId?: string
   event_type: string
 }

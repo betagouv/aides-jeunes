@@ -67,6 +67,7 @@
 
 <script lang="ts">
 import Commune from "@/lib/commune.js"
+import { CommuneInterface } from "@lib/types/commune.d.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores/index.js"
 import StatisticsMixin from "@/mixins/statistics.js"
@@ -95,7 +96,7 @@ export default {
       codePostalValue: this.codePostal,
       nomCommuneValue: this.nomCommune,
       retrievingCommunes: false,
-      communes: [],
+      communes: [] as CommuneInterface[],
     }
   },
   watch: {
@@ -129,15 +130,15 @@ export default {
         this.communes.find((c) => c.nom == this.nomCommuneValue)
       )
     },
-    async fetchCommune(focusCommune) {
+    fetchCommune(focusCommune) {
       if (
         !this.codePostalValue ||
         this.codePostalValue.toString().length !== 5
       ) {
-        return []
+        return
       }
       this.retrievingCommunes = true
-      return Commune.get(this.codePostalValue)
+      Commune.get(this.codePostalValue)
         .then((communes) => {
           if (communes.length <= 0) {
             this.sendEventToMatomo(
@@ -156,12 +157,11 @@ export default {
           }
           this.communes = communes
           if (focusCommune) {
-            this.$nextTick(() => this.$refs.commune.focus())
+            this.$nextTick(() => this.$refs.commune?.focus())
           }
-          return communes
         })
         .catch(() => {
-          return []
+          return
         })
         .finally(() => {
           this.retrievingCommunes = false

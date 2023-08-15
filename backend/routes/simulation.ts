@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Express } from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -6,7 +6,7 @@ import { persist } from "../controllers/followups.js"
 import simulationController from "../controllers/simulation.js"
 import teleservices from "../controllers/teleservices/index.js"
 
-export default function (api) {
+export default function (api: Express) {
   api.options("/simulation", cors())
   api
     .route("/simulation")

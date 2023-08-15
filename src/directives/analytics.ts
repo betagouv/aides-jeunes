@@ -6,7 +6,7 @@ import {
   IMatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
-import { EventCategories } from "@lib/enums/event-categories.ts"
+import { EventCategories } from "@lib/enums/event-categories.js"
 
 const AnalyticsDirective = {
   beforeMount(el, binding) {

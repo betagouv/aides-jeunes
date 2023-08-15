@@ -11,7 +11,7 @@
     class="fr-input"
     :class="dataType !== 'count' ? 'fr-text--right' : ''"
     inputmode="decimal"
-    :aria-labelledby="ariaLabelledBy || null"
+    :aria-labelledby="ariaLabelledBy"
     @input="normalizeInput($event)"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
@@ -27,7 +27,7 @@ export default {
   props: {
     id: String,
     name: String,
-    ariaLabelledBy: String,
+    ariaLabelledBy: { type: String, default: null },
     min: { type: Number, default: null },
     max: { type: Number, default: null },
     dataType: { type: String, default: "amount" },

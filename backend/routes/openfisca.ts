@@ -2,10 +2,11 @@ import { check, validationResult } from "express-validator"
 import openfisca from "../lib/openfisca/getter.js"
 import openfiscaController from "../controllers/openfisca.js"
 import benefits from "../../data/all.js"
+import { Express } from "express"
 
 let missingBenefits
 
-export default (api) => {
+export default (api: Express) => {
   api.route("/openfisca/missingbenefits").get(async (req, res) => {
     if (missingBenefits) {
       res.json(missingBenefits)

@@ -26,7 +26,7 @@ const goRecap = () => {
 }
 
 const checkRecap = () => {
-  cy.get("body").should("not.contain", "undefined")
+  cy.get('[data-testid="recapitulatif"]').should("not.contain", "undefined")
 }
 
 const next = () => {

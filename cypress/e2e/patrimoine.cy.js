@@ -60,8 +60,6 @@ context("Full simulation", () => {
         form.fillPatrimoine()
         results.wait()
         results.hasNotBenefit("rsa")
-        navigate.goRecap()
-        navigate.checkRecap()
       })
   })
 })

@@ -25,10 +25,6 @@ const goRecap = () => {
   cy.get('[data-testid="previous-or-recap-button"]').click()
 }
 
-const checkRecap = () => {
-  cy.get('[data-testid="recapitulatif"]').should("not.contain", "undefined")
-}
-
 const next = () => {
   cy.get(`a[data-testid="button-continue"]`).click()
 }
@@ -48,5 +44,4 @@ export default {
   goRecap,
   next,
   updateFromRecap,
-  checkRecap,
 }

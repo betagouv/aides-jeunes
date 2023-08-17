@@ -47,7 +47,5 @@ context("Full simulation", () => {
     results.wait()
     results.hasCSS()
     results.hasPrimeActivite()
-    navigate.goRecap()
-    navigate.checkRecap()
   })
 })

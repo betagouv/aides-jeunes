@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Institutions controller</title>
+    <style>
+      body {
+        font-family: arial, sans-serif;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 5px;
+        font-size: 0.8rem;
+      }
+
+      div {
+        border: 2px solid #eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+      }
+
+      img {
+        width: 100%;
+        max-width: 120px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <% for(let institution of institutions){ %>
+    <div>
+      <img src="<%= institution.image %>" />
+      <span> <%= institution.title %> </span>
+    </div>
+    <% } %>
+  </body>
+</html>

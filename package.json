@@ -36,7 +36,7 @@
     "tools:generate-missing-institutions-aides-velo": "ts-node ./tools/generate-missing-institutions-aides-velo",
     "tools:geographical-benefits-details": "ts-node ./tools/geographical-benefits-details",
     "tools:get-all-steps": "ts-node ./tools/get-all-steps",
-    "tools:institutions-check": "ts-node ./tools/institutions-check",
+    "tools:institutions-logo-check": "ts-node ./tools/institutions-logo-check",
     "tools:serve-mail": "ts-node ./tools/mjml",
     "tools:test-benefits-geographical-constraint-consistency": "ts-node ./tools/test-benefits-geographical-constraint-consistency",
     "tools:test-definition-periods": "ts-node ./tools/test-definition-periods",

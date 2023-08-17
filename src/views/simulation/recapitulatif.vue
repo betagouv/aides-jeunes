@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="recapitulatif">
+  <div>
     <div class="fr-mb-5w">
       <template
         v-for="(chapter, chapterIndex) in myChapters"

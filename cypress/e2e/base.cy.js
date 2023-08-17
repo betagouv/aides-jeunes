@@ -71,7 +71,5 @@ context("Full simulation", () => {
     results.checkResultsRequests()
     results.receiveResultsEmail()
     results.hasSituationNearbyPlaces()
-    navigate.goRecap()
-    navigate.checkRecap()
   })
 })

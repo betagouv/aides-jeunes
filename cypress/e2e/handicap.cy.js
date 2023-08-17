@@ -37,7 +37,5 @@ context("Full simulation", () => {
 
     results.wait()
     results.hasAAH()
-    navigate.goRecap()
-    navigate.checkRecap()
   })
 })

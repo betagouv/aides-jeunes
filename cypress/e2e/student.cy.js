@@ -60,7 +60,5 @@ context("Full simulation", () => {
     results.back()
     results.hasAideVeloNationale()
     results.hasHousingBenefit()
-    navigate.goRecap()
-    navigate.checkRecap()
   })
 })

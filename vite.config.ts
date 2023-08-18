@@ -100,7 +100,7 @@ export default defineConfig(async ({ mode }) => {
       commonjsOptions: {
         exclude: ["lib"],
       },
-      emptyOutDir: false,
+      emptyOutDir: true,
       sourcemap: true,
     },
     plugins: [

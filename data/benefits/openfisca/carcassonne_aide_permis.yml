@@ -1,0 +1,21 @@
+label: Aide communale au permis de conduire
+institution: ville-de-carcassonne
+description:
+  "Les jeunes de 16 à 25 ans résidant à Carcassonne peuvent bénéficier
+  du financement d'une partie de leur permis B, en échange de 60 heures de
+  travail bénévole dans une association. L’aide attribuée par la Ville de
+  Carcassonne est proportionnelle au quotient familial du candidat. La session
+  d'inscription se déroule chaque année entre le 3 janvier et le 17 février."
+conditions:
+  - Effectuer la demande d'aide avant de vous inscrire à l'auto-école et obtenir le code de la route.
+voluntary_conditions:
+  - Réaliser 60 heures d'action bénévole dans une association basée à Carcassonne.
+periodicite: autre
+link: https://www.carcassonne.org/article-page/bourse-au-permis-0
+instructions: https://www.carcassonne.org/article-page/bourse-au-permis-0
+prefix: l’
+type: float
+unit: "€"
+entity: individus
+openfiscaPeriod: thisMonth
+interestFlag: _interetPermisDeConduire

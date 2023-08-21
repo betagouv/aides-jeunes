@@ -166,6 +166,9 @@ function determinePullRequestURL() {
     return
   }
   const { GITHUB_REF, GITHUB_REPOSITORY, GITHUB_SERVER_URL } = process.env
+
+  console.log("determinePullRequestURL", { GITHUB_REF })
+
   const pullRequestNumber = GITHUB_REF.match(
     /(?:refs\/pull\/)(?<number>[\d]+)\/merge/
   )?.groups?.number

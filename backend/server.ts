@@ -10,6 +10,7 @@ const port = process.env.PORT
 
 app.use(express.static(path.join(__dirname, "../../dist")))
 app.route("/*").get(function (req, res) {
+  res.setHeader("Cache-Control", "no-cache")
   res.sendFile(path.join(__dirname, "../../dist/index.html"))
 })
 const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {

@@ -66,7 +66,8 @@ export default <{ [key: string]: any }>{
           value: displayCurrencyValue(loyerData.loyerQuestion.selectedValue),
         },
       ]
-      if (loyerData.chargesQuestion) {
+
+      if (loyerData.chargesQuestion && loyerData.captureCharges) {
         details.push({
           label: loyerData.chargesQuestion.label,
           value: displayCurrencyValue(loyerData.chargesQuestion.selectedValue),

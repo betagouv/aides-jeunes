@@ -74,7 +74,7 @@ function individuBlockFactory(id, chapter?: string) {
                   subject.activite === ActiviteType.salarie &&
                   age <=
                     parameters[
-                      "prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal"
+                      "prestations_sociales.education.carte_des_metiers.age_maximal"
                     ]
                 return subject.activite === ActiviteType.etudiant || jeune_actif
               },

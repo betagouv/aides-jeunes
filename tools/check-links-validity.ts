@@ -8,6 +8,8 @@ import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
 
+const DEFAULT_BRANCH_REF = "refs/heads/master"
+
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
 
@@ -157,10 +159,16 @@ function getBenefitIdsFromCLI(): string[] | undefined {
 }
 
 function determinePullRequestURL() {
-  if (!process.env.GITHUB_REF) {
+  if (
+    !process.env.GITHUB_REF ||
+    process.env.GITHUB_REF === DEFAULT_BRANCH_REF
+  ) {
     return
   }
   const { GITHUB_REF, GITHUB_REPOSITORY, GITHUB_SERVER_URL } = process.env
+
+  console.log("determinePullRequestURL", { GITHUB_REF })
+
   const pullRequestNumber = GITHUB_REF.match(
     /(?:refs\/pull\/)(?<number>[\d]+)\/merge/
   )?.groups?.number

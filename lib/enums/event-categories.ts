@@ -6,5 +6,4 @@ export enum EventCategories {
   PARCOURS = "Parcours",
   ACCOMPAGNEMENT = "Accompaniment",
   MONTANT_ATTENDU = "Montant attendu",
-  FOLLOWUP = "Followup",
 }

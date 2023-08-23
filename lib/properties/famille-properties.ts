@@ -46,21 +46,6 @@ export default {
   }),
 
   en_couple: new EnumProperty({
-    question: "Vivez-vous seul ou seule ou bien en couple ?",
-    questionType: "enum",
-    items: [
-      {
-        label: "Je vis seul ou seule",
-        value: false,
-      },
-      {
-        label: "Je vis en couple",
-        value: true,
-      },
-    ],
-  }),
-
-  en_couple_new: new EnumProperty({
     question: "Vivez-vous en couple ?",
     questionType: "enum",
     items: [

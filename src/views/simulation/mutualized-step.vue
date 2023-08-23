@@ -93,7 +93,6 @@ import { ENTITIES_PROPERTIES } from "@lib/mutualized-steps"
 import { getAnswer, nullifyUndefinedValue } from "@lib/answers.js"
 import { useIndividu } from "@/composables/individu.js"
 import { useStore } from "@/stores/index.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "MutualizedStep",
@@ -165,12 +164,6 @@ export default {
       }
     },
     step() {
-      if (
-        this.fieldName === "en_couple" &&
-        ABTestingService.getValues().en_couple_step === "NewQuestion"
-      ) {
-        return this.entityProperties["en_couple_new"]
-      }
       return this.entityProperties[this.fieldName]
     },
   },

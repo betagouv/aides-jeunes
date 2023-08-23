@@ -208,8 +208,6 @@ const receiveResultsEmail = () => {
     expect(response.statusCode).to.equal(200)
   })
 
-  cy.get(".fr-alert__title").should("contain", "Succès")
-  back()
   cy.get('[data-testid="simulation-id"')
     .invoke("text")
     .then((simulationId) => {

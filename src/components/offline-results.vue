@@ -10,19 +10,19 @@
         <SendRecapEmailButton class="primary"></SendRecapEmailButton>
       </li>
     </ul>
-    <RecapEmailModal :id="id"></RecapEmailModal>
+    <RecapEmailAndSmsModal></RecapEmailAndSmsModal>
   </div>
 </template>
 
 <script lang="ts">
-import RecapEmailModal from "@/components/modals/recap-email-modal.vue"
+import RecapEmailAndSmsModal from "@/components/modals/recap-email-and-sms-modal.vue"
 import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
 import { useStore } from "@/stores/index.js"
 
 export default {
   name: "OfflineResults",
   components: {
-    RecapEmailModal,
+    RecapEmailAndSmsModal,
     SendRecapEmailButton,
   },
   props: {
@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     show() {
-      return this.store.recapEmailState !== "ok"
+      return this.store.modalState === "show"
     },
   },
 }

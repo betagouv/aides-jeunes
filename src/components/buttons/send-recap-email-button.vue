@@ -3,7 +3,7 @@
     class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
-    @click="openEmailModal"
+    @click="openEmailAndSmsModal"
   >
     {{ text }}
   </button>
@@ -26,8 +26,8 @@ export default {
     }
   },
   methods: {
-    openEmailModal() {
-      this.store.setRecapEmailState("show")
+    openEmailAndSmsModal() {
+      this.store.setModalState("show")
     },
   },
 }

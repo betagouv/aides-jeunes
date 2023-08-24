@@ -65,6 +65,7 @@ function defaultStore(): Store {
     inIframe: false,
     iframeOrigin: null,
     iframeHeaderCollapse: false,
+    modalState: null,
     saveSituationError: null,
     openFiscaParameters: {},
     recapEmailState: undefined,
@@ -415,6 +416,9 @@ export const useStore = defineStore("store", {
       this.setFormRecapPhoneState(newState)
       this.setFormRecapEmailState(newState)
     },
+    setModalState(newState: string | undefined) {
+      this.modalState = newState
+    },
     setSimulationId(id: string) {
       this.simulationId = id
       this.calculs.dirty = false
@@ -453,6 +457,7 @@ export const useStore = defineStore("store", {
     fetch(id: string) {
       this.setFormRecapEmailState(undefined)
       this.setFormRecapPhoneState(undefined)
+      this.setModalState(undefined)
       const token = this.getSimulationToken
 
       this.access.fetching = true

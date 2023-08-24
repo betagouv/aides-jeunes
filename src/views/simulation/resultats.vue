@@ -6,6 +6,8 @@
     <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
   </LoadingModal>
 
+  <ErrorsEmailAndSmsModal />
+
   <WarningMessage v-if="hasWarning">
     <div>
       <h2 class="fr-text--lead"> Aucun résultat disponible </h2>
@@ -106,6 +108,7 @@ import { useStore } from "@/stores/index.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventCategory } from "@lib/enums/event-category.js"
+import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 
 export default {
   name: "SimulationResultats",
@@ -119,6 +122,7 @@ export default {
     OfflineResults,
     TrouverInterlocuteur,
     Recapitulatif,
+    ErrorsEmailAndSmsModal,
   },
   mixins: [ResultatsMixin, StatisticsMixin],
   setup() {

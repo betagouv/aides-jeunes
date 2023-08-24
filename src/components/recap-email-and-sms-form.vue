@@ -6,7 +6,6 @@ import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()
@@ -55,6 +54,7 @@ const sendRecap = async (surveyOptin) => {
       phoneInputErrorMessage.value = true
       emailInputErrorMessage.value = true
     }
+    store.setModalState(undefined)
   } catch (error) {
     console.error(error)
   }
@@ -107,6 +107,7 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     throw new Error("Invalid email or phone number")
   }
   try {
+    store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
   } catch (error) {
     console.error(error)
@@ -125,7 +126,8 @@ const sendRecapBySms = async (surveyOptin) => {
     throw new Error("Invalid phone number")
   }
   try {
-    postFollowup(surveyOptin, undefined, phoneValue.value)
+    store.setModalState(undefined)
+    await postFollowup(surveyOptin, undefined, phoneValue.value)
   } catch (error) {
     console.error(error)
     store.setFormRecapPhoneState("error")
@@ -133,11 +135,6 @@ const sendRecapBySms = async (surveyOptin) => {
   }
   store.setFormRecapPhoneState("ok")
   phoneValue.value = undefined
-  StatisticsMixin.methods.sendEventToMatomo(
-    EventCategories.FOLLOWUP,
-    "Formulaire validé",
-    ABTestingService.getValues().recap_sms_form
-  )
 }
 
 const sendRecapByEmail = async (surveyOptin) => {
@@ -147,7 +144,8 @@ const sendRecapByEmail = async (surveyOptin) => {
     throw new Error("invalid email")
   }
   try {
-    postFollowup(surveyOptin, emailValue.value)
+    store.setModalState(undefined)
+    await postFollowup(surveyOptin, emailValue.value)
   } catch (error) {
     console.error(error)
     store.setFormRecapEmailState("error")
@@ -155,61 +153,19 @@ const sendRecapByEmail = async (surveyOptin) => {
   }
   store.setFormRecapEmailState("ok")
   emailValue.value = undefined
-  StatisticsMixin.methods.sendEventToMatomo(
-    EventCategories.FOLLOWUP,
-    "Formulaire validé",
-    ABTestingService.getValues().recap_sms_form
-  )
 }
 </script>
 
 <template>
-  <div>
-    <div
-      v-if="recapPhoneState === 'error' || recapEmailState === 'error'"
-      class="fr-alert fr-alert--error"
+  <div class="fr-modal__content">
+    <h1 id="fr-modal-email-title" class="fr-modal__title"
+      >Recevoir un récapitulatif par email</h1
     >
-      <p>
-        Une erreur s'est produite dans l'envoi par
-        {{
-          recapPhoneState === "error" && recapEmailState === "error"
-            ? "email et par SMS"
-            : recapPhoneState === "error"
-            ? "SMS"
-            : "email"
-        }}
-      </p>
-    </div>
-    <div
-      v-if="recapPhoneState === 'ok' && recapEmailState === 'ok'"
-      class="fr-alert fr-alert--success"
-    >
-      <h3 class="fr-alert__title">Succès de l'envoi</h3>
-      <p>Un récapitulatif vous a été envoyé par email et par SMS</p>
-    </div>
-    <div
-      v-else-if="recapPhoneState === 'ok' && recapEmailState != 'ok'"
-      class="fr-alert fr-alert--success"
-    >
-      <h3 class="fr-alert__title">Succès de l'envoi</h3>
-      <p>Un récapitulatif vous a été envoyé par SMS</p>
-    </div>
-    <div
-      v-else-if="recapEmailState === 'ok' && recapPhoneState != 'ok'"
-      class="fr-alert fr-alert--success"
-    >
-      <h3 class="fr-alert__title">Succès de l'envoi</h3>
-      <p>Un récapitulatif vous a été envoyé par email</p>
-    </div>
-    <div v-if="recapPhoneState === 'waiting' || recapEmailState === 'waiting'">
-      <p
-        ><span
-          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-          aria-hidden="true"
-        ></span
-        ><span class="fr-ml-2w">Envoi en cours…</span></p
-      >
-    </div>
+    <p>
+      Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
+      faire le point sur les démarches que vous avez faites et les blocages que
+      vous avez rencontrés.
+    </p>
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
@@ -269,7 +225,7 @@ const sendRecapByEmail = async (surveyOptin) => {
       </WarningMessage>
     </form>
   </div>
-  <div class="">
+  <div class="fr-modal__footer">
     <ul class="fr-btns-group">
       <li>
         <button

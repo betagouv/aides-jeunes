@@ -79,6 +79,7 @@ export interface Store {
   inIframe: boolean
   iframeOrigin: string | null
   iframeHeaderCollapse: boolean
+  modalState: string | null
   saveSituationError: string | null
   openFiscaParameters: OpenfiscaParameters
   recapEmailState: string | undefined

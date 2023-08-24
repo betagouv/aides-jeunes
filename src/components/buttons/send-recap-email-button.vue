@@ -3,6 +3,7 @@
     class="fr-btn fr-btn--icon-center fr-icon-mail-line fr-px-3v"
     data-fr-opened="false"
     aria-controls="fr-modal-email"
+    :disabled="isDisabled"
     @click="openEmailAndSmsModal"
   >
     {{ text }}
@@ -24,6 +25,14 @@ export default {
     return {
       store: useStore(),
     }
+  },
+  computed: {
+    isDisabled() {
+      return (
+        this.store.recapEmailState === "waiting" ||
+        this.store.recapPhoneState === "waiting"
+      )
+    },
   },
   methods: {
     openEmailAndSmsModal() {

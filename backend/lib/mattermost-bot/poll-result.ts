@@ -50,8 +50,7 @@ function postPollResult(simulation, answers) {
     )
   }
 
-  const json = JSON.stringify({ text: result.join("\n") })
-  mattermost.post(json)
+  mattermost.post(result.join("\n"))
 }
 
 export default {

@@ -21,5 +21,5 @@ export interface InstitutionLayout extends InstitutionRawLayout {
 }
 
 export interface InstitutionsMap {
-  [key as string]: InstitutionLayout
+  [key: string]: InstitutionLayout
 }

@@ -116,5 +116,5 @@ export interface StandardBenefit {
 }
 
 export interface BenefitsMap {
-  [key as string]: StandardBenefit
+  [key: string]: StandardBenefit
 }

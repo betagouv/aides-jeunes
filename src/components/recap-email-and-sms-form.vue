@@ -28,15 +28,6 @@ const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
-const regexAndPhoneTypeIsValid = () => {
-  const regex = new RegExp("^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$")
-  return (
-    phoneValue.value &&
-    regex.test(phoneValue.value) &&
-    phoneRef.value?.checkValidity()
-  )
-}
-
 const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
@@ -61,7 +52,7 @@ const sendRecap = async (surveyOptin) => {
 }
 
 const inputPhoneIsValid = () => {
-  if (phoneRef.value && !regexAndPhoneTypeIsValid()) {
+  if (phoneRef.value && !phoneRef.value?.checkValidity()) {
     phoneInputErrorMessage.value = true
     phoneRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
@@ -197,19 +188,20 @@ const sendRecapByEmail = async (surveyOptin) => {
     </form>
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
-        <label class="fr-label" for="email"
+        <label class="fr-label" for="phone"
           >Votre numéro de téléphone portable
           <span class="fr-hint-text">Format attendu : 06 12 23 42 78</span>
         </label>
         <input
-          id="tel"
+          id="phone"
           ref="phoneRef"
           v-model="phoneValue"
+          pattern="((\+?(00|33))|(0))\s*[1-9]([\s\.\-]?\d{2}){4}"
           name="phone"
           required
           :aria-invalid="phoneInputErrorMessage"
           :aria-describedBy="
-            phoneInputErrorMessage ? 'invalid-tel-warning' : null
+            phoneInputErrorMessage ? 'invalid-phone-warning' : null
           "
           type="tel"
           class="fr-input"
@@ -219,7 +211,7 @@ const sendRecapByEmail = async (surveyOptin) => {
       </div>
       <WarningMessage
         v-if="phoneInputErrorMessage"
-        id="invalid-tel-warning"
+        id="invalid-phone-warning"
         class="fr-mt-2w"
         >Un numéro de téléphone valide doit être indiqué.
       </WarningMessage>

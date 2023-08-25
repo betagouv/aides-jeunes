@@ -32,7 +32,7 @@ describe("benefit descriptions", function () {
       ) {
         it("should have a code_insee", function () {
           expect(typeof institution.code_insee).toBe("string")
-          expect(institution.code_insee.length).toBeGreaterThan(1)
+          expect(institution.code_insee?.length).toBeGreaterThan(1)
         })
 
         it("should have a relevant code_insee", function () {

@@ -80,7 +80,6 @@
           <div class="fr-col-12 fr-col-md-5">
             <OfflineResults
               v-if="!resultatStatus.updating && !isEmpty(droits)"
-              :id="resultatsId"
             />
           </div>
           <div class="fr-col-12 fr-col-md-7">

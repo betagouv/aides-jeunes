@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import RecapEmailAndSmsForm from "@/components/recap-email-and-sms-form.vue"
 import { useStore } from "@/stores/index.js"
+import { computed } from "vue"
 
 const store = useStore()
 const hide = () => store.setModalState(undefined)
+
+const headerTitle = computed(() => {
+  return process.env.VITE_SHOW_SMS_TAB
+    ? "Recevoir les résultats par email/SMS"
+    : "Recevoir les résultats par email"
+})
 </script>
 
 <template>
@@ -18,6 +25,9 @@ const hide = () => store.setModalState(undefined)
         <div class="fr-col-12 fr-col-md-8 fr-col-lg-7">
           <div class="fr-modal__body">
             <div class="fr-modal__header">
+              <h1 id="fr-modal-email-title" class="fr-modal__title fr-pt-2w">{{
+                headerTitle
+              }}</h1>
               <button
                 v-analytics="{ action: 'Fermé bouton', category: 'Email' }"
                 class="fr-btn--close fr-btn"

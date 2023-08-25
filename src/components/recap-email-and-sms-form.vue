@@ -149,9 +149,6 @@ const sendRecapByEmail = async (surveyOptin) => {
 
 <template>
   <div class="fr-modal__content">
-    <h1 id="fr-modal-email-title" class="fr-modal__title"
-      >Recevoir un récapitulatif par email</h1
-    >
     <p>
       Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
       faire le point sur les démarches que vous avez faites et les blocages que

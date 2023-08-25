@@ -12,10 +12,10 @@
           class="fr-btns-group fr-btns-group--inline-md fr-btns-group--right fr-mt-1w fr-px-0"
         >
           <li>
-            <SendRecapEmailButton
-              data-testid="send-email-button"
+            <SendRecapButton
+              data-testid="send-email-and-sms-button"
               :text="emailButtonTitle"
-            ></SendRecapEmailButton>
+            ></SendRecapButton>
           </li>
         </ul>
       </div>
@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import Chapters from "@lib/chapters.js"
-import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
+import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 
 export default {
   name: "TitreChapitre",
-  components: { SendRecapEmailButton },
+  components: { SendRecapButton },
   mixins: [ResultatsMixin],
   setup() {
     return {

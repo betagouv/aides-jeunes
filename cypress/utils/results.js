@@ -191,14 +191,16 @@ const receiveResultsEmail = () => {
     url: "/api/simulation/*/followup",
   }).as("post-receive-results-email")
 
-  cy.get("[data-testid='send-email-button']", {
+  cy.get("[data-testid='send-email-and-sms-button']", {
     timeout: 20000,
   })
     .should("be.visible")
     .click()
 
   const email = "prenom.nom@beta.gouv.fr"
-  cy.get("input#email").should("be.visible").type(email, { force: true })
+  const phone = "0607080910"
+  cy.get("input#email").should("be.visible").type(email)
+  cy.get("input#phone").should("be.visible").type(phone)
   cy.get(".fr-btn:contains(J'accepte d'être recontacté)")
     .should("be.visible")
     .click()

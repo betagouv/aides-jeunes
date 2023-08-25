@@ -85,7 +85,7 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       }
       case "commune": {
-        if (!communeMap[institution.code_insee]) {
+        if (!institution.code_insee || !communeMap[institution.code_insee]) {
           break
         }
         apply(communeMap[institution.code_insee], institution)

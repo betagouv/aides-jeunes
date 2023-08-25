@@ -32,20 +32,22 @@ const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
       await sendRecapByEmailAndSms(surveyOptin)
+      store.setModalState(undefined)
     } else if (emailFilled.value && !phoneFilled.value) {
       await sendRecapByEmail(surveyOptin)
       phoneInputErrorMessage.value = false
       store.setFormRecapPhoneState(undefined)
+      store.setModalState(undefined)
     } else if (!emailFilled.value && phoneFilled.value) {
       await sendRecapBySms(surveyOptin)
       emailInputErrorMessage.value = false
       store.setFormRecapEmailState(undefined)
+      store.setModalState(undefined)
     } else {
       store.setFormRecapState(undefined)
       phoneInputErrorMessage.value = true
       emailInputErrorMessage.value = true
     }
-    store.setModalState(undefined)
   } catch (error) {
     console.error(error)
   }
@@ -67,7 +69,7 @@ const inputPhoneIsValid = () => {
 }
 
 const inputEmailIsValid = () => {
-  if (emailRef.value && !emailRef.value.checkValidity()) {
+  if (emailRef.value && !emailRef.value?.checkValidity()) {
     emailInputErrorMessage.value = true
     emailRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
@@ -112,6 +114,7 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
 
 const sendRecapBySms = async (surveyOptin) => {
   store.setFormRecapPhoneState("waiting")
+  store.setFormRecapEmailState(undefined)
   if (!inputPhoneIsValid()) {
     store.setFormRecapPhoneState(undefined)
     throw new Error("Invalid phone number")
@@ -130,6 +133,7 @@ const sendRecapBySms = async (surveyOptin) => {
 
 const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapEmailState("waiting")
+  store.setFormRecapPhoneState(undefined)
   if (!inputEmailIsValid()) {
     store.setFormRecapEmailState(undefined)
     throw new Error("invalid email")

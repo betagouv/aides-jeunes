@@ -20,6 +20,7 @@ profils:
   - type: chomeur
   - type: beneficiaire_rsa
   - type: service_civique
+  - type: inactif
 conditions:
   - Etre éligible aux critères du Fonds d'Aide au Jeunes.
   - Résider dans une commune de la Gironde qui ne se situe pas au sein de la Métropole.

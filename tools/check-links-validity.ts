@@ -3,6 +3,7 @@ import config from "../backend/config/index.js"
 import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
 import { GristData } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
+import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
 
 import axios from "axios"
 import https from "https"
@@ -260,6 +261,19 @@ async function main() {
     }
   }
   console.log("Terminé")
+
+  // Notify on mattermost
+  const invalidLinksAdded = recordsByOperationTypes.add.length > 0
+
+  if (invalidLinksAdded && !dryRun && !processingPR) {
+    const text = [
+      ":icon-info: La liste des aides avec des liens invalides a été mise à jour ici : [lien](https://grist.incubateur.net/o/docs/mRipN1JbV6sB/Aides-Jeunes/p/39)",
+      `Ajout: ${recordsByOperationTypes.add.length}`,
+      `Mise à jour: ${recordsByOperationTypes.update.length}`,
+    ].join("\n")
+
+    Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL)
+  }
 }
 
 main()

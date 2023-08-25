@@ -17,7 +17,7 @@ interface NetlifyCollection {
   fields: NetlifyField[]
 }
 interface NetlifyField {
-  [key as string]: string
+  [key: string]: string
 }
 
 interface BenefitsJavascriptCollection extends NetlifyCollection {

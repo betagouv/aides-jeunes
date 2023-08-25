@@ -16,4 +16,4 @@ jobs:
         env:
           GRIST_DOC_ID: ${{ secrets.GRIST_DOC_ID }}
           GRIST_API_KEY: ${{ secrets.GRIST_API_KEY }}
-          MATTERMOST_POST_URL: ${{ secrets.MATTERMOST_POST_URL }}
+          MATTERMOST_ALERTING_URL: ${{ secrets.MATTERMOST_ALERTING_URL }}

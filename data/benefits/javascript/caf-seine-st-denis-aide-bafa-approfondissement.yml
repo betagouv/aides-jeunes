@@ -1,26 +1,23 @@
-label: aide au BAFA pour une session d'approfondissement (spécialisation handicap ou citoyenneté)
+label: aide au BAFA pour une session d'approfondissement
 institution: caf_seine_st_denis
-description: L’aide à la formation du BAFA est une aide locale mise à
+description: L’aide à la formation du BAFA est une aide locale de 200 € mise à
   disposition par la CAF de Seine-Saint-Denis pour vous aider à financer votre
-  session d’approfondissement ou de qualification en complément de l'aide
-  nationale apportée par la CAF.
-conditions:
-  - Être inscrit ou inscrite en session d’approfondissement portant sur le handicap ou sur la citoyenneté.
-  - Fournir une attestation de l’établissement de formation.
+  session d’approfondissement ou de qualification. Cette aide est majorée de 100 €
+  si la session d’approfondissement porte sur le handicap ou sur la citoyenneté.
 conditions_generales:
   - type: age
     operator: ">="
-    value: 16
+    value: 17
   - type: departements
     values:
       - "93"
 profils: []
-link: https://caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service/vie-personnelle/l-aide-la-formation-bafa-session-d-approfondissement
-instructions: https://caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service/vie-personnelle/l-aide-la-formation-bafa-session-d-approfondissement
+link: https://www.caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service/vie-professionnelle/l-aide-la-formation-bafa-session-d-approfondissement
+instructions: https://www.caf.fr/allocataires/caf-de-la-seine-saint-denis/offre-de-service/vie-professionnelle/l-aide-la-formation-bafa-session-d-approfondissement
 prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 100
+montant: 200
 interestFlag: _interetBafa

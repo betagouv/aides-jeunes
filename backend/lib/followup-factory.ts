@@ -10,7 +10,7 @@ export const FollowupFactory = {
   create: async (
     simulation: Simulation,
     surveyOptin: boolean,
-    email: string,
+    email?: string,
     phone?: string
   ): Promise<Followup> => {
     const situationResults = await simulation.compute()

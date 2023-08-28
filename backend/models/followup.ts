@@ -191,5 +191,7 @@ FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}`
 })
 
-//export default mongoose.model<FollowupInterface, IFollowupModel>(
-export default mongoose.model<any, IFollowupModel>("Followup", FollowupSchema)
+export default mongoose.model<FollowupInterface, IFollowupModel>(
+  "Followup",
+  FollowupSchema
+)

@@ -62,7 +62,9 @@ export async function persist(req: Request, res: Response) {
     return res.send({ result: "OK" })
   } catch (error) {
     console.error("error", error)
-    return res.status(400).send({ result: "KO" })
+    return res
+      .status(400)
+      .send({ result: "Must provide an email or phone number" })
   }
 }
 

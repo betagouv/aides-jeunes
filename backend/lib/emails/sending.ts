@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followup from "../../models/followup.js"
-import { IFollowupModel } from "../../types/models.d.js"
+import { FollowupInterface } from "../../../lib/types/followup.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -45,7 +45,7 @@ async function sendMultipleInitialEmails(limit: number) {
     .limit(limit)
 
   const results: { ok?: any; ko?: any }[] = await Promise.all(
-    followups.map(async (followup: IFollowupModel) => {
+    followups.map(async (followup: FollowupInterface) => {
       const surveyType =
         Math.random() > 0.5
           ? SurveyType.trackClickOnBenefitActionEmail
@@ -89,7 +89,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     .limit(limit)
 
   const results = await Promise.all(
-    followups.map(async (followup: any) => {
+    followups.map(async (followup: FollowupInterface) => {
       try {
         const result = await followup.sendSurvey(
           SurveyType.tousABordNotification
@@ -104,7 +104,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
 }
 
 async function processSingleEmail(emailType: EmailType, followupId: string) {
-  const followup: IFollowupModel | null = await Followup.findById(followupId)
+  const followup: FollowupInterface | null = await Followup.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
   }

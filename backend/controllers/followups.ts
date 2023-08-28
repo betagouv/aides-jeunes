@@ -1,5 +1,4 @@
 import Followup from "../models/followup.js"
-import { IFollowup } from "../types/models.d.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
@@ -23,7 +22,7 @@ export function followup(
 ) {
   Followup.findById(id)
     .populate("simulation")
-    .exec(function (err: any, followup: any) {
+    .exec(function (err: any, followup: FollowupInterface | null) {
       if (err) {
         return next(err)
       }
@@ -56,7 +55,7 @@ export async function persist(req: Request, res: Response) {
       simulation,
       req.body.email,
       req.body.surveyOptin
-    )) as IFollowup
+    )) as FollowupInterface
 
     await followup.sendSimulationResultsEmail()
 
@@ -137,7 +136,7 @@ export async function followupByAccessToken(
   next: NextFunction,
   accessToken: any
 ) {
-  const followup: IFollowup | null = await Followup.findOne({
+  const followup: FollowupInterface | null = await Followup.findOne({
     accessToken,
   })
   if (!followup) return res.sendStatus(404)

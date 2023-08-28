@@ -1,14 +1,17 @@
 label: aide au passage du permis de conduire B
 institution: region_nouvelle_aquitaine
-description: Cette aide favorise l'accès à l'emploi en proposant une aide au
+description:
+  La Région Nouvelle-Aquitaine favorise l'accès à l'emploi en proposant une aide au
   financement du <a target="_blank" rel="noopener" title ="permis de conduire B - Nouvelle fenêtre"
   href="https://www.service-public.fr/particuliers/vosdroits/F2828">permis de
-  conduire B</a> pour les jeunes et les plus précaires qui s’engagent vers une
-  insertion professionnelle.
+  conduire B</a> pour les jeunes issus d’un niveau de qualification Bac ou infra Bac et qui s’engagent
+  vers une insertion professionnelle.
 conditions:
-  - Être diplômé de la filière professionnelle ou agricole.
-  - Ou être en insertion professionnelle suivi par une mission locale.
+  - Avoir obtenu un diplôme de la filière professionnelle ou agricole, de niveau Bac ou infra Bac,
+    dans un établissement scolaire en Nouvelle-Aquitaine lors de la session précédant la demande d’aide.
+  - Ou être en insertion professionnelle et suivi par une mission locale.
   - Ou être scolarisé en Établissement Régional d’Enseignement Adapté (EREAS).
+  - Ou être en contrat d'engagement de Service Civique.
 link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
 prefix: l’
@@ -27,9 +30,17 @@ conditions_generales:
     operator: ">="
     value: 17
   - type: age
-    operator: <=
+    operator: <
     value: 26
 profils:
-  - type: etudiant
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_2
+          - terminale
   - type: service_civique
   - type: chomeur
+  - type: apprenti
+  - type: stagiaire
+  - type: professionnalisation

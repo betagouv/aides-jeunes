@@ -14,15 +14,18 @@ profils:
       - type: annee_etude
         values:
           - cap_1
+          - cap_2
           - seconde
           - premiere
 conditions:
   - Être en 1ère année de bac pro ou de CAP, ou bien être en 2ème année après avoir
     suivi un autre cursus.
+  - Faire votre demande en vous inscrivant sur <a target="_blank" rel="noopener" title ="Yep's - Nouvelle fenêtre"
+    href="https://www.yeps.fr/">Yep's</a>.
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 50
-link: https://www.yeps.fr/conseil/aide-au-1er-equipement-professionnel/
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/aide-au-1er-equipement-professionnel
 teleservice: ""
-instructions: https://www.yeps.fr/conseil/aide-au-1er-equipement-professionnel/
+instructions: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/aide-au-1er-equipement-professionnel

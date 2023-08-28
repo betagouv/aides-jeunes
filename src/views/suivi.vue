@@ -55,9 +55,9 @@
           </p>
           <div class="fr-alert fr-alert--info fr-mb-4w">
             <p>
-              Répondez à ce questionnaire afin de nous aider à améliorer la
-              pertinence des résultats que nous affichons.</p
-            >
+              Aidez-nous à améliorer la pertinence des résultats en répondant à
+              ce questionnaire :
+            </p>
             <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
           </div>
           <div

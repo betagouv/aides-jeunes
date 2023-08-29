@@ -6,9 +6,13 @@ export interface MongooseLayout {
   [id: string]: any
 }
 
-export interface IFollowupModel extends Model<FollowupInterface> {
+interface FollowupStaticMethods {
   findByEmail(email: string): Promise<HydratedDocument<FollowupInterface>>
 }
+
+export interface IFollowupModel
+  extends Model<FollowupInterface>,
+    FollowupStaticMethods {}
 
 export interface SimulationModel extends Model<SimulationInterface> {
   _id: mongoose.Types.ObjectId

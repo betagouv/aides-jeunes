@@ -1,7 +1,8 @@
 import { Document } from "mongoose"
 
 import { SurveyLayout } from "./survey.js"
-export interface FollowupInterface extends Document {
+
+interface FollowupAttributes {
   _id: string
   simulation: any
   email?: string
@@ -17,7 +18,9 @@ export interface FollowupInterface extends Document {
   accessToken: string
   tousABordNotificationEmail: any
   __v: number
+}
 
+interface FollowupMethods {
   postSimulationResultsEmail(messageId: string): void
   renderSimulationResultsEmail(): any
   sendSimulationResultsEmail(): Promise<void>
@@ -25,6 +28,9 @@ export interface FollowupInterface extends Document {
   addSurveyIfMissing(surveyType: SurveyType): Promise<any>
   sendSurvey(surveyType: SurveyType): Promise<any>
   updateSurvey(action: SurveyType, data?: any)
+}
+
+interface FollowupVirtuals {
   emailRenderPath: string
   returnPath: string
   surveyPath: string
@@ -33,3 +39,9 @@ export interface FollowupInterface extends Document {
   wasUsefulPath: string
   wasNotUsefulPath: string
 }
+
+export interface FollowupInterface
+  extends Document,
+    FollowupAttributes,
+    FollowupMethods,
+    FollowupVirtuals {}

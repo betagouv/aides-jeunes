@@ -6,7 +6,7 @@ description: La Région Hauts-de-France a mis en place ce dispositif afin d'aide
   dans un laboratoire.
 conditions:
   - vérifier que vous correspondez aux <a target="_blank" rel="noopener" title ="Conditions spécifiques - Nouvelle fenêtre"
-    href="https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929">conditions
+    href="https://guide-aides.hautsdefrance.fr/dispositif997">conditions
     spécifiques</a> à chaque situation (étudiant ou étudiante, stagiaire, en séjour de
     recherche).
   - présenter votre projet de mobilité au service de Relations Internationales
@@ -27,13 +27,13 @@ profils:
     conditions: []
   - type: stagiaire
     conditions: []
-link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=929
-teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ22
+link: https://guide-aides.hautsdefrance.fr/dispositif997
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ2
 instructions: ""
 prefix: les
 interestFlag: _interetEtudesEtranger
 type: float
 unit: null
 periodicite: mensuelle
-legend: maximum
+legend: par mois maximum
 montant: 400

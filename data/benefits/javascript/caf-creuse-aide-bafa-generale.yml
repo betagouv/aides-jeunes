@@ -21,11 +21,7 @@ conditions_generales:
 profils: []
 conditions:
   - Etre allocataire ou rattaché au dossier allocataire de vos parents.
-  - Effectuer la session de formation auprès d’un <a target="_blank"
-    rel="noopener" title="Voir les établissements conventionnés - Nouvelle
-    fenêtre"
-    href="https://www.caf.fr/sites/default/files/caf/171/Documents/Offre%20de%20service/Bafa_Bafd/Organismes_conv_fevrier2020.pdf">
-    établissement conventionné</a>.
+  - Effectuer la session de formation auprès d’un établissement conventionné.
   - Signer une charte d’engagement pour le suivi intégral de la formation.
   - Ne pas être pris en charge à 100 % par un employeur.
 interestFlag: _interetBafa
@@ -34,5 +30,5 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 300
-link: https://caf.fr/allocataires/caf-de-la-creuse/offre-de-service/vie-personnelle/aides-pour-le-financement-du-bafa
-instructions: https://caf.fr/allocataires/caf-de-la-creuse/offre-de-service/vie-personnelle/aides-pour-le-financement-du-bafa
+link: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/vie-professionnelle/je-souhaite-passer-le-bafa
+instructions: https://www.caf.fr/allocataires/caf-de-la-creuse/offre-de-service/vie-professionnelle/je-souhaite-passer-le-bafa

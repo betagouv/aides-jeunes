@@ -7,13 +7,13 @@ import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
-import { SimulationModel } from "../types/models.d.js"
 import Followup from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
+import { SimulationInterface } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
 
-function setSimulationOnRequest(req: Request, simulation: SimulationModel) {
+function setSimulationOnRequest(req: Request, simulation: SimulationInterface) {
   req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
@@ -22,18 +22,21 @@ function simulation(
   req: Request,
   res,
   next,
-  simulationOrSimulationId: SimulationModel | SimulationModel["_id"] | string
+  simulationOrSimulationId:
+    | SimulationInterface
+    | SimulationInterface["_id"]
+    | string
 ) {
   if (
     typeof simulationOrSimulationId === "object" &&
     simulationOrSimulationId._id
   ) {
-    const simulation = simulationOrSimulationId as unknown as SimulationModel
+    const simulation = simulationOrSimulationId as SimulationInterface
     setSimulationOnRequest(req, simulation)
     return next()
   }
 
-  const simulationId = simulationOrSimulationId as SimulationModel["_id"]
+  const simulationId = simulationOrSimulationId as SimulationInterface["_id"]
   Simulation.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)

@@ -1,3 +1,5 @@
+import { Document } from "mongoose"
+
 import { SimulationStatusEnum } from "../enums/simulation.js"
 
 export interface Answer {
@@ -8,7 +10,7 @@ export interface Answer {
   path: string
 }
 
-export interface SimulationInterface {
+interface SimulationAttributes {
   _id: string
   answers: {
     all: Answer[]
@@ -28,3 +30,20 @@ export interface SimulationInterface {
   teleservice?: string
   token: string
 }
+
+interface SimulationMethods {
+  isAccessible(keychain: Record<string, string>): boolean
+  getSituation(): any
+  compute(): Promise<any>
+}
+
+interface SimulationVirtuals {
+  cookieName: string
+  returnPath: string
+}
+
+export interface SimulationInterface
+  extends Document,
+    SimulationAttributes,
+    SimulationMethods,
+    SimulationVirtuals {}

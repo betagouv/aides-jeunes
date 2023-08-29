@@ -1,4 +1,4 @@
-import mongoose, { Model, HydratedDocument } from "mongoose"
+import { Model, HydratedDocument } from "mongoose"
 import { FollowupInterface } from "@lib/types/followup.d.js"
 import { SimulationInterface } from "@lib/types/simulation.d.js"
 
@@ -14,23 +14,10 @@ export interface IFollowupModel
   extends Model<FollowupInterface>,
     FollowupStaticMethods {}
 
-export interface SimulationModel extends Model<SimulationInterface> {
-  _id: mongoose.Types.ObjectId
-  cookieName: string
-  token: string
-  returnPath: string
-  isAccessible(keychain: Record<string, string>): boolean
-  getSituation(): any
-  compute(): Promise<any>
-  findById(
-    simulationId: mongoose.Types.ObjectId | string,
-    callback: (error: Error, simulation: SimulationModel) => void
-  )
+interface SimulationStaticMethods {
   cookiePrefix(): string
-  create(
-    data: any,
-    callback: (error: Error, simulation: SimulationModel) => void
-  )
-  hasFollowup: boolean
-  save()
 }
+
+export interface SimulationModel
+  extends Model<SimulationInterface>,
+    SimulationStaticMethods {}

@@ -108,7 +108,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
   function (username, password) {
-    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
     const encodedText = encodeURIComponent(text)
     const phone =
       this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
@@ -124,15 +124,19 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
       throw new Error("Missing SMS service credentials")
     }
     const renderUrl = this.renderSimulationResultsSmsUrl(username, password)
-    const { data, status } = await axios.get(renderUrl)
+    const axiosInstance = axios.create({
+      timeout: 5000,
+    })
+    const { data, status } = await axiosInstance.get(renderUrl)
     if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`Send SMS data error :${data}`)
     }
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
-    console.error("error", err)
+    // console.error("error", err)
     this.error = JSON.stringify(err, null, 2)
-    return this.save()
+    throw err
+    // return this.save()
   }
 })
 

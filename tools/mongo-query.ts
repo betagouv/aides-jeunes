@@ -194,19 +194,17 @@ async function generateMongoStats() {
       fileStream.write(`${statParameters.headers.join(separator)}\n`)
 
       for await (const document of aggregateCursor) {
-        const line: string[] = []
-        for (const key of statParameters.headers) {
-          line.push(document[key] || document._id[key] || "")
-        }
+        const line = statParameters.headers.map(
+          (key) => document[key] || document._id[key] || ""
+        )
         fileStream.write(`${line.join(separator)}\n`)
       }
-			fileStream.end()
-			console.log(`Generated statistics file: ${statParameters.filename}`)
+      fileStream.end()
+      console.log(`Generated statistics file: ${statParameters.filename}`)
     }
-  } catch (error) {
-    console.log(`Error: ${error}`)
-  } finally {
     MongoDB.closeClient()
+  } catch (error) {
+    console.error(`An error occured: ${error}`)
   }
 }
 await generateMongoStats()

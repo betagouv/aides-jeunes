@@ -9,11 +9,6 @@ import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurveyLayout } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 
-// TODO next line is to be updated once tokens are used globally
-const excludeFields = ["accessToken", "surveys.accessToken"]
-  .join(" -")
-  .replace(/^/, "-")
-
 export function followup(
   req: Request,
   res: Response,
@@ -110,19 +105,6 @@ export function showSurveyResultByEmail(req: Request, res: Response) {
     .then((simulations: any) => {
       if (!simulations || !simulations.length) return res.sendStatus(404)
       res.send(simulations)
-    })
-    .catch((error: Error) => {
-      console.error("error", error)
-      return res.sendStatus(400)
-    })
-}
-
-export function showSimulation(req: Request, res: Response) {
-  Followup.findById(req.params.surveyId)
-    .select(excludeFields)
-    .then((simulation: any) => {
-      if (!simulation) return res.sendStatus(404)
-      res.send([simulation])
     })
     .catch((error: Error) => {
       console.error("error", error)

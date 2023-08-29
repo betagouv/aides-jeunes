@@ -115,7 +115,7 @@ const simulationPerMonthPerDepcom = [
           $cond: [
             { $in: ["$depcom.value.depcom", depcoms100k] },
             "$depcom.value.depcom",
-            "#N/A",
+            "lt_100k",
           ],
         },
         departement: { $ifNull: ["$depcom.value._departement", "#N/A"] },

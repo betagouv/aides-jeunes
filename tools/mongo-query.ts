@@ -2,40 +2,12 @@ import fs from "fs"
 import path from "path"
 import dayjs from "dayjs"
 import MongoDB from "../backend/lib/stats/mongodb.js"
+import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
 
 const __dirname = new URL(".", import.meta.url).pathname
-const depcoms100k = [
-  "13001",
-  "13055",
-  "21231",
-  "29019",
-  "30189",
-  "31555",
-  "33063",
-  "34172",
-  "35238",
-  "37261",
-  "38185",
-  "42218",
-  "44109",
-  "49007",
-  "51454",
-  "59350",
-  "63113",
-  "67482",
-  "69123",
-  "69266",
-  "72181",
-  "74010",
-  "75056",
-  "76351",
-  "80021",
-  "83137",
-  "87085",
-  "92012",
-  "97411",
-  "06088",
-]
+const depcoms100k = communes
+  .filter((city) => city.population >= 100000)
+  .map((city) => city.code)
 const rangeSelector = {
   $match: {
     createdAt: { $lt: dayjs().startOf("month").toDate() },

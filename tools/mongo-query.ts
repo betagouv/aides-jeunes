@@ -151,10 +151,10 @@ async function getSimulationStats(db, aggregate) {
 
 async function generateMongoStats() {
   try {
-    const db = await MongoDB.connect()
     const separator = ","
     const documentFolder = path.join(__dirname, "../dist/documents/")
     fs.mkdirSync(documentFolder, { recursive: true })
+    const db = await MongoDB.connect()
 
     for (const statParameters of statsParameters) {
       const filepath = path.join(documentFolder, statParameters.filename)

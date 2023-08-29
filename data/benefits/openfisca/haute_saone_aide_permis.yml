@@ -1,0 +1,14 @@
+label: aide départementale au permis de conduire
+institution: departement_haute_saone
+description: Le Département aide les jeunes de 18 à 25 à financer leur permis de conduire.
+link: https://www.haute-saone.fr/index.php/nos-e-services/aides-aux-familles/pack-jeunes/
+conditions:
+  - Être inscrit dans une auto-école en conduite accompagnée ou traditionnelle.
+teleservice: https://www.mes-services-publics70.fr/
+prefix: l’
+type: float
+unit: "€"
+periodicite: ponctuelle
+entity: individus
+openfiscaPeriod: thisMonth
+interestFlag: _interetPermisDeConduire

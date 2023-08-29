@@ -46,7 +46,7 @@ const simulationPerMonthPerActivity = [
       count: { $sum: 1 },
     },
   },
-  { $sort: { "_id.month": 1 } },
+  { $sort: { "_id.month": 1, "_id.activite": 1 } },
 ]
 
 const simulationPerMonthPerAge = [
@@ -81,7 +81,7 @@ const simulationPerMonthPerAge = [
       count: { $sum: 1 },
     },
   },
-  { $sort: { "_id.month": 1 } },
+  { $sort: { "_id.month": 1, "_id.age": 1 } },
 ]
 
 const simulationPerMonthPerDepcom = [
@@ -124,7 +124,14 @@ const simulationPerMonthPerDepcom = [
       count: { $sum: 1 },
     },
   },
-  { $sort: { "_id.month": 1 } },
+  {
+    $sort: {
+      "_id.month": 1,
+      "_id.depcom100kp": 1,
+      "_id.departement": 1,
+      "_id.region": 1,
+    },
+  },
 ]
 
 const statsParameters = [

@@ -7,7 +7,7 @@ export interface MongooseLayout {
 }
 
 interface FollowupStaticMethods {
-  findByEmail(email: string): Promise<HydratedDocument<FollowupInterface>>
+  findByEmail(email: string): Promise<HydratedDocument<FollowupInterface[]>>
 }
 
 export interface IFollowupModel

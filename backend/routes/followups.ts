@@ -4,7 +4,7 @@ import express, { Express } from "express"
 import {
   followupByAccessToken,
   postSurvey,
-  showSurveyResult,
+  showFollowup,
   showSurveyResults,
   showSurveyResultByEmail,
   getFollowup,
@@ -22,9 +22,9 @@ const followupsRoutes = function (api: Express) {
     .get(cookieParser(), githubController.access)
     .get(showSurveyResults)
   api
-    .route("/followups/id/:surveyId")
+    .route("/followups/id/:followupId")
     .get(cookieParser(), githubController.access)
-    .get(showSurveyResult)
+    .get(showFollowup)
   api
     .route("/followups/email/:email")
     .get(cookieParser(), githubController.access)

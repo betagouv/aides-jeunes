@@ -70,11 +70,11 @@ export function getFollowup(req: Request, res: Response) {
   } as FetchSurveyLayout)
 }
 
-export function showSurveyResult(req: Request, res: Response) {
-  Followup.findById(req.params.surveyId)
-    .then((simulation: any) => {
-      if (!simulation) return res.sendStatus(404)
-      res.send([simulation])
+export function showFollowup(req: Request, res: Response) {
+  Followup.findById(req.params.followupId)
+    .then((followup: FollowupInterface | null) => {
+      if (!followup) return res.sendStatus(404)
+      res.send([followup])
     })
     .catch((error: Error) => {
       console.error("error", error)
@@ -102,9 +102,9 @@ export function showSurveyResults(req: Request, res: Response) {
 
 export function showSurveyResultByEmail(req: Request, res: Response) {
   Followup.findByEmail(req.params.email)
-    .then((simulations: any) => {
-      if (!simulations || !simulations.length) return res.sendStatus(404)
-      res.send(simulations)
+    .then((followups: FollowupInterface[]) => {
+      if (!followups || !followups.length) return res.sendStatus(404)
+      res.send(followups)
     })
     .catch((error: Error) => {
       console.error("error", error)

@@ -200,6 +200,8 @@ async function generateMongoStats() {
         }
         fileStream.write(`${line.join(separator)}\n`)
       }
+			fileStream.end()
+			console.log(`Generated statistics file: ${statParameters.filename}`)
     }
   } catch (error) {
     console.log(`Error: ${error}`)

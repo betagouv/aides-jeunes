@@ -181,9 +181,10 @@ async function generateMongoStats() {
       fileStream.end()
       console.log(`Generated statistics file: ${statParameters.filename}`)
     }
-    MongoDB.closeClient()
   } catch (error) {
     console.error(`An error occured: ${error}`)
+  } finally {
+    MongoDB.closeClient()
   }
 }
 await generateMongoStats()

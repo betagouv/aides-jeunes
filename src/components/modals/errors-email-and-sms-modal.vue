@@ -20,8 +20,8 @@ const recapEmailState = computed(() => store.recapEmailState)
             recapPhoneState === "error" && recapEmailState === "error"
               ? "email et par SMS"
               : recapPhoneState === "error"
-              ? "SMS"
-              : "email"
+              ? "SMS. Service momentanément indisponible, veuillez réessayer plus tard. Vous pouvez également recevoir le récapitulatif par email."
+              : "email. Service momentanément indisponible, veuillez réessayer plus tard. Vous pouvez également recevoir le récapitulatif par SMS."
           }}
         </p>
       </div>

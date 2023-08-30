@@ -1,5 +1,4 @@
 import Followup from "../models/followup.js"
-import { IFollowup } from "../types/models.d.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
@@ -10,11 +9,6 @@ import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurveyLayout } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 
-// TODO next line is to be updated once tokens are used globally
-const excludeFields = ["accessToken", "surveys.accessToken"]
-  .join(" -")
-  .replace(/^/, "-")
-
 export function followup(
   req: Request,
   res: Response,
@@ -23,7 +17,7 @@ export function followup(
 ) {
   Followup.findById(id)
     .populate("simulation")
-    .exec(function (err: any, followup: any) {
+    .exec(function (err: any, followup: FollowupInterface | null) {
       if (err) {
         return next(err)
       }
@@ -56,7 +50,7 @@ export async function persist(req: Request, res: Response) {
       simulation,
       req.body.email,
       req.body.surveyOptin
-    )) as IFollowup
+    )) as FollowupInterface
 
     await followup.sendSimulationResultsEmail()
 
@@ -76,11 +70,11 @@ export function getFollowup(req: Request, res: Response) {
   } as FetchSurveyLayout)
 }
 
-export function showSurveyResult(req: Request, res: Response) {
-  Followup.findById(req.params.surveyId)
-    .then((simulation: any) => {
-      if (!simulation) return res.sendStatus(404)
-      res.send([simulation])
+export function showFollowup(req: Request, res: Response) {
+  Followup.findById(req.params.followupId)
+    .then((followup: FollowupInterface | null) => {
+      if (!followup) return res.sendStatus(404)
+      res.send([followup])
     })
     .catch((error: Error) => {
       console.error("error", error)
@@ -108,22 +102,9 @@ export function showSurveyResults(req: Request, res: Response) {
 
 export function showSurveyResultByEmail(req: Request, res: Response) {
   Followup.findByEmail(req.params.email)
-    .then((simulations: any) => {
-      if (!simulations || !simulations.length) return res.sendStatus(404)
-      res.send(simulations)
-    })
-    .catch((error: Error) => {
-      console.error("error", error)
-      return res.sendStatus(400)
-    })
-}
-
-export function showSimulation(req: Request, res: Response) {
-  Followup.findById(req.params.surveyId)
-    .select(excludeFields)
-    .then((simulation: any) => {
-      if (!simulation) return res.sendStatus(404)
-      res.send([simulation])
+    .then((followups: FollowupInterface[]) => {
+      if (!followups || !followups.length) return res.sendStatus(404)
+      res.send(followups)
     })
     .catch((error: Error) => {
       console.error("error", error)
@@ -137,7 +118,7 @@ export async function followupByAccessToken(
   next: NextFunction,
   accessToken: any
 ) {
-  const followup: IFollowup | null = await Followup.findOne({
+  const followup: FollowupInterface | null = await Followup.findOne({
     accessToken,
   })
   if (!followup) return res.sendStatus(404)

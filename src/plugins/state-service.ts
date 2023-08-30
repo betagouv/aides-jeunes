@@ -24,7 +24,7 @@ const StateService = {
               action: "Navigation cancelled",
               label: failure.toString(),
             },
-            this.$matomo
+            window.Piwik?.getTracker()
           )
         } else {
           throw new Error(failure)

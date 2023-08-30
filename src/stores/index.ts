@@ -14,6 +14,7 @@ import {
   Answer,
   Calculs,
   PersistedStore,
+  Patrimoine,
   Resultats,
   Simulation,
   Situation,
@@ -302,7 +303,7 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    setPatrimoine(patrimoine: any) {
+    setPatrimoine(patrimoine: Patrimoine | undefined) {
       this.simulation.patrimoine = patrimoine
       this.setDirty()
     },

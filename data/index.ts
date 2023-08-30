@@ -10,6 +10,7 @@ import {
   InstitutionsMap,
 } from "./types/institutions.d.js"
 import { StandardBenefit, BenefitsMap } from "./types/benefits.d.js"
+import { IDataGenerator } from "./types/generator.d.js"
 
 function generateInstitutionId(institution: InstitutionRawLayout) {
   return `${institution.type}_${
@@ -17,7 +18,7 @@ function generateInstitutionId(institution: InstitutionRawLayout) {
   }`
 }
 
-function generateBenefitId(benefit) {
+function generateBenefitId(benefit: StandardBenefit) {
   return benefit.id || benefit.slug
 }
 
@@ -45,7 +46,7 @@ function transformInstitutions(
   }, {})
 }
 
-function setTop(benefit, institution: InstitutionRawLayout) {
+function setTop(benefit: StandardBenefit, institution: InstitutionRawLayout) {
   const default_top =
     institution.top ||
     (institution.type === "national"
@@ -70,10 +71,10 @@ function setDefaults(
 export function generate(
   collections: JamstackLayout["collections"],
   additionalBenefitAttributes,
-  aidesVeloBenefitListGenerator?,
-  fslGenerator?,
-  apaGenerator?
-) {
+  aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
+  fslGenerator?: typeof buildFSL,
+  apaGenerator?: typeof buildAPA
+): IDataGenerator {
   const institutions = transformInstitutions(collections.institutions.items)
   collections.benefits_javascript.items.forEach((benefit) => {
     benefit.source = "javascript"

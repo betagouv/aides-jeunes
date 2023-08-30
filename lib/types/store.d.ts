@@ -1,7 +1,9 @@
+import { StandardBenefit } from "@data/types/benefits.d.js"
+
 export interface Resultats {
   _id?: string
-  droitsEligibles: [] | null
-  droitsInjectes: [] | null
+  droitsEligibles: StandardBenefit[] | null
+  droitsInjectes: StandardBenefit[] | null
 }
 
 export interface Calculs {

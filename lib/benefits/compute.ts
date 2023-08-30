@@ -3,6 +3,9 @@ import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
 import determineCustomizationIds from "./customization.js"
 import { computeJavascriptBenefits } from "./compute-javascript.js"
 import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
+import { StandardBenefit } from "../../data/types/benefits.js"
+import { situationsLayout } from "../../lib/types/situations.d.js"
+import { IDataGenerator } from "../../data/types/generator.d.js"
 
 import { generator } from "../dates.js"
 export const datesGenerator = generator
@@ -55,7 +58,13 @@ export function round(amount, aide) {
   }
 }
 
-export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
+export function computeAides(
+  this: IDataGenerator,
+  situation: situationsLayout,
+  id: string,
+  openfiscaResponse,
+  showPrivate?: boolean
+) {
   const periods = generator(situation.dateDeValeur)
 
   computeJavascriptBenefits(this, situation, openfiscaResponse)
@@ -64,13 +73,13 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
   const computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 
   const result = {
-    droitsEligibles: [],
-    droitsInjectes: [], // declared by the user
-    _id: undefined,
+    droitsEligibles: [] as StandardBenefit[],
+    droitsInjectes: [] as StandardBenefit[], // declared by the user
+    _id: undefined as string | undefined,
   }
 
   const individus = filter(
-    [].concat(
+    ([] as any).concat(
       situation.demandeur,
       situation.conjoint,
       ...(situation.enfants || [])

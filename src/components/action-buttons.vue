@@ -61,12 +61,11 @@ const localOnSubmit = (event) => {
 }
 
 const goBack = () => {
-  window._paq?.push([
-    "trackEvent",
+  window.Piwik?.getTracker()?.trackEvent(
     "Parcours",
     "Bouton précédent",
-    route.fullPath,
-  ])
+    route.fullPath
+  )
   const answerIndex = getAnswerIndexByPath(
     store.simulation.answers.current,
     route.fullPath

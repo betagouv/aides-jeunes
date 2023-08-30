@@ -34,6 +34,7 @@
     "tools:cleaner": "ts-node ./tools/cleaner.ts",
     "tools:evaluate-benefits": "ts-node ./tools/evaluate-benefits",
     "tools:generate-missing-institutions-aides-velo": "ts-node ./tools/generate-missing-institutions-aides-velo",
+    "tools:generate-mongo-stats": "ts-node ./tools/mongo-query.ts",
     "tools:geographical-benefits-details": "ts-node ./tools/geographical-benefits-details",
     "tools:get-all-steps": "ts-node ./tools/get-all-steps",
     "tools:institutions-logo-check": "ts-node ./tools/institutions-logo-check",

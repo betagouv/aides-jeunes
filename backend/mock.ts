@@ -7,6 +7,7 @@ import pollResult from "./lib/mattermost-bot/poll-result.js"
 import { generateSituation } from "../lib/situations.js"
 import { computeAides } from "../lib/benefits/compute.js"
 import benefits from "../data/all.js"
+import { situationsLayout } from "../lib/types/situations.js"
 
 const computeBenefits = computeAides.bind(benefits)
 
@@ -58,7 +59,7 @@ function mock(app: express.Application) {
   app.get("/api/simulation/:id/results", function (req, res, next) {
     try {
       const simulation = cache[req.params.id]
-      const situation = generateSituation(simulation)
+      const situation = generateSituation(simulation) as situationsLayout
       sendToOpenfisca(situation, async function (err, result) {
         if (err) {
           return next(err)

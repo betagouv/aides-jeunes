@@ -64,6 +64,17 @@ const simulationPerMonthPerAge = [
           0,
         ],
       },
+      date_naissance: {
+        $arrayElemAt: [
+          {
+            $filter: {
+              input: "$answers.all",
+              cond: { $eq: ["$$this.fieldName", "date_naissance"] },
+            },
+          },
+          0,
+        ],
+      },
       date: "$dateDeValeur",
     },
   },
@@ -76,7 +87,28 @@ const simulationPerMonthPerAge = [
             date: "$date",
           },
         },
-        age: "$age.value",
+        age: {
+          $ifNull: [
+            "$age.value",
+            {
+              $floor: {
+                $divide: [
+                  {
+                    $subtract: [
+                      "$$NOW",
+                      {
+                        $dateFromString: {
+                          dateString: "$date_naissance.value",
+                        },
+                      },
+                    ],
+                  },
+                  365 * 24 * 60 * 60 * 1000,
+                ],
+              },
+            },
+          ],
+        },
       },
       count: { $sum: 1 },
     },

@@ -108,7 +108,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
   function (username, password) {
-    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici https://mes-aides.1jeune1solution.beta.gouv.fr/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici ${process.env.baseURL}/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
     const encodedText = encodeURIComponent(text)
     const phone =
       this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
@@ -125,7 +125,7 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
     }
     const renderUrl = this.renderSimulationResultsSmsUrl(username, password)
     const axiosInstance = axios.create({
-      timeout: 5000,
+      timeout: 10000,
     })
     const { data, status } = await axiosInstance.get(renderUrl)
     if (status !== 200 || data.responseCode !== 0) {
@@ -133,10 +133,9 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
     }
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
-    // console.error("error", err)
     this.error = JSON.stringify(err, null, 2)
+    console.error("sendSimulationResultsSms error :", err)
     throw err
-    // return this.save()
   }
 })
 
@@ -178,24 +177,22 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
   return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
-        return sendMail
-          ? sendMail({
-              to: followup.email,
-              subject: render.subject,
-              text: render.text,
-              html: render.html,
-              headers: {
-                "x-tm-tags": `["survey", "${surveyType}"]`,
-              },
-            })
-          : Promise.resolve({ messageId: "fake-message-id" })
-              .then((response) => {
-                return response.messageId
-              })
-              .then((messageId) => {
-                survey.messageId = messageId
-                return survey
-              })
+        return sendMail({
+          to: followup.email,
+          subject: render.subject,
+          text: render.text,
+          html: render.html,
+          headers: {
+            "x-tm-tags": `["survey", "${surveyType}"]`,
+          },
+        })
+          .then((response) => {
+            return response.messageId
+          })
+          .then((messageId) => {
+            survey.messageId = messageId
+            return survey
+          })
       })
       .catch((err: Error) => {
         console.log("error", err)

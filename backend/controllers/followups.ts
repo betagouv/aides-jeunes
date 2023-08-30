@@ -39,8 +39,8 @@ export function resultRedirect(req: Request, res: Response) {
 }
 
 export async function persist(req: Request, res: Response) {
-  if (!(req.body.email?.length || req.body.phone?.length)) {
-    return res.status(400).send({ result: "KO" })
+  if (!req.body.email?.length && !req.body.phone?.length) {
+    return res.status(400).send({ result: "Missing Email and Phone" })
   }
 
   const simulation = req.simulation
@@ -62,7 +62,7 @@ export async function persist(req: Request, res: Response) {
     return res.send({ result: "OK" })
   } catch (error) {
     console.error("error", error)
-    return res.status(400).send({ result: error })
+    return res.status(500).send("Error while persisting followup")
   }
 }
 

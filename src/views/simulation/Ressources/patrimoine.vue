@@ -275,16 +275,6 @@ export default {
           this.demandeur[patrimoinType.id][this.periodKey]
       })
 
-      Object.values(mapping).forEach((valeur) =>
-        valeur.sources.forEach((source) => {
-          values[source] = this.demandeur[source][this.periodKey]
-        })
-      )
-
-      if (this.hasBiensLoues) {
-        values[PatrimoineTypes.valeur_patrimoine_loue] =
-          this.demandeur[PatrimoineTypes.valeur_patrimoine_loue][this.periodKey]
-      }
       this.store.setPatrimoine(values)
       this.$router.push("/simulation/resultats")
     },

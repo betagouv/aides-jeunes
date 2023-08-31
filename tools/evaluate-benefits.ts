@@ -4,6 +4,7 @@ import { computeAides } from "../lib/benefits/compute.js"
 import benefits from "../data/all.js"
 import("../backend/lib/mongo-connector.js")
 import Simulation from "../backend/models/simulation.js"
+import { situationsLayout } from "../lib/types/situations.js"
 
 function main() {
   const simulationId = process.argv[2]
@@ -17,7 +18,7 @@ function main() {
   Simulation.findById(simulationId, (err, simulation) => {
     if (err) return process.exit(1)
 
-    const situation = generateSituation(simulation)
+    const situation = generateSituation(simulation) as situationsLayout
 
     calculate(situation, function (err, result) {
       const openfiscaResponse = Object.assign(

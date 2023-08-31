@@ -38,7 +38,9 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
     },
     createdAt: { type: Date, default: Date.now },
     sentAt: { type: Date },
+    smsSentAt: { type: Date },
     messageId: { type: String },
+    smsMessageId: { type: String },
     surveySentAt: { type: Date },
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
@@ -48,6 +50,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
     },
     version: Number,
     error: { type: Object },
+    smsError: { type: Object },
     accessToken: { type: String },
   },
   { minimize: false, id: false }
@@ -68,12 +71,12 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
 })
 
 FollowupSchema.method("postSimulationResultsSms", function (messageId) {
-  this.sentAt = Date.now()
-  this.messageId = messageId
+  this.smsSentAt = Date.now()
+  this.smsMessageId = messageId
   if (!this.surveyOptin) {
     this.phone = undefined
   }
-  this.error = undefined
+  this.smsError = undefined
   return this.save()
 })
 
@@ -131,9 +134,10 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
     if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`Send SMS data error :${data}`)
     }
+    console.log("message ids: ", data.messageIds[0])
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
-    this.error = JSON.stringify(err, null, 2)
+    this.smsError = JSON.stringify(err, null, 2)
     console.error("sendSimulationResultsSms error :", err)
     throw err
   }

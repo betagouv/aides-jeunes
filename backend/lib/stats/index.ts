@@ -29,6 +29,7 @@ try {
     basic: [...mongoData.dailySituationCount, ...piwikData],
     survey: mongoData.survey,
     funnel: funnelData,
+    computedAt: dayjs().toISOString(),
   }
   await fs.writeFile(statsFilePath, JSON.stringify(data, null, 2), "utf-8")
 } catch (error) {

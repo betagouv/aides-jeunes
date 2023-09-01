@@ -2,12 +2,12 @@ import Individu from "./individu.js"
 import { generator } from "./dates.js"
 
 import { situationsLayout } from "../lib/types/situations.js"
-import { individuLayout } from "../lib/types/individu.js"
+import { IndividuProperties } from "../lib/types/individu.js"
 import { ActiviteType } from "./enums/activite.js"
 import { PatrimoineTypes } from "./enums/patrimoine.js"
-import { resourceLayout, resourceCategoryLayout } from "./types/resources.js"
+import { Resource, ResourceCategory } from "./types/resources.js"
 
-export const ressourceCategories: resourceCategoryLayout[] = [
+export const ressourceCategories: ResourceCategory[] = [
   {
     id: "revenusActivite",
     label: "Revenus d'activité",
@@ -38,7 +38,7 @@ export const ressourceCategories: resourceCategoryLayout[] = [
   },
 ]
 
-export const ressourceTypes: resourceLayout[] = [
+export const ressourceTypes: Resource[] = [
   {
     id: "salaire_net",
     label: "Salaire (dont primes et indemnités de fin de contrat)",
@@ -91,7 +91,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocations familiales",
     category: "allocations",
     prefix: "des",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -100,7 +100,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Complément familial (CF)",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -109,7 +109,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation de soutien familial (ASF)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(
@@ -135,7 +135,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation de solidarité aux personnes âgées (ASPA)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return (
         55 <=
         Individu.age(individu, generator(situation.dateDeValeur).today.value)
@@ -147,7 +147,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation supplémentaire d’invalidité (ASI)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.handicap === true
     },
   },
@@ -156,7 +156,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation de solidarité spécifique (ASS)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.activite !== ActiviteType.etudiant
     },
   },
@@ -165,7 +165,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation adulte handicapé (AAH)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.handicap === true
     },
   },
@@ -176,7 +176,7 @@ export const ressourceTypes: resourceLayout[] = [
     prefix: "le",
     sourceOpenfisca:
       "prestations.minima_sociaux.caah.montant_complement_ressources",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.handicap === true
     },
   },
@@ -185,7 +185,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Contrat engagement jeune",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       const age = Individu.age(
         individu,
         generator(situation.dateDeValeur).today.value
@@ -201,7 +201,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "allocations",
     prefix: "la",
     sourceOpenfisca: "prestations.minima_sociaux.caah.majoration_vie_autonome",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.handicap === true
     },
   },
@@ -210,7 +210,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Allocation d’éducation de l’enfant handicapé (AEEH)",
     category: "allocations",
     prefix: "l’",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return (
         individu.id !== "demandeur" ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
@@ -222,7 +222,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Prestation de compensation du handicap (PCH)",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return (
         individu.handicap ||
         Boolean(situation.enfants?.filter((enfant) => enfant.handicap).length)
@@ -234,7 +234,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Prestation d’accueil du jeune enfant (PAJE) - Allocation de base",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -243,7 +243,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Complément de libre choix d’activité (CLCA)",
     category: "allocations",
     prefix: "le",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -252,7 +252,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Prestation partagée d’éducation de l’enfant (PreParE)",
     category: "allocations",
     prefix: "la",
-    isRelevant: (situation: situationsLayout, individu: individuLayout) => {
+    isRelevant: (situation: situationsLayout, individu: IndividuProperties) => {
       return individu.id !== "demandeur" || Boolean(situation.enfants?.length)
     },
   },
@@ -328,7 +328,7 @@ export const ressourceTypes: resourceLayout[] = [
     category: "pensions",
     prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
-    isRelevant(situation: situationsLayout, individu: individuLayout) {
+    isRelevant(situation: situationsLayout, individu: IndividuProperties) {
       return individu.activite === ActiviteType.retraite
     },
   },
@@ -337,7 +337,7 @@ export const ressourceTypes: resourceLayout[] = [
     label: "Retraite du combattant",
     category: "pensions",
     prefix: "une",
-    isRelevant(situation: situationsLayout, individu: individuLayout) {
+    isRelevant(situation: situationsLayout, individu: IndividuProperties) {
       return individu.activite === ActiviteType.retraite
     },
   },

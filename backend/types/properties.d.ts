@@ -1,4 +1,4 @@
-export interface propertyLayout {
+export interface Property {
   type: string
   entity: string
 }

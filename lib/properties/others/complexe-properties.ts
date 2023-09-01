@@ -4,7 +4,7 @@ import Individu from "../../individu.js"
 import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
-import { logementQuestionLayout } from "../../types/logement.d.js"
+import { QuestionLogement } from "../../types/logement.d.js"
 import { StepLayout } from "../../types/steps.d.js"
 import dayjs from "dayjs"
 
@@ -43,7 +43,7 @@ export default <{ [key: string]: any }>{
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       return [loyerData.loyerQuestion, loyerData.chargesQuestion]
         .filter(
-          (question): question is logementQuestionLayout =>
+          (question): question is QuestionLogement =>
             typeof question !== "undefined"
         )
         .map((question) => {

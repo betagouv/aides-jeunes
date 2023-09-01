@@ -31,7 +31,7 @@ module.exports = {
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/naming-convention": [
-      "error",
+      "warn",
       {
         selector: "interface",
         format: ["PascalCase"],

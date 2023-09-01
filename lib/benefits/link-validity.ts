@@ -1,4 +1,4 @@
-import { benefitData, GristOperation } from "../types/link-validity.js"
+import { BenefitProperties, GristOperation } from "../types/link-validity.js"
 
 function buildPullRequestProcessor(pullRequestURL) {
   function processPullRequest(
@@ -80,7 +80,7 @@ function processCron(
 
 export function determineOperationsOnBenefitLinkError(
   existingWarnings,
-  benefitLinksCheckResult: benefitData,
+  benefitLinksCheckResult: BenefitProperties,
   pullRequestURL?: string
 ) {
   const processor = pullRequestURL

@@ -1,4 +1,4 @@
-export interface lieuLayout {
+export interface LieuProperties {
   id: string
   nom: string
   telephone: string

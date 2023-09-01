@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { situationsLayout } from "./situations.js"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { individuLayout } from "./individu.js"
+import { IndividuProperties } from "./individu.js"
 
-export interface resourceLayout {
+export interface Resource {
   id: string
   label: string
   category: string
   prefix?: string
-  isRelevant?(situationsLayout, individuLayout?): boolean
+  isRelevant?(situationsLayout, IndividuProperties?): boolean
   interuptionQuestionLabel?: string
   positionInList?: string
   hint?: string
@@ -21,7 +21,7 @@ export interface resourceLayout {
   }[]
 }
 
-export interface resourceCategoryLayout {
+export interface ResourceCategory {
   id: string
   label: string
 }

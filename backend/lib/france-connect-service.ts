@@ -2,7 +2,7 @@ import axios from "axios"
 import jwt from "jsonwebtoken"
 
 import config from "../config/index.js"
-import { answerLayout } from "../../lib/types/answer.js"
+import { Answer } from "../../lib/types/answer.js"
 
 export const enum CookiesKeys {
   fcState = "fc_state",
@@ -62,7 +62,7 @@ async function retrieveAccessToken(code, nonceToken) {
 }
 
 async function retrieveUserAnswers(accessToken, idToken) {
-  const answers: answerLayout[] = []
+  const answers: Answer[] = []
   const headers = {
     Authorization: `Bearer ${accessToken}`,
   }

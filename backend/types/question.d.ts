@@ -1,4 +1,4 @@
-export interface questionLayout {
+export interface Question {
   id: any
   entity: any
   individu: any

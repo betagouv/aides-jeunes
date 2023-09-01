@@ -1,11 +1,11 @@
 import aidesVelo from "aides-velo"
-import { benefitVeloLayout } from "../../data/types/benefits.d.js"
+import { VeloBenefit } from "../../data/types/benefits.d.js"
 import { InstitutionLayout } from "../../data/types/institutions.d.js"
 const benefits = [...aidesVelo()]
 
 function generate_benefit_list(
   institutions: InstitutionLayout[]
-): benefitVeloLayout[] {
+): VeloBenefit[] {
   const potentialInstitutions = {
     région: institutions.filter((i) => i.type === "region"),
     département: institutions.filter((i) => i.type === "departement"),
@@ -13,7 +13,7 @@ function generate_benefit_list(
     "code insee": institutions.filter((i) => i.type === "commune"),
   }
 
-  benefits.forEach((b: benefitVeloLayout) => {
+  benefits.forEach((b: VeloBenefit) => {
     if (b && b.collectivity) {
       switch (b.collectivity.kind) {
         case "pays": {
@@ -45,8 +45,8 @@ function generate_benefit_list(
   })
 
   return benefits
-    .filter((b: benefitVeloLayout) => !b.discard)
-    .map((b: benefitVeloLayout) => {
+    .filter((b: VeloBenefit) => !b.discard)
+    .map((b: VeloBenefit) => {
       const description =
         b.description && !b.description.match(/((\s\$)+|(^\$)+)\w+/)
           ? b.description

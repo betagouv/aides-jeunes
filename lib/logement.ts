@@ -1,5 +1,5 @@
 import { getAnswer } from "./answers.js"
-import { situationsMenageLayout } from "./types/situations.js"
+import { SituationMenage } from "./types/situations.js"
 import {
   LogementType,
   LocationType,
@@ -10,7 +10,7 @@ function getStatutOccupationLogement({
   _logementType,
   _locationType,
   _primoAccedant,
-}: situationsMenageLayout) {
+}: SituationMenage) {
   let statutOccupationLogement = _logementType
   if (_logementType === LogementType.locataire) {
     if (_locationType === LocationType.vide) {

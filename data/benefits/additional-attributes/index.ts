@@ -2,8 +2,8 @@
 
 import dayjs from "dayjs"
 
-import { benefitLayout } from "../../types/benefits.js"
-import { openfiscaParametersLayout } from "../../../lib/types/parameters.js"
+import { Benefit } from "../../types/benefits.js"
+import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
 import { situationsLayout } from "../../../lib/types/situations.js"
 import { ActiviteType } from "../../../lib/enums/activite.js"
 
@@ -34,7 +34,7 @@ export const additionalBenefitAttributes = {
     },
   },
   rsa: {
-    labelFunction: function (b: benefitLayout) {
+    labelFunction: function (b: Benefit) {
       return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
     },
     customization: {
@@ -110,7 +110,7 @@ export const additionalBenefitAttributes = {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% / an ${b.legend}`
     },
-    legend: (parameters: openfiscaParametersLayout) =>
+    legend: (parameters: OpenfiscaParameters) =>
       `au lieu de ${
         parameters["taxation_capital.epargne.livret_a.taux"] * 100
       }%`,

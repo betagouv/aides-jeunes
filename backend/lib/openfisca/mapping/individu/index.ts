@@ -13,9 +13,9 @@ import {
 } from "../../../mes-aides/distance.js"
 
 import { ActiviteType } from "../../../../../lib/enums/activite.js"
-import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
+import { IndividuGenerator } from "../../../../../lib/types/individu.js"
 
-const individuSchema: individuGeneratorLayout = {
+const individuSchema: IndividuGenerator = {
   activite: {
     src: "activite",
     fn: function (activite) {

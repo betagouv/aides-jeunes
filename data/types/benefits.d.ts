@@ -8,7 +8,7 @@ type Aide = {
   amount?: number
 }
 
-export interface benefitLayout {
+export interface Benefit {
   id: string
   label: string
   type?: string
@@ -16,7 +16,7 @@ export interface benefitLayout {
   mock?: boolean
 }
 
-export interface benefitVeloLayout extends Aide {
+export interface VeloBenefit extends Aide {
   id: string
   url?: string
   collectivity: {
@@ -79,7 +79,7 @@ export interface StandardBenefit {
   type: string
   unit: string
   periodicite: string
-  legend: string | ((openfiscaParametersLayout) => string)
+  legend: string | ((OpenfiscaParameters) => string)
   montant: number | string | boolean
   interestFlag: string
   conditions_generales: any

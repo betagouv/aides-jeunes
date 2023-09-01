@@ -1,13 +1,13 @@
-import { answerLayout } from "./types/answer.js"
+import { Answer } from "./types/answer.js"
 
-export function isStepAnswered(answers: answerLayout[], step) {
+export function isStepAnswered(answers: Answer[], step) {
   return getStepAnswer(answers, step) !== undefined
 }
 
-export const getStepAnswer = (answers: answerLayout[], step) =>
+export const getStepAnswer = (answers: Answer[], step) =>
   getAnswer(answers, step.entity, step.variable, step.id)
 
-export const getAnswer = (answers: answerLayout[], entity, variable?, id?) => {
+export const getAnswer = (answers: Answer[], entity, variable?, id?) => {
   const answer = answers.find(
     (answer) =>
       answer.id === id &&
@@ -17,12 +17,12 @@ export const getAnswer = (answers: answerLayout[], entity, variable?, id?) => {
   return answer ? answer.value : undefined
 }
 
-export const getAnswerIndexByPath = (answers: answerLayout[], path) => {
+export const getAnswerIndexByPath = (answers: Answer[], path) => {
   return answers.findIndex((answer) => answer.path === path)
 }
 
 export const getAnswerIndex = (
-  answers: answerLayout[],
+  answers: Answer[],
   entityName,
   id,
   fieldName

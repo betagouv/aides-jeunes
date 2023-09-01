@@ -1,9 +1,9 @@
 import Sentry from "@sentry/node"
 import openfisca from "./getter.js"
 
-import { openfiscaParametersLayout } from "../../../lib/types/parameters.js"
+import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
 
-export const parametersList: openfiscaParametersLayout = {
+export const parametersList: OpenfiscaParameters = {
   "prestations_sociales.education.carte_des_metiers.age_maximal": 26,
   "prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite": 0.8,
   "taxation_capital.epargne.livret_a.taux": 0.005,

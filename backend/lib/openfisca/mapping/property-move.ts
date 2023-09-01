@@ -2,10 +2,10 @@ import { forEach, pickBy } from "lodash-es"
 
 import common from "./common.js"
 
-import { propertyLayout } from "../../../types/properties.js"
+import { Property } from "../../../types/properties.js"
 
 const famillePropertiesGivenToIndividu = Object.keys(
-  pickBy(common.requestedVariables, function (definition: propertyLayout) {
+  pickBy(common.requestedVariables, function (definition: Property) {
     return (
       (!definition.type || definition.type == "float") &&
       definition.entity == "familles"

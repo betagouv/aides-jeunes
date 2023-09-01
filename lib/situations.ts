@@ -2,11 +2,14 @@ import Ressource from "./ressource.js"
 import { ressourceTypes } from "./resources.js"
 import { generator as datesGenerator } from "./dates.js"
 import Scolarite from "./scolarite.js"
-import { individuLayout } from "./types/individu.js"
+import { IndividuProperties } from "./types/individu.js"
 import { situationsLayout } from "./types/situations.js"
 import Logement from "./logement.js"
 
-const generateDefaultIndividu = (role: string, id: string): individuLayout => ({
+const generateDefaultIndividu = (
+  role: string,
+  id: string
+): IndividuProperties => ({
   id: id,
   annee_etude: undefined,
   date_naissance: undefined,

@@ -1,5 +1,5 @@
 import { VeloCategory } from "../enums/velo.js"
-export interface individuLayout {
+export interface IndividuProperties {
   id: string
   annee_etude?: string
   date_naissance?: string
@@ -20,7 +20,7 @@ export interface individuLayout {
   _interetsAidesVelo?: VeloCategory[]
 }
 
-export interface individuGeneratorLayout {
+export interface IndividuGenerator {
   [id: string]: {
     src?: string
     // eslint-disable-next-line @typescript-eslint/ban-types

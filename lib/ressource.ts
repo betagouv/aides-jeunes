@@ -1,10 +1,10 @@
 import resources from "./resources.js"
 
-import { typicalDatesLayout, dateLayout } from "../lib/types/dates.js"
-import { resourceLayout } from "./types/resources.js"
+import { TypicalDates, TypicalDate } from "../lib/types/dates.js"
+import { Resource } from "./types/resources.js"
 
-function getPeriodsForCurrentYear(dates: typicalDatesLayout, ressourceType) {
-  const periodKeys: dateLayout[] = []
+function getPeriodsForCurrentYear(dates: TypicalDates, ressourceType) {
+  const periodKeys: TypicalDate[] = []
   if (ressourceType.isMontantAnnuel) {
     periodKeys.push(dates.lastYear)
     return periodKeys
@@ -18,12 +18,12 @@ function getPeriodsForCurrentYear(dates: typicalDatesLayout, ressourceType) {
   return periodKeys
 }
 
-function getPeriodKeysForCurrentYear(dates: typicalDatesLayout, ressourceType) {
+function getPeriodKeysForCurrentYear(dates: TypicalDates, ressourceType) {
   return getPeriodsForCurrentYear(dates, ressourceType).map((date) => date.id)
 }
 
 function setDefaultValueForCurrentYear(
-  dates: typicalDatesLayout,
+  dates: TypicalDates,
   individu,
   ressourceType
 ) {
@@ -51,7 +51,7 @@ function setDefaultValueForCurrentYear(
   })
 }
 
-function unsetForCurrentYear(dates: typicalDatesLayout, entity, ressourceType) {
+function unsetForCurrentYear(dates: TypicalDates, entity, ressourceType) {
   const ressourceId = ressourceType.id
   entity[ressourceId] = entity[ressourceId] || {}
   const ressource = entity[ressourceId]
@@ -107,7 +107,7 @@ function getIndividuRessourceCategories(individu, situation) {
     ...new Set(
       resources.ressourceTypes
         .filter(
-          (ressourceType: resourceLayout) =>
+          (ressourceType: Resource) =>
             isSelectedForCurrentYear(
               individu[ressourceType.id],
               ressourceType

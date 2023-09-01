@@ -1,7 +1,7 @@
 import currency from "currency.js"
-import { droitEstimeLayout } from "../types/details.js"
+import { DroitEstime } from "../types/details.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
-import { openfiscaParametersLayout } from "@lib/types/parameters.d.js"
+import { OpenfiscaParameters } from "@lib/types/parameters.d.js"
 
 const PERIODICITE_PONCTUELLE = "ponctuelle"
 const PERIODICITE_MENSUELLE = "mensuelle"
@@ -17,7 +17,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 
 function getBenefitLegend(
   benefit: StandardBenefit,
-  parameters: openfiscaParametersLayout
+  parameters: OpenfiscaParameters
 ): string {
   if (benefit.legend) {
     if (typeof benefit.legend === "function") {
@@ -48,9 +48,9 @@ function getValueOfBoolean(value: boolean) {
 
 function formatDroitEstime(
   droit: StandardBenefit,
-  parameters: openfiscaParametersLayout
+  parameters: OpenfiscaParameters
 ) {
-  const droitEstime: droitEstimeLayout = {
+  const droitEstime: DroitEstime = {
     id: droit.id,
     label: droit.label,
     legend: getBenefitLegend(droit, parameters),

@@ -1,13 +1,13 @@
-import { individuLayout } from "./individu.js"
-import { enfantLayout } from "./enfant.d.js"
+import { IndividuProperties } from "./individu.js"
+import { Enfant } from "./enfant.d.js"
 
 export interface situationsLayout {
   dateDeValeur: number
   version?: number
-  demandeur: individuLayout
-  enfants: enfantLayout[]
+  demandeur: IndividuProperties
+  enfants: Enfant[]
   famille?: any
-  menage: situationsMenageLayout
+  menage: SituationMenage
   parents?: any
   conjoint?: any
   answers?: any
@@ -15,7 +15,7 @@ export interface situationsLayout {
   ressourcesFiscales?: any
 }
 
-export interface situationsMenageLayout {
+export interface SituationMenage {
   aide_logement_date_pret_conventionne?: string
   _departement?: string
   depcom?: string

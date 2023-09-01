@@ -4,22 +4,22 @@ import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import Individu from "@lib/individu.js"
 import { ActiviteType } from "@lib/enums/activite.js"
-import { lieuLayout } from "@lib/types/lieu.d.js"
+import { LieuProperties } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
-import { benefitLayout } from "@data/types/benefits"
+import { Benefit } from "@data/types/benefits"
 import Simulation from "@/lib/simulation.js"
 
 export function useLieux() {
   const store = useStore()
   const $route = useRoute()
 
-  const lieux = ref<lieuLayout[]>([])
-  const benefit = ref<benefitLayout | null>(null)
+  const lieux = ref<LieuProperties[]>([])
+  const benefit = ref<Benefit | null>(null)
   const updating = ref<boolean>(true)
 
   const currentLieu = computed(() => {
     return lieux.value.find(
-      (lieu: lieuLayout) => lieu.id === $route.params.lieu_id
+      (lieu: LieuProperties) => lieu.id === $route.params.lieu_id
     )
   })
 

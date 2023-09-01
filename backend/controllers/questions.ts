@@ -9,7 +9,7 @@ import ComplexeProperties from "../../lib/properties/others/complexe-properties.
 import DepcomProperties from "../../lib/properties/depcom-properties.js"
 import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
 
-import { questionLayout } from "../types/question.js"
+import { Question } from "../types/question.js"
 
 const COMPLEXE_STEPS = Object.values(ComplexeProperties)
 
@@ -95,8 +95,8 @@ function getQuestionsPerStep(
   step,
   propertyData,
   individus
-): questionLayout | undefined {
-  const result: questionLayout = {
+): Question | undefined {
+  const result: Question = {
     id: step.variable,
     entity: step.entity,
     individu: step.id,

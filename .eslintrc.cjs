@@ -30,6 +30,13 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "interface",
+        format: ["PascalCase"],
+      },
+    ],
     "import/named": "off",
     "import/no-unresolved": "off",
     "no-irregular-whitespace": 0,

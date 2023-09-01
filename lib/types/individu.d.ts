@@ -1,5 +1,5 @@
 import { VeloCategory } from "../enums/velo.js"
-export interface IndividuProperties {
+export interface Individu {
   id: string
   annee_etude?: string
   date_naissance?: string

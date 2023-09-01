@@ -1,8 +1,8 @@
-import { IndividuProperties } from "../../lib/types/individu.js"
+import { Individu } from "../../lib/types/individu.js"
 import { Situation } from "../../lib/types/situations.js"
 
 export interface OpenfiscaMapping {
-  individus: IndividuProperties[]
+  individus: Individu[]
   familles?: Famille
   foyers_fiscaux: FoyersFiscaux
   menages: Menage
@@ -21,7 +21,7 @@ export interface Menage {
 export interface FoyersFiscaux {
   _: {
     declarants: string[]
-    personnes_a_charge: IndividuProperties[]
+    personnes_a_charge: Individu[]
     rfr?: any
   }
 }

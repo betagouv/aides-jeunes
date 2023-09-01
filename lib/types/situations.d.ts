@@ -1,10 +1,10 @@
-import { IndividuProperties } from "./individu.js"
+import { Individu } from "./individu.js"
 import { Enfant } from "./enfant.d.js"
 
 export interface Situation {
   dateDeValeur: number
   version?: number
-  demandeur: IndividuProperties
+  demandeur: Individu
   enfants: Enfant[]
   famille?: any
   menage: SituationMenage

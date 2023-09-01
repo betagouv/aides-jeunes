@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import { Situation } from "@lib/types/situations.js"
 import { Enfant } from "@lib/types/enfant.js"
-import { IndividuProperties } from "@lib/types/individu.js"
+import { Individu } from "@lib/types/individu.js"
 
 const SituationMethods = {
   getDemandeur: function (situation: Situation) {
@@ -31,7 +31,7 @@ const SituationMethods = {
   },
 
   setEnfants: function (situation, enfants: Enfant) {
-    let individus: IndividuProperties[] = situation.individus
+    let individus: Individu[] = situation.individus
     individus = individus.filter(function (individu) {
       return "enfant" !== individu._role
     })

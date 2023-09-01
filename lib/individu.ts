@@ -2,7 +2,7 @@ import dayjs from "dayjs"
 import cloneDeep from "lodash.clonedeep"
 
 import { situationsFamiliales } from "./situations-familiales.js"
-import { IndividuProperties } from "./types/individu.js"
+import { Individu } from "./types/individu.js"
 
 function isRoleParent(role: string) {
   return ["demandeur", "conjoint"].includes(role)
@@ -12,7 +12,7 @@ function isWithoutParent(situation) {
   return ["decedes", "sans_autorite"].includes(situation.parents?._situation)
 }
 
-function ressourceHeader(individu: IndividuProperties) {
+function ressourceHeader(individu: Individu) {
   switch (individu._role) {
     case "demandeur":
       return "Vos ressources personnelles uniquement"
@@ -38,8 +38,8 @@ function getConjoint() {
   return get([], "conjoint").individu
 }
 
-function get(individus: IndividuProperties[], role: string, id?: string) {
-  const DEFAULT_INDIVIDU: IndividuProperties = {
+function get(individus: Individu[], role: string, id?: string) {
+  const DEFAULT_INDIVIDU: Individu = {
     id: role,
     annee_etude: undefined,
     date_naissance: undefined,
@@ -84,11 +84,11 @@ function getById(individus, individuId: string) {
 }
 
 const IndividuMethods = {
-  age: function (individu: IndividuProperties, dateDeReference: string) {
+  age: function (individu: Individu, dateDeReference: string) {
     return dayjs(dateDeReference).diff(individu.date_naissance, "year")
   },
 
-  label: function (individu: IndividuProperties, type?: string) {
+  label: function (individu: Individu, type?: string) {
     const VOYELLES = ["a", "e", "i", "o", "u", "y"]
 
     const labelDict = {
@@ -135,7 +135,7 @@ const IndividuMethods = {
   getConjoint,
   ressourceHeader,
 
-  ressourceShortLabel: function (individu: IndividuProperties) {
+  ressourceShortLabel: function (individu: Individu) {
     switch (individu._role) {
       case "demandeur":
         return "vos ressources"
@@ -144,13 +144,13 @@ const IndividuMethods = {
     }
   },
 
-  nationaliteLabel: function (individu: IndividuProperties) {
+  nationaliteLabel: function (individu: Individu) {
     return `TODO2${individu.id}` //NationaliteService.getLabel(individu.nationalite);
   },
 
   isRoleParent,
   isWithoutParent,
-  isParent: function (individu: IndividuProperties) {
+  isParent: function (individu: Individu) {
     return isRoleParent(individu._role)
   },
 

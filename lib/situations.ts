@@ -37,7 +37,10 @@ const getIndividu = (situation: Situation, id: string) => {
   return individu
 }
 
-export function generateSituation(simulation, useAll?: any) {
+export function generateSituation(
+  simulation,
+  useAll?: any
+): Situation | Record<string, never> {
   if (!simulation) {
     return {}
   }

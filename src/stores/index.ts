@@ -19,7 +19,6 @@ import {
   Simulation,
   Store,
 } from "@lib/types/store.d.js"
-import { Situation } from "@lib/types/situations"
 import { SimulationStatusEnum } from "@lib/enums/simulation.js"
 
 function defaultCalculs(): Calculs {
@@ -226,7 +225,7 @@ export const useStore = defineStore("store", {
           this.calculs.resultats._id === this.simulationId
       )
     },
-    situation(): Situation | any {
+    situation() {
       return generateSituation(this.simulation, true)
     },
     getSimulationToken(): string | undefined {

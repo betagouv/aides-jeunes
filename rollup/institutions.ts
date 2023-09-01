@@ -1,6 +1,6 @@
 import generator from "../data/all.js"
 import { StandardBenefit } from "../data/types/benefits.d.js"
-import { InstitutionLayout } from "../data/types/institutions.d.js"
+import { Institution } from "../data/types/institutions.d.js"
 
 import { createRequire } from "module"
 const require = createRequire(import.meta.url)
@@ -55,7 +55,7 @@ const institutions: RollupInstitutionMapInterface = {
 }
 
 for (const id in generator.institutionsMap) {
-  const institution: InstitutionLayout = generator.institutionsMap[id]
+  const institution: Institution = generator.institutionsMap[id]
 
   // Institution has no attached benefit
   if (!institutionsBenefits[institution.slug]) {

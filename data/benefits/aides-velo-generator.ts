@@ -1,11 +1,9 @@
 import aidesVelo from "aides-velo"
 import { VeloBenefit } from "../../data/types/benefits.d.js"
-import { InstitutionLayout } from "../../data/types/institutions.d.js"
+import { Institution } from "../../data/types/institutions.d.js"
 const benefits = [...aidesVelo()]
 
-function generate_benefit_list(
-  institutions: InstitutionLayout[]
-): VeloBenefit[] {
+function generate_benefit_list(institutions: Institution[]): VeloBenefit[] {
   const potentialInstitutions = {
     région: institutions.filter((i) => i.type === "region"),
     département: institutions.filter((i) => i.type === "departement"),

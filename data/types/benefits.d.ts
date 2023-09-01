@@ -1,4 +1,4 @@
-import { InstitutionLayout } from "./institutions.d.js"
+import { Institution } from "./institutions.d.js"
 
 // extends "Aide" type defined in "aides-velo" package
 type Aide = {
@@ -70,7 +70,7 @@ export interface JavascriptBenefitLayout {
 export interface StandardBenefit {
   slug: string
   label: string
-  institution: InstitutionLayout
+  institution: Institution
   description: string
   conditions: string[]
   link: string

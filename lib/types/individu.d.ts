@@ -1,4 +1,4 @@
-import { VeloType } from "../enums/velo.js"
+import { VeloCategory } from "../enums/velo.js"
 export interface individuLayout {
   id: string
   annee_etude?: string
@@ -17,7 +17,7 @@ export interface individuLayout {
   mention_baccalaureat?: string
   handicap?: boolean
   taux_incapacite?: number
-  _interetsAidesVelo?: VeloType[]
+  _interetsAidesVelo?: VeloCategory[]
 }
 
 export interface individuGeneratorLayout {

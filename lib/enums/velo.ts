@@ -1,4 +1,4 @@
-export enum VeloType {
+export enum VeloCategory {
   veloMecanique = "velo_mecanique",
   veloElectrique = "velo_electrique",
   veloCargo = "velo_cargo",

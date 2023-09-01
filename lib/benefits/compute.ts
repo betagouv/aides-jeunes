@@ -3,9 +3,9 @@ import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
 import determineCustomizationIds from "./customization.js"
 import { computeJavascriptBenefits } from "./compute-javascript.js"
 import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
-import { StandardBenefit } from "../../data/types/benefits.js"
 import { situationsLayout } from "../../lib/types/situations.d.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
+import { Resultats } from "@lib/types/store.js"
 
 import { generator } from "../dates.js"
 export const datesGenerator = generator
@@ -72,10 +72,10 @@ export function computeAides(
   const customizationIds = determineCustomizationIds(situation)
   const computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 
-  const result = {
-    droitsEligibles: [] as StandardBenefit[],
-    droitsInjectes: [] as StandardBenefit[], // declared by the user
-    _id: undefined as string | undefined,
+  const result: Resultats = {
+    droitsEligibles: [],
+    droitsInjectes: [], // declared by the user
+    _id: undefined,
   }
 
   const individus = filter(
@@ -100,7 +100,7 @@ export function computeAides(
         }) ||
         valueAt(benefit.id, situation.famille, period) !== undefined
       ) {
-        return result.droitsInjectes.push(
+        return result.droitsInjectes!.push(
           // @ts-ignore
           assign({}, benefit, {
             montant: sumBy(individus, (i) =>
@@ -133,7 +133,7 @@ export function computeAides(
           }
         : benefit.institution
 
-      result.droitsEligibles.push(
+      result.droitsEligibles!.push(
         // @ts-ignore
         assign({}, benefit, customization, {
           instructions:

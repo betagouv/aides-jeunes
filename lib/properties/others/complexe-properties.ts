@@ -1,6 +1,6 @@
 import { PropertyData, RecapPropertyLine, Step } from "../../types/property.js"
 import { capitalize, displayCurrencyValue } from "../../utils.js"
-import Individu from "../../individu.js"
+import IndividuMethods from "../../individu.js"
 import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
@@ -13,7 +13,10 @@ export default <{ [key: string]: any }>{
     matcher: (step: any) => step.variable === "_hasRessources",
     getFormat: (step: any, propertyData: PropertyData, individus: []) => {
       return propertyData.simulation.enfants.map((enfantNumber: number) => {
-        const enfant = Individu.getById(individus, `enfant_${enfantNumber}`)
+        const enfant = IndividuMethods.getById(
+          individus,
+          `enfant_${enfantNumber}`
+        )
         return {
           text: `${capitalize(
             enfant._firstName

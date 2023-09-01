@@ -19,10 +19,10 @@ function ressourceHeader(individu: IndividuProperties) {
     case "conjoint":
       return "Les ressources de votre conjoint ou conjointe"
     default:
-      return `Les ressources ${Individu.label(
+      return `Les ressources ${IndividuMethods.label(
         individu,
         "préposition"
-      )}${Individu.label(individu)}`
+      )}${IndividuMethods.label(individu)}`
   }
 }
 
@@ -83,7 +83,7 @@ function getById(individus, individuId: string) {
   return individu
 }
 
-const Individu = {
+const IndividuMethods = {
   age: function (individu: IndividuProperties, dateDeReference: string) {
     return dayjs(dateDeReference).diff(individu.date_naissance, "year")
   },
@@ -157,4 +157,4 @@ const Individu = {
   situationsFamiliales,
 }
 
-export default Individu
+export default IndividuMethods

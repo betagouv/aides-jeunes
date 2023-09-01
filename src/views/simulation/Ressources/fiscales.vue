@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import Individu from "@lib/individu.js"
+import IndividuMethods from "@lib/individu.js"
 import { categoriesRnc } from "@lib/resources.js"
 import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores/index.js"
@@ -90,7 +90,7 @@ export default {
     const fiscalYear = this.store.dates.fiscalYear.id
     let individus = this.store.peopleParentsFirst.map((source) => {
       let individu = {
-        label: Individu.label(source),
+        label: IndividuMethods.label(source),
         default: {},
         values: {},
         id: source.id,
@@ -111,7 +111,7 @@ export default {
       })
 
       individu.display =
-        Individu.isParent(source) ||
+        IndividuMethods.isParent(source) ||
         categoriesRnc.some(
           (ressource) =>
             source[ressource.id] &&

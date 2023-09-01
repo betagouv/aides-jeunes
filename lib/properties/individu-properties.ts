@@ -7,7 +7,7 @@ import {
   BooleanProperty,
 } from "./property.js"
 
-import Individu from "../individu.js"
+import IndividuMethods from "../individu.js"
 import { capitalize, yearsAgo } from "../utils.js"
 import Scolarite from "../scolarite.js"
 import { getAnswer } from "../answers.js"
@@ -19,7 +19,7 @@ import { VeloCategory } from "../enums/velo.js"
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(
+      return `${IndividuMethods.label(
         individu,
         "avoir"
       )} une restriction substantielle et
@@ -34,7 +34,7 @@ export default {
 
   activite: new EnumProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} ?`
+      return `${IndividuMethods.label(individu, "être")} ?`
     },
     questionType: "enum",
     items: [
@@ -62,7 +62,7 @@ export default {
         value: ActiviteType.retraite,
         label: "Retraité ou retraitée",
         isRelevant: ({ individu, periods }) =>
-          Individu.age(individu, periods.today.value) > 30,
+          IndividuMethods.age(individu, periods.today.value) > 30,
       },
       {
         value: ActiviteType.inactif,
@@ -75,7 +75,7 @@ export default {
 
   alternant: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} en alternance ?`
+      return `${IndividuMethods.label(individu, "être")} en alternance ?`
     },
   }),
 
@@ -205,7 +205,7 @@ export default {
   ass_precondition_remplie: new BooleanProperty({
     question: ({ individu }) => {
       const date_debut_chomage = individu.date_debut_chomage
-      return `${Individu.label(individu, "avoir")} travaillé
+      return `${IndividuMethods.label(individu, "avoir")} travaillé
       <abbr
         title="1825 jours (5 fois 365) couverts par un contrat de travail, en activité ou en congés."
         >au moins 5 ans</abbr
@@ -262,7 +262,7 @@ export default {
 
   date_debut_chomage: new DateProperty({
     question: ({ individu }) => {
-      return `Quand ${Individu.label(
+      return `Quand ${IndividuMethods.label(
         individu,
         "avoir"
       )} commencé à être au chômage ?`
@@ -273,10 +273,10 @@ export default {
     question: ({ individu }) => {
       return individu._role === "demandeur"
         ? `Quelle est votre date de naissance ?`
-        : `Quelle est la date de naissance ${Individu.label(
+        : `Quelle est la date de naissance ${IndividuMethods.label(
             individu,
             "préposition"
-          )}${Individu.label(individu, "nom")} ?`
+          )}${IndividuMethods.label(individu, "nom")} ?`
     },
   }),
 
@@ -310,7 +310,7 @@ export default {
       return individu._role === "demandeur"
         ? "Avez-vous fait votre propre déclaration d'impôts ?"
         : `${capitalize(
-            Individu.label(individu, "nom")
+            IndividuMethods.label(individu, "nom")
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
     questionType: "enum",
@@ -331,7 +331,7 @@ export default {
 
   enfant_place: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(
+      return `${IndividuMethods.label(
         individu,
         "être"
       )} placé ou placée en structure spécialisée ou famille d'accueil ?`
@@ -340,13 +340,13 @@ export default {
 
   garde_alternee: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} en garde alternée ?`
+      return `${IndividuMethods.label(individu, "être")} en garde alternée ?`
     },
   }),
 
   gir: new EnumProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "avoir")} besoin d’une aide à la
+      return `${IndividuMethods.label(individu, "avoir")} besoin d’une aide à la
       personne ?`
     },
     questionType: "enum",
@@ -378,7 +378,10 @@ export default {
 
   handicap: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} en situation de handicap ?`
+      return `${IndividuMethods.label(
+        individu,
+        "être"
+      )} en situation de handicap ?`
     },
     moreInfo: (variation) => {
       if (variation?.includes("enfant")) {
@@ -396,7 +399,7 @@ export default {
 
   inapte_travail: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(
+      return `${IndividuMethods.label(
         individu,
         "être"
       )} reconnu ou reconnue inapte au travail ?`
@@ -415,10 +418,10 @@ export default {
     question: ({ individu }) => {
       return individu._role === "demandeur"
         ? "Quelle est votre nationalité ?"
-        : `Quelle est la nationalité ${Individu.label(
+        : `Quelle est la nationalité ${IndividuMethods.label(
             individu,
             "préposition"
-          )}${Individu.label(individu, "nom")} ?`
+          )}${IndividuMethods.label(individu, "nom")} ?`
     },
     questionType: "enum",
     items: [
@@ -466,7 +469,7 @@ export default {
 
   rsa_jeune_condition_heures_travail_remplie: new BooleanProperty({
     question: ({ individu, periods }) => {
-      return `${Individu.label(individu, "avoir")} travaillé
+      return `${IndividuMethods.label(individu, "avoir")} travaillé
       <abbr
         title="ou 3 214 heures (2 fois 1 607) couvertes par un contrat de travail."
         >au moins 2 ans</abbr
@@ -489,7 +492,7 @@ export default {
 
   sortie_academie: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "avoir")} prévu d'étudier
+      return `${IndividuMethods.label(individu, "avoir")} prévu d'étudier
       <a
         target="_blank"
         title="Académies - Nouvelle fenêtre"
@@ -503,7 +506,7 @@ export default {
 
   sortie_region_academique: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "avoir")} prévu d'étudier
+      return `${IndividuMethods.label(individu, "avoir")} prévu d'étudier
       <a
         target="_blank"
         title="Régions académiques - Nouvelle fenêtre"
@@ -517,7 +520,7 @@ export default {
 
   stagiaire: new BooleanProperty({
     question: ({ individu }) => {
-      return `${Individu.label(individu, "être")} en stage ?`
+      return `${IndividuMethods.label(individu, "être")} en stage ?`
     },
   }),
 
@@ -547,7 +550,7 @@ export default {
   statut_marital: new EnumProperty({
     question: "Quelle est votre relation avec votre conjoint ou conjointe ?",
     questionType: "enum",
-    items: Individu.situationsFamiliales,
+    items: IndividuMethods.situationsFamiliales,
   }),
 
   taux_incapacite: new EnumProperty({
@@ -555,13 +558,13 @@ export default {
       const start =
         individu._role === "demandeur"
           ? `Quel est votre taux d'incapacité`
-          : `Quel est le taux d'incapacité ${Individu.label(
+          : `Quel est le taux d'incapacité ${IndividuMethods.label(
               individu,
               "préposition"
-            )}${Individu.label(individu, "nom")}`
+            )}${IndividuMethods.label(individu, "nom")}`
 
       return `${start}
-          évalué par ${Individu.label(individu, "possessive")}
+          évalué par ${IndividuMethods.label(individu, "possessive")}
           <abbr title="Maison départementale des personnes handicapées"
             >MDPH</abbr
           > ?`
@@ -668,21 +671,21 @@ export default {
         value: 5,
         label: "Entre 3 et 6 mois",
         isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
+          return IndividuMethods.age(individu, periods.today.value) <= 25
         },
       },
       {
         value: 12,
         label: "Plus de 3 mois",
         isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) > 25
+          return IndividuMethods.age(individu, periods.today.value) > 25
         },
       },
       {
         value: 12,
         label: "Plus 6 mois",
         isRelevant: ({ individu, periods }) => {
-          return Individu.age(individu, periods.today.value) <= 25
+          return IndividuMethods.age(individu, periods.today.value) <= 25
         },
       },
     ],

@@ -1,4 +1,4 @@
-import Individu from "./individu.js"
+import IndividuMethods from "./individu.js"
 import { generator } from "./dates.js"
 
 import { Situation } from "../lib/types/situations.js"
@@ -138,7 +138,10 @@ export const ressourceTypes: Resource[] = [
     isRelevant: (situation: Situation, individu: IndividuProperties) => {
       return (
         55 <=
-        Individu.age(individu, generator(situation.dateDeValeur).today.value)
+        IndividuMethods.age(
+          individu,
+          generator(situation.dateDeValeur).today.value
+        )
       )
     },
   },
@@ -186,7 +189,7 @@ export const ressourceTypes: Resource[] = [
     category: "allocations",
     prefix: "le",
     isRelevant: (situation: Situation, individu: IndividuProperties) => {
-      const age = Individu.age(
+      const age = IndividuMethods.age(
         individu,
         generator(situation.dateDeValeur).today.value
       )

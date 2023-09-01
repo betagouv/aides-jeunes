@@ -1,4 +1,4 @@
-import Individu from "../individu.js"
+import IndividuMethods from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
@@ -66,7 +66,7 @@ function individuBlockFactory(id, chapter?: string) {
             },
             {
               isActive: (subject, situation, parameters) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -147,7 +147,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -161,7 +161,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -175,7 +175,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -202,7 +202,7 @@ function individuBlockFactory(id, chapter?: string) {
             {
               isActive: (subject, situation) =>
                 60 <=
-                Individu.age(
+                IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 ),
@@ -214,7 +214,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -374,7 +374,7 @@ function housingBlock() {
       new Step({ entity: "menage", variable: "depcom" }),
       {
         isActive: (_subject, situation) => {
-          const age = Individu.age(
+          const age = IndividuMethods.age(
             situation.demandeur,
             datesGenerator(situation.dateDeValeur).today.value
           )
@@ -401,7 +401,7 @@ function housingBlock() {
           return (
             demandeur.activite === ActiviteType.etudiant &&
             !demandeur.habite_chez_parents &&
-            (!situation.parents || !Individu.isWithoutParent(situation))
+            (!situation.parents || !IndividuMethods.isWithoutParent(situation))
           )
         },
         steps: [
@@ -526,7 +526,8 @@ export function generateBlocks(situation): BlockLayout[] {
         {
           subject: (demandeur, situation) => situation.parents,
           isActive: (parents, situation) => {
-            const parents_ok = !parents || !Individu.isWithoutParent(situation)
+            const parents_ok =
+              !parents || !IndividuMethods.isWithoutParent(situation)
 
             const demandeur_ok =
               situation.demandeur.activite === ActiviteType.etudiant &&
@@ -554,7 +555,7 @@ export function generateBlocks(situation): BlockLayout[] {
     {
       isActive: (situation) => {
         const parents_ok =
-          !situation.parents || !Individu.isWithoutParent(situation)
+          !situation.parents || !IndividuMethods.isWithoutParent(situation)
         return parents_ok
       },
       steps: [

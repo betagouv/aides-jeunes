@@ -15,7 +15,7 @@ import propertyMove from "./property-move.js"
 import last3MonthsDuplication from "./last3-months-duplication.js"
 import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
-import { situationsLayout } from "../../../../lib/types/situations.js"
+import { Situation } from "../../../../lib/types/situations.js"
 
 import {
   OpenfiscaMapping,
@@ -23,9 +23,7 @@ import {
   FoyersFiscaux,
 } from "../../../types/openfisca.js"
 
-export function dispatchIndividuals(
-  situation: situationsLayout
-): OpenfiscaMapping {
+export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
   const individus = mapIndividus(situation)
 
   const familles: any = { _: situation.famille }

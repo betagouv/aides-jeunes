@@ -1,29 +1,29 @@
 import dayjs from "dayjs"
-import { situationsLayout } from "@lib/types/situations.js"
+import { Situation } from "@lib/types/situations.js"
 import { Enfant } from "@lib/types/enfant.js"
 import { IndividuProperties } from "@lib/types/individu.js"
 
-const Situation = {
-  getDemandeur: function (situation: situationsLayout) {
+const SituationMethods = {
+  getDemandeur: function (situation: Situation) {
     return situation.demandeur
   },
 
-  getConjoint: function (situation: situationsLayout) {
+  getConjoint: function (situation: Situation) {
     return situation.conjoint
   },
 
-  getEnfants: function (situation: situationsLayout) {
+  getEnfants: function (situation: Situation) {
     return situation.enfants
   },
 
-  aCharge: function (situation: situationsLayout) {
+  aCharge: function (situation: Situation) {
     const demandeur = situation.demandeur
     const period =
       situation.dateDeValeur && dayjs(situation.dateDeValeur).format("YYYY")
     return demandeur?.enfant_a_charge?.[period]
   },
 
-  hasEnfantScolarise: function (situation: situationsLayout) {
+  hasEnfantScolarise: function (situation: Situation) {
     return (
       situation.enfants.some((enfant) => enfant.scolarite === "college") ||
       situation.enfants.some((enfant) => enfant.scolarite === "lycee")
@@ -41,4 +41,4 @@ const Situation = {
   },
 }
 
-export default Situation
+export default SituationMethods

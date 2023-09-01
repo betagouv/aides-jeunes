@@ -3,7 +3,7 @@ import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
 import determineCustomizationIds from "./customization.js"
 import { computeJavascriptBenefits } from "./compute-javascript.js"
 import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
-import { situationsLayout } from "../../lib/types/situations.d.js"
+import { Situation } from "../../lib/types/situations.d.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
 import { Resultats } from "@lib/types/store.js"
 
@@ -60,7 +60,7 @@ export function round(amount, aide) {
 
 export function computeAides(
   this: BenefitCatalog,
-  situation: situationsLayout,
+  situation: Situation,
   id: string,
   openfiscaResponse,
   showPrivate?: boolean

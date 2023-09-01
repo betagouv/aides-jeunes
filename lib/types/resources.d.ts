@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { situationsLayout } from "./situations.js"
+import { Situation } from "./situations.js"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { IndividuProperties } from "./individu.js"
 
@@ -8,7 +8,7 @@ export interface Resource {
   label: string
   category: string
   prefix?: string
-  isRelevant?(situationsLayout, IndividuProperties?): boolean
+  isRelevant?(Situation, IndividuProperties?): boolean
   interuptionQuestionLabel?: string
   positionInList?: string
   hint?: string

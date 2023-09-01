@@ -3,7 +3,7 @@ import { ressourceTypes } from "./resources.js"
 import { generator as datesGenerator } from "./dates.js"
 import Scolarite from "./scolarite.js"
 import { IndividuProperties } from "./types/individu.js"
-import { situationsLayout } from "./types/situations.js"
+import { Situation } from "./types/situations.js"
 import Logement from "./logement.js"
 
 const generateDefaultIndividu = (
@@ -18,7 +18,7 @@ const generateDefaultIndividu = (
   _role: role,
 })
 
-const getIndividu = (situation: situationsLayout, id: string) => {
+const getIndividu = (situation: Situation, id: string) => {
   let individu
   switch (id) {
     case "demandeur": {
@@ -45,7 +45,7 @@ export function generateSituation(simulation, useAll?: any) {
     return {}
   }
   const dates = datesGenerator(simulation.dateDeValeur)
-  const situation: situationsLayout = {
+  const situation: Situation = {
     dateDeValeur: simulation.dateDeValeur,
     version: simulation.version,
     demandeur: generateDefaultIndividu("demandeur", "demandeur"),

@@ -1,5 +1,5 @@
 import { IndividuProperties } from "../../lib/types/individu.js"
-import { situationsLayout } from "../../lib/types/situations.js"
+import { Situation } from "../../lib/types/situations.js"
 
 export interface OpenfiscaMapping {
   individus: IndividuProperties[]
@@ -10,7 +10,7 @@ export interface OpenfiscaMapping {
 
 export interface Famille {
   _: any
-  parents?: situationsLayout
+  parents?: Situation
 }
 
 export interface Menage {

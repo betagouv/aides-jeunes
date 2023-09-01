@@ -1,7 +1,7 @@
 import { IndividuProperties } from "./individu.js"
 import { Enfant } from "./enfant.d.js"
 
-export interface situationsLayout {
+export interface Situation {
   dateDeValeur: number
   version?: number
   demandeur: IndividuProperties

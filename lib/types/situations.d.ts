@@ -26,4 +26,5 @@ export interface situationsMenageLayout {
   _primoAccedant?: boolean | any
   _region?: string
   statut_occupation_logement?: string
+  _codePostal?: string
 }

@@ -181,6 +181,8 @@ import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores/index.js"
+import { PatrimoineTypes } from "@lib/enums/patrimoine.js"
+import { Patrimoine } from "@lib/types/store.d.js"
 
 const mapping = {
   hasTerrainsNonLoues: {
@@ -266,7 +268,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      const values = {}
+      const values: Patrimoine = {}
 
       patrimoineTypes.forEach((patrimoinType) => {
         values[patrimoinType.id] =
@@ -280,8 +282,8 @@ export default {
       )
 
       if (this.hasBiensLoues) {
-        values.valeur_patrimoine_loue =
-          this.demandeur.valeur_patrimoine_loue[this.periodKey]
+        values[PatrimoineTypes.valeur_patrimoine_loue] =
+          this.demandeur[PatrimoineTypes.valeur_patrimoine_loue][this.periodKey]
       }
       this.store.setPatrimoine(values)
       this.$router.push("/simulation/resultats")

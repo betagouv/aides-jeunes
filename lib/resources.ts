@@ -4,6 +4,7 @@ import { generator } from "./dates.js"
 import { situationsLayout } from "../lib/types/situations.js"
 import { individuLayout } from "../lib/types/individu.js"
 import { ActiviteType } from "./enums/activite.js"
+import { PatrimoineTypes } from "./enums/patrimoine.js"
 import { resourceLayout, resourceCategoryLayout } from "./types/resources.js"
 
 export const ressourceCategories: resourceCategoryLayout[] = [
@@ -463,35 +464,35 @@ export const categoriesRnc = [
 
 export const patrimoineTypes = [
   {
-    id: "valeur_patrimoine_loue",
+    id: PatrimoineTypes.valeur_patrimoine_loue,
     label: "Valeur de vos biens loués",
   },
   {
-    id: "valeur_terrains_non_loues",
+    id: PatrimoineTypes.valeur_terrains_non_loues,
     label: "Valeur de vos terrains non loués",
   },
   {
-    id: "valeur_locative_terrains_non_loues",
+    id: PatrimoineTypes.valeur_locative_terrains_non_loues,
     label: "Valeur locative terrains non loués",
   },
   {
-    id: "valeur_immo_non_loue",
+    id: PatrimoineTypes.valeur_immo_non_loue,
     label: "Valeur de vos biens immobiliers non loués",
   },
   {
-    id: "valeur_locative_immo_non_loue",
+    id: PatrimoineTypes.valeur_locative_immo_non_loue,
     label: "Valeur locative immobilier non loué",
   },
   {
-    id: "livret_a",
+    id: PatrimoineTypes.livret_a,
     label: "Épargne sur livret A",
   },
   {
-    id: "epargne_revenus_non_imposables",
+    id: PatrimoineTypes.epargne_revenus_non_imposables,
     label: "Épargne aux revenus non imposables",
   },
   {
-    id: "epargne_revenus_imposables",
+    id: PatrimoineTypes.epargne_revenus_imposables,
     label: "Épargne aux revenus imposables",
   },
 ]

@@ -1,13 +1,14 @@
 import aidesVelo from "aides-velo"
 import { generator } from "../dates.js"
+import { VeloCategory } from "../enums/velo.js"
 
 const veloTypes = {
-  velo_mecanique: "mécanique simple",
-  velo_electrique: "électrique",
-  velo_cargo: "cargo",
-  velo_cargo_electrique: "cargo électrique",
-  velo_pliant: "pliant",
-  velo_motorisation: "motorisation",
+  [VeloCategory.veloMecanique]: "mécanique simple",
+  [VeloCategory.veloElectrique]: "électrique",
+  [VeloCategory.veloCargo]: "cargo",
+  [VeloCategory.veloCargoElectrique]: "cargo électrique",
+  [VeloCategory.veloPliant]: "pliant",
+  [VeloCategory.veloMotorisation]: "motorisation",
 }
 
 function canComputeAidesVeloBenefits(situation) {

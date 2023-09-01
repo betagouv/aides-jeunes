@@ -3,6 +3,9 @@ import { merge, sortBy, assign, sumBy, some, filter } from "lodash-es"
 import determineCustomizationIds from "./customization.js"
 import { computeJavascriptBenefits } from "./compute-javascript.js"
 import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
+import { situationsLayout } from "../../lib/types/situations.d.js"
+import { BenefitCatalog } from "../../data/types/generator.d.js"
+import { Resultats } from "@lib/types/store.js"
 
 import { generator } from "../dates.js"
 export const datesGenerator = generator
@@ -55,7 +58,13 @@ export function round(amount, aide) {
   }
 }
 
-export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
+export function computeAides(
+  this: BenefitCatalog,
+  situation: situationsLayout,
+  id: string,
+  openfiscaResponse,
+  showPrivate?: boolean
+) {
   const periods = generator(situation.dateDeValeur)
 
   computeJavascriptBenefits(this, situation, openfiscaResponse)
@@ -63,14 +72,14 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
   const customizationIds = determineCustomizationIds(situation)
   const computedRessources = normalizeOpenfiscaRessources(openfiscaResponse)
 
-  const result = {
+  const result: Resultats = {
     droitsEligibles: [],
     droitsInjectes: [], // declared by the user
     _id: undefined,
   }
 
   const individus = filter(
-    [].concat(
+    ([] as any).concat(
       situation.demandeur,
       situation.conjoint,
       ...(situation.enfants || [])
@@ -91,7 +100,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
         }) ||
         valueAt(benefit.id, situation.famille, period) !== undefined
       ) {
-        return result.droitsInjectes.push(
+        return result.droitsInjectes!.push(
           // @ts-ignore
           assign({}, benefit, {
             montant: sumBy(individus, (i) =>
@@ -124,7 +133,7 @@ export function computeAides(situation, id, openfiscaResponse, showPrivate?) {
           }
         : benefit.institution
 
-      result.droitsEligibles.push(
+      result.droitsEligibles!.push(
         // @ts-ignore
         assign({}, benefit, customization, {
           instructions:

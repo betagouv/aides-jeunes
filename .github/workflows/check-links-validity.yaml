@@ -1,7 +1,6 @@
 name: Check links validity
 on:
   workflow_dispatch:
-  pull_request:
   schedule:
     # https://crontab.guru/#30_8_*_*_*
     - cron: "30 8 * * *"

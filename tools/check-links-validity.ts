@@ -8,6 +8,7 @@ import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
+import * as Sentry from "@sentry/node"
 
 const DEFAULT_BRANCH_REF = "refs/heads/master"
 
@@ -86,7 +87,8 @@ function sleep(ms) {
 async function getPriorityStats() {
   const stats = await axios
     .get("https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics")
-    .then((r) => r.data)
+    .then((response) => response.data)
+
   const statTotal = stats.map((v) => {
     const p = v.events?.showDetails || {}
     const totals = Object.keys(p)
@@ -113,7 +115,14 @@ async function getPriorityStats() {
 }
 
 async function getBenefitData(noPriority: boolean) {
-  const priorityMap = noPriority ? {} : await getPriorityStats()
+  let priorityMap = {}
+  try {
+    priorityMap = noPriority ? {} : await getPriorityStats()
+  } catch (error) {
+    console.error(error)
+    Sentry.captureException(error)
+    console.warn("Unable to get priority stats, priorityMap is empty")
+  }
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]

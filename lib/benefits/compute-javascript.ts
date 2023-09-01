@@ -7,7 +7,7 @@ import { ActiviteType } from "../enums/activite.js"
 import { ScolariteType } from "../enums/scolarite.js"
 import { situationsLayout } from "../types/situations.js"
 import { ConditionsLayout } from "../types/benefits.js"
-import { IDataGenerator } from "../../data/types/generator.d.js"
+import { BenefitCatalog } from "../../data/types/generator.d.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
   const rsa = openfiscaResponse.familles._.rsa[periods.thisMonth.id]
@@ -295,7 +295,7 @@ export function testProfileEligibility(benefit, data) {
 }
 
 export function computeJavascriptBenefits(
-  benefits: IDataGenerator,
+  benefits: BenefitCatalog,
   situation: situationsLayout,
   openfiscaResponse
 ) {

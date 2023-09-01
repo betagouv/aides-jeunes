@@ -10,7 +10,7 @@ import {
   InstitutionsMap,
 } from "./types/institutions.d.js"
 import { StandardBenefit, BenefitsMap } from "./types/benefits.d.js"
-import { IDataGenerator } from "./types/generator.d.js"
+import { BenefitCatalog } from "./types/generator.d.js"
 
 function generateInstitutionId(institution: InstitutionRawLayout) {
   return `${institution.type}_${
@@ -74,7 +74,7 @@ export function generate(
   aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
   fslGenerator?: typeof buildFSL,
   apaGenerator?: typeof buildAPA
-): IDataGenerator {
+): BenefitCatalog {
   const institutions = transformInstitutions(collections.institutions.items)
   collections.benefits_javascript.items.forEach((benefit) => {
     benefit.source = "javascript"

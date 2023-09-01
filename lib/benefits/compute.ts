@@ -5,7 +5,7 @@ import { computeJavascriptBenefits } from "./compute-javascript.js"
 import { computeAidesVeloBenefits } from "./compute-aides-velo.js"
 import { StandardBenefit } from "../../data/types/benefits.js"
 import { situationsLayout } from "../../lib/types/situations.d.js"
-import { IDataGenerator } from "../../data/types/generator.d.js"
+import { BenefitCatalog } from "../../data/types/generator.d.js"
 
 import { generator } from "../dates.js"
 export const datesGenerator = generator
@@ -59,7 +59,7 @@ export function round(amount, aide) {
 }
 
 export function computeAides(
-  this: IDataGenerator,
+  this: BenefitCatalog,
   situation: situationsLayout,
   id: string,
   openfiscaResponse,

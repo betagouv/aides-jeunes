@@ -1,7 +1,7 @@
 import { expect, jest } from "@jest/globals"
 
 import { FollowupFactory } from "@backend/lib/followup-factory.js"
-import Followup from "@backend/models/followup.js"
+import Followups from "@backend/models/followup.js"
 import utils from "@backend/lib/utils.js"
 
 describe("FollowupFactory", () => {
@@ -38,7 +38,7 @@ describe("FollowupFactory", () => {
       mockGenerateToken = jest.spyOn(utils, "generateToken")
       mockGenerateToken.mockResolvedValue(mockAccessToken)
 
-      mockFollowupCreate = jest.spyOn(Followup, "create")
+      mockFollowupCreate = jest.spyOn(Followups, "create")
       mockFollowupCreate.mockResolvedValue({})
     })
 

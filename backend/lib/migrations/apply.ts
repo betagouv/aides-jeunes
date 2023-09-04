@@ -8,7 +8,7 @@ import es from "event-stream"
 import { apply, getLatestVersionByModelName } from "./index.js"
 import "../mongo-connector.js"
 import Simulation from "../../models/simulation.js"
-import Followup from "../../models/followup.js"
+import Followups from "../../models/followup.js"
 
 let counter = 0
 let errors = 0
@@ -38,7 +38,7 @@ const modelMigration = {
     model: Simulation,
   },
   followups: {
-    model: Followup,
+    model: Followups,
   },
 }
 Object.keys(modelMigration).forEach((key) => {

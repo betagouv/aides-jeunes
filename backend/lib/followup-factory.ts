@@ -1,4 +1,4 @@
-import Followup from "../models/followup.js"
+import Followups from "../models/followup.js"
 import { FollowupInterface } from "@lib/types/followup.js"
 import { SimulationInterface } from "@lib/types/simulation.js"
 import utils from "../lib/utils.js"
@@ -19,7 +19,7 @@ export const FollowupFactory = {
       unit: benefit.unit,
     }))
     const accessToken = await utils.generateToken(TokenLength)
-    const followup = await Followup.create({
+    const followup = await Followups.create({
       simulation,
       email,
       surveyOptin,

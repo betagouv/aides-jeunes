@@ -7,7 +7,7 @@ import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
 import Simulation from "../models/simulation.js"
-import Followup from "../models/followup.js"
+import Followups from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import { SimulationInterface } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
@@ -220,7 +220,7 @@ function enrichBenefitsList(benefits) {
 }
 
 async function getLatestFollowup(req: Request, res) {
-  const followup = (await Followup.findOne(
+  const followup = (await Followups.findOne(
     {
       simulation: req.simulation?._id,
     },

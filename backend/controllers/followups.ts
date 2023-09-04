@@ -1,4 +1,4 @@
-import Followup from "../models/followup.js"
+import Followups from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
@@ -15,7 +15,7 @@ export function followup(
   next: NextFunction,
   id: string
 ) {
-  Followup.findById(id)
+  Followups.findById(id)
     .populate("simulation")
     .exec(function (err: any, followup: FollowupInterface | null) {
       if (err) {
@@ -71,7 +71,7 @@ export function getFollowup(req: Request, res: Response) {
 }
 
 export function showFollowup(req: Request, res: Response) {
-  Followup.findById(req.params.followupId)
+  Followups.findById(req.params.followupId)
     .then((followup: FollowupInterface | null) => {
       if (!followup) return res.sendStatus(404)
       res.send([followup])
@@ -83,7 +83,7 @@ export function showFollowup(req: Request, res: Response) {
 }
 
 export function showSurveyResults(req: Request, res: Response) {
-  Followup.find({
+  Followups.find({
     surveyOptin: true,
     surveys: {
       $elemMatch: {
@@ -101,7 +101,7 @@ export function showSurveyResults(req: Request, res: Response) {
 }
 
 export function showSurveyResultByEmail(req: Request, res: Response) {
-  Followup.findByEmail(req.params.email)
+  Followups.findByEmail(req.params.email)
     .then((followups: FollowupInterface[]) => {
       if (!followups || !followups.length) return res.sendStatus(404)
       res.send(followups)
@@ -118,7 +118,7 @@ export async function followupByAccessToken(
   next: NextFunction,
   accessToken: any
 ) {
-  const followup: FollowupInterface | null = await Followup.findOne({
+  const followup: FollowupInterface | null = await Followups.findOne({
     accessToken,
   })
   if (!followup) return res.sendStatus(404)

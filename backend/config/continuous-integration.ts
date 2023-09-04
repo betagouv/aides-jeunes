@@ -26,4 +26,7 @@ export default Object.assign(development, {
     dsn: "https://userID:password@sentry.data.gouv.fr/17",
   },
   statistics: {},
+  smsService: {
+    show: true,
+  },
 })

@@ -103,35 +103,13 @@
           </li>
         </ul>
       </WarningMessage>
-      <div v-if="experimentNewUI" class="fr-print-hidden">
+      <div class="fr-print-hidden">
         <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
         <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
           <div class="fr-mt-4w">
             <DroitDetailsLieux :benefit="droit" />
           </div>
         </div>
-      </div>
-      <div v-else lass="fr-print-hidden">
-        <BenefitCta :benefit="droit" class="fr-mt-4w" />
-        <a
-          v-if="droit.msa"
-          v-analytics="{
-            name: droit.label,
-            action: eventTypeMSA,
-            category: 'General',
-          }"
-          class="aj-droit-pro-agricole"
-          href="https://www.msa.fr/lfy/espace-prive"
-          rel="noopener"
-          target="_blank"
-          title="Démarches pour les professions agricoles - Nouvelle fenêtre"
-        >
-          <img
-            alt=""
-            src="@/assets/images/doigt.svg"
-            class="fr-mr-1w"
-          />Démarches pour les professions agricoles
-        </a>
       </div>
     </div>
   </div>
@@ -140,7 +118,6 @@
 <script lang="ts">
 import type { PropType } from "vue"
 import BenefitCtaLight from "./benefit-cta-light.vue"
-import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
@@ -149,7 +126,6 @@ import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
@@ -160,7 +136,6 @@ export default {
     DroitHeader,
     DroitDetailsLieux,
     BenefitCtaLight,
-    BenefitCta,
     BenefitCtaLink,
   },
   mixins: [DroitMixin],
@@ -190,9 +165,6 @@ export default {
     },
     showDetailsLieux() {
       return this.$route.name !== "aide"
-    },
-    experimentNewUI() {
-      return ABTestingService.getValues().benefit_result_page === "NewUI"
     },
     volontaryOrganisationsLink() {
       return this.volontaryOrganisations.volontaryOrganisationsLink.value

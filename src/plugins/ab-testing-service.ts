@@ -50,13 +50,17 @@ function getEnvironment() {
   // // ABTestingEnvironment.link.deleted = true;
   // cf. https://stats.data.gouv.fr/index.php?module=CustomDimensions&action=manage&idSite=165
 
-  // Définition de la valeur d'AB testing pour la refonte de la page de résultats d'une aide
-  ABTestingEnvironment.benefit_result_page =
-    ABTestingEnvironment.benefit_result_page || {}
-  ABTestingEnvironment.benefit_result_page.index = 2
-  ABTestingEnvironment.benefit_result_page.value =
-    ABTestingEnvironment.benefit_result_page.value ||
-    (Math.random() > 0.5 ? "OldUI" : "NewUI")
+  // Exemple de test AB :
+  // /1 Copier / Remplir / Décommenter ce bloc
+  // /2 Ajouter une variante pour l'Intégration Continue si nécessaire : ABTestingService.setVariant("nom_du_test", "nom_de_la_version_A")
+  //   - ici : https://github.com/betagouv/aides-jeunes/blob/59e581d61fd285a68b3ccb637f29ab3c7f9972ac/src/router.ts#L280
+  // /3 L'utiliser dans le code : ABTestingService.getValues().nom_du_test
+  // Le bloc :
+  // ABTestingEnvironment.name_of_the_test = ABTestingEnvironment.name_of_the_test || {}
+  // ABTestingEnvironment.name_of_the_test.index = 2
+  // ABTestingEnvironment.name_of_the_test.value =
+  //   ABTestingEnvironment.name_of_the_test.value ||
+  //   (Math.random() > 0.5 ? "A version name" : "B version name")
 
   Object.keys(ABTestingEnvironment).forEach(function (name) {
     const data = ABTestingEnvironment[name]

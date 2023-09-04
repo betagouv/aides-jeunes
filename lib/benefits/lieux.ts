@@ -30,10 +30,6 @@ export function normalize(lieu) {
   return normalizedLieu
 }
 
-export function hasLieux(benefit) {
-  return benefit.lieuxTypes?.length || benefit.institution.lieuxTypes?.length
-}
-
 export function getBenefitLieuxTypes(benefit: any): string[] {
   const lieuxTypes = benefit.lieuxTypes || benefit.institution.lieuxTypes || []
   return lieuxTypes

@@ -89,7 +89,7 @@ const postFollowup = async (surveyOptin, email?, phone?) => {
   const uri = `/api/simulation/${simulationId.value}/followup`
   const payload = {
     surveyOptin,
-    phone,
+    phone: phone?.replace(/\s/g, ""),
     email,
   }
   return await axios.post(uri, payload)

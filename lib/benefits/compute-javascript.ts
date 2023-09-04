@@ -6,7 +6,7 @@ import Scolarite from "../scolarite.js"
 import { ActiviteType } from "../enums/activite.js"
 import { ScolariteType } from "../enums/scolarite.js"
 import { Situation } from "../types/situations.js"
-import { ConditionsLayout } from "../types/benefits.js"
+import { Conditions } from "../types/benefits.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
@@ -106,7 +106,7 @@ export function testGeographicalEligibility(
   )
 }
 
-export const CONDITION_STRATEGY: ConditionsLayout = {
+export const CONDITION_STRATEGY: Conditions = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[

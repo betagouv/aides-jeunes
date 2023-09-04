@@ -6,7 +6,7 @@ import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
-import Simulation from "../models/simulation.js"
+import Simulations from "../models/simulation.js"
 import Followups from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
 import { SimulationInterface } from "../../lib/types/simulation.d.js"
@@ -37,7 +37,7 @@ function simulation(
   }
 
   const simulationId = simulationOrSimulationId as SimulationInterface["_id"]
-  Simulation.findById(simulationId, (err, simulation) => {
+  Simulations.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)
     setSimulationOnRequest(req, simulation)
@@ -85,7 +85,7 @@ function clearCookies(req: Request, res) {
 
   const keys = Object.keys(req.cookies)
   const situationCookies = filter(keys, function (k) {
-    return k.startsWith(Simulation.cookiePrefix())
+    return k.startsWith(Simulations.cookiePrefix())
   })
   situationCookies.sort()
 
@@ -107,7 +107,7 @@ function create(req: Request, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  return Simulation.create(
+  return Simulations.create(
     omit(req.body, "createdAt", "status", "token"),
     (err, persistedSimulation) => {
       if (err) return next(err)

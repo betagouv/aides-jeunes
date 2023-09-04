@@ -181,7 +181,6 @@ import YesNoQuestion from "@/components/yes-no-question.vue"
 import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores/index.js"
-import { PatrimoineTypes } from "@lib/enums/patrimoine.js"
 import { Patrimoine } from "@lib/types/store.d.js"
 
 const mapping = {
@@ -268,23 +267,15 @@ export default {
   },
   methods: {
     onSubmit() {
-      const values: Patrimoine = {}
-
-      patrimoineTypes.forEach((patrimoinType) => {
-        values[patrimoinType.id] =
-          this.demandeur[patrimoinType.id][this.periodKey]
-      })
-
-      Object.values(mapping).forEach((valeur) =>
-        valeur.sources.forEach((source) => {
-          values[source] = this.demandeur[source][this.periodKey]
-        })
+      const values: Patrimoine = patrimoineTypes.reduce(
+        (patrimoines, patrimoineType) => ({
+          ...patrimoines,
+          [patrimoineType.id]:
+            this.demandeur[patrimoineType.id][this.periodKey],
+        }),
+        {}
       )
 
-      if (this.hasBiensLoues) {
-        values[PatrimoineTypes.valeur_patrimoine_loue] =
-          this.demandeur[PatrimoineTypes.valeur_patrimoine_loue][this.periodKey]
-      }
       this.store.setPatrimoine(values)
       this.$router.push("/simulation/resultats")
     },

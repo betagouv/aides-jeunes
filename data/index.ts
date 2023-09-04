@@ -3,7 +3,7 @@ import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
 
-import { JamstackLayout } from "./types/jamstack.d.js"
+import { Jamstack } from "./types/jamstack.d.js"
 import {
   InstitutionRaw,
   Institution,
@@ -67,7 +67,7 @@ function setDefaults(
 }
 
 export function generate(
-  collections: JamstackLayout["collections"],
+  collections: Jamstack["collections"],
   additionalBenefitAttributes,
   aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
   fslGenerator?: typeof buildFSL,
@@ -123,7 +123,7 @@ export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam: JamstackLayout) =>
+  generate: (jam: Jamstack) =>
     generate(
       jam.collections,
       additionalBenefitAttributes,

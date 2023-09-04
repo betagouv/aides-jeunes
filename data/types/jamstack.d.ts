@@ -27,7 +27,7 @@ interface InstitutionCollection extends NetlifyCollection {
   items: InstitutionRaw[]
 }
 
-export interface JamstackLayout {
+export interface Jamstack {
   locale: any
   backend: any
   media_folder: any

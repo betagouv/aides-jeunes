@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals"
 import subject from "@root/data/index.js"
-import { JamstackLayout } from "@root/data/types/jamstack.d.js"
+import { Jamstack } from "@root/data/types/jamstack.d.js"
 
 describe("benefit descriptions", function () {
   it("exists", function () {
@@ -26,7 +26,7 @@ describe("benefit descriptions", function () {
           { slug: "region_benefit", institution: "region_nouvelle_aquitaine" },
         ],
       },
-    } as unknown as JamstackLayout["collections"]
+    } as unknown as Jamstack["collections"]
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
     const result: any = subject.fn(collections, additionalBenefitAttributes)

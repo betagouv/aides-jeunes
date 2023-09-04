@@ -2,6 +2,7 @@ import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"
 import dayjs from "dayjs"
+import Sentry from "@sentry/node"
 
 import { getUsageData } from "./piwik.js"
 import mongodb from "./mongodb.js"
@@ -29,10 +30,11 @@ try {
     basic: [...mongoData.dailySituationCount, ...piwikData],
     survey: mongoData.survey,
     funnel: funnelData,
+    computedAt: dayjs().toISOString(),
   }
   await fs.writeFile(statsFilePath, JSON.stringify(data, null, 2), "utf-8")
 } catch (error) {
-  console.error("error", error)
+  Sentry.captureException(error)
   process.exitCode = 1
 } finally {
   mongodb.closeClient()

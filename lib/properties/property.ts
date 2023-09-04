@@ -13,7 +13,7 @@ import {
   PropertyData,
   RecapPropertyLine,
 } from "../types/property.js"
-import { Step } from "../types/steps.js"
+import { StepStrict } from "../types/steps.js"
 import { getStepAnswer } from "../answers.js"
 
 export class Property {
@@ -74,7 +74,7 @@ export class Property {
     return value
   }
 
-  getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine {
+  getRecap(propertyData: PropertyData, step: StepStrict): RecapPropertyLine {
     const answer = getStepAnswer(propertyData.simulation.answers.all, step)
 
     return {

@@ -1,6 +1,6 @@
 import { StepGenerator } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
-import { Step, ComplexStepProperties } from "../types/steps.js"
+import { StepStrict, ComplexStepProperties } from "../types/steps.js"
 
 import { Block } from "../types/blocks.js"
 
@@ -51,7 +51,7 @@ function createJourneyFromBlocks(blocks, situation, parameters) {
   return journey
 }
 
-function generateJourney(situation, parameters): Step[] {
+function generateJourney(situation, parameters): StepStrict[] {
   const blocks = generateBlocks(situation)
 
   return createJourneyFromBlocks(blocks, situation, parameters)
@@ -73,7 +73,7 @@ function assignLastChapterToSteps(fullSteps) {
 export function generateAllSteps(
   situation,
   parameters
-): (Step | ComplexStepProperties)[] {
+): (StepStrict | ComplexStepProperties)[] {
   let fullSteps
   try {
     fullSteps = generateJourney(situation, parameters)

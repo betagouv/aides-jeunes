@@ -3,7 +3,7 @@ import { useStore } from "@/stores/index.js"
 import Simulation from "@/lib/simulation.js"
 import axios from "axios"
 
-type CoordinatesLayout = [number, number]
+type Coordinates = [number, number]
 
 export function useVolontaryOrganisations() {
   const store = useStore()
@@ -24,11 +24,11 @@ export function useVolontaryOrganisations() {
 
   const fetchCenterCoordinatesFromPostalCode = async (
     postalCode
-  ): Promise<CoordinatesLayout> => {
+  ): Promise<Coordinates> => {
     const response = await axios.get(
       `/api/outils/codePostal/${postalCode}/centerCoordinates`
     )
-    const centerCoordinates: CoordinatesLayout = response.data
+    const centerCoordinates: Coordinates = response.data
 
     const hasValidCoordinates =
       centerCoordinates && centerCoordinates.length === 2
@@ -50,7 +50,7 @@ export function useVolontaryOrganisations() {
         throw new Error("Can't find postal code")
       }
 
-      const centerCoordinates: CoordinatesLayout =
+      const centerCoordinates: Coordinates =
         await fetchCenterCoordinatesFromPostalCode(postalCode)
 
       volontaryOrganisationsLink.value = `${baseUrl}?city=${postalCode}&aroundLatLng=${centerCoordinates[1]},${centerCoordinates[0]}`

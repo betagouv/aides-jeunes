@@ -6,7 +6,7 @@ import { createRequire } from "module"
 const require = createRequire(import.meta.url)
 const epcis = require("@etalab/decoupage-administratif/data/epci.json")
 
-interface RollupInstitutionInterface {
+interface RollupInstitution {
   id: string
   label: string
   type: string
@@ -14,15 +14,15 @@ interface RollupInstitutionInterface {
   location?: string | string[]
 }
 
-export interface RollupInstitutionMapInterface {
-  national: RollupInstitutionInterface[]
-  region: RollupInstitutionInterface[]
-  departement: RollupInstitutionInterface[]
-  epci: RollupInstitutionInterface[]
-  caf: RollupInstitutionInterface[]
-  msa: RollupInstitutionInterface[]
-  commune: RollupInstitutionInterface[]
-  autre: RollupInstitutionInterface[]
+export interface RollupInstitutionMap {
+  national: RollupInstitution[]
+  region: RollupInstitution[]
+  departement: RollupInstitution[]
+  epci: RollupInstitution[]
+  caf: RollupInstitution[]
+  msa: RollupInstitution[]
+  commune: RollupInstitution[]
+  autre: RollupInstitution[]
 }
 
 const institutionsBenefits = {}
@@ -43,7 +43,7 @@ for (const benefit of Object.values(
   })
 }
 
-const institutions: RollupInstitutionMapInterface = {
+const institutions: RollupInstitutionMap = {
   national: [],
   region: [],
   departement: [],
@@ -61,7 +61,7 @@ for (const id in generator.institutionsMap) {
   if (!institutionsBenefits[institution.slug]) {
     continue
   }
-  const institutionObject: RollupInstitutionInterface = {
+  const institutionObject: RollupInstitution = {
     id: institution.slug,
     label: institution.label,
     type: institution.type,

@@ -13,8 +13,8 @@ declare module "*.json" {
 }
 
 declare module "generator:institutions" {
-  import { RollupInstitutionMapInterface } from "@root/rollup/institutions.js"
-  const institutionMap: RollupInstitutionMapInterface
+  import { RollupInstitutionMap } from "@root/rollup/institutions.js"
+  const institutionMap: RollupInstitutionMap
   export default institutionMap
 }
 

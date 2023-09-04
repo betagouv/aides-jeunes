@@ -2,11 +2,11 @@ import { Step } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
 import { StepLayout, ComplexStepGeneratorLayout } from "../types/steps.js"
 
-import { BlockLayout } from "../types/blocks.js"
+import { Block } from "../types/blocks.js"
 
 function processAndAppendBlockRecursively(
   { journey, subject, situation, isActive, parameters },
-  block: BlockLayout
+  block: Block
 ) {
   if (block instanceof Step) {
     block.isActive = isActive

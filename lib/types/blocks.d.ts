@@ -1,4 +1,4 @@
-export interface BlockLayout {
+export interface Block {
   subject?: any
   isActive?: any
   steps?: any

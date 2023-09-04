@@ -7,7 +7,7 @@ import Scolarite from "../scolarite.js"
 
 import { ActiviteType } from "../enums/activite.js"
 import { ScolariteType, EtudiantType } from "../enums/scolarite.js"
-import { BlockLayout } from "../types/blocks.js"
+import { Block } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
   const r = (variable, chapter?: string) =>
@@ -489,7 +489,7 @@ function resourceBlocks(situation) {
   }
 }
 
-export function generateBlocks(situation): BlockLayout[] {
+export function generateBlocks(situation): Block[] {
   return [
     { steps: [new Step({})] },
     individuBlockFactory("demandeur"),

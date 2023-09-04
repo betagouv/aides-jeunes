@@ -2,7 +2,7 @@
   <div v-if="showProgress" class="aj-progress-bar-container">
     <p id="progress-bar-description" class="fr-sr-only"
       >Avancement du questionnaire de simulation :
-      {{ currentProgress.width }}</p
+      {{ (progress * 100).toFixed(2) }}%</p
     >
     <div class="aj-progress-bar-background">
       <div

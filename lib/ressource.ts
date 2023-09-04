@@ -1,10 +1,10 @@
 import resources from "./resources.js"
 
-import { TypicalDates, TypicalDate } from "../lib/types/dates.js"
+import { DatesRange, DateItem } from "../lib/types/dates.js"
 import { Resource } from "./types/resources.js"
 
-function getPeriodsForCurrentYear(dates: TypicalDates, ressourceType) {
-  const periodKeys: TypicalDate[] = []
+function getPeriodsForCurrentYear(dates: DatesRange, ressourceType) {
+  const periodKeys: DateItem[] = []
   if (ressourceType.isMontantAnnuel) {
     periodKeys.push(dates.lastYear)
     return periodKeys
@@ -18,12 +18,12 @@ function getPeriodsForCurrentYear(dates: TypicalDates, ressourceType) {
   return periodKeys
 }
 
-function getPeriodKeysForCurrentYear(dates: TypicalDates, ressourceType) {
+function getPeriodKeysForCurrentYear(dates: DatesRange, ressourceType) {
   return getPeriodsForCurrentYear(dates, ressourceType).map((date) => date.id)
 }
 
 function setDefaultValueForCurrentYear(
-  dates: TypicalDates,
+  dates: DatesRange,
   individu,
   ressourceType
 ) {
@@ -51,7 +51,7 @@ function setDefaultValueForCurrentYear(
   })
 }
 
-function unsetForCurrentYear(dates: TypicalDates, entity, ressourceType) {
+function unsetForCurrentYear(dates: DatesRange, entity, ressourceType) {
   const ressourceId = ressourceType.id
   entity[ressourceId] = entity[ressourceId] || {}
   const ressource = entity[ressourceId]

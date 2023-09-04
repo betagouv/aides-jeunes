@@ -1,16 +1,16 @@
 import dayjs, { Dayjs } from "dayjs"
 import range from "lodash.range"
 
-import { TypicalDates, TypicalDate } from "./types/dates.js"
+import { DatesRange, DateItem } from "./types/dates.js"
 
-function generateMonth(dt: Dayjs): TypicalDate {
+function generateMonth(dt: Dayjs): DateItem {
   return {
     id: dt.format("YYYY-MM"),
     label: dt.format("MMMM YYYY"),
   }
 }
 
-function generateYear(dt: Dayjs): TypicalDate {
+function generateYear(dt: Dayjs): DateItem {
   const key = dt.format("YYYY")
   return {
     id: key,
@@ -20,7 +20,7 @@ function generateYear(dt: Dayjs): TypicalDate {
 
 export const generator = function datesGenerator(
   dateDeValeur: Date | number | string
-): TypicalDates {
+): DatesRange {
   const ref = dayjs(dateDeValeur)
   return {
     today: {

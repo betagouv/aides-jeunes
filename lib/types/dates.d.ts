@@ -1,26 +1,26 @@
-export interface TypicalDates {
+export interface DatesRange {
   today: {
     id: string
     value: any
     label: string
   }
-  thisMonth: TypicalDate
-  thisYear: TypicalDate
-  oneMonthAgo: TypicalDate
-  twoMonthsAgo: TypicalDate
-  threeMonthsAgo: TypicalDate
-  twelveMonthsAgo: TypicalDate
-  last3Months: TypicalDate[]
-  last12Months: TypicalDate[]
-  lastYear: TypicalDate
-  fiscalYear: TypicalDate
-  fiscalYear12Months: TypicalDate[]
-  previousFiscalYear: TypicalDate
-  previousFiscalYear12Months: TypicalDate[]
-  threeYearsAgo: TypicalDate
+  thisMonth: DateItem
+  thisYear: DateItem
+  oneMonthAgo: DateItem
+  twoMonthsAgo: DateItem
+  threeMonthsAgo: DateItem
+  twelveMonthsAgo: DateItem
+  last3Months: DateItem[]
+  last12Months: DateItem[]
+  lastYear: DateItem
+  fiscalYear: DateItem
+  fiscalYear12Months: DateItem[]
+  previousFiscalYear: DateItem
+  previousFiscalYear12Months: DateItem[]
+  threeYearsAgo: DateItem
 }
 
-export interface TypicalDate {
+export interface DateItem {
   id: string
   label: string
 }

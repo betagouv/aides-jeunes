@@ -5,7 +5,7 @@ export interface BenefitLink {
   ok?: boolean
 }
 
-export interface BenefitProperties {
+export interface BenefitLinkProperties {
   id: string
   label: string
   institution: string

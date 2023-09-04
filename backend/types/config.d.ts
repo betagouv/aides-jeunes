@@ -59,7 +59,7 @@ export interface Configuration {
     project?: string
   }
   smsService: {
-    show?: boolean
+    show: boolean | undefined
     username: string
     password: string
     url: string

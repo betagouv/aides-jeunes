@@ -28,7 +28,7 @@ const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
-const showSms = computed(() => process.env.VITE_SHOW_SMS_TAB)
+const showSms = process.env.VITE_SHOW_SMS_TAB
 
 const sendRecap = async (surveyOptin) => {
   try {

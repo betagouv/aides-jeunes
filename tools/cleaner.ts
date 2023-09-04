@@ -2,9 +2,9 @@ import mongoose from "mongoose"
 
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
-import Simulation from "../backend/models/simulation.js"
+import Simulations from "../backend/models/simulation.js"
 import { SimulationStatusEnum } from "../lib/enums/simulation.js"
-import Followup from "../backend/models/followup"
+import Followups from "../backend/models/followup"
 import {
   anonymizeSimulation,
   anonymizeFollowup,
@@ -15,7 +15,7 @@ async function main() {
   const aWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 
   let followup_count = 0
-  const followupsCursor = await Followup.find({
+  const followupsCursor = await Followups.find({
     createdAt: { $lt: aMonthAgo },
     email: { $exists: true },
   })
@@ -37,7 +37,7 @@ async function main() {
   console.log(["Terminé", "Followup", followup_count].join(";"))
 
   let simulation_count = 0
-  const simulationsCursor = await Simulation.find({
+  const simulationsCursor = await Simulations.find({
     $or: [
       {
         dateDeValeur: { $lt: aMonthAgo },

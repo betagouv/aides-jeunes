@@ -1,7 +1,7 @@
 import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
-import Simulation from "@/lib/simulation.js"
+import Simulations from "@/lib/simulation.js"
 import { useStore } from "@/stores/index.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -41,7 +41,7 @@ const router = createRouter({
           beforeEnter(to, from, next) {
             const store = useStore()
             store
-              .fetch(Simulation.getLatestId())
+              .fetch(Simulations.getLatestId())
               .then(() => {
                 next(`/simulation${to.query.to || ""}`)
               })

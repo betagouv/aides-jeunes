@@ -5,8 +5,8 @@ import mongoose from "mongoose"
 import { callMatomoAPI } from "./piwik.js"
 import mongooseConfig from "../../config/mongoose.js"
 import config from "../../config/index.js"
-import Followup from "../../models/followup.js"
-import Simulation from "../../models/simulation.js"
+import Followups from "../../models/followup.js"
+import Simulations from "../../models/simulation.js"
 
 mongooseConfig(mongoose, config)
 
@@ -35,7 +35,7 @@ const getSimulationsData = async (
   beginRange: dayjs.Dayjs,
   endRange: dayjs.Dayjs
 ) => {
-  const simulationCount = await Simulation.countDocuments({
+  const simulationCount = await Simulations.countDocuments({
     createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
   })
 
@@ -48,21 +48,21 @@ const getFollowupsData = async (
   beginRange: dayjs.Dayjs,
   endRange: dayjs.Dayjs
 ) => {
-  const followupWithOptinCount = await Followup.countDocuments({
+  const followupWithOptinCount = await Followups.countDocuments({
     createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
     surveyOptin: true,
   })
-  const followupWithoutOptinCount = await Followup.countDocuments({
+  const followupWithoutOptinCount = await Followups.countDocuments({
     createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
     surveyOptin: false,
   })
-  const followupWithSurveyCount = await Followup.countDocuments({
+  const followupWithSurveyCount = await Followups.countDocuments({
     "surveys.createdAt": {
       $gte: beginRange.toDate(),
       $lte: endRange.toDate(),
     },
   })
-  const followupWithSurveyRepliedCount = await Followup.countDocuments({
+  const followupWithSurveyRepliedCount = await Followups.countDocuments({
     "surveys.repliedAt": {
       $gte: beginRange.toDate(),
       $lte: endRange.toDate(),

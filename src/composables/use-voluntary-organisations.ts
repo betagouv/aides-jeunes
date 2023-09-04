@@ -1,6 +1,6 @@
 import { ref } from "vue"
 import { useStore } from "@/stores/index.js"
-import Simulation from "@/lib/simulation.js"
+import Simulations from "@/lib/simulation.js"
 import axios from "axios"
 
 type Coordinates = [number, number]
@@ -14,7 +14,7 @@ export function useVolontaryOrganisations() {
   const fetchPostalCodeFromStore = async (): Promise<string> => {
     let postalCode = store.situation.menage._codePostal
 
-    const simulationId = Simulation.getLatestId()
+    const simulationId = Simulations.getLatestId()
     if (!store.hasResults && !postalCode && simulationId) {
       await store.fetch(simulationId)
       postalCode = store.situation.menage._codePostal

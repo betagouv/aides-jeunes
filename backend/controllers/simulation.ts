@@ -6,14 +6,14 @@ import openfisca from "../lib/openfisca/index.js"
 import openfiscaTestLib from "../lib/openfisca/test.js"
 import { apply } from "../lib/migrations/index.js"
 
-import Simulation from "../models/simulation.js"
-import Followup from "../models/followup.js"
-import { FollowupInterface } from "../../lib/types/followup.d.js"
-import { SimulationInterface } from "../../lib/types/simulation.d.js"
+import Simulations from "../models/simulation.js"
+import Followups from "../models/followup.js"
+import { Followup } from "../../lib/types/followup.d.js"
+import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
 
-function setSimulationOnRequest(req: Request, simulation: SimulationInterface) {
+function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
@@ -22,22 +22,19 @@ function simulation(
   req: Request,
   res,
   next,
-  simulationOrSimulationId:
-    | SimulationInterface
-    | SimulationInterface["_id"]
-    | string
+  simulationOrSimulationId: Simulation | Simulation["_id"] | string
 ) {
   if (
     typeof simulationOrSimulationId === "object" &&
     simulationOrSimulationId._id
   ) {
-    const simulation = simulationOrSimulationId as SimulationInterface
+    const simulation = simulationOrSimulationId as Simulation
     setSimulationOnRequest(req, simulation)
     return next()
   }
 
-  const simulationId = simulationOrSimulationId as SimulationInterface["_id"]
-  Simulation.findById(simulationId, (err, simulation) => {
+  const simulationId = simulationOrSimulationId as Simulation["_id"]
+  Simulations.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)
     setSimulationOnRequest(req, simulation)
@@ -85,7 +82,7 @@ function clearCookies(req: Request, res) {
 
   const keys = Object.keys(req.cookies)
   const situationCookies = filter(keys, function (k) {
-    return k.startsWith(Simulation.cookiePrefix())
+    return k.startsWith(Simulations.cookiePrefix())
   })
   situationCookies.sort()
 
@@ -107,7 +104,7 @@ function create(req: Request, res, next) {
         "You can‘t provide _id when saving a situation. _id will be generated automatically.",
     })
 
-  return Simulation.create(
+  return Simulations.create(
     omit(req.body, "createdAt", "status", "token"),
     (err, persistedSimulation) => {
       if (err) return next(err)
@@ -220,13 +217,13 @@ function enrichBenefitsList(benefits) {
 }
 
 async function getLatestFollowup(req: Request, res) {
-  const followup = (await Followup.findOne(
+  const followup = (await Followups.findOne(
     {
       simulation: req.simulation?._id,
     },
     null,
     { sort: { createdAt: -1 } }
-  )) as FollowupInterface
+  )) as Followup
 
   if (!followup) {
     return res.status(404).send({ error: "No followup found" })

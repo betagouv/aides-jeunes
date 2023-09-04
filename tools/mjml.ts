@@ -3,13 +3,13 @@
 import api from "../backend/api.js"
 import { EmailType } from "../backend/enums/email.js"
 import express from "express"
-import Followup from "../backend/models/followup.js"
+import Followups from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
-import { FollowupInterface } from "../lib/types/followup.d.js"
+import { Followup } from "../lib/types/followup.d.js"
 
 api()
 
@@ -25,7 +25,7 @@ app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
 app.route("/").get(function (req, res) {
-  Followup.find()
+  Followups.find()
     .sort({ createdAt: -1 })
     .limit(10)
     .exec(function (err, followups) {
@@ -63,9 +63,9 @@ const followupRendering = async (req: Request) => {
 
 app.route("/mjml/:id/:type").get(
   function (req, res, next) {
-    Followup.findById(req.params.id)
+    Followups.findById(req.params.id)
       .populate("simulation")
-      .exec(function (err, followup: FollowupInterface | null) {
+      .exec(function (err, followup: Followup | null) {
         if (err) {
           return next(err)
         }

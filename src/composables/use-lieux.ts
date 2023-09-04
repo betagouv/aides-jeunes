@@ -7,7 +7,7 @@ import { ActiviteType } from "@lib/enums/activite.js"
 import { LieuProperties } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
 import { Benefit } from "@data/types/benefits"
-import Simulation from "@/lib/simulation.js"
+import Simulations from "@/lib/simulation.js"
 
 export function useLieux() {
   const store = useStore()
@@ -81,7 +81,7 @@ export function useLieux() {
 
   const loadLieux = async () => {
     let city = store.situation.menage.depcom
-    const simulationId = Simulation.getLatestId()
+    const simulationId = Simulations.getLatestId()
     if (!store.hasResults && !city && simulationId) {
       await store.fetch(simulationId)
       city = store.situation.menage.depcom

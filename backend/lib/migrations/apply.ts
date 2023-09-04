@@ -7,8 +7,8 @@ import es from "event-stream"
 // Loads
 import { apply, getLatestVersionByModelName } from "./index.js"
 import "../mongo-connector.js"
-import Simulation from "../../models/simulation.js"
-import Followup from "../../models/followup.js"
+import Simulations from "../../models/simulation.js"
+import Followups from "../../models/followup.js"
 
 let counter = 0
 let errors = 0
@@ -35,10 +35,10 @@ parser.add_argument("--model", {
 
 const modelMigration = {
   simulations: {
-    model: Simulation,
+    model: Simulations,
   },
   followups: {
-    model: Followup,
+    model: Followups,
   },
 }
 Object.keys(modelMigration).forEach((key) => {

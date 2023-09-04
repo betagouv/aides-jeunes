@@ -2,8 +2,8 @@ import dayjs from "dayjs"
 
 import { EmailType } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
-import Followup from "../../models/followup.js"
-import { FollowupInterface } from "../../../lib/types/followup.js"
+import Followups from "../../models/followup.js"
+import { Followup } from "../../../lib/types/followup.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -22,7 +22,7 @@ async function sendMultipleEmails(emailType: EmailType, limit: number) {
 }
 
 async function sendMultipleInitialEmails(limit: number) {
-  const followups: any[] = await Followup.find({
+  const followups: any[] = await Followups.find({
     surveys: {
       $not: {
         $elemMatch: {
@@ -45,7 +45,7 @@ async function sendMultipleInitialEmails(limit: number) {
     .limit(limit)
 
   const results: { ok?: any; ko?: any }[] = await Promise.all(
-    followups.map(async (followup: FollowupInterface) => {
+    followups.map(async (followup: Followup) => {
       const surveyType =
         Math.random() > 0.5
           ? SurveyType.trackClickOnBenefitActionEmail
@@ -64,7 +64,7 @@ async function sendMultipleInitialEmails(limit: number) {
 }
 
 async function sendMultipleTousABordNotificationEmails(limit: number) {
-  const followups = await Followup.find({
+  const followups = await Followups.find({
     benefits: {
       $elemMatch: {
         id: "pass-pass-pour-les-demandeurs-demploi",
@@ -89,7 +89,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     .limit(limit)
 
   const results = await Promise.all(
-    followups.map(async (followup: FollowupInterface) => {
+    followups.map(async (followup: Followup) => {
       try {
         const result = await followup.sendSurvey(
           SurveyType.tousABordNotification
@@ -104,7 +104,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
 }
 
 async function processSingleEmail(emailType: EmailType, followupId: string) {
-  const followup: FollowupInterface | null = await Followup.findById(followupId)
+  const followup: Followup | null = await Followups.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
   }

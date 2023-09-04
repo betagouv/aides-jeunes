@@ -40,7 +40,7 @@ interface FollowupVirtuals {
   wasNotUsefulPath: string
 }
 
-export interface FollowupInterface
+export interface Followup
   extends Document,
     FollowupAttributes,
     FollowupMethods,

@@ -1,6 +1,6 @@
 import { Model, HydratedDocument } from "mongoose"
 import { FollowupInterface } from "@lib/types/followup.d.js"
-import { SimulationInterface } from "@lib/types/simulation.d.js"
+import { Simulation } from "@lib/types/simulation.d.js"
 
 export interface Mongoose {
   [id: string]: any
@@ -19,5 +19,5 @@ interface SimulationStaticMethods {
 }
 
 export interface SimulationModel
-  extends Model<SimulationInterface>,
+  extends Model<Simulation>,
     SimulationStaticMethods {}

@@ -9,11 +9,11 @@ import { apply } from "../lib/migrations/index.js"
 import Simulations from "../models/simulation.js"
 import Followups from "../models/followup.js"
 import { FollowupInterface } from "../../lib/types/followup.d.js"
-import { SimulationInterface } from "../../lib/types/simulation.d.js"
+import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
 
-function setSimulationOnRequest(req: Request, simulation: SimulationInterface) {
+function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.simulation = apply(simulation)
   req.situation = generateSituation(req.simulation)
 }
@@ -22,21 +22,18 @@ function simulation(
   req: Request,
   res,
   next,
-  simulationOrSimulationId:
-    | SimulationInterface
-    | SimulationInterface["_id"]
-    | string
+  simulationOrSimulationId: Simulation | Simulation["_id"] | string
 ) {
   if (
     typeof simulationOrSimulationId === "object" &&
     simulationOrSimulationId._id
   ) {
-    const simulation = simulationOrSimulationId as SimulationInterface
+    const simulation = simulationOrSimulationId as Simulation
     setSimulationOnRequest(req, simulation)
     return next()
   }
 
-  const simulationId = simulationOrSimulationId as SimulationInterface["_id"]
+  const simulationId = simulationOrSimulationId as Simulation["_id"]
   Simulations.findById(simulationId, (err, simulation) => {
     if (!simulation) return res.sendStatus(404)
     if (err) return next(err)

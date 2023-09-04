@@ -1,6 +1,6 @@
 import Followups from "../models/followup.js"
 import { FollowupInterface } from "@lib/types/followup.js"
-import { SimulationInterface } from "@lib/types/simulation.js"
+import { Simulation } from "@lib/types/simulation.js"
 import utils from "../lib/utils.js"
 
 const DefaultVersion = 3
@@ -8,7 +8,7 @@ const TokenLength = 17
 
 export const FollowupFactory = {
   create: async (
-    simulation: SimulationInterface,
+    simulation: Simulation,
     email: string,
     surveyOptin: boolean
   ): Promise<FollowupInterface> => {

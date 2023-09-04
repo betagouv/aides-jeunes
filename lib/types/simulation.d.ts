@@ -42,7 +42,7 @@ interface SimulationVirtuals {
   returnPath: string
 }
 
-export interface SimulationInterface
+export interface Simulation
   extends Document,
     SimulationAttributes,
     SimulationMethods,

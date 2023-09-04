@@ -1,4 +1,4 @@
-export interface CommuneInterface {
+export interface Commune {
   code: string
   nom: string
   typeLiaison: number

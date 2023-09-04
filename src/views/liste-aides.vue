@@ -80,11 +80,11 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue"
 import institutionsBenefits from "generator:institutions"
-import Commune from "@/lib/commune.js"
-import { CommuneInterface } from "@lib/types/commune.d.js"
+import CommuneMethods from "@/lib/commune.js"
+import { Commune } from "@lib/types/commune.d.js"
 
 const zipCode = ref("")
-const selectedCommune = ref<CommuneInterface | null>()
+const selectedCommune = ref<Commune | null>()
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
   national: "Aides nationales",
@@ -126,7 +126,7 @@ const institutionsGroups = computed(() => {
 })
 async function computeDataSelected() {
   if (zipCode.value.match(/^[0-9]{5}$/)) {
-    const res = await Commune.get(zipCode.value)
+    const res = await CommuneMethods.get(zipCode.value)
     selectedCommune.value = res[0]
   } else {
     selectedCommune.value = null

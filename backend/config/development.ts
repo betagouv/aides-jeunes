@@ -28,4 +28,7 @@ export default {
       useNewUrlParser: true,
     },
   },
+  smsService: {
+    show: true,
+  },
 }

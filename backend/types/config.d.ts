@@ -59,6 +59,7 @@ export interface Configuration {
     project?: string
   }
   smsService: {
+    show?: boolean
     username: string
     password: string
     url: string

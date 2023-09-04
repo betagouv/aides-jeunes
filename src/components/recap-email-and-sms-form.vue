@@ -28,6 +28,8 @@ const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
+const showSms = computed(() => process.env.VITE_SHOW_SMS_TAB)
+
 const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
@@ -187,7 +189,11 @@ const sendRecapByEmail = async (surveyOptin) => {
         >Une adresse email valide doit être indiquée.
       </WarningMessage>
     </form>
-    <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
+    <form
+      v-if="showSms"
+      class="fr-form fr-my-2w"
+      @submit.prevent="sendRecap(true)"
+    >
       <div class="fr-form-group">
         <label class="fr-label" for="phone"
           >Votre numéro de téléphone portable

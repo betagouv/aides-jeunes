@@ -1,4 +1,4 @@
-export interface EmailLayout {
+export interface Email {
   from?: string
   to: string
   subject: string

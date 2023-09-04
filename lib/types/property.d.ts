@@ -5,16 +5,6 @@ export interface PropertyData {
   periods?: any
 }
 
-export interface Step {
-  entity: string
-  id: string
-  variable: string
-  path: string
-  key: string
-  chapter?: string
-  isActive?: boolean
-}
-
 export interface EnumItemProperty {
   label: string
   value: boolean | number | string

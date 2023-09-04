@@ -90,7 +90,8 @@ import { useIndividu } from "@/composables/individu.js"
 import ComplexeProperties from "@lib/properties/others/complexe-properties"
 import { getChapters } from "@lib/state"
 import { useRoute, useRouter } from "vue-router"
-import { RecapPropertyLine, Step } from "@lib/types/property.d.js"
+import { RecapPropertyLine } from "@lib/types/property.d.js"
+import { StepStrict } from "@lib/types/steps.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
@@ -201,7 +202,7 @@ const myChapters = computed(() => {
   let resChapters = getChapters(route.path, store.getAllSteps).map(
     (chapter) => {
       let questions = stepPerChapter(chapter.name).reduce(
-        (accum: RecapPropertyLine[], step: Step) => {
+        (accum: RecapPropertyLine[], step: StepStrict) => {
           accum.push(
             ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
               recapLine.path = step.path
@@ -224,10 +225,12 @@ const myChapters = computed(() => {
 })
 
 function stepPerChapter(chapterName: string) {
-  return activeJourney.filter((step: Step) => step.chapter === chapterName)
+  return activeJourney.filter(
+    (step: StepStrict) => step.chapter === chapterName
+  )
 }
 
-function questionsPerStep(step: Step): RecapPropertyLine[] {
+function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   const individu = step.entity === "individu" ? useIndividu(step.id) : undefined
 
   const currentPropertyData = { ...propertyData, individu }

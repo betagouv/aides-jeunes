@@ -8,6 +8,14 @@ export interface StepLayout {
   isActive?: boolean
 }
 
+export interface StepStrict extends StepLayout {
+  entity: string
+  id: string
+  variable: string
+  path: string
+  key: string
+}
+
 export interface ComplexStepLayout extends StepLayout {
   route?: string
   variables?: StepLayout[]

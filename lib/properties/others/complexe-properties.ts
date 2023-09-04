@@ -1,4 +1,4 @@
-import { PropertyData, RecapPropertyLine, Step } from "../../types/property.js"
+import { PropertyData, RecapPropertyLine } from "../../types/property.js"
 import { capitalize, displayCurrencyValue } from "../../utils.js"
 import IndividuMethods from "../../individu.js"
 import { getLoyerData } from "../../logement.js"
@@ -60,8 +60,11 @@ export default <{ [key: string]: any }>{
         })
     },
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      step: StepLayout
+    ): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
         {
@@ -80,7 +83,7 @@ export default <{ [key: string]: any }>{
     },
   },
   "ressources/montants": {
-    matcher(step: Step) {
+    matcher(step: StepLayout) {
       return ressourceCategories.some(
         (category: any) => category.id === step.variable
       )
@@ -124,7 +127,10 @@ export default <{ [key: string]: any }>{
       }
     },
 
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      step: StepLayout
+    ): RecapPropertyLine[] {
       const answer = (
         getAnswer(
           propertyData.simulation.answers.all,
@@ -174,8 +180,11 @@ export default <{ [key: string]: any }>{
   },
   enfants: {
     matcher: (step: any) => step.entity === "enfants",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      step: StepLayout
+    ): RecapPropertyLine[] {
       const answer = getAnswer(propertyData.simulation.answers.all, "enfants")
       return [
         {

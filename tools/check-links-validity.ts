@@ -8,6 +8,8 @@ import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
 import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
+import * as Sentry from "@sentry/node"
+import dayjs from "dayjs"
 
 const DEFAULT_BRANCH_REF = "refs/heads/master"
 
@@ -84,36 +86,34 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
+  const last3months: string = dayjs().subtract(3, "month").format("YYYY-MM-DD")
   const stats = await axios
-    .get("https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/statistics")
-    .then((r) => r.data)
-  const statTotal = stats.map((v) => {
-    const p = v.events?.showDetails || {}
-    const totals = Object.keys(p)
-    return {
-      benefit: v.benefit,
-      count: totals.reduce((at, t) => {
-        const indexes = Object.keys(p[t])
-        return (
-          at +
-          indexes.reduce((ai, i) => {
-            return ai + p[t][i]
-          }, 0)
-        )
-      }, 0),
+    .get(
+      `https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits?startAt=${last3months}`
+    )
+    .then((response) => response.data)
+
+  return stats.reduce((priorityMap, benefitStatsEvent) => {
+    const benefitId: string = benefitStatsEvent.id
+    const priority: number = benefitStatsEvent.events.showDetails
+
+    if (priority) {
+      priorityMap[benefitId] = priority
     }
+
+    return priorityMap
   })
-
-  const statByBenefitId = statTotal.reduce((a, v) => {
-    a[v.benefit] = v.count
-    return a
-  }, {})
-
-  return statByBenefitId
 }
 
 async function getBenefitData(noPriority: boolean) {
-  const priorityMap = noPriority ? {} : await getPriorityStats()
+  let priorityMap = {}
+  try {
+    priorityMap = noPriority ? {} : await getPriorityStats()
+  } catch (error) {
+    console.error(error)
+    Sentry.captureException(error)
+    console.warn("Unable to get priority stats, priorityMap is empty")
+  }
 
   const data = Benefits.all.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]

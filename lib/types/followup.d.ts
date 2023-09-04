@@ -1,6 +1,6 @@
 import { Document } from "mongoose"
 
-import { SurveyLayout } from "./survey.js"
+import { Survey } from "./survey.js"
 
 interface FollowupAttributes {
   _id: string
@@ -12,7 +12,7 @@ interface FollowupAttributes {
   surveySentAt: Date
   benefits: any
   surveyOptin: boolean
-  surveys: SurveyLayout[]
+  surveys: Survey[]
   version: number
   error: any
   accessToken: string

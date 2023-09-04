@@ -6,7 +6,7 @@ import simulationController from "./simulation.js"
 import { Response, NextFunction } from "express"
 import { SurveyType } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
-import { FetchSurveyLayout } from "../../lib/types/survey.d.js"
+import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 
 export function followup(
@@ -67,7 +67,7 @@ export function getFollowup(req: Request, res: Response) {
     benefits: req.followup.benefits.filter(
       (benefit) => benefit.id in Benefits.benefitsMap
     ),
-  } as FetchSurveyLayout)
+  } as FetchSurvey)
 }
 
 export function showFollowup(req: Request, res: Response) {

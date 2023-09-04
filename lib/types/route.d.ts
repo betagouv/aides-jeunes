@@ -1,4 +1,4 @@
-export interface RouteLayout {
+export interface Route {
   path: string
   fullPath: string
 }

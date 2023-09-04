@@ -1,7 +1,7 @@
 import Chapters from "../chapters.js"
 import { Chapter } from "@lib/types/chapters.d"
 import { Step } from "@lib/types/steps.d.js"
-import { RouteLayout } from "@lib/types/route.d.js"
+import { Route } from "@lib/types/route.d.js"
 import { ChapterState } from "../enums/chapter.js"
 
 export function getChapters(
@@ -26,7 +26,7 @@ export function current(
   return journey.find((item) => item.path == currentPath)
 }
 
-export function getNextStep(currentRoute: RouteLayout, journey: Step[]): Step {
+export function getNextStep(currentRoute: Route, journey: Step[]): Step {
   const matches = journey
     .map((element, index) => {
       return { element, index }

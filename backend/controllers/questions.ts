@@ -1,7 +1,7 @@
 import { getParametersSync } from "../lib/openfisca/parameters.js"
 import { generator } from "../../lib/dates.js"
 import { generateSituation } from "../../lib/situations.js"
-import Individu from "../../lib/individu.js"
+import IndividuMethods from "../../lib/individu.js"
 import { generateAllSteps } from "../../lib/state/generator.js"
 import { ressourceTypes } from "../../lib/resources.js"
 import SimpleProperties from "../../lib/properties/others/simple-properties.js"
@@ -9,7 +9,7 @@ import ComplexeProperties from "../../lib/properties/others/complexe-properties.
 import DepcomProperties from "../../lib/properties/depcom-properties.js"
 import { ENTITIES_PROPERTIES } from "../../lib/mutualized-steps.js"
 
-import { questionLayout } from "../types/question.js"
+import { Question } from "../types/question.js"
 
 const COMPLEXE_STEPS = Object.values(ComplexeProperties)
 
@@ -95,8 +95,8 @@ function getQuestionsPerStep(
   step,
   propertyData,
   individus
-): questionLayout | undefined {
-  const result: questionLayout = {
+): Question | undefined {
+  const result: Question = {
     id: step.variable,
     entity: step.entity,
     individu: step.id,
@@ -108,7 +108,7 @@ function getQuestionsPerStep(
     DepcomProperties[step.variable] ||
     SimpleProperties[step.variable]
 
-  const individu = Individu.getById(individus, step.id)
+  const individu = IndividuMethods.getById(individus, step.id)
 
   if (property) {
     const currentPropertyData = {

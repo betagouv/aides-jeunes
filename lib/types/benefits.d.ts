@@ -1,4 +1,4 @@
-export interface ConditionsLayout {
+export interface Conditions {
   [key: string]: {
     test: any
     extra?: any[]

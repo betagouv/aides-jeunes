@@ -1,16 +1,16 @@
-export interface benefitLink {
+export interface BenefitLink {
   link: string
   type: string
   status?: number
   ok?: boolean
 }
 
-export interface benefitData {
+export interface BenefitLinkProperties {
   id: string
   label: string
   institution: string
   priority: number
-  links: benefitLink[]
+  links: BenefitLink[]
   editLink: string
 }
 

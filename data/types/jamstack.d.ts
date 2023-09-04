@@ -1,5 +1,5 @@
-import { JavascriptBenefitLayout } from "./benefits.d.js"
-import { InstitutionRawLayout } from "./institutions.d.js"
+import { JavascriptBenefit } from "./benefits.d.js"
+import { InstitutionRaw } from "./institutions.d.js"
 
 interface NetlifyCollection {
   name: string
@@ -21,13 +21,13 @@ interface NetlifyField {
 }
 
 interface BenefitsJavascriptCollection extends NetlifyCollection {
-  items: JavascriptBenefitLayout[]
+  items: JavascriptBenefit[]
 }
 interface InstitutionCollection extends NetlifyCollection {
-  items: InstitutionRawLayout[]
+  items: InstitutionRaw[]
 }
 
-export interface JamstackLayout {
+export interface Jamstack {
   locale: any
   backend: any
   media_folder: any

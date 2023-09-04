@@ -3,7 +3,7 @@ import validator from "validator"
 
 import { sendMail } from "../lib/smtp.js"
 
-import { SurveyLayout } from "../../lib/types/survey.js"
+import { Survey } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
@@ -117,7 +117,7 @@ FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
 
 FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
   const followup = this
-  return this.addSurveyIfMissing(surveyType).then((survey: SurveyLayout) => {
+  return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
         return sendMail({
@@ -149,7 +149,7 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
 })
 
 FollowupSchema.method("updateSurvey", function (type, answers) {
-  const surveys: SurveyLayout[] = Array.from(this.surveys)
+  const surveys: Survey[] = Array.from(this.surveys)
   const survey = surveys.find((s) => s.type === type)
   if (typeof survey === "undefined") {
     console.log("Could not find and update survey using its id")

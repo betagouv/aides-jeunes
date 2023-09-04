@@ -1,26 +1,26 @@
-export interface typicalDatesLayout {
+export interface DatesRange {
   today: {
     id: string
     value: any
     label: string
   }
-  thisMonth: dateLayout
-  thisYear: dateLayout
-  oneMonthAgo: dateLayout
-  twoMonthsAgo: dateLayout
-  threeMonthsAgo: dateLayout
-  twelveMonthsAgo: dateLayout
-  last3Months: dateLayout[]
-  last12Months: dateLayout[]
-  lastYear: dateLayout
-  fiscalYear: dateLayout
-  fiscalYear12Months: dateLayout[]
-  previousFiscalYear: dateLayout
-  previousFiscalYear12Months: dateLayout[]
-  threeYearsAgo: dateLayout
+  thisMonth: DateItem
+  thisYear: DateItem
+  oneMonthAgo: DateItem
+  twoMonthsAgo: DateItem
+  threeMonthsAgo: DateItem
+  twelveMonthsAgo: DateItem
+  last3Months: DateItem[]
+  last12Months: DateItem[]
+  lastYear: DateItem
+  fiscalYear: DateItem
+  fiscalYear12Months: DateItem[]
+  previousFiscalYear: DateItem
+  previousFiscalYear12Months: DateItem[]
+  threeYearsAgo: DateItem
 }
 
-export interface dateLayout {
+export interface DateItem {
   id: string
   label: string
 }

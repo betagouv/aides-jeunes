@@ -1,4 +1,4 @@
-export interface answerLayout {
+export interface Answer {
   id?: any
   entityName: any
   fieldName: any

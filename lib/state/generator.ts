@@ -1,14 +1,14 @@
-import { Step } from "./steps.js"
+import { StepGenerator } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
-import { StepLayout, ComplexStepGeneratorLayout } from "../types/steps.js"
+import { StepStrict, ComplexStepProperties } from "../types/steps.js"
 
-import { BlockLayout } from "../types/blocks.js"
+import { Block } from "../types/blocks.js"
 
 function processAndAppendBlockRecursively(
   { journey, subject, situation, isActive, parameters },
-  block: BlockLayout
+  block: Block
 ) {
-  if (block instanceof Step) {
+  if (block instanceof StepGenerator) {
     block.isActive = isActive
     journey.push(block)
     return
@@ -51,7 +51,7 @@ function createJourneyFromBlocks(blocks, situation, parameters) {
   return journey
 }
 
-function generateJourney(situation, parameters): StepLayout[] {
+function generateJourney(situation, parameters): StepStrict[] {
   const blocks = generateBlocks(situation)
 
   return createJourneyFromBlocks(blocks, situation, parameters)
@@ -73,7 +73,7 @@ function assignLastChapterToSteps(fullSteps) {
 export function generateAllSteps(
   situation,
   parameters
-): (StepLayout | ComplexStepGeneratorLayout)[] {
+): (StepStrict | ComplexStepProperties)[] {
   let fullSteps
   try {
     fullSteps = generateJourney(situation, parameters)

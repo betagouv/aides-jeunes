@@ -1,4 +1,4 @@
-export interface droitEstimeLayout {
+export interface DroitEstime {
   id?: string
   label?: string
   legend: string

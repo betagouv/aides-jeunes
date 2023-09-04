@@ -144,7 +144,7 @@ import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
-import { FetchSurveyLayout } from "@lib/types/survey.d.js"
+import { FetchSurvey } from "@lib/types/survey.d.js"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -166,7 +166,7 @@ interface FollowupBenefit extends StandardBenefit {
 const route = useRoute()
 const submitted = ref(false)
 const droits = ref<FollowupBenefit[]>([])
-const followup = ref<FetchSurveyLayout | null>(null)
+const followup = ref<FetchSurvey | null>(null)
 
 const createdAt = computed(() => {
   return (
@@ -196,7 +196,7 @@ onMounted(async () => {
   const { data: followupData } = await axios.get(
     `/api/followups/surveys/${route.query.token}`
   )
-  followup.value = followupData as FetchSurveyLayout
+  followup.value = followupData as FetchSurvey
   const followupBenefits: StandardBenefit[] = followup.value.benefits.map(
     (benefit) => getBenefit(benefit.id)
   )

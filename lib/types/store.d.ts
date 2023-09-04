@@ -50,12 +50,6 @@ export interface Simulation {
   simulationToken?: string | undefined
 }
 
-export interface Situation {
-  [entity: string]: {
-    [key: string]: any
-  }
-}
-
 export interface PersistedStore {
   simulationId: string | null
   simulation: Simulation

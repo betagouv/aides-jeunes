@@ -50,7 +50,7 @@ import RessourceMontants from "@/components/ressource/montants.vue"
 import RessourceProcessor from "@/mixins/ressource-processor.js"
 import { ressourceTypes } from "@lib/resources.js"
 import Ressource from "@lib/ressource.js"
-import Individu from "@lib/individu.js"
+import IndividuMethods from "@lib/individu.js"
 import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 
@@ -112,12 +112,12 @@ export default {
   },
   methods: {
     getIndividuNom() {
-      return Individu.label(this.individu, "nom")
+      return IndividuMethods.label(this.individu, "nom")
     },
     getIndividu() {
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const { individu } = Individu.get(
+      const { individu } = IndividuMethods.get(
         this.store.peopleParentsFirst,
         role,
         this.$route.params.id,

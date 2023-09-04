@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, defineProps, PropType } from "vue"
-import { lieuLayout } from "@lib/types/lieu.d.js"
+import { LieuProperties } from "@lib/types/lieu.d.js"
 
 const props = defineProps({
   lieu: {
-    type: Object as PropType<lieuLayout>,
+    type: Object as PropType<LieuProperties>,
     required: true,
   },
 })

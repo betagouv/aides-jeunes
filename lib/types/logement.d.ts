@@ -1,4 +1,4 @@
-export interface logementQuestionLayout {
+export interface QuestionLogement {
   label: string
   selectedValue: any
   hint: string

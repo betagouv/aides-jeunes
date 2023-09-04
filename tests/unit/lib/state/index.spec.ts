@@ -1,5 +1,6 @@
 import { expect } from "@jest/globals"
 import { getChapters } from "@lib/state/index.js"
+import { StepStrict } from "@lib/types/steps.d.js"
 
 describe("chapter", function () {
   const currentPath = "/path/to/some/page"
@@ -12,7 +13,7 @@ describe("chapter", function () {
       path: "/path/to/yet/another/page/again",
       chapter: "revenus",
     },
-  ]
+  ] as StepStrict[]
 
   function mockChaptersWithStates(profilState, logementState, revenusState) {
     return [

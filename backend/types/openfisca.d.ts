@@ -1,32 +1,32 @@
-import { individuLayout } from "../../lib/types/individu.js"
-import { situationsLayout } from "../../lib/types/situations.js"
+import { Individu } from "../../lib/types/individu.js"
+import { Situation } from "../../lib/types/situations.js"
 
-export interface openfiscaMappingLayout {
-  individus: individuLayout[]
-  familles?: familleLayout
-  foyers_fiscaux: foyersFiscauxLayout
-  menages: menageLayout
+export interface OpenfiscaMapping {
+  individus: Individu[]
+  familles?: Famille
+  foyers_fiscaux: FoyersFiscaux
+  menages: Menage
 }
 
-export interface familleLayout {
+export interface Famille {
   _: any
-  parents?: situationsLayout
+  parents?: Situation
 }
 
-export interface menageLayout {
+export interface Menage {
   _: any
   parents?: any
 }
 
-export interface foyersFiscauxLayout {
+export interface FoyersFiscaux {
   _: {
     declarants: string[]
-    personnes_a_charge: individuLayout[]
+    personnes_a_charge: Individu[]
     rfr?: any
   }
 }
 
-export interface openfiscaPeriodsLayout {
+export interface OpenfiscaPeriods {
   today: string
   thisMonth: string
   thisYear: string

@@ -1,11 +1,11 @@
-import { PropertyData, RecapPropertyLine, Step } from "../../types/property.js"
+import { PropertyData, RecapPropertyLine } from "../../types/property.js"
 import { capitalize, displayCurrencyValue } from "../../utils.js"
-import Individu from "../../individu.js"
+import IndividuMethods from "../../individu.js"
 import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
-import { logementQuestionLayout } from "../../types/logement.d.js"
-import { StepLayout } from "../../types/steps.d.js"
+import { QuestionLogement } from "../../types/logement.d.js"
+import { StepStrict } from "../../types/steps.d.js"
 import dayjs from "dayjs"
 
 export default <{ [key: string]: any }>{
@@ -13,7 +13,10 @@ export default <{ [key: string]: any }>{
     matcher: (step: any) => step.variable === "_hasRessources",
     getFormat: (step: any, propertyData: PropertyData, individus: []) => {
       return propertyData.simulation.enfants.map((enfantNumber: number) => {
-        const enfant = Individu.getById(individus, `enfant_${enfantNumber}`)
+        const enfant = IndividuMethods.getById(
+          individus,
+          `enfant_${enfantNumber}`
+        )
         return {
           text: `${capitalize(
             enfant._firstName
@@ -43,7 +46,7 @@ export default <{ [key: string]: any }>{
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       return [loyerData.loyerQuestion, loyerData.chargesQuestion]
         .filter(
-          (question): question is logementQuestionLayout =>
+          (question): question is QuestionLogement =>
             typeof question !== "undefined"
         )
         .map((question) => {
@@ -57,8 +60,11 @@ export default <{ [key: string]: any }>{
         })
     },
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      step: StepStrict
+    ): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
         {
@@ -77,7 +83,7 @@ export default <{ [key: string]: any }>{
     },
   },
   "ressources/montants": {
-    matcher(step: Step) {
+    matcher(step: StepStrict) {
       return ressourceCategories.some(
         (category: any) => category.id === step.variable
       )
@@ -97,7 +103,7 @@ export default <{ [key: string]: any }>{
       )
     },
 
-    getFormat(step: StepLayout, propertyData: PropertyData) {
+    getFormat(step: StepStrict, propertyData: PropertyData) {
       const answerFormat = this.getResourcesTypesByCategoryId(
         step,
         propertyData.simulation.answers.all
@@ -121,7 +127,10 @@ export default <{ [key: string]: any }>{
       }
     },
 
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      step: StepStrict
+    ): RecapPropertyLine[] {
       const answer = (
         getAnswer(
           propertyData.simulation.answers.all,
@@ -171,8 +180,11 @@ export default <{ [key: string]: any }>{
   },
   enfants: {
     matcher: (step: any) => step.entity === "enfants",
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
+    getRecap(
+      propertyData: PropertyData,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      step: StepStrict
+    ): RecapPropertyLine[] {
       const answer = getAnswer(propertyData.simulation.answers.all, "enfants")
       return [
         {

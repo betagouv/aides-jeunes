@@ -5,8 +5,8 @@ import Scolarite from "../scolarite.js"
 
 import { ActiviteType } from "../enums/activite.js"
 import { ScolariteType } from "../enums/scolarite.js"
-import { situationsLayout } from "../types/situations.js"
-import { ConditionsLayout } from "../types/benefits.js"
+import { Situation } from "../types/situations.js"
+import { Conditions } from "../types/benefits.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
 
 const testRSARecipient = ({ openfiscaResponse, periods }): boolean => {
@@ -24,64 +24,52 @@ const includesAndExcludesCondition = (condition, value) => {
   return includes && excludes
 }
 const PROFILE_STRATEGY = {
-  apprenti: ({ situation }: { situation: situationsLayout }): boolean => {
+  apprenti: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?._contrat_alternant === ActiviteType.apprenti
   },
   beneficiaire_rsa: (data) => {
     return testRSARecipient(data)
   },
-  chomeur: ({ situation }: { situation: situationsLayout }): boolean => {
+  chomeur: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.chomeur
   },
-  etudiant: ({ situation }: { situation: situationsLayout }): boolean => {
+  etudiant: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.etudiant
   },
-  inactif: ({ situation }: { situation: situationsLayout }): boolean => {
+  inactif: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.inactif
   },
-  independant: ({ situation }: { situation: situationsLayout }): boolean => {
+  independant: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.independant
   },
   enseignement_superieur: ({
     situation,
   }: {
-    situation: situationsLayout
+    situation: Situation
   }): boolean => {
     return (
       situation.demandeur?.scolarite === ScolariteType.enseignement_superieur
     )
   },
-  lyceen: ({ situation }: { situation: situationsLayout }): boolean => {
+  lyceen: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.scolarite === ScolariteType.lycee
   },
-  professionnalisation: ({
-    situation,
-  }: {
-    situation: situationsLayout
-  }): boolean => {
+  professionnalisation: ({ situation }: { situation: Situation }): boolean => {
     return (
       situation.demandeur?._contrat_alternant ===
       ActiviteType.professionnalisation
     )
   },
-  salarie: ({ situation }: { situation: situationsLayout }): boolean => {
+  salarie: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.salarie
   },
-  service_civique: ({
-    situation,
-  }: {
-    situation: situationsLayout
-  }): boolean => {
+  service_civique: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.activite === ActiviteType.service_civique
   },
-  stagiaire: ({ situation }: { situation: situationsLayout }): boolean => {
+  stagiaire: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.stagiaire === true
   },
-  situation_handicap: ({
-    situation,
-  }: {
-    situation: situationsLayout
-  }): boolean => {
+  situation_handicap: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.handicap === true
   },
 }
@@ -103,7 +91,7 @@ const COMMUNE_PARAMETERS = {
 
 export function testGeographicalEligibility(
   condition: any,
-  { situation }: { situation: situationsLayout }
+  { situation }: { situation: Situation }
 ): boolean {
   // Pas de contrainte géographique
   if (!condition.values || condition.values.length === 0) {
@@ -118,7 +106,7 @@ export function testGeographicalEligibility(
   )
 }
 
-export const CONDITION_STRATEGY: ConditionsLayout = {
+export const CONDITION_STRATEGY: Conditions = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
       return openfiscaResponse.individus.demandeur.boursier?.[
@@ -135,7 +123,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
     ],
   },
   formation_sanitaire_social: {
-    test: (_, { situation }: { situation: situationsLayout }) => {
+    test: (_, { situation }: { situation: Situation }) => {
       return (
         situation.demandeur?.groupe_specialites_formation ===
         Scolarite.groupeSpecialitesFormation
@@ -144,7 +132,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
     },
   },
   mention_baccalaureat: {
-    test: (condition, { situation }: { situation: situationsLayout }) => {
+    test: (condition, { situation }: { situation: Situation }) => {
       return condition.values.includes(
         situation.demandeur?.mention_baccalaureat
       )
@@ -161,7 +149,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
       {
         situation,
       }: {
-        situation: situationsLayout
+        situation: Situation
       },
       benefit
     ): boolean => {
@@ -201,7 +189,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
     test: testGeographicalEligibility,
   },
   annee_etude: {
-    test: (condition, { situation }: { situation: situationsLayout }) => {
+    test: (condition, { situation }: { situation: Situation }) => {
       return condition.values.includes(situation.demandeur?.annee_etude)
     },
   },
@@ -264,7 +252,7 @@ export const CONDITION_STRATEGY: ConditionsLayout = {
     ],
   },
   taux_incapacite: {
-    test: (condition, { situation }: { situation: situationsLayout }) => {
+    test: (condition, { situation }: { situation: Situation }) => {
       const taux_incapacite = situation.demandeur?.taux_incapacite || 0
       return OPERATOR[condition.operator](taux_incapacite, condition.value)
     },
@@ -296,7 +284,7 @@ export function testProfileEligibility(benefit, data) {
 
 export function computeJavascriptBenefits(
   benefits: BenefitCatalog,
-  situation: situationsLayout,
+  situation: Situation,
   openfiscaResponse
 ) {
   const age = dayjs(situation.dateDeValeur).diff(

@@ -3,16 +3,16 @@ import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
 
-import { JamstackLayout } from "./types/jamstack.d.js"
+import { Jamstack } from "./types/jamstack.d.js"
 import {
-  InstitutionRawLayout,
-  InstitutionLayout,
+  InstitutionRaw,
+  Institution,
   InstitutionsMap,
 } from "./types/institutions.d.js"
 import { StandardBenefit, BenefitsMap } from "./types/benefits.d.js"
 import { BenefitCatalog } from "./types/generator.d.js"
 
-function generateInstitutionId(institution: InstitutionRawLayout) {
+function generateInstitutionId(institution: InstitutionRaw) {
   return `${institution.type}_${
     institution.code_insee || institution.code_siren || institution.slug
   }`
@@ -22,9 +22,7 @@ function generateBenefitId(benefit: StandardBenefit) {
   return benefit.id || benefit.slug
 }
 
-function transformInstitutions(
-  collection: InstitutionRawLayout[]
-): InstitutionsMap {
+function transformInstitutions(collection: InstitutionRaw[]): InstitutionsMap {
   return collection.reduce((result, data) => {
     const item = {
       slug: data.slug,
@@ -46,7 +44,7 @@ function transformInstitutions(
   }, {})
 }
 
-function setTop(benefit: StandardBenefit, institution: InstitutionRawLayout) {
+function setTop(benefit: StandardBenefit, institution: InstitutionRaw) {
   const default_top =
     institution.top ||
     (institution.type === "national"
@@ -60,7 +58,7 @@ function setTop(benefit: StandardBenefit, institution: InstitutionRawLayout) {
 
 function setDefaults(
   benefit: StandardBenefit,
-  institution: InstitutionLayout
+  institution: Institution
 ): StandardBenefit {
   benefit.id = generateBenefitId(benefit)
   benefit.top = setTop(benefit, institution)
@@ -69,7 +67,7 @@ function setDefaults(
 }
 
 export function generate(
-  collections: JamstackLayout["collections"],
+  collections: Jamstack["collections"],
   additionalBenefitAttributes,
   aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
   fslGenerator?: typeof buildFSL,
@@ -103,7 +101,7 @@ export function generate(
   const benefitsMap: BenefitsMap = {}
 
   const benefits: StandardBenefit[] = benefitsCollections.map((benefit) => {
-    const institution: InstitutionLayout = institutions[benefit.institution]
+    const institution: Institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
     Object.assign(benefit, additionalBenefitAttributes[benefit.id])
     institution.benefitsIds.push(benefit.id)
@@ -125,7 +123,7 @@ export default {
   generateInstitutionId,
   generateBenefitId,
   fn: generate,
-  generate: (jam: JamstackLayout) =>
+  generate: (jam: Jamstack) =>
     generate(
       jam.collections,
       additionalBenefitAttributes,

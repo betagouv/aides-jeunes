@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-interface ABTestingLayout {
+interface ABTesting {
   [key: string]: {
     index: number
     value: string
@@ -36,29 +36,30 @@ function getEnvironment() {
   if (!window._paq) {
     return {}
   }
-  const ABTesting: ABTestingLayout =
+  const ABTestingEnvironment: ABTesting =
     storageService.local.getItem("ABTesting") || {}
 
   // index doit être dans [1, 5]
   // // Prépare la variable d'AB testing
-  // ABTesting.link = ABTesting.link || { index: 1 };
+  // ABTestingEnvironment.link = ABTestingEnvironment.link || { index: 1 };
   // // Réparti les visiteurs l'AB testing avec cette variable
-  // ABTesting.link.value = ABTesting.link.value || (Math.random() > 0.5 ? 'A' : 'B');
+  // ABTestingEnvironment.link.value = ABTestingEnvironment.link.value || (Math.random() > 0.5 ? 'A' : 'B');
   // // Après l'AB testing
   // // Pour le désactiver
   // // et libérer une custom variable
-  // // ABTesting.link.deleted = true;
+  // // ABTestingEnvironment.link.deleted = true;
   // cf. https://stats.data.gouv.fr/index.php?module=CustomDimensions&action=manage&idSite=165
 
   // Définition de la valeur d'AB testing pour la refonte de la page de résultats d'une aide
-  ABTesting.benefit_result_page = ABTesting.benefit_result_page || {}
-  ABTesting.benefit_result_page.index = 2
-  ABTesting.benefit_result_page.value =
-    ABTesting.benefit_result_page.value ||
+  ABTestingEnvironment.benefit_result_page =
+    ABTestingEnvironment.benefit_result_page || {}
+  ABTestingEnvironment.benefit_result_page.index = 2
+  ABTestingEnvironment.benefit_result_page.value =
+    ABTestingEnvironment.benefit_result_page.value ||
     (Math.random() > 0.5 ? "OldUI" : "NewUI")
 
-  Object.keys(ABTesting).forEach(function (name) {
-    const data = ABTesting[name]
+  Object.keys(ABTestingEnvironment).forEach(function (name) {
+    const data = ABTestingEnvironment[name]
     if (data.deleted) {
       window._paq!.push(["deleteCustomDimension", data.index])
     } else {
@@ -69,11 +70,11 @@ function getEnvironment() {
       ])
     }
   })
-  storageService.local.setItem("ABTesting", ABTesting)
-  return ABTesting
+  storageService.local.setItem("ABTesting", ABTestingEnvironment)
+  return ABTestingEnvironment
 }
 
-function extractValueMap(env: ABTestingLayout): { [key: string]: string } {
+function extractValueMap(env: ABTesting): { [key: string]: string } {
   const experimentKeys = Object.keys(env)
   return experimentKeys.reduce((result, key) => {
     const experiment = env[key]

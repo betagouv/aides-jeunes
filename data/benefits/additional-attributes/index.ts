@@ -2,9 +2,9 @@
 
 import dayjs from "dayjs"
 
-import { benefitLayout } from "../../types/benefits.js"
-import { openfiscaParametersLayout } from "../../../lib/types/parameters.js"
-import { situationsLayout } from "../../../lib/types/situations.js"
+import { Benefit } from "../../types/benefits.js"
+import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
+import { Situation } from "../../../lib/types/situations.js"
 import { ActiviteType } from "../../../lib/enums/activite.js"
 
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
@@ -34,7 +34,7 @@ export const additionalBenefitAttributes = {
     },
   },
   rsa: {
-    labelFunction: function (b: benefitLayout) {
+    labelFunction: function (b: Benefit) {
       return `${b.label} pour un montant de ${b.montant} € / mois pendant 3 mois`
     },
     customization: {
@@ -64,7 +64,7 @@ export const additionalBenefitAttributes = {
     },
   },
   aide_logement: {
-    computeUnexpectedAmount: (situation: situationsLayout) => {
+    computeUnexpectedAmount: (situation: Situation) => {
       // not ideal because we are not computing other incomes => but covers 90% of the cases
       const salary: number = situation.demandeur?.salaire_net
         ? Object.values(situation.demandeur.salaire_net).reduce(
@@ -110,7 +110,7 @@ export const additionalBenefitAttributes = {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% / an ${b.legend}`
     },
-    legend: (parameters: openfiscaParametersLayout) =>
+    legend: (parameters: OpenfiscaParameters) =>
       `au lieu de ${
         parameters["taxation_capital.epargne.livret_a.taux"] * 100
       }%`,

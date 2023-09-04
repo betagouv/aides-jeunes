@@ -1,9 +1,9 @@
-import { ConfigurationLayout } from "../types/config.js"
+import { Configuration } from "../types/config.js"
 const __dirname = new URL(".", import.meta.url).pathname
 
 const env = process.env.NODE_ENV || "development"
 
-const all: ConfigurationLayout = {
+const all: Configuration = {
   env: env,
   animation: {
     delay: Number(process.env.ANIMATION_DELAY) || 300,

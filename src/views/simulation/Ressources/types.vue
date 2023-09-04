@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import RessourceTypes from "@/components/ressource/types.vue"
-import Individu from "@lib/individu.js"
+import IndividuMethods from "@lib/individu.js"
 import { useStore } from "@/stores/index.js"
 
 export default {
@@ -19,7 +19,7 @@ export default {
     individu() {
       const id = this.$route.params.id
       const role = id.split("_")[0]
-      const { individu } = Individu.get(
+      const { individu } = IndividuMethods.get(
         this.store.peopleParentsFirst,
         role,
         this.$route.params.id,

@@ -2,13 +2,11 @@ import { expect } from "@jest/globals"
 import benefits from "@root/data/all.js"
 
 import generator from "@root/data/benefits/aides-velo-generator.js"
-import { benefitVeloLayout } from "@root/data/types/benefits.js"
+import { VeloBenefit } from "@root/data/types/benefits.js"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 describe("aides velo benefit generator", function () {
-  const list: benefitVeloLayout[] = generator(
-    Object.values(benefits.institutionsMap)
-  )
+  const list: VeloBenefit[] = generator(Object.values(benefits.institutionsMap))
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {

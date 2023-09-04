@@ -66,8 +66,8 @@
 </template>
 
 <script lang="ts">
-import Commune from "@/lib/commune.js"
-import { CommuneInterface } from "@lib/types/commune.d.js"
+import CommuneMethods from "@/lib/commune.js"
+import { Commune } from "@lib/types/commune.d.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores/index.js"
 import StatisticsMixin from "@/mixins/statistics.js"
@@ -96,7 +96,7 @@ export default {
       codePostalValue: this.codePostal,
       nomCommuneValue: this.nomCommune,
       retrievingCommunes: false,
-      communes: [] as CommuneInterface[],
+      communes: [] as Commune[],
     }
   },
   watch: {
@@ -138,7 +138,7 @@ export default {
         return
       }
       this.retrievingCommunes = true
-      Commune.get(this.codePostalValue)
+      CommuneMethods.get(this.codePostalValue)
         .then((communes) => {
           if (communes.length <= 0) {
             this.sendEventToMatomo(
@@ -153,7 +153,7 @@ export default {
           }
           this.store.updateError(null)
           if (!communes.map((c) => c.nom).includes(this.nomCommuneValue)) {
-            this.nomCommuneValue = Commune.getMostPopulated(communes).nom
+            this.nomCommuneValue = CommuneMethods.getMostPopulated(communes).nom
           }
           this.communes = communes
           if (focusCommune) {

@@ -1,4 +1,4 @@
-export interface InstitutionRawLayout {
+export interface InstitutionRaw {
   name: string
   imgSrc: string
   code_siren?: string
@@ -13,7 +13,7 @@ export interface InstitutionRawLayout {
   slug: string
 }
 
-export interface InstitutionLayout extends InstitutionRawLayout {
+export interface Institution extends InstitutionRaw {
   label: string
   benefitsIds: string[]
   slug: string
@@ -21,5 +21,5 @@ export interface InstitutionLayout extends InstitutionRawLayout {
 }
 
 export interface InstitutionsMap {
-  [key: string]: InstitutionLayout
+  [key: string]: Institution
 }

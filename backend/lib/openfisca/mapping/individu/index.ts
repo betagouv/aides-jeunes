@@ -5,7 +5,7 @@ import { formatDate } from "../utils.js"
 import individuRessource from "./ressources.js"
 import pastResourcesProxy from "./past-resources-proxy.js"
 import { estActif } from "../../../../../lib/activite.js"
-import Individu from "../../../../../lib/individu.js"
+import IndividuMethods from "../../../../../lib/individu.js"
 
 import {
   computeDistanceCommunes,
@@ -13,9 +13,9 @@ import {
 } from "../../../mes-aides/distance.js"
 
 import { ActiviteType } from "../../../../../lib/enums/activite.js"
-import { individuGeneratorLayout } from "../../../../../lib/types/individu.js"
+import { IndividuGenerator } from "../../../../../lib/types/individu.js"
 
-const individuSchema: individuGeneratorLayout = {
+const individuSchema: IndividuGenerator = {
   activite: {
     src: "activite",
     fn: function (activite) {
@@ -53,7 +53,10 @@ const individuSchema: individuGeneratorLayout = {
   bourse_criteres_sociaux_distance_domicile_familial: {
     fn: function (individu, situation) {
       // distance to parent's home is 0 if the user lives with his parents or has no parents
-      if (Individu.isWithoutParent(situation) || individu.habite_chez_parents) {
+      if (
+        IndividuMethods.isWithoutParent(situation) ||
+        individu.habite_chez_parents
+      ) {
         return 0
       }
 
@@ -102,7 +105,7 @@ const individuSchema: individuGeneratorLayout = {
   },
   orphelin: {
     fn: function (_, situation) {
-      return Individu.isWithoutParent(situation)
+      return IndividuMethods.isWithoutParent(situation)
     },
   },
   peec_employeur: {

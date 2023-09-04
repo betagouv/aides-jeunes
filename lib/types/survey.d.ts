@@ -14,7 +14,7 @@ export interface SurveyBenefit {
   comment: any
 }
 
-export interface SurveyLayout {
+export interface Survey {
   _id: string
   answers: SurveyAnswer[]
   repliedAt?: string
@@ -23,7 +23,7 @@ export interface SurveyLayout {
   type: SurveyType
 }
 
-interface FetchSurveyLayout {
+interface FetchSurvey {
   createdAt: string | Date
   benefits: {
     id: string

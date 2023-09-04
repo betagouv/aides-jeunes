@@ -5,7 +5,7 @@ import Parents from "./properties/parents-properties.js"
 import { Property } from "./properties/property.js"
 import DepcomProperties from "./properties/depcom-properties.js"
 import SimpleProperties from "./properties/others/simple-properties.js"
-import { Step } from "./types/property.js"
+import { StepStrict } from "./types/steps.js"
 
 export const ENTITIES_PROPERTIES: {
   [key: string]: { [key: string]: Property }
@@ -28,7 +28,7 @@ export function forEachProperties(
   )
 }
 
-export function getPropertyOfStep(step: Step): Property {
+export function getPropertyOfStep(step: StepStrict): Property {
   return (
     ENTITIES_PROPERTIES[step.entity]?.[step.variable] ||
     DepcomProperties[step.variable] ||

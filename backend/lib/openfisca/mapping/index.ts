@@ -15,27 +15,25 @@ import propertyMove from "./property-move.js"
 import last3MonthsDuplication from "./last3-months-duplication.js"
 import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
-import { situationsLayout } from "../../../../lib/types/situations.js"
+import { Situation } from "../../../../lib/types/situations.js"
 
 import {
-  openfiscaMappingLayout,
-  menageLayout,
-  foyersFiscauxLayout,
+  OpenfiscaMapping,
+  Menage,
+  FoyersFiscaux,
 } from "../../../types/openfisca.js"
 
-export function dispatchIndividuals(
-  situation: situationsLayout
-): openfiscaMappingLayout {
+export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
   const individus = mapIndividus(situation)
 
   const familles: any = { _: situation.famille }
-  const foyers_fiscaux: foyersFiscauxLayout = {
+  const foyers_fiscaux: FoyersFiscaux = {
     _: {
       declarants: [],
       personnes_a_charge: [],
     },
   }
-  const menages: menageLayout = { _: buildOpenFiscaMenage(situation) }
+  const menages: Menage = { _: buildOpenFiscaMenage(situation) }
 
   const demandeur = common.getDemandeur(situation)
   const demandeurId = demandeur?.id

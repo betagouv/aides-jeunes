@@ -1,4 +1,4 @@
-export interface StatsLayout {
+export interface Stats {
   metric: string
   datapoints: {
     date: string
@@ -6,8 +6,8 @@ export interface StatsLayout {
   }[]
 }
 
-export interface MongoStatsLayout {
-  dailySituationCount: StatsLayout[]
+export interface MongoStats {
+  dailySituationCount: Stats[]
   survey: {
     summary: {
       total: number

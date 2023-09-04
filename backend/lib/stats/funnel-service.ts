@@ -19,11 +19,11 @@ const getMatomoVisitsData = async (
   const dateRange = `${beginRange.format("YYYY-MM-DD")},${endRange.format(
     "YYYY-MM-DD"
   )}`
-  const piwikparamsInterface = {
+  const piwikParameters = {
     period: "month",
     date: dateRange,
   }
-  const matomoVisitsData = await callMatomoAPI(piwikparamsInterface)
+  const matomoVisitsData = await callMatomoAPI(piwikParameters)
   const dateKey = beginRange.format("YYYY-MM")
   return {
     visits: matomoVisitsData[dateKey].nb_visits,
@@ -84,12 +84,12 @@ const getMatomoEventsData = async (
   const dateRange = `${beginRange.format("YYYY-MM-DD")},${endRange.format(
     "YYYY-MM-DD"
   )}`
-  const piwikparamsInterface = {
+  const piwikParameters = {
     period: "month",
     date: dateRange,
     method: "Events.getAction",
   }
-  const matomoEventData = await callMatomoAPI(piwikparamsInterface)
+  const matomoEventData = await callMatomoAPI(piwikParameters)
   const dateKey = beginRange.format("YYYY-MM")
   return {
     showAccompanimentCount: matomoEventData[dateKey].find(

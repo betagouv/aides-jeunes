@@ -1,17 +1,17 @@
-import Individu from "../individu.js"
+import IndividuMethods from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
-import { Step, ComplexStep } from "./steps.js"
+import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import Scolarite from "../scolarite.js"
 
 import { ActiviteType } from "../enums/activite.js"
 import { ScolariteType, EtudiantType } from "../enums/scolarite.js"
-import { BlockLayout } from "../types/blocks.js"
+import { Block } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
   const r = (variable, chapter?: string) =>
-    new Step({ entity: "individu", id, variable, chapter })
+    new StepGenerator({ entity: "individu", id, variable, chapter })
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
@@ -66,7 +66,7 @@ function individuBlockFactory(id, chapter?: string) {
             },
             {
               isActive: (subject, situation, parameters) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -147,7 +147,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -161,7 +161,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -175,7 +175,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -202,7 +202,7 @@ function individuBlockFactory(id, chapter?: string) {
             {
               isActive: (subject, situation) =>
                 60 <=
-                Individu.age(
+                IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 ),
@@ -214,7 +214,7 @@ function individuBlockFactory(id, chapter?: string) {
         ? [
             {
               isActive: (subject, situation) => {
-                const age = Individu.age(
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
@@ -232,7 +232,7 @@ function individuBlockFactory(id, chapter?: string) {
 function extraBlock() {
   const id = "demandeur"
   const s = (variable: string, chapter?: string) =>
-    new Step({ entity: "individu", id, variable, chapter })
+    new StepGenerator({ entity: "individu", id, variable, chapter })
 
   return {
     subject: (situation) =>
@@ -264,7 +264,12 @@ function extraBlock() {
                 typeof subject.bourse_lycee !== "object"
               )
             },
-            steps: [new Step({ entity: "famille", variable: "bourse_lycee" })],
+            steps: [
+              new StepGenerator({
+                entity: "famille",
+                variable: "bourse_lycee",
+              }),
+            ],
           },
         ],
       },
@@ -310,7 +315,7 @@ function kidBlock(situation) {
             }
           })
         : []),
-      new Step({ entity: "enfants", chapter: "foyer" }),
+      new StepGenerator({ entity: "enfants", chapter: "foyer" }),
     ],
   }
 }
@@ -319,23 +324,25 @@ function housingBlock() {
   return {
     subject: (situation) => situation.menage,
     steps: [
-      new Step({
+      new StepGenerator({
         entity: "menage",
         chapter: "logement",
         variable: "_logementType",
       }),
       {
         isActive: (subject) => subject._logementType === "proprietaire",
-        steps: [new Step({ entity: "menage", variable: "_primoAccedant" })],
+        steps: [
+          new StepGenerator({ entity: "menage", variable: "_primoAccedant" }),
+        ],
       },
       {
         isActive: (subject) =>
           !subject._logementType || subject._logementType === "locataire",
         steps: [
-          new Step({ entity: "menage", variable: "_locationType" }),
-          new Step({ entity: "menage", variable: "coloc" }),
-          new Step({ entity: "menage", variable: "logement_chambre" }),
-          new Step({
+          new StepGenerator({ entity: "menage", variable: "_locationType" }),
+          new StepGenerator({ entity: "menage", variable: "coloc" }),
+          new StepGenerator({ entity: "menage", variable: "logement_chambre" }),
+          new StepGenerator({
             entity: "famille",
             variable: "proprietaire_proche_famille",
           }),
@@ -349,7 +356,7 @@ function housingBlock() {
           return locataire || proprietaire
         },
         steps: [
-          new ComplexStep({
+          new ComplexStepGenerator({
             route: "menage/loyer",
             entity: "menage",
             variable: "loyer",
@@ -363,18 +370,21 @@ function housingBlock() {
       {
         isActive: (subject) => subject._logementType == "heberge",
         steps: [
-          new Step({ entity: "menage", variable: "participation_frais" }),
-          new Step({
+          new StepGenerator({
+            entity: "menage",
+            variable: "participation_frais",
+          }),
+          new StepGenerator({
             entity: "individu",
             id: "demandeur",
             variable: "habite_chez_parents",
           }),
         ],
       },
-      new Step({ entity: "menage", variable: "depcom" }),
+      new StepGenerator({ entity: "menage", variable: "depcom" }),
       {
         isActive: (_subject, situation) => {
-          const age = Individu.age(
+          const age = IndividuMethods.age(
             situation.demandeur,
             datesGenerator(situation.dateDeValeur).today.value
           )
@@ -383,7 +393,7 @@ function housingBlock() {
           return age >= 18 && !proprietaire
         },
         steps: [
-          new Step({
+          new StepGenerator({
             entity: "menage",
             variable: "_difficultes_acces_ou_frais_logement",
           }),
@@ -393,7 +403,7 @@ function housingBlock() {
         isActive: (subject) =>
           subject.depcom?.startsWith("75") &&
           subject._logementType != "sansDomicile",
-        steps: [new Step({ entity: "famille", variable: "parisien" })],
+        steps: [new StepGenerator({ entity: "famille", variable: "parisien" })],
       },
       {
         subject: (menage, situation) => situation.demandeur,
@@ -401,16 +411,16 @@ function housingBlock() {
           return (
             demandeur.activite === ActiviteType.etudiant &&
             !demandeur.habite_chez_parents &&
-            (!situation.parents || !Individu.isWithoutParent(situation))
+            (!situation.parents || !IndividuMethods.isWithoutParent(situation))
           )
         },
         steps: [
-          new Step({ entity: "parents", variable: "_en_france" }),
+          new StepGenerator({ entity: "parents", variable: "_en_france" }),
           {
             subject: (menage, situation) => situation.parents,
             isActive: (parents) => !parents || parents._en_france,
             steps: [
-              new Step({
+              new StepGenerator({
                 entity: "individu",
                 id: "demandeur",
                 variable: "_bourseCriteresSociauxCommuneDomicileFamilial",
@@ -425,7 +435,7 @@ function housingBlock() {
             subject._logementType
           ),
         steps: [
-          new Step({
+          new StepGenerator({
             entity: "menage",
             variable: "_nombreMoisEntreeLogement",
           }),
@@ -443,7 +453,7 @@ function resourceBlocks(situation) {
       {}
     return {
       steps: [
-        new ComplexStep({
+        new ComplexStepGenerator({
           route: `individu/${individuId}/ressources/types`,
           chapter: "revenus",
           entity: "individu",
@@ -453,7 +463,7 @@ function resourceBlocks(situation) {
       ].concat(
         Ressource.getIndividuRessourceCategories(individu, situation).map(
           (category) =>
-            new ComplexStep({
+            new ComplexStepGenerator({
               route: `individu/${individuId}/ressources/montants/${category}`,
               entity: "individu",
               variable: category,
@@ -469,7 +479,7 @@ function resourceBlocks(situation) {
       ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
       ...(situation.enfants?.length
         ? [
-            new Step({
+            new StepGenerator({
               entity: "individu",
               variable: "_hasRessources",
               id: "enfants",
@@ -489,19 +499,22 @@ function resourceBlocks(situation) {
   }
 }
 
-export function generateBlocks(situation): BlockLayout[] {
+export function generateBlocks(situation): Block[] {
   return [
-    { steps: [new Step({})] },
+    { steps: [new StepGenerator({})] },
     individuBlockFactory("demandeur"),
     kidBlock(situation),
     {
       steps: [
-        new Step({ entity: "famille", variable: "en_couple" }),
+        new StepGenerator({ entity: "famille", variable: "en_couple" }),
         {
           isActive: (situation) =>
             situation.enfants?.length && !situation.famille.en_couple,
           steps: [
-            new Step({ entity: "famille", variable: "rsa_isolement_recent" }),
+            new StepGenerator({
+              entity: "famille",
+              variable: "rsa_isolement_recent",
+            }),
           ],
         },
         ...(situation.conjoint ? [individuBlockFactory("conjoint")] : []),
@@ -522,11 +535,12 @@ export function generateBlocks(situation): BlockLayout[] {
         )
       },
       steps: [
-        new Step({ entity: "parents", variable: "_situation" }),
+        new StepGenerator({ entity: "parents", variable: "_situation" }),
         {
           subject: (demandeur, situation) => situation.parents,
           isActive: (parents, situation) => {
-            const parents_ok = !parents || !Individu.isWithoutParent(situation)
+            const parents_ok =
+              !parents || !IndividuMethods.isWithoutParent(situation)
 
             const demandeur_ok =
               situation.demandeur.activite === ActiviteType.etudiant &&
@@ -536,11 +550,11 @@ export function generateBlocks(situation): BlockLayout[] {
             return parents_ok && demandeur_ok
           },
           steps: [
-            new Step({
+            new StepGenerator({
               entity: "famille",
               variable: "bourse_criteres_sociaux_nombre_enfants_a_charge",
             }),
-            new Step({
+            new StepGenerator({
               entity: "famille",
               variable:
                 "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
@@ -554,7 +568,7 @@ export function generateBlocks(situation): BlockLayout[] {
     {
       isActive: (situation) => {
         const parents_ok =
-          !situation.parents || !Individu.isWithoutParent(situation)
+          !situation.parents || !IndividuMethods.isWithoutParent(situation)
         return parents_ok
       },
       steps: [
@@ -569,7 +583,7 @@ export function generateBlocks(situation): BlockLayout[] {
             return demandeur_ok
           },
           steps: [
-            new Step({
+            new StepGenerator({
               entity: "individu",
               id: "demandeur",
               variable: "bourse_criteres_sociaux_base_ressources_parentale",
@@ -590,7 +604,7 @@ export function generateBlocks(situation): BlockLayout[] {
             return enfant_a_charge && !demandeur_ok_bcs
           },
           steps: [
-            new Step({
+            new StepGenerator({
               entity: "parents",
               variable: "rfr",
             }),
@@ -603,7 +617,7 @@ export function generateBlocks(situation): BlockLayout[] {
             return demandeur.enfant_a_charge?.[thisYear]
           },
           steps: [
-            new Step({
+            new StepGenerator({
               entity: "parents",
               variable: "nbptr",
             }),
@@ -613,7 +627,7 @@ export function generateBlocks(situation): BlockLayout[] {
     },
     extraBlock(),
     {
-      steps: [new Step({ entity: "resultats", chapter: "resultats" })],
+      steps: [new StepGenerator({ entity: "resultats", chapter: "resultats" })],
     },
   ]
 }

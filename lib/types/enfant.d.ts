@@ -1,4 +1,4 @@
-export interface enfantLayout {
+export interface Enfant {
   id: string
   date_naissance: string
   enfant_a_charge: {

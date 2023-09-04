@@ -8,7 +8,7 @@ import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
-import { MongoStatsLayout } from "../../types/stats.d.js"
+import { MongoStats } from "../../types/stats.d.js"
 
 let client
 
@@ -192,7 +192,7 @@ async function connect() {
     .then((client) => client.db())
 }
 
-async function getStats(fromDate, toDate): Promise<MongoStatsLayout | any> {
+async function getStats(fromDate, toDate): Promise<MongoStats | any> {
   try {
     const db = await connect()
     const dailies = await extractSimulationDailyCount(db, fromDate, toDate)

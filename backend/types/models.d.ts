@@ -2,7 +2,7 @@ import { Model, HydratedDocument } from "mongoose"
 import { FollowupInterface } from "@lib/types/followup.d.js"
 import { SimulationInterface } from "@lib/types/simulation.d.js"
 
-export interface MongooseLayout {
+export interface Mongoose {
   [id: string]: any
 }
 

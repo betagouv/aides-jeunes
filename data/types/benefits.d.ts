@@ -36,7 +36,7 @@ export interface VeloBenefit extends Aide {
   periodicite?: string
 }
 
-export interface JavascriptBenefitLayout {
+export interface JavascriptBenefit {
   name: string
   imgSrc?: string
   institution: string

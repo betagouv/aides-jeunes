@@ -1,4 +1,4 @@
-import { JavascriptBenefitLayout } from "./benefits.d.js"
+import { JavascriptBenefit } from "./benefits.d.js"
 import { InstitutionRaw } from "./institutions.d.js"
 
 interface NetlifyCollection {
@@ -21,7 +21,7 @@ interface NetlifyField {
 }
 
 interface BenefitsJavascriptCollection extends NetlifyCollection {
-  items: JavascriptBenefitLayout[]
+  items: JavascriptBenefit[]
 }
 interface InstitutionCollection extends NetlifyCollection {
   items: InstitutionRaw[]

@@ -5,7 +5,7 @@ import { getLoyerData } from "../../logement.js"
 import { getAnswer } from "../../answers.js"
 import { ressourceTypes, ressourceCategories } from "../../resources.js"
 import { QuestionLogement } from "../../types/logement.d.js"
-import { StepLayout } from "../../types/steps.d.js"
+import { Step } from "../../types/steps.d.js"
 import dayjs from "dayjs"
 
 export default <{ [key: string]: any }>{
@@ -63,7 +63,7 @@ export default <{ [key: string]: any }>{
     getRecap(
       propertyData: PropertyData,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      step: StepLayout
+      step: Step
     ): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
@@ -83,7 +83,7 @@ export default <{ [key: string]: any }>{
     },
   },
   "ressources/montants": {
-    matcher(step: StepLayout) {
+    matcher(step: Step) {
       return ressourceCategories.some(
         (category: any) => category.id === step.variable
       )
@@ -103,7 +103,7 @@ export default <{ [key: string]: any }>{
       )
     },
 
-    getFormat(step: StepLayout, propertyData: PropertyData) {
+    getFormat(step: Step, propertyData: PropertyData) {
       const answerFormat = this.getResourcesTypesByCategoryId(
         step,
         propertyData.simulation.answers.all
@@ -127,10 +127,7 @@ export default <{ [key: string]: any }>{
       }
     },
 
-    getRecap(
-      propertyData: PropertyData,
-      step: StepLayout
-    ): RecapPropertyLine[] {
+    getRecap(propertyData: PropertyData, step: Step): RecapPropertyLine[] {
       const answer = (
         getAnswer(
           propertyData.simulation.answers.all,
@@ -183,7 +180,7 @@ export default <{ [key: string]: any }>{
     getRecap(
       propertyData: PropertyData,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      step: StepLayout
+      step: Step
     ): RecapPropertyLine[] {
       const answer = getAnswer(propertyData.simulation.answers.all, "enfants")
       return [

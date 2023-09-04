@@ -4,7 +4,7 @@ import {
   ComplexStepGeneratorLayout,
 } from "../types/steps.js"
 
-function Step(
+function StepGenerator(
   this: StepLayout,
   { key, entity, id, variable, chapter }: StepLayout
 ) {
@@ -20,18 +20,24 @@ function Step(
   this.chapter = chapter
 }
 
-function ComplexStep(
+function ComplexStepGenerator(
   this: ComplexStepGeneratorLayout,
   { route, variables, chapter, entity, variable, id }: ComplexStepLayout
 ) {
-  Step.call(this, { key: route, chapter: chapter, entity, variable, id })
+  StepGenerator.call(this, {
+    key: route,
+    chapter: chapter,
+    entity,
+    variable,
+    id,
+  })
   this.path = `/simulation/${route}`
-  this.substeps = variables ? variables.map((v) => new Step(v)) : []
+  this.substeps = variables ? variables.map((v) => new StepGenerator(v)) : []
 }
 
-ComplexStep.prototype = Object.create(Step.prototype)
-ComplexStep.prototype.clean = function (store) {
+ComplexStepGenerator.prototype = Object.create(StepGenerator.prototype)
+ComplexStepGenerator.prototype.clean = function (store) {
   this.substeps.forEach((s) => s.clean(store))
 }
 
-export { ComplexStep, Step }
+export { ComplexStepGenerator, StepGenerator }

@@ -1,4 +1,4 @@
-import { Step } from "./steps.js"
+import { StepGenerator } from "./steps.js"
 import { generateBlocks } from "./blocks.js"
 import { StepLayout, ComplexStepGeneratorLayout } from "../types/steps.js"
 
@@ -8,7 +8,7 @@ function processAndAppendBlockRecursively(
   { journey, subject, situation, isActive, parameters },
   block: Block
 ) {
-  if (block instanceof Step) {
+  if (block instanceof StepGenerator) {
     block.isActive = isActive
     journey.push(block)
     return

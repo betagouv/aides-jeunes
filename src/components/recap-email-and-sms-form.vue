@@ -232,7 +232,7 @@ const sendRecapByEmail = async (surveyOptin) => {
           class="fr-btn"
           @click.prevent="sendRecap(true)"
         >
-          J'accepte d'être recontacté.e
+          J'accepte d'être recontacté ou recontactée
         </button>
       </li>
       <li>

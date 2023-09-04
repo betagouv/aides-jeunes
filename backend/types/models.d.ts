@@ -10,9 +10,7 @@ interface FollowupStaticMethods {
   findByEmail(email: string): Promise<HydratedDocument<Followup[]>>
 }
 
-export interface IFollowupModel
-  extends Model<Followup>,
-    FollowupStaticMethods {}
+export interface FollowupModel extends Model<Followup>, FollowupStaticMethods {}
 
 interface SimulationStaticMethods {
   cookiePrefix(): string

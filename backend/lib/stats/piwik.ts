@@ -1,7 +1,7 @@
 import axios from "axios"
 
 import config from "../../config/index.js"
-import { StatsLayout } from "../../types/stats.d.js"
+import { Stats } from "../../types/stats.d.js"
 
 interface PiwikParamsInterface {
   period: string
@@ -28,7 +28,7 @@ async function callMatomoAPI(params: PiwikParamsInterface) {
   return response.data
 }
 
-function formatPiwik(data): StatsLayout[] {
+function formatPiwik(data): Stats[] {
   const metrics = [
     {
       source: "nb_visits",

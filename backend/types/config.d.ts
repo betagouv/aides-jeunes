@@ -1,4 +1,4 @@
-export interface ConfigurationLayout {
+export interface Configuration {
   env: string
   animation: {
     delay: number

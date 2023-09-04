@@ -1,9 +1,9 @@
 import path from "path"
 import fs from "fs"
 import bluebird from "bluebird"
-import { ConfigurationLayout } from "../types/config.js"
+import { Configuration } from "../types/config.js"
 
-export default function (mongoose: any, config: ConfigurationLayout) {
+export default function (mongoose: any, config: Configuration) {
   mongoose.Promise = bluebird
 
   if (!config.mongo.uri) {

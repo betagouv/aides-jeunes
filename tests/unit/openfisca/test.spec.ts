@@ -7,7 +7,7 @@ import resources from "@root/lib/resources.js"
 import tmp from "tmp"
 import child_process from "child_process"
 
-interface CommandOutputInterface {
+interface CommandOutput {
   stdout: string
   stderr: string
   error?: string
@@ -37,7 +37,7 @@ const situation = {
   },
 }
 
-function run_cmd(cmd, args): Promise<CommandOutputInterface> {
+function run_cmd(cmd, args): Promise<CommandOutput> {
   return new Promise(function (resolve, reject) {
     const spawn = child_process.spawn
     const child = spawn(cmd, args)
@@ -51,7 +51,7 @@ function run_cmd(cmd, args): Promise<CommandOutputInterface> {
       respErr += buffer.toString()
     })
     child.on("exit", function (code) {
-      const result: CommandOutputInterface = {
+      const result: CommandOutput = {
         stdout: respOut,
         stderr: respErr,
       }
@@ -91,7 +91,7 @@ describe("openfisca generateYAMLTest", function () {
 
   function validateYAMLRun(payload, extension?: string) {
     return runOpenFiscaTest(payload, extension)
-      .catch(function (failure: CommandOutputInterface) {
+      .catch(function (failure: CommandOutput) {
         expect(failure).toBeFalsy()
 
         return failure

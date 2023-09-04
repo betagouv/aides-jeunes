@@ -9,7 +9,7 @@ import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
-import { FollowupInterface } from "../lib/types/followup.d.js"
+import { Followup } from "../lib/types/followup.d.js"
 
 api()
 
@@ -65,7 +65,7 @@ app.route("/mjml/:id/:type").get(
   function (req, res, next) {
     Followups.findById(req.params.id)
       .populate("simulation")
-      .exec(function (err, followup: FollowupInterface | null) {
+      .exec(function (err, followup: Followup | null) {
         if (err) {
           return next(err)
         }

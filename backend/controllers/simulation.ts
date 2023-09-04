@@ -8,7 +8,7 @@ import { apply } from "../lib/migrations/index.js"
 
 import Simulations from "../models/simulation.js"
 import Followups from "../models/followup.js"
-import { FollowupInterface } from "../../lib/types/followup.d.js"
+import { Followup } from "../../lib/types/followup.d.js"
 import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
@@ -223,7 +223,7 @@ async function getLatestFollowup(req: Request, res) {
     },
     null,
     { sort: { createdAt: -1 } }
-  )) as FollowupInterface
+  )) as Followup
 
   if (!followup) {
     return res.status(404).send({ error: "No followup found" })

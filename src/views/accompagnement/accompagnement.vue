@@ -159,7 +159,7 @@ import SurveyEmailSearch from "@/components/support/survey-email-search.vue"
 import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/benefits.js"
-import { FollowupInterface } from "@lib/types/followup.d.js"
+import { Followup } from "@lib/types/followup.d.js"
 import { SurveyType } from "@lib/enums/survey.js"
 
 export default {
@@ -172,7 +172,7 @@ export default {
   data: function () {
     return {
       benefitsMap: getBenefit,
-      followups: undefined as FollowupInterface[] | undefined,
+      followups: undefined as Followup[] | undefined,
       loggedIn: undefined,
       error: undefined,
     }
@@ -240,7 +240,7 @@ export default {
               : "cet identifiant"
           }`
         } else {
-          const followups: FollowupInterface[] = await response.json()
+          const followups: Followup[] = await response.json()
           this.followups = followups
             .map((followup) => {
               followup.surveys = followup.surveys.filter(

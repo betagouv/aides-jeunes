@@ -8,7 +8,7 @@ import {
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 declare global {
   interface Window {

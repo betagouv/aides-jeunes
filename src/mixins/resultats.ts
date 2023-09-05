@@ -1,6 +1,6 @@
 import Simulation from "@/lib/simulation.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   mixins: [StatisticsMixin],

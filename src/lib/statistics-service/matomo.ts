@@ -1,5 +1,5 @@
 import { skipSendStatistics } from "./shared.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 

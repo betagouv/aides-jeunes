@@ -182,7 +182,7 @@ import {
 } from "@/lib/contributions.js"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   name: "Attendu",

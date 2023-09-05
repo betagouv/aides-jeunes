@@ -105,7 +105,7 @@ import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { daysSinceDate } from "@lib/utils.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   name: "SimulationResultats",

@@ -13,7 +13,7 @@
 <script lang="ts">
 import Hint from "@/lib/hint.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   name: "EnSavoirPlus",

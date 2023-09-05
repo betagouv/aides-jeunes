@@ -142,7 +142,7 @@ import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategory } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { FetchSurvey } from "@lib/types/survey.d.js"
 

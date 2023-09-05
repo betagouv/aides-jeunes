@@ -1,7 +1,7 @@
-export enum EmailType {
-  simulationResults = "simulation-results",
-  benefitAction = "benefit-action",
-  simulationUsefulness = "simulation-usefulness",
-  initialSurvey = "initial-survey",
-  tousABordNotification = "tous-a-bord-notification",
+export enum EmailCategory {
+  SimulationResults = "simulation-results",
+  BenefitAction = "benefit-action",
+  SimulationUsefulness = "simulation-usefulness",
+  InitialSurvey = "initial-survey",
+  TousABordNotification = "tous-a-bord-notification",
 }

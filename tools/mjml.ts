@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import api from "../backend/api.js"
-import { EmailType } from "../backend/enums/email.js"
+import { EmailCategory } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
@@ -18,7 +18,7 @@ const port = process.env.PORT || 9001
 // Setup Express
 const app = express()
 
-const typeKeys = EmailType
+const typeKeys = EmailCategory
 
 app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
@@ -38,16 +38,16 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = async (req: Request) => {
   const { followup } = req
-  const emailType = req.params.type as EmailType
+  const emailType = req.params.type as EmailCategory
   let surveyType: SurveyType | undefined
 
   switch (emailType) {
-    case EmailType.simulationResults:
-      return emailRender(EmailType.simulationResults, followup)
-    case EmailType.simulationUsefulness:
+    case EmailCategory.SimulationResults:
+      return emailRender(EmailCategory.SimulationResults, followup)
+    case EmailCategory.SimulationUsefulness:
       surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
       break
-    case EmailType.benefitAction:
+    case EmailCategory.BenefitAction:
       surveyType = SurveyType.trackClickOnBenefitActionEmail
       break
     default:

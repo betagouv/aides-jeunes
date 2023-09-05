@@ -7,7 +7,7 @@ import { Survey } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
-import { EmailType } from "../enums/email.js"
+import { EmailCategory } from "../enums/email.js"
 
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
@@ -58,7 +58,7 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
 })
 
 FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return emailRender(EmailType.simulationResults, this)
+  return emailRender(EmailCategory.SimulationResults, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", function () {
@@ -71,7 +71,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
         text: render.text,
         html: render.html,
         headers: {
-          "x-tm-tags": `["${EmailType.simulationResults}"]`,
+          "x-tm-tags": `["${EmailCategory.SimulationResults}"]`,
         },
       })
     })
@@ -88,11 +88,11 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyType.trackClickOnBenefitActionEmail:
-      return emailRender(EmailType.benefitAction, this)
+      return emailRender(EmailCategory.BenefitAction, this)
     case SurveyType.trackClickOnSimulationUsefulnessEmail:
-      return emailRender(EmailType.simulationUsefulness, this)
+      return emailRender(EmailCategory.SimulationUsefulness, this)
     case SurveyType.tousABordNotification:
-      return emailRender(EmailType.tousABordNotification, this)
+      return emailRender(EmailCategory.TousABordNotification, this)
     case SurveyType.benefitAction:
       return Promise.reject(
         new Error(

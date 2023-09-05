@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 
-import { EmailType } from "../../enums/email.js"
+import { EmailCategory } from "../../enums/email.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
@@ -8,12 +8,12 @@ import { Followup } from "../../../lib/types/followup.js"
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
-async function sendMultipleEmails(emailType: EmailType, limit: number) {
+async function sendMultipleEmails(emailType: EmailCategory, limit: number) {
   switch (emailType) {
-    case EmailType.initialSurvey:
+    case EmailCategory.InitialSurvey:
       await sendMultipleInitialEmails(limit)
       break
-    case EmailType.tousABordNotification:
+    case EmailCategory.TousABordNotification:
       await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
@@ -103,7 +103,10 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
   console.log(results)
 }
 
-async function processSingleEmail(emailType: EmailType, followupId: string) {
+async function processSingleEmail(
+  emailType: EmailCategory,
+  followupId: string
+) {
   const followup: Followup | null = await Followups.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
@@ -112,15 +115,15 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
   let emailPromise: Promise<void>
 
   switch (emailType) {
-    case EmailType.simulationResults:
+    case EmailCategory.SimulationResults:
       emailPromise = followup.sendSimulationResultsEmail()
       break
-    case EmailType.benefitAction:
+    case EmailCategory.BenefitAction:
       emailPromise = followup.sendSurvey(
         SurveyType.trackClickOnBenefitActionEmail
       )
       break
-    case EmailType.simulationUsefulness:
+    case EmailCategory.SimulationUsefulness:
       emailPromise = followup.sendSurvey(
         SurveyType.trackClickOnSimulationUsefulnessEmail
       )
@@ -134,7 +137,7 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
 }
 
 export async function processSendEmails(
-  emailType: EmailType,
+  emailType: EmailCategory,
   followupId: string,
   multiple: number | null
 ) {

@@ -30,7 +30,6 @@ const labels = {
 const props = defineProps({
   analyticsName: String,
   benefit: { type: Object as PropType<StandardBenefit>, required: true },
-  level: String,
   type: String,
   link: String,
 })

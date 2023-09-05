@@ -38,9 +38,7 @@ const ctas = computed(() => {
         }
       }
     })
-    .filter(function (item) {
-      return item?.link
-    })
+    .filter((item) => item?.link)
     .slice(0, 2)
 })
 </script>

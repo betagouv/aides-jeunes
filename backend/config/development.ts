@@ -30,5 +30,8 @@ export default {
   },
   smsService: {
     show: true,
+    username: process.env.SMS_SERVICE_USERNAME || "",
+    password: process.env.SMS_SERVICE_PASSWORD || "",
+    url: "https://europe.ipx.com/restapi/v1/sms/send",
   },
 }

@@ -3,7 +3,7 @@ import { generator } from "./dates.js"
 
 import { Situation } from "../lib/types/situations.js"
 import { Individu } from "../lib/types/individu.js"
-import { ActiviteType } from "./enums/activite.js"
+import { Activite } from "./enums/activite.js"
 import { PatrimoineTypes } from "./enums/patrimoine.js"
 import { Resource, ResourceCategory } from "./types/resources.js"
 
@@ -160,7 +160,7 @@ export const ressourceTypes: Resource[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: Situation, individu: Individu) => {
-      return individu.activite !== ActiviteType.etudiant
+      return individu.activite !== Activite.Etudiant
     },
   },
   {
@@ -332,7 +332,7 @@ export const ressourceTypes: Resource[] = [
     prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
     isRelevant(situation: Situation, individu: Individu) {
-      return individu.activite === ActiviteType.retraite
+      return individu.activite === Activite.Retraite
     },
   },
   {
@@ -341,7 +341,7 @@ export const ressourceTypes: Resource[] = [
     category: "pensions",
     prefix: "une",
     isRelevant(situation: Situation, individu: Individu) {
-      return individu.activite === ActiviteType.retraite
+      return individu.activite === Activite.Retraite
     },
   },
   {

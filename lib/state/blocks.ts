@@ -5,7 +5,7 @@ import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import Scolarite from "../scolarite.js"
 
-import { ActiviteType } from "../enums/activite.js"
+import { Activite } from "../enums/activite.js"
 import { ScolariteType, EtudiantType } from "../enums/scolarite.js"
 import { Block } from "../types/blocks.js"
 
@@ -30,7 +30,7 @@ function individuBlockFactory(id, chapter?: string) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == ActiviteType.etudiant,
+              isActive: (subject) => subject.activite == Activite.Etudiant,
               steps: [
                 r("scolarite"),
                 {
@@ -61,7 +61,7 @@ function individuBlockFactory(id, chapter?: string) {
                     ].includes(subject.annee_etude),
                   steps: [r("mention_baccalaureat")],
                 },
-                r(ActiviteType.stagiaire),
+                r(Activite.Stagiaire),
               ],
             },
             {
@@ -71,12 +71,12 @@ function individuBlockFactory(id, chapter?: string) {
                   datesGenerator(situation.dateDeValeur).today.value
                 )
                 const jeune_actif =
-                  subject.activite === ActiviteType.salarie &&
+                  subject.activite === Activite.Salarie &&
                   age <=
                     parameters[
                       "prestations_sociales.education.carte_des_metiers.age_maximal"
                     ]
-                return subject.activite === ActiviteType.etudiant || jeune_actif
+                return subject.activite === Activite.Etudiant || jeune_actif
               },
               steps: [
                 r("alternant"),
@@ -98,7 +98,7 @@ function individuBlockFactory(id, chapter?: string) {
             },
             {
               isActive: (subject) =>
-                subject.activite === ActiviteType.salarie || subject.alternant,
+                subject.activite === Activite.Salarie || subject.alternant,
               steps: [r("_nombreMoisDebutContratDeTravail")],
             },
           ]
@@ -106,12 +106,12 @@ function individuBlockFactory(id, chapter?: string) {
       ...(!enfant
         ? [
             {
-              isActive: (subject) => subject.activite === ActiviteType.chomeur,
+              isActive: (subject) => subject.activite === Activite.Chomeur,
               steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
             },
             {
               isActive: (subject) =>
-                ![ActiviteType.etudiant, ...ACTIVITES_ACTIF].includes(
+                ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
                   subject.activite
                 ),
               steps: [r("inapte_travail")],
@@ -185,7 +185,7 @@ function individuBlockFactory(id, chapter?: string) {
                 return (
                   20 <= age &&
                   age < 25 &&
-                  ![ActiviteType.etudiant, ...ACTIVITES_ACTIF].includes(
+                  ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
                     subject.activite
                   ) &&
                   !subject.ass_precondition_remplie &&
@@ -292,7 +292,7 @@ function extraBlock() {
             ["public", "prive_sous_contrat"].includes(
               subject.statuts_etablissement_scolaire
             )) ||
-          subject._contrat_alternant === ActiviteType.apprenti,
+          subject._contrat_alternant === Activite.Apprenti,
         steps: [
           s("_interetEtudesEtranger"),
           {
@@ -409,7 +409,7 @@ function housingBlock() {
         subject: (menage, situation) => situation.demandeur,
         isActive: (demandeur, situation) => {
           return (
-            demandeur.activite === ActiviteType.etudiant &&
+            demandeur.activite === Activite.Etudiant &&
             !demandeur.habite_chez_parents &&
             (!situation.parents || !IndividuMethods.isWithoutParent(situation))
           )
@@ -529,7 +529,7 @@ export function generateBlocks(situation): Block[] {
 
         return (
           enfant_a_charge ||
-          (subject.activite === ActiviteType.etudiant &&
+          (subject.activite === Activite.Etudiant &&
             !subject.alternant &&
             !situation.enfants?.length)
         )
@@ -543,7 +543,7 @@ export function generateBlocks(situation): Block[] {
               !parents || !IndividuMethods.isWithoutParent(situation)
 
             const demandeur_ok =
-              situation.demandeur.activite === ActiviteType.etudiant &&
+              situation.demandeur.activite === Activite.Etudiant &&
               !situation.demandeur.alternant &&
               !situation.enfants?.length
 
@@ -577,7 +577,7 @@ export function generateBlocks(situation): Block[] {
             const demandeur = situation.demandeur
             const demandeur_ok =
               demandeur &&
-              demandeur.activite === ActiviteType.etudiant &&
+              demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
               !(situation.enfants && situation.enfants.length)
             return demandeur_ok
@@ -598,7 +598,7 @@ export function generateBlocks(situation): Block[] {
 
             const demandeur_ok_bcs =
               demandeur &&
-              demandeur.activite === ActiviteType.etudiant &&
+              demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
               !situation.enfants?.length
             return enfant_a_charge && !demandeur_ok_bcs

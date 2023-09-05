@@ -5,7 +5,7 @@ import dayjs from "dayjs"
 import { Benefit } from "../../types/benefits.js"
 import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
 import { Situation } from "../../../lib/types/situations.js"
-import { ActiviteType } from "../../../lib/enums/activite.js"
+import { Activite } from "../../../lib/enums/activite.js"
 
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
@@ -73,8 +73,7 @@ export const additionalBenefitAttributes = {
           )
         : 0
       return (
-        situation.demandeur?.activite === ActiviteType.etudiant &&
-        salary >= 7000
+        situation.demandeur?.activite === Activite.Etudiant && salary >= 7000
       )
     },
   },

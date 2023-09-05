@@ -12,7 +12,7 @@ import { capitalize, yearsAgo } from "../utils.js"
 import Scolarite from "../scolarite.js"
 import { getAnswer } from "../answers.js"
 
-import { ActiviteType } from "../enums/activite.js"
+import { Activite } from "../enums/activite.js"
 import { EtudiantType, ScolariteType } from "../enums/scolarite.js"
 import { VeloCategory } from "../enums/velo.js"
 
@@ -39,33 +39,33 @@ export default {
     questionType: "enum",
     items: [
       {
-        value: ActiviteType.etudiant,
+        value: Activite.Etudiant,
         label: "En étude ou en alternance",
       },
       {
-        value: ActiviteType.salarie,
+        value: Activite.Salarie,
         label: "Salarié ou salariée",
       },
       {
-        value: ActiviteType.independant,
+        value: Activite.Independant,
         label: "Indépendant ou indépendante",
       },
       {
-        value: ActiviteType.service_civique,
+        value: Activite.ServiceCivique,
         label: "En service civique",
       },
       {
-        value: ActiviteType.chomeur,
+        value: Activite.Chomeur,
         label: "Inscrit ou inscrite comme demandeur d’emploi",
       },
       {
-        value: ActiviteType.retraite,
+        value: Activite.Retraite,
         label: "Retraité ou retraitée",
         isRelevant: ({ individu, periods }) =>
           IndividuMethods.age(individu, periods.today.value) > 30,
       },
       {
-        value: ActiviteType.inactif,
+        value: Activite.Inactif,
         label: "Autre",
       },
     ],
@@ -597,11 +597,11 @@ export default {
     questionType: "enum",
     items: [
       {
-        value: ActiviteType.apprenti,
+        value: Activite.Apprenti,
         label: "En apprentissage",
       },
       {
-        value: ActiviteType.professionnalisation,
+        value: Activite.Professionnalisation,
         label: "En contrat de professionnalisation",
       },
     ],
@@ -657,7 +657,7 @@ export default {
 
   _nombreMoisDebutContratDeTravail: new EnumProperty({
     question: ({ individu }) => {
-      return individu.activite === ActiviteType.etudiant && individu.alternant
+      return individu.activite === Activite.Etudiant && individu.alternant
         ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
         : "Depuis quand avez-vous signé votre contrat de travail ?"
     },

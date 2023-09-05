@@ -1,15 +1,15 @@
 import utils from "../lib/utils.js"
 import {
   FranceConnectService,
-  CookiesKeys,
+  FcCookiesKeys,
 } from "../lib/france-connect-service.js"
 
 export async function login(request, response) {
   const stateToken = await utils.generateToken()
   const nonceToken = await utils.generateToken()
 
-  response.cookie(CookiesKeys.fcState, stateToken)
-  response.cookie(CookiesKeys.fcNonce, nonceToken)
+  response.cookie(FcCookiesKeys.FcState, stateToken)
+  response.cookie(FcCookiesKeys.FcNonce, nonceToken)
 
   response.redirect(
     FranceConnectService.generateLoginRedirectURL(stateToken, nonceToken)
@@ -18,16 +18,16 @@ export async function login(request, response) {
 
 export async function callback(request, response, next) {
   try {
-    const cookieStateToken = request.cookies[CookiesKeys.fcState]
-    response.clearCookie(CookiesKeys.fcState)
+    const cookieStateToken = request.cookies[FcCookiesKeys.FcState]
+    response.clearCookie(FcCookiesKeys.FcState)
     const queryStateToken = request.query.state
 
     if (queryStateToken !== cookieStateToken) {
       throw new Error("state is not correct")
     }
 
-    const nonceToken = request.cookies[CookiesKeys.fcNonce]
-    response.clearCookie(CookiesKeys.fcNonce)
+    const nonceToken = request.cookies[FcCookiesKeys.FcNonce]
+    response.clearCookie(FcCookiesKeys.FcNonce)
 
     const { accessToken, idToken } =
       await FranceConnectService.retrieveAccessToken(
@@ -35,7 +35,7 @@ export async function callback(request, response, next) {
         nonceToken
       )
 
-    response.cookie(CookiesKeys.fcIdTokenHint, idToken)
+    response.cookie(FcCookiesKeys.FcIdTokenHint, idToken)
     request.FCToken = accessToken
     request.FCIDToken = idToken
 
@@ -65,19 +65,19 @@ export async function fetchUserInfo(request, response) {
 }
 
 export async function logout(request, response) {
-  const idToken = request.cookies[CookiesKeys.fcIdTokenHint]
-  response.clearCookie(CookiesKeys.fcIdTokenHint)
+  const idToken = request.cookies[FcCookiesKeys.FcIdTokenHint]
+  response.clearCookie(FcCookiesKeys.FcIdTokenHint)
 
   const logoutStateToken = await utils.generateToken()
-  response.cookie(CookiesKeys.fcLogoutState, logoutStateToken)
+  response.cookie(FcCookiesKeys.FcLogoutState, logoutStateToken)
   response.redirect(
     FranceConnectService.generateLogoutRedirectURL(idToken, logoutStateToken)
   )
 }
 
 export function logoutCallback(request, response) {
-  const cookieStateToken = request.cookies[CookiesKeys.fcLogoutState]
-  response.clearCookie(CookiesKeys.fcLogoutState)
+  const cookieStateToken = request.cookies[FcCookiesKeys.FcLogoutState]
+  response.clearCookie(FcCookiesKeys.FcLogoutState)
   const queryStateToken = request.query.state
 
   if (queryStateToken !== cookieStateToken) {

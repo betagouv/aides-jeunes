@@ -33,7 +33,7 @@ module.exports = {
     "@typescript-eslint/naming-convention": [
       "warn",
       {
-        selector: ["interface", "enum", "enumMember"],
+        selector: ["interface", "enum", "enumMember", "typeAlias"],
         format: ["PascalCase"],
       },
     ],

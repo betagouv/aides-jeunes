@@ -142,7 +142,7 @@ import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-categories.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { FetchSurvey } from "@lib/types/survey.d.js"
 
@@ -244,7 +244,7 @@ const submit = async () => {
 
   if (showAccompanimentBlock.value) {
     StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.ACCOMPAGNEMENT,
+      EventCategory.Accompagnement,
       "show-accompaniment-link",
       currentPath.value
     )

@@ -115,7 +115,7 @@ import axios from "axios"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-categories.js"
 
 export default {
   name: "RecapEmailModal",
@@ -151,7 +151,7 @@ export default {
         this.errorMessage = true
         this.$refs.email.focus()
         this.sendEventToMatomo(
-          EventCategories.GENERAL,
+          EventCategory.General,
           "Invalid form",
           this.$route.fullPath
         )

@@ -182,7 +182,7 @@ import {
 } from "@/lib/contributions.js"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-categories.js"
 
 export default {
   name: "Attendu",
@@ -289,7 +289,7 @@ export default {
     },
     trackMontantAttendu(type) {
       this.sendEventToMatomo(
-        EventCategories.MONTANT_ATTENDU,
+        EventCategory.MontantAttendu,
         type,
         this.$route.path
       )

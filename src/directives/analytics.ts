@@ -6,7 +6,7 @@ import {
   IMatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-categories.js"
 
 const AnalyticsDirective = {
   beforeMount(el, binding) {
@@ -20,7 +20,7 @@ const AnalyticsDirective = {
       sendEventToRecorder(recorderEvent, binding?.instance?.$matomo)
 
       const matomoEvent: IMatomoEvent = {
-        category: binding.value.category || EventCategories.DEFAUT,
+        category: binding.value.category || EventCategory.Defaut,
         action: binding.value.action,
         label: binding.value.name,
         value: binding.value.value,

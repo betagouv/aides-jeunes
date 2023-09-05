@@ -1,5 +1,5 @@
 export enum ChapterState {
-  pending = "pending",
-  current = "current",
-  done = "done",
+  Pending = "pending",
+  Current = "current",
+  Done = "done",
 }

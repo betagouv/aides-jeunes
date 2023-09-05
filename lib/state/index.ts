@@ -88,12 +88,12 @@ function computeChapterState(
     isCurrentChapter = chapter.name === currentStep?.chapter
 
     if (isCurrentChapter) {
-      chapter.state = ChapterState.current
+      chapter.state = ChapterState.Current
       passedChapter = true
     } else if (passedChapter) {
-      chapter.state = ChapterState.pending
+      chapter.state = ChapterState.Pending
     } else {
-      chapter.state = ChapterState.done
+      chapter.state = ChapterState.Done
     }
 
     return chapter

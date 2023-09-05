@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
+import BenefitCtaLink from "./benefit-cta-link.vue"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
@@ -54,7 +54,7 @@ const ctas = computed(() => {
         v-if="ctaTeleservice || ctaForm"
         class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
       >
-        <BenefitCtaLinkLight
+        <BenefitCtaLink
           v-if="ctaTeleservice"
           :analytics-name="benefit.id"
           :benefit="benefit"
@@ -62,7 +62,7 @@ const ctas = computed(() => {
           :type="ctaTeleservice.type"
           class="fr-btn fr-btn--sm"
         />
-        <BenefitCtaLinkLight
+        <BenefitCtaLink
           v-if="ctaForm"
           :analytics-name="benefit.id"
           :benefit="benefit"
@@ -72,7 +72,7 @@ const ctas = computed(() => {
         />
       </div>
       <div class="fr-col fr-my-1w">
-        <BenefitCtaLinkLight
+        <BenefitCtaLink
           v-if="ctaInstructions"
           class="aj-a"
           :analytics-name="benefit.id"

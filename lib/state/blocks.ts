@@ -3,10 +3,10 @@ import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
-import Scolarite from "../scolarite.js"
+import ScolariteCategories from "../scolarite.js"
 
 import { Activite } from "../enums/activite.js"
-import { ScolariteType, EtudiantType } from "../enums/scolarite.js"
+import { Scolarite, Etudiant } from "../enums/scolarite.js"
 import { Block } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
@@ -35,29 +35,28 @@ function individuBlockFactory(id, chapter?: string) {
                 r("scolarite"),
                 {
                   isActive: (subject) =>
-                    [
-                      ScolariteType.lycee,
-                      ScolariteType.enseignement_superieur,
-                    ].includes(subject.scolarite),
+                    [Scolarite.Lycee, Scolarite.EnseignementSuperieur].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("annee_etude")],
                 },
                 {
                   isActive: (subject) =>
                     [
-                      ScolariteType.college,
-                      ScolariteType.lycee,
-                      ScolariteType.enseignement_superieur,
+                      Scolarite.College,
+                      Scolarite.Lycee,
+                      Scolarite.EnseignementSuperieur,
                     ].includes(subject.scolarite),
                   steps: [r("statuts_etablissement_scolaire")],
                 },
                 {
                   isActive: (subject) =>
                     [
-                      EtudiantType.bts_1,
-                      EtudiantType.but_1,
-                      EtudiantType.cpge_1,
-                      EtudiantType.licence_1,
-                      EtudiantType.licence_2,
+                      Etudiant.Bts1,
+                      Etudiant.But1,
+                      Etudiant.Cpge1,
+                      Etudiant.Licence1,
+                      Etudiant.Licence2,
                     ].includes(subject.annee_etude),
                   steps: [r("mention_baccalaureat")],
                 },
@@ -89,9 +88,9 @@ function individuBlockFactory(id, chapter?: string) {
             {
               isActive: (subject) => {
                 return [
-                  ScolariteType.lycee,
-                  ScolariteType.enseignement_superieur,
-                  ScolariteType.inconnue,
+                  Scolarite.Lycee,
+                  Scolarite.EnseignementSuperieur,
+                  Scolarite.Inconnue,
                 ].includes(subject.scolarite)
               },
               steps: [r("groupe_specialites_formation")],
@@ -247,14 +246,14 @@ function extraBlock() {
         isActive: (subject) => {
           return (
             subject.groupe_specialites_formation !==
-            Scolarite.groupeSpecialitesFormation
+            ScolariteCategories.groupeSpecialitesFormation
               .specialites_plurivalentes_sanitaires_et_sociales.value
           )
         },
         steps: [s("_interetAidesSanitaireSocial", "projets")],
       },
       {
-        isActive: (subject) => subject.annee_etude === EtudiantType.terminale,
+        isActive: (subject) => subject.annee_etude === Etudiant.Terminale,
         steps: [
           s("sortie_academie"),
           {
@@ -275,9 +274,7 @@ function extraBlock() {
       },
       {
         isActive: (subject) =>
-          [EtudiantType.licence_3, EtudiantType.master_1].includes(
-            subject.annee_etude
-          ),
+          [Etudiant.Licence3, Etudiant.Master1].includes(subject.annee_etude),
         steps: [
           s("sortie_region_academique"),
           {
@@ -288,7 +285,7 @@ function extraBlock() {
       },
       {
         isActive: (subject) =>
-          (subject.scolarite === ScolariteType.enseignement_superieur &&
+          (subject.scolarite === Scolarite.EnseignementSuperieur &&
             ["public", "prive_sous_contrat"].includes(
               subject.statuts_etablissement_scolaire
             )) ||

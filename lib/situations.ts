@@ -1,7 +1,7 @@
 import Ressource from "./ressource.js"
 import { ressourceTypes } from "./resources.js"
 import { generator as datesGenerator } from "./dates.js"
-import Scolarite from "./scolarite.js"
+import ScolariteCategories from "./scolarite.js"
 import { Individu } from "./types/individu.js"
 import { Situation } from "./types/situations.js"
 import Logement from "./logement.js"
@@ -105,7 +105,7 @@ export function generateSituation(
               individu["_interetAidesSanitaireSocial"] =
                 individu["_interetAidesSanitaireSocial"] ||
                 answer.value ===
-                  Scolarite.groupeSpecialitesFormation
+                  ScolariteCategories.groupeSpecialitesFormation
                     .specialites_plurivalentes_sanitaires_et_sociales.value
               break
             }
@@ -113,7 +113,7 @@ export function generateSituation(
               individu["_interetAidesSanitaireSocial"] =
                 answer.value ||
                 individu["groupe_specialites_formation"] ===
-                  Scolarite.groupeSpecialitesFormation
+                  ScolariteCategories.groupeSpecialitesFormation
                     .specialites_plurivalentes_sanitaires_et_sociales.value
               break
             }

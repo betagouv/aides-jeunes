@@ -1,10 +1,10 @@
 import dayjs from "dayjs"
 import { generator } from "../dates.js"
 import { filterByInterestFlag } from "./filter-interest-flag.js"
-import Scolarite from "../scolarite.js"
+import ScolariteCategories from "../scolarite.js"
 
 import { Activite } from "../enums/activite.js"
-import { ScolariteType } from "../enums/scolarite.js"
+import { Scolarite } from "../enums/scolarite.js"
 import { Situation } from "../types/situations.js"
 import { Conditions } from "../types/benefits.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
@@ -47,12 +47,10 @@ const PROFILE_STRATEGY = {
   }: {
     situation: Situation
   }): boolean => {
-    return (
-      situation.demandeur?.scolarite === ScolariteType.enseignement_superieur
-    )
+    return situation.demandeur?.scolarite === Scolarite.EnseignementSuperieur
   },
   lyceen: ({ situation }: { situation: Situation }): boolean => {
-    return situation.demandeur?.scolarite === ScolariteType.lycee
+    return situation.demandeur?.scolarite === Scolarite.Lycee
   },
   professionnalisation: ({ situation }: { situation: Situation }): boolean => {
     return (
@@ -125,7 +123,7 @@ export const CONDITION_STRATEGY: Conditions = {
     test: (_, { situation }: { situation: Situation }) => {
       return (
         situation.demandeur?.groupe_specialites_formation ===
-        Scolarite.groupeSpecialitesFormation
+        ScolariteCategories.groupeSpecialitesFormation
           .specialites_plurivalentes_sanitaires_et_sociales.value
       )
     },

@@ -1,0 +1,32 @@
+label: Permis d'engagement citoyen
+institution: ville_colomiers
+description:
+  la Ville de Colomiers finance le permis de conduire de jeunes en situation d'insertion
+  inscrits à la mission locale, en contrepartie d’un engagement de citoyenneté par le
+  biais de 70 heures de stage réalisées au sein des services municipaux.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "31149"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: "<="
+    value: 25
+profils:
+  - type: chomeur
+  - type: beneficiaire_rsa
+  - type: autre
+conditions:
+  - Être déscolarisé.e.s sans diplôme et en situation d’insertion professionnelle.
+  - Être accompagné par la mission locale.
+  - S'engager à réaliser 70 heures de stage au sein des services municipaux.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 500
+link: https://www.ville-colomiers.fr/mon-quotidien/jeunesse/permis-jeunes-citoyens-405.html
+instruction: https://www.ville-colomiers.fr/mon-quotidien/jeunesse/permis-jeunes-citoyens-405.html

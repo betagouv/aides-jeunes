@@ -5,7 +5,7 @@ import { useStore } from "@/stores/index.js"
 import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 const router = useRouter()
 const store = useStore()
@@ -60,7 +60,7 @@ const inputPhoneIsValid = () => {
     phoneInputErrorMessage.value = true
     phoneRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.GENERAL,
+      EventCategory.General,
       "Invalid phone form",
       router.currentRoute.value.fullPath
     )
@@ -75,7 +75,7 @@ const inputEmailIsValid = () => {
     emailInputErrorMessage.value = true
     emailRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.GENERAL,
+      EventCategory.General,
       "Invalid email form",
       router.currentRoute.value.fullPath
     )

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 import config from "../config/index.js"
 import { Answer } from "../../lib/types/answer.js"
 
-export const enum FcCookiesKeys {
+export const enum FranceConnectCookie {
   FcState = "fc_state",
   FcNonce = "fc_nonce",
   FcIdTokenHint = "fc_id_token_hint",

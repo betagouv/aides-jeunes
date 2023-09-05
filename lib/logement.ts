@@ -1,8 +1,8 @@
 import { getAnswer } from "./answers.js"
 import { SituationMenage } from "./types/situations.js"
 import {
-  LogementType,
-  LocationType,
+  LogementCategory,
+  LocationCategory,
   StatutOccupationLogement,
 } from "./enums/logement.js"
 
@@ -12,39 +12,39 @@ function getStatutOccupationLogement({
   _primoAccedant,
 }: SituationMenage) {
   let statutOccupationLogement = _logementType
-  if (_logementType === LogementType.locataire) {
-    if (_locationType === LocationType.vide) {
-      statutOccupationLogement = StatutOccupationLogement.locataire_vide
+  if (_logementType === LogementCategory.Locataire) {
+    if (_locationType === LocationCategory.Vide) {
+      statutOccupationLogement = StatutOccupationLogement.LocataireVide
     }
-    if (_locationType === LocationType.meuble) {
-      statutOccupationLogement = StatutOccupationLogement.locataire_meuble
+    if (_locationType === LocationCategory.Meuble) {
+      statutOccupationLogement = StatutOccupationLogement.LocataireMeuble
     }
-    if (_locationType === LocationType.foyer) {
-      statutOccupationLogement = StatutOccupationLogement.locataire_foyer
+    if (_locationType === LocationCategory.Foyer) {
+      statutOccupationLogement = StatutOccupationLogement.LocataireFoyer
     }
   }
-  if (_logementType === LogementType.proprietaire) {
+  if (_logementType === LogementCategory.Proprietaire) {
     if (_primoAccedant === true) {
-      statutOccupationLogement = StatutOccupationLogement.primo_accedant
+      statutOccupationLogement = StatutOccupationLogement.PrimoAccedant
     }
   }
-  if (_logementType === LogementType.heberge) {
-    statutOccupationLogement = StatutOccupationLogement.loge_gratuitement
+  if (_logementType === LogementCategory.Heberge) {
+    statutOccupationLogement = StatutOccupationLogement.LogeGratuitement
   }
-  if (_logementType === LogementType.sansDomicile) {
-    statutOccupationLogement = StatutOccupationLogement.sans_domicile
+  if (_logementType === LogementCategory.SansDomicile) {
+    statutOccupationLogement = StatutOccupationLogement.SansDomicile
   }
   return statutOccupationLogement
 }
 
 function isOwner(_logementType) {
-  return _logementType === LogementType.proprietaire
+  return _logementType === LogementCategory.Proprietaire
 }
 
 function captureCharges(_logementType, _locationType) {
   return (
-    _logementType !== LogementType.proprietaire &&
-    [LocationType.vide, LocationType.foyer].includes(_locationType)
+    _logementType !== LogementCategory.Proprietaire &&
+    [LocationCategory.Vide, LocationCategory.Foyer].includes(_locationType)
   )
 }
 

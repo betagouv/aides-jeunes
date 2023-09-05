@@ -10,7 +10,7 @@
       <p class="fr-text--justify fr-mb-3w">
         <span itemprop="description" v-html="droit.description" />
         <span>&nbsp;</span>
-        <BenefitCtaLink
+        <BenefitCtaLinkLight
           v-if="droit.link"
           :analytics-name="droit.id"
           :benefit="droit"
@@ -118,7 +118,7 @@
 <script lang="ts">
 import type { PropType } from "vue"
 import BenefitCta from "./benefit-cta.vue"
-import BenefitCtaLink from "./benefit-cta-link.vue"
+import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
 import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
@@ -136,7 +136,7 @@ export default {
     DroitHeader,
     DroitDetailsLieux,
     BenefitCta,
-    BenefitCtaLink,
+    BenefitCtaLinkLight,
   },
   mixins: [DroitMixin],
   props: {

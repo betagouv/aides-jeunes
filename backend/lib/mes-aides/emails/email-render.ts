@@ -7,7 +7,7 @@ import config from "../../../config/index.js"
 import openfiscaController from "../../openfisca/parameters.js"
 import { formatBenefits, basicBenefitText } from "./simulation-results.js"
 import { mjml } from "./index.js"
-import { EmailType } from "../../../enums/email.js"
+import { EmailCategory } from "../../../enums/email.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 
@@ -26,10 +26,10 @@ const tousABordNotificationTemplate = readFile(
   "templates/tous-a-bord-notification.mjml"
 )
 const emailTemplates = {
-  [EmailType.simulationResults]: simulationResultsTemplate,
-  [EmailType.benefitAction]: benefitActionTemplate,
-  [EmailType.simulationUsefulness]: simulationUsefulnessTemplate,
-  [EmailType.tousABordNotification]: tousABordNotificationTemplate,
+  [EmailCategory.SimulationResults]: simulationResultsTemplate,
+  [EmailCategory.BenefitAction]: benefitActionTemplate,
+  [EmailCategory.SimulationUsefulness]: simulationUsefulnessTemplate,
+  [EmailCategory.TousABordNotification]: tousABordNotificationTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
@@ -42,14 +42,14 @@ const tousABordNotificationTextTemplate = readFile(
   "templates/tous-a-bord-notification.txt"
 )
 const textTemplates = {
-  [EmailType.simulationResults]: simulationResultsTextTemplate,
-  [EmailType.benefitAction]: benefitActionTextTemplate,
-  [EmailType.simulationUsefulness]: simulationUsefulnessTextTemplate,
-  [EmailType.tousABordNotification]: tousABordNotificationTextTemplate,
+  [EmailCategory.SimulationResults]: simulationResultsTextTemplate,
+  [EmailCategory.BenefitAction]: benefitActionTextTemplate,
+  [EmailCategory.SimulationUsefulness]: simulationUsefulnessTextTemplate,
+  [EmailCategory.TousABordNotification]: tousABordNotificationTextTemplate,
 }
 
 const dataTemplateBuilder = (
-  emailType: EmailType,
+  emailType: EmailCategory,
   followup,
   formatedBenefits,
   benefitTexts
@@ -72,11 +72,11 @@ const dataTemplateBuilder = (
   }
 }
 
-function renderAsText(emailType: EmailType, dataTemplate) {
+function renderAsText(emailType: EmailCategory, dataTemplate) {
   return mustache.render(textTemplates[emailType], dataTemplate)
 }
 
-function renderAsHtml(emailType: EmailType, dataTemplate) {
+function renderAsHtml(emailType: EmailCategory, dataTemplate) {
   if (!(emailType in emailTemplates)) {
     throw new Error(`Unknown email type: ${emailType}`)
   }
@@ -90,13 +90,13 @@ function renderAsHtml(emailType: EmailType, dataTemplate) {
     })
 }
 
-export default async function emailRender(emailType: EmailType, followup) {
+export default async function emailRender(emailType: EmailCategory, followup) {
   let benefits: any = null
   let parameters: any = null
   let formatedBenefits: any = {}
   let benefitTexts: any = {}
 
-  if (emailType === EmailType.simulationResults) {
+  if (emailType === EmailCategory.SimulationResults) {
     const populated = await (followup.populated("simulation")
       ? Promise.resolve(followup)
       : followup.populate("simulation"))
@@ -125,7 +125,7 @@ export default async function emailRender(emailType: EmailType, followup) {
     renderAsText(emailType, dataTemplate),
     renderAsHtml(emailType, dataTemplate),
   ]).then((values) => {
-    if (emailType === EmailType.simulationResults) {
+    if (emailType === EmailCategory.SimulationResults) {
       return {
         subject: `Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
         text: values[0],
@@ -133,8 +133,8 @@ export default async function emailRender(emailType: EmailType, followup) {
         attachments: values[1].attachments,
       }
     } else if (
-      emailType === EmailType.benefitAction ||
-      emailType === EmailType.simulationUsefulness
+      emailType === EmailCategory.BenefitAction ||
+      emailType === EmailCategory.SimulationUsefulness
     ) {
       return {
         subject: `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? [${
@@ -143,7 +143,7 @@ export default async function emailRender(emailType: EmailType, followup) {
         text: values[0],
         html: values[1].html,
       }
-    } else if (emailType === EmailType.tousABordNotification) {
+    } else if (emailType === EmailCategory.TousABordNotification) {
       return {
         subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
         text: values[0],

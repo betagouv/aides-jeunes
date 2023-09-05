@@ -1,11 +1,11 @@
-enum StorageType {
-  localStorage = "localStorage",
-  sessionStorage = "sessionStorage",
+enum StorageCategory {
+  LocalStorage = "localStorage",
+  SessionStorage = "sessionStorage",
 }
 
 export class StorageService {
   private storageAvailable: boolean
-  private storageType: StorageType
+  private storageType: StorageCategory
   constructor(type) {
     this.storageType = type
     this.storageAvailable = this.available()
@@ -50,6 +50,6 @@ export class StorageService {
 }
 
 export default {
-  local: new StorageService(StorageType.localStorage),
-  session: new StorageService(StorageType.sessionStorage),
+  local: new StorageService(StorageCategory.LocalStorage),
+  session: new StorageService(StorageCategory.SessionStorage),
 }

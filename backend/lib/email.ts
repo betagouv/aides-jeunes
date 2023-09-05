@@ -1,6 +1,6 @@
 import { ArgumentParser } from "argparse"
 import config from "../config/index.js"
-import { EmailType } from "../enums/email.js"
+import { EmailCategory } from "../enums/email.js"
 import mongoose from "mongoose"
 import mongooseConfig from "../config/mongoose.js"
 import { processSendEmails } from "./emails/sending.js"
@@ -25,9 +25,9 @@ const send_types = send.add_subparsers({
 
 // Single emails types parsers
 const singleEmailTypes = [
-  EmailType.simulationResults,
-  EmailType.benefitAction,
-  EmailType.simulationUsefulness,
+  EmailCategory.SimulationResults,
+  EmailCategory.BenefitAction,
+  EmailCategory.SimulationUsefulness,
 ]
 singleEmailTypes.forEach((emailType) => {
   const parser = send_types.add_parser(emailType)
@@ -38,8 +38,8 @@ singleEmailTypes.forEach((emailType) => {
 
 // Multiple emails types parsers
 const multipleEmailTypes = [
-  EmailType.initialSurvey,
-  EmailType.tousABordNotification,
+  EmailCategory.InitialSurvey,
+  EmailCategory.TousABordNotification,
 ]
 multipleEmailTypes.forEach((emailType) => {
   const parser = send_types.add_parser(emailType)

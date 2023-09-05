@@ -48,7 +48,7 @@ import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 
 export default {
   components: {
@@ -90,7 +90,7 @@ export default {
 
       this.sendBenefitsStatistics(
         this.droits,
-        BehaviourEventTypes.showDetails,
+        BehaviourEvent.ShowDetails,
         benefitId
       )
     }

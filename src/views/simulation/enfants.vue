@@ -73,7 +73,7 @@
 import ActionButtons from "@/components/action-buttons.vue"
 import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
-import Scolarite from "@lib/scolarite"
+import ScolariteCategories from "@lib/scolarite"
 import { useStore } from "@/stores/index.js"
 
 export default {
@@ -137,8 +137,10 @@ export default {
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite(value) {
-      const s = Scolarite.types.find((s) => s.value === value)
-      return s ? Scolarite.types.find((s) => s.value === value).label : "-"
+      const s = ScolariteCategories.types.find((s) => s.value === value)
+      return s
+        ? ScolariteCategories.types.find((s) => s.value === value).label
+        : "-"
     },
   },
 }

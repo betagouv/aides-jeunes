@@ -372,8 +372,8 @@ function formatBenefit(
     {
       type: "statut_occupation_logement",
       excludes: [
-        StatutOccupationLogement.loge_gratuitement,
-        StatutOccupationLogement.sans_domicile,
+        StatutOccupationLogement.LogeGratuitement,
+        StatutOccupationLogement.SansDomicile,
       ],
     },
     {

@@ -1,5 +1,5 @@
 import { StandardBenefit } from "@data/types/benefits.d.js"
-import { PatrimoineTypes } from "@lib/enums/patrimoine.js"
+import { PatrimoineCategory } from "@lib/enums/patrimoine.js"
 
 export interface Resultats {
   _id?: string
@@ -28,7 +28,7 @@ export interface Answer {
 }
 
 export interface Patrimoine {
-  [key: PatrimoineTypes]: number
+  [key: PatrimoineCategory]: number
 }
 
 export interface RessourcesFiscales {

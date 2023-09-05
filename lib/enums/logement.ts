@@ -1,22 +1,22 @@
-export enum LocationType {
-  vide = "vide",
-  meuble = "meuble",
-  foyer = "foyer",
+export enum LocationCategory {
+  Vide = "vide",
+  Meuble = "meuble",
+  Foyer = "foyer",
 }
 
-export enum LogementType {
-  proprietaire = "proprietaire",
-  locataire = "locataire",
-  heberge = "heberge",
-  sansDomicile = "sansDomicile",
+export enum LogementCategory {
+  Proprietaire = "proprietaire",
+  Locataire = "locataire",
+  Heberge = "heberge",
+  SansDomicile = "sansDomicile",
 }
 
 export enum StatutOccupationLogement {
-  primo_accedant = "primo_accedant",
-  proprietaire = "proprietaire",
-  locataire_vide = "locataire_vide",
-  locataire_meuble = "locataire_meuble",
-  loge_gratuitement = "loge_gratuitement",
-  locataire_foyer = "locataire_foyer",
-  sans_domicile = "sans_domicile",
+  PrimoAccedant = "primo_accedant",
+  Proprietaire = "proprietaire",
+  LocataireVide = "locataire_vide",
+  LocataireMeuble = "locataire_meuble",
+  LogeGratuitement = "loge_gratuitement",
+  LocataireFoyer = "locataire_foyer",
+  SansDomicile = "sans_domicile",
 }

@@ -7,7 +7,7 @@ declare function emit(key, value)
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
-import { SurveyType } from "../../../lib/enums/survey.js"
+import { SurveyCategory } from "../../../lib/enums/survey.js"
 import { MongoStats } from "../../types/stats.d.js"
 
 let client
@@ -77,7 +77,7 @@ function extractSurveySummary(db) {
           already: 4,
         }
         const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === SurveyType.benefitAction
+          (s) => s.type === SurveyCategory.BenefitAction
         )
         if (benefitActionSurvey.answers.length) {
           benefitActionSurvey.answers.sort(function (a, b) {
@@ -93,12 +93,12 @@ function extractSurveySummary(db) {
       },
       {
         query: {
-          "surveys.type": SurveyType.benefitAction,
+          "surveys.type": SurveyCategory.BenefitAction,
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
         scope: {
-          SurveyType,
+          SurveyCategory,
         },
       }
     )
@@ -127,7 +127,7 @@ function extractSurveyDetails(db) {
           obj[b.id] = b.amount
         })
         const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === SurveyType.benefitAction
+          (s) => s.type === SurveyCategory.BenefitAction
         )
         benefitActionSurvey.answers.forEach(function (a) {
           emit({ id: a.id, state: a.value }, 1)
@@ -138,12 +138,12 @@ function extractSurveyDetails(db) {
       },
       {
         query: {
-          "surveys.type": SurveyType.benefitAction,
+          "surveys.type": SurveyCategory.BenefitAction,
           "surveys.repliedAt": { $exists: true },
         },
         out: { inline: 1 },
         scope: {
-          SurveyType,
+          SurveyCategory,
         },
       }
     )

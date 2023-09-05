@@ -4,11 +4,11 @@ import jwt from "jsonwebtoken"
 import config from "../config/index.js"
 import { Answer } from "../../lib/types/answer.js"
 
-export const enum CookiesKeys {
-  fcState = "fc_state",
-  fcNonce = "fc_nonce",
-  fcIdTokenHint = "fc_id_token_hint",
-  fcLogoutState = "fc_logout_state",
+export const enum FranceConnectCookie {
+  FcState = "fc_state",
+  FcNonce = "fc_nonce",
+  FcIdTokenHint = "fc_id_token_hint",
+  FcLogoutState = "fc_logout_state",
 }
 
 const FranceConnectConfig = config.franceConnect

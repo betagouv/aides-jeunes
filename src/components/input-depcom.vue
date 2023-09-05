@@ -71,7 +71,7 @@ import { Commune } from "@lib/types/commune.d.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { useStore } from "@/stores/index.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   name: "InputDepCom",
@@ -142,7 +142,7 @@ export default {
         .then((communes) => {
           if (communes.length <= 0) {
             this.sendEventToMatomo(
-              EventCategories.GENERAL,
+              EventCategory.General,
               "Depcom introuvable",
               `Code postal : ${this.codePostalValue}`
             )

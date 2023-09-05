@@ -3,7 +3,7 @@ import { getBenefitLieuxTypes, fetchLieux } from "@lib/benefits/lieux"
 import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import IndividuMethods from "@lib/individu.js"
-import { ActiviteType } from "@lib/enums/activite.js"
+import { Activite } from "@lib/enums/activite.js"
 import { LieuProperties } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
 import { Benefit } from "@data/types/benefits"
@@ -41,7 +41,7 @@ export function useLieux() {
     },
     {
       isRelevant: (demandeur: any) => {
-        return demandeur.activite === ActiviteType.chomeur
+        return demandeur.activite === Activite.Chomeur
       },
       types: ["pole_emploi"],
     },

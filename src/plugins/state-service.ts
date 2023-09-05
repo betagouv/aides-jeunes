@@ -2,7 +2,7 @@ import { getNextStep, current, getChapters } from "@lib/state"
 import { isNavigationFailure, NavigationFailureType } from "vue-router"
 import { useStore } from "@/stores/index.js"
 import { sendEventToMatomo } from "@/lib/statistics-service/matomo.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 const StateService = {
   install(app) {
@@ -20,7 +20,7 @@ const StateService = {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
           sendEventToMatomo(
             {
-              category: EventCategories.PARCOURS,
+              category: EventCategory.Parcours,
               action: "Navigation cancelled",
               label: failure.toString(),
             },

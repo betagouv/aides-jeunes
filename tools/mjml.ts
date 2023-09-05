@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import api from "../backend/api.js"
-import { EmailType } from "../backend/enums/email.js"
+import { EmailCategory } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyType } from "../lib/enums/survey.js"
+import { SurveyCategory } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
@@ -18,7 +18,7 @@ const port = process.env.PORT || 9001
 // Setup Express
 const app = express()
 
-const typeKeys = EmailType
+const typeKeys = EmailCategory
 
 app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
@@ -38,17 +38,17 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = async (req: Request) => {
   const { followup } = req
-  const emailType = req.params.type as EmailType
-  let surveyType: SurveyType | undefined
+  const emailType = req.params.type as EmailCategory
+  let surveyType: SurveyCategory | undefined
 
   switch (emailType) {
-    case EmailType.simulationResults:
-      return emailRender(EmailType.simulationResults, followup)
-    case EmailType.simulationUsefulness:
-      surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
+    case EmailCategory.SimulationResults:
+      return emailRender(EmailCategory.SimulationResults, followup)
+    case EmailCategory.SimulationUsefulness:
+      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailType.benefitAction:
-      surveyType = SurveyType.trackClickOnBenefitActionEmail
+    case EmailCategory.BenefitAction:
+      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
       break
     default:
       return {

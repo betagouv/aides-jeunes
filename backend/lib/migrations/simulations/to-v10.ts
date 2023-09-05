@@ -2,7 +2,7 @@
  * Migre _formationSanitaireSocial vers groupe_specialites_formation
  */
 
-import Scolarite from "../../../../lib/scolarite.js"
+import ScolariteCategories from "../../../../lib/scolarite.js"
 
 const VERSION = 10
 
@@ -18,9 +18,9 @@ function updateGroupeSpecialitesFormation(answers) {
 
   answers[answerIndex].fieldName = "groupe_specialites_formation"
   answers[answerIndex].value = answers[answerIndex].value
-    ? Scolarite.groupeSpecialitesFormation
+    ? ScolariteCategories.groupeSpecialitesFormation
         .specialites_plurivalentes_sanitaires_et_sociales.value
-    : Scolarite.groupeSpecialitesFormation.autre.value
+    : ScolariteCategories.groupeSpecialitesFormation.autre.value
 }
 
 export default {

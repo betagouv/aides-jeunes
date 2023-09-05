@@ -1,66 +1,66 @@
 import {
-  GroupeSpecialiteType,
-  MentionBaccalaureatType,
-  ScolariteType,
+  GroupeSpecialite,
+  MentionBaccalaureat,
+  Scolarite,
 } from "./enums/scolarite.js"
 export default {
   types: [
     {
-      value: ScolariteType.college,
+      value: Scolarite.College,
       label: "Au collège",
     },
     {
-      value: ScolariteType.lycee,
+      value: Scolarite.Lycee,
       label: "Au lycée / En CAP / En CPA",
     },
     {
-      value: ScolariteType.enseignement_superieur,
+      value: Scolarite.EnseignementSuperieur,
       label: "Dans l'enseignement supérieur",
     },
     {
-      value: ScolariteType.grande_ecole_du_numerique,
+      value: Scolarite.GrandeEcoleDuNumerique,
       label: "Dans une grande école du numérique",
     },
     {
-      value: ScolariteType.inconnue,
+      value: Scolarite.Inconnue,
       label: "Autre",
     },
   ],
   mentionsBaccalaureat: [
     {
       label: "Mention assez bien",
-      value: MentionBaccalaureatType.mention_assez_bien,
+      value: MentionBaccalaureat.MentionAssezBien,
     },
     {
       label: "Mention bien",
-      value: MentionBaccalaureatType.mention_bien,
+      value: MentionBaccalaureat.MentionBien,
     },
     {
       label: "Mention très bien",
-      value: MentionBaccalaureatType.mention_tres_bien,
+      value: MentionBaccalaureat.MentionTresBien,
     },
     {
       label: "Mention très bien avec félicitations du jury",
-      value: MentionBaccalaureatType.mention_tres_bien_felicitations_jury,
+      value: MentionBaccalaureat.MentionTresBienFelicitationsJury,
     },
     {
       label: "Autre",
-      value: MentionBaccalaureatType.non_renseignee,
+      value: MentionBaccalaureat.NonRenseignee,
     },
   ],
   // https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701
   groupeSpecialitesFormation: {
     specialites_plurivalentes_sanitaires_et_sociales: {
       label: "Sanitaire et social",
-      value: GroupeSpecialiteType.groupe_330,
+      value: GroupeSpecialite.Groupe330,
     },
     specialites_pluritechnologiques_genie_civil_construction_bois: {
       label: "Génie civil, construction, bois",
-      value: GroupeSpecialiteType.groupe_230,
+      value: GroupeSpecialite.Groupe230,
     },
     autre: {
       label: "Autre",
-      value: GroupeSpecialiteType.aucun,
+      value: GroupeSpecialite.Aucun,
     },
   },
 }

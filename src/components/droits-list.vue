@@ -101,7 +101,7 @@ import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 import WarningMessage from "@/components/warning-message.vue"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types"
+import { BehaviourEvent } from "@lib/enums/behaviour-event"
 
 export default {
   name: "DroitsList",
@@ -117,7 +117,7 @@ export default {
   },
   data: function () {
     return {
-      eventTypeLinkIneligible: BehaviourEventTypes.linkIneligible,
+      eventTypeLinkIneligible: BehaviourEvent.LinkIneligible,
     }
   },
   computed: {

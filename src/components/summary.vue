@@ -102,10 +102,10 @@ export default {
       this.$refs.sideMenuButton.setAttribute("aria-expanded", false)
     },
     isChapterCurrent(chapter) {
-      return chapter.state === ChapterState.current
+      return chapter.state === ChapterState.Current
     },
     isChapterPending(chapter) {
-      return chapter.state === ChapterState.pending
+      return chapter.state === ChapterState.Pending
     },
   },
 }

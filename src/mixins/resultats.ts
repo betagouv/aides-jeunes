@@ -1,6 +1,6 @@
 import Simulation from "@/lib/simulation.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   mixins: [StatisticsMixin],
@@ -56,7 +56,7 @@ export default {
       const lastestSimulationId = Simulation.getLatestId()
       if (!lastestSimulationId) {
         this.sendEventToMatomo(
-          EventCategories.GENERAL,
+          EventCategory.General,
           "redirection",
           this.$route.path
         )
@@ -64,11 +64,7 @@ export default {
         return this.store.redirection((route) => this.$router.push(route))
       }
 
-      this.sendEventToMatomo(
-        EventCategories.GENERAL,
-        "compute",
-        this.$route.path
-      )
+      this.sendEventToMatomo(EventCategory.General, "compute", this.$route.path)
 
       await this.store.fetch(lastestSimulationId)
 

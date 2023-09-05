@@ -1,11 +1,11 @@
-import { ActiviteType } from "./enums/activite.js"
+import { Activite } from "./enums/activite.js"
 const ACTIVITES_ACTIF = [
-  ActiviteType.service_civique,
-  ActiviteType.salarie,
-  ActiviteType.independant,
+  Activite.ServiceCivique,
+  Activite.Salarie,
+  Activite.Independant,
 ]
 
-function estActif(activite: ActiviteType): boolean {
+function estActif(activite: Activite): boolean {
   return ACTIVITES_ACTIF.includes(activite)
 }
 

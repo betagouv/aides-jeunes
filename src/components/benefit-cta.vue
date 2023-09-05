@@ -41,7 +41,7 @@
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasLieux } from "@lib/benefits/lieux.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 
 export default {
   name: "BenefitCta",
@@ -55,15 +55,15 @@ export default {
   data: function () {
     return {
       levels: ["success", "default"],
-      eventTypeShowLocations: BehaviourEventTypes.showLocations,
+      eventTypeShowLocations: BehaviourEvent.ShowLocations,
     }
   },
   computed: {
     ctas() {
       const ctaBehaviourTypes = [
-        BehaviourEventTypes.teleservice,
-        BehaviourEventTypes.form,
-        BehaviourEventTypes.instructions,
+        BehaviourEvent.Teleservice,
+        BehaviourEvent.Form,
+        BehaviourEvent.Instructions,
       ]
 
       return ctaBehaviourTypes

@@ -3,8 +3,8 @@ import { generator } from "./dates.js"
 
 import { Situation } from "../lib/types/situations.js"
 import { Individu } from "../lib/types/individu.js"
-import { ActiviteType } from "./enums/activite.js"
-import { PatrimoineTypes } from "./enums/patrimoine.js"
+import { Activite } from "./enums/activite.js"
+import { PatrimoineCategory } from "./enums/patrimoine.js"
 import { Resource, ResourceCategory } from "./types/resources.js"
 
 export const ressourceCategories: ResourceCategory[] = [
@@ -160,7 +160,7 @@ export const ressourceTypes: Resource[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: Situation, individu: Individu) => {
-      return individu.activite !== ActiviteType.etudiant
+      return individu.activite !== Activite.Etudiant
     },
   },
   {
@@ -332,7 +332,7 @@ export const ressourceTypes: Resource[] = [
     prefix: "une",
     hint: "Entrez le montant avant la retenue à la source",
     isRelevant(situation: Situation, individu: Individu) {
-      return individu.activite === ActiviteType.retraite
+      return individu.activite === Activite.Retraite
     },
   },
   {
@@ -341,7 +341,7 @@ export const ressourceTypes: Resource[] = [
     category: "pensions",
     prefix: "une",
     isRelevant(situation: Situation, individu: Individu) {
-      return individu.activite === ActiviteType.retraite
+      return individu.activite === Activite.Retraite
     },
   },
   {
@@ -467,35 +467,35 @@ export const categoriesRnc = [
 
 export const patrimoineTypes = [
   {
-    id: PatrimoineTypes.valeur_patrimoine_loue,
+    id: PatrimoineCategory.ValeurPatrimoineLoue,
     label: "Valeur de vos biens loués",
   },
   {
-    id: PatrimoineTypes.valeur_terrains_non_loues,
+    id: PatrimoineCategory.ValeurTerrainsNonLoues,
     label: "Valeur de vos terrains non loués",
   },
   {
-    id: PatrimoineTypes.valeur_locative_terrains_non_loues,
+    id: PatrimoineCategory.ValeurLocativeTerrainsNonLoues,
     label: "Valeur locative terrains non loués",
   },
   {
-    id: PatrimoineTypes.valeur_immo_non_loue,
+    id: PatrimoineCategory.ValeurImmoNonLoue,
     label: "Valeur de vos biens immobiliers non loués",
   },
   {
-    id: PatrimoineTypes.valeur_locative_immo_non_loue,
+    id: PatrimoineCategory.ValeurLocativeImmoNonLoue,
     label: "Valeur locative immobilier non loué",
   },
   {
-    id: PatrimoineTypes.livret_a,
+    id: PatrimoineCategory.LivretA,
     label: "Épargne sur livret A",
   },
   {
-    id: PatrimoineTypes.epargne_revenus_non_imposables,
+    id: PatrimoineCategory.EpargneRevenusNonImposables,
     label: "Épargne aux revenus non imposables",
   },
   {
-    id: PatrimoineTypes.epargne_revenus_imposables,
+    id: PatrimoineCategory.EpargneRevenusImposables,
     label: "Épargne aux revenus imposables",
   },
 ]

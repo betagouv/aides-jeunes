@@ -103,9 +103,9 @@ import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { daysSinceDate } from "@lib/utils.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 
 export default {
   name: "SimulationResultats",
@@ -155,7 +155,7 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.sendBenefitsStatistics(this.droits, BehaviourEventTypes.show)
+      this.sendBenefitsStatistics(this.droits, BehaviourEvent.Show)
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
       const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
@@ -169,12 +169,12 @@ export default {
 
       this.sendBenefitsStatistics(
         droitsWithUnexpectedAmount,
-        BehaviourEventTypes.showUnexpectedAmountLink
+        BehaviourEvent.ShowUnexpectedAmountLink
       )
     },
     sendAccessToAnonymizedResults() {
       this.sendEventToMatomo(
-        EventCategories.GENERAL,
+        EventCategory.General,
         "Accès simulation anonymisée",
         daysSinceDate(new Date(this.store.simulation.dateDeValeur))
       )
@@ -191,7 +191,7 @@ export default {
               break
             }
             case "saveComputationFailure": {
-              this.sendEventToMatomo(EventCategories.GENERAL, "Error")
+              this.sendEventToMatomo(EventCategory.General, "Error")
               break
             }
           }
@@ -234,7 +234,7 @@ export default {
       } catch (error) {
         this.store.setSaveSituationError(error.response?.data || error)
         this.sendEventToMatomo(
-          EventCategories.GENERAL,
+          EventCategory.General,
           "Erreur sauvegarde simulation"
         )
       }

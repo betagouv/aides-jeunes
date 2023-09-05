@@ -9,12 +9,12 @@ import {
 
 import IndividuMethods from "../individu.js"
 import { capitalize, yearsAgo } from "../utils.js"
-import Scolarite from "../scolarite.js"
+import ScolariteCategories from "../scolarite.js"
 import { getAnswer } from "../answers.js"
 
-import { ActiviteType } from "../enums/activite.js"
-import { EtudiantType, ScolariteType } from "../enums/scolarite.js"
-import { VeloCategory } from "../enums/velo.js"
+import { Activite } from "../enums/activite.js"
+import { Etudiant, Scolarite } from "../enums/scolarite.js"
+import { Velo } from "../enums/velo.js"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
@@ -39,33 +39,33 @@ export default {
     questionType: "enum",
     items: [
       {
-        value: ActiviteType.etudiant,
+        value: Activite.Etudiant,
         label: "En étude ou en alternance",
       },
       {
-        value: ActiviteType.salarie,
+        value: Activite.Salarie,
         label: "Salarié ou salariée",
       },
       {
-        value: ActiviteType.independant,
+        value: Activite.Independant,
         label: "Indépendant ou indépendante",
       },
       {
-        value: ActiviteType.service_civique,
+        value: Activite.ServiceCivique,
         label: "En service civique",
       },
       {
-        value: ActiviteType.chomeur,
+        value: Activite.Chomeur,
         label: "Inscrit ou inscrite comme demandeur d’emploi",
       },
       {
-        value: ActiviteType.retraite,
+        value: Activite.Retraite,
         label: "Retraité ou retraitée",
         isRelevant: ({ individu, periods }) =>
           IndividuMethods.age(individu, periods.today.value) > 30,
       },
       {
-        value: ActiviteType.inactif,
+        value: Activite.Inactif,
         label: "Autre",
       },
     ],
@@ -85,119 +85,119 @@ export default {
     items: [
       {
         label: "CAP - 1ère année",
-        value: EtudiantType.cap_1,
+        value: Etudiant.Cap1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.lycee
+          return individu.scolarite === Scolarite.Lycee
         },
       },
       {
         label: "CAP - 2ème année",
-        value: EtudiantType.cap_2,
+        value: Etudiant.Cap2,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.lycee
+          return individu.scolarite === Scolarite.Lycee
         },
       },
       {
         label: "Seconde",
-        value: EtudiantType.seconde,
+        value: Etudiant.Seconde,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.lycee
+          return individu.scolarite === Scolarite.Lycee
         },
       },
       {
         label: "Première",
-        value: EtudiantType.premiere,
+        value: Etudiant.Premiere,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.lycee
+          return individu.scolarite === Scolarite.Lycee
         },
       },
       {
         label: "Terminale",
-        value: EtudiantType.terminale,
+        value: Etudiant.Terminale,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.lycee
+          return individu.scolarite === Scolarite.Lycee
         },
       },
       {
         label: "BTS",
-        value: EtudiantType.bts_1,
+        value: Etudiant.Bts1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "BUT",
-        value: EtudiantType.but_1,
+        value: Etudiant.But1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "CPGE",
-        value: EtudiantType.cpge_1,
+        value: Etudiant.Cpge1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Licence - 1ère année",
-        value: EtudiantType.licence_1,
+        value: Etudiant.Licence1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Licence - 2ème année",
-        value: EtudiantType.licence_2,
+        value: Etudiant.Licence2,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Licence - 3ème année",
-        value: EtudiantType.licence_3,
+        value: Etudiant.Licence3,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Master - 1ère année",
-        value: EtudiantType.master_1,
+        value: Etudiant.Master1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Master - 2ème année",
-        value: EtudiantType.master_2,
+        value: Etudiant.Master2,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Doctorat - 1ère année",
-        value: EtudiantType.doctorat_1,
+        value: Etudiant.Doctorat1,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Doctorat - 2ème année",
-        value: EtudiantType.doctorat_2,
+        value: Etudiant.Doctorat2,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Doctorat - 3ème année",
-        value: EtudiantType.doctorat_3,
+        value: Etudiant.Doctorat3,
         isRelevant({ individu }) {
-          return individu.scolarite === ScolariteType.enseignement_superieur
+          return individu.scolarite === Scolarite.EnseignementSuperieur
         },
       },
       {
         label: "Autre",
-        value: EtudiantType.autre,
+        value: Etudiant.Autre,
       },
     ],
   }),
@@ -369,7 +369,7 @@ export default {
   groupe_specialites_formation: new EnumProperty({
     question: "De quel secteur votre formation fait-elle partie ?",
     questionType: "enum",
-    items: Object.values(Scolarite.groupeSpecialitesFormation),
+    items: Object.values(ScolariteCategories.groupeSpecialitesFormation),
   }),
 
   habite_chez_parents: new BooleanProperty({
@@ -411,7 +411,7 @@ export default {
   mention_baccalaureat: new EnumProperty({
     question: "Avez-vous obtenu une mention au baccalauréat ?",
     questionType: "enum",
-    items: Scolarite.mentionsBaccalaureat,
+    items: ScolariteCategories.mentionsBaccalaureat,
   }),
 
   nationalite: new EnumProperty({
@@ -485,7 +485,7 @@ export default {
         : `Où sera scolarisé ou scolarisée ${individu._firstName} à la rentrée prochaine ?`
     },
     questionType: "enum",
-    items: Scolarite.types,
+    items: ScolariteCategories.types,
     moreInfo:
       "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   }),
@@ -597,11 +597,11 @@ export default {
     questionType: "enum",
     items: [
       {
-        value: ActiviteType.apprenti,
+        value: Activite.Apprenti,
         label: "En apprentissage",
       },
       {
-        value: ActiviteType.professionnalisation,
+        value: Activite.Professionnalisation,
         label: "En contrat de professionnalisation",
       },
     ],
@@ -622,16 +622,16 @@ export default {
   _interetsAidesVelo: new MultipleProperty({
     question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
     items: [
-      { value: VeloCategory.veloMecanique, label: "Vélo mécanique simple" },
-      { value: VeloCategory.veloElectrique, label: "Vélo électrique" },
-      { value: VeloCategory.veloCargo, label: "Vélo cargo" },
+      { value: Velo.VeloMecanique, label: "Vélo mécanique simple" },
+      { value: Velo.VeloElectrique, label: "Vélo électrique" },
+      { value: Velo.VeloCargo, label: "Vélo cargo" },
       {
-        value: VeloCategory.veloCargoElectrique,
+        value: Velo.VeloCargoElectrique,
         label: "Vélo cargo électrique",
       },
-      { value: VeloCategory.veloPliant, label: "Vélo pliant" },
+      { value: Velo.VeloPliant, label: "Vélo pliant" },
       {
-        value: VeloCategory.veloMotorisation,
+        value: Velo.VeloMotorisation,
         label: "Motorisation d'un vélo classique",
       },
     ],
@@ -657,7 +657,7 @@ export default {
 
   _nombreMoisDebutContratDeTravail: new EnumProperty({
     question: ({ individu }) => {
-      return individu.activite === ActiviteType.etudiant && individu.alternant
+      return individu.activite === Activite.Etudiant && individu.alternant
         ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
         : "Depuis quand avez-vous signé votre contrat de travail ?"
     },

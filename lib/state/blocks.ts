@@ -3,10 +3,10 @@ import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
-import Scolarite from "../scolarite.js"
+import ScolariteCategories from "../scolarite.js"
 
-import { ActiviteType } from "../enums/activite.js"
-import { ScolariteType, EtudiantType } from "../enums/scolarite.js"
+import { Activite } from "../enums/activite.js"
+import { Scolarite, Etudiant } from "../enums/scolarite.js"
 import { Block } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
@@ -30,38 +30,37 @@ function individuBlockFactory(id, chapter?: string) {
       ...(demandeur
         ? [
             {
-              isActive: (subject) => subject.activite == ActiviteType.etudiant,
+              isActive: (subject) => subject.activite == Activite.Etudiant,
               steps: [
                 r("scolarite"),
                 {
                   isActive: (subject) =>
-                    [
-                      ScolariteType.lycee,
-                      ScolariteType.enseignement_superieur,
-                    ].includes(subject.scolarite),
+                    [Scolarite.Lycee, Scolarite.EnseignementSuperieur].includes(
+                      subject.scolarite
+                    ),
                   steps: [r("annee_etude")],
                 },
                 {
                   isActive: (subject) =>
                     [
-                      ScolariteType.college,
-                      ScolariteType.lycee,
-                      ScolariteType.enseignement_superieur,
+                      Scolarite.College,
+                      Scolarite.Lycee,
+                      Scolarite.EnseignementSuperieur,
                     ].includes(subject.scolarite),
                   steps: [r("statuts_etablissement_scolaire")],
                 },
                 {
                   isActive: (subject) =>
                     [
-                      EtudiantType.bts_1,
-                      EtudiantType.but_1,
-                      EtudiantType.cpge_1,
-                      EtudiantType.licence_1,
-                      EtudiantType.licence_2,
+                      Etudiant.Bts1,
+                      Etudiant.But1,
+                      Etudiant.Cpge1,
+                      Etudiant.Licence1,
+                      Etudiant.Licence2,
                     ].includes(subject.annee_etude),
                   steps: [r("mention_baccalaureat")],
                 },
-                r(ActiviteType.stagiaire),
+                r(Activite.Stagiaire),
               ],
             },
             {
@@ -71,12 +70,12 @@ function individuBlockFactory(id, chapter?: string) {
                   datesGenerator(situation.dateDeValeur).today.value
                 )
                 const jeune_actif =
-                  subject.activite === ActiviteType.salarie &&
+                  subject.activite === Activite.Salarie &&
                   age <=
                     parameters[
                       "prestations_sociales.education.carte_des_metiers.age_maximal"
                     ]
-                return subject.activite === ActiviteType.etudiant || jeune_actif
+                return subject.activite === Activite.Etudiant || jeune_actif
               },
               steps: [
                 r("alternant"),
@@ -89,16 +88,16 @@ function individuBlockFactory(id, chapter?: string) {
             {
               isActive: (subject) => {
                 return [
-                  ScolariteType.lycee,
-                  ScolariteType.enseignement_superieur,
-                  ScolariteType.inconnue,
+                  Scolarite.Lycee,
+                  Scolarite.EnseignementSuperieur,
+                  Scolarite.Inconnue,
                 ].includes(subject.scolarite)
               },
               steps: [r("groupe_specialites_formation")],
             },
             {
               isActive: (subject) =>
-                subject.activite === ActiviteType.salarie || subject.alternant,
+                subject.activite === Activite.Salarie || subject.alternant,
               steps: [r("_nombreMoisDebutContratDeTravail")],
             },
           ]
@@ -106,12 +105,12 @@ function individuBlockFactory(id, chapter?: string) {
       ...(!enfant
         ? [
             {
-              isActive: (subject) => subject.activite === ActiviteType.chomeur,
+              isActive: (subject) => subject.activite === Activite.Chomeur,
               steps: [r("date_debut_chomage"), r("ass_precondition_remplie")],
             },
             {
               isActive: (subject) =>
-                ![ActiviteType.etudiant, ...ACTIVITES_ACTIF].includes(
+                ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
                   subject.activite
                 ),
               steps: [r("inapte_travail")],
@@ -185,7 +184,7 @@ function individuBlockFactory(id, chapter?: string) {
                 return (
                   20 <= age &&
                   age < 25 &&
-                  ![ActiviteType.etudiant, ...ACTIVITES_ACTIF].includes(
+                  ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
                     subject.activite
                   ) &&
                   !subject.ass_precondition_remplie &&
@@ -247,14 +246,14 @@ function extraBlock() {
         isActive: (subject) => {
           return (
             subject.groupe_specialites_formation !==
-            Scolarite.groupeSpecialitesFormation
+            ScolariteCategories.groupeSpecialitesFormation
               .specialites_plurivalentes_sanitaires_et_sociales.value
           )
         },
         steps: [s("_interetAidesSanitaireSocial", "projets")],
       },
       {
-        isActive: (subject) => subject.annee_etude === EtudiantType.terminale,
+        isActive: (subject) => subject.annee_etude === Etudiant.Terminale,
         steps: [
           s("sortie_academie"),
           {
@@ -275,9 +274,7 @@ function extraBlock() {
       },
       {
         isActive: (subject) =>
-          [EtudiantType.licence_3, EtudiantType.master_1].includes(
-            subject.annee_etude
-          ),
+          [Etudiant.Licence3, Etudiant.Master1].includes(subject.annee_etude),
         steps: [
           s("sortie_region_academique"),
           {
@@ -288,11 +285,11 @@ function extraBlock() {
       },
       {
         isActive: (subject) =>
-          (subject.scolarite === ScolariteType.enseignement_superieur &&
+          (subject.scolarite === Scolarite.EnseignementSuperieur &&
             ["public", "prive_sous_contrat"].includes(
               subject.statuts_etablissement_scolaire
             )) ||
-          subject._contrat_alternant === ActiviteType.apprenti,
+          subject._contrat_alternant === Activite.Apprenti,
         steps: [
           s("_interetEtudesEtranger"),
           {
@@ -409,7 +406,7 @@ function housingBlock() {
         subject: (menage, situation) => situation.demandeur,
         isActive: (demandeur, situation) => {
           return (
-            demandeur.activite === ActiviteType.etudiant &&
+            demandeur.activite === Activite.Etudiant &&
             !demandeur.habite_chez_parents &&
             (!situation.parents || !IndividuMethods.isWithoutParent(situation))
           )
@@ -529,7 +526,7 @@ export function generateBlocks(situation): Block[] {
 
         return (
           enfant_a_charge ||
-          (subject.activite === ActiviteType.etudiant &&
+          (subject.activite === Activite.Etudiant &&
             !subject.alternant &&
             !situation.enfants?.length)
         )
@@ -543,7 +540,7 @@ export function generateBlocks(situation): Block[] {
               !parents || !IndividuMethods.isWithoutParent(situation)
 
             const demandeur_ok =
-              situation.demandeur.activite === ActiviteType.etudiant &&
+              situation.demandeur.activite === Activite.Etudiant &&
               !situation.demandeur.alternant &&
               !situation.enfants?.length
 
@@ -577,7 +574,7 @@ export function generateBlocks(situation): Block[] {
             const demandeur = situation.demandeur
             const demandeur_ok =
               demandeur &&
-              demandeur.activite === ActiviteType.etudiant &&
+              demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
               !(situation.enfants && situation.enfants.length)
             return demandeur_ok
@@ -598,7 +595,7 @@ export function generateBlocks(situation): Block[] {
 
             const demandeur_ok_bcs =
               demandeur &&
-              demandeur.activite === ActiviteType.etudiant &&
+              demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
               !situation.enfants?.length
             return enfant_a_charge && !demandeur_ok_bcs

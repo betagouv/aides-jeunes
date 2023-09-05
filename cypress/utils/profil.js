@@ -1,7 +1,7 @@
 import { fillRadio, submit } from "./form.js"
 import {
-  GroupeSpecialiteType,
-  MentionBaccalaureatType,
+  GroupeSpecialite,
+  MentionBaccalaureat,
 } from "../../lib/enums/scolarite.ts"
 import { urlInclude } from "./controllers.js"
 
@@ -145,10 +145,10 @@ const publicStudent = () => {
   fill_scolarite("enseignement_superieur")
   fill_annee_etude("licence_1")
   fill_statuts_etablissement_scolaire("public")
-  fill_mention_baccalaureat(MentionBaccalaureatType.mention_tres_bien)
+  fill_mention_baccalaureat(MentionBaccalaureat.MentionTresBien)
   fill_stagiaire(false)
   fill_alternant(false)
-  fill_groupe_specialites_formation(GroupeSpecialiteType.groupe_330)
+  fill_groupe_specialites_formation(GroupeSpecialite.Groupe330)
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

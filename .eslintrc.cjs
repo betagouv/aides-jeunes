@@ -33,10 +33,11 @@ module.exports = {
     "@typescript-eslint/naming-convention": [
       "warn",
       {
-        selector: "interface",
+        selector: ["interface", "enum", "enumMember"],
         format: ["PascalCase"],
       },
     ],
+    "@typescript-eslint/no-duplicate-enum-values": "warn",
     "import/named": "off",
     "import/no-unresolved": "off",
     "no-irregular-whitespace": 0,

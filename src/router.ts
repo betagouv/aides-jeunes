@@ -156,7 +156,7 @@ const router = createRouter({
           },
         },
         {
-          name: "benefitLieuInformationsLight",
+          name: "benefitLieuInformations",
           path: "resultats/:benefitId/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),

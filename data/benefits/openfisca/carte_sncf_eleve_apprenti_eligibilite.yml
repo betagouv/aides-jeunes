@@ -1,6 +1,9 @@
-label: carte SNCF élèves et apprentis
+label: carte SNCF élèves, étudiants et apprentis
 institution: sncf
-description: La carte SNCF élèves et apprentis permet d'obtenir des réductions sur ses trajets TGV INOUI et INTERCITES.
+description: Vous êtes élève de moins de 21 ans, étudiant de moins de 26 ans ou
+  apprenti de moins de 23 ans, la SNCF vous propose une carte d'abonnement qui
+  vous permet de voyager à votre gré et à moindre coût entre votre domicile et
+  votre lieu d'études ou d'apprentissage, en TGV INOUI et INTERCITES.
 conditions:
   - Demander la carte directement dans la boutique SNCF de votre choix.
 link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis

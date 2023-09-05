@@ -160,7 +160,7 @@ import CopyButton from "@/components/support/copy-button.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { getBenefit } from "@/lib/benefits.js"
 import { Followup } from "@lib/types/followup.d.js"
-import { SurveyType } from "@lib/enums/survey.js"
+import { SurveyCategory } from "@lib/enums/survey.js"
 
 export default {
   components: {
@@ -245,7 +245,7 @@ export default {
             .map((followup) => {
               followup.surveys = followup.surveys.filter(
                 (survey) =>
-                  survey.type === SurveyType.benefitAction &&
+                  survey.type === SurveyCategory.BenefitAction &&
                   survey.answers.length
               )
               return followup

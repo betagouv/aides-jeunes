@@ -5,7 +5,7 @@ import { EmailCategory } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyType } from "../lib/enums/survey.js"
+import { SurveyCategory } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
@@ -39,16 +39,16 @@ app.route("/").get(function (req, res) {
 const followupRendering = async (req: Request) => {
   const { followup } = req
   const emailType = req.params.type as EmailCategory
-  let surveyType: SurveyType | undefined
+  let surveyType: SurveyCategory | undefined
 
   switch (emailType) {
     case EmailCategory.SimulationResults:
       return emailRender(EmailCategory.SimulationResults, followup)
     case EmailCategory.SimulationUsefulness:
-      surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
+      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       break
     case EmailCategory.BenefitAction:
-      surveyType = SurveyType.trackClickOnBenefitActionEmail
+      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
       break
     default:
       return {

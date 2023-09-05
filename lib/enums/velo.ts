@@ -1,8 +1,8 @@
-export enum VeloCategory {
-  veloMecanique = "velo_mecanique",
-  veloElectrique = "velo_electrique",
-  veloCargo = "velo_cargo",
-  veloCargoElectrique = "velo_cargo_electrique",
-  veloPliant = "velo_pliant",
-  veloMotorisation = "velo_motorisation",
+export enum Velo {
+  VeloMecanique = "velo_mecanique",
+  VeloElectrique = "velo_electrique",
+  VeloCargo = "velo_cargo",
+  VeloCargoElectrique = "velo_cargo_electrique",
+  VeloPliant = "velo_pliant",
+  VeloMotorisation = "velo_motorisation",
 }

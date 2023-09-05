@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 
 import { EmailCategory } from "../../enums/email.js"
-import { SurveyType } from "../../../lib/enums/survey.js"
+import { SurveyCategory } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 
@@ -28,9 +28,9 @@ async function sendMultipleInitialEmails(limit: number) {
         $elemMatch: {
           type: {
             $in: [
-              SurveyType.benefitAction,
-              SurveyType.trackClickOnSimulationUsefulnessEmail,
-              SurveyType.trackClickOnBenefitActionEmail,
+              SurveyCategory.BenefitAction,
+              SurveyCategory.TrackClickOnSimulationUsefulnessEmail,
+              SurveyCategory.TrackClickOnBenefitActionEmail,
             ],
           },
         },
@@ -48,8 +48,8 @@ async function sendMultipleInitialEmails(limit: number) {
     followups.map(async (followup: Followup) => {
       const surveyType =
         Math.random() > 0.5
-          ? SurveyType.trackClickOnBenefitActionEmail
-          : SurveyType.trackClickOnSimulationUsefulnessEmail
+          ? SurveyCategory.TrackClickOnBenefitActionEmail
+          : SurveyCategory.TrackClickOnSimulationUsefulnessEmail
 
       try {
         const result = await followup.sendSurvey(surveyType)
@@ -80,7 +80,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     surveys: {
       $not: {
         $elemMatch: {
-          type: SurveyType.tousABordNotification,
+          type: SurveyCategory.TousABordNotification,
         },
       },
     },
@@ -92,7 +92,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     followups.map(async (followup: Followup) => {
       try {
         const result = await followup.sendSurvey(
-          SurveyType.tousABordNotification
+          SurveyCategory.TousABordNotification
         )
         return { ok: result._id }
       } catch (error) {
@@ -120,12 +120,12 @@ async function processSingleEmail(
       break
     case EmailCategory.BenefitAction:
       emailPromise = followup.sendSurvey(
-        SurveyType.trackClickOnBenefitActionEmail
+        SurveyCategory.TrackClickOnBenefitActionEmail
       )
       break
     case EmailCategory.SimulationUsefulness:
       emailPromise = followup.sendSurvey(
-        SurveyType.trackClickOnSimulationUsefulnessEmail
+        SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       )
       break
     default:

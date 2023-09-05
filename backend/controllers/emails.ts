@@ -1,21 +1,21 @@
 import { EmailCategory } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyType } from "../../lib/enums/survey.js"
+import { SurveyCategory } from "../../lib/enums/survey.js"
 
 const renderFollowupEmailByType = async (
   followup,
   emailType: EmailCategory
 ) => {
-  let surveyType: SurveyType | undefined
+  let surveyType: SurveyCategory | undefined
 
   switch (emailType) {
     case EmailCategory.SimulationResults:
       return emailRender(EmailCategory.SimulationResults, followup)
     case EmailCategory.SimulationUsefulness:
-      surveyType = SurveyType.trackClickOnSimulationUsefulnessEmail
+      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       break
     case EmailCategory.BenefitAction:
-      surveyType = SurveyType.trackClickOnBenefitActionEmail
+      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
       break
     default:
       throw new Error(`Unknown email type: ${emailType}`)

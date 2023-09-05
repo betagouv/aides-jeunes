@@ -14,7 +14,7 @@ import { getAnswer } from "../answers.js"
 
 import { Activite } from "../enums/activite.js"
 import { Etudiant, Scolarite } from "../enums/scolarite.js"
-import { VeloCategory } from "../enums/velo.js"
+import { Velo } from "../enums/velo.js"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
@@ -622,16 +622,16 @@ export default {
   _interetsAidesVelo: new MultipleProperty({
     question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
     items: [
-      { value: VeloCategory.veloMecanique, label: "Vélo mécanique simple" },
-      { value: VeloCategory.veloElectrique, label: "Vélo électrique" },
-      { value: VeloCategory.veloCargo, label: "Vélo cargo" },
+      { value: Velo.VeloMecanique, label: "Vélo mécanique simple" },
+      { value: Velo.VeloElectrique, label: "Vélo électrique" },
+      { value: Velo.VeloCargo, label: "Vélo cargo" },
       {
-        value: VeloCategory.veloCargoElectrique,
+        value: Velo.VeloCargoElectrique,
         label: "Vélo cargo électrique",
       },
-      { value: VeloCategory.veloPliant, label: "Vélo pliant" },
+      { value: Velo.VeloPliant, label: "Vélo pliant" },
       {
-        value: VeloCategory.veloMotorisation,
+        value: Velo.VeloMotorisation,
         label: "Motorisation d'un vélo classique",
       },
     ],

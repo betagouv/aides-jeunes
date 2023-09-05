@@ -4,7 +4,7 @@ import validator from "validator"
 import { sendMail } from "../lib/smtp.js"
 
 import { Survey } from "../../lib/types/survey.js"
-import { SurveyType } from "../../lib/enums/survey.js"
+import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../enums/email.js"
@@ -87,13 +87,13 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
-    case SurveyType.trackClickOnBenefitActionEmail:
+    case SurveyCategory.TrackClickOnBenefitActionEmail:
       return emailRender(EmailCategory.BenefitAction, this)
-    case SurveyType.trackClickOnSimulationUsefulnessEmail:
+    case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
       return emailRender(EmailCategory.SimulationUsefulness, this)
-    case SurveyType.tousABordNotification:
+    case SurveyCategory.TousABordNotification:
       return emailRender(EmailCategory.TousABordNotification, this)
-    case SurveyType.benefitAction:
+    case SurveyCategory.BenefitAction:
       return Promise.reject(
         new Error(
           `This surveyType "${surveyType}" is not supposed to be sent through an email`
@@ -106,16 +106,19 @@ FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   }
 })
 
-FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
-  let survey = this.surveys.find((survey) => survey.type === type)
-  if (!survey) {
-    survey = await this.surveys.create({ type })
-    this.surveys.push(survey)
+FollowupSchema.method(
+  "addSurveyIfMissing",
+  async function (type: SurveyCategory) {
+    let survey = this.surveys.find((survey) => survey.type === type)
+    if (!survey) {
+      survey = await this.surveys.create({ type })
+      this.surveys.push(survey)
+    }
+    return survey
   }
-  return survey
-})
+)
 
-FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
+FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
   const followup = this
   return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
     return this.renderSurveyEmail(surveyType)
@@ -176,19 +179,19 @@ FollowupSchema.virtual("surveyPath").get(function (this) {
 })
 
 FollowupSchema.virtual("tousABordNotificationCta").get(function (this) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.tousABordNotification}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyCategory.TousABordNotification}`
 })
 
 FollowupSchema.virtual("surveyPathTracker").get(function (this) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnBenefitActionEmail}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyCategory.TrackClickOnBenefitActionEmail}`
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}?wasuseful`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyCategory.TrackClickOnSimulationUsefulnessEmail}?wasuseful`
 })
 
 FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.trackClickOnSimulationUsefulnessEmail}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyCategory.TrackClickOnSimulationUsefulnessEmail}`
 })
 
 export default mongoose.model<Followup, FollowupModel>(

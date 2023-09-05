@@ -1,11 +1,11 @@
-export enum ThemeType {
-  default = "default-dsfr",
-  lightBlue = "light-blue",
-  bordeauxMetropole = "bordeaux-metropole",
+export enum Theme {
+  Default = "default-dsfr",
+  LightBlue = "light-blue",
+  BordeauxMetropole = "bordeaux-metropole",
 }
 
-export enum ThemeTypeLabel {
-  default = "Thème bleu foncé (DSFR)",
-  lightBlue = "Thème bleu clair",
-  bordeauxMetropole = "Thème Bordeaux Métropole",
+export enum ThemeLabel {
+  Default = "Thème bleu foncé (DSFR)",
+  LightBlue = "Thème bleu clair",
+  BordeauxMetropole = "Thème Bordeaux Métropole",
 }

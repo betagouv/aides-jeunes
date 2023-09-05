@@ -1,35 +1,35 @@
-import bordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
-import lightBlue from "@/styles/themes/light-blue.css?inline"
-import defaultDsfr from "@/styles/themes/default-dsfr.css?inline"
+import BordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
+import LightBlue from "@/styles/themes/light-blue.css?inline"
+import DefaultDsfr from "@/styles/themes/default-dsfr.css?inline"
 import * as Sentry from "@sentry/vue"
-import { ThemeType, ThemeTypeLabel } from "@/../lib/enums/themes.js"
+import { Theme, ThemeLabel } from "@/../lib/enums/themes.js"
 
 const options = [
   {
-    title: ThemeTypeLabel.default,
-    label: ThemeType.default,
-    value: defaultDsfr,
+    title: ThemeLabel.Default,
+    label: Theme.Default,
+    value: DefaultDsfr,
   },
   {
-    title: ThemeTypeLabel.lightBlue,
-    label: ThemeType.lightBlue,
-    value: lightBlue,
+    title: ThemeLabel.LightBlue,
+    label: Theme.LightBlue,
+    value: LightBlue,
   },
   {
-    title: ThemeTypeLabel.bordeauxMetropole,
-    label: ThemeType.bordeauxMetropole,
-    value: bordeauxMetropole,
+    title: ThemeLabel.BordeauxMetropole,
+    label: Theme.BordeauxMetropole,
+    value: BordeauxMetropole,
   },
 ]
 
 export default {
   install: (app) => {
     const styleElement = document.createElement("style")
-    styleElement.textContent = defaultDsfr
+    styleElement.textContent = DefaultDsfr
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {
-      current: ThemeType.default,
+      current: Theme.Default,
       options,
       update(newThemeLabel) {
         const match = options.find((option) => option.label === newThemeLabel)

@@ -103,7 +103,7 @@ import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
 

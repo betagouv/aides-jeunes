@@ -7,7 +7,7 @@ import {
   IMatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { EventCategories } from "@lib/enums/event-categories.js"
 
 declare global {

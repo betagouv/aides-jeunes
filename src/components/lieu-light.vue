@@ -2,7 +2,7 @@
 import { defineProps, PropType } from "vue"
 import { LieuLayout } from "@lib/types/lieu.d.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 
 defineProps({
   lieu: {

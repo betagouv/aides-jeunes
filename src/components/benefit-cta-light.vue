@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 

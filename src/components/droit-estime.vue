@@ -42,7 +42,7 @@
 import { formatDroitEstime } from "@lib/benefits/details.js"
 import { useStore } from "@/stores/index.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { PropType } from "vue"
 

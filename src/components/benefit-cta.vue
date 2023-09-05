@@ -41,7 +41,7 @@
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { hasLieux } from "@lib/benefits/lieux.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 
 export default {
   name: "BenefitCta",

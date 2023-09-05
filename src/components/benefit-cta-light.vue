@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BenefitCtaLinkLight from "./benefit-cta-link-light.vue"
-import { BehaviourEventTypes } from "@lib/enums/behaviour-event-types.js"
+import { BehaviourEvent } from "@lib/enums/behaviour-event-types.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
@@ -9,24 +9,22 @@ const props = defineProps({
 })
 
 const ctaForm = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEventTypes.form)
+  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Form)
 })
 
 const ctaTeleservice = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEventTypes.teleservice)
+  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Teleservice)
 })
 
 const ctaInstructions = computed(() => {
-  return ctas.value.find(
-    (cta) => cta?.type === BehaviourEventTypes.instructions
-  )
+  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Instructions)
 })
 
 const ctas = computed(() => {
   const ctaBehaviourTypes = [
-    BehaviourEventTypes.teleservice,
-    BehaviourEventTypes.form,
-    BehaviourEventTypes.instructions,
+    BehaviourEvent.Teleservice,
+    BehaviourEvent.Form,
+    BehaviourEvent.Instructions,
   ]
 
   return ctaBehaviourTypes
@@ -91,7 +89,7 @@ const ctas = computed(() => {
         v-if="benefit.msa"
         v-analytics="{
           name: benefit.label,
-          action: BehaviourEventTypes.msa,
+          action: BehaviourEvent.Msa,
           category: 'General',
         }"
         class="aj-droit-pro-agricole"

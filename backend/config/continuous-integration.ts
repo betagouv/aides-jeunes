@@ -1,7 +1,20 @@
 "use strict"
-import development from "./development.js"
 
-export default Object.assign(development, {
+export default {
+  baseURL:
+    process.env.DEPLOY_URL || // Netlify deploy apps
+    "http://localhost:8080",
+  openfiscaAxeURL: "http://127.0.0.1:3000",
+  openfiscaPublicURL: "http://127.0.0.1:2000",
+  openfiscaTracerURL: "http://127.0.0.1:3000",
+  mongo: {
+    uri:
+      process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
+    options: {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    },
+  },
   animation: {
     delay: 0,
   },
@@ -29,4 +42,4 @@ export default Object.assign(development, {
   smsService: {
     show: true,
   },
-})
+}

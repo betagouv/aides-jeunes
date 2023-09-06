@@ -1,7 +1,7 @@
 import { EnumProperty, BooleanProperty } from "./property.js"
 import { getAnswer } from "../answers.js"
 import dayjs from "dayjs"
-import { LogementCategory } from "../enums/logement.js"
+import { LocationCategory, LogementCategory } from "../enums/logement.js"
 
 const isLessThanFiftyYearsOld = (props) => {
   const { simulation, periods } = props
@@ -94,21 +94,21 @@ export default {
     items: [
       {
         label: "Non meublé",
-        value: "vide",
+        value: LocationCategory.Vide,
       },
       {
         label: "Meublé / Hôtel",
-        value: "meuble",
+        value: LocationCategory.Meuble,
       },
       {
         label: "Foyer",
-        value: "foyer",
+        value: LocationCategory.Foyer,
         isRelevant: (props) => isLessThanFiftyYearsOld(props),
         hint: "Résidence universitaire, logement CROUS, foyer de jeune travailleur, résidence sociale…",
       },
       {
         label: "Foyer",
-        value: "foyer",
+        value: LocationCategory.Foyer,
         isRelevant: (props) => !isLessThanFiftyYearsOld(props),
         hint: "Maison de retraite, résidence sociale…",
       },

@@ -1,4 +1,4 @@
-export enum EeeCountryCode {
+export enum EuropeanCountryCode {
   AT = "AT",
   BE = "BE",
   BG = "BG",
@@ -29,4 +29,16 @@ export enum EeeCountryCode {
   SI = "SI",
   SK = "SK",
   UK = "UK",
+}
+
+export enum NonEuropeanCountryCode {
+  CH = "CH",
+  AF = "AF",
+}
+
+export enum ZoneCode {
+  FR = "fr",
+  UE = "ue",
+  Other = "autre",
+  Empty = "",
 }

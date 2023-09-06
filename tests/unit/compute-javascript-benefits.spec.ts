@@ -6,6 +6,7 @@ import {
   computeJavascriptBenefits,
 } from "@root/lib/benefits/compute-javascript.js"
 import benefits from "@root/data/all.js"
+import { MentionBaccalaureat } from "@lib/enums/scolarite.js"
 
 describe("computeAides", function () {
   let benefit
@@ -20,8 +21,8 @@ describe("computeAides", function () {
             {
               type: "mention_baccalaureat",
               values: [
-                "mention_tres_bien",
-                "mention_tres_bien_felicitations_jury",
+                MentionBaccalaureat.MentionTresBien,
+                MentionBaccalaureat.MentionTresBienFelicitationsJury,
               ],
             },
           ],
@@ -51,7 +52,7 @@ describe("computeAides", function () {
         activite: "etudiant",
         boursier: true,
         scolarite: "enseignement_superieur",
-        mention_baccalaureat: "mention_tres_bien",
+        mention_baccalaureat: MentionBaccalaureat.MentionTresBien,
       },
       famille: {},
       menage: {
@@ -92,7 +93,8 @@ describe("computeAides", function () {
   })
 
   it("test situation that not respect conditions of profile", function () {
-    studentSituation.demandeur.mention_baccalaureat = "mention_bien"
+    studentSituation.demandeur.mention_baccalaureat =
+      MentionBaccalaureat.MentionBien
     const openfiscaRequest = buildOpenFiscaRequest(studentSituation)
 
     expect(

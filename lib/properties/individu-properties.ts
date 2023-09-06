@@ -18,7 +18,7 @@ import { Velo } from "../enums/velo.js"
 import {
   EuropeanCountryCode,
   NonEuropeanCountryCode,
-} from "../../src/lib/enums/nationality.js"
+} from "../../lib/enums/nationality.js"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({

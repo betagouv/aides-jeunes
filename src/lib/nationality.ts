@@ -2,7 +2,7 @@ import {
   EuropeanCountryCode,
   NonEuropeanCountryCode,
   ZoneCode,
-} from "./enums/nationality.js"
+} from "@lib/enums/nationality.js"
 
 const ZONE_LABEL = {
   [ZoneCode.FR]: "française",

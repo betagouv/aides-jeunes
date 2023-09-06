@@ -6,7 +6,7 @@ import {
   computeJavascriptBenefits,
 } from "@root/lib/benefits/compute-javascript.js"
 import benefits from "@root/data/all.js"
-import { MentionBaccalaureat } from "@lib/enums/scolarite.js"
+import { Scolarite, MentionBaccalaureat } from "@lib/enums/scolarite.js"
 
 describe("computeAides", function () {
   let benefit
@@ -16,7 +16,7 @@ describe("computeAides", function () {
     benefit = {
       profils: [
         {
-          type: "enseignement_superieur",
+          type: Scolarite.EnseignementSuperieur,
           conditions: [
             {
               type: "mention_baccalaureat",
@@ -51,7 +51,7 @@ describe("computeAides", function () {
         date_naissance: "2000-01-01",
         activite: "etudiant",
         boursier: true,
-        scolarite: "enseignement_superieur",
+        scolarite: Scolarite.EnseignementSuperieur,
         mention_baccalaureat: MentionBaccalaureat.MentionTresBien,
       },
       famille: {},

@@ -4,6 +4,7 @@ import {
   anonymizeFollowup,
 } from "@root/lib/cleaner-functions.js"
 import { SimulationStatusEnum } from "@root/lib/enums/simulation.js"
+import { LogementCategory } from "@lib/enums/logement.js"
 
 const anId = "123"
 
@@ -73,7 +74,7 @@ describe("anonymizeSimulation", () => {
           {
             entityName: "menage",
             fieldName: "_logementType",
-            value: "proprietaire",
+            value: LogementCategory.Proprietaire,
           },
           {
             entityName: "menage",

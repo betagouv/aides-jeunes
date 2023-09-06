@@ -1,6 +1,7 @@
 import { EnumProperty, BooleanProperty } from "./property.js"
 import { getAnswer } from "../answers.js"
 import dayjs from "dayjs"
+import { LogementCategory } from "../enums/logement.js"
 
 const isLessThanFiftyYearsOld = (props) => {
   const { simulation, periods } = props
@@ -50,7 +51,7 @@ export default {
             "menage",
             "_logementType"
           )
-          return value === "locataire"
+          return value === LogementCategory.Locataire
         },
       },
       { value: -12, label: "Non" },
@@ -62,22 +63,22 @@ export default {
     items: [
       {
         label: "Locataire",
-        value: "locataire",
+        value: LogementCategory.Locataire,
         hint: "figurant sur le bail, en foyer ou en résidence",
       },
       {
         label: "Propriétaire",
-        value: "proprietaire",
+        value: LogementCategory.Proprietaire,
         hint: "ou en location-accession",
       },
       {
         label: "Hébergé ou hébergée",
-        value: "heberge",
+        value: LogementCategory.Heberge,
         hint: "chez vos parents, chez un particulier ou en logement de fonction",
       },
       {
         label: "Sans domicile stable",
-        value: "sansDomicile",
+        value: LogementCategory.SansDomicile,
         hint: "ou domiciliation administrative",
       },
     ],

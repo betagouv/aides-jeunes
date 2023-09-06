@@ -1,0 +1,30 @@
+label: Bourse au permis de conduire
+institution: ville_ajaccio
+description:
+  En échange d’un engagement citoyen de volontariat dans des associations de la ville,
+  la municipalité d'Ajaccio permet à des jeunes sélectionnés sur dossier d’obtenir
+  la gratuité de 20 heures de conduite (nombre d’heures fixées par la loi) dans une
+  auto-école conventionnée. Les frais d’inscription et les cours théoriques restent
+  à la charge du bénéficiaire.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "2A004"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: "<="
+    value: 25
+profils: []
+conditions:
+  - Contacter la Direction Jeunesse et vie des quartier de la ville d'Ajaccio pour vous renseigner.
+voluntary_conditions:
+  - Réaliser 30 heures de bénévolat dans un organisme à but non lucratif basé à Ajaccio.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: ""
+periodicite: ponctuelle
+link: https://www.ajaccio.fr/Bourse-au-permis-2023-20-heures-de-conduite-gratuites-pour-24-jeunes-Ajacciens-_a10872.html
+instructions: https://www.ajaccio.fr/Bourse-au-permis-2023-20-heures-de-conduite-gratuites-pour-24-jeunes-Ajacciens-_a10872.html

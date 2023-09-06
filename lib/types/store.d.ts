@@ -55,6 +55,7 @@ export interface PersistedStore {
   simulation: Simulation
   calculs: Calculs
   recapEmailState: string | undefined
+  recapPhoneState: string | undefined
   dates?: any
 }
 
@@ -78,8 +79,10 @@ export interface Store {
   inIframe: boolean
   iframeOrigin: string | null
   iframeHeaderCollapse: boolean
+  modalState: string | null
   saveSituationError: string | null
   openFiscaParameters: OpenfiscaParameters
   recapEmailState: string | undefined
+  recapPhoneState: string | undefined
   external_id?: string
 }

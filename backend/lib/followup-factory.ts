@@ -9,8 +9,9 @@ const TokenLength = 17
 export const FollowupFactory = {
   create: async (
     simulation: Simulation,
-    email: string,
-    surveyOptin: boolean
+    surveyOptin: boolean,
+    email?: string,
+    phone?: string
   ): Promise<Followup> => {
     const situationResults = await simulation.compute()
     const benefits = situationResults.droitsEligibles.map((benefit) => ({
@@ -21,8 +22,9 @@ export const FollowupFactory = {
     const accessToken = await utils.generateToken(TokenLength)
     const followup = await Followups.create({
       simulation,
-      email,
       surveyOptin,
+      email,
+      phone,
       accessToken,
       benefits,
       version: DefaultVersion,

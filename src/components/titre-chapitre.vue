@@ -12,10 +12,10 @@
           class="fr-btns-group fr-btns-group--inline-md fr-btns-group--right fr-mt-1w fr-px-0"
         >
           <li>
-            <SendRecapEmailButton
-              data-testid="send-email-button"
-              text="Recevoir les résultats par email"
-            ></SendRecapEmailButton>
+            <SendRecapButton
+              data-testid="send-email-and-sms-button"
+              :text="emailButtonTitle"
+            ></SendRecapButton>
           </li>
         </ul>
       </div>
@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import Chapters from "@lib/chapters.js"
-import SendRecapEmailButton from "@/components/buttons/send-recap-email-button.vue"
+import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
 import ResultatsMixin from "@/mixins/resultats.js"
 
 export default {
   name: "TitreChapitre",
-  components: { SendRecapEmailButton },
+  components: { SendRecapButton },
   mixins: [ResultatsMixin],
   setup() {
     return {
@@ -52,6 +52,16 @@ export default {
         this.$route.name === "resultats" && !this.store.simulationAnonymized
       )
     },
+    emailButtonTitle() {
+      return process.env.VITE_SHOW_SMS_TAB
+        ? "Recevoir les résultats par email/SMS"
+        : "Recevoir les résultats par email"
+    },
+    emailModalTitle() {
+      return process.env.VITE_SHOW_SMS_TAB
+        ? "Recevoir un récapitulatif"
+        : "Recevoir un récapitulatif par email"
+    },
   },
   methods: {
     getTitleByRoute(route) {
@@ -63,7 +73,7 @@ export default {
         return "Montant inattendu"
       }
       if (path === "/simulation/resultats/recapitulatif_email") {
-        return "Recevoir un récapitulatif par email"
+        return this.emailModalTitle
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

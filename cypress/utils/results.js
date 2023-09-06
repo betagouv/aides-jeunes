@@ -191,15 +191,15 @@ const receiveResultsEmail = () => {
     url: "/api/simulation/*/followup",
   }).as("post-receive-results-email")
 
-  cy.get("[data-testid='send-email-button']", {
+  cy.get("[data-testid='send-email-and-sms-button']", {
     timeout: 20000,
   })
     .should("be.visible")
     .click()
 
   const email = "prenom.nom@beta.gouv.fr"
-  cy.get("input#email").should("be.visible").type(email, { force: true })
-  cy.get(".fr-btn:contains(J'accepte d'être recontacté)")
+  cy.get("input#email").should("be.visible").type(email)
+  cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
     .should("be.visible")
     .click()
 
@@ -215,6 +215,39 @@ const receiveResultsEmail = () => {
         .its("headers.subject")
         .should("includes", simulationId)
     })
+}
+
+const receiveResultsSms = () => {
+  const phone = "0600000000"
+  cy.intercept(
+    {
+      method: "POST",
+      url: "/api/simulation/*/followup",
+    },
+    {
+      statusCode: 200,
+      body: {
+        surveyOptin: true,
+        phone: "0600000000",
+      },
+    }
+  ).as("post-receive-results-sms")
+
+  cy.get("[data-testid='send-email-and-sms-button']", {
+    timeout: 20000,
+  })
+    .should("be.visible")
+    .click()
+  // scroll to input#phone
+  cy.get("input#phone").scrollIntoView().should("be.visible").type(phone)
+  cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
+    .should("be.visible")
+    .click()
+
+  cy.wait("@post-receive-results-sms").should(({ request, response }) => {
+    expect(request.method).to.equal("POST")
+    expect(response.statusCode).to.equal(200)
+  })
 }
 
 const checkResultsRequests = () => {
@@ -244,5 +277,6 @@ export default {
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
   receiveResultsEmail,
+  receiveResultsSms,
   checkResultsRequests,
 }

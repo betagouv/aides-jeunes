@@ -139,6 +139,11 @@ jobs:
         with:
           path: dist-server
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
+      - name: Simulate a production environment for the CI
+        shell: bash
+        run: |
+          cp backend/config/continuous-integration.ts backend/config/production.js && cp backend/config/continuous-integration.ts backend/config/production.ts
+          nohup Xvfb :99 &
       - name: Build assets
         run: |
           npm run build
@@ -268,11 +273,6 @@ jobs:
           source .venv/bin/activate
           nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
-      - name: Prepare Mes Aides
-        shell: bash
-        run: |
-          cp dist-server/backend/config/continuous-integration.js dist-server/backend/config/production.js
-          nohup Xvfb :99 &
       - name: Cypress install
         uses: cypress-io/github-action@v5
         if: steps.restore-cypress.outputs.cache-hit != 'true'

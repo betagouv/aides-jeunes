@@ -11,4 +11,7 @@ export default {
     id: 170,
   },
   statistics: {},
+  smsService: {
+    show: true,
+  },
 }

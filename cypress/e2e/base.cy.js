@@ -70,6 +70,7 @@ context("Full simulation", () => {
     results.captureFiscalResources()
     results.checkResultsRequests()
     results.receiveResultsEmail()
+    results.receiveResultsSms()
     results.hasSituationNearbyPlaces()
     navigate.goRecap()
     navigate.checkRecap()

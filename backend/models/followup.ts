@@ -2,12 +2,14 @@ import mongoose from "mongoose"
 import validator from "validator"
 
 import { sendMail } from "../lib/smtp.js"
+import axios from "axios"
 
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../enums/email.js"
+import config from "../config/index.js"
 
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
@@ -26,9 +28,19 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
         isAsync: false,
       },
     },
+    phone: {
+      type: String,
+      validate: {
+        validator: validator.isMobilePhone,
+        message: "{VALUE} n'est pas un numéro de téléphone valide",
+        isAsync: false,
+      },
+    },
     createdAt: { type: Date, default: Date.now },
     sentAt: { type: Date },
+    smsSentAt: { type: Date },
     messageId: { type: String },
+    smsMessageId: { type: String },
     surveySentAt: { type: Date },
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
@@ -38,6 +50,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
     },
     version: Number,
     error: { type: Object },
+    smsError: { type: Object },
     accessToken: { type: String },
   },
   { minimize: false, id: false }
@@ -54,6 +67,16 @@ FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
     this.email = undefined
   }
   this.error = undefined
+  return this.save()
+})
+
+FollowupSchema.method("postSimulationResultsSms", function (messageId) {
+  this.smsSentAt = Date.now()
+  this.smsMessageId = messageId
+  if (!this.surveyOptin) {
+    this.phone = undefined
+  }
+  this.smsError = undefined
   return this.save()
 })
 
@@ -83,6 +106,41 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
       followup.error = JSON.stringify(err, null, 2)
       return followup.save()
     })
+})
+
+FollowupSchema.method(
+  "renderSimulationResultsSmsUrl",
+  function (username, password) {
+    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici ${process.env.baseURL}/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+    const encodedText = encodeURIComponent(text)
+    const phone =
+      this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
+    return `${config.smsService.url}?destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
+  }
+)
+
+FollowupSchema.method("sendSimulationResultsSms", async function () {
+  try {
+    const username = config.smsService.username
+    const password = config.smsService.password
+    if (!username || !password) {
+      throw new Error("Missing SMS service credentials")
+    }
+    const renderUrl = this.renderSimulationResultsSmsUrl(username, password)
+    const axiosInstance = axios.create({
+      timeout: 10000,
+    })
+    const { data, status } = await axiosInstance.get(renderUrl)
+    if (status !== 200 || data.responseCode !== 0) {
+      throw new Error(`Send SMS data error :${data}`)
+    }
+    console.log("message ids: ", data.messageIds[0])
+    return this.postSimulationResultsSms(data.messageIds[0])
+  } catch (err) {
+    this.smsError = JSON.stringify(err, null, 2)
+    console.error("sendSimulationResultsSms error :", err)
+    throw err
+  }
 })
 
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {

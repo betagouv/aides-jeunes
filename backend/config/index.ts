@@ -87,6 +87,12 @@ const all: Configuration = {
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
   iframeTitle:
     "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution",
+  smsService: {
+    show: false,
+    username: process.env.SMS_SERVICE_USERNAME || "",
+    password: process.env.SMS_SERVICE_PASSWORD || "",
+    url: "https://europe.ipx.com/restapi/v1/sms/send",
+  },
 }
 
 let override = {}

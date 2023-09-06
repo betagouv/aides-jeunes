@@ -111,7 +111,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
   function (username, password) {
-    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici ${process.env.baseURL}/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
+    const text = `EXP: SIMUL 1J1S\nTEXT: Bonjour\nRetrouvez les résultats de votre simulation ici ${config.baseURL}/api/sms/${this.accessToken}\n1jeune1solution\nREP au 38656`
     const encodedText = encodeURIComponent(text)
     const phone =
       this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone

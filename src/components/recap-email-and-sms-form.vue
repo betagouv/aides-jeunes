@@ -85,11 +85,15 @@ const inputEmailIsValid = () => {
   return true
 }
 
+const formatPhoneNumber = (phone) => {
+  return phone?.replace(/\s/g, "")
+}
+
 const postFollowup = async (surveyOptin, email?, phone?) => {
   const uri = `/api/simulation/${simulationId.value}/followup`
   const payload = {
     surveyOptin,
-    phone: phone?.replace(/\s/g, ""),
+    phone: formatPhoneNumber(phone),
     email,
   }
   return await axios.post(uri, payload)

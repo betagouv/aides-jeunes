@@ -228,7 +228,7 @@ const receiveResultsSms = () => {
       statusCode: 200,
       body: {
         surveyOptin: true,
-        phone: "06000000",
+        phone: "0600000000",
       },
     }
   ).as("post-receive-results-sms")

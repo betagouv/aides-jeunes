@@ -1,0 +1,32 @@
+label: Aide au permis de conduire
+institution: ville_anzin
+description:
+  La municipalité d'Anzin propose une aide au permis de 800€. 30 personnes sont
+  susceptibles d'en bénéficier chaque année. Les demandes sont soumises à
+  l'approbation d'une commission d'attribution
+prefix: l'
+conditions_generales:
+  - type: communes
+    values:
+      - "59014"
+  - type: age
+    operator: ">="
+    value: 16
+profils:
+  - type: chomeur
+  - type: beneficiaire_rsa
+  - type: inactif
+  - type: service_civique
+  - type: professionalisation
+  - type: apprenti
+conditions:
+  - Être suivi par la Mission Locale ou le service Emploi de la Mairie, si vous avez moins de 26 ans.
+  - Être bénéficiaire du RSA et être suivi par le service Emploi de la Mairie, si vous avez plus de 26 ans.
+  - Avoir un projet professionnel ou un projet de formation qualifiante solide.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 800
+link: https://www.anzin.fr/mon-quotidien/emploi/aide-au-permis.html
+instructions: https://www.anzin.fr/mon-quotidien/emploi/aide-au-permis.html

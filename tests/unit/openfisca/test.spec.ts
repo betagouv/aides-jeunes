@@ -6,6 +6,7 @@ import subject from "@root/backend/lib/openfisca/test.js"
 import resources from "@root/lib/resources.js"
 import tmp from "tmp"
 import child_process from "child_process"
+import { StatutOccupationLogement } from "@lib/enums/logement.js"
 
 interface CommandOutput {
   stdout: string
@@ -33,7 +34,7 @@ const situation = {
   },
   menage: {
     personne_de_reference: ["id"],
-    statut_occupation_logement: "sans_domicile",
+    statut_occupation_logement: StatutOccupationLogement.SansDomicile,
   },
 }
 

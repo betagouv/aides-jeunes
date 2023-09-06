@@ -20,6 +20,7 @@ import {
   Store,
 } from "@lib/types/store.d.js"
 import { SimulationStatusEnum } from "@lib/enums/simulation.js"
+import { StatutOccupationLogement } from "@lib/enums/logement.js"
 
 function defaultCalculs(): Calculs {
   return {
@@ -186,15 +187,17 @@ export const useStore = defineStore("store", {
     },
     isProprietaireAvecPretEnCours(): boolean {
       const menage = this.situation.menage
-      const isProprietaire = ["primo_accedant", "proprietaire"].includes(
-        menage.statut_occupation_logement
-      )
+      const isProprietaire = [
+        StatutOccupationLogement.PrimoAccedant,
+        StatutOccupationLogement.Proprietaire,
+      ].includes(menage.statut_occupation_logement)
       return isProprietaire && menage.loyer > 0
     },
     isHebergeParticipeFrais(): boolean {
       const menage = this.situation.menage
       return (
-        menage.statut_occupation_logement === "loge_gratuitement" &&
+        menage.statut_occupation_logement ===
+          StatutOccupationLogement.LogeGratuitement &&
         menage.participation_frais
       )
     },

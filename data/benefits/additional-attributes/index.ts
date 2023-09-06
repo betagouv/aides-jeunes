@@ -6,6 +6,7 @@ import { Benefit } from "../../types/benefits.js"
 import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
 import { Situation } from "../../../lib/types/situations.js"
 import { Activite } from "../../../lib/enums/activite.js"
+import { StatutOccupationLogement } from "../../../lib/enums/logement.js"
 
 import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-scolaire-lio.js"
 
@@ -83,12 +84,14 @@ export const additionalBenefitAttributes = {
     },
     computeUnexpectedAmount(situation) {
       const menage = situation.menage
-      const isProprietaire = ["primo_accedant", "proprietaire"].includes(
-        menage.statut_occupation_logement
-      )
+      const isProprietaire = [
+        StatutOccupationLogement.PrimoAccedant,
+        StatutOccupationLogement.Proprietaire,
+      ].includes(menage.statut_occupation_logement)
       return (
         (isProprietaire && menage.loyer > 0) ||
-        (menage.statut_occupation_logement === "loge_gratuitement" &&
+        (menage.statut_occupation_logement ===
+          StatutOccupationLogement.LogeGratuitement &&
           menage.participation_frais)
       )
     },

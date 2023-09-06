@@ -1,5 +1,6 @@
 import { expect } from "@jest/globals"
 import subject from "@root/backend/lib/openfisca/mapping/index.js"
+import { StatutOccupationLogement } from "@lib/enums/logement.js"
 
 const situation = {
   dateDeValeur: new Date("2017-10-02"),
@@ -7,7 +8,7 @@ const situation = {
   famille: {},
   menage: {
     personne_de_reference: ["id"],
-    statut_occupation_logement: "sans_domicile",
+    statut_occupation_logement: StatutOccupationLogement.SansDomicile,
   },
 }
 

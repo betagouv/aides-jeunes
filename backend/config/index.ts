@@ -52,13 +52,11 @@ const all: Configuration = {
     client_secret: process.env.GITHUB_CLIENT_SECRET || "",
     client_id: process.env.GITHUB_CLIENT_ID || "",
     authorized_users: [
-      "alizeeeeeee",
       "Allan-CodeWorks",
       "Cugniere",
       "guillett",
       "Shamzic",
       "yasmine-glitch",
-      "Valandr",
     ],
   },
   matomo: {

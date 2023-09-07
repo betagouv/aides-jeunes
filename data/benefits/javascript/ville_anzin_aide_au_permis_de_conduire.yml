@@ -17,8 +17,6 @@ profils:
   - type: beneficiaire_rsa
   - type: inactif
   - type: service_civique
-  - type: professionnalisation
-  - type: apprenti
 conditions:
   - Être suivi par la Mission Locale ou le service Emploi de la Mairie, si vous avez moins de 26 ans.
   - Être bénéficiaire du RSA et être suivi par le service Emploi de la Mairie, si vous avez plus de 26 ans.

@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [master, dev]
-concurrency:
-  concurrency: ci-${{ github.ref }}
+concurrency: ci-${{ github.ref }}
 
 env:
   EQUINOXE_SSH_HOST: equinoxe.mes-aides.1jeune1solution.beta.gouv.fr

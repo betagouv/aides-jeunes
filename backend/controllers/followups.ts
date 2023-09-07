@@ -76,7 +76,7 @@ export function getFollowup(req: Request, res: Response) {
 }
 
 export function showFollowup(req: Request, res: Response) {
-  Followups.findById(req.params.followupId)
+  Followups.findById(req.params.surveyId)
     .then((followup: Followup | null) => {
       if (!followup) return res.sendStatus(404)
       res.send([followup])

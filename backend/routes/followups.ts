@@ -22,7 +22,7 @@ const followupsRoutes = function (api: Express) {
     .get(cookieParser(), githubController.access)
     .get(showSurveyResults)
   api
-    .route("/followups/id/:followupId")
+    .route("/followups/id/:surveyId")
     .get(cookieParser(), githubController.access)
     .get(showFollowup)
   api

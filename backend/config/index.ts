@@ -57,6 +57,7 @@ const all: Configuration = {
       "guillett",
       "Shamzic",
       "yasmine-glitch",
+      "baptou12",
     ],
   },
   matomo: {

@@ -113,8 +113,18 @@ FollowupSchema.method(
   function (username, password) {
     const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${config.baseURL}/api/sms/${this.accessToken}\n1jeune1solution`
     const encodedText = encodeURIComponent(text)
-    const phone =
-      this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
+
+    let phone = this.phone
+    const phoneNumberToE164 = () => {
+      if (this.phone.substring(0, 4) === "0033") {
+        phone = `${this.phone.substring(2)}`
+      } else if (this.phone.substring(0, 2) === ("06" || "07")) {
+        phone = `33${this.phone.substring(1)}`
+      }
+    }
+
+    phoneNumberToE164()
+
     return `${config.smsService.url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
   }
 )
@@ -134,7 +144,6 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
     if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
     }
-    console.log("message ids: ", data.messageIds[0])
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
     this.smsError = JSON.stringify(err, null, 2)

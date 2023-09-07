@@ -59,13 +59,25 @@ export async function persist(req: Request, res: Response) {
       await followup.sendSimulationResultsEmail()
     }
     if (phone) {
-      await followup.sendSimulationResultsSms()
+      const phoneNumberValidation = (phone) => {
+        const phoneRegex = /^(((\+?|00)33\s?|0)[67])([\s.-]?\d{2}){4}$/
+        return phoneRegex.test(phone)
+      }
+
+      if (phoneNumberValidation(phone)) {
+        await followup.sendSimulationResultsSms()
+      } else {
+        return res.status(403).send("Invalid phone number")
+      }
     }
     return res.send({ result: "OK" })
-  } catch (error) {
-    console.error("error", error)
+  } catch (error: any) {
     Sentry.captureException(error)
-    return res.status(500).send("Error while persisting followup")
+    if (error.name === "ValidationError") {
+      return res.status(403).send(error.message)
+    } else {
+      return res.status(500).send(`Error while persisting followup`)
+    }
   }
 }
 

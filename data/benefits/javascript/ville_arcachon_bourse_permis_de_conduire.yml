@@ -1,0 +1,29 @@
+label: Bourse au permis de conduire
+institution: ville_arcachon
+description:
+  La Ville d'Arcachon participe au financement du permis de conduire pour tous les
+  jeunes Arcachonnais passant pour la première fois un permis B ou un permis moto,
+  sans conditions de ressources. Les documents permettant d'effectuer une demande de
+  bourse se trouvent dans tous les points accueil de la ville et à la maison des jeunes.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "33009"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: "<="
+    value: 25
+conditions:
+  - Compléter le dossier de demande de bourse.
+  - Présenter l'attestation d'obtention du permis B ou moto.
+  - Présenter la facture acquitée de l'auto-école.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 500
+link: https://www.arcaconduite.fr/pages/chapitre/bourse-permis-de-conduire.html
+instructions: https://www.arcaconduite.fr/medias/files/bourse-permis-conduire-arcachon.pdf

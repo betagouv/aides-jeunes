@@ -7,6 +7,7 @@ import {
 } from "@root/lib/benefits/compute-javascript.js"
 import benefits from "@root/data/all.js"
 import { Scolarite, MentionBaccalaureat } from "@lib/enums/scolarite.js"
+import { Activite } from "@lib/enums/activite.js"
 
 describe("computeAides", function () {
   let benefit
@@ -34,7 +35,7 @@ describe("computeAides", function () {
       demandeur: {
         id: "demandeur",
         date_naissance: "2000-01-01",
-        activite: "chomeur",
+        activite: Activite.Chomeur,
       },
       famille: {},
       menage: {
@@ -49,7 +50,7 @@ describe("computeAides", function () {
       demandeur: {
         id: "demandeur",
         date_naissance: "2000-01-01",
-        activite: "etudiant",
+        activite: Activite.Etudiant,
         boursier: true,
         scolarite: Scolarite.EnseignementSuperieur,
         mention_baccalaureat: MentionBaccalaureat.MentionTresBien,
@@ -110,7 +111,7 @@ describe("computeAides", function () {
     demandeur: {
       id: "demandeur",
       date_naissance: "2000-01-01",
-      activite: "salarie",
+      activite: Activite.Salarie,
       enfant_a_charge: undefined,
       nationalite: undefined,
       _role: "",
@@ -180,7 +181,7 @@ describe("computeAides", function () {
   })
 
   it("adds 0 when ineligible profile", function () {
-    situation.demandeur.activite = "salarie"
+    situation.demandeur.activite = Activite.Salarie
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeJavascriptBenefits(benefits, situation, openfiscaRequest)
     expect(
@@ -243,7 +244,7 @@ describe("Test condition taux_incapacite", function () {
   beforeEach(() => {
     situation_handicap = {
       demandeur: {
-        activite: "situation_handicap",
+        activite: Activite.SituationHandicap,
         taux_incapacite: 0.3,
       },
     }

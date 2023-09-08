@@ -5,6 +5,7 @@ import {
 } from "@root/lib/cleaner-functions.js"
 import { SimulationStatusEnum } from "@root/lib/enums/simulation.js"
 import { LogementCategory } from "@lib/enums/logement.js"
+import { Activite } from "@lib/enums/activite.js"
 
 const anId = "123"
 
@@ -48,7 +49,7 @@ describe("anonymizeSimulation", () => {
             entityName: "individu",
             fieldName: "activite",
             id: "demandeur",
-            value: "independant",
+            value: Activite.Independant,
           },
           {
             entityName: "individu",

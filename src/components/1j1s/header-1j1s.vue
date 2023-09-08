@@ -35,7 +35,10 @@
           <div class="fr-header__tools">
             <div class="fr-header__tools-links">
               <ul v-if="$route.name !== 'home'" class="fr-btns-group">
-                <li v-for="quickLink in parameters.quickLinks" :key="quickLink">
+                <li
+                  v-for="(quickLink, index) in parameters.quickLinks"
+                  :key="index"
+                >
                   <router-link class="fr-btn" :to="quickLink.path">{{
                     quickLink.label
                   }}</router-link>

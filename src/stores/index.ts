@@ -48,6 +48,7 @@ function defaultStore(): Store {
       dateDeValeur: new Date(),
       version,
       simulationToken: undefined,
+      status: SimulationStatusEnum.NEW,
     },
     message: {
       text: null,

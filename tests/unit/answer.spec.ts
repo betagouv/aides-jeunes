@@ -3,6 +3,7 @@ import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
 import { getAnswerIndex } from "@lib/answers.js"
 import { Answer } from "@lib/types/store.d.js"
+import { SimulationStatusEnum } from "@lib/enums/simulation.js"
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -37,6 +38,7 @@ const initMock = (store) => {
       ],
       current: [],
     },
+    status: SimulationStatusEnum.NEW,
   }
 }
 

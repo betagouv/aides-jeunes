@@ -1,5 +1,5 @@
 import {
-  IRecorderEvent,
+  RecorderEvent,
   sendEventToRecorder,
 } from "@/lib/statistics-service/recorder.js"
 import {
@@ -11,7 +11,7 @@ import { EventCategory } from "@lib/enums/event-category.js"
 const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
-      const recorderEvent: IRecorderEvent = {
+      const recorderEvent: RecorderEvent = {
         benefits: binding?.instance?.droits,
         benefitId: binding.value.name,
         event_type: binding.value.action,

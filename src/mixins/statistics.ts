@@ -1,6 +1,6 @@
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import {
-  IRecorderEvent,
+  RecorderEvent,
   sendEventToRecorder,
 } from "@/lib/statistics-service/recorder.js"
 import {
@@ -25,7 +25,7 @@ export default {
       event_type: string,
       benefitId: string | undefined = undefined
     ) {
-      const event: IRecorderEvent = {
+      const event: RecorderEvent = {
         benefits,
         benefitId,
         event_type,

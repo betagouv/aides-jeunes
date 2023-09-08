@@ -60,7 +60,7 @@ export async function persist(req: Request, res: Response) {
     }
     if (phone) {
       const phoneNumberValidation = (phone) => {
-        const phoneRegex = /^(((\+?|00)33\s?|0)[67])([\s.-]?\d{2}){4}$/
+        const phoneRegex = /^(((\+?|00)33\s?|0)[67])\d{8}$/
         return phoneRegex.test(phone)
       }
 

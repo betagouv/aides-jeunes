@@ -1,5 +1,5 @@
 function buildHref({ to, subject, body }) {
-  const params = []
+  const params: string[] = []
   if (subject) {
     params.push(`subject=${encodeURIComponent(subject)}`)
   }

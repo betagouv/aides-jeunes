@@ -98,9 +98,9 @@ export function useLieux() {
       !store.calculs.dirty && store.calculs.resultats.droitsEligibles
     benefit.value =
       (storeBenefits &&
-        storeBenefits?.find(
+        (storeBenefits?.find(
           (storeBenefit: any) => storeBenefit.id === benefitId
-        )) ||
+        ) as Benefit)) ||
       null
 
     const lieuTypes = benefit.value

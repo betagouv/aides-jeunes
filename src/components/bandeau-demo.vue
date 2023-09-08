@@ -41,17 +41,17 @@ export default {
       axios
         .get(url)
         .then((response) => {
-          const benefits = []
+          const benefitIds: string[] = []
           for (let entry of response.data) {
             const match = entry.filename.match(
               /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
             )
             if (match) {
-              benefits.push(match[1])
+              benefitIds.push(match[1])
             }
           }
-          if (benefits.length) {
-            this.benefitLink = `/simulation/resultats?debug=${benefits.join(
+          if (benefitIds.length) {
+            this.benefitLink = `/simulation/resultats?debug=${benefitIds.join(
               ","
             )}`
           }

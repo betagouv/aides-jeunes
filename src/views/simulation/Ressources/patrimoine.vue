@@ -182,16 +182,20 @@ import InputNumber from "@/components/input-number.vue"
 import ActionButtons from "@/components/action-buttons.vue"
 import { useStore } from "@/stores/index.js"
 import { Patrimoine } from "@lib/types/store.d.js"
+import { PatrimoineCategory } from "@lib/enums/patrimoine.js"
 
 const mapping = {
   hasTerrainsNonLoues: {
     sources: [
-      "valeur_terrains_non_loues",
-      "valeur_locative_terrains_non_loues",
+      PatrimoineCategory.ValeurTerrainsNonLoues,
+      PatrimoineCategory.ValeurLocativeTerrainsNonLoues,
     ],
   },
   hasBatisNonLoues: {
-    sources: ["valeur_immo_non_loue", "valeur_locative_immo_non_loue"],
+    sources: [
+      PatrimoineCategory.ValeurImmoNonLoue,
+      PatrimoineCategory.ValeurLocativeImmoNonLoue,
+    ],
   },
 }
 

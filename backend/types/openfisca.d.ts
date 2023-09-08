@@ -1,5 +1,6 @@
 import { Individu } from "../../lib/types/individu.js"
 import { Situation } from "../../lib/types/situations.js"
+import { BenefitExtra, StandardBenefit } from "../../data/types/benefits.js"
 
 export interface OpenfiscaMapping {
   individus: Individu[]
@@ -42,4 +43,8 @@ export interface OpenfiscaPeriods {
   previousFiscalYear: string
   previousFiscalYear12Months: string[]
   threeYearsAgo: string
+}
+
+export interface OpenfiscaVariables {
+  [id: string]: StandardBenefit | BenefitExtra
 }

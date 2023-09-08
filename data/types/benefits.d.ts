@@ -106,13 +106,20 @@ export interface StandardBenefit {
   setToZeroRecently: boolean
   lieuxTypes: string[]
   openfisca_eligibility_source: string
-  extra: any[]
+  extra?: BenefitExtra[]
   compute: (any) => boolean
   labelFunction: (any) => string
   customization: any
   external_id: string
   collectivity: any
   title: string
+}
+
+export interface BenefitExtra {
+  id: string
+  entity?: string
+  type: string
+  openfiscaPeriod: string
 }
 
 export interface BenefitsMap {

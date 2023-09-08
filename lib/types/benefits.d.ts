@@ -1,6 +1,8 @@
+import { BenefitExtra } from "@data/types/benefits.js"
+
 export interface Conditions {
   [key: string]: {
-    test: any
-    extra?: any[]
+    test: (...params: any) => boolean
+    extra?: BenefitExtra[]
   }
 }

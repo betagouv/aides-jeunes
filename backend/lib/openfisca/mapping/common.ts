@@ -1,11 +1,14 @@
 import dayjs from "dayjs"
-import { assign } from "lodash-es"
 
 import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
-import { OpenfiscaPeriods } from "../../../types/openfisca.d.js"
+import {
+  OpenfiscaPeriods,
+  OpenfiscaVariables,
+} from "../../../types/openfisca.d.js"
+import { BenefitExtra } from "@data/types/benefits.js"
 
 function isIndividuValid(individu, situation) {
   const age = dayjs(situation.dateDeValeur).diff(
@@ -51,19 +54,21 @@ function getPeriods(dateDeValeur: Date): OpenfiscaPeriods {
   }, {} as OpenfiscaPeriods)
 }
 
-function appendExtraVariables(requestedVariables, extraVariables) {
+function appendExtraVariables(
+  requestedVariables: OpenfiscaVariables,
+  extraVariables: BenefitExtra[] = []
+) {
   extraVariables.forEach(function (extra) {
-    requestedVariables[extra.id] =
-      requestedVariables[extra.id] || assign({}, extra)
+    requestedVariables[extra.id] ??= { ...extra }
   })
 }
 
-const requestedVariables = {}
+const requestedVariables: OpenfiscaVariables = {}
 benefits.all
   .filter((benefit) => benefit.source === "openfisca")
   .forEach((benefit) => {
     const item = benefit.openfisca_eligibility_source || benefit.id
-    requestedVariables[item] = requestedVariables[item] || assign({}, benefit)
+    requestedVariables[item] ??= { ...benefit }
 
     // Ajoute des variables dans la liste des paramètres à retourner par openfisca
     if (benefit.extra) {
@@ -73,10 +78,10 @@ benefits.all
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
 for (const condition in CONDITION_STRATEGY) {
-  if (CONDITION_STRATEGY[condition]?.extra) {
+  if (CONDITION_STRATEGY[condition].extra) {
     appendExtraVariables(
       requestedVariables,
-      CONDITION_STRATEGY[condition].extra
+      CONDITION_STRATEGY[condition]!.extra
     )
   }
 }

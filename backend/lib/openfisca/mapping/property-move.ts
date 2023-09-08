@@ -1,23 +1,20 @@
-import { forEach, pickBy } from "lodash-es"
+import { forEach } from "lodash-es"
 
 import common from "./common.js"
 
-import { Property } from "../../../types/properties.js"
-
-const famillePropertiesGivenToIndividu = Object.keys(
-  pickBy(common.requestedVariables, function (definition: Property) {
-    return (
-      (!definition.type || definition.type == "float") &&
-      definition.entity == "familles"
-    )
-  })
-).concat(["aeeh", "paje_prepare", "paje_clca"])
+const famillePropertiesGivenToIndividu = Object.values(
+  common.requestedVariables
+)
+  .filter(
+    (benefit) =>
+      (!benefit.type || benefit.type == "float") && benefit.entity == "familles"
+  )
+  .map((benefit) => ({ name: benefit.id }))
+  .concat([{ name: "paje_prepare" }, { name: "paje_clca" }])
 
 const movedProperties = {
   familles: {
-    properties: famillePropertiesGivenToIndividu.map(function (id) {
-      return { name: id }
-    }),
+    properties: famillePropertiesGivenToIndividu,
     sourceKeys: ["parents", "enfants"],
   },
   foyers_fiscaux: {

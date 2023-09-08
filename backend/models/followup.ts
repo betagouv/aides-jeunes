@@ -116,7 +116,8 @@ FollowupSchema.method(
 
     let phone = this.phone
     const phoneNumberToE164 = () => {
-      if (this.phone.substring(0, 4) === "0033") {
+      const prefixes = ["0033", "00262", "00508", "00590", "00594", "00596"]
+      if (prefixes.some((prefix) => this.phone.startsWith(prefix))) {
         phone = `${this.phone.substring(2)}`
       } else if (this.phone.substring(0, 2) === ("06" || "07")) {
         phone = `33${this.phone.substring(1)}`

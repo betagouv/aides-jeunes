@@ -236,7 +236,7 @@ const ctaText = ref(computeCtaText())
           id="phone"
           ref="phoneRef"
           v-model="phoneValue"
-          pattern="^(((\+?|00)33\s?|0)[67])([\s\.\-]?\d{2}){4}"
+          pattern="^(((\+?|00)(33|262|508|590|596|594)\s?|0)[67])([\s\.\-]?\d{2}){4}"
           name="phone"
           required
           :aria-invalid="phoneInputErrorMessage"

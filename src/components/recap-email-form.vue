@@ -5,7 +5,7 @@ import { useStore } from "@/stores/index.js"
 import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategories } from "@lib/enums/event-categories.js"
+import { EventCategory } from "@lib/enums/event-category.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
@@ -30,7 +30,7 @@ const sendEmailRecap = async (surveyOptin) => {
       errorMessage.value = true
       emailRef.value.focus()
       StatisticsMixin.methods.sendEventToMatomo(
-        EventCategories.GENERAL,
+        EventCategory.General,
         "Invalid email form",
         router.currentRoute.value.fullPath
       )
@@ -47,7 +47,7 @@ const sendEmailRecap = async (surveyOptin) => {
     store.setFormRecapEmailState("ok")
     emailValue.value = ""
     StatisticsMixin.methods.sendEventToMatomo(
-      EventCategories.FOLLOWUP,
+      EventCategory.Followup,
       "Formulaire validé",
       ABTestingService.getValues().recap_email_form
     )

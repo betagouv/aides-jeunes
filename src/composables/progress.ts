@@ -1,9 +1,9 @@
-import { isStepAnswered } from "@lib/answers.ts"
+import { isStepAnswered } from "@lib/answers.js"
 import { computed, ComputedRef } from "vue"
 import { useRoute } from "vue-router"
-import { useStore } from "@/stores/index.ts"
+import { useStore } from "@/stores/index.js"
 import { StepStrict } from "@lib/types/steps.d.js"
-import { SimulationStatusEnum } from "@lib/enums/simulation.ts"
+import { SimulationStatusEnum } from "@lib/enums/simulation.js"
 
 export function useProgress(): ComputedRef<number> {
   const route = useRoute()

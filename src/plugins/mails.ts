@@ -1,4 +1,4 @@
-const generateResultLines = (droits, customAmount) => {
+const generateResultLines = (droits, customAmount?) => {
   return droits
     .map(({ amount, label }) => {
       return `- ${customAmount || amount} pour la prestation « ${label} ».`

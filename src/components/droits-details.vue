@@ -104,7 +104,7 @@
         </ul>
       </WarningMessage>
       <div class="fr-print-hidden">
-        <BenefitCtaLight :benefit="droit" class="fr-mt-4w" />
+        <BenefitCta :benefit="droit" class="fr-mt-4w" />
         <div v-if="droit && showDetailsLieux" class="fr-print-hidden">
           <div class="fr-mt-4w">
             <DroitDetailsLieux :benefit="droit" />
@@ -117,7 +117,7 @@
 
 <script lang="ts">
 import type { PropType } from "vue"
-import BenefitCtaLight from "./benefit-cta-light.vue"
+import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import Situation from "@/lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
@@ -135,7 +135,7 @@ export default {
     WarningMessage,
     DroitHeader,
     DroitDetailsLieux,
-    BenefitCtaLight,
+    BenefitCta,
     BenefitCtaLink,
   },
   mixins: [DroitMixin],

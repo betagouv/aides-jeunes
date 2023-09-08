@@ -156,36 +156,8 @@ const router = createRouter({
           },
         },
         {
-          name: "resultatsLieuxDedies",
-          path: "resultats/:benefitId/lieux",
-          component: () => import("./views/simulation/resultats/lieux.vue"),
-          meta: {
-            headTitle: `Trouver des lieux d'informations près de chez vous avec le simulateur d'aides ${context.name}`,
-          },
-        },
-        {
           name: "benefitLieuInformations",
-          path: "resultats/:benefitId/lieux/:lieu_id/informations",
-          component: () =>
-            import("./views/simulation/resultats/lieu-informations.vue"),
-          meta: {
-            headTitle:
-              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
-          },
-        },
-        {
-          name: "benefitLieuInformationsLight",
           path: "resultats/:benefitId/:lieu_id/informations",
-          component: () =>
-            import("./views/simulation/resultats/lieu-informations.vue"),
-          meta: {
-            headTitle:
-              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
-          },
-        },
-        {
-          name: "situationLieuInformations",
-          path: "resultats/lieux/:lieu_id/informations",
           component: () =>
             import("./views/simulation/resultats/lieu-informations.vue"),
           meta: {

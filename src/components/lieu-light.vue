@@ -33,7 +33,7 @@ defineProps({
               :analytic-name="lieu.id"
               :analytic-action="BehaviourEvent.ShowNewLocation"
               :to="{
-                name: 'benefitLieuInformationsLight',
+                name: 'benefitLieuInformations',
                 params: {
                   lieu_id: lieu.id,
                 },

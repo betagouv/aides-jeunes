@@ -3,7 +3,7 @@ import { computed, ComputedRef } from "vue"
 import { useRoute } from "vue-router"
 import { useStore } from "@/stores/index.js"
 import { StepStrict } from "@lib/types/steps.d.js"
-import { SimulationStatusEnum } from "@lib/enums/simulation.js"
+import { SimulationStatus } from "@lib/enums/simulation.js"
 
 export function useProgress(): ComputedRef<number> {
   const route = useRoute()
@@ -17,7 +17,7 @@ export function useProgress(): ComputedRef<number> {
 
     // Use anwers as basis when you are not in journey
     if (
-      store.simulation.status !== SimulationStatusEnum.ANONYMIZED &&
+      store.simulation.status !== SimulationStatus.ANONYMIZED &&
       !allSteps.some((step) => step.path === cleanPath)
     ) {
       const answeredSteps: StepStrict[] = activeSteps.filter((step) =>

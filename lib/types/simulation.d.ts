@@ -1,6 +1,6 @@
 import { Document } from "mongoose"
 
-import { SimulationStatusEnum } from "../enums/simulation.js"
+import { SimulationStatus } from "../enums/simulation.js"
 
 export interface Answer {
   id: string
@@ -26,7 +26,7 @@ interface SimulationAttributes {
   createdAt: Date
   hasFollowup?: boolean
   modifiedFrom?: string
-  status: SimulationStatusEnum
+  status: SimulationStatus
   teleservice?: string
   token: string
 }

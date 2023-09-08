@@ -1,4 +1,4 @@
-export enum SimulationStatusEnum {
+export enum SimulationStatus {
   NEW = "new",
   TEST = "test",
   INVESTIGATION = "investigation",

@@ -19,7 +19,7 @@ import {
   Simulation,
   Store,
 } from "@lib/types/store.d.js"
-import { SimulationStatusEnum } from "@lib/enums/simulation.js"
+import { SimulationStatus } from "@lib/enums/simulation.js"
 import { StatutOccupationLogement } from "@lib/enums/logement.js"
 
 function defaultCalculs(): Calculs {
@@ -247,7 +247,7 @@ export const useStore = defineStore("store", {
       return userinfo?.value["email"]
     },
     simulationAnonymized(): boolean {
-      return this.simulation.status === SimulationStatusEnum.ANONYMIZED
+      return this.simulation.status === SimulationStatus.ANONYMIZED
     },
   },
   actions: {

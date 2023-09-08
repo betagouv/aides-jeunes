@@ -1,5 +1,6 @@
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { PatrimoineCategory } from "@lib/enums/patrimoine.js"
+import { SimulationStatusEnum } from "@lib/enums/simulation.js"
 
 export interface Resultats {
   _id?: string
@@ -48,6 +49,7 @@ export interface Simulation {
   ressourcesFiscales?: RessourcesFiscales
   abtesting?: any
   simulationToken?: string | undefined
+  status: SimulationStatusEnum
 }
 
 export interface PersistedStore {

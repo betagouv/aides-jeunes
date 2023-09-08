@@ -3,7 +3,7 @@ import { getEnvVariable } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
-import { IMatomo } from "./matomo.js"
+import { Matomo } from "./matomo.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
@@ -38,7 +38,7 @@ function skipSendEventToRecorder(event: IRecorderEvent): boolean {
   return event.benefits ? event.benefits.length === 0 : true
 }
 
-function identifyEvent(matomo: IMatomo | undefined): string {
+function identifyEvent(matomo: Matomo | undefined): string {
   return matomo !== undefined
     ? matomo.getVisitorId()
     : `uid_${Math.random().toString(12).slice(2)}`
@@ -46,7 +46,7 @@ function identifyEvent(matomo: IMatomo | undefined): string {
 
 export async function sendEventToRecorder(
   event: IRecorderEvent,
-  matomo: IMatomo | undefined = undefined
+  matomo: Matomo | undefined = undefined
 ): Promise<void> {
   if (skipSendEventToRecorder(event)) {
     !isProduction && console.debug("Skip sending event to recorder", event)

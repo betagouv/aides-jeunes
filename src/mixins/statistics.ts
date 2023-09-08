@@ -4,7 +4,7 @@ import {
   sendEventToRecorder,
 } from "@/lib/statistics-service/recorder.js"
 import {
-  IMatomoEvent,
+  MatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
@@ -41,7 +41,7 @@ export default {
       label: string,
       value?: string
     ) {
-      const event: IMatomoEvent = {
+      const event: MatomoEvent = {
         category,
         action,
         label,

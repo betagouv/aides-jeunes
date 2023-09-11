@@ -1,8 +1,5 @@
 export interface Configuration {
   env: string
-  animation: {
-    delay: number
-  }
   baseURL: string
   franceConnect: {
     root?: string

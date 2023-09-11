@@ -5,9 +5,6 @@ const env = process.env.NODE_ENV || "development"
 
 const all: Configuration = {
   env: env,
-  animation: {
-    delay: Number(process.env.ANIMATION_DELAY) || 300,
-  },
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
     "https://mes-aides.1jeune1solution.beta.gouv.fr",

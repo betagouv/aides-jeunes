@@ -15,9 +15,6 @@ export default {
       useNewUrlParser: true,
     },
   },
-  animation: {
-    delay: 0,
-  },
   teleserviceAccessTokens: {
     live_node_test: "live_node_test",
     loiret_APA_test: "loiret_APA_test",

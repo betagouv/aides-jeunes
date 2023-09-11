@@ -4,6 +4,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
+import * as Sentry from "@sentry/vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategory } from "@lib/enums/event-category.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
@@ -52,7 +53,7 @@ const sendRecap = async (surveyOptin) => {
       emailInputErrorMessage.value = true
     }
   } catch (error) {
-    console.error(error)
+    Sentry.captureException(error)
   }
 }
 

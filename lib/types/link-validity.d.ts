@@ -11,7 +11,6 @@ export interface BenefitLinkProperties {
   institution: string
   priority: number
   links: BenefitLink[]
-  editLink: string
 }
 
 interface GristFields {

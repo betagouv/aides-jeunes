@@ -139,7 +139,7 @@ const sendRecapBySms = async (surveyOptin) => {
   store.setFormRecapEmailState(undefined)
   if (!inputPhoneIsValid()) {
     store.setFormRecapPhoneState(undefined)
-    throw new Error("Invalid phone number")
+    throw new Error("Unsupported phone number format")
   }
   try {
     store.setModalState(undefined)
@@ -158,7 +158,7 @@ const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapPhoneState(undefined)
   if (!inputEmailIsValid()) {
     store.setFormRecapEmailState(undefined)
-    throw new Error("invalid email")
+    throw new Error("Unsupported email format")
   }
   try {
     store.setModalState(undefined)

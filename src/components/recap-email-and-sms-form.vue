@@ -230,7 +230,10 @@ const ctaText = ref(computeCtaText())
       <div class="fr-form-group">
         <label class="fr-label" for="phone"
           >Votre numéro de téléphone portable
-          <span class="fr-hint-text">Format attendu : 06 12 23 42 78</span>
+          <span class="fr-hint-text"
+            >Format attendu : 06 12 23 42 78 (numéros de France métropolitaine
+            et DROM-COM)</span
+          >
         </label>
         <input
           id="phone"

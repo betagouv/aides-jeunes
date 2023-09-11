@@ -6,6 +6,7 @@ import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategory } from "@lib/enums/event-category.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()
@@ -155,6 +156,19 @@ const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapEmailState("ok")
   emailValue.value = undefined
 }
+
+function computeCtaText() {
+  const ctaVersion = ABTestingService.getValues().CTA_EmailRecontact
+  if (ctaVersion === "version_test_1") {
+    return "J’accepte qu’on me recontacte pour faire le point sur mes démarches"
+  } else if (ctaVersion === "version_test_2") {
+    return "Je reçois mon récapitulatif et je me fais accompagner par téléphone"
+  } else {
+    return "J'accepte d'être recontacté ou recontactée"
+  }
+}
+
+const ctaText = ref(computeCtaText())
 </script>
 
 <template>
@@ -236,7 +250,7 @@ const sendRecapByEmail = async (surveyOptin) => {
           class="fr-btn"
           @click.prevent="sendRecap(true)"
         >
-          J'accepte d'être recontacté ou recontactée
+          {{ ctaText }}
         </button>
       </li>
       <li>

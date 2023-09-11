@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
 import { useStore } from "@/stores/index.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -248,6 +249,7 @@ const router = createRouter({
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
+        ABTestingService.setVariant("CTA_EmailRecontact", "version_actuelle")
         return "/"
       },
     },

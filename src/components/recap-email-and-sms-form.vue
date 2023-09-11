@@ -32,6 +32,12 @@ const simulationId = computed(
 
 const showSms = process.env.VITE_SHOW_SMS_TAB
 
+StatisticsMixin.methods.sendEventToMatomo(
+  EventCategory.Followup,
+  "Formulaire affiché",
+  ABTestingService.getValues().CTA_EmailRecontact
+)
+
 const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
@@ -51,6 +57,14 @@ const sendRecap = async (surveyOptin) => {
       store.setFormRecapState(undefined)
       phoneInputErrorMessage.value = true
       emailInputErrorMessage.value = true
+    }
+
+    if (!phoneInputErrorMessage.value || !emailInputErrorMessage.value) {
+      StatisticsMixin.methods.sendEventToMatomo(
+        EventCategory.Followup,
+        "Formulaire validé",
+        ABTestingService.getValues().CTA_EmailRecontact
+      )
     }
   } catch (error) {
     Sentry.captureException(error)

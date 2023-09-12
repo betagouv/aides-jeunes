@@ -1,5 +1,4 @@
 import Benefits from "../data/all.js"
-import config from "../backend/config/index.js"
 import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
 import { GristData } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
@@ -15,32 +14,6 @@ const DEFAULT_BRANCH_REF = "refs/heads/master"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
-
-const customBenefitsFiles = [
-  {
-    pattern: /-fsl-eligibilite$/,
-    file: `${config.github.repository_url}/blob/master/data/benefits/dynamic/fsl.ts`,
-  },
-  {
-    pattern: /-apa-eligibilite$/,
-    file: `${config.github.repository_url}/blob/master/data/benefits/dynamic/apa.ts`,
-  },
-  {
-    pattern: /^aidesvelo_/,
-    file: `https://github.com/mquandalle/mesaidesvelo/blob/master/src/aides.yaml`,
-  },
-]
-
-function setEditLink(benefit) {
-  for (const category of customBenefitsFiles) {
-    if (benefit.id.match(category.pattern)) {
-      return category.file
-    }
-  }
-  return ["openfisca", "javascript"].includes(benefit.source)
-    ? `https://contribuer-aides-jeunes.netlify.app/admin/#/collections/benefits_${benefit.source}/entries/${benefit.id}`
-    : undefined
-}
 
 async function checkBenefitUrls(benefit) {
   const results = await Bluebird.map(benefit.links, fetchStatus)
@@ -141,7 +114,6 @@ async function getBenefitData(noPriority: boolean) {
       institution: benefit.institution.label,
       priority: priorityMap[benefit.id] || 0,
       links,
-      editLink: setEditLink(benefit),
     }
   })
   return data.sort((a, b) => +(a.priority - b.priority))

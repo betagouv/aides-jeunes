@@ -18,7 +18,6 @@ export function makeBenefitData(props) {
         ok: false,
       },
     ],
-    editLink: "https://edit.link",
     ...props,
   }
 }

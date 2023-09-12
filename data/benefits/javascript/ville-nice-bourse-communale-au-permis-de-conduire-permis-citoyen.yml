@@ -21,7 +21,7 @@ conditions:
   - Être non-imposable.
   - Avoir préalablement réussi le code de la route.
 voluntary_conditions:
-  - S’engager à la réalisation de 30 heures de bénévolat dans un service public
+  - Réaliser 30 heures de bénévolat dans un service public
     ou un organisme à but non lucratif.
 interestFlag: _interetPermisDeConduire
 type: float

@@ -6,7 +6,8 @@ const config: Configuration = {
   env: process.env.NODE_ENV || "development",
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
-    "https://mes-aides.1jeune1solution.beta.gouv.fr",
+    process.env.DEPLOY_URL || // Netlify deploy apps
+    "http://localhost:8080",
   franceConnect: {
     root: process.env.FRANCE_CONNECT_ROOT_URL,
     clientId: process.env.FRANCE_CONNECT_CLIENT_ID,
@@ -23,18 +24,20 @@ const config: Configuration = {
   },
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",
-  openfiscaAxeURL: "https://betagouv.github.io/mes-aides-changent",
+  openfiscaAxeURL:
+    process.env.OPENFISCA_AXE_URL ||
+    "https://betagouv.github.io/mes-aides-changent",
   openfiscaPublicURL:
-    process.env.OPENFISCA_PUBLIC_ROOT_URL ||
-    "https://openfisca.mes-aides.1jeune1solution.beta.gouv.fr",
-  openfiscaTracerURL: "https://openfisca.github.io/tracer",
+    process.env.OPENFISCA_PUBLIC_ROOT_URL || "http://127.0.0.1:2000",
+  openfiscaTracerURL:
+    process.env.OPENFISCA_TRACER_URL || "https://openfisca.github.io/tracer",
   netlifyContributionURL:
     process.env.NETLIFY_CONTRIBUTION_URL ||
     "https://contribuer-aides-jeunes.netlify.app",
   smtp: {
     host: process.env.SMTP_HOST || "localhost",
     port: process.env.SMTP_PORT || "7777",
-    requireTLS: false,
+    requireTLS: process.env.SMTP_REQUIRE_TLS === "true",
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -57,33 +60,32 @@ const config: Configuration = {
     ],
   },
   matomo: {
-    id: Number(process.env.MATOMO_ID) || 165,
+    id: Number(process.env.MATOMO_ID) || 170,
     url: process.env.MATOMO_URL || "https://stats.data.gouv.fr",
   },
   statistics: {
-    url:
-      process.env.VITE_STATS_URL ||
-      "https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits",
+    url: process.env.VITE_STATS_URL || "http://localhost:4000/benefits",
     version: Number(process.env.VITE_STATS_VERSION) || 2,
   },
   mongo: {
-    uri: process.env.MONGODB_URL,
+    uri:
+      process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     },
   },
   sentry: {
-    dsn: process.env.SENTRY_BACKEND_URL || undefined,
-    authToken: process.env.SENTRY_AUTH_TOKEN || undefined,
-    project: process.env.SENTRY_PROJECT || undefined,
+    dsn: process.env.SENTRY_BACKEND_URL,
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+    project: process.env.SENTRY_PROJECT,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
   iframeTitle:
     "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution",
   smsService: {
-    show: false,
+    show: process.env.SMS_SERVICE_SHOW !== "false",
     username: process.env.SMS_SERVICE_USERNAME || "",
     password: process.env.SMS_SERVICE_PASSWORD || "",
     url: "https://europe.ipx.com/restapi/v1/sms/send",

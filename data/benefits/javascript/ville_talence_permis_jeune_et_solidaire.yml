@@ -20,10 +20,10 @@ conditions_generales:
 profils: []
 conditions:
   - Résider à Talence depuis au moins trois ans de manière continue.
-  - Avoir obtenu son code de la route.
-  - Passer son permis de conduire dans l’une des sept auto-écoles talençaises.
+  - Avoir obtenu votre code de la route.
+  - Passer votre permis de conduire dans l’une des sept auto-écoles talençaises.
 voluntary_conditions:
-  - S'engager à réaliser 70 heures de bénévolat dans une association basée à Talence.
+  - Vous engager à réaliser 70 heures de bénévolat dans une association basée à Talence.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

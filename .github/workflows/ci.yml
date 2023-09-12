@@ -206,7 +206,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Build assets
-        run: NODE_ENV=production npm run build:iframes
+        run: |
+          cp .env.iframe_build_control .env
+          npm run build:iframes
       - name: Validate Iframe build
         shell: bash
         run: "npm run tools:test-iframe-generation"

@@ -22,7 +22,7 @@ profils:
 conditions:
   - Être déscolarisé.e.s sans diplôme et en situation d’insertion professionnelle.
   - Être accompagné par la mission locale.
-  - S'engager à réaliser 70 heures de stage au sein des services municipaux.
+  - Vous engager à réaliser 70 heures de stage au sein des services municipaux.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

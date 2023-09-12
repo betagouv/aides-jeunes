@@ -1,10 +1,9 @@
+import "dotenv/config"
+
 import { Configuration } from "../types/config.js"
-const __dirname = new URL(".", import.meta.url).pathname
 
-const env = process.env.NODE_ENV || "development"
-
-const all: Configuration = {
-  env: env,
+const config: Configuration = {
+  env: process.env.NODE_ENV || "development",
   baseURL:
     process.env.MES_AIDES_ROOT_URL ||
     "https://mes-aides.1jeune1solution.beta.gouv.fr",
@@ -92,16 +91,4 @@ const all: Configuration = {
   },
 }
 
-let override = {}
-try {
-  const loaddedConfiguration = await import(`${__dirname}${env}.js`)
-  override = loaddedConfiguration?.default
-  if (env !== "test") {
-    console.info(`Using specific configuration for ${env}.`)
-  }
-} catch (e) {
-  console.warn(`No specific configuration for ${env}`)
-}
-
-const config = Object.assign(all, override)
-export default config
+export default Object.freeze(config)

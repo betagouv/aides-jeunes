@@ -3,7 +3,8 @@ import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
 import { getAnswerIndex } from "@lib/answers.js"
 import { Answer } from "@lib/types/store.d.js"
-import { SimulationStatusEnum } from "@lib/enums/simulation.js"
+import { SimulationStatus } from "@lib/enums/simulation.js"
+import { Activite } from "@lib/enums/activite.js"
 
 const initMock = (store) => {
   store.calculs = { dirty: false }
@@ -27,7 +28,7 @@ const initMock = (store) => {
           id: "demandeur",
           entityName: "individu",
           fieldName: "activite",
-          value: "independant",
+          value: Activite.Independant,
         },
         {
           entityName: "individu",
@@ -38,7 +39,7 @@ const initMock = (store) => {
       ],
       current: [],
     },
-    status: SimulationStatusEnum.NEW,
+    status: SimulationStatus.New,
   }
 }
 

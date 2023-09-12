@@ -1,4 +1,4 @@
-import { SimulationStatusEnum } from "./enums/simulation.js"
+import { SimulationStatus } from "./enums/simulation.js"
 
 function getAnonymizedAnswer(answer, simulation) {
   switch (answer.entityName) {
@@ -83,7 +83,7 @@ export function anonymizeSimulation(simulation) {
     all: answersAnonymized,
     current: [],
   }
-  simulation.status = SimulationStatusEnum.ANONYMIZED
+  simulation.status = SimulationStatus.Anonymized
 
   return simulation
 }

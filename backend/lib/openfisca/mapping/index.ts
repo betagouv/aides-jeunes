@@ -23,6 +23,8 @@ import {
   FoyersFiscaux,
 } from "../../../types/openfisca.js"
 
+import { StatutOccupationLogement } from "../../../../lib/enums/logement.js"
+
 export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
   const individus = mapIndividus(situation)
 
@@ -190,7 +192,8 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
   )
   menage.logement_conventionne[periods.thisMonth] =
     menage.statut_occupation_logement?.[periods.thisMonth] ==
-      "primo_accedant" && menage.loyer?.[periods.thisMonth] == 0
+      StatutOccupationLogement.PrimoAccedant &&
+    menage.loyer?.[periods.thisMonth] == 0
 
   const demandeur = sourceSituation.demandeur
   const parents = sourceSituation.parents

@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 import config from "../backend/config/index.js"
 import mongooseConfig from "../backend/config/mongoose.js"
 import Simulations from "../backend/models/simulation.js"
-import { SimulationStatusEnum } from "../lib/enums/simulation.js"
+import { SimulationStatus } from "../lib/enums/simulation.js"
 import Followups from "../backend/models/followup"
 import {
   anonymizeSimulation,
@@ -41,12 +41,12 @@ async function main() {
     $or: [
       {
         dateDeValeur: { $lt: aMonthAgo },
-        status: SimulationStatusEnum.NEW,
+        status: SimulationStatus.New,
         hasFollowup: { $exists: true },
       },
       {
         dateDeValeur: { $lt: aWeekAgo },
-        status: SimulationStatusEnum.NEW,
+        status: SimulationStatus.New,
         hasFollowup: { $exists: false },
       },
     ],

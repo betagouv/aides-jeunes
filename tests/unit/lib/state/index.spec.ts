@@ -1,6 +1,7 @@
 import { expect } from "@jest/globals"
 import { getChapters } from "@lib/state/index.js"
 import { StepStrict } from "@lib/types/steps.d.js"
+import { ChapterState } from "@lib/enums/chapter.js"
 
 describe("chapter", function () {
   const currentPath = "/path/to/some/page"
@@ -40,7 +41,11 @@ describe("chapter", function () {
 
   it("returns the active with corresponding states", function () {
     expect(getChapters(currentPath, journey)).toEqual(
-      mockChaptersWithStates("current", "pending", "pending")
+      mockChaptersWithStates(
+        ChapterState.Current,
+        ChapterState.Pending,
+        ChapterState.Pending
+      )
     )
   })
 
@@ -49,7 +54,11 @@ describe("chapter", function () {
 
     it("returns the active with corresponding states", function () {
       expect(getChapters(currentPath, journey)).toEqual(
-        mockChaptersWithStates("done", "current", "pending")
+        mockChaptersWithStates(
+          ChapterState.Done,
+          ChapterState.Current,
+          ChapterState.Pending
+        )
       )
     })
   })
@@ -59,7 +68,11 @@ describe("chapter", function () {
 
     it("returns the active with corresponding states", function () {
       expect(getChapters(currentPath, journey)).toEqual(
-        mockChaptersWithStates("done", "done", "done")
+        mockChaptersWithStates(
+          ChapterState.Done,
+          ChapterState.Done,
+          ChapterState.Done
+        )
       )
     })
 
@@ -68,7 +81,11 @@ describe("chapter", function () {
 
       it("returns the active with corresponding states", function () {
         expect(getChapters(currentPath, journey, lastUnansweredStep)).toEqual(
-          mockChaptersWithStates("done", "current", "pending")
+          mockChaptersWithStates(
+            ChapterState.Done,
+            ChapterState.Current,
+            ChapterState.Pending
+          )
         )
       })
     })

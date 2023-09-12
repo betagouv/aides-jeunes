@@ -3,17 +3,17 @@ import { getEnvVariable } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
-import { IMatomo } from "./matomo.js"
+import { Matomo } from "./matomo.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
-export interface IRecorderEvent {
+export interface RecorderEvent {
   benefits: StandardBenefit[]
   benefitId?: string
   event_type: string
 }
 
-interface IStatisticsRecord {
+interface StatisticsRecord {
   benefit_id: string
   hash_id: string
   abtesting: object
@@ -23,7 +23,7 @@ interface IStatisticsRecord {
   version: string
 }
 
-function skipSendEventToRecorder(event: IRecorderEvent): boolean {
+function skipSendEventToRecorder(event: RecorderEvent): boolean {
   if (skipSendStatistics()) {
     return true
   }
@@ -38,15 +38,15 @@ function skipSendEventToRecorder(event: IRecorderEvent): boolean {
   return event.benefits ? event.benefits.length === 0 : true
 }
 
-function identifyEvent(matomo: IMatomo | undefined): string {
+function identifyEvent(matomo: Matomo | undefined): string {
   return matomo !== undefined
     ? matomo.getVisitorId()
     : `uid_${Math.random().toString(12).slice(2)}`
 }
 
 export async function sendEventToRecorder(
-  event: IRecorderEvent,
-  matomo: IMatomo | undefined = undefined
+  event: RecorderEvent,
+  matomo: Matomo | undefined = undefined
 ): Promise<void> {
   if (skipSendEventToRecorder(event)) {
     !isProduction && console.debug("Skip sending event to recorder", event)
@@ -55,7 +55,7 @@ export async function sendEventToRecorder(
 
   const { benefits, benefitId, event_type } = event
   const abtesting = ABTestingService.getValues()
-  const benefitsStats: IStatisticsRecord[] = []
+  const benefitsStats: StatisticsRecord[] = []
   const totalResults = benefits.length
   const eventHashId = identifyEvent(matomo)
 

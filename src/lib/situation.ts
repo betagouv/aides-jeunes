@@ -2,6 +2,7 @@ import dayjs from "dayjs"
 import { Situation } from "@lib/types/situations.js"
 import { Enfant } from "@lib/types/enfant.js"
 import { Individu } from "@lib/types/individu.js"
+import { Scolarite } from "@lib/enums/scolarite.js"
 
 const SituationMethods = {
   getDemandeur: function (situation: Situation) {
@@ -25,8 +26,10 @@ const SituationMethods = {
 
   hasEnfantScolarise: function (situation: Situation) {
     return (
-      situation.enfants.some((enfant) => enfant.scolarite === "college") ||
-      situation.enfants.some((enfant) => enfant.scolarite === "lycee")
+      situation.enfants.some(
+        (enfant) => enfant.scolarite === Scolarite.College
+      ) ||
+      situation.enfants.some((enfant) => enfant.scolarite === Scolarite.Lycee)
     )
   },
 

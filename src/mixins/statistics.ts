@@ -1,11 +1,12 @@
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import {
-  IRecorderEvent,
+  RecorderEvent,
   sendEventToRecorder,
 } from "@/lib/statistics-service/recorder.js"
 import {
-  IMatomoEvent,
+  MatomoEvent,
   sendEventToMatomo,
+  Matomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { EventCategory } from "@lib/enums/event-category.js"
@@ -13,7 +14,7 @@ import { EventCategory } from "@lib/enums/event-category.js"
 declare global {
   interface Window {
     Piwik: {
-      getTracker(): any
+      getTracker(): Matomo
     }
   }
 }
@@ -25,7 +26,7 @@ export default {
       event_type: string,
       benefitId: string | undefined = undefined
     ) {
-      const event: IRecorderEvent = {
+      const event: RecorderEvent = {
         benefits,
         benefitId,
         event_type,
@@ -41,7 +42,7 @@ export default {
       label: string,
       value?: string
     ) {
-      const event: IMatomoEvent = {
+      const event: MatomoEvent = {
         category,
         action,
         label,

@@ -7,6 +7,7 @@ import ScolariteCategories from "../scolarite.js"
 
 import { Activite } from "../enums/activite.js"
 import { Scolarite, Etudiant } from "../enums/scolarite.js"
+import { LogementCategory } from "../enums/logement.js"
 import { Block } from "../types/blocks.js"
 
 function individuBlockFactory(id, chapter?: string) {
@@ -327,14 +328,16 @@ function housingBlock() {
         variable: "_logementType",
       }),
       {
-        isActive: (subject) => subject._logementType === "proprietaire",
+        isActive: (subject) =>
+          subject._logementType === LogementCategory.Proprietaire,
         steps: [
           new StepGenerator({ entity: "menage", variable: "_primoAccedant" }),
         ],
       },
       {
         isActive: (subject) =>
-          !subject._logementType || subject._logementType === "locataire",
+          !subject._logementType ||
+          subject._logementType === LogementCategory.Locataire,
         steps: [
           new StepGenerator({ entity: "menage", variable: "_locationType" }),
           new StepGenerator({ entity: "menage", variable: "coloc" }),
@@ -348,8 +351,10 @@ function housingBlock() {
       {
         isActive: (subject) => {
           const locataire =
-            !subject._logementType || subject._logementType === "locataire"
-          const proprietaire = subject._logementType === "proprietaire"
+            !subject._logementType ||
+            subject._logementType === LogementCategory.Locataire
+          const proprietaire =
+            subject._logementType === LogementCategory.Proprietaire
           return locataire || proprietaire
         },
         steps: [
@@ -365,7 +370,8 @@ function housingBlock() {
         ],
       },
       {
-        isActive: (subject) => subject._logementType == "heberge",
+        isActive: (subject) =>
+          subject._logementType === LogementCategory.Heberge,
         steps: [
           new StepGenerator({
             entity: "menage",
@@ -386,7 +392,8 @@ function housingBlock() {
             datesGenerator(situation.dateDeValeur).today.value
           )
           const proprietaire =
-            situation.menage.statut_occupation_logement === "proprietaire"
+            situation.menage.statut_occupation_logement ===
+            LogementCategory.Proprietaire
           return age >= 18 && !proprietaire
         },
         steps: [
@@ -399,7 +406,7 @@ function housingBlock() {
       {
         isActive: (subject) =>
           subject.depcom?.startsWith("75") &&
-          subject._logementType != "sansDomicile",
+          subject._logementType !== LogementCategory.SansDomicile,
         steps: [new StepGenerator({ entity: "famille", variable: "parisien" })],
       },
       {
@@ -428,9 +435,11 @@ function housingBlock() {
       },
       {
         isActive: (subject) =>
-          ["locataire", "sansDomicile", "heberge"].includes(
-            subject._logementType
-          ),
+          [
+            LogementCategory.Locataire,
+            LogementCategory.SansDomicile,
+            LogementCategory.Heberge,
+          ].includes(subject._logementType),
         steps: [
           new StepGenerator({
             entity: "menage",

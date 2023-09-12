@@ -3,7 +3,9 @@ import {
   anonymizeSimulation,
   anonymizeFollowup,
 } from "@root/lib/cleaner-functions.js"
-import { SimulationStatusEnum } from "@root/lib/enums/simulation.js"
+import { SimulationStatus } from "@root/lib/enums/simulation.js"
+import { LogementCategory } from "@lib/enums/logement.js"
+import { Activite } from "@lib/enums/activite.js"
 
 const anId = "123"
 
@@ -27,7 +29,7 @@ describe("anonymizeSimulation", () => {
   it("should anonymize simulation", () => {
     const simulation = {
       id: anId,
-      status: SimulationStatusEnum.NEW,
+      status: SimulationStatus.New,
       dateDeValeur: "2023-04-20T13:36:57.634Z",
       answers: {
         all: [
@@ -47,7 +49,7 @@ describe("anonymizeSimulation", () => {
             entityName: "individu",
             fieldName: "activite",
             id: "demandeur",
-            value: "independant",
+            value: Activite.Independant,
           },
           {
             entityName: "individu",
@@ -73,7 +75,7 @@ describe("anonymizeSimulation", () => {
           {
             entityName: "menage",
             fieldName: "_logementType",
-            value: "proprietaire",
+            value: LogementCategory.Proprietaire,
           },
           {
             entityName: "menage",
@@ -143,7 +145,7 @@ describe("anonymizeSimulation", () => {
     const anonymizedSimulation = anonymizeSimulation(simulation)
 
     expect(anonymizedSimulation.id).toEqual(anId)
-    expect(anonymizedSimulation.status).toEqual(SimulationStatusEnum.ANONYMIZED)
+    expect(anonymizedSimulation.status).toEqual(SimulationStatus.Anonymized)
     expect(anonymizedSimulation.answers.current).toEqual([])
 
     const anonymizedAnswers = anonymizedSimulation.answers.all

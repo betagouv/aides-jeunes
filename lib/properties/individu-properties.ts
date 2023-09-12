@@ -15,6 +15,10 @@ import { getAnswer } from "../answers.js"
 import { Activite } from "../enums/activite.js"
 import { Etudiant, Scolarite } from "../enums/scolarite.js"
 import { Velo } from "../enums/velo.js"
+import {
+  EuropeanCountryCode,
+  NonEuropeanCountryCode,
+} from "../../lib/enums/nationality.js"
 
 export default {
   aah_restriction_substantielle_durable_acces_emploi: new BooleanProperty({
@@ -427,15 +431,15 @@ export default {
     items: [
       {
         label: "Française",
-        value: "FR",
+        value: EuropeanCountryCode.FR,
       },
       {
         label: "Européenne",
-        value: "DE",
+        value: EuropeanCountryCode.DE,
       },
       {
         label: "Non européenne",
-        value: "AF",
+        value: NonEuropeanCountryCode.AF,
       },
     ],
   }),

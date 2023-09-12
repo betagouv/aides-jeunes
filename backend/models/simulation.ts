@@ -13,7 +13,7 @@ import {
 
 import { Simulation } from "../../lib/types/simulation.d.js"
 import { SimulationModel } from "../types/models.js"
-import { SimulationStatusEnum } from "../../lib/enums/simulation.js"
+import { SimulationStatus } from "../../lib/enums/simulation.js"
 
 const computeBenefits = computeAides.bind(benefits)
 
@@ -61,8 +61,8 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     modifiedFrom: String,
     status: {
       type: String,
-      default: SimulationStatusEnum.NEW,
-      enum: Object.values(SimulationStatusEnum),
+      default: SimulationStatus.New,
+      enum: Object.values(SimulationStatus),
     },
     teleservice: String,
     token: String,
@@ -82,7 +82,11 @@ SimulationSchema.virtual("returnPath").get(function () {
 
 SimulationSchema.method("isAccessible", function (keychain) {
   return (
-    ["demo", "investigation", "test"].includes(this.status) ||
+    [
+      SimulationStatus.Demo,
+      SimulationStatus.Investigation,
+      SimulationStatus.Test,
+    ].includes(this.status) ||
     keychain?.[this.cookieName] === this.token ||
     keychain?.token === this.token ||
     keychain?.authorization === `Bearer ${this.token}`

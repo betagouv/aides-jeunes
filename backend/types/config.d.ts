@@ -48,7 +48,9 @@ export interface Configuration {
   }
   sessionSecret: string
   mattermost_post_url: string
-  teleserviceAccessTokens?: any
+  teleserviceAccessTokens: {
+    PNDS: string
+  }
   iframeTitle: string
   sentry: {
     dsn: string | undefined

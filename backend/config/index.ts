@@ -82,6 +82,9 @@ const config: Configuration = {
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",
+  teleserviceAccessTokens: {
+    PNDS: process.env.PNDS_TOKEN || "token",
+  },
   iframeTitle:
     "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution",
   smsService: {

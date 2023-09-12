@@ -61,7 +61,7 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     modifiedFrom: String,
     status: {
       type: String,
-      default: SimulationStatus.NEW,
+      default: SimulationStatus.New,
       enum: Object.values(SimulationStatus),
     },
     teleservice: String,
@@ -82,7 +82,11 @@ SimulationSchema.virtual("returnPath").get(function () {
 
 SimulationSchema.method("isAccessible", function (keychain) {
   return (
-    ["demo", "investigation", "test"].includes(this.status) ||
+    [
+      SimulationStatus.Demo,
+      SimulationStatus.Investigation,
+      SimulationStatus.Test,
+    ].includes(this.status) ||
     keychain?.[this.cookieName] === this.token ||
     keychain?.token === this.token ||
     keychain?.authorization === `Bearer ${this.token}`

@@ -1,6 +1,7 @@
 export enum SimulationStatus {
-  NEW = "new",
-  TEST = "test",
-  INVESTIGATION = "investigation",
-  ANONYMIZED = "anonymized",
+  New = "new",
+  Test = "test",
+  Investigation = "investigation",
+  Anonymized = "anonymized",
+  Demo = "demo",
 }

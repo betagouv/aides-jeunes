@@ -83,7 +83,7 @@ export function anonymizeSimulation(simulation) {
     all: answersAnonymized,
     current: [],
   }
-  simulation.status = SimulationStatus.ANONYMIZED
+  simulation.status = SimulationStatus.Anonymized
 
   return simulation
 }

@@ -29,7 +29,7 @@ describe("anonymizeSimulation", () => {
   it("should anonymize simulation", () => {
     const simulation = {
       id: anId,
-      status: SimulationStatus.NEW,
+      status: SimulationStatus.New,
       dateDeValeur: "2023-04-20T13:36:57.634Z",
       answers: {
         all: [
@@ -145,7 +145,7 @@ describe("anonymizeSimulation", () => {
     const anonymizedSimulation = anonymizeSimulation(simulation)
 
     expect(anonymizedSimulation.id).toEqual(anId)
-    expect(anonymizedSimulation.status).toEqual(SimulationStatus.ANONYMIZED)
+    expect(anonymizedSimulation.status).toEqual(SimulationStatus.Anonymized)
     expect(anonymizedSimulation.answers.current).toEqual([])
 
     const anonymizedAnswers = anonymizedSimulation.answers.all

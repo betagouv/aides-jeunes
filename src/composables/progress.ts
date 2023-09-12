@@ -17,7 +17,7 @@ export function useProgress(): ComputedRef<number> {
 
     // Use anwers as basis when you are not in journey
     if (
-      store.simulation.status !== SimulationStatus.ANONYMIZED &&
+      store.simulation.status !== SimulationStatus.Anonymized &&
       !allSteps.some((step) => step.path === cleanPath)
     ) {
       const answeredSteps: StepStrict[] = activeSteps.filter((step) =>

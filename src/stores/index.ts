@@ -247,7 +247,7 @@ export const useStore = defineStore("store", {
       return userinfo?.value["email"]
     },
     simulationAnonymized(): boolean {
-      return this.simulation.status === SimulationStatus.ANONYMIZED
+      return this.simulation.status === SimulationStatus.Anonymized
     },
   },
   actions: {

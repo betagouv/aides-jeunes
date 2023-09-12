@@ -41,12 +41,12 @@ async function main() {
     $or: [
       {
         dateDeValeur: { $lt: aMonthAgo },
-        status: SimulationStatus.NEW,
+        status: SimulationStatus.New,
         hasFollowup: { $exists: true },
       },
       {
         dateDeValeur: { $lt: aWeekAgo },
-        status: SimulationStatus.NEW,
+        status: SimulationStatus.New,
         hasFollowup: { $exists: false },
       },
     ],

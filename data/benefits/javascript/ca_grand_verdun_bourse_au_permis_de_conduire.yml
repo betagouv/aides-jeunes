@@ -20,7 +20,7 @@ profils:
   - type: inactif
   - type: service_civique
 conditions:
-  - Etre suivi par la Mission Locale de Verdun.
+  - Être suivi par la Mission Locale de Verdun.
   - Résider dans un QPV (quartier prioritaire de la politique de la ville) du Grand Verdun.
 voluntary_conditions:
   - S'engager à réaliser 70 heures de bénévolat dans une association basée sur le territoire du Grand Verdun.

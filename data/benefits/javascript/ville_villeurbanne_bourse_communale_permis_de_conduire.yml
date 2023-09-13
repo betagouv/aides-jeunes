@@ -19,11 +19,11 @@ conditions_generales:
     value: 25
 profils: []
 conditions:
-  - Avoir obtenu son code de la route.
+  - Avoir obtenu le code de la route.
   - Être dans l’impossibilité de payer la totalité du permis.
   - Avoir un projet d'insertion professionnelle.
 voluntary_conditions:
-  - S'engager à réaliser quelques heures de travaux d'utilité collective sous forme de chantier Jeune.
+  - Vous engager à réaliser quelques heures de travaux d'utilité collective sous forme de chantier Jeune.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

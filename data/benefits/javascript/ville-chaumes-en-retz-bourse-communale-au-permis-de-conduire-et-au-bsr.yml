@@ -21,7 +21,7 @@ conditions_generales:
 profils: []
 conditions:
   - Avoir un projet scolaire ou professionnel.
-  - S'inscrire dans l'auto-école de la commune.
+  - Être inscrit dans l'auto-école de la commune.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

@@ -36,7 +36,7 @@ conditions:
   - Etre engagé·e dans un parcours d’insertion professionnelle.
   - Etre inscrit·e dans une auto-école partenaire du CCAS et participer à une journée obligatoire de sécurité routière.
 voluntary_conditions:
-  - S'engager à réaliser au moins 20 heures de bénévolat dans une association ou
+  - Vous engager à réaliser au moins 20 heures de bénévolat dans une association ou
     une collectivité.
 interestFlag: _interetPermisDeConduire
 type: float

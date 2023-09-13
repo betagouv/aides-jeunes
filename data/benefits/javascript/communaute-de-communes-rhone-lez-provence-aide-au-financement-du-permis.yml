@@ -17,8 +17,8 @@ conditions_generales:
 profils: []
 conditions:
   - Résider sur une des 5 communes de Rhône Lez Provence depuis plus de 2 ans.
-  - S'engager dans un parcours d’insertion professionnelle.
-  - S'inscrire dans une auto-école basée dans l'une des 5 communes du territoire.
+  - Vous engager dans un parcours d’insertion professionnelle.
+  - Vous inscrire dans une auto-école basée dans l'une des 5 communes du territoire.
   - Signer un engagement de stage dans la collectivité.
 interestFlag: _interetPermisDeConduire
 type: float

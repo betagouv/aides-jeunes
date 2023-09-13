@@ -24,7 +24,6 @@ conditions_generales:
 profils: []
 conditions:
   - Résider dans la ville de Dunkerque ou une commune associée depuis au moins deux ans.
-  - Effectuer 50 heures de bénévolat dans une association partenaire liée à la convention, ou dans une mission d'intérêt général proposé par les services municipaux ou mutualisés.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

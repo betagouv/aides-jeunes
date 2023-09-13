@@ -10,7 +10,14 @@ export interface OpenfiscaMapping {
 }
 
 export interface Famille {
-  _: any
+  _: {
+    parents: string[]
+    enfants: string[]
+    foyers_fiscaux: FoyersFiscaux
+    [openfiscaBenefitId as string]: {
+      [date as string]: number
+    }
+  }
   parents?: Situation
 }
 

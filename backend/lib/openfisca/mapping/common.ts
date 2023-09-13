@@ -78,10 +78,10 @@ benefits.all
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
 for (const condition in CONDITION_STRATEGY) {
-  if (CONDITION_STRATEGY[condition].extra) {
+  if (CONDITION_STRATEGY[condition].extra !== undefined) {
     appendExtraVariables(
       requestedVariables,
-      CONDITION_STRATEGY[condition]!.extra
+      CONDITION_STRATEGY[condition].extra
     )
   }
 }

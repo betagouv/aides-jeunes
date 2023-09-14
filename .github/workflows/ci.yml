@@ -116,7 +116,7 @@ jobs:
         run: npm run test
   build:
     name: Build
-    needs: [install, check_data_file_consistency]
+    needs: [install]
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

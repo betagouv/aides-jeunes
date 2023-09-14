@@ -64,8 +64,8 @@ function getEnvironment() {
 
   const versions = ["version_actuelle", "version_test_1", "version_test_2"]
   const ctaEmailRecontact = ABTestingEnvironment.CTA_EmailRecontact || {}
-  ctaEmailRecontact.index = 5
-  ctaEmailRecontact.value =
+  ctaEmailRecontact.index ||= 5
+  ctaEmailRecontact.value ||=
     versions[Math.floor(Math.random() * versions.length)]
   ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
 

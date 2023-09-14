@@ -63,5 +63,6 @@ export interface Configuration {
     username: string
     password: string
     url: string
+    internationalDiallingCodes: string[]
   }
 }

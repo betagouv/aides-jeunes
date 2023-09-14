@@ -4,8 +4,10 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
+import * as Sentry from "@sentry/vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategory } from "@lib/enums/event-category.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()
@@ -30,6 +32,12 @@ const simulationId = computed(
 
 const showSms = process.env.VITE_SHOW_SMS_TAB
 
+StatisticsMixin.methods.sendEventToMatomo(
+  EventCategory.Followup,
+  "Formulaire affiché",
+  ABTestingService.getValues().CTA_EmailRecontact
+)
+
 const sendRecap = async (surveyOptin) => {
   try {
     if (emailAndPhoneFilled.value) {
@@ -50,8 +58,16 @@ const sendRecap = async (surveyOptin) => {
       phoneInputErrorMessage.value = true
       emailInputErrorMessage.value = true
     }
+
+    if (!phoneInputErrorMessage.value || !emailInputErrorMessage.value) {
+      StatisticsMixin.methods.sendEventToMatomo(
+        EventCategory.Followup,
+        "Formulaire validé",
+        ABTestingService.getValues().CTA_EmailRecontact
+      )
+    }
   } catch (error) {
-    console.error(error)
+    Sentry.captureException(error)
   }
 }
 
@@ -155,6 +171,19 @@ const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapEmailState("ok")
   emailValue.value = undefined
 }
+
+function computeCtaText() {
+  const ctaVersion = ABTestingService.getValues().CTA_EmailRecontact
+  if (ctaVersion === "version_test_1") {
+    return "J’accepte qu’on me recontacte pour faire le point sur mes démarches"
+  } else if (ctaVersion === "version_test_2") {
+    return "Je reçois mon récapitulatif et je me fais accompagner par téléphone"
+  } else {
+    return "J'accepte d'être recontacté ou recontactée"
+  }
+}
+
+const ctaText = ref(computeCtaText())
 </script>
 
 <template>
@@ -236,7 +265,7 @@ const sendRecapByEmail = async (surveyOptin) => {
           class="fr-btn"
           @click.prevent="sendRecap(true)"
         >
-          J'accepte d'être recontacté ou recontactée
+          {{ ctaText }}
         </button>
       </li>
       <li>

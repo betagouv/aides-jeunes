@@ -1,9 +1,11 @@
+import { Response, NextFunction } from "express"
+import Sentry from "@sentry/node"
+
 import Followups from "../models/followup.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
-import { Response, NextFunction } from "express"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
@@ -62,6 +64,7 @@ export async function persist(req: Request, res: Response) {
     return res.send({ result: "OK" })
   } catch (error) {
     console.error("error", error)
+    Sentry.captureException(error)
     return res.status(500).send("Error while persisting followup")
   }
 }

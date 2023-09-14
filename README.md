@@ -46,7 +46,7 @@ The application should be accessible at `localhost:8080`.
 
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 16.x are installed on your machine:
+Make sure `build-essential`, `mongodb` and `node` 18.x are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
@@ -55,7 +55,7 @@ sudo apt-get install mongodb
 
 ### For all platforms
 
-The runtime is Node 16.x for the web application, and Python 3.7 for Openfisca.
+The runtime is Node 18.x for the web application, and Python >= 3.9 for Openfisca.
 
 You can for example use [`nvm`](https://github.com/creationix/nvm) to install this specific version.
 
@@ -76,11 +76,7 @@ There are 2 ways to run Openfisca:
 - either by installing its dependencies in a Python virual environment locally on your machine
 - or by using Docker to pull and build an image with the required dependencies
 
-Note that if you are using a Mac with a M1/M2 processor it is advised to use Docker since not all packages used by Openfisca can be installed locally.
-
 ### Install Openfisca in a virtual environment
-
-:warning: As of now, python3.9 is not yet compatible with all python packages used in Openfisca. It is recommend to use a lower version such as `3.8.13`.
 
 You should [install Python 3 in a virtual environment](https://virtualenv.pypa.io/en/stable/) to prevent yourself from messing with your main python installation. The instructions below rely on the built-in `venv` module so that there are no additional external dependencies:
 
@@ -175,16 +171,14 @@ We also utilize some ESLint plugins, such as [vue-eslint](https://eslint.vuejs.o
 
 SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%22command%22) on the production server.
 
-With the `deploy` key at hand, linked to the deploment script it is possible kick of a now deployment thanks to:
+The `master` and `dev` branches are automatically deployed on the production server when they are updated using a [continuous deployment script](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml).
+
+Note that it is also possible to re-trigger a deployment manually by clicking on `Run workflow` button on the [continuous deployment's page](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml) and selecting either the `master` or `dev` branch.
+
+To access the applications server it is possible to connect to it with a registered public key using ssh:
 
 ```sh
-ssh root@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr -i deploy
-```
-
-For more, a normal/manual root connection is required.
-
-```sh
-ssh root@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
+ssh debian@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
 ```
 
 # Other tools scripts & tips
@@ -219,26 +213,13 @@ In order to use those tools you need to build the server at least once using the
 
 # Export simulations data from database
 
-Mongo export to csv.
+It is possible to generate simulation statistics from the database running the commande `npm run tools:generate-mongo-stats`.
 
-How to use:
-`mongo --quiet db_aides_jeunes --eval "var headers='month,depcom100kp,departement';" tools/mongo-query.js > export.csv`
+This will generate 3 csv files in the `dist/documents` folder:
 
-The `headers`parameter must contains desired headers.
-
-Possible variables:
-
-- `activite`
-- `age`
-- `avecRessources`
-- `departement`
-- `depcom`
-- `depcom100kp`
-- `epci`
-- `region`
-- `logement`
-- `month`
-- `+ possible fieldName values in the answers`
+- `monthly_activite.csv` that lists the number of simulations per activity for each month
+- `monthly_age.csv` that lists the number of simulations per age for each month
+- `monthly_geo.csv` that lists the number of simulations per epci, departement and regions for each month
 
 ## NetlifyCMS development
 

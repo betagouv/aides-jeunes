@@ -29,7 +29,7 @@
     "prettier:fix": "prettier --write .",
     "start": "cd dist-server && NODE_ENV=production node ./backend/server.js",
     "stats": "ts-node ./backend/lib/stats",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000 --maxWorkers=50%",
     "tools:check-links-validity": "ts-node ./tools/check-links-validity.ts",
     "tools:cleaner": "ts-node ./tools/cleaner.ts",
     "tools:evaluate-benefits": "ts-node ./tools/evaluate-benefits",

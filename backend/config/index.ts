@@ -2,6 +2,17 @@ import "dotenv/config"
 
 import { Configuration } from "../types/config.js"
 
+/**
+ * NOTE: Les variables d'environement suivantes
+ * Sont défini directement par pm2 en production
+ * et ne sont donc pas dans les .env sur le serveur
+ * - NODE_ENV
+ * - MONGODB_URL
+ * - PORT
+ * - MES_AIDES_ROOT_URL
+ * - OPENFISCA_INTERNAL_ROOT_URL
+ * - OPENFISCA_PUBLIC_ROOT_URL
+ */
 const config: Configuration = {
   env: process.env.NODE_ENV || "development",
   baseURL:

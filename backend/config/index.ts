@@ -78,14 +78,8 @@ const config: Configuration = {
     url: process.env.VITE_STATS_URL || "http://localhost:4000/benefits",
     version: Number(process.env.VITE_STATS_VERSION) || 2,
   },
-  mongo: {
-    uri:
-      process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
-    options: {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    },
-  },
+  mongodb_url:
+    process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
   sentry: {
     dsn: process.env.SENTRY_BACKEND_URL,
     authToken: process.env.SENTRY_AUTH_TOKEN,

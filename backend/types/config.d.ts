@@ -39,13 +39,7 @@ export interface Configuration {
     url: string
     version: number
   }
-  mongo: {
-    uri?: string
-    options: {
-      useUnifiedTopology: boolean
-      useNewUrlParser: boolean
-    }
-  }
+  mongodb_url: string
   sessionSecret: string
   mattermost_post_url: string
   teleserviceAccessTokens: {

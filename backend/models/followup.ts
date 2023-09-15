@@ -110,23 +110,25 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
-  function (username, password) {
-    const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${config.baseURL}/api/sms/${this.accessToken}\n1jeune1solution`
+  function (username: string, password: string) {
+    const { baseURL } = config
+    const { internationalDiallingCodes, url } = config.smsService
+    const { accessToken, phone } = this
+
+    const isInternational = internationalDiallingCodes.some((code) =>
+      phone.startsWith(`00${code}`)
+    )
+
+    const formattedPhone = isInternational
+      ? phone.substring(2)
+      : phone.startsWith("06") || phone.startsWith("07")
+      ? `33${phone.substring(1)}`
+      : phone
+
+    const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
     const encodedText = encodeURIComponent(text)
 
-    let phone = this.phone
-    const phoneNumberToE164 = () => {
-      const prefixes = ["0033", "00262", "00508", "00590", "00594", "00596"]
-      if (prefixes.some((prefix) => this.phone.startsWith(prefix))) {
-        phone = `${this.phone.substring(2)}`
-      } else if (this.phone.substring(0, 2) === ("06" || "07")) {
-        phone = `33${this.phone.substring(1)}`
-      }
-    }
-
-    phoneNumberToE164()
-
-    return `${config.smsService.url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
+    return `${url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${formattedPhone}&messageText=${encodedText}&username=${username}&password=${password}`
   }
 )
 

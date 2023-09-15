@@ -9,8 +9,10 @@ import {
   OpenfiscaVariables,
 } from "../../../types/openfisca.d.js"
 import { BenefitExtra } from "@data/types/benefits.js"
+import { Individu } from "@lib/types/individu.js"
+import { Situation } from "@lib/types/situations.js"
 
-function isIndividuValid(individu, situation) {
+function isIndividuValid(individu: Individu, situation: Situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
     "year"
@@ -18,20 +20,20 @@ function isIndividuValid(individu, situation) {
   return individu._role != "enfant" || age <= 25 || individu.handicap
 }
 
-function getDemandeur(situation) {
+function getDemandeur(situation: Situation) {
   return situation.demandeur
 }
 
-function getConjoint(situation) {
+function getConjoint(situation: Situation) {
   return situation.conjoint
 }
 
-function getEnfants(situation) {
+function getEnfants(situation: Situation) {
   return situation.enfants
 }
 
-function getIndividusSortedParentsFirst(situation) {
-  return []
+function getIndividusSortedParentsFirst(situation: Situation): Individu[] {
+  return ([] as any[])
     .concat(
       getDemandeur(situation),
       getConjoint(situation),

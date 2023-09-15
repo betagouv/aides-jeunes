@@ -9,7 +9,7 @@ export interface Situation {
   famille?: any
   menage: SituationMenage
   parents?: any
-  conjoint?: any
+  conjoint?: Individu
   answers?: any
   patrimoine?: any
   ressourcesFiscales?: any

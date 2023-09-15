@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import Situation from "@/lib/situation.js"
+import SituationMethods from "@lib/situation.js"
 import { useStore } from "@/stores/index.js"
 export default {
   name: "ResultatInattenduYearMinusTwo",
@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     aCharge() {
-      return Situation.aCharge(this.store.situation)
+      return SituationMethods.aCharge(this.store.situation)
     },
   },
 }

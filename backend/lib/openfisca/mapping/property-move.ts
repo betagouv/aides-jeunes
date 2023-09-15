@@ -1,7 +1,7 @@
 import { forEach } from "lodash-es"
 
 import common from "./common.js"
-import { OpenfiscaMapping } from "@backend/types/openfisca.js"
+import { OpenfiscaMapping } from "../../../types/openfisca.js"
 
 const famillePropertiesGivenToIndividu = Object.values(
   common.requestedVariables

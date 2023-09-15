@@ -119,7 +119,7 @@
 import type { PropType } from "vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import Situation from "@/lib/situation.js"
+import SituationMethods from "@lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
@@ -161,7 +161,7 @@ export default {
   },
   computed: {
     aCharge() {
-      return Situation.aCharge(this.store.situation)
+      return SituationMethods.aCharge(this.store.situation)
     },
     showDetailsLieux() {
       return this.$route.name !== "aide"

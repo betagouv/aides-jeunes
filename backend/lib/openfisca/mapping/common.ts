@@ -20,30 +20,6 @@ function isIndividuValid(individu: Individu, situation: Situation) {
   return individu._role != "enfant" || age <= 25 || individu.handicap
 }
 
-function getDemandeur(situation: Situation) {
-  return situation.demandeur
-}
-
-function getConjoint(situation: Situation) {
-  return situation.conjoint
-}
-
-function getEnfants(situation: Situation) {
-  return situation.enfants
-}
-
-function getIndividusSortedParentsFirst(situation: Situation): Individu[] {
-  return ([] as any[])
-    .concat(
-      getDemandeur(situation),
-      getConjoint(situation),
-      getEnfants(situation)
-    )
-    .filter(function (individu) {
-      return individu
-    })
-}
-
 function getPeriods(dateDeValeur: Date): OpenfiscaPeriods {
   const dateMap = generator(dateDeValeur)
   const keys = Object.keys(dateMap)
@@ -90,10 +66,6 @@ for (const condition in CONDITION_STRATEGY) {
 
 export default {
   isIndividuValid,
-  getDemandeur,
-  getConjoint,
-  getEnfants,
   getPeriods,
-  getIndividusSortedParentsFirst,
   requestedVariables,
 }

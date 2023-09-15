@@ -61,10 +61,10 @@ export async function persist(req: Request, res: Response) {
     }
     if (phone) {
       const phoneNumberValidation = (phone) => {
-        const diallingCodesRegex =
+        const diallingCodes =
           config.smsService.internationalDiallingCodes.join("|")
         const phoneRegex = new RegExp(
-          `^(((\\+?|00)(${diallingCodesRegex})|0)[1-9])(\\d{8})$`
+          `^(((\\+?|00)(${diallingCodes})|0)[1-9])(\\d{8})$`
         )
         return phoneRegex.test(phone)
       }

@@ -30,6 +30,12 @@ const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
+const inputPhonePattern = computed(() => {
+  const diallingCodes: string | undefined =
+    process.env.VITE_SMS_DIALLING_CODES?.toString().replaceAll(",", "|")
+  return `^(((\\+?|00)(${diallingCodes})\\s?|0)[67])([\\s\\.\\-]?\\d{2}){4}`
+})
+
 const showSms = process.env.VITE_SHOW_SMS_TAB
 
 StatisticsMixin.methods.sendEventToMatomo(
@@ -239,7 +245,7 @@ const ctaText = ref(computeCtaText())
           id="phone"
           ref="phoneRef"
           v-model="phoneValue"
-          pattern="^(((\+?|00)(33|262|508|590|596|594)\s?|0)[67])([\s\.\-]?\d{2}){4}"
+          :pattern="inputPhonePattern"
           name="phone"
           required
           :aria-invalid="phoneInputErrorMessage"

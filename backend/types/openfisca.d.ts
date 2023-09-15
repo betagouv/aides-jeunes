@@ -29,7 +29,7 @@ export interface Menage {
 export interface FoyersFiscaux {
   _: {
     declarants: string[]
-    personnes_a_charge: Individu[]
+    personnes_a_charge: string[]
     rfr?: any
   }
 }

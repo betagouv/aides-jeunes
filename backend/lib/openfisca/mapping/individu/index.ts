@@ -16,6 +16,12 @@ import { Activite } from "../../../../../lib/enums/activite.js"
 import { IndividuGenerator } from "../../../../../lib/types/individu.js"
 
 const individuSchema: IndividuGenerator = {
+  service_civique: {
+    src: "activite",
+    fn: function (activite) {
+      return activite === Activite.ServiceCivique
+    },
+  },
   activite: {
     src: "activite",
     fn: function (activite) {

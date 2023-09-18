@@ -17,30 +17,8 @@ instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/
 prefix: l’
 type: float
 unit: €
-legend: maximum
 floorAt: 10
-interestFlag: _interetPermisDeConduire
-montant: 1200
+entity: individus
+openfiscaPeriod: thisMonth
 periodicite: ponctuelle
-conditions_generales:
-  - type: regions
-    values:
-      - "75"
-  - type: age
-    operator: ">="
-    value: 17
-  - type: age
-    operator: <
-    value: 26
-profils:
-  - type: lyceen
-    conditions:
-      - type: annee_etude
-        values:
-          - cap_2
-          - terminale
-  - type: service_civique
-  - type: chomeur
-  - type: apprenti
-  - type: stagiaire
-  - type: professionnalisation
+interestFlag: _interetPermisDeConduire

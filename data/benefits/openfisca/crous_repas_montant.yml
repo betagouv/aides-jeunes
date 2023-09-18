@@ -1,0 +1,12 @@
+label: Repas du CROUS pour les étudiants
+institution: etat
+description: Les restaurants universitaires du CROUS délivrent des repas à un tarif subventionné pour les étudiants et à 1 euro pour les étudiants boursiers.
+link: https://www.service-public.fr/particuliers/actualites/A16017
+instructions: https://www.service-public.fr/particuliers/actualites/A16017
+prefix: le
+type: float
+unit: "€"
+floorAt: 0.01
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

@@ -18,14 +18,11 @@ const StateService = {
       store.updateCurrentAnswers(nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
-          sendEventToMatomo(
-            {
-              category: EventCategory.Parcours,
-              action: "Navigation cancelled",
-              label: failure.toString(),
-            },
-            window.Piwik?.getTracker()
-          )
+          sendEventToMatomo({
+            category: EventCategory.Parcours,
+            action: "Navigation cancelled",
+            label: failure.toString(),
+          })
         } else {
           throw new Error(failure)
         }

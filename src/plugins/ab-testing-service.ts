@@ -1,17 +1,5 @@
 import storageService from "@/lib/storage-service.js"
 
-declare global {
-  interface Window {
-    _paq?: [
-      string | (() => void),
-      (number | string)?,
-      string?,
-      string?,
-      string?
-    ][]
-  }
-}
-
 interface ABTesting {
   [key: string]: {
     index: number

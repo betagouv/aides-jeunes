@@ -6,18 +6,9 @@ import {
 import {
   MatomoEvent,
   sendEventToMatomo,
-  Matomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { EventCategory } from "@lib/enums/event-category.js"
-
-declare global {
-  interface Window {
-    Piwik: {
-      getTracker(): Matomo
-    }
-  }
-}
 
 export default {
   methods: {
@@ -31,10 +22,7 @@ export default {
         benefitId,
         event_type,
       }
-      const matomoTracker = window.Piwik?.getTracker()
-      if (matomoTracker) {
-        sendEventToRecorder(event, matomoTracker)
-      }
+      sendEventToRecorder(event)
     },
     sendEventToMatomo: function (
       category: EventCategory,
@@ -48,10 +36,7 @@ export default {
         label,
         value,
       }
-      const matomoTracker = window.Piwik?.getTracker()
-      if (matomoTracker) {
-        sendEventToMatomo(event, matomoTracker)
-      }
+      sendEventToMatomo(event)
     },
     sendBenefitsStatistics: function (
       benefits: StandardBenefit[] = [],

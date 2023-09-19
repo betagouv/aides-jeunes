@@ -30,15 +30,15 @@ export function getNextStep(
   currentRoute: Route,
   journey: StepStrict[]
 ): StepStrict {
+  const currentPath = currentRoute.path || currentRoute.fullPath
   const matches = journey
     .map((element, index) => {
       return { element, index }
     })
-    .filter((item) => item.element.path == (currentRoute.path || current))
+    .filter((item) => item.element.path == currentPath)
 
   if (!matches.length) {
-    const test = currentRoute.path || currentRoute.fullPath || current
-    throw new Error(`Logic missing for ${test}`)
+    throw new Error(`Logic missing for ${currentPath}`)
   }
   return journey
     .slice(matches[matches.length - 1].index + 1)

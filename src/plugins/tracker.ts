@@ -19,4 +19,13 @@ export default {
   ) => {
     window._paq?.push(["trackEvent", category, action, name, value])
   },
+  disableTracking: () => {
+    window._paq?.push(["optUserOut"])
+  },
+  enableTracking: () => {
+    window._paq?.push(["forgetUserOptOut"])
+  },
+  pushCallback: (callback: () => void) => {
+    window._paq?.push([callback])
+  },
 }

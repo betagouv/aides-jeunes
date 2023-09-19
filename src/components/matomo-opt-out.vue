@@ -32,20 +32,23 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue"
+import tracker from "@/plugins/tracker.js"
 
 const isUserTracked = ref()
 
 const toggleTracking = (event) => {
   isUserTracked.value = event.target.checked
-  window._paq?.push([event.target.checked ? "forgetUserOptOut" : "optUserOut"])
+  if (event.target.checked) {
+    tracker.enableTracking()
+  } else {
+    tracker.disableTracking()
+  }
 }
 
 onMounted(() => {
-  window._paq?.push([
-    function () {
-      // https://developer.matomo.org/guides/tracking-javascript-guide#optional-creating-a-custom-opt-out-form
-      isUserTracked.value = !this.isUserOptedOut()
-    },
-  ])
+  tracker.pushCallback(function () {
+    // https://developer.matomo.org/guides/tracking-javascript-guide#optional-creating-a-custom-opt-out-form
+    isUserTracked.value = !this.isUserOptedOut()
+  })
 })
 </script>

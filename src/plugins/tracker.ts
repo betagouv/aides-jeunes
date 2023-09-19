@@ -1,3 +1,5 @@
+import ABTestingService from "@/plugins/ab-testing-service.js"
+
 declare global {
   interface Window {
     _paq?: [
@@ -10,7 +12,41 @@ declare global {
   }
 }
 
-export default {
+// * Waits for `window._paq` to become available.
+//   Stops trying after reaching the specified timeout.
+function waitForPaq(timeout = 10000): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const startTime = Date.now()
+
+    const intervalId = setInterval(() => {
+      if (window._paq) {
+        clearInterval(intervalId)
+        resolve()
+      } else if (Date.now() - startTime > timeout) {
+        clearInterval(intervalId)
+        reject(new Error("Timeout reached."))
+      }
+    }, 100)
+  })
+}
+
+function initializeABTestingDimensions() {
+  const ABTestingEnvironment = ABTestingService.getEnvironment()
+  for (const name in ABTestingEnvironment) {
+    const data = ABTestingEnvironment[name]
+    if (data.deleted) {
+      tracker.deleteCustomDimension(data.index)
+    } else {
+      tracker.setCustomDimension(data.index, `${name}/${data.value}`)
+    }
+  }
+}
+
+waitForPaq().then(() => {
+  initializeABTestingDimensions()
+})
+
+const tracker = {
   trackEvent: (
     category: string,
     action: string,
@@ -28,4 +64,12 @@ export default {
   pushCallback: (callback: () => void) => {
     window._paq?.push([callback])
   },
+  deleteCustomDimension: (index: number) => {
+    window._paq?.push(["deleteCustomDimension", index])
+  },
+  setCustomDimension: (index: number, value: string) => {
+    window._paq?.push(["setCustomDimension", index, value])
+  },
 }
+
+export default tracker

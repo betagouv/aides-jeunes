@@ -21,9 +21,6 @@ interface ABTesting {
  *      -> ne pas polluer Matomo d'anciennes périodes de tests
  */
 function getEnvironment() {
-  if (!window._paq) {
-    return {}
-  }
   const ABTestingEnvironment: ABTesting =
     storageService.local.getItem("ABTesting") || {}
 
@@ -57,18 +54,6 @@ function getEnvironment() {
     versions[Math.floor(Math.random() * versions.length)]
   ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
 
-  Object.keys(ABTestingEnvironment).forEach(function (name) {
-    const data = ABTestingEnvironment[name]
-    if (data.deleted) {
-      window._paq!.push(["deleteCustomDimension", data.index])
-    } else {
-      window._paq!.push([
-        "setCustomDimension",
-        data.index,
-        `${name}/${data.value}`,
-      ])
-    }
-  })
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment
 }
@@ -95,6 +80,7 @@ const ABTestingService = {
 
     return extractValueMap(ABTestingEnvironment)
   },
+  getEnvironment,
 }
 
 export default ABTestingService

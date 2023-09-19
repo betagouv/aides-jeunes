@@ -42,7 +42,7 @@ function getEnvironment() {
   // /3 L'utiliser dans le code : ABTestingService.getValues().nom_du_test
   // Le bloc :
   // ABTestingEnvironment.name_of_the_test = ABTestingEnvironment.name_of_the_test || {}
-  // ABTestingEnvironment.name_of_the_test.index = 2
+  // ABTestingEnvironment.name_of_the_test.index = 2 (entre 1 et 5 inclus)
   // ABTestingEnvironment.name_of_the_test.value =
   //   ABTestingEnvironment.name_of_the_test.value ||
   //   (Math.random() > 0.5 ? "A version name" : "B version name")

@@ -70,6 +70,16 @@ const tracker = {
   setCustomDimension: (index: number, value: string) => {
     window._paq?.push(["setCustomDimension", index, value])
   },
+  getVisitorId: () => {
+    let visitorId: string | undefined
+    window._paq?.push([
+      function () {
+        visitorId = this?.getVisitorId()
+      },
+    ])
+
+    return visitorId
+  },
 }
 
 export default tracker

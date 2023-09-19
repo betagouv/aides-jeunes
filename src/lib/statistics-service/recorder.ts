@@ -3,7 +3,7 @@ import { getEnvVariable } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
-import { Matomo } from "./matomo.js"
+import tracker from "@/plugins/tracker.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
@@ -38,16 +38,11 @@ function skipSendEventToRecorder(event: RecorderEvent): boolean {
   return event.benefits ? event.benefits.length === 0 : true
 }
 
-function identifyEvent(matomo: Matomo | undefined): string {
-  return matomo !== undefined
-    ? matomo.getVisitorId()
-    : `uid_${Math.random().toString(12).slice(2)}`
+function identifyEvent(): string {
+  return tracker.getVisitorId() || `uid_${Math.random().toString(12).slice(2)}`
 }
 
-export async function sendEventToRecorder(
-  event: RecorderEvent,
-  matomo: Matomo | undefined = undefined
-): Promise<void> {
+export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
   if (skipSendEventToRecorder(event)) {
     !isProduction && console.debug("Skip sending event to recorder", event)
     return
@@ -57,7 +52,7 @@ export async function sendEventToRecorder(
   const abtesting = ABTestingService.getValues()
   const benefitsStats: StatisticsRecord[] = []
   const totalResults = benefits.length
-  const eventHashId = identifyEvent(matomo)
+  const eventHashId = identifyEvent()
 
   benefits.forEach((benefit, i) => {
     if (benefitId && benefitId !== benefit.id) {

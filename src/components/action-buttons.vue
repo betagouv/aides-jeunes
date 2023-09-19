@@ -73,7 +73,22 @@ const goBack = () => {
   )
   if (answerIndex > 0) {
     const previousAnswer = store.simulation.answers.current[answerIndex - 1]
-    router.push({ path: previousAnswer.path })
+    const currentAnswer = store.simulation.answers.current[answerIndex]
+
+    const childrenLength = store.simulation.enfants?.length
+    const childIndex = childrenLength ? childrenLength - 1 : null
+
+    if (
+      childrenLength &&
+      currentAnswer.entityName === "individu" &&
+      currentAnswer.id === `enfant_${childIndex}` &&
+      store.simulation.enfants?.length === childrenLength
+    ) {
+      store.updateAnswersOnBackAddEnfant(childIndex, answerIndex)
+      router.push({ path: "/simulation/enfants" })
+    } else {
+      router.push({ path: previousAnswer.path })
+    }
   } else if (answerIndex === 0) {
     router.push("/")
   } else {

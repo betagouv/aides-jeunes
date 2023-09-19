@@ -509,7 +509,6 @@ export function generateBlocks(situation): Block[] {
   return [
     { steps: [new StepGenerator({})] },
     individuBlockFactory("demandeur"),
-    new StepGenerator({ entity: "enfants", chapter: "foyer" }),
     kidBlock(situation),
     {
       steps: [

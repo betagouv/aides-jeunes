@@ -13,6 +13,7 @@ import config from "../config/index.js"
 
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
+import { phoneNumberFormatting } from "../../lib/phone-number.js"
 
 const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
   {
@@ -112,18 +113,9 @@ FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
   function (username: string, password: string) {
     const { baseURL } = config
-    const { internationalDiallingCodes, url } = config.smsService
+    const { url } = config.smsService
     const { accessToken, phone } = this
-
-    const isInternational = internationalDiallingCodes.some((code) =>
-      phone.startsWith(`00${code}`)
-    )
-
-    const formattedPhone = isInternational
-      ? phone.substring(2)
-      : phone.startsWith("06") || phone.startsWith("07")
-      ? `33${phone.substring(1)}`
-      : phone
+    const formattedPhone = phoneNumberFormatting(phone)
 
     const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
     const encodedText = encodeURIComponent(text)

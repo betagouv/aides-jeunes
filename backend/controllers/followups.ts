@@ -10,7 +10,7 @@ import { SurveyCategory } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
-import { phoneNumberValidation } from "../../lib/validation.js"
+import { phoneNumberValidation } from "../../lib/phone-number.js"
 
 export function followup(
   req: Request,

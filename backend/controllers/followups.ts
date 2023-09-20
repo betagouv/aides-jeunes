@@ -10,7 +10,7 @@ import { SurveyCategory } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
-import config from "../config/index.js"
+import { phoneNumberValidation } from "../../lib/validation.js"
 
 export function followup(
   req: Request,
@@ -60,15 +60,6 @@ export async function persist(req: Request, res: Response) {
       await followup.sendSimulationResultsEmail()
     }
     if (phone) {
-      const phoneNumberValidation = (phone) => {
-        const diallingCodes =
-          config.smsService.internationalDiallingCodes.join("|")
-        const phoneRegex = new RegExp(
-          `^(((\\+?|00)(${diallingCodes})|0)[1-9])(\\d{8})$`
-        )
-        return phoneRegex.test(phone)
-      }
-
       if (phoneNumberValidation(phone)) {
         await followup.sendSimulationResultsSms()
       } else {

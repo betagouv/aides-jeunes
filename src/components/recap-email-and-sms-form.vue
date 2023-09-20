@@ -262,7 +262,8 @@ const ctaText = ref(computeCtaText())
         v-if="phoneInputErrorMessage"
         id="invalid-phone-warning"
         class="fr-mt-2w"
-        >Un numéro de téléphone valide doit être indiqué.
+      >
+        Numéro de téléphone non pris en charge, vérifiez sa validité.
       </WarningMessage>
     </form>
   </div>

@@ -72,7 +72,7 @@ export async function persist(req: Request, res: Response) {
       if (phoneNumberValidation(phone)) {
         await followup.sendSimulationResultsSms()
       } else {
-        return res.status(403).send("Unsupported phone number format")
+        return res.status(422).send("Unsupported phone number format")
       }
     }
     return res.send({ result: "OK" })

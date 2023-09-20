@@ -11,6 +11,7 @@ import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 import { phoneNumberValidation } from "../../lib/phone-number.js"
+import config from "../config/index.js"
 
 export function followup(
   req: Request,
@@ -60,7 +61,12 @@ export async function persist(req: Request, res: Response) {
       await followup.sendSimulationResultsEmail()
     }
     if (phone) {
-      if (phoneNumberValidation(phone)) {
+      if (
+        phoneNumberValidation(
+          phone,
+          config.smsService.internationalDiallingCodes
+        )
+      ) {
         await followup.sendSimulationResultsSms()
       } else {
         return res.status(422).send("Unsupported phone number format")

@@ -1,16 +1,13 @@
 import mongoose from "mongoose"
 import validator from "validator"
-
 import { sendMail } from "../lib/smtp.js"
 import axios from "axios"
-
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../enums/email.js"
 import config from "../config/index.js"
-
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
@@ -115,7 +112,10 @@ FollowupSchema.method(
     const { baseURL } = config
     const { url } = config.smsService
     const { accessToken, phone } = this
-    const formattedPhone = phoneNumberFormatting(phone)
+    const formattedPhone = phoneNumberFormatting(
+      phone,
+      config.smsService.internationalDiallingCodes
+    )
 
     const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
     const encodedText = encodeURIComponent(text)

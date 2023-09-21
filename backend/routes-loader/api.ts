@@ -1,32 +1,37 @@
 import express from "express"
-import path from "path"
-import fs from "fs"
+
+import dataRoutes from "../routes/data.js"
+import emailsRoutes from "../routes/emails.js"
+import followupsRoutes from "../routes/followups.js"
+import franceConnectRoutes from "../routes/france-connect.js"
+import githubRoutes from "../routes/github.js"
+import openfiscaRoutes from "../routes/openfisca.js"
+import outilsRoutes from "../routes/outils.js"
+import proxyRoutes from "../routes/proxy.js"
+import questionsRoutes from "../routes/questions.js"
+import simulationRoutes from "../routes/simulation.js"
+import smsRoutes from "../routes/sms.js"
+import supportRoutes from "../routes/support.js"
+import teleservicesRoutes from "../routes/teleservices.js"
 
 const api = express()
 
-const __dirname = new URL(".", import.meta.url).pathname
-const routesPath = path.join(__dirname, "../routes")
+dataRoutes(api)
+emailsRoutes(api)
+followupsRoutes(api)
+franceConnectRoutes(api)
+githubRoutes(api)
+openfiscaRoutes(api)
+outilsRoutes(api)
+proxyRoutes(api)
+questionsRoutes(api)
+simulationRoutes(api)
+smsRoutes(api)
+supportRoutes(api)
+teleservicesRoutes(api)
 
-async function loadRoutes() {
-  const routes = await Promise.all(
-    fs
-      .readdirSync(routesPath)
-      .filter((file) => /(.*)\.(ts|js$)/.test(file))
-      .map(function (file) {
-        return import(`${routesPath}/${file}`)
-      })
-  )
-  routes.map((route) => route.default(api))
-}
-
-await loadRoutes()
-  .then(() => {
-    api.all("*", function (req, res) {
-      res.sendStatus(404)
-    })
-  })
-  .catch((error) => {
-    console.error(`Failed to load routes with error: ${error}`)
-  })
+api.all("*", function (req, res) {
+  res.sendStatus(404)
+})
 
 export default api

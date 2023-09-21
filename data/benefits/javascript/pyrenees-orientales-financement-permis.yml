@@ -1,25 +1,27 @@
 label: aide au financement du permis de conduire
 institution: departement_des_pyrenees_orientales
-description: Cette aide au financement du permis B et des frais d'assurance du
-  véhicule est proposée dans le cadre de "l'Aide Départementale de Retour à
-  l'Emploi" (ADRE).
+description: Le Département des Pyrénées-orientales soutient les jeunes dans leurs projets
+  d’autonomie et de mobilité, à travers l’attribution d’une aide pour financer des heures de conduite.
+  Pour tout complément d’information, contactez le Service Jeunesse au 04 68 52 98 36 ou
+  le Bureau Information Jeunesse au 04 68 34 56 56, ou envoyez un mail à permisjeunesse@cd66.fr
 conditions:
-  - Être allocataire du RSA.
-  - Effectuer votre demande auprès de votre référent RSA ou du référent de
-    votre <a target="_blank" rel="noopener" title ="Votre Maison sociale de proximité - Nouvelle fenêtre"
-    href="http://www.ledepartement66.fr/dossier/les-maisons-sociales-de-proximite/">Maison
-    sociale de proximité</a>.
+  - Résider dans le département 66 depuis au moins un an.
+  - Passer le permis pour la première fois.
+  - Être en possession du code de la route.
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 19
+    operator: <=
+    value: 25
   - type: departements
     values:
       - "66"
-profils:
-  - type: chomeur
-    conditions: []
-link: https://mes-aides.pole-emploi.fr/departement-pyrenees-orientales/aide-de-retour-a-l-emploi-pyrenees-orientales
-instructions: https://mes-aides.pole-emploi.fr/departement-pyrenees-orientales/aide-de-retour-a-l-emploi-pyrenees-orientales
+link: https://www.ledepartement66.fr/dossier/laide-au-permis-de-conduire/
+instructions: https://www.ledepartement66.fr/wp-content/uploads/2020/10/CD66_PermisConduire.pdf
 prefix: l’
-type: bool
+type: float
+montant: 250
 unit: €
 periodicite: ponctuelle
 interestFlag: _interetPermisDeConduire

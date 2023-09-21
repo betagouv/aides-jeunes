@@ -1,18 +1,16 @@
 import mongoose from "mongoose"
 import validator from "validator"
-
 import { sendMail } from "../lib/smtp.js"
 import axios from "axios"
-
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../enums/email.js"
 import config from "../config/index.js"
-
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
+import { phoneNumberFormatting } from "../../lib/phone-number.js"
 
 const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
   {
@@ -110,12 +108,19 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
 
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
-  function (username, password) {
-    const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${config.baseURL}/api/sms/${this.accessToken}\n1jeune1solution`
+  function (username: string, password: string) {
+    const { baseURL } = config
+    const { url } = config.smsService
+    const { accessToken, phone } = this
+    const formattedPhone = phoneNumberFormatting(
+      phone,
+      config.smsService.internationalDiallingCodes
+    )
+
+    const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
     const encodedText = encodeURIComponent(text)
-    const phone =
-      this.phone[0] === "0" ? `33${this.phone.slice(1)}` : this.phone
-    return `${config.smsService.url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${phone}&messageText=${encodedText}&username=${username}&password=${password}`
+
+    return `${url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${formattedPhone}&messageText=${encodedText}&username=${username}&password=${password}`
   }
 )
 
@@ -134,7 +139,6 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
     if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
     }
-    console.log("message ids: ", data.messageIds[0])
     return this.postSimulationResultsSms(data.messageIds[0])
   } catch (err) {
     this.smsError = JSON.stringify(err, null, 2)

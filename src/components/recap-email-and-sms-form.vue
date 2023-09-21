@@ -30,6 +30,12 @@ const simulationId = computed(
   () => !store.calculs.dirty && store.calculs.resultats?._id
 )
 
+const inputPhonePattern = computed(() => {
+  const diallingCodes: string | undefined =
+    process.env.VITE_SMS_DIALLING_CODES?.toString().replaceAll(",", "|")
+  return `^(((\\+?|00)(${diallingCodes})\\s?|0)[67])([\\s\\.\\-]?\\d{2}){4}`
+})
+
 const showSms = process.env.VITE_SHOW_SMS_TAB
 
 StatisticsMixin.methods.sendEventToMatomo(
@@ -158,7 +164,7 @@ const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapPhoneState(undefined)
   if (!inputEmailIsValid()) {
     store.setFormRecapEmailState(undefined)
-    throw new Error("invalid email")
+    throw new Error("Invalid email")
   }
   try {
     store.setModalState(undefined)
@@ -230,13 +236,16 @@ const ctaText = ref(computeCtaText())
       <div class="fr-form-group">
         <label class="fr-label" for="phone"
           >Votre numéro de téléphone portable
-          <span class="fr-hint-text">Format attendu : 06 12 23 42 78</span>
+          <span class="fr-hint-text"
+            >Format attendu : 06 12 23 42 78 (numéros de France métropolitaine
+            et DROM-COM)</span
+          >
         </label>
         <input
           id="phone"
           ref="phoneRef"
           v-model="phoneValue"
-          pattern="((\+?(00|33))|(0))\s*[1-9]([\s\.\-]?\d{2}){4}"
+          :pattern="inputPhonePattern"
           name="phone"
           required
           :aria-invalid="phoneInputErrorMessage"
@@ -253,7 +262,8 @@ const ctaText = ref(computeCtaText())
         v-if="phoneInputErrorMessage"
         id="invalid-phone-warning"
         class="fr-mt-2w"
-        >Un numéro de téléphone valide doit être indiqué.
+      >
+        Numéro de téléphone non pris en charge, vérifiez sa validité.
       </WarningMessage>
     </form>
   </div>

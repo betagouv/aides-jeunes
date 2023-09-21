@@ -18,12 +18,9 @@ context("Full simulation", () => {
   })
 
   it("accept a basic situation in an iframe", () => {
-    cy.get("@iframe")
-      .its("0.contentDocument")
-      .should("not.be.empty")
-      .its("body")
-      .as("iframeBody")
-
+    cy.get("@iframe").its("0.contentDocument").as("iframeDoc")
+    cy.get("@iframeDoc").should("not.be.empty")
+    cy.get("@iframeDoc").its("body").as("iframeBody")
     cy.get("@iframeBody").should("not.be.empty")
 
     cy.get("@iframeBody")

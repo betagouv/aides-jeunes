@@ -12,6 +12,7 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 19
+  - type: age
     operator: <=
     value: 25
   - type: departements

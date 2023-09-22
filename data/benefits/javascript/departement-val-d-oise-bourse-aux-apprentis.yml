@@ -1,7 +1,7 @@
-label: bourse aux apprentis ou apprenties
+label: bourse départementale aux apprentis et apprenties
 institution: departement_val_d_oise
 description: Le Conseil départemental du Val d’Oise attribue une bourse
-  départementale aux apprentis ou apprenties.
+  départementale aux apprentis et apprenties, versée en une seule fois au titre de l'année scolaire.
 conditions:
   - Résider fiscalement dans le Val d’Oise.
 conditions_generales:
@@ -14,11 +14,10 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
-link: https://mes-aides.pole-emploi.fr/departement-val-d-oise/aide-departementale-bourse-aux-apprentis
-instructions: https://mes-aides.pole-emploi.fr/departement-val-d-oise/aide-departementale-bourse-aux-apprentis
+link: https://www.valdoise.fr/aideEtService/10/176-bourse-departementale-aux-apprentis.htm
+instructions: https://www.valdoise.fr/cms_viewFile.php?idtf=196352&path=Conditions-d-attribution_Bourse-aux-apprentis-2023.pdf
 prefix: la
 type: float
 unit: €
 periodicite: annuelle
-legend: maximum
 montant: 230

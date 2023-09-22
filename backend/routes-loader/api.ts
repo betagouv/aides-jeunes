@@ -8,7 +8,6 @@ import githubRoutes from "../routes/github.js"
 import openfiscaRoutes from "../routes/openfisca.js"
 import outilsRoutes from "../routes/outils.js"
 import proxyRoutes from "../routes/proxy.js"
-import questionsRoutes from "../routes/questions.js"
 import simulationRoutes from "../routes/simulation.js"
 import smsRoutes from "../routes/sms.js"
 import supportRoutes from "../routes/support.js"
@@ -24,7 +23,6 @@ githubRoutes(api)
 openfiscaRoutes(api)
 outilsRoutes(api)
 proxyRoutes(api)
-questionsRoutes(api)
 simulationRoutes(api)
 smsRoutes(api)
 supportRoutes(api)

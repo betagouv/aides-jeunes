@@ -35,7 +35,7 @@ export default {
     modelValue: { type: [Number, String] },
     emit: { type: Boolean, default: true },
   },
-  emits: ["input", "update:modelValue"],
+  emits: ["input", "update:modelValue", "input-error"],
   data: function () {
     return {
       result: this.result,
@@ -62,6 +62,8 @@ export default {
           this.error = true
           this.$emit("update:modelValue", value)
         }
+
+        this.$emit("input-error", this.error)
       },
     },
   },

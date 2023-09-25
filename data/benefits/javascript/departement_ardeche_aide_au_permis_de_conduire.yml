@@ -1,0 +1,55 @@
+label: aide départementale au permis de conduire AM, A ou B
+institution: departement_ardeche
+description: "Le département aide les jeunes porteurs d'un projet d'insertion
+  socio-professionnelle et accompagnés par une Mission Locale ardéchoise à financer
+  une partie de leur permis de conduire. L'aide sélève à 100€ pour le permis AM
+  et à 500€ pour le permis A ou B. Elle est versée directement à l'auto-école
+  en contrepartie d'un engagement bénévole dans une association ardéchoise."
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "07"
+  - type: age
+    operator: ">="
+    value: 14
+  - type: age
+    operator: <=
+    value: 25
+  - type: quotient_familial
+    period: month
+    value: 700
+    operator: "<="
+profils:
+  - type: chomeur
+    conditions: []
+  - type: inactif
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+conditions:
+  - Être hors du système scolaire.
+  - Avoir un quotient familial inférieur à 700€/mois pour être éligible à l'aide au permis AM,
+    et inférieur à 600€/mois pour être éligible à l'aide au permis A ou B.
+  - Prendre contact avec votre Mission Locale avant de vous inscrire à l'auto-école.
+  - Avoir un projet d'emploi ou de formation validé par un référent Mission Locale
+    (une formation continue ou en apprentissage, un stage dans le cadre d’une formation
+    ou d’une recherche d’emploi, un premier emploi ou un emploi aidé depuis moins de 3 mois,
+    un parcours garantie jeunes ou un service civique).
+voluntary_conditions:
+  - "Être engagé dans une mission bénévole de 10 à 20 heures auprès d’un
+    organisme d'intérêt général."
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 500
+link: https://www.ardeche.fr/23-le-permis-de-conduire.htm
+instructions: https://www.ardeche.fr/23-le-permis-de-conduire.htm

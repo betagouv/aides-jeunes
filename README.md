@@ -22,7 +22,7 @@
   - Deloy previews
 - SMTP server
 - Matomo ([stats.data.gouv.fr](https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=range&date=previous30))
-  - [Dedicated site for usage data and impac][https://betagouv.github.io/mes-aides-analytics/] [source](https://github.com/betagouv/mes-aides-analytics)
+  - [Dedicated site for usage data and impact](https://betagouv.github.io/mes-aides-analytics/) [source](https://github.com/betagouv/mes-aides-analytics)
 - Sentry
   - [backend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-node/?project=5709109)
   - [frontend](https://sentry.io/organizations/betagouv-f7/projects/aides-jeunes-front/?project=5709078)

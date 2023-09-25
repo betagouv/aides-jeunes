@@ -32,6 +32,7 @@ import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
 import { EventCategory } from "@lib/enums/event-category.js"
+import tracker from "@/plugins/tracker.js"
 
 const props = defineProps({
   onSubmit: {
@@ -62,11 +63,8 @@ const localOnSubmit = (event) => {
 }
 
 const goBack = () => {
-  window.Piwik?.getTracker()?.trackEvent(
-    EventCategory.Parcours,
-    "Bouton précédent",
-    route.fullPath
-  )
+  tracker.trackEvent(EventCategory.Parcours, "Bouton précédent", route.fullPath)
+
   const answerIndex = getAnswerIndexByPath(
     store.simulation.answers.current,
     route.fullPath

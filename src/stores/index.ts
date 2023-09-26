@@ -407,24 +407,6 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    updateAnswersOnBackAddEnfant(childIndex, answerIndex) {
-      this.removeEnfant(`enfant_${childIndex}`)
-      const answer = this.simulation.answers.current.find(
-        (answer) =>
-          answer.id === `enfant_${childIndex}` &&
-          answer.fieldName === "_firstName"
-      )
-      if (answer) {
-        this.simulation.answers.current.splice(answerIndex, 1)
-      }
-      this.simulation.answers.current.push({
-        id: "",
-        entityName: "enfants",
-        fieldName: "enfants",
-        value: childIndex,
-        path: "/simulation/enfants",
-      })
-    },
     updateError(error: string) {
       this.error = error
     },

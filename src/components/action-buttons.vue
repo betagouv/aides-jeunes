@@ -84,7 +84,7 @@ const goBack = () => {
       currentAnswer.id === `enfant_${childIndex}` &&
       store.simulation.enfants?.length === childrenLength
     ) {
-      store.updateAnswersOnBackAddEnfant(childIndex, answerIndex)
+      store.removeEnfant(`enfant_${childIndex}`)
       router.push({ path: "/simulation/enfants" })
     } else {
       router.push({ path: previousAnswer.path })

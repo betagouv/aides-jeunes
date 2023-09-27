@@ -4,12 +4,12 @@ import { Configuration } from "../types/config.js"
 export default function (mongoose: any, config: Configuration) {
   mongoose.Promise = bluebird
 
-  if (!config.mongo.uri) {
+  if (!config.mongodb_url) {
     throw new Error("Please provide a `MONGODB_URL` environment variable")
   }
 
   mongoose
-    .connect(config.mongo.uri, config.mongo.options)
+    .connect(config.mongodb_url)
     .then(() => console.info("DB connected"))
     .catch((e) => {
       throw new Error(e)

@@ -1,8 +1,5 @@
 export interface Configuration {
   env: string
-  animation: {
-    delay: number
-  }
   baseURL: string
   franceConnect: {
     root?: string
@@ -42,16 +39,12 @@ export interface Configuration {
     url: string
     version: number
   }
-  mongo: {
-    uri?: string
-    options: {
-      useUnifiedTopology: boolean
-      useNewUrlParser: boolean
-    }
-  }
+  mongodb_url: string
   sessionSecret: string
   mattermost_post_url: string
-  teleserviceAccessTokens?: any
+  teleserviceAccessTokens: {
+    PNDS: string
+  }
   iframeTitle: string
   sentry: {
     dsn: string | undefined

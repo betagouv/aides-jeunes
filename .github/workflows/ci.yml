@@ -136,11 +136,6 @@ jobs:
         with:
           path: dist-server
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
-      - name: Simulate a production environment for the CI
-        shell: bash
-        run: |
-          cp backend/config/continuous-integration.ts backend/config/production.js && cp backend/config/continuous-integration.ts backend/config/production.ts
-          nohup Xvfb :99 &
       - name: Build assets
         run: |
           npm run build
@@ -211,7 +206,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Build assets
-        run: NODE_ENV=production npm run build:iframes
+        run: |
+          cp .env.iframe_build_control .env
+          npm run build:iframes
       - name: Validate Iframe build
         shell: bash
         run: "npm run tools:test-iframe-generation"

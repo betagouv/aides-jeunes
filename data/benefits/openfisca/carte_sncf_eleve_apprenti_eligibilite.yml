@@ -8,6 +8,10 @@ conditions:
   - Demander la carte directement dans la boutique SNCF de votre choix.
 link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
 instructions: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
+teleservice:
+  name: redirection
+  query:
+    vers: ds?procedure=abonnement-aeea-dgitm
 prefix: la
 type: bool
 periodicite: annuelle

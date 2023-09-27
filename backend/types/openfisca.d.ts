@@ -8,6 +8,11 @@ export interface OpenfiscaMapping {
   foyers_fiscaux: FoyersFiscaux
   menages: Menage
 }
+export type OpenfiscaMappingValues =
+  | Individu[]
+  | Famille
+  | FoyersFiscaux
+  | Menage
 
 export interface Famille {
   _: {

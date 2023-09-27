@@ -1,7 +1,8 @@
-import { forEach } from "lodash-es"
-
 import common from "./common.js"
-import { OpenfiscaMapping } from "../../../types/openfisca.js"
+import {
+  OpenfiscaMapping,
+  OpenfiscaMappingValues,
+} from "../../../types/openfisca.js"
 
 const famillePropertiesGivenToIndividu = Object.values(
   common.requestedVariables
@@ -28,10 +29,13 @@ function movePropertyValuesToGroupEntity(testCase: OpenfiscaMapping) {
   Object.keys(movedProperties).forEach(function (testCasePropertyName) {
     const moveDetails = movedProperties[testCasePropertyName]
 
-    forEach(testCase[testCasePropertyName], function (entity) {
+    const openfiscaMappingValues: OpenfiscaMappingValues[] = Object.values(
+      testCase[testCasePropertyName]
+    )
+    openfiscaMappingValues.forEach(function (entity) {
       const entityIndividuIds = moveDetails.sourceKeys.reduce(function (
         accum,
-        key
+        key: string
       ) {
         return accum.concat(entity[key] || [])
       },

@@ -1,0 +1,27 @@
+label: Aide au permis de conduire
+institution: ville_berre_l_etang
+description:
+  La Ville de Berre l'Étang participe au financement du permis de conduire pour tous les
+  jeunes qui passent le permis de conduire B, sans conditions de ressources. Pour effectuer
+  une demande, rendez-vous au Centre Communale d'Action Sociale (CCAS).
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "13014"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: "<="
+    value: 25
+conditions:
+  - Résider à Berre l'Étang depuis plus de trois ans.
+  - Justifier d’une réussite au code de la route ou au permis de conduire.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://www.berreletang.fr/le-permis-de-conduire
+instructions: https://www.berreletang.fr/le-permis-de-conduire

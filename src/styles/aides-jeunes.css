@@ -145,6 +145,10 @@ textarea {
 .fr-btn--icon-center {
   justify-content: center !important;
 }
+.fr-btn--multiline {
+  white-space: normal !important;
+  max-height: none !important;
+}
 
 .fr-btn-disabled {
   --hover: var(--background-disabled-grey);

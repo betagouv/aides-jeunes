@@ -1,6 +1,7 @@
 label: bourse du secteur sanitaire et social
 institution: grand_est
-description: La Région Grand Est peut octroyer des bourses d’études sur critères sociaux
+description:
+  La Région Grand Est peut octroyer des bourses d’études sur critères sociaux
   aux personnes inscrites comme étudiantes dans les formations du secteur sanitaire
   et social agréées et financées par la Région Grand Est.
 prefix: la

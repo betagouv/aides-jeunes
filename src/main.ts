@@ -64,7 +64,7 @@ if (navigator.cookieEnabled && process.env.VITE_CONTEXT === "production") {
 }
 
 app.config.globalProperties.$filters = {
-  capitalize(value: string = "") {
+  capitalize(value = "") {
     return value.charAt(0).toUpperCase() + value.slice(1)
   },
 }

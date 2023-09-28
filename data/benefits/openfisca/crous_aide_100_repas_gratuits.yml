@@ -1,0 +1,20 @@
+label: aide du crous et de la région Hauts-de-France de 100 repas gratuits aux étudiants boursiers échelon 3 à 7
+institution: hauts_de_france
+description:
+  Le Conseil Régional Hauts-de-France, en partenariat avec le Crous, reconduit l’« aide à la restauration »
+  pour l’année universitaire 2023-2024 ! Dédiée aux étudiants boursiers échelon 3 à 7, elle permet de bénéficier
+  de 100 repas gratuits pris en restos’U du Crous.
+conditions:
+  - Être inscrit dans un établissement d’enseignement supérieur, public ou privé, partenaire de la Région, reconnu par le ministère de l’Enseignement
+    supérieur, de la recherche et de l’innovation sur le territoire des Hauts-de-France, ou inscrits dans un établissement dispensant une formation
+    sanitaire ou sociale gérée par la Région.
+  - Être boursier du Crous ou de la Région Hauts-de-France à l’un des échelons de bourse (3, 4, 5, 6, ou 7), ou signalé par le service social du Crous.
+  - Être inscrit dans un établissement autre qu'un lycée (sont exclus les étudiants dont l’établissement d’inscription est un lycée comme les étudiants en BTS ou CPGE).
+periodicite: ponctuelle
+link: https://www.ij-hdf.fr/actualite/747/100-repas-gratuits-de-nouveau-attribues-aux-etudiants-boursiers-echelon-3-a-7#:~:text=Le%20Conseil%20R%C3%A9gional%20Hauts-de,en%20restos
+instructions: https://www.ij-hdf.fr/actualite/747/100-repas-gratuits-de-nouveau-attribues-aux-etudiants-boursiers-echelon-3-a-7#:~:text=Le%20Conseil%20R%C3%A9gional%20Hauts-de,en%20restos
+prefix: l’
+entity: individus
+type: bool
+unit: null
+openfiscaPeriod: thisMonth

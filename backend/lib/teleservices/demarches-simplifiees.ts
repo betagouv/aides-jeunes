@@ -101,6 +101,9 @@ const mappings = {
     "champ_Q2hhbXAtMzE5MDUwOQ==": sources.date_naissance,
     "champ_Q2hhbXAtMzE5MDU4Ng==": sources.commune,
   },
+  "abonnement-aeea-dgitm": {
+    "champ_Q2hhbXAtMzM3MjU3MQ==": sources.date_naissance,
+  },
 }
 
 function DemarchesSimplifiees(simulation, query) {

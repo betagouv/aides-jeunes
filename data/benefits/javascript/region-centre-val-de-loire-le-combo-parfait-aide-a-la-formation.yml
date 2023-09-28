@@ -2,9 +2,10 @@ label: Combo parfait (aide à la formation)
 institution: region_centre_val_de_loire
 description: "Le Combo Parfait regroupe des formations qualifiantes ou
   pré-qualifiantes à des métiers de proximité, destinées aux jeunes en recherche
-  d’emploi. Durant toute la durée de la formation, vous bénéficierez d’une
-  rémunération (500€/mois). Des aides complémentaires existent (permis,
-  logement, mobilité) : voir"
+  d’emploi. Vous bénéficierez de 500€ pour votre entrée en formation, puis d'une
+  rémunération de 520€ par mois pendant toute la durée de la formation. A cela
+  s'ajoute une aide à la prise en charge des transports et de l’hébergement pouvant
+  atteindre 300€ par mois."
 prefix: le
 conditions_generales:
   - type: age
@@ -24,6 +25,6 @@ conditions:
 type: float
 unit: €
 periodicite: mensuelle
-montant: 500
-link: https://www.centre-valdeloire.fr/lactualite-de-la-region-centre-valdeloire/combo-parfait-la-formule-gagnante-pour-accompagner-les
-instructions: https://www.centre-valdeloire.fr/lactualite-de-la-region-centre-valdeloire/combo-parfait-la-formule-gagnante-pour-accompagner-les
+montant: 520
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/le-combo-parfait-le-pack-gagnant-pour-votre
+instructions: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/le-combo-parfait-le-pack-gagnant-pour-votre

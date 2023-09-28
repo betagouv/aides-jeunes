@@ -3,7 +3,7 @@ institution: ville_saint_louis
 description: Le centre communal d'action sociale de Saint-Louis vous accompagne au quotidien dans vos démarches de demandes d'aides. Les informations que vous avez intégrées dans le simulateur seront automatiquement pré-remplies dans le formulaire du centre communal d'action sociale.
 prefix: un
 link: https://saintlouis.re/solidarite/117-ccas
-teleservice:
+teleservicePrefill:
   name: redirection
   query:
     vers: ccas_saint_louis_preprod
@@ -11,4 +11,3 @@ type: bool
 entity: menages
 openfiscaPeriod: thisMonth
 periodicite: autre
-skip_schema_check: true

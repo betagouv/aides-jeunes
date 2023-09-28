@@ -33,7 +33,7 @@ export function formatBenefits(benefits, parameters) {
 
     let ctaLink = ""
     let ctaLabel = ""
-    if (droit.teleservice && droit.teleservice.name !== "redirection") {
+    if (droit.teleservice) {
       ctaLink = droit.teleservice
       ctaLabel = "Faire une demande en ligne"
     } else if (droit.form) {

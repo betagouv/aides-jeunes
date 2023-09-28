@@ -31,7 +31,7 @@ const props = defineProps({
   analyticsName: String,
   benefit: { type: Object as PropType<StandardBenefit>, required: true },
   type: String,
-  link: String,
+  link: [String, Object],
 })
 
 const label = computed(() => (props.type ? labels[props.type].short : null))

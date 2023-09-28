@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
+import { CTALabel } from "@lib/enums/cta.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
@@ -9,22 +10,27 @@ const props = defineProps({
 })
 
 const ctaForm = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Form)
+  return ctas.value.find((cta) => cta?.type === CTALabel.Form)
 })
 
 const ctaTeleservice = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Teleservice)
+  return ctas.value.find(
+    (cta) =>
+      cta?.type === CTALabel.Teleservice ||
+      cta?.type === CTALabel.TeleservicePrefill
+  )
 })
 
 const ctaInstructions = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Instructions)
+  return ctas.value.find((cta) => cta?.type === CTALabel.Instructions)
 })
 
 const ctas = computed(() => {
   const ctaBehaviourTypes = [
-    BehaviourEvent.Teleservice,
-    BehaviourEvent.Form,
-    BehaviourEvent.Instructions,
+    CTALabel.Teleservice,
+    CTALabel.Form,
+    CTALabel.Instructions,
+    CTALabel.TeleservicePrefill,
   ]
 
   return ctaBehaviourTypes
@@ -59,7 +65,7 @@ const ctas = computed(() => {
           :analytics-name="benefit.id"
           :benefit="benefit"
           :link="ctaTeleservice.link"
-          :type="ctaTeleservice.type"
+          type="teleservice"
           class="fr-btn fr-btn--sm"
         />
         <BenefitCtaLink

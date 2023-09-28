@@ -65,7 +65,7 @@ const ctas = computed(() => {
           :analytics-name="benefit.id"
           :benefit="benefit"
           :link="ctaTeleservice.link"
-          type="teleservice"
+          :type="CTALabel.Teleservice"
           class="fr-btn fr-btn--sm"
         />
         <BenefitCtaLink

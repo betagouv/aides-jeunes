@@ -95,7 +95,6 @@ export interface StandardBenefit {
   top: number
   floorAt: number
   teleservice: string
-  skip_schema_check: boolean
   private: boolean
   instructionsGenerator: (number) => string
   voluntary_conditions: any

@@ -22,7 +22,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
       type: String,
       validate: {
         validator: validator.isEmail,
-        message: "{VALUE} n'est pas un email valide",
+        message: "Email invalide",
         isAsync: false,
       },
     },
@@ -30,7 +30,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
       type: String,
       validate: {
         validator: validator.isMobilePhone,
-        message: "{VALUE} n'est pas un numéro de téléphone valide",
+        message: "Numéro de téléphone invalide",
         isAsync: false,
       },
     },

@@ -407,6 +407,25 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
+    shouldRemoveLastChild(answerIndex: number): boolean {
+      const currentAnswer = this.simulation.answers.current[answerIndex]
+      const enfants = this.simulation.enfants
+
+      if (enfants && enfants.length > 0) {
+        const lastChildIndex = enfants.length - 1
+
+        if (
+          currentAnswer.entityName === "individu" &&
+          currentAnswer.id === `enfant_${lastChildIndex}` &&
+          enfants.length === lastChildIndex + 1
+        ) {
+          this.removeEnfant(`enfant_${lastChildIndex}`)
+          return true
+        }
+      }
+      return false
+    },
+
     updateError(error: string) {
       this.error = error
     },

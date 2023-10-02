@@ -263,11 +263,10 @@ export const useStore = defineStore("store", {
     updateAnswerSimulation(answer: Answer) {
       this.simulation.answers = {
         ...this.simulation.answers,
-        all: storeAnswer(this.simulation.answers.all, answer, false),
+        all: storeAnswer(this.simulation.answers.all, answer),
         current: storeAnswer(
           this.simulation.answers.current,
           answer,
-          true,
           this.simulation.enfants
         ),
       }
@@ -362,13 +361,8 @@ export const useStore = defineStore("store", {
         ...this.simulation,
         enfants,
         answers: {
-          all: storeAnswer(this.simulation.answers.all, answer, false),
-          current: storeAnswer(
-            currentAnswers,
-            answer,
-            true,
-            this.simulation.enfants
-          ),
+          all: storeAnswer(this.simulation.answers.all, answer),
+          current: storeAnswer(currentAnswers, answer, this.simulation.enfants),
         },
       }
       this.setDirty()

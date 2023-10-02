@@ -125,7 +125,7 @@ import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
+import { EventAction } from "@lib/enums/event.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
@@ -155,8 +155,8 @@ export default {
   },
   data() {
     return {
-      eventTypeMSA: BehaviourEvent.Msa,
-      eventTypeLink: BehaviourEvent.Link,
+      eventTypeMSA: EventAction.Msa,
+      eventTypeLink: EventAction.Link,
     }
   },
   computed: {

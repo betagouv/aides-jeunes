@@ -1,3 +1,5 @@
+import { CTALabel } from "./cta.js"
+
 // Notez que toutes les clés sont maintenant en français,
 // mais pour la continuité sur Matomo nous gardons les valeurs anglaises
 export enum EventCategory {
@@ -14,16 +16,32 @@ export enum EventAction {
   AfficheLienAccompagnement = "show-accompaniment-link",
   BoutonPrecedent = "Bouton précédent",
   CalculResultatsRestauration = "compute",
+  Close = "close",
   CodePostalIntrouvable = "Depcom introuvable",
+  Email = "email",
   EnSavoirPlus = "En savoir plus",
   ErreurInitStore = "Error",
   ErreurSauvegardeSimulation = "Erreur sauvegarde simulation",
+  Form = CTALabel.Form,
   FormulaireAffiche = "Formulaire affiché",
   FormulaireEmailInvalide = "Invalid email form",
   FormulaireTelephoneInvalide = "Invalid phone form",
   FormulaireValideAvecRecontact = "Formulaire validé avec recontact",
+  Instructions = CTALabel.Instructions,
+  Link = "link",
+  LinkIneligible = "link-ineligible",
+  Msa = "msa",
   NavigationAnnulee = "Navigation cancelled",
   Redirection = "Redirection",
+  RetourLogement = "retour-logement",
   SauvegardeDonnees = "Sauvegarde des données",
+  Show = "show",
+  ShowDetails = "showDetails",
+  ShowLocations = "show-locations",
+  ShowNewLocation = "show-new-location",
+  ShowUnexpected = "show-unexpected",
+  ShowUnexpectedAmountLink = "show-unexpected-amount-link",
+  SimulationCaf = "simulation-caf",
+  Teleservice = CTALabel.Teleservice,
   TelechargementDonnees = "Téléchargement données",
 }

@@ -7,7 +7,6 @@ import {
   MatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
-import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
@@ -55,6 +54,6 @@ export default {
     },
   },
   data: () => ({
-    BehaviourEvent,
+    EventAction,
   }),
 }

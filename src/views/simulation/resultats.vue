@@ -104,7 +104,6 @@ import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
-import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
@@ -158,7 +157,7 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.sendBenefitsStatistics(this.droits, BehaviourEvent.Show)
+      this.sendBenefitsStatistics(this.droits, EventAction.Show)
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
       const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
@@ -172,7 +171,7 @@ export default {
 
       this.sendBenefitsStatistics(
         droitsWithUnexpectedAmount,
-        BehaviourEvent.ShowUnexpectedAmountLink
+        EventAction.ShowUnexpectedAmountLink
       )
     },
     sendAccessToAnonymizedResults() {

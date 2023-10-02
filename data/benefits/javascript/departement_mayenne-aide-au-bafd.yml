@@ -19,8 +19,5 @@ unit: €
 periodicite: autre
 montant: 450
 link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd
-teleservicePrefill:
-  name: redirection
-  query:
-    vers: ds?procedure=cd53_dat_bafd
+teleservicePrefill: ds?procedure=cd53_dat_bafd
 instructions: https://www.lamayenne.fr/service/aide-pour-passer-le-bafd

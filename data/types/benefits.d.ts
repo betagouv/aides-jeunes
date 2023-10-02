@@ -64,12 +64,7 @@ export interface JavascriptBenefit {
     legend: string
   }
   source?: string
-  teleservicePrefill?: {
-    name: string
-    query: {
-      vers: string
-    }
-  }
+  teleservicePrefill?: string
 }
 
 export interface StandardBenefit {
@@ -117,12 +112,7 @@ export interface StandardBenefit {
   external_id: string
   collectivity: any
   title: string
-  teleservicePrefill?: {
-    name: string
-    query: {
-      vers: string
-    }
-  }
+  teleservicePrefill?: string
 }
 
 export interface BenefitsMap {

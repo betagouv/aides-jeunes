@@ -7,10 +7,7 @@ description: Vous êtes élève de moins de 21 ans, étudiant de moins de 26 ans
 conditions:
   - Demander la carte directement dans la boutique SNCF de votre choix.
 link: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
-teleservicePrefill:
-  name: redirection
-  query:
-    vers: ds?procedure=abonnement-aeea-dgitm
+teleservicePrefill: ds?procedure=abonnement-aeea-dgitm
 instructions: https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis
 prefix: la
 type: bool

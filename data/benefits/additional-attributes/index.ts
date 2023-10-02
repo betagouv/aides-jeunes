@@ -12,12 +12,7 @@ import occitanie_carte_transport_scolaire_lio from "./occitanie-carte-transport-
 
 export const additionalBenefitAttributes = {
   aidesvelo_aides_mayenne: {
-    teleservicePrefill: {
-      name: "redirection",
-      query: {
-        vers: "ds?procedure=cd53_sdem_vae",
-      },
-    },
+    teleservicePrefill: "ds?procedure=cd53_sdem_vae",
   },
   css_participation_forfaitaire: {
     extra: [

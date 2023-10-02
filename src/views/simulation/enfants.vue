@@ -95,10 +95,8 @@ export default {
 
   methods: {
     addPAC() {
-      const children = this.store.simulation.enfants || []
-      const lastId = children.length > 0 ? children[children.length - 1] : -1
-      this.store.addEnfant()
-      this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
+      const enfantId = this.store.addEnfant()
+      this.$router.push(`/simulation/individu/enfant_${enfantId}/_firstName`)
     },
     removePAC(id) {
       this.store.removeEnfant(id)
@@ -130,17 +128,16 @@ export default {
           day: "numeric",
           month: "numeric",
           year: "numeric",
-        }) //).format('DD/MM/YYYY')
+        })
       } else {
         return "Non renseigné"
       }
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite(value) {
-      const s = ScolariteCategories.types.find((s) => s.value === value)
-      return s
-        ? ScolariteCategories.types.find((s) => s.value === value).label
-        : "-"
+      return (
+        ScolariteCategories.types.find((s) => s.value === value)?.label || "-"
+      )
     },
   },
 }

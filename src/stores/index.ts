@@ -366,6 +366,7 @@ export const useStore = defineStore("store", {
         },
       }
       this.setDirty()
+      return enfantId
     },
     editEnfant(id: number) {
       // When you edit a children you need to remove all current answer after the child validation

@@ -14,13 +14,13 @@ export default {
   methods: {
     sendEventsToRecorder: function (
       benefits: StandardBenefit[] = [],
-      event_type: string,
+      eventAction: string,
       benefitId: string | undefined = undefined
     ) {
       const event: RecorderEvent = {
         benefits,
         benefitId,
-        event_type,
+        eventAction,
       }
       sendEventToRecorder(event)
     },
@@ -40,17 +40,17 @@ export default {
     },
     sendBenefitsStatistics: function (
       benefits: StandardBenefit[] = [],
-      event_type: string,
+      eventAction: string,
       benefitId: string | undefined = undefined
     ) {
-      this.sendEventsToRecorder(benefits, event_type, benefitId)
+      this.sendEventsToRecorder(benefits, eventAction, benefitId)
 
       for (const benefit of benefits) {
         if (benefitId && benefit.id !== benefitId) {
           continue
         }
 
-        this.sendEventToMatomo(EventCategory.General, event_type, benefit.id)
+        this.sendEventToMatomo(EventCategory.General, eventAction, benefit.id)
       }
     },
   },

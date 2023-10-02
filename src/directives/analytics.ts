@@ -14,7 +14,7 @@ const AnalyticsDirective = {
       const recorderEvent: RecorderEvent = {
         benefits: binding?.instance?.droits,
         benefitId: binding.value.name,
-        event_type: binding.value.action,
+        eventAction: binding.value.action,
       }
 
       sendEventToRecorder(recorderEvent)

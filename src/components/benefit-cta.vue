@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { CTALabel } from "@lib/enums/cta.js"
-import { EventAction } from "@lib/enums/event.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
@@ -105,7 +105,7 @@ const ctas = computed(() => {
         v-analytics="{
           name: benefit.label,
           action: EventAction.Msa,
-          category: 'General',
+          category: EventCategory.General,
         }"
         class="aj-droit-pro-agricole"
         href="https://www.msa.fr/lfy/espace-prive"

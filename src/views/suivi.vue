@@ -21,11 +21,7 @@
                   >
                   <p>
                     <a
-                      v-analytics="{
-                        name: currentPath,
-                        action: 'click-accompaniment-link',
-                        category: 'Accompaniment',
-                      }"
+                      v-analytics="accompanimentClickEvent"
                       class="fr-btn fr-btn--lg"
                       href="https://www.rdv-aide-numerique.fr/?address=1&departement=AJ"
                     >
@@ -186,8 +182,12 @@ const showAccompanimentBlock = computed(() => {
   )
 })
 
-const currentPath = computed(() => {
-  return route.path
+const accompanimentClickEvent = computed(() => {
+  return {
+    name: route.path,
+    action: EventAction.ClickLienAccompagnement,
+    category: EventCategory.Accompagnement,
+  }
 })
 
 onMounted(async () => {

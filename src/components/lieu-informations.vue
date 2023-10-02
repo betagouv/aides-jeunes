@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, defineProps, PropType } from "vue"
 import { LieuProperties } from "@lib/types/lieu.d.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 const props = defineProps({
   lieu: {
@@ -11,6 +12,22 @@ const props = defineProps({
 
 const hasContact = computed(() => {
   return props.lieu?.url || props.lieu?.telephone
+})
+
+const siteInternetEvent = computed(() => {
+  return {
+    name: props.lieu?.id,
+    action: EventAction.SiteInternet,
+    category: EventCategory.Partenaire,
+  }
+})
+
+const telephoneEvent = computed(() => {
+  return {
+    name: props.lieu?.id,
+    action: EventAction.Telephone,
+    category: EventCategory.Partenaire,
+  }
 })
 
 const extractHHMM = (dateString: string) => {
@@ -78,11 +95,7 @@ const extractHHMM = (dateString: string) => {
     >
       <li v-if="lieu.url">
         <a
-          v-analytics="{
-            name: lieu.id,
-            action: 'Site internet',
-            category: 'Partenaire',
-          }"
+          v-analytics="siteInternetEvent"
           :aria-label="`Site internet : ${lieu.nom} - Nouvelle fenêtre`"
           :href="lieu.url"
           class="fr-btn"
@@ -94,11 +107,7 @@ const extractHHMM = (dateString: string) => {
       </li>
       <li v-if="lieu.telephone">
         <a
-          v-analytics="{
-            name: lieu.id,
-            action: 'Téléphone',
-            category: 'Partenaire',
-          }"
+          v-analytics="telephoneEvent"
           :href="`tel:${lieu.telephone}`"
           class="fr-btn fr-hidden-sm"
           rel="noopener"

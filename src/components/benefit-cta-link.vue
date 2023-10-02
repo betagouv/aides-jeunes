@@ -5,6 +5,7 @@ import { PropType, computed, defineProps } from "vue"
 import { useRouter } from "vue-router"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { CTALabel } from "@lib/enums/cta.js"
+import { EventCategory } from "@lib/enums/event"
 
 const store = useStore()
 const $router = useRouter()
@@ -72,7 +73,11 @@ const onClick = () => {
 <template>
   <a
     :id="`cta-${type}`"
-    v-analytics="{ name: analyticsName, action: type, category: 'General' }"
+    v-analytics="{
+      name: analyticsName,
+      action: type,
+      category: EventCategory.General,
+    }"
     :aria-label="longLabel"
     :href="getURL(link)"
     class="fr-my-1w"

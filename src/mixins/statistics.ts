@@ -8,13 +8,13 @@ import {
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
-import { EventCategory } from "@lib/enums/event-category.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   methods: {
     sendEventsToRecorder: function (
       benefits: StandardBenefit[] = [],
-      eventAction: string,
+      eventAction: EventAction,
       benefitId: string | undefined = undefined
     ) {
       const event: RecorderEvent = {
@@ -26,7 +26,7 @@ export default {
     },
     sendEventToMatomo: function (
       category: EventCategory,
-      action: string,
+      action: EventAction,
       label: string,
       value?: string
     ) {
@@ -40,7 +40,7 @@ export default {
     },
     sendBenefitsStatistics: function (
       benefits: StandardBenefit[] = [],
-      eventAction: string,
+      eventAction: EventAction,
       benefitId: string | undefined = undefined
     ) {
       this.sendEventsToRecorder(benefits, eventAction, benefitId)

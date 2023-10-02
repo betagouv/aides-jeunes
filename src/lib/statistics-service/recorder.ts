@@ -4,13 +4,14 @@ import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
 import tracker from "@/plugins/tracker.js"
+import { EventAction } from "@lib/enums/event.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
 export interface RecorderEvent {
   benefits: StandardBenefit[]
   benefitId?: string
-  eventAction: string
+  eventAction: EventAction
 }
 
 interface StatisticsRecord {
@@ -19,7 +20,7 @@ interface StatisticsRecord {
   abtesting: object
   benefit_index: number
   page_total: number
-  event_type: string
+  event_type: EventAction
   version: string
 }
 

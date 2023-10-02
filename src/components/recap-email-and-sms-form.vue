@@ -6,7 +6,7 @@ import { computed, ref } from "vue"
 import { useRouter } from "vue-router"
 import * as Sentry from "@sentry/vue"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventCategory } from "@lib/enums/event-category.js"
+import { EventCategory, EventAction } from "@lib/enums/event.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
@@ -40,7 +40,7 @@ const showSms = process.env.VITE_SHOW_SMS_TAB
 
 StatisticsMixin.methods.sendEventToMatomo(
   EventCategory.Followup,
-  "Formulaire affiché",
+  EventAction.FormulaireAffiche,
   ABTestingService.getValues().CTA_EmailRecontact
 )
 
@@ -72,7 +72,7 @@ const sendRecap = async (surveyOptin) => {
     if (sendOptinSurveyEvent) {
       StatisticsMixin.methods.sendEventToMatomo(
         EventCategory.Followup,
-        "Formulaire validé avec recontact",
+        EventAction.FormulaireValideAvecRecontact,
         ABTestingService.getValues().CTA_EmailRecontact
       )
     }
@@ -87,7 +87,7 @@ const inputPhoneIsValid = () => {
     phoneRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
-      "Invalid phone form",
+      EventAction.FormulaireTelephoneInvalide,
       router.currentRoute.value.fullPath
     )
     return false
@@ -102,7 +102,7 @@ const inputEmailIsValid = () => {
     emailRef.value.focus()
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
-      "Invalid email form",
+      EventAction.FormulaireEmailInvalide,
       router.currentRoute.value.fullPath
     )
     return false

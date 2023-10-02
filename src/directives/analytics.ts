@@ -17,7 +17,7 @@ const AnalyticsDirective = {
         event_type: binding.value.action,
       }
 
-      sendEventToRecorder(recorderEvent, binding?.instance?.$matomo)
+      sendEventToRecorder(recorderEvent)
 
       const matomoEvent: MatomoEvent = {
         category: binding.value.category || EventCategory.Defaut,
@@ -26,7 +26,7 @@ const AnalyticsDirective = {
         value: binding.value.value,
       }
 
-      sendEventToMatomo(matomoEvent, binding?.instance?.$matomo)
+      sendEventToMatomo(matomoEvent)
     }
     el.addEventListener("click", el.myAnalyticsHandler)
   },

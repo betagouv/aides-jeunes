@@ -326,7 +326,7 @@ export const useStore = defineStore("store", {
     setDebug(debug: boolean) {
       this.debug = debug
     },
-    addEnfant() {
+    addEnfant(): number {
       let enfantId
       let enfants
       if (this.simulation.enfants && this.simulation.enfants.length > 0) {

@@ -120,15 +120,9 @@ export default {
       })
       this.$push()
     },
-    birthDate(date) {
+    birthDate(date?: Date | string) {
       if (date) {
-        return (
-          typeof date === "string" ? new Date(date) : date
-        ).toLocaleDateString("FR-fr", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        })
+        return new Date(date).toLocaleDateString("FR-fr")
       } else {
         return "Non renseigné"
       }

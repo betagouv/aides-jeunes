@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport(config.smtp)
 
 export function sendMail(email: Email) {
   const { tags, ...emailParameters } = email
-  const tagsFormatted = tags?.map((tag) => `${tag}`) || []
+  const tagsFormatted = tags?.map((tag) => tag.replace(/-/g, "_")) || []
 
   return transporter.sendMail({
     from: '"Équipe du simulateur 1jeune1solution.gouv.fr" <aides-jeunes@beta.gouv.fr>"',

@@ -25,7 +25,7 @@ function waitForPaq(timeout = 10000): Promise<void> {
         resolve()
       } else if (Date.now() - startTime > timeout) {
         clearInterval(intervalId)
-        reject(new Error("Timeout reached."))
+        reject("Timeout reached.")
       }
     }, 100)
   })

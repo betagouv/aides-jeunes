@@ -46,6 +46,7 @@
                     :max="step.max"
                     :data-type="step.type"
                     aria-labelled-by="step-question"
+                    @input-error="onInputError"
                   />
                 </div>
                 <InputDate
@@ -123,6 +124,7 @@ export default {
       id,
       value,
       entityName,
+      inputError: false,
     }
   },
   computed: {
@@ -168,6 +170,9 @@ export default {
     },
   },
   methods: {
+    onInputError(hasError) {
+      this.inputError = hasError
+    },
     onSubmit() {
       if (!this.canSubmit(true)) {
         return
@@ -193,7 +198,10 @@ export default {
       return hasError
     },
     canSubmit(submit) {
-      return this.step.optional || !this.requiredValueMissing(submit)
+      return (
+        !this.inputError &&
+        (this.step.optional || !this.requiredValueMissing(submit))
+      )
     },
   },
 }

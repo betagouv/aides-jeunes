@@ -1,4 +1,5 @@
 import ABTestingService from "@/plugins/ab-testing-service.js"
+const isProduction = process.env.VITE_CONTEXT === "production"
 
 declare global {
   interface Window {
@@ -42,9 +43,13 @@ function initializeABTestingDimensions() {
   }
 }
 
-waitForPaq().then(() => {
-  initializeABTestingDimensions()
-})
+waitForPaq()
+  .then(() => {
+    initializeABTestingDimensions()
+  })
+  .catch((error) => {
+    !isProduction && console.error("Error while loading Matomo:", error)
+  })
 
 const tracker = {
   trackEvent: (

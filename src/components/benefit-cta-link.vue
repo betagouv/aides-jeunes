@@ -49,14 +49,14 @@ const longLabel = computed(() => {
 })
 
 const getURL = (link) => {
-  if (typeof link === "object") {
-    return $router.resolve(link).href
+  if (link.match(/^[^http]/)) {
+    return $router.resolve(`/redirection?vers=${link}`).href
   }
   return link
 }
 
 const onClick = (link) => {
-  if (typeof link === "object") {
+  if (link.match(/^[^http]/)) {
     storageService.local.setItem("trampoline", {
       simulationId: store.calculs.resultats._id,
     })

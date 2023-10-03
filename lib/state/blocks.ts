@@ -8,11 +8,19 @@ import ScolariteCategories from "../scolarite.js"
 import { Activite } from "../enums/activite.js"
 import { Scolarite, Etudiant } from "../enums/scolarite.js"
 import { LogementCategory } from "../enums/logement.js"
+import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
 
-function individuBlockFactory(id, chapter?: string) {
-  const r = (variable, chapter?: string) =>
-    new StepGenerator({ entity: "individu", id, variable, chapter })
+function individuBlockFactory(id, chapter?: ChapterName) {
+  const r = (variable, chapter?: ChapterName) => {
+    return new StepGenerator({
+      entity: "individu",
+      id,
+      variable,
+      chapter,
+    })
+  }
+
   const conjoint = id == "conjoint"
   const demandeur = id == "demandeur"
   const enfant = id.startsWith("enfant")
@@ -23,7 +31,7 @@ function individuBlockFactory(id, chapter?: string) {
       {},
     steps: [
       ...(enfant ? [r("_firstName", chapter)] : []),
-      r("date_naissance", demandeur ? "profil" : chapter),
+      r("date_naissance", demandeur ? ChapterName.Profil : chapter),
       r("nationalite"),
       ...(conjoint ? [r("statut_marital")] : []),
       ...(enfant ? [r("garde_alternee")] : []),
@@ -240,9 +248,9 @@ function extraBlock() {
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
     steps: [
-      s("_interetsAidesVelo", "projets"),
-      s("_interetBafa", "projets"),
-      s("_interetPermisDeConduire", "projets"),
+      s("_interetsAidesVelo", ChapterName.Projets),
+      s("_interetBafa", ChapterName.Projets),
+      s("_interetPermisDeConduire", ChapterName.Projets),
       {
         isActive: (subject) => {
           return (
@@ -251,7 +259,7 @@ function extraBlock() {
               .specialites_plurivalentes_sanitaires_et_sociales.value
           )
         },
-        steps: [s("_interetAidesSanitaireSocial", "projets")],
+        steps: [s("_interetAidesSanitaireSocial", ChapterName.Projets)],
       },
       {
         isActive: (subject) => subject.annee_etude === Etudiant.Terminale,
@@ -309,11 +317,11 @@ function kidBlock(situation) {
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
             return {
-              steps: [individuBlockFactory(e.id, "foyer")],
+              steps: [individuBlockFactory(e.id, ChapterName.Foyer)],
             }
           })
         : []),
-      new StepGenerator({ entity: "enfants", chapter: "foyer" }),
+      new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer }),
     ],
   }
 }
@@ -324,7 +332,7 @@ function housingBlock() {
     steps: [
       new StepGenerator({
         entity: "menage",
-        chapter: "logement",
+        chapter: ChapterName.Logement,
         variable: "_logementType",
       }),
       {
@@ -461,7 +469,7 @@ function resourceBlocks(situation) {
       steps: [
         new ComplexStepGenerator({
           route: `individu/${individuId}/ressources/types`,
-          chapter: "revenus",
+          chapter: ChapterName.Revenus,
           entity: "individu",
           variable: "ressources",
           id: individuId,
@@ -632,7 +640,12 @@ export function generateBlocks(situation): Block[] {
     },
     extraBlock(),
     {
-      steps: [new StepGenerator({ entity: "resultats", chapter: "resultats" })],
+      steps: [
+        new StepGenerator({
+          entity: "resultats",
+          chapter: ChapterName.Resultats,
+        }),
+      ],
     },
   ]
 }

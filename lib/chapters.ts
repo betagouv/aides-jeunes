@@ -1,13 +1,14 @@
 import { Chapter } from "./types/chapters.js"
+import { ChapterName, ChapterLabel } from "./enums/chapter.js"
 
 const chapters: Chapter[] = [
-  { label: "Mon profil", name: "profil" },
-  { label: "Mon foyer", name: "foyer" },
-  { label: "Mon logement", name: "logement" },
-  { label: "Mes revenus", name: "revenus" },
-  { label: "Mes projets", name: "projets" },
-  { label: "Récapitulatif", name: "recapitulatif" },
-  { label: "Mes résultats", name: "resultats" },
+  { label: ChapterLabel.MonProfil, name: ChapterName.Profil },
+  { label: ChapterLabel.MonFoyer, name: ChapterName.Foyer },
+  { label: ChapterLabel.MonLogement, name: ChapterName.Logement },
+  { label: ChapterLabel.MesRevenus, name: ChapterName.Revenus },
+  { label: ChapterLabel.MesProjets, name: ChapterName.Projets },
+  { label: ChapterLabel.Recapitulatif, name: ChapterName.Recapitulatif },
+  { label: ChapterLabel.Resultats, name: ChapterName.Resultats },
 ]
 
 function getChapters() {
@@ -15,12 +16,12 @@ function getChapters() {
 }
 
 function getSommaireChapters() {
-  return chapters.filter((c) => c.name !== "resultats")
+  return chapters.filter((c) => c.name !== ChapterName.Resultats)
 }
 
 function getLabel(name: string) {
   const chapter = chapters.find((c) => c.name === name)
-  return chapter?.label || "Mon profil"
+  return chapter?.label || ChapterLabel.MonProfil
 }
 
 const Chapters = {

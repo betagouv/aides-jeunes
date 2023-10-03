@@ -1,8 +1,8 @@
-import { ChapterState } from "@lib/enums/chapter"
+import { ChapterState, ChapterName } from "@lib/enums/chapter"
 
 export interface Chapter {
   label: string
-  name: string
+  name: ChapterName
   state?: ChapterState
   root?: string
 }

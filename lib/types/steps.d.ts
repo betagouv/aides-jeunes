@@ -1,7 +1,7 @@
 export interface Step {
   path?: string
   key?: string
-  entity?: string
+  entity: string
   id?: string
   variable?: string
   chapter?: string
@@ -9,7 +9,6 @@ export interface Step {
 }
 
 export interface StepStrict extends Step {
-  entity: string
   id: string
   variable: string
   path: string
@@ -21,13 +20,7 @@ export interface ComplexStep extends Step {
   variables?: Step[]
 }
 
-export interface ComplexStepProperties {
-  path: string
-  key: string
-  entity: string
+export interface ComplexStepProperties extends Step {
   id: string
-  variable: string
-  chapter: string
   substeps: Step[]
-  isActive?: boolean
 }

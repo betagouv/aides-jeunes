@@ -148,10 +148,7 @@ export const useStore = defineStore("store", {
     },
     getAllAnsweredSteps(): any[] {
       const allSteps = this.getAllSteps.filter(
-        (step) =>
-          step.path !== "/" &&
-          step.path !== "/simulation/resultats" &&
-          step.isActive
+        (step) => step.path !== "/simulation/resultats" && step.isActive
       )
       return allSteps.filter((step) =>
         isStepAnswered(this.simulation.answers.all, step)
@@ -159,10 +156,7 @@ export const useStore = defineStore("store", {
     },
     lastUnansweredStep(): any {
       const allSteps = this.getAllSteps.filter(
-        (step) =>
-          step.path !== "/" &&
-          step.path !== "/simulation/resultats" &&
-          step.isActive
+        (step) => step.path !== "/simulation/resultats" && step.isActive
       )
       return allSteps.find(
         (step) => !isStepAnswered(this.simulation.answers.all, step)

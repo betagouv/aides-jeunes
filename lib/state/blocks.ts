@@ -507,7 +507,6 @@ function resourceBlocks(situation) {
 
 export function generateBlocks(situation): Block[] {
   return [
-    { steps: [new StepGenerator({})] },
     individuBlockFactory("demandeur"),
     kidBlock(situation),
     {

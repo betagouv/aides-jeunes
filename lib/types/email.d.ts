@@ -4,7 +4,5 @@ export interface Email {
   subject: string
   text: string
   html: string
-  headers?: {
-    "x-tm-tags": string
-  }
+  tags?: string[]
 }

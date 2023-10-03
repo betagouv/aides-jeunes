@@ -91,9 +91,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
         subject: render.subject,
         text: render.text,
         html: render.html,
-        headers: {
-          "x-tm-tags": `["${EmailCategory.SimulationResults}"]`,
-        },
+        tags: [EmailCategory.SimulationResults],
       })
     })
     .then((response) => {
@@ -189,9 +187,7 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
           subject: render.subject,
           text: render.text,
           html: render.html,
-          headers: {
-            "x-tm-tags": `["survey", "${surveyType}"]`,
-          },
+          tags: ["survey", surveyType],
         })
           .then((response) => {
             return response.messageId

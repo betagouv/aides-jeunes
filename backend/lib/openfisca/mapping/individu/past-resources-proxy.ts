@@ -3,6 +3,7 @@ import dayjs from "dayjs"
 
 import common from "../common.js"
 import individuRessources from "./ressources.js"
+import SituationMethods from "../../../../../lib/situation.js"
 import ressources from "../../../../../lib/resources.js"
 
 const ressourcesToDuplicate = concat(
@@ -81,21 +82,21 @@ function ressourcesYearMoins2Captured(situation) {
   const januaryYearMoins2 = `${yearMoins2}-01`
   const hasRfr =
     situation.foyer_fiscal && some(situation.foyer_fiscal.rfr, isNumber)
-  const hasYm2Ressources = common
-    .getIndividusSortedParentsFirst(situation)
-    .some(function (individu) {
-      return some(ressources.categoriesRnc, function (categorieRnc) {
-        if (!individu[categorieRnc.id]) return false
+  const hasYm2Ressources = SituationMethods.getIndividusSortedParentsFirst(
+    situation
+  ).some(function (individu) {
+    return some(ressources.categoriesRnc, function (categorieRnc) {
+      if (!individu[categorieRnc.id]) return false
 
-        return some(
-          [
-            individu[categorieRnc.id][yearMoins2],
-            individu[categorieRnc.id][januaryYearMoins2],
-          ],
-          isNumber
-        )
-      })
+      return some(
+        [
+          individu[categorieRnc.id][yearMoins2],
+          individu[categorieRnc.id][januaryYearMoins2],
+        ],
+        isNumber
+      )
     })
+  })
   return hasRfr || hasYm2Ressources
 }
 

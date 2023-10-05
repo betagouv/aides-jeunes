@@ -15,6 +15,7 @@ import propertyMove from "./property-move.js"
 import last3MonthsDuplication from "./last3-months-duplication.js"
 import { filterByInterestFlag } from "../../../../lib/benefits/filter-interest-flag.js"
 
+import SituationMethods from "../../../../lib/situation.js"
 import { Situation } from "../../../../lib/types/situations.js"
 
 import {
@@ -37,7 +38,7 @@ export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
   }
   const menages: Menage = { _: buildOpenFiscaMenage(situation) }
 
-  const demandeur = common.getDemandeur(situation)
+  const demandeur = SituationMethods.getDemandeur(situation)
   const demandeurId = demandeur?.id
 
   familles._.parents = [demandeurId]
@@ -75,7 +76,7 @@ export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
     foyers_fiscaux._.declarants.push(demandeurId)
   }
 
-  const conjoint = common.getConjoint(situation)
+  const conjoint = SituationMethods.getConjoint(situation)
   const conjointId = conjoint?.id
   if (conjointId) {
     familles._.parents.push(conjointId)
@@ -90,7 +91,7 @@ export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
     }
   }
 
-  const enfants = common.getEnfants(situation)
+  const enfants = SituationMethods.getEnfants(situation)
   const validEnfants = filter(enfants, function (enfant) {
     return common.isIndividuValid(enfant, situation)
   })
@@ -128,7 +129,7 @@ function setNonInjected(testCase, prestations, periods, value) {
 
 function mapIndividus(situation) {
   const individus = filter(
-    common.getIndividusSortedParentsFirst(situation),
+    SituationMethods.getIndividusSortedParentsFirst(situation),
     function (individu) {
       return common.isIndividuValid(individu, situation)
     }

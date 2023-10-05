@@ -1,5 +1,6 @@
 import { Individu } from "../../lib/types/individu.js"
 import { Situation } from "../../lib/types/situations.js"
+import { BenefitExtra, StandardBenefit } from "../../data/types/benefits.js"
 
 export interface OpenfiscaMapping {
   individus: Individu[]
@@ -7,9 +8,21 @@ export interface OpenfiscaMapping {
   foyers_fiscaux: FoyersFiscaux
   menages: Menage
 }
+export type OpenfiscaMappingValues =
+  | Individu[]
+  | Famille
+  | FoyersFiscaux
+  | Menage
 
 export interface Famille {
-  _: any
+  _: {
+    parents: string[]
+    enfants: string[]
+    foyers_fiscaux: FoyersFiscaux
+    [openfiscaBenefitId as string]: {
+      [date as string]: number
+    }
+  }
   parents?: Situation
 }
 
@@ -21,7 +34,7 @@ export interface Menage {
 export interface FoyersFiscaux {
   _: {
     declarants: string[]
-    personnes_a_charge: Individu[]
+    personnes_a_charge: string[]
     rfr?: any
   }
 }
@@ -42,4 +55,8 @@ export interface OpenfiscaPeriods {
   previousFiscalYear: string
   previousFiscalYear12Months: string[]
   threeYearsAgo: string
+}
+
+export interface OpenfiscaVariables {
+  [id: string]: StandardBenefit | BenefitExtra
 }

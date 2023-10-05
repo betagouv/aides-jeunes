@@ -60,7 +60,7 @@ export class Property {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getAnswerFormat(propertyData: PropertyData) {}
 
-  getFormat(propertyData: PropertyData): any {
+  getFormat(propertyData: PropertyData) {
     return {
       text: this.getQuestion(propertyData),
       type: this.questionType,
@@ -87,7 +87,7 @@ export class Property {
 
 export class BooleanProperty extends Property {
   // eslint-disable-next-line no-empty-pattern
-  getAnswerFormat({}: PropertyData): any {
+  getAnswerFormat({}: PropertyData) {
     return {
       type: "boolean",
       items: [
@@ -114,13 +114,13 @@ export class DateProperty extends Property {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getAnswerFormat(propertyData: PropertyData): any {
+  getAnswerFormat(propertyData: PropertyData) {
     return {
       type: "date",
     }
   }
 
-  displayValue(propertyData: PropertyData, value: any): string {
+  displayValue(propertyData: PropertyData, value: string) {
     return displayDateValue(value)
   }
 }

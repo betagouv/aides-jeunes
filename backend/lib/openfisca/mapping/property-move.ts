@@ -1,23 +1,22 @@
-import { forEach, pickBy } from "lodash-es"
-
 import common from "./common.js"
+import {
+  OpenfiscaMapping,
+  OpenfiscaMappingValues,
+} from "../../../types/openfisca.js"
 
-import { Property } from "../../../types/properties.js"
-
-const famillePropertiesGivenToIndividu = Object.keys(
-  pickBy(common.requestedVariables, function (definition: Property) {
-    return (
-      (!definition.type || definition.type == "float") &&
-      definition.entity == "familles"
-    )
-  })
-).concat(["aeeh", "paje_prepare", "paje_clca"])
+const famillePropertiesGivenToIndividu = Object.values(
+  common.requestedVariables
+)
+  .filter(
+    (benefit) =>
+      (!benefit.type || benefit.type == "float") && benefit.entity == "familles"
+  )
+  .map((benefit) => ({ name: benefit.id }))
+  .concat([{ name: "paje_prepare" }, { name: "paje_clca" }])
 
 const movedProperties = {
   familles: {
-    properties: famillePropertiesGivenToIndividu.map(function (id) {
-      return { name: id }
-    }),
+    properties: famillePropertiesGivenToIndividu,
     sourceKeys: ["parents", "enfants"],
   },
   foyers_fiscaux: {
@@ -26,14 +25,17 @@ const movedProperties = {
   },
 }
 
-function movePropertyValuesToGroupEntity(testCase) {
+function movePropertyValuesToGroupEntity(testCase: OpenfiscaMapping) {
   Object.keys(movedProperties).forEach(function (testCasePropertyName) {
     const moveDetails = movedProperties[testCasePropertyName]
 
-    forEach(testCase[testCasePropertyName], function (entity) {
+    const openfiscaMappingValues: OpenfiscaMappingValues[] = Object.values(
+      testCase[testCasePropertyName]
+    )
+    openfiscaMappingValues.forEach(function (entity) {
       const entityIndividuIds = moveDetails.sourceKeys.reduce(function (
         accum,
-        key
+        key: string
       ) {
         return accum.concat(entity[key] || [])
       },
@@ -59,7 +61,6 @@ function movePropertyValuesToGroupEntity(testCase) {
       })
     })
   })
-
   return testCase
 }
 

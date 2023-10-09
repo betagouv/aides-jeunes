@@ -29,8 +29,4 @@ unit: €
 periodicite: autre
 montant: 300
 link: https://www.lamayenne.fr/service/aide-pour-passer-le-bafa
-teleservice:
-  name: redirection
-  query:
-    vers: ds?procedure=cd53-bafa
-skip_schema_check: true
+teleservicePrefill: ds?procedure=cd53-bafa

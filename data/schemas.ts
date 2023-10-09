@@ -77,14 +77,11 @@ function errorLogger(
 }
 
 export function compareSchema(data, schema, output, depth: any = []) {
-  // Disable schema validation for file with specific key
-  if (data?.skip_schema_check) return
-
   // Check that every field in the schema is in the data and of the specified type
   const schemaKeys = Object.keys(schema)
   for (const key in data) {
-    if (schemaKeys.includes(key) && schema[key].type != "hidden") {
-      if (typeof data[key] == "object") {
+    if (schemaKeys.includes(key) && schema[key].type !== "hidden") {
+      if (typeof data[key] === "object") {
         // if the field contains other field, check them recursively
         // if the field is an array, check each item against a list of possible fields
         if (data[key] instanceof Array) {
@@ -149,7 +146,7 @@ export function compareSchema(data, schema, output, depth: any = []) {
   for (const key in schema) {
     if (
       !dataKeys.includes(key) &&
-      schema[key].type != "hidden" &&
+      schema[key].type !== "hidden" &&
       schema[key].required &&
       !(schema instanceof Array)
     ) {

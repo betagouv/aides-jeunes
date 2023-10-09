@@ -7,10 +7,7 @@ description:
   href="https://www.demarches-simplifiees.fr/preremplir/aide-beaumont-en-verdunois">accessible en ligne</a>.
 conditions: []
 link: https://www.demarches-simplifiees.fr/commencer/aide-beaumont-en-verdunois
-teleservice:
-  name: redirection
-  query:
-    vers: ds?procedure=aide-beaumont-en-verdunois
+teleservicePrefill: ds?procedure=aide-beaumont-en-verdunois
 prefix: l’
 periodicite: ponctuelle
 type: bool
@@ -19,4 +16,3 @@ conditions_generales:
   - type: communes
     values:
       - "55039"
-skip_schema_check: true

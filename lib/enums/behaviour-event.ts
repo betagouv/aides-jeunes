@@ -1,13 +1,15 @@
+import { CTALabel } from "./cta.js"
+
 export enum BehaviourEvent {
   Show = "show",
   ShowDetails = "showDetails",
-  Form = "form",
-  Instructions = "instructions",
+  Form = CTALabel.Form,
+  Instructions = CTALabel.Instructions,
   Link = "link",
   Msa = "msa",
   ShowLocations = "show-locations",
   ShowNewLocation = "show-new-location",
-  Teleservice = "teleservice",
+  Teleservice = CTALabel.Teleservice,
   LinkIneligible = "link-ineligible",
   ShowUnexpected = "show-unexpected",
   Close = "close",

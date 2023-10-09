@@ -4,6 +4,7 @@ import storageService from "@/lib/storage-service.js"
 import { PropType, computed, defineProps } from "vue"
 import { useRouter } from "vue-router"
 import { StandardBenefit } from "@data/types/benefits.d.js"
+import { CTALabel } from "@lib/enums/cta.js"
 
 const store = useStore()
 const $router = useRouter()
@@ -12,6 +13,10 @@ const labels = {
   teleservice: {
     short: "Faire une demande en ligne",
     long: "Faire une demande en ligne pour",
+  },
+  teleservicePrefill: {
+    short: "Faire une demande pré-remplie en ligne",
+    long: "Faire une demande pré-remplie en ligne pour",
   },
   form: {
     short: "Accéder au formulaire papier",
@@ -49,14 +54,14 @@ const longLabel = computed(() => {
 })
 
 const getURL = (link) => {
-  if (typeof link === "object") {
-    return $router.resolve(link).href
+  if (props.type === CTALabel.TeleservicePrefill) {
+    return $router.resolve(`/redirection?vers=${link}`).href
   }
   return link
 }
 
-const onClick = (link) => {
-  if (typeof link === "object") {
+const onClick = () => {
+  if (props.type === CTALabel.TeleservicePrefill) {
     storageService.local.setItem("trampoline", {
       simulationId: store.calculs.resultats._id,
     })
@@ -73,7 +78,7 @@ const onClick = (link) => {
     class="text-center fr-my-1w"
     rel="noopener"
     target="_blank"
-    @click="onClick(link)"
+    @click="onClick()"
     v-html="label"
   />
 </template>

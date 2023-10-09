@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
+import { CTALabel } from "@lib/enums/cta.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
@@ -9,22 +10,29 @@ const props = defineProps({
 })
 
 const ctaForm = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Form)
+  return ctas.value.find((cta) => cta?.type === CTALabel.Form)
 })
 
 const ctaTeleservice = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Teleservice)
+  return ctas.value.find((cta) => cta?.type === CTALabel.Teleservice)
+})
+const ctaTeleservicePrefill = computed(() => {
+  return (
+    !ctaTeleservice.value &&
+    ctas.value.find((cta) => cta?.type === CTALabel.TeleservicePrefill)
+  )
 })
 
 const ctaInstructions = computed(() => {
-  return ctas.value.find((cta) => cta?.type === BehaviourEvent.Instructions)
+  return ctas.value.find((cta) => cta?.type === CTALabel.Instructions)
 })
 
 const ctas = computed(() => {
   const ctaBehaviourTypes = [
-    BehaviourEvent.Teleservice,
-    BehaviourEvent.Form,
-    BehaviourEvent.Instructions,
+    CTALabel.Teleservice,
+    CTALabel.Form,
+    CTALabel.Instructions,
+    CTALabel.TeleservicePrefill,
   ]
 
   return ctaBehaviourTypes
@@ -51,7 +59,7 @@ const ctas = computed(() => {
     <h5 class="fr-h5">Comment l'obtenir ?</h5>
     <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">
       <div
-        v-if="ctaTeleservice || ctaForm"
+        v-if="ctaTeleservice || ctaTeleservicePrefill || ctaForm"
         class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
       >
         <BenefitCtaLink
@@ -60,6 +68,14 @@ const ctas = computed(() => {
           :benefit="benefit"
           :link="ctaTeleservice.link"
           :type="ctaTeleservice.type"
+          class="fr-btn fr-btn--sm"
+        />
+        <BenefitCtaLink
+          v-if="ctaTeleservicePrefill"
+          :analytics-name="benefit.id"
+          :benefit="benefit"
+          :link="ctaTeleservicePrefill.link"
+          :type="ctaTeleservicePrefill.type"
           class="fr-btn fr-btn--sm"
         />
         <BenefitCtaLink

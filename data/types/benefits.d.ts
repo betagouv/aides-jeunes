@@ -63,8 +63,8 @@ export interface JavascriptBenefit {
     type: string
     legend: string
   }
-  //id?: string
   source?: string
+  teleservicePrefill?: string
 }
 
 export interface StandardBenefit {
@@ -90,7 +90,6 @@ export interface StandardBenefit {
   top: number
   floorAt: number
   teleservice: string
-  skip_schema_check: boolean
   private: boolean
   instructionsGenerator: (number) => string
   voluntary_conditions: any
@@ -113,6 +112,7 @@ export interface StandardBenefit {
   external_id: string
   collectivity: any
   title: string
+  teleservicePrefill?: string
 }
 
 export interface BenefitExtra {

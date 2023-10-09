@@ -34,8 +34,4 @@ unit: €
 periodicite: autre
 montant: 30000
 link: https://www.normandie.fr/dotation-jeunes-agriculteurs-aide-au-demarrage-dentreprises-cofinance-par-le-feader#:~:text=le%20territoire%20fran%C3%A7ais.-,Caract%C3%A9ristiques%20de%20l'aide,une%20installation%20en%20zone%20d%C3%A9favoris%C3%A9e
-teleservice:
-  name: redirection
-  query:
-    vers: ds?procedure=r28_dja
-skip_schema_check: true
+teleservicePrefill: ds?procedure=r28_dja

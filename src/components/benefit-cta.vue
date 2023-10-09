@@ -17,7 +17,10 @@ const ctaTeleservice = computed(() => {
   return ctas.value.find((cta) => cta?.type === CTALabel.Teleservice)
 })
 const ctaTeleservicePrefill = computed(() => {
-  return ctas.value.find((cta) => cta?.type === CTALabel.TeleservicePrefill)
+  return (
+    !ctaTeleservice.value &&
+    ctas.value.find((cta) => cta?.type === CTALabel.TeleservicePrefill)
+  )
 })
 
 const ctaInstructions = computed(() => {
@@ -68,7 +71,7 @@ const ctas = computed(() => {
           class="fr-btn fr-btn--sm"
         />
         <BenefitCtaLink
-          v-else-if="ctaTeleservicePrefill"
+          v-if="ctaTeleservicePrefill"
           :analytics-name="benefit.id"
           :benefit="benefit"
           :link="ctaTeleservicePrefill.link"

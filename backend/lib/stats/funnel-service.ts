@@ -1,14 +1,9 @@
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc.js"
-import mongoose from "mongoose"
 
 import { callMatomoAPI } from "./piwik.js"
-import mongooseConfig from "../../config/mongoose.js"
-import config from "../../config/index.js"
 import Followups from "../../models/followup.js"
 import Simulations from "../../models/simulation.js"
-
-mongooseConfig(mongoose, config)
 
 dayjs.extend(utc)
 
@@ -123,8 +118,6 @@ const getFunnelData = async () => {
       getFollowupsData(beginRange, endRange),
       getMatomoEventsData(beginRange, endRange),
     ]).then((results) => results.map(returnEmptyDataIfError))
-
-  await mongoose.connection.close()
 
   return {
     [dateKey]: {

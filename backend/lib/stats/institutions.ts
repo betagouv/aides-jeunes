@@ -1,16 +1,11 @@
 import dayjs from "dayjs"
-import mongoose from "mongoose"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
-import config from "../../config/index.js"
-import mongooseConfig from "../../config/mongoose.js"
 import Simulations from "../../models/simulation.js"
 import benefits from "../../../data/all.js"
 import { StandardBenefit } from "../../../data/types/benefits.js"
 
 // Note: for now, only EPCI are supported
-
-mongooseConfig(mongoose, config)
 
 const sixMonthsAgo = dayjs().subtract(6, "month").toDate()
 
@@ -43,8 +38,6 @@ async function getSimulationCountPerEPCI(): Promise<Count> {
       },
     },
   ])
-
-  await mongoose.connection.close()
 
   return simulationCount.reduce(
     (count: Count, result: { _id: string; count: number }): Count => {

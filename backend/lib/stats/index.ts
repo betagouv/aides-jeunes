@@ -6,6 +6,7 @@ import Sentry from "@sentry/node"
 
 import { getUsageData } from "./piwik.js"
 import mongodb from "./mongodb.js"
+import mongoose from "../../lib/mongo-connector.js"
 import getFunnelData from "./funnel-service.js"
 import getInstitutionsData from "./institutions.js"
 
@@ -42,4 +43,5 @@ try {
   process.exitCode = 1
 } finally {
   mongodb.closeClient()
+  mongoose.connection.close()
 }

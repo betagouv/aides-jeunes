@@ -28,7 +28,7 @@ conditions_generales:
 profils: []
 link: https://www.ghjuventu.corsica/articles/444E7A9F-9238-4011-9112-A87F95C51571
 instructions: https://www.ghjuventu.corsica/articles/444E7A9F-9238-4011-9112-A87F95C51571
-teleservice : https://www.ghjuventu.corsica/my/dashboard
+teleservice: https://www.ghjuventu.corsica/my/dashboard
 prefix: la
 type: float
 unit: €

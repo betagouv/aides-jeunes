@@ -28,21 +28,19 @@ export function current(
 
 export function getNextStep(
   currentRoute: Route,
-  journey: StepStrict[]
+  allSteps: StepStrict[]
 ): StepStrict {
   const currentPath = currentRoute.path || currentRoute.fullPath
-  const matches = journey
-    .map((element, index) => {
-      return { element, index }
-    })
-    .filter((item) => item.element.path == currentPath)
+  const currentIndex = allSteps.findIndex((step) => step.path === currentPath)
 
-  if (!matches.length) {
-    throw new Error(`Logic missing for ${currentPath}`)
+  if (currentIndex === -1 && currentPath !== "/") {
+    throw new Error(`Current path ${currentPath} not found in all steps array`)
   }
-  return journey
-    .slice(matches[matches.length - 1].index + 1)
-    .filter((step) => step.isActive)[0]
+
+  const nextSteps = allSteps.slice(currentIndex + 1)
+  const nextActiveStep = nextSteps.find((step) => step.isActive)
+
+  return nextActiveStep || allSteps[0]
 }
 
 function getCurrentStep(

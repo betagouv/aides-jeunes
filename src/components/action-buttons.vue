@@ -27,7 +27,6 @@
 <script setup lang="ts">
 import BackButton from "@/components/buttons/back-button.vue"
 import { computed, defineProps, onMounted, onUnmounted } from "vue"
-import { getAnswerIndexByPath } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
@@ -65,9 +64,8 @@ const localOnSubmit = (event) => {
 const goBack = () => {
   tracker.trackEvent(EventCategory.Parcours, "Bouton précédent", route.fullPath)
 
-  const answerIndex = getAnswerIndexByPath(
-    store.simulation.answers.current,
-    route.fullPath
+  const answerIndex = store.simulation.answers.current.findIndex(
+    (answer) => answer.path === route.fullPath
   )
   if (answerIndex > 0) {
     const previousAnswer = store.simulation.answers.current[answerIndex - 1]

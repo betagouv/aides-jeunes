@@ -109,7 +109,7 @@ export default {
       return (
         this.$route.query["france-connect-enabled"] === "true" &&
         process.env.VITE_FRANCE_CONNECT_ENABLED &&
-        this.store.getAllSteps[1].path === this.$route.path &&
+        this.store.getAllSteps[0].path === this.$route.path &&
         this.store.simulation.answers.all.length === 0 &&
         !this.franceConnectConnected
       )

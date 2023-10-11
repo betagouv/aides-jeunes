@@ -7,7 +7,7 @@ const benefits = Object.keys(generator.benefitsMap)
   .filter((benefit) => !generator.benefitsMap[benefit]?.private)
   .map((benefit) => ({
     location: `aides/${benefit}`,
-    priority: "0.1",
+    priority: "0.0",
   }))
 
 const pages = [

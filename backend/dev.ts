@@ -1,4 +1,6 @@
 import express from "express"
+import path from "path"
+import cors from "cors"
 import { createServer as createViteServer } from "vite"
 import configure from "./configure.js"
 import mock from "./mock.js"
@@ -18,6 +20,11 @@ async function createServer() {
   }
   const port = process.env.PORT || 8080
 
+  app.use(cors())
+  app.use(
+    "/documents/",
+    express.static(path.join(__dirname, "../dist/documents"))
+  )
   app.use(vite.middlewares)
   app.listen(port, () => {
     console.log(

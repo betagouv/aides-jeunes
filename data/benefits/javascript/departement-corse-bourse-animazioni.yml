@@ -7,8 +7,6 @@ description: La bourse Animazioni prend en charge une partie du coût de la
 conditions:
   - Résider en Corse depuis 2 ans.
   - Déposer une demande écrite motivée.
-  - Être rattaché à un foyer dont le revenu fiscal de référence est inférieur
-    à 18 500 € par part fiscale.
   - Réaliser sa formation et ses stages d’approfondissement en Corse.
   - Suivre sa formation dans un organisme de formation habilité par décision du
     Ministre chargé de la jeunesse.
@@ -23,6 +21,10 @@ conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: quotient_familial
+    operator: <
+    value: 18500
+    period: year
 profils: []
 link: https://www.ghjuventu.corsica/articles/CD4DC848-2F7B-45AD-B970-FDFFD414928E
 teleservice: https://www.ghjuventu.corsica/my/dashboard

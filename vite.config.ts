@@ -13,6 +13,7 @@ import benefits from "./data/all.js"
 
 import { visualizer } from "rollup-plugin-visualizer"
 import generator from "./rollup/generator.rollup.js"
+import sitemapGenerator from "./rollup/sitemap.rollup.js"
 
 const buildId = Date.now().toString()
 
@@ -125,6 +126,7 @@ export default defineConfig(async ({ mode }) => {
       }),
       visualizer(),
       createSentryPlugin(),
+      sitemapGenerator(),
     ],
     resolve: {
       preferBuiltins: false,

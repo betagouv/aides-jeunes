@@ -9,7 +9,6 @@ conditions:
   - Avoir acheté votre voiture d’occasion (12 mois au moins) à compter du 1er janvier
     2023, auprès d’un professionnel de la vente d’automobile exerçant son
     activité sur le territoire de la Région.
-  - Justifier d’un revenu fiscal de référence par part inférieur ou égal à 14 089 €.
   - Faire la demande dans les 6 mois suivants l’achat de votre voiture.
 conditions_generales:
   - type: regions
@@ -18,6 +17,10 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
+  - type: quotient_familial
+    operator: <=
+    value: 14089
+    period: year
 profils: []
 link: https://www.laregion.fr/Eco-cheque-mobilite-voiture-electrique-ou-hybride
 teleservice: https://mesaidesenligne.laregion.fr/aides/#/croccitanie/connecte/F_DMP_E_CHEQ_VO/depot/simple

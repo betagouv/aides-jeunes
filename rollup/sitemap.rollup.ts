@@ -1,6 +1,7 @@
 import fs from "fs"
 import config from "../backend/config/index.js"
 import generator from "../data/all.js"
+import path from "path"
 
 const benefits = Object.keys(generator.benefitsMap)
   .filter((benefit) => !generator.benefitsMap[benefit]?.private)
@@ -71,8 +72,11 @@ function formatXMLEntries(pages) {
 export default () => {
   return {
     name: "xml sitemap generator",
-    buildEnd: () => {
-      fs.writeFileSync(`./dist/sitemap.xml`, formatXMLEntries(pages))
+    closeBundle: () => {
+      fs.writeFileSync(
+        path.join(__dirname, `../dist/sitemap.xml`),
+        formatXMLEntries(pages)
+      )
     },
   }
 }

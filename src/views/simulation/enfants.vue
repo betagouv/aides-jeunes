@@ -71,6 +71,7 @@
 
 <script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
+import { childStepsComplete, getIncompleteChildId } from "@lib/enfants.js"
 import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import ScolariteCategories from "@lib/scolarite"
@@ -95,8 +96,13 @@ export default {
 
   methods: {
     addPAC() {
-      const enfantId = this.store.addEnfant()
-      this.$router.push(`/simulation/individu/enfant_${enfantId}/_firstName`)
+      if (!this.enfants.length || childStepsComplete(this.store.situation)) {
+        const enfantId = this.store.addEnfant()
+        this.$router.push(`/simulation/individu/enfant_${enfantId}/_firstName`)
+      } else {
+        const incompleteChildId = getIncompleteChildId(this.store.situation)
+        this.editPAC(incompleteChildId)
+      }
     },
     removePAC(id) {
       this.store.removeEnfant(id)

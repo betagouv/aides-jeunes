@@ -1,3 +1,8 @@
+/*
+ *   this function verify that all questions have been answered for every child
+ *   by checking that the last question sets through individuBlockFactory regarding
+ *   a child (enfant_a_charge) has been answered
+ */
 export function childStepsComplete(situation) {
   if (situation.enfants) {
     return situation.enfants?.every(

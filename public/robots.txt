@@ -12,3 +12,5 @@ Disallow: /simulation/*
 Disallow: /tests
 Disallow: /tests/*
 Disallow: /validation
+
+Sitemap: https://mes-aides.1jeune1solution.beta.gouv.fr/sitemap.xml

@@ -71,6 +71,7 @@
 
 <script lang="ts">
 import ActionButtons from "@/components/action-buttons.vue"
+import { childStepsComplete, getIncompleteChildId } from "@lib/enfants.js"
 import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import ScolariteCategories from "@lib/scolarite"
@@ -95,10 +96,13 @@ export default {
 
   methods: {
     addPAC() {
-      const children = this.store.simulation.enfants || []
-      const lastId = children.length > 0 ? children[children.length - 1] : -1
-      this.store.addEnfant()
-      this.$router.push(`/simulation/individu/enfant_${lastId + 1}/_firstName`)
+      if (!this.enfants.length || childStepsComplete(this.store.situation)) {
+        const enfantId = this.store.addEnfant()
+        this.$router.push(`/simulation/individu/enfant_${enfantId}/_firstName`)
+      } else {
+        const incompleteChildId = getIncompleteChildId(this.store.situation)
+        this.editPAC(incompleteChildId)
+      }
     },
     removePAC(id) {
       this.store.removeEnfant(id)
@@ -122,25 +126,18 @@ export default {
       })
       this.$push()
     },
-    birthDate(date) {
+    birthDate(date?: Date | string) {
       if (date) {
-        return (
-          typeof date === "string" ? new Date(date) : date
-        ).toLocaleDateString("FR-fr", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        }) //).format('DD/MM/YYYY')
+        return new Date(date).toLocaleDateString("FR-fr")
       } else {
         return "Non renseigné"
       }
     },
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite(value) {
-      const s = ScolariteCategories.types.find((s) => s.value === value)
-      return s
-        ? ScolariteCategories.types.find((s) => s.value === value).label
-        : "-"
+      return (
+        ScolariteCategories.types.find((s) => s.value === value)?.label || "-"
+      )
     },
   },
 }

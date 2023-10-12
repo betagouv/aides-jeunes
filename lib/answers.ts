@@ -43,7 +43,7 @@ export function nullifyUndefinedValue(value) {
   return value === undefined ? null : value
 }
 
-export function storeAnswer(answers, newAnswer, clean, enfants?) {
+export function storeAnswer(answers, newAnswer, enfants?) {
   const existingAnswerIndex = answers.findIndex(
     (answer) =>
       answer.id === newAnswer.id &&
@@ -56,7 +56,7 @@ export function storeAnswer(answers, newAnswer, clean, enfants?) {
   } else {
     const answer = answers[existingAnswerIndex]
     answer.value = newAnswer.value
-    if (clean) {
+    if (enfants) {
       // Keep all answers related to children because they are not on the same path
       const allowedAnswered = enfants
         ? enfants

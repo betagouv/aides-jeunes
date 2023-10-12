@@ -263,11 +263,10 @@ export const useStore = defineStore("store", {
     updateAnswerSimulation(answer: Answer) {
       this.simulation.answers = {
         ...this.simulation.answers,
-        all: storeAnswer(this.simulation.answers.all, answer, false),
+        all: storeAnswer(this.simulation.answers.all, answer),
         current: storeAnswer(
           this.simulation.answers.current,
           answer,
-          true,
           this.simulation.enfants
         ),
       }
@@ -327,7 +326,7 @@ export const useStore = defineStore("store", {
     setDebug(debug: boolean) {
       this.debug = debug
     },
-    addEnfant() {
+    addEnfant(): number {
       let enfantId
       let enfants
       if (this.simulation.enfants && this.simulation.enfants.length > 0) {
@@ -362,16 +361,12 @@ export const useStore = defineStore("store", {
         ...this.simulation,
         enfants,
         answers: {
-          all: storeAnswer(this.simulation.answers.all, answer, false),
-          current: storeAnswer(
-            currentAnswers,
-            answer,
-            true,
-            this.simulation.enfants
-          ),
+          all: storeAnswer(this.simulation.answers.all, answer),
+          current: storeAnswer(currentAnswers, answer, this.simulation.enfants),
         },
       }
       this.setDirty()
+      return enfantId
     },
     editEnfant(id: number) {
       // When you edit a children you need to remove all current answer after the child validation

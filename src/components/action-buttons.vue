@@ -67,13 +67,10 @@ const goBack = () => {
   const answerIndex = store.simulation.answers.current.findIndex(
     (answer) => answer.path === route.fullPath
   )
-  if (answerIndex > 0) {
-    const previousAnswer = store.simulation.answers.current[answerIndex - 1]
-    router.push({ path: previousAnswer.path })
-  } else if (answerIndex === 0) {
+  if (answerIndex === 0) {
     router.push("/")
   } else {
-    window.history.back()
+    router.go(-1)
   }
 }
 </script>

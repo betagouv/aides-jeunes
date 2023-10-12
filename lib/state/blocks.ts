@@ -4,6 +4,7 @@ import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import ScolariteCategories from "../scolarite.js"
+import { childStepsComplete } from "../enfants.js"
 
 import { Activite } from "../enums/activite.js"
 import { Scolarite, Etudiant } from "../enums/scolarite.js"
@@ -314,6 +315,9 @@ function extraBlock() {
 function kidBlock(situation) {
   return {
     steps: [
+      ...(!childStepsComplete(situation)
+        ? [new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer })]
+        : []),
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
             return {
@@ -321,7 +325,9 @@ function kidBlock(situation) {
             }
           })
         : []),
-      new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer }),
+      ...(childStepsComplete(situation)
+        ? [new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer })]
+        : []),
     ],
   }
 }

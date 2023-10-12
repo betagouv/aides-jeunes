@@ -22,7 +22,7 @@ watch(modalState, (newValue) => {
     </p>
     <ul class="fr-btns-group fr-btns-group--inline-xs">
       <li>
-        <SendRecapButton class="primary"></SendRecapButton>
+        <SendRecapButton></SendRecapButton>
       </li>
     </ul>
     <RecapEmailAndSmsModal></RecapEmailAndSmsModal>

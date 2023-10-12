@@ -27,7 +27,6 @@
               <InputNumber
                 id="valeur_terrains_non_loues"
                 v-model="demandeur.valeur_terrains_non_loues[periodKey]"
-                class=""
               />
             </label>
           </div>
@@ -123,7 +122,7 @@
       <div class="fr-fieldset__content">
         <div>
           <label for="livret_a" class="fr-label">
-            Livret A <span class="help-block">Aussi appelé Livret bleu.</span>
+            Livret A <span>Aussi appelé Livret bleu.</span>
             <InputNumber
               id="livret_a"
               v-model="demandeur.livret_a[periodKey]"

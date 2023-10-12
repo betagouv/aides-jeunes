@@ -1,6 +1,6 @@
 <template>
   <button
-    class="copy-button fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+    class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
     @click="() => copyBenefitsList(benefitsList)"
     >Copier</button
   >

@@ -1,4 +1,4 @@
-label: bourse à la mobilité Mobighjovani
+label: bourse à la mobilité internationale Mobighjovani
 institution: region_corse
 description: Grâce à la bourse Mobighjovani, profitez d'une aide financière qui
   vise à couvrir les frais non pris en charge dans les différents programmes de
@@ -6,6 +6,9 @@ description: Grâce à la bourse Mobighjovani, profitez d'une aide financière q
 conditions:
   - Résider en Corse depuis 2 ans.
   - Déposer une demande écrite motivée.
+  - participer à un projet de mobilité individuelle ou collective dans le cadre
+    d’Erasmus plus, Eurodyssée, Office Franco-Québécois pour la Jeunesse (OFQJ),
+    Office France-Allemand pour la Jeunesse (OFAJ) ou France Volontaires.
   - Ne pas avoir débuté son projet de mobilité au moment du dépôt de la
     candidature.
 conditions_generales:
@@ -23,8 +26,9 @@ conditions_generales:
     value: 18500
     period: year
 profils: []
-link: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html
-instructions: https://www.isula.corsica/jeunesse/Bourse-Mobighjovani-300-pour-les-jeunes-qui-souhaitent-voyager_a276.html
+link: https://www.ghjuventu.corsica/articles/444E7A9F-9238-4011-9112-A87F95C51571
+instructions: https://www.ghjuventu.corsica/articles/444E7A9F-9238-4011-9112-A87F95C51571
+teleservice: https://www.ghjuventu.corsica/my/dashboard
 prefix: la
 type: float
 unit: €

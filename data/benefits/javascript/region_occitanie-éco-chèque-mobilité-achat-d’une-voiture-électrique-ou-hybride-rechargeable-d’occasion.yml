@@ -3,12 +3,12 @@ label: '"Éco-chèque mobilité" - Achat d’une voiture électrique ou hybride
 institution: region_occitanie
 description: La Région Occitanie propose une aide financière pour toute personne
   souhaitant acquérir une voiture électrique ou hybride rechargeable à hauteur
-  de 30% du coût d'acquisition.
+  de 30% du coût d'acquisition. Cette aide est cumulable avec la prime à la
+  conversion de l'Etat, au titre de cette même voiture.
 conditions:
-  - Acheter votre voiture d’occasion (12 mois au moins) à compter du 1er janvier
-    2022, auprès d’un professionnel de la vente d’automobile exerçant son
+  - Avoir acheté votre voiture d’occasion (12 mois au moins) à compter du 1er janvier
+    de l'année en cours, auprès d’un professionnel de la vente d’automobile exerçant son
     activité sur le territoire de la Région.
-  - Justifier d’un revenu fiscal de référence inférieur ou égal à 50 000 €.
   - Faire la demande dans les 6 mois suivants l’achat de votre voiture.
 conditions_generales:
   - type: regions
@@ -17,9 +17,14 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
+  - type: quotient_familial
+    operator: <=
+    value: 14089
+    period: year
 profils: []
 link: https://www.laregion.fr/Eco-cheque-mobilite-voiture-electrique-ou-hybride
 teleservice: https://mesaidesenligne.laregion.fr/aides/#/croccitanie/connecte/F_DMP_E_CHEQ_VO/depot/simple
+instructions: https://www.laregion.fr/IMG/pdf/e/3/7/dispositif_vehr_occasion_particuliers_as_et_aes_ecocheque_mobilite_rfr_actualise_janv_2023.pdf
 prefix: l’
 type: float
 unit: €

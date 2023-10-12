@@ -10,6 +10,8 @@ import config from "../../config/index.js"
 import { SurveyCategory } from "../../../lib/enums/survey.js"
 import { MongoStats } from "../../types/stats.d.js"
 
+import Simulations from "../../models/simulation.js"
+
 let client
 
 function saveClient(refDb) {
@@ -23,44 +25,47 @@ function closeClient() {
   }
 }
 
-function extractSimulationDailyCount(db, fromDate, toDate) {
-  return db
-    .collection("simulations")
-    .mapReduce(
-      function () {
-        emit(this.dateDeValeur.toISOString().slice(0, 10), 1)
-      },
-      function (date, values) {
-        return values.reduce((sum, number: number) => sum + number)
-      },
-      {
-        out: {
-          inline: 1,
-        },
-        query: {
-          dateDeValeur: {
-            $gte: fromDate,
-            $lte: toDate,
+async function extractSimulationDailyCount(fromDate, toDate) {
+  const datapoints = await Simulations.aggregate([
+    {
+      $match: {
+        $and: [
+          {
+            dateDeValeur: {
+              $gt: fromDate,
+              $lte: toDate,
+            },
           },
-          modifiedFrom: {
-            $exists: false,
+          { modifiedFrom: { $exists: false } },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: {
+          date: {
+            $dateToString: {
+              format: "%Y-%m-%d",
+              date: "$dateDeValeur",
+            },
           },
         },
-      }
-    )
-    .then(formatMongo)
-}
-
-function formatMongo(data) {
+        value: { $sum: 1 },
+      },
+    },
+    {
+      $project: {
+        date: "$_id.date",
+        value: "$value",
+      },
+    },
+    { $unset: "_id" },
+    { $sort: { date: 1 } },
+  ])
   return [
     {
       metric: "simulation",
-      datapoints: data.map(function (dateTuple) {
-        return {
-          date: dateTuple._id,
-          value: dateTuple.value,
-        }
-      }),
+      datapoints,
     },
   ]
 }
@@ -195,7 +200,7 @@ async function connect() {
 async function getStats(fromDate, toDate): Promise<MongoStats | any> {
   try {
     const db = await connect()
-    const dailies = await extractSimulationDailyCount(db, fromDate, toDate)
+    const dailies = await extractSimulationDailyCount(fromDate, toDate)
     const survey = await extractSurveySummary(db)
     const details = await extractSurveyDetails(db)
 

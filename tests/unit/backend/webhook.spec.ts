@@ -158,7 +158,7 @@ describe("postOnMattermost", () => {
   it("posts message to Mattermost and responds with 200 OK", async () => {
     const expectedMessage =
       `Une personne vient de prendre RDV.\n` +
-      `Plus d'informations https://www.rdv-aide-numerique.fr/admin/organisations/org456/rdvs/rdv123`
+      `Plus d'informations /admin/organisations/org456/rdvs/rdv123`
 
     await postOnMattermost(req, res)
 

@@ -24,6 +24,7 @@ export interface Configuration {
   }
   rdvAideNumerique: {
     sharedSecret: string
+    baseUrl: string
   }
   github: {
     repository_url: string

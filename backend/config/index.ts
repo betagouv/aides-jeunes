@@ -47,6 +47,7 @@ const config: Configuration = {
     "https://contribuer-aides-jeunes.netlify.app",
   rdvAideNumerique: {
     sharedSecret: process.env.RDV_AIDE_NUMERIQUE_SHARED_SECRET || "",
+    baseUrl: process.env.RDV_AIDE_NUMERIQUE_BASE_URL || "",
   },
   smtp: {
     host: process.env.SMTP_HOST || "localhost",

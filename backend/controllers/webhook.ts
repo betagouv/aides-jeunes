@@ -81,7 +81,7 @@ export async function postOnMattermost(
   const { id: organisationId } = organisation || {}
 
   const message = `Une personne vient de prendre RDV.
-Plus d'informations https://www.rdv-aide-numerique.fr/admin/organisations/${organisationId}/rdvs/${rdvId}`
+Plus d'informations ${config.rdvAideNumerique.baseUrl}/admin/organisations/${organisationId}/rdvs/${rdvId}`
 
   await Mattermost.post(message)
   return res.status(200).json({ message: "OK" })

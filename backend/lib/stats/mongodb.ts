@@ -11,6 +11,7 @@ import { SurveyCategory } from "../../../lib/enums/survey.js"
 import { MongoStats } from "../../types/stats.d.js"
 
 import Simulations from "../../models/simulation.js"
+import Followups from "../../models/followup.js"
 
 let client
 
@@ -68,6 +69,75 @@ async function extractSimulationDailyCount(fromDate, toDate) {
       datapoints,
     },
   ]
+}
+
+async function extractSurveySummary2() {
+  return await Followups.aggregate([
+    {
+      $match: {
+        $and: [
+          { surveyOptin: true },
+          { surveys: { $exists: true, $ne: [] } },
+          { "surveys.type": SurveyCategory.BenefitAction },
+          { "surveys.answers": { $ne: [] } },
+        ],
+      },
+    },
+    {
+      $project: {
+        survey: {
+          $arrayElemAt: [
+            {
+              $filter: {
+                input: "$surveys",
+                cond: { $eq: ["$$this.type", SurveyCategory.BenefitAction] },
+              },
+            },
+            0,
+          ],
+        },
+      },
+    },
+    {
+      $project: {
+        _id: {
+          value: {
+            $switch: {
+              branches: [
+                {
+                  case: { $in: ["asked", "$survey.answers.value"] },
+                  then: "asked",
+                },
+                {
+                  case: { $in: ["failed", "$survey.answers.value"] },
+                  then: "failed",
+                },
+                {
+                  case: { $in: ["nothing", "$survey.answers.value"] },
+                  then: "nothing",
+                },
+                {
+                  case: { $in: ["already", "$survey.answers.value"] },
+                  then: "already",
+                },
+              ],
+              default: null,
+            },
+          },
+          month: {
+            $dateToString: { format: "%Y-%m", date: "$survey.repliedAt" },
+          },
+        },
+        total: { $sum: 1 },
+      },
+    },
+    {
+      $group: {
+        _id: { month: "$_id.month", type: "$_id.value" },
+        total: { $sum: "$total" },
+      },
+    },
+  ])
 }
 
 function extractSurveySummary(db) {
@@ -203,6 +273,9 @@ async function getStats(fromDate, toDate): Promise<MongoStats | any> {
     const dailies = await extractSimulationDailyCount(fromDate, toDate)
     const survey = await extractSurveySummary(db)
     const details = await extractSurveyDetails(db)
+
+    console.log("!!", survey)
+    console.log("??", await extractSurveySummary2())
 
     return {
       dailySituationCount: dailies,

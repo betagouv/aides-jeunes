@@ -10,7 +10,6 @@ export enum BehaviourEvent {
   ShowLocations = "show-locations",
   ShowNewLocation = "show-new-location",
   Teleservice = CTALabel.Teleservice,
-  LinkIneligible = "link-ineligible",
   ShowUnexpected = "show-unexpected",
   Close = "close",
   RetourLogement = "retour-logement",

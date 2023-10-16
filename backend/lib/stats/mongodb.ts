@@ -71,8 +71,8 @@ async function extractSimulationDailyCount(fromDate, toDate) {
   ]
 }
 
-async function extractSurveySummary2() {
-  return await Followups.aggregate([
+async function extractSurveySummary() {
+  const surveySummary = await Followups.aggregate([
     {
       $match: {
         $and: [
@@ -137,59 +137,110 @@ async function extractSurveySummary2() {
         total: { $sum: "$total" },
       },
     },
+    {
+      $facet: {
+        total: [
+          {
+            $group: {
+              _id: "total",
+              total: { $sum: "$total" },
+            },
+          },
+        ],
+        summary: [
+          {
+            $group: {
+              _id: "$_id.type",
+              total: { $sum: "$total" },
+            },
+          },
+          {
+            $group: {
+              _id: "$_id",
+              data: {
+                $push: { k: "$_id", v: "$total" },
+              },
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: { $arrayToObject: "$data" },
+            },
+          },
+          {
+            $group: {
+              _id: "summary",
+              summary: { $mergeObjects: "$$ROOT" },
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: "$summary",
+            },
+          },
+        ],
+        historical: [
+          {
+            $group: {
+              _id: "$_id.month",
+              data: {
+                $push: { k: "$_id.type", v: "$total" },
+              },
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: {
+                $mergeObjects: [{ $arrayToObject: "$data" }, { date: "$_id" }],
+              },
+            },
+          },
+          {
+            $group: {
+              _id: "$date",
+              data: {
+                $push: {
+                  k: "$date",
+                  v: {
+                    $unsetField: {
+                      field: "date",
+                      input: "$$ROOT",
+                    },
+                  },
+                },
+              },
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: { $arrayToObject: "$data" },
+            },
+          },
+          {
+            $group: {
+              _id: "historical",
+              historical: { $mergeObjects: "$$ROOT" },
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: { $mergeObjects: "$historical" },
+            },
+          },
+        ],
+      },
+    },
+    {
+      $project: {
+        total: {
+          $getField: { field: "total", input: { $arrayElemAt: ["$total", 0] } },
+        },
+        summary: { $arrayElemAt: ["$summary", 0] },
+        historical: { $arrayElemAt: ["$historical", 0] },
+      },
+    },
   ])
-}
-
-function extractSurveySummary(db) {
-  return db
-    .collection("followups")
-    .mapReduce(
-      function () {
-        const m = {
-          asked: 1,
-          failed: 2,
-          nothing: 3,
-          already: 4,
-        }
-        const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === SurveyCategory.BenefitAction
-        )
-        if (benefitActionSurvey.answers.length) {
-          benefitActionSurvey.answers.sort(function (a, b) {
-            return m[a.value] > m[b.value]
-          })
-          const month = benefitActionSurvey.repliedAt.toISOString().slice(0, 7)
-          const answer = benefitActionSurvey.answers[0].value
-          emit({ month, answer }, 1)
-        }
-      },
-      function (k, values) {
-        return values.reduce((sum, number: number) => sum + number)
-      },
-      {
-        query: {
-          "surveys.type": SurveyCategory.BenefitAction,
-          "surveys.repliedAt": { $exists: true },
-        },
-        out: { inline: 1 },
-        scope: {
-          SurveyCategory,
-        },
-      }
-    )
-    .then((summary) =>
-      summary.reduce(
-        (set, row) => {
-          const { month, answer } = row._id
-          set.summary[answer] = (set.summary[answer] || 0) + row.value
-          set.total += row.value
-          set.historical[month] = set.historical[month] || {}
-          set.historical[month][answer] = row.value
-          return set
-        },
-        { summary: {}, historical: {}, total: 0 }
-      )
-    )
+  return surveySummary[0]
 }
 
 function extractSurveyDetails(db) {
@@ -271,11 +322,8 @@ async function getStats(fromDate, toDate): Promise<MongoStats | any> {
   try {
     const db = await connect()
     const dailies = await extractSimulationDailyCount(fromDate, toDate)
-    const survey = await extractSurveySummary(db)
+    const survey = await extractSurveySummary()
     const details = await extractSurveyDetails(db)
-
-    console.log("!!", survey)
-    console.log("??", await extractSurveySummary2())
 
     return {
       dailySituationCount: dailies,

@@ -1,0 +1,39 @@
+label: aide au financement du permis
+institution: msa_maine_et_loire
+description: La MSA de Maine-et-Loire aide les jeunes dans leur accès à l'emploi
+  ou à la formation. Cette aide s'adresse en priorité aux personnes n'ayant pas de
+  formation diplômante, notamment en levant les freins à la mobilité.
+prefix: l’
+conditions_generales:
+  - type: departement
+    values:
+      - "49"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+profils:
+  - type: chomeur
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: independant
+    conditions: []
+  - type: inactif
+    conditions: []
+   - type: beneficiaire_rsa
+    conditions: []
+conditions:
+  - Être assuré en maladie à la MSA personnellement ou comme ayant-droit.
+  - Être en recherche d'emploi ou sous contrat à durée indéterminée.
+  - Justifier de l'inscription à Pôle Emploi, Mission Locale ou à la PAIO.
+interestFlag: _interetPermisDeConduire
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 900
+link: https://maineetloire.msa.fr/lfp/web/msa-de-maine-et-loire/aide-a-la-recherche-d-un-emploi-salarie
+instructions: https://maineetloire.msa.fr/lfp/web/msa-de-maine-et-loire/aide-a-la-recherche-d-un-emploi-salarie

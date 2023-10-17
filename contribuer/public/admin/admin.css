@@ -1,10 +1,12 @@
 a[href="#/collections/benefits_javascript/new"],
 a[href="#/collections/benefits_openfisca/new"],
+a[href="#/collections/benefits_dynamic/new"],
 a[href="#/collections/institutions/new"] {
   font-size: 0px;
 }
 a[href="#/collections/benefits_javascript/new"]:after,
-a[href="#/collections/benefits_openfisca/new"]:after {
+a[href="#/collections/benefits_openfisca/new"]:after,
+a[href="#/collections/benefits_dynamic/new"]:after {
   content: "Créer une nouvelle aide";
   font-size: 14px;
 }

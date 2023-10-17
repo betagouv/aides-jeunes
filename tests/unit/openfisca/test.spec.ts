@@ -41,7 +41,7 @@ const situation = {
 function run_cmd(cmd, args): Promise<CommandOutput> {
   return new Promise(function (resolve, reject) {
     const spawn = child_process.spawn
-    const child = spawn(cmd, args)
+    const child = spawn(cmd, args, { env: process.env })
     let respErr = ""
     let respOut = ""
 
@@ -73,9 +73,19 @@ function runOpenFiscaTest(yaml, extension) {
   const tmpobj = tmp.fileSync({ postfix: ".yaml" })
   fs.writeFileSync(tmpobj.fd, yaml, "utf8")
 
-  const args = extension
-    ? ["test", tmpobj.name, "--extensions", extension]
-    : ["test", tmpobj.name]
+  const reforms: string[] = []
+  if (extension === "openfisca_france_local") {
+    reforms.push(
+      "--reform",
+      "openfisca_france_local.aides_jeunes_reform.aides_jeunes_reform_dynamic"
+    )
+
+    process.env.DYNAMIC_BENEFIT_FOLDER = "data/benefits/reform_dynamic"
+  }
+
+  const args: string[] = extension
+    ? ["test", tmpobj.name.toString(), "--extensions", extension, ...reforms]
+    : ["test", tmpobj.name, ...reforms]
 
   return run_cmd("openfisca", args)
 }

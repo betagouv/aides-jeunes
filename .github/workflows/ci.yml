@@ -265,7 +265,7 @@ jobs:
         shell: bash
         run: |
           source .venv/bin/activate
-          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
+          nohup gunicorn openfisca.api --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
       - name: Cypress install
         uses: cypress-io/github-action@v5
@@ -345,7 +345,7 @@ jobs:
         shell: bash
         run: |
           source .venv/bin/activate
-          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
+          nohup gunicorn openfisca.api --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
       - name: Wait openfisca
         shell: bash

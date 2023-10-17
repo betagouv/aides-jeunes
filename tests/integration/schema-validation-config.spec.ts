@@ -26,6 +26,7 @@ describe("Schema validation", function () {
     const benefits = [
       ...jamstack.collections.benefits_openfisca.items,
       ...jamstack.collections.benefits_javascript.items,
+      ...jamstack.collections.benefits_dynamic.items,
     ]
 
     benefits.forEach((benefit) => {

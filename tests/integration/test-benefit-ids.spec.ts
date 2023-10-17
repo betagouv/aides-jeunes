@@ -21,6 +21,13 @@ describe("Benefit id", () => {
     }
   )
 
+  const dynamicBenefits = jamstack.collections.benefits_dynamic.items.map(
+    (benefit) => {
+      benefit.source = "reform_dynamic"
+      return benefit
+    }
+  )
+
   const aidesVeloBenefits = aidesVeloGenerator([])
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
@@ -29,6 +36,7 @@ describe("Benefit id", () => {
   const benefits = [
     ...javascriptBenefits,
     ...openfiscaBenefits,
+    ...dynamicBenefits,
     ...aidesVeloBenefits,
   ].map((benefit) => {
     benefit.id = Benefits.generateBenefitId(benefit)

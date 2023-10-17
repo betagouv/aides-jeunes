@@ -8,6 +8,13 @@ interface FileProperties {
   extension: string
 }
 
+const ymlFolders = [
+  "data/benefits/javascript",
+  "data/benefits/openfisca",
+  "data/benefits/reform_dynamic",
+  "data/institutions",
+]
+
 describe("Test filenames rules", function () {
   const files: FileProperties[] = []
 
@@ -56,8 +63,9 @@ describe("Test filenames rules", function () {
   })
 
   const benefitsFiles = files.filter((file) =>
-    file.absolute.match(/data\/(institutions|benefits\/(javascript|openfisca))/)
+    ymlFolders.includes(path.dirname(file.absolute))
   )
+
   benefitsFiles.forEach((file) => {
     describe(file.absolute, function () {
       it("institution and benefit files should use yml extension", function () {

@@ -80,6 +80,12 @@ export function generate(
   collections.benefits_openfisca.items.forEach((benefit) => {
     benefit.source = "openfisca"
   })
+  collections.benefits_dynamic.items.forEach((benefit) => {
+    benefit.source = "reform_dynamic"
+    benefit.slug = benefit.slug.replaceAll("-", "_")
+    benefit.openfiscaPeriod = "thisMonth"
+    benefit.entity = "individus"
+  })
 
   const aidesVeloBenefits = aidesVeloBenefitListGenerator
     ? aidesVeloBenefitListGenerator(Object.values(institutions))
@@ -94,6 +100,7 @@ export function generate(
   const benefitsCollections = [
     ...collections.benefits_javascript.items,
     ...collections.benefits_openfisca.items,
+    ...collections.benefits_dynamic.items,
     ...aidesVeloBenefits.filter((b) => b.institution),
     ...apaBenefits,
     ...fslBenefits,

@@ -40,6 +40,7 @@ export interface Jamstack {
   collections: {
     benefits_javascript: BenefitsJavascriptCollection
     benefits_openfisca: any
+    benefits_dynamic: any
     institutions: InstitutionCollection
     institution_types: any
   }

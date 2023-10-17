@@ -1,5 +1,6 @@
 import dayjs from "dayjs"
 
+import { isOpenfiscaBenefit } from "../../../../lib/benefits/utils.js"
 import benefits from "../../../../data/all.js"
 import { generator } from "../../../../lib/dates.js"
 import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
@@ -42,17 +43,15 @@ function appendExtraVariables(
 }
 
 const requestedVariables: OpenfiscaVariables = {}
-benefits.all
-  .filter((benefit) => benefit.source === "openfisca")
-  .forEach((benefit) => {
-    const item = benefit.openfisca_eligibility_source || benefit.id
-    requestedVariables[item] ??= { ...benefit }
+benefits.all.filter(isOpenfiscaBenefit).forEach((benefit) => {
+  const item = benefit.openfisca_eligibility_source || benefit.id
+  requestedVariables[item] ??= { ...benefit }
 
-    // Ajoute des variables dans la liste des paramètres à retourner par openfisca
-    if (benefit.extra) {
-      appendExtraVariables(requestedVariables, benefit.extra)
-    }
-  })
+  // Ajoute des variables dans la liste des paramètres à retourner par openfisca
+  if (benefit.extra) {
+    appendExtraVariables(requestedVariables, benefit.extra)
+  }
+})
 
 // Ajoute des variables dans la liste des paramètres à retourner par openfisca
 for (const condition in CONDITION_STRATEGY) {

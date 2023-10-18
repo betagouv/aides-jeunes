@@ -1,7 +1,7 @@
 label: aide au financement du permis
 institution: msa_maine_et_loire
-description: La MSA de Maine-et-Loire aide les jeunes dans leur accès à l'emploi
-  ou à la formation. Cette aide s'adresse en priorité aux personnes n'ayant pas de
+description: La MSA de Maine-et-Loire aide les jeunes dans leur accès à l’emploi
+  ou à la formation. Cette aide s’adresse en priorité aux personnes n’ayant pas de
   formation diplômante, notamment en levant les freins à la mobilité.
 prefix: l’
 conditions_generales:
@@ -27,8 +27,8 @@ profils:
     conditions: []
 conditions:
   - Être assuré en maladie à la MSA personnellement ou comme ayant-droit.
-  - Être en recherche d'emploi ou sous contrat à durée indéterminée.
-  - Justifier de l'inscription à Pôle Emploi, Mission Locale ou à la PAIO.
+  - Être en recherche d’emploi ou sous contrat à durée indéterminée.
+  - Justifier de l’inscription à Pôle Emploi, Mission Locale ou à la PAIO.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

@@ -1,12 +1,12 @@
 <template>
   <article class="fr-article">
     <h1>Toutes les aides</h1>
-    <p class="total-element">Total: {{ benefitsCount }} aides</p>
+    <p>Total: {{ benefitsCount }} aides</p>
     <div class="fr-form-group">
       <div class="fr-container fr-px-0">
         <div class="fr-grid-row">
           <div class="fr-col-12">
-            <label class="cp-filter-label" for="cp-input"
+            <label class="fr-label" for="cp-input"
               >Filtrer par code postal :</label
             >
           </div>
@@ -31,7 +31,7 @@
 
     <div v-for="(institutions, type) in institutionsGroups" :key="type">
       <h2 :id="`liste_${type}`">{{ types[type] }}</h2>
-      <p class="total-element">
+      <p>
         Nombre d'aides :
         {{
           institutions.reduce(
@@ -56,7 +56,7 @@
             {{ institution.label }}
           </router-link>
         </h3>
-        <p class="total-element"
+        <p
           >{{
             institution.benefits.length > 1
               ? institution.benefits.length + " aides :"

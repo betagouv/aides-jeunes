@@ -12,9 +12,7 @@
           <div class="fr-container fr-py-4w">
             <div class="fr-grid-row fr-grid-row--center">
               <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
-                <h3 class="last"
-                  >Merci d'avoir rempli ce questionnaire&nbsp;!</h3
-                >
+                <h3>Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
                 <div v-if="showAccompanimentBlock">
                   <p class="fr-text--lg">
                     Vous avez besoin d'aide pour effectuer vos démarches ?

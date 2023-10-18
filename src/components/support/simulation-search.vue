@@ -1,5 +1,5 @@
 <template>
-  <form class="simulation-search" @submit="onSubmit">
+  <form @submit="onSubmit">
     <label for="simulationId" class="fr-label fr-text--lead fr-mb-0"
       >Accéder à une simulation :</label
     >

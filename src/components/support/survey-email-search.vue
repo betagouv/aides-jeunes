@@ -1,5 +1,5 @@
 <template>
-  <form class="simulation-search" @submit.prevent="onSubmit">
+  <form @submit.prevent="onSubmit">
     <label for="surveyEmail" class="fr-label fr-text--lead fr-mb-0"
       >Rechercher un sondage par adresse email :</label
     >

@@ -45,7 +45,7 @@
   <p
     ><small v-if="simulationId"
       >Cette simulation a pour identifiant
-      <span data-testid="simulation-id" class="preformatted">
+      <span data-testid="simulation-id">
         {{ simulationId }}
       </span>
       (en savoir plus sur

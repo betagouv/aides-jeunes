@@ -75,7 +75,7 @@ const onClick = () => {
     v-analytics="{ name: analyticsName, action: type, category: 'General' }"
     :aria-label="longLabel"
     :href="getURL(link)"
-    class="text-center fr-my-1w"
+    class="fr-my-1w"
     rel="noopener"
     target="_blank"
     @click="onClick()"

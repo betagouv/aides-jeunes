@@ -31,7 +31,7 @@ profils:
     conditions: []
   - type: inactif
     conditions: []
-   - type: beneficiaire_rsa
+  - type: beneficiaire_rsa
     conditions: []
 interestFlag: _interetPermisDeConduire
 type: float

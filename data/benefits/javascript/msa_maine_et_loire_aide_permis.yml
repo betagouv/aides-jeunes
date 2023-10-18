@@ -23,7 +23,7 @@ profils:
     conditions: []
   - type: inactif
     conditions: []
-   - type: beneficiaire_rsa
+  - type: beneficiaire_rsa
     conditions: []
 conditions:
   - Être assuré en maladie à la MSA personnellement ou comme ayant-droit.

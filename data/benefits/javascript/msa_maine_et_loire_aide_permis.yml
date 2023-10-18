@@ -5,7 +5,7 @@ description: La MSA de Maine-et-Loire aide les jeunes dans leur accès à l’em
   formation diplômante, notamment en levant les freins à la mobilité.
 prefix: l’
 conditions_generales:
-  - type: departement
+  - type: departements
     values:
       - "49"
   - type: age

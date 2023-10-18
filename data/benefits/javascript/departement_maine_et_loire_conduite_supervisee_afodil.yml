@@ -1,11 +1,10 @@
 label: Conduite supervisée avec l’Association Afodil
 institution: departement_maine_et_loire
-description: La Conduite Supervisée 49 portée par l’Afodil a pour but de vous permettre
-  de vous exercer à la conduite avec un accompagnateur et/ou un véhicule afin
-  d’augmenter vos chances de réussite à l’épreuve pratique du permis de conduire.
-  Vous vous engagez dans un protocole d’une durée de 3 à 4 mois, avec la possibilité
-  de réaliser 1000 kilomètres. Une adhésion de 10€ à l’inscription vous sera demandée puis 30€ par
-  mois de conduite supervisée.
+description: La Conduite Supervisée 49 portée par l’Afodil vous permet de vous exercer
+  à la conduite avec un accompagnateur et/ou un véhicule afin d’augmenter vos chances
+  de réussite à l’épreuve pratique du permis de conduire. Vous vous engagez pour
+  une durée de 3 à 4 mois, avec la possibilité de réaliser 1000 kilomètres. Une adhésion
+  de 10€ à l’inscription vous sera demandée puis 30€ par mois de conduite supervisée.
 prefix: la
 conditions_generales:
   - type: departements

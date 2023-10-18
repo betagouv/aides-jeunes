@@ -1,11 +1,11 @@
-label: Conduite supervisée avec l'Association Afodil
+label: Conduite supervisée avec l’Association Afodil
 institution: departement_maine_et_loire
-description: La Conduite Supervisée 49 portée par l'Afodil a pour but de vous permettre
+description: La Conduite Supervisée 49 portée par l’Afodil a pour but de vous permettre
   de vous exercer à la conduite avec un accompagnateur et/ou un véhicule afin
-  d'augmenter vos chances de réussite à l'épreuve pratique du permis de conduire.
+  d’augmenter vos chances de réussite à l’épreuve pratique du permis de conduire.
   Vous vous engagez dans un protocole d’une durée de 3 à 4 mois, avec la possibilité
-  de réaliser 1000 Kms. Une adhésion de 10€ à l’inscription vous sera demandée puis 30€ par
-  mois de Conduite Supervisée.
+  de réaliser 1000 kilomètres. Une adhésion de 10€ à l’inscription vous sera demandée puis 30€ par
+  mois de conduite supervisée.
 prefix: la
 conditions_generales:
   - type: departements
@@ -18,10 +18,10 @@ conditions_generales:
     operator: <=
     value: 25
 conditions:
-  - Etre suivi par la Mission Locale, ou être bénéficiaire du RSA, ou être bénéficiaire de l'AAH, ou être en contrat ACI ou AI.
+  - Être suivi par la Mission Locale, ou être bénéficiaire du RSA, ou être bénéficiaire de l’AAH, ou être en contrat ACI ou AI.
   - Avoir obtenu le code de la route.
-  - Avoir obtenu l'Attestation de Fin de Formation Initiale délivrée par l'Auto-école, ou en être proche.
-  - Avoir obtenu l'autorisation de partir en Conduite Supervisée délivrée par l'Auto-école, après un échec à l'examen du permis de conduire.
+  - Avoir obtenu l’Attestation de Fin de Formation Initiale délivrée par l’auto-école, ou en être proche.
+  - Avoir obtenu l’autorisation de partir en conduite supervisée délivrée par l’auto-école, après un échec à l’examen du permis de conduire.
 profils:
   - type: chomeur
     conditions: []

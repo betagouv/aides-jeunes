@@ -19,8 +19,7 @@ conditions_generales:
     value: 25
 profils: []
 conditions:
-  - Être inscrit auprès d’une auto-école agréée, quelle que soit la formule d’apprentissage
-    choisie (formation traditionnelle, conduite accompagnée ou supervisée).
+  - Être inscrit auprès d’une auto-école agréée, quelle que soit la formule d’apprentissage choisie (formation traditionnelle, conduite accompagnée ou supervisée).
   - Candidater chaque année avant le 15 septembre.
 voluntary_conditions:
   - Faire état d’un engagement bénévole.

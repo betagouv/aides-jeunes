@@ -1,9 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-/* global emit: true */
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-declare function emit(key, value)
-
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
@@ -243,73 +237,66 @@ async function extractSurveySummary() {
   return surveySummary[0]
 }
 
-function extractSurveyDetails(db) {
-  return db
-    .collection("followups")
-    .mapReduce(
-      function () {
-        const obj = {}
-        this.benefits.forEach(function (b) {
-          obj[b.id] = b.amount
-        })
-        const benefitActionSurvey = this.surveys.find(
-          (s) => s.type === SurveyCategory.BenefitAction
-        )
-        benefitActionSurvey.answers.forEach(function (a) {
-          emit({ id: a.id, state: a.value }, 1)
-        })
+async function extractSurveyDetails() {
+  return await Followups.aggregate([
+    {
+      $match: {
+        $and: [
+          { surveyOptin: true },
+          { surveys: { $exists: true, $ne: [] } },
+          { "surveys.type": SurveyCategory.BenefitAction },
+          { "surveys.answers": { $ne: [] } },
+        ],
       },
-      function (k, values) {
-        return values.reduce((sum, number: number) => sum + number)
+    },
+    {
+      $unwind: { path: "$surveys" },
+    },
+    {
+      $project: {
+        answers: "$surveys.answers",
       },
-      {
-        query: {
-          "surveys.type": SurveyCategory.BenefitAction,
-          "surveys.repliedAt": { $exists: true },
+    },
+    {
+      $unwind: { path: "$answers" },
+    },
+    {
+      $match: {
+        $or: [
+          { "answers.value": "already" },
+          { "answers.value": "asked" },
+          { "answers.value": "failed" },
+          { "answers.value": "nothing" },
+        ],
+      },
+    },
+    {
+      $group: {
+        _id: { id: "$answers.id", value: "$answers.value" },
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $group: {
+        _id: { id: "$_id.id" },
+        data: {
+          $push: { k: "$_id.value", v: "$count" },
         },
-        out: { inline: 1 },
-        scope: {
-          SurveyCategory,
-        },
-      }
-    )
-    .then((results) => {
-      const groupMap = results.reduce(function (total, p) {
-        const { id, state } = p._id
-        total[id] = total[id] || { total: 0 }
-        total[id][state] = p.value
-        total[id].total += p.value
-        return total
-      }, {})
-
-      const groups = Object.keys(groupMap).map((g) => {
-        return Object.assign({ id: g }, groupMap[g])
-      })
-
-      groups.sort(function (a, b) {
-        return a.total < b.total ? 1 : -1
-      })
-
-      return groups
-    })
-}
-
-function manageMissingDBOrCollection(error) {
-  console.log(error)
-  if (
-    error.message == "ns doesn't exist" ||
-    error.message.match("does not exist")
-  ) {
-    return {
-      dailySituationCount: [],
-      survey: {
-        summary: [],
-        details: [],
       },
-    }
-  } else {
-    throw error
-  }
+    },
+    {
+      $replaceRoot: {
+        newRoot: {
+          $mergeObjects: [{ $arrayToObject: "$data" }, { id: "$_id.id" }],
+        },
+      },
+    },
+    {
+      $addFields: {
+        total: { $sum: ["$already", "$asked", "$failed", "$nothing"] },
+      },
+    },
+  ])
 }
 
 async function connect() {
@@ -319,23 +306,16 @@ async function connect() {
 }
 
 async function getStats(fromDate, toDate): Promise<MongoStats | any> {
-  try {
-    const db = await connect()
-    const dailies = await extractSimulationDailyCount(fromDate, toDate)
-    const survey = await extractSurveySummary()
-    const details = await extractSurveyDetails(db)
+  const dailies = await extractSimulationDailyCount(fromDate, toDate)
+  const survey = await extractSurveySummary()
+  const details = await extractSurveyDetails()
 
-    return {
-      dailySituationCount: dailies,
-      survey: {
-        ...survey,
-        details,
-      },
-    }
-  } catch (error) {
-    return manageMissingDBOrCollection(error)
-  } finally {
-    closeClient()
+  return {
+    dailySituationCount: dailies,
+    survey: {
+      ...survey,
+      details,
+    },
   }
 }
 

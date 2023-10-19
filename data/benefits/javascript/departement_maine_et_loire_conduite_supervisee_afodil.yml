@@ -15,7 +15,7 @@ conditions_generales:
     operator: ">="
     value: 18
   - type: age
-    operator: <
+    operator: <=
     value: 25
 conditions:
   - Être suivi par la Mission Locale, ou être bénéficiaire du RSA, ou être bénéficiaire de l’AAH, ou être en contrat ACI ou AI.

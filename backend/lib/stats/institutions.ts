@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import epciList from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 import Simulations from "../../models/simulation.js"
 import benefits from "../../../data/all.js"
@@ -63,11 +63,29 @@ function getBenefitCountPerEPCI(): Count {
   )
 }
 
+// Temporary patch to fix MET69 type
+// An issue has been opened on the data repository:
+// https://github.com/etalab/decoupage-administratif/issues/42
+// TODO: remove this patch when the issue is fixed
+function patchEpciList(epci) {
+  return epci.map((epci) => {
+    if (epci.type === "MET69") {
+      return {
+        ...epci,
+        type: "METRO",
+      }
+    }
+
+    return epci
+  })
+}
+
 export default async function getInstitutionsData() {
+  const epciPatched = patchEpciList(epciList)
   const simulationNumberPerEPCI = await getSimulationCountPerEPCI()
   const benefitCountPerEPCI = getBenefitCountPerEPCI()
 
-  return epci.map((epci) => {
+  return epciPatched.map((epci) => {
     return {
       name: epci.nom,
       code: epci.code,

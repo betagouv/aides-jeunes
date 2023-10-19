@@ -12,7 +12,7 @@ conditions_generales:
     operator: ">="
     value: 18
   - type: age
-    operator: <=
+    operator: <
     value: 25
 profils:
   - type: chomeur

@@ -55,10 +55,6 @@ export default {
         label: "Indépendant ou indépendante",
       },
       {
-        value: Activite.ServiceCivique,
-        label: "En service civique",
-      },
-      {
         value: Activite.Chomeur,
         label: "Inscrit ou inscrite comme demandeur d’emploi",
       },
@@ -75,6 +71,12 @@ export default {
     ],
     moreInfo:
       "Lorsque vous étudiez et que vous travaillez, vous devez sélectionner « En étude ou en alternance ».",
+  }),
+
+  service_civique: new BooleanProperty({
+    question: ({ individu }) => {
+      return `${IndividuMethods.label(individu, "être")} en service civique ?`
+    },
   }),
 
   alternant: new BooleanProperty({

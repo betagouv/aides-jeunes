@@ -43,6 +43,10 @@ const fill_agence_travail_temporaire = (agence_travail_temporaire) => {
   fillRadio("agence_travail_temporaire", agence_travail_temporaire)
 }
 
+const fill_service_civique = (service_civique) => {
+  fillRadio("service_civique", service_civique)
+}
+
 const fill_scolarite = (level) => {
   fillRadio("scolarite", level)
 }
@@ -155,6 +159,7 @@ const publicStudent = () => {
   fill_stagiaire(false)
   fill_alternant(false)
   fill_groupe_specialites_formation(GroupeSpecialite.Groupe330)
+  fill_service_civique(true)
   fillHandicap(false)
   fill_enfant_a_charge(false)
   fill_regime_securite_sociale("regime_general")

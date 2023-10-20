@@ -245,7 +245,6 @@ async function extractSurveyDetails() {
           { surveyOptin: true },
           { surveys: { $exists: true, $ne: [] } },
           { "surveys.type": SurveyCategory.BenefitAction },
-          { "surveys.answers": { $ne: [] } },
         ],
       },
     },

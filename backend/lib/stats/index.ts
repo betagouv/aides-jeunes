@@ -42,6 +42,5 @@ try {
   Sentry.captureException(error)
   process.exitCode = 1
 } finally {
-  mongodb.closeClient()
   mongoose.connection.close()
 }

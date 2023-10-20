@@ -63,7 +63,6 @@ const config: Configuration = {
     client_id: process.env.GITHUB_CLIENT_ID || "",
     authorized_users: [
       "Allan-CodeWorks",
-      "Cugniere",
       "guillett",
       "Shamzic",
       "yasmine-glitch",

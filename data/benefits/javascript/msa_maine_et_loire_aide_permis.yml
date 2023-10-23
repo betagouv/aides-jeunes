@@ -19,7 +19,7 @@ profils:
     conditions: []
   - type: service_civique
     conditions: []
-  - type: independant
+  - type: salarie
     conditions: []
   - type: inactif
     conditions: []
@@ -27,7 +27,7 @@ profils:
     conditions: []
 conditions:
   - Être assuré en maladie à la MSA personnellement ou comme ayant-droit.
-  - Être en recherche d’emploi ou sous contrat à durée indéterminée.
+  - Être en recherche d’emploi ou sous contrat à durée déterminée.
   - Justifier de l’inscription à Pôle Emploi, Mission Locale ou à la PAIO.
 interestFlag: _interetPermisDeConduire
 type: float

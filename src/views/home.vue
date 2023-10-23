@@ -19,8 +19,8 @@
         <li v-if="hasExistingSituation">
           <button
             v-analytics="{
-              action: 'Reprendre ma simulation',
-              category: 'Home',
+              action: eventActionResume,
+              category: eventCategoryHome,
             }"
             class="fr-btn"
             @click="next()"
@@ -31,7 +31,7 @@
         <li>
           <button
             v-if="hasExistingSituation"
-            v-analytics="{ action: ctaLabel, category: 'Home' }"
+            v-analytics="{ action: ctaLabel, category: eventCategoryHome }"
             class="fr-btn fr-btn--secondary"
             data-testid="new-simulation"
             @click="newSituation()"
@@ -40,7 +40,7 @@
           </button>
           <router-link
             v-else
-            v-analytics="{ action: ctaLabel, category: 'Home' }"
+            v-analytics="{ action: ctaLabel, category: eventCategoryHome }"
             class="fr-btn"
             data-testid="new-simulation"
             to="/simulation/individu/demandeur/date_naissance"
@@ -63,6 +63,7 @@
 
 <script lang="ts">
 import { useStore } from "@/stores/index.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "Home",
@@ -70,6 +71,12 @@ export default {
     return {
       store: useStore(),
       context: process.env.VITE_CONTEXT,
+    }
+  },
+  data() {
+    return {
+      eventCategoryHome: EventCategory.Home,
+      eventActionResume: EventAction.ReprendreMaSimulation,
     }
   },
   computed: {

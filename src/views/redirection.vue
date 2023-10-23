@@ -7,7 +7,7 @@
       <h1>Oups, une erreur est apparue</h1>
       <p>
         <a
-          v-analytics="{ action: 'Support', category: 'Redirection' }"
+          v-analytics="redirectionEvent"
           v-mail="{
             subject: `Problème redirection [${simulationId}]`,
             body: `Bonjour,
@@ -59,6 +59,7 @@
 import LoadingModal from "@/components/loading-modal.vue"
 import { useStore } from "@/stores/index.js"
 import storageService from "@/lib/storage-service.js"
+import { EventAction, EventCategory } from "@lib/enums/event"
 
 export default {
   name: "Redirection",
@@ -76,6 +77,10 @@ export default {
       error: null,
       teleservice: null,
       updating: true,
+      redirectionEvent: {
+        action: EventAction.Support,
+        category: EventCategory.Redirection,
+      },
     }
   },
   mounted() {

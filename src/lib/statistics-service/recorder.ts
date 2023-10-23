@@ -4,13 +4,14 @@ import { StandardBenefit } from "@data/types/benefits.d.js"
 
 import { skipSendStatistics } from "./shared.js"
 import tracker from "@/plugins/tracker.js"
+import { EventAction } from "@lib/enums/event.js"
 
 const isProduction = process.env.NODE_ENV === "production"
 
 export interface RecorderEvent {
   benefits: StandardBenefit[]
   benefitId?: string
-  event_type: string
+  eventAction: EventAction
 }
 
 interface StatisticsRecord {
@@ -19,7 +20,7 @@ interface StatisticsRecord {
   abtesting: object
   benefit_index: number
   page_total: number
-  event_type: string
+  event_type: EventAction
   version: string
 }
 
@@ -48,7 +49,7 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
     return
   }
 
-  const { benefits, benefitId, event_type } = event
+  const { benefits, benefitId, eventAction } = event
   const abtesting = ABTestingService.getValues()
   const benefitsStats: StatisticsRecord[] = []
   const totalResults = benefits.length
@@ -65,7 +66,7 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
       abtesting,
       benefit_index: i + 1,
       page_total: totalResults,
-      event_type,
+      event_type: eventAction,
       version: getEnvVariable("VITE_STATS_VERSION"),
     })
   })

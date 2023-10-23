@@ -30,7 +30,7 @@ import { computed, defineProps, onMounted, onUnmounted } from "vue"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
-import { EventCategory } from "@lib/enums/event-category.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 import tracker from "@/plugins/tracker.js"
 
 const props = defineProps({
@@ -62,7 +62,11 @@ const localOnSubmit = (event) => {
 }
 
 const goBack = () => {
-  tracker.trackEvent(EventCategory.Parcours, "Bouton précédent", route.fullPath)
+  tracker.trackEvent(
+    EventCategory.Parcours,
+    EventAction.BoutonPrecedent,
+    route.fullPath
+  )
 
   const answerIndex = store.simulation.answers.current.findIndex(
     (answer) => answer.path === route.fullPath

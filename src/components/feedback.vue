@@ -69,7 +69,7 @@
         <ul>
           <li v-if="openfiscaTracerURL">
             <a
-              v-analytics="{ category: 'Tracer' }"
+              v-analytics="events.tracer"
               :href="openfiscaTracerURL"
               target="_blank"
               title="Accédez à l'outil d'analyse des résultats de cette simulation - Nouvelle fenêtre"
@@ -78,7 +78,7 @@
           </li>
           <li v-if="openfiscaAxeURL">
             <a
-              v-analytics="{ category: 'Axe' }"
+              v-analytics="events.axe"
               :href="openfiscaAxeURL"
               target="_blank"
               title="Analysez l'évolution des aides en fonction des ressources : graphique - Nouvelle fenêtre"
@@ -87,7 +87,7 @@
           </li>
           <li v-if="PNDSURL">
             <a
-              v-analytics="{ category: 'PNDS' }"
+              v-analytics="events.pnds"
               :href="PNDSURL"
               target="_blank"
               title="Transférer les données au PNDS :  - Nouvelle fenêtre"
@@ -100,10 +100,7 @@
   >
   <p class="fr-text--center"
     ><a
-      v-analytics="{
-        action: 'Parcours',
-        category: 'Je donne mon avis',
-      }"
+      v-analytics="events.jeDonneMonAvis"
       href="https://voxusagers.numerique.gouv.fr/Demarches/3135?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=b4053638f7a51e868dea83f4361ebc23"
       target="_blank"
       title="Je donne mon avis - Nouvelle fenêtre"
@@ -124,6 +121,7 @@ import { useStore } from "@/stores/index.js"
 import { useRoute } from "vue-router"
 import { formatDroitEstime } from "@lib/benefits/details.js"
 import { capitalize } from "@lib/utils.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "Feedback",
@@ -139,6 +137,21 @@ export default {
       openfiscaAxeURL: false,
       PNDSURL: false,
       showExpertLinks: false,
+      events: {
+        jeDonneMonAvis: {
+          action: EventAction.Parcours,
+          category: EventCategory.JeDonneMonAvis,
+        },
+        tracer: {
+          category: "Tracer",
+        },
+        axe: {
+          category: "Axe",
+        },
+        pnds: {
+          category: "PNDS",
+        },
+      },
     }
   },
   computed: {

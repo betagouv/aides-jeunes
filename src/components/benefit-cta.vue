@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BenefitCtaLink from "./benefit-cta-link.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
 import { CTALabel } from "@lib/enums/cta.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
 
@@ -16,6 +16,7 @@ const ctaForm = computed(() => {
 const ctaTeleservice = computed(() => {
   return ctas.value.find((cta) => cta?.type === CTALabel.Teleservice)
 })
+
 const ctaTeleservicePrefill = computed(() => {
   return (
     !ctaTeleservice.value &&
@@ -103,8 +104,8 @@ const ctas = computed(() => {
         v-if="benefit.msa"
         v-analytics="{
           name: benefit.label,
-          action: BehaviourEvent.Msa,
-          category: 'General',
+          action: EventAction.Msa,
+          category: EventCategory.General,
         }"
         class="aj-droit-pro-agricole"
         href="https://www.msa.fr/lfy/espace-prive"

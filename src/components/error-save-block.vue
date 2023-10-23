@@ -3,7 +3,7 @@
     <h2 class="fr-text--lead"> Une erreur est survenue. </h2>
     <p>
       <a
-        v-analytics="{ action: 'Support', category: 'Contact' }"
+        v-analytics="issueTrackingEvent"
         v-mail="{
           subject: `[Erreur Back] Problème technique`,
           body: `Bonjour,
@@ -34,12 +34,21 @@
 
 <script lang="ts">
 import { useStore } from "@/stores/index.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "ErrorSaveBlock",
   setup() {
     return {
       store: useStore(),
+    }
+  },
+  data() {
+    return {
+      issueTrackingEvent: {
+        action: EventAction.Support,
+        category: EventCategory.Contact,
+      },
     }
   },
   computed: {

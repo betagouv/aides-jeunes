@@ -6,7 +6,7 @@ import {
   MatomoEvent,
   sendEventToMatomo,
 } from "@/lib/statistics-service/matomo.js"
-import { EventCategory } from "@lib/enums/event-category.js"
+import { EventCategory } from "@lib/enums/event.js"
 
 const AnalyticsDirective = {
   beforeMount(el, binding) {
@@ -14,10 +14,10 @@ const AnalyticsDirective = {
       const recorderEvent: RecorderEvent = {
         benefits: binding?.instance?.droits,
         benefitId: binding.value.name,
-        event_type: binding.value.action,
+        eventAction: binding.value.action,
       }
 
-      sendEventToRecorder(recorderEvent, binding?.instance?.$matomo)
+      sendEventToRecorder(recorderEvent)
 
       const matomoEvent: MatomoEvent = {
         category: binding.value.category || EventCategory.Defaut,
@@ -26,7 +26,7 @@ const AnalyticsDirective = {
         value: binding.value.value,
       }
 
-      sendEventToMatomo(matomoEvent, binding?.instance?.$matomo)
+      sendEventToMatomo(matomoEvent)
     }
     el.addEventListener("click", el.myAnalyticsHandler)
   },

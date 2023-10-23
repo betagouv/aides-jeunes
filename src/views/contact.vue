@@ -9,7 +9,7 @@
     <p>
       Pour cela, vous pouvez nous contacter par
       <a
-        v-analytics="{ action: 'Contact', category: 'Contact' }"
+        v-analytics="contactEvent"
         v-mail="{
           subject: 'Contact',
           body: `
@@ -25,9 +25,18 @@
 </template>
 <script lang="ts">
 import ContactEmailMixin from "@/mixins/contact-email.js"
+import { EventAction, EventCategory } from "@lib/enums/event"
 
 export default {
   name: "Contact",
   mixins: [ContactEmailMixin],
+  data() {
+    return {
+      contactEvent: {
+        action: EventAction.Contact,
+        category: EventCategory.Contact,
+      },
+    }
+  },
 }
 </script>

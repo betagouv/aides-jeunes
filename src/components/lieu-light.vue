@@ -2,7 +2,7 @@
 import { defineProps, PropType } from "vue"
 import { LieuProperties } from "@lib/types/lieu.d.js"
 import AnalyticRouterLink from "@/components/buttons/analytic-router-link.vue"
-import { BehaviourEvent } from "@lib/enums/behaviour-event.js"
+import { EventAction } from "@lib/enums/event.js"
 
 defineProps({
   lieu: {
@@ -31,7 +31,7 @@ defineProps({
             <AnalyticRouterLink
               class="fr-link fr-link--sm"
               :analytic-name="lieu.id"
-              :analytic-action="BehaviourEvent.ShowNewLocation"
+              :analytic-action="EventAction.ShowNewLocation"
               :to="{
                 name: 'benefitLieuInformations',
                 params: {

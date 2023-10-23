@@ -15,9 +15,7 @@
     </div>
 
     <p>
-      <a
-        v-analytics="{ action: 'Support', category: 'Contact' }"
-        v-mail="sendErrorMail()"
+      <a v-analytics="issueTrackingEvent" v-mail="sendErrorMail()"
         >Signalez ce problème</a
       >
       en décrivant ce que vous faisiez avant que cette erreur n'apparaisse, et
@@ -47,6 +45,7 @@
 <script lang="ts">
 import { sendError } from "@/plugins/mails.js"
 import { useStore } from "@/stores/index.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "ErrorBlock",
@@ -58,6 +57,10 @@ export default {
   data() {
     return {
       showDetails: false,
+      issueTrackingEvent: {
+        action: EventAction.Support,
+        category: EventCategory.Contact,
+      },
     }
   },
   computed: {

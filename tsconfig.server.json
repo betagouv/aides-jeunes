@@ -28,9 +28,6 @@
     "extensions": [".cjs", ".ts", ".js", ".json"]
   },
   "include": [
-    "./backend/configure.ts",
-    "./mock.ts",
-    "./backend/server.ts",
     "backend/**/*.ts",
     "backend/**/*.d.ts",
     "lib/**/*.ts",

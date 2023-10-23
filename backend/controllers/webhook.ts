@@ -16,12 +16,18 @@ export const verifyAuthentication = (
     return
   }
 
-  const expectedSignature = crypto
-    .createHmac("sha256", config.rdvAideNumerique.sharedSecret)
-    .update(req.body as any)
-    .digest("hex")
+  try {
+    const expectedSignature = crypto
+      .createHmac("sha256", config.rdvAideNumerique.sharedSecret)
+      .update(req.body as any)
+      .digest("hex")
 
-  if (signature !== expectedSignature) {
+    if (signature !== expectedSignature) {
+      res.status(401).json({ error: "Invalid signature" })
+      return
+    }
+  } catch (error) {
+    console.error("Error while verifying signature", error)
     res.status(401).json({ error: "Invalid signature" })
     return
   }

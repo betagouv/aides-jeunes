@@ -1,0 +1,7 @@
+name: Mutualité Sociale Agricole Maine et Loire
+imgSrc: img/institutions/logo_mutualite_sociale_agricole.png
+type: msa
+top: 10
+code_siren: "786118968"
+departments:
+  - "49"

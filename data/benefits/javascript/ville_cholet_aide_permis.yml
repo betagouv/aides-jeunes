@@ -1,0 +1,33 @@
+label: "Aide au permis : Roulez Jeunesse"
+institution: ville_cholet
+description:
+  La Ville de Cholet soutient les jeunes Choletais et Puy-Saint-Bonnetais
+  de 15 à 25 ans, engagés bénévolement, à travers l’attribution d’une aide financière
+  à la formation à la conduite automobile auprès d’une école agréée et ce, quelle que
+  soit la formule d’apprentissage choisie.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "49099"
+      - "79224"
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: "<="
+    value: 25
+profils: []
+conditions:
+  - Être inscrit auprès d’une auto-école agréée, quelle que soit la formule d’apprentissage choisie (formation traditionnelle, conduite accompagnée ou supervisée).
+  - Candidater chaque année avant le 15 septembre.
+voluntary_conditions:
+  - Faire état d’un engagement bénévole.
+interestFlag: _interetPermisDeConduire
+type: float
+montant: 1000
+unit: €
+legend: maximum
+periodicite: ponctuelle
+link: https://www.cholet.fr/dossiers/dossier_5487_roulez+jeunesse.html
+instructions: https://www.cholet.fr/dossiers/dossier_5487_roulez+jeunesse.html

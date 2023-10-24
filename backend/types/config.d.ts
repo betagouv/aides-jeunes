@@ -22,6 +22,10 @@ export interface Configuration {
       pass: string | undefined
     }
   }
+  rdvAideNumerique: {
+    sharedSecret: string
+    baseUrl: string
+  }
   github: {
     repository_url: string
     access_token_url: string

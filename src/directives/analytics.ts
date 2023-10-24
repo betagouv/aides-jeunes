@@ -12,7 +12,7 @@ const AnalyticsDirective = {
   beforeMount(el, binding) {
     el.myAnalyticsHandler = () => {
       const recorderEvent: RecorderEvent = {
-        benefits: binding?.instance?.droits,
+        benefits: binding.value.benefits || binding?.instance?.droits,
         benefitId: binding.value.name,
         eventAction: binding.value.action,
       }

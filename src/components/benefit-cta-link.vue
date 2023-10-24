@@ -6,9 +6,12 @@ import { useRouter } from "vue-router"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { CTALabel } from "@lib/enums/cta.js"
 import { EventCategory } from "@lib/enums/event"
+import { useBenefits } from "@/composables/use-benefits.js"
 
 const store = useStore()
 const $router = useRouter()
+
+const { benefits } = useBenefits()
 
 const labels = {
   teleservice: {
@@ -77,6 +80,7 @@ const onClick = () => {
       name: analyticsName,
       action: type,
       category: EventCategory.General,
+      benefits: benefits,
     }"
     :aria-label="longLabel"
     :href="getURL(link)"

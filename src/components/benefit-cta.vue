@@ -4,10 +4,13 @@ import { CTALabel } from "@lib/enums/cta.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { defineProps, computed, PropType } from "vue"
+import { useBenefits } from "@/composables/use-benefits"
 
 const props = defineProps({
   benefit: Object as PropType<StandardBenefit>,
 })
+
+const { benefits } = useBenefits()
 
 const ctaForm = computed(() => {
   return ctas.value.find((cta) => cta?.type === CTALabel.Form)
@@ -103,9 +106,10 @@ const ctas = computed(() => {
       <a
         v-if="benefit.msa"
         v-analytics="{
-          name: benefit.label,
+          name: benefit.id,
           action: EventAction.Msa,
           category: EventCategory.General,
+          benefits: benefits,
         }"
         class="aj-droit-pro-agricole"
         href="https://www.msa.fr/lfy/espace-prive"

@@ -9,16 +9,16 @@ import api from "./routes-loader/api.js"
 import config from "./config/index.js"
 import emailFollowupRedirectRoute from "./routes/email-followup-redirect.js"
 
+// Enable Sentry in production
+// https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
+Sentry.init(config.sentry)
+
 configMongoose(mongoose, config)
 
 export default function (app: express.Application) {
   process.env.PORT = process.env.PORT || "8080"
   process.env.MES_AIDES_ROOT_URL =
     process.env.MES_AIDES_ROOT_URL || `http://localhost:${process.env.PORT}`
-
-  // Enable Sentry in production
-  // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
-  Sentry.init(config.sentry)
 
   // The request handler must be the first middleware on the app
   app.use(Sentry.Handlers.requestHandler())

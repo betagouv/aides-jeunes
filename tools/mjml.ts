@@ -75,6 +75,7 @@ app.route("/mjml/:id/:type").get(
         }
 
         req.followup = followup
+        next()
       })
   },
   function (req, res) {

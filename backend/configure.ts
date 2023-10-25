@@ -2,10 +2,14 @@ import express from "express"
 import morgan from "morgan"
 import * as Sentry from "@sentry/node"
 import errorHandler from "errorhandler"
+import mongoose from "mongoose"
 
-import api from "./api.js"
+import configMongoose from "./config/mongoose.js"
+import api from "./routes-loader/api.js"
 import config from "./config/index.js"
 import emailFollowupRedirectRoute from "./routes/email-followup-redirect.js"
+
+configMongoose(mongoose, config)
 
 export default function (app: express.Application) {
   process.env.PORT = process.env.PORT || "8080"
@@ -20,8 +24,7 @@ export default function (app: express.Application) {
   app.use(Sentry.Handlers.requestHandler())
 
   // Setup app
-  const apiHandler = api()
-  app.use("/api", apiHandler)
+  app.use("/api", api)
   app.use("/followups", emailFollowupRedirectRoute)
 
   app.use(express.urlencoded({ extended: true, limit: "1024kb" }))

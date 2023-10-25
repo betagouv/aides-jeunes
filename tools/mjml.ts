@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
-import api from "../backend/api.js"
+import mongoose from "mongoose"
+import configMongoose from "../backend/config/mongoose.js"
+import config from "../backend/config/index.js"
 import { EmailCategory } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
+// To load the simulation model in mongoose
+import "../backend/models/simulation.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyCategory } from "../lib/enums/survey.js"
 import { __express } from "ejs"
@@ -11,7 +15,7 @@ import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
 import { Followup } from "../lib/types/followup.d.js"
 
-api()
+configMongoose(mongoose, config)
 
 const port = process.env.PORT || 9001
 

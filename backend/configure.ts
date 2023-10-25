@@ -5,7 +5,7 @@ import errorHandler from "errorhandler"
 
 import api from "./api.js"
 import config from "./config/index.js"
-import followups from "./followups.js"
+import emailFollowupRedirectRoute from "./routes/email-followup-redirect.js"
 
 export default function (app: express.Application) {
   process.env.PORT = process.env.PORT || "8080"
@@ -22,7 +22,7 @@ export default function (app: express.Application) {
   // Setup app
   const apiHandler = api()
   app.use("/api", apiHandler)
-  app.use("/followups", followups)
+  app.use("/followups", emailFollowupRedirectRoute)
 
   app.use(express.urlencoded({ extended: true, limit: "1024kb" }))
 

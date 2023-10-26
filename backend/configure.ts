@@ -5,9 +5,8 @@ import errorHandler from "errorhandler"
 import mongoose from "mongoose"
 
 import configMongoose from "./config/mongoose.js"
-import api from "./routes-loader/api.js"
+import { loadRoutes } from "./routes-loader/index.js"
 import config from "./config/index.js"
-import emailFollowupRedirectRoute from "./routes/email-followup-redirect.js"
 
 // Enable Sentry in production
 // https://docs.sentry.io/development/sdk-dev/overview/#usage-for-end-users
@@ -23,9 +22,7 @@ export default function (app: express.Application) {
   // The request handler must be the first middleware on the app
   app.use(Sentry.Handlers.requestHandler())
 
-  // Setup app
-  app.use("/api", api)
-  app.use("/followups", emailFollowupRedirectRoute)
+  loadRoutes(app)
 
   app.use(express.urlencoded({ extended: true, limit: "1024kb" }))
 

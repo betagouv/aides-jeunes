@@ -1,5 +1,6 @@
 import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
+import morgan from "morgan"
 
 import configure from "./configure.js"
 
@@ -8,6 +9,7 @@ const app: Application = express()
 
 configure(app)
 const port = process.env.PORT
+app.use(morgan("combined"))
 
 app.use(express.static(path.join(__dirname, "../../dist")))
 app.route("/*").get(function (req, res) {

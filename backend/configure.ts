@@ -1,7 +1,5 @@
 import express from "express"
-import morgan from "morgan"
 import * as Sentry from "@sentry/node"
-import errorHandler from "errorhandler"
 import mongoose from "mongoose"
 
 import configMongoose from "./config/mongoose.js"
@@ -29,11 +27,4 @@ export default function (app: express.Application) {
 
   // The error handler must be before any other error middleware and after all controllers
   app.use(Sentry.Handlers.errorHandler())
-
-  if (app.get("env") == "development") {
-    app.use(morgan("dev"))
-    app.use(errorHandler())
-  } else {
-    app.use(morgan("combined"))
-  }
 }

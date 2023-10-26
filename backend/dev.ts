@@ -1,4 +1,6 @@
 import express from "express"
+import morgan from "morgan"
+import errorHandler from "errorhandler"
 import path from "path"
 import cors from "cors"
 import { createServer as createViteServer } from "vite"
@@ -22,6 +24,8 @@ async function createServer() {
     configure(app)
   }
 
+  app.use(morgan("dev"))
+  app.use(errorHandler())
   app.use(cors())
   app.use(
     "/documents/",

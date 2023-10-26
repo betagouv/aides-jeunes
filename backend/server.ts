@@ -1,5 +1,6 @@
 import express, { ErrorRequestHandler, Application } from "express"
 import path from "path"
+
 import configure from "./configure.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
@@ -13,6 +14,7 @@ app.route("/*").get(function (req, res) {
   res.setHeader("Cache-Control", "no-cache")
   res.sendFile(path.join(__dirname, "../../dist/index.html"))
 })
+
 const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err)
   res.status(parseInt(err.code) || 500).send(err)

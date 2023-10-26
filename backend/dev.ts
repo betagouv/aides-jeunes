@@ -2,10 +2,12 @@ import express from "express"
 import path from "path"
 import cors from "cors"
 import { createServer as createViteServer } from "vite"
+
 import configure from "./configure.js"
 import mock from "./mock.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
+const port = process.env.PORT || 8080
 
 async function createServer() {
   const app = express()
@@ -13,12 +15,12 @@ async function createServer() {
     server: { middlewareMode: true },
     configFile: `${__dirname}/../vite.config.ts`,
   })
+
   if (process.env.NODE_ENV === "front-only") {
     mock(app)
   } else {
     configure(app)
   }
-  const port = process.env.PORT || 8080
 
   app.use(cors())
   app.use(

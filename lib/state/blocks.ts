@@ -2,7 +2,6 @@ import IndividuMethods from "../individu.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
-import { childStepsComplete } from "../enfants.js"
 
 import { Activite } from "../enums/activite.js"
 import { LogementCategory } from "../enums/logement.js"
@@ -10,26 +9,7 @@ import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
 import { individuBlockFactory } from "./block-factory/individu.js"
 import { extraBlock } from "./block-factory/extra.js"
-
-function kidBlock(situation) {
-  return {
-    steps: [
-      ...(!childStepsComplete(situation)
-        ? [new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer })]
-        : []),
-      ...(situation.enfants?.length
-        ? situation.enfants.map((e) => {
-            return {
-              steps: [individuBlockFactory(e.id, ChapterName.Foyer)],
-            }
-          })
-        : []),
-      ...(childStepsComplete(situation)
-        ? [new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer })]
-        : []),
-    ],
-  }
-}
+import { kidBlock } from "./block-factory/kids.js"
 
 function housingBlock() {
   return {

@@ -2,88 +2,14 @@ import IndividuMethods from "../individu.js"
 import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
-import ScolariteCategories from "../scolarite.js"
 import { childStepsComplete } from "../enfants.js"
 
 import { Activite } from "../enums/activite.js"
-import { Scolarite, Etudiant } from "../enums/scolarite.js"
 import { LogementCategory } from "../enums/logement.js"
 import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
-
-function extraBlock() {
-  const id = "demandeur"
-  const s = (variable: string, chapter?: string) =>
-    new StepGenerator({ entity: "individu", id, variable, chapter })
-
-  return {
-    subject: (situation) =>
-      situation[id] ||
-      situation.enfants?.find((enfant) => enfant.id === id) ||
-      {},
-    steps: [
-      s("_interetsAidesVelo", ChapterName.Projets),
-      s("_interetBafa", ChapterName.Projets),
-      s("_interetPermisDeConduire", ChapterName.Projets),
-      {
-        isActive: (subject) => {
-          return (
-            subject.groupe_specialites_formation !==
-            ScolariteCategories.groupeSpecialitesFormation
-              .specialites_plurivalentes_sanitaires_et_sociales.value
-          )
-        },
-        steps: [s("_interetAidesSanitaireSocial", ChapterName.Projets)],
-      },
-      {
-        isActive: (subject) => subject.annee_etude === Etudiant.Terminale,
-        steps: [
-          s("sortie_academie"),
-          {
-            isActive: (subject) => {
-              return (
-                subject.sortie_academie &&
-                typeof subject.bourse_lycee !== "object"
-              )
-            },
-            steps: [
-              new StepGenerator({
-                entity: "famille",
-                variable: "bourse_lycee",
-              }),
-            ],
-          },
-        ],
-      },
-      {
-        isActive: (subject) =>
-          [Etudiant.Licence3, Etudiant.Master1].includes(subject.annee_etude),
-        steps: [
-          s("sortie_region_academique"),
-          {
-            isActive: (subject) => subject.sortie_region_academique,
-            steps: [s("boursier")],
-          },
-        ],
-      },
-      {
-        isActive: (subject) =>
-          (subject.scolarite === Scolarite.EnseignementSuperieur &&
-            ["public", "prive_sous_contrat"].includes(
-              subject.statuts_etablissement_scolaire
-            )) ||
-          subject._contrat_alternant === Activite.Apprenti,
-        steps: [
-          s("_interetEtudesEtranger"),
-          {
-            isActive: (subject) => subject._interetEtudesEtranger,
-            steps: [s("_dureeMoisEtudesEtranger")],
-          },
-        ],
-      },
-    ],
-  }
-}
+import { individuBlockFactory } from "./block-factory/individu.js"
+import { extraBlock } from "./block-factory/extra.js"
 
 function kidBlock(situation) {
   return {

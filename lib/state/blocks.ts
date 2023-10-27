@@ -1,68 +1,16 @@
 import IndividuMethods from "../individu.js"
-import Ressource from "../ressource.js"
 import { generator as datesGenerator } from "../dates.js"
-import { StepGenerator, ComplexStepGenerator } from "./steps.js"
+import { StepGenerator } from "./steps.js"
 
 import { Activite } from "../enums/activite.js"
 import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
+
 import { individuBlockFactory } from "./block-factory/individu.js"
 import { extraBlock } from "./block-factory/extra.js"
 import { kidBlock } from "./block-factory/kids.js"
-
-function resourceBlocks(situation) {
-  const individuResourceBlock = (individuId) => {
-    const individu =
-      situation[individuId] ||
-      situation.enfants?.find((enfant) => enfant.id === individuId) ||
-      {}
-    return {
-      steps: [
-        new ComplexStepGenerator({
-          route: `individu/${individuId}/ressources/types`,
-          chapter: ChapterName.Revenus,
-          entity: "individu",
-          variable: "ressources",
-          id: individuId,
-        }),
-      ].concat(
-        Ressource.getIndividuRessourceCategories(individu, situation).map(
-          (category) =>
-            new ComplexStepGenerator({
-              route: `individu/${individuId}/ressources/montants/${category}`,
-              entity: "individu",
-              variable: category,
-              id: individuId,
-            })
-        )
-      ),
-    }
-  }
-  return {
-    steps: [
-      individuResourceBlock("demandeur"),
-      ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants?.length
-        ? [
-            new StepGenerator({
-              entity: "individu",
-              variable: "_hasRessources",
-              id: "enfants",
-            }),
-          ]
-        : []),
-      {
-        steps: situation.enfants
-          ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
-                : { steps: [] }
-            })
-          : [],
-      },
-    ],
-  }
-}
+import { housingBlock } from "./block-factory/housing.js"
+import { resourceBlocks } from "./block-factory/resource.js"
 
 export function generateBlocks(situation): Block[] {
   return [

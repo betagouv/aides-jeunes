@@ -3,7 +3,6 @@ import { generator as datesGenerator } from "../dates.js"
 import { StepGenerator } from "./steps.js"
 
 import { Activite } from "../enums/activite.js"
-import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
 
 import { individuBlockFactory } from "./block-factory/individu.js"
@@ -138,13 +137,5 @@ export function generateBlocks(situation): Block[] {
       ],
     },
     extraBlock(),
-    {
-      steps: [
-        new StepGenerator({
-          entity: "resultats",
-          chapter: ChapterName.Resultats,
-        }),
-      ],
-    },
   ]
 }

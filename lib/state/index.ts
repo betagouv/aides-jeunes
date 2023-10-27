@@ -29,7 +29,7 @@ export function current(
 export function getNextStep(
   currentRoute: Route,
   allSteps: StepStrict[]
-): StepStrict {
+): StepStrict | undefined {
   const currentPath = currentRoute.path || currentRoute.fullPath
   const currentIndex = allSteps.findIndex((step) => step.path === currentPath)
 
@@ -40,7 +40,7 @@ export function getNextStep(
   const nextSteps = allSteps.slice(currentIndex + 1)
   const nextActiveStep = nextSteps.find((step) => step.isActive)
 
-  return nextActiveStep || allSteps[0]
+  return nextActiveStep
 }
 
 function getCurrentStep(

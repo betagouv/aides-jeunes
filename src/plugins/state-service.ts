@@ -15,18 +15,22 @@ const StateService = {
     app.config.globalProperties.$push = function () {
       const store = useStore()
       const nextStep = getNextStep(this.$route, store.getAllSteps)
-      store.updateCurrentAnswers(nextStep.path)
-      this.$router.push(nextStep.path).catch((failure) => {
-        if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
-          sendEventToMatomo({
-            category: EventCategory.Parcours,
-            action: EventAction.NavigationAnnulee,
-            label: failure.toString(),
-          })
-        } else {
-          throw new Error(failure)
-        }
-      })
+
+      store.updateCurrentAnswers(nextStep?.path)
+
+      this.$router
+        .push(nextStep?.path || "/simulation/resultats")
+        .catch((failure) => {
+          if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
+            sendEventToMatomo({
+              category: EventCategory.Parcours,
+              action: EventAction.NavigationAnnulee,
+              label: failure.toString(),
+            })
+          } else {
+            throw new Error(failure)
+          }
+        })
     }
   },
 }

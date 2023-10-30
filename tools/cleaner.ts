@@ -17,7 +17,7 @@ async function main() {
   let followup_count = 0
   const followupsCursor = await Followups.find({
     createdAt: { $lt: aMonthAgo },
-    email: { $exists: true },
+    $or: [{ email: { $exists: true } }, { phone: { $exists: true } }],
   })
     .sort({ _id: -1 })
     .cursor()

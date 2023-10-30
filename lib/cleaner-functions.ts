@@ -90,7 +90,7 @@ export function anonymizeSimulation(simulation) {
 
 export function anonymizeFollowup(followup) {
   followup.email = undefined
+  followup.phone = undefined
   followup.error = undefined
-
   return followup
 }

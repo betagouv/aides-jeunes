@@ -84,11 +84,13 @@
               <a v-if="followup.email" :href="`mailto:${followup.email}`">{{
                 followup.email
               }}</a>
+              <span v-else>Email non disponible</span>
             </div>
             <div class="fr-col fr-col--auto fr-col-sm-3">
               <a v-if="followup.phone" :href="`tel:${followup.phone}`">{{
                 followup.phone
               }}</a>
+              <span v-else>Téléphone non disponible</span>
             </div>
             <div class="fr-col fr-col--auto fr-col-sm-3">
               <span class="fr-tag">

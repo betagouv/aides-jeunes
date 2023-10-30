@@ -80,7 +80,9 @@
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
           <div class="aj-flex-row fr-mb-2w">
-            <a :href="`mailto:${followup.email}`">{{ followup.email }}</a>
+            <a v-if="followup.email" :href="`mailto:${followup.email}`">{{
+              followup.email
+            }}</a>
             <a v-if="followup.phone" :href="`tel:${followup.phone}`">{{
               followup.phone
             }}</a>

@@ -48,14 +48,16 @@ enum LayoutType {
   BaseLayout = "BaseLayout",
 }
 
+const contextName = "1jeune1solution"
+const benefitCount = benefits.all.filter((benefit) => !benefit.private).length
+
 export default defineConfig(async ({ mode }) => {
   process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""))
   const viteEnvironment = {
-    VITE_BENEFIT_COUNT: benefits.all.filter((benefit) => !benefit.private)
-      .length,
+    VITE_BENEFIT_COUNT: benefitCount,
     VITE_MATOMO_ID: matomo.id,
     VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
-    VITE_CONTEXT_NAME: "1jeune1solution",
+    VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,
     VITE_CONTEXT: process.env.NODE_ENV,
     VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
@@ -67,13 +69,13 @@ export default defineConfig(async ({ mode }) => {
     VITE_NETLIFY_PR: process.env.BRANCH,
     VITE_1J1S_URL: "https://www.1jeune1solution.gouv.fr",
     VITE_LAYOUT: LayoutType.BaseLayout,
+    VITE_TITLE: `Évaluez vos droits aux aides avec le simulateur de ${contextName}`,
+    VITE_DESCRIPTION: `7 minutes suffisent pour évaluer vos droits à ${benefitCount} aides avec le simulateur de ${contextName}.`,
     // For now FranceConnect require an additional query params to be enabled
     VITE_FRANCE_CONNECT_ENABLED: Boolean(franceConnect.clientId),
     VITE_SHOW_SMS_TAB: smsService.show,
     VITE_SMS_DIALLING_CODES: smsService.internationalDiallingCodes,
   }
-  viteEnvironment.VITE_TITLE = `Évaluez vos droits aux aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}`
-  viteEnvironment.VITE_DESCRIPTION = `7 minutes suffisent pour évaluer vos droits à ${viteEnvironment.VITE_BENEFIT_COUNT} aides avec le simulateur de ${viteEnvironment.VITE_CONTEXT_NAME}.`
 
   return {
     server: {

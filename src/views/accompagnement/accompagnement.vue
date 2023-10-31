@@ -79,27 +79,48 @@
           class="fr-p-2w fr-mb-2w"
           style="background: var(--background-alt-grey); border-radius: 0.4rem"
         >
-          <div class="aj-flex-row fr-mb-2w">
-            <a :href="`mailto:${followup.email}`">{{ followup.email }}</a>
-            <span class="fr-tag">
-              Sondage le {{ formatDate(followup.surveys[0].repliedAt) }}
-            </span>
-            <span class="fr-tag">
-              Simulation le {{ formatDate(followup.createdAt) }}
-            </span>
-            <router-link :to="`/accompagnement/${followup._id}`"
-              >Permalink</router-link
-            >
-            <a
-              :href="`/api/support/simulation/${followup.simulation}`"
-              target="_blank"
-              >Résultats de la simulation</a
-            >
-            <CopyButton
-              :followup-id="followup.simulation"
-              :benefits-map="benefitsMap"
-              :benefits-list="followup.benefits"
-            />
+          <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <a v-if="followup.email" :href="`mailto:${followup.email}`">{{
+                followup.email
+              }}</a>
+              <span v-else>Email non disponible</span>
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <a v-if="followup.phone" :href="`tel:${followup.phone}`">{{
+                followup.phone
+              }}</a>
+              <span v-else>Téléphone non disponible</span>
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <span class="fr-tag">
+                Sondage le {{ formatDate(followup.surveys[0].repliedAt) }}
+              </span>
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <span class="fr-tag">
+                Simulation le {{ formatDate(followup.createdAt) }}
+              </span>
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <router-link :to="`/accompagnement/${followup._id}`"
+                >Permalink</router-link
+              >
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <a
+                :href="`/api/support/simulation/${followup.simulation}`"
+                target="_blank"
+                >Résultats de la simulation</a
+              >
+            </div>
+            <div class="fr-col fr-col--auto fr-col-sm-3">
+              <CopyButton
+                :followup-id="followup.simulation"
+                :benefits-map="benefitsMap"
+                :benefits-list="followup.benefits"
+              />
+            </div>
           </div>
           <ul
             v-for="answer in followup.benefits"

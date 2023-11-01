@@ -5,32 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title> <%= VITE_TITLE %> </title>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="<%= VITE_TITLE %>" />
     <meta name="twitter:title" content="<%= VITE_TITLE %>" />
-
     <meta name="robots" content="index,follow" />
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
     <base href="/" />
-
     <meta name="description" content="<%= VITE_DESCRIPTION %>" />
-    <meta property="og:description" content="<%= VITE_DESCRIPTION %>" />
-    <meta name="twitter:description" content="<%= VITE_DESCRIPTION %>" />
-    <link rel="canonical" href="<%= VITE_BASE_URL %>" />
-    <meta property="og:url" content="<%= VITE_BASE_URL %>" />
-
     <meta name="thumbnail" content="/img/Twitter_1024x512.png" />
-    <meta property="og:image" content="/img/Twitter_1024x512.png" />
     <meta property="twitter:image" content="/img/Twitter_1024x512.png" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Specific Open Graph meta tags -->
+    <meta property="og:title" content="<%= VITE_TITLE %>" />
+    <meta property="og:description" content="<%= VITE_DESCRIPTION %>" />
+    <meta property="og:image" content="/img/Twitter_1024x512.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= VITE_BASE_URL %>" />
     <meta
       property="og:site_name"
       content="Simulateur de <%= VITE_CONTEXT_NAME %>"
     />
+    <meta
+      property="og:image:alt"
+      content="Simulateur de <%= VITE_CONTEXT_NAME %>"
+    />
 
+    <!-- Specific Twitter meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MesAides" />
+    <meta name="twitter:description" content="<%= VITE_DESCRIPTION %>" />
+
+    <link rel="canonical" href="<%= VITE_BASE_URL %>" />
     <link
       rel="icon"
       type="image/png"

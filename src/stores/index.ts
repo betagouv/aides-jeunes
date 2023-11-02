@@ -264,11 +264,6 @@ export const useStore = defineStore("store", {
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer),
-        current: storeAnswer(
-          this.simulation.answers.current,
-          answer,
-          this.simulation.enfants
-        ),
       }
     },
     updateCurrentAnswers(newPath: string | undefined) {
@@ -347,22 +342,12 @@ export const useStore = defineStore("store", {
         path: `/simulation/individu/enfant_${enfantId}/_firstName`,
       }
 
-      // When you add a children you need to remove all current answer after the child validation
-      const currentLastIndex = this.simulation.answers.current.findIndex(
-        (answer) => answer.entityName === "enfants"
-      )
-
-      const currentAnswers =
-        currentLastIndex === -1
-          ? this.simulation.answers.current
-          : this.simulation.answers.current.splice(0, currentLastIndex)
-
       this.simulation = {
         ...this.simulation,
         enfants,
         answers: {
+          ...this.simulation.answers,
           all: storeAnswer(this.simulation.answers.all, answer),
-          current: storeAnswer(currentAnswers, answer, this.simulation.enfants),
         },
       }
       this.setDirty()

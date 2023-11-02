@@ -13,6 +13,7 @@ import smsRoutes from "../routes/sms.js"
 import supportRoutes from "../routes/support.js"
 import teleservicesRoutes from "../routes/teleservices.js"
 import webhookRoutes from "../routes/webhook.js"
+import ssrRoutes from "../routes/ssr.js"
 
 const api = express()
 
@@ -29,6 +30,7 @@ smsRoutes(api)
 supportRoutes(api)
 teleservicesRoutes(api)
 webhookRoutes(api)
+ssrRoutes(api)
 
 api.all("*", function (req, res) {
   res.sendStatus(404)

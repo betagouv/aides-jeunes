@@ -17,27 +17,6 @@ export const getAnswer = (answers: Answer[], entity, variable?, id?) => {
   return answer ? answer.value : undefined
 }
 
-export const getAnswerIndex = (
-  answers: Answer[],
-  entityName,
-  id,
-  fieldName
-) => {
-  return answers.findIndex((answer) => {
-    if (entityName && id && fieldName) {
-      return (
-        answer.entityName === entityName &&
-        answer.id === id &&
-        answer.fieldName === fieldName
-      )
-    } else if (entityName && id) {
-      return answer.entityName === entityName && answer.id === id
-    } else if (entityName) {
-      return answer.entityName === entityName
-    }
-  })
-}
-
 // Nécessaire si la question est optionnelle
 export function nullifyUndefinedValue(value) {
   return value === undefined ? null : value

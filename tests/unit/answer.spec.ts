@@ -1,7 +1,6 @@
 import { expect } from "@jest/globals"
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
-import { getAnswerIndex } from "@lib/answers.js"
 import { Answer } from "@lib/types/store.d.js"
 import { SimulationStatus } from "@lib/enums/simulation.js"
 import { Activite } from "@lib/enums/activite.js"
@@ -118,39 +117,5 @@ describe("Answers tests", () => {
     } as unknown as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
-  })
-
-  // Answer tests
-  it("Get answer index", () => {
-    const store = initStore()
-    const answer = store.simulation.answers.all[2]
-
-    const answerIndex = getAnswerIndex(
-      store.simulation.answers.all,
-      answer.entityName,
-      answer.id,
-      answer.fieldName
-    )
-    expect(answerIndex).toStrictEqual(2)
-
-    const firstAnswer = store.simulation.answers.all[0]
-    const firstAnswerIndex = getAnswerIndex(
-      store.simulation.answers.all,
-      firstAnswer.entityName,
-      firstAnswer.id,
-      firstAnswer.fieldName
-    )
-    expect(firstAnswerIndex).toEqual(0)
-  })
-  it("Wrong answer should give an not found index (-1)", () => {
-    const store = initStore()
-    const answer = store.simulation.answers.all[1]
-    const answerIndex = getAnswerIndex(
-      store.simulation.answers.all,
-      "wrong entity name",
-      answer.id,
-      answer.fieldName
-    )
-    expect(answerIndex).toEqual(-1)
   })
 })

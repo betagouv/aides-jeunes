@@ -232,7 +232,7 @@ export default {
     async copyToClipboard() {
       this.sendEventToMatomo(
         EventCategory.General,
-        EventAction.CopieLien,
+        EventAction.CopyLinkBenefit,
         this.$route.path
       )
       await navigator.clipboard.writeText(this.sharingLinkUrl)

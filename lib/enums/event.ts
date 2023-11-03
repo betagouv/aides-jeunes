@@ -26,7 +26,7 @@ export enum EventAction {
   CalculResultatsRestauration = "compute",
   ClickLienAccompagnement = "click-accompaniment-link",
   Close = "close",
-  CopieLien = "copy-link",
+  CopyLinkBenefit = "copy-link-benefit",
   CodePostalIntrouvable = "Depcom introuvable",
   Contact = "Contact",
   Email = "email",

@@ -191,10 +191,7 @@ export default {
       return `${process.env.VITE_CONTEXT_NAME} - ${this.droit.label} `
     },
     sharingLinkByEmailBody() {
-      const prefix = `${this.droit.prefix}${
-        this.droit.prefix?.endsWith("’") ? "" : " "
-      }`
-      return `Toi aussi, vérifie ton élligibilité à cette aide financière : ${this.sharingLinkUrl} (${prefix}${this.droit.label}) en effectuant une simulation sur le simulateur de ${process.env.VITE_CONTEXT_NAME} : ${process.env.VITE_BASE_URL}`
+      return `Toi aussi, vérifie ton élligibilité à cette aide financière : ${this.sharingLinkUrl} (${this.droit.label}) en effectuant une simulation sur le simulateur de ${process.env.VITE_CONTEXT_NAME} : ${process.env.VITE_BASE_URL}`
     },
     aCharge() {
       return SituationMethods.aCharge(this.store.situation)

@@ -120,6 +120,7 @@
               :href="`mailto:?subject=${sharingLinkSubject}&body=${sharingLinkBody}`"
               title="Partager par email"
               target="_blank"
+              @click="shareLinkEmail"
               >Partager par email</a
             >
           </li>
@@ -127,7 +128,7 @@
             <button
               class="fr-share__link fr-share__link--copy"
               title="Copier dans le presse-papier"
-              onclick="navigator.clipboard.writeText(window.location);alert('Lien de la page copié dans le presse papier.');"
+              @click="copyToClipboard()"
               >Copier dans le presse-papier</button
             >
           </li>
@@ -141,13 +142,14 @@
 import type { PropType } from "vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
+import StatisticsMixin from "@/mixins/statistics.js"
 import SituationMethods from "@lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import { EventAction } from "@lib/enums/event.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
@@ -160,7 +162,7 @@ export default {
     BenefitCta,
     BenefitCtaLink,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, StatisticsMixin],
   props: {
     droit: {
       type: Object as PropType<StandardBenefit>,
@@ -220,9 +222,21 @@ export default {
     },
   },
   methods: {
+    async shareLinkEmail() {
+      this.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.PartageLienEmail,
+        this.$route.path
+      )
+    },
     async copyToClipboard() {
+      this.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.CopieLien,
+        this.$route.path
+      )
       await navigator.clipboard.writeText(this.sharingLinkUrl)
-      alert("Adresse copiée dans le presse papier." + this.sharingLinkUrl)
+      alert("Lien copié dans le presse papier : " + this.sharingLinkUrl)
     },
   },
 }

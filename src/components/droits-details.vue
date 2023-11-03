@@ -111,31 +111,27 @@
           </div>
         </div>
       </div>
-      <div class="fr-print-hidden">
-        <div class="fr-share fr-mt-2w">
-          <p class="fr-share__title">Partager l'aide :</p>
-          <ul class="fr-share__group">
-            <li>
-              <a
-                class="fr-share__link fr-share__link--facebook"
-                title="Partager sur Facebook - nouvelle fenêtre"
-                :href="`https://www.facebook.com/sharer.php?u=${sharingLinkUrl}`"
-                target="_blank"
-                rel="noopener"
-                onclick="window.open(this.href,'Partager sur Facebook','toolbar=no,location=yes,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=450'); event.preventDefault();"
-                >Partager sur Facebook</a
-              >
-            </li>
-            <li>
-              <button
-                class="fr-share__link fr-share__link--copy"
-                title="Copier dans le presse-papier"
-                :onclick="copyToClipboard"
-                >Copier dans le presse-papier</button
-              >
-            </li>
-          </ul>
-        </div>
+      <div class="fr-share">
+        <p class="fr-share__title">Partager la page</p>
+        <ul class="fr-share__group">
+          <li>
+            <a
+              class="fr-share__link fr-share__link--mail"
+              :href="`mailto:?subject=${sharingLinkSubject}&body=${sharingLinkBody}`"
+              title="Partager par email"
+              target="_blank"
+              >Partager par email</a
+            >
+          </li>
+          <li>
+            <button
+              class="fr-share__link fr-share__link--copy"
+              title="Copier dans le presse-papier"
+              onclick="navigator.clipboard.writeText(window.location);alert('Lien de la page copié dans le presse papier.');"
+              >Copier dans le presse-papier</button
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -187,13 +183,16 @@ export default {
   },
   computed: {
     sharingLinkUrl() {
-      return `https://mes-aides.1jeune1solution.beta.gouv.fr/aides/${this.droit.slug}`
+      return `${process.env.VITE_BASE_URL}/aides/${this.droit.slug}`
     },
-    sharingLinkTitle() {
+    sharingLinkSubject() {
+      return `${process.env.VITE_CONTEXT_NAME} - ${this.droit.label} `
+    },
+    sharingLinkBody() {
       const prefix = `${this.droit.prefix}${
         this.droit.prefix?.endsWith("’") ? "" : " "
       }`
-      return `Accédez aux informations sur l'aide financière : ${prefix}${this.droit.label}`
+      return `Toi aussi, vérifie ton élligibilité à cette aide financière : ${this.sharingLinkUrl} (${prefix}${this.droit.label}) en effectuant une simulation sur le simulateur de ${process.env.VITE_CONTEXT_NAME} : ${process.env.VITE_BASE_URL}`
     },
     aCharge() {
       return SituationMethods.aCharge(this.store.situation)

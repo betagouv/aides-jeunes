@@ -112,15 +112,15 @@
         </div>
       </div>
       <div class="fr-share">
-        <p class="fr-share__title">Partager la page</p>
+        <h6 class="fr-share__title fr-h6">Partager l'aide</h6>
         <ul class="fr-share__group">
           <li>
             <a
               class="fr-share__link fr-share__link--mail"
-              :href="`mailto:?subject=${sharingLinkSubject}&body=${sharingLinkBody}`"
+              :href="`mailto:?subject=${sharingLinkByEmailSubject}&body=${sharingLinkByEmailBody}`"
               title="Partager par email"
               target="_blank"
-              @click="shareLinkEmail"
+              @click="shareLinkByEmailClick"
               >Partager par email</a
             >
           </li>
@@ -187,10 +187,10 @@ export default {
     sharingLinkUrl() {
       return `${process.env.VITE_BASE_URL}/aides/${this.droit.slug}`
     },
-    sharingLinkSubject() {
+    sharingLinkByEmailSubject() {
       return `${process.env.VITE_CONTEXT_NAME} - ${this.droit.label} `
     },
-    sharingLinkBody() {
+    sharingLinkByEmailBody() {
       const prefix = `${this.droit.prefix}${
         this.droit.prefix?.endsWith("’") ? "" : " "
       }`
@@ -222,7 +222,7 @@ export default {
     },
   },
   methods: {
-    async shareLinkEmail() {
+    async shareLinkByEmailClick() {
       this.sendEventToMatomo(
         EventCategory.General,
         EventAction.PartageLienEmail,

@@ -30,21 +30,21 @@ const recapEmailState = computed(() => store.recapEmailState)
         class="fr-alert fr-alert--success"
       >
         <h3 class="fr-alert__title">Succès de l'envoi</h3>
-        <p>Un récapitulatif vous a été envoyé par email et par SMS</p>
+        <p>Un récapitulatif vous a été envoyé par email et par SMS.</p>
       </div>
       <div
         v-else-if="recapPhoneState === 'ok' && recapEmailState != 'ok'"
         class="fr-alert fr-alert--success"
       >
         <h3 class="fr-alert__title">Succès de l'envoi</h3>
-        <p>Un récapitulatif vous a été envoyé par SMS</p>
+        <p>Un récapitulatif vous a été envoyé par SMS.</p>
       </div>
       <div
         v-else-if="recapEmailState === 'ok' && recapPhoneState != 'ok'"
         class="fr-alert fr-alert--success"
       >
         <h3 class="fr-alert__title">Succès de l'envoi</h3>
-        <p>Un récapitulatif vous a été envoyé par email</p>
+        <p>Un récapitulatif vous a été envoyé par email.</p>
       </div>
     </div>
     <div v-if="recapPhoneState === 'waiting' || recapEmailState === 'waiting'">

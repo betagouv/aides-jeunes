@@ -1,7 +1,7 @@
 <template>
   <div class="fr-py-4w fr-px-2w">
     <div v-if="!submitted">
-      <h1>Qu'avez-vous fait avec votre simulation&nbsp;?</h1>
+      <h1>Qu'avez-vous fait avec votre simulation ?</h1>
     </div>
     <div>
       <div>
@@ -12,7 +12,7 @@
           <div class="fr-container fr-py-4w">
             <div class="fr-grid-row fr-grid-row--center">
               <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
-                <h3>Merci d'avoir rempli ce questionnaire&nbsp;!</h3>
+                <h3>Merci d'avoir rempli ce questionnaire !</h3>
                 <div v-if="showAccompanimentBlock">
                   <p class="fr-text--lg">
                     Vous avez besoin d'aide pour effectuer vos démarches ?
@@ -50,9 +50,9 @@
           <div class="fr-alert fr-alert--info fr-mb-4w">
             <p>
               Aidez-nous à améliorer la pertinence des résultats en répondant à
-              ce questionnaire :
+              ce questionnaire :
             </p>
-            <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
+            <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
           </div>
           <div
             v-for="droit in droits"
@@ -66,8 +66,7 @@
 
               <fieldset class="fr-fieldset">
                 <legend class="fr-fieldset__legend fr-px-0">
-                  Qu'avez-vous fait pour {{ prefix(droit)
-                  }}{{ droit.label }}&nbsp;?
+                  Qu'avez-vous fait pour {{ prefix(droit) }}{{ droit.label }} ?
                 </legend>
                 <div class="fr-fieldset__content">
                   <div class="fr-container fr-px-0">
@@ -100,13 +99,12 @@
                       :for="`choiceComments_${droit.id}`"
                       class="fr-label fr-text--bold fr-mt-2w fr-mb-1w"
                     >
-                      Pour quelles raisons&nbsp;?
+                      Pour quelles raisons ?
                     </label>
                     <textarea
                       :id="`choiceComments_${droit.id}`"
                       v-model="droit.choiceComments"
                       class="fr-input"
-                      placeholder="..."
                     />
                   </div>
                 </div>

@@ -222,7 +222,7 @@ export default {
     async shareLinkByEmailClick() {
       this.sendEventToMatomo(
         EventCategory.General,
-        EventAction.PartageLienEmail,
+        EventAction.ShareLinkByEmail,
         this.$route.path
       )
     },

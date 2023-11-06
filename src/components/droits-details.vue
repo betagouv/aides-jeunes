@@ -111,6 +111,29 @@
           </div>
         </div>
       </div>
+      <div class="fr-share">
+        <h6 class="fr-share__title fr-h6">Partager l'aide</h6>
+        <ul class="fr-share__group">
+          <li>
+            <a
+              class="fr-share__link fr-share__link--mail"
+              :href="`mailto:?subject=${sharingLinkByEmailSubject}&body=${sharingLinkByEmailBody}`"
+              title="Partager par email"
+              target="_blank"
+              @click="shareLinkByEmailClick"
+              >Partager par email</a
+            >
+          </li>
+          <li>
+            <button
+              class="fr-share__link fr-share__link--copy"
+              title="Copier dans le presse-papier"
+              @click="copyToClipboard()"
+              >Copier dans le presse-papier</button
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -119,13 +142,14 @@
 import type { PropType } from "vue"
 import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
+import StatisticsMixin from "@/mixins/statistics.js"
 import SituationMethods from "@lib/situation.js"
 import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import { EventAction } from "@lib/enums/event.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
@@ -138,7 +162,7 @@ export default {
     BenefitCta,
     BenefitCtaLink,
   },
-  mixins: [DroitMixin],
+  mixins: [DroitMixin, StatisticsMixin],
   props: {
     droit: {
       type: Object as PropType<StandardBenefit>,
@@ -160,6 +184,15 @@ export default {
     }
   },
   computed: {
+    sharingLinkUrl() {
+      return `${process.env.VITE_BASE_URL}/aides/${this.droit.slug}`
+    },
+    sharingLinkByEmailSubject() {
+      return `${process.env.VITE_CONTEXT_NAME} - ${this.droit.label} `
+    },
+    sharingLinkByEmailBody() {
+      return `Toi aussi, vérifie ton éligibilité à cette aide financière : ${this.sharingLinkUrl} (${this.droit.label}) en effectuant une simulation sur le simulateur de ${process.env.VITE_CONTEXT_NAME} : ${process.env.VITE_BASE_URL}`
+    },
     aCharge() {
       return SituationMethods.aCharge(this.store.situation)
     },
@@ -183,6 +216,24 @@ export default {
     },
     showVoluntaryConditions() {
       return (droit) => droit.voluntary_conditions?.length
+    },
+  },
+  methods: {
+    async shareLinkByEmailClick() {
+      this.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.ShareLinkByEmail,
+        this.$route.path
+      )
+    },
+    async copyToClipboard() {
+      this.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.CopyLinkBenefit,
+        this.$route.path
+      )
+      await navigator.clipboard.writeText(this.sharingLinkUrl)
+      alert("Lien copié dans le presse papier : " + this.sharingLinkUrl)
     },
   },
 }

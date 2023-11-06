@@ -266,28 +266,28 @@ export const useStore = defineStore("store", {
         all: storeAnswer(this.simulation.answers.all, answer),
       }
     },
-    updateCurrentAnswers(newPath: string | undefined) {
+    updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps
-      const currentAnswers: any = []
-      let i = 0
-      let currentStep = steps[0]
-      while (currentStep && currentStep.path !== newPath) {
-        if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = this.simulation.answers.all.find((answer) => {
-            return (
-              answer.id === currentStep.id &&
-              answer.entityName === currentStep.entity &&
-              answer.fieldName === currentStep.variable
-            )
-          })
+      const currentAnswers: Answer[] = []
 
+      for (const step of steps) {
+        if (step.path === newPath) {
+          break
+        }
+
+        if (step.isActive && step.path !== "/") {
+          const currentAnswer: Answer = this.simulation.answers.all.find(
+            (answer: Answer) =>
+              answer.id === step.id &&
+              answer.entityName === step.entity &&
+              answer.fieldName === step.variable
+          )
           if (currentAnswer) {
             currentAnswers.push(currentAnswer)
           }
         }
-        i = i + 1
-        currentStep = steps[i]
       }
+
       this.simulation.answers.current = currentAnswers
     },
     ressourcesFiscales(ressourcesFiscales: any) {

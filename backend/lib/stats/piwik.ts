@@ -7,6 +7,7 @@ interface PiwikParameters {
   period: string
   date: string
   method?: string
+  flat?: string
 }
 
 const baseParams = {

@@ -264,35 +264,30 @@ export const useStore = defineStore("store", {
       this.simulation.answers = {
         ...this.simulation.answers,
         all: storeAnswer(this.simulation.answers.all, answer),
-        current: storeAnswer(
-          this.simulation.answers.current,
-          answer,
-          this.simulation.enfants
-        ),
       }
     },
-    updateCurrentAnswers(newPath: string | undefined) {
+    updateCurrentAnswers(newPath: string) {
       const steps = this.getAllSteps
-      const currentAnswers: any = []
-      let i = 0
-      let currentStep = steps[0]
-      while (currentStep && currentStep.path !== newPath) {
-        if (currentStep.isActive && currentStep.path !== "/") {
-          const currentAnswer = this.simulation.answers.all.find((answer) => {
-            return (
-              answer.id === currentStep.id &&
-              answer.entityName === currentStep.entity &&
-              answer.fieldName === currentStep.variable
-            )
-          })
+      const currentAnswers: Answer[] = []
 
+      for (const step of steps) {
+        if (step.path === newPath) {
+          break
+        }
+
+        if (step.isActive && step.path !== "/") {
+          const currentAnswer: Answer = this.simulation.answers.all.find(
+            (answer: Answer) =>
+              answer.id === step.id &&
+              answer.entityName === step.entity &&
+              answer.fieldName === step.variable
+          )
           if (currentAnswer) {
             currentAnswers.push(currentAnswer)
           }
         }
-        i = i + 1
-        currentStep = steps[i]
       }
+
       this.simulation.answers.current = currentAnswers
     },
     ressourcesFiscales(ressourcesFiscales: any) {
@@ -347,22 +342,12 @@ export const useStore = defineStore("store", {
         path: `/simulation/individu/enfant_${enfantId}/_firstName`,
       }
 
-      // When you add a children you need to remove all current answer after the child validation
-      const currentLastIndex = this.simulation.answers.current.findIndex(
-        (answer) => answer.entityName === "enfants"
-      )
-
-      const currentAnswers =
-        currentLastIndex === -1
-          ? this.simulation.answers.current
-          : this.simulation.answers.current.splice(0, currentLastIndex)
-
       this.simulation = {
         ...this.simulation,
         enfants,
         answers: {
+          ...this.simulation.answers,
           all: storeAnswer(this.simulation.answers.all, answer),
-          current: storeAnswer(currentAnswers, answer, this.simulation.enfants),
         },
       }
       this.setDirty()

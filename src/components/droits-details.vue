@@ -185,7 +185,7 @@ export default {
   },
   computed: {
     sharingLinkUrl() {
-      return `${process.env.VITE_BASE_URL}/aides/${this.droit.slug}`
+      return `${process.env.VITE_BASE_URL}/aides/${this.droit.id}`
     },
     sharingLinkByEmailSubject() {
       return `${process.env.VITE_CONTEXT_NAME} - ${this.droit.label} `

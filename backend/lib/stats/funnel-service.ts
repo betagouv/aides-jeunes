@@ -5,7 +5,18 @@ import { callMatomoAPI } from "./piwik.js"
 import Followups from "../../models/followup.js"
 import Simulations from "../../models/simulation.js"
 
+const funnelInterestingPaths = {
+  firstPageVisits: "/simulation/individu/demandeur/date_naissance",
+  secondPageVisits: "/simulation/individu/demandeur/nationalite",
+  resultsPageVisits: "/simulation/resultats",
+}
+
 dayjs.extend(utc)
+
+const getPageVisits = (pageStats, path) => {
+  const page = pageStats.find((page) => page.label === path)
+  return page ? page.nb_visits : 0
+}
 
 const getMatomoVisitsData = async (
   beginRange: dayjs.Dayjs,
@@ -17,13 +28,21 @@ const getMatomoVisitsData = async (
   const piwikParameters = {
     period: "month",
     date: dateRange,
+    method: "Actions.getPageUrls",
+    flat: "1",
   }
   const matomoVisitsData = await callMatomoAPI(piwikParameters)
   const dateKey = beginRange.format("YYYY-MM")
-  return {
-    visits: matomoVisitsData[dateKey].nb_visits,
-    nbUniqVisitors: matomoVisitsData[dateKey].nb_uniq_visitors,
-  }
+  const pageStats = matomoVisitsData[dateKey]
+
+  return Object.entries(funnelInterestingPaths).reduce(
+    (visitStatsAcc, [key, path]) => {
+      visitStatsAcc[key] = getPageVisits(pageStats, path)
+
+      return visitStatsAcc
+    },
+    {}
+  )
 }
 
 const getSimulationsData = async (

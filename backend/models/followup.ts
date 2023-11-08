@@ -80,6 +80,63 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
   }
 })
 
+FollowupSchema.method("postSimulationResultsSms", function (messageId) {
+  this.smsSentAt = Date.now()
+  this.smsMessageId = messageId
+  if (!this.surveyOptin) {
+    this.phone = undefined
+  }
+  this.smsError = undefined
+  return this.save()
+})
+
+FollowupSchema.method(
+  "renderBenefitActionSmsUrl",
+  function (username: string, password: string) {
+    const { baseURL } = config
+    const { url } = config.smsService
+    const { accessToken, phone } = this
+    const formattedPhone = phoneNumberFormatting(
+      phone,
+      config.smsService.internationalDiallingCodes
+    )
+    const surveyLink = `${baseURL}/api/sms/surveys/${accessToken}`
+    const text = `Bonjour\nVotre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile?\nVoici un court sondage : ${surveyLink}\n1jeune1solution`
+    const encodedText = encodeURIComponent(text)
+
+    return `${url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${formattedPhone}&messageText=${encodedText}&username=${username}&password=${password}`
+  }
+)
+
+FollowupSchema.method("sendBenefitActionSms", async function () {
+  try {
+    const username = config.smsService.username
+    const password = config.smsService.password
+    if (!username || !password) {
+      throw new Error("Missing SMS service credentials")
+    }
+    const renderUrl = this.renderBenefitActionSmsUrl(username, password)
+    const axiosInstance = axios.create({
+      timeout: 10000,
+    })
+    const { data, status } = await axiosInstance.get(renderUrl)
+    if (status !== 200 || data.responseCode !== 0) {
+      throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
+    }
+    return this.postSurveyBySms(data.messageIds[0])
+  } catch (err) {
+    this.smsBenefitActionError = JSON.stringify(err, null, 2)
+    throw err
+  }
+})
+
+FollowupSchema.method("postSurveyBySms", function (messageId) {
+  this.smsSurveySentAt = Date.now()
+  this.smsSurveyMessageId = messageId
+  this.smsError = undefined
+  return this.save()
+})
+
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyCategory.TrackClickOnBenefitActionEmail:
@@ -114,7 +171,7 @@ FollowupSchema.method(
 )
 
 FollowupSchema.method(
-  "sendSurvey",
+  "sendSurveyByEmail",
   async function (surveyType: SurveyCategory) {
     const followup = this
     let survey
@@ -138,6 +195,28 @@ FollowupSchema.method(
       await followup.save()
     }
     return survey
+  }
+)
+
+FollowupSchema.method(
+  "sendSurveyBySms",
+  async function (surveyType: SurveyCategory) {
+    const followup = this
+    let survey: Survey | undefined
+    try {
+      survey = await this.addSurveyIfMissing(surveyType)
+      await this.sendBenefitActionSms(surveyType)
+      await followup.save()
+      return survey
+    } catch (err) {
+      console.error("error", err)
+      if (survey) {
+        survey.error = err
+        return survey
+      } else {
+        return err
+      }
+    }
   }
 )
 

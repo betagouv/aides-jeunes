@@ -12,6 +12,8 @@ interface FollowupAttributes {
   smsSentAt: Date
   messageId: string
   smsMessageId: string
+  smsSurveyMessageId: string
+  smsSurveySentAt: Date
   surveySentAt: Date
   benefits: any
   surveyOptin: boolean
@@ -32,7 +34,8 @@ interface FollowupMethods {
   sendSimulationResultsSms(): Promise<void>
   renderSurveyEmail(surveyType: SurveyCategory): any
   addSurveyIfMissing(surveyType: SurveyCategory): Promise<any>
-  sendSurvey(surveyType: SurveyCategory): Promise<any>
+  sendSurveyByEmail(surveyType: SurveyCategory): Promise<any>
+  sendSurveyBySms(surveyType: SurveyCategory): Promise<any>
   updateSurvey(action: SurveyCategory, data?: any)
 }
 

@@ -52,7 +52,7 @@ async function sendMultipleInitialEmails(limit: number) {
           : SurveyCategory.TrackClickOnSimulationUsefulnessEmail
 
       try {
-        const result = await followup.sendSurvey(surveyType)
+        const result = await followup.sendSurveyByEmail(surveyType)
         return { ok: result._id }
       } catch (error) {
         return { ko: error }
@@ -91,7 +91,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
   const results = await Promise.all(
     followups.map(async (followup: Followup) => {
       try {
-        const result = await followup.sendSurvey(
+        const result = await followup.sendSurveyByEmail(
           SurveyCategory.TousABordNotification
         )
         return { ok: result._id }
@@ -119,12 +119,12 @@ async function processSingleEmail(
       emailPromise = followup.sendSimulationResultsEmail()
       break
     case EmailCategory.BenefitAction:
-      emailPromise = followup.sendSurvey(
+      emailPromise = followup.sendSurveyByEmail(
         SurveyCategory.TrackClickOnBenefitActionEmail
       )
       break
     case EmailCategory.SimulationUsefulness:
-      emailPromise = followup.sendSurvey(
+      emailPromise = followup.sendSurveyByEmail(
         SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       )
       break

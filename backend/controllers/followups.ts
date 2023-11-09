@@ -201,14 +201,14 @@ async function getRedirectUrl(req: Request) {
   switch (surveyType) {
     case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
     case SurveyCategory.TrackClickOnBenefitActionEmail:
+    case SurveyCategory.TrackClickOnBenefitActionSms:
       await followup.addSurveyIfMissing(SurveyCategory.BenefitAction)
       await followup.save()
-
       return followup.surveyPath
     case SurveyCategory.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
-      throw new Error("Unknown survey type")
+      throw new Error(`Unknown survey type ${surveyType}`)
   }
 }
 
@@ -217,6 +217,17 @@ export async function logSurveyLinkClick(req: Request, res: Response) {
     await updateSurveyInFollowup(req)
     const redirectUrl = await getRedirectUrl(req)
 
+    res.redirect(redirectUrl)
+  } catch (error) {
+    console.error("error", error)
+    return res.sendStatus(404)
+  }
+}
+
+export async function smsSurveyLinkClick(req: Request, res: Response) {
+  try {
+    req.params.surveyType = SurveyCategory.TrackClickOnBenefitActionSms
+    const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
   } catch (error) {
     console.error("error", error)

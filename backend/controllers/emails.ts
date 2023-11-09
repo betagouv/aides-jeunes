@@ -1,4 +1,4 @@
-import { EmailCategory } from "../../backend/enums/email.js"
+import { EmailCategory } from "../../lib/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 

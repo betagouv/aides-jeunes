@@ -133,7 +133,7 @@ const navigation = [
   {
     label: "Formations et orientation",
     children: [
-      { label: "Formations", link: "/formations" },
+      { label: "Formations initiales", link: "/formations-initiales" },
       {
         label: "Formations en apprentissage",
         link: "/formations/apprentissage",
@@ -152,7 +152,7 @@ const navigation = [
   {
     label: "Logement",
     children: [
-      { label: "Annonces", link: "/logement/annonces" },
+      { label: "Annonces", link: "/logements/annonces" },
       {
         label: "Aides financières au logement",
         link: "/logements/aides-logement",

@@ -67,6 +67,7 @@
                   :data-testid="fieldName"
                   type="text"
                   class="fr-input"
+                  @click="selectText"
                 />
                 <YesNoQuestion v-else v-model="value"></YesNoQuestion>
               </div>
@@ -170,6 +171,12 @@ export default {
     },
   },
   methods: {
+    selectText() {
+      const inputElement = document.getElementById(this.fieldName)
+      if (inputElement instanceof HTMLInputElement) {
+        inputElement.select()
+      }
+    },
     onInputError(hasError) {
       this.inputError = hasError
     },

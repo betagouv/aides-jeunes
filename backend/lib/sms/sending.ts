@@ -20,7 +20,7 @@ async function sendMultipleInitialSms(limit: number) {
         },
       },
     },
-    sentAt: {
+    smsSentAt: {
       $lt: dayjs().subtract(DaysBeforeInitialSms, "day").toDate(),
     },
     surveyOptin: true,
@@ -56,9 +56,9 @@ async function processSingleSms(smsCategory: SmsCategory, followupId: string) {
     case SmsCategory.SimulationResults:
       smsPromise = followup.sendSimulationResultsSms()
       break
-    case SmsCategory.BenefitAction:
+    case SmsCategory.InitialSurvey:
       smsPromise = followup.sendSurveyBySms(
-        SurveyCategory.TrackClickOnBenefitActionEmail
+        SurveyCategory.TrackClickOnBenefitActionSms
       )
       break
     default:
@@ -70,12 +70,12 @@ async function processSingleSms(smsCategory: SmsCategory, followupId: string) {
 }
 
 export async function processSendSms(
-  smsType: SmsCategory,
+  smsCategory: SmsCategory,
   followupId: string,
   multiple: number | null
 ) {
   if (followupId) {
-    await processSingleSms(smsType, followupId)
+    await processSingleSms(smsCategory, followupId)
   } else if (multiple) {
     await sendMultipleInitialSms(multiple)
   } else {

@@ -23,40 +23,27 @@ const send_types = send.add_subparsers({
   dest: "type",
 })
 
-// Single emails types parsers
-const singleEmailTypes = [
-  SmsCategory.SimulationResults,
-  SmsCategory.InitialSurvey,
-]
-singleEmailTypes.forEach((emailType) => {
-  const parser = send_types.add_parser(emailType)
-  parser.add_argument("--id", {
-    help: "Followup Id",
-  })
-})
-
-// Multiple sms types parsers
-const multipleSmsTypes = [SmsCategory.InitialSurvey]
-multipleSmsTypes.forEach((emailType) => {
-  const parser = send_types.add_parser(emailType)
+// Arguments builder
+const smsCategories = [SmsCategory.InitialSurvey, SmsCategory.SimulationResults]
+smsCategories.forEach((smsCategory) => {
+  const parser = send_types.add_parser(smsCategory)
   parser.add_argument("--multiple", {
     help: "Number of sms to send",
+  })
+  parser.add_argument("--id", {
+    help: "Followup Id",
   })
 })
 
 async function main() {
   try {
     const args = parser.parse_args()
-    const multiple = args.multiple ? parseInt(args.multiple) : null
+    const { type, id, multiple } = args
 
-    switch (args.command) {
-      case "send":
-        await processSendSms(args.type, args.id, multiple)
-
-        console.log("Done")
-        break
-      default:
-        parser.print_help()
+    if (args.command == "send") {
+      await processSendSms(type, id, multiple)
+    } else {
+      parser.print_help()
     }
   } catch (error) {
     console.error("Error:", error)

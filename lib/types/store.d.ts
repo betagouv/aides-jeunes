@@ -77,6 +77,7 @@ export interface Store {
   calculs: Calculs
   // TODO Add type of dates
   dates: any
+  prefillExperimentInterest: boolean
   title: string | null
   inIframe: boolean
   iframeOrigin: string | null

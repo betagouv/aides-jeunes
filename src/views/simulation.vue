@@ -63,6 +63,39 @@
           </p>
         </div>
       </div>
+      <div
+        v-if="displayPrefillExperimentInterest"
+        class="fr-alert fr-alert--info fr-my-1w"
+      >
+        <p
+          >Nous souhaitons expérimenter le pré-remplissage du simulateur pour
+          vous éviter de saisir des informations déjà connues par
+          l'administration.</p
+        >
+        <div class="fr-btns-group fr-btns-group--inline">
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="submit"
+            @click="prefillExperimentInterestSubmit(true)"
+          >
+            Signaler mon intérêt
+          </button>
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="submit"
+            @click="prefillExperimentInterestSubmit(false)"
+          >
+            Non, merci
+          </button>
+        </div>
+      </div>
+      <div v-else class="fr-alert fr-alert--info fr-my-1w">
+        <p>Merci pour votre aide !</p>
+        <p
+          >En donnant votre avis vous nous aidez à savoir ce qui est important
+          pour vous et donc ce sur quoi nous devons travailler.</p
+        >
+      </div>
 
       <div>
         <router-view :key="$route.path" />
@@ -78,6 +111,8 @@ import ChaptersSummary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "Simulation",
@@ -88,6 +123,7 @@ export default {
     ProgressDebugger,
     ChaptersSummary,
   },
+  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
@@ -114,6 +150,13 @@ export default {
         !this.franceConnectConnected
       )
     },
+    displayPrefillExperimentInterest() {
+      return (
+        this.store.getAllSteps[0].path === this.$route.path &&
+        this.store.simulation.answers.all.length === 0 &&
+        this.store.prefillExperimentInterest == null
+      )
+    },
     franceConnectError() {
       return this.$route.query.error == "france_connect_error"
     },
@@ -125,6 +168,13 @@ export default {
     disableDebug() {
       this.store.setDebug(false)
       this.$router.replace({ debug: null })
+    },
+    prefillExperimentInterestSubmit(interest) {
+      this.store.setPrefillExperimentInterest(interest)
+      this.sendEventToMatomo(
+        EventCategory.Preremplissage,
+        interest ? EventAction.Interesse : EventAction.NonInteresse
+      )
     },
   },
 }

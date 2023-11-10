@@ -56,7 +56,7 @@ function defaultStore(): Store {
       counter: null,
     },
     debug: false,
-    prefillExperimentInterest: null,
+    prefillExperimentInterest: undefined,
     error: false,
     access: {
       fetching: false,

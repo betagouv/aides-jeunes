@@ -56,7 +56,7 @@ export interface PersistedStore {
   simulationId: string | null
   simulation: Simulation
   calculs: Calculs
-  prefillExperimentInterest: boolean
+  prefillExperimentInterest: boolean | undefined
   recapEmailState: string | undefined
   recapPhoneState: string | undefined
   dates?: any
@@ -78,7 +78,7 @@ export interface Store {
   calculs: Calculs
   // TODO Add type of dates
   dates: any
-  prefillExperimentInterest: boolean
+  prefillExperimentInterest: boolean | undefined
   title: string | null
   inIframe: boolean
   iframeOrigin: string | null

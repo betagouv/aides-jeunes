@@ -89,7 +89,10 @@
           </button>
         </div>
       </div>
-      <div v-else class="fr-alert fr-alert--info fr-my-1w">
+      <div
+        v-else-if="isOnFirstSimulationPage"
+        class="fr-alert fr-alert--info fr-my-1w"
+      >
         <p>Merci pour votre aide !</p>
         <p
           >En donnant votre avis vous nous aidez à savoir ce qui est important
@@ -141,20 +144,24 @@ export default {
     debug() {
       return this.store.getDebug
     },
+    isOnFirstSimulationPage() {
+      return (
+        this.store.getAllSteps[0].path === this.$route.path &&
+        this.store.simulation.answers.all.length === 0
+      )
+    },
     displayFranceConnect() {
       return (
         this.$route.query["france-connect-enabled"] === "true" &&
         process.env.VITE_FRANCE_CONNECT_ENABLED &&
-        this.store.getAllSteps[0].path === this.$route.path &&
-        this.store.simulation.answers.all.length === 0 &&
+        this.isOnFirstSimulationPage &&
         !this.franceConnectConnected
       )
     },
     displayPrefillExperimentInterest() {
       return (
-        this.store.getAllSteps[0].path === this.$route.path &&
-        this.store.simulation.answers.all.length === 0 &&
-        this.store.prefillExperimentInterest == null
+        this.isOnFirstSimulationPage &&
+        this.store.prefillExperimentInterest == undefined
       )
     },
     franceConnectError() {

@@ -63,6 +63,43 @@
           </p>
         </div>
       </div>
+      <div
+        v-if="displayPrefillExperimentInterest"
+        class="fr-alert fr-alert--info fr-my-1w"
+      >
+        <p
+          >Nous souhaitons expérimenter le pré-remplissage du simulateur pour
+          vous éviter de saisir des informations déjà connues par
+          l'administration.
+        </p>
+        <p>Est-ce que cela vous serait utile ?</p>
+        <div class="fr-btns-group fr-btns-group--inline">
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="submit"
+            @click="prefillExperimentInterestSubmit(true)"
+          >
+            Oui
+          </button>
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="submit"
+            @click="prefillExperimentInterestSubmit(false)"
+          >
+            Non
+          </button>
+        </div>
+      </div>
+      <div
+        v-else-if="isOnFirstSimulationPage"
+        class="fr-alert fr-alert--success fr-my-1w"
+      >
+        <p>Merci pour votre aide !</p>
+        <p
+          >En donnant votre avis vous nous aidez à savoir ce qui est important
+          pour vous et donc ce sur quoi nous devons travailler.</p
+        >
+      </div>
 
       <div>
         <router-view :key="$route.path" />
@@ -78,6 +115,8 @@ import ChaptersSummary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "Simulation",
@@ -88,6 +127,7 @@ export default {
     ProgressDebugger,
     ChaptersSummary,
   },
+  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
@@ -105,13 +145,24 @@ export default {
     debug() {
       return this.store.getDebug
     },
+    isOnFirstSimulationPage() {
+      return (
+        this.store.getAllSteps[0].path === this.$route.path &&
+        this.store.simulation.answers.all.length === 0
+      )
+    },
     displayFranceConnect() {
       return (
         this.$route.query["france-connect-enabled"] === "true" &&
         process.env.VITE_FRANCE_CONNECT_ENABLED &&
-        this.store.getAllSteps[0].path === this.$route.path &&
-        this.store.simulation.answers.all.length === 0 &&
+        this.isOnFirstSimulationPage &&
         !this.franceConnectConnected
+      )
+    },
+    displayPrefillExperimentInterest() {
+      return (
+        this.isOnFirstSimulationPage &&
+        this.store.prefillExperimentInterest == undefined
       )
     },
     franceConnectError() {
@@ -125,6 +176,13 @@ export default {
     disableDebug() {
       this.store.setDebug(false)
       this.$router.replace({ debug: null })
+    },
+    prefillExperimentInterestSubmit(interest) {
+      this.store.setPrefillExperimentInterest(interest)
+      this.sendEventToMatomo(
+        EventCategory.Preremplissage,
+        interest ? EventAction.Interesse : EventAction.NonInteresse
+      )
     },
   },
 }

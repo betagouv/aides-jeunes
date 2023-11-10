@@ -1,6 +1,6 @@
 import { urlInclude } from "./controllers.js"
 
-const submit = () => cy.get('button[type="submit"]').click()
+const submit = () => cy.get('button[type="submit"]:contains("Suivant")').click()
 
 const fillRadio = (url, value, noSubmit) => {
   urlInclude(url)

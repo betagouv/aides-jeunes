@@ -274,7 +274,7 @@ const router = createRouter({
         behavior: "smooth",
       }
     }
-    return { left: 0, top: 0 }
+    return false
   },
 })
 
@@ -339,6 +339,16 @@ function getTitleMeta(route) {
 }
 
 router.afterEach((to) => {
+  if (!to.hash) {
+    const el = document.getElementById("aj-title")
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      })
+    }
+  }
   nextTick(function () {
     document.title = getTitleMeta(to)
   })

@@ -70,28 +70,29 @@
         <p
           >Nous souhaitons expérimenter le pré-remplissage du simulateur pour
           vous éviter de saisir des informations déjà connues par
-          l'administration.</p
-        >
+          l'administration.
+        </p>
+        <p>Est-ce que cela vous serez utile ?</p>
         <div class="fr-btns-group fr-btns-group--inline">
           <button
             class="fr-btn fr-btn--secondary"
             type="submit"
             @click="prefillExperimentInterestSubmit(true)"
           >
-            Signaler mon intérêt
+            Oui
           </button>
           <button
             class="fr-btn fr-btn--secondary"
             type="submit"
             @click="prefillExperimentInterestSubmit(false)"
           >
-            Non, merci
+            Non
           </button>
         </div>
       </div>
       <div
         v-else-if="isOnFirstSimulationPage"
-        class="fr-alert fr-alert--info fr-my-1w"
+        class="fr-alert fr-alert--success fr-my-1w"
       >
         <p>Merci pour votre aide !</p>
         <p

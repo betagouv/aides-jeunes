@@ -54,7 +54,7 @@ app.use(StateService)
 app.use(ThemeService)
 app.use(VueCookies)
 
-if (navigator.cookieEnabled && process.env.VITE_CONTEXT === "production") {
+if (navigator.cookieEnabled) {
   app.use(VueMatomo, {
     host: "https://stats.data.gouv.fr",
     trackerFileName: "piwik",

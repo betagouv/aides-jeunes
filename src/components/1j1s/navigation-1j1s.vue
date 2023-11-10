@@ -140,6 +140,10 @@ const navigation = [
       },
       { label: "Découvrir les métiers", link: "/decouvrir-les-metiers" },
       { label: "Participer à des évènements", link: "/evenements" },
+      {
+        label: "Découvrir et trouver sa voie avec l’apprentissage",
+        link: "/choisir-apprentissage",
+      },
     ],
   },
   {

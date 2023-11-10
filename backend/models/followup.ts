@@ -11,6 +11,7 @@ import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
 import { sendEmail } from "../lib/messaging/email/email-service.js"
+import { renderAndSendSimulationResultsSms } from "../lib/sms-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
@@ -60,20 +61,8 @@ FollowupSchema.method(
 
 FollowupSchema.method("sendSimulationResultsSms", async function () {
   try {
-    const username = config.smsService.username
-    const password = config.smsService.password
-    if (!username || !password) {
-      throw new Error("Missing SMS service credentials")
-    }
-    const renderUrl = this.renderSimulationResultsSmsUrl(username, password)
-    const axiosInstance = axios.create({
-      timeout: 10000,
-    })
-    const { data, status } = await axiosInstance.get(renderUrl)
-    if (status !== 200 || data.responseCode !== 0) {
-      throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
-    }
-    return this.postSimulationResultsSms(data.messageIds[0])
+    const messageId = await renderAndSendSimulationResultsSms(this)
+    return this.postSimulationResultsSms(messageId)
   } catch (err) {
     this.smsError = JSON.stringify(err, null, 2)
     throw err

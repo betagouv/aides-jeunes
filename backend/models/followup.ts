@@ -1,58 +1,15 @@
 import mongoose from "mongoose"
-import validator from "validator"
 import { sendMail } from "../lib/smtp.js"
 import axios from "axios"
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
-import SurveySchema from "./survey-schema.js"
 import { EmailCategory } from "../../lib/enums/email.js"
 import config from "../config/index.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
-
-const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
-  {
-    simulation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Simulation",
-    },
-    email: {
-      type: String,
-      validate: {
-        validator: validator.isEmail,
-        message: "Email invalide",
-        isAsync: false,
-      },
-    },
-    phone: {
-      type: String,
-      validate: {
-        validator: validator.isMobilePhone,
-        message: "Numéro de téléphone invalide",
-        isAsync: false,
-      },
-    },
-    createdAt: { type: Date, default: Date.now },
-    sentAt: { type: Date },
-    smsSentAt: { type: Date },
-    messageId: { type: String },
-    smsMessageId: { type: String },
-    surveySentAt: { type: Date },
-    benefits: { type: Object },
-    surveyOptin: { type: Boolean, default: false },
-    surveys: {
-      type: [SurveySchema],
-      default: [],
-    },
-    version: Number,
-    error: { type: Object },
-    smsError: { type: Object },
-    accessToken: { type: String },
-  },
-  { minimize: false, id: false }
-)
+import FollowupSchema from "./followup-schema.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })

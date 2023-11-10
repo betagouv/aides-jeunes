@@ -10,6 +10,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
+import { renderAndSendEmail } from "../lib/email-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
@@ -39,26 +40,18 @@ FollowupSchema.method("renderSimulationResultsEmail", function () {
   return emailRender(EmailCategory.SimulationResults, this)
 })
 
-FollowupSchema.method("sendSimulationResultsEmail", function () {
-  const followup = this
-  return this.renderSimulationResultsEmail()
-    .then((render) => {
-      return sendMail({
-        to: followup.email,
-        subject: render.subject,
-        text: render.text,
-        html: render.html,
-        tags: [EmailCategory.SimulationResults],
-      })
-    })
-    .then((response) => {
-      return followup.postSimulationResultsEmail(response.messageId)
-    })
-    .catch((err) => {
-      console.log("error", err)
-      followup.error = JSON.stringify(err, null, 2)
-      return followup.save()
-    })
+FollowupSchema.method("sendSimulationResultsEmail", async function () {
+  try {
+    const messageId = await renderAndSendEmail(
+      EmailCategory.SimulationResults,
+      this
+    )
+    return this.postSimulationResultsEmail(messageId)
+  } catch (err) {
+    console.log("error", err)
+    this.error = JSON.stringify(err, null, 2)
+    return this.save()
+  }
 })
 
 FollowupSchema.method(

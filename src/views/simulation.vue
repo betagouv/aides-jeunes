@@ -72,7 +72,7 @@
           vous éviter de saisir des informations déjà connues par
           l'administration.
         </p>
-        <p>Est-ce que cela vous serez utile ?</p>
+        <p>Est-ce que cela vous serait utile ?</p>
         <div class="fr-btns-group fr-btns-group--inline">
           <button
             class="fr-btn fr-btn--secondary"

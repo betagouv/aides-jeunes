@@ -56,6 +56,7 @@ export interface PersistedStore {
   simulationId: string | null
   simulation: Simulation
   calculs: Calculs
+  prefillExperimentInterest: boolean
   recapEmailState: string | undefined
   recapPhoneState: string | undefined
   dates?: any

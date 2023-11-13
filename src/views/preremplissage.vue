@@ -42,7 +42,7 @@ const formData = computed(() => {
   }
 })
 
-const formDataValidation = computed(() => {
+const isFormDataValid = computed(() => {
   if (
     !formData.value.family_name ||
     !formData.value.given_names ||
@@ -83,7 +83,7 @@ const submitPrefillData = async () => {
     formError.value = false
     prefillSuccess.value = false
 
-    if (!formDataValidation.value) {
+    if (!isFormDataValid.value) {
       formError.value = true
       throw new Error("Missing required fields")
     }

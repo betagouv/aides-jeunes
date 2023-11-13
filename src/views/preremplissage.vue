@@ -94,7 +94,7 @@ const submitPrefillData = async () => {
 
     updating.value = true
     const response = await axios.post(
-      pivotApiUrl + "users",
+      `${pivotApiUrl}/users`,
       {
         ...formData.value,
       },

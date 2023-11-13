@@ -136,7 +136,9 @@ const submitPrefillData = async () => {
         Dans un premier temps, nous collectons des informations d'identité pour
       </p>
       <fieldset class="fr-fieldset">
-        <legend class="fr-fieldset__legend fr-px-0">Votre identité</legend>
+        <legend class="fr-fieldset__legend fr-px-0 fr-text--lead fr-text--bold"
+          >Votre identité</legend
+        >
         <p>Tous les champs de cette section sont obligatoires.</p>
         <div class="fr-fieldset__content">
           <div>
@@ -238,7 +240,7 @@ const submitPrefillData = async () => {
         </div>
       </fieldset>
       <fieldset class="fr-fieldset">
-        <legend class="fr-fieldset__legend fr-px-0">
+        <legend class="fr-fieldset__legend fr-px-0 fr-text--lead fr-text--bold">
           Vos informations de contact
         </legend>
         <p>Les champs de cette section ne sont pas obligatoires.</p>

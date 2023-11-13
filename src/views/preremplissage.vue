@@ -2,7 +2,7 @@
 import LoadingModal from "@/components/loading-modal.vue"
 import InputDate from "@/components/input-date.vue"
 import InputDepcom from "@/components/input-depcom.vue"
-import { ref } from "vue"
+import { ref, computed } from "vue"
 
 const family_name = ref(undefined)
 const given_names = ref(undefined)
@@ -16,14 +16,36 @@ const phone = ref(undefined)
 const cityName = ref(undefined)
 const updating = ref(false)
 
-const submitPrefilData = () => {
-  alert("ok")
-}
 const handleNomCommuneUpdate = (nomCommune) => {
   cityName.value = nomCommune
 }
 const handleCodePostalUpdate = (codePostal) => {
   postcode.value = codePostal
+}
+
+const formData = computed(() => {
+  return {
+    family_name,
+    given_names,
+    birthdate,
+  }
+})
+
+const submitPrefillData = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      /* fake api */
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData.value),
+    })
+    const responseData = await response.json()
+    console.log("Réponse de l'API :", responseData)
+  } catch (error) {
+    console.error("POST request error :", error)
+  }
 }
 </script>
 
@@ -183,7 +205,7 @@ const handleCodePostalUpdate = (codePostal) => {
         <button
           class="fr-btn fr-btn--secondary"
           type="submit"
-          @click.prevent="submitPrefilData($event)"
+          @click.prevent="submitPrefillData"
         >
           Valider
         </button>

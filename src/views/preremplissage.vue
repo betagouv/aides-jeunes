@@ -193,6 +193,7 @@ export default {
       email: undefined,
       phone: undefined,
       cityName: undefined,
+      updating: false,
     }
   },
   methods: {

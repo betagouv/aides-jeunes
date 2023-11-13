@@ -231,6 +231,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/preremplissage",
+      name: "preremplissage",
+      component: () => import("./views/preremplissage.vue"),
+    },
+    {
       path: "/suivi",
       name: "suivi",
       component: () => import("./views/suivi.vue"),

@@ -13,8 +13,6 @@ const given_names = ref(undefined)
 const birthdate = ref(undefined)
 const postcode = ref(undefined)
 const gender = ref(undefined)
-const birthplace_insee_code = ref(undefined)
-const birthcountry_insee_code = ref(undefined)
 const email = ref(undefined)
 const phone = ref(undefined)
 const cityName = ref(undefined)
@@ -36,6 +34,7 @@ const formData = computed(() => {
     birthplace_insee_code: postcode.value,
     birthcountry_insee_code: "99100",
     email: email.value,
+    phone: phone.value,
   }
 })
 
@@ -46,8 +45,7 @@ const formDataValidation = computed(() => {
     !formData.value.birthdate ||
     !formData.value.gender ||
     !formData.value.birthplace_insee_code ||
-    !formData.value.birthcountry_insee_code ||
-    !formData.value.email
+    !formData.value.birthcountry_insee_code
   ) {
     return false
   }
@@ -132,7 +130,10 @@ const submitPrefillData = async () => {
       </p>
       <fieldset class="fr-fieldset">
         <legend class="fr-fieldset__legend fr-px-0">Votre identité</legend>
-        <p>Tous les champs de cette section sont obligatoires.</p>
+        <p
+          >Tous les champs de cette section sont obligatoires à l'exception de
+          l'adresse email.</p
+        >
         <div class="fr-fieldset__content">
           <div>
             <div class="fr-mt-2w">
@@ -257,18 +258,6 @@ const submitPrefillData = async () => {
           </div>
         </div>
       </fieldset>
-      <p>
-        {{ family_name }}
-        {{ given_names }}
-        {{ birthdate }}
-        {{ gender }}
-        {{ postcode }}
-        {{ cityName }}
-        {{ birthplace_insee_code }}
-        {{ birthcountry_insee_code }}
-        {{ email }}
-        {{ phone }}
-      </p>
       <div class="fr-btns-group fr-btns-group--inline">
         <button
           class="fr-btn fr-btn--secondary"

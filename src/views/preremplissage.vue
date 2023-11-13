@@ -5,6 +5,7 @@ import InputDepcom from "@/components/input-depcom.vue"
 import { ref, computed } from "vue"
 import { useStore } from "@/stores/index.js"
 import { Answer } from "@lib/types/store.d.js"
+import axios from "axios"
 
 const store = useStore()
 
@@ -92,22 +93,23 @@ const submitPrefillData = async () => {
     }
 
     updating.value = true
-    const response = await fetch(pivotApiUrl + "users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await axios.post(
+      pivotApiUrl + "users",
+      {
+        ...formData.value,
       },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
 
-      body: JSON.stringify(formData.value),
-    })
-    const responseData = await response.json()
-    const responseStatus = await response.status
-
-    if (responseStatus !== 201) {
-      throw new Error("POST request error :", responseData)
+    if (response.status !== 201) {
+      throw new Error("POST request error :", response.data)
     }
 
-    storePivotDataAnswer(responseData)
+    storePivotDataAnswer(response.data)
     storeBirthdateAnswer()
     prefillSuccess.value = true
   } catch (error) {

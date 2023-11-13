@@ -37,8 +37,8 @@ const formData = computed(() => {
     gender: gender.value,
     birthplace_insee_code: postcode.value,
     birthcountry_insee_code: "99100",
-    email: email.value || "",
-    phone: phone.value || "",
+    email: email.value || null,
+    phone: phone.value || null,
   }
 })
 

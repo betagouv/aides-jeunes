@@ -6,6 +6,7 @@ import { ref, computed } from "vue"
 import { useStore } from "@/stores/index.js"
 import { Answer } from "@lib/types/store.d.js"
 import axios from "axios"
+import * as Sentry from "@sentry/vue"
 
 const store = useStore()
 
@@ -114,6 +115,7 @@ const submitPrefillData = async () => {
     prefillSuccess.value = true
   } catch (error) {
     console.error(error)
+    Sentry.captureException(error)
   } finally {
     updating.value = false
   }

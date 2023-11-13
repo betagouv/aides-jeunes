@@ -1,3 +1,32 @@
+<script setup lang="ts">
+import LoadingModal from "@/components/loading-modal.vue"
+import InputDate from "@/components/input-date.vue"
+import InputDepcom from "@/components/input-depcom.vue"
+import { ref } from "vue"
+
+const family_name = ref(undefined)
+const given_names = ref(undefined)
+const birthdate = ref(undefined)
+const postcode = ref(undefined)
+const gender = ref(undefined)
+const birthplace_insee_code = ref(undefined)
+const birthcountry_insee_code = ref(undefined)
+const email = ref(undefined)
+const phone = ref(undefined)
+const cityName = ref(undefined)
+const updating = ref(false)
+
+const submitPrefilData = () => {
+  alert("ok")
+}
+const handleNomCommuneUpdate = (nomCommune) => {
+  cityName.value = nomCommune
+}
+const handleCodePostalUpdate = (codePostal) => {
+  postcode.value = codePostal
+}
+</script>
+
 <template>
   <article class="fr-article">
     <LoadingModal v-if="updating">
@@ -162,50 +191,3 @@
     </form>
   </article>
 </template>
-
-<script lang="ts">
-import LoadingModal from "@/components/loading-modal.vue"
-import { useStore } from "@/stores/index.js"
-import InputDate from "@/components/input-date.vue"
-import InputDepcom from "@/components/input-depcom.vue"
-
-export default {
-  name: "Redirection",
-  components: {
-    InputDate,
-    LoadingModal,
-    InputDepcom,
-  },
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  data() {
-    return {
-      family_name: undefined,
-      given_names: undefined,
-      birthdate: undefined,
-      postcode: undefined,
-      gender: undefined,
-      birthplace_insee_code: undefined,
-      birthcountry_insee_code: undefined,
-      email: undefined,
-      phone: undefined,
-      cityName: undefined,
-      updating: false,
-    }
-  },
-  methods: {
-    submitPrefilData() {
-      alert("ok")
-    },
-    handleNomCommuneUpdate(nomCommune) {
-      this.cityName = nomCommune
-    },
-    handleCodePostalUpdate(codePostal) {
-      this.postcode = codePostal
-    },
-  },
-}
-</script>

@@ -8,22 +8,22 @@ import { Answer } from "@lib/types/store.d.js"
 
 const store = useStore()
 
-const family_name = ref(undefined)
-const given_names = ref(undefined)
-const birthdate = ref(undefined)
-const postcode = ref(undefined)
-const gender = ref(undefined)
-const email = ref(undefined)
-const phone = ref(undefined)
-const cityName = ref(undefined)
+const family_name = ref<string | undefined>()
+const given_names = ref<string | undefined>()
+const birthdate = ref<string | undefined>()
+const postcode = ref<string | undefined>()
+const gender = ref<string | undefined>()
+const email = ref<string | undefined>()
+const phone = ref<string | undefined>()
+const cityName = ref<string | undefined>()
 const updating = ref(false)
 const formError = ref(false)
 const prefillSuccess = ref(false)
 
-const handleNomCommuneUpdate = (nomCommune) => {
+const handleNomCommuneUpdate = (nomCommune: string) => {
   cityName.value = nomCommune
 }
-const handleCodePostalUpdate = (codePostal) => {
+const handleCodePostalUpdate = (codePostal: string) => {
   postcode.value = codePostal
 }
 
@@ -54,28 +54,26 @@ const formDataValidation = computed(() => {
   return true
 })
 
-const storePivotDataAnswer = (data) => {
+const storeAnswer = (id: string, fieldName: string, value: any) => {
+  const answer: Answer = {
+    id,
+    entityName: "individu",
+    fieldName,
+    value,
+  } as Answer
+  store.answer(answer)
+}
+
+const storePivotDataAnswer = (data: { id: string; token: string }) => {
   if (data.id && data.token) {
-    const pivotAnswer: Answer = {
-      id: "demandeur",
-      entityName: "individu",
-      fieldName: "pivot-data",
-      value: data,
-    } as Answer
-    store.answer(pivotAnswer)
+    storeAnswer("demandeur", "pivot-data", data)
   } else {
     console.error("Missing response data API (id, token)", data)
   }
 }
 
 const storeBirthdateAnswer = () => {
-  const birthdateAnswer: Answer = {
-    id: "demandeur",
-    entityName: "individu",
-    fieldName: "date_naissance",
-    value: birthdate.value,
-  } as Answer
-  store.answer(birthdateAnswer)
+  storeAnswer("demandeur", "date_naissance", birthdate.value)
 }
 
 const submitPrefillData = async () => {

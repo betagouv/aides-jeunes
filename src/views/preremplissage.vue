@@ -3,6 +3,10 @@ import LoadingModal from "@/components/loading-modal.vue"
 import InputDate from "@/components/input-date.vue"
 import InputDepcom from "@/components/input-depcom.vue"
 import { ref, computed } from "vue"
+import { useStore } from "@/stores/index.js"
+import { Answer } from "@lib/types/store.d.js"
+
+const store = useStore()
 
 const family_name = ref(undefined)
 const given_names = ref(undefined)
@@ -50,6 +54,32 @@ const formDataValidation = computed(() => {
   return true
 })
 
+const storePivotValueAnswer = (data) => {
+  if (data.id && data.token) {
+    const pivotAnswer: Answer = {
+      id: data.id,
+      entityName: "individu",
+      fieldName: "pivot-value",
+      path: "/simulation/individu/demandeur/pivot-value",
+      value: data.token,
+    } as Answer
+    store.answer(pivotAnswer)
+  } else {
+    console.error("Missing response data API (id, token)", data)
+  }
+}
+
+const storeBirthdateAnswer = () => {
+  const birthdateAnswer: Answer = {
+    id: "demandeur",
+    entityName: "individu",
+    fieldName: "date_naissance",
+    path: "/simulation/individu/demandeur/date_naissance",
+    value: birthdate.value,
+  } as Answer
+  store.answer(birthdateAnswer)
+}
+
 const submitPrefillData = async () => {
   try {
     if (!formDataValidation.value) {
@@ -59,6 +89,7 @@ const submitPrefillData = async () => {
     if (!pivotApiUrl) {
       throw new Error("Missing pivot api url")
     }
+    updating.value = true
     const response = await fetch(pivotApiUrl + "users", {
       method: "POST",
       headers: {
@@ -70,9 +101,18 @@ const submitPrefillData = async () => {
       body: JSON.stringify(formData.value),
     })
     const responseData = await response.json()
-    console.log("Réponse de l'API :", responseData)
+    const responseStatus = await response.status
+
+    if (responseStatus !== 201) {
+      throw new Error("POST request error :", responseData)
+    }
+
+    storePivotValueAnswer(responseData)
+    storeBirthdateAnswer()
   } catch (error) {
-    console.error("POST request error :", error)
+    console.error(error)
+  } finally {
+    updating.value = false
   }
 }
 </script>

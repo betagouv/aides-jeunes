@@ -99,7 +99,7 @@ const submitPrefillData = async () => {
     })
 
     if (response.status !== 201) {
-      throw new Error("POST request error :", response.data)
+      throw new Error("POST request ", response.data)
     }
 
     storePivotDataAnswer(response.data)
@@ -107,7 +107,9 @@ const submitPrefillData = async () => {
     prefillSuccess.value = true
   } catch (error) {
     console.error(error)
-    Sentry.captureException(error)
+    if ((error as Error).message !== "Missing required fields") {
+      Sentry.captureException(error)
+    }
   } finally {
     updating.value = false
   }

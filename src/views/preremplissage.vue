@@ -17,6 +17,8 @@ const email = ref(undefined)
 const phone = ref(undefined)
 const cityName = ref(undefined)
 const updating = ref(false)
+const formError = ref(false)
+const prefillSuccess = ref(false)
 
 const handleNomCommuneUpdate = (nomCommune) => {
   cityName.value = nomCommune
@@ -80,13 +82,19 @@ const storeBirthdateAnswer = () => {
 
 const submitPrefillData = async () => {
   try {
+    formError.value = false
+    prefillSuccess.value = false
+
     if (!formDataValidation.value) {
+      formError.value = true
       throw new Error("Missing required fields")
     }
+
     const pivotApiUrl: string | undefined = process.env.VITE_PIVOT_URL
     if (!pivotApiUrl) {
       throw new Error("Missing pivot api url")
     }
+
     updating.value = true
     const response = await fetch(pivotApiUrl + "users", {
       method: "POST",
@@ -105,6 +113,7 @@ const submitPrefillData = async () => {
 
     storePivotValueAnswer(responseData)
     storeBirthdateAnswer()
+    prefillSuccess.value = true
   } catch (error) {
     console.error(error)
   } finally {
@@ -130,10 +139,7 @@ const submitPrefillData = async () => {
       </p>
       <fieldset class="fr-fieldset">
         <legend class="fr-fieldset__legend fr-px-0">Votre identité</legend>
-        <p
-          >Tous les champs de cette section sont obligatoires à l'exception de
-          l'adresse email.</p
-        >
+        <p>Tous les champs de cette section sont obligatoires.</p>
         <div class="fr-fieldset__content">
           <div>
             <div class="fr-mt-2w">
@@ -170,7 +176,7 @@ const submitPrefillData = async () => {
             </div>
             <div class="fr-container fr-px-0 fr-mt-2w">
               <label id="">Date de naissance</label>
-              <div class="fr-container fr-px-0">
+              <div class="fr-container fr-px-0 fr-pt-1w">
                 <div class="fr-grid-row">
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-6">
                     <div class="fr-form-group">
@@ -236,7 +242,7 @@ const submitPrefillData = async () => {
         <div class="fr-fieldset__content">
           <div>
             <label id="">Numéro de téléphone</label>
-            <div class="fr-container fr-px-0">
+            <div class="fr-container fr-px-0 fr-pb-1w">
               <div class="fr-grid-row">
                 <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                   <div class="fr-form-group">
@@ -266,6 +272,14 @@ const submitPrefillData = async () => {
         >
           Valider
         </button>
+      </div>
+      <div v-if="formError" class="fr-alert fr-alert--error">
+        <h3 class="fr-alert__title">Formulaire invalide</h3>
+        <p>Tous les champs doivent être complétés</p>
+      </div>
+      <div v-if="prefillSuccess" class="fr-alert fr-alert--success">
+        <h3 class="fr-alert__title">Succès de l'envoi</h3>
+        <p>Pré-remplissage effectif</p>
       </div>
     </form>
   </article>

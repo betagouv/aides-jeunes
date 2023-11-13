@@ -123,7 +123,7 @@ const submitPrefillData = async () => {
 <template>
   <article class="fr-article">
     <LoadingModal v-if="updating">
-      <p>Récupération en cours…</p>
+      <p>Chargement en cours…</p>
     </LoadingModal>
     <form>
       <h1>Pré-remplissage expérimental</h1>

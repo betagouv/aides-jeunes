@@ -94,17 +94,9 @@ const submitPrefillData = async () => {
     }
 
     updating.value = true
-    const response = await axios.post(
-      `${pivotApiUrl}/users`,
-      {
-        ...formData.value,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    const response = await axios.post(`${pivotApiUrl}/users`, {
+      ...formData.value,
+    })
 
     if (response.status !== 201) {
       throw new Error("POST request error :", response.data)
@@ -127,7 +119,7 @@ const submitPrefillData = async () => {
     <LoadingModal v-if="updating">
       <p>Chargement en cours…</p>
     </LoadingModal>
-    <form>
+    <form v-if="!prefillSuccess">
       <h1>Pré-remplissage expérimental</h1>
       <p>
         Pour la mise en place du pré-remplissage, nous avons besoin
@@ -280,6 +272,12 @@ const submitPrefillData = async () => {
           </div>
         </div>
       </fieldset>
+      <p>
+        En validant ce formulaire, vous acceptez que les informations
+        renseignées soient conservées pendant 30 jours. Si des informations de
+        contact sont fournies nous pourrons revenir vers vous pour vous apporter
+        des informations complémentaires sur le pré-remplissage.
+      </p>
       <div class="fr-btns-group fr-btns-group--inline">
         <button
           class="fr-btn fr-btn--secondary"
@@ -296,15 +294,15 @@ const submitPrefillData = async () => {
           complétés.</p
         >
       </div>
-      <div v-if="prefillSuccess" class="fr-alert fr-alert--success">
-        <h3 class="fr-alert__title">Succès de l'envoi</h3>
-        <p>
-          Merci pour ces informations.
-          <a href="/simulation/individu/demandeur/date_naissance"
-            >Accéder au simulateur</a
-          >
-        </p>
-      </div>
     </form>
+    <div v-else class="fr-alert fr-alert--success">
+      <h3 class="fr-alert__title">Succès de l'envoi</h3>
+      <p>
+        Merci pour ces informations.
+        <a href="/simulation/individu/demandeur/date_naissance">
+          Accéder au simulateur
+        </a>
+      </p>
+    </div>
   </article>
 </template>

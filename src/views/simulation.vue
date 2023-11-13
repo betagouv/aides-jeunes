@@ -195,7 +195,7 @@ export default {
       )
     },
     displayPrefillExperiment() {
-      return this.displayPrefillExperimentInterest
+      return process.env.VITE_PIVOT_URL && this.displayPrefillExperimentInterest
     },
     franceConnectError() {
       return this.$route.query.error == "france_connect_error"

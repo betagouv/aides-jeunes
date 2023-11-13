@@ -25,7 +25,7 @@
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                     <div class="fr-form-group">
                       <input
-                        v-model="family_names"
+                        v-model="family_name"
                         type="text"
                         class="fr-input"
                       />
@@ -139,7 +139,7 @@
         </div>
       </fieldset>
       <p>
-        {{ family_names }}
+        {{ family_name }}
         {{ given_names }}
         {{ birthdate }}
         {{ gender }}
@@ -183,7 +183,7 @@ export default {
   },
   data() {
     return {
-      family_names: undefined,
+      family_name: undefined,
       given_names: undefined,
       birthdate: undefined,
       postcode: undefined,

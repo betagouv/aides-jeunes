@@ -84,8 +84,8 @@ export default {
     codePostalLabel: String,
     nomCommune: String,
     matchingCommune: Object,
-    communeSelectorLabelCustomClass: String,
-    communeSelectorInputCustomClass: String,
+    communeSelectorLabelOverrideClass: String,
+    communeSelectorInputOverrideClass: String,
   },
   emits: ["update:nomCommune", "update:codePostal", "update:matchingCommune"],
   setup() {
@@ -103,13 +103,13 @@ export default {
   },
   computed: {
     communeSelectorLabelClass() {
-      return this.communeSelectorLabelCustomClass
-        ? this.communeSelectorLabelCustomClass
+      return this.communeSelectorLabelOverrideClass
+        ? this.communeSelectorLabelOverrideClass
         : "fr-text--lead fr-text--bold"
     },
     communeSelectorInputClass() {
-      return this.communeSelectorInputCustomClass
-        ? this.communeSelectorInputCustomClass
+      return this.communeSelectorInputOverrideClass
+        ? this.communeSelectorInputOverrideClass
         : "fr-container fr-px-0 fr-mt-4w"
     },
   },

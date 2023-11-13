@@ -63,6 +63,15 @@
               </div>
             </div>
             <div class="fr-mt-2w">
+              <label id="">Code postal</label>
+              <InputDepcom
+                v-model="postcode"
+                @update:nom-commune="handleNomCommuneUpdate"
+                @update:code-postal="handleCodePostalUpdate"
+              />
+            </div>
+
+            <div class="fr-mt-2w">
               <label id="">Sexe indiqué sur votre document d'identité</label>
               <div class="fr-container fr-px-0">
                 <div class="fr-grid-row">
@@ -135,6 +144,7 @@
         {{ birthdate }}
         {{ gender }}
         {{ postcode }}
+        {{ cityName }}
         {{ birthplace_insee_code }}
         {{ birthcountry_insee_code }}
         {{ email }}
@@ -157,12 +167,14 @@
 import LoadingModal from "@/components/loading-modal.vue"
 import { useStore } from "@/stores/index.js"
 import InputDate from "@/components/input-date.vue"
+import InputDepcom from "@/components/input-depcom.vue"
 
 export default {
   name: "Redirection",
   components: {
     InputDate,
     LoadingModal,
+    InputDepcom,
   },
   setup() {
     return {
@@ -180,11 +192,18 @@ export default {
       birthcountry_insee_code: undefined,
       email: undefined,
       phone: undefined,
+      cityName: undefined,
     }
   },
   methods: {
     submitPrefilData() {
       alert("ok")
+    },
+    handleNomCommuneUpdate(nomCommune) {
+      this.cityName = nomCommune
+    },
+    handleCodePostalUpdate(codePostal) {
+      this.postcode = codePostal
     },
   },
 }

@@ -18,10 +18,10 @@ const gender = ref<string | undefined>()
 const email = ref<string | undefined>()
 const phone = ref<string | undefined>()
 const cityName = ref<string | undefined>()
-const updating = ref(false)
-const formError = ref(false)
-const prefillSuccess = ref(false)
-const prefillSuccessAlert = ref<any>(null)
+const updating = ref<boolean>(false)
+const formError = ref<boolean>(false)
+const prefillSuccess = ref<boolean>(false)
+const prefillSuccessAlert = ref<HTMLElement | null>(null)
 
 watch(prefillSuccess, (newValue) => {
   if (newValue === true) {

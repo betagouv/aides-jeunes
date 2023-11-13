@@ -25,20 +25,48 @@ const handleCodePostalUpdate = (codePostal) => {
 
 const formData = computed(() => {
   return {
-    family_name,
-    given_names,
-    birthdate,
+    family_name: family_name.value,
+    given_names: given_names.value,
+    birthdate: birthdate.value,
+    gender: gender.value,
+    birthplace_insee_code: postcode.value,
+    birthcountry_insee_code: "99100",
+    email: email.value,
   }
+})
+
+const formDataValidation = computed(() => {
+  if (
+    !formData.value.family_name ||
+    !formData.value.given_names ||
+    !formData.value.birthdate ||
+    !formData.value.gender ||
+    !formData.value.birthplace_insee_code ||
+    !formData.value.birthcountry_insee_code ||
+    !formData.value.email
+  ) {
+    return false
+  }
+  return true
 })
 
 const submitPrefillData = async () => {
   try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-      /* fake api */
+    if (!formDataValidation.value) {
+      throw new Error("Missing required fields")
+    }
+    const pivotApiUrl: string | undefined = process.env.VITE_PIVOT_URL
+    if (!pivotApiUrl) {
+      throw new Error("Missing pivot api url")
+    }
+    const response = await fetch(pivotApiUrl + "users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Origin": "*",
       },
+
       body: JSON.stringify(formData.value),
     })
     const responseData = await response.json()

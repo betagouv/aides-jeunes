@@ -35,8 +35,8 @@ const formData = computed(() => {
     gender: gender.value,
     birthplace_insee_code: postcode.value,
     birthcountry_insee_code: "99100",
-    email: email.value,
-    phone: phone.value,
+    email: email.value || "",
+    phone: phone.value || "",
   }
 })
 
@@ -54,14 +54,13 @@ const formDataValidation = computed(() => {
   return true
 })
 
-const storePivotValueAnswer = (data) => {
+const storePivotDataAnswer = (data) => {
   if (data.id && data.token) {
     const pivotAnswer: Answer = {
-      id: data.id,
+      id: "demandeur",
       entityName: "individu",
-      fieldName: "pivot-value",
-      path: "/simulation/individu/demandeur/pivot-value",
-      value: data.token,
+      fieldName: "pivot-data",
+      value: data,
     } as Answer
     store.answer(pivotAnswer)
   } else {
@@ -74,7 +73,6 @@ const storeBirthdateAnswer = () => {
     id: "demandeur",
     entityName: "individu",
     fieldName: "date_naissance",
-    path: "/simulation/individu/demandeur/date_naissance",
     value: birthdate.value,
   } as Answer
   store.answer(birthdateAnswer)
@@ -111,7 +109,7 @@ const submitPrefillData = async () => {
       throw new Error("POST request error :", responseData)
     }
 
-    storePivotValueAnswer(responseData)
+    storePivotDataAnswer(responseData)
     storeBirthdateAnswer()
     prefillSuccess.value = true
   } catch (error) {
@@ -275,11 +273,19 @@ const submitPrefillData = async () => {
       </div>
       <div v-if="formError" class="fr-alert fr-alert--error">
         <h3 class="fr-alert__title">Formulaire invalide</h3>
-        <p>Tous les champs doivent être complétés</p>
+        <p
+          >Tous les champs nécessaires pour vous identifier doivent être
+          complétés.</p
+        >
       </div>
       <div v-if="prefillSuccess" class="fr-alert fr-alert--success">
         <h3 class="fr-alert__title">Succès de l'envoi</h3>
-        <p>Pré-remplissage effectif</p>
+        <p>
+          Merci pour ces informations.
+          <a href="/simulation/individu/demandeur/date_naissance"
+            >Accéder au simulateur</a
+          >
+        </p>
       </div>
     </form>
   </article>

@@ -181,10 +181,12 @@ const submitPrefillData = async () => {
                 </div>
               </div>
             </div>
-            <div class="fr-mt-2w">
+            <div class="fr-container fr-px-0 fr-mt-2w">
               <label id="">Code postal</label>
               <InputDepcom
                 v-model="postcode"
+                commune-selector-label-custom-class="fr-text"
+                commune-selector-input-custom-class="fr-container fr-px-0 fr-mt-2w"
                 @update:nom-commune="handleNomCommuneUpdate"
                 @update:code-postal="handleCodePostalUpdate"
               />

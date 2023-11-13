@@ -2,7 +2,7 @@
 import LoadingModal from "@/components/loading-modal.vue"
 import InputDate from "@/components/input-date.vue"
 import InputDepcom from "@/components/input-depcom.vue"
-import { ref, computed } from "vue"
+import { ref, computed, watch, nextTick } from "vue"
 import { useStore } from "@/stores/index.js"
 import { Answer } from "@lib/types/store.d.js"
 import axios from "axios"
@@ -21,6 +21,20 @@ const cityName = ref<string | undefined>()
 const updating = ref(false)
 const formError = ref(false)
 const prefillSuccess = ref(false)
+const prefillSuccessAlert = ref<any>(null)
+
+watch(prefillSuccess, (newValue) => {
+  if (newValue === true) {
+    nextTick(() => {
+      if (prefillSuccessAlert.value instanceof HTMLElement) {
+        prefillSuccessAlert.value.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    })
+  }
+})
 
 const handleNomCommuneUpdate = (nomCommune: string) => {
   cityName.value = nomCommune
@@ -290,15 +304,15 @@ const submitPrefillData = async () => {
         </button>
       </div>
       <div v-if="formError" class="fr-alert fr-alert--error">
-        <h3 class="fr-alert__title">Formulaire invalide</h3>
+        <h1 class="fr-alert__title">Formulaire invalide</h1>
         <p
           >Tous les champs nécessaires pour vous identifier doivent être
           complétés.</p
         >
       </div>
     </form>
-    <div v-else class="fr-alert fr-alert--success">
-      <h3 class="fr-alert__title">Succès de l'envoi</h3>
+    <div v-else ref="prefillSuccessAlert" class="fr-alert fr-alert--success">
+      <h1 class="fr-alert__title">Succès de l'envoi</h1>
       <p>
         Merci pour ces informations.
         <a href="/simulation/individu/demandeur/date_naissance">

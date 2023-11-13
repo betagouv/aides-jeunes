@@ -24,7 +24,11 @@
                 <div class="fr-grid-row">
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                     <div class="fr-form-group">
-                      <input v-model="nom" type="text" class="fr-input" />
+                      <input
+                        v-model="family_names"
+                        type="text"
+                        class="fr-input"
+                      />
                     </div>
                   </div>
                 </div>
@@ -36,7 +40,11 @@
                 <div class="fr-grid-row">
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-6">
                     <div class="fr-form-group">
-                      <input v-model="prenoms" type="text" class="fr-input" />
+                      <input
+                        v-model="given_names"
+                        type="text"
+                        class="fr-input"
+                      />
                     </div>
                   </div>
                 </div>
@@ -48,7 +56,7 @@
                 <div class="fr-grid-row">
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-6">
                     <div class="fr-form-group">
-                      <InputDate v-model="ddn" />
+                      <InputDate v-model="birthdate" />
                     </div>
                   </div>
                 </div>
@@ -63,7 +71,7 @@
                       <div class="fr-radio-group fr-radio-rich fr-mt-1w">
                         <input
                           id="sexe-f"
-                          v-model="sexe"
+                          v-model="gender"
                           name="sexe"
                           type="radio"
                           value="f"
@@ -75,7 +83,7 @@
                       <div class="fr-radio-group fr-radio-rich fr-mt-1w">
                         <input
                           id="sexe-m"
-                          v-model="sexe"
+                          v-model="gender"
                           name="sexe"
                           type="radio"
                           value="m"
@@ -103,7 +111,7 @@
               <div class="fr-grid-row">
                 <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
                   <div class="fr-form-group">
-                    <input v-model="telephone" type="phone" class="fr-input" />
+                    <input v-model="phone" type="phone" class="fr-input" />
                   </div>
                 </div>
               </div>
@@ -122,13 +130,15 @@
         </div>
       </fieldset>
       <p>
-        {{ nom }}
-        {{ prenoms }}
-        {{ ddn }}
-        {{ sexe }}
-        {{ ville }}
+        {{ family_names }}
+        {{ given_names }}
+        {{ birthdate }}
+        {{ gender }}
+        {{ postcode }}
+        {{ birthplace_insee_code }}
+        {{ birthcountry_insee_code }}
         {{ email }}
-        {{ telephone }}
+        {{ phone }}
       </p>
       <div class="fr-btns-group fr-btns-group--inline">
         <button
@@ -161,13 +171,15 @@ export default {
   },
   data() {
     return {
-      nom: undefined,
-      prenoms: undefined,
-      ddn: undefined,
-      sexe: undefined,
-      ville: undefined,
+      family_names: undefined,
+      given_names: undefined,
+      birthdate: undefined,
+      postcode: undefined,
+      gender: undefined,
+      birthplace_insee_code: undefined,
+      birthcountry_insee_code: undefined,
       email: undefined,
-      telephone: undefined,
+      phone: undefined,
     }
   },
   methods: {

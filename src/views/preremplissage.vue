@@ -135,7 +135,16 @@ const submitPrefillData = async () => {
         les données à différents endroits dans l'administration.
       </p>
       <p>
-        Dans un premier temps, nous collectons des informations d'identité pour
+        Dans un premier temps, nous collectons des informations d'identité. Dans
+        le cadre de cette expérimentation, toutes les informations d'identité
+        sont obligatoires. Vous pouvez toujours faire une simulation anonyme en
+        retournant à la page suivante.
+      </p>
+      <p>
+        Nous vous proposons aussi d'indiquer votre email et votre numéro de
+        téléphone pour nous permettre de revenir vers vous. L'objectif est de
+        vous permettre de découvrir de nouveaux droits et de vous simplifier les
+        démarches.
       </p>
       <fieldset class="fr-fieldset">
         <legend class="fr-fieldset__legend fr-px-0 fr-text--lead fr-text--bold"

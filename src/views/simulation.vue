@@ -63,8 +63,37 @@
           </p>
         </div>
       </div>
+
       <div
-        v-if="displayPrefillExperimentInterest"
+        v-if="displayPrefillExperiment"
+        class="fr-alert fr-alert--info fr-my-1w"
+      >
+        <p> Nous souhaitons expérimenter le pré-remplissage du simulateur. </p>
+        <p>
+          Pour cela, pendant quelques jours nous collectons les informations
+          pour vous identifier et pour trouver les autres informations qui vous
+          concernent, déjà connues par l'administration.
+        </p>
+        <p>Est-ce que vous souhaitez participer à cette expérimentation ?</p>
+        <div class="fr-btns-group fr-btns-group--inline">
+          <router-link
+            class="fr-btn fr-btn--secondary"
+            to="/preremplissage"
+            @click="prefillExperimentInterestSubmit(true)"
+          >
+            Oui
+          </router-link>
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="submit"
+            @click="prefillExperimentInterestSubmit(false)"
+          >
+            Non
+          </button>
+        </div>
+      </div>
+      <div
+        v-else-if="displayPrefillExperimentInterest"
         class="fr-alert fr-alert--info fr-my-1w"
       >
         <p
@@ -164,6 +193,9 @@ export default {
         this.isOnFirstSimulationPage &&
         this.store.prefillExperimentInterest == undefined
       )
+    },
+    displayPrefillExperiment() {
+      return this.displayPrefillExperimentInterest
     },
     franceConnectError() {
       return this.$route.query.error == "france_connect_error"

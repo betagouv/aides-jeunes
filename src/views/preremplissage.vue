@@ -150,6 +150,7 @@ const submitPrefillData = async () => {
                         v-model="family_name"
                         type="text"
                         class="fr-input"
+                        required
                       />
                     </div>
                   </div>
@@ -166,6 +167,7 @@ const submitPrefillData = async () => {
                         v-model="given_names"
                         type="text"
                         class="fr-input"
+                        required
                       />
                     </div>
                   </div>
@@ -208,6 +210,7 @@ const submitPrefillData = async () => {
                           name="sexe"
                           type="radio"
                           value="f"
+                          required
                         />
                         <label class="fr-label" for="sexe-f">
                           <span>Féminin</span>
@@ -220,6 +223,7 @@ const submitPrefillData = async () => {
                           name="sexe"
                           type="radio"
                           value="m"
+                          required
                         />
                         <label class="fr-label" for="sexe-m">
                           <span>Masculin</span>
@@ -237,6 +241,7 @@ const submitPrefillData = async () => {
         <legend class="fr-fieldset__legend fr-px-0">
           Vos informations de contact
         </legend>
+        <p>Les champs de cette section ne sont pas obligatoires.</p>
         <div class="fr-fieldset__content">
           <div>
             <label id="">Numéro de téléphone</label>

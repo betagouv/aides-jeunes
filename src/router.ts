@@ -329,11 +329,11 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  if (!to.hash) {
-    // Managed in scrollBehavior to avoid reimplementing scrollToPosition
-    showTitleWithMinimumScrolling()
-  }
   nextTick(function () {
+    if (!to.hash) {
+      // Managed in scrollBehavior to avoid reimplementing scrollToPosition
+      showTitleWithMinimumScrolling()
+    }
     document.title = getTitleFromRoute(to)
   })
 })

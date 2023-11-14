@@ -1,12 +1,11 @@
 export function showTitleWithMinimumScrolling() {
-  const headers = document.getElementsByTagName("h1")
-  if (headers.length) {
-    headers[0].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    })
-  }
+  const header = document.querySelector("h1")
+  console.log(header)
+  header?.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+    inline: "nearest",
+  })
 }
 
 export function getTitleFromRoute(route) {

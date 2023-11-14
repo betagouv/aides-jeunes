@@ -2,6 +2,7 @@
 import LoadingModal from "@/components/loading-modal.vue"
 import InputDate from "@/components/input-date.vue"
 import InputDepcom from "@/components/input-depcom.vue"
+import InputError from "@/components/input-error.vue"
 import { ref, computed, watch, nextTick } from "vue"
 import { useStore } from "@/stores/index.js"
 import { Answer } from "@lib/types/store.d.js"
@@ -21,6 +22,7 @@ const cityName = ref<string | undefined>()
 const updating = ref<boolean>(false)
 const formError = ref<boolean>(false)
 const prefillSuccess = ref<boolean>(false)
+const formRef = ref<HTMLFormElement | null>(null)
 
 // On form submit, form is hidden => scroll to the top of the page
 watch(prefillSuccess, (newValue) => {
@@ -95,7 +97,7 @@ const submitPrefillData = async () => {
     formError.value = false
     prefillSuccess.value = false
 
-    if (!isFormDataValid.value) {
+    if (!isFormDataValid.value && !formRef.value?.checkValidity()) {
       formError.value = true
       throw new Error("Missing required fields")
     }
@@ -133,7 +135,7 @@ const submitPrefillData = async () => {
     <LoadingModal v-if="updating">
       <p>Chargement en cours…</p>
     </LoadingModal>
-    <form v-if="!prefillSuccess">
+    <form v-if="!prefillSuccess" ref="formRef">
       <h1>Pré-remplissage expérimental</h1>
       <p>
         Pour la mise en place du pré-remplissage, nous avons besoin
@@ -159,8 +161,11 @@ const submitPrefillData = async () => {
         <p>Tous les champs de cette section sont obligatoires.</p>
         <div class="fr-fieldset__content">
           <div>
-            <div class="fr-mt-2w">
-              <label id="">Nom de naissance</label>
+            <div
+              class="fr-mt-2w fr-input-group"
+              :class="!family_name && formError ? 'fr-input-group--error' : ''"
+            >
+              <label id="" class="fr-label">Nom de naissance</label>
               <div class="fr-container fr-px-0">
                 <div class="fr-grid-row">
                   <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
@@ -175,8 +180,12 @@ const submitPrefillData = async () => {
                   </div>
                 </div>
               </div>
+              <InputError :field-name="family_name" :form-error="formError" />
             </div>
-            <div class="fr-mt-2w">
+            <div
+              class="fr-mt-2w fr-input-group"
+              :class="!given_names && formError ? 'fr-input-group--error' : ''"
+            >
               <label id="">Prénoms</label>
               <div class="fr-container fr-px-0">
                 <div class="fr-grid-row">
@@ -192,8 +201,12 @@ const submitPrefillData = async () => {
                   </div>
                 </div>
               </div>
+              <InputError :field-name="given_names" :form-error="formError" />
             </div>
-            <div class="fr-container fr-px-0 fr-mt-2w">
+            <div
+              class="fr-container fr-px-0 fr-mt-2w fr-input-group"
+              :class="!birthdate && formError ? 'fr-input-group--error' : ''"
+            >
               <label id="">Date de naissance</label>
               <div class="fr-container fr-px-0 fr-pt-1w">
                 <div class="fr-grid-row">
@@ -204,8 +217,12 @@ const submitPrefillData = async () => {
                   </div>
                 </div>
               </div>
+              <InputError :field-name="birthdate" :form-error="formError" />
             </div>
-            <div class="fr-container fr-px-0 fr-mt-2w">
+            <div
+              class="fr-container fr-px-0 fr-mt-2w fr-input-group"
+              :class="!cityName && formError ? 'fr-input-group--error' : ''"
+            >
               <label id="">Code postal</label>
               <InputDepcom
                 v-model="postcode"
@@ -214,9 +231,13 @@ const submitPrefillData = async () => {
                 @update:nom-commune="handleNomCommuneUpdate"
                 @update:code-postal="handleCodePostalUpdate"
               />
+              <InputError :field-name="cityName" :form-error="formError" />
             </div>
 
-            <div class="fr-mt-2w">
+            <div
+              class="fr-mt-2wfr-input-group"
+              :class="!gender && formError ? 'fr-input-group--error' : ''"
+            >
               <label id="">Sexe indiqué sur votre document d'identité</label>
               <div class="fr-container fr-px-0">
                 <div class="fr-grid-row">
@@ -252,6 +273,7 @@ const submitPrefillData = async () => {
                   </div>
                 </div>
               </div>
+              <InputError :field-name="gender" :form-error="formError" />
             </div>
           </div>
         </div>

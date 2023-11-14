@@ -96,6 +96,10 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               ],
             },
             {
+              isActive: (subject) => subject.activite === Activite.Salarie,
+              steps: [r("_agence_travail_temporaire")],
+            },
+            {
               isActive: (subject) => {
                 return [
                   Scolarite.Lycee,

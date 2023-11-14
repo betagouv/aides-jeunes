@@ -2,6 +2,10 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
+import {
+  getTitleFromRoute,
+  showTitleWithMinimumScrolling,
+} from "@/lib/transition.js"
 import { useStore } from "@/stores/index.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -324,33 +328,13 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-function getTitleMeta(route) {
-  let meta
-  for (let index = route.matched.length - 1; index >= 0; index -= 1) {
-    meta = route.matched[index].meta
-    if (meta.headTitle) {
-      if (typeof meta.headTitle === "function") {
-        return meta.headTitle(route.params)
-      }
-      return meta.headTitle
-    }
-  }
-  return process.env.VITE_TITLE
-}
-
 router.afterEach((to) => {
   if (!to.hash) {
-    const headers = document.getElementsByTagName("h1")
-    if (headers.length) {
-      headers[0].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest",
-      })
-    }
+    // Managed in scrollBehavior to avoid reimplementing scrollToPosition
+    showTitleWithMinimumScrolling()
   }
   nextTick(function () {
-    document.title = getTitleMeta(to)
+    document.title = getTitleFromRoute(to)
   })
 })
 

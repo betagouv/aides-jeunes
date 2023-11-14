@@ -2,10 +2,7 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
-import {
-  getTitleFromRoute,
-  showTitleWithMinimumScrolling,
-} from "@/lib/transition.js"
+import { getTitleFromRoute } from "@/lib/transition.js"
 import { useStore } from "@/stores/index.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -277,8 +274,16 @@ const router = createRouter({
         el: to.hash,
         behavior: "smooth",
       }
+    } else {
+      const header = document.querySelector("h1")
+
+      return {
+        el: header,
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      }
     }
-    return false
   },
 })
 
@@ -330,10 +335,6 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to) => {
   nextTick(function () {
-    if (!to.hash) {
-      // Managed in scrollBehavior to avoid reimplementing scrollToPosition
-      showTitleWithMinimumScrolling()
-    }
     document.title = getTitleFromRoute(to)
   })
 })

@@ -340,9 +340,9 @@ function getTitleMeta(route) {
 
 router.afterEach((to) => {
   if (!to.hash) {
-    const el = document.getElementById("aj-title")
-    if (el) {
-      el.scrollIntoView({
+    const headers = document.getElementsByTagName("h1")
+    if (headers.length) {
+      headers[0].scrollIntoView({
         behavior: "smooth",
         block: "nearest",
         inline: "nearest",

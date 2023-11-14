@@ -5,7 +5,7 @@
       class="fr-grid-row"
     >
       <div class="fr-col-12 fr-col-md-6 fr-col-lg-6">
-        <h1 id="aj-title" class="fr-my-0 fr-mx-0">{{ title }}</h1>
+        <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
       <div class="fr-col-12 fr-col-md-6 fr-col-lg-6">
         <ul
@@ -22,7 +22,7 @@
     </div>
     <div v-else class="fr-grid-row">
       <div class="fr-col-12 fr-col-md-12 fr-col-lg-12">
-        <h1 id="aj-title" class="fr-my-0 fr-mx-0">{{ title }}</h1>
+        <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
     </div>
   </div>

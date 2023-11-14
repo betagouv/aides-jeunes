@@ -323,7 +323,10 @@ const submitPrefillData = async () => {
           Valider
         </button>
       </div>
-      <div v-if="formError" class="fr-alert fr-alert--error">
+      <div
+        v-if="formError && !isFormDataValid"
+        class="fr-alert fr-alert--error"
+      >
         <h1 class="fr-alert__title">Formulaire invalide</h1>
         <p
           >Tous les champs nécessaires pour vous identifier doivent être

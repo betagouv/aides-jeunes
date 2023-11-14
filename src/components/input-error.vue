@@ -3,7 +3,7 @@ import { computed, defineProps } from "vue"
 
 const props = defineProps({
   fieldName: {
-    type: String,
+    type: [String, Date],
     default: null,
   },
   formError: {

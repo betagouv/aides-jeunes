@@ -21,17 +21,15 @@ const cityName = ref<string | undefined>()
 const updating = ref<boolean>(false)
 const formError = ref<boolean>(false)
 const prefillSuccess = ref<boolean>(false)
-const prefillSuccessAlert = ref<HTMLElement | null>(null)
 
+// On form submit, form is hidden => scroll to the top of the page
 watch(prefillSuccess, (newValue) => {
   if (newValue === true) {
     nextTick(() => {
-      if (prefillSuccessAlert.value instanceof HTMLElement) {
-        prefillSuccessAlert.value.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
     })
   }
 })
@@ -311,7 +309,7 @@ const submitPrefillData = async () => {
         >
       </div>
     </form>
-    <div v-else ref="prefillSuccessAlert" class="fr-alert fr-alert--success">
+    <div v-else class="fr-alert fr-alert--success">
       <h1 class="fr-alert__title">Succès de l'envoi</h1>
       <p>
         Merci pour ces informations.

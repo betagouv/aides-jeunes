@@ -67,6 +67,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_STATS_URL: statistics?.url ? statistics.url : "",
     VITE_STATS_VERSION: statistics?.version,
     VITE_NETLIFY_PR: process.env.BRANCH,
+    VITE_PIVOT_URL: process.env.PIVOT_URL,
     VITE_1J1S_URL: "https://www.1jeune1solution.gouv.fr",
     VITE_LAYOUT: LayoutType.BaseLayout,
     VITE_TITLE: `Évaluez vos droits aux aides avec le simulateur de ${contextName}`,

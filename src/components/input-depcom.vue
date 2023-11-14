@@ -37,11 +37,11 @@
     </div>
     <div v-show="communes?.length" class="fr-input-group fr-mb-2w fr-mt-4w">
       <label class="fr-label fr-pr-3w" for="commune"
-        ><span class="fr-text--lead fr-text--bold"
+        ><span :class="communeSelectorLabelClass"
           >Veuillez sélectionner la ville qui correspond</span
         >
       </label>
-      <div class="fr-container fr-px-0 fr-mt-4w">
+      <div :class="communeSelectorInputClass">
         <div class="fr-grid-row">
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
             <select
@@ -84,6 +84,8 @@ export default {
     codePostalLabel: String,
     nomCommune: String,
     matchingCommune: Object,
+    communeSelectorLabelOverrideClass: String,
+    communeSelectorInputOverrideClass: String,
   },
   emits: ["update:nomCommune", "update:codePostal", "update:matchingCommune"],
   setup() {
@@ -98,6 +100,18 @@ export default {
       retrievingCommunes: false,
       communes: [] as Commune[],
     }
+  },
+  computed: {
+    communeSelectorLabelClass() {
+      return this.communeSelectorLabelOverrideClass
+        ? this.communeSelectorLabelOverrideClass
+        : "fr-text--lead fr-text--bold"
+    },
+    communeSelectorInputClass() {
+      return this.communeSelectorInputOverrideClass
+        ? this.communeSelectorInputOverrideClass
+        : "fr-container fr-px-0 fr-mt-4w"
+    },
   },
   watch: {
     codePostalValue: function (cp) {

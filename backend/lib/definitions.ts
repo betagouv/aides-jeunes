@@ -83,6 +83,7 @@ export const ANSWER_FIELD_NAMES = [
   "ressources",
   ...FRANCE_CONNECT_FIELD_NAMES,
   ...LEGACY_FIELD_NAMES,
+  "pivot-data",
 ]
 
 export const ANSWER_BASIC_IDS = [undefined, "demandeur", "conjoint", "enfants"]

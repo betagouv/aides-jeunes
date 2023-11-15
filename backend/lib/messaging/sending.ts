@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 
-import { EmailCategory } from "../../../lib/enums/email.js"
+import { EmailCategory } from "../../../lib/enums/messaging.js"
 import { SurveyCategory } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"

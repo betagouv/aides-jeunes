@@ -1,6 +1,6 @@
 import { ArgumentParser } from "argparse"
 import config from "../../../config/index.js"
-import { EmailCategory } from "../../../../lib/enums/email.js"
+import { EmailCategory } from "../../../../lib/enums/messaging.js"
 import mongoose from "mongoose"
 import mongooseConfig from "../../../config/mongoose.js"
 import { processSendEmails } from "../sending.js"

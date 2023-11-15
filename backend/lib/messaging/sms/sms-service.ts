@@ -1,17 +1,27 @@
 import axios from "axios"
 import config from "../../../config/index.js"
 
+async function getSMSConfig() {
+  const { username, password } = config.smsService
+
+  if (!username || !password) {
+    throw new Error("Missing SMS service credentials")
+  }
+
+  return { username, password }
+}
+
+async function createAxiosInstance() {
+  return axios.create({
+    timeout: 10000,
+  })
+}
+
 export async function renderAndSendSimulationResultsSms(followup) {
   try {
-    const username = config.smsService.username
-    const password = config.smsService.password
-    if (!username || !password) {
-      throw new Error("Missing SMS service credentials")
-    }
+    const { username, password } = await getSMSConfig()
     const renderUrl = followup.renderSimulationResultsSmsUrl(username, password)
-    const axiosInstance = axios.create({
-      timeout: 10000,
-    })
+    const axiosInstance = await createAxiosInstance()
     const { data, status } = await axiosInstance.get(renderUrl)
     if (status !== 200 || data.responseCode !== 0) {
       throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)

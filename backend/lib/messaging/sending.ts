@@ -1,10 +1,10 @@
 import dayjs from "dayjs"
-
-import { EmailCategory } from "../../../lib/enums/messaging.js"
+import { EmailCategory, SmsCategory } from "../../../lib/enums/messaging.js"
 import { SurveyCategory } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 
+const DaysBeforeInitialSms = 6
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
@@ -145,6 +145,83 @@ export async function processSendEmails(
     await processSingleEmail(emailType, followupId)
   } else if (multiple) {
     await sendMultipleEmails(emailType, multiple)
+  } else {
+    throw new Error("Missing followup id or multiple")
+  }
+}
+
+async function sendMultipleInitialSms(limit: number) {
+  const followups: any[] = await Followups.find({
+    surveys: {
+      $not: {
+        $elemMatch: {
+          type: {
+            $in: [
+              SurveyCategory.BenefitAction,
+              SurveyCategory.TrackClickOnBenefitActionSms,
+            ],
+          },
+        },
+      },
+    },
+    smsSentAt: {
+      $lt: dayjs().subtract(DaysBeforeInitialSms, "day").toDate(),
+    },
+    surveyOptin: true,
+  })
+    .sort({ createdAt: 1 })
+    .limit(limit)
+
+  const results: { ok?: any; ko?: any }[] = await Promise.all(
+    followups.map(async (followup: Followup) => {
+      try {
+        const result = await followup.sendSurveyBySms(
+          SurveyCategory.TrackClickOnBenefitActionSms
+        )
+        return { "Sms sent": result._id }
+      } catch (error) {
+        return { ko: error }
+      }
+    })
+  )
+
+  console.log(results)
+}
+
+async function processSingleSms(smsCategory: SmsCategory, followupId: string) {
+  const followup: Followup | null = await Followups.findById(followupId)
+  if (!followup) {
+    throw new Error("Followup not found")
+  }
+
+  let smsPromise: Promise<void>
+
+  switch (smsCategory) {
+    case SmsCategory.SimulationResults:
+      smsPromise = followup.sendSimulationResultsSms()
+      break
+    case SmsCategory.InitialSurvey:
+      smsPromise = followup.sendSurveyBySms(
+        SurveyCategory.TrackClickOnBenefitActionSms
+      )
+      break
+    default:
+      throw new Error(`Unknown sms category: ${smsCategory}`)
+  }
+
+  const sms = await smsPromise
+  console.log("Sms sent", sms)
+}
+
+export async function processSendSms(
+  smsCategory: SmsCategory,
+  followupId: string,
+  multiple: number | null
+) {
+  if (followupId) {
+    await processSingleSms(smsCategory, followupId)
+  } else if (multiple) {
+    await sendMultipleInitialSms(multiple)
   } else {
     throw new Error("Missing followup id or multiple")
   }

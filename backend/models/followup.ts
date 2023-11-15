@@ -41,24 +41,6 @@ FollowupSchema.method("sendSimulationResultsEmail", async function () {
   }
 })
 
-FollowupSchema.method(
-  "renderSimulationResultsSmsUrl",
-  function (username: string, password: string) {
-    const { baseURL } = config
-    const { url } = config.smsService
-    const { accessToken, phone } = this
-    const formattedPhone = phoneNumberFormatting(
-      phone,
-      config.smsService.internationalDiallingCodes
-    )
-
-    const text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
-    const encodedText = encodeURIComponent(text)
-
-    return `${url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${formattedPhone}&messageText=${encodedText}&username=${username}&password=${password}`
-  }
-)
-
 FollowupSchema.method("sendSimulationResultsSms", async function () {
   try {
     const messageId = await renderAndSendSimulationResultsSms(this)

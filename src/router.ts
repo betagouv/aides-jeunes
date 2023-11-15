@@ -2,6 +2,7 @@ import { nextTick } from "vue"
 import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
+import { getTitleFromRoute } from "@/lib/transition.js"
 import { useStore } from "@/stores/index.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -273,8 +274,16 @@ const router = createRouter({
         el: to.hash,
         behavior: "smooth",
       }
+    } else {
+      const header = document.querySelector("h1")
+
+      return {
+        el: header,
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      }
     }
-    return { left: 0, top: 0 }
   },
 })
 
@@ -324,23 +333,9 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-function getTitleMeta(route) {
-  let meta
-  for (let index = route.matched.length - 1; index >= 0; index -= 1) {
-    meta = route.matched[index].meta
-    if (meta.headTitle) {
-      if (typeof meta.headTitle === "function") {
-        return meta.headTitle(route.params)
-      }
-      return meta.headTitle
-    }
-  }
-  return process.env.VITE_TITLE
-}
-
 router.afterEach((to) => {
   nextTick(function () {
-    document.title = getTitleMeta(to)
+    document.title = getTitleFromRoute(to)
   })
 })
 

@@ -284,6 +284,16 @@ textarea {
   --icon-size: 2rem;
 }
 
+.aj-jedonnemonavis {
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  .aj-jedonnemonavis {
+    text-align: left;
+  }
+}
+
 @media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;

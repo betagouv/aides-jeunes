@@ -39,6 +39,10 @@ const fill_activite = (activity) => {
   fillRadio("activite", activity)
 }
 
+const fill_agence_travail_temporaire = (agence_travail_temporaire) => {
+  fillRadio("agence_travail_temporaire", agence_travail_temporaire)
+}
+
 const fill_scolarite = (level) => {
   fillRadio("scolarite", level)
 }
@@ -124,6 +128,7 @@ const defaultIndivu = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
   fill_activite("salarie")
+  fill_agence_travail_temporaire(false)
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap(false)
   fill_enceinte("pas_enceinte")
@@ -133,6 +138,7 @@ const handicaped = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
   fill_activite("salarie")
+  fill_agence_travail_temporaire(true)
   fill__nombreMoisDebutContratDeTravail(2)
   fillHandicap({ taux_incapacite: 0.65, aah: true })
   fill_enceinte("pas_enceinte")

@@ -11,7 +11,7 @@ import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
 import { sendEmail } from "../lib/messaging/email/email-service.js"
-import { renderAndSendSimulationResultsSms } from "../lib/sms-service.js"
+import { renderAndSendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })

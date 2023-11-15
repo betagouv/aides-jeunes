@@ -1,6 +1,6 @@
-import { sendMail } from "./smtp.js"
-import emailRender from "./mes-aides/emails/email-render.js"
-import { EmailCategory } from "../../lib/enums/email.js"
+import { sendMail } from "../../smtp.js"
+import emailRender from "../../mes-aides/emails/email-render.js"
+import { EmailCategory } from "../../../../lib/enums/email.js"
 
 export async function renderAndSendEmail(category: EmailCategory, followup) {
   try {

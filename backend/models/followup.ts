@@ -10,7 +10,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
-import { renderAndSendEmail } from "../lib/email-service.js"
+import { renderAndSendEmail } from "../lib/messaging/email/email-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })

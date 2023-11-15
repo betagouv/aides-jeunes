@@ -3,7 +3,7 @@ import config from "../../../config/index.js"
 import { SmsCategory } from "../../../../lib/enums/sms.js"
 import mongoose from "mongoose"
 import mongooseConfig from "../../../config/mongoose.js"
-import { processSendSms } from "../../sms/sending.js"
+import { processSendSms } from "../../messaging/sending.js"
 
 mongooseConfig(mongoose, config)
 
@@ -28,7 +28,7 @@ const smsCategories = [SmsCategory.InitialSurvey, SmsCategory.SimulationResults]
 smsCategories.forEach((smsCategory) => {
   const parser = send_types.add_parser(smsCategory)
   parser.add_argument("--multiple", {
-    help: "Number of sms to send",
+    help: "Maximum number of sms to send",
   })
   parser.add_argument("--id", {
     help: "Followup Id",

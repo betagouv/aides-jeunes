@@ -3,7 +3,7 @@ export enum MessageType {
   Sms = "sms",
 }
 
-export enum EmailCategory {
+export enum EmailType {
   SimulationResults = "simulation-results",
   BenefitAction = "benefit-action",
   SimulationUsefulness = "simulation-usefulness",

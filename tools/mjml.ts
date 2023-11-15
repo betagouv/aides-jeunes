@@ -3,7 +3,7 @@
 import mongoose from "mongoose"
 import configMongoose from "../backend/config/mongoose.js"
 import config from "../backend/config/index.js"
-import { EmailType } from "../lib/enums/email.js"
+import { EmailType } from "../lib/enums/messaging.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose

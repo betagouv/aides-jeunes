@@ -1,4 +1,4 @@
-import { EmailType } from "../../lib/enums/email.js"
+import { EmailType } from "../../lib/enums/messaging.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../../lib/enums/survey.js"
 

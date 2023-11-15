@@ -1,8 +1,8 @@
 import { sendMail } from "../../smtp.js"
 import emailRender from "../../mes-aides/emails/email-render.js"
-import { EmailCategory } from "../../../../lib/enums/email.js"
+import { EmailType } from "../../../../lib/enums/messaging.js"
 
-export async function renderAndSendEmail(category: EmailCategory, followup) {
+export async function renderAndSendEmail(category: EmailType, followup) {
   try {
     const render: any = await emailRender(category, followup)
     const response = await sendMail({

@@ -695,7 +695,6 @@ export default {
     ],
   }),
 
-
   _agence_travail_temporaire: new BooleanProperty({
     question: () => {
       return `Travaillez-vous dans une agence de travail temporaire ?`

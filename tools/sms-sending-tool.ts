@@ -1,9 +1,9 @@
 import { ArgumentParser } from "argparse"
-import config from "../../../config/index.js"
-import { SmsCategory } from "../../../../lib/enums/messaging.js"
+import config from "../backend/config/index.js"
+import { SmsCategory } from "../lib/enums/messaging.js"
 import mongoose from "mongoose"
-import mongooseConfig from "../../../config/mongoose.js"
-import { processSendSms } from "../../messaging/sending.js"
+import mongooseConfig from "../backend/config/mongoose.js"
+import { processSendSms } from "../backend/lib/messaging/sending.js"
 
 mongooseConfig(mongoose, config)
 

@@ -124,36 +124,33 @@ FollowupSchema.method(
   }
 )
 
-FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
-  const followup = this
-  return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
-    return this.renderSurveyEmail(surveyType)
-      .then((render) => {
-        return sendEmailSmtp({
-          to: followup.email,
-          subject: render.subject,
-          text: render.text,
-          html: render.html,
-          tags: ["survey", surveyType],
-        })
-          .then((response) => {
-            return response.messageId
-          })
-          .then((messageId) => {
-            survey.messageId = messageId
-            return survey
-          })
+FollowupSchema.method(
+  "sendSurvey",
+  async function (surveyType: SurveyCategory) {
+    const followup = this
+    let survey
+    try {
+      survey = await this.addSurveyIfMissing(surveyType)
+      const render = await this.renderSurveyEmail(surveyType)
+      const response = await sendEmailSmtp({
+        to: followup.email,
+        subject: render.subject,
+        text: render.text,
+        html: render.html,
+        tags: ["survey", surveyType],
       })
-      .catch((err: Error) => {
-        console.log("error", err)
-        survey.error = err
-        return survey
-      })
-      .then(() => {
-        return followup.save()
-      })
-  })
-})
+
+      survey.messageId = response.messageId
+    } catch (err) {
+      console.error("error", err)
+      survey.error = err
+      throw err
+    } finally {
+      await followup.save()
+    }
+    return survey
+  }
+)
 
 FollowupSchema.method("updateSurvey", function (type, answers) {
   const surveys: Survey[] = Array.from(this.surveys)

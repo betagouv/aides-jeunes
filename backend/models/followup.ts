@@ -16,16 +16,6 @@ FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
 })
 
-FollowupSchema.method("postSimulationResultsEmail", function (messageId) {
-  this.sentAt = Date.now()
-  this.messageId = messageId
-  if (!this.surveyOptin) {
-    this.email = undefined
-  }
-  this.error = undefined
-  return this.save()
-})
-
 FollowupSchema.method("postSimulationResultsSms", function (messageId) {
   this.smsSentAt = Date.now()
   this.smsMessageId = messageId
@@ -42,8 +32,7 @@ FollowupSchema.method("renderSimulationResultsEmail", function () {
 
 FollowupSchema.method("sendSimulationResultsEmail", async function () {
   try {
-    const messageId = await sendEmail(EmailType.SimulationResults, this)
-    return this.postSimulationResultsEmail(messageId)
+    return await sendEmail(EmailType.SimulationResults, this)
   } catch (err) {
     console.log("error", err)
     this.error = JSON.stringify(err, null, 2)

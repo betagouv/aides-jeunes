@@ -12,7 +12,13 @@ export async function sendEmail(category: EmailType, followup) {
       html: render.html,
       tags: [category],
     })
-    return response.messageId
+    followup.sentAt = Date.now()
+    followup.messageId = response.messageId
+    if (!followup.surveyOptin) {
+      followup.email = undefined
+    }
+    followup.error = undefined
+    return followup.save()
   } catch (err) {
     console.error("error", err)
     throw err

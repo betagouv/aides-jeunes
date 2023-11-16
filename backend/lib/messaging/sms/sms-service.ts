@@ -18,7 +18,7 @@ async function createAxiosInstance() {
   })
 }
 
-function renderSimulationResultsSmsUrl(accessToken, phone, username, password) {
+function buildSimulationResultsSmsUrl(accessToken, phone, username, password) {
   const { baseURL } = config
   const { url } = config.smsService
   const formattedPhone = phoneNumberFormatting(
@@ -30,13 +30,10 @@ function renderSimulationResultsSmsUrl(accessToken, phone, username, password) {
   return `${url}?&originatorTON=1&originatingAddress=SIMUL 1J1S&destinationAddress=${formattedPhone}&messageText=${encodedText}&username=${username}&password=${password}`
 }
 
-export async function renderAndSendSimulationResultsSms({
-  accessToken,
-  phone,
-}) {
+export async function sendSimulationResultsSmsService({ accessToken, phone }) {
   try {
     const { username, password } = await getSMSConfig()
-    const renderUrl = renderSimulationResultsSmsUrl(
+    const renderUrl = buildSimulationResultsSmsUrl(
       accessToken,
       phone,
       username,

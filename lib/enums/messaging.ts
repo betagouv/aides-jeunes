@@ -1,8 +1,3 @@
-export enum MessageType {
-  Email = "email",
-  Sms = "sms",
-}
-
 export enum EmailCategory {
   SimulationResults = "simulation-results",
   BenefitAction = "benefit-action",

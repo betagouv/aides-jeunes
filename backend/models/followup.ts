@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { sendMail } from "../lib/smtp.js"
+import { sendEmailSmtp } from "../lib/smtp.js"
 import axios from "axios"
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
@@ -10,7 +10,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
-import { renderAndSendEmail } from "../lib/messaging/email/email-service.js"
+import { sendEmail } from "../lib/messaging/email/email-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
@@ -42,10 +42,7 @@ FollowupSchema.method("renderSimulationResultsEmail", function () {
 
 FollowupSchema.method("sendSimulationResultsEmail", async function () {
   try {
-    const messageId = await renderAndSendEmail(
-      EmailCategory.SimulationResults,
-      this
-    )
+    const messageId = await sendEmail(EmailCategory.SimulationResults, this)
     return this.postSimulationResultsEmail(messageId)
   } catch (err) {
     console.log("error", err)
@@ -132,7 +129,7 @@ FollowupSchema.method("sendSurvey", function (surveyType: SurveyCategory) {
   return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
     return this.renderSurveyEmail(surveyType)
       .then((render) => {
-        return sendMail({
+        return sendEmailSmtp({
           to: followup.email,
           subject: render.subject,
           text: render.text,

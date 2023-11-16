@@ -121,35 +121,29 @@ FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
   return survey
 })
 
-FollowupSchema.method("sendSurvey", function (surveyType: SurveyType) {
+FollowupSchema.method("sendSurvey", async function (surveyType: SurveyType) {
   const followup = this
-  return this.addSurveyIfMissing(surveyType).then((survey: Survey) => {
-    return this.renderSurveyEmail(surveyType)
-      .then((render) => {
-        return sendEmailSmtp({
-          to: followup.email,
-          subject: render.subject,
-          text: render.text,
-          html: render.html,
-          tags: ["survey", surveyType],
-        })
-          .then((response) => {
-            return response.messageId
-          })
-          .then((messageId) => {
-            survey.messageId = messageId
-            return survey
-          })
-      })
-      .catch((err: Error) => {
-        console.log("error", err)
-        survey.error = err
-        return survey
-      })
-      .then(() => {
-        return followup.save()
-      })
-  })
+  let survey
+  try {
+    survey = await this.addSurveyIfMissing(surveyType)
+    const render = await this.renderSurveyEmail(surveyType)
+    const response = await sendEmailSmtp({
+      to: followup.email,
+      subject: render.subject,
+      text: render.text,
+      html: render.html,
+      tags: ["survey", surveyType],
+    })
+
+    survey.messageId = response.messageId
+  } catch (err) {
+    console.error("error", err)
+    survey.error = err
+    throw err
+  } finally {
+    await followup.save()
+  }
+  return survey
 })
 
 FollowupSchema.method("updateSurvey", function (type, answers) {

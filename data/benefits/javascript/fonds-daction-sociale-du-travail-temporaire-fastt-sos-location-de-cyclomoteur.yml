@@ -8,7 +8,6 @@ description: Le service FASTT SOS Location de cyclomoteur aide les intérimaires
 prefix: le
 conditions_generales:
   - type: agence_travail_temporaire
-    value: true
 profils:
   - type: salarie
     conditions: []

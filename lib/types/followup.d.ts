@@ -28,7 +28,6 @@ interface FollowupAttributes {
 }
 
 interface FollowupMethods {
-  postSimulationResultsSms(messageId: string): void
   renderSimulationResultsEmail(): any
   renderSimulationResultsSms(): any
   sendSimulationResultsEmail(): Promise<void>

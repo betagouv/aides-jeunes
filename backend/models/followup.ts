@@ -14,16 +14,6 @@ FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
 })
 
-FollowupSchema.method("postSimulationResultsSms", function (messageId) {
-  this.smsSentAt = Date.now()
-  this.smsMessageId = messageId
-  if (!this.surveyOptin) {
-    this.phone = undefined
-  }
-  this.smsError = undefined
-  return this.save()
-})
-
 FollowupSchema.method("renderSimulationResultsEmail", function () {
   return emailRender(EmailCategory.SimulationResults, this)
 })

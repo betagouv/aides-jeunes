@@ -5,8 +5,3 @@ export enum SurveyCategory {
   TrackClickOnBenefitActionSms = "track-click-on-benefit-action-sms",
   TousABordNotification = "tous-a-bord-notification",
 }
-
-export enum SurveySendingType {
-  Email = "email",
-  Sms = "sms",
-}

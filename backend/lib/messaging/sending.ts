@@ -3,6 +3,7 @@ import { EmailCategory, SmsCategory } from "../../../lib/enums/messaging.js"
 import { SurveyCategory } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
+import { Survey } from "../../../lib/types/survey.js"
 
 const DaysBeforeInitialSms = 6
 const DaysBeforeInitialEmail = 6
@@ -150,6 +151,31 @@ export async function processSendEmails(
   }
 }
 
+function getEmailSurvey(followup: Followup): Survey | undefined {
+  return followup.surveys.find((survey) =>
+    [
+      SurveyCategory.TrackClickOnBenefitActionEmail,
+      SurveyCategory.TrackClickOnSimulationUsefulnessEmail,
+    ].includes(survey.type)
+  )
+}
+
+export function shouldSendSurveyBySms(followup: Followup, today?): boolean {
+  if (followup.phone && !followup.email) {
+    return true
+  }
+
+  if (followup.phone && followup.email) {
+    const emailSurvey = getEmailSurvey(followup)
+    if (emailSurvey && emailSurvey.answers.length === 0) {
+      const surveyEmailCreatedAt = dayjs(emailSurvey.createdAt)
+      const surveyEmailCreatedAtPlus3Days = surveyEmailCreatedAt.add(3, "day")
+      return (today || dayjs()).isAfter(surveyEmailCreatedAtPlus3Days)
+    }
+  }
+  return false
+}
+
 async function sendMultipleInitialSms(limit: number) {
   const followups: any[] = await Followups.find({
     surveys: {
@@ -173,7 +199,7 @@ async function sendMultipleInitialSms(limit: number) {
     .limit(limit)
 
   const results: { ok?: any; ko?: any }[] = await Promise.all(
-    followups.map(async (followup: Followup) => {
+    followups.filter(shouldSendSurveyBySms).map(async (followup: Followup) => {
       try {
         const result = await followup.sendSurveyBySms(
           SurveyCategory.TrackClickOnBenefitActionSms

@@ -6,7 +6,8 @@ description: Le service FASTT SOS Location de véhicule aide les intérimaires
   à louer à prix réduit et pour une durée limitée à raison de 10€ par jour maximum et 60 jours de location maximum par an.
   L’assurance du véhicule ne couvre pas les usages professionnels.
 prefix: le
-conditions_generales: []
+conditions_generales:
+  - type: agence_travail_temporaire
 profils:
   - type: salarie
     conditions: []

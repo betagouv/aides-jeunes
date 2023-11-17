@@ -211,6 +211,11 @@ export const CONDITION_STRATEGY: Conditions = {
       return situation.menage._difficultes_acces_ou_frais_logement === true
     },
   },
+  agence_travail_temporaire: {
+    test: (_, { situation }) => {
+      return situation.demandeur?._agence_travail_temporaire === true
+    },
+  },
   quotient_familial: {
     test: (condition, { openfiscaResponse, periods }) => {
       const rfr = openfiscaResponse.foyers_fiscaux._.rfr[periods.fiscalYear.id]

@@ -255,6 +255,10 @@ fields:
     <<: *field_empty
     label: Difficultés importantes pour accéder à un logement ou pour payer les frais liés à un logement
     name: difficultes_acces_ou_frais_logement
+  field_agence_travail_temporaire: &field_agence_travail_temporaire
+    <<: *field_empty
+    name: agence_travail_temporaire
+    label: Intérimaire d'une agence de travail temporaire
   # common fields
   field_benefit_image: &field_benefit_image
     label: Logo
@@ -785,6 +789,7 @@ fields:
       - *field_statut_occupation_logement
       - *field_not_operator
       - *field_difficultes_acces_ou_frais_logement
+      - *field_agence_travail_temporaire
   # champs propre aux aides openfisca
   field_benefit_position: &field_benefit_position
     label: Pondération de l'aide sur la page de résultat

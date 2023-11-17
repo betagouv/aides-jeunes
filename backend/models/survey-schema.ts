@@ -7,6 +7,7 @@ const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
   {
     accessToken: { type: String },
     createdAt: { type: Date, default: Date.now },
+    openedAt: { type: Date },
     messageId: { type: String },
     repliedAt: { type: Date },
     error: { type: Object },

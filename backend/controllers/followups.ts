@@ -8,10 +8,11 @@ import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
-import { FetchSurvey } from "../../lib/types/survey.d.js"
+import { FetchSurvey, Survey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
+import dayjs from "dayjs"
 
 export function followup(
   req: Request,
@@ -197,12 +198,16 @@ async function updateSurveyInFollowup(req: Request) {
 async function getRedirectUrl(req: Request) {
   const { surveyType } = req.params
   const { followup } = req
-
+  let survey: Survey | undefined
   switch (surveyType) {
     case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
     case SurveyCategory.TrackClickOnBenefitActionEmail:
     case SurveyCategory.TrackClickOnBenefitActionSms:
       await followup.addSurveyIfMissing(SurveyCategory.BenefitAction)
+      survey = followup.surveys.find((survey) => survey.type === surveyType)
+      if (survey) {
+        survey.openedAt = await dayjs().toDate()
+      }
       await followup.save()
       return followup.surveyPath
     case SurveyCategory.TousABordNotification:

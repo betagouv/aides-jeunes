@@ -11,6 +11,6 @@ export default function (api: Express) {
     const simulationId = req.followup?.simulation._id.toString()
     simulationController.simulation(req, res, next, simulationId)
   }, simulation)
-  api.route("/sms/surveys/:accessToken").get(smsSurveyLinkClick)
+  api.route("/r/:accessToken").get(smsSurveyLinkClick) // r = redirection (sms needs short message length)
   api.param("accessToken", followupByAccessToken)
 }

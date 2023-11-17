@@ -33,7 +33,7 @@ function buildSmsUrl({ accessToken, phone, username, password, smsCategory }) {
       text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
       break
     case SmsCategory.InitialSurvey:
-      surveyLink = `${baseURL}/api/sms/surveys/${accessToken}`
+      surveyLink = `${baseURL}/api/r/${accessToken}`
       text = `Bonjour\nVotre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile?\nVoici un court sondage : ${surveyLink}\n1jeune1solution`
       break
     default:

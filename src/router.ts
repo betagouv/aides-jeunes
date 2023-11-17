@@ -274,15 +274,6 @@ const router = createRouter({
         el: to.hash,
         behavior: "smooth",
       }
-    } else {
-      const header = document.querySelector("h1")
-
-      return {
-        el: header,
-        behavior: "smooth",
-        block: "nearest",
-        inline: "nearest",
-      }
     }
   },
 })
@@ -335,6 +326,16 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to) => {
   nextTick(function () {
+    // scroll with a hash is managed in scrollBehavior
+    if (!to.hash) {
+      const header = document.querySelector("h1")
+      header?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      })
+    }
+
     document.title = getTitleFromRoute(to)
   })
 })

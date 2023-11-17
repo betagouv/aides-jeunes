@@ -21,6 +21,7 @@ interface FollowupAttributes {
   version: number
   error: any
   smsError: any
+  smsSurveyError: any
   accessToken: string
   tousABordNotificationEmail: any
   __v: number

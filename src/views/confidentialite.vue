@@ -129,6 +129,12 @@
         >Les données collectées dans le cadre de l’accompagnement sont
         conservées le temps nécessaire à l’obtention de l’aide.</li
       >
+      <li>
+        Les données collectées dans le cadre de l’expérimentation de
+        l'accompagnement renforcé qui pourrait déboucher sur du pré-remplissage
+        et une simplification du parcours du simulateur sont conservées 30 jours
+        à partir de la collecte.
+      </li>
     </ul>
 
     <h3> Vos droits sur les données vous concernant </h3>

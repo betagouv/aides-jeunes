@@ -276,13 +276,11 @@ const router = createRouter({
       }
     } else {
       const header = document.querySelector("h1")
-
-      return {
-        el: header,
+      header?.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
         inline: "nearest",
-      }
+      })
     }
   },
 })

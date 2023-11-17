@@ -131,8 +131,9 @@
       >
       <li>
         Les données collectées dans le cadre de l’expérimentation de
-        pré-remplissage et de simplification du parcours du simulateur sont
-        conservées 30 jours à partir de la collecte.
+        l'accompagnement renforcé qui pourrait déboucher sur du pré-remplissage
+        et une simplification du parcours du simulateur sont conservées 30 jours
+        à partir de la collecte.
       </li>
     </ul>
 

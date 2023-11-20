@@ -88,6 +88,9 @@ app.route("/mjml/:id/:type").get(
   function (req, res) {
     followupRendering(req).then((result) => {
       const mode = req.query.mode || "html"
+      if (!result) {
+        throw new Error("Failed to render email")
+      }
       if (mode == "html") {
         res.send(result[mode])
       } else {

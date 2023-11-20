@@ -12,9 +12,12 @@ import dayjs from "dayjs"
 async function sendSimulationResultsEmail(
   followup: Followup
 ): Promise<Followup> {
+  if (!followup.email) {
+    throw new Error("Missing followup email")
+  }
   const render: any = await emailRender(EmailType.SimulationResults, followup)
   const sendEmailSmtpResponse = await sendEmailSmtp({
-    to: followup.email ?? "",
+    to: followup.email,
     subject: render.subject,
     text: render.text,
     html: render.html,
@@ -37,10 +40,12 @@ async function sendSurveyEmail(
   surveyType: SurveyType,
   survey: Survey
 ): Promise<Followup> {
+  if (!followup.email) {
+    throw new Error("Missing followup email")
+  }
   const render: any = await emailRenderBySurveyType(surveyType, followup)
-
   const sendEmailSmtpResponse = await sendEmailSmtp({
-    to: followup.email ?? "",
+    to: followup.email,
     subject: render.subject,
     text: render.text,
     html: render.html,

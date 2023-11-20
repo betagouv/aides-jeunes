@@ -291,6 +291,8 @@ textarea {
 @media (max-width: 576px) {
   .aj-jedonnemonavis {
     text-align: left;
+    padding-left: 4px;
+    font-size: 80%;
   }
 }
 

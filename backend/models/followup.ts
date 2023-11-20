@@ -6,7 +6,7 @@ import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 import emailRender from "../lib/mes-aides/emails/email-render.js"
 import SurveySchema from "./survey-schema.js"
-import { EmailCategory } from "../enums/email.js"
+import { EmailType } from "../enums/email.js"
 import config from "../config/index.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
@@ -79,7 +79,7 @@ FollowupSchema.method("postSimulationResultsSms", function (messageId) {
 })
 
 FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return emailRender(EmailCategory.SimulationResults, this)
+  return emailRender(EmailType.SimulationResults, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", function () {
@@ -91,7 +91,7 @@ FollowupSchema.method("sendSimulationResultsEmail", function () {
         subject: render.subject,
         text: render.text,
         html: render.html,
-        tags: [EmailCategory.SimulationResults],
+        tags: [EmailType.SimulationResults],
       })
     })
     .then((response) => {
@@ -147,11 +147,11 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
 FollowupSchema.method("renderSurveyEmail", function (surveyType) {
   switch (surveyType) {
     case SurveyCategory.TrackClickOnBenefitActionEmail:
-      return emailRender(EmailCategory.BenefitAction, this)
+      return emailRender(EmailType.BenefitAction, this)
     case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
-      return emailRender(EmailCategory.SimulationUsefulness, this)
+      return emailRender(EmailType.SimulationUsefulness, this)
     case SurveyCategory.TousABordNotification:
-      return emailRender(EmailCategory.TousABordNotification, this)
+      return emailRender(EmailType.TousABordNotification, this)
     case SurveyCategory.BenefitAction:
       return Promise.reject(
         new Error(

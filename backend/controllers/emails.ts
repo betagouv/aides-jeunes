@@ -1,20 +1,17 @@
-import { EmailCategory } from "../../backend/enums/email.js"
+import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 
-const renderFollowupEmailByType = async (
-  followup,
-  emailType: EmailCategory
-) => {
+const renderFollowupEmailByType = async (followup, emailType: EmailType) => {
   let surveyType: SurveyCategory | undefined
 
   switch (emailType) {
-    case EmailCategory.SimulationResults:
-      return emailRender(EmailCategory.SimulationResults, followup)
-    case EmailCategory.SimulationUsefulness:
+    case EmailType.SimulationResults:
+      return emailRender(EmailType.SimulationResults, followup)
+    case EmailType.SimulationUsefulness:
       surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailCategory.BenefitAction:
+    case EmailType.BenefitAction:
       surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
       break
     default:
@@ -26,7 +23,7 @@ const renderFollowupEmailByType = async (
 
 const getFollowupEmail = async (req, res, next) => {
   try {
-    const { emailType }: { emailType: EmailCategory } = req.query
+    const { emailType }: { emailType: EmailType } = req.query
     const followup = req.followup
     const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])

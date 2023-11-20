@@ -3,7 +3,7 @@
 import mongoose from "mongoose"
 import configMongoose from "../backend/config/mongoose.js"
 import config from "../backend/config/index.js"
-import { EmailCategory } from "../backend/enums/email.js"
+import { EmailType } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
@@ -22,7 +22,7 @@ const port = process.env.PORT || 9001
 // Setup Express
 const app = express()
 
-const typeKeys = EmailCategory
+const typeKeys = EmailType
 
 app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
@@ -42,16 +42,16 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = async (req: Request) => {
   const { followup } = req
-  const emailType = req.params.type as EmailCategory
+  const emailType = req.params.type as EmailType
   let surveyType: SurveyCategory | undefined
 
   switch (emailType) {
-    case EmailCategory.SimulationResults:
-      return emailRender(EmailCategory.SimulationResults, followup)
-    case EmailCategory.SimulationUsefulness:
+    case EmailType.SimulationResults:
+      return emailRender(EmailType.SimulationResults, followup)
+    case EmailType.SimulationUsefulness:
       surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailCategory.BenefitAction:
+    case EmailType.BenefitAction:
       surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
       break
     default:

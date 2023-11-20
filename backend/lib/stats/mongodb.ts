@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb"
 
 import config from "../../config/index.js"
-import { SurveyCategory } from "../../../lib/enums/survey.js"
+import { SurveyType } from "../../../lib/enums/survey.js"
 import { MongoStats } from "../../types/stats.d.js"
 
 import Simulations from "../../models/simulation.js"
@@ -72,7 +72,7 @@ async function extractSurveySummary() {
         $and: [
           { surveyOptin: true },
           { surveys: { $exists: true, $ne: [] } },
-          { "surveys.type": SurveyCategory.BenefitAction },
+          { "surveys.type": SurveyType.BenefitAction },
           { "surveys.answers": { $ne: [] } },
         ],
       },
@@ -84,7 +84,7 @@ async function extractSurveySummary() {
             {
               $filter: {
                 input: "$surveys",
-                cond: { $eq: ["$$this.type", SurveyCategory.BenefitAction] },
+                cond: { $eq: ["$$this.type", SurveyType.BenefitAction] },
               },
             },
             0,
@@ -244,7 +244,7 @@ async function extractSurveyDetails() {
         $and: [
           { surveyOptin: true },
           { surveys: { $exists: true, $ne: [] } },
-          { "surveys.type": SurveyCategory.BenefitAction },
+          { "surveys.type": SurveyType.BenefitAction },
         ],
       },
     },

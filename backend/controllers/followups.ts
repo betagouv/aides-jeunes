@@ -6,7 +6,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import Benefits from "../../data/all.js"
 import pollResult from "../lib/mattermost-bot/poll-result.js"
 import simulationController from "./simulation.js"
-import { SurveyCategory } from "../../lib/enums/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
@@ -110,7 +110,7 @@ export function showSurveyResults(req: Request, res: Response) {
     surveys: {
       $elemMatch: {
         repliedAt: { $exists: true },
-        type: SurveyCategory.BenefitAction,
+        type: SurveyType.BenefitAction,
       },
     },
   })
@@ -149,7 +149,7 @@ export async function followupByAccessToken(
 }
 
 export function postSurvey(req: Request, res: Response) {
-  req.followup.updateSurvey(SurveyCategory.BenefitAction, req.body).then(() => {
+  req.followup.updateSurvey(SurveyType.BenefitAction, req.body).then(() => {
     res.sendStatus(201)
   })
   pollResult.postPollResult(req.followup, req.body)
@@ -164,7 +164,7 @@ export async function updateWasUseful(req: Request) {
   ]
   const { followup } = req
   await followup.updateSurvey(
-    SurveyCategory.TrackClickOnSimulationUsefulnessEmail,
+    SurveyType.TrackClickOnSimulationUsefulnessEmail,
     answers
   )
   await followup.save()
@@ -172,7 +172,7 @@ export async function updateWasUseful(req: Request) {
 
 async function updateTrackClickOnBenefitActionEmail(req: Request) {
   const { followup } = req
-  await followup.updateSurvey(SurveyCategory.TrackClickOnBenefitActionEmail)
+  await followup.updateSurvey(SurveyType.TrackClickOnBenefitActionEmail)
 }
 
 async function updateSurveyInFollowup(req: Request) {
@@ -180,14 +180,14 @@ async function updateSurveyInFollowup(req: Request) {
   const { followup } = req
 
   switch (surveyType) {
-    case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
+    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
       await updateWasUseful(req)
       break
-    case SurveyCategory.TrackClickOnBenefitActionEmail:
+    case SurveyType.TrackClickOnBenefitActionEmail:
       await updateTrackClickOnBenefitActionEmail(req)
       break
-    case SurveyCategory.TousABordNotification:
-      await followup.updateSurvey(SurveyCategory.TousABordNotification)
+    case SurveyType.TousABordNotification:
+      await followup.updateSurvey(SurveyType.TousABordNotification)
       break
     default:
       throw new Error("Unknown survey type")
@@ -199,13 +199,13 @@ async function getRedirectUrl(req: Request) {
   const { followup } = req
 
   switch (surveyType) {
-    case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
-    case SurveyCategory.TrackClickOnBenefitActionEmail:
-      await followup.addSurveyIfMissing(SurveyCategory.BenefitAction)
+    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
+    case SurveyType.TrackClickOnBenefitActionEmail:
+      await followup.addSurveyIfMissing(SurveyType.BenefitAction)
       await followup.save()
 
       return followup.surveyPath
-    case SurveyCategory.TousABordNotification:
+    case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
       throw new Error("Unknown survey type")

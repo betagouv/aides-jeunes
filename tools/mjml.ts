@@ -9,7 +9,7 @@ import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
 import "../backend/models/simulation.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyCategory } from "../lib/enums/survey.js"
+import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
@@ -43,16 +43,16 @@ app.route("/").get(function (req, res) {
 const followupRendering = async (req: Request) => {
   const { followup } = req
   const emailType = req.params.type as EmailType
-  let surveyType: SurveyCategory | undefined
+  let surveyType: SurveyType | undefined
 
   switch (emailType) {
     case EmailType.SimulationResults:
       return emailRender(EmailType.SimulationResults, followup)
     case EmailType.SimulationUsefulness:
-      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+      surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break
     case EmailType.BenefitAction:
-      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
+      surveyType = SurveyType.TrackClickOnBenefitActionEmail
       break
     default:
       return {

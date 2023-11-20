@@ -1,9 +1,7 @@
 import mongoose from "mongoose"
-import { sendEmailSmtp } from "../lib/smtp.js"
 import axios from "axios"
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
-import emailRender from "../lib/mes-aides/emails/email-render.js"
 import { EmailType } from "../../lib/enums/messaging.js"
 import config from "../config/index.js"
 import { Followup } from "../../lib/types/followup.d.js"
@@ -24,10 +22,6 @@ FollowupSchema.method("postSimulationResultsSms", function (messageId) {
   }
   this.smsError = undefined
   return this.save()
-})
-
-FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return emailRender(EmailType.SimulationResults, this)
 })
 
 FollowupSchema.method("sendSimulationResultsEmail", async function () {
@@ -80,60 +74,34 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
   }
 })
 
-FollowupSchema.method("renderSurveyEmail", function (surveyType) {
-  switch (surveyType) {
-    case SurveyType.TrackClickOnBenefitActionEmail:
-      return emailRender(EmailType.BenefitAction, this)
-    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
-      return emailRender(EmailType.SimulationUsefulness, this)
-    case SurveyType.TousABordNotification:
-      return emailRender(EmailType.TousABordNotification, this)
-    case SurveyType.BenefitAction:
-      return Promise.reject(
-        new Error(
-          `This surveyType "${surveyType}" is not supposed to be sent through an email`
-        )
-      )
-    default:
-      return Promise.reject(
-        new Error(`This surveyType "${surveyType}" has no email template`)
-      )
+FollowupSchema.method(
+  "addSurveyIfMissing",
+  async function (type: SurveyType): Promise<Survey> {
+    let survey = this.surveys.find((survey) => survey.type === type)
+    if (!survey) {
+      survey = await this.surveys.create({ type })
+      this.surveys.push(survey)
+    }
+    return survey
   }
-})
+)
 
-FollowupSchema.method("addSurveyIfMissing", async function (type: SurveyType) {
-  let survey = this.surveys.find((survey) => survey.type === type)
-  if (!survey) {
-    survey = await this.surveys.create({ type })
-    this.surveys.push(survey)
+FollowupSchema.method(
+  "sendSurvey",
+  async function (surveyType: SurveyType): Promise<Survey> {
+    const followup = this
+    let survey
+    try {
+      const survey = await this.addSurveyIfMissing(surveyType)
+      await sendEmail(EmailType.BenefitAction, followup, surveyType, survey)
+      return survey
+    } catch (err) {
+      console.error("error", err)
+      survey.error = err
+      throw err
+    }
   }
-  return survey
-})
-
-FollowupSchema.method("sendSurvey", async function (surveyType: SurveyType) {
-  const followup = this
-  let survey
-  try {
-    survey = await this.addSurveyIfMissing(surveyType)
-    const render = await this.renderSurveyEmail(surveyType)
-    const response = await sendEmailSmtp({
-      to: followup.email,
-      subject: render.subject,
-      text: render.text,
-      html: render.html,
-      tags: ["survey", surveyType],
-    })
-
-    survey.messageId = response.messageId
-  } catch (err) {
-    console.error("error", err)
-    survey.error = err
-    throw err
-  } finally {
-    await followup.save()
-  }
-  return survey
-})
+)
 
 FollowupSchema.method("updateSurvey", function (type, answers) {
   const surveys: Survey[] = Array.from(this.surveys)

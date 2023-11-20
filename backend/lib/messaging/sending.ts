@@ -4,6 +4,7 @@ import { EmailType } from "../../../lib/enums/messaging.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
+import { Survey } from "../../../lib/types/survey.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -52,8 +53,8 @@ async function sendMultipleInitialEmails(limit: number) {
           : SurveyType.TrackClickOnSimulationUsefulnessEmail
 
       try {
-        const result = await followup.sendSurvey(surveyType)
-        return { ok: result._id }
+        const survey = await followup.sendSurvey(surveyType)
+        return { "survey sent id": survey._id }
       } catch (error) {
         return { ko: error }
       }
@@ -109,7 +110,7 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     throw new Error("Followup not found")
   }
 
-  let emailPromise: Promise<void>
+  let emailPromise: Promise<void | Survey> | null = null
 
   switch (emailType) {
     case EmailType.SimulationResults:

@@ -5,7 +5,10 @@ import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 import { Survey } from "../../../lib/types/survey.js"
-import { sendSimulationResultsEmail } from "../messaging/email/email-service.js"
+import {
+  sendSimulationResultsEmail,
+  sendSurveyEmail,
+} from "../messaging/email/email-service.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -54,8 +57,8 @@ async function sendMultipleInitialEmails(limit: number) {
           : SurveyType.TrackClickOnSimulationUsefulnessEmail
 
       try {
-        const survey = await followup.sendSurvey(surveyType)
-        return { "survey sent id": survey._id }
+        const survey = await sendSurveyEmail(followup, surveyType)
+        return { "survey id": survey._id }
       } catch (error) {
         return { ko: error }
       }
@@ -93,10 +96,11 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
   const results = await Promise.all(
     followups.map(async (followup: Followup) => {
       try {
-        const result = await followup.sendSurvey(
+        const survey = await sendSurveyEmail(
+          followup,
           SurveyType.TousABordNotification
         )
-        return { ok: result._id }
+        return { ok: survey._id }
       } catch (error) {
         return { ko: error }
       }
@@ -111,19 +115,21 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     throw new Error("Followup not found")
   }
 
-  let emailPromise: Promise<void | Survey | Followup>
+  let emailPromise: Survey | Followup
 
   switch (emailType) {
     case EmailType.SimulationResults:
-      emailPromise = sendSimulationResultsEmail(followup)
+      emailPromise = await sendSimulationResultsEmail(followup)
       break
     case EmailType.BenefitAction:
-      emailPromise = followup.sendSurvey(
+      emailPromise = await sendSurveyEmail(
+        followup,
         SurveyType.TrackClickOnBenefitActionEmail
       )
       break
     case EmailType.SimulationUsefulness:
-      emailPromise = followup.sendSurvey(
+      emailPromise = await sendSurveyEmail(
+        followup,
         SurveyType.TrackClickOnSimulationUsefulnessEmail
       )
       break

@@ -4,9 +4,9 @@ import {
   emailRenderBySurveyType,
 } from "../../mes-aides/emails/email-render.js"
 import { EmailType } from "../../../../lib/enums/messaging.js"
-import { SurveyType } from "@lib/enums/survey.js"
-import { Survey } from "@lib/types/survey.js"
-import { Followup } from "@lib/types/followup.js"
+import { SurveyType } from "../../../../lib/enums/survey.js"
+import { Survey } from "../../../../lib/types/survey.js"
+import { Followup } from "../../../../lib/types/followup.js"
 import dayjs from "dayjs"
 
 export async function sendSimulationResultsEmail(
@@ -37,12 +37,12 @@ export async function sendSimulationResultsEmail(
 
 export async function sendSurveyEmail(
   followup: Followup,
-  surveyType: SurveyType,
-  survey: Survey
-): Promise<Followup> {
+  surveyType: SurveyType
+): Promise<Survey> {
   if (!followup.email) {
     throw new Error("Missing followup email")
   }
+  const survey = await followup.addSurveyIfMissing(surveyType)
   const render: any = await emailRenderBySurveyType(surveyType, followup)
   const sendEmailSmtpResponse = await sendEmailSmtp({
     to: followup.email,
@@ -53,34 +53,6 @@ export async function sendSurveyEmail(
   })
 
   survey.messageId = sendEmailSmtpResponse.messageId
-
-  return await followup.save()
-}
-
-export async function sendEmail(
-  emailType: EmailType,
-  followup,
-  surveyType?: SurveyType,
-  survey?: Survey
-) {
-  try {
-    switch (emailType) {
-      case EmailType.SimulationResults:
-        return await sendSimulationResultsEmail(followup)
-      case EmailType.BenefitAction:
-      case EmailType.SimulationUsefulness:
-        if (surveyType && survey) {
-          return sendSurveyEmail(followup, surveyType, survey)
-        }
-        break
-      case EmailType.TousABordNotification:
-        // Todo: send tousabord email
-        break
-      default:
-        throw new Error(`Unknown email type ${emailType}`)
-    }
-  } catch (err) {
-    console.error("error", err)
-    throw err
-  }
+  await followup.save()
+  return survey
 }

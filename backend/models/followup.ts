@@ -2,13 +2,11 @@ import mongoose from "mongoose"
 import axios from "axios"
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyType } from "../../lib/enums/survey.js"
-import { EmailType } from "../../lib/enums/messaging.js"
 import config from "../config/index.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
-import { sendEmail } from "../lib/messaging/email/email-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
@@ -66,30 +64,13 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
 
 FollowupSchema.method(
   "addSurveyIfMissing",
-  async function (type: SurveyType): Promise<Survey> {
-    let survey = this.surveys.find((survey) => survey.type === type)
+  async function (surveyType: SurveyType): Promise<Survey> {
+    let survey = this.surveys.find((survey) => survey.type === surveyType)
     if (!survey) {
-      survey = await this.surveys.create({ type })
+      survey = await this.surveys.create({ surveyType })
       this.surveys.push(survey)
     }
     return survey
-  }
-)
-
-FollowupSchema.method(
-  "sendSurvey",
-  async function (surveyType: SurveyType): Promise<Survey> {
-    const followup = this
-    let survey
-    try {
-      const survey = await this.addSurveyIfMissing(surveyType)
-      await sendEmail(EmailType.BenefitAction, followup, surveyType, survey)
-      return survey
-    } catch (err) {
-      console.error("error", err)
-      survey.error = err
-      throw err
-    }
   }
 )
 

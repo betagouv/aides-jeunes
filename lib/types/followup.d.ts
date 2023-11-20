@@ -29,7 +29,6 @@ interface FollowupMethods {
   renderSimulationResultsSms(): any
   sendSimulationResultsSms(): Promise<void>
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
-  sendSurvey(surveyType: SurveyType): Promise<Survey>
   updateSurvey(action: SurveyType, data?: any)
 }
 

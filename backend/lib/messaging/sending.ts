@@ -5,6 +5,7 @@ import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 import { Survey } from "../../../lib/types/survey.js"
+import { sendSimulationResultsEmail } from "../messaging/email/email-service.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -110,11 +111,11 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     throw new Error("Followup not found")
   }
 
-  let emailPromise: Promise<void | Survey> | null = null
+  let emailPromise: Promise<void | Survey | Followup>
 
   switch (emailType) {
     case EmailType.SimulationResults:
-      emailPromise = followup.sendSimulationResultsEmail()
+      emailPromise = sendSimulationResultsEmail(followup)
       break
     case EmailType.BenefitAction:
       emailPromise = followup.sendSurvey(

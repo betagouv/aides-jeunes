@@ -12,6 +12,7 @@ import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
 import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
+import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
 
 export function followup(
   req: Request,
@@ -58,7 +59,7 @@ export async function persist(req: Request, res: Response) {
       phone
     )) as Followup
     if (email) {
-      await followup.sendSimulationResultsEmail()
+      await sendSimulationResultsEmail(followup)
     }
     if (phone) {
       if (

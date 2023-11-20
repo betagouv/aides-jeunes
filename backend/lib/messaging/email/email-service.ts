@@ -9,7 +9,7 @@ import { Survey } from "@lib/types/survey.js"
 import { Followup } from "@lib/types/followup.js"
 import dayjs from "dayjs"
 
-async function sendSimulationResultsEmail(
+export async function sendSimulationResultsEmail(
   followup: Followup
 ): Promise<Followup> {
   if (!followup.email) {
@@ -32,10 +32,10 @@ async function sendSimulationResultsEmail(
   }
   followup.error = undefined
 
-  return followup.save()
+  return await followup.save()
 }
 
-async function sendSurveyEmail(
+export async function sendSurveyEmail(
   followup: Followup,
   surveyType: SurveyType,
   survey: Survey
@@ -66,7 +66,7 @@ export async function sendEmail(
   try {
     switch (emailType) {
       case EmailType.SimulationResults:
-        return sendSimulationResultsEmail(followup)
+        return await sendSimulationResultsEmail(followup)
       case EmailType.BenefitAction:
       case EmailType.SimulationUsefulness:
         if (surveyType && survey) {

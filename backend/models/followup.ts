@@ -24,16 +24,6 @@ FollowupSchema.method("postSimulationResultsSms", function (messageId) {
   return this.save()
 })
 
-FollowupSchema.method("sendSimulationResultsEmail", async function () {
-  try {
-    return await sendEmail(EmailType.SimulationResults, this)
-  } catch (err) {
-    console.log("error", err)
-    this.error = JSON.stringify(err, null, 2)
-    return this.save()
-  }
-})
-
 FollowupSchema.method(
   "renderSimulationResultsSmsUrl",
   function (username: string, password: string) {

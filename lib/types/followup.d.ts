@@ -27,7 +27,6 @@ interface FollowupAttributes {
 interface FollowupMethods {
   postSimulationResultsSms(messageId: string): void
   renderSimulationResultsSms(): any
-  sendSimulationResultsEmail(): Promise<void>
   sendSimulationResultsSms(): Promise<void>
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
   sendSurvey(surveyType: SurveyType): Promise<Survey>

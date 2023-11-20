@@ -4,6 +4,7 @@ import { EmailCategory } from "../../../lib/enums/messaging.js"
 import { SurveyCategory } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
+import { sendSurvey } from "./email/email-service.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
@@ -52,7 +53,7 @@ async function sendMultipleInitialEmails(limit: number) {
           : SurveyCategory.TrackClickOnSimulationUsefulnessEmail
 
       try {
-        const result = await followup.sendSurvey(surveyType)
+        const result = await sendSurvey(surveyType, followup)
         return { ok: result._id }
       } catch (error) {
         return { ko: error }
@@ -91,8 +92,9 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
   const results = await Promise.all(
     followups.map(async (followup: Followup) => {
       try {
-        const result = await followup.sendSurvey(
-          SurveyCategory.TousABordNotification
+        const result = await sendSurvey(
+          SurveyCategory.TousABordNotification,
+          followup
         )
         return { ok: result._id }
       } catch (error) {
@@ -119,13 +121,15 @@ async function processSingleEmail(
       emailPromise = followup.sendSimulationResultsEmail()
       break
     case EmailCategory.BenefitAction:
-      emailPromise = followup.sendSurvey(
-        SurveyCategory.TrackClickOnBenefitActionEmail
+      emailPromise = sendSurvey(
+        SurveyCategory.TrackClickOnBenefitActionEmail,
+        followup
       )
       break
     case EmailCategory.SimulationUsefulness:
-      emailPromise = followup.sendSurvey(
-        SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+      emailPromise = sendSurvey(
+        SurveyCategory.TrackClickOnSimulationUsefulnessEmail,
+        followup
       )
       break
     default:

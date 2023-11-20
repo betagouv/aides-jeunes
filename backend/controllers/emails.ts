@@ -1,5 +1,8 @@
 import { EmailCategory } from "../../lib/enums/messaging.js"
-import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
+import {
+  emailRender,
+  renderSurveyEmail,
+} from "../../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
 
 const renderFollowupEmailByType = async (
@@ -21,7 +24,7 @@ const renderFollowupEmailByType = async (
       throw new Error(`Unknown email type: ${emailType}`)
   }
 
-  return followup.renderSurveyEmail(surveyType)
+  return renderSurveyEmail(surveyType, followup)
 }
 
 const getFollowupEmail = async (req, res, next) => {

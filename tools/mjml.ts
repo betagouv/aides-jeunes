@@ -8,7 +8,10 @@ import express from "express"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
 import "../backend/models/simulation.js"
-import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
+import {
+  emailRender,
+  renderSurveyEmail,
+} from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyCategory } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
@@ -62,7 +65,7 @@ const followupRendering = async (req: Request) => {
 
   await followup.addSurveyIfMissing(surveyType)
   await followup.save()
-  return followup.renderSurveyEmail(surveyType)
+  return renderSurveyEmail(surveyType, followup)
 }
 
 app.route("/mjml/:id/:type").get(

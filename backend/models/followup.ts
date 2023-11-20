@@ -1,16 +1,12 @@
 import mongoose from "mongoose"
-import { sendEmailSmtp } from "../lib/smtp.js"
 import axios from "axios"
 import { Survey } from "../../lib/types/survey.js"
 import { SurveyCategory } from "../../lib/enums/survey.js"
-import emailRender from "../lib/mes-aides/emails/email-render.js"
-import { EmailCategory } from "../../lib/enums/messaging.js"
 import config from "../config/index.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import { phoneNumberFormatting } from "../../lib/phone-number.js"
 import FollowupSchema from "./followup-schema.js"
-import { sendEmail } from "../lib/messaging/email/email-service.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
@@ -24,20 +20,6 @@ FollowupSchema.method("postSimulationResultsSms", function (messageId) {
   }
   this.smsError = undefined
   return this.save()
-})
-
-FollowupSchema.method("renderSimulationResultsEmail", function () {
-  return emailRender(EmailCategory.SimulationResults, this)
-})
-
-FollowupSchema.method("sendSimulationResultsEmail", async function () {
-  try {
-    return await sendEmail(EmailCategory.SimulationResults, this)
-  } catch (err) {
-    console.log("error", err)
-    this.error = JSON.stringify(err, null, 2)
-    return this.save()
-  }
 })
 
 FollowupSchema.method(
@@ -80,27 +62,6 @@ FollowupSchema.method("sendSimulationResultsSms", async function () {
   }
 })
 
-FollowupSchema.method("renderSurveyEmail", function (surveyType) {
-  switch (surveyType) {
-    case SurveyCategory.TrackClickOnBenefitActionEmail:
-      return emailRender(EmailCategory.BenefitAction, this)
-    case SurveyCategory.TrackClickOnSimulationUsefulnessEmail:
-      return emailRender(EmailCategory.SimulationUsefulness, this)
-    case SurveyCategory.TousABordNotification:
-      return emailRender(EmailCategory.TousABordNotification, this)
-    case SurveyCategory.BenefitAction:
-      return Promise.reject(
-        new Error(
-          `This surveyType "${surveyType}" is not supposed to be sent through an email`
-        )
-      )
-    default:
-      return Promise.reject(
-        new Error(`This surveyType "${surveyType}" has no email template`)
-      )
-  }
-})
-
 FollowupSchema.method(
   "addSurveyIfMissing",
   async function (type: SurveyCategory) {
@@ -108,34 +69,6 @@ FollowupSchema.method(
     if (!survey) {
       survey = await this.surveys.create({ type })
       this.surveys.push(survey)
-    }
-    return survey
-  }
-)
-
-FollowupSchema.method(
-  "sendSurvey",
-  async function (surveyType: SurveyCategory) {
-    const followup = this
-    let survey
-    try {
-      survey = await this.addSurveyIfMissing(surveyType)
-      const render = await this.renderSurveyEmail(surveyType)
-      const response = await sendEmailSmtp({
-        to: followup.email,
-        subject: render.subject,
-        text: render.text,
-        html: render.html,
-        tags: ["survey", surveyType],
-      })
-
-      survey.messageId = response.messageId
-    } catch (err) {
-      console.error("error", err)
-      survey.error = err
-      throw err
-    } finally {
-      await followup.save()
     }
     return survey
   }

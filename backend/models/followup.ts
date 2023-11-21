@@ -67,7 +67,7 @@ FollowupSchema.method(
   async function (surveyType: SurveyType): Promise<Survey> {
     let survey = this.surveys.find((survey) => survey.type === surveyType)
     if (!survey) {
-      survey = await this.surveys.create({ surveyType })
+      survey = await this.surveys.create({ type: surveyType })
       this.surveys.push(survey)
     }
     return survey

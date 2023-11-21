@@ -4,7 +4,6 @@ import { EmailType } from "../../../lib/enums/messaging.js"
 import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
-import { Survey } from "../../../lib/types/survey.js"
 import {
   sendSimulationResultsEmail,
   sendSurveyEmail,

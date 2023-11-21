@@ -115,20 +115,15 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     throw new Error("Followup not found")
   }
 
-  let emailPromise: Survey | Followup
-
   switch (emailType) {
     case EmailType.SimulationResults:
-      emailPromise = await sendSimulationResultsEmail(followup)
+      sendSimulationResultsEmail(followup)
       break
     case EmailType.BenefitAction:
-      emailPromise = await sendSurveyEmail(
-        followup,
-        SurveyType.TrackClickOnBenefitActionEmail
-      )
+      await sendSurveyEmail(followup, SurveyType.TrackClickOnBenefitActionEmail)
       break
     case EmailType.SimulationUsefulness:
-      emailPromise = await sendSurveyEmail(
+      await sendSurveyEmail(
         followup,
         SurveyType.TrackClickOnSimulationUsefulnessEmail
       )
@@ -136,9 +131,6 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     default:
       throw new Error(`Unknown email type: ${emailType}`)
   }
-
-  const email = await emailPromise
-  console.log("Email sent", email)
 }
 
 export async function processSendEmails(

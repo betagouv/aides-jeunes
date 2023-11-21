@@ -4,3 +4,8 @@ export enum EmailType {
   SimulationUsefulness = "simulation-usefulness",
   InitialSurvey = "initial-survey",
 }
+
+export enum SmsType {
+  SimulationResults = "simulation-results",
+  InitialSurvey = "initial-survey",
+}

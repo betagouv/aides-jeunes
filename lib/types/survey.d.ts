@@ -21,6 +21,7 @@ export interface Survey {
   messageId?: string
   error?: string | any
   type: SurveyType
+  createdAt?: Date
 }
 
 interface FetchSurvey {

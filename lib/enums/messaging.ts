@@ -5,3 +5,8 @@ export enum EmailType {
   InitialSurvey = "initial-survey",
   TousABordNotification = "tous-a-bord-notification",
 }
+
+export enum SmsType {
+  SimulationResults = "simulation-results",
+  InitialSurvey = "initial-survey",
+}

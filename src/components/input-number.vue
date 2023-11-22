@@ -51,7 +51,14 @@ export default {
         if (typeof value === "string") {
           value = this.parseInputString(value)
         }
-        value = value == "" ? 0 : value
+
+        if (value === "") {
+          this.error = false
+          this.$emit("update:modelValue", "")
+          this.$emit("input-error", this.error)
+          return
+        }
+
         const valid = !isNaN(parseFloat(value))
         const floor = this.min == null || this.min <= parseFloat(value)
         const ceiling = this.max == null || this.max >= parseFloat(value)

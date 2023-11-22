@@ -310,7 +310,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
     form: "https://www.var.fr/documents/d/departement-du-var/maintien-a4-1-pdf",
     excludedEPCI: "248300543",
   },
-  intercommunalite_toulon_provence_mediterrannee: {
+  intercommunalite_toulon_provence_mediterranee: {
     label: "de la Métropole de Toulon Provence Méditerrannée",
     link: "https://metropoletpm.fr/service/article/fonds-de-solidarite-logement-fsl",
     form: "https://metropoletpm.fr/sites/new.tpm-agglo.fr/files/maintien_a4.pdf",

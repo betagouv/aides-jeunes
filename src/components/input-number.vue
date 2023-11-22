@@ -45,7 +45,7 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value || this.modelValue || ""
+        return this.value ?? this.modelValue ?? ""
       },
       set(value) {
         if (typeof value === "string") {

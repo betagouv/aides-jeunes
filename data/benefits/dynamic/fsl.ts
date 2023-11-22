@@ -307,7 +307,13 @@ export const FSL_BY_INSTITUTION_SLUG = {
   departement_var: {
     label: "du département du Var",
     link: "https://www.var.fr/social/insertion/fonds-de-solidarite-logement",
-    form: "https://www.var.fr/documents/20142/2028094/MAINTIEN+A4.pdf/7623c7eb-daa0-cf0e-aabf-cd701c8c6d1d",
+    form: "https://www.var.fr/documents/d/departement-du-var/maintien-a4-1-pdf",
+    excludedEPCI: "248300543",
+  },
+  interommunalite_toulon_provence_mediterrannee: {
+    label: "de la Métropole de Toulon Provence Méditerrannée",
+    link: "https://metropoletpm.fr/service/article/fonds-de-solidarite-logement-fsl",
+    form: "https://metropoletpm.fr/sites/new.tpm-agglo.fr/files/maintien_a4.pdf",
   },
   departement_vaucluse: {
     label: "du département du Vaucluse",

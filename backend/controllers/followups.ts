@@ -14,6 +14,8 @@ import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
 import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
 import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
+import dayjs from "dayjs"
+
 export function followup(
   req: Request,
   res: Response,
@@ -201,10 +203,13 @@ async function getRedirectUrl(req: Request) {
   switch (surveyType) {
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
     case SurveyType.TrackClickOnBenefitActionEmail:
-    case SurveyType.TrackClickOnBenefitActionSms:
+    case SurveyType.TrackClickOnBenefitActionSms: {
       await followup.addSurveyIfMissing(SurveyType.BenefitAction)
+      const survey = followup.findSurvey(surveyType)
+      survey.openedAt = dayjs().toDate()
       await followup.save()
       return followup.surveyPath
+    }
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:

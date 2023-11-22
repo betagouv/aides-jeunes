@@ -22,6 +22,7 @@ export interface Survey {
   error?: string | any
   type: SurveyType
   createdAt?: Date
+  openedAt?: Date
 }
 
 interface FetchSurvey {

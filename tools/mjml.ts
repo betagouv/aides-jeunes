@@ -3,13 +3,13 @@
 import mongoose from "mongoose"
 import configMongoose from "../backend/config/mongoose.js"
 import config from "../backend/config/index.js"
-import { EmailCategory } from "../backend/enums/email.js"
+import { EmailType } from "../backend/enums/email.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
 import "../backend/models/simulation.js"
 import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyCategory } from "../lib/enums/survey.js"
+import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
 import Request from "../backend/types/express.d.js"
@@ -22,7 +22,7 @@ const port = process.env.PORT || 9001
 // Setup Express
 const app = express()
 
-const typeKeys = EmailCategory
+const typeKeys = EmailType
 
 app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
@@ -42,17 +42,17 @@ app.route("/").get(function (req, res) {
 
 const followupRendering = async (req: Request) => {
   const { followup } = req
-  const emailType = req.params.type as EmailCategory
-  let surveyType: SurveyCategory | undefined
+  const emailType = req.params.type as EmailType
+  let surveyType: SurveyType | undefined
 
   switch (emailType) {
-    case EmailCategory.SimulationResults:
-      return emailRender(EmailCategory.SimulationResults, followup)
-    case EmailCategory.SimulationUsefulness:
-      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+    case EmailType.SimulationResults:
+      return emailRender(EmailType.SimulationResults, followup)
+    case EmailType.SimulationUsefulness:
+      surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailCategory.BenefitAction:
-      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
+    case EmailType.BenefitAction:
+      surveyType = SurveyType.TrackClickOnBenefitActionEmail
       break
     default:
       return {

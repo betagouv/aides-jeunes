@@ -1,4 +1,4 @@
-import { SurveyCategory } from "../enums/survey.js"
+import { SurveyType } from "../enums/survey.js"
 export interface SurveyAnswer {
   _id: string
   id: string
@@ -20,7 +20,7 @@ export interface Survey {
   repliedAt?: string
   messageId?: string
   error?: string | any
-  type: SurveyCategory
+  type: SurveyType
 }
 
 interface FetchSurvey {

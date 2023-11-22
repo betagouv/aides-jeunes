@@ -1,21 +1,18 @@
-import { EmailCategory } from "../../backend/enums/email.js"
+import { EmailType } from "../../backend/enums/email.js"
 import emailRender from "../../backend/lib/mes-aides/emails/email-render.js"
-import { SurveyCategory } from "../../lib/enums/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 
-const renderFollowupEmailByType = async (
-  followup,
-  emailType: EmailCategory
-) => {
-  let surveyType: SurveyCategory | undefined
+const renderFollowupEmailByType = async (followup, emailType: EmailType) => {
+  let surveyType: SurveyType | undefined
 
   switch (emailType) {
-    case EmailCategory.SimulationResults:
-      return emailRender(EmailCategory.SimulationResults, followup)
-    case EmailCategory.SimulationUsefulness:
-      surveyType = SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+    case EmailType.SimulationResults:
+      return emailRender(EmailType.SimulationResults, followup)
+    case EmailType.SimulationUsefulness:
+      surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailCategory.BenefitAction:
-      surveyType = SurveyCategory.TrackClickOnBenefitActionEmail
+    case EmailType.BenefitAction:
+      surveyType = SurveyType.TrackClickOnBenefitActionEmail
       break
     default:
       throw new Error(`Unknown email type: ${emailType}`)
@@ -26,7 +23,7 @@ const renderFollowupEmailByType = async (
 
 const getFollowupEmail = async (req, res, next) => {
   try {
-    const { emailType }: { emailType: EmailCategory } = req.query
+    const { emailType }: { emailType: EmailType } = req.query
     const followup = req.followup
     const result = await renderFollowupEmailByType(followup, emailType)
     res.send(result["html"])

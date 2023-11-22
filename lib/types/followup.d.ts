@@ -31,10 +31,10 @@ interface FollowupMethods {
   renderSimulationResultsSms(): any
   sendSimulationResultsEmail(): Promise<void>
   sendSimulationResultsSms(): Promise<void>
-  renderSurveyEmail(surveyType: SurveyCategory): any
-  addSurveyIfMissing(surveyType: SurveyCategory): Promise<any>
-  sendSurvey(surveyType: SurveyCategory): Promise<any>
-  updateSurvey(action: SurveyCategory, data?: any)
+  renderSurveyEmail(surveyType: SurveyType): any
+  addSurveyIfMissing(surveyType: SurveyType): Promise<any>
+  sendSurvey(surveyType: SurveyType): Promise<any>
+  updateSurvey(action: SurveyType, data?: any)
 }
 
 interface FollowupVirtuals {

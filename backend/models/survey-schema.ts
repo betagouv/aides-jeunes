@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import { Mongoose } from "../types/models.d.js"
-import { SurveyCategory } from "../../lib/enums/survey.js"
+import { SurveyType } from "../../lib/enums/survey.js"
 import { Survey } from "../../lib/types/survey.d.js"
 
 const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
@@ -19,7 +19,7 @@ const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
     ],
     type: {
       type: String,
-      enum: SurveyCategory,
+      enum: SurveyType,
     },
   },
   { minimize: false, id: false }

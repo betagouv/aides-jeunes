@@ -1,19 +1,19 @@
 import dayjs from "dayjs"
 
-import { EmailCategory } from "../../enums/email.js"
-import { SurveyCategory } from "../../../lib/enums/survey.js"
+import { EmailType } from "../../enums/email.js"
+import { SurveyType } from "../../../lib/enums/survey.js"
 import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 
 const DaysBeforeInitialEmail = 6
 const DaysBeforeTousABordNotificationEmail = 2
 
-async function sendMultipleEmails(emailType: EmailCategory, limit: number) {
+async function sendMultipleEmails(emailType: EmailType, limit: number) {
   switch (emailType) {
-    case EmailCategory.InitialSurvey:
+    case EmailType.InitialSurvey:
       await sendMultipleInitialEmails(limit)
       break
-    case EmailCategory.TousABordNotification:
+    case EmailType.TousABordNotification:
       await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
@@ -28,9 +28,9 @@ async function sendMultipleInitialEmails(limit: number) {
         $elemMatch: {
           type: {
             $in: [
-              SurveyCategory.BenefitAction,
-              SurveyCategory.TrackClickOnSimulationUsefulnessEmail,
-              SurveyCategory.TrackClickOnBenefitActionEmail,
+              SurveyType.BenefitAction,
+              SurveyType.TrackClickOnSimulationUsefulnessEmail,
+              SurveyType.TrackClickOnBenefitActionEmail,
             ],
           },
         },
@@ -48,8 +48,8 @@ async function sendMultipleInitialEmails(limit: number) {
     followups.map(async (followup: Followup) => {
       const surveyType =
         Math.random() > 0.5
-          ? SurveyCategory.TrackClickOnBenefitActionEmail
-          : SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+          ? SurveyType.TrackClickOnBenefitActionEmail
+          : SurveyType.TrackClickOnSimulationUsefulnessEmail
 
       try {
         const result = await followup.sendSurvey(surveyType)
@@ -80,7 +80,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     surveys: {
       $not: {
         $elemMatch: {
-          type: SurveyCategory.TousABordNotification,
+          type: SurveyType.TousABordNotification,
         },
       },
     },
@@ -92,7 +92,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
     followups.map(async (followup: Followup) => {
       try {
         const result = await followup.sendSurvey(
-          SurveyCategory.TousABordNotification
+          SurveyType.TousABordNotification
         )
         return { ok: result._id }
       } catch (error) {
@@ -103,10 +103,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
   console.log(results)
 }
 
-async function processSingleEmail(
-  emailType: EmailCategory,
-  followupId: string
-) {
+async function processSingleEmail(emailType: EmailType, followupId: string) {
   const followup: Followup | null = await Followups.findById(followupId)
   if (!followup) {
     throw new Error("Followup not found")
@@ -115,17 +112,17 @@ async function processSingleEmail(
   let emailPromise: Promise<void>
 
   switch (emailType) {
-    case EmailCategory.SimulationResults:
+    case EmailType.SimulationResults:
       emailPromise = followup.sendSimulationResultsEmail()
       break
-    case EmailCategory.BenefitAction:
+    case EmailType.BenefitAction:
       emailPromise = followup.sendSurvey(
-        SurveyCategory.TrackClickOnBenefitActionEmail
+        SurveyType.TrackClickOnBenefitActionEmail
       )
       break
-    case EmailCategory.SimulationUsefulness:
+    case EmailType.SimulationUsefulness:
       emailPromise = followup.sendSurvey(
-        SurveyCategory.TrackClickOnSimulationUsefulnessEmail
+        SurveyType.TrackClickOnSimulationUsefulnessEmail
       )
       break
     default:
@@ -137,7 +134,7 @@ async function processSingleEmail(
 }
 
 export async function processSendEmails(
-  emailType: EmailCategory,
+  emailType: EmailType,
   followupId: string,
   multiple: number | null
 ) {

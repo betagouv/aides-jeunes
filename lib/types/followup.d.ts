@@ -29,6 +29,7 @@ interface FollowupAttributes {
 
 interface FollowupMethods {
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
+  findSurvey(type: SurveyType): Survey
   updateSurvey(action: SurveyType, data?: any)
 }
 

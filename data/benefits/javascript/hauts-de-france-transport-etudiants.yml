@@ -17,7 +17,7 @@ profils:
   - type: enseignement_superieur
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=780
-teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF21%2F22
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF22%2F23
 prefix: l’
 type: float
 unit: €

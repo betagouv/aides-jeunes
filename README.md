@@ -171,9 +171,9 @@ We also utilize some ESLint plugins, such as [vue-eslint](https://eslint.vuejs.o
 
 SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%22command%22) on the production server.
 
-The `master` and `dev` branches are automatically deployed on the production server when they are updated using a [continuous deployment script](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml).
+The `main` and `dev` branches are automatically deployed on the production server when they are updated using a [continuous deployment script](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml).
 
-Note that it is also possible to re-trigger a deployment manually by clicking on `Run workflow` button on the [continuous deployment's page](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml) and selecting either the `master` or `dev` branch.
+Note that it is also possible to re-trigger a deployment manually by clicking on `Run workflow` button on the [continuous deployment's page](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml) and selecting either the `main` or `dev` branch.
 
 To access the applications server it is possible to connect to it with a registered public key using ssh:
 

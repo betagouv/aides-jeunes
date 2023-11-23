@@ -91,30 +91,6 @@ function renderAsHtml(emailType: EmailType, dataTemplate) {
     })
 }
 
-export async function emailRenderBySurveyType(
-  surveyType: SurveyType,
-  followup
-) {
-  switch (surveyType) {
-    case SurveyType.TrackClickOnBenefitActionEmail:
-      return emailRender(EmailType.BenefitAction, followup)
-    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
-      return emailRender(EmailType.SimulationUsefulness, followup)
-    case SurveyType.TousABordNotification:
-      return emailRender(EmailType.TousABordNotification, followup)
-    case SurveyType.BenefitAction:
-      return Promise.reject(
-        new Error(
-          `This surveyType "${surveyType}" is not supposed to be sent through an email`
-        )
-      )
-    default:
-      return Promise.reject(
-        new Error(`This surveyType "${surveyType}" has no email template`)
-      )
-  }
-}
-
 export async function emailRender(emailType: EmailType, followup) {
   let benefits: any = null
   let parameters: any = null
@@ -176,4 +152,28 @@ export async function emailRender(emailType: EmailType, followup) {
       }
     }
   })
+}
+
+export async function emailRenderBySurveyType(
+  surveyType: SurveyType,
+  followup
+) {
+  switch (surveyType) {
+    case SurveyType.TrackClickOnBenefitActionEmail:
+      return emailRender(EmailType.BenefitAction, followup)
+    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
+      return emailRender(EmailType.SimulationUsefulness, followup)
+    case SurveyType.TousABordNotification:
+      return emailRender(EmailType.TousABordNotification, followup)
+    case SurveyType.BenefitAction:
+      return Promise.reject(
+        new Error(
+          `This surveyType "${surveyType}" is not supposed to be sent through an email`
+        )
+      )
+    default:
+      return Promise.reject(
+        new Error(`This surveyType "${surveyType}" has no email template`)
+      )
+  }
 }

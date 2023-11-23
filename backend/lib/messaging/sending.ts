@@ -116,7 +116,7 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
 
   switch (emailType) {
     case EmailType.SimulationResults:
-      sendSimulationResultsEmail(followup)
+      await sendSimulationResultsEmail(followup)
       break
     case EmailType.BenefitAction:
       await sendSurveyEmail(followup, SurveyType.TrackClickOnBenefitActionEmail)

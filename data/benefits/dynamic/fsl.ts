@@ -117,7 +117,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_finistere: {
     label: "du département du Finistère",
-    link: "https://www.finistere.fr/A-votre-service/Habitat-Logement/Acces-et-maintien-dans-un-logement-FSL",
+    link: "https://www.finistere.fr/aides-et-services/habitat-logement/finistere-solidarite-logement-fsl/",
     excludedEPCI: "242900314",
   },
   intercommunalite_brest_metropole: {

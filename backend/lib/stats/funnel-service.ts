@@ -62,14 +62,154 @@ const getFollowupsData = async (
   beginRange: dayjs.Dayjs,
   endRange: dayjs.Dayjs
 ) => {
-  const followupWithOptinCount = await Followups.countDocuments({
-    createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
-    surveyOptin: true,
-  })
-  const followupWithoutOptinCount = await Followups.countDocuments({
-    createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
-    surveyOptin: false,
-  })
+  const followupSendingStats = await Followups.aggregate([
+    {
+      $match: {
+        createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
+      },
+    },
+    {
+      $group: {
+        _id: {
+          surveyOptin: "$surveyOptin",
+          hasPhone: {
+            $cond: {
+              if: { $ifNull: ["$smsMessageId", false] },
+              then: true,
+              else: false,
+            },
+          },
+          hasEmail: {
+            $cond: {
+              if: { $ifNull: ["$messageId", false] },
+              then: true,
+              else: false,
+            },
+          },
+        },
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        followupWithOptinCount: {
+          $sum: {
+            $cond: [{ $eq: ["$_id.surveyOptin", true] }, "$count", 0],
+          },
+        },
+        followupWithoutOptinCount: {
+          $sum: {
+            $cond: [{ $eq: ["$_id.surveyOptin", false] }, "$count", 0],
+          },
+        },
+        followupWithOptinCountSms: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", true] },
+                  { $eq: ["$_id.hasPhone", true] },
+                  { $eq: ["$_id.hasEmail", false] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+        followupWithoutOptinCountSms: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", false] },
+                  { $eq: ["$_id.hasPhone", true] },
+                  { $eq: ["$_id.hasEmail", false] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+        followupWithOptinCountEmail: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", true] },
+                  { $eq: ["$_id.hasPhone", false] },
+                  { $eq: ["$_id.hasEmail", true] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+        followupWithoutOptinCountEmail: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", false] },
+                  { $eq: ["$_id.hasPhone", false] },
+                  { $eq: ["$_id.hasEmail", true] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+        followupWithOptinCountEmailAndSms: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", true] },
+                  { $eq: ["$_id.hasPhone", true] },
+                  { $eq: ["$_id.hasEmail", true] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+        followupWithoutOptinCountEmailAndSms: {
+          $sum: {
+            $cond: [
+              {
+                $and: [
+                  { $eq: ["$_id.surveyOptin", false] },
+                  { $eq: ["$_id.hasPhone", true] },
+                  { $eq: ["$_id.hasEmail", true] },
+                ],
+              },
+              "$count",
+              0,
+            ],
+          },
+        },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        followupWithOptinCount: 1,
+        followupWithoutOptinCount: 1,
+        followupWithOptinCountSms: 1,
+        followupWithoutOptinCountSms: 1,
+        followupWithOptinCountEmail: 1,
+        followupWithoutOptinCountEmail: 1,
+        followupWithOptinCountEmailAndSms: 1,
+        followupWithoutOptinCountEmailAndSms: 1,
+      },
+    },
+  ]).exec()
+
   const followupWithSurveyCount = await Followups.countDocuments({
     "surveys.createdAt": {
       $gte: beginRange.toDate(),
@@ -84,8 +224,7 @@ const getFollowupsData = async (
   })
 
   return {
-    followupWithOptinCount,
-    followupWithoutOptinCount,
+    ...followupSendingStats[0],
     followupWithSurveyCount,
     followupWithSurveyRepliedCount,
   }

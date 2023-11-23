@@ -56,7 +56,6 @@ function defaultStore(): Store {
       counter: null,
     },
     debug: false,
-    prefillExperimentInterest: undefined,
     error: false,
     access: {
       fetching: false,
@@ -87,7 +86,6 @@ function getPersitedStateProperties(
     calculs: state.calculs || defaultCalculs(),
     recapEmailState: state.recapEmailState,
     recapPhoneState: state.recapPhoneState,
-    prefillExperimentInterest: state.prefillExperimentInterest,
   }
   if (!save) {
     persistedStoreData.dates = datesGenerator(state.simulation.dateDeValeur)
@@ -323,9 +321,7 @@ export const useStore = defineStore("store", {
     setDebug(debug: boolean) {
       this.debug = debug
     },
-    setPrefillExperimentInterest(interest: boolean) {
-      this.prefillExperimentInterest = interest
-    },
+
     addEnfant(): number {
       let enfantId
       let enfants

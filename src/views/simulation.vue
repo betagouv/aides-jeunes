@@ -64,72 +64,6 @@
         </div>
       </div>
 
-      <div
-        v-if="displayPrefillExperiment"
-        class="fr-alert fr-alert--info fr-my-1w"
-      >
-        <p> Nous souhaitons expérimenter le pré-remplissage du simulateur. </p>
-        <p>
-          Pour cela, pendant quelques jours nous collectons les informations
-          pour vous identifier et pour trouver les autres informations qui vous
-          concernent, déjà connues par l'administration.
-        </p>
-        <p>Est-ce que vous souhaitez participer à cette expérimentation ?</p>
-        <div class="fr-btns-group fr-btns-group--inline">
-          <router-link
-            class="fr-btn fr-btn--secondary"
-            to="/preremplissage"
-            @click="prefillExperimentInterestSubmit(true)"
-          >
-            Oui
-          </router-link>
-          <button
-            class="fr-btn fr-btn--secondary"
-            type="submit"
-            @click="prefillExperimentInterestSubmit(false)"
-          >
-            Non
-          </button>
-        </div>
-      </div>
-      <div
-        v-else-if="displayPrefillExperimentInterest"
-        class="fr-alert fr-alert--info fr-my-1w"
-      >
-        <p
-          >Nous souhaitons expérimenter le pré-remplissage du simulateur pour
-          vous éviter de saisir des informations déjà connues par
-          l'administration.
-        </p>
-        <p>Est-ce que cela vous serait utile ?</p>
-        <div class="fr-btns-group fr-btns-group--inline">
-          <button
-            class="fr-btn fr-btn--secondary"
-            type="submit"
-            @click="prefillExperimentInterestSubmit(true)"
-          >
-            Oui
-          </button>
-          <button
-            class="fr-btn fr-btn--secondary"
-            type="submit"
-            @click="prefillExperimentInterestSubmit(false)"
-          >
-            Non
-          </button>
-        </div>
-      </div>
-      <div
-        v-else-if="isOnFirstSimulationPage"
-        class="fr-alert fr-alert--success fr-my-1w"
-      >
-        <p>Merci pour votre aide !</p>
-        <p
-          >En donnant votre avis vous nous aidez à savoir ce qui est important
-          pour vous et donc ce sur quoi nous devons travailler.</p
-        >
-      </div>
-
       <div>
         <router-view :key="$route.path" />
       </div>
@@ -144,8 +78,6 @@ import ChaptersSummary from "@/components/summary.vue"
 import ProgressBar from "@/components/progress-bar.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
-import StatisticsMixin from "@/mixins/statistics.js"
-import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "Simulation",
@@ -156,7 +88,6 @@ export default {
     ProgressDebugger,
     ChaptersSummary,
   },
-  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
@@ -188,15 +119,6 @@ export default {
         !this.franceConnectConnected
       )
     },
-    displayPrefillExperimentInterest() {
-      return (
-        this.isOnFirstSimulationPage &&
-        this.store.prefillExperimentInterest == undefined
-      )
-    },
-    displayPrefillExperiment() {
-      return process.env.VITE_PIVOT_URL && this.displayPrefillExperimentInterest
-    },
     franceConnectError() {
       return this.$route.query.error == "france_connect_error"
     },
@@ -208,13 +130,6 @@ export default {
     disableDebug() {
       this.store.setDebug(false)
       this.$router.replace({ debug: null })
-    },
-    prefillExperimentInterestSubmit(interest) {
-      this.store.setPrefillExperimentInterest(interest)
-      this.sendEventToMatomo(
-        EventCategory.Preremplissage,
-        interest ? EventAction.Interesse : EventAction.NonInteresse
-      )
     },
   },
 }

@@ -1,0 +1,17 @@
+label: aide départementale au permis de conduire
+institution: departement_yvelines
+description: Le département des Yvelines aide les jeunes ayant de faibles revenus à obtenir le permis de conduire pour accéder à l’emploi et à la formation. Cette aide est accordée en contrepartie d’une contribution citoyenne.
+link: https://www.78-92.fr/annuaire/aides-et-services/detail/laide-au-financement-du-permis-de-conduire
+conditions:
+  - Être inscrit dans une auto-école.
+  - Être inscrit pour le passage d’un permis de conduire « classique » hors apprentissage anticipé de la conduite.
+voluntary_conditions:
+  - Effectuer entre 20 et 40 heures de contribution citoyenne bénévole au sein des services du Département ou dans une association yvelinoise (liste à retirer auprès du Secteur d’Action sociale de votre domicile).
+teleservice: https://www.78-92.fr/annuaire/aides-et-services/detail/laide-au-financement-du-permis-de-conduire#c1107
+prefix: l’
+type: float
+unit: "€"
+periodicite: ponctuelle
+entity: individus
+openfiscaPeriod: thisMonth
+interestFlag: _interetPermisDeConduire

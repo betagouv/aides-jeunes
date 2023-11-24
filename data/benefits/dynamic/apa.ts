@@ -64,7 +64,7 @@ export const APA_BY_CODE: {
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",
-    link: "https://www.ille-et-vilaine.fr/actualite/bien-vieillir-chez-soi-avec-l-apa",
+    link: "https://www.ille-et-vilaine.fr/demande-apa",
   },
   departement_isere: {
     label: "du département de l'Isère",

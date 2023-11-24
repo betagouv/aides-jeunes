@@ -28,8 +28,9 @@ conditions_generales:
     value: 18500
     period: year
 profils: []
-link: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html
-instructions: https://www.isula.corsica/Prima-Strada-une-aide-pour-les-15-25-ans-pour-passer-le-permis_a698.html
+link: https://www.ghjuventu.corsica/articles/DA8C707B-5608-4C4E-A9D9-BF1F27A64DF3
+instructions: https://www.ghjuventu.corsica/articles/DA8C707B-5608-4C4E-A9D9-BF1F27A64DF3
+teleservice: https://www.ghjuventu.corsica/my/dashboard
 prefix: l’
 type: float
 unit: €

@@ -57,7 +57,7 @@ async function sendMultipleInitialEmails(limit: number) {
 
       try {
         const survey = await sendSurveyEmail(followup, surveyType)
-        return { "survey id": survey._id }
+        return { survey_id: survey._id }
       } catch (error) {
         return { ko: error }
       }
@@ -99,7 +99,7 @@ async function sendMultipleTousABordNotificationEmails(limit: number) {
           followup,
           SurveyType.TousABordNotification
         )
-        return { ok: survey._id }
+        return { survey_id: survey._id }
       } catch (error) {
         return { ko: error }
       }

@@ -116,7 +116,6 @@ export interface StandardBenefit {
 }
 
 export interface BenefitWithChoice extends StandardBenefit {
-  choices: { value: string; label: string }[]
   choiceValue: string | null
   choiceComments: string
 }

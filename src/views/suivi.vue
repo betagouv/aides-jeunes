@@ -73,7 +73,7 @@
                     <div class="fr-grid-row">
                       <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
                         <div
-                          v-for="choice in droit.choices"
+                          v-for="choice in choices"
                           :key="choice.value"
                           class="fr-radio-group fr-radio-rich fr-mt-1w"
                         >
@@ -199,7 +199,6 @@ onMounted(async () => {
     return {
       ...benefit,
       montant,
-      choices,
       choiceValue: null,
       choiceComments: "",
     }

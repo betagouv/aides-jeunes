@@ -193,11 +193,11 @@ onMounted(async () => {
     `/api/followups/surveys/${route.query.token}`
   )
   followup.value = followupData as FetchSurvey
-  const followupBenefits: StandardBenefit[] = followup.value.benefits.map(
-    (benefit) => getBenefit(benefit.id)
+  const benefits: StandardBenefit[] = followup.value.benefits.map((benefit) =>
+    getBenefit(benefit.id)
   )
 
-  droits.value = followupBenefits.map((benefit) => {
+  droits.value = benefits.map((benefit) => {
     const montant = followup.value!.benefits.find(
       ({ id }) => id === benefit.id
     )?.amount

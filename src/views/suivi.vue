@@ -242,7 +242,7 @@ const submit = async () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.Accompagnement,
       EventAction.AfficheLienAccompagnement,
-      currentPath.value
+      route.path
     )
   }
 }

@@ -85,11 +85,20 @@ export async function persist(req: Request, res: Response) {
 }
 
 export function getFollowupDataForSurvey(req: Request, res: Response) {
+  const usefullnessSurvey = req.followup.surveys.find(
+    (survey) => survey.type === SurveyType.TrackClickOnSimulationUsefulnessEmail
+  )
+
+  const simulationWasUseful =
+    usefullnessSurvey?.answers.find((answer) => answer.id === "wasUseful")
+      ?.value ?? true // La simulation est utile par défaut
+
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(
       (benefit) => benefit.id in Benefits.benefitsMap
     ),
+    simulationWasUseful,
   } as FetchSurvey)
 }
 

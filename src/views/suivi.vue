@@ -135,7 +135,7 @@ import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
-import { StandardBenefit } from "@data/types/benefits.d.js"
+import { StandardBenefit, BenefitWithChoice } from "@data/types/benefits.d.js"
 import { FetchSurvey } from "@lib/types/survey.d.js"
 
 const choices = [
@@ -149,15 +149,9 @@ function isNegative(value) {
   return value === "failed" || value === "nothing"
 }
 
-interface FollowupBenefit extends StandardBenefit {
-  choices: { value: string; label: string }[]
-  choiceValue: string | null
-  choiceComments: string
-}
-
 const route = useRoute()
 const submitted = ref(false)
-const droits = ref<FollowupBenefit[]>([])
+const droits = ref<BenefitWithChoice[]>([])
 const followup = ref<FetchSurvey | null>(null)
 
 const createdAt = computed(() => {
@@ -209,10 +203,10 @@ onMounted(async () => {
       choiceValue: null,
       choiceComments: "",
     }
-  }) as FollowupBenefit[]
+  }) as BenefitWithChoice[]
 })
 
-const prefix = (droit: FollowupBenefit) => {
+const prefix = (droit: BenefitWithChoice) => {
   if (droit.prefix) {
     return `${droit.prefix}${droit.prefix.endsWith("’") ? "" : " "}`
   }

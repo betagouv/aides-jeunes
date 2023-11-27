@@ -5,7 +5,7 @@
     </div>
     <div>
       <div>
-        <LoadingModal v-if="!droits.length">
+        <LoadingModal v-if="loading">
           <p> Récupération de la situation en cours… </p>
         </LoadingModal>
         <div v-if="submitted" class="fr-text--center">
@@ -41,10 +41,10 @@
           </div>
         </div>
 
-        <form v-if="droits && !submitted">
+        <form v-if="!loading && !submitted">
           <p>
             Vous avez effectué une simulation le
-            <strong>{{ createdAt }}</strong
+            <strong>{{ followupCreatedAt }}</strong
             >.
           </p>
           <div class="fr-alert fr-alert--info fr-mb-4w">
@@ -55,7 +55,7 @@
             <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
           </div>
           <div
-            v-for="droit in droits"
+            v-for="droit in benefitsWithChoice"
             :key="droit.id"
             class="fr-tile fr-tile-horizontal fr-mb-2w fr-pb-2w"
             itemscope
@@ -126,17 +126,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue"
+import { ref, computed } from "vue"
 import { useRoute } from "vue-router"
 import axios from "axios"
-import dayjs from "dayjs"
-import { getBenefit } from "@/lib/benefits.js"
 import LoadingModal from "@/components/loading-modal.vue"
 import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
-import { StandardBenefit, BenefitWithChoice } from "@data/types/benefits.d.js"
-import { FetchSurvey } from "@lib/types/survey.d.js"
+import { useFollowupSurveyData } from "@/composables/use-followup-survey-data.js"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -151,25 +148,21 @@ function isNegative(value) {
 
 const route = useRoute()
 const submitted = ref(false)
-const droits = ref<BenefitWithChoice[]>([])
-const followup = ref<FetchSurvey | null>(null)
-
-const createdAt = computed(() => {
-  return (
-    followup.value && dayjs(followup.value.createdAt).format("DD MMMM YYYY")
-  )
-})
+const { followupCreatedAt, benefitsWithChoice, loading } =
+  useFollowupSurveyData(route.query.token as string)
 
 const isComplete = computed(() => {
-  const choiceValues = droits.value.map((droit) => droit.choiceValue)
+  const choiceValues = benefitsWithChoice.value.map(
+    (droit) => droit.choiceValue
+  )
   return (
     choiceValues.filter((choiceValue) => choiceValue).length ===
-    droits.value.length
+    benefitsWithChoice.value.length
   )
 })
 
 const showAccompanimentBlock = computed(() => {
-  return droits.value.some(
+  return benefitsWithChoice.value.some(
     (droit) => droit.choiceValue === "failed" || droit.choiceValue === "nothing"
   )
 })
@@ -182,30 +175,7 @@ const accompanimentClickEvent = computed(() => {
   }
 })
 
-onMounted(async () => {
-  const { data: followupData } = await axios.get(
-    `/api/followups/surveys/${route.query.token}`
-  )
-  followup.value = followupData as FetchSurvey
-  const benefits: StandardBenefit[] = followup.value.benefits.map((benefit) =>
-    getBenefit(benefit.id)
-  )
-
-  droits.value = benefits.map((benefit) => {
-    const montant = followup.value!.benefits.find(
-      ({ id }) => id === benefit.id
-    )?.amount
-
-    return {
-      ...benefit,
-      montant,
-      choiceValue: null,
-      choiceComments: "",
-    }
-  }) as BenefitWithChoice[]
-})
-
-const prefix = (droit: BenefitWithChoice) => {
+const prefix = (droit: { prefix: string }) => {
   if (droit.prefix) {
     return `${droit.prefix}${droit.prefix.endsWith("’") ? "" : " "}`
   }
@@ -213,7 +183,7 @@ const prefix = (droit: BenefitWithChoice) => {
 }
 
 const submit = async () => {
-  const answers = droits.value.map((droit) => ({
+  const answers = benefitsWithChoice.value.map((droit) => ({
     id: droit.id,
     value: droit.choiceValue,
     comments: droit.choiceComments,

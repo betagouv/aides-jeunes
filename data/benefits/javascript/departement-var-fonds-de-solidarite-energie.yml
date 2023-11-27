@@ -1,0 +1,15 @@
+label: Fonds de Solidarité Énergie
+institution: departement_var
+description: Le Fonds de Solidarité Énergie (FSE) est un dispositif venant en aide aux ménages faisant face à des difficultés pour régler leurs factures d’énergies. Sous conditions de ressources ce fonds de solidarité sert à régler tout ou une partie de votre dette énergétique contractée auprès de votre fournisseur d’électricité et/ou de gaz.
+conditions:
+  - Être majeur ou mineur émancipé ressortissant de l’Union Européenne ou étranger en situation régulière.
+  - Être titulaire d’un bail en cours (1 an minimum) et à son nom, pour un logement adapté et occupé par le demandeur ou être propriétaire occupant de son logement situé dans une zone spécifique (OPAH) et se trouver dans l’impossibilité de faire face au paiement des charges collectives (cf RI 2023).
+conditions_generales:
+  - type: attached_to_institution
+profils: []
+link: https://www.var.fr/social/insertion/fonds-de-solidarite-logement
+form: https://www.var.fr/documents/d/departement-du-var/energie-a4-2
+instructions: https://www.var.fr/documents/d/departement-du-var/notice-d_accompagnement-a-l_application-du-reglement-interieur-2023-1
+prefix: le
+type: bool
+periodicite: autre

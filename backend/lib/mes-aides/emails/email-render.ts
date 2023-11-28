@@ -7,7 +7,8 @@ import config from "../../../config/index.js"
 import openfiscaController from "../../openfisca/parameters.js"
 import { formatBenefits, basicBenefitText } from "./simulation-results.js"
 import { mjml } from "./index.js"
-import { EmailType } from "../../../enums/email.js"
+import { EmailType } from "../../../../lib/enums/messaging.js"
+import { SurveyType } from "../../../../lib/enums/survey.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 
@@ -90,7 +91,7 @@ function renderAsHtml(emailType: EmailType, dataTemplate) {
     })
 }
 
-export default async function emailRender(emailType: EmailType, followup) {
+export async function emailRender(emailType: EmailType, followup) {
   let benefits: any = null
   let parameters: any = null
   let formatedBenefits: any = {}
@@ -151,4 +152,28 @@ export default async function emailRender(emailType: EmailType, followup) {
       }
     }
   })
+}
+
+export async function emailRenderBySurveyType(
+  surveyType: SurveyType,
+  followup
+) {
+  switch (surveyType) {
+    case SurveyType.TrackClickOnBenefitActionEmail:
+      return emailRender(EmailType.BenefitAction, followup)
+    case SurveyType.TrackClickOnSimulationUsefulnessEmail:
+      return emailRender(EmailType.SimulationUsefulness, followup)
+    case SurveyType.TousABordNotification:
+      return emailRender(EmailType.TousABordNotification, followup)
+    case SurveyType.BenefitAction:
+      return Promise.reject(
+        new Error(
+          `This surveyType "${surveyType}" is not supposed to be sent through an email`
+        )
+      )
+    default:
+      return Promise.reject(
+        new Error(`This surveyType "${surveyType}" has no email template`)
+      )
+  }
 }

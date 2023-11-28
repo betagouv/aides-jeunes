@@ -3,12 +3,15 @@
 import mongoose from "mongoose"
 import configMongoose from "../backend/config/mongoose.js"
 import config from "../backend/config/index.js"
-import { EmailType } from "../backend/enums/email.js"
+import { EmailType } from "../lib/enums/messaging.js"
 import express from "express"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
 import "../backend/models/simulation.js"
-import emailRender from "../backend/lib/mes-aides/emails/email-render.js"
+import {
+  emailRender,
+  emailRenderBySurveyType,
+} from "../backend/lib/mes-aides/emails/email-render.js"
 import { SurveyType } from "../lib/enums/survey.js"
 import { __express } from "ejs"
 import "../backend/lib/mongo-connector.js"
@@ -62,7 +65,7 @@ const followupRendering = async (req: Request) => {
 
   await followup.addSurveyIfMissing(surveyType)
   await followup.save()
-  return followup.renderSurveyEmail(surveyType)
+  return emailRenderBySurveyType(surveyType, followup)
 }
 
 app.route("/mjml/:id/:type").get(
@@ -85,6 +88,9 @@ app.route("/mjml/:id/:type").get(
   function (req, res) {
     followupRendering(req).then((result) => {
       const mode = req.query.mode || "html"
+      if (!result) {
+        throw new Error("Failed to render email")
+      }
       if (mode == "html") {
         res.send(result[mode])
       } else {

@@ -4,7 +4,7 @@ import { Email } from "../../lib/types/email.js"
 
 const transporter = nodemailer.createTransport(config.smtp)
 
-export function sendMail(email: Email) {
+export function sendEmailSmtp(email: Email) {
   const { tags, ...emailParameters } = email
   const tagsFormatted = tags?.map((tag) => tag.replace(/-/g, "_")) || []
 

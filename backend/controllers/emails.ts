@@ -28,9 +28,7 @@ const getFollowupEmail = async (req, res, next) => {
     const { emailType }: { emailType: EmailType } = req.query
     const followup = req.followup
     const result = await renderEmailByType(followup, emailType)
-    if (result) {
-      res.send(result["html"])
-    }
+    res.send(result?.html)
   } catch (err) {
     next(err)
   }

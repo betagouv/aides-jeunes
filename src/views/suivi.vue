@@ -41,12 +41,27 @@
           <strong>{{ followupCreatedAt }}</strong
           >.
         </p>
-        <div class="fr-alert fr-alert--info fr-mb-4w">
-          <p>
-            Aidez-nous à améliorer la pertinence des résultats en répondant à ce
-            questionnaire :
-          </p>
-          <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
+        <div class="fr-mb-4w">
+          <div v-if="simulationWasUseful" class="fr-alert fr-alert--success">
+            <h3 class="fr-alert__title"> Merci pour votre réponse </h3>
+            <p>
+              Aidez-nous à améliorer la pertinence des résultats en répondant à
+              ce questionnaire :
+            </p>
+            <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
+          </div>
+          <div v-else class="fr-alert fr-alert--warning">
+            <h3 class="fr-alert__title">
+              Merci, nous sommes désolés que le simulateur ne vous ait pas été
+              utile
+            </h3>
+            <p
+              >À la fin de ce questionnaire vous aurez la possibilité de prendre
+              un RDV téléphonique avec une personne de l'équipe pour poser vos
+              questions sur les aides et les démarches.
+            </p>
+            <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
+          </div>
         </div>
         <div
           v-for="droit in benefitsWithChoice"
@@ -141,7 +156,7 @@ function isNegative(value) {
 
 const route = useRoute()
 const submitted = ref(false)
-const { followupCreatedAt, benefitsWithChoice, loading } =
+const { followupCreatedAt, benefitsWithChoice, simulationWasUseful, loading } =
   useFollowupSurveyData(route.query.token as string)
 
 const isComplete = computed(() => {

@@ -1,6 +1,5 @@
 import axios from "axios"
 import dayjs from "dayjs"
-
 import { getAnswer } from "../../../lib/answers.js"
 
 const sources = {
@@ -47,7 +46,64 @@ const sources = {
     return depcom?._region
   },
   situation: () => `J'ai ${"xx"} ans et je suis ${"yy"}`,
+  situation_familliale: (simulation) => {
+    const en_couple =
+      getAnswer(simulation.answers.current, "famille", "en_couple") === true
+
+    console.log("en couple: ", en_couple)
+    if (en_couple) {
+      const statut_marital = getAnswer(
+        simulation.answers.current,
+        "individu",
+        "statut_marital",
+        "conjoint"
+      )
+      console.log("statut_marital: ", statut_marital)
+      // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
+      // - Missing not available answers in the simulator : Veuf(ve), Séparé(e), Divorcé(e)
+      const situations_couple = {
+        marie: "Marié(e)",
+        pacse: "Pacsé(e)",
+        celibataire: "Union libre",
+      }
+      console.log(
+        "situations_couple[statut_marital]: ",
+        situations_couple[statut_marital]
+      )
+      return situations_couple[statut_marital]
+    }
+    return "Célibataire"
+  },
   telephone: () => "0612345678",
+}
+
+const fsl_var_sources = {
+  activite: (simulation) => {
+    const activite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "activite",
+      "demandeur"
+    )
+    console.log("activite", activite)
+    return activite
+  },
+  loyer_avec_charges: (simulation) => {
+    const { loyer, charges_locatives } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "loyer"
+    )
+    return loyer + charges_locatives
+  },
+  commune_nom: (simulation) => {
+    const { _nomCommune } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "depcom"
+    )
+    return _nomCommune
+  },
 }
 
 function enfants_beaumount(simulation) {
@@ -104,6 +160,13 @@ const mappings = {
   "abonnement-aeea-dgitm": {
     "champ_Q2hhbXAtMzM3MjU3MQ==": sources.date_naissance,
   },
+  "departement-83-demande-fonds-solidarite-energie": {
+    "champ_Q2hhbXAtMjYwMzg1MA==": sources.date_naissance,
+    "champ_Q2hhbXAtMjYxNzA3Ng==": fsl_var_sources.commune_nom,
+    "champ_Q2hhbXAtMjU2NzM2Nw==": fsl_var_sources.loyer_avec_charges,
+    "champ_Q2hhbXAtMjYwMzczMA==": fsl_var_sources.activite,
+    champ_Q2hhbXAtMjAyODY4: sources.situation_familliale,
+  },
 }
 
 function DemarchesSimplifiees(simulation, query) {
@@ -135,6 +198,7 @@ DemarchesSimplifiees.prototype.toInternal = async function () {
     a[v.id] = v.label
     return a
   }, {})
+  console.log("fieldLabelMap", fieldLabelMap)
 
   const keys = Object.keys(data)
   return keys.map((fieldId) => {

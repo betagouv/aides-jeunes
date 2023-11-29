@@ -50,13 +50,11 @@ async function sendMultipleInitialEmails(limit: number) {
 
   const results: { ok?: any; ko?: any }[] = await Promise.all(
     followups.map(async (followup: Followup) => {
-      const surveyType =
-        Math.random() > 0.5
-          ? SurveyType.TrackClickOnBenefitActionEmail
-          : SurveyType.TrackClickOnSimulationUsefulnessEmail
-
       try {
-        const survey = await sendSurveyEmail(followup, surveyType)
+        const survey = await sendSurveyEmail(
+          followup,
+          SurveyType.TrackClickOnSimulationUsefulnessEmail
+        )
         return { survey_id: survey._id }
       } catch (error) {
         return { ko: error }
@@ -117,9 +115,6 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
   switch (emailType) {
     case EmailType.SimulationResults:
       await sendSimulationResultsEmail(followup)
-      break
-    case EmailType.BenefitAction:
-      await sendSurveyEmail(followup, SurveyType.TrackClickOnBenefitActionEmail)
       break
     case EmailType.SimulationUsefulness:
       await sendSurveyEmail(

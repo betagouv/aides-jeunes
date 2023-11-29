@@ -26,7 +26,6 @@ const send_types = send.add_subparsers({
 // Single emails types parsers
 const singleEmailTypes = [
   EmailType.SimulationResults,
-  EmailType.BenefitAction,
   EmailType.SimulationUsefulness,
 ]
 singleEmailTypes.forEach((emailType) => {

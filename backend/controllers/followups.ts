@@ -202,7 +202,7 @@ async function updateSurveyInFollowup(req: Request) {
       await followup.updateSurvey(SurveyType.TousABordNotification)
       break
     default:
-      throw new Error("Unknown survey type")
+      throw new Error(`Unknown survey type: ${surveyType}`)
   }
 }
 
@@ -222,7 +222,7 @@ async function getRedirectUrl(req: Request) {
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
-      throw new Error(`Unknown survey type ${surveyType}`)
+      throw new Error(`Unknown survey type: ${surveyType}`)
   }
 }
 

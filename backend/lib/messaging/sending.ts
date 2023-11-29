@@ -112,26 +112,29 @@ function getEmailSurvey(followup: Followup): Survey | undefined {
 }
 
 export function shouldSendSurveyBySms(followup: Followup, today?): boolean {
-  if (followup.phone && !followup.email) {
+  const hasPhone = !!followup.phone
+  const hasEmail = !!followup.email
+  const emailSurvey = getEmailSurvey(followup)
+
+  if (hasPhone && !hasEmail) {
     return true
   }
 
-  if (followup.phone && followup.email) {
-    const emailSurvey = getEmailSurvey(followup)
-    if (emailSurvey && emailSurvey.answers.length === 0) {
-      const surveyEmailCreatedAt = dayjs(emailSurvey.createdAt)
-      const surveyEmailCreatedAtWithDelay = surveyEmailCreatedAt.add(
-        DelayAfterInitialSurveyEmail,
-        "day"
-      )
-      return (today || dayjs()).isAfter(surveyEmailCreatedAtWithDelay)
-    }
+  if (hasPhone && hasEmail && emailSurvey?.answers.length === 0) {
+    const surveyEmailCreatedAtWithDelay = dayjs(emailSurvey.createdAt).add(
+      DelayAfterInitialSurveyEmail,
+      "day"
+    )
+    return (today ?? dayjs()).isAfter(surveyEmailCreatedAtWithDelay)
   }
+
   return false
 }
 
-async function sendMultipleInitialSms(limit: number) {
-  const followups: any[] = await Followups.find({
+function initialSurveySmsMongooseCriteria(): any {
+  const getDaysBeforeInitialSurveyDate = (): Date =>
+    dayjs().subtract(DaysBeforeInitialSurvey, "day").toDate()
+  return {
     surveys: {
       $not: {
         $elemMatch: {
@@ -145,15 +148,27 @@ async function sendMultipleInitialSms(limit: number) {
       },
     },
     smsSentAt: {
-      $lt: dayjs().subtract(DaysBeforeInitialSurvey, "day").toDate(),
+      $lt: getDaysBeforeInitialSurveyDate(),
     },
     surveyOptin: true,
-  })
+  }
+}
+
+async function filterInitialSurveySms(
+  limit: number,
+  today?: Date
+): Promise<Followup[]> {
+  const followups = await Followups.find(initialSurveySmsMongooseCriteria())
     .sort({ createdAt: 1 })
     .limit(limit)
+  return followups.filter((followup) => shouldSendSurveyBySms(followup, today))
+}
 
-  const results: { ok?: any; ko?: any }[] = await Promise.all(
-    followups.filter(shouldSendSurveyBySms).map(async (followup: Followup) => {
+export async function sendMultipleInitialSms(limit: number, today?: Date) {
+  const followupsToSendSms: any[] = await filterInitialSurveySms(limit, today)
+
+  const results = await Promise.all(
+    followupsToSendSms.map(async (followup: Followup) => {
       try {
         const survey = await sendSurveyBySms(followup)
         return { "Survey sent": survey._id }
@@ -162,7 +177,6 @@ async function sendMultipleInitialSms(limit: number) {
       }
     })
   )
-
   console.log(results)
 }
 

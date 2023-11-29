@@ -15,6 +15,7 @@ import {
 import { Survey } from "../../../lib/types/survey.js"
 
 const DaysBeforeInitialSurvey = 6
+const DelayAfterInitialSurveyEmail = 3
 
 async function sendMultipleEmails(emailType: EmailType, limit: number) {
   switch (emailType) {
@@ -119,8 +120,11 @@ export function shouldSendSurveyBySms(followup: Followup, today?): boolean {
     const emailSurvey = getEmailSurvey(followup)
     if (emailSurvey && emailSurvey.answers.length === 0) {
       const surveyEmailCreatedAt = dayjs(emailSurvey.createdAt)
-      const surveyEmailCreatedAtPlus3Days = surveyEmailCreatedAt.add(3, "day")
-      return (today || dayjs()).isAfter(surveyEmailCreatedAtPlus3Days)
+      const surveyEmailCreatedAtWithDelay = surveyEmailCreatedAt.add(
+        DelayAfterInitialSurveyEmail,
+        "day"
+      )
+      return (today || dayjs()).isAfter(surveyEmailCreatedAtWithDelay)
     }
   }
   return false

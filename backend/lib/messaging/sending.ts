@@ -111,7 +111,7 @@ function getEmailSurvey(followup: Followup): Survey | undefined {
   )
 }
 
-export function shouldSendSurveyBySms(followup: Followup, today?): boolean {
+export function shouldSendSurveyBySms(followup: Followup): boolean {
   const hasPhone = !!followup.phone
   const hasEmail = !!followup.email
   const emailSurvey = getEmailSurvey(followup)
@@ -120,12 +120,12 @@ export function shouldSendSurveyBySms(followup: Followup, today?): boolean {
     return true
   }
 
-  if (hasPhone && hasEmail && emailSurvey?.answers.length === 0) {
+  if (hasPhone && hasEmail && emailSurvey && emailSurvey.answers.length === 0) {
     const surveyEmailCreatedAtWithDelay = dayjs(emailSurvey.createdAt).add(
       DelayAfterInitialSurveyEmail,
       "day"
     )
-    return (today ?? dayjs()).isAfter(surveyEmailCreatedAtWithDelay)
+    return dayjs().isAfter(surveyEmailCreatedAtWithDelay)
   }
 
   return false
@@ -154,18 +154,24 @@ function initialSurveySmsMongooseCriteria(): any {
   }
 }
 
-async function filterInitialSurveySms(
-  limit: number,
-  today?: Date
+export async function filterInitialSurveySms(
+  followups: any[],
+  limit: number
 ): Promise<Followup[]> {
-  const followups = await Followups.find(initialSurveySmsMongooseCriteria())
-    .sort({ createdAt: 1 })
-    .limit(limit)
-  return followups.filter((followup) => shouldSendSurveyBySms(followup, today))
+  return followups
+    .sort((a, b) => a.createdAt - b.createdAt)
+    .slice(0, limit)
+    .filter((followup) => shouldSendSurveyBySms(followup))
 }
 
-export async function sendMultipleInitialSms(limit: number, today?: Date) {
-  const followupsToSendSms: any[] = await filterInitialSurveySms(limit, today)
+export async function sendMultipleInitialSms(limit: number) {
+  const mongooseFollowups = await Followups.find(
+    initialSurveySmsMongooseCriteria()
+  )
+  const followupsToSendSms: any[] = await filterInitialSurveySms(
+    mongooseFollowups,
+    limit
+  )
 
   const results = await Promise.all(
     followupsToSendSms.map(async (followup: Followup) => {

@@ -6,6 +6,9 @@ conditions:
   - Être titulaire d’un bail en cours (1 an minimum) et à son nom, pour un logement adapté et occupé par le demandeur ou être propriétaire occupant de son logement situé dans une zone spécifique (OPAH) et se trouver dans l’impossibilité de faire face au paiement des charges collectives (cf RI 2023).
 conditions_generales:
   - type: attached_to_institution
+  - type: epcis
+    excludes:
+      - "200069042"
 profils: []
 link: https://www.var.fr/social/insertion/fonds-de-solidarite-logement
 form: https://www.var.fr/documents/d/departement-du-var/energie-a4-2

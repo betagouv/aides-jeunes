@@ -18,9 +18,23 @@ async function getSMSConfig() {
 }
 
 async function createAxiosInstance() {
-  return axios.create({
+  const instance = axios.create({
     timeout: 10000,
   })
+  instance.interceptors.response.use(
+    (response) => {
+      const { data, status } = response
+      if (status !== 200 || data.responseCode !== 0) {
+        throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
+      }
+      return response
+    },
+    (error) => {
+      throw error
+    }
+  )
+
+  return instance
 }
 
 function buildSmsUrl({ accessToken, phone, username, password, smsType }) {
@@ -66,10 +80,7 @@ export async function sendSimulationResultsSms(
       smsType: SmsType.SimulationResults,
     })
     const axiosInstance = await createAxiosInstance()
-    const { data, status } = await axiosInstance.get(smsUrl)
-    if (status !== 200 || data.responseCode !== 0) {
-      throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
-    }
+    const { data } = await axiosInstance.get(smsUrl)
     followup.smsError = undefined
     if (!followup.surveyOptin) {
       followup.phone = undefined
@@ -100,10 +111,7 @@ export async function sendSurveyBySms(followup: Followup): Promise<Survey> {
     smsType: SmsType.InitialSurvey,
   })
   const axiosInstance = await createAxiosInstance()
-  const { data, status } = await axiosInstance.get(smsUrl)
-  if (status !== 200 || data.responseCode !== 0) {
-    throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
-  }
+  const { data } = await axiosInstance.get(smsUrl)
   survey.messageId = data.messageIds[0]
   survey.error = undefined
   survey.smsSentAt = dayjs().toDate()

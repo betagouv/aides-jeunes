@@ -140,7 +140,9 @@ function initialSurveySmsMongooseCriteria(): any {
         $elemMatch: {
           type: {
             $in: [
-              SurveyType.BenefitAction,
+              SurveyType.BenefitAction, // TODO:
+              // - remove this line 10 days after this comment added in production
+              //  - add a condition on createdAt : { $gt: "this comment added in production date" }
               SurveyType.TrackClickOnBenefitActionSms,
             ],
           },

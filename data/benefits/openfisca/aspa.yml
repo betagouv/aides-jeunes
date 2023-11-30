@@ -7,7 +7,7 @@ conditions:
   - Avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles vous avez droit.
   - Votre conjoint ou conjointe doit avoir demandé toutes les retraites (générale, réversion, complémentaire…) auxquelles il ou elle a droit.
 link: https://www.service-public.fr/particuliers/vosdroits/F16871
-form: https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub/files/PDF/demande-aspa.pdf
+form: https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub/files/PDF/PS/demande-aspa.pdf
 floorAt: 10
 prefix: l’
 type: float

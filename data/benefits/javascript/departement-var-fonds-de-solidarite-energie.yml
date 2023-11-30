@@ -9,6 +9,8 @@ conditions_generales:
   - type: epcis
     excludes:
       - "200069042"
+  - type: difficultes_acces_ou_frais_logement
+    value: true
 profils: []
 link: https://www.var.fr/social/insertion/fonds-de-solidarite-logement
 form: https://www.var.fr/documents/d/departement-du-var/energie-a4-2

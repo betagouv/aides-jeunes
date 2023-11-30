@@ -214,8 +214,8 @@ async function getRedirectUrl(req: Request) {
     case SurveyType.TrackClickOnBenefitActionEmail:
     case SurveyType.TrackClickOnBenefitActionSms: {
       await followup.addSurveyIfMissing(SurveyType.BenefitAction)
-      const survey = followup.findSurvey(surveyType)
-      survey.openedAt = dayjs().toDate()
+      const surveyOpened = await followup.addSurveyIfMissing(surveyType)
+      surveyOpened.openedAt = dayjs().toDate()
       await followup.save()
       return followup.surveyPath
     }

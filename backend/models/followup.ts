@@ -21,10 +21,6 @@ FollowupSchema.method(
   }
 )
 
-FollowupSchema.method("findSurvey", function (type: SurveyType) {
-  return this.surveys.find((survey) => survey.type === type)
-})
-
 FollowupSchema.method("updateSurvey", function (type, answers) {
   const surveys: Survey[] = Array.from(this.surveys)
   const survey = surveys.find((s) => s.type === type)

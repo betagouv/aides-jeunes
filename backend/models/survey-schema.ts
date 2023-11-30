@@ -10,6 +10,7 @@ const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
     messageId: { type: String },
     repliedAt: { type: Date },
     openedAt: { type: Date },
+    smsSentAt: { type: Date },
     error: { type: Object },
     answers: [
       {

@@ -12,9 +12,7 @@ interface FollowupAttributes {
   smsSentAt: Date
   messageId: string
   smsMessageId: string
-  smsSurveySentAt: Date
-  smsSurveyMessageId: string
-  surveySentAt: Date
+  smsSentAt: Date
   benefits: any
   surveyOptin: boolean
   surveys: Survey[]

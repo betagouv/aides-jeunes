@@ -105,8 +105,8 @@ export async function sendSurveyBySms(followup: Followup): Promise<Survey> {
     throw new Error(`SMS request failed. Body: ${JSON.stringify(data)}`)
   }
   survey.messageId = data.messageIds[0]
-  followup.smsSurveyError = undefined
-  followup.smsSurveySentAt = dayjs().toDate()
+  survey.error = undefined
+  survey.smsSentAt = dayjs().toDate()
   await followup.save()
   return survey
 }

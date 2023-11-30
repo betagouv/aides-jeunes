@@ -23,6 +23,7 @@ export interface Survey {
   type: SurveyType
   createdAt?: Date
   openedAt?: Date
+  smsSentAt?: Date
 }
 
 interface FetchSurvey {

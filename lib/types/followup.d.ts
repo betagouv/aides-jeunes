@@ -36,7 +36,6 @@ interface FollowupVirtuals {
   emailRenderPath: string
   returnPath: string
   surveyPath: string
-  tousABordNotificationCta: string
   surveyPathTracker: string
   wasUsefulPath: string
   wasNotUsefulPath: string

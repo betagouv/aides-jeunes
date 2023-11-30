@@ -36,10 +36,7 @@ singleEmailTypes.forEach((emailType) => {
 })
 
 // Multiple emails types parsers
-const multipleEmailTypes = [
-  EmailType.InitialSurvey,
-  EmailType.TousABordNotification,
-]
+const multipleEmailTypes = [EmailType.InitialSurvey]
 multipleEmailTypes.forEach((emailType) => {
   const parser = send_types.add_parser(emailType)
   parser.add_argument("--multiple", {

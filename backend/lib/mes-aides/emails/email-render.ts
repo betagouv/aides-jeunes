@@ -23,14 +23,10 @@ const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml"
 )
-const tousABordNotificationTemplate = readFile(
-  "templates/tous-a-bord-notification.mjml"
-)
 const emailTemplates = {
   [EmailType.SimulationResults]: simulationResultsTemplate,
   [EmailType.BenefitAction]: benefitActionTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTemplate,
-  [EmailType.TousABordNotification]: tousABordNotificationTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
@@ -39,14 +35,10 @@ const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
 const simulationUsefulnessTextTemplate = readFile(
   "templates/simulation-usefulness.txt"
 )
-const tousABordNotificationTextTemplate = readFile(
-  "templates/tous-a-bord-notification.txt"
-)
 const textTemplates = {
   [EmailType.SimulationResults]: simulationResultsTextTemplate,
   [EmailType.BenefitAction]: benefitActionTextTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTextTemplate,
-  [EmailType.TousABordNotification]: tousABordNotificationTextTemplate,
 }
 
 const dataTemplateBuilder = (
@@ -59,7 +51,6 @@ const dataTemplateBuilder = (
     benefitTexts,
     baseURL: config.baseURL,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
-    tousABordNotificationCta: `${config.baseURL}${followup.tousABordNotificationCta}`,
     droits: formatedBenefits,
     emailRenderURL: `${config.baseURL}${followup.emailRenderPath}${emailType}`,
     returnURL: `${config.baseURL}${followup.returnPath}`,
@@ -144,12 +135,6 @@ export async function emailRender(emailType: EmailType, followup) {
         text: values[0],
         html: values[1].html,
       }
-    } else if (emailType === EmailType.TousABordNotification) {
-      return {
-        subject: `Déplacez-vous pour 5€ / mois sur votre réseau bus et TER`,
-        text: values[0],
-        html: values[1].html,
-      }
     }
   })
 }
@@ -163,8 +148,6 @@ export async function emailRenderBySurveyType(
       return emailRender(EmailType.BenefitAction, followup)
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
       return emailRender(EmailType.SimulationUsefulness, followup)
-    case SurveyType.TousABordNotification:
-      return emailRender(EmailType.TousABordNotification, followup)
     case SurveyType.BenefitAction:
       return Promise.reject(
         new Error(

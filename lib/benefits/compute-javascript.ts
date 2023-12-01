@@ -103,6 +103,20 @@ export function testGeographicalEligibility(
   )
 }
 
+export function testExcludedEpcis(
+  condition: any,
+  { situation }: { situation: Situation }
+): boolean {
+  if (!condition.values || condition.values.length === 0) {
+    return true
+  }
+  const situationEpci = situation.menage?._epci
+  if (!situationEpci) {
+    return true
+  }
+  return !condition.values.includes(situationEpci)
+}
+
 export const CONDITION_STRATEGY: Conditions = {
   boursier: {
     test: (_, { openfiscaResponse, periods }) => {
@@ -184,6 +198,9 @@ export const CONDITION_STRATEGY: Conditions = {
   },
   epcis: {
     test: testGeographicalEligibility,
+  },
+  excluded_epcis: {
+    test: testExcludedEpcis,
   },
   annee_etude: {
     test: (condition, { situation }: { situation: Situation }) => {

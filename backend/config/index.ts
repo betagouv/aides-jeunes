@@ -52,7 +52,7 @@ const config: Configuration = {
   smtp: {
     host: process.env.SMTP_HOST || "localhost",
     port: process.env.SMTP_PORT || "7777",
-    requireTLS: process.env.SMTP_REQUIRE_TLS === "true",
+    requireTLS: process.env.SMTP_REQUIRE_TLS !== "false",
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,

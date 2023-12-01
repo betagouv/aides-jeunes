@@ -274,6 +274,8 @@ jobs:
           browser: chrome
           config-file: cypress.config.ts
           runTests: false
+      - name: Copy cypress env file
+        run: cp .env.e2e .env
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:

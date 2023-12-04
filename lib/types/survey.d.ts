@@ -29,4 +29,5 @@ interface FetchSurvey {
     id: string
     amount: number | boolean
   }[]
+  simulationWasUseful: boolean
 }

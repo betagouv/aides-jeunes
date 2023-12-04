@@ -12,6 +12,7 @@ import { useStore } from "@/stores/index.js"
 export function useFollowupSurveyData(token: string) {
   const followupCreatedAt = ref<string>("")
   const benefitsWithChoice = ref<BenefitWithChoice[]>([])
+  const simulationWasUseful = ref<boolean>(false)
   const loading = ref<boolean>(true)
   const store = useStore()
   const router = useRouter()
@@ -24,6 +25,7 @@ export function useFollowupSurveyData(token: string) {
     followupCreatedAt.value = dayjs(followupSurveyData.createdAt).format(
       "DD MMMM YYYY"
     )
+    simulationWasUseful.value = followupSurveyData.simulationWasUseful
     const benefits: StandardBenefit[] = followupSurveyData.benefits.map(
       (benefit) => ({
         ...getBenefit(benefit.id),
@@ -52,6 +54,7 @@ export function useFollowupSurveyData(token: string) {
   return {
     followupCreatedAt,
     benefitsWithChoice,
+    simulationWasUseful,
     loading,
   }
 }

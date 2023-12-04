@@ -135,6 +135,9 @@ function initialSurveySmsMongooseCriteria(): any {
   const getDaysBeforeInitialSurveyDate = (): Date =>
     dayjs().subtract(DaysBeforeInitialSurvey, "day").toDate()
   return {
+    phone: {
+      $exists: true,
+    },
     surveys: {
       $not: {
         $elemMatch: {
@@ -161,7 +164,6 @@ export async function filterInitialSurveySms(
   limit: number
 ): Promise<Followup[]> {
   return followups
-    .sort((a, b) => a.createdAt - b.createdAt)
     .slice(0, limit)
     .filter((followup) => shouldSendSurveyBySms(followup))
 }
@@ -169,7 +171,7 @@ export async function filterInitialSurveySms(
 export async function sendMultipleInitialSms(limit: number) {
   const mongooseFollowups = await Followups.find(
     initialSurveySmsMongooseCriteria()
-  )
+  ).sort({ createdAt: 1 })
   const followupsToSendSms: any[] = await filterInitialSurveySms(
     mongooseFollowups,
     limit

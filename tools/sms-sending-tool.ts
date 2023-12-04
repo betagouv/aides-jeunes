@@ -23,18 +23,20 @@ const send_types = send.add_subparsers({
   dest: "type",
 })
 
-// Parser builder : single sms option by id for all sms types
-const smsCategories = [SmsType.InitialSurvey, SmsType.SimulationResults]
-smsCategories.forEach((smsType) => {
-  const single_sms_id_parser = send_types.add_parser(smsType)
-  single_sms_id_parser.add_argument("--id", {
+const initial_survey_parser = send_types.add_parser(SmsType.InitialSurvey)
+const simulation_results_parser = send_types.add_parser(
+  SmsType.SimulationResults
+)
+
+const single_sms_id_parsers = [initial_survey_parser, simulation_results_parser]
+
+single_sms_id_parsers.forEach((parser) => {
+  parser.add_argument("--id", {
     help: "Followup Id",
   })
 })
 
-// Parser builder : multiple sms option for InitialSurvey sms only
-const multiple_sms_parser = send_types.add_parser(SmsType.InitialSurvey)
-multiple_sms_parser.add_argument("--multiple", {
+initial_survey_parser.add_argument("--multiple", {
   help: "Maximum number of sms to send",
 })
 

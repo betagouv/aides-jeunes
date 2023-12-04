@@ -10,15 +10,11 @@ import {
 } from "../messaging/email/email-service.js"
 
 const DaysBeforeInitialEmail = 6
-const DaysBeforeTousABordNotificationEmail = 2
 
 async function sendMultipleEmails(emailType: EmailType, limit: number) {
   switch (emailType) {
     case EmailType.InitialSurvey:
       await sendMultipleInitialEmails(limit)
-      break
-    case EmailType.TousABordNotification:
-      await sendMultipleTousABordNotificationEmails(limit)
       break
     default:
       throw new Error(`Unknown email type ${emailType} for multiple emails`)
@@ -62,47 +58,6 @@ async function sendMultipleInitialEmails(limit: number) {
     })
   )
 
-  console.log(results)
-}
-
-async function sendMultipleTousABordNotificationEmails(limit: number) {
-  const followups = await Followups.find({
-    benefits: {
-      $elemMatch: {
-        id: "pass-pass-pour-les-demandeurs-demploi",
-      },
-    },
-    sentAt: {
-      $lt: dayjs()
-        .subtract(DaysBeforeTousABordNotificationEmail, "day")
-        .toDate(),
-    },
-    email: { $exists: true },
-    surveyOptin: true,
-    surveys: {
-      $not: {
-        $elemMatch: {
-          type: SurveyType.TousABordNotification,
-        },
-      },
-    },
-  })
-    .sort({ createdAt: 1 })
-    .limit(limit)
-
-  const results = await Promise.all(
-    followups.map(async (followup: Followup) => {
-      try {
-        const survey = await sendSurveyEmail(
-          followup,
-          SurveyType.TousABordNotification
-        )
-        return { survey_id: survey._id }
-      } catch (error) {
-        return { ko: error }
-      }
-    })
-  )
   console.log(results)
 }
 

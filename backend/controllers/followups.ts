@@ -84,7 +84,7 @@ export async function persist(req: Request, res: Response) {
   }
 }
 
-export function getFollowup(req: Request, res: Response) {
+export function getFollowupDataForSurvey(req: Request, res: Response) {
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(

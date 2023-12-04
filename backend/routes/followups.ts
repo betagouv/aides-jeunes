@@ -7,13 +7,13 @@ import {
   showFollowup,
   showSurveyResults,
   showSurveyResultByEmail,
-  getFollowup,
+  getFollowupDataForSurvey,
   logSurveyLinkClick,
 } from "../controllers/followups.js"
 import githubController from "../controllers/github.js"
 
 const followupsRoutes = function (api: Express) {
-  api.route("/followups/surveys/:accessToken").get(getFollowup)
+  api.route("/followups/surveys/:accessToken").get(getFollowupDataForSurvey)
   api
     .route("/followups/surveys/:accessToken/answers")
     .post(express.json(), postSurvey)

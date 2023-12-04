@@ -115,6 +115,11 @@ export interface StandardBenefit {
   teleservicePrefill?: string
 }
 
+export interface BenefitWithChoice extends StandardBenefit {
+  choiceValue: string | null
+  choiceComments: string
+}
+
 export interface BenefitExtra {
   id: string
   entity?: string

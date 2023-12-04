@@ -126,6 +126,15 @@ fields:
         name: values
         widget: list
         hint: Pour saisir plusieurs EPCI, séparez les codes SIREN par une virgule.
+  field_excluded_epcis: &field_excluded_epcis
+    label: Condition d'exclusion géographique d'EPCI
+    name: excluded_epcis
+    widget: object
+    fields:
+      - label: Code SIREN des EPCI exclues
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs EPCI, séparez les codes SIREN par une virgule.
   field_communes: &field_communes
     label: Condition géographique communale
     name: communes
@@ -220,6 +229,10 @@ fields:
     <<: *field_empty
     label: Habite dans le périmètre géographique l'institution (uniquement commune, epci, département ou région)
     name: attached_to_institution
+  field_exclude_epcis: &field_exclude_epcis
+    <<: *field_empty
+    label: Exclure les EPCI
+    name: exclude_epcis
   field_select_statut_occupation_logement:
     &field_select_statut_occupation_logement
     widget: select
@@ -780,6 +793,7 @@ fields:
       - *field_regions
       - *field_departements
       - *field_epcis
+      - *field_excluded_epcis
       - *field_communes
       - *field_regime_securite_sociale
       - *field_quotient_familial

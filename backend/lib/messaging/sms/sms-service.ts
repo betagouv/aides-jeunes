@@ -52,7 +52,7 @@ function buildSmsUrl({ accessToken, phone, username, password, smsType }) {
       break
     case SmsType.InitialSurvey:
       surveyLink = `${baseURL}/api/r/${accessToken}`
-      text = `Bonjour\nVotre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile?\nVoici un court sondage : ${surveyLink}\n1jeune1solution`
+      text = `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? Dites-le nous : ${surveyLink}`
       break
     default:
       throw new Error(`Unknown SMS type: ${smsType}`)

@@ -1,6 +1,9 @@
 label: Revenu Solidarité Jeunes
 institution: intercommunalite_metropole_lyon
-description: Le Revenu Solidarité Jeunes est une aide proposée par la Métropole de Lyon pour les 18-24 ans en difficulté financière.
+description: Le Revenu Solidarité Jeunes est une aide proposée par la Métropole de Lyon pour les 18-24 ans en difficulté financière. Il s'agit d'une aide financière mensuelle et la possibilité d’accéder à des actions d’accompagnement sur des thématiques variées (l’accès au logement, l’accès aux soins, l’accès à ses droits, la définition d’un projet professionnel, la découverte de l’entreprise, la mobilité…).
+conditions:
+  - Résider dans la Métropole de Lyon depuis au moins 6 mois.
+  - Ne pas bénéficier du soutien financier des parents ou d’un tiers.
 link: https://aides-jeunes.grandlyon.com/#c21886
 teleservice: https://aides-jeunes.grandlyon.com/#c21886
 prefix: le

@@ -216,6 +216,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                     subject.activite
                   ) &&
                   !subject.ass_precondition_remplie &&
+                  !subject.service_civique &&
                   !enfant_a_charge
                 )
               },

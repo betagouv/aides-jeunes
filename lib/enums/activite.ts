@@ -9,7 +9,6 @@ export enum Activite {
   Professionnalisation = "professionnalisation",
   Retraite = "retraite",
   Salarie = "salarie",
-  ServiceCivique = "service_civique",
   SituationHandicap = "situation_handicap",
   Stagiaire = "stagiaire",
 }

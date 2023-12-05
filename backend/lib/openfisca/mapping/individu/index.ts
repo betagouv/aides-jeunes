@@ -12,6 +12,8 @@ import {
   findCommuneByInseeCode,
 } from "../../../mes-aides/distance.js"
 
+import common from "../common.js"
+
 import { Activite } from "../../../../../lib/enums/activite.js"
 import { IndividuGenerator } from "../../../../../lib/types/individu.js"
 
@@ -139,6 +141,12 @@ const individuSchema: IndividuGenerator = {
       return regime_securite_sociale === "regime_agricole"
         ? "agricole"
         : "non_agricole"
+    },
+  },
+  sous_contrat_engagement_jeune: {
+    fn: function (individu, situation) {
+      const periods = common.getPeriods(situation.dateDeValeur)
+      return individu.contrat_engagement_jeune?.[periods.thisMonth] > 0
     },
   },
 }

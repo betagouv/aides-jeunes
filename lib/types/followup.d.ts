@@ -12,22 +12,20 @@ interface FollowupAttributes {
   smsSentAt: Date
   messageId: string
   smsMessageId: string
-  surveySentAt: Date
+  smsSentAt: Date
   benefits: any
   surveyOptin: boolean
   surveys: Survey[]
   version: number
   error: any
   smsError: any
+  smsSurveyError: any
   accessToken: string
   tousABordNotificationEmail: any
   __v: number
 }
 
 interface FollowupMethods {
-  postSimulationResultsSms(messageId: string): void
-  renderSimulationResultsSms(): any
-  sendSimulationResultsSms(): Promise<void>
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
   updateSurvey(action: SurveyType, data?: any)
 }

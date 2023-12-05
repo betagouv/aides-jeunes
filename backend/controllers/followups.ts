@@ -13,6 +13,8 @@ import Request from "../types/express.d.js"
 import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
 import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
+import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
+import dayjs from "dayjs"
 
 export function followup(
   req: Request,
@@ -68,7 +70,7 @@ export async function persist(req: Request, res: Response) {
           config.smsService.internationalDiallingCodes
         )
       ) {
-        await followup.sendSimulationResultsSms()
+        await sendSimulationResultsSms(followup)
       } else {
         return res.status(422).send("Unsupported phone number format")
       }
@@ -200,25 +202,27 @@ async function updateSurveyInFollowup(req: Request) {
       await followup.updateSurvey(SurveyType.TousABordNotification)
       break
     default:
-      throw new Error("Unknown survey type")
+      throw new Error(`Unknown survey type: ${surveyType}`)
   }
 }
 
 async function getRedirectUrl(req: Request) {
   const { surveyType } = req.params
   const { followup } = req
-
   switch (surveyType) {
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
     case SurveyType.TrackClickOnBenefitActionEmail:
+    case SurveyType.TrackClickOnBenefitActionSms: {
       await followup.addSurveyIfMissing(SurveyType.BenefitAction)
+      const surveyOpened = await followup.addSurveyIfMissing(surveyType)
+      surveyOpened.openedAt = dayjs().toDate()
       await followup.save()
-
       return followup.surveyPath
+    }
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
-      throw new Error("Unknown survey type")
+      throw new Error(`Unknown survey type: ${surveyType}`)
   }
 }
 
@@ -227,6 +231,17 @@ export async function logSurveyLinkClick(req: Request, res: Response) {
     await updateSurveyInFollowup(req)
     const redirectUrl = await getRedirectUrl(req)
 
+    res.redirect(redirectUrl)
+  } catch (error) {
+    console.error("error", error)
+    return res.sendStatus(404)
+  }
+}
+
+export async function smsSurveyLinkClick(req: Request, res: Response) {
+  try {
+    req.params.surveyType = SurveyType.TrackClickOnBenefitActionSms
+    const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
   } catch (error) {
     console.error("error", error)

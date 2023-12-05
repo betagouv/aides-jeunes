@@ -28,10 +28,9 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
     },
     createdAt: { type: Date, default: Date.now },
     sentAt: { type: Date },
-    smsSentAt: { type: Date },
     messageId: { type: String },
     smsMessageId: { type: String },
-    surveySentAt: { type: Date },
+    smsSentAt: { type: Date },
     benefits: { type: Object },
     surveyOptin: { type: Boolean, default: false },
     surveys: {

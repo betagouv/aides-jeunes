@@ -3,7 +3,9 @@ institution: grand_est
 description:
   Ce dispositif permet aux jeunes de 18 à 29 ans, titulaires d'un diplôme ou non,
   d’acquérir des compétences et une première expérience professionnelle tutorée
-  d’une durée de six mois, au sein d’une entreprise.
+  d’une durée de six mois, au sein d’une entreprise. En intégrant le dispositif PACE,
+  vous percevrez une remunération de stagiaire de la formation professionnelle, dont le
+  montant est régit par le Code du Travail.
 conditions_generales:
   - type: age
     operator: ">="
@@ -22,4 +24,4 @@ prefix: le
 type: float
 unit: €
 periodicite: mensuelle
-montant: 500
+montant: 528

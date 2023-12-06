@@ -45,20 +45,13 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value ?? this.modelValue ?? ""
+        return this.value || this.modelValue || ""
       },
       set(value) {
         if (typeof value === "string") {
           value = this.parseInputString(value)
         }
-
-        if (value === "") {
-          this.error = false
-          this.$emit("update:modelValue", "")
-          this.$emit("input-error", this.error)
-          return
-        }
-
+        value = value == "" ? 0 : value
         const valid = !isNaN(parseFloat(value))
         const floor = this.min == null || this.min <= parseFloat(value)
         const ceiling = this.max == null || this.max >= parseFloat(value)

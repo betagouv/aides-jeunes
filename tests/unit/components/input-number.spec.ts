@@ -24,7 +24,7 @@ function testInputNumber(
 }
 
 describe("input-number.vue", () => {
-  it("accept valid values", async () => {
+  it("accept valid numbers", async () => {
     const testSet = [
       { input: "1", result: 1 },
       { input: "27,45", result: 27.45 },
@@ -33,7 +33,7 @@ describe("input-number.vue", () => {
       { input: "044", result: 44 },
       { input: "-1.45", result: -1.45 },
       { input: "200.0", result: 200 },
-      { input: "", result: "" },
+      { input: "", result: 0 },
     ]
 
     for (const test of testSet) {
@@ -59,7 +59,7 @@ describe("input-number.vue", () => {
   it("reject invalid numbers", async () => {
     const testSet = [
       { input: "1+2", result: 12 },
-      { input: "Infinity", result: "" },
+      { input: "Infinity", result: 0 },
       { input: "1e25", result: 125 },
       { input: undefined, result: undefined, error: true },
     ]

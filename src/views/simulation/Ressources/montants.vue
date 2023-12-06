@@ -105,7 +105,7 @@ export default {
     this.types.forEach((type) => {
       Object.keys(type.amounts).forEach((period) => {
         if (type.amounts[period] === null || type.amounts[period] === "") {
-          type.amounts[period] = ""
+          type.amounts[period] = 0
         }
       })
     })
@@ -192,11 +192,7 @@ export default {
         path: this.$route.path,
         value: this.types.map((type) => {
           Object.keys(type.amounts).forEach(function (period) {
-            if (
-              type.amounts[period] === null ||
-              isNaN(type.amounts[period]) ||
-              type.amounts[period] === ""
-            ) {
+            if (type.amounts[period] === null || isNaN(type.amounts[period])) {
               type.amounts[period] = 0
             }
           })

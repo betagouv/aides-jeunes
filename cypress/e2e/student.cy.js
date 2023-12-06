@@ -45,6 +45,7 @@ context("Full simulation", () => {
 
     revenu.fill_ressources_types(["salaire_net"])
     revenu.fillConstantRevenu(1101.42)
+    revenu.checkFieldRequired()
     revenu.fillRevenuBrut(1)
 
     projet.fill__interetsAidesVelo(["velo_mecanique", "velo_electrique"])

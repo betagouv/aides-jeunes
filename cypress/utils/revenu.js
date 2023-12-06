@@ -1,4 +1,4 @@
-import { submit } from "./form.js"
+import { submit, checkRequiredField } from "./form.js"
 import { urlInclude } from "./controllers.js"
 
 const fill_ressources_types = (types = []) => {
@@ -51,6 +51,13 @@ const fillInconstantRevenu = (revenus) => {
   submit()
 }
 
+const checkFieldRequired = () => {
+  checkRequiredField()
+  cy.get("form").find('input[type="text"]').type(1)
+  cy.get("form").find('input[type="text"]').clear()
+  checkRequiredField()
+}
+
 const fillRevenuBrut = (revenu) => {
   cy.get("form").find('input[type="text"]').type(revenu)
   cy.checkA11y()
@@ -79,6 +86,7 @@ export default {
   fill_ressources_types,
   fillConstantRevenu,
   fillInconstantRevenu,
+  checkFieldRequired,
   fillRevenuBrut,
   fillChildrenRessources,
 }

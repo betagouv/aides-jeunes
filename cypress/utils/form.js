@@ -2,6 +2,12 @@ import { urlInclude } from "./controllers.js"
 
 const submit = () => cy.get('button[type="submit"]:contains("Suivant")').click()
 
+const checkRequiredField = () => {
+  submit()
+  cy.get(".fr-alert--warning").should("exist")
+  cy.get(".fr-alert--warning").should("contain", "Ce champ est obligatoire")
+}
+
 const fillRadio = (url, value, noSubmit) => {
   urlInclude(url)
   cy.checkA11y()
@@ -59,6 +65,7 @@ const fillPatrimoine = () => {
 
 export default {
   submit,
+  checkRequiredField,
   fillRadio,
   fillCheckboxes,
   fillNumber,

@@ -45,7 +45,7 @@ export const EXTENSION_VARIABLES = {
   },
   "openfisca-france-local": {
     familles: [],
-    individus: [],
+    individus: ["sous_contrat_engagement_jeune"],
     menages: [],
   },
 }

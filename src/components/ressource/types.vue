@@ -12,7 +12,7 @@
         </span>
         depuis {{ store.dates.twelveMonthsAgo.label }}</strong
       >. Vous pourrez ensuite saisir les montants.
-      <EnSavoirPlus />
+      <EnSavoirPlus v-if="hasSeparatedParents" />
     </p>
     <fieldset
       v-for="category in categories"
@@ -106,6 +106,9 @@ export default {
       return `${count} ${
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
       }`
+    },
+    hasSeparatedParents() {
+      return this.store.situation?.parents?._situation === "separes"
     },
   },
   watch: {

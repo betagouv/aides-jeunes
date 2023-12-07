@@ -71,8 +71,18 @@ function transformAnswersWithServiceCivique(answers, age) {
     return answer.id === "demandeur" && answer.fieldName === "handicap"
   })
 
+  // Si il n'y a pas de question handicap, on l'ajoute apres la question activite
+  // p.e. anonymisation
+  const activityAnswerIndex = answers.findIndex((answer) => {
+    return answer.id === "demandeur" && answer.fieldName === "activite"
+  })
+
   // Warning: splice modifie l'array en place
-  answers.splice(handicapAnswerIndex, 0, serviceCiviqueAnswer)
+  answers.splice(
+    handicapAnswerIndex !== -1 ? handicapAnswerIndex : activityAnswerIndex + 1,
+    0,
+    serviceCiviqueAnswer
+  )
   return answers
 }
 

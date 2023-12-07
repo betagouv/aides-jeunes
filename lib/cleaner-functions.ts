@@ -38,6 +38,7 @@ function getAnonymizedAnswer(answer, simulation) {
           case "_interetPermisDeConduire":
           case "_interetsAidesVelo":
           case "activite":
+          case "service_civique":
           case "age":
           case "alternant":
           case "boursier":

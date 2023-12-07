@@ -61,7 +61,7 @@ const PROFILE_STRATEGY = {
     return situation.demandeur?.activite === Activite.Salarie
   },
   service_civique: ({ situation }: { situation: Situation }): boolean => {
-    return situation.demandeur?.activite === Activite.ServiceCivique
+    return situation.demandeur?.service_civique === true
   },
   stagiaire: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.stagiaire === true

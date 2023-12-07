@@ -10,6 +10,7 @@ export interface Individu {
   salaire_net?: number
   statut_marital?: string
   activite?: string
+  service_civique?: boolean
   scolarite?: string
   _contrat_alternant?: string
   stagiaire?: boolean

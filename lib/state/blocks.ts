@@ -131,6 +131,20 @@ function individuBlockFactory(id, chapter?: ChapterName) {
             },
           ]
         : []),
+      ...(demandeur
+        ? [
+            {
+              isActive: (subject, situation) => {
+                const age = IndividuMethods.age(
+                  subject,
+                  datesGenerator(situation.dateDeValeur).today.value
+                )
+                return age <= 31
+              },
+              steps: [r("service_civique")],
+            },
+          ]
+        : []),
       r("handicap"),
       {
         isActive: (subject) => subject.handicap,
@@ -202,6 +216,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                     subject.activite
                   ) &&
                   !subject.ass_precondition_remplie &&
+                  !subject.service_civique &&
                   !enfant_a_charge
                 )
               },

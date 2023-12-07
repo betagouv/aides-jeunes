@@ -31,7 +31,7 @@ function getSortedMigrations(modelName) {
     a: any,
     b: any
   ) {
-    return a.version - b.version
+    return a.default.version - b.default.version
   })
 }
 

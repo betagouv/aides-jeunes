@@ -190,7 +190,10 @@ export default {
     requiredValueMissing(submit) {
       const hasError =
         this.value === undefined ||
-        (this.questionType === "text" && !this.value)
+        (this.questionType === "text" && !this.value) ||
+        (this.questionType === "number" &&
+          typeof this.value !== "number" &&
+          !isNaN(this.value))
 
       if (submit) {
         this.store.updateError(hasError && "Ce champ est obligatoire.")

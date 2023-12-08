@@ -50,7 +50,6 @@ const sources = {
     const en_couple =
       getAnswer(simulation.answers.current, "famille", "en_couple") === true
 
-    console.log("en couple: ", en_couple)
     if (en_couple) {
       const statut_marital = getAnswer(
         simulation.answers.current,
@@ -58,7 +57,7 @@ const sources = {
         "statut_marital",
         "conjoint"
       )
-      console.log("statut_marital: ", statut_marital)
+
       // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
       // - Missing not available answers in the simulator : Veuf(ve), Séparé(e), Divorcé(e)
       const situations_couple = {
@@ -66,10 +65,7 @@ const sources = {
         pacse: "Pacsé(e)",
         celibataire: "Union libre",
       }
-      console.log(
-        "situations_couple[statut_marital]: ",
-        situations_couple[statut_marital]
-      )
+
       return situations_couple[statut_marital]
     }
     return "Célibataire"
@@ -85,7 +81,6 @@ const fsl_var_sources = {
       "activite",
       "demandeur"
     )
-    console.log("activite", activite)
     return activite
   },
   loyer_avec_charges: (simulation) => {
@@ -198,7 +193,6 @@ DemarchesSimplifiees.prototype.toInternal = async function () {
     a[v.id] = v.label
     return a
   }, {})
-  console.log("fieldLabelMap", fieldLabelMap)
 
   const keys = Object.keys(data)
   return keys.map((fieldId) => {

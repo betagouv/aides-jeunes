@@ -50,25 +50,25 @@ const sources = {
     const en_couple =
       getAnswer(simulation.answers.current, "famille", "en_couple") === true
 
-    if (en_couple) {
-      const statut_marital = getAnswer(
-        simulation.answers.current,
-        "individu",
-        "statut_marital",
-        "conjoint"
-      )
-
-      // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
-      // - Missing not available answers in the simulator : Veuf(ve), Séparé(e), Divorcé(e)
-      const situations_couple = {
-        marie: "Marié(e)",
-        pacse: "Pacsé(e)",
-        celibataire: "Union libre",
-      }
-
-      return situations_couple[statut_marital]
+    if (!en_couple) {
+      return "Célibataire"
     }
-    return "Célibataire"
+    const statut_marital = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "statut_marital",
+      "conjoint"
+    )
+
+    // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
+    // - Missing not available answers in the simulator : Veuf(ve), Séparé(e), Divorcé(e)
+    const situations_couple = {
+      marie: "Marié(e)",
+      pacse: "Pacsé(e)",
+      celibataire: "Union libre",
+    }
+
+    return situations_couple[statut_marital]
   },
   telephone: () => "0612345678",
 }

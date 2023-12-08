@@ -1,6 +1,8 @@
 import axios from "axios"
 import dayjs from "dayjs"
 import { getAnswer } from "../../../lib/answers.js"
+import { getActiviteLabelFromString } from "../../../lib/enums/activite.js"
+import Scolarite from "../../../lib/scolarite.js"
 
 const sources = {
   activite: () => "Actif occupé",
@@ -81,7 +83,7 @@ const fsl_var_sources = {
       "activite",
       "demandeur"
     )
-    return activite
+    return getActiviteLabelFromString(activite)
   },
   loyer_avec_charges: (simulation) => {
     const { loyer, charges_locatives } = getAnswer(
@@ -98,6 +100,82 @@ const fsl_var_sources = {
       "depcom"
     )
     return _nomCommune
+  },
+  commune_code_postal: (simulation) => {
+    const { _codePostal } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "depcom"
+    )
+    return _codePostal
+  },
+  buildConjoint(simulation) {
+    if (
+      getAnswer(simulation.answers.current, "famille", "en_couple") === false
+    ) {
+      return null
+    }
+
+    const conjoint = {}
+    const date_naissance = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "date_naissance",
+      "conjoint"
+    )
+    const activite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "activite",
+      "conjoint"
+    )
+
+    conjoint["champ_Q2hhbXAtMjU1NDk1MQ"] = date_naissance.slice(0, 10)
+    conjoint["champ_Q2hhbXAtMjU1NDk1NA"] = "Conjoint(e)"
+    conjoint["champ_Q2hhbXAtMjU1NDk1NQ"] = getActiviteLabelFromString(activite)
+    return conjoint
+  },
+  buildChild(simulation, id) {
+    const child = {}
+    const date_naissance = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "date_naissance",
+      `enfant_${id}`
+    )
+    const prenom = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "_firstName",
+      `enfant_${id}`
+    )
+    const scolarite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "scolarite",
+      `enfant_${id}`
+    )
+    const scolariteLabel = Scolarite.types.find(
+      (t) => t.value === scolarite
+    )?.label
+    child["champ_Q2hhbXAtMjU1NDk1MQ"] = date_naissance.slice(0, 10)
+    child["champ_Q2hhbXAtMjU1NDk0OQ"] = prenom
+    if (scolariteLabel) {
+      child["champ_Q2hhbXAtMjU1NDk1NQ"] = scolariteLabel
+    }
+    return child
+  },
+  autres_personnes_du_foyer: (simulation) => {
+    const results: any[] = []
+    const conjoint = fsl_var_sources.buildConjoint(simulation)
+    if (conjoint) {
+      results.push(conjoint)
+    }
+    simulation.enfants.forEach((id) => {
+      const child = fsl_var_sources.buildChild(simulation, id)
+      results.push(child)
+    })
+    return results
   },
 }
 
@@ -158,9 +236,11 @@ const mappings = {
   "departement-83-demande-fonds-solidarite-energie": {
     "champ_Q2hhbXAtMjYwMzg1MA==": sources.date_naissance,
     "champ_Q2hhbXAtMjYxNzA3Ng==": fsl_var_sources.commune_nom,
+    "champ_Q2hhbXAtMjYxNzA3OA==": fsl_var_sources.commune_code_postal,
     "champ_Q2hhbXAtMjU2NzM2Nw==": fsl_var_sources.loyer_avec_charges,
     "champ_Q2hhbXAtMjYwMzczMA==": fsl_var_sources.activite,
     champ_Q2hhbXAtMjAyODY4: sources.situation_familliale,
+    "champ_Q2hhbXAtMjU1MzA5Mw==": fsl_var_sources.autres_personnes_du_foyer,
   },
 }
 

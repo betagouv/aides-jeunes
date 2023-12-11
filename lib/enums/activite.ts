@@ -13,26 +13,27 @@ export enum Activite {
   Stagiaire = "stagiaire",
 }
 
-export enum ActiviteLabel {
-  Apprenti = "En contrat d’apprentissage",
-  Autre = "Autre",
-  BeneficiaireRsa = "Bénéficiaire rsa",
-  Chomeur = "En recherche d’emploi",
-  Etudiant = "En études",
-  Inactif = "En situation d’inactivité",
-  Independant = "Indépendant(e)",
-  Professionnalisation = "Contrat de professionnalisation en alternance",
-  Retraite = "Retraité(e)",
-  Salarie = "Salarié(e)",
-  ServiceCivique = "En service civique",
-  SituationHandicap = "En situation de handicap",
-  Stagiaire = "Stagiaire",
+// Used for prefill "FSL énergie du Var"
+const ActiviteLabelMapping: Record<Activite, string> = {
+  [Activite.Apprenti]: "En contrat d’apprentissage",
+  [Activite.Autre]: "Autre",
+  [Activite.BeneficiaireRsa]: "Bénéficiaire rsa",
+  [Activite.Chomeur]: "En recherche d’emploi",
+  [Activite.Etudiant]: "En études",
+  [Activite.Inactif]: "En situation d’inactivité",
+  [Activite.Independant]: "Indépendant(e)",
+  [Activite.Professionnalisation]:
+    "Contrat de professionnalisation en alternance",
+  [Activite.Retraite]: "Retraité(e)",
+  [Activite.Salarie]: "Salarié(e)",
+  [Activite.SituationHandicap]: "En situation de handicap",
+  [Activite.Stagiaire]: "Stagiaire",
 }
 
-export function getActiviteLabelFromString(activite: string): any {
-  const activiteLabelKey = Object.keys(Activite).find(
-    (key) => Activite[key] === activite
-  )
-  if (!activiteLabelKey) throw new Error(`Activite ${activite} not found`)
-  return ActiviteLabel[activiteLabelKey]
+export function getActiviteLabel(activite: Activite): string {
+  const activiteLabel = ActiviteLabelMapping[activite]
+  if (!activiteLabel) {
+    throw new Error(`Activite ${activite} not found`)
+  }
+  return activiteLabel
 }

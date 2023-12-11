@@ -1,7 +1,7 @@
 import axios from "axios"
 import dayjs from "dayjs"
 import { getAnswer } from "../../../lib/answers.js"
-import { getActiviteLabelFromString } from "../../../lib/enums/activite.js"
+import { getActiviteLabel } from "../../../lib/enums/activite.js"
 import Scolarite from "../../../lib/scolarite.js"
 
 const sources = {
@@ -83,7 +83,7 @@ const fsl_var_sources = {
       "activite",
       "demandeur"
     )
-    return getActiviteLabelFromString(activite)
+    return getActiviteLabel(activite)
   },
   loyer_avec_charges: (simulation) => {
     const { loyer, charges_locatives } = getAnswer(
@@ -132,7 +132,7 @@ const fsl_var_sources = {
 
     conjoint["champ_Q2hhbXAtMjU1NDk1MQ"] = date_naissance.slice(0, 10)
     conjoint["champ_Q2hhbXAtMjU1NDk1NA"] = "Conjoint(e)"
-    conjoint["champ_Q2hhbXAtMjU1NDk1NQ"] = getActiviteLabelFromString(activite)
+    conjoint["champ_Q2hhbXAtMjU1NDk1NQ"] = getActiviteLabel(activite)
     return conjoint
   },
   buildChild(simulation, id) {

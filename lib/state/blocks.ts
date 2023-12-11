@@ -603,7 +603,6 @@ export function generateBlocks(situation): Block[] {
               demandeur &&
               demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length) &&
               BCSAgeCondition(situation)
             return demandeur_ok
           },

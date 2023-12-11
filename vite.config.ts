@@ -56,6 +56,7 @@ export default defineConfig(async ({ mode }) => {
   const viteEnvironment = {
     VITE_BENEFIT_COUNT: benefitCount,
     VITE_MATOMO_ID: matomo.id,
+    VITE_MATOMO_URL: matomo.url,
     VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
     VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,

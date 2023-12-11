@@ -5,7 +5,7 @@
     <p>
       Les
       <a
-        href="http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=165&period=day&date=yesterday"
+        :href="`${matomoBaseURL}/index.php?module=CoreHome&action=index&idSite=${matomoId}&period=day&date=yesterday`"
       >
         statistiques d'usage de Mes Aides
       </a>
@@ -56,4 +56,7 @@ import iframeResize from "iframe-resizer/js/iframeResizer"
 const iframeLoaded = () => {
   iframeResize({ log: false }, "#iframe")
 }
+
+const matomoBaseURL = process.env.VITE_MATOMO_URL
+const matomoId = process.env.VITE_MATOMO_ID
 </script>

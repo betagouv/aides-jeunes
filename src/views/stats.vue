@@ -50,15 +50,10 @@
   </article>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import iframeResize from "iframe-resizer/js/iframeResizer"
 
-export default {
-  name: "Stats",
-  methods: {
-    iframeLoaded() {
-      iframeResize({ log: false }, "#iframe")
-    },
-  },
+const iframeLoaded = () => {
+  iframeResize({ log: false }, "#iframe")
 }
 </script>

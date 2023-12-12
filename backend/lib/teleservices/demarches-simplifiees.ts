@@ -115,8 +115,6 @@ const fsl_var_sources = {
     ) {
       return null
     }
-
-    const conjoint = {}
     const date_naissance = getAnswer(
       simulation.answers.current,
       "individu",
@@ -129,14 +127,13 @@ const fsl_var_sources = {
       "activite",
       "conjoint"
     )
-
-    conjoint["champ_Q2hhbXAtMjU1NDk1MQ"] = date_naissance.slice(0, 10)
-    conjoint["champ_Q2hhbXAtMjU1NDk1NA"] = "Conjoint(e)"
-    conjoint["champ_Q2hhbXAtMjU1NDk1NQ"] = getActiviteLabel(activite)
-    return conjoint
+    return {
+      champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
+      champ_Q2hhbXAtMjU1NDk1NA: "Conjoint(e)",
+      champ_Q2hhbXAtMjU1NDk1NQ: getActiviteLabel(activite),
+    }
   },
   buildChild(simulation, id) {
-    const child = {}
     const date_naissance = getAnswer(
       simulation.answers.current,
       "individu",
@@ -158,12 +155,11 @@ const fsl_var_sources = {
     const scolariteLabel = Scolarite.types.find(
       (t) => t.value === scolarite
     )?.label
-    child["champ_Q2hhbXAtMjU1NDk1MQ"] = date_naissance.slice(0, 10)
-    child["champ_Q2hhbXAtMjU1NDk0OQ"] = prenom
-    if (scolariteLabel) {
-      child["champ_Q2hhbXAtMjU1NDk1NQ"] = scolariteLabel
+    return {
+      champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
+      champ_Q2hhbXAtMjU1NDk0OQ: prenom,
+      champ_Q2hhbXAtMjU1NDk1NQ: scolariteLabel,
     }
-    return child
   },
   autres_personnes_du_foyer: (simulation) => {
     const results: any[] = []

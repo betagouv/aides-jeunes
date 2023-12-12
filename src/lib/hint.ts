@@ -20,7 +20,7 @@ forEachProperties((_, propertyName, property) => {
 })
 
 const Hint = {
-  get(attribute: string, variation: string): string {
+  get(attribute: string, variation?: string): string {
     return typeof texts[attribute] === "string"
       ? texts[attribute]
       : texts[attribute]?.(variation)

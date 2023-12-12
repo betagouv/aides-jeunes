@@ -13,8 +13,8 @@ conditions_generales:
       - "248300543"
 profils: []
 link: https://www.var.fr/social/insertion/fonds-de-solidarite-logement
-form: https://www.var.fr/documents/d/departement-du-var/energie-a4-2
 instructions: https://www.var.fr/documents/d/departement-du-var/notice-d_accompagnement-a-l_application-du-reglement-interieur-2023-1
+teleservicePrefill: ds?procedure=departement-83-demande-fonds-solidarite-energie
 prefix: le
 type: bool
 periodicite: autre

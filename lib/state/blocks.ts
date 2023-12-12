@@ -11,6 +11,7 @@ import { Scolarite, Etudiant } from "../enums/scolarite.js"
 import { LogementCategory } from "../enums/logement.js"
 import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
+import { BCSAgeCondition } from "./step-conditions.js"
 
 function individuBlockFactory(id, chapter?: ChapterName) {
   const r = (variable, chapter?: ChapterName) => {
@@ -617,7 +618,7 @@ export function generateBlocks(situation): Block[] {
               demandeur &&
               demandeur.activite === Activite.Etudiant &&
               !demandeur.alternant &&
-              !(situation.enfants && situation.enfants.length)
+              BCSAgeCondition(situation)
             return demandeur_ok
           },
           steps: [

@@ -16,4 +16,3 @@ jobs:
         stale-pr-message: 'This pull request has been closed due to inactivity. Feel free to reopen if necessary.'
         days-before-pr-stale: 60
         days-before-pr-close: 7
-        debug: true # Set to true (test before setting up)

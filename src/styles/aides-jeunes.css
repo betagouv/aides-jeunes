@@ -559,3 +559,7 @@ textarea {
 .aj-a {
   color: var(--main-color);
 }
+
+.aj-header > a:after {
+  display: none;
+}

@@ -35,7 +35,7 @@ export const verifyAuthentication = (
   next()
 }
 
-const isValidBody = (body: RequestBody): boolean => {
+const shouldProcessEvent = (body: RequestBody): boolean => {
   return !!(
     body &&
     body.meta &&
@@ -63,9 +63,8 @@ export const validateRequestPayload = (
   next: NextFunction
 ): void => {
   req.body = JSON.parse(req.body.toString())
-  if (!isValidBody(req.body)) {
-    console.error("Invalid payload structure", req.body)
-    res.status(400).json({ error: "Invalid payload structure" })
+  if (!shouldProcessEvent(req.body)) {
+    res.status(400).json({ error: "Event not supported" })
     return
   }
 

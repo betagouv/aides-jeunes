@@ -1,0 +1,19 @@
+name: Stale Bot
+on:
+  schedule:
+    - cron: '0 10 * * *' # Run every day at 10h
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Run Stale Bot
+      uses: actions/stale@v8
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-pr-label: "stale"
+        stale-pr-message: 'This pull request has been closed due to inactivity. Feel free to reopen if necessary.'
+        days-before-pr-stale: 60
+        days-before-pr-close: 7
+        debug: true # Set to true (test before setting up)

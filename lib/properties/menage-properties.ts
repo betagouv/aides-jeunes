@@ -30,17 +30,14 @@ export default {
       {
         label: "Oui",
         value: EtatLogementFoyer.LogementRehabilite,
-        // hint: "figurant sur le bail, en foyer ou en résidence",
       },
       {
         label: "Non",
         value: EtatLogementFoyer.LogementNonRehabilite,
-        // hint: "figurant sur le bail, en foyer ou en résidence",
       },
       {
         label: "Je ne sais pas",
         value: EtatLogementFoyer.NonNenseigne,
-        // hint: "figurant sur le bail, en foyer ou en résidence",
       },
     ],
   }),

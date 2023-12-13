@@ -149,7 +149,7 @@ export default {
           "showMoreInfo",
           this.propertyData
         )
-      return Boolean(showMoreInfo && Hint.get(this.fieldName))
+      return Boolean(showMoreInfo)
     },
     individu() {
       if (this.entityName === "individu") {

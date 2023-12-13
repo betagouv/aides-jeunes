@@ -1,0 +1,26 @@
+name: Associate actual milestone
+
+on:
+  schedule:
+    - cron: "0 10 * * *" # Every day at 10:00 UTC
+
+jobs:
+  associate-milestone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh@v2
+
+      - name: Update milestone on open PRs
+        run: |
+          open_prs=$(gh pr list --base "master" --state open --json number -q ".[].number" 2>/dev/null || echo null)
+
+          if [ "$open_prs" != "null" ]; then
+            for pr_number in $open_prs; do
+              gh pr edit "$pr_number" --milestone "BC actuel"
+            done
+          fi

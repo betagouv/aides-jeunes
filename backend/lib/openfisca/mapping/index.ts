@@ -201,6 +201,12 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
 
   const aCharge = demandeur.enfant_a_charge?.[periods.thisYear]
 
+  testCase.foyers_fiscaux._.nb_pac = {
+    [periods.fiscalYear]:
+      testCase.foyers_fiscaux._.declarants.length +
+      testCase.foyers_fiscaux._.personnes_a_charge.length,
+  }
+
   if (aCharge) {
     if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
       testCase.foyers_fiscaux._.rbg = {

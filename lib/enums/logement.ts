@@ -1,3 +1,9 @@
+export enum EtatLogementFoyer {
+  NonNenseigne = "non_renseigne",
+  LogementRehabilite = "logement_rehabilite",
+  LogementNonRehabilite = "logement_non_rehabilite",
+}
+
 export enum LocationCategory {
   Vide = "vide",
   Meuble = "meuble",

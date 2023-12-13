@@ -1,7 +1,11 @@
 import { EnumProperty, BooleanProperty } from "./property.js"
 import { getAnswer } from "../answers.js"
 import dayjs from "dayjs"
-import { LocationCategory, LogementCategory } from "../enums/logement.js"
+import {
+  EtatLogementFoyer,
+  LocationCategory,
+  LogementCategory,
+} from "../enums/logement.js"
 
 const isLessThanFiftyYearsOld = (props) => {
   const { simulation, periods } = props
@@ -19,11 +23,34 @@ export default {
     question: "Est-ce une colocation ?",
   }),
 
+  etat_logement_foyer: new EnumProperty({
+    question: "Est-ce que ce logement a été réhabilité ?",
+    questionType: "enum",
+    items: [
+      {
+        label: "Oui",
+        value: EtatLogementFoyer.LogementRehabilite,
+      },
+      {
+        label: "Non",
+        value: EtatLogementFoyer.LogementNonRehabilite,
+      },
+      {
+        label: "Je ne sais pas",
+        value: EtatLogementFoyer.NonNenseigne,
+      },
+    ],
+  }),
+
   logement_chambre: new BooleanProperty({
     question: `Est-ce une chambre ?
       <span class="fr-hint-text">
         Une chambre est un logement qui ne comporte qu'une seule pièce et n'est pas équipé d'un WC.
       </span>`,
+  }),
+
+  logement_crous: new BooleanProperty({
+    question: `Est-ce un logement dans une résidence CROUS ?`,
   }),
 
   participation_frais: new BooleanProperty({
@@ -57,6 +84,7 @@ export default {
       { value: -12, label: "Non" },
     ],
   }),
+
   _logementType: new EnumProperty({
     question: "Êtes-vous ?",
     questionType: "enum",

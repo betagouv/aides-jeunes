@@ -8,7 +8,7 @@ import { childStepsComplete } from "../enfants.js"
 
 import { Activite } from "../enums/activite.js"
 import { Scolarite, Etudiant } from "../enums/scolarite.js"
-import { LogementCategory } from "../enums/logement.js"
+import { LocationCategory, LogementCategory } from "../enums/logement.js"
 import { ChapterName } from "../enums/chapter.js"
 import { Block } from "../types/blocks.js"
 import { BCSAgeCondition } from "./step-conditions.js"
@@ -376,10 +376,37 @@ function housingBlock() {
           new StepGenerator({ entity: "menage", variable: "_locationType" }),
           new StepGenerator({ entity: "menage", variable: "coloc" }),
           new StepGenerator({ entity: "menage", variable: "logement_chambre" }),
-          new StepGenerator({
-            entity: "famille",
-            variable: "proprietaire_proche_famille",
-          }),
+          {
+            isActive: (subject) =>
+              !subject._locationType ||
+              subject._locationType !== LocationCategory.Foyer,
+            steps: [
+              new StepGenerator({
+                entity: "famille",
+                variable: "proprietaire_proche_famille",
+              }),
+            ],
+          },
+          {
+            isActive: (subject) =>
+              !subject._locationType ||
+              subject._locationType == LocationCategory.Foyer,
+            steps: [
+              new StepGenerator({
+                entity: "menage",
+                variable: "logement_crous",
+              }),
+              {
+                isActive: (subject) => subject.logement_crous,
+                steps: [
+                  new StepGenerator({
+                    entity: "menage",
+                    variable: "etat_logement_foyer",
+                  }),
+                ],
+              },
+            ],
+          },
         ],
       },
       {

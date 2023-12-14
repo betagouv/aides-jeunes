@@ -11,7 +11,6 @@ import { generateSituation } from "@lib/situations.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 import storageService from "@/lib/storage-service.js"
 import {
-  Answer,
   Calculs,
   PersistedStore,
   Patrimoine,
@@ -19,6 +18,7 @@ import {
   Simulation,
   Store,
 } from "@lib/types/store.d.js"
+import { Answer } from "@lib/types/answer.d.js"
 import { SimulationStatus } from "@lib/enums/simulation.js"
 import { StatutOccupationLogement } from "@lib/enums/logement.js"
 
@@ -43,8 +43,8 @@ function defaultStore(): Store {
     simulationId: null,
     simulation: {
       answers: {
-        all: [],
-        current: [],
+        all: [] as Answer[],
+        current: [] as Answer[],
       },
       dateDeValeur: new Date(),
       version,

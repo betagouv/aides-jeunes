@@ -1,7 +1,7 @@
 import { expect } from "@jest/globals"
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
-import { Answer } from "@lib/types/store.d.js"
+import { Answer } from "@lib/types/answer.d.js"
 import { SimulationStatus } from "@lib/enums/simulation.js"
 import { Activite } from "@lib/enums/activite.js"
 
@@ -64,7 +64,7 @@ describe("Answers tests", () => {
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
@@ -76,14 +76,14 @@ describe("Answers tests", () => {
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: false,
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
@@ -95,7 +95,7 @@ describe("Answers tests", () => {
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })
@@ -107,14 +107,14 @@ describe("Answers tests", () => {
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: true,
-    } as unknown as Answer
+    } as Answer
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })

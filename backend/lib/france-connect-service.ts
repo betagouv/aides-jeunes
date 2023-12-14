@@ -1,8 +1,7 @@
 import axios from "axios"
 import jwt from "jsonwebtoken"
-
 import config from "../config/index.js"
-import { Answer } from "../../lib/types/answer.js"
+import { Answer } from "../../lib/types/answer.d.js"
 
 export const enum FranceConnectCookie {
   FcState = "fc_state",

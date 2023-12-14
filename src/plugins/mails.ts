@@ -1,7 +1,7 @@
-const generateResultLines = (droits, customAmount?) => {
+const generateResultLines = (droits) => {
   return droits
     .map(({ amount, label }) => {
-      return `- ${customAmount || amount} pour la prestation « ${label} ».`
+      return `- ${amount} pour la prestation « ${label} ».`
     })
     .join("\n")
 }
@@ -16,8 +16,9 @@ export const sendEcartInstructions = (simulationId, droitsEligibles) => {
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
     ${generateResultLines(droitsEligibles)}
-    Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
-    ${generateResultLines(droitsEligibles, "XXX")}
+
+    Mais en effectuant une demande auprès de l'administration XXX, j'ai obtenu le résultat suivant :
+    - XXX
 
     J'ai bien compris que vous n'étiez pas décisionnaires et ne pourrez pas intervenir en ma faveur.
     Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart et améliorer le simulateur pour d'autres utilisateurs.
@@ -39,8 +40,9 @@ export const sendEcartSimulation = (simulationId, droitsEligibles) => {
 
     En effectuant une simulation sur votre simulateur, j'ai obtenu le résultat suivant :
     ${generateResultLines(droitsEligibles)}
+
     Mais en effectuant la même simulation sur le site XXX, j'ai obtenu le résultat suivant :
-    ${generateResultLines(droitsEligibles, "XXX")}
+    - XXX
 
     Vous pouvez me joindre par téléphone au XX XX XX XX XX (de préférence en semaine) pour une dizaine de minutes d'échange afin de comprendre d'où provient cet écart.
 

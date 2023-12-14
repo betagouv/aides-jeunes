@@ -77,6 +77,7 @@ const sendRecap = async (surveyOptin) => {
       )
     }
   } catch (error) {
+    console.error(error)
     Sentry.captureException(error)
   }
 }
@@ -135,9 +136,8 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
   } catch (error) {
-    console.error(error)
     store.setFormRecapState("error")
-    throw new Error("Error while sending recap (email and sms)")
+    throw error
   }
   store.setFormRecapState("ok")
   phoneValue.value = undefined
@@ -155,9 +155,8 @@ const sendRecapBySms = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, undefined, phoneValue.value)
   } catch (error) {
-    console.error(error)
     store.setFormRecapPhoneState("error")
-    throw new Error("Error while sending recap (sms)")
+    throw error
   }
   store.setFormRecapPhoneState("ok")
   phoneValue.value = undefined
@@ -174,9 +173,8 @@ const sendRecapByEmail = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value)
   } catch (error) {
-    console.error(error)
     store.setFormRecapEmailState("error")
-    throw new Error("Error while sending recap (email)")
+    throw error
   }
   store.setFormRecapEmailState("ok")
   emailValue.value = undefined

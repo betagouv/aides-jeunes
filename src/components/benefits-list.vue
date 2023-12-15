@@ -4,61 +4,62 @@ import DroitMixin from "@/mixins/droit-mixin.js"
 import { getBenefitImage } from "@lib/benefits/details.js"
 import DroitEstime from "./droit-estime.vue"
 import WarningMessage from "@/components/warning-message.vue"
+import { Benefit } from "@data/types/benefits"
 
 const {
   methods: { capitalize, isBoolean },
 } = DroitMixin as any
 
 const props = defineProps({
-  droits: Array,
+  benefits: Array<Benefit>,
   ineligible: Boolean,
-  filter: Array,
+  filter: Array<any>,
 })
 
 const list: any = computed(() => {
-  return props.droits?.filter((value: any) => {
+  return props.benefits?.filter((value: any) => {
     return !props.filter || props.filter.includes(value.id)
   })
 })
 
-const askBenefit = (droit) => {
-  return `Demander ${droit.prefix}${droit.prefix == "l’" ? "" : " "}${
-    droit.label
+const askBenefit = (benefit) => {
+  return `Demander ${benefit.prefix}${benefit.prefix == "l’" ? "" : " "}${
+    benefit.label
   }`
 }
 </script>
 
 <template>
-  <div v-for="(droit, index) in list" :key="index" class="fr-mb-5w">
+  <div v-for="(benefit, index) in list" :key="index" class="fr-mb-5w">
     <router-link
       class="fr-tile"
-      :to="`/simulation/resultats/${droit.id}`"
+      :to="`/simulation/resultats/${benefit.id}`"
       itemscope
       itemtype="http://schema.org/GovernmentService"
-      :data-testid="droit.id"
-      :aria-label="askBenefit(droit)"
+      :data-testid="benefit.id"
+      :aria-label="askBenefit(benefit)"
     >
       <div class="fr-p-4w">
         <div class="aj-benefit-header fr-mb-4w">
           <img
             class="aj-institution-icon"
-            :src="getBenefitImage(droit)"
-            :alt="`Logo ${droit.institution.label}`"
+            :src="getBenefitImage(benefit)"
+            :alt="`Logo ${benefit.institution.label}`"
           />
           <div class="aj-benefit-name">
             <h2 class="fr-text--lead" itemprop="name">{{
-              capitalize(droit.label)
+              capitalize(benefit.label)
             }}</h2>
             <div class="aj-benefit-institution"
-              >{{ capitalize(droit.institution.label) }}
+              >{{ capitalize(benefit.institution.label) }}
             </div>
             <div>
-              <p class="fr-text--justify" v-html="droit.description" />
+              <p class="fr-text--justify" v-html="benefit.description" />
               <WarningMessage
                 v-if="
-                  droit.montant &&
-                  isBoolean(droit.montant) &&
-                  droit.warning === true
+                  benefit.montant &&
+                  isBoolean(benefit.montant) &&
+                  benefit.warning === true
                 "
               >
                 <img src="@/assets/images/warning.svg" alt="" /> Attention,
@@ -67,12 +68,12 @@ const askBenefit = (droit) => {
               </WarningMessage>
             </div>
           </div>
-          <DroitEstime :droit="droit" />
+          <DroitEstime :droit="benefit" />
         </div>
         <ul class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right">
           <li>
             <router-link
-              :to="`/simulation/resultats/${droit.id}`"
+              :to="`/simulation/resultats/${benefit.id}`"
               class="fr-btn fr-my-0"
               data-testid="aide-cta"
             >

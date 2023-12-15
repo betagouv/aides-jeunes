@@ -1,7 +1,7 @@
 <template>
   <div class="fr-container--fluid fr-px-0 fr-py-2w">
     <div
-      v-if="shouldDisplayResults && hasDroits && showEmailButton"
+      v-if="shouldDisplayResults && hasBenefits && showEmailButton"
       class="fr-grid-row"
     >
       <div class="fr-col-12 fr-col-md-6 fr-col-lg-6">

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue"
-import DroitMixin from "@/mixins/droit-mixin.js"
 import { getBenefitImage } from "@lib/benefits/details.js"
 import DroitEstime from "./droit-estime.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { Benefit } from "@data/types/benefits"
+import useUtils from '@/composables/use-utils.js';
 
-const {
-  methods: { capitalize, isBoolean },
-} = DroitMixin as any
+const { capitalizeString, isBoolean } = useUtils()
 
 const props = defineProps({
   benefits: Array<Benefit>,
@@ -48,10 +46,10 @@ const askBenefit = (benefit) => {
           />
           <div class="aj-benefit-name">
             <h2 class="fr-text--lead" itemprop="name">{{
-              capitalize(benefit.label)
+              capitalizeString(benefit.label)
             }}</h2>
             <div class="aj-benefit-institution"
-              >{{ capitalize(benefit.institution.label) }}
+              >{{ capitalizeString(benefit.institution.label) }}
             </div>
             <div>
               <p class="fr-text--justify" v-html="benefit.description" />

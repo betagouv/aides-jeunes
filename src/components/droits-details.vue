@@ -55,7 +55,7 @@
         v-if="
           droit.isBaseRessourcesYearMinusTwo &&
           !ressourcesYearMinusTwoCaptured &&
-          !isString(droit.montant)
+          !useUtils.isString(droit.montant)
         "
         class="fr-print-hidden"
         data-testid="benefit-detail-warning"
@@ -81,7 +81,7 @@
         v-if="
           droit.isBaseRessourcesPatrimoine &&
           !store.hasPatrimoine &&
-          !isString(droit.montant)
+          !useUtils.isString(droit.montant)
         "
         class="fr-print-hidden"
       >
@@ -144,13 +144,13 @@ import BenefitCta from "./benefit-cta.vue"
 import BenefitCtaLink from "./benefit-cta-link.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import SituationMethods from "@lib/situation.js"
-import DroitMixin from "@/mixins/droit-mixin.js"
 import DroitHeader from "@/components/droit-header.vue"
 import DroitDetailsLieux from "@/components/droits-details-lieux.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
+import useUtils from "@/composables/use-utils.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
 export default {
@@ -162,7 +162,7 @@ export default {
     BenefitCta,
     BenefitCtaLink,
   },
-  mixins: [DroitMixin, StatisticsMixin],
+  mixins: [StatisticsMixin],
   props: {
     droit: {
       type: Object as PropType<StandardBenefit>,
@@ -175,6 +175,7 @@ export default {
     return {
       store: useStore(),
       volontaryOrganisations: useVolontaryOrganisations(),
+      useUtils: useUtils(),
     }
   },
   data() {

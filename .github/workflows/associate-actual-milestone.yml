@@ -13,10 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up GitHub CLI
-        uses: actions/setup-gh@v2
-
       - name: Update milestone on a PR opening
         run: |
           pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           gh pr edit "$pr_number" --milestone "BC actuel"
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

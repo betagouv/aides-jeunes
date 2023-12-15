@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import { computed, defineProps } from "vue"
+import DroitMixin from "@/mixins/droit-mixin.js"
+import { getBenefitImage } from "@lib/benefits/details.js"
+import DroitEstime from "./droit-estime.vue"
+import WarningMessage from "@/components/warning-message.vue"
+
+const {
+  methods: { capitalize, isBoolean },
+} = DroitMixin as any
+
+const props = defineProps({
+  droits: Array,
+  ineligible: Boolean,
+  filter: Array,
+})
+
+const list: any = computed(() => {
+  return props.droits?.filter((value: any) => {
+    return !props.filter || props.filter.includes(value.id)
+  })
+})
+
+const askBenefit = (droit) => {
+  return `Demander ${droit.prefix}${droit.prefix == "l’" ? "" : " "}${
+    droit.label
+  }`
+}
+</script>
+
 <template>
   <div v-for="(droit, index) in list" :key="index" class="fr-mb-5w">
     <router-link
@@ -54,41 +84,3 @@
     </router-link>
   </div>
 </template>
-
-<script lang="ts">
-import DroitMixin from "@/mixins/droit-mixin.js"
-import DroitEstime from "./droit-estime.vue"
-import BenefitMixin from "@/mixins/benefit-image-mixin.js"
-import WarningMessage from "@/components/warning-message.vue"
-
-export default {
-  name: "DroitsList",
-  components: {
-    WarningMessage,
-    DroitEstime,
-  },
-  mixins: [DroitMixin, BenefitMixin],
-  props: {
-    droits: Array,
-    ineligible: Boolean,
-    filter: Array,
-  },
-  computed: {
-    list: function () {
-      return this.droits.filter((value) => {
-        return !this.filter || this.filter.includes(value.id)
-      })
-    },
-  },
-  methods: {
-    push: function (droit) {
-      this.$router.push(`/simulation/resultats/${droit.id}`)
-    },
-    askBenefit: function (droit) {
-      return `Demander ${droit.prefix}${droit.prefix == "l’" ? "" : " "}${
-        droit.label
-      }`
-    },
-  },
-}
-</script>

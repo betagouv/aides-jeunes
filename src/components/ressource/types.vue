@@ -7,8 +7,12 @@
         <span v-else-if="individu._role !== 'demandeur'"
           >par {{ individu._firstName }}</span
         >
+        <span v-else-if="individu.enfant_a_charge[store.dates.thisYear.label]">
+          par vos parents ou par vos tuteurs légaux
+        </span>
         depuis {{ store.dates.twelveMonthsAgo.label }}</strong
       >. Vous pourrez ensuite saisir les montants.
+      <EnSavoirPlus v-if="hasSeparatedParents" />
     </p>
     <fieldset
       v-for="category in categories"
@@ -50,11 +54,13 @@ import { ressourceCategories, ressourceTypes } from "@lib/resources.js"
 import Ressource from "@lib/ressource.js"
 import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 
 export default {
   name: "RessourceTypes",
   components: {
     ActionButtons,
+    EnSavoirPlus,
   },
   props: {
     individu: Object,
@@ -100,6 +106,9 @@ export default {
       return `${count} ${
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
       }`
+    },
+    hasSeparatedParents() {
+      return this.store.situation?.parents?._situation === "separes"
     },
   },
   watch: {

@@ -59,62 +59,62 @@ describe("Answers tests", () => {
   // Store answer tests
   it("Store should not be dirty when the answer value is the same", () => {
     const store = initStore()
-    const newAnswer = {
+    const newAnswer: Answer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    } as Answer
+    }
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should not be dirty when multiple answers values are the same", () => {
     const store = initStore()
-    let newAnswer = {
+    let newAnswer: Answer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "FR",
-    } as Answer
+    }
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: false,
-    } as Answer
+    }
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(false)
   })
 
   it("Store should be dirty when the answer value is different", () => {
     const store = initStore()
-    const newAnswer = {
+    const newAnswer: Answer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    } as Answer
+    }
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })
 
   it("Store should be dirty when multiple answers values are different", () => {
     const store = initStore()
-    let newAnswer = {
+    let newAnswer: Answer = {
       id: "demandeur",
       entityName: "individu",
       fieldName: "nationalite",
       value: "EN",
-    } as Answer
+    }
     store.answer(newAnswer)
     newAnswer = {
       entityName: "individu",
       fieldName: "handicap",
       id: "demandeur",
       value: true,
-    } as Answer
+    }
     store.answer(newAnswer)
     expect(store.calculs.dirty).toEqual(true)
   })

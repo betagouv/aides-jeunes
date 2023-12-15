@@ -86,7 +86,7 @@ const fsl_var_sources = {
     return getActiviteLabel(activite)
   },
   loyer_avec_charges: (simulation) => {
-    const { loyer, charges_locatives } = getAnswer(
+    const { loyer, charges_locatives = 0 } = getAnswer(
       simulation.answers.current,
       "menage",
       "loyer"

@@ -1,0 +1,12 @@
+label: Pass’Sport
+institution: etat
+description: Le Pass’Sport est une déduction pour l’inscription dans un club sportif. Ce coupon de déduction est personnel et n'est utilisable qu’une seule fois auprès de la structure de votre choix parmi celles éligibles. Le Pass’Sport est une aide cumulable avec les autres aides mises en place notamment par les collectivités.
+link: https://pass.sports.gouv.fr
+instructions: https://pass.sports.gouv.fr/obtenir-mon-code/
+prefix: le
+type: float
+unit: "€"
+floorAt: 1
+periodicite: ponctuelle
+entity: individus
+openfiscaPeriod: thisMonth

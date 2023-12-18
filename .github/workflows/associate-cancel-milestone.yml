@@ -1,0 +1,25 @@
+name: Associate cancel milestone to closed and unmerged PRs
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  update-milestone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Update milestone on PR closure
+        run: |
+          pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          pr_state=$(gh pr view "$pr_number" --json state | jq -r '.state')
+
+          if [ "$pr_state" == "CLOSED" ]; then
+            gh pr edit "$pr_number" --milestone "Annulé"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -43,8 +43,8 @@ function defaultStore(): Store {
     simulationId: null,
     simulation: {
       answers: {
-        all: [] as Answer[],
-        current: [] as Answer[],
+        all: [],
+        current: [],
       },
       dateDeValeur: new Date(),
       version,

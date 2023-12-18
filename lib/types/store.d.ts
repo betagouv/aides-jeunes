@@ -1,7 +1,7 @@
+import { Answer } from "@lib/types/answer.d.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { PatrimoineCategory } from "@lib/enums/patrimoine.js"
 import { SimulationStatus } from "@lib/enums/simulation.js"
-
 export interface Resultats {
   _id?: string
   droitsEligibles: StandardBenefit[] | null
@@ -18,14 +18,6 @@ export interface Calculs {
 
 export interface OpenfiscaParameters {
   [key: string]: any
-}
-
-export interface Answer {
-  id: string
-  entityName: string
-  fieldName: string
-  value: any
-  path: string
 }
 
 export interface Patrimoine {

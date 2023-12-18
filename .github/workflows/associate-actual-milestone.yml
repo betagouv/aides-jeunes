@@ -1,0 +1,21 @@
+name: Associate actual milestone
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  associate-milestone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Update milestone on a PR opening
+        run: |
+          pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          gh pr edit "$pr_number" --milestone "BC actuel"
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -3,10 +3,9 @@ import { defineProps } from "vue"
 import { getBenefitImage } from "@lib/benefits/details.js"
 import DroitEstime from "./droit-estime.vue"
 import WarningMessage from "@/components/warning-message.vue"
-import useUtils from "@/composables/use-utils.js"
+import { capitalize, isBoolean } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits"
 
-const { capitalizeString, isBoolean } = useUtils()
 const props = defineProps({
   benefit: Object,
 })
@@ -37,10 +36,10 @@ const askBenefitLabelButton = (benefit) => {
           />
           <div class="aj-benefit-name">
             <h2 class="fr-text--lead" itemprop="name">{{
-              capitalizeString(props.benefit.label)
+              capitalize(props.benefit.label)
             }}</h2>
             <div class="aj-benefit-institution"
-              >{{ capitalizeString(props.benefit.institution.label) }}
+              >{{ capitalize(props.benefit.institution.label) }}
             </div>
             <div>
               <p class="fr-text--justify" v-html="props.benefit.description" />

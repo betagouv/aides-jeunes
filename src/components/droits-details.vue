@@ -55,7 +55,7 @@
         v-if="
           droit.isBaseRessourcesYearMinusTwo &&
           !ressourcesYearMinusTwoCaptured &&
-          !useUtils.isString(droit.montant)
+          !isString(droit.montant)
         "
         class="fr-print-hidden"
         data-testid="benefit-detail-warning"
@@ -81,7 +81,7 @@
         v-if="
           droit.isBaseRessourcesPatrimoine &&
           !store.hasPatrimoine &&
-          !useUtils.isString(droit.montant)
+          !isString(droit.montant)
         "
         class="fr-print-hidden"
       >
@@ -150,7 +150,7 @@ import WarningMessage from "@/components/warning-message.vue"
 import { useStore } from "@/stores/index.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useVolontaryOrganisations } from "@/composables/use-voluntary-organisations.js"
-import useUtils from "@/composables/use-utils.js"
+import { isString } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 
 export default {
@@ -175,7 +175,7 @@ export default {
     return {
       store: useStore(),
       volontaryOrganisations: useVolontaryOrganisations(),
-      useUtils: useUtils(),
+      isString,
     }
   },
   data() {

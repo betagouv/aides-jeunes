@@ -17,6 +17,6 @@ const list: any = computed(() => {
 
 <template>
   <div v-for="(benefit, index) in list" :key="index" class="fr-mb-5w">
-    <benefit-preview :benefit="benefit" />
+    <BenefitPreview :benefit="benefit" />
   </div>
 </template>

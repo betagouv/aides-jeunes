@@ -10,7 +10,7 @@ import Bluebird from "bluebird"
 import * as Sentry from "@sentry/node"
 import dayjs from "dayjs"
 
-const DEFAULT_BRANCH_REF = "refs/heads/master"
+const DEFAULT_BRANCH_REF = "refs/heads/main"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })

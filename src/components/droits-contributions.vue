@@ -26,15 +26,15 @@
 const benefitsUrlPatterns = [
   {
     pattern: /-fsl-eligibilite$/,
-    file: `${process.env.VITE_REPOSITORY_URL}/blob/master/data/benefits/dynamic/fsl.ts`,
+    file: `${process.env.VITE_REPOSITORY_URL}/blob/main/data/benefits/dynamic/fsl.ts`,
   },
   {
     pattern: /-apa-eligibilite$/,
-    file: `${process.env.VITE_REPOSITORY_URLl}/blob/master/data/benefits/dynamic/apa.ts`,
+    file: `${process.env.VITE_REPOSITORY_URLl}/blob/main/data/benefits/dynamic/apa.ts`,
   },
   {
     pattern: /^aidesvelo_/,
-    file: `https://github.com/mquandalle/mesaidesvelo/blob/master/src/aides.yaml`,
+    file: `https://github.com/mquandalle/mesaidesvelo/blob/main/src/aides.yaml`,
   },
 ]
 export default {

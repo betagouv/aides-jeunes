@@ -44,7 +44,7 @@
   <ErrorBlock v-if="hasError" />
   <ErrorSaveBlock v-if="hasErrorSave" />
   <div v-show="shouldDisplayResults">
-    <div v-if="!isEmpty(droits)">
+    <div v-if="!isEmpty(benefits)">
       <p class="fr-text--lg">
         D'après la situation que vous avez décrite, vous êtes a priori éligible
         à ces aides.
@@ -55,10 +55,10 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <DroitsList :droits="droits" />
+      <BenefitsList :benefits="benefits" />
     </div>
 
-    <div v-show="isEmpty(droits)" class="fr-py-5w">
+    <div v-show="isEmpty(benefits)" class="fr-py-5w">
       <h2 class="fr-text--lead">
         Votre simulation n'a pas permis de découvrir de nouveaux droits.
       </h2>
@@ -79,7 +79,7 @@
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-5">
             <OfflineResults
-              v-if="!resultatStatus.updating && !isEmpty(droits)"
+              v-if="!resultatStatus.updating && !isEmpty(benefits)"
             />
           </div>
           <div class="fr-col-12 fr-col-md-7">
@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import DroitsList from "@/components/droits-list.vue"
+import BenefitsList from "@/components/benefits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
 import Feedback from "@/components/feedback.vue"
@@ -112,7 +112,7 @@ export default {
   name: "SimulationResultats",
   components: {
     WarningMessage,
-    DroitsList,
+    BenefitsList,
     ErrorBlock,
     ErrorSaveBlock,
     Feedback,
@@ -157,20 +157,20 @@ export default {
       return !array || array.length === 0
     },
     sendShowStatistics() {
-      this.sendBenefitsStatistics(this.droits, EventAction.Show)
+      this.sendBenefitsStatistics(this.benefits, EventAction.Show)
     },
     sendDisplayUnexpectedAmountLinkStatistics() {
-      const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
+      const benefitsWithUnexpectedAmount = this.benefits.filter((benefit) => {
         const unexpectedAmountLinkDisplayed =
-          (droit.isBaseRessourcesYearMinusTwo &&
+          (benefit.isBaseRessourcesYearMinusTwo &&
             !this.ressourcesYearMinusTwoCaptured) ||
-          droit.showUnexpectedAmount
+          benefit.showUnexpectedAmount
 
         return unexpectedAmountLinkDisplayed
       })
 
       this.sendBenefitsStatistics(
-        droitsWithUnexpectedAmount,
+        benefitsWithUnexpectedAmount,
         EventAction.ShowUnexpectedAmountLink
       )
     },

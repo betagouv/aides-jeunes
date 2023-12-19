@@ -25,17 +25,17 @@
     >
 
     <DroitsDetails
-      v-if="droit"
-      :droit="droit"
-      :droits="droits"
+      v-if="benefit"
+      :droit="benefit"
+      :droits="benefits"
       :city="situation.menage.depcom"
       :ressources-year-minus-two-captured="ressourcesYearMinusTwoCaptured"
     />
     <div class="fr-text--center">
-      <DroitsContributions v-if="droit" :droit="droit" />
+      <DroitsContributions v-if="benefit" :droit="benefit" />
     </div>
 
-    <Feedback v-if="droit" />
+    <Feedback v-if="benefit" />
   </div>
 </template>
 
@@ -68,12 +68,12 @@ export default {
     situation() {
       return this.store.situation
     },
-    droit() {
+    benefit() {
       const benefitId = this.$route.params.benefitId
-      const droit = (this.droits || []).find(function (droit) {
-        return droit.id === benefitId
+      const benefit = (this.benefits || []).find(function (benefit) {
+        return benefit.id === benefitId
       })
-      return droit
+      return benefit
     },
     ressourcesYearMinusTwoCaptured() {
       return this.store.ressourcesYearMinusTwoCaptured
@@ -83,13 +83,13 @@ export default {
     if (this.mockResultsNeeded()) {
       this.mock(this.$route.params.benefitId)
       return
-    } else if (!this.droits) {
+    } else if (!this.benefits) {
       await this.restoreLatest()
     } else {
       const benefitId = this.$route.params.benefitId
 
       this.sendBenefitsStatistics(
-        this.droits,
+        this.benefits,
         EventAction.ShowDetails,
         benefitId
       )

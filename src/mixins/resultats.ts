@@ -1,15 +1,16 @@
 import Simulation from "@/lib/simulation.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
+import { Benefit } from "@data/types/benefits.js"
 
 export default {
   mixins: [StatisticsMixin],
   computed: {
-    droits() {
+    benefits(): Benefit[] {
       return this.resultats?.droitsEligibles
     },
-    hasDroits() {
-      return this.droits.length > 0
+    hasBenefits() {
+      return this.benefits.length > 0
     },
     resultatsId() {
       return this.resultats?._id || "???"
@@ -35,7 +36,7 @@ export default {
     shouldDisplayResults() {
       return (
         !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
-        this.droits
+        this.benefits
       )
     },
     ressourcesYearMinusTwoCaptured() {

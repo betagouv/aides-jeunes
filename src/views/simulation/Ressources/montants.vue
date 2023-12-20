@@ -10,7 +10,6 @@
     <div v-for="(type, index) in types" :key="type.meta.id">
       <RessourceMontants
         v-if="isSimple(type.meta.id)"
-        :individu="type.individu"
         :index="index"
         :type="type"
         @update="process"

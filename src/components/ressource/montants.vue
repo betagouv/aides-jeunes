@@ -47,7 +47,7 @@
             être modifiés ensuite.</span
           >
           Indiquez les montants <strong>nets mensuels</strong> que
-          {{ getLongLabel(individu, type.meta) }}
+          {{ getLongLabel(type.individu, type.meta) }}
         </p>
         <div
           v-for="(month, monthIndex) in type.months"
@@ -126,7 +126,6 @@ export default {
     YesNoQuestion,
   },
   props: {
-    individu: Object,
     type: Object,
     index: Number,
   },

@@ -79,11 +79,14 @@
 </template>
 
 <script lang="ts">
+import { PropType } from "vue"
+
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.js"
+import { ResourceType } from "@lib/types/resources.d.js"
 
 function getQuestionLabel(ressource, debutAnneeGlissante) {
   let verbForms = {
@@ -126,7 +129,7 @@ export default {
     YesNoQuestion,
   },
   props: {
-    type: Object,
+    type: { type: Object as PropType<ResourceType>, required: true },
     index: Number,
   },
   emits: ["update"],

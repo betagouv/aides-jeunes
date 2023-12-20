@@ -1,5 +1,6 @@
 import { Situation } from "./situations.js"
 import { Individu } from "./individu.js"
+import { DateItem } from "./date.js"
 
 export interface Resource {
   id: string
@@ -22,4 +23,21 @@ export interface Resource {
 export interface ResourceCategory {
   id: string
   label: string
+}
+
+interface MontantsParPeriode {
+  [periode: string]: number | null
+}
+
+interface ExtraInfo {
+  [id: string]: any
+}
+
+export interface ResourceType {
+  amounts: MontantsParPeriode
+  individu: Individu
+  months: DateItem[]
+  displayMonthly: boolean
+  meta: Resource
+  extra: ExtraInfo
 }

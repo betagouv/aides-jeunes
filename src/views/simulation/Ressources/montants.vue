@@ -10,7 +10,6 @@
     <div v-for="(type, index) in types" :key="type.meta.id">
       <RessourceMontants
         v-if="isSimple(type.meta.id)"
-        :individu="type.individu"
         :index="index"
         :type="type"
         @update="process"
@@ -53,6 +52,8 @@ import Ressource from "@lib/ressource.js"
 import IndividuMethods from "@lib/individu.js"
 import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
+import { Individu } from "@lib/types/individu.d.js"
+import { ResourceType } from "@lib/types/resources.d.js"
 
 export default {
   name: "RessourcesMontants",
@@ -114,18 +115,17 @@ export default {
     getIndividuNom() {
       return IndividuMethods.label(this.individu, "nom")
     },
-    getIndividu() {
+    getIndividu(): Individu {
       const id = this.$route.params.id
       const role = id.split("_")[0]
       const { individu } = IndividuMethods.get(
         this.store.peopleParentsFirst,
         role,
-        this.$route.params.id,
-        this.store.dates
+        this.$route.params.id
       )
       return individu
     },
-    getTypes(individu) {
+    getTypes(individu: Individu): ResourceType[] {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
@@ -139,7 +139,7 @@ export default {
         this.$route.params.id
       )
 
-      return ressourceTypes.reduce((result, type) => {
+      return ressourceTypes.reduce((resourceTypes, type) => {
         if (selectedTypes[type.id]) {
           let amounts = Object.assign({}, individu[type.id])
           if (answers) {
@@ -158,7 +158,7 @@ export default {
             type
           )
 
-          result.push({
+          resourceTypes.push({
             amounts,
             individu,
             months,
@@ -170,8 +170,8 @@ export default {
             }, {}),
           })
         }
-        return result
-      }, [])
+        return resourceTypes
+      }, [] as ResourceType[])
     },
     isSimple(type) {
       const complex = [

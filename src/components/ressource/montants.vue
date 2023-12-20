@@ -13,11 +13,7 @@
       >
         <span
           v-html="
-            getQuestionLabel(
-              individu,
-              type.meta,
-              store.dates.twelveMonthsAgo.label
-            )
+            getQuestionLabel(type.meta, store.dates.twelveMonthsAgo.label)
           "
         />
       </YesNoQuestion>
@@ -51,7 +47,7 @@
             être modifiés ensuite.</span
           >
           Indiquez les montants <strong>nets mensuels</strong> que
-          {{ getLongLabel(individu, type.meta) }}
+          {{ getLongLabel(type.individu, type.meta) }}
         </p>
         <div
           v-for="(month, monthIndex) in type.months"
@@ -83,13 +79,16 @@
 </template>
 
 <script lang="ts">
+import { PropType } from "vue"
+
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.js"
+import { ResourceType } from "@lib/types/resources.d.js"
 
-function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
+function getQuestionLabel(ressource, debutAnneeGlissante) {
   let verbForms = {
     pensions_alimentaires_versees_individu: "versé",
     default: "reçu",
@@ -130,8 +129,7 @@ export default {
     YesNoQuestion,
   },
   props: {
-    individu: Object,
-    type: Object,
+    type: { type: Object as PropType<ResourceType>, required: true },
     index: Number,
   },
   emits: ["update"],

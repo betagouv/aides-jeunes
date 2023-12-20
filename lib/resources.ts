@@ -265,7 +265,7 @@ export const ressourceTypes: Resource[] = [
     category: "indemnites",
     interuptionQuestionLabel:
       "des indemnités de la sécurité sociale, un salaire ou des allocations chômage",
-    isRelevant: (situation) => situation.enfants?.length,
+    isRelevant: (situation) => Boolean(situation.enfants?.length),
   },
   {
     id: "indemnites_journalieres_maladie",

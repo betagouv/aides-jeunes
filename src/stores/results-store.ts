@@ -40,7 +40,7 @@ export const useResultsStore = defineStore("resultsStore", {
     mockResultsNeeded() {
       return this.$router.currentRoute.value.query?.debug !== undefined
     },
-    displaySimulationUnavailable() {
+    isSimulationUnavailable() {
       return this.simulationAnonymized && !useStore().followup
     },
   },

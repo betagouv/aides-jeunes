@@ -22,10 +22,7 @@
     </div>
   </WarningMessage>
 
-  <div
-    v-if="displaySimulationUnavailable"
-    class="fr-alert fr-alert--info fr-my-1w"
-  >
+  <div v-if="isSimulationUnavailable" class="fr-alert fr-alert--info fr-my-1w">
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -109,6 +106,7 @@ import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 
 import Simulation from "@/lib/simulation.js"
+import { computed } from "vue"
 
 export default {
   name: "SimulationResultats",
@@ -125,22 +123,21 @@ export default {
     ErrorsEmailAndSmsModal,
   },
   mixins: [StatisticsMixin],
+
   setup() {
+    const resultsStore = useResultsStore()
+    const benefits = computed(() => resultsStore.benefits)
+    const isSimulationUnavailable = computed(
+      () => resultsStore.isSimulationUnavailable
+    )
+    const hasWarning = computed(() => resultsStore.hasWarning)
     return {
       store: useStore(),
-      resultsStore: useResultsStore(),
+      resultsStore,
+      benefits,
+      isSimulationUnavailable,
+      hasWarning,
     }
-  },
-  computed: {
-    benefits() {
-      return this.resultsStore.benefits
-    },
-    displaySimulationUnavailable() {
-      return this.resultsStore.displaySimulationUnavailable
-    },
-    hasWarning() {
-      return this.resultsStore.hasWarning
-    },
   },
   async mounted() {
     this.initializeStore()

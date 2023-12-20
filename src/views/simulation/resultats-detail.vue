@@ -1,14 +1,14 @@
 <template>
   <div>
-    <LoadingModal v-if="resultsStore.fetching || resultsStore.updating">
-      <p v-show="resultsStore.fetching">
+    <LoadingModal v-if="fetching || updating">
+      <p v-show="fetching">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
         ></span
         ><span class="fr-ml-2w">Récupération en cours…</span>
       </p>
-      <p v-show="resultsStore.updating">
+      <p v-show="updating">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
@@ -49,6 +49,7 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
+import { computed } from "vue"
 
 export default {
   components: {
@@ -60,17 +61,21 @@ export default {
   },
   mixins: [StatisticsMixin],
   setup() {
+    const resultsStore = useResultsStore()
+    const benefits = computed(() => resultsStore.benefits)
+    const fetching = computed(() => resultsStore.fetching)
+    const updating = computed(() => resultsStore.updating)
     return {
       store: useStore(),
       resultsStore: useResultsStore(),
+      benefits,
+      fetching,
+      updating,
     }
   },
   computed: {
     situation() {
       return this.store.situation
-    },
-    benefits() {
-      return this.resultsStore.benefits
     },
     benefit() {
       const benefitId = this.$route.params.benefitId

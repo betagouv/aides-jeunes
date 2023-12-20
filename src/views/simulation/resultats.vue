@@ -1,9 +1,7 @@
 <template>
-  <LoadingModal v-if="resultsStore.fetching || resultsStore.updating">
-    <p v-show="resultsStore.fetching">
-      Récupération de la situation en cours…
-    </p>
-    <p v-show="resultsStore.updating"> Calcul en cours de vos droits… </p>
+  <LoadingModal v-if="fetching || updating">
+    <p v-show="fetching"> Récupération de la situation en cours… </p>
+    <p v-show="updating"> Calcul en cours de vos droits… </p>
   </LoadingModal>
 
   <ErrorsEmailAndSmsModal />
@@ -38,9 +36,9 @@
     </div>
   </div>
 
-  <ErrorBlock v-if="resultsStore.error" />
-  <ErrorSaveBlock v-if="resultsStore.hasErrorSave" />
-  <div v-show="resultsStore.shouldDisplayResults">
+  <ErrorBlock v-if="error" />
+  <ErrorSaveBlock v-if="hasErrorSave" />
+  <div v-show="shouldDisplayResults">
     <div v-if="!isEmpty(benefits)">
       <p class="fr-text--lg">
         D'après la situation que vous avez décrite, vous êtes a priori éligible
@@ -52,7 +50,7 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <BenefitsList :benefits="resultsStore.benefits" />
+      <BenefitsList :benefits="benefits" />
     </div>
 
     <div v-show="isEmpty(benefits)" class="fr-py-5w">
@@ -75,9 +73,7 @@
       <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-5">
-            <OfflineResults
-              v-if="!resultsStore.updating && !isEmpty(benefits)"
-            />
+            <OfflineResults v-if="!updating && !isEmpty(benefits)" />
           </div>
           <div class="fr-col-12 fr-col-md-7">
             <Feedback />
@@ -127,16 +123,28 @@ export default {
   setup() {
     const resultsStore = useResultsStore()
     const benefits = computed(() => resultsStore.benefits)
+    const hasWarning = computed(() => resultsStore.hasWarning)
+    const fetching = computed(() => resultsStore.fetching)
+    const updating = computed(() => resultsStore.updating)
+    const error = computed(() => resultsStore.error)
+    const hasErrorSave = computed(() => resultsStore.hasErrorSave)
     const isSimulationUnavailable = computed(
       () => resultsStore.isSimulationUnavailable
     )
-    const hasWarning = computed(() => resultsStore.hasWarning)
+    const shouldDisplayResults = computed(
+      () => resultsStore.shouldDisplayResults
+    )
     return {
       store: useStore(),
       resultsStore,
       benefits,
       isSimulationUnavailable,
       hasWarning,
+      fetching,
+      updating,
+      error,
+      hasErrorSave,
+      shouldDisplayResults,
     }
   },
   async mounted() {

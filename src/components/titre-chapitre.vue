@@ -37,23 +37,25 @@ import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results-store.js"
 import JeDonneMonAvis from "@/components/je-donne-mon-avis.vue"
+import { computed } from "vue"
 
 export default {
   name: "TitreChapitre",
   components: { SendRecapButton, JeDonneMonAvis },
   setup() {
+    const resultsStore = useResultsStore()
+    const hasBenefits = computed(() => resultsStore.hasBenefits)
+    const shouldDisplayResults = computed(
+      () => resultsStore.shouldDisplayResults
+    )
     return {
       store: useStore(),
       resultsStore: useResultsStore(),
+      hasBenefits,
+      shouldDisplayResults,
     }
   },
   computed: {
-    hasBenefits() {
-      return this.resultsStore.hasBenefits
-    },
-    shouldDisplayResults() {
-      return this.resultsStore.shouldDisplayResults
-    },
     title() {
       return this.getTitleByRoute(this.$route)
     },

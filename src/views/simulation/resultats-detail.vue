@@ -1,14 +1,14 @@
 <template>
   <div>
-    <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-      <p v-show="accessStatus.fetching">
+    <LoadingModal v-if="resultsStore.fetching || resultsStore.updating">
+      <p v-show="resultsStore.fetching">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
         ></span
         ><span class="fr-ml-2w">Récupération en cours…</span>
       </p>
-      <p v-show="resultatStatus.updating">
+      <p v-show="resultsStore.updating">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
@@ -44,10 +44,10 @@ import DroitsDetails from "../../components/droits-details.vue"
 import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
 
 export default {
@@ -58,15 +58,19 @@ export default {
     Feedback,
     LoadingModal,
   },
-  mixins: [ResultatsMixin, StatisticsMixin],
+  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
+      resultsStore: useResultsStore(),
     }
   },
   computed: {
     situation() {
       return this.store.situation
+    },
+    benefits() {
+      return this.resultsStore.benefits
     },
     benefit() {
       const benefitId = this.$route.params.benefitId
@@ -80,8 +84,8 @@ export default {
     },
   },
   async mounted() {
-    if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.benefitId)
+    if (this.resultsStore.mockResultsNeeded) {
+      this.resultsStore.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {
       await this.restoreLatest()

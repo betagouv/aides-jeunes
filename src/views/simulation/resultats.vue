@@ -1,9 +1,9 @@
 <template>
-  <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-    <p v-show="accessStatus.fetching">
+  <LoadingModal v-if="resultsStore.fetching || resultsStore.updating">
+    <p v-show="resultsStore.fetching">
       Récupération de la situation en cours…
     </p>
-    <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
+    <p v-show="resultsStore.updating"> Calcul en cours de vos droits… </p>
   </LoadingModal>
 
   <ErrorsEmailAndSmsModal />
@@ -23,7 +23,7 @@
   </WarningMessage>
 
   <div
-    v-if="displaySimulationUnavailable()"
+    v-if="displaySimulationUnavailable"
     class="fr-alert fr-alert--info fr-my-1w"
   >
     <div>
@@ -41,9 +41,9 @@
     </div>
   </div>
 
-  <ErrorBlock v-if="hasError" />
-  <ErrorSaveBlock v-if="hasErrorSave" />
-  <div v-show="shouldDisplayResults">
+  <ErrorBlock v-if="resultsStore.error" />
+  <ErrorSaveBlock v-if="resultsStore.hasErrorSave" />
+  <div v-show="resultsStore.shouldDisplayResults">
     <div v-if="!isEmpty(benefits)">
       <p class="fr-text--lg">
         D'après la situation que vous avez décrite, vous êtes a priori éligible
@@ -79,7 +79,7 @@
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-5">
             <OfflineResults
-              v-if="!resultatStatus.updating && !isEmpty(benefits)"
+              v-if="!resultsStore.updating && !isEmpty(benefits)"
             />
           </div>
           <div class="fr-col-12 fr-col-md-7">
@@ -99,7 +99,6 @@ import Feedback from "@/components/feedback.vue"
 import OfflineResults from "@/components/offline-results.vue"
 import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
@@ -108,6 +107,8 @@ import { useResultsStore } from "@/stores/results-store.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
+
+import Simulation from "@/lib/simulation.js"
 
 export default {
   name: "SimulationResultats",
@@ -123,24 +124,35 @@ export default {
     Recapitulatif,
     ErrorsEmailAndSmsModal,
   },
-  mixins: [ResultatsMixin, StatisticsMixin],
+  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
       resultsStore: useResultsStore(),
     }
   },
+  computed: {
+    benefits() {
+      return this.resultsStore.benefits
+    },
+    displaySimulationUnavailable() {
+      return this.resultsStore.displaySimulationUnavailable
+    },
+    hasWarning() {
+      return this.resultsStore.hasWarning
+    },
+  },
   async mounted() {
     this.initializeStore()
     this.handleLegacySituationId()
 
-    if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.benefitId)
+    if (this.resultsStore.mockResultsNeeded) {
+      this.resultsStore.mock(this.$route.params.benefitId)
       return
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
-      await this.restoreLatest()
+      await this.restoreLatestSimulation()
     } else if (this.store.calculs.dirty) {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {
@@ -155,6 +167,32 @@ export default {
     this.stopSubscription?.()
   },
   methods: {
+    async restoreLatestSimulation() {
+      const lastestSimulationId = Simulation.getLatestId()
+      if (!lastestSimulationId) {
+        this.sendEventToMatomo(
+          EventCategory.General,
+          EventAction.Redirection,
+          this.$route.path
+        )
+
+        return this.store.redirection((route) => this.$router.push(route))
+      }
+
+      this.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.CalculResultatsRestauration,
+        this.$route.path
+      )
+
+      await this.store.fetch(lastestSimulationId)
+
+      if (this.store.simulationAnonymized) {
+        await this.store.retrieveResultsAlreadyComputed()
+      } else {
+        this.store.computeResults()
+      }
+    },
     isEmpty(array) {
       return !array || array.length === 0
     },
@@ -165,7 +203,7 @@ export default {
       const benefitsWithUnexpectedAmount = this.benefits.filter((benefit) => {
         const unexpectedAmountLinkDisplayed =
           (benefit.isBaseRessourcesYearMinusTwo &&
-            !this.ressourcesYearMinusTwoCaptured) ||
+            !this.store.ressourcesYearMinusTwoCaptured) ||
           benefit.showUnexpectedAmount
 
         return unexpectedAmountLinkDisplayed

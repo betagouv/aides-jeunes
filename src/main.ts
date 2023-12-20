@@ -1,4 +1,4 @@
-import { createApp, h } from "vue"
+import { createApp, h, markRaw } from "vue"
 import "@gouvfr/dsfr/dist/dsfr.min.css"
 import "@gouvfr/dsfr/dist/utility/utility.min.css"
 import "@gouvfr/dsfr/dist/dsfr.module.min.js"
@@ -33,6 +33,10 @@ const Resizer = {
   },
 }
 const pinia = createPinia()
+
+pinia.use(({ store }) => {
+  store.$router = markRaw(router)
+})
 
 const app = createApp({
   render: () => h(App),

@@ -2,51 +2,55 @@ import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { Benefit } from "@data/types/benefits"
 
-const store = useStore()
-
 export const useResultsStore = defineStore("resultsStore", {
   getters: {
     benefits(): Benefit[] {
       return this.resultats?.droitsEligibles
     },
     hasBenefits() {
-      return this.benefits.length > 0
+      return this.benefits?.length > 0
     },
-    resultatsId() {
-      return this.resultats?._id || "???"
-    },
-    accessStatus() {
-      return store.access
-    },
-    resultatStatus() {
-      return store.calculs
+    fetching() {
+      return useStore().access.fetching
     },
     resultats() {
-      return !store.calculs.dirty && store.calculs.resultats
+      return !useStore().calculs.dirty && useStore().calculs.resultats
+    },
+    updating() {
+      return useStore().calculs.updating
     },
     hasWarning() {
-      return this.accessStatus.forbidden
+      return useStore().access.forbidden
     },
-    hasError() {
-      return this.resultatStatus.error
+    error() {
+      return useStore().calculs.error
+    },
+    exception() {
+      return useStore().calculs.exception
     },
     hasErrorSave() {
-      return store.saveSituationError
+      return useStore().saveSituationError
     },
     shouldDisplayResults() {
-      return (
-        !(this.resultatStatus.updating || this.hasWarning || this.hasError) &&
-        this.benefits
-      )
-    },
-    ressourcesYearMinusTwoCaptured() {
-      return store.ressourcesYearMinusTwoCaptured
+      return !(this.updating || this.hasWarning || this.error) && this.benefits
     },
     simulationAnonymized() {
-      return store.simulationAnonymized
+      return useStore().simulationAnonymized
     },
-    eligibleBenefits() {
-      return !store.calculs.dirty && store.calculs.resultats.droitsEligibles
+    mockResultsNeeded() {
+      return this.$router.currentRoute.value.query?.debug !== undefined
+    },
+    displaySimulationUnavailable() {
+      return this.simulationAnonymized && !useStore().followup
+    },
+  },
+  actions: {
+    mock(detail) {
+      if (this.mockResultsNeeded) {
+        useStore().mockResults(
+          detail || this.$router.currentRoute.value.query?.debug
+        )
+      }
     },
   },
 })

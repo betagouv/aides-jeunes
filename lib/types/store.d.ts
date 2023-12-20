@@ -79,4 +79,5 @@ export interface Store {
   recapEmailState: string | undefined
   recapPhoneState: string | undefined
   external_id?: string
+  followup?: any
 }

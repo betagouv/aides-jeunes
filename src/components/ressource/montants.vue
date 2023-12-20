@@ -78,8 +78,8 @@
   </fieldset>
 </template>
 
-<script lang="ts">
-import { PropType } from "vue"
+<script setup lang="ts">
+import { computed, PropType } from "vue"
 
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
@@ -88,19 +88,32 @@ import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.js"
 import { ResourceType } from "@lib/types/resources.d.js"
 
+const props = defineProps({
+  type: { type: Object as PropType<ResourceType>, required: true },
+  index: Number,
+})
+
+const emit = defineEmits(["update"])
+const store = useStore()
+
+const singleValue = computed({
+  get: () => props.type.displayMonthly,
+  set: (value) => emit("update", "displayMonthly", props.index, value),
+})
+
 function getQuestionLabel(ressource, debutAnneeGlissante) {
-  let verbForms = {
+  const verbForms = {
     pensions_alimentaires_versees_individu: "versé",
     default: "reçu",
   }
 
-  let verb = verbForms[ressource.id] || verbForms.default
+  const verb = verbForms[ressource.id] || verbForms.default
   return `${[
     "Le montant",
     verb,
     "est-il le même <b>tous les mois</b> depuis",
     debutAnneeGlissante,
-  ].join(" ")} ?`
+  ].join(" ")} ?`
 }
 
 function getLongLabel(individu, ressource) {
@@ -118,39 +131,6 @@ function getLongLabel(individu, ressource) {
   }
   const verb = verbs[ressource.id] || verbs.default
 
-  return `${[subject, aux, verb, "en"].join(" ")} :`
-}
-
-export default {
-  name: "RessourceMontants",
-  components: {
-    InputNumber,
-    MonthLabel,
-    YesNoQuestion,
-  },
-  props: {
-    type: { type: Object as PropType<ResourceType>, required: true },
-    index: Number,
-  },
-  emits: ["update"],
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  computed: {
-    singleValue: {
-      get() {
-        return this.type.displayMonthly
-      },
-      set(value) {
-        this.$emit("update", "displayMonthly", this.index, value)
-      },
-    },
-  },
-  methods: {
-    getQuestionLabel,
-    getLongLabel,
-  },
+  return `${[subject, aux, verb, "en"].join(" ")} :`
 }
 </script>

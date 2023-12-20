@@ -13,11 +13,7 @@
       >
         <span
           v-html="
-            getQuestionLabel(
-              individu,
-              type.meta,
-              store.dates.twelveMonthsAgo.label
-            )
+            getQuestionLabel(type.meta, store.dates.twelveMonthsAgo.label)
           "
         />
       </YesNoQuestion>
@@ -89,7 +85,7 @@ import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.js"
 
-function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
+function getQuestionLabel(ressource, debutAnneeGlissante) {
   let verbForms = {
     pensions_alimentaires_versees_individu: "versé",
     default: "reçu",

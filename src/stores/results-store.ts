@@ -40,20 +40,8 @@ export const useResultsStore = defineStore("resultsStore", {
     simulationAnonymized() {
       return useStore().simulationAnonymized
     },
-    mockResultsNeeded() {
-      return this.$router.currentRoute.value.query?.debug !== undefined
-    },
     isSimulationUnavailable() {
       return this.simulationAnonymized && !useStore().followup
-    },
-  },
-  actions: {
-    mock(detail) {
-      if (this.mockResultsNeeded) {
-        useStore().mockResults(
-          detail || this.$router.currentRoute.value.query?.debug
-        )
-      }
     },
   },
 })

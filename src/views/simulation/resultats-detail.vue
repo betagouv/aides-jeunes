@@ -50,6 +50,7 @@ import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
 import Simulation from "@/lib/simulation.js"
+import MockResults from "@/lib/mock-results.js"
 
 export default {
   components: {
@@ -91,8 +92,8 @@ export default {
     },
   },
   async mounted() {
-    if (this.resultsStore.mockResultsNeeded) {
-      this.resultsStore.mock(this.$route.params.benefitId)
+    if (MockResults.mockResultsNeeded) {
+      MockResults.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {
       await Simulation.restoreLatestSimulation()

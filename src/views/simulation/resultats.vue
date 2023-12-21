@@ -101,7 +101,7 @@ import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 import Simulation from "@/lib/simulation.js"
-
+import MockResults from "@/lib/mock-results"
 import { computed } from "vue"
 
 export default {
@@ -151,8 +151,8 @@ export default {
     this.initializeStore()
     this.handleLegacySituationId()
 
-    if (this.resultsStore.mockResultsNeeded) {
-      this.resultsStore.mock(this.$route.params.benefitId)
+    if (MockResults.mockResultsNeeded()) {
+      MockResults.mock(this.$route.params.benefitId)
       return
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()

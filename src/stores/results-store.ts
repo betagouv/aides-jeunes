@@ -1,9 +1,6 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { Benefit } from "@data/types/benefits"
-import Simulation from "@/lib/simulation.js"
-import StatisticsMixin from "@/mixins/statistics"
-import { EventAction, EventCategory } from "@lib/enums/event"
 
 export const useResultsStore = defineStore("resultsStore", {
   getters: {

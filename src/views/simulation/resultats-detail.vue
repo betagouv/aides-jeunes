@@ -49,7 +49,6 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
-import { computed } from "vue"
 
 export default {
   components: {
@@ -61,19 +60,21 @@ export default {
   },
   mixins: [StatisticsMixin],
   setup() {
-    const resultsStore = useResultsStore()
-    const benefits = computed(() => resultsStore.benefits)
-    const fetching = computed(() => resultsStore.fetching)
-    const updating = computed(() => resultsStore.updating)
     return {
       store: useStore(),
       resultsStore: useResultsStore(),
-      benefits,
-      fetching,
-      updating,
     }
   },
   computed: {
+    benefits() {
+      return this.resultsStore.benefits
+    },
+    fetching() {
+      return this.resultsStore.fetching
+    },
+    updating() {
+      return this.resultsStore.updating
+    },
     situation() {
       return this.store.situation
     },

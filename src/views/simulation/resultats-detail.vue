@@ -49,6 +49,7 @@ import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
+import Simulation from "@/lib/simulation.js"
 
 export default {
   components: {
@@ -94,7 +95,7 @@ export default {
       this.resultsStore.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {
-      await this.resultsStore.restoreLatestSimulation()
+      await Simulation.restoreLatestSimulation()
     } else {
       const benefitId = this.$route.params.benefitId
 

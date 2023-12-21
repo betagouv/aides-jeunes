@@ -100,6 +100,7 @@ import { useResultsStore } from "@/stores/results-store.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
+import Simulation from "@/lib/simulation.js"
 
 import { computed } from "vue"
 
@@ -156,7 +157,7 @@ export default {
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
-      await this.resultsStore.restoreLatestSimulation()
+      await Simulation.restoreLatestSimulation()
     } else if (this.store.calculs.dirty) {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {

@@ -55,31 +55,5 @@ export const useResultsStore = defineStore("resultsStore", {
         )
       }
     },
-    async restoreLatestSimulation() {
-      const lastestSimulationId = Simulation.getLatestId()
-      if (!lastestSimulationId) {
-        this.sendEventToMatomo(
-          EventCategory.General,
-          EventAction.Redirection,
-          this.$router.currentRoute.value.fullPath
-        )
-
-        return useStore().redirection((route) => this.$router.push(route))
-      }
-
-      StatisticsMixin.methods.sendEventToMatomo(
-        EventCategory.General,
-        EventAction.CalculResultatsRestauration,
-        this.$router.currentRoute.value.fullPath
-      )
-
-      await useStore().fetch(lastestSimulationId)
-
-      if (useStore().simulationAnonymized) {
-        await useStore().retrieveResultsAlreadyComputed()
-      } else {
-        useStore().computeResults()
-      }
-    },
   },
 })

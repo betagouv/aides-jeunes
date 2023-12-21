@@ -42,6 +42,7 @@ export interface Simulation {
   abtesting?: any
   simulationToken?: string | undefined
   status: SimulationStatus
+  teleservice?: any
 }
 
 export interface PersistedStore {

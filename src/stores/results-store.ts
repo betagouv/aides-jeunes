@@ -1,10 +1,10 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
-import { Benefit } from "@data/types/benefits"
+import { StandardBenefit } from "@data/types/benefits"
 
 export const useResultsStore = defineStore("resultsStore", {
   getters: {
-    benefits(): Benefit[] {
+    benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles
     },
     hasBenefits() {

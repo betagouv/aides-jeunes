@@ -113,6 +113,7 @@ export interface StandardBenefit {
   collectivity: any
   title: string
   teleservicePrefill?: string
+  showUnexpectedAmount?: boolean
 }
 
 export interface BenefitWithChoice extends StandardBenefit {

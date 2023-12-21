@@ -84,7 +84,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import BenefitsList from "@/components/benefits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
@@ -102,178 +102,181 @@ import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
+import { computed, onMounted, onBeforeUnmount, ref } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
-export default {
-  name: "SimulationResultats",
-  components: {
-    WarningMessage,
-    BenefitsList,
-    ErrorBlock,
-    ErrorSaveBlock,
-    Feedback,
-    LoadingModal,
-    OfflineResults,
-    TrouverInterlocuteur,
-    Recapitulatif,
-    ErrorsEmailAndSmsModal,
-  },
-  mixins: [StatisticsMixin],
+const resultsStore = useResultsStore()
+const store = useStore()
+const router = useRouter()
+const route = useRoute()
+const benefits = computed(() => resultsStore.benefits)
+const hasWarning = computed(() => resultsStore.hasWarning)
+const fetching = computed(() => resultsStore.fetching)
+const updating = computed(() => resultsStore.updating)
+const error = computed(() => resultsStore.error)
+const hasErrorSave = computed(() => resultsStore.hasErrorSave)
+const isSimulationUnavailable = computed(
+  () => resultsStore.isSimulationUnavailable
+)
+const shouldDisplayResults = computed(() => resultsStore.shouldDisplayResults)
+const stopSubscription = ref<(() => void) | null>(null)
 
-  setup() {
-    return {
-      store: useStore(),
-      resultsStore: useResultsStore(),
+onMounted(async () => {
+  initializeStore()
+  handleLegacySituationId()
+  if (MockResults.mockResultsNeeded()) {
+    MockResults.mock(route.params.benefitId)
+    return
+  } else if (route.query?.simulationId) {
+    await handleSimulationIdQuery()
+  } else if (!store.passSanityCheck) {
+    await restoreLatestSimulation()
+  } else if (store.calculs.dirty) {
+    await saveSimulation()
+  } else if (!store.hasResults) {
+    if (store.simulation.teleservice) {
+      await redirectToTeleservice()
+    } else {
+      store.computeResults()
     }
-  },
-  computed: {
-    benefits() {
-      return this.resultsStore.benefits
-    },
-    hasWarning() {
-      return this.resultsStore.hasWarning
-    },
-    fetching() {
-      return this.resultsStore.fetching
-    },
-    updating() {
-      return this.resultsStore.updating
-    },
-    error() {
-      return this.resultsStore.error
-    },
-    hasErrorSave() {
-      return this.resultsStore.hasErrorSave
-    },
-    isSimulationUnavailable() {
-      return this.resultsStore.isSimulationUnavailable
-    },
-    shouldDisplayResults() {
-      return this.resultsStore.shouldDisplayResults
-    },
-  },
-  async mounted() {
-    this.initializeStore()
-    this.handleLegacySituationId()
+  }
+})
 
-    if (MockResults.mockResultsNeeded()) {
-      MockResults.mock(this.$route.params.benefitId)
-      return
-    } else if (this.$route.query?.simulationId) {
-      await this.handleSimulationIdQuery()
-    } else if (!this.store.passSanityCheck) {
-      await Simulation.restoreLatestSimulation()
-    } else if (this.store.calculs.dirty) {
-      await this.saveSimulation()
-    } else if (!this.store.hasResults) {
-      if (this.store.simulation.teleservice) {
-        await this.redirectToTeleservice()
-      } else {
-        this.store.computeResults()
-      }
-    }
-  },
-  beforeUnmount() {
-    this.stopSubscription?.()
-  },
-  methods: {
-    isEmpty(array) {
-      return !array || array.length === 0
-    },
-    sendShowStatistics() {
-      this.sendBenefitsStatistics(this.benefits, EventAction.Show)
-    },
-    sendDisplayUnexpectedAmountLinkStatistics() {
-      const benefitsWithUnexpectedAmount = this.benefits.filter((benefit) => {
-        const unexpectedAmountLinkDisplayed =
-          (benefit.isBaseRessourcesYearMinusTwo &&
-            !this.store.ressourcesYearMinusTwoCaptured) ||
-          benefit.showUnexpectedAmount
+onBeforeUnmount(() => {
+  stopSubscription.value?.()
+})
 
-        return unexpectedAmountLinkDisplayed
-      })
+const restoreLatestSimulation = async () => {
+  const lastestSimulationId = Simulation.getLatestId()
+  if (!lastestSimulationId) {
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.Redirection,
+      route.path
+    )
 
-      this.sendBenefitsStatistics(
-        benefitsWithUnexpectedAmount,
-        EventAction.ShowUnexpectedAmountLink
-      )
-    },
-    sendAccessToAnonymizedResults() {
-      this.sendEventToMatomo(
-        EventCategory.General,
-        EventAction.AccesSimulationAnonymisee,
-        daysSinceDate(new Date(this.store.simulation.dateDeValeur))
-      )
-    },
-    initializeStore() {
-      this.store.updateCurrentAnswers(this.$route.path)
+    return store.redirection((route) => router.push(route))
+  }
 
-      this.stopSubscription = this.store.$onAction(({ after, name }) => {
-        after(() => {
-          switch (name) {
-            case "setResults": {
-              this.sendShowStatistics()
-              this.sendDisplayUnexpectedAmountLinkStatistics()
-              break
-            }
-            case "saveComputationFailure": {
-              this.sendEventToMatomo(
-                EventCategory.General,
-                EventAction.ErreurInitStore
-              )
-              break
-            }
-          }
-        })
-      })
-    },
-    handleLegacySituationId() {
-      // Used for old links containing situationId instead of simulationId
-      if (this.$route.query?.situationId) {
-        this.store.setSimulationId(this.$route.query.situationId)
-      }
-    },
-    async handleSimulationIdQuery() {
-      if (
-        this.store.simulationId === this.$route.query.simulationId &&
-        this.store.hasResults
-      ) {
-        return
-      }
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategory.General,
+    EventAction.CalculResultatsRestauration,
+    route.path
+  )
 
-      await this.store.fetch(this.$route.query.simulationId)
+  await store.fetch(lastestSimulationId)
 
-      if (this.simulationAnonymized) {
-        this.sendAccessToAnonymizedResults()
-        await this.store.retrieveResultsAlreadyComputed()
-      } else {
-        this.store.computeResults()
-      }
+  if (store.simulationAnonymized) {
+    await store.retrieveResultsAlreadyComputed()
+  } else {
+    store.computeResults()
+  }
+}
 
-      this.$router.replace({ simulationId: null })
-    },
-    async saveSimulation() {
-      try {
-        this.store.setSaveSituationError(null)
-        await this.store.save()
+const isEmpty = (array) => {
+  return !array || array.length === 0
+}
+const sendShowStatistics = () => {
+  StatisticsMixin.methods.sendBenefitsStatistics(
+    benefits.value,
+    EventAction.Show
+  )
+}
+const sendDisplayUnexpectedAmountLinkStatistics = () => {
+  const benefitsWithUnexpectedAmount = benefits.value.filter((benefit) => {
+    const unexpectedAmountLinkDisplayed =
+      (benefit.isBaseRessourcesYearMinusTwo &&
+        !store.ressourcesYearMinusTwoCaptured) ||
+      benefit.showUnexpectedAmount
 
-        if (!this.store.access.forbidden) {
-          this.store.computeResults()
+    return unexpectedAmountLinkDisplayed
+  })
+
+  StatisticsMixin.methods.sendBenefitsStatistics(
+    benefitsWithUnexpectedAmount,
+    EventAction.ShowUnexpectedAmountLink
+  )
+}
+
+const sendAccessToAnonymizedResults = () => {
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategory.General,
+    EventAction.AccesSimulationAnonymisee,
+    daysSinceDate(new Date(store.simulation.dateDeValeur)).toString()
+  )
+}
+const initializeStore = () => {
+  store.updateCurrentAnswers(route.path)
+
+  stopSubscription.value = store.$onAction(({ after, name }) => {
+    after(() => {
+      switch (name) {
+        case "setResults": {
+          sendShowStatistics()
+          sendDisplayUnexpectedAmountLinkStatistics()
+          break
         }
-      } catch (error: any) {
-        this.store.setSaveSituationError(error.response?.data || error)
-        this.sendEventToMatomo(
-          EventCategory.General,
-          EventAction.ErreurSauvegardeSimulation
-        )
+        case "saveComputationFailure": {
+          StatisticsMixin.methods.sendEventToMatomo(
+            EventCategory.General,
+            EventAction.ErreurInitStore,
+            route.path
+          )
+          break
+        }
       }
-    },
-  },
-  async redirectToTeleservice() {
-    const representation = await this.store.fetchRepresentation(
-      this.store.simulation.teleservice
+    })
+  })
+}
+const handleLegacySituationId = () => {
+  // Used for old links containing situationId instead of simulationId
+  if (route.query?.situationId) {
+    store.setSimulationId(route.query.situationId.toString())
+  }
+}
+const handleSimulationIdQuery = async () => {
+  if (store.simulationId === route.query.simulationId && store.hasResults) {
+    return
+  }
+
+  if (route.query.simulationId) {
+    await store.fetch(route.query.simulationId.toString())
+  }
+
+  if (store.simulationAnonymized) {
+    sendAccessToAnonymizedResults()
+    await store.retrieveResultsAlreadyComputed()
+  } else {
+    store.computeResults()
+  }
+
+  router.replace({ ...router.currentRoute.value, simulationId: null } as any)
+}
+const saveSimulation = async () => {
+  try {
+    store.setSaveSituationError("")
+    await store.save()
+
+    if (!store.access.forbidden) {
+      store.computeResults()
+    }
+  } catch (error: any) {
+    store.setSaveSituationError(error.response?.data || error)
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.ErreurSauvegardeSimulation,
+      route.path
+    )
+  }
+}
+const redirectToTeleservice = async () => {
+  if (store.simulationId) {
+    const representation = await store.fetchRepresentation(
+      store.simulation.teleservice,
+      store.simulationId
     )
 
     window.location.href = representation.destination.url
-  },
+  }
 }
 </script>

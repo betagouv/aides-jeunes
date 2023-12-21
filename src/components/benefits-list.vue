@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, defineProps } from "vue"
-import { Benefit } from "@data/types/benefits"
+import { StandardBenefit } from "@data/types/benefits"
 import BenefitPreview from "@/components/benefit-preview.vue"
 
 const props = defineProps({
-  benefits: Array<Benefit>,
+  benefits: Array<StandardBenefit>,
   filter: Array<any>,
 })
 

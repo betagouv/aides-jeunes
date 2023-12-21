@@ -93,7 +93,7 @@ export default {
       this.resultsStore.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {
-      await this.restoreLatest()
+      await this.resultsStore.restoreLatestSimulation()
     } else {
       const benefitId = this.$route.params.benefitId
 

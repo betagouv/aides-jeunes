@@ -101,7 +101,6 @@ import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 
-import Simulation from "@/lib/simulation.js"
 import { computed } from "vue"
 
 export default {
@@ -157,7 +156,7 @@ export default {
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
-      await this.restoreLatestSimulation()
+      await this.resultsStore.restoreLatestSimulation()
     } else if (this.store.calculs.dirty) {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {
@@ -172,32 +171,6 @@ export default {
     this.stopSubscription?.()
   },
   methods: {
-    async restoreLatestSimulation() {
-      const lastestSimulationId = Simulation.getLatestId()
-      if (!lastestSimulationId) {
-        this.sendEventToMatomo(
-          EventCategory.General,
-          EventAction.Redirection,
-          this.$route.path
-        )
-
-        return this.store.redirection((route) => this.$router.push(route))
-      }
-
-      this.sendEventToMatomo(
-        EventCategory.General,
-        EventAction.CalculResultatsRestauration,
-        this.$route.path
-      )
-
-      await this.store.fetch(lastestSimulationId)
-
-      if (this.store.simulationAnonymized) {
-        await this.store.retrieveResultsAlreadyComputed()
-      } else {
-        this.store.computeResults()
-      }
-    },
     isEmpty(array) {
       return !array || array.length === 0
     },

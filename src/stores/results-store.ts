@@ -1,6 +1,9 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { Benefit } from "@data/types/benefits"
+import Simulation from "@/lib/simulation.js"
+import StatisticsMixin from "@/mixins/statistics"
+import { EventAction, EventCategory } from "@lib/enums/event"
 
 export const useResultsStore = defineStore("resultsStore", {
   getters: {
@@ -50,6 +53,32 @@ export const useResultsStore = defineStore("resultsStore", {
         useStore().mockResults(
           detail || this.$router.currentRoute.value.query?.debug
         )
+      }
+    },
+    async restoreLatestSimulation() {
+      const lastestSimulationId = Simulation.getLatestId()
+      if (!lastestSimulationId) {
+        this.sendEventToMatomo(
+          EventCategory.General,
+          EventAction.Redirection,
+          this.$router.currentRoute.value.fullPath
+        )
+
+        return useStore().redirection((route) => this.$router.push(route))
+      }
+
+      StatisticsMixin.methods.sendEventToMatomo(
+        EventCategory.General,
+        EventAction.CalculResultatsRestauration,
+        this.$router.currentRoute.value.fullPath
+      )
+
+      await useStore().fetch(lastestSimulationId)
+
+      if (useStore().simulationAnonymized) {
+        await useStore().retrieveResultsAlreadyComputed()
+      } else {
+        useStore().computeResults()
       }
     },
   },

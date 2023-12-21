@@ -62,48 +62,5 @@ export default {
         }
       }
     },
-    save(types, single) {
-      if (!types.length) {
-        return
-      } else if (single) {
-        const updatedRessources = {}
-        this.types.forEach((t) => {
-          updatedRessources[t.meta.id] = Object.assign(
-            {},
-            t.individu[t.meta.id]
-          )
-          t.months.forEach((m) => {
-            updatedRessources[t.meta.id][m.id] =
-              t.amounts[m.id] || t.amounts[m.id] === 0
-                ? t.amounts[m.id]
-                : t.amounts[this.store.dates.thisMonth.id] || 0
-          })
-
-          const extras = t.meta.extra || []
-          extras.forEach((e) => {
-            updatedRessources[e.id] = t.extra[e.id]
-          })
-        })
-      } else {
-        this.types.forEach((t) => {
-          const updatedRessources = {}
-          updatedRessources[t.meta.id] = Object.assign(
-            {},
-            t.individu[t.meta.id]
-          )
-          t.months.forEach((m) => {
-            updatedRessources[t.meta.id][m.id] =
-              t.amounts[m.id] || t.amounts[m.id] === 0
-                ? t.amounts[m.id]
-                : t.amounts[this.store.dates.thisMonth.id] || 0
-          })
-
-          const extras = t.meta.extra || []
-          extras.forEach((e) => {
-            updatedRessources[e.id] = t.extra[e.id]
-          })
-        })
-      }
-    },
   },
 }

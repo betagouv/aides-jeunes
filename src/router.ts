@@ -149,6 +149,11 @@ const router = createRouter({
           component: () => import("./views/simulation/resultats.vue"),
         },
         {
+          name: "resultatsAidesBafa",
+          path: "resultats/aides-bafa",
+          component: () => import("./views/simulation/resultats/benefits-bafa-list.vue"),
+        },
+        {
           name: "resultatsLieuxGeneriques",
           path: "resultats/lieux",
           component: () =>

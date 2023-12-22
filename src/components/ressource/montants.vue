@@ -55,7 +55,7 @@
           <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
           <div class="fr-container fr-px-0">
             <div class="fr-grid-row">
-              <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
+              <div class="fr-col-4">
                 <InputNumber
                   :id="`${type.meta.id}_${month.id}`"
                   :min="0"
@@ -66,7 +66,19 @@
                       monthIndex,
                     })
                   "
+                  @focus="() => onFocus(monthIndex)"
                 />
+              </div>
+              <div
+                v-if="focusedInputIndex === monthIndex"
+                class="fr-col-4 fr-ml-3w"
+              >
+                <div
+                  class="fr-btn--menu fr-btn"
+                  @click="copyValueToFollowingMonths(index, monthIndex)"
+                >
+                  Copie sur les valeurs suivantes
+                </div>
               </div>
             </div>
           </div>
@@ -77,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from "vue"
+import { computed, PropType, ref } from "vue"
 
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
@@ -86,18 +98,31 @@ import InputNumber from "@/components/input-number.vue"
 import { ResourceType } from "@lib/types/resources.d.js"
 import { DatesRange } from "@lib/types/dates.d.js"
 
+const focusedInputIndex = ref<number | null>(null)
+
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
   dates: { type: Object as PropType<DatesRange>, required: true },
   index: Number,
 })
 
-const emit = defineEmits(["update"])
+const emit = defineEmits(["update", "focus"])
 
 const singleValue = computed({
   get: () => props.type.displayMonthly,
   set: (value) => emit("update", "displayMonthly", props.index, value),
 })
+
+const onFocus = (monthIndex) => {
+  focusedInputIndex.value = monthIndex
+}
+
+const copyValueToFollowingMonths = (index, monthIndex) => {
+  console.log("click", index, monthIndex)
+  emit("update", "monthUpdateFollowing", index, {
+    monthIndex,
+  })
+}
 
 function getQuestionLabel(ressource, debutAnneeGlissante) {
   const verbForms = {

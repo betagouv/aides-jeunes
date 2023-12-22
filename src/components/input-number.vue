@@ -13,6 +13,7 @@
     inputmode="decimal"
     :aria-labelledby="ariaLabelledBy"
     @input="normalizeInput($event)"
+    @focus="onFocus($event)"
   />
   <WarningMessage v-if="error" class="fr-mt-2w"
     >Ce champ n'est pas valide.</WarningMessage
@@ -36,8 +37,9 @@ export default {
     value: { type: [Number, String] as PropType<number | string | null> },
     modelValue: { type: [Number, String] },
     emit: { type: Boolean, default: true },
+    onFocus: { type: Function, default: () => {} },
   },
-  emits: ["input", "update:modelValue", "input-error"],
+  emits: ["input", "update:modelValue", "input-error", "focus"],
   data: function () {
     return {
       result: this.result,

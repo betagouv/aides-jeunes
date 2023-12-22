@@ -73,6 +73,7 @@ function defaultStore(): Store {
     recapEmailState: undefined,
     recapPhoneState: undefined,
     external_id: undefined,
+    followup: undefined,
   }
 }
 

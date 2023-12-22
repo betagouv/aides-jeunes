@@ -1,14 +1,14 @@
 <template>
   <div>
-    <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-      <p v-show="accessStatus.fetching">
+    <LoadingModal v-if="fetching || updating">
+      <p v-show="fetching">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
         ></span
         ><span class="fr-ml-2w">Récupération en cours…</span>
       </p>
-      <p v-show="resultatStatus.updating">
+      <p v-show="updating">
         <span
           class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
           aria-hidden="true"
@@ -44,11 +44,13 @@ import DroitsDetails from "../../components/droits-details.vue"
 import DroitsContributions from "../../components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction } from "@lib/enums/event.js"
+import Simulation from "@/lib/simulation.js"
+import MockResults from "@/lib/mock-results.js"
 
 export default {
   components: {
@@ -58,13 +60,23 @@ export default {
     Feedback,
     LoadingModal,
   },
-  mixins: [ResultatsMixin, StatisticsMixin],
+  mixins: [StatisticsMixin],
   setup() {
     return {
       store: useStore(),
+      resultsStore: useResultsStore(),
     }
   },
   computed: {
+    benefits() {
+      return this.resultsStore.benefits
+    },
+    fetching() {
+      return this.resultsStore.fetching
+    },
+    updating() {
+      return this.resultsStore.updating
+    },
     situation() {
       return this.store.situation
     },
@@ -80,11 +92,11 @@ export default {
     },
   },
   async mounted() {
-    if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.benefitId)
+    if (MockResults.mockResultsNeeded()) {
+      MockResults.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {
-      await this.restoreLatest()
+      await Simulation.restoreLatestSimulation()
     } else {
       const benefitId = this.$route.params.benefitId
 

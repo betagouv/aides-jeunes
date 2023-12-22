@@ -35,19 +35,25 @@
 import Chapters from "@lib/chapters.js"
 import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
-import ResultatsMixin from "@/mixins/resultats.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import JeDonneMonAvis from "@/components/je-donne-mon-avis.vue"
 
 export default {
   name: "TitreChapitre",
   components: { SendRecapButton, JeDonneMonAvis },
-  mixins: [ResultatsMixin],
   setup() {
     return {
       store: useStore(),
+      resultsStore: useResultsStore(),
     }
   },
   computed: {
+    hasBenefits() {
+      return this.resultsStore.hasBenefits
+    },
+    shouldDisplayResults() {
+      return this.resultsStore.shouldDisplayResults
+    },
     title() {
       return this.getTitleByRoute(this.$route)
     },

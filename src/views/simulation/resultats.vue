@@ -1,9 +1,7 @@
 <template>
-  <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-    <p v-show="accessStatus.fetching">
-      Récupération de la situation en cours…
-    </p>
-    <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
+  <LoadingModal v-if="fetching || updating">
+    <p v-show="fetching"> Récupération de la situation en cours… </p>
+    <p v-show="updating"> Calcul en cours de vos droits… </p>
   </LoadingModal>
 
   <ErrorsEmailAndSmsModal />
@@ -22,10 +20,7 @@
     </div>
   </WarningMessage>
 
-  <div
-    v-if="displaySimulationUnavailable()"
-    class="fr-alert fr-alert--info fr-my-1w"
-  >
+  <div v-if="isSimulationUnavailable" class="fr-alert fr-alert--info fr-my-1w">
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -41,7 +36,7 @@
     </div>
   </div>
 
-  <ErrorBlock v-if="hasError" />
+  <ErrorBlock v-if="error" />
   <ErrorSaveBlock v-if="hasErrorSave" />
   <div v-show="shouldDisplayResults">
     <div v-if="!isEmpty(benefits)">
@@ -78,9 +73,7 @@
       <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-5">
-            <OfflineResults
-              v-if="!resultatStatus.updating && !isEmpty(benefits)"
-            />
+            <OfflineResults v-if="!updating && !isEmpty(benefits)" />
           </div>
           <div class="fr-col-12 fr-col-md-7">
             <Feedback />
@@ -99,14 +92,16 @@ import Feedback from "@/components/feedback.vue"
 import OfflineResults from "@/components/offline-results.vue"
 import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
+import Simulation from "@/lib/simulation.js"
+import MockResults from "@/lib/mock-results"
 
 export default {
   name: "SimulationResultats",
@@ -122,23 +117,51 @@ export default {
     Recapitulatif,
     ErrorsEmailAndSmsModal,
   },
-  mixins: [ResultatsMixin, StatisticsMixin],
+  mixins: [StatisticsMixin],
+
   setup() {
     return {
       store: useStore(),
+      resultsStore: useResultsStore(),
     }
+  },
+  computed: {
+    benefits() {
+      return this.resultsStore.benefits
+    },
+    hasWarning() {
+      return this.resultsStore.hasWarning
+    },
+    fetching() {
+      return this.resultsStore.fetching
+    },
+    updating() {
+      return this.resultsStore.updating
+    },
+    error() {
+      return this.resultsStore.error
+    },
+    hasErrorSave() {
+      return this.resultsStore.hasErrorSave
+    },
+    isSimulationUnavailable() {
+      return this.resultsStore.isSimulationUnavailable
+    },
+    shouldDisplayResults() {
+      return this.resultsStore.shouldDisplayResults
+    },
   },
   async mounted() {
     this.initializeStore()
     this.handleLegacySituationId()
 
-    if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.benefitId)
+    if (MockResults.mockResultsNeeded()) {
+      MockResults.mock(this.$route.params.benefitId)
       return
     } else if (this.$route.query?.simulationId) {
       await this.handleSimulationIdQuery()
     } else if (!this.store.passSanityCheck) {
-      await this.restoreLatest()
+      await Simulation.restoreLatestSimulation()
     } else if (this.store.calculs.dirty) {
       await this.saveSimulation()
     } else if (!this.store.hasResults) {
@@ -163,7 +186,7 @@ export default {
       const benefitsWithUnexpectedAmount = this.benefits.filter((benefit) => {
         const unexpectedAmountLinkDisplayed =
           (benefit.isBaseRessourcesYearMinusTwo &&
-            !this.ressourcesYearMinusTwoCaptured) ||
+            !this.store.ressourcesYearMinusTwoCaptured) ||
           benefit.showUnexpectedAmount
 
         return unexpectedAmountLinkDisplayed

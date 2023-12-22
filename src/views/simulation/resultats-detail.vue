@@ -92,7 +92,7 @@ export default {
     },
   },
   async mounted() {
-    if (MockResults.mockResultsNeeded) {
+    if (MockResults.mockResultsNeeded()) {
       MockResults.mock(this.$route.params.benefitId)
       return
     } else if (!this.benefits) {

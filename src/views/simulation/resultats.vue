@@ -102,7 +102,6 @@ import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
-import { computed } from "vue"
 
 export default {
   name: "SimulationResultats",
@@ -121,31 +120,36 @@ export default {
   mixins: [StatisticsMixin],
 
   setup() {
-    const resultsStore = useResultsStore()
-    const benefits = computed(() => resultsStore.benefits)
-    const hasWarning = computed(() => resultsStore.hasWarning)
-    const fetching = computed(() => resultsStore.fetching)
-    const updating = computed(() => resultsStore.updating)
-    const error = computed(() => resultsStore.error)
-    const hasErrorSave = computed(() => resultsStore.hasErrorSave)
-    const isSimulationUnavailable = computed(
-      () => resultsStore.isSimulationUnavailable
-    )
-    const shouldDisplayResults = computed(
-      () => resultsStore.shouldDisplayResults
-    )
     return {
       store: useStore(),
-      resultsStore,
-      benefits,
-      isSimulationUnavailable,
-      hasWarning,
-      fetching,
-      updating,
-      error,
-      hasErrorSave,
-      shouldDisplayResults,
+      resultsStore: useResultsStore(),
     }
+  },
+  computed: {
+    benefits() {
+      return this.resultsStore.benefits
+    },
+    hasWarning() {
+      return this.resultsStore.hasWarning
+    },
+    fetching() {
+      return this.resultsStore.fetching
+    },
+    updating() {
+      return this.resultsStore.updating
+    },
+    error() {
+      return this.resultsStore.error
+    },
+    hasErrorSave() {
+      return this.resultsStore.hasErrorSave
+    },
+    isSimulationUnavailable() {
+      return this.resultsStore.isSimulationUnavailable
+    },
+    shouldDisplayResults() {
+      return this.resultsStore.shouldDisplayResults
+    },
   },
   async mounted() {
     this.initializeStore()

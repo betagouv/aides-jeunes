@@ -563,3 +563,8 @@ textarea {
 .aj-header > a:after {
   display: none;
 }
+
+.aj-montant-input-container {
+  display: flex;
+  align-items: center;
+}

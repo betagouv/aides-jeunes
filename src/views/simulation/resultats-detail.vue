@@ -39,78 +39,59 @@
   </div>
 </template>
 
-<script lang="ts">
-import DroitsDetails from "../../components/droits-details.vue"
-import DroitsContributions from "../../components/droits-contributions.vue"
+<script setup lang="ts">
+import DroitsDetails from "@/components/droits-details.vue"
+import DroitsContributions from "@/components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import StatisticsMixin from "@/mixins/statistics.js"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useStore } from "@/stores/index.js"
-import { useResultsStore } from "@/stores/results-store.js"
-import { EventAction } from "@lib/enums/event.js"
+import StatisticsMixin from "@/mixins/statistics.js"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results.js"
+import { EventAction } from "@lib/enums/event.js"
+import { computed, onMounted } from "vue"
+import { useRoute, useRouter } from "vue-router"
+import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 
-export default {
-  components: {
-    BackButton,
-    DroitsDetails,
-    DroitsContributions,
-    Feedback,
-    LoadingModal,
-  },
-  mixins: [StatisticsMixin],
-  setup() {
-    return {
-      store: useStore(),
-      resultsStore: useResultsStore(),
-    }
-  },
-  computed: {
-    benefits() {
-      return this.resultsStore.benefits
-    },
-    fetching() {
-      return this.resultsStore.fetching
-    },
-    updating() {
-      return this.resultsStore.updating
-    },
-    situation() {
-      return this.store.situation
-    },
-    benefit() {
-      const benefitId = this.$route.params.benefitId
-      const benefit = (this.benefits || []).find(function (benefit) {
-        return benefit.id === benefitId
-      })
-      return benefit
-    },
-    ressourcesYearMinusTwoCaptured() {
-      return this.store.ressourcesYearMinusTwoCaptured
-    },
-  },
-  async mounted() {
-    if (MockResults.mockResultsNeeded()) {
-      MockResults.mock(this.$route.params.benefitId)
-      return
-    } else if (!this.benefits) {
-      await Simulation.restoreLatestSimulation()
-    } else {
-      const benefitId = this.$route.params.benefitId
+const store = useStore()
+const resultsStore = useResultsStore()
+const route = useRoute()
+const router = useRouter()
 
-      this.sendBenefitsStatistics(
-        this.benefits,
-        EventAction.ShowDetails,
-        benefitId
-      )
-    }
-  },
-  methods: {
-    goBack() {
-      this.$router.push("/simulation/resultats")
-    },
-  },
+const benefits = computed(() => resultsStore.benefits)
+const fetching = computed(() => resultsStore.fetching)
+const updating = computed(() => resultsStore.updating)
+const situation = computed(() => store.situation)
+const benefit = computed(() => {
+  const benefitId = route.params.benefitId
+  const benefit = (benefits.value || []).find(function (benefit) {
+    return benefit.id === benefitId
+  })
+  return benefit
+})
+
+const ressourcesYearMinusTwoCaptured = computed(
+  () => store.ressourcesYearMinusTwoCaptured
+)
+onMounted(async () => {
+  if (MockResults.mockResultsNeeded()) {
+    MockResults.mock(route.params.benefitId)
+    return
+  } else if (!benefits.value) {
+    await Simulation.restoreLatestSimulation()
+  } else {
+    const benefitId = route.params.benefitId
+
+    StatisticsMixin.methods.sendBenefitsStatistics(
+      benefits.value,
+      EventAction.ShowDetails,
+      benefitId.toString()
+    )
+  }
+})
+
+const goBack = () => {
+  router.push("/simulation/resultats")
 }
 </script>

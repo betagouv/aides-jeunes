@@ -50,7 +50,6 @@ export default {
     )
     return {
       store: useStore(),
-      resultsStore: useResultsStore(),
       hasBenefits,
       shouldDisplayResults,
     }

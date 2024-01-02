@@ -69,10 +69,7 @@
                   @focus="() => onFocus(monthIndex)"
                 />
               </div>
-              <div
-                v-if="focusedInputIndex === monthIndex"
-                class="fr-col-4 fr-ml-3w"
-              >
+              <div v-if="showCopyButton(monthIndex)" class="fr-col-4 fr-ml-3w">
                 <button
                   class="fr-btn--menu fr-btn"
                   @click.prevent="copyValueToFollowingMonths(index, monthIndex)"
@@ -122,6 +119,13 @@ const copyValueToFollowingMonths = (index, monthIndex) => {
   emit("update", "monthUpdateFollowing", index, {
     monthIndex,
   })
+}
+
+const showCopyButton = (monthIndex) => {
+  return (
+    focusedInputIndex.value === monthIndex &&
+    monthIndex < props.type.months.length - 1
+  )
 }
 
 function getQuestionLabel(ressource, debutAnneeGlissante) {

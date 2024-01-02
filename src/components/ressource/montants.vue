@@ -73,12 +73,12 @@
                 v-if="focusedInputIndex === monthIndex"
                 class="fr-col-4 fr-ml-3w"
               >
-                <div
+                <button
                   class="fr-btn--menu fr-btn"
-                  @click="copyValueToFollowingMonths(index, monthIndex)"
+                  @click.prevent="copyValueToFollowingMonths(index, monthIndex)"
                 >
                   Copier sur les mois précédents
-                </div>
+                </button>
               </div>
             </div>
           </div>

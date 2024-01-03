@@ -1,0 +1,18 @@
+label: test_outil_contrib_nouveau_compte
+institution: intercommunalite_brive
+description: balbabloublou
+prefix: les
+conditions_generales:
+  - type: quotient_familial
+    operator: ">"
+    value: 5
+    period: month
+voluntary_conditions: []
+profils: []
+conditions:
+  - Wowowow.
+type: bool
+unit: €
+periodicite: ponctuelle
+link: https://www.1jeune1solution.gouv.fr/
+teleservice: https://www.1jeune1solution.gouv.fr/

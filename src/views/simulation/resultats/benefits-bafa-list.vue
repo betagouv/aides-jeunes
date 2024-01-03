@@ -7,16 +7,7 @@ import { computed } from "vue"
 
 const router = useRouter()
 const resultsStore = useResultsStore()
-
-const benefits = computed(() => {
-  return resultsStore.benefits
-})
-
-const bafaResultBenefits = computed(() => {
-  return benefits.value?.filter(
-    (benefit) => benefit.slug.includes("bafa") === true
-  )
-})
+const bafaResultBenefits = computed(() => resultsStore.bafaBenefits)
 </script>
 
 <template>

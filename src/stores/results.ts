@@ -7,8 +7,19 @@ export const useResultsStore = defineStore("results", {
     benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles
     },
-    hasBenefits() {
+    bafaBenefits(): StandardBenefit[] {
+      return this.benefits?.filter((benefit) => benefit?.slug?.includes("bafa"))
+    },
+    benefitsWithoutBafa(): StandardBenefit[] {
+      return this.benefits?.filter(
+        (benefit) => !benefit?.slug?.includes("bafa")
+      )
+    },
+    hasBenefits(): boolean {
       return this.benefits?.length > 0
+    },
+    hasBafaBenefits(): boolean {
+      return this.benefits?.some((benefit) => benefit?.slug?.includes("bafa"))
     },
     fetching() {
       return useStore().access.fetching

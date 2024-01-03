@@ -1,33 +1,25 @@
 <script setup lang="ts">
-import { computed, defineProps } from "vue"
-import { StandardBenefit } from "@data/types/benefits"
+import { computed } from "vue"
 import BenefitPreview from "@/components/benefit-preview.vue"
 import BenefitsMergedPreview from "@/components/benefits-merged-preview.vue"
+import { useResultsStore } from "@/stores/results-store.js"
 
-const props = defineProps({
-  benefits: Array<StandardBenefit>,
-  filter: Array<any>,
-})
-
-const benefitslistFiltered: any = computed(() => {
-  return props.benefits?.filter((value: any) => {
-    return !props.filter || props.filter.includes(value.id)
-  })
-})
-
-const bafaBenefits: any = computed(() => benefitslistFiltered.value.filter((benefit: StandardBenefit) => benefit.slug.includes("bafa") === true))
-const classicBenefits: any = computed(() => benefitslistFiltered.value.filter((benefit: StandardBenefit) => benefit.slug.includes("bafa") === false))
+const resultsStore = useResultsStore()
+const bafaBenefits = computed(() => resultsStore.bafaBenefits)
+const benefitsWithoutBafa = computed(() => resultsStore.benefitsWithoutBafa)
+const hasBafaBenefits = computed(() => resultsStore.hasBafaBenefits)
 </script>
 
 <template>
   <div
-    v-for="(benefit, index) in classicBenefits"
+    v-for="(benefit, index) in benefitsWithoutBafa"
     :key="index"
     class="fr-mb-5w"
   >
     <BenefitPreview :benefit="benefit" />
   </div>
   <BenefitsMergedPreview
+    v-if="hasBafaBenefits"
     :benefits="bafaBenefits"
     label="Aides BAFA et BAFD"
     description="Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD."

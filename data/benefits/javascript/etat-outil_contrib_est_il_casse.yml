@@ -1,0 +1,17 @@
+label: Outil_contrib_est_il_cassé
+institution: etat
+description: On oiseau me rapporte un dysfonctionnement
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "27"
+profils:
+  - type: stagiaire
+    conditions: []
+type: float
+unit: €
+periodicite: autre
+montant: 42
+link: https://mes-aides.1jeune1solution.beta.gouv.fr/
+teleservice: https://mes-aides.1jeune1solution.beta.gouv.fr/

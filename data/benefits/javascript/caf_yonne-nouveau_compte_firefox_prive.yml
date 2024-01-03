@@ -1,0 +1,14 @@
+label: Nouveau_compte_firefox_privé
+institution: caf_yonne
+description: guyifeghb;ufPFUGI
+prefix: les
+conditions_generales:
+  - type: difficultes_acces_ou_frais_logement
+profils: []
+type: float
+unit: €
+periodicite: annuelle
+montant: 47
+link: https://contribuer-aides-jeunes.netlify.app
+teleservice: ""
+form: https://contribuer-aides-jeunes.netlify.app

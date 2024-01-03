@@ -12,9 +12,10 @@ const bafaResultBenefits = computed(() => resultsStore.bafaBenefits)
 
 <template>
   <div>
-    <h3 class="fr-h3">Aides BAFA et BAFD</h3>
+    <div class="fr-h3">Aides BAFA et BAFD</div>
     <BackButton
       class="fr-mb-4w"
+      data-testid="back-button"
       size="small"
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats

@@ -20,6 +20,21 @@ const IdentifyBenefit = (id, name) => {
     .should("match", name)
 }
 
+const hasBafaPreviewBenefit = () => {
+  const name = /Aides BAFA et BAFD/
+  const id = "aides-bafa-preview"
+  IdentifyBenefit(id, name)
+  cy.checkA11y()
+}
+
+const hasBafaBenefit = () => {
+  const name =
+    /Aide nationale au Brevet d’aptitude aux fonctions d’animateur \(BAFA\)/
+  const id = "caf-aide-nationale-bafa"
+  IdentifyBenefit(id, name)
+  cy.checkA11y()
+}
+
 const hasPrimeActivite = () => {
   const name = /Prime d’activité/
   const id = "ppa"
@@ -264,6 +279,8 @@ const checkResultsRequests = () => {
 export default {
   wait,
   back,
+  hasBafaPreviewBenefit,
+  hasBafaBenefit,
   hasPrimeActivite,
   hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,

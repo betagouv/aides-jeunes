@@ -46,6 +46,7 @@ context("Full simulation", () => {
 
     results.wait()
     results.hasCSS()
+    results.hasNotBafaBenefits()
     results.hasPrimeActivite()
     navigate.goRecap()
     navigate.checkRecap()

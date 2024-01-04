@@ -35,6 +35,14 @@ const hasBafaBenefit = () => {
   cy.checkA11y()
 }
 
+const hasNotBafaBenefits = () => {
+  const id = "aides-bafa-preview"
+  cy.get(
+    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
+    { timeout: 10000 }
+  ).should("not.exist")
+}
+
 const hasPrimeActivite = () => {
   const name = /Prime d’activité/
   const id = "ppa"
@@ -281,6 +289,7 @@ export default {
   back,
   hasBafaPreviewBenefit,
   hasBafaBenefit,
+  hasNotBafaBenefits,
   hasPrimeActivite,
   hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,

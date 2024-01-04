@@ -55,7 +55,7 @@
           <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
           <div class="fr-container fr-px-0">
             <div class="fr-grid-row">
-              <div class="fr-col-4">
+              <div class="fr-col-12 fr-col-md-5">
                 <InputNumber
                   :id="`${type.meta.id}_${month.id}`"
                   :min="0"
@@ -69,7 +69,10 @@
                   @focus="() => onFocus(monthIndex)"
                 />
               </div>
-              <div v-if="showCopyButton(monthIndex)" class="fr-col-4 fr-ml-3w">
+              <div
+                v-if="showCopyButton(monthIndex)"
+                class="fr-col-12 fr-col-md-6 fr-ml-md-3w fr-pt-1w fr-pt-md-0"
+              >
                 <button
                   class="fr-btn--menu fr-btn"
                   @click.prevent="copyValueToFollowingMonths(index, monthIndex)"

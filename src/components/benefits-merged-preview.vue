@@ -6,6 +6,7 @@ import { uniq } from "lodash-es"
 const props = defineProps({
   benefits: Object,
   label: String,
+  logoPath: String,
   institutionLabel: String,
   description: String,
   redirectionPage: String,
@@ -34,8 +35,8 @@ const formattedInstitutionsLabel = computed(() => {
             <div class="aj-benefit-header fr-mb-4w">
               <img
                 class="aj-institution-icon"
-                src="/img/institutions/logo_caf.png"
-                alt="`Logo Caisse d’allocations familiales`"
+                :src="props.logoPath"
+                :alt="`Logo ${props.label}`"
               />
               <div class="aj-benefit-name">
                 <h2 class="fr-text--lead" itemprop="name">{{

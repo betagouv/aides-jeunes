@@ -1,20 +1,7 @@
 <template>
   <div>
     <LoadingModal v-if="fetching || updating">
-      <p v-show="fetching">
-        <span
-          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-          aria-hidden="true"
-        ></span
-        ><span class="fr-ml-2w">Récupération en cours…</span>
-      </p>
-      <p v-show="updating">
-        <span
-          class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"
-          aria-hidden="true"
-        ></span
-        ><span class="fr-ml-2w">Récupération de vos droits…</span>
-      </p>
+      <p>Récupération en cours… </p>
     </LoadingModal>
 
     <BackButton

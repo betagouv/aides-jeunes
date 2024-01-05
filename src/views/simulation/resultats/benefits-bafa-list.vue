@@ -23,7 +23,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div class="fr-h3">Aides BAFA et BAFD</div>
+    <h1 class="fr-text--lead">Aides BAFA et BAFD</h1>
     <LoadingModal v-if="fetching || updating">
       <p>Récupération en cours…</p>
     </LoadingModal>

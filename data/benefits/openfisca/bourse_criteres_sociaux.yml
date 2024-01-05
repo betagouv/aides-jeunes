@@ -15,3 +15,4 @@ floorAt: 0.01
 periodicite: mensuelle
 entity: individus
 openfiscaPeriod: thisMonth
+top: 1

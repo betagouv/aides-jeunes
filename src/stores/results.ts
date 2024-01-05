@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { StandardBenefit } from "@data/types/benefits"
+import { hasBafaInterestFlag } from "@/lib/benefits.js"
 
 export const useResultsStore = defineStore("results", {
   getters: {
@@ -8,12 +9,10 @@ export const useResultsStore = defineStore("results", {
       return this.resultats?.droitsEligibles
     },
     bafaBenefits(): StandardBenefit[] {
-      return this.benefits?.filter((benefit) => benefit?.slug?.includes("bafa"))
+      return this.benefits?.filter((benefit) => hasBafaInterestFlag(benefit))
     },
     benefitsWithoutBafa(): StandardBenefit[] {
-      return this.benefits?.filter(
-        (benefit) => !benefit?.slug?.includes("bafa")
-      )
+      return this.benefits?.filter((benefit) => !hasBafaInterestFlag(benefit))
     },
     hasBenefits(): boolean {
       return this.benefits?.length > 0

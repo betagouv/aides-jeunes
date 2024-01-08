@@ -231,3 +231,4 @@ It is possible to locally debug changes in NetlifyCMS configuration.
 - Netlify CMS should now be accessible at `http://localhost:3000/admin/index.html`
 
 Changes made will be reflected locally instead of generating pull requests in production.
+

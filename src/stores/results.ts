@@ -18,7 +18,7 @@ export const useResultsStore = defineStore("results", {
       return this.benefits?.length > 0
     },
     hasBafaBenefits(): boolean {
-      return this.benefits?.some((benefit) => hasBafaInterestFlag(benefit))
+      return this.bafaBenefits?.length > 0
     },
     fetching() {
       return useStore().access.fetching

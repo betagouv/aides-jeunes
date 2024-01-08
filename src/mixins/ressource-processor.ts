@@ -28,12 +28,19 @@ function update(type, newValue, monthIndex, force?) {
 
 function updateFollowing(type, monthIndex) {
   const value = type.amounts[type.months[monthIndex].id]
-  // Excluding month at index
-  type.months.forEach((m, i) => {
-    if (i > monthIndex) {
-      type.amounts[m.id] = value
+  const nextMonthValue = type.amounts[type.months[monthIndex + 1].id]
+  let stopIndex = monthIndex + 1
+  type.months.forEach((month, index) => {
+    if (
+      index > monthIndex &&
+      type.amounts[month.id] === nextMonthValue &&
+      index <= stopIndex
+    ) {
+      type.amounts[month.id] = value
+      stopIndex++
     }
   })
+  return stopIndex
 }
 
 export default {
@@ -60,8 +67,11 @@ export default {
         }
         case "monthUpdateFollowing": {
           const { monthIndex } = value
-          updateFollowing(source, monthIndex)
-          break
+          const inputStopIndex = updateFollowing(source, monthIndex)
+          const inputIdToFocus = `${source.meta.id}_${
+            source.months[inputStopIndex - 1].id
+          }`
+          return inputIdToFocus
         }
         default: {
           throw `Don't know how to process (type, index, value) : (${[

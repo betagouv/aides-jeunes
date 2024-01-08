@@ -36,8 +36,15 @@ export default {
     modelValue: { type: [Number, String] },
     emit: { type: Boolean, default: true },
     onFocus: { type: Function, default: () => {} },
+    inputIdToFocus: { type: [String], default: null, required: false },
   },
-  emits: ["input", "update:modelValue", "input-error", "focus"],
+  emits: [
+    "input",
+    "update:modelValue",
+    "input-error",
+    "focus",
+    "clean-input-focus",
+  ],
   data: function () {
     return {
       result: this.result,
@@ -73,6 +80,17 @@ export default {
         }
 
         this.$emit("input-error", this.error)
+      },
+    },
+  },
+  watch: {
+    inputIdToFocus: {
+      immediate: true,
+      handler(value) {
+        if (value === this.id) {
+          this.$refs.result.focus()
+          this.$emit("clean-input-focus")
+        }
       },
     },
   },

@@ -12,7 +12,8 @@
         v-if="isSimple(type.meta.id)"
         :index="index"
         :type="type"
-        @update="process"
+        :input-id-to-focus-parent="inputIdToFocus"
+        @update="updateRessourceMontant"
       />
       <RessourceMicroEntreprise
         v-if="type.meta.id.startsWith('rpns_micro_entreprise_CA')"
@@ -70,8 +71,10 @@ export default {
   },
   data() {
     const individu = this.getIndividu()
+    const inputIdToFocus = null
     return {
       individu,
+      inputIdToFocus,
       types: this.getTypes(individu),
     }
   },
@@ -112,6 +115,12 @@ export default {
     })
   },
   methods: {
+    updateRessourceMontant(index, field, value) {
+      const inputIdToFocus = this.process(index, field, value)
+      if (inputIdToFocus !== null) {
+        this.inputIdToFocus = inputIdToFocus
+      }
+    },
     getIndividuNom() {
       return IndividuMethods.label(this.individu, "nom")
     },

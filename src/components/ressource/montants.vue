@@ -29,6 +29,7 @@
                 :id="`${type.meta.id}_monthly`"
                 :min="0"
                 :value="type.amounts[store.dates.thisMonth.id]"
+                :input-id-to-focus="inputIdToFocus"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
                 "
@@ -62,6 +63,7 @@
                   :id="`${type.meta.id}_${month.id}`"
                   :min="0"
                   :value="type.amounts[month.id]"
+                  :input-id-to-focus="inputIdToFocus"
                   @update:model-value="
                     $emit('update', 'monthUpdate', index, {
                       value: $event,
@@ -69,6 +71,7 @@
                     })
                   "
                   @focus="() => onFocus(monthIndex)"
+                  @clean-input-focus="cleanInputFocus()"
                 />
               </div>
               <div
@@ -91,7 +94,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref } from "vue"
+import { computed, PropType, ref, watch } from "vue"
 
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
@@ -105,10 +108,15 @@ const focusedInputIndex = ref<number | null>(null)
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
   index: Number,
+  inputIdToFocusParent: {
+    type: String as PropType<string | null>,
+    required: false,
+  },
 })
 
 const emit = defineEmits(["update", "focus"])
 const store = useStore()
+const inputIdToFocus = ref<string | null>(null)
 
 const singleValue = computed({
   get: () => props.type.displayMonthly,
@@ -119,8 +127,20 @@ const onFocus = (monthIndex) => {
   focusedInputIndex.value = monthIndex
 }
 
+const cleanInputFocus = () => {
+  inputIdToFocus.value = null
+}
+
+watch(
+  () => props.inputIdToFocusParent,
+  (inputIdToFocusParent) => {
+    if (inputIdToFocusParent) {
+      inputIdToFocus.value = inputIdToFocusParent
+    }
+  }
+)
+
 const copyValueToFollowingMonths = (index, monthIndex) => {
-  console.log("click", index, monthIndex)
   emit("update", "monthUpdateFollowing", index, {
     monthIndex,
   })

@@ -3,11 +3,11 @@ institution: region_ile_de_france
 description: Grâce à cette aide au permis de conduire, la Région finance tout ou
   partie du permis B pour les jeunes franciliens en insertion.
 conditions:
-  - "Vous devez être dans l'un des cas suivants : être stagiaire de la formation
-    professionnelle dans une formation financée par la Région; ou
+  - "Vous devez être dans l’un des cas suivants : être stagiaire de la formation
+    professionnelle dans une formation financée par la Région ; ou
     être en mission locale et signataire d’un parcours contractualisé d’accompagnement
     vers l’emploi et l’autonomie (PACEA) avec un projet professionnel nécessitant
-    l’obtention du permis; ou être signataire d'un contrat d'engagement jeune (CEJ);
+    l’obtention du permis ; ou être signataire d’un contrat d'engagement jeune (CEJ) ;
     ou être en recherche d’emploi résidant dans un quartier politique de la ville ou en zone rurale."
 conditions_generales:
   - type: regions

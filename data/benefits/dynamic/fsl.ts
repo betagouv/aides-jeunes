@@ -153,7 +153,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   departement_ille_et_vilaine: {
     label: "du département d’Ille-et-Vilaine",
     link: "https://www.ille-et-vilaine.fr/demande-fsl",
-    form: "https://www.ille-et-vilaine.fr/sites/default/files/asset/document/fo-psh-0818-001_imprimeuniquemasques_form_ext_0.pdf",
+    form: "https://www.ille-et-vilaine.fr/sites/iev/files/2023-12/BAT-FA-INS21-1223_Formulaire-FSLmaintien-Janvier2024.pdf",
   },
   departement_indre: {
     label: "du département de l’Indre",

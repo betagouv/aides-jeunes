@@ -81,6 +81,8 @@ export function daysSinceDate(pastDate: Date) {
 }
 
 export const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+export const capitalizeWithLower = (str) =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 export const isBoolean = (val) => typeof val === "boolean"
 export const isEmpty = (array) => array.length === 0
 export const isNumber = (val) => typeof val === "number"

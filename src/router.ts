@@ -168,6 +168,16 @@ const router = createRouter({
           },
         },
         {
+          name: "benefitCfnsLieuxInformations",
+          path: "resultats/:benefitId/cfns-lieux-informations",
+          component: () =>
+            import("./views/simulation/resultats/cnfs-lieux-informations.vue"),
+          meta: {
+            headTitle:
+              "Informations des conseillers numériques france services près de chez vous avec le simulateur d'aides ${context.name}",
+          },
+        },
+        {
           name: "resultatInattendu",
           path: "resultat/inattendu/:id",
           component: () => import("./views/simulation/resultat-inattendu.vue"),

@@ -8,12 +8,14 @@ import { LieuProperties } from "@lib/types/lieu.d.js"
 import * as Sentry from "@sentry/vue"
 import { Benefit } from "@data/types/benefits"
 import Simulations from "@/lib/simulation.js"
+import CnfsJsonData from "@data/cnfs/20231227-3999-cnfs.json"
 
 export function useLieux() {
   const store = useStore()
   const $route = useRoute()
 
   const lieux = ref<LieuProperties[]>([])
+  const cnfsLieux = ref<any>([])
   const benefit = ref<Benefit | null>(null)
   const updating = ref<boolean>(true)
 
@@ -123,13 +125,39 @@ export function useLieux() {
     updating.value = false
   }
 
+  const getRelevantCnfsLieuxBySituationDepcom = (): any[] => {
+    const depcom = store.situation.menage.depcom
+    if (!depcom) {
+      Sentry.captureMessage(`Depcom required to getRelevantCnfsLieux()`)
+      return cnfsLieux.value
+    }
+    for (const cnfsLieu of CnfsJsonData) {
+      if (cnfsLieu["Code commune INSEE"] === depcom) {
+        cnfsLieux.value.push(cnfsLieu)
+      }
+    }
+
+    return cnfsLieux.value
+  }
+  const loadCfnsLieux = async () => {
+    try {
+      getRelevantCnfsLieuxBySituationDepcom()
+      console.log("cnfsLieux", cnfsLieux.value)
+    } catch (error) {
+      Sentry.captureMessage(`Error loadCfnsLieux() : ${error}`)
+    }
+  }
+
   loadLieux()
+  loadCfnsLieux()
 
   return {
     lieux,
+    cnfsLieux,
     currentLieu,
     updating,
     benefit,
     loadLieux,
+    loadCfnsLieux,
   }
 }

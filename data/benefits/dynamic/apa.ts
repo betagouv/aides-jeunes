@@ -43,8 +43,8 @@ export const APA_BY_CODE: {
   },
   departement_finistere: {
     label: "du département du Finistère",
-    link: "https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie",
-    form: "https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf",
+    link: "https://www.finistere.fr/aides-et-services/personnes-agees/lallocation-personnalisee-dautonomie",
+    form: "https://www.finistere.fr/wp-content/uploads/2023/10/Demande-daides-a-lautonomie-a-domicile-pour-les-personnes-agees-Cerfa-16301.pdf",
   },
   departement_haute_garonne: {
     label: "du département de Haute Garonne",

@@ -17,7 +17,7 @@ export const APA_BY_CODE: {
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
     link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
-    form: "https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf",
+    teleservice: "https://portail-usager.hautes-alpes.fr/apa/",
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",

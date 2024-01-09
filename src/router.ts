@@ -262,6 +262,7 @@ const router = createRouter({
       name: "init-ci",
       redirect: () => {
         ABTestingService.setVariant("CTA_EmailRecontact", "version_actuelle")
+        ABTestingService.setVariant("aides_bafa", "aides_bafa_fusionnees")
         return "/"
       },
     },

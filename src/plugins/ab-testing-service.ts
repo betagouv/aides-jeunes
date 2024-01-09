@@ -47,6 +47,12 @@ function getEnvironment() {
   //   ABTestingEnvironment.name_of_the_test.value ||
   //   (Math.random() > 0.5 ? "A version name" : "B version name")
 
+  ABTestingEnvironment.aides_bafa = ABTestingEnvironment.aides_bafa || {}
+  ABTestingEnvironment.aides_bafa.index = 4
+  ABTestingEnvironment.aides_bafa.value =
+    ABTestingEnvironment.aides_bafa.value ||
+    (Math.random() > 0.5 ? "aides_bafa_distinctes" : "aides_bafa_fusionnees")
+
   const versions = ["version_actuelle", "version_test_1", "version_test_2"]
   const ctaEmailRecontact = ABTestingEnvironment.CTA_EmailRecontact || {}
   ctaEmailRecontact.index ||= 5

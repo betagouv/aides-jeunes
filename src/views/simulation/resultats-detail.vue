@@ -40,6 +40,8 @@ import { computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results.js"
+import ABTestingService from "@/plugins/ab-testing-service"
+import { hasBafaInterestFlag } from "@/lib/benefits.js"
 
 const store = useStore()
 const resultsStore = useResultsStore()
@@ -70,11 +72,23 @@ onMounted(async () => {
   } else {
     const benefitId = route.params.benefitId
 
-    StatisticsMixin.methods.sendBenefitsStatistics(
-      benefits.value,
-      EventAction.ShowDetails,
-      benefitId.toString()
-    )
+    if (
+      ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees" &&
+      benefit.value &&
+      hasBafaInterestFlag(benefit.value)
+    ) {
+      StatisticsMixin.methods.sendBenefitsStatistics(
+        benefits.value,
+        EventAction.ShowDetailsFromMergePage,
+        benefitId.toString()
+      )
+    } else {
+      StatisticsMixin.methods.sendBenefitsStatistics(
+        benefits.value,
+        EventAction.ShowDetails,
+        benefitId.toString()
+      )
+    }
   }
 })
 

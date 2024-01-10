@@ -20,7 +20,7 @@
 
       <div v-if="type.displayMonthly === true">
         <label :for="`${type.meta.id}_monthly`" class="fr-label">
-          Indiquez le montant <b>mensuel net</b> :
+          Indiquez le montant <b>net social mensuel </b> :
         </label>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
@@ -46,7 +46,7 @@
             précédents sont également mis à jour automatiquement. Ils peuvent
             être modifiés ensuite.</span
           >
-          Indiquez les montants <strong>nets mensuels</strong> que
+          Indiquez les montants <strong>nets sociaux mensuels</strong> que
           {{ getLongLabel(type.individu, type.meta) }}
         </p>
         <div

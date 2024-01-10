@@ -60,7 +60,8 @@ export const APA_BY_CODE: {
     institution: "departement",
     label: "du département de l'Hérault",
     link: "https://mda.herault.fr/1397-allocation-personnalisee-a-l-autonomie-apa.htm",
-    instructions: "https://mda.herault.fr/1351-faire-une-demande-bien-vieillir.htm",
+    instructions:
+      "https://mda.herault.fr/1351-faire-une-demande-bien-vieillir.htm",
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useLieux } from "@/composables/use-lieux.js"
-import { capitalizeWithLower } from "@lib/utils.js"
 
 const { cnfsLieux } = useLieux()
 </script>

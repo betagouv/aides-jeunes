@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLieux } from "@/composables/use-lieux.js"
 import LieuLight from "@/components/lieu-light.vue"
-import CnfsLieuxLight from "@/components/cnfs-lieux-light.vue"
+import CnfsLieuxPreview from "@/components/cnfs-lieux-preview.vue"
 import { computed, ref } from "vue"
 
 const { lieux, cnfsLieux } = useLieux()
@@ -35,7 +35,7 @@ const showLieuButtonCondition = computed(() => {
       >
         <LieuLight :lieu="lieu" />
       </div>
-      <CnfsLieuxLight v-if="cnfsLieux?.length && showLieux" />
+      <CnfsLieuxPreview v-if="cnfsLieux?.length && showLieux" />
       <button
         v-if="showLieuButtonCondition"
         class="fr-btn fr-btn--secondary fr-ml-2w fr-mt-2w"

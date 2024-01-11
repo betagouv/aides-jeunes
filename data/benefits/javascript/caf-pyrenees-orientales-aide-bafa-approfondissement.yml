@@ -30,3 +30,4 @@ periodicite: ponctuelle
 legend: maximum
 montant: 231.47
 interestFlag: _interetBafa
+private: true

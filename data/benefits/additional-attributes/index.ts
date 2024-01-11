@@ -50,15 +50,6 @@ export const additionalBenefitAttributes = {
       },
     },
   },
-  "cohesion-territoires-conseillers-numeriques-france-services": {
-    instructionsGenerator: (codePostal) => {
-      if (!codePostal) {
-        return "https://cartographie.conseiller-numerique.gouv.fr/"
-      } else {
-        return `https://cartographie.conseiller-numerique.gouv.fr/?address=${codePostal}`
-      }
-    },
-  },
   aide_logement: {
     computeUnexpectedAmount: (situation: Situation) => {
       // not ideal because we are not computing other incomes => but covers 90% of the cases

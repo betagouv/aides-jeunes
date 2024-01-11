@@ -216,22 +216,3 @@ describe("benefit descriptions", function () {
     })
   })
 })
-
-describe("individual instructionsGenerator", function () {
-  describe("cohesion-territoires-conseillers-numeriques-france-services", function () {
-    const generator =
-      subject.benefitsMap[
-        "cohesion-territoires-conseillers-numeriques-france-services"
-      ].instructionsGenerator
-    it("should exist", function () {
-      expect(generator).toBeTruthy()
-    })
-    it("should generate generic urls", function () {
-      expect(generator([])).toMatch(/^https?:\/\//)
-    })
-    it("should generate generic urls", function () {
-      const linkValue = generator("69008")
-      expect(linkValue).toMatch(/^https?:\/\/.*address=69008$/)
-    })
-  })
-})

@@ -249,8 +249,8 @@ export default {
     question: "Bénéficiez-vous d'une bourse de l'enseignement supérieur ?",
   }),
 
-  categorie_salarie: new EnumProperty({
-    question: "Êtes-vous en alternance dans le secteur public ?",
+  _alternanceFonctionPublique: new EnumProperty({
+    question: "Êtes-vous en alternance dans la fonction publique ?",
     items: [
       {
         label: "Oui",
@@ -258,6 +258,10 @@ export default {
       },
       {
         label: "Non",
+        value: "prive_non_cadre",
+      },
+      {
+        label: "Je ne sais pas",
         value: "prive_non_cadre",
       },
     ],

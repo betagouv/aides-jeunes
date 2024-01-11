@@ -92,7 +92,10 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                 r("alternant"),
                 {
                   isActive: (subject) => subject.alternant,
-                  steps: [r("_contrat_alternant"), r("categorie_salarie")],
+                  steps: [
+                    r("_contrat_alternant"),
+                    r("_alternanceFonctionPublique"),
+                  ],
                 },
               ],
             },

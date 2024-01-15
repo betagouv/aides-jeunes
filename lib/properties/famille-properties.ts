@@ -1,4 +1,4 @@
-import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
+import { NumberProperty, BooleanProperty } from "./property.js"
 import { yearsAgo } from "../utils.js"
 
 export default {
@@ -45,18 +45,7 @@ export default {
     question: "Vivez-vous seul ou seule depuis plus de 18 mois ?",
   }),
 
-  en_couple: new EnumProperty({
+  en_couple: new BooleanProperty({
     question: "Vivez-vous en couple ?",
-    questionType: "enum",
-    items: [
-      {
-        label: "Oui",
-        value: true,
-      },
-      {
-        label: "Non",
-        value: false,
-      },
-    ],
   }),
 }

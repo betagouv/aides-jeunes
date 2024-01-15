@@ -25,7 +25,7 @@ const formattedInstitutionsLabel = computed(() => {
       <div class="fr-tile tile-2">
         <router-link
           class="fr-tile tile-3"
-          :to="`/simulation/resultats/${props.redirectionPage}`"
+          :to="`/simulation/resultats/groupe/${props.redirectionPage}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
           data-testid="aides-bafa-preview"
@@ -54,13 +54,9 @@ const formattedInstitutionsLabel = computed(() => {
               class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right"
             >
               <li>
-                <router-link
-                  :to="`/simulation/resultats/${props.redirectionPage}`"
-                  class="fr-btn fr-my-0"
-                  data-testid="aide-cta"
-                >
+                <button class="fr-btn fr-my-0" data-testid="aide-cta">
                   Demander ces aides
-                </router-link>
+                </button>
               </li>
             </ul>
           </div>

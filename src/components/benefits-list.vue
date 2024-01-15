@@ -28,7 +28,7 @@ const hasBafaBenefits = computed(() => resultsStore.hasBafaBenefits)
       label="Aides BAFA et BAFD"
       logo-path="/img/benefits/logo-bafa-bafd.png"
       description="Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD."
-      redirection-page="aides-bafa"
+      redirection-page="bafa-bafd"
     />
     <span
       v-if="

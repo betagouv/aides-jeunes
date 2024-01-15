@@ -201,8 +201,8 @@ const router = createRouter({
           component: () => import("./views/simulation/resultats-detail.vue"),
         },
         {
-          name: "resultatsAidesBafa",
-          path: "resultats/aides-bafa",
+          name: "resultatsGroupeAides",
+          path: "resultats/groupe/bafa-bafd",
           component: () =>
             import("./views/simulation/resultats/benefits-bafa-list.vue"),
         },
@@ -302,7 +302,7 @@ router.beforeEach((to, from, next) => {
         "redirect",
         "resultats",
         "resultatsDetails",
-        "resultatsAidesBafa",
+        "resultatsGroupeAides",
         "resultatsLieuxGeneriques",
       ].indexOf(to.name) === -1 &&
       !store.passSanityCheck &&

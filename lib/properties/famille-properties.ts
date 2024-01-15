@@ -43,7 +43,6 @@ export default {
 
   rsa_isolement_recent: new EnumProperty({
     question: ({ simulation }) => {
-      console.log(JSON.parse(JSON.stringify(simulation.enfants.length == 1)))
       return `Vivez-vous seul ou seule avec ${
         simulation.enfants.length == 1 ? "votre enfant" : "vos enfants"
       } depuis plus de 18 mois ?`

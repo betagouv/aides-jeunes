@@ -1,4 +1,4 @@
-import { NumberProperty, BooleanProperty } from "./property.js"
+import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
 import { yearsAgo } from "../utils.js"
 
 export default {
@@ -41,8 +41,23 @@ export default {
       >`,
   }),
 
-  rsa_isolement_recent: new BooleanProperty({
-    question: "Vivez-vous seul ou seule depuis plus de 18 mois ?",
+  rsa_isolement_recent: new EnumProperty({
+    question: ({ simulation }) => {
+      console.log(JSON.parse(JSON.stringify(simulation.enfants.length == 1)))
+      return `Vivez-vous seul ou seule avec ${
+        simulation.enfants.length == 1 ? "votre enfant" : "vos enfants"
+      } depuis plus de 18 mois ?`
+    },
+    items: [
+      {
+        value: false,
+        label: "Oui",
+      },
+      {
+        value: true,
+        label: "Non",
+      },
+    ],
   }),
 
   en_couple: new BooleanProperty({

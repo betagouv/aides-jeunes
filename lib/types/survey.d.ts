@@ -4,6 +4,7 @@ export interface SurveyAnswer {
   id: string
   value: string | boolean
   comments?: string
+  plansToAsk?: boolean
 }
 
 export interface SurveyBenefit {

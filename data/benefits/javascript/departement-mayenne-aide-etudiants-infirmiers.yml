@@ -18,5 +18,5 @@ unit: €
 montant: 200
 periodicite: autre
 link: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-3e-annee-de-soins-infirmiers
-teleservice: https://www.demarches-simplifiees.fr/commencer/cd53_da_an3_soins_infirmiers
 instructions: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-3e-annee-de-soins-infirmiers
+teleservicePrefill: ds?procedure=cd53_da_an3_soins_infirmiers

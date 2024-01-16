@@ -3,7 +3,6 @@ import { EnumProperty, NumberProperty, BooleanProperty } from "./property.js"
 export default {
   _situation: new EnumProperty({
     question: "Quelle est la situation de vos parents ?",
-    questionType: "enum",
     items: [
       {
         label: "En couple",

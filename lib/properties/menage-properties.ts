@@ -25,7 +25,6 @@ export default {
 
   etat_logement_foyer: new EnumProperty({
     question: "Est-ce que ce logement a été réhabilité ?",
-    questionType: "enum",
     items: [
       {
         label: "Oui",
@@ -66,7 +65,6 @@ export default {
 
   _nombreMoisEntreeLogement: new EnumProperty({
     question: "Prévoyez-vous de déménager prochainement ?",
-    questionType: "enum",
     items: [
       { value: 12, label: "Oui" },
       {
@@ -87,7 +85,6 @@ export default {
 
   _logementType: new EnumProperty({
     question: "Êtes-vous ?",
-    questionType: "enum",
     items: [
       {
         label: "Locataire",

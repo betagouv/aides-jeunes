@@ -50,7 +50,7 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <BenefitsList />
+      <BenefitsLists />
     </div>
 
     <div v-show="isEmpty(benefits)" class="fr-py-5w">
@@ -85,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-import BenefitsList from "@/components/benefits-list.vue"
+import BenefitsLists from "@/components/benefits-lists.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
 import Feedback from "@/components/feedback.vue"

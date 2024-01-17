@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BenefitPreview from "@/components/benefit-preview.vue"
+import BenefitsList from "@/components/benefits-list.vue"
 import { useRouter } from "vue-router"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useResultsStore } from "@/stores/results-store.js"
@@ -34,12 +34,6 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <div
-      v-for="(benefit, index) in bafaResultBenefits"
-      :key="index"
-      class="fr-mb-5w"
-    >
-      <BenefitPreview :benefit="benefit" />
-    </div>
+    <BenefitsList :benefits="bafaResultBenefits" />
   </div>
 </template>

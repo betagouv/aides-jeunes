@@ -113,7 +113,7 @@ function getQuestionLabel(ressource, debutAnneeGlissante) {
     verb,
     "est-il le même <b>tous les mois</b> depuis",
     debutAnneeGlissante,
-  ].join(" ")} ?`
+  ].join(" ")} ?`
 }
 
 function getLongLabel(individu, ressource) {

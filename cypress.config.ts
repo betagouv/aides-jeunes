@@ -9,4 +9,11 @@ export default defineConfig({
       setupSMTPProxy(on, config)
     },
   },
+
+  component: {
+    devServer: {
+      framework: "vue",
+      bundler: "vite",
+    },
+  },
 })

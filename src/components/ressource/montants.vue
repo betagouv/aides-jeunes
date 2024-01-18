@@ -12,9 +12,7 @@
         html-heading="h2"
       >
         <span
-          v-html="
-            getQuestionLabel(type.meta, store.dates.twelveMonthsAgo.label)
-          "
+          v-html="getQuestionLabel(type.meta, dates.twelveMonthsAgo.label)"
         />
       </YesNoQuestion>
 
@@ -28,7 +26,7 @@
               <InputNumber
                 :id="`${type.meta.id}_monthly`"
                 :min="0"
-                :value="type.amounts[store.dates.thisMonth.id]"
+                :value="type.amounts[dates.thisMonth.id]"
                 :input-id-to-focus="inputIdToFocus"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
@@ -100,7 +98,6 @@ import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
-import { useStore } from "@/stores/index.js"
 import { ResourceType } from "@lib/types/resources.d.js"
 
 const focusedInputIndex = ref<number | null>(null)
@@ -108,6 +105,7 @@ const focusedInputIndex = ref<number | null>(null)
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
   index: Number,
+  dates: { type: Object, required: true },
   inputIdToFocusParent: {
     type: String as PropType<string | null>,
     required: false,
@@ -115,7 +113,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["update", "focus"])
-const store = useStore()
 const inputIdToFocus = ref<string | null>(null)
 
 const singleValue = computed({

@@ -5,16 +5,14 @@
         {{ type.meta.label }}
       </span>
     </legend>
-    <div class="fr-fieldset__content">
+    <div v-if="dates" class="fr-fieldset__content">
       <YesNoQuestion
         :id="`${type.meta.id}_question`"
         v-model="singleValue"
         html-heading="h2"
       >
         <span
-          v-html="
-            getQuestionLabel(type.meta, store.dates.twelveMonthsAgo.label)
-          "
+          v-html="getQuestionLabel(type.meta, dates.twelveMonthsAgo.label)"
         />
       </YesNoQuestion>
 
@@ -28,7 +26,7 @@
               <InputNumber
                 :id="`${type.meta.id}_monthly`"
                 :min="0"
-                :value="type.amounts[store.dates.thisMonth.id]"
+                :value="type.amounts[dates.thisMonth.id]?.toString()"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
                 "
@@ -85,16 +83,15 @@ import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
-import { useStore } from "@/stores/index.js"
 import { ResourceType } from "@lib/types/resources.d.js"
 
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
+  dates: { type: Object as PropType<any>, required: true },
   index: Number,
 })
 
 const emit = defineEmits(["update"])
-const store = useStore()
 
 const singleValue = computed({
   get: () => props.type.displayMonthly,

@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { generator } from "../dates.js"
+import { datesGenerator } from "../dates.js"
 import { filterByInterestFlag } from "./filter-interest-flag.js"
 import ScolariteCategories from "../scolarite.js"
 
@@ -310,7 +310,7 @@ export function computeJavascriptBenefits(
     situation.demandeur?.date_naissance,
     "year"
   )
-  const periods = generator(situation.dateDeValeur)
+  const periods = datesGenerator(situation.dateDeValeur)
   const data = { situation, openfiscaResponse, periods, age }
 
   benefits.all

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import dayjs from "dayjs"
 import { version } from "@lib/simulation.js"
-import { generator as datesGenerator } from "@lib/dates.js"
+import { datesGenerator } from "@lib/dates.js"
 import { generateAllSteps } from "@lib/state/generator.js"
 import { getAnswer, isStepAnswered, storeAnswer } from "@lib/answers.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"

@@ -1,5 +1,5 @@
 import IndividuMethods from "./individu.js"
-import { generator } from "./dates.js"
+import { datesGenerator } from "./dates.js"
 
 import { Situation } from "../lib/types/situations.js"
 import { Individu } from "../lib/types/individu.js"
@@ -140,7 +140,7 @@ export const ressourceTypes: Resource[] = [
         55 <=
         IndividuMethods.age(
           individu,
-          generator(situation.dateDeValeur).today.value
+          datesGenerator(situation.dateDeValeur).today.value
         )
       )
     },
@@ -191,7 +191,7 @@ export const ressourceTypes: Resource[] = [
     isRelevant: (situation: Situation, individu: Individu) => {
       const age = IndividuMethods.age(
         individu,
-        generator(situation.dateDeValeur).today.value
+        datesGenerator(situation.dateDeValeur).today.value
       )
       return Boolean(
         16 <= age && (age <= 25 || (individu.handicap && age < 30))

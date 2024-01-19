@@ -1,5 +1,5 @@
 import aidesVelo from "aides-velo"
-import { generator } from "../dates.js"
+import { datesGenerator } from "../dates.js"
 import { Velo } from "../enums/velo.js"
 
 const veloTypes = {
@@ -28,7 +28,7 @@ export function computeAidesVeloBenefits(
   if (!canComputeAidesVeloBenefits(situation)) {
     return
   }
-  const periods = generator(situation.dateDeValeur)
+  const periods = datesGenerator(situation.dateDeValeur)
 
   const eligibleBenefitsMap = {}
   for (const type of situation.demandeur._interetsAidesVelo) {

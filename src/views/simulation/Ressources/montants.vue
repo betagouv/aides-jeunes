@@ -12,6 +12,7 @@
         v-if="isSimple(type.meta.id)"
         :index="index"
         :type="type"
+        :dates="dates"
         @update="process"
       />
       <RessourceMicroEntreprise
@@ -54,6 +55,8 @@ import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import { Individu } from "@lib/types/individu.d.js"
 import { ResourceType } from "@lib/types/resources.d.js"
+import { datesGenerator } from "@lib/dates.js"
+import dayjs from "dayjs"
 
 export default {
   name: "RessourcesMontants",
@@ -66,7 +69,8 @@ export default {
   },
   mixins: [RessourceProcessor],
   setup() {
-    return { store: useStore() }
+    const dates = datesGenerator(dayjs().format())
+    return { store: useStore(), dates }
   },
   data() {
     const individu = this.getIndividu()
@@ -152,11 +156,7 @@ export default {
               })
             }
           }
-
-          const months = Ressource.getPeriodsForCurrentYear(
-            this.store.dates,
-            type
-          )
+          const months = Ressource.getPeriodsForCurrentYear(this.dates, type)
 
           resourceTypes.push({
             amounts,

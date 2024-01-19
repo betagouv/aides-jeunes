@@ -5,7 +5,7 @@
         {{ type.meta.label }}
       </span>
     </legend>
-    <div v-if="dates" class="fr-fieldset__content">
+    <div class="fr-fieldset__content">
       <YesNoQuestion
         :id="`${type.meta.id}_question`"
         v-model="singleValue"

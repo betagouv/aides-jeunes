@@ -153,6 +153,7 @@ export default {
               })
             }
           }
+
           const months = Ressource.getPeriodsForCurrentYear(
             this.store.dates,
             type

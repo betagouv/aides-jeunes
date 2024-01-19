@@ -21,7 +21,7 @@ const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
   res.status(parseInt(err.code) || 500).send(err)
   next()
 }
-app.use(errorMiddleware, morgan("combined", { stream: process.stderr }))
+app.use([errorMiddleware, morgan("combined", { stream: process.stderr })])
 
 const port = process.env.PORT
 app.listen(port, () => {

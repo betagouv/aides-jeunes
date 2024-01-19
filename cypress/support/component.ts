@@ -14,12 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands"
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/vue'
+import { mount } from "cypress/vue"
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount)
+Cypress.Commands.add("mount", mount)
 
 // Example use:
 // cy.mount(MyComponent)

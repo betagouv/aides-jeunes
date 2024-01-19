@@ -1,14 +1,15 @@
 <template>
   <label :for="id">
-    {{ $filters.capitalize(month.label) }}
-    <span v-if="month.id === store.dates.thisMonth.id">
+    {{ capitalize(month.label) }}
+    <span v-if="month.id === dates?.thisMonth.id">
       - estimation jusqu'à la fin du mois</span
     >
   </label>
 </template>
 
 <script lang="ts">
-import { useStore } from "@/stores/index.js"
+import { generator } from "@lib/dates.js"
+import dayjs from "dayjs"
 
 export default {
   name: "MonthLabel",
@@ -18,8 +19,13 @@ export default {
   },
   setup() {
     return {
-      store: useStore(),
+      dates: generator(dayjs().format()),
     }
+  },
+  methods: {
+    capitalize(value: string = "") {
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    },
   },
 }
 </script>

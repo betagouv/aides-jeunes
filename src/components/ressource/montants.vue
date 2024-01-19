@@ -84,10 +84,11 @@ import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { ResourceType } from "@lib/types/resources.d.js"
+import { DatesRange } from "@lib/types/dates.d.js"
 
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
-  dates: { type: Object as PropType<any>, required: true },
+  dates: { type: Object as PropType<DatesRange>, required: true },
   index: Number,
 })
 

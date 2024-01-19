@@ -74,10 +74,11 @@ const individuSchema: IndividuGenerator = {
     },
   },
   categorie_salarie: {
-    src: "categorie_salarie",
-    fn: function (_, individu) {
-      return individu._alternanceFonctionPublique
-    },
+    src: "_alternanceFonctionPublique",
+    fn: (_alternanceFonctionPublique) =>
+      _alternanceFonctionPublique === "public_non_titulaire"
+        ? "public_non_titulaire"
+        : "prive_non_cadre",
   },
   contrat_de_travail_debut: {
     src: "_nombreMoisDebutContratDeTravail",

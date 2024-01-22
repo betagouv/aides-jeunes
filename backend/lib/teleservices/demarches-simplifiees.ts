@@ -238,6 +238,21 @@ const mappings = {
     champ_Q2hhbXAtMjAyODY4: sources.situation_familliale,
     "champ_Q2hhbXAtMjU1MzA5Mw==": fsl_var_sources.autres_personnes_du_foyer,
   },
+  cd53_da_an4_masso_kine: {
+    "champ_Q2hhbXAtMzQ2NDYwNw==": sources.date_naissance,
+  },
+  cd53_da_an3_soins_infirmiers: {
+    "champ_Q2hhbXAtMzQ2NDQ3OQ==": sources.date_naissance,
+  },
+  cd53_da_an4_maieutique: {
+    "champ_Q2hhbXAtMzQ2NDM5Ng==": sources.date_naissance,
+  },
+  cd53_da_an5_orthophonie: {
+    "champ_Q2hhbXAtMzQ2MjcyNw==": sources.date_naissance,
+  },
+  cd53_da_an6_pharmacie_officine: {
+    "champ_Q2hhbXAtMzQ2NDM4MA==": sources.date_naissance,
+  },
 }
 
 function DemarchesSimplifiees(simulation, query) {

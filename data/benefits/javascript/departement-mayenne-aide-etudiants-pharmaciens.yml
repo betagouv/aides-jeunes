@@ -18,5 +18,5 @@ unit: €
 montant: 200
 periodicite: autre
 link: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-pharmacie-dofficine
-teleservice: https://www.demarches-simplifiees.fr/commencer/cd53_da_an6_pharmacie_officine
 instructions: https://www.lamayenne.fr/service/aide-financiere-pour-les-stagiaires-en-pharmacie-dofficine
+teleservicePrefill: ds?procedure=cd53_da_an6_pharmacie_officine

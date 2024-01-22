@@ -254,11 +254,11 @@ export default {
     items: [
       {
         label: "Oui",
-        value: "public_non_titulaire",
+        value: true,
       },
       {
         label: "Non",
-        value: "prive_non_cadre",
+        value: false,
       },
       {
         label: "Je ne sais pas",

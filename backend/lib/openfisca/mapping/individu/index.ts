@@ -76,7 +76,7 @@ const individuSchema: IndividuGenerator = {
   categorie_salarie: {
     src: "_alternanceFonctionPublique",
     fn: (_alternanceFonctionPublique) =>
-      _alternanceFonctionPublique === "public_non_titulaire"
+      _alternanceFonctionPublique === true
         ? "public_non_titulaire"
         : "prive_non_cadre",
   },

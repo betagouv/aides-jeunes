@@ -26,7 +26,7 @@
               <InputNumber
                 :id="`${type.meta.id}_monthly`"
                 :min="0"
-                :value="type.amounts[dates.thisMonth.id]?.toString()"
+                :value="type.amounts[dates.thisMonth.id]"
                 @update:model-value="
                   $emit('update', 'singleValue', index, $event)
                 "

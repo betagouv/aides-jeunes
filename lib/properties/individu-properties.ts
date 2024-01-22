@@ -262,7 +262,7 @@ export default {
       },
       {
         label: "Je ne sais pas",
-        value: "_ne_sait_pas",
+        value: "_neSaitPas",
       },
     ],
   }),

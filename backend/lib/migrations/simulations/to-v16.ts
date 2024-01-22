@@ -9,7 +9,7 @@ function updateAlternanceFonctionPubliqueAnswers(answers) {
     return answer.fieldName === "categorie_salarie"
   })
 
-  if (answerIndex < 0) return
+  if (answerIndex < 0) return answers
 
   answers[answerIndex].fieldName = "_alternanceFonctionPublique"
 

@@ -285,7 +285,6 @@ DemarchesSimplifiees.prototype.toInternal = async function () {
     return a
   }, {})
 
-  console.log("fieldLabelMap", fieldLabelMap)
   const keys = Object.keys(data)
   return keys.map((fieldId) => {
     const labelKey = fieldId.slice("champ_".length)

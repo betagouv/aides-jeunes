@@ -1,0 +1,16 @@
+label: Accompagnement personnalisé
+institution: ville_aubervilliers
+description: Vous avez besoin d’aide pour comprendre vos aides et effectuer vos démarches ?
+  Prenez un rendez-vous pour vous faire accompagner. La prise de rendez-vous se fait
+  en quelques minutes et vous permet de bénéficier d’un accompagnement téléphonique
+  d’une vingtaine de minutes par un membre de notre équipe.
+prefix: l'
+conditions_generales:
+  - type: communes
+    values:
+      - "93001"
+conditions:
+  - Résider à Aubervilliers
+type: bool
+periodicite: autre
+teleservice: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ

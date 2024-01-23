@@ -9,10 +9,11 @@ function updateAlternanceFonctionPubliqueAnswers(answers) {
     return answer.fieldName === "categorie_salarie"
   })
 
-  if (answerIndex < 0) return answers
-
-  answers[answerIndex].fieldName = "_alternanceFonctionPublique"
-
+  if (answerIndex >= 0) {
+    answers[answerIndex].fieldName = "_alternanceFonctionPublique"
+    answers[answerIndex].value =
+      answers[answerIndex].value === "public_non_titulaire"
+  }
   return answers
 }
 

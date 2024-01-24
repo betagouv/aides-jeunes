@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import BenefitList from "@/components/benefits-list.vue"
-import BenefitsMergedPreview from "@/components/benefits-merged-preview.vue"
+import BenefitsGroupPreview from "@/components/benefits-group-preview.vue"
 import { useResultsStore } from "@/stores/results-store.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -14,7 +14,7 @@ const hasBafaBenefits = computed(() => resultsStore.hasBafaBenefits)
 <template>
   <div>
     <BenefitList :benefits="benefitsWithoutBafa" />
-    <BenefitsMergedPreview
+    <BenefitsGroupPreview
       v-if="
         hasBafaBenefits &&
         ABTestingService.getValues().aides_bafa === 'aides_bafa_fusionnees'

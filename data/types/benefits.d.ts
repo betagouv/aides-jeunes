@@ -116,6 +116,16 @@ export interface StandardBenefit {
   showUnexpectedAmount?: boolean
 }
 
+export interface BafaBenefit extends StandardBenefit {}
+export interface AidesVeloBenefit extends StandardBenefit {}
+export interface StandardBenefitGroup {
+  benefits: BafaBenefit[] | AidesVeloBenefit[]
+  label: string
+  logoPath: string
+  description: string
+  redirectionPage: string
+}
+
 export interface BenefitWithChoice extends StandardBenefit {
   choiceValue: string | null
   choiceComments: string

@@ -34,6 +34,6 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <BenefitsList :benefits="bafaResultBenefits" />
+    <BenefitsList :benefits-and-benefits-groups="bafaResultBenefits" />
   </div>
 </template>

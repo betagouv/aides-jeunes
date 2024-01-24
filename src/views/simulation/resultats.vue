@@ -50,7 +50,7 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <BenefitsLists />
+      <BenefitsList :benefits-and-benefits-groups="benefitsAndBenefitsGroups" />
     </div>
 
     <div v-show="isEmpty(benefits)" class="fr-py-5w">
@@ -85,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-import BenefitsLists from "@/components/benefits-lists.vue"
+import BenefitsList from "@/components/benefits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
 import Feedback from "@/components/feedback.vue"
@@ -110,6 +110,9 @@ const store = useStore()
 const router = useRouter()
 const route = useRoute()
 const benefits = computed(() => resultsStore.benefits)
+const benefitsAndBenefitsGroups = computed(
+  () => resultsStore.filteredBenefitsAndBenefitsGroups
+)
 const hasWarning = computed(() => resultsStore.hasWarning)
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)

@@ -6,6 +6,7 @@ import {
   BafaBenefit,
 } from "@data/types/benefits"
 import { hasBafaInterestFlag } from "@/lib/benefits.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
   getters: {
@@ -28,7 +29,11 @@ export const useResultsStore = defineStore("results", {
       | StandardBenefitGroup
       | StandardBenefit
     )[] {
-      return [...this.filteredBenefits, ...this.benefitsGroups]
+      if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
+        return [...this.filteredBenefits, ...this.benefitsGroups]
+      } else {
+        return this.benefits
+      }
     },
     bafaBenefitsGroup(): StandardBenefitGroup {
       return {

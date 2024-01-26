@@ -41,22 +41,25 @@ export default {
       >`,
   }),
 
-  rsa_isolement_recent: new BooleanProperty({
-    question: "Vivez-vous seul ou seule depuis plus de 18 mois ?",
-  }),
-
-  en_couple: new EnumProperty({
-    question: "Vivez-vous en couple ?",
-    questionType: "enum",
+  rsa_isolement_recent: new EnumProperty({
+    question: ({ simulation }) => {
+      return `Vivez-vous seul ou seule avec ${
+        simulation.enfants.length == 1 ? "votre enfant" : "vos enfants"
+      } depuis plus de 18 mois ?`
+    },
     items: [
       {
+        value: false,
         label: "Oui",
-        value: true,
       },
       {
+        value: true,
         label: "Non",
-        value: false,
       },
     ],
+  }),
+
+  en_couple: new BooleanProperty({
+    question: "Vivez-vous en couple ?",
   }),
 }

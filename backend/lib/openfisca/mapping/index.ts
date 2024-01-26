@@ -1,11 +1,4 @@
-import {
-  assign,
-  cloneDeep,
-  difference,
-  filter,
-  forEach,
-  pickBy,
-} from "lodash-es"
+import { cloneDeep, difference, filter, forEach, pickBy } from "lodash-es"
 
 import common from "./common.js"
 import buildOpenFiscaIndividu from "./individu/index.js"
@@ -23,8 +16,6 @@ import {
   Menage,
   FoyersFiscaux,
 } from "../../../types/openfisca.js"
-
-import { StatutOccupationLogement } from "../../../../lib/enums/logement.js"
 
 export function dispatchIndividuals(situation: Situation): OpenfiscaMapping {
   const individus = mapIndividus(situation)
@@ -177,29 +168,18 @@ export function giveValueToRequestedVariables(
 
 // Use heuristics to pass functional tests
 // Complexity may be added in the future in the application (new questions to ask)
-// So far, due to a bug or some ambiguity
-// cf. https://github.com/openfisca/openfisca-france/pull/1233
-// logement_conventionne needs to be true when the loan in fully paid
-// to avoid a benefit from appearing
 export function applyHeuristicsAndFix(testCase, sourceSituation) {
   const periods = common.getPeriods(sourceSituation.dateDeValeur)
-
-  const menage = assign(
-    {},
-    {
-      logement_conventionne: {},
-    },
-    testCase.menages._
-  )
-  menage.logement_conventionne[periods.thisMonth] =
-    menage.statut_occupation_logement?.[periods.thisMonth] ==
-      StatutOccupationLogement.PrimoAccedant &&
-    menage.loyer?.[periods.thisMonth] == 0
-
   const demandeur = sourceSituation.demandeur
   const parents = sourceSituation.parents
 
   const aCharge = demandeur.enfant_a_charge?.[periods.thisYear]
+
+  testCase.foyers_fiscaux._.nb_pac = {
+    [periods.fiscalYear]:
+      testCase.foyers_fiscaux._.declarants.length +
+      testCase.foyers_fiscaux._.personnes_a_charge.length,
+  }
 
   if (aCharge) {
     if (demandeur.bourse_criteres_sociaux_base_ressources_parentale) {
@@ -213,7 +193,7 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
         [periods.fiscalYear]: parents.rfr,
       }
       testCase.foyers_fiscaux._.rni = {
-        [periods.lastYear]: parents.rfr,
+        [periods.fiscalYear]: parents.rfr,
       }
     }
     if (parents.nbptr) {
@@ -223,7 +203,6 @@ export function applyHeuristicsAndFix(testCase, sourceSituation) {
     }
   }
 
-  testCase.menages._ = menage
   return testCase
 }
 

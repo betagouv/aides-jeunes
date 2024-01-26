@@ -1,7 +1,7 @@
 export interface Answer {
-  id?: any
-  entityName: any
-  fieldName: any
+  entityName: string
+  fieldName?: string
+  id?: string
+  path?: string
   value: any
-  path?: any
 }

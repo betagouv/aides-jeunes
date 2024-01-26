@@ -40,7 +40,6 @@ export default {
     question: ({ individu }) => {
       return `${IndividuMethods.label(individu, "être")} ?`
     },
-    questionType: "enum",
     items: [
       {
         value: Activite.Etudiant,
@@ -87,7 +86,6 @@ export default {
 
   annee_etude: new EnumProperty({
     question: "Dans quelle classe êtes-vous actuellement ?",
-    questionType: "enum",
     items: [
       {
         label: "CAP - 1ère année",
@@ -253,7 +251,6 @@ export default {
 
   categorie_salarie: new EnumProperty({
     question: "Êtes-vous en alternance dans le secteur public ?",
-    questionType: "enum",
     items: [
       {
         label: "Oui",
@@ -294,7 +291,6 @@ export default {
           : "Est-ce que votre partenaire porte actuellement un enfant ?"
       }`
     },
-    questionType: "enum",
     items: [
       {
         label: "Oui",
@@ -319,7 +315,6 @@ export default {
             IndividuMethods.label(individu, "nom")
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
-    questionType: "enum",
     items: ({ individu }) => {
       const isDemandeur = individu._role === "demandeur"
       return [
@@ -355,7 +350,6 @@ export default {
       return `${IndividuMethods.label(individu, "avoir")} besoin d’une aide à la
       personne ?`
     },
-    questionType: "enum",
     items: [
       {
         value: "gir_6",
@@ -374,7 +368,6 @@ export default {
 
   groupe_specialites_formation: new EnumProperty({
     question: "De quel secteur votre formation fait-elle partie ?",
-    questionType: "enum",
     items: Object.values(ScolariteCategories.groupeSpecialitesFormation),
   }),
 
@@ -416,7 +409,6 @@ export default {
 
   mention_baccalaureat: new EnumProperty({
     question: "Avez-vous obtenu une mention au baccalauréat ?",
-    questionType: "enum",
     items: ScolariteCategories.mentionsBaccalaureat,
   }),
 
@@ -429,7 +421,6 @@ export default {
             "préposition"
           )}${IndividuMethods.label(individu, "nom")} ?`
     },
-    questionType: "enum",
     items: [
       {
         label: "Française",
@@ -452,7 +443,6 @@ export default {
         ? "Quel est le régime de protection sociale de vos parents ?"
         : "Quel est votre régime de protection sociale ?"
     },
-    questionType: "enum",
     items: [
       {
         value: "regime_general",
@@ -490,7 +480,6 @@ export default {
         ? "Où êtes-vous scolarisé ou scolarisée ?"
         : `Où sera scolarisé ou scolarisée ${individu._firstName} à la rentrée prochaine ?`
     },
-    questionType: "enum",
     items: ScolariteCategories.types,
     moreInfo:
       "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
@@ -532,7 +521,6 @@ export default {
 
   statuts_etablissement_scolaire: new EnumProperty({
     question: "Dans quel type d'établissement étudiez-vous actuellement ?",
-    questionType: "enum",
     items: [
       {
         value: "public",
@@ -555,7 +543,6 @@ export default {
 
   statut_marital: new EnumProperty({
     question: "Quelle est votre relation avec votre conjoint ou conjointe ?",
-    questionType: "enum",
     items: IndividuMethods.situationsFamiliales,
   }),
 
@@ -575,7 +562,6 @@ export default {
             >MDPH</abbr
           > ?`
     },
-    questionType: "enum",
     items: ({ openFiscaParameters }) => {
       const tauxMax =
         openFiscaParameters[
@@ -600,7 +586,6 @@ export default {
 
   _contrat_alternant: new EnumProperty({
     question: "Êtes-vous ?",
-    questionType: "enum",
     items: [
       {
         value: Activite.Apprenti,
@@ -667,7 +652,6 @@ export default {
         ? "Depuis quand avez-vous signé votre contrat d'alternance ?"
         : "Depuis quand avez-vous signé votre contrat de travail ?"
     },
-    questionType: "enum",
     items: [
       {
         value: 2,

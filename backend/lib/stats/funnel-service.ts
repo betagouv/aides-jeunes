@@ -4,6 +4,7 @@ import utc from "dayjs/plugin/utc.js"
 import { callMatomoAPI } from "./piwik.js"
 import Followups from "../../models/followup.js"
 import Simulations from "../../models/simulation.js"
+import { SurveyType } from "../../../lib/enums/survey.js"
 
 const funnelInterestingPaths = {
   firstPageVisits: "/simulation/individu/demandeur/date_naissance",
@@ -217,9 +218,14 @@ const getFollowupsData = async (
     },
   })
   const followupWithSurveyRepliedCount = await Followups.countDocuments({
-    "surveys.repliedAt": {
-      $gte: beginRange.toDate(),
-      $lte: endRange.toDate(),
+    surveys: {
+      $elemMatch: {
+        repliedAt: {
+          $gte: beginRange.toDate(),
+          $lte: endRange.toDate(),
+        },
+        type: SurveyType.BenefitAction,
+      },
     },
   })
 

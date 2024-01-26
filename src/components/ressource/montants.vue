@@ -13,18 +13,14 @@
       >
         <span
           v-html="
-            getQuestionLabel(
-              individu,
-              type.meta,
-              store.dates.twelveMonthsAgo.label
-            )
+            getQuestionLabel(type.meta, store.dates.twelveMonthsAgo.label)
           "
         />
       </YesNoQuestion>
 
       <div v-if="type.displayMonthly === true">
         <label :for="`${type.meta.id}_monthly`" class="fr-label">
-          Indiquez le montant <b>mensuel net</b> :
+          Indiquez le montant <b>net social mensuel </b> :
         </label>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
@@ -50,8 +46,8 @@
             précédents sont également mis à jour automatiquement. Ils peuvent
             être modifiés ensuite.</span
           >
-          Indiquez les montants <strong>nets mensuels</strong> que
-          {{ getLongLabel(individu, type.meta) }}
+          Indiquez les montants <strong>nets sociaux mensuels</strong> que
+          {{ getLongLabel(type.individu, type.meta) }}
         </p>
         <div
           v-for="(month, monthIndex) in type.months"
@@ -82,20 +78,36 @@
   </fieldset>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { computed, PropType } from "vue"
+
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
 import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { useStore } from "@/stores/index.js"
+import { ResourceType } from "@lib/types/resources.d.js"
 
-function getQuestionLabel(individu, ressource, debutAnneeGlissante) {
-  let verbForms = {
+const props = defineProps({
+  type: { type: Object as PropType<ResourceType>, required: true },
+  index: Number,
+})
+
+const emit = defineEmits(["update"])
+const store = useStore()
+
+const singleValue = computed({
+  get: () => props.type.displayMonthly,
+  set: (value) => emit("update", "displayMonthly", props.index, value),
+})
+
+function getQuestionLabel(ressource, debutAnneeGlissante) {
+  const verbForms = {
     pensions_alimentaires_versees_individu: "versé",
     default: "reçu",
   }
 
-  let verb = verbForms[ressource.id] || verbForms.default
+  const verb = verbForms[ressource.id] || verbForms.default
   return `${[
     "Le montant",
     verb,
@@ -119,40 +131,6 @@ function getLongLabel(individu, ressource) {
   }
   const verb = verbs[ressource.id] || verbs.default
 
-  return `${[subject, aux, verb, "en"].join(" ")} :`
-}
-
-export default {
-  name: "RessourceMontants",
-  components: {
-    InputNumber,
-    MonthLabel,
-    YesNoQuestion,
-  },
-  props: {
-    individu: Object,
-    type: Object,
-    index: Number,
-  },
-  emits: ["update"],
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
-  computed: {
-    singleValue: {
-      get() {
-        return this.type.displayMonthly
-      },
-      set(value) {
-        this.$emit("update", "displayMonthly", this.index, value)
-      },
-    },
-  },
-  methods: {
-    getQuestionLabel,
-    getLongLabel,
-  },
+  return `${[subject, aux, verb, "en"].join(" ")} :`
 }
 </script>

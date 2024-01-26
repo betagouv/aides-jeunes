@@ -10,13 +10,13 @@
 - NodeJS
 - MongoDB
 - OpenFisca (Python, numpy)
-- NetlifyCMS ([config](https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml))
+- NetlifyCMS ([config](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml))
   - [website](https://contribuer-aides-jeunes.netlify.app)
 - Fabric ([fabfile](https://github.com/betagouv/aides-jeunes-ops/blob/main/fabric.yml))
 
 ## 3rd parties
 
-- Github Actions ([config](https://github.com/betagouv/aides-jeunes/blob/master/.github/workflows/))
+- Github Actions ([config](https://github.com/betagouv/aides-jeunes/blob/main/.github/workflows/))
   - Continuous integration and deployment
 - Netlify
   - Deloy previews
@@ -89,7 +89,7 @@ npm run install-openfisca  # install dependencies
 
 Then, to start the OpenFisca server, simply run `source .venv/bin/activate` followed by `npm run openfisca`.
 
-OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/master/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
+OpenFisca dependencies are specified in [openfisca/requirements.txt](https://github.com/betagouv/aides-jeunes/blob/main/openfisca/requirements.txt), a basic [Python requirements file](https://pip.pypa.io/en/stable/reference/pip_install/#example-requirements-file). It is possible to refer to non-production commit hashs but is prefered to use _main-merged_ commits.
 
 ### Install and run Openfisca in a docker container
 
@@ -171,9 +171,9 @@ We also utilize some ESLint plugins, such as [vue-eslint](https://eslint.vuejs.o
 
 SSHs keys were generated to [run scripts](http://man.openbsd.org/sshd#command=%22command%22) on the production server.
 
-The `master` and `dev` branches are automatically deployed on the production server when they are updated using a [continuous deployment script](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml).
+The `main` and `dev` branches are automatically deployed on the production server when they are updated using a [continuous deployment script](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml).
 
-Note that it is also possible to re-trigger a deployment manually by clicking on `Run workflow` button on the [continuous deployment's page](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml) and selecting either the `master` or `dev` branch.
+Note that it is also possible to re-trigger a deployment manually by clicking on `Run workflow` button on the [continuous deployment's page](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml) and selecting either the `main` or `dev` branch.
 
 To access the applications server it is possible to connect to it with a registered public key using ssh:
 
@@ -225,7 +225,7 @@ This will generate 3 csv files in the `dist/documents` folder:
 
 It is possible to locally debug changes in NetlifyCMS configuration.
 
-- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/master/contribuer/public/admin/config.yml#L15) ([`local_backend: true`](https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository)) must be uncommented;
+- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L15) ([`local_backend: true`](https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository)) must be uncommented;
 - `npx netlify-cms-proxy-server` should be ran from `.` and
 - `npm ci` and `npm run dev` should be ran from `contribuer`.
 - Netlify CMS should now be accessible at `http://localhost:3000/admin/index.html`

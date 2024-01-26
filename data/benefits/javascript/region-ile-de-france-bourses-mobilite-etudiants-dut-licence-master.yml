@@ -2,15 +2,15 @@ label: Bourses Mobilité pour les étudiants et étudiantes de BUT, licence, mas
 imgSrc: ""
 institution: region_ile_de_france
 description:
-  La Région Ile-de-France apporte aux étudiants et étudiantes résidant en Île-de-France
-  inscrits ou inscrites en BUT, licence ou master dans un établissement francilien
+  La Région Ile-de-France apporte aux étudiants et étudiantes résidant en Île-de-France et
+  inscrits en BUT, licence ou master dans un établissement francilien
   partenaire une aide financière pour réaliser un stage ou une période d'études
   à l'étranger, d'une durée de 1 à 10 mois maximum, durant l'année
   universitaire.
 conditions:
   - Être inscrit ou inscrite dans une université, un grand établissement ou une école
     figurant sur la <a target="_blank" rel="noopener" title="liste des établissements partenaires - Nouvelle fenêtre"
-    href="https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=e3ff2b1c-500a-48fd-a2b5-1e3f2b93be81;1.0
+    href="https://mesdemarches.iledefrance.fr/document-collect/cridfprd/root/public?objectId=e3ab1ce4-038c-4e1b-a39d-7e422f0bd268%3B1.0
     ">liste des établissements partenaires</a> de la Région.
 conditions_generales:
   - type: regions
@@ -32,9 +32,8 @@ profils:
           - licence_3
           - master_1
           - master_2
-link: https://www.iledefrance.fr/bourses-mobilite-ile-de-france-informations-aux-etudiants-de-dut-licence-master#
-teleservice: https://mesdemarches.iledefrance.fr/account-management/cridfprd-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-cridfprd-portail-depot-demande-aides&footer=https:%2F%2Fmesdemarches.iledefrance.fr%2Faides%2F%23%2Fcridfprd%2Fmentions-legales,Mentions%20l%C3%A9gales%20et%20RGPD,_self
-instructions: https://www.iledefrance.fr/bourses-mobilite-ile-de-france-informations-aux-etudiants-de-dut-licence-master#
+link: https://www.iledefrance.fr/aides-et-appels-a-projets/bourses-mobilite-ile-de-france-informations-aux-etudiants-en-licence-master
+instructions: https://www.iledefrance.fr/aides-et-appels-a-projets/bourses-mobilite-ile-de-france-informations-aux-etudiants-en-licence-master
 prefix: les
 type: float
 unit: €

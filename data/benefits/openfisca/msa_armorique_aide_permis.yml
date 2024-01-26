@@ -1,13 +1,15 @@
-label: aide au financement du permis
+label: aide au passage du code de la route
 institution: msa_armorique
 description:
-  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Armorique pour favoriser l’autonomie et l’insertion des jeunes de moins de 25 ans en finançant
-  <a target="_blank" rel="noopener" title="le permis voiture (B) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a> ou <a target="_blank" rel="noopener" title="le permis moto (A) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2830">le permis moto (A)</a>.
+  Cette aide est un coup de pouce de la Mutualité Sociale Agricole (MSA) Armorique
+  pour favoriser l’autonomie et l’insertion des jeunes de moins de 25 ans qui
+  ont obtenu le code de la route dans le cadre du passage
+  <a target="_blank" rel="noopener" title="du permis voiture (B) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2828">du permis voiture (B)</a> ou <a target="_blank" rel="noopener" title="du permis moto (A) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2830">du permis moto (A)</a>.
 conditions:
   - Avoir obtenu le code de la route.
   - Ne pas avoir obtenu <a href="https://armorique.msa.fr/lfy/aide-a-la-mobilite-pour-l-emploi" target="_blank" title="Aide à la mobilité - Nouvelle fenêtre" rel="noopener">l’aide à la mobilité</a>.
   - Ne pas avoir de capitaux supérieur à 50 000 € pour une personne seule et 75 000 € pour un couple.
-link: https://armorique.msa.fr/lfy/l-aide-au-permis-de-conduire
+link: https://armorique.msa.fr/lfp/web/msa-d-armorique/aide-code-route
 form: https://armorique.msa.fr/lfp/documents/98925/100861102/Formulaire+PASS+aide+%C3%A0+l%27obtention+du+code+de+la+route.pdf
 prefix: l’
 type: float

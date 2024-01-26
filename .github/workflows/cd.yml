@@ -2,7 +2,7 @@ name: "Continuous Deployment"
 on:
   workflow_dispatch:
   push:
-    branches: [master, dev]
+    branches: [main, dev]
 concurrency: ci-${{ github.ref }}
 
 env:
@@ -36,7 +36,7 @@ jobs:
       - name: Jest
         run: npm run test
   deploy_equinoxe_production:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: [unit_testing]
     name: Equinoxe Production deployment
     runs-on: ubuntu-20.04
@@ -62,7 +62,7 @@ jobs:
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.EQUINOXE_SSH_USER }}@${{ env.EQUINOXE_SSH_HOST }} -i ~/.ssh/deployment.key
   deploy_eclipse_production:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: [unit_testing]
     name: Eclipse Production deployment
     runs-on: ubuntu-20.04

@@ -21,12 +21,11 @@ conditions_generales:
     values:
       - "66"
 profils: []
-link: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-1
-instructions: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-1
+link: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-jeunes/l-aide-aux-stagiaires-en-formation-bafa
+instructions: https://www.caf.fr/allocataires/caf-des-pyrenees-orientales/offre-de-service/vie-personnelle/une-presence-aupres-des-jeunes/l-aide-aux-stagiaires-en-formation-bafa
 prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
-montant: 150
+montant: 200
 interestFlag: _interetBafa
-private: true

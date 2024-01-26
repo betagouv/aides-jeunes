@@ -5,7 +5,7 @@ description:
   Prenez un rendez-vous pour vous faire accompagner. La prise de rendez-vous se fait
   en quelques minutes et vous permet de bénéficier d’un accompagnement téléphonique
   d’une vingtaine de minutes par un membre de notre équipe.
-prefix: l'
+prefix: l’
 conditions_generales:
   - type: communes
     values:

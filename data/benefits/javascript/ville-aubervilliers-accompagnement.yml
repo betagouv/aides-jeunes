@@ -11,7 +11,7 @@ conditions_generales:
     values:
       - "93001"
 conditions:
-  - Résider à Aubervilliers
+  - Résider à Aubervilliers.
 type: bool
 periodicite: autre
 teleservice: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ

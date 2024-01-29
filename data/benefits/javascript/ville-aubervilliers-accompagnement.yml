@@ -1,0 +1,17 @@
+label: accompagnement personnalisé
+institution: ville_aubervilliers
+description:
+  Vous avez besoin d'aide pour comprendre votre résultat de simulation
+  et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone.
+  La prise de rendez-vous se fait en quelques minutes et vous permet de bénéficier
+  d'un accompagnement téléphonique d'une vingtaine de minutes par un membre de
+  notre équipe.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "93001"
+type: bool
+periodicite: autre
+teleservice: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ
+link: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ

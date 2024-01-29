@@ -21,16 +21,20 @@ export const useResultsStore = defineStore("results", {
         },
         { bafa: [], other: [] }
       )
-      const bafaGroup = {
-        benefits: groups.bafa,
-        id: "bafa-bafd-group",
-        label: "Aides BAFA et BAFD",
-        logoPath: "/img/benefits/logo-bafa-bafd.png",
-        description:
-          "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
-        redirectionPage: "bafa-bafd",
+      if (groups.bafa.length) {
+        const bafaGroup = {
+          benefits: groups.bafa,
+          id: "bafa-bafd-group",
+          label: "Aides BAFA et BAFD",
+          logoPath: "/img/benefits/logo-bafa-bafd.png",
+          description:
+            "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
+          redirectionPage: "bafa-bafd",
+        }
+        return [...groups.other, bafaGroup]
+      } else {
+        return groups.other
       }
-      return [...groups.other, bafaGroup]
     },
     benefitTree(): (StandardBenefit | StandardBenefitGroup)[] {
       if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {

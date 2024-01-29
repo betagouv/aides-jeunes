@@ -16,8 +16,8 @@ conditions_generales:
 profils:
   - type: chomeur
     conditions: []
-link: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-individuelle-regionale-vers-lemploi-aire
-instructions: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-individuelle-regionale-vers-lemploi-aire
+link: https://www.iledefrance.fr/toutes-les-actualites/aire-laide-individuelle-regionale-vers-lemploi-finance-votre-formation-professionnelle
+instructions: https://www.iledefrance.fr/toutes-les-actualites/aire-laide-individuelle-regionale-vers-lemploi-finance-votre-formation-professionnelle
 prefix: l’
 type: bool
 unit: €

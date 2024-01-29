@@ -29,7 +29,7 @@ const hasBafaPreviewBenefit = () => {
 
 const hasBafaBenefit = () => {
   const name =
-    /Aide nationale au Brevet d’aptitude aux fonctions d’animateur \(BAFA\)/
+    /Aide nationale au Brevet d'aptitude aux fonctions d'animateur \(BAFA\)/
   const id = "caf-aide-nationale-bafa"
   IdentifyBenefit(id, name)
   cy.checkA11y()

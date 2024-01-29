@@ -2,30 +2,27 @@
 import { defineProps, computed } from "vue"
 import { capitalize } from "@lib/utils.js"
 import { uniq } from "lodash-es"
+import { StandardBenefitGroup } from "@data/types/benefits"
 
 const props = defineProps({
-  benefits: Object,
-  label: String,
-  logoPath: String,
-  institutionLabel: String,
-  description: String,
-  redirectionPage: String,
+  group: Object as PropType<StandardBenefitGroup>,
 })
+
 const formattedInstitutionsLabel = computed(() => {
   const institutionLabels = uniq(
-    props.benefits?.map((benefit: any) => benefit.institution.label)
+    props.group.benefits?.map((benefit: any) => benefit.institution.label)
   ).toString()
   return institutionLabels?.replace(/,/g, ", ")
 })
 </script>
 
 <template>
-  <div v-if="props.benefits" class="fr-ml-6v fr-mb-3w">
+  <div v-if="props.group.benefits" class="fr-ml-6v fr-mb-3w">
     <div class="fr-tile tile-1">
       <div class="fr-tile tile-2">
         <router-link
           class="fr-tile tile-3"
-          :to="`/simulation/resultats/groupe/${props.redirectionPage}`"
+          :to="`/simulation/resultats/groupe/${props.group.redirectionPage}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
           data-testid="aides-bafa-preview"
@@ -35,18 +32,21 @@ const formattedInstitutionsLabel = computed(() => {
             <div class="aj-benefit-header fr-mb-4w">
               <img
                 class="aj-institution-icon"
-                :src="props.logoPath"
-                :alt="`Logo ${props.label}`"
+                :src="props.group.logoPath"
+                :alt="`Logo ${props.group.label}`"
               />
               <div class="aj-benefit-name">
                 <h2 class="fr-text--lead" itemprop="name">{{
-                  capitalize(props.label)
+                  capitalize(props.group.label)
                 }}</h2>
                 <div class="aj-benefit-institution"
                   >{{ capitalize(formattedInstitutionsLabel) }}
                 </div>
                 <div>
-                  <p class="fr-text--justify" v-html="props.description" />
+                  <p
+                    class="fr-text--justify"
+                    v-html="props.group.description"
+                  />
                 </div>
               </div>
             </div>

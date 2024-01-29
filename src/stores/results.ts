@@ -1,10 +1,6 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
-import {
-  StandardBenefit,
-  StandardBenefitGroup,
-  BafaBenefit,
-} from "@data/types/benefits"
+import { StandardBenefit, StandardBenefitGroup } from "@data/types/benefits"
 import { hasBafaInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -13,43 +9,38 @@ export const useResultsStore = defineStore("results", {
     benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles || []
     },
-    bafaBenefits(): BafaBenefit[] {
-      return this.benefits.filter((benefit) => hasBafaInterestFlag(benefit))
-    },
-    benefitsWithoutBafa(): StandardBenefit[] {
-      return this.benefits.filter((benefit) => !hasBafaInterestFlag(benefit))
-    },
-    benefitsGroups(): StandardBenefitGroup[] {
-      return this.bafaBenefits.length > 0 ? [this.bafaBenefitsGroup] : []
-    },
-    filteredBenefits(): StandardBenefit[] {
-      return this.benefitsWithoutBafa || []
-    },
-    filteredBenefitsAndBenefitsGroups(): (
-      | StandardBenefitGroup
-      | StandardBenefit
-    )[] {
-      if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
-        return [...this.filteredBenefits, ...this.benefitsGroups]
-      } else {
-        return this.benefits
-      }
-    },
-    bafaBenefitsGroup(): StandardBenefitGroup {
-      return {
-        benefits: this.bafaBenefits,
+    benefitTreeGroupExperiment(): (StandardBenefit | StandardBenefitGroup)[] {
+      const groups = this.benefits.reduce(
+        (groups, benefit) => {
+          if (hasBafaInterestFlag(benefit)) {
+            groups.bafa.push(benefit)
+          } else {
+            groups.other.push(benefit)
+          }
+          return groups
+        },
+        { bafa: [], other: [] }
+      )
+      const bafaGroup = {
+        benefits: groups.bafa,
+        id: "bafa-bafd-group",
         label: "Aides BAFA et BAFD",
         logoPath: "/img/benefits/logo-bafa-bafd.png",
         description:
           "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
         redirectionPage: "bafa-bafd",
       }
+      return [...groups.other, bafaGroup]
+    },
+    benefitTree(): (StandardBenefit | StandardBenefitGroup)[] {
+      if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
+        return this.benefitTreeGroupExperiment
+      } else {
+        return this.benefits
+      }
     },
     hasBenefits(): boolean {
       return this.benefits?.length > 0
-    },
-    hasBafaBenefits(): boolean {
-      return this.bafaBenefits?.length > 0
     },
     fetching() {
       return useStore().access.fetching

@@ -16,26 +16,18 @@ const getComponentType = (benefitAndBenefitsGroup) => {
     ? BenefitsGroupPreview
     : BenefitPreview
 }
-
-const benefitsGroupList = (benefitsGroup) => benefitsGroup.benefits
-const benefitsGroupLabel = (benefitsGroup) => benefitsGroup.label
-const benefitsGroupLogoPath = (benefitsGroup) => benefitsGroup.logoPath
-const benefitsGroupDescription = (benefitsGroup) => benefitsGroup.description
-const benefitsGroupRedirectionPage = (benefitsGroup) =>
-  benefitsGroup.redirectionPage
 </script>
 
 <template>
-  <component
-    :is="getComponentType(benefitAndBenefitsGroup)"
-    v-for="(benefitAndBenefitsGroup, index) in props.benefitsAndBenefitsGroups"
+  <div
+    v-for="(benefitOrBenefitsGroup, index) in props.benefitsAndBenefitsGroups"
     :key="index"
     class="fr-mb-5w"
-    :benefit="benefitAndBenefitsGroup"
-    :benefits="benefitsGroupList(benefitAndBenefitsGroup)"
-    :label="benefitsGroupLabel(benefitAndBenefitsGroup)"
-    :logo-path="benefitsGroupLogoPath(benefitAndBenefitsGroup)"
-    :description="benefitsGroupDescription(benefitAndBenefitsGroup)"
-    :redirection-page="benefitsGroupRedirectionPage(benefitAndBenefitsGroup)"
-  />
+  >
+    <component
+      :is="getComponentType(benefitOrBenefitsGroup)"
+      :benefit="benefitOrBenefitsGroup"
+      :group="benefitOrBenefitsGroup"
+    />
+  </div>
 </template>

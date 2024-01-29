@@ -50,7 +50,7 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <BenefitsList :benefits-and-benefits-groups="benefitsAndBenefitsGroups" />
+      <BenefitsList :benefits-and-benefits-groups="benefitTree" />
     </div>
 
     <div v-show="isEmpty(benefits)" class="fr-py-5w">
@@ -110,9 +110,7 @@ const store = useStore()
 const router = useRouter()
 const route = useRoute()
 const benefits = computed(() => resultsStore.benefits)
-const benefitsAndBenefitsGroups = computed(
-  () => resultsStore.filteredBenefitsAndBenefitsGroups
-)
+const benefitTree = computed(() => resultsStore.benefitTree)
 const hasWarning = computed(() => resultsStore.hasWarning)
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)

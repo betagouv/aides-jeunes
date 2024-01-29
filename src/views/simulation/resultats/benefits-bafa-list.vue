@@ -12,7 +12,10 @@ const resultsStore = useResultsStore()
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
 const benefits = computed(() => resultsStore.benefits)
-const bafaResultBenefits = computed(() => resultsStore.bafaBenefits)
+const groupBenefits = computed(() => {
+  const group = resultsStore.benefitTree.find((b) => b.id === "bafa-bafd-group")
+  return group.benefits
+})
 
 onMounted(async () => {
   if (!benefits.value) {
@@ -34,6 +37,6 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <BenefitsList :benefits-and-benefits-groups="bafaResultBenefits" />
+    <BenefitsList :benefits-and-benefits-groups="groupBenefits" />
   </div>
 </template>

@@ -116,10 +116,8 @@ export interface StandardBenefit {
   showUnexpectedAmount?: boolean
 }
 
-export interface BafaBenefit extends StandardBenefit {}
-export interface AidesVeloBenefit extends StandardBenefit {}
 export interface StandardBenefitGroup {
-  benefits: BafaBenefit[] | AidesVeloBenefit[]
+  benefits: StandardBenefit[]
   label: string
   logoPath: string
   description: string

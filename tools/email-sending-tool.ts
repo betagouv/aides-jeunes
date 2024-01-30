@@ -52,8 +52,7 @@ async function main() {
     switch (args.command) {
       case "send":
         await processSendEmails(args.type, args.id, multiple)
-
-        console.log("Done")
+        console.log("Email sent")
         break
       default:
         parser.print_help()

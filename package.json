@@ -42,6 +42,7 @@
     "tools:institutions-logo-check": "ts-node ./tools/institutions-logo-check",
     "tools:serve-mail": "ts-node ./tools/mjml",
     "tools:send-summary-email": "ts-node ./tools/email-summary-tool",
+    "tools:send-survey-email": "ts-node ./tools/email-sending-tool send simulation-usefulness",
     "tools:send-initial-survey-email": "ts-node ./tools/email-sending-tool send initial-survey --multiple 1000",
     "tools:send-initial-survey-sms": "ts-node ./tools/sms-sending-tool send initial-survey --multiple 2",
     "tools:test-benefits-geographical-constraint-consistency": "ts-node ./tools/test-benefits-geographical-constraint-consistency",

@@ -39,7 +39,7 @@ import { EventAction } from "@lib/enums/event.js"
 import { computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { useStore } from "@/stores/index.js"
-import { useResultsStore } from "@/stores/results-store.js"
+import { useResultsStore } from "@/stores/results.js"
 
 const store = useStore()
 const resultsStore = useResultsStore()

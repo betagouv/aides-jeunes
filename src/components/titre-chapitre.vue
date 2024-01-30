@@ -35,7 +35,7 @@
 import Chapters from "@lib/chapters.js"
 import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
-import { useResultsStore } from "@/stores/results-store.js"
+import { useResultsStore } from "@/stores/results.js"
 import JeDonneMonAvis from "@/components/je-donne-mon-avis.vue"
 
 export default {

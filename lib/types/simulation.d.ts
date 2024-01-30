@@ -1,14 +1,6 @@
 import { Document } from "mongoose"
-
 import { SimulationStatus } from "../enums/simulation.js"
-
-export interface Answer {
-  id: string
-  entityName: string
-  fieldName: string
-  value: any
-  path: string
-}
+import { Answer } from "@lib/types/answer.d.js"
 
 interface SimulationAttributes {
   _id: string

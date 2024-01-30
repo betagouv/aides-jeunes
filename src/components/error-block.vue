@@ -45,6 +45,7 @@
 <script lang="ts">
 import { sendError } from "@/plugins/mails.js"
 import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
@@ -52,6 +53,7 @@ export default {
   setup() {
     return {
       store: useStore(),
+      resultsStore: useResultsStore(),
     }
   },
   data() {
@@ -64,11 +66,8 @@ export default {
     }
   },
   computed: {
-    resultatStatus() {
-      return this.store.calculs
-    },
     errorText() {
-      let value = this.resultatStatus.error && this.resultatStatus.exception
+      let value = this.resultsStore.error && this.resultsStore.exception
       return value instanceof String || value instanceof Error
         ? value
         : JSON.stringify(value, null, 2)

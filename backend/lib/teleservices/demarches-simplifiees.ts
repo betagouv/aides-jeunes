@@ -1,7 +1,8 @@
 import axios from "axios"
 import dayjs from "dayjs"
-
 import { getAnswer } from "../../../lib/answers.js"
+import { getActiviteLabel } from "../../../lib/enums/activite.js"
+import Scolarite from "../../../lib/scolarite.js"
 
 const sources = {
   activite: () => "Actif occupé",
@@ -47,7 +48,131 @@ const sources = {
     return depcom?._region
   },
   situation: () => `J'ai ${"xx"} ans et je suis ${"yy"}`,
+  situation_familliale: (simulation) => {
+    const en_couple =
+      getAnswer(simulation.answers.current, "famille", "en_couple") === true
+
+    if (!en_couple) {
+      return "Célibataire"
+    }
+    const statut_marital = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "statut_marital",
+      "conjoint"
+    )
+
+    // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
+    // - Missing not available answers in the simulator : Veuf(ve), Séparé(e), Divorcé(e)
+    const situations_couple = {
+      marie: "Marié(e)",
+      pacse: "Pacsé(e)",
+      celibataire: "Union libre",
+    }
+
+    return situations_couple[statut_marital]
+  },
   telephone: () => "0612345678",
+}
+
+const fsl_var_sources = {
+  activite: (simulation) => {
+    const activite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "activite",
+      "demandeur"
+    )
+    return getActiviteLabel(activite)
+  },
+  loyer_avec_charges: (simulation) => {
+    const { loyer, charges_locatives = 0 } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "loyer"
+    )
+    return loyer + charges_locatives
+  },
+  commune_nom: (simulation) => {
+    const { _nomCommune } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "depcom"
+    )
+    return _nomCommune
+  },
+  commune_code_postal: (simulation) => {
+    const { _codePostal } = getAnswer(
+      simulation.answers.current,
+      "menage",
+      "depcom"
+    )
+    return _codePostal
+  },
+  buildConjoint(simulation) {
+    if (
+      getAnswer(simulation.answers.current, "famille", "en_couple") === false
+    ) {
+      return null
+    }
+    const date_naissance = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "date_naissance",
+      "conjoint"
+    )
+    const activite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "activite",
+      "conjoint"
+    )
+    return {
+      champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
+      champ_Q2hhbXAtMjU1NDk1NA: "Conjoint(e)",
+      champ_Q2hhbXAtMjU1NDk1NQ: getActiviteLabel(activite),
+    }
+  },
+  buildChild(simulation, id) {
+    const date_naissance = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "date_naissance",
+      `enfant_${id}`
+    )
+    const prenom = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "_firstName",
+      `enfant_${id}`
+    )
+    const scolarite = getAnswer(
+      simulation.answers.current,
+      "individu",
+      "scolarite",
+      `enfant_${id}`
+    )
+    const scolariteLabel = Scolarite.types.find(
+      (t) => t.value === scolarite
+    )?.label
+    return {
+      champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
+      champ_Q2hhbXAtMjU1NDk0OQ: prenom,
+      champ_Q2hhbXAtMjU1NDk1NQ: scolariteLabel,
+    }
+  },
+  autres_personnes_du_foyer: (simulation) => {
+    const results: any[] = []
+    const conjoint = fsl_var_sources.buildConjoint(simulation)
+    if (conjoint) {
+      results.push(conjoint)
+    }
+    simulation.enfants.forEach((id) => {
+      const child = fsl_var_sources.buildChild(simulation, id)
+      results.push(child)
+    })
+    return results
+  },
 }
 
 function enfants_beaumount(simulation) {
@@ -103,6 +228,30 @@ const mappings = {
   },
   "abonnement-aeea-dgitm": {
     "champ_Q2hhbXAtMzM3MjU3MQ==": sources.date_naissance,
+  },
+  "departement-83-demande-fonds-solidarite-energie": {
+    "champ_Q2hhbXAtMjYwMzg1MA==": sources.date_naissance,
+    "champ_Q2hhbXAtMjYxNzA3Ng==": fsl_var_sources.commune_nom,
+    "champ_Q2hhbXAtMjYxNzA3OA==": fsl_var_sources.commune_code_postal,
+    "champ_Q2hhbXAtMjU2NzM2Nw==": fsl_var_sources.loyer_avec_charges,
+    "champ_Q2hhbXAtMjYwMzczMA==": fsl_var_sources.activite,
+    champ_Q2hhbXAtMjAyODY4: sources.situation_familliale,
+    "champ_Q2hhbXAtMjU1MzA5Mw==": fsl_var_sources.autres_personnes_du_foyer,
+  },
+  cd53_da_an4_masso_kine: {
+    "champ_Q2hhbXAtMzQ2NDYwNw==": sources.date_naissance,
+  },
+  cd53_da_an3_soins_infirmiers: {
+    "champ_Q2hhbXAtMzQ2NDQ3OQ==": sources.date_naissance,
+  },
+  cd53_da_an4_maieutique: {
+    "champ_Q2hhbXAtMzQ2NDM5Ng==": sources.date_naissance,
+  },
+  cd53_da_an5_orthophonie: {
+    "champ_Q2hhbXAtMzQ2MjcyNw==": sources.date_naissance,
+  },
+  cd53_da_an6_pharmacie_officine: {
+    "champ_Q2hhbXAtMzQ2NDM4MA==": sources.date_naissance,
   },
 }
 

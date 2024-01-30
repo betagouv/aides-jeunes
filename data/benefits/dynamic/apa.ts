@@ -17,7 +17,7 @@ export const APA_BY_CODE: {
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",
     link: "https://www.hautes-alpes.fr/1647-l-allocation-personnalisee-d-autonomie-apa-.htm",
-    form: "https://www.hautes-alpes.fr/include/viewFile.php?idtf=16823&path=a0%2F16823_639_1-dossier_apa_web_elec.pdf",
+    teleservice: "https://portail-usager.hautes-alpes.fr/apa/",
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
@@ -43,8 +43,8 @@ export const APA_BY_CODE: {
   },
   departement_finistere: {
     label: "du département du Finistère",
-    link: "https://www.finistere.fr/A-votre-service/Personnes-age-es-APA/Allocation-personnalisee-d-autonomie",
-    form: "https://www.finistere.fr/var/finistere/storage/original/application/1f10539819d74121420da96880b95716.pdf",
+    link: "https://www.finistere.fr/aides-et-services/personnes-agees/lallocation-personnalisee-dautonomie",
+    form: "https://www.finistere.fr/wp-content/uploads/2023/10/Demande-daides-a-lautonomie-a-domicile-pour-les-personnes-agees-Cerfa-16301.pdf",
   },
   departement_haute_garonne: {
     label: "du département de Haute Garonne",
@@ -60,7 +60,8 @@ export const APA_BY_CODE: {
     institution: "departement",
     label: "du département de l'Hérault",
     link: "https://mda.herault.fr/1397-allocation-personnalisee-a-l-autonomie-apa.htm",
-    form: "https://mda.herault.fr/cms_viewFile.php?idtf=9622&path=dossier_demande_APA_2021.pdf",
+    instructions:
+      "https://mda.herault.fr/1351-faire-une-demande-bien-vieillir.htm",
   },
   departement_ille_et_vilaine: {
     label: "du département d'Ille et Vilaine",

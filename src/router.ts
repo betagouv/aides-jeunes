@@ -324,10 +324,10 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach((to) => {
+router.afterEach((to, from) => {
   nextTick(function () {
     // scroll with a hash is managed in scrollBehavior
-    if (!to.hash) {
+    if (!to.hash && from.name !== undefined) {
       const header = document.querySelector("h1")
       header?.scrollIntoView({
         behavior: "smooth",

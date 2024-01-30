@@ -18,8 +18,8 @@ conditions_generales:
 profils:
   - type: etudiant
     conditions: []
-link: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
-instructions: https://www.grandest.fr/vos-aides-regionales/formation-sanitaire-et-sociale-aide-a-la-mobilite-internationale/
+link: https://www.grandest.fr/vos-aides-regionales/mobilite-internationale-formations-saso/
+instructions: https://www.grandest.fr/vos-aides-regionales/mobilite-internationale-formations-saso/
 prefix: l’
 type: float
 unit: €

@@ -24,8 +24,13 @@
                 </button>
               </div>
             </div>
-            <div class="fr-header__service">
-              <a :href="parameters.homeTo" :title="parameters.homeTitle">
+            <div class="fr-header__service aj-header">
+              <a
+                :href="parameters.homeTo"
+                :title="parameters.homeTitle"
+                :target="store.inIframe ? '_blank' : '_self'"
+                rel="noopener"
+              >
                 <p class="fr-header__service-title">
                   {{ parameters.serviceTitle }}
                 </p>

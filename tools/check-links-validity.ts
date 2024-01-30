@@ -10,7 +10,7 @@ import Bluebird from "bluebird"
 import * as Sentry from "@sentry/node"
 import dayjs from "dayjs"
 
-const DEFAULT_BRANCH_REF = "refs/heads/master"
+const DEFAULT_BRANCH_REF = "refs/heads/main"
 
 // Avoid some errors due to bad tls management
 const httpsAgent = new https.Agent({ rejectUnauthorized: false })
@@ -59,10 +59,10 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
-  const last3months: string = dayjs().subtract(3, "month").format("YYYY-MM-DD")
+  const lastMonth: string = dayjs().subtract(1, "month").format("YYYY-MM-DD")
   const stats = await axios
     .get(
-      `https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits?startAt=${last3months}`
+      `https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits?startAt=${lastMonth}`
     )
     .then((response) => response.data)
 

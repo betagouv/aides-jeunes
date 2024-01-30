@@ -8,10 +8,6 @@ export function executeFunctionOrReturnValue(obj, name, component) {
     : undefined
 }
 
-export function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
 export const yearsAgo = (years, date, format = "MMMM YYYY") => {
   return date && dayjs(date).subtract(years, "year").format(format)
 }
@@ -83,3 +79,9 @@ export function getEnvVariable(variable: string): string {
 export function daysSinceDate(pastDate: Date) {
   return Math.floor((Date.now() - pastDate.getTime()) / 1000 / 3600 / 24)
 }
+
+export const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+export const isBoolean = (val) => typeof val === "boolean"
+export const isEmpty = (array) => array.length === 0
+export const isNumber = (val) => typeof val === "number"
+export const isString = (val) => typeof val === "string"

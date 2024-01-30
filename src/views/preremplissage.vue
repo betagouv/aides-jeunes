@@ -5,7 +5,7 @@ import InputDepcom from "@/components/input-depcom.vue"
 import InputError from "@/components/input-error.vue"
 import { ref, computed, watch, nextTick } from "vue"
 import { useStore } from "@/stores/index.js"
-import { Answer } from "@lib/types/store.d.js"
+import { Answer } from "@lib/types/answer.d.js"
 import axios from "axios"
 import * as Sentry from "@sentry/vue"
 
@@ -76,7 +76,7 @@ const storeAnswer = (id: string, fieldName: string, value: any) => {
     entityName: "individu",
     fieldName,
     value,
-  } as Answer
+  }
   store.answer(answer)
 }
 

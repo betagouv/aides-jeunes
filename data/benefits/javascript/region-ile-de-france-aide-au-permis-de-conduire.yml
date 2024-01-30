@@ -1,15 +1,14 @@
-label: aide au permis de conduire
+label: chèque permis de conduire pour les jeunes en insertion professionnelle
 institution: region_ile_de_france
 description: Grâce à cette aide au permis de conduire, la Région finance tout ou
   partie du permis B pour les jeunes franciliens en insertion.
 conditions:
-  - "Vous devez être dans l'un des cas suivants : être stagiaire de la formation
-    professionnelle inscrit ou inscrite dans une formation financée par la Région; ou
-    être inscrit ou inscrite et suivi ou suivie en mission locale, signataire d’un parcours
-    contractualisé d’accompagnement vers l’emploi et l’autonomie (PACEA), dont
-    le projet professionnel, attesté par le conseiller de la mission locale,
-    nécessite l’obtention du permis; ou être en recherche d'emploi d’emploi résidant
-    dans un quartier politique de la ville ou en zone rurale."
+  - "Vous devez être dans l’un des cas suivants : être stagiaire de la formation
+    professionnelle dans une formation financée par la Région ; ou
+    être en mission locale et signataire d’un parcours contractualisé d’accompagnement
+    vers l’emploi et l’autonomie (PACEA) avec un projet professionnel nécessitant
+    l’obtention du permis ; ou être signataire d’un contrat d'engagement jeune (CEJ) ;
+    ou être en recherche d’emploi résidant dans un quartier politique de la ville ou en zone rurale."
 conditions_generales:
   - type: regions
     values:
@@ -25,9 +24,11 @@ profils:
     conditions: []
   - type: chomeur
     conditions: []
-link: https://www.iledefrance.fr/aide-au-permis-de-conduire-pour-jeunes-en-insertion
-instructions: https://www.iledefrance.fr/aide-au-permis-de-conduire-pour-jeunes-en-insertion
-prefix: l’
+  - type: inactif
+    conditions: []
+link: https://www.iledefrance.fr/toutes-les-actualites/cheque-permis-de-conduire-pour-les-jeunes-franciliens-en-insertion-professionnelle
+instructions: https://www.iledefrance.fr/toutes-les-actualites/cheque-permis-de-conduire-pour-les-jeunes-franciliens-en-insertion-professionnelle
+prefix: le
 type: float
 unit: €
 periodicite: autre

@@ -56,7 +56,7 @@ app.use(VueCookies)
 
 if (navigator.cookieEnabled) {
   app.use(VueMatomo, {
-    host: "https://stats.data.gouv.fr",
+    host: process.env.VITE_MATOMO_URL,
     trackerFileName: "piwik",
     siteId: process.env.VITE_MATOMO_ID,
     router: router,

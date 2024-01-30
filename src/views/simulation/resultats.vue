@@ -1,9 +1,7 @@
 <template>
-  <LoadingModal v-if="accessStatus.fetching || resultatStatus.updating">
-    <p v-show="accessStatus.fetching">
-      Récupération de la situation en cours…
-    </p>
-    <p v-show="resultatStatus.updating"> Calcul en cours de vos droits… </p>
+  <LoadingModal v-if="fetching || updating">
+    <p v-show="fetching"> Récupération de la situation en cours… </p>
+    <p v-show="updating"> Calcul en cours de vos droits… </p>
   </LoadingModal>
 
   <ErrorsEmailAndSmsModal />
@@ -22,10 +20,7 @@
     </div>
   </WarningMessage>
 
-  <div
-    v-if="displaySimulationUnavailable()"
-    class="fr-alert fr-alert--info fr-my-1w"
-  >
+  <div v-if="isSimulationUnavailable" class="fr-alert fr-alert--info fr-my-1w">
     <div>
       <h2 class="fr-text--lead">
         Vos résultats de simulation ne sont plus disponibles
@@ -41,10 +36,10 @@
     </div>
   </div>
 
-  <ErrorBlock v-if="hasError" />
+  <ErrorBlock v-if="error" />
   <ErrorSaveBlock v-if="hasErrorSave" />
   <div v-show="shouldDisplayResults">
-    <div v-if="!isEmpty(droits)">
+    <div v-if="!isEmpty(benefits)">
       <p class="fr-text--lg">
         D'après la situation que vous avez décrite, vous êtes a priori éligible
         à ces aides.
@@ -55,10 +50,10 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <DroitsList :droits="droits" />
+      <BenefitsList :benefits="benefits" />
     </div>
 
-    <div v-show="isEmpty(droits)" class="fr-py-5w">
+    <div v-show="isEmpty(benefits)" class="fr-py-5w">
       <h2 class="fr-text--lead">
         Votre simulation n'a pas permis de découvrir de nouveaux droits.
       </h2>
@@ -78,9 +73,7 @@
       <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-5">
-            <OfflineResults
-              v-if="!resultatStatus.updating && !isEmpty(droits)"
-            />
+            <OfflineResults v-if="!updating && !isEmpty(benefits)" />
           </div>
           <div class="fr-col-12 fr-col-md-7">
             <Feedback />
@@ -91,166 +84,199 @@
   </div>
 </template>
 
-<script lang="ts">
-import DroitsList from "@/components/droits-list.vue"
+<script setup lang="ts">
+import BenefitsList from "@/components/benefits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"
 import Feedback from "@/components/feedback.vue"
 import OfflineResults from "@/components/offline-results.vue"
 import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
 import LoadingModal from "@/components/loading-modal.vue"
-import ResultatsMixin from "@/mixins/resultats.js"
 import StatisticsMixin from "@/mixins/statistics.js"
 import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "./recapitulatif.vue"
 import { useStore } from "@/stores/index.js"
+import { useResultsStore } from "@/stores/results-store.js"
 import { daysSinceDate } from "@lib/utils.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
+import Simulation from "@/lib/simulation.js"
+import MockResults from "@/lib/mock-results"
+import { computed, onMounted, onBeforeUnmount, ref } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
-export default {
-  name: "SimulationResultats",
-  components: {
-    WarningMessage,
-    DroitsList,
-    ErrorBlock,
-    ErrorSaveBlock,
-    Feedback,
-    LoadingModal,
-    OfflineResults,
-    TrouverInterlocuteur,
-    Recapitulatif,
-    ErrorsEmailAndSmsModal,
-  },
-  mixins: [ResultatsMixin, StatisticsMixin],
-  setup() {
-    return {
-      store: useStore(),
+const resultsStore = useResultsStore()
+const store = useStore()
+const router = useRouter()
+const route = useRoute()
+const benefits = computed(() => resultsStore.benefits)
+const hasWarning = computed(() => resultsStore.hasWarning)
+const fetching = computed(() => resultsStore.fetching)
+const updating = computed(() => resultsStore.updating)
+const error = computed(() => resultsStore.error)
+const hasErrorSave = computed(() => resultsStore.hasErrorSave)
+const isSimulationUnavailable = computed(
+  () => resultsStore.isSimulationUnavailable
+)
+const shouldDisplayResults = computed(() => resultsStore.shouldDisplayResults)
+const stopSubscription = ref<(() => void) | null>(null)
+
+onMounted(async () => {
+  initializeStore()
+  handleLegacySituationId()
+  if (MockResults.mockResultsNeeded()) {
+    MockResults.mock(route.params.benefitId)
+    return
+  } else if (route.query?.simulationId) {
+    await handleSimulationIdQuery()
+  } else if (!store.passSanityCheck) {
+    await restoreLatestSimulation()
+  } else if (store.calculs.dirty) {
+    await saveSimulation()
+  } else if (!store.hasResults) {
+    if (store.simulation.teleservice) {
+      await redirectToTeleservice()
+    } else {
+      store.computeResults()
     }
-  },
-  async mounted() {
-    this.initializeStore()
-    this.handleLegacySituationId()
+  }
+})
 
-    if (this.mockResultsNeeded()) {
-      this.mock(this.$route.params.benefitId)
-      return
-    } else if (this.$route.query?.simulationId) {
-      await this.handleSimulationIdQuery()
-    } else if (!this.store.passSanityCheck) {
-      await this.restoreLatest()
-    } else if (this.store.calculs.dirty) {
-      await this.saveSimulation()
-    } else if (!this.store.hasResults) {
-      if (this.store.simulation.teleservice) {
-        await this.redirectToTeleservice()
-      } else {
-        this.store.computeResults()
-      }
-    }
-  },
-  beforeUnmount() {
-    this.stopSubscription?.()
-  },
-  methods: {
-    isEmpty(array) {
-      return !array || array.length === 0
-    },
-    sendShowStatistics() {
-      this.sendBenefitsStatistics(this.droits, EventAction.Show)
-    },
-    sendDisplayUnexpectedAmountLinkStatistics() {
-      const droitsWithUnexpectedAmount = this.droits.filter((droit) => {
-        const unexpectedAmountLinkDisplayed =
-          (droit.isBaseRessourcesYearMinusTwo &&
-            !this.ressourcesYearMinusTwoCaptured) ||
-          droit.showUnexpectedAmount
+onBeforeUnmount(() => {
+  stopSubscription.value?.()
+})
 
-        return unexpectedAmountLinkDisplayed
-      })
+const restoreLatestSimulation = async () => {
+  const lastestSimulationId = Simulation.getLatestId()
+  if (!lastestSimulationId) {
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.Redirection,
+      route.path
+    )
 
-      this.sendBenefitsStatistics(
-        droitsWithUnexpectedAmount,
-        EventAction.ShowUnexpectedAmountLink
-      )
-    },
-    sendAccessToAnonymizedResults() {
-      this.sendEventToMatomo(
-        EventCategory.General,
-        EventAction.AccesSimulationAnonymisee,
-        daysSinceDate(new Date(this.store.simulation.dateDeValeur))
-      )
-    },
-    initializeStore() {
-      this.store.updateCurrentAnswers(this.$route.path)
+    return store.redirection((route) => router.push(route))
+  }
 
-      this.stopSubscription = this.store.$onAction(({ after, name }) => {
-        after(() => {
-          switch (name) {
-            case "setResults": {
-              this.sendShowStatistics()
-              this.sendDisplayUnexpectedAmountLinkStatistics()
-              break
-            }
-            case "saveComputationFailure": {
-              this.sendEventToMatomo(
-                EventCategory.General,
-                EventAction.ErreurInitStore
-              )
-              break
-            }
-          }
-        })
-      })
-    },
-    handleLegacySituationId() {
-      // Used for old links containing situationId instead of simulationId
-      if (this.$route.query?.situationId) {
-        this.store.setSimulationId(this.$route.query.situationId)
-      }
-    },
-    async handleSimulationIdQuery() {
-      if (
-        this.store.simulationId === this.$route.query.simulationId &&
-        this.store.hasResults
-      ) {
-        return
-      }
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategory.General,
+    EventAction.CalculResultatsRestauration,
+    route.path
+  )
 
-      await this.store.fetch(this.$route.query.simulationId)
+  await store.fetch(lastestSimulationId)
 
-      if (this.simulationAnonymized) {
-        this.sendAccessToAnonymizedResults()
-        await this.store.retrieveResultsAlreadyComputed()
-      } else {
-        this.store.computeResults()
-      }
+  if (store.simulationAnonymized) {
+    await store.retrieveResultsAlreadyComputed()
+  } else {
+    store.computeResults()
+  }
+}
 
-      this.$router.replace({ simulationId: null })
-    },
-    async saveSimulation() {
-      try {
-        this.store.setSaveSituationError(null)
-        await this.store.save()
+const isEmpty = (array) => {
+  return !array || array.length === 0
+}
+const sendShowStatistics = () => {
+  StatisticsMixin.methods.sendBenefitsStatistics(
+    benefits.value,
+    EventAction.Show
+  )
+}
+const sendDisplayUnexpectedAmountLinkStatistics = () => {
+  const benefitsWithUnexpectedAmount = benefits.value.filter((benefit) => {
+    const unexpectedAmountLinkDisplayed =
+      (benefit.isBaseRessourcesYearMinusTwo &&
+        !store.ressourcesYearMinusTwoCaptured) ||
+      benefit.showUnexpectedAmount
 
-        if (!this.store.access.forbidden) {
-          this.store.computeResults()
+    return unexpectedAmountLinkDisplayed
+  })
+
+  StatisticsMixin.methods.sendBenefitsStatistics(
+    benefitsWithUnexpectedAmount,
+    EventAction.ShowUnexpectedAmountLink
+  )
+}
+
+const sendAccessToAnonymizedResults = () => {
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategory.General,
+    EventAction.AccesSimulationAnonymisee,
+    daysSinceDate(new Date(store.simulation.dateDeValeur)).toString()
+  )
+}
+const initializeStore = () => {
+  store.updateCurrentAnswers(route.path)
+
+  stopSubscription.value = store.$onAction(({ after, name }) => {
+    after(() => {
+      switch (name) {
+        case "setResults": {
+          sendShowStatistics()
+          sendDisplayUnexpectedAmountLinkStatistics()
+          break
         }
-      } catch (error: any) {
-        this.store.setSaveSituationError(error.response?.data || error)
-        this.sendEventToMatomo(
-          EventCategory.General,
-          EventAction.ErreurSauvegardeSimulation
-        )
+        case "saveComputationFailure": {
+          StatisticsMixin.methods.sendEventToMatomo(
+            EventCategory.General,
+            EventAction.ErreurInitStore,
+            route.path
+          )
+          break
+        }
       }
-    },
-  },
-  async redirectToTeleservice() {
-    const representation = await this.store.fetchRepresentation(
-      this.store.simulation.teleservice
+    })
+  })
+}
+const handleLegacySituationId = () => {
+  // Used for old links containing situationId instead of simulationId
+  if (route.query?.situationId) {
+    store.setSimulationId(route.query.situationId.toString())
+  }
+}
+const handleSimulationIdQuery = async () => {
+  if (store.simulationId === route.query.simulationId && store.hasResults) {
+    return
+  }
+
+  if (route.query.simulationId) {
+    await store.fetch(route.query.simulationId.toString())
+  }
+
+  if (store.simulationAnonymized) {
+    sendAccessToAnonymizedResults()
+    await store.retrieveResultsAlreadyComputed()
+  } else {
+    store.computeResults()
+  }
+
+  router.replace({ ...router.currentRoute.value, simulationId: null } as any)
+}
+const saveSimulation = async () => {
+  try {
+    store.setSaveSituationError("")
+    await store.save()
+
+    if (!store.access.forbidden) {
+      store.computeResults()
+    }
+  } catch (error: any) {
+    store.setSaveSituationError(error.response?.data || error)
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.ErreurSauvegardeSimulation,
+      route.path
+    )
+  }
+}
+const redirectToTeleservice = async () => {
+  if (store.simulationId) {
+    const representation = await store.fetchRepresentation(
+      store.simulation.teleservice,
+      store.simulationId
     )
 
     window.location.href = representation.destination.url
-  },
+  }
 }
 </script>

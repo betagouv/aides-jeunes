@@ -104,10 +104,9 @@ describe("validateRequestPayload", () => {
 
     validateRequestPayload(req, res, next)
 
-    expect(consoleSpy).toHaveBeenCalledWith("Invalid payload structure", {})
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
-      error: "Invalid payload structure",
+      error: "Event not supported",
     })
     expect(next).not.toHaveBeenCalled()
   })

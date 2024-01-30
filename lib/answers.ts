@@ -1,4 +1,4 @@
-import { Answer } from "./types/answer.js"
+import { Answer } from "./types/answer.d.js"
 
 export function isStepAnswered(answers: Answer[], step) {
   return getStepAnswer(answers, step) !== undefined

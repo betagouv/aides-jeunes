@@ -106,10 +106,8 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_doubs: {
     label: "du département du Doubs",
-    link: "https://www.doubs.fr/index.php/vous-accompagner/36-particuliers/2242-le-fonds-de-solidarite-logement-fsl",
-    form: "http://www.adil25.org/fileadmin/user_upload/PDAHLPD/Grand_public/imprime_aide_financiere_individuelle_FSL_actualise.pdf",
-    instructions:
-      "http://www.adil25.org/le-pdalhpd/documentation/le-reglement-interieur-du-fsl-et-formulaire-de-demande-daide.html",
+    link: "https://www.doubs.fr/a-votre-service/habitat-logement/",
+    instructions: "https://www.doubs.fr/a-votre-service/habitat-logement/",
   },
   departement_drome: {
     label: "du département de la Drôme",
@@ -153,7 +151,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   departement_ille_et_vilaine: {
     label: "du département d’Ille-et-Vilaine",
     link: "https://www.ille-et-vilaine.fr/demande-fsl",
-    form: "https://www.ille-et-vilaine.fr/sites/default/files/asset/document/fo-psh-0818-001_imprimeuniquemasques_form_ext_0.pdf",
+    form: "https://www.ille-et-vilaine.fr/sites/iev/files/2023-12/BAT-FA-INS21-1223_Formulaire-FSLmaintien-Janvier2024.pdf",
   },
   departement_indre: {
     label: "du département de l’Indre",

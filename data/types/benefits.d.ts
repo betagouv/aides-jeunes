@@ -118,6 +118,7 @@ export interface StandardBenefit {
 
 export interface StandardBenefitGroup {
   benefits: StandardBenefit[]
+  id: string
   label: string
   logoPath: string
   description: string

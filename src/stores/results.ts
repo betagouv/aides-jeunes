@@ -22,7 +22,7 @@ export const useResultsStore = defineStore("results", {
         { bafa: [], other: [] }
       )
       if (groups.bafa.length) {
-        const bafaGroup = {
+        const bafaGroup: StandardBenefitGroup = {
           benefits: groups.bafa,
           id: "bafa-bafd-group",
           label: "Aides BAFA et BAFD",

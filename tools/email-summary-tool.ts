@@ -11,9 +11,9 @@ async function main() {
   mongooseConfig(mongoose, config)
   const parser = createArgumentParser()
   try {
-    const { id, email } = parseArguments(parser)
+    const { id, email } = parseArguments()
 
-    const simulation = (await Simulations.findById(id)) as Simulation
+    const simulation: Simulation | null = await Simulations.findById(id)
     if (!simulation) {
       throw new Error(`Simulation ${id} not found`)
     }
@@ -41,6 +41,14 @@ async function main() {
   }
 }
 
+function parseArguments() {
+  const args = createArgumentParser().parse_args()
+  if (!args.id || !args.email) {
+    throw new Error("Simulation Id and Email address are required")
+  }
+  return args
+}
+
 function createArgumentParser() {
   const parser = new ArgumentParser({
     add_help: true,
@@ -55,14 +63,6 @@ function createArgumentParser() {
     required: true,
   })
   return parser
-}
-
-function parseArguments(parser) {
-  const args = parser.parse_args()
-  if (!args.id || !args.email) {
-    throw new Error("Simulation Id and Email address are required")
-  }
-  return args
 }
 
 await main()

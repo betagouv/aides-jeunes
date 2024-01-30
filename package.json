@@ -38,7 +38,7 @@
     "tools:generate-mongo-stats": "ts-node ./tools/mongo-query.ts",
     "tools:geographical-benefits-details": "ts-node ./tools/geographical-benefits-details",
     "tools:get-all-steps": "ts-node ./tools/get-all-steps",
-    "tools:get-latest-simulation-ids": "ts-node ./tools/get-latest-simulation-ids" ,
+    "tools:get-latest-simulation-ids": "ts-node ./tools/get-latest-simulation-ids",
     "tools:institutions-logo-check": "ts-node ./tools/institutions-logo-check",
     "tools:serve-mail": "ts-node ./tools/mjml",
     "tools:send-summary-email": "ts-node ./tools/email-summary-tool",

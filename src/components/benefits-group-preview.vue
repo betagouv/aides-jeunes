@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { defineProps, computed } from "vue"
+import { defineProps, computed, PropType } from "vue"
 import { capitalize } from "@lib/utils.js"
 import { uniq } from "lodash-es"
 import { StandardBenefitGroup } from "@data/types/benefits"
 
 const props = defineProps({
-  group: Object as PropType<StandardBenefitGroup>,
+  group: {
+    type: Object as PropType<StandardBenefitGroup>,
+    required: true,
+  },
 })
 
 const formattedInstitutionsLabel = computed(() => {
-  const institutionLabels = uniq(
-    props.group.benefits?.map((benefit: any) => benefit.institution.label)
-  ).toString()
-  return institutionLabels?.replace(/,/g, ", ")
+  return uniq(
+    props.group.benefits?.map(({ institution }) => institution.label)
+  ).join(", ")
 })
 </script>
 

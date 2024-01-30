@@ -32,6 +32,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
     "tools:check-links-validity": "ts-node ./tools/check-links-validity.ts",
     "tools:cleaner": "ts-node ./tools/cleaner.ts",
+    "tools:create-temp-smtp-server": "ts-node ./tools/create-temp-smtp-server",
     "tools:evaluate-benefits": "ts-node ./tools/evaluate-benefits",
     "tools:generate-missing-institutions-aides-velo": "ts-node ./tools/generate-missing-institutions-aides-velo",
     "tools:generate-mongo-stats": "ts-node ./tools/mongo-query.ts",

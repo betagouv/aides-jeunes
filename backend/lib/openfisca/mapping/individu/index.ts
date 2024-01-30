@@ -73,6 +73,13 @@ const individuSchema: IndividuGenerator = {
       return computeDistanceCommunes(jeuneCommune, parentCommune)
     },
   },
+  categorie_salarie: {
+    src: "_alternanceFonctionPublique",
+    fn: (_alternanceFonctionPublique) =>
+      _alternanceFonctionPublique === true
+        ? "public_non_titulaire"
+        : "prive_non_cadre",
+  },
   contrat_de_travail_debut: {
     src: "_nombreMoisDebutContratDeTravail",
     fn: function (_nombreMoisDebutContratDeTravail, _, situation) {

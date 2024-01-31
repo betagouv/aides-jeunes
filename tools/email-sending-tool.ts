@@ -41,17 +41,18 @@ multipleEmailTypes.forEach((emailType) => {
   const parser = send_types.add_parser(emailType)
   parser.add_argument("--multiple", {
     help: "Number of emails to send",
+    type: "int",
+    default: null,
   })
 })
 
 async function main() {
   try {
     const args = parser.parse_args()
-    const multiple = args.multiple ? parseInt(args.multiple) : null
 
     switch (args.command) {
       case "send":
-        await processSendEmails(args.type, args.id, multiple)
+        await processSendEmails(args.type, args.id, args.multiple)
 
         console.log("Done")
         break

@@ -6,6 +6,7 @@ import { useResultsStore } from "@/stores/results-store.js"
 import { computed, onMounted } from "vue"
 import Simulation from "@/lib/simulation"
 import LoadingModal from "@/components/loading-modal.vue"
+import { BenefitGroup } from "@data/types/benefits"
 
 const router = useRouter()
 const resultsStore = useResultsStore()
@@ -13,8 +14,10 @@ const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
 const benefits = computed(() => resultsStore.benefits)
 const groupBenefits = computed(() => {
-  const group = resultsStore.benefitTree.find((b) => b.id === "bafa-bafd-group")
-  return group.benefits
+  const bafaBafdGroup = resultsStore.benefitTree.find(
+    (b) => b.id === "bafa-bafd-group"
+  ) as BenefitGroup
+  return bafaBafdGroup.benefits
 })
 
 onMounted(async () => {
@@ -37,6 +40,6 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <BenefitsList :benefits-and-benefits-groups="groupBenefits" />
+    <BenefitsList :benefits-or-benefit-groups="groupBenefits" />
   </div>
 </template>

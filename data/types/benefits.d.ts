@@ -116,7 +116,7 @@ export interface StandardBenefit {
   showUnexpectedAmount?: boolean
 }
 
-export interface StandardBenefitGroup {
+export interface BenefitGroup {
   benefits: StandardBenefit[]
   id: string
   label: string

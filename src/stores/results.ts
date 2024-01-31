@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
-import { StandardBenefit, StandardBenefitGroup } from "@data/types/benefits"
+import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
 import { hasBafaInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -9,7 +9,7 @@ export const useResultsStore = defineStore("results", {
     benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles || []
     },
-    benefitTreeGroupExperiment(): (StandardBenefit | StandardBenefitGroup)[] {
+    benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
       const groups = this.benefits.reduce(
         (groups, benefit) => {
           if (hasBafaInterestFlag(benefit)) {
@@ -22,7 +22,7 @@ export const useResultsStore = defineStore("results", {
         { bafa: [], other: [] }
       )
       if (groups.bafa.length) {
-        const bafaGroup: StandardBenefitGroup = {
+        const bafaGroup: BenefitGroup = {
           benefits: groups.bafa,
           id: "bafa-bafd-group",
           label: "Aides BAFA et BAFD",
@@ -36,7 +36,7 @@ export const useResultsStore = defineStore("results", {
         return groups.other
       }
     },
-    benefitTree(): (StandardBenefit | StandardBenefitGroup)[] {
+    benefitTree(): (StandardBenefit | BenefitGroup)[] {
       if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
         return this.benefitTreeGroupExperiment
       } else {

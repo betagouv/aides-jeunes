@@ -2,11 +2,11 @@
 import { defineProps, computed, PropType } from "vue"
 import { capitalize } from "@lib/utils.js"
 import { uniq } from "lodash-es"
-import { StandardBenefitGroup } from "@data/types/benefits"
+import { BenefitGroup } from "@data/types/benefits"
 
 const props = defineProps({
   group: {
-    type: Object as PropType<StandardBenefitGroup>,
+    type: Object as PropType<BenefitGroup>,
     required: true,
   },
 })

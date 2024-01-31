@@ -10,7 +10,7 @@ import { sendSimulationResultsEmail } from "../backend/lib/messaging/email/email
 async function main() {
   const parser = createArgumentParser()
   try {
-    const { id, email } = createArgumentParser().parse_args()
+    const { id, email } = parser.parse_args()
 
     mongooseConfig(mongoose, config)
     const simulation: Simulation | null = await Simulations.findById(id)

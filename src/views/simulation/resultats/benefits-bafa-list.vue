@@ -2,7 +2,7 @@
 import BenefitsList from "@/components/benefits-list.vue"
 import { useRouter } from "vue-router"
 import BackButton from "@/components/buttons/back-button.vue"
-import { useResultsStore } from "@/stores/results-store.js"
+import { useResultsStore } from "@/stores/results.js"
 import { computed, onMounted } from "vue"
 import Simulation from "@/lib/simulation"
 import LoadingModal from "@/components/loading-modal.vue"

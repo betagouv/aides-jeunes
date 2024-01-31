@@ -6,23 +6,16 @@ import { getLatestSimulationIds } from "../backend/lib/simulation.js"
 
 async function main() {
   mongooseConfig(mongoose, config)
-  const { limit } = parseArguments()
+  const { limit } = createArgumentParser().parse_args()
   try {
-    const simulations = await getLatestSimulationIds(limit)
-    if (simulations.length) {
-      console.log(simulations)
-    }
+    const simulationIds = await getLatestSimulationIds(limit)
+    console.log(simulationIds.join("\n"))
   } catch (error) {
     console.error("Error:", error)
   } finally {
     await mongoose.connection.close()
     console.log("DB disconnected")
   }
-}
-
-function parseArguments() {
-  const args = createArgumentParser().parse_args()
-  return { limit: args.limit ? parseInt(args.limit) : undefined }
 }
 
 function createArgumentParser() {
@@ -32,6 +25,8 @@ function createArgumentParser() {
   })
   parser.add_argument("--limit", {
     help: "Number of simulations ids to get (optional)",
+    type: "int",
+    default: 5,
   })
   return parser
 }

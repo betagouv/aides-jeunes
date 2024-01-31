@@ -8,11 +8,11 @@ import { Simulation } from "../lib/types/simulation.js"
 import { sendSimulationResultsEmail } from "../backend/lib/messaging/email/email-service.js"
 
 async function main() {
-  mongooseConfig(mongoose, config)
   const parser = createArgumentParser()
   try {
-    const { id, email } = parseArguments()
+    const { id, email } = createArgumentParser().parse_args()
 
+    mongooseConfig(mongoose, config)
     const simulation: Simulation | null = await Simulations.findById(id)
     if (!simulation) {
       throw new Error(`Simulation ${id} not found`)
@@ -24,7 +24,7 @@ async function main() {
     }
 
     console.log("Followup created")
-    console.log(followup._id.toString())
+    console.log(followup._id)
 
     const { messageId } = await sendSimulationResultsEmail(followup)
     if (!messageId) {
@@ -39,14 +39,6 @@ async function main() {
     await mongoose.connection.close()
     console.log("DB disconnected")
   }
-}
-
-function parseArguments() {
-  const args = createArgumentParser().parse_args()
-  if (!args.id || !args.email) {
-    throw new Error("Simulation Id and Email address are required")
-  }
-  return args
 }
 
 function createArgumentParser() {

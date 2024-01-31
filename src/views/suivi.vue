@@ -11,7 +11,7 @@
               <h3>Merci d'avoir rempli ce questionnaire !</h3>
               <div v-if="showAccompanimentBlock">
                 <p class="fr-text--lg">
-                  Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
+                  Vous avez besoin d'aide pour effectuer vos démarches ? Prenez
                   rendez-vous avec notre équipe pour vous faire accompagner.</p
                 >
                 <p>
@@ -24,10 +24,10 @@
                   </a>
                 </p>
 
-                <p class="fr-mt-3w"
-                  >La prise de rendez-vous se fait en quelques minutes et vous
+                <p class="fr-mt-3w">
+                  La prise de rendez-vous se fait en quelques minutes et vous
                   permet de bénéficier d'un accompagnement d'une quinzaine de
-                  minutes par une personne de notre équipe</p
+                  minutes par une personne de notre équipe.</p
                 >
               </div>
             </div>
@@ -53,10 +53,10 @@
           <div v-else class="fr-alert fr-alert--warning">
             <h3 class="fr-alert__title">
               Merci, nous sommes désolés que le simulateur ne vous ait pas été
-              utile
+              utile.
             </h3>
-            <p
-              >À la fin de ce questionnaire vous aurez la possibilité de prendre
+            <p>
+              À la fin de ce questionnaire vous aurez la possibilité de prendre
               un RDV téléphonique avec une personne de l'équipe pour poser vos
               questions sur les aides et les démarches.
             </p>

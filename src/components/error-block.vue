@@ -45,7 +45,7 @@
 <script lang="ts">
 import { sendError } from "@/plugins/mails.js"
 import { useStore } from "@/stores/index.js"
-import { useResultsStore } from "@/stores/results-store.js"
+import { useResultsStore } from "@/stores/results.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {

@@ -1,6 +1,6 @@
 import Ressource from "./ressource.js"
 import { ressourceTypes } from "./resources.js"
-import { generator as datesGenerator } from "./dates.js"
+import { datesGenerator } from "./dates.js"
 import ScolariteCategories from "./scolarite.js"
 import { Individu } from "./types/individu.js"
 import { Situation } from "./types/situations.js"

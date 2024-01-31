@@ -1,7 +1,7 @@
 import IndividuMethods from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
-import { generator as datesGenerator } from "../dates.js"
+import { datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import ScolariteCategories from "../scolarite.js"
 import { childStepsComplete } from "../enfants.js"

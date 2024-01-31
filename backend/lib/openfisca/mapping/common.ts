@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 
 import benefits from "../../../../data/all.js"
-import { generator } from "../../../../lib/dates.js"
+import { datesGenerator } from "../../../../lib/dates.js"
 import { CONDITION_STRATEGY } from "../../../../lib/benefits/compute-javascript.js"
 
 import {
@@ -21,7 +21,7 @@ function isIndividuValid(individu: Individu, situation: Situation) {
 }
 
 function getPeriods(dateDeValeur: Date): OpenfiscaPeriods {
-  const dateMap = generator(dateDeValeur)
+  const dateMap = datesGenerator(dateDeValeur)
   const keys = Object.keys(dateMap)
   return keys.reduce((result, key) => {
     // Manage single item and maps

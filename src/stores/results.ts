@@ -7,7 +7,7 @@ import ABTestingService from "@/plugins/ab-testing-service.js"
 export const useResultsStore = defineStore("results", {
   getters: {
     benefits(): StandardBenefit[] {
-      return this.resultats?.droitsEligibles || []
+      return this.resultats?.droitsEligibles
     },
     benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
       const groups = this.benefits.reduce(
@@ -21,7 +21,9 @@ export const useResultsStore = defineStore("results", {
         },
         { bafa: [], other: [] }
       )
-      if (groups.bafa.length) {
+      if (groups.bafa.length === 1) {
+        return [...groups.other, ...groups.bafa]
+      } else if (groups.bafa.length > 1) {
         const bafaGroup: BenefitGroup = {
           benefits: groups.bafa,
           id: "bafa-bafd-group",

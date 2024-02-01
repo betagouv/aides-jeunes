@@ -50,7 +50,7 @@
         >
         Les montants avancés sont arrondis à une dizaine d'euros près :
       </p>
-      <BenefitsList :benefits-or-benefit-groups="benefitTree" />
+      <BenefitsList :benefits-and-benefit-groups="benefitTree" />
     </div>
 
     <div v-show="isEmpty(benefits)" class="fr-py-5w">

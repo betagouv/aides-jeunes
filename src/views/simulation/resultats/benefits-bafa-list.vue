@@ -40,6 +40,6 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <BenefitsList :benefits-or-benefit-groups="groupBenefits" />
+    <BenefitsList :benefits-and-benefit-groups="groupBenefits" />
   </div>
 </template>

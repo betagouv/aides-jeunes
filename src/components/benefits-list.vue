@@ -5,7 +5,7 @@ import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
 import BenefitPreview from "@/components/benefit-preview.vue"
 
 const props = defineProps({
-  benefitsOrBenefitGroups: {
+  benefitsAndBenefitGroups: {
     type: Array as PropType<(BenefitGroup | StandardBenefit)[]>,
     required: true,
   },
@@ -18,7 +18,7 @@ const getComponentType = (benefitOrBenefitsGroup) => {
 
 <template>
   <div
-    v-for="(benefitOrBenefitsGroup, index) in props.benefitsOrBenefitGroups"
+    v-for="(benefitOrBenefitsGroup, index) in props.benefitsAndBenefitGroups"
     :key="index"
     class="fr-mb-5w"
   >

@@ -371,7 +371,10 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - id: has-changes
-        run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh data/benefits" ; then echo "{status}={success}" >> $GITHUB_OUTPUT ; fi
+        run: |
+          if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh" "${GITHUB_WORKSPACE}/data/benefits" ; then
+            echo "status=success" >> $GITHUB_OUTPUT
+          fi
   check_benefit_link_improvements:
     name: Check benefit link improvements and update link table if necessary
     needs: [test_benefit_file_changes]
@@ -381,6 +384,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.18.2"
       - name: Restore node modules
         uses: actions/cache@v3
         id: restore-dependencies

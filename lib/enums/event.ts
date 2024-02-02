@@ -52,7 +52,7 @@ export enum EventAction {
   ShareLinkByEmail = "share-link-email",
   Show = "show",
   ShowDetails = "showDetails",
-  ShowDetailsFromMergePage = "showDetailsFromMergePage",
+  ShowDetailsFromGroupPage = "showDetailsFromGroupPage",
   ShowLocations = "show-locations",
   ShowNewLocation = "show-new-location",
   ShowUnexpected = "show-unexpected",

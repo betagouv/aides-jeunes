@@ -81,7 +81,7 @@ onMounted(async () => {
     ) {
       StatisticsMixin.methods.sendBenefitsStatistics(
         benefits.value,
-        EventAction.ShowDetailsFromMergePage,
+        EventAction.ShowDetailsFromGroupPage,
         benefitId.toString()
       )
     } else {

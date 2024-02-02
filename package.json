@@ -46,7 +46,7 @@
     "tools:send-initial-survey-email": "ts-node ./tools/email-sending-tool send initial-survey --multiple 1000",
     "tools:send-initial-survey-sms": "ts-node ./tools/sms-sending-tool send initial-survey --multiple 2",
     "tools:test-benefits-geographical-constraint-consistency": "ts-node ./tools/test-benefits-geographical-constraint-consistency",
-    "tools:test-definition-periods": "ts-node ./tools/test-definition-periods",
+    "tools:test-definition-periods": "ts-node tools/test-definition-periods",
     "tools:test-iframe-generation": "./tools/iframe-build-control.sh",
     "migrate": "ts-node ./backend/lib/migrations/apply.ts --all"
   },

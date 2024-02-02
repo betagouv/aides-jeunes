@@ -49,7 +49,7 @@
     "tools:test-definition-periods": "ts-node ./tools/test-definition-periods",
     "tools:test-iframe-generation": "./tools/iframe-build-control.sh",
     "migrate": "ts-node ./backend/lib/migrations/apply.ts --all",
-    "tools:test": "ts-node ./tools/yolo"
+    "tools:test": "ts-node ./tools/yolo.ts"
   },
   "dependencies": {
     "@etalab/decoupage-administratif": "^3.0.0",

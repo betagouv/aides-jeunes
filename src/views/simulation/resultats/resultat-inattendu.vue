@@ -1,15 +1,5 @@
 <template>
   <form>
-    <div>
-      <BackButton
-        class="fr-mb-4w"
-        size="small"
-        @click="$router.push({ path: '/simulation/resultats' })"
-      >
-        Revenir aux résultats
-      </BackButton>
-    </div>
-
     <h2>Le montant indiqué pour {{ longLabel }} vous semble inexact&nbsp;?</h2>
 
     <component
@@ -22,7 +12,6 @@
 
 <script setup lang="ts">
 import Benefits from "@/lib/benefits.js"
-import BackButton from "@/components/buttons/back-button.vue"
 import ResultatInattenduAideLogement from "@/components/resultat-inattendu/aide-logement.vue"
 import ResultatInattenduContratEngagementJeune from "@/components/resultat-inattendu/contrat-engagement-jeune.vue"
 import ResultatInattenduPpa from "@/components/resultat-inattendu/ppa.vue"

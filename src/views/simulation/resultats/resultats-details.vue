@@ -1,16 +1,5 @@
 <template>
   <div>
-    <LoadingModal v-if="fetching || updating">
-      <p>Récupération en cours… </p>
-    </LoadingModal>
-
-    <BackButton
-      class="fr-btn--secondary fr-btn--sm fr-mb-2w"
-      data-testid="back-button"
-      @click="goBack"
-      >Retour aux résultats</BackButton
-    >
-
     <DroitsDetails
       v-if="benefit"
       :droit="benefit"
@@ -30,14 +19,12 @@
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
-import LoadingModal from "@/components/loading-modal.vue"
-import BackButton from "@/components/buttons/back-button.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results.js"
 import { EventAction } from "@lib/enums/event.js"
 import { computed, onMounted } from "vue"
-import { useRoute, useRouter } from "vue-router"
+import { useRoute } from "vue-router"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results.js"
 import ABTestingService from "@/plugins/ab-testing-service"
@@ -46,12 +33,9 @@ import { hasBafaInterestFlag } from "@/lib/benefits.js"
 const store = useStore()
 const resultsStore = useResultsStore()
 const route = useRoute()
-const router = useRouter()
 
 const benefits = computed(() => resultsStore.benefits)
 const hasBenefitsGroup = computed(() => resultsStore.hasBenefitsGroup)
-const fetching = computed(() => resultsStore.fetching)
-const updating = computed(() => resultsStore.updating)
 const situation = computed(() => store.situation)
 const benefit = computed(() => {
   const benefitId = route.params.benefitId
@@ -93,8 +77,4 @@ onMounted(async () => {
     }
   }
 })
-
-const goBack = () => {
-  router.push("/simulation/resultats")
-}
 </script>

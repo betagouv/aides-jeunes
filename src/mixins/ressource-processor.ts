@@ -15,20 +15,11 @@ function getDisplayMonthly(months, amounts) {
   }
 }
 
-function update(type, newValue, monthIndex, force?) {
-  const oldValue = type.amounts[type.months[monthIndex].id]
-
-  // Including month at index
-  const nextMonths = type.months.slice(monthIndex)
-  const valuesAreEqual = nextMonths.reduce((previousValuesAreEqual, m) => {
-    return previousValuesAreEqual && type.amounts[m.id] === oldValue
-  }, true)
-  const shouldAutofill = valuesAreEqual || force
-  if (shouldAutofill) {
-    nextMonths.forEach((m) => (type.amounts[m.id] = newValue))
-  } else {
-    type.amounts[type.months[monthIndex].id] = newValue
-  }
+function update(type, newValue, monthIndex, shouldAutofill?) {
+  const monthsToUpdate = shouldAutofill
+    ? type.months.slice(monthIndex) // Including month at index
+    : [type.months[monthIndex]]
+  monthsToUpdate.forEach((m) => (type.amounts[m.id] = newValue))
 }
 
 export default {
@@ -51,6 +42,16 @@ export default {
         case "monthUpdate": {
           const { value: monthValue, monthIndex } = value
           update(source, monthValue, monthIndex)
+          break
+        }
+        case "monthUpdateFollowing": {
+          const { monthIndex } = value
+          update(
+            source,
+            source.amounts[source.months[monthIndex].id],
+            monthIndex,
+            true
+          )
           break
         }
         default: {

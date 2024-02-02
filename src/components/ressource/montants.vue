@@ -41,8 +41,8 @@
           <span class="fr-hint-text fr-mb-1w"
             >Pour faciliter la saisie des ressources sur 13 mois, lorsque un
             montant est saisi pour un mois donné, les montants pour les périodes
-            précédents sont également mis à jour automatiquement. Ils peuvent
-            être modifiés ensuite.</span
+            précédentes peuvent être copiés en cliquant sur le bouton à droite
+            du champ. Ils peuvent être modifiés ensuite.</span
           >
           Indiquez les montants <strong>nets sociaux mensuels</strong> que
           {{ getLongLabel(type.individu, type.meta) }}
@@ -55,7 +55,7 @@
           <MonthLabel :for="`${type.meta.id}_${month.id}`" :month="month" />
           <div class="fr-container fr-px-0">
             <div class="fr-grid-row">
-              <div class="fr-col-12 fr-col-sm-6 fr-col-lg-4">
+              <div class="fr-col-12 fr-col-md-5">
                 <InputNumber
                   :id="`${type.meta.id}_${month.id}`"
                   :min="0"
@@ -66,7 +66,20 @@
                       monthIndex,
                     })
                   "
+                  @focus="() => onFocus(monthIndex)"
                 />
+              </div>
+              <div
+                v-if="showCopyButton(monthIndex)"
+                class="fr-col-12 fr-col-md-6 fr-ml-md-3w fr-pt-1w fr-pt-md-0"
+              >
+                <button
+                  type="button"
+                  class="fr-btn--menu fr-btn"
+                  @click.prevent="copyValueToFollowingMonths(index, monthIndex)"
+                >
+                  Copier sur les mois précédents
+                </button>
               </div>
             </div>
           </div>
@@ -77,7 +90,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from "vue"
+import { computed, PropType, ref } from "vue"
 
 import MonthLabel from "@/components/month-label.vue"
 import YesNoQuestion from "@/components/yes-no-question.vue"
@@ -85,6 +98,8 @@ import IndividuMethods from "@lib/individu.js"
 import InputNumber from "@/components/input-number.vue"
 import { ResourceType } from "@lib/types/resources.d.js"
 import { DatesRange } from "@lib/types/dates.d.js"
+
+const focusedInputIndex = ref<number | null>(null)
 
 const props = defineProps({
   type: { type: Object as PropType<ResourceType>, required: true },
@@ -98,6 +113,23 @@ const singleValue = computed({
   get: () => props.type.displayMonthly,
   set: (value) => emit("update", "displayMonthly", props.index, value),
 })
+
+const onFocus = (monthIndex) => {
+  focusedInputIndex.value = monthIndex
+}
+
+const copyValueToFollowingMonths = (index, monthIndex) => {
+  emit("update", "monthUpdateFollowing", index, {
+    monthIndex,
+  })
+}
+
+const showCopyButton = (monthIndex) => {
+  return (
+    focusedInputIndex.value === monthIndex &&
+    monthIndex < props.type.months.length - 1
+  )
+}
 
 function getQuestionLabel(ressource, debutAnneeGlissante) {
   const verbForms = {

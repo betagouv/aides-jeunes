@@ -308,7 +308,6 @@ jobs:
   test_definition_periods:
     name: Openfisca definition periods tests
     needs: [install]
-    if: needs.check-for-openfisca-requirements-changes.outputs.status == 'success'
     runs-on: ubuntu-20.04
     timeout-minutes: 15
     steps:

@@ -18,7 +18,7 @@ function getDisplayMonthly(months, amounts) {
 function update(type, newValue, monthIndex, shouldAutofill?) {
   const monthsToUpdate = shouldAutofill
     ? type.months.slice(monthIndex) // Including month at index
-    : [type.months[monthIndex].id]
+    : [type.months[monthIndex]]
   monthsToUpdate.forEach((m) => (type.amounts[m.id] = newValue))
 }
 

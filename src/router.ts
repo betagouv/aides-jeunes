@@ -145,40 +145,54 @@ const router = createRouter({
           component: () => import("./views/simulation/recapitulatif.vue"),
         },
         {
-          name: "resultats",
+          name: "resultatsWrapper",
           path: "resultats",
           meta: {
             headTitle: `Les résultats de ma simulation sur le simulateur d'aides ${context.name}`,
           },
-          component: () => import("./views/simulation/resultats/resultats.vue"),
-        },
-        {
-          name: "resultatsLieuxGeneriques",
-          path: "resultats/lieux",
           component: () =>
-            import("./views/simulation/resultats/lieux-generiques.vue"),
-          meta: {
-            headTitle: `Trouver de l'aide près de chez vous avec le simulateur d'aides ${context.name}`,
-          },
-        },
-        {
-          name: "benefitLieuInformations",
-          path: "resultats/:benefitId/:lieu_id/informations",
-          component: () =>
-            import("./views/simulation/resultats/lieu-informations.vue"),
-          meta: {
-            headTitle:
-              "Informations de l'établissement près de chez vous avec le simulateur d'aides ${context.name}",
-          },
-        },
-        {
-          name: "resultatInattendu",
-          path: "resultat/inattendu/:id",
-          component: () =>
-            import("./views/simulation/resultats/resultat-inattendu.vue"),
-          meta: {
-            title: "Résultat inattendu",
-          },
+            import("./views/simulation/resultats/resultats-wrapper.vue"),
+          children: [
+            {
+              name: "resultats",
+              path: "",
+              component: () =>
+                import("./views/simulation/resultats/resultats.vue"),
+            },
+            {
+              name: "resultatsDetails",
+              path: ":benefitId",
+              component: () =>
+                import("./views/simulation/resultats/resultats-details.vue"),
+            },
+            {
+              name: "resultatsGroupeAides",
+              path: "groupe/bafa-bafd",
+              component: () =>
+                import("./views/simulation/resultats/benefits-bafa-list.vue"),
+            },
+            {
+              name: "resultatsLieuxGeneriques",
+              path: "lieux",
+              component: () =>
+                import("./views/simulation/resultats/lieux-generiques.vue"),
+            },
+            {
+              name: "benefitLieuInformations",
+              path: ":benefitId/:lieu_id/informations",
+              component: () =>
+                import("./views/simulation/resultats/lieu-informations.vue"),
+            },
+            {
+              name: "resultatInattendu",
+              path: "inattendu/:id",
+              component: () =>
+                import("./views/simulation/resultats/resultat-inattendu.vue"),
+              meta: {
+                title: "Résultat inattendu",
+              },
+            },
+          ],
         },
         {
           name: "ressourcesFiscales",
@@ -199,18 +213,6 @@ const router = createRouter({
           meta: {
             title: "Votre patrimoine",
           },
-        },
-        {
-          name: "resultatsDetails",
-          path: "resultats/:benefitId",
-          component: () =>
-            import("./views/simulation/resultats/resultats-detail.vue"),
-        },
-        {
-          name: "resultatsGroupeAides",
-          path: "resultats/groupe/bafa-bafd",
-          component: () =>
-            import("./views/simulation/resultats/benefits-bafa-list.vue"),
         },
       ],
     },

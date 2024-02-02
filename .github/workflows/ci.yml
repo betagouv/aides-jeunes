@@ -307,13 +307,7 @@ jobs:
         run: if "${GITHUB_WORKSPACE}/.github/has-file-changes.sh" "${GITHUB_WORKSPACE}/openfisca/requirements.txt" ; then echo "status=success" >> $GITHUB_OUTPUT ; fi
   test_definition_periods:
     name: Openfisca definition periods tests
-    needs:
-      [
-        check-for-openfisca-requirements-changes,
-        install,
-        install_openfisca,
-        build,
-      ]
+    needs: [install]
     if: needs.check-for-openfisca-requirements-changes.outputs.status == 'success'
     runs-on: ubuntu-20.04
     timeout-minutes: 15
@@ -329,30 +323,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Cache Virtual Environment
-        uses: actions/cache@v3
-        id: python-dependencies
-        with:
-          path: .venv
-          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
-      - name: Cache server build output
-        uses: actions/cache@v3
-        id: restore-server-build
-        with:
-          path: dist-server
-          key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
-      - name: Start OpenFisca
         shell: bash
-        run: |
-          source .venv/bin/activate
-          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
-          deactivate
-      - name: Wait openfisca
-        shell: bash
-        run: wget --retry-connrefused --waitretry=2 --output-document=/dev/null http://localhost:2000/variable/parisien
-      - name: Test definition periods
-        shell: bash
-        run: npm run tools:test-definition-periods
+        run: npm run tools:test
   test_benefit_file_changes:
     name: Test benefit file changes
     needs: [install]

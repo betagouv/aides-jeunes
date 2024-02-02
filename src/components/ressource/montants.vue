@@ -41,7 +41,7 @@
           <span class="fr-hint-text fr-mb-1w"
             >Pour faciliter la saisie des ressources sur 13 mois, lorsque un
             montant est saisi pour un mois donné, les montants pour les périodes
-            précédentes peuvent être copiés un cliquant sur le bouton à droite
+            précédentes peuvent être copiés en cliquant sur le bouton à droite
             du champ. Ils peuvent être modifiés ensuite.</span
           >
           Indiquez les montants <strong>nets sociaux mensuels</strong> que
@@ -74,6 +74,7 @@
                 class="fr-col-12 fr-col-md-6 fr-ml-md-3w fr-pt-1w fr-pt-md-0"
               >
                 <button
+                  type="button"
                   class="fr-btn--menu fr-btn"
                   @click.prevent="copyValueToFollowingMonths(index, monthIndex)"
                 >
@@ -106,7 +107,7 @@ const props = defineProps({
   index: Number,
 })
 
-const emit = defineEmits(["update", "focus"])
+const emit = defineEmits(["update"])
 
 const singleValue = computed({
   get: () => props.type.displayMonthly,
@@ -118,7 +119,6 @@ const onFocus = (monthIndex) => {
 }
 
 const copyValueToFollowingMonths = (index, monthIndex) => {
-  console.log("click", index, monthIndex)
   emit("update", "monthUpdateFollowing", index, {
     monthIndex,
   })

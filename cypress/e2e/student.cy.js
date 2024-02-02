@@ -49,13 +49,16 @@ context("Full simulation", () => {
     revenu.fillRevenuBrut(1)
 
     projet.fill__interetsAidesVelo(["velo_mecanique", "velo_electrique"])
-    projet.fill__interetBafa(false)
+    projet.fill__interetBafa(true)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetEtudesEtranger(true)
     projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
-
+    results.hasBafaPreviewBenefit()
+    navigate.goToBafaBenefitsPage()
+    results.hasBafaBenefit()
+    results.back()
     results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()
     results.back()

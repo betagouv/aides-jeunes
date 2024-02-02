@@ -45,6 +45,11 @@ export const useResultsStore = defineStore("results", {
         return this.benefits
       }
     },
+    hasBenefitsGroup(): boolean {
+      return this.benefitTreeGroupExperiment.some(
+        (benefitOrBenefitsGroup) => benefitOrBenefitsGroup.benefits?.length > 0
+      )
+    },
     hasBenefits(): boolean {
       return this.benefits?.length > 0
     },

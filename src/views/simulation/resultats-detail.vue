@@ -49,6 +49,7 @@ const route = useRoute()
 const router = useRouter()
 
 const benefits = computed(() => resultsStore.benefits)
+const hasBenefitsGroup = computed(() => resultsStore.hasBenefitsGroup)
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
 const situation = computed(() => store.situation)
@@ -75,7 +76,8 @@ onMounted(async () => {
     if (
       ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees" &&
       benefit.value &&
-      hasBafaInterestFlag(benefit.value)
+      hasBafaInterestFlag(benefit.value) &&
+      hasBenefitsGroup.value === true
     ) {
       StatisticsMixin.methods.sendBenefitsStatistics(
         benefits.value,

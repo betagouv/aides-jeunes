@@ -256,7 +256,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",
-    link: "https://www.haut-rhin.fr/content/des-aides-pour-votre-logement",
+    link: "https://www.alsace.eu/aides-et-services/habitat/vous-rencontrez-difficultes-avec-votre-logement/",
   },
   departement_rhone: {
     label: "du département du Rhône",

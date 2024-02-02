@@ -16,13 +16,10 @@ function getDisplayMonthly(months, amounts) {
 }
 
 function update(type, newValue, monthIndex, shouldAutofill?) {
-  // Including month at index
-  const nextMonths = type.months.slice(monthIndex)
-  if (shouldAutofill) {
-    nextMonths.forEach((m) => (type.amounts[m.id] = newValue))
-  } else {
-    type.amounts[type.months[monthIndex].id] = newValue
-  }
+  const monthsToUpdate = shouldAutofill
+    ? type.months.slice(monthIndex)
+    : [type.months[monthIndex].id]
+  monthsToUpdate.forEach((m) => (type.amounts[m.id] = newValue))
 }
 
 export default {

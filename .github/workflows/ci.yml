@@ -313,9 +313,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
         uses: actions/cache@v3
         id: restore-dependencies

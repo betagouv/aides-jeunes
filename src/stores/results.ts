@@ -21,9 +21,9 @@ export const useResultsStore = defineStore("results", {
         },
         { bafa: [], other: [] }
       )
-      if (groups.bafa.length === 1) {
-        return [...groups.other, ...groups.bafa]
-      } else if (groups.bafa.length > 1) {
+      if (groups.bafa.length < 2) {
+        return this.benefits
+      } else {
         const bafaGroup: BenefitGroup = {
           benefits: groups.bafa,
           id: "bafa-bafd-group",
@@ -34,8 +34,6 @@ export const useResultsStore = defineStore("results", {
           redirectionPage: "bafa-bafd",
         }
         return [...groups.other, bafaGroup]
-      } else {
-        return groups.other
       }
     },
     benefitTree(): (StandardBenefit | BenefitGroup)[] {

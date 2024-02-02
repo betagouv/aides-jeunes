@@ -323,6 +323,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Test definition periods
         shell: bash
         run: npm run tools:test
   test_benefit_file_changes:

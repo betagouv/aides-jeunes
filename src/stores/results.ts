@@ -7,7 +7,7 @@ import ABTestingService from "@/plugins/ab-testing-service.js"
 export const useResultsStore = defineStore("results", {
   getters: {
     benefits(): StandardBenefit[] {
-      return this.resultats?.droitsEligibles
+      return this.resultats?.droitsEligibles || []
     },
     benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
       const groups = this.benefits.reduce(

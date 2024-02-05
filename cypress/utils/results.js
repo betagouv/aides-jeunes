@@ -20,6 +20,29 @@ const IdentifyBenefit = (id, name) => {
     .should("match", name)
 }
 
+const hasBafaPreviewBenefit = () => {
+  const name = /Aides BAFA et BAFD/
+  const id = "aides-bafa-preview"
+  IdentifyBenefit(id, name)
+  cy.checkA11y()
+}
+
+const hasBafaBenefit = () => {
+  const name =
+    /Aide nationale au Brevet d'aptitude aux fonctions d'animateur \(BAFA\)/
+  const id = "caf-aide-nationale-bafa"
+  IdentifyBenefit(id, name)
+  cy.checkA11y()
+}
+
+const hasNotBafaBenefits = () => {
+  const id = "aides-bafa-preview"
+  cy.get(
+    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
+    { timeout: 10000 }
+  ).should("not.exist")
+}
+
 const hasPrimeActivite = () => {
   const name = /Prime d’activité/
   const id = "ppa"
@@ -264,6 +287,9 @@ const checkResultsRequests = () => {
 export default {
   wait,
   back,
+  hasBafaPreviewBenefit,
+  hasBafaBenefit,
+  hasNotBafaBenefits,
   hasPrimeActivite,
   hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,

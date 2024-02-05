@@ -200,6 +200,12 @@ const router = createRouter({
           path: "resultats/:benefitId",
           component: () => import("./views/simulation/resultats-detail.vue"),
         },
+        {
+          name: "resultatsGroupeAides",
+          path: "resultats/groupe/bafa-bafd",
+          component: () =>
+            import("./views/simulation/resultats/benefits-bafa-list.vue"),
+        },
       ],
     },
     {
@@ -256,6 +262,7 @@ const router = createRouter({
       name: "init-ci",
       redirect: () => {
         ABTestingService.setVariant("CTA_EmailRecontact", "version_actuelle")
+        ABTestingService.setVariant("aides_bafa", "aides_bafa_fusionnees")
         return "/"
       },
     },
@@ -295,6 +302,7 @@ router.beforeEach((to, from, next) => {
         "redirect",
         "resultats",
         "resultatsDetails",
+        "resultatsGroupeAides",
         "resultatsLieuxGeneriques",
       ].indexOf(to.name) === -1 &&
       !store.passSanityCheck &&

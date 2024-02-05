@@ -5,6 +5,10 @@ const init = () => {
   cy.visit("http://localhost:8080/init-ci")
 }
 
+const goToBafaBenefitsPage = () => {
+  cy.get('[data-testid="aides-bafa-preview"]').click()
+}
+
 const goHome = () => {
   cy.get('meta[property="og:description"]')
     .invoke("attr", "content")
@@ -43,6 +47,7 @@ const updateFromRecap = (sectionTitle, buttonLabel) => {
 }
 export default {
   init,
+  goToBafaBenefitsPage,
   goHome,
   goToIframe,
   goRecap,

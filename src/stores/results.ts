@@ -1,13 +1,54 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
-import { StandardBenefit } from "@data/types/benefits"
+import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
+import { hasBafaInterestFlag } from "@/lib/benefits.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
   getters: {
     benefits(): StandardBenefit[] {
-      return this.resultats?.droitsEligibles
+      return this.resultats?.droitsEligibles || []
     },
-    hasBenefits() {
+    benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
+      const groups = this.benefits.reduce(
+        (groups, benefit) => {
+          if (hasBafaInterestFlag(benefit)) {
+            groups.bafa.push(benefit)
+          } else {
+            groups.other.push(benefit)
+          }
+          return groups
+        },
+        { bafa: [], other: [] }
+      )
+      if (groups.bafa.length < 2) {
+        return this.benefits
+      } else {
+        const bafaGroup: BenefitGroup = {
+          benefits: groups.bafa,
+          id: "bafa-bafd-group",
+          label: "Aides BAFA et BAFD",
+          logoPath: "/img/benefits/logo-bafa-bafd.png",
+          description:
+            "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
+          redirectionPage: "bafa-bafd",
+        }
+        return [...groups.other, bafaGroup]
+      }
+    },
+    benefitTree(): (StandardBenefit | BenefitGroup)[] {
+      if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
+        return this.benefitTreeGroupExperiment
+      } else {
+        return this.benefits
+      }
+    },
+    hasBenefitsGroup(): boolean {
+      return this.benefitTreeGroupExperiment.some(
+        (benefitOrBenefitsGroup) => benefitOrBenefitsGroup.benefits?.length > 0
+      )
+    },
+    hasBenefits(): boolean {
       return this.benefits?.length > 0
     },
     fetching() {

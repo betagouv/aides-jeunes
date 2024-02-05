@@ -1,22 +1,31 @@
 <script setup lang="ts">
-import { computed, defineProps } from "vue"
-import { StandardBenefit } from "@data/types/benefits"
+import { PropType, defineProps } from "vue"
+import BenefitsGroupPreview from "@/components/benefits-group-preview.vue"
+import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
 import BenefitPreview from "@/components/benefit-preview.vue"
 
 const props = defineProps({
-  benefits: Array<StandardBenefit>,
-  filter: Array<any>,
+  benefitsAndBenefitGroups: {
+    type: Array as PropType<(BenefitGroup | StandardBenefit)[]>,
+    required: true,
+  },
 })
 
-const list: any = computed(() => {
-  return props.benefits?.filter((value: any) => {
-    return !props.filter || props.filter.includes(value.id)
-  })
-})
+const getComponentType = (benefitOrBenefitsGroup) => {
+  return benefitOrBenefitsGroup.benefits ? BenefitsGroupPreview : BenefitPreview
+}
 </script>
 
 <template>
-  <div v-for="(benefit, index) in list" :key="index" class="fr-mb-5w">
-    <BenefitPreview :benefit="benefit" />
+  <div
+    v-for="(benefitOrBenefitsGroup, index) in props.benefitsAndBenefitGroups"
+    :key="index"
+    class="fr-mb-5w"
+  >
+    <component
+      :is="getComponentType(benefitOrBenefitsGroup)"
+      :benefit="benefitOrBenefitsGroup"
+      :group="benefitOrBenefitsGroup"
+    />
   </div>
 </template>

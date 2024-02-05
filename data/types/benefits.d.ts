@@ -116,6 +116,15 @@ export interface StandardBenefit {
   showUnexpectedAmount?: boolean
 }
 
+export interface BenefitGroup {
+  benefits: StandardBenefit[]
+  id: string
+  label: string
+  logoPath: string
+  description: string
+  redirectionPage: string
+}
+
 export interface BenefitWithChoice extends StandardBenefit {
   choiceValue: string | null
   choiceComments: string

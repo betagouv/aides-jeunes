@@ -17,7 +17,7 @@ const groupBenefits = computed(() => {
   const bafaBafdGroup = resultsStore.benefitTree.find(
     (b) => b.id === "bafa-bafd-group"
   ) as BenefitGroup
-  return bafaBafdGroup.benefits
+  return bafaBafdGroup?.benefits
 })
 
 onMounted(async () => {

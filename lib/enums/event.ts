@@ -22,6 +22,7 @@ export enum EventCategory {
 export enum EventAction {
   AccesSimulationAnonymisee = "Accès simulation anonymisée",
   AfficheLienAccompagnement = "show-accompaniment-link",
+  ShowPlansToAsk = "show-plans-to-ask",
   BoutonPrecedent = "Bouton précédent",
   CalculResultatsRestauration = "compute",
   ClickLienAccompagnement = "click-accompaniment-link",
@@ -45,6 +46,7 @@ export enum EventAction {
   Msa = "msa",
   NavigationAnnulee = "Navigation cancelled",
   Parcours = "Parcours",
+  PlansToAskQuestion = "plans-to-ask-question",
   Redirection = "Redirection",
   ReprendreMaSimulation = "Reprendre ma simulation",
   RetourLogement = "retour-logement",

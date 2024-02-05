@@ -103,7 +103,7 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="isNothing(droit.choiceValue)">
+                <div v-if="showPlansToAskQuestion(droit.choiceValue)">
                   <legend class="fr-fieldset__legend fr-px-0 fr-pt-1w">
                     Avez-vous prévu de faire une demande pour cette aide ?
                   </legend>
@@ -191,6 +191,7 @@ import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useFollowupSurveyData } from "@/composables/use-followup-survey-data.js"
+import ABTestingService from "@/plugins/ab-testing-service"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -200,11 +201,16 @@ const choices = [
 ]
 
 function showReasonQuestion(droit) {
-  if (droit.choiceValue === "failed") {
-    return true
-  } else if (droit.choiceValue === "nothing") {
-    return droit.plansToAsk === false
+  const { choiceValue, plansToAsk } = droit
+
+  if (ABTestingService.getValues().plans_to_ask_question === "show") {
+    return (
+      choiceValue === "failed" ||
+      (choiceValue === "nothing" && plansToAsk === false)
+    )
   }
+
+  return choiceValue === "nothing" || choiceValue === "failed"
 }
 
 const route = useRoute()
@@ -222,7 +228,9 @@ const isComplete = computed(() => {
   )
 })
 
-const isNothing = (choiceValue) => choiceValue === "nothing"
+const showPlansToAskQuestion = (choiceValue) =>
+  choiceValue === "nothing" &&
+  ABTestingService.getValues().plans_to_ask_question === "show"
 
 const showAccompanimentBlock = computed(() => {
   return benefitsWithChoice.value.some(
@@ -270,6 +278,11 @@ const submit = async () => {
       EventCategory.Accompagnement,
       EventAction.AfficheLienAccompagnement,
       route.path
+    )
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.Accompagnement,
+      EventAction.PlansToAskQuestion,
+      ABTestingService.getValues().plans_to_ask_question
     )
   }
 }

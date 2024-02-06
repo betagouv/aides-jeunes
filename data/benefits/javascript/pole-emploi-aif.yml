@@ -1,11 +1,11 @@
 label: aide Individuelle à la Formation (AIF)
-institution: pole_emploi
-description: Pôle Emploi peut prendre en charge tout ou partie du coût de votre
+institution: france_travail
+description: France travail peut prendre en charge tout ou partie du coût de votre
   formation si elle est nécessaire pour votre retour à l’emploi.
 conditions_generales: []
 conditions:
   - Demander un devis à l’organisme de formation et le transmettre à votre
-    conseiller ou conseillère Pôle Emploi.
+    conseiller ou conseillère France travail.
 profils:
   - type: chomeur
     conditions: []

@@ -1,0 +1,6 @@
+name: France Travail
+imgSrc: img/institutions/logo_france_travail.png
+lieuxTypes:
+  - france_travail
+type: national
+code_siren: "130005481"

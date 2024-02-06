@@ -14,7 +14,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être inscrit ou inscrite à Pôle Emploi ou Cap Emploi.
+  - Être inscrit ou inscrite à France travail ou Cap Emploi.
   - Intégrer une formation dont le coût est inférieur à 10 000€ TTC/an.
   - Vous assurer que cette formation n’est financée par aucune autre structure.
 type: bool

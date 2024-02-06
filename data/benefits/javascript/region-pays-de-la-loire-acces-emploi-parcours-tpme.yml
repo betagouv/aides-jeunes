@@ -11,7 +11,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Prendre rendez-vous avec votre conseiller ou conseillère Pôle emploi.
+  - Prendre rendez-vous avec votre conseiller ou conseillère France travail.
 type: bool
 unit: €
 periodicite: autre

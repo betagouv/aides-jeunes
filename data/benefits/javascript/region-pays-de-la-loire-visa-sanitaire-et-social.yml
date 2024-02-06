@@ -15,7 +15,7 @@ profils:
     conditions: []
 conditions:
   - Vous inscrire via Parcoursup si vous êtes étudiant ou étudiante, ou effectuer la
-    demande auprès de Pôle Emploi si vous êtes en recherche d'emploi.
+    demande auprès de France travail si vous êtes en recherche d'emploi.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €

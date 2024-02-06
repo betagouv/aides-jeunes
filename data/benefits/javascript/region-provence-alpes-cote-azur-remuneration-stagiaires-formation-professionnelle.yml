@@ -12,7 +12,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être inscrit ou inscrite à Pôle emploi ou auprès d’une mission locale.
+  - Être inscrit ou inscrite à France travail ou auprès d’une mission locale.
   - Ne pas être en continuité de parcours scolaire.
 interestFlag: _interetAidesSanitaireSocial
 type: bool

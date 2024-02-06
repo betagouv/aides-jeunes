@@ -10,7 +10,7 @@ profils:
   - type: chomeur
     conditions: []
 conditions:
-  - Être inscrit ou inscrite à Pôle Emploi.
+  - Être inscrit ou inscrite à France travail.
 type: float
 unit: €
 periodicite: ponctuelle

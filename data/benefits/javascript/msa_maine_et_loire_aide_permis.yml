@@ -28,7 +28,7 @@ profils:
 conditions:
   - Être assuré en maladie à la MSA personnellement ou comme ayant-droit.
   - Être en recherche d’emploi ou sous contrat à durée déterminée.
-  - Justifier de l’inscription à Pôle Emploi, Mission Locale ou à la PAIO.
+  - Justifier de l’inscription à France travail, Mission Locale ou à la PAIO.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €

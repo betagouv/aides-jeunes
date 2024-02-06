@@ -103,7 +103,56 @@
                     </div>
                   </div>
                 </div>
-                <div v-show="isNegative(droit.choiceValue)">
+                <div v-if="showPlansToAskQuestion(droit.choiceValue)">
+                  <legend class="fr-fieldset__legend fr-px-0 fr-pt-1w">
+                    Avez-vous prévu de faire une demande pour cette aide ?
+                  </legend>
+                  <div class="fr-fieldset__content">
+                    <div class="fr-container fr-px-0">
+                      <div class="fr-grid-row">
+                        <div class="fr-col-12 fr-col-md-8 fr-col-lg-8">
+                          <div class="fr-radio-group fr-radio-rich fr-mt-1w">
+                            <input
+                              :id="`yes_plans_to_ask_${droit.id}`"
+                              v-model="droit.plansToAsk"
+                              type="radio"
+                              :value="true"
+                              name="plans-to-ask"
+                              :aria-labelledby="`label_yes_plans_to_ask_${droit.id}`"
+                            />
+                            <label
+                              :id="`label_yes_plans_to_ask_${droit.id}`"
+                              class="fr-label"
+                              :for="`yes_plans_to_ask_${droit.id}`"
+                            >
+                              Oui
+                            </label>
+                          </div>
+                          <div
+                            class="fr-radio-group fr-radio-rich fr-mb-2w fr-mt-1w"
+                          >
+                            <input
+                              :id="`no_plans_to_ask_${droit.id}`"
+                              v-model="droit.plansToAsk"
+                              type="radio"
+                              :value="false"
+                              name="plans-to-ask"
+                              :aria-labelledby="`label_no_plans_to_ask_${droit.id}`"
+                            />
+                            <label
+                              :id="`label_no_plans_to_ask_${droit.id}`"
+                              :for="`no_plans_to_ask_${droit.id}`"
+                              class="fr-label"
+                            >
+                              Non
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="showReasonQuestion(droit)">
                   <label
                     :for="`choiceComments_${droit.id}`"
                     class="fr-label fr-text--bold fr-mt-2w fr-mb-1w"
@@ -142,6 +191,7 @@ import DroitHeader from "@/components/droit-header.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useFollowupSurveyData } from "@/composables/use-followup-survey-data.js"
+import ABTestingService from "@/plugins/ab-testing-service"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -150,8 +200,17 @@ const choices = [
   { value: "nothing", label: "Je n'ai rien fait." },
 ]
 
-function isNegative(value) {
-  return value === "failed" || value === "nothing"
+function showReasonQuestion(droit) {
+  const { choiceValue, plansToAsk } = droit
+
+  if (ABTestingService.getValues().plans_to_ask_question === "show") {
+    return (
+      choiceValue === "failed" ||
+      (choiceValue === "nothing" && plansToAsk === false)
+    )
+  }
+
+  return choiceValue === "nothing" || choiceValue === "failed"
 }
 
 const route = useRoute()
@@ -168,6 +227,10 @@ const isComplete = computed(() => {
     benefitsWithChoice.value.length
   )
 })
+
+const showPlansToAskQuestion = (choiceValue) =>
+  choiceValue === "nothing" &&
+  ABTestingService.getValues().plans_to_ask_question === "show"
 
 const showAccompanimentBlock = computed(() => {
   return benefitsWithChoice.value.some(
@@ -195,6 +258,7 @@ const submit = async () => {
     id: droit.id,
     value: droit.choiceValue,
     comments: droit.choiceComments,
+    plansToAsk: droit.plansToAsk,
   }))
 
   const { status } = await axios.post(
@@ -214,6 +278,11 @@ const submit = async () => {
       EventCategory.Accompagnement,
       EventAction.AfficheLienAccompagnement,
       route.path
+    )
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.Accompagnement,
+      EventAction.PlansToAskQuestion,
+      ABTestingService.getValues().plans_to_ask_question
     )
   }
 }

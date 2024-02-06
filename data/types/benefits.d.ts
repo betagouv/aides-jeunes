@@ -128,6 +128,7 @@ export interface BenefitGroup {
 export interface BenefitWithChoice extends StandardBenefit {
   choiceValue: string | null
   choiceComments: string
+  plansToAsk?: boolean
 }
 
 export interface BenefitExtra {

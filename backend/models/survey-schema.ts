@@ -17,6 +17,7 @@ const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
         id: String,
         value: mongoose.Schema.Types.Mixed,
         comments: String,
+        plansToAsk: { type: Boolean, required: false },
       },
     ],
     type: {

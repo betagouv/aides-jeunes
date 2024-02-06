@@ -53,6 +53,13 @@ function getEnvironment() {
     ABTestingEnvironment.aides_bafa.value ||
     (Math.random() > 0.5 ? "aides_bafa_distinctes" : "aides_bafa_fusionnees")
 
+  ABTestingEnvironment.plans_to_ask_question =
+    ABTestingEnvironment.plans_to_ask_question || {}
+  ABTestingEnvironment.plans_to_ask_question.index = 3
+  ABTestingEnvironment.plans_to_ask_question.value =
+    ABTestingEnvironment.plans_to_ask_question.value ||
+    (Math.random() > 0.5 ? "show" : "hidden")
+
   const versions = ["version_actuelle", "version_test_1", "version_test_2"]
   const ctaEmailRecontact = ABTestingEnvironment.CTA_EmailRecontact || {}
   ctaEmailRecontact.index ||= 5

@@ -38,6 +38,7 @@ export function useFollowupSurveyData(token: string) {
         ...benefit,
         choiceValue: null,
         choiceComments: "",
+        plansToAsk: undefined,
       }
     }) as BenefitWithChoice[]
 

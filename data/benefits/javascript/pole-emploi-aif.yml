@@ -1,6 +1,7 @@
 label: aide Individuelle à la Formation (AIF)
 institution: france_travail
-description: France travail peut prendre en charge tout ou partie du coût de votre
+description:
+  France travail peut prendre en charge tout ou partie du coût de votre
   formation si elle est nécessaire pour votre retour à l’emploi.
 conditions_generales: []
 conditions:

@@ -7,15 +7,15 @@ description: >-
 
 
   <a target="_blank" rel="noopener" title ="PREPA Projet - Nouvelle fenêtre" href="https://www.bretagne.bzh/aides/fiches/copie-de-prepa-projet/">PREPA Projet</a>
-   : une formation pour concrétiser son projet, 
+   : une formation pour concrétiser son projet,
 
-  <a target="_blank" rel="noopener" title ="PREPA Clés - Nouvelle fenêtre" href="https://www.bretagne.bzh/aides/fiches/prepa-cles/">PREPA Clés</a> : une formation pour développer ses compétences et 
+  <a target="_blank" rel="noopener" title ="PREPA Clés - Nouvelle fenêtre" href="https://www.bretagne.bzh/aides/fiches/prepa-cles/">PREPA Clés</a> : une formation pour développer ses compétences et
 
 
   <a target="_blank" rel="noopener" title ="PREPA Avenir - Nouvelle fenêtre" href="https://www.bretagne.bzh/aides/fiches/prepa-avenir/">PREPA Avenir</a> : une formation pour construire son avenir
 conditions:
   - Être en recherche d’emploi, sans emploi ou en emploi précaire, inscrit ou inscrite ou
-    non à Pôle Emploi.
+    non à France travail.
 conditions_generales:
   - type: regions
     values:

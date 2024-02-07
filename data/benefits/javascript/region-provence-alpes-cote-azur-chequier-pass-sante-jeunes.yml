@@ -19,7 +19,7 @@ conditions:
   - "Être dans l'un des cas suivants : inscrit ou inscrite dans un lycée, dans un centre
     de formation d'apprentis (CFA), dans un établissement de formation sanitaire
     et sociale, dans un établissement d'enseignement supérieur, dans une mission
-    locale, à Pôle Emploi, ou bien en stage de formation professionnelle, en
+    locale, à France travail, ou bien en stage de formation professionnelle, en
     contrat de professionnalisation, en contrat Emploi d'avenir, ou encore au
     service civique en Provence-Alpes-Côte d'Azur."
 type: bool

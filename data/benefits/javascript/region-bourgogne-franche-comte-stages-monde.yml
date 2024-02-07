@@ -4,7 +4,7 @@ description: Cette aide vous permet de financer une expérience professionnelle 
   l’étranger sous la forme d'une bourse, et d'obtenir un accompagnement dans votre
   démarche.
 conditions:
-  - Être inscrit ou inscrite à Pôle emploi avant le début du stage.
+  - Être inscrit ou inscrite à France travail avant le début du stage.
 conditions_generales:
   - type: regions
     values:

@@ -17,7 +17,7 @@ profils:
     conditions: []
 conditions:
   - Être titulaire d’un Bac +2.
-  - Être inscrit ou inscrite à Pôle Emploi.
+  - Être inscrit ou inscrite à France travail.
 type: bool
 unit: €
 periodicite: autre

@@ -16,7 +16,7 @@ profils:
     conditions: []
 conditions:
   - Suivre une formation professionnelle agréée et financée par la Région.
-  - Ne pas avoir reçu d'idemnisation de la part de Pôle Emploi.
+  - Ne pas avoir reçu d'idemnisation de la part de France travail.
 type: float
 unit: €
 periodicite: ponctuelle

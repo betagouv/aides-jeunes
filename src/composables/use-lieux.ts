@@ -43,7 +43,7 @@ export function useLieux() {
       isRelevant: (demandeur: any) => {
         return demandeur.activite === Activite.Chomeur
       },
-      types: ["pole_emploi"],
+      types: ["france_travail"],
     },
     {
       isRelevant: (demandeur: any) => {

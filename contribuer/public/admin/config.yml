@@ -312,7 +312,7 @@ fields:
       ni pris en compte (trop complexe) dans le cadre d'un simulateur grand public.
       Cette liste permet d'informer les usagers sur ces critères supplémentaires.
       Par exemple : Signer un contrat d’engagement réciproque (CER) avec votre département
-      ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec Pôle emploi.
+      ou un Projet Personnalisé d’Accès à l’Emploi (PPAE) avec France travail.
     name: conditions
     widget: list
     collapsed: false

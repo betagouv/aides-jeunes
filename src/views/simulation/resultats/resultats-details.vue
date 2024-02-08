@@ -48,6 +48,7 @@ const benefit = computed(() => {
 const ressourcesYearMinusTwoCaptured = computed(
   () => store.ressourcesYearMinusTwoCaptured
 )
+
 onMounted(async () => {
   if (MockResults.mockResultsNeeded()) {
     MockResults.mock(route.params.benefitId)

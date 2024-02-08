@@ -20,7 +20,10 @@ const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
 const stopSubscription = ref<(() => void) | null>(null)
 const showBackButton = computed(() => {
-  return router.currentRoute.value.name !== "resultats"
+  return (
+    router.currentRoute.value.meta?.showBackToResultsButton &&
+    router.currentRoute.value.name !== "resultats"
+  )
 })
 
 const goBack = () => {

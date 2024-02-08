@@ -160,24 +160,21 @@ const router = createRouter({
               path: ":benefitId",
               component: () =>
                 import("./views/simulation/resultats/resultats-details.vue"),
+              meta: { showBackToResultsButton: true },
             },
             {
               name: "resultatsGroupeAides",
               path: "groupe/bafa-bafd",
               component: () =>
                 import("./views/simulation/resultats/benefits-bafa-list.vue"),
+              meta: { showBackToResultsButton: true },
             },
             {
               name: "resultatsLieuxGeneriques",
               path: "lieux",
               component: () =>
                 import("./views/simulation/resultats/lieux-generiques.vue"),
-            },
-            {
-              name: "benefitLieuInformations",
-              path: ":benefitId/:lieu_id/informations",
-              component: () =>
-                import("./views/simulation/resultats/lieu-informations.vue"),
+              meta: { showBackToResultsButton: true },
             },
             {
               name: "resultatInattendu",
@@ -186,7 +183,14 @@ const router = createRouter({
                 import("./views/simulation/resultats/resultat-inattendu.vue"),
               meta: {
                 title: "Résultat inattendu",
+                showBackToResultsButton: true,
               },
+            },
+            {
+              name: "benefitLieuInformations",
+              path: ":benefitId/:lieu_id/informations",
+              component: () =>
+                import("./views/simulation/resultats/lieu-informations.vue"),
             },
           ],
         },
@@ -308,6 +312,7 @@ router.beforeEach((to, from, next) => {
         "resultatsDetails",
         "resultatsGroupeAides",
         "resultatsLieuxGeneriques",
+        "benefitLieuInformations",
       ].indexOf(to.name) === -1 &&
       !store.passSanityCheck &&
       to.query.debug === undefined

@@ -1,19 +1,11 @@
 <script setup lang="ts">
 import Lieu from "@/components/lieu.vue"
-import BackButton from "@/components/buttons/back-button.vue"
 import { useLieux } from "@/composables/use-lieux.js"
 
 const { lieux, updating } = useLieux()
 </script>
 
 <template>
-  <BackButton
-    class="fr-mb-4w"
-    size="small"
-    @click="$router.push({ name: 'resultats' })"
-    >Retour aux résultats
-  </BackButton>
-
   <p v-show="updating">
     <span
       class="fr-icon--ml fr-icon-refresh-line fr-icon-spin"

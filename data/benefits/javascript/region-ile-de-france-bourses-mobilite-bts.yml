@@ -27,3 +27,4 @@ unit: €
 periodicite: ponctuelle
 montant: 500
 interestFlag: _interetEtudesEtranger
+private: true

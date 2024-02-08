@@ -4,7 +4,7 @@ description:
   Vous avez besoin d'aide pour comprendre votre résultat de simulation
   et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone
   par un membre de notre équipe.
-prefix: l’
+prefix: le
 conditions_generales:
   - type: communes
     values:

@@ -170,6 +170,10 @@ async function main() {
     throw new Error("Missing GRIST_API_KEY")
   }
   const gristAPI = Grist(process.env.GRIST_DOC_ID, process.env.GRIST_API_KEY)
+
+  const user = await gristAPI.me()
+  console.log(`Connected as ${user.name}.`)
+
   const rawExistingWarnings = await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
@@ -206,8 +210,8 @@ async function main() {
         pullRequestURL
       )
   )
-  type recordsByOperationTypesType = { [operationType: string]: GristData[] }
-  const recordsByOperationTypes: recordsByOperationTypesType = {
+  type RecordsByOperationTypesType = { [operationType: string]: GristData[] }
+  const recordsByOperationTypes: RecordsByOperationTypesType = {
     add: [],
     update: [],
   }

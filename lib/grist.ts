@@ -17,10 +17,7 @@ export function Grist(docId, apiKey) {
 
   const g = {
     me: async () => {
-      const response = await axios.get<GristResponse>(
-        `${apiUrl}/profile/user`,
-        gristConfig
-      )
+      const response = await axios.get(`${apiUrl}/profile/user`, gristConfig)
       return response.data
     },
     get: async (filter?: any) => {

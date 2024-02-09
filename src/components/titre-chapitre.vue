@@ -85,6 +85,9 @@ export default {
       if (path === "/simulation/resultats/recapitulatif_email") {
         return this.emailModalTitle
       }
+      if (path === "/simulation/revenir-plus-tard") {
+        return "Revenir plus tard ?"
+      }
 
       const current = path.replace(/\/en_savoir_plus/, "")
       const step =

@@ -35,6 +35,11 @@ const router = createRouter({
       },
       children: [
         {
+          path: "revenir-plus-tard",
+          name: "revenirPlusTard",
+          component: () => import("./views/simulation/revenir-plus-tard.vue"),
+        },
+        {
           path: "redirect",
           name: "redirect",
           beforeEnter(to, from, next) {

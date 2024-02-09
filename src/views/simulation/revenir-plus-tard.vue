@@ -1,0 +1,108 @@
+<script setup lang="ts">
+import { useStore } from "@/stores/index.js"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
+import StatisticsMixin from "@/mixins/statistics.js"
+import { useRoute } from "vue-router"
+import { computed, ref } from "vue"
+import router from "@/router"
+
+const store = useStore()
+const route = useRoute()
+const simulationId = computed(() => store.simulationId)
+const saved = ref(false)
+const saveSimulationAndShowLink = async () => {
+  try {
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.TemporarySimulationSave,
+      route.path
+    )
+    store.setSaveSituationError("")
+    await store.save()
+    saved.value = true
+  } catch (error: any) {
+    store.setSaveSituationError(error.response?.data || error)
+    StatisticsMixin.methods.sendEventToMatomo(
+      EventCategory.General,
+      EventAction.ErreurSauvegardeSimulation,
+      route.path
+    )
+  }
+}
+const temporarySimulationAccessUrl = computed(() => {
+  return `${process.env.VITE_BASE_URL}/simulation/recapitulatif?simulationId=${simulationId.value}`
+})
+
+const copyTemporarySimulationAccessUrlToClipboard = async () => {
+  StatisticsMixin.methods.sendEventToMatomo(
+    EventCategory.General,
+    EventAction.CopyTemporarySimulationAccessUrlToClipboard,
+    route.path
+  )
+  await navigator.clipboard.writeText(temporarySimulationAccessUrl.value)
+  alert(
+    "Lien copié dans le presse papier : " + temporarySimulationAccessUrl.value
+  )
+}
+const continueSimulation = () => {
+  router.go(-1)
+}
+</script>
+
+<template>
+  <div>
+    <p
+      >Vous avez un point de blocage ou vous souhaitez remettre à plus tard la
+      poursuite de votre simulation ?
+    </p>
+    <p>
+      Nous vous proposons de la sauvegarder via un lien d'accès pour la
+      reprendre plus tard.
+    </p>
+    <div v-if="simulationId && saved">
+      <div class="fr-alert fr-alert--success"
+        ><p>Votre simulation a bien été sauvegardée. </p>
+      </div>
+      <div class="fr-mt-4w">
+        <p>Identifiant de la simulation: {{ simulationId }}</p>
+        <p
+          >Lien d'accès :
+          <a
+            :href="temporarySimulationAccessUrl"
+            target="_blank"
+            title="Accéder au récapitulatif de la simulation - Nouvelle fenêtre"
+            >{{ temporarySimulationAccessUrl }}
+          </a>
+        </p>
+      </div>
+    </div>
+    <ul
+      class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right fr-mt-4w"
+    >
+      <li>
+        <button
+          class="fr-btn fr-ml-1w fr-btn--secondary"
+          @click="continueSimulation"
+          >Poursuivre la simulation</button
+        >
+      </li>
+      <li>
+        <button
+          v-if="!simulationId || !saved"
+          class="fr-btn"
+          @click="saveSimulationAndShowLink"
+          >Sauvegarder la simulation et afficher le lien
+        </button>
+      </li>
+      <li>
+        <button
+          v-if="simulationId && saved"
+          class="fr-btn share__link fr-share__link--copy"
+          title="Copier le lien d'accès à la simulation dans le presse-papier"
+          @click="copyTemporarySimulationAccessUrlToClipboard()"
+          >Copier le lien dans le presse-papier
+        </button>
+      </li>
+    </ul>
+  </div>
+</template>

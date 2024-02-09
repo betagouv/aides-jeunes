@@ -18,6 +18,13 @@
         <li>
           <slot />
           <BackButton @click="goBack" />
+          <button
+            class="fr-btn fr-btn--secondary"
+            type="button"
+            @click="comeBackLaterButtonClick"
+          >
+            Revenir plus tard ?
+          </button>
         </li>
       </ul>
     </div>
@@ -57,8 +64,14 @@ const error = computed(() => {
 })
 
 const localOnSubmit = (event) => {
+  console.log("localOnSubmit")
   event.preventDefault()
   props.onSubmit()
+}
+
+const comeBackLaterButtonClick = () => {
+  console.log("comeBackLaterButtonClick")
+  router.push({ name: "revenirPlusTard" })
 }
 
 const goBack = () => {

@@ -66,7 +66,7 @@ const continueSimulation = () => {
       <div class="fr-mt-4w">
         <p>Identifiant de la simulation: {{ simulationId }}</p>
         <p
-          >Lien d'accès :
+          >Ouvrir le récapitulatif dans un nouvel onglet :
           <a
             :href="temporarySimulationAccessUrl"
             target="_blank"

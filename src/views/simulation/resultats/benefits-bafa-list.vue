@@ -17,7 +17,7 @@ const groupBenefits = computed(() => {
   const bafaBafdGroup = resultsStore.benefitTree.find(
     (b) => b.id === "bafa-bafd-group"
   ) as BenefitGroup
-  return bafaBafdGroup.benefits
+  return bafaBafdGroup?.benefits
 })
 
 onMounted(async () => {
@@ -40,6 +40,10 @@ onMounted(async () => {
       @click="router.push({ name: 'resultats' })"
       >Retour aux résultats
     </BackButton>
-    <BenefitsList :benefits-and-benefit-groups="groupBenefits" />
+    <BenefitsList
+      v-if="groupBenefits"
+      :benefits-and-benefit-groups="groupBenefits"
+    />
+    <p v-else> Aucune aide BAFA ou BAFD n'a été trouvée. </p>
   </div>
 </template>

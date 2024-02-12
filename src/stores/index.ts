@@ -56,7 +56,7 @@ function defaultStore(): Store {
       counter: null,
     },
     debug: false,
-    error: false,
+    error: false as string | boolean,
     access: {
       fetching: false,
       forbidden: false,
@@ -383,7 +383,7 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    updateError(error: string) {
+    updateError(error: boolean) {
       this.error = error
     },
     setFormRecapEmailState(newState: string | undefined) {

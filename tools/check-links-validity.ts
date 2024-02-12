@@ -171,7 +171,7 @@ async function main() {
   }
   const gristAPI = Grist(process.env.GRIST_DOC_ID, process.env.GRIST_API_KEY)
 
-  const user = await gristAPI.me()
+  const user = await gristAPI.getConnectedUser()
   console.log(`Connected as ${user.name}.`)
 
   const rawExistingWarnings = await gristAPI.get({

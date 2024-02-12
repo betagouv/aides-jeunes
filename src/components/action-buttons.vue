@@ -3,7 +3,7 @@
     <WarningMessage v-if="error" class="fr-mb-4w">{{ error }}</WarningMessage>
     <div class="aj-action-buttons fr-mt-2w">
       <ul
-        v-show="!isSmallMode"
+        v-if="!isSmallMode"
         class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
       >
         <li>
@@ -28,7 +28,7 @@
           </button>
         </li>
       </ul>
-      <span v-show="isSmallMode">
+      <span v-if="isSmallMode">
         <ul class="fr-btns-group fr-btns-group--center">
           <li>
             <button

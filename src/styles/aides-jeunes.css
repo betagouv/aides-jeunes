@@ -336,6 +336,11 @@ textarea {
   [class*=" fr-icon-"]:before {
     --icon-size: 1.5rem;
   }
+
+  .aj-action-buttons-sm > li,
+  .aj-action-buttons-sm button {
+    flex: 1;
+  }
 }
 
 .aj-iframe-footer {

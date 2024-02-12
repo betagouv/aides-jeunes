@@ -76,33 +76,35 @@ const continueSimulation = () => {
         </p>
       </div>
     </div>
-    <ul
-      class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right fr-mt-4w"
-    >
-      <li>
-        <button
-          class="fr-btn fr-ml-1w fr-btn--secondary"
-          @click="continueSimulation"
-          >Poursuivre la simulation</button
-        >
-      </li>
-      <li>
-        <button
-          v-if="!simulationId || !saved"
-          class="fr-btn"
-          @click="saveSimulationAndShowLink"
-          >Sauvegarder la simulation et afficher le lien
-        </button>
-      </li>
-      <li>
-        <button
-          v-if="simulationId && saved"
-          class="fr-btn share__link fr-share__link--copy"
-          title="Copier le lien d'accès à la simulation dans le presse-papier"
-          @click="copyTemporarySimulationAccessUrlToClipboard()"
-          >Copier le lien dans le presse-papier
-        </button>
-      </li>
-    </ul>
+    <div class="aj-action-buttons">
+      <ul
+        class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--inline-reverse fr-mt-4w fr-btns-group--equisized"
+      >
+        <li>
+          <button
+            class="fr-btn fr-ml-1w fr-btn--secondary"
+            @click="continueSimulation"
+            >Poursuivre la simulation</button
+          >
+        </li>
+        <li>
+          <button
+            v-if="!simulationId || !saved"
+            class="fr-btn"
+            @click="saveSimulationAndShowLink"
+            >Sauvegarder la simulation et afficher le lien
+          </button>
+        </li>
+        <li>
+          <button
+            v-if="simulationId && saved"
+            class="fr-btn share__link fr-share__link--copy"
+            title="Copier le lien d'accès à la simulation dans le presse-papier"
+            @click="copyTemporarySimulationAccessUrlToClipboard()"
+            >Copier le lien dans le presse-papier
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>

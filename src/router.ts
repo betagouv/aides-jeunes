@@ -1,5 +1,5 @@
 import { nextTick } from "vue"
-import { createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter, RouteRecordRaw } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
 import { getTitleFromRoute } from "@/lib/transition.js"
@@ -52,10 +52,11 @@ const router = createRouter({
                 .catch(() => {
                   next("/")
                 })
+            } else {
+              next("/")
             }
           },
-          redirect: "/",
-        },
+        } as RouteRecordRaw,
         {
           path: ":parent+/en_savoir_plus",
           name: "en_savoir_plus",

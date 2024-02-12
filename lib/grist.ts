@@ -5,7 +5,8 @@ const baseURL = "grist.incubateur.net"
 const tableId = "Veille"
 
 export function Grist(docId, apiKey) {
-  const docUrl = `https://${baseURL}/api/docs/${docId}`
+  const apiUrl = `https://${baseURL}/api`
+  const docUrl = `${apiUrl}/docs/${docId}`
   const recordsUrl = `${docUrl}/tables/${tableId}/records`
   const gristConfig = {
     headers: {
@@ -15,6 +16,10 @@ export function Grist(docId, apiKey) {
   }
 
   const g = {
+    getConnectedUser: async () => {
+      const response = await axios.get(`${apiUrl}/profile/user`, gristConfig)
+      return response.data
+    },
     get: async (filter?: any) => {
       let url = recordsUrl
       if (filter) {

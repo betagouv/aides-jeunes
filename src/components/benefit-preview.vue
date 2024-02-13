@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import { defineProps } from "vue"
+import { defineProps, computed } from "vue"
 import { getBenefitImage } from "@lib/benefits/details.js"
 import DroitEstime from "./droit-estime.vue"
 import WarningMessage from "@/components/warning-message.vue"
 import { capitalize, isBoolean } from "@lib/utils.js"
 import { StandardBenefit } from "@data/types/benefits"
+import { useScrollBenefitAnchor } from "@/composables/use-scroll-benefit-anchor.js"
 
 const props = defineProps({
   benefit: Object,
 })
 
+const { setBenefitAnchor } = useScrollBenefitAnchor()
 const askBenefitLabelButton = (benefit) => {
   return `Demander ${benefit.prefix}${benefit.prefix == "l’" ? "" : " "}${
     benefit.label
   }`
 }
+
+const benefitId = computed(() => `benefit-${props.benefit?.id}`)
 </script>
 
 <template>
-  <div v-if="props.benefit">
+  <div
+    v-if="props.benefit"
+    :id="benefitId"
+    @click="setBenefitAnchor(benefitId)"
+  >
     <router-link
       class="fr-tile"
       :to="`/simulation/resultats/${props.benefit.id}`"

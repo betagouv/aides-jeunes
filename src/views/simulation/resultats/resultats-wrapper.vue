@@ -10,7 +10,9 @@ import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
 import { computed, onMounted, onBeforeUnmount, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { useScrollBenefitAnchor } from "@/composables/use-scroll-benefit-anchor.js"
 
+const { benefitAnchor } = useScrollBenefitAnchor()
 const resultsStore = useResultsStore()
 const store = useStore()
 const router = useRouter()
@@ -27,7 +29,7 @@ const showBackButton = computed(() => {
 })
 
 const goBack = () => {
-  router.push("/simulation/resultats")
+  router.push(`/simulation/resultats#${benefitAnchor.value}`)
 }
 
 onMounted(async () => {
@@ -161,7 +163,7 @@ const redirectToTeleservice = async () => {
 </script>
 
 <template>
-  <div>
+  <div id="resultats-wrapper">
     <LoadingModal v-if="fetching || updating">
       <p>Récupération en cours…</p>
     </LoadingModal>

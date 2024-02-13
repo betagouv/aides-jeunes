@@ -3,6 +3,7 @@ import { defineProps, computed, PropType } from "vue"
 import { capitalize } from "@lib/utils.js"
 import { uniq } from "lodash-es"
 import { BenefitGroup } from "@data/types/benefits"
+import { useScrollBenefitAnchor } from "@/composables/use-scroll-benefit-anchor.js"
 
 const props = defineProps({
   group: {
@@ -10,16 +11,23 @@ const props = defineProps({
     required: true,
   },
 })
-
+const benefitGroupId = computed(() => `benefit-${props.group?.id}`)
 const formattedInstitutionsLabel = computed(() => {
   return uniq(
     props.group.benefits?.map(({ institution }) => institution.label)
   ).join(", ")
 })
+
+const { setBenefitAnchor } = useScrollBenefitAnchor()
 </script>
 
 <template>
-  <div v-if="props.group.benefits" class="fr-ml-6v fr-mb-3w">
+  <div
+    v-if="props.group.benefits"
+    :id="benefitGroupId"
+    class="fr-ml-6v fr-mb-3w"
+    @click="setBenefitAnchor(benefitGroupId)"
+  >
     <div class="fr-tile tile-1">
       <div class="fr-tile tile-2">
         <router-link

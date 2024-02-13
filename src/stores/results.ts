@@ -5,6 +5,14 @@ import { hasBafaInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
+  state: () => ({
+    benefitAnchor: "",
+  }),
+  actions: {
+    setBenefitAnchor(anchor: string) {
+      this.benefitAnchor = anchor
+    },
+  },
   getters: {
     benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles || []
@@ -50,6 +58,9 @@ export const useResultsStore = defineStore("results", {
     },
     hasBenefits(): boolean {
       return this.benefits?.length > 0
+    },
+    getBenefitAnchor(): string {
+      return this.benefitAnchor
     },
     fetching() {
       return useStore().access.fetching

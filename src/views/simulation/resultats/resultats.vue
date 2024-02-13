@@ -90,7 +90,8 @@ import WarningMessage from "@/components/warning-message.vue"
 import Recapitulatif from "@/views/simulation/recapitulatif.vue"
 import { useResultsStore } from "@/stores/results.js"
 import ErrorsEmailAndSmsModal from "@/components/modals/errors-email-and-sms-modal.vue"
-import { computed } from "vue"
+import { computed, onMounted, onBeforeUnmount } from "vue"
+import { useScrollBenefitAnchor } from "@/composables/use-scroll-benefit-anchor.js"
 
 const resultsStore = useResultsStore()
 const benefits = computed(() => resultsStore.benefits)
@@ -107,4 +108,13 @@ const shouldDisplayResults = computed(() => resultsStore.shouldDisplayResults)
 const isEmpty = (array) => {
   return !array || array.length === 0
 }
+const { addScrollEventListener, removeScrollEventListener } = useScrollBenefitAnchor()
+
+onMounted(() => {
+  addScrollEventListener()
+})
+
+onBeforeUnmount(() => {
+  removeScrollEventListener()
+})
 </script>

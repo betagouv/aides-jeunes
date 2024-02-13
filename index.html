@@ -78,7 +78,12 @@
         g.defer = true
         g.async = true
         s.parentNode.insertBefore(g, s)
+
         g.onload = function () {
+          window.chatwootSettings = {
+            hideMessageBubble: true,
+            position: window.innerWidth >= 768 ? "right" : "left",
+          }
           window.chatwootSDK.run({
             websiteToken: "<%= VITE_CHATWOOT_TOKEN %>",
             baseUrl: BASE_URL,

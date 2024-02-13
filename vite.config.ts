@@ -124,6 +124,7 @@ export default defineConfig(async ({ mode }) => {
             VITE_DESCRIPTION: viteEnvironment.VITE_DESCRIPTION,
             VITE_BASE_URL: viteEnvironment.VITE_BASE_URL,
             VITE_CONTEXT_NAME: viteEnvironment.VITE_CONTEXT_NAME,
+            VITE_CHATWOOT_TOKEN: viteEnvironment.VITE_CHATWOOT_TOKEN,
           },
         },
       }),

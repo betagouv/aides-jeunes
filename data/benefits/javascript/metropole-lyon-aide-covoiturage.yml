@@ -5,7 +5,13 @@ description: Pour encourager le covoiturage, la Métropole de Lyon subventionne 
   ou passager. Gain pour le conducteur ":" entre 1 et 8 euros par passager, en fonction de la longueur du trajet.
   Coût pour le passager ":" 10 centimes par kilomètre.
 prefix: l’
-conditions_generales: []
+conditions_generales:
+  - type: epcis
+    values:
+      - "243600327"
+  - type: age
+    operator: ">="
+    value: 18
 profils: []
 conditions:
   - Télécharger l'application mobile En Covoit’Grand Lyon, opérée par Karos.

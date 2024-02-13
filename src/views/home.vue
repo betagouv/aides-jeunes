@@ -50,6 +50,11 @@
           </router-link>
         </li>
       </ul>
+      <p class="fr-text--center">
+        <router-link to="/aides">
+          Acccéder à la liste complète des aides
+        </router-link>
+      </p>
     </div>
     <div class="fr-col fr-col-6 fr-col--bottom fr-hidden fr-unhidden-md">
       <img

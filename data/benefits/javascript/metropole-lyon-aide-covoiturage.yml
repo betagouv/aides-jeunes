@@ -8,7 +8,7 @@ prefix: l’
 conditions_generales:
   - type: epcis
     values:
-      - "243600327"
+      - "200046977"
   - type: age
     operator: ">="
     value: 18

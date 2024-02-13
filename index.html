@@ -80,7 +80,7 @@
         s.parentNode.insertBefore(g, s)
         g.onload = function () {
           window.chatwootSDK.run({
-            websiteToken: "Kzc1NTBxjW9riARcjWTcjHr5",
+            websiteToken: "<%= VITE_CHATWOOT_TOKEN %>",
             baseUrl: BASE_URL,
           })
         }

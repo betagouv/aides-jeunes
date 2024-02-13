@@ -19,6 +19,7 @@ const buildId = Date.now().toString()
 
 const {
   baseURL,
+  chatwoot,
   github,
   matomo,
   netlifyContributionURL,
@@ -57,6 +58,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_BENEFIT_COUNT: benefitCount,
     VITE_MATOMO_ID: matomo.id,
     VITE_MATOMO_URL: matomo.url,
+    VITE_CHATWOOT_TOKEN: chatwoot.websiteToken,
     VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
     VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,

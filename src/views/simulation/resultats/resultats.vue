@@ -108,7 +108,8 @@ const shouldDisplayResults = computed(() => resultsStore.shouldDisplayResults)
 const isEmpty = (array) => {
   return !array || array.length === 0
 }
-const { addScrollEventListener, removeScrollEventListener } = useScrollBenefitAnchor()
+const { addScrollEventListener, removeScrollEventListener } =
+  useScrollBenefitAnchor()
 
 onMounted(() => {
   addScrollEventListener()

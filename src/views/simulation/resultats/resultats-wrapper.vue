@@ -163,7 +163,7 @@ const redirectToTeleservice = async () => {
 </script>
 
 <template>
-  <div id="resultats-wrapper">
+  <div>
     <LoadingModal v-if="fetching || updating">
       <p>Récupération en cours…</p>
     </LoadingModal>

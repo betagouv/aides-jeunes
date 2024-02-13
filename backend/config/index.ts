@@ -101,6 +101,12 @@ const config: Configuration = {
     url: "https://europe.ipx.com/restapi/v1/sms/send",
     internationalDiallingCodes: ["33", "262", "508", "590", "594", "596"],
   },
+  chatwoot: {
+    websiteToken:
+      process.env.NODE_ENV == "production" && !process.env.BRANCH
+        ? "rFbbRuqt9WyC6zbZycr4rj4a"
+        : "Kzc1NTBxjW9riARcjWTcjHr5",
+  },
 }
 
 export default Object.freeze(config)

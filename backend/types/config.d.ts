@@ -62,4 +62,7 @@ export interface Configuration {
     url: string
     internationalDiallingCodes: string[]
   }
+  chatwoot: {
+    websiteToken: string
+  }
 }

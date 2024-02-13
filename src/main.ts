@@ -90,4 +90,4 @@ dayjs.extend(customParseFormat)
 
 app.use(pinia)
 app.use(router)
-app.mount(document.body)
+app.mount("#app")

@@ -82,7 +82,6 @@
         g.onload = function () {
           window.chatwootSettings = {
             hideMessageBubble: false,
-            position: window.innerWidth >= 768 ? "right" : "left",
           }
           window.chatwootSDK.run({
             websiteToken: "<%= VITE_CHATWOOT_TOKEN %>",

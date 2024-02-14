@@ -9,7 +9,7 @@ import ABTestingService from "@/plugins/ab-testing-service.js"
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
-    ...(context.routes as Array<any>), // Temporary fix to avoid eslint type error
+    ...context.routes,
     {
       path: "/",
       name: "home",

@@ -1,5 +1,5 @@
 import { nextTick } from "vue"
-import { createWebHistory, createRouter, RouteRecordRaw } from "vue-router"
+import { createWebHistory, createRouter } from "vue-router"
 import context from "./context/index.js"
 import Simulations from "@/lib/simulation.js"
 import { getTitleFromRoute } from "@/lib/transition.js"
@@ -23,10 +23,9 @@ const router = createRouter({
     {
       path: "/logout-callback",
       name: "logout-callback",
-      beforeEnter(to) {
-        document.location = `/api/france-connect${to.fullPath}`
+      redirect(to) {
+        return `/api/france-connect${to.fullPath}`
       },
-      redirect: "/",
     },
     {
       path: "/simulation",
@@ -56,7 +55,8 @@ const router = createRouter({
               next("/")
             }
           },
-        } as RouteRecordRaw,
+          redirect: "/",
+        },
         {
           path: ":parent+/en_savoir_plus",
           name: "en_savoir_plus",
@@ -329,7 +329,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (store.error) {
-    store.updateError(false)
+    store.updateError()
   }
   if (store.message.text) {
     store.decrementMessageRemainingViewTime()

@@ -1,7 +1,7 @@
 label: tarification solidaire sur le réseau C.T.S.
 institution: strasbourg_eurometropole
 description: La tarification solidaire des transports de l'Eurométropole de Strasbourg est à destination des foyers aux ressources faibles. Ils peuvent profiter en illimité des trams et des bus C.T.S.
-link: https://www.strasbourg.eu/tarification-solidaire-transports-en-commun
+link: https://www.strasbourg.eu/tarifs-transport
 instructions: https://www.cts-strasbourg.eu/fr/Titres-de-transport/tarifs/tarification-solidaire/
 prefix: la
 type: float

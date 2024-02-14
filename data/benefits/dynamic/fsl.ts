@@ -252,7 +252,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_bas_rhin: {
     label: "du département du Bas-Rhin",
-    link: "https://www.bas-rhin.fr/action-sociale-et-sante/difficultes-logement/",
+    link: "https://www.alsace.eu/aides-et-services/habitat/vous-rencontrez-difficultes-avec-votre-logement/",
   },
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",

@@ -146,7 +146,7 @@ const router = createRouter({
           meta: {
             headTitle: `Les résultats de ma simulation sur le simulateur d'aides ${context.name}`,
           },
-          component: () => import("./views/simulation/resultats.vue"),
+          component: () => import("./views/simulation/resultats/resultats.vue"),
         },
         {
           name: "resultatsLieuxGeneriques",
@@ -170,7 +170,8 @@ const router = createRouter({
         {
           name: "resultatInattendu",
           path: "resultat/inattendu/:id",
-          component: () => import("./views/simulation/resultat-inattendu.vue"),
+          component: () =>
+            import("./views/simulation/resultats/resultat-inattendu.vue"),
           meta: {
             title: "Résultat inattendu",
           },
@@ -198,7 +199,8 @@ const router = createRouter({
         {
           name: "resultatsDetails",
           path: "resultats/:benefitId",
-          component: () => import("./views/simulation/resultats-detail.vue"),
+          component: () =>
+            import("./views/simulation/resultats/resultats-detail.vue"),
         },
         {
           name: "resultatsGroupeAides",

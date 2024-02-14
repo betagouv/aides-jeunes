@@ -8,7 +8,6 @@ import axios from "axios"
 import https from "https"
 import Bluebird from "bluebird"
 import * as Sentry from "@sentry/node"
-import dayjs from "dayjs"
 
 const DEFAULT_BRANCH_REF = "refs/heads/main"
 
@@ -59,23 +58,22 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
-  const lastMonth: string = dayjs().subtract(1, "month").format("YYYY-MM-DD")
   const stats = await axios
     .get(
-      `https://aides-jeunes-stats-recorder.osc-fr1.scalingo.io/benefits?startAt=${lastMonth}`
+      "https://stats.data.gouv.fr/index.php?module=API&format=JSON&idSite=165&period=range&date=previous30&method=Events.getName&filter_limit=-1"
     )
     .then((response) => response.data)
 
-  return stats.reduce((priorityMap, benefitStatsEvent) => {
-    const benefitId: string = benefitStatsEvent.id
-    const priority: number = benefitStatsEvent.events.showDetails
+  return stats.reduce((priorityMap, statItem) => {
+    const benefitId: string = statItem.label
+    const priority: number = statItem.nb_visits
 
     if (priority) {
       priorityMap[benefitId] = priority
     }
 
     return priorityMap
-  })
+  }, {})
 }
 
 async function getBenefitData(noPriority: boolean) {

@@ -76,6 +76,10 @@ async function getPriorityStats() {
   }, {})
 }
 
+function filterPublicBenefits(benefits) {
+  return benefits.filter((benefit) => !benefit.private)
+}
+
 async function getBenefitData(noPriority: boolean) {
   let priorityMap = {}
   try {
@@ -85,8 +89,8 @@ async function getBenefitData(noPriority: boolean) {
     Sentry.captureException(error)
     console.warn("Unable to get priority stats, priorityMap is empty")
   }
-
-  const data = Benefits.all.map((benefit) => {
+  const publicBenefits = filterPublicBenefits(Benefits.all)
+  const data = publicBenefits.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
       .filter(
         (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"

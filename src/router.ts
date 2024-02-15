@@ -278,16 +278,12 @@ const router = createRouter({
   ],
   // https://router.vuejs.org/guide/advanced/scroll-behavior.html
   scrollBehavior(to, _from, savedPosition) {
-    const defaultScrollOptions: ScrollOptions = { behavior: "smooth" }
     if (savedPosition) {
-      return {
-        ...savedPosition,
-        ...defaultScrollOptions,
-      }
+      return savedPosition
     } else if (to.hash) {
       return {
         el: to.hash,
-        ...defaultScrollOptions,
+        behavior: "smooth",
       }
     }
   },

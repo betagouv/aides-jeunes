@@ -5,6 +5,8 @@ const page = script.dataset.fromHome !== undefined ? "" : "simulation"
 const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
+src.searchParams.set("utm_source", window.location.hostname)
+src.searchParams.set("utm_medium", "menu")
 src.searchParams.set(
   "integratorUrl",
   encodeURIComponent(window.location.href.toString())

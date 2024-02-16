@@ -588,7 +588,7 @@ export default {
     },
   }),
 
-  _contrat_alternant: new EnumProperty({
+  _contratAlternance: new EnumProperty({
     question: "Êtes-vous ?",
     items: [
       {

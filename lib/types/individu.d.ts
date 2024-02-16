@@ -12,7 +12,7 @@ export interface Individu {
   activite?: string
   service_civique?: boolean
   scolarite?: string
-  _contrat_alternant?: string
+  _contratAlternance?: string
   stagiaire?: boolean
   groupe_specialites_formation?: any
   mention_baccalaureat?: string

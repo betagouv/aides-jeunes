@@ -30,7 +30,7 @@ function getAnonymizedAnswer(answer, simulation) {
     case "individu": {
       if (answer.id == "demandeur" || answer.id == "conjoint") {
         switch (answer.fieldName) {
-          case "_contrat_alternant":
+          case "_contratAlternance":
           case "_hasRessources":
           case "_interetAidesSanitaireSocial":
           case "_interetBafa":

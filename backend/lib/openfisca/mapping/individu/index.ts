@@ -25,9 +25,9 @@ const individuSchema: IndividuGenerator = {
     },
   },
   apprenti: {
-    src: "_contrat_alternant",
-    fn: function (contratAlternant) {
-      return contratAlternant === Activite.Apprenti
+    src: "_contratAlternance",
+    fn: function (contratAlternance) {
+      return contratAlternance === Activite.Apprenti
     },
   },
   date_naissance: {
@@ -123,9 +123,9 @@ const individuSchema: IndividuGenerator = {
     },
   },
   professionnalisation: {
-    src: "_contrat_alternant",
-    fn: function (contratAlternant) {
-      return contratAlternant === Activite.Professionnalisation
+    src: "_contratAlternance",
+    fn: function (contratAlternance) {
+      return contratAlternance === Activite.Professionnalisation
     },
   },
   regime_securite_sociale: {

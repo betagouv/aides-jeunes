@@ -3,25 +3,27 @@ import storageService from "@/lib/storage-service.js"
 
 export const useIframeStore = defineStore("iframe", {
   state: () => {
+    const { inIframe, iframeHeaderCollapse } =
+      storageService.session.getItem("iframe")
     return {
-      inIframe: false,
-      iframeOrigin: null,
-      iframeHeaderCollapse: false,
+      inIframe,
+      iframeHeaderCollapse,
     }
   },
   actions: {
-    setIframeOrigin(newOrigin: string) {
+    save() {
+      storageService.session.setItem("iframe", {
+        inIframe: this.inIframe,
+        iframeHeaderCollapse: this.iframeHeaderCollapse,
+      })
+    },
+    setInIframe() {
       this.inIframe = true
-      this.iframeOrigin = newOrigin
+      this.save()
     },
     setIframeHeaderCollapse(collapse = false) {
       this.iframeHeaderCollapse = collapse
-    },
-    set(theme) {
-      if (theme) {
-        storageService.session.setItem("theme", theme)
-      }
-      this.theme = storageService.session.getItem("theme")
+      this.save()
     },
   },
 })

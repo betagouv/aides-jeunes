@@ -40,7 +40,7 @@ export default {
   mounted() {
     const params = new URLSearchParams(document.location.search.substring(1))
     if (params.has("iframe")) {
-      this.iframeStore.setIframeOrigin(null)
+      this.iframeStore.setInIframe()
     }
 
     if (params.has("data-with-logo")) {
@@ -51,14 +51,10 @@ export default {
       this.themeStore.set(params.get("theme"))
     }
     if (
-      (window.parent !== window || params.has("iframe")) &&
+      (window.parent !== window || this.iframeStore.inIframe) &&
       this.themeStore.theme
     ) {
       this.$theme.update(this.themeStore.theme)
-    }
-
-    if (this.iframeStore.iframeOrigin) {
-      this.iframeStore.setIframeOrigin(null)
     }
   },
 }

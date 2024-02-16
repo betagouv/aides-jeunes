@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Header1J1S from "@/components/1j1s/header-1j1s.vue"
-import { useStore } from "@/stores/index.js"
+import { useIframeStore } from "@/stores/iframe.js"
 export default {
   name: "IFrameLayout",
   components: {
@@ -29,7 +29,7 @@ export default {
   },
   setup() {
     return {
-      store: useStore(),
+      store: useIframeStore(),
     }
   },
   computed: {

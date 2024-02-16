@@ -75,8 +75,8 @@
 </template>
 <script setup lang="ts">
 import { useAttrs } from "vue"
-import { useStore } from "@/stores/index.js"
-const store = useStore()
+import { useIframeStore } from "@/stores/iframe.js"
+const store = useIframeStore()
 const attributes = useAttrs()
 const parameters = {
   homeTo:

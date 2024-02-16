@@ -64,9 +64,6 @@ function defaultStore(): Store {
     calculs: defaultCalculs(),
     dates: datesGenerator(now),
     title: null,
-    inIframe: false,
-    iframeOrigin: null,
-    iframeHeaderCollapse: false,
     modalState: null,
     saveSituationError: null,
     openFiscaParameters: {},
@@ -559,13 +556,6 @@ ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bo
     },
     setSaveSituationError(saveSituationError: string) {
       this.saveSituationError = saveSituationError
-    },
-    setIframeOrigin(newOrigin: string) {
-      this.inIframe = true
-      this.iframeOrigin = newOrigin
-    },
-    setIframeHeaderCollapse(collapse = false) {
-      this.iframeHeaderCollapse = collapse
     },
     setTitle(newTitle: string) {
       this.title = newTitle

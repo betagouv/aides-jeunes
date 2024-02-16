@@ -1,0 +1,34 @@
+:root {
+  /* input focus */
+  --input-outline: #b84838;
+
+  /* buttons */
+  --main-color: #e65a46;
+  --main-color-hover: #c44d3c;
+  --main-color-active: #c44d3c;
+
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
+  --secondary-color: #322e5a;
+  --secondary-color-hover: #322e5a;
+  --secondary-color-active: #322e5a;
+
+  /* en savoir plus text */
+  --info-main-color: white;
+
+  /* ? */
+  --info-main-color-hover: lightgreen;
+  --info-main-color-active: grey;
+
+  /* en savoir plus background */
+  --info-secondary-color: #322e5a;
+  --info-secondary-color-hover: #2f2c55;
+  --info-secondary-color-active: #2f2c55;
+
+  --border-radius: 0.1rem;
+  --font-family: inherit;
+  --main-btn-text-color: #fff;
+}

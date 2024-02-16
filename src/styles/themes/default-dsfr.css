@@ -1,15 +1,25 @@
 :root {
   --demo-wrapper-background-blue: #5770be;
+  /* input focus */
   --input-outline: #0a76f6;
+  /* buttons */
   --main-color: #000091;
   --main-color-hover: #1212ff;
   --main-color-active: #2323ff;
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
   --secondary-color: #417dc4;
   --secondary-color-hover: #a9c8fb;
   --secondary-color-active: #8ab8f9;
+  /* en savoir plus text */
   --info-main-color: #0063cb;
+  /* ? */
   --info-main-color-hover: #3b87ff;
   --info-main-color-active: #6798ff;
+  /* en savoir plus background */
   --info-secondary-color: #e8edff;
   --info-secondary-color-hover: #c2d1ff;
   --info-secondary-color-active: #a9bfff;

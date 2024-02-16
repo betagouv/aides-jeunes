@@ -2,9 +2,7 @@
   <div>
     <h2 class="fr-text--lead">En savoir plus</h2>
     <p>{{ text }}</p>
-    <BackButton size="small" @click="window?.history.back()">
-      Retour
-    </BackButton>
+    <BackButton size="small"> Retour </BackButton>
   </div>
 </template>
 

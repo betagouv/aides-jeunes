@@ -50,7 +50,9 @@
               >
             </li>
             <li v-else>
-              <BackButton @click="goBack()">Retour</BackButton>
+              <BackButton @click="mobileNavigationCollapse()"
+                >Retour</BackButton
+              >
             </li>
           </ul>
         </div>
@@ -93,10 +95,6 @@ export default {
   methods: {
     disabledLink(chapter) {
       return this.isChapterPending(chapter)
-    },
-    goBack() {
-      this.mobileNavigationCollapse()
-      window?.history.back()
     },
     mobileNavigationCollapse() {
       this.$refs.sideMenuButton.setAttribute("aria-expanded", false)

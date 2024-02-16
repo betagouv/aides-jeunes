@@ -63,7 +63,7 @@
     <div class="aj-action-buttons">
       <ul class="fr-btns-group fr-btns-group--inline">
         <li>
-          <BackButton class="fr-btn--icon-center" @click="goBack"></BackButton>
+          <BackButton class="fr-btn--icon-center"></BackButton>
         </li>
         <li v-if="showResultButton">
           <router-link class="fr-btn" to="/simulation/resultats"
@@ -260,9 +260,5 @@ function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   }
 
   return []
-}
-
-function goBack() {
-  window?.history.back()
 }
 </script>

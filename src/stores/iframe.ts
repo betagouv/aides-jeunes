@@ -4,7 +4,7 @@ import storageService from "@/lib/storage-service.js"
 export const useIframeStore = defineStore("iframe", {
   state: () => {
     const { inIframe, iframeHeaderCollapse } =
-      storageService.session.getItem("iframe")
+      storageService.session.getItem("iframe") || {}
     return {
       inIframe,
       iframeHeaderCollapse,

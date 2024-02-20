@@ -65,6 +65,7 @@ const LEGACY_FIELD_NAMES = [
   "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
   "_boursier_derniere_annee_etudes",
   "_continuite_etudes",
+  "_contrat_alternant",
   "categorie_salarie",
   "date_arret_de_travail",
   "plus_haut_diplome_niveau",

@@ -23,9 +23,7 @@ const router = createRouter({
     {
       path: "/logout-callback",
       name: "logout-callback",
-      redirect(to) {
-        return `/api/france-connect${to.fullPath}`
-      },
+      redirect: (to) => `/api/france-connect${to.fullPath}`,
     },
     {
       path: "/simulation",

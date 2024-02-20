@@ -1,11 +1,10 @@
 import Home from "@/views/home.vue"
 import BaseLayout from "@/components/base-layout.vue"
 import Simulation from "@/views/simulation.vue"
-import { RouteRecordRaw } from "vue-router"
 
 const name = process.env.VITE_CONTEXT_NAME
 
-const routes: Readonly<RouteRecordRaw[]> = [
+const routes = [
   {
     path: "/accessibilite",
     name: "accessibilite",

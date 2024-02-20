@@ -10,7 +10,7 @@ import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
-import { useStore as useThemeStore } from "@/stores/theme.js"
+import { useThemeStore } from "@/stores/theme.js"
 
 const { BaseLayout, MesAidesLayout } = context
 

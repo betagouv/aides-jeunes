@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import storageService from "@/lib/storage-service.js"
 
-export const useStore = defineStore("theme", {
+export const useThemeStore = defineStore("theme", {
   state: () => {
     return {
       theme: storageService.session.getItem("theme"),

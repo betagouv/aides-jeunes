@@ -25,7 +25,7 @@ const includesAndExcludesCondition = (condition, value) => {
 }
 const PROFILE_STRATEGY = {
   apprenti: ({ situation }: { situation: Situation }): boolean => {
-    return situation.demandeur?._contrat_alternant === Activite.Apprenti
+    return situation.demandeur?._contratAlternance === Activite.Apprenti
   },
   beneficiaire_rsa: (data) => {
     return testRSARecipient(data)
@@ -54,7 +54,7 @@ const PROFILE_STRATEGY = {
   },
   professionnalisation: ({ situation }: { situation: Situation }): boolean => {
     return (
-      situation.demandeur?._contrat_alternant === Activite.Professionnalisation
+      situation.demandeur?._contratAlternance === Activite.Professionnalisation
     )
   },
   salarie: ({ situation }: { situation: Situation }): boolean => {

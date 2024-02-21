@@ -93,7 +93,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                 {
                   isActive: (subject) => subject.alternant,
                   steps: [
-                    r("_contrat_alternant"),
+                    r("_contratAlternance"),
                     r("_alternanceFonctionPublique"),
                   ],
                 },
@@ -322,7 +322,7 @@ function extraBlock() {
             ["public", "prive_sous_contrat"].includes(
               subject.statuts_etablissement_scolaire
             )) ||
-          subject._contrat_alternant === Activite.Apprenti,
+          subject._contratAlternance === Activite.Apprenti,
         steps: [
           s("_interetEtudesEtranger"),
           {

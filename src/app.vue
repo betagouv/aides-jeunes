@@ -9,7 +9,6 @@
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
-import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
 import { useThemeStore } from "@/stores/theme.js"
 
 const { BaseLayout, MesAidesLayout } = context
@@ -24,9 +23,6 @@ export default {
   },
   setup() {
     const store = useStore()
-    store.$onAction(persistDataOnSessionStorage)
-    store.initialize()
-    store.setOpenFiscaParameters()
     const themeStore = useThemeStore()
     return {
       store,

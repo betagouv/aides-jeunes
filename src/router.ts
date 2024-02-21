@@ -23,9 +23,7 @@ const router = createRouter({
     {
       path: "/logout-callback",
       name: "logout-callback",
-      beforeEnter(to) {
-        document.location = `/api/france-connect${to.href}`
-      },
+      redirect: (to) => `/api/france-connect${to.fullPath}`,
     },
     {
       path: "/simulation",
@@ -41,15 +39,21 @@ const router = createRouter({
           name: "redirect",
           beforeEnter(to, from, next) {
             const store = useStore()
-            store
-              .fetch(Simulations.getLatestId())
-              .then(() => {
-                next(`/simulation${to.query.to || ""}`)
-              })
-              .catch(() => {
-                next("/")
-              })
+            const simulationLatestId = Simulations.getLatestId()
+            if (simulationLatestId) {
+              store
+                .fetch(simulationLatestId)
+                .then(() => {
+                  next(`/simulation${to.query.to || ""}`)
+                })
+                .catch(() => {
+                  next("/")
+                })
+            } else {
+              next("/")
+            }
           },
+          redirect: "/",
         },
         {
           path: ":parent+/en_savoir_plus",
@@ -298,10 +302,10 @@ router.beforeEach((to, from, next) => {
     ) {
       store.verifyBenefitVariables()
     }
-
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&
+      typeof to.name === "string" &&
       [
         "redirect",
         "resultats",
@@ -315,19 +319,19 @@ router.beforeEach((to, from, next) => {
       return store.redirection((route) => next(route))
     }
   }
-
-  if (to.meta.title) {
-    if (typeof to.meta.title === "function") {
-      store.setTitle(to.meta.title(to, store.situation))
-    } else {
-      store.setTitle(to.meta.title)
+  const metaTitle = to.meta.title
+  if (metaTitle) {
+    if (typeof metaTitle === "function") {
+      store.setTitle(metaTitle(to, store.situation))
+    } else if (typeof metaTitle === "string") {
+      store.setTitle(metaTitle)
     }
   } else {
     store.setTitle("Évaluez vos droits aux aides sociales")
   }
 
   if (store.error) {
-    store.updateError(false)
+    store.updateError()
   }
   if (store.message.text) {
     store.decrementMessageRemainingViewTime()

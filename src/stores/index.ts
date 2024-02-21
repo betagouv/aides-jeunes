@@ -383,7 +383,7 @@ export const useStore = defineStore("store", {
       }
       this.setDirty()
     },
-    updateError(error: string) {
+    updateError(error?: string) {
       this.error = error
     },
     setFormRecapEmailState(newState: string | undefined) {

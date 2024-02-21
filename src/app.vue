@@ -10,7 +10,7 @@ import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
-import storageService from "@/lib/storage-service.js"
+import { useThemeStore } from "@/stores/theme.js"
 
 const { BaseLayout, MesAidesLayout } = context
 
@@ -27,8 +27,10 @@ export default {
     store.$onAction(persistDataOnSessionStorage)
     store.initialize()
     store.setOpenFiscaParameters()
+    const themeStore = useThemeStore()
     return {
       store,
+      themeStore,
     }
   },
   computed: {
@@ -47,17 +49,17 @@ export default {
     if (params.has("data-with-logo")) {
       this.store.setIframeHeaderCollapse(params.get("data-with-logo"))
     }
-    const savedTheme = storageService.local.getItem("theme")
-    if (savedTheme) {
-      params.set("theme", savedTheme)
-    }
 
     if (params.has("theme")) {
-      // Met à jour le thème uniquement si on est dans une iframe
-      if (window.parent !== window) {
-        this.$theme.update(params.get("theme"))
-      }
+      this.themeStore.set(params.get("theme"))
     }
+    if (
+      (window.parent !== window || params.has("iframe")) &&
+      this.themeStore.theme
+    ) {
+      this.$theme.update(this.themeStore.theme)
+    }
+
     if (this.store.iframeOrigin) {
       this.store.setIframeOrigin(null)
     }

@@ -16,10 +16,9 @@ if (script.dataset.withLogo !== undefined) {
 if (script.dataset.fromHome !== undefined) {
   src.searchParams.set("data-from-home", true)
 }
-
-const selectedTheme =
-  localStorage.getItem("theme") || script.dataset.theme || "default-dsfr"
-src.searchParams.set("theme", selectedTheme)
+if (script.dataset.theme !== undefined) {
+  src.searchParams.set("theme", script.dataset.theme)
+}
 
 const iframe = document.createElement("iframe")
 const iframeAttributes = {

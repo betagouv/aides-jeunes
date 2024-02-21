@@ -27,3 +27,4 @@ unit: €
 periodicite: ponctuelle
 montant: 230
 interestFlag: _interetBafa
+private: true

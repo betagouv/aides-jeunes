@@ -23,6 +23,5 @@ interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: null
 periodicite: annuelle
-link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social
-teleservice: https://aidesformation.maregionsud.fr/SignIn?ReturnUrl=%2Fprofile%2F
-instructions: ""
+link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social-1
+instructions: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social-1

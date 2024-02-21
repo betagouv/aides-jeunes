@@ -15,7 +15,7 @@ profils:
   - type: apprenti
     conditions: []
 link: https://www.valdoise.fr/aideEtService/10/176-bourse-departementale-aux-apprentis.htm
-instructions: https://www.valdoise.fr/cms_viewFile.php?idtf=196352&path=Conditions-d-attribution_Bourse-aux-apprentis-2023.pdf
+instructions: https://www.valdoise.fr/aideEtService/10/176-bourse-departementale-aux-apprentis.htm
 prefix: la
 type: float
 unit: €

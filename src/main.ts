@@ -26,6 +26,7 @@ import "dayjs/locale/fr.js"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import dayjs from "dayjs"
 import { createPinia } from "pinia"
+import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
 
 const Resizer = {
   install: function () {
@@ -89,5 +90,10 @@ dayjs.locale("fr")
 dayjs.extend(customParseFormat)
 
 app.use(pinia)
+const store = useStore()
+store.$onAction(persistDataOnSessionStorage)
+store.initialize()
+store.setOpenFiscaParameters()
+
 app.use(router)
 app.mount("#app")

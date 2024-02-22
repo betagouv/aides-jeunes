@@ -1,5 +1,3 @@
-import { useStore } from "@/stores/index.js"
-
 export default {
   watch: {
     $route() {
@@ -10,13 +8,5 @@ export default {
         }
       }
     },
-  },
-  created() {
-    this.$router.isReady().then(() => {
-      if (this.$route.query.debug === "parcours") {
-        const store = useStore()
-        store.setDebug(true)
-      }
-    })
   },
 }

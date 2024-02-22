@@ -9,6 +9,7 @@
 import iFrameLayout from "@/components/iframe-layout.vue"
 import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
+import { useStore } from "@/stores/index.js"
 import { useThemeStore } from "@/stores/theme.js"
 
 const { BaseLayout, MesAidesLayout } = context

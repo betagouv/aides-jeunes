@@ -35,11 +35,6 @@ const Resizer = {
 }
 const pinia = createPinia()
 
-const store = useStore()
-store.$onAction(persistDataOnSessionStorage)
-store.initialize()
-store.setOpenFiscaParameters()
-
 const app = createApp({
   render: () => h(App),
 })
@@ -95,5 +90,10 @@ dayjs.locale("fr")
 dayjs.extend(customParseFormat)
 
 app.use(pinia)
+const store = useStore()
+store.$onAction(persistDataOnSessionStorage)
+store.initialize()
+store.setOpenFiscaParameters()
+
 app.use(router)
 app.mount("#app")

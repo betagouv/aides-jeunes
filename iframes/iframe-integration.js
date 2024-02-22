@@ -6,8 +6,8 @@ const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
 src.searchParams.set(
-  "integratorUrl",
-  encodeURIComponent(window.location.href.toString())
+  "utm_source",
+  `iframe@${window.location.hostname}${window.location.pathname}`
 )
 
 if (script.dataset.withLogo !== undefined) {

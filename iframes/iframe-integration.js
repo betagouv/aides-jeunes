@@ -9,7 +9,6 @@ src.searchParams.set(
   "utm_source",
   `iframe@${window.location.hostname}${window.location.pathname}`
 )
-src.searchParams.set("utm_medium", `iframe@${window.location.href}`)
 
 if (script.dataset.withLogo !== undefined) {
   src.searchParams.set("data-with-logo", true)

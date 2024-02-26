@@ -303,10 +303,6 @@ router.beforeEach((to, from, next) => {
       store.verifyBenefitVariables()
     }
 
-    if (to.query.debug === "parcours") {
-      store.setDebug(true)
-    }
-
     if (
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&

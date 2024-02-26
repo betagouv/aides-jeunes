@@ -94,6 +94,12 @@ const store = useStore()
 store.$onAction(persistDataOnSessionStorage)
 store.initialize()
 store.setOpenFiscaParameters()
-
 app.use(router)
+
+router.isReady().then(() => {
+  if (router.currentRoute.value.query.debug === "parcours") {
+    store.setDebug(true)
+  }
+})
+
 app.mount("#app")

@@ -1,10 +1,19 @@
 import { defineStore } from "pinia"
 import storageService from "@/lib/storage-service.js"
 
+function getMode() {
+  return window.parent !== window ? "basic" : "integrated"
+}
+
 export const useIframeStore = defineStore("iframe", {
   state: () => {
-    const { inIframe, iframeHeaderCollapse } =
-      storageService.session.getItem("iframe") || {}
+    const contexts = storageService.session.getItem("iframe") || {
+      basic: {},
+      integrated: {},
+    }
+    const mode = getMode()
+    const { inIframe, iframeHeaderCollapse } = contexts[mode] || {}
+
     return {
       inIframe,
       iframeHeaderCollapse,
@@ -12,9 +21,15 @@ export const useIframeStore = defineStore("iframe", {
   },
   actions: {
     save() {
+      const full = storageService.session.getItem("iframe")
       storageService.session.setItem("iframe", {
-        inIframe: this.inIframe,
-        iframeHeaderCollapse: this.iframeHeaderCollapse,
+        ...full,
+        ...{
+          [getMode()]: {
+            inIframe: this.inIframe,
+            iframeHeaderCollapse: this.iframeHeaderCollapse,
+          },
+        },
       })
     },
     setInIframe() {

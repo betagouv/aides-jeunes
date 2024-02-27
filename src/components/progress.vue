@@ -30,7 +30,7 @@
           }"
           :to="step.path"
         >
-          {{ step.path }}
+          {{ step.path }} {{ step.isDone ? "✅" : "⬜" }}
         </router-link>
         <abbr
           v-if="step.missing"
@@ -44,6 +44,7 @@
 
 <script lang="ts">
 import { useStore } from "@/stores/index.js"
+import { isStepAnswered } from "@lib/answers.js"
 
 export default {
   name: "ProgressDebugger",
@@ -59,7 +60,8 @@ export default {
   },
   computed: {
     full() {
-      return this.store.getAllSteps.map((s) => {
+      const store = this.store
+      return store.getAllSteps.map((s) => {
         if (process.env.NODE_ENV === "production") {
           return s
         } else {
@@ -68,6 +70,7 @@ export default {
             key: s.key,
             isActive: s.isActive,
             path: s.path,
+            isDone: isStepAnswered(store.simulation.answers.current, s),
             missing:
               route.matched[route.matched.length - 1].path.match(/:property/),
           }

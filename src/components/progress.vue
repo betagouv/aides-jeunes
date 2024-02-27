@@ -61,7 +61,7 @@ export default {
   computed: {
     full() {
       const store = this.store
-      return this.store.getAllSteps.map((s) => {
+      return store.getAllSteps.map((s) => {
         if (process.env.NODE_ENV === "production") {
           return s
         } else {

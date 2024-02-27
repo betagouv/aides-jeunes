@@ -245,7 +245,7 @@ async function main() {
 
   if (invalidLinksAdded && !dryRun && !processingPR) {
     const text = [
-      ":icon-info: La liste des aides avec des liens invalides a été mise à jour ici : [lien](https://grist.incubateur.net/o/docs/mRipN1JbV6sB/Aides-Jeunes/p/39)",
+      ":icon-info: La liste des aides avec des liens invalides a été mise à jour ici : [lien](https://grist.incubateur.net/o/aides-jeunes/t9WmLpUKfJN5/Veille/p/39)",
       `Ajout: ${recordsByOperationTypes.add.length}`,
       `Mise à jour: ${recordsByOperationTypes.update.length}`,
     ].join("\n")

@@ -5,8 +5,8 @@ const page = script.dataset.fromHome !== undefined ? "" : "simulation"
 const src = new URL(`${process.env.BASE_URL}/${page}`)
 
 src.searchParams.set("iframe", true)
-src.searchParams.set("utm_source", `iframe@${window.location.hostname}`)
-src.searchParams.set("utm_term", window.location.pathname)
+src.searchParams.set("mtm_source", `iframe@${window.location.hostname}`)
+src.searchParams.set("mtm_keyword", window.location.pathname)
 
 if (script.dataset.withLogo !== undefined) {
   src.searchParams.set("data-with-logo", true)

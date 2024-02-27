@@ -1,11 +1,4 @@
-import { useStore } from "@/stores/index.js"
-
 export default {
-  setup() {
-    return {
-      store: useStore(),
-    }
-  },
   watch: {
     $route() {
       if (this.$route.hash) {
@@ -15,12 +8,5 @@ export default {
         }
       }
     },
-  },
-  created() {
-    this.$router.isReady().then(() => {
-      if (this.$route.query.debug === "parcours") {
-        this.store.setDebug(true)
-      }
-    })
   },
 }

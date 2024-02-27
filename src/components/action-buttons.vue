@@ -102,15 +102,11 @@ const error = computed(() => {
 })
 
 const localOnSubmit = (event) => {
-  console.log("localOnSubmit")
   event.preventDefault()
   props.onSubmit()
 }
 
-const comeBackLaterButtonClick = () => {
-  console.log("comeBackLaterButtonClick")
-  router.push({ name: "revenirPlusTard" })
-}
+const comeBackLaterButtonClick = () => router.push({ name: "revenirPlusTard" })
 
 const goBack = () => {
   tracker.trackEvent(

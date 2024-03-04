@@ -96,9 +96,13 @@ import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
+import simulation from "@/lib/simulation"
 
-onMounted(() => {
+onMounted(async () => {
   document.body.setAttribute("data-action-buttons", "true")
+  if (route.query.simulationId) {
+    await simulation.restoreLatestSimulation()
+  }
 })
 onUnmounted(() => {
   document.body.removeAttribute("data-action-buttons")
@@ -108,12 +112,14 @@ const store = useStore()
 const route = useRoute()
 const router = useRouter()
 const progress: ComputedRef<number> = useProgress()
-const activeJourney = store.getAllAnsweredSteps
-const propertyData = {
-  openFiscaParameters: store.openFiscaParameters,
-  simulation: store.simulation,
-  periods: store.dates,
-}
+const activeJourney = computed(() => store.getAllAnsweredSteps)
+const propertyData = computed(() => {
+  return {
+    openFiscaParameters: store.openFiscaParameters,
+    simulation: store.simulation,
+    periods: store.dates,
+  }
+})
 
 const showResultButton = computed(() => {
   return (
@@ -225,7 +231,7 @@ const myChapters = computed(() => {
 })
 
 function stepPerChapter(chapterName: string) {
-  return activeJourney.filter(
+  return activeJourney.value.filter(
     (step: StepStrict) => step.chapter === chapterName
   )
 }
@@ -233,7 +239,7 @@ function stepPerChapter(chapterName: string) {
 function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   const individu = step.entity === "individu" ? useIndividu(step.id) : undefined
 
-  const currentPropertyData = { ...propertyData, individu }
+  const currentPropertyData = { ...propertyData.value, individu }
   const property = getPropertyOfStep(step)
 
   if (property) {

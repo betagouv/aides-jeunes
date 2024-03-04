@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-is-mobile="handleIsMobile">
     <WarningMessage v-if="error" class="fr-mb-4w">{{ error }}</WarningMessage>
     <div class="aj-action-buttons fr-mt-2w">
       <ul
-        v-if="!isSmallMode"
+        v-if="!isMobile"
         class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
       >
         <li>
@@ -28,7 +28,7 @@
           </button>
         </li>
       </ul>
-      <span v-if="isSmallMode">
+      <span v-if="isMobile">
         <ul class="fr-btns-group fr-btns-group--center">
           <li>
             <button
@@ -84,11 +84,8 @@ const store = useStore()
 const route = useRoute()
 const router = useRouter()
 
-const isSmallMode = ref(window.innerWidth < 480)
-
-window.addEventListener("resize", () => {
-  isSmallMode.value = window.innerWidth < 480
-})
+const isMobile = ref(false)
+const handleIsMobile = (value) => (isMobile.value = value)
 
 onMounted(() => {
   document.body.setAttribute("data-action-buttons", "true")

@@ -18,6 +18,7 @@ import "@/styles/aides-jeunes.css"
 import AnalyticsDirective from "./directives/analytics.js"
 import MailDirective from "./directives/mail.js"
 import SelectOnClickDirective from "./directives/select-on-click.js"
+import ResponsiveDirective from "./directives/responsive.js"
 
 // @ts-ignore
 import { iframeResizerContentWindow } from "iframe-resizer"
@@ -42,6 +43,7 @@ const app = createApp({
 app.directive("analytics", AnalyticsDirective)
 app.directive("mail", MailDirective)
 app.directive("selectOnClick", SelectOnClickDirective)
+app.directive("is-mobile", ResponsiveDirective)
 
 if (process.env.NODE_ENV === "production") {
   Sentry.init({

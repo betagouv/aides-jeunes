@@ -305,15 +305,11 @@ router.beforeEach((to, from, next) => {
       to.matched.some((r) => r.name === "foyer" || r.name === "simulation") &&
       !to.path.endsWith("/date_naissance") &&
       typeof to.name === "string" &&
-      [
-        "redirect",
-        "recapitulatif",
-        "resultats",
-        "resultatsDetails",
-        "resultatsGroupeAides",
-        "resultatsLieuxGeneriques",
-        "benefitLieuInformations",
-      ].indexOf(to.name) === -1 &&
+      !(
+        to.name == "redirect" ||
+        to.name == "recapitulatif" ||
+        to.matched.some((r) => r.name === "resultatsWrapper")
+      ) &&
       !store.passSanityCheck &&
       to.query.debug === undefined
     ) {

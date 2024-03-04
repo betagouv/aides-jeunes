@@ -17,16 +17,16 @@
   --secondary-color-active: #322e5a;
 
   /* en savoir plus text */
-  --info-main-color: white;
+  --info-main-color: #322e5a;
 
   /* ? */
   --info-main-color-hover: lightgreen;
   --info-main-color-active: grey;
 
   /* en savoir plus background */
-  --info-secondary-color: #322e5a;
-  --info-secondary-color-hover: #2f2c55;
-  --info-secondary-color-active: #2f2c55;
+  --info-secondary-color: #dddced;
+  --info-secondary-color-hover: #dddced;
+  --info-secondary-color-active: #dddced;
 
   --border-radius: 0.1rem;
   --font-family: inherit;

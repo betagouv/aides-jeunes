@@ -21,9 +21,9 @@ export const useIframeStore = defineStore("iframe", {
   },
   actions: {
     save() {
-      const full = storageService.session.getItem("iframe")
+      const iframeCurrentState = storageService.session.getItem("iframe")
       storageService.session.setItem("iframe", {
-        ...full,
+        ...iframeCurrentState,
         ...{
           [getMode()]: {
             inIframe: this.inIframe,

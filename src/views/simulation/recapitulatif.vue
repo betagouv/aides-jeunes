@@ -1,4 +1,7 @@
 <template>
+  <LoadingModal v-if="fetching || updating">
+    <p>Récupération en cours…</p>
+  </LoadingModal>
   <div data-testid="recapitulatif">
     <div class="fr-mb-5w">
       <template
@@ -93,26 +96,22 @@ import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine } from "@lib/types/property.d.js"
 import { StepStrict } from "@lib/types/steps.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
+import { useResultsStore } from "@/stores/results.js"
 import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import simulation from "@/lib/simulation"
-
-onMounted(async () => {
-  document.body.setAttribute("data-action-buttons", "true")
-  if (route.query.simulationId) {
-    await simulation.restoreLatestSimulation()
-  }
-})
-onUnmounted(() => {
-  document.body.removeAttribute("data-action-buttons")
-})
+import LoadingModal from "@/components/loading-modal.vue"
+import Simulation from "@/lib/simulation.js"
 
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
+const resultsStore = useResultsStore()
+
+const fetching = computed(() => resultsStore.fetching)
+const updating = computed(() => resultsStore.updating)
 const progress: ComputedRef<number> = useProgress()
-const activeJourney = computed(() => store.getAllAnsweredSteps)
+const answeredSteps = computed(() => store.getAllAnsweredSteps)
 const propertyData = computed(() => {
   return {
     openFiscaParameters: store.openFiscaParameters,
@@ -126,6 +125,17 @@ const showResultButton = computed(() => {
     progress.value === 1 &&
     router.options.history.state.back !== "/simulation/resultats"
   )
+})
+
+onMounted(async () => {
+  if (answeredSteps.value.length === 0 || route.query.simulationId) {
+    await Simulation.restoreLatestSimulation()
+  }
+  document.body.setAttribute("data-action-buttons", "true")
+})
+
+onUnmounted(() => {
+  document.body.removeAttribute("data-action-buttons")
 })
 
 const addIndividuQuestions = (questions, individuLabel, data, path) => {
@@ -231,7 +241,7 @@ const myChapters = computed(() => {
 })
 
 function stepPerChapter(chapterName: string) {
-  return activeJourney.value.filter(
+  return answeredSteps.value.filter(
     (step: StepStrict) => step.chapter === chapterName
   )
 }

@@ -309,6 +309,7 @@ router.beforeEach((to, from, next) => {
       typeof to.name === "string" &&
       [
         "redirect",
+        "recapitulatif",
         "resultats",
         "resultatsDetails",
         "resultatsGroupeAides",

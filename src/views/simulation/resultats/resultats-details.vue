@@ -20,8 +20,6 @@ import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
 import Feedback from "@/components/feedback.vue"
 import StatisticsMixin from "@/mixins/statistics.js"
-import Simulation from "@/lib/simulation.js"
-import MockResults from "@/lib/mock-results.js"
 import { EventAction } from "@lib/enums/event.js"
 import { computed, onMounted } from "vue"
 import { useRoute } from "vue-router"
@@ -50,32 +48,25 @@ const ressourcesYearMinusTwoCaptured = computed(
 )
 
 onMounted(async () => {
-  if (MockResults.mockResultsNeeded()) {
-    MockResults.mock(route.params.benefitId)
-    return
-  } else if (!benefits.value) {
-    await Simulation.restoreLatestSimulation()
-  } else {
-    const benefitId = route.params.benefitId
+  const benefitId = route.params.benefitId
 
-    if (
-      ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees" &&
-      benefit.value &&
-      hasBafaInterestFlag(benefit.value) &&
-      hasBenefitsGroup.value === true
-    ) {
-      StatisticsMixin.methods.sendBenefitsStatistics(
-        benefits.value,
-        EventAction.ShowDetailsFromGroupPage,
-        benefitId.toString()
-      )
-    } else {
-      StatisticsMixin.methods.sendBenefitsStatistics(
-        benefits.value,
-        EventAction.ShowDetails,
-        benefitId.toString()
-      )
-    }
+  if (
+    ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees" &&
+    benefit.value &&
+    hasBafaInterestFlag(benefit.value) &&
+    hasBenefitsGroup.value === true
+  ) {
+    StatisticsMixin.methods.sendBenefitsStatistics(
+      benefits.value,
+      EventAction.ShowDetailsFromGroupPage,
+      benefitId.toString()
+    )
+  } else {
+    StatisticsMixin.methods.sendBenefitsStatistics(
+      benefits.value,
+      EventAction.ShowDetails,
+      benefitId.toString()
+    )
   }
 })
 </script>

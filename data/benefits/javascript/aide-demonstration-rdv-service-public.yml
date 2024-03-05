@@ -1,0 +1,16 @@
+label: aide de démonstration de la prise de rendez-vous téléphonique d'accompagnement
+institution: etat
+description:
+  Vous avez besoin d'aide pour comprendre votre résultat de simulation
+  et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone
+  par le Centre Communal d’Action Sociale de Beaumont-en-Verdunois.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "55039"
+type: bool
+periodicite: autre
+teleservice: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ
+link: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ
+top: -1

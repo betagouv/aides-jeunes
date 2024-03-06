@@ -205,7 +205,7 @@
     ]
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 16"
   },
   "license": "AGPL-3.0",
   "repository": {

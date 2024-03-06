@@ -1,6 +1,7 @@
 label: bourses pour les formations sanitaires et sociales
 institution: region_centre_val_de_loire
-description: Les bourses sur critères sociaux sont des aides financières accordées
+description:
+  Les bourses sur critères sociaux sont des aides financières accordées
   par la Région Centre-Val-de-Loire aux apprenants des formations sanitaires et sociales
   sous certaines conditions de ressources.
 prefix: les

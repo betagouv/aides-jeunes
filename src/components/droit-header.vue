@@ -7,10 +7,10 @@
     />
     <div class="aj-benefit-name">
       <h2 class="fr-text--lead" itemprop="name">{{
-        $filters.capitalize(droit.label)
+        capitalize(droit.label)
       }}</h2>
       <div class="aj-benefit-institution">{{
-        $filters.capitalize(droit.institution.label)
+        capitalize(droit.institution.label)
       }}</div>
     </div>
     <DroitEstime :droit="droit" :show-unexpected="showUnexpected" />
@@ -22,6 +22,7 @@ import type { PropType } from "vue"
 import DroitEstime from "./droit-estime.vue"
 import BenefitMixin from "@/mixins/benefit-image-mixin.js"
 import { StandardBenefit } from "@data/types/benefits"
+import { capitalize } from "@lib/utils.js"
 
 export default {
   name: "DroitHeader",
@@ -35,6 +36,11 @@ export default {
       type: Boolean,
       default: true,
     },
+  },
+  data() {
+    return {
+      capitalize,
+    }
   },
 }
 </script>

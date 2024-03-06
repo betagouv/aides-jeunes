@@ -64,11 +64,6 @@ if (navigator.cookieEnabled) {
   })
 }
 
-app.config.globalProperties.$filters = {
-  capitalize(value = "") {
-    return value.charAt(0).toUpperCase() + value.slice(1)
-  },
-}
 declare module "vue" {
   export interface ComponentCustomProperties {
     $theme: {
@@ -79,9 +74,6 @@ declare module "vue" {
         value: string
       }[]
       update(string): void
-    }
-    $filters: {
-      capitalize(string): string
     }
   }
 }

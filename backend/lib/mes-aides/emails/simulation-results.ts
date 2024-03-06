@@ -1,4 +1,5 @@
-import { assign, capitalize, map } from "lodash-es"
+import { assign, map } from "lodash-es"
+import { capitalize } from "../../../../lib/utils.js"
 
 import {
   formatDroitEstime,

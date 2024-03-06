@@ -87,7 +87,6 @@
     "nodemailer": "^6.9.3",
     "pinia": "^2.0.16",
     "tmp": "^0.2.1",
-    "ts-node": "^10.9.1",
     "validator": "^13.7.0",
     "vite": "^4.3.9",
     "vite-plugin-html": "^3.2.0",

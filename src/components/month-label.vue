@@ -1,4 +1,3 @@
-
 <script lang="ts" setup>
 import { useStore } from "@/stores/index.js"
 import { capitalize } from "@lib/utils.js"

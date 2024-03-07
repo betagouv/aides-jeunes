@@ -41,7 +41,7 @@ const config: Configuration = {
   openfiscaPublicURL:
     process.env.OPENFISCA_PUBLIC_ROOT_URL || "http://127.0.0.1:2000",
   openfiscaTracerURL:
-    process.env.OPENFISCA_TRACER_URL || "https://openfisca.github.io/tracer",
+    process.env.OPENFISCA_TRACER_URL || "http://127.0.0.1:3000",
   netlifyContributionURL:
     process.env.NETLIFY_CONTRIBUTION_URL ||
     "https://contribuer-aides-jeunes.netlify.app",

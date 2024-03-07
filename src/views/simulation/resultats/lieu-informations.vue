@@ -2,13 +2,13 @@
 import LieuInformations from "@/components/lieu-informations.vue"
 import BackButton from "@/components/buttons/back-button.vue"
 import { useLieux } from "@/composables/use-lieux.js"
-import { onMounted } from "vue"
+import { computed, onMounted } from "vue"
 
 const { benefit, currentLieu, updating } = useLieux()
 
-const fallback = benefit?.value?.id
-  ? `/simulation/resultats/${benefit.value.id}`
-  : null
+const fallback = computed(() =>
+  benefit.value?.id ? `/simulation/resultats/${benefit.value.id}` : null
+)
 
 onMounted(() => {
   updating.value = true

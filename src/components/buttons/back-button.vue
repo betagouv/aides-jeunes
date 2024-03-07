@@ -35,8 +35,19 @@ const goBack = () => {
     route.fullPath
   )
 
+  tracker.trackEvent(
+    EventCategory.Parcours,
+    EventAction.BoutonPrecedent,
+    window.history.state?.position === 0
+  )
+
   if (window.history.state?.position === 0) {
-    router.push(props.fallback)
+    if (!props.fallback) {
+      Sentry.captureMessage("No fallback route to go back")
+      router.push("/")
+    } else {
+      router.push(props.fallback)
+    }
   } else {
     router.go(-1)
   }

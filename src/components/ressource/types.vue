@@ -21,7 +21,7 @@
     >
       <legend class="fr-fieldset__legend fr-px-0">
         <span class="fr-text--lead fr-text--bold">
-          {{ $filters.capitalize(category.label) }}
+          {{ capitalize(category.label) }}
         </span>
       </legend>
       <div class="fr-fieldset__content">
@@ -55,6 +55,7 @@ import Ressource from "@lib/ressource.js"
 import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
+import { capitalize } from "@lib/utils.js"
 
 export default {
   name: "RessourceTypes",
@@ -68,6 +69,7 @@ export default {
   setup() {
     return {
       store: useStore(),
+      capitalize,
     }
   },
   data() {

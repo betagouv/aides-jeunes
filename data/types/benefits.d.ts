@@ -114,6 +114,7 @@ export interface StandardBenefit {
   title: string
   teleservicePrefill?: string
   showUnexpectedAmount?: boolean
+  groupLabel?: string
 }
 
 export interface BenefitGroup {

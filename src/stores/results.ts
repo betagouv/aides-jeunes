@@ -27,12 +27,15 @@ export const useResultsStore = defineStore("results", {
         const bafaGroup: BenefitGroup = {
           benefits: groups.bafa,
           id: "bafa-bafd-group",
-          label: "Aides BAFA et BAFD",
+          label: "aides BAFA et BAFD",
           logoPath: "/img/benefits/logo-bafa-bafd.png",
           description:
             "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
           redirectionPage: "bafa-bafd",
         }
+        groups.bafa.forEach((b) => {
+          b.groupLabel = bafaGroup.label
+        })
         return [...groups.other, bafaGroup]
       }
     },

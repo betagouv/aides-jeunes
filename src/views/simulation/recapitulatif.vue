@@ -1,7 +1,4 @@
 <template>
-  <LoadingModal v-if="fetching || updating">
-    <p>Récupération en cours…</p>
-  </LoadingModal>
   <div data-testid="recapitulatif">
     <div class="fr-mb-5w">
       <template
@@ -96,20 +93,14 @@ import { useRoute, useRouter } from "vue-router"
 import { RecapPropertyLine } from "@lib/types/property.d.js"
 import { StepStrict } from "@lib/types/steps.d.js"
 import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
-import { useResultsStore } from "@/stores/results.js"
 import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-import LoadingModal from "@/components/loading-modal.vue"
 import Simulation from "@/lib/simulation.js"
 
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
-const resultsStore = useResultsStore()
-
-const fetching = computed(() => resultsStore.fetching)
-const updating = computed(() => resultsStore.updating)
 const progress: ComputedRef<number> = useProgress()
 const answeredSteps = computed(() => store.getAllAnsweredSteps)
 const propertyData = computed(() => {
@@ -129,7 +120,7 @@ const showResultButton = computed(() => {
 
 onMounted(async () => {
   if (answeredSteps.value.length === 0 || route.query.simulationId) {
-    await Simulation.restoreLatestSimulation()
+    await Simulation.restoreLatestSimulationWithoutResultsComputing()
   }
   document.body.setAttribute("data-action-buttons", "true")
 })

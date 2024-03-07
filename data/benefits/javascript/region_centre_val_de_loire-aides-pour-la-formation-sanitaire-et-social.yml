@@ -1,14 +1,17 @@
 label: bourses pour les formations sanitaires et sociales
 institution: region_centre_val_de_loire
-description: La Région attribue des bourses d’études pour les personnes rentrant
-  en formation dans un institut régional agréé, soumises à conditions de
-  ressources.
+description:
+  Les bourses sur critères sociaux sont des aides financières accordées
+  par la Région Centre-Val-de-Loire aux apprenants des formations sanitaires et sociales
+  sous certaines conditions de ressources.
 prefix: les
 conditions_generales:
   - type: regions
     values:
       - "24"
   - type: formation_sanitaire_social
+conditions:
+  - Déposer votre demande de bourse sur le site messervices.etudiant.gouv.fr lors de la création du dossier social étudiant.
 profils:
   - type: lyceen
     conditions: []
@@ -22,6 +25,5 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 5679
-link: https://www.aress.regioncentre-valdeloire.fr/basscep/#
-teleservice: https://www.aress.regioncentre-valdeloire.fr/basscep/#
-instructions: ""
+link: https://www.crous-orleans-tours.fr/bourses-et-aides-financieres/faire-une-demande-de-bourse/les-bourses-detudes-regionales-pour-les-apprenants-des-formations-sanitaires-et-sociales/
+teleservice: https://www.messervices.etudiant.gouv.fr/envole/

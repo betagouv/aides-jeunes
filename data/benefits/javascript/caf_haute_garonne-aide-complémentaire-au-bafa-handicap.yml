@@ -31,5 +31,6 @@ unit: €
 periodicite: autre
 legend: maximum
 montant: 230
-link: https://fr.calameo.com/read/003857823acdee8c8d857?page=14
-teleservice: https://connect.caf.fr/creationcompteappli/dist/?forceReload=20211220&contexteAppel=caffr&urlredirect=%2Fredirect%2Fs%2FRedirect%3Fpage%3DmonCompteFormulaires%26prestaDemandee%3DDBAFA&contexteDemandePrestation=true#/pageintermediaire
+link: https://www.caf.fr/allocataires/caf-de-la-haute-garonne/actualites-departementales/devenir-animateur-vous-tente-la-caf-vous-aide-financer-votre-bafa
+form: https://www.calameo.com/read/003857823386e1cb70e9e
+private: true

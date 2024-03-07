@@ -54,7 +54,7 @@ export const APA_BY_CODE: {
   departement_gironde: {
     label: "du département de Gironde",
     link: "https://www.gironde.fr/handicap-grand-age/aides-et-prestations-apa-pch-et-cmi#apa",
-    form: "https://www.gironde.fr/sites/default/files/2017-04/demande_apa_web_0.pdf",
+    form: "https://www.gironde.fr/sites/default/files/2024-01/Formulaire_demande_autonomie_cerfa_16301-01.pdf",
   },
   departement_herault: {
     institution: "departement",

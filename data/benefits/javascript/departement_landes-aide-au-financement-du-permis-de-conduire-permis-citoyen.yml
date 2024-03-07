@@ -26,4 +26,4 @@ periodicite: ponctuelle
 legend: maximum
 montant: 450
 link: https://www.landes.fr/detail-aide?id_aide=161
-teleservice: https://mesdemarches.landes.fr/prod-web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
+teleservice: https://messervices.landes.fr/

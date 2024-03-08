@@ -32,13 +32,9 @@ const goBack = () => {
   tracker.trackEvent(
     EventCategory.Parcours,
     EventAction.BoutonPrecedent,
-    route.fullPath
-  )
-
-  tracker.trackEvent(
-    EventCategory.Parcours,
-    EventAction.BoutonPrecedent,
-    window.history.state?.position === 0
+    `${window.history.state?.position === 0 ? "Nouvel onglet - " : ""}${
+      route.fullPath
+    }`
   )
 
   if (window.history.state?.position === 0) {

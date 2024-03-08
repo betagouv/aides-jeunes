@@ -1,6 +1,7 @@
 import BordeauxMetropole from "@/styles/themes/bordeaux-metropole.css?inline"
 import LightBlue from "@/styles/themes/light-blue.css?inline"
 import DefaultDsfr from "@/styles/themes/default-dsfr.css?inline"
+import Soliguide from "@/styles/themes/soliguide.css?inline"
 import * as Sentry from "@sentry/vue"
 import { Theme, ThemeLabel } from "@/../lib/enums/themes.js"
 
@@ -19,6 +20,11 @@ const options = [
     title: ThemeLabel.BordeauxMetropole,
     label: Theme.BordeauxMetropole,
     value: BordeauxMetropole,
+  },
+  {
+    title: ThemeLabel.Soliguide,
+    label: Theme.Soliguide,
+    value: Soliguide,
   },
 ]
 

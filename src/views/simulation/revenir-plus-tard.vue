@@ -5,11 +5,24 @@ import StatisticsMixin from "@/mixins/statistics.js"
 import { useRoute } from "vue-router"
 import { computed, ref } from "vue"
 import router from "@/router"
+import axios, { AxiosResponse } from "axios"
+import * as Sentry from "@sentry/vue"
 
 const store = useStore()
 const route = useRoute()
 const simulationId = computed(() => store.simulationId)
 const saved = ref(false)
+const token = ref("")
+const followupId = ref("")
+
+const postFollowup = async () => {
+  const uri = `/api/simulation/${simulationId.value}/followup`
+  const payload = {
+    surveyOptin: false,
+  }
+  return await axios.post(uri, payload)
+}
+
 const saveSimulationAndShowLink = async () => {
   try {
     StatisticsMixin.methods.sendEventToMatomo(
@@ -19,18 +32,20 @@ const saveSimulationAndShowLink = async () => {
     )
     store.setSaveSituationError("")
     await store.save()
+    const res: AxiosResponse = await postFollowup()
+    if (res.data.accessToken) {
+      followupId.value = res.data.id
+      token.value = res.data.accessToken
+    }
     saved.value = true
   } catch (error: any) {
     store.setSaveSituationError(error.response?.data || error)
-    StatisticsMixin.methods.sendEventToMatomo(
-      EventCategory.General,
-      EventAction.ErreurSauvegardeSimulation,
-      route.path
-    )
+    saved.value = false
+    Sentry.captureException(error)
   }
 }
 const temporarySimulationAccessUrl = computed(() => {
-  return `${process.env.VITE_BASE_URL}/simulation/recapitulatif?simulationId=${simulationId.value}`
+  return `${process.env.VITE_BASE_URL}/followups/recap/${followupId.value}?token=${token.value}`
 })
 
 const copyTemporarySimulationAccessUrlToClipboard = async () => {

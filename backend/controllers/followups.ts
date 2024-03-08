@@ -45,15 +45,21 @@ export function resultRedirect(req: Request, res: Response) {
   res.redirect(req.simulation!.returnPath)
 }
 
+export function recapRedirect(req: Request, res: Response) {
+  simulationController.attachAccessCookie(req, res)
+  res.redirect(req.simulation!.recapPath)
+}
+
 export async function persist(req: Request, res: Response) {
-  if (!req.body.email?.length && !req.body.phone?.length) {
+  const { surveyOptin, email, phone } = req.body
+
+  if (surveyOptin && !email?.length && !phone?.length) {
     return res.status(400).send({ result: "Missing Email or Phone" })
   }
 
   const simulation = req.simulation
 
   try {
-    const { surveyOptin, email, phone } = req.body
     const followup = (await FollowupFactory.create(
       simulation,
       surveyOptin,
@@ -75,7 +81,10 @@ export async function persist(req: Request, res: Response) {
         return res.status(422).send("Unsupported phone number format")
       }
     }
-    return res.send({ result: "OK" })
+    return res.send({
+      accessToken: followup.accessToken,
+      id: followup._id,
+    })
   } catch (error: any) {
     Sentry.captureException(error)
     if (error.name === "ValidationError") {

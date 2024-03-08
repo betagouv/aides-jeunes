@@ -220,14 +220,6 @@ const router = createRouter({
       component: () => import("./views/redirection.vue"),
     },
     {
-      path: "/stats",
-      name: "stats",
-      component: () => import("./views/stats.vue"),
-      meta: {
-        headTitle: `Statistiques du simulateur d'aides ${context.name}`,
-      },
-    },
-    {
       path: "/aides",
       name: "liste-aides",
       component: () => import("./views/liste-aides.vue"),

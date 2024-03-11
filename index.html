@@ -71,6 +71,9 @@
 
     <script>
       ;(function (d, t) {
+        if (window.self !== window.top) {
+          return // Prevents Chatwoot display inside the iframe
+        }
         var BASE_URL = "https://chatwoot.incubateur.net"
         var g = d.createElement(t),
           s = d.getElementsByTagName(t)[0]

@@ -23,11 +23,13 @@ voluntary_conditions:
 profils: []
 conditions:
   - Résider dans le Pas-de-Calais.
-  - Avoir obtenu votre code de la route depuis moins de 3 mois.
+  - Avoir obtenu votre code de la route depuis moins de 3 mois au moment de la demande.
+  - Envoyer le formulaire de demande dûment complété et fournir les pièces demandées au plus tard 15 jours avant le 1er jour de bénévolat.
+  - Réaliser les 35 heures de bénévolat dans les 3 mois suivant l'acceptation du dossier par le Département du Pas-de-Calais.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: autre
 montant: 400
 link: https://www.jeunesdu62.fr/Ma-mobilite/Mesure-permis-engagement-citoyen
-instructions: https://www.jeunesdu62.fr/Ma-mobilite/Mesure-permis-engagement-citoyen
+teleservice: https://www.jeunesdu62.fr/Ma-mobilite/Mesure-permis-engagement-citoyen/Mesure-permis-engagement-citoyen-formulaire-de-demande

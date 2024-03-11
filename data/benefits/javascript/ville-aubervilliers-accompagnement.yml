@@ -3,7 +3,7 @@ institution: ville_aubervilliers
 description:
   Vous avez besoin d'aide pour comprendre votre résultat de simulation
   et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone
-  par un membre de notre équipe.
+  par une médiatrice sociale numérique du Centre Communal d'Action Sociale d'Aubervilliers.
 prefix: le
 conditions_generales:
   - type: communes
@@ -11,6 +11,6 @@ conditions_generales:
       - "93001"
 type: bool
 periodicite: autre
-teleservice: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ
-link: https://www.rdv-aide-numerique.fr/?address=1&departement=AJ
+teleservice: https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers
+link: https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers
 top: -1

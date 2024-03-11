@@ -3,7 +3,6 @@
 import dayjs from "dayjs"
 
 import { Benefit } from "../../types/benefits.js"
-import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
 import { Situation } from "../../../lib/types/situations.js"
 import { Activite } from "../../../lib/enums/activite.js"
 import { StatutOccupationLogement } from "../../../lib/enums/logement.js"
@@ -98,10 +97,6 @@ export const additionalBenefitAttributes = {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% / an ${b.legend}`
     },
-    legend: (parameters: OpenfiscaParameters) =>
-      `au lieu de ${
-        parameters["taxation_capital.epargne.livret_a.taux"] * 100
-      }%`,
   },
   occitanie_carte_transport_scolaire_lio,
 }

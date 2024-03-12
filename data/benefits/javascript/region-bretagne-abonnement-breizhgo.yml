@@ -18,6 +18,4 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
-teleservice: https://www.ter.sncf.com/bretagne/abonnements/tous-les-abonnements/abonnements-ter-tgv-reseaux-urbains
-instructions: ""
-private: true
+instructions: https://www.breizhgo.bzh/faq/question/comment-souscrire-un-abonnement-ter-breizhgo

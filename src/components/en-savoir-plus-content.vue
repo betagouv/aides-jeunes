@@ -2,7 +2,7 @@
   <div>
     <h2 class="fr-text--lead">En savoir plus</h2>
     <p>{{ text }}</p>
-    <BackButton size="small"> Retour </BackButton>
+    <BackButton size="small">Retour</BackButton>
   </div>
 </template>
 

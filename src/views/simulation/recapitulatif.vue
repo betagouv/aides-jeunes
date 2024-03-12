@@ -63,7 +63,7 @@
     <div class="aj-action-buttons">
       <ul class="fr-btns-group fr-btns-group--inline">
         <li>
-          <BackButton class="fr-btn--icon-center"></BackButton>
+          <BackButton class="fr-btn--icon-center" />
         </li>
         <li v-if="showResultButton">
           <router-link class="fr-btn" to="/simulation/resultats"

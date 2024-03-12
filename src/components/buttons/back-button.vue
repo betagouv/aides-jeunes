@@ -14,6 +14,7 @@ import { defineProps } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import tracker from "@/plugins/tracker.js"
+import * as Sentry from "@sentry/vue"
 
 const props = defineProps({
   size: {

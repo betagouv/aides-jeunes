@@ -96,30 +96,37 @@ import { computed, ComputedRef, onMounted, onUnmounted } from "vue"
 import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
-
-onMounted(() => {
-  document.body.setAttribute("data-action-buttons", "true")
-})
-onUnmounted(() => {
-  document.body.removeAttribute("data-action-buttons")
-})
+import Simulation from "@/lib/simulation.js"
 
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
 const progress: ComputedRef<number> = useProgress()
-const activeJourney = store.getAllAnsweredSteps
-const propertyData = {
-  openFiscaParameters: store.openFiscaParameters,
-  simulation: store.simulation,
-  periods: store.dates,
-}
+const answeredSteps = computed(() => store.getAllAnsweredSteps)
+const propertyData = computed(() => {
+  return {
+    openFiscaParameters: store.openFiscaParameters,
+    simulation: store.simulation,
+    periods: store.dates,
+  }
+})
 
 const showResultButton = computed(() => {
   return (
     progress.value === 1 &&
     router.options.history.state.back !== "/simulation/resultats"
   )
+})
+
+onMounted(async () => {
+  if (answeredSteps.value.length === 0 || route.query.simulationId) {
+    await Simulation.restoreLatestSimulationWithoutResultsComputing()
+  }
+  document.body.setAttribute("data-action-buttons", "true")
+})
+
+onUnmounted(() => {
+  document.body.removeAttribute("data-action-buttons")
 })
 
 const addIndividuQuestions = (questions, individuLabel, data, path) => {
@@ -225,7 +232,7 @@ const myChapters = computed(() => {
 })
 
 function stepPerChapter(chapterName: string) {
-  return activeJourney.filter(
+  return answeredSteps.value.filter(
     (step: StepStrict) => step.chapter === chapterName
   )
 }
@@ -233,7 +240,7 @@ function stepPerChapter(chapterName: string) {
 function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   const individu = step.entity === "individu" ? useIndividu(step.id) : undefined
 
-  const currentPropertyData = { ...propertyData, individu }
+  const currentPropertyData = { ...propertyData.value, individu }
   const property = getPropertyOfStep(step)
 
   if (property) {

@@ -13,7 +13,8 @@ const getLatestId = (): string | undefined => {
       return accum
     }, {})?.lastestSimulation
 }
-const restoreLatestSimulation = async () => {
+
+const restoreLatestSimulation = async (resultsComputing = true) => {
   const lastestSimulationId = Simulation.getLatestId()
   const store = useStore()
   const router = useRouter()
@@ -37,12 +38,16 @@ const restoreLatestSimulation = async () => {
 
   if (store.simulationAnonymized) {
     await store.retrieveResultsAlreadyComputed()
-  } else {
+  } else if (resultsComputing) {
     store.computeResults()
   }
 }
 
+const restoreLatestSimulationWithoutResultsComputing = async () =>
+  restoreLatestSimulation(false)
+
 export default {
   getLatestId,
   restoreLatestSimulation,
+  restoreLatestSimulationWithoutResultsComputing,
 }

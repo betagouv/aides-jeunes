@@ -157,7 +157,7 @@ const router = createRouter({
               name: "resultats",
               path: "",
               component: () =>
-                import("./views/simulation/resultats/resultats-index.vue"),
+                import("./views/simulation/resultats/resultats.vue"),
             },
             {
               name: "resultatsDetails",

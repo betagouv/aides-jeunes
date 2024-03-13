@@ -43,8 +43,8 @@ while (node) {
   } else if (node.tagName === "HTML") {
     const children = node.childNodes
     for (var i = 0; i < children.length; i++) {
-      if (children.tagName === "BODY") {
-        children.appendChild(iframe)
+      if (children[i].tagName === "BODY") {
+        children[i].appendChild(iframe)
         break
       }
     }

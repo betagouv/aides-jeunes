@@ -35,4 +35,22 @@ for (const key in iframeAttributes) {
 
 iframeResize({}, iframe)
 
-script.before(iframe)
+let node = script.parentElement
+while (node) {
+  if (node.tagName === "BODY") {
+    script.before(iframe)
+    break
+  } else if (node.tagName === "HTML") {
+    const children = node.childNodes
+    for (var i = 0; i < children.length; i++) {
+      if (children.tagName === "BODY") {
+        children.appendChild(iframe)
+        break
+      }
+    }
+    break
+  }
+  node = node.parentElement
+}
+
+console.error("iframe impossible to insert")

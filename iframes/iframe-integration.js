@@ -34,21 +34,15 @@ for (const key in iframeAttributes) {
 }
 
 iframeResize({}, iframe)
-
-let node = script.parentElement
-while (node) {
-  if (node.tagName === "BODY") {
-    script.before(iframe)
-    break
-  } else if (node.tagName === "HTML") {
-    const children = node.childNodes
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].tagName === "BODY") {
-        children[i].appendChild(iframe)
-        break
-      }
+if (script.parentElement.tagName === "HEAD") {
+  const htmlDocument = script.parentElement.parentElement
+  const children = htmlDocument.childNodes
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].tagName === "BODY") {
+      children[i].appendChild(iframe)
+      break
     }
-    break
   }
-  node = node.parentElement
+} else {
+  script.before(iframe)
 }

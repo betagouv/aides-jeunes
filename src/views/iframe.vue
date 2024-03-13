@@ -20,10 +20,19 @@ const setIframeContainer = () => {
   externalScript.setAttribute("src", scriptPath)
   options.value.forEach((option) => externalScript.setAttribute(option, ""))
   externalScript.setAttribute("data-theme", selectedTheme.value)
+
+  const newHead = document.createElement("head")
+  newHead.appendChild(externalScript)
+
+  const newHtml = document.createElement("html")
+  newHtml.appendChild(newHead)
+
+  const newBody = document.createElement("body")
+  newHtml.appendChild(newBody)
   const dest = document.getElementById("dest")
   if (dest) {
     dest.innerHTML = ""
-    dest.appendChild(externalScript)
+    dest.appendChild(newHtml)
   }
 }
 

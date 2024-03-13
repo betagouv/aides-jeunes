@@ -52,5 +52,3 @@ while (node) {
   }
   node = node.parentElement
 }
-
-console.error("iframe impossible to insert")

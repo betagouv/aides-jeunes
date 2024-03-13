@@ -34,6 +34,7 @@ for (const key in iframeAttributes) {
 }
 
 iframeResize({}, iframe)
+
 if (script.parentElement.tagName === "HEAD") {
   const htmlDocument = script.parentElement.parentElement
   const children = htmlDocument.childNodes

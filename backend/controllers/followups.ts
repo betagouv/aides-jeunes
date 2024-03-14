@@ -47,7 +47,7 @@ export function resultRedirect(req: Request, res: Response) {
 
 export function recapRedirect(req: Request, res: Response) {
   simulationController.attachAccessCookie(req, res)
-  res.redirect(req.simulation!.recapPath)
+  res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
 }
 
 export async function persist(req: Request, res: Response) {

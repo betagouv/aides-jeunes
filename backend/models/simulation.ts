@@ -80,10 +80,6 @@ SimulationSchema.virtual("returnPath").get(function () {
   return `/simulation/resultats?simulationId=${this._id}`
 })
 
-SimulationSchema.virtual("recapPath").get(function () {
-  return `/simulation/recapitulatif?simulationId=${this._id}`
-})
-
 SimulationSchema.method("isAccessible", function (keychain) {
   return (
     [

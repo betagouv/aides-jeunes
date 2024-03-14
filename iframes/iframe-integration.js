@@ -35,4 +35,15 @@ for (const key in iframeAttributes) {
 
 iframeResize({}, iframe)
 
-script.before(iframe)
+if (script.parentElement.tagName === "HEAD") {
+  const htmlDocument = script.parentElement.parentElement
+  const children = htmlDocument.childNodes
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].tagName === "BODY") {
+      children[i].appendChild(iframe)
+      break
+    }
+  }
+} else {
+  script.before(iframe)
+}

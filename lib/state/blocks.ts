@@ -343,9 +343,7 @@ function kidBlock(situation) {
         : []),
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
-            return {
-              steps: [individuBlockFactory(e.id, ChapterName.Foyer)],
-            }
+            return individuBlockFactory(e.id, ChapterName.Foyer)
           })
         : []),
       ...(childStepsComplete(situation)

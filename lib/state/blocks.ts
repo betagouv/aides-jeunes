@@ -555,15 +555,14 @@ function resourceBlocks(situation) {
           }),
         ]
       : []),
-    {
-      steps: situation.enfants
-        ? situation.enfants.map((e) => {
-            return e._hasRessources
-              ? individuResourceBlock(e.id)
-              : { steps: [] }
-          })
-        : [],
-    },
+    ...(situation.enfants
+      ? situation.enfants.map((e) => {
+          return {
+            isActive: () => e._hasRessources,
+            steps: [individuResourceBlock(e.id)],
+          }
+        })
+      : []),
   ]
 }
 

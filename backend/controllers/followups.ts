@@ -82,7 +82,7 @@ export async function persist(req: Request, res: Response) {
       }
     }
     if (preventNotify) {
-      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/followups/recap/${followup._id}?token=${followup.accessToken}`
+      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/followups/recap/${followup.accessToken}`
       res.send({ simulationRecapUrl })
     } else {
       res.send({ result: "OK" })
@@ -168,6 +168,9 @@ export async function followupByAccessToken(
   })
   if (!followup) return res.sendStatus(404)
   req.followup = followup
+  if (!req.simulation) {
+    req.simulation = followup.simulation
+  }
   next()
 }
 

@@ -529,15 +529,27 @@ function resourceBlocks(situation) {
           id: individuId,
         }),
       ].concat(
-        Ressource.getIndividuRessourceCategories(individu, situation).map(
-          (category) =>
-            new ComplexStepGenerator({
-              route: `individu/${individuId}/ressources/montants/${category}`,
-              entity: "individu",
-              variable: category,
-              id: individuId,
-            })
-        )
+        Ressource.ressourceCategories.map((category) => {
+          return {
+            isActive: (situation) => {
+              return Object.keys(
+                Ressource.getIndividuRessourceTypesByCategory(
+                  individu,
+                  category.id,
+                  situation
+                )
+              ).length
+            },
+            steps: [
+              new ComplexStepGenerator({
+                route: `individu/${individuId}/ressources/montants/${category.id}`,
+                entity: "individu",
+                variable: category.id,
+                id: individuId,
+              }),
+            ],
+          }
+        })
       ),
     }
   }

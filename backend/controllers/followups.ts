@@ -51,9 +51,9 @@ export function recapRedirect(req: Request, res: Response) {
 }
 
 export async function persist(req: Request, res: Response) {
-  const { surveyOptin, email, phone } = req.body
+  const { preventNotify, surveyOptin, email, phone } = req.body
 
-  if (surveyOptin && !email?.length && !phone?.length) {
+  if (!preventNotify && !email?.length && !phone?.length) {
     return res.status(400).send({ result: "Missing Email or Phone" })
   }
 
@@ -81,10 +81,12 @@ export async function persist(req: Request, res: Response) {
         return res.status(422).send("Unsupported phone number format")
       }
     }
-    return res.send({
-      accessToken: followup.accessToken,
-      id: followup._id,
-    })
+    if (preventNotify) {
+      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/followups/recap/${followup._id}?token=${followup.accessToken}`
+      res.send({ simulationRecapUrl })
+    } else {
+      res.send({ result: "OK" })
+    }
   } catch (error: any) {
     Sentry.captureException(error)
     if (error.name === "ValidationError") {

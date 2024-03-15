@@ -28,7 +28,7 @@ export enum EventAction {
   ClickLienAccompagnement = "click-accompaniment-link",
   Close = "close",
   CopyLinkBenefit = "copy-link-benefit",
-  CopyTemporarySimulationAccessUrlToClipboard = "copy-temporary-simulation-access-url-to-clipboard",
+  CopyTemporarySimulationRecapUrlToClipboard = "copy-temporary-simulation-recap-url-to-clipboard",
   CodePostalIntrouvable = "Depcom introuvable",
   Contact = "Contact",
   Email = "email",

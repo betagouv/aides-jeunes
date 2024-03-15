@@ -12,13 +12,13 @@ const store = useStore()
 const route = useRoute()
 const simulationId = computed(() => store.simulationId)
 const saved = ref(false)
-const token = ref("")
-const followupId = ref("")
+const simulationRecapUrl = ref("")
 
-const postFollowup = async () => {
+const postRecapFollowup = async () => {
   const uri = `/api/simulation/${simulationId.value}/followup`
   const payload = {
     surveyOptin: false,
+    preventNotify: true,
   }
   return await axios.post(uri, payload)
 }
@@ -32,10 +32,9 @@ const saveSimulationAndShowLink = async () => {
     )
     store.setSaveSituationError("")
     await store.save()
-    const res: AxiosResponse = await postFollowup()
-    if (res.data.accessToken) {
-      followupId.value = res.data.id
-      token.value = res.data.accessToken
+    const res: AxiosResponse = await postRecapFollowup()
+    if (res.data.simulationRecapUrl) {
+      simulationRecapUrl.value = res.data.simulationRecapUrl
     }
     saved.value = true
   } catch (error: any) {
@@ -44,20 +43,15 @@ const saveSimulationAndShowLink = async () => {
     Sentry.captureException(error)
   }
 }
-const temporarySimulationAccessUrl = computed(() => {
-  return `${process.env.VITE_BASE_URL}/followups/recap/${followupId.value}?token=${token.value}`
-})
 
-const copyTemporarySimulationAccessUrlToClipboard = async () => {
+const copyTemporarySimulationRecapUrlToClipboard = async () => {
   StatisticsMixin.methods.sendEventToMatomo(
     EventCategory.General,
-    EventAction.CopyTemporarySimulationAccessUrlToClipboard,
+    EventAction.CopyTemporarySimulationRecapUrlToClipboard,
     route.path
   )
-  await navigator.clipboard.writeText(temporarySimulationAccessUrl.value)
-  alert(
-    "Lien copié dans le presse papier : " + temporarySimulationAccessUrl.value
-  )
+  await navigator.clipboard.writeText(simulationRecapUrl.value)
+  alert("Lien copié dans le presse papier : " + simulationRecapUrl.value)
 }
 const continueSimulation = () => {
   router.go(-1)
@@ -83,10 +77,10 @@ const continueSimulation = () => {
         <p
           >Ouvrir le récapitulatif dans un nouvel onglet :
           <a
-            :href="temporarySimulationAccessUrl"
+            :href="simulationRecapUrl"
             target="_blank"
             title="Accéder au récapitulatif de la simulation - Nouvelle fenêtre"
-            >{{ temporarySimulationAccessUrl }}
+            >{{ simulationRecapUrl }}
           </a>
         </p>
       </div>
@@ -115,7 +109,7 @@ const continueSimulation = () => {
             v-if="simulationId && saved"
             class="fr-btn share__link fr-share__link--copy"
             title="Copier le lien d'accès à la simulation dans le presse-papier"
-            @click="copyTemporarySimulationAccessUrlToClipboard()"
+            @click="copyTemporarySimulationRecapUrlToClipboard()"
             >Copier le lien dans le presse-papier
           </button>
         </li>

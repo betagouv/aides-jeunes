@@ -543,30 +543,28 @@ function resourceBlocks(situation) {
       ),
     }
   }
-  return {
-    steps: [
-      individuResourceBlock("demandeur"),
-      ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants?.length
-        ? [
-            new StepGenerator({
-              entity: "individu",
-              variable: "_hasRessources",
-              id: "enfants",
-            }),
-          ]
-        : []),
-      {
-        steps: situation.enfants
-          ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
-                : { steps: [] }
-            })
-          : [],
-      },
-    ],
-  }
+  return [
+    individuResourceBlock("demandeur"),
+    ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
+    ...(situation.enfants?.length
+      ? [
+          new StepGenerator({
+            entity: "individu",
+            variable: "_hasRessources",
+            id: "enfants",
+          }),
+        ]
+      : []),
+    {
+      steps: situation.enfants
+        ? situation.enfants.map((e) => {
+            return e._hasRessources
+              ? individuResourceBlock(e.id)
+              : { steps: [] }
+          })
+        : [],
+    },
+  ]
 }
 
 export function generateBlocks(situation): Block[] {
@@ -633,7 +631,7 @@ export function generateBlocks(situation): Block[] {
       ],
     },
     housingBlock(),
-    resourceBlocks(situation),
+    ...resourceBlocks(situation),
     {
       isActive: (situation) => {
         const parents_ok =

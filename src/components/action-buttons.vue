@@ -1,34 +1,35 @@
 <template>
-  <div v-is-mobile="handleIsMobile">
+  <div>
     <WarningMessage v-if="error" class="fr-mb-4w">{{ error }}</WarningMessage>
     <div class="aj-action-buttons fr-mt-2w">
-      <ul
-        v-if="!isMobile"
-        class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
-      >
-        <li>
-          <button
-            class="fr-btn"
-            type="submit"
-            :class="{ 'fr-btn-disabled': disableSubmit }"
-            @click="localOnSubmit($event)"
-          >
-            Suivant
-          </button>
-        </li>
-        <li>
-          <slot />
-          <BackButton @click="goBack" />
-          <button
-            class="fr-btn fr-btn--secondary"
-            type="button"
-            @click="comeBackLaterButtonClick"
-          >
-            Revenir plus tard ?
-          </button>
-        </li>
-      </ul>
-      <span v-if="isMobile">
+      <span id="action-buttons-desktop">
+        <ul
+          class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
+        >
+          <li>
+            <button
+              class="fr-btn"
+              type="submit"
+              :class="{ 'fr-btn-disabled': disableSubmit }"
+              @click="localOnSubmit($event)"
+            >
+              Suivant
+            </button>
+          </li>
+          <li>
+            <slot />
+            <BackButton @click="goBack" />
+            <button
+              class="fr-btn fr-btn--secondary"
+              type="button"
+              @click="comeBackLaterButtonClick"
+            >
+              Revenir plus tard ?
+            </button>
+          </li>
+        </ul>
+      </span>
+      <span id="action-buttons-mobile">
         <ul class="fr-btns-group fr-btns-group--center">
           <li>
             <button
@@ -65,7 +66,7 @@
 
 <script setup lang="ts">
 import BackButton from "@/components/buttons/back-button.vue"
-import { computed, defineProps, onMounted, onUnmounted, ref } from "vue"
+import { computed, defineProps, onMounted, onUnmounted } from "vue"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
 import WarningMessage from "@/components/warning-message.vue"
@@ -83,9 +84,6 @@ const props = defineProps({
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
-
-const isMobile = ref(false)
-const handleIsMobile = (value) => (isMobile.value = value)
 
 onMounted(() => {
   document.body.setAttribute("data-action-buttons", "true")

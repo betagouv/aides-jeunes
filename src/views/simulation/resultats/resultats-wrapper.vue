@@ -49,6 +49,7 @@ onMounted(async () => {
       store.computeResults()
     }
   }
+  resultsStore.setLoading(false)
 })
 
 onBeforeUnmount(() => {

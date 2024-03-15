@@ -18,7 +18,7 @@ export const ressourceCategories: ResourceCategory[] = [
   },
   {
     id: "allocations",
-    label: "Allocation(s)",
+    label: "Allocations",
   },
   {
     id: "indemnites",
@@ -26,7 +26,7 @@ export const ressourceCategories: ResourceCategory[] = [
   },
   {
     id: "pensions",
-    label: "Pension(s)",
+    label: "Pensions & rentes",
   },
   {
     id: "patrimoine",
@@ -333,6 +333,16 @@ export const ressourceTypes: Resource[] = [
     hint: "Entrez le montant avant la retenue à la source",
     isRelevant(situation: Situation, individu: Individu) {
       return individu.activite === Activite.Retraite
+    },
+  },
+  {
+    id: "retraite_nette",
+    label: "Rente(s) d'éducation, d'orphelin…",
+    category: "pensions",
+    prefix: "une",
+    hint: "Entrez le montant avant la retenue à la source",
+    isRelevant(situation: Situation, individu: Individu) {
+      return individu.activite !== Activite.Retraite
     },
   },
   {

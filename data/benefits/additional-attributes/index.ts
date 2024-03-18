@@ -101,7 +101,7 @@ export const additionalBenefitAttributes = {
     legend: (parameters: OpenfiscaParameters) =>
       `au lieu de ${
         parameters["taxation_capital.epargne.livret_a.taux"] * 100
-      }%`,
+      }% (livret A)`,
   },
   occitanie_carte_transport_scolaire_lio,
 }

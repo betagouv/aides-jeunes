@@ -7,6 +7,8 @@ import { Situation } from "../../lib/types/situations.d.js"
 import { BenefitCatalog } from "../../data/types/generator.d.js"
 import { Resultats } from "@lib/types/store.js"
 import { datesGenerator } from "../dates.js"
+import { getBenefitLegend } from "./details.js"
+import { parametersList } from "../../backend/lib/openfisca/parameters.js"
 
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
@@ -130,6 +132,8 @@ export function computeAides(
             ...customization.institution,
           }
         : benefit.institution
+
+      benefit.legend = getBenefitLegend(benefit, parametersList)
 
       result.droitsEligibles!.push(
         // @ts-ignore

@@ -343,9 +343,7 @@ function kidBlock(situation) {
         : []),
       ...(situation.enfants?.length
         ? situation.enfants.map((e) => {
-            return {
-              steps: [individuBlockFactory(e.id, ChapterName.Foyer)],
-            }
+            return individuBlockFactory(e.id, ChapterName.Foyer)
           })
         : []),
       ...(childStepsComplete(situation)
@@ -543,30 +541,27 @@ function resourceBlocks(situation) {
       ),
     }
   }
-  return {
-    steps: [
-      individuResourceBlock("demandeur"),
-      ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
-      ...(situation.enfants?.length
-        ? [
-            new StepGenerator({
-              entity: "individu",
-              variable: "_hasRessources",
-              id: "enfants",
-            }),
-          ]
-        : []),
-      {
-        steps: situation.enfants
-          ? situation.enfants.map((e) => {
-              return e._hasRessources
-                ? individuResourceBlock(e.id)
-                : { steps: [] }
-            })
-          : [],
-      },
-    ],
-  }
+  return [
+    individuResourceBlock("demandeur"),
+    ...(situation.conjoint ? [individuResourceBlock("conjoint")] : []),
+    ...(situation.enfants?.length
+      ? [
+          new StepGenerator({
+            entity: "individu",
+            variable: "_hasRessources",
+            id: "enfants",
+          }),
+        ]
+      : []),
+    ...(situation.enfants
+      ? situation.enfants.map((e) => {
+          return {
+            isActive: () => e._hasRessources,
+            steps: [individuResourceBlock(e.id)],
+          }
+        })
+      : []),
+  ]
 }
 
 export function generateBlocks(situation): Block[] {
@@ -633,7 +628,7 @@ export function generateBlocks(situation): Block[] {
       ],
     },
     housingBlock(),
-    resourceBlocks(situation),
+    ...resourceBlocks(situation),
     {
       isActive: (situation) => {
         const parents_ok =

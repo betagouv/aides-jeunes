@@ -109,6 +109,7 @@ const parameters = {
     { label: "Données personnelles", to: "/confidentialite" },
     { label: "Statistiques", to: "/stats" },
     { label: "Toutes les aides", to: "/aides" },
+    { label: "Intégration iframe", to: "/iframe" },
     { label: "Nous contacter", to: "/contact" },
   ],
 }

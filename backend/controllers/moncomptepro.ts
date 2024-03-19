@@ -1,70 +1,51 @@
-import axios from "axios"
-import config from "../config/index.js"
 import jwt from "jsonwebtoken"
+import config from "../config/index.js"
+import { Issuer } from "openid-client"
 
 const JWT_EXPIRATION_DELAY = 6 * 30 * 24 * 60 * 60 // 6 months
+const MCP_TOKEN = "mcp_token"
 
 const accompagnement = config.accompagnement
 
 const {
+  authorized_email_users,
   client_id,
   client_secret,
-  authorize_url,
-  access_token_url,
-  authenticated_url,
-  authorized_users,
-} = config.github
+  provider,
+  redirect_uri,
+  scope,
+} = config.moncomptepro
 
 const { sessionSecret } = config
+const baseUrl = config.baseURL
 
-const current_uri = (req) => {
-  const port = process.env.NODE_ENV === "development" ? ":8080" : ""
-  return `${req.protocol}://${req.hostname}${port}${req.originalUrl}`
-}
+const getMcpClient = async () => {
+  const mcpIssuer = await Issuer.discover(provider)
 
-const authenticate = (req, res) => {
-  const params = new URLSearchParams({
+  return new mcpIssuer.Client({
     client_id,
-    redirect_uri: current_uri(req),
+    client_secret,
+    redirect_uris: [redirect_uri],
+    response_types: ["code"],
   })
-
-  const url = new URL(authorize_url)
-  url.search = params.toString()
-
-  res.redirect(url.toString())
 }
 
-const retrieveGithubAccessToken = async (code) => {
-  try {
-    const response = await axios.post(
-      access_token_url,
-      {
-        client_id,
-        client_secret,
-        code,
-      },
-      {
-        headers: { Accept: "application/json" },
-      }
-    )
-    return response.data.access_token
-  } catch (error) {
-    console.error("Error in retrieveGithubAccessToken: ", error)
-    throw error
-  }
+const login = async (req, res) => {
+  const client = await getMcpClient()
+  const redirectUrl = client.authorizationUrl({
+    scope,
+  })
+  res.redirect(redirectUrl)
 }
 
-const getGithubHandle = async (token) => {
+const retrieveMcpAccessToken = async (req) => {
   try {
-    const response = await axios.get(authenticated_url, {
-      headers: {
-        Accept: "application/json",
-        Authorization: `token ${token}`,
-      },
-    })
-    return response.data.login
+    const client = await getMcpClient()
+    const params = client.callbackParams(req)
+    const tokenSet = await client.callback(redirect_uri, params)
+    return tokenSet.access_token
   } catch (error) {
-    console.error("Error in getGithubHandle: ", error)
+    console.error("Error in retrieveMcpAccessToken: ", error)
     throw error
   }
 }
@@ -72,51 +53,71 @@ const getGithubHandle = async (token) => {
 const access = async (req, res, next) => {
   try {
     const { cookies } = req
-    let github_handle_token = cookies && cookies["github_handle_token"]
-    const githubCode = req.query.code
+    let mcpToken = cookies && cookies[MCP_TOKEN]
+    const mcpCode = req.query.code
 
-    if (githubCode) {
-      const githubAccessToken = await retrieveGithubAccessToken(githubCode)
-      const githubHandle = await getGithubHandle(githubAccessToken)
-      const isAuthorized = authorized_users.includes(githubHandle)
+    if (mcpCode) {
+      const mcpAccessToken = await retrieveMcpAccessToken(req)
+      const client = await getMcpClient()
+      if (!mcpAccessToken) {
+        throw new Error("No mcpAccessToken")
+      }
+      const userInfo = await client.userinfo(mcpAccessToken)
+      if (!userInfo.email) {
+        throw new Error("No userInfo email")
+      }
+      const isAuthorized = authorized_email_users.includes(userInfo.email)
 
       if (isAuthorized) {
-        github_handle_token = jwt.sign({ githubHandle }, sessionSecret, {
+        mcpToken = jwt.sign({ email: userInfo.email }, sessionSecret, {
           expiresIn: JWT_EXPIRATION_DELAY,
         })
-        res.cookie("github_handle_token", github_handle_token)
+        res.cookie(MCP_TOKEN, mcpToken)
       } else {
-        res.clearCookie("github_handle_token")
+        res.clearCookie(MCP_TOKEN)
         return res.redirect(accompagnement.unauthorizedPath)
       }
     }
 
-    if (github_handle_token) {
-      const { githubHandle } = jwt.verify(github_handle_token, sessionSecret)
-      const isAuthorized = authorized_users.includes(githubHandle)
+    if (mcpToken) {
+      const userInfo = jwt.verify(mcpToken, sessionSecret)
+      const isAuthorized = authorized_email_users.includes(userInfo.email)
 
       if (isAuthorized) {
         return next()
       } else {
-        res.clearCookie("github_handle_token")
+        res.clearCookie(MCP_TOKEN)
         return res.redirect(accompagnement.unauthorizedPath)
       }
     }
 
-    return authenticate(req, res)
+    return login(req, res)
   } catch (error) {
     console.error("Error in access:", error)
-    res.clearCookie("github_handle_token")
+    res.clearCookie(MCP_TOKEN)
     return res.redirect(accompagnement.errorPath)
   }
 }
 
-const postAuthRedirect = (req, res) => {
-  if (req.query.redirect) {
+const loginCallbackRedirect = (req, res) => {
+  if (req.query.code) {
     res.redirect(accompagnement.path)
   } else {
     return res.redirect("/")
   }
 }
 
-export default { access, postAuthRedirect }
+const logout = async (req, res, next) => {
+  try {
+    res.clearCookie(MCP_TOKEN)
+    const client = await getMcpClient()
+    const redirectUrl = client.endSessionUrl({
+      post_logout_redirect_uri: `${baseUrl}${accompagnement.path}`,
+    })
+    res.redirect(redirectUrl)
+  } catch (e) {
+    next(e)
+  }
+}
+
+export default { access, login, loginCallbackRedirect, logout }

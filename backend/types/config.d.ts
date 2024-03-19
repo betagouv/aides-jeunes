@@ -44,6 +44,14 @@ export interface Configuration {
     id: number
     url: string
   }
+  moncomptepro: {
+    authorized_email_users: string[]
+    client_id: string
+    client_secret: string
+    provider: string
+    redirect_uri: string
+    scope: string
+  }
   statistics: {
     url: string
     version: number

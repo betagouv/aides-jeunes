@@ -51,7 +51,8 @@ onMounted(async () => {
   const benefitId = route.params.benefitId
 
   if (
-    ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees" &&
+    ABTestingService.getValues().aides_bafa ===
+      "aides_bafa_fusionnees_conserve_position" &&
     benefit.value &&
     hasBafaInterestFlag(benefit.value) &&
     hasBenefitsGroup.value === true

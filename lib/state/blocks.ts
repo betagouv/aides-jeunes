@@ -1,6 +1,7 @@
 import IndividuMethods from "../individu.js"
 import { ACTIVITES_ACTIF } from "../activite.js"
 import Ressource from "../ressource.js"
+import Resources from "../resources.js"
 import { datesGenerator } from "../dates.js"
 import { StepGenerator, ComplexStepGenerator } from "./steps.js"
 import ScolariteCategories from "../scolarite.js"
@@ -529,7 +530,7 @@ function resourceBlocks(situation) {
           id: individuId,
         }),
       ].concat(
-        Ressource.ressourceCategories.map((category) => {
+        Resources.ressourceCategories.map((category) => {
           return {
             isActive: (situation) => {
               return Object.keys(

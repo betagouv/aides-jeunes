@@ -533,13 +533,16 @@ function resourceBlocks(situation) {
         Resources.ressourceCategories.map((category) => {
           return {
             isActive: (situation) => {
-              return Object.keys(
+              const ressourceMap =
                 Ressource.getIndividuRessourceTypesByCategory(
                   individu,
                   category.id,
                   situation
                 )
-              ).length
+              const selectedRessources = Object.keys(ressourceMap).filter(
+                (k) => ressourceMap[k]
+              )
+              return selectedRessources.length
             },
             steps: [
               new ComplexStepGenerator({

@@ -2,17 +2,28 @@
   <article class="fr-article">
     <h1>Suivis des utilisateurs</h1>
 
+    <div v-if="!loggedIn" class="fr-connect-group">
+      <a class="fr-connect" href="/api/login">
+        <span class="fr-connect__login">S’identifier avec</span>
+        <span class="fr-connect__brand">MonComptePro</span>
+      </a>
+      <p>
+        <a
+          href="https://moncomptepro.beta.gouv.fr/"
+          target="_blank"
+          rel="noopener"
+          title=" Qu’est-ce que MonComptePro ? - nouvelle fenêtre"
+        >
+          Qu’est-ce que MonComptePro ?</a
+        >
+      </p>
+    </div>
+
     <router-link
       v-if="(followupId || surveyEmail) && loggedIn"
       class="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line fr-mb-3w"
       to="/accompagnement"
       >Retour à la liste des suivis</router-link
-    >
-    <a
-      v-if="loggedIn === false"
-      :href="connect"
-      class="fr-btn fr-btn--secondary"
-      >Se connecter</a
     >
 
     <div v-if="unauthorizedUserAccess" class="fr-mt-4w">

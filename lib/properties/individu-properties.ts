@@ -269,10 +269,18 @@ export default {
 
   date_debut_chomage: new DateProperty({
     question: ({ individu }) => {
-      return `Quand ${IndividuMethods.label(
-        individu,
-        "avoir"
-      )} commencé à être au chômage ?`
+      const version = "ok" //ABTestingService.getValues().question_debut_chomage
+      if (version === "actuelle") {
+        return `Quand ${IndividuMethods.label(
+          individu,
+          "avoir"
+        )} commencé à être au chômage ?`
+      } else {
+        return `Depuis quand ${IndividuMethods.label(
+          individu,
+          "être"
+        )} inscrit(e) à France Travail ?`
+      }
     },
   }),
 

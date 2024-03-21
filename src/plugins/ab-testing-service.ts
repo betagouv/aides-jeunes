@@ -49,10 +49,10 @@ function getEnvironment() {
 
   ABTestingEnvironment.aides_bafa = ABTestingEnvironment.aides_bafa || {}
   ABTestingEnvironment.aides_bafa.index = 4
-if (
-  !ABTestingEnvironment.aides_bafa.value ||
-  !ABTestingEnvironment.aides_bafa.value.endsWith("_conserve_position")
-) {
+  if (
+    !ABTestingEnvironment.aides_bafa.value ||
+    !ABTestingEnvironment.aides_bafa.value.endsWith("_conserve_position")
+  ) {
     ABTestingEnvironment.aides_bafa.value =
       Math.random() > 0.5
         ? "aides_bafa_distinctes_conserve_position"

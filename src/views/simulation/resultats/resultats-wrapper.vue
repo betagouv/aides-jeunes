@@ -26,10 +26,6 @@ const showBackButton = computed(() => {
   )
 })
 
-const goBack = () => {
-  router.push("/simulation/resultats")
-}
-
 onMounted(async () => {
   initializeStore()
   handleLegacySituationId()
@@ -169,9 +165,10 @@ const redirectToTeleservice = async () => {
       v-if="showBackButton"
       class="fr-btn--secondary fr-btn--sm fr-mb-2w"
       data-testid="back-button"
-      @click="goBack"
-      >Retour aux résultats</BackButton
+      fallback="/simulation/resultats"
     >
+      Retour aux résultats
+    </BackButton>
     <RouterView />
   </div>
 </template>

@@ -66,6 +66,13 @@ function getEnvironment() {
     versions[Math.floor(Math.random() * versions.length)]
   ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
 
+  ABTestingEnvironment.question_debut_chomage =
+    ABTestingEnvironment.question_debut_chomage || {}
+  ABTestingEnvironment.question_debut_chomage.index = 1
+  ABTestingEnvironment.question_debut_chomage.value =
+    ABTestingEnvironment.question_debut_chomage.value ||
+    (Math.random() > 0.5 ? "reformulation" : "actuelle")
+
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment
 }

@@ -19,8 +19,8 @@
         Nous allons avoir
         <span
           v-if="
-            !this.store.situation.famille?.en_couple &&
-            !this.store.situation.parents?._en_france
+            !store.situation.famille?.en_couple &&
+            !store.situation.parents?._en_france
           "
         >
           besoin uniquement de vos ressources.
@@ -29,10 +29,10 @@
       </p>
       <ol v-if="needMoreRevenu">
         <li>vos ressources</li>
-        <li v-if="this.store.situation.famille?.en_couple">
+        <li v-if="store.situation.famille?.en_couple">
           votre conjoint ou conjointe
         </li>
-        <li v-if="this.store.situation.parents?._en_france">ceux de vos parents</li>
+        <li v-if="store.situation.parents?._en_france">ceux de vos parents</li>
       </ol>
     </div>
     <fieldset

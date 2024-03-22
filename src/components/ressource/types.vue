@@ -14,6 +14,27 @@
       >. Vous pourrez ensuite saisir les montants.
       <EnSavoirPlus v-if="hasSeparatedParents" />
     </p>
+    <div class="fr-alert fr-alert--info fr-my-1w">
+      <p>
+        Nous allons avoir
+        <span
+          v-if="
+            !this.store.situation.famille?.en_couple &&
+            !this.store.situation.parents?._en_france
+          "
+        >
+          besoin uniquement de vos ressources.
+        </span>
+        <span v-else-if="needMoreRevenu">besoin de :</span>
+      </p>
+      <ol v-if="needMoreRevenu">
+        <li>vos ressources</li>
+        <li v-if="this.store.situation.famille?.en_couple">
+          votre conjoint ou conjointe
+        </li>
+        <li v-if="this.store.situation.parents?._en_france">ceux de vos parents</li>
+      </ol>
+    </div>
     <fieldset
       v-for="category in categories"
       :key="category.id"
@@ -56,7 +77,6 @@ import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { capitalize } from "@lib/utils.js"
-
 export default {
   name: "RessourceTypes",
   components: {
@@ -111,6 +131,12 @@ export default {
     },
     hasSeparatedParents() {
       return this.store.situation?.parents?._situation === "separes"
+    },
+    needMoreRevenu() {
+      return (
+        this.store.situation.famille?.en_couple ||
+        this.store.situation.parents?._en_france
+      )
     },
   },
   watch: {

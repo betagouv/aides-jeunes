@@ -53,6 +53,16 @@ sudo apt-get install build-essential
 sudo apt-get install mongodb
 ```
 
+### MacOs
+
+Make sure `node` 18.x and `brew` are installed on your machine:
+
+```sh
+brew tap mongodb/brew # Download official homebrew formula for MongoDb
+brew update # Update Homebrew and all existing formulae
+brew install mongodb-community@7.0 # Install MongoDb
+```
+
 ### For all platforms
 
 The runtime is Node 18.x for the web application, and Python >= 3.9 for Openfisca.

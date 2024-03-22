@@ -15,9 +15,10 @@ const getLatestId = (): string | undefined => {
 }
 
 const restoreLatestSimulation = async (resultsComputing = true) => {
-  const lastestSimulationId = Simulation.getLatestId()
-  const store = useStore()
   const router = useRouter()
+  const store = useStore()
+  store.calculs.updating = true
+  const lastestSimulationId = Simulation.getLatestId()
   if (!lastestSimulationId) {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
@@ -39,8 +40,9 @@ const restoreLatestSimulation = async (resultsComputing = true) => {
   if (store.simulationAnonymized) {
     await store.retrieveResultsAlreadyComputed()
   } else if (resultsComputing) {
-    store.computeResults()
+    await store.computeResults()
   }
+  store.calculs.updating = false
 }
 
 const restoreLatestSimulationWithoutResultsComputing = async () =>

@@ -32,7 +32,6 @@ const goBack = () => {
 }
 
 onMounted(async () => {
-  setUpdating(true)
   initializeStore()
   handleLegacySituationId()
   if (MockResults.mockResultsNeeded()) {
@@ -48,7 +47,7 @@ onMounted(async () => {
     if (store.simulation.teleservice) {
       await redirectToTeleservice()
     } else {
-      store.computeResults()
+      await store.computeResults()
     }
   }
 })
@@ -135,11 +134,12 @@ const handleSimulationIdQuery = async () => {
 }
 const saveSimulation = async () => {
   try {
+    setUpdating(true)
     store.setSaveSituationError("")
     await store.save()
 
     if (!store.access.forbidden) {
-      store.computeResults()
+      await store.computeResults()
     }
   } catch (error: any) {
     store.setSaveSituationError(error.response?.data || error)
@@ -148,6 +148,8 @@ const saveSimulation = async () => {
       EventAction.ErreurSauvegardeSimulation,
       route.path
     )
+  } finally {
+    setUpdating(false)
   }
 }
 const redirectToTeleservice = async () => {

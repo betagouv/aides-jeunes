@@ -1,9 +1,11 @@
+import { ABTestingService } from "./abtesting.js"
+
 export interface PropertyData {
   openFiscaParameters?: any
   simulation?: any
   individu?: any
   periods?: any
-  abtestingService?: any
+  abtestingService?: ABTestingService
 }
 
 export interface EnumItemProperty {

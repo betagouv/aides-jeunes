@@ -7,7 +7,11 @@ export interface ABTesting {
 }
 
 export interface ABTestingService {
+<<<<<<< HEAD
   getEnvironment: () => ABTesting
   getValues: () => { [key: string]: string }
   setVariant(key: string, value: string)
+=======
+  getEnvironment?: () => ABTesting
+>>>>>>> Permet l'accès aux infos d'AB test dans les questions
 }

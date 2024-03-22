@@ -10,34 +10,39 @@ export const useResultsStore = defineStore("results", {
       return this.resultats?.droitsEligibles || []
     },
     benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
-      const groups = this.benefits.reduce(
-        (groups, benefit) => {
-          if (hasBafaInterestFlag(benefit)) {
-            groups.bafa.push(benefit)
-          } else {
-            groups.other.push(benefit)
+      const bafaGroup: BenefitGroup = {
+        benefits: [],
+        id: "bafa-bafd-group",
+        label: "Aides BAFA et BAFD",
+        logoPath: "/img/benefits/logo-bafa-bafd.png",
+        description:
+          "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
+        redirectionPage: "bafa-bafd",
+      }
+
+      const results = this.benefits.reduce((results, benefit) => {
+        if (hasBafaInterestFlag(benefit)) {
+          if (bafaGroup.benefits.length === 0) {
+            results.push(bafaGroup)
           }
-          return groups
-        },
-        { bafa: [], other: [] }
-      )
-      if (groups.bafa.length < 2) {
+          bafaGroup.benefits.push(benefit)
+        } else {
+          results.push(benefit)
+        }
+        return results
+      }, [])
+
+      if (bafaGroup.benefits.length < 2) {
         return this.benefits
       } else {
-        const bafaGroup: BenefitGroup = {
-          benefits: groups.bafa,
-          id: "bafa-bafd-group",
-          label: "Aides BAFA et BAFD",
-          logoPath: "/img/benefits/logo-bafa-bafd.png",
-          description:
-            "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
-          redirectionPage: "bafa-bafd",
-        }
-        return [...groups.other, bafaGroup]
+        return results
       }
     },
     benefitTree(): (StandardBenefit | BenefitGroup)[] {
-      if (ABTestingService.getValues().aides_bafa === "aides_bafa_fusionnees") {
+      if (
+        ABTestingService.getValues().aides_bafa ===
+        "aides_bafa_fusionnees_conserve_position"
+      ) {
         return this.benefitTreeGroupExperiment
       } else {
         return this.benefits

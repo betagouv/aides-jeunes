@@ -5,12 +5,9 @@ import { hasBafaInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
-  state: () => ({
-    loading: true,
-  }),
   actions: {
-    setLoading(loading: boolean) {
-      this.loading = loading
+    setUpdating(updating: boolean) {
+      useStore().calculs.updating = updating
     },
   },
   getters: {
@@ -81,10 +78,7 @@ export const useResultsStore = defineStore("results", {
       return useStore().saveSituationError
     },
     shouldDisplayResults() {
-      return (
-        !(this.updating || this.hasWarning || this.error || this.loading) &&
-        this.benefits
-      )
+      return !(this.updating || this.hasWarning || this.error) && this.benefits
     },
     simulationAnonymized() {
       return useStore().simulationAnonymized

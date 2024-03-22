@@ -18,6 +18,7 @@ const route = useRoute()
 const benefits = computed(() => resultsStore.benefits)
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
+const setUpdating = (value: boolean) => resultsStore.setUpdating(value)
 const stopSubscription = ref<(() => void) | null>(null)
 const showBackButton = computed(() => {
   return (
@@ -31,6 +32,7 @@ const goBack = () => {
 }
 
 onMounted(async () => {
+  setUpdating(true)
   initializeStore()
   handleLegacySituationId()
   if (MockResults.mockResultsNeeded()) {
@@ -49,7 +51,6 @@ onMounted(async () => {
       store.computeResults()
     }
   }
-  resultsStore.setLoading(false)
 })
 
 onBeforeUnmount(() => {
@@ -127,7 +128,7 @@ const handleSimulationIdQuery = async () => {
     sendAccessToAnonymizedResults()
     await store.retrieveResultsAlreadyComputed()
   } else {
-    store.computeResults()
+    await store.computeResults()
   }
 
   router.replace({ ...router.currentRoute.value, simulationId: null } as any)

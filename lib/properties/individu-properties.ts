@@ -268,8 +268,9 @@ export default {
   }),
 
   date_debut_chomage: new DateProperty({
-    question: ({ individu }) => {
-      const version = "ok" //ABTestingService.getValues().question_debut_chomage
+    question: ({ individu, abtestingService }) => {
+      const abtestingEnvironment = abtestingService.getEnvironment()
+      const version = abtestingEnvironment.question_debut_chomage
       if (version === "actuelle") {
         return `Quand ${IndividuMethods.label(
           individu,

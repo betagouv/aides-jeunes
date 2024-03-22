@@ -3,6 +3,7 @@ export interface PropertyData {
   simulation?: any
   individu?: any
   periods?: any
+  abtestingService?: any
 }
 
 export interface EnumItemProperty {

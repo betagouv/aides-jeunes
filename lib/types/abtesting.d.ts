@@ -7,5 +7,7 @@ export interface ABTesting {
 }
 
 export interface ABTestingService {
-  getEnvironment?: () => ABTesting
+  getEnvironment: () => ABTesting
+  getValues: () => { [key: string]: string }
+  setVariant(key: string, value: string)
 }

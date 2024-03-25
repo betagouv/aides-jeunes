@@ -1,10 +1,10 @@
 label: logement social
 institution: etat
-description: Le logement social (ou logement HLM) est destiné aux personnes
+description: Le logement social est destiné aux personnes
   et aux familles dont les ressources ne dépassent pas un revenu maximum.
   Ce montant maximum dépend du nombre de personnes à loger et de la localisation
   du logement (Île-de-France, province, outre-mer). Aucun frais de dossier n’est
-  réclamé lors de la demande de logement social ni lors de la signature du bail.
+  réclamé lors de la demande ni lors de la signature du bail.
   Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.
 prefix: le
 conditions_generales:

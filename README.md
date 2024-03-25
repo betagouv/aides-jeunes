@@ -44,7 +44,7 @@ The application should be accessible at `localhost:8080`.
 
 ## System dependencies
 
-Make sure `node` 18.x is installed on your machine:
+Make sure `node` 16.x is installed on your machine:
 
 ### Ubuntu
 

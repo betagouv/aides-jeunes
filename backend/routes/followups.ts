@@ -10,7 +10,7 @@ import {
   getFollowupDataForSurvey,
   logSurveyLinkClick,
 } from "../controllers/followups.js"
-import githubController from "../controllers/github.js"
+import moncompteproController from "../controllers/moncomptepro.js"
 
 const followupsRoutes = function (api: Express) {
   api.route("/followups/surveys/:accessToken").get(getFollowupDataForSurvey)
@@ -19,15 +19,15 @@ const followupsRoutes = function (api: Express) {
     .post(express.json(), postSurvey)
   api
     .route("/followups/surveys")
-    .get(cookieParser(), githubController.access)
+    .get(cookieParser(), moncompteproController.access)
     .get(showSurveyResults)
   api
     .route("/followups/id/:surveyId")
-    .get(cookieParser(), githubController.access)
+    .get(cookieParser(), moncompteproController.access)
     .get(showFollowup)
   api
     .route("/followups/email/:email")
-    .get(cookieParser(), githubController.access)
+    .get(cookieParser(), moncompteproController.access)
     .get(showSurveyResultByEmail)
   api
     .route("/followups/surveys/:accessToken/:surveyType")

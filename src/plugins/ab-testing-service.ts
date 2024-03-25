@@ -49,9 +49,15 @@ function getEnvironment() {
 
   ABTestingEnvironment.aides_bafa = ABTestingEnvironment.aides_bafa || {}
   ABTestingEnvironment.aides_bafa.index = 4
-  ABTestingEnvironment.aides_bafa.value =
-    ABTestingEnvironment.aides_bafa.value ||
-    (Math.random() > 0.5 ? "aides_bafa_distinctes" : "aides_bafa_fusionnees")
+  if (
+    !ABTestingEnvironment.aides_bafa.value ||
+    !ABTestingEnvironment.aides_bafa.value.endsWith("_conserve_position")
+  ) {
+    ABTestingEnvironment.aides_bafa.value =
+      Math.random() > 0.5
+        ? "aides_bafa_distinctes_conserve_position"
+        : "aides_bafa_fusionnees_conserve_position"
+  }
 
   ABTestingEnvironment.plans_to_ask_question =
     ABTestingEnvironment.plans_to_ask_question || {}

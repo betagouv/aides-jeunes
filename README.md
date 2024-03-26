@@ -44,13 +44,25 @@ The application should be accessible at `localhost:8080`.
 
 ## System dependencies
 
+Make sure `node` 16.x is installed on your machine:
+
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 18.x are installed on your machine:
+And also `build-essential`, `mongodb` are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
 sudo apt-get install mongodb
+```
+
+### MacOs
+
+And also `brew` is installed on your machine:
+
+```sh
+brew tap mongodb/brew # Download official homebrew formula for MongoDb
+brew update # Update Homebrew and all existing formulae
+brew install mongodb-community@7.0 # Install MongoDb
 ```
 
 ### For all platforms

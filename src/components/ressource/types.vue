@@ -14,26 +14,16 @@
       >. Vous pourrez ensuite saisir les montants.
       <EnSavoirPlus v-if="hasSeparatedParents" />
     </p>
-    <div class="fr-alert fr-alert--info fr-my-1w">
+    <div
+      v-if="showInitialResourcesCollectionWarning"
+      class="fr-alert fr-alert--info fr-my-1w"
+    >
       <p>
-        Nous allons avoir
-        <span
-          v-if="
-            !store.situation.famille?.en_couple &&
-            !store.situation.parents?._en_france
-          "
+        Vous devez saisir vos revenues<span v-if="needCoupleResources"
+          >puis ceux de votre conjoint ou conjointe</span
         >
-          besoin uniquement de vos ressources.
-        </span>
-        <span v-else-if="needMoreRevenu">besoin de :</span>
+        <span v-if="needParentsResources"> et ceux de vos parents</span>.
       </p>
-      <ol v-if="needMoreRevenu">
-        <li>vos ressources</li>
-        <li v-if="store.situation.famille?.en_couple">
-          votre conjoint ou conjointe
-        </li>
-        <li v-if="store.situation.parents?._en_france">ceux de vos parents</li>
-      </ol>
     </div>
     <fieldset
       v-for="category in categories"
@@ -132,11 +122,27 @@ export default {
     hasSeparatedParents() {
       return this.store.situation?.parents?._situation === "separes"
     },
-    needMoreRevenu() {
-      return (
-        this.store.situation.famille?.en_couple ||
-        this.store.situation.parents?._en_france
+    allActiveSteps() {
+      return this.store.getAllSteps.filter((step) => step.isActive)
+    },
+    needCoupleResources() {
+      return this.allActiveSteps.filter(
+        (step) =>
+          "conjoint" === step.id &&
+          "ressources" === step.variable
+      ).length
+    },
+    needParentsResources() {
+      // voir block pour ajouter les autres conditions
+      return this.allActiveSteps.filter(
+        (step) => "parents" === step.entity && "rfr" === step.variable
+      ).length
+    },
+    showInitialResourcesCollectionWarning() {
+      console.log(
+        this.allActiveSteps.filter((step) => "revenus" === step.chapter)
       )
+      return this.individu._role === "demandeur"
     },
   },
   watch: {

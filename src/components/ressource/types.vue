@@ -22,7 +22,9 @@
         Vous devez saisir vos revenues<span v-if="needCoupleResources"
           >puis ceux de votre conjoint ou conjointe</span
         >
-        <span v-if="needParentsResources"> et ceux de vos parents</span>.
+        <span v-if="needParentsResources">
+          et ceux de vos parents ou vos tuteurs légaux</span
+        >.
       </p>
     </div>
     <fieldset
@@ -67,6 +69,8 @@ import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { capitalize } from "@lib/utils.js"
+import IndividuMethods from "@lib/individu"
+
 export default {
   name: "RessourceTypes",
   components: {
@@ -127,21 +131,19 @@ export default {
     },
     needCoupleResources() {
       return this.allActiveSteps.filter(
-        (step) =>
-          "conjoint" === step.id &&
-          "ressources" === step.variable
+        (step) => "conjoint" === step.id && "ressources" === step.variable
       ).length
     },
     needParentsResources() {
-      // voir block pour ajouter les autres conditions
-      return this.allActiveSteps.filter(
-        (step) => "parents" === step.entity && "rfr" === step.variable
-      ).length
+      return (
+        (!this.store.situation.parents ||
+          !IndividuMethods.isWithoutParent(this.store.situation)) &&
+        this.allActiveSteps.filter(
+          (step) => "parents" === step.entity && "rfr" === step.variable
+        ).length
+      )
     },
     showInitialResourcesCollectionWarning() {
-      console.log(
-        this.allActiveSteps.filter((step) => "revenus" === step.chapter)
-      )
       return this.individu._role === "demandeur"
     },
   },

@@ -1,6 +1,7 @@
 label: aide à l'acquisition de voitures électriques
 institution: region_ile_de_france
-description: La Région subventionne l'achat de voitures électriques par les particuliers franciliens
+description:
+  La Région subventionne l'achat de voitures électriques par les particuliers franciliens
   dont le revenu fiscal de référence divisé par le nombre de parts du foyer (RFR/part)
   ne dépasse pas un certain seuil. Seuls les véhicules dont le prix d'achat ne
   dépasse pas 47 000 euros TTC avec options incluses sont éligibles à la subvention.
@@ -18,7 +19,7 @@ conditions_generales:
 profils: []
 link: https://www.iledefrance.fr/aides-et-appels-a-projets/acquisition-de-vehicules-propres-par-les-particuliers
 instructions: https://www.iledefrance.fr/toutes-les-faq/aides-vehicules-propres-faq
-prefix: l'
+prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle

@@ -45,11 +45,6 @@ export function resultRedirect(req: Request, res: Response) {
   res.redirect(req.simulation!.returnPath)
 }
 
-export function recapRedirect(req: Request, res: Response) {
-  simulationController.attachAccessCookie(req, res)
-  res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
-}
-
 export async function persist(req: Request, res: Response) {
   const { preventNotify, surveyOptin, email, phone } = req.body
 
@@ -257,6 +252,21 @@ export async function smsSurveyLinkClick(req: Request, res: Response) {
     req.params.surveyType = SurveyType.TrackClickOnBenefitActionSms
     const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
+  } catch (error) {
+    console.error("error", error)
+    return res.sendStatus(404)
+  }
+}
+
+export async function temporarySimulationLinkRedirect(
+  req: Request,
+  res: Response
+) {
+  try {
+    simulationController.attachAccessCookie(req, res)
+    const { followup } = req
+    await followup.updateTemporarySimulationSurvey()
+    res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
   } catch (error) {
     console.error("error", error)
     return res.sendStatus(404)

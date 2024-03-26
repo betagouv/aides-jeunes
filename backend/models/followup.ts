@@ -36,6 +36,12 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
   return this.save()
 })
 
+FollowupSchema.method("updateTemporarySimulationSurvey", async function () {
+  await this.addSurveyIfMissing(SurveyType.TrackClickTemporarySimulationLink)
+  await this.updateSurvey(SurveyType.TrackClickTemporarySimulationLink)
+  await this.save()
+})
+
 FollowupSchema.virtual("emailRenderPath").get(function (this) {
   return `/api/email/followups/${this._id}?token=${this.accessToken}&emailType=`
 })

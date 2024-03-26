@@ -1,16 +1,16 @@
-label: aide à l’acquisition de voitures électriques
+label: aide à l'acquisition de voitures électriques
 institution: region_ile_de_france
-description: La Région subventionne l’achat de voitures électriques par les particuliers franciliens
+description: La Région subventionne l'achat de voitures électriques par les particuliers franciliens
   dont le revenu fiscal de référence divisé par le nombre de parts du foyer (RFR/part)
-  ne dépasse pas un certain seuil. Seuls les véhicules dont le prix d’achat ne
+  ne dépasse pas un certain seuil. Seuls les véhicules dont le prix d'achat ne
   dépasse pas 47 000 euros TTC avec options incluses sont éligibles à la subvention.
 conditions:
   - Vérifier que vous correspondez aux <a target="_blank" rel="noopener" title="critères d'éligibilité - Nouvelle fenêtre" href="
     https://www.iledefrance.fr/aides-et-appels-a-projets/acquisition-de-vehicules-propres-par-les-particuliers">critères
-    d’éligibilité</a>.
+    d'éligibilité</a>.
   - Vérifier que le modèle de voiture électrique que vous souhaitez acheter figure <a target="_blank" rel="noopener" title="voitures éligibles - Nouvelle fenêtre"
     href="https://www.iledefrance.fr/toutes-les-faq/aides-vehicules-propres-faq">dans la liste établie par la région</a>, à la rubrique Pour tous, quelles sont les voitures élctriqus éligibles exactement ?.
-  - Déposer votre demande sur mesdemarches.iledefrance.fr au plus tard dans les 3 mois suivant l’achat du véhicule propre.
+  - Déposer votre demande sur mesdemarches.iledefrance.fr au plus tard dans les 3 mois suivant l'achat du véhicule propre.
 conditions_generales:
   - type: regions
     values:
@@ -18,7 +18,7 @@ conditions_generales:
 profils: []
 link: https://www.iledefrance.fr/aides-et-appels-a-projets/acquisition-de-vehicules-propres-par-les-particuliers
 instructions: https://www.iledefrance.fr/toutes-les-faq/aides-vehicules-propres-faq
-prefix: l’
+prefix: l'
 type: float
 unit: €
 periodicite: ponctuelle

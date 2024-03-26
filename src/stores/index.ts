@@ -470,13 +470,13 @@ export const useStore = defineStore("store", {
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
     },
-    computeResults() {
+    async computeResults() {
       this.startComputation()
       const token = this.getSimulationToken
       const headers = {
         ...(token && { Authorization: `Bearer ${token}` }),
       }
-      return axios
+      return await axios
         .get(`/api/simulation/${this.simulationId}/results`, {
           headers,
         })

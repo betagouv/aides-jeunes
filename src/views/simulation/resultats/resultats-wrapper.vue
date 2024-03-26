@@ -18,6 +18,7 @@ const route = useRoute()
 const benefits = computed(() => resultsStore.benefits)
 const fetching = computed(() => resultsStore.fetching)
 const updating = computed(() => resultsStore.updating)
+const setUpdating = (value: boolean) => resultsStore.setUpdating(value)
 const stopSubscription = ref<(() => void) | null>(null)
 const showBackButton = computed(() => {
   return (
@@ -46,7 +47,7 @@ onMounted(async () => {
     if (store.simulation.teleservice) {
       await redirectToTeleservice()
     } else {
-      store.computeResults()
+      await store.computeResults()
     }
   }
 })
@@ -126,18 +127,19 @@ const handleSimulationIdQuery = async () => {
     sendAccessToAnonymizedResults()
     await store.retrieveResultsAlreadyComputed()
   } else {
-    store.computeResults()
+    await store.computeResults()
   }
 
   router.replace({ ...router.currentRoute.value, simulationId: null } as any)
 }
 const saveSimulation = async () => {
   try {
+    setUpdating(true)
     store.setSaveSituationError("")
     await store.save()
 
     if (!store.access.forbidden) {
-      store.computeResults()
+      await store.computeResults()
     }
   } catch (error: any) {
     store.setSaveSituationError(error.response?.data || error)
@@ -146,6 +148,8 @@ const saveSimulation = async () => {
       EventAction.ErreurSauvegardeSimulation,
       route.path
     )
+  } finally {
+    setUpdating(false)
   }
 }
 const redirectToTeleservice = async () => {

@@ -5,6 +5,11 @@ import { hasBafaInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
+  actions: {
+    setUpdating(updating: boolean) {
+      useStore().calculs.updating = updating
+    },
+  },
   getters: {
     benefits(): StandardBenefit[] {
       return this.resultats?.droitsEligibles || []

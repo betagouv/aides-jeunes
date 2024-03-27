@@ -81,6 +81,21 @@ const config: Configuration = {
     id: Number(process.env.MATOMO_ID) || 170,
     url: process.env.MATOMO_URL || "https://stats.data.gouv.fr",
   },
+  moncomptepro: {
+    authorized_email_users: ["user@yopmail.com"],
+    client_id:
+      process.env.MCP_CLIENT_ID ||
+      "bluSy6KBAl0lMu3I5yD2sYeF90KaOZQEyvYBQNCMq5ohZ40VrMtx23dOPNYDj6Sej0wUE7qGni8g8QtNKstB3sxWbJSWBpfOqnl03AK7bqI0BlNWmw9Vdepy6GFXeVPL",
+    client_secret:
+      process.env.MCP_CLIENT_SECRET ||
+      "dB7BjWZaekMgzvJ70vpoTK276VOvyZQzkyGayEMtJZfP2DH7nYZU5lzsKjWaoVjLGNG1RATfXyqoStzLBumkwO8SyZIOJZMdR5OVKmkiSLpijjyv0W7s2QVNwafzyCWs",
+    provider:
+      process.env.MCP_PROVIDER ||
+      "https://app-sandbox.moncomptepro.beta.gouv.fr/",
+    redirect_uri:
+      process.env.MCP_REDIRECT_URI || "http://localhost:8080/api/auth/redirect",
+    scope: process.env.MCP_SCOPE || "openid email profile",
+  },
   statistics: {
     url: process.env.VITE_STATS_URL || "http://localhost:4000/benefits",
     version: Number(process.env.VITE_STATS_VERSION) || 2,

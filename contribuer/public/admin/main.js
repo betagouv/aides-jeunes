@@ -242,3 +242,4 @@ const DroitPreviewTemplate = ({ entry }) => {
 
 CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
 CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)
+CMS.registerPreviewTemplate("benefits_dynamic", DroitPreviewTemplate)

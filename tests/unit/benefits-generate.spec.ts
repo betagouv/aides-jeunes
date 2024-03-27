@@ -26,6 +26,9 @@ describe("benefit descriptions", function () {
           { slug: "region_benefit", institution: "region_nouvelle_aquitaine" },
         ],
       },
+      benefits_dynamic: {
+        items: [{ slug: "dynamic_benefit", institution: "etat" }],
+      },
     } as unknown as Jamstack["collections"]
 
     const additionalBenefitAttributes = { etat_benefit: { test: () => {} } }
@@ -33,6 +36,9 @@ describe("benefit descriptions", function () {
 
     expect(
       result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
+    ).toBeTruthy()
+    expect(
+      result.institutionsMap.etat.benefitsIds.includes("dynamic_benefit")
     ).toBeTruthy()
     expect(typeof result.benefitsMap.etat_benefit.test).toBe("function")
     expect(result.benefitsMap.etat_benefit.institution.id).toBe("national_etat")
@@ -48,6 +54,6 @@ describe("benefit descriptions", function () {
       )
     ).toBeTruthy()
     expect(result.benefitsMap.region_benefit.institution.id).toBe("region_75")
-    expect(result.all.length).toBe(3)
+    expect(result.all.length).toBe(4)
   })
 })

@@ -3,6 +3,7 @@ import openfisca from "../lib/openfisca/getter.js"
 import openfiscaController from "../controllers/openfisca.js"
 import benefits from "../../data/all.js"
 import { Express } from "express"
+import { isOpenfiscaBenefit } from "../../lib/benefits/utils.js"
 
 let missingBenefits
 
@@ -17,7 +18,7 @@ export default (api: Express) => {
       const missingValues = benefits.all
         .filter((benefit) => {
           const source = benefit.openfisca_eligibility_source || benefit.id
-          return benefit.source === "openfisca" && !payload[source]
+          return isOpenfiscaBenefit(benefit) && !payload[source]
         })
         .map((benefit) => {
           return benefit.id

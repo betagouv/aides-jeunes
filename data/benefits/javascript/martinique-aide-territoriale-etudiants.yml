@@ -5,7 +5,7 @@ description:
   accordée en fonction des ressources du foyer, à des étudiants inscrits dans un
   cursus post Bac jusqu'au Master. Sont pris en compte le revenu imposable à l’impôt
   sur le revenu et le nombre de parts fiscales figurant sur l’avis d’imposition des
-  parents ou de l’étudiant s’il a fait sa propre déclaration d'impôts."
+  parents ou de l’étudiant s’il a fait sa propre déclaration d'impôts.
 conditions:
   - Être de nationalité française ou ressortissant de l’un des États membres de
     l’Union Européenne.

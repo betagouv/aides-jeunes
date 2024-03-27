@@ -4,6 +4,7 @@ import { forEach, assign, pick, pickBy } from "lodash-es"
 import benefits from "../../../data/all.js"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
 import jsYaml from "js-yaml"
+import { isOpenfiscaBenefit } from "../../../lib/benefits/utils.js"
 
 function toStringOf(obj) {
   return obj.toString()
@@ -52,8 +53,7 @@ export const EXTENSION_VARIABLES = {
 
 benefits.all
   .filter(
-    (benefit) =>
-      benefit.source === "openfisca" && benefit.institution.repository
+    (benefit) => isOpenfiscaBenefit(benefit) && benefit.institution.repository
   )
   .forEach((benefit) => {
     const repository = `openfisca-${benefit.institution.repository}`

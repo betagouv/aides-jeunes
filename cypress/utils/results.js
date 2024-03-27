@@ -183,7 +183,7 @@ const hasBourseCriteresSociaux = () => {
 
 const hasIleDeFranceAideAuMerite = () => {
   const name = /Aide au mérite/
-  const id = "ile-de-france-aide-au-merite"
+  const id = "ile_de_france_aide_au_merite"
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find('[data-testid="droit-estime-value"]')

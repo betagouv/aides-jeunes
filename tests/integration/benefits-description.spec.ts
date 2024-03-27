@@ -7,6 +7,10 @@ import communes from "@etalab/decoupage-administratif/data/communes.json"
 import epcis from "@etalab/decoupage-administratif/data/epci.json"
 
 import subject from "@root/data/all.js"
+import {
+  isSimpleBenefit,
+  isOpenfiscaBenefit,
+} from "../../lib/benefits/utils.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const codesInstitutions = {
@@ -168,7 +172,9 @@ describe("benefit descriptions", function () {
             it("should not have an entity", function () {
               expect(benefit.entity).toBe(undefined)
             })
+          }
 
+          if (isSimpleBenefit(benefit)) {
             if (
               ["region", "departement", "commune", "epci"].includes(
                 benefit.institution.type
@@ -200,7 +206,7 @@ describe("benefit descriptions", function () {
                 expect(benefit.montant).toBeGreaterThan(0)
               })
             }
-          } else if (benefit.source === "openfisca") {
+          } else if (isOpenfiscaBenefit(benefit)) {
             it("should have an entity", function () {
               expect(typeof benefit.entity).toBe("string")
               expect(benefit.entity.length).toBeGreaterThan(0)

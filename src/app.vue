@@ -1,13 +1,11 @@
 <template>
   <component :is="layout">
-    <BandeauDemo />
     <router-view />
   </component>
 </template>
 
 <script lang="ts">
 import iFrameLayout from "@/components/iframe-layout.vue"
-import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
 import { useIframeStore } from "@/stores/iframe.js"
 import { useThemeStore } from "@/stores/theme.js"
@@ -17,7 +15,6 @@ const { BaseLayout, MesAidesLayout } = context
 export default {
   name: "App",
   components: {
-    BandeauDemo,
     BaseLayout,
     iFrameLayout,
     MesAidesLayout,

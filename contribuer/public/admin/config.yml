@@ -847,6 +847,36 @@ fields:
     name: openfisca_eligibility_source
     widget: hidden
 
+simple_benefit_parameter: &simple_benefit_parameter
+  fields:
+    - *field_benefit_name
+    - *field_benefit_image
+    - *field_institution
+    - *field_description
+    - *field_definite_article
+    - *field_general_conditions
+    - *field_voluntary_conditions
+    - *field_eligibility_profile
+    - *field_unmodeled_conditions
+    - *field_specific_interest
+    - *field_result_type
+    - *field_result_unit
+    - *field_benefit_amount_periodicity
+    - *field_amount_legend
+    - *field_benefit_max_amount
+    - *field_link_information
+    - *field_link_teleservice
+    - *field_link_form
+    - *field_link_instructions
+    - *field_amount_reliability
+    # hidden fields
+    - *field_benefit_position
+    - *field_private_benefit
+    - *field_benefit_partial_support
+    - *field_benefit_id
+    - *field_benefit_source
+    - *field_teleservice_prefill
+
 collections:
   - name: benefits_javascript
     label: Aides avec critères d'éligibilités
@@ -860,34 +890,8 @@ collections:
     slug: "{{fields.institution}}-{{label}}"
     summary: "{{label}} ({{fields.institution}})"
     extension: yml
-    fields:
-      - *field_benefit_name
-      - *field_benefit_image
-      - *field_institution
-      - *field_description
-      - *field_definite_article
-      - *field_general_conditions
-      - *field_voluntary_conditions
-      - *field_eligibility_profile
-      - *field_unmodeled_conditions
-      - *field_specific_interest
-      - *field_result_type
-      - *field_result_unit
-      - *field_benefit_amount_periodicity
-      - *field_amount_legend
-      - *field_benefit_max_amount
-      - *field_link_information
-      - *field_link_teleservice
-      - *field_link_form
-      - *field_link_instructions
-      - *field_amount_reliability
-      # hidden fields
-      - *field_benefit_position
-      - *field_private_benefit
-      - *field_benefit_partial_support
-      - *field_benefit_id
-      - *field_benefit_source
-      - *field_teleservice_prefill
+    <<: *simple_benefit_parameter
+
   - name: benefits_openfisca
     label: Aides complexes
     label_singular: Aide complexe
@@ -1009,3 +1013,16 @@ collections:
         hint: Commune, EPCI, CAF, MSA, autres, etc.
         name: name
         widget: string
+  - name: benefits_dynamic
+    label: Aides avec critères d'éligibilités - openfisca
+    label_singular: Aide avec critères d'éligibilités - openfisca
+    identifier_field: label
+    folder: "data/benefits/reform_dynamic"
+    create: true
+    delete: false
+    editor:
+      preview: true
+    slug: "{{fields.institution}}-{{label}}"
+    summary: "{{label}} ({{fields.institution}})"
+    extension: yml
+    <<: *simple_benefit_parameter

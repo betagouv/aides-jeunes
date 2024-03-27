@@ -1,10 +1,11 @@
 label: aide Régionale à l’Apprentissage (ARA)
 institution: region_ile_de_france
-description: L’Aide Régionale à l’Apprentissage (ARA) a pour objectif de
-  soutenir les apprentis et apprenties inscrits ou inscrites en formation de premiers niveaux (3, 4
-  et 5) en les aidant à faire face à des dépenses liées à l’achat de livres,
-  d’équipement et de documentation professionnelle, de frais de transport, de
-  restauration ou d’hébergement, etc.
+description:
+  L’Aide régionale à l’apprentissage (ARA) a pour objectif de soutenir
+  les apprentis inscrits en 1re année d’apprentissage dans une formation des premiers niveaux (3, 4 et 5).
+  Il s’agit d’aider l’apprenti à faire face aux dépenses liées à l’achat de livres,
+  d’équipement et de documentation professionnelle, ainsi qu’aux frais de transport,
+  de restauration ou d’hébergement.
 conditions:
   - Être inscrit ou inscrite en première année dans une
     formation de niveau 3, 4 et 5 délivrée dans un organisme de formation – centre de
@@ -17,9 +18,8 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
-link: https://www.iledefrance.fr/aide-regionale-apprentissage-dediee-aux-apprentis-en-premiere-annee-de-formation-de-niveaux-3-4-5
-teleservice: ""
-instructions: https://www.iledefrance.fr/aide-regionale-apprentissage-dediee-aux-apprentis-en-premiere-annee-de-formation-de-niveaux-3-4-5
+link: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-regionale-apprentissage-ara-pour-les-apprentis-en-1re-annee-dapprentissage-niveaux-3-5
+instructions: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-regionale-apprentissage-ara-pour-les-apprentis-en-1re-annee-dapprentissage-niveaux-3-5
 prefix: l’
 type: float
 unit: €

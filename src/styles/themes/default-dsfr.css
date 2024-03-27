@@ -1,10 +1,14 @@
 :root {
   /* input focus */
   --input-outline: #0a76f6;
+
   /* buttons */
   --main-color: #000091;
   --main-color-hover: #1212ff;
   --main-color-active: #2323ff;
+  --main-btn-text-color: #fff;
+  --border-radius: 0rem;
+
   /*
     progress bar
     home colored background
@@ -14,11 +18,12 @@
 
   /* en savoir plus text */
   --info-main-color: #0063cb;
+
   /* en savoir plus background */
   --info-secondary-color: #e8edff;
   --info-secondary-color-hover: #c2d1ff;
   --info-secondary-color-active: #a9bfff;
-  --border-radius: 0rem;
+
+  /* Font */
   --font-family: inherit;
-  --main-btn-text-color: #fff;
 }

@@ -1,18 +1,35 @@
 :root {
+  /* input focus */
   --input-outline: #000000;
+
+  /* buttons */
   --main-color: #ffcc2a;
   --main-color-hover: #ffd95f;
   --main-color-active: #d6ab22;
-  --secondary-color: #f0d121;
-  --info-main-color: #d4af37;
-  --info-secondary-color: #fbf1bc;
-  --info-secondary-color-hover: #e8dc9e;
-  --info-secondary-color-active: #96893f;
-  --border-radius: 0.3rem;
-  --font-family: "Work Sans", sans-serif;
   --main-btn-text-color: #212427;
   --secondary-btn-text-color: #212427;
   --secondary-btn-border-color: #212427;
+  --border-radius: 0.3rem;
+
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
+  --secondary-color: #f0d121;
+
+  /* en savoir plus text */
+  --info-main-color: #d4af37;
+
+  /* en savoir plus background */
+  --info-secondary-color: #fbf1bc;
+  --info-secondary-color-hover: #e8dc9e;
+  --info-secondary-color-active: #96893f;
+
+  /* Font */
+  --font-family: "Work Sans", sans-serif;
+
+  /* header tool links */
   --tool-link-color: #ffffff;
   --tool-link-background-color: #212427;
   --tool-link-background-color-hover: #4e5257;

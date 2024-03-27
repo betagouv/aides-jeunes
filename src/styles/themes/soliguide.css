@@ -6,6 +6,8 @@
   --main-color: #e65a46;
   --main-color-hover: #c44d3c;
   --main-color-active: #c44d3c;
+  --main-btn-text-color: #fff;
+  --border-radius: 0.1rem;
 
   /*
     progress bar
@@ -22,7 +24,6 @@
   --info-secondary-color-hover: #dddced;
   --info-secondary-color-active: #dddced;
 
-  --border-radius: 0.1rem;
+  /* Font */
   --font-family: inherit;
-  --main-btn-text-color: #fff;
 }

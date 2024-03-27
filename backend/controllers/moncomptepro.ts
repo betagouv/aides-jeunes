@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken"
 
 const JWT_EXPIRATION_DELAY = 6 * 30 * 24 * 60 * 60 // 6 months
 
+const accompagnement = config.accompagnement
+
 const {
   client_id,
   client_secret,
@@ -85,7 +87,7 @@ const access = async (req, res, next) => {
         res.cookie("github_handle_token", github_handle_token)
       } else {
         res.clearCookie("github_handle_token")
-        return res.redirect("/accompagnement?unauthorized")
+        return res.redirect(accompagnement.unauthorizedPath)
       }
     }
 
@@ -97,7 +99,7 @@ const access = async (req, res, next) => {
         return next()
       } else {
         res.clearCookie("github_handle_token")
-        return res.redirect("/accompagnement?unauthorized")
+        return res.redirect(accompagnement.unauthorizedPath)
       }
     }
 
@@ -105,13 +107,13 @@ const access = async (req, res, next) => {
   } catch (error) {
     console.error("Error in access:", error)
     res.clearCookie("github_handle_token")
-    return res.redirect("/accompagnement?error")
+    return res.redirect(accompagnement.errorPath)
   }
 }
 
 const postAuthRedirect = (req, res) => {
   if (req.query.redirect) {
-    res.redirect("/accompagnement")
+    res.redirect(accompagnement.path)
   } else {
     return res.redirect("/")
   }

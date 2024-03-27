@@ -19,6 +19,11 @@ const config: Configuration = {
     process.env.MES_AIDES_ROOT_URL ||
     process.env.DEPLOY_URL || // Netlify deploy apps
     "http://localhost:8080",
+  accompagnement: {
+    path: "/accompagnement",
+    unauthorizedPath: "/accompagnement?unauthorized",
+    errorPath: "/accompagnement?error",
+  },
   franceConnect: {
     root: process.env.FRANCE_CONNECT_ROOT_URL,
     clientId: process.env.FRANCE_CONNECT_CLIENT_ID,

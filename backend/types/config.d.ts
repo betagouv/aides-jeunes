@@ -1,6 +1,11 @@
 export interface Configuration {
   env: string
   baseURL: string
+  accompagnement: {
+    path: string
+    unauthorizedPath: string
+    errorPath: string
+  }
   franceConnect: {
     root?: string
     clientId?: string

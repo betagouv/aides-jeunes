@@ -69,7 +69,6 @@ import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import { capitalize } from "@lib/utils.js"
-import IndividuMethods from "@lib/individu"
 
 export default {
   name: "RessourceTypes",
@@ -131,15 +130,19 @@ export default {
     },
     needCoupleResources() {
       return this.allActiveSteps.filter(
-        (step) => "conjoint" === step.id && "ressources" === step.variable
+        (step) => step.id === "conjoint" && step.variable === "ressources"
       ).length
     },
     needParentsResources() {
       return (
-        (!this.store.situation.parents ||
-          !IndividuMethods.isWithoutParent(this.store.situation)) &&
         this.allActiveSteps.filter(
-          (step) => "parents" === step.entity && "rfr" === step.variable
+          (step) => step.entity === "parents" && step.variable === "rfr"
+        ).length ||
+        this.allActiveSteps.filter(
+          (step) =>
+            step.id === "demandeur" &&
+            step.variable ===
+              "bourse_criteres_sociaux_base_ressources_parentale"
         ).length
       )
     },

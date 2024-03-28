@@ -95,6 +95,8 @@ import { getAnswer, nullifyUndefinedValue } from "@lib/answers.js"
 import { useIndividu } from "@/composables/individu.js"
 import { useStore } from "@/stores/index.js"
 
+import ABTestingService from "@/plugins/ab-testing-service.js"
+
 export default {
   name: "MutualizedStep",
   components: {
@@ -163,6 +165,7 @@ export default {
         simulation: this.store.simulation,
         individu: this.individu,
         periods: this.store.dates,
+        abtestingService: ABTestingService,
       }
     },
     step() {

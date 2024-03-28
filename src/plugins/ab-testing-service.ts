@@ -1,12 +1,5 @@
 import storageService from "@/lib/storage-service.js"
-
-interface ABTesting {
-  [key: string]: {
-    index: number
-    value: string
-    deleted?: boolean
-  }
-}
+import { ABTesting, ABTestingService } from "@lib/types/abtesting.d.js"
 
 /*
  * L'AB testing repose sur les custom variables de Matomo
@@ -73,6 +66,13 @@ function getEnvironment() {
     versions[Math.floor(Math.random() * versions.length)]
   ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
 
+  ABTestingEnvironment.question_debut_chomage =
+    ABTestingEnvironment.question_debut_chomage || {}
+  ABTestingEnvironment.question_debut_chomage.index = 1
+  ABTestingEnvironment.question_debut_chomage.value =
+    ABTestingEnvironment.question_debut_chomage.value ||
+    (Math.random() > 0.5 ? "reformulation" : "actuelle")
+
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment
 }
@@ -88,7 +88,7 @@ function extractValueMap(env: ABTesting): { [key: string]: string } {
   }, {})
 }
 
-const ABTestingService = {
+const ABTestingService: ABTestingService = {
   getValues() {
     return extractValueMap(getEnvironment())
   },

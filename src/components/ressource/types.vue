@@ -14,6 +14,19 @@
       >. Vous pourrez ensuite saisir les montants.
       <EnSavoirPlus v-if="hasSeparatedParents" />
     </p>
+    <div
+      v-if="showInitialResourcesCollectionWarning"
+      class="fr-alert fr-alert--info fr-my-1w"
+    >
+      <p>
+        Vous devez saisir vos revenues<span v-if="needCoupleResources"
+          >puis ceux de votre conjoint ou conjointe</span
+        >
+        <span v-if="needParentsResources">
+          et ceux de vos parents ou vos tuteurs légaux</span
+        >.
+      </p>
+    </div>
     <fieldset
       v-for="category in categories"
       :key="category.id"
@@ -111,6 +124,30 @@ export default {
     },
     hasSeparatedParents() {
       return this.store.situation?.parents?._situation === "separes"
+    },
+    allActiveSteps() {
+      return this.store.getAllSteps.filter((step) => step.isActive)
+    },
+    needCoupleResources() {
+      return this.allActiveSteps.filter(
+        (step) => step.id === "conjoint" && step.variable === "ressources"
+      ).length
+    },
+    needParentsResources() {
+      return (
+        this.allActiveSteps.filter(
+          (step) => step.entity === "parents" && step.variable === "rfr"
+        ).length ||
+        this.allActiveSteps.filter(
+          (step) =>
+            step.id === "demandeur" &&
+            step.variable ===
+              "bourse_criteres_sociaux_base_ressources_parentale"
+        ).length
+      )
+    },
+    showInitialResourcesCollectionWarning() {
+      return this.individu._role === "demandeur"
     },
   },
   watch: {

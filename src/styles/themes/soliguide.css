@@ -6,6 +6,8 @@
   --main-color: #e65a46;
   --main-color-hover: #c44d3c;
   --main-color-active: #c44d3c;
+  --main-btn-text-color: #fff;
+  --border-radius: 0.1rem;
 
   /*
     progress bar
@@ -13,22 +15,15 @@
     home main text
     */
   --secondary-color: #322e5a;
-  --secondary-color-hover: #322e5a;
-  --secondary-color-active: #322e5a;
 
   /* en savoir plus text */
   --info-main-color: #322e5a;
-
-  /* ? */
-  --info-main-color-hover: lightgreen;
-  --info-main-color-active: grey;
 
   /* en savoir plus background */
   --info-secondary-color: #dddced;
   --info-secondary-color-hover: #dddced;
   --info-secondary-color-active: #dddced;
 
-  --border-radius: 0.1rem;
+  /* Font */
   --font-family: inherit;
-  --main-btn-text-color: #fff;
 }

@@ -13,15 +13,9 @@
     home main text
     */
   --secondary-color: #322e5a;
-  --secondary-color-hover: #322e5a;
-  --secondary-color-active: #322e5a;
 
   /* en savoir plus text */
   --info-main-color: #322e5a;
-
-  /* ? */
-  --info-main-color-hover: lightgreen;
-  --info-main-color-active: grey;
 
   /* en savoir plus background */
   --info-secondary-color: #dddced;

@@ -53,19 +53,22 @@ export function getParameter(parameter, date) {
   return computeParameter(parameter, date)
 }
 
-export async function getParameters(date) {
+export async function getParameters(date): Promise<OpenfiscaParameters> {
   await computeParameters()
+  return getParametersList(date)
+}
 
+export function getParametersList(date): OpenfiscaParameters {
   const results = {}
   Object.keys(parametersList).forEach(async (parameter) => {
     results[parameter] = computeParameter(parameter, date)
   })
-
-  return results
+  return results as OpenfiscaParameters
 }
 
 export default {
   parametersList,
   getParameter,
   getParameters,
+  getParametersList,
 }

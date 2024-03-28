@@ -2,24 +2,64 @@
   <div>
     <WarningMessage v-if="error" class="fr-mb-4w">{{ error }}</WarningMessage>
     <div class="aj-action-buttons fr-mt-2w">
-      <ul
-        class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
-      >
-        <li>
-          <button
-            class="fr-btn"
-            type="submit"
-            :class="{ 'fr-btn-disabled': disableSubmit }"
-            @click="localOnSubmit($event)"
-          >
-            Suivant
-          </button>
-        </li>
-        <li>
-          <slot />
-          <BackButton @click="goBack" />
-        </li>
-      </ul>
+      <span id="action-buttons-desktop">
+        <ul
+          class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
+        >
+          <li>
+            <button
+              class="fr-btn"
+              type="submit"
+              :class="{ 'fr-btn-disabled': disableSubmit }"
+              @click="localOnSubmit($event)"
+            >
+              Suivant
+            </button>
+          </li>
+          <li>
+            <slot />
+            <BackButton @click="goBack" />
+            <button
+              class="fr-btn fr-btn--secondary"
+              type="button"
+              @click="comeBackLaterButtonClick"
+            >
+              Revenir plus tard ?
+            </button>
+          </li>
+        </ul>
+      </span>
+      <span id="action-buttons-mobile">
+        <ul class="fr-btns-group fr-btns-group--center">
+          <li>
+            <button
+              class="fr-btn fr-btn--secondary"
+              type="button"
+              @click="comeBackLaterButtonClick"
+            >
+              Revenir plus tard ?
+            </button>
+          </li>
+        </ul>
+        <ul
+          class="aj-action-buttons-sm fr-btns-group fr-btns-group--inline fr-btns-group--inline-reverse fr-btns-group--right"
+        >
+          <li>
+            <button
+              class="fr-btn"
+              type="submit"
+              :class="{ 'fr-btn-disabled': disableSubmit }"
+              @click="localOnSubmit($event)"
+            >
+              Suivant
+            </button>
+          </li>
+          <li>
+            <slot />
+            <BackButton class="aj-action-button-li-sm" @click="goBack" />
+          </li>
+        </ul>
+      </span>
     </div>
   </div>
 </template>
@@ -60,6 +100,8 @@ const localOnSubmit = (event) => {
   event.preventDefault()
   props.onSubmit()
 }
+
+const comeBackLaterButtonClick = () => router.push({ name: "revenirPlusTard" })
 
 const goBack = () => {
   tracker.trackEvent(

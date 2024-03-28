@@ -46,14 +46,15 @@ export function resultRedirect(req: Request, res: Response) {
 }
 
 export async function persist(req: Request, res: Response) {
-  if (!req.body.email?.length && !req.body.phone?.length) {
+  const { preventNotify, surveyOptin, email, phone } = req.body
+
+  if (!preventNotify && !email?.length && !phone?.length) {
     return res.status(400).send({ result: "Missing Email or Phone" })
   }
 
   const simulation = req.simulation
 
   try {
-    const { surveyOptin, email, phone } = req.body
     const followup = (await FollowupFactory.create(
       simulation,
       surveyOptin,
@@ -75,7 +76,12 @@ export async function persist(req: Request, res: Response) {
         return res.status(422).send("Unsupported phone number format")
       }
     }
-    return res.send({ result: "OK" })
+    if (preventNotify) {
+      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/followups/recap/${followup.accessToken}`
+      res.send({ simulationRecapUrl })
+    } else {
+      res.send({ result: "OK" })
+    }
   } catch (error: any) {
     Sentry.captureException(error)
     if (error.name === "ValidationError") {
@@ -157,6 +163,9 @@ export async function followupByAccessToken(
   })
   if (!followup) return res.sendStatus(404)
   req.followup = followup
+  if (!req.simulation) {
+    req.simulation = followup.simulation
+  }
   next()
 }
 
@@ -243,6 +252,21 @@ export async function smsSurveyLinkClick(req: Request, res: Response) {
     req.params.surveyType = SurveyType.TrackClickOnBenefitActionSms
     const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
+  } catch (error) {
+    console.error("error", error)
+    return res.sendStatus(404)
+  }
+}
+
+export async function temporarySimulationLinkRedirect(
+  req: Request,
+  res: Response
+) {
+  try {
+    simulationController.attachAccessCookie(req, res)
+    const { followup } = req
+    await followup.updateTemporarySimulationSurvey()
+    res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
   } catch (error) {
     console.error("error", error)
     return res.sendStatus(404)

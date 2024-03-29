@@ -97,6 +97,7 @@ import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
 import Simulation from "@/lib/simulation.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const store = useStore()
 const route = useRoute()
@@ -108,6 +109,7 @@ const propertyData = computed(() => {
     openFiscaParameters: store.openFiscaParameters,
     simulation: store.simulation,
     periods: store.dates,
+    abtestingService: ABTestingService,
   }
 })
 

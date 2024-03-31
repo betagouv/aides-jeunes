@@ -291,6 +291,13 @@ textarea {
   --icon-size: 2rem;
 }
 
+@media (max-width: 576px) {
+  .aj-hero-section {
+    max-height: none;
+    height: auto;
+  }
+}
+
 @media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;

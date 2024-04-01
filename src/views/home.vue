@@ -52,7 +52,7 @@
       </ul>
       <p class="fr-text--center">
         <router-link to="/aides">
-          Acccéder à la liste complète des aides
+          Accéder à la liste complète des aides
         </router-link>
       </p>
     </div>

@@ -233,13 +233,13 @@ This will generate 3 csv files in the `dist/documents` folder:
 - `monthly_age.csv` that lists the number of simulations per age for each month
 - `monthly_geo.csv` that lists the number of simulations per epci, departement and regions for each month
 
-## NetlifyCMS development
+## Decap CMS development
 
-It is possible to locally debug changes in NetlifyCMS configuration.
+It is possible to locally debug changes in Decap CMS configuration.
 
-- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L15) ([`local_backend: true`](https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository)) must be uncommented;
+- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L19) ([`local_backend: true`](https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository)) must be uncommented;
 - `npx netlify-cms-proxy-server` should be ran from `.` and
 - `npm ci` and `npm run dev` should be ran from `contribuer`.
-- Netlify CMS should now be accessible at `http://localhost:3000/admin/index.html`
+- Decap CMS should now be accessible at `http://localhost:3000/admin/index.html`
 
 Changes made will be reflected locally instead of generating pull requests in production.

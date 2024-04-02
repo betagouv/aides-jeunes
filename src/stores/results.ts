@@ -78,7 +78,7 @@ export const useResultsStore = defineStore("results", {
       return useStore().saveSituationError
     },
     shouldDisplayResults() {
-      return !(this.updating || this.hasWarning || this.error) && this.benefits
+      return !(this.updating || this.hasWarning || this.error) && this.resultats
     },
     simulationAnonymized() {
       return useStore().simulationAnonymized

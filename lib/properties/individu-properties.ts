@@ -280,7 +280,7 @@ export default {
         return `Depuis quand ${IndividuMethods.label(
           individu,
           "être"
-        )} inscrit(e) au chômage ?`
+        )} inscrit(e) à France Travail ?`
       }
     },
   }),

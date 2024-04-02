@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import config from "../config/index.js"
 import { Issuer } from "openid-client"
+import Sentry from "@sentry/node"
 
 const JWT_EXPIRATION_DELAY = 6 * 30 * 24 * 60 * 60 // 6 months
 const MCP_TOKEN = "mcp_token"
@@ -93,7 +94,7 @@ const access = async (req, res, next) => {
 
     return login(req, res)
   } catch (error) {
-    console.error("Error in access:", error)
+    Sentry.captureException(error)
     res.clearCookie(MCP_TOKEN)
     return res.redirect(accompagnement.errorPath)
   }

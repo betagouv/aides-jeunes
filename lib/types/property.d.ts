@@ -5,7 +5,7 @@ export interface PropertyData {
   simulation?: any
   individu?: any
   periods?: any
-  abtestingService?: ABTestingService
+  abtestingService: ABTestingService
 }
 
 export interface EnumItemProperty {

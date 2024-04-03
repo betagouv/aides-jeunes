@@ -1,5 +1,4 @@
 import { omit, filter, pick, assign } from "lodash-es"
-import { Response } from "express"
 
 import config from "../config/index.js"
 import { generateSituation } from "../../lib/situations.js"
@@ -62,7 +61,7 @@ function attachAccessCookie(req: Request, res, next?) {
   next && next()
 }
 
-function redirectToResults(req: Request, res: Response) {
+function redirectToResults(req: Request, res) {
   res.redirect("/simulation/resultats")
 }
 

@@ -14,7 +14,6 @@ import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
 import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
 import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
-import dayjs from "dayjs"
 
 export function followup(
   req: Request,
@@ -177,11 +176,6 @@ export async function updateWasUseful(req: Request) {
   await followup.save()
 }
 
-async function updateTrackClickOnBenefitActionEmail(req: Request) {
-  const { followup } = req
-  await followup.updateSurvey(SurveyType.TrackClickOnBenefitActionEmail)
-}
-
 async function updateSurveyInFollowup(req: Request) {
   const { surveyType } = req.params
   const { followup } = req
@@ -191,8 +185,6 @@ async function updateSurveyInFollowup(req: Request) {
       await updateWasUseful(req)
       break
     case SurveyType.TrackClickOnBenefitActionEmail:
-      await updateTrackClickOnBenefitActionEmail(req)
-      break
     case SurveyType.TousABordNotification:
     case SurveyType.TrackClickOnBenefitActionSms:
       await followup.updateSurvey(surveyType)
@@ -210,8 +202,6 @@ async function getRedirectUrl(req: Request) {
     case SurveyType.TrackClickOnBenefitActionEmail:
     case SurveyType.TrackClickOnBenefitActionSms: {
       await followup.addSurveyIfMissing(SurveyType.BenefitAction)
-      const surveyOpened = await followup.addSurveyIfMissing(surveyType)
-      surveyOpened.openedAt = dayjs().toDate()
       await followup.save()
       return followup.surveyPath
     }

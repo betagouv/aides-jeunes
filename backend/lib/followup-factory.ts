@@ -3,7 +3,7 @@ import { Followup } from "@lib/types/followup.js"
 import { Simulation } from "@lib/types/simulation.js"
 import utils from "../lib/utils.js"
 
-const DefaultVersion = 4
+const DefaultVersion = 5
 const TokenLength = 17
 
 export const FollowupFactory = {

@@ -9,7 +9,6 @@ describe("FollowupFactory", () => {
     let mockCompute,
       mockSimulation,
       mockEmail,
-      mockPhone,
       mockSurveyOptin,
       mockAccessToken,
       mockGenerateToken,
@@ -33,7 +32,6 @@ describe("FollowupFactory", () => {
       }
 
       mockEmail = "test@example.com"
-      mockPhone = "0612345678"
       mockSurveyOptin = true
 
       mockAccessToken = "access-token"
@@ -45,38 +43,22 @@ describe("FollowupFactory", () => {
     })
 
     it("should call compute once", async () => {
-      await FollowupFactory.create(
-        mockSimulation,
-        mockSurveyOptin,
-        mockEmail,
-        mockPhone
-      )
+      await FollowupFactory.create(mockSimulation, mockSurveyOptin, mockEmail)
       expect(mockCompute).toHaveBeenCalledTimes(1)
     })
 
     it("should call generateToken twice", async () => {
       // Note: generateToken is called twice because it is also called in the
       // simulation pre-save hook.
-      await FollowupFactory.create(
-        mockSimulation,
-        mockSurveyOptin,
-        mockEmail,
-        mockPhone
-      )
+      await FollowupFactory.create(mockSimulation, mockSurveyOptin, mockEmail)
       expect(mockGenerateToken).toHaveBeenCalledTimes(2)
     })
 
     it("should call create with the correct data", async () => {
-      await FollowupFactory.create(
-        mockSimulation,
-        mockSurveyOptin,
-        mockEmail,
-        mockPhone
-      )
+      await FollowupFactory.create(mockSimulation, mockSurveyOptin, mockEmail)
       expect(mockFollowupCreate).toHaveBeenCalledWith({
         simulation: mockSimulation,
         email: mockEmail,
-        phone: mockPhone,
         surveyOptin: mockSurveyOptin,
         accessToken: mockAccessToken,
         benefits: [

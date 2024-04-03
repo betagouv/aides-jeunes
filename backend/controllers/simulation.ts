@@ -1,4 +1,5 @@
 import { omit, filter, pick, assign } from "lodash-es"
+import { Response } from "express"
 
 import config from "../config/index.js"
 import { generateSituation } from "../../lib/situations.js"
@@ -42,7 +43,7 @@ function simulation(
   })
 }
 
-function attachAccessCookie(req: Request, res, next?) {
+export function attachAccessCookie(req: Request, res, next?) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
     sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
@@ -59,6 +60,10 @@ function attachAccessCookie(req: Request, res, next?) {
     cookiesParameters
   )
   next && next()
+}
+
+export function redirectToResults(req: Request, res: Response) {
+  res.redirect("/simulation/resultats")
 }
 
 function validateAccess(req: Request, res, next) {
@@ -250,6 +255,7 @@ export default {
   openfiscaRequest,
   openfiscaTest,
   redirect,
+  redirectToResults,
   results,
   getLatestFollowup,
 }

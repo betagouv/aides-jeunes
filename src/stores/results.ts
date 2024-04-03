@@ -26,6 +26,7 @@ export const useResultsStore = defineStore("results", {
             results.push(bafaGroup)
           }
           bafaGroup.benefits.push(benefit)
+          benefit.groupLabel = bafaGroup.label
         } else {
           results.push(benefit)
         }

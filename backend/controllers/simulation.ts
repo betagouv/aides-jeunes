@@ -43,7 +43,7 @@ function simulation(
   })
 }
 
-export function attachAccessCookie(req: Request, res, next?) {
+function attachAccessCookie(req: Request, res, next?) {
   const cookiesParameters = {
     maxAge: 7 * 24 * 3600 * 1000,
     sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
@@ -62,7 +62,7 @@ export function attachAccessCookie(req: Request, res, next?) {
   next && next()
 }
 
-export function redirectToResults(req: Request, res: Response) {
+function redirectToResults(req: Request, res: Response) {
   res.redirect("/simulation/resultats")
 }
 

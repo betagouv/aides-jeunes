@@ -83,7 +83,7 @@ describe("FollowupFactory", () => {
           { id: "1", amount: 100, unit: "month" },
           { id: "2", amount: 200, unit: "month" },
         ],
-        version: 5,
+        version: 4,
       })
     })
 

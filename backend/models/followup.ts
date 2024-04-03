@@ -44,6 +44,10 @@ FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })
 
+FollowupSchema.virtual("smsReturnPath").get(function (this) {
+  return `/api/sms/${this.accessToken}`
+})
+
 FollowupSchema.virtual("surveyPath").get(function (this) {
   return `/suivi?token=${this.accessToken}`
 })
@@ -58,6 +62,14 @@ FollowupSchema.virtual("wasUsefulPath").get(function (this) {
 
 FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnSimulationUsefulnessEmail}`
+})
+
+FollowupSchema.virtual("smsSurveyPath").get(function (this) {
+  return `/api/r/${this.accessToken}`
+})
+
+FollowupSchema.virtual("longSmsSurveyPath").get(function (this) {
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnBenefitActionSms}`
 })
 
 export default mongoose.model<Followup, FollowupModel>(

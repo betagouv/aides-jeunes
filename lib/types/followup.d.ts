@@ -33,10 +33,10 @@ interface FollowupMethods {
 interface FollowupVirtuals {
   emailRenderPath: string
   returnPath: string
-  smsReturnPath: string
+  shortResultPath: string
   surveyPath: string
+  shortSurveyPath: string
   smsSurveyPath: string
-  longSmsSurveyPath: string
   surveyPathTracker: string
   wasUsefulPath: string
   wasNotUsefulPath: string

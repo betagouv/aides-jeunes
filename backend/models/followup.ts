@@ -44,7 +44,7 @@ FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })
 
-FollowupSchema.virtual("smsReturnPath").get(function (this) {
+FollowupSchema.virtual("shortResultPath").get(function (this) {
   return `/api/sms/${this.accessToken}`
 })
 
@@ -64,11 +64,11 @@ FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnSimulationUsefulnessEmail}`
 })
 
-FollowupSchema.virtual("smsSurveyPath").get(function (this) {
+FollowupSchema.virtual("shortSurveyPath").get(function (this) {
   return `/api/r/${this.accessToken}`
 })
 
-FollowupSchema.virtual("longSmsSurveyPath").get(function (this) {
+FollowupSchema.virtual("smsSurveyPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnBenefitActionSms}`
 })
 

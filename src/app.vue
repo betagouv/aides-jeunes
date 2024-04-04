@@ -43,9 +43,8 @@ export default {
       this.iframeStore.setInIframe()
     }
 
-    if (params.has("data-with-logo")) {
-      this.iframeStore.setIframeHeaderCollapse(params.get("data-with-logo"))
-    }
+    const collapseValue = params.get("data-with-logo")
+    this.iframeStore.setIframeHeaderCollapse(collapseValue)
 
     if (params.has("theme")) {
       this.themeStore.set(params.get("theme"))

@@ -61,6 +61,10 @@ function attachAccessCookie(req: Request, res, next?) {
   next && next()
 }
 
+function redirectToResults(req: Request, res) {
+  res.redirect("/simulation/resultats")
+}
+
 function validateAccess(req: Request, res, next) {
   if (
     req.simulation?.isAccessible({
@@ -250,6 +254,7 @@ export default {
   openfiscaRequest,
   openfiscaTest,
   redirect,
+  redirectToResults,
   results,
   getLatestFollowup,
 }

@@ -8,7 +8,7 @@ export default function (api: Express) {
       case "r": // resultats
         return res.redirect(req.followup.returnPath)
       case "s": // survey
-        return res.redirect(req.followup.longSmsSurveyPath)
+        return res.redirect(req.followup.smsSurveyPath)
     }
   })
 }

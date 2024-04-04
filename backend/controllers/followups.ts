@@ -173,7 +173,6 @@ export async function updateWasUseful(req: Request) {
     SurveyType.TrackClickOnSimulationUsefulnessEmail,
     answers
   )
-  await followup.save()
 }
 
 async function updateSurveyInFollowup(req: Request) {
@@ -184,13 +183,9 @@ async function updateSurveyInFollowup(req: Request) {
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
       await updateWasUseful(req)
       break
-    case SurveyType.TrackClickOnBenefitActionEmail:
-    case SurveyType.TousABordNotification:
-    case SurveyType.TrackClickOnBenefitActionSms:
+    default:
       await followup.updateSurvey(surveyType)
       break
-    default:
-      throw new Error(`Unknown survey type: ${surveyType}`)
   }
 }
 

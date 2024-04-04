@@ -33,12 +33,6 @@ export interface Configuration {
   }
   github: {
     repository_url: string
-    access_token_url: string
-    authenticated_url: string
-    authorize_url: string
-    client_secret: string
-    client_id: string
-    authorized_users: string[]
   }
   matomo: {
     id: number

@@ -3,7 +3,7 @@ import config from "../config/index.js"
 import { Issuer } from "openid-client"
 import Sentry from "@sentry/node"
 
-const JWT_EXPIRATION_DELAY = 6 * 30 * 24 * 60 * 60 // 6 months
+const JWT_EXPIRATION_DELAY = 15552000 // 6 * 30 * 24 * 60 * 60 = 6 months
 const MCP_TOKEN = "mcp_token"
 
 const accompagnement = config.accompagnement

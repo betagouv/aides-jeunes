@@ -194,7 +194,8 @@ async function updateSurveyInFollowup(req: Request) {
       await updateTrackClickOnBenefitActionEmail(req)
       break
     case SurveyType.TousABordNotification:
-      await followup.updateSurvey(SurveyType.TousABordNotification)
+    case SurveyType.TrackClickOnBenefitActionSms:
+      await followup.updateSurvey(surveyType)
       break
     default:
       throw new Error(`Unknown survey type: ${surveyType}`)

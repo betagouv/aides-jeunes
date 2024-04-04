@@ -1,14 +1,16 @@
 import { followupByAccessToken } from "../controllers/followups.js"
-import { Express } from "express"
+import express from "express"
 
-export default function (api: Express) {
-  api.param("accessToken", followupByAccessToken)
-  api.route("/:type/:accessToken").get((req, res) => {
-    switch (params.type) {
-      case "r": // resultats
-        return res.redirect(req.followup.returnPath)
-      case "s": // survey
-        return res.redirect(req.followup.smsSurveyPath)
-    }
-  })
-}
+const route = express()
+
+route.param("accessToken", followupByAccessToken)
+route.get("/:type/:accessToken", (req, res) => {
+  switch (req.params.type) {
+    case "r": // resultats
+      return res.redirect(req.followup.returnPath)
+    case "s": // survey
+      return res.redirect(req.followup.smsSurveyPath)
+  }
+})
+
+export default route

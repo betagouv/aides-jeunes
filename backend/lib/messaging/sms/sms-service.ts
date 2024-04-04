@@ -37,7 +37,7 @@ async function createAxiosInstance() {
   return instance
 }
 
-function buildSmsUrl({ accessToken, phone, username, password, smsType }) {
+function buildSmsUrl({ followup, phone, username, password, smsType }) {
   const { baseURL } = config
   const { url } = config.smsService
   const formattedPhone = phoneNumberFormatting(
@@ -48,10 +48,11 @@ function buildSmsUrl({ accessToken, phone, username, password, smsType }) {
   let text, surveyLink
   switch (smsType) {
     case SmsType.SimulationResults:
-      text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${baseURL}/api/sms/${accessToken}\n1jeune1solution`
+      surveyLink = `${baseURL}${followup.shortResultPath}`
+      text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${surveyLink}\n1jeune1solution`
       break
     case SmsType.InitialSurvey:
-      surveyLink = `${baseURL}/api/r/${accessToken}`
+      surveyLink = `${baseURL}${followup.shortSurveyPath}`
       text = `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? Dites-le nous : ${surveyLink}`
       break
     default:
@@ -71,9 +72,9 @@ export async function sendSimulationResultsSms(
     }
 
     const { username, password } = await getSMSConfig()
-    const { phone, accessToken } = followup
+    const { phone } = followup
     const smsUrl = buildSmsUrl({
-      accessToken,
+      followup,
       phone,
       username,
       password,
@@ -102,9 +103,9 @@ export async function sendSurveyBySms(followup: Followup): Promise<Survey> {
     SurveyType.TrackClickOnBenefitActionSms
   )
   const { username, password } = await getSMSConfig()
-  const { phone, accessToken } = followup
+  const { phone } = followup
   const smsUrl = buildSmsUrl({
-    accessToken,
+    followup,
     phone,
     username,
     password,

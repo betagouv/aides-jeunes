@@ -194,7 +194,8 @@ async function updateSurveyInFollowup(req: Request) {
       await updateTrackClickOnBenefitActionEmail(req)
       break
     case SurveyType.TousABordNotification:
-      await followup.updateSurvey(SurveyType.TousABordNotification)
+    case SurveyType.TrackClickOnBenefitActionSms:
+      await followup.updateSurvey(surveyType)
       break
     default:
       throw new Error(`Unknown survey type: ${surveyType}`)
@@ -224,18 +225,6 @@ async function getRedirectUrl(req: Request) {
 export async function logSurveyLinkClick(req: Request, res: Response) {
   try {
     await updateSurveyInFollowup(req)
-    const redirectUrl = await getRedirectUrl(req)
-
-    res.redirect(redirectUrl)
-  } catch (error) {
-    console.error("error", error)
-    return res.sendStatus(404)
-  }
-}
-
-export async function smsSurveyLinkClick(req: Request, res: Response) {
-  try {
-    req.params.surveyType = SurveyType.TrackClickOnBenefitActionSms
     const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
   } catch (error) {

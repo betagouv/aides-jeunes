@@ -9,7 +9,7 @@ import openfiscaRoutes from "../routes/openfisca.js"
 import outilsRoutes from "../routes/outils.js"
 import proxyRoutes from "../routes/proxy.js"
 import simulationRoutes from "../routes/simulation.js"
-import smsRoutes from "../routes/sms.js"
+import legacySmsRoutes from "../routes/legacy-sms.js"
 import supportRoutes from "../routes/support.js"
 import teleservicesRoutes from "../routes/teleservices.js"
 import webhookRoutes from "../routes/webhook.js"
@@ -21,11 +21,11 @@ emailsRoutes(api)
 followupsRoutes(api)
 franceConnectRoutes(api)
 githubRoutes(api)
+legacySmsRoutes(api)
 openfiscaRoutes(api)
 outilsRoutes(api)
 proxyRoutes(api)
 simulationRoutes(api)
-smsRoutes(api)
 supportRoutes(api)
 teleservicesRoutes(api)
 webhookRoutes(api)

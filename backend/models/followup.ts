@@ -47,7 +47,7 @@ FollowupSchema.virtual("returnPath").get(function (this) {
 })
 
 FollowupSchema.virtual("shortResultPath").get(function (this) {
-  return `/api/sms/${this.accessToken}`
+  return `/s/r/${this.accessToken}`
 })
 
 FollowupSchema.virtual("surveyPath").get(function (this) {
@@ -67,7 +67,7 @@ FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
 })
 
 FollowupSchema.virtual("shortSurveyPath").get(function (this) {
-  return `/api/r/${this.accessToken}`
+  return `/s/s/${this.accessToken}`
 })
 
 FollowupSchema.virtual("smsSurveyPath").get(function (this) {

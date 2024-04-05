@@ -36,7 +36,9 @@ const inputPhonePattern = computed(() => {
   return `^(((\\+?|00)(${diallingCodes})\\s?|0)[67])([\\s\\.\\-]?\\d{2}){4}`
 })
 
-const showSms = process.env.VITE_SHOW_SMS_TAB
+const showSms =
+  process.env.VITE_SHOW_SMS_TAB &&
+  ABTestingService.getValues().Followup_SMS === "show"
 
 StatisticsMixin.methods.sendEventToMatomo(
   EventCategory.Followup,

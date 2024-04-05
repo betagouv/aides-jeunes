@@ -133,7 +133,6 @@ export function computeAides(
           }
         : benefit.institution
       const openfiscaParameters = getParametersList(situation.dateDeValeur)
-      benefit.legend = getBenefitLegend(benefit, openfiscaParameters)
 
       result.droitsEligibles!.push(
         // @ts-ignore
@@ -145,6 +144,7 @@ export function computeAides(
           montant: value,
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),
           institution,
+          legend: getBenefitLegend(benefit, openfiscaParameters),
         })
       )
     })

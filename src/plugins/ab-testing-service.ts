@@ -40,6 +40,19 @@ function getEnvironment() {
   //   ABTestingEnvironment.name_of_the_test.value ||
   //   (Math.random() > 0.5 ? "A version name" : "B version name")
 
+  ABTestingEnvironment.aides_mobilite =
+    ABTestingEnvironment.aides_mobilite || {}
+  ABTestingEnvironment.aides_mobilite.index = 5
+  if (
+    !ABTestingEnvironment.aides_mobilite.value ||
+    !ABTestingEnvironment.aides_mobilite.value.endsWith("_conserve_position")
+  ) {
+    ABTestingEnvironment.aides_mobilite.value =
+      Math.random() > 0.5
+        ? "aides_velo_distinctes_conserve_position"
+        : "aides_velo_fusionnees_conserve_position"
+  }
+
   ABTestingEnvironment.aides_bafa = ABTestingEnvironment.aides_bafa || {}
   ABTestingEnvironment.aides_bafa.index = 4
   if (

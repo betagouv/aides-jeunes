@@ -270,6 +270,10 @@ const router = createRouter({
           "aides_bafa",
           "aides_bafa_fusionnees_conserve_position"
         )
+        ABTestingService.setVariant(
+          "aides_velo",
+          "aides_velo_fusionnees_conserve_position"
+        )
         return "/"
       },
     },

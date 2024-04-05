@@ -61,6 +61,10 @@ function attachAccessCookie(req: Request, res, next?) {
   next && next()
 }
 
+function redirectToRecap(req: Request, res) {
+  res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
+}
+
 function redirectToResults(req: Request, res) {
   res.redirect("/simulation/resultats")
 }
@@ -254,6 +258,7 @@ export default {
   openfiscaRequest,
   openfiscaTest,
   redirect,
+  redirectToRecap,
   redirectToResults,
   results,
   getLatestFollowup,

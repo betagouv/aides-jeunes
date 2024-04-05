@@ -28,10 +28,12 @@ interface FollowupAttributes {
 interface FollowupMethods {
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
   updateSurvey(action: SurveyType, data?: any)
+  updateTemporarySimulationSurvey()
 }
 
 interface FollowupVirtuals {
   emailRenderPath: string
+  recapPath: string
   returnPath: string
   shortResultPath: string
   surveyPath: string

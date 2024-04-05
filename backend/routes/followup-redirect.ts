@@ -10,5 +10,10 @@ route.get(
   simulationController.attachAccessCookie,
   simulationController.redirectToResults
 )
+route.get(
+  "/recap/:followupId",
+  simulationController.attachAccessCookie,
+  simulationController.redirectToRecap
+)
 
 export default route

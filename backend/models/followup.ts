@@ -42,6 +42,10 @@ FollowupSchema.virtual("emailRenderPath").get(function (this) {
   return `/api/email/followups/${this._id}?token=${this.accessToken}&emailType=`
 })
 
+FollowupSchema.virtual("recapPath").get(function (this) {
+  return `/followups/recap/${this._id}?token=${this.accessToken}`
+})
+
 FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
 })

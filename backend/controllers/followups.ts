@@ -40,14 +40,15 @@ export function followup(
 }
 
 export async function persist(req: Request, res: Response) {
-  if (!req.body.email?.length && !req.body.phone?.length) {
+  const { preventNotify, surveyOptin, email, phone } = req.body
+
+  if (!preventNotify && !email?.length && !phone?.length) {
     return res.status(400).send({ result: "Missing Email or Phone" })
   }
 
   const simulation = req.simulation
 
   try {
-    const { surveyOptin, email, phone } = req.body
     const followup = (await FollowupFactory.create(
       simulation,
       surveyOptin,
@@ -69,7 +70,12 @@ export async function persist(req: Request, res: Response) {
         return res.status(422).send("Unsupported phone number format")
       }
     }
-    return res.send({ result: "OK" })
+    if (preventNotify) {
+      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/s/t/${followup.accessToken}`
+      res.send({ simulationRecapUrl })
+    } else {
+      res.send({ result: "OK" })
+    }
   } catch (error: any) {
     Sentry.captureException(error)
     if (error.name === "ValidationError") {
@@ -151,6 +157,9 @@ export async function followupByAccessToken(
   })
   if (!followup) return res.sendStatus(404)
   req.followup = followup
+  if (!req.simulation) {
+    req.simulation = followup.simulation
+  }
   next()
 }
 
@@ -200,6 +209,12 @@ async function getRedirectUrl(req: Request) {
       await followup.save()
       return followup.surveyPath
     }
+    case SurveyType.TrackClickTemporarySimulationLink:
+      await followup.addSurveyIfMissing(
+        SurveyType.TrackClickTemporarySimulationLink
+      )
+      await followup.save()
+      return followup.recapPath
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:

@@ -287,6 +287,18 @@ textarea {
   --icon-size: 2rem;
 }
 
+@media (max-width: 480px) {
+  #action-buttons-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 481px) {
+  #action-buttons-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: 576px) {
   .aj-hero-section {
     max-height: none;
@@ -326,6 +338,11 @@ textarea {
   .aj-responsive-icon-places,
   [class*=" fr-icon-"]:before {
     --icon-size: 1.5rem;
+  }
+
+  .aj-action-buttons-sm > li,
+  .aj-action-buttons-sm button {
+    flex: 1;
   }
 }
 

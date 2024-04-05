@@ -28,9 +28,11 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
     console.log("Could not find and update survey using its id")
     return
   }
+  const now = Date.now()
   Object.assign(survey, {
     answers: answers,
-    repliedAt: Date.now(),
+    repliedAt: now,
+    touchedAts: [...survey.touchedAts, now],
   })
   this.surveys = surveys
   return this.save()

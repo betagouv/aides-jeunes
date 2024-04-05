@@ -33,7 +33,8 @@ interface FollowupMethods {
 
 interface FollowupVirtuals {
   emailRenderPath: string
-  recapPath: string
+  recapSurveyPath: string
+  recapPathUrl: string
   returnPath: string
   shortResultPath: string
   surveyPath: string

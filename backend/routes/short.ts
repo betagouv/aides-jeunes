@@ -11,7 +11,7 @@ route.get("/:type/:accessToken", (req, res) => {
     case "s": // survey
       return res.redirect(req.followup.smsSurveyPath)
     case "t": // temporary simulation recap
-      return res.redirect(req.followup.recapPath)
+      return res.redirect(req.followup.recapSurveyPath)
   }
 })
 

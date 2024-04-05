@@ -126,10 +126,6 @@ SimulationSchema.method("compute", function (showPrivate) {
   })
 })
 
-SimulationSchema.virtual("recapPath").get(function (this) {
-  return `/simulation/recapitulatif?simulationId=${this._id}`
-})
-
 export default mongoose.model<Simulation, SimulationModel>(
   "Simulation",
   SimulationSchema

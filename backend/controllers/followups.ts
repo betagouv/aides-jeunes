@@ -71,6 +71,10 @@ export async function persist(req: Request, res: Response) {
       }
     }
     if (preventNotify) {
+      await followup.addSurveyIfMissing(
+        SurveyType.TrackClickTemporarySimulationLink
+      )
+      followup.save()
       const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/s/t/${followup.accessToken}`
       res.send({ simulationRecapUrl })
     } else {
@@ -210,11 +214,12 @@ async function getRedirectUrl(req: Request) {
       return followup.surveyPath
     }
     case SurveyType.TrackClickTemporarySimulationLink:
+      console.log("TrackClickTemporarySimulationLink")
       await followup.addSurveyIfMissing(
         SurveyType.TrackClickTemporarySimulationLink
       )
       await followup.save()
-      return followup.recapPath
+      return followup.recapPathUrl
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:

@@ -51,6 +51,12 @@ export default {
     shouldDisplayResults() {
       return this.resultsStore.shouldDisplayResults
     },
+    showSMS() {
+      return (
+        process.env.VITE_SHOW_SMS_TAB &&
+        ABTestingService.getValues().Followup_SMS === "show"
+      )
+    },
     title() {
       return this.getTitleByRoute(this.$route)
     },
@@ -60,14 +66,12 @@ export default {
       )
     },
     emailButtonTitle() {
-      return process.env.VITE_SHOW_SMS_TAB &&
-        ABTestingService.getValues().Followup_SMS === "show"
+      return this.showSMS
         ? "Recevoir les résultats par email/SMS"
         : "Recevoir les résultats par email"
     },
     emailModalTitle() {
-      return process.env.VITE_SHOW_SMS_TAB &&
-        ABTestingService.getValues().Followup_SMS === "show"
+      return this.showSMS
         ? "Recevoir un récapitulatif"
         : "Recevoir un récapitulatif par email"
     },

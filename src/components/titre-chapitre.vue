@@ -21,11 +21,8 @@
       </div>
     </div>
     <div v-else class="fr-grid-row">
-      <div class="fr-col-12 fr-col-sm-6">
+      <div class="fr-col-12">
         <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
-      </div>
-      <div class="fr-col-12 fr-col-sm-6 aj-jedonnemonavis">
-        <JeDonneMonAvis />
       </div>
     </div>
   </div>
@@ -36,11 +33,10 @@ import Chapters from "@lib/chapters.js"
 import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results.js"
-import JeDonneMonAvis from "@/components/je-donne-mon-avis.vue"
 
 export default {
   name: "TitreChapitre",
-  components: { SendRecapButton, JeDonneMonAvis },
+  components: { SendRecapButton },
   setup() {
     return {
       store: useStore(),

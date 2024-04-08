@@ -6,6 +6,7 @@ export enum EventCategory {
   Defaut = "defaultCategory",
   General = "General",
   Parcours = "Parcours",
+  Resultats = "Résultats",
   Accompagnement = "Accompaniment",
   MontantAttendu = "Montant attendu",
   Followup = "Followup",

@@ -53,7 +53,6 @@ const router = createRouter({
               next("/")
             }
           },
-          redirect: "/",
         },
         {
           path: ":parent+/en_savoir_plus",

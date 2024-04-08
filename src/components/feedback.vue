@@ -139,9 +139,8 @@ export default {
       showExpertLinks: false,
       events: {
         jeDonneMonAvis: {
-          action: EventAction.JeDonneMonAvis,
-          category: EventCategory.Resultats,
-          name: this.$route.path,
+          action: EventAction.Parcours,
+          category: EventCategory.JeDonneMonAvis,
         },
         tracer: {
           category: "Tracer",

@@ -44,12 +44,15 @@ export default {
     }
 
     if (params.has("data-with-logo")) {
-      this.iframeStore.setIframeHeaderCollapse(params.get("data-with-logo"))
+      this.iframeStore.setIframeHeaderCollapse(
+        params.get("data-with-logo") !== "false"
+      )
     }
 
     if (params.has("theme")) {
       this.themeStore.set(params.get("theme"))
     }
+
     if (
       (window.parent !== window || this.iframeStore.inIframe) &&
       this.themeStore.theme

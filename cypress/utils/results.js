@@ -274,7 +274,11 @@ const receiveResultsSms = () => {
 }
 
 const checkResultsRequests = () => {
-  cy.wait("@post-simulation").should(({ request, response }) => {
+  cy.wait("@post-simulation").then(({ request, response }) => {
+    cy.writeFile(
+      `cypress/payloads/payload_${Cypress.spec.fileName}.json`,
+      response.body
+    )
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)
   })

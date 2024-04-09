@@ -44,13 +44,25 @@ The application should be accessible at `localhost:8080`.
 
 ## System dependencies
 
+Make sure `node` 16.x is installed on your machine:
+
 ### Ubuntu
 
-Make sure `build-essential`, `mongodb` and `node` 18.x are installed on your machine:
+And also `build-essential`, `mongodb` are installed on your machine:
 
 ```sh
 sudo apt-get install build-essential
 sudo apt-get install mongodb
+```
+
+### MacOs
+
+And also `brew` is installed on your machine:
+
+```sh
+brew tap mongodb/brew # Download official homebrew formula for MongoDb
+brew update # Update Homebrew and all existing formulae
+brew install mongodb-community@7.0 # Install MongoDb
 ```
 
 ### For all platforms
@@ -221,13 +233,13 @@ This will generate 3 csv files in the `dist/documents` folder:
 - `monthly_age.csv` that lists the number of simulations per age for each month
 - `monthly_geo.csv` that lists the number of simulations per epci, departement and regions for each month
 
-## NetlifyCMS development
+## Decap CMS development
 
-It is possible to locally debug changes in NetlifyCMS configuration.
+It is possible to locally debug changes in Decap CMS configuration.
 
-- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L15) ([`local_backend: true`](https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository)) must be uncommented;
+- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L19) ([`local_backend: true`](https://decapcms.org/docs/working-with-a-local-git-repository)) must be uncommented;
 - `npx netlify-cms-proxy-server` should be ran from `.` and
 - `npm ci` and `npm run dev` should be ran from `contribuer`.
-- Netlify CMS should now be accessible at `http://localhost:3000/admin/index.html`
+- Decap CMS should now be accessible at `http://localhost:3000/admin/index.html`
 
 Changes made will be reflected locally instead of generating pull requests in production.

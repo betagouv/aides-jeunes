@@ -63,7 +63,7 @@
     <div class="aj-action-buttons">
       <ul class="fr-btns-group fr-btns-group--inline">
         <li>
-          <BackButton class="fr-btn--icon-center" @click="goBack"></BackButton>
+          <BackButton class="fr-btn--icon-center" fallback="/simulation" />
         </li>
         <li v-if="showResultButton">
           <router-link class="fr-btn" to="/simulation/resultats"
@@ -97,6 +97,7 @@ import { useProgress } from "@/composables/progress.js"
 import { useStore } from "@/stores/index.js"
 import { categoriesRnc, patrimoineTypes } from "@lib/resources.js"
 import Simulation from "@/lib/simulation.js"
+import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const store = useStore()
 const route = useRoute()
@@ -108,6 +109,7 @@ const propertyData = computed(() => {
     openFiscaParameters: store.openFiscaParameters,
     simulation: store.simulation,
     periods: store.dates,
+    abtestingService: ABTestingService,
   }
 })
 
@@ -258,9 +260,5 @@ function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   }
 
   return []
-}
-
-function goBack() {
-  window?.history.back()
 }
 </script>

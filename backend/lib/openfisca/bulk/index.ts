@@ -73,7 +73,9 @@ function build(situation, variable: string) {
     situation.demandeur[variable][fullTimePeriod] = fullTimePeriodLength * v
     const ss = openfisca.buildOpenFiscaRequest(situation)
 
-    ss.foyers_fiscaux._.irpp = { [periods.thisYear]: null }
+    ss.foyers_fiscaux._.irpp_economique = {
+      [periods.thisYear]: null,
+    }
 
     const prefixed = prefix(`${v.toString()}_`, ss)
     return append(a, prefixed)

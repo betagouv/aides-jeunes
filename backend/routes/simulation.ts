@@ -75,7 +75,6 @@ export default function (api: Express) {
 
   const specificSimulationRoutes = express.Router({ mergeParams: true })
   api.use("/simulation/", specificSimulationRoutes)
-
   specificSimulationRoutes.use("/:simulationId/", route)
 
   /*

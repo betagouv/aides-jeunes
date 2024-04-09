@@ -289,9 +289,14 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-${{matrix.test}}
+          name: cypress-video-${{matrix.test}}
           path: cypress/videos
           retention-days: 10
+      - name: Upload cypress payloads
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-json-${{matrix.test}}
+          path: cypress/payloads
   check-for-openfisca-requirements-changes:
     name: Check openfisca requirement changes
     runs-on: ubuntu-20.04

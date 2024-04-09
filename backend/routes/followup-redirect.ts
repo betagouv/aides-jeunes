@@ -1,9 +1,14 @@
 import express from "express"
-import { followup, resultRedirect } from "../controllers/followups.js"
+import { followup } from "../controllers/followups.js"
+import simulationController from "../controllers/simulation.js"
 
 const route = express()
 
 route.param("followupId", followup)
-route.get("/:followupId", resultRedirect)
+route.get(
+  "/:followupId",
+  simulationController.attachAccessCookie,
+  simulationController.redirectToResults
+)
 
 export default route

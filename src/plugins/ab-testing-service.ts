@@ -42,15 +42,15 @@ function getEnvironment() {
 
   ABTestingEnvironment.aides_mobilite =
     ABTestingEnvironment.aides_mobilite || {}
-  ABTestingEnvironment.aides_mobilite.index = 5
+  ABTestingEnvironment.aides_mobilite.index = 2
   if (
     !ABTestingEnvironment.aides_mobilite.value ||
     !ABTestingEnvironment.aides_mobilite.value.endsWith("_conserve_position")
   ) {
     ABTestingEnvironment.aides_mobilite.value =
       Math.random() > 0.5
-        ? "aides_velo_distinctes_conserve_position"
-        : "aides_velo_fusionnees_conserve_position"
+        ? "aides_mobilite_distinctes_conserve_position"
+        : "aides_mobilite_fusionnees_conserve_position"
   }
 
   ABTestingEnvironment.aides_bafa = ABTestingEnvironment.aides_bafa || {}
@@ -78,6 +78,13 @@ function getEnvironment() {
   ctaEmailRecontact.value ||=
     versions[Math.floor(Math.random() * versions.length)]
   ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
+
+  ABTestingEnvironment.question_debut_chomage =
+    ABTestingEnvironment.question_debut_chomage || {}
+  ABTestingEnvironment.question_debut_chomage.index = 1
+  ABTestingEnvironment.question_debut_chomage.value =
+    ABTestingEnvironment.question_debut_chomage.value ||
+    (Math.random() > 0.5 ? "reformulation" : "actuelle")
 
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment

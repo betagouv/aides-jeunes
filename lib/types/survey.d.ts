@@ -23,7 +23,7 @@ export interface Survey {
   error?: string | any
   type: SurveyType
   createdAt?: Date
-  openedAt?: Date
+  touchedAts: Date[]
   smsSentAt?: Date
 }
 

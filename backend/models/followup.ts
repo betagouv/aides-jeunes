@@ -28,9 +28,11 @@ FollowupSchema.method("updateSurvey", function (type, answers) {
     console.log("Could not find and update survey using its id")
     return
   }
+  const now = Date.now()
   Object.assign(survey, {
     answers: answers,
-    repliedAt: Date.now(),
+    repliedAt: now,
+    touchedAts: [...survey.touchedAts, now],
   })
   this.surveys = surveys
   return this.save()
@@ -42,6 +44,10 @@ FollowupSchema.virtual("emailRenderPath").get(function (this) {
 
 FollowupSchema.virtual("returnPath").get(function (this) {
   return `/followups/${this._id}?token=${this.accessToken}`
+})
+
+FollowupSchema.virtual("shortResultPath").get(function (this) {
+  return `/s/r/${this.accessToken}`
 })
 
 FollowupSchema.virtual("surveyPath").get(function (this) {
@@ -58,6 +64,14 @@ FollowupSchema.virtual("wasUsefulPath").get(function (this) {
 
 FollowupSchema.virtual("wasNotUsefulPath").get(function (this) {
   return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnSimulationUsefulnessEmail}`
+})
+
+FollowupSchema.virtual("shortSurveyPath").get(function (this) {
+  return `/s/s/${this.accessToken}`
+})
+
+FollowupSchema.virtual("smsSurveyPath").get(function (this) {
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnBenefitActionSms}`
 })
 
 export default mongoose.model<Followup, FollowupModel>(

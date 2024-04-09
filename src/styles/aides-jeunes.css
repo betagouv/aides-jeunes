@@ -566,3 +566,7 @@ textarea {
   display: flex;
   align-items: center;
 }
+
+.fr-connect:before {
+  background-image: url(/public/img/logo-moncomptepro.svg);
+}

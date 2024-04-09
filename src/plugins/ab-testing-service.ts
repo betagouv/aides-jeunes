@@ -73,6 +73,12 @@ function getEnvironment() {
     ABTestingEnvironment.question_debut_chomage.value ||
     (Math.random() > 0.5 ? "reformulation" : "actuelle")
 
+  ABTestingEnvironment.Followup_SMS = ABTestingEnvironment.Followup_SMS || {}
+  ABTestingEnvironment.Followup_SMS.index = 2
+  ABTestingEnvironment.Followup_SMS.value =
+    ABTestingEnvironment.Followup_SMS.value ||
+    (Math.random() > 0.5 ? "show" : "hide")
+
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment
 }

@@ -34,11 +34,10 @@ async function fetchArtifactZip() {
   return data
 }
 
-function get(req, res) {
-  fetchArtifactZip().then((zipBlob) => {
-    res.attachment("payload.zip")
-    res.send(zipBlob)
-  })
+async function get(req, res) {
+  const zipBlob = await fetchArtifactZip()
+  res.attachment("payload.zip")
+  res.send(zipBlob)
 }
 
 export default {

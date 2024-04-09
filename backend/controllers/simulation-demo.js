@@ -9,8 +9,8 @@ async function getArtifactMetadata() {
   const artifactListPayload = artifactListResponse.data
   const releventArtifacts = artifactListPayload.artifacts.filter((artifact) => {
     return (
-      artifact.name.match(/json/) &&
-      artifact.workflow_run.head_branch.match(/main/)
+      artifact.name === "cypress-json-base" &&
+      artifact.workflow_run.head_branch === "main"
     )
   })
   return releventArtifacts.length ? releventArtifacts[0] : null

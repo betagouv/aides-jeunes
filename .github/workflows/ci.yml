@@ -298,7 +298,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cypress-json-${{matrix.test}}
-          path: cypress/payloads
+          path: cypress/payloads/${{matrix.test}}-simulation.json
   check-for-openfisca-requirements-changes:
     name: Check openfisca requirement changes
     runs-on: ubuntu-20.04

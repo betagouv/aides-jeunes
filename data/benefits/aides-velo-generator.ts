@@ -61,6 +61,7 @@ function generate_benefit_list(institutions: Institution[]): VeloBenefit[] {
         type: "float",
         periodicite: "ponctuelle",
         link: b.url,
+        interestFlag: "_interetsAidesVelo",
       }
     })
 }

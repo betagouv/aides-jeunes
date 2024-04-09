@@ -174,6 +174,13 @@ const router = createRouter({
               meta: { showBackToResultsButton: true },
             },
             {
+              name: "resultatsGroupeAidesVelo",
+              path: "groupe/velo",
+              component: () =>
+                import("./views/simulation/resultats/benefits-velo-list.vue"),
+              meta: { showBackToResultsButton: true },
+            },
+            {
               name: "resultatsLieuxGeneriques",
               path: "lieux",
               component: () =>

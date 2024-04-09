@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
-import { hasBafaInterestFlag } from "@/lib/benefits.js"
+import { hasBafaInterestFlag, hasVeloInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
@@ -20,6 +20,16 @@ export const useResultsStore = defineStore("results", {
         redirectionPage: "bafa-bafd",
       }
 
+      const veloGroup: BenefitGroup = {
+        benefits: [],
+        id: "velo-group",
+        label: "Aides pour acheter un vélo",
+        logoPath: "/img/institutions/logo_etat_francais.png",
+        description:
+          "Différents organismes peuvent vous aider à financer votre vélo.",
+        redirectionPage: "velo",
+      }
+
       const results = this.benefits.reduce((results, benefit) => {
         if (hasBafaInterestFlag(benefit)) {
           if (bafaGroup.benefits.length === 0) {
@@ -27,6 +37,12 @@ export const useResultsStore = defineStore("results", {
           }
           bafaGroup.benefits.push(benefit)
           benefit.groupLabel = bafaGroup.label
+        } else if (hasVeloInterestFlag(benefit)) {
+          if (veloGroup.benefits.length === 0) {
+            results.push(veloGroup)
+          }
+          veloGroup.benefits.push(benefit)
+          benefit.groupLabel = veloGroup.label
         } else {
           results.push(benefit)
         }

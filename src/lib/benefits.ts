@@ -9,6 +9,10 @@ export function hasBafaInterestFlag(benefit: StandardBenefit): boolean {
   return benefit?.interestFlag === "_interetBafa"
 }
 
+export function hasVeloInterestFlag(benefit: StandardBenefit): boolean {
+  return benefit?.interestFlag === "_interetsAidesVelo"
+}
+
 export const mockResults = function (sublist: string) {
   const defaults = {
     bool: true,

@@ -25,6 +25,7 @@ async function fetchArtifactZip() {
     return
   }
 
+  // CORS + anonymous access issues on GitHub API directly
   const url = `https://nightly.link/betagouv/aides-jeunes/actions/runs/${metadata.workflow_run.id}/${metadata.name}.zip`
   const artifact = await axios.get(url, {
     responseType: "arraybuffer",

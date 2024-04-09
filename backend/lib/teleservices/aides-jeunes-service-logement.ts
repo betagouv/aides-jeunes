@@ -22,20 +22,11 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
 
   this.simulation.answers.current = this.simulation.answers.all
 
-  const setters = {
-    coloc: {
-      value: (a) => a.value,
-      set: (a, v) => (a.value = v === "true"),
-      new: (v) => v === "true",
-    },
+  const boolConverter = (v) => v === "true" || (v !== "false" && v)
+  const propManagers = {
     depcom: {
       value: (a) => a.value.depcom,
       set: (a, v) => (a.value.depcom = v),
-    },
-    logement_chambre: {
-      value: (a) => a.value,
-      set: (a, v) => (a.value = v === "true"),
-      new: (v) => v === "true",
     },
     loyer: {
       value: (a) => a.value.loyer,
@@ -50,17 +41,18 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
   }
 
   props.forEach((prop) => {
-    const fct = setters[prop] || setters.default
+    const fct = propManagers[prop] || propManagers.default
     const answer = this.simulation.answers.current.find(
       (e) => e.fieldName == prop
     )
+    const newValue = boolConverter(scenarios[0][prop])
     if (answer) {
-      fct.set(answer, scenarios[0][prop] || fct.value(answer))
+      fct.set(answer, newValue || fct.value(answer))
     } else {
       this.simulation.answers.current.push({
         entityName: "menage",
         fieldName: prop,
-        value: fct.new(scenarios[0][prop]),
+        value: fct.new(newValue),
       })
     }
   })

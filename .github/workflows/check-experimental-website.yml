@@ -1,0 +1,22 @@
+name: Check experimental
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#30_8_*_*_*
+    - cron: "30 8 * * *"
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.18.2"
+      - run: npm ci
+      - name: Cypress run for experimental website
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          config-file: cypress.config.ts
+          start: npm run ci
+          spec: cypress/e2e/experimentations.cy.js

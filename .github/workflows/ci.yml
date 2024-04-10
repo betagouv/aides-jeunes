@@ -264,6 +264,8 @@ jobs:
       - name: Cypress run for experimental website
         uses: cypress-io/github-action@v5
         if: ${{ matrix.test == 'base' }}
+        env:
+          CYPRESS_GITHUB_RUN_ID: ${{ env.GITHUB_RUN_ID }}
         with:
           browser: chrome
           config-file: cypress.config.ts

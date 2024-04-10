@@ -72,6 +72,7 @@ context("Full simulation", () => {
     results.receiveResultsEmail()
     results.receiveResultsSms()
     results.hasSituationNearbyPlaces()
+    results.checkOpenFiscaAxe()
     navigate.goRecap()
     navigate.checkRecap()
   })

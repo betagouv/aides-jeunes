@@ -288,6 +288,25 @@ const checkResultsRequests = () => {
   })
 }
 
+const checkOpenFiscaAxe = () => {
+  cy.get('[data-testid="partenaire-actions"]').should("be.visible").click()
+  cy.get('[data-testid="openfisca-axe-link"]')
+    .should("be.visible")
+    .its("0.href")
+    .then((href) => {
+      const url = new URL(href)
+      const source = url.searchParams.get("source")
+      cy.request({
+        url: source,
+        timeout: 10000,
+      }).should((response) => {
+        expect(response.status).to.eq(200)
+        expect(response.body).to.have.property("names")
+        expect(response.body).to.have.property("data")
+      })
+    })
+}
+
 export default {
   wait,
   back,
@@ -309,4 +328,5 @@ export default {
   receiveResultsEmail,
   receiveResultsSms,
   checkResultsRequests,
+  checkOpenFiscaAxe,
 }

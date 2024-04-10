@@ -24,7 +24,7 @@ export const useResultsStore = defineStore("results", {
         benefits: [],
         id: "velo-group",
         label: "Aides pour acheter un vélo",
-        logoPath: "/img/institutions/logo_etat_francais.png",
+        logoPath: "/img/benefits/logo-velo.jpg",
         description:
           "Différents organismes peuvent vous aider à financer votre vélo.",
         redirectionPage: "velo",

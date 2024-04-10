@@ -1,23 +1,15 @@
 <script setup lang="ts">
 import BenefitsList from "@/components/benefits-list.vue"
 import { useResultsStore } from "@/stores/results.js"
-import { computed, onMounted } from "vue"
-import Simulation from "@/lib/simulation"
+import { computed } from "vue"
 import { BenefitGroup } from "@data/types/benefits"
 
 const resultsStore = useResultsStore()
-const benefits = computed(() => resultsStore.benefits)
 const groupBenefits = computed(() => {
   const veloGroup = resultsStore.benefitTree.find(
     (b) => b.id === "velo-group"
   ) as BenefitGroup
   return veloGroup?.benefits
-})
-
-onMounted(async () => {
-  if (!benefits.value) {
-    await Simulation.restoreLatestSimulation()
-  }
 })
 </script>
 

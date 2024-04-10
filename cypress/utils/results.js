@@ -22,7 +22,7 @@ const IdentifyBenefit = (id, name) => {
 
 const hasBafaPreviewBenefit = () => {
   const name = /Aides BAFA et BAFD/
-  const id = "aides-bafa-preview"
+  const id = "bafa-bafd-group-preview"
   IdentifyBenefit(id, name)
   cy.checkA11y()
 }
@@ -36,7 +36,7 @@ const hasBafaBenefit = () => {
 }
 
 const hasNotBafaBenefits = () => {
-  const id = "aides-bafa-preview"
+  const id = "bafa-bafd-group-preview"
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
     { timeout: 10000 }
@@ -197,6 +197,21 @@ const hasAideVeloNationale = () => {
   IdentifyBenefit(id, name)
 }
 
+const hasAidesVeloPreviewBenefit = () => {
+  const name = /Aides pour acheter un vélo/
+  const id = "velo-group-preview"
+  IdentifyBenefit(id, name)
+  cy.checkA11y()
+}
+
+const hasNotAidesVeloBenefits = () => {
+  const id = "velo-group-preview"
+  cy.get(
+    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
+    { timeout: 10000 }
+  ).should("not.exist")
+}
+
 const hasRSA = () => {
   const name = /Revenu de solidarité active/
   const id = "rsa"
@@ -306,6 +321,8 @@ export default {
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
+  hasNotAidesVeloBenefits,
+  hasAidesVeloPreviewBenefit,
   receiveResultsEmail,
   receiveResultsSms,
   checkResultsRequests,

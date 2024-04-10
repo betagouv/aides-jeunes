@@ -27,7 +27,7 @@ const formattedInstitutionsLabel = computed(() => {
           :to="`/simulation/resultats/groupe/${props.group.redirectionPage}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
-          data-testid="aides-bafa-preview"
+          :data-testid="`${props.group.id}-preview`"
           aria-label="Demander ces aides"
         >
           <div class="fr-p-4w">

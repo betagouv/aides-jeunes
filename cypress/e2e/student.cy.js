@@ -59,10 +59,16 @@ context("Full simulation", () => {
     navigate.goToBafaBenefitsPage()
     results.hasBafaBenefit()
     results.back()
+
+    results.wait()
+    results.hasAidesVeloPreviewBenefit()
+    navigate.goToAidesVeloBenefitsPage()
+    results.hasAideVeloNationale()
+    results.back()
+
     results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()
     results.back()
-    results.hasAideVeloNationale()
     results.hasHousingBenefit()
     navigate.goRecap()
     navigate.checkRecap()

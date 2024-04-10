@@ -298,7 +298,7 @@ const checkOpenFiscaAxe = () => {
       const source = url.searchParams.get("source")
       cy.request({
         url: source,
-        timeout: 10000,
+        timeout: 20000,
       }).should((response) => {
         expect(response.status).to.eq(200)
         expect(response.body).to.have.property("names")

@@ -289,10 +289,8 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-failure-${{matrix.test}}
-          path: |
-            cypress/videos
-            cypress/screenshots
+          name: cypress-video-${{matrix.test}}
+          path: cypress/videos
           retention-days: 10
       - name: Upload cypress payloads
         uses: actions/upload-artifact@v4

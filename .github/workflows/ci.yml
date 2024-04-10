@@ -263,7 +263,7 @@ jobs:
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
       - name: Cypress run for experimental website
         uses: cypress-io/github-action@v5
-        if: matrix.test === "base"
+        if: ${{ matrix.test == 'base' }}
         with:
           browser: chrome
           config-file: cypress.config.ts

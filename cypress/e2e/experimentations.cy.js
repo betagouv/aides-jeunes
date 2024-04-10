@@ -3,9 +3,17 @@ import "cypress-axe"
 
 context("Test du site d'expérimentations", () => {
   it("Ensures a full redirection and a functional external computation", () => {
-    cy.visit("http://localhost:3000")
+    console.log(Cypress.env("RUN"))
+    const ghAction = Cypress.env("RUN") === "GH_ACTION"
+    expect(Cypress.env("RUN")).to.eq("GH_ACTION")
+    const url = ghAction
+      ? "https://aides-jeunes-experimentations.netlify.app/"
+      : "http://localhost:3000"
+    const text = ghAction ? "en ligne" : "dev"
+
+    cy.visit(url)
     cy.get("a:contains('Service Logement')").click()
-    cy.get("button:contains('Simuler une boucle (dev)')").click()
+    cy.get(`button:contains('Simuler une boucle (${text})')`).click()
     cy.url().should("contain", "service-logement?token=")
     cy.get("[data-testid-index=0]").within(() => {
       cy.get("[data-testid='action']").within(() => {

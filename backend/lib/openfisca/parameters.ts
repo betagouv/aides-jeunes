@@ -53,12 +53,7 @@ export function getParameter(parameter, date) {
   return computeParameter(parameter, date)
 }
 
-export async function getParameters(date): Promise<OpenfiscaParameters> {
-  await computeParameters()
-  return getParametersList(date)
-}
-
-export function getParametersList(date): OpenfiscaParameters {
+function getParametersMap(date): OpenfiscaParameters {
   const results = {}
   Object.keys(parametersList).forEach((parameter) => {
     results[parameter] = computeParameter(parameter, date)
@@ -66,9 +61,21 @@ export function getParametersList(date): OpenfiscaParameters {
   return results as OpenfiscaParameters
 }
 
+export async function getParameters(date): Promise<OpenfiscaParameters> {
+  await computeParameters()
+  return getParametersMap(date)
+}
+
+export let openfiscaParametersMap: OpenfiscaParameters = parametersList
+
+export async function initOpenfiscaParametersMap() {
+  openfiscaParametersMap = await getParameters(Date.now())
+}
+
 export default {
+  initOpenfiscaParametersMap,
+  openfiscaParametersMap,
   parametersList,
   getParameter,
   getParameters,
-  getParametersList,
 }

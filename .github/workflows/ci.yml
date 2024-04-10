@@ -265,7 +265,7 @@ jobs:
         uses: cypress-io/github-action@v5
         if: ${{ matrix.test == 'base' }}
         env:
-          CYPRESS_GITHUB_RUN_ID: ${{ env.GITHUB_RUN_ID }}
+          CYPRESS_GITHUB_RUN_ID: yolo
         with:
           browser: chrome
           config-file: cypress.config.ts

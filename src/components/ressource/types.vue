@@ -15,11 +15,15 @@
       class="fr-alert fr-alert--info fr-my-1w"
     >
       <p>
-        Vous devez d'abord saisir vos revenues<span v-if="needCoupleResources"
+        Vous devez d'abord saisir vos revenus
+        <span v-if="needCoupleResources"
           >puis ceux de votre conjoint ou conjointe</span
         >
         <span v-if="needParentsResources">
           ensuite ceux de vos parents ou vos tuteurs légaux</span
+        >
+        <span v-if="hasChildren">
+          et ceux de vos enfants (s'ils/elles ont perçu des ressources)</span
         >.
       </p>
     </div>
@@ -116,8 +120,8 @@ export default {
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
       }`
     },
-    hasSeparatedParents() {
-      return this.store.situation?.parents?._situation === "separes"
+    hasChildren() {
+      return this.store.situation?.enfants?.length > 0
     },
     allActiveSteps() {
       return this.store.getAllSteps.filter((step) => step.isActive)

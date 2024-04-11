@@ -60,7 +60,6 @@ context("Full simulation", () => {
     results.hasBafaBenefit()
     results.back()
 
-    results.wait()
     results.hasAidesVeloPreviewBenefit()
     navigate.goToAidesVeloBenefitsPage()
     results.hasAideVeloNationale()

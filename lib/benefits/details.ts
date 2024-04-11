@@ -110,7 +110,7 @@ function formatDroitEstime(
 }
 
 const getBenefitImage = (droit: StandardBenefit) => {
-  return `/${droit.imgSrc ? droit.imgSrc : droit.institution.imgSrc}`
+  return droit.imgSrc ? droit.imgSrc : droit.institution.imgSrc
 }
 
 export {

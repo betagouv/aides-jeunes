@@ -14,17 +14,36 @@
       v-if="showInitialResourcesCollectionWarning"
       class="fr-alert fr-alert--info fr-my-1w"
     >
-      <p>
-        Vous devez d'abord saisir vos revenus
-        <span v-if="needCoupleResources"
-          >puis ceux de votre conjoint ou conjointe</span
+      <p
+        >Nous avons besoin de <strong>vos ressources personnelles</strong> pour
+        cette étape.
+      </p>
+      <p v-if="needCoupleResources || needParentsResources || hasChildrenMore16"
+        >Les ressources perçues par
+        <span v-if="needCoupleResources"> votre conjoint(e)</span>
+        <span
+          v-if="
+            needCoupleResources && needParentsResources && hasChildrenMore16
+          "
+          >,
+        </span>
+        <span
+          v-else-if="
+            needCoupleResources && needParentsResources && !hasChildrenMore16
+          "
         >
-        <span v-if="needParentsResources">
-          ensuite ceux de vos parents ou vos tuteurs légaux</span
+          et
+        </span>
+        <span v-if="needParentsResources"> vos parents ou tuteurs légaux</span>
+        <span
+          v-if="
+            (needCoupleResources || needParentsResources) && hasChildrenMore16
+          "
         >
-        <span v-if="hasChildren">
-          et ceux de vos enfants (s'ils/elles ont perçu des ressources)</span
-        >.
+          et
+        </span>
+        <span v-if="hasChildrenMore16"> vos enfants</span> seront demandées plus
+        tard dans le simulateur.
       </p>
     </div>
     <fieldset
@@ -68,6 +87,8 @@ import Ressource from "@lib/ressource.js"
 import { getAnswer } from "@lib/answers.js"
 import { useStore } from "@/stores/index.js"
 import { capitalize } from "@lib/utils.js"
+import IndividuMethods from "@lib/individu"
+import { datesGenerator } from "@lib/dates"
 
 export default {
   name: "RessourceTypes",
@@ -120,8 +141,16 @@ export default {
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
       }`
     },
-    hasChildren() {
-      return this.store.situation?.enfants?.length > 0
+    hasChildrenMore16() {
+      return (
+        this.store.situation?.enfants?.filter(
+          (enfants) =>
+            IndividuMethods.age(
+              enfants,
+              datesGenerator(this.store.situation?.dateDeValeur).today.value
+            ) > 15
+        ).length > 0
+      )
     },
     allActiveSteps() {
       return this.store.getAllSteps.filter((step) => step.isActive)

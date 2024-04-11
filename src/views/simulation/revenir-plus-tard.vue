@@ -18,7 +18,6 @@ const postRecapFollowup = async () => {
   const uri = `/api/simulation/${simulationId.value}/followup`
   const payload = {
     surveyOptin: false,
-    preventNotify: true,
   }
   return await axios.post(uri, payload)
 }

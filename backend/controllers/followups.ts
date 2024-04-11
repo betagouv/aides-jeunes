@@ -39,46 +39,57 @@ export function followup(
     })
 }
 
-export async function persist(req: Request, res: Response) {
-  const { preventNotify, surveyOptin, email, phone } = req.body
+function followupContactValidation(
+  email: string | undefined,
+  phone: string | undefined
+): boolean {
+  return !!(email?.length || phone?.length)
+}
 
-  if (!preventNotify && !email?.length && !phone?.length) {
-    return res.status(400).send({ result: "Missing Email or Phone" })
+async function sendFollowupNotifications(followup, res: Response) {
+  const { email, phone } = followup
+  if (email) {
+    await sendSimulationResultsEmail(followup)
   }
+  if (phone) {
+    if (
+      phoneNumberValidation(phone, config.smsService.internationalDiallingCodes)
+    ) {
+      await sendSimulationResultsSms(followup)
+    } else {
+      return res.status(422).send("Unsupported phone number format")
+    }
+  }
+  return res.send({ result: "OK" })
+}
 
+async function createSimulationRecapUrl(followup, res: Response) {
+  await followup.addSurveyIfMissing(
+    SurveyType.TrackClickTemporarySimulationLink
+  )
+  await followup.save()
+  const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/s/t/${followup.accessToken}`
+  return res.send({ simulationRecapUrl })
+}
+
+export async function persist(req: Request, res: Response) {
+  const { surveyOptin, email, phone, contactRequired } = req.body
   const simulation = req.simulation
-
   try {
-    const followup = (await FollowupFactory.create(
+    if (contactRequired && !followupContactValidation(email, phone)) {
+      return res.status(400).send({ result: "Missing Email or Phone" })
+    }
+
+    const followup = await FollowupFactory.create(
       simulation,
       surveyOptin,
       email,
       phone
-    )) as Followup
-    if (email) {
-      await sendSimulationResultsEmail(followup)
-    }
-    if (phone) {
-      if (
-        phoneNumberValidation(
-          phone,
-          config.smsService.internationalDiallingCodes
-        )
-      ) {
-        await sendSimulationResultsSms(followup)
-      } else {
-        return res.status(422).send("Unsupported phone number format")
-      }
-    }
-    if (preventNotify) {
-      await followup.addSurveyIfMissing(
-        SurveyType.TrackClickTemporarySimulationLink
-      )
-      followup.save()
-      const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/s/t/${followup.accessToken}`
-      res.send({ simulationRecapUrl })
+    )
+    if (contactRequired) {
+      return sendFollowupNotifications(followup, res)
     } else {
-      res.send({ result: "OK" })
+      return createSimulationRecapUrl(followup, res)
     }
   } catch (error: any) {
     Sentry.captureException(error)

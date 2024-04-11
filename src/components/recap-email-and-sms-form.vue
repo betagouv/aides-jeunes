@@ -124,6 +124,7 @@ const postFollowup = async (surveyOptin, email?, phone?) => {
     surveyOptin,
     phone: formatPhoneNumber(phone),
     email,
+    contactRequired: true,
   }
   return await axios.post(uri, payload)
 }

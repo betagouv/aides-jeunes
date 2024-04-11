@@ -234,6 +234,14 @@ const router = createRouter({
       },
     },
     {
+      path: "/grist",
+      name: "grist",
+      component: () => import("./views/grist.vue"),
+      meta: {
+        headTitle: `Toutes les aides du simulateur ${"GRIST"}`,
+      },
+    },
+    {
       path: "/aides/:benefitId",
       name: "aide",
       component: () => import("./views/aide.vue"),

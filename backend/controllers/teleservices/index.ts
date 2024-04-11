@@ -71,7 +71,7 @@ const teleservices = [
     class: AidesJeunesPreremplissage,
     public: true,
     destination: {
-      url: "https://aides-jeunes-experimentations.netlify.app/preremplissage/resultats?token={{token}}",
+      url: "https://betagouv.github.io/aides-jeunes-experimentations/preremplissage/resultats?token={{token}}",
     },
   },
   {
@@ -79,7 +79,7 @@ const teleservices = [
     class: AidesJeunesServiceLogement,
     public: true,
     destination: {
-      url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
+      url: "https://betagouv.github.io/aides-jeunes-experimentations/service-logement?token={{token}}",
     },
   },
   {

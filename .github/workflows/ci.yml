@@ -261,16 +261,6 @@ jobs:
         with:
           path: dist-server
           key: ${{ runner.os }}-cache-server-build-${{ github.sha }}
-      - name: Cypress run for experimental website
-        uses: cypress-io/github-action@v5
-        if: ${{ matrix.test == 'base' }}
-        env:
-          CYPRESS_RUN: GH_ACTION
-        with:
-          browser: chrome
-          config-file: cypress.config.ts
-          start: npm run ci
-          spec: cypress/e2e/experimentations.cy.js
       - name: Start OpenFisca
         shell: bash
         run: |

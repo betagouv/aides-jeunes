@@ -21,8 +21,13 @@
       </div>
     </div>
     <div v-else class="fr-grid-row">
-      <div class="fr-col-12 fr-col-md-12 fr-col-lg-12">
+      <div class="fr-col-12 fr-col-sm-6">
         <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
+      </div>
+      <div v-if="showRevenirPlusTard" class="fr-col-12 fr-col-sm-6">
+        <router-link :to="{ name: 'revenirPlusTard' }"
+          >Revenir plus tard?
+        </router-link>
       </div>
     </div>
   </div>
@@ -32,6 +37,7 @@
 import Chapters from "@lib/chapters.js"
 import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
+import { useRouter } from "vue-router"
 import { useResultsStore } from "@/stores/results.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
@@ -41,6 +47,7 @@ export default {
   setup() {
     return {
       store: useStore(),
+      router: useRouter(),
       resultsStore: useResultsStore(),
     }
   },
@@ -63,6 +70,12 @@ export default {
     showEmailButton() {
       return (
         this.$route.name === "resultats" && !this.store.simulationAnonymized
+      )
+    },
+    showRevenirPlusTard() {
+      return (
+        this.$route.name !== "revenirPlusTard" &&
+        !this.$route.path.includes("simulation/resultat")
       )
     },
     emailButtonTitle() {

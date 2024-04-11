@@ -1,0 +1,29 @@
+label: TEST
+institution: cc-sud-herault
+description: >-
+  Ceci est une aide de test pour vérifier que l'outil de contribution fonctionne
+  en production.
+
+  Ceci est une aide de test pour vérifier que l'outil de contribution fonctionne en production.
+
+  Ceci est une aide de test pour vérifier que l'outil de contribution fonctionne en production.
+
+  Ceci est une aide de test pour vérifier que l'outil de contribution fonctionne en production.
+prefix: le
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+voluntary_conditions:
+  - Être membre bénévole d'une association.
+profils: []
+type: float
+unit: €
+periodicite: autre
+legend: blablabla
+montant: 50
+link: https://www.1jeune1solution.gouv.fr/
+teleservice: https://www.1jeune1solution.gouv.fr/
+form: https://www.1jeune1solution.gouv.fr/
+instructions: https://www.1jeune1solution.gouv.fr/
+floorAt: 10

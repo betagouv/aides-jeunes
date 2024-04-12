@@ -201,7 +201,7 @@
     "*": [
       "prettier --ignore-unknown --write"
     ],
-    "*.(js|ts|vue)": [
+    "(!contribuer).(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
     ]
   },

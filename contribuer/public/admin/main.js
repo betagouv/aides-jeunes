@@ -38,10 +38,11 @@ const requiredGroupRender = (name, item, id) => {
         childs: [],
         container: document.createElement("div"),
       }
+
       groups[id].container.className = "fields-group"
       item.parentNode.parentNode.parentNode.insertBefore(
         groups[id].container,
-        item.parentNode.parentNode
+        item.parentNode.parentNode,
       )
 
       if (groupFieldsLegend[id]) {

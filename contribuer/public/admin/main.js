@@ -1,7 +1,3 @@
-const config = {
-  institutionRessourcesURL: "https://mes-aides.1jeune1solution.beta.gouv.fr",
-}
-
 const LEGENDE_PERIODICITE_AIDE_ENUM = {
   ponctuelle: "",
   mensuelle: "/ mois",
@@ -77,7 +73,7 @@ function updateInstitutionsList(institutions) {
   }
 }
 
-
+const baseURL = 'http://localhost:8080'
 class DroitPreviewTemplate extends React.Component {
   constructor(props) {
     super(props)
@@ -94,17 +90,24 @@ class DroitPreviewTemplate extends React.Component {
   }
   send() {
     const benefit = this.props.entry.get("data").toJS()
-    const institution = benefit.institution && institutionsMap[benefit.institution] || {}
+    const institutionData = benefit.institution && institutionsMap[benefit.institution] || {}
+    const institution = {
+      label: institution.name,
+      ...institution
+    }
     this.iframe.current.contentWindow.postMessage({
       source: 'decap',
-      value: {...benefit, "institution": {"label": "institution", ...institution}}
-    }, 'http://localhost:8080')
+      value: {
+        ...benefit,
+        institution
+      }
+    }, baseURL)
   }
   componentDidUpdate(prevProps) {
     this.send()
   }
   render() {
-    return <iframe ref={this.iframe} class="iframe" src="http://localhost:8080/preview?iframe"/>;
+    return <iframe ref={this.iframe} class="aj-iframe" src={`${baseURL}/preview?iframe`}/>;
   }
 }
 

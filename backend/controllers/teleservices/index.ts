@@ -71,7 +71,7 @@ const teleservices = [
     class: AidesJeunesPreremplissage,
     public: true,
     destination: {
-      url: "https://aides-jeunes-experimentations.netlify.app/preremplissage/resultats?token={{token}}",
+      url: "{{&aideJeuneExperimentationURL}}/preremplissage/resultats?token={{token}}",
     },
   },
   {
@@ -79,7 +79,7 @@ const teleservices = [
     class: AidesJeunesServiceLogement,
     public: true,
     destination: {
-      url: "https://aides-jeunes-experimentations.netlify.app/service-logement?token={{token}}",
+      url: "{{&aideJeuneExperimentationURL}}/service-logement?token={{token}}",
     },
   },
   {
@@ -148,6 +148,7 @@ function metadataResponseGenerator(teleservice) {
           url: Mustache.render(teleservice.destination.url, {
             token,
             baseURL: `${req.protocol}://${req.get("host")}`,
+            aideJeuneExperimentationURL: config.aideJeuneExperimentationURL,
             openfiscaAxeURL: config.openfiscaAxeURL,
             openFiscaURL: config.openfiscaPublicURL,
             openfiscaTracerURL: config.openfiscaTracerURL,

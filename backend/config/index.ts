@@ -2,6 +2,8 @@ import "dotenv/config"
 
 import { Configuration } from "../types/config.js"
 
+const isProduction = process.env.NODE_ENV == "production"
+
 /**
  * NOTE: Les variables d'environement suivantes
  * Sont défini directement par pm2 en production
@@ -24,6 +26,9 @@ const config: Configuration = {
     unauthorizedPath: "/accompagnement?unauthorized",
     errorPath: "/accompagnement?error",
   },
+  aideJeuneExperimentationURL: isProduction
+    ? "https://betagouv.github.io/aides-jeunes-experimentations"
+    : "http://127.0.0.1:3000",
   franceConnect: {
     root: process.env.FRANCE_CONNECT_ROOT_URL,
     clientId: process.env.FRANCE_CONNECT_CLIENT_ID,
@@ -40,13 +45,14 @@ const config: Configuration = {
   },
   openfiscaURL:
     process.env.OPENFISCA_INTERNAL_ROOT_URL || "http://127.0.0.1:2000",
-  openfiscaAxeURL:
-    process.env.OPENFISCA_AXE_URL ||
-    "https://betagouv.github.io/mes-aides-changent",
+  openfiscaAxeURL: isProduction
+    ? "https://betagouv.github.io/mes-aides-changent"
+    : "http://127.0.0.1:3000",
   openfiscaPublicURL:
     process.env.OPENFISCA_PUBLIC_ROOT_URL || "http://127.0.0.1:2000",
-  openfiscaTracerURL:
-    process.env.OPENFISCA_TRACER_URL || "http://127.0.0.1:3000",
+  openfiscaTracerURL: isProduction
+    ? "https://openfisca.github.io/tracer/"
+    : "http://127.0.0.1:3000",
   netlifyContributionURL:
     process.env.NETLIFY_CONTRIBUTION_URL ||
     "https://contribuer-aides-jeunes.netlify.app",
@@ -120,10 +126,9 @@ const config: Configuration = {
     internationalDiallingCodes: ["33", "262", "508", "590", "594", "596"],
   },
   chatwoot: {
-    websiteToken:
-      process.env.NODE_ENV == "production" && !process.env.BRANCH
-        ? "rFbbRuqt9WyC6zbZycr4rj4a"
-        : "Kzc1NTBxjW9riARcjWTcjHr5",
+    websiteToken: isProduction
+      ? "rFbbRuqt9WyC6zbZycr4rj4a"
+      : "Kzc1NTBxjW9riARcjWTcjHr5",
   },
 }
 

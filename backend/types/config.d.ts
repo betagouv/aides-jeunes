@@ -6,6 +6,7 @@ export interface Configuration {
     unauthorizedPath: string
     errorPath: string
   }
+  aideJeuneExperimentationURL: string
   franceConnect: {
     root?: string
     clientId?: string

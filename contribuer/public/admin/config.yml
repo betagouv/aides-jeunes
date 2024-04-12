@@ -16,7 +16,7 @@ slug:
   encoding: ascii
   clean_accents: true
 
-# local_backend: true
+local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..

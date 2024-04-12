@@ -234,12 +234,9 @@ const router = createRouter({
       },
     },
     {
-      path: "/grist",
-      name: "grist",
-      component: () => import("./views/grist.vue"),
-      meta: {
-        headTitle: `Toutes les aides du simulateur ${"GRIST"}`,
-      },
+      path: "/preview",
+      name: "preview",
+      component: () => import("./views/preview.vue"),
     },
     {
       path: "/aides/:benefitId",

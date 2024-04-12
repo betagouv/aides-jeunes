@@ -205,7 +205,7 @@
       "eslint  --max-warnings 0 --fix"
     ],
     "contribuer.*": [
-      "cd contribuer && npm run prettier"
+      "cd contribuer && npm run prettier && false"
     ]
   },
   "engines": {

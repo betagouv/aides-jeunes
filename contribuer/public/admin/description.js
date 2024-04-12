@@ -18,6 +18,7 @@ class DescriptionControl extends Text.control {
         },
       }
     }
+
     if (innerText.length > 420) {
       return {
         error: {

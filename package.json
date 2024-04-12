@@ -27,6 +27,7 @@
     "prestart": "npm run build && npm run stats",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "prettier:contribuer": "cd contribuer && npm run prettier",
     "start": "NODE_ENV=production node ./dist-server/backend/server.js",
     "stats": "node --loader ts-node/esm ./backend/lib/stats/index.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules NODE_PATH=. jest --testTimeout=20000",
@@ -201,8 +202,11 @@
     "*": [
       "prettier --ignore-unknown --write"
     ],
-    "*.(js|ts|vue)": [
+    "(!contribuer).(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
+    ],
+    "*(contribuer)*.js": [
+      "npm run prettier:contribuer -- "
     ]
   },
   "engines": {

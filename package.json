@@ -204,7 +204,7 @@
     "(!contribuer).(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
     ],
-    "contribuer*": [
+    "contribuer": [
       "eslint  --max-warnings 0 --fix"
     ]
   },

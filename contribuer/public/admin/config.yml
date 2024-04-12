@@ -16,7 +16,7 @@ slug:
   encoding: ascii
   clean_accents: true
 
-local_backend: true
+# local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -264,7 +264,8 @@ fields:
       - <<: *field_select_statut_occupation_logement
         label: Exclus
         name: excludes
-  field_difficultes_acces_ou_frais_logement: &field_difficultes_acces_ou_frais_logement
+  field_difficultes_acces_ou_frais_logement:
+    &field_difficultes_acces_ou_frais_logement
     <<: *field_empty
     label: Difficultés importantes pour accéder à un logement ou pour payer les frais liés à un logement
     name: difficultes_acces_ou_frais_logement

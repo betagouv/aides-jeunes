@@ -203,6 +203,9 @@
     ],
     "(!contribuer).(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
+    ],
+    "contribuer.*": [
+      "cd contribuer && npm run prettier"
     ]
   },
   "engines": {

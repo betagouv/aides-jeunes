@@ -205,7 +205,7 @@
       "eslint  --max-warnings 0 --fix"
     ],
     "contribuer*": [
-      "false"
+      "eslint  --max-warnings 0 --fix"
     ]
   },
   "engines": {

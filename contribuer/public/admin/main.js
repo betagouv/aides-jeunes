@@ -118,13 +118,8 @@ class DroitPreviewTemplate extends React.Component {
         src={`${baseURL}/preview?iframe`}
       />
     )
-
-
   }
-
-
 }
 
 CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
 CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)
-

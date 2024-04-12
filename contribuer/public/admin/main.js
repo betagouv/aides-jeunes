@@ -74,7 +74,7 @@ function updateInstitutionsList(institutions) {
   }
 }
 
-const baseURL = 'http://localhost:8080'
+const baseURL = "http://localhost:8080"
 class DroitPreviewTemplate extends React.Component {
   constructor(props) {
     super(props)
@@ -91,24 +91,34 @@ class DroitPreviewTemplate extends React.Component {
   }
   send() {
     const benefit = this.props.entry.get("data").toJS()
-    const institutionData = benefit.institution && institutionsMap[benefit.institution] || {}
+    const institutionData =
+      (benefit.institution && institutionsMap[benefit.institution]) || {}
     const institution = {
       label: institution.name,
-      ...institution
+      ...institution,
     }
-    this.iframe.current.contentWindow.postMessage({
-      source: 'decap',
-      value: {
-        ...benefit,
-        institution
-      }
-    }, baseURL)
+    this.iframe.current.contentWindow.postMessage(
+      {
+        source: "decap",
+        value: {
+          ...benefit,
+          institution,
+        },
+      },
+      baseURL,
+    )
   }
   componentDidUpdate(prevProps) {
     this.send()
   }
   render() {
-    return <iframe ref={this.iframe} class="aj-iframe" src={`${baseURL}/preview?iframe`}/>;
+    return (
+      <iframe
+        ref={this.iframe}
+        class="aj-iframe"
+        src={`${baseURL}/preview?iframe`}
+      />
+    )
   }
 }
 

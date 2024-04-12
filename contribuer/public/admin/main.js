@@ -123,5 +123,3 @@ class DroitPreviewTemplate extends React.Component {
 
 CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
 CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)
-
-

@@ -7,7 +7,7 @@ context("Test du site d'expérimentations", () => {
     const url = ghAction
       ? "https://betagouv.github.io/aides-jeunes-experimentations/"
       : "http://localhost:3000"
-    const text = ghAction ? "en ligne" : "dev"
+    const text = ghAction ? "en ligne" : "local"
 
     cy.visit(url)
     cy.get("a:contains('Service Logement')").click()

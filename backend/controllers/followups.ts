@@ -225,7 +225,6 @@ async function getRedirectUrl(req: Request) {
       return followup.surveyPath
     }
     case SurveyType.TrackClickTemporarySimulationLink:
-      console.log("TrackClickTemporarySimulationLink")
       await followup.addSurveyIfMissing(
         SurveyType.TrackClickTemporarySimulationLink
       )

@@ -75,6 +75,7 @@ export default {
     showRevenirPlusTard() {
       return (
         this.$route.name !== "revenirPlusTard" &&
+        !this.$route.path.includes("date_naissance") &&
         !this.$route.path.includes("simulation/resultat")
       )
     },

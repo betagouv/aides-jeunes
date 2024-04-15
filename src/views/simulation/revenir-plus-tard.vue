@@ -61,8 +61,8 @@ const continueSimulation = () => {
 <template>
   <div>
     <p>
-      Vous avez un point de blocage ou vous souhaitez remettre à plus tard la
-      poursuite de votre simulation ?
+      Vous avez un point de blocage ? Il vous manque une information ? Vous
+      souhaitez remettre à plus tard la poursuite de votre simulation ?
     </p>
     <p>
       Nous vous proposons de la sauvegarder via un lien d'accès pour la
@@ -70,7 +70,7 @@ const continueSimulation = () => {
     </p>
     <div v-if="simulationId && saved">
       <div class="fr-alert fr-alert--success"
-        ><p>Votre simulation a bien été sauvegardée. </p>
+        ><p>Votre simulation a bien été sauvegardée.</p>
       </div>
       <div class="fr-mt-4w">
         <p>Identifiant de la simulation: {{ simulationId }}</p>

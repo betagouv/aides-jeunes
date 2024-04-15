@@ -26,7 +26,7 @@
       </div>
       <div v-if="showRevenirPlusTard" class="fr-col-12 fr-col-sm-6">
         <router-link :to="{ name: 'revenirPlusTard' }"
-          >Revenir plus tard?
+          >Revenir plus tard ?
         </router-link>
       </div>
     </div>
@@ -102,7 +102,7 @@ export default {
         return this.emailModalTitle
       }
       if (path === "/simulation/revenir-plus-tard") {
-        return "Revenir plus tard ?"
+        return "Revenir plus tard ?"
       }
 
       const current = path.replace(/\/en_savoir_plus/, "")

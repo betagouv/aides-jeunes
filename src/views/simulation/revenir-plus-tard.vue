@@ -61,8 +61,8 @@ const continueSimulation = () => {
 <template>
   <div>
     <p>
-      Vous avez un point de blocage ? Il vous manque une information ? Vous
-      souhaitez remettre à plus tard la poursuite de votre simulation ?
+      Vous avez un point de blocage ? Il vous manque une information ? Vous
+      souhaitez remettre à plus tard la poursuite de votre simulation ?
     </p>
     <p>
       Nous vous proposons de la sauvegarder via un lien d'accès pour la

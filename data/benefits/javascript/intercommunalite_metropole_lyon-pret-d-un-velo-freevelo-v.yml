@@ -21,6 +21,8 @@ profils:
     conditions: []
   - type: beneficiaire_rsa
     conditions: []
+  - type: inactif
+    conditions: []
 conditions:
   - Être étudiant ou en recherche d’emploi ou en parcours d’insertion
     (bénéficiaire du RSJ ou RSA, en parcours d’accompagnement via une mission
@@ -32,4 +34,4 @@ unit: €
 periodicite: autre
 link: https://freevelov.grandlyon.com/
 teleservice: https://reservations-freevelov.grandlyon.com/connexion
-instructions: https://freevelov.grandlyon.com/un-velo-pour-moi-offre/
+instructions: https://freevelov.grandlyon.com/je-minscris/

@@ -73,7 +73,6 @@ const continueSimulation = () => {
         ><p>Votre simulation a bien été sauvegardée.</p>
       </div>
       <div class="fr-mt-4w">
-        <p>Identifiant de la simulation: {{ simulationId }}</p>
         <p
           >Ouvrir le récapitulatif dans un nouvel onglet :
           <a

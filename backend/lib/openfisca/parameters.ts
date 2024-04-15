@@ -68,12 +68,13 @@ export async function getParameters(date): Promise<OpenfiscaParameters> {
 
 export let openfiscaParametersMap: OpenfiscaParameters = parametersList
 
-export async function initOpenfiscaParametersMap() {
-  openfiscaParametersMap = await getParameters(Date.now())
+export function updateOpenfiscaParametersMap(date) {
+  computeParameters()
+  openfiscaParametersMap = getParametersMap(date)
 }
 
 export default {
-  initOpenfiscaParametersMap,
+  updateOpenfiscaParametersMap,
   openfiscaParametersMap,
   parametersList,
   getParameter,

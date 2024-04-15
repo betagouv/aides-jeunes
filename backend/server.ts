@@ -3,39 +3,32 @@ import path from "path"
 import morgan from "morgan"
 
 import configure from "./configure.js"
-import { initOpenfiscaParametersMap } from "./lib/openfisca/parameters.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const app: Application = express()
+app.use(morgan("combined"))
+configure(app)
 
-async function createServer() {
-  await initOpenfiscaParametersMap()
-  app.use(morgan("combined"))
-  configure(app)
+app.use(express.static(path.join(__dirname, "../../dist")))
+app.route("/*").get(function (req, res) {
+  res.setHeader("Cache-Control", "no-cache")
+  res.sendFile(path.join(__dirname, "../../dist/index.html"))
+})
 
-  app.use(express.static(path.join(__dirname, "../../dist")))
-  app.route("/*").get(function (req, res) {
-    res.setHeader("Cache-Control", "no-cache")
-    res.sendFile(path.join(__dirname, "../../dist/index.html"))
-  })
-
-  const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
-    console.error(err)
-    res.status(parseInt(err.code) || 500).send(err)
-    next()
-  }
-  app.use([errorMiddleware, morgan("combined", { stream: process.stderr })])
-
-  const port = process.env.PORT
-  app.listen(port, () => {
-    console.log(
-      `Aides Jeunes server listening on port ${port}, in ${app.get(
-        "env"
-      )} mode, expecting to be deployed on ${process.env.MES_AIDES_ROOT_URL}`
-    )
-  })
+const errorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
+  console.error(err)
+  res.status(parseInt(err.code) || 500).send(err)
+  next()
 }
+app.use([errorMiddleware, morgan("combined", { stream: process.stderr })])
 
-createServer()
+const port = process.env.PORT
+app.listen(port, () => {
+  console.log(
+    `Aides Jeunes server listening on port ${port}, in ${app.get(
+      "env"
+    )} mode, expecting to be deployed on ${process.env.MES_AIDES_ROOT_URL}`
+  )
+})
 
 export default app

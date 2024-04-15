@@ -68,7 +68,7 @@ async function createSimulationRecapUrl(followup, res: Response) {
     SurveyType.TrackClickTemporarySimulationLink
   )
   await followup.save()
-  const simulationRecapUrl = `${process.env.MES_AIDES_ROOT_URL}/s/t/${followup.accessToken}`
+  const simulationRecapUrl = `${config.baseURL}/s/t/${followup.accessToken}`
   return res.send({ simulationRecapUrl })
 }
 

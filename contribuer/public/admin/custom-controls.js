@@ -63,4 +63,5 @@ class CustomStringControl extends StringControl {
     )
   }
 }
+
 CMS.registerWidget("string", CustomStringControl)

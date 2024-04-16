@@ -20,4 +20,4 @@ jobs:
         with:
           browser: chrome
           config-file: cypress.config.ts
-          spec: cypress/e2e/experimentations.cy.js
+          spec: cypress/e2e-extra/experimentations.cy.js

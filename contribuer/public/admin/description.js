@@ -28,5 +28,4 @@ class DescriptionControl extends Text.control {
     return true
   }
 }
-
 CMS.registerWidget("description", DescriptionControl)

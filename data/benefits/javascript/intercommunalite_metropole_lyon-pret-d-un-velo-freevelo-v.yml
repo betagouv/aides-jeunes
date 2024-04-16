@@ -1,0 +1,37 @@
+label: prêt d’un vélo Freevélo’v
+institution: intercommunalite_metropole_lyon
+description: La métropole de Lyon prête un vélo Freevélo’v aux jeunes âgés de 18
+  à 25 ans pour une durée de 3, 6, 9 ou 12 mois. Le prêt est renouvelable
+  jusqu’à 2 ans.
+prefix: le
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 25
+  - type: epcis
+    values:
+      - "200046977"
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: chomeur
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: inactif
+    conditions: []
+conditions:
+  - Être étudiant ou en recherche d’emploi ou en parcours d’insertion
+    (bénéficiaire du RSJ ou RSA, en parcours d’accompagnement via une mission
+    locale (PACEA ou Garantie Jeunes), en IER, inscrit ou inscrite à Pôle emploi
+    ou en EPIDE ou dans une école de la 2nde chance (E2C) ou au dispositif
+    mobilité inclusive).
+type: bool
+unit: €
+periodicite: autre
+link: https://freevelov.grandlyon.com/
+teleservice: https://reservations-freevelov.grandlyon.com/connexion
+instructions: https://freevelov.grandlyon.com/je-minscris/

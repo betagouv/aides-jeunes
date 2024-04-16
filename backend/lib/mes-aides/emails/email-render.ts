@@ -93,7 +93,7 @@ export async function emailRender(emailType: EmailType, followup) {
       ? Promise.resolve(followup)
       : followup.populate("simulation"))
 
-    parameters = await openfiscaController.getParameters(
+    parameters = await openfiscaController.getParametersAsync(
       populated.simulation.dateDeValeur
     )
 

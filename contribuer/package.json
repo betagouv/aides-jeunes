@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
-    "prettier": "prettier --write"
+    "prettier": "prettier --write .",
+    "lint-staged": "prettier --write"
   },
   "author": "Thomas Guillet",
   "license": "AGPL-3.0",

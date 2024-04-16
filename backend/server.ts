@@ -6,6 +6,7 @@ import configure from "./configure.js"
 
 const __dirname = new URL(".", import.meta.url).pathname
 const app: Application = express()
+
 app.use(morgan("combined"))
 configure(app)
 

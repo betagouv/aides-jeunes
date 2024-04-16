@@ -8,10 +8,7 @@ import { BenefitCatalog } from "../../data/types/generator.d.js"
 import { Resultats } from "@lib/types/store.js"
 import { datesGenerator } from "../dates.js"
 import { getBenefitLegend } from "./details.js"
-import {
-  openfiscaParametersMap,
-  updateOpenfiscaParametersMap,
-} from "../../backend/lib/openfisca/parameters.js"
+import { getParameters } from "../../backend/lib/openfisca/parameters.js"
 
 /**
  * OpenFisca test cases separate ressources between two entities: individuals and families.
@@ -136,7 +133,7 @@ export function computeAides(
           }
         : benefit.institution
 
-      updateOpenfiscaParametersMap(situation.dateDeValeur)
+      const openfiscaParameters = getParameters(situation.dateDeValeur)
 
       result.droitsEligibles!.push(
         // @ts-ignore
@@ -148,7 +145,7 @@ export function computeAides(
           montant: value,
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),
           institution,
-          legend: getBenefitLegend(benefit, openfiscaParametersMap),
+          legend: getBenefitLegend(benefit, openfiscaParameters),
         })
       )
     })

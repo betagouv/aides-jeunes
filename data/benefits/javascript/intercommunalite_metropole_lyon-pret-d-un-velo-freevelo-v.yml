@@ -13,7 +13,7 @@ conditions_generales:
     value: 25
   - type: epcis
     values:
-      - "20004697700019"
+      - "200046977"
 profils:
   - type: enseignement_superieur
     conditions: []

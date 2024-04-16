@@ -29,4 +29,16 @@ class DescriptionControl extends Text.control {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 CMS.registerWidget("description", DescriptionControl)

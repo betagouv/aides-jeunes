@@ -93,9 +93,10 @@ class DroitPreviewTemplate extends React.Component {
     const benefit = this.props.entry.get("data").toJS()
     const institutionData =
       (benefit.institution && institutionsMap[benefit.institution]) || {}
+    console.log(institutionData)
     const institution = {
-      label: institution.name,
-      ...institution,
+      label: institutionData.name,
+      ...institutionData,
     }
     this.iframe.current.contentWindow.postMessage(
       {

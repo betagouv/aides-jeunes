@@ -22,6 +22,7 @@
     "husky": "husky install",
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "lint:fix": "eslint backend data iframes lib src --ext ts,js,vue --fix",
+    "lint-staged:contribuer": "cd contribuer && npm run lint-staged --",
     "openfisca": "OPENFISCA_WORKERS=1 gunicorn openfisca.api --config openfisca/config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
@@ -201,8 +202,11 @@
     "*": [
       "prettier --ignore-unknown --write"
     ],
-    "*.(js|ts|vue)": [
+    "(!contribuer).(js|ts|vue)": [
       "eslint  --max-warnings 0 --fix"
+    ],
+    "*(contribuer)*.js": [
+      "npm run lint-staged:contribuer --"
     ]
   },
   "engines": {

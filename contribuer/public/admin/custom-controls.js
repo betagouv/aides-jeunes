@@ -28,7 +28,7 @@ class CustomStringControl extends StringControl {
       requiredGroupRender(
         this.props.field.get("name"),
         this._el,
-        this.props.field.get("required_group")
+        this.props.field.get("required_group"),
       )
     }
   }
@@ -59,7 +59,7 @@ class CustomStringControl extends StringControl {
     return h(
       "div",
       { "data-group-required": this.props.field.get("required_group") },
-      [{ ...style }, { ...super.render(this.props) }]
+      [{ ...style }, { ...super.render(this.props) }],
     )
   }
 }

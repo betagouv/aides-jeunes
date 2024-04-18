@@ -74,7 +74,7 @@ function updateInstitutionsList(institutions) {
   }
 }
 
-const baseURL = "http://localhost:8080"
+const baseURL = "https://mes-aides.1jeune1solution.beta.gouv.fr"
 class DroitPreviewTemplate extends React.Component {
   constructor(props) {
     super(props)

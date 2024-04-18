@@ -3,10 +3,11 @@
     <p>
       Sélectionnez les types de ressources perçues
       <strong>
-        <span v-if="individu._role === 'conjoint'">par votre conjoint(e)</span>
-        <span v-else-if="individu._role !== 'demandeur'"
-          >par {{ individu._firstName }}</span
+        <span v-if="individu._role === 'demandeur'">par vous uniquement</span>
+        <span v-else-if="individu._role === 'conjoint'"
+          >par votre conjoint(e)</span
         >
+        <span v-else> par {{ individu._firstName }} </span>
         depuis {{ store.dates.twelveMonthsAgo.label }}</strong
       >. Vous pourrez ensuite saisir les montants.
     </p>
@@ -15,35 +16,8 @@
       class="fr-alert fr-alert--info fr-my-1w"
     >
       <p
-        >Nous avons besoin de <strong>vos ressources personnelles</strong> pour
-        cette étape.
-      </p>
-      <p v-if="needCoupleResources || needParentsResources || hasChildrenMore16"
-        >Les ressources perçues par
-        <span v-if="needCoupleResources"> votre conjoint(e)</span>
-        <span
-          v-if="
-            needCoupleResources && needParentsResources && hasChildrenMore16
-          "
-          >,
-        </span>
-        <span
-          v-else-if="
-            needCoupleResources && needParentsResources && !hasChildrenMore16
-          "
-        >
-          et
-        </span>
-        <span v-if="needParentsResources"> vos parents ou tuteurs légaux</span>
-        <span
-          v-if="
-            (needCoupleResources || needParentsResources) && hasChildrenMore16
-          "
-        >
-          et
-        </span>
-        <span v-if="hasChildrenMore16"> vos enfants</span> seront demandées plus
-        tard dans le simulateur.
+        >Les ressources perçues par {{ aditionnalResourcesText }} seront
+        demandées plus tard dans le simulateur.
       </p>
     </div>
     <fieldset
@@ -141,17 +115,6 @@ export default {
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
       }`
     },
-    hasChildrenMore16() {
-      return (
-        this.store.situation?.enfants?.filter(
-          (enfants) =>
-            IndividuMethods.age(
-              enfants,
-              datesGenerator(this.store.situation?.dateDeValeur).today.value
-            ) > 15
-        ).length > 0
-      )
-    },
     allActiveSteps() {
       return this.store.getAllSteps.filter((step) => step.isActive)
     },
@@ -173,8 +136,47 @@ export default {
         ).length
       )
     },
+    numberChildrenMore16() {
+      return this.store.situation?.enfants?.filter(
+        (enfants) =>
+          IndividuMethods.age(
+            enfants,
+            datesGenerator(this.store.situation?.dateDeValeur).today.value
+          ) > 15
+      ).length
+    },
     showInitialResourcesCollectionWarning() {
-      return this.individu._role === "demandeur"
+      return (
+        this.individu._role === "demandeur" && this.aditionnalResources.length
+      )
+    },
+    aditionnalResources() {
+      let resources: string[] = []
+
+      if (this.needCoupleResources) {
+        resources.push("votre conjoint(e)")
+      }
+
+      if (this.needParentsResources) {
+        resources.push("vos parents ou tuteurs légaux")
+      }
+
+      if (this.numberChildrenMore16 > 1) {
+        resources.push("vos enfants")
+      } else if (this.numberChildrenMore16) {
+        resources.push("votre enfant")
+      }
+
+      return resources
+    },
+    aditionnalResourcesText() {
+      if (this.aditionnalResources.length < 3) {
+        return this.aditionnalResources.join(" et ")
+      } else {
+        const last = this.aditionnalResources.slice(-1)
+        const others = this.aditionnalResources.slice(0, -1)
+        return `${others.join(", ")} et ${last}`
+      }
     },
   },
   watch: {

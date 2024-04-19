@@ -3,23 +3,25 @@ import BenefitsList from "@/components/benefits-list.vue"
 import { useResultsStore } from "@/stores/results.js"
 import { computed } from "vue"
 import { BenefitGroup } from "@data/types/benefits"
+import { useRoute } from "vue-router"
 
 const resultsStore = useResultsStore()
+const route = useRoute()
 const groupBenefits = computed(() => {
-  const bafaBafdGroup = resultsStore.benefitTree.find(
-    (b) => b.id === "bafa-bafd-group"
+  const benefitId = route.params.benefitId
+  return resultsStore.benefitTree.find(
+    (b) => b.id === benefitId
   ) as BenefitGroup
-  return bafaBafdGroup?.benefits
 })
 </script>
 
 <template>
   <div>
-    <h1 class="fr-text--lead">Aides BAFA et BAFD</h1>
+    <h1 class="fr-text--lead">{{ groupBenefits?.label }}</h1>
     <BenefitsList
       v-if="groupBenefits"
-      :benefits-and-benefit-groups="groupBenefits"
+      :benefits-and-benefit-groups="groupBenefits?.benefits"
     />
-    <p v-else> Aucune aide BAFA ou BAFD n'a été trouvée. </p>
+    <p v-else> Aucune aide n'a été trouvée.</p>
   </div>
 </template>

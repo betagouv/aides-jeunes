@@ -167,17 +167,10 @@ const router = createRouter({
               meta: { showBackToResultsButton: true },
             },
             {
-              name: "resultatsGroupeAides",
-              path: "groupe/bafa-bafd",
+              name: "resultatsGroupe",
+              path: "groupe/:benefitId",
               component: () =>
-                import("./views/simulation/resultats/benefits-bafa-list.vue"),
-              meta: { showBackToResultsButton: true },
-            },
-            {
-              name: "resultatsGroupeAidesVelo",
-              path: "groupe/velo",
-              component: () =>
-                import("./views/simulation/resultats/benefits-velo-list.vue"),
+                import("./views/simulation/resultats/benefits-list.vue"),
               meta: { showBackToResultsButton: true },
             },
             {

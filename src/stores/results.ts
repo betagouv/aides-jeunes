@@ -1,7 +1,6 @@
 import { defineStore } from "pinia"
 import { useStore } from "@/stores/index.js"
 import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
-import { hasBafaInterestFlag, hasVeloInterestFlag } from "@/lib/benefits.js"
 import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export const useResultsStore = defineStore("results", {
@@ -17,43 +16,50 @@ export const useResultsStore = defineStore("results", {
         logoPath: "/img/benefits/logo-bafa-bafd.png",
         description:
           "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
-        redirectionPage: "bafa-bafd",
+        redirectionPage: "bafa-bafd-group",
+        interestFlag: "_interetBafa",
       }
 
       const veloGroup: BenefitGroup = {
         benefits: [],
         id: "velo-group",
-        label: "Aides pour acheter un vélo",
+        label: "Aides à l'achat d'un vélo",
         logoPath: "/img/benefits/logo-velo.jpg",
         description:
           "Différents organismes peuvent vous aider à financer votre vélo.",
-        redirectionPage: "velo",
+        redirectionPage: "velo-group",
+        interestFlag: "_interetsAidesVelo",
       }
 
+      const benefitsToGroup = [bafaGroup, veloGroup].filter(
+        (benefitToGroup) =>
+          this.benefits.filter(
+            (benefit) => benefit.interestFlag === benefitToGroup.interestFlag
+          ).length > 1
+      )
+
       const results = this.benefits.reduce((results, benefit) => {
-        if (hasBafaInterestFlag(benefit)) {
-          if (bafaGroup.benefits.length === 0) {
-            results.push(bafaGroup)
+        let inGroup = false
+        benefitsToGroup.forEach((benefitToGroup) => {
+          if (benefit?.interestFlag === benefitToGroup.interestFlag) {
+            if (benefitToGroup.benefits.length === 0) {
+              results.push(benefitToGroup)
+            }
+
+            benefitToGroup.benefits.push(benefit)
+            benefit.groupLabel = benefitToGroup.label
+            inGroup = true
           }
-          bafaGroup.benefits.push(benefit)
-          benefit.groupLabel = bafaGroup.label
-        } else if (hasVeloInterestFlag(benefit)) {
-          if (veloGroup.benefits.length === 0) {
-            results.push(veloGroup)
-          }
-          veloGroup.benefits.push(benefit)
-          benefit.groupLabel = veloGroup.label
-        } else {
+        })
+
+        if (!inGroup) {
           results.push(benefit)
         }
+
         return results
       }, [])
 
-      if (bafaGroup.benefits.length < 2) {
-        return this.benefits
-      } else {
-        return results
-      }
+      return results
     },
     benefitTree(): (StandardBenefit | BenefitGroup)[] {
       if (

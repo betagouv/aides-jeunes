@@ -124,6 +124,7 @@ export interface BenefitGroup {
   logoPath: string
   description: string
   redirectionPage: string
+  interestFlag: string
 }
 
 export interface BenefitWithChoice extends StandardBenefit {

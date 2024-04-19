@@ -93,12 +93,16 @@ class DroitPreviewTemplate extends React.Component {
     }
   }
   send() {
-    const benefit = this.props.entry.get("data").toJS()
+    const slug = this.props.entry.get("slug")
+    const benefit = {
+      slug,
+      id: slug,
+      ...this.props.entry.get("data").toJS(),
+    }
     const institutionData =
       (benefit.institution && institutionsMap[benefit.institution]) || {}
-    console.log(institutionData)
     const institution = {
-      label: institutionData.name,
+      label: institutionData.name || benefit.institution,
       ...institutionData,
     }
     this.iframe.current.contentWindow.postMessage(
@@ -128,3 +132,11 @@ class DroitPreviewTemplate extends React.Component {
 
 CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
 CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)
+
+if (document.location.host == "localhost:3000") {
+  const productionURL = "https://contribuer-aides-jeunes.netlify.app/"
+  if (localStorage.getItem("netlifySiteURL") !== productionURL) {
+    window.localStorage.setItem("netlifySiteURL", productionURL)
+    document.location.reload()
+  }
+}

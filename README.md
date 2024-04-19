@@ -237,9 +237,10 @@ This will generate 3 csv files in the `dist/documents` folder:
 
 It is possible to locally debug changes in Decap CMS configuration.
 
-- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L19) ([`local_backend: true`](https://decapcms.org/docs/working-with-a-local-git-repository)) must be uncommented;
-- `npx netlify-cms-proxy-server` should be ran from `.` and
 - `npm ci` and `npm run dev` should be ran from `contribuer`.
 - Decap CMS should now be accessible at `http://localhost:3000/admin/index.html`
 
-Changes made will be reflected locally instead of generating pull requests in production.
+If you want changes to be made locally instead of generating pull requests in production:
+
+- First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L19) ([`local_backend: true`](https://decapcms.org/docs/working-with-a-local-git-repository)) must be uncommented;
+- `npx netlify-cms-proxy-server` should be ran from `.` and

@@ -25,8 +25,11 @@
         <h1 class="fr-my-0 fr-mx-0">{{ title }}</h1>
       </div>
       <div v-if="showRevenirPlusTard" class="fr-col-12 fr-col-sm-6">
-        <router-link :to="{ name: 'revenirPlusTard' }"
-          >Revenir plus tard ?
+        <router-link
+          :to="{ name: 'revenirPlusTard' }"
+          data-testid="come-back-later-link"
+        >
+          Revenir plus tard ?
         </router-link>
       </div>
     </div>

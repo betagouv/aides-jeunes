@@ -69,8 +69,11 @@ const continueSimulation = () => {
       reprendre plus tard.
     </p>
     <div v-if="simulationId && saved">
-      <div class="fr-alert fr-alert--success"
-        ><p>Votre simulation a bien été sauvegardée.</p>
+      <div
+        class="fr-alert fr-alert--success"
+        data-testid="simulation-saved-success-alert"
+      >
+        <p>Votre simulation a bien été sauvegardée.</p>
       </div>
       <div class="fr-mt-4w">
         <p
@@ -78,6 +81,7 @@ const continueSimulation = () => {
           <a
             :href="simulationRecapUrl"
             target="_blank"
+            data-testid="simulation-new-tab-access-link"
             title="Accéder au récapitulatif de la simulation - Nouvelle fenêtre"
             >{{ simulationRecapUrl }}
           </a>
@@ -91,6 +95,7 @@ const continueSimulation = () => {
         <li>
           <button
             class="fr-btn fr-ml-1w fr-btn--secondary"
+            data-testid="pursue-simulation-button"
             @click="continueSimulation"
             >Poursuivre la simulation</button
           >
@@ -99,6 +104,7 @@ const continueSimulation = () => {
           <button
             v-if="!simulationId || !saved"
             class="fr-btn"
+            data-testid="temporary-save-simulation-button"
             @click="saveSimulationAndShowLink"
             >Sauvegarder la simulation et afficher le lien
           </button>
@@ -108,6 +114,7 @@ const continueSimulation = () => {
             v-if="simulationId && saved"
             class="fr-btn share__link fr-share__link--copy"
             title="Copier le lien d'accès à la simulation dans le presse-papier"
+            data-testid="simulation-link-clipboard-button"
             @click="copyTemporarySimulationRecapUrlToClipboard()"
             >Copier le lien dans le presse-papier
           </button>

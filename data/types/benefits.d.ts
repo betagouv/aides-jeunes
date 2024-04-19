@@ -123,7 +123,6 @@ export interface BenefitGroup {
   label: string
   logoPath: string
   description: string
-  redirectionPage: string
   interestFlag: string
 }
 

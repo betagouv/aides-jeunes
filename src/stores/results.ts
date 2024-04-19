@@ -16,7 +16,6 @@ export const useResultsStore = defineStore("results", {
         logoPath: "/img/benefits/logo-bafa-bafd.png",
         description:
           "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
-        redirectionPage: "bafa-bafd-group",
         interestFlag: "_interetBafa",
       }
 
@@ -27,20 +26,20 @@ export const useResultsStore = defineStore("results", {
         logoPath: "/img/benefits/logo-velo.jpg",
         description:
           "Différents organismes peuvent vous aider à financer votre vélo.",
-        redirectionPage: "velo-group",
         interestFlag: "_interetsAidesVelo",
       }
 
-      const benefitsToGroup = [bafaGroup, veloGroup].filter(
-        (benefitToGroup) =>
+      const groups = [bafaGroup, veloGroup]
+      const benefitGroups = groups.filter(
+        (benefitGroup) =>
           this.benefits.filter(
-            (benefit) => benefit.interestFlag === benefitToGroup.interestFlag
+            (benefit) => benefit.interestFlag === benefitGroup.interestFlag
           ).length > 1
       )
 
       const results = this.benefits.reduce((results, benefit) => {
         let inGroup = false
-        benefitsToGroup.forEach((benefitToGroup) => {
+        benefitGroups.forEach((benefitToGroup) => {
           if (benefit?.interestFlag === benefitToGroup.interestFlag) {
             if (benefitToGroup.benefits.length === 0) {
               results.push(benefitToGroup)

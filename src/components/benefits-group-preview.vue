@@ -24,7 +24,7 @@ const formattedInstitutionsLabel = computed(() => {
       <div class="fr-tile tile-2">
         <router-link
           class="fr-tile tile-3"
-          :to="`/simulation/resultats/groupe/${props.group.redirectionPage}`"
+          :to="`/simulation/resultats/groupe/${props.group.id}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
           :data-testid="`${props.group.id}-preview`"

@@ -55,12 +55,12 @@ class InstitutionControl extends Relation.control {
       const hits = payload.hits || []
       const institutionTypes = [
         { value: "*", label: "Tous" },
-        ...hits.map(hit => {
+        ...hits.map((hit) => {
           return {
             label: hit.data?.name,
-            value: hit.slug
+            value: hit.slug,
           }
-        })
+        }),
       ]
       this.setState({
         filter: "*",
@@ -77,7 +77,7 @@ class InstitutionControl extends Relation.control {
     const label = h(
       "label",
       { for: `filter-${name}` },
-      `${field.get("filter").get("label")}`
+      `${field.get("filter").get("label")}`,
     )
     const filter = h(
       "select",
@@ -94,9 +94,9 @@ class InstitutionControl extends Relation.control {
             selected:
               this.state.filter == val["value"] ? "selected" : undefined,
           },
-          val["label"]
+          val["label"],
         )
-      })
+      }),
     )
     const container = h("div", { id: "aj-widget-form" }, [
       { ...label },

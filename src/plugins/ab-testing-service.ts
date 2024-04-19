@@ -1,5 +1,5 @@
 import storageService from "@/lib/storage-service.js"
-import { ABTesting, ABTestingService } from "@lib/types/abtesting.d.js"
+import type { ABTesting, ABTestingService } from "@lib/types/abtesting.d.js"
 
 /*
  * L'AB testing repose sur les custom variables de Matomo

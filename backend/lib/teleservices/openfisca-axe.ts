@@ -19,7 +19,7 @@ function OpenFiscaAxe(simulation) {
 OpenFiscaAxe.prototype.toInternal = function () {
   return {}
 }
-const benefitIds = ["irpp"]
+const benefitIds = ["irpp_economique"]
 benefits.all.forEach((benefit) => {
   benefitIds.push(benefit.id)
 })

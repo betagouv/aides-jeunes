@@ -69,6 +69,7 @@ context("Full simulation", () => {
     results.hasPrimeActiviteNearbyPlaces()
     results.captureFiscalResources()
     results.checkResultsRequests()
+    results.checkOpenFiscaAxe()
     results.receiveResultsEmail()
     results.receiveResultsSms()
     results.hasSituationNearbyPlaces()

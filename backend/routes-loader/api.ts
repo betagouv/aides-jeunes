@@ -4,7 +4,6 @@ import dataRoutes from "../routes/data.js"
 import emailsRoutes from "../routes/emails.js"
 import followupsRoutes from "../routes/followups.js"
 import franceConnectRoutes from "../routes/france-connect.js"
-import githubRoutes from "../routes/github.js"
 import openfiscaRoutes from "../routes/openfisca.js"
 import outilsRoutes from "../routes/outils.js"
 import proxyRoutes from "../routes/proxy.js"
@@ -13,6 +12,7 @@ import legacySmsRoutes from "../routes/legacy-sms.js"
 import supportRoutes from "../routes/support.js"
 import teleservicesRoutes from "../routes/teleservices.js"
 import webhookRoutes from "../routes/webhook.js"
+import moncompteproRoutes from "../routes/moncomptepro.js"
 
 const api = express()
 
@@ -20,7 +20,7 @@ dataRoutes(api)
 emailsRoutes(api)
 followupsRoutes(api)
 franceConnectRoutes(api)
-githubRoutes(api)
+moncompteproRoutes(api)
 legacySmsRoutes(api)
 openfiscaRoutes(api)
 outilsRoutes(api)

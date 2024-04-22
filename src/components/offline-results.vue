@@ -14,7 +14,7 @@ watch(modalState, (newValue) => {
 </script>
 
 <template>
-  <div v-if="show">
+  <div v-show="show">
     <h2 class="fr-text--lead"> Je garde ces informations&nbsp;! </h2>
     <p>
       Vous pouvez enregistrer les résultats de votre simulation pour les

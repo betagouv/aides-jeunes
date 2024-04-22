@@ -1,7 +1,8 @@
 locale: fr
 backend:
-  name: git-gateway
+  name: git-gateway-large
   branch: main
+  repo: https://github.com/betagouv/aides-jeunes.git
   commit_messages:
     create: Crée {{slug}}
     update: Met à jour {{slug}}

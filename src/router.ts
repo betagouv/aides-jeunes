@@ -234,6 +234,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/preview",
+      name: "preview",
+      component: () => import("./views/preview.vue"),
+    },
+    {
       path: "/aides/:benefitId",
       name: "aide",
       component: () => import("./views/aide.vue"),

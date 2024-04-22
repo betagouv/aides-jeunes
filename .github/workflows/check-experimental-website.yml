@@ -1,0 +1,23 @@
+name: Check experimental website
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_7_*_*_1-5
+    - cron: "0 7 * * 1-5"
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.18.2"
+      - run: npm ci
+      - name: Cypress run for experimental website
+        uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_RUN: GH_ACTION
+        with:
+          browser: chrome
+          config-file: cypress.config.ts
+          spec: cypress/e2e-extra/experimentations.cy.js

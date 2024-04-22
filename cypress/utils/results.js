@@ -276,7 +276,7 @@ const receiveResultsSms = () => {
 const checkResultsRequests = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     cy.writeFile(
-      `cypress/payloads/payload_${Cypress.spec.fileName}.json`,
+      `cypress/payloads/${Cypress.spec.fileName}-simulation.json`,
       response.body
     )
     expect(request.method).to.equal("POST")

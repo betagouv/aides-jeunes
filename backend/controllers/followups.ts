@@ -39,18 +39,8 @@ export function followup(
     })
 }
 
-function followupContactValidation(
-  email: string | undefined,
-  phone: string | undefined
-): boolean {
-  return !!(email?.length || phone?.length)
-}
-
 async function sendFollowupNotifications(followup, res: Response) {
   const { email, phone } = followup
-  if (email) {
-    await sendSimulationResultsEmail(followup)
-  }
   if (phone) {
     if (
       phoneNumberValidation(phone, config.smsService.internationalDiallingCodes)
@@ -60,6 +50,9 @@ async function sendFollowupNotifications(followup, res: Response) {
       return res.status(422).send("Unsupported phone number format")
     }
   }
+  if (email) {
+    await sendSimulationResultsEmail(followup)
+  }
   return res.send({ result: "OK" })
 }
 
@@ -68,25 +61,21 @@ async function createSimulationRecapUrl(followup, res: Response) {
     SurveyType.TrackClickTemporarySimulationLink
   )
   await followup.save()
-  const simulationRecapUrl = `${config.baseURL}/s/t/${followup.accessToken}`
+  const simulationRecapUrl = `${config.baseURL}${followup.shortRecapPath}`
   return res.send({ simulationRecapUrl })
 }
 
 export async function persist(req: Request, res: Response) {
-  const { surveyOptin, email, phone, contactRequired } = req.body
+  const { surveyOptin, email, phone } = req.body
   const simulation = req.simulation
   try {
-    if (contactRequired && !followupContactValidation(email, phone)) {
-      return res.status(400).send({ result: "Missing Email or Phone" })
-    }
-
     const followup = await FollowupFactory.create(
       simulation,
       surveyOptin,
       email,
       phone
     )
-    if (contactRequired) {
+    if (email || phone) {
       return sendFollowupNotifications(followup, res)
     } else {
       return createSimulationRecapUrl(followup, res)
@@ -172,9 +161,6 @@ export async function followupByAccessToken(
   })
   if (!followup) return res.sendStatus(404)
   req.followup = followup
-  if (!req.simulation) {
-    req.simulation = followup.simulation
-  }
   next()
 }
 
@@ -225,11 +211,8 @@ async function getRedirectUrl(req: Request) {
       return followup.surveyPath
     }
     case SurveyType.TrackClickTemporarySimulationLink:
-      await followup.addSurveyIfMissing(
-        SurveyType.TrackClickTemporarySimulationLink
-      )
       await followup.save()
-      return followup.recapPathUrl
+      return followup.recapPath
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:

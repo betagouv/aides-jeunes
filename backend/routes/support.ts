@@ -15,7 +15,7 @@ export default function (api: Express) {
       simulationController.simulation(req, res, next, req.params.simulationId)
     },
     simulationController.attachAccessCookie,
-    simulationController.redirectToResults
+    simulationController.redirect
   )
 
   api.use("/support", route)

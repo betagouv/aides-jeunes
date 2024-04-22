@@ -61,14 +61,6 @@ function attachAccessCookie(req: Request, res, next?) {
   next && next()
 }
 
-function redirectToRecap(req: Request, res) {
-  res.redirect(`/simulation/recapitulatif?simulationId=${req.simulation._id}`)
-}
-
-function redirectToResults(req: Request, res) {
-  res.redirect("/simulation/resultats")
-}
-
 function validateAccess(req: Request, res, next) {
   if (
     req.simulation?.isAccessible({
@@ -198,9 +190,8 @@ function openfiscaTest(req: Request, res) {
 }
 
 function redirect(req: Request, res) {
-  res.redirect(
-    `/simulation/redirect${req?.query?.to ? `?to=${req.query.to}` : ""}`
-  )
+  const redirectTo = req.redirectTo || req?.query?.to || "/resultats"
+  res.redirect(`/simulation/redirect${redirectTo ? `?to=${redirectTo}` : ""}`)
 }
 
 function enrichBenefitsList(benefits) {
@@ -258,8 +249,6 @@ export default {
   openfiscaRequest,
   openfiscaTest,
   redirect,
-  redirectToRecap,
-  redirectToResults,
   results,
   getLatestFollowup,
 }

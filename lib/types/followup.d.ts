@@ -34,7 +34,7 @@ interface FollowupMethods {
 interface FollowupVirtuals {
   emailRenderPath: string
   recapSurveyPath: string
-  recapPathUrl: string
+  recapPath: string
   returnPath: string
   shortResultPath: string
   surveyPath: string

@@ -43,17 +43,9 @@ const router = createRouter({
           path: "redirect",
           name: "redirect",
           beforeEnter(to, from, next) {
-            const store = useStore()
             const simulationLatestId = Simulations.getLatestId()
             if (simulationLatestId) {
-              store
-                .fetch(simulationLatestId)
-                .then(() => {
-                  next(`/simulation${to.query.to || ""}`)
-                })
-                .catch(() => {
-                  next("/")
-                })
+              next(`/simulation${to.query.to || ""}`)
             } else {
               next("/")
             }

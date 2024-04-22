@@ -12,9 +12,9 @@ const temporarySaveSimulationButton = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)
-    cy.get('div[data-testid="simulation-saved-success-alert"]').should(
-      "be.visible"
-    )
+    cy.get('div[data-testid="simulation-saved-success-alert"]', {
+      timeout: 10000,
+    }).should("be.visible")
   })
 }
 

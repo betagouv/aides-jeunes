@@ -9,27 +9,27 @@ export const useResultsStore = defineStore("results", {
       return this.resultats?.droitsEligibles || []
     },
     benefitTreeGroupExperiment(): (StandardBenefit | BenefitGroup)[] {
-      const bafaGroup: BenefitGroup = {
-        benefits: [],
-        id: "bafa-bafd-group",
-        label: "Aides BAFA et BAFD",
-        logoPath: "/img/benefits/logo-bafa-bafd.png",
-        description:
-          "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
-        interestFlag: "_interetBafa",
-      }
+      const groups: BenefitGroup[] = [
+        {
+          benefits: [],
+          id: "bafa-bafd-group",
+          label: "Aides BAFA et BAFD",
+          logoPath: "/img/benefits/logo-bafa-bafd.png",
+          description:
+            "Différents organismes peuvent vous aider à financer votre formation BAFA ou BAFD.",
+          interestFlag: "_interetBafa",
+        },
+        {
+          benefits: [],
+          id: "velo-group",
+          label: "Aides à l'achat d'un vélo",
+          logoPath: "/img/benefits/logo-velo.jpg",
+          description:
+            "Différents organismes peuvent vous aider à financer votre vélo.",
+          interestFlag: "_interetsAidesVelo",
+        },
+      ]
 
-      const veloGroup: BenefitGroup = {
-        benefits: [],
-        id: "velo-group",
-        label: "Aides à l'achat d'un vélo",
-        logoPath: "/img/benefits/logo-velo.jpg",
-        description:
-          "Différents organismes peuvent vous aider à financer votre vélo.",
-        interestFlag: "_interetsAidesVelo",
-      }
-
-      const groups = [bafaGroup, veloGroup]
       const benefitGroups = groups.filter(
         (benefitGroup) =>
           this.benefits.filter(
@@ -40,7 +40,10 @@ export const useResultsStore = defineStore("results", {
       const results = this.benefits.reduce((results, benefit) => {
         let inGroup = false
         benefitGroups.forEach((benefitToGroup) => {
-          if (benefit?.interestFlag === benefitToGroup.interestFlag) {
+          if (
+            !inGroup &&
+            benefit?.interestFlag === benefitToGroup.interestFlag
+          ) {
             if (benefitToGroup.benefits.length === 0) {
               results.push(benefitToGroup)
             }

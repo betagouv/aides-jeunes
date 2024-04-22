@@ -20,8 +20,10 @@ const temporarySaveSimulationButton = () => {
 
 const copySimulationButton = () => {
   cy.get('button[data-testid="simulation-link-clipboard-button"]').click()
+  cy.document().trigger("focus") // Need this focus on the CI
   cy.window().then((win) => {
-    win.navigator.clipboard.readText().then((text) => {
+    const clipboard = win.navigator.clipboard
+    clipboard.readText().then((text) => {
       expect(text).to.include("/s/t/")
     })
   })

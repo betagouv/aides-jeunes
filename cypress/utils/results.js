@@ -11,7 +11,7 @@ const back = () => cy.get('[data-testid="back-button"]').click()
 const IdentifyBenefit = (id, name) => {
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 },
+    { timeout: 10000 }
   ).as(`${id}-summary`)
   cy.checkA11y()
   getBenefitSummary(id)
@@ -39,7 +39,7 @@ const hasNotBafaBenefits = () => {
   const id = "bafa-bafd-group-preview"
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 },
+    { timeout: 10000 }
   ).should("not.exist")
 }
 
@@ -71,11 +71,11 @@ const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="lieu-title"]').should(
     "contain",
-    "Caisse d'allocations familiales",
+    "Caisse d'allocations familiales"
   )
   cy.get('[data-testid="lieu-informations-link"]').should(
     "contain",
-    "Voir les informations",
+    "Voir les informations"
   )
 }
 
@@ -208,7 +208,7 @@ const hasNotAidesVeloBenefits = () => {
   const id = "velo-group-preview"
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 },
+    { timeout: 10000 }
   ).should("not.exist")
 }
 
@@ -268,7 +268,7 @@ const receiveResultsSms = () => {
         surveyOptin: true,
         phone: "0600000000",
       },
-    },
+    }
   ).as("post-receive-results-sms")
 
   cy.get("[data-testid='send-email-and-sms-button']", {
@@ -292,7 +292,7 @@ const checkResultsRequests = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     cy.writeFile(
       `cypress/payloads/payload_${Cypress.spec.fileName}.json`,
-      response.body,
+      response.body
     )
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)

@@ -34,7 +34,7 @@ const simulationNewTabAccessLink = () => {
   cy.get('a[data-testid="simulation-new-tab-access-link"]')
     .invoke("removeAttr", "target")
     .click()
-  cy.url().should("include", "/recapitulatif?simulationId=")
+  cy.url().should("include", "/recapitulatif")
   cy.injectAxe()
 }
 

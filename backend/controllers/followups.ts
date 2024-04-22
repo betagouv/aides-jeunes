@@ -69,15 +69,16 @@ export async function persist(req: Request, res: Response) {
   const { surveyOptin, email, phone } = req.body
   const simulation = req.simulation
   try {
-    const followup = await FollowupFactory.create(
-      simulation,
-      surveyOptin,
-      email,
-      phone
-    )
     if (email || phone) {
+      const followup = await FollowupFactory.createWithResults(
+        simulation,
+        surveyOptin,
+        email,
+        phone
+      )
       return sendFollowupNotifications(followup, res)
     } else {
+      const followup = await FollowupFactory.create(simulation)
       return createSimulationRecapUrl(followup, res)
     }
   } catch (error: any) {

@@ -1,6 +1,6 @@
 locale: fr
 backend:
-  name: git-gateway
+  name: git-gateway-large
   branch: main
   commit_messages:
     create: Crée {{slug}}
@@ -849,6 +849,25 @@ fields:
     widget: hidden
 
 collections:
+  - name: future_benefit
+    label: Nouvelles aides
+    label_singular: nouvelle aide
+    identifier_field: label
+    folder: "data/future_benefits"
+    create: true
+    delete: false
+    editor:
+      preview: true
+    slug: "{{fields.institution}}-{{label}}"
+    summary: "{{label}} ({{fields.institution}})"
+    extension: yml
+    fields:
+      - *field_benefit_name
+      - label: Nom de l'institution
+        name: institution
+        widget: string
+      - *field_description
+      - *field_link_information
   - name: benefits_javascript
     label: Aides avec critères d'éligibilités
     label_singular: Aide avec critères d'éligibilités

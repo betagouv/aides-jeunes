@@ -38,6 +38,7 @@ interface FollowupVirtuals {
   returnPath: string
   shortResultPath: string
   surveyPath: string
+  shortRecapPath: string
   shortSurveyPath: string
   smsSurveyPath: string
   surveyPathTracker: string

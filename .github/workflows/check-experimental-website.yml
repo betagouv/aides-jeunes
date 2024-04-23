@@ -32,4 +32,4 @@ jobs:
           CYPRESS_RUN: GH_ACTION
         with:
           browser: chrome
-          spec: cypress/e2e-extra/*
+          spec: cypress/e2e/extra/*

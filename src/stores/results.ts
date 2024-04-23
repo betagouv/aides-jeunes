@@ -12,7 +12,7 @@ export const useResultsStore = defineStore("results", {
       const groups: BenefitGroup[] = [
         {
           benefits: [],
-          id: "bafa-bafd-group",
+          id: "bafa-bafd",
           label: "Aides BAFA et BAFD",
           logoPath: "/img/benefits/logo-bafa-bafd.png",
           description:
@@ -21,7 +21,7 @@ export const useResultsStore = defineStore("results", {
         },
         {
           benefits: [],
-          id: "velo-group",
+          id: "velo",
           label: "Aides à l'achat d'un vélo",
           logoPath: "/img/benefits/logo-velo.jpg",
           description:

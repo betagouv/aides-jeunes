@@ -6,11 +6,11 @@ const init = () => {
 }
 
 const goToBafaBenefitsPage = () => {
-  cy.get('[data-testid="bafa-bafd-group-preview"]').click()
+  cy.get('[data-testid="bafa-bafd-preview"]').click()
 }
 
 const goToAidesVeloBenefitsPage = () => {
-  cy.get('[data-testid="velo-group-preview"]').click()
+  cy.get('[data-testid="velo-preview"]').click()
 }
 
 const goHome = () => {

@@ -197,7 +197,7 @@ const hasAideVeloNationale = () => {
 }
 
 const veloGroupPreviewBenefit = (mustBeDisplay) => {
-  const veloGroupPreviewId = "velo-group-preview"
+  const veloGroupPreviewId = "velo-preview"
   if (mustBeDisplay) {
     const name = /Aides à l'achat d'un vélo/
     IdentifyBenefit(veloGroupPreviewId, name)

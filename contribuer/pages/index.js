@@ -33,6 +33,17 @@ function Home() {
             Guides de contribution (nouvelle fenêtre)
           </a>
         </h3>
+        <br />
+        <h4>
+          Tutoriel vidéo pour ajouter une aide dans l’outil de contribution ⬇️
+        </h4>
+        <video width="600" controls preload="auto">
+          <source
+            src="https://betagouv.github.io/aides-jeunes-files/public/demo-outil-contribution.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
       </main>
     </>
   )

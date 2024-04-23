@@ -16,7 +16,7 @@
       class="fr-alert fr-alert--info fr-my-1w fr-mb-3w"
     >
       <p
-        >Les ressources perçues par {{ aditionnalResourcesText }} seront
+        >Les ressources perçues par {{ additionnalResourcesText }} seront
         demandées plus tard dans le simulateur.
       </p>
     </div>
@@ -147,36 +147,21 @@ export default {
     },
     showInitialResourcesCollectionWarning() {
       return (
-        this.individu._role === "demandeur" && this.aditionnalResources.length
+        this.individu._role === "demandeur" && this.additionnalResources.length
       )
     },
-    aditionnalResources() {
-      let resources: string[] = []
-
-      if (this.needCoupleResources) {
-        resources.push("votre conjoint(e)")
-      }
-
-      if (this.numberChildrenMore16 > 1) {
-        resources.push("vos enfants")
-      } else if (this.numberChildrenMore16) {
-        resources.push("votre enfant")
-      }
-
-      if (this.needParentsResources) {
-        resources.push("vos parents ou tuteurs légaux")
-      }
-
-      return resources
+    additionnalResources() {
+      return [
+        ...(this.needCoupleResources ? ["votre conjoint(e)"] : []),
+        ...(this.numberChildrenMore16 > 1 ? ["vos enfants"] : []),
+        ...(this.numberChildrenMore16 === 1 ? ["votre enfant"] : []),
+        ...(this.needParentsResources ? ["vos parents ou tuteurs légaux"] : []),
+      ]
     },
-    aditionnalResourcesText() {
-      if (this.aditionnalResources.length < 3) {
-        return this.aditionnalResources.join(" et ")
-      } else {
-        const last = this.aditionnalResources.slice(-1)
-        const others = this.aditionnalResources.slice(0, -1)
-        return `${others.join(", ")} et ${last}`
-      }
+    additionnalResourcesText() {
+      const last = this.additionnalResources.slice(-1)
+      const others = this.additionnalResources.slice(0, -1)
+      return [...(others.length ? [others.join(", ")] : []), last].join(" et ")
     },
   },
   watch: {

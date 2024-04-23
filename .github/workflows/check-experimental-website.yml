@@ -12,12 +12,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "18.18.2"
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Cypress installation
+        uses: actions/cache@v3
+        id: restore-cypress
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cache-cypress-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
+        if: steps.restore-dependencies.outputs.cache-hit != 'true'
       - name: Cypress run for experimental website
         uses: cypress-io/github-action@v5
         env:
           CYPRESS_RUN: GH_ACTION
         with:
           browser: chrome
-          config-file: cypress.config.ts
-          spec: cypress/e2e-extra/experimentations.cy.js
+          spec: cypress/e2e-extra/*

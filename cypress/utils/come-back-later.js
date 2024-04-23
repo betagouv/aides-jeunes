@@ -19,9 +19,8 @@ const temporarySaveSimulationButton = () => {
 }
 
 const copySimulationButton = () => {
-  cy.get('button[data-testid="simulation-link-clipboard-button"]')
-    .focus()
-    .click()
+  cy.get('button[data-testid="simulation-link-clipboard-button"]').click()
+  cy.window().focus()
   cy.window().then((win) => {
     const clipboard = win.navigator.clipboard
     clipboard.readText().then((text) => {

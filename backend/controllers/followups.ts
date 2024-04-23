@@ -56,7 +56,8 @@ async function sendFollowupNotifications(followup, res: Response) {
   return res.send({ result: "OK" })
 }
 
-async function createSimulationRecapUrl(followup, res: Response) {
+async function createSimulationRecapUrl(req: Request, res: Response) {
+  const followup = await FollowupFactory.create(req.simulation)
   await followup.addSurveyIfMissing(
     SurveyType.TrackClickTemporarySimulationLink
   )
@@ -78,8 +79,7 @@ export async function persist(req: Request, res: Response) {
       )
       return sendFollowupNotifications(followup, res)
     } else {
-      const followup = await FollowupFactory.create(simulation)
-      return createSimulationRecapUrl(followup, res)
+      return createSimulationRecapUrl(req, res)
     }
   } catch (error: any) {
     Sentry.captureException(error)

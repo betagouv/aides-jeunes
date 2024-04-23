@@ -13,7 +13,7 @@
     </p>
     <div
       v-if="showInitialResourcesCollectionWarning"
-      class="fr-alert fr-alert--info fr-my-1w"
+      class="fr-alert fr-alert--info fr-my-1w fr-mb-3w"
     >
       <p
         >Les ressources perçues par {{ aditionnalResourcesText }} seront
@@ -157,14 +157,14 @@ export default {
         resources.push("votre conjoint(e)")
       }
 
-      if (this.needParentsResources) {
-        resources.push("vos parents ou tuteurs légaux")
-      }
-
       if (this.numberChildrenMore16 > 1) {
         resources.push("vos enfants")
       } else if (this.numberChildrenMore16) {
         resources.push("votre enfant")
+      }
+
+      if (this.needParentsResources) {
+        resources.push("vos parents ou tuteurs légaux")
       }
 
       return resources

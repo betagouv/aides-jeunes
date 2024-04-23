@@ -46,8 +46,8 @@ context("Full simulation", () => {
 
     results.wait()
     results.hasCSS()
-    results.hasNotBafaBenefits()
-    results.hasNotAidesVeloBenefits()
+    results.bafaGroupPreviewBenefit(false)
+    results.veloGroupPreviewBenefit(false)
     results.hasPrimeActivite()
     navigate.goRecap()
     navigate.checkRecap()

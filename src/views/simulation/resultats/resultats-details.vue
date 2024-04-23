@@ -55,6 +55,7 @@ onMounted(async () => {
     benefit.value &&
     hasBenefitsGroup.value === true
   ) {
+    console.error("ahahahhahahah")
     StatisticsMixin.methods.sendBenefitsStatistics(
       benefits.value,
       EventAction.ShowDetailsFromGroupPage,

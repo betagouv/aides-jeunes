@@ -168,7 +168,7 @@ const router = createRouter({
             },
             {
               name: "resultatsGroupe",
-              path: "groupe/:benefitId",
+              path: "groupe/:groupId",
               component: () =>
                 import("./views/simulation/resultats/benefits-list.vue"),
               meta: { showBackToResultsButton: true },

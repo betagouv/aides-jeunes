@@ -11,7 +11,7 @@ const back = () => cy.get('[data-testid="back-button"]').click()
 const IdentifyBenefit = (id, name) => {
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
+    { timeout: 10000 },
   ).as(`${id}-summary`)
   cy.checkA11y()
   getBenefitSummary(id)
@@ -20,11 +20,18 @@ const IdentifyBenefit = (id, name) => {
     .should("match", name)
 }
 
-const hasBafaPreviewBenefit = () => {
-  const name = /Aides BAFA et BAFD/
-  const id = "bafa-bafd-group-preview"
-  IdentifyBenefit(id, name)
-  cy.checkA11y()
+const bafaGroupPreviewBenefit = (mustBeDisplay) => {
+  const bafaGroupPreviewId = "bafa-bafd-group-preview"
+  if (mustBeDisplay) {
+    const name = /Aides BAFA et BAFD/
+    IdentifyBenefit(bafaGroupPreviewId, name)
+    cy.checkA11y()
+  } else {
+    cy.get(
+      `[itemtype="http://schema.org/GovernmentService"][data-testid="${bafaGroupPreviewId}"]`,
+      { timeout: 10000 },
+    ).should("not.exist")
+  }
 }
 
 const hasBafaBenefit = () => {
@@ -33,14 +40,6 @@ const hasBafaBenefit = () => {
   const id = "caf-aide-nationale-bafa"
   IdentifyBenefit(id, name)
   cy.checkA11y()
-}
-
-const hasNotBafaBenefits = () => {
-  const id = "bafa-bafd-group-preview"
-  cy.get(
-    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
-  ).should("not.exist")
 }
 
 const hasPrimeActivite = () => {
@@ -71,11 +70,11 @@ const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="lieu-title"]').should(
     "contain",
-    "Caisse d'allocations familiales"
+    "Caisse d'allocations familiales",
   )
   cy.get('[data-testid="lieu-informations-link"]').should(
     "contain",
-    "Voir les informations"
+    "Voir les informations",
   )
 }
 
@@ -197,19 +196,18 @@ const hasAideVeloNationale = () => {
   IdentifyBenefit(id, name)
 }
 
-const hasAidesVeloPreviewBenefit = () => {
-  const name = /Aides à l'achat d'un vélo/
-  const id = "velo-group-preview"
-  IdentifyBenefit(id, name)
-  cy.checkA11y()
-}
-
-const hasNotAidesVeloBenefits = () => {
-  const id = "velo-group-preview"
-  cy.get(
-    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
-  ).should("not.exist")
+const veloGroupPreviewBenefit = (mustBeDisplay) => {
+  const veloGroupPreviewId = "velo-group-preview"
+  if (mustBeDisplay) {
+    const name = /Aides à l'achat d'un vélo/
+    IdentifyBenefit(veloGroupPreviewId, name)
+    cy.checkA11y()
+  } else {
+    cy.get(
+      `[itemtype="http://schema.org/GovernmentService"][data-testid="${veloGroupPreviewId}"]`,
+      { timeout: 10000 },
+    ).should("not.exist")
+  }
 }
 
 const hasRSA = () => {
@@ -268,7 +266,7 @@ const receiveResultsSms = () => {
         surveyOptin: true,
         phone: "0600000000",
       },
-    }
+    },
   ).as("post-receive-results-sms")
 
   cy.get("[data-testid='send-email-and-sms-button']", {
@@ -292,7 +290,7 @@ const checkResultsRequests = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     cy.writeFile(
       `cypress/payloads/payload_${Cypress.spec.fileName}.json`,
-      response.body
+      response.body,
     )
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)
@@ -325,9 +323,8 @@ const checkOpenFiscaAxe = () => {
 export default {
   wait,
   back,
-  hasBafaPreviewBenefit,
+  bafaGroupPreviewBenefit,
   hasBafaBenefit,
-  hasNotBafaBenefits,
   hasPrimeActivite,
   hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,
@@ -340,8 +337,7 @@ export default {
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
-  hasNotAidesVeloBenefits,
-  hasAidesVeloPreviewBenefit,
+  veloGroupPreviewBenefit,
   receiveResultsEmail,
   receiveResultsSms,
   checkResultsRequests,

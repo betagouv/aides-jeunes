@@ -8,10 +8,8 @@ import { useRoute } from "vue-router"
 const resultsStore = useResultsStore()
 const route = useRoute()
 const groupBenefits = computed(() => {
-  const benefitId = route.params.benefitId
-  return resultsStore.benefitTree.find(
-    (b) => b.id === benefitId
-  ) as BenefitGroup
+  const groupId = route.params.groupId
+  return resultsStore.benefitTree.find((g) => g.id === groupId) as BenefitGroup
 })
 </script>
 

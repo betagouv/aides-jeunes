@@ -53,9 +53,9 @@ onMounted(async () => {
     ABTestingService.getValues().aides_bafa ===
       "aides_bafa_fusionnees_conserve_position" &&
     benefit.value &&
-    hasBenefitsGroup.value === true
+    benefit.value.groupLabel &&
+    hasBenefitsGroup.value
   ) {
-    console.error("ahahahhahahah")
     StatisticsMixin.methods.sendBenefitsStatistics(
       benefits.value,
       EventAction.ShowDetailsFromGroupPage,

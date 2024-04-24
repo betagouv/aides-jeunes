@@ -2,8 +2,8 @@
   <div class="step">
     <button
       :disabled="item_count == 1"
-      @click="toggle()"
       class="fr-btn fr-btn--secondary"
+      @click="toggle()"
     >
       {{ item_count == 1 ? "" : open ? "-" : "+" }}
     </button>
@@ -14,12 +14,13 @@
     />
     {{ label(step) }}
 
-    <StepView
-      v-if="open"
-      v-for="(step, index) in step.steps"
-      :key="index"
-      :step="step"
-    />
+    <div v-if="open">
+      <StepView
+        v-for="(substep, index) in step.steps"
+        :key="index"
+        :step="substep"
+      />
+    </div>
   </div>
 </template>
 
@@ -40,9 +41,8 @@ export default {
     step: Object,
     depth: Number,
   },
-  setup(props) {
+  setup() {
     return {
-      step: props.step,
       open: ref(false),
     }
   },
@@ -58,7 +58,7 @@ export default {
     toggle() {
       this.open = !this.open
     },
-    label(s) {
+    label() {
       const count = this.item_count
       return `${this.next}${count > 1 ? `(+${count - 1})` : ""}`
     },

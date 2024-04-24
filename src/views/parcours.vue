@@ -39,7 +39,7 @@
     </div>
     <h2>Étapes</h2>
     <div>
-      <StepView v-for="(step, index) in steps" :key="step" :step="step" />
+      <StepView v-for="step in steps" :key="step" :step="step" />
     </div>
   </article>
 </template>

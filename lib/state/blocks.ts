@@ -33,7 +33,6 @@ function individuBlockFactory(id, chapter?: ChapterName) {
       situation[id] ||
       situation.enfants?.find((enfant) => enfant.id === id) ||
       {},
-    isActive: id === "demandeur" ? undefined : () => true,
     steps: [
       ...(enfant ? [r("_firstName", chapter)] : []),
       r("date_naissance", demandeur ? ChapterName.Profil : chapter),
@@ -340,7 +339,6 @@ function extraBlock() {
 
 function kidBlock(situation) {
   return {
-    isActive: () => true,
     steps: [
       ...(!childStepsComplete(situation)
         ? [new StepGenerator({ entity: "enfants", chapter: ChapterName.Foyer })]
@@ -524,7 +522,6 @@ function resourceBlocks(situation) {
       situation.enfants?.find((enfant) => enfant.id === individuId) ||
       {}
     return {
-      isActive: individuId === "demandeur" ? undefined : () => true,
       steps: [
         new ComplexStepGenerator({
           route: `individu/${individuId}/ressources/types`,

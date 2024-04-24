@@ -53,7 +53,6 @@ const router = createRouter({
               next("/")
             }
           },
-          redirect: "/",
         },
         {
           path: ":parent+/en_savoir_plus",
@@ -232,6 +231,11 @@ const router = createRouter({
       meta: {
         headTitle: `Toutes les aides du simulateur ${context.name}`,
       },
+    },
+    {
+      path: "/preview",
+      name: "preview",
+      component: () => import("./views/preview.vue"),
     },
     {
       path: "/aides/:benefitId",

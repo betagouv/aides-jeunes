@@ -73,7 +73,9 @@ export default {
       return generateBlocks({
         demandeur: { id: "demandeur" },
         conjoint: this.conjoint ? { id: "conjoint" } : undefined,
-        enfants: this.enfants ? [{ id: "enfant_0" }] : undefined,
+        enfants: this.enfants
+          ? [{ id: "enfant_0", enfant_a_charge: {} }]
+          : undefined,
       })
     },
   },

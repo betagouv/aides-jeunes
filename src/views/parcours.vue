@@ -3,14 +3,14 @@
     <h1>Détails du parcours</h1>
     <h2>Informations</h2>
     <div>
-      <div
-        >{{ steps.length }} blocs de premier niveau -
-        {{ s_counter(steps) }} étapes au total</div
-      >
-      <div
-        ><span class="fr-icon-question-line" aria-hidden="true" /> indique une
-        question affichée de façon conditionnelle.</div
-      >
+      <div>
+        {{ steps.length }} blocs de premier niveau -
+        {{ s_counter(steps) }} étapes au total
+      </div>
+      <div>
+        <span class="fr-icon-question-line" aria-hidden="true" />
+        indique une question affichée de façon conditionnelle.
+      </div>
       <div class="fr-checkbox-group">
         <input
           id="conjoint"
@@ -19,9 +19,9 @@
           checked="true"
           value="conjoint"
         />
-        <label for="conjoint" class="fr-label"
-          >Ajouter les questions lorsque que la personne est en couple.</label
-        >
+        <label for="conjoint" class="fr-label">
+          Ajouter les questions lorsque que la personne est en couple.
+        </label>
       </div>
       <div class="fr-checkbox-group">
         <input
@@ -32,9 +32,8 @@
           value="enfants"
         />
         <label for="enfants" class="fr-label"
-          >Ajouter les questions lorsque qu'il y a un enfant dans la
-          famille.</label
-        >
+          >Ajouter les questions lorsque qu'il y a un enfant dans la famille.
+        </label>
       </div>
     </div>
     <h2>Étapes</h2>

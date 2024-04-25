@@ -20,11 +20,18 @@ const IdentifyBenefit = (id, name) => {
     .should("match", name)
 }
 
-const hasBafaPreviewBenefit = () => {
-  const name = /Aides BAFA et BAFD/
-  const id = "aides-bafa-preview"
-  IdentifyBenefit(id, name)
-  cy.checkA11y()
+const hasBafaGroupPreviewBenefit = (mustBeDisplay) => {
+  const bafaGroupPreviewId = "bafa-bafd-preview"
+  if (mustBeDisplay) {
+    const name = /Aides BAFA et BAFD/
+    IdentifyBenefit(bafaGroupPreviewId, name)
+    cy.checkA11y()
+  } else {
+    cy.get(
+      `[itemtype="http://schema.org/GovernmentService"][data-testid="${bafaGroupPreviewId}"]`,
+      { timeout: 10000 }
+    ).should("not.exist")
+  }
 }
 
 const hasBafaBenefit = () => {
@@ -33,14 +40,6 @@ const hasBafaBenefit = () => {
   const id = "caf-aide-nationale-bafa"
   IdentifyBenefit(id, name)
   cy.checkA11y()
-}
-
-const hasNotBafaBenefits = () => {
-  const id = "aides-bafa-preview"
-  cy.get(
-    `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
-  ).should("not.exist")
 }
 
 const hasPrimeActivite = () => {
@@ -197,6 +196,20 @@ const hasAideVeloNationale = () => {
   IdentifyBenefit(id, name)
 }
 
+const hasVeloGroupPreviewBenefit = (mustBeDisplay) => {
+  const veloGroupPreviewId = "velo-preview"
+  if (mustBeDisplay) {
+    const name = /Aides à l'achat d'un vélo/
+    IdentifyBenefit(veloGroupPreviewId, name)
+    cy.checkA11y()
+  } else {
+    cy.get(
+      `[itemtype="http://schema.org/GovernmentService"][data-testid="${veloGroupPreviewId}"]`,
+      { timeout: 10000 }
+    ).should("not.exist")
+  }
+}
+
 const hasRSA = () => {
   const name = /Revenu de solidarité active/
   const id = "rsa"
@@ -310,9 +323,8 @@ const checkOpenFiscaAxe = () => {
 export default {
   wait,
   back,
-  hasBafaPreviewBenefit,
+  hasBafaGroupPreviewBenefit,
   hasBafaBenefit,
-  hasNotBafaBenefits,
   hasPrimeActivite,
   hasPrimeActiviteNearbyPlaces,
   hasSituationNearbyPlaces,
@@ -325,6 +337,7 @@ export default {
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
+  hasVeloGroupPreviewBenefit,
   receiveResultsEmail,
   receiveResultsSms,
   checkResultsRequests,

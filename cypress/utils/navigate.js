@@ -6,7 +6,11 @@ const init = () => {
 }
 
 const goToBafaBenefitsPage = () => {
-  cy.get('[data-testid="aides-bafa-preview"]').click()
+  cy.get('[data-testid="bafa-bafd-preview"]').click()
+}
+
+const goToAidesVeloBenefitsPage = () => {
+  cy.get('[data-testid="velo-preview"]').click()
 }
 
 const goHome = () => {
@@ -48,6 +52,7 @@ const updateFromRecap = (sectionTitle, buttonLabel) => {
 export default {
   init,
   goToBafaBenefitsPage,
+  goToAidesVeloBenefitsPage,
   goHome,
   goToIframe,
   goRecap,

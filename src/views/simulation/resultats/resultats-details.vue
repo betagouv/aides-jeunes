@@ -26,7 +26,6 @@ import { useRoute } from "vue-router"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results.js"
 import ABTestingService from "@/plugins/ab-testing-service"
-import { hasBafaInterestFlag } from "@/lib/benefits.js"
 
 const store = useStore()
 const resultsStore = useResultsStore()
@@ -54,8 +53,8 @@ onMounted(async () => {
     ABTestingService.getValues().aides_bafa ===
       "aides_bafa_fusionnees_conserve_position" &&
     benefit.value &&
-    hasBafaInterestFlag(benefit.value) &&
-    hasBenefitsGroup.value === true
+    benefit.value.groupLabel &&
+    hasBenefitsGroup.value
   ) {
     StatisticsMixin.methods.sendBenefitsStatistics(
       benefits.value,

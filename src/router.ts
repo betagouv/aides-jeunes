@@ -166,10 +166,10 @@ const router = createRouter({
               meta: { showBackToResultsButton: true },
             },
             {
-              name: "resultatsGroupeAides",
-              path: "groupe/bafa-bafd",
+              name: "resultatsGroupe",
+              path: "groupe/:groupId",
               component: () =>
-                import("./views/simulation/resultats/benefits-bafa-list.vue"),
+                import("./views/simulation/resultats/benefits-list.vue"),
               meta: { showBackToResultsButton: true },
             },
             {

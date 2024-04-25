@@ -55,14 +55,19 @@ context("Full simulation", () => {
     projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
-    results.hasBafaPreviewBenefit()
+    results.hasBafaGroupPreviewBenefit(true)
     navigate.goToBafaBenefitsPage()
     results.hasBafaBenefit()
     results.back()
+
+    results.hasVeloGroupPreviewBenefit(true)
+    navigate.goToAidesVeloBenefitsPage()
+    results.hasAideVeloNationale()
+    results.back()
+
     results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()
     results.back()
-    results.hasAideVeloNationale()
     results.hasHousingBenefit()
     navigate.goRecap()
     navigate.checkRecap()

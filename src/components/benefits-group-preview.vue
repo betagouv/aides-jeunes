@@ -24,10 +24,10 @@ const formattedInstitutionsLabel = computed(() => {
       <div class="fr-tile tile-2">
         <router-link
           class="fr-tile tile-3"
-          :to="`/simulation/resultats/groupe/${props.group.redirectionPage}`"
+          :to="`/simulation/resultats/groupe/${props.group.id}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
-          data-testid="aides-bafa-preview"
+          :data-testid="`${props.group.id}-preview`"
           aria-label="Demander ces aides"
         >
           <div class="fr-p-4w">

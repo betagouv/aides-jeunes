@@ -21,7 +21,7 @@ const IdentifyBenefit = (id, name) => {
 }
 
 const bafaGroupPreviewBenefit = (mustBeDisplay) => {
-  const bafaGroupPreviewId = "bafa-bafd-group-preview"
+  const bafaGroupPreviewId = "bafa-bafd-preview"
   if (mustBeDisplay) {
     const name = /Aides BAFA et BAFD/
     IdentifyBenefit(bafaGroupPreviewId, name)

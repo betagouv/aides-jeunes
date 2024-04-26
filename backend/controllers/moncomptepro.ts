@@ -35,6 +35,7 @@ const login = async (req, res) => {
   const client = await getMcpClient()
   const redirectUrl = client.authorizationUrl({
     scope,
+    state: req.state,
   })
   res.redirect(redirectUrl)
 }
@@ -43,12 +44,57 @@ const retrieveMcpAccessToken = async (req) => {
   try {
     const client = await getMcpClient()
     const params = client.callbackParams(req)
-    const tokenSet = await client.callback(redirect_uri, params)
+    // Gros hack sale
+    // détourne le principe du state
+    // Une alternative propre serait d'avoir deux urls de redirections disctinctes
+    // pour gérer le cas
+    // MCP pour l'outil d'accompagnement
+    // MCP pour l'outil de contribution DecapCMS / NetlifyIdentity
+    const tokenSet = await client.callback(
+      redirect_uri,
+      params,
+      req.query.state ? { state: req.query.state } : undefined
+    )
     return tokenSet.access_token
   } catch (error) {
     console.error("Error in retrieveMcpAccessToken: ", error)
     throw error
   }
+}
+
+const checkNetlify = async (req, res, next) => {
+  if (req.query.state !== "netlify") {
+    next()
+  }
+  const url = "http://localhost:3000/admin/index.html"
+  const sessionSecret = process.env.GIT_GATEWAY_SHARED_SECRET
+  const mcpAccessToken = await retrieveMcpAccessToken(req)
+  const client = await getMcpClient()
+  if (!mcpAccessToken) {
+    throw new Error("No mcpAccessToken")
+  }
+  const user_metadata = await client.userinfo(mcpAccessToken)
+
+  const accessToken = jwt.sign(
+    {
+      email: user_metadata.email,
+      app_metadata: {
+        provider: "saml",
+      },
+      user_metadata,
+    },
+    sessionSecret,
+    {
+      expiresIn: JWT_EXPIRATION_DELAY,
+    }
+  )
+
+  const params = new URLSearchParams()
+  params.append("access_token", accessToken)
+  params.append("token_type", "bearer")
+
+  // Une des magies de DecapCMS
+  return res.redirect(`${url}#${params.toString()}`)
 }
 
 const access = async (req, res, next) => {
@@ -121,4 +167,4 @@ const logout = async (req, res, next) => {
   }
 }
 
-export default { access, login, loginCallbackRedirect, logout }
+export default { access, checkNetlify, login, loginCallbackRedirect, logout }

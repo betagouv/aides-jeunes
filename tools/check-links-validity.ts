@@ -80,6 +80,10 @@ function filterPublicBenefits(benefits) {
   return benefits.filter((benefit) => !benefit.private)
 }
 
+export function filterPrivateBenefits(benefits) {
+  return benefits.filter((benefit) => benefit.private)
+}
+
 async function getBenefitData(noPriority: boolean) {
   let priorityMap = {}
   try {
@@ -179,6 +183,7 @@ async function main() {
   const rawExistingWarnings = await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
+    Traite: [false],
   })
   const benefitData = await getBenefitData(noPriority)
   const benefitsToAnalyze = filterBenefitDataToProcess(
@@ -204,14 +209,17 @@ async function main() {
     }
   )
 
+  const privateBenefits = filterPrivateBenefits(Benefits.all)
   const benefitOperationsList = benefitLinksCheckResults.map(
     (benefitLinksCheckResult) =>
       determineOperationsOnBenefitLinkError(
         existingWarnings,
         benefitLinksCheckResult,
-        pullRequestURL
+        pullRequestURL,
+        privateBenefits
       )
   )
+
   type RecordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: RecordsByOperationTypesType = {
     add: [],

@@ -1,11 +1,9 @@
-label: Aide individuelle régionale d'études des secteurs du sanitaire et du
-  travail social
+label: Aide régionale dʼétudes dans les filières du sanitaire et du travail social
 institution: region_provence_alpes_cote_azur
 description:
-  L'aide est attribuée, sur critères sociaux, à toute personne élève ou étudiante confrontée à des difficultés matérielles ne lui permettant pas
-  d'entreprendre ou de poursuivre une formation. Versée mensuellement, elle est
-  attribuée pour la durée de la formation dans la limite d’une année scolaire,
-  et renouvelable chaque année sur demande.
+  Lʼaide est attribuée aux élèves, étudiants et étudiantes dans les filières du sanitaire et du travail social
+  dont les ressources familiales ne leur permettent pas de suivre la formation dans des conditions financières suffisantes.
+  La bourse d'études est comprise entre 1454 et 6335 euros et est versée en 10 mensualités.
 prefix: le
 conditions_generales:
   - type: regions
@@ -18,10 +16,13 @@ profils:
   - type: lyceen
     conditions: []
 conditions:
-  - Être inscrit et suivre une formation en cursus complet dans un établissement des secteurs du sanitaire et du travail social, agréé ou autorisé par la Région.
+  - Être inscrit dans un institut de formation du secteur sanitaire ou du travail social autorisé ou agréé par la Région.
+  - Suivre un cursus temps plein ou temps partiel (la durée minimale de formation doit être égale ou supérieure à 70 heures).
 interestFlag: _interetAidesSanitaireSocial
-type: bool
-unit: null
+type: float
+legend: maximum
+montant: 6335
+unit: €
 periodicite: annuelle
-link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social-1
-instructions: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-sanitaires-et-du-travail-social-1
+link: https://www.maregionsud.fr/vos-aides/detail/bourse-regionale-detudes-dans-les-filieres-du-sanitaire-et-du-travail-social
+teleservice: https://sudconnect.maregionsud.fr/auth/realms/citoyen/protocol/openid-connect/auth?client_id=usager-mgdis-portail&response_type=code&redirect_uri=https%3A%2F%2Faidesenligne.maregionsud.fr%2Faccount-management%2Fcrsud-demandeurs%2Foidc%2FMoncompteRegionSud%2Fcode&state=cdf8064b-0a26-4e94-a800-9079c2482b81&scope=email+profile+openid+donnees_personnelles

@@ -11,25 +11,34 @@ export const parametersList: OpenfiscaParameters = {
   "marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel": 151.67,
 }
 
+let parameterPromise
 let parameters
 
-const computeParameters = async () => {
-  if (!parameters) {
-    const values = await Promise.all(
-      Object.keys(parametersList).map((parameter) =>
-        openfisca.getPromise(`/parameter/${parameter}`)
-      )
+async function fetchParameters() {
+  const values = await Promise.all(
+    Object.keys(parametersList).map((parameter) =>
+      openfisca.getPromise(`/parameter/${parameter}`)
     )
+  )
 
-    const newParameters = {}
-    values.forEach((value) => {
-      newParameters[value.id] = value.values
-    })
-    parameters = newParameters
-  }
+  const newParameters = {}
+  values.forEach((value) => {
+    newParameters[value.id] = value.values
+  })
+  return newParameters
 }
 
-const computeParameter = (parameter, date) => {
+function requestParameters() {
+  if (!parameterPromise) {
+    parameterPromise = fetchParameters().then((values) => {
+      parameters = values
+      return values
+    })
+  }
+  return parameterPromise
+}
+
+function computeParameter(parameter, date) {
   const values = parameters?.[parameter]
   if (values) {
     const closestDate = Object.keys(values)
@@ -53,19 +62,27 @@ export function getParameter(parameter, date) {
   return computeParameter(parameter, date)
 }
 
-export async function getParameters(date) {
-  await computeParameters()
-
+export function getParameters_(date): OpenfiscaParameters {
   const results = {}
-  Object.keys(parametersList).forEach(async (parameter) => {
+  Object.keys(parametersList).forEach((parameter) => {
     results[parameter] = computeParameter(parameter, date)
   })
+  return results as OpenfiscaParameters
+}
 
-  return results
+export function getParameters(date): OpenfiscaParameters {
+  requestParameters()
+  return getParameters_(date)
+}
+
+export async function getParametersAsync(date): Promise<OpenfiscaParameters> {
+  await requestParameters()
+  return getParameters_(date)
 }
 
 export default {
   parametersList,
   getParameter,
   getParameters,
+  getParametersAsync,
 }

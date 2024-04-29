@@ -1,9 +1,9 @@
-label: bourses pour les formations sanitaires et sociales
+label: bourses dʼétudes pour les formations sanitaires et sociales
 institution: region_centre_val_de_loire
 description:
-  Les bourses sur critères sociaux sont des aides financières accordées
-  par la Région Centre-Val-de-Loire aux apprenants des formations sanitaires et sociales
-  sous certaines conditions de ressources.
+  Les bourses dʼétudes pour les formations sanitaires et sociales sont accordées
+  par la Région Centre-Val-de-Loire aux apprenants et apprenantes inscrits dans des formations éligibles et
+  sous certaines conditions de ressources. Le montant de la bourse d'études varie de 1032 à 5679 euros annuel.
 prefix: les
 conditions_generales:
   - type: regions
@@ -18,6 +18,8 @@ profils:
   - type: chomeur
     conditions: []
   - type: enseignement_superieur
+    conditions: []
+  - type: inactif
     conditions: []
 interestFlag: _interetAidesSanitaireSocial
 type: float

@@ -7,6 +7,7 @@ import revenu from "../utils/revenu.js"
 import projet from "../utils/projet.js"
 import results from "../utils/results.js"
 import "cypress-axe"
+import comeBackLater from "../utils/come-back-later.js"
 
 context("Full simulation", () => {
   beforeEach(() => {
@@ -23,6 +24,7 @@ context("Full simulation", () => {
     })
 
     profil.defaultIndivu()
+    comeBackLater.checkAll()
     foyer.children(0)
     foyer.fill_en_couple(false)
     navigate.goRecap()

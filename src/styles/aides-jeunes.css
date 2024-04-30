@@ -287,10 +287,19 @@ textarea {
   --icon-size: 2rem;
 }
 
+.aj-revenirplustard {
+  text-align: right;
+}
+
 @media (max-width: 576px) {
   .aj-hero-section {
     max-height: none;
     height: auto;
+  }
+  .aj-revenirplustard {
+    text-align: left;
+    padding-left: 4px;
+    font-size: 80%;
   }
 }
 
@@ -326,6 +335,11 @@ textarea {
   .aj-responsive-icon-places,
   [class*=" fr-icon-"]:before {
     --icon-size: 1.5rem;
+  }
+
+  .aj-action-buttons-sm > li,
+  .aj-action-buttons-sm button {
+    flex: 1;
   }
 }
 

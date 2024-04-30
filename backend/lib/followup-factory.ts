@@ -9,6 +9,28 @@ const TokenLength = 17
 export const FollowupFactory = {
   create: async (
     simulation: Simulation,
+    props?: {
+      surveyOptin: boolean
+      email?: string
+      phone?: string
+      benefits: any[]
+    }
+  ): Promise<Followup> => {
+    const accessToken = await utils.generateToken(TokenLength)
+    const followup = await Followups.create({
+      simulation,
+      accessToken,
+      version: DefaultVersion,
+      ...props,
+    })
+
+    simulation.hasFollowup = true
+    await simulation.save()
+
+    return followup
+  },
+  createWithResults: async (
+    simulation: Simulation,
     surveyOptin: boolean,
     email?: string,
     phone?: string
@@ -19,20 +41,11 @@ export const FollowupFactory = {
       amount: benefit.montant,
       unit: benefit.unit,
     }))
-    const accessToken = await utils.generateToken(TokenLength)
-    const followup = await Followups.create({
-      simulation,
+    return await FollowupFactory.create(simulation, {
       surveyOptin,
       email,
       phone,
-      accessToken,
       benefits,
-      version: DefaultVersion,
     })
-
-    simulation.hasFollowup = true
-    await simulation.save()
-
-    return followup
   },
 }

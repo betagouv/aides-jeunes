@@ -18,7 +18,11 @@ async function main() {
       throw new Error(`Simulation ${id} not found`)
     }
 
-    const followup = await FollowupFactory.create(simulation, true, email)
+    const followup = await FollowupFactory.createWithResults(
+      simulation,
+      true,
+      email
+    )
     if (!followup) {
       throw new Error("Followup not created")
     }

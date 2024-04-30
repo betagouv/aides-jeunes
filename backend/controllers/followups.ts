@@ -39,37 +39,48 @@ export function followup(
     })
 }
 
-export async function persist(req: Request, res: Response) {
-  if (!req.body.email?.length && !req.body.phone?.length) {
-    return res.status(400).send({ result: "Missing Email or Phone" })
+async function sendFollowupNotifications(followup: Followup, res: Response) {
+  const { email, phone } = followup
+  if (phone) {
+    if (
+      phoneNumberValidation(phone, config.smsService.internationalDiallingCodes)
+    ) {
+      await sendSimulationResultsSms(followup)
+    } else {
+      return res.status(422).send("Unsupported phone number format")
+    }
   }
+  if (email) {
+    await sendSimulationResultsEmail(followup)
+  }
+  return res.send({ result: "OK" })
+}
 
+async function createSimulationRecapUrl(req: Request, res: Response) {
+  const followup = await FollowupFactory.create(req.simulation)
+  await followup.addSurveyIfMissing(
+    SurveyType.TrackClickTemporarySimulationLink
+  )
+  await followup.save()
+  const simulationRecapUrl = `${config.baseURL}${followup.shortRecapPath}`
+  return res.send({ simulationRecapUrl })
+}
+
+export async function persist(req: Request, res: Response) {
+  const { surveyOptin, email, phone } = req.body
   const simulation = req.simulation
-
   try {
-    const { surveyOptin, email, phone } = req.body
-    const followup = (await FollowupFactory.create(
-      simulation,
-      surveyOptin,
-      email,
-      phone
-    )) as Followup
-    if (email) {
-      await sendSimulationResultsEmail(followup)
+    if (email || phone) {
+      const followup = await FollowupFactory.createWithResults(
+        simulation,
+        surveyOptin,
+        email,
+        phone
+      )
+      return sendFollowupNotifications(followup, res)
+    } else {
+      return createSimulationRecapUrl(req, res)
     }
-    if (phone) {
-      if (
-        phoneNumberValidation(
-          phone,
-          config.smsService.internationalDiallingCodes
-        )
-      ) {
-        await sendSimulationResultsSms(followup)
-      } else {
-        return res.status(422).send("Unsupported phone number format")
-      }
-    }
-    return res.send({ result: "OK" })
   } catch (error: any) {
     Sentry.captureException(error)
     if (error.name === "ValidationError") {
@@ -200,6 +211,9 @@ async function getRedirectUrl(req: Request) {
       await followup.save()
       return followup.surveyPath
     }
+    case SurveyType.TrackClickTemporarySimulationLink:
+      await followup.save()
+      return followup.recapPath
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:

@@ -49,8 +49,15 @@ const updateFromRecap = (sectionTitle, buttonLabel) => {
       .click()
   })
 }
+
+const goToComeBackLater = () => {
+  cy.get('a[data-testid="come-back-later-link"]').should("be.visible").click()
+  cy.url().should("include", "/simulation/revenir-plus-tard")
+}
+
 export default {
   init,
+  goToComeBackLater,
   goToBafaBenefitsPage,
   goToAidesVeloBenefitsPage,
   goHome,

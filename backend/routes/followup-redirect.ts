@@ -8,7 +8,7 @@ route.param("followupId", followup)
 route.get(
   "/:followupId",
   simulationController.attachAccessCookie,
-  simulationController.redirectToResults
+  simulationController.redirect
 )
 
 export default route

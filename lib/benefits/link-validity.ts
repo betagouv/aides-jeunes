@@ -2,7 +2,6 @@ import {
   BenefitLinkProperties,
   GristOperation,
 } from "../types/link-validity.js"
-import { StandardBenefit } from "@data/types/benefits"
 
 function buildPullRequestProcessor(pullRequestURL) {
   function processPullRequest(

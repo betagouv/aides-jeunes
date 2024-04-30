@@ -1,0 +1,28 @@
+label: fonds d'aide aux jeunes (FAJ)
+institution: strasbourg_eurometropole
+description: "L'Eurométropole de Strasbourg soutient les jeunes en difficultés
+  financières dans leur parcours d’insertion sociale ou professionnelle : coup
+  de pouce pour l'entrée en apprentissage ou en alternance, aide à la
+  subsistance, aide d'urgence, maintien dans le logement, aide au projet
+  professionnel, soutien pour des démarches de santé."
+prefix: le
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
+  - type: epcis
+    values:
+      - "246700488"
+  - type: difficultes_acces_ou_frais_logement
+profils: []
+conditions:
+  - Vous rendre à la Mission Locale pour faire votre demande d'aide.
+  - Ne pas bénéficier de soutien financier de la part de votre famille.
+type: bool
+unit: €
+periodicite: autre
+link: https://www.strasbourg.eu/fond-aide-jeunes
+instructions: https://www.strasbourg.eu/fond-aide-jeunes

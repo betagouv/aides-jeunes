@@ -85,8 +85,7 @@ function processCron(
 export function determineOperationsOnBenefitLinkError(
   existingWarnings,
   benefitLinksCheckResult: BenefitLinkProperties,
-  pullRequestURL?: string,
-  privateBenefits?: StandardBenefit[]
+  pullRequestURL?: string
 ) {
   const processor = pullRequestURL
     ? buildPullRequestProcessor(pullRequestURL)
@@ -97,33 +96,6 @@ export function determineOperationsOnBenefitLinkError(
     const existingWarning = existingWarnings?.[benefitId]?.[link.type]
     processor(benefitLinksCheckResult, link, existingWarning, operations)
   })
-
-  // Analyse des aides devenues privés et donc corrigé dans la list existingWarnings
-  for (const warningBenefitId in existingWarnings) {
-    const privateBenefit = privateBenefits?.filter(
-      (benefit) => benefit.id === warningBenefitId
-    )
-
-    if (privateBenefit?.length) {
-      for (const type in existingWarnings[warningBenefitId]) {
-        const fixPullRequestUrl =
-          pullRequestURL &&
-          existingWarnings[warningBenefitId][type].fields.PR !== pullRequestURL
-            ? pullRequestURL
-            : existingWarnings[warningBenefitId][type].fields.PR
-        operations.push({
-          type: "update",
-          data: {
-            id: existingWarnings[warningBenefitId][type].id,
-            fields: {
-              Corrige: true,
-              PR: fixPullRequestUrl,
-            },
-          },
-        })
-      }
-    }
-  }
 
   return operations
 }

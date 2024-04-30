@@ -209,16 +209,44 @@ async function main() {
     }
   )
 
-  const privateBenefits = filterPrivateBenefits(Benefits.all)
   const benefitOperationsList = benefitLinksCheckResults.map(
     (benefitLinksCheckResult) =>
       determineOperationsOnBenefitLinkError(
         existingWarnings,
         benefitLinksCheckResult,
-        pullRequestURL,
-        privateBenefits
+        pullRequestURL
       )
   )
+
+  const privateBenefits = filterPrivateBenefits(Benefits.all)
+
+  // Analyse des aides devenues privés et donc les passer à corriger dans la list existingWarnings
+  for (const warningBenefitId in existingWarnings) {
+    const privateBenefit = privateBenefits?.filter(
+      (benefit) => benefit.id === warningBenefitId
+    )
+    if (privateBenefit?.length) {
+      for (const type in existingWarnings[warningBenefitId]) {
+        const fixPullRequestUrl =
+          pullRequestURL &&
+          existingWarnings[warningBenefitId][type].fields.PR !== pullRequestURL
+            ? pullRequestURL
+            : existingWarnings[warningBenefitId][type].fields.PR
+        benefitOperationsList.push([
+          {
+            type: "update",
+            data: {
+              id: existingWarnings[warningBenefitId][type].id,
+              fields: {
+                Corrige: true,
+                PR: fixPullRequestUrl,
+              },
+            },
+          },
+        ])
+      }
+    }
+  }
 
   type RecordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: RecordsByOperationTypesType = {

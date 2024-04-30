@@ -39,7 +39,7 @@ export function followup(
     })
 }
 
-async function sendFollowupNotifications(followup, res: Response) {
+async function sendFollowupNotifications(followup: Followup, res: Response) {
   const { email, phone } = followup
   if (phone) {
     if (

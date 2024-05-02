@@ -109,7 +109,7 @@ export default {
   methods: {
     handleNoSimulationId() {
       const route = this.$route.query.vers
-      const [teleservice, procedure] = route.split("?procedure=")
+      const [teleservice, procedure] = route ? route.split("?procedure=") : []
       if (teleservice === "ds") {
         document.location = `https://www.demarches-simplifiees.fr/commencer/${procedure}`
       } else {

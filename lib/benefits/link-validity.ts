@@ -98,3 +98,37 @@ export function determineOperationsOnBenefitLinkError(
 
   return operations
 }
+
+export function determineExistingWarningsFixByPrivateBenefits(
+  existingWarnings,
+  privateBenefits,
+  benefitOperationsList,
+  pullRequestURL?: string
+) {
+  for (const warningBenefitId in existingWarnings) {
+    const privateBenefit = privateBenefits?.filter(
+      (benefit) => benefit.id === warningBenefitId
+    )
+    if (privateBenefit?.length) {
+      for (const type in existingWarnings[warningBenefitId]) {
+        const fixPullRequestUrl =
+          pullRequestURL &&
+          existingWarnings[warningBenefitId][type].fields.PR !== pullRequestURL
+            ? pullRequestURL
+            : existingWarnings[warningBenefitId][type].fields.PR
+        benefitOperationsList.push([
+          {
+            type: "update",
+            data: {
+              id: existingWarnings[warningBenefitId][type].id,
+              fields: {
+                Corrige: true,
+                PR: fixPullRequestUrl,
+              },
+            },
+          },
+        ])
+      }
+    }
+  }
+}

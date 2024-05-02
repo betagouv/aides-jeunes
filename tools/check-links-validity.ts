@@ -1,5 +1,8 @@
 import Benefits from "../data/all.js"
-import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
+import {
+  determineExistingWarningsFixByPrivateBenefits,
+  determineOperationsOnBenefitLinkError,
+} from "../lib/benefits/link-validity.js"
 import { GristData } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
@@ -219,34 +222,12 @@ async function main() {
   )
 
   const privateBenefits = filterPrivateBenefits(Benefits.all)
-
-  // Analyse des aides devenues privés et donc les passer à corriger dans la list existingWarnings
-  for (const warningBenefitId in existingWarnings) {
-    const privateBenefit = privateBenefits?.filter(
-      (benefit) => benefit.id === warningBenefitId
-    )
-    if (privateBenefit?.length) {
-      for (const type in existingWarnings[warningBenefitId]) {
-        const fixPullRequestUrl =
-          pullRequestURL &&
-          existingWarnings[warningBenefitId][type].fields.PR !== pullRequestURL
-            ? pullRequestURL
-            : existingWarnings[warningBenefitId][type].fields.PR
-        benefitOperationsList.push([
-          {
-            type: "update",
-            data: {
-              id: existingWarnings[warningBenefitId][type].id,
-              fields: {
-                Corrige: true,
-                PR: fixPullRequestUrl,
-              },
-            },
-          },
-        ])
-      }
-    }
-  }
+  determineExistingWarningsFixByPrivateBenefits(
+    existingWarnings,
+    privateBenefits,
+    benefitOperationsList,
+    pullRequestURL
+  )
 
   type RecordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: RecordsByOperationTypesType = {

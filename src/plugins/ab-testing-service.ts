@@ -75,9 +75,11 @@ function getEnvironment() {
 
   ABTestingEnvironment.Followup_SMS = ABTestingEnvironment.Followup_SMS || {}
   ABTestingEnvironment.Followup_SMS.index = 2
-  ABTestingEnvironment.Followup_SMS.value =
-    ABTestingEnvironment.Followup_SMS.value ||
-    (Math.random() > 0.5 ? "show" : "hide")
+  ABTestingEnvironment.Followup_SMS.value = "hide"
+  // TODO supprimer la ligne 78 (  ABTestingEnvironment.Followup_SMS.value = "hide") et
+  // décommenter les deux lignes suivantes après l'intégration de la nouvelle configuration SMS
+  // ABTestingEnvironment.Followup_SMS.value ||
+  // (Math.random() > 0.5 ? "show" : "hide")
 
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment

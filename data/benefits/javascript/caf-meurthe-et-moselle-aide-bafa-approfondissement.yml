@@ -18,7 +18,7 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Etre allocataire ou rattaché au dossier allocataire de vos parents.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents.
   - Se rapprocher de l'un des organismes de formation listés par la Caf de Meurthe-et-Moselle.
 interestFlag: _interetBafa
 type: bool

@@ -1,5 +1,8 @@
 import Benefits from "../data/all.js"
-import { determineOperationsOnBenefitLinkError } from "../lib/benefits/link-validity.js"
+import {
+  determineExistingWarningsFixByPrivateBenefits,
+  determineOperationsOnBenefitLinkError,
+} from "../lib/benefits/link-validity.js"
 import { GristData } from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
@@ -78,6 +81,10 @@ async function getPriorityStats() {
 
 function filterPublicBenefits(benefits) {
   return benefits.filter((benefit) => !benefit.private)
+}
+
+export function filterPrivateBenefits(benefits) {
+  return benefits.filter((benefit) => benefit.private)
 }
 
 async function getBenefitData(noPriority: boolean) {
@@ -179,6 +186,7 @@ async function main() {
   const rawExistingWarnings = await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
+    Traite: [false],
   })
   const benefitData = await getBenefitData(noPriority)
   const benefitsToAnalyze = filterBenefitDataToProcess(
@@ -212,6 +220,15 @@ async function main() {
         pullRequestURL
       )
   )
+
+  const privateBenefits = filterPrivateBenefits(Benefits.all)
+  determineExistingWarningsFixByPrivateBenefits(
+    existingWarnings,
+    privateBenefits,
+    benefitOperationsList,
+    pullRequestURL
+  )
+
   type RecordsByOperationTypesType = { [operationType: string]: GristData[] }
   const recordsByOperationTypes: RecordsByOperationTypesType = {
     add: [],

@@ -289,9 +289,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cypress-video-${{matrix.test}}
-          path: |
-            cypress/videos
-            cypress/screenshots
+          path: cypress/videos
           retention-days: 10
       - name: Upload cypress payloads
         uses: actions/upload-artifact@v4

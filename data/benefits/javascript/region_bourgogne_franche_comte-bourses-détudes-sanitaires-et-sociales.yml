@@ -20,7 +20,6 @@ profils:
           - terminale
 link: https://www.bourgognefranchecomte.fr/demande-de-bourse-sanitaire-et-sociale
 teleservice: https://ibssp.bourgognefranchecomte.fr/etudiant.php/compte/login
-instructions: https://www.bourgognefranchecomte.fr/demande-de-bourse-sanitaire-et-sociale
 prefix: les
 type: bool
 unit: €

@@ -1,7 +1,7 @@
-label: aide au BAFA pour une session de formation générale et d'approfondissement
+label: aide au BAFA
 institution: caf_var
 description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF du Var pour vous aider à financer vos sessions en
+  disposition par la CAF du Var pour aider les jeunes à financer leurs stages, en
   complément de l'aide nationale apportée par la CAF.
 prefix: l’
 conditions_generales:
@@ -20,13 +20,13 @@ conditions_generales:
     operator: "<="
 profils: []
 conditions:
-  - Être allocataire ou rattaché au dossier allocataire de vos parents, ou
-    stagiaire.
+  - Être allocataire ou rattaché au dossier allocataire de vos parents, ou être orphelin ou en famille d'accueil.
+  - Avoir suivi les 3 stages en intégralité (formation générale, stage pratique et formation d'approfondissement).
 interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
-montant: 293
+montant: 400
 link: https://www.caf.fr/allocataires/caf-du-var/offre-de-service/vie-personnelle/je-suis-parent/aide-la-formation-bafa
-form: https://www.caf.fr/sites/default/files/medias/831/2022%20Bafa/Caf-83---IMPRIME-Aide-formation-moniteur.pdf
+form: https://www.caf.fr/sites/default/files/medias/831/Bafa/IMPRIME_Demande_aide_formation_moniteur_Caf83.pdf
 instructions: https://www.caf.fr/allocataires/caf-du-var/offre-de-service/vie-personnelle/je-suis-parent/aide-la-formation-bafa

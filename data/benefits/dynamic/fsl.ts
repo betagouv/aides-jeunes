@@ -280,7 +280,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_haute_savoie: {
     label: "du département de la Haute-Savoie",
-    link: "https://www.hautesavoie.fr/informations-services/logement",
+    link: "https://hautesavoie.fr/subvention/fonds-de-solidarite-logement-fsl-aide-au-maintien-dans-les-lieux-impayes-de-loyers/",
   },
   departement_paris: {
     label: "du département de Paris",

@@ -1,6 +1,6 @@
 label: incitation au covoiturage
 institution: intercommunalite_metropole_lyon
-description: Pour encourager le covoiturage, la Métropole de Lyon subventionne tous vos trajets réservés depuis son application web et mobile En Covoit’Grand Lyon. Gain pour le conducteur ":" entre 1 et 8 euros par passager, en fonction de la longueur du trajet. Coût pour le passager ":" gratuité pour les détenteur d’une carte d’abonnement aux transports et 0,50€ + 0,10€/km au-delà de 30km pour les autres.
+description: "Pour encourager le covoiturage, la Métropole de Lyon subventionne tous vos trajets réservés depuis son application web et mobile En Covoit’Grand Lyon. Gain pour le conducteur : entre 1 et 8 euros par passager, en fonction de la longueur du trajet. Coût pour le passager : gratuité pour les détenteur d’une carte d’abonnement aux transports et 0,50€ + 0,10€/km au-delà de 30km pour les autres."
 prefix: l’
 conditions_generales:
   - type: epcis

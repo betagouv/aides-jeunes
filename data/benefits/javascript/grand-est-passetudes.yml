@@ -9,17 +9,20 @@ conditions_generales:
   - type: age
     operator: <=
     value: 26
-  - type: regions
+  - type: departements
     values:
-      - "44"
+      - "08"
+      - "10"
+      - "51"
+      - "52"
 profils:
   - type: enseignement_superieur
     conditions: []
 conditions:
-  - Poursuivre vos études dans les départements de la Côte d'Or (21), du Doubs
+  - Être domicilié dans les Ardennes, l'Aube, la Marne ou la Haute-Marne et poursuivre vos études dans les départements de la Côte d'Or (21), du Doubs
     (25), de la Nièvre (58), de la Haute-Saône (70), de l'Yonne (89), ou du
     Territoire de Belfort (90).
-  - Vous procurer la carte Pass'Études pour le prix de 45€ par an.
+  - Vous procurer la carte Pass'Études pour 45€ par an.
 type: bool
 unit: €
 periodicite: annuelle

@@ -17,7 +17,7 @@ profils: []
 conditions:
   - Choisir un trajet fréquent entre deux gares du Pays de la Loire.
   - Payer l'abonnement dont le prix est calculé en fonction du trajet fréquent
-    choisi (rentabilisé dès 6 allers-retours par mois)
+    choisi (rentabilisé dès 6 allers-retours par mois).
 type: bool
 unit: €
 periodicite: autre

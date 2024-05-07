@@ -21,6 +21,4 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/abonnements/tous-les-abonnements/abonnements-ter/illico-hebdo-jeunes
-teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/products
-form: ""
-instructions: ""
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/abonnements/tous-les-abonnements/abonnements-ter/illico-hebdo-jeunes

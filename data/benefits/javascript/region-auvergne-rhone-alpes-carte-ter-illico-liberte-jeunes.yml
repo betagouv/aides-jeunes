@@ -12,7 +12,7 @@ conditions_generales:
       - "84"
 profils: []
 conditions:
-  - Vous procurer la carte TER illico Liberté jeunes pour un montant annuel de
+  - Vous procurer la carte TER illico Liberté jeunes en ligne ou en gare pour un montant annuel de
     15€.
 type: bool
 unit: €

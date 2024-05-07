@@ -1,6 +1,7 @@
 label: pass abonné -28 ans annuel
 institution: region_nouvelle_aquitaine
-description: Grâce au Pass Abonné -28 ans annuel, vous bénéficiez de 33% de réduction
+description:
+  Grâce au Pass Abonné -28 ans annuel, vous bénéficiez de 33% de réduction
   par rapport à un Pass abonné annuel Tout Public, et vous pouvez voyager en illimité
   pendant un an sur le trajet TER de votre choix en Nouvelle-Aquitaine.
 prefix: le

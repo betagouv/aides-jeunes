@@ -2,11 +2,9 @@
   <mj-column>
     <mj-text padding="0px">
       <p>
-        <span
-          >Vous avez récemment utilisé le simulateur de
-          <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
-            >1jeune1solution.gouv.fr</a
-          >.
+        <span>
+          Vous avez récemment utilisé le simulateur de
+          <a href="{{&baseURL}}">{{&contextName}}</a>.
         </span>
         <br />
         <span

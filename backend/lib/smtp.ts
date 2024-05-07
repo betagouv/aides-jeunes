@@ -9,7 +9,7 @@ export function sendEmailSmtp(email: Email) {
   const tagsFormatted = tags?.map((tag) => tag.replace(/-/g, "_")) || []
 
   return transporter.sendMail({
-    from: '"Équipe du simulateur 1jeune1solution.gouv.fr" <aides-jeunes@beta.gouv.fr>"',
+    from: `"Équipe du simulateur de ${config.contextName}" <${config.contactEmail}>"`,
     headers: {
       "X-TM-TAGS": JSON.stringify(tagsFormatted),
     },

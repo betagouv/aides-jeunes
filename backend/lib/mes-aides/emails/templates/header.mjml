@@ -10,8 +10,8 @@
     <mj-column>
       <mj-image
         padding-right="0px"
-        alt="Logo de 1jeune1solution.gouv.fr"
-        src="{{&baseURL}}/img/logo1j1s-france-relance.png"
+        alt="Logo de {{&contextName}}"
+        src="{{&baseURL}}/img/{{&contextName}}/logo1j1s-france-relance.png"
       />
     </mj-column>
   </mj-group>

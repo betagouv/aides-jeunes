@@ -4,9 +4,7 @@
       <p>
         <span
           >Vous avez fait il y a quelques jours une simulation sur
-          <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
-            >1jeune1solution.gouv.fr</a
-          >.</span
+          <a href="{{&baseURL}}">{{&contextName}}</a>.</span
         >
         <br />
         <span

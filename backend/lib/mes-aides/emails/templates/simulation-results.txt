@@ -1,6 +1,6 @@
 Bonjour,
 
-Vous avez récemment utilisé le simulateur de 1jeune1solution.gouv.fr.
+Vous avez récemment utilisé le simulateur de {{&contextName}}.
 
 D'après la situation que vous avez décrite, vous êtes a priori éligible aux aides suivantes :
 {{#benefitTexts}}
@@ -9,7 +9,7 @@ D'après la situation que vous avez décrite, vous êtes a priori éligible aux 
 
 Retrouvez les détails de votre simulation au lien suivant : {{&returnURL}}
 
-Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : aides-jeunes@beta.gouv.fr
+Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : {{&contactEmail}}
 
 Bonne journée,
-L'équipe du simulateur de 1jeune1solution.gouv.fr
+L'équipe du simulateur de {{&contextName}}

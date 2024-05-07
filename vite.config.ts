@@ -19,7 +19,9 @@ const buildId = Date.now().toString()
 
 const {
   baseURL,
+  contextName,
   chatwoot,
+  contactEmail,
   github,
   matomo,
   netlifyContributionURL,
@@ -27,7 +29,6 @@ const {
   franceConnect,
   sentry,
   smsService,
-  contextName,
 } = config
 
 function createSentryPlugin() {
@@ -54,7 +55,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_MATOMO_ID: matomo.id,
     VITE_MATOMO_URL: matomo.url,
     VITE_CHATWOOT_TOKEN: chatwoot.websiteToken,
-    VITE_CONTACT_EMAIL: "aides-jeunes@beta.gouv.fr",
+    VITE_CONTACT_EMAIL: contactEmail,
     VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,
     VITE_CONTEXT: process.env.NODE_ENV,

@@ -2,12 +2,10 @@
   <mj-column>
     <mj-text>
       <p>
-        <span
-          >Vous avez fait il y a quelques jours une simulation sur
-          <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
-            >1jeune1solution.gouv.fr</a
-          >.</span
-        >
+        <span>
+          Vous avez fait il y a quelques jours une simulation sur
+          <a href="{{&baseURL}}">{{&contextName}}</a>.
+        </span>
         <br />
         <span
           >Retrouvez les détails de votre simulation

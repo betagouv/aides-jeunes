@@ -13,9 +13,6 @@ conditions_generales:
   - type: regions
     values:
       - "84"
-  - type: age
-    operator: <=
-    value: 26
 profils: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-solidaire
 teleservice: https://illicosolidaire.cba.fr/

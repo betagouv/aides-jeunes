@@ -10,7 +10,7 @@ prefix: la
 conditions_generales:
   - type: age
     operator: ">="
-    value: 15
+    value: 3
   - type: age
     operator: <=
     value: 25
@@ -20,10 +20,9 @@ conditions_generales:
 profils: []
 conditions:
   - Vous procurer en ligne la carte Rémi Liberté Jeune pour un montant annuel de
-    20€ ou gratuitement si vous êtes éligible à YEP'S.
+    20€ ou gratuitement si vous êtes éligible à la carte Rémi YEP'S ou si vous avez moins de 15 ans.
 type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/centre-val-de-loire/tarifs-cartes/cartes-reduction/carte-remi-liberte-jeune
-teleservice: https://www.ter.sncf.com/centre-val-de-loire/products/form
 instructions: https://www.ter.sncf.com/centre-val-de-loire/tarifs-cartes/cartes-reduction/carte-remi-liberte-jeune

@@ -12,7 +12,7 @@ conditions_generales:
       - "84"
 profils: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/billets-reduction/illico-autocars
-teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/products/form
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/billets-reduction/illico-autocars
 prefix: le
 type: bool
 unit: €

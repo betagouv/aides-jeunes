@@ -18,5 +18,4 @@ type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-liberte-jeunes
-teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/products/form
-instructions: ""
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-liberte-jeunes

@@ -12,7 +12,7 @@ conditions_generales:
       - "52"
 profils: []
 conditions:
-  - Vous procurer la carte Mezzo pour un montant annuel de 20€ (la carte est rentabilisée en deux allers-retours).
+  - Vous procurer la carte Mezzo pour un montant annuel de 20€ (la carte est amortie en deux allers-retours).
 type: bool
 unit: €
 periodicite: autre

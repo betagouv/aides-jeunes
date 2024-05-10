@@ -1,6 +1,7 @@
 label: carte mezzo
 institution: region_pays_de_la_loire
-description: La carte Mezzo vous offre une réducation de -50% sur tous vos billets TER
+description:
+  La carte Mezzo vous offre une réducation de -50% sur tous vos billets TER
   en région Pays de la Loire.
 prefix: la
 conditions_generales:

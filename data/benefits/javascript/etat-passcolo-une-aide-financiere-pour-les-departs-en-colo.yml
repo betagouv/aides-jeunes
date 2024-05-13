@@ -1,7 +1,7 @@
-label: Pass'colo - une aide financière pour les départs en colo
+label: Passʼcolo - une aide financière pour les départs en colo
 institution: etat
 description: Activités culturelles, sportives, rencontres... les colonies de
-  vacances offrent une multitude d'expériences enrichissantes pour les enfants
+  vacances offrent une multitude dʼexpériences enrichissantes pour les enfants
   et les jeunes. Cette aide permet de prendre en charge totalement ou
   partiellement le coût de la colonie.
 prefix: le
@@ -12,11 +12,12 @@ conditions_generales:
     value: 1500
 profils: []
 conditions:
-  - Avoir un enfant dont l'année de naissance est 2013.
-  - Consulter le catalogue des colos disponibles et contacter l'organisateur.
+  - Avoir un enfant dont lʼannée de naissance est 2013.
+  - Consulter le catalogue des colos disponibles et contacter lʼorganisateur.
 type: float
 unit: €
 periodicite: autre
 montant: 350
+legend: maximum
 link: https://www.jeunes.gouv.fr/passcolo
 teleservice: https://www.jeunes.gouv.fr/le-pass-colo-en-3-etapes-2106

@@ -137,7 +137,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   toulouse_metropole: {
     label: "de Toulouse Métropole",
-    link: "https://www.toulouse-metropole.fr/missions/solidarite/fonds-de-solidarite-logement-fsl-",
+    link: "https://metropole.toulouse.fr/mon-environnement/logement-et-urbanisme/se-loger/louer-un-logement#obtenir-une-aide-au-logement",
   },
   departement_gironde: {
     label: "du département de la Gironde",

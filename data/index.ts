@@ -83,8 +83,10 @@ export function generate(
     benefit.source = "openfisca"
   })
 
+  const institutionsValues = Object.values(institutions)
+
   const aidesVeloBenefits = aidesVeloBenefitListGenerator
-    ? aidesVeloBenefitListGenerator(Object.values(institutions))
+    ? aidesVeloBenefitListGenerator(institutionsValues)
     : []
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
@@ -93,7 +95,7 @@ export function generate(
   const fslBenefits = fslGenerator ? fslGenerator() : []
   const apaBenefits = apaGenerator ? apaGenerator() : []
   const incitationsCovoiturageBenefits = incitationsCovoiturageGenerator
-    ? incitationsCovoiturageGenerator()
+    ? incitationsCovoiturageGenerator(institutionsValues)
     : []
 
   const benefitsCollections = [
@@ -110,6 +112,7 @@ export function generate(
     const institution: Institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
     Object.assign(benefit, additionalBenefitAttributes[benefit.id])
+
     institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
     benefitsMap[benefit.id] = benefit

@@ -1,44 +1,88 @@
-const DEFAULT_INCITATIONS_COVOITURAGE = {
-  type: "bool",
-  prefix: "l’",
-  periodicite: "ponctuelle",
+import { Institution } from "../../../data/types/institutions.d.js"
+import { CoVoiturageBenefit } from "../../../data/types/benefits"
+
+export function buildIncitationsCovoiturage(
+  institutions: Institution[]
+): CoVoiturageBenefit[] {
+  benefits.forEach(
+    (b) =>
+      (b.institution = institutions.find((i) => i.code_siren === b.code_siren))
+  )
+
+  return benefits
+    .filter((b) => b.institution)
+    .map((b) => {
+      return {
+        label: `Incitation au covoiturage ${b.institution?.prefix ?? ""} ${
+          b.institution?.label
+        }`,
+        description:
+          `Pour encourager le covoiturage ${b.institution?.prefix ?? ""} ${
+            b.institution?.label
+          } subventionne tous vos trajets réservés depuis l’application` +
+          (b.operateurs === b.nom_plateforme
+            ? ` ` + b.operateurs
+            : `, opérée par ` +
+              ` que vous soyez conducteur ou passager. Gain pour le conducteur : `) +
+          (!b.conducteur_montant_max_par_mois
+            ? `jusqu'à ${b.conducteur_montant_max_par_mois} € par mois. `
+            : `entre ${b.conducteur_montant_min_par_passager} € et ${b.conducteur_montant_max_par_passager} € par passager transporté. `) +
+          `Coût des trajets pour le passager :
+      bénéficiez de ${
+        b.passager_trajets_max_par_mois / 30
+      } trajets gratuits par jour.`,
+        id: `${b.institution?.slug.replace(
+          /_/g,
+          "-"
+        )}-incitations-covoiturage-eligibilite`,
+        conditions: [
+          `Télécharger l'application mobile, opérée par ${b.operateurs}.`,
+          `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée de ${b.institution?.label}.`,
+          `Effectuer un trajet dont la distance est comprise entre ${b.trajet_longueur_min} et ${b.trajet_longueur_min} kilomètres.`,
+        ],
+        institution: b.institution?.slug,
+        prefix: "l'",
+        type: "float",
+        periodicite: "ponctuelle",
+        link: b.link,
+        source: "observatoire.covoiturage",
+      }
+    })
 }
 
-export const INCITATIONS_COVOITURAGE_BY_CODE: {
-  [key: string]: {
-    label: string
-    link: string
-    nom_plateforme: string
-    operateurs: string
-    institution?: string
-    zone_sens_des_trajets: string
-    conducteur_montant_max_par_mois?: number
-    conducteur_montant_min_par_passager?: number
-    conducteur_montant_max_par_passager?: number
-    trajet_longueur_min: number
-    trajet_longueur_max: number
-    passager_trajets_max_par_mois: number
-  }
-} = {
-  ca_sarreguemines_confluences: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration de Sarreguemines Confluences",
+const benefits: {
+  code_siren: string
+  link: string
+  nom_plateforme: string
+  operateurs: string
+  institution?: Institution
+  zone_sens_des_trajets: string
+  conducteur_montant_max_par_mois?: number
+  conducteur_montant_min_par_passager?: number
+  conducteur_montant_max_par_passager?: number
+  trajet_longueur_min: number
+  trajet_longueur_max: number
+  passager_trajets_max_par_mois: number
+}[] = [
+  {
     link: "https://www.agglo-sarreguemines.fr/covoiturage/",
+    code_siren: "200070746",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
-    conducteur_montant_max_par_mois: 150.0,
-    conducteur_montant_min_par_passager: 1.0,
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 4.0,
     trajet_longueur_max: 80,
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_inter_caux_vexin: {
-    label: "Communaut\u00e9 de communes Inter-Caux-Vexin",
+  {
     link: "https://www.intercauxvexin.fr/fr/news/Covoiturage",
+    code_siren: "200070449",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -46,13 +90,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_esterel_cote_d_azur_agglomeration: {
-    label:
-      "Communaut\u00e9 d\u02bcagglom\u00e9ration Est\u00e9rel C\u00f4te d\u02bcAzur",
+  {
     link: "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20gr\u00e2ce,le%201er%20f\u00e9vrier%202024%20!",
+    code_siren: "200035319",
     nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -60,12 +103,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_vallons_de_haute_bretagne: {
-    label: "Communaut\u00e9 de communes Vallons de Haute Bretagne",
+  {
+    link: "https://www.vitrecommunaute.org/covoiturage/",
+    code_siren: "243500808",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 1.0,
+    conducteur_montant_max_par_passager: 2.0,
+    trajet_longueur_max: 60,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://www.vallons-de-haute-bretagne-communaute.fr/le-covoiturage/",
+    code_siren: "200043990",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -73,12 +129,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_pays_de_grasse: {
-    label: "Communaut\u00e9 d\u02bcagglom\u00e9ration du Pays de Grasse",
+  {
     link: "https://jeromeviaud.com/la-ville-et-la-communaute-dagglomeration-du-pays-de-grasse-encouragent-la-politique-de-covoiturage-avec-le-dispositif-klaxit-tous-covoitureurs/",
+    code_siren: "200039857",
     nom_plateforme: "",
     operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -86,12 +142,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_laval_agglomeration: {
-    label: "Laval Agglom\u00e9ration",
+  {
     link: "https://www.agglo-laval.fr/utile-au-quotidien/transports-et-mobilites/le-covoiturage",
+    code_siren: "200083392",
     nom_plateforme: "",
     operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -99,12 +155,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_aunis_atlantique: {
-    label: "Communaut\u00e9 de communes Aunis Atlantique",
+  {
     link: "https://www.aunisatlantique.fr/vies-pratique-et-associative/transports-et-mobilite/covoiturage/",
+    code_siren: "200041499",
     nom_plateforme: "",
     operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -112,12 +168,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_des_sablons: {
-    label: "Communaut\u00e9 de communes des Sablons",
+  {
     link: "https://cc-sablons.com/klaxit-lapplication-qui-covoiture/",
+    code_siren: "246000582",
     nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -125,13 +181,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_pays_des_sorgues_et_des_monts_de_vaucluse: {
-    label:
-      "Communaut\u00e9 de communes Pays des Sorgues et des monts de Vaucluse",
+  {
     link: "https://www.paysdessorgues.fr/le-covoiturage",
+    code_siren: "248400319",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -139,12 +194,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_pays_des_herbiers: {
-    label: "Pays des Herbiers",
+  {
     link: "https://www.paysdesherbiers.fr/le-covoiturage-avec-klaxit/#:~:text=Pour%20continuer%20sur%20cette%20dynamique,\u00e0%20destination%20de%20sa%20population.",
+    code_siren: "248500621",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -152,12 +207,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_pays_ajaccien: {
-    label: "Communaut\u00e9 d\u02bcagglom\u00e9ration du Pays Ajaccien",
+  {
     link: "https://www.ca-ajaccien.corsica/covoiturer-en-pays-ajaccien-pratique-economique-et-ecologique/",
+    code_siren: "242010056",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 2.5,
     conducteur_montant_max_par_passager: 1.5,
@@ -165,12 +220,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_gard_rhodanien: {
-    label: "Communaut\u00e9 d\u02bcagglom\u00e9ration du Gard Rhodanien",
+  {
     link: "https://www.gardrhodanien.fr/services/transport/adoptez-une-mobilite-plus-verte-et-economique/#:~:text=Les%20conducteurs%20sont%20r\u00e9mun\u00e9r\u00e9s%20\u00e0,Sorgue%2C%20Sorgues%2C%20Cavaillon).",
+    code_siren: "200034692",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -178,12 +233,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_pays_flechois: {
-    label: "Communaut\u00e9 de communes du Pays Fl\u00e9chois",
+  {
+    link: "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
+    code_siren: "809693906",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.0,
+    conducteur_montant_max_par_passager: 2.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://www.paysflechois.fr/actualites/le-covoiturage-facilite/",
+    code_siren: "247200348",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -191,12 +259,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_vallees_haut_anjou: {
-    label: "Communaut\u00e9 de communes des Vall\u00e9es du Haut-Anjou",
+  {
     link: "https://www.valleesduhautanjou.fr/le-covoiturage/",
+    code_siren: "200071868",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -204,12 +272,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_loire_layon_aubance: {
-    label: "Communaut\u00e9 de communes Loire Layon Aubance",
+  {
     link: "https://loire-layon-aubance.fr/vivre-habiter/mes-demarches-de-mobilite/covoiturage/",
+    code_siren: "200071553",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -217,12 +285,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_ernee: {
-    label: "Communaut\u00e9 de communes de l'Ern\u00e9e",
-    link: "https://www.lernee.fr/actualites/mobilite-la-communaute-de-communes-de-lernee-paie-vos-covoiturages/#:~:text=Le%20but%20est%20d%27encourager,covoiturage%20pour%20la%20premi\u00e8re%20fois.",
+  {
+    link: "https://www.bocage-mayennais.fr/bocage-mayennais_actualites_covoiturage-la-region-encourage-la-pratique.phtml",
+    code_siren: "245300355",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -230,13 +298,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_pays_de_chateaugiron_communaute: {
-    label:
-      "Communaut\u00e9 de communes Pays de Ch\u00e2teaugiron Communaut\u00e9",
+  {
     link: "https://www.communaute.paysdechateaugiron.bzh/covoiturage/#:~:text=Covoiturages%20subventionn\u00e9s%20pour%20tous%20les,fonction%20de%20la%20distance%20parcourue.",
+    code_siren: "243500659",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -244,12 +311,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_mayenne_communaute: {
-    label: "Communaut\u00e9 de communes de Mayenne Communaut\u00e9",
+  {
+    link: "https://www.lernee.fr/actualites/mobilite-la-communaute-de-communes-de-lernee-paie-vos-covoiturages/#:~:text=Le%20but%20est%20d%27encourager,covoiturage%20pour%20la%20premi\u00e8re%20fois.",
+    code_siren: "245300355",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 0.5,
+    conducteur_montant_max_par_passager: 0.5,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 5,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://www.mayenne-communaute.net/a-votre-service/mobilites/mayenne-communaute-paie-vos-co-voiturages/",
+    code_siren: "200055887",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 0.5,
     conducteur_montant_max_par_passager: 0.5,
@@ -257,13 +337,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_epernay_coteaux_et_plaine_de_champagne: {
-    label:
-      "Communaut\u00e9 d\u02bcagglom\u00e9ration d\u02bcEpernay Coteaux et Plaine de Champagne",
+  {
     link: "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
+    code_siren: "200067684",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 3.0,
@@ -271,64 +350,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_du_beauvaisis: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration du Beauvaisis",
+  {
     link: "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
-    nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
-    conducteur_montant_max_par_mois: 150.0,
-    conducteur_montant_min_par_passager: 1.5,
-    conducteur_montant_max_par_passager: 3.0,
-    trajet_longueur_max: 80,
-    trajet_longueur_min: 2,
-    passager_trajets_max_par_mois: 60.0,
-  },
-  "artois-mobilites": {
-    label: "Artois Mobilit\u00e9s",
-    link: "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
-    nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET",
-    conducteur_montant_max_par_mois: 150.0,
-    conducteur_montant_min_par_passager: 2.0,
-    conducteur_montant_max_par_passager: 4.0,
-    trajet_longueur_max: 80,
-    trajet_longueur_min: 2,
-    passager_trajets_max_par_mois: 60.0,
-  },
-  "le-mans-sarthe-mobilites": {
-    label: "Le P\u00f4le M\u00e9tropolitain Mobilit\u00e9s Le Mans-Sarthes",
-    link: "https://www.joue-labbe-72.fr/actualites/412727",
-    nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
-    conducteur_montant_max_par_mois: 120.0,
-    conducteur_montant_min_par_passager: 0.5,
-    conducteur_montant_max_par_passager: 0.5,
-    trajet_longueur_max: 80,
-    trajet_longueur_min: 5,
-    passager_trajets_max_par_mois: 60.0,
-  },
-  ca_ventoux_comtat_venaissin: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration Ventoux Comtat Venaissin",
-    link: "https://www.lacove.fr/covoiturage.html",
+    code_siren: "200067999",
     nom_plateforme: "",
     operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
-    conducteur_montant_max_par_mois: 120.0,
-    conducteur_montant_min_par_passager: 1.0,
-    conducteur_montant_max_par_passager: 2.0,
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
     trajet_longueur_max: 80,
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_carcassonne_agglo: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration de Carcassonne Agglo",
-    link: "https://www.carcassonne-agglo.fr/fr/actualites/deplacez-vous-autrement-sur-le-territoire.html",
+  {
+    link: "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
+    code_siren: "256204165",
     nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 4.0,
@@ -336,12 +376,77 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_sorgues_du_comtat: {
-    label: "Communaut\u00e9 de communes des Sorgues du Comtat",
+  {
+    link: "https://www.joue-labbe-72.fr/actualites/412727",
+    code_siren: "200051944",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 0.5,
+    conducteur_montant_max_par_passager: 0.5,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 5,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.lacove.fr/covoiturage.html",
+    code_siren: "248400053",
+    nom_plateforme: "",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 1.0,
+    conducteur_montant_max_par_passager: 2.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20gr\u00e2ce,le%201er%20f\u00e9vrier%202024%20!",
+    code_siren: "200035319",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.gouv.mc/Action-Gouvernementale/La-Qualite-de-Vie/Actualites/Hausse-du-prix-des-carburants-Monaco-finance-vos-covoiturages-via-l-application-Klaxit#:~:text=Ainsi%2C%20depuis%20septembre%202020%2C%20tous,\u20ac%2Fmois%20en%20covoiturant%20r\u00e9guli\u00e8rement.",
+    code_siren: "809868276",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.carcassonne-agglo.fr/fr/actualites/deplacez-vous-autrement-sur-le-territoire.html",
+    code_siren: "200035715",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 2.0,
+    conducteur_montant_max_par_passager: 4.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://sorguesducomtat.fr/fr/infos/35/le-covoiturage-avec-blablacardaily#:~:text=-%20les%20passagers%20voyagent%20gratuitement%2C,fonction%20de%20la%20distance%20parcourue).",
+    code_siren: "248400293",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -349,12 +454,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_grand_avignon: {
-    label: "Grand Avignon",
+  {
     link: "https://www.grandavignon.fr/fr/actualites/covoiturage-grand-avignon",
+    code_siren: "248400251",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -362,12 +467,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  syndicat_mobilites_pays_basque_adour_smbpa: {
-    label: "Syndicat des mobilit\u00e9s Pays-Basque Adour",
+  {
     link: "https://www.communaute-paysbasque.fr/a-la-une-2/actualites/actualite/covoiturage-au-pays-basque-les-conducteurs-indemnises",
+    code_siren: "256401605",
     nom_plateforme: "",
     operateurs: "Karos, BlablaCarDaily, Klaxit",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 3.0,
@@ -375,25 +480,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_sophia_antipolis: {
-    label: "Communaut\u00e9 d'Agglom\u00e9ration Sophie Antipolis",
-    link: "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
+  {
+    link: "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
+    code_siren: "200067999",
     nom_plateforme: "",
-    operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
-    conducteur_montant_max_par_mois: 150.0,
-    conducteur_montant_min_par_passager: 1.0,
-    conducteur_montant_max_par_passager: 2.0,
-    trajet_longueur_max: 80,
-    trajet_longueur_min: 2,
-    passager_trajets_max_par_mois: 60.0,
-  },
-  valence_romans_mobilites: {
-    label: "Valence Romans Mobilit\u00e9s",
-    link: "https://www.valenceromansmobilites.fr/covoiturage/#:~:text=Pour%20les%20d\u00e9placements%20du%20quotidien,communes%20du%20territoire%20seront%20subventionn\u00e9s.",
-    nom_plateforme: "",
-    operateurs: "Klaxit",
-    zone_sens_des_trajets: "ET/OU",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -401,12 +493,64 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_pays_de_l_or: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration du Pays de l\u2019Or",
+  {
+    link: "https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/",
+    code_siren: "582056511",
+    nom_plateforme: "",
+    operateurs: "Karos, BlablaCarDaily, Klaxit",
+    zone_sens_des_trajets: "et",
+    conducteur_montant_max_par_mois: 50.0,
+    conducteur_montant_min_par_passager: 2.0,
+    conducteur_montant_max_par_passager: 4.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 4,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.agglo-sarreguemines.fr/covoiturage/",
+    code_siren: "200070746",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.0,
+    conducteur_montant_max_par_passager: 4.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
+    code_siren: "240600585",
+    nom_plateforme: "",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.0,
+    conducteur_montant_max_par_passager: 2.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.valenceromansmobilites.fr/covoiturage/#:~:text=Pour%20les%20d\u00e9placements%20du%20quotidien,communes%20du%20territoire%20seront%20subventionn\u00e9s.",
+    code_siren: "200024818",
+    nom_plateforme: "",
+    operateurs: "Klaxit",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://paysdelor.fr/vivre-ici/transports/covoiturage/",
+    code_siren: "243400470",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -414,13 +558,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_sete_agglopole_mediterranee: {
-    label:
-      "Communaut\u00e9 d'agglom\u00e9ration S\u00e8te Agglop\u00f4le M\u00e9diterran\u00e9e",
+  {
     link: "https://www.agglopole.fr/bougerdecouvrir/se-deplacer/le-covoiturage/",
+    code_siren: "200066355",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -428,12 +571,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_arlysere: {
-    label: "Communaut\u00e9 d'agglom\u00e9ration Arlysere",
+  {
     link: "https://www.mairie-hauteluce.fr/covoiturage/",
+    code_siren: "200068997",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -441,12 +584,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  intercommunalite_montpellier_mediterranee_metropole: {
-    label: "Montpellier M\u00e9diterran\u00e9e M\u00e9tropole",
+  {
     link: "https://www.montpellier3m.fr/vivre-transport/covoiturez-avec-blablacar-daily#:~:text=En%20s%27appuyant%20sur%20le,via%20l%27application%20BlaBlaCar%20Daily.",
+    code_siren: "243400017",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -454,12 +597,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_picardie_verte: {
-    label: "Communaut\u00e9 de communes de la Picardie Verte",
-    link: "https://www.picardieverte.com/la-ccpv-paie-vos-covoiturages/urbanisme-habitat/mobilite/",
+  {
+    link: "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
+    code_siren: "256204165",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 2.0,
+    conducteur_montant_max_par_passager: 4.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.picardieverte.com/la-ccpv-paie-vos-covoiturages/urbanisme-habitat/mobilite/",
+    code_siren: "246000848",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -467,12 +623,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_grande_vallee_de_la_marne: {
-    label: "Communaut\u00e9 de communes de la Grande Vall\u00e9e de la Marne",
-    link: "https://ccgvm.com/covoiturage/",
+  {
+    link: "https://cc-sablons.com/klaxit-lapplication-qui-covoiture/",
+    code_siren: "246000582",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://ccgvm.com/covoiturage/",
+    code_siren: "245100615",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 150.0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 3.0,
@@ -480,12 +649,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-  metropole_savoie: {
-    label: "M\u00e9tropole de Savoie",
+  {
     link: "https://www.savoie.fr/web/sw_101242/covoiturez-et-faites-le-plein-d-economies",
+    code_siren: "257302216",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET",
+    zone_sens_des_trajets: "et",
     conducteur_montant_max_par_mois: 0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 0,
@@ -493,12 +662,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_coeur_de_tarentaise: {
-    label: "Communaut\u00e9 de communes Coeur de Tarentaise",
+  {
     link: "https://www.coeurdetarentaise.fr/covoiturer-gratuitement-cest-desormais-possible/",
+    code_siren: "200023299",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -506,12 +675,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  smaps_syndicat_mixte_avant_pays_savoyard: {
-    label: "Syndicat mixte de l'Avant Pays Savoyard",
+  {
     link: "https://www.avant-pays-savoyard.com/smaps/project/mobilite-velo/",
+    code_siren: "257302182",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -519,12 +688,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  syndicat_pays_de_maurienne: {
-    label: "Syndicat du Pays de Maurienne",
+  {
     link: "https://www.savoie.fr/web/sw_101242/covoiturez-et-faites-le-plein-d-economies",
+    code_siren: "257302331",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -532,12 +701,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_haute_tarentaise: {
-    label: "Communaut\u00e9 de communes de Haute Tarentaise",
+  {
     link: "https://www.hautetarentaise.fr/10433-covoiturage-local.htm",
+    code_siren: "247300254",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -545,12 +714,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_versants_d_aime: {
-    label: "Communaut\u00e9 de communes des Versants d'Aime",
+  {
     link: "https://versantsdaime.fr/accueil/vivre-en-versants-d-aime/cadre-de-vie/rezo-pouce-service-dauto-stop-securise/",
+    code_siren: "247300817",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -558,12 +727,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_val_vanoise: {
-    label: "Communaut\u00e9 de communes du Val Vanoise",
+  {
     link: "https://www.valvanoise.fr/9537-mov-ici-covoiturage-local.htm",
+    code_siren: "200040798",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -571,12 +740,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  cc_vallees_d_aigueblanche: {
-    label: "Communaut\u00e9 de communes des Vall\u00e9es d'Aigueblanche",
+  {
     link: "https://ccva-savoie.com/index.php/vie-pratique-et-services/mobilite",
+    code_siren: "247300015",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "ET/OU",
+    zone_sens_des_trajets: "et/ou",
     conducteur_montant_max_par_mois: 120.0,
     conducteur_montant_min_par_passager: 1.5,
     conducteur_montant_max_par_passager: 3.0,
@@ -584,25 +753,25 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_mauges: {
-    label: "Mauges Communaut\u00e9",
-    link: "https://www.maugescommunaute.fr/actualites/covoiturage/#:~:text=Une%20solution%20simple%2C%20source%20d,Loire%20et%20de%20l%27\u00c9tat.",
+  {
+    link: "https://www.maugescommunaute.fr/actualites/covoiturage/",
+    code_siren: "200060010",
     nom_plateforme: "",
-    operateurs: "Karos",
-    zone_sens_des_trajets: "ET",
-    conducteur_montant_max_par_mois: 60.0,
-    conducteur_montant_min_par_passager: 2.0,
-    conducteur_montant_max_par_passager: 7.5,
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 120.0,
+    conducteur_montant_min_par_passager: 0.5,
+    conducteur_montant_max_par_passager: 0.5,
     trajet_longueur_max: 80,
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 60.0,
   },
-  ca_grand_albigeois: {
-    label: "Communaut\u00e9 d'agglomeration Grand Albigeois",
+  {
     link: "https://www.grand-albigeois.fr/actualite/lagglo-lance-un-service-de-covoiturage-du-quotidien/",
+    code_siren: "248100737",
     nom_plateforme: "",
     operateurs: "Karos",
-    zone_sens_des_trajets: "ET",
+    zone_sens_des_trajets: "et",
     conducteur_montant_max_par_mois: 0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 2.0,
@@ -610,13 +779,12 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 5,
     passager_trajets_max_par_mois: 0,
   },
-  cc_pays_d_evian: {
-    label:
-      "Communaut\u00e9 de communes pays d\u2019Evian - vall\u00e9e d\u2019Abondance",
+  {
     link: "https://www.evad.fr/la-ccpeva-favorise-le-covoiturage-sur-le-territoire/",
+    code_siren: "200071967",
     nom_plateforme: "",
     operateurs: "Karos",
-    zone_sens_des_trajets: "ET",
+    zone_sens_des_trajets: "et",
     conducteur_montant_max_par_mois: 0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 8.0,
@@ -624,42 +792,17 @@ export const INCITATIONS_COVOITURAGE_BY_CODE: {
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,
   },
-}
-
-function formatBenefit(institution: string) {
-  const customizationBenefit = INCITATIONS_COVOITURAGE_BY_CODE[institution]
-  return {
-    id: `${institution.replace(/_/g, "-")}-incitations-covoiturage-eligibilite`,
-    ...DEFAULT_INCITATIONS_COVOITURAGE,
-    description:
-      `Pour encourager le covoiturage ${customizationBenefit.label} subventionne tous vos trajets réservés depuis l’application, opérée par
-    ${customizationBenefit.operateurs}, que vous soyez conducteur ou passager.
-    Gain pour le conducteur :
-    ` +
-      (!customizationBenefit.conducteur_montant_max_par_mois
-        ? `jusqu'à ${customizationBenefit.conducteur_montant_max_par_mois} € par mois.`
-        : `entre ${customizationBenefit.conducteur_montant_min_par_passager} € et ${customizationBenefit.conducteur_montant_max_par_passager} € par passager transporté.`) +
-      `Coût des trajets pour le passager :
-      bénéficiez de ${customizationBenefit.passager_trajets_max_par_mois}/30 trajets gratuits par jour.`,
-    conditions: [
-      `Télécharger l'application mobile, opérée par ${customizationBenefit.operateurs}.`,
-      `Réaliser votre trajet au départ ${customizationBenefit.zone_sens_des_trajets} à l’arrivée de ${customizationBenefit.label}.`,
-      `Effectuer un trajet dont la distance est comprise entre ${customizationBenefit.trajet_longueur_min} et ${customizationBenefit.trajet_longueur_min} kilomètres.`,
-    ],
-    ...customizationBenefit,
-    label: `Incitation au covoiturage ${customizationBenefit.label}`,
-    institution,
-    source: "javascript",
-    conditions_generales: [
-      {
-        type: "attached_to_institution",
-      },
-    ],
-  }
-}
-
-export function buildIncitationsCovoiturage() {
-  return Object.keys(INCITATIONS_COVOITURAGE_BY_CODE).map((code) =>
-    formatBenefit(code)
-  )
-}
+  {
+    link: "https://www.maugescommunaute.fr/actualites/covoiturage/#:~:text=Une%20solution%20simple%2C%20source%20d,Loire%20et%20de%20l%27\u00c9tat.",
+    code_siren: "200060010",
+    nom_plateforme: "",
+    operateurs: "Karos",
+    zone_sens_des_trajets: "et",
+    conducteur_montant_max_par_mois: 60.0,
+    conducteur_montant_min_par_passager: 2.0,
+    conducteur_montant_max_par_passager: 7.5,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 5,
+    passager_trajets_max_par_mois: 60.0,
+  },
+]

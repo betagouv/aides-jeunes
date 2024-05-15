@@ -36,6 +36,20 @@ export interface VeloBenefit extends Aide {
   periodicite?: string
 }
 
+export interface CoVoiturageBenefit {
+  id: string
+  institution?: string
+  source?: string
+  periodicite?: string
+  description: string
+  label: string
+  conditions: any[]
+  prefix: string
+  type: string
+  link: string
+  source?: string
+}
+
 export interface JavascriptBenefit {
   name: string
   imgSrc?: string

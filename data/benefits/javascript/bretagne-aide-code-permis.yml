@@ -1,6 +1,7 @@
 label: aide à la formation au code et au permis de conduire
 institution: region_bretagne
-description: La région Bretagne prend en charge le financement du permis de conduire
+description:
+  La région Bretagne prend en charge le financement du permis de conduire
   pour les jeunes inscrits dans l'une des formations des dispositifs de la Région
   (PREPA, QUALIF Emploi, QUALIF sanitaire et social, Accompagnement à la Qualification,
   Formations à la langue bretonne.)

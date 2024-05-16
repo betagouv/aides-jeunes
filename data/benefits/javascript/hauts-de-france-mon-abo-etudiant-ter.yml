@@ -1,10 +1,10 @@
-label: abonnement Etudiant et Apprenti TER
+label: mon Abo Etudiant et Apprenti TER
 institution: hauts_de_france
 description:
-  L'abonnement Etudiant et Apprenti TER permet d'avoir des tarifs réduits voire une
+  Mon Abo Etudiant et Apprenti TER permet d'avoir des tarifs réduits voire une
   totale gratuité sur les trajets en TER entre le lieu de résidence et le lieu
   d'études, de stage ou d'apprentissage.
-prefix: l’
+prefix : ""
 conditions_generales:
   - type: regions
     values:

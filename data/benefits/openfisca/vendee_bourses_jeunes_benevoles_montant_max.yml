@@ -1,13 +1,14 @@
-label: Bourses aux jeunes bénévoles vendéens
+label: bourse aux jeunes bénévoles vendéens
 institution: departement_vendee
 description: Le Département de la Vendée attribue des bourses d'études ou pour
   passer le permis de conduire aux jeunes de 16-25 ans qui sont engagés dans des
   actions bénévoles.
-prefix: les
+prefix: la
 conditions:
   - Apporter pour les personnes majeures la preuve d'une responsabilité dans le Bureau
     d'une association depuis au moins un an ou d'une implication régulière d'au
     moins deux ans.
+  - Compléter le formulaire de demande au moment de l'appel à candidatures, chaque année entre juin et octobre.
 voluntary_conditions:
   - Justifier pour les personnes mineures d'un engagement d'au moins un an dans une ou
     plusieurs associations domiciliées en Vendée.
@@ -16,8 +17,10 @@ type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-link: https://www.infos-jeunes.fr/dispositifs/bourses-aux-jeunes-benevoles-vendeens
-form: https://www.infos-jeunes.fr/sites/default/files/bourse_dossier_candidature_2022.pdf?iframe=1
+link: https://www.vendee.fr/bourse-jeunes-benevoles-vendeens
+form: https://www.vendee.fr/fileadmin/user_upload/guide_aides/Dossier_de_candidature_2023.pdf
+instructions: https://www.vendee.fr/accompagner-les-vendeens-a-chaque-age-de-la-vie/soutenir-et-encourager-le-benevolat#frequentlyquestions
+teleservice: https://subventions.vendee.fr/account-management/cd85-demandeurs/ux/#/login?redirectTo=https:%2F%2Fsubventions.vendee.fr%2Faides%2F%23%2Fcd85%2Fconnecte%2Ftiers-selection&jwtKey=jwt-cd85-portail-depot-demande-aides&footer=https:%2F%2Fsubventions.vendee.fr%2Faides%2F%23%2Fcd85%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Fnouscontacter.vendee.fr,Nous%20contacter,_blank
 floorAt: 10
 entity: individus
 openfiscaPeriod: thisMonth

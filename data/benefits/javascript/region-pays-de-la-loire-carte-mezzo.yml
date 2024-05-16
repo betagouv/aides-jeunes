@@ -1,8 +1,8 @@
-label: carte mezzo
+label: carte Mezzo
 institution: region_pays_de_la_loire
-description: Ouverte à toutes et tous, la carte de réduction Mezzo vous offre
-  -50% (sur le tarif normal) sur tous vos voyages, 7j/7 et sur tout le réseau
-  Aléop en TER.
+description:
+  La carte Mezzo vous offre une réducation de -50% sur tous vos billets TER
+  en région Pays de la Loire.
 prefix: la
 conditions_generales:
   - type: age
@@ -13,10 +13,8 @@ conditions_generales:
       - "52"
 profils: []
 conditions:
-  - Vous procurer la carte Mezzo pour un montant annuel de 30€.
+  - Vous procurer la carte Mezzo pour un montant annuel de 30€ (la carte est amortie en trois allers-retours).
 type: bool
 unit: €
 periodicite: annuelle
 link: https://www.ter.sncf.com/pays-de-la-loire/tarifs-cartes/cartes-de-reduction/carte-mezzo
-teleservice: https://www.ter.sncf.com/pays-de-la-loire/products
-instructions: ""

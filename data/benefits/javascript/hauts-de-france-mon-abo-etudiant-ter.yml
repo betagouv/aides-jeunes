@@ -4,7 +4,7 @@ description:
   Mon Abo Etudiant et Apprenti TER permet d'avoir des tarifs réduits voire une
   totale gratuité sur les trajets en TER entre le lieu de résidence et le lieu
   d'études, de stage ou d'apprentissage.
-prefix : ""
+prefix : l'aide
 conditions_generales:
   - type: regions
     values:

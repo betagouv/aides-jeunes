@@ -9,9 +9,6 @@ description: "Grâce à la carte Rémi Liberté Jeune, bénéficiez de tarifs r�
 prefix: la
 conditions_generales:
   - type: age
-    operator: ">="
-    value: 3
-  - type: age
     operator: <=
     value: 25
   - type: regions

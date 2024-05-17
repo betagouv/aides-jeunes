@@ -9,36 +9,61 @@ export function buildIncitationsCovoiturage(
       (b.institution = institutions.find((i) => i.code_siren === b.code_siren))
   )
 
+  // const siren = benefits
+  //   .filter((b) => !b.institution?.prefix)
+  //   .map((b) => {
+  //     return { slug: b.institution?.slug, siren: b.code_siren }
+  //   })
+  //
+  // console.log(JSON.stringify(siren))
+
   return benefits
     .filter((b) => b.institution)
     .map((b) => {
+      const prefixFormat = b.institution?.prefix
+        ? b.institution?.prefix + " "
+        : ""
+
+      let gainConducteur = ` Vous êtes conductrice ou conducteur ? `
+      if (b.conducteur_montant_max_par_mois) {
+        if (
+          b.conducteur_montant_min_par_passager !==
+          b.conducteur_montant_max_par_passager
+        ) {
+          gainConducteur += `Vous êtes indemnisé entre ${b.conducteur_montant_min_par_passager}€ et ${b.conducteur_montant_max_par_passager}€ par trajet et par passager, selon la distance parcourue, dans la limite de ${b.conducteur_montant_max_par_mois} € de gain par mois. `
+        } else {
+          gainConducteur += `Vous êtes indemnisé entre ${b.conducteur_montant_min_par_passager}€ et ${b.conducteur_montant_max_par_passager}€ par trajet et par passager, selon la distance parcourue. `
+        }
+      } else if (
+        b.conducteur_montant_min_par_passager ===
+        b.conducteur_montant_max_par_passager
+      ) {
+        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager}€ par trajet et par passager, selon la distance parcourue. `
+      } else {
+        gainConducteur = ""
+      }
+
       return {
-        label: `Incitation au covoiturage ${b.institution?.prefix ?? ""} ${
-          b.institution?.label
-        }`,
+        label: `Incitation au covoiturage ${prefixFormat}${b.institution?.label}`,
         description:
-          `Pour encourager le covoiturage ${b.institution?.prefix ?? ""} ${
+          `Pour encourager le covoiturage, ${prefixFormat.replace("de", "")} ${
             b.institution?.label
           } subventionne tous vos trajets réservés depuis l’application` +
           (b.operateurs === b.nom_plateforme
             ? ` ` + b.operateurs
-            : `, opérée par ` +
-              ` que vous soyez conducteur ou passager. Gain pour le conducteur : `) +
-          (!b.conducteur_montant_max_par_mois
-            ? `jusqu'à ${b.conducteur_montant_max_par_mois} € par mois. `
-            : `entre ${b.conducteur_montant_min_par_passager} € et ${b.conducteur_montant_max_par_passager} € par passager transporté. `) +
-          `Coût des trajets pour le passager :
-      bénéficiez de ${
-        b.passager_trajets_max_par_mois / 30
-      } trajets gratuits par jour.`,
+            : `, opérée par ` + ` que vous soyez conducteur ou passager.`) +
+          gainConducteur +
+          `Vous êtes passagère ou passager ? Bénéficiez de ${
+            b.passager_trajets_max_par_mois / 30
+          } trajets gratuits par jour.`,
         id: `${b.institution?.slug.replace(
           /_/g,
           "-"
         )}-incitations-covoiturage-eligibilite`,
         conditions: [
           `Télécharger l'application mobile, opérée par ${b.operateurs}.`,
-          `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée de ${b.institution?.label}.`,
-          `Effectuer un trajet dont la distance est comprise entre ${b.trajet_longueur_min} et ${b.trajet_longueur_min} kilomètres.`,
+          `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée ${prefixFormat} ${b.institution?.label} ${b.institution?.label}.`,
+          `Effectuer un trajet dont la distance est comprise entre ${b.trajet_longueur_min} et ${b.trajet_longueur_max} kilomètres.`,
         ],
         institution: b.institution?.slug,
         prefix: "l'",
@@ -105,7 +130,7 @@ const benefits: {
   },
   {
     link: "https://www.vitrecommunaute.org/covoiturage/",
-    code_siren: "243500808",
+    code_siren: "200039022",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",
@@ -235,7 +260,7 @@ const benefits: {
   },
   {
     link: "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
-    code_siren: "809693906",
+    code_siren: "200040442",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",
@@ -405,19 +430,6 @@ const benefits: {
   {
     link: "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20gr\u00e2ce,le%201er%20f\u00e9vrier%202024%20!",
     code_siren: "200035319",
-    nom_plateforme: "",
-    operateurs: "BlablaCarDaily",
-    zone_sens_des_trajets: "et/ou",
-    conducteur_montant_max_par_mois: 150.0,
-    conducteur_montant_min_par_passager: 1.5,
-    conducteur_montant_max_par_passager: 3.0,
-    trajet_longueur_max: 80,
-    trajet_longueur_min: 2,
-    passager_trajets_max_par_mois: 60.0,
-  },
-  {
-    link: "https://www.gouv.mc/Action-Gouvernementale/La-Qualite-de-Vie/Actualites/Hausse-du-prix-des-carburants-Monaco-finance-vos-covoiturages-via-l-application-Klaxit#:~:text=Ainsi%2C%20depuis%20septembre%202020%2C%20tous,\u20ac%2Fmois%20en%20covoiturant%20r\u00e9guli\u00e8rement.",
-    code_siren: "809868276",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",

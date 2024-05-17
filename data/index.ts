@@ -39,6 +39,7 @@ function transformInstitutions(collection: InstitutionRaw[]): InstitutionsMap {
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
       lieuxTypes: data.lieuxTypes,
+      prefix: data?.prefix,
     }
     result[data.slug] = item
     return result

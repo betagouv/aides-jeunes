@@ -24,6 +24,11 @@ export function buildIncitationsCovoiturage(
         ? b.institution?.prefix + " "
         : ""
 
+      const prefixSansDe = prefixFormat.replace("de ", "")
+
+      const prefixUcFirst =
+        prefixSansDe.charAt(0).toUpperCase() + prefixSansDe.slice(1)
+
       let gainConducteur = ` Vous êtes conductrice ou conducteur ? `
       if (b.conducteur_montant_max_par_mois) {
         if (
@@ -47,12 +52,11 @@ export function buildIncitationsCovoiturage(
         label: `Incitation au covoiturage ${prefixFormat}${b.institution?.label}`,
         type: "bool",
         description:
-          `Pour encourager le covoiturage, ${prefixFormat.replace("de", "")} ${
-            b.institution?.label
-          } subventionne tous vos trajets réservés depuis l’application` +
-          (b.operateurs === b.nom_plateforme
+          `${prefixUcFirst}${b.institution?.label} subventionne tous vos trajets réservés depuis l’application` +
+          (!b.nom_plateforme || b.operateurs === b.nom_plateforme
             ? ` ` + b.operateurs
-            : `, opérée par ` + ` que vous soyez conducteur ou passager.`) +
+            : b.nom_plateforme + ` , opérée par ` + b.operateurs) +
+          `.` +
           gainConducteur +
           `Vous êtes passagère ou passager ? Bénéficiez de ${
             b.passager_trajets_max_par_mois / 30

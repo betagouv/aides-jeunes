@@ -45,6 +45,7 @@ export function buildIncitationsCovoiturage(
 
       return {
         label: `Incitation au covoiturage ${prefixFormat}${b.institution?.label}`,
+        type: "bool",
         description:
           `Pour encourager le covoiturage, ${prefixFormat.replace("de", "")} ${
             b.institution?.label
@@ -67,10 +68,14 @@ export function buildIncitationsCovoiturage(
         ],
         institution: b.institution?.slug,
         prefix: "l'",
-        type: "float",
         periodicite: "ponctuelle",
         link: b.link,
-        source: "observatoire.covoiturage",
+        source: "javascript",
+        conditions_generales: [
+          {
+            type: "attached_to_institution",
+          },
+        ],
       }
     })
 }
@@ -130,7 +135,7 @@ const benefits: {
   },
   {
     link: "https://www.vitrecommunaute.org/covoiturage/",
-    code_siren: "200039022",
+    code_siren: "243500808",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",
@@ -260,7 +265,7 @@ const benefits: {
   },
   {
     link: "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
-    code_siren: "200040442",
+    code_siren: "809693906",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",
@@ -430,6 +435,19 @@ const benefits: {
   {
     link: "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20gr\u00e2ce,le%201er%20f\u00e9vrier%202024%20!",
     code_siren: "200035319",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 150.0,
+    conducteur_montant_min_par_passager: 1.5,
+    conducteur_montant_max_par_passager: 3.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.gouv.mc/Action-Gouvernementale/La-Qualite-de-Vie/Actualites/Hausse-du-prix-des-carburants-Monaco-finance-vos-covoiturages-via-l-application-Klaxit#:~:text=Ainsi%2C%20depuis%20septembre%202020%2C%20tous,\u20ac%2Fmois%20en%20covoiturant%20r\u00e9guli\u00e8rement.",
+    code_siren: "809868276",
     nom_plateforme: "",
     operateurs: "BlablaCarDaily",
     zone_sens_des_trajets: "et/ou",
@@ -649,6 +667,19 @@ const benefits: {
     passager_trajets_max_par_mois: 60.0,
   },
   {
+    link: "https://www.essonne.fr/economie-amenagement-mobilites/lactualite-economie-amenagement-mobilites/laide-au-covoiturage-pour-les-18-25-ans-prolongee",
+    code_siren: "229102280",
+    nom_plateforme: "",
+    operateurs: "BlablaCarDaily",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 0.0,
+    conducteur_montant_min_par_passager: 0.0,
+    conducteur_montant_max_par_passager: 0.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
     link: "https://ccgvm.com/covoiturage/",
     code_siren: "245100615",
     nom_plateforme: "",
@@ -800,6 +831,19 @@ const benefits: {
     conducteur_montant_max_par_mois: 0,
     conducteur_montant_min_par_passager: 2.0,
     conducteur_montant_max_par_passager: 8.0,
+    trajet_longueur_max: 80,
+    trajet_longueur_min: 2,
+    passager_trajets_max_par_mois: 60.0,
+  },
+  {
+    link: "https://www.essonne.fr/economie-amenagement-mobilites/lactualite-economie-amenagement-mobilites/laide-au-covoiturage-pour-les-18-25-ans-prolongee",
+    code_siren: "229102280",
+    nom_plateforme: "",
+    operateurs: "Karos",
+    zone_sens_des_trajets: "et/ou",
+    conducteur_montant_max_par_mois: 0.0,
+    conducteur_montant_min_par_passager: 0.0,
+    conducteur_montant_max_par_passager: 0.0,
     trajet_longueur_max: 80,
     trajet_longueur_min: 2,
     passager_trajets_max_par_mois: 60.0,

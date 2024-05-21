@@ -3,25 +3,24 @@ institution: region_auvergne_rhone_alpes
 description: Cette aide s'adresse à toute personne sans emploi, inscrite dans un
   établissement de formation situé en Auvergne-Rhône-Alpes et agréé par la
   Région, pour suivre l'une des formations <a target="_blank" rel="noopener" title ="Liste des formations - Nouvelle fenêtre"
-  href="https://www.auvergnerhonealpes.fr/aide/47/89-obtenir-une-bourse-pour-suivre-une-formation-dans-le-secteur-sante-social-orientation-formation.htm">listées
+  href="https://www.auvergnerhonealpes.fr/aides/obtenir-une-bourse-pour-suivre-une-formation-dans-le-secteur-sante-social">listées
   ici</a>. La bourse est attribuée sur critères sociaux.
 conditions: []
 conditions_generales:
   - type: regions
     values:
       - "84"
-  - type: formation_sanitaire_social
 profils:
   - type: chomeur
     conditions: []
   - type: enseignement_superieur
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aide/47/89-obtenir-une-bourse-pour-suivre-une-formation-dans-le-secteur-sante-social-orientation-formation.htm
+link: https://www.auvergnerhonealpes.fr/aides/obtenir-une-bourse-pour-suivre-une-formation-dans-le-secteur-sante-social
 teleservice: https://rhone-alpes.commeunservice.com/bourses/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL#FSS
 prefix: la
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 5736
+montant: 6335
 interestFlag: _interetAidesSanitaireSocial

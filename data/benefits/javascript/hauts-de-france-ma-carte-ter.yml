@@ -1,10 +1,10 @@
-label: ma carte TER Hauts-de-France
+label: carte TER Hauts-de-France +26 ans
 institution: hauts_de_france
 description:
   Grâce à cette carte, les habitants de la région Hauts-de-France bénéficient d'un tarif réduit de 50%
-  pour leurs déplacements occasionnels en TER. Elle est accessible à tous et toutes, sans conditions.
+  sur tous leurs déplacements en TER. Elle est accessible à tous et toutes, sans conditions.
 conditions:
-  - Acheter la carte pour le montant de 30 €.
+  - Acheter la carte pour 30 € par an.
 conditions_generales:
   - type: regions
     values:
@@ -13,9 +13,9 @@ conditions_generales:
     operator: ">="
     value: 26
 profils: []
-link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=802
-teleservice: https://m.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/+26-ans
-prefix: l’aide
+link: https://www.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/%2B26-ans
+instructions: https://www.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/%2B26-ans
+prefix: la
 type: bool
 unit: €
 periodicite: annuelle

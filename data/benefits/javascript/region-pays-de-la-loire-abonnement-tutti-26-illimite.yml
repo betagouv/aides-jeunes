@@ -1,6 +1,7 @@
-label: abonnement Tutti -26 ans illimité
+label: abonnement annuel Tutti -26 ans illimité
 institution: region_pays_de_la_loire
-description: L'Abonnement Tutti -26 illimité permet la libre circulation sur
+description:
+  L'Abonnement annuel Tutti -26 illimité permet la libre circulation sur
   votre parcours habituel, en train ou en autocar régional dans les Pays de la
   Loire. Il s'adresse à toutes et tous (salariés ou salariées, étudiants et étudiantes,
   stagiaires...) pour simplifier vos déplacements quotidiens.
@@ -16,9 +17,9 @@ profils: []
 conditions:
   - Choisir un trajet fréquent entre deux gares du Pays de la Loire.
   - Payer l'abonnement dont le prix est calculé en fonction du trajet fréquent
-    choisi.
+    choisi (rentabilisé dès 6 allers-retours par mois).
 type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/pays-de-la-loire/abonnements/tous-les-abonnements/abonnements-ter/Abonnement-tutti-illimite-moins-de-26-ans
-teleservice: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisTrajet?codeProduit=42
+teleservice: https://www.abonnement-regional.sncf/region/PDL/produit/UJ02_DIGITAL_Abonnement%20tutti%20moins%2026%20ans%20annuel%20monomodal%20NASA

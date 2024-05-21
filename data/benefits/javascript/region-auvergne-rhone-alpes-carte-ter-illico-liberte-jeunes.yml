@@ -12,11 +12,10 @@ conditions_generales:
       - "84"
 profils: []
 conditions:
-  - Vous procurer la carte TER illico Liberté jeunes pour un montant annuel de
+  - Vous procurer la carte TER illico Liberté jeunes en ligne ou en gare pour un montant annuel de
     15€.
 type: bool
 unit: €
 periodicite: autre
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-liberte-jeunes
-teleservice: https://www.ter.sncf.com/auvergne-rhone-alpes/products/form
-instructions: ""
+instructions: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-liberte-jeunes

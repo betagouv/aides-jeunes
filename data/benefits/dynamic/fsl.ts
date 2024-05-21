@@ -253,6 +253,11 @@ export const FSL_BY_INSTITUTION_SLUG = {
   departement_bas_rhin: {
     label: "du département du Bas-Rhin",
     link: "https://www.alsace.eu/aides-et-services/habitat/vous-rencontrez-difficultes-avec-votre-logement/",
+    excludedEPCI: "246700488",
+  },
+  strasbourg_eurometropole: {
+    label: "de l'Eurométropole de Strasbourg",
+    link: "https://www.strasbourg.eu/fond-de-solidarite-pour-le-logement",
   },
   departement_du_haut_rhin: {
     label: "du département du Haut-Rhin",

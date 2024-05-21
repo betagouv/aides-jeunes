@@ -7,6 +7,7 @@ conditions:
   - Pour les élèves scolarisés en collège public, la demande se fait en ligne sur le portail Educonnect.
 link: https://www.service-public.fr/particuliers/vosdroits/F984
 instructions: http://www.education.gouv.fr/cid117994/scolarite-services-aide-a-la-premiere-connexion-des-parents.html
+form: https://www.service-public.fr/particuliers/vosdroits/R11499
 isBaseRessourcesYearMinusTwo: true
 prefix: la
 type: float

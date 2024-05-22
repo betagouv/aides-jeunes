@@ -1,8 +1,8 @@
 label: aide à la mobilité internationale des étudiants et étudiantes
 institution: grand_est
 description:
-  L'aide à la mobilité internationale des étudiants et étudiantes a pour but de
-  soutenir la mobilité internationale des étudiants et étudiantes de la région Grand Est.
+  Vous souhaitez partir en mobilité internationale dans le cadre de vos études ?
+  Vous pouvez peut-être bénéficier d'une aide régionale.
 prefix: l’
 conditions_generales:
   - type: regions
@@ -15,12 +15,19 @@ profils:
         operator: <=
         value: 29
 conditions:
-  - Effectuer sa période d’études ou de stage doit au sein d’un organisme à
-    l’étranger (université, laboratoire ou entreprise).
-  - Choisir n'importe quelle destination à l’exception de la France (DOM-TOM
-    inclus), et des principautés d’Andorre et de Monaco.
+  - Être inscrit dans un établissement d’enseignement supérieur de la région Grand Est.
+  - Être inscrit en BUT, BTS, DNMADE ou en 3ème, 4ème ou 5ème année postbac au titre d’une formation diplômante ou inscrite au Répertoire National des Certifications Professionnelles.
+  - Effectuer une mobilité à l’étranger (étude ou stage), validée dans le cadre de votre diplôme.
+  - Payer un loyer à l’étranger durant toute la mobilité.
+  - Percevoir moins de 700 €/mois de rémunérations et/ou gratifications de stage.
+  - Choisir n'importe quelle destination à l’exception de la France, DOM-TOM
+    inclus, et de votre pays d'origine si vous êtes de nationalité étrangère.
 interestFlag: _interetEtudesEtranger
-type: bool
+type: float
+unit: €
+montant: 1100
+legend: maximum
 periodicite: ponctuelle
 link: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
-instructions: https://www.grandest.fr/vos-aides-regionales/aide-a-mobilite-internationale-etudiants/
+instructions: https://www.grandest.fr/wp-content/uploads/2023/07/annexe-1-reglement-mobilites-internationales-vf.pdf
+teleservice: https://messervices.grandest.fr/account-management/crge-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fconnecte%2FF_BMI3%2Fdepot%2Fsimple&jwtKey=jwt-crge-portail-depot-demande-aides&footer=https:%2F%2Fwww.grandest.fr%2Fmentions-legales%2F,Mentions%20l%C3%A9gales,_blank;https:%2F%2Fmesservices.grandest.fr%2Faides%2F%23%2Fcrge%2Fdonnees-personnelles,Donn%C3%A9es%20personnelles,_self

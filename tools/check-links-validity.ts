@@ -49,6 +49,11 @@ async function getHTTPStatus(link) {
           "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0",
         Referer: "https://mes-aides.1jeune1solution.beta.gouv.fr/",
         "Upgrade-Insecure-Requests": 1,
+        "Sec-Fetch-Mode": "navigate",
+        TE: "trailers",
+        "Sec-GPC": "1",
+        "Sec-Fetch-User": "?1",
+        "Sec-Fetch-Dest": "document",
       },
       httpsAgent,
     })

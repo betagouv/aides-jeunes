@@ -91,9 +91,30 @@ export function determineOperationsOnBenefitLinkError(
     : processCron
   const operations: GristOperation[] = []
   const benefitId = benefitLinksCheckResult.id
+  const existingWarningsLink = existingWarnings?.[benefitId]
+
   benefitLinksCheckResult.links.forEach((link) => {
-    const existingWarning = existingWarnings?.[benefitId]?.[link.type]
+    const existingWarning = existingWarningsLink?.[link.type]
     processor(benefitLinksCheckResult, link, existingWarning, operations)
+    if (!existingWarning && existingWarningsLink) {
+      // cas ou le lien a été supprimé ainsi que sa propriété
+      for (const type in existingWarningsLink) {
+        if (
+          !benefitLinksCheckResult.links.some(
+            (linkObject) =>
+              linkObject.link === existingWarningsLink[type]?.fields?.Lien &&
+              benefitLinksCheckResult.links.length > 0
+          )
+        ) {
+          processor(
+            benefitLinksCheckResult,
+            benefitLinksCheckResult.links[0], //je prends le premier lien
+            existingWarningsLink[type],
+            operations
+          )
+        }
+      }
+    }
   })
 
   return operations
@@ -111,11 +132,11 @@ export function determineExistingWarningsFixByPrivateBenefits(
     )
     if (privateBenefit?.length) {
       for (const type in existingWarnings[warningBenefitId]) {
-        const fixPullRequestUrl =
+        const PR =
           pullRequestURL &&
           existingWarnings[warningBenefitId][type].fields.PR !== pullRequestURL
-            ? pullRequestURL
-            : existingWarnings[warningBenefitId][type].fields.PR
+            ? { pullRequestURL }
+            : {}
         benefitOperationsList.push([
           {
             type: "update",
@@ -123,7 +144,7 @@ export function determineExistingWarningsFixByPrivateBenefits(
               id: existingWarnings[warningBenefitId][type].id,
               fields: {
                 Corrige: true,
-                PR: fixPullRequestUrl,
+                ...PR,
               },
             },
           },

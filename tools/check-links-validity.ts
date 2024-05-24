@@ -47,6 +47,8 @@ async function getHTTPStatus(link) {
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0",
+        Referer: "https://mes-aides.1jeune1solution.beta.gouv.fr/",
+        "Upgrade-Insecure-Requests": 1,
       },
       httpsAgent,
     })
@@ -266,7 +268,6 @@ async function main() {
       `Ajout: ${recordsByOperationTypes.add.length}`,
       `Mise à jour: ${recordsByOperationTypes.update.length}`,
     ].join("\n")
-
     Mattermost.post(text, process.env.MATTERMOST_ALERTING_URL)
   }
 }

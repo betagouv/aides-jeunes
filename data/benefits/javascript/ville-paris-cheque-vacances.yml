@@ -5,7 +5,7 @@ description:
   sous forme de chéquiers vacances d’une valeur de 200 €. Cette aide est attribuée pour
   des séjours en France ou à l'étranger. Elle permet de régler les frais liés à la réservation
   d’un hébergement mais pas les frais de transport.
-prefix: l'aide
+prefix: l’aide
 conditions_generales:
   - type: age
     operator: ">="

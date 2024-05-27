@@ -22,4 +22,4 @@ periodicite: mensuelle
 legend: maximum
 montant: 400
 link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET1&state=84e5e705-4c28-40a0-bbad-34bbd3d37848&login=true&scope=openid

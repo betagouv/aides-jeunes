@@ -96,7 +96,10 @@ export function determineOperationsOnBenefitLinkError(
   benefitLinksCheckResult.links.forEach((link) => {
     const existingWarning = existingWarningsLink?.[link.type]
     processor(benefitLinksCheckResult, link, existingWarning, operations)
-    if (!existingWarning && existingWarningsLink) {
+    if (
+      (!existingWarning && existingWarningsLink) ||
+      (existingWarning && Object.entries(existingWarningsLink).length > 1)
+    ) {
       // cas ou le lien a été supprimé ainsi que sa propriété
       for (const type in existingWarningsLink) {
         if (
@@ -104,11 +107,17 @@ export function determineOperationsOnBenefitLinkError(
             (linkObject) =>
               linkObject.link === existingWarningsLink[type]?.fields?.Lien &&
               benefitLinksCheckResult.links.length > 0
-          )
+          ) || //Si le lien analysé n'est pas présent dans la liste des liens d'erreurs et qu'il y a au moins un lien
+          (!existingWarning &&
+            benefitLinksCheckResult.links.some(
+              (linkObject) =>
+                linkObject.link === existingWarningsLink[type]?.fields?.Lien &&
+                linkObject.ok
+            ))
         ) {
           processor(
             benefitLinksCheckResult,
-            benefitLinksCheckResult.links[0], //je prends le premier lien
+            link,
             existingWarningsLink[type],
             operations
           )

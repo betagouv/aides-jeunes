@@ -3,7 +3,7 @@ institution: paris
 description:
   La ville de Paris vous permet de bénéficier chaque année d’une aide au départ en vacances
   sous forme de chéquiers vacances d’une valeur de 200 €. Cette aide est attribuée pour
-  des séjours en France ou à l'étranger. Elle permet de régler les frais liés à la réservation
+  des séjours en France ou à l’étranger. Elle permet de régler les frais liés à la réservation
   d’un hébergement mais pas les frais de transport.
 prefix: l’aide
 conditions_generales:
@@ -19,10 +19,10 @@ conditions_generales:
 profils: []
 conditions:
   - Avoir réservé ou prévoir de réserver un hébergement touristique (hôtel, camping, auberge, etc.) pour un séjour d’une durée minimum de 2 nuits et 3 jours.
-  - Partir en autonomie : votre séjour doit se dérouler sans encadrement professionnel ou bénévole et sans la présence des parents, grands-parents, ou tout autre membre de la famille.
+  - "Partir en autonomie : votre séjour doit se dérouler sans encadrement professionnel ou bénévole et sans la présence des parents, grands-parents, ou tout autre membre de la famille."
   - Ne pas bénéficier d’un hébergement à titre gratuit pour les vacances en question.
-  - Partir seul ou accompagné de 5 amis maximum (donc à 6 maximum en tout) : si vous partez à plusieurs, toutes les personnes éligibles au dispositif Paris Jeunes Vacances peuvent bénéficier des 200 euros.
-  - Ne pas avoir déjà bénéficié de cette aide durant l’année civile en cours : l’aide ne peut être attribuée qu’une fois par an.
+  - "Partir seul ou accompagné de 5 amis maximum (donc à 6 maximum en tout) : si vous partez à plusieurs, toutes les personnes éligibles au dispositif Paris Jeunes Vacances peuvent bénéficier des 200 euros."
+  - "Ne pas avoir déjà bénéficié de cette aide durant l’année civile en cours : l’aide ne peut être attribuée qu’une fois par an."
 type: float
 unit: €
 periodicite: autre

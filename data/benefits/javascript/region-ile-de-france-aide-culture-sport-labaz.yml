@@ -1,7 +1,8 @@
 label: aide à la pratique sportive, artistique et culturelle
 prefix: l'
 institution: region_ile_de_france
-description: L'aide à la pratique sportive, artistique et culturelle est proposée
+description:
+  L'aide à la pratique sportive, artistique et culturelle est proposée
   par la Région aux jeunes Franciliens de 15 à 17 ans. Elle est sécable (divisible)
   et utilisable en plusieurs fois auprès des partenaires du dispositif à découvrir dans l’application.
 conditions:

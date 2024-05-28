@@ -22,7 +22,7 @@ conditions:
   - Partir en autonomie : votre séjour doit se dérouler sans encadrement professionnel ou bénévole et sans la présence des parents, grands-parents, ou tout autre membre de la famille.
   - Ne pas bénéficier d’un hébergement à titre gratuit pour les vacances en question.
   - Partir seul ou accompagné de 5 amis maximum (donc à 6 maximum en tout) : si vous partez à plusieurs, toutes les personnes éligibles au dispositif Paris Jeunes Vacances peuvent bénéficier des 200 euros.
-  - Ne pas avoir déjà bénéficié de cette aide durant l’année civile en cours ":" l’aide ne peut être attribuée qu’une fois par an.
+  - Ne pas avoir déjà bénéficié de cette aide durant l’année civile en cours : l’aide ne peut être attribuée qu’une fois par an.
 type: float
 unit: €
 periodicite: autre

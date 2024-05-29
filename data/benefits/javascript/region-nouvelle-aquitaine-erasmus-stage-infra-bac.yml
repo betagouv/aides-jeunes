@@ -1,7 +1,7 @@
 label: Erasmus+ Stage - Apprentis
 institution: region_nouvelle_aquitaine
-description: La Région finance en partie la réalisation d'un stage professionnel
-  à l'étranger d'une durée de 2 semaines à 6 mois pour les apprentis.
+description: La Région finance en partie la réalisation d’un stage professionnel
+  à l'étranger d'une durée de 2 semaines à 6 mois pour les apprentis et les apprentis jeunes diplômés (maximum 12 mois après l’obtention du diplôme).
 prefix: l’aide
 conditions_generales:
   - type: regions

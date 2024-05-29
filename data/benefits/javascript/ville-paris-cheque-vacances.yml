@@ -1,0 +1,32 @@
+label: Paris Jeunes Vacances
+institution: paris
+description:
+  La ville de Paris vous permet de bénéficier chaque année d’une aide au départ en vacances
+  sous forme de chéquiers vacances d’une valeur de 200 €. Cette aide est attribuée pour
+  des séjours en France ou à l’étranger. Elle permet de régler les frais liés à la réservation
+  d’un hébergement mais pas les frais de transport.
+prefix: l’aide
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 30
+  - type: communes
+    values:
+      - "75056"
+profils: []
+conditions:
+  - Avoir réservé ou prévoir de réserver un hébergement touristique (hôtel, camping, auberge, etc.) pour un séjour d’une durée minimum de 2 nuits et 3 jours.
+  - "Partir en autonomie : votre séjour doit se dérouler sans encadrement professionnel ou bénévole et sans la présence des parents, grands-parents, ou tout autre membre de la famille."
+  - Disposer d’une autorisation parentale et joindre une copie de la pièce d’identité de l’adulte co-signataire du dossier pour les candidats mineurs non émancipés.
+  - Ne pas bénéficier d’un hébergement à titre gratuit pour les vacances en question.
+  - "Partir seul ou accompagné de 5 amis maximum (donc à 6 maximum en tout) : si vous partez à plusieurs, toutes les personnes éligibles au dispositif Paris Jeunes Vacances peuvent bénéficier des 200 euros."
+  - "Ne pas avoir déjà bénéficié de cette aide durant l’année civile en cours : l’aide ne peut être attribuée qu’une fois par an."
+type: float
+unit: €
+periodicite: autre
+montant: 200
+link: https://www.paris.fr/pages/paris-jeunes-vacances-7490
+teleservice: https://v70-auth.paris.fr/auth/realms/paris/protocol/openid-connect/auth?client_id=F13-PR&response_type=code&redirect_uri=https%3A%2F%2Fteleservices.paris.fr%2Fformsdjs%2Fservlet%2Fplugins%2Foauth2%2Fcallback%3Fdata_client%3DauthData&scope=openid&state=1b62104f40d00&nonce=2f9e084a8b6d2

@@ -6,7 +6,7 @@ description:
   par la Région aux jeunes Franciliens de 15 à 17 ans. Elle est sécable (divisible)
   et utilisable en plusieurs fois auprès des partenaires du dispositif à découvrir dans l’application.
 conditions:
-  - Télécharger l'application mobile LABAZ disponible sur les stores et vous inscrire.
+  - Télécharger l'application mobile LABAZ disponible sur les stores et vous créer un compte.
   - Choisir dans la liste des partenaires du réseau LABAZ la structure où vous souhaitez
     utiliser l’aide de la Région.
   - Saisir le montant que vous souhaitez débourser (dans la limite de 100 euros).
@@ -17,7 +17,7 @@ conditions_generales:
     values:
       - "11"
   - type: age
-    operator: ">="
+    operator: >=
     value: 15
   - type: age
     operator: <=

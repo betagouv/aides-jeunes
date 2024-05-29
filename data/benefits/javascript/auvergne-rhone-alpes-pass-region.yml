@@ -6,7 +6,7 @@ description: Le Pass'Région est une carte délivrée par la Région
   culture, le sport, la santé et sous certaines conditions, une aide financière
   pour le permis.
 conditions:
-  - Être dans l'une des situations suivantes ":" lycéen, apprenti inscrit en CFA ou en OFPA,
+  - "Être dans l'une des situations suivantes : lycéen, apprenti inscrit en CFA ou en OFPA,"
     inscrit à la Mission Locale, inscrit dans une école de la deuxième chance, inscrit en formation sanitaire et sociale,
     inscrit en institut médico-éducatif ou inscrit au CNED.
 conditions_generales:

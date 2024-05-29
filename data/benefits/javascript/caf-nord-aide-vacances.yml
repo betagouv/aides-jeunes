@@ -18,7 +18,10 @@ profils: []
 conditions:
   - Avoir au moins un enfant à charge né après le 1er janvier 2007.
   - Etre allocataire de la Caf du Nord.
-  - Choisir votre séjour familiale ou le séjour de votre enfant sur vacaf.org.
+  - Choisir votre séjour familiale ou le séjour de votre enfant sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
 type: float
 unit: "%"
 periodicite: ponctuelle

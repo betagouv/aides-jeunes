@@ -17,7 +17,7 @@ conditions_generales:
     values:
       - "11"
   - type: age
-    operator: >=
+    operator: ">="
     value: 15
   - type: age
     operator: <=

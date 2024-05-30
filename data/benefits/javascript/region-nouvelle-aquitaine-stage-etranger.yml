@@ -1,4 +1,4 @@
-label: stage à l'étranger (post-bac)
+label: stages à l'étranger (post-bac)
 institution: region_nouvelle_aquitaine
 description: La Région finance une partie de votre stage à l'étranger de 2 semaines minimum.
 prefix: les
@@ -11,7 +11,7 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-  - type: chomeur
+  - type: stagiaire
     conditions: []
 conditions:
   - Ne pas bénéficier, pour le même stage, d’une autre aide à la mobilité de la
@@ -24,5 +24,4 @@ periodicite: mensuelle
 legend: maximum
 montant: 400
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/stages-letranger-public-post-bac-annee-academique-2022-2023#:~:text=Crit%C3%A8res%20de%20s%C3%A9lection&text=Dur%C3%A9e%20de%202%20semaines%20cons%C3%A9cutives,sera%20faite%20pour%20les%20BTS).
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
-instructions: https://les-aides.nouvelle-aquitaine.fr/jeunesse/stages-letranger-public-post-bac-annee-academique-2022-2023#:~:text=Crit%C3%A8res%20de%20s%C3%A9lection&text=Dur%C3%A9e%20de%202%20semaines%20cons%C3%A9cutives,sera%20faite%20pour%20les%20BTS).
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET2_22&state=61cd21dd-94b3-4a63-8bfd-da973b579f9b&login=true&scope=openid

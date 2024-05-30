@@ -70,7 +70,7 @@ const PROFILE_STRATEGY = {
     return situation.demandeur?.handicap === true
   },
   parent: ({ situation }: { situation: Situation }): boolean => {
-    return situation?.enfants.length > 0
+    return situation?.enfants && situation.enfants.length > 0
   },
 }
 

@@ -1,8 +1,9 @@
-label: pass abonné -28 ans
+label: pass abonné -28 ans annuel
 institution: region_nouvelle_aquitaine
-description: Grâce au Pass Abonné -28 (hebdo, mensuel ou annuel), vous
-  bénéficiez de 33% de réduction par rapport à un Pass abonné Tout Public, sur
-  vos déplacements quotidiens sur un parcours déterminé en Nouvelle-Aquitaine.
+description:
+  Grâce au Pass Abonné -28 ans annuel, vous bénéficiez de 33% de réduction
+  par rapport à un Pass abonné annuel Tout Public, et vous pouvez voyager en illimité
+  pendant un an sur le trajet TER de votre choix en Nouvelle-Aquitaine.
 prefix: le
 conditions_generales:
   - type: age
@@ -15,10 +16,9 @@ profils: []
 conditions:
   - Choisir un trajet fréquent en Nouvelle-Aquitaine et vers les régions Centre
     Val-de-Loire, Pays de la Loire, Occitanie, Auvergne Rhône Alpes.
-  - Payer le pass dont le prix est calculé en fonction du trajet fréquent choisi.
+  - Payer le pass dont le prix est calculé en fonction du trajet fréquent choisi (rentabilisé dès deux allers-retours par semaine).
 type: bool
 unit: €
 periodicite: autre
-link: https://www.sncf-abo-annuel-ter.com/tapas-tel-web/devisAbonnement?codeRegion=AQU
-teleservice: ""
-instructions: https://www.ter.sncf.com/nouvelle-aquitaine/tarifs-cartes/billets-reduction/billet-jeunes
+link: https://www.ter.sncf.com/nouvelle-aquitaine/abonnements/tous-les-abonnements/abonnements-ter/pass-abonne-moins-28-annuel
+instructions: https://www.ter.sncf.com/nouvelle-aquitaine/abonnements/tous-les-abonnements/abonnements-ter/pass-abonne-moins-28-annuel

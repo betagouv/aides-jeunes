@@ -1,6 +1,6 @@
-label: stage à l'étranger (lycéens ou lycéennes)
+label: stages à lʼétranger pour les lycéens, stagiaires et apprentis (public infra-bac)
 institution: region_nouvelle_aquitaine
-description: La Région finance une partie de votre stage à l'étranger d'une
+description: La Région finance une partie de votre stage à lʼétranger d'une
   durée de 2 à 4 semaines.
 prefix: les
 conditions_generales:
@@ -12,6 +12,8 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
+  - type: stagiaire
+    conditions: []
 conditions: []
 interestFlag: _interetEtudesEtranger
 type: float
@@ -20,5 +22,4 @@ periodicite: mensuelle
 legend: maximum
 montant: 400
 link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
-instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET1&state=84e5e705-4c28-40a0-bbad-34bbd3d37848&login=true&scope=openid

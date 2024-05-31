@@ -1,0 +1,30 @@
+label: aide à la pratique sportive, artistique et culturelle
+prefix: l’
+institution: region_ile_de_france
+description:
+  L'aide à la pratique sportive, artistique et culturelle est proposée
+  par la Région aux jeunes Franciliens de 15 à 17 ans. Elle est sécable (divisible)
+  et utilisable en plusieurs fois auprès des partenaires du dispositif à découvrir dans l’application.
+conditions:
+  - Télécharger l'application mobile LABAZ disponible sur les stores et vous créer un compte.
+  - Choisir dans la liste des partenaires du réseau LABAZ la structure où vous souhaitez
+    utiliser l’aide de la Région.
+  - Saisir le montant que vous souhaitez débourser (dans la limite de 100 euros).
+  - Présenter le QR code généré (ou le code associé) qui apparaît dans votre portefeuille
+    électronique au moment du paiement directement auprès de la structure où vous voulez vous inscrire.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 17
+profils: []
+link: https://www.iledefrance.fr/toutes-les-faq/lapplication-mobile-labaz-faq-jeunes
+type: float
+unit: €
+periodicite: autre
+montant: 100

@@ -1,25 +1,30 @@
 label: aide à la formation au code et au permis de conduire
 institution: region_bretagne
-description: Cette aide vise à favoriser l’accès à la formation et l’insertion
-  professionnelle des jeunes résidant en Bretagne en prenant en charge le financement de
-  leur permis de conduire.
+description:
+  La région Bretagne prend en charge le financement du permis de conduire
+  pour les jeunes inscrits dans l'une des formations des dispositifs de la Région
+  (PREPA, QUALIF Emploi, QUALIF sanitaire et social, Accompagnement à la Qualification,
+  Formations à la langue bretonne.)
 conditions:
-  - 'Etre suivi ou suivie par une mission locale : <a target="_blank" rel="noopener" title="Voir
+  - 'Être suivi ou suivie par une mission locale : <a target="_blank" rel="noopener" title="Voir
     les missions locales - Nouvelle fenêtre"
     href="https://www.unml.info/les-missions-locales/annuaire/bretagne/">contacter
     la mission locale la plus proche</a>.'
   - Pouvoir montrer que l’absence de permis est un frein à la réalisation de
     votre projet.
-  - Bénéficier de l’accompagnement à la qualification de la Région Bretagne ou
-    <a target="_blank" rel="noopener" title="Formation QUALIF Emploi - Nouvelle fenêtre"
-    href="https://www.bretagne.bzh/aides/fiches/copie-de-qualif-emploi/">suivre une formation QUALIF Emploi</a>.
+  - Suivre l'une des formations de la région (<a target="_blank" rel="noopener" title="Formation Prépa Clés - Nouvelle fenêtre"
+    href="https://www.bretagne.bzh/aides/fiches/prepa-cles/">PREPA</a>, <a target="_blank" rel="noopener" title="Formation QUALIF Emploi - Nouvelle fenêtre"
+    href="https://www.bretagne.bzh/aides/fiches/copie-de-qualif-emploi/">QUALIF Emploi</a>, <a target="_blank" rel="noopener" title="Formation QUALIF Sanitaire et Social - Nouvelle fenêtre"
+    href="https://www.bretagne.bzh/aides/fiches/qualif-sanitaire-et-social/">QUALIF Sanitaire et Social</a>, <a target="_blank" rel="noopener" title="Accompagnement à la Qualification - Nouvelle fenêtre"
+    href="https://europe.bzh/aides/fiches/accompagnement-a-la-qualification/">Accompagnement à la qualification</a>, <a target="_blank" rel="noopener" title="Formations à la langue bretonne) - Nouvelle fenêtre"
+    href="https://www.bretagne.bzh/actions/langues-regionales/breton/se-former-langue-bretonne/">Formations à la langue bretonne</a>).
 conditions_generales:
   - type: age
     operator: ">="
     value: 18
   - type: age
     operator: <=
-    value: 25
+    value: 30
   - type: regions
     values:
       - "53"

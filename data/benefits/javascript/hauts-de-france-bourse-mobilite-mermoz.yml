@@ -30,10 +30,10 @@ profils:
 link: https://guide-aides.hautsdefrance.fr/dispositif997
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ2
 instructions: ""
-prefix: les
+prefix: la
 interestFlag: _interetEtudesEtranger
 type: float
-unit: null
+unit: €
 periodicite: mensuelle
 legend: par mois maximum
 montant: 400

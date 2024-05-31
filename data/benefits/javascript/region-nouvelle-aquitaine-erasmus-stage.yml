@@ -1,7 +1,7 @@
-label: erasmus+ Stage
+label: erasmus+ Stage - Étudiants
 institution: region_nouvelle_aquitaine
 description: La Région finance en partie la réalisation d'un stage professionnel
-  à l'étranger d'une durée de 2 à 12 mois.
+  à l'étranger d'une durée de 2 à 12 mois pour les étudiants.
 prefix: l’aide
 conditions_generales:
   - type: regions
@@ -25,4 +25,4 @@ periodicite: mensuelle
 legend: maximum
 montant: 520
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-public-post-bac-20222023?recherche=Erasmus%20%20Stage
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET2_22&state=0f968379-e0c0-4b64-acff-b086c61f80e1&login=true&scope=openid

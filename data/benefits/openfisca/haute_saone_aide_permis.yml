@@ -5,6 +5,7 @@ link: https://www.haute-saone.fr/index.php/nos-e-services/aides-aux-familles/pac
 conditions:
   - Être inscrit dans une auto-école en conduite accompagnée ou traditionnelle.
 teleservice: https://www.mes-services-publics70.fr/
+instructions: https://www.haute-saone.fr/uploads/Fiches-proce%CC%81dure-Pack-jeunes.pdf
 prefix: l’
 type: float
 unit: "€"

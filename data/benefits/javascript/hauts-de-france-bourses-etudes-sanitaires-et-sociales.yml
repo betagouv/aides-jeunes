@@ -1,8 +1,9 @@
 label: bourse d’Études Sanitaires et Sociales
 institution: hauts_de_france
-description: Cette aide de la Région des Hauts-de-France vise à soutenir
-  financièrement les étudiants et étudiantes qui préparent un diplôme du secteur sanitaire
-  et social.
+description:
+  Cette aide de la Région Hauts-de-France vise à inciter les jeunes et les demandeurs
+  d'emploi à se former dans les instituts et écoles de formation sanitaire et sociale en les soutenant
+  financièrement pendant leurs études.
 conditions:
   - Être inscrit ou inscrite dans un établissement de formation des travailleurs sociaux
     et professions de santé des Hauts-de-France agréé et financé par la Région.
@@ -13,19 +14,25 @@ conditions_generales:
   - type: regions
     values:
       - "32"
-  - type: formation_sanitaire_social
 profils:
   - type: etudiant
     conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
   - type: chomeur
     conditions: []
+  - type: inactif
+    conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667
-teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=BESS-01%2F22
+teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=BESS-23%2F24
 instructions: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=667
 prefix: la
 type: float
 unit: €
 periodicite: autre
 legend: maximum
-montant: 5676
+montant: 6335
 interestFlag: _interetAidesSanitaireSocial

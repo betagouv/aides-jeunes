@@ -1,7 +1,7 @@
-label: Erasmus+ Stage
+label: Erasmus+ Stage - Apprentis
 institution: region_nouvelle_aquitaine
-description: La Région finance en partie la réalisation d'un stage professionnel
-  à l'étranger d'une durée de 2 semaines à 6 mois.
+description: La Région finance en partie la réalisation d’un stage professionnel
+  à l'étranger d'une durée de 2 semaines à 6 mois pour les apprentis et les apprentis jeunes diplômés (maximum 12 mois après l’obtention du diplôme).
 prefix: l’aide
 conditions_generales:
   - type: regions
@@ -11,11 +11,13 @@ profils:
   - type: apprenti
     conditions: []
 conditions:
-  - Être inscrit ou inscrite en apprentissage niveau CAP, BEP ou baccalauréat dans un établissement d’enseignement et de formation
-    professionnelle faisant partie du Consortium régional.
+  - Être apprenti de niveau 3 et 4 inscrit dans un établissement d’enseignement
+    et de formation professionnelle de la Région Nouvelle-Aquitaine faisant partie
+    du Consortium régional durant l’année de mobilité ou être apprenti jeune diplômé
+    (maximum 12 mois après l’obtention du diplôme).
 interestFlag: _interetEtudesEtranger
 type: bool
 unit: €
 periodicite: ponctuelle
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/erasmus-stage-public-infra-bac
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-apprentis-23-24?recherche=erasmus&Jeunesse=Accompagnement%20scolaire____Apprentissage____Engagement%20et%20citoyennet%C3%A9____Enseignement%20sup%C3%A9rieur____Insertion%20professionnelle____Lyc%C3%A9es____Mobilit%C3%A9%20internationale____Orientation____Sanitaire%20et%20social____%C3%89ducation%20et%20formation&
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET6_23_24&state=0368ec5f-fcce-4b56-b627-3c691093744f&login=true&scope=openid

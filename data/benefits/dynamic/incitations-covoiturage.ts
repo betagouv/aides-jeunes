@@ -1,6 +1,6 @@
 import { Institution } from "../../../data/types/institutions.d.js"
 import { CoVoiturageBenefit } from "../../../data/types/benefits"
-import { capitalize, uncapitalize } from "../../../lib/utils"
+import { capitalize, uncapitalize } from "../../../lib/utils.js"
 
 export function buildIncitationsCovoiturage(
   institutions: Institution[]

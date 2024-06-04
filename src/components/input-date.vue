@@ -89,6 +89,7 @@ export default {
           : "01",
       month: this.modelValue && dayjs.utc(this.modelValue).format("MM"),
       year: this.modelValue && dayjs.utc(this.modelValue).format("YYYY"),
+      error: false,
     }
   },
   computed: {
@@ -133,6 +134,10 @@ export default {
         return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
       }
     },
+    isDateFormat: function (date) {
+      const regex = /^\d{4}-\d{2}-\d{2}$/
+      return regex.test(date)
+    },
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {
@@ -148,7 +153,10 @@ export default {
       ) {
         this.$emit("update:modelValue", dt.toDate())
       } else {
-        this.$emit("update:modelValue", undefined)
+        this.$emit(
+          "update:modelValue",
+          this.isDateFormat(this.date) ? "unvalid" : undefined
+        )
       }
     },
   },

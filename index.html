@@ -9,13 +9,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <base href="/" />
     <meta name="description" content="<%= VITE_DESCRIPTION %>" />
-    <meta name="thumbnail" content="/img/Twitter_1024x512.png" />
-    <meta property="twitter:image" content="/img/Twitter_1024x512.png" />
+    <meta
+      name="thumbnail"
+      content="/img/<%= VITE_CONTEXT_NAME %>/Twitter_1024x512.png"
+    />
+    <meta
+      property="twitter:image"
+      content="/img/<%= VITE_CONTEXT_NAME %>/Twitter_1024x512.png"
+    />
 
     <!-- Specific Open Graph meta tags -->
     <meta property="og:title" content="<%= VITE_TITLE %>" />
     <meta property="og:description" content="<%= VITE_DESCRIPTION %>" />
-    <meta property="og:image" content="/img/Twitter_1024x512.png" />
+    <meta
+      property="og:image"
+      content="/img/<%= VITE_CONTEXT_NAME %>/Twitter_1024x512.png"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= VITE_BASE_URL %>" />
     <meta
@@ -38,13 +47,13 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="img/favicon/favicon-16x16.png"
+      href="img/<%= VITE_CONTEXT_NAME %>/favicon/favicon-16x16.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="img/favicon/android-chrome-192x192.png"
+      href="img/<%= VITE_CONTEXT_NAME %>/favicon/android-chrome-192x192.png"
     />
     <meta
       name="apple-mobile-web-app-title"

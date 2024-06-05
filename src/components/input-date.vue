@@ -133,10 +133,6 @@ export default {
         return to.length == 2 ? to.slice(-1) != from.slice(-1) : false
       }
     },
-    isDateFormat: function (date) {
-      const regex = /^\d{4}-\d{2}-\d{2}$/
-      return regex.test(date)
-    },
     emit: function ($event) {
       let value = new Date($event.target.value)
       if (value) {
@@ -154,7 +150,7 @@ export default {
       } else {
         this.$emit(
           "update:modelValue",
-          this.isDateFormat(this.date) ? "unvalid" : undefined
+          this.date.match(/^\d{4}-\d{2}-\d{2}$/) ? "wrong-date" : undefined
         )
       }
     },

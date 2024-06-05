@@ -198,7 +198,7 @@ export default {
           !isNaN(this.value))
 
       let message = "Ce champ est obligatoire."
-      if (this.questionType === "date" && this.value === "unvalid") {
+      if (this.questionType === "date" && this.value === "wrong-date") {
         hasError = true
         message = "La date saisie est incorrecte."
       }

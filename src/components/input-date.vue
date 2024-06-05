@@ -89,7 +89,6 @@ export default {
           : "01",
       month: this.modelValue && dayjs.utc(this.modelValue).format("MM"),
       year: this.modelValue && dayjs.utc(this.modelValue).format("YYYY"),
-      error: false,
     }
   },
   computed: {

@@ -1,6 +1,7 @@
 label: Pass’Sport
 institution: etat
-description: Le pass Sport est une aide de 50 euros qui permet de financer une partie
+description:
+  Le pass Sport est une aide de 50 euros qui permet de financer une partie
   de votre inscription sportive. Il est valable dans plus de <a
   target="_blank" title="Trouver un club - Nouvelle fenêtre"
   rel="noopener"

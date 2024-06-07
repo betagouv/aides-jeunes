@@ -1,5 +1,4 @@
 import { submit } from "./form.js"
-import storageService from "@/lib/storage-service"
 
 const wait = () => {
   cy.wait("@results")
@@ -12,7 +11,7 @@ const back = () => cy.get('[data-testid="back-button"]').click()
 const IdentifyBenefit = (id, name) => {
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
+    { timeout: 10000 },
   ).as(`${id}-summary`)
   cy.checkA11y()
   getBenefitSummary(id)
@@ -30,7 +29,7 @@ const hasBafaGroupPreviewBenefit = (mustBeDisplay) => {
   } else {
     cy.get(
       `[itemtype="http://schema.org/GovernmentService"][data-testid="${bafaGroupPreviewId}"]`,
-      { timeout: 10000 }
+      { timeout: 10000 },
     ).should("not.exist")
   }
 }
@@ -71,11 +70,11 @@ const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="lieu-title"]').should(
     "contain",
-    "Caisse d'allocations familiales"
+    "Caisse d'allocations familiales",
   )
   cy.get('[data-testid="lieu-informations-link"]').should(
     "contain",
-    "Voir les informations"
+    "Voir les informations",
   )
 }
 
@@ -206,7 +205,7 @@ const hasVeloGroupPreviewBenefit = (mustBeDisplay) => {
   } else {
     cy.get(
       `[itemtype="http://schema.org/GovernmentService"][data-testid="${veloGroupPreviewId}"]`,
-      { timeout: 10000 }
+      { timeout: 10000 },
     ).should("not.exist")
   }
 }
@@ -236,7 +235,6 @@ const receiveResultsEmail = () => {
 
   const email = "prenom.nom@beta.gouv.fr"
   cy.get("input#email").should("be.visible").type(email)
-  cy.get("input#phone").should("not.exist") //TODO SUPPRIMER APRES ROLLBACK PR
   cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
     .should("be.visible")
     .click()
@@ -268,7 +266,7 @@ const receiveResultsSms = () => {
         surveyOptin: true,
         phone: "0600000000",
       },
-    }
+    },
   ).as("post-receive-results-sms")
 
   cy.get("[data-testid='send-email-and-sms-button']", {
@@ -292,7 +290,7 @@ const checkResultsRequests = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     cy.writeFile(
       `cypress/payloads/${Cypress.spec.fileName}-simulation.json`,
-      response.body
+      response.body,
     )
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)

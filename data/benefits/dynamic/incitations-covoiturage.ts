@@ -59,16 +59,18 @@ export function buildIncitationsCovoiturage(
           ? uncapitalize(b.institution?.label)
           : b.institution?.label
 
+      const operateur =
+        (!b.nom_plateforme
+          ? ` ` + b.operateurs
+          : b.nom_plateforme + ` , opérée par ` + b.operateurs) + `.`
+
       return {
         label: `Incitation au covoiturage ${prefixTitle}${institutionLabel}`,
         type: "bool",
         description:
           `${capitalize(prefixSansDe)}${institutionLabel}
-          subventionne tous vos trajets réservés depuis l’application` +
-          (!b.nom_plateforme || b.operateurs === b.nom_plateforme
-            ? ` ` + b.operateurs
-            : b.nom_plateforme + ` , opérée par ` + b.operateurs) +
-          `.` +
+          subventionne tous vos trajets réservés depuis l’application ` +
+          operateur +
           gainConducteur +
           `Vous êtes passagère ou passager ? Bénéficiez de ${
             b.passager_trajets_max_par_mois / 30
@@ -78,8 +80,8 @@ export function buildIncitationsCovoiturage(
           "-"
         )}-incitations-covoiturage-eligibilite`,
         conditions: [
-          `Télécharger l'application mobile, opérée par ${b.operateurs}.`,
-          `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée ${prefixFormat} ${b.institution?.label} ${b.institution?.label}.`,
+          `Télécharger l'application mobile ${operateur}`,
+          `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée ${prefixTitle} ${b.institution?.label}.`,
           `Effectuer un trajet dont la distance est comprise entre ${b.trajet_longueur_min} et ${b.trajet_longueur_max} kilomètres.`,
         ],
         institution: b.institution?.slug,

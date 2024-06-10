@@ -30,7 +30,7 @@ conditions:
 type: float
 unit: €
 periodicite: ponctuelle
-legend: € à 10 € par 1/2 journée
+legend: à 10 € par 1/2 journée
 montant: 2
 link: https://www.mairie-vannes.fr/ticket-sport-culture-et-nature
 teleservice: https://www.espace-citoyens.net/vannesetvous/espace-citoyens/

@@ -1,6 +1,7 @@
 label: Domiciliation des personnes sans domicile stable
 institution: etat
-description: La domiciliation est la première porte d’entrée vers l’accès aux droits.
+description:
+  La domiciliation est la première porte d’entrée vers l’accès aux droits.
   Elle permet en effet à des personnes qui n’ont pas de domicile stable de disposer
   d’un justificatif de domicile et d’une adresse pour recevoir du courrier et bénéficier
   des aides et prestations sociales auxquelles elles peuvent prétendre, telles que

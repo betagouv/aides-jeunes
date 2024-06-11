@@ -1,5 +1,4 @@
 import { submit } from "./form.js"
-import storageService from "@/lib/storage-service"
 
 const wait = () => {
   cy.wait("@results")
@@ -236,7 +235,6 @@ const receiveResultsEmail = () => {
 
   const email = "prenom.nom@beta.gouv.fr"
   cy.get("input#email").should("be.visible").type(email)
-  cy.get("input#phone").should("not.exist") //TODO SUPPRIMER APRES ROLLBACK PR
   cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
     .should("be.visible")
     .click()

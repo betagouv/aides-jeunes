@@ -1,0 +1,33 @@
+label: aide aux vacances pour les enfants (ave)
+institution: caf_paris
+description:
+  La Caf de Paris favorise le départ en vacances des enfants de ses allocataires
+  en contribuant aux frais de leur séjour avec les partenaires agréés Vacaf.
+  Le montant de l'aide dépend du quotient familial, avec un bonus pour les enfants
+  bénéficiaires de l'aeeh. L’aide est équivalente à une participation financière journalière
+  allant de 15 € à 60 € par jour et par enfant.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "75"
+  - type: quotient_familial
+    value: 700
+    operator: "<="
+    period: month
+profils:
+  - type: parent
+conditions:
+  - Avoir des enfants âgés de 3 à 17 ans.
+  - Être allocataire de la Caf de Paris.
+  - Choisir le séjour de votre enfant parmi les centres de vacances labellisés Vacaf dans toute la France sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
+  - Réserver entre 4 nuitée (2 jours) et 14 nuitées (15 jours) maximum du départ au retour inclus.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: par jour et par enfant maximum
+montant: 60
+link: https://www.caf.fr/allocataires/caf-de-paris/offre-de-service/vie-personnelle/aide-aux-vacances-enfants-ave

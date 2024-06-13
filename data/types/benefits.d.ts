@@ -38,12 +38,12 @@ export interface VeloBenefit extends Aide {
 
 export interface CoVoiturageBenefit {
   id: string
-  institution?: string
+  institution: string
   source?: string
   periodicite?: string
   description: string
   label: string
-  conditions: any[]
+  conditions: string[]
   prefix: string
   type: string
   link: string

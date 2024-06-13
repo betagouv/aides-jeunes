@@ -2,7 +2,7 @@ label: aide aux vacances en famille (AVF)
 institution: caf_paris
 description:
   La Caf de Paris propose une aide financière à ses allocataires pour partir en vacances en famille.
-  Le montant de l'aide dépend du quotient familial et du nombre d'enfants avec un bonus pour les bénéficiaires de l'aeeh.
+  Le montant de l’aide dépend du quotient familial et du nombre d’enfants avec un bonus pour les bénéficiaires de l’allocation d’éducation de l’enfant handicapé (AEEH).
 prefix: l’
 conditions_generales:
   - type: departements

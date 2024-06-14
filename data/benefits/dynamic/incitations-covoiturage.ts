@@ -1,7 +1,7 @@
 import { Institution } from "../../../data/types/institutions.d.js"
 import { CoVoiturageBenefit } from "../../../data/types/benefits"
 import { capitalize, uncapitalize } from "../../../lib/utils.js"
-import benefitsJSON from "./incitations-covoiturage.json" assert { type: "json" }
+import benefits from "./incitations-covoiturage.json" assert { type: "json" }
 
 export function buildIncitationsCovoiturage(
   institutions: Institution[]
@@ -100,18 +100,3 @@ export function buildIncitationsCovoiturage(
     throw error
   }
 }
-
-const benefits: {
-  code_siren: string
-  link: string
-  nom_plateforme: string
-  operateurs: string
-  institution?: Institution
-  zone_sens_des_trajets: string
-  conducteur_montant_max_par_mois?: number
-  conducteur_montant_min_par_passager?: number
-  conducteur_montant_max_par_passager?: number
-  trajet_longueur_min: number
-  trajet_longueur_max: number
-  passager_trajets_max_par_mois: number
-}[] = benefitsJSON

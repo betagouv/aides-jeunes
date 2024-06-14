@@ -15,12 +15,13 @@ async function main() {
   const user = await gristAPI.getConnectedUser()
   console.log(`Connected as ${user.name}.`)
 
-  const incitationsCovoiturages = await gristAPI.get({
-    passager_gratuite: ["Oui"],
-    passager_eligible_gratuite: ["Tous"],
-    passager_montant_ticket: ["Gratuit%C3%A9"],
-    Expire: ["false"],
-  })
+  const incitationsCovoiturages: GristIncitationsCoVoiturageResponse =
+    await gristAPI.get({
+      passager_gratuite: ["Oui"],
+      passager_eligible_gratuite: ["Tous"],
+      passager_montant_ticket: ["Gratuit%C3%A9"],
+      Expire: ["false"],
+    })
 
   const resultatJson = incitationsCovoiturages.records.map((record) => {
     const row = record.fields

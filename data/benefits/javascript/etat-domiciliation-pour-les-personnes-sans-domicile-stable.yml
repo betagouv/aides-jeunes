@@ -9,7 +9,7 @@ description:
 prefix: la
 conditions_generales:
   - type: statut_occupation_logement
-    value:
+    includes:
       - sans_domicile
 profils: []
 conditions:

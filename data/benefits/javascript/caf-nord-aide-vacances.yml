@@ -1,10 +1,10 @@
 label: aides aux vacances
 institution: caf_nord
-description:
-  Les Caf du Nord propose deux aides financières à ses allocataires pour partir en vacances.
-  L'aide aux vacances familiales (avf) permet de profiter d'un séjour en famille et l'aide aux vacances
-  enfants (ave) favorise le départ des enfants en colonies de vacances. Le montant de l'aide dépend du
-  quotient familial et du nombre d'enfants avec un bonus pour les bénéficiaires de l'aeeh.
+description: La Caf du Nord propose deux aides financières à ses allocataires.
+  L’aide aux vacances familiales (AVF) permet de profiter d’un séjour en famille et l’aide aux vacances
+  enfants (AVE) favorise le départ des enfants en colonies de vacances. Le montant de l’aide dépend du
+  quotient familial et du nombre d’enfants avec un bonus pour les bénéficiaires de l’allocation
+  d’éducation de l’enfant handicapé (AEEH).
 prefix: les
 conditions_generales:
   - type: departements
@@ -14,11 +14,12 @@ conditions_generales:
     value: 850
     operator: "<="
     period: month
-profils: []
+profils:
+  - type: parent
 conditions:
-  - Avoir au moins un enfant à charge né après le 1er janvier 2007.
-  - Etre allocataire de la Caf du Nord.
-  - Choisir votre séjour familiale ou le séjour de votre enfant sur <a
+  - Avoir au moins un enfant à charge.
+  - Être allocataire de la Caf du Nord.
+  - Choisir votre séjour familial ou le séjour de votre enfant sur <a
     target="_blank" title="Liste des séjours - Nouvelle fenêtre"
     rel="noopener"
     href="https://www.vacaf.org/">vacaf.org</a>.

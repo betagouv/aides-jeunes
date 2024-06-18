@@ -1,3 +1,32 @@
+<script setup lang="ts">
+import { ref, computed } from "vue"
+import { generateBlocks } from "@lib/state/blocks.js"
+import StepView from "@/components/step-view.vue"
+
+const conjoint = ref(false)
+const enfants = ref(false)
+
+const steps = computed(() => {
+  return generateBlocks({
+    demandeur: { id: "demandeur" },
+    conjoint: conjoint.value ? { id: "conjoint" } : undefined,
+    enfants: enfants.value
+      ? [{ id: "enfant_0", enfant_a_charge: {} }]
+      : undefined,
+  })
+})
+
+function counter(steps) {
+  return steps
+    .map((step) => (step.steps ? counter(step.steps) : 1))
+    .reduce((a, v) => a + v, 0)
+}
+
+const s_counter = (steps) => {
+  return counter(steps)
+}
+</script>
+
 <template>
   <article class="fr-article">
     <h1>Détails du parcours</h1>
@@ -42,46 +71,3 @@
     </div>
   </article>
 </template>
-
-<script>
-import { ref } from "vue"
-import { useStore } from "@/stores/index.ts"
-import { generateBlocks } from "@/../lib/state/blocks.ts"
-import StepView from "@/components/step-view.vue"
-
-function counter(steps) {
-  return steps
-    .map((s) => (s.steps ? counter(s.steps) : 1))
-    .reduce((a, v) => a + v, 0)
-}
-
-export default {
-  name: "Parcours",
-  components: {
-    StepView,
-  },
-  setup() {
-    return {
-      store: useStore(),
-      conjoint: ref(false),
-      enfants: ref(false),
-    }
-  },
-  computed: {
-    steps() {
-      return generateBlocks({
-        demandeur: { id: "demandeur" },
-        conjoint: this.conjoint ? { id: "conjoint" } : undefined,
-        enfants: this.enfants
-          ? [{ id: "enfant_0", enfant_a_charge: {} }]
-          : undefined,
-      })
-    },
-  },
-  methods: {
-    s_counter(steps) {
-      return counter(steps)
-    },
-  },
-}
-</script>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { ref, computed, ComputedRef } from "vue"
 import { generateBlocks } from "@lib/state/blocks.js"
 import StepView from "@/components/step-view.vue"
+import { Block } from "@lib/types/blocks"
 
 const conjoint = ref(false)
 const enfants = ref(false)
 
-const steps = computed(() => {
+const blocks: ComputedRef<Block[]> = computed(() => {
   return generateBlocks({
     demandeur: { id: "demandeur" },
     conjoint: conjoint.value ? { id: "conjoint" } : undefined,
@@ -16,15 +17,13 @@ const steps = computed(() => {
   })
 })
 
-function counter(steps) {
-  return steps
-    .map((step) => (step.steps ? counter(step.steps) : 1))
-    .reduce((a, v) => a + v, 0)
+function recursiveStepCounter(steps): number {
+  return steps.reduce((total, step) => {
+    return total + (step.steps ? recursiveStepCounter(step.steps) : 1)
+  }, 0)
 }
 
-const s_counter = (steps) => {
-  return counter(steps)
-}
+const totalSteps = computed(() => recursiveStepCounter(blocks.value))
 </script>
 
 <template>
@@ -33,8 +32,8 @@ const s_counter = (steps) => {
     <h2>Informations</h2>
     <div>
       <div>
-        {{ steps.length }} blocs de premier niveau -
-        {{ s_counter(steps) }} étapes au total
+        {{ blocks.length }} blocs de premier niveau - {{ totalSteps }} étapes au
+        total
       </div>
       <div>
         <span class="fr-icon-question-line" aria-hidden="true" />
@@ -45,7 +44,6 @@ const s_counter = (steps) => {
           id="conjoint"
           v-model="conjoint"
           type="checkbox"
-          checked="true"
           value="conjoint"
         />
         <label for="conjoint" class="fr-label">
@@ -53,13 +51,7 @@ const s_counter = (steps) => {
         </label>
       </div>
       <div class="fr-checkbox-group">
-        <input
-          id="enfants"
-          v-model="enfants"
-          type="checkbox"
-          checked="true"
-          value="enfants"
-        />
+        <input id="enfants" v-model="enfants" type="checkbox" value="enfants" />
         <label for="enfants" class="fr-label"
           >Ajouter les questions lorsque qu'il y a un enfant dans la famille.
         </label>
@@ -67,7 +59,11 @@ const s_counter = (steps) => {
     </div>
     <h2>Étapes</h2>
     <div>
-      <StepView v-for="step in steps" :key="step" :step="step" />
+      <StepView
+        v-for="(block, index) in blocks"
+        :key="`block-${index}`"
+        :step="block"
+      />
     </div>
   </article>
 </template>

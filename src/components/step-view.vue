@@ -11,23 +11,26 @@ const props = defineProps({
 })
 
 const open = ref(false)
-const itemCount = computed(() => counter(props.step))
+const totalSubSteps = computed(() => countSubSteps(props.step))
 const nextStep = computed(() => getNextStep(props.step))
-const isLeafNode = computed(() => itemCount.value === 1)
+const isLeafNode = computed(() => totalSubSteps.value === 1)
 const buttonLabel = computed(() =>
   isLeafNode.value ? "" : open.value ? "-" : "+"
 )
-
-const label = computed(() => {
-  const count = itemCount.value
+const label = computed((): string => {
+  const count = totalSubSteps.value
   return `${nextStep.value}${count > 1 ? `(+${count - 1})` : ""}`
 })
 
-const counter = (step) => {
-  return step.steps ? step.steps.map(counter).reduce((a, v) => a + v, 0) : 1
+const countSubSteps = (step): number => {
+  if (step.steps) {
+    const subStepCounts = step.steps.map(countSubSteps)
+    return subStepCounts.reduce((total, count) => total + count, 0)
+  }
+  return 1
 }
 
-const getNextStep = (step) => {
+const getNextStep = (step): any => {
   return step.path || (step.steps ? getNextStep(step.steps[0]) : "")
 }
 

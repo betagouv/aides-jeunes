@@ -15,7 +15,7 @@ const totalSubSteps = computed(() => countSubSteps(props.step))
 const nextStep = computed(() => getNextStep(props.step))
 const isLeafNode = computed(() => totalSubSteps.value === 1)
 const buttonLabel = computed(() =>
-  isLeafNode.value ? "" : open.value ? "-" : "+"
+  isLeafNode.value ? " " : open.value ? "-" : "+"
 )
 const label = computed((): string => {
   const count = totalSubSteps.value
@@ -40,40 +40,26 @@ const toggleOpen = () => {
 </script>
 
 <template>
-  <div class="step">
+  <div class="fr-my-1v">
     <button
       :disabled="isLeafNode"
-      class="fr-btn fr-btn--secondary"
+      class="fr-btn fr-btn--secondary fr-grid-row--center aj-step-button"
       @click="toggleOpen"
     >
       {{ buttonLabel }}
     </button>
     <span
-      :class="!step?.isActive && 'hidden'"
-      class="fr-icon-question-line"
+      :class="['fr-icon-question-line', { 'aj-hidden': !step?.isActive }]"
       aria-hidden="true"
-    />
-    {{ label }}
-
+    ></span>
+    <span> {{ label }}</span>
     <div v-if="open">
       <StepView
         v-for="(substep, index) in step.steps"
         :key="index"
         :step="substep"
+        class="fr-ml-3w"
       />
     </div>
   </div>
 </template>
-
-<style scoped>
-.step {
-  padding-left: 1em;
-}
-button {
-  min-width: 50px;
-  justify-content: center;
-}
-.hidden {
-  visibility: hidden;
-}
-</style>

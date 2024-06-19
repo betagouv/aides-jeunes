@@ -30,16 +30,16 @@ const totalSteps = computed(() => recursiveStepCounter(blocks.value))
   <article class="fr-article">
     <h1>Détails du parcours</h1>
     <h2>Informations</h2>
-    <div>
-      <div>
+    <div class="fr-ml-1w">
+      <div class="fr-my-1w">
         {{ blocks.length }} blocs de premier niveau - {{ totalSteps }} étapes au
         total
       </div>
       <div>
-        <span class="fr-icon-question-line" aria-hidden="true" />
+        <span class="fr-icon-question-line fr-my-1w" aria-hidden="true" />
         indique une question affichée de façon conditionnelle.
       </div>
-      <div class="fr-checkbox-group">
+      <div class="fr-checkbox-group fr-my-1w">
         <input
           id="conjoint"
           v-model="conjoint"
@@ -47,18 +47,18 @@ const totalSteps = computed(() => recursiveStepCounter(blocks.value))
           value="conjoint"
         />
         <label for="conjoint" class="fr-label">
-          Ajouter les questions lorsque que la personne est en couple.
+          Ajouter les questions lorsqu'on est en couple.
         </label>
       </div>
-      <div class="fr-checkbox-group">
+      <div class="fr-checkbox-group fr-my-1w">
         <input id="enfants" v-model="enfants" type="checkbox" value="enfants" />
         <label for="enfants" class="fr-label"
-          >Ajouter les questions lorsque qu'il y a un enfant dans la famille.
+          >Ajouter les questions lorsqu'il y a un enfant dans la famille.
         </label>
       </div>
     </div>
     <h2>Étapes</h2>
-    <div>
+    <div class="fr-ml-1w">
       <StepView
         v-for="(block, index) in blocks"
         :key="`block-${index}`"

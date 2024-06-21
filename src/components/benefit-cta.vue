@@ -27,6 +27,13 @@ const ctaTeleservicePrefill = computed(() => {
   )
 })
 
+const ctaTeleserviceSupport = computed(() => {
+  return (
+    !ctaTeleservice.value &&
+    ctas.value.find((cta) => cta?.type === CTALabel.TeleserviceSupport)
+  )
+})
+
 const ctaInstructions = computed(() => {
   return ctas.value.find((cta) => cta?.type === CTALabel.Instructions)
 })
@@ -37,6 +44,7 @@ const ctas = computed(() => {
     CTALabel.Form,
     CTALabel.Instructions,
     CTALabel.TeleservicePrefill,
+    CTALabel.TeleserviceSupport,
   ]
 
   return ctaBehaviourTypes
@@ -63,7 +71,12 @@ const ctas = computed(() => {
     <h5 class="fr-h5">Comment l'obtenir ?</h5>
     <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">
       <div
-        v-if="ctaTeleservice || ctaTeleservicePrefill || ctaForm"
+        v-if="
+          ctaTeleservice ||
+          ctaTeleservicePrefill ||
+          ctaTeleserviceSupport ||
+          ctaForm
+        "
         class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
       >
         <BenefitCtaLink
@@ -72,6 +85,14 @@ const ctas = computed(() => {
           :benefit="benefit"
           :link="ctaTeleservice.link"
           :type="ctaTeleservice.type"
+          class="fr-btn fr-btn--sm"
+        />
+        <BenefitCtaLink
+          v-if="ctaTeleserviceSupport"
+          :analytics-name="benefit.id"
+          :benefit="benefit"
+          :link="ctaTeleserviceSupport.link"
+          :type="ctaTeleserviceSupport.type"
           class="fr-btn fr-btn--sm"
         />
         <BenefitCtaLink

@@ -3,4 +3,5 @@ export enum CTALabel {
   Instructions = "instructions",
   Teleservice = "teleservice",
   TeleservicePrefill = "teleservicePrefill",
+  TeleserviceSupport = "teleserviceSupport",
 }

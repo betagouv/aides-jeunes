@@ -65,6 +65,7 @@ export interface JavascriptBenefit {
   }
   source?: string
   teleservicePrefill?: string
+  teleserviceSupport?: string
 }
 
 export interface StandardBenefit {
@@ -113,6 +114,7 @@ export interface StandardBenefit {
   collectivity: any
   title: string
   teleservicePrefill?: string
+  teleserviceSupport?: string
   showUnexpectedAmount?: boolean
   groupLabel?: string
 }

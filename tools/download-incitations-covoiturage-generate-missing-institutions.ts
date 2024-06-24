@@ -1,6 +1,7 @@
 import { Grist } from "../lib/grist"
 import fs from "fs"
 import path from "path"
+const __dirname = new URL(".", import.meta.url).pathname
 
 async function main() {
   if (!process.env.GRIST_DOC_COVOITURAGE_ID) {
@@ -62,7 +63,7 @@ async function main() {
   )
   if (!duplicateRow.length) {
     const incitationJson = path.join(
-      ".",
+      __dirname,
       "../data/benefits/dynamic/incitations-covoiturage.json"
     )
 

@@ -3,7 +3,7 @@ import { CoVoiturageBenefit } from "../../../data/types/benefits"
 import { capitalize, uncapitalize } from "../../../lib/utils.js"
 import benefits from "./incitations-covoiturage.json" assert { type: "json" }
 
-export function buildIncitationsCovoiturage(
+export default function buildIncitationsCovoiturage(
   institutions: Institution[]
 ): CoVoiturageBenefit[] {
   try {

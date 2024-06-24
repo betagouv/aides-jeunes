@@ -2,7 +2,7 @@ import { additionalBenefitAttributes } from "./benefits/additional-attributes/in
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
-import { buildIncitationsCovoiturage } from "./benefits/dynamic/incitations-covoiturage.js"
+import buildIncitationsCovoiturage from "./benefits/dynamic/incitations-covoiturage.js"
 
 import { Jamstack } from "./types/jamstack.d.js"
 import {
@@ -95,9 +95,10 @@ export function generate(
 
   const fslBenefits = fslGenerator ? fslGenerator() : []
   const apaBenefits = apaGenerator ? apaGenerator() : []
-  const incitationsCovoiturageBenefits = incitationsCovoiturageGenerator
-    ? incitationsCovoiturageGenerator(institutionsValues)
-    : []
+  const incitationsCovoiturageBenefits =
+    incitationsCovoiturageGenerator instanceof Function
+      ? incitationsCovoiturageGenerator(institutionsValues)
+      : []
 
   const benefitsCollections = [
     ...collections.benefits_javascript.items,

@@ -1,6 +1,4 @@
 import axios from "axios"
-import { GristResponse } from "./types/link-validity.js"
-
 const baseURL = "grist.incubateur.net"
 const tableId = "Veille"
 
@@ -25,23 +23,15 @@ export function Grist(docId, apiKey) {
       if (filter) {
         url += "?filter=" + JSON.stringify(filter)
       }
-      const response = await axios.get<GristResponse>(url, gristConfig)
+      const response = await axios.get(url, gristConfig)
       return response.data
     },
     add: async (records) => {
-      const response = await axios.post<GristResponse>(
-        recordsUrl,
-        { records },
-        gristConfig
-      )
+      const response = await axios.post(recordsUrl, { records }, gristConfig)
       return response.data
     },
     update: async (records) => {
-      const response = await axios.patch<GristResponse>(
-        recordsUrl,
-        { records },
-        gristConfig
-      )
+      const response = await axios.patch(recordsUrl, { records }, gristConfig)
       return response.data
     },
   }

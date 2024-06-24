@@ -36,6 +36,7 @@
     "tools:create-temp-smtp-server": "node --loader ts-node/esm ./tools/create-temp-smtp-server.ts",
     "tools:evaluate-benefits": "node --loader ts-node/esm ./tools/evaluate-benefits",
     "tools:generate-missing-institutions-aides-velo": "node --loader ts-node/esm ./tools/generate-missing-institutions-aides-velo",
+    "tools:download-incitations-covoiturage-generate-missing-institutions": "node --loader ts-node/esm ./tools/download-incitations-covoiturage-generate-missing-institutions",
     "tools:generate-mongo-stats": "node --loader ts-node/esm ./tools/mongo-query.ts",
     "tools:geographical-benefits-details": "node --loader ts-node/esm ./tools/geographical-benefits-details",
     "tools:get-all-steps": "node --loader ts-node/esm ./tools/get-all-steps",

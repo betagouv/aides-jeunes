@@ -1,6 +1,18 @@
 label: Pass’Sport
 institution: etat
-description: Le Pass’Sport est une déduction pour l’inscription dans un club sportif. Ce coupon de déduction est personnel et n'est utilisable qu’une seule fois auprès de la structure de votre choix parmi celles éligibles. Le Pass’Sport est une aide cumulable avec les autres aides mises en place notamment par les collectivités.
+description:
+  Le pass Sport est une aide de 50 euros qui permet de financer une partie
+  de votre inscription sportive. Il est valable dans plus de <a
+  target="_blank" title="Trouver un club - Nouvelle fenêtre"
+  rel="noopener"
+  href="https://pass.sports.gouv.fr/v2/trouver-un-club">85 000 clubs et salles de sport partenaires</a>.
+  C'est une aide individuelle et à usage unique, cumulable avec les autres aides mises en place notamment par les collectivités.
+conditions:
+  - Vérifier votre boîte e-mail connue des caisses vous délivrant des prestations sociales (CAF, CROUS ou MSA) pour trouver votre pass Sport.
+  - Consulter la <a
+    target="_blank" title="FAQ - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://pass.sports.gouv.fr/v2/une-question">Foire aux Questions du pass'Sport</a>.
 link: https://pass.sports.gouv.fr
 instructions: https://pass.sports.gouv.fr/obtenir-mon-code/
 prefix: le

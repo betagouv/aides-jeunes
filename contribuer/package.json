@@ -7,7 +7,6 @@
     "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "export": "npm run build && next export",
     "prettier": "prettier --write .",
     "lint-staged": "prettier --write"
   },
@@ -17,7 +16,7 @@
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
     "netlify-identity-widget": "^1.9.2",
-    "next": "13.5.4",
+    "next": "14.2.4",
     "prettier": "^3.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"

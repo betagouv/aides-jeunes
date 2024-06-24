@@ -7,10 +7,10 @@ prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
-    value: 18
+    value: 17
   - type: age
     operator: <
-    value: 19
+    value: 18
   - type: regions
     values:
       - "84"

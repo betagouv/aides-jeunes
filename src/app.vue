@@ -12,15 +12,14 @@ import context from "@/context/index.js"
 import { useIframeStore } from "@/stores/iframe.js"
 import { useThemeStore } from "@/stores/theme.js"
 
-const { BaseLayout, MesAidesLayout } = context
+const { Layout } = context
 
 export default {
   name: "App",
   components: {
     BandeauDemo,
-    BaseLayout,
     iFrameLayout,
-    MesAidesLayout,
+    Layout,
   },
   setup() {
     const iframeStore = useIframeStore()
@@ -32,9 +31,7 @@ export default {
   },
   computed: {
     layout: function () {
-      return this.iframeStore.inIframe
-        ? "iFrameLayout"
-        : (process.env.VITE_LAYOUT as string)
+      return this.iframeStore.inIframe ? "iFrameLayout" : "Layout"
     },
   },
   mounted() {

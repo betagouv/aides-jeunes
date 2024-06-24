@@ -1,5 +1,4 @@
 import { submit } from "./form.js"
-import storageService from "@/lib/storage-service"
 
 const wait = () => {
   cy.wait("@results")
@@ -236,7 +235,6 @@ const receiveResultsEmail = () => {
 
   const email = "prenom.nom@beta.gouv.fr"
   cy.get("input#email").should("be.visible").type(email)
-  cy.get("input#phone").should("not.exist") //TODO SUPPRIMER APRES ROLLBACK PR
   cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
     .should("be.visible")
     .click()
@@ -249,9 +247,18 @@ const receiveResultsEmail = () => {
   cy.get('[data-testid="simulation-id"')
     .invoke("text")
     .then((simulationId) => {
-      cy.task("getLastEmail", email)
-        .its("headers.subject")
-        .should("includes", simulationId)
+      cy.url().then((url) => {
+        if (url.includes("localhost")) {
+          // skip this test on localhost
+          // todo : implement a solution for testing this feature locally
+          return
+        } else {
+          // Works on CI only
+          cy.task("getLastEmail", email)
+            .its("headers.subject")
+            .should("includes", simulationId)
+        }
+      })
     })
 }
 

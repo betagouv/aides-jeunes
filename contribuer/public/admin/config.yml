@@ -745,6 +745,18 @@ fields:
             collapsed: false
             types:
               - *field_age
+      - label: Parent
+        name: parent
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: []
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
   field_private_benefit: &field_private_benefit
     label: Masquer l'aide
     name: private

@@ -10,7 +10,8 @@ conditions_generales:
     operator: <
     period: year
     value: 1500
-profils: []
+profils:
+  - type: parent
 conditions:
   - Avoir un enfant dont lʼannée de naissance est 2013.
   - Consulter le catalogue des colos disponibles et contacter lʼorganisateur.

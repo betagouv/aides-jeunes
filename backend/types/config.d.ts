@@ -1,6 +1,7 @@
 export interface Configuration {
   env: string
   baseURL: string
+  contextName: string
   accompagnement: {
     path: string
     unauthorizedPath: string

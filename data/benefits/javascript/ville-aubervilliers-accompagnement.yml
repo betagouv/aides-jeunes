@@ -11,6 +11,7 @@ conditions_generales:
       - "93001"
 type: bool
 periodicite: autre
-teleservice: https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers
+teleserviceSupport: https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers
+mailSupport: simon.hamery@beta.gouv.fr # ccas@mairie-aubervilliers.fr
 link: https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers
 top: -1

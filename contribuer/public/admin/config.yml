@@ -794,6 +794,9 @@ fields:
   field_teleservice_prefill: &field_teleservice_prefill
     name: teleservicePrefill
     widget: hidden
+  field_teleservice_support: &field_teleservice_support
+    name: teleserviceSupport
+    widget: hidden
   # champs propre aux aides javascript
   field_general_conditions: &field_general_conditions
     label: Conditions générales à satisfaire simultanément

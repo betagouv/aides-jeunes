@@ -22,6 +22,10 @@ const labels = {
     short: "Faire une demande pré-remplie en ligne",
     long: "Faire une demande pré-remplie en ligne pour",
   },
+  teleserviceSupport: {
+    short: "Se faire accompagner par téléphone",
+    long: "Se faire accompagner par téléphone",
+  },
   form: {
     short: "Accéder au formulaire papier",
     long: "Accéder au formulaire papier pour",
@@ -65,16 +69,24 @@ const getURL = (link) => {
 }
 
 const onClick = () => {
-  if (props.type === CTALabel.TeleservicePrefill) {
+  if (
+    props.type === CTALabel.TeleservicePrefill ||
+    props.type === CTALabel.TeleserviceSupport
+  ) {
     storageService.local.setItem("trampoline", {
       simulationId: store.calculs.resultats._id,
     })
+  }
+  if (props.type === CTALabel.TeleserviceSupport) {
+    store.setModalState("show")
+  } else {
+    window.open(getURL(props.link), "_blank")
   }
 }
 </script>
 
 <template>
-  <a
+  <button
     :id="`cta-${type}`"
     v-analytics="{
       name: analyticsName,
@@ -82,8 +94,9 @@ const onClick = () => {
       category: EventCategory.General,
       benefits: benefits,
     }"
+    data-fr-opened="false"
+    aria-controls="fr-modal-support"
     :aria-label="longLabel"
-    :href="getURL(link)"
     class="fr-my-1w"
     rel="noopener"
     target="_blank"

@@ -5,8 +5,8 @@
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1,
+    "conducteur_montant_max_par_mois": 120,
+    "conducteur_montant_min_par_passager": 2,
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
@@ -15,19 +15,6 @@
   {
     "link": "https://www.intercauxvexin.fr/fr/news/Covoiturage",
     "code_siren": "200070449",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20grâce,le%201er%20février%202024%20!",
-    "code_siren": "200035319",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
@@ -88,19 +75,6 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://cc-sablons.com/klaxit-lapplication-qui-covoiture/",
-    "code_siren": "246000582",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60
   },
   {
@@ -208,19 +182,6 @@
     "passager_trajets_max_par_mois": 60
   },
   {
-    "link": "https://www.communaute.paysdechateaugiron.bzh/covoiturage/#:~:text=Covoiturages%20subventionnés%20pour%20tous%20les,fonction%20de%20la%20distance%20parcourue.",
-    "code_siren": "243500659",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
     "link": "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
     "code_siren": "200067684",
     "nom_plateforme": "",
@@ -229,32 +190,6 @@
     "conducteur_montant_max_par_mois": 120,
     "conducteur_montant_min_par_passager": 2,
     "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
-    "code_siren": "200067999",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
-    "code_siren": "256204165",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60
@@ -387,19 +322,6 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 4,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.agglo-sarreguemines.fr/covoiturage/",
-    "code_siren": "200070746",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 4,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60
   },
   {
@@ -621,45 +543,6 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.evad.fr/la-ccpeva-favorise-le-covoiturage-sur-le-territoire/",
-    "code_siren": "200071967",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.vitrecommunaute.org/covoiturage/",
-    "code_siren": "200039022",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 60,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
-  },
-  {
-    "link": "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
-    "code_siren": "200040442",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60
   }
 ]

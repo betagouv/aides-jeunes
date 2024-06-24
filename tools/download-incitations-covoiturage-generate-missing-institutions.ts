@@ -1,16 +1,20 @@
 import { Grist } from "../lib/grist"
 import fs from "fs"
 import path from "path"
+import { GristIncitationsCoVoiturageResponse } from "../lib/types/download-incitations-covoiturage.js"
 const __dirname = new URL(".", import.meta.url).pathname
 
 async function main() {
-  if (!process.env.GRIST_DOC_COVOITURAGE_ID) {
+  if (!process.env.GRIST_COVOITURAGE_DOC_ID) {
     throw new Error("Missing GRIST_DOC_COVOITURAGE_ID")
   }
   if (!process.env.GRIST_API_KEY) {
     throw new Error("Missing GRIST_API_KEY")
   }
-  const gristAPI = Grist(process.env.GRIST_DOC_ID, process.env.GRIST_API_KEY)
+  const gristAPI = Grist(
+    process.env.GRIST_COVOITURAGE_DOC_ID,
+    process.env.GRIST_API_KEY
+  )
 
   const user = await gristAPI.getConnectedUser()
   console.log(`Connected as ${user.name}.`)

@@ -1,6 +1,7 @@
 import { Grist } from "../lib/grist"
 import fs from "fs"
 import path from "path"
+import { GristIncitationsCoVoiturageResponse } from "../lib/types/download-incitations-covoiturage.js"
 const __dirname = new URL(".", import.meta.url).pathname
 
 async function main() {

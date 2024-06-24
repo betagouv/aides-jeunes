@@ -19,7 +19,7 @@ interface GristFields {
   Dans_une_PR: boolean
   Corrige: boolean
   Date_PR: number
-  Date_correction: number
+  Date_correction: Date
   PR: string
   Date_erreur_de_detection: string
   Aide: string

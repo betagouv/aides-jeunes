@@ -1,5 +1,6 @@
 export enum EmailType {
   SimulationResults = "simulation-results",
+  SimulationResultsSupport = "simulation-results-support",
   BenefitAction = "benefit-action",
   SimulationUsefulness = "simulation-usefulness",
   InitialSurvey = "initial-survey",

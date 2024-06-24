@@ -5,12 +5,15 @@ import mongooseConfig from "../backend/config/mongoose.js"
 import { FollowupFactory } from "../backend/lib/followup-factory.js"
 import Simulations from "../backend/models/simulation.js"
 import { Simulation } from "../lib/types/simulation.js"
-import { sendSimulationResultsEmail } from "../backend/lib/messaging/email/email-service.js"
+import {
+  sendSimulationResultsEmail,
+  sendSimulationResultsSupportEmail,
+} from "../backend/lib/messaging/email/email-service.js"
 
 async function main() {
   const parser = createArgumentParser()
   try {
-    const { id, email } = parser.parse_args()
+    const { id, email, support } = parser.parse_args()
 
     mongooseConfig(mongoose, config)
     const simulation: Simulation | null = await Simulations.findById(id)
@@ -30,7 +33,9 @@ async function main() {
     console.log("Followup created")
     console.log(followup._id)
 
-    const { messageId } = await sendSimulationResultsEmail(followup)
+    const { messageId } = support
+      ? await sendSimulationResultsSupportEmail(followup)
+      : await sendSimulationResultsEmail(followup)
     if (!messageId) {
       throw new Error("Email not sent")
     }
@@ -58,6 +63,12 @@ function createArgumentParser() {
     help: "Email address to send to",
     required: true,
   })
+
+  parser.add_argument("--support", {
+    help: "Email type for support (optionnal)",
+    required: false,
+  })
+
   return parser
 }
 

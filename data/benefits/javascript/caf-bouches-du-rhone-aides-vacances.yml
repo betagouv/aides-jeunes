@@ -1,0 +1,31 @@
+label: aides aux vacances
+institution: caf_bouches_du_rhone
+description:
+  La Caf des Bouches-du-Rhône propose deux aides financières à ses allocataires.
+  L’aide aux vacances familiales (AVF) permet de profiter d’un séjour en famille et l’aide aux vacances
+  enfants (AVE) favorise le départ des enfants en colonies de vacances. Le montant de l’aide dépend du
+  quotient familial, avec un bonus pour les bénéficiaires de l’allocation d’éducation de l’enfant handicapé (AEEH).
+prefix: les
+conditions_generales:
+  - type: departements
+    values:
+      - "13"
+  - type: quotient_familial
+    value: 900
+    operator: "<"
+    period: month
+profils:
+  - type: parent
+conditions:
+  - Avoir au moins un enfant à charge âgé de 4 à 17 ans.
+  - Être allocataire de la Caf des Bouches-du-Rhône au mois d'octobre de l'année précédant le départ en vacances.
+  - Choisir votre séjour familial ou le séjour de votre enfant sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
+type: float
+unit: "%"
+periodicite: ponctuelle
+legend: du prix du séjour maximum
+montant: 75
+link: https://www.caf.fr/allocataires/caf-des-bouches-du-rhone/offre-de-service/vie-personnelle/les-aides-au-depart-en-vacances

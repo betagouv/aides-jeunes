@@ -54,9 +54,6 @@ const followupRendering = async (req: Request) => {
     case EmailType.SimulationUsefulness:
       surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailType.BenefitAction:
-      surveyType = SurveyType.TrackClickOnBenefitActionEmail
-      break
     default:
       return {
         html: `Failed to render email, unknown email type: ${emailType}`,

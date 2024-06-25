@@ -15,7 +15,6 @@ const __dirname = new URL(".", import.meta.url).pathname
 function readFile(filePath) {
   return fs.readFileSync(path.join(__dirname, filePath), "utf8")
 }
-const benefitActionTemplate = readFile("templates/benefit-action.mjml")
 const emailTemplate = readFile("templates/email.mjml")
 const footerTemplate = readFile("templates/footer.mjml")
 const headerTemplate = readFile("templates/header.mjml")
@@ -25,19 +24,16 @@ const simulationUsefulnessTemplate = readFile(
 )
 const emailTemplates = {
   [EmailType.SimulationResults]: simulationResultsTemplate,
-  [EmailType.BenefitAction]: benefitActionTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
 )
-const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
 const simulationUsefulnessTextTemplate = readFile(
   "templates/simulation-usefulness.txt"
 )
 const textTemplates = {
   [EmailType.SimulationResults]: simulationResultsTextTemplate,
-  [EmailType.BenefitAction]: benefitActionTextTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTextTemplate,
 }
 
@@ -124,10 +120,7 @@ export async function emailRender(emailType: EmailType, followup) {
         html: values[1].html,
         attachments: values[1].attachments,
       }
-    } else if (
-      emailType === EmailType.BenefitAction ||
-      emailType === EmailType.SimulationUsefulness
-    ) {
+    } else if (emailType === EmailType.SimulationUsefulness) {
       return {
         subject: `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? [${
           followup.simulation?._id || followup.simulation
@@ -144,8 +137,6 @@ export async function emailRenderBySurveyType(
   followup
 ) {
   switch (surveyType) {
-    case SurveyType.TrackClickOnBenefitActionEmail:
-      return emailRender(EmailType.BenefitAction, followup)
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
       return emailRender(EmailType.SimulationUsefulness, followup)
     case SurveyType.BenefitAction:

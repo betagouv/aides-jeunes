@@ -1,7 +1,6 @@
 label: rendez-vous téléphonique d’accompagnement personnalisé
 institution: ville_montpellier
-description:
-  Vous avez besoin d’aide pour comprendre votre résultat de simulation et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone par un agent chargé d’accès aux droits du Centre Communal d’Action Sociale de Montpellier.
+description: Vous avez besoin d’aide pour comprendre votre résultat de simulation et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone par un agent chargé d’accès aux droits du Centre Communal d’Action Sociale de Montpellier.
 prefix: le
 conditions_generales:
   - type: communes

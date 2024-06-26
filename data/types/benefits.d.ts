@@ -55,6 +55,22 @@ export interface CoVoiturageBenefit {
   source?: string
 }
 
+export interface CoVoiturageJson {
+  link: string
+  code_siren: string
+  nom_plateforme: string
+  operateurs: string
+  zone_sens_des_trajets: string
+  conducteur_montant_max_par_mois: number
+  conducteur_montant_min_par_passager: number
+  conducteur_montant_max_par_passager: number
+  trajet_longueur_max: number
+  trajet_longueur_min: number
+  passager_trajets_max_par_mois: number
+  n_est_pas_une_collectivite: boolean
+  type: string
+}
+
 export interface JavascriptBenefit {
   name: string
   imgSrc?: string

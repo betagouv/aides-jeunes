@@ -10,7 +10,9 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.intercauxvexin.fr/fr/news/Covoiturage",
@@ -23,7 +25,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.vitrecommunaute.org/covoiturage/",
@@ -36,7 +40,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.vallons-de-haute-bretagne-communaute.fr/le-covoiturage/",
@@ -49,7 +55,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://jeromeviaud.com/la-ville-et-la-communaute-dagglomeration-du-pays-de-grasse-encouragent-la-politique-de-covoiturage-avec-le-dispositif-klaxit-tous-covoitureurs/",
@@ -62,7 +70,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.agglo-laval.fr/utile-au-quotidien/transports-et-mobilites/le-covoiturage",
@@ -75,7 +85,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.paysdessorgues.fr/le-covoiturage",
@@ -88,7 +100,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.paysdesherbiers.fr/le-covoiturage-avec-klaxit/#:~:text=Pour%20continuer%20sur%20cette%20dynamique,à%20destination%20de%20sa%20population.",
@@ -101,7 +115,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.ca-ajaccien.corsica/covoiturer-en-pays-ajaccien-pratique-economique-et-ecologique/",
@@ -114,7 +130,9 @@
     "conducteur_montant_max_par_passager": 1.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.gardrhodanien.fr/services/transport/adoptez-une-mobilite-plus-verte-et-economique/#:~:text=Les%20conducteurs%20sont%20rémunérés%20à,Sorgue%2C%20Sorgues%2C%20Cavaillon).",
@@ -127,7 +145,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
@@ -140,7 +160,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.paysflechois.fr/actualites/le-covoiturage-facilite/",
@@ -153,7 +175,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.valleesduhautanjou.fr/le-covoiturage/",
@@ -166,7 +190,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://loire-layon-aubance.fr/vivre-habiter/mes-demarches-de-mobilite/covoiturage/",
@@ -179,7 +205,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
@@ -192,7 +220,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.joue-labbe-72.fr/actualites/412727",
@@ -205,7 +235,9 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.lacove.fr/covoiturage.html",
@@ -218,7 +250,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20grâce,le%201er%20février%202024%20!",
@@ -231,7 +265,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.gouv.mc/Action-Gouvernementale/La-Qualite-de-Vie/Actualites/Hausse-du-prix-des-carburants-Monaco-finance-vos-covoiturages-via-l-application-Klaxit#:~:text=Ainsi%2C%20depuis%20septembre%202020%2C%20tous,€%2Fmois%20en%20covoiturant%20régulièrement.",
@@ -244,7 +280,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.carcassonne-agglo.fr/fr/actualites/deplacez-vous-autrement-sur-le-territoire.html",
@@ -257,7 +295,9 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://sorguesducomtat.fr/fr/infos/35/le-covoiturage-avec-blablacardaily#:~:text=-%20les%20passagers%20voyagent%20gratuitement%2C,fonction%20de%20la%20distance%20parcourue).",
@@ -270,7 +310,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.grandavignon.fr/fr/actualites/covoiturage-grand-avignon",
@@ -283,7 +325,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.communaute-paysbasque.fr/a-la-une-2/actualites/actualite/covoiturage-au-pays-basque-les-conducteurs-indemnises",
@@ -296,7 +340,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": true,
+    "type": "aom"
   },
   {
     "link": "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
@@ -309,7 +355,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/",
@@ -322,7 +370,9 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 4,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": true,
+    "type": "aom"
   },
   {
     "link": "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
@@ -335,7 +385,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://paysdelor.fr/vivre-ici/transports/covoiturage/",
@@ -348,7 +400,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.agglopole.fr/bougerdecouvrir/se-deplacer/le-covoiturage/",
@@ -361,7 +415,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.mairie-hauteluce.fr/covoiturage/",
@@ -374,7 +430,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.montpellier3m.fr/vivre-transport/covoiturez-avec-blablacar-daily#:~:text=En%20s%27appuyant%20sur%20le,via%20l%27application%20BlaBlaCar%20Daily.",
@@ -387,7 +445,9 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
@@ -400,7 +460,9 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": true,
+    "type": "aom"
   },
   {
     "link": "https://www.picardieverte.com/la-ccpv-paie-vos-covoiturages/urbanisme-habitat/mobilite/",
@@ -413,7 +475,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://cc-sablons.com/klaxit-lapplication-qui-covoiture/",
@@ -426,7 +490,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://ccgvm.com/covoiturage/",
@@ -439,7 +505,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.savoie.fr/web/sw_101242/covoiturez-et-faites-le-plein-d-economies",
@@ -452,7 +520,9 @@
     "conducteur_montant_max_par_passager": null,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.coeurdetarentaise.fr/covoiturer-gratuitement-cest-desormais-possible/",
@@ -465,7 +535,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.avant-pays-savoyard.com/smaps/project/mobilite-velo/",
@@ -478,7 +550,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.hautetarentaise.fr/10433-covoiturage-local.htm",
@@ -491,7 +565,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://versantsdaime.fr/accueil/vivre-en-versants-d-aime/cadre-de-vie/rezo-pouce-service-dauto-stop-securise/",
@@ -504,7 +580,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.valvanoise.fr/9537-mov-ici-covoiturage-local.htm",
@@ -517,7 +595,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://ccva-savoie.com/index.php/vie-pratique-et-services/mobilite",
@@ -530,7 +610,9 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   },
   {
     "link": "https://www.maugescommunaute.fr/actualites/covoiturage/",
@@ -543,6 +625,8 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
   }
 ]

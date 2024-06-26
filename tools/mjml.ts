@@ -56,7 +56,17 @@ const followupRendering = async (req: Request) => {
       break
     default:
       return {
-        html: `Failed to render email, unknown email type: ${emailType}`,
+        html: `
+          <html lang="fr">
+            <h3>
+            Oups, cette page n'existe pas ou n'est plus accessible.
+            </h3>
+            <p> 
+              Ne vous inquiétez pas, vous pouvez retourner à l'accueil du simulateur 
+              <a href="${config.baseURL}" class="fr-link">en cliquant ici</a>.
+            </p>
+          </html>
+        `,
       }
   }
 

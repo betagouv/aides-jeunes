@@ -10,18 +10,19 @@ import { Followup } from "../../../../lib/types/followup.js"
 import dayjs from "dayjs"
 
 export async function sendSimulationResultsEmail(
-  followup: Followup
+  followup: Followup,
+  emailType: EmailType = EmailType.SimulationResults
 ): Promise<Followup> {
   if (!followup.email) {
     throw new Error("Missing followup email")
   }
-  const render: any = await emailRender(EmailType.SimulationResults, followup)
+  const render: any = await emailRender(emailType, followup)
   const sendEmailSmtpResponse = await sendEmailSmtp({
     to: followup.email,
     subject: render.subject,
     text: render.text,
     html: render.html,
-    tags: [EmailType.SimulationResults],
+    tags: [emailType],
   })
 
   followup.sentAt = dayjs().toDate()
@@ -33,6 +34,13 @@ export async function sendSimulationResultsEmail(
   followup.error = undefined
 
   return await followup.save()
+}
+
+export async function sendSimulationResultsSupportEmail(followup: Followup) {
+  return sendSimulationResultsEmail(
+    followup,
+    EmailType.SimulationResultsSupport
+  )
 }
 
 export async function sendSurveyEmail(

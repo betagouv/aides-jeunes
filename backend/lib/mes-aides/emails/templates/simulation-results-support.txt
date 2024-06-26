@@ -1,0 +1,16 @@
+Bonjour,
+
+Un utilisateur a récemment réalisé une simulation sur le simulateur de 1jeune1solution.gouv.fr.
+
+D'après la situation décrite par l'utilisateur, l'éligibilité est possible pour les aides suivantes :
+
+{{#benefitTexts}}
+- {{&.}}
+{{/benefitTexts}}
+
+Retrouvez les détails de cette simulation au lien suivant : {{&returnURL}}
+
+Nous améliorons ce simulateur en continu, et vous pouvez nous y aider. Vous pouvez nous contacter à l'adresse suivante : aides-jeunes@beta.gouv.fr
+
+Bonne journée,
+L'équipe du simulateur de 1jeune1solution.gouv.fr

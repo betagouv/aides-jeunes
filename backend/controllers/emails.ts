@@ -11,6 +11,8 @@ const renderEmailByType = async (followup, emailType: EmailType) => {
   switch (emailType) {
     case EmailType.SimulationResults:
       return emailRender(EmailType.SimulationResults, followup)
+    case EmailType.SimulationResultsSupport:
+      return emailRender(EmailType.SimulationResultsSupport, followup)
     case EmailType.SimulationUsefulness:
       surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break

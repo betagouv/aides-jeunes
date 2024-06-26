@@ -43,6 +43,7 @@
     "tools:institutions-logo-check": "node --loader ts-node/esm ./tools/institutions-logo-check",
     "tools:serve-mail": "node --loader ts-node/esm ./tools/mjml",
     "tools:send-summary-email": "node --loader ts-node/esm ./tools/email-summary-tool",
+    "tools:send-summary-email-support": "node --loader ts-node/esm ./tools/email-summary-tool --support true",
     "tools:send-survey-email": "node --loader ts-node/esm ./tools/email-sending-tool send simulation-usefulness",
     "tools:send-initial-survey-email": "node --loader ts-node/esm ./tools/email-sending-tool send initial-survey --multiple 1000",
     "tools:send-initial-survey-sms": "node --loader ts-node/esm ./tools/sms-sending-tool send initial-survey --multiple 2",

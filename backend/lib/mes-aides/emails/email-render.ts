@@ -20,6 +20,9 @@ const emailTemplate = readFile("templates/email.mjml")
 const footerTemplate = readFile("templates/footer.mjml")
 const headerTemplate = readFile("templates/header.mjml")
 const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
+const simulationResultsSupportTemplate = readFile(
+  "templates/simulation-results-support.mjml"
+)
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml"
 )
@@ -27,16 +30,22 @@ const emailTemplates = {
   [EmailType.SimulationResults]: simulationResultsTemplate,
   [EmailType.BenefitAction]: benefitActionTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTemplate,
+  [EmailType.SimulationResultsSupport]: simulationResultsSupportTemplate,
 }
 const simulationResultsTextTemplate = readFile(
   "templates/simulation-results.txt"
+)
+const simulationResultsSupportTextTemplate = readFile(
+  "templates/simulation-results-support.txt"
 )
 const benefitActionTextTemplate = readFile("templates/benefit-action.txt")
 const simulationUsefulnessTextTemplate = readFile(
   "templates/simulation-usefulness.txt"
 )
+
 const textTemplates = {
   [EmailType.SimulationResults]: simulationResultsTextTemplate,
+  [EmailType.SimulationResultsSupport]: simulationResultsSupportTextTemplate,
   [EmailType.BenefitAction]: benefitActionTextTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTextTemplate,
 }
@@ -88,7 +97,10 @@ export async function emailRender(emailType: EmailType, followup) {
   let formatedBenefits: any = {}
   let benefitTexts: any = {}
 
-  if (emailType === EmailType.SimulationResults) {
+  if (
+    emailType === EmailType.SimulationResults ||
+    emailType === EmailType.SimulationResultsSupport
+  ) {
     const populated = await (followup.populated("simulation")
       ? Promise.resolve(followup)
       : followup.populate("simulation"))
@@ -120,6 +132,13 @@ export async function emailRender(emailType: EmailType, followup) {
     if (emailType === EmailType.SimulationResults) {
       return {
         subject: `Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
+        text: values[0],
+        html: values[1].html,
+        attachments: values[1].attachments,
+      }
+    } else if (emailType === EmailType.SimulationResultsSupport) {
+      return {
+        subject: `Récapitulatif d'une simulation utilisateur sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
         text: values[0],
         html: values[1].html,
         attachments: values[1].attachments,

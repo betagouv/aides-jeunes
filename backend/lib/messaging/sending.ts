@@ -6,6 +6,7 @@ import Followups from "../../models/followup.js"
 import { Followup } from "../../../lib/types/followup.js"
 import {
   sendSimulationResultsEmail,
+  sendSimulationResultsSupportEmail,
   sendSurveyEmail,
 } from "../messaging/email/email-service.js"
 import {
@@ -76,6 +77,9 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
   switch (emailType) {
     case EmailType.SimulationResults:
       await sendSimulationResultsEmail(followup)
+      break
+    case EmailType.SimulationResultsSupport:
+      await sendSimulationResultsSupportEmail(followup)
       break
     case EmailType.SimulationUsefulness:
       await sendSurveyEmail(

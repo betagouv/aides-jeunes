@@ -3,6 +3,14 @@ backend:
   name: git-gateway-large
   branch: main
   repo: https://github.com/betagouv/aides-jeunes.git
+  gateway_url: https://git-gateway.osc-fr1.scalingo.io
+  # identity_url pas encore fonctionnel, comportement en local trop différent ?!
+  # cf.
+  # https://github.com/search?q=repo%3Anetlify%2Fnetlify-identity-widget%20isLocal&type=code
+  identity_url: /api/.test
+  # De plus pour la réalisation des tests
+  # l'ajout automatique du 'netlifySiteURL' via les dernières lignes de contribuer/public/admin/main.js
+  # a été désactivé
   commit_messages:
     create: Crée {{slug}}
     update: Met à jour {{slug}}

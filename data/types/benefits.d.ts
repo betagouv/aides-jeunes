@@ -44,11 +44,10 @@ export interface CoVoiturageBenefit {
   description: string
   label: string
   conditions: string[]
-  conditions_generales: [
-    {
-      type: string
-    }
-  ]
+  conditions_generales: {
+    type: string
+    values?: string[]
+  }[]
   prefix: string
   type: string
   link: string

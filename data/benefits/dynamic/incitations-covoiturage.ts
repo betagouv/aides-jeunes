@@ -85,9 +85,14 @@ export default function buildIncitationsCovoiturage(
         link: b.link,
         source: "javascript",
         conditions_generales: [
-          {
-            type: "attached_to_institution",
-          },
+          b.communes
+            ? {
+                type: "communes",
+                values: b.communes,
+              }
+            : {
+                type: "attached_to_institution",
+              },
         ],
       })
     })

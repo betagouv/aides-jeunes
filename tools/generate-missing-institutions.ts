@@ -152,7 +152,7 @@ export const missingInstitutionsCovoiturageBenefit = (
   }
 
   console.log(
-    "Institutions manquantes : ",
+    "Institutions non-intégrées car du type aom ou n'est pas une collectivite : ",
     missingInstitutionBenefits
       .filter((b) => !["aom"].includes(b.type) || b.n_est_pas_une_collectivite)
       .map((b) => `${b.code_siren}`)

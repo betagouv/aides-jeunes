@@ -5,8 +5,8 @@
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_mois": 150,
+    "conducteur_montant_min_par_passager": 1,
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
@@ -24,21 +24,6 @@
     "conducteur_montant_min_par_passager": 1.5,
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.vitrecommunaute.org/covoiturage/",
-    "code_siren": "243500808",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 60,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "n_est_pas_une_collectivite": false,
@@ -137,21 +122,6 @@
   {
     "link": "https://www.gardrhodanien.fr/services/transport/adoptez-une-mobilite-plus-verte-et-economique/#:~:text=Les%20conducteurs%20sont%20rémunérés%20à,Sorgue%2C%20Sorgues%2C%20Cavaillon).",
     "code_siren": "200034692",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
-    "code_siren": "809693906",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
@@ -270,21 +240,6 @@
     "type": "aom"
   },
   {
-    "link": "https://www.gouv.mc/Action-Gouvernementale/La-Qualite-de-Vie/Actualites/Hausse-du-prix-des-carburants-Monaco-finance-vos-covoiturages-via-l-application-Klaxit#:~:text=Ainsi%2C%20depuis%20septembre%202020%2C%20tous,€%2Fmois%20en%20covoiturant%20régulièrement.",
-    "code_siren": "809868276",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
     "link": "https://www.carcassonne-agglo.fr/fr/actualites/deplacez-vous-autrement-sur-le-territoire.html",
     "code_siren": "200035715",
     "nom_plateforme": "",
@@ -342,7 +297,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "n_est_pas_une_collectivite": true,
-    "type": "aom"
+    "type": "autre"
   },
   {
     "link": "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
@@ -372,7 +327,7 @@
     "trajet_longueur_min": 4,
     "passager_trajets_max_par_mois": 60,
     "n_est_pas_une_collectivite": true,
-    "type": "aom"
+    "type": "autre"
   },
   {
     "link": "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
@@ -462,7 +417,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "n_est_pas_une_collectivite": true,
-    "type": "aom"
+    "type": "autre"
   },
   {
     "link": "https://www.picardieverte.com/la-ccpv-paie-vos-covoiturages/urbanisme-habitat/mobilite/",
@@ -625,6 +580,51 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
+  },
+  {
+    "link": "https://www.evad.fr/la-ccpeva-favorise-le-covoiturage-sur-le-territoire/",
+    "code_siren": "200071967",
+    "nom_plateforme": "",
+    "operateurs": "Karos",
+    "zone_sens_des_trajets": "et",
+    "conducteur_montant_max_par_mois": null,
+    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_passager": 8,
+    "trajet_longueur_max": 80,
+    "trajet_longueur_min": 2,
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
+  },
+  {
+    "link": "https://www.vitrecommunaute.org/covoiturage/",
+    "code_siren": "200039022",
+    "nom_plateforme": "",
+    "operateurs": "BlablaCarDaily",
+    "zone_sens_des_trajets": "et/ou",
+    "conducteur_montant_max_par_mois": 120,
+    "conducteur_montant_min_par_passager": 1,
+    "conducteur_montant_max_par_passager": 2,
+    "trajet_longueur_max": 60,
+    "trajet_longueur_min": 2,
+    "passager_trajets_max_par_mois": 60,
+    "n_est_pas_une_collectivite": false,
+    "type": "aom"
+  },
+  {
+    "link": "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
+    "code_siren": "200040442",
+    "nom_plateforme": "",
+    "operateurs": "BlablaCarDaily",
+    "zone_sens_des_trajets": "et/ou",
+    "conducteur_montant_max_par_mois": 150,
+    "conducteur_montant_min_par_passager": 1,
+    "conducteur_montant_max_par_passager": 2,
+    "trajet_longueur_max": 80,
+    "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "n_est_pas_une_collectivite": false,
     "type": "aom"

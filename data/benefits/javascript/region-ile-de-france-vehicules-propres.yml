@@ -10,6 +10,9 @@ conditions:
   - Faire réaliser le rétrofit chez un professionnl agréé.
   - Déposer votre demande d'aide sur mesdemarches.iledefrance.fr dans les trois mois suivant le rétrofit du véhicule.
 conditions_generales:
+  - type: age
+    operator: ">="
+    value: 20
   - type: regions
     values:
       - "11"

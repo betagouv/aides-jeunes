@@ -178,20 +178,6 @@ textarea {
   z-index: 10;
 }
 
-[data-text]:hover:after {
-  display: block;
-  content: attr(data-text);
-  padding: 10px;
-  background-color: var(--background-contrast-info);
-  position: absolute;
-  /* inset: auto auto 150% 0; */
-  inset: 120% 0 auto auto;
-  margin: auto;
-  width: 250px;
-  z-index: calc(var(--ground) + 10000);
-  text-transform: none;
-}
-
 .aj-page--full-height {
   display: flex;
   flex-direction: column;

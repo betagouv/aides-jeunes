@@ -205,7 +205,6 @@ async function getRedirectUrl(req: Request) {
   const { followup } = req
   switch (surveyType) {
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
-    case SurveyType.TrackClickOnBenefitActionEmail:
     case SurveyType.TrackClickOnBenefitActionSms: {
       await followup.addSurveyIfMissing(SurveyType.BenefitAction)
       await followup.save()

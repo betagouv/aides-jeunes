@@ -14,9 +14,6 @@ const renderEmailByType = async (followup, emailType: EmailType) => {
     case EmailType.SimulationUsefulness:
       surveyType = SurveyType.TrackClickOnSimulationUsefulnessEmail
       break
-    case EmailType.BenefitAction:
-      surveyType = SurveyType.TrackClickOnBenefitActionEmail
-      break
     default:
       throw new Error(`Unknown email type: ${emailType}`)
   }

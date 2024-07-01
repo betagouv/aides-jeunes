@@ -18,7 +18,8 @@
 
       <div v-if="type.displayMonthly === true">
         <label :for="`${type.meta.id}_monthly`" class="fr-label">
-          Indiquez le montant <b>net social mensuel </b> :
+          Indiquez le montant
+          <b>net <span v-if="showSocialLabel">social </span>mensuel </b> :
         </label>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row">
@@ -113,6 +114,20 @@ const singleValue = computed({
   get: () => props.type.displayMonthly,
   set: (value) => emit("update", "displayMonthly", props.index, value),
 })
+
+const showSocialLabel = computed(
+  () =>
+    ![
+      "gains_exceptionnels",
+      "revenus_locatifs",
+      "revenus_capital",
+      "rpns_micro_entreprise_CA_bic_vente_imp",
+      "rpns_micro_entreprise_CA_bic_service_imp",
+      "rpns_micro_entreprise_CA_bnc_imp",
+      "rpns_benefice_exploitant_agricole",
+      "rpns_autres_revenus",
+    ].includes(props.type.meta.id)
+)
 
 const onFocus = (monthIndex) => {
   focusedInputIndex.value = monthIndex

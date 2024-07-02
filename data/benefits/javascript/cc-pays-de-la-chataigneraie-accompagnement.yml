@@ -1,6 +1,6 @@
 label: rendez-vous près de chez vous pour demander vos aides
 institution: cc_pays_de_la_chataigneraie
-description: Vous avez besoin d’un accompagnement pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous avec une agente chargée d’accès aux droits, tout près de chez vous, rapidement.
+description: Vous avez besoin d’un accompagnement pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous près de chez vous avec une agente chargée de l’accès aux droits.
 prefix: le
 conditions_generales:
   - type: communes

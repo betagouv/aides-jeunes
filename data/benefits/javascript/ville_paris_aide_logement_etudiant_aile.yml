@@ -12,7 +12,7 @@ conditions_generales:
     values:
       - "75"
 profils:
-  - type: etudiant
+  - type: enseignement_superieur
     conditions: []
 conditions:
   - Être inscrit dans un établissement d’enseignement supérieur relevant des académies de Paris,

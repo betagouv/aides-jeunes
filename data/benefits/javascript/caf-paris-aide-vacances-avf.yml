@@ -1,0 +1,32 @@
+label: aide aux vacances en famille (AVF)
+institution: caf_paris
+description:
+  La Caf de Paris propose une aide financière à ses allocataires pour partir en vacances en famille.
+  Le montant de l’aide dépend du quotient familial et du nombre d’enfants avec un bonus pour les bénéficiaires de l’allocation d’éducation de l’enfant handicapé (AEEH).
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "75"
+  - type: quotient_familial
+    value: 700
+    operator: "<="
+    period: month
+profils:
+  - type: parent
+conditions:
+  - Avoir au moins un enfant à charge.
+  - Être allocataire de la Caf de Paris.
+  - Choisir votre séjour familial parmi les villages vacances et campings labellisés Vacaf dans toute la France sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
+  - Être présent pendant le séjour (au moins un parent et un enfant).
+  - Partir pendant les vacances scolaires de la zone C (sauf pour les enfants de moins de 3 ans, non soumis à l’obligation scolaire).
+  - Séjourner entre 1 nuitée (2 jours) et 14 nuitées (15 jours) maximum du départ au retour inclus.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 1100
+link: https://www.caf.fr/allocataires/caf-de-paris/offre-de-service/vie-personnelle/aide-aux-vacances-familles-avf

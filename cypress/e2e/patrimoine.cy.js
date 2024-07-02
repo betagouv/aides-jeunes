@@ -51,6 +51,7 @@ context("Full simulation", () => {
 
         results.wait()
         results.hasAideVeloNationale()
+        results.hasIncitationCovoiturage() //Fini le 31/12/2024
         results.hasHousingBenefit()
         results.back()
         results.hasRSA()

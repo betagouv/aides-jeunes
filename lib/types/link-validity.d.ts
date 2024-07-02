@@ -34,7 +34,7 @@ interface GristRecord {
   fields: GristFields
 }
 
-interface GristResponse {
+interface GristLinkValidityResponse {
   records: GristRecord[]
 }
 

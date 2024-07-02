@@ -36,6 +36,38 @@ export interface VeloBenefit extends Aide {
   periodicite?: string
 }
 
+export interface CoVoiturageBenefit {
+  id: string
+  institution: string
+  source?: string
+  periodicite?: string
+  description: string
+  label: string
+  conditions: string[]
+  conditions_generales: {
+    type: string
+    values?: string[]
+  }[]
+  prefix: string
+  type: string
+  link: string
+  source?: string
+}
+
+export interface CoVoiturageJson {
+  link: string
+  code_siren: string
+  nom_plateforme: string
+  operateurs: string
+  zone_sens_des_trajets: string
+  conducteur_montant_max_par_mois: number
+  conducteur_montant_min_par_passager: number
+  conducteur_montant_max_par_passager: number
+  trajet_longueur_max: number
+  trajet_longueur_min: number
+  passager_trajets_max_par_mois: number
+}
+
 export interface JavascriptBenefit {
   name: string
   imgSrc?: string

@@ -207,6 +207,8 @@ In order to use those tools you need to build the server at least once using the
 
 - `npm run tools:generate-missing-institutions-aides-velo` generates missing institutions for the package `aides-velo`.
 
+- `npm run tools:download-incitations-covoiturage-generate-missing-institutions` download new carpooling incentives and generates missing epci for the Open Data `Registre de Preuve de Covoiturage`.
+
 - `npm run tools:geographical-benefits-details` gets the relevant benefits for each commune.
 
 - `npm run tools:get-all-steps` gets all the steps and substeps of a simulation.
@@ -255,3 +257,14 @@ Some parameters can be use to debug the command
 
 Here is an example of how using this parameters
 `npm run tools:check-links-validity -- --dry-run`
+
+## Download carpooling incentives and generate missing ecpi
+
+The data source comes from this : https://www.data.gouv.fr/fr/datasets/conditions-des-campagnes-dincitation-financiere-au-covoiturage/
+We use Grist to add custom informations like, if a benefit is link to an institution or epci, ...
+One parameter can be use to debug the command
+
+- `--no-download` : avoid download new data from Grist
+
+Here is an example of how using this parameters
+`npm run tools:download-incitations-covoiturage-generate-missing-institutions -- --no-download`

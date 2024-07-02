@@ -66,8 +66,6 @@ export interface CoVoiturageJson {
   trajet_longueur_max: number
   trajet_longueur_min: number
   passager_trajets_max_par_mois: number
-  n_est_pas_une_collectivite: boolean
-  type: string
 }
 
 export interface JavascriptBenefit {

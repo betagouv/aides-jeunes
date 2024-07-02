@@ -10,9 +10,7 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.intercauxvexin.fr/fr/news/Covoiturage",
@@ -25,9 +23,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.vallons-de-haute-bretagne-communaute.fr/le-covoiturage/",
@@ -40,9 +36,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://jeromeviaud.com/la-ville-et-la-communaute-dagglomeration-du-pays-de-grasse-encouragent-la-politique-de-covoiturage-avec-le-dispositif-klaxit-tous-covoitureurs/",
@@ -55,9 +49,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.agglo-laval.fr/utile-au-quotidien/transports-et-mobilites/le-covoiturage",
@@ -70,9 +62,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.paysdessorgues.fr/le-covoiturage",
@@ -85,9 +75,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.paysdesherbiers.fr/le-covoiturage-avec-klaxit/#:~:text=Pour%20continuer%20sur%20cette%20dynamique,à%20destination%20de%20sa%20population.",
@@ -100,9 +88,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.ca-ajaccien.corsica/covoiturer-en-pays-ajaccien-pratique-economique-et-ecologique/",
@@ -115,9 +101,7 @@
     "conducteur_montant_max_par_passager": 1.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.gardrhodanien.fr/services/transport/adoptez-une-mobilite-plus-verte-et-economique/#:~:text=Les%20conducteurs%20sont%20rémunérés%20à,Sorgue%2C%20Sorgues%2C%20Cavaillon).",
@@ -130,9 +114,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.paysflechois.fr/actualites/le-covoiturage-facilite/",
@@ -145,9 +127,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.valleesduhautanjou.fr/le-covoiturage/",
@@ -160,9 +140,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://loire-layon-aubance.fr/vivre-habiter/mes-demarches-de-mobilite/covoiturage/",
@@ -175,9 +153,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
@@ -190,24 +166,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.joue-labbe-72.fr/actualites/412727",
-    "code_siren": "200051944",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 0.5,
-    "conducteur_montant_max_par_passager": 0.5,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.lacove.fr/covoiturage.html",
@@ -220,9 +179,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://esterelcotedazur-agglo.fr/transports_et_mobilites/se_deplacer_en_voiture/le-covoiturage/#:~:text=Le%20covoiturage%20devient%20gratuit%20grâce,le%201er%20février%202024%20!",
@@ -235,9 +192,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.carcassonne-agglo.fr/fr/actualites/deplacez-vous-autrement-sur-le-territoire.html",
@@ -250,9 +205,7 @@
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://sorguesducomtat.fr/fr/infos/35/le-covoiturage-avec-blablacardaily#:~:text=-%20les%20passagers%20voyagent%20gratuitement%2C,fonction%20de%20la%20distance%20parcourue).",
@@ -265,9 +218,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.grandavignon.fr/fr/actualites/covoiturage-grand-avignon",
@@ -280,24 +231,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.communaute-paysbasque.fr/a-la-une-2/actualites/actualite/covoiturage-au-pays-basque-les-conducteurs-indemnises",
-    "code_siren": "256401605",
-    "nom_plateforme": "",
-    "operateurs": "Karos, BlablaCarDaily, Klaxit",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": true,
-    "type": "autre"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.beauvaisis.fr/actualites/actualites-du-beauvaisis/klaxit-arrive-dans-le-beauvaisis.html",
@@ -310,319 +244,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/",
-    "code_siren": "582056511",
-    "nom_plateforme": "",
-    "operateurs": "Karos, BlablaCarDaily, Klaxit",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 50,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 4,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 4,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": true,
-    "type": "autre",
-    "communes": [
-      "74205",
-      "74050",
-      "74056",
-      "01160",
-      "74104",
-      "74055",
-      "74137",
-      "74037",
-      "74288",
-      "01435",
-      "74111",
-      "74131",
-      "74109",
-      "74088",
-      "74156",
-      "74150",
-      "74052",
-      "74266",
-      "01091",
-      "74124",
-      "74169",
-      "01205",
-      "74202",
-      "74216",
-      "74259",
-      "74229",
-      "74168",
-      "74012",
-      "01087",
-      "01082",
-      "74138",
-      "74270",
-      "74142",
-      "74306",
-      "74136",
-      "74256",
-      "74061",
-      "01215",
-      "74311",
-      "74239",
-      "74015",
-      "74158",
-      "74153",
-      "74148",
-      "74313",
-      "74196",
-      "01033",
-      "01300",
-      "74070",
-      "74234",
-      "74173",
-      "74290",
-      "74164",
-      "74182",
-      "01399",
-      "74296",
-      "74060",
-      "74083",
-      "74100",
-      "74062",
-      "74036",
-      "74181",
-      "01308",
-      "74240",
-      "74106",
-      "74312",
-      "74085",
-      "01174",
-      "74258",
-      "01173",
-      "74089",
-      "74217",
-      "74211",
-      "74008",
-      "74242",
-      "74213",
-      "74280",
-      "74022",
-      "74257",
-      "74303",
-      "74185",
-      "74026",
-      "74116",
-      "74224",
-      "74281",
-      "74232",
-      "74152",
-      "01204",
-      "74009",
-      "01313",
-      "74075",
-      "74004",
-      "74273",
-      "74282",
-      "74068",
-      "74163",
-      "01118",
-      "74098",
-      "01354",
-      "74171",
-      "74183",
-      "74096",
-      "74278",
-      "01180",
-      "74064",
-      "74208",
-      "74310",
-      "74076",
-      "74245",
-      "01158",
-      "74236",
-      "74285",
-      "74099",
-      "74298",
-      "74120",
-      "74210",
-      "01035",
-      "74029",
-      "74139",
-      "74129",
-      "74121",
-      "74212",
-      "74201",
-      "74233",
-      "74299",
-      "74250",
-      "74195",
-      "74295",
-      "74220",
-      "74077",
-      "74097",
-      "74102",
-      "74228",
-      "01044",
-      "74157",
-      "74190",
-      "74054",
-      "74079",
-      "01081",
-      "74014",
-      "01109",
-      "74226",
-      "74072",
-      "74179",
-      "01269",
-      "74090",
-      "74178",
-      "74252",
-      "74304",
-      "01298",
-      "74069",
-      "74118",
-      "74024",
-      "74081",
-      "74243",
-      "74078",
-      "74206",
-      "74166",
-      "74002",
-      "74123",
-      "74108",
-      "74262",
-      "74160",
-      "74193",
-      "74020",
-      "74187",
-      "74144",
-      "74235",
-      "74043",
-      "74272",
-      "74143",
-      "01153",
-      "01104",
-      "74198",
-      "74159",
-      "74105",
-      "74021",
-      "74065",
-      "74038",
-      "74291",
-      "74254",
-      "01143",
-      "74302",
-      "74048",
-      "74051",
-      "01397",
-      "74145",
-      "01210",
-      "74265",
-      "74059",
-      "74261",
-      "74084",
-      "74197",
-      "74016",
-      "01152",
-      "74013",
-      "74006",
-      "74176",
-      "74011",
-      "74177",
-      "74003",
-      "74204",
-      "74122",
-      "74086",
-      "74025",
-      "74222",
-      "74066",
-      "74067",
-      "74221",
-      "01407",
-      "74253",
-      "01436",
-      "01257",
-      "74074",
-      "74215",
-      "74294",
-      "74186",
-      "74260",
-      "74110",
-      "74133",
-      "01189",
-      "74103",
-      "74135",
-      "74007",
-      "74101",
-      "74040",
-      "74223",
-      "74199",
-      "74209",
-      "74241",
-      "01071",
-      "74005",
-      "74128",
-      "74189",
-      "74094",
-      "74194",
-      "74147",
-      "74140",
-      "74219",
-      "01114",
-      "01274",
-      "74071",
-      "74042",
-      "01135",
-      "74130",
-      "74244",
-      "01247",
-      "74264",
-      "74087",
-      "74010",
-      "74309",
-      "74126",
-      "01401",
-      "74019",
-      "74275",
-      "74107",
-      "74049",
-      "74267",
-      "74305",
-      "74044",
-      "01209",
-      "74082",
-      "01281",
-      "74307",
-      "74027",
-      "01103",
-      "74184",
-      "01413",
-      "74268",
-      "74053",
-      "74180",
-      "74315",
-      "74301",
-      "74112",
-      "01360",
-      "01448",
-      "74031",
-      "74314",
-      "74018",
-      "74080",
-      "74276",
-      "74162",
-      "74284",
-      "74174",
-      "74269",
-      "01288",
-      "74293",
-      "74263",
-      "74167",
-      "01357",
-      "01078",
-      "74045",
-      "74093"
-    ]
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
@@ -635,9 +257,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://paysdelor.fr/vivre-ici/transports/covoiturage/",
@@ -650,9 +270,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.agglopole.fr/bougerdecouvrir/se-deplacer/le-covoiturage/",
@@ -665,9 +283,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.mairie-hauteluce.fr/covoiturage/",
@@ -680,9 +296,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.montpellier3m.fr/vivre-transport/covoiturez-avec-blablacar-daily#:~:text=En%20s%27appuyant%20sur%20le,via%20l%27application%20BlaBlaCar%20Daily.",
@@ -695,25 +309,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
-    "code_siren": "256204165",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 4,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": true,
-    "type": "autre",
-    "communes": ["62190", "62138"]
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.picardieverte.com/la-ccpv-paie-vos-covoiturages/urbanisme-habitat/mobilite/",
@@ -726,9 +322,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://cc-sablons.com/klaxit-lapplication-qui-covoiture/",
@@ -741,9 +335,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://ccgvm.com/covoiturage/",
@@ -756,24 +348,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.savoie.fr/web/sw_101242/covoiturez-et-faites-le-plein-d-economies",
-    "code_siren": "257302216",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": null,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.coeurdetarentaise.fr/covoiturer-gratuitement-cest-desormais-possible/",
@@ -786,24 +361,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
-  },
-  {
-    "link": "https://www.avant-pays-savoyard.com/smaps/project/mobilite-velo/",
-    "code_siren": "257302182",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 150,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.hautetarentaise.fr/10433-covoiturage-local.htm",
@@ -816,9 +374,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://versantsdaime.fr/accueil/vivre-en-versants-d-aime/cadre-de-vie/rezo-pouce-service-dauto-stop-securise/",
@@ -831,9 +387,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.valvanoise.fr/9537-mov-ici-covoiturage-local.htm",
@@ -846,9 +400,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://ccva-savoie.com/index.php/vie-pratique-et-services/mobilite",
@@ -861,9 +413,7 @@
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.maugescommunaute.fr/actualites/covoiturage/",
@@ -876,9 +426,7 @@
     "conducteur_montant_max_par_passager": 0.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.evad.fr/la-ccpeva-favorise-le-covoiturage-sur-le-territoire/",
@@ -891,9 +439,7 @@
     "conducteur_montant_max_par_passager": 8,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.vitrecommunaute.org/covoiturage/",
@@ -906,9 +452,7 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   },
   {
     "link": "https://www.luberonmontsdevaucluse.fr/avec-blablacar-daily-lmv-finance-vos-covoiturages/",
@@ -921,8 +465,6 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "n_est_pas_une_collectivite": false,
-    "type": "aom"
+    "passager_trajets_max_par_mois": 60
   }
 ]

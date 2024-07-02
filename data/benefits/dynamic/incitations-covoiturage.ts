@@ -31,22 +31,17 @@ export default function buildIncitationsCovoiturage(
           : prefixFormat
 
       let gainConducteur = ` Vous êtes conductrice ou conducteur ? `
-      if (b.conducteur_montant_max_par_mois) {
-        if (
-          b.conducteur_montant_min_par_passager !==
-          b.conducteur_montant_max_par_passager
-        ) {
-          gainConducteur += `Vous êtes indemnisé entre ${b.conducteur_montant_min_par_passager}€ et ${b.conducteur_montant_max_par_passager}€ par trajet et par passager, selon la distance parcourue, dans la limite de ${b.conducteur_montant_max_par_mois} € de gain par mois. `
-        } else {
-          gainConducteur += `Vous êtes indemnisé entre ${b.conducteur_montant_min_par_passager}€ et ${b.conducteur_montant_max_par_passager}€ par trajet et par passager, selon la distance parcourue. `
-        }
-      } else if (
-        b.conducteur_montant_min_par_passager ===
+      if (
+        b.conducteur_montant_min_par_passager !==
         b.conducteur_montant_max_par_passager
       ) {
-        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager}€ par trajet et par passager, selon la distance parcourue. `
+        gainConducteur += `Recevez entre ${b.conducteur_montant_min_par_passager} € et ${b.conducteur_montant_max_par_passager} € par trajet et par passager selon la distance parcourue`
       } else {
-        gainConducteur = ""
+        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager} € par trajet et par passager selon la distance parcourue`
+      }
+
+      if (b.conducteur_montant_max_par_mois) {
+        gainConducteur += ` dans la limite de ${b.conducteur_montant_max_par_mois} € de gain par mois`
       }
 
       const institutionLabel =
@@ -67,7 +62,7 @@ export default function buildIncitationsCovoiturage(
           subventionne tous vos trajets réservés depuis l’application ` +
           operateur +
           gainConducteur +
-          `Vous êtes passagère ou passager ? Bénéficiez de ${
+          `. Vous êtes passagère ou passager ? Bénéficiez de ${
             b.passager_trajets_max_par_mois / 30
           } trajets gratuits par jour.`,
         id: `${institution?.slug.replace(
@@ -85,14 +80,9 @@ export default function buildIncitationsCovoiturage(
         link: b.link,
         source: "javascript",
         conditions_generales: [
-          b.communes
-            ? {
-                type: "communes",
-                values: b.communes,
-              }
-            : {
-                type: "attached_to_institution",
-              },
+          {
+            type: "attached_to_institution",
+          },
         ],
       })
     })

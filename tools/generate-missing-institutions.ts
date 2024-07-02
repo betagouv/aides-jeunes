@@ -127,12 +127,9 @@ export const missingInstitutionsVeloBenefit = (
 }
 
 export const missingInstitutionsCovoiturageBenefit = (
-  missingInstitutionBenefits: CoVoiturageJson[]
+  missingEPCI: CoVoiturageJson[]
 ) => {
   const institutions = Object.values(all.institutionsMap)
-  const missingEPCI = missingInstitutionBenefits.filter(
-    (b) => !b.n_est_pas_une_collectivite && b.type === "aom"
-  )
   if (missingEPCI.length) {
     missingEPCI.forEach((b) => {
       const institution = institutions.find(
@@ -151,11 +148,5 @@ export const missingInstitutionsCovoiturageBenefit = (
     })
   }
 
-  console.log(
-    "Institutions non-intégrées car du type aom ou n'est pas une collectivite : ",
-    missingInstitutionBenefits
-      .filter((b) => !["aom"].includes(b.type) || b.n_est_pas_une_collectivite)
-      .map((b) => `${b.code_siren}`)
-      .join("\n")
-  )
+  console.log("Vérification terminée")
 }

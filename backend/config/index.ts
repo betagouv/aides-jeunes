@@ -29,6 +29,7 @@ const config: Configuration = {
   aideJeuneExperimentationURL: isProduction
     ? "https://betagouv.github.io/aides-jeunes-experimentations"
     : "http://127.0.0.1:3000",
+  contextName: process.env.CONTEXT_NAME || "1jeune1solution",
   franceConnect: {
     root: process.env.FRANCE_CONNECT_ROOT_URL,
     clientId: process.env.FRANCE_CONNECT_CLIENT_ID,

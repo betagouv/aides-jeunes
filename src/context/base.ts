@@ -2,7 +2,7 @@ import Home from "@/views/home.vue"
 import BaseLayout from "@/components/base-layout.vue"
 import Simulation from "@/views/simulation.vue"
 
-const name = process.env.VITE_CONTEXT_NAME
+const name = "1jeune1solution"
 
 const routes = [
   {
@@ -62,7 +62,7 @@ const routes = [
 
 export default {
   Home,
-  BaseLayout,
+  Layout: BaseLayout,
   Simulation,
   name,
   routes,

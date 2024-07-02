@@ -247,6 +247,17 @@ If you want changes to be made locally instead of generating pull requests in pr
 - First, [contribuer/public/admin/config.yml#L19](https://github.com/betagouv/aides-jeunes/blob/main/contribuer/public/admin/config.yml#L19) ([`local_backend: true`](https://decapcms.org/docs/working-with-a-local-git-repository)) must be uncommented;
 - `npx netlify-cms-proxy-server` should be ran from `.` and
 
+## Check Link Validity
+
+Some parameters can be use to debug the command
+
+- `--dry-run` : this command is useful to not send update/new row to Grist
+- `--no-priority` : without getting priority from analytic data
+- `--only [slug benefit]` : work on specific benefit
+
+Here is an example of how using this parameters
+`npm run tools:check-links-validity -- --dry-run`
+
 ## Download carpooling incentives and generate missing ecpi
 
 The data source comes from this : https://www.data.gouv.fr/fr/datasets/conditions-des-campagnes-dincitation-financiere-au-covoiturage/

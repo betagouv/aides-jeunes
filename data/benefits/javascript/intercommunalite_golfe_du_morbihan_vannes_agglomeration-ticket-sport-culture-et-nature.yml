@@ -1,0 +1,25 @@
+label: Ticket Sport Culture et Nature
+institution: ville-de-vannes
+description: La Ville de Vannes organise l’opération « Ticket Sport Culture Nature » pendant les vacances scolaires pour vos enfants de 7 à 16 ans. Il s’agit de stages culturels ou sportifs proposés à la journée, à la demi-journée ou à la semaine et encadrés par des Éducateurs Municipaux.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: quotient_familial
+    operator: <=
+    period: month
+    value: 2101
+profils:
+  - type: parent
+conditions:
+  - Consulter sur le site de la ville, la liste et le calendrier des activités proposées ainsi que les dates d’inscription (attention, celles-ci sont assez courtes).
+  - Vérifier votre tarif, compris entre 2 € et 10 € pour une demi-journée en fonction de votre quotient familial, sur le simulateur de la ville de Vannes.
+  - Créer votre compte sur Vannes & vous.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: à 10 € par demi-journée
+montant: 2
+link: https://www.mairie-vannes.fr/ticket-sport-culture-et-nature
+teleservice: https://www.espace-citoyens.net/vannesetvous/espace-citoyens/

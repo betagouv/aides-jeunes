@@ -1,0 +1,25 @@
+label: Domiciliation des personnes sans domicile stable
+institution: etat
+description:
+  La domiciliation est la première porte d’entrée vers l’accès aux droits.
+  Elle permet en effet à des personnes qui n’ont pas de domicile stable de disposer
+  d’un justificatif de domicile et d’une adresse pour recevoir du courrier et bénéficier
+  des aides et prestations sociales auxquelles elles peuvent prétendre, telles que
+  le revenu de solidarité active (RSA).
+prefix: la
+conditions_generales:
+  - type: statut_occupation_logement
+    includes:
+      - sans_domicile
+profils: []
+conditions:
+  - Avoir un lien avec la commune pour laquelle vous demandez la domiciliation
+    (vous y séjournez, vous y avez une activité professionnelle, vous y bénéficiez
+    d’un suivi social ou vous y avez des liens familiaux, vous y exercez l’autorité parentale sur votre enfant mineur qui est scolarisé dans la commune).
+  - Effectuer votre demande de domiciliation auprès d’un Centre Communal d’Action Sociale (CCAS),
+    d’un Centre Intercommunal d’Action Sociale (CIAS), d’un organisme agréé ou directement
+    auprès de la mairie pour les communes de moins de 1500 habitants.
+type: bool
+periodicite: autre
+link: https://www.service-public.fr/particuliers/vosdroits/F17317
+teleservice: https://www.service-public.fr/particuliers/vosdroits/R44660

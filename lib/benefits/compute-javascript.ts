@@ -69,6 +69,9 @@ const PROFILE_STRATEGY = {
   situation_handicap: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.handicap === true
   },
+  parent: ({ situation }: { situation: Situation }): boolean => {
+    return situation?.enfants && situation.enfants.length > 0
+  },
 }
 
 const OPERATOR = {

@@ -87,3 +87,14 @@ jobs:
           echo "${{ secrets.SOLSTICE_PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.ECLIPSE_SSH_USER }}@${{ env.ECLIPSE_SSH_HOST }} -i ~/.ssh/deployment.key
+
+  ci_failed:
+    name: Detect failure
+    runs-on: ubuntu-20.04
+    needs: [deploy_eclipse_production, deploy_equinoxe_production]
+    if: always() && github.ref == 'refs/heads/main' && (needs.deploy_eclipse_production.result == 'failure' || needs.deploy_equinoxe_production.result == 'failure')
+    steps:
+      - name: Send CD failed message
+        shell: bash
+        run: |
+          curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-danger: [équipe-tech] La mise en production a rencontré un problème sur la branche main ([lien](https://github.com/betagouv/aides-jeunes/actions/workflows/cd.yml?query=branch%3Amain+is%3Afailure))"}' ${{ secrets.MATTERMOST_ALERTING_URL }}

@@ -164,7 +164,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('contribuer/package-lock.json') }}-
       - name: Build static site
-        run: cd contribuer && npm run export
+        run: cd contribuer && npm run build
   openfisca_test_generation:
     name: OpenFisca test generation
     needs: [install, install_openfisca, check_data_file_consistency]

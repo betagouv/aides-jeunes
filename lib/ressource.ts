@@ -118,7 +118,11 @@ function getIndividuRessourceTypes(individu, situation) {
     }, {})
 }
 
-function getIndividuRessourceTypesByCategory(individu, category, situation) {
+export function getIndividuRessourceTypesByCategory(
+  individu,
+  category,
+  situation
+) {
   return resources.ressourceTypes
     .filter((ressourceType) => {
       return (

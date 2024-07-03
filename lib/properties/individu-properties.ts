@@ -234,6 +234,7 @@ export default {
     questionType: "number",
     moreInfo:
       "Lorsque vos parents sont séparés, il faut prendre les ressources du parent qui vous a à charge. Si vous êtes encore mineur et en garde alternée, il faut faire la somme des ressources des deux foyers fiscaux des parents séparés.",
+    help: "Si vous ne connaissez pas le revenu brut global de vos parents, écrivez 0 pour poursuivre la simulation.",
     showMoreInfo: ({ simulation }) => {
       const _situation = getAnswer(
         simulation.answers.current,

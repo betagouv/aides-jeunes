@@ -50,6 +50,6 @@ export default {
     question:
       "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
-    help: "Si vous ne connaissez pas le RFR de vos parents, écrivez 0 pour poursuivre la simulation.",
+    help: "Si vous ne connaissez pas le RFR de vos parents, écrivez 0 pour poursuivre la simulation. Attention, cela pourrait impacter l'exactitude des résultats de la simulation.",
   }),
 }

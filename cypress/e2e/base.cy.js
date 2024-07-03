@@ -25,6 +25,7 @@ context("Full simulation", () => {
 
     profil.defaultIndivu()
     comeBackLater.checkAll()
+    navigate.goToEnSavoirPlus()
     foyer.children(0)
     foyer.fill_en_couple(false)
     navigate.goRecap()

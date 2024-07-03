@@ -5,6 +5,7 @@
       :to="{ path: $route.path + '/en_savoir_plus' }"
       :data-text="text"
       class="fr-badge fr-badge--info"
+      data-testid="en-savoir-plus-button"
       >en savoir plus
     </router-link>
   </span>

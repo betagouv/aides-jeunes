@@ -35,9 +35,20 @@ const totalSteps = computed(() => recursiveStepCounter(blocks.value))
         {{ blocks.length }} blocs de premier niveau - {{ totalSteps }} étapes au
         total
       </div>
+      <div class="fr-mb-1w">
+        <span class="fr-btn--sm fr-btn--secondary">
+          <span class="fr-icon-arrow-right-s-line fr-my-1w" aria-hidden="true"
+        /></span>
+        Indique une question avec au moins une sous-question (→ noeud
+        interactif).
+      </div>
+      <div>
+        <span class="fr-icon-leaf-line fr-my-1w" aria-hidden="true" />
+        Indique une question sans sous-questions (→ feuille).
+      </div>
       <div>
         <span class="fr-icon-question-line fr-my-1w" aria-hidden="true" />
-        indique une question affichée de façon conditionnelle.
+        Indique une question affichée de façon conditionnelle.
       </div>
       <div class="fr-checkbox-group fr-my-1w">
         <input

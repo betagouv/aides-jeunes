@@ -14,8 +14,12 @@ const open = ref(false)
 const totalSubSteps = computed(() => countSubSteps(props.step))
 const nextStep = computed(() => getNextStep(props.step))
 const isLeafNode = computed(() => totalSubSteps.value === 1)
-const buttonLabel = computed(() =>
-  isLeafNode.value ? " " : open.value ? "-" : "+"
+const buttonIcon = computed(() =>
+  isLeafNode.value
+    ? "fr-icon-leaf-line"
+    : open.value
+    ? "fr-icon-arrow-down-s-line"
+    : "fr-icon-arrow-right-s-line"
 )
 const label = computed((): string => {
   const count = totalSubSteps.value
@@ -43,13 +47,16 @@ const toggleOpen = () => {
   <div class="fr-my-1v">
     <button
       :disabled="isLeafNode"
-      class="fr-btn fr-btn--secondary fr-grid-row--center aj-step-button"
+      class="fr-btn fr-btn--sm fr-btn--secondary"
       @click="toggleOpen"
     >
-      {{ buttonLabel }}
+      <span :class="`${buttonIcon}`" :aria-hidden="true"></span>
     </button>
     <span
-      :class="['fr-icon-question-line', { 'aj-hidden': !step?.isActive }]"
+      :class="[
+        'fr-icon fr-icon-question-line',
+        { 'aj-hidden': !step?.isActive },
+      ]"
       aria-hidden="true"
     ></span>
     <span> {{ label }}</span>

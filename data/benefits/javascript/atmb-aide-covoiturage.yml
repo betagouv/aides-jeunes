@@ -305,7 +305,7 @@ profils: []
 conditions:
   - "Télécharger l'une des applications partenaires : Karos ou BlaBlaCar Daily."
   - Effectuer un trajet dont la distance est comprise entre 4 et 80 kilomètres.
-  - Réaliser votre trajet en Haute-Savoie (consulter la carte du territoire couvert par l'aide au covoiturage en cliquant sur "Plus d'information").
+  - Réaliser votre trajet en Haute-Savoie (consulter la carte du territoire couvert par le dispositif en cliquant sur "Plus d'information").
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre

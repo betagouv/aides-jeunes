@@ -171,9 +171,9 @@ conditions_generales:
     value: 18
 profils: []
 conditions:
-  - "Télécharger l'une des applications partenaires : Blablacar Daily, Karos, Klaxit et Mobicoop."
+  - "Télécharger l'une des applications partenaires : Blablacar Daily, Karos, Klaxit ou Mobicoop."
   - Effectuer un trajet dont la distance est comprise entre 5 et 80 kilomètres.
-  - Réaliser votre trajet au départ et/ou à l’arrivée des 158 communes du Pays Basque ainsi que Tarnos, Ondres et Saint-Martin-de-Seignanx dans le sud des Landes.
+  - Réaliser votre trajet au départ et/ou à l’arrivée de l'une des 158 communes du Pays Basque ainsi que Tarnos, Ondres et Saint-Martin-de-Seignanx dans le sud des Landes.
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre

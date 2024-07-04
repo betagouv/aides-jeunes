@@ -305,9 +305,12 @@ profils: []
 conditions:
   - "Télécharger l'une des applications partenaires : Karos ou BlaBlaCar Daily."
   - Effectuer un trajet dont la distance est comprise entre 4 et 80 kilomètres.
-  - Réaliser votre trajet en Haute-Savoie (consulter la carte du territoire couvert par le dispositif en cliquant sur "Plus d'information").
+  - Réaliser votre trajet en Haute-Savoie (a target="_blank" rel="noopener" title
+    ="Carte du territoire ATMB - Nouvelle fenêtre"
+    href="https://www.atmb.com/app/uploads/2024/03/carte-zone-eligibilite-2024-je-covoit-mars-2024.png">
+    consulter la carte</a> du territoire couvert par le dispositif).
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre
 link: https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/
-teleservice: https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/https://encovoit-grandlyon.com/
+teleservice: https://www.atmb.com/telepeage-tarifs/nos_abonnements_telepeage_atmb/je-covoit-encourager-le-covoiturage-en-haute-savoie/

@@ -1,6 +1,6 @@
-label: rendez-vous près de chez vous pour demander vos aides
+label: rendez-vous d’accès aux droits près de chez vous
 institution: cc_pays_de_la_chataigneraie
-description: Vous avez besoin d’un accompagnement pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous près de chez vous avec une agente chargée de l’accès aux droits.
+description: Vous avez besoin d’un accompagnement pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous près de chez vous avec l’Animatricede l’accès aux droits sur le territoire.
 prefix: le
 conditions_generales:
   - type: communes
@@ -27,6 +27,6 @@ conditions_generales:
       - "85014"
 type: bool
 periodicite: autre
-teleservice: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&motif_name_with_location_type=rendez_vous_diagnostic_d_acces_aux_droits_tznr-public_office&public_link_organisation_id=1119
-link: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&motif_name_with_location_type=rendez_vous_diagnostic_d_acces_aux_droits_tznr-public_office&public_link_organisation_id=1119
+teleservice: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
+link: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
 top: -1

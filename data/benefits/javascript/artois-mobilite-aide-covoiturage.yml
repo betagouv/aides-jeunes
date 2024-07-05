@@ -1,6 +1,6 @@
 label: incitation au covoiturage d'Artois Mobilités
 institution: artois-mobilites
-description: "Artois Mobilités subventionne vos covoiturages réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Vous êtes indemnisé entre 2 € et 4 € par passager selon la distance parcourue, dans la limite de 150 € par mois. Vous êtes passagère ou passager ? Bénéficiez de 2 trajets gratuits par jour."
+description: "Artois Mobilités subventionne vos covoiturages réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Vous êtes indemnisé entre 2 € et 4 € par trajet et par passager selon la distance parcourue, dans la limite de 150 € par mois. Vous êtes passagère ou passager ? Bénéficiez de 2 trajets gratuits par jour."
 prefix: l’
 conditions_generales:
   - type: communes
@@ -162,7 +162,7 @@ profils: []
 conditions:
   - Télécharger l’application mobile BlablaCar Daily.
   - Effectuer un trajet dont la distance est comprise entre 2 et 80 kilomètres.
-  - Partir ou arriver dans l’une des 150 communes des Communautés d'Agglomération de Lens-Liévin, Hénin-Carvin et Béthune-Bruay Artois Lys Romane (a target="_blank" rel="noopener" title
+  - Partir ou arriver dans l’une des 150 communes des Communautés d'Agglomération de Lens-Liévin, Hénin-Carvin et Béthune-Bruay Artois Lys Romane (<a target="_blank" rel="noopener" title
     ="Liste des communes du territoire Artois Mobilités - Nouvelle fenêtre"
     href="https://www.artois-mobilites.fr/le-smt-ag/presentation-liste-des-communes/">
     consulter la liste des communes</a>).

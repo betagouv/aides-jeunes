@@ -1,6 +1,6 @@
 label: incitation au covoiturage du Syndicat Mixte de l'Avant-Pays Savoyard
 institution: smaps_syndicat_mixte_avant_pays_savoyard
-description: "Le Syndicat Mixte de l'Avant-Pays Savoyard subventionne vos covoiturage en Savoie, réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 5 € par trajet et par passager, selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets de plus de 5 kilomètres vous sont offerts."
+description: "Le Syndicat Mixte de l'Avant-Pays Savoyard subventionne vos covoiturages en Savoie, réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 5 € par trajet et par passager, selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets de plus de 5 kilomètres vous sont offerts."
 prefix: l’
 conditions_generales:
   - type: communes

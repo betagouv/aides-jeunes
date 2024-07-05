@@ -59,7 +59,7 @@ FollowupSchema.virtual("surveyPath").get(function (this) {
 })
 
 FollowupSchema.virtual("surveyPathTracker").get(function (this) {
-  return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnBenefitActionEmail}`
+  return `/api/followups/surveys/${this.accessToken}/${SurveyType.TrackClickOnSimulationUsefulnessEmail}`
 })
 
 FollowupSchema.virtual("wasUsefulPath").get(function (this) {

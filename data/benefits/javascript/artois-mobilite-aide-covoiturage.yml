@@ -164,8 +164,7 @@ conditions:
   - Effectuer un trajet dont la distance est comprise entre 2 et 80 kilomètres.
   - Partir ou arriver dans l’une des 150 communes des Communautés d'Agglomération de Lens-Liévin, Hénin-Carvin et Béthune-Bruay Artois Lys Romane (<a target="_blank" rel="noopener" title
     ="Liste des communes du territoire Artois Mobilités - Nouvelle fenêtre"
-    href="https://www.artois-mobilites.fr/le-smt-ag/presentation-liste-des-communes/">
-    consulter la liste des communes</a>).
+    href="https://www.artois-mobilites.fr/le-smt-ag/presentation-liste-des-communes/">consulter la liste des communes</a>).
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre

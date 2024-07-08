@@ -23,7 +23,7 @@ const formattedInstitutionsLabel = computed(() => {
     <div class="fr-tile tile-1">
       <div class="fr-tile tile-2">
         <router-link
-          class="fr-tile tile-3"
+          class="fr-tile fr-tile--horizontal tile-3"
           :to="`/simulation/resultats/groupe/${props.group.id}`"
           itemscope
           itemtype="http://schema.org/GovernmentService"
@@ -51,6 +51,7 @@ const formattedInstitutionsLabel = computed(() => {
                   />
                 </div>
               </div>
+              <div class="aj-benefit-amount"></div>
             </div>
             <ul
               class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right"
@@ -79,5 +80,10 @@ const formattedInstitutionsLabel = computed(() => {
   margin-top: 0.75rem;
   margin-bottom: -0.75rem;
   margin-left: -0.75rem;
+}
+
+.fr-tile {
+  /*override - padding: 2rem 2rem 2.25rem;*/
+  padding: 0px;
 }
 </style>

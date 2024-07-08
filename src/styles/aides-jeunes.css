@@ -134,6 +134,11 @@ textarea {
   background: #faf4ce;
 }
 
+.fr-tile {
+  border-bottom: solid;
+  border-bottom-color: var(--main-color);
+}
+
 .fr-btn {
   text-align: center;
   max-width: 100% !important;
@@ -254,10 +259,6 @@ textarea {
 
 .aj-benefit-amount {
   min-width: 120px;
-}
-
-.aj-benefit-cta-light-container {
-  background-color: var(--background-info-container);
 }
 
 .aj-institution-icon {

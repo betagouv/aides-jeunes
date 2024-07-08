@@ -20,14 +20,14 @@ const askBenefitLabelButton = (benefit) => {
 <template>
   <div v-if="props.benefit">
     <router-link
-      class="fr-tile"
+      class="fr-tile fr-tile--horizontal"
       :to="`/simulation/resultats/${props.benefit.id}`"
       itemscope
       itemtype="http://schema.org/GovernmentService"
       :data-testid="props.benefit.id"
       :aria-label="askBenefitLabelButton(props.benefit)"
     >
-      <div class="fr-p-4w">
+      <div>
         <div class="aj-benefit-header fr-mb-4w">
           <img
             class="aj-institution-icon"

@@ -58,7 +58,7 @@ const ctas = computed(() => {
 <template>
   <div
     v-if="ctas.length > 0 && benefit"
-    class="fr-container fr-py-2w aj-benefit-cta-light-container"
+    class="fr-container fr-py-2w fr-callout"
   >
     <h5 class="fr-h5">Comment l'obtenir ?</h5>
     <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">

@@ -546,10 +546,7 @@ export const useStore = defineStore("store", {
             this.setMessage(
               `🚀 Vous avez ajouté <abbr title="${missingBenefits.join(
                 ", "
-              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comm
-
-
-ent celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`
+              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`
             )
           }
         })

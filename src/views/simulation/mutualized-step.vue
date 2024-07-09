@@ -201,6 +201,12 @@ export default {
       if (this.questionType === "date" && this.value === "wrong-date") {
         hasError = true
         message = "La date saisie est incorrecte."
+      } else if (
+        this.questionType === "date" &&
+        this.value === "incomplete-date"
+      ) {
+        hasError = true
+        message = "La date saisie est incomplete."
       }
 
       if (submit) {

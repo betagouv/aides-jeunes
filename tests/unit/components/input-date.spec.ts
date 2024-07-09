@@ -23,6 +23,9 @@ describe("input-date.vue", () => {
       { date: "2001-12-14", result: new Date("2001-12-14") },
       { date: "1800-01-01", result: "wrong-date" },
       { date: "2100-01-01", result: "wrong-date" },
+      { date: "-01-01", result: "incomplete-date" },
+      { date: "2010--01", result: "incomplete-date" },
+      { date: "2010-01-", result: "incomplete-date" },
     ]
     for (const test of testSet) {
       let emitted
@@ -30,6 +33,7 @@ describe("input-date.vue", () => {
         date: test.date,
         $emit: (name, value) => (emitted = { name, value }),
       })
+      console.log(test.date, emitted.value, test.result)
       expect(emitted.value).toEqual(test.result)
     }
   })

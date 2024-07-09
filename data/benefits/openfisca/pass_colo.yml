@@ -1,24 +1,19 @@
 label: Passʼcolo - une aide financière pour les départs en colo
 institution: etat
-description: Activités culturelles, sportives, rencontres... les colonies de
+description: Activités culturelles, sportives, rencontres... Les colonies de
   vacances offrent une multitude dʼexpériences enrichissantes pour les enfants
   et les jeunes. Cette aide permet de prendre en charge totalement ou
   partiellement le coût de la colonie.
 prefix: le
-conditions_generales:
-  - type: quotient_familial
-    operator: <
-    period: year
-    value: 1500
-profils:
-  - type: parent
 conditions:
   - Avoir un enfant dont lʼannée de naissance est 2013.
   - Consulter le catalogue des colos disponibles et contacter lʼorganisateur.
+  - Effectuer un séjour d'une durée minimale de 5 jours durant les vacances scolaires.
 type: float
 unit: €
-periodicite: autre
-montant: 350
-legend: maximum
+entity: individus
+openfiscaPeriod: thisMonth
 link: https://www.jeunes.gouv.fr/passcolo
 teleservice: https://www.jeunes.gouv.fr/le-pass-colo-en-3-etapes-2106
+periodicite: ponctuelle
+legend: maximum

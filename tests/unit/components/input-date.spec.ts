@@ -33,7 +33,6 @@ describe("input-date.vue", () => {
         date: test.date,
         $emit: (name, value) => (emitted = { name, value }),
       })
-      console.log(test.date, emitted.value, test.result)
       expect(emitted.value).toEqual(test.result)
     }
   })

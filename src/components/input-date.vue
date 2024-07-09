@@ -140,7 +140,7 @@ export default {
       }
     },
     update: function () {
-      if ("" === this.date || "--" === this.date) {
+      if ("--" === this.date) {
         this.$emit("update:modelValue", undefined)
       } else if (!this.date.match(/^\d{4}[-]\d{2}[-]\d{2}$/)) {
         this.$emit("update:modelValue", "incomplete-date")

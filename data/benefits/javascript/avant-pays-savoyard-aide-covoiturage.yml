@@ -5,7 +5,6 @@ prefix: l’
 conditions_generales:
   - type: communes
     values:
-      - "62001"
       - "73184"
       - "73001"
       - "73022"

@@ -308,7 +308,7 @@ conditions:
   - Réaliser votre trajet en Haute-Savoie (a target="_blank" rel="noopener" title
     ="Carte du territoire ATMB - Nouvelle fenêtre"
     href="https://www.atmb.com/app/uploads/2024/03/carte-zone-eligibilite-2024-je-covoit-mars-2024.png">
-    consulter la carte</a> du territoire couvert par le dispositif).
+    (consulter la carte pour découvrir le territoire couvert par le dispositif)</a>.
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre

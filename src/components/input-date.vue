@@ -140,15 +140,21 @@ export default {
       }
     },
     update: function () {
-      const dt = dayjs.utc(this.date, "YYYY-MM-DD", true)
-      if (
-        dt.isValid() &&
-        dt.isAfter(dayjs.utc("1900-01-01", "YYYY-MM-DD", true)) &&
-        dt.isBefore(dayjs.utc())
-      ) {
-        this.$emit("update:modelValue", dt.toDate())
-      } else {
+      if ("--" === this.date) {
         this.$emit("update:modelValue", undefined)
+      } else if (!this.date.match(/^\d{4}[-]\d{2}[-]\d{2}$/)) {
+        this.$emit("update:modelValue", "incomplete-date")
+      } else {
+        const dt = dayjs.utc(this.date, "YYYY-MM-DD", true)
+        if (
+          dt.isValid() &&
+          dt.isAfter(dayjs.utc("1900-01-01", "YYYY-MM-DD", true)) &&
+          dt.isBefore(dayjs.utc())
+        ) {
+          this.$emit("update:modelValue", dt.toDate())
+        } else {
+          this.$emit("update:modelValue", "wrong-date")
+        }
       }
     },
   },

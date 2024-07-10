@@ -21,8 +21,11 @@ describe("input-date.vue", () => {
   it("accept valid dates", async () => {
     const testSet = [
       { date: "2001-12-14", result: new Date("2001-12-14") },
-      { date: "1800-01-01", result: undefined },
-      { date: "2100-01-01", result: undefined },
+      { date: "1800-01-01", result: "wrong-date" },
+      { date: "2100-01-01", result: "wrong-date" },
+      { date: "-01-01", result: "incomplete-date" },
+      { date: "2010--01", result: "incomplete-date" },
+      { date: "2010-01-", result: "incomplete-date" },
     ]
     for (const test of testSet) {
       let emitted

@@ -5,7 +5,6 @@ prefix: le
 conditions_generales:
   - type: communes
     values:
-      - "34172"
       - "85037"
       - "85289"
       - "85053"

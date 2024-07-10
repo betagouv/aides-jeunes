@@ -121,9 +121,9 @@ profils: []
 conditions:
   - Télécharger l’application mobile BlablaCar Daily.
   - Effectuer un trajet dont la distance est comprise entre 5 et 60 kilomètres.
-  - Partir ou arriver dans l’une des 108 communes du Pôle métropolitain Mobilités Le Mans-Sarthe (<a target="_blank" rel="noopener" title
+  - Partir ou arriver dans l’une des <a target="_blank" rel="noopener" title
     ="Carte du Pôle métropolitain Mobilités Le Mans-Sarthe - Nouvelle fenêtre"
-    href="https://lemanssarthe-mobilites.fr/qui-sommes-nous/">consulter la carte du territoire</a>).
+    href="https://lemanssarthe-mobilites.fr/qui-sommes-nous/">108 communes du Pôle métropolitain Mobilités Le Mans-Sarthe</a>.
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre

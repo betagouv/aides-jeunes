@@ -1,6 +1,6 @@
 label: incitation au covoiturage en Haute-Savoie
 institution: atmb
-description: "Autoroutes et Tunnel du Mont-Blanc subventionne tous vos trajets en Haute-Savoie, réservés depuis les applications BlaBlaCar Daily et Karos. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 4 € par trajet et par passager selon la distance parcourue, dans la limite de 50 € par mois. Vous êtes passagère ou passager ? Bénéficiez de 2 trajets gratuits par jour."
+description: "ATMB (Autoroutes et Tunnel du Mont-Blanc) subventionne tous vos trajets en Haute-Savoie, réservés depuis les applications BlaBlaCar Daily et Karos. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 4 € par trajet et par passager selon la distance parcourue, dans la limite de 50 € par mois. Vous êtes passagère ou passager ? Bénéficiez de 2 trajets gratuits par jour."
 prefix: l’
 conditions_generales:
   - type: communes

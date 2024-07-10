@@ -1,13 +1,13 @@
 import { Institution } from "../../../data/types/institutions.d.js"
-import { CoVoiturageBenefit } from "../../../data/types/benefits"
+import { CovoiturageBenefit } from "../../../data/types/benefits"
 import { capitalize, uncapitalize } from "../../../lib/utils.js"
 import benefits from "./incitations-covoiturage.json" assert { type: "json" }
 
 export default function buildIncitationsCovoiturage(
   institutions: Institution[]
-): CoVoiturageBenefit[] {
+): CovoiturageBenefit[] {
   try {
-    const formattedBenefits: CoVoiturageBenefit[] = []
+    const formattedBenefits: CovoiturageBenefit[] = []
     benefits.map((b) => {
       const institution = institutions.find(
         (i) => i.code_siren === b.code_siren

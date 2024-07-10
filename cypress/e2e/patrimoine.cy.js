@@ -51,7 +51,11 @@ context("Full simulation", () => {
 
         results.wait()
         results.hasAideVeloNationale()
-        results.hasIncitationCovoiturage() //Fini le 31/12/2024
+
+        /** Vérifie que l'incitation de Montpellier est présente
+         * mais elle se termine le 31/12/2024
+         * Donc il faudra faire évoluer le test à ce moment là*/
+        results.hasIncitationCovoiturage()
         results.hasHousingBenefit()
         results.back()
         results.hasRSA()

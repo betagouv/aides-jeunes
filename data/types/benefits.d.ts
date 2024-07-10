@@ -36,7 +36,7 @@ export interface VeloBenefit extends Aide {
   periodicite?: string
 }
 
-export interface CoVoiturageBenefit {
+export interface CovoiturageBenefit {
   id: string
   institution: string
   source?: string
@@ -54,7 +54,7 @@ export interface CoVoiturageBenefit {
   source?: string
 }
 
-export interface CoVoiturageJson {
+export interface CovoiturageJson {
   link: string
   code_siren: string
   nom_plateforme: string

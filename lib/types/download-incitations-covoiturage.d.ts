@@ -43,7 +43,7 @@ interface GristRecord {
   fields: GristFields
 }
 
-export interface GristIncitationsCoVoiturageResponse {
+export interface GristIncitationsCovoiturageResponse {
   records: GristRecord[]
 }
 

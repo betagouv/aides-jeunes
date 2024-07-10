@@ -3,11 +3,11 @@ import benefits from "@root/data/all.js"
 
 import incitationsCovoiturageGenerator from "@root/data/benefits/dynamic/incitations-covoiturage.js"
 import benefitsCovoiturage from "@root/data/benefits/dynamic/incitations-covoiturage.json" assert { type: "json" }
-import { CoVoiturageBenefit } from "@root/data/types/benefits.js"
+import { CovoiturageBenefit } from "@root/data/types/benefits.js"
 import { Institution } from "@data/types/institutions"
 
 describe("incitations benefit generator", function () {
-  const list: CoVoiturageBenefit[] =
+  const list: CovoiturageBenefit[] =
     incitationsCovoiturageGenerator instanceof Function
       ? incitationsCovoiturageGenerator(Object.values(benefits.institutionsMap))
       : []

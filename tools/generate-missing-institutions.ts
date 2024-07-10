@@ -2,7 +2,7 @@ import fs from "fs"
 import yaml from "js-yaml"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 import all from "../data/all"
-import { CoVoiturageJson, VeloBenefit } from "../data/types/benefits"
+import { CovoiturageJson, VeloBenefit } from "../data/types/benefits"
 
 const NAME_FORMATTER = {
   CA: "Communauté d'agglomération",
@@ -127,7 +127,7 @@ export const missingInstitutionsVeloBenefit = (
 }
 
 export const missingInstitutionsCovoiturageBenefit = (
-  missingEPCI: CoVoiturageJson[]
+  missingEPCI: CovoiturageJson[]
 ) => {
   const institutions = Object.values(all.institutionsMap)
   if (missingEPCI.length) {

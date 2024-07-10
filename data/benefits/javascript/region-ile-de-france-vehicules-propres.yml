@@ -12,7 +12,7 @@ conditions:
 conditions_generales:
   - type: age
     operator: ">="
-    value: 20
+    value: 17
   - type: regions
     values:
       - "11"

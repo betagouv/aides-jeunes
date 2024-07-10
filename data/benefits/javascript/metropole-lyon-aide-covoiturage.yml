@@ -1,21 +1,83 @@
-label: incitation au covoiturage
+label: incitation au covoiturage du Grand Lyon
 institution: intercommunalite_metropole_lyon
-description: "La Métropole de Lyon subventionne vos covoiturages réservés depuis l’application En Covoit’Grand Lyon. Vous êtes conductrice ou conducteur ? Vous êtes indemnisé entre 1€ et 8€ par passager, selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets sont gratuits si vous avez la carte d’abonnement aux transports et vous coûtent sinon 0,50€ puis 0,10€ par kilomètre au-delà de 30 kilomètres."
+description: "La Métropole de Lyon subventionne vos covoiturages réservés depuis l’application En Covoit’ Rendez-vous. Vous êtes conductrice ou conducteur ? Recevez entre 1 € et 8 € par trajet et par passager selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets sont gratuits si vous avez la carte d’abonnement aux transports et vous coûtent sinon 0,50 € puis 0,10 € par kilomètre au-delà de 30 kilomètres."
 prefix: l’
 conditions_generales:
-  - type: epcis
+  - type: communes
     values:
-      - "200046977"
+      - "69123"
+      - "69003"
+      - "69029"
+      - "69033"
+      - "69034"
+      - "69040"
+      - "69044"
+      - "69046"
+      - "69271"
+      - "69063"
+      - "69273"
+      - "69068"
+      - "69069"
+      - "69071"
+      - "69072"
+      - "69275"
+      - "69081"
+      - "69276"
+      - "69085"
+      - "69087"
+      - "69088"
+      - "69089"
+      - "69278"
+      - "69091"
+      - "69096"
+      - "69100"
+      - "69279"
+      - "69116"
+      - "69117"
+      - "69127"
+      - "69282"
+      - "69283"
+      - "69284"
+      - "69142"
+      - "69143"
+      - "69149"
+      - "69153"
+      - "69163"
+      - "69286"
+      - "69168"
+      - "69191"
+      - "69194"
+      - "69202"
+      - "69199"
+      - "69204"
+      - "69205"
+      - "69207"
+      - "69290"
+      - "69233"
+      - "69292"
+      - "69293"
+      - "69296"
+      - "69244"
+      - "69250"
+      - "69256"
+      - "69259"
+      - "69260"
+      - "69266"
+      - "69027"
+      - "69043"
+      - "69133"
+      - "69136"
+      - "69268"
   - type: age
     operator: ">="
     value: 18
 profils: []
 conditions:
-  - Télécharger l’application mobile En Covoit’Grand Lyon, opérée par Karos.
+  - Télécharger l’application mobile En Covoit’ Rendez-vous, opérée par Karos.
   - Effectuer un trajet dont la distance est comprise entre 5 et 80 kilomètres.
-  - Partir ou arriver dans l’une des 59 communes de la métropole de Lyon.
+  - Partir ou arriver dans la Métropole de Lyon ou la communauté de communes de la vallée du Garon.
   - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre
-link: https://met.grandlyon.com/trajets-quotidien-covoiturage/
-teleservice: https://encovoit-grandlyon.com/
+link: https://encovoit-rdv.com/
+teleservice: https://encovoit-rdv.com/

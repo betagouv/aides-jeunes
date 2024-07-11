@@ -34,7 +34,7 @@
   background-color: var(--tool-link-background-color-hover);
 }
 
-.fr-sidemenu__link[aria-current="true"] {
+.fr-sidemenu__link[aria-current="true"], .fr-sidemenu__link[aria-current]:not([aria-current=false])  {
   color: var(--sidemenu-active-link-text-color);
 }
 
@@ -59,8 +59,10 @@ details,
 input[type="checkbox"] + label:before,
 input[type="image"],
 input[type="radio"] + label:before,
+input[type="radio"],
 input[type="reset"],
 input[type="submit"],
+input:focus,
 select,
 textarea {
   outline-color: var(--input-outline);
@@ -95,7 +97,7 @@ textarea {
   text-align: justify;
 }
 
-.fr-text--disabled {
+.fr-text--disabled, {
   color: #666666;
 }
 

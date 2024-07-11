@@ -1,0 +1,31 @@
+label: rendez-vous d’accès aux droits près de chez vous
+institution: cc_pays_de_la_chataigneraie
+description: Vous avez besoin d’un accompagnement pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous près de chez vous avec l’Animatrice de l’accès aux droits sur le territoire.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "85037"
+      - "85289"
+      - "85053"
+      - "85251"
+      - "85229"
+      - "85059"
+      - "85005"
+      - "85264"
+      - "85305"
+      - "85125"
+      - "85271"
+      - "85292"
+      - "85041"
+      - "85141"
+      - "85067"
+      - "85154"
+      - "85219"
+      - "85252"
+      - "85014"
+type: bool
+periodicite: autre
+teleservice: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
+link: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
+top: -1

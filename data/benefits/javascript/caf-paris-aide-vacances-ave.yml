@@ -4,8 +4,8 @@ description:
   La Caf de Paris favorise le départ en vacances des enfants de ses allocataires
   en contribuant aux frais de leur séjour avec les partenaires agréés Vacaf.
   Le montant de l’aide dépend du quotient familial, avec un bonus pour les enfants
-  bénéficiaires de l’allocation d’éducation de l’enfant handicapé (AEEH). L’aide est équivalente à une participation financière journalière
-  allant de 15 € à 60 € par jour et par enfant.
+  bénéficiaires de l’allocation d’éducation de l’enfant handicapé (AEEH).
+  L’aide est équivalente à une participation financière allant de 15 € à 60 € par jour et par enfant.
 prefix: l’
 conditions_generales:
   - type: departements

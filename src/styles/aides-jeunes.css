@@ -34,7 +34,8 @@
   background-color: var(--tool-link-background-color-hover);
 }
 
-.fr-sidemenu__link[aria-current="true"], .fr-sidemenu__link[aria-current]:not([aria-current=false])  {
+.fr-sidemenu__link[aria-current="true"],
+.fr-sidemenu__link[aria-current]:not([aria-current="false"]) {
   color: var(--sidemenu-active-link-text-color);
 }
 
@@ -97,7 +98,7 @@ textarea {
   text-align: justify;
 }
 
-.fr-text--disabled, {
+.fr-text--disabled {
   color: #666666;
 }
 

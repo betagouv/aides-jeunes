@@ -1,0 +1,32 @@
+label: aide aux vacances en famille (AVF)
+institution: caf_gironde
+description:
+  La Caf de la Gironde propose une aide financière à ses allocataires pour partir
+  en vacances en famille pendant les vacances scolaires.
+  Le montant de l’aide dépend du quotient familial.
+prefix: l’
+conditions_generales:
+  - type: departements
+    values:
+      - "33"
+  - type: quotient_familial
+    value: 600
+    operator: "<="
+    period: month
+profils:
+  - type: parent
+conditions:
+  - Avoir au moins un enfant à charge.
+  - Être allocataire de la Caf de la Gironde et avoir perçu au moins une prestation familiale pendant l'année en cours.
+  - Choisir votre séjour familial parmi les villages vacances et campings labellisés Vacaf dans toute la France sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
+  - Être présent pendant le séjour (au moins un parent et un enfant).
+  - Séjourner pendant 7 nuits consécutives minimum.
+type: float
+unit: €
+periodicite: ponctuelle
+legend: maximum
+montant: 600
+link: https://www.caf.fr/allocataires/caf-de-la-gironde/offre-de-service/vie-personnelle/choisir-une-aide-vacances-2024/l-aide-aux-vacances-familles-avf

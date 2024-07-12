@@ -166,6 +166,10 @@ There are several levels of tests:
 
 You can safely use `npm test && npm run cypress` to drive your developments.
 
+## Development Environment and Cypress
+
+In Cypress tests, we verify that email functionality works. To check this locally, you need to copy and paste the environmental variables from .env.e2e to your .env file (and create the .env file if you don't already have one).
+
 ## Email
 
 We use the framework [MJML](https://mjml.io/) to design and integrate the templates. [Tipimail](https://fr.tipimail.com) is our service to send emails.

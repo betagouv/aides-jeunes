@@ -11,7 +11,7 @@ const back = () => cy.get('[data-testid="back-button"]').click()
 const IdentifyBenefit = (id, name) => {
   cy.get(
     `[itemtype="http://schema.org/GovernmentService"][data-testid="${id}"]`,
-    { timeout: 10000 }
+    { timeout: 10000 },
   ).as(`${id}-summary`)
   cy.checkA11y()
   getBenefitSummary(id)
@@ -29,7 +29,7 @@ const hasBafaGroupPreviewBenefit = (mustBeDisplay) => {
   } else {
     cy.get(
       `[itemtype="http://schema.org/GovernmentService"][data-testid="${bafaGroupPreviewId}"]`,
-      { timeout: 10000 }
+      { timeout: 10000 },
     ).should("not.exist")
   }
 }
@@ -70,11 +70,11 @@ const hasPrimeActiviteNearbyPlaces = () => {
   cy.get('[data-testid="nearby-places"]').should("be.visible")
   cy.get('[data-testid="lieu-title"]').should(
     "contain",
-    "Caisse d'allocations familiales"
+    "Caisse d'allocations familiales",
   )
   cy.get('[data-testid="lieu-informations-link"]').should(
     "contain",
-    "Voir les informations"
+    "Voir les informations",
   )
 }
 
@@ -205,7 +205,7 @@ const hasVeloGroupPreviewBenefit = (mustBeDisplay) => {
   } else {
     cy.get(
       `[itemtype="http://schema.org/GovernmentService"][data-testid="${veloGroupPreviewId}"]`,
-      { timeout: 10000 }
+      { timeout: 10000 },
     ).should("not.exist")
   }
 }
@@ -247,17 +247,10 @@ const receiveResultsEmail = () => {
   cy.get('[data-testid="simulation-id"')
     .invoke("text")
     .then((simulationId) => {
-      cy.url().then((url) => {
-        if (url.includes("localhost")) {
-          // skip this test on localhost
-          // todo : implement a solution for testing this feature locally
-          return
-        } else {
-          // Works on CI only
-          cy.task("getLastEmail", email)
-            .its("headers.subject")
-            .should("includes", simulationId)
-        }
+      cy.url().then(() => {
+        cy.task("getLastEmail", email)
+          .its("headers.subject")
+          .should("includes", simulationId)
       })
     })
 }
@@ -275,7 +268,7 @@ const receiveResultsSms = () => {
         surveyOptin: true,
         phone: "0600000000",
       },
-    }
+    },
   ).as("post-receive-results-sms")
 
   cy.get("[data-testid='send-email-and-sms-button']", {
@@ -299,7 +292,7 @@ const checkResultsRequests = () => {
   cy.wait("@post-simulation").then(({ request, response }) => {
     cy.writeFile(
       `cypress/payloads/${Cypress.spec.fileName}-simulation.json`,
-      response.body
+      response.body,
     )
     expect(request.method).to.equal("POST")
     expect(response.statusCode).to.equal(200)

@@ -8,14 +8,28 @@ const store = useStore()
 const { modalState } = toRefs(store)
 const show = ref(modalState.value !== undefined)
 
+declare global {
+  interface Window {
+    dsfr: (element: HTMLElement) => {
+      modal: { conceal: () => void; disclose: () => void }
+    }
+  }
+}
+
 watch(modalState, (newValue) => {
   show.value = newValue !== undefined
+  if (!show.value) {
+    const modal = document.getElementById("fr-modal-email")
+    if (modal) {
+      window.dsfr(modal).modal.conceal()
+    }
+  }
 })
 </script>
 
 <template>
   <div v-if="show">
-    <h2 class="fr-text--lead"> Je garde ces informations&nbsp;! </h2>
+    <h2 class="fr-text--lead">Je garde ces informations&nbsp;!</h2>
     <p>
       Vous pouvez enregistrer les résultats de votre simulation pour les
       consulter plus tard.
@@ -25,6 +39,6 @@ watch(modalState, (newValue) => {
         <SendRecapButton></SendRecapButton>
       </li>
     </ul>
-    <RecapEmailAndSmsModal></RecapEmailAndSmsModal>
   </div>
+  <RecapEmailAndSmsModal></RecapEmailAndSmsModal>
 </template>

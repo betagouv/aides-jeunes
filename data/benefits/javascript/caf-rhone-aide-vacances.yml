@@ -1,0 +1,32 @@
+label: aides aux vacances
+institution: caf_rhone
+description: La Caf du Rhône propose deux aides financières à ses allocataires.
+  L’aide aux vacances familiales (AVF) permet de profiter d’un séjour en famille et l’aide aux vacances
+  enfants (AVE) favorise le départ des enfants en colonies de vacances. Le montant de l’aide dépend du
+  quotient familial, avec un bonus pour les bénéficiaires de l’allocation
+  d’éducation de l’enfant handicapé (AEEH).
+prefix: les
+conditions_generales:
+  - type: departements
+    values:
+      - "69"
+  - type: quotient_familial
+    value: 800
+    operator: "<="
+    period: month
+profils:
+  - type: parent
+conditions:
+  - Avoir au moins un enfant à charge âgé de moins de 20 ans.
+  - Être allocataire de la Caf du Rhône et avoir perçu au moins une prestation familiale durant l'année en cours.
+  - Choisir votre séjour familial ou le séjour de votre enfant sur <a
+    target="_blank" title="Liste des séjours - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.vacaf.org/">vacaf.org</a>.
+type: float
+unit: "%"
+periodicite: ponctuelle
+legend: du prix du séjour maximum
+montant: 75
+link: https://www.caf.fr/allocataires/caf-du-rhone/actualites-departementales/l-aide-au-temps-libre-vacaf-2024
+instructions: https://www.caf.fr/sites/default/files/medias/698/actus/Flyer_vacaf_2024.pdf

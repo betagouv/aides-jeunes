@@ -27,3 +27,7 @@
   /* Font */
   --font-family: inherit;
 }
+
+.fr-radio-rich {
+  --border-radius: none;
+}

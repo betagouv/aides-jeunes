@@ -42,3 +42,7 @@
   --border-action-high-blue-france: #000000;
   --border-active-blue-france: #000000;
 }
+
+.fr-radio-rich {
+  --border-radius: none;
+}

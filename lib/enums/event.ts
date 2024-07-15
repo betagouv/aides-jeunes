@@ -32,7 +32,6 @@ export enum EventAction {
   CodePostalIntrouvable = "Depcom introuvable",
   Contact = "Contact",
   Email = "email",
-  EnSavoirPlus = "En savoir plus",
   ErreurInitStore = "Error",
   ErreurSauvegardeSimulation = "Erreur sauvegarde simulation",
   Form = CTALabel.Form,

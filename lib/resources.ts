@@ -7,6 +7,8 @@ import { Activite } from "./enums/activite.js"
 import { PatrimoineCategory } from "./enums/patrimoine.js"
 import { Resource, ResourceCategory } from "./types/resources.js"
 
+// When adding new resources, make sure to update showSocialLabelList computed property in src/components/ressource/montants.vue
+
 export const ressourceCategories: ResourceCategory[] = [
   {
     id: "revenusActivite",

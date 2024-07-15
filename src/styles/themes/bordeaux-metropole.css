@@ -42,8 +42,3 @@
   --border-action-high-blue-france: #000000;
   --border-active-blue-france: #000000;
 }
-
-/* border-radius unavailable on radio input (background-image forced by DSFR causing issue with the border) */
-.fr-radio-rich {
-  --border-radius: none;
-}

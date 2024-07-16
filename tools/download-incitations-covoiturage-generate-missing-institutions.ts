@@ -4,6 +4,7 @@ import { Grist } from "../lib/grist.js"
 import { missingInstitutionsCovoiturageBenefit } from "./generate-missing-institutions.js"
 import type { CovoiturageJson } from "../data/types/benefits.d.ts"
 import covoiturageBenefitJSON from "../data/benefits/dynamic/incitations-covoiturage.json" assert { type: "json" }
+import { GristIncitationsCovoiturageResponse } from "../lib/types/download-incitations-covoiturage"
 const __dirname = new URL(".", import.meta.url).pathname
 
 const noDownload = process.argv.includes("--no-download")
@@ -19,13 +20,13 @@ async function getGristData() {
 
   //Données issue du fichier en Open Data mais avec des informations supplémentaires sur Grist
   //https://www.data.gouv.fr/fr/datasets/conditions-des-campagnes-dincitation-financiere-au-covoiturage/
-  const incitationsCovoiturages = await gristAPI.get({
+  const incitationsCovoiturages = (await gristAPI.get({
     passager_gratuite: ["Oui"],
     passager_eligible_gratuite: ["Tous"],
     passager_montant_ticket: ["Gratuit%C3%A9"],
     Expire: ["false"],
     type: ["aom"],
-  })
+  })) as GristIncitationsCovoiturageResponse
 
   return incitationsCovoiturages.records.map((record) => {
     const row = record.fields

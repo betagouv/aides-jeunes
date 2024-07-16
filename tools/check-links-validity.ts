@@ -193,11 +193,12 @@ async function main() {
   const user = await gristAPI.getConnectedUser()
   console.log(`Connected as ${user.name}.`)
 
-  const rawExistingWarnings: GristLinkValidityResponse = await gristAPI.get({
+  const rawExistingWarnings = (await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
     Traite: [false],
-  })
+  })) as GristLinkValidityResponse
+
   const benefitData = await getBenefitData(noPriority)
   const benefitsToAnalyze = filterBenefitDataToProcess(
     benefitData,

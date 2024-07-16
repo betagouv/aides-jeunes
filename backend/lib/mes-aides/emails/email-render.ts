@@ -46,6 +46,8 @@ const dataTemplateBuilder = (
   return {
     benefitTexts,
     baseURL: config.baseURL,
+    contactEmail: config.contactEmail,
+    contextName: config.contextName,
     ctaLink: `${config.baseURL}${followup.surveyPathTracker}`,
     droits: formatedBenefits,
     emailRenderURL: `${config.baseURL}${followup.emailRenderPath}${emailType}`,
@@ -115,14 +117,16 @@ export async function emailRender(emailType: EmailType, followup) {
   ]).then((values) => {
     if (emailType === EmailType.SimulationResults) {
       return {
-        subject: `Récapitulatif de votre simulation sur 1jeune1solution.gouv.fr [${followup.simulation._id}]`,
+        subject: `Récapitulatif de votre simulation sur ${config.contextName} [${followup.simulation._id}]`,
         text: values[0],
         html: values[1].html,
         attachments: values[1].attachments,
       }
     } else if (emailType === EmailType.SimulationUsefulness) {
       return {
-        subject: `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? [${
+        subject: `Votre simulation sur ${
+          config.contextName
+        } vous a-t-elle été utile ? [${
           followup.simulation?._id || followup.simulation
         }]`,
         text: values[0],

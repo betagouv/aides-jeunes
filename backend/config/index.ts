@@ -15,6 +15,9 @@ const isProduction = process.env.NODE_ENV == "production"
  * - OPENFISCA_INTERNAL_ROOT_URL
  * - OPENFISCA_PUBLIC_ROOT_URL
  */
+
+const contextName = process.env.CONTEXT_NAME || "1jeune1solution"
+
 const config: Configuration = {
   env: process.env.NODE_ENV || "development",
   baseURL:
@@ -29,7 +32,8 @@ const config: Configuration = {
   aideJeuneExperimentationURL: isProduction
     ? "https://betagouv.github.io/aides-jeunes-experimentations"
     : "http://127.0.0.1:3000",
-  contextName: process.env.CONTEXT_NAME || "1jeune1solution",
+  contactEmail: process.env.EMAIL_CONTACT || "aides-jeunes@beta.gouv.fr",
+  contextName,
   franceConnect: {
     root: process.env.FRANCE_CONNECT_ROOT_URL,
     clientId: process.env.FRANCE_CONNECT_CLIENT_ID,
@@ -117,8 +121,7 @@ const config: Configuration = {
   teleserviceAccessTokens: {
     PNDS: process.env.PNDS_TOKEN || "token",
   },
-  iframeTitle:
-    "Évaluez vos droits aux aides avec le simulateur de 1jeune1solution",
+  iframeTitle: `Évaluez vos droits aux aides avec le simulateur de ${contextName}`,
   smsService: {
     show: process.env.SMS_SERVICE_SHOW !== "false",
     username: process.env.SMS_SERVICE_USERNAME || "",

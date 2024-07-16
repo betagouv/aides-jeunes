@@ -6,15 +6,9 @@
   <div class="aj-iframe-footer">
     <p class="fr-text--center fr-p-1w">
       Simulateur propulsé par
-      <a
-        href="
-      https://www.1jeune1solution.gouv.fr/"
-        target="_blank"
-      >
-        la plateforme 1jeune1solution
-      </a>
+      <a :href="baseUrl" target="_blank"> la plateforme {{ contextName }} </a>
       - Accédez à nos
-      <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/cgu">CGU</a>
+      <a :href="`${baseUrl}/cgu`">CGU</a>
     </p>
   </div>
 </template>
@@ -30,6 +24,8 @@ export default {
   setup() {
     return {
       store: useIframeStore(),
+      baseUrl: process.env.VITE_BASE_URL,
+      contextName: process.env.VITE_CONTEXT_NAME,
     }
   },
   computed: {

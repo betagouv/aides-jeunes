@@ -49,11 +49,11 @@ function buildSmsUrl({ followup, phone, username, password, smsType }) {
   switch (smsType) {
     case SmsType.SimulationResults:
       surveyLink = `${baseURL}${followup.shortResultPath}`
-      text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${surveyLink}\n1jeune1solution`
+      text = `Bonjour\nRetrouvez les résultats de votre simulation ici ${surveyLink}\n${config.contextName}`
       break
     case SmsType.InitialSurvey:
       surveyLink = `${baseURL}${followup.shortSurveyPath}`
-      text = `Votre simulation sur 1jeune1solution.gouv.fr vous a-t-elle été utile ? Dites-le nous : ${surveyLink}`
+      text = `Votre simulation sur ${config.contextName} vous a-t-elle été utile ? Dites-le nous : ${surveyLink}`
       break
     default:
       throw new Error(`Unknown SMS type: ${smsType}`)

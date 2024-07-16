@@ -8,9 +8,7 @@
       <br />
       <span
         >Vous pouvez toujours nous contacter à l'adresse suivante :
-        <a href="mailto:aides-jeunes@beta.gouv.fr"
-          >aides-jeunes@beta.gouv.fr</a
-        ></span
+        <a href="mailto:{{&contactEmail}}">{{&contactEmail}}</a></span
       >
     </mj-text>
     <mj-text>
@@ -18,9 +16,7 @@
       <br />
       <span
         >L'équipe du
-        <a href="https://mes-aides.1jeune1solution.beta.gouv.fr/"
-          >simulateur de 1jeune1solution.gouv.fr</a
-        ></span
+        <a href="{{&baseURL}}">simulateur de {{&contextName}}</a></span
       >
     </mj-text>
     <mj-text>

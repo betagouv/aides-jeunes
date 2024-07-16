@@ -1,0 +1,54 @@
+label: incitation au covoiturage du Syndicat Mixte de l'Avant-Pays Savoyard
+institution: smaps_syndicat_mixte_avant_pays_savoyard
+description: "Le Syndicat Mixte de l'Avant-Pays Savoyard subventionne vos covoiturages en Savoie, réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 5 € par trajet et par passager, selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets de plus de 5 kilomètres vous sont offerts."
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "73184"
+      - "73001"
+      - "73022"
+      - "73027"
+      - "73104"
+      - "73122"
+      - "73145"
+      - "73152"
+      - "73191"
+      - "73219"
+      - "73039"
+      - "73025"
+      - "73058"
+      - "73070"
+      - "73100"
+      - "73204"
+      - "73214"
+      - "73226"
+      - "73236"
+      - "73254"
+      - "73309"
+      - "73330"
+      - "73028"
+      - "73042"
+      - "73078"
+      - "73140"
+      - "73147"
+      - "73149"
+      - "73156"
+      - "73245"
+      - "73269"
+      - "73271"
+      - "73299"
+      - "73313"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l’application mobile BlablaCar Daily.
+  - Effectuer un trajet dont la distance est comprise entre 5 et 150 kilomètres.
+  - Effectuer un trajet à l'intérieur du département de la Savoie.
+  - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
+type: bool
+periodicite: autre
+link: https://www.avant-pays-savoyard.com/smaps/project/covoiturage/
+teleservice: https://www.avant-pays-savoyard.com/smaps/project/covoiturage/

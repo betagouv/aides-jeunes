@@ -1,8 +1,8 @@
 import fs from "fs"
 import yaml from "js-yaml"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
-import all from "../data/all"
-import { CovoiturageJson, VeloBenefit } from "../data/types/benefits"
+import all from "../data/all.js"
+import { CovoiturageJson, VeloBenefit } from "../data/types/benefits.d.js"
 
 const NAME_FORMATTER = {
   CA: "Communauté d'agglomération",

@@ -1,4 +1,6 @@
 import axios from "axios"
+import { GristIncitationsCovoiturageResponse } from "./types/download-incitations-covoiturage"
+import { GristLinkValidityResponse } from "./types/link-validity"
 const baseURL = "grist.incubateur.net"
 const tableId = "Veille"
 
@@ -23,7 +25,9 @@ export function Grist(docId, apiKey) {
       if (filter) {
         url += "?filter=" + JSON.stringify(filter)
       }
-      const response = await axios.get(url, gristConfig)
+      const response = await axios.get<
+        GristIncitationsCovoiturageResponse | GristLinkValidityResponse
+      >(url, gristConfig)
       return response.data
     },
     add: async (records) => {

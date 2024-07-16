@@ -51,7 +51,6 @@ export interface CovoiturageBenefit {
   prefix: string
   type: string
   link: string
-  source?: string
 }
 
 export interface CovoiturageJson {

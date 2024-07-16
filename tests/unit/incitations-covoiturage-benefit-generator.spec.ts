@@ -49,7 +49,7 @@ describe("incitations benefit generator", function () {
     }
   })
 
-  it("maps all benefits to existing institutions and check if is linked to autre type", function () {
+  it("All benefitsCovoiturage should have an existing institution that is not 'autre' type", function () {
     if (benefitsCovoiturage.length) {
       const institutions = Object.values(benefits.institutionsMap)
       const institutionAutre: Institution[] = []

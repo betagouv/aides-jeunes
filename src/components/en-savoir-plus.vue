@@ -1,10 +1,11 @@
 <template>
-  <span v-if="text" class="fr-ml-1v" @mouseover="trackInterest()">
+  <span v-if="text" class="fr-ml-1v">
     &nbsp;
     <router-link
       :to="{ path: $route.path + '/en_savoir_plus' }"
       :data-text="text"
       class="fr-badge fr-badge--info"
+      data-testid="en-savoir-plus-button"
       >en savoir plus
     </router-link>
   </span>
@@ -13,7 +14,6 @@
 <script lang="ts">
 import Hint from "@/lib/hint.js"
 import StatisticsMixin from "@/mixins/statistics.js"
-import { EventAction, EventCategory } from "@lib/enums/event.js"
 
 export default {
   name: "EnSavoirPlus",
@@ -27,15 +27,6 @@ export default {
     },
     text: function () {
       return Hint.get(this.attribute, this.source)
-    },
-  },
-  methods: {
-    trackInterest() {
-      this.sendEventToMatomo(
-        EventCategory.Parcours,
-        EventAction.EnSavoirPlus,
-        this.$route.path
-      )
     },
   },
 }

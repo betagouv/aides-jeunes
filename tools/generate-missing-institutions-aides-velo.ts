@@ -1,5 +1,5 @@
 // @ts-ignore
-import generator from "../data/benefits/aides-velo-generator"
+import generator from "../data/benefits/aides-velo-generator.js"
 import benefits from "../data/all.js"
 import { missingInstitutionsVeloBenefit } from "./generate-missing-institutions.js"
 

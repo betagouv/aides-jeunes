@@ -4,7 +4,7 @@ import benefits from "@root/data/all.js"
 import incitationsCovoiturageGenerator from "@root/data/benefits/dynamic/incitations-covoiturage.js"
 import benefitsCovoiturage from "@root/data/benefits/dynamic/incitations-covoiturage.json" assert { type: "json" }
 import { CovoiturageBenefit } from "@root/data/types/benefits.js"
-import { Institution } from "@data/types/institutions"
+import { Institution } from "@data/types/institutions.d.js"
 
 describe("incitations benefit generator", function () {
   const list: CovoiturageBenefit[] =

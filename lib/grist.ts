@@ -1,6 +1,6 @@
 import axios from "axios"
-import { GristIncitationsCovoiturageResponse } from "./types/download-incitations-covoiturage"
-import { GristLinkValidityResponse } from "./types/link-validity"
+import { GristIncitationsCovoiturageResponse } from "./types/download-incitations-covoiturage.d.js"
+import { GristLinkValidityResponse } from "./types/link-validity.d.js"
 const baseURL = "grist.incubateur.net"
 const tableId = "Veille"
 

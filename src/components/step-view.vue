@@ -45,11 +45,7 @@ const toggleOpen = () => {
 
 <template>
   <div class="aj-step-view fr-pl-1v fr-py-1v">
-    <button
-      :disabled="isLeafNode"
-      class="fr-my-1v"
-      @click="toggleOpen"
-    >
+    <button :disabled="isLeafNode" class="fr-my-1v" @click="toggleOpen">
       <span :class="`${buttonIcon}`" :aria-hidden="true"></span>
     </button>
     <span

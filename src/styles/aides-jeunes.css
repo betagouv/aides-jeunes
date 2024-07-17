@@ -610,6 +610,7 @@ textarea {
 
 .fr-radio-rich input[type="radio"]:checked + label {
   box-shadow: inset 0 0 0 1px var(--border-action-high-blue-france);
+  background-image: none;
 }
 
 .fr-radio-rich input[type="radio"]:checked + label:before {

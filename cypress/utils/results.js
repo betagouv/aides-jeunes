@@ -254,17 +254,10 @@ const receiveResultsEmail = () => {
   cy.get('[data-testid="simulation-id"')
     .invoke("text")
     .then((simulationId) => {
-      cy.url().then((url) => {
-        if (url.includes("localhost")) {
-          // skip this test on localhost
-          // todo : implement a solution for testing this feature locally
-          return
-        } else {
-          // Works on CI only
-          cy.task("getLastEmail", email)
-            .its("headers.subject")
-            .should("includes", simulationId)
-        }
+      cy.url().then(() => {
+        cy.task("getLastEmail", email)
+          .its("headers.subject")
+          .should("includes", simulationId)
       })
     })
 }

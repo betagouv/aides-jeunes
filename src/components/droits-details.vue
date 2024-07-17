@@ -1,11 +1,11 @@
 <template>
   <div
-    class="fr-tile fr-tile-horizontal fr-mb-2w"
+    class="fr-tile fr-tile--horizontal fr-mb-2w"
     data-testid="droit-detail"
     itemscope
     itemtype="http://schema.org/GovernmentService"
   >
-    <div class="fr-p-4w">
+    <div>
       <DroitHeader :droit="droit"></DroitHeader>
       <p class="fr-text--justify fr-mb-3w">
         <span itemprop="description" v-html="droit.description" />
@@ -111,7 +111,7 @@
           </div>
         </div>
       </div>
-      <div class="fr-share">
+      <div class="fr-share fr-mt-2w">
         <h6 class="fr-share__title fr-h6">Partager l'aide</h6>
         <ul class="fr-share__group">
           <li>

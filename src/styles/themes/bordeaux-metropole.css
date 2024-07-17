@@ -34,4 +34,11 @@
   --tool-link-background-color: #212427;
   --tool-link-background-color-hover: #4e5257;
   --sidemenu-active-link-text-color: #212427;
+
+  /* sidemenu text inactive */
+  --text-action-high-grey: #666666;
+
+  /* input checkbox color */
+  --border-action-high-blue-france: #000000;
+  --border-active-blue-france: #000000;
 }

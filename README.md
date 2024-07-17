@@ -44,7 +44,7 @@ The application should be accessible at `localhost:8080`.
 
 ## System dependencies
 
-Make sure `node` 16.x is installed on your machine:
+Make sure `node` 18.x is installed on your machine:
 
 ### Ubuntu
 
@@ -165,6 +165,10 @@ There are several levels of tests:
 - End-to-end test are executed with [Cypress](https://www.cypress.io/) with `npm run cypress`
 
 You can safely use `npm test && npm run cypress` to drive your developments.
+
+## Development Environment and Cypress
+
+In Cypress tests, we verify that email functionality works. To check this locally, you need to copy and paste the environmental variables from .env.e2e to your .env file (and create the .env file if you don't already have one).
 
 ## Email
 

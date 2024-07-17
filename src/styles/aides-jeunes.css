@@ -35,7 +35,7 @@
 }
 
 .fr-sidemenu__link[aria-current="true"] {
-  color: var(--sidemenu-active-link-text-color);
+  color: var(--sidemenu-active-link-text-color) !important;
 }
 
 @font-face {
@@ -59,8 +59,10 @@ details,
 input[type="checkbox"] + label:before,
 input[type="image"],
 input[type="radio"] + label:before,
+input[type="radio"],
 input[type="reset"],
 input[type="submit"],
+input:focus,
 select,
 textarea {
   outline-color: var(--input-outline);
@@ -96,7 +98,7 @@ textarea {
 }
 
 .fr-text--disabled {
-  color: #666666;
+  color: #666666 !important;
 }
 
 .fr-icon-spin {
@@ -132,6 +134,11 @@ textarea {
 
 .fr-tile .fr-highlight {
   background: #faf4ce;
+}
+
+.fr-tile {
+  border-bottom: solid;
+  border-bottom-color: var(--main-color);
 }
 
 .fr-btn {
@@ -240,10 +247,6 @@ textarea {
 
 .aj-benefit-amount {
   min-width: 120px;
-}
-
-.aj-benefit-cta-light-container {
-  background-color: var(--background-info-container);
 }
 
 .aj-institution-icon {
@@ -569,4 +572,34 @@ textarea {
 
 .fr-connect:before {
   background-image: url(/public/img/logo-moncomptepro.svg);
+}
+
+/* Custom code for allow `border-radius` on input radio (prevent using current background-image class on DSFR version > 1.12.1) */
+.fr-radio-rich input[type="radio"] + label {
+  background-image: none;
+  box-shadow: inset 0 0 0 1px var(--border-default-grey);
+}
+
+.fr-radio-rich input[type="radio"] + label:before {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+    inset 0 0 0 8px var(--background-default-grey),
+    inset 0 0 0 8px var(--background-action-high-blue-france);
+  height: 1rem;
+  left: 1.75rem;
+  margin-top: -0.5rem;
+  position: absolute;
+  top: 50%;
+  width: 1rem;
+  border-radius: 50%;
+}
+
+.fr-radio-rich input[type="radio"]:checked + label {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-blue-france);
+  background-image: none;
+}
+
+.fr-radio-rich input[type="radio"]:checked + label:before {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+    inset 0 0 0 4px var(--background-default-grey),
+    inset 0 0 0 8px var(--background-action-high-blue-france);
 }

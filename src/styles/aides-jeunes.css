@@ -587,3 +587,33 @@ textarea {
 .fr-connect:before {
   background-image: url(/public/img/logo-moncomptepro.svg);
 }
+
+/* Custom code for allow `border-radius` on input radio (prevent using current background-image class on DSFR version > 1.12.1) */
+.fr-radio-rich input[type="radio"] + label {
+  background-image: none;
+  box-shadow: inset 0 0 0 1px var(--border-default-grey);
+}
+
+.fr-radio-rich input[type="radio"] + label:before {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+    inset 0 0 0 8px var(--background-default-grey),
+    inset 0 0 0 8px var(--background-action-high-blue-france);
+  height: 1rem;
+  left: 1.75rem;
+  margin-top: -0.5rem;
+  position: absolute;
+  top: 50%;
+  width: 1rem;
+  border-radius: 50%;
+}
+
+.fr-radio-rich input[type="radio"]:checked + label {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-blue-france);
+  background-image: none;
+}
+
+.fr-radio-rich input[type="radio"]:checked + label:before {
+  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+    inset 0 0 0 4px var(--background-default-grey),
+    inset 0 0 0 8px var(--background-action-high-blue-france);
+}

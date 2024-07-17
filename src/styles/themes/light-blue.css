@@ -27,8 +27,3 @@
   /* Font */
   --font-family: inherit;
 }
-
-/* border-radius unavailable on radio input (background-image forced by DSFR causing issue with the border) */
-.fr-radio-rich {
-  --border-radius: none;
-}

@@ -280,14 +280,6 @@ textarea {
   text-align: right;
 }
 
-.aj-hidden {
-  visibility: hidden;
-}
-
-.aj-step-button {
-  width: 40px;
-}
-
 @media (max-width: 576px) {
   .aj-hero-section {
     max-height: none;

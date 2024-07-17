@@ -2,6 +2,7 @@ import { additionalBenefitAttributes } from "./benefits/additional-attributes/in
 import aidesVeloGenerator from "./benefits/aides-velo-generator.js"
 import { buildFSL } from "./benefits/dynamic/fsl.js"
 import { buildAPA } from "./benefits/dynamic/apa.js"
+import buildIncitationsCovoiturage from "./benefits/dynamic/incitations-covoiturage.js"
 
 import { Jamstack } from "./types/jamstack.d.js"
 import {
@@ -38,6 +39,7 @@ function transformInstitutions(collection: InstitutionRaw[]): InstitutionsMap {
       repository:
         data.repository || (data.type === "national" ? null : "france-local"),
       lieuxTypes: data.lieuxTypes,
+      prefix: data?.prefix,
     }
     result[data.slug] = item
     return result
@@ -71,7 +73,8 @@ export function generate(
   additionalBenefitAttributes,
   aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
   fslGenerator?: typeof buildFSL,
-  apaGenerator?: typeof buildAPA
+  apaGenerator?: typeof buildAPA,
+  incitationsCovoiturageGenerator?: typeof buildIncitationsCovoiturage
 ): BenefitCatalog {
   const institutions = transformInstitutions(collections.institutions.items)
   collections.benefits_javascript.items.forEach((benefit) => {
@@ -81,8 +84,10 @@ export function generate(
     benefit.source = "openfisca"
   })
 
+  const institutionsValues = Object.values(institutions)
+
   const aidesVeloBenefits = aidesVeloBenefitListGenerator
-    ? aidesVeloBenefitListGenerator(Object.values(institutions))
+    ? aidesVeloBenefitListGenerator(institutionsValues)
     : []
   aidesVeloBenefits.forEach((benefit) => {
     benefit.source = "aides-velo"
@@ -90,6 +95,10 @@ export function generate(
 
   const fslBenefits = fslGenerator ? fslGenerator() : []
   const apaBenefits = apaGenerator ? apaGenerator() : []
+  const incitationsCovoiturageBenefits =
+    incitationsCovoiturageGenerator instanceof Function
+      ? incitationsCovoiturageGenerator(institutionsValues)
+      : []
 
   const benefitsCollections = [
     ...collections.benefits_javascript.items,
@@ -97,6 +106,7 @@ export function generate(
     ...aidesVeloBenefits.filter((b) => b.institution),
     ...apaBenefits,
     ...fslBenefits,
+    ...incitationsCovoiturageBenefits,
   ]
   const benefitsMap: BenefitsMap = {}
 
@@ -104,6 +114,7 @@ export function generate(
     const institution: Institution = institutions[benefit.institution]
     benefit = setDefaults(benefit, institution)
     Object.assign(benefit, additionalBenefitAttributes[benefit.id])
+
     institution.benefitsIds.push(benefit.id)
     benefit.institution = institution
     benefitsMap[benefit.id] = benefit
@@ -129,6 +140,7 @@ export default {
       additionalBenefitAttributes,
       aidesVeloGenerator,
       buildFSL,
-      buildAPA
+      buildAPA,
+      buildIncitationsCovoiturage
     ),
 }

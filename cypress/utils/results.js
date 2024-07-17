@@ -210,6 +210,13 @@ const hasVeloGroupPreviewBenefit = (mustBeDisplay) => {
   }
 }
 
+const hasIncitationCovoiturage = () => {
+  const name = /Incitation au covoiturage de Montpellier Méditerranée Métropole/
+  const id =
+    "intercommunalite-montpellier-mediterranee-metropole-incitations-covoiturage-eligibilite"
+  IdentifyBenefit(id, name)
+}
+
 const hasRSA = () => {
   const name = /Revenu de solidarité active/
   const id = "rsa"
@@ -347,6 +354,7 @@ export default {
   hasIleDeFranceAideAuMerite,
   hasAideVeloNationale,
   hasVeloGroupPreviewBenefit,
+  hasIncitationCovoiturage,
   receiveResultsEmail,
   receiveResultsSms,
   checkResultsRequests,

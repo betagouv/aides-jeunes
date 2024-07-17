@@ -3,7 +3,10 @@ import {
   determineExistingWarningsFixByPrivateBenefits,
   determineOperationsOnBenefitLinkError,
 } from "../lib/benefits/link-validity.js"
-import { GristData } from "../lib/types/link-validity.js"
+import {
+  GristData,
+  GristLinkValidityResponse,
+} from "../lib/types/link-validity.js"
 import { Grist } from "../lib/grist.js"
 import Mattermost from "../backend/lib/mattermost-bot/mattermost.js"
 
@@ -190,11 +193,12 @@ async function main() {
   const user = await gristAPI.getConnectedUser()
   console.log(`Connected as ${user.name}.`)
 
-  const rawExistingWarnings = await gristAPI.get({
+  const rawExistingWarnings = (await gristAPI.get({
     Corrige: [false],
     Aide: benefitIdsFromCLI,
     Traite: [false],
-  })
+  })) as GristLinkValidityResponse
+
   const benefitData = await getBenefitData(noPriority)
   const benefitsToAnalyze = filterBenefitDataToProcess(
     benefitData,

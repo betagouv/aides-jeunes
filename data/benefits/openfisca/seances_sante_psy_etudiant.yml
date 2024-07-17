@@ -1,16 +1,20 @@
 label: Santé Psy Étudiant
 institution: etat
 description:
-  Vous êtes étudiant et vous ressentez le besoin d’une aide psychologique ?
-  Vous pouvez bénéficier de consultations de 45min gratuites avec un psychologue,
-  sans avance de frais. Consultez votre Service de santé universitaire (SSU) ou
-  votre médecin généraliste, muni de votre carte d’étudiant, afin d’obtenir une lettre
-  d’orientation ouvrant droit aux séances gratuites de suivi psychologique.
-link: https://www.service-public.fr/particuliers/actualites/A14726
-instructions: https://santepsy.etudiant.gouv.fr
+  Vous êtes étudiant ou étudiante et vous ressentez le besoin d’une aide psychologique ?
+  Vous pouvez bénéficier de 12 séances gratuites avec un psychologue partenaire,
+  sans avance de frais.
+link: https://santepsy.etudiant.gouv.fr/
 conditions:
-  - Avoir obtenu une lettre d’orientation délivrée par votre Service de Santé Universitaire
-    ou par un médecin généraliste.
+  - Être inscrit ou inscrite dans un établissement d'enseignement supérieur reconnu par le Ministère de l'Enseignement supérieur et de la Recherche.
+  - <a
+    target="_blank" title="Vérifier votre éligibilité - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://santepsy.etudiant.gouv.fr/eligibilite">Vérifier votre éligibilité</a> en renseignant votre numéro INE sur le site du dispositif Santé Psy Étudiant.
+  - <a
+    target="_blank" title="Rechercher un psychologue - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://santepsy.etudiant.gouv.fr/trouver-un-psychologue">Choisir un psychologue</a> en effectuant une recherche sur le site du dispositif Santé Psy Étudiant.
 prefix: l’
 unit: séances
 type: float

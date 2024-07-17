@@ -34,9 +34,8 @@
   background-color: var(--tool-link-background-color-hover);
 }
 
-.fr-sidemenu__link[aria-current="true"],
-.fr-sidemenu__link[aria-current]:not([aria-current="false"]) {
-  color: var(--sidemenu-active-link-text-color);
+.fr-sidemenu__link[aria-current="true"] {
+  color: var(--sidemenu-active-link-text-color) !important;
 }
 
 @font-face {
@@ -99,7 +98,7 @@ textarea {
 }
 
 .fr-text--disabled {
-  color: #666666;
+  color: #666666 !important;
 }
 
 .fr-icon-spin {

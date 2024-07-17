@@ -578,6 +578,11 @@ textarea {
   align-items: center;
 }
 
+.aj-step-view {
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
 .fr-connect:before {
   background-image: url(/public/img/logo-moncomptepro.svg);
 }

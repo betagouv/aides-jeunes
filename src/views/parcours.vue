@@ -36,9 +36,7 @@ const totalSteps = computed(() => recursiveStepCounter(blocks.value))
         total
       </div>
       <div class="fr-mb-1w">
-        <span class="fr-btn--sm fr-btn--secondary">
-          <span class="fr-icon-arrow-right-s-line fr-my-1w" aria-hidden="true"
-        /></span>
+        <span class="fr-icon-arrow-right-s-line fr-my-1w" aria-hidden="true" />
         Indique une question avec au moins une sous-question (→ noeud
         interactif).
       </div>

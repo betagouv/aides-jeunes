@@ -44,21 +44,20 @@ const toggleOpen = () => {
 </script>
 
 <template>
-  <div class="fr-my-1v">
+  <div class="aj-step-view fr-pl-1v fr-py-1v">
     <button
       :disabled="isLeafNode"
-      class="fr-btn fr-btn--sm fr-btn--secondary"
+      class="fr-my-1v"
       @click="toggleOpen"
     >
       <span :class="`${buttonIcon}`" :aria-hidden="true"></span>
     </button>
     <span
-      :class="[
-        'fr-icon fr-icon-question-line',
-        { 'aj-hidden': !step?.isActive },
-      ]"
+      v-if="step?.isActive"
+      :class="'fr-icon fr-icon-question-line fr-ml-1w fr-mr-1v'"
       aria-hidden="true"
     ></span>
+    <span v-else class="fr-ml-2w"></span>
     <span> {{ label }}</span>
     <div v-if="open">
       <StepView

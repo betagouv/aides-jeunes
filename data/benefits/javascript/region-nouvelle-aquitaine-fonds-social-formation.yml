@@ -1,14 +1,15 @@
 label: Fonds social formation
 institution: region_nouvelle_aquitaine
-description: La Région vous aide à financer votre parcours de formation dans le
-  cas où, face à un imprévu, vous ne parveniez plus à régler vos dépenses de
-  logement et/ou de transport.
+description:
+  Durant votre parcours de formation, vous faites face à un imprévu et
+  ne parvenez plus à régler vos dépenses de logement et/ou de transport ? Ce problème peut
+  remettre en cause la poursuite de votre formation. Avec le Fonds social formation, la Région
+  Nouvelle Aquitaine peut vous aider à surmonter cette épreuve.
 prefix: le
 conditions_generales:
   - type: regions
     values:
       - "75"
-  - type: formation_sanitaire_social
 profils:
   - type: chomeur
     conditions: []
@@ -16,17 +17,20 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-  - type: etudiant
-    conditions: []
+  - type: enseignement_superieur
+    conditions:
+      - type: formation_sanitaire_social
 conditions:
+  - Être apprenti inscrit dans une structure de formation située en Nouvelle-Aquitaine, ou être apprenant inscrit dans une formation financée par la Région Nouvelle-Aquitaine (stagiaires de la formation professionnelle, apprenants des formations sanitaires et sociales et salariés en formation dans une structure d’insertion par l’activité économique - SIAE).
   - Compléter <a target="_blank" rel="noopener" title="attestation - Nouvelle fenêtre"
-    href="https://les-aides.nouvelle-aquitaine.fr/sites/default/files/2021-05/Attestation_Structure-Formation_FSF.pdf">l'attestation</a>
+    href="https://les-aides.nouvelle-aquitaine.fr/sites/default/files/2021-05/Attestation_Structure-Formation_FSF.pdf">l'attestation de formation</a>
     avec votre référent ou référente de formation.
+  - Créer votre compte sur la plateforme "Mes démarches en Nouvelle-Aquitaine".
 type: float
 unit: €
 periodicite: annuelle
 legend: maximum
 montant: 1000
 link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/fonds-social-formation
-teleservice: https://cas.aquitaine.fr/cas/login?service=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Flogin%2Fcas
-instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/fonds-social-formation
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DFPC11-10&state=25f484d4-1581-44d9-ba51-505396455922&login=true&scope=openid
+instructions: https://les-aides.nouvelle-aquitaine.fr/system/files/specific_pj_files/Aide_RegionNA_FondsSocialFormation_CommentDeposerUneDemande.pdf

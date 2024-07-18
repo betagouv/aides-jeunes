@@ -1,15 +1,18 @@
 label: pass ZOU ! Études
 institution: region_provence_alpes_cote_azur
-description: Le pass ZOU ! Études permet des déplacements illimités en bus et
-  train ZOU ! du 1er septembre au 31 août, y compris les week-ends et vacances,
-  pour les trajets scolaires ou de loisirs.
+description:
+  Avec la Région Sud, vous bénéficiez d’un abonnement de transport unique
+  valable du 1er septembre au 31 août. Il offre la possibilité de se déplacer en accès
+  illimité sur les bus et les trains de toute la région. Il permet non seulement d’effectuer
+  les trajets scolaires du quotidien mais aussi les déplacements de loisirs, y compris en périodes
+  de vacances scolaires.
 prefix: le
 conditions_generales:
   - type: age
     operator: ">="
     value: 3
   - type: age
-    operator: <=
+    operator: <
     value: 26
   - type: regions
     values:
@@ -17,18 +20,22 @@ conditions_generales:
 profils:
   - type: lyceen
     conditions: []
+  - type: enseignement_superieur
+    conditions: []
   - type: apprenti
     conditions: []
   - type: stagiaire
     conditions: []
   - type: professionnalisation
     conditions: []
+  - type: service_civique
+    conditions: []
 conditions:
-  - Etre scolarisé ou scolarisée en région Provence-Alpes-Côte d’Azur.
-  - Vous procurer le pass ZOU ! dont le prix varie de 35 €/an à 70 €/an.
+  - Étudier en région Provence-Alpes-Côte d’Azur (maternelle, primaire, collège, lycée, étudiant, apprenti, stagiaire, élève des formations sanitaires et sociales, service civique).
+  - Vous procurer le pass ZOU ! dont le prix varie de 45 €/an à 90 €/an, en fonction des revenus de votre famille.
 type: bool
 unit: €
 periodicite: autre
-link: https://zou.maregionsud.fr/acheter-un-pass-zou-etudes-2/
-teleservice: https://services-zou.maregionsud.fr/fr/billetterie/action/8#zouetudes
+link: https://www.maregionsud.fr/vos-aides/detail/zou-etudes
+teleservice: https://zou.maregionsud.fr/acheter-un-pass-zou-etudes-2024-2025/
 instructions: ""

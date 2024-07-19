@@ -1,6 +1,7 @@
 import "dotenv/config"
 
 import { Configuration } from "../types/config.js"
+import { nodeProfilingIntegration } from "@sentry/profiling-node"
 
 const isProduction = process.env.NODE_ENV == "production"
 
@@ -115,6 +116,11 @@ const config: Configuration = {
     dsn: process.env.SENTRY_BACKEND_URL,
     authToken: process.env.SENTRY_AUTH_TOKEN,
     project: process.env.SENTRY_PROJECT,
+    integrations: [nodeProfilingIntegration()],
+
+    // https://develop.sentry.dev/sdk/performance/
+    tracesSampleRate: 0.2,
+    profilesSampleRate: 1.0,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",

@@ -64,6 +64,9 @@ export interface Configuration {
     dsn: string | undefined
     authToken?: string
     project?: string
+    integrations: [function]
+    tracesSampleRate: float
+    profilesSampleRate: float
   }
   smsService: {
     show: boolean | undefined

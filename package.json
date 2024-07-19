@@ -55,8 +55,8 @@
   "dependencies": {
     "@etalab/decoupage-administratif": "^3.0.0",
     "@gouvfr/dsfr": "^1.12.1",
-    "@sentry/integrations": "^7.114.0",
     "@sentry/node": "^7.118.0",
+    "@sentry/profiling-node": "^7.118.0",
     "@sentry/vue": "^7.118.0",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-vue": "^4.1.0",

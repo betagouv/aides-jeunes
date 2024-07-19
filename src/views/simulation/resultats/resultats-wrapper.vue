@@ -143,7 +143,6 @@ const saveSimulation = async () => {
       EventAction.ErreurSauvegardeSimulation,
       route.path
     )
-    console.log(error)
     Sentry.captureException(error)
   }
 }

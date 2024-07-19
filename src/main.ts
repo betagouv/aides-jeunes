@@ -47,6 +47,7 @@ if (process.env.NODE_ENV === "production") {
   Sentry.init({
     app,
     dsn: "https://77f2520f2558451c80b1b95131135bcd@sentry.incubateur.net/18",
+    integrations: [Sentry.browserTracingIntegration({ router })],
   })
 }
 

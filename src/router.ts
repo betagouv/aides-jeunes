@@ -243,6 +243,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/parcours",
+      name: "parcours",
+      component: () => import("./views/parcours.vue"),
+    },
+    {
       path: "/preremplissage",
       name: "preremplissage",
       component: () => import("./views/preremplissage.vue"),

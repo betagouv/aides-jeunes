@@ -4,21 +4,31 @@ import { ref } from "vue"
 const questionsAnswers = ref([
   {
     question: "Je n'habite pas en France, puis-je faire une simulation ?",
-    answer:
-      "Bien que le simulateur soit conçu pour les personnes résidant en France, si vous avez prévu de venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b> avec le code postal où vous souhaitez habiter.",
+    answer: `
+    <p>
+      Bien que le simulateur soit conçu pour les personnes résidant en France, si vous avez prévu de
+      venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b> 
+      avec le code postal où vous souhaitez habiter.
+    </p>`,
   },
   {
     question: "Puis-je sauvegarder ma simulation ?",
-    answer: `<p>À tout moment de la simulation, vous avez la possibilité de cliquer sur le bouton <b>"Revenir plus tard?"</b>
-       et la page associée vous permettra d'y récupérer un lien de sauvegarde.</p>
-<p>À la fin de la simulation, vous pouvez également sauvegarder vos résultats en demandant à les réceptionner 
-par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</b>.</p>`,
+    answer: `
+    <p>
+      À tout moment de la simulation, vous avez la possibilité de cliquer sur le bouton <b>"Revenir plus tard?"</b>
+      et la page associée vous permettra d'y récupérer un lien de sauvegarde.
+    </p>
+    <p>
+      À la fin de la simulation, vous pouvez également sauvegarder vos résultats en demandant à les réceptionner 
+      par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</b>.
+    </p>`,
   },
   {
     question: "Je suis bloqué à la question sur le RFR / RBG, comment faire ?",
     answer: `
-    <p>Si vous n'avez aucun moyen de déterminter le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge), 
-        vous avez la possibilité de répondre 0 à ces questions. Attention, <b>certaines aides ne
+    <p>
+      Si vous n'avez aucun moyen de déterminter le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge), 
+      vous avez la possibilité de répondre 0 à ces questions. Attention, <b>certaines aides ne
       pourront pas être calculées correctement sans le montant exact</b> du RFR,
       comme par exemple l'aide de la
       <a href="/aides/bourse_criteres_sociaux" target="_blank">Bourse sur Critères Sociaux</a>
@@ -30,7 +40,11 @@ par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</
       soyez imposable ou non imposable. Toutes les informations concernant le
       RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>.
     </p>
-    <p>Le revenu brut global est la somme de tous vos revenus déclarés après déduction des divers abattements, comme l'abattement de 10 % pour les salaires et les retraites, ou après déduction des frais réels si vous avez opté pour ce dispositif.`,
+    <p>
+      Le revenu brut global est la somme de tous vos revenus déclarés après déduction des divers abattements,
+      comme l'abattement de 10 % pour les salaires et les retraites, ou après déduction des frais réels si 
+      vous avez opté pour ce dispositif.
+    </p>`,
   },
   {
     question:
@@ -48,7 +62,7 @@ par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</
 
 <template>
   <div class="fr-my-6w fr-p-2w">
-    <h1 class=""> Foire aux questions </h1>
+    <h1>Foire aux questions</h1>
     <p>
       <router-link
         to="/"

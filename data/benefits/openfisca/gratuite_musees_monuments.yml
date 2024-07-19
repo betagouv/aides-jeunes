@@ -1,9 +1,17 @@
 label: accès gratuit aux musées et monuments nationaux
 institution: etat
-description: Les jeunes de moins de 26 ans habitant dans l'Union européenne peuvent accéder gratuitement à certains musées et monuments nationaux, sur simple présentation d'une pièce d'identité.
+description: Les jeunes de 18 à 25 ans qui résident dans un Etat membre de l'Union européenne ou faisant partie de l'Espace économique européen peuvent accéder gratuitement aux collections permanentes des musées nationaux et entrer gratuitement dans les monuments nationaux, sur simple présentation d'une pièce d'identité.
 conditions:
-  - Présenter au guichet du musée ou du monument concerné avec une pièce justifiant de son âge et de sa résidence. Cette pièce peut être une carte d'identité, un passeport ou une carte de séjour.
-link: https://www.service-public.fr/particuliers/vosdroits/F20348
+  - Présenter au guichet du musée ou du monument concerné une pièce justifiant de votre âge et de votre résidence. Cette pièce peut être une carte d'identité, un passeport ou une carte de séjour.
+  - Consulter <a
+    target="_blank" title="Carte des musées nationaux - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.culture.gouv.fr/Thematiques/Musees/Les-musees-en-France/Les-musees-de-France/Le-reseau-des-musees-de-France">la carte du réseau des musées nationaux</a>.
+  - Consulter <a
+    target="_blank" title="Carte des monuments nationaux - Nouvelle fenêtre"
+    rel="noopener"
+    href="https://www.monuments-nationaux.fr/trouver-un-monument">la carte du réseau des monuments nationaux</a>.
+link: https://www.culture.gouv.fr/Thematiques/Musees/Les-musees-en-France/Les-politiques-des-musees-de-France/La-gratuite-des-collections-permanentes-pour-les-18-25-ans-dans-les-musees-nationaux
 prefix: l’
 type: bool
 entity: individus

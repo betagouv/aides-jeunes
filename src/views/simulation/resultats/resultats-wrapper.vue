@@ -10,6 +10,7 @@ import Simulation from "@/lib/simulation.js"
 import MockResults from "@/lib/mock-results"
 import { computed, onMounted, onBeforeUnmount, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import * as Sentry from "@sentry/vue"
 
 const resultsStore = useResultsStore()
 const store = useStore()
@@ -142,6 +143,7 @@ const saveSimulation = async () => {
       EventAction.ErreurSauvegardeSimulation,
       route.path
     )
+    Sentry.captureException(error)
   }
 }
 const redirectToTeleservice = async () => {

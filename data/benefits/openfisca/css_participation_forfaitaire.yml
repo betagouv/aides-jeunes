@@ -9,8 +9,8 @@ type: mixed
 periodicite: mensuelle
 link: https://www.service-public.fr/particuliers/vosdroits/F10027
 teleservice: ""
-form: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/S3711%20HOMO%20COMPLEMENTAIRE%20SANTE%20SOLIDAIRE%20non%20secu%2009_2019.pdf
-instructions: https://www.complementaire-sante-solidaire.gouv.fr/cmu-c-demarche.php
+form: https://www.complementaire-sante-solidaire.gouv.fr/sites/default/files/2024-02/cerfa_12504-10%20%28C2S%29_0_2.pdf
+instructions: https://www.complementaire-sante-solidaire.gouv.fr/mes-demarches
 entity: familles
 openfiscaPeriod: thisMonth
 msa: true

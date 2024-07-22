@@ -2,6 +2,7 @@ import axios from "axios"
 
 import config from "../../config/index.js"
 import { Stats } from "../../types/stats.d.js"
+import Sentry from "@sentry/node"
 
 interface PiwikParameters {
   period: string
@@ -64,6 +65,7 @@ async function getUsageData(fromDate: Date, toDate: Date) {
     const data = await callMatomoAPI(piwikparamsInterface)
     return formatPiwik(data)
   } catch (error) {
+    Sentry.captureException(error)
     console.error(error)
     return []
   }

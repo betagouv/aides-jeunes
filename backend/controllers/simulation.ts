@@ -12,6 +12,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
+import Sentry from "@sentry/node"
 
 function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.simulation = apply(simulation)
@@ -234,6 +235,7 @@ async function getLatestFollowup(req: Request, res) {
     return res.send(followup)
   } catch (error) {
     console.error(error)
+    Sentry.captureException(error)
     return res.status(500).send({ error: "Error while fetching followup" })
   }
 }

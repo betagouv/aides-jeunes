@@ -37,6 +37,7 @@ export default {
       document.location = `/api/simulation/${simulation._id}/redirect?token=${simulation.token}`
     } catch (error) {
       Sentry.captureException(error)
+
       return this.$router.push({
         path: "/simulation/individu/demandeur/date_naissance",
         query: { error: "france_connect_error" },

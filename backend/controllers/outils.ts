@@ -1,6 +1,7 @@
 import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 import communesLonLat from "communes-lonlat"
+import Sentry from "@sentry/node"
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
 const communeMap = {}
@@ -61,6 +62,7 @@ export default {
 
       res.send(commune.centre.coordinates)
     } catch (e) {
+      Sentry.captureException(e)
       res.status(404).send("Coordinates not found")
     }
   },

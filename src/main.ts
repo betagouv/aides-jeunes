@@ -42,21 +42,27 @@ const app = createApp({
 app.directive("analytics", AnalyticsDirective)
 app.directive("mail", MailDirective)
 app.directive("selectOnClick", SelectOnClickDirective)
-
-if (process.env.NODE_ENV === "production") {
+if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
   Sentry.init({
     app,
-    dsn: "https://77f2520f2558451c80b1b95131135bcd@sentry.incubateur.net/17",
-    integrations: [Sentry.browserTracingIntegration({ router })],
+    dsn: process.env?.VITE_SENTRY_FRONTEND_DSN,
+    authToken: process.env?.VITE_SENTRY_FRONTEND_AUTH_TOKEN,
+    integrations: [
+      Sentry.browserTracingIntegration({ router }),
+      Sentry.replayIntegration(),
+    ],
+    tracesSampleRate: 1.0,
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+    debug: !process.env?.VITE_SENTRY_FRONTEND_DSN,
   })
 }
-
 app.use(Resizer)
 app.use(StateService)
 app.use(ThemeService)
 app.use(VueCookies)
 
-if (navigator.cookieEnabled) {
+if (navigator.cookieEnabled && process.env?.VITE_MATOMO_URL) {
   app.use(VueMatomo, {
     host: process.env.VITE_MATOMO_URL,
     trackerFileName: "piwik",
@@ -87,8 +93,8 @@ const store = useStore()
 store.$onAction(persistDataOnSessionStorage)
 store.initialize()
 store.setOpenFiscaParameters()
-app.use(router)
 
+app.use(router)
 router.isReady().then(() => {
   if (router.currentRoute.value.query.debug === "parcours") {
     store.setDebug(true)

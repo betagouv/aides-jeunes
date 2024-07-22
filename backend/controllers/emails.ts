@@ -4,6 +4,7 @@ import {
   emailRender,
   emailRenderBySurveyType,
 } from "../../backend/lib/mes-aides/emails/email-render.js"
+import Sentry from "@sentry/node"
 
 const renderEmailByType = async (followup, emailType: EmailType) => {
   let surveyType: SurveyType | undefined
@@ -27,6 +28,7 @@ const getFollowupEmail = async (req, res, next) => {
     const result = await renderEmailByType(followup, emailType)
     res.send(result?.html)
   } catch (err) {
+    Sentry.captureException(err)
     next(err)
   }
 }

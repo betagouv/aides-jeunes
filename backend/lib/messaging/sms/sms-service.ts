@@ -6,6 +6,7 @@ import { Followup } from "../../../../lib/types/followup.js"
 import { Survey } from "../../../../lib/types/survey.d.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
 import dayjs from "dayjs"
+import Sentry from "@sentry/node"
 
 async function getSMSConfig() {
   const { username, password } = config.smsService
@@ -90,6 +91,7 @@ export async function sendSimulationResultsSms(
     followup.smsMessageId = data.messageIds[0]
     return await followup.save()
   } catch (err) {
+    Sentry.captureException(err)
     followup.smsError = JSON.stringify(err, null, 2)
     throw err
   }

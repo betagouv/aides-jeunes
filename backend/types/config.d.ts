@@ -67,6 +67,7 @@ export interface Configuration {
     integrations: [function]
     tracesSampleRate: float
     profilesSampleRate: float
+    debug: boolean
   }
   smsService: {
     show: boolean | undefined

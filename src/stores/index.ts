@@ -21,6 +21,7 @@ import {
 import { Answer } from "@lib/types/answer.d.js"
 import { SimulationStatus } from "@lib/enums/simulation.js"
 import { StatutOccupationLogement } from "@lib/enums/logement.js"
+import * as Sentry from "@sentry/vue"
 
 function defaultCalculs(): Calculs {
   return {
@@ -469,6 +470,7 @@ export const useStore = defineStore("store", {
       this.calculs.updating = false
       this.calculs.error = true
       this.calculs.exception = (error.response && error.response.data) || error
+      Sentry.captureException(error)
     },
     computeResults() {
       this.startComputation()
@@ -504,6 +506,7 @@ export const useStore = defineStore("store", {
         this.followup = data
         this.setResults({ droitsEligibles: this.followup.benefits })
       } catch (error) {
+        Sentry.captureException(error)
         this.saveComputationFailure(error)
       }
     },

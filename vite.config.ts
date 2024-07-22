@@ -59,6 +59,8 @@ export default defineConfig(async ({ mode }) => {
     VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,
     VITE_CONTEXT: process.env.NODE_ENV,
+    VITE_SENTRY_FRONTEND_DSN: process.env?.SENTRY_FRONTEND_DSN,
+    VITE_SENTRY_FRONTEND_AUTH_TOKEN: process.env?.SENTRY_FRONTEND_AUTH_TOKEN,
     VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
     VITE_REPOSITORY_URL: github.repository_url,
     VITE_BENEFIT_URL: `${github.repository_url}/blob/main/data/benefits`,

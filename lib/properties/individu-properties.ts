@@ -494,7 +494,13 @@ export default {
         ? "Où êtes-vous scolarisé ou scolarisée ?"
         : `Où sera scolarisé ou scolarisée ${individu._firstName} à la rentrée prochaine ?`
     },
-    items: ScolariteCategories.types,
+    items: ({ individu }) =>
+      individu._role == "demandeur"
+        ? ScolariteCategories.scolariteTypes
+        : [
+            ...ScolariteCategories.scolariteEnfantTypes,
+            ...ScolariteCategories.scolariteTypes,
+          ],
     moreInfo:
       "Pour les étudiants en classes préparatoires aux grandes écoles, il faut sélectionner « Dans un établissement de l'enseignement supérieur ».",
   }),

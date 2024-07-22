@@ -152,9 +152,9 @@ const fsl_var_sources = {
       "scolarite",
       `enfant_${id}`
     )
-    const scolariteLabel = Scolarite.types.find(
-      (t) => t.value === scolarite
-    )?.label
+    const scolariteLabel =
+      Scolarite.scolariteTypes.find((s) => s.value === scolarite)?.label ||
+      Scolarite.scolariteEnfantTypes.find((s) => s.value === scolarite)?.label
     return {
       champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
       champ_Q2hhbXAtMjU1NDk0OQ: prenom,

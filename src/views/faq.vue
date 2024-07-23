@@ -77,13 +77,6 @@ const mailAnalytics = {
 <template>
   <div class="fr-my-6w fr-p-2w">
     <h1>Foire aux questions</h1>
-    <p>
-      <router-link
-        to="/"
-        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line"
-        >Retour à la page d'accueil du simulateur</router-link
-      >
-    </p>
     <div class="fr-p-1w">
       <section
         v-for="(qa, index) in questionsAnswers"

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue"
 import { EventAction, EventCategory } from "@lib/enums/event"
 
 const contactEmail = process.env.VITE_CONTACT_EMAIL
 
-const questionsAnswers = ref([
+const questionsAnswers = [
   {
     question: "Je n'habite pas en France, puis-je faire une simulation ?",
     answer: `
@@ -60,7 +59,7 @@ const questionsAnswers = ref([
       Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>. 
     </p>`,
   },
-])
+]
 
 const mailContent = {
   subject: "Contact",

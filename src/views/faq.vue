@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import { EventAction, EventCategory } from "@lib/enums/event"
+
+const contactEmail = process.env.VITE_CONTACT_EMAIL
 
 const questionsAnswers = ref([
   {
@@ -58,6 +61,18 @@ const questionsAnswers = ref([
     </p>`,
   },
 ])
+
+const mailContent = {
+  subject: "Contact",
+  body: `
+        # Il est inutile de nous envoyer des documents personnels (carte de mutuelle, pièce d'identité, etc.) : nous ne pouvons pas les traiter.
+        # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation facilite le traitement de votre demande.`,
+}
+
+const mailAnalytics = {
+  action: EventAction.Contact,
+  category: EventCategory.Contact,
+}
 </script>
 
 <template>
@@ -86,6 +101,16 @@ const questionsAnswers = ref([
           <span v-html="qa.answer"></span>
         </div>
       </section>
+      <h6 class="fr-mt-6w"
+        >Vous ne trouvez pas de réponse à votre question ?</h6
+      >
+      <a
+        v-mail="mailContent"
+        :v-analytics="mailAnalytics"
+        class="fr-btn fr-btn--secondary fr-icon-mail-line fr-btn--icon-right"
+        type="mailto"
+        >Nous contacter : {{ contactEmail }}</a
+      >
     </div>
   </div>
 </template>

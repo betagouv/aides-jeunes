@@ -17,7 +17,7 @@ const questionsAnswers = [
     question: "Puis-je sauvegarder ma simulation ?",
     answer: `
     <p>
-      À tout moment de la simulation, vous avez la possibilité de cliquer sur le bouton <b>"Revenir plus tard?"</b>
+      À tout moment de la simulation, vous avez la possibilité de cliquer sur le bouton <b>"Revenir plus tard ?"</b>
       et la page associée vous permettra d'y récupérer un lien de sauvegarde.
     </p>
     <p>

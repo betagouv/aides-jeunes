@@ -96,13 +96,11 @@ const mailAnalytics = {
       <h6 class="fr-mt-6w"
         >Vous ne trouvez pas de réponse à votre question ?</h6
       >
-      <a
-        v-mail="mailContent"
-        :v-analytics="mailAnalytics"
-        class="fr-btn fr-btn--secondary fr-icon-mail-line fr-btn--icon-right"
-        type="mailto"
-        >Nous contacter : {{ contactEmail }}</a
-      >
+
+      Nous contacter par email :
+      <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{
+        contactEmail
+      }}</a>
     </div>
   </div>
 </template>

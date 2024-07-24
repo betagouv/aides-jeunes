@@ -51,5 +51,9 @@ export default {
       "Quel est le revenu fiscal de référence (RFR) sur le plus récent avis d'imposition de vos parents ?",
     questionType: "number",
     help: "Si vous ne connaissez pas le RFR de vos parents, écrivez 0 pour poursuivre la simulation. Attention, cela pourrait impacter l'exactitude des résultats de la simulation.",
+    moreInfo: `<b>Le revenu fiscal de référence (RFR)</b> est calculé par les impôts à partir des revenus que vous avez déclarés dans votre déclaration d’impôts. 
+    Il prend en compte l’ensemble des revenus de votre foyer fiscal, que vous soyez imposable ou non imposable.</br></br>
+    Toutes les informations concernant le <b>RFR</b> et comment le trouver sont disponibles sur le site du service-public : 
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F13216</a>.`,
   }),
 }

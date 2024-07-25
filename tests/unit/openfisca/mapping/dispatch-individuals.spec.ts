@@ -77,7 +77,7 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("check 'personne a charge' status", function () {
+    it("check personnes_a_charge status", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
@@ -86,6 +86,11 @@ describe("openfisca dispatchIndividuals", function () {
       expect(result.foyers_fiscaux.conjoint.declarants).toEqual([
         situation.conjoint.id,
       ])
+    })
+    it("checks scolarite enfant_a_charge", function () {
+      expect(result.individus.demandeur.enfant_a_charge.scolarite).toEqual(
+        situation.demandeur.enfant_a_charge.scolarite
+      )
     })
   })
 

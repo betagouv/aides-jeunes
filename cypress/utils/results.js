@@ -217,6 +217,12 @@ const hasIncitationCovoiturage = () => {
   IdentifyBenefit(id, name)
 }
 
+const hasARSBenefit = () => {
+  const name = /Allocation de rentrée scolaire/
+  const id = "ars"
+  IdentifyBenefit(id, name)
+}
+
 const hasRSA = () => {
   const name = /Revenu de solidarité active/
   const id = "rsa"
@@ -341,6 +347,7 @@ export default {
   hasCSS,
   hasAAH,
   hasBourseCriteresSociaux,
+  hasARSBenefit,
   hasRSA,
   hasNotBenefit,
   captureFiscalResources,

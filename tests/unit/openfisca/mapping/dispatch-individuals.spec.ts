@@ -1,4 +1,5 @@
 import { expect } from "@jest/globals"
+import { ScolariteEnfant } from "@lib/enums/scolarite.js"
 import subject from "@root/backend/lib/openfisca/mapping/index.js"
 
 describe("openfisca dispatchIndividuals", function () {
@@ -52,7 +53,7 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("sets one personne a charge", function () {
+    it("sets one person a charge", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
@@ -63,7 +64,11 @@ describe("openfisca dispatchIndividuals", function () {
     const situation = buildSituation({
       demandeur: {
         id: "demandeur",
-        enfant_a_charge: { 2013: true },
+        enfant_a_charge: {
+          2013: true,
+          scolarite: ScolariteEnfant.Maternelle,
+          test: "toto",
+        },
       },
       conjoint: {
         id: "conjoint",
@@ -74,15 +79,20 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("sets one persone a charge", function () {
+    it("sets one person a charge", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
     })
-    it("creates a separate foyer_fiscal for the conjoint one persone a charge", function () {
+    it("creates a separate foyer_fiscal for the conjoint one person a charge", function () {
       expect(result.foyers_fiscaux.conjoint.declarants).toEqual([
         situation.conjoint.id,
       ])
+    })
+    it("checks scolarite enfant_a_charge", function () {
+      expect(result.individus.demandeur.enfant_a_charge.scolarite).toEqual(
+        situation.demandeur.enfant_a_charge.scolarite
+      )
     })
   })
 })

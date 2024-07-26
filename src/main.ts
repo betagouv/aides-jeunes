@@ -45,8 +45,8 @@ app.directive("selectOnClick", SelectOnClickDirective)
 if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
   Sentry.init({
     app,
-    dsn: process.env?.VITE_SENTRY_FRONTEND_DSN,
-    authToken: process.env?.VITE_SENTRY_FRONTEND_AUTH_TOKEN,
+    dsn: process.env.VITE_SENTRY_FRONTEND_DSN,
+    environment: process.env.VITE_CONTEXT,
     integrations: [
       Sentry.browserTracingIntegration({ router }),
       Sentry.replayIntegration(),
@@ -54,7 +54,7 @@ if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
     tracesSampleRate: 1.0,
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0,
-    debug: !process.env?.VITE_SENTRY_FRONTEND_DSN,
+    debug: "development" === process.env.VITE_CONTEXT,
   })
 }
 app.use(Resizer)

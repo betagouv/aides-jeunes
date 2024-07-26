@@ -61,9 +61,10 @@ export interface Configuration {
   }
   iframeTitle: string
   sentry: {
-    dsn: string | undefined
+    dsn?: string
     authToken?: string
     project?: string
+    environement?: string
     integrations: [function]
     tracesSampleRate: float
     profilesSampleRate: float

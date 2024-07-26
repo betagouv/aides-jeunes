@@ -113,13 +113,14 @@ const config: Configuration = {
   mongodb_url:
     process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
   sentry: {
-    dsn: process.env?.SENTRY_BACKEND_DSN,
-    authToken: process.env?.SENTRY_BACKEND_AUTH_TOKEN,
-    project: process.env?.SENTRY_BACKEND_PROJECT,
+    dsn: process.env.SENTRY_BACKEND_DSN,
+    authToken: process.env.SENTRY_BACKEND_AUTH_TOKEN,
+    project: process.env.SENTRY_BACKEND_PROJECT,
+    environment: process.env.NODE_ENV,
     integrations: [nodeProfilingIntegration()],
     tracesSampleRate: 1.0,
     profilesSampleRate: 1.0,
-    debug: !process.env?.SENTRY_BACKEND_DSN,
+    debug: !isProduction,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",

@@ -12,7 +12,7 @@ const texts = {
   },
   service_civique: (): string => {
     return `Un <b>Service Civique</b> est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
-    Une <b>vidéo de présentation</b> du Service Civique en 1 minute est disponible <a href="https://www.youtube.com/watch?v=iEm8Q6Esqd0" target="_blank">en cliquant ici</a>.
+    Une <b>vidéo de présentation</b> du Service Civique en 1 minute est disponible <a href="https://www.youtube.com/watch?v=iEm8Q6Esqd0" target="_blank">sur Youtube</a>.
     <br/><br/>
     Pour plus d'informations, vous pouvez consulter <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">le site officiel du Service Civique</a>.
     <br/><br/>

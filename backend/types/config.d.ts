@@ -64,7 +64,7 @@ export interface Configuration {
     dsn?: string
     authToken?: string
     project?: string
-    environement?: string
+    environment?: string
     integrations: [function]
     tracesSampleRate: float
     profilesSampleRate: float

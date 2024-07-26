@@ -19,8 +19,8 @@ context("Full simulation", () => {
 
     profil.defaultIndivu()
 
-    foyer.children(2)
     foyer.kindergartenChildren()
+    foyer.children(2)
     foyer.fill_en_couple(true)
     profil.defaultConjoint()
 

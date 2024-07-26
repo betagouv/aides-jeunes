@@ -19,7 +19,6 @@ const kindergartenChildren = () => {
   cy.get('[data-testid="add-pac"]').click()
   profil.kindergartenChildren()
   urlInclude("enfants")
-  submit()
 }
 
 const fill_en_couple = (enCouple) => {

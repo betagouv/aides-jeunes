@@ -5,15 +5,6 @@ const contactEmail = process.env.VITE_CONTACT_EMAIL
 
 const questionsAnswers = [
   {
-    question: "Je n'habite pas en France, puis-je faire une simulation ?",
-    answer: `
-    <p>
-      Bien que le simulateur soit conçu pour les personnes résidant en France, si vous avez prévu de
-      venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b> 
-      avec le code postal où vous souhaitez habiter.
-    </p>`,
-  },
-  {
     question: "Puis-je sauvegarder ma simulation ?",
     answer: `
     <p>
@@ -23,6 +14,53 @@ const questionsAnswers = [
     <p>
       À la fin de la simulation, vous pouvez également sauvegarder vos résultats en demandant à les réceptionner 
       par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</b>.
+    </p>`,
+  },
+  {
+    question: "Je n'habite pas en France, puis-je faire une simulation ?",
+    answer: `
+    <p>
+      Bien que le simulateur soit conçu pour les personnes résidant en France, si vous avez prévu de
+      venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b> 
+      avec le code postal où vous souhaitez habiter.
+    </p>`,
+  },
+  {
+    question: `Je suis étudiant étranger et mes parents ne résident pas en France, ai-je droit à des aides ?`,
+    answer: `
+    <p>
+      Vous trouverez toute l'information sur les aides auxquelles vous avez droit en consultant cet article sur <a href="https://www.etudiant.gouv.fr/fr/aides-financieres-pour-les-etudiants-internationaux-1663" target="_blank">etudiant.gouv.fr</a>.
+      Vous pouvez aussi trouver des informations utiles sur <a href="https://www.campusfrance.org/fr" target="_blank">Campus France</a>.
+    </p>`,
+  },
+  {
+    question: "Qu'est-ce que le service civique ?",
+    answer: `
+    Un Service Civique est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
+    Pour plus d'informations, vous pouvez consulter le site officiel du <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">Service Civique</a>.
+    <br/><br/>
+    Vous pouvez trouver des missions sur <a href="https://www.1jeune1solution.gouv.fr/service-civique" target="_blank">la page dédié du site 1jeune1solution.gouv.fr</a>.
+    `,
+  },
+  {
+    question: `Qu’est ce que le revenu fiscal de référence (RFR) et où le trouver ?`,
+    answer: `
+    <p>
+      Le RFR est calculé par les services fiscaux (les impôts) à partir des revenus que vous avez déclarés
+      ou que vos parents ont déclarés si vous êtes encore à leur charge. 
+      Il se trouve sur la première page de votre dernier avis d'impôt sur le revenu.
+      </br>
+      </br>
+      Toutes les informations concernant le RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>. 
+    </p>`,
+  },
+  {
+    question: "Qu'est ce que le revenu brut global (RBG) et où le trouver ?",
+    answer: `
+    <p>
+      Le RBG est le montant total des revenus de votre foyer fiscal avant déductions et abattements. Pour les étudiants et futurs étudiants, 
+      les revenus pris en compte par le Crous pour calculer votre droit à la bourse sur critères sociaux (BCS) 
+      sont ceux qui figurent à la ligne « revenu brut global » sur la première page de l’avis d’imposition de vos parents.
     </p>`,
   },
   {
@@ -50,12 +88,24 @@ const questionsAnswers = [
   },
   {
     question:
-      "Je suis éligible à la CSS (Ex- CMU), comment en faire la demande ?",
+      "Je suis en rupture familiale et n’ai pas accès à la déclaration d’impôts de mes parents, qui peut m’aider ?",
+    answer: `
+    <p>
+      En fonction de votre situation, vous pouvez vous rapprocher :
+      <ul>
+        <li>des services sociaux du Crous si vous êtes étudiant ou étudiante</li>
+        <li>des services sociaux de la Mairie de votre ville de résidence dans les autres situations</li>
+      </ul>
+    </p>`,
+  },
+  {
+    question:
+      "Je suis éligible à la CSS (Ex-CMU), comment en faire la demande ?",
     answer: `
     <p>
       Pour demander votre <a href="/aides/css_participation_forfaitaire" target="_blank">Complémentaire Santé Solidaire</a>, rendez-vous sur
       <a href="https://www.ameli.fr/">le site internet </a> ou l’application
-      mobile Ameli pour télécharger le formulaire de demande. 
+      mobile Ameli pour télécharger le formulaire de demande. </br>
       Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>. 
     </p>`,
   },

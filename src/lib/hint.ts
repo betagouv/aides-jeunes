@@ -19,6 +19,16 @@ const texts = {
     Des missions sont disponibles sur la page dédiée de <a href="https://www.1jeune1solution.gouv.fr/service-civique" target="_blank">1jeune1solution.gouv.fr</a>.
     `
   },
+  loyer: (): string => {
+    return `
+    <h5>Que sont les charges locatives ?</h5>
+    Les charges locatives (ou charges récupérables) sont des dépenses dues par le locataire, mais initialement payées par le propriétaire (ou son réprésentant). Le propriétaire (ou son représentant) 
+    se fait rembourser ces dépenses par le locataire. Le mode de paiement de ces charges est différent, selon qu'il s'agit d'un bail d'habitation vide ou meublé.</br/><br/>
+    Plus d'informations sur le site du service public : <a href="https://www.service-public.fr/particuliers/vosdroits/F947" target="_blank">https://www.service-public.fr/particuliers/vosdroits/F947</a>
+    </br/><br/>
+    <h5>Où trouver le montant des charges locatives ?</h5>
+    Les informations sur les charges locatives peuvent être trouvées dans plusieurs documents différents : sur votre bail de location, sur l'état des lieux ou sur le décompte annuel des charges.`
+  },
 }
 
 // Retrieve `moreInfo` field of each mutualized step

@@ -29,7 +29,7 @@ const questionsAnswers = [
     question: "Je suis bloqué à la question sur le RFR / RBG, comment faire ?",
     answer: `
     <p>
-      Si vous n'avez aucun moyen de déterminter le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge), 
+      Si vous n'avez aucun moyen de déterminer le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge), 
       vous avez la possibilité de répondre 0 à ces questions. Attention, <b>certaines aides ne
       pourront pas être calculées correctement sans le montant exact</b> du RFR,
       comme par exemple l'aide de la

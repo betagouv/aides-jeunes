@@ -11,10 +11,12 @@ const texts = {
     return `« Un enfant à charge » est un enfant dont vous êtes responsable et dont vous vous occupez, qu'il soit votre enfant naturel ou non.`
   },
   service_civique: (): string => {
-    return `Un Service Civique est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
-    Pour plus d'informations, vous pouvez consulter le site officiel du <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">Service Civique</a>.
+    return `Un <b>Service Civique</b> est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
+    Une <b>vidéo de présentation</b> du Service Civique en 1 minute est disponible <a href="https://www.youtube.com/watch?v=iEm8Q6Esqd0" target="_blank">sur Youtube</a>.
     <br/><br/>
-    Vous pouvez trouver des missions sur <a href="https://www.1jeune1solution.gouv.fr/service-civique" target="_blank">la page dédié du site 1jeune1solution.gouv.fr</a>.
+    Pour plus d'informations, vous pouvez consulter <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">le site officiel du Service Civique</a>.
+    <br/><br/>
+    Des missions sont disponibles sur la page dédiée de <a href="https://www.1jeune1solution.gouv.fr/service-civique" target="_blank">1jeune1solution.gouv.fr</a>.
     `
   },
 }

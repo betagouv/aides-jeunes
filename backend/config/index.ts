@@ -120,7 +120,7 @@ const config: Configuration = {
     integrations: [nodeProfilingIntegration()],
     tracesSampleRate: 1.0,
     profilesSampleRate: 1.0,
-    debug: !isProduction,
+    debug: "development" === process.env.NODE_ENV,
   },
   sessionSecret: process.env.SESSION_SECRET || "fghjdfjkdf785a-jreu",
   mattermost_post_url: process.env.MATTERMOST_POST_URL || "",

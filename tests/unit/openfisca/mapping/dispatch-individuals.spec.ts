@@ -87,9 +87,25 @@ describe("openfisca dispatchIndividuals", function () {
         situation.conjoint.id,
       ])
     })
-    it("checks scolarite enfant_a_charge", function () {
-      expect(result.individus.demandeur.enfant_a_charge.scolarite).toEqual(
-        situation.demandeur.enfant_a_charge.scolarite
+  })
+
+  describe("check child", function () {
+    const situation = buildSituation({
+      demandeur: {
+        id: "demandeur",
+      },
+      enfants: [
+        {
+          id: "enfant_0",
+          enfant_a_charge: { 2018: true },
+          scolarite: "maternelle",
+        },
+      ],
+    })
+    const result: any = subject.dispatchIndividuals(situation)
+    it("checks schooling", function () {
+      expect(result.individus.enfant_0.scolarite).toEqual(
+        situation.enfants[0].scolarite
       )
     })
   })

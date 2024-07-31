@@ -98,7 +98,7 @@ describe("openfisca dispatchIndividuals", function () {
         {
           id: "enfant_0",
           enfant_a_charge: { 2018: true },
-          scolarite: "maternelle",
+          scolarite: ScolariteEnfant.Maternelle,
         },
       ],
     })

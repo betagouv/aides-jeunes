@@ -2,6 +2,7 @@ import { fillRadio, submit } from "./form.js"
 import {
   GroupeSpecialite,
   MentionBaccalaureat,
+  ScolariteEnfant,
 } from "../../lib/enums/scolarite.ts"
 import { urlInclude } from "./controllers.js"
 
@@ -176,6 +177,16 @@ const defaultChildren = () => {
   fill_enfant_a_charge(false)
 }
 
+const kindergartenChildren = () => {
+  fill_first_name("Mika")
+  fill_date_naissance("12122010")
+  fill_nationalite("FR")
+  fill_garde_alternee(true)
+  fillHandicap(false)
+  fill_scolarite(ScolariteEnfant.Maternelle)
+  fill_enfant_a_charge(true)
+}
+
 const defaultConjoint = () => {
   fill_date_naissance("12121980")
   fill_nationalite("FR")
@@ -190,5 +201,6 @@ export default {
   defaultIndivu,
   publicStudent,
   defaultChildren,
+  kindergartenChildren,
   defaultConjoint,
 }

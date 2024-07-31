@@ -1,0 +1,18 @@
+label: allocation de rentrée scolaire
+institution: caf
+description:
+  L'allocation de rentrée scolaire (ARS) est versée, sous conditions de ressources,
+  aux familles ayant au moins un enfant scolarisé âgé de 6 à 18 ans. Elle est destinée à aider
+  les familles à financer les dépenses de la rentrée scolaire. Il est possible d'en bénéficier
+  plusieurs années consécutives, la situation familiale est réévaluée chaque année.
+conditions:
+  - Déclarer à la <a href="https://www.caf.fr" rel="noopener" target="_blank" title="Site de la CAF - Nouvelle fenêtre">CAF</a>
+    que votre enfant est toujours scolarisé ou en apprentissage pour la rentrée 2024 (uniquement pour les enfants de 16 à 18 ans, sinon l'ARS est versée automatiquement pour les enfants de moins de 16 ans).
+link: https://www.caf.fr/allocataires/actualites/actualites-nationales/l-allocation-de-rentree-scolaire-mode-d-emploi
+instructions: https://www.service-public.fr/particuliers/vosdroits/F1878/personnalisation/resultat?lang=&quest0=0&quest2=0&quest3=0&quest5=1&quest=
+prefix: l’
+type: float
+unit: €
+entity: familles
+openfiscaPeriod: thisYear
+periodicite: ponctuelle

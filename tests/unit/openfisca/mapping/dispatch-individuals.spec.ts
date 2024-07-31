@@ -77,7 +77,7 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("check 'personne a charge' status", function () {
+    it("check personnes_a_charge status", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
@@ -89,7 +89,7 @@ describe("openfisca dispatchIndividuals", function () {
     })
   })
 
-  describe("check child", function () {
+  describe("check child schooling", function () {
     const situation = buildSituation({
       demandeur: {
         id: "demandeur",

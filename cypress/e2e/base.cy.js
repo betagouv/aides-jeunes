@@ -68,6 +68,7 @@ context("Full simulation", () => {
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetAidesSanitaireSocial(false)
     results.wait()
+    results.hasARSBenefit(false)
     results.hasPrimeActivite()
     results.hasPrimeActiviteNearbyPlaces()
     results.captureFiscalResources()

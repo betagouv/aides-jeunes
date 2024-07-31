@@ -217,6 +217,17 @@ const hasIncitationCovoiturage = () => {
   IdentifyBenefit(id, name)
 }
 
+const hasARSBenefit = (mustBeDisplay) => {
+  const id = "ars"
+  if (mustBeDisplay) {
+    const name = /Allocation de rentrée scolaire/
+    IdentifyBenefit(id, name)
+    cy.checkA11y()
+  } else {
+    cy.get(`[data-testid="${id}"]`, { timeout: 5000 }).should("not.exist")
+  }
+}
+
 const hasRSA = () => {
   const name = /Revenu de solidarité active/
   const id = "rsa"
@@ -341,6 +352,7 @@ export default {
   hasCSS,
   hasAAH,
   hasBourseCriteresSociaux,
+  hasARSBenefit,
   hasRSA,
   hasNotBenefit,
   captureFiscalResources,

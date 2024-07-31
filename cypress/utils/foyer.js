@@ -13,6 +13,14 @@ const children = (numberOfChildren) => {
   submit()
 }
 
+const kindergartenChildren = () => {
+  urlInclude("enfants")
+  cy.checkA11y()
+  cy.get('[data-testid="add-pac"]').click()
+  profil.kindergartenChildren()
+  urlInclude("enfants")
+}
+
 const fill_en_couple = (enCouple) => {
   fillRadio("en_couple", enCouple)
 }
@@ -52,6 +60,7 @@ const fill_rsa_isolement_recent = (isolement) => {
 
 export default {
   children,
+  kindergartenChildren,
   fill_en_couple,
   fill__situation,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge,

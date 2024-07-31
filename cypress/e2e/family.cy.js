@@ -19,6 +19,7 @@ context("Full simulation", () => {
 
     profil.defaultIndivu()
 
+    foyer.kindergartenChildren()
     foyer.children(2)
     foyer.fill_en_couple(true)
     profil.defaultConjoint()
@@ -48,6 +49,7 @@ context("Full simulation", () => {
     results.hasCSS()
     results.hasBafaGroupPreviewBenefit(false)
     results.hasVeloGroupPreviewBenefit(false)
+    results.hasARSBenefit(true)
     results.hasPrimeActivite()
     navigate.goRecap()
     navigate.checkRecap()

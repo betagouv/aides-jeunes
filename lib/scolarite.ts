@@ -2,9 +2,10 @@ import {
   GroupeSpecialite,
   MentionBaccalaureat,
   Scolarite,
+  ScolariteEnfant,
 } from "./enums/scolarite.js"
 export default {
-  types: [
+  scolariteTypes: [
     {
       value: Scolarite.College,
       label: "Au collège",
@@ -24,6 +25,16 @@ export default {
     {
       value: Scolarite.Inconnue,
       label: "Autre",
+    },
+  ],
+  scolariteEnfantTypes: [
+    {
+      value: ScolariteEnfant.Maternelle,
+      label: "À la maternelle",
+    },
+    {
+      value: ScolariteEnfant.Primaire,
+      label: "À l'école primaire",
     },
   ],
   mentionsBaccalaureat: [

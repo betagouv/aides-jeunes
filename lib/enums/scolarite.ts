@@ -6,6 +6,11 @@ export enum Scolarite {
   Lycee = "lycee",
 }
 
+export enum ScolariteEnfant {
+  Maternelle = "maternelle",
+  Primaire = "primaire",
+}
+
 export enum Etudiant {
   Cap1 = "cap_1",
   Cap2 = "cap_2",

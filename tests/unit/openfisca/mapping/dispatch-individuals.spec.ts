@@ -1,4 +1,5 @@
 import { expect } from "@jest/globals"
+import { ScolariteEnfant } from "@lib/enums/scolarite.js"
 import subject from "@root/backend/lib/openfisca/mapping/index.js"
 
 describe("openfisca dispatchIndividuals", function () {
@@ -52,7 +53,7 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("sets one personne a charge", function () {
+    it("sets one person a charge", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
@@ -63,7 +64,9 @@ describe("openfisca dispatchIndividuals", function () {
     const situation = buildSituation({
       demandeur: {
         id: "demandeur",
-        enfant_a_charge: { 2013: true },
+        enfant_a_charge: {
+          2008: true,
+        },
       },
       conjoint: {
         id: "conjoint",
@@ -74,15 +77,36 @@ describe("openfisca dispatchIndividuals", function () {
     it("sets a fake declarant", function () {
       expect(result.foyers_fiscaux._.declarants).toEqual(["parent1"])
     })
-    it("sets one persone a charge", function () {
+    it("check 'personne a charge' status", function () {
       expect(result.foyers_fiscaux._.personnes_a_charge).toEqual([
         situation.demandeur.id,
       ])
     })
-    it("creates a separate foyer_fiscal for the conjoint one persone a charge", function () {
+    it("creates a separate foyer_fiscal for the conjoint one person a charge", function () {
       expect(result.foyers_fiscaux.conjoint.declarants).toEqual([
         situation.conjoint.id,
       ])
+    })
+  })
+
+  describe("check child", function () {
+    const situation = buildSituation({
+      demandeur: {
+        id: "demandeur",
+      },
+      enfants: [
+        {
+          id: "enfant_0",
+          enfant_a_charge: { 2018: true },
+          scolarite: ScolariteEnfant.Maternelle,
+        },
+      ],
+    })
+    const result: any = subject.dispatchIndividuals(situation)
+    it("checks schooling", function () {
+      expect(result.individus.enfant_0.scolarite).toEqual(
+        situation.enfants[0].scolarite
+      )
     })
   })
 })

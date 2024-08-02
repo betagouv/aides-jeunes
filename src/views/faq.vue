@@ -36,11 +36,13 @@ const questionsAnswers = [
   {
     question: "Qu'est-ce que le service civique ?",
     answer: `
+    <p>
     Un Service Civique est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
     Pour plus d'informations, vous pouvez consulter le site officiel du <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">Service Civique</a>.
-    <br/><br/>
+    </p>
+    <p>
     Vous pouvez trouver des missions sur <a href="https://www.1jeune1solution.gouv.fr/service-civique" target="_blank">la page dédié du site 1jeune1solution.gouv.fr</a>.
-    `,
+    </p>`,
   },
   {
     question: `Qu’est ce que le revenu fiscal de référence (RFR) et où le trouver ?`,
@@ -49,8 +51,8 @@ const questionsAnswers = [
       Le RFR est calculé par les services fiscaux (les impôts) à partir des revenus que vous avez déclarés
       ou que vos parents ont déclarés si vous êtes encore à leur charge. 
       Il se trouve sur la première page de votre dernier avis d'impôt sur le revenu.
-      </br>
-      </br>
+    </p>
+    <p>
       Toutes les informations concernant le RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>. 
     </p>`,
   },
@@ -74,7 +76,7 @@ const questionsAnswers = [
       <a href="/aides/bourse_criteres_sociaux" target="_blank">Bourse sur Critères Sociaux</a>
       pour les étudiants.
     </p>
-      <p>Le revenu fiscal de référence (RFR) est calculé par les impôts, à partir
+    <p>Le revenu fiscal de référence (RFR) est calculé par les impôts, à partir
       des revenus que vous avez déclarés dans votre déclaration d’impôts. Il
       prend en compte l’ensemble des revenus de votre foyer fiscal, que vous
       soyez imposable ou non imposable. Toutes les informations concernant le
@@ -139,9 +141,11 @@ const mailAnalytics = {
           :aria-controls="`accordion-${index}`"
           >{{ qa.question }}</button
         >
-        <div :id="`accordion-${index}`" class="fr-collapse">
-          <span v-html="qa.answer"></span>
-        </div>
+        <div
+          :id="`accordion-${index}`"
+          class="fr-collapse"
+          v-html="qa.answer"
+        />
       </section>
       <h6 class="fr-mt-6w"
         >Vous ne trouvez pas de réponse à votre question ?</h6

@@ -110,6 +110,7 @@ const parameters = {
     { label: "Statistiques", to: "/stats" },
     { label: "Toutes les aides", to: "/aides" },
     { label: "Intégrer notre simulateur", to: "/iframe" },
+    { label: "Foire aux questions", to: "/faq" },
     { label: "Nous contacter", to: "/contact" },
   ],
 }

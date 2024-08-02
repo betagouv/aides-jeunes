@@ -268,6 +268,14 @@ const router = createRouter({
       component: () => import("./views/accompagnement/accompagnement.vue"),
     },
     {
+      path: "/faq",
+      name: "faq",
+      component: () => import("./views/faq.vue"),
+      meta: {
+        headTitle: `Foire aux questions du simulateur ${context.name}`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

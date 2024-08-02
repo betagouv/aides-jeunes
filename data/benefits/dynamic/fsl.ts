@@ -293,7 +293,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_seine_maritime: {
     label: "du département de Seine-Maritime",
-    link: "https://www.seinemaritime.fr/vos-services/habitat-logement/le-plan-departemental-daction-pour-le-logement-des-personnes-defavorisees/fonds-solidarite-logement.html",
+    link: "https://www.seinemaritime.fr/mon-quotidien/habitat-logement/les-aides-a-lacces-et-au-maintien-dans-le-logement.html",
   },
   departement_seine_et_marne: {
     label: "du département de Seine-et-Marne",
@@ -394,7 +394,7 @@ function formatBenefit(
     {
       id: `${institutionId.replace(/_/g, "-")}-fsl-eligibilite`,
       ...DEFAULT_FSL,
-      description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures liées à votre logement (eau, électricité, etc.).`,
+      description: `Dans le cadre du Fonds de Solidarité Logement ${label}, des aides financières sont mises en place pour vous aider à rester dans votre logement et à payer vos factures d'énergie et d'eau.`,
       conditions: [
         `Occuper, à titre de résidence principale, un logement sur le territoire ${label}.`,
         "<strong>Satisfaire les conditions de ressources</strong> décrites dans le règlement.",

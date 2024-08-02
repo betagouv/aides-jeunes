@@ -1,16 +1,11 @@
-label: Bourse « Jeunes à l’international » – étudiants et étudiantes en BTS et BUT
+label: Bourse « Jeunes à l’international » n°3 – étudiants et étudiantes en BTS et BUT
 institution: region_bretagne
 description:
-  La Région Bretagne finance les étudiants et étudiantes en BTS et BUT qui
-  souhaitent effectuer un stage professionnel ou un séjour d’études à
-  l’étranger.
+  La Région Bretagne finance les étudiants et étudiantes en BTS et en 1ère ou 2ème année de BUT qui
+  souhaitent effectuer un stage professionnel ou un séjour d’études à l’étranger.
 conditions:
-  - Être étudiant ou étudiante en BTS ou BUT.
-  - Vérifier que vous correspondez aux <a target="_blank" rel="noopener" title ="conditions spécifiques - Nouvelle fenêtre"
-    href="https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-en-bts-et-dut/">conditions
-    spécifiques</a> d'attribution (section "Bénéficiaires et critères").
-  - Contacter au préalable votre établissement qui vous indiquera la marche à
-    suivre.
+  - Être étudiant ou étudiante en BTS ou 1ère ou 2ème année de BUT.
+  - Contacter au préalable votre établissement qui vous indiquera la marche à suivre.
 conditions_generales:
   - type: regions
     values:
@@ -26,13 +21,13 @@ profils:
         values:
           - bts_1
           - but_1
-link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-en-bts-et-dut/
+link: https://www.bretagne.bzh/actualites/bougez-en-europe-et-dans-le-monde/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
-instructions: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-en-bts-et-dut/
+instructions: https://www.bretagne.bzh/actualites/bougez-en-europe-et-dans-le-monde/
 prefix: la
 type: float
 unit: €
 periodicite: mensuelle
 legend: maximum
-montant: 500
+montant: 200
 interestFlag: _interetEtudesEtranger

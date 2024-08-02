@@ -1,8 +1,8 @@
-label: bourse jeunes à l’international
+label: Bourse « Jeunes à l’international » n°4 – étudiants et étudiantes des universités et 3ème année de BUT
 institution: region_bretagne
-description: La bourse « Jeunes à l’international » vise accompagner les
-  étudiants dans leur projet de stage professionnel ou de séjour d’études à
-  l’étranger.
+description:
+  La région Bretagne finance les étudiants et étudiantes des universités ou en 3ème année de BUT dans leur projet
+  de stage professionnel ou de séjour d’études à l’étranger.
 conditions:
   - Ne pas être bénéficiaire d'une autre aide publique à la mobilité
     internationale (européenne, nationale, régionale, départementale, locale).
@@ -16,9 +16,21 @@ conditions_generales:
     operator: "<="
 profils:
   - type: enseignement_superieur
-link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-etudiants-des-universites/
+    conditions:
+      - type: annee_etude
+        values:
+          - but_1
+          - licence_1
+          - licence_2
+          - licence_3
+          - master_1
+          - master_2
+link: https://www.bretagne.bzh/actualites/bougez-en-europe-et-dans-le-monde/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
 prefix: la
-type: bool
-periodicite: ponctuelle
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 300
 interestFlag: _interetEtudesEtranger

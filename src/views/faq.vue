@@ -150,11 +150,12 @@ const mailAnalytics = {
       <h2 class="fr-text--lead fr-mt-6w">
         Vous ne trouvez pas de réponse à votre question ?
       </h2>
-
-      Nous contacter par email :
-      <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{
-        contactEmail
-      }}</a>
+      <p>
+        Nous contacter par email :
+        <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{
+          contactEmail
+        }}</a>
+      </p>
     </div>
   </div>
 </template>

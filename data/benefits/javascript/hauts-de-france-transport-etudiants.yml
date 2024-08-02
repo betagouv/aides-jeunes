@@ -16,7 +16,7 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF22%2F23
+link: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF23%2F24
 prefix: l’
 type: float
 unit: €

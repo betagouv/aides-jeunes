@@ -147,9 +147,9 @@ const mailAnalytics = {
           v-html="qa.answer"
         />
       </section>
-      <h6 class="fr-mt-6w"
-        >Vous ne trouvez pas de réponse à votre question ?</h6
-      >
+      <h2 class="fr-text--lead fr-mt-6w">
+        Vous ne trouvez pas de réponse à votre question ?
+      </h2>
 
       Nous contacter par email :
       <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{

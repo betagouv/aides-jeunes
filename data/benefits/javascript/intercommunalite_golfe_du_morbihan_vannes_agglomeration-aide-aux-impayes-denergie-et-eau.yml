@@ -15,8 +15,10 @@ profils: []
 conditions:
   - Prendre rendez-vous avec le Centre Communal d'Action Sociale (CCAS) de la ville de Vannes
     en appelant le 02 97 01 65 25 ou par email à action.sociale@mairie-vannes.fr.
-  - Consulter les conditions de ressources en cliquant sur "Voir les
-    instructions détaillées".
+  - Consulter les conditions de ressources <a
+    target="_blank" title="Règlement du FSL énergie et eau - Nouvelle fenêtre" rel="noopener"
+    href="https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/Doss/2024/24_morbihan_5_H08_FSL_eau_energie.pdf">dans le règlement du Fonds Energie et Eau
+    </a>.
   - Être encore titulaire du contrat pour lequel vous faites une demande au Fonds Energie et Eau.
 type: bool
 unit: €

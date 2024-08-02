@@ -201,7 +201,7 @@ ssh debian@equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
 
 In order to use those tools you need to build the server at least once using the command `npm run build:server`.
 
-- `npm run husky` installs git hooks used to facilitate development and reduce the CI running time.
+- `npm run husky` installs git hooks used to facilitate development and reduce the CI running time. We use Talisman to to ensure that potential secrets or sensitive information do not leave the developer's workstation. You need to install Talisman before : https://github.com/thoughtworks/talisman/releases or `brew install talisman`. To skip talisman, you can use -n when you commit.
 
 - `npm run tools:check-links-validity` validates links to 3rd parties in benefits files.
 

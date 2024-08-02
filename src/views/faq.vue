@@ -111,6 +111,18 @@ const questionsAnswers = [
       Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>. 
     </p>`,
   },
+  {
+    question: "Qu’est-ce que le Bonus Vélo et comment en faire la demande ?",
+    answer: `
+    <p>
+      Le bonus vélo est une aide financière pour acheter ou louer un vélo. Le montant varie selon vos revenus et si vous êtes en situation de handicap. Plus d’informations sur <a href="https://www.service-public.fr/particuliers/vosdroits/F36828" target="_blank">la page du service public sur le bonus vélo</a>.
+      Vous pourrez y déterminer le montant exact de l’aide à laquelle vous avez droit, en fonction de votre situation et du vélo que vous souhaitez acheter.
+    </p>
+    <p>
+      Pour faire une demande, rendez-vous sur le portail gouvernemental  <a href="https://www.primealaconversion.gouv.fr/dboneco/accueil/access.html" target="_blank">primealaconversion.gouv.fr</a>.
+      Il vous sera demandé de télécharger la facture d’achat du vélo, un justificatif d’identité, de domicile et de revenus (avis d’impôt), ainsi que votre RIB.
+    </p>`,
+  },
 ]
 
 const mailContent = {

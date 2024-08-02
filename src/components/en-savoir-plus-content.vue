@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="fr-text--lead">En savoir plus</h2>
-    <p v-html="text"></p>
+    <div v-html="text"></div>
     <BackButton size="small" data-testid="en-savoir-plus-back-button"
       >Retour</BackButton
     >

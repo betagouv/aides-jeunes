@@ -27,6 +27,7 @@
         <span class="fr-text--lead fr-text--bold">{{
           chargesQuestion.label
         }}</span>
+        <EnSavoirPlus />
         <span class="fr-hint-text fr-px-2v fr-mt-2v">{{
           chargesQuestion.hint
         }}</span>
@@ -54,12 +55,14 @@ import ActionButtons from "@/components/action-buttons.vue"
 import InputNumber from "@/components/input-number.vue"
 import Logement from "@lib/logement"
 import { useStore } from "@/stores/index.js"
+import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 
 export default {
   name: "SimulationMenageDepCom",
   components: {
     InputNumber,
     ActionButtons,
+    EnSavoirPlus,
   },
   props: {
     modelValue: Number,

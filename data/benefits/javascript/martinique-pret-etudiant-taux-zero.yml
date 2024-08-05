@@ -3,9 +3,7 @@ institution: martinique
 description:
   Le Prêt d'études remboursable sans intérêt (PER) est accordé par la Collectivité Territoriale
   de Martinique, en fonction des ressources du foyer, à des étudiants et étudiantes inscrits
-  dans un cursus post Bac jusqu'au Master. Sont pris en compte le revenu imposable
-  à l’impôt sur le revenu et le nombre de parts fiscales figurant sur l’avis d’imposition
-  des parents ou de l’étudiant s’il a fait sa propre déclaration d'impôts."
+  dans un cursus post Bac jusqu'au Master.
 conditions:
   - Être de nationalité française ou ressortissant de l’un des États membres de
     l’Union Européenne.
@@ -32,7 +30,7 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: hhttps://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
+link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
 instructions: https://www.spot.mq/trouver-un-dispositif/pret-detudes-remboursable-sans-interet-per
 teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login?redirectTo=https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fconnecte%2Ftiers-selection&jwtKey=jwt-ctmartinique-portail-depot-demande-aides&footer=https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fcontact-page,Nous%20contacter,_self
 type: float

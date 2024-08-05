@@ -67,14 +67,22 @@ const sendRecap = async (surveyOptin) => {
       emailInputErrorMessage.value = true
     }
 
-    const sendOptinSurveyEvent =
-      surveyOptin &&
-      (!phoneInputErrorMessage.value || !emailInputErrorMessage.value)
+    const inputErrorMessage =
+      phoneInputErrorMessage.value && emailInputErrorMessage.value
+    const sendOptinTrueSurveyEvent = surveyOptin && !inputErrorMessage
+    const sendOptinFalseSurveyEvent = !surveyOptin && !inputErrorMessage
 
-    if (sendOptinSurveyEvent) {
+    if (sendOptinTrueSurveyEvent) {
       StatisticsMixin.methods.sendEventToMatomo(
         EventCategory.Followup,
         EventAction.FormulaireValideAvecRecontact,
+        ABTestingService.getValues().CTA_EmailRecontact
+      )
+    }
+    if (sendOptinFalseSurveyEvent) {
+      StatisticsMixin.methods.sendEventToMatomo(
+        EventCategory.Followup,
+        EventAction.FormulaireValideSansRecontact,
         ABTestingService.getValues().CTA_EmailRecontact
       )
     }

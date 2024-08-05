@@ -1,0 +1,27 @@
+label: Aide aux impayés d'énergie et eau
+institution: ville-de-vannes
+description: Le Centre Communal d'Action Sociale (CCAS) de la ville de Vannes
+  instruit le Fonds Energie et Eau pour le compte du département du Morbihan,
+  afin de venir en aide aux Vannetais en difficulté dans le paiement de leurs
+  factures d'énergie (électricité, bois, gaz, fuel) et d'eau. Cette aide est
+  soumise à conditions de ressources en fonction de votre composition familiale.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: difficultes_acces_ou_frais_logement
+profils: []
+conditions:
+  - Prendre rendez-vous avec le Centre Communal d'Action Sociale (CCAS) de la ville de Vannes
+    en appelant le 02 97 01 65 25 ou par email à action.sociale@mairie-vannes.fr.
+  - Consulter les conditions de ressources <a
+    target="_blank" title="Règlement du FSL énergie et eau - Nouvelle fenêtre" rel="noopener"
+    href="https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/Doss/2024/24_morbihan_5_H08_FSL_eau_energie.pdf">dans le règlement du Fonds Energie et Eau
+    </a>.
+  - Être encore titulaire du contrat pour lequel vous faites une demande au Fonds Energie et Eau.
+type: bool
+unit: €
+periodicite: ponctuelle
+link: https://www.mairie-vannes.fr/action-sociale-et-insertion#4_les-aides-financires
+instructions: https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/Doss/2024/24_morbihan_5_H08_FSL_eau_energie.pdf

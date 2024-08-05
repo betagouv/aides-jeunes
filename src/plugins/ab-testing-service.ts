@@ -26,7 +26,7 @@ function getEnvironment() {
   // // Pour le désactiver
   // // et libérer une custom variable
   // // ABTestingEnvironment.link.deleted = true;
-  // cf. https://stats.data.gouv.fr/index.php?module=CustomDimensions&action=manage&idSite=165
+  // cf. https://stats.beta.gouv.fr/index.php?module=CustomDimensions&action=manage&idSite=165
 
   // Exemple de test AB :
   // /1 Copier / Remplir / Décommenter ce bloc

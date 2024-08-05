@@ -21,11 +21,12 @@ conditions:
   - Ne pas être bénéficiaire d'une autre aide à la mobilité internationale
     (Erasmus, etc.).
   - Effectuer un stage d'une durée minimum de 8 semaines.
+  - Ne pas bénéficier de la nationalité du pays dans lequel est réalisé le stage.
 interestFlag: _interetEtudesEtranger
 type: float
 unit: €
 periodicite: annuelle
 legend: maximum
 montant: 2500
-link: https://www.maregionsud.fr/vos-aides/detail/programme-regional-daide-a-la-mobilite-etudiante-prame-enseignement-superieur-2023-2024
+link: https://www.maregionsud.fr/vos-aides/detail/prame-enseignement-superieur
 teleservice: https://aidesformation.maregionsud.fr/

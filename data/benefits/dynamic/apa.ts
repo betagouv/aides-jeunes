@@ -102,8 +102,7 @@ export const APA_BY_CODE: {
   },
   departement_pas_de_calais: {
     label: "du département du Pas de Calais",
-    link: "https://www.pasdecalais.fr/Solidarite-Sante/Retraites-et-personnes-agees/Beneficier-d-aides/L-Allocation-Personnalisee-d-Autonomie-APA",
-    form: "https://www.pasdecalais.fr/content/download/16113/164597/file/NOM+SUR+TRANCHE-DEMANDE+APA+Bleu+Prusse+REF+KIMOCE+760254+BLEU+Derni%C3%A8re+version.pdf",
+    link: "https://www.pasdecalais.fr/lallocation-personnalisee-dautonomie-apa",
   },
   departement_pyrenees_atlantiques: {
     label: "du département des Pyrénées Atlantiques",
@@ -132,13 +131,12 @@ export const APA_BY_CODE: {
   },
   departement_seine_et_marne: {
     label: "du département de Seine et Marne",
-    teleservice: "https://e-service.seine-et-marne.fr/",
     link: "http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA",
   },
   departement_var: {
     label: "du département du Var",
-    link: "https://www.var.fr/social/autonomie-personnes-agees/apa",
-    instructions: "https://www.var.fr/social/autonomie-personnes-agees/apa",
+    link: "https://var.fr/social/apa",
+    instructions: "https://var.fr/social/apa",
   },
   departement_hauts_de_seine: {
     label: "du département de Hauts de Seine",

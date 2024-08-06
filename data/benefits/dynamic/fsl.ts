@@ -49,14 +49,11 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_ardennes: {
     label: "du département de l’Ardennes",
-    link: "https://cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-formulaire-unique-de-demande-de-subvention",
-    form: "https://cd08.fr/sites/default/files/maj2020_compilation_formulaires_fsl.pdf",
+    link: "https://www.cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-pour-les-particuliers",
   },
   departement_ariege: {
     label: "du département de l’Ariège",
-    link: "http://www.ariege.fr/Etre-solidaire/Logement/Le-Fonds-unique-Habitat-FUH",
-    instructions:
-      "http://www.ariege.fr/Etre-solidaire/Logement/Rencontrer-un-travailleur-social",
+    link: "https://ariege.fr/nos-actions/solidarites/logement/les-aides-financieres-relatives-au-logement/",
   },
   departement_aude: {
     label: "du département de l’Aude",

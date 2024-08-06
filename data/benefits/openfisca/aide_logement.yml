@@ -3,7 +3,7 @@ periodicite: mensuelle
 unit: €
 type: float
 description:
-  'Les aides au logement regroupent trois aides différentes non cumulables:
+  'Les aides au logement regroupent trois aides différentes non cumulables :
   lʼaide personnalisée au logement (APL), lʼallocation de logement familiale (ALF) et lʼallocation de logement sociale (ALS). Elles concernent les personnes
   ayant de faibles ressources, locataires ou remboursant le prêt de leur résidence principale. Elles sont versées par la Caf ou la MSA. Regarder <a
   target="_blank" rel="noopener"

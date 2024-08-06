@@ -32,7 +32,7 @@ profils:
     conditions: []
 link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
 instructions: https://www.spot.mq/trouver-un-dispositif/pret-detudes-remboursable-sans-interet-per
-teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login?redirectTo=https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fconnecte%2Ftiers-selection&jwtKey=jwt-ctmartinique-portail-depot-demande-aides&footer=https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Fct-martinique-production.mgcloud.fr%2Faides%2F%23%2Fctmartinique%2Fcontact-page,Nous%20contacter,_self
+teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login
 type: float
 unit: €
 montant: 3500

@@ -1,9 +1,8 @@
 label: aide au Transport aux Particuliers - étudiants et étudiantes
 institution: hauts_de_france
-description:
-  Cette aide est destinée aux étudiants et étudiantes qui utilisent leur
-  véhicule pour rejoindre leur lieu d'étude. Elle s'effectue par la prise en
-  charge d'une partie des frais liés au trajet domicile-étude.
+description: La région Hauts-de-France prend en charge une partie des frais liés
+  au trajet des étudiants et étudiantes qui utilisent leur véhicule pour rejoindre
+  leur lieu d'étude.
 conditions:
   - Utiliser un véhicule particulier ou un deux-roues motorisé.
   - Parcourir au moins 100 km de façon hebdomadaire.
@@ -16,8 +15,7 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=780
-teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF22%2F23
+link: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=ATPEF23%2F24
 prefix: l’
 type: float
 unit: €

@@ -71,11 +71,9 @@ function sleep(ms) {
 }
 
 async function getPriorityStats() {
-  const stats = await axios
-    .get(
-      "https://stats.beta.gouv.fr/index.php?module=API&format=JSON&idSite=63&period=range&date=previous30&method=Events.getName&filter_limit=-1"
-    )
-    .then((response) => response.data)
+  const matomoURL =
+    "https://stats.beta.gouv.fr/index.php?module=API&format=JSON&idSite=63&period=range&date=previous30&method=Events.getName&filter_limit=-1"
+  const stats = await axios.get(matomoURL).then((response) => response.data)
 
   return stats.reduce((priorityMap, statItem) => {
     const benefitId: string = statItem.label

@@ -106,7 +106,7 @@ const captureFiscalResources = () => {
 const hasHousingBenefit = () => {
   const name = /Aides au logement/
   const id = "aide_logement"
-  const description = /Apl/
+  const description = /APL/
   IdentifyBenefit(id, name)
   getBenefitSummary(id)
     .find('[data-testid="droit-estime-value"]')

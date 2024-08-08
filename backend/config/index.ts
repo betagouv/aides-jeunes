@@ -78,7 +78,7 @@ const config: Configuration = {
     repository_url: "https://github.com/betagouv/aides-jeunes",
   },
   matomo: {
-    id: Number(process.env.MATOMO_ID) || 170,
+    id: Number(process.env.MATOMO_ID) || 66,
     url: process.env.MATOMO_URL || "https://stats.beta.gouv.fr",
   },
   moncomptepro: {

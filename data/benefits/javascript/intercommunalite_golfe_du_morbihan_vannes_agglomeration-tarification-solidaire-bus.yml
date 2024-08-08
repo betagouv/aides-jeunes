@@ -30,9 +30,9 @@ profils:
   - type: independant
     conditions: []
 conditions:
-  - "Prendre rendez-vous auprès du CCAS de votre commune : pour les vannetais,
-    prendre rendez vous au 02 97 01 65 25 ou par mail à
-    actionsociale@mairie-vannes.fr."
+  - 'Prendre rendez-vous auprès du CCAS de votre commune : pour les Vannetais,
+    au <a href="tel:+33297016525">02 97 01 65 25</a>
+    ou par email à <a href="mailto:actionsociale@mairie-vannes.fr">actionsociale@mairie-vannes.fr</a>.'
 type: bool
 unit: €
 periodicite: mensuelle

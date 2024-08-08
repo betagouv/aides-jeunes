@@ -1,20 +1,20 @@
 label: bourses sanitaires et sociales
 institution: martinique
 description:
-  "La Collectivité Territoriale verse des bourses aux personnes inscrites
+  "La Collectivité Territoriale verse des bourses aux étudiants et étudiantes inscrits
   dans une formation sanitaire ou sociale dispensée par un établissement agréé et
   préparant à un diplôme d'Etat : travail social, paramédical ou maïeutique. La
   bourse est attribuée selon la situation matérielle de la personne qui fait la demande
-  si celle-ci est indépendante financièrement, ou de sa famille."
+  si celle-ci est indépendante financièrement, ou de sa famille dans le cas contraire."
 prefix: les
 conditions_generales:
   - type: regions
     values:
       - "02"
 profils: []
-link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2023-2024-15-juillet-2023
-instructions: https://www.spot.mq/sites/default/files/Documents/REGLEMENT_AidesEtudiantsEleves_extrait.pdf#page=23
-teleservice: https://www.demarches-simplifiees.fr/commencer/ctm-demande-bss-2023-2024
+link: https://www.spot.mq/zoom-sur/lancement-de-la-campagne-2024-2025-26-juillet-2024
+instructions: https://www.spot.mq/trouver-un-dispositif/bourse-sanitaire-et-sociale
+teleservice: https://ct-martinique-production.mgcloud.fr/account-management/ctmartinique-demandeurs/ux/#/login
 type: bool
 periodicite: annuelle
 interestFlag: _interetAidesSanitaireSocial

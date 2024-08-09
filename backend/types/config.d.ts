@@ -61,9 +61,14 @@ export interface Configuration {
   }
   iframeTitle: string
   sentry: {
-    dsn: string | undefined
+    dsn?: string
     authToken?: string
     project?: string
+    environment?: string
+    integrations: [function]
+    tracesSampleRate: float
+    profilesSampleRate: float
+    debug: boolean
   }
   smsService: {
     show: boolean | undefined

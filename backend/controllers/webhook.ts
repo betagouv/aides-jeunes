@@ -4,6 +4,7 @@ import config from "../config/index.js"
 import Mattermost from "../lib/mattermost-bot/mattermost.js"
 import { Request, Response, NextFunction } from "express"
 import { RequestBody, Data } from "../types/rdv-aide-numerique.js"
+import Sentry from "@sentry/node"
 
 export const verifyAuthentication = (
   req: Request,
@@ -27,6 +28,7 @@ export const verifyAuthentication = (
       return
     }
   } catch (error) {
+    Sentry.captureException(error)
     console.error("Error while verifying signature", error)
     res.status(401).json({ error: "Invalid signature" })
     return

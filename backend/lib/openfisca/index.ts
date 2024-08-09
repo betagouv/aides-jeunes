@@ -1,6 +1,7 @@
 import config from "../../config/index.js"
 import mapping from "./mapping/index.js"
 import axios from "axios"
+import Sentry from "@sentry/node"
 
 export const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
 
@@ -14,6 +15,7 @@ export function sendToOpenfisca(endpoint, transform?: any) {
     try {
       request = transform(situation)
     } catch (e: any) {
+      Sentry.captureException(e)
       return callback({
         message: e.message,
         name: e.name,

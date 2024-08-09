@@ -377,14 +377,14 @@
     "passager_trajets_max_par_mois": 60
   },
   {
-    "link": "https://versantsdaime.fr/accueil/vivre-en-versants-d-aime/cadre-de-vie/rezo-pouce-service-dauto-stop-securise/",
+    "link": "https://www.hautetarentaise.fr/10433-covoiturage-local.htm",
     "code_siren": "247300817",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
+    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_passager": 5,
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60

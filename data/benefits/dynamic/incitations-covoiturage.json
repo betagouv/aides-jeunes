@@ -78,15 +78,15 @@
     "passager_trajets_max_par_mois": 60
   },
   {
-    "link": "https://www.paysdesherbiers.fr/le-covoiturage-avec-klaxit/#:~:text=Pour%20continuer%20sur%20cette%20dynamique,à%20destination%20de%20sa%20population.",
+    "link": "https://www.paysdesherbiers.fr/le-covoiturage-avec-blablacar-daily/",
     "code_siren": "248500621",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 0.5,
-    "conducteur_montant_max_par_passager": 0.5,
-    "trajet_longueur_max": 80,
+    "conducteur_montant_max_par_mois": 84,
+    "conducteur_montant_min_par_passager": 2.25,
+    "conducteur_montant_max_par_passager": 3.5,
+    "trajet_longueur_max": 60,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60
   },

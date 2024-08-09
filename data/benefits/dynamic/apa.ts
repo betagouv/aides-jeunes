@@ -131,7 +131,7 @@ export const APA_BY_CODE: {
   },
   departement_seine_et_marne: {
     label: "du département de Seine et Marne",
-    link: "http://www.seine-et-marne.fr/Solidarite/Seniors/Maintien-a-domicile-APA/Allocation-Personnalisee-d-Autonomie-APA",
+    link: "https://www.seine-et-marne.fr/fr/apa-domicile",
   },
   departement_var: {
     label: "du département du Var",

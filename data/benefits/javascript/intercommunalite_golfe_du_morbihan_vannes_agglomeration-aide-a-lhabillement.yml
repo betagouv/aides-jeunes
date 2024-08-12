@@ -1,8 +1,7 @@
 label: Aide à l'habillement
 institution: ville-de-vannes
 description: L'aide à l'habillement est destinée aux familles monoparentales
-  vannetaises aux revenus modestes (correspondant à un quotient familial F, G
-  ou H calculé par la ville de Vannes). Cette aide est remise sous forme de deux
+  vannetaises aux revenus modestes. Cette aide est remise sous forme de deux
   bons d'achat par an, à faire valoir dans les deux magasins Partage de la
   ville de Vannes.
 prefix: l’
@@ -10,6 +9,10 @@ conditions_generales:
   - type: communes
     values:
       - "56260"
+  - type: quotient_familial
+    operator: <=
+    value: 752
+    period: month
 profils:
   - type: parent
     conditions: []

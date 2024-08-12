@@ -40,8 +40,9 @@ export async function sendSurveyEmail(
   surveyType: SurveyType
 ): Promise<Survey> {
   if (!followup.email) {
+    const date = dayjs().toString()
     throw new Error(
-      `${dayjs().toISOString()} - Missing followup email: ${followup}`
+      `${date} - Missing followup email (id : ${followup.get("_id")})`
     )
   }
   const survey = await followup.addSurveyIfMissing(surveyType)

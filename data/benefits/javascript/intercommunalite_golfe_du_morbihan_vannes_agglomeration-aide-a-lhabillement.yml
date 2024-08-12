@@ -1,0 +1,27 @@
+label: Aide à l'habillement
+institution: ville-de-vannes
+description: L'aide à l'habillement est destinée aux familles monoparentales
+  vannetaises aux revenus modestes. Cette aide est remise sous forme de deux
+  bons d'achat par an, à faire valoir dans les deux magasins Partage de la
+  ville de Vannes.
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: quotient_familial
+    operator: <=
+    value: 580
+    period: month
+profils:
+  - type: parent
+    conditions: []
+conditions:
+  - 'Prendre rendez-vous auprès du service action sociale et insertion du CCAS
+    de Vannes par téléphone au <a href="tel:+33297016525">02 97 01 65 25</a>
+    ou par email à <a href="mailto:actionsociale@mairie-vannes.fr">actionsociale@mairie-vannes.fr</a>.'
+type: float
+unit: €
+periodicite: annuelle
+montant: 50
+link: https://www.mairie-vannes.fr/action-sociale-et-insertion

@@ -11,7 +11,7 @@ conditions_generales:
       - "56260"
   - type: quotient_familial
     operator: <=
-    value: 752
+    value: 580
     period: month
 profils:
   - type: parent

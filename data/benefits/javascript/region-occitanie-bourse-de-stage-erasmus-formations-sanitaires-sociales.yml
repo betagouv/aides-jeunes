@@ -11,16 +11,11 @@ conditions_generales:
   - type: formation_sanitaire_social
 profils: []
 conditions:
-  - Être inscrit ou inscrite dans l’<a target="_blank" rel="noopener" title="établissements (catégorie "bénéficiaires") - Nouvelle fenêtre"
-    href="https://www.laregion.fr/Dispositif-de-bourse-de-stage-ERASMUS">un des
-    20 établissements (catégorie "bénéficiaires")</a>.
-  - Effectuer un stage entre 2 et 12 mois à temps plein dans une structure
-    située dans un pays éligible au programme ERASMUS+.
+  - Effectuer un stage entre 4 et 20 semaines à temps plein.
 interestFlag: _interetEtudesEtranger
 type: float
 unit: €
 periodicite: mensuelle
 legend: maximum
-montant: 450
-link: https://www.laregion.fr/Dispositif-de-bourse-de-stage-ERASMUS
-instructions: https://www.laregion.fr/Dispositif-de-bourse-de-stage-ERASMUS
+montant: 300
+link: https://www.laregion.fr/Aides-Mouv-Occitanie#Bourse-d-etudes-et-de-stage-2

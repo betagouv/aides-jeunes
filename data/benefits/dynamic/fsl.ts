@@ -273,8 +273,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_saone_et_loire: {
     label: "du département de la Saône-et-Loire",
-    link: "https://www.saoneetloire71.fr/que-peut-on-faire-pour-vous/vous-etes-proprietaire-locataire/rester-dans-mon-logement#:~:text=b%C3%A9n%C3%A9ficier%20peut%2D%C3%AAtre%20d'une,)%20%3A%20habitat71%40cg71.fr",
-    form: "https://www.saoneetloire71.fr/fileadmin/Que_peut-on_faire_pour_vous__/Vous_etes_proprietaire_locataire/Aides_logement/7733_DOSSIER_UNIQUE.pdf",
+    link: "https://www.saoneetloire.fr/guide-des-aides/fonds-de-solidarite-logement-fsl/",
   },
   departement_sarthe: {
     label: "du département de la Sarthe",

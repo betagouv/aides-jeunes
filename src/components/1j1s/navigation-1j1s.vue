@@ -184,7 +184,11 @@ const navigation = [
     label: "Aides et outils",
     active: true,
     children: [
-      { label: "Simulateur d’aides financières", link: "/mes-aides", active: true },
+      {
+        label: "Simulateur d’aides financières",
+        link: "/mes-aides",
+        active: true,
+      },
       { label: "Aides au permis de conduire", link: "/1jeune1permis" },
       { label: "Créer son CV personnalisé", link: "/creer-mon-cv" },
     ],

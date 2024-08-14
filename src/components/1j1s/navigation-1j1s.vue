@@ -205,7 +205,7 @@ const navigation = [
           { label: "Je deviens mentor", link: "/je-deviens-mentor" },
           { label: "Je propose des immersions", link: "/immersions" },
           {
-            label: "Je forme les jeunes grâce à l‘emploi",
+            label: "Je forme les jeunes grâce à l'emploi",
             link: "/je-recrute-afpr-poei",
           },
         ],

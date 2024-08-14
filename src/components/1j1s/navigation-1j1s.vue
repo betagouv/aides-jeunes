@@ -124,10 +124,10 @@ const navigation = [
     label: "Offres",
     children: [
       { label: "Emplois", link: "/emplois" },
-      { label: "Stages", link: "/stages" },
+      { label: "Stages d’études", link: "/stages" },
       { label: "Contrats d’alternance", link: "/apprentissage" },
+      { label: "Jobs d'été", link: "/jobs-ete" },
       { label: "Jobs étudiants", link: "/jobs-etudiants" },
-      { label: "Expérience en Europe", link: "/europe" },
     ],
   },
   {
@@ -174,17 +174,19 @@ const navigation = [
         link: "/accompagnement",
       },
       {
-        label: "Entreprendre : financements, aides et accompagnements",
+        label: "Entreprendre : financements, aides et accompagnement",
         link: "/entreprendre",
       },
+      { label: "Expérience en Europe", link: "/experience-europe" },
     ],
   },
   {
     label: "Aides et outils",
     active: true,
     children: [
-      { label: "Mes aides financières", link: "/mes-aides", active: true },
-      { label: "Je crée son CV personnalisé", link: "/creer-mon-cv" },
+      { label: "Simulateur d’aides financières", link: "/mes-aides" },
+      { label: "Aides au permis de conduire", link: "/1jeune1permis" },
+      { label: "Créer son CV personnalisé", link: "/creer-mon-cv" },
     ],
   },
   {
@@ -197,16 +199,16 @@ const navigation = [
         legend: "Découvrez des services faits pour vous !",
       },
       {
+        label: "Recruter et agir pour les jeunes",
         children: [
           { label: "Je recrute", link: "/je-recrute" },
           { label: "Je deviens mentor", link: "/je-deviens-mentor" },
           { label: "Je propose des immersions", link: "/immersions" },
           {
-            label: "Je forme les jeunes grâce à l'emploi",
+            label: "Je forme les jeunes grâce à l‘emploi",
             link: "/je-recrute-afpr-poei",
           },
         ],
-        label: "Recruter et agir pour les jeunes",
       },
       {
         label: "Découvrir les mesures employeurs",
@@ -214,6 +216,8 @@ const navigation = [
       },
       { label: "Accéder à mon espace", link: "/mon-espace" },
     ],
+    label: "Je suis employeur",
+    legend: "Découvrez des services faits pour vous !",
   },
 ]
 </script>

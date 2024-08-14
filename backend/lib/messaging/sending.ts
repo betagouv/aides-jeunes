@@ -29,6 +29,9 @@ async function sendMultipleEmails(emailType: EmailType, limit: number) {
 
 async function sendMultipleInitialEmails(limit: number) {
   const followups: any[] = await Followups.find({
+    email: {
+      $exists: true,
+    },
     surveys: {
       $not: {
         $elemMatch: {
@@ -43,6 +46,7 @@ async function sendMultipleInitialEmails(limit: number) {
     },
     sentAt: {
       $lt: dayjs().subtract(DaysBeforeInitialSurvey, "day").toDate(),
+      $gt: dayjs("2024-01-01").toDate(),
     },
     surveyOptin: true,
   })
@@ -148,6 +152,7 @@ function initialSurveySmsMongooseCriteria(): any {
     },
     smsSentAt: {
       $lt: getDaysBeforeInitialSurveyDate(),
+      $gt: dayjs("2024-01-01").toDate(),
     },
     surveyOptin: true,
   }

@@ -47,36 +47,41 @@
               >Fermer</button
             >
             <div class="fr-grid-row fr-grid-row-lg--gutters">
-              <div
+              <ul
                 v-for="category in element.children"
                 :key="category.label"
                 class="fr-col-12 fr-col-lg-3"
                 :data-submenu="!category.link"
               >
-                <h2 class="fr-mega-menu__category">
+                <li>
                   <a
                     v-if="category.link"
-                    class="fr-nav__link"
+                    class="fr-nav__link fr-mega-menu__category"
                     :href="`${domain}${category.link}`"
                     >{{ category.label }}</a
                   >
-                  <span v-else class="fr-nav__link">{{ category.label }}</span>
-                </h2>
-                <p v-if="category.legend" class="fr-p-2w">{{
-                  category.legend
-                }}</p>
-                <ul v-if="category.children" class="fr-mega-menu__list">
-                  <li
-                    v-for="subcategory in category.children"
-                    :key="subcategory.label"
-                    ><a
-                      :href="`${domain}${subcategory.link}`"
-                      class="fr-nav__link"
-                      >{{ subcategory.label }}</a
-                    ></li
+                  <span v-else class="fr-nav__link fr-mega-menu__category">{{
+                    category.label
+                  }}</span>
+                  <ul
+                    v-if="category.children || category.legend"
+                    class="fr-mega-menu__list"
                   >
-                </ul>
-              </div>
+                    <li v-if="category.legend">
+                      <span class="fr-nav__link">{{ category.legend }}</span>
+                    </li>
+                    <li
+                      v-for="subcategory in category.children"
+                      :key="subcategory.label"
+                      ><a
+                        :href="`${domain}${subcategory.link}`"
+                        class="fr-nav__link"
+                        >{{ subcategory.label }}</a
+                      ></li
+                    >
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

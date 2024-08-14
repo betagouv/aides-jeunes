@@ -216,8 +216,6 @@ const navigation = [
       },
       { label: "Accéder à mon espace", link: "/mon-espace" },
     ],
-    label: "Je suis employeur",
-    legend: "Découvrez des services faits pour vous !",
   },
 ]
 </script>

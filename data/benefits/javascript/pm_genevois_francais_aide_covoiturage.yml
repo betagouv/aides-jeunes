@@ -1,6 +1,6 @@
 label: incitation au covoiturage du Pôle métropolitain du Genevois Français
 institution: pole_metropolitain_genevois_francais
-description: "Le Pôle métropolitain du Genevois Français subventionne tous vos trajets réservés depuis l'application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 1,5 € et 4 € par trajet et par passager selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets à l'intérieur du Genevois Français sont gratuits et ils ne vous coutent que 1 € si le point de départ ou d'arrivée se trouve hors du Genevois Français."
+description: "Le Pôle métropolitain du Genevois Français subventionne tous vos trajets réservés depuis l'application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 1,5 € et 4 € par trajet et par passager selon la distance parcourue. Vous êtes passagère ou passager ? Vos trajets à l'intérieur du Genevois Français sont gratuits ou ne vous coutent que 1 € si vous sortez du périmètre."
 prefix: l’
 conditions_generales:
   - type: communes

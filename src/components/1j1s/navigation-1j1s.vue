@@ -68,7 +68,7 @@
                     class="fr-mega-menu__list"
                   >
                     <li v-if="category.legend">
-                      <span class="fr-nav__link">{{ category.legend }}</span>
+                      <p class="fr-p-2w">{{ category.legend }}</p>
                     </li>
                     <li
                       v-for="subcategory in category.children"

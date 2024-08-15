@@ -299,7 +299,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -331,7 +331,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -349,6 +349,22 @@
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
+    "passager_gratuite": "Non"
+  },
+  {
+    "link": "https://www.irigo.fr/covoiturage",
+    "code_siren": "244900015",
+    "nom_plateforme": "",
+    "operateurs": "BlablaCarDaily",
+    "zone_sens_des_trajets": "et",
+    "conducteur_montant_max_par_mois": 120,
+    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_passager": 4,
+    "trajet_longueur_max": 80,
+    "trajet_longueur_min": 2,
+    "passager_trajets_max_par_mois": 60,
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
+    "si_zone_exclue_liste": "Noter que les trajets longeant ou ayant des points de départ et d’arrivée proches de la ligne de tramway du réseau Irigo ne sont pas concernés par la subvention.",
     "passager_gratuite": "Non"
   },
   {

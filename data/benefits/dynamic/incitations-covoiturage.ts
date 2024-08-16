@@ -37,7 +37,7 @@ export default function buildIncitationsCovoiturage(
       ) {
         gainConducteur += `Recevez entre ${b.conducteur_montant_min_par_passager} € et ${b.conducteur_montant_max_par_passager} € par trajet et par passager selon la distance parcourue`
       } else {
-        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager} € par trajet et par passager selon la distance parcourue`
+        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager} € par trajet et par passager`
       }
 
       if (b.conducteur_montant_max_par_mois) {

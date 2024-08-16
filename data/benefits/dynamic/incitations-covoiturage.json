@@ -48,7 +48,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.paysrhinbrisach.fr/covoiturez-a-moindre-cout/#sthash.nTABWbK1.dpbs",
+    "link": "https://cc-alsacerhinbrisach.fr/vos-services/deplacements/covoiturage/",
     "code_siren": "200066025",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -83,7 +83,7 @@
     "link": "https://jeromeviaud.com/la-ville-et-la-communaute-dagglomeration-du-pays-de-grasse-encouragent-la-politique-de-covoiturage-avec-le-dispositif-klaxit-tous-covoitureurs/",
     "code_siren": "200039857",
     "nom_plateforme": "",
-    "operateurs": "Klaxit",
+    "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 150,
     "conducteur_montant_min_par_passager": 1.5,
@@ -99,7 +99,7 @@
     "link": "https://www.agglo-laval.fr/utile-au-quotidien/transports-et-mobilites/le-covoiturage",
     "code_siren": "200083392",
     "nom_plateforme": "",
-    "operateurs": "Klaxit",
+    "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 120,
     "conducteur_montant_min_par_passager": 0.5,
@@ -198,8 +198,8 @@
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2.5,
-    "conducteur_montant_max_par_passager": 1.5,
+    "conducteur_montant_min_par_passager": 1.5,
+    "conducteur_montant_max_par_passager": 2.5,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
@@ -563,7 +563,7 @@
     "link": "https://www.grand-chatellerault.fr/vivre/demarches/demande-aide-covoiturage",
     "code_siren": "248600413",
     "nom_plateforme": "",
-    "operateurs": "Karos, BlablaCarDaily, Klaxit, Mobicoop",
+    "operateurs": "Karos, BlablaCarDaily ou Mobicoop",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 120,
     "conducteur_montant_min_par_passager": 1.5,
@@ -579,7 +579,7 @@
     "link": "https://www.lacove.fr/covoiturage.html",
     "code_siren": "248400053",
     "nom_plateforme": "",
-    "operateurs": "Klaxit",
+    "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 120,
     "conducteur_montant_min_par_passager": 1,
@@ -691,7 +691,7 @@
     "link": "https://www.agglo-sophiaantipolis.fr/vivre-et-habiter/se-deplacer/le-covoiturage",
     "code_siren": "240600585",
     "nom_plateforme": "",
-    "operateurs": "Klaxit",
+    "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 150,
     "conducteur_montant_min_par_passager": 1,
@@ -739,7 +739,7 @@
     "link": "https://www.grandpoitiers.fr/au-quotidien/deplacements/partage-des-voitures/covoiturage",
     "code_siren": "200069854",
     "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily, Karos, Mobicoop",
+    "operateurs": "BlablaCarDaily, Karos ou Mobicoop",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 120,
     "conducteur_montant_min_par_passager": 2,
@@ -796,7 +796,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -876,7 +876,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -892,7 +892,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -908,7 +908,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -924,7 +924,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -940,7 +940,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département de la Savoie",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein du département de la Savoie sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -978,7 +978,7 @@
   {
     "link": "https://www.agglo-montbeliard.fr/vivre-ici/la-mobilite/se-deplacer-en-covoiturage",
     "code_siren": "200065647",
-    "nom_plateforme": "évoliTY covoiturage",
+    "nom_plateforme": "",
     "operateurs": "Karos",
     "zone_sens_des_trajets": "et",
     "conducteur_montant_max_par_mois": null,
@@ -1078,12 +1078,12 @@
     "operateurs": "Karos",
     "zone_sens_des_trajets": "et",
     "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 1.5,
+    "conducteur_montant_min_par_passager": 2,
     "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,50€ + 0,10€/km au delà de 30km",
+    "passager_montant_ticket": "Vos 10 premiers trajets sont offerts, après quoi les trajets de moins de 30 kilomètres sont gratuits pour les abonnés au pass transport et ne coûtent que 0,50 € aux autres. Chaque kilomètre coûte 0,10 € au-delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1100,7 +1100,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Commune de Vitré",
+    "si_zone_exclue_liste": "Noter que les trajets effectués au sein de la commune de Vitré ne sont pas concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {

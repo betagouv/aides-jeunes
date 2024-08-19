@@ -1,0 +1,23 @@
+label: incitation au covoiturage courte distance en région Pays de la Loire
+institution: region_pays_de_la_loire
+description:
+  "La région Pays de la Loire subventionne tous vos covoiturages domicile-travail.<br />
+  Vous êtes conductrice ou conducteur ? Recevez entre 0,7\u00a0€ et 2 € par trajet et par passager selon la distance parcourue dans la limite de 84 € de gain par mois.<br />
+  Vous êtes passagère ou passager ? Vous ne payez que 0,50 € par trajet et bénéficiez en plus de 2 trajets gratuits par jour si vous avez un abonnement Pass Navigo ou Imagine R."
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "52"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l’application mobile BlablaCar Daily, Karos ou Mobicoop.
+  - Effectuer un trajet dont la distance est comprise entre 5 et 60 kilomètres.
+  - Réaliser votre trajet à l'intérieur de la région Pays de la Loire.
+  - Noter que les trajets internes aux métropoles d'Angers, Le Mans et à l’agglomération de Cholet ne sont pas concernés par la subvention.
+type: bool
+periodicite: autre
+link: https://aleop.paysdelaloire.fr/mes-solutions-de-mobilite/covoiturez-moins-cher-avec-la-region-pays-de-la-loire

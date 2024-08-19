@@ -377,6 +377,12 @@ export const useStore = defineStore("store", {
       this.simulation = {
         ...this.simulation,
         enfants: this.simulation.enfants?.filter((i) => i !== enfantIndex),
+        answers: {
+          all: this.simulation.answers.all.filter((answer) => answer.id !== id),
+          current: this.simulation.answers.current.filter(
+            (answer) => answer.id !== id
+          ),
+        },
       }
       this.setDirty()
     },

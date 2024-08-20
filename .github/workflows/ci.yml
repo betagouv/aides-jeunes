@@ -96,6 +96,21 @@ jobs:
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Run schema-validation-config.spec.ts
         run: npm run test -- tests/integration/schema-validation-config.spec.ts
+  unit_tests:
+    name: Unit tests
+    needs: [install, check_data_file_consistency]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Restore node modules
+        uses: actions/cache@v3
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Jest
+        run: npm run test
   build:
     name: Build
     needs: [install]
@@ -177,21 +192,6 @@ jobs:
         run: |
           source .venv/bin/activate
           npm run test tests/unit/openfisca/test.spec.ts
-  unit_tests:
-    name: Unit tests
-    needs: [install, check_data_file_consistency]
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Restore node modules
-        uses: actions/cache@v3
-        id: restore-dependencies
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Jest
-        run: npm run test
   iframe_build_control:
     name: Iframe build control
     needs: [install]

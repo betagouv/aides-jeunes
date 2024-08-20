@@ -1,0 +1,19 @@
+label: incitation au covoiturage courte distance en région Ile-de-France
+institution: region_ile_de_france
+description: "La région Ile-de-France subventionne tous vos covoiturages en région. Vous êtes conductrice ou conducteur ? Recevez entre 1,5 € et 3 € par trajet et par passager selon la distance parcourue dans la limite de 150 € de gain par mois. Vous êtes passagère ou passager ? Vous ne payez que 0,50 € par trajet et bénéficiez en plus de deux trajets gratuits par jour si vous avez un Pass Navigo ou Imagine R."
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l’application mobile Karos, BlablaCar Daily ou Ynstant.
+  - Effectuer un trajet dont la distance est comprise entre 2 et 80 kilomètres.
+  - Réaliser votre trajet à l'intérieur de la région Ile-de-France.
+type: bool
+periodicite: autre
+link: https://www.iledefrance-mobilites.fr/le-reseau/services-de-mobilite/covoiturage/pratiquer-covoiturage

@@ -1,0 +1,23 @@
+label: incitation au covoiturage courte distance en région Occitanie
+institution: region_occitanie
+description:
+  "La région Occitanie subventionne tous vos covoiturages domicile-travail.<br />
+  Vous êtes conductrice ou conducteur ? Recevez entre 2\u00a0€ et 3\u00a0€ par trajet et par passager selon la distance parcourue dans la limite de 150\u00a0€ de gain par mois.<br />
+  Vous êtes passagère ou passager ? Vous ne payez que 0,50 € par trajet."
+prefix: l’
+conditions_generales:
+  - type: regions
+    values:
+      - "76"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l’application mobile BlablaCar Daily, Karos ou Mobicoop.
+  - Effectuer un trajet dont la distance est comprise entre 2 et 30 kilomètres.
+  - Réaliser votre trajet à l'intérieur de la région Occitanie.
+  - Noter que les trajets internes au Pays de l'Or, à la métropole de Montpellier et à l'agglopole de Sète ne sont pas concernés par la subvention.
+type: bool
+periodicite: autre
+link: https://www.lio-occitanie.fr/covoiturage/

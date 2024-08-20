@@ -76,6 +76,7 @@ import Nationality from "@/lib/nationality.js"
 import EnSavoirPlus from "@/components/en-savoir-plus.vue"
 import ScolariteCategories from "@lib/scolarite"
 import { useStore } from "@/stores/index.js"
+import { useHistoryStore } from "@/stores/history.js"
 
 export default {
   name: "SimulationEnfants",
@@ -86,12 +87,19 @@ export default {
   setup() {
     return {
       store: useStore(),
+      historyStore: useHistoryStore(),
     }
   },
   computed: {
     enfants() {
       return this.store.situation.enfants || []
     },
+  },
+  created() {
+    const historyState = window.history.state
+    if (historyState.back === "/simulation/individu/demandeur/enceinte") {
+      this.historyStore.setHistoryStateEnfants(historyState)
+    }
   },
 
   methods: {
@@ -106,6 +114,14 @@ export default {
     },
     removePAC(id) {
       this.store.removeEnfant(id)
+      const currentState = window.history.state
+      if (currentState.back.includes("enfant_a_charge")) {
+        const actualPosition = currentState.position
+        const previousPosition = this.historyStore.historyStateEnfants.position
+        const positionDiff = actualPosition - previousPosition
+        window.history.go(-positionDiff)
+        this.historyStore.setHistoryStateEnfants(window.history.state)
+      }
     },
     editPAC(id) {
       this.store.editEnfant()

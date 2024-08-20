@@ -11,6 +11,7 @@ import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
 import { useIframeStore } from "@/stores/iframe.js"
 import { useThemeStore } from "@/stores/theme.js"
+import { useHistoryStore } from "@/stores/history.js"
 
 const { Layout } = context
 
@@ -24,9 +25,11 @@ export default {
   setup() {
     const iframeStore = useIframeStore()
     const themeStore = useThemeStore()
+    const historyStore = useHistoryStore()
     return {
       iframeStore,
       themeStore,
+      historyStore,
     }
   },
   computed: {

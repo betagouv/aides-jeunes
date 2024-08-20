@@ -80,7 +80,7 @@ describe("computeAides", function () {
     let ids
 
     beforeEach(function () {
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
       ids = droits.droitsInjectes.map((d) => d.id)
     })
 
@@ -101,7 +101,7 @@ describe("computeAides", function () {
 
   describe("computeAides of numeric value", function () {
     beforeEach(function () {
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
     })
 
     it("should extract droits from openfisca result", function () {
@@ -126,7 +126,7 @@ describe("computeAides", function () {
       openfiscaResult.individus.demandeur.logement_social_eligible = {
         "2014-11": true,
       }
-      droits = compute(situation, "id", openfiscaResult, true)
+      droits = compute(situation, "id", openfiscaResult, true, true)
     })
 
     it("should extract eligibles droits from openfisca result", function () {
@@ -140,7 +140,7 @@ describe("computeAides", function () {
 
   describe("computeAides extraction of local partenaire without prestation", function () {
     beforeEach(function () {
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
     })
 
     it("should exclude local partenaire without prestation", function () {
@@ -154,7 +154,7 @@ describe("computeAides", function () {
 
   describe("computeAides exclude private aids", function () {
     beforeEach(function () {
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
     })
 
     it("should exclude private aid", function () {
@@ -173,7 +173,7 @@ describe("computeAides", function () {
       openfiscaResult.familles._.cmu_c = {
         "2014-11": true,
       }
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
 
       const css = droits.droitsEligibles.find(
         (droit) => droit.id === "css_participation_forfaitaire"
@@ -186,7 +186,7 @@ describe("computeAides", function () {
       openfiscaResult.familles._.cmu_c = {
         "2014-11": false,
       }
-      droits = compute(situation, "id", openfiscaResult)
+      droits = compute(situation, "id", openfiscaResult, false, true)
 
       const css = droits.droitsEligibles.find(
         (droit) => droit.id === "css_participation_forfaitaire"

@@ -14,6 +14,11 @@ async function getPromise(item): Promise<any> {
   return axios
     .get(`${config.openfiscaURL}${item}`)
     .then((response) => response.data)
+    .catch((error) => {
+      throw new Error(
+        `OF maybe offline - Failed to fetch data : ${error.message}`
+      )
+    })
 }
 
 export default {

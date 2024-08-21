@@ -1,18 +1,25 @@
 label: chèque réussite
 institution: departement_seine_saint_denis
 description: |
-  Le chèque réussite est destiné aux élèves entrant en 6e dans un collège public de la Seine-Saint-Denis.
-  Il est réservé à l’achat de biens scolaires, c’est-à-dire des fournitures, des livres, des équipements numériques et culturels.
+  Le chèque réussite est une aide de 200 €, sans conditions de ressources, destinée
+  aux élèves entrant en 6e dans un collège public de la Seine-Saint-Denis pour acheter
+  des fournitures scolaires (fournitures, livres, équipements numériques et culturels).
+  Le chèque est donné par défaut sur une carte dématérialisée et les familles peuvent
+  demander à recevoir une carte physique.
 conditions:
-  - Faire la demande en ligne <strong>avant le 11 octobre 2020</strong>.
-  - Utiliser les bons d’achats dans les commerces partenaires <strong>avant le 7 décembre 2020</strong>.
-link: https://seinesaintdenis.fr/enfance-education-jeunesse/colleges/article/un-cheque-reussite-de-200-eur-pour-les-sixiemes
-teleservice: https://chequereussite.up-gestion.com/CD93/homepage
+  - 'Rendez-vous <a target="_blank" rel="noopener" title="Plateforme du Chèque réussite - Nouvelle fenêtre" href="https://chequereussite.seinesaintdenis.fr/my/dashboard">sur la Plateforme du Chèque réussite</a> ou utiliser l’application mobile Chèque réussite Seine-St-Denis téléchargeable sur les stores
+    <a target="_blank" rel="noopener" title="Télécharger l’application mobile Chèque réussite Seine-St-Denis sur Android - Nouvelle fenêtre" href=" https://play.google.com/store/apps/details?id=fr.memberz.m.OtrSsdCheque&pli=1">Android</a> et
+    <a target="_blank" rel="noopener" title="Télécharger l’application mobile Chèque réussite Seine-St-Denis sur iOS - Nouvelle fenêtre" href=" https://apps.apple.com/app/ch%C3%A8que-r%C3%A9ussite-seine-st-denis/id6503948379">iOS</a>.'
+  - Créer un compte parents puis faire la demande pour l’enfant concerné.
+  - Faire la demande <strong>entre juin et novembre</strong>.
+  - Utiliser le chèque réussite dans les commerces partenaires <strong>avant la fin de l’année scolaire (juin)</strong>.
+link: https://seinesaintdenis.fr/enfance-education-jeunesse/education/aides-a-la-scolarite/chequereussite
+teleservice: https://chequereussite.seinesaintdenis.fr/my/dashboard
 prefix: le
 floorAt: 1
 type: float
 unit: "€"
 periodicite: ponctuelle
-legend: en bons d’achat
+legend: ""
 entity: familles
 openfiscaPeriod: thisMonth

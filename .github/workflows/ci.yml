@@ -98,7 +98,7 @@ jobs:
         run: npm run test -- tests/integration/schema-validation-config.spec.ts
   unit_tests:
     name: Unit tests
-    needs: [install, check_data_file_consistency]
+    needs: [install, check_data_file_consistency, install_openfisca]
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -109,6 +109,35 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Virtual Environment
+        uses: actions/cache@v3
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Setup VirtualEnv
+        run: |
+          python -m venv .venv
+      - name: Run OpenFisca
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
+          deactivate
+      - name: Wait for OpenFisca to be ready
+        shell: bash
+        run: |
+          for i in {1..30}; do
+            if wget --retry-connrefused --waitretry=2 --spider http://localhost:2000/parameter/prestations_sociales; then
+              echo "OpenFisca is ready"
+              break
+            fi
+            echo "Waiting for OpenFisca to be ready..."
+            sleep 2
+          done
       - name: Jest
         run: npm run test
   build:

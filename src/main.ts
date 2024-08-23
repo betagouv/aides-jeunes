@@ -68,6 +68,20 @@ if (navigator.cookieEnabled && process.env?.VITE_MATOMO_URL) {
     trackerFileName: "piwik",
     siteId: process.env.VITE_MATOMO_ID,
     router: router,
+    preInitActions: [
+      [
+        "setExcludedQueryParams",
+        [
+          "token",
+          "situationId",
+          "simulationId",
+          "_ga",
+          "surveyEmail",
+          "code",
+          "state",
+        ],
+      ],
+    ],
   })
 }
 

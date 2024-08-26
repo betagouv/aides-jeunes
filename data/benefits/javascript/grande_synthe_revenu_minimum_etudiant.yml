@@ -1,0 +1,29 @@
+label: revenu minimum étudiant de la ville de Grande Synthe
+institution: ville_grande_synthe
+description: 'La ville de Grande Synthe soutient les étudiants en leur octroyant une aide financière complémentaire et indépendante des autres bourses dʼétudes. Le dépôt des dossiers de demande sʼeffectue sur rendez-vous au Centre Communal dʼAction Sociale (CCAS) en présence de lʼétudiant. Pour tous renseignements vous pouvez contacter le service par mail à <a href="mailto:ccas@ville-grande-synthe.fr">ccas@ville-grande-synthe.fr</a> ou par téléphone au <a href="tel:+33328627768">03 28 62 77 68</a>.<br/>'
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "59271"
+  - type: age
+    operator: "<"
+    value: 25
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+conditions:
+  - Être inscrit dans lʼEnseignement Supérieur (post-baccalauréat).
+  - Justifier de trois années de résidence sur Grande Synthe.
+link: https://www.ville-grande-synthe.fr/mon-quotidien/centre-communal-daction-sociale-ccas/solidarite/le-revenu-minimum-etudiant/
+form: https://www.ville-grande-synthe.fr/app/uploads/2024/07/Formulaire-20242025.pdf
+type: float
+unit: €
+periodicite: ponctuelle
+legend: en moyenne
+montant: 957

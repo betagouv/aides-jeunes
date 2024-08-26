@@ -8,7 +8,7 @@ export default function buildIncitationsCovoiturage(
 ): CovoiturageBenefit[] {
   try {
     const formattedBenefits: CovoiturageBenefit[] = []
-    benefits.map((b) => {
+    benefits.forEach((b) => {
       const institution = institutions.find(
         (i) => i.code_siren === b.code_siren
       )

@@ -23,9 +23,14 @@
       vite et corrigerons le problème dès que possible.
     </p>
     <p>
-      Pour ne pas perdre les données que vous avez déclarées, vous pouvez garder
-      cet onglet ouvert, puis actualiser la page une fois que le problème sera
-      résolu.
+      Pour ne pas perdre les données que vous avez déclarées, vous pouvez
+      <router-link
+        :to="{ name: 'revenirPlusTard' }"
+        data-testid="come-back-later-link"
+        >sauvegarder votre simulation</router-link
+      >
+      ou garder cet onglet ouvert, puis actualiser la page une fois que le
+      problème sera résolu.
     </p>
     <div>
       <button

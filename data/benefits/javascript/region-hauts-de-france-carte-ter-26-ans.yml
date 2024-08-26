@@ -15,7 +15,7 @@ conditions_generales:
       - "32"
 profils: []
 conditions:
-  - Acheter la carte TER Hauts-de-France -26 ans en ligne pour un montant annuel de
+  - Acheter la carte TER Hauts-de-France -26 ans en ligne ou en gare pour un montant annuel de
     15€.
 type: bool
 periodicite: autre

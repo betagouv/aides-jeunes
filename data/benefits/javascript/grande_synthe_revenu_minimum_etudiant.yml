@@ -21,7 +21,7 @@ conditions:
   - Être inscrit dans lʼEnseignement Supérieur (post-baccalauréat).
   - Justifier de trois années de résidence sur Grande Synthe.
 link: https://www.ville-grande-synthe.fr/mon-quotidien/centre-communal-daction-sociale-ccas/solidarite/le-revenu-minimum-etudiant/
-form: file:///Users/yasmineberrada/Downloads/Formulaire-20242025.pdf
+form: https://www.ville-grande-synthe.fr/app/uploads/2024/07/Formulaire-20242025.pdf
 type: float
 unit: €
 periodicite: ponctuelle

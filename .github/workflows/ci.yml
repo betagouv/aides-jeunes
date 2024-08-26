@@ -20,15 +20,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Cache NPM install files
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-npm-install-packages
         with:
           path: ~/.npm
           key: ${{ runner.os }}-cache-npm-${{ hashFiles('**/package-lock.json') }}
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
@@ -43,9 +43,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Cache Virtual Environment
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: python-dependencies
         with:
           path: .venv
@@ -70,9 +70,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
@@ -87,9 +87,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
@@ -102,15 +102,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Virtual Environment
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: python-dependencies
         with:
           path: .venv
@@ -146,21 +146,21 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache build output
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-build
         with:
           path: dist
           key: ${{ runner.os }}-cache-build-${{ github.sha }}
       - name: Cache server build output
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-server-build
         with:
           path: dist-server
@@ -173,9 +173,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore contribuer/node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-contribuer-dependencies
         with:
           path: contribuer/node_modules
@@ -184,7 +184,7 @@ jobs:
         if: steps.restore-contribuer-dependencies.outputs.cache-hit != 'true'
         run: cd contribuer && npm ci --prefer-offline --no-audit
       - name: Restore contribuer/.next/cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -200,18 +200,18 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Virtual Environment
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: python-dependencies
         with:
           path: .venv
@@ -227,9 +227,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
@@ -256,36 +256,36 @@ jobs:
         test: [base, family, handicap, patrimoine, student]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Cypress installation
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-cypress
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cache-cypress-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Virtual Environment
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: python-dependencies
         with:
           path: .venv
           key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - name: Cache build output
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-build
         with:
           path: dist
           key: ${{ runner.os }}-cache-build-${{ github.sha }}
       - name: Cache server build output
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-server-build
         with:
           path: dist-server
@@ -315,7 +315,7 @@ jobs:
           install: false
           spec: cypress/e2e/${{matrix.test}}.cy.js
       - name: Upload cypress videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-video-${{matrix.test}}
@@ -336,7 +336,7 @@ jobs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - id: stop-early
@@ -355,7 +355,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -364,19 +364,19 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Virtual Environment
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: python-dependencies
         with:
           path: .venv
           key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
       - name: Cache server build output
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-server-build
         with:
           path: dist-server
@@ -401,11 +401,11 @@ jobs:
       status: ${{ steps.has-changes.outputs.status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
@@ -423,13 +423,13 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "18.18.2"
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules

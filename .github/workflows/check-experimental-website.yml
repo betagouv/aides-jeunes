@@ -8,18 +8,18 @@ jobs:
   run:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "18.18.2"
       - name: Restore node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-dependencies
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Cache Cypress installation
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: restore-cypress
         with:
           path: ~/.cache/Cypress
@@ -27,7 +27,7 @@ jobs:
       - run: npm ci
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
       - name: Cypress run for experimental website
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_RUN: GH_ACTION
         with:

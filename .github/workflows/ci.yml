@@ -297,7 +297,7 @@ jobs:
           nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
       - name: Cypress install
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         if: steps.restore-cypress.outputs.cache-hit != 'true'
         with:
           browser: chrome
@@ -306,7 +306,7 @@ jobs:
       - name: Copy cypress env file
         run: cp .env.e2e .env
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           browser: chrome
           config-file: cypress.config.ts

@@ -1,8 +1,8 @@
 label: revenu municipal étudiant de la ville de Berre l’Étang
 institution: ville_berre_l_etang
 description:
-  "La ville de Berre l’Étang soutient les étudiants en versant une aide forfaitaire de 2000 € par an à chaque bachelier qui entre dans un cycle d’études supérieures, pendant les six années suivant l’obtention du baccalauréat.
-  Cette aide est versée à toutes et tous sans condition de ressources mais en contrepartie d’un engagement citoyen bénévole de l’étudiant."
+  "La ville de Berre l’Étang soutient les étudiants en versant une aide forfaitaire de 2000 € à chaque bachelier, sans condition de ressources, pendant les six années d'études suivant l’obtention du baccalauréat.
+  À compter de l’année scolaire 2024/2025, les nouveaux entrants dans le dispositif s’engagent à réaliser 3 jours par an de missions citoyennes bénévoles dans les services municipaux de la ville."
 prefix: le
 conditions_generales:
   - type: communes

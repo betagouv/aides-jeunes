@@ -20,10 +20,8 @@ profils:
         values:
           - terminale
 conditions:
-  - Être titulaire du baccalauréat.
   - Justifier de trois années de résidence sur Berre l’Étang.
   - Être de nationalité française ou étrangère en situation régulière sur le territoire national.
-  - Bénéficier du statut d'étudiant.
   - Suivre une formation non-rémunérée.
   - 'Déposer votre dossier de demande complet de septembre à octobre, sur votre <a target="_blank" rel="noopener" title="Espace famille en ligne - Nouvelle fenêtre"
     href="https://www.berreletang.fr/espacefamille">Espace famille en ligne</a>, ou par email adressé à <a

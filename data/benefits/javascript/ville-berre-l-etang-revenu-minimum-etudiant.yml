@@ -1,0 +1,41 @@
+label: revenu municipal étudiant de la ville de Berre l’Étang
+institution: ville_berre_l_etang
+description:
+  "La ville de Berre l’Étang soutient les étudiants en versant une aide forfaitaire de 2000 € par an à chaque bachelier qui entre dans un cycle d’études supérieures, pendant les six années suivant l’obtention du baccalauréat.
+  Cette aide est versée à toutes et tous sans condition de ressources mais en contrepartie d’un engagement citoyen bénévole de l’étudiant."
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "13014"
+  - type: age
+    operator: "<"
+    value: 26
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+conditions:
+  - Être titulaire du baccalauréat.
+  - Justifier de trois années de résidence sur Berre l’Étang.
+  - Être de nationalité française ou étrangère en situation régulière sur le territoire national.
+  - Bénéficier du statut d'étudiant.
+  - Suivre une formation non-rémunérée.
+  - 'Déposer votre dossier de demande complet de septembre à octobre, sur votre <a target="_blank" rel="noopener" title="Espace famille en ligne - Nouvelle fenêtre"
+    href="https://www.berreletang.fr/espacefamille">Espace famille en ligne</a>, ou par email adressé à <a
+    href="mailto:guichet.unique@berre-l-etang.fr">guichet.unique@berre-l-etang.fr</a>, ou à l’accueil du Guichet Unique de la mairie de Berre l’Étang, en accès libre ou <a target="_blank" rel="noopener" title="Prendre rendez-vous avec le Guichet Unique de la mairie de Berre l’Etang - Nouvelle fenêtre"
+    href="https://formulaires.demarches.berreletang.fr/famille/rdv-famille/">sur rendez-vous</a> - Place du Souvenir Français, entrée Marthoméla - Ouvert du lundi au vendredi de 8h30 à 12h30 et de 13h30 à 17h.'
+voluntary_conditions:
+  - Effectuer 3 journées de missions citoyennes bénévoles au sein des services de la ville ou d’une structure associative.
+link: https://www.berreletang.fr/aides-pour-les-jeunes
+form: https://www.berreletang.fr/IMG/pdf/formulaire_inscription_rme.pdf
+instructions: https://www.berreletang.fr/IMG/pdf/berre_reglement-rme.pdf
+type: float
+unit: €
+periodicite: annuelle
+legend: par an pendant 6 ans
+montant: 2000

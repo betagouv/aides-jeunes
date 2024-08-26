@@ -1,24 +1,31 @@
-label: bourse « Jeunes à l’international » – jeunes en lycée professionnel
+label: bourse « Jeunes à l’international » n°1  – jeunes en lycée professionnel
 institution: region_bretagne
 description: La région Bretagne finance les jeunes en lycée professionnel qui
   souhaitent effectuer un stage professionnel à l’étranger.
 conditions:
-  - "Être inscrit ou inscrite en lycée en formation professionnelle de niveau 3 ou 4 :
+  - "Être inscrit ou inscrite dans un lycée en formation professionnelle de niveau 3 ou 4 :
     CAP, CAPA, CAPM, Bac Pro, BMA, FCIL, MC, DTMS, etc. ou en Bac Technologiques
     « Hôtellerie »."
   - Contacter au préalable votre établissement qui vous indiquera la marche à
     suivre.
+  - Effectuer votre demande de bourse en cours d'année scolaire (plateforme de dépôt des demandes ouverte d'octobre à juin).
 conditions_generales:
   - type: regions
     values:
       - "53"
-  - type: formation_sanitaire_social
 profils:
   - type: lyceen
-    conditions: []
-link: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-lyceens-professionnels-et-eleves-des-formations-sanitaires-et-sociales/
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_1
+          - cap_2
+          - seconde
+          - premiere
+          - terminale
+link: https://www.bretagne.bzh/actualites/bougez-en-europe-et-dans-le-monde/
 teleservice: https://extranets.region-bretagne.fr/Portail-Aides/jsp/nouveauContexte.action?codeAction=M42-CONNEXION
-instructions: https://www.bretagne.bzh/aides/fiches/bourse-jeunes-a-linternational-lyceens-professionnels-et-eleves-des-formations-sanitaires-et-sociales/
+instructions: https://www.bretagne.bzh/actualites/bougez-en-europe-et-dans-le-monde/
 prefix: la
 type: float
 unit: €

@@ -2,8 +2,8 @@ label: carte TER Hauts-de-France -26 ans
 institution: hauts_de_france
 description: Grâce à la carte TER Hauts-de-France -26 ans, bénéficiez jusqu'à
   50% de réductions sur vos billets pour voyager en TER, au départ et à
-  destination des gares des Hauts-de-France, y compris vers Paris, la Normandie
-  et certains départements de la Région Grand-Est. Votre réduction s'applique
+  destination des gares des Hauts-de-France, y compris vers Paris, la Normandie,
+  les Ardennes, l'Aube, la Marne et la Haute-Marne. Votre réduction s'applique
   également sur les billets de vos accompagnants, jusqu'à 3 personnes.
 prefix: la
 conditions_generales:
@@ -15,9 +15,9 @@ conditions_generales:
       - "32"
 profils: []
 conditions:
-  - Vous procurer la carte TER Hauts-de-France -26 ans pour un montant annuel de
+  - Acheter la carte TER Hauts-de-France -26 ans en ligne ou en gare pour un montant annuel de
     15€.
 type: bool
 periodicite: autre
-link: https://www.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/-26-ans
-instructions: https://www.ter.sncf.com/hauts-de-france/tarifs-cartes/ma-carte-ter-hauts-de-france/-26-ans
+link: https://www.sncf-connect.com/app/catalogue/description/hauts-de-france-ma-carte-26-ter-hauts-de-france
+teleservice: https://www.sncf-connect.com/app/catalogue/pricing/ter/wishes?productId=41275515-8288-4b35-b30a-ef9121bce7f5

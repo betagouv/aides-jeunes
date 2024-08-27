@@ -70,8 +70,8 @@ export const APA_BY_CODE: {
   departement_isere: {
     label: "du département de l'Isère",
     teleservice:
-      "https://www.isere.fr/espace-personnel/Pages/creer-mon-compte.aspx",
-    link: "https://www.isere.fr/mda38/particulier/pa/Pages/apa-en-ligne.aspx",
+      "https://isereconnect.fr/allocation-personnalisee-dautonomie-redi/",
+    link: "https://www.isere.fr/mda38/particulier/pa/apa-en-ligne",
   },
   departement_loire: {
     label: "du département de la Loire",

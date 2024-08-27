@@ -1,0 +1,43 @@
+label: incitation au covoiturage du Syndicat des mobilités de Touraine
+institution: sm_de_touraine
+description: "Le Syndicat des mobilités de Touraine subventionne tous vos trajets réservés depuis l'application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 3 € par trajet et par passager selon la distance parcourue. Vous êtes passagère ou passager ? Vos 10 premiers trajets en Touraine sont gratuits puis vous ne payez que 0,50 € par trajet."
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "37273"
+      - "37261"
+      - "37018"
+      - "37025"
+      - "37050"
+      - "37054"
+      - "37099"
+      - "37109"
+      - "37122"
+      - "37139"
+      - "37151"
+      - "37152"
+      - "37172"
+      - "37179"
+      - "37195"
+      - "37203"
+      - "37208"
+      - "37214"
+      - "37217"
+      - "37219"
+      - "37233"
+      - "37243"
+      - "37272"
+      - "37270"
+      - "37281"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l'application de covoiturage BlablaCar Daily.
+  - Effectuer un trajet dont la distance est comprise entre 2 et 30 kilomètres.
+  - Réaliser votre trajet au départ et/ou à l’arrivée des communes de la métropole de Tours, de La Ville-aux-Dames, de Vernou-sur-Brenne et de Vouvray.
+type: bool
+periodicite: autre
+link: https://smt-touraine.fr/parcourez-les-services-publics/klaxit-service-de-covoiturage

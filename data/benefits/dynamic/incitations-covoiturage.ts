@@ -8,7 +8,7 @@ export default function buildIncitationsCovoiturage(
 ): CovoiturageBenefit[] {
   try {
     const formattedBenefits: CovoiturageBenefit[] = []
-    benefits.map((b) => {
+    benefits.forEach((b) => {
       const institution = institutions.find(
         (i) => i.code_siren === b.code_siren
       )
@@ -37,7 +37,7 @@ export default function buildIncitationsCovoiturage(
       ) {
         gainConducteur += `Recevez entre ${b.conducteur_montant_min_par_passager} € et ${b.conducteur_montant_max_par_passager} € par trajet et par passager selon la distance parcourue`
       } else {
-        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager} € par trajet et par passager selon la distance parcourue`
+        gainConducteur += `Vous êtes indemnisé ${b.conducteur_montant_min_par_passager} € par trajet et par passager`
       }
 
       if (b.conducteur_montant_max_par_mois) {
@@ -54,6 +54,13 @@ export default function buildIncitationsCovoiturage(
           ? ` ` + b.operateurs
           : b.nom_plateforme + ` , opérée par ` + b.operateurs) + `.`
 
+      const benefitPassenger =
+        "Oui" === b.passager_gratuite && b.passager_trajets_max_par_mois
+          ? `Bénéficiez de ${
+              b.passager_trajets_max_par_mois / 30
+            } trajets gratuits par jour.`
+          : b.passager_montant_ticket
+
       formattedBenefits.push({
         label: `Incitation au covoiturage ${prefixTitle}${institutionLabel}`,
         type: "bool",
@@ -62,9 +69,7 @@ export default function buildIncitationsCovoiturage(
           subventionne tous vos trajets réservés depuis l’application ` +
           operateur +
           gainConducteur +
-          `. Vous êtes passagère ou passager ? Bénéficiez de ${
-            b.passager_trajets_max_par_mois / 30
-          } trajets gratuits par jour.`,
+          `. Vous êtes passagère ou passager ? ${benefitPassenger}`,
         id: `${institution?.slug.replace(
           /_/g,
           "-"
@@ -72,6 +77,7 @@ export default function buildIncitationsCovoiturage(
         conditions: [
           `Télécharger l'application mobile ${operateur}`,
           `Réaliser votre trajet au départ ${b.zone_sens_des_trajets} à l’arrivée ${prefixTitle}${institutionLabel}.`,
+          ...(b.si_zone_exclue_liste ? [b.si_zone_exclue_liste] : []),
           `Effectuer un trajet dont la distance est comprise entre ${b.trajet_longueur_min} et ${b.trajet_longueur_max} kilomètres.`,
         ],
         institution: institution?.slug,

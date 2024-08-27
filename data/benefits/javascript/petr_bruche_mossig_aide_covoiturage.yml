@@ -1,0 +1,86 @@
+label: incitation au covoiturage du Pôle d'équilibre territorial et rural Bruche Mossig
+institution: petr_bruche_mossig
+description: "Le Pôle d'équilibre territorial et rural Bruche Mossig subventionne tous vos trajets réservés depuis l'application Karos. Vous êtes conductrice ou conducteur ? Recevez entre 2 € et 7 € par trajet et par passager selon la distance parcourue. Vous êtes passagère ou passager ? Vous ne payez que 1 € par trajet jusqu'à 30 kilomètres puis 0.10 € par kilomètre supplémentaire."
+prefix: l’
+conditions_generales:
+  - type: communes
+    values:
+      - "67448"
+      - "67020"
+      - "67026"
+      - "67027"
+      - "67050"
+      - "67059"
+      - "67066"
+      - "67076"
+      - "67144"
+      - "67165"
+      - "67276"
+      - "67306"
+      - "67314"
+      - "67321"
+      - "67377"
+      - "67384"
+      - "67414"
+      - "67420"
+      - "67421"
+      - "67424"
+      - "67436"
+      - "67470"
+      - "67500"
+      - "67513"
+      - "67531"
+      - "67543"
+      - "67300"
+      - "67008"
+      - "67016"
+      - "67080"
+      - "67098"
+      - "67101"
+      - "67108"
+      - "67112"
+      - "67127"
+      - "67128"
+      - "67168"
+      - "67188"
+      - "67313"
+      - "67325"
+      - "67342"
+      - "67473"
+      - "67480"
+      - "67554"
+      - "67520"
+      - "67018"
+      - "67030"
+      - "67077"
+      - "67078"
+      - "67081"
+      - "67085"
+      - "67139"
+      - "67208"
+      - "67229"
+      - "67240"
+      - "67245"
+      - "67282"
+      - "67335"
+      - "67354"
+      - "67383"
+      - "67408"
+      - "67442"
+      - "67492"
+      - "67517"
+      - "67122"
+      - "67525"
+      - "67555"
+      - "67556"
+  - type: age
+    operator: ">="
+    value: 18
+profils: []
+conditions:
+  - Télécharger l'application de covoiturage Karos.
+  - Effectuer un trajet dont la distance est comprise entre 2 et 80 kilomètres.
+  - Réaliser votre trajet au départ et à l’arrivée de l'une des 68 communes du PETR de Bruche Mossig.
+type: bool
+periodicite: autre
+link: https://bruche-mossig.fr/le-plan-climat-air-energie/transport-mobilite/

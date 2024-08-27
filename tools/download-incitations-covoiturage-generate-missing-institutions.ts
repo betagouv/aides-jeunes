@@ -8,7 +8,6 @@ import { GristIncitationsCovoiturageResponse } from "../lib/types/download-incit
 const __dirname = new URL(".", import.meta.url).pathname
 
 const noDownload = process.argv.includes("--no-download")
-
 async function getGristData() {
   const gristAPI = Grist(
     process.env.GRIST_COVOITURAGE_DOC_ID,
@@ -21,9 +20,6 @@ async function getGristData() {
   //Données issue du fichier en Open Data mais avec des informations supplémentaires sur Grist
   //https://www.data.gouv.fr/fr/datasets/conditions-des-campagnes-dincitation-financiere-au-covoiturage/
   const incitationsCovoiturages = (await gristAPI.get({
-    passager_gratuite: ["Oui"],
-    passager_eligible_gratuite: ["Tous"],
-    passager_montant_ticket: ["Gratuit%C3%A9"],
     Expire: ["false"],
     type: ["aom"],
   })) as GristIncitationsCovoiturageResponse
@@ -55,6 +51,9 @@ async function getGristData() {
         row["passager_trajets_max_par_mois"] !== ""
           ? parseInt(row["passager_trajets_max_par_mois"])
           : 0,
+      passager_montant_ticket: row["passager_montant_ticket"],
+      si_zone_exclue_liste: row["si_zone_exclue_liste"],
+      passager_gratuite: row["passager_gratuite"],
     }
   })
 }

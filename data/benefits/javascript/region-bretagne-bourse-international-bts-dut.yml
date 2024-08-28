@@ -32,3 +32,4 @@ periodicite: mensuelle
 legend: maximum
 montant: 200
 interestFlag: _interetEtudesEtranger
+private: true

@@ -32,3 +32,4 @@ unit: €
 periodicite: ponctuelle
 montant: 460
 interestFlag: _interetEtudesEtranger
+private: true

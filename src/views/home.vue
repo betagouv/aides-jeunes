@@ -50,10 +50,13 @@
           </router-link>
         </li>
       </ul>
+
       <p class="fr-text--center">
         <router-link to="/aides">
           Accéder à la liste complète des aides
         </router-link>
+        <span class="fr-mx-1w">|</span>
+        <router-link to="/faq"> Foire aux questions </router-link>
       </p>
     </div>
     <div class="fr-col fr-col-6 fr-col--bottom fr-hidden fr-unhidden-md">

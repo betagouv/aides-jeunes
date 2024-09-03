@@ -42,7 +42,6 @@ profils:
           - licence_3
           - master_1
           - master_2
-      - type: formation_sanitaire_social
   - type: stagiaire
     conditions: []
 link: https://europe.bzh/aides/fiches/b-monde-mobilite-individuelle/

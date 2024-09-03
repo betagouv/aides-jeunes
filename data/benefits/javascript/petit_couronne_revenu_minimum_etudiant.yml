@@ -1,7 +1,7 @@
-label: revenu minimum étudiant de la ville de Petit Couronne
+label: revenu minimum étudiant de la ville de Petit-Couronne
 institution: ville_petit_couronne
 description:
-  'La ville de Petit Couronne soutient les étudiants en leur octroyant
+  'La ville de Petit-Couronne soutient les étudiants en leur octroyant
   une aide financière complémentaire et indépendante des autres bourses dʼétudes. Lʼaide
   peut être accordée un maximum de trois ans.
   Les dossiers d’inscriptions sont à retirer à chaque rentrée début septembre auprès
@@ -23,9 +23,9 @@ profils:
         values:
           - terminale
 conditions:
-  - Résider à Petit Couronne depuis au moins trois ans.
+  - Résider à Petit-Couronne depuis au moins trois ans.
   - Être titulaire du Baccalauréat.
-  - Être inscrit dans lʼenseignement supérieur.
+  - Être inscrit ou inscrite dans lʼenseignement supérieur.
 link: https://www.ville-petit-couronne.fr/le-revenu-minimum-etudiant
 instructions: https://www.calameo.com/read/006389672c613d6338231
 type: float

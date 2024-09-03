@@ -23,8 +23,8 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",
-    link: "https://www.mondepartement04.fr/insertion/acces-au-logement",
-    instructions: "https://www.mondepartement04.fr/insertion/acces-au-logement",
+    link: "https://www.mondepartement04.fr/insertion/le-fonds-de-solidarite-pour-le-logement",
+    form: "https://www.mondepartement04.fr/fileadmin/mediatheque/cg04/document/03-services-habitants/FSL/FSL_FORMULAIRE_01-2022.pdf",
   },
   departement_hautes_alpes: {
     label: "du département des Hautes Alpes",

@@ -2,10 +2,8 @@ label: bourse B-Monde Mobilité individuelle
 institution: region_bretagne
 description:
   La région Bretagne encourage la mobilité internationale des lycéens, étudiants
-  et stagiaires de la formation professionnelle,
-  en leur offrant des bourses pour les aider à financer un projet de stage ou de séjour d’études
-  à l’étranger, réalisé dans le cadre du cursus de formation
-  et faisant l’objet d’une validation par l’établissement breton dans lequel est inscrit le demandeur.
+  et stagiaires de la formation professionnelle, en leur offrant des bourses pour les aider à financer un projet de stage ou de séjour d’études
+  à l’étranger, réalisé dans le cadre du cursus de formation et faisant l’objet d’une validation par l’établissement breton dans lequel est inscrit le demandeur.
 conditions:
   - Contacter obligatoirement votre établissement qui vous indiquera la marche à suivre pour votre projet de mobilité et votre demande de bourse à la région Bretagne.
   - Ne pas être bénéficiaire d'une autre aide publique à la mobilité
@@ -53,4 +51,3 @@ unit: €
 periodicite: ponctuelle
 legend: par jour en moyenne
 montant: 14
-interestFlag: _interetEtudesEtranger

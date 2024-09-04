@@ -1,9 +1,10 @@
 label: prêt à taux zéro pour l’équipement informatique des jeunes
 institution: caf_haute_marne
 description: La CAF de la Haute-Marne propose une aide à l'équipement
-  informatique destinée aux jeunes de 10 à 18 ans. Il s'agit d'un prêt sans intérêt
-  d’un montant maximum de 500€ pour l’acquisition de matériel informatique, avec
-  remboursement de 35€ par mois. Une seule aide peut être accordée par foyer et par période
+  informatique destinée aux jeunes de 10 à 18 ans dans le cadre des études
+  ou jusqu'à 25 ans pour accompagner une formation ou une reprise d'activité professionnelle.
+  Il s'agit d'un prêt sans intérêt d’un montant maximum de 500€ pour l’acquisition de matériel informatique,
+  avec remboursement de 35€ par mois. Une seule aide peut être accordée par foyer et par période
   de cinq ans.
 conditions:
   - Transmettre une attestation des parents attestant que le foyer n’est pas
@@ -14,8 +15,8 @@ conditions_generales:
     operator: ">="
     value: 10
   - type: age
-    operator: <
-    value: 18
+    operator: <=
+    value: 25
   - type: departements
     values:
       - "52"
@@ -24,8 +25,8 @@ conditions_generales:
     operator: "<="
     period: month
 profils: []
-link: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202023_actualisation%2001.07.2023_0.pdf#page=36
-instructions: https://www.caf.fr/sites/default/files/medias/521/partenaires/RIAS%202023_actualisation%2001.07.2023_0.pdf#page=36
+link: https://www.caf.fr/sites/default/files/medias/521/FLASH%20caf%20htemarne_%20D%C3%A9pliant%20RIASF_DL.pdf
+instructions: https://www.caf.fr/sites/default/files/medias/521/FLASH%20caf%20htemarne_%20D%C3%A9pliant%20RIASF_DL.pdf
 prefix: l’
 type: float
 unit: €

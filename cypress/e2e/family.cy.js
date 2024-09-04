@@ -20,7 +20,7 @@ context("Full simulation", () => {
     profil.defaultIndivu()
 
     foyer.kindergartenChildren()
-    foyer.deleteChilden(0)
+    foyer.deleteChildren(0)
     foyer.kindergartenChildren()
     foyer.children(1, 2)
     foyer.fill_en_couple(true)

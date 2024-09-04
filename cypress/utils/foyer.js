@@ -22,7 +22,7 @@ const kindergartenChildren = () => {
   urlInclude("enfants")
 }
 
-const deleteChilden = (index) => {
+const deleteChildren = (index) => {
   cy.get(`[data-testid="row-enfant_${index}"]`).should("be.visible")
   cy.get(`[data-testid="delete-enfant_${index}"]`).click()
   cy.get(`[data-testid="row-enfant_${index}"]`).should("not.exist")
@@ -74,7 +74,7 @@ const fill_rsa_isolement_recent = (isolement) => {
 export default {
   children,
   kindergartenChildren,
-  deleteChilden,
+  deleteChildren,
   checkChildrenNumber,
   fill_en_couple,
   fill__situation,

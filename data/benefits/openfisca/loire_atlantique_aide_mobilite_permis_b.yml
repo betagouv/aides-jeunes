@@ -5,10 +5,10 @@ description: >
   l’autonomie et l’insertion des jeunes de 17 à 24 ans en finançant
   <a target="_blank" rel="noopener" title="le permis voiture (B) - Nouvelle fenêtre" href="https://www.service-public.fr/particuliers/vosdroits/F2828">le permis voiture (B)</a>.
 conditions:
-  - Occuper, à titre de résidence principale, un logement sur le territoire du département de Loire Atlantique depuis <strong>plus d’un an<strong>.
+  - Habiter en Loire Atlantique depuis <strong>plus d’un an<strong>.
   - Ne pas bénéficier d’une autre aide au permis de conduire.
   - Être inscrit ou inscrite dans une auto-école.
-link: https://www.loire-atlantique.fr/jcms/classement-des-contenus/guides-aides/vous-etes/jeune/l-aide-au-permis-de-conduire-pour-les-jeunes-voiture-et-cyclomoteur-fr-t1_17944
+link: https://www.loire-atlantique.fr/44/jeunesse/l-aide-au-financement-du-permis-de-conduire-pour-les-jeunes/c_1154102
 instructions: https://www.loire-atlantique.fr/44/jeunesse/l-aide-au-permis-de-conduire-pour-les-jeunes-voiture-et-cyclomoteur/c_1154102#idTitre5
 prefix: l’
 type: float
@@ -17,5 +17,4 @@ floorAt: 1
 entity: individus
 openfiscaPeriod: thisMonth
 periodicite: ponctuelle
-private: true
 interestFlag: _interetPermisDeConduire

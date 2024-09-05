@@ -1,0 +1,28 @@
+label: revenu minimum étudiant de Chenôve
+institution: ville_chenove
+description: 'La ville de Chenôve soutient les étudiants en leur octroyant une aide financière complémentaire et indépendante des autres bourses dʼétudes. Le dépôt des dossiers de demande sʼeffectue sur rendez-vous au Centre Communal dʼAction Sociale (CCAS) du 1er septembre au 31 décembre. Pour tous renseignements, vous pouvez contacter le service par mail à <a href="mailto:ccas@chenove.fr">ccas@chenove.fr</a> ou par téléphone au <a href="tel:+33380515611">03 80 51 56 11</a>.<br/>'
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "21166"
+  - type: age
+    operator: "<"
+    value: 27
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+conditions:
+  - Être titulaire du Baccalauréat.
+  - Être étudiant dans lʼEnseignement Supérieur.
+  - Bénéficier d’une résidence principale sur Chenôve depuis au moins 2 ans.
+link: https://www.chenove.fr/revenu-minimum-etudiant
+instructions: https://www.chenove.fr/sites/default/files/2024-07/rme_2023_-_plaquette_corrigee.pdf
+form: https://www.chenove.fr/sites/default/files/2024-07/modele_dossier_rme_2024.pdf
+type: bool
+periodicite: annuelle

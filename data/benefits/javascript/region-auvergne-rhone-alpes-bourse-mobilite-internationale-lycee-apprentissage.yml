@@ -2,13 +2,11 @@ label: bourse mobilité internationale Lycéens et Apprentis
 institution: region_auvergne_rhone_alpes
 description: Cette aide participe à votre projet de stage à l'étranger. Le
   financement correspond à une durée de 3 semaines, quelle que soit la durée
-  effective du stage au sein de la même entreprise.
+  effective du stage au sein de la même entreprise. Les boursiers d'Etat et les jeunes porteurs dʼun handicap obtiennent
+  une majoration de la bourse.
 conditions:
-  - Effectuer votre demande en ligne sur le site de la Région 3 mois au plus et
-    un mois au moins avant la date de départ effective en stage à l'étranger.
-  - Après transmission de votre dossier en ligne à l'établissement de formation,
-    vous devez renvoyer, en ligne, à votre établissement, votre attestation de
-    stage dans les 18 mois maximum.
+  - "Préparer lʼun des diplômes suivants : Bac Pro, CAP, CAPA, BTS, MC, FCIL."
+  - Effectuer votre demande en ligne sur le site de la Région, au maximum six mois après la date de fin du stage à lʼétranger.
 conditions_generales:
   - type: regions
     values:
@@ -18,15 +16,13 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis
-teleservice: https://sicorra.auvergnerhonealpes.fr/public
-form: ""
-instructions: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-et-apprentis
+link: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-lyceens-0
+teleservice: https://aides.auvergnerhonealpes.fr/aides/#/crauraprod/connecte/F_EDUC_BRMIL/depot/simple
+instructions: https://www.auvergnerhonealpes.fr/media/8972/download?inline
 prefix: la
 type: float
 unit: €
 periodicite: autre
-legend: maximum
-montant: 470
+legend: forfaitaire
+montant: 440
 interestFlag: _interetEtudesEtranger
-private: true

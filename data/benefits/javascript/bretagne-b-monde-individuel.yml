@@ -1,0 +1,55 @@
+label: bourse B-Monde Mobilité individuelle
+institution: region_bretagne
+description:
+  La région Bretagne encourage la mobilité internationale des lycéens, étudiants
+  et stagiaires de la formation professionnelle, en leur offrant des bourses
+  pour les aider à financer un stage ou un séjour d’études à l’étranger, réalisé
+  dans le cadre du cursus de formation et faisant l’objet d’une validation
+  par l’établissement breton dans lequel est inscrit le demandeur.
+conditions:
+  - Être étudiant ou stagiaire de la formation professionnelle ou lycéen en voie professionnelle (Certificat d'Aptitude Professionnelle (CAP), Bac professionnel, Bac technologique "Hôtellerie", Brevet des métiers d’arts (BMA), Formation Complémentaire d’Initiative Locale (FCIL), Mention complémentaire (MC), Diplôme de Technicien des Métiers du Spectacle (DTMS)).
+  - Contacter obligatoirement votre établissement qui vous indiquera la marche à suivre pour votre projet de mobilité et votre demande de bourse à la région Bretagne.
+  - Ne pas être bénéficiaire d'une autre aide publique à la mobilité internationale (européenne, nationale, régionale, départementale, locale).
+  - Partir pour un séjour compris entre 26 (12 jours pour les élèves scolarisés en CAP) et 300 jours.
+  - 'Choisir <a target="_blank" rel="noopener" title="Liste des destinations éligibles (téléchargement docx) - Nouvelle fenêtre" href="https://www.bretagne.bzh/app/uploads/ANNEXE-Destinations-Mobilite-Individuelle.docx">une destination parmi celles listées en annexe</a>.'
+conditions_generales:
+  - type: regions
+    values:
+      - "53"
+  - type: quotient_familial
+    period: year
+    value: 25000
+    operator: "<="
+profils:
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - cap_1
+          - cap_2
+          - seconde
+          - premiere
+          - terminale
+  - type: enseignement_superieur
+    conditions:
+      - type: annee_etude
+        values:
+          - bts_1
+          - but_1
+          - but_1
+          - licence_1
+          - licence_2
+          - licence_3
+          - master_1
+          - master_2
+  - type: stagiaire
+    conditions: []
+link: https://europe.bzh/aides/fiches/b-monde-mobilite-individuelle/
+instructions: https://www.bretagne.bzh/app/uploads/Guide_utilisation_Aiden_Mob_Indiv___APPRENANT.pdf
+teleservice: https://europe.bzh/aides/fiches/b-monde-mobilite-individuelle/
+prefix: la
+type: float
+unit: €
+periodicite: ponctuelle
+legend: par jour en moyenne
+montant: 14

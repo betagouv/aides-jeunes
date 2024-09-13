@@ -1,8 +1,8 @@
-label: aide au dépôt de garantie
+label: aide au dépôt de garantie pour mon premier logement
 institution: region_centre_val_de_loire
 description: L’aide régionale au dépôt de garantie permet de financer la caution
-  demandée par votre propriétaire. Il s’agit d’une avance remboursable,
-  correspondant au montant de la caution exigée.
+  demandée par votre propriétaire lorsque vous louez votre premier logement.
+  Cette aide s'adresse aux étudiants et aux jeunes actifs. Il s’agit d’une avance remboursable, correspondant au montant de la caution exigée.
 prefix: l’
 conditions_generales:
   - type: age
@@ -21,5 +21,5 @@ unit: €
 periodicite: autre
 legend: maximum
 montant: 300
-link: https://www.yeps.fr/offre/laide-regionale-au-depot-de-garantie-le-coup-de-pouce-pour-vous-loger/
-instructions: https://www.yeps.fr/offre/laide-regionale-au-depot-de-garantie-le-coup-de-pouce-pour-vous-loger/
+link: https://www.yeps.fr/offre/region-aide-regionale-au-depot-de-garantie-pour-son-premier-logement/
+instructions: https://www.yeps.fr/offre/region-aide-regionale-au-depot-de-garantie-pour-son-premier-logement/

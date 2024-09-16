@@ -2,13 +2,14 @@ import { fillRadio, submit } from "./form.js"
 import profil from "./profil.js"
 import { urlInclude } from "./controllers.js"
 
-const children = (numberOfChildren) => {
+const children = (numberOfChildren, totalToCheck = numberOfChildren) => {
   for (let i = 0; i < numberOfChildren; i++) {
     urlInclude("enfants")
     cy.checkA11y()
     cy.get('[data-testid="add-pac"]').click()
     profil.defaultChildren()
   }
+  checkChildrenNumber(totalToCheck)
   urlInclude("enfants")
   submit()
 }
@@ -19,6 +20,18 @@ const kindergartenChildren = () => {
   cy.get('[data-testid="add-pac"]').click()
   profil.kindergartenChildren()
   urlInclude("enfants")
+}
+
+const deleteChildren = (index) => {
+  cy.get(`[data-testid="row-enfant_${index}"]`).should("be.visible")
+  cy.get(`[data-testid="delete-enfant_${index}"]`).click()
+  cy.get(`[data-testid="row-enfant_${index}"]`).should("not.exist")
+}
+
+const checkChildrenNumber = (numberOfChildren) => {
+  for (let i = 0; i < numberOfChildren; i++) {
+    cy.get(`[data-testid="row-enfant_${i}"]`).should("be.visible")
+  }
 }
 
 const fill_en_couple = (enCouple) => {
@@ -61,6 +74,8 @@ const fill_rsa_isolement_recent = (isolement) => {
 export default {
   children,
   kindergartenChildren,
+  deleteChildren,
+  checkChildrenNumber,
   fill_en_couple,
   fill__situation,
   fill_bourse_criteres_sociaux_nombre_enfants_a_charge,

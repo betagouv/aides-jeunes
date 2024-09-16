@@ -353,6 +353,23 @@ router.beforeEach((to, from, next) => {
     store.decrementMessageRemainingViewTime()
   }
 
+  // When a child has been removed from the /enfants step, the previous child questions should be skipped
+  const { current } = window.history.state
+  const enfantPath = "/individu/enfant_"
+
+  if (current.includes(enfantPath)) {
+    const id_enfant = current.split(enfantPath)[1].split("/")[0]
+    const hasStoreChild = store.situation.enfants.find(
+      (enfant) => enfant.id === `enfant_${id_enfant}`
+    )
+
+    if (!hasStoreChild) {
+      // go(-2) used to skip the "/enfants" step on the removed child first step "_firstName"
+      const stepsToGoBack = current.includes("_firstName") ? -2 : -1
+      return router.go(stepsToGoBack)
+    }
+  }
+
   next()
 })
 

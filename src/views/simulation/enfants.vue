@@ -10,7 +10,12 @@
         >
       </legend>
       <div class="fr-fieldset__content">
-        <div v-for="enfant in enfants" :key="enfant.id" class="fr-mb-4w">
+        <div
+          v-for="enfant in enfants"
+          :key="enfant.id"
+          class="fr-mb-4w"
+          :data-testid="`row-${enfant.id}`"
+        >
           <div v-if="enfant.date_naissance">
             <div class="fr-container fr-px-0">
               <div class="fr-grid-row fr-grid-row--middle">
@@ -29,6 +34,7 @@
                     <li
                       ><button
                         class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-mb-0"
+                        :data-testid="`delete-${enfant.id}`"
                         @click="removePAC(enfant.id)"
                         >supprimer</button
                       ></li

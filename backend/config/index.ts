@@ -118,7 +118,7 @@ const config: Configuration = {
     project: process.env.SENTRY_BACKEND_PROJECT,
     environment: process.env.NODE_ENV,
     integrations: [nodeProfilingIntegration()],
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.1,
     profilesSampleRate: 1.0,
     debug: "development" === process.env.NODE_ENV,
   },

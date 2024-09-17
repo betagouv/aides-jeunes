@@ -1,8 +1,8 @@
 label: pass culture
 institution: etat
-description: Le pass Culture est un dispositif du ministère de la Culture, qui permet d’avoir accès entre ses 15 et 18 ans à une application pour découvrir et réserver selon vos envies les propositions culturelles de proximité et offres numériques (livres, concerts, théâtres, musées, cours de musique, abonnements numériques, etc.).
+description: Le pass Culture est la première application culturelle pour les jeunes de 15 à 20 ans. Elle offre un crédit annuel dont le montant dépend de l'âge et qui permet de profiter d'une vaste offre culturelle (concerts, cinéma, livres, jeux vidéos, théâtre, musées).
 link: https://pass.culture.fr/
-instructions: https://pass.culture.fr/nosapplications/
+instructions: https://pass.culture.fr/le-pass-culture-cest-quoi
 prefix: le
 type: float
 unit: "€"

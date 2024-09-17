@@ -51,7 +51,7 @@ if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
       Sentry.browserTracingIntegration({ router }),
       Sentry.replayIntegration(),
     ],
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.1,
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0,
     debug: "development" === process.env.VITE_CONTEXT,

@@ -112,6 +112,22 @@
     "passager_gratuite": "Oui"
   },
   {
+    "link": "https://www.aunisatlantique.fr/vies-pratique-et-associative/transports-et-mobilite/covoiturage/",
+    "code_siren": "200041499",
+    "nom_plateforme": "",
+    "operateurs": "Klaxit",
+    "zone_sens_des_trajets": "et/ou",
+    "conducteur_montant_max_par_mois": 150,
+    "conducteur_montant_min_par_passager": 1,
+    "conducteur_montant_max_par_passager": 2,
+    "trajet_longueur_max": 70,
+    "trajet_longueur_min": 2,
+    "passager_trajets_max_par_mois": 60,
+    "passager_montant_ticket": "Gratuité",
+    "si_zone_exclue_liste": "",
+    "passager_gratuite": "Oui"
+  },
+  {
     "link": "https://www.ca-paysdelaon.fr/vivre/transports/covoiturage-blablacar-daily/",
     "code_siren": "200043495",
     "nom_plateforme": "",
@@ -288,7 +304,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.ccpom.fr/incitation-au-covoiturage-du-quotidien-klaxit-demenage-sur-blablacar-daily/",
+    "link": "https://www.ccpom.fr/en-voiture/",
     "code_siren": "245701271",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -668,6 +684,22 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vos 10 premiers trajets sont gratuits puis vous ne payez que 0,50 € par trajet.",
+    "si_zone_exclue_liste": "",
+    "passager_gratuite": "Non"
+  },
+  {
+    "link": "https://www.grandpoitiers.fr/au-quotidien/deplacements/partage-des-voitures/covoiturage",
+    "code_siren": "200069854",
+    "nom_plateforme": "",
+    "operateurs": "BlablaCarDaily, Karos ou Mobicoop",
+    "zone_sens_des_trajets": "et/ou",
+    "conducteur_montant_max_par_mois": 120,
+    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_passager": 2,
+    "trajet_longueur_max": 80,
+    "trajet_longueur_min": 5,
+    "passager_trajets_max_par_mois": 60,
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },

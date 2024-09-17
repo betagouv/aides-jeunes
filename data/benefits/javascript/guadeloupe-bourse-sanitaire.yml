@@ -3,7 +3,7 @@ institution: guadeloupe
 description: La bourse sanitaire attribuée par la Région Guadeloupe contribue à
   soutenir financièrement les stagiaires, élèves, étudiants et étudiantes poursuivant des
   formations sanitaires dans les établissements de formation agréés par la
-  collectivité régionale.
+  collectivité régionale. Les demandes de bourses se font chaque année de mi-août à mi-octobre puis de début janvier à début mars.
 conditions:
   - Poursuivre une formation sociale dans un des établissements de formation
     listés <a target="_blank" rel="noopener" title ="Voir les établissements de formation - Nouvelle fenêtre"
@@ -23,7 +23,6 @@ profils:
   - type: stagiaire
     conditions: []
 link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/bourse-sanitaire/categorie/formation-enseignement-jeunesse/#_
-teleservice: https://aides.regionguadeloupe.fr/gesaides_web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
 prefix: la
 type: float
 unit: €

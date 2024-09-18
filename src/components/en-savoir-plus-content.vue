@@ -2,7 +2,16 @@
   <div>
     <h2 class="fr-text--lead">En savoir plus</h2>
     <div v-html="text"></div>
-    <BackButton size="small" data-testid="en-savoir-plus-back-button"
+    <p class="fr-my-2w">
+      Toutes les réponses aux questions les plus fréquentes sont disponibles
+      dans
+      <router-link to="/faq">la foire aux questions</router-link>.
+    </p>
+
+    <BackButton
+      size="small"
+      data-testid="en-savoir-plus-back-button"
+      class="fr-mt-2w"
       >Retour</BackButton
     >
   </div>

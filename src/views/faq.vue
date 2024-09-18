@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { EventAction, EventCategory } from "@lib/enums/event"
+import BackButton from "@/components/buttons/back-button.vue"
 
 const contactEmail = process.env.VITE_CONTACT_EMAIL
 
@@ -141,6 +142,9 @@ const mailAnalytics = {
 <template>
   <div class="fr-my-6w fr-p-2w">
     <h1>Foire aux questions</h1>
+    <BackButton size="small" data-testid="faq-back-button" class="fr-mb-3w">
+      Retour
+    </BackButton>
     <div class="fr-p-1w">
       <section
         v-for="(qa, index) in questionsAnswers"

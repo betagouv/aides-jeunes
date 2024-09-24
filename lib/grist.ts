@@ -1,7 +1,7 @@
 import axios from "axios"
 import { GristIncitationsCovoiturageResponse } from "./types/download-incitations-covoiturage.d.js"
 import { GristLinkValidityResponse } from "./types/link-validity.d.js"
-const baseURL = "grist.incubateur.net"
+const baseURL = "grist.numerique.gouv.fr"
 const tableId = "Veille"
 
 export function Grist(docId, apiKey) {

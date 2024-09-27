@@ -17,6 +17,7 @@ const StateService = {
       const nextStep = getNextStep(this.$route, store.getAllSteps)
       store.updateCurrentAnswers(nextStep.path)
       this.$router.push(nextStep.path).catch((failure) => {
+        window.location.reload()
         if (isNavigationFailure(failure, NavigationFailureType.cancelled)) {
           sendEventToMatomo({
             category: EventCategory.Parcours,

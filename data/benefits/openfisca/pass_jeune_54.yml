@@ -1,0 +1,17 @@
+label: Pass Jeune 54
+institution: departement_meurthe_et_moselle
+description: >
+  Pass Jeunes 54 est une aide financière sous conditions de ressources aux jeunes de 6 à 16 ans pour leur inscription 
+  à une activité régulière sportive, culturelle ou de loisirs.
+conditions:
+  - Être inscrit ou inscrite à une activité sportive, culturelle, ou de loisirs qui doit être encadrée et se dérouler hors temps scolaire, sur une durée minimale de 3 mois.
+  - Être inscrit ou inscrite à une activité hors centre de loisirs, séjour de vacances et stages divers.
+  - Procéder à l’inscription de l’activité concernée avant le 28 février 2025 pour la saison 2024-2025.
+link: https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54
+instructions: https://meurthe-et-moselle.fr/actions/education-populaire-jeunesse-sports/sport/pass-jeunes-54
+prefix: le
+type: float
+unit: €
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: annuelle

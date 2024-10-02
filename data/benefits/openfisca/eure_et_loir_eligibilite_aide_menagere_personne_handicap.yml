@@ -8,7 +8,7 @@ conditions:
   - Ne pas déjà bénéficier de l’Allocation compensatrice pour tierce personne
     (ACTP), la Majoration Tierce Personne (MTP versée par la CPAM) ou encore des
     prestations d’aide-ménagère servies par les caisses de retraite.
-link: https://eurelien.fr/guide/autonomie
+link: https://eurelien.fr/mon-quotidien/handicap/
 prefix: l’
 type: bool
 floorAt: 10

@@ -4,7 +4,7 @@ description: Cette carte permet d’obtenir une priorité d’accès aux places
   assises dans les lieux publics, les salles d’attente et les transports en
   commun.
 conditions: []
-link: https://www.eurelien.fr/guide/autonomie
+link: https://eurelien.fr/mon-quotidien/handicap/
 prefix: la
 type: bool
 floorAt: 10

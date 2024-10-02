@@ -23,6 +23,7 @@ profils:
   - type: stagiaire
     conditions: []
 link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/bourse-sanitaire/categorie/formation-enseignement-jeunesse/#_
+teleservice: https://aides.regionguadeloupe.fr/gesaides_web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
 prefix: la
 type: float
 unit: €

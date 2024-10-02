@@ -1,0 +1,17 @@
+label: mutuelle communale de la ville de Montpellier
+institution: ville_montpellier
+description: La ville de Montpellier met à disposition de ses habitants une mutuelle communale avantageuse financierement.
+conditions:
+  - Ne pas bénéficier de la Complementaire Santé Solidaire.
+link: https://www.montpellier.fr/4884-mutuelle-communale.htm
+instructions: https://www.montpellier.fr/4884-mutuelle-communale.htm
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "34172"
+profils: []
+type: bool
+entity: familles
+openfiscaPeriod: thisMonth
+periodicite: ponctuelle

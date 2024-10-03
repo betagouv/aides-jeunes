@@ -1,0 +1,13 @@
+label: Fonds d'Aide aux Jeunes (FAJ)
+institution: departement_eure_et_loir
+description: >
+  Cette aide permet de favoriser la réalisation d'un projet d'insertion sociale et profesionnelle.
+conditions:
+  - "Suivi par la Mission Locale ou le Service d’Action Sociale du Conseil Départemental"
+  - "Contacter le conseiller de la Mission Locale ou du service de l'Action Sociale afin d'effectuer la demande auprés de l'Espace Insertion."
+link: https://mesdemarches.eurelien.fr/insertion-professionnelle/jai-moins-de-26-ans/je-souhaite-beneficier-du-faj/
+prefix: le
+type: bool
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

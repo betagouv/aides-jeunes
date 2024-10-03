@@ -1,0 +1,13 @@
+label: Prêt de véhicule
+institution: departement_eure_et_loir
+description: >
+  Le conseil départemental peut proposer un prêt de vehicule pour les bénéficiaires du RSA, détenteur d'un permis B pour une période minimum de 5 jours.
+conditions:
+  - "Démarrer un emploi, une formation qualifiante ou être en immersion au sein d'une entreprise"
+  - "Contacter le référent RSA pour connaître l'égibilité à ce dispositif"
+link: https://mesdemarches.eurelien.fr/insertion-professionnelle/je-suis-beneficiaire-du-rsa/jai-besoin-dun-pret-de-vehicule/
+prefix: le
+type: bool
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

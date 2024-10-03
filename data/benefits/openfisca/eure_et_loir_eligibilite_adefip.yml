@@ -1,0 +1,12 @@
+label: Aide financière d’insertion personnalisée
+institution: departement_eure_et_loir
+description: >
+  Cette aide permet de pallier aux premiers frais engagés par un bénéficiaire du RSA qui entre en emploi, en formation ou qui crée son entreprise.
+conditions:
+  - Faire la demande avec le référent RSA <a href="https://mesdemarches.eurelien.fr/media/uploads/2023/01/05/formulaire-demande-adefip-pdf.pdf" rel="noopener" target="_blank" title="Site Mes démarches euréliens - Nouvelle fenêtre">par écrit</a> ou <a href="https://formulaires.mesdemarches.eurelien.fr/vous-etes-un-partenaire-referent-d-un-beneficiaire-rsa-1/" rel="noopener" target="_blank" title="Teleservice demande - Nouvelle fenêtre">par téléservice</a>.
+link: https://mesdemarches.eurelien.fr/insertion-professionnelle/je-suis-referent-rsa-et-je-souhaite-fair/
+prefix: l’
+type: bool
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

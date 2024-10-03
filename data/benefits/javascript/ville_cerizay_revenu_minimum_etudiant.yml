@@ -1,0 +1,34 @@
+label: revenu minimum étudiant de Cerizay
+institution: ville_cerizay
+description:
+  "La ville de Cerizay soutient les étudiants en leur octroyant une aide financière complémentaire et indépendante des autres bourses dʼétudes.
+  Il s’agit d’un dispositif soumis à conditions de ressources et dont le montant varie de 150 € à 1000 € par an.
+  Le dépôt des dossiers de demande sʼeffectue en mairie à chaque rentrée scolaire et avant le 8 novembre."
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "79062"
+  - type: age
+    operator: "<"
+    value: 25
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+conditions:
+  - Être titulaire du Baccalauréat.
+  - Être étudiant dans lʼEnseignement Supérieur.
+  - Résider à Cerizay depuis au moins un an.
+  - Compléter <a target="_blank" title="Formulaire de demande Revenu Minimum Etudiant de Cerizay - Nouvelle fenêtre" rel="noopener" href="file:///Users/yasmineberrada/Downloads/Dossier%20inscription%20RME%202024-2025.pdf">le dossier de demande<a/> et le déposer en mairie de Cerizay.
+link: https://cerizay.fr/index.php/vivezvotreville/education-jeunesse/jeunesse/89-rme
+form: file:///Users/yasmineberrada/Downloads/Dossier%20inscription%20RME%202024-2025.pdf
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 1000

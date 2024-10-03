@@ -1,7 +1,8 @@
 label: Hébergement à la Cité Internationale Universitaire de Paris
 institution: guadeloupe
 description: La Région vous aide à vous loger en région parisienne si vous
-  poursuivez des études d’un niveau master en France hexagonale.
+  poursuivez des études d’un niveau master en France hexagonale. Le dépôt des demandes d'inscription
+  en Cité Internationale Universitaire de Paris s'effectue chaque année au cours du mois de juin.
 prefix: l’
 conditions_generales:
   - type: regions
@@ -12,11 +13,6 @@ conditions_generales:
     value: 30
 profils:
   - type: enseignement_superieur
-    conditions:
-      - type: annee_etude
-        values:
-          - master_1
-          - master_2
 conditions:
   - Être inscrit ou inscrite au sein d’un établissement d’enseignement supérieur privé ou
     public relevant de l’Académie de Paris, Créteil ou de Versailles.

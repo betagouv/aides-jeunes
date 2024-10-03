@@ -3,7 +3,7 @@ institution: departement_eure_et_loir
 description: >
   Prise en charge des frais de déplacement exposés par les élèves et étudiants en situation de handicap qui ne peuvent utiliser les moyens de transport en commun en raison de la gravité de leur handicap, médicalement établie.
 link: https://eurelien.fr/wp-content/uploads/2024/04/Reglement-departemental-du-transport-des-eleves-et-etudiants-en-situation-de-handicap-1.pdf
-prefix: l'
+prefix: l’
 type: bool
 entity: individus
 openfiscaPeriod: thisMonth

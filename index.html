@@ -77,31 +77,5 @@
     </noscript>
     <!-- built files will be auto injected -->
     <div id="app"></div>
-
-    <script>
-      ;(function (d, t) {
-        if (window !== window.top) {
-          return // Prevents Chatwoot display inside the iframe
-        }
-        var BASE_URL = "https://chatwoot.incubateur.net"
-        var g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0]
-        g.src = BASE_URL + "/packs/js/sdk.js"
-        g.defer = true
-        g.async = true
-        s.parentNode.insertBefore(g, s)
-
-        g.onload = function () {
-          window.chatwootSettings = {
-            hideMessageBubble: false,
-            position: window.innerWidth >= 768 ? "right" : "left",
-          }
-          window.chatwootSDK.run({
-            websiteToken: "<%= VITE_CHATWOOT_TOKEN %>",
-            baseUrl: BASE_URL,
-          })
-        }
-      })(document, "script")
-    </script>
   </body>
 </html>

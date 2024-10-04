@@ -20,7 +20,6 @@ const buildId = Date.now().toString()
 const {
   baseURL,
   contextName,
-  chatwoot,
   contactEmail,
   github,
   matomo,
@@ -54,7 +53,6 @@ export default defineConfig(async ({ mode }) => {
     VITE_BENEFIT_COUNT: benefitCount,
     VITE_MATOMO_ID: matomo.id,
     VITE_MATOMO_URL: matomo.url,
-    VITE_CHATWOOT_TOKEN: chatwoot.websiteToken,
     VITE_CONTACT_EMAIL: contactEmail,
     VITE_CONTEXT_NAME: contextName,
     VITE_BASE_URL: baseURL,
@@ -121,7 +119,6 @@ export default defineConfig(async ({ mode }) => {
             VITE_DESCRIPTION: viteEnvironment.VITE_DESCRIPTION,
             VITE_BASE_URL: viteEnvironment.VITE_BASE_URL,
             VITE_CONTEXT_NAME: viteEnvironment.VITE_CONTEXT_NAME,
-            VITE_CHATWOOT_TOKEN: viteEnvironment.VITE_CHATWOOT_TOKEN,
           },
         },
       }),

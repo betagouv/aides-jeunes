@@ -47,13 +47,21 @@
               >Fermer</button
             >
             <div class="fr-grid-row fr-grid-row-lg--gutters">
+              <div class="fr-col-12 fr-col-lg-8 fr-col-offset-lg-4--right">
+                <div
+                  class="fr-mega-menu__leader"
+                  v-if="element.editorializeTitle"
+                >
+                  <h2 class="fr-h4 fr-mb-2v">Acteur de l'emploi</h2>
+                </div>
+              </div>
               <div
                 v-for="category in element.children"
                 :key="category.label"
                 class="fr-col-12 fr-col-lg-3"
                 :data-submenu="!category.link"
               >
-                <h2 class="fr-mega-menu__category">
+                <h3 class="fr-mega-menu__category">
                   <a
                     v-if="category.link"
                     class="fr-nav__link"
@@ -61,7 +69,7 @@
                     >{{ category.label }}</a
                   >
                   <span v-else class="fr-nav__link">{{ category.label }}</span>
-                </h2>
+                </h3>
                 <p v-if="category.legend" class="fr-p-2w">{{
                   category.legend
                 }}</p>
@@ -196,6 +204,7 @@ const navigation = [
   {
     label: "Je suis employeur",
     alignRight: true,
+    editorializeTitle: true,
     children: [
       {
         label: "Rejoindre la mobilisation",

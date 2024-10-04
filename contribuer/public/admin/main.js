@@ -132,11 +132,3 @@ class DroitPreviewTemplate extends React.Component {
 
 CMS.registerPreviewTemplate("benefits_openfisca", DroitPreviewTemplate)
 CMS.registerPreviewTemplate("benefits_javascript", DroitPreviewTemplate)
-
-if (document.location.host == "localhost:3000") {
-  const productionURL = "https://contribuer-aides-jeunes.netlify.app/"
-  if (localStorage.getItem("netlifySiteURL") !== productionURL) {
-    window.localStorage.setItem("netlifySiteURL", productionURL)
-    document.location.reload()
-  }
-}

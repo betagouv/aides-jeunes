@@ -6,11 +6,6 @@ conditions:
 link: https://www.montpellier.fr/4884-mutuelle-communale.htm
 instructions: https://www.montpellier.fr/4884-mutuelle-communale.htm
 prefix: la
-conditions_generales:
-  - type: communes
-    values:
-      - "34172"
-profils: []
 type: bool
 entity: familles
 openfiscaPeriod: thisMonth

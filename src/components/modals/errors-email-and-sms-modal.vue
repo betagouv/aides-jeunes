@@ -11,10 +11,19 @@ const recapEmailState = computed(() => store.recapEmailState)
   <div class="fr-pb-3w">
     <div v-if="recapPhoneState != 'waiting' && recapEmailState != 'waiting'">
       <div
-        v-if="recapPhoneState === 'error' || recapEmailState === 'error'"
+        v-if="
+          recapPhoneState === 'error' ||
+          recapEmailState === 'error' ||
+          recapPhoneState === 'wrongPhoneNumber'
+        "
         class="fr-alert fr-alert--error"
       >
-        <p>
+        <p v-if="recapPhoneState === 'wrongPhoneNumber'">
+          Le numéro de téléphone est invalide. Nous vous recommandons de
+          vérifier votre numéro de téléphone ou de saisir uniquement votre
+          adresse e-mail.
+        </p>
+        <p v-else>
           Une erreur s'est produite dans l'envoi par
           {{
             recapPhoneState === "error" && recapEmailState === "error"

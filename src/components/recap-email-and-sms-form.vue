@@ -82,8 +82,13 @@ const sendRecap = async (surveyOptin) => {
       )
     }
   } catch (error) {
-    console.error(error)
-    Sentry.captureException(error)
+    if (
+      !error?.response?.data ||
+      !error?.response?.data.includes("wrongPhoneNumber")
+    ) {
+      console.error(error)
+      Sentry.captureException(error)
+    }
   }
 }
 
@@ -142,10 +147,18 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
   } catch (error) {
-    Sentry.captureException(error)
-    store.setFormRecapState("error")
+    if (
+      error?.response?.data &&
+      error?.response?.data.includes("wrongPhoneNumber")
+    ) {
+      store.setFormRecapState("wrongPhoneNumber")
+    } else {
+      Sentry.captureException(error)
+      store.setFormRecapState("error")
+    }
     throw error
   }
+
   store.setFormRecapState("ok")
   phoneValue.value = undefined
   emailValue.value = undefined
@@ -166,6 +179,7 @@ const sendRecapBySms = async (surveyOptin) => {
     store.setFormRecapPhoneState("error")
     throw error
   }
+
   store.setFormRecapPhoneState("ok")
   phoneValue.value = undefined
 }

@@ -41,19 +41,26 @@ export function followup(
 
 async function sendFollowupNotifications(followup: Followup, res: Response) {
   const { email, phone } = followup
-  if (phone) {
-    if (
-      phoneNumberValidation(phone, config.smsService.internationalDiallingCodes)
-    ) {
-      await sendSimulationResultsSms(followup)
-    } else {
-      return res.status(422).send("Unsupported phone number format")
+  try {
+    if (phone) {
+      if (
+        phoneNumberValidation(
+          phone,
+          config.smsService.internationalDiallingCodes
+        )
+      ) {
+        await sendSimulationResultsSms(followup)
+      } else {
+        return res.status(422).send("Unsupported phone number format")
+      }
     }
+    if (email) {
+      await sendSimulationResultsEmail(followup)
+    }
+    return res.send({ result: "OK" })
+  } catch (error: any) {
+    return res.status(500).send(error.message)
   }
-  if (email) {
-    await sendSimulationResultsEmail(followup)
-  }
-  return res.send({ result: "OK" })
 }
 
 async function createSimulationRecapUrl(req: Request, res: Response) {

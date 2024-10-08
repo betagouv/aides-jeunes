@@ -103,10 +103,13 @@ export async function sendSimulationResultsSms(
     followup.smsSentAt = dayjs().toDate()
     followup.smsMessageId = data.messageIds[0]
     return await followup.save()
-  } catch (err) {
-    Sentry.captureException(err)
-    followup.smsError = JSON.stringify(err, null, 2)
-    throw err
+  } catch (error: any) {
+    // Avoid sending invalid destination address error to sentry
+    if (!error?.message?.includes("Invalid destination address")) {
+      Sentry.captureException(error)
+    }
+    followup.smsError = JSON.stringify(error, null, 2)
+    throw error
   }
 }
 

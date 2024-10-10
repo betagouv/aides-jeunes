@@ -1,8 +1,11 @@
-label: Aide de transport social
+label: Aide au transport social
 institution: departement_eure_et_loir
 description: >
-  Prise en charge des frais de déplacement exposés par les élèves et étudiants en situation de handicap qui ne peuvent utiliser les moyens de transport en commun en raison de la gravité de leur handicap, médicalement établie, sont pris en charge par le Conseil départemental.
-link: https://eurelien.fr/wp-content/uploads/2024/04/Reglement-departemental-du-transport-des-eleves-et-etudiants-en-situation-de-handicap-1.pdf
+  Cette aide vise à favoriser la mobilité des bénéficiaires du RSA et du Fonds dʼAide aux Jeunes (FAJ) dans le cadre de la réalisation de leur parcours dʼinsertion.
+conditions:
+  - Faire la demande avec votre référent RSA ou FAJ.
+link: https://betagouv.github.io/aides-jeunes-files/public/aide28/transport-social.pdf
+instructions: https://mesdemarches.eurelien.fr/insertion-professionnelle/je-suis-beneficiaire-du-rsa/je-souhaite-connaitre-mon-referent-rsa/
 prefix: le
 type: bool
 entity: individus

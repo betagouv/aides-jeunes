@@ -1,7 +1,7 @@
 label: complémentaire santé solidaire
 institution: assurance_maladie
 description:
-  'La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n''est pas prise en charge par l''Assurance Maladie.
+  'La Complémentaire Santé Solidaire (anciennement CMU-C et ACS) est une mutuelle qui rembourse la part de vos dépenses de santé qui n’est pas prise en charge par l’Assurance Maladie.
   <br />Optez pour la téléprocédure : Si vous avez un compte Ameli.fr, connectez-vous puis effectuez votre demande directement en ligne depuis la rubrique "Mes démarches > Faire une demande de complémentaire santé solidaire"'
 prefix: la
 conditions:

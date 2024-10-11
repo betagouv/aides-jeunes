@@ -6,7 +6,7 @@ conditions:
   - Faire la demande avec votre référent RSA ou FAJ.
 link: https://betagouv.github.io/aides-jeunes-files/public/aide28/transport-social.pdf
 instructions: https://mesdemarches.eurelien.fr/insertion-professionnelle/je-suis-beneficiaire-du-rsa/je-souhaite-connaitre-mon-referent-rsa/
-prefix: le
+prefix: l’
 type: bool
 entity: individus
 openfiscaPeriod: thisMonth

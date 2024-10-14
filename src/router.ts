@@ -284,7 +284,6 @@ const router = createRouter({
           "aides_bafa",
           "aides_bafa_fusionnees_conserve_position"
         )
-        ABTestingService.setVariant("question_debut_chomage", "reformulation")
         ABTestingService.setVariant("Followup_SMS", "show")
         return "/"
       },

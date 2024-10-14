@@ -269,20 +269,11 @@ export default {
   }),
 
   date_debut_chomage: new DateProperty({
-    question: ({ individu, abtestingService }) => {
-      const abtestingEnvironment = abtestingService.getEnvironment()
-      const version = abtestingEnvironment.question_debut_chomage.value
-      if (version === "actuelle") {
-        return `Quand ${IndividuMethods.label(
-          individu,
-          "avoir"
-        )} commencé à être au chômage ?`
-      } else {
-        return `Depuis quand ${IndividuMethods.label(
-          individu,
-          "être"
-        )} inscrit(e) à France Travail ?`
-      }
+    question: ({ individu }) => {
+      return `Depuis quand ${IndividuMethods.label(
+        individu,
+        "être"
+      )} inscrit(e) à France Travail ?`
     },
   }),
 

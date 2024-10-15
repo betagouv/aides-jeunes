@@ -10,10 +10,10 @@ import { SurveyType } from "../../lib/enums/survey.js"
 import { FollowupFactory } from "../lib/followup-factory.js"
 import { FetchSurvey } from "../../lib/types/survey.d.js"
 import Request from "../types/express.d.js"
-import { phoneNumberValidation } from "../../lib/phone-number.js"
 import config from "../config/index.js"
 import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service.js"
 import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
+import { ErrorType, ErrorStatus, ErrorName } from "../../lib/enums/error.js"
 
 export function followup(
   req: Request,
@@ -39,23 +39,6 @@ export function followup(
     })
 }
 
-async function sendFollowupNotifications(followup: Followup, res: Response) {
-  const { email, phone } = followup
-  if (phone) {
-    if (
-      phoneNumberValidation(phone, config.smsService.internationalDiallingCodes)
-    ) {
-      await sendSimulationResultsSms(followup)
-    } else {
-      return res.status(422).send("Unsupported phone number format")
-    }
-  }
-  if (email) {
-    await sendSimulationResultsEmail(followup)
-  }
-  return res.send({ result: "OK" })
-}
-
 async function createSimulationRecapUrl(req: Request, res: Response) {
   const followup = await FollowupFactory.create(req.simulation)
   await followup.addSurveyIfMissing(
@@ -69,6 +52,7 @@ async function createSimulationRecapUrl(req: Request, res: Response) {
 export async function persist(req: Request, res: Response) {
   const { surveyOptin, email, phone } = req.body
   const simulation = req.simulation
+
   try {
     if (email || phone) {
       const followup = await FollowupFactory.createWithResults(
@@ -77,17 +61,27 @@ export async function persist(req: Request, res: Response) {
         email,
         phone
       )
-      return sendFollowupNotifications(followup, res)
-    } else {
-      return createSimulationRecapUrl(req, res)
+      if (phone) await sendSimulationResultsSms(followup)
+      if (email) await sendSimulationResultsEmail(followup)
+      return res.send({ result: "OK" })
     }
+
+    return createSimulationRecapUrl(req, res)
   } catch (error: any) {
     Sentry.captureException(error)
-    if (error.name === "ValidationError") {
-      return res.status(403).send(error.message)
-    } else {
-      return res.status(500).send(`Error while persisting followup`)
+
+    let status: number = ErrorStatus.InternalServerError
+
+    if (
+      error.name === ErrorName.ValidationError ||
+      error.message === ErrorType.UnsupportedPhoneNumberFormat
+    ) {
+      status = ErrorStatus.UnprocessableEntity
     }
+
+    return res
+      .status(status)
+      .send(error.message || ErrorType.PersistingFollowup)
   }
 }
 
@@ -117,7 +111,7 @@ export function showFollowup(req: Request, res: Response) {
     })
     .catch((error: Error) => {
       console.error("error", error)
-      return res.sendStatus(400)
+      return res.sendStatus(ErrorStatus.BadRequest)
     })
 }
 
@@ -142,12 +136,13 @@ export function showSurveyResults(req: Request, res: Response) {
 export function showSurveyResultByEmail(req: Request, res: Response) {
   Followups.findByEmail(req.params.email)
     .then((followups: Followup[]) => {
-      if (!followups || !followups.length) return res.sendStatus(404)
+      if (!followups || !followups.length)
+        return res.sendStatus(ErrorStatus.NotFound)
       res.send(followups)
     })
     .catch((error: Error) => {
       console.error("error", error)
-      return res.sendStatus(400)
+      return res.sendStatus(ErrorStatus.BadRequest)
     })
 }
 
@@ -160,7 +155,7 @@ export async function followupByAccessToken(
   const followup: Followup | null = await Followups.findOne({
     accessToken,
   })
-  if (!followup) return res.sendStatus(404)
+  if (!followup) return res.sendStatus(ErrorStatus.NotFound)
   req.followup = followup
   next()
 }
@@ -216,7 +211,7 @@ async function getRedirectUrl(req: Request) {
     case SurveyType.TousABordNotification:
       return "https://www.tadao.fr/713-Demandeur-d-emploi.html"
     default:
-      throw new Error(`Unknown survey type: ${surveyType}`)
+      throw new Error(`${ErrorType.UnknownSurveyType} : ${surveyType}`)
   }
 }
 
@@ -228,6 +223,6 @@ export async function logSurveyLinkClick(req: Request, res: Response) {
   } catch (error) {
     Sentry.captureException(error)
     console.error("error", error)
-    return res.sendStatus(404)
+    return res.sendStatus(ErrorStatus.NotFound)
   }
 }

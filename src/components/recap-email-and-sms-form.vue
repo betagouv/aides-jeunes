@@ -82,10 +82,7 @@ const sendRecap = async (surveyOptin) => {
       )
     }
   } catch (error) {
-    if (
-      !error?.response?.data ||
-      !error?.response?.data.includes("wrongPhoneNumber")
-    ) {
+    if (!error?.response?.data?.includes("Invalid")) {
       console.error(error)
       Sentry.captureException(error)
     }
@@ -147,10 +144,7 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
   } catch (error) {
-    if (
-      error?.response?.data &&
-      error?.response?.data.includes("wrongPhoneNumber")
-    ) {
+    if (error?.response?.data?.includes("Numéro de téléphone invalide")) {
       store.setFormRecapState("wrongPhoneNumber")
     } else {
       Sentry.captureException(error)
@@ -224,6 +218,10 @@ const ctaText = ref(computeCtaText())
       faire le point sur les démarches que vous avez faites et les blocages que
       vous avez rencontrés.
     </p>
+    <p
+      >Vous pouvez saisir uniquement votre adresse e-mail pour être sur de
+      recevoir le recapitulatif.</p
+    >
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"

@@ -22,7 +22,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
       type: String,
       validate: {
         validator: validator.isMobilePhone,
-        message: "wrongPhoneNumber",
+        message: "Numéro de téléphone invalide",
         isAsync: false,
       },
     },

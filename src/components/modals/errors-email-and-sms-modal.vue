@@ -18,12 +18,7 @@ const recapEmailState = computed(() => store.recapEmailState)
         "
         class="fr-alert fr-alert--error"
       >
-        <p v-if="recapPhoneState === 'wrongPhoneNumber'">
-          Le numéro de téléphone est invalide. Nous vous recommandons de
-          vérifier votre numéro de téléphone ou de saisir uniquement votre
-          adresse e-mail.
-        </p>
-        <p v-else>
+        <p>
           Une erreur s'est produite dans l'envoi par
           {{
             recapPhoneState === "error" && recapEmailState === "error"

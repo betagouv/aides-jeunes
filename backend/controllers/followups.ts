@@ -61,8 +61,8 @@ export async function persist(req: Request, res: Response) {
         email,
         phone
       )
-      if (phone) await sendSimulationResultsSms(followup)
       if (email) await sendSimulationResultsEmail(followup)
+      if (phone) await sendSimulationResultsSms(followup)
       return res.send({ result: "OK" })
     }
 

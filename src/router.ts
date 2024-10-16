@@ -358,7 +358,7 @@ router.beforeEach((to, from, next) => {
 
   if (current.includes(enfantPath)) {
     const id_enfant = current.split(enfantPath)[1].split("/")[0]
-    const hasStoreChild = store.situation.enfants.find(
+    const hasStoreChild = store.situation.enfants?.some(
       (enfant) => enfant.id === `enfant_${id_enfant}`
     )
 

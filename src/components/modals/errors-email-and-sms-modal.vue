@@ -32,7 +32,7 @@ const recapEmailState = computed(() => store.recapEmailState)
         <p>
           Une erreur s'est produite dans l'envoi du récapitulatif par SMS :
           l'adresse de destination est invalide. Veuillez réessayer avec un
-          numéro valide ou utiliser l'envoi par email.
+          numéro valide ou utiliser l'envoi par email seulement.
         </p>
       </div>
       <div

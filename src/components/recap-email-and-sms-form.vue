@@ -215,13 +215,8 @@ const ctaText = ref(computeCtaText())
   <div class="fr-modal__content">
     <p>
       Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
-      faire le point sur les démarches que vous avez faites et les blocages que
-      vous avez rencontrés.
+      faire le point sur vos démarches et sur les blocages rencontrés.
     </p>
-    <p
-      >Vous pouvez saisir uniquement votre adresse e-mail pour être sur de
-      recevoir le recapitulatif.</p
-    >
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
@@ -251,6 +246,10 @@ const ctaText = ref(computeCtaText())
         >Une adresse email valide doit être indiquée.
       </WarningMessage>
     </form>
+    <p
+      >Vous pouvez saisir uniquement l'adresse e-mail pour recevoir le
+      récapitulatif.</p
+    >
     <form
       v-if="showSms"
       class="fr-form fr-my-2w"

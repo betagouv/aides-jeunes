@@ -108,7 +108,8 @@ export async function sendSimulationResultsSms(
     if (!error?.message?.includes("Invalid destination address")) {
       Sentry.captureException(error)
     }
-    followup.smsError = JSON.stringify(error, null, 2)
+    followup.smsError = error?.message
+    await followup.save()
     throw error
   }
 }

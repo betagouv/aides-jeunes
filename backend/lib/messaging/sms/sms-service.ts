@@ -1,10 +1,14 @@
 import axios from "axios"
 import config from "../../../config/index.js"
-import { phoneNumberFormatting } from "./../../../../lib/phone-number.js"
+import {
+  phoneNumberFormatting,
+  phoneNumberValidation,
+} from "./../../../../lib/phone-number.js"
 import { SmsType } from "../../../../lib/enums/messaging.js"
 import { Followup } from "../../../../lib/types/followup.js"
 import { Survey } from "../../../../lib/types/survey.d.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
+import { ErrorType } from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
 import Sentry from "@sentry/node"
 
@@ -69,7 +73,16 @@ export async function sendSimulationResultsSms(
 ): Promise<Followup> {
   try {
     if (!followup.phone) {
-      throw new Error("Missing followup phone")
+      throw new Error(ErrorType.MissingFollowupPhone)
+    }
+
+    if (
+      !phoneNumberValidation(
+        followup.phone,
+        config.smsService.internationalDiallingCodes
+      )
+    ) {
+      throw new Error(ErrorType.UnsupportedPhoneNumberFormat)
     }
 
     const { username, password } = await getSMSConfig()
@@ -90,10 +103,14 @@ export async function sendSimulationResultsSms(
     followup.smsSentAt = dayjs().toDate()
     followup.smsMessageId = data.messageIds[0]
     return await followup.save()
-  } catch (err) {
-    Sentry.captureException(err)
-    followup.smsError = JSON.stringify(err, null, 2)
-    throw err
+  } catch (error: any) {
+    // Avoid sending invalid destination address error to sentry
+    if (!error?.message?.includes("Invalid destination address")) {
+      Sentry.captureException(error)
+    }
+    followup.smsError = error?.message
+    await followup.save()
+    throw error
   }
 }
 

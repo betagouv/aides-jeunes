@@ -81,9 +81,12 @@ const sendRecap = async (surveyOptin) => {
         ABTestingService.getValues().CTA_EmailRecontact
       )
     }
-  } catch (error) {
-    console.error(error)
-    Sentry.captureException(error)
+  } catch (error: any) {
+    if (!error?.response?.data?.includes("Invalid destination address")) {
+      Sentry.captureException(error)
+    } else {
+      store.setFormRecapPhoneState("invalid-address")
+    }
   }
 }
 
@@ -181,7 +184,6 @@ const sendRecapByEmail = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value)
   } catch (error) {
-    Sentry.captureException(error)
     store.setFormRecapEmailState("error")
     throw error
   }

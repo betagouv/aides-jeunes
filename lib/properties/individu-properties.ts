@@ -409,7 +409,11 @@ export default {
       )} reconnu ou reconnue inapte au travail ?`
     },
     moreInfo:
-      "Vous pouvez être « inapte au travail » après un accident ou une maladie. C'est le médecin du travail qui détermine cela.",
+      "L’inaptitude médicale au travail peut être <b>prononcée par le médecin du travail</b> lorsque l’état de santé \
+      (physique ou mentale) du salarié est devenu incompatible avec le poste qu’il occupe. <br/><br/>\
+      Qu’elle soit <b>totale ou temporaire</b>, il est suggéré de répondre par  <b>Oui</b> à \
+      la question sur l’inaptitude au travail lors de votre simulation.<br/><br/>\
+      Plus d'informations sur <a target='_blank' title='Inaptitude au travail - Nouvelle fenêtre' rel='noopener' href='https://travail-emploi.gouv.fr/la-reconnaissance-de-linaptitude-medicale-au-travail-et-ses-consequences'>l’inaptitude au travail en cliquant ici.</a>",
   }),
 
   mention_baccalaureat: new EnumProperty({

@@ -7,7 +7,7 @@
         <div class="fr-grid-row">
           <div class="fr-col-12">
             <label class="fr-label" for="cp-input"
-              >Filtrer par code postal :</label
+              >Filtrer par code postal ou mot-clés :</label
             >
           </div>
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
@@ -83,9 +83,11 @@ import institutionsBenefits from "generator:institutions"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize } from "@lib/utils.js"
+import { Benefit } from "@data/types/benefits"
 
 const zipCode = ref("")
 const selectedCommune = ref<Commune | null>()
+const selectedBenefits = ref<Benefit | null>()
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
   national: "Aides nationales",
@@ -97,7 +99,18 @@ const types = {
   commune: "Aides communales",
   autre: "Autres aides",
 }
-
+const filterByBenefit = (type) => {
+  return institutionsBenefits[type]
+    .map((item) => {
+      const filteredBenefits = item.benefits.filter((benefit) =>
+        benefit.label.toLowerCase().includes(selectedBenefits.value)
+      )
+      if (filteredBenefits.length > 0) {
+        return { ...item, benefits: filteredBenefits } // Keep only the matching benefits
+      }
+    })
+    .filter((item) => item) // Remove entities with no matching benefits
+}
 const institutionsGroups = computed(() => {
   if (selectedCommune.value) {
     return {
@@ -123,6 +136,17 @@ const institutionsGroups = computed(() => {
       ),
     }
   }
+  if (selectedBenefits.value) {
+    return {
+      national: filterByBenefit("national"),
+      region: filterByBenefit("region"),
+      departement: filterByBenefit("departement"),
+      epci: filterByBenefit("epci"),
+      commune: filterByBenefit("commune"),
+      caf: filterByBenefit("caf"),
+      msa: filterByBenefit("msa"),
+    }
+  }
   return institutionsBenefits
 })
 async function computeDataSelected() {
@@ -131,6 +155,7 @@ async function computeDataSelected() {
     selectedCommune.value = res[0]
   } else {
     selectedCommune.value = null
+    selectedBenefits.value = zipCode.value.toLowerCase()
   }
 }
 watch(zipCode, (newZipCode: string) => {

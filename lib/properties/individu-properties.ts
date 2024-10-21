@@ -411,9 +411,10 @@ export default {
     moreInfo:
       "L’inaptitude médicale au travail peut être <b>prononcée par le médecin du travail</b> lorsque l’état de santé \
       (physique ou mentale) du salarié est devenu incompatible avec le poste qu’il occupe. <br/><br/>\
-      Qu’elle soit <b>totale ou temporaire</b>, il est suggéré de répondre par  <b>Oui</b> à \
+      Qu’elle soit <b>partielle, totale ou temporaire</b>, il est suggéré de répondre par  <b>Oui</b> à \
       la question sur l’inaptitude au travail lors de votre simulation.<br/><br/>\
       Plus d'informations sur <a target='_blank' title='Inaptitude au travail - Nouvelle fenêtre' rel='noopener' href='https://travail-emploi.gouv.fr/la-reconnaissance-de-linaptitude-medicale-au-travail-et-ses-consequences'>l’inaptitude au travail en cliquant ici.</a>",
+    help: "L'inaptitude médicale au travail résultant d'une maladie ou d'un accident peut être partielle, totale ou temporaire.",
   }),
 
   mention_baccalaureat: new EnumProperty({

@@ -7,7 +7,7 @@
         <div class="fr-grid-row">
           <div class="fr-col-12">
             <label class="fr-label" for="cp-input"
-              >Filtrer par code postal ou mot-clés :</label
+              >Filtrer par code postal ou mots-clés :</label
             >
           </div>
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
@@ -83,11 +83,10 @@ import institutionsBenefits from "generator:institutions"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize } from "@lib/utils.js"
-import { Benefit } from "@data/types/benefits"
 
 const zipCode = ref("")
 const selectedCommune = ref<Commune | null>()
-const selectedBenefits = ref<Benefit | null>()
+const searchTerms = ref<string | null>()
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
   national: "Aides nationales",
@@ -103,7 +102,7 @@ const filterByBenefit = (type) => {
   return institutionsBenefits[type]
     .map((item) => {
       const filteredBenefits = item.benefits.filter((benefit) =>
-        benefit.label.toLowerCase().includes(selectedBenefits.value)
+        benefit.label.toLowerCase().includes(searchTerms.value)
       )
       if (filteredBenefits.length > 0) {
         return { ...item, benefits: filteredBenefits } // Keep only the matching benefits
@@ -136,16 +135,10 @@ const institutionsGroups = computed(() => {
       ),
     }
   }
-  if (selectedBenefits.value) {
-    return {
-      national: filterByBenefit("national"),
-      region: filterByBenefit("region"),
-      departement: filterByBenefit("departement"),
-      epci: filterByBenefit("epci"),
-      commune: filterByBenefit("commune"),
-      caf: filterByBenefit("caf"),
-      msa: filterByBenefit("msa"),
-    }
+  if (searchTerms.value) {
+    return Object.fromEntries(
+      Object.keys(types).map((type) => [type, filterByBenefit(type)])
+    )
   }
   return institutionsBenefits
 })
@@ -155,11 +148,11 @@ async function computeDataSelected() {
     selectedCommune.value = res[0]
   } else {
     selectedCommune.value = null
-    selectedBenefits.value = zipCode.value.toLowerCase()
+    searchTerms.value = zipCode.value.toLowerCase()
   }
 }
 watch(zipCode, (newZipCode: string) => {
-  if ([0, 5].includes(newZipCode.length)) {
+  if ([0, 3].includes(newZipCode.length)) {
     computeDataSelected()
   }
 })

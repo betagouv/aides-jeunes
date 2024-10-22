@@ -152,7 +152,7 @@ async function computeDataSelected() {
   }
 }
 watch(zipCode, (newZipCode: string) => {
-  if ([0, 3].includes(newZipCode.length)) {
+  if (newZipCode.length > 2) {
     computeDataSelected()
   }
 })

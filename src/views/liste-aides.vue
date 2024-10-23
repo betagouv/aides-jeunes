@@ -1,12 +1,15 @@
 <template>
   <article class="fr-article">
     <h1>Toutes les aides</h1>
-    <router-link
+    <BackButton
+      size="small"
+      data-testid="benefits-liste-back-button"
+      class="fr-mb-2w"
+      as-link
       to="/"
-      class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-btn--sm fr-mb-2w"
     >
       Retour à l'accueil
-    </router-link>
+    </BackButton>
     <div>
       <p class="fr-badge fr-mb-2w">Total : {{ benefitsCount }} aides</p>
     </div>

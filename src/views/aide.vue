@@ -1,11 +1,9 @@
 <template>
   <article class="fr-article">
     <h1>Détail de l'aide</h1>
-    <router-link
-      to="/aides"
-      class="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line fr-mb-2w"
-      >Retour à la liste des aides</router-link
-    >
+    <BackButton to="/aides" size="small" as-link class="fr-mb-2w">
+      Retour à la liste des aides
+    </BackButton>
     <DroitsDetails
       :droit="benefit"
       :droits="[benefit]"
@@ -22,6 +20,7 @@ import { useRoute } from "vue-router"
 import { getBenefit } from "@/lib/benefits.js"
 import DroitsDetails from "@/components/droits-details.vue"
 import DroitsContributions from "@/components/droits-contributions.vue"
+import BackButton from "@/components/buttons/back-button.vue"
 
 const route = useRoute()
 const benefitId = route.params.benefitId as string

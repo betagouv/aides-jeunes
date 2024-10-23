@@ -1,32 +1,62 @@
 <template>
   <article class="fr-article">
     <h1>Toutes les aides</h1>
-    <p>Total: {{ benefitsCount }} aides</p>
-    <div class="fr-form-group">
-      <div class="fr-container fr-px-0">
-        <div class="fr-grid-row">
-          <div class="fr-col-12">
-            <label class="fr-label" for="cp-input"
-              >Filtrer par code postal ou mots-clés :</label
-            >
-          </div>
-          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
-            <input
-              id="cp-input"
-              v-model="zipCode"
-              type="text"
-              class="fr-input"
-              @keyup.enter="computeDataSelected"
-            />
-          </div>
-          <div v-if="selectedCommune" class="fr-col-12">
-            <p class="fr-text--bold fr-mt-2w"
-              >{{ countFilteredBenefits() }} aides disponibles pour la commune
-              de {{ selectedCommune.nom }}</p
-            >
-          </div>
+    <div>
+      <p class="fr-badge fr-mb-2w">Total : {{ benefitsCount }} aides</p>
+    </div>
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12 fr-col-md-6">
+        <div class="fr-form-group">
+          <label class="fr-label" for="zipcode-input"
+            >Filtrer par code postal :</label
+          >
+          <input
+            id="zipcode-input"
+            v-model="zipCode"
+            type="text"
+            class="fr-input"
+            placeholder="Ex: 75001"
+            maxlength="5"
+            @input="computeZipCode"
+          />
         </div>
       </div>
+      <div class="fr-col-12 fr-col-md-6">
+        <div class="fr-form-group">
+          <label class="fr-label" for="keyword-input"
+            >Rechercher par mots-clés :</label
+          >
+          <input
+            id="keyword-input"
+            v-model="searchTerms"
+            type="text"
+            class="fr-input"
+            placeholder="Ex: logement, vélo, bafa"
+            @input="computeKeywords"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-if="selectedCommune || searchTerms"
+      class="fr-alert fr-mt-3w"
+      :class="alertClass"
+    >
+      <p v-if="countFilteredBenefits() > 0">
+        {{ countFilteredBenefits() }} aides disponibles
+        <span v-if="selectedCommune">
+          pour la commune de {{ selectedCommune.nom }}
+        </span>
+        <span v-else-if="searchTerms">
+          pour la recherche "{{ searchTerms }}"
+        </span>
+      </p>
+      <p v-else>
+        Aucune aide trouvée
+        <span v-if="selectedCommune"> pour le code postal {{ zipCode }} </span>
+        <span v-else-if="searchTerms"> pour "{{ searchTerms }}" </span>
+      </p>
     </div>
 
     <div v-for="(institutions, type) in institutionsGroups" :key="type">
@@ -84,9 +114,9 @@ import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize } from "@lib/utils.js"
 
-const zipCode = ref("")
-const selectedCommune = ref<Commune | null>()
-const searchTerms = ref<string | null>()
+const zipCode = ref<string | null>(null)
+const selectedCommune = ref<Commune | null>(null)
+const searchTerms = ref<string | null>(null)
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
   national: "Aides nationales",
@@ -142,18 +172,31 @@ const institutionsGroups = computed(() => {
   }
   return institutionsBenefits
 })
-async function computeDataSelected() {
-  if (zipCode.value.match(/^[0-9]{5}$/)) {
+
+async function computeZipCode() {
+  if (zipCode.value && zipCode.value.length > 2) {
     const res = await CommuneMethods.get(zipCode.value)
     selectedCommune.value = res[0]
-  } else {
-    selectedCommune.value = null
-    searchTerms.value = zipCode.value.toLowerCase()
   }
 }
-watch(zipCode, (newZipCode: string) => {
-  if (newZipCode.length > 2) {
-    computeDataSelected()
+
+async function computeKeywords() {
+  if (searchTerms.value && searchTerms.value.length > 2) {
+    const res = await CommuneMethods.get(searchTerms.value)
+    selectedCommune.value = res[0]
+  }
+}
+
+watch(zipCode, (newZipCode: string | null) => {
+  if (newZipCode && newZipCode.length > 2) {
+    computeZipCode()
+    searchTerms.value = null
+  }
+})
+watch(searchTerms, (newSearchTerms: string | null) => {
+  if (newSearchTerms && newSearchTerms.length > 2) {
+    computeKeywords()
+    zipCode.value = null
   }
 })
 function countFilteredBenefits(): number {
@@ -168,4 +211,8 @@ function countFilteredBenefits(): number {
     )
   }, 0)
 }
+
+const alertClass = computed(() =>
+  countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
+)
 </script>

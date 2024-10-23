@@ -82,10 +82,13 @@ export async function persist(req: Request, res: Response) {
       return createSimulationRecapUrl(req, res)
     }
   } catch (error: any) {
-    Sentry.captureException(error)
     if (error.name === "ValidationError") {
+      if (!error.message || !error.message?.includes("wrongPhoneNumber")) {
+        Sentry.captureException(error)
+      }
       return res.status(403).send(error.message)
     } else {
+      Sentry.captureException(error)
       return res.status(500).send(`Error while persisting followup`)
     }
   }

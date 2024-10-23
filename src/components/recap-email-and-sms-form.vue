@@ -82,8 +82,10 @@ const sendRecap = async (surveyOptin) => {
       )
     }
   } catch (error) {
-    console.error(error)
-    Sentry.captureException(error)
+    if (!error?.response?.data?.includes("Invalid")) {
+      console.error(error)
+      Sentry.captureException(error)
+    }
   }
 }
 
@@ -142,10 +144,15 @@ const sendRecapByEmailAndSms = async (surveyOptin) => {
     store.setModalState(undefined)
     await postFollowup(surveyOptin, emailValue.value, phoneValue.value)
   } catch (error) {
-    Sentry.captureException(error)
-    store.setFormRecapState("error")
+    if (error?.response?.data?.includes("Numéro de téléphone invalide")) {
+      store.setFormRecapState("wrongPhoneNumber")
+    } else {
+      Sentry.captureException(error)
+      store.setFormRecapState("error")
+    }
     throw error
   }
+
   store.setFormRecapState("ok")
   phoneValue.value = undefined
   emailValue.value = undefined
@@ -166,6 +173,7 @@ const sendRecapBySms = async (surveyOptin) => {
     store.setFormRecapPhoneState("error")
     throw error
   }
+
   store.setFormRecapPhoneState("ok")
   phoneValue.value = undefined
 }
@@ -207,8 +215,7 @@ const ctaText = ref(computeCtaText())
   <div class="fr-modal__content">
     <p>
       Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
-      faire le point sur les démarches que vous avez faites et les blocages que
-      vous avez rencontrés.
+      faire le point sur vos démarches et sur les blocages rencontrés.
     </p>
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
@@ -239,6 +246,10 @@ const ctaText = ref(computeCtaText())
         >Une adresse email valide doit être indiquée.
       </WarningMessage>
     </form>
+    <p
+      >Vous pouvez saisir uniquement l'adresse e-mail pour recevoir le
+      récapitulatif.</p
+    >
     <form
       v-if="showSms"
       class="fr-form fr-my-2w"

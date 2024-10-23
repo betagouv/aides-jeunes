@@ -1,6 +1,12 @@
 <template>
   <article class="fr-article">
     <h1>Toutes les aides</h1>
+    <router-link
+      to="/"
+      class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-btn--sm fr-mb-2w"
+    >
+      Retour à l'accueil
+    </router-link>
     <p>Total: {{ benefitsCount }} aides</p>
     <div class="fr-form-group">
       <div class="fr-container fr-px-0">
@@ -83,6 +89,7 @@ import institutionsBenefits from "generator:institutions"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize } from "@lib/utils.js"
+import BackButton from "@/components/buttons/back-button.vue"
 
 const zipCode = ref("")
 const selectedCommune = ref<Commune | null>()

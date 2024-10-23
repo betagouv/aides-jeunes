@@ -7,7 +7,7 @@
         <div class="fr-grid-row">
           <div class="fr-col-12">
             <label class="fr-label" for="cp-input"
-              >Filtrer par code postal :</label
+              >Filtrer par code postal ou mots-clés :</label
             >
           </div>
           <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
@@ -86,6 +86,7 @@ import { capitalize } from "@lib/utils.js"
 
 const zipCode = ref("")
 const selectedCommune = ref<Commune | null>()
+const searchTerms = ref<string | null>()
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
   national: "Aides nationales",
@@ -97,7 +98,18 @@ const types = {
   commune: "Aides communales",
   autre: "Autres aides",
 }
-
+const filterByBenefit = (type) => {
+  return institutionsBenefits[type]
+    .map((item) => {
+      const filteredBenefits = item.benefits.filter((benefit) =>
+        benefit.label.toLowerCase().includes(searchTerms.value)
+      )
+      if (filteredBenefits.length > 0) {
+        return { ...item, benefits: filteredBenefits } // Keep only the matching benefits
+      }
+    })
+    .filter((item) => item) // Remove entities with no matching benefits
+}
 const institutionsGroups = computed(() => {
   if (selectedCommune.value) {
     return {
@@ -123,6 +135,11 @@ const institutionsGroups = computed(() => {
       ),
     }
   }
+  if (searchTerms.value) {
+    return Object.fromEntries(
+      Object.keys(types).map((type) => [type, filterByBenefit(type)])
+    )
+  }
   return institutionsBenefits
 })
 async function computeDataSelected() {
@@ -131,10 +148,11 @@ async function computeDataSelected() {
     selectedCommune.value = res[0]
   } else {
     selectedCommune.value = null
+    searchTerms.value = zipCode.value.toLowerCase()
   }
 }
 watch(zipCode, (newZipCode: string) => {
-  if ([0, 5].includes(newZipCode.length)) {
+  if (newZipCode.length > 2) {
     computeDataSelected()
   }
 })

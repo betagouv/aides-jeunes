@@ -1,12 +1,15 @@
+<!-- Documentation: https://github.com/betagouv/aides-jeunes/wiki/Composant-back%E2%80%90button.vue -->
 <template>
-  <button
+  <component
+    :is="asLink ? 'router-link' : 'button'"
     class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line"
-    :class="size && size === 'small' ? 'fr-btn--sm' : ''"
-    type="button"
-    @click.prevent="goBack"
+    :class="{ 'fr-btn--sm': size === 'small' }"
+    :type="asLink ? undefined : 'button'"
+    :to="asLink ? to : undefined"
+    @click="asLink ? undefined : goBack()"
   >
     <slot>Précédent</slot>
-  </button>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -24,6 +27,14 @@ const props = defineProps({
   fallback: {
     type: String,
     default: null,
+  },
+  asLink: {
+    type: Boolean,
+    default: false,
+  },
+  to: {
+    type: String,
+    default: "/",
   },
 })
 const route = useRoute()

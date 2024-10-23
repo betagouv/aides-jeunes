@@ -1,13 +1,11 @@
 <template>
-  <article>
-    <h1 class="fr-mt-7w fr-mx-2w">Détail de l'aide</h1>
-    <p>
-      <router-link
-        to="/aides"
-        class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line"
-        >Retour à la liste des aides</router-link
-      >
-    </p>
+  <article class="fr-article">
+    <h1>Détail de l'aide</h1>
+    <router-link
+      to="/aides"
+      class="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-arrow-left-line fr-mb-2w"
+      >Retour à la liste des aides</router-link
+    >
     <DroitsDetails
       :droit="benefit"
       :droits="[benefit]"

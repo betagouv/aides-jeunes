@@ -1,18 +1,20 @@
 label: FréquenciO' Jeunes
 institution: region_occitanie
 description: FréquenciO' Jeunes vous permet de bénéficier d’un nombre illimité
-  de déplacements en liO TER sur le trajet de votre choix en Occitanie.
+  de déplacements en liO Train sur le trajet de votre choix en Occitanie.
 prefix: l’aide
 conditions_generales:
   - type: age
     operator: <
-    value: 26
+    value: 18
   - type: regions
     values:
       - "76"
 profils: []
 conditions:
-  - Choisir un trajet fréquent entre deux gares d'Occitanie.
+  - Saisir votre gare de départ et d’arrivée parmi les gares du réseau.
+  - Renseigner votre date de début de validité et sélectionner le nombre de bénéficiaires.
+  - Procéder au paiement et retrouver directement votre abonnement dans votre compte.
 type: bool
 unit: €
 periodicite: autre

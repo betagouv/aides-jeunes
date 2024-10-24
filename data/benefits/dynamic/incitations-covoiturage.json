@@ -1334,7 +1334,7 @@
     "operateurs": "Karos, BlablaCarDaily ou Mobicoop",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2.25,
+    "conducteur_montant_min_par_passager": 2,
     "conducteur_montant_max_par_passager": 3.5,
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 5,

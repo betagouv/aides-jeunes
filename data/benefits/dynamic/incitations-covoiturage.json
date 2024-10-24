@@ -982,7 +982,7 @@
     "operateurs": "BlaBlaCarDaily, Karos ou Mobicoop.",
     "zone_sens_des_trajets": "et/ou",
     "conducteur_montant_max_par_mois": 84,
-    "conducteur_montant_min_par_passager": 1.5,
+    "conducteur_montant_min_par_passager": 1.25,
     "conducteur_montant_max_par_passager": 2.5,
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 5,

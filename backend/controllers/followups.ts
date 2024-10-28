@@ -221,7 +221,6 @@ export async function logSurveyLinkClick(req: Request, res: Response) {
     const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
   } catch (error) {
-    Sentry.captureException(error)
     return res.sendStatus(ErrorStatus.NotFound)
   }
 }

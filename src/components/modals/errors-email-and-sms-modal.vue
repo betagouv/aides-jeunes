@@ -26,6 +26,16 @@ const recapEmailState = computed(() => store.recapEmailState)
         </p>
       </div>
       <div
+        v-if="recapPhoneState === 'invalid-address'"
+        class="fr-alert fr-alert--error"
+      >
+        <p>
+          Une erreur s'est produite dans l'envoi du récapitulatif par SMS :
+          l'adresse de destination est invalide. Veuillez réessayer avec un
+          numéro valide ou utiliser l'envoi par email seulement.
+        </p>
+      </div>
+      <div
         v-if="recapPhoneState === 'ok' && recapEmailState === 'ok'"
         class="fr-alert fr-alert--success"
       >

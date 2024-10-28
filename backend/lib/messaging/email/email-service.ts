@@ -7,13 +7,14 @@ import { EmailType } from "../../../../lib/enums/messaging.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
 import { Survey } from "../../../../lib/types/survey.js"
 import { Followup } from "../../../../lib/types/followup.js"
+import { ErrorType } from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
 
 export async function sendSimulationResultsEmail(
   followup: Followup
 ): Promise<Followup> {
   if (!followup.email) {
-    throw new Error("Missing followup email")
+    throw new Error(ErrorType.MissingFollowupEmail)
   }
   const render: any = await emailRender(EmailType.SimulationResults, followup)
   const sendEmailSmtpResponse = await sendEmailSmtp({

@@ -47,13 +47,8 @@ if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
     app,
     dsn: process.env.VITE_SENTRY_FRONTEND_DSN,
     environment: process.env.VITE_CONTEXT,
-    integrations: [
-      Sentry.browserTracingIntegration({ router }),
-      Sentry.replayIntegration(),
-    ],
+    integrations: [Sentry.browserTracingIntegration({ router })],
     tracesSampleRate: 0.1,
-    replaysSessionSampleRate: 0.1,
-    replaysOnErrorSampleRate: 1.0,
     debug: "development" === process.env.VITE_CONTEXT,
   })
 }

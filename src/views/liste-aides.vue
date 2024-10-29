@@ -40,7 +40,7 @@
             v-model="searchTerms"
             type="text"
             class="fr-input"
-            placeholder="Ex: logement, vélo, bafa"
+            placeholder="Ex: logement, vélo, bafa, allocations"
             @input="computeKeywords"
           />
         </div>

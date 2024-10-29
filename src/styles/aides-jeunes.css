@@ -687,3 +687,30 @@ textarea {
     max-height: 40px;
   }
 }
+
+.aj-home-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.aj-home-step {
+  display: flex;
+  gap: 1rem;
+}
+
+.aj-home-step__number {
+  background: var(--background-action-high-blue-france);
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aj-home-step__description {
+  color: var(--text-mention-grey);
+}

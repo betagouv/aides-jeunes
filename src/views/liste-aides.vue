@@ -141,8 +141,12 @@ const types = {
 const filterByBenefit = (type) => {
   return institutionsBenefits[type]
     .map((item) => {
-      const filteredBenefits = item.benefits.filter((benefit) =>
-        benefit.label.toLowerCase().includes(searchTerms.value)
+      const filteredBenefits = item.benefits.filter(
+        (benefit) =>
+          benefit.label
+            .toLowerCase()
+            .includes(searchTerms.value.toLowerCase()) ||
+          item.label.toLowerCase().includes(searchTerms.value.toLowerCase())
       )
       if (filteredBenefits.length > 0) {
         return { ...item, benefits: filteredBenefits } // Keep only the matching benefits

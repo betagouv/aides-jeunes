@@ -235,7 +235,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_pas_de_calais: {
     label: "du département du Pas-de-Calais",
-    link: "https://www.pasdecalais.fr/laide-financiere-fonds-solidarite-logement-volet-maintien",
+    link: "https://www.pasdecalais.fr/le-fonds-de-solidarite-logement",
   },
   departement_puy_de_dome: {
     label: "du département du Puy-de-Dôme",

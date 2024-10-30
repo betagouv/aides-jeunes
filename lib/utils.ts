@@ -80,6 +80,15 @@ export function daysSinceDate(pastDate: Date) {
   return Math.floor((Date.now() - pastDate.getTime()) / 1000 / 3600 / 24)
 }
 
+export const normalizeString = (str: string): string => {
+  if (!str) return ""
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+}
+
 export const capitalize = (str) =>
   str?.length ? str.charAt(0).toUpperCase() + str.slice(1) : ""
 export const uncapitalize = (str) =>

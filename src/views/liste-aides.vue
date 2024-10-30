@@ -40,7 +40,7 @@
             v-model="searchTerms"
             type="text"
             class="fr-input"
-            placeholder="Ex: logement, vélo, bafa, allocations"
+            placeholder="Ex: logement, vélo, bafa, allocation"
             @input="computeKeywords"
           />
         </div>
@@ -121,7 +121,7 @@ import { ref, computed, watch } from "vue"
 import institutionsBenefits from "generator:institutions"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
-import { capitalize } from "@lib/utils.js"
+import { capitalize, normalizeString } from "@lib/utils.js"
 import BackButton from "@/components/buttons/back-button.vue"
 
 const zipCode = ref<string | null>(null)
@@ -138,18 +138,16 @@ const types = {
   commune: "Aides communales",
   autre: "Autres aides",
 }
-const filterByBenefit = (type) => {
+const filterByBenefit = (type, searchTermsLower) => {
   return institutionsBenefits[type]
-    .map((item) => {
-      const filteredBenefits = item.benefits.filter(
+    .map((institution) => {
+      const filteredBenefits = institution.benefits.filter(
         (benefit) =>
-          benefit.label
-            .toLowerCase()
-            .includes(searchTerms.value.toLowerCase()) ||
-          item.label.toLowerCase().includes(searchTerms.value.toLowerCase())
+          normalizeString(benefit.label).includes(searchTermsLower) ||
+          normalizeString(institution.label).includes(searchTermsLower)
       )
       if (filteredBenefits.length > 0) {
-        return { ...item, benefits: filteredBenefits } // Keep only the matching benefits
+        return { ...institution, benefits: filteredBenefits } // Keep only the matching benefits
       }
     })
     .filter((item) => item) // Remove entities with no matching benefits
@@ -180,8 +178,12 @@ const institutionsGroups = computed(() => {
     }
   }
   if (searchTerms.value) {
+    const searchTermsLower = normalizeString(searchTerms.value || "")
     return Object.fromEntries(
-      Object.keys(types).map((type) => [type, filterByBenefit(type)])
+      Object.keys(types).map((type) => [
+        type,
+        filterByBenefit(type, searchTermsLower),
+      ])
     )
   }
   return institutionsBenefits

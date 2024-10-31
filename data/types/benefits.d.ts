@@ -19,18 +19,9 @@ export interface Benefit {
 
 export interface VeloBenefit extends Aide {
   id: string
-  url?: string
-  collectivity: {
-    kind: string
-    value: string
-    code?: string
-  }
   institution?: string
-
   discard?: boolean
-
   source?: string
-
   link?: string
   external_id?: string
   type?: string

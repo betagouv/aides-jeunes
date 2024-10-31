@@ -27,7 +27,16 @@ describe("computeAidesVeloBenefits", function () {
       },
     }
     const results = []
-    computeAidesVeloBenefits(benefits, results, situation, openFiscaResponse)
+    computeAidesVeloBenefits(
+      // FIXME: benefits is expected to be an array of StandardBenefit,
+      // but for testing purposes it only contains the external_id property.
+      // Should implement a mock for StandardBenefit.
+      // @ts-ignore
+      benefits,
+      results,
+      situation,
+      openFiscaResponse
+    )
 
     expect(results.length).toBe(1)
   })

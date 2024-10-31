@@ -2,7 +2,7 @@ import { AidesVeloEngine, Questions } from "@betagouv/aides-velo"
 import { datesGenerator } from "../dates.js"
 import { Velo } from "../enums/velo.js"
 import { Situation } from "@lib/types/situations.js"
-import { StandardBenefit } from "@data/types/benefits.js"
+import { StandardBenefit, VeloBenefit } from "@data/types/benefits.js"
 import IndividuMethods from "@lib/individu.js"
 import { Activite } from "@lib/enums/activite.js"
 
@@ -22,7 +22,7 @@ const veloTypes: Record<Velo, Questions["vélo . type"]> = {
  */
 export const aidesVeloEngine = new AidesVeloEngine()
 
-function canComputeAidesVeloBenefits(situation) {
+function canComputeAidesVeloBenefits(situation: Situation): boolean {
   return [
     situation.menage.depcom,
     situation.menage._departement,
@@ -45,7 +45,7 @@ export function computeAidesVeloBenefits(
 
   const eligibleBenefitsMap = {}
   for (const type of situation.demandeur._interetsAidesVelo ?? []) {
-    let inputs: Questions = {
+    const inputs: Questions = {
       "vélo . type": veloTypes[type],
       "localisation . code insee": situation.menage.depcom,
       "localisation . epci": situation.menage._epci,
@@ -61,7 +61,7 @@ export function computeAidesVeloBenefits(
 
     Object.assign(
       eligibleBenefitsMap,
-      engine
+      aidesVeloEngine
         .shallowCopy()
         .setInputs(inputs)
         .computeAides()

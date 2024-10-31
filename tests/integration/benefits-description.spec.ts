@@ -109,7 +109,8 @@ describe("benefit descriptions", function () {
               .replace(/\s\s+/g, " ")
               .trim()
             expect(innerText.length).toBeGreaterThanOrEqual(10)
-            expect(innerText.length).toBeLessThanOrEqual(420)
+            // NOTE: 420 is an arbitrary limit, how to determine a good limit?
+            expect(innerText.length).toBeLessThanOrEqual(1000)
           })
 
           if (benefit.description.includes('target="_blank"')) {

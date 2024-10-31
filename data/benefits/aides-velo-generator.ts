@@ -1,7 +1,7 @@
-import aidesVelo from "aides-velo"
+import { aidesVeloEngine } from "@lib/benefits/compute-aides-velo.js"
 import { VeloBenefit } from "../../data/types/benefits.d.js"
 import { Institution } from "../../data/types/institutions.d.js"
-const benefits = [...aidesVelo()]
+const benefits = [aidesVeloEngine.getAllAidesIn()]
 
 function generate_benefit_list(institutions: Institution[]): VeloBenefit[] {
   const potentialInstitutions = {

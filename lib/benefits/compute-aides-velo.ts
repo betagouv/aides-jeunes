@@ -2,7 +2,7 @@ import { AidesVeloEngine, Questions } from "@betagouv/aides-velo"
 import { datesGenerator } from "../dates.js"
 import { Velo } from "../enums/velo.js"
 import { Situation } from "@lib/types/situations.js"
-import { StandardBenefit, VeloBenefit } from "@data/types/benefits.js"
+import { StandardBenefit } from "@data/types/benefits.js"
 import IndividuMethods from "@lib/individu.js"
 import { Activite } from "@lib/enums/activite.js"
 

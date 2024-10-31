@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@etalab/decoupage-administratif": "^4.0.0",
-    "@betagouv/aides-velo": "^0.1.0-9",
+    "@betagouv/aides-velo": "^0.1.0-10",
     "@gouvfr/dsfr": "^1.12.1",
     "@sentry/node": "^7.118.0",
     "@sentry/profiling-node": "^7.118.0",

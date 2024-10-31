@@ -53,14 +53,14 @@
     "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
+    "@betagouv/aides-velo": "^0.1.0-9",
     "@etalab/decoupage-administratif": "^3.0.0",
     "@gouvfr/dsfr": "^1.12.1",
     "@sentry/node": "^7.118.0",
-    "@sentry/vue": "^7.118.0",
     "@sentry/profiling-node": "^7.118.0",
+    "@sentry/vue": "^7.118.0",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-vue": "^4.1.0",
-    "aides-velo": "3.0.38",
     "axios": "^0.27.2",
     "communes-lonlat": "^1.1.0",
     "consolidate": "^0.16.0",

@@ -82,7 +82,8 @@ const sendRecap = async (surveyOptin) => {
       )
     }
   } catch (error: any) {
-    if (!error?.response?.data?.includes("Invalid destination address")) {
+    const errorMessage = error?.response?.data?.toString() || ""
+    if (!errorMessage.includes("Invalid destination address")) {
       Sentry.captureException(error)
     } else {
       store.setFormRecapPhoneState("invalid-address")

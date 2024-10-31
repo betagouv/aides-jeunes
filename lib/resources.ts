@@ -138,13 +138,11 @@ export const ressourceTypes: Resource[] = [
     category: "allocations",
     prefix: "l’",
     isRelevant: (situation: Situation, individu: Individu) => {
-      return (
-        55 <=
-        IndividuMethods.age(
-          individu,
-          datesGenerator(situation.dateDeValeur).today.value
-        )
+      const age = IndividuMethods.age(
+        individu,
+        datesGenerator(situation.dateDeValeur).today.value
       )
+      return age !== undefined && 55 <= age
     },
   },
   {
@@ -196,7 +194,9 @@ export const ressourceTypes: Resource[] = [
         datesGenerator(situation.dateDeValeur).today.value
       )
       return Boolean(
-        16 <= age && (age <= 25 || (individu.handicap && age < 30))
+        age !== undefined &&
+          16 <= age &&
+          (age <= 25 || (individu.handicap && age < 30))
       )
     },
   },

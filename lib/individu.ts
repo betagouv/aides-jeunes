@@ -84,8 +84,22 @@ function getById(individus, individuId: string) {
 }
 
 const IndividuMethods = {
-  age: function (individu: Individu, dateDeReference: string) {
-    return dayjs(dateDeReference).diff(individu.date_naissance, "year")
+  /**
+   * Returns the age of the individu at the date of reference.
+   *
+   * @param individu The individu to compute the age for.
+   * @param dateDeReference The date of reference to compute the age at.
+   *
+   * @returns The age of the individu at the date of reference or undefined
+   * if the individu has no date of birth.
+   */
+  age: function (
+    individu: Individu,
+    dateDeReference: string
+  ): number | undefined {
+    if (individu.date_naissance) {
+      return dayjs(dateDeReference).diff(individu.date_naissance, "year")
+    }
   },
 
   label: function (individu: Individu, type?: string) {

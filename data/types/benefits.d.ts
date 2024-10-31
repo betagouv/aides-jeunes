@@ -1,12 +1,13 @@
 import { Institution } from "./institutions.d.js"
+import { Aide } from "@betagouv/aides-velo"
 
 // extends "Aide" type defined in "aides-velo" package
-type Aide = {
-  title: string
-  description: string
-  url: string
-  amount?: number
-}
+// type Aide = {
+//   title: string
+//   description: string
+//   url: string
+//   amount?: number
+// }
 
 export interface Benefit {
   id: string

@@ -84,6 +84,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                 )
                 const jeune_actif =
                   subject.activite === Activite.Salarie &&
+                  age !== undefined &&
                   age <=
                     parameters[
                       "prestations_sociales.education.carte_des_metiers.age_maximal"
@@ -145,7 +146,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                return age <= 31
+                return age !== undefined && age <= 31
               },
               steps: [r("service_civique")],
             },
@@ -184,7 +185,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                return 8 < age && age <= 25
+                return age !== undefined && 8 < age && age <= 25
               },
               steps: [r("enfant_a_charge")],
             },
@@ -198,7 +199,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                return 2 <= age && age <= 25
+                return age !== undefined && 2 <= age && age <= 25
               },
               steps: [r("scolarite")],
             },
@@ -216,6 +217,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   .id
                 const enfant_a_charge = subject.enfant_a_charge?.[thisYear]
                 return (
+                  age !== undefined &&
                   20 <= age &&
                   age < 25 &&
                   ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
@@ -234,12 +236,13 @@ function individuBlockFactory(id, chapter?: ChapterName) {
       ...(demandeur
         ? [
             {
-              isActive: (subject, situation) =>
-                60 <=
-                IndividuMethods.age(
+              isActive: (subject, situation) => {
+                const age = IndividuMethods.age(
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
-                ),
+                )
+                return age !== undefined && 60 <= age
+              },
               steps: [r("gir")],
             },
           ]
@@ -252,7 +255,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                return age <= 25
+                return age !== undefined && age <= 25
               },
               steps: [r("regime_securite_sociale")],
             },
@@ -458,7 +461,7 @@ function housingBlock() {
           const proprietaire =
             situation.menage.statut_occupation_logement ===
             LogementCategory.Proprietaire
-          return age >= 18 && !proprietaire
+          return age !== undefined && age >= 18 && !proprietaire
         },
         steps: [
           new StepGenerator({

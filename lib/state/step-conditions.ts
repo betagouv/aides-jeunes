@@ -13,5 +13,5 @@ export function BCSAgeCondition(situation: Situation): boolean {
   const { demandeur, enfants, dateDeValeur } = situation
   const childrenRaisedNumber = enfants?.length || 0
   const individuAge = IndividuMethods.age(demandeur, dateDeValeur.toString())
-  return individuAge <= 28 + childrenRaisedNumber
+  return individuAge !== undefined && individuAge <= 28 + childrenRaisedNumber
 }

@@ -1,10 +1,10 @@
 import { AidesVeloEngine, Questions } from "@betagouv/aides-velo"
 import { datesGenerator } from "../dates.js"
 import { Velo } from "../enums/velo.js"
-import { Situation } from "@lib/types/situations.js"
+import { Situation } from "../types/situations.js"
+import IndividuMethods from "../individu.js"
+import { Activite } from "../enums/activite.js"
 import { StandardBenefit } from "@data/types/benefits.js"
-import IndividuMethods from "@lib/individu.js"
-import { Activite } from "@lib/enums/activite.js"
 
 const veloTypes: Record<Velo, Questions["vélo . type"]> = {
   [Velo.VeloMecanique]: "mécanique simple",

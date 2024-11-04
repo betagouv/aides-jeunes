@@ -639,6 +639,8 @@ export default {
         label: "Vélo cargo électrique",
       },
       { value: Velo.VeloPliant, label: "Vélo pliant" },
+      { value: Velo.VeloPliantElectrique, label: "Vélo pliant électrique" },
+      { value: Velo.VeloAdapte, label: "Vélo adapté pour PMR" },
       {
         value: Velo.VeloMotorisation,
         label: "Motorisation d'un vélo classique",

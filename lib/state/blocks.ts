@@ -198,7 +198,11 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   subject,
                   datesGenerator(situation.dateDeValeur).today.value
                 )
-                return 2 <= age && age <= 25
+                const active = 2 <= age && age <= 25
+                if (!active) {
+                  subject.scolarite = null
+                }
+                return active
               },
               steps: [r("scolarite")],
             },

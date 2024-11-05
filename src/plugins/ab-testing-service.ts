@@ -59,19 +59,6 @@ function getEnvironment() {
     ABTestingEnvironment.plans_to_ask_question.value ||
     (Math.random() > 0.5 ? "show" : "hidden")
 
-  const versions = ["version_actuelle", "version_test_1", "version_test_2"]
-  const ctaEmailRecontact = ABTestingEnvironment.CTA_EmailRecontact || {}
-  ctaEmailRecontact.index ||= 5
-  ctaEmailRecontact.value ||=
-    versions[Math.floor(Math.random() * versions.length)]
-  ABTestingEnvironment.CTA_EmailRecontact = ctaEmailRecontact
-
-  ABTestingEnvironment.Followup_SMS = ABTestingEnvironment.Followup_SMS || {}
-  ABTestingEnvironment.Followup_SMS.index = 2
-  ABTestingEnvironment.Followup_SMS.value =
-    ABTestingEnvironment.Followup_SMS.value ||
-    (Math.random() > 0.5 ? "show" : "hide")
-
   storageService.local.setItem("ABTesting", ABTestingEnvironment)
   return ABTestingEnvironment
 }

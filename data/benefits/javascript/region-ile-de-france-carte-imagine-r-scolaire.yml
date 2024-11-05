@@ -1,4 +1,4 @@
-label: carte Imagine R Scolaire
+label: carte imagine R Scolaire
 institution: region_ile_de_france
 description: Le forfait imagine R est un forfait annuel destiné aux personnes de
   moins de 26 ans résidant en Île-de-France. Il permet de voyager autant de fois
@@ -9,7 +9,7 @@ description: Le forfait imagine R est un forfait annuel destiné aux personnes d
   https://www.iledefrance-mobilites.fr/navigo-avantages-culture">avantages
   culture</a>.
 conditions:
-  - Acquérir la carte pour un montant annuel de 350€, payable en 9 mensualités.
+  - Acquérir la carte pour un montant annuel de 382,40 euros, payable en 9 mensualités.
 conditions_generales:
   - type: age
     operator: <=

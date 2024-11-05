@@ -1,0 +1,19 @@
+label: aide image R pour les lycéens et les lycéennes
+prefix: l’
+institution: region_ile_de_france
+description: Une aide de 100 euros est proposée aux 500 000 lycéens et lycéennes d’Île-de-France afin de financer leur forfait Navigo imagine R scolaire 2024-2025, dont le coût annuel s'élève à 382,40 euros. Cette aide de 100 euros s'ajoute aux aides départementales.
+conditions:
+  - Télécharger l'application mobile LABAZ disponible sur les stores et vous créer un compte.
+  - Remplir le formulaire de demande de l’aide imagine R.
+conditions_generales:
+  - type: regions
+    values:
+      - "11"
+profils:
+  - type: lyceen
+    conditions: []
+link: https://www.iledefrance.fr/toutes-les-actualites/appli-labaz-100-euros-pour-financer-le-navigo-imagine-r-des-lyceens
+type: float
+unit: €
+periodicite: autre
+montant: 100

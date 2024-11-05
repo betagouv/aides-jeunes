@@ -38,8 +38,6 @@ export enum EventAction {
   FormulaireAffiche = "Formulaire affiché",
   FormulaireEmailInvalide = "Invalid email form",
   FormulaireTelephoneInvalide = "Invalid phone form",
-  FormulaireValideAvecRecontact = "Formulaire validé avec recontact",
-  FormulaireValideSansRecontact = "Formulaire validé sans recontact",
   Instructions = CTALabel.Instructions,
   JeDonneMonAvis = "Je donne mon avis",
   Link = "link",

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import RecapEmailAndSmsForm from "@/components/recap-email-and-sms-form.vue"
 import { computed } from "vue"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const headerTitle = computed(() => {
-  return process.env.VITE_SHOW_SMS_TAB &&
-    ABTestingService.getValues().Followup_SMS === "show"
+  return process.env.VITE_SHOW_SMS_TAB
     ? "Recevoir les résultats par email/SMS"
     : "Recevoir les résultats par email"
 })

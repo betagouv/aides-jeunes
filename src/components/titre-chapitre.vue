@@ -65,10 +65,7 @@ export default {
       return this.resultsStore.shouldDisplayResults
     },
     showSMS() {
-      return (
-        process.env.VITE_SHOW_SMS_TAB &&
-        ABTestingService.getValues().Followup_SMS === "show"
-      )
+      return process.env.VITE_SHOW_SMS_TAB
     },
     title() {
       return this.getTitleByRoute(this.$route)

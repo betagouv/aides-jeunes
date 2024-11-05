@@ -7,7 +7,6 @@ import { useRouter } from "vue-router"
 import * as Sentry from "@sentry/vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategory, EventAction } from "@lib/enums/event.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()

@@ -3,17 +3,18 @@ institution: caf_nord
 description: La Caf vous propose un prêt sans intérêts pour l'achat d’un
   ordinateur, d'électroménager, d'équipement mobilier, de matériel de
   puériculture, ou d'un vélo pour vous ou pour votre enfant. Le prêt est
-  remboursable à raison de 28 € par mois sur les prestations Caf, pendant 36 mois.
+  remboursable à raison de 37,5 euros par mois pendant 40 mois.
 prefix: l’
 conditions_generales:
   - type: departements
     values:
       - "59"
   - type: quotient_familial
-    value: 700
+    value: 850
     operator: "<="
     period: month
-profils: []
+profils:
+  - type: parent
 conditions:
   - Faire partie d'un foyer ayant un enfant à naître ou au moins un enfant à
     charge de moins de 20 ans.
@@ -22,6 +23,6 @@ type: float
 unit: €
 periodicite: autre
 legend: maximum
-montant: 1000
-link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/logement/le-pret-caf-equipement-mobiliermenager#:~:text=Quel%20montant%20%3F,%C3%A0%20taux%20z%C3%A9ro%2C%20sans%20int%C3%A9r%C3%AAt.
+montant: 1500
+link: https://www.caf.fr/allocataires/caf-du-nord/offre-de-service/logement/le-pret-caf-equipement-mobiliermenager
 form: https://www.caf.fr/sites/default/files/medias/598/Documents/Pr%C3%AAt%20%C3%A9quipement/DEQUIP_2023.pdf

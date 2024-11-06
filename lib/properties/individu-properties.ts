@@ -60,10 +60,8 @@ export default {
       {
         value: Activite.Retraite,
         label: "Retraité ou retraitée",
-        isRelevant: ({ individu, periods }) => {
-          const age = IndividuMethods.age(individu, periods.today.value)
-          return age !== undefined && age > 30
-        },
+        isRelevant: ({ individu, periods }) =>
+          IndividuMethods.age(individu, periods.today.value) > 30,
       },
       {
         value: Activite.Inactif,
@@ -681,24 +679,21 @@ export default {
         value: 5,
         label: "Entre 3 et 6 mois",
         isRelevant: ({ individu, periods }) => {
-          const age = IndividuMethods.age(individu, periods.today.value)
-          return age !== undefined && age <= 25
+          return IndividuMethods.age(individu, periods.today.value) <= 25
         },
       },
       {
         value: 12,
         label: "Plus de 3 mois",
         isRelevant: ({ individu, periods }) => {
-          const age = IndividuMethods.age(individu, periods.today.value)
-          return age !== undefined && age > 25
+          return IndividuMethods.age(individu, periods.today.value) > 25
         },
       },
       {
         value: 12,
         label: "Plus 6 mois",
         isRelevant: ({ individu, periods }) => {
-          const age = IndividuMethods.age(individu, periods.today.value)
-          return age !== undefined && age <= 25
+          return IndividuMethods.age(individu, periods.today.value) <= 25
         },
       },
     ],

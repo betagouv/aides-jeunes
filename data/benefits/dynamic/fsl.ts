@@ -16,11 +16,6 @@ export const FSL_BY_INSTITUTION_SLUG = {
     label: "du département de l’Aisne",
     link: "https://aisne.com/aides/aide-a-lacces-au-logement-fonds-de-solidarite-pour-le-logement-fsl",
   },
-  departement_allier: {
-    label: "du département de l’Allier",
-    link: "https://www.allier.fr/aide/63/1151-les-aides.htm",
-    instructions: "https://www.allier.fr/aide/63/1151-les-aides.htm",
-  },
   departement_alpes_de_haute_provence: {
     label: "du département des Alpes-de-Haute-Provence",
     link: "https://www.mondepartement04.fr/insertion/le-fonds-de-solidarite-pour-le-logement",
@@ -235,7 +230,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_pas_de_calais: {
     label: "du département du Pas-de-Calais",
-    link: "https://www.pasdecalais.fr/laide-financiere-fonds-solidarite-logement-volet-maintien",
+    link: "https://www.pasdecalais.fr/le-fonds-de-solidarite-logement",
   },
   departement_puy_de_dome: {
     label: "du département du Puy-de-Dôme",

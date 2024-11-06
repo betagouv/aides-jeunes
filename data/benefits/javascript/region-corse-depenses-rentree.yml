@@ -1,24 +1,35 @@
-label: aide aux dépenses de rentrée
+label: aide aux dépenses de rentrée scolaire pour les étudiants et étudiantes
 institution: region_corse
 description:
-  La Région aide financièrement les élèves ayants droit à une bourse dans l'achat
-  de leur matériel scolaire. L’aide est versée automatiquement par le Crous de Corse,
-  à tous les boursiers, inscrits dans un cursus post-bac jusqu’au Master de l’Académie de Corse.
+  La Région aide financièrement les étudiants, boursiers ou pas, inscrits dans un cursus en Corse ou en France
+  continentale, pour leurs dépenses de rentrée scolaire. Il s'agit d'une aide sur critères sociaux dont le montant varie
+  de 300 € à 800 €, en fonction du quotient familial de l'étudiant ou de sa famille. Cette aide est gérée directement
+  par le CROUS de Corse pour les étudiants boursiers de l'Académie de Corse.
 conditions:
+  - Être domicilié fiscalement en Corse au cours des trois dernières années.
   - Contacter <a target="_blank" rel="noopener" title="votre CROUS - Nouvelle fenêtre"
-    href="https://www.crous-corse.fr/contact/">votre CROUS</a>.
+    href="https://www.crous-corse.fr/contact/">votre CROUS</a> si vous êtes boursier.
+  - Envoyer votre dossier via <a href="https://www.ghjuventu.corsica/my/dashboard" rel="noopener" target="_blank" title="Connexion à GHJUVENTÙ - Nouvelle fenêtre">la plateforme GHJUVENTÙ</a> si vous étudiez en France continentale (boursiers et non-boursiers) ou si vous n'êtes pas boursier et étudiez en Corse.
+  - Poser vos questions par sms au <a href="tel:+33625879180">06 25 87 91 80</a> ou par email à <a href="mailto:vieetudiante@isula.corsica">vieetudiante@isula.corsica</a>.
 conditions_generales:
   - type: regions
     values:
       - "94"
+  - type: age
+    operator: <
+    value: 28
 profils:
-  - type: enseignement_superieur
+  - type: lyceen
     conditions:
-      - type: boursier
-link: https://www.isula.corsica/Aides-financees-par-la-Collectivite-de-Corse-et-deleguees-par-conventions-a-l-Universita-di-Corsica-et-au-CROUS-de-Corse_a2406.html
-instructions: https://www.isula.corsica/Aides-financees-par-la-Collectivite-de-Corse-et-deleguees-par-conventions-a-l-Universita-di-Corsica-et-au-CROUS-de-Corse_a2406.html
+      - type: annee_etude
+        values:
+          - terminale
+  - type: enseignement_superieur
+link: https://www.ghjuventu.corsica/articles/9A3022B5-CB21-4A2B-8EED-9315C658B5D8
+instructions: https://www.ghjuventu.corsica/articles/9A3022B5-CB21-4A2B-8EED-9315C658B5D8
 prefix: l’
 type: float
 unit: €
 periodicite: annuelle
-montant: 500
+legend: maximum
+montant: 800

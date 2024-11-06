@@ -17,33 +17,28 @@ const veloTypes: Record<Velo, Questions["vélo . type"]> = {
   [Velo.VeloAdapte]: "adapté",
 }
 
-/**
- * The instanciated engine used to compute aides velo benefits.
- */
 export const aidesVeloEngine = new AidesVeloEngine()
 
-function canComputeAidesVeloBenefits(situation: Situation): boolean {
+function isSituationEligibleForAidesVelo(situation: Situation): boolean {
   return [
     situation.menage.depcom,
     situation.menage._departement,
     situation.menage._region,
-  ].every((value) => Boolean(value))
+  ].every(Boolean)
 }
 
 export function computeAidesVeloBenefits(
   aidesVeloBenefitList: StandardBenefit[],
-  resultHolder: StandardBenefit[] | null,
+  resultBenefitsList: StandardBenefit[] | null,
   situation: Situation,
   openfiscaResponse
 ) {
-  if (!canComputeAidesVeloBenefits(situation)) {
-    return
-  }
+  if (!isSituationEligibleForAidesVelo(situation)) return
+
   const periods = datesGenerator(situation.dateDeValeur)
-
   const age = IndividuMethods.age(situation.demandeur, periods.today.value)
-
   const eligibleBenefitsMap = {}
+
   for (const type of situation.demandeur._interetsAidesVelo ?? []) {
     const inputs: Questions = {
       "vélo . type": veloTypes[type],
@@ -65,14 +60,13 @@ export function computeAidesVeloBenefits(
         .shallowCopy()
         .setInputs(inputs)
         .computeAides()
-        .reduce((a, v) => {
-          // @ts-ignore
-          a[v.id] = {
-            ...v,
-            montant: v.amount,
-            link: v.url,
+        .reduce((acc, current) => {
+          acc[current.id] = {
+            ...current,
+            montant: current.amount,
+            link: current.url,
           }
-          return a
+          return acc
         }, {})
     )
   }
@@ -80,7 +74,7 @@ export function computeAidesVeloBenefits(
   aidesVeloBenefitList
     .filter((benefit) => eligibleBenefitsMap[benefit.external_id])
     .forEach((benefit) => {
-      resultHolder?.push({
+      resultBenefitsList?.push({
         ...benefit,
         ...eligibleBenefitsMap[benefit.external_id],
         id: benefit.id,
@@ -89,17 +83,11 @@ export function computeAidesVeloBenefits(
 }
 
 function mapActiviteToQuestions(activite: Activite | undefined): Questions {
-  if (!activite) {
-    return {}
-  }
-
   switch (activite) {
     case Activite.Apprenti:
       return { "demandeur . statut": "apprenti" }
     case Activite.BeneficiaireRsa:
-      return {
-        "demandeur . bénéficiaire du RSA": true,
-      }
+      return { "demandeur . bénéficiaire du RSA": true }
     case Activite.Chomeur:
       return { "demandeur . statut": "demandeur d'emploi" }
     case Activite.Etudiant:

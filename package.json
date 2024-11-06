@@ -23,7 +23,7 @@
     "install-openfisca": "pip install --upgrade -r openfisca/requirements.txt",
     "lint:fix": "eslint backend data iframes lib src --ext ts,js,vue --fix",
     "lint-staged:contribuer": "cd contribuer && npm run lint-staged --",
-    "openfisca": "OPENFISCA_WORKERS=1 gunicorn openfisca.api --config openfisca/config.py",
+    "openfisca": "OPENFISCA_WORKERS=1 pip list | grep -i openfisca && gunicorn openfisca.api --config openfisca/config.py",
     "predb": "mkdir -p db",
     "prestart": "npm run build && npm run stats",
     "prettier:check": "prettier --check .",

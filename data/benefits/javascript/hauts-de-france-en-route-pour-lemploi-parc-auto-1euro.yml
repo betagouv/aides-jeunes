@@ -13,7 +13,21 @@ conditions_generales:
   - type: regions
     values:
       - "32"
-profils: []
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: service_civique
+    conditions: []
+  - type: salarie
+    conditions: []
+  - type: chomeur
+    conditions: []
 link: https://guide-aides.hautsdefrance.fr/spip.php?page=dispositif&id_dispositif=632
 teleservice: https://enroutepourlemploi.hautsdefrance.fr/public/compte/login
 prefix: l’aide

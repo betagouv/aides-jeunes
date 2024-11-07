@@ -23,3 +23,6 @@ export interface Institution extends InstitutionRaw {
 export interface InstitutionsMap {
   [key: string]: Institution
 }
+export interface InstitutionsByType {
+  [key: string]: Institution[]
+}

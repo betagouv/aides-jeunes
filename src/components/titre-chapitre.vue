@@ -45,7 +45,6 @@ import SendRecapButton from "@/components/buttons/send-recap-button.vue"
 import { useStore } from "@/stores/index.js"
 import { useRouter } from "vue-router"
 import { useResultsStore } from "@/stores/results.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 export default {
   name: "TitreChapitre",
@@ -65,10 +64,7 @@ export default {
       return this.resultsStore.shouldDisplayResults
     },
     showSMS() {
-      return (
-        process.env.VITE_SHOW_SMS_TAB &&
-        ABTestingService.getValues().Followup_SMS === "show"
-      )
+      return process.env.VITE_SHOW_SMS_TAB
     },
     title() {
       return this.getTitleByRoute(this.$route)

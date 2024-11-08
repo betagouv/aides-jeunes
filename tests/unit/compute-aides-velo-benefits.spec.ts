@@ -8,7 +8,7 @@ describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {
     const benefits = [{ external_id: "aides . vallée d'ossau" }]
     const situation: Situation = {
-      dateDeValeur: 1609459200000, // 2021-01-01
+      dateDeValeur: new Date("2021-01-01"),
       menage: {
         _codePostal: "64260",
         depcom: "64062",

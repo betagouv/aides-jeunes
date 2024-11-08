@@ -4,7 +4,7 @@ description: >
   Une aide à la restauration scolaire pour les élèves d’Antony scolarisés dans un collège ou un lycée.
 conditions:
 link: https://www.ville-antony.fr/bourses-communales#restaurationscolaire
-prefix: l'
+prefix: l’
 type: bool
 floorAt: 10
 entity: individus

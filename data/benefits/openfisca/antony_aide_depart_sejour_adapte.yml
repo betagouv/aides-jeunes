@@ -1,0 +1,12 @@
+label: Aide aux départs en séjours de vacances
+institution: ville_antony
+description: >
+  Une aide financière aux séjours de vacances nécessitant une adaptation pour les personnes en situation de handicap. Ce dispositif s'adresse aux adultes et enfants résidents sur Antony.
+conditions:
+link: https://www.ville-antony.fr/handicap
+prefix: l'
+type: bool
+floorAt: 10
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

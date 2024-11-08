@@ -1,0 +1,15 @@
+label: Solidarité de Noël
+institution: ville_antony
+description: >
+  Accès à des cadeaux et sorties loisirs pour Noël pour les habitants de Antony, seul ou en couple avec ou sans enfants
+conditions:
+  - Avoir moins de 68 ans
+  - Sous conditions de ressources
+teleservice: https://www.espace-citoyens.net/ville-antony/espace-citoyens/Home/AccueilPublic
+link: https://www.ville-antony.fr/actualites/noel-ccas-2024
+prefix: l'
+type: bool
+floorAt: 10
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: autre

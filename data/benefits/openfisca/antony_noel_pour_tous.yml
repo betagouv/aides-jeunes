@@ -10,6 +10,6 @@ link: https://www.ville-antony.fr/actualites/noel-ccas-2024
 prefix: l’
 type: bool
 floorAt: 10
-entity: individus
+entity: familles
 openfiscaPeriod: thisMonth
 periodicite: autre

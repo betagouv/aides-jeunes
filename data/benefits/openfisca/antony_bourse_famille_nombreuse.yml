@@ -10,6 +10,6 @@ prefix: l’
 type: float
 unit: "€"
 floorAt: 10
-entity: individus
+entity: familles
 openfiscaPeriod: thisMonth
 periodicite: annuelle

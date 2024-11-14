@@ -53,7 +53,7 @@
     "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
-    "@etalab/decoupage-administratif": "^3.0.0",
+    "@etalab/decoupage-administratif": "^4.0.0",
     "@gouvfr/dsfr": "^1.12.1",
     "@sentry/node": "^7.118.0",
     "@sentry/vue": "^7.118.0",

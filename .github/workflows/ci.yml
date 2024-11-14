@@ -15,6 +15,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Sentry Status
+        id: sentry-check
+        run: |
+          SENTRY_STATUS=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.SENTRY_URL }})
+          echo "status=$SENTRY_STATUS" >> $GITHUB_OUTPUT
+          if [ "$SENTRY_STATUS" != "200" ]; then
+            curl -i -X POST -H 'Content-Type: application/json' -d '{"text": ":icon-warning: [équipe-tech] Sentry semble ne plus fonctionner ([lien](https://github.com/betagouv/aides-jeunes/actions/workflows/ci.yml?query=branch%3Amain+is%3Afailure))"}' ${{ secrets.MATTERMOST_ALERTING_URL }}
+            exit 1
+          fi
   install:
     name: Install
     runs-on: ubuntu-20.04
@@ -454,6 +466,7 @@ jobs:
         openfisca_test_generation,
         iframe_build_control,
         test_e2e,
+        health-check,
       ]
     if: always() && github.ref == 'refs/heads/main' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure')
     steps:

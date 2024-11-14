@@ -1,0 +1,26 @@
+label: Bourse Jeunes Lyon 2030 - Agir pour la transition écologique et sociale
+institution: ville_de_lyon
+description: La Bourse Jeunes Lyon 2030 vise à soutenir les initiatives individuelles ou collectives de jeunes de 16-25 ans, permettant de réduire les émissions de gaz à effet de serre, d’adapter la ville aux changements climatiques ou de sensibiliser aux enjeux climatiques. Le montant de l'aide financière va jusqu’à 2000 € pour un projet individuel et 5000 € pour un projet collectif.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "69123"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: "<="
+    value: 25
+conditions:
+  - Avoir un projet individuel ou collectif qui contribue à réduire les émissions de gaz à effet de serre et/ou à adapter la ville aux changements climatiques et/ou à sensibiliser aux enjeux climatiques (les projets peuvent s’inscrire dans des domaines techniques, sociaux, du sport, de la culture, des loisirs, de la nature, de l'eau, des mobilités).
+  - Envoyer votre <a href="https://www.lyon.fr/sites/lyonfr/files/content/documents/2024-10/dossier_de_candidature_bourse_jeunes_2025.pdf" rel="noopener" target="_blank" title="Dossier de candidature Bourse Jeunes Lyon 2030 (PDF) - Nouvelle fenêtre">dossier de candidature (PDF)</a> rempli et accompagné des pièces justificatives à l’adresse <a href="mailto:missionlyonjeunesses@mairie-lyon.fr">missionlyonjeunesses@mairie-lyon.fr</a> ou via <a href="https://cvip.sphinxonline.net/surveyserver/s/VDL_GRU/2025_Lyon_2030_Bourses_aux_Jeunes/questionnaire.htm" rel="noopener" target="_blank" title="Formulaire Bourse Jeunes Lyon 2030 - Nouvelle fenêtre">le formulaire en ligne Bourse jeunes Lyon 2030</a>.
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 5000
+legend: maximum
+link: https://www.lyon.fr/actualite/developpement-durable/la-ville-de-lyon-lance-la-bourse-jeunes-lyon-2030
+teleservice: https://cvip.sphinxonline.net/surveyserver/s/VDL_GRU/2025_Lyon_2030_Bourses_aux_Jeunes/questionnaire.htm
+form: https://www.lyon.fr/sites/lyonfr/files/content/documents/2024-10/dossier_de_candidature_bourse_jeunes_2025.pdf
+instructions: https://www.lyon.fr/sites/lyonfr/files/content/documents/2023-09/2023_reglement_bourses_jeunes_vf.pdf

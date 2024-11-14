@@ -466,7 +466,6 @@ jobs:
         openfisca_test_generation,
         iframe_build_control,
         test_e2e,
-        health-check,
       ]
     if: always() && github.ref == 'refs/heads/main' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure')
     steps:

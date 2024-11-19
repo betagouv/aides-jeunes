@@ -73,7 +73,7 @@
     "errorhandler": "^1.5.1",
     "event-stream": "4.0.1",
     "express": "^4.21.1",
-    "express-validator": "^7.20.0",
+    "express-validator": "^7.2.0",
     "haversine": "^1.1.1",
     "iframe-resizer": "^4.3.2",
     "jamstack-loader": "^0.0.9",

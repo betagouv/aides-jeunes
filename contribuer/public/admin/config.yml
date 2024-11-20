@@ -515,6 +515,19 @@ fields:
                         value: terminale
                       - label: Autre
                         value: autre
+      - label: Collégien ou collégienne
+        name: collegien
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: [ ]
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
+              - *field_boursier
       - label: Dans l'enseignement supérieur
         name: enseignement_superieur
         widget: object

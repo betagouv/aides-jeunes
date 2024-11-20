@@ -6,10 +6,12 @@ description: >
 conditions:
   - Avoir habiter au minimum 1 an dans la ville de Antony.
 link: https://www.ville-antony.fr/bourses-communales#famillesnombreuses
-prefix: l’
+form: https://www.espace-citoyens.net/ville-antony/espace-citoyens/Demande/NouvelleDemande/M_CCAS/D_CCASFAM
+prefix: "la"
+floorAt: 1
 type: float
 unit: "€"
-floorAt: 10
+periodicite: ponctuelle
+legend: ""
 entity: familles
 openfiscaPeriod: thisMonth
-periodicite: annuelle

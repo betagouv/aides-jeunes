@@ -7,9 +7,11 @@ conditions:
   - Sous conditions de ressources.
 teleservice: https://www.espace-citoyens.net/ville-antony/espace-citoyens/Home/AccueilPublic
 link: https://www.ville-antony.fr/actualites/noel-ccas-2024
-prefix: l’
-type: bool
-floorAt: 10
+prefix: "la"
+floorAt: 1
+type: float
+unit: "€"
+periodicite: autre
+legend: ""
 entity: familles
 openfiscaPeriod: thisMonth
-periodicite: autre

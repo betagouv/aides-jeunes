@@ -5,7 +5,7 @@ description: >
 conditions:
 link: https://www.ville-antony.fr/bourses-communales#conservatoire
 form: https://www.ville-antony.fr/images/Actualite/2024/Aout/CCAS/Imprime-A4-demande-bourse-conservatoire-2024-2025.pdf
-prefix: "l’"
+prefix: "la"
 floorAt: 1
 type: float
 unit: "€"

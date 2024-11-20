@@ -5,7 +5,7 @@ description: >
 conditions:
 link: https://www.ville-antony.fr/bourses-communales#restaurationscolaire
 form: https://www.espace-citoyens.net/ville-antony/espace-citoyens/Home/AccueilPublic
-prefix: "l’"
+prefix: "la"
 floorAt: 1
 type: float
 unit: "€"

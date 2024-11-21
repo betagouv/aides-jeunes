@@ -7,7 +7,6 @@ import { useRouter } from "vue-router"
 import * as Sentry from "@sentry/vue"
 import StatisticsMixin from "@/mixins/statistics.js"
 import { EventCategory, EventAction } from "@lib/enums/event.js"
-import ABTestingService from "@/plugins/ab-testing-service.js"
 
 const router = useRouter()
 const store = useStore()
@@ -36,15 +35,7 @@ const inputPhonePattern = computed(() => {
   return `^(((\\+?|00)(${diallingCodes})\\s?|0)[67])([\\s\\.\\-]?\\d{2}){4}`
 })
 
-const showSms =
-  process.env.VITE_SHOW_SMS_TAB &&
-  ABTestingService.getValues().Followup_SMS === "show"
-
-StatisticsMixin.methods.sendEventToMatomo(
-  EventCategory.Followup,
-  EventAction.FormulaireAffiche,
-  ABTestingService.getValues().CTA_EmailRecontact
-)
+const showSms = process.env.VITE_SHOW_SMS_TAB
 
 const sendRecap = async (surveyOptin) => {
   try {
@@ -65,21 +56,6 @@ const sendRecap = async (surveyOptin) => {
       store.setFormRecapState(undefined)
       phoneInputErrorMessage.value = true
       emailInputErrorMessage.value = true
-    }
-
-    const hasInputErrorMessage =
-      phoneInputErrorMessage.value || emailInputErrorMessage.value
-
-    if (!hasInputErrorMessage) {
-      const eventAction = surveyOptin
-        ? EventAction.FormulaireValideAvecRecontact
-        : EventAction.FormulaireValideSansRecontact
-
-      StatisticsMixin.methods.sendEventToMatomo(
-        EventCategory.Followup,
-        eventAction,
-        ABTestingService.getValues().CTA_EmailRecontact
-      )
     }
   } catch (error: any) {
     const errorMessage = error?.response?.data?.toString() || ""
@@ -193,14 +169,7 @@ const sendRecapByEmail = async (surveyOptin) => {
 }
 
 function computeCtaText() {
-  const ctaVersion = ABTestingService.getValues().CTA_EmailRecontact
-  if (ctaVersion === "version_test_1") {
-    return "J’accepte qu’on me recontacte pour faire le point sur mes démarches"
-  } else if (ctaVersion === "version_test_2") {
-    return "Je reçois mon récapitulatif et je me fais accompagner par téléphone"
-  } else {
-    return "J'accepte d'être recontacté ou recontactée"
-  }
+  return "Je reçois mon récapitulatif et je me fais accompagner par téléphone"
 }
 
 const ctaText = ref(computeCtaText())

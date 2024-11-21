@@ -253,7 +253,9 @@ const receiveResultsEmail = () => {
 
   const email = "prenom.nom@beta.gouv.fr"
   cy.get("input#email").should("be.visible").type(email)
-  cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
+  cy.get(
+    ".fr-btn:contains(Je reçois mon récapitulatif et je me fais accompagner par téléphone)"
+  )
     .should("be.visible")
     .click()
 
@@ -296,7 +298,9 @@ const receiveResultsSms = () => {
     .click()
   // scroll to input#phone
   cy.get("input#phone").scrollIntoView().should("be.visible").type(phone)
-  cy.get(".fr-btn:contains(J'accepte d'être recontacté ou recontactée)")
+  cy.get(
+    ".fr-btn:contains(Je reçois mon récapitulatif et je me fais accompagner par téléphone)"
+  )
     .should("be.visible")
     .click()
 

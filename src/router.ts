@@ -279,12 +279,10 @@ const router = createRouter({
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
-        ABTestingService.setVariant("CTA_EmailRecontact", "version_actuelle")
         ABTestingService.setVariant(
           "aides_bafa",
           "aides_bafa_fusionnees_conserve_position"
         )
-        ABTestingService.setVariant("Followup_SMS", "show")
         return "/"
       },
     },

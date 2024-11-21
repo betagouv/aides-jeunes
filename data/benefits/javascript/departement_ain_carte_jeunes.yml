@@ -6,16 +6,13 @@ description:
   les activités sportives et de loisirs, plus de 170 euros d'offres promotionnelles, ainsi
   que des bons plans chez les partenaires du département de l'Ain.
 prefix: la
+profils:
+  - type: collegien
+    conditions: []
 conditions_generales:
   - type: departements
     values:
       - "01"
-  - type: age
-    operator: ">="
-    value: 10
-  - type: age
-    operator: "<="
-    value: 16
 conditions:
   - Commander la Carte Jeunes 01 en remplissant <a target="_blank"
     rel="noopener" title="Formulaire demande Carte Jeunes 01 (PDF) - Nouvelle fenêtre" href="

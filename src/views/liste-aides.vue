@@ -1,18 +1,26 @@
 <template>
   <article class="fr-article">
-    <h1>Toutes les aides</h1>
-    <BackButton
-      size="small"
-      data-testid="benefits-liste-back-button"
-      class="fr-mb-2w"
-      as-link
-      to="/"
-    >
-      Retour à l'accueil
-    </BackButton>
-    <div>
-      <p class="fr-badge fr-mb-2w">Total : {{ benefitsCount }} aides</p>
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12 fr-col-md-4">
+        <h1>Toutes les aides</h1>
+        <BackButton
+          size="small"
+          data-testid="benefits-liste-back-button"
+          as-link
+          to="/"
+        >
+          Retour à l'accueil
+        </BackButton>
+      </div>
+      <div class="fr-col-12 fr-col-md-5 fr-col-offset-md-3">
+        <HomeSimulationGroupButtons />
+      </div>
     </div>
+
+    <div>
+      <p class="fr-badge fr-my-2w">Total : {{ benefitsCount }} aides</p>
+    </div>
+
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12 fr-col-md-6">
         <div class="fr-form-group">
@@ -123,7 +131,7 @@ import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize, normalizeString } from "@lib/utils.js"
 import BackButton from "@/components/buttons/back-button.vue"
-
+import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
 const zipCode = ref<string | null>(null)
 const selectedCommune = ref<Commune | null>(null)
 const searchTerms = ref<string | null>(null)
@@ -232,3 +240,15 @@ const alertClass = computed(() =>
   countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
 )
 </script>
+
+<style scoped>
+:deep(.fr-btns-group) {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  :deep(.fr-btns-group) {
+    justify-content: flex-start;
+  }
+}
+</style>

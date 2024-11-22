@@ -1,32 +1,39 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance } from "vue"
 import { useStore } from "@/stores/index.js"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
-
-const { proxy } = getCurrentInstance() as any
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
+
+const { proxy } = getCurrentInstance() as any
+const SIMULATION_START_PATH = "/simulation/individu/demandeur/date_naissance"
 
 const hasExistingSituation = computed(() => store.passSanityCheck)
 
 const ctaLabel = computed(() =>
   hasExistingSituation.value
     ? "Commencer une nouvelle simulation"
-    : "Je commence"
+    : "Commencer une simulation"
 )
 
-const newSituation = () => {
-  store.clear(route.query.external_id as string)
-  next()
-}
-
-const next = () => {
+const initializeOpenfiscaParameters = () => {
   store.setOpenFiscaParameters()
   if (process.env.VITE_CONTEXT !== "production") {
     store.verifyBenefitVariables()
   }
+}
+
+const newSituation = () => {
+  store.clear(route.query.external_id as string)
+  initializeOpenfiscaParameters()
+  router.push(SIMULATION_START_PATH)
+}
+
+const resumeSimulation = () => {
+  initializeOpenfiscaParameters()
   proxy?.$push()
 }
 </script>
@@ -40,7 +47,7 @@ const next = () => {
           category: EventCategory.Home,
         }"
         class="fr-btn"
-        @click="next"
+        @click="resumeSimulation"
       >
         Reprendre ma simulation
       </button>
@@ -60,7 +67,7 @@ const next = () => {
         v-analytics="{ action: ctaLabel, category: EventCategory.Home }"
         class="fr-btn"
         data-testid="new-simulation"
-        to="/simulation/individu/demandeur/date_naissance"
+        :to="SIMULATION_START_PATH"
         @click="newSituation"
       >
         {{ ctaLabel }}

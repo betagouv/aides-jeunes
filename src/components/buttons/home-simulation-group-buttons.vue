@@ -22,7 +22,7 @@ const ctaLabel = computed(() =>
 const initializeOpenfiscaParameters = () => {
   store.setOpenFiscaParameters()
   if (process.env.VITE_CONTEXT !== "production") {
-    store.verifyBenefitVariables()
+    store.verifyOpenfiscaBenefitVariables()
   }
 }
 

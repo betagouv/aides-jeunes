@@ -322,7 +322,7 @@ router.beforeEach((to, from, next) => {
       process.env.VITE_CONTEXT !== "production" ||
       to?.redirectedFrom?.fullPath === "/init-ci"
     ) {
-      store.verifyBenefitVariables()
+      store.verifyOpenfiscaBenefitVariables()
     }
 
     if (

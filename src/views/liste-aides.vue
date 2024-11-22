@@ -240,15 +240,3 @@ const alertClass = computed(() =>
   countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
 )
 </script>
-
-<style scoped>
-:deep(.fr-btns-group) {
-  justify-content: flex-end;
-}
-
-@media (max-width: 768px) {
-  :deep(.fr-btns-group) {
-    justify-content: flex-start;
-  }
-}
-</style>

@@ -1,4 +1,4 @@
-import { iframeResize } from "iframe-resizer"
+import { iframeResize } from "@iframe-resizer/parent"
 
 const script = document.currentScript
 const page = script.dataset.fromHome !== undefined ? "" : "simulation"
@@ -27,7 +27,7 @@ for (const key in iframeAttributes) {
   iframe.setAttribute(key, iframeAttributes[key])
 }
 
-iframeResize({}, iframe)
+iframeResize({ license: "GPLv3" }, iframe)
 
 if (script.parentElement.tagName === "HEAD") {
   const htmlDocument = script.parentElement.parentElement

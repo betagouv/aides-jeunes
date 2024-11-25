@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useStore } from "@/stores/index.js"
+import AlertRevenirPlusTard from "@/components/alert-revenir-plus-tard.vue"
 
 const store = useStore()
 
@@ -34,6 +35,16 @@ const recapEmailState = computed(() => store.recapEmailState)
           l'adresse de destination est invalide. Veuillez réessayer avec un
           numéro valide ou utiliser l'envoi par email seulement.
         </p>
+      </div>
+      <div
+        v-if="
+          recapPhoneState === 'error' ||
+          recapEmailState === 'error' ||
+          recapPhoneState === 'invalid-address'
+        "
+        class="fr-mt-2w"
+      >
+        <AlertRevenirPlusTard />
       </div>
       <div
         v-if="recapPhoneState === 'ok' && recapEmailState === 'ok'"

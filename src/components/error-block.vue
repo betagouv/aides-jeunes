@@ -22,16 +22,6 @@
       en joignant si possible une capture d'écran. Nous vous répondrons au plus
       vite et corrigerons le problème dès que possible.
     </p>
-    <p>
-      Pour ne pas perdre les données que vous avez déclarées, vous pouvez
-      <router-link
-        :to="{ name: 'revenirPlusTard' }"
-        data-testid="come-back-later-link"
-        >sauvegarder votre simulation</router-link
-      >
-      ou garder cet onglet ouvert, puis actualiser la page une fois que le
-      problème sera résolu.
-    </p>
     <div>
       <button
         class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-mt-2w"
@@ -52,6 +42,7 @@ import { sendError } from "@/plugins/mails.js"
 import { useStore } from "@/stores/index.js"
 import { useResultsStore } from "@/stores/results.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
+import AlertRevenirPlusTard from "@/components/alert-revenir-plus-tard.vue"
 
 export default {
   name: "ErrorBlock",
@@ -63,6 +54,7 @@ export default {
   },
   data() {
     return {
+      alertRevenirPlusTard: AlertRevenirPlusTard,
       showDetails: false,
       issueTrackingEvent: {
         action: EventAction.Support,

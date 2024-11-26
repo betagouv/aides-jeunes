@@ -9,6 +9,8 @@ env:
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
   PYTHON_VERSION: 3.11.4
+  SENTRY_URL: ${{ secrets.SENTRY_URL }}
+  MATTERMOST_ALERTING_URL: ${{ secrets.MATTERMOST_ALERTING_URL }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

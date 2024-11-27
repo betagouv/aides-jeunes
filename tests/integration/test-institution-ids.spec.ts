@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals"
 import Benefits from "@root/data/index.js"
-import jamstackLoader from "jamstack-loader"
+import jamstackLoader from "@betagouv/jamstack-loader"
 const configFile = "contribuer/public/admin/config.yml"
 import epci from "@etalab/decoupage-administratif/data/epci.json"
 

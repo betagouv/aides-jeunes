@@ -109,7 +109,7 @@ describe("benefit descriptions", function () {
               .replace(/\s\s+/g, " ")
               .trim()
             expect(innerText.length).toBeGreaterThanOrEqual(10)
-            expect(innerText.length).toBeLessThanOrEqual(600)
+            expect(innerText.length).toBeLessThanOrEqual(450)
           })
 
           if (benefit.description.includes('target="_blank"')) {

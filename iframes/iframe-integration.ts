@@ -1,13 +1,17 @@
-import { iframeResize } from "@iframe-resizer/parent"
+import iframeResize from "@iframe-resizer/parent"
+import "@iframe-resizer/child"
 
 const script = document.currentScript
 const page = script.dataset.fromHome !== undefined ? "" : "simulation"
 const src = new URL(`${process.env.BASE_URL}/${page}`)
 
-src.searchParams.set("iframe", true)
+src.searchParams.set("iframe", "true")
 src.searchParams.set("utm_source", `iframe@${window.location.hostname}`)
 src.searchParams.set("utm_term", window.location.pathname)
-src.searchParams.set("data-with-logo", script.dataset.withLogo !== undefined)
+src.searchParams.set(
+  "data-with-logo",
+  (script.dataset.withLogo !== undefined).toString()
+)
 if (script.dataset.theme !== undefined) {
   src.searchParams.set("theme", script.dataset.theme)
 }
@@ -27,17 +31,13 @@ for (const key in iframeAttributes) {
   iframe.setAttribute(key, iframeAttributes[key])
 }
 
-iframeResize({ license: "GPLv3" }, iframe)
-
 if (script.parentElement.tagName === "HEAD") {
-  const htmlDocument = script.parentElement.parentElement
-  const children = htmlDocument.childNodes
-  for (var i = 0; i < children.length; i++) {
-    if (children[i].tagName === "BODY") {
-      children[i].appendChild(iframe)
-      break
-    }
+  const body = script.parentElement.parentElement.querySelector("body")
+  if (body) {
+    body.appendChild(iframe)
   }
 } else {
   script.before(iframe)
 }
+
+iframeResize({ license: "GPLv3", waitForLoad: true }, iframe)

@@ -19,12 +19,20 @@ import AnalyticsDirective from "./directives/analytics.js"
 import MailDirective from "./directives/mail.js"
 import SelectOnClickDirective from "./directives/select-on-click.js"
 
+// @ts-ignore
+import iframeResizerContentWindow from "@iframe-resizer/parent"
+
 import "dayjs/locale/fr.js"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import dayjs from "dayjs"
 import { createPinia } from "pinia"
 import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
 
+const Resizer = {
+  install: function () {
+    iframeResizerContentWindow
+  },
+}
 const pinia = createPinia()
 
 const app = createApp({
@@ -44,6 +52,7 @@ if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
     debug: "development" === process.env.VITE_CONTEXT,
   })
 }
+app.use(Resizer)
 app.use(StateService)
 app.use(ThemeService)
 app.use(VueCookies)

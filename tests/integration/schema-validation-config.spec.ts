@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals"
 import path from "path"
-import jamstackLoader from "jamstack-loader"
+import jamstackLoader from "@betagouv/jamstack-loader"
 
 const jamstack = jamstackLoader.get(
   path.join(

@@ -1,6 +1,4 @@
 import iframeResize from "@iframe-resizer/parent"
-import "@iframe-resizer/child"
-
 const script = document.currentScript
 const page = script.dataset.fromHome !== undefined ? "" : "simulation"
 const src = new URL(`${process.env.BASE_URL}/${page}`)
@@ -40,4 +38,4 @@ if (script.parentElement.tagName === "HEAD") {
   script.before(iframe)
 }
 
-iframeResize({ license: "GPLv3", waitForLoad: true }, iframe)
+iframeResize({ license: "GPLv3" }, iframe)

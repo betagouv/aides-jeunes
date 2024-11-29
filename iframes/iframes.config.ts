@@ -9,7 +9,7 @@ process.env.IFRAME_TITLE = config.iframeTitle
 export default {
   mode: "production",
   entry: {
-    "iframe-integration": path.resolve(__dirname, "./iframe-integration.js"),
+    "iframe-integration": path.resolve(__dirname, "./iframe-integration.ts"),
   },
   output: {
     path: path.resolve(__dirname, "../public/documents"),

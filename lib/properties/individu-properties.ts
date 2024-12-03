@@ -628,22 +628,30 @@ export default {
 
   _interetsAidesVelo: new MultipleProperty({
     question: "Souhaitez-vous connaître les aides pour acheter un vélo ?",
-    items: [
-      { value: Velo.VeloMecanique, label: "Vélo mécanique simple" },
-      { value: Velo.VeloElectrique, label: "Vélo électrique" },
-      { value: Velo.VeloCargo, label: "Vélo cargo" },
-      {
-        value: Velo.VeloCargoElectrique,
-        label: "Vélo cargo électrique",
-      },
-      { value: Velo.VeloPliant, label: "Vélo pliant" },
-      { value: Velo.VeloPliantElectrique, label: "Vélo pliant électrique" },
-      { value: Velo.VeloAdapte, label: "Vélo adapté pour PMR" },
-      {
-        value: Velo.VeloMotorisation,
-        label: "Motorisation d'un vélo classique",
-      },
-    ],
+    items: ({ individu }) => {
+      const result = [
+        { value: Velo.VeloMecanique, label: "Vélo mécanique simple" },
+        { value: Velo.VeloElectrique, label: "Vélo électrique" },
+        { value: Velo.VeloCargo, label: "Vélo cargo" },
+        { value: Velo.VeloCargoElectrique, label: "Vélo cargo électrique" },
+        { value: Velo.VeloPliant, label: "Vélo pliant" },
+        { value: Velo.VeloPliantElectrique, label: "Vélo pliant électrique" },
+        {
+          value: Velo.VeloMotorisation,
+          label: "Motorisation d'un vélo classique",
+        },
+      ]
+      // Aide au vélo adapté proposée uniquement aux
+      // individus en situation de handicap
+      if (individu.handicap) {
+        result.unshift({
+          value: Velo.VeloAdapte,
+          label: "Vélo adapté pour PMR",
+        })
+      }
+
+      return result
+    },
   }),
 
   _interetAidesSanitaireSocial: new BooleanProperty({

@@ -70,17 +70,17 @@ function buildVeloBenefitLabel(benefit: AidesVeloBenefit): string {
   ]
   const trottinetteTypes = ["trottinette", "trottinette électrique"]
 
-  const types = veloTypes.filter((type) => benefit.description?.includes(type))
+  let types = veloTypes.filter((type) => benefit.description?.includes(type))
+
   if (types.length > 1) {
     title += ` (${types.join(", ")})`
   } else if (types.length === 1) {
     title += ` ${types[0]}`
   }
 
-  const trottinetteType = trottinetteTypes.filter((type) =>
-    benefit.description?.includes(type)
-  )
-  if (trottinetteType.length > 0) {
+  types = trottinetteTypes.filter((type) => benefit.description?.includes(type))
+
+  if (types.length > 0) {
     title = title.replace("vélo électrique", "vélo")
     title += ` ou d'une trottinette électrique`
   }

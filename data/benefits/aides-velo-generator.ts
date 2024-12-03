@@ -57,6 +57,37 @@ function formatAidesVeloBenefitDescription(benefit: AidesVeloBenefit): string {
   )
 }
 
+function buildVeloBenefitLabel(benefit: AidesVeloBenefit): string {
+  let title = "Aide à l'achat d'un vélo"
+
+  const veloTypes = [
+    "musculaire",
+    "mécanique",
+    "électrique",
+    "adapté",
+    "cargo",
+    "pliant",
+  ]
+  const trottinetteTypes = ["trottinette", "trottinette électrique"]
+
+  const types = veloTypes.filter((type) => benefit.description?.includes(type))
+  if (types.length > 1) {
+    title += ` (${types.join(", ")})`
+  } else if (types.length === 1) {
+    title += ` ${types[0]}`
+  }
+
+  const trottinetteType = trottinetteTypes.filter((type) =>
+    benefit.description?.includes(type)
+  )
+  if (trottinetteType.length > 0) {
+    title = title.replace("vélo électrique", "vélo")
+    title += ` ou d'une trottinette électrique`
+  }
+
+  return `${title} : ${benefit.title}`
+}
+
 function formatAidesVeloToVeloBenefit(
   benefit: AidesVeloBenefit,
   institutionsByType: InstitutionsByType
@@ -64,7 +95,7 @@ function formatAidesVeloToVeloBenefit(
   return {
     ...benefit,
     ...VELO_BENEFIT_DEFAULT_VALUES,
-    label: `Aide à l'achat d'un vélo : ${benefit.title}`,
+    label: buildVeloBenefitLabel(benefit),
     description: formatAidesVeloBenefitDescription(benefit),
     id: `aidesvelo_${benefit.id}`.replace(/[ .']+/g, "_"),
     external_id: benefit.id,

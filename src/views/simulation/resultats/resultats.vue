@@ -33,6 +33,7 @@
 
   <ErrorBlock v-if="error" />
   <ErrorSaveBlock v-if="hasErrorSave" />
+  <AlertRevenirPlusTard v-if="hasErrorSave || error" class="fr-mb-2w" />
   <div v-show="shouldDisplayResults">
     <div v-if="!isEmpty(benefits)">
       <p class="fr-text--lg">
@@ -80,6 +81,7 @@
 </template>
 
 <script setup lang="ts">
+import AlertRevenirPlusTard from "@/components/alert-revenir-plus-tard.vue"
 import BenefitsList from "@/components/benefits-list.vue"
 import ErrorBlock from "@/components/error-block.vue"
 import ErrorSaveBlock from "@/components/error-save-block.vue"

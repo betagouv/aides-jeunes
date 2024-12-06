@@ -45,7 +45,15 @@ const router = createRouter({
           beforeEnter(to, from, next) {
             const simulationLatestId = Simulations.getLatestId()
             if (simulationLatestId) {
-              next(`/simulation${to.query.to || ""}`)
+              const store = useStore()
+              store
+                .fetch(simulationLatestId)
+                .then(() => {
+                  next(`/simulation${to.query.to || ""}`)
+                })
+                .catch(() => {
+                  next("/")
+                })
             } else {
               next("/")
             }

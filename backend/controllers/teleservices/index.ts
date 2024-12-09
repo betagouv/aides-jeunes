@@ -46,6 +46,7 @@ const teleservices = [
   {
     name: "PNDS",
     class: PNDS,
+    public: true,
     destination: {
       url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },

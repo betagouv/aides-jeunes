@@ -8,3 +8,4 @@ type: bool
 entity: menages
 openfiscaPeriod: thisMonth
 periodicite: autre
+private: true

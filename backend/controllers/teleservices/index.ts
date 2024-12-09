@@ -20,7 +20,7 @@ const teleservices = [
   {
     name: "ccas_saint_louis_preprod",
     class: OpenFiscaResponse,
-    public: true,
+    public: false,
     destination: {
       label: "Transférer les informations",
       url: "https://agrums.acadis.re/agrum/analyse-des-droits/{{token}}",
@@ -46,6 +46,7 @@ const teleservices = [
   {
     name: "PNDS",
     class: PNDS,
+    public: true,
     destination: {
       url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
     },
@@ -91,7 +92,7 @@ const teleservices = [
       url: "/api/proxy/ds?token={{token}}",
     },
   },
-]
+].filter((service) => service.public === true)
 
 function createClass(teleservice, simulation, query) {
   // Create object dynamically, and apply constructor

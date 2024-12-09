@@ -118,6 +118,10 @@ textarea {
   max-width: 144px;
 }
 
+.fr-mw-70w {
+  max-width: 560px;
+}
+
 .fr-nav__item--right {
   margin-left: auto;
 }

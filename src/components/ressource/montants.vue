@@ -38,10 +38,10 @@
 
       <div v-else-if="type.displayMonthly === false">
         <p>
-          <span class="fr-hint-text fr-mb-2w"
-            >Vous pouvez copier les montants des mois précédents en cliquant sur
-            le bouton à droite du champ.
-            <br />
+          <span class="fr-hint-text fr-mb-2w fr-mw-70w"
+            >Au clic sur un champ, le bouton "Copier sur les mois précédents"
+            apparaît pour permettre de copier le montant du mois sélectionné sur
+            les mois précédents. <br /><br />
             En cas de <b>revenus irréguliers</b>, indiquez le montant reçu pour
             les mois concernés et 0 pour les autres mois.
           </span>

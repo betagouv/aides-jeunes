@@ -15,7 +15,6 @@
           v-html="getQuestionLabel(type.meta, dates.twelveMonthsAgo.label)"
         />
       </YesNoQuestion>
-
       <div v-if="type.displayMonthly === true">
         <label :for="`${type.meta.id}_monthly`" class="fr-label">
           Indiquez le montant
@@ -39,12 +38,13 @@
 
       <div v-else-if="type.displayMonthly === false">
         <p>
-          <span class="fr-hint-text fr-mb-1w"
-            >Pour faciliter la saisie des ressources sur 13 mois, lorsque un
-            montant est saisi pour un mois donné, les montants pour les périodes
-            précédentes peuvent être copiés en cliquant sur le bouton à droite
-            du champ. Ils peuvent être modifiés ensuite.</span
-          >
+          <span class="fr-hint-text fr-mb-2w fr-mw-70w"
+            >Au clic sur un champ, le bouton "Copier sur les mois précédents"
+            apparaît pour permettre de copier le montant du mois sélectionné sur
+            les mois précédents. <br /><br />
+            En cas de <b>revenus irréguliers</b>, indiquez le montant reçu pour
+            les mois concernés et 0 pour les autres mois.
+          </span>
           Indiquez les montants <strong>nets sociaux mensuels</strong> que
           {{ getLongLabel(type.individu, type.meta) }}
         </p>

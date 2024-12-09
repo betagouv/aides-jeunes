@@ -85,6 +85,10 @@ function buildVeloBenefitLabel(benefit: AidesVeloBenefit): string {
     title += ` ou d'une trottinette électrique`
   }
 
+  if (benefit.title.includes("Ville de")) {
+    return title
+  }
+
   return `${title} : ${benefit.title}`
 }
 

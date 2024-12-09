@@ -35,6 +35,62 @@ const teleservices = [
       url: "{{&openfiscaTracerURL}}/?source={{&baseURL}}/api/simulation/via/{{token}}&host={{&openFiscaURL}}",
     },
   },
+  {
+    name: "openfisca_axe",
+    class: OpenFiscaAxe,
+    public: true,
+    destination: {
+      url: "{{&openfiscaAxeURL}}/graphique?source={{&baseURL}}/api/simulation/via/{{token}}",
+    },
+  },
+  {
+    name: "PNDS",
+    class: PNDS,
+    destination: {
+      url: "https://www.mesdroitssociaux.gouv.fr?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_preremplissage_dev",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/preremplissage/resultats?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_service_logement_dev",
+    class: AidesJeunesServiceLogement,
+    public: true,
+    destination: {
+      url: "http://localhost:3000/service-logement?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_preremplissage",
+    class: AidesJeunesPreremplissage,
+    public: true,
+    destination: {
+      url: "{{&aideJeuneExperimentationURL}}/preremplissage/resultats?token={{token}}",
+    },
+  },
+  {
+    name: "aides_jeunes_service_logement",
+    class: AidesJeunesServiceLogement,
+    public: true,
+    destination: {
+      url: "{{&aideJeuneExperimentationURL}}/service-logement?token={{token}}",
+    },
+  },
+  {
+    name: "ds",
+    class: DemarchesSimplifiees,
+    public: true,
+    destination: {
+      label: "Aller sur démarches-simplifiées.fr",
+      url: "/api/proxy/ds?token={{token}}",
+    },
+  },
 ].filter((service) => service.public === true)
 
 function createClass(teleservice, simulation, query) {

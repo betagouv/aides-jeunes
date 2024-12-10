@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, getCurrentInstance } from "vue"
+import { computed, getCurrentInstance, defineProps } from "vue"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
@@ -36,10 +36,33 @@ const resumeSimulation = () => {
   initializeOpenfiscaParameters()
   proxy?.$push()
 }
+
+const props = defineProps({
+  horizontal: {
+    type: Boolean,
+    default: false,
+  },
+  size: {
+    type: String,
+    default: null,
+  },
+  reverse: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 
 <template>
-  <ul class="fr-btns-group">
+  <ul
+    class="fr-btns-group"
+    :class="{
+      'fr-btns-group--inline-md': props.horizontal,
+      'fr-btns-group--sm': props.size === 'small',
+      'fr-btns-group--inline-reverse': props.reverse,
+      'fr-btns-group--right': props.reverse,
+    }"
+  >
     <li v-if="hasExistingSituation">
       <button
         v-analytics="{

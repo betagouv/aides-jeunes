@@ -1,19 +1,25 @@
 <template>
   <article class="fr-article">
     <div class="fr-grid-row fr-grid-row--gutters">
-      <div class="fr-col-12 fr-col-md-4">
+      <div class="fr-col-12">
         <h1>Toutes les aides</h1>
-        <BackButton
-          size="small"
-          data-testid="benefits-liste-back-button"
-          as-link
-          to="/"
-        >
-          Retour à l'accueil
-        </BackButton>
       </div>
-      <div class="fr-col-12 fr-col-md-5 fr-col-offset-md-3">
-        <HomeSimulationGroupButtons />
+      <div class="aj-home-group-buttons-container">
+        <div class="fr-mb-2w fr-mr-2w">
+          <BackButton
+            data-testid="benefits-liste-back-button"
+            as-link
+            to="/"
+            size="small"
+          >
+            Retour à l'accueil
+          </BackButton>
+        </div>
+        <HomeSimulationGroupButtons
+          :horizontal="true"
+          size="small"
+          :reverse="true"
+        />
       </div>
     </div>
 
@@ -240,3 +246,5 @@ const alertClass = computed(() =>
   countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
 )
 </script>
+
+<style scoped></style>

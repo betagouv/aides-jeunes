@@ -1,10 +1,12 @@
 import jwt from "jsonwebtoken"
 import config from "../config/index.js"
-import { Issuer } from "openid-client"
+import * as client from "openid-client"
 import Sentry from "@sentry/node"
 
 const JWT_EXPIRATION_DELAY = 15552000 // 6 * 30 * 24 * 60 * 60 = 6 months
 const MCP_TOKEN = "mcp_token"
+const MCP_STATE = "mcp_ste"
+const MCP_CODE_VERIFER = "mcp_vrfer"
 
 const accompagnement = config.accompagnement
 
@@ -20,31 +22,53 @@ const {
 const { sessionSecret } = config
 const baseUrl = config.baseURL
 
-const getMcpClient = async () => {
-  const mcpIssuer = await Issuer.discover(provider)
-
-  return new mcpIssuer.Client({
-    client_id,
-    client_secret,
-    redirect_uris: [redirect_uri],
-    response_types: ["code"],
-  })
+const getMcpClient = async (): Promise<client.Configuration> => {
+  return await client.discovery(new URL(provider), client_id, client_secret)
 }
 
 const login = async (req, res) => {
-  const client = await getMcpClient()
-  const redirectUrl = client.authorizationUrl({
+  const mcpIssuer = await getMcpClient()
+  const codeVerifier: string = client.randomPKCECodeVerifier()
+  const codeChallenge: string = await client.calculatePKCECodeChallenge(
+    codeVerifier
+  )
+  let state!: string
+  const parameters: Record<string, string> = {
+    redirect_uri: redirect_uri,
     scope,
-  })
-  res.redirect(redirectUrl)
+    codeChallenge,
+    code_challenge_method: "S256",
+  }
+
+  if (!mcpIssuer.serverMetadata().supportsPKCE()) {
+    /**
+     * We cannot be sure the server supports PKCE so we're going to use state too.
+     * Use of PKCE is backwards compatible even if the AS doesn't support it which
+     * is why we're using it regardless. Like PKCE, random state must be generated
+     * for every redirect to the authorization_endpoint.
+     */
+    state = client.randomState()
+    parameters.state = state
+  }
+
+  res.cookie(MCP_STATE, state)
+  res.cookie(MCP_CODE_VERIFER, codeVerifier)
+
+  const redirectUrl: URL = client.buildAuthorizationUrl(mcpIssuer, parameters)
+  return res.redirect(redirectUrl)
 }
 
 const retrieveMcpAccessToken = async (req) => {
   try {
-    const client = await getMcpClient()
-    const params = client.callbackParams(req)
-    const tokenSet = await client.callback(redirect_uri, params)
-    return tokenSet.access_token
+    const mcpIssuer = await getMcpClient()
+    const { cookies } = req
+    const codeVerifier = cookies && cookies[MCP_CODE_VERIFER]
+    const state = cookies && cookies[MCP_STATE]
+
+    return await client.authorizationCodeGrant(mcpIssuer, req, {
+      pkceCodeVerifier: codeVerifier,
+      expectedState: state,
+    })
   } catch (error) {
     console.error("Error in retrieveMcpAccessToken: ", error)
     throw error
@@ -58,12 +82,17 @@ const access = async (req, res, next) => {
     const mcpCode = req.query.code
 
     if (mcpCode) {
-      const mcpAccessToken = await retrieveMcpAccessToken(req)
-      const client = await getMcpClient()
-      if (!mcpAccessToken) {
+      const tokens = await retrieveMcpAccessToken(req)
+      const mcpIssuer = await getMcpClient()
+      if (!tokens) {
         throw new Error("No mcpAccessToken")
       }
-      const userInfo = await client.userinfo(mcpAccessToken)
+
+      const { access_token } = tokens
+
+      const claims = tokens.claims()!
+      const { sub } = claims
+      const userInfo = await client.fetchUserInfo(mcpIssuer, access_token, sub)
       if (!userInfo.email) {
         throw new Error("No userInfo email")
       }
@@ -75,7 +104,7 @@ const access = async (req, res, next) => {
         })
         res.cookie(MCP_TOKEN, mcpToken)
       } else {
-        res.clearCookie(MCP_TOKEN)
+        clearCookie(res)
         return res.redirect(accompagnement.unauthorizedPath)
       }
     }
@@ -87,7 +116,7 @@ const access = async (req, res, next) => {
       if (isAuthorized) {
         return next()
       } else {
-        res.clearCookie(MCP_TOKEN)
+        clearCookie(res)
         return res.redirect(accompagnement.unauthorizedPath)
       }
     }
@@ -95,7 +124,7 @@ const access = async (req, res, next) => {
     return login(req, res)
   } catch (error) {
     Sentry.captureException(error)
-    res.clearCookie(MCP_TOKEN)
+    clearCookie(res)
     return res.redirect(accompagnement.errorPath)
   }
 }
@@ -108,13 +137,19 @@ const loginCallbackRedirect = (req, res) => {
   }
 }
 
+const clearCookie = (res) => {
+  res.clearCookie(MCP_TOKEN)
+  res.clearCookie(MCP_CODE_VERIFER)
+  res.clearCookie(MCP_STATE)
+}
+
 const logout = async (req, res, next) => {
   try {
-    res.clearCookie(MCP_TOKEN)
-    const client = await getMcpClient()
-    const redirectUrl = client.endSessionUrl({
+    clearCookie(res)
+    const mcpIssuer = await getMcpClient()
+    const redirectUrl = client.buildEndSessionUrl(mcpIssuer, {
       post_logout_redirect_uri: `${baseUrl}${accompagnement.path}`,
-    })
+    }).href
     res.redirect(redirectUrl)
   } catch (e) {
     next(e)

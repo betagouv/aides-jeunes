@@ -20,7 +20,7 @@ import MailDirective from "./directives/mail.js"
 import SelectOnClickDirective from "./directives/select-on-click.js"
 
 // @ts-ignore
-import { iframeResizerContentWindow } from "iframe-resizer"
+import iframeResizerContentWindow from "@iframe-resizer/parent"
 
 import "dayjs/locale/fr.js"
 import customParseFormat from "dayjs/plugin/customParseFormat"

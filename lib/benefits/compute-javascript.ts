@@ -49,6 +49,9 @@ const PROFILE_STRATEGY = {
   }): boolean => {
     return situation.demandeur?.scolarite === Scolarite.EnseignementSuperieur
   },
+  collegien: ({ situation }: { situation: Situation }): boolean => {
+    return situation.demandeur?.scolarite === Scolarite.College
+  },
   lyceen: ({ situation }: { situation: Situation }): boolean => {
     return situation.demandeur?.scolarite === Scolarite.Lycee
   },

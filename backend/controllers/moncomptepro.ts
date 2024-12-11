@@ -5,7 +5,7 @@ import Sentry from "@sentry/node"
 
 const JWT_EXPIRATION_DELAY = 15552000 // 6 * 30 * 24 * 60 * 60 = 6 months
 const MCP_TOKEN = "mcp_token"
-const MCP_STATE = "mcp_ste"
+const MCP_NONCE = "mcp_nnce"
 const MCP_CODE_VERIFER = "mcp_vrfer"
 
 const accompagnement = config.accompagnement
@@ -32,9 +32,9 @@ const login = async (req, res) => {
   const codeChallenge: string = await client.calculatePKCECodeChallenge(
     codeVerifier
   )
-  let state!: string
+  let nonce!: string
   const parameters: Record<string, string> = {
-    redirect_uri: redirect_uri,
+    redirect_uri,
     scope,
     codeChallenge,
     code_challenge_method: "S256",
@@ -47,15 +47,15 @@ const login = async (req, res) => {
      * is why we're using it regardless. Like PKCE, random state must be generated
      * for every redirect to the authorization_endpoint.
      */
-    state = client.randomState()
-    parameters.state = state
+    nonce = client.randomState()
+    parameters.nonce = nonce
+    res.cookie(MCP_NONCE, nonce)
   }
 
-  res.cookie(MCP_STATE, state)
   res.cookie(MCP_CODE_VERIFER, codeVerifier)
 
   const redirectUrl: URL = client.buildAuthorizationUrl(mcpIssuer, parameters)
-  return res.redirect(redirectUrl)
+  return res.redirect(redirectUrl.href)
 }
 
 const retrieveMcpAccessToken = async (req) => {
@@ -63,11 +63,12 @@ const retrieveMcpAccessToken = async (req) => {
     const mcpIssuer = await getMcpClient()
     const { cookies } = req
     const codeVerifier = cookies && cookies[MCP_CODE_VERIFER]
-    const state = cookies && cookies[MCP_STATE]
+    const nonce = cookies && cookies[MCP_NONCE]
 
     return await client.authorizationCodeGrant(mcpIssuer, req, {
       pkceCodeVerifier: codeVerifier,
-      expectedState: state,
+      expectedNonce: nonce,
+      idTokenExpected: true,
     })
   } catch (error) {
     console.error("Error in retrieveMcpAccessToken: ", error)
@@ -89,7 +90,6 @@ const access = async (req, res, next) => {
       }
 
       const { access_token } = tokens
-
       const claims = tokens.claims()!
       const { sub } = claims
       const userInfo = await client.fetchUserInfo(mcpIssuer, access_token, sub)
@@ -140,7 +140,7 @@ const loginCallbackRedirect = (req, res) => {
 const clearCookie = (res) => {
   res.clearCookie(MCP_TOKEN)
   res.clearCookie(MCP_CODE_VERIFER)
-  res.clearCookie(MCP_STATE)
+  res.clearCookie(MCP_NONCE)
 }
 
 const logout = async (req, res, next) => {

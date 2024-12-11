@@ -7,7 +7,16 @@ import { StandardBenefit } from "../../../data/types/benefits.js"
 
 // Note: for now, only EPCI are supported
 
-const sixMonthsAgo = dayjs().subtract(6, "month").toDate()
+const oneYearAgo = dayjs().subtract(1, "year").toDate()
+
+interface MonthlyCount {
+  month: string
+  count: number
+}
+
+interface EPCIStats {
+  [key: string]: MonthlyCount[]
+}
 
 interface Count {
   [key: string]: number
@@ -18,7 +27,7 @@ async function getSimulationCountPerEPCI(): Promise<Count> {
     {
       $match: {
         createdAt: {
-          $gt: sixMonthsAgo,
+          $gt: oneYearAgo,
         },
       },
     },
@@ -80,9 +89,67 @@ function patchEpciList(epci) {
   })
 }
 
+async function getMonthlySimulationCountPerEPCI(): Promise<EPCIStats> {
+  const simulationCount = await Simulations.aggregate([
+    {
+      $match: {
+        createdAt: {
+          $gt: oneYearAgo,
+        },
+      },
+    },
+    {
+      $unwind: "$answers.all",
+    },
+    {
+      $match: {
+        "answers.all.entityName": "menage",
+        "answers.all.fieldName": "depcom",
+      },
+    },
+    {
+      $addFields: {
+        epciCode: "$answers.all.value._epci",
+      },
+    },
+    {
+      $group: {
+        _id: {
+          epci: "$epciCode",
+          month: { $dateToString: { format: "%Y-%m", date: "$createdAt" } },
+        },
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $match: {
+        "_id.epci": { $ne: null },
+      },
+    },
+    {
+      $sort: {
+        "_id.month": 1,
+      },
+    },
+  ])
+
+  return simulationCount.reduce((stats: EPCIStats, result) => {
+    const { epci, month } = result._id
+    if (!stats[epci]) {
+      stats[epci] = []
+    }
+    stats[epci].push({
+      month,
+      count: result.count,
+    })
+    return stats
+  }, {} as EPCIStats)
+}
+
 export default async function getInstitutionsData() {
   const epciPatched = patchEpciList(epciList)
   const simulationNumberPerEPCI = await getSimulationCountPerEPCI()
+  const monthlySimulationsPerEPCI = await getMonthlySimulationCountPerEPCI()
   const benefitCountPerEPCI = getBenefitCountPerEPCI()
 
   return epciPatched.map((epci) => {
@@ -93,6 +160,7 @@ export default async function getInstitutionsData() {
       population: epci.populationTotale,
       simulationCount: simulationNumberPerEPCI[epci.code] || 0,
       benefitCount: benefitCountPerEPCI[epci.code] || 0,
+      monthlySimulations: monthlySimulationsPerEPCI[epci.code] || [],
     }
   })
 }

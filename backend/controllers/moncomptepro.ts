@@ -5,7 +5,6 @@ import Sentry from "@sentry/node"
 
 const JWT_EXPIRATION_DELAY = 15552000 // 6 * 30 * 24 * 60 * 60 = 6 months
 const MCP_TOKEN = "mcp_token"
-const MCP_NONCE = "mcp_nnce"
 const MCP_CODE_VERIFER = "mcp_vrfer"
 
 const accompagnement = config.accompagnement
@@ -28,32 +27,10 @@ const getMcpClient = async (): Promise<client.Configuration> => {
 
 const login = async (req, res) => {
   const mcpIssuer = await getMcpClient()
-  const codeVerifier: string = client.randomPKCECodeVerifier()
-  const codeChallenge: string = await client.calculatePKCECodeChallenge(
-    codeVerifier
-  )
-  let nonce!: string
   const parameters: Record<string, string> = {
     redirect_uri,
     scope,
-    codeChallenge,
-    code_challenge_method: "S256",
   }
-
-  if (!mcpIssuer.serverMetadata().supportsPKCE()) {
-    /**
-     * We cannot be sure the server supports PKCE so we're going to use state too.
-     * Use of PKCE is backwards compatible even if the AS doesn't support it which
-     * is why we're using it regardless. Like PKCE, random state must be generated
-     * for every redirect to the authorization_endpoint.
-     */
-    nonce = client.randomState()
-    parameters.nonce = nonce
-    res.cookie(MCP_NONCE, nonce)
-  }
-
-  res.cookie(MCP_CODE_VERIFER, codeVerifier)
-
   const redirectUrl: URL = client.buildAuthorizationUrl(mcpIssuer, parameters)
   return res.redirect(redirectUrl.href)
 }
@@ -61,15 +38,8 @@ const login = async (req, res) => {
 const retrieveMcpAccessToken = async (req) => {
   try {
     const mcpIssuer = await getMcpClient()
-    const { cookies } = req
-    const codeVerifier = cookies && cookies[MCP_CODE_VERIFER]
-    const nonce = cookies && cookies[MCP_NONCE]
 
-    return await client.authorizationCodeGrant(mcpIssuer, req, {
-      pkceCodeVerifier: codeVerifier,
-      expectedNonce: nonce,
-      idTokenExpected: true,
-    })
+    return await client.authorizationCodeGrant(mcpIssuer, req, {})
   } catch (error) {
     console.error("Error in retrieveMcpAccessToken: ", error)
     throw error
@@ -140,7 +110,6 @@ const loginCallbackRedirect = (req, res) => {
 const clearCookie = (res) => {
   res.clearCookie(MCP_TOKEN)
   res.clearCookie(MCP_CODE_VERIFER)
-  res.clearCookie(MCP_NONCE)
 }
 
 const logout = async (req, res, next) => {

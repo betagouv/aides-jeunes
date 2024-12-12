@@ -3,7 +3,7 @@ import moncompteproController from "../controllers/moncomptepro.js"
 import { Express } from "express"
 
 const moncompteproRoutes = function (api: Express) {
-  api.get("/login", moncompteproController.login)
+  api.get("/login", cookieParser(), moncompteproController.login)
   api.get(
     "/auth/redirect",
     cookieParser(),

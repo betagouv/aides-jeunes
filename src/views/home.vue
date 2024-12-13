@@ -5,9 +5,6 @@ import HowItWorksSection from "@/components/home/how-it-works-section.vue"
 import BenefitsShowcaseSection from "@/components/home/benefits-showcase-section.vue"
 import PartnersSection from "@/components/home/partners-section.vue"
 import FaqSection from "@/views/faq.vue"
-import { useRouter } from "vue-router"
-
-const router = useRouter()
 </script>
 
 <template>
@@ -17,6 +14,6 @@ const router = useRouter()
     <HowItWorksSection />
     <BenefitsShowcaseSection />
     <PartnersSection />
-    <FaqSection :showBackButton="false" />
+    <FaqSection :show-back-button="false" />
   </div>
 </template>

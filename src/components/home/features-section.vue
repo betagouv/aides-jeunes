@@ -10,13 +10,13 @@
           <div class="fr-card fr-card--no-border">
             <div class="fr-card__body">
               <div class="fr-card__content">
-                <h3 class="fr-card__title">
+                <div class="fr-card__title">
                   <span
                     :class="['fr-icon-' + feature.icon, 'fr-icon--lg']"
                     aria-hidden="true"
                   ></span>
                   {{ feature.title }}
-                </h3>
+                </div>
                 <p class="fr-card__desc" v-html="feature.description"></p>
               </div>
             </div>

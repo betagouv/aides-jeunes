@@ -117,13 +117,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from "vue"
+import { ref, computed, watch, onMounted } from "vue"
+import { useRoute } from "vue-router"
+import BackButton from "@/components/buttons/back-button.vue"
 import institutionsBenefits from "generator:institutions"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize, normalizeString } from "@lib/utils.js"
-import BackButton from "@/components/buttons/back-button.vue"
 
+const route = useRoute()
 const zipCode = ref<string | null>(null)
 const selectedCommune = ref<Commune | null>(null)
 const searchTerms = ref<string | null>(null)
@@ -138,6 +140,14 @@ const types = {
   commune: "Aides communales",
   autre: "Autres aides",
 }
+
+onMounted(() => {
+  const keywordParam = route.query.keyword?.toString()
+  if (keywordParam) {
+    searchTerms.value = decodeURIComponent(keywordParam.replace(/\+/g, " "))
+  }
+})
+
 const filterByBenefit = (type, searchTermsLower) => {
   return institutionsBenefits[type]
     .map((institution) => {
@@ -152,6 +162,7 @@ const filterByBenefit = (type, searchTermsLower) => {
     })
     .filter((item) => item) // Remove entities with no matching benefits
 }
+
 const institutionsGroups = computed(() => {
   if (selectedCommune.value) {
     return {

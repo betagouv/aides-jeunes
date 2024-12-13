@@ -21,6 +21,7 @@
             >
               <a
                 :href="aide.link"
+                target="_blank"
                 class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
               >
                 {{ aide.name }}
@@ -35,14 +36,19 @@
 
 <script setup lang="ts">
 const aides = [
-  { name: "Bourse sur critères sociaux", link: "#" },
-  { name: "Prime d'Activité", link: "#" },
-  { name: "RSA", link: "#" },
-  { name: "ARS", link: "#" },
-  { name: "Pass Sport", link: "#" },
-  { name: "Allocations familiales", link: "#" },
-  { name: "Aides vacances", link: "#" },
-  { name: "Aides covoiturage", link: "#" },
-  { name: "Aides vélo", link: "#" },
+  {
+    name: "Bourse sur critères sociaux",
+    link: "/aides/bourse_criteres_sociaux",
+  },
+  { name: "Prime d'Activité", link: "/aides/ppa" },
+  { name: "Revenu de solidarité active (RSA)", link: "/aides/rsa" },
+  { name: "Allocation de rentrée scolaire (ARS)", link: "/aides/ars" },
+  { name: "Pass Sport", link: "/aides/pass_sport" },
+  {
+    name: "Allocations familiales",
+    link: "/aides?keyword=allocations+familiales",
+  },
+  { name: "Aides covoiturage", link: "/aides?keyword=covoiturage" },
+  { name: "Aides vélo", link: "/aides?keyword=vélo" },
 ]
 </script>

@@ -677,6 +677,14 @@ textarea {
   opacity: 1;
 }
 
+.aj-partner-link {
+  background-image: none;
+}
+
+.aj-partner-link::after {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .aj-partners {
     gap: 1rem;

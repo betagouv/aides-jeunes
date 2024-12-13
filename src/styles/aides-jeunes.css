@@ -707,3 +707,7 @@ textarea {
 .aj-home-step__description {
   color: var(--text-mention-grey);
 }
+
+.fr-list--no-bullet {
+  list-style-type: none;
+}

@@ -33,7 +33,7 @@
               action: eventActionResume,
               category: eventCategoryHome,
             }"
-            class="fr-btn fr-btn--secondary"
+            class="fr-btn"
             @click="next"
           >
             Reprendre ma simulation
@@ -41,11 +41,20 @@
           <button
             v-analytics="{ action: ctaLabel, category: eventCategoryHome }"
             class="fr-btn fr-btn--lg"
+            :class="hasExistingSituation ? 'fr-btn--secondary' : ''"
             data-testid="new-simulation"
             @click="newSituation"
           >
             {{ ctaLabel }}
           </button>
+        </div>
+        <div>
+          <router-link
+            class="fr-text--sm fr-link fr-fi-arrow-right-line fr-link--icon-right"
+            to="/aides"
+          >
+            Accéder à la liste complète des aides
+          </router-link>
         </div>
       </div>
       <div class="fr-col-12 fr-col-md-6 fr-hidden fr-unhidden-md fr-mt-2w">

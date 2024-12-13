@@ -34,7 +34,7 @@
               category: eventCategoryHome,
             }"
             class="fr-btn fr-btn--secondary"
-            @click="$emit('next')"
+            @click="next"
           >
             Reprendre ma simulation
           </button>
@@ -42,7 +42,7 @@
             v-analytics="{ action: ctaLabel, category: eventCategoryHome }"
             class="fr-btn fr-btn--lg"
             data-testid="new-simulation"
-            @click="$emit('newSituation')"
+            @click="newSituation"
           >
             {{ ctaLabel }}
           </button>
@@ -60,32 +60,50 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
+import { ref, computed } from "vue"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
+import { useStore } from "@/stores/index.js"
+import { useRoute, useRouter } from "vue-router"
 
-const props = defineProps({
-  benefitsNumber: {
-    type: String,
-    required: true,
-  },
-  hasExistingSituation: {
-    type: Boolean,
-    required: true,
-  },
-  aideDomains: {
-    type: Array as () => string[],
-    required: true,
-  },
-})
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+const context = process.env.VITE_CONTEXT
+const benefitsNumber = process.env.VITE_BENEFIT_COUNT
 
-defineEmits(["next", "newSituation"])
+const hasExistingSituation = computed(() => store.passSanityCheck)
+
+const aideDomains = ref([
+  "Logement",
+  "Santé",
+  "Famille",
+  "Transports",
+  "Études",
+  "Formation",
+  "Travail",
+  "Loisirs",
+  "Vacances",
+])
 
 const eventActionResume = EventAction.ReprendreMaSimulation
 const eventCategoryHome = EventCategory.Home
 
 const ctaLabel = computed(() =>
-  props.hasExistingSituation
+  hasExistingSituation.value
     ? "Commencer une nouvelle simulation"
     : "Je commence ma simulation"
 )
+
+function newSituation() {
+  store.clear(route.query.external_id as string)
+  next()
+}
+
+function next() {
+  store.setOpenFiscaParameters()
+  if (context !== "production") {
+    store.verifyBenefitVariables()
+  }
+  router.push({ name: "simulation" })
+}
 </script>

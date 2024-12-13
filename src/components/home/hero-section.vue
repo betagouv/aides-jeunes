@@ -1,3 +1,52 @@
+<script setup lang="ts">
+import { ref, computed } from "vue"
+import { EventAction, EventCategory } from "@lib/enums/event.js"
+import { useStore } from "@/stores/index.js"
+import { useRoute, useRouter } from "vue-router"
+
+const store = useStore()
+const route = useRoute()
+const router = useRouter()
+const context = process.env.VITE_CONTEXT
+const benefitsNumber = process.env.VITE_BENEFIT_COUNT
+
+const hasExistingSituation = computed(() => store.passSanityCheck)
+
+const aideDomains = ref([
+  "logement",
+  "santé",
+  "famille",
+  "transports",
+  "études",
+  "formations",
+  "travail",
+  "loisirs",
+  "vacances",
+])
+
+const eventActionResume = EventAction.ReprendreMaSimulation
+const eventCategoryHome = EventCategory.Home
+
+const ctaLabel = computed(() =>
+  hasExistingSituation.value
+    ? "Commencer une nouvelle simulation"
+    : "Je commence ma simulation"
+)
+
+function newSituation() {
+  store.clear(route.query.external_id as string)
+  next()
+}
+
+function next() {
+  store.setOpenFiscaParameters()
+  if (context !== "production") {
+    store.verifyBenefitVariables()
+  }
+  router.push({ name: "simulation" })
+}
+</script>
+
 <template>
   <div class="fr-container">
     <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--middle">
@@ -8,23 +57,17 @@
           </span>
           en quelques clics.
         </h1>
-        <p class="fr-text--lg fr-mb-2w">
-          Découvrez rapidement toutes les aides financières auxquelles vous avez
-          droit dans les domaines suivants :
+        <p class="fr-text--md fr-mb-3w">
+          Découvrez toutes les aides financières auxquelles vous avez droit en
+          matière de
+          <b
+            >{{ aideDomains.slice(0, -1).join(", ") }} et
+            {{ aideDomains[aideDomains.length - 1] }}</b
+          >.
         </p>
-        <div class="aj-domains-container fr-mb-3w">
-          <span
-            v-for="(domain, index) in aideDomains"
-            :key="`domain-${index}`"
-            class="aj-domain"
-          >
-            {{ domain }}
-          </span>
-        </div>
-        <p class="fr-text--sm fr-mb-4w">
-          Avant de démarrer la simulation de vos aides, pensez à vous munir de
-          vos ressources et de celles de vos parents si vous êtes encore à leur
-          charge.
+        <p class="fr-text--xs fr-mb-2w fr-text--disabled">
+          Avant de démarrer la simulation, pensez à vous munir de vos ressources
+          et de celles de vos parents si vous êtes encore à leur charge.
         </p>
         <div class="fr-btns-group fr-btns-group--inline-md">
           <button
@@ -67,52 +110,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from "vue"
-import { EventAction, EventCategory } from "@lib/enums/event.js"
-import { useStore } from "@/stores/index.js"
-import { useRoute, useRouter } from "vue-router"
-
-const store = useStore()
-const route = useRoute()
-const router = useRouter()
-const context = process.env.VITE_CONTEXT
-const benefitsNumber = process.env.VITE_BENEFIT_COUNT
-
-const hasExistingSituation = computed(() => store.passSanityCheck)
-
-const aideDomains = ref([
-  "Logement",
-  "Santé",
-  "Famille",
-  "Transports",
-  "Études",
-  "Formation",
-  "Travail",
-  "Loisirs",
-  "Vacances",
-])
-
-const eventActionResume = EventAction.ReprendreMaSimulation
-const eventCategoryHome = EventCategory.Home
-
-const ctaLabel = computed(() =>
-  hasExistingSituation.value
-    ? "Commencer une nouvelle simulation"
-    : "Je commence ma simulation"
-)
-
-function newSituation() {
-  store.clear(route.query.external_id as string)
-  next()
-}
-
-function next() {
-  store.setOpenFiscaParameters()
-  if (context !== "production") {
-    store.verifyBenefitVariables()
-  }
-  router.push({ name: "simulation" })
-}
-</script>

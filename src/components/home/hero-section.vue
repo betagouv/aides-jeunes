@@ -52,9 +52,10 @@ function next() {
     <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--middle">
       <div class="fr-col-12 fr-col-md-6 fr-mt-2w">
         <h1 class="fr-h3 fr-mb-3w">
-          <span class="aj-hero-highlight">
+          <span class="aj-hero-highlight d-block">
             Évaluez vos droits à {{ benefitsNumber }} aides
           </span>
+          <br class="fr-hidden fr-unhidden-sm" />
           en quelques clics.
         </h1>
         <p class="fr-text--md fr-mb-3w">

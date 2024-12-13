@@ -1,0 +1,48 @@
+<template>
+  <div class="fr-background-alt--grey fr-py-6w fr-mt-6w">
+    <div class="fr-container">
+      <h2 class="fr-h3 fr-mb-4w">
+        Ne passez à côté d'aucune aide financière
+      </h2>
+      <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-md-6">
+          <img
+            src="https://betagouv.github.io/aides-jeunes-files/public/resultats_simulation.gif"
+            alt="Capture d'écran de la page de résultats"
+            class="fr-responsive-img fr-mb-2w"
+          />
+        </div>
+        <div class="fr-col-12 fr-col-md-6">
+          <ul class="fr-list fr-list--no-bullet">
+            <li
+              v-for="(aide, index) in aides"
+              :key="`aide-${index}`"
+              class="fr-mb-2w"
+            >
+              <a
+                :href="aide.link"
+                class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
+              >
+                {{ aide.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const aides = [
+  { name: "Bourse sur critères sociaux", link: "#" },
+  { name: "Prime d'Activité", link: "#" },
+  { name: "RSA", link: "#" },
+  { name: "ARS", link: "#" },
+  { name: "Pass Sport", link: "#" },
+  { name: "Allocations familiales", link: "#" },
+  { name: "Aides vacances", link: "#" },
+  { name: "Aides covoiturage", link: "#" },
+  { name: "Aides vélo", link: "#" },
+]
+</script>

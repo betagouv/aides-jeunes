@@ -13,6 +13,7 @@
   <HowItWorksSection />
   <BenefitsShowcaseSection />
   <PartnersSection />
+  <FaqSection :showBackButton="false" />
 
   <div class="fr-container fr-mt-4w fr-mb-8w">
     <div class="fr-grid-row fr-grid-row--center">
@@ -36,6 +37,7 @@ import FeaturesSection from "@/components/home/features-section.vue"
 import HowItWorksSection from "@/components/home/how-it-works-section.vue"
 import BenefitsShowcaseSection from "@/components/home/benefits-showcase-section.vue"
 import PartnersSection from "@/components/home/partners-section.vue"
+import FaqSection from "@/views/faq.vue"
 
 const store = useStore()
 const route = useRoute()

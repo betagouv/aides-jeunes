@@ -68,7 +68,7 @@ function next() {
         </p>
         <p class="fr-text--xs fr-mb-2w fr-text--disabled">
           Avant de démarrer la simulation, pensez à vous munir de vos ressources
-          et de celles de vos parents si vous êtes encore à leur charge.
+          et/ou de celles de vos parents si vous êtes encore à leur charge.
         </p>
         <div class="fr-btns-group fr-btns-group--inline-md">
           <button

@@ -2,7 +2,7 @@ name: "Continuous Integration"
 on:
   push:
     branches: [main]
-  pull_request_target:
+  pull_request:
   workflow_dispatch:
 env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000

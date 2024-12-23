@@ -4,13 +4,13 @@ import { SurveyType } from "../../lib/enums/survey.js"
 import { Followup } from "../../lib/types/followup.d.js"
 import { FollowupModel } from "../types/models.d.js"
 import FollowupSchema from "./followup-schema.js"
+import SurveySchema from "./survey-schema.js"
 
 FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
 })
 
-const SurveyModel = mongoose.model<Survey>("Survey")
-
+const SurveyModel = mongoose.model<Survey>("Survey", SurveySchema)
 FollowupSchema.method(
   "addSurveyIfMissing",
   async function (surveyType: SurveyType): Promise<Survey> {

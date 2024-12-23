@@ -32,15 +32,11 @@ app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
 app.route("/").get(function (req, res) {
-  Followups.find()
-    .sort({ createdAt: -1 })
-    .limit(10)
-    .exec(function (err, followups) {
-      res.render("index", {
-        followups,
-        typeKeys,
-      })
-    })
+  const followups = Followups.find().sort({ createdAt: -1 }).limit(10).exec()
+  res.render("index", {
+    followups,
+    typeKeys,
+  })
 })
 
 const followupRendering = async (req: Request) => {
@@ -61,8 +57,8 @@ const followupRendering = async (req: Request) => {
             <h3>
             Oups, cette page n'existe pas ou n'est plus accessible.
             </h3>
-            <p> 
-              Ne vous inquiétez pas, vous pouvez retourner à l'accueil du simulateur 
+            <p>
+              Ne vous inquiétez pas, vous pouvez retourner à l'accueil du simulateur
               <a href="${config.baseURL}" class="fr-link">en cliquant ici</a>.
             </p>
           </html>
@@ -76,21 +72,20 @@ const followupRendering = async (req: Request) => {
 }
 
 app.route("/mjml/:id/:type").get(
-  function (req, res, next) {
-    Followups.findById(req.params.id)
-      .populate("simulation")
-      .exec(function (err, followup: Followup | null) {
-        if (err) {
-          return next(err)
-        }
+  async function (req, res, next) {
+    try {
+      const followup: Followup | null = await Followups.findById(req.params.id)
+        .populate("simulation")
+        .exec()
+      if (!followup) {
+        return next()
+      }
 
-        if (!followup) {
-          return next()
-        }
-
-        req.followup = followup
-        next()
-      })
+      req.followup = followup
+      next()
+    } catch (err) {
+      return next(err)
+    }
   },
   function (req, res) {
     followupRendering(req).then((result) => {

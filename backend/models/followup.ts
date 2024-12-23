@@ -9,13 +9,16 @@ FollowupSchema.static("findByEmail", function (email: string) {
   return this.find({ email })
 })
 
+const SurveyModel = mongoose.model<Survey>("Survey")
+
 FollowupSchema.method(
   "addSurveyIfMissing",
   async function (surveyType: SurveyType): Promise<Survey> {
     let survey = this.surveys.find((survey) => survey.type === surveyType)
     if (!survey) {
-      survey = await this.surveys.create({ type: surveyType })
+      survey = new SurveyModel({ type: surveyType })
       this.surveys.push(survey)
+      await this.save()
     }
     return survey
   }

@@ -8,9 +8,7 @@ description:
   les académies de Paris, Créteil et Versailles et vivant à Paris.
 prefix: l’
 conditions_generales:
-  - type: departements
-    values:
-      - "75"
+  - type: attached_to_institution
 profils:
   - type: enseignement_superieur
     conditions: []

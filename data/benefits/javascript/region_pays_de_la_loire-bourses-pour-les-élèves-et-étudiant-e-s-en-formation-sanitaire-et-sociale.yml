@@ -10,13 +10,12 @@ conditions_generales:
     values:
       - "52"
 profils:
-  - type: lyceen
-    conditions:
-      - type: annee_etude
-        values:
-          - terminale
-  - type: enseignement_superieur
-    conditions: []
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 30
 link: https://www.paysdelaloire.fr/les-aides/bourses-regionales-pour-les-eleves-et-etudiants-en-formation-initiale-sociale-paramedicale-et-de?sous_thematique=215
 teleservice: https://maboursesanitaireetsociale.paysdelaloire.fr/Profil-public/public/paysdelaloire/bourse/accueil.do
 prefix: les

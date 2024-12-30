@@ -9,7 +9,6 @@ conditions_generales:
   - type: regions
     values:
       - "52"
-profils:
   - type: age
     operator: ">="
     value: 15

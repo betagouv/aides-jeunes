@@ -26,8 +26,9 @@ function simulation(
   simulationOrSimulationId: Simulation | Simulation["_id"] | string
 ) {
   if (
+    simulationOrSimulationId &&
     typeof simulationOrSimulationId === "object" &&
-    simulationOrSimulationId._id
+    "_id" in simulationOrSimulationId
   ) {
     const simulation = simulationOrSimulationId as Simulation
     setSimulationOnRequest(req, simulation)
@@ -45,7 +46,7 @@ function simulation(
 
 function attachAccessCookie(req: Request, res, next?) {
   const cookiesParameters = {
-    maxAge: 7 * 24 * 3600 * 1000,
+    maxAge: 604800000,
     sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
     secure: config.baseURL.startsWith("https"),
   }
@@ -56,7 +57,7 @@ function attachAccessCookie(req: Request, res, next?) {
   )
   res.cookie(
     "lastestSimulation",
-    req.simulation?._id.toString(),
+    req.simulation?._id?.toString(),
     cookiesParameters
   )
   next && next()

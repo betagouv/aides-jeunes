@@ -11,10 +11,7 @@
           >
             <div class="aj-home-step__number">{{ index + 1 }}</div>
             <div>
-              <h3 class="fr-text--lg fr-mb-2w">{{ step.title }}</h3>
-              <p class="aj-home-step__description fr-text--sm fr-mb-0">
-                {{ step.description }}
-              </p>
+              <h3 class="fr-text--lg">{{ step.title }}</h3>
             </div>
           </div>
         </div>
@@ -27,19 +24,15 @@
 const steps = [
   {
     title: "Je commence une simulation",
-    description: "5 minutes suffisent pour compléter une simulation",
   },
   {
     title: "Je découvre mes aides",
-    description: "Visualisez immédiatement toutes les aides disponibles",
   },
   {
     title: "Je fais mes demandes",
-    description: "Accédez directement aux démarches en ligne",
   },
   {
     title: "Je suis accompagné",
-    description: "Un conseiller peut vous aider gratuitement si besoin",
   },
 ]
 </script>

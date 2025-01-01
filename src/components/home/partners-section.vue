@@ -10,7 +10,12 @@
         rel="noopener noreferrer"
         class="aj-partner-link"
       >
-        <img :src="partner.logo" :alt="partner.name" class="aj-partner-logo" />
+        <img
+          :src="partner.logo"
+          :alt="partner.name"
+          class="aj-partner-logo"
+          loading="lazy"
+        />
       </a>
     </span>
   </div>

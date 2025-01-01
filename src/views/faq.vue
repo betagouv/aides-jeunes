@@ -128,7 +128,7 @@ const questionsAnswers = [
     question: `Puis-je bénéficier d'aides si je pars étudier à l'étranger ?`,
     answer: `
     <p>
-      Si vous envisagez de partir à l'étranger dans le cadre d'un échange universitaire, vous pouvez bénéficier d'aides, qui sont présentées dans <a href="https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67" target="_blank">cet article du site etudiant.gouv.fr</a>.
+      Si vous envisagez de partir à l'étranger dans le cadre d'un échange universitaire, vous pouvez bénéficier de certaines aides présentées sur <a href="https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67" target="_blank">le site etudiant.gouv.fr</a>.
     </p>
     <p>
       En revanche, si vous vous inscrivez directement auprès d'un établissement à l'étranger, vous ne pourrez pas bénéficier des mêmes aides. Vous devrez vous renseigner sur les aides de votre pays d'accueil pour les étudiants et vous rapprocher du consulat de France. Vous trouverez des informations pour préparer votre expatriation sur <a href="https://www.diplomatie.gouv.fr/fr/services-aux-francais/preparer-son-expatriation/etudes-superieures/" target="_blank">cette page du Ministère de l'Europe et des Affaires Etrangères</a>.

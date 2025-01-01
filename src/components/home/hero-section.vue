@@ -97,7 +97,7 @@ function next() {
             class="fr-text--sm fr-link fr-fi-arrow-right-line fr-link--icon-right"
             to="/aides"
           >
-            Accéder à la liste complète des aides
+            Accéder à la liste des aides
           </router-link>
         </div>
       </div>

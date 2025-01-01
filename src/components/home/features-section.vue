@@ -36,8 +36,9 @@ const features = [
   },
   {
     icon: "money-euro-circle-line",
-    title: "Gratuit",
-    description: "Un service public <b>gratuit et sans engagement</b>",
+    title: "Service public gratuit",
+    description:
+      "<b>Public et gratuit</b> : vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément au RGPD.",
   },
   {
     icon: "team-line",

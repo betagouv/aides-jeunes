@@ -19,7 +19,6 @@ profils:
         values:
           - terminale
 conditions:
-  - Être titulaire du Baccalauréat.
   - Être étudiant dans lʼEnseignement Supérieur.
   - Résider à Gravelines depuis au moins un an.
   - 'Faire votre demande de Revenu Minimum Etudiant avant la fin avril au Centre Communal dʼAction Sociale (CCAS), situé au 1 rue des Clarisses, et joignable par téléphone au <a href="tel:+33328235963">03 28 23 59 63</a> pour toute demande de renseignement.'

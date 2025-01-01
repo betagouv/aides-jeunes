@@ -274,7 +274,7 @@ export default {
         (patrimoines, patrimoineType) => ({
           ...patrimoines,
           [patrimoineType.id]:
-            this.demandeur[patrimoineType.id][this.periodKey],
+            this.demandeur[patrimoineType.id][this.periodKey] || 0,
         }),
         {}
       )

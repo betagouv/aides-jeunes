@@ -1,0 +1,32 @@
+label: aide aux étudiants et étudiantes de la ville de Gravelines
+institution: ville_gravelines
+description: "La ville de Graveline apporte une aide financière aux étudiants et
+  étudiantes gravelinois, en fonction des ressources de la famille, du lieu d’études
+  et des autres bourses déjà perçues. Les demandes dʼaide sʼeffectuent chaque année
+  entre juillet et avril au Centre Communal dʼAction Sociale (CCAS)."
+prefix: l’
+conditions_generales:
+  - type: attached_to_institution
+  - type: age
+    operator: ">="
+    value: 18
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+conditions:
+  - Être étudiant dans lʼEnseignement Supérieur.
+  - Résider à Gravelines depuis au moins un an.
+  - 'Faire votre demande de Revenu Minimum Etudiant avant la fin avril au Centre Communal dʼAction Sociale (CCAS), situé au 1 rue des Clarisses, et joignable par téléphone au <a href="tel:+33328235963">03 28 23 59 63</a> pour toute demande de renseignement.'
+link: https://www.ville-gravelines.fr/actualites/dossiers-daide-aux-etudiants-0
+form: https://betagouv.github.io/aides-jeunes-files/public/ville-gravelines/dossier-aae-2024-2025.pdf
+instructions: https://betagouv.github.io/aides-jeunes-files/public/ville-gravelines/procedure-aide-aux-etudiants-2024.pdf
+type: float
+unit: €
+periodicite: annuelle
+legend: maximum
+montant: 300

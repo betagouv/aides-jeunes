@@ -10,72 +10,83 @@
         rel="noopener noreferrer"
         class="aj-partner-link"
       >
-        <img
-          :src="partner.logo"
-          :alt="partner.name"
-          class="aj-partner-logo"
-          loading="lazy"
-        />
+        <picture>
+          <source
+            :srcset="getImagePath(partner.id, 'webp')"
+            type="image/webp"
+          />
+          <source :srcset="getImagePath(partner.id, 'jpg')" type="image/jpeg" />
+          <img
+            :src="getImagePath(partner.id, 'jpg')"
+            :alt="partner.name"
+            class="aj-partner-logo"
+            loading="lazy"
+            width="200"
+            height="100"
+          />
+        </picture>
       </a>
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
+const getImagePath = (id: string, ext: string) => `/img/partners/${id}.${ext}`
+
 const partners = [
   {
+    id: "openfisca",
     name: "OpenFisca",
-    logo: "/img/partners/openfisca.png",
     link: "https://openfisca.org/fr/",
   },
   {
+    id: "demarches-simplifiees",
     name: "Démarches Simplifiées",
-    logo: "/img/partners/demarches-simplifiees.png",
     link: "https://demarches-simplifiees.fr/",
   },
   {
+    id: "rdv-service-public",
     name: "RDV Service Public",
-    logo: "/img/partners/rdv-service-public.png",
     link: "https://rdv.anct.gouv.fr/",
   },
   {
+    id: "domifa",
     name: "Domifa",
-    logo: "/img/partners/domifa.png",
     link: "https://domifa.fabrique.social.gouv.fr/",
   },
   {
+    id: "mesaidesvelo",
     name: "Mesaidesvelo.fr",
-    logo: "/img/partners/mesaidesvelo.png",
     link: "https://mesaidesvelo.fr/",
   },
   {
+    id: "bordeaux-metropole",
     name: "Bordeaux",
-    logo: "/img/partners/bordeaux-metropole.png",
     link: "https://www.bordeaux-metropole.fr/",
   },
   {
+    id: "montpellier-metropole",
     name: "Montpellier",
-    logo: "/img/partners/montpellier-metropole.png",
     link: "https://www.montpellier3m.fr/",
   },
   {
+    id: "toulon-metropole",
     name: "Toulon",
-    logo: "/img/partners/toulon-metropole.png",
     link: "https://metropoletpm.fr/",
   },
   {
+    id: "ville-aubervilliers",
     name: "Aubervilliers",
-    logo: "/img/partners/ville-aubervilliers.png",
     link: "https://www.aubervilliers.fr/",
   },
   {
+    id: "jeunes.gouv.fr",
     name: "jeunes.gouv.fr",
-    logo: "/img/partners/jeunes.gouv.fr.png",
     link: "https://jeunes.gouv.fr/",
   },
   {
+    id: "etudiant.gouv.fr",
     name: "étudiants.gouv.fr",
-    logo: "/img/partners/etudiant.gouv.fr.png",
     link: "https://etudiants.gouv.fr/",
   },
 ]

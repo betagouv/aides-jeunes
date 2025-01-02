@@ -3,8 +3,8 @@
     <h2 class="fr-h3 fr-mb-4w fr-text--center">Nos partenaires</h2>
     <span class="aj-partners">
       <a
-        v-for="(partner, index) in partners"
-        :key="`partner-${index}`"
+        v-for="partner in partners"
+        :key="partner.id"
         :href="partner.link"
         target="_blank"
         rel="noopener noreferrer"
@@ -31,9 +31,16 @@
 </template>
 
 <script setup lang="ts">
-const getImagePath = (id: string, ext: string) => `/img/partners/${id}.${ext}`
+const getImagePath = (id: string, format: "webp" | "jpg") =>
+  `/img/partners/${id}.${format}`
 
-const partners = [
+interface Partner {
+  id: string
+  name: string
+  link: string
+}
+
+const partners: Partner[] = [
   {
     id: "openfisca",
     name: "OpenFisca",

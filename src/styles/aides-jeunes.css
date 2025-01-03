@@ -149,9 +149,11 @@ textarea {
 }
 
 .fr-btn--close,
-.fr-btn--tertiary-no-outline {
+.fr-btn--tertiary-no-outline,
+.fr-btn--tertiary {
   color: var(--main-color);
 }
+
 .fr-btn--icon-center {
   justify-content: center !important;
 }

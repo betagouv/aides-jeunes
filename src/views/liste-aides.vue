@@ -11,6 +11,7 @@
             as-link
             to="/"
             size="small"
+            btn-type="tertiary"
           >
             Retour à l'accueil
           </BackButton>

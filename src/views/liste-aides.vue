@@ -247,5 +247,3 @@ const alertClass = computed(() =>
   countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
 )
 </script>
-
-<style scoped></style>

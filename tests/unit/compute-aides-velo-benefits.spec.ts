@@ -1,11 +1,14 @@
+import { StandardBenefit } from "@data/types/benefits.js"
 import { expect } from "@jest/globals"
+import { Velo } from "@lib/enums/velo.js"
+import { Situation } from "@lib/types/situations.js"
 import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo.js"
 
 describe("computeAidesVeloBenefits", function () {
   it("matches EPCI data", function () {
     const benefits = [{ external_id: "aides . vallée d'ossau" }]
-    const situation = {
-      dateDeValeur: "2021-01-01",
+    const situation: Situation = {
+      dateDeValeur: new Date("2021-01-01"),
       menage: {
         _codePostal: "64260",
         depcom: "64062",
@@ -14,8 +17,14 @@ describe("computeAidesVeloBenefits", function () {
         _region: "75",
       },
       demandeur: {
-        _interetsAidesVelo: ["velo_electrique"],
+        _interetsAidesVelo: [Velo.VeloElectrique],
+        date_naissance: "1990-01-01",
+        id: "",
+        enfant_a_charge: undefined,
+        nationalite: undefined,
+        _role: "",
       },
+      enfants: [],
     }
     const openFiscaResponse = {
       foyers_fiscaux: {
@@ -27,7 +36,12 @@ describe("computeAidesVeloBenefits", function () {
       },
     }
     const results = []
-    computeAidesVeloBenefits(benefits, results, situation, openFiscaResponse)
+    computeAidesVeloBenefits(
+      benefits as StandardBenefit[],
+      results,
+      situation,
+      openFiscaResponse
+    )
 
     expect(results.length).toBe(1)
   })

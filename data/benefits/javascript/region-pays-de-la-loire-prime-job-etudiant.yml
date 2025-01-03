@@ -1,14 +1,17 @@
 label: "Job étudiant : prime de 200 euros"
 institution: region_pays_de_la_loire
-description: La Région offre une prime à tous les jeunes qui cumulent emploi et études.
+description: La Région offre une prime à tous les jeunes scolarisés de moins de 21 ans qui effectuent une activité rémunérée de plus de 300 heures durant l'année scolaire, hors cadre des études. Les stages, alternances et contrats de services civique ne sont pas pris en compte.
 prefix: l’aide
 conditions_generales:
   - type: regions
     values:
       - "52"
   - type: age
+    operator: ">="
+    value: 16
+  - type: age
     operator: <=
-    value: 26
+    value: 21
 profils:
   - type: etudiant
     conditions: []
@@ -23,4 +26,4 @@ periodicite: ponctuelle
 montant: 200
 link: https://www.paysdelaloire.fr/les-aides/job-etudiant-prime-de-200-euros
 teleservice: https://www.epassjeunes-paysdelaloire.fr/
-instructions: https://www.paysdelaloire.fr/les-aides/job-etudiant-prime-de-200-euros
+instructions: https://www.paysdelaloire.fr/sites/default/files/aides/52089242-7aa4-11ec-94ec-53da9e1f5351/subvention_reglement-dintervention-primojob-v3_52089242_ri.pdf

@@ -1,18 +1,33 @@
 <template>
   <article class="fr-article">
-    <h1>Toutes les aides</h1>
-    <BackButton
-      size="small"
-      data-testid="benefits-liste-back-button"
-      class="fr-mb-2w"
-      as-link
-      to="/"
-    >
-      Retour à l'accueil
-    </BackButton>
-    <div>
-      <p class="fr-badge fr-mb-2w">Total : {{ benefitsCount }} aides</p>
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col-12">
+        <h1>Toutes les aides</h1>
+      </div>
+      <div class="aj-home-group-buttons-container">
+        <div class="fr-mb-2w fr-mr-2w">
+          <BackButton
+            data-testid="benefits-liste-back-button"
+            as-link
+            to="/"
+            size="small"
+            btn-type="tertiary"
+          >
+            Retour à l'accueil
+          </BackButton>
+        </div>
+        <HomeSimulationGroupButtons
+          :horizontal="true"
+          size="small"
+          :reverse="true"
+        />
+      </div>
     </div>
+
+    <div>
+      <p class="fr-badge fr-my-2w">Total : {{ benefitsCount }} aides</p>
+    </div>
+
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12 fr-col-md-6">
         <div class="fr-form-group">
@@ -123,7 +138,7 @@ import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.d.js"
 import { capitalize, normalizeString } from "@lib/utils.js"
 import BackButton from "@/components/buttons/back-button.vue"
-
+import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
 const zipCode = ref<string | null>(null)
 const selectedCommune = ref<Commune | null>(null)
 const searchTerms = ref<string | null>(null)

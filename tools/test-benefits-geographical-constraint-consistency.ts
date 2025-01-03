@@ -31,12 +31,34 @@ function testGeographicalRelevancy(benefit) {
     )
   })
   if (conditionGeo) {
+    if (
+      conditionGeo.type === "attached_to_institution" ||
+      conditionGeo.values.length > 1
+    ) {
+      return {
+        isValid: true,
+        conditions: conditionGeo,
+      }
+    }
+
+    const isValid = conditionGeo.values.every((value) => {
+      const isValid =
+        value === benefit.institution.code_insee &&
+        conditionGeo.type.slice(0, -1) === benefit.institution.type
+      if (!isValid) {
+        console.error(`
+          ================================
+          Benefit : ${benefit.id}
+          Benefit slug : ${benefit.slug}
+          Expected Insee code : ${benefit.institution.code_insee}
+          Condition type : ${conditionGeo.type}
+          Benefit institution type : ${benefit.institution.type}`)
+      }
+      return isValid
+    })
+
     return {
-      isValid:
-        conditionGeo.type === "attached_to_institution" ||
-        (conditionGeo.values.length == 1 &&
-          conditionGeo.values[0] === benefit.institution.code_insee &&
-          conditionGeo.type.slice(0, -1) === benefit.institution.type),
+      isValid,
       conditions: conditionGeo,
     }
   }

@@ -6,9 +6,7 @@ description:
   heures de conduite.
 prefix: l’
 conditions_generales:
-  - type: epcis
-    values:
-      - "248300543"
+  - type: attached_to_institution
 profils:
   - type: chomeur
     conditions: []

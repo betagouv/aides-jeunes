@@ -1,12 +1,8 @@
 import { Institution } from "./institutions.d.js"
-
-// extends "Aide" type defined in "aides-velo" package
-type Aide = {
-  title: string
-  description: string
-  url: string
-  amount?: number
-}
+import {
+  Aide as AidesVelo,
+  AidesRulesNames as AidesVeloId,
+} from "@betagouv/aides-velo"
 
 export interface Benefit {
   id: string
@@ -16,24 +12,21 @@ export interface Benefit {
   mock?: boolean
 }
 
-export interface VeloBenefit extends Aide {
-  id: string
-  url?: string
-  collectivity: {
-    kind: string
-    value: string
-    code?: string
-  }
+export interface AidesVeloBenefit extends AidesVelo {
+  amount?: number
+}
+
+export interface VeloBenefit extends AidesVeloBenefit {
+  id: string | AidesVeloId
+  label: string
   institution?: string
-
-  discard?: boolean
-
-  source?: string
-
+  external_id: string
+  type: string
+  periodicite: string
+  prefix: string
+  interestFlag: string
   link?: string
-  external_id?: string
-  type?: string
-  periodicite?: string
+  source?: string
 }
 
 export interface CovoiturageBenefit {

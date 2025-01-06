@@ -6,7 +6,9 @@ import { VeloBenefit } from "@root/data/types/benefits.js"
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 describe("aides velo benefit generator", function () {
-  const list: VeloBenefit[] = generator(Object.values(benefits.institutionsMap))
+  const list: Omit<VeloBenefit, "amount">[] = generator(
+    Object.values(benefits.institutionsMap)
+  )
 
   list.forEach((benefit) => {
     it("generates simple benefit ids", function () {

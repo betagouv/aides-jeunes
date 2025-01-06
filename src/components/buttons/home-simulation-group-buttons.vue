@@ -1,38 +1,68 @@
 <script setup lang="ts">
-import { computed, getCurrentInstance } from "vue"
+import { computed, getCurrentInstance, defineProps } from "vue"
 import { useStore } from "@/stores/index.js"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
-
-const { proxy } = getCurrentInstance() as any
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
+
+const { proxy } = getCurrentInstance() as any
+const SIMULATION_START_PATH = "/simulation/individu/demandeur/date_naissance"
 
 const hasExistingSituation = computed(() => store.passSanityCheck)
 
 const ctaLabel = computed(() =>
   hasExistingSituation.value
     ? "Commencer une nouvelle simulation"
-    : "Je commence"
+    : "Commencer une simulation"
 )
+
+const initializeOpenfiscaParameters = () => {
+  store.setOpenFiscaParameters()
+  if (process.env.VITE_CONTEXT !== "production") {
+    store.verifyOpenfiscaBenefitVariables()
+  }
+}
 
 const newSituation = () => {
   store.clear(route.query.external_id as string)
-  next()
+  initializeOpenfiscaParameters()
+  router.push(SIMULATION_START_PATH)
 }
 
-const next = () => {
-  store.setOpenFiscaParameters()
-  if (process.env.VITE_CONTEXT !== "production") {
-    store.verifyBenefitVariables()
-  }
+const resumeSimulation = () => {
+  initializeOpenfiscaParameters()
   proxy?.$push()
 }
+
+const props = defineProps({
+  horizontal: {
+    type: Boolean,
+    default: false,
+  },
+  size: {
+    type: String,
+    default: null,
+  },
+  reverse: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 
 <template>
-  <ul class="fr-btns-group">
+  <ul
+    class="fr-btns-group"
+    :class="{
+      'fr-btns-group--inline-md': props.horizontal,
+      'fr-btns-group--sm': props.size === 'small',
+      'fr-btns-group--inline-reverse': props.reverse,
+      'fr-btns-group--right': props.reverse,
+    }"
+  >
     <li v-if="hasExistingSituation">
       <button
         v-analytics="{
@@ -40,7 +70,7 @@ const next = () => {
           category: EventCategory.Home,
         }"
         class="fr-btn"
-        @click="next"
+        @click="resumeSimulation"
       >
         Reprendre ma simulation
       </button>
@@ -60,7 +90,7 @@ const next = () => {
         v-analytics="{ action: ctaLabel, category: EventCategory.Home }"
         class="fr-btn"
         data-testid="new-simulation"
-        to="/simulation/individu/demandeur/date_naissance"
+        :to="SIMULATION_START_PATH"
         @click="newSituation"
       >
         {{ ctaLabel }}

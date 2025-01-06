@@ -153,9 +153,11 @@ textarea {
 }
 
 .fr-btn--close,
-.fr-btn--tertiary-no-outline {
+.fr-btn--tertiary-no-outline,
+.fr-btn--tertiary {
   color: var(--main-color);
 }
+
 .fr-btn--icon-center {
   justify-content: center !important;
 }
@@ -284,6 +286,13 @@ textarea {
   text-align: right;
 }
 
+.aj-home-group-buttons-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
 @media (max-width: 576px) {
   .aj-hero-section {
     max-height: none;
@@ -299,6 +308,11 @@ textarea {
 @media (max-width: 767px) {
   body[data-action-buttons="true"] {
     padding-bottom: 72px;
+  }
+
+  .aj-home-group-buttons-container {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .aj-action-buttons {

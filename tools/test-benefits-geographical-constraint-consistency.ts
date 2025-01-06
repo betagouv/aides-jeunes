@@ -11,12 +11,13 @@ benefits.all
   .forEach((benefit) => {
     const result = testGeographicalRelevancy(benefit)
     if (!result?.isValid) {
-      console.log(`
+      console.error(`
       ================================
       Benefit : ${benefit.id}
+      Benefit slug : ${benefit.slug}
       Insee code : ${benefit.institution.code_insee}
-      potentially incompatible with conditions :
-      ${JSON.stringify(result?.conditions)}`)
+      Condition type : ${result?.conditions.type}
+      Benefit institution type : ${benefit.institution.type}`)
     }
   })
 
@@ -31,34 +32,12 @@ function testGeographicalRelevancy(benefit) {
     )
   })
   if (conditionGeo) {
-    if (
-      conditionGeo.type === "attached_to_institution" ||
-      conditionGeo.values.length > 1
-    ) {
-      return {
-        isValid: true,
-        conditions: conditionGeo,
-      }
-    }
-
-    const isValid = conditionGeo.values.every((value) => {
-      const isValid =
-        value === benefit.institution.code_insee &&
-        conditionGeo.type.slice(0, -1) === benefit.institution.type
-      if (!isValid) {
-        console.error(`
-          ================================
-          Benefit : ${benefit.id}
-          Benefit slug : ${benefit.slug}
-          Expected Insee code : ${benefit.institution.code_insee}
-          Condition type : ${conditionGeo.type}
-          Benefit institution type : ${benefit.institution.type}`)
-      }
-      return isValid
-    })
-
     return {
-      isValid,
+      isValid:
+        conditionGeo.type === "attached_to_institution" ||
+        conditionGeo.values.length > 1 || // Non vérifiable, car une institution peut porter un dispositif applicable à des communes autour
+        (conditionGeo.values[0] === benefit.institution.code_insee &&
+          conditionGeo.type.slice(0, -1) === benefit.institution.type),
       conditions: conditionGeo,
     }
   }

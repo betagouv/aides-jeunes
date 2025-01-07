@@ -37,7 +37,7 @@ const features = [
   },
   {
     icon: "lock-line",
-    title: "Confidentiel",
+    title: "Service public",
     description:
       "Vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a title='Confidentialité' href='/confidentialite'>politique de confidentialité</a>.",
   },

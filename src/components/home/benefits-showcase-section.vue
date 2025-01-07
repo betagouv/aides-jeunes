@@ -22,6 +22,8 @@
               <a
                 :href="aide.link"
                 target="_blank"
+                rel="noopener"
+                :title="`${aide.name} - Nouvelle fenêtre`"
                 class="fr-link fr-fi-arrow-right-line fr-link--icon-right"
               >
                 {{ aide.name }}

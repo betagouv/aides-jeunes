@@ -33,7 +33,7 @@ const features = [
     icon: "timer-line",
     title: "Rapide et gratuit",
     description:
-      "Obtenez une estimation de vos aides gratuitement en <b>moins de 5 minutes</b>",
+      "Obtenez une estimation de vos aides gratuitement en <b>moins de 5 minutes</b>.",
   },
   {
     icon: "lock-line",

@@ -42,7 +42,10 @@ const aides = [
   },
   { name: "Prime d'Activité", link: "/aides/ppa" },
   { name: "Revenu de solidarité active (RSA)", link: "/aides/rsa" },
-  { name: "Allocation de rentrée scolaire (ARS)", link: "/aides/ars" },
+  {
+    name: "Complémentaire santé solidaire (CSS)",
+    link: "/aides/css_participation_forfaitaire",
+  },
   { name: "Pass Sport", link: "/aides/pass_sport" },
   {
     name: "Allocations familiales",
@@ -50,5 +53,9 @@ const aides = [
   },
   { name: "Aides covoiturage", link: "/aides?keyword=covoiturage" },
   { name: "Aides vélo", link: "/aides?keyword=vélo" },
+  {
+    name: "Départ 18-25",
+    link: "/aides/depart1825_montant_maximum",
+  },
 ]
 </script>

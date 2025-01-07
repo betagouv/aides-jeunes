@@ -44,7 +44,7 @@ const features = [
     icon: "team-line",
     title: "Complet",
     description:
-      "Informations à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>",
+      "Informations à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>.",
   },
 ]
 </script>

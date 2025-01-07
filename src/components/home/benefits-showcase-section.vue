@@ -37,6 +37,11 @@
 <script setup lang="ts">
 const aides = [
   {
+    name: "Départ 18-25",
+    link: "/aides/depart1825_montant_maximum",
+  },
+  { name: "Pass Sport", link: "/aides/pass_sport" },
+  {
     name: "Bourse sur critères sociaux",
     link: "/aides/bourse_criteres_sociaux",
   },
@@ -46,16 +51,11 @@ const aides = [
     name: "Complémentaire santé solidaire (CSS)",
     link: "/aides/css_participation_forfaitaire",
   },
-  { name: "Pass Sport", link: "/aides/pass_sport" },
   {
     name: "Allocations familiales",
     link: "/aides?keyword=allocations+familiales",
   },
   { name: "Aides covoiturage", link: "/aides?keyword=covoiturage" },
   { name: "Aides vélo", link: "/aides?keyword=vélo" },
-  {
-    name: "Départ 18-25",
-    link: "/aides/depart1825_montant_maximum",
-  },
 ]
 </script>

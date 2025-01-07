@@ -9,8 +9,6 @@ conditions_generales:
     value: 16
 profils: []
 conditions:
-  - Avoir 16 ans.
-  - Habiter à Villefranche-sur-saône.
   - "Remplir un dossier à récupérer au Pôle Ressources Jeunesse Numérique du Service Jeunesse - <address>230 rue de la quarantaine - Ligne 4 / arrêt quarantaine</address> ou envoyer un mail à <a href='mailto:prjn@villefranche.net'>prjn@villefranche.net</a>."
 interestFlag: _interetBafa
 type: bool

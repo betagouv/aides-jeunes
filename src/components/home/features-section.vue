@@ -31,20 +31,21 @@
 const features = [
   {
     icon: "timer-line",
-    title: "Rapide",
-    description: "Obtenez une estimation en <b>moins de 5 minutes</b>",
+    title: "Rapide et gratuit",
+    description:
+      "Obtenez une estimation de vos aides gratuitement en <b>moins de 5 minutes</b>",
   },
   {
-    icon: "money-euro-circle-line",
-    title: "Service public gratuit",
+    icon: "lock-line",
+    title: "Confidentiel",
     description:
-      "<b>Public et gratuit</b> : vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a title='Confidentialité' href='/confidentialite'>politique de confidentialité</a>.",
+      "Vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a title='Confidentialité' href='/confidentialite'>politique de confidentialité</a>.",
   },
   {
     icon: "team-line",
     title: "Complet",
     description:
-      "Informations à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>.",
+      "Les informations sur les aides sont mises à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>.",
   },
 ]
 </script>

@@ -38,13 +38,13 @@ const features = [
     icon: "money-euro-circle-line",
     title: "Service public gratuit",
     description:
-      "<b>Public et gratuit</b> : vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a href='/confidentialite'>politique de confidentialité</a>.",
+      "<b>Public et gratuit</b> : vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a title='Confidentialité' href='/confidentialite'>politique de confidentialité</a>.",
   },
   {
     icon: "team-line",
     title: "Complet",
     description:
-      "Informations à jour et vérifiées quotidiennement par <a href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>",
+      "Informations à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>",
   },
 ]
 </script>

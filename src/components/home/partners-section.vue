@@ -87,9 +87,24 @@ const partners: Partner[] = [
     link: "https://www.aubervilliers.fr/",
   },
   {
+    id: "ville-vannes",
+    name: "Vannes",
+    link: "https://www.mairie-vannes.fr/",
+  },
+  {
+    id: "cc-pays-chataigneraie",
+    name: "Communauté de communes du Pays de la Châtaigneraie",
+    link: "https://www.paysdelachataigneraie.fr/",
+  },
+  {
     id: "jeunes.gouv.fr",
     name: "jeunes.gouv.fr",
     link: "https://jeunes.gouv.fr/",
+  },
+  {
+    id: "covoiturage.beta.gouv.fr",
+    name: "covoiturage.beta.gouv.fr",
+    link: "https://covoiturage.beta.gouv.fr/",
   },
   {
     id: "etudiant.gouv.fr",

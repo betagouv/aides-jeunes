@@ -31,8 +31,5 @@ const steps = [
   {
     title: "Je fais mes demandes",
   },
-  {
-    title: "Je suis accompagné",
-  },
 ]
 </script>

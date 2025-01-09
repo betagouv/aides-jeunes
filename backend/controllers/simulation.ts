@@ -19,7 +19,7 @@ function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.situation = generateSituation(req.simulation)
 }
 
-function simulation(
+async function simulation(
   req: Request,
   res,
   next,
@@ -35,13 +35,19 @@ function simulation(
     return next()
   }
 
-  const simulationId = simulationOrSimulationId as Simulation["_id"]
-  Simulations.findById(simulationId, (err, simulation) => {
-    if (!simulation) return res.sendStatus(404)
-    if (err) return next(err)
+  try {
+    const simulationId = simulationOrSimulationId as Simulation["_id"]
+    const simulation = await Simulations.findById(simulationId)
+
+    if (!simulation) {
+      return res.sendStatus(404)
+    }
+
     setSimulationOnRequest(req, simulation)
     next()
-  })
+  } catch (err) {
+    next(err)
+  }
 }
 
 function attachAccessCookie(req: Request, res, next?) {
@@ -99,23 +105,25 @@ function clearCookies(req: Request, res) {
   }
 }
 
-function create(req: Request, res, next) {
-  if (req.body._id)
+async function create(req: Request, res, next) {
+  if (req.body._id) {
     return res.status(403).send({
       error:
-        "You can‘t provide _id when saving a situation. _id will be generated automatically.",
+        "You can't provide _id when saving a situation. _id will be generated automatically.",
     })
+  }
 
-  return Simulations.create(
-    omit(req.body, "createdAt", "status", "token"),
-    (err, persistedSimulation) => {
-      if (err) return next(err)
+  try {
+    const persistedSimulation = await Simulations.create(
+      omit(req.body, "createdAt", "status", "token")
+    )
 
-      clearCookies(req, res)
-      req.simulation = persistedSimulation
-      next && next()
-    }
-  )
+    clearCookies(req, res)
+    req.simulation = persistedSimulation
+    next && next()
+  } catch (err) {
+    next(err)
+  }
 }
 
 function openfiscaResponse(req: Request, res, next) {

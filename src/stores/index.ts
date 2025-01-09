@@ -546,7 +546,7 @@ export const useStore = defineStore("store", {
           this.openFiscaParameters = response.data
         })
     },
-    verifyBenefitVariables() {
+    verifyOpenfiscaBenefitVariables() {
       return axios
         .get("/api/openfisca/missingbenefits")
         .then((response) => response.data)

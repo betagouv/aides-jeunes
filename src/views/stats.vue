@@ -51,10 +51,9 @@
 </template>
 
 <script setup lang="ts">
-import iframeResize from "iframe-resizer/js/iframeResizer"
-
+import iframeResize from "@iframe-resizer/parent/index.cjs"
 const iframeLoaded = () => {
-  iframeResize({ log: false }, "#iframe")
+  iframeResize({ log: false, license: "GPLv3" }, "#iframe")
 }
 
 const matomoBaseURL = process.env.VITE_MATOMO_URL

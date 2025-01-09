@@ -480,6 +480,19 @@ fields:
     collapsed: false
     default: []
     types:
+      - label: Collégien ou collégienne
+        name: collegien
+        widget: object
+        fields:
+          - label: Conditions à satisfaire simultanément
+            label_singular: Condition à satisfaire
+            name: conditions
+            default: [ ]
+            widget: list
+            collapsed: false
+            types:
+              - *field_age
+              - *field_boursier
       - label: Lycéen ou lycéenne
         name: lyceen
         widget: object

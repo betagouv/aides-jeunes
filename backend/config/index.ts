@@ -114,7 +114,7 @@ const config: Configuration = {
     process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
   sentry: {
     dsn: process.env.SENTRY_BACKEND_DSN,
-    authToken: process.env.SENTRY_BACKEND_AUTH_TOKEN,
+    authToken: process.env.SENTRY_AUTH_TOKEN,
     project: process.env.SENTRY_BACKEND_PROJECT,
     environment: process.env.NODE_ENV,
     integrations: [nodeProfilingIntegration()],

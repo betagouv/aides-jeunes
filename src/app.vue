@@ -11,7 +11,7 @@ import BandeauDemo from "@/components/bandeau-demo.vue"
 import context from "@/context/index.js"
 import { useIframeStore } from "@/stores/iframe.js"
 import { useThemeStore } from "@/stores/theme.js"
-
+import "@iframe-resizer/child"
 const { Layout } = context
 
 export default {

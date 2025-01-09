@@ -62,7 +62,7 @@ const createEPCI = (EPCIMatch) => {
 }
 
 export const missingInstitutionsVeloBenefit = (
-  missingInstitutionBenefits: VeloBenefit[]
+  missingInstitutionBenefits: Omit<VeloBenefit, "amount">[]
 ) => {
   const missingCommune = missingInstitutionBenefits.filter(
     (b) => b.collectivity.kind === "code insee"

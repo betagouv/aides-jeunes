@@ -1,0 +1,31 @@
+label: carte jeunes 01 pour le sport, la culture et les loisirs
+institution: departement_ain
+description:
+  La Carte Jeunes 01 est un porte-monnaie en ligne offert à tous les collégiens
+  par le département de l'Ain, avec 25 euros pour les activités culturelles, 25 euros pour
+  les activités sportives et de loisirs, plus de 170 euros d'offres promotionnelles, ainsi
+  que des bons plans chez les partenaires du département de l'Ain.
+prefix: la
+profils:
+  - type: collegien
+    conditions: []
+conditions_generales:
+  - type: departements
+    values:
+      - "01"
+conditions:
+  - Commander la Carte Jeunes 01 en remplissant <a target="_blank"
+    rel="noopener" title="Formulaire demande Carte Jeunes 01 (PDF) - Nouvelle fenêtre" href="
+    https://www.ain.fr/app/uploads/2024/06/formulaire-commande-carte-jeunes-01.pdf">ce formulaire papier (PDF)</a> ou <a target="_blank"
+    rel="noopener" title="Téléservice demande Carte Jeunes 01 - Nouvelle fenêtre" href="
+    https://cartejeunes01.ain.fr/my/dashboard">via le téléservice</a>.
+  - Utiliser la Carte Jeunes 01 chez les partenaires listés sur <a target="_blank"
+    rel="noopener" title="Partenaires de la Carte Jeunes 01 - Nouvelle fenêtre" href="
+    https://cartejeunes01.ain.fr/iframe/searchengine">ce site du département de l'Ain</a>.
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 50
+link: https://www.ain.fr/solutions/carte-jeunes-01/
+teleservice: https://cartejeunes01.ain.fr/my/dashboard
+form: https://www.ain.fr/app/uploads/2024/06/formulaire-commande-carte-jeunes-01.pdf

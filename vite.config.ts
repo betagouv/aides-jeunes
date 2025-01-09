@@ -30,14 +30,14 @@ const {
   smsService,
 } = config
 
-function createSentryPlugin() {
-  if (!sentry.authToken || !sentry.project) {
+function createSentryPlugin(authToken, project) {
+  if (!authToken || !project) {
     return null
   }
   return sentryVitePlugin({
     org: "betagouv",
-    project: sentry.project,
-    authToken: sentry.authToken,
+    project,
+    authToken,
     url: "https://sentry.incubateur.net/",
     sourcemaps: {
       assets: `./dist/assets/${buildId}/js/*.{js,map}`,
@@ -58,7 +58,7 @@ export default defineConfig(async ({ mode }) => {
     VITE_BASE_URL: baseURL,
     VITE_CONTEXT: process.env.NODE_ENV,
     VITE_SENTRY_FRONTEND_DSN: process.env?.SENTRY_FRONTEND_DSN,
-    VITE_SENTRY_FRONTEND_AUTH_TOKEN: process.env?.SENTRY_FRONTEND_AUTH_TOKEN,
+    VITE_SENTRY_FRONTEND_PROJECT: process.env?.SENTRY_FRONTEND_PROJECT,
     VITE_PR_URL: `${process.env.REPOSITORY_URL}/pull/${process.env.REVIEW_ID}`,
     VITE_REPOSITORY_URL: github.repository_url,
     VITE_BENEFIT_URL: `${github.repository_url}/blob/main/data/benefits`,
@@ -126,7 +126,10 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
-      createSentryPlugin(),
+      createSentryPlugin(
+        sentry.authToken,
+        viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT
+      ),
       sitemapGenerator(),
     ],
     resolve: {

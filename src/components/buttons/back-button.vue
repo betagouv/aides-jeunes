@@ -2,8 +2,13 @@
 <template>
   <component
     :is="asLink ? 'router-link' : 'button'"
-    class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line"
-    :class="{ 'fr-btn--sm': size === 'small' }"
+    :class="[
+      'fr-btn',
+      `fr-btn--${size === 'small' ? 'sm' : 'md'}`,
+      `fr-btn--${btnType}`,
+      'fr-btn--icon-left',
+      'fr-icon-arrow-left-line',
+    ]"
     :type="asLink ? undefined : 'button'"
     :to="asLink ? to : undefined"
     @click="asLink ? undefined : goBack()"
@@ -35,6 +40,10 @@ const props = defineProps({
   to: {
     type: String,
     default: "/",
+  },
+  btnType: {
+    type: String,
+    default: "secondary",
   },
 })
 const route = useRoute()

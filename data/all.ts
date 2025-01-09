@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs"
 import base from "./index.js"
-import jamstackLoader from "jamstack-loader"
+import jamstackLoader from "@betagouv/jamstack-loader"
 import path from "path"
 import { Jamstack } from "./types/jamstack.d.js"
 

@@ -1,0 +1,15 @@
+label: bourse du conservatoire
+institution: ville_antony
+description: >
+  Aide pour couvrir les frais d'inscription au conservatoire de Vallée Sud - Grand Paris pour un ou plusieurs enfants dont les parents habitent à Antony et sous conditions de ressources.
+conditions:
+link: https://www.ville-antony.fr/bourses-communales#conservatoire
+form: https://www.ville-antony.fr/images/Actualite/2024/Aout/CCAS/Imprime-A4-demande-bourse-conservatoire-2024-2025.pdf
+prefix: "la"
+floorAt: 1
+type: float
+unit: "€"
+periodicite: ponctuelle
+legend: ""
+entity: familles
+openfiscaPeriod: thisMonth

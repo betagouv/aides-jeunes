@@ -18,7 +18,7 @@ const aideDomains = ref([
   "famille",
   "transports",
   "études",
-  "formations",
+  "formation",
   "travail",
   "loisirs",
   "vacances",

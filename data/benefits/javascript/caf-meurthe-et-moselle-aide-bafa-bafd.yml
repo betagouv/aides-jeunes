@@ -24,3 +24,4 @@ prefix: les
 type: bool
 periodicite: ponctuelle
 interestFlag: _interetBafa
+private: true

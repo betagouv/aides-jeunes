@@ -41,7 +41,7 @@ function newSituation() {
 function next() {
   store.setOpenFiscaParameters()
   if (context !== "production") {
-    store.verifyBenefitVariables()
+    store.verifyOpenfiscaBenefitVariables()
   }
   router.push({ name: "simulation" })
 }

@@ -38,8 +38,8 @@ const login = async (req, res) => {
 const retrieveMcpAccessToken = async (req) => {
   try {
     const mcpIssuer = await getMcpClient()
-
-    return await client.authorizationCodeGrant(mcpIssuer, req, {})
+    const currentUrl = new URL(config.baseURL + req.originalUrl)
+    return await client.authorizationCodeGrant(mcpIssuer, currentUrl, {})
   } catch (error) {
     console.error("Error in retrieveMcpAccessToken: ", error)
     throw error

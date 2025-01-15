@@ -30,3 +30,4 @@ unit: €
 periodicite: annuelle
 legend: maximum
 montant: 300
+private: true

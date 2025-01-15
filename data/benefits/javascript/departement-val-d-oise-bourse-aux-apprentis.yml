@@ -21,3 +21,4 @@ type: float
 unit: €
 periodicite: annuelle
 montant: 230
+private: true

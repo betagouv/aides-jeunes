@@ -100,7 +100,8 @@
     "vue-matomo": "^4.2.0",
     "vue-router": "^4.1.6",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.7.3",
+    "express-rate-limit": "^7.4.1"
   },
   "devDependencies": {
     "@sentry/vite-plugin": "^2.22.4",

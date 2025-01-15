@@ -52,7 +52,7 @@ async function simulation(
 
 function attachAccessCookie(req: Request, res, next?) {
   const cookiesParameters = {
-    maxAge: 604800000,
+    maxAge: 604800000, // Duration: 7 days in milliseconds
     sameSite: config.baseURL.startsWith("https") ? "none" : "lax",
     secure: config.baseURL.startsWith("https"),
   }

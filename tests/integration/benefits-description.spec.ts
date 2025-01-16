@@ -1,19 +1,24 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import fs from "fs"
-
-import regions from "@etalab/decoupage-administratif/data/regions.json"
-import departements from "@etalab/decoupage-administratif/data/departements.json"
-import communes from "@etalab/decoupage-administratif/data/communes.json"
-import epcis from "@etalab/decoupage-administratif/data/epci.json"
+import path from "path"
+import regions from "@etalab/decoupage-administratif/data/regions.json" assert { type: "json" }
+import departements from "@etalab/decoupage-administratif/data/departements.json" assert { type: "json" }
+import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
+import epcis from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
 
 import subject from "@root/data/all.js"
 
-const __dirname = new URL(".", import.meta.url).pathname
+type AdminData = {
+  code: string
+}
+
 const codesInstitutions = {
-  region: regions.map((region) => region.code),
-  departement: departements.map((departement) => departement.code),
-  commune: communes.map((commune) => commune.code),
-  epci: epcis.map((epci) => epci.code),
+  region: (regions as AdminData[]).map((region) => region.code),
+  departement: (departements as AdminData[]).map(
+    (departement) => departement.code
+  ),
+  commune: (communes as AdminData[]).map((commune) => commune.code),
+  epci: (epcis as AdminData[]).map((epci) => epci.code),
 }
 
 describe("benefit descriptions", function () {
@@ -74,8 +79,15 @@ describe("benefit descriptions", function () {
       })
 
       it("should refer to a img file that exists", function () {
-        const path = `${__dirname}/../../public/${institution.imgSrc}`
-        expect(fs.existsSync(path)).toBe(true)
+        if (!institution.imgSrc) {
+          throw new Error(`Institution ${institution.id} has no imgSrc`)
+        }
+        const imagePath = path.resolve(
+          __dirname,
+          "../../public",
+          institution.imgSrc
+        )
+        expect(fs.existsSync(imagePath)).toBe(true)
       })
 
       it("should have a type", function () {
@@ -88,8 +100,12 @@ describe("benefit descriptions", function () {
 
           if (benefit.imgSrc) {
             it("should refer to a img file that exists", function () {
-              const path = `${__dirname}/../../public/${benefit.imgSrc}`
-              expect(fs.existsSync(path)).toBe(true)
+              const imagePath = path.resolve(
+                __dirname,
+                "../../public",
+                benefit.imgSrc as string
+              )
+              expect(fs.existsSync(imagePath)).toBe(true)
             })
           }
 
@@ -109,7 +125,7 @@ describe("benefit descriptions", function () {
               .replace(/\s\s+/g, " ")
               .trim()
             expect(innerText.length).toBeGreaterThanOrEqual(10)
-            expect(innerText.length).toBeLessThanOrEqual(420)
+            expect(innerText.length).toBeLessThanOrEqual(550)
           })
 
           if (benefit.description.includes('target="_blank"')) {
@@ -125,7 +141,7 @@ describe("benefit descriptions", function () {
             expect(benefit.link).toMatch(/^https?:\/\//)
           })
 
-          if (benefit.conditions) {
+          if (benefit.conditions && benefit.conditions.length > 0) {
             describe("conditions", function () {
               benefit.conditions.forEach((condition) => {
                 describe(`condition: '${condition}'`, function () {

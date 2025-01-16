@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import consolidate from "consolidate"
+import { fileURLToPath } from "url"
 
 const mustache = consolidate.mustache
 import config from "../../../config/index.js"
@@ -10,11 +11,13 @@ import { mjml } from "./index.js"
 import { EmailType } from "../../../../lib/enums/messaging.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
 
-const __dirname = new URL(".", import.meta.url).pathname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 function readFile(filePath) {
-  return fs.readFileSync(path.join(__dirname, filePath), "utf8")
+  return fs.readFileSync(path.resolve(__dirname, filePath), "utf8")
 }
+
 const emailTemplate = readFile("templates/email.mjml")
 const footerTemplate = readFile("templates/footer.mjml")
 const headerTemplate = readFile("templates/header.mjml")

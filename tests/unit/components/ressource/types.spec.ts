@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import Types from "@/components/ressource/types.vue"
 
 describe("types.vue", () => {

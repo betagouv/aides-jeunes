@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import Benefits from "@root/data/index.js"
 import jamstackLoader from "@betagouv/jamstack-loader"
 import aidesVeloGenerator from "@root/data/benefits/aides-velo-generator.js"

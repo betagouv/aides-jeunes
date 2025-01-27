@@ -56,10 +56,14 @@
               utile.
             </h3>
             <p>
-              À la fin de ce questionnaire vous aurez la possibilité de prendre
-              un RDV téléphonique avec une personne de l'équipe pour poser vos
-              questions sur les aides et les démarches.
+              Aidez-nous à améliorer la pertinence des résultats en répondant à
+              ce questionnaire :
             </p>
+            <!--            <p>-->
+            <!--              À la fin de ce questionnaire vous aurez la possibilité de prendre-->
+            <!--              un RDV téléphonique avec une personne de l'équipe pour poser vos-->
+            <!--              questions sur les aides et les démarches.-->
+            <!--            </p>-->
             <p class="fr-text--bold"> Ça ne prend pas plus de 2 minutes ! </p>
           </div>
         </div>
@@ -233,9 +237,11 @@ const showPlansToAskQuestion = (choiceValue) =>
   ABTestingService.getValues().plans_to_ask_question === "show"
 
 const showAccompanimentBlock = computed(() => {
-  return benefitsWithChoice.value.some(
-    (droit) => droit.choiceValue === "failed" || droit.choiceValue === "nothing"
-  )
+  // To restore when the budget will be back
+  // return benefitsWithChoice.value.some(
+  //   (droit) => droit.choiceValue === "failed" || droit.choiceValue === "nothing"
+  // )
+  return false
 })
 
 const accompanimentClickEvent = computed(() => {

@@ -66,36 +66,36 @@ const partners: Partner[] = [
     name: "Mesaidesvelo.fr",
     link: "https://mesaidesvelo.fr/",
   },
-  {
-    id: "cc-pays-chataigneraie",
-    name: "Communauté de communes du Pays de la Châtaigneraie",
-    link: "https://www.paysdelachataigneraie.fr/",
-  },
-  {
-    id: "bordeaux-metropole",
-    name: "Bordeaux",
-    link: "https://www.bordeaux-metropole.fr/",
-  },
-  {
-    id: "montpellier-metropole",
-    name: "Montpellier",
-    link: "https://www.montpellier3m.fr/",
-  },
-  {
-    id: "toulon-metropole",
-    name: "Toulon",
-    link: "https://metropoletpm.fr/",
-  },
-  {
-    id: "ville-aubervilliers",
-    name: "Aubervilliers",
-    link: "https://www.aubervilliers.fr/",
-  },
-  {
-    id: "ville-vannes",
-    name: "Vannes",
-    link: "https://www.mairie-vannes.fr/",
-  },
+  // {
+  //   id: "cc-pays-chataigneraie",
+  //   name: "Communauté de communes du Pays de la Châtaigneraie",
+  //   link: "https://www.paysdelachataigneraie.fr/",
+  // },
+  // {
+  //   id: "bordeaux-metropole",
+  //   name: "Bordeaux",
+  //   link: "https://www.bordeaux-metropole.fr/",
+  // },
+  // {
+  //   id: "montpellier-metropole",
+  //   name: "Montpellier",
+  //   link: "https://www.montpellier3m.fr/",
+  // },
+  // {
+  //   id: "toulon-metropole",
+  //   name: "Toulon",
+  //   link: "https://metropoletpm.fr/",
+  // },
+  // {
+  //   id: "ville-aubervilliers",
+  //   name: "Aubervilliers",
+  //   link: "https://www.aubervilliers.fr/",
+  // },
+  // {
+  //   id: "ville-vannes",
+  //   name: "Vannes",
+  //   link: "https://www.mairie-vannes.fr/",
+  // },
   {
     id: "covoiturage.beta.gouv.fr",
     name: "covoiturage.beta.gouv.fr",

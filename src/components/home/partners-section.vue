@@ -41,6 +41,8 @@ interface Partner {
 }
 
 const partners: Partner[] = [
+  // In maintenance mode, some partners are not available anymore
+  // however, it is still possible to show them again later.
   {
     id: "openfisca",
     name: "OpenFisca",
@@ -51,11 +53,11 @@ const partners: Partner[] = [
     name: "Démarches Simplifiées",
     link: "https://demarches-simplifiees.fr/",
   },
-  {
-    id: "rdv-service-public",
-    name: "RDV Service Public",
-    link: "https://rdv.anct.gouv.fr/",
-  },
+  // {
+  //   id: "rdv-service-public",
+  //   name: "RDV Service Public",
+  //   link: "https://rdv.anct.gouv.fr/",
+  // },
   {
     id: "domifa",
     name: "Domifa",

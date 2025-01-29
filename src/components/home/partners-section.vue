@@ -48,11 +48,6 @@ const partners: Partner[] = [
     name: "OpenFisca",
     link: "https://openfisca.org/fr/",
   },
-  {
-    id: "demarches-simplifiees",
-    name: "Démarches Simplifiées",
-    link: "https://demarches-simplifiees.fr/",
-  },
   // {
   //   id: "rdv-service-public",
   //   name: "RDV Service Public",
@@ -62,6 +57,11 @@ const partners: Partner[] = [
     id: "domifa",
     name: "Domifa",
     link: "https://domifa.fabrique.social.gouv.fr/",
+  },
+  {
+    id: "demarches-simplifiees",
+    name: "Démarches Simplifiées",
+    link: "https://demarches-simplifiees.fr/",
   },
   {
     id: "mesaidesvelo",

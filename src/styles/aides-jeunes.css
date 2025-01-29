@@ -658,11 +658,27 @@ textarea {
 }
 
 .aj-partners {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns per line  */
+  gap: 1.5rem;
   align-items: center;
+  justify-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* First line of partners section
+ * 2 columns per logo => 3 logos on the first line
+ */
+.aj-partners > *:nth-child(-n + 3) {
+  grid-column: span 2;
+}
+
+/* Next lines of partners section
+ * 3 columns per logo => 2 logos per line
+ */
+.aj-partners > *:nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .aj-partner-logo {
@@ -686,12 +702,12 @@ textarea {
 
 @media (max-width: 767px) {
   .aj-partners {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  .aj-partner-logo {
-    max-width: 80px;
-    max-height: 40px;
+  .aj-partners > *:nth-child(n) {
+    grid-column: span 1;
   }
 }
 

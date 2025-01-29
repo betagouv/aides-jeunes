@@ -2,7 +2,7 @@ import { Individu } from "./individu.js"
 import { Enfant } from "./enfant.d.js"
 
 export interface Situation {
-  dateDeValeur: number
+  dateDeValeur: Date | number
   version?: number
   demandeur: Individu
   enfants: Enfant[]

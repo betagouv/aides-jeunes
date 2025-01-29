@@ -1,0 +1,15 @@
+label: mutuelle régionale d'Auvergne-Rhône-Alpes (hors étudiants)
+institution: region_auvergne_rhone_alpes
+description:
+  La région Auvergne-Rhône-Alpes propose à ses habitants une mutuelle à des tarifs avantageux,
+  accessible à toutes les personnes résidant dans la région. En fonction du code postal, le site de la région redirige vers la mutuelle partenaire.
+conditions:
+  - Ne pas bénéficier de la Complémentaire Santé Solidaire.
+link: https://www.auvergnerhonealpes.fr/particuliers/mamutuelleregion
+instructions: https://www.auvergnerhonealpes.fr/particuliers/mamutuelleregion
+prefix: la
+type: bool
+entity: familles
+openfiscaPeriod: thisMonth
+periodicite: ponctuelle
+top: 2.5

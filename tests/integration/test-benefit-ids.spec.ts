@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals"
 import Benefits from "@root/data/index.js"
-import jamstackLoader from "jamstack-loader"
+import jamstackLoader from "@betagouv/jamstack-loader"
 import aidesVeloGenerator from "@root/data/benefits/aides-velo-generator.js"
 
 const configFile = "contribuer/public/admin/config.yml"

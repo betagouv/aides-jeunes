@@ -1,0 +1,17 @@
+label: Bourse familles nombreuses
+institution: ville_antony
+description: >
+  Bourse facilitant l'accès aux frais de garde et aux loisirs municipaux.
+  La première demande doit être effectuée avant le premier anniversaire du troisième enfant puis une seconde demande au cours de la deuxième année du troisième enfant.
+conditions:
+  - Avoir habiter au minimum 1 an dans la ville de Antony.
+link: https://www.ville-antony.fr/bourses-communales#famillesnombreuses
+form: https://www.espace-citoyens.net/ville-antony/espace-citoyens/Demande/NouvelleDemande/M_CCAS/D_CCASFAM
+prefix: "la"
+floorAt: 1
+type: float
+unit: "€"
+periodicite: ponctuelle
+legend: ""
+entity: familles
+openfiscaPeriod: thisMonth

@@ -217,7 +217,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
     link: "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
     instructions:
       "https://services.lenord.fr/fonds-de-solidarite-pour-le-logement-fsl--aide-financiere-a-linstallation",
-    excludedEPCI: "245900410",
+    excludedEPCI: "200093201",
   },
   metropole_europeenne_de_lille: {
     label: "de la Métropole européenne de Lille",

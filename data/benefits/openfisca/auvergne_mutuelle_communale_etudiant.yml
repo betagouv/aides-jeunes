@@ -1,0 +1,15 @@
+label: mutuelle régionale d'Auvergne-Rhône-Alpes pour les étudiants
+institution: region_auvergne_rhone_alpes
+description:
+  La région Auvergne-Rhône-Alpes propose aux étudiants une offre élaborée en partenariat avec la mutuelle SMERRA, à partir de 20 € par mois.
+  La mutuelle régionale est accessible à tous les étudiants de la région, sans conditions de ressources, et a pour vocation de faciliter l’accès aux soins.
+conditions:
+  - Ne pas bénéficier de la Complémentaire Santé Solidaire.
+link: https://www.auvergnerhonealpes.fr/particuliers/mutuelleetudiants
+instructions: https://smerra.fr/mutuelle-etudiante-region-AURA?utm_source=aides-jeunes
+prefix: la
+type: bool
+entity: familles
+openfiscaPeriod: thisMonth
+periodicite: ponctuelle
+top: 2.5

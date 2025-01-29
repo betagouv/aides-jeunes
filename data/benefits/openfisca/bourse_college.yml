@@ -1,13 +1,14 @@
 label: bourse de collège
 institution: education_nationale
 description: >
-  La bourse de collège est une aide destinée à favoriser la scolarité des collégiens. Elle est versée aux familles ayant de faibles ressources. Son montant dépend du nombre d’enfants à charge.
+  La bourse de collège est une aide destinée à favoriser la scolarité des collégiens, qu'ils soient inscrits dans un collège public, privé ou au CNED. La bourse est versée aux familles ayant de faibles ressources financières. Son montant dépend des revenus de la famille ainsi que du nombre d’enfants à charge.
 conditions:
-  - Déposer votre demande entre le 1er septembre et le 19 octobre.
+  - Donner votre accord pour l'étude automatique de votre droit à bourse au moment de l'inscription ou de la réinscription de votre enfant au collège. Cet accord vaut demande de bourse.
+  - Déposer votre demande de bourse en ligne entre septembre et novembre si vous ne voulez pas donner votre accord pour l'étude automatique de votre droit à bourse.
   - Pour les élèves scolarisés en collège public, la demande se fait en ligne sur le portail Educonnect.
 link: https://www.service-public.fr/particuliers/vosdroits/F984
-instructions: http://www.education.gouv.fr/cid117994/scolarite-services-aide-a-la-premiere-connexion-des-parents.html
 form: https://www.service-public.fr/particuliers/vosdroits/R11499
+teleservice: https://www.service-public.fr/particuliers/vosdroits/R60054
 isBaseRessourcesYearMinusTwo: true
 prefix: la
 type: float

@@ -709,6 +709,11 @@ textarea {
   .aj-partners > *:nth-child(n) {
     grid-column: span 1;
   }
+
+  .aj-partner-logo {
+    max-width: 125px;
+    max-height: 62.5px;
+  }
 }
 
 .aj-home-steps {

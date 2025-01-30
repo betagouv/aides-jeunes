@@ -10,7 +10,7 @@ describe("Survey methods", () => {
     mockFollowup = {
       surveys: [],
       save: jest.fn(),
-      addSurveyIfMissing: jest.fn(),
+      addSurveyIfMissing: FollowupModel.prototype.addSurveyIfMissing,
       updateSurvey: FollowupModel.prototype.updateSurvey,
     }
   })
@@ -41,11 +41,17 @@ describe("Survey methods", () => {
         touchedAts: [],
       }
       mockFollowup.surveys = [existingSurvey]
-      mockFollowup.addSurveyIfMissing.mockResolvedValue(existingSurvey)
+
       const result = await mockFollowup.addSurveyIfMissing(
         SurveyType.TrackClickOnSimulationUsefulnessEmail
       )
-      expect(result).toEqual(existingSurvey)
+      expect(result.type).toEqual(
+        SurveyType.TrackClickOnSimulationUsefulnessEmail
+      )
+      expect(mockFollowup.surveys).toHaveLength(1)
+      expect(mockFollowup.surveys[0].type).toEqual(
+        SurveyType.TrackClickOnSimulationUsefulnessEmail
+      )
     })
   })
 

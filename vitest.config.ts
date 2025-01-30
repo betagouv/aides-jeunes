@@ -8,10 +8,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     include: ["tests/**/*.spec.ts"],
-    exclude: [
-      "tests/unit/views/fiscales.spec.ts",
-      "tests/unit/components/ressource/types.spec.ts",
-    ],
     setupFiles: [],
     coverage: {
       provider: "v8",

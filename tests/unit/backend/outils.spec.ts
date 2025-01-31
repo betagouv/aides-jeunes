@@ -1,4 +1,4 @@
-import { expect, jest } from "vitest"
+import { expect, vi } from "vitest"
 import outilsController from "@backend/controllers/outils.js"
 
 describe("centerCoordinatesFromPostalCode", () => {

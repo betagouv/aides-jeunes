@@ -1,4 +1,4 @@
-import { expect, jest } from "@jest/globals"
+import { expect, vi } from "vitest"
 import { SurveyType } from "../../../lib/enums/survey"
 import { Survey } from "@lib/types/survey"
 import FollowupModel from "../../../backend/models/followup.js"
@@ -9,7 +9,7 @@ describe("Survey methods", () => {
   beforeEach(() => {
     mockFollowup = {
       surveys: [],
-      save: jest.fn(),
+      save: vi.fn(),
       addSurveyIfMissing: FollowupModel.prototype.addSurveyIfMissing,
       updateSurvey: FollowupModel.prototype.updateSurvey,
     }

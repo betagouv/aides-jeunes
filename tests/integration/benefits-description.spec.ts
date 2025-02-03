@@ -125,7 +125,14 @@ describe("benefit descriptions", function () {
               .replace(/\s\s+/g, " ")
               .trim()
             expect(innerText.length).toBeGreaterThanOrEqual(10)
-            expect(innerText.length).toBeLessThanOrEqual(550)
+            const isCovoiturageBenefit = benefit.label
+              ?.toLowerCase()
+              .includes("covoiturage")
+            if (!isCovoiturageBenefit) {
+              expect(innerText.length).toBeLessThanOrEqual(420)
+            } else {
+              expect(innerText.length).toBeLessThanOrEqual(530)
+            }
           })
 
           if (benefit.description.includes('target="_blank"')) {

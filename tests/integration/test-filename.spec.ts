@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import fs from "fs"
 import path from "path"
 
@@ -7,8 +7,6 @@ interface FileProperties {
   absolute: string
   extension: string
 }
-
-const projectRoot = path.resolve(__dirname, "../..")
 
 describe("Test filenames rules", function () {
   const files: FileProperties[] = []
@@ -41,7 +39,7 @@ describe("Test filenames rules", function () {
     })
   }
 
-  getFiles(projectRoot)
+  getFiles(path.join(new URL(".", import.meta.url).pathname, "../.."))
 
   const result = files.filter((file) => {
     return ["ts", "js", "vue"].includes(file.extension)

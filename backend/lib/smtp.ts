@@ -1,8 +1,8 @@
 import config from "../config/index.js"
-import nodemailer, { TransportOptions } from "nodemailer"
+import nodemailer from "nodemailer"
 import { Email } from "../../lib/types/email.js"
 
-const transporter = nodemailer.createTransport(config.smtp as TransportOptions)
+const transporter = nodemailer.createTransport(config.smtp)
 
 export function sendEmailSmtp(email: Email) {
   const { tags, ...emailParameters } = email

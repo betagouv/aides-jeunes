@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import { additionalProps } from "@root/backend/lib/openfisca/mapping/individu/index.js"
 
 const situation = {

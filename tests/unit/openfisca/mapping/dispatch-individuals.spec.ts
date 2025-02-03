@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import { ScolariteEnfant } from "@lib/enums/scolarite.js"
 import subject from "@root/backend/lib/openfisca/mapping/index.js"
 

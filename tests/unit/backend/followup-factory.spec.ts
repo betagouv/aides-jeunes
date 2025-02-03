@@ -1,4 +1,4 @@
-import { expect, vi } from "vitest"
+import { expect, jest } from "@jest/globals"
 
 import { FollowupFactory } from "@backend/lib/followup-factory.js"
 import Followups from "@backend/models/followup.js"
@@ -15,9 +15,8 @@ describe("FollowupFactory", () => {
       mockFollowupCreate
 
     beforeEach(() => {
-      vi.clearAllMocks()
       // Mock dependencies
-      mockCompute = vi.fn().mockImplementation(() => {
+      mockCompute = jest.fn().mockImplementation(() => {
         return {
           droitsEligibles: [
             { id: "1", montant: 100, unit: "month" },
@@ -29,25 +28,18 @@ describe("FollowupFactory", () => {
       mockSimulation = {
         compute: mockCompute,
         hasFollowup: false,
-        save: vi.fn().mockImplementation(async () => {
-          await mockGenerateToken()
-        }),
+        save: jest.fn(),
       }
 
       mockEmail = "test@example.com"
       mockSurveyOptin = true
 
       mockAccessToken = "access-token"
-      mockGenerateToken = vi.spyOn(utils, "generateToken")
+      mockGenerateToken = jest.spyOn(utils, "generateToken")
       mockGenerateToken.mockResolvedValue(mockAccessToken)
 
-      mockFollowupCreate = vi.spyOn(Followups, "create")
+      mockFollowupCreate = jest.spyOn(Followups, "create")
       mockFollowupCreate.mockResolvedValue({})
-    })
-
-    afterEach(() => {
-      vi.clearAllMocks()
-      vi.restoreAllMocks()
     })
 
     it("should call compute once", async () => {
@@ -109,12 +101,14 @@ describe("FollowupFactory", () => {
 
     describe("when the simulation compute fails", () => {
       beforeEach(() => {
-        mockCompute = vi.fn().mockRejectedValue(new Error("Compute error"))
+        mockCompute = jest
+          .fn<() => Promise<never>>()
+          .mockRejectedValue(new Error("Compute error"))
 
         mockSimulation = {
           compute: mockCompute,
           hasFollowup: false,
-          save: vi.fn(),
+          save: jest.fn(),
         }
       })
 

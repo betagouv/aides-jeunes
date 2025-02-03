@@ -1,4 +1,4 @@
-import { expect, vi } from "vitest"
+import { expect, jest } from "@jest/globals"
 import outilsController from "@backend/controllers/outils.js"
 
 describe("centerCoordinatesFromPostalCode", () => {
@@ -9,7 +9,7 @@ describe("centerCoordinatesFromPostalCode", () => {
       },
     }
     const res = {
-      send: vi.fn(),
+      send: jest.fn(),
     }
     outilsController.centerCoordinatesFromPostalCode(req, res)
     expect(res.send).toHaveBeenCalledWith([2.3752, 48.845])
@@ -22,8 +22,8 @@ describe("centerCoordinatesFromPostalCode", () => {
       },
     }
     const res = {
-      status: vi.fn().mockReturnThis(),
-      send: vi.fn(),
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
     }
     outilsController.centerCoordinatesFromPostalCode(req, res)
     expect(res.status).toHaveBeenCalledWith(404)
@@ -37,8 +37,8 @@ describe("centerCoordinatesFromPostalCode", () => {
       },
     }
     const res = {
-      status: vi.fn().mockReturnThis(),
-      send: vi.fn(),
+      status: jest.fn().mockReturnThis(),
+      send: jest.fn(),
     }
     outilsController.centerCoordinatesFromPostalCode(req, res)
     expect(res.status).toHaveBeenCalledWith(404)

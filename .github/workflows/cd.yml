@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
-      - name: Vitest
+      - name: Jest
         run: npm run test
   deploy_equinoxe_production:
     if: github.ref == 'refs/heads/main'

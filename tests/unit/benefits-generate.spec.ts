@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import subject from "@root/data/index.js"
 import { Jamstack } from "@root/data/types/jamstack.d.js"
 

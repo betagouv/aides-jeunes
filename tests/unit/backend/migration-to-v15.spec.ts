@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 
 import Migration from "@backend/lib/migrations/simulations/to-v15.js"
 

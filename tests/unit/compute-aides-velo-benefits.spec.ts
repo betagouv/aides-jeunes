@@ -1,5 +1,5 @@
 import { StandardBenefit } from "@data/types/benefits.js"
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import { Velo } from "@lib/enums/velo.js"
 import { Situation } from "@lib/types/situations.js"
 import { computeAidesVeloBenefits } from "@root/lib/benefits/compute-aides-velo.js"

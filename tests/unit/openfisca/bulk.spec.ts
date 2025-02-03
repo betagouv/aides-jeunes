@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import bulk from "@root/backend/lib/openfisca/bulk/index.js"
 const { build, extractResults } = bulk
 

@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import Benefits from "@root/data/index.js"
 import jamstackLoader from "@betagouv/jamstack-loader"
 const configFile = "contribuer/public/admin/config.yml"

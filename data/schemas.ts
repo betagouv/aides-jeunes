@@ -1,12 +1,10 @@
 import path from "path"
 import yaml from "js-yaml"
 import fs from "fs"
-import { fileURLToPath } from "url"
 import jamstackLoader from "@betagouv/jamstack-loader"
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __dirname = new URL(".", import.meta.url).pathname
 const jamstack = jamstackLoader.get(
-  path.resolve(__dirname, "../contribuer/public/admin/config.yml")
+  path.join(__dirname, "../contribuer/public/admin/config.yml")
 )
 
 const typesMap = {

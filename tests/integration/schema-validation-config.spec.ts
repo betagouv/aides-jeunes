@@ -1,9 +1,12 @@
-import { expect } from "vitest"
-import jamstackLoader from "@betagouv/jamstack-loader"
+import { expect } from "@jest/globals"
 import path from "path"
+import jamstackLoader from "@betagouv/jamstack-loader"
 
 const jamstack = jamstackLoader.get(
-  path.resolve(__dirname, "../../contribuer/public/admin/config.yml")
+  path.join(
+    new URL(".", import.meta.url).pathname,
+    "../../contribuer/public/admin/config.yml"
+  )
 )
 
 describe("Schema validation", function () {

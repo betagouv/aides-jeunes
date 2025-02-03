@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import data from "@root/data/all.js"
 
 for (const benefit of data.all) {

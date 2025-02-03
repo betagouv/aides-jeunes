@@ -1,9 +1,8 @@
-label: aide au BAFA pour une session de formation d'approfondissement
+label: aide au BAFA
 institution: caf_eure_et_loir
-description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF de l'Eure-et-Loir pour vous aider à financer votre
-  session d’approfondissement ou de qualification en complément de l'aide
-  nationale apportée par la CAF.
+description: La Caf d'Eure-et-Loir vous aide à financer votre formation BAFA,
+  à condition que vous suiviez un parcours complet de formation (formation générale,
+  stage pratique, puis stage d'approfondissement ou de qualification). L'aide est versée directement au stagiaire.
 prefix: l’
 conditions_generales:
   - type: age
@@ -17,13 +16,12 @@ conditions:
   - Envoyer le <a target="_blank" title="Formulaire - Nouvelle fenêtre"
     rel="noopener"
     href="https://caf.fr/sites/default/files/medias/281/Documents/Action-sociale/Bafa/Cerfa_bafa.pdf">formulaire</a>
-    dans un délai de 3 mois maximum suivant l'inscription au stage.
+    dans un délai de 3 mois maximum suivant l'inscription au stage d'approfondissement ou de qualification.
 interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 291
+montant: 600
 link: https://caf.fr/allocataires/caf-d-eure-et-loir/offre-de-service/vie-personnelle/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa
 form: https://caf.fr/sites/default/files/medias/281/Documents/Action-sociale/Bafa/Cerfa_bafa.pdf
-instructions: https://caf.fr/allocataires/caf-d-eure-et-loir/offre-de-service/vie-personnelle/les-aides-au-brevet-d-aptitude-aux-fonctions-d-animateur-bafa

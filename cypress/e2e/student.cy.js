@@ -55,9 +55,7 @@ context("Full simulation", () => {
     projet.fill__dureeMoisEtudesEtranger(2)
 
     results.wait()
-    navigate.goToBafaBenefitsPage()
     results.hasBafaBenefit()
-    results.back()
 
     results.hasVeloGroupPreviewBenefit(true)
     navigate.goToAidesVeloBenefitsPage()

@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import { createPinia, setActivePinia } from "pinia"
 import { useStore } from "@root/src/stores/index.js"
 import { Answer } from "@lib/types/answer.d.js"

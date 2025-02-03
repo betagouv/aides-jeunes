@@ -161,7 +161,7 @@ npm run serve
 
 There are several levels of tests:
 
-- Unit tests are executed by [Vitest](https://vitest.dev/) and run with `npm test`.
+- Unit tests are executed by [Jest](https://jestjs.io/fr/) and run with `npm test`.
 - End-to-end test are executed with [Cypress](https://www.cypress.io/) with `npm run cypress`
 
 You can safely use `npm test && npm run cypress` to drive your developments.

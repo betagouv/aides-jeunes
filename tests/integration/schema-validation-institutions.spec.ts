@@ -1,11 +1,11 @@
-import { expect } from "vitest"
-import fs from "fs"
+import { expect } from "@jest/globals"
 import path from "path"
-import { getCollectionSchema, validateFile } from "@root/data/schemas.js"
+import fs from "fs"
 
+import { getCollectionSchema, validateFile } from "@root/data/schemas.js"
 const institutionSchema = getCollectionSchema("institutions")
 
-const dataDir = path.resolve(__dirname, "../../data")
+const dataDir = path.join(new URL(".", import.meta.url).pathname, "../../data")
 const institutionFiles = fs
   .readdirSync(`${dataDir}/institutions`)
   .filter((filename) => filename.match(/\.yml$/))

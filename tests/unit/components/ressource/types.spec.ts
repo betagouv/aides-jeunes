@@ -1,81 +1,31 @@
-import { expect } from "vitest"
-import { mount } from "@vue/test-utils"
-import { createPinia, setActivePinia } from "pinia"
-import { createRouter, createMemoryHistory } from "vue-router"
+import { expect } from "@jest/globals"
 import Types from "@/components/ressource/types.vue"
 
 describe("types.vue", () => {
-  const router = createRouter({
-    history: createMemoryHistory(),
-    routes: [],
-  })
-  const pinia = createPinia()
-  const mockStore = {
-    situation: {},
-    dates: {
-      twelveMonthsAgo: { label: "test" },
-    },
-    simulation: {
-      answers: {
-        all: [],
-      },
-    },
-    getAllSteps: [],
-    answer: () => {},
-  }
-
-  const mountComponent = () => {
-    return mount(Types, {
-      props: {
-        individu: {},
-      },
-      global: {
-        mocks: {
-          $route: { params: { id: "test" } },
-          $push: () => {},
-        },
-        plugins: [pinia, router],
-        provide: {
-          store: mockStore,
-        },
-      },
-    })
-  }
-
-  beforeEach(() => {
-    setActivePinia(pinia)
-  })
-
-  describe("sort method", () => {
+  it("sort ressource types following multiple criterias", () => {
     const categories = [
       { label: "Stage" },
       { positionInList: 1, label: "Salaire 1" },
       { positionInList: 2, label: "Salaire 2" },
       { label: "Prime" },
     ]
-
-    const expectedResult = [
+    const result = [
       { positionInList: 1, label: "Salaire 1" },
       { positionInList: 2, label: "Salaire 2" },
       { label: "Prime" },
       { label: "Stage" },
     ]
-
-    it("should sort ressource types following multiple criterias", () => {
-      const wrapper = mountComponent()
-      expect(wrapper.vm.sort(categories)).toEqual(expectedResult)
-    })
+    expect(Types.default.methods.sort(categories)).toEqual(result)
   })
 
-  describe("groupTypes method", () => {
+  it("group ressource by types", () => {
     const categories = [
       { label: "Salaire", category: "Revenus" },
       { label: "Revenus de stage", category: "Revenus" },
       { label: "APL", category: "Allocations" },
       { label: "Bourse", category: "Autre" },
     ]
-
-    const expectedResult = {
+    const result = {
       Autre: [{ label: "Bourse", category: "Autre" }],
       Allocations: [{ label: "APL", category: "Allocations" }],
       Revenus: [
@@ -83,10 +33,6 @@ describe("types.vue", () => {
         { label: "Revenus de stage", category: "Revenus" },
       ],
     }
-
-    it("should group resources by their types", () => {
-      const wrapper = mountComponent()
-      expect(wrapper.vm.groupTypes(categories)).toEqual(expectedResult)
-    })
+    expect(Types.default.methods.groupTypes(categories)).toEqual(result)
   })
 })

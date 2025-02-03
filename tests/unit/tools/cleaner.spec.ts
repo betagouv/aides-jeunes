@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import {
   anonymizeSimulation,
   anonymizeFollowup,

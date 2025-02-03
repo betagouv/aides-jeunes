@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import CommuneMethods from "@/lib/commune.js"
 import { Commune } from "@lib/types/commune.js"
 

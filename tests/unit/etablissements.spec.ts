@@ -1,4 +1,4 @@
-import { expect } from "vitest"
+import { expect } from "@jest/globals"
 import { normalize } from "@root/lib/benefits/lieux.js"
 
 describe("isEqual function", () => {

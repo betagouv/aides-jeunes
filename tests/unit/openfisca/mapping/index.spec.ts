@@ -1,4 +1,4 @@
-import { expect, vi } from "vitest"
+import { expect } from "@jest/globals"
 import subject from "@root/backend/lib/openfisca/mapping/index.js"
 import { StatutOccupationLogement } from "@lib/enums/logement.js"
 

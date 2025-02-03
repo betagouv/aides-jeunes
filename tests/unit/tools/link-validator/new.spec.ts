@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import { determineOperationsOnBenefitLinkError } from "../../../../lib/benefits/link-validity.js"
 import { makeBenefitData } from "./utils.js"
 

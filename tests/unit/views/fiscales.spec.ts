@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import FiscalesView from "@/views/simulation/Ressources/fiscales.vue"
 
 describe("fiscales.vue", () => {

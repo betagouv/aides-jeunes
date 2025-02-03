@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import { values } from "lodash-es"
 import Promise from "bluebird"
 import fs from "fs"

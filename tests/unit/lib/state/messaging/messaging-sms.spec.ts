@@ -1,4 +1,4 @@
-import { expect, jest } from "@jest/globals"
+import { expect, vi } from "vitest"
 import {
   shouldSendSurveyBySms,
   filterInitialSurveySms,
@@ -18,11 +18,12 @@ describe("shouldSendSurveyBySms condition tests", () => {
       smsSentAt: dayjs("2023-11-17"),
       createdAt: dayjs("2023-11-17"),
     }
-    jest.useFakeTimers().setSystemTime(new Date("2023-11-19"))
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date("2023-11-19"))
   })
 
   afterEach(() => {
-    jest.useRealTimers()
+    vi.useRealTimers()
   })
 
   it("should not sent sms without phone field inside the followup", async () => {
@@ -90,7 +91,8 @@ describe("filterInitialSurveySms tests", () => {
   const limit = 10
 
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(new Date("2023-11-25"))
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date("2023-11-25"))
 
     mockFollowups = [
       {
@@ -156,7 +158,7 @@ describe("filterInitialSurveySms tests", () => {
   })
 
   afterEach(() => {
-    jest.useRealTimers()
+    vi.useRealTimers()
   })
 
   it("should not include followup with sms survey", async () => {

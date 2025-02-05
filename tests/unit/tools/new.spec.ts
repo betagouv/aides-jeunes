@@ -1,5 +1,5 @@
 import { expect } from "vitest"
-import { determineOperationsOnBenefitLinkError } from "../../../../lib/benefits/link-validity.js"
+import { determineOperationsOnBenefitLinkError } from "../../../lib/benefits/link-validity.js"
 import { makeBenefitData } from "./utils.js"
 
 describe("check-link-validity script", () => {

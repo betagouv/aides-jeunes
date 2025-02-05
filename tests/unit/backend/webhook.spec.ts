@@ -1,16 +1,27 @@
-import { expect, jest } from "@jest/globals"
-import crypto from "crypto"
-
+import { expect, vi } from "vitest"
+import { Request, Response } from "express"
+import crypto from "node:crypto"
 import {
   verifyAuthentication,
   validateRequestPayload,
   postOnMattermost,
 } from "../../../backend/controllers/webhook.js"
-import config from "../../../backend/config/index.js"
 import Mattermost from "../../../backend/lib/mattermost-bot/mattermost.js"
+import config from "../../../backend/config/index.js"
 
-describe("verifyAuthentication", () => {
-  let req, res, next
+type MockRequest = {
+  body: any
+  get?: (name: string) => string | undefined
+}
+
+type MockResponse = {
+  status: (code: number) => MockResponse
+  json: (data: any) => void
+  statusCode?: number
+}
+
+describe("webhook", () => {
+  let req: MockRequest, res: MockResponse, next: any
 
   beforeEach(() => {
     req = {
@@ -21,9 +32,9 @@ describe("verifyAuthentication", () => {
         this.statusCode = code
         return this
       },
-      json: jest.fn(),
+      json: vi.fn(),
     }
-    next = jest.fn()
+    next = vi.fn()
   })
 
   it("calls next() when signature is valid", () => {
@@ -32,9 +43,13 @@ describe("verifyAuthentication", () => {
       .update(req.body)
       .digest("hex")
     req.get = (header) =>
-      header === "X-Lapin-Signature" ? validSignature : null
+      header === "X-Lapin-Signature" ? validSignature : undefined
 
-    verifyAuthentication(req, res, next)
+    verifyAuthentication(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(next).toHaveBeenCalled()
     expect(res.statusCode).toBeUndefined()
@@ -44,7 +59,11 @@ describe("verifyAuthentication", () => {
   it("returns 401 when signature is missing", () => {
     req.get = () => undefined
 
-    verifyAuthentication(req, res, next)
+    verifyAuthentication(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(res.statusCode).toBe(401)
     expect(res.json).toHaveBeenCalledWith({ error: "Signature required" })
@@ -54,7 +73,11 @@ describe("verifyAuthentication", () => {
   it("returns 401 when signature is invalid", () => {
     req.get = () => "anInvalidSignature"
 
-    verifyAuthentication(req, res, next)
+    verifyAuthentication(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(res.statusCode).toBe(401)
     expect(res.json).toHaveBeenCalledWith({ error: "Invalid signature" })
@@ -63,7 +86,7 @@ describe("verifyAuthentication", () => {
 })
 
 describe("validateRequestPayload", () => {
-  let req, res, next, consoleSpy
+  let req: MockRequest, res: MockResponse, next: any, consoleSpy: any
 
   beforeEach(() => {
     req = {
@@ -80,19 +103,23 @@ describe("validateRequestPayload", () => {
       }),
     }
     res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
+      status: vi.fn().mockReturnThis(),
+      json: vi.fn(),
     }
-    next = jest.fn()
-    consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {})
+    next = vi.fn()
+    consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
   })
 
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it("calls next() when body is valid", () => {
-    validateRequestPayload(req, res, next)
+    validateRequestPayload(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(res.status).not.toHaveBeenCalled()
     expect(res.json).not.toHaveBeenCalled()
@@ -102,7 +129,11 @@ describe("validateRequestPayload", () => {
   it("returns 400 when body is not valid", () => {
     req.body = JSON.stringify({})
 
-    validateRequestPayload(req, res, next)
+    validateRequestPayload(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(res.status).toHaveBeenCalledWith(400)
     expect(res.json).toHaveBeenCalledWith({
@@ -120,7 +151,11 @@ describe("validateRequestPayload", () => {
       data: {},
     })
 
-    validateRequestPayload(req, res, next)
+    validateRequestPayload(
+      req as unknown as Request,
+      res as unknown as Response,
+      next
+    )
 
     expect(consoleSpy).toHaveBeenCalledWith("Invalid data in payload", {})
     expect(res.status).toHaveBeenCalledWith(400)
@@ -130,7 +165,7 @@ describe("validateRequestPayload", () => {
 })
 
 describe("postOnMattermost", () => {
-  let req, res, mattermostSpy
+  let req: MockRequest, res: MockResponse, mattermostSpy: any
 
   beforeEach(() => {
     req = {
@@ -142,16 +177,16 @@ describe("postOnMattermost", () => {
       },
     }
     res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
+      status: vi.fn().mockReturnThis(),
+      json: vi.fn(),
     }
-    mattermostSpy = jest
+    mattermostSpy = vi
       .spyOn(Mattermost, "post")
       .mockImplementation(async () => Promise.resolve())
   })
 
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it("posts message to Mattermost and responds with 200 OK", async () => {
@@ -159,7 +194,10 @@ describe("postOnMattermost", () => {
       `Une personne vient de prendre RDV.\n` +
       `Plus d'informations /admin/organisations/org456/rdvs/rdv123`
 
-    await postOnMattermost(req, res)
+    await postOnMattermost(
+      req as unknown as Request,
+      res as unknown as Response
+    )
 
     expect(mattermostSpy).toHaveBeenCalledWith(expectedMessage)
     expect(res.status).toHaveBeenCalledWith(200)

@@ -28,7 +28,6 @@ interface FollowupAttributes {
 interface FollowupMethods {
   addSurveyIfMissing(surveyType: SurveyType): Promise<Survey>
   updateSurvey(action: SurveyType, data?: any)
-  updateTemporarySimulationSurvey()
 }
 
 interface FollowupVirtuals {

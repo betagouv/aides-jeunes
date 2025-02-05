@@ -1,9 +1,11 @@
-label: Aides au BAFA et BAFD pour une formation générale, d'approfondissement ou
-  de qualification
+label: Aides au BAFA ou BAFD
 institution: caf_ille_et_vilaine
-description: L'aide à la formation au BAFD est une aide locale mise à
-  disposition par la CAF d'Ille-et-Vilaine pour vous aider à financer votre
-  session en complément de l'aide nationale apportée par la CAF. Son montant dépend de votre quotient familial.
+description:
+  Le brevet d’aptitude aux fonctions d’animateur (BAFA) et le brevet d’aptitude
+  aux fonctions de directeur (BAFD) sont des diplômes qui permettent d’encadrer
+  des enfants et des adolescents en accueil collectif de mineurs. La Caf d'Ille-et-Vilaine
+  vous aide à financer ces formations, sous conditions de ressources. Cette aide est cumulable
+  avec celle de la CNAF et son montant dépend de votre quotient familial.
 prefix: les
 conditions_generales:
   - type: age
@@ -14,11 +16,11 @@ conditions_generales:
       - "35"
   - type: quotient_familial
     period: month
-    value: 750
+    value: 700
     operator: "<="
 profils: []
 interestFlag: _interetBafa
 type: bool
 periodicite: autre
 link: https://caf.fr/allocataires/caf-d-ille-et-vilaine/offre-de-service/vie-professionnelle/je-passe-le-bafa-ou-le-bafd
-form: https://caf.fr/sites/default/files/medias/351/Offre-de-service/vie-professionnelle/aide-au-bafa-bafd/Formulaire_bafa_2023.pdf
+form: https://caf.fr/sites/default/files/medias/351/Offre-de-service/vie-professionnelle/aide-au-bafa-bafd/Formulaire%20BAFA-2025_mod%C3%A8le.pdf

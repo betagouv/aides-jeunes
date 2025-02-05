@@ -1,28 +1,28 @@
-label: aide au BAFA pour une session de formation d'approfondissement
+label: aide au BAFA
 institution: caf_meurthe_et_moselle
-description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF de Meurthe-et-Moselle pour vous aider à financer votre
-  session d’approfondissement ou de qualification en complément de l'aide
-  nationale apportée par la CAF.
+description:
+  La CAF de Meurthe-et-Moselle soutient les jeunes qui passent leur BAFA
+  en leur versant une aide complémentaire à celle apportée par la CNAF. L'aide est versée
+  à l'issue de la session de perfectionnement et son montant peut varier en fonction du parcours
+  et des besoins du jeune qui fait la demande (coût de la formation, reste à charge après déduction des
+  éventuelles autres aides reçues).
 prefix: l’
 conditions_generales:
   - type: age
     operator: ">="
-    value: 16
+    value: 17
+  - type: age
+    operator: "<="
+    value: 25
   - type: departements
     values:
       - "54"
-  - type: quotient_familial
-    period: month
-    value: 800
-    operator: "<="
 profils: []
 conditions:
-  - Être allocataire ou rattaché au dossier allocataire de vos parents.
   - Se rapprocher de l'un des organismes de formation listés par la Caf de Meurthe-et-Moselle.
+  - Suivre une formation complète, du stage de base jusqu'au perfectionnement.
 interestFlag: _interetBafa
 type: bool
 periodicite: ponctuelle
 link: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/vie-personnelle/les-aides-aux-formations-bafa-et-bafd
 instructions: https://www.caf.fr/allocataires/caf-de-meurthe-et-moselle/offre-de-service/vie-personnelle/les-aides-aux-formations-bafa-et-bafd
-private: true

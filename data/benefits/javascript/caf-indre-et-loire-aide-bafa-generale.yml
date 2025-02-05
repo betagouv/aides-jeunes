@@ -1,8 +1,11 @@
 label: aide au BAFA pour une session de formation générale
 institution: caf_indre_et_loire
-description: L'aide à la formation du BAFA est une aide locale mise à
-  disposition par la CAF de l'Indre-et-Loire pour vous aider à financer votre
-  session en complément de l'aide nationale apportée par la caf.
+description:
+  Le brevet d’aptitude aux fonctions d’animateur (BAFA) est un diplôme qui permet
+  d’encadrer des enfants et des adolescents en accueil collectif de mineurs. La CAF de l'Indre-et-Loire,
+  vous aide à financer la première étape de ce diplôme, appelée session de formation générale
+  (une formation théorique de 8 jours). Cette aide est donnée sans condition de ressources
+  et elle est cumulable avec l'aide de la CNAF.
 prefix: l’
 conditions_generales:
   - type: age
@@ -11,24 +14,17 @@ conditions_generales:
   - type: departements
     values:
       - "37"
-  - type: quotient_familial
-    value: 830
-    operator: "<="
-    period: month
 profils: []
 conditions:
-  - Envoyer le <a target="_blank" title="Formulaire - Nouvelle fenêtre"
+  - Faire compléter le <a target="_blank" title="Formulaire - Nouvelle fenêtre"
     rel="noopener"
-    href="https://caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf">formulaire</a>
-    dans un délai de 3 mois maximum après la date de début de votre session de
-    formation.
+    href="https://www.caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20demande%20BAFA%20Unique%20Allocataire%20CAF37%20au%2001.07.25.pdf">formulaire</a>
+    par votre organisme de formation au BAFA et l'envoyer à la CAF de l'Indre-et-Loire dans les 3 mois après la session de formation générale.
 interestFlag: _interetBafa
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 250
-link: https://caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf
-teleservice: ""
-form: https://caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20BAFA%20Unique%20-%20Annexe%202_%C3%A0_remplir%2005.21.pdf
-instructions: ""
+link: https://www.caf.fr/allocataires/caf-de-touraine/offre-de-service/vie-personnelle/j-ai-un-enfant-de-plus-de-16-ans-qui-souhaite-une-formation-bafa
+form: https://www.caf.fr/sites/default/files/medias/371/CAF37%20Supports/Action%20Sociale/Imprim%C3%A9%20demande%20BAFA%20Unique%20Allocataire%20CAF37%20au%2001.07.25.pdf

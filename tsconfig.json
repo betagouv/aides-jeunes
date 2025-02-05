@@ -14,7 +14,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "types": ["jest", "cypress", "cypress-axe"],
+    "types": ["cypress", "cypress-axe", "node"],
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["lib/*"],

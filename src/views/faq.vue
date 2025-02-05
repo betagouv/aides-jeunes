@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { EventAction, EventCategory } from "@lib/enums/event"
 import BackButton from "@/components/buttons/back-button.vue"
+import { defineProps } from "vue"
+
+const props = defineProps({
+  showBackButton: {
+    type: Boolean,
+    default: true,
+  },
+})
 
 const contactEmail = process.env.VITE_CONTACT_EMAIL
 
@@ -124,6 +132,16 @@ const questionsAnswers = [
       Il vous sera demandé de télécharger la facture d’achat du vélo, un justificatif d’identité, de domicile et de revenus (avis d’impôt), ainsi que votre RIB.
     </p>`,
   },
+  {
+    question: `Puis-je bénéficier d'aides si je pars étudier à l'étranger ?`,
+    answer: `
+    <p>
+      Si vous envisagez de partir à l'étranger dans le cadre d'un échange universitaire, vous pouvez bénéficier de certaines aides présentées sur <a href="https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67" target="_blank">le site etudiant.gouv.fr</a>.
+    </p>
+    <p>
+      En revanche, si vous vous inscrivez directement auprès d'un établissement à l'étranger, vous ne pourrez pas bénéficier des mêmes aides. Vous devrez vous renseigner sur les aides de votre pays d'accueil pour les étudiants et vous rapprocher du consulat de France. Vous trouverez des informations pour préparer votre expatriation sur <a href="https://www.diplomatie.gouv.fr/fr/services-aux-francais/preparer-son-expatriation/etudes-superieures/" target="_blank">cette page du Ministère de l'Europe et des Affaires Etrangères</a>.
+    </p>`,
+  },
 ]
 
 const mailContent = {
@@ -142,7 +160,12 @@ const mailAnalytics = {
 <template>
   <div class="fr-my-6w fr-p-2w">
     <h1>Foire aux questions</h1>
-    <BackButton size="small" data-testid="faq-back-button" class="fr-mb-3w">
+    <BackButton
+      v-show="props.showBackButton"
+      size="small"
+      data-testid="faq-back-button"
+      class="fr-mb-3w"
+    >
       Retour
     </BackButton>
     <div class="fr-p-1w">

@@ -3,8 +3,8 @@ institution: caf_gironde
 description:
   La Caf de la Gironde favorise le départ en colonies de vacances pour les enfants de ses allocataires,
   en contribuant aux frais de leur séjour avec les partenaires agréés Vacaf.
-  L’aide est équivalente à une participation financière allant de 28 € à 42 € par jour et par enfant.
-  Son montant dépend du quotient familial.
+  L’aide est équivalente à une participation financière allant de 36 € à 55 € par jour et par enfant.
+  Son montant dépend du quotient familial. Possibilité de deux séjours par an.
 prefix: l’
 conditions_generales:
   - type: departements
@@ -18,15 +18,16 @@ profils:
   - type: parent
 conditions:
   - Avoir des enfants âgés de 3 à 17 ans.
-  - Être allocataire de la Caf de la Gironde et avoir perçu au moins une prestation familiale pendant l'année en cours.
+  - Être allocataire de la Caf de la Gironde.
   - Choisir le séjour de votre enfant parmi les centres de vacances labellisés Vacaf dans toute la France sur <a
     target="_blank" title="Liste des séjours - Nouvelle fenêtre"
     rel="noopener"
     href="https://www.vacaf.org/">vacaf.org</a>.
-  - Réserver un séjour de 5 jours minimum (4 nuits).
+  - Organiser le séjour hors période scolaire pour les enfants soumis à l'obligation scolaire.
+  - Réserver un séjour de 5 jours minimum (4 nuits) et de 8 jours maximum (7 nuits).
 type: float
 unit: €
 periodicite: ponctuelle
 legend: par jour et par enfant maximum
-montant: 42
-link: https://www.caf.fr/allocataires/caf-de-la-gironde/offre-de-service/vie-personnelle/choisir-une-aide-vacances-2024/l-aide-aux-vacances-enfants-ave
+montant: 55
+link: https://www.caf.fr/allocataires/caf-de-la-gironde/offre-de-service/vie-personnelle/choisir-une-aide-vacances-2025/l-aide-aux-vacances-enfants-ave

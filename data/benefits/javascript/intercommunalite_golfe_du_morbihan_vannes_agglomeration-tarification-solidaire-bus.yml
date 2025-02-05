@@ -11,9 +11,7 @@ conditions_generales:
   - type: age
     operator: ">="
     value: 18
-  - type: epcis
-    values:
-      - "200067932"
+  - type: attached_to_institution
   - type: quotient_familial
     operator: <=
     value: 752

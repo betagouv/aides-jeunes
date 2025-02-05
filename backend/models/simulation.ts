@@ -108,7 +108,7 @@ SimulationSchema.method("getSituation", function () {
 
 SimulationSchema.method("compute", function (showPrivate) {
   const situation = this.getSituation()
-  const id = this._id
+  const id = String(this._id)
   return new Promise(function (resolve, reject) {
     openfisca.calculate(situation, function (err, openfiscaResponse) {
       if (err) {

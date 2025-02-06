@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStore } from "@/stores/index.js"
-import { computed, defineProps } from "vue"
+import { computed } from "vue"
 
 const props = defineProps({
   text: {

@@ -23,7 +23,7 @@ context("Full simulation", () => {
     foyer.fill_en_couple(false)
 
     logement.fill__logementType("sansDomicile")
-    logement.fill_depcom("94120")
+    logement.fill_depcom("74000")
     logement.fill__difficultes_acces_ou_frais_logement(true)
     logement.fill__nombreMoisEntreeLogement(-12)
 

@@ -31,11 +31,16 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(1101.42)
 
     projet.fill__interetsAidesVelo([])
-    projet.fill__interetBafa(false)
+    projet.fill__interetBafa(true)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetAidesSanitaireSocial(false)
 
     results.wait()
+    results.hasBafaGroupPreviewBenefit(true)
+    navigate.goToBafaBenefitsPage()
+    results.hasBafaBenefit()
+    results.back()
+
     results.hasAAH()
     navigate.goRecap()
     navigate.checkRecap()

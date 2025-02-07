@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import subject from "@root/backend/lib/openfisca/mapping/property-move.js"
 
 describe("openfisca mapping property move", function () {

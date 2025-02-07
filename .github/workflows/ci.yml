@@ -152,7 +152,7 @@ jobs:
             echo "Waiting for OpenFisca to be ready..."
             sleep 2
           done
-      - name: Jest
+      - name: Vitest
         run: npm run test
   build:
     name: Build

@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import { getChapters } from "@lib/state/index.js"
 import { StepStrict } from "@lib/types/steps.d.js"
 import { ChapterState } from "@lib/enums/chapter.js"

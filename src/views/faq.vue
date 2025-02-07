@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { EventAction, EventCategory } from "@lib/enums/event"
 import BackButton from "@/components/buttons/back-button.vue"
-import { defineProps } from "vue"
 
 const props = defineProps({
   showBackButton: {
@@ -54,7 +53,7 @@ const questionsAnswers = [
     </p>`,
   },
   {
-    question: `Qu’est ce que le revenu fiscal de référence (RFR) et où le trouver ?`,
+    question: `Qu'est ce que le revenu fiscal de référence (RFR) et où le trouver ?`,
     answer: `
     <p>
       Le RFR est calculé par les services fiscaux (les impôts) à partir des revenus que vous avez déclarés
@@ -71,7 +70,7 @@ const questionsAnswers = [
     <p>
       Le RBG est le montant total des revenus de votre foyer fiscal avant déductions et abattements. Pour les étudiants et futurs étudiants, 
       les revenus pris en compte par le Crous pour calculer votre droit à la bourse sur critères sociaux (BCS) 
-      sont ceux qui figurent à la ligne « revenu brut global » sur la première page de l’avis d’imposition de vos parents.
+      sont ceux qui figurent à la ligne « revenu brut global » sur la première page de l'avis d'imposition de vos parents.
     </p>`,
   },
   {
@@ -85,9 +84,9 @@ const questionsAnswers = [
       <a href="/aides/bourse_criteres_sociaux" target="_blank">Bourse sur Critères Sociaux</a>
       pour les étudiants.
     </p>
-    <p>Le revenu fiscal de référence (RFR) est calculé par les impôts, à partir
-      des revenus que vous avez déclarés dans votre déclaration d’impôts. Il
-      prend en compte l’ensemble des revenus de votre foyer fiscal, que vous
+    <p>Le revenu fiscal de référence (RFR) est calculé par les impôts, à partir
+      des revenus que vous avez déclarés dans votre déclaration d'impôts. Il
+      prend en compte l'ensemble des revenus de votre foyer fiscal, que vous
       soyez imposable ou non imposable. Toutes les informations concernant le
       RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>.
     </p>
@@ -99,7 +98,7 @@ const questionsAnswers = [
   },
   {
     question:
-      "Je suis en rupture familiale et n’ai pas accès à la déclaration d’impôts de mes parents, qui peut m’aider ?",
+      "Je suis en rupture familiale et n'ai pas accès à la déclaration d'impôts de mes parents, qui peut m'aider ?",
     answer: `
     <p>
       En fonction de votre situation, vous pouvez vous rapprocher :
@@ -115,21 +114,21 @@ const questionsAnswers = [
     answer: `
     <p>
       Pour demander votre <a href="/aides/css_participation_forfaitaire" target="_blank">Complémentaire Santé Solidaire</a>, rendez-vous sur
-      <a href="https://www.ameli.fr/">le site internet </a> ou l’application
+      <a href="https://www.ameli.fr/">le site internet </a> ou l'application
       mobile Ameli pour télécharger le formulaire de demande. </br>
       Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>. 
     </p>`,
   },
   {
-    question: "Qu’est-ce que le Bonus Vélo et comment en faire la demande ?",
+    question: "Qu'est-ce que le Bonus Vélo et comment en faire la demande ?",
     answer: `
     <p>
-      Le bonus vélo est une aide financière pour acheter ou louer un vélo. Le montant varie selon vos revenus et si vous êtes en situation de handicap. Plus d’informations sur <a href="https://www.service-public.fr/particuliers/vosdroits/F36828" target="_blank">la page du service public sur le bonus vélo</a>.
-      Vous pourrez y déterminer le montant exact de l’aide à laquelle vous avez droit, en fonction de votre situation et du vélo que vous souhaitez acheter.
+      Le bonus vélo est une aide financière pour acheter ou louer un vélo. Le montant varie selon vos revenus et si vous êtes en situation de handicap. Plus d'informations sur <a href="https://www.service-public.fr/particuliers/vosdroits/F36828" target="_blank">la page du service public sur le bonus vélo</a>.
+      Vous pourrez y déterminer le montant exact de l'aide à laquelle vous avez droit, en fonction de votre situation et du vélo que vous souhaitez acheter.
     </p>
     <p>
       Pour faire une demande, rendez-vous sur le portail gouvernemental  <a href="https://www.primealaconversion.gouv.fr/dboneco/accueil/access.html" target="_blank">primealaconversion.gouv.fr</a>.
-      Il vous sera demandé de télécharger la facture d’achat du vélo, un justificatif d’identité, de domicile et de revenus (avis d’impôt), ainsi que votre RIB.
+      Il vous sera demandé de télécharger la facture d'achat du vélo, un justificatif d'identité, de domicile et de revenus (avis d'impôt), ainsi que votre RIB.
     </p>`,
   },
   {

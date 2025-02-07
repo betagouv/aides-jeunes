@@ -3,17 +3,23 @@ on:
   workflow_dispatch:
   push:
     branches: [main, dev]
-concurrency: ci-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
+  OPENFISCA_BIND_HOST: 127.0.0.1:2000
+  LC_ALL: C.UTF-8
+  LANG: C.UTF-8
+  PYTHON_VERSION: 3.11.4
   EQUINOXE_SSH_HOST: equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
   EQUINOXE_SSH_USER: debian
   ECLIPSE_SSH_HOST: monitor.eclipse.mes-aides.incubateur.net
   ECLIPSE_SSH_USER: debian
 
 jobs:
-  unit_testing:
-    name: Unit testing
+  install:
+    name: Install
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -30,11 +36,106 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Check tool versions
+        run: npm --version && node --version
       - name: Install dependencies
         if: steps.restore-dependencies.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
-      - name: Jest
+
+  check_data_file_consistency:
+    name: Check data file consistency
+    needs: [install]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Restore node modules
+        uses: actions/cache@v4
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Run schema-validation-config.spec.ts
+        run: npm run test -- tests/integration/schema-validation-config.spec.ts
+
+  install_openfisca:
+    name: Install OpenFisca
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache Virtual Environment
+        uses: actions/cache@v4
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Setup VirtualEnv
+        run: |
+          python -m venv .venv
+      - name: Install dependencies
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          pip3 install -r openfisca/requirements.txt 2> ci-err.log
+          test -n ci-err.log && grep incompatible ci-err.log && cat ci-err.log && exit 1
+          rm ci-err.log
+          deactivate
+
+  unit_testing:
+    name: Unit testing
+    needs: [install, check_data_file_consistency, install_openfisca]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Restore node modules
+        uses: actions/cache@v4
+        id: restore-dependencies
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Virtual Environment
+        uses: actions/cache@v4
+        id: python-dependencies
+        with:
+          path: .venv
+          key: ${{ runner.os }}-cache-python-dependencies-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/openfisca/requirements.txt') }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Setup VirtualEnv
+        run: |
+          python -m venv .venv
+      - name: Run OpenFisca
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=openfisca.log &
+          sleep 5
+          if [ -f openfisca.log ]; then
+            cat openfisca.log
+          fi
+      - name: Wait for OpenFisca to be ready
+        shell: bash
+        run: |
+          for i in {1..30}; do
+            if wget --retry-connrefused --waitretry=2 --spider http://localhost:2000/parameter/prestations_sociales; then
+              echo "OpenFisca is ready"
+              break
+            fi
+            echo "Waiting for OpenFisca to be ready... (attempt $i/30)"
+            if [ -f openfisca.log ]; then
+              tail -n 5 openfisca.log
+            fi
+            sleep 2
+          done
+      - name: Vitest
         run: npm run test
+
   deploy_equinoxe_production:
     if: github.ref == 'refs/heads/main'
     needs: [unit_testing]
@@ -48,6 +149,7 @@ jobs:
           echo "${{ secrets.EQUINOXE_PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.EQUINOXE_SSH_USER }}@${{ env.EQUINOXE_SSH_HOST }} -i ~/.ssh/deployment.key
+
   deploy_equinoxe_preproduction:
     if: github.ref == 'refs/heads/dev'
     needs: [unit_testing]
@@ -61,6 +163,7 @@ jobs:
           echo "${{ secrets.EQUINOXE_PREPRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.EQUINOXE_SSH_USER }}@${{ env.EQUINOXE_SSH_HOST }} -i ~/.ssh/deployment.key
+
   deploy_eclipse_production:
     if: github.ref == 'refs/heads/main'
     needs: [unit_testing]
@@ -74,6 +177,7 @@ jobs:
           echo "${{ secrets.SOLSTICE_PRODUCTION_DEPLOY_KEY }}" > ~/.ssh/deployment.key
           chmod 600 ~/.ssh/deployment.key
           ssh -o StrictHostKeyChecking=no ${{ env.ECLIPSE_SSH_USER }}@${{ env.ECLIPSE_SSH_HOST }} -i ~/.ssh/deployment.key
+
   deploy_eclipse_preproduction:
     if: github.ref == 'refs/heads/dev'
     needs: [unit_testing]

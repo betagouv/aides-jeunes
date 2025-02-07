@@ -1,5 +1,5 @@
 import path from "path"
-import yaml from "js-yaml"
+import { load } from "js-yaml"
 import fs from "fs"
 import { fileURLToPath } from "url"
 import jamstackLoader from "@betagouv/jamstack-loader"
@@ -161,9 +161,7 @@ export function compareSchema(data, schema, output, depth: any = []) {
 }
 
 export function validateFile(filename, schema) {
-  const file = yaml.load(
-    fs.readFileSync(path.join(__dirname, `../${filename}`))
-  )
+  const file = load(fs.readFileSync(path.join(__dirname, `../${filename}`)))
   const output = []
   compareSchema(file, schema, output)
   return output

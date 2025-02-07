@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser"
 import moncompteproController from "../controllers/moncomptepro.js"
 import { Express } from "express"
-import rateLimit from "express-rate-limit"
+import { rateLimit } from "express-rate-limit"
 
 const moncompteproRoutes = function (api: Express) {
   const loginRateLimiter = rateLimit({

@@ -5,8 +5,10 @@ export default defineConfig({
   e2e: {
     fixturesFolder: false,
     supportFile: false,
-    setupNodeEvents(on, config) {
-      setupSMTPProxy(on, config)
+    setupNodeEvents(on) {
+      setupSMTPProxy(on)
     },
+    defaultCommandTimeout: 60000,
+    requestTimeout: 60000,
   },
 })

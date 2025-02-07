@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue"
 import { getBenefitImage } from "@lib/benefits/details.js"
 import DroitEstime from "./droit-estime.vue"
 import WarningMessage from "@/components/warning-message.vue"

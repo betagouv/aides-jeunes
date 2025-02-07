@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import subject from "@root/backend/lib/openfisca/mapping/individu/past-resources-proxy.js"
 
 describe("openfisca past resource proxy", function () {

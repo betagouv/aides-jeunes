@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, defineProps } from "vue"
+import { PropType } from "vue"
 import BenefitsGroupPreview from "@/components/benefits-group-preview.vue"
 import { StandardBenefit, BenefitGroup } from "@data/types/benefits"
 import BenefitPreview from "@/components/benefit-preview.vue"

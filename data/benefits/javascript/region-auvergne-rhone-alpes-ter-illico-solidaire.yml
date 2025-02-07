@@ -13,7 +13,13 @@ conditions_generales:
   - type: regions
     values:
       - "84"
-profils: []
+profils:
+  - type: chomeur
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: inactif
+    conditions: []
 link: https://www.ter.sncf.com/auvergne-rhone-alpes/tarifs-cartes/cartes-reduction/illico-solidaire
 teleservice: https://illicosolidaire.cba.fr/
 instructions: https://mmt.vsct.fr/sites/default/files/swt/CARA/2024-04/D%C3%A9pliant_ILLICO_SOLIDAIRE_2024.pdf

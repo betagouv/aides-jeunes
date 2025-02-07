@@ -4,6 +4,7 @@
     role="dialog"
     class="fr-modal fr-modal--opened"
     open="true"
+    data-fr-concealing-backdrop="false"
   >
     <div class="fr-container fr-container--fluid fr-container-md">
       <div class="fr-grid-row fr-grid-row--center">

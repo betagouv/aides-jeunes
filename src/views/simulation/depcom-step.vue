@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent="onSubmit">
     <InputDepCom
-      v-model:codePostal="codePostal"
-      v-model:nomCommune="nomCommune"
-      v-model:matchingCommune="matchingCommune"
+      v-model:code-postal="codePostal"
+      v-model:nom-commune="nomCommune"
+      v-model:matching-commune="matchingCommune"
       :code-postal-label="question"
     />
     <WarningMessage v-if="warningMessage">{{ warningMessage }}</WarningMessage>

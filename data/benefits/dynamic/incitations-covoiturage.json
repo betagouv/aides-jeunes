@@ -1088,22 +1088,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.iledefrance-mobilites.fr/le-reseau/services-de-mobilite/covoiturage/pratiquer-covoiturage",
-    "code_siren": "11.0",
-    "nom_plateforme": "",
-    "operateurs": "Karos, BlablaCarDaily, Klaxit, Ynstant",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Gratuité pour les passagers détenteurs d'un Pass Navigo et participation financière pour les autres types de passagers",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
     "link": "https://www.niortagglo.fr/details-de-lactualite/niortagglo-experimente-le-covoiturage-du-quotidien/index.html",
     "code_siren": "200041317",
     "nom_plateforme": "",
@@ -2129,7 +2113,7 @@
   },
   {
     "link": "https://www.grandbourg.fr/",
-    "code_siren": "240100628",
+    "code_siren": "200071751",
     "nom_plateforme": "",
     "operateurs": "BlaBlaCarDaily",
     "zone_sens_des_trajets": "et",

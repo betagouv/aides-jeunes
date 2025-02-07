@@ -1,6 +1,6 @@
 {
   "name": "mes-aides-jeunes",
-  "version": "12.1.3",
+  "version": "13.0.0",
   "description": "Simulateur de prestations sociales pour les jeunes",
   "type": "module",
   "scripts": {

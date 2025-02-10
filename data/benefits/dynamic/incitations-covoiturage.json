@@ -172,7 +172,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "Val d’Argent, Vallée de Kaysersberg et Sélestat",
+    "si_zone_exclue_liste": "Noter que les trajets effectués au sein du Val d’Argent, de la Vallée de Kaysersberg et de Sélestat ne sont pas subventionnés.",
     "passager_gratuite": "Non"
   },
   {
@@ -284,7 +284,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "Trajets sur l'axe de la ligne A des TC",
+    "si_zone_exclue_liste": "Noter que les trajets effectués sur l'axe de la ligne A des transports en commun ne sont pas subventionnés.",
     "passager_gratuite": "Non"
   },
   {
@@ -384,22 +384,6 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://smt-touraine.fr/parcourez-les-services-publics/klaxit-service-de-covoiturage",
-    "code_siren": "200085108",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 30,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://epernay-agglo.fr/lagglo-soutient-le-developpement-du-covoiturage#:~:text=Pour%20les%20conducteurs%2C%20les%20covoits,covoiturage%2C%20selon%20la%20distance%20parcourue.",
     "code_siren": "200067684",
     "nom_plateforme": "",
@@ -478,22 +462,6 @@
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.paysdebarr.fr/",
-    "code_siren": "200051944",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 84,
-    "conducteur_montant_min_par_passager": 0.75,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
   },
   {
     "link": "https://cc-hautvaldesevre.fr/competences/environnement/mobilite/1906-vous-allez-adorer-covoiturer-au-quotidien.html",
@@ -600,22 +568,6 @@
     "conducteur_montant_max_par_mois": 150,
     "conducteur_montant_min_par_passager": 1,
     "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.communaute-paysbasque.fr/a-la-une-2/actualites/actualite/covoiturage-au-pays-basque-les-conducteurs-indemnises",
-    "code_siren": "256401605",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
@@ -752,22 +704,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.artois-mobilites.fr/le-covoiturage-tadao-avec-blablacar-daily/",
-    "code_siren": "256204165",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
     "link": "https://ccgvm.com/covoiturage/",
     "code_siren": "245100615",
     "nom_plateforme": "",
@@ -892,7 +828,7 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 1,35 € par trajet.",
-    "si_zone_exclue_liste": "Le trajet passager ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun du réseau TCAT n'est pas éligible.",
+    "si_zone_exclue_liste": "Noter que les trajets ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun du réseau TCAT ne sont pas subventionnés.",
     "passager_gratuite": "Non"
   },
   {
@@ -992,54 +928,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.smtc90.fr",
-    "code_siren": "259000016",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": 180,
-    "conducteur_montant_min_par_passager": 1,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 1,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://smmag.fr/investir-pour-lavenir/passmobilites/",
-    "code_siren": "253800825",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "Ce service est proposé à l'échelle de certaines zones d'activités/emplois. Les bénéficiaires ne sont donc que les salariés des zones définies par le SMMAG.",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.karos.fr",
-    "code_siren": "259710218",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 10,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://www.cholet.fr/dossiers/dossier_4898_place+velo+dans+ville.html",
     "code_siren": "200071678",
     "nom_plateforme": "",
@@ -1084,7 +972,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
     "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
-    "si_zone_exclue_liste": "Le trajet passager ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun paramétrée n'est pas éligible.",
+    "si_zone_exclue_liste": "Noter que les trajets ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun ne sont pas subventionnés.",
     "passager_gratuite": "Oui"
   },
   {
@@ -1468,7 +1356,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein de la région PDL",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein de la région Pays de la Loire sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -1516,7 +1404,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein de la région PDL",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein de la région Pays de la Loire sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -1724,7 +1612,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "Les trajets ayant soit une origine ou une distination à l'intérieur de la lige de covoiturage dans ce territoire.",
+    "si_zone_exclue_liste": "Noter que les trajets ayant une origine ou une destination à l'intérieur de la ligne de covoiturage dans ce territoire ne sont pas subventionnés.",
     "passager_gratuite": "Non"
   },
   {
@@ -1980,7 +1868,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Uniquement au sein du département du Pays de la Loire",
+    "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein de la région Pays de la Loire sont concernés par la subvention.",
     "passager_gratuite": "Oui"
   },
   {
@@ -2012,7 +1900,7 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
     "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "Le trajet passager ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun paramétrée n'est pas éligible.",
+    "si_zone_exclue_liste": "Noter que les trajets ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun ne sont pas subventionnés.",
     "passager_gratuite": "Oui"
   },
   {
@@ -2060,22 +1948,6 @@
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.smtc-clermont-agglo.fr/covoiturage/",
-    "code_siren": "256300120",
-    "nom_plateforme": "Mov'ici",
-    "operateurs": "Mov'ici ",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 90,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 1.5,
-    "trajet_longueur_max": 30,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,10 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },

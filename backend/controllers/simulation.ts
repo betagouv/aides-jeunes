@@ -66,7 +66,7 @@ function attachAccessCookie(req: Request, res, next?) {
     req.simulation?._id?.toString(),
     cookiesParameters
   )
-  next && next()
+  next()
 }
 
 function validateAccess(req: Request, res, next) {
@@ -120,7 +120,7 @@ async function create(req: Request, res, next) {
 
     clearCookies(req, res)
     req.simulation = persistedSimulation
-    next && next()
+    next()
   } catch (err) {
     next(err)
   }

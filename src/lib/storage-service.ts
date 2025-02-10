@@ -19,6 +19,7 @@ export class StorageService {
       storage.removeItem(storageTest)
       return storedValue === storageTest
     } catch (e) {
+      console.error("Erreur lors de la mise à jour des données locales " + e)
       return false
     }
   }
@@ -34,6 +35,7 @@ export class StorageService {
         try {
           return JSON.parse(item)
         } catch (e) {
+          console.error("Erreur lors du parsage des données " + e)
           throw new Error(
             `Failed to parse ${this.storageType} storage item ${key}`
           )

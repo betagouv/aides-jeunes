@@ -126,8 +126,8 @@ export const APA_BY_CODE: {
   },
   departement_seine_maritime: {
     label: "du département de Seine Maritime",
-    link: "https://www.seinemaritime.fr/mon-quotidien/personnes-agees/beneficier-daides/allocation-personnalisee-dautonomie.html",
-    form: "https://www.seinemaritime.fr/docs/BAT%20Cerfa%20national%20APA%201ere%20demande%20.pdf",
+    link: "https://www.seinemaritime.fr/aides-et-demarches/lallocation-personnalisee-dautonomie-apa-a-domicile/",
+    form: "https://www.seinemaritime.fr/app/uploads/2025/01/BAT-Cerfa-national-APA-1ere-demande-.pdf",
   },
   departement_seine_et_marne: {
     label: "du département de Seine et Marne",

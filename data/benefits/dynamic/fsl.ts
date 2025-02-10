@@ -202,10 +202,10 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_morbihan: {
     label: "du département du Morbihan",
-    link: "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl/",
-    form: "https://www.morbihan.fr/fileadmin/Les_services/Aides_departementales/22_morbihan_5_H08_FSL_maintien_logement.pdf",
+    link: "https://www.morbihan.fr/nos-actions/cadre-de-vie-et-mobilite/logement-et-habitat/fonds-de-solidarite-logement-fsl",
+    form: "https://www.morbihan.fr/fileadmin/24_morbihan_5_H08_FSL_eau_energie.pdf",
     instructions:
-      "https://www.morbihan.fr/les-services/logement-habitat/fonds-de-solidarite-logement-fsl",
+      "https://www.morbihan.fr/nos-actions/cadre-de-vie-et-mobilite/logement-et-habitat/fonds-de-solidarite-logement-fsl",
   },
   departement_moselle: {
     label: "du département de la Moselle",

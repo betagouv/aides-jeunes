@@ -75,7 +75,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -91,7 +91,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -107,7 +107,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -155,7 +155,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -171,7 +171,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "Val d’Argent, Vallée de Kaysersberg et Sélestat",
     "passager_gratuite": "Non"
   },
@@ -187,7 +187,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -203,7 +203,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -235,7 +235,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -251,7 +251,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -283,7 +283,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "Trajets sur l'axe de la ligne A des TC",
     "passager_gratuite": "Non"
   },
@@ -379,7 +379,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -395,7 +395,7 @@
     "trajet_longueur_max": 30,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -427,7 +427,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -443,7 +443,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -459,7 +459,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -475,7 +475,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -507,7 +507,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -523,7 +523,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -539,7 +539,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -651,7 +651,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -683,7 +683,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -699,7 +699,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -811,7 +811,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1.50€ / passager pour les trajets intra-Agen et les trajets en première couronne et 0.50€ / passager pour les trajets de la deuxième couronne",
+    "passager_montant_ticket": "Vous ne payez que 1,50 € pour des trajets sur Agen et sa première couronne et 0,50 € pour des trajets à destination ou en provenance de la seconde couronne.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -827,7 +827,7 @@
     "trajet_longueur_max": 20,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager jusqu'à 20km puis 0,5 + 0,10€/km pour les trajets au delà de 20km",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -843,7 +843,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1€ / passager jusqu'à 20km puis 1€+ 0.10€/km au-delà de 20km",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -859,7 +859,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 1,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1€ / passager jusqu'à 30km puis 1€ + 0.10€/km au-delà de 30km",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -875,7 +875,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1,05€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 1,05 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -891,7 +891,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1,35€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 1,35 € par trajet.",
     "si_zone_exclue_liste": "Le trajet passager ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun du réseau TCAT n'est pas éligible.",
     "passager_gratuite": "Non"
   },
@@ -907,7 +907,7 @@
     "trajet_longueur_max": 50,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -923,7 +923,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -955,7 +955,7 @@
     "trajet_longueur_max": 40,
     "trajet_longueur_min": 3,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,8€ / passager jusqu'à 30km puis 0,8 + 0,10€/km jusqu'à 40km",
+    "passager_montant_ticket": "Vous ne payez que 0,80 € par trajet + 0,10 € par kilomètre au delà de 23 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -987,7 +987,7 @@
     "trajet_longueur_max": 50,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1,5€ pour des trajets allant jusqu'à 50km",
+    "passager_montant_ticket": "Vous ne payez que 1,5 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1003,7 +1003,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 1,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1€ / passager jusqu'à 20km puis 1€+ 0.10€/km au-delà de 20km",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1019,7 +1019,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1€ / passager jusqu'à 20km puis 1€+ 0.10€/km au-delà de 20km",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "Ce service est proposé à l'échelle de certaines zones d'activités/emplois. Les bénéficiaires ne sont donc que les salariés des zones définies par le SMMAG.",
     "passager_gratuite": "Non"
   },
@@ -1035,7 +1035,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 10,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,5€ / passager jusqu'à 20km puis 0,5 + 0.10€/km au-delà de 20km ",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1051,7 +1051,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager jusqu'à 20km puis 0,5 + 0.10€/km au-delà de 20km ",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1067,7 +1067,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 120,
-    "passager_montant_ticket": "Gratuité jusqu'à 35km puis 0,10€/km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 35 km puis ne vous coûtent que 0,10 € par km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1083,7 +1083,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,50€ puis 0,10€/km au delà de 30km",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "Le trajet passager ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun paramétrée n'est pas éligible.",
     "passager_gratuite": "Oui"
   },
@@ -1179,7 +1179,7 @@
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "Noter que seuls les trajets effectués au sein de la région Pays de la Loire sont concernés par la subvention.",
     "passager_gratuite": "Non"
   },
@@ -1259,7 +1259,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1307,7 +1307,7 @@
     "trajet_longueur_max": 150,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "1€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1323,7 +1323,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1355,7 +1355,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1387,7 +1387,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1403,7 +1403,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1451,7 +1451,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité jusqu'à 40km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 40 km puis vous coûtent entre 1,5 € et 7,5 € en fonction de la distance parcourue.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1499,7 +1499,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1531,7 +1531,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1627,7 +1627,7 @@
     "trajet_longueur_max": 50,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1659,7 +1659,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ puis 0,10€/km au delà de 30km",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1691,25 +1691,9 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratutité jusqu'à 40km puis +0,10 cts par km jusqu'à 60km puis 2€ +o,30 cts/km jusqu'à 80km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 40 km puis ne vous coûtent que 0,10 € par km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.pays-ancenis.com/",
-    "code_siren": "244400552",
-    "nom_plateforme": "",
-    "operateurs": "BlaBlaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 84,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 60,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
   },
   {
     "link": "https://www.bretagneportedeloire.fr/",
@@ -1723,7 +1707,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité jusqu'à 40km puis 1€ à partir 50km puis +0,10cts/km jusqu'à 60km puis +0,30cts/km jusqu'à 80km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 40 km puis ne vous coûtent que 1 € + 0,10 €/km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1739,7 +1723,7 @@
     "trajet_longueur_max": 60,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "Les trajets ayant soit une origine ou une distination à l'intérieur de la lige de covoiturage dans ce territoire.",
     "passager_gratuite": "Non"
   },
@@ -1755,7 +1739,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité jusqu'à 50km puis 1€ à partir 50km puis +0,10cts/km jusqu'à 60km puis +0,30cts/km jusqu'à 80km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 50 km puis ne vous coûtent que 1 € + 0,10 €/km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1805,7 +1789,7 @@
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Passager gratuité jusqu'à 40km",
     "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui jusqu'à 40km"
+    "passager_gratuite": "Oui "
   },
   {
     "link": "https://www.pays-orthe-arrigans.fr/votre-communaute/actualites-recrutement/actualite/semaine-europeenne-de-la-mobilite.html?L=0&cHash=9daf320b87ee0a2c7e391df1d916e6e9",
@@ -1819,7 +1803,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1835,7 +1819,7 @@
     "trajet_longueur_max": 50,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "entre 0,5 et 1,5",
+    "passager_montant_ticket": "Vos trajets vous coûtent entre 0,5 € et 1,5 € en fonction de la distance parcourue.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1851,7 +1835,7 @@
     "trajet_longueur_max": 50,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1867,7 +1851,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,5€ puis 0,10€/km au delà de 20km",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1883,7 +1867,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1,1€ jusqu'à 40km puis 0,10€ au-delà",
+    "passager_montant_ticket": "Vous ne payez que 1,1 € par trajet + 0,10 € par kilomètre au delà de 40 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1899,7 +1883,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,5€ jusqu'à 20km puis 0,10€ au-delà",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1915,7 +1899,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1€ jusqu'à 30km puis 0,10€ / km supplémentaire ",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1931,7 +1915,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,50€ jusqu'à 20km puis 0,10€ / km supplémentiare",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1947,7 +1931,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0€ jusqu'à 30 km puis 0,10€ / km supplémentaire \n0€ jsuqu'à 60 km puis 0,10 €: km supplémentaire poru les détenteurs d'un pass de transport",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 30 km puis ne vous coûtent que 0,10 € par km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -1963,7 +1947,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,50€ jusqu'à 20km puis 0,10€ / km supplémentiare",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1979,7 +1963,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité jusqu'à 50km puis 0,10cts/km jusqu'à 70km puis 2€ + 0,10cts/km jusqu'à 80km",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 50 km puis ne vous coûtent que 0,10 € par km au-delà.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -2011,7 +1995,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "1€ jusqu'à 30km puis 0,10€ par km au-dela",
+    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2059,7 +2043,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "0,5€ puis 0,10€/km au delà de 15km",
+    "passager_montant_ticket": "Vous ne payez que 0,5 € par trajet + 0,10 € par kilomètre au delà de 15 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2075,7 +2059,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2091,7 +2075,7 @@
     "trajet_longueur_max": 30,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,1€ / km  de 5 à 30 km",
+    "passager_montant_ticket": "Vous ne payez que 0,10 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2107,7 +2091,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Pour les trajets avec orgini et destination sur le territoire : 0,5€ jusqu'à 35km puis 0,10/km\nPour  les trajets avec origine ou detsination sur le territoire : 1€ jusqu'à 35km puis 0,10/km",
+    "passager_montant_ticket": "Vous payez entre 0,5 € et 1 € par trajet + 0,10 € par kilomètre au delà de 35 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2123,7 +2107,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 3,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Offert",
+    "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -2139,7 +2123,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "0,5€ / passager",
+    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -2155,7 +2139,7 @@
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Une rémunération conducteur comprise entre 1,50 € et 8 €.\nUne gratuité passager pour les trajets de 5 à 40 km, avec une prise en charge du passager pour les kilomètres supplémentaires.",
+    "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 40 km.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },

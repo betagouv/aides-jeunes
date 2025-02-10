@@ -3,7 +3,7 @@ import mapping from "./mapping/index.js"
 import { forEach, assign, pick, pickBy } from "lodash-es"
 import benefits from "../../../data/all.js"
 import { filterByInterestFlag } from "../../../lib/benefits/filter-interest-flag.js"
-import jsYaml from "js-yaml"
+import { dump } from "js-yaml"
 
 function toStringOf(obj) {
   return obj.toString()
@@ -35,7 +35,7 @@ function normalizeIDs(test) {
 
 function toYAML(test) {
   normalizeIDs(test)
-  return jsYaml.dump(test)
+  return dump(test)
 }
 
 export const EXTENSION_VARIABLES = {

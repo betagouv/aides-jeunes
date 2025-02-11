@@ -1872,7 +1872,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "",
+    "link": "https://www.paysdebarr.fr/vivre/fr/mobilites/covoiturage",
     "code_siren": "200034270",
     "nom_plateforme": "",
     "operateurs": "Karos",
@@ -1901,22 +1901,6 @@
     "passager_trajets_max_par_mois": null,
     "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "Noter que les trajets ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun ne sont pas subventionnés.",
-    "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.paysdepouzauges.fr/",
-    "code_siren": "248500464",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
   {

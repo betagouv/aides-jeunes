@@ -167,12 +167,6 @@ const sendRecapByEmail = async (surveyOptin) => {
   store.setFormRecapEmailState("ok")
   emailValue.value = undefined
 }
-
-function computeCtaText() {
-  return "Je reçois mon récapitulatif et je me fais accompagner par téléphone"
-}
-
-const ctaText = ref(computeCtaText())
 </script>
 
 <template>
@@ -251,25 +245,12 @@ const ctaText = ref(computeCtaText())
     </form>
   </div>
   <div class="fr-modal__footer">
-    <ul class="fr-btns-group">
-      <li>
-        <button
-          :disabled="recapPhoneState === 'waiting'"
-          class="fr-btn"
-          @click.prevent="sendRecap(true)"
-        >
-          {{ ctaText }}
-        </button>
-      </li>
-      <li>
-        <button
-          :disabled="recapPhoneState === 'waiting'"
-          class="fr-btn fr-btn--secondary"
-          @click.prevent="sendRecap(false)"
-        >
-          Je souhaite juste le récapitulatif
-        </button>
-      </li>
-    </ul>
+    <button
+      :disabled="recapPhoneState === 'waiting'"
+      class="fr-btn"
+      @click.prevent="sendRecap(false)"
+    >
+      Je souhaite juste le récapitulatif
+    </button>
   </div>
 </template>

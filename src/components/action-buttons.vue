@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import BackButton from "@/components/buttons/back-button.vue"
-import { computed, defineProps, onMounted, onUnmounted } from "vue"
+import { computed, onMounted, onUnmounted } from "vue"
 import { useStore } from "@/stores/index.js"
 import WarningMessage from "@/components/warning-message.vue"
 

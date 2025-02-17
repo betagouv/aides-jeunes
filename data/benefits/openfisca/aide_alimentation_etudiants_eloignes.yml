@@ -1,0 +1,16 @@
+label: aide à l’alimentation pour les étudiants éloignés des restaurants universitaires
+institution: etat
+description: >
+  Cette aide financière soutient les étudiants qui n’ont pas accès facilement aux restaurants universitaires.
+  Les établissements d’enseignement supérieur situés dans des zones sans restaurant universitaire ou conventionné transmettront la liste des étudiants éligibles aux Crous. 
+  Les bénéficiaires recevront une carte prépayée dématérialisée utilisable dans les commerces alimentaires partenaires.
+conditions:
+  - Être étudiant.
+  - Ne pas avoir accès à un restaurant universitaire à proximité de son lieu d’études (moins de 20 minutes à pied ou en transport en commun).
+link: https://www.1jeune1solution.gouv.fr/articles/aide-financiere-etudiants-restauration-universitaire
+prefix: l’
+type: float
+unit: "€"
+entity: individus
+openfiscaPeriod: thisMonth
+periodicite: mensuelle

@@ -3,7 +3,7 @@ import BenefitCtaLink from "./benefit-cta-link.vue"
 import { CTALabel } from "@lib/enums/cta.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { StandardBenefit } from "@data/types/benefits.d.js"
-import { defineProps, computed, PropType } from "vue"
+import { computed, PropType } from "vue"
 import { useBenefits } from "@/composables/use-benefits"
 
 const props = defineProps({

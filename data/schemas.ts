@@ -1,10 +1,12 @@
 import path from "path"
-import yaml from "js-yaml"
+import { load } from "js-yaml"
 import fs from "fs"
+import { fileURLToPath } from "url"
 import jamstackLoader from "@betagouv/jamstack-loader"
-const __dirname = new URL(".", import.meta.url).pathname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const jamstack = jamstackLoader.get(
-  path.join(__dirname, "../contribuer/public/admin/config.yml")
+  path.resolve(__dirname, "../contribuer/public/admin/config.yml")
 )
 
 const typesMap = {
@@ -159,9 +161,7 @@ export function compareSchema(data, schema, output, depth: any = []) {
 }
 
 export function validateFile(filename, schema) {
-  const file = yaml.load(
-    fs.readFileSync(path.join(__dirname, `../${filename}`))
-  )
+  const file = load(fs.readFileSync(path.join(__dirname, `../${filename}`)))
   const output = []
   compareSchema(file, schema, output)
   return output

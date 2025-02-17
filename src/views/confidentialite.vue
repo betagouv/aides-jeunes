@@ -1,7 +1,15 @@
 <template>
   <article class="fr-article">
     <h1>Politique de confidentialité</h1>
-
+    <BackButton
+      size="small"
+      data-testid="benefits-liste-back-button"
+      class="fr-mb-2w"
+      as-link
+      to="/"
+    >
+      Retour à l'accueil
+    </BackButton>
     <h2>Traitements des données à caractère personnel</h2>
 
     <h3>Identité et coordonnées du responsable de traitement</h3>
@@ -248,6 +256,7 @@
 import ContactEmailMixin from "@/mixins/contact-email.js"
 import MatomoOptOut from "@/components/matomo-opt-out.vue"
 import { useStore } from "@/stores/index.js"
+import BackButton from "@/components/buttons/back-button.vue"
 
 interface Cookie {
   name: string
@@ -257,7 +266,7 @@ interface Cookie {
 
 export default {
   name: "Cgu",
-  components: { MatomoOptOut },
+  components: { MatomoOptOut, BackButton },
   mixins: [ContactEmailMixin],
   setup() {
     return {

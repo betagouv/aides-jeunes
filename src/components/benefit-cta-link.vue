@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useStore } from "@/stores/index.js"
 import storageService from "@/lib/storage-service.js"
-import { PropType, computed, defineProps } from "vue"
+import { PropType, computed } from "vue"
 import { useRouter } from "vue-router"
 import { StandardBenefit } from "@data/types/benefits.d.js"
 import { CTALabel } from "@lib/enums/cta.js"

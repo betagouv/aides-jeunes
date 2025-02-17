@@ -15,28 +15,24 @@ import { sendSimulationResultsEmail } from "../lib/messaging/email/email-service
 import { sendSimulationResultsSms } from "../lib/messaging/sms/sms-service.js"
 import { ErrorType, ErrorStatus, ErrorName } from "../../lib/enums/error.js"
 
-export function followup(
+export async function followup(
   req: Request,
   res: Response,
   next: NextFunction,
   id: string
 ) {
-  Followups.findById(id)
-    .populate("simulation")
-    .exec(function (err: any, followup: Followup | null) {
-      if (err) {
-        return next(err)
-      }
-      // no matching followup or wrong or missing access token
-      if (
-        !followup?.accessToken ||
-        followup.accessToken !== req?.query?.token
-      ) {
-        return res.redirect("/")
-      }
-      req.followup = followup
-      simulationController.simulation(req, res, next, followup.simulation)
-    })
+  try {
+    const followup = await Followups.findById(id).populate("simulation").exec()
+
+    if (!followup?.accessToken || followup.accessToken !== req?.query?.token) {
+      return res.redirect("/")
+    }
+
+    req.followup = followup
+    simulationController.simulation(req, res, next, followup.simulation)
+  } catch (err) {
+    return next(err)
+  }
 }
 
 async function createSimulationRecapUrl(req: Request, res: Response) {

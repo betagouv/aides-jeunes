@@ -1,4 +1,4 @@
-import { expect } from "@jest/globals"
+import { expect } from "vitest"
 import testGeographicalRelevancy from "@root/tools/test-benefits-geographical-constraint-consistency.js"
 
 describe("geographical constraint", function () {

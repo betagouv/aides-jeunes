@@ -59,7 +59,6 @@ context("Full simulation", () => {
 
     results.hasVeloGroupPreviewBenefit(true)
     navigate.goToAidesVeloBenefitsPage()
-    results.hasAideVeloNationale()
     results.back()
 
     results.hasIleDeFranceAideAuMerite()

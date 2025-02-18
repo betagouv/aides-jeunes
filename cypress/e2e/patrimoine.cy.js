@@ -50,7 +50,6 @@ context("Full simulation", () => {
         projet.fill__interetAidesSanitaireSocial(false)
 
         results.wait()
-        results.hasAideVeloNationale()
 
         /** Vérifie que l'incitation de Montpellier est présente
          * mais elle se termine le 31/12/2024

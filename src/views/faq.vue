@@ -20,7 +20,7 @@ const questionsAnswers = [
       et la page associée vous permettra d'y récupérer un lien de sauvegarde.
     </p>
     <p>
-      À la fin de la simulation, vous pouvez également sauvegarder vos résultats en demandant à les réceptionner 
+      À la fin de la simulation, vous pouvez également sauvegarder vos résultats en demandant à les réceptionner
       par sms ou par email avec le bouton <b>"Recevoir les résultats par email/SMS"</b>.
     </p>`,
   },
@@ -29,7 +29,7 @@ const questionsAnswers = [
     answer: `
     <p>
       Bien que le simulateur soit conçu pour les personnes résidant en France, si vous avez prévu de
-      venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b> 
+      venir vivre en France dans le futur, vous pouvez tout de même réaliser une simulation en <b>vous projetant</b>
       avec le code postal où vous souhaitez habiter.
     </p>`,
   },
@@ -45,7 +45,7 @@ const questionsAnswers = [
     question: "Qu'est-ce que le service civique ?",
     answer: `
     <p>
-    Un Service Civique est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ. 
+    Un Service Civique est un engagement volontaire au service de l'intérêt général. Depuis le 1er juillet 2022, le Service Civique est indemnisé 601 euros net par mois environ.
     Pour plus d'informations, vous pouvez consulter le site officiel du <a href="https://www.service-civique.gouv.fr/comprendre-le-service-civique" target="_blank">Service Civique</a>.
     </p>
     <p>
@@ -57,19 +57,19 @@ const questionsAnswers = [
     answer: `
     <p>
       Le RFR est calculé par les services fiscaux (les impôts) à partir des revenus que vous avez déclarés
-      ou que vos parents ont déclarés si vous êtes encore à leur charge. 
+      ou que vos parents ont déclarés si vous êtes encore à leur charge.
       Il se trouve sur la première page de votre dernier avis d'impôt sur le revenu.
     </p>
     <p>
-      Toutes les informations concernant le RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>. 
+      Toutes les informations concernant le RFR et comment le trouver sont <a href="https://www.service-public.fr/particuliers/vosdroits/F13216" target="_blank">disponibles ici</a>.
     </p>`,
   },
   {
     question: "Qu'est ce que le revenu brut global (RBG) et où le trouver ?",
     answer: `
     <p>
-      Le RBG est le montant total des revenus de votre foyer fiscal avant déductions et abattements. Pour les étudiants et futurs étudiants, 
-      les revenus pris en compte par le Crous pour calculer votre droit à la bourse sur critères sociaux (BCS) 
+      Le RBG est le montant total des revenus de votre foyer fiscal avant déductions et abattements. Pour les étudiants et futurs étudiants,
+      les revenus pris en compte par le Crous pour calculer votre droit à la bourse sur critères sociaux (BCS)
       sont ceux qui figurent à la ligne « revenu brut global » sur la première page de l'avis d'imposition de vos parents.
     </p>`,
   },
@@ -77,7 +77,7 @@ const questionsAnswers = [
     question: "Je suis bloqué à la question sur le RFR / RBG, comment faire ?",
     answer: `
     <p>
-      Si vous n'avez aucun moyen de déterminer le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge), 
+      Si vous n'avez aucun moyen de déterminer le montant de votre RFR ou le RBG de vos parents lorsque vous êtes à leur charge),
       vous avez la possibilité de répondre 0 à ces questions. Attention, <b>certaines aides ne
       pourront pas être calculées correctement sans le montant exact</b> du RFR,
       comme par exemple l'aide de la
@@ -92,7 +92,7 @@ const questionsAnswers = [
     </p>
     <p>
       Le revenu brut global est la somme de tous vos revenus déclarés après déduction des divers abattements,
-      comme l'abattement de 10 % pour les salaires et les retraites, ou après déduction des frais réels si 
+      comme l'abattement de 10 % pour les salaires et les retraites, ou après déduction des frais réels si
       vous avez opté pour ce dispositif.
     </p>`,
   },
@@ -116,19 +116,7 @@ const questionsAnswers = [
       Pour demander votre <a href="/aides/css_participation_forfaitaire" target="_blank">Complémentaire Santé Solidaire</a>, rendez-vous sur
       <a href="https://www.ameli.fr/">le site internet </a> ou l'application
       mobile Ameli pour télécharger le formulaire de demande. </br>
-      Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>. 
-    </p>`,
-  },
-  {
-    question: "Qu'est-ce que le Bonus Vélo et comment en faire la demande ?",
-    answer: `
-    <p>
-      Le bonus vélo est une aide financière pour acheter ou louer un vélo. Le montant varie selon vos revenus et si vous êtes en situation de handicap. Plus d'informations sur <a href="https://www.service-public.fr/particuliers/vosdroits/F36828" target="_blank">la page du service public sur le bonus vélo</a>.
-      Vous pourrez y déterminer le montant exact de l'aide à laquelle vous avez droit, en fonction de votre situation et du vélo que vous souhaitez acheter.
-    </p>
-    <p>
-      Pour faire une demande, rendez-vous sur le portail gouvernemental  <a href="https://www.primealaconversion.gouv.fr/dboneco/accueil/access.html" target="_blank">primealaconversion.gouv.fr</a>.
-      Il vous sera demandé de télécharger la facture d'achat du vélo, un justificatif d'identité, de domicile et de revenus (avis d'impôt), ainsi que votre RIB.
+      Si vous avez un compte Ameli.fr, connectez-vous puis <a href="https://assure.ameli.fr/PortailAS/appmanager/PortailAS/assure?_somtc=true#idPopupWARecueilConsentement" target="_blank"> effectuez votre demande directement en ligne</a> depuis la rubrique <b>"Mes démarches > Faire une demande de complémentaire santé solidaire"</b>.
     </p>`,
   },
   {

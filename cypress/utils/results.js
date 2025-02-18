@@ -190,12 +190,6 @@ const hasIleDeFranceAideAuMerite = () => {
     .should("match", /(\d+)[\S\n\r\s]+€/)
 }
 
-const hasAideVeloNationale = () => {
-  const name = /Aide à l'achat d'un vélo : Bonus vélo/
-  const id = "aidesvelo_aides_bonus_vélo"
-  IdentifyBenefit(id, name)
-}
-
 const hasVeloGroupPreviewBenefit = (mustBeDisplay) => {
   const veloGroupPreviewId = "velo-preview"
   if (mustBeDisplay) {
@@ -361,7 +355,6 @@ export default {
   hasNotBenefit,
   captureFiscalResources,
   hasIleDeFranceAideAuMerite,
-  hasAideVeloNationale,
   hasVeloGroupPreviewBenefit,
   hasIncitationCovoiturage,
   receiveResultsEmail,

@@ -8,7 +8,7 @@ conditions:
   - Être situé dans une zone éligible (A, Abis, B1, B2 ou C).
   - Ne pas être déjà propriétaire d'un logement adapté à ses besoins et capacités financières utilisable comme résidence principale.
   - Ne pas être déjà propriétaire d'un logement suceptible de procurer des revenus locatifs suffisants pour acquérir un bien immobilier du parc privé.
-link: https://www.service-public.fr/particuliers/actualites/A17559
+link: https://boris.beta.gouv.fr/
 instructions: https://www.service-public.fr/particuliers/actualites/A17559
 prefix: le
 type: bool

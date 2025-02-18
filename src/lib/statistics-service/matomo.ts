@@ -13,7 +13,9 @@ export interface MatomoEvent {
 
 export function sendEventToMatomo(event: MatomoEvent): void {
   if (skipSendStatistics()) {
-    !isProduction && console.debug("Skip sending event to Matomo", event)
+    if (!isProduction) {
+      console.debug("Skip sending event to Matomo", event)
+    }
     return
   }
 

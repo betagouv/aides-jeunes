@@ -296,6 +296,7 @@ export default {
             })
           })
         }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (status) {
         this.followups = []
         this.loggedIn = false

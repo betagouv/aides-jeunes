@@ -48,7 +48,9 @@ waitForPaq()
     initializeABTestingDimensions()
   })
   .catch((error) => {
-    !isProduction && console.error("Error while loading Matomo:", error)
+    if (!isProduction) {
+      console.error("Error while loading Matomo:", error)
+    }
   })
 
 const tracker = {

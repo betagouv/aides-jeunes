@@ -122,9 +122,9 @@ export function computeAides(
       let customization
 
       if (customizationIds[1]) {
-        benefit.customization?.[customizationIds[1]]
+        customization = benefit.customization?.[customizationIds[1]]
       } else if (customizationIds[0]) {
-        benefit.customization?.[customizationIds[0]]
+        customization = benefit.customization?.[customizationIds[0]]
       }
       const institution = customization?.institution
         ? {

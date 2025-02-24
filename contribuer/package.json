@@ -13,12 +13,12 @@
   "author": "Thomas Guillet",
   "license": "AGPL-3.0",
   "dependencies": {
-    "eslint": "8.31.0",
-    "eslint-config-next": "13.1.2",
+    "eslint": "9.21.0",
+    "eslint-config-next": "15.1.7",
     "netlify-identity-widget": "^1.9.2",
-    "next": "14.2.21",
-    "prettier": "^3.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "next": "15.1.7",
+    "prettier": "^3.5.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   }
 }

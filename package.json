@@ -54,7 +54,7 @@
     "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
-    "@betagouv/aides-velo": "^0.3.3",
+    "@betagouv/aides-velo": "^0.3.4",
     "@betagouv/jamstack-loader": "^1.0.0",
     "@etalab/decoupage-administratif": "^4.0.0",
     "@gouvfr/dsfr": "^1.12.1",

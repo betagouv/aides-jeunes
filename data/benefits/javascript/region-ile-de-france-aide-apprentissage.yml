@@ -8,7 +8,7 @@ description:
   de restauration ou d’hébergement.
 conditions:
   - Être inscrit ou inscrite en première année dans une
-    formation de niveau 3, 4 et 5 délivrée dans un organisme de formation – centre de
+    formation de niveau 3, 4 ou 5 délivrée dans un organisme de formation – centre de
     formation d’apprentis (OF-CFA) francilien.
   - Faire votre demande auprès de votre OF ou CFA.
 conditions_generales:
@@ -18,11 +18,11 @@ conditions_generales:
 profils:
   - type: apprenti
     conditions: []
-link: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-regionale-apprentissage-ara-pour-les-apprentis-en-1re-annee-dapprentissage-niveaux-3-5
-instructions: https://www.iledefrance.fr/aides-et-appels-a-projets/aide-regionale-apprentissage-ara-pour-les-apprentis-en-1re-annee-dapprentissage-niveaux-3-5
+link: https://www.iledefrance.fr/toutes-les-actualites/aide-regionale-lapprentissage-pour-les-1re-annee-prochaine-session-au-1er-trimestre-2025
+instructions: https://www.iledefrance.fr/sites/default/files/2025-01/aide_apprentissage_flyer_2025.pdf
 prefix: l’
 type: float
 unit: €
 periodicite: ponctuelle
 legend: maximum
-montant: 375
+montant: 200

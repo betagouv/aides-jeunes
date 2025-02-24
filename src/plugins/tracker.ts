@@ -49,7 +49,7 @@ waitForPaq()
   })
   .catch((error) => {
     if (!isProduction) {
-      console.error("Error while loading Matomo:", error)
+      console.error("Error: loading Matomo", error)
     }
   })
 

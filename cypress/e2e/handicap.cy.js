@@ -23,7 +23,7 @@ context("Full simulation", () => {
     foyer.fill_en_couple(false)
 
     logement.fill__logementType("sansDomicile")
-    logement.fill_depcom("94120")
+    logement.fill_depcom("74000")
     logement.fill__difficultes_acces_ou_frais_logement(true)
     logement.fill__nombreMoisEntreeLogement(-12)
 
@@ -31,11 +31,16 @@ context("Full simulation", () => {
     revenu.fillConstantRevenu(1101.42)
 
     projet.fill__interetsAidesVelo([])
-    projet.fill__interetBafa(false)
+    projet.fill__interetBafa(true)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetAidesSanitaireSocial(false)
 
     results.wait()
+    results.hasBafaGroupPreviewBenefit(true)
+    navigate.goToBafaBenefitsPage()
+    results.hasBafaBenefit()
+    results.back()
+
     results.hasAAH()
     navigate.goRecap()
     navigate.checkRecap()

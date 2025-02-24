@@ -35,7 +35,7 @@ export class StorageService {
         try {
           return JSON.parse(item)
         } catch (e) {
-          console.error("Erreur lors du parsage des données " + e)
+          console.error("Error: parsing data " + e)
           throw new Error(
             `Failed to parse ${this.storageType} storage item ${key}`
           )

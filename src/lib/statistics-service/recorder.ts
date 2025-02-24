@@ -34,9 +34,7 @@ function skipSendEventToRecorder(event: RecorderEvent): boolean {
     getEnvVariable("VITE_STATS_URL")
     getEnvVariable("VITE_STATS_VERSION")
   } catch (e) {
-    console.error(
-      "Erreur lors de la récupération des variables d'environnements VITE " + e
-    )
+    console.error("Error: retrieving Vite environment variables" + e)
     return true
   }
 

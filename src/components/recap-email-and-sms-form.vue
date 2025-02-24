@@ -177,6 +177,11 @@ const ctaText = ref(computeCtaText())
 
 <template>
   <div class="fr-modal__content">
+    <p>
+      Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
+      faire le point sur les démarches que vous avez faites et les blocages que
+      vous avez rencontrés.
+    </p>
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
@@ -262,7 +267,7 @@ const ctaText = ref(computeCtaText())
           class="fr-btn fr-btn--secondary"
           @click.prevent="sendRecap(false)"
         >
-          Je souhaite recevoir mon récapitulatif
+          Je souhaite juste le récapitulatif
         </button>
       </li>
     </ul>

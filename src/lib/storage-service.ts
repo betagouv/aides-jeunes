@@ -19,7 +19,7 @@ export class StorageService {
       storage.removeItem(storageTest)
       return storedValue === storageTest
     } catch (e) {
-      console.error("Erreur lors de la mise à jour des données locales " + e)
+      console.error("Error: updating local data " + e)
       return false
     }
   }

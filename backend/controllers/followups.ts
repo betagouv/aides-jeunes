@@ -217,10 +217,7 @@ export async function logSurveyLinkClick(req: Request, res: Response) {
     const redirectUrl = await getRedirectUrl(req)
     res.redirect(redirectUrl)
   } catch (error) {
-    console.error(
-      "Erreur lors de la mise à jour du sondage dans le followup",
-      error
-    )
+    console.error("Error: survey update in followup", error)
     return res.sendStatus(ErrorStatus.NotFound)
   }
 }

@@ -34,6 +34,7 @@ function skipSendEventToRecorder(event: RecorderEvent): boolean {
     getEnvVariable("VITE_STATS_URL")
     getEnvVariable("VITE_STATS_VERSION")
   } catch (e) {
+    console.error("Error: retrieving Vite environment variables" + e)
     return true
   }
 
@@ -46,7 +47,9 @@ function identifyEvent(): string {
 
 export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
   if (skipSendEventToRecorder(event)) {
-    !isProduction && console.debug("Skip sending event to recorder", event)
+    if (!isProduction) {
+      console.debug("Skip sending event to recorder", event)
+    }
     return
   }
 
@@ -85,7 +88,9 @@ export async function sendEventToRecorder(event: RecorderEvent): Promise<void> {
     })
   } catch (e) {
     if (e instanceof TypeError && e.message === "Failed to fetch") {
-      !isProduction && console.debug("Event to recorder", event)
+      if (!isProduction) {
+        console.debug("Event to recorder", event)
+      }
     } else {
       console.error(e)
       Sentry.captureException(e)

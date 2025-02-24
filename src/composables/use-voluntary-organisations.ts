@@ -59,6 +59,7 @@ export function useVolontaryOrganisations() {
     } catch (error) {
       volontaryOrganisationsLink.value = baseUrl
       updating.value = false
+      console.error("Error: link build with JeVeuxAider " + error)
     }
   }
 

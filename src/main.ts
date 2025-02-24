@@ -30,6 +30,7 @@ import { persistDataOnSessionStorage, useStore } from "@/stores/index.js"
 
 const Resizer = {
   install: function () {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     iframeResizerContentWindow
   },
 }

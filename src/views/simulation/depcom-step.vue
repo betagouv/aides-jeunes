@@ -70,7 +70,9 @@ export default {
   methods: {
     canSubmit(submit) {
       if (!this.nomCommune || !this.codePostal) {
-        submit && this.store.updateError("Ce champ est obligatoire.")
+        if (submit) {
+          this.store.updateError("Ce champ est obligatoire.")
+        }
         return false
       }
       return Boolean(this.matchingCommune)

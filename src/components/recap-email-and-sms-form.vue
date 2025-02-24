@@ -171,11 +171,6 @@ const sendRecapByEmail = async (surveyOptin) => {
 
 <template>
   <div class="fr-modal__content">
-    <p>
-      Si vous le souhaitez nous pouvons vous recontacter à deux reprises pour
-      faire le point sur les démarches que vous avez faites et les blocages que
-      vous avez rencontrés.
-    </p>
     <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
@@ -250,7 +245,7 @@ const sendRecapByEmail = async (surveyOptin) => {
       class="fr-btn"
       @click.prevent="sendRecap(false)"
     >
-      Je souhaite juste le récapitulatif
+      Je souhaite recevoir mon récapitulatif
     </button>
   </div>
 </template>

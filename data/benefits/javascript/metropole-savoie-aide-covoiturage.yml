@@ -1,6 +1,10 @@
-label: incitation au covoiturage de la métropole Savoie
+label: Incitation au covoiturage sur le bassin chambérien
 institution: metropole_savoie
-description: "La métropole Savoie subventionne vos trajets en covoiturage réservés depuis l’application BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez 0,10 € par kilomètre et par passager. Vous êtes passagère ou passager ? Vos trajets de plus de 5 kilomètres à l’intérieur du territoire vous sont offerts."
+description: Les trois intercommunalités du territoire Métropole Savoie
+  subventionnent vos trajets en covoiturage réservés depuis l’application
+  BlablaCar Daily. Vous êtes conductrice ou conducteur ? Recevez 0,10 € par
+  kilomètre et par passager. Vous êtes passagère ou passager ? Vos trajets de
+  plus de 5 kilomètres à l’intérieur du territoire vous sont offerts.
 prefix: l’
 conditions_generales:
   - type: communes
@@ -120,10 +124,15 @@ profils: []
 conditions:
   - Télécharger l’application mobile BlablaCar Daily.
   - Effectuer un trajet dont la distance est comprise entre 5 et 80 kilomètres.
-  - Partir ou arriver dans l’une des 107 communes du territoire de la métropole Savoie, qui comprend la communauté d'agglomération Grand Lac, l'agglomération Grand Chambéry et la communauté de communes Coeur de Savoie (<a target="_blank" rel="noopener" title
-    ="Carte du territoire de la métropole Savoie - Nouvelle fenêtre"
-    href="http://www.metropole-savoie.com/qui-sommes-nous/#article-2">consulter la carte du territoire</a>).
-  - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un maximum de 2 trajets par jour si vous êtes passager.
+  - Partir ou arriver dans l’une des 107 communes du territoire Métropole
+    Savoie, qui comprend les agglomérations Grand Lac et Grand Chambéry ainsi
+    que la communauté de communes Coeur de Savoie (<a target="_blank"
+    rel="noopener" title ="Carte du territoire de la métropole Savoie - Nouvelle
+    fenêtre"
+    href="http://www.metropole-savoie.com/qui-sommes-nous/#article-2">consulter
+    la carte du territoire</a>).
+  - Effectuer un maximum de 6 trajets par jour si vous êtes conducteur et un
+    maximum de 2 trajets par jour si vous êtes passager.
 type: bool
 periodicite: autre
 link: https://www.savoie.fr/web/sw_101242/covoiturez-et-faites-le-plein-d-economies

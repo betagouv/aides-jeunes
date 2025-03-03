@@ -51,7 +51,7 @@ if (process.env?.VITE_SENTRY_FRONTEND_DSN) {
     integrations: [Sentry.browserTracingIntegration({ router })],
     tracesSampleRate: 0.1,
     debug: "development" === process.env.VITE_CONTEXT,
-    ignoreErrors: ["Can't find variable: gmo"],
+    ignoreErrors: ["Can't find variable: gmo", /change_ua/],
   })
 }
 app.use(Resizer)

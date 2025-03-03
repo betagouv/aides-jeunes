@@ -5,16 +5,16 @@
     <div v-if="!loggedIn" class="fr-connect-group">
       <a class="fr-connect" href="/api/login">
         <span class="fr-connect__login">S’identifier avec</span>
-        <span class="fr-connect__brand">MonComptePro</span>
+        <span class="fr-connect__brand">ProConnect</span>
       </a>
       <p>
         <a
-          href="https://moncomptepro.beta.gouv.fr/"
+          href="https://www.proconnect.gouv.fr/"
           target="_blank"
           rel="noopener"
-          title=" Qu’est-ce que MonComptePro ? - nouvelle fenêtre"
+          title=" Qu’est-ce que ProConnect ? - nouvelle fenêtre"
         >
-          Qu’est-ce que MonComptePro ?</a
+          Qu’est-ce que ProConnect ?</a
         >
       </p>
     </div>

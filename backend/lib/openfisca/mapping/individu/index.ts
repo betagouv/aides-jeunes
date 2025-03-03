@@ -9,7 +9,7 @@ import IndividuMethods from "../../../../../lib/individu.js"
 
 import {
   computeDistanceCommunes,
-  findCommuneByInseeCode,
+  findCoordinateByInseeCode,
 } from "../../../mes-aides/distance.js"
 
 import common from "../common.js"
@@ -66,8 +66,8 @@ const individuSchema: IndividuGenerator = {
         return 260
       }
 
-      const jeuneCommune = findCommuneByInseeCode(situation.menage.depcom)
-      const parentCommune = findCommuneByInseeCode(
+      const jeuneCommune = findCoordinateByInseeCode(situation.menage.depcom)
+      const parentCommune = findCoordinateByInseeCode(
         individu._bourseCriteresSociauxCommuneDomicileFamilial
       )
       return computeDistanceCommunes(jeuneCommune, parentCommune)

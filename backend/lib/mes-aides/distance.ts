@@ -1,4 +1,5 @@
 import haversine from "haversine"
+import axios from "axios"
 
 interface Commune {
   centre: {
@@ -18,27 +19,20 @@ async function getCommuneCoordinates(
   inseeCode: string
 ): Promise<Commune | null> {
   try {
-    const response = await fetch(
-      `https://api-adresse.data.gouv.fr/search/?q=${inseeCode}&citycode=${inseeCode}&limit=1`
+    const response = await axios.get<GeoAPIResponse>(
+      `https://api-adresse.data.gouv.fr/search/?q=mairie&citycode=${inseeCode}&limit=1`
     )
 
-    if (!response.ok) {
-      console.error(
-        `Erreur HTTP: ${response.status} for ${inseeCode} insee code`
+    const features = response.data.features
+    if (!features || features.length === 0) {
+      throw new Error(
+        `Can't find center coordinates for ${inseeCode} insee code`
       )
-      return null
-    }
-
-    const data: GeoAPIResponse = await response.json()
-
-    if (!data.features || data.features.length === 0) {
-      console.error(`no data found for ${inseeCode} insee code`)
-      return null
     }
 
     return {
       centre: {
-        coordinates: data.features[0].geometry.coordinates,
+        coordinates: features[0].geometry.coordinates,
       },
     }
   } catch (error) {
@@ -73,7 +67,7 @@ function processArrondissements(inseeCode: string): string {
   return inseeCode
 }
 
-export async function findCommuneByInseeCode(
+export async function findCoordinateByInseeCode(
   inseeCode: string
 ): Promise<Commune | null> {
   inseeCode = processArrondissements(inseeCode)

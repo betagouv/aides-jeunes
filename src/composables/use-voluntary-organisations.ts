@@ -49,7 +49,7 @@ export function useVolontaryOrganisations() {
     depcom
   ): Promise<Coordinates> => {
     const response = await axios.get<GeoAPIResponse>(
-      `https://api-adresse.data.gouv.fr/search/?citycode=${depcom}&q=${postalCode}&limit=1`
+      `https://api-adresse.data.gouv.fr/search/?&q=mairie&citycode=${depcom}&limit=1`
     )
 
     const features = response.data.features
@@ -59,8 +59,7 @@ export function useVolontaryOrganisations() {
       )
     }
 
-    const coordinates = features[0].geometry.coordinates
-    return coordinates
+    return features[0].geometry.coordinates
   }
 
   async function buildVolontaryOrganisationsLink() {

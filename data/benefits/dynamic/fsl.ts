@@ -194,7 +194,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_marne: {
     label: "du département de la Marne",
-    link: "http://www.marne.fr/les-actions/sante-et-social/logement-social/acces-et-maintien-dans-le-logement-le-fonds-solidarite",
+    link: "https://www.marne.fr/missions-et-actions-du-departement/insertion/fonds-de-solidarite-pour-le-logement-fsl/",
   },
   departement_mayenne: {
     label: "du département de la Mayenne",

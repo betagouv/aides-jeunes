@@ -101,7 +101,7 @@ const config: Configuration = {
       "dB7BjWZaekMgzvJ70vpoTK276VOvyZQzkyGayEMtJZfP2DH7nYZU5lzsKjWaoVjLGNG1RATfXyqoStzLBumkwO8SyZIOJZMdR5OVKmkiSLpijjyv0W7s2QVNwafzyCWs",
     provider:
       process.env.MCP_PROVIDER ||
-      "https://app-sandbox.moncomptepro.beta.gouv.fr/",
+      "https://identite-sandbox.proconnect.gouv.fr/",
     redirect_uri:
       process.env.MCP_REDIRECT_URI || "http://localhost:8080/api/auth/redirect",
     scope: process.env.MCP_SCOPE || "openid email profile",

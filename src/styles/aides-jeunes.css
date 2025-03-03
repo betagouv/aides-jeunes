@@ -594,7 +594,7 @@ textarea {
 }
 
 .fr-connect:before {
-  background-image: url(/public/img/logo-moncomptepro.svg);
+  background-image: url(/public/img/logo-proconnect.svg);
 }
 
 /* Custom code for allow `border-radius` on input radio (prevent using current background-image class on DSFR version > 1.12.1) */

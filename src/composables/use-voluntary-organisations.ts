@@ -2,7 +2,6 @@ import { ref } from "vue"
 import { useStore } from "@/stores/index.js"
 import Simulations from "@/lib/simulation.js"
 import axios from "axios"
-import { post } from "axios"
 
 type Coordinates = [number, number]
 

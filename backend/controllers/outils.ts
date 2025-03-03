@@ -1,7 +1,5 @@
 import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
 import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
-import communesLonLat from "communes-lonlat"
-import Sentry from "@sentry/node"
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
 const communeMap = {}
@@ -47,23 +45,5 @@ export default {
   find,
   communes: function (req, res) {
     res.send(find(req.params.codePostal))
-  },
-  centerCoordinatesFromPostalCode: function (req, res) {
-    try {
-      const postalCode = find(req.params.codePostal)[0].code
-      if (!postalCode) {
-        throw new Error("Postal code not found")
-      }
-
-      const commune = communesLonLat.find((c) => c.code === postalCode)
-      if (!commune?.centre?.coordinates) {
-        throw new Error("Commune coordinates not found")
-      }
-
-      res.send(commune.centre.coordinates)
-    } catch (e) {
-      Sentry.captureException(e)
-      res.status(404).send("Coordinates not found")
-    }
   },
 }

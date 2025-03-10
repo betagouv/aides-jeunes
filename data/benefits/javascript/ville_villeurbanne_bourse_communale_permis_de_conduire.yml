@@ -1,11 +1,10 @@
 label: Bourse communale au permis de conduire
 institution: ville_villeurbanne
 description:
-  La ville de Villeurbanne propose une bourse au permis B afin d’aider les jeunes
-  pour qui l'accès au permis représente souvent un investissement lourd. En échange
-  de quelques heures de travaux d'utilité collective sous forme de chantier Jeune,
-  une bourse municipale de 500 €, soit plus du tiers du montant total du permis
-  de conduire, est directement versée à l'auto-école.
+  La bourse au permis de conduire est un dispositif qui permet aux jeunes de Villeurbanne
+  de financer une partie de leur formation du permis B. En contrepartie de la réalisation
+  de 35 heures de missions d’utilité publique, une bourse est versée directement
+  à l’auto-école dans laquelle est inscrit le jeune.
 prefix: la
 conditions_generales:
   - type: communes
@@ -13,7 +12,7 @@ conditions_generales:
       - "69266"
   - type: age
     operator: ">="
-    value: 18
+    value: 17
   - type: age
     operator: "<="
     value: 25
@@ -23,11 +22,11 @@ conditions:
   - Être dans l’impossibilité de payer la totalité du permis.
   - Avoir un projet d'insertion professionnelle.
 voluntary_conditions:
-  - Vous engager à réaliser quelques heures de travaux d'utilité collective sous forme de chantier Jeune.
+  - Vous engager à réaliser 35 heures de missions d’utilité publique.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: ponctuelle
 montant: 500
 link: https://www.villeurbanne.fr/demarches/jeunesse/demander-une-bourse-au-permis-de-conduire
-teleservice: https://demarches.villeurbanne.fr/contacter-la-mairie/transmettre-mon-dossier-au-bij/
+form: https://www.villeurbanne.fr/docutheque/jeunesse/dossier-bpc-2025

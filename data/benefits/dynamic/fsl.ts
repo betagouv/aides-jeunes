@@ -112,9 +112,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   intercommunalite_brest_metropole: {
     label: "de Brest Métropole",
-    link: "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
-    instructions:
-      "https://infosociale.finistere.fr/etablissement/brest-metropole-fsl-fonds-de-solidarite-logement/",
+    link: "https://brest.fr/gerer-mon-quotidien/logement/demander-le-fonds-de-solidarite-logement-fsl",
   },
   departement_gard: {
     label: "du département du Gard",

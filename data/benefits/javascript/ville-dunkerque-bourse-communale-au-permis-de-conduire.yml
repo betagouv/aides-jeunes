@@ -1,16 +1,17 @@
 label: Bourse communale au permis de conduire
 institution: ville_dunkerque
 description:
-  La ville de Dunkerque permet à certains jeunes aux ressources  modestes de bénéficier du financement
-  d'une partie de leur permis B, en échange de 50 heures de travail bénévole
-  dans une association ou un service municipal. L’aide est versée directement à l’auto-école une fois la totalité des heures de bénévolat réalisée.
+  Les villes de Dunkerque, Saint-Pol-sur-Mer et Fort-Mardyck permettent
+  à certains jeunes aux ressources modestes de bénéficier du financement d'une partie de leur permis B,
+  en échange de 50 heures d'engagement bénévole dans une association.
+  Si votre dossier est sélectionné, la bourse est versée à l’auto-école une fois la totalité des heures de bénévolat réalisée.
 prefix: la
-voluntary_conditions:
-  - Être engagé dans une mission bénévole de 50 heures minimum dans une association ou un service municipal.
 conditions_generales:
   - type: communes
     values:
       - "59183"
+      - "59540"
+      - "59248"
   - type: age
     operator: ">="
     value: 16
@@ -19,16 +20,16 @@ conditions_generales:
     value: 30
   - type: quotient_familial
     operator: <=
-    value: 1027
+    value: 1077
     period: month
 profils: []
 conditions:
-  - Résider dans la ville de Dunkerque ou une commune associée depuis au moins deux ans.
+  - Résider à Dunkerque, Saint-Pol-sur-Mer ou Fort-Mardyck depuis au moins deux ans.
+  - Prendre contact avec l'équipe "Parcours de réussite" de votre ville pour compléter votre dossier de demande de bourse.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: autre
 montant: 600
-link: https://www.ville-dunkerque.fr/vous/jeunes-12-30-ans/parcours-de-reussite-jai-besoin-dun-coup-de-pouce
-form: https://www.ville-dunkerque.fr/fileadmin/user_upload/Jeunes_a_Dunkerque/2022/parcoursdereussite/Dossier_Mon_parcours_de_reussite_2023/Dossier_Mon_parcours_de_reussite_2023-2024.pdf
-instructions: https://www.ville-dunkerque.fr/fileadmin/user_upload/Jeunes_a_Dunkerque/2022/parcoursdereussite/Dossier_Mon_parcours_de_reussite_2023/Fiche_Aide_aux_permis_BAFA_BAFD_BNSSA.pdf
+link: https://www.ville-dunkerque.fr/vous/jeunes-12-30-ans/parcours-de-reussite-2
+instructions: https://www.ville-dunkerque.fr/fileadmin/user_upload/Jeunes_a_Dunkerque/Nouveau_fichier_parcours_de_reussite/DOSSIER_Parcours_de_Reussite.pdf

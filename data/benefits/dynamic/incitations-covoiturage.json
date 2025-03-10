@@ -1616,7 +1616,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.albretcommunaute.fr/",
+    "link": "https://www.albretcommunaute.fr/2-non-categorise/451-covoitalbret-un-nouveau-service-public-de-covoiturage",
     "code_siren": "200068948",
     "nom_plateforme": "Covoit'Albret",
     "operateurs": "Karos",
@@ -1680,7 +1680,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.dlva.fr/",
+    "link": "https://mobilite.dlva.fr/covoiturage/",
     "code_siren": "200034700",
     "nom_plateforme": "",
     "operateurs": "Karos",
@@ -1808,7 +1808,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.agglo-colmar.fr/",
+    "link": "https://www.agglo-colmar.fr/blablacar-daily",
     "code_siren": "246800726",
     "nom_plateforme": "",
     "operateurs": "BlaBlaCarDaily",

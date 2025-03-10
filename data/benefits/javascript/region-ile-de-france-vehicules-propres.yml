@@ -25,3 +25,4 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 3000
+private: true

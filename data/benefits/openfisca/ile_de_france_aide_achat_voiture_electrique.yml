@@ -21,3 +21,4 @@ entity: individus
 openfiscaPeriod: thisMonth
 legend: maximum
 periodicite: ponctuelle
+private: true

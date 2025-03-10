@@ -1,8 +1,11 @@
-label: "Aide au financement du permis de conduire : Permis citoyen"
+label: Aide au financement du permis de conduire au titre d'un parcours d'engagement
 institution: departement_landes
-description: Ce dispositif permet aux jeunes Landais de financer
-  leur permis de conduire en contrepartie d’une mission bénévole de 40 heures
-  réalisée dans une collectivité ou une association des Landes. Les demandes de
+description:
+  Ce dispositif permet aux jeunes Landais de financer leur permis de conduire
+  en contrepartie d’un parcours d'engagement. Il peut s'agir d'un service civique,
+  d'un engagement au sein du Corps Européen de Solidarité, d'un mandat de  conseiller municipal /intercommunal des jeunes et des enfants,
+  d'un mandat au sein d’une Association Temporaire d’Enfants Citoyens (ATEC) ou d’une Junior Association,
+  ou d'une mission bénévole de 40 heures réalisée dans une association des Landes. Les demandes de
   bourse sont à effectuer en ligne.
 prefix: l’
 conditions_generales:
@@ -15,9 +18,11 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
+conditions:
+  - Réaliser un parcours d'engagement.
 voluntary_conditions:
   - Être engagé dans une mission bénévole de 40 heures minimum dans une
-    collectivité ou une association des Landes.
+    collectivité ou une association des Landes, si vous avez choisi de vous engager comme bénévole.
 profils: []
 interestFlag: _interetPermisDeConduire
 type: float
@@ -25,5 +30,5 @@ unit: €
 periodicite: ponctuelle
 legend: maximum
 montant: 450
-link: https://www.landes.fr/detail-aide?id_aide=161
-teleservice: https://messervices.landes.fr/
+link: https://m.landes.fr/detail-une-aide?id_aide=161
+instructions: https://m.landes.fr/detail-une-aide?id_aide=161

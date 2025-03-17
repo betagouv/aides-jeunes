@@ -21,8 +21,9 @@ export const APA_BY_CODE: {
   },
   departement_alpes_maritimes: {
     label: "du département des Alpes Maritimes",
-    link: "https://www.departement06.fr/laide-aux-seniors-vous-accompagne-au-quotidien-dans-de-multiples-demarches/l-apa-dans-les-alpes-maritimes-2578.html",
-    teleservice: "https://mesdemarches06.fr/solidarite-social/",
+    link: "https://www.departement06.fr/guide-des-aides/allocation-personnalisee-dautonomie-apa",
+    teleservice:
+      "https://mesdemarches06.fr/solidarite-social/page-de-suivi-social/",
   },
   departement_bouches_du_rhone: {
     label: "du département des Bouches du Rhône",
@@ -71,7 +72,7 @@ export const APA_BY_CODE: {
     label: "du département de l'Isère",
     teleservice:
       "https://isereconnect.fr/allocation-personnalisee-dautonomie-redi/",
-    link: "https://www.isere.fr/mda38/particulier/pa/apa-en-ligne",
+    link: "https://www.isere.fr/aides-demarches/allocation-personnalisee-autonomie-domicile-apa",
   },
   departement_loire: {
     label: "du département de la Loire",

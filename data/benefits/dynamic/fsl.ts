@@ -154,8 +154,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_isere: {
     label: "du département d’Isère",
-    link: "https://www.isere.fr/aides-au-logement",
-    instructions: "https://www.isere.fr/aides-au-logement",
+    link: "https://www.isere.fr/action-sociale-insertion-logement/fonds-solidarite-pour-le-logement-fsl",
+    instructions:
+      "https://www.isere.fr/action-sociale-insertion-logement/fonds-solidarite-pour-le-logement-fsl",
   },
   departement_landes: {
     label: "du département des Landes",

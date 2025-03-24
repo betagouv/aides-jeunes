@@ -359,10 +359,10 @@ router.beforeEach((to, from, next) => {
   }
 
   // When a child has been removed from the /enfants step, the previous child questions should be skipped
-  const { current } = window.history.state
+  const { current } = window.history.state || {}
   const enfantPath = "/individu/enfant_"
 
-  if (current.includes(enfantPath)) {
+  if (current && current.includes(enfantPath)) {
     const id_enfant = current.split(enfantPath)[1].split("/")[0]
     const hasStoreChild = store.situation.enfants?.some(
       (enfant) => enfant.id === `enfant_${id_enfant}`

@@ -27,3 +27,4 @@ montant: 250
 unit: €
 periodicite: ponctuelle
 interestFlag: _interetPermisDeConduire
+private: true

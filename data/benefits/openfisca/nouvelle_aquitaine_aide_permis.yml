@@ -12,8 +12,8 @@ conditions:
   - Ou être en insertion professionnelle et suivi par une mission locale.
   - Ou être scolarisé en Établissement Régional d’Enseignement Adapté (EREAS).
   - Ou être en contrat d'engagement de Service Civique.
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
-instructions: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/aide-au-passage-du-permis-de-conduire-b
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/aide-au-passage-du-permis-de-conduire-b
+instructions: https://les-aides.nouvelle-aquitaine.fr/jeunesse/aide-au-passage-du-permis-de-conduire-b
 prefix: l’
 type: float
 unit: €

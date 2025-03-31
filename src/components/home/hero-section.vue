@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { computed } from "vue"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"

@@ -1,9 +1,9 @@
 label: chèque réussite
 institution: departement_seine_saint_denis
 description: |
-  Le chèque réussite est une aide de 200 €, sans conditions de ressources, destinée
-  aux élèves entrant en 6e dans un collège public de la Seine-Saint-Denis pour acheter
-  des fournitures scolaires (fournitures, livres, équipements numériques et culturels).
+  Le chèque réussite est une aide de 200 € remise sans conditions de ressources et destinée
+  à l’achat de fournitures scolaires (livres, équipements numériques et culturels) pour
+  les élèves entrant en 6e dans un collège public de la Seine-Saint-Denis.
   Le chèque est donné par défaut sur une carte dématérialisée et les familles peuvent
   demander à recevoir une carte physique.
 conditions:
@@ -13,7 +13,7 @@ conditions:
   - Créer un compte parents (ou tuteur légal de l’enfant) puis faire la demande pour l’enfant concerné.
   - Faire la demande <strong>entre juin et novembre</strong>.
   - Utiliser le chèque réussite dans les commerces partenaires <strong>avant la fin de l’année scolaire (juin)</strong>.
-link: https://seinesaintdenis.fr/enfance-education-jeunesse/education/aides-a-la-scolarite/chequereussite
+link: https://seinesaintdenis.fr/l-essentiel-du-departement/vos-services-en-ligne/colleges/article/entree-en-6eme-demandez-votre-cheque-reussite-de-200eur
 teleservice: https://chequereussite.seinesaintdenis.fr/my/dashboard
 prefix: le
 floorAt: 1

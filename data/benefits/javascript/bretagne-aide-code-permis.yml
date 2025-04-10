@@ -38,3 +38,4 @@ periodicite: ponctuelle
 legend: maximum
 montant: 1500
 interestFlag: _interetPermisDeConduire
+private: true

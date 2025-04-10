@@ -224,22 +224,6 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.cc-paysrhenan.fr/Vivre/Environnement/Mobilites/Covoiturage.html",
-    "code_siren": "200041325",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
     "link": "https://www.angersloiremetropole.fr/mon-quotidien/mobilites/auto/covoiturage/index.html",
     "code_siren": "244900015",
     "nom_plateforme": "",
@@ -368,56 +352,8 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.ccb3f.fr/services-aux-habitants/mobilité/blablacar-daily.html",
-    "code_siren": "200067486",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.ccce.fr/2024/03/covoiturage-la-ccce-finance-une-partie-de-vos-trajets/",
-    "code_siren": "245700695",
-    "nom_plateforme": "",
-    "operateurs": "Daily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://www.cc-vallee-doller.fr/covoiturage/",
     "code_siren": "246800676",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.sudalsace-largue.fr/services/covoiturage.htm",
-    "code_siren": "200066033",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
     "zone_sens_des_trajets": "et/ou",
@@ -494,22 +430,6 @@
     "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.pays-sundgau.fr/mobilite/covoiturage-covoitgo-pays-du-sundgau/covoitgo/",
-    "code_siren": "200066041",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
   },
   {
     "link": "https://paysdelor.fr/vivre-ici/transports/covoiturage/",
@@ -684,22 +604,6 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": null,
     "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.quimperle-communaute.bzh/actualite/karos-la-nouvelle-application-de-covoiturage-domicile-travail-soutenue-par-quimperle-communaute/",
-    "code_siren": "242900694",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 1,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Non"
   },
@@ -1008,22 +912,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://cannespaysdelerins.fr/index.php/2024/05/27/covoiturage/",
-    "code_siren": "200039915",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
     "link": "https://www.nicecotedazur.org/services/transports-et-mobilites/mobilite-durable/covoiturage/",
     "code_siren": "200030195",
     "nom_plateforme": "",
@@ -1296,7 +1184,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.normandiecabourgpaysdauge.fr/amenagement-de-lespace-developpement-economique-coworking/mobilite/",
+    "link": "https://www.normandiecabourgpaysdauge.fr/covoiturage/",
     "code_siren": "200065563",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -1616,7 +1504,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.albretcommunaute.fr/2-non-categorise/451-covoitalbret-un-nouveau-service-public-de-covoiturage",
+    "link": "https://www.albretcommunaute.fr/",
     "code_siren": "200068948",
     "nom_plateforme": "Covoit'Albret",
     "operateurs": "Karos",
@@ -1680,7 +1568,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://mobilite.dlva.fr/covoiturage/",
+    "link": "https://www.dlva.fr/",
     "code_siren": "200034700",
     "nom_plateforme": "",
     "operateurs": "Karos",
@@ -1760,22 +1648,6 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.paysdebarr.fr/vivre/fr/mobilites/covoiturage",
-    "code_siren": "200034270",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Vous ne payez que 1 € par trajet + 0,10 € par kilomètre au delà de 30 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://www.strasbourg.eu/covoiturage-aut-hop",
     "code_siren": "246700488",
     "nom_plateforme": "Aut'hop",
@@ -1808,7 +1680,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.agglo-colmar.fr/blablacar-daily",
+    "link": "https://www.agglo-colmar.fr/",
     "code_siren": "246800726",
     "nom_plateforme": "",
     "operateurs": "BlaBlaCarDaily",
@@ -1840,9 +1712,9 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.grandbourg.fr/actualite/3686/16-avec-blablacar-daily-grand-bourg-agglomeration-paie-les-conducteurs-qui-covoiturent.htm",
+    "link": "https://www.rubis.grandbourg.fr/application-covoiturage/#TelechargerlappliRubis",
     "code_siren": "200071751",
-    "nom_plateforme": "",
+    "nom_plateforme": "Rubis",
     "operateurs": "BlaBlaCarDaily",
     "zone_sens_des_trajets": "et",
     "conducteur_montant_max_par_mois": 100,
@@ -1872,7 +1744,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.paysdemortagne.fr/",
+    "link": "https://www.paysdemortagne.fr/un-temps-fort-entreprises-sur-le-theme-de-la-mobilite/",
     "code_siren": "248500662",
     "nom_plateforme": "",
     "operateurs": "BlaBlaCar Daily",
@@ -1884,22 +1756,6 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vos trajets sont gratuits en-dessous de 40 km.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.bocage-mayennais.fr/bocage-mayennais_actualites_covoiturage-la-region-encourage-la-pratique.phtml",
-    "code_siren": "245300389",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 120,
-    "conducteur_montant_min_par_passager": 0.75,
-    "conducteur_montant_max_par_passager": 2,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   }

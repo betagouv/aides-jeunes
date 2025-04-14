@@ -17,7 +17,7 @@ slug:
   encoding: ascii
   clean_accents: true
 
-# local_backend: true
+local_backend: true
 publish_mode: editorial_workflow
 
 root: ../../..
@@ -353,6 +353,13 @@ fields:
     name: teleservice
     widget: string
     pattern: *pattern_url
+    required: false
+    required_group: cta
+  field_is_teleservice_need_register: &field_is_teleservice_need_register
+    label: Le téléservice impose-t-il de se créer un compte ?
+    hint: Lorsqu'il faut créer un compte
+    name: is_teleservice_need_register
+    widget: boolean
     required: false
     required_group: cta
   field_definite_article: &field_definite_article
@@ -905,6 +912,7 @@ collections:
       - *field_benefit_max_amount
       - *field_link_information
       - *field_link_teleservice
+      - *field_is_teleservice_need_register
       - *field_link_form
       - *field_link_instructions
       - *field_amount_reliability

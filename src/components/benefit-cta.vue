@@ -20,6 +20,10 @@ const ctaTeleservice = computed(() => {
   return ctas.value.find((cta) => cta?.type === CTALabel.Teleservice)
 })
 
+const ctaNeedRegister = computed(() => {
+  return ctas.value.find((cta) => cta?.type === CTALabel.NeedRegister)
+})
+
 const ctaTeleservicePrefill = computed(() => {
   return (
     !ctaTeleservice.value &&
@@ -34,6 +38,7 @@ const ctaInstructions = computed(() => {
 const ctas = computed(() => {
   const ctaBehaviourTypes = [
     CTALabel.Teleservice,
+    CTALabel.NeedRegister,
     CTALabel.Form,
     CTALabel.Instructions,
     CTALabel.TeleservicePrefill,
@@ -66,6 +71,16 @@ const ctas = computed(() => {
         v-if="ctaTeleservice || ctaTeleservicePrefill || ctaForm"
         class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
       >
+        <ol v-if="ctaNeedRegister">
+          <li
+            >Consulter la page "voir plus d'information" avant de vous lancer la
+            démarche</li
+          >
+          <li
+            >Créer vous un compte ou connectez-vous sur la plateforme
+            ci-dessous</li
+          >
+        </ol>
         <BenefitCtaLink
           v-if="ctaTeleservice"
           :analytics-name="benefit.id"

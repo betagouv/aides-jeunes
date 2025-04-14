@@ -15,6 +15,7 @@ conditions:
   - Utiliser le chèque réussite dans les commerces partenaires <strong>avant la fin de l’année scolaire (juin)</strong>.
 link: https://seinesaintdenis.fr/l-essentiel-du-departement/vos-services-en-ligne/colleges/article/entree-en-6eme-demandez-votre-cheque-reussite-de-200eur
 teleservice: https://chequereussite.seinesaintdenis.fr/my/dashboard
+is_teleservice_need_register: true
 prefix: le
 floorAt: 1
 type: float

@@ -44,7 +44,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_ardennes: {
     label: "du département de l’Ardennes",
-    link: "https://www.cd08.fr/aides-et-subventionss/fonds-de-solidarite-logement-fsl-pour-les-particuliers",
+    link: "https://www.cd08.fr/aides-et-subventions/fonds-de-solidarite-logement-fsl-pour-les-particuliers",
   },
   departement_ariege: {
     label: "du département de l’Ariège",

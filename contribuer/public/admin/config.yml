@@ -959,6 +959,7 @@ collections:
       - *field_benefit_position
       - *field_benefit_warning_message
       - *field_benefit_teleservices
+      - *field_is_teleservice_need_register
       - *field_benefit_ressources_year_minus_two
       - *field_benefit_msa_specific
       - *field_benefit_partial_support

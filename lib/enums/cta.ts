@@ -4,4 +4,5 @@ export enum CTALabel {
   Teleservice = "teleservice",
   NeedRegister = "is_teleservice_need_register",
   TeleservicePrefill = "teleservicePrefill",
+  Link = "link",
 }

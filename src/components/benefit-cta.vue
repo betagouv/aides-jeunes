@@ -69,17 +69,20 @@ const ctas = computed(() => {
     <div class="fr-grid-row fr-mb-2w fr-grid-row--middle">
       <div
         v-if="ctaTeleservice || ctaTeleservicePrefill || ctaForm"
-        class="fr-col-12 fr-col-sm-5 fr-py-1w fr-mr-2w"
+        class="fr-col-12 fr-py-1w fr-mr-2w"
       >
         <ol v-if="ctaNeedRegister">
           <li
-            >Consulter la page "voir plus d'information" avant de vous lancer la
-            démarche</li
+            >Consulter la page
+            <BenefitCtaLink
+              :analytics-name="benefit.id"
+              :benefit="benefit"
+              :link="benefit.link"
+              :type="CTALabel.Link"
+            />
+            avant de commmencer la démarche</li
           >
-          <li
-            >Créer vous un compte ou connectez-vous sur la plateforme
-            ci-dessous</li
-          >
+          <li>Créer un compte ou se connecter sur la plateforme ci-dessous</li>
         </ol>
         <BenefitCtaLink
           v-if="ctaTeleservice"

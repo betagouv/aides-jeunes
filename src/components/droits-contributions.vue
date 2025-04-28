@@ -34,7 +34,7 @@ const benefitsUrlPatterns = [
   },
   {
     pattern: /^aidesvelo_/,
-    file: `https://github.com/mquandalle/mesaidesvelo/blob/main/src/aides.yaml`,
+    file: `https://github.com/betagouv/publicodes-aides-velo/blob/main/src/rules/aides.publicodes`,
   },
 ]
 export default {

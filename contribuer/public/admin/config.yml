@@ -355,6 +355,13 @@ fields:
     pattern: *pattern_url
     required: false
     required_group: cta
+  field_is_teleservice_need_register: &field_is_teleservice_need_register
+    label: Le téléservice impose-t-il de se créer un compte ?
+    hint: Lorsqu'il faut créer un compte
+    name: is_teleservice_need_register
+    widget: boolean
+    required: false
+    required_group: cta
   field_definite_article: &field_definite_article
     label: Article défini
     name: prefix
@@ -905,6 +912,7 @@ collections:
       - *field_benefit_max_amount
       - *field_link_information
       - *field_link_teleservice
+      - *field_is_teleservice_need_register
       - *field_link_form
       - *field_link_instructions
       - *field_amount_reliability
@@ -951,6 +959,7 @@ collections:
       - *field_benefit_position
       - *field_benefit_warning_message
       - *field_benefit_teleservices
+      - *field_is_teleservice_need_register
       - *field_benefit_ressources_year_minus_two
       - *field_benefit_msa_specific
       - *field_benefit_partial_support

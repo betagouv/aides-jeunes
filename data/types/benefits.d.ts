@@ -78,6 +78,7 @@ export interface JavascriptBenefit {
   montant?: number
   link: string
   teleservice?: string
+  is_teleservice_need_register?: boolean
   form?: string
   instructions?: string
   floorAt?: number
@@ -114,6 +115,7 @@ export interface StandardBenefit {
   top: number
   floorAt: number
   teleservice: string
+  is_teleservice_need_register?: boolean
   private: boolean
   instructionsGenerator: (number) => string
   voluntary_conditions: any

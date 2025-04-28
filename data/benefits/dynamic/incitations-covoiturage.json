@@ -208,7 +208,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.sudmessin.fr/news/320/45/Covoiturage-KLAXIT-by-BlaBlaCar-Daily.html",
+    "link": "https://www.sudmessin.fr/fr/blablacar-daily.html",
     "code_siren": "200039907",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -522,22 +522,6 @@
     "conducteur_montant_max_par_passager": 2,
     "trajet_longueur_max": 80,
     "trajet_longueur_min": 5,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://ccgvm.com/covoiturage/",
-    "code_siren": "245100615",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "",

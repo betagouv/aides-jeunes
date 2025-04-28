@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { computed } from "vue"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useStore } from "@/stores/index.js"
 import { useRoute, useRouter } from "vue-router"
@@ -11,18 +11,6 @@ const context = process.env.VITE_CONTEXT
 const benefitsNumber = process.env.VITE_BENEFIT_COUNT
 
 const hasExistingSituation = computed(() => store.passSanityCheck)
-
-const aideDomains = ref([
-  "logement",
-  "santé",
-  "famille",
-  "transports",
-  "études",
-  "formation",
-  "travail",
-  "loisirs",
-  "vacances",
-])
 
 const eventActionResume = EventAction.ReprendreMaSimulation
 const eventCategoryHome = EventCategory.Home
@@ -62,8 +50,8 @@ function next() {
           Découvrez toutes les aides financières auxquelles vous avez droit en
           matière de
           <b
-            >{{ aideDomains.slice(0, -1).join(", ") }} et
-            {{ aideDomains[aideDomains.length - 1] }}</b
+            >logement, transport, santé, formation, emploi, culture, sport et
+            alimentation</b
           >.
         </p>
         <p class="fr-text--xs fr-mb-2w fr-text--disabled">

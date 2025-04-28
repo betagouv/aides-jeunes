@@ -1,6 +1,9 @@
-label: VISA sanitaire et social
+label: Programme Région - Formations sanitaires et sociales
 institution: region_pays_de_la_loire
-description: La Région finance des formations aux métiers du secteur sanitaire et social.
+description:
+  La Région des Pays de la Loire prend en charge partiellement ou totalement
+  les frais pédagogiques de certaines formations sanitaires et sociales telles que aide-soignant,
+  ambulancier, auxiliaire de puériculture, infirmier, sage-femme ou ergothérapeute.
 prefix: l’aide
 conditions_generales:
   - type: regions
@@ -13,12 +16,17 @@ profils:
     conditions: []
   - type: salarie
     conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
 conditions:
   - Vous inscrire via Parcoursup si vous êtes étudiant ou étudiante, ou effectuer la
-    demande auprès de France travail si vous êtes en recherche d'emploi.
+    demande auprès de France Travail si vous êtes en recherche d'emploi.
 interestFlag: _interetAidesSanitaireSocial
 type: bool
 unit: €
 periodicite: autre
-link: https://www.paysdelaloire.fr/les-aides/region-formation-visa-sanitaire-et-social
-instructions: https://www.paysdelaloire.fr/les-aides/region-formation-visa-sanitaire-et-social
+link: https://pro.choisirmonmetier-paysdelaloire.fr/dispositif/56/?what=PROGRAMME+REGION+-+Formations+sanitaires+et+sociales&offset=1
+instructions: https://pro.choisirmonmetier-paysdelaloire.fr/dispositif/56/?what=PROGRAMME+REGION+-+Formations+sanitaires+et+sociales&offset=1

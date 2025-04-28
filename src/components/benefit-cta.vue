@@ -81,7 +81,7 @@ const ctas = computed(() => {
               :type="CTALabel.Link"
               :custom-label="'page d\'informations'"
             />
-            avant de commmencer la démarche</li
+            avant de commencer la démarche</li
           >
           <li>Créer un compte ou se connecter sur la plateforme ci-dessous</li>
         </ol>

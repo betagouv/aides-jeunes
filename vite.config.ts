@@ -74,6 +74,10 @@ export default defineConfig(async ({ mode }) => {
     VITE_FRANCE_CONNECT_ENABLED: Boolean(franceConnect.clientId),
     VITE_SHOW_SMS_TAB: smsService.show,
     VITE_SMS_DIALLING_CODES: smsService.internationalDiallingCodes,
+    VITE_ROBOTS:
+      process.env.NODE_ENV === "production"
+        ? "index,follow"
+        : "noindex,nofollow",
   }
 
   return {
@@ -119,6 +123,7 @@ export default defineConfig(async ({ mode }) => {
             VITE_DESCRIPTION: viteEnvironment.VITE_DESCRIPTION,
             VITE_BASE_URL: viteEnvironment.VITE_BASE_URL,
             VITE_CONTEXT_NAME: viteEnvironment.VITE_CONTEXT_NAME,
+            VITE_ROBOTS: viteEnvironment.VITE_ROBOTS,
           },
         },
       }),

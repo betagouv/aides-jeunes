@@ -41,9 +41,16 @@ const props = defineProps({
   benefit: { type: Object as PropType<StandardBenefit>, required: true },
   type: String,
   link: String,
+  customLabel: String,
 })
 
-const label = computed(() => (props.type ? labels[props.type].short : null))
+const label = computed(() =>
+  props.customLabel
+    ? props.customLabel
+    : props.type
+    ? labels[props.type].short
+    : null
+)
 
 const longLabel = computed(() => {
   if (props.type) {

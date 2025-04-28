@@ -73,12 +73,13 @@ const ctas = computed(() => {
       >
         <ol v-if="ctaNeedRegister">
           <li
-            >Consulter la page
+            >Consulter cette
             <BenefitCtaLink
               :analytics-name="benefit.id"
               :benefit="benefit"
               :link="benefit.link"
               :type="CTALabel.Link"
+              :custom-label="'page d\'informations'"
             />
             avant de commmencer la démarche</li
           >

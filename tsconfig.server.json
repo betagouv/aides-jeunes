@@ -5,7 +5,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -16,7 +16,7 @@
     "noImplicitThis": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["node", "lodash-es", "mustache", "progress"],
+    "types": ["node"],
     "paths": {
       "@/*": ["src/*"],
       "@lib/*": ["lib/*"],

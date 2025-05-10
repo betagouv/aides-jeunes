@@ -1,5 +1,5 @@
 import fs from "fs"
-import yaml from "js-yaml"
+import { load } from "js-yaml"
 import path from "path"
 import consolidate from "consolidate"
 import { fileURLToPath } from "url"
@@ -22,7 +22,7 @@ function readFile(filePath) {
 const emailTemplate = readFile("templates/email.mjml")
 const footerTemplate = readFile("templates/footer.mjml")
 const headerTemplate = readFile(`templates/${config.contextName}/header.mjml`)
-const style = yaml.load(readFile(`templates/${config.contextName}/style.yaml`))
+const style = load(readFile(`templates/${config.contextName}/style.yaml`))
 const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
   "templates/simulation-usefulness.mjml",

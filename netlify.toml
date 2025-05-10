@@ -1,5 +1,5 @@
 [build]
-  command = "chmod +x netlify-build.sh && ./netlify-build.sh"
+  command = "mkdir -p dist && cp static-site/* dist/"
   publish = "dist"
 
 [build.environment]

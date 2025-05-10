@@ -1,0 +1,95 @@
+/* MAAS Group Theme CSS */
+:root {
+  --maas-primary: #1e3a8a;
+  --maas-secondary: #3b82f6;
+  --maas-accent: #f59e0b;
+  --maas-text: #1f2937;
+  --maas-background: #f9fafb;
+  --maas-light: #f3f4f6;
+}
+
+/* Header styles */
+.fr-header {
+  background-color: var(--maas-primary);
+}
+
+.fr-header .fr-logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.fr-header__service-title {
+  color: white !important;
+  font-weight: bold;
+}
+
+.fr-header__tools-links .fr-btn {
+  background-color: white !important;
+  color: var(--maas-primary) !important;
+  border-color: white !important;
+}
+
+.fr-header__tools-links .fr-btn:hover {
+  background-color: var(--maas-light) !important;
+}
+
+/* Override default button styles */
+.fr-btn {
+  background-color: var(--maas-primary) !important;
+  border-color: var(--maas-primary) !important;
+}
+
+.fr-btn--secondary {
+  background-color: white !important;
+  color: var(--maas-primary) !important;
+  border-color: var(--maas-primary) !important;
+}
+
+.fr-btn--secondary:hover {
+  background-color: var(--maas-light) !important;
+}
+
+/* Override link styles */
+a, .fr-link {
+  color: var(--maas-primary) !important;
+}
+
+/* Override header styles */
+.aj-hero-highlight {
+  color: var(--maas-primary) !important;
+}
+
+/* Custom card styles */
+.maas-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-top: 4px solid var(--maas-primary);
+}
+
+/* Custom header styles */
+.maas-header {
+  background-color: var(--maas-primary);
+  color: white;
+  padding: 10px 0;
+}
+
+/* Custom footer styles */
+.maas-footer {
+  background-color: var(--maas-text);
+  color: white;
+  padding: 20px 0;
+}
+
+/* Custom badge styles */
+.maas-badge {
+  background-color: var(--maas-accent);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

@@ -29,6 +29,9 @@ const steps = [
     title: "Je découvre mes aides",
   },
   {
+    title: "Je sauvegarde mes résultats",
+  },
+  {
     title: "Je fais mes demandes",
   },
 ]

@@ -1,6 +1,7 @@
 [build]
-  command = "mkdir -p dist && cp static-site/* dist/"
+  command = "npm ci && npm run build:front && mkdir -p dist-server/backend/lib/mes-aides/emails/templates"
   publish = "dist"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./src/"
 
 [build.environment]
   NODE_VERSION = "18.16.1"

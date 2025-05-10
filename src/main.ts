@@ -14,6 +14,7 @@ import VueMatomo from "vue-matomo"
 import VueCookies from "vue-cookies"
 
 import "@/styles/aides-jeunes.css"
+import "@/styles/maas-group-theme.css"
 
 import AnalyticsDirective from "./directives/analytics.js"
 import MailDirective from "./directives/mail.js"

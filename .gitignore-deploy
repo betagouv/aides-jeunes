@@ -1,0 +1,92 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build files
+dist/
+dist-server/
+coverage/
+.nyc_output/
+.cache/
+.vite/
+
+# MongoDB
+db/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.e2e
+.env.example
+.env.iframe_build_control
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test files
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Temporary files
+.tmp/
+tmp/
+
+# Openfisca
+openfisca/
+
+# Tools
+tools/
+
+# Documentation
+docs/
+
+# Tests
+tests/
+__tests__/
+*.spec.js
+*.test.js
+*.spec.ts
+*.test.ts
+
+# Git
+.git/
+.github/
+.gitattributes
+
+# Husky
+.husky/
+
+# Misc
+*.zip
+*.tar.gz
+*.tgz
+.eslintcache
+.stylelintcache

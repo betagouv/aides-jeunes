@@ -1,6 +1,7 @@
 <template>
   <div class="fr-container fr-my-8w">
-    <h2 class="fr-h3 fr-mb-4w fr-text--center">Nos partenaires</h2>
+    <h2 class="fr-h3 fr-mb-4w fr-text--center">Nos sources de données</h2>
+    <p class="fr-text--center fr-mb-4w">Notre simulateur s'appuie sur les données officielles du gouvernement pour vous fournir des résultats fiables.</p>
     <span class="aj-partners">
       <a
         v-for="partner in partners"
@@ -41,67 +42,15 @@ interface Partner {
 }
 
 const partners: Partner[] = [
-  // In maintenance mode, some partners are not available anymore
-  // however, it is still possible to show them again later.
   {
     id: "openfisca",
     name: "OpenFisca",
     link: "https://openfisca.org/fr/",
   },
-  // {
-  //   id: "rdv-service-public",
-  //   name: "RDV Service Public",
-  //   link: "https://rdv.anct.gouv.fr/",
-  // },
-  {
-    id: "domifa",
-    name: "Domifa",
-    link: "https://domifa.fabrique.social.gouv.fr/",
-  },
   {
     id: "demarches-simplifiees",
     name: "Démarches Simplifiées",
     link: "https://demarches-simplifiees.fr/",
-  },
-  {
-    id: "mesaidesvelo",
-    name: "Mesaidesvelo.fr",
-    link: "https://mesaidesvelo.fr/",
-  },
-  // {
-  //   id: "cc-pays-chataigneraie",
-  //   name: "Communauté de communes du Pays de la Châtaigneraie",
-  //   link: "https://www.paysdelachataigneraie.fr/",
-  // },
-  // {
-  //   id: "bordeaux-metropole",
-  //   name: "Bordeaux",
-  //   link: "https://www.bordeaux-metropole.fr/",
-  // },
-  // {
-  //   id: "montpellier-metropole",
-  //   name: "Montpellier",
-  //   link: "https://www.montpellier3m.fr/",
-  // },
-  // {
-  //   id: "toulon-metropole",
-  //   name: "Toulon",
-  //   link: "https://metropoletpm.fr/",
-  // },
-  // {
-  //   id: "ville-aubervilliers",
-  //   name: "Aubervilliers",
-  //   link: "https://www.aubervilliers.fr/",
-  // },
-  // {
-  //   id: "ville-vannes",
-  //   name: "Vannes",
-  //   link: "https://www.mairie-vannes.fr/",
-  // },
-  {
-    id: "covoiturage.beta.gouv.fr",
-    name: "covoiturage.beta.gouv.fr",
-    link: "https://covoiturage.beta.gouv.fr/",
   },
   {
     id: "jeunes.gouv.fr",

@@ -33,19 +33,19 @@ const features = [
     icon: "timer-line",
     title: "Rapide et gratuit",
     description:
-      "Obtenez une estimation de vos aides gratuitement en <b>moins de 5 minutes</b>.",
+      "Obtenez une estimation de vos aides gratuitement en <b>moins de 7 minutes</b>.",
   },
   {
     icon: "lock-line",
-    title: "Service public",
+    title: "Sécurisé et confidentiel",
     description:
       "Vos données personnelles sont protégées et ne sont jamais utilisées à des fins commerciales, conformément à notre <a title='Confidentialité' href='/confidentialite'>politique de confidentialité</a>.",
   },
   {
-    icon: "team-line",
-    title: "Complet",
+    icon: "save-line",
+    title: "Sauvegarde de simulations",
     description:
-      "Les informations sur les aides sont mises à jour et vérifiées quotidiennement par <a title='Notre équipe - Nouvelle fenêtre' rel='noopener' target='_blank' href='https://beta.gouv.fr/startups/aides.jeunes.html#equipe'>notre équipe</a>.",
+      "Créez un compte pour <b>sauvegarder vos simulations</b> et y accéder ultérieurement dans votre espace personnel.",
   },
 ]
 </script>

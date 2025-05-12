@@ -15,3 +15,4 @@ periodicite: autre
 legend: ""
 entity: familles
 openfiscaPeriod: thisMonth
+is_teleservice_need_register: true

@@ -19,8 +19,8 @@ periodicite: mensuelle
 link: https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/l-allocation-de-soutien-familial-asf
 teleservice: https://wwwd.caf.fr/wps/portal/caffr/aidesetservices/lesservicesenligne/faireunedemandedeprestation#DASF
 form: ""
-instructions: https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/l-allocation-de-soutien-familial-asf
 floorAt: 10
 entity: familles
 openfiscaPeriod: thisMonth
 msa: true
+is_teleservice_need_register: true

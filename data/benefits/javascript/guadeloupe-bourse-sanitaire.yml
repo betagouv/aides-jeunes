@@ -31,3 +31,4 @@ periodicite: annuelle
 legend: maximum
 montant: 5736
 interestFlag: _interetAidesSanitaireSocial
+is_teleservice_need_register: true

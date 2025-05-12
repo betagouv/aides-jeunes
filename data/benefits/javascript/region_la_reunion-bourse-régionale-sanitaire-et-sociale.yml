@@ -1,9 +1,10 @@
 label: bourse Régionale Sanitaire et Sociale
 institution: region_la_reunion
-description: La Région Réunion alloue une bourse régionale aux élèves et
-  étudiants et étudiantes des filières sanitaires et sociales. La bourse est attribuée
-  selon la situation sociale de l’apprenant, sous réserve des critères
-  d'éligibilité.
+description:
+  La Bourse régionale sanitaire et sociale de La Réunion soutient les personnes
+  engagées dans une formation agréée par la Région comme par exemple infirmier, sage-femme, éducateur spécialisé.
+  Attribuée selon les ressources du foyer, elle est versée mensuellement durant la formation,
+  sous réserve d’assiduité. La demande se fait en ligne chaque année, entre août et octobre.
 conditions:
   - Suivre une formation initiale en cursus complet sanctionnée par un diplôme
     d’État et dispensée dans un des <a target="_blank" rel="noopener" title ="Etablissements agréés - Nouvelle fenêtre"
@@ -13,15 +14,19 @@ conditions_generales:
   - type: regions
     values:
       - "04"
-  - type: formation_sanitaire_social
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://regionreunion.com/aides-services/article/bourse-regionale-sanitaire-et-socialebourse-ecole-de-gestion-et-de-commerce-de-la-reunion-egcr
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+link: https://regionreunion.com/aides-services/article/bourse-regionale-sanitaire-et-sociale
 teleservice: https://connexion-demarches.cr-reunion.fr/accounts/register/
-instructions: https://regionreunion.com/aides-services/article/bourse-regionale-sanitaire-et-socialebourse-ecole-de-gestion-et-de-commerce-de-la-reunion-egcr
 prefix: la
 type: bool
 unit: €
 periodicite: autre
 interestFlag: _interetAidesSanitaireSocial
+is_teleservice_need_register: true

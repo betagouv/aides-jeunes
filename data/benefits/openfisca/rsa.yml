@@ -24,6 +24,7 @@ link: https://www.service-public.fr/particuliers/vosdroits/N19775
 teleservice: https://wwwd.caf.fr/redirect/s/Redirect?page=demandeRsa
 setToZeroRecently: true
 isBaseRessourcesPatrimoine: true
+is_teleservice_need_register: true
 entity: familles
 openfiscaPeriod: thisMonth
 prefix: le

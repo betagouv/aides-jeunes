@@ -17,4 +17,5 @@ entity: familles
 openfiscaPeriod: thisMonth
 msa: true
 participation: true
+is_teleservice_need_register: true
 top: 2.5

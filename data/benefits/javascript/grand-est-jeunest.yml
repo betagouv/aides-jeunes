@@ -16,8 +16,8 @@ conditions_generales:
 profils: []
 link: https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/
 teleservice: https://beneficiaire.jeunest.fr/Connexion.aspx?ReturnUrl=%2f
-instructions: https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/
 prefix: l’aide
 type: bool
 unit: €
 periodicite: autre
+is_teleservice_need_register: true

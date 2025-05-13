@@ -79,16 +79,22 @@ import { useIframeStore } from "@/stores/iframe.js"
 const store = useIframeStore()
 const attributes = useAttrs()
 const parameters = {
-  homeTo:
-    "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
-  homeTitle:
-    "Retour à l’accueil du site - 1jeune1solution - République Française",
-  serviceTitle: "1jeune1solution",
-  logoText: ["République", "Française"],
+  homeTo: "/",
+  homeTitle: "Retour à l'accueil du site - MAAS Group - Simulateur d'aides sociales",
+  serviceTitle: "Simulateur d'aides sociales",
+  logoText: ["MAAS Group"],
   quickLinks: [
     {
-      label: "Retour à l'accueil du simulateur",
-      path: store.inIframe ? "/?iframe=true&data-with-logo=true" : "/",
+      label: "Retour à l'accueil",
+      path: "/",
+    },
+    {
+      label: "Mes simulations",
+      path: "/suivi",
+    },
+    {
+      label: "Toutes les aides",
+      path: "/aides",
     },
   ],
 }

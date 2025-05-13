@@ -1,3 +1,16 @@
+[build]
+  command = "npm ci && npm run build:front && mkdir -p dist-server/backend/lib/mes-aides/emails/templates"
+  publish = "dist"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./src/"
+
+[build.environment]
+  NODE_VERSION = "18.16.1"
+  NODE_ENV = "production"
+  OPENFISCA_INTERNAL_ROOT_URL = "https://openfisca.mes-aides.1jeune1solution.gouv.fr"
+  OPENFISCA_PUBLIC_ROOT_URL = "https://openfisca.mes-aides.1jeune1solution.gouv.fr"
+  SESSION_SECRET = "maas-group-secret-key"
+  SMS_SERVICE_SHOW = "false"
+
 [[redirects]]
   from = "/api/*"
   to = "https://mes-aides.1jeune1solution.beta.gouv.fr/api/:splat"
@@ -7,6 +20,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  NODE_VERSION = "20.14.0"

@@ -40,19 +40,22 @@ function next() {
     <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--middle">
       <div class="fr-col-12 fr-col-md-6 fr-mt-2w">
         <h1 class="fr-h3 fr-mb-3w">
-          <span class="aj-hero-highlight d-block">
-            Évaluez vos droits à {{ benefitsNumber }} aides
+          <span class="aj-hero-highlight d-block" style="color: #1e3a8a;">
+            Simulateur d'aides sociales MAAS Group
           </span>
           <br class="fr-hidden fr-unhidden-sm" />
-          en quelques clics.
+          Évaluez vos droits à {{ benefitsNumber }} aides en quelques clics.
         </h1>
         <p class="fr-text--md fr-mb-3w">
-          Découvrez toutes les aides financières auxquelles vous avez droit en
+          Notre simulateur vous permet de découvrir toutes les aides financières auxquelles vous avez droit en
           matière de
           <b
             >logement, transport, santé, formation, emploi, culture, sport et
             alimentation</b
           >.
+        </p>
+        <p class="fr-text--md fr-mb-3w">
+          <b>Avec MAAS Group</b>, vous pouvez également <b>sauvegarder vos simulations</b> et les retrouver dans votre espace personnel.
         </p>
         <p class="fr-text--xs fr-mb-2w fr-text--disabled">
           Avant de démarrer la simulation, pensez à vous munir de vos ressources
@@ -66,6 +69,7 @@ function next() {
               category: eventCategoryHome,
             }"
             class="fr-btn"
+            style="background-color: #1e3a8a; border-color: #1e3a8a;"
             @click="next"
           >
             Reprendre ma simulation
@@ -74,27 +78,50 @@ function next() {
             v-analytics="{ action: ctaLabel, category: eventCategoryHome }"
             class="fr-btn fr-btn--lg"
             :class="hasExistingSituation ? 'fr-btn--secondary' : ''"
+            style="background-color: #1e3a8a; border-color: #1e3a8a;"
             data-testid="new-simulation"
             @click="newSituation"
           >
             {{ ctaLabel }}
           </button>
         </div>
-        <div>
+        <div class="fr-mt-2w">
           <router-link
             class="fr-text--sm fr-link fr-fi-arrow-right-line fr-link--icon-right"
+            style="color: #1e3a8a;"
             to="/aides"
           >
             Accéder à la liste des aides
           </router-link>
+          <span class="fr-mx-1w">|</span>
+          <router-link
+            class="fr-text--sm fr-link fr-fi-account-line fr-link--icon-right"
+            style="color: #1e3a8a;"
+            to="/suivi"
+          >
+            Mes simulations sauvegardées
+          </router-link>
         </div>
       </div>
       <div class="fr-col-12 fr-col-md-6 fr-hidden fr-unhidden-md fr-mt-2w">
-        <img
-          src="@/assets/images/home_illustration.png"
-          class="aj-hero-image"
-          alt="Illustration du simulateur d'aides"
-        />
+        <div style="background-color: #1e3a8a; border-radius: 8px; padding: 20px; color: white; text-align: center;">
+          <h2 style="color: white; margin-bottom: 20px;">MAAS Group Simulateur</h2>
+          <p style="margin-bottom: 15px;">Notre simulateur vous permet d'estimer rapidement les aides auxquelles vous avez droit.</p>
+          <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold;">7 min</div>
+              <div>Temps moyen</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold;">{{ benefitsNumber }}</div>
+              <div>Aides analysées</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 24px; font-weight: bold;">100%</div>
+              <div>Gratuit</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

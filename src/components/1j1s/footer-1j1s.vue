@@ -54,11 +54,11 @@
         </ul>
         <div class="fr-footer__bottom-copy">
           <p
-            >Sauf mention contraire, tous les contenus de ce site sont sous
-            <a
-              href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
+            >© 2025 MAAS Group - Simulateur d'aides sociales. Tous droits réservés.
+            <br>Basé sur le simulateur officiel <a
+              href="https://mes-aides.1jeune1solution.beta.gouv.fr"
               target="_blank"
-              >licence etalab-2.0</a
+              >mes-aides.1jeune1solution.beta.gouv.fr</a
             >
           </p>
         </div>
@@ -70,46 +70,41 @@
 <script setup lang="ts">
 const parameters = {
   logoText: [
-    "Ministère ",
-    "du travail, ",
-    "du plein emploi ",
-    "et de l'insertion",
+    "MAAS Group",
+    "Simulateur",
+    "d'aides sociales",
   ],
-  logoImage: "/img/france-relance.svg",
-  logoImageAlt: "France Relance",
-  logoLabel:
-    "Retour à l’accueil du site - France Relance - Ministère du Travail, de l’Emploi et de l’Insertion",
-  logoLink:
-    "https://www.1jeune1solution.gouv.fr/?utm_source=mes-aides-beta&utm_medium=menu",
+  logoImage: "/img/maas-group-logo.svg",
+  logoImageAlt: "MAAS Group",
+  logoLabel: "Retour à l'accueil du site - MAAS Group - Simulateur d'aides sociales",
+  logoLink: "/",
   descText:
-    "#1jeune1solution\nUne initiative du Gouvernement pour accompagner, former, et faciliter l’entrée dans la vie professionnelle de tous les jeunes de 15 à 30 ans, sur tous les territoires.",
+    "MAAS Group - Simulateur d'aides sociales\nNotre simulateur vous permet d'évaluer vos droits aux aides sociales et de sauvegarder vos simulations pour un suivi personnalisé.",
   ecosystemLinks: [
     {
-      label: "legifrance.gouv.fr",
-      href: "https://legifrance.gouv.fr",
+      label: "MAAS Group - Site officiel",
+      href: "#",
     },
     {
-      label: "gouvernement.fr",
-      href: "https://gouvernement.fr",
+      label: "Nos services",
+      href: "#",
     },
     {
-      label: "service-public.fr",
-      href: "https://service-public.fr",
+      label: "Simulateur officiel",
+      href: "https://mes-aides.1jeune1solution.beta.gouv.fr",
     },
     {
-      label: "data.gouv.fr",
-      href: "https://data.gouv.fr",
+      label: "Ressources",
+      href: "#",
     },
-    { label: "france.fr", href: "https://www.france.fr/" },
   ],
   accessLinks: [
-    { label: "Accessibilité : partiellement conforme", to: "/accessibilite" },
-    { label: "Conditions générales d’utilisation", to: "/cgu" },
+    { label: "Conditions générales d'utilisation", to: "/cgu" },
     { label: "Mentions légales", to: "/mentions-legales" },
     { label: "Données personnelles", to: "/confidentialite" },
-    { label: "Statistiques", to: "/stats" },
     { label: "Toutes les aides", to: "/aides" },
-    { label: "Intégrer notre simulateur", to: "/iframe" },
+    { label: "Mes simulations", to: "/suivi" },
+    { label: "Simulateur officiel", to: "https://mes-aides.1jeune1solution.beta.gouv.fr" },
     { label: "Foire aux questions", to: "/faq" },
     { label: "Nous contacter", to: "/contact" },
   ],

@@ -1,7 +1,9 @@
 label: Programme Régional d’Aide à la Mobilité Etudiante (PRAME)
 institution: region_provence_alpes_cote_azur
-description: La Région propose une bourse pour effectuer un stage à l’étranger
-  dans le cadre de votre cursus de formation.
+description: La bourse PRAME soutient les étudiants de moins de 30 ans,
+  domiciliés en Provence-Alpes-Côte d’Azur et inscrits dans un établissement régional partenaire qui
+  effectuent un séjour d’études à l’étranger (hors UE, Monaco, Andorre, France) de minimum 12 semaines.
+  Elle offre 125 € / semaine, plafonnée à 2 500 €/an.
 prefix: le
 conditions_generales:
   - type: regions
@@ -20,7 +22,7 @@ profils:
 conditions:
   - Ne pas être bénéficiaire d'une autre aide à la mobilité internationale
     (Erasmus, etc.).
-  - Effectuer un stage d'une durée minimum de 8 semaines.
+  - Réaliser un à deux semestres d'études à l'étranger.
   - Ne pas bénéficier de la nationalité du pays dans lequel est réalisé le stage.
 interestFlag: _interetEtudesEtranger
 type: float
@@ -30,3 +32,4 @@ legend: maximum
 montant: 2500
 link: https://www.maregionsud.fr/vos-aides/detail/aide-a-la-mobilite-etudiante-prame-enseignement-superieur
 teleservice: https://aidesenligne.maregionsud.fr/aides/#/crsud/connecte/F_AIRMI/depot/simple
+is_teleservice_need_register: true

@@ -29,7 +29,6 @@ profils:
     conditions: []
 link: https://guide-aides.hautsdefrance.fr/dispositif997
 teleservice: https://aides.hautsdefrance.fr/sub/tiers/aides/details/?sigle=MERMOZ2
-instructions: ""
 prefix: la
 interestFlag: _interetEtudesEtranger
 type: float

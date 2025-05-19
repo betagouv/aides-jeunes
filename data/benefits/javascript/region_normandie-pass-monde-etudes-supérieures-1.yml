@@ -1,24 +1,15 @@
-label: pass Monde Etudes supérieures
+label: Pass Monde Études Supérieures
 imgSrc: img/benefits/logo-pass-monde.jpg
 institution: region_normandie
 description:
-  La Région Normandie accompagne les jeunes résidant en Normandie âgés de 15
-  à 30 ans inscrits ou inscrites dans un cursus d’études supérieures en formation initiale
-  ou continue de niveau III, II et I  et effectuant une mobilité internationale
-  individuelle (stage en milieu professionnel, séjour d'études en établissement
-  étranger, mission d'étude et d'enquête sur le terrain).
+  Le Pass Monde Études Supérieures soutient les étudiants, alternants et stagiaires de la formation professionnelle
+  domiciliés fiscalement en Normandie, âgés de 15 à 30 ans, inscrits dans un établissement en France
+  et effectuant un stage ou un séjour d'études à l'étranger de 4 à 26 semaines.
 conditions:
-  - Être inscrit ou inscrite dans un établissement normand ou dans une autre région de
-    France si la filière ou le type de cursus n'existe pas en Normandie.
-  - Effectuer une mobilité d'un minimum de 4 semaines (financement jusqu'à 26
-    semaines maximum).
   - Déposer la demande avant le départ en mobilité.
-  - Présenter un projet qui se déroule en Europe ou hors Europe (DOM TOM non
-    éligibles).
+  - Présenter un projet qui se déroule n'importe où dans le monde à l'exclusion de la principauté de Monaco et des territoires qui forment la France d’Outre-Mer (FOM).
 conditions_generales:
-  - type: regions
-    values:
-      - "28"
+  - type: attached_to_institution
   - type: age
     operator: ">="
     value: 15
@@ -38,12 +29,13 @@ profils:
     conditions: []
   - type: professionnalisation
     conditions: []
-link: https://www.normandie.fr/pass-monde
-teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+link: https://www.normandie.fr/atouts-pass-monde
+teleservice: https://atouts.normandie.fr/Beneficiaires/Views/Accueil.aspx
+is_teleservice_need_register: true
 prefix: le
 type: float
 unit: €
 periodicite: autre
-legend: Maximum
+legend: maximum
 montant: 1440
 interestFlag: _interetEtudesEtranger

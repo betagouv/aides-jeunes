@@ -1,10 +1,13 @@
-label: bourse Région Mobilité Internationale - étudiants et étudiantes
+label: bourse Région Mobilité Internationale - étudiants et apprentis
 institution: region_auvergne_rhone_alpes
-description: Cette aide a pour but de soutenir la mobilité internationale des
-  étudiants et étudiantes en études supérieures de la Région Auvergne-Rhône-Alpes.
+description: La Région Auvergne-Rhône-Alpes peut financer en partie un stage
+  ou un séjour d'études à l’étranger d'une durée de 4 à 26 semaines, à hauteur de 95 €/semaine.
+  Une aide complémentaire peut être attribuée sur critères sociaux.
 conditions:
   - Être inscrit ou inscrite dans un établissement d'enseignement supérieur
     d'Auvergne-Rhône-Alpes.
+  - Effectuer votre demande de bourse auprès du service des relations internationales de votre établissement d'études.
+  - Compléter le dossier de demande de bourse en fournissant un projet détaillé de votre séjour à l’étranger.
 conditions_generales:
   - type: regions
     values:
@@ -14,9 +17,9 @@ profils:
     conditions: []
   - type: apprenti
     conditions: []
-link: https://www.auvergnerhonealpes.fr/aide/73/89-se-former-a-l-etranger-avec-la-bourse-regionale-mobilite-internationale-etudiant-enseignement-superieur-recherche-innovation.htm
-teleservice: https://sicorra.auvergnerhonealpes.fr/public
-instructions: https://www.auvergnerhonealpes.fr/aide/73/89-se-former-a-l-etranger-avec-la-bourse-regionale-mobilite-internationale-etudiant-enseignement-superieur-recherche-innovation.htm
+link: https://www.auvergnerhonealpes.fr/aides/me-former-letranger-avec-la-bourse-region-mobilite-internationale-etudiants
+teleservice: https://bourses.auvergnerhonealpes.fr/account-management/craurabrmie-demandeurs/ux/#/login?redirectTo=https:%2F%2Fbourses.auvergnerhonealpes.fr%2Faides%2F%23%2Fcraurabrmie%2Fconnecte%2Fdashboard%2Faccueil&jwtKey=jwt-craurabrmie-portail-depot-demande-aides&footer=https:%2F%2Fbourses.auvergnerhonealpes.fr%2Faides%2F%23%2Fcraurabrmie%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Fbourses.auvergnerhonealpes.fr%2Faides%2F%23%2Fcraurabrmie%2Fcontact-page,Contacter%20l'assistance%20technique,_self
+is_teleservice_need_register: true
 prefix: la
 type: float
 unit: €

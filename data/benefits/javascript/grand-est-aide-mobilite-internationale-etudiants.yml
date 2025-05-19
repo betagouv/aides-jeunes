@@ -6,9 +6,7 @@ description:
   pourrez poser vos questions à <a href="mailto:contact.mobilite.etudiant@grandest.fr">contact.mobilite.etudiant@grandest.fr</a>.
 prefix: l’
 conditions_generales:
-  - type: regions
-    values:
-      - "44"
+  - type: attached_to_institution
 profils:
   - type: enseignement_superieur
     conditions:

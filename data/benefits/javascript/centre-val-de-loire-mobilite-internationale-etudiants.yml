@@ -12,7 +12,7 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/mobi-centre?utm_source=chatgpt.com
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/mobi-centre
 prefix: la
 interestFlag: _interetEtudesEtranger
 type: float

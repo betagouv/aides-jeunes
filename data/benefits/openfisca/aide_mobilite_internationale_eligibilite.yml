@@ -1,10 +1,18 @@
 label: aide à la mobilité internationale
 institution: etat
-description: L'aide à la mobilité internationale vous permet de suivre une formation supérieure à l'étranger dans le cadre d'un programme d'échanges ou d'effectuer un stage international.
+description: L’Aide à la Mobilité Internationale (AMI) est une bourse destinée
+  aux étudiants boursiers sur critères sociaux ou bénéficiant d’une aide spécifique annuelle.
+  Elle soutient les séjours d’études ou de stage à l’étranger, d’une durée comprise
+  entre 1 et 10 mois consécutifs, dans le cadre du cursus universitaire.
+  Elle est cumulable avec Erasmus+ et d’autres aides.
 link: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 conditions:
-  - Ne pas cumuler plus de 9 mois d'aide à la mobilité internationale au cours de l'ensemble de vos études supérieures.
+  - Être inscrit dans un établissement d’enseignement supérieur français préparant un diplôme national.
+  - Effectuer une mobilité à l’étranger intégrée au cursus, via un programme d’échange ou un stage.
+  - Être bénéficiaire d’une bourse sur critères sociaux ou d’une aide spécifique annuelle.
+  - Effectuer votre demande de bourse auprès du service des relations internationales de votre établissement d'études.
+  - Compléter le dossier de demande de bourse en fournissant un projet détaillé de votre séjour à l’étranger.
 prefix: l’
 type: bool
 entity: individus

@@ -87,8 +87,8 @@ export default defineConfig(async ({ mode }) => {
     },
     build: {
       manifest: true,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
-        plugins: [],
         output: {
           assetFileNames: (assetInfo) => {
             const extension = (assetInfo.name || "").match(/.*\.([a-z0-9]*)$/i)
@@ -111,6 +111,9 @@ export default defineConfig(async ({ mode }) => {
       },
       emptyOutDir: false,
       sourcemap: true,
+    },
+    ssgOptions: {
+      script: "async",
     },
     plugins: [
       generator,

@@ -1,0 +1,22 @@
+label: bourse de mobilité internationale Mobi-Centre
+institution: region_centre_val_de_loire
+description:
+  La Région Centre-Val de Loire propose l’aide Mobi-Centre pour soutenir
+  les étudiants inscrits dans un établissement régional souhaitant effectuer
+  un stage ou un séjour d'études à l’étranger. Le séjour doit durer entre 4 semaines et 12 mois.
+  Cette aide est accessible une fois par cycle d’études et est cumulable avec d'autres aides à la mobilité.
+conditions:
+  - Effectuer votre demande de bourse auprès du service des relations internationales de votre établissement d'études au moins deux mois avant la date de votre départ à l'étranger.
+conditions_generales:
+  - type: attached_to_institution
+profils:
+  - type: enseignement_superieur
+    conditions: []
+link: https://www.centre-valdeloire.fr/le-guide-des-aides-de-la-region-centre-val-de-loire/mobi-centre
+prefix: la
+interestFlag: _interetEtudesEtranger
+type: float
+unit: €
+periodicite: mensuelle
+legend: par mois maximum
+montant: 250

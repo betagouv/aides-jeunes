@@ -9,6 +9,13 @@ import ThemeService from "./plugins/theme-service.js"
 import * as Sentry from "@sentry/vue"
 import VueCookies from "vue-cookies"
 
+import "@gouvfr/dsfr/dist/dsfr.min.css"
+import "@gouvfr/dsfr/dist/utility/utility.min.css"
+
+if (!import.meta.env.SSR) {
+  import("@gouvfr/dsfr/dist/dsfr.module.min.js")
+}
+
 import "@/styles/aides-jeunes.css"
 
 import AnalyticsDirective from "./directives/analytics.js"
@@ -30,7 +37,7 @@ const Resizer = {
     iframeResizerContentWindow
   },
 }
-
+console.log("main.ts")
 declare module "vue" {
   export interface ComponentCustomProperties {
     $theme: {
@@ -59,12 +66,6 @@ const initApp = ({ app, router, initialState, onSSRAppRendered }) => {
   } else {
     pinia.state.value = initialState.pinia || {}
 
-    // Import DSFR CSS and JS only on client-side
-    import("@gouvfr/dsfr/dist/dsfr.min.css")
-    import("@gouvfr/dsfr/dist/utility/utility.min.css")
-    import("@gouvfr/dsfr/dist/dsfr.module.min.js").then(() => {
-      console.log("DSFR loaded")
-    })
     if (
       typeof navigator !== "undefined" &&
       navigator.cookieEnabled &&

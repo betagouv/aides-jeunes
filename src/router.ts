@@ -16,14 +16,6 @@ const router = createRouter({
       component: context.Home,
     },
     {
-      path: "/test-ssg",
-      name: "test-ssg",
-      component: () => import("./views/test-ssg.vue"),
-      meta: {
-        headTitle: "Page de test SSG",
-      },
-    },
-    {
       path: "/callback",
       name: "callback",
       component: () => import("./views/france-connect-callback.vue"),
@@ -289,6 +281,7 @@ const router = createRouter({
       component: () => import("./views/faq.vue"),
       meta: {
         headTitle: `Foire aux questions du simulateur ${context.name}`,
+        ssr: true,
       },
     },
     {

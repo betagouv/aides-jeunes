@@ -114,6 +114,11 @@ export default defineConfig(async ({ mode }) => {
     },
     ssgOptions: {
       script: "async",
+      includedRoutes(_paths: string[], routes: any[]) {
+        return routes
+          .filter((route) => route.meta?.ssr)
+          .map((route) => route.path)
+      },
     },
     plugins: [
       generator,

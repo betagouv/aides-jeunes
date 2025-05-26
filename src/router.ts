@@ -284,6 +284,17 @@ const router = createRouter({
       },
     },
     {
+      path: "/simulez-aides-mobilite-internationale-preparez-depart-sereinement",
+      name: "simulez-aides-mobilite-internationale-preparez-depart-sereinement",
+      component: () =>
+        import(
+          "./views/simulez-aides-mobilite-internationale-preparez-depart-sereinement.vue"
+        ),
+      meta: {
+        headTitle: `Simulez vos aides à la mobilité internationale : préparez votre départ sereinement`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

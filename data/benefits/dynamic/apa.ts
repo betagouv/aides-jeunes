@@ -28,7 +28,7 @@ export const APA_BY_CODE: {
   departement_bouches_du_rhone: {
     label: "du département des Bouches du Rhône",
     link: "https://www.departement13.fr/nos-actions/seniors/les-dispositifs/allocation-personnalisee-dautonomie-apa/",
-    form: "https://www.departement13.fr/fileadmin/user_upload/Famille/Seniors/formulaires/8590_Chemise_APA.pdf",
+    form: "https://www.departement13.fr/sites/default/files/media/downloads/seniors_-_les_aides_-_lapa_certificat_1.pdf",
   },
   departement_calvados: {
     label: "du département du Calvados",

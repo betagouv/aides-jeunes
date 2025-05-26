@@ -1,3 +1,22 @@
+<script setup lang="ts">
+import BackButton from "@/components/buttons/back-button.vue"
+import { EventAction, EventCategory } from "@lib/enums/event"
+
+const contactEmail = process.env.VITE_CONTACT_EMAIL
+
+const mailContent = {
+  subject: "Contact",
+  body: `
+        # Il est inutile de nous envoyer des documents personnels (carte de mutuelle, pièce d'identité, etc.) : nous ne pouvons pas les traiter.
+        # Si vous souhaitez nous signaler une erreur, nous contacter à travers les liens proposés en fin de simulation facilite le traitement de votre demande.`,
+}
+
+const mailAnalytics = {
+  action: EventAction.Contact,
+  category: EventCategory.Contact,
+}
+</script>
+
 <template>
   <article class="fr-article">
     <h1
@@ -10,14 +29,60 @@
       class="fr-mb-2w"
       as-link
       to="/"
+      aria-label="Retour à la page d'accueil"
     >
       Retour à l'accueil
     </BackButton>
-    <h2
+    <nav
+      class="fr-summary"
+      role="navigation"
+      aria-labelledby="fr-summary-title"
+    >
+      <h2 id="fr-summary-title" class="fr-summary__title">Sommaire</h2>
+      <ol>
+        <li>
+          <a
+            id="summary-mobilite-internationale"
+            class="fr-summary__link"
+            href="simulez-aides-mobilite-internationale-preparez-depart-sereinement#mobilite-internationale"
+            >Quelles sont les principales aides à la mobilité internationale
+            pour les étudiants ?</a
+          >
+          <ol>
+            <li>
+              <a
+                id="summary-erasmus"
+                class="fr-summary__link"
+                href="simulez-aides-mobilite-internationale-preparez-depart-sereinement#erasmus"
+                >🇪🇺 La bourse Erasmus+</a
+              >
+            </li>
+            <li>
+              <a
+                id="summary-ami"
+                class="fr-summary__link"
+                href="simulez-aides-mobilite-internationale-preparez-depart-sereinement#ami"
+                >🌏 L'Aide à la Mobilité Internationale (AMI)</a
+              >
+            </li>
+          </ol>
+        </li>
+        <li>
+          <a
+            id="summary-autres-aides"
+            class="fr-summary__link"
+            href="simulez-aides-mobilite-internationale-preparez-depart-sereinement#autres-aides"
+            >D'autres aides et bourses pour étudier à l'étranger</a
+          >
+        </li>
+      </ol>
+    </nav>
+
+    <h2 id="mobilite-internationale"
       >Quelles sont les principales aides à la mobilité internationale pour les
       étudiants ?</h2
     >
-    <h3>La bourse Erasmus+</h3>
+    <h3 id="erasmus">🇪🇺 La bourse Erasmus+</h3>
     <p
       ><a
         target="_blank"
@@ -143,7 +208,7 @@
       proposées par les collectivités locales.</p
     >
 
-    <h3>L'Aide à la Mobilité Internationale (AMI)</h3>
+    <h3 id="ami">🌏 L'Aide à la Mobilité Internationale (AMI)</h3>
     <p
       ><strong
         ><a
@@ -185,16 +250,12 @@
     </ul>
 
     <h4>Cumul avec d'autres aides</h4>
-    <ul>
-      <li
-        ><p
-          >L'AMI est <strong>cumulable</strong> avec la bourse sur critères
-          sociaux, la bourse au mérite, ainsi qu'avec d'autres aides comme
-          <strong>Erasmus+</strong> ou les aides régionales, sous réserve des
-          conditions spécifiques de chaque dispositif.</p
-        ></li
-      >
-    </ul>
+    <p
+      >L'AMI est <strong>cumulable</strong> avec la bourse sur critères sociaux,
+      la bourse au mérite, ainsi qu'avec d'autres aides comme
+      <strong>Erasmus+</strong> ou les aides régionales, sous réserve des
+      conditions spécifiques de chaque dispositif.</p
+    >
 
     <h4>Comment demander l'AMI ?</h4>
     <ul>
@@ -221,7 +282,27 @@
       >
     </ul>
 
-    <h2>D'autres aides et bourses pour étudier à l'étranger</h2>
+    <div class="fr-callout fr-mt-4w fr-mb-4w">
+      <h3 class="fr-callout__title">Envie d'en savoir plus ?</h3>
+      <p class="fr-callout__text">
+        Simulez vos droits aux aides Erasmus+, AMI et bourses régionales pour
+        financer votre mobilité internationale. Découvrez aussi toutes les
+        autres aides disponibles pour vos études.
+      </p>
+      <div class="fr-callout__footer">
+        <a
+          class="fr-btn fr-btn--primary"
+          href="/simulation/individu/demandeur/date_naissance"
+          title="Accéder au simulateur d'aides"
+        >
+          Je commence ma simulation
+        </a>
+      </div>
+    </div>
+
+    <h2 id="autres-aides"
+      >D'autres aides et bourses pour étudier à l'étranger</h2
+    >
     <h3>Les bourses proposées par les régions</h3>
     <p
       >De nombreuses <strong>régions françaises</strong> proposent des aides
@@ -547,9 +628,15 @@
         ></li
       >
     </ul>
+
+    <h2 class="fr-text--lead fr-mt-6w">
+      Vous n'avez pas trouvé la réponse à votre question dans cet article ?
+    </h2>
+    <p>
+      Nous contacter par email :
+      <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{
+        contactEmail
+      }}</a>
+    </p>
   </article>
 </template>
-
-<script setup lang="ts">
-import BackButton from "@/components/buttons/back-button.vue"
-</script>

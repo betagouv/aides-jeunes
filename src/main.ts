@@ -38,9 +38,17 @@ const Resizer = {
 dayjs.locale("fr")
 dayjs.extend(customParseFormat)
 
-const initApp = ({ app, router }) => {
+const initApp = ({ app, router, initialState, onSSRAppRendered }) => {
   const pinia = createPinia()
   app.use(pinia)
+
+  if (process.env.SSR) {
+    onSSRAppRendered(() => {
+      initialState.pinia = pinia.state.value
+    })
+  } else {
+    pinia.state.value = initialState.pinia || {}
+  }
 
   app.directive("analytics", AnalyticsDirective)
   app.directive("mail", MailDirective)
@@ -90,18 +98,17 @@ const initApp = ({ app, router }) => {
     })
   }
 
-  if (!process.env.SSR) {
-    const store = useStore()
+  router.beforeEach((to, from, next) => {
+    const store = useStore(pinia)
     store.$onAction(persistDataOnSessionStorage)
     store.initialize()
     store.setOpenFiscaParameters()
 
-    router.isReady().then(() => {
-      if (router.currentRoute.value.query.debug === "parcours") {
-        store.setDebug(true)
-      }
-    })
-  }
+    if (to.query.debug === "parcours") {
+      store.setDebug(true)
+    }
+    next()
+  })
 }
 
 export const createApp = ViteSSG(

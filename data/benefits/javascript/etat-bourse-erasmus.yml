@@ -12,11 +12,6 @@ conditions_generales:
 profils:
   - type: enseignement_superieur
     conditions: []
-  - type: lyceen
-    conditions:
-      - type: annee_etude
-        values:
-          - terminale
 interestFlag: _interetEtudesEtranger
 conditions:
   - Vous adresser au service des relations internationales de votre établissement d'études, entre six et douze mois avant la date souhaitée de votre séjour à l'étranger.
@@ -27,4 +22,5 @@ periodicite: mensuelle
 legend: maximum
 montant: 700
 link: https://agence.erasmusplus.fr/profils/vous-souhaitez-partir-a-letranger/
+instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
 floorAt: 1

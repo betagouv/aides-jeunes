@@ -7,6 +7,7 @@
       class="fr-mb-2w"
       as-link
       to="/"
+      aria-label="Retour à la page d'accueil"
     >
       Retour à l'accueil
     </BackButton>

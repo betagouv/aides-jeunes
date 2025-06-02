@@ -13,8 +13,14 @@ conditions_generales:
     operator: ">="
     value: 17
   - type: age
-    operator: <
+    operator: "<="
     value: 25
+conditions:
+  - Être vannetais depuis au moins deux ans à la date du dépôt de dossier.
+  - Ne pas avoir démarré une présentation au permis de conduire.
+voluntary_conditions:
+  - Présenter un projet de 50 heures de bénévolat à caractère social dans une
+    association ou une structure municipale.
 profils: []
 interestFlag: _interetPermisDeConduire
 type: float

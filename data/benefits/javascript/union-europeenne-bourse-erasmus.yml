@@ -1,0 +1,25 @@
+label: bourse Erasmus+
+institution: union_europeenne
+description: Le programme Erasmus+ soutient la mobilité des étudiants en Europe.
+  Il offre une aide financière dont le montant varie entre 300 € et 700 € par mois,
+  en fonction du pays de destination et du type de mobilité (études ou stage),
+  et jusqu'à 786 € par mois pour les étudiants des Outre-mer.
+  Une aide supplémentaire de 250 € par mois est accordée à certains étudiants
+  (boursiers échelons 6 ou 7, zone rural, QPV, ALD).
+prefix: la
+conditions_generales: []
+profils:
+  - type: enseignement_superieur
+    conditions: []
+interestFlag: _interetEtudesEtranger
+conditions:
+  - Vous adresser au service des relations internationales de votre établissement d'études, entre six et douze mois avant la date souhaitée de votre séjour à l'étranger.
+  - Constituer un dossier avec les documents requis (lettre de motivation, contrat d'études ou convention de stage, justificatifs de situation).
+type: float
+unit: €
+periodicite: mensuelle
+legend: maximum
+montant: 786
+link: https://agence.erasmusplus.fr/profils/vous-souhaitez-partir-a-letranger/
+instructions: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+floorAt: 1

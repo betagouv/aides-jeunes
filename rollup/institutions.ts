@@ -15,6 +15,7 @@ interface RollupInstitution {
 }
 
 export interface RollupInstitutionMap {
+  europeen: RollupInstitution[]
   national: RollupInstitution[]
   region: RollupInstitution[]
   departement: RollupInstitution[]
@@ -44,6 +45,7 @@ for (const benefit of Object.values(
 }
 
 const institutions: RollupInstitutionMap = {
+  europeen: [],
   national: [],
   region: [],
   departement: [],

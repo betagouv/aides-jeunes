@@ -147,6 +147,7 @@ const selectedCommune = ref<Commune | null>(null)
 const searchTerms = ref<string | null>(null)
 const benefitsCount = ref(process.env.VITE_BENEFIT_COUNT)
 const types = {
+  europeen: "Aides européeennes",
   national: "Aides nationales",
   region: "Aides régionales",
   departement: "Aides départementales",
@@ -182,6 +183,7 @@ const filterByBenefit = (type, searchTermsLower) => {
 const institutionsGroups = computed(() => {
   if (selectedCommune.value) {
     return {
+      europeen: institutionsBenefits["europeen"],
       national: institutionsBenefits["national"],
       region: institutionsBenefits["region"].filter(
         (region) => region.location === selectedCommune.value!.region

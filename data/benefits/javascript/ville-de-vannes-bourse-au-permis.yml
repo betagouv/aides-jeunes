@@ -1,0 +1,35 @@
+label: bourse au permis
+institution: ville-de-vannes
+description:
+  La bourse au permis de conduire est une aide destinée aux jeunes de 17 à 25 ans
+  résidant sur Vannes depuis au moins deux ans. Cette aide est octroyée dans le cadre d'un projet
+  ou d'une motivation nécessitant le permis de conduire et elle est conditionnée à la réalisation
+  de 50 heures de bénévolat. Il faut solliciter cette aide en amont de toute inscription
+  auprès d'une auto-école.
+prefix: la
+conditions_generales:
+  - type: communes
+    values:
+      - "56260"
+  - type: age
+    operator: ">="
+    value: 17
+  - type: age
+    operator: "<="
+    value: 25
+conditions:
+  - Être vannetais depuis au moins deux ans à la date du dépôt de dossier.
+  - Ne pas avoir démarré une présentation au permis de conduire.
+voluntary_conditions:
+  - Présenter un projet de 50 heures de bénévolat à caractère social dans une
+    association ou une structure municipale.
+profils: []
+interestFlag: _interetPermisDeConduire
+type: float
+unit: null
+periodicite: ponctuelle
+legend: ""
+montant: 600
+link: https://bij-vannes.fr/index.php/bourse-au-permis-de-conduire
+teleservice: ""
+instructions: https://bij-vannes.fr/index.php/bourse-au-permis-de-conduire

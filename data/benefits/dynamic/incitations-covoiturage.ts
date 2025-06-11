@@ -1,7 +1,10 @@
+import { createRequire } from "node:module" // CommonJS-compatible
+const require = createRequire(import.meta.url)
+
 import { Institution } from "../../../data/types/institutions.d.js"
 import { CovoiturageBenefit } from "../../../data/types/benefits.d.js"
 import { capitalize, uncapitalize } from "../../../lib/utils.js"
-import benefits from "./incitations-covoiturage.json" assert { type: "json" }
+const benefits = require("./incitations-covoiturage.json")
 
 export default function buildIncitationsCovoiturage(
   institutions: Institution[]

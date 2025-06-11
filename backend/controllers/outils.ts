@@ -1,5 +1,8 @@
-import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
-import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import { createRequire } from "node:module" // CommonJS-compatible
+const require = createRequire(import.meta.url)
+const communes = require("@etalab/decoupage-administratif/data/communes.json")
+const epci = require("@etalab/decoupage-administratif/data/epci.json")
+
 import communesLonLat from "communes-lonlat"
 import Sentry from "@sentry/node"
 

@@ -3,10 +3,12 @@ import legacy from "@vitejs/plugin-legacy"
 import { createHtmlPlugin } from "vite-plugin-html"
 import { sentryVitePlugin } from "@sentry/vite-plugin"
 
-import path from "path"
+import path, { dirname } from "path"
+import { fileURLToPath } from "url"
 import { defineConfig, loadEnv } from "vite"
 
-const __dirname = new URL(".", import.meta.url).pathname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 import config from "./backend/config/index.js"
 import benefits from "./data/all.js"

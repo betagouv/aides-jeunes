@@ -415,12 +415,16 @@ const mailAnalytics = {
     </p>
     <p>
       Ensuite, le budget mensuel d'un étudiant peut fortement varier en fonction
-      de plusieurs paramètres :<br />
-      - cohabitation avec la famille ou décohabitation<br />
-      - boursier ou non-boursier<br />
-      - choix de la ville universitaire (le coût du logement de la ville est
-      beaucoup plus élevé à Paris et dans les autres grandes villes)
-    </p>
+      de plusieurs paramètres :</p
+    >
+    <ul>
+      <li>cohabitation avec la famille ou décohabitation</li>
+      <li>boursier ou non-boursier</li>
+      <li>
+        choix de la ville universitaire (le coût du logement est beaucoup plus
+        élevé à Paris et dans les autres grandes villes)
+      </li>
+    </ul>
     <p
       >Le logement représente entre 50% et 60% du budget mensuel d'un étudiant
       en moyenne. Les autres postes sont :</p

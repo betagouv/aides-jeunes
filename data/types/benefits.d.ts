@@ -13,6 +13,7 @@ export interface Benefit {
 }
 
 export interface AidesVeloBenefit extends AidesVelo {
+  id: string | AidesVeloId
   amount?: number
 }
 

@@ -1,10 +1,10 @@
-label: forfait imagine R Scolaire
+label: forfait imagine R Etudiant
 institution: region_ile_de_france
 description:
-  Le forfait Imagine R Scolaire est un abonnement annuel proposé par Île-de-France Mobilités
-  qui permet aux élèves du primaire et aux apprentis franciliens de bénéficier
-  de déplacements illimités dans toute la région Île-de-France, sur les réseaux métro, RER, bus, tram
-  et trains Transilien (5 Zones). Il permet également de bénéficier <a target="_blank"
+  Le forfait Imagine R Étudiant est un abonnement annuel proposé par Île-de-France Mobilités
+  qui permet aux étudiants de moins de 26 ans, inscrits dans un établissement d’enseignement supérieur
+  en Île-de-France, de se déplacer librement sur l’ensemble du réseau francilien (métro, RER, bus, tram, trains Transilien)
+  dans toutes les zones. Il permet également de bénéficier <a target="_blank"
   rel="noopener" title="avantages culture - Nouvelle fenêtre" href="
   https://www.iledefrance-mobilites.fr/navigo-avantages-culture">de bons plans, réductions et avantages</a>.
 conditions:
@@ -17,11 +17,7 @@ conditions_generales:
     values:
       - "11"
 profils:
-  - type: lyceen
-    conditions: []
-  - type: collegien
-    conditions: []
-  - type: apprenti
+  - type: enseignement_superieur
     conditions: []
 link: https://www.iledefrance-mobilites.fr/titres-et-tarifs/detail/forfait-imagine-r-scolaire
 teleservice: https://www.iledefrance-mobilites.fr/je-gere-ma-carte

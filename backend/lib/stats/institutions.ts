@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import epciList from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import epciList from "@etalab/decoupage-administratif/data/epci.json" with { type: "json" }
 
 import Simulations from "../../models/simulation.js"
 import benefits from "../../../data/all.js"
@@ -44,7 +44,7 @@ async function getSimulationCountPerEPCI(): Promise<Count> {
       count[result._id] = result.count
       return count
     },
-    {} as Count
+    {} as Count,
   )
 }
 
@@ -59,7 +59,7 @@ function getBenefitCountPerEPCI(): Count {
       count[institution.code_siren] = count[institution.code_siren] + 1 || 1
       return count
     },
-    {} as Count
+    {} as Count,
   )
 }
 

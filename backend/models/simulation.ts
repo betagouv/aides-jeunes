@@ -45,6 +45,7 @@ const answers = {
 
 const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
   {
+    _id: { type: mongoose.Schema.Types.ObjectId },
     answers: { type: answers, required: true },
     enfants: [Number],
     ressourcesFiscales: Object,
@@ -67,7 +68,7 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     teleservice: String,
     token: String,
   },
-  { minimize: false }
+  { minimize: false },
 )
 
 SimulationSchema.static("cookiePrefix", (): string => {
@@ -119,7 +120,7 @@ SimulationSchema.method("compute", function (showPrivate) {
         situation,
         id,
         openfiscaResponse,
-        showPrivate
+        showPrivate,
       )
       resolve(aides)
     })
@@ -128,5 +129,5 @@ SimulationSchema.method("compute", function (showPrivate) {
 
 export default mongoose.model<Simulation, SimulationModel>(
   "Simulation",
-  SimulationSchema
+  SimulationSchema,
 )

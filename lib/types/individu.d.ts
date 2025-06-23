@@ -27,6 +27,6 @@ export interface IndividuGenerator {
   [id: string]: {
     src?: string
     // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    fn: Function
+    fn: (...args: any[]) => any
   }
 }

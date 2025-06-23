@@ -6,3 +6,7 @@ dist-server
 public
 .venv*
 contribuer/out
+backend/controllers/outils.ts
+backend/lib/stats/institutions.ts
+data/benefits/dynamic/incitations-covoiturage.ts
+lib/benefits/geographical-count-utils.ts

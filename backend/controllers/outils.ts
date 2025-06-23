@@ -3,7 +3,9 @@ import epci from "@etalab/decoupage-administratif/data/epci.json" with { type: "
 import communesLonLat from "communes-lonlat"
 import Sentry from "@sentry/node"
 
-const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
+const communesActuelles = (communes as any[]).filter(
+  (c) => c.type === "commune-actuelle"
+)
 const communeMap = {}
 const indexCodesPostaux = {}
 

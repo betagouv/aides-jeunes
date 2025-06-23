@@ -48,8 +48,8 @@ export default defineConfig([
         "plugin:vue/vue3-recommended",
         "plugin:prettier-vue/recommended",
         "prettier",
-        "plugin:import/recommended",
-      ),
+        "plugin:import/recommended"
+      )
     ),
 
     plugins: {

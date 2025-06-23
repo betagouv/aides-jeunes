@@ -32,11 +32,11 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "backend/**/*.ts"
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
+    "backend",
     "contribuer",
     "data",
     "lib",

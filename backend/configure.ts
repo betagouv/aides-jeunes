@@ -27,5 +27,4 @@ export default function (app: express.Application) {
 
   // The error handler must be before any other error middleware and after all controllers
   Sentry.setupExpressErrorHandler(app)
-
 }

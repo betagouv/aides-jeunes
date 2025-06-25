@@ -12,7 +12,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.simulation = apply(simulation)

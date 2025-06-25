@@ -3,7 +3,7 @@ import path from "path"
 import { Grist } from "../lib/grist.js"
 import { missingInstitutionsCovoiturageBenefit } from "./generate-missing-institutions.js"
 import type { CovoiturageJson } from "../data/types/benefits.d.ts"
-import covoiturageBenefitJSON from "../data/benefits/dynamic/incitations-covoiturage.json" assert { type: "json" }
+import covoiturageBenefitJSON from "../data/benefits/dynamic/incitations-covoiturage.json" with { type: "json" }
 import { GristIncitationsCovoiturageResponse } from "../lib/types/download-incitations-covoiturage.d.js"
 const __dirname = new URL(".", import.meta.url).pathname
 

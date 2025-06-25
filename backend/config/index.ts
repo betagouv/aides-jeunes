@@ -3,8 +3,6 @@ import "dotenv/config"
 import { Configuration } from "../types/config.js"
 
 const isProduction = process.env.NODE_ENV == "production"
-import { nodeProfilingIntegration } from "@sentry/profiling-node"
-
 /**
  * NOTE: Les variables d'environement suivantes
  * Sont défini directement par pm2 en production
@@ -117,7 +115,6 @@ const config: Configuration = {
     authToken: process.env.SENTRY_AUTH_TOKEN,
     project: process.env.SENTRY_BACKEND_PROJECT,
     environment: process.env.NODE_ENV,
-    integrations: [nodeProfilingIntegration()],
     tracesSampleRate: 0.1,
     profilesSampleRate: 1.0,
     debug: "development" === process.env.NODE_ENV,

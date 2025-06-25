@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import epciList from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import epciList from "@etalab/decoupage-administratif/data/epci.json" with { type: "json" }
 
 import Simulations from "../../models/simulation.js"
 import benefits from "../../../data/all.js"

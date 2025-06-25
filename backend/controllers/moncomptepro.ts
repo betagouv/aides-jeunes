@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import config from "../config/index.js"
 import * as client from "openid-client"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 const JWT_EXPIRATION_DELAY = 15552000 // 6 * 30 * 24 * 60 * 60 = 6 months
 const MCP_TOKEN = "mcp_token"

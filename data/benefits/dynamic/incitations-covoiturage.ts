@@ -1,7 +1,7 @@
 import { Institution } from "../../../data/types/institutions.d.js"
 import { CovoiturageBenefit } from "../../../data/types/benefits.d.js"
 import { capitalize, uncapitalize } from "../../../lib/utils.js"
-import benefits from "./incitations-covoiturage.json" assert { type: "json" }
+import benefits from "./incitations-covoiturage.json" with { type: "json" }
 
 export default function buildIncitationsCovoiturage(
   institutions: Institution[]

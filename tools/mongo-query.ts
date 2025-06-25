@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import dayjs from "dayjs"
 import MongoDB from "../backend/lib/stats/mongodb.js"
-import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
+import communes from "@etalab/decoupage-administratif/data/communes.json" with { type: "json" }
 
 const __dirname = new URL(".", import.meta.url).pathname
 const depcoms100k = communes

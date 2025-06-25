@@ -1,7 +1,7 @@
 import config from "../../config/index.js"
 import mapping from "./mapping/index.js"
 import axios from "axios"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 export const buildOpenFiscaRequest = mapping.buildOpenFiscaRequest
 

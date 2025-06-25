@@ -1,4 +1,4 @@
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 import openfisca from "./getter.js"
 
 import { OpenfiscaParameters } from "../../../lib/types/parameters.js"

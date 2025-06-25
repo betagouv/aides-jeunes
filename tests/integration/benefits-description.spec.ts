@@ -1,10 +1,10 @@
 import { expect } from "vitest"
 import fs from "fs"
 import path from "path"
-import regions from "@etalab/decoupage-administratif/data/regions.json" assert { type: "json" }
-import departements from "@etalab/decoupage-administratif/data/departements.json" assert { type: "json" }
-import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
-import epcis from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import regions from "@etalab/decoupage-administratif/data/regions.json" with { type: "json" }
+import departements from "@etalab/decoupage-administratif/data/departements.json" with { type: "json" }
+import communes from "@etalab/decoupage-administratif/data/communes.json" with { type: "json" }
+import epcis from "@etalab/decoupage-administratif/data/epci.json" with { type: "json" }
 
 import subject from "@root/data/all.js"
 

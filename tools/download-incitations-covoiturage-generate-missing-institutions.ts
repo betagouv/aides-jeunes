@@ -11,7 +11,7 @@ const noDownload = process.argv.includes("--no-download")
 async function getGristData() {
   const gristAPI = Grist(
     process.env.GRIST_COVOITURAGE_DOC_ID,
-    process.env.GRIST_API_KEY
+    process.env.GRIST_API_KEY,
   )
 
   const user = await gristAPI.getConnectedUser()
@@ -39,7 +39,7 @@ async function getGristData() {
           ? parseFloat(row["conducteur_montant_max_par_mois"])
           : 0,
       conducteur_montant_min_par_passager: parseFloat(
-        row["conducteur_montant_min_par_passager"]
+        row["conducteur_montant_min_par_passager"],
       ),
       conducteur_montant_max_par_passager:
         row["conducteur_montant_max_par_passager"] !== ""
@@ -61,7 +61,7 @@ async function getGristData() {
 function updateJsonFile(covoiturageBenefit: CovoiturageJson[]) {
   const incitationJson = path.join(
     __dirname,
-    "../data/benefits/dynamic/incitations-covoiturage.json"
+    "../data/benefits/dynamic/incitations-covoiturage.json",
   )
 
   fs.writeFile(
@@ -69,7 +69,7 @@ function updateJsonFile(covoiturageBenefit: CovoiturageJson[]) {
     JSON.stringify(covoiturageBenefit, null, 2),
     (err) => {
       if (err) console.log(err)
-    }
+    },
   )
 }
 
@@ -80,12 +80,12 @@ function checkDuplicateRow(covoiturageBenefit: CovoiturageJson[]) {
   }, {})
 
   const duplicateRow = covoiturageBenefit.filter(
-    (e) => countOccurencyCodeSiren[e.code_siren]
+    (e) => countOccurencyCodeSiren[e.code_siren],
   )
   if (duplicateRow.length) {
     console.error("Incitations dupliquées :", duplicateRow)
     throw new Error(
-      "Arrêt du processus de mise à jour en raison d'incitations dupliquées. Veuillez décider laquelle conserver."
+      "Arrêt du processus de mise à jour en raison d'incitations dupliquées. Veuillez décider laquelle conserver.",
     )
   }
 }

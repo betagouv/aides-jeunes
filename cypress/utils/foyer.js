@@ -43,14 +43,14 @@ const fill__situation = (situation) => {
 }
 
 const fill_bourse_criteres_sociaux_nombre_enfants_a_charge = (
-  numberOfChildren
+  numberOfChildren,
 ) => {
   cy.checkA11y()
   cy.get('[data-testid="question"')
     .invoke("text")
     .should("contain", "la charge")
   cy.get(
-    'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge"]'
+    'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge"]',
   ).type(numberOfChildren)
   submit()
 }
@@ -62,7 +62,7 @@ const fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_sup
       .invoke("text")
       .should("contain", "des études supérieures")
     cy.get(
-      'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur"]'
+      'input[type="text"][data-testid="bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur"]',
     ).type(numberOfChildren)
     submit()
   }

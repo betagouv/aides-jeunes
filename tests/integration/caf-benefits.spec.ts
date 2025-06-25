@@ -10,13 +10,13 @@ for (const benefit of data.all) {
             return (
               condition.type === "departements" && condition.values.length === 1
             )
-          })
+          }),
         )
       })
       if (benefit.label.match(/bafa/i)) {
         it("is related to BAFA and should have a corresponding flag", () => {
           expect(
-            benefit.interestFlag && benefit.interestFlag === "_interetBafa"
+            benefit.interestFlag && benefit.interestFlag === "_interetBafa",
           )
         })
       }

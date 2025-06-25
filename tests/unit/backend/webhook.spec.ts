@@ -48,7 +48,7 @@ describe("webhook", () => {
     verifyAuthentication(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(next).toHaveBeenCalled()
@@ -62,7 +62,7 @@ describe("webhook", () => {
     verifyAuthentication(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(res.statusCode).toBe(401)
@@ -76,7 +76,7 @@ describe("webhook", () => {
     verifyAuthentication(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(res.statusCode).toBe(401)
@@ -118,7 +118,7 @@ describe("validateRequestPayload", () => {
     validateRequestPayload(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(res.status).not.toHaveBeenCalled()
@@ -132,7 +132,7 @@ describe("validateRequestPayload", () => {
     validateRequestPayload(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(res.status).toHaveBeenCalledWith(400)
@@ -154,7 +154,7 @@ describe("validateRequestPayload", () => {
     validateRequestPayload(
       req as unknown as Request,
       res as unknown as Response,
-      next
+      next,
     )
 
     expect(consoleSpy).toHaveBeenCalledWith("Invalid data in payload", {})
@@ -196,7 +196,7 @@ describe("postOnMattermost", () => {
 
     await postOnMattermost(
       req as unknown as Request,
-      res as unknown as Response
+      res as unknown as Response,
     )
 
     expect(mattermostSpy).toHaveBeenCalledWith(expectedMessage)

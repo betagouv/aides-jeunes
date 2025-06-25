@@ -8,7 +8,7 @@ async function testInputNumber(
   result: number | string | undefined,
   error: boolean = false,
   min?: number,
-  max?: number
+  max?: number,
 ): Promise<void> {
   const wrapper = await mount(InputNumber, {
     global: { directives: { "select-on-click": SelectOnClickDirective } },
@@ -88,7 +88,7 @@ describe("input-number.vue", () => {
         test.result,
         test.error,
         test.min,
-        test.max
+        test.max,
       )
     }
   })

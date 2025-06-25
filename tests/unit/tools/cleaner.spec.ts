@@ -159,12 +159,12 @@ describe("anonymizeSimulation", () => {
 
     for (const fieldName of fieldToAnonymize) {
       expect(anonymizedAnswers.find((a) => a.fieldName === fieldName)).toEqual(
-        undefined
+        undefined,
       )
     }
 
     expect(anonymizedAnswers.find((a) => a.fieldName === "age").value).toEqual(
-      29
+      29,
     )
   })
 })

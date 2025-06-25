@@ -25,7 +25,7 @@ async function checkBenefitUrls(benefit) {
   console.log(
     `${benefit.label} (${benefit.institution})\n${results
       .map((e) => (e.ok ? `- ✅ ${e.type}` : `- ❌ ${e.type} ${e.link}`))
-      .join("\n")}`
+      .join("\n")}`,
   )
   return benefit
 }
@@ -108,7 +108,8 @@ async function getBenefitData(noPriority: boolean) {
   const data = publicBenefits.map((benefit) => {
     const linkMap = ["link", "instructions", "form", "teleservice"]
       .filter(
-        (linkType) => benefit[linkType] && typeof benefit[linkType] === "string"
+        (linkType) =>
+          benefit[linkType] && typeof benefit[linkType] === "string",
       )
       .reduce((a, linkType) => {
         const link = benefit[linkType]
@@ -160,7 +161,7 @@ function determinePullRequestURL() {
   console.log("determinePullRequestURL", { GITHUB_REF })
 
   const pullRequestNumber = GITHUB_REF.match(
-    /(?:refs\/pull\/)(?<number>[\d]+)\/merge/
+    /(?:refs\/pull\/)(?<number>[\d]+)\/merge/,
   )?.groups?.number
   return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/pull/${pullRequestNumber}`
 }
@@ -203,7 +204,7 @@ async function main() {
     benefitIdsFromCLI,
     processingPR
       ? rawExistingWarnings.records.map((r) => r.fields.Aide)
-      : undefined
+      : undefined,
   )
 
   const existingWarnings = rawExistingWarnings.records.reduce((a, record) => {
@@ -218,7 +219,7 @@ async function main() {
     checkBenefitUrls,
     {
       concurrency: 3,
-    }
+    },
   )
 
   const benefitOperationsList = benefitLinksCheckResults.map(
@@ -226,8 +227,8 @@ async function main() {
       determineOperationsOnBenefitLinkError(
         existingWarnings,
         benefitLinksCheckResult,
-        pullRequestURL
-      )
+        pullRequestURL,
+      ),
   )
 
   const privateBenefits = filterPrivateBenefits(Benefits.all)
@@ -235,7 +236,7 @@ async function main() {
     existingWarnings,
     privateBenefits,
     benefitOperationsList,
-    pullRequestURL
+    pullRequestURL,
   )
 
   type RecordsByOperationTypesType = { [operationType: string]: GristData[] }

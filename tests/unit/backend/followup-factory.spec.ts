@@ -54,7 +54,7 @@ describe("FollowupFactory", () => {
       await FollowupFactory.createWithResults(
         mockSimulation,
         mockSurveyOptin,
-        mockEmail
+        mockEmail,
       )
       expect(mockCompute).toHaveBeenCalledTimes(1)
     })
@@ -65,7 +65,7 @@ describe("FollowupFactory", () => {
       await FollowupFactory.createWithResults(
         mockSimulation,
         mockSurveyOptin,
-        mockEmail
+        mockEmail,
       )
       expect(mockGenerateToken).toHaveBeenCalledTimes(2)
     })
@@ -74,7 +74,7 @@ describe("FollowupFactory", () => {
       await FollowupFactory.createWithResults(
         mockSimulation,
         mockSurveyOptin,
-        mockEmail
+        mockEmail,
       )
       expect(mockFollowupCreate).toHaveBeenCalledWith({
         simulation: mockSimulation,
@@ -93,7 +93,7 @@ describe("FollowupFactory", () => {
       await FollowupFactory.createWithResults(
         mockSimulation,
         mockSurveyOptin,
-        mockEmail
+        mockEmail,
       )
       expect(mockSimulation.hasFollowup).toBe(true)
     })
@@ -102,7 +102,7 @@ describe("FollowupFactory", () => {
       await FollowupFactory.createWithResults(
         mockSimulation,
         mockSurveyOptin,
-        mockEmail
+        mockEmail,
       )
       expect(mockSimulation.save).toHaveBeenCalledTimes(1)
     })
@@ -123,8 +123,8 @@ describe("FollowupFactory", () => {
           FollowupFactory.createWithResults(
             mockSimulation,
             mockSurveyOptin,
-            mockEmail
-          )
+            mockEmail,
+          ),
         ).rejects.toThrow("Compute error")
       })
     })

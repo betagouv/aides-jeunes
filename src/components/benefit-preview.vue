@@ -55,7 +55,7 @@ const askBenefitLabelButton = (benefit) => {
               </WarningMessage>
             </div>
           </div>
-          <DroitEstime :droit="(props.benefit as StandardBenefit)" />
+          <DroitEstime :droit="props.benefit as StandardBenefit" />
         </div>
         <ul class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--right">
           <li>

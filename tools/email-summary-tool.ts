@@ -21,7 +21,7 @@ async function main() {
     const followup = await FollowupFactory.createWithResults(
       simulation,
       true,
-      email
+      email,
     )
     if (!followup) {
       throw new Error("Followup not created")

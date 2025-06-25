@@ -4,7 +4,8 @@
       <p>
         <span>
           Vous avez fait il y a quelques jours une simulation sur
-          <a href="{{&baseURL}}">{{&contextName}}</a>.
+          <a href="{{&baseURL}}">{{&contextName}}</a
+          >.
         </span>
         <br />
         <span

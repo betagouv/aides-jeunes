@@ -17,7 +17,7 @@ describe("Migration apply", () => {
       [
         { id: "demandeur", fieldName: "activite", value: "service_civique" },
         { id: "demandeur", fieldName: "handicap", value: false },
-      ]
+      ],
     )
 
     const expectedAnswers = {
@@ -61,7 +61,7 @@ describe("Migration apply", () => {
           { id: "demandeur", fieldName: "age", value: 35 },
           { id: "demandeur", fieldName: "activite", value: "other_activity" },
           { id: "demandeur", fieldName: "handicap", value: false },
-        ]
+        ],
       )
 
       const expectedAnswers = {
@@ -94,7 +94,7 @@ describe("Migration apply", () => {
           { id: "demandeur", fieldName: "date_naissance", value: "2000-01-01" },
           { id: "demandeur", fieldName: "activite", value: "other_activity" },
           { id: "demandeur", fieldName: "handicap", value: false },
-        ]
+        ],
       )
 
       const expectedAnswers = {

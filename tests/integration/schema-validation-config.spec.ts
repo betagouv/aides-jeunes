@@ -3,7 +3,7 @@ import jamstackLoader from "@betagouv/jamstack-loader"
 import path from "path"
 
 const jamstack = jamstackLoader.get(
-  path.resolve(__dirname, "../../contribuer/public/admin/config.yml")
+  path.resolve(__dirname, "../../contribuer/public/admin/config.yml"),
 )
 
 describe("Schema validation", function () {

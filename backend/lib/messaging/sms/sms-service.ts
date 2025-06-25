@@ -10,7 +10,7 @@ import { Survey } from "../../../../lib/types/survey.d.js"
 import { SurveyType } from "../../../../lib/enums/survey.js"
 import { ErrorType } from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 async function getSMSConfig() {
   const { username, password } = config.smsService

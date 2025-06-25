@@ -295,6 +295,15 @@ const router = createRouter({
       },
     },
     {
+      path: "/preparer-rentree-etudiante-logement-budget-aides",
+      name: "preparer-rentree-etudiante-logement-budget-aides",
+      component: () =>
+        import("./views/preparer-rentree-etudiante-logement-budget-aides.vue"),
+      meta: {
+        headTitle: `Préparer sa rentrée étudiante 2025 : logement, budget, aides`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

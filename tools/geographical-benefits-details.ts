@@ -8,7 +8,7 @@ import Benefits from "../data/all.js"
 import { isGeographicallyIncluded } from "../lib/benefits/geographical-count-utils.js"
 
 const communes = (communesBase as any[]).filter(
-  (commune) => commune.type === "commune-actuelle"
+  (commune) => commune.type === "commune-actuelle",
 )
 
 const communeMap = {}
@@ -69,11 +69,11 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       case "epci": {
         const epciInfo = epcis.find(
-          (element) => element.code === institution.code_siren
+          (element) => element.code === institution.code_siren,
         )
         if (!epciInfo) {
           console.log(
-            `Aucun Epci trouvé pour l'établissement ${institution.slug}`
+            `Aucun Epci trouvé pour l'établissement ${institution.slug}`,
           )
           // @ts-ignore
           process.exit(1)
@@ -102,7 +102,7 @@ function iterateGivenGeographicalRelevancy(apply) {
         break
       default:
         console.log(
-          `Ne sais pas gérer les institutions de type ${institution.type}`
+          `Ne sais pas gérer les institutions de type ${institution.type}`,
         )
     }
 
@@ -116,5 +116,5 @@ iterateGivenGeographicalRelevancy(listInterestingBenefits)
 
 fs.writeFileSync(
   "geographical-benefits-details.json",
-  JSON.stringify(communeMap, null, 2)
+  JSON.stringify(communeMap, null, 2),
 )

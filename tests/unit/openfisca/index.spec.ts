@@ -17,7 +17,7 @@ describe("openfisca buildOpenFiscaRequest", function () {
 
   it("writes null for css_participation_forfaitaire in 2017-10", function () {
     expect(result.familles._.css_participation_forfaitaire["2017-10"]).toBe(
-      null
+      null,
     )
   })
 
@@ -34,7 +34,7 @@ describe("openfisca buildOpenFiscaRequest", function () {
         famille: {
           bourse_lycee: true,
         },
-      })
+      }),
     )
     expect(result.familles._.bourse_lycee["2017-10"]).toBe(42)
   })
@@ -45,7 +45,7 @@ describe("openfisca buildOpenFiscaRequest", function () {
         famille: {
           bourse_lycee: true,
         },
-      })
+      }),
     )
     expect(result.familles._.bourse_lycee["2017-09"]).toBe(true)
   })

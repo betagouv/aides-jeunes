@@ -17,8 +17,8 @@ describe("Test Institutions schema", function () {
         expect(
           validateFile(
             `data/institutions/${institutionFilename}`,
-            institutionSchema
-          )
+            institutionSchema,
+          ),
         ).toEqual([])
       })
     })

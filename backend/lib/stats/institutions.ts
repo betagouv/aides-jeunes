@@ -44,7 +44,7 @@ async function getSimulationCountPerEPCI(): Promise<Count> {
       count[result._id] = result.count
       return count
     },
-    {} as Count
+    {} as Count,
   )
 }
 
@@ -59,7 +59,7 @@ function getBenefitCountPerEPCI(): Count {
       count[institution.code_siren] = count[institution.code_siren] + 1 || 1
       return count
     },
-    {} as Count
+    {} as Count,
   )
 }
 

@@ -26,7 +26,7 @@ function getIndividusSortedParentsFirst(situation: Situation): Individu[] {
     .concat(
       getDemandeur(situation),
       getConjoint(situation),
-      getEnfants(situation)
+      getEnfants(situation),
     )
     .filter(function (individu) {
       return individu

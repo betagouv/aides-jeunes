@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
 const sendShowStatistics = () => {
   StatisticsMixin.methods.sendBenefitsStatistics(
     benefits.value,
-    EventAction.Show
+    EventAction.Show,
   )
 }
 const sendDisplayUnexpectedAmountLinkStatistics = () => {
@@ -70,7 +70,7 @@ const sendDisplayUnexpectedAmountLinkStatistics = () => {
 
   StatisticsMixin.methods.sendBenefitsStatistics(
     benefitsWithUnexpectedAmount,
-    EventAction.ShowUnexpectedAmountLink
+    EventAction.ShowUnexpectedAmountLink,
   )
 }
 
@@ -78,7 +78,7 @@ const sendAccessToAnonymizedResults = () => {
   StatisticsMixin.methods.sendEventToMatomo(
     EventCategory.General,
     EventAction.AccesSimulationAnonymisee,
-    daysSinceDate(new Date(store.simulation.dateDeValeur)).toString()
+    daysSinceDate(new Date(store.simulation.dateDeValeur)).toString(),
   )
 }
 const initializeStore = () => {
@@ -96,7 +96,7 @@ const initializeStore = () => {
           StatisticsMixin.methods.sendEventToMatomo(
             EventCategory.General,
             EventAction.ErreurInitStore,
-            route.path
+            route.path,
           )
           break
         }
@@ -141,7 +141,7 @@ const saveSimulation = async () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
       EventAction.ErreurSauvegardeSimulation,
-      route.path
+      route.path,
     )
     Sentry.captureException(error)
   }
@@ -150,7 +150,7 @@ const redirectToTeleservice = async () => {
   if (store.simulationId) {
     const representation = await store.fetchRepresentation(
       store.simulation.teleservice,
-      store.simulationId
+      store.simulationId,
     )
 
     window.location.href = representation.destination.url

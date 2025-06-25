@@ -49,7 +49,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                 {
                   isActive: (subject) =>
                     [Scolarite.Lycee, Scolarite.EnseignementSuperieur].includes(
-                      subject.scolarite
+                      subject.scolarite,
                     ),
                   steps: [r("annee_etude")],
                 },
@@ -80,7 +80,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation, parameters) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 const jeune_actif =
                   subject.activite === Activite.Salarie &&
@@ -131,7 +131,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
             {
               isActive: (subject) =>
                 ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
-                  subject.activite
+                  subject.activite,
                 ),
               steps: [r("inapte_travail")],
             },
@@ -143,7 +143,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 return age <= 31
               },
@@ -182,7 +182,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 return 8 < age && age <= 25
               },
@@ -196,7 +196,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 const active = 2 <= age && age <= 25
                 if (!active) {
@@ -214,7 +214,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 const thisYear = datesGenerator(situation.dateDeValeur).thisYear
                   .id
@@ -223,7 +223,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                   20 <= age &&
                   age < 25 &&
                   ![Activite.Etudiant, ...ACTIVITES_ACTIF].includes(
-                    subject.activite
+                    subject.activite,
                   ) &&
                   !subject.ass_precondition_remplie &&
                   !subject.service_civique &&
@@ -242,7 +242,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
                 60 <=
                 IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 ),
               steps: [r("gir")],
             },
@@ -254,7 +254,7 @@ function individuBlockFactory(id, chapter?: ChapterName) {
               isActive: (subject, situation) => {
                 const age = IndividuMethods.age(
                   subject,
-                  datesGenerator(situation.dateDeValeur).today.value
+                  datesGenerator(situation.dateDeValeur).today.value,
                 )
                 return age <= 25
               },
@@ -326,7 +326,7 @@ function extraBlock() {
         isActive: (subject) =>
           (subject.scolarite === Scolarite.EnseignementSuperieur &&
             ["public", "prive_sous_contrat"].includes(
-              subject.statuts_etablissement_scolaire
+              subject.statuts_etablissement_scolaire,
             )) ||
           subject._contratAlternance === Activite.Apprenti,
         steps: [
@@ -457,7 +457,7 @@ function housingBlock() {
         isActive: (_subject, situation) => {
           const age = IndividuMethods.age(
             situation.demandeur,
-            datesGenerator(situation.dateDeValeur).today.value
+            datesGenerator(situation.dateDeValeur).today.value,
           )
           const proprietaire =
             situation.menage.statut_occupation_logement ===
@@ -541,7 +541,7 @@ function resourceBlocks(situation) {
               const ressourceMap = getIndividuRessourceTypesByCategory(
                 individu,
                 category.id,
-                situation
+                situation,
               )
               return Object.keys(ressourceMap).filter((k) => ressourceMap[k])
                 .length
@@ -555,7 +555,7 @@ function resourceBlocks(situation) {
               }),
             ],
           }
-        })
+        }),
       ),
     }
   }

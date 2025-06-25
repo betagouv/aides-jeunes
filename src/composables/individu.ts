@@ -7,7 +7,7 @@ export const useIndividu = (individuId: string) => {
   const { individu } = IndividuMethods.get(
     store.peopleParentsFirst,
     role,
-    individuId
+    individuId,
   )
   return individu
 }

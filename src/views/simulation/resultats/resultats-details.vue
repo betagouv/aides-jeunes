@@ -43,7 +43,7 @@ const benefit = computed(() => {
 })
 
 const ressourcesYearMinusTwoCaptured = computed(
-  () => store.ressourcesYearMinusTwoCaptured
+  () => store.ressourcesYearMinusTwoCaptured,
 )
 
 onMounted(async () => {
@@ -59,13 +59,13 @@ onMounted(async () => {
     StatisticsMixin.methods.sendBenefitsStatistics(
       benefits.value,
       EventAction.ShowDetailsFromGroupPage,
-      benefitId.toString()
+      benefitId.toString(),
     )
   } else {
     StatisticsMixin.methods.sendBenefitsStatistics(
       benefits.value,
       EventAction.ShowDetails,
-      benefitId.toString()
+      benefitId.toString(),
     )
   }
 })

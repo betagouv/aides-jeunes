@@ -68,10 +68,13 @@ function mock(app: express.Application) {
           situation,
           req.params.id,
           result,
-          false
+          false,
         )
         res.send(
-          Object.assign({ _id: cache[req.params.id]._id }, mockResultSimulation)
+          Object.assign(
+            { _id: cache[req.params.id]._id },
+            mockResultSimulation,
+          ),
         )
       })
     } catch {

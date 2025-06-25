@@ -13,7 +13,7 @@ const isLessThanFiftyYearsOld = (props) => {
     simulation.answers.current,
     "individu",
     "date_naissance",
-    "demandeur"
+    "demandeur",
   )
   return dayjs(periods.today.value).diff(date_naissance, "year") < 50
 }
@@ -74,7 +74,7 @@ export default {
           const value = getAnswer(
             simulation.answers.current,
             "menage",
-            "_logementType"
+            "_logementType",
           )
           return value === LogementCategory.Locataire
         },

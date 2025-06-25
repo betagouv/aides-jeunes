@@ -7,7 +7,7 @@ import { computed, onMounted } from "vue"
 const { benefit, currentLieu, updating } = useLieux()
 
 const fallback = computed(() =>
-  benefit.value?.id ? `/simulation/resultats/${benefit.value.id}` : null
+  benefit.value?.id ? `/simulation/resultats/${benefit.value.id}` : null,
 )
 
 onMounted(() => {

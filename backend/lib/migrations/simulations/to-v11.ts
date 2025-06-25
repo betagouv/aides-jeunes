@@ -16,7 +16,7 @@ const AE_map = {
 function replaceAutoEntrepreneurInRessources(answers) {
   const ressourcesList = answers.filter(
     (answer) =>
-      answer.entityName === "individu" && answer.fieldName === "ressources"
+      answer.entityName === "individu" && answer.fieldName === "ressources",
   )
 
   ressourcesList.forEach((ressources) => {
@@ -38,7 +38,7 @@ function replaceAutoEntrepreneurInRessources(answers) {
 
 function replaceAutoEntrepeneurInRpnsRessources(answers) {
   const rnpsRessourcesList = answers.filter(
-    (answer) => answer.entityName === "individu" && answer.fieldName === "rpns"
+    (answer) => answer.entityName === "individu" && answer.fieldName === "rpns",
   )
 
   rnpsRessourcesList.forEach((rnpsRessources) => {
@@ -56,19 +56,19 @@ function replaceAutoEntrepeneurInRpnsRessources(answers) {
 
         // Récupères le montant des 4 derniers mois et fait la moyenne des résultats pour calculer le revenu annuel
         const year = Object.keys(result.amounts).find(
-          (key) => key.length === 4
+          (key) => key.length === 4,
         )!
         const amountsByMonthKey = Object.keys(result.amounts).filter(
-          (key) => key.length === 7
+          (key) => key.length === 7,
         )
         const amountsByMonthKeyToSum = amountsByMonthKey.filter(
-          (key) => !key.startsWith(year)
+          (key) => !key.startsWith(year),
         )
         const newYear = amountsByMonthKeyToSum[0].slice(0, 4)
         result.amounts[newYear] =
           (amountsByMonthKeyToSum.reduce(
             (accum, key) => accum + result.amounts[key],
-            0
+            0,
           ) /
             (amountsByMonthKeyToSum.length || 1)) *
           12

@@ -52,15 +52,15 @@ function setTop(benefit: StandardBenefit, institution: InstitutionRaw) {
     (institution.type === "national"
       ? 3
       : benefit.source == "aides-velo"
-      ? 13
-      : 14)
+        ? 13
+        : 14)
 
   return benefit.top || default_top
 }
 
 function setDefaults(
   benefit: StandardBenefit,
-  institution: Institution
+  institution: Institution,
 ): StandardBenefit {
   benefit.id = generateBenefitId(benefit)
   benefit.top = setTop(benefit, institution)
@@ -74,7 +74,7 @@ export function generate(
   aidesVeloBenefitListGenerator?: typeof aidesVeloGenerator,
   fslGenerator?: typeof buildFSL,
   apaGenerator?: typeof buildAPA,
-  incitationsCovoiturageGenerator?: typeof buildIncitationsCovoiturage
+  incitationsCovoiturageGenerator?: typeof buildIncitationsCovoiturage,
 ): BenefitCatalog {
   const institutions = transformInstitutions(collections.institutions.items)
   collections.benefits_javascript.items.forEach((benefit) => {
@@ -141,6 +141,6 @@ export default {
       aidesVeloGenerator,
       buildFSL,
       buildAPA,
-      buildIncitationsCovoiturage
+      buildIncitationsCovoiturage,
     ),
 }

@@ -18,7 +18,7 @@ const eventCategoryHome = EventCategory.Home
 const ctaLabel = computed(() =>
   hasExistingSituation.value
     ? "Commencer une nouvelle simulation"
-    : "Je commence ma simulation"
+    : "Je commence ma simulation",
 )
 
 function newSituation() {

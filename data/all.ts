@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 let configFile = path.resolve(
   __dirname,
-  "../contribuer/public/admin/config.yml"
+  "../contribuer/public/admin/config.yml",
 )
 let jamstack: Jamstack
 
@@ -18,7 +18,7 @@ if (existsSync(configFile)) {
 } else {
   configFile = path.resolve(
     __dirname,
-    "../../contribuer/public/admin/config.yml"
+    "../../contribuer/public/admin/config.yml",
   )
   jamstack = jamstackLoader.get(configFile)
 }

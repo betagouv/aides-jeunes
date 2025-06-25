@@ -56,7 +56,7 @@ function getAnonymizedAnswer(answer, simulation) {
               entityName: answer.entityName,
               fieldName: "age",
               value: Math.round(
-                (dt.getTime() - dob.getTime()) / 365.25 / 24 / 60 / 60 / 1000
+                (dt.getTime() - dob.getTime()) / 365.25 / 24 / 60 / 60 / 1000,
               ),
             }
           }

@@ -12,7 +12,7 @@ const webhookRoutes = function (api: express.Express) {
     express.raw({ type: "*/*" }),
     verifyAuthentication,
     validateRequestPayload,
-    postOnMattermost
+    postOnMattermost,
   )
 }
 export default webhookRoutes

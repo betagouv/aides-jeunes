@@ -9,7 +9,7 @@ const VERSION = 15
 
 function getAge(simulation) {
   let age = simulation.answers.all.find(
-    (answer) => answer.id === "demandeur" && answer.fieldName === "age"
+    (answer) => answer.id === "demandeur" && answer.fieldName === "age",
   )?.value
 
   if (age !== undefined) {
@@ -18,7 +18,7 @@ function getAge(simulation) {
 
   const dateOBirth = simulation.answers.all.find(
     (answer) =>
-      answer.id === "demandeur" && answer.fieldName === "date_naissance"
+      answer.id === "demandeur" && answer.fieldName === "date_naissance",
   )?.value
 
   if (!dateOBirth) {
@@ -36,7 +36,7 @@ function transformAnswersWithServiceCivique(answers, age) {
   if (
     answers.find(
       (answer) =>
-        answer.id === "demandeur" && answer.fieldName === "service_civique"
+        answer.id === "demandeur" && answer.fieldName === "service_civique",
     )
   ) {
     return answers
@@ -81,7 +81,7 @@ function transformAnswersWithServiceCivique(answers, age) {
   answers.splice(
     handicapAnswerIndex !== -1 ? handicapAnswerIndex : activityAnswerIndex + 1,
     0,
-    serviceCiviqueAnswer
+    serviceCiviqueAnswer,
   )
   return answers
 }
@@ -92,11 +92,11 @@ export default {
 
     simulation.answers.all = transformAnswersWithServiceCivique(
       simulation.answers.all,
-      age
+      age,
     )
     simulation.answers.current = transformAnswersWithServiceCivique(
       simulation.answers.current,
-      age
+      age,
     )
 
     return simulation

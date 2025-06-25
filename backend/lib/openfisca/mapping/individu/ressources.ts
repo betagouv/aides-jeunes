@@ -19,11 +19,11 @@ function salaireNetToImposable(value, period, individu) {
     const date = new Date(period)
     const hours = getParameter(
       "marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel",
-      date
+      date,
     )
     const rate = getParameter(
       "marche_travail.salaire_minimum.smic.smic_b_horaire",
-      date
+      date,
     )
     return Math.max(0, result - hours * rate)
   }

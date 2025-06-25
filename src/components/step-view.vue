@@ -18,8 +18,8 @@ const buttonIcon = computed(() =>
   isLeafNode.value
     ? "fr-icon-leaf-line"
     : open.value
-    ? "fr-icon-arrow-down-s-line"
-    : "fr-icon-arrow-right-s-line"
+      ? "fr-icon-arrow-down-s-line"
+      : "fr-icon-arrow-right-s-line",
 )
 const label = computed((): string => {
   const count = totalSubSteps.value

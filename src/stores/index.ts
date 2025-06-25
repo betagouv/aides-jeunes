@@ -77,7 +77,7 @@ function defaultStore(): Store {
 
 function getPersitedStateProperties(
   state: Store,
-  save = false
+  save = false,
 ): PersistedStore {
   const persistedStoreData: PersistedStore = {
     simulationId: state.simulationId,
@@ -117,7 +117,7 @@ export function persistDataOnSessionStorage({
     }
     storageService.session.setItem(
       "store",
-      getPersitedStateProperties(store, true)
+      getPersitedStateProperties(store, true),
     )
   })
 }
@@ -127,7 +127,7 @@ export const useStore = defineStore("store", {
   getters: {
     passSanityCheck(): boolean {
       return Boolean(
-        this.situation.demandeur && this.situation.demandeur.date_naissance
+        this.situation.demandeur && this.situation.demandeur.date_naissance,
       )
     },
     getDebug(): boolean {
@@ -138,7 +138,7 @@ export const useStore = defineStore("store", {
         .concat(
           this.situation.demandeur,
           this.situation.conjoint,
-          this.situation.enfants
+          this.situation.enfants,
         )
         .filter((individu) => individu)
     },
@@ -147,18 +147,18 @@ export const useStore = defineStore("store", {
     },
     getAllAnsweredSteps(): any[] {
       const allSteps = this.getAllSteps.filter(
-        (step) => step.path !== "/simulation/resultats" && step.isActive
+        (step) => step.path !== "/simulation/resultats" && step.isActive,
       )
       return allSteps.filter((step) =>
-        isStepAnswered(this.simulation.answers.all, step)
+        isStepAnswered(this.simulation.answers.all, step),
       )
     },
     lastUnansweredStep(): any {
       const allSteps = this.getAllSteps.filter(
-        (step) => step.path !== "/simulation/resultats" && step.isActive
+        (step) => step.path !== "/simulation/resultats" && step.isActive,
       )
       return allSteps.find(
-        (step) => !isStepAnswered(this.simulation.answers.all, step)
+        (step) => !isStepAnswered(this.simulation.answers.all, step),
       )
     },
     ressourcesYearMinusTwoCaptured() {
@@ -203,8 +203,8 @@ export const useStore = defineStore("store", {
         (ressource) =>
           this.situation?.demandeur[ressource.id] &&
           Object.values(this.situation?.demandeur[ressource.id]).some(
-            (value) => value
-          )
+            (value) => value,
+          ),
       )
     },
     fetchRepresentation() {
@@ -213,7 +213,7 @@ export const useStore = defineStore("store", {
           .get(
             `/api/simulation/${
               simulationId || this.simulationId
-            }/${representation}`
+            }/${representation}`,
           )
           .then((response) => response.data)
       }
@@ -222,7 +222,7 @@ export const useStore = defineStore("store", {
       return Boolean(
         this.simulationId &&
           this.calculs.resultats._id &&
-          this.calculs.resultats._id === this.simulationId
+          this.calculs.resultats._id === this.simulationId,
       )
     },
     situation() {
@@ -235,7 +235,7 @@ export const useStore = defineStore("store", {
       const userinfo = this.simulation.answers.all.find(
         (answer) =>
           answer.entityName === "franceconnect" &&
-          answer.fieldName === "userinfo"
+          answer.fieldName === "userinfo",
       )
       return userinfo?.value["email"]
     },
@@ -252,7 +252,7 @@ export const useStore = defineStore("store", {
         this.simulation.answers.all,
         answer.entityName,
         answer.fieldName,
-        answer.id
+        answer.id,
       )
       if (!isEqual(simulationAnswerValue, answer.value)) {
         this.setDirty()
@@ -279,7 +279,7 @@ export const useStore = defineStore("store", {
             (answer: Answer) =>
               answer.id === step.id &&
               answer.entityName === step.entity &&
-              answer.fieldName === step.variable
+              answer.fieldName === step.variable,
           )
           if (currentAnswer) {
             currentAnswers.push(currentAnswer)
@@ -356,7 +356,7 @@ export const useStore = defineStore("store", {
     editEnfant(id: number) {
       // When you edit a children you need to remove all current answer after the child validation
       const currentLastIndex = this.simulation.answers.current.findIndex(
-        (answer) => answer.entityName === "enfants"
+        (answer) => answer.entityName === "enfants",
       )
 
       const currentAnswers =
@@ -367,7 +367,7 @@ export const useStore = defineStore("store", {
       this.simulation.answers = {
         ...this.simulation.answers,
         current: currentAnswers.filter(
-          (answer) => answer.id !== `enfant_${id}`
+          (answer) => answer.id !== `enfant_${id}`,
         ),
       }
 
@@ -381,7 +381,7 @@ export const useStore = defineStore("store", {
         answers: {
           all: this.simulation.answers.all.filter((answer) => answer.id !== id),
           current: this.simulation.answers.current.filter(
-            (answer) => answer.id !== id
+            (answer) => answer.id !== id,
           ),
         },
       }
@@ -506,7 +506,7 @@ export const useStore = defineStore("store", {
           `/api/simulation/${this.simulationId}/followup`,
           {
             headers,
-          }
+          },
         )
 
         this.followup = data
@@ -534,7 +534,7 @@ export const useStore = defineStore("store", {
     },
     redirection(next: (path: string) => void) {
       this.setMessage(
-        `Vous avez été redirigé ou redirigée sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VITE_CONTACT_EMAIL}">${process.env.VITE_CONTACT_EMAIL}</a>.`
+        `Vous avez été redirigé ou redirigée sur la première page du simulateur. Vous pensez que c'est une erreur&nbsp;? Contactez-nous&nbsp: <a href="mailto:${process.env.VITE_CONTACT_EMAIL}">${process.env.VITE_CONTACT_EMAIL}</a>.`,
       )
       next("/simulation")
     },
@@ -554,8 +554,8 @@ export const useStore = defineStore("store", {
           if (Array.isArray(missingBenefits) && missingBenefits.length > 0) {
             this.setMessage(
               `🚀 Vous avez ajouté <abbr title="${missingBenefits.join(
-                ", "
-              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`
+                ", ",
+              )}">une nouvelle aide</abbr>&nbsp;!<br/>Étant donné que nous ne savons pas encore comment celle-ci doit être calculée, si vous faites votre simulation jusqu’au bout vous obtiendrez un message d’erreur.`,
             )
           }
         })

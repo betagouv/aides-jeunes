@@ -21,10 +21,10 @@ const getPageVisits = (pageStats, path) => {
 
 const getMatomoVisitsData = async (
   beginRange: dayjs.Dayjs,
-  endRange: dayjs.Dayjs
+  endRange: dayjs.Dayjs,
 ) => {
   const dateRange = `${beginRange.format("YYYY-MM-DD")},${endRange.format(
-    "YYYY-MM-DD"
+    "YYYY-MM-DD",
   )}`
   const piwikParameters = {
     period: "month",
@@ -42,13 +42,13 @@ const getMatomoVisitsData = async (
 
       return visitStatsAcc
     },
-    {}
+    {},
   )
 }
 
 const getSimulationsData = async (
   beginRange: dayjs.Dayjs,
-  endRange: dayjs.Dayjs
+  endRange: dayjs.Dayjs,
 ) => {
   const simulationCount = await Simulations.countDocuments({
     createdAt: { $gte: beginRange.toDate(), $lte: endRange.toDate() },
@@ -61,7 +61,7 @@ const getSimulationsData = async (
 
 const getFollowupsData = async (
   beginRange: dayjs.Dayjs,
-  endRange: dayjs.Dayjs
+  endRange: dayjs.Dayjs,
 ) => {
   const followupSendingStats = await Followups.aggregate([
     {
@@ -238,10 +238,10 @@ const getFollowupsData = async (
 
 const getMatomoEventsData = async (
   beginRange: dayjs.Dayjs,
-  endRange: dayjs.Dayjs
+  endRange: dayjs.Dayjs,
 ) => {
   const dateRange = `${beginRange.format("YYYY-MM-DD")},${endRange.format(
-    "YYYY-MM-DD"
+    "YYYY-MM-DD",
   )}`
   const piwikParameters = {
     period: "month",
@@ -252,10 +252,10 @@ const getMatomoEventsData = async (
   const dateKey = beginRange.format("YYYY-MM")
   return {
     showAccompanimentCount: matomoEventData[dateKey].find(
-      (d) => d.label === "show-accompaniment-link"
+      (d) => d.label === "show-accompaniment-link",
     )["nb_events"],
     clickAccompanimentCount: matomoEventData[dateKey].find(
-      (d) => d.label === "click-accompaniment-link"
+      (d) => d.label === "click-accompaniment-link",
     )["nb_events"],
   }
 }

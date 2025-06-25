@@ -42,7 +42,7 @@ export default {
 
     if (params.has("data-with-logo")) {
       this.iframeStore.setIframeHeaderCollapse(
-        params.get("data-with-logo") !== "false"
+        params.get("data-with-logo") !== "false",
       )
     }
 

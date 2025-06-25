@@ -47,7 +47,7 @@ async function retrieveAccessToken(code, nonceToken) {
 
   const decoded = jwt.verify(
     response.data.id_token,
-    FranceConnectConfig.clientSecret
+    FranceConnectConfig.clientSecret,
   )
 
   if (decoded.nonce !== nonceToken) {
@@ -91,7 +91,7 @@ async function retrieveUserAnswers(accessToken, idToken) {
   try {
     const mesriResponse = await axios.get(
       FranceConnectConfig.mesriEndpoint as string,
-      { headers }
+      { headers },
     )
 
     answers.push({
@@ -120,7 +120,7 @@ async function createSimulationFromAnswer(answers) {
       headers: {
         "Content-Type": "application/json",
       },
-    }
+    },
   )
 
   return simulation.data
@@ -128,7 +128,7 @@ async function createSimulationFromAnswer(answers) {
 
 function generateLogoutRedirectURL(
   idToken: string,
-  logoutStateToken: string
+  logoutStateToken: string,
 ): string {
   const baseURL = config.baseURL
   const logoutCallbackURL = `${baseURL}/logout-callback`

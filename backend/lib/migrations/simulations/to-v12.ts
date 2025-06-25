@@ -18,7 +18,7 @@ function updateBourseCriteresSociauxCommuneDomicileFamilial(answers) {
     (answer) =>
       answer.id === "demandeur" &&
       answer.entityName === "individu" &&
-      answer.fieldName === "_bourseCriteresSociauxCommuneDomicileFamilial"
+      answer.fieldName === "_bourseCriteresSociauxCommuneDomicileFamilial",
   )
 
   if (!answer) return
@@ -38,7 +38,7 @@ export default {
   apply(simulation) {
     updateBourseCriteresSociauxCommuneDomicileFamilial(simulation.answers.all)
     updateBourseCriteresSociauxCommuneDomicileFamilial(
-      simulation.answers.current
+      simulation.answers.current,
     )
     return simulation
   },

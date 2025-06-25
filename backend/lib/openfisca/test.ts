@@ -53,7 +53,7 @@ export const EXTENSION_VARIABLES = {
 benefits.all
   .filter(
     (benefit) =>
-      benefit.source === "openfisca" && benefit.institution.repository
+      benefit.source === "openfisca" && benefit.institution.repository,
   )
   .forEach((benefit) => {
     const repository = `openfisca-${benefit.institution.repository}`
@@ -91,7 +91,7 @@ const TEST_ATTRIBUTES = [
 
 export const generateTest = function (details, situation) {
   const openfiscaRequest = mapping.buildOpenFiscaRequest(
-    situation.toObject ? situation.toObject() : situation
+    situation.toObject ? situation.toObject() : situation,
   )
   const periods = common.getPeriods(situation.dateDeValeur)
 
@@ -99,7 +99,7 @@ export const generateTest = function (details, situation) {
     common.requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)
-    }
+    },
   )
 
   const openfiscaPeriods: Set<string> = new Set()
@@ -116,13 +116,13 @@ export const generateTest = function (details, situation) {
       openfiscaRequest,
       prestations,
       periods[value],
-      undefined
+      undefined,
     )
   })
 
   const testInputs = prepareTestSituationForSpecificExtension(
     openfiscaRequest,
-    details.extension
+    details.extension,
   )
 
   const testCase = {

@@ -90,7 +90,7 @@
         {{
           institutions.reduce(
             (acc, institution) => acc + institution.benefits.length,
-            0
+            0,
           )
         }}
         <br />
@@ -171,7 +171,7 @@ const filterByBenefit = (type, searchTermsLower) => {
       const filteredBenefits = institution.benefits.filter(
         (benefit) =>
           normalizeString(benefit.label).includes(searchTermsLower) ||
-          normalizeString(institution.label).includes(searchTermsLower)
+          normalizeString(institution.label).includes(searchTermsLower),
       )
       if (filteredBenefits.length > 0) {
         return { ...institution, benefits: filteredBenefits } // Keep only the matching benefits
@@ -186,23 +186,23 @@ const institutionsGroups = computed(() => {
       europeen: institutionsBenefits["europeen"],
       national: institutionsBenefits["national"],
       region: institutionsBenefits["region"].filter(
-        (region) => region.location === selectedCommune.value!.region
+        (region) => region.location === selectedCommune.value!.region,
       ),
       departement: institutionsBenefits["departement"].filter(
         (departement) =>
-          departement.location === selectedCommune.value!.departement
+          departement.location === selectedCommune.value!.departement,
       ),
       epci: institutionsBenefits["epci"].filter((epci) =>
-        epci.location?.includes(selectedCommune.value!.code)
+        epci.location?.includes(selectedCommune.value!.code),
       ),
       commune: institutionsBenefits["commune"].filter(
-        (commune) => commune.location === selectedCommune.value!.code
+        (commune) => commune.location === selectedCommune.value!.code,
       ),
       caf: institutionsBenefits["caf"].filter((caf) =>
-        caf.location?.includes(selectedCommune.value!.departement)
+        caf.location?.includes(selectedCommune.value!.departement),
       ),
       msa: institutionsBenefits["msa"].filter((msa) =>
-        msa.location?.includes(selectedCommune.value!.departement)
+        msa.location?.includes(selectedCommune.value!.departement),
       ),
     }
   }
@@ -212,7 +212,7 @@ const institutionsGroups = computed(() => {
       Object.keys(types).map((type) => [
         type,
         filterByBenefit(type, searchTermsLower),
-      ])
+      ]),
     )
   }
   return institutionsBenefits
@@ -251,13 +251,13 @@ function countFilteredBenefits(): number {
       institutionsGroups.value[type].reduce(
         (benefitsCount, institution) =>
           benefitsCount + institution.benefits.length,
-        0
+        0,
       )
     )
   }, 0)
 }
 
 const alertClass = computed(() =>
-  countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error"
+  countFilteredBenefits() > 0 ? "fr-alert--success" : "fr-alert--error",
 )
 </script>

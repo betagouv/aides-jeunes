@@ -17,7 +17,7 @@ export default function (api: Express) {
       express.json(),
       simulationController.create,
       simulationController.attachAccessCookie,
-      simulationController.show
+      simulationController.show,
     )
 
   const route = express.Router({ mergeParams: true })
@@ -33,7 +33,7 @@ export default function (api: Express) {
   route.get(
     "/redirect",
     simulationController.attachAccessCookie,
-    simulationController.redirect
+    simulationController.redirect,
   )
 
   // Enable CORS for openfisca-tracer
@@ -41,13 +41,13 @@ export default function (api: Express) {
   route.get(
     "/openfisca-request",
     cors({ origin: "*" }),
-    simulationController.openfiscaRequest
+    simulationController.openfiscaRequest,
   )
 
   route.post(
     "/openfisca-test",
     express.json(),
-    simulationController.openfiscaTest
+    simulationController.openfiscaTest,
   )
   route.get("/openfisca-trace", simulationController.openfiscaTrace)
 
@@ -57,7 +57,7 @@ export default function (api: Express) {
     route.get(
       `/${name}`,
       cors({ origin: "*" }),
-      teleservices.metadataResponseGenerator(teleservices[name])
+      teleservices.metadataResponseGenerator(teleservices[name]),
     )
   })
 
@@ -68,7 +68,7 @@ export default function (api: Express) {
     teleservices.checkCredentials,
     teleservices.attachPayloadSituation,
     teleservices.verifyRequest,
-    teleservices.exportRepresentation
+    teleservices.exportRepresentation,
   )
 
   api.get("/simulation/demo", cors({ origin: "*" }), simulationDemo.get)
@@ -82,7 +82,7 @@ export default function (api: Express) {
    */
   specificSimulationRoutes.param(
     "simulationId",
-    simulationController.simulation
+    simulationController.simulation,
   )
   api.param("signedPayload", teleservices.decodePayload)
 }

@@ -23,17 +23,17 @@ const footerTemplate = readFile("templates/footer.mjml")
 const headerTemplate = readFile("templates/header.mjml")
 const simulationResultsTemplate = readFile("templates/simulation-results.mjml")
 const simulationUsefulnessTemplate = readFile(
-  "templates/simulation-usefulness.mjml"
+  "templates/simulation-usefulness.mjml",
 )
 const emailTemplates = {
   [EmailType.SimulationResults]: simulationResultsTemplate,
   [EmailType.SimulationUsefulness]: simulationUsefulnessTemplate,
 }
 const simulationResultsTextTemplate = readFile(
-  "templates/simulation-results.txt"
+  "templates/simulation-results.txt",
 )
 const simulationUsefulnessTextTemplate = readFile(
-  "templates/simulation-usefulness.txt"
+  "templates/simulation-usefulness.txt",
 )
 const textTemplates = {
   [EmailType.SimulationResults]: simulationResultsTextTemplate,
@@ -44,7 +44,7 @@ const dataTemplateBuilder = (
   emailType: EmailType,
   followup,
   formatedBenefits,
-  benefitTexts
+  benefitTexts,
 ) => {
   return {
     benefitTexts,
@@ -95,7 +95,7 @@ export async function emailRender(emailType: EmailType, followup) {
       : followup.populate("simulation"))
 
     parameters = await openfiscaController.getParametersAsync(
-      populated.simulation.dateDeValeur
+      populated.simulation.dateDeValeur,
     )
 
     const situationResults = await populated.simulation.compute()
@@ -103,7 +103,7 @@ export async function emailRender(emailType: EmailType, followup) {
 
     formatedBenefits = formatBenefits(benefits, parameters)
     benefitTexts = benefits.map((benefit) =>
-      basicBenefitText(benefit, parameters)
+      basicBenefitText(benefit, parameters),
     )
   }
 
@@ -111,7 +111,7 @@ export async function emailRender(emailType: EmailType, followup) {
     emailType,
     followup,
     formatedBenefits,
-    benefitTexts
+    benefitTexts,
   )
 
   return Promise.all([
@@ -141,7 +141,7 @@ export async function emailRender(emailType: EmailType, followup) {
 
 export async function emailRenderBySurveyType(
   surveyType: SurveyType,
-  followup
+  followup,
 ) {
   switch (surveyType) {
     case SurveyType.TrackClickOnSimulationUsefulnessEmail:
@@ -149,12 +149,12 @@ export async function emailRenderBySurveyType(
     case SurveyType.BenefitAction:
       return Promise.reject(
         new Error(
-          `This surveyType "${surveyType}" is not supposed to be sent through an email`
-        )
+          `This surveyType "${surveyType}" is not supposed to be sent through an email`,
+        ),
       )
     default:
       return Promise.reject(
-        new Error(`This surveyType "${surveyType}" has no email template`)
+        new Error(`This surveyType "${surveyType}" has no email template`),
       )
   }
 }

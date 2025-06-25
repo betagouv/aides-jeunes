@@ -22,11 +22,11 @@ const recapEmailState = computed(() => store.recapEmailState)
 const emailFilled = computed(() => emailValue.value?.length ?? 0 > 0)
 const phoneFilled = computed(() => phoneValue.value?.length ?? 0 > 0)
 const emailAndPhoneFilled = computed(
-  () => emailFilled.value && phoneFilled.value
+  () => emailFilled.value && phoneFilled.value,
 )
 
 const simulationId = computed(
-  () => !store.calculs.dirty && store.calculs.resultats?._id
+  () => !store.calculs.dirty && store.calculs.resultats?._id,
 )
 
 const inputPhonePattern = computed(() => {
@@ -74,7 +74,7 @@ const inputPhoneIsValid = () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
       EventAction.FormulaireTelephoneInvalide,
-      router.currentRoute.value.fullPath
+      router.currentRoute.value.fullPath,
     )
     return false
   }
@@ -89,7 +89,7 @@ const inputEmailIsValid = () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
       EventAction.FormulaireEmailInvalide,
-      router.currentRoute.value.fullPath
+      router.currentRoute.value.fullPath,
     )
     return false
   }

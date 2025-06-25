@@ -278,7 +278,7 @@ export default {
               followup.surveys = followup.surveys.filter(
                 (survey) =>
                   survey.type === SurveyType.BenefitAction &&
-                  survey.answers.length
+                  survey.answers.length,
               )
               return followup
             })

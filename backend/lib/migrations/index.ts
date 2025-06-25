@@ -15,7 +15,7 @@ async function getMigrationsFiles() {
     if (fs.statSync(`${__dirname}/${folderName}`).isDirectory()) {
       migrationFiles[folderName] = {}
       for (const migrationFileName of getMigrationsFileNamesByModelName(
-        folderName
+        folderName,
       )) {
         migrationFiles[folderName][migrationFileName] = await import(
           `${__dirname}/${folderName}/${migrationFileName}`
@@ -29,7 +29,7 @@ async function getMigrationsFiles() {
 function getSortedMigrations(modelName) {
   return Object.values(migrationFilesByModelName[modelName]).sort(function (
     a: any,
-    b: any
+    b: any,
   ) {
     return a.default.version - b.default.version
   })

@@ -6,7 +6,7 @@ const VERSION = 6
 
 function removeOldField(answers, field) {
   const newAnswers = answers[field].filter(
-    (answer) => answer.fieldName !== "nombre_enfants"
+    (answer) => answer.fieldName !== "nombre_enfants",
   )
   answers.set(field, newAnswers, { strict: true })
 }

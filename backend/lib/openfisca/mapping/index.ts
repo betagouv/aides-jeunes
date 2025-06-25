@@ -123,7 +123,7 @@ function mapIndividus(situation) {
     SituationMethods.getIndividusSortedParentsFirst(situation),
     function (individu) {
       return common.isIndividuValid(individu, situation)
-    }
+    },
   )
   return individus
     .map(function (individu) {
@@ -140,7 +140,7 @@ export function giveValueToRequestedVariables(
   testCase,
   prestations,
   periods,
-  value
+  value,
 ) {
   if (!(periods instanceof Array)) {
     periods = [periods]
@@ -232,14 +232,14 @@ export function buildOpenFiscaRequest(sourceSituation) {
       return (
         definition.type === "float" && definition.openfiscaPeriod === "month"
       )
-    }
+    },
   )
 
   setNonInjected(
     testCase,
     prestationsFinancieres,
     difference(periods.last12Months, periods.last3Months),
-    0
+    0,
   )
 
   const prestationsFinancieresAtZeroRecently = pickBy(
@@ -250,14 +250,14 @@ export function buildOpenFiscaRequest(sourceSituation) {
         definition.setToZeroRecently &&
         definition.openfiscaPeriod === "month"
       )
-    }
+    },
   )
 
   setNonInjected(
     testCase,
     prestationsFinancieresAtZeroRecently,
     periods.last3Months,
-    0
+    0,
   )
   last3MonthsDuplication(testCase, situation.dateDeValeur)
 
@@ -265,7 +265,7 @@ export function buildOpenFiscaRequest(sourceSituation) {
     requestedVariables,
     function (definition) {
       return filterByInterestFlag(definition, situation.demandeur)
-    }
+    },
   )
 
   const openfiscaPeriods: Set<string> = new Set()

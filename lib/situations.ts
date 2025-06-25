@@ -39,7 +39,7 @@ const getIndividu = (situation: Situation, id: string) => {
 
 export function generateSituation(
   simulation,
-  useAll?: any
+  useAll?: any,
 ): Situation | Record<string, never> {
   if (!simulation) {
     return {}
@@ -81,7 +81,7 @@ export function generateSituation(
       if (answer.id === "enfants") {
         answer.value.forEach((response) => {
           const enfant = situation?.enfants?.find(
-            (enfant) => enfant.id == response.id
+            (enfant) => enfant.id == response.id,
           )
           if (enfant) {
             enfant[answer.fieldName] = response.value
@@ -130,8 +130,8 @@ export function generateSituation(
                   dates,
                   individu,
                   ressourceTypes.find(
-                    (ressourceType) => ressourceType.id === ressource
-                  )
+                    (ressourceType) => ressourceType.id === ressource,
+                  ),
                 )
               })
               break
@@ -147,7 +147,7 @@ export function generateSituation(
                 (a) =>
                   a.entityName === answer.entityName &&
                   a.id === answer.id &&
-                  a.fieldName === "ressources"
+                  a.fieldName === "ressources",
               )
               answer.value.forEach((ressource) => {
                 if (declaredRessources?.value.includes(ressource.id)) {
@@ -166,7 +166,7 @@ export function generateSituation(
     } else {
       if (answer.fieldName === "depcom" || answer.fieldName === "loyer") {
         Object.keys(answer.value).forEach(
-          (key) => (situation[answer.entityName][key] = answer.value[key])
+          (key) => (situation[answer.entityName][key] = answer.value[key]),
         )
       } else if (answer.fieldName === "en_couple") {
         situation[answer.entityName][answer.fieldName] = answer.value

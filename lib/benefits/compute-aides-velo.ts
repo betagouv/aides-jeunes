@@ -31,7 +31,7 @@ export function computeAidesVeloBenefits(
   aidesVeloBenefitList: StandardBenefit[],
   resultBenefitsList: StandardBenefit[] | null,
   situation: Situation,
-  openfiscaResponse
+  openfiscaResponse,
 ) {
   if (!isSituationEligibleForAidesVelo(situation)) return
 
@@ -67,7 +67,7 @@ export function computeAidesVeloBenefits(
             link: current.url,
           }
           return acc
-        }, {})
+        }, {}),
     )
   }
 

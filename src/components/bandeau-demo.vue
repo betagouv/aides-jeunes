@@ -44,7 +44,7 @@ export default {
           const benefitIds: string[] = []
           for (let entry of response.data) {
             const match = entry.filename.match(
-              /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i
+              /data\/benefits\/(?:openfisca|javascript)\/(.*)(?:\.yml|\.yaml)$/i,
             )
             if (match) {
               benefitIds.push(match[1])
@@ -52,7 +52,7 @@ export default {
           }
           if (benefitIds.length) {
             this.benefitLink = `/simulation/resultats?debug=${benefitIds.join(
-              ","
+              ",",
             )}`
           }
         })

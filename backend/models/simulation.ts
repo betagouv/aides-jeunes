@@ -67,7 +67,7 @@ const SimulationSchema = new mongoose.Schema<Simulation, SimulationModel>(
     teleservice: String,
     token: String,
   },
-  { minimize: false }
+  { minimize: false },
 )
 
 SimulationSchema.static("cookiePrefix", (): string => {
@@ -119,7 +119,7 @@ SimulationSchema.method("compute", function (showPrivate) {
         situation,
         id,
         openfiscaResponse,
-        showPrivate
+        showPrivate,
       )
       resolve(aides)
     })
@@ -128,5 +128,5 @@ SimulationSchema.method("compute", function (showPrivate) {
 
 export default mongoose.model<Simulation, SimulationModel>(
   "Simulation",
-  SimulationSchema
+  SimulationSchema,
 )

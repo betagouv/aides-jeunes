@@ -28,7 +28,7 @@ export default {
     question: ({ simulation }) => {
       return `Avez-vous habité Paris au moins 3 ans depuis ${yearsAgo(
         5,
-        simulation.dateDeValeur
+        simulation.dateDeValeur,
       )} ?`
     },
   }),

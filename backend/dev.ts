@@ -29,12 +29,12 @@ async function createServer() {
   app.use(cors())
   app.use(
     "/documents/",
-    express.static(path.join(__dirname, "../dist/documents"))
+    express.static(path.join(__dirname, "../dist/documents")),
   )
   app.use(vite.middlewares)
   app.listen(port, () => {
     console.log(
-      `Aides Jeunes server listening on port ${port}, in ${app.get("env")}`
+      `Aides Jeunes server listening on port ${port}, in ${app.get("env")}`,
     )
   })
 }

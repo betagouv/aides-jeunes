@@ -5,7 +5,7 @@ import institutionsMap from "../../data/all.js"
 export function isGeographicallyIncluded(
   commune,
   institution,
-  epciInfoParams?: any
+  epciInfoParams?: any,
 ) {
   const typeInstitution = institution.type
   const idInstitution = institution.code_insee || institution.code_siren

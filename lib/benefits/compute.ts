@@ -23,7 +23,7 @@ function normalizeOpenfiscaRessources(testCase) {
     testCase.foyers_fiscaux._,
     testCase.menages._,
     testCase.familles._,
-    testCase.individus.demandeur || testCase.individus[individuId]
+    testCase.individus.demandeur || testCase.individus[individuId],
   )
 }
 
@@ -63,7 +63,7 @@ export function computeAides(
   situation: Situation,
   id: string,
   openfiscaResponse,
-  showPrivate?: boolean
+  showPrivate?: boolean,
 ) {
   const periods = datesGenerator(situation.dateDeValeur)
 
@@ -82,8 +82,8 @@ export function computeAides(
     ([] as any).concat(
       situation.demandeur,
       situation.conjoint,
-      ...(situation.enfants || [])
-    )
+      ...(situation.enfants || []),
+    ),
   )
 
   this.all
@@ -104,16 +104,16 @@ export function computeAides(
           // @ts-ignore
           assign({}, benefit, {
             montant: sumBy(individus, (i) =>
-              Math.abs(valueAt(benefit.id, i, period))
+              Math.abs(valueAt(benefit.id, i, period)),
             ),
-          })
+          }),
         )
       }
 
       const source = benefit.openfisca_eligibility_source || benefit.id
       const value = round(
         valueAt(source, computedRessources, period, benefit),
-        benefit
+        benefit,
       )
 
       if (!value || !customizationIds) {
@@ -146,7 +146,7 @@ export function computeAides(
           showUnexpectedAmount: benefit.computeUnexpectedAmount?.(situation),
           institution,
           legend: getBenefitLegend(benefit, openfiscaParameters),
-        })
+        }),
       )
     })
 
@@ -156,7 +156,7 @@ export function computeAides(
       aidesVeloList,
       result.droitsEligibles,
       situation,
-      openfiscaResponse
+      openfiscaResponse,
     )
   }
 

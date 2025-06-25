@@ -122,7 +122,7 @@ export default {
       const { individu } = IndividuMethods.get(
         this.store.peopleParentsFirst,
         role,
-        this.$route.params.id
+        this.$route.params.id,
       )
       return individu
     },
@@ -130,14 +130,14 @@ export default {
       const selectedTypes = Ressource.getIndividuRessourceTypesByCategory(
         individu,
         this.$route.params.category,
-        this.store.situation
+        this.store.situation,
       )
 
       const answers = getAnswer(
         this.store.simulation.answers.all,
         "individu",
         this.$route.params.category,
-        this.$route.params.id
+        this.$route.params.id,
       )
 
       return ressourceTypes.reduce((resourceTypes, type) => {
@@ -156,7 +156,7 @@ export default {
 
           const months = Ressource.getPeriodsForCurrentYear(
             this.store.dates,
-            type
+            type,
           )
 
           resourceTypes.push({

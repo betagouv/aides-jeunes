@@ -10,7 +10,7 @@ const ressourcesToDuplicate = concat(
   Object.keys(individuRessources.computedRessources),
   ressources.ressourceTypes.map(function (ressourceType) {
     return ressourceType.id
-  })
+  }),
 )
 
 function proxyWithCurrentResources(individu, dateDeValeur) {
@@ -24,11 +24,10 @@ function proxyWithCurrentResources(individu, dateDeValeur) {
     } else {
       const sumOverLast12Months = periods.last12Months.reduce(function (
         sum,
-        periodObject
+        periodObject,
       ) {
         return sum + (result[periodObject] || 0)
-      },
-      0)
+      }, 0)
       if (sumOverLast12Months) {
         const months = [
           ...periods.fiscalYear12Months,
@@ -83,7 +82,7 @@ function ressourcesYearMoins2Captured(situation) {
   const hasRfr =
     situation.foyer_fiscal && some(situation.foyer_fiscal.rfr, isNumber)
   const hasYm2Ressources = SituationMethods.getIndividusSortedParentsFirst(
-    situation
+    situation,
   ).some(function (individu) {
     return some(ressources.categoriesRnc, function (categorieRnc) {
       if (!individu[categorieRnc.id]) return false
@@ -93,7 +92,7 @@ function ressourcesYearMoins2Captured(situation) {
           individu[categorieRnc.id][yearMoins2],
           individu[categorieRnc.id][januaryYearMoins2],
         ],
-        isNumber
+        isNumber,
       )
     })
   })

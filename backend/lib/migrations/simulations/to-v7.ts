@@ -9,14 +9,14 @@ function updateLoyer(answers) {
     (answer) =>
       answer.id === "menage" &&
       answer.entityName === "menage" &&
-      answer.fieldName === "loyer"
+      answer.fieldName === "loyer",
   )
   if (indexOfLoyer > -1) {
     const indexOfChargesLocatives = answers.findIndex(
       (answer) =>
         answer.id === "menage" &&
         answer.entityName === "menage" &&
-        answer.fieldName === "charges_locatives"
+        answer.fieldName === "charges_locatives",
     )
     answers[indexOfLoyer] = {
       entityName: "menage",

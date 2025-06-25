@@ -22,7 +22,7 @@ export default {
       const { individu } = IndividuMethods.get(
         this.store.peopleParentsFirst,
         role,
-        this.$route.params.id
+        this.$route.params.id,
       )
       return individu
     },

@@ -187,7 +187,7 @@ export default {
     formatDroit(droit) {
       const droitEstime = formatDroitEstime(
         droit,
-        this.store.openFiscaParameters
+        this.store.openFiscaParameters,
       )
       const benefitLabel = capitalize(droit.label)
       const amount = `${droitEstime.value}${

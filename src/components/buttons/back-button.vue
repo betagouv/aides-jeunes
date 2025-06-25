@@ -54,7 +54,7 @@ const goBack = () => {
     EventAction.BoutonPrecedent,
     `${window.history.state?.position === 0 ? "Nouvel onglet - " : ""}${
       route.fullPath
-    }`
+    }`,
   )
 
   if (window.history.state?.position === 0) {

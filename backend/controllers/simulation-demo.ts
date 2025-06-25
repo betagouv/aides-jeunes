@@ -6,7 +6,7 @@ const artifactName = "cypress-json-base"
 
 async function getArtifactMetadata() {
   const artifactListResponse = await axios.get(
-    "https://api.github.com/repos/betagouv/aides-jeunes/actions/artifacts"
+    "https://api.github.com/repos/betagouv/aides-jeunes/actions/artifacts",
   )
   const artifactListPayload = artifactListResponse.data
   const releventArtifacts = artifactListPayload.artifacts.filter((artifact) => {

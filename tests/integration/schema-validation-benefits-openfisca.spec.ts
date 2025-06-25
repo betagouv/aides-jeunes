@@ -20,8 +20,8 @@ describe("Test OpenFisca Benefit schema", function () {
         expect(
           validateFile(
             `data/benefits/openfisca/${benefitFilename}`,
-            benefitSchema
-          )
+            benefitSchema,
+          ),
         ).toEqual([])
       })
     })

@@ -6,7 +6,7 @@ import jamstackLoader from "@betagouv/jamstack-loader"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const jamstack = jamstackLoader.get(
-  path.resolve(__dirname, "../contribuer/public/admin/config.yml")
+  path.resolve(__dirname, "../contribuer/public/admin/config.yml"),
 )
 
 const typesMap = {
@@ -42,7 +42,7 @@ function generateSchema(fields) {
       schema[field.name] = line
       if (field.widget == "select") {
         line.allowedValues = field.options.map((option) =>
-          option.value ? option.value : option
+          option.value ? option.value : option,
         )
       }
     }
@@ -55,13 +55,13 @@ function errorLogger(
   depth = [],
   value?: any,
   expectedType?: any,
-  expectedValues?: any
+  expectedValues?: any,
 ) {
   if (expectedValues) {
     return {
       path: `${depth.join(".")}${depth.length ? "." : ""}${field}`,
       message: `${field} value is ${value}; either [${expectedValues.join(
-        ", "
+        ", ",
       )}] expected in schema`,
     }
   }
@@ -92,7 +92,7 @@ export function compareSchema(data, schema, output, depth: any = []) {
             for (const i in data[key]) {
               if (!types.includes(typeof data[key][i])) {
                 output.push(
-                  errorLogger(i, depth, data[key][i], types.join(", "))
+                  errorLogger(i, depth, data[key][i], types.join(", ")),
                 )
               }
             }
@@ -134,8 +134,8 @@ export function compareSchema(data, schema, output, depth: any = []) {
             depth,
             data[key],
             schema[key].type,
-            schema[key].allowedValues
-          )
+            schema[key].allowedValues,
+          ),
         )
       }
       // if the field is not in the schema

@@ -51,12 +51,12 @@ const fillPatrimoine = () => {
   cy.get('[data-testid="immobilier-title"]').should("exist")
   cy.checkA11y()
   cy.get(
-    "[data-testid='patrimoine-terrain-non-loues'] label[for*='yes-field']"
+    "[data-testid='patrimoine-terrain-non-loues'] label[for*='yes-field']",
   ).click()
   cy.get("input#valeur_terrains_non_loues").type("500000")
   cy.get("input#valeur_locative_terrains_non_loues").type("50000")
   cy.get(
-    "[data-testid='patrimoine-immeubles-non-loues'] label[for*='yes-field']"
+    "[data-testid='patrimoine-immeubles-non-loues'] label[for*='yes-field']",
   ).click()
   cy.get('[data-testid="livret_a"]').type("5000")
   cy.get('[data-testid="epargne_revenus_non_imposables"]').type("150000")

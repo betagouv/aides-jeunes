@@ -136,25 +136,28 @@ describe("openfisca generateYAMLTest", function () {
         })
       })
 
-      Object.keys(subject.EXTENSION_VARIABLES).forEach(function (
-        extensionName
-      ) {
-        it(`passes OpenFisca test with ${extensionName} extension`, function () {
-          const info = Object.assign({ extension: extensionName }, details)
-          const yamlContent = subject.generateYAMLTest(info, situation)
+      Object.keys(subject.EXTENSION_VARIABLES).forEach(
+        function (extensionName) {
+          it(`passes OpenFisca test with ${extensionName} extension`, function () {
+            const info = Object.assign({ extension: extensionName }, details)
+            const yamlContent = subject.generateYAMLTest(info, situation)
 
-          const variableListRegex = values(
-            subject.EXTENSION_VARIABLES[extensionName]
-          )
-            .map(function (variableList) {
-              return variableList.join("|")
-            })
-            .join("|")
-          expect(yamlContent).toMatch(new RegExp(variableListRegex))
+            const variableListRegex = values(
+              subject.EXTENSION_VARIABLES[extensionName],
+            )
+              .map(function (variableList) {
+                return variableList.join("|")
+              })
+              .join("|")
+            expect(yamlContent).toMatch(new RegExp(variableListRegex))
 
-          return validateYAMLRun(yamlContent, extensionName.replace(/-/g, "_"))
-        })
-      })
+            return validateYAMLRun(
+              yamlContent,
+              extensionName.replace(/-/g, "_"),
+            )
+          })
+        },
+      )
     })
   }
 })

@@ -48,7 +48,7 @@ export default {
       if (!e.target.checked) {
         this.$emit(
           "update:modelValue",
-          this.modelValue.filter((value) => value != e.target.id)
+          this.modelValue.filter((value) => value != e.target.id),
         )
       } else if (!this.modelValue.includes(e.target.id)) {
         this.$emit("update:modelValue", [...this.modelValue, e.target.id])

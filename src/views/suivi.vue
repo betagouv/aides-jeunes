@@ -224,7 +224,7 @@ const { followupCreatedAt, benefitsWithChoice, simulationWasUseful, loading } =
 
 const isComplete = computed(() => {
   const choiceValues = benefitsWithChoice.value.map(
-    (droit) => droit.choiceValue
+    (droit) => droit.choiceValue,
   )
   return (
     choiceValues.filter((choiceValue) => choiceValue).length ===
@@ -269,7 +269,7 @@ const submit = async () => {
 
   const { status } = await axios.post(
     `/api/followups/surveys/${route.query.token}/answers`,
-    answers
+    answers,
   )
 
   if (status !== 201) {
@@ -283,12 +283,12 @@ const submit = async () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.Accompagnement,
       EventAction.AfficheLienAccompagnement,
-      route.path
+      route.path,
     )
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.Accompagnement,
       EventAction.PlansToAskQuestion,
-      ABTestingService.getValues().plans_to_ask_question
+      ABTestingService.getValues().plans_to_ask_question,
     )
   }
 }

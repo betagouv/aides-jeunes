@@ -32,7 +32,7 @@ export default {
   },
   data() {
     const enfants = this.store.situation.enfants.map((e) =>
-      Object.assign({}, e)
+      Object.assign({}, e),
     )
     return {
       fieldName: "_hasRessources",

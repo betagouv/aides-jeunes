@@ -32,20 +32,20 @@ describe("benefit descriptions", function () {
     const result: any = subject.fn(collections, additionalBenefitAttributes)
 
     expect(
-      result.institutionsMap.etat.benefitsIds.includes("etat_benefit")
+      result.institutionsMap.etat.benefitsIds.includes("etat_benefit"),
     ).toBeTruthy()
     expect(typeof result.benefitsMap.etat_benefit.test).toBe("function")
     expect(result.benefitsMap.etat_benefit.institution.id).toBe("national_etat")
     expect(
-      result.institutionsMap.etat.benefitsIds.includes("etat_benefit2")
+      result.institutionsMap.etat.benefitsIds.includes("etat_benefit2"),
     ).toBeTruthy()
     expect(result.benefitsMap.etat_benefit2.institution.id).toBe(
-      "national_etat"
+      "national_etat",
     )
     expect(
       result.institutionsMap.region_nouvelle_aquitaine.benefitsIds.includes(
-        "region_benefit"
-      )
+        "region_benefit",
+      ),
     ).toBeTruthy()
     expect(result.benefitsMap.region_benefit.institution.id).toBe("region_75")
     expect(result.all.length).toBe(3)

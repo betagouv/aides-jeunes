@@ -15,7 +15,7 @@ type AdminData = {
 const codesInstitutions = {
   region: (regions as AdminData[]).map((region) => region.code),
   departement: (departements as AdminData[]).map(
-    (departement) => departement.code
+    (departement) => departement.code,
   ),
   commune: (communes as AdminData[]).map((commune) => commune.code),
   epci: (epcis as AdminData[]).map((epci) => epci.code),
@@ -42,7 +42,7 @@ describe("benefit descriptions", function () {
 
         it("should have a relevant code_insee", function () {
           expect(codesInstitutions[institution.type]).toContain(
-            institution.code_insee
+            institution.code_insee,
           )
         })
 
@@ -58,7 +58,7 @@ describe("benefit descriptions", function () {
 
         it("should have a relevant code_siren", function () {
           expect(codesInstitutions[institution.type]).toContain(
-            institution.code_siren
+            institution.code_siren,
           )
         })
       } else {
@@ -85,7 +85,7 @@ describe("benefit descriptions", function () {
         const imagePath = path.resolve(
           __dirname,
           "../../public",
-          institution.imgSrc
+          institution.imgSrc,
         )
         expect(fs.existsSync(imagePath)).toBe(true)
       })
@@ -103,7 +103,7 @@ describe("benefit descriptions", function () {
               const imagePath = path.resolve(
                 __dirname,
                 "../../public",
-                benefit.imgSrc as string
+                benefit.imgSrc as string,
               )
               expect(fs.existsSync(imagePath)).toBe(true)
             })
@@ -138,7 +138,7 @@ describe("benefit descriptions", function () {
           if (benefit.description.includes('target="_blank"')) {
             it("should have a title attribute in its description when a link opens in a new window", function () {
               expect(benefit.description.includes("Nouvelle fenêtre")).toBe(
-                true
+                true,
               )
             })
           }
@@ -194,7 +194,7 @@ describe("benefit descriptions", function () {
 
             if (
               ["region", "departement", "commune", "epci"].includes(
-                benefit.institution.type
+                benefit.institution.type,
               )
             ) {
               it("should have a geographical constraint", function () {
@@ -207,7 +207,7 @@ describe("benefit descriptions", function () {
                       condition.type === "epcis" ||
                       condition.type === "attached_to_institution"
                     )
-                  }
+                  },
                 )
                 expect(typeof conditionGeo.type).toBe("string")
                 if (conditionGeo.type !== "attached_to_institution") {

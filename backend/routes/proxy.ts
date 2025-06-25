@@ -9,7 +9,7 @@ export default function (api: Express) {
 
     const postResponse = await axios.post(
       `https://www.demarches-simplifiees.fr/api/public/v1/demarches/${teleservice.id}/dossiers`,
-      data
+      data,
     )
     const postData = postResponse.data
 

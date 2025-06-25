@@ -21,7 +21,7 @@ export function computeDistanceCommunes(origin, destination) {
     return haversine(
       origin.centre.coordinates,
       destination.centre.coordinates,
-      { format: "[lon,lat]" }
+      { format: "[lon,lat]" },
     )
   }
   return 0

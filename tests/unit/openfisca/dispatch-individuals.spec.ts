@@ -105,7 +105,7 @@ describe("openfisca dispatchIndividuals", function () {
     const result: any = subject.dispatchIndividuals(situation)
     it("checks schooling", function () {
       expect(result.individus.enfant_0.scolarite).toEqual(
-        situation.enfants[0].scolarite
+        situation.enfants[0].scolarite,
       )
     })
   })

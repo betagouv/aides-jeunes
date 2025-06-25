@@ -5,11 +5,12 @@ import {
 } from "../../../types/openfisca.js"
 
 const famillePropertiesGivenToIndividu = Object.values(
-  common.requestedVariables
+  common.requestedVariables,
 )
   .filter(
     (benefit) =>
-      (!benefit.type || benefit.type == "float") && benefit.entity == "familles"
+      (!benefit.type || benefit.type == "float") &&
+      benefit.entity == "familles",
   )
   .map((benefit) => ({ name: benefit.id }))
   .concat([{ name: "paje_prepare" }, { name: "paje_clca" }])
@@ -30,16 +31,15 @@ function movePropertyValuesToGroupEntity(testCase: OpenfiscaMapping) {
     const moveDetails = movedProperties[testCasePropertyName]
 
     const openfiscaMappingValues: OpenfiscaMappingValues[] = Object.values(
-      testCase[testCasePropertyName]
+      testCase[testCasePropertyName],
     )
     openfiscaMappingValues.forEach(function (entity) {
       const entityIndividuIds = moveDetails.sourceKeys.reduce(function (
         accum,
-        key: string
+        key: string,
       ) {
         return accum.concat(entity[key] || [])
-      },
-      [])
+      }, [])
 
       moveDetails.properties.forEach(function (property) {
         const sign = property.sign || 1

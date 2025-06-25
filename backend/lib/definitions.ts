@@ -10,7 +10,7 @@ const foyerFiscal = ["rfr"]
 const allRessources = concat(
   ressources.ressourceTypes,
   ressources.categoriesRnc,
-  ressources.patrimoineTypes
+  ressources.patrimoineTypes,
 ).map((ressource) => ressource.id)
 // tns_autres_revenus_type_activite field is required when you choose rpns_autres_revenus
 allRessources.push("tns_autres_revenus_type_activite")

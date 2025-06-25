@@ -102,10 +102,10 @@ describe("The situation", function () {
     const situation: any = generateSituation(simulation, true)
 
     expect(situation.demandeur.pensions_alimentaires_percues["2019"]).toEqual(
-      2400
+      2400,
     )
     expect(
-      situation.demandeur.pensions_alimentaires_percues["2021-12"]
+      situation.demandeur.pensions_alimentaires_percues["2021-12"],
     ).toEqual(100)
   })
 
@@ -115,15 +115,15 @@ describe("The situation", function () {
     expect(
       openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
         "2019-01"
-      ]
+      ],
     ).toEqual(200)
     expect(
       openfiscaRequest.individus.demandeur.pensions_alimentaires_percues[
         "2021-12"
-      ]
+      ],
     ).toEqual(100)
     expect(
-      openfiscaRequest.individus.demandeur.retraite_imposable["2019-12"]
+      openfiscaRequest.individus.demandeur.retraite_imposable["2019-12"],
     ).toEqual(100)
   })
 })

@@ -21,7 +21,7 @@ function ressourceHeader(individu: Individu) {
     default:
       return `Les ressources ${IndividuMethods.label(
         individu,
-        "préposition"
+        "préposition",
       )}${IndividuMethods.label(individu)}`
   }
 }

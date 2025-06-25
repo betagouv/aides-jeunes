@@ -18,7 +18,7 @@ export function normalize(lieu) {
       dimanche: 7,
     }
     normalizedLieu.horaires = horaires.sort(
-      (a, b) => mapping[a.du.toLowerCase()] - mapping[b.du.toLowerCase()]
+      (a, b) => mapping[a.du.toLowerCase()] - mapping[b.du.toLowerCase()],
     )
   }
 
@@ -37,10 +37,10 @@ export function getBenefitLieuxTypes(benefit: any): string[] {
 
 export async function fetchLieux(
   depcom: string,
-  types: string[]
+  types: string[],
 ): Promise<any[]> {
   const url = `https://etablissements-publics.api.gouv.fr/v3/communes/${depcom}/${types.join(
-    "+"
+    "+",
   )}`
   const response = await axios.get(url)
   const lieux = response.data.features.map(normalize)

@@ -165,7 +165,7 @@ const addFiscalResourcesResChapter = (resChapters) => {
             myFiscalResourcesChapter.questions,
             "Vous",
             demandeur,
-            path
+            path,
           )
         }
         if (property.includes("enfant_")) {
@@ -174,7 +174,7 @@ const addFiscalResourcesResChapter = (resChapters) => {
             myFiscalResourcesChapter.questions,
             `${store.situation.enfants[childIndex]._firstName}`,
             ressourcesFiscales[property],
-            path
+            path,
           )
         }
       }
@@ -216,17 +216,17 @@ const myChapters = computed(() => {
             ...questionsPerStep(step).map((recapLine: RecapPropertyLine) => {
               recapLine.path = step.path
               return recapLine
-            })
+            }),
           )
           return accum
         },
-        []
+        [],
       )
       return {
         label: chapter.label,
         questions,
       }
-    }
+    },
   )
   resChapters = addFiscalResourcesResChapter(resChapters)
   resChapters = addPatrimoineResChapter(resChapters)
@@ -235,7 +235,7 @@ const myChapters = computed(() => {
 
 function stepPerChapter(chapterName: string) {
   return answeredSteps.value.filter(
-    (step: StepStrict) => step.chapter === chapterName
+    (step: StepStrict) => step.chapter === chapterName,
   )
 }
 
@@ -253,7 +253,7 @@ function questionsPerStep(step: StepStrict): RecapPropertyLine[] {
   }
 
   const match = Object.keys(ComplexeProperties).find((key) =>
-    ComplexeProperties[key].matcher(step)
+    ComplexeProperties[key].matcher(step),
   )
   if (match && ComplexeProperties[match].getRecap) {
     return ComplexeProperties[match].getRecap(currentPropertyData, step)

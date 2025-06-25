@@ -10,7 +10,7 @@ export default function (api: Express) {
     .get(
       cookieParser(),
       franceConnectController.callback,
-      franceConnectController.fetchUserInfo
+      franceConnectController.fetchUserInfo,
     )
 
   api

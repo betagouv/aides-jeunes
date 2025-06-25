@@ -13,7 +13,7 @@ const props = defineProps({
 
 const formattedInstitutionsLabel = computed(() => {
   return uniq(
-    props.group.benefits?.map(({ institution }) => institution.label)
+    props.group.benefits?.map(({ institution }) => institution.label),
   ).join(", ")
 })
 </script>

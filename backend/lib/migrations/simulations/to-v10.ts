@@ -11,7 +11,7 @@ function updateGroupeSpecialitesFormation(answers) {
     (answer) =>
       answer.id === "demandeur" &&
       answer.entityName === "individu" &&
-      answer.fieldName === "_formationSanitaireSocial"
+      answer.fieldName === "_formationSanitaireSocial",
   )
 
   if (answerIndex < 0) return

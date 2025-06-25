@@ -10,7 +10,7 @@ describe("distance computation", function () {
   const result =
     additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situation.demandeur,
-      situation
+      situation,
     )
 
   it("should return a kilometer value", function () {
@@ -30,7 +30,7 @@ describe("distance computation without parents", function () {
   const result =
     additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situationWithoutParents.demandeur,
-      situationWithoutParents
+      situationWithoutParents,
     )
 
   it("should return a value equal to 0", function () {
@@ -50,7 +50,7 @@ describe("distance computation without parents living in France", function () {
   const result =
     additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situationParentsNotInFrance.demandeur,
-      situationParentsNotInFrance
+      situationParentsNotInFrance,
     )
 
   it("should return a default kilometer value", function () {
@@ -71,7 +71,7 @@ describe("distance computation without parents living in France", function () {
   const result =
     additionalProps.bourse_criteres_sociaux_distance_domicile_familial.fn(
       situationDivorcedParents.demandeur,
-      situationDivorcedParents
+      situationDivorcedParents,
     )
 
   it("should return a kilometer value", function () {

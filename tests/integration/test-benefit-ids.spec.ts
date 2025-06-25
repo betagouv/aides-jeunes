@@ -12,13 +12,13 @@ describe("Benefit id", () => {
     (benefit) => {
       benefit.source = "javascript"
       return benefit
-    }
+    },
   )
   const openfiscaBenefits = jamstack.collections.benefits_openfisca.items.map(
     (benefit) => {
       benefit.source = "openfisca"
       return benefit
-    }
+    },
   )
 
   const aidesVeloBenefits = aidesVeloGenerator([])

@@ -14,7 +14,7 @@ export default {
     sendEventsToRecorder: function (
       benefits: StandardBenefit[] = [],
       eventAction: EventAction,
-      benefitId: string | undefined = undefined
+      benefitId: string | undefined = undefined,
     ) {
       const event: RecorderEvent = {
         benefits,
@@ -27,7 +27,7 @@ export default {
       category: EventCategory,
       action: EventAction,
       label: string,
-      value?: string
+      value?: string,
     ) {
       const event: MatomoEvent = {
         category,
@@ -40,7 +40,7 @@ export default {
     sendBenefitsStatistics: function (
       benefits: StandardBenefit[] = [],
       eventAction: EventAction,
-      benefitId: string | undefined = undefined
+      benefitId: string | undefined = undefined,
     ) {
       this.sendEventsToRecorder(benefits, eventAction, benefitId)
 

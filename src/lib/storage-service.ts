@@ -37,7 +37,7 @@ export class StorageService {
         } catch (e) {
           console.error("Error: parsing data " + e)
           throw new Error(
-            `Failed to parse ${this.storageType} storage item ${key}`
+            `Failed to parse ${this.storageType} storage item ${key}`,
           )
         }
       }

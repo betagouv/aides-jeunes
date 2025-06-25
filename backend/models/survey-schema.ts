@@ -25,7 +25,7 @@ const SurveySchema = new mongoose.Schema<Mongoose, Survey>(
       enum: SurveyType,
     },
   },
-  { minimize: false, id: false }
+  { minimize: false, id: false },
 )
 
 export default SurveySchema

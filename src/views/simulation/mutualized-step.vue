@@ -119,7 +119,7 @@ export default {
       this.store.simulation.answers.all,
       entityName,
       this.$route.params.fieldName,
-      id
+      id,
     )
 
     return {
@@ -148,7 +148,7 @@ export default {
         executeFunctionOrReturnValue(
           this.step,
           "showMoreInfo",
-          this.propertyData
+          this.propertyData,
         )
       return Boolean(showMoreInfo)
     },

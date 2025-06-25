@@ -17,7 +17,7 @@
               @input="
                 updateExtra(
                   'tns_autres_revenus_type_activite',
-                  $event.target.value
+                  $event.target.value,
                 )
               "
             >

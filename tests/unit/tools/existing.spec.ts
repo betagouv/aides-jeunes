@@ -25,7 +25,7 @@ describe("check-link-validity script", () => {
       }
       const operations = determineOperationsOnBenefitLinkError(
         existing,
-        benefitData
+        benefitData,
       )
       expect(operations).toHaveLength(0)
     })
@@ -54,7 +54,7 @@ describe("check-link-validity script", () => {
       }
       const operations = determineOperationsOnBenefitLinkError(
         existing,
-        benefitData
+        benefitData,
       )
       expect(operations).toHaveLength(1)
       expect(operations[0].data.id).toEqual(warningRecord.id)

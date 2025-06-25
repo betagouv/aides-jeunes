@@ -42,7 +42,7 @@ const FollowupSchema = new mongoose.Schema<Followup, FollowupModel>(
     smsError: { type: Object },
     accessToken: { type: String },
   },
-  { minimize: false, id: false }
+  { minimize: false, id: false },
 )
 
 export default FollowupSchema

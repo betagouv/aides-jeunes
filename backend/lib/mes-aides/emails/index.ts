@@ -8,7 +8,7 @@ export function toBase64(file: string) {
 
 export const imageRoot = path.join(
   new URL(".", import.meta.url).pathname,
-  "../../../../public/img/"
+  "../../../../public/img/",
 )
 
 export function mjml(template) {

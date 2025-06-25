@@ -140,7 +140,7 @@ function metadataResponseGenerator(teleservice) {
 
     const token = jwt.sign(payload, req.simulation.token)
     return Promise.resolve(
-      createClass(teleservice, req.simulation, req.query).toInternal()
+      createClass(teleservice, req.simulation, req.query).toInternal(),
     ).then(function (fields) {
       return res.json({
         fields,
@@ -233,8 +233,8 @@ function verifyRequest(req, res, next) {
 function exportRepresentation(req, res) {
   return Promise.resolve(
     createClass(req.teleservice, req.simulation, req.payload.query).toExternal(
-      req
-    )
+      req,
+    ),
   ).then(function (value) {
     return res.json(value)
   })

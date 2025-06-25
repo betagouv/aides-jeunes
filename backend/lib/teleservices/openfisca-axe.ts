@@ -4,7 +4,7 @@ import openfiscaImport from "../openfisca/index.js"
 
 const openfisca = Promise.promisifyAll(openfiscaImport)
 const request = Promise.promisify(
-  openfisca.sendToOpenfisca("calculate", (s) => s)
+  openfisca.sendToOpenfisca("calculate", (s) => s),
 )
 
 import bulk from "../openfisca/bulk/index.js"

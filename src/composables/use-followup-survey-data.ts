@@ -19,18 +19,18 @@ export function useFollowupSurveyData(token: string) {
 
   const getFollowupSurveyData = async () => {
     const { data: followupSurveyData } = (await axios.get(
-      `/api/followups/surveys/${token}`
+      `/api/followups/surveys/${token}`,
     )) as { data: FetchSurvey }
 
     followupCreatedAt.value = dayjs(followupSurveyData.createdAt).format(
-      "DD MMMM YYYY"
+      "DD MMMM YYYY",
     )
     simulationWasUseful.value = followupSurveyData.simulationWasUseful
     const benefits: StandardBenefit[] = followupSurveyData.benefits.map(
       (benefit) => ({
         ...getBenefit(benefit.id),
         montant: benefit.amount,
-      })
+      }),
     )
 
     benefitsWithChoice.value = benefits.map((benefit) => {

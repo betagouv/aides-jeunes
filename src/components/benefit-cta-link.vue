@@ -48,8 +48,8 @@ const label = computed(() =>
   props.customLabel
     ? props.customLabel
     : props.type
-    ? labels[props.type].short
-    : null
+      ? labels[props.type].short
+      : null,
 )
 
 const longLabel = computed(() => {

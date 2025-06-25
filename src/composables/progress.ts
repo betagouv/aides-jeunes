@@ -11,7 +11,7 @@ export function useProgress(): ComputedRef<number> {
   const progress = computed(() => {
     const cleanPath = route.path.replace(/\/en_savoir_plus$/, "")
     const allSteps: StepStrict[] = store.getAllSteps.filter(
-      (step: StepStrict) => !["/", "/simulation/resultats"].includes(step.path)
+      (step: StepStrict) => !["/", "/simulation/resultats"].includes(step.path),
     )
     const activeSteps = allSteps.filter((step: StepStrict) => step.isActive)
 
@@ -21,7 +21,7 @@ export function useProgress(): ComputedRef<number> {
       !allSteps.some((step) => step.path === cleanPath)
     ) {
       const answeredSteps: StepStrict[] = activeSteps.filter((step) =>
-        isStepAnswered(store.simulation.answers.all, step)
+        isStepAnswered(store.simulation.answers.all, step),
       )
       return answeredSteps.length / activeSteps.length
     } else {

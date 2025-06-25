@@ -46,7 +46,7 @@ function postPollResult(simulation, answers) {
         key.unit && typeof key.amount === "number"
           ? `**${Math.round(key.amount * 100) / 100}${key.unit}**`
           : ""
-      } ${key.comments?.length > 0 ? `*(${key.comments})*` : ""}`
+      } ${key.comments?.length > 0 ? `*(${key.comments})*` : ""}`,
     )
   }
 

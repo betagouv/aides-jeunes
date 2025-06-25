@@ -33,7 +33,7 @@ mongodb
     const csv = r.map((i) =>
       Object.values(i)
         .map((s) => `"${s}"`)
-        .join(";")
+        .join(";"),
     )
     csv.unshift("benefit;result;comment;id;date")
     return fs.writeFile("data.csv", csv.join("\n"), "utf-8")

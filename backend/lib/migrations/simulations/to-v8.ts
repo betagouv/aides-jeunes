@@ -13,7 +13,7 @@ function removeIds(answers) {
         !(
           ANSWER_BASIC_IDS.includes(answer.id) ||
           answer.id.match(/^enfant_\d+$/)
-        )
+        ),
     )
     if (index > -1) {
       const result = omit(answers[index].toObject(), ["id", "_id"])

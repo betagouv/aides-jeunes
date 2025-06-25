@@ -5,7 +5,7 @@ function getDisplayMonthly(months, amounts) {
       result.allSame = result.allSame && amounts[m.id] === result.initial
       return result
     },
-    { allNull: true, initial: amounts[months[0].id], allSame: true }
+    { allNull: true, initial: amounts[months[0].id], allSame: true },
   )
 
   if (result.allNull) {
@@ -50,7 +50,7 @@ export default {
             source,
             source.amounts[source.months[monthIndex].id],
             monthIndex,
-            true
+            true,
           )
           break
         }

@@ -36,7 +36,7 @@ async function createAxiosInstance() {
     },
     (error) => {
       throw error
-    }
+    },
   )
 
   return instance
@@ -47,7 +47,7 @@ function buildSmsUrl({ followup, phone, username, password, smsType }) {
   const { url } = config.smsService
   const formattedPhone = phoneNumberFormatting(
     phone,
-    config.smsService.internationalDiallingCodes
+    config.smsService.internationalDiallingCodes,
   )
 
   let text, surveyLink
@@ -69,7 +69,7 @@ function buildSmsUrl({ followup, phone, username, password, smsType }) {
 }
 
 export async function sendSimulationResultsSms(
-  followup: Followup
+  followup: Followup,
 ): Promise<Followup> {
   try {
     if (!followup.phone) {
@@ -79,7 +79,7 @@ export async function sendSimulationResultsSms(
     if (
       !phoneNumberValidation(
         followup.phone,
-        config.smsService.internationalDiallingCodes
+        config.smsService.internationalDiallingCodes,
       )
     ) {
       throw new Error(ErrorType.UnsupportedPhoneNumberFormat)
@@ -119,7 +119,7 @@ export async function sendSurveyBySms(followup: Followup): Promise<Survey> {
     throw new Error("Missing followup phone")
   }
   const survey = await followup.addSurveyIfMissing(
-    SurveyType.TrackClickOnBenefitActionSms
+    SurveyType.TrackClickOnBenefitActionSms,
   )
   const { username, password } = await getSMSConfig()
   const { phone } = followup

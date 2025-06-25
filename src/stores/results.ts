@@ -33,8 +33,8 @@ export const useResultsStore = defineStore("results", {
       const benefitGroups = groups.filter(
         (benefitGroup) =>
           this.benefits.filter(
-            (benefit) => benefit.interestFlag === benefitGroup.interestFlag
-          ).length > 1
+            (benefit) => benefit.interestFlag === benefitGroup.interestFlag,
+          ).length > 1,
       )
 
       const results = this.benefits.reduce((results, benefit) => {
@@ -75,7 +75,7 @@ export const useResultsStore = defineStore("results", {
     },
     hasBenefitsGroup(): boolean {
       return this.benefitTreeGroupExperiment.some(
-        (benefitOrBenefitsGroup) => benefitOrBenefitsGroup.benefits?.length > 0
+        (benefitOrBenefitsGroup) => benefitOrBenefitsGroup.benefits?.length > 0,
       )
     },
     hasBenefits(): boolean {

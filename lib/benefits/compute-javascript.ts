@@ -94,7 +94,7 @@ const COMMUNE_PARAMETERS = {
 
 export function testGeographicalEligibility(
   condition: any,
-  { situation }: { situation: Situation }
+  { situation }: { situation: Situation },
 ): boolean {
   // Pas de contrainte géographique
   if (!condition.values || condition.values.length === 0) {
@@ -111,7 +111,7 @@ export function testGeographicalEligibility(
 
 export function testExcludedEpcis(
   condition: any,
-  { situation }: { situation: Situation }
+  { situation }: { situation: Situation },
 ): boolean {
   if (!condition.values || condition.values.length === 0) {
     return true
@@ -151,7 +151,7 @@ export const CONDITION_STRATEGY: Conditions = {
   mention_baccalaureat: {
     test: (condition, { situation }: { situation: Situation }) => {
       return condition.values.includes(
-        situation.demandeur?.mention_baccalaureat
+        situation.demandeur?.mention_baccalaureat,
       )
     },
   },
@@ -168,7 +168,7 @@ export const CONDITION_STRATEGY: Conditions = {
       }: {
         situation: Situation
       },
-      benefit
+      benefit,
     ): boolean => {
       const institution = benefit.institution
 
@@ -189,7 +189,7 @@ export const CONDITION_STRATEGY: Conditions = {
     test: (condition, props) => {
       return !CONDITION_STRATEGY[condition.value.type].test(
         condition.value,
-        props
+        props,
       )
     },
   },
@@ -217,7 +217,7 @@ export const CONDITION_STRATEGY: Conditions = {
     test: (condition, { openfiscaResponse }) => {
       return includesAndExcludesCondition(
         condition,
-        openfiscaResponse.individus.demandeur.regime_securite_sociale
+        openfiscaResponse.individus.demandeur.regime_securite_sociale,
       )
     },
   },
@@ -225,7 +225,7 @@ export const CONDITION_STRATEGY: Conditions = {
     test: (condition, { situation }) => {
       return includesAndExcludesCondition(
         condition,
-        situation.menage.statut_occupation_logement
+        situation.menage.statut_occupation_logement,
       )
     },
   },
@@ -290,7 +290,7 @@ function testConditions(conditions, data, benefit) {
   }
 
   return conditions.every((condition) =>
-    CONDITION_STRATEGY[condition.type].test(condition, data, benefit)
+    CONDITION_STRATEGY[condition.type].test(condition, data, benefit),
   )
 }
 
@@ -310,11 +310,11 @@ export function testProfileEligibility(benefit, data) {
 export function computeJavascriptBenefits(
   benefits: BenefitCatalog,
   situation: Situation,
-  openfiscaResponse
+  openfiscaResponse,
 ) {
   const age = dayjs(situation.dateDeValeur).diff(
     situation.demandeur?.date_naissance,
-    "year"
+    "year",
   )
   const periods = datesGenerator(situation.dateDeValeur)
   const data = { situation, openfiscaResponse, periods, age }
@@ -323,7 +323,7 @@ export function computeJavascriptBenefits(
     .filter(
       (benefit) =>
         benefit.source === "javascript" &&
-        filterByInterestFlag(benefit, situation.demandeur)
+        filterByInterestFlag(benefit, situation.demandeur),
     )
     .forEach(function (benefit) {
       const profileEligibility = testProfileEligibility(benefit, data)
@@ -331,7 +331,7 @@ export function computeJavascriptBenefits(
       const generalConditionsEligibility = testConditions(
         benefit.conditions_generales,
         data,
-        benefit
+        benefit,
       )
 
       const montant = benefit.montant

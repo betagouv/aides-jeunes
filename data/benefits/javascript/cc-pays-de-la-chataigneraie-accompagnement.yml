@@ -26,6 +26,6 @@ conditions_generales:
       - "85014"
 type: bool
 periodicite: autre
-teleservice: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
-link: https://www.rdv-solidarites.fr/prendre_rdv?departement=CN&public_link_organisation_id=1119
+teleservice: https://rdv.anct.gouv.fr/prendre_rdv?departement=85&public_link_organisation_id=610
+link: https://rdv.anct.gouv.fr/prendre_rdv?departement=85&public_link_organisation_id=610
 top: -1

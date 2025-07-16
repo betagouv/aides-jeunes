@@ -24,7 +24,7 @@ context("Full simulation", () => {
     foyer.fill__situation("separes")
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge(1)
     foyer.fill_bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(
-      1,
+      1
     )
 
     logement.fill__logementType("locataire")
@@ -39,7 +39,7 @@ context("Full simulation", () => {
     logement.fill__en_france(true)
     logement.fill_depcom(
       "75001",
-      "_bourseCriteresSociauxCommuneDomicileFamilial",
+      "_bourseCriteresSociauxCommuneDomicileFamilial"
     )
     logement.fill__nombreMoisEntreeLogement(-2)
 

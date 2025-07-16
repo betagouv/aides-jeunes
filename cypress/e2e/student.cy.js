@@ -48,7 +48,7 @@ context("Full simulation", () => {
     revenu.checkFieldRequired()
     revenu.fillRevenuBrut(1)
 
-    projet.fill__interetsAidesVelo(["velo_mecanique", "velo_electrique"])
+    projet.fill__interetsAidesVelo([])
     projet.fill__interetBafa(true)
     projet.fill__interetPermisDeConduire(false)
     projet.fill__interetEtudesEtranger(true)
@@ -57,10 +57,6 @@ context("Full simulation", () => {
     results.wait()
     results.hasBafaGroupPreviewBenefit(false)
     results.hasBafaBenefit()
-
-    results.hasVeloGroupPreviewBenefit(true)
-    navigate.goToAidesVeloBenefitsPage()
-    results.back()
 
     results.hasIleDeFranceAideAuMerite()
     results.hasBourseCriteresSociaux()

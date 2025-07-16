@@ -152,7 +152,7 @@ describe("benefit descriptions", function () {
             describe("conditions", function () {
               benefit.conditions.forEach((condition) => {
                 describe(`condition: '${condition}'`, function () {
-                  it("should end with a comma.", function () {
+                  it("should end with a point.", function () {
                     expect(condition).toMatch(/\.$/)
                   })
                   if (condition.includes('target="_blank"')) {

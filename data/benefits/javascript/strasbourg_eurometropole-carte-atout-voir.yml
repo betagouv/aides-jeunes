@@ -109,12 +109,11 @@ profils:
         value: 25
   - type: parent
     conditions:
-      - type: age
+      - type: enfants_eligibles
         operator: ">="
-        value: 18
-      - type: age
-        operator: "<="
-        value: 99
+        value: 1
+        age_min: 11
+        age_max: 25
 type: bool
 unit: €
 periodicite: annuelle

@@ -71,3 +71,4 @@ openfisca/*.pyc
 public/documents/*
 
 vite.config.ts.timestamp-*
+.vite-ssg-temp/*

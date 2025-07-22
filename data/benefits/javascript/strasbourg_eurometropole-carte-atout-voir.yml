@@ -7,42 +7,114 @@ description: La carte Atout Voir permet aux jeunes de 11 à 25 ans (hors
   musées de la Ville de Strasbourg. La carte est gratuite.
 prefix: la
 conditions_generales:
-  - type: age
-    operator: ">="
-    value: 11
-  - type: age
-    operator: <=
-    value: 25
   - type: epcis
     values:
       - "246700488"
 profils:
   - type: collegien
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: lyceen
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: stagiaire
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: apprenti
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: professionnalisation
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: chomeur
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: salarie
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: independant
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: service_civique
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: <=
+        value: 25
   - type: beneficiaire_rsa
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: situation_handicap
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: inactif
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
   - type: parent
-    conditions: []
+    conditions:
+      - type: age
+        operator: ">="
+        value: 18
+      - type: age
+        operator: "<="
+        value: 99
 type: bool
 unit: €
 periodicite: annuelle

@@ -1,7 +1,7 @@
-import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
-import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import communes from "@etalab/decoupage-administratif/data/communes.json" with { type: "json" }
+import epci from "@etalab/decoupage-administratif/data/epci.json" with { type: "json" }
 import communesLonLat from "communes-lonlat"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 const communesActuelles = communes.filter((c) => c.type === "commune-actuelle")
 const communeMap = {}

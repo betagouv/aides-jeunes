@@ -3,7 +3,7 @@ import benefits from "@root/data/all.js"
 
 import generator from "@root/data/benefits/aides-velo-generator.js"
 import { VeloBenefit } from "@root/data/types/benefits.js"
-import epci from "@etalab/decoupage-administratif/data/epci.json" assert { type: "json" }
+import epci from "@etalab/decoupage-administratif/data/epci.json" with { type: "json" }
 
 describe("aides velo benefit generator", function () {
   const list: Omit<VeloBenefit, "amount">[] = generator(

@@ -7,7 +7,6 @@ import { ANSWER_BASIC_IDS } from "../../definitions.js"
 const VERSION = 8
 
 function removeIds(answers) {
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const index = answers.findIndex(
       (answer) =>

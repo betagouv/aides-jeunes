@@ -1,0 +1,123 @@
+label: Carte Atout Voir
+institution: strasbourg_eurometropole
+description: La carte Atout Voir permet aux jeunes de 11 à 25 ans (hors
+  étudiants de l'enseignement supérieur) de bénéficier de tarifs très avantageux
+  auprès de 50 partenaires culturels, comme des billets de spectacles et
+  concerts à 6 euros, des places de cinéma à 5 euros ou la gratuité dans les
+  musées de la Ville de Strasbourg. La carte est gratuite.
+prefix: la
+conditions_generales:
+  - type: epcis
+    values:
+      - "246700488"
+profils:
+  - type: collegien
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: lyceen
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: stagiaire
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: apprenti
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: professionnalisation
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: chomeur
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: salarie
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: independant
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: service_civique
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: <=
+        value: 25
+  - type: beneficiaire_rsa
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: situation_handicap
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: inactif
+    conditions:
+      - type: age
+        operator: ">="
+        value: 11
+      - type: age
+        operator: "<="
+        value: 25
+  - type: parent
+    conditions:
+      - type: age
+        operator: ">="
+        value: 18
+      - type: age
+        operator: "<="
+        value: 99
+type: bool
+unit: €
+periodicite: annuelle
+link: https://www.strasbourg.eu/carte-atout-voir
+teleservice: https://demarches.strasbourg.eu/culture-loisirs/carte-atout-voir/
+instructions: https://www.strasbourg.eu/documents/976405/1162837/Guide-Atout-Voir.pdf

@@ -96,13 +96,14 @@ function formatAidesVeloToVeloBenefit(
   benefit: AidesVeloBenefit,
   institutionsByType: InstitutionsByType
 ): VeloBenefit {
+  const benefitId = String(benefit.id)
   return {
     ...benefit,
     ...VELO_BENEFIT_DEFAULT_VALUES,
     label: buildVeloBenefitLabel(benefit),
     description: formatAidesVeloBenefitDescription(benefit),
-    id: `aidesvelo_${benefit.id}`.replace(/[ .']+/g, "_"),
-    external_id: benefit.id,
+    id: `aidesvelo_${benefitId}`.replace(/[ .']+/g, "_"),
+    external_id: benefitId,
     collectivity: benefit.collectivity,
     title: benefit.title,
     link: benefit.url,

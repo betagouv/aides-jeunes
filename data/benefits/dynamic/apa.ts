@@ -157,7 +157,7 @@ export const APA_BY_CODE: {
   intercommunalite_metropole_lyon: {
     label: "de la Métropole de Lyon",
     link: "https://www.grandlyon.com/services/allocation-personnalisee-d-autonomie.html",
-    form: "https://www.grandlyon.com/fileadmin/user_upload/media/pdf/pa-ph/personnes-agees/20170802_dossier_demande_apa.pdf",
+    form: "https://www.service-public.fr/particuliers/vosdroits/R64469",
   },
 }
 

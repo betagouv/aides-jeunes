@@ -14,9 +14,7 @@ conditions_generales:
     values:
       - "01"
 conditions:
-  - Commander la Carte Jeunes 01 en remplissant <a target="_blank"
-    rel="noopener" title="Formulaire demande Carte Jeunes 01 (PDF) - Nouvelle fenêtre" href="
-    https://www.ain.fr/app/uploads/2024/06/formulaire-commande-carte-jeunes-01.pdf">ce formulaire papier (PDF)</a> ou <a target="_blank"
+  - Commander la Carte Jeunes 01 <a target="_blank"
     rel="noopener" title="Téléservice demande Carte Jeunes 01 - Nouvelle fenêtre" href="
     https://cartejeunes01.ain.fr/my/dashboard">via le téléservice</a>.
   - Utiliser la Carte Jeunes 01 chez les partenaires listés sur <a target="_blank"
@@ -28,4 +26,3 @@ periodicite: ponctuelle
 montant: 50
 link: https://www.ain.fr/solutions/carte-jeunes-01/
 teleservice: https://cartejeunes01.ain.fr/my/dashboard
-form: https://www.ain.fr/app/uploads/2024/06/formulaire-commande-carte-jeunes-01.pdf

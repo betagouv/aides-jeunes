@@ -282,6 +282,33 @@ export const CONDITION_STRATEGY: Conditions = {
       return OPERATOR[condition.operator](taux_incapacite, condition.value)
     },
   },
+  enfants_eligibles: {
+    test: (condition, { situation }: { situation: Situation }) => {
+      if (!situation.enfants || situation.enfants.length === 0) {
+        return false
+      }
+
+      let enfantsEligibles = situation.enfants
+      if (condition.age_min !== undefined) {
+        const dateDeValeur = dayjs(situation.dateDeValeur)
+        enfantsEligibles = situation.enfants.filter((enfant) => {
+          const ageEnfant = dateDeValeur.diff(
+            dayjs(enfant.date_naissance),
+            "year",
+          )
+          return (
+            ageEnfant >= (condition?.age_min || 0) &&
+            ageEnfant <= (condition?.age_max || 99)
+          )
+        })
+      }
+
+      return OPERATOR[condition.operator](
+        enfantsEligibles.length,
+        condition.value,
+      )
+    },
+  },
 }
 
 function testConditions(conditions, data, benefit) {

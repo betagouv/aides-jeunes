@@ -29,7 +29,7 @@ export interface RollupInstitutionMap {
 const institutionsBenefits = {}
 
 for (const benefit of Object.values(
-  generator.benefitsMap
+  generator.benefitsMap,
 ) as StandardBenefit[]) {
   if (benefit.private) {
     continue

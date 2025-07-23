@@ -17,14 +17,14 @@ export const ENTITIES_PROPERTIES: {
 }
 
 export function forEachProperties(
-  fn: (entityName: string, propertyName: string, property: Property) => void
+  fn: (entityName: string, propertyName: string, property: Property) => void,
 ) {
   Object.entries(ENTITIES_PROPERTIES).forEach(
     ([entityName, entityProperties]) => {
       Object.entries(entityProperties).forEach(([propertyName, property]) => {
         fn(entityName, propertyName, property)
       })
-    }
+    },
   )
 }
 

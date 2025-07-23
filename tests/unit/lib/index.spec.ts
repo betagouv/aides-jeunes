@@ -44,8 +44,8 @@ describe("chapter", function () {
       mockChaptersWithStates(
         ChapterState.Current,
         ChapterState.Pending,
-        ChapterState.Pending
-      )
+        ChapterState.Pending,
+      ),
     )
   })
 
@@ -57,8 +57,8 @@ describe("chapter", function () {
         mockChaptersWithStates(
           ChapterState.Done,
           ChapterState.Current,
-          ChapterState.Pending
-        )
+          ChapterState.Pending,
+        ),
       )
     })
   })
@@ -71,8 +71,8 @@ describe("chapter", function () {
         mockChaptersWithStates(
           ChapterState.Done,
           ChapterState.Done,
-          ChapterState.Done
-        )
+          ChapterState.Done,
+        ),
       )
     })
 
@@ -84,8 +84,8 @@ describe("chapter", function () {
           mockChaptersWithStates(
             ChapterState.Done,
             ChapterState.Current,
-            ChapterState.Pending
-          )
+            ChapterState.Pending,
+          ),
         )
       })
     })

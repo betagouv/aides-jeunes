@@ -28,7 +28,7 @@ export default {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       )
 
       const simulation: { _id: string; token: string } =

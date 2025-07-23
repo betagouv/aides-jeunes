@@ -17,8 +17,8 @@ export default function (app: express.Application) {
   process.env.MES_AIDES_ROOT_URL =
     process.env.MES_AIDES_ROOT_URL || `http://localhost:${process.env.PORT}`
 
-  // The request handler must be the first middleware on the app
-  app.use(Sentry.Handlers.requestHandler())
+  // // The request handler must be the first middleware on the app
+  // app.use(Sentry.Handlers.requestHandler())
 
   loadRoutes(app)
 
@@ -26,5 +26,5 @@ export default function (app: express.Application) {
   app.set("trust proxy", true)
 
   // The error handler must be before any other error middleware and after all controllers
-  app.use(Sentry.Handlers.errorHandler())
+  Sentry.setupExpressErrorHandler(app)
 }

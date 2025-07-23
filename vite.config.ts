@@ -133,7 +133,7 @@ export default defineConfig(async ({ mode }) => {
       visualizer(),
       createSentryPlugin(
         sentry.authToken,
-        viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT
+        viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT,
       ),
       sitemapGenerator(),
     ],

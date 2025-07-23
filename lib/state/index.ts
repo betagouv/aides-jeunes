@@ -7,7 +7,7 @@ import { ChapterState } from "../enums/chapter.js"
 export function getChapters(
   currentPath: string,
   journey: StepStrict[],
-  lastUnanswerPath?: string
+  lastUnanswerPath?: string,
 ): Chapter[] {
   const activeJourney = journey.filter((step) => step.isActive)
   const currentStep = getCurrentStep(currentPath, journey, lastUnanswerPath)
@@ -21,14 +21,14 @@ export function getChapters(
 
 export function current(
   currentPath: string,
-  journey: StepStrict[]
+  journey: StepStrict[],
 ): StepStrict | undefined {
   return journey.find((item) => item.path == currentPath)
 }
 
 export function getNextStep(
   currentRoute: Route,
-  allSteps: StepStrict[]
+  allSteps: StepStrict[],
 ): StepStrict {
   const currentPath = currentRoute.path || currentRoute.fullPath
   const currentIndex = allSteps.findIndex((step) => step.path === currentPath)
@@ -46,7 +46,7 @@ export function getNextStep(
 function getCurrentStep(
   currentPath: string,
   journey: StepStrict[],
-  lastUnanswerPath: string | undefined
+  lastUnanswerPath: string | undefined,
 ): StepStrict | undefined {
   const cleanPath = currentPath.replace(/\/en_savoir_plus$/, "")
   const currentStep =
@@ -62,13 +62,13 @@ function getActiveChapters(activeJourney: StepStrict[]): Chapter[] {
     .filter((chapter, index, self) => self.indexOf(chapter) === index)
 
   return Chapters.getSommaireChapters().filter((chapter) =>
-    activeChaptersNames.includes(chapter.name)
+    activeChaptersNames.includes(chapter.name),
   )
 }
 
 function setChapterRootPath(
   chapters: Chapter[],
-  journey: StepStrict[]
+  journey: StepStrict[],
 ): Chapter[] {
   return chapters.map((chapter) => {
     chapter.root = journey.find((step) => step.chapter == chapter.name)?.path
@@ -78,7 +78,7 @@ function setChapterRootPath(
 
 function computeChapterState(
   chapters: Chapter[],
-  currentStep: StepStrict | undefined
+  currentStep: StepStrict | undefined,
 ): Chapter[] {
   let isCurrentChapter
   let passedChapter = false

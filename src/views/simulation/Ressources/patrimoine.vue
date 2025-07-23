@@ -218,7 +218,7 @@ export default {
       const patrimoinePropertyName = p.id
       demandeur[patrimoinePropertyName] = Object.assign(
         {},
-        demandeur[patrimoinePropertyName]
+        demandeur[patrimoinePropertyName],
       )
       demandeur[patrimoinePropertyName][periodKey] =
         demandeur[patrimoinePropertyName][periodKey] || 0
@@ -227,7 +227,7 @@ export default {
     let locals = {
       hasBiensLoues: individus.some((individu) => individu.revenus_locatifs),
       hasEpargneAuxRevenusImposables: individus.some(
-        (individu) => individu.revenus_capital
+        (individu) => individu.revenus_capital,
       ),
     }
 
@@ -236,7 +236,7 @@ export default {
       locals[keyName] = false
       mapping[keyName].sources.forEach(function (attributeName) {
         locals[keyName] = Boolean(
-          locals[keyName] || demandeur[attributeName][periodKey]
+          locals[keyName] || demandeur[attributeName][periodKey],
         )
       })
     })
@@ -276,7 +276,7 @@ export default {
           [patrimoineType.id]:
             this.demandeur[patrimoineType.id][this.periodKey] || 0,
         }),
-        {}
+        {},
       )
 
       this.store.setPatrimoine(values)

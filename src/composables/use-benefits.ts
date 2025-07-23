@@ -6,7 +6,7 @@ export function useBenefits() {
   const store = useStore()
 
   const benefits = ref<StandardBenefit[]>(
-    store.calculs?.resultats?.droitsEligibles || []
+    store.calculs?.resultats?.droitsEligibles || [],
   )
 
   return {

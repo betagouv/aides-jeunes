@@ -43,7 +43,7 @@ export default {
       this.sendBenefitsStatistics(
         this.droits,
         this.analyticAction,
-        this.analyticName
+        this.analyticName,
       )
     },
   },

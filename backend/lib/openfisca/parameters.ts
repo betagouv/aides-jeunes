@@ -1,4 +1,4 @@
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 import openfisca from "./getter.js"
 
 import { OpenfiscaParameters } from "../../../lib/types/parameters.js"
@@ -17,8 +17,8 @@ let parameters
 async function fetchParameters() {
   const values = await Promise.all(
     Object.keys(parametersList).map((parameter) =>
-      openfisca.getPromise(`/parameter/${parameter}`)
-    )
+      openfisca.getPromise(`/parameter/${parameter}`),
+    ),
   )
 
   const newParameters = {}

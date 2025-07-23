@@ -56,7 +56,7 @@ export const additionalBenefitAttributes = {
       const salary: number = situation.demandeur?.salaire_net
         ? Object.values(situation.demandeur.salaire_net).reduce(
             (acc, value): number => acc + value,
-            0
+            0,
           )
         : 0
       return (

@@ -85,7 +85,7 @@ export default {
         Ressource.isRessourceRelevant(
           ressourceType,
           this.store.situation,
-          this.individu
+          this.individu,
         )
       )
     })
@@ -94,7 +94,7 @@ export default {
       this.store.simulation.answers.all,
       "individu",
       "ressources",
-      this.$route.params.id
+      this.$route.params.id,
     )
     const selectedTypes = {}
     types.forEach((type) => {
@@ -109,7 +109,7 @@ export default {
   computed: {
     countLabel() {
       const count = Object.keys(this.selectedTypes).filter(
-        (selectType) => this.selectedTypes[selectType]
+        (selectType) => this.selectedTypes[selectType],
       ).length
       return `${count} ${
         count == 1 ? "ressource sélectionnée" : "ressources sélectionnées"
@@ -120,19 +120,19 @@ export default {
     },
     needCoupleResources() {
       return this.allActiveSteps.filter(
-        (step) => step.id === "conjoint" && step.variable === "ressources"
+        (step) => step.id === "conjoint" && step.variable === "ressources",
       ).length
     },
     needParentsResources() {
       return (
         this.allActiveSteps.filter(
-          (step) => step.entity === "parents" && step.variable === "rfr"
+          (step) => step.entity === "parents" && step.variable === "rfr",
         ).length ||
         this.allActiveSteps.filter(
           (step) =>
             step.id === "demandeur" &&
             step.variable ===
-              "bourse_criteres_sociaux_base_ressources_parentale"
+              "bourse_criteres_sociaux_base_ressources_parentale",
         ).length
       )
     },
@@ -141,8 +141,8 @@ export default {
         (enfants) =>
           IndividuMethods.age(
             enfants,
-            datesGenerator(this.store.situation?.dateDeValeur).today.value
-          ) > 15
+            datesGenerator(this.store.situation?.dateDeValeur).today.value,
+          ) > 15,
       ).length
     },
     showInitialResourcesCollectionWarning() {
@@ -168,7 +168,7 @@ export default {
     individu() {
       this.selectedTypes = Ressource.getIndividuRessourceTypes(
         this.individu,
-        this.store.situation
+        this.store.situation,
       )
     },
   },
@@ -180,7 +180,7 @@ export default {
         fieldName: "ressources",
         path: this.$route.path,
         value: Object.keys(this.selectedTypes).filter(
-          (type) => this.selectedTypes[type]
+          (type) => this.selectedTypes[type],
         ),
       })
       this.$push()
@@ -189,7 +189,7 @@ export default {
       return array.sort(
         (a, b) =>
           (a.positionInList || Infinity) - (b.positionInList || Infinity) ||
-          a.label.localeCompare(b.label)
+          a.label.localeCompare(b.label),
       )
     },
     groupTypes(types) {

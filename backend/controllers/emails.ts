@@ -4,7 +4,7 @@ import {
   emailRender,
   emailRenderBySurveyType,
 } from "../../backend/lib/mes-aides/emails/email-render.js"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 const renderEmailByType = async (followup, emailType: EmailType) => {
   let surveyType: SurveyType | undefined

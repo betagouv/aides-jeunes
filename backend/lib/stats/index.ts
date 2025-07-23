@@ -2,7 +2,7 @@ import Promise from "bluebird"
 import fs from "fs/promises"
 import path from "path"
 import dayjs from "dayjs"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 import { getUsageData } from "./piwik.js"
 import mongodb from "./mongodb.js"

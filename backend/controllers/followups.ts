@@ -1,5 +1,5 @@
 import { Response, NextFunction } from "express"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 import Followups from "../models/followup.js"
 import { Followup } from "../../lib/types/followup.d.js"

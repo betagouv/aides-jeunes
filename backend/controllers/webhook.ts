@@ -4,7 +4,7 @@ import config from "../config/index.js"
 import Mattermost from "../lib/mattermost-bot/mattermost.js"
 import { Request, Response, NextFunction } from "express"
 import { RequestBody, Data } from "../types/rdv-aide-numerique.js"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 export const verifyAuthentication = (
   req: Request,

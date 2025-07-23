@@ -65,7 +65,6 @@ export interface Configuration {
     authToken?: string
     project?: string
     environment?: string
-    integrations: [function]
     tracesSampleRate: float
     profilesSampleRate: float
     debug: boolean

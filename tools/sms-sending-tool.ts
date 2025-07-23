@@ -25,7 +25,7 @@ const send_types = send.add_subparsers({
 
 const initial_survey_parser = send_types.add_parser(SmsType.InitialSurvey)
 const simulation_results_parser = send_types.add_parser(
-  SmsType.SimulationResults
+  SmsType.SimulationResults,
 )
 
 const single_sms_id_parsers = [initial_survey_parser, simulation_results_parser]

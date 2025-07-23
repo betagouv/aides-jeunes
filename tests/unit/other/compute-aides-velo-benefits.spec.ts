@@ -40,7 +40,7 @@ describe("computeAidesVeloBenefits", function () {
       benefits as StandardBenefit[],
       results,
       situation,
-      openFiscaResponse
+      openFiscaResponse,
     )
 
     expect(results.length).toBe(1)

@@ -34,11 +34,11 @@ const fill_depcom = (department, name = "depcom") => {
 }
 
 const fill__difficultes_acces_ou_frais_logement = (
-  difficultes_acces_ou_frais_logement
+  difficultes_acces_ou_frais_logement,
 ) => {
   fillRadio(
     "_difficultes_acces_ou_frais_logement",
-    difficultes_acces_ou_frais_logement
+    difficultes_acces_ou_frais_logement,
   )
 }
 

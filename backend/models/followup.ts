@@ -21,7 +21,7 @@ FollowupSchema.method(
       await this.save()
     }
     return survey
-  }
+  },
 )
 
 FollowupSchema.method("updateSurvey", function (type, answers) {
@@ -91,5 +91,5 @@ FollowupSchema.virtual("recapSurveyPath").get(function (this) {
 
 export default mongoose.model<Followup, FollowupModel>(
   "Followup",
-  FollowupSchema
+  FollowupSchema,
 )

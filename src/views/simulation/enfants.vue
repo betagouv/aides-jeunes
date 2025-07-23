@@ -142,10 +142,10 @@ export default {
     nationality: Nationality.getNationalityFromCountryCode,
     scolarite(value) {
       const scolariteType = ScolariteCategories.scolariteTypes.find(
-        (s) => s.value === value
+        (s) => s.value === value,
       )
       const scolariteEnfantType = ScolariteCategories.scolariteEnfantTypes.find(
-        (s) => s.value === value
+        (s) => s.value === value,
       )
       return scolariteType?.label || scolariteEnfantType?.label || "-"
     },

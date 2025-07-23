@@ -2,7 +2,7 @@ import { Step, ComplexStep, ComplexStepProperties } from "../types/steps.js"
 
 function StepGenerator(
   this: Step,
-  { key, entity, id, variable, chapter }: Step
+  { key, entity, id, variable, chapter }: Step,
 ) {
   this.path = entity
     ? `/simulation/${entity}${id ? `/${id}` : ""}${
@@ -18,7 +18,7 @@ function StepGenerator(
 
 function ComplexStepGenerator(
   this: ComplexStepProperties,
-  { route, variables, chapter, entity, variable, id }: ComplexStep
+  { route, variables, chapter, entity, variable, id }: ComplexStep,
 ) {
   StepGenerator.call(this, {
     key: route,

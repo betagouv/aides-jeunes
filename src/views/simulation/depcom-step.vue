@@ -50,7 +50,7 @@ export default {
       this.store.simulation.answers.all,
       entityName,
       fieldName,
-      id
+      id,
     )
     return {
       entityName,

@@ -54,7 +54,7 @@
     "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all"
   },
   "dependencies": {
-    "@betagouv/aides-velo": "^2.0.0",
+    "@betagouv/aides-velo": "^2.0.1",
     "@betagouv/jamstack-loader": "^1.0.0",
     "@etalab/decoupage-administratif": "^4.0.0",
     "@gouvfr/dsfr": "^1.12.1",
@@ -128,7 +128,7 @@
     "eslint-plugin-cypress": "^3.6.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-prettier-vue": "^4.2.0",
+    "eslint-plugin-prettier-vue": "^5.0.0",
     "eslint-plugin-vue": "^9.32.0",
     "glob": "^11.0.1",
     "husky": "^7.0.4",
@@ -138,7 +138,7 @@
     "lodash-es": "^4.17.21",
     "mustache": "^4.2.0",
     "nodemon": "^2.0.20",
-    "prettier": "^2.5.1",
+    "prettier": "^3.6.1",
     "rollup-plugin-visualizer": "^5.8.2",
     "smtp-tester": "^2.0.1",
     "typescript": "^5.7.3",
@@ -166,7 +166,7 @@
     ]
   },
   "engines": {
-    "node": ">= 18.16.1"
+    "node": ">= 24.0.0"
   },
   "license": "AGPL-3.0",
   "repository": {

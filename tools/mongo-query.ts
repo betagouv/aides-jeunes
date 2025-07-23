@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import dayjs from "dayjs"
 import MongoDB from "../backend/lib/stats/mongodb.js"
-import communes from "@etalab/decoupage-administratif/data/communes.json" assert { type: "json" }
+import communes from "@etalab/decoupage-administratif/data/communes.json" with { type: "json" }
 
 const __dirname = new URL(".", import.meta.url).pathname
 const depcoms100k = communes
@@ -199,14 +199,14 @@ async function generateMongoStats() {
       const filepath = path.join(documentFolder, statParameters.filename)
       const aggregateCursor = await getSimulationStats(
         db,
-        statParameters.aggregate
+        statParameters.aggregate,
       )
       const fileStream = fs.createWriteStream(filepath)
       fileStream.write(`${statParameters.headers.join(separator)}\n`)
 
       for await (const document of aggregateCursor) {
         const line = statParameters.headers.map(
-          (key) => document[key] || document._id[key] || ""
+          (key) => document[key] || document._id[key] || "",
         )
         fileStream.write(`${line.join(separator)}\n`)
       }

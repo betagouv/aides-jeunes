@@ -115,7 +115,7 @@ export const ressourceTypes: Resource[] = [
       return (
         individu.id !== "demandeur" ||
         Boolean(
-          situation.enfants?.filter((enfant) => enfant.garde_alternee).length
+          situation.enfants?.filter((enfant) => enfant.garde_alternee).length,
         )
       )
     },
@@ -142,7 +142,7 @@ export const ressourceTypes: Resource[] = [
         55 <=
         IndividuMethods.age(
           individu,
-          datesGenerator(situation.dateDeValeur).today.value
+          datesGenerator(situation.dateDeValeur).today.value,
         )
       )
     },
@@ -193,10 +193,10 @@ export const ressourceTypes: Resource[] = [
     isRelevant: (situation: Situation, individu: Individu) => {
       const age = IndividuMethods.age(
         individu,
-        datesGenerator(situation.dateDeValeur).today.value
+        datesGenerator(situation.dateDeValeur).today.value,
       )
       return Boolean(
-        16 <= age && (age <= 25 || (individu.handicap && age < 30))
+        16 <= age && (age <= 25 || (individu.handicap && age < 30)),
       )
     },
   },

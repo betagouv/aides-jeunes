@@ -295,12 +295,21 @@ const router = createRouter({
       },
     },
     {
+      path: "/preparer-rentree-etudiante-logement-budget-aides",
+      name: "preparer-rentree-etudiante-logement-budget-aides",
+      component: () =>
+        import("./views/preparer-rentree-etudiante-logement-budget-aides.vue"),
+      meta: {
+        headTitle: `Préparer sa rentrée étudiante 2025 : logement, budget, aides`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {
         ABTestingService.setVariant(
           "aides_bafa",
-          "aides_bafa_fusionnees_conserve_position"
+          "aides_bafa_fusionnees_conserve_position",
         )
         return "/"
       },
@@ -376,7 +385,7 @@ router.beforeEach((to, from, next) => {
   if (current && current.includes(enfantPath)) {
     const id_enfant = current.split(enfantPath)[1].split("/")[0]
     const hasStoreChild = store.situation.enfants?.some(
-      (enfant) => enfant.id === `enfant_${id_enfant}`
+      (enfant) => enfant.id === `enfant_${id_enfant}`,
     )
 
     if (!hasStoreChild) {

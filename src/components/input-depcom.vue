@@ -141,7 +141,7 @@ export default {
     updateMatchingCommune() {
       this.$emit(
         "update:matchingCommune",
-        this.communes.find((c) => c.nom == this.nomCommuneValue)
+        this.communes.find((c) => c.nom == this.nomCommuneValue),
       )
     },
     fetchCommune(focusCommune) {
@@ -158,10 +158,10 @@ export default {
             this.sendEventToMatomo(
               EventCategory.General,
               EventAction.CodePostalIntrouvable,
-              `Code postal : ${this.codePostalValue}`
+              `Code postal : ${this.codePostalValue}`,
             )
             this.store.updateError(
-              "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment."
+              "Le code postal est invalide. Le simulateur accepte uniquement les codes postaux français pour le moment.",
             )
             return []
           }

@@ -43,7 +43,7 @@ AidesJeunesServiceLogement.prototype.toExternal = function ({ query }) {
   props.forEach((prop) => {
     const fct = propManagers[prop] || propManagers.default
     const answer = this.simulation.answers.current.find(
-      (e) => e.fieldName == prop
+      (e) => e.fieldName == prop,
     )
     const newValue = boolConverter(scenarios[0][prop])
     if (answer) {

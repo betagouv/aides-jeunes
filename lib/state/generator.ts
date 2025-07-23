@@ -6,7 +6,7 @@ import { Block } from "../types/blocks.js"
 
 function processAndAppendBlockRecursively(
   { journey, subject, situation, isActive, parameters },
-  block: Block
+  block: Block,
 ) {
   if (block instanceof StepGenerator) {
     block.isActive = isActive
@@ -35,8 +35,8 @@ function processAndAppendBlockRecursively(
         isActive: isCurrentBlockActive,
         parameters,
       },
-      step
-    )
+      step,
+    ),
   )
 }
 
@@ -45,7 +45,7 @@ function createJourneyFromBlocks(blocks, situation, parameters) {
   blocks.forEach((block) => {
     processAndAppendBlockRecursively(
       { journey, subject: situation, situation, isActive: true, parameters },
-      block
+      block,
     )
   })
   return journey
@@ -72,7 +72,7 @@ function assignLastChapterToSteps(fullSteps) {
 
 export function generateAllSteps(
   situation,
-  parameters
+  parameters,
 ): (StepStrict | ComplexStepProperties)[] {
   let fullSteps
   try {

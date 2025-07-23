@@ -22,7 +22,7 @@ const sources = {
       simulation.answers.current,
       "individu",
       "date_naissance",
-      id
+      id,
     )
     if (!dob) {
       return
@@ -59,7 +59,7 @@ const sources = {
       simulation.answers.current,
       "individu",
       "statut_marital",
-      "conjoint"
+      "conjoint",
     )
 
     // - Answer "en_couple" value "Union libre" is "celibataire" and needs to be restored as "Union libre" for the prefill
@@ -81,7 +81,7 @@ const fsl_var_sources = {
       simulation.answers.current,
       "individu",
       "activite",
-      "demandeur"
+      "demandeur",
     )
     return getActiviteLabel(activite)
   },
@@ -89,7 +89,7 @@ const fsl_var_sources = {
     const { loyer, charges_locatives = 0 } = getAnswer(
       simulation.answers.current,
       "menage",
-      "loyer"
+      "loyer",
     )
     return loyer + charges_locatives
   },
@@ -97,7 +97,7 @@ const fsl_var_sources = {
     const { _nomCommune } = getAnswer(
       simulation.answers.current,
       "menage",
-      "depcom"
+      "depcom",
     )
     return _nomCommune
   },
@@ -105,7 +105,7 @@ const fsl_var_sources = {
     const { _codePostal } = getAnswer(
       simulation.answers.current,
       "menage",
-      "depcom"
+      "depcom",
     )
     return _codePostal
   },
@@ -119,13 +119,13 @@ const fsl_var_sources = {
       simulation.answers.current,
       "individu",
       "date_naissance",
-      "conjoint"
+      "conjoint",
     )
     const activite = getAnswer(
       simulation.answers.current,
       "individu",
       "activite",
-      "conjoint"
+      "conjoint",
     )
     return {
       champ_Q2hhbXAtMjU1NDk1MQ: date_naissance.slice(0, 10),
@@ -138,19 +138,19 @@ const fsl_var_sources = {
       simulation.answers.current,
       "individu",
       "date_naissance",
-      `enfant_${id}`
+      `enfant_${id}`,
     )
     const prenom = getAnswer(
       simulation.answers.current,
       "individu",
       "_firstName",
-      `enfant_${id}`
+      `enfant_${id}`,
     )
     const scolarite = getAnswer(
       simulation.answers.current,
       "individu",
       "scolarite",
-      `enfant_${id}`
+      `enfant_${id}`,
     )
     const scolariteLabel =
       Scolarite.scolariteTypes.find((s) => s.value === scolarite)?.label ||

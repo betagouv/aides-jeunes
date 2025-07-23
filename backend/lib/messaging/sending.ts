@@ -58,13 +58,13 @@ async function sendMultipleInitialEmails(limit: number) {
       try {
         const survey = await sendSurveyEmail(
           followup,
-          SurveyType.TrackClickOnSimulationUsefulnessEmail
+          SurveyType.TrackClickOnSimulationUsefulnessEmail,
         )
         return { survey_id: survey._id }
       } catch (error) {
         return { ko: error }
       }
-    })
+    }),
   )
 
   console.log(results)
@@ -83,7 +83,7 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
     case EmailType.SimulationUsefulness:
       await sendSurveyEmail(
         followup,
-        SurveyType.TrackClickOnSimulationUsefulnessEmail
+        SurveyType.TrackClickOnSimulationUsefulnessEmail,
       )
       break
     default:
@@ -94,7 +94,7 @@ async function processSingleEmail(emailType: EmailType, followupId: string) {
 export async function processSendEmails(
   emailType: EmailType,
   followupId: string,
-  multiple: number | null
+  multiple: number | null,
 ) {
   if (followupId) {
     await processSingleEmail(emailType, followupId)
@@ -107,7 +107,8 @@ export async function processSendEmails(
 
 function getEmailSurvey(followup: Followup): Survey | undefined {
   return followup.surveys.find(
-    (survey) => SurveyType.TrackClickOnSimulationUsefulnessEmail === survey.type
+    (survey) =>
+      SurveyType.TrackClickOnSimulationUsefulnessEmail === survey.type,
   )
 }
 
@@ -123,7 +124,7 @@ export function shouldSendSurveyBySms(followup: Followup): boolean {
   if (hasPhone && hasEmail && emailSurvey && emailSurvey.answers.length === 0) {
     const surveyEmailCreatedAtWithDelay = dayjs(emailSurvey.createdAt).add(
       DelayAfterInitialSurveyEmail,
-      "day"
+      "day",
     )
     return dayjs().isAfter(surveyEmailCreatedAtWithDelay)
   }
@@ -160,7 +161,7 @@ function initialSurveySmsMongooseCriteria(): any {
 
 export async function filterInitialSurveySms(
   followups: any[],
-  limit: number
+  limit: number,
 ): Promise<Followup[]> {
   return followups
     .slice(0, limit)
@@ -169,11 +170,11 @@ export async function filterInitialSurveySms(
 
 export async function sendMultipleInitialSms(limit: number) {
   const mongooseFollowups = await Followups.find(
-    initialSurveySmsMongooseCriteria()
+    initialSurveySmsMongooseCriteria(),
   ).sort({ createdAt: 1 })
   const followupsToSendSms: any[] = await filterInitialSurveySms(
     mongooseFollowups,
-    limit
+    limit,
   )
 
   const results = await Promise.all(
@@ -184,7 +185,7 @@ export async function sendMultipleInitialSms(limit: number) {
       } catch (error) {
         return { ko: error }
       }
-    })
+    }),
   )
   console.log(results)
 }
@@ -209,7 +210,7 @@ async function processSingleSms(smsType: SmsType, followupId: string) {
 export async function processSendSms(
   SmsType: SmsType,
   followupId: string,
-  multiple: number | null
+  multiple: number | null,
 ) {
   if (followupId) {
     await processSingleSms(SmsType, followupId)

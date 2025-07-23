@@ -14,14 +14,14 @@ describe("getEnvVariable", () => {
 
   it("throws an error if the specified environment variable is not defined", () => {
     expect(() => getEnvVariable("UNDEFINED_VARIABLE")).toThrowError(
-      "Variable UNDEFINED_VARIABLE is not defined"
+      "Variable UNDEFINED_VARIABLE is not defined",
     )
   })
 
   it("throws an error if the specified environment variable is an empty string", () => {
     process.env.TEST_VARIABLE = ""
     expect(() => getEnvVariable("TEST_VARIABLE")).toThrowError(
-      "Variable TEST_VARIABLE is not defined"
+      "Variable TEST_VARIABLE is not defined",
     )
   })
 })

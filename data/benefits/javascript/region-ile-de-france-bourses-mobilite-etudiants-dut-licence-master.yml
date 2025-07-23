@@ -40,3 +40,4 @@ unit: €
 periodicite: mensuelle
 legend: maximum
 montant: 450
+private: true

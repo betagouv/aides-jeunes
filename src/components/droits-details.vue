@@ -224,14 +224,14 @@ export default {
       this.sendEventToMatomo(
         EventCategory.General,
         EventAction.ShareLinkByEmail,
-        this.$route.path
+        this.$route.path,
       )
     },
     async copyToClipboard() {
       this.sendEventToMatomo(
         EventCategory.General,
         EventAction.CopyLinkBenefit,
-        this.$route.path
+        this.$route.path,
       )
       await navigator.clipboard.writeText(this.sharingLinkUrl)
       alert("Lien copié dans le presse papier : " + this.sharingLinkUrl)

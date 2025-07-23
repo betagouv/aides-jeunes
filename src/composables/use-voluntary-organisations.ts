@@ -23,10 +23,10 @@ export function useVolontaryOrganisations() {
   }
 
   const fetchCenterCoordinatesFromPostalCode = async (
-    postalCode
+    postalCode,
   ): Promise<Coordinates> => {
     const response = await axios.get(
-      `/api/outils/codePostal/${postalCode}/centerCoordinates`
+      `/api/outils/codePostal/${postalCode}/centerCoordinates`,
     )
     const centerCoordinates: Coordinates = response.data
 
@@ -35,7 +35,7 @@ export function useVolontaryOrganisations() {
 
     if (!hasValidCoordinates) {
       throw new Error(
-        `Can't find center coordinates for this postal code ${postalCode}`
+        `Can't find center coordinates for this postal code ${postalCode}`,
       )
     }
     return centerCoordinates

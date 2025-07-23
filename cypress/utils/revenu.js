@@ -11,7 +11,7 @@ const fill_ressources_types = (types = []) => {
       .then(() => {
         return cy.get("form").find(`label[for="${type}"]`)
       })
-      .click()
+      .click(),
   )
   submit()
 }

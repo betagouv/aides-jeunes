@@ -99,14 +99,14 @@ export default {
       categoriesRnc.forEach((categorieRnc) => {
         individu.values[categorieRnc.id] = Object.assign(
           {},
-          source[categorieRnc.id] || {}
+          source[categorieRnc.id] || {},
         )
         individu.values[categorieRnc.id][fiscalYear] =
           source[categorieRnc.id]?.[fiscalYear]
         individu.default[categorieRnc.id] = this.getDefaultValue(
           this.store.dates.last12Months,
           source,
-          categorieRnc
+          categorieRnc,
         )
       })
 
@@ -115,7 +115,7 @@ export default {
         categoriesRnc.some(
           (ressource) =>
             source[ressource.id] &&
-            source[ressource.id][fiscalYear] !== undefined
+            source[ressource.id][fiscalYear] !== undefined,
         )
       return individu
     })

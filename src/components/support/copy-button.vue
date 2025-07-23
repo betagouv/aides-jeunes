@@ -32,7 +32,7 @@ export default {
           const benefitLink = document.createElement("a")
           const benefitTitle = this.benefitsMap(benefit.id)?.label || benefit.id
           benefitLink.innerText = benefitTitle.replace(/(^[a-z])/, (l) =>
-            l.toUpperCase()
+            l.toUpperCase(),
           )
 
           benefitLink.href = `${process.env.VITE_BASE_URL}/aides/${benefit.id}`

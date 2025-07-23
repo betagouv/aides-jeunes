@@ -4,7 +4,7 @@ benefits.all
   .filter((benefit) => {
     return (
       ["region", "departement", "commune", "epci"].includes(
-        benefit.institution.type
+        benefit.institution.type,
       ) && benefit.source === "javascript"
     )
   })

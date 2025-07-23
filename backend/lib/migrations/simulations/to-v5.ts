@@ -9,7 +9,7 @@ function update_interetAidesVeloElectrique(answers) {
     (answer) =>
       answer.id === "demandeur" &&
       answer.entityName === "individu" &&
-      answer.fieldName === "_interetAidesVeloElectrique"
+      answer.fieldName === "_interetAidesVeloElectrique",
   )
 
   if (answerIndex < 0) return

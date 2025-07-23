@@ -2,7 +2,7 @@ import axios from "axios"
 
 import config from "../../config/index.js"
 import { Stats } from "../../types/stats.d.js"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 interface PiwikParameters {
   period: string

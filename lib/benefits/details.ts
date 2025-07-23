@@ -17,7 +17,7 @@ const LEGENDE_PERIODICITE_AIDE_ENUM = {
 
 function getBenefitLegend(
   benefit: StandardBenefit,
-  parameters: OpenfiscaParameters
+  parameters: OpenfiscaParameters,
 ): string {
   if (benefit.legend) {
     if (typeof benefit.legend === "function") {
@@ -48,7 +48,7 @@ function getValueOfBoolean(value: boolean) {
 
 function formatDroitEstime(
   droit: StandardBenefit,
-  parameters: OpenfiscaParameters
+  parameters: OpenfiscaParameters,
 ) {
   const droitEstime: DroitEstime = {
     id: droit.id,
@@ -88,7 +88,7 @@ function formatDroitEstime(
           droitEstime.value = formatCurrency(
             droitEstime.value,
             droitEstime.unit,
-            getDecimalPrecision(droit)
+            getDecimalPrecision(droit),
           )
         }
         break

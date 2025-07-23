@@ -309,7 +309,7 @@ const router = createRouter({
       redirect: () => {
         ABTestingService.setVariant(
           "aides_bafa",
-          "aides_bafa_fusionnees_conserve_position"
+          "aides_bafa_fusionnees_conserve_position",
         )
         return "/"
       },
@@ -385,7 +385,7 @@ router.beforeEach((to, from, next) => {
   if (current && current.includes(enfantPath)) {
     const id_enfant = current.split(enfantPath)[1].split("/")[0]
     const hasStoreChild = store.situation.enfants?.some(
-      (enfant) => enfant.id === `enfant_${id_enfant}`
+      (enfant) => enfant.id === `enfant_${id_enfant}`,
     )
 
     if (!hasStoreChild) {

@@ -137,18 +137,18 @@ export class ItemProperty extends Property {
 
   getRelevantItems(
     items: EnumItemProperty[],
-    propertyData: PropertyData
+    propertyData: PropertyData,
   ): EnumItemProperty[] {
     return items.filter(
       (item: EnumItemProperty) =>
-        !item.isRelevant || item.isRelevant(propertyData)
+        !item.isRelevant || item.isRelevant(propertyData),
     )
   }
 
   getItems(propertyData: PropertyData): EnumItemProperty[] {
     return this.getRelevantItems(
       this.getValueOrExecuteFunction("items", propertyData),
-      propertyData
+      propertyData,
     )
   }
 }

@@ -19,8 +19,8 @@ describe("Test Javascript Benefit schema", function () {
         expect(
           validateFile(
             `data/benefits/javascript/${benefitFilename}`,
-            benefitSchema
-          )
+            benefitSchema,
+          ),
         ).toEqual([])
       })
     })

@@ -1,5 +1,5 @@
 import { Response, NextFunction } from "express"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 import Followups from "../models/followup.js"
 import { Followup } from "../../lib/types/followup.d.js"
@@ -19,7 +19,7 @@ export async function followup(
   req: Request,
   res: Response,
   next: NextFunction,
-  id: string
+  id: string,
 ) {
   try {
     const followup = await Followups.findById(id).populate("simulation").exec()
@@ -38,7 +38,7 @@ export async function followup(
 async function createSimulationRecapUrl(req: Request, res: Response) {
   const followup = await FollowupFactory.create(req.simulation)
   await followup.addSurveyIfMissing(
-    SurveyType.TrackClickTemporarySimulationLink
+    SurveyType.TrackClickTemporarySimulationLink,
   )
   await followup.save()
   const simulationRecapUrl = `${config.baseURL}${followup.shortRecapPath}`
@@ -55,7 +55,7 @@ export async function persist(req: Request, res: Response) {
         simulation,
         surveyOptin,
         email,
-        phone
+        phone,
       )
       if (email) await sendSimulationResultsEmail(followup)
       if (phone) await sendSimulationResultsSms(followup)
@@ -83,7 +83,8 @@ export async function persist(req: Request, res: Response) {
 
 export function getFollowupDataForSurvey(req: Request, res: Response) {
   const usefullnessSurvey = req.followup.surveys.find(
-    (survey) => survey.type === SurveyType.TrackClickOnSimulationUsefulnessEmail
+    (survey) =>
+      survey.type === SurveyType.TrackClickOnSimulationUsefulnessEmail,
   )
 
   const simulationWasUseful =
@@ -93,7 +94,7 @@ export function getFollowupDataForSurvey(req: Request, res: Response) {
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(
-      (benefit) => benefit.id in Benefits.benefitsMap
+      (benefit) => benefit.id in Benefits.benefitsMap,
     ),
     simulationWasUseful,
   } as FetchSurvey)
@@ -146,7 +147,7 @@ export async function followupByAccessToken(
   req: Request,
   res: Response,
   next: NextFunction,
-  accessToken: any
+  accessToken: any,
 ) {
   const followup: Followup | null = await Followups.findOne({
     accessToken,
@@ -173,7 +174,7 @@ export async function updateWasUseful(req: Request) {
   const { followup } = req
   await followup.updateSurvey(
     SurveyType.TrackClickOnSimulationUsefulnessEmail,
-    answers
+    answers,
   )
 }
 

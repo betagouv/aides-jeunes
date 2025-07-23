@@ -25,7 +25,7 @@ export default {
     question: ({ individu }) => {
       return `${IndividuMethods.label(
         individu,
-        "avoir"
+        "avoir",
       )} une restriction substantielle et
       durable d'accès à l'emploi reconnue par la
       <abbr
@@ -224,11 +224,11 @@ export default {
       return `Quel est le revenu brut global ${yearsAgo(
         2,
         periods.today.id,
-        "YYYY"
+        "YYYY",
       )} figurant sur l’avis fiscal ${yearsAgo(
         1,
         periods.today.id,
-        "YYYY"
+        "YYYY",
       )} de vos parents ?`
     },
     questionType: "number",
@@ -239,7 +239,7 @@ export default {
       const _situation = getAnswer(
         simulation.answers.current,
         "parents",
-        "_situation"
+        "_situation",
       )
       return ["separes", "celibataire"].includes(_situation)
     },
@@ -272,7 +272,7 @@ export default {
     question: ({ individu }) => {
       return `Depuis quand ${IndividuMethods.label(
         individu,
-        "être"
+        "être",
       )} inscrit(e) à France Travail ?`
     },
   }),
@@ -283,7 +283,7 @@ export default {
         ? `Quelle est votre date de naissance ?`
         : `Quelle est la date de naissance ${IndividuMethods.label(
             individu,
-            "préposition"
+            "préposition",
           )}${IndividuMethods.label(individu, "nom")} ?`
     },
   }),
@@ -317,7 +317,7 @@ export default {
       return individu._role === "demandeur"
         ? "Avez-vous fait votre propre déclaration d'impôts ?"
         : `${capitalize(
-            IndividuMethods.label(individu, "nom")
+            IndividuMethods.label(individu, "nom"),
           )} figure-t-il/elle sur votre dernière déclaration d'impôts sur le revenu ?`
     },
     items: ({ individu }) => {
@@ -339,7 +339,7 @@ export default {
     question: ({ individu }) => {
       return `${IndividuMethods.label(
         individu,
-        "être"
+        "être",
       )} placé ou placée en structure spécialisée ou famille d'accueil ?`
     },
   }),
@@ -384,7 +384,7 @@ export default {
     question: ({ individu }) => {
       return `${IndividuMethods.label(
         individu,
-        "être"
+        "être",
       )} en situation de handicap ?`
     },
     moreInfo: (variation) => {
@@ -405,7 +405,7 @@ export default {
     question: ({ individu }) => {
       return `${IndividuMethods.label(
         individu,
-        "être"
+        "être",
       )} reconnu ou reconnue inapte au travail ?`
     },
     moreInfo:
@@ -428,7 +428,7 @@ export default {
         ? "Quelle est votre nationalité ?"
         : `Quelle est la nationalité ${IndividuMethods.label(
             individu,
-            "préposition"
+            "préposition",
           )}${IndividuMethods.label(individu, "nom")} ?`
     },
     items: [
@@ -569,7 +569,7 @@ export default {
           ? `Quel est votre taux d'incapacité`
           : `Quel est le taux d'incapacité ${IndividuMethods.label(
               individu,
-              "préposition"
+              "préposition",
             )}${IndividuMethods.label(individu, "nom")}`
 
       return `${start}

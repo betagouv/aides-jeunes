@@ -59,7 +59,7 @@ function migrate(currentMigration, conditions) {
         model.save(function (err) {
           if (err) {
             console.log(
-              `Cannot save migrated ${model.constructor.modelName} ${model.id}`
+              `Cannot save migrated ${model.constructor.modelName} ${model.id}`,
             )
             console.trace(err)
             errors = errors + 1
@@ -67,7 +67,7 @@ function migrate(currentMigration, conditions) {
           counter = counter + 1
           done()
         })
-      })
+      }),
     )
     .on("end", function () {
       console.log(
@@ -78,7 +78,7 @@ function migrate(currentMigration, conditions) {
           new Date().toISOString(),
           counter,
           errors,
-        ].join(";")
+        ].join(";"),
       )
       process.exit()
     })

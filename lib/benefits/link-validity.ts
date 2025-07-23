@@ -8,7 +8,7 @@ function buildPullRequestProcessor(pullRequestURL) {
     _,
     linkInfo,
     existingWarning,
-    operations: GristOperation[]
+    operations: GristOperation[],
   ) {
     if (linkInfo.ok && existingWarning) {
       if (existingWarning.fields.PR != pullRequestURL) {
@@ -31,7 +31,7 @@ function processCron(
   { id, priority },
   linkInfo,
   existingWarning,
-  operations: GristOperation[]
+  operations: GristOperation[],
 ) {
   if (linkInfo.ok) {
     if (existingWarning) {
@@ -84,7 +84,7 @@ function processCron(
 export function determineOperationsOnBenefitLinkError(
   existingWarnings,
   benefitLinksCheckResult: BenefitLinkProperties,
-  pullRequestURL?: string
+  pullRequestURL?: string,
 ) {
   const processor = pullRequestURL
     ? buildPullRequestProcessor(pullRequestURL)
@@ -106,20 +106,20 @@ export function determineOperationsOnBenefitLinkError(
           !benefitLinksCheckResult.links.some(
             (linkObject) =>
               linkObject.link === existingWarningsLink[type]?.fields?.Lien &&
-              benefitLinksCheckResult.links.length > 0
+              benefitLinksCheckResult.links.length > 0,
           ) || //Si le lien analysé n'est pas présent dans la liste des liens d'erreurs et qu'il y a au moins un lien
           (!existingWarning &&
             benefitLinksCheckResult.links.some(
               (linkObject) =>
                 linkObject.link === existingWarningsLink[type]?.fields?.Lien &&
-                linkObject.ok
+                linkObject.ok,
             ))
         ) {
           processor(
             benefitLinksCheckResult,
             link,
             existingWarningsLink[type],
-            operations
+            operations,
           )
         }
       }
@@ -133,11 +133,11 @@ export function determineExistingWarningsFixByPrivateBenefits(
   existingWarnings,
   privateBenefits,
   benefitOperationsList,
-  pullRequestURL?: string
+  pullRequestURL?: string,
 ) {
   for (const warningBenefitId in existingWarnings) {
     const privateBenefit = privateBenefits?.filter(
-      (benefit) => benefit.id === warningBenefitId
+      (benefit) => benefit.id === warningBenefitId,
     )
     if (privateBenefit?.length) {
       for (const type in existingWarnings[warningBenefitId]) {

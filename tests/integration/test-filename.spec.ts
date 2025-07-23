@@ -51,14 +51,16 @@ describe("Test filenames rules", function () {
     describe(file.absolute, function () {
       it("should respect kebab-case rule", function () {
         expect(
-          file.filename.match(/^(_?)([a-z][a-z0-9]*)(-[a-z0-9]+)*$/)
+          file.filename.match(/^(_?)([a-z][a-z0-9]*)(-[a-z0-9]+)*$/),
         ).toBeTruthy()
       })
     })
   })
 
   const benefitsFiles = files.filter((file) =>
-    file.absolute.match(/data\/(institutions|benefits\/(javascript|openfisca))/)
+    file.absolute.match(
+      /data\/(institutions|benefits\/(javascript|openfisca))/,
+    ),
   )
   benefitsFiles.forEach((file) => {
     describe(file.absolute, function () {

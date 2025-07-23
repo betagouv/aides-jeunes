@@ -164,7 +164,7 @@ describe("filterInitialSurveySms tests", () => {
   it("should not include followup with sms survey", async () => {
     const result = await filterInitialSurveySms([mockFollowups[0]], limit)
     expect(result).not.toContainEqual(
-      expect.objectContaining({ _id: "mock-0" })
+      expect.objectContaining({ _id: "mock-0" }),
     )
   })
 
@@ -176,14 +176,14 @@ describe("filterInitialSurveySms tests", () => {
   it("should not include followup with no sms survey and has a phone but does not respect the email delay", async () => {
     const result = await filterInitialSurveySms([mockFollowups[2]], limit)
     expect(result).not.toContainEqual(
-      expect.objectContaining({ _id: "mock-2" })
+      expect.objectContaining({ _id: "mock-2" }),
     )
   })
 
   it("should not include followup without a phone", async () => {
     const result = await filterInitialSurveySms([mockFollowups[3]], limit)
     expect(result).not.toContainEqual(
-      expect.objectContaining({ _id: "mock-3" })
+      expect.objectContaining({ _id: "mock-3" }),
     )
   })
 

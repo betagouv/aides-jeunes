@@ -12,7 +12,7 @@ import { Followup } from "../../lib/types/followup.d.js"
 import { Simulation } from "../../lib/types/simulation.d.js"
 import allBenefits from "../../data/all.js"
 import Request from "../types/express.d.js"
-import Sentry from "@sentry/node"
+import * as Sentry from "@sentry/node"
 
 function setSimulationOnRequest(req: Request, simulation: Simulation) {
   req.simulation = apply(simulation)
@@ -23,7 +23,7 @@ async function simulation(
   req: Request,
   res,
   next,
-  simulationOrSimulationId: Simulation | Simulation["_id"] | string
+  simulationOrSimulationId: Simulation | Simulation["_id"] | string,
 ) {
   if (
     simulationOrSimulationId &&
@@ -59,12 +59,12 @@ function attachAccessCookie(req: Request, res, next?) {
   res.cookie(
     req.simulation?.cookieName,
     req.simulation?.token,
-    cookiesParameters
+    cookiesParameters,
   )
   res.cookie(
     "lastestSimulation",
     req.simulation?._id?.toString(),
-    cookiesParameters
+    cookiesParameters,
   )
   next()
 }
@@ -97,7 +97,7 @@ function clearCookies(req: Request, res) {
   if (situationCookies.length - limit >= 0) {
     const cookieToClear = situationCookies.slice(
       0,
-      situationCookies.length - limit
+      situationCookies.length - limit,
     )
     cookieToClear.forEach(function (name) {
       res.clearCookie(name, { httpOnly: true })
@@ -115,7 +115,7 @@ async function create(req: Request, res, next) {
 
   try {
     const persistedSimulation = await Simulations.create(
-      omit(req.body, "createdAt", "status", "token")
+      omit(req.body, "createdAt", "status", "token"),
     )
 
     clearCookies(req, res)
@@ -132,7 +132,7 @@ function openfiscaResponse(req: Request, res, next) {
       return next(
         Object.assign(err.response?.data || err, {
           _id: req.simulationId,
-        })
+        }),
       )
 
     res.send(Object.assign(result, { _id: req.simulationId }))
@@ -149,7 +149,7 @@ function results(req: Request, res, next) {
       return next(
         Object.assign(err?.response?.data || err, {
           _id: req.simulation?._id,
-        })
+        }),
       )
     })
 }
@@ -185,7 +185,7 @@ function openfiscaTest(req: Request, res) {
   const details = assign(
     {},
     DETAILS_DEFAULT_ATTRIBUTES,
-    pick(req.body, DETAILS_ATTRIBUTES)
+    pick(req.body, DETAILS_ATTRIBUTES),
   )
   if (!details.name || !details.description || !details.output) {
     return res
@@ -208,7 +208,7 @@ function enrichBenefitsList(benefits) {
   return benefits
     .map((benefit) => {
       const fullBenefit = allBenefits.all.find(
-        (b) => b.slug === benefit.id || b.id === benefit.id
+        (b) => b.slug === benefit.id || b.id === benefit.id,
       )
 
       if (!fullBenefit) {
@@ -231,7 +231,7 @@ async function getLatestFollowup(req: Request, res) {
       simulation: req.simulation?._id,
     },
     null,
-    { sort: { createdAt: -1 } }
+    { sort: { createdAt: -1 } },
   )) as Followup
 
   if (!followup) {

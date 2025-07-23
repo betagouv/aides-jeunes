@@ -8,7 +8,7 @@ declare global {
       (number | string)?,
       string?,
       string?,
-      string?
+      string?,
     ][]
   }
 }
@@ -58,7 +58,7 @@ const tracker = {
     category: string,
     action: string,
     name?: string,
-    value?: string
+    value?: string,
   ) => {
     window._paq?.push(["trackEvent", category, action, name, value])
   },

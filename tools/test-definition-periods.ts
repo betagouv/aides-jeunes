@@ -17,7 +17,7 @@ Object.keys(Common.requestedVariables).forEach((variableId) => {
           Common.requestedVariables[variableId].openfiscaPeriod
         ]
       assert(definitionPeriod === data.definitionPeriod)
-    })
+    }),
   )
 })
 

@@ -24,7 +24,7 @@ const CommuneMethods = {
   getMostPopulated: function (communes: Commune[]) {
     return communes.reduce(
       (a, b) => ((a?.population || 0) < (b?.population || 0) ? b : a),
-      communes?.[0] || {}
+      communes?.[0] || {},
     )
   },
 }

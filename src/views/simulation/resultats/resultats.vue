@@ -102,7 +102,7 @@ const updating = computed(() => resultsStore.updating)
 const error = computed(() => resultsStore.error)
 const hasErrorSave = computed(() => resultsStore.hasErrorSave)
 const isSimulationUnavailable = computed(
-  () => resultsStore.isSimulationUnavailable
+  () => resultsStore.isSimulationUnavailable,
 )
 const shouldDisplayResults = computed(() => resultsStore.shouldDisplayResults)
 

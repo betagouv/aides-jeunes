@@ -21,7 +21,7 @@ const locationTypeMap: any = {
 
 const updateStatutOccupationLogement = (answers) => {
   const answerIndex = answers.findIndex(
-    (answer) => answer.fieldName === "statut_occupation_logement"
+    (answer) => answer.fieldName === "statut_occupation_logement",
   )
 
   if (answerIndex < 0) return

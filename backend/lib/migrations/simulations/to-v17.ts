@@ -18,10 +18,10 @@ function updateContratAlternanceAnswers(answers) {
 export default {
   apply(simulation) {
     simulation.answers.all = updateContratAlternanceAnswers(
-      simulation.answers.all
+      simulation.answers.all,
     )
     simulation.answers.current = updateContratAlternanceAnswers(
-      simulation.answers.current
+      simulation.answers.current,
     )
 
     return simulation

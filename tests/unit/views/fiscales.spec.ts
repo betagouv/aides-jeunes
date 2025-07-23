@@ -41,8 +41,8 @@ describe("fiscales.vue", () => {
         FiscalesView.methods.getDefaultValue(
           test.months,
           test.individu,
-          test.rnc
-        )
+          test.rnc,
+        ),
       ).toEqual(test.result)
     }
   })

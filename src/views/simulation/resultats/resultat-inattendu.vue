@@ -32,7 +32,7 @@ const resultatsInattendus = RESULTATS_INATTENDUS
 Benefits.forEach((benefit) => {
   const benefit_temp = Object.assign(
     { type: benefit.institution.type },
-    benefit
+    benefit,
   )
   if (benefit_temp.label === "Tarification solidaire transports") {
     benefit_temp.label = `${benefit_temp.label} - ${benefit.institution.label}`

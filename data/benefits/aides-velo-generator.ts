@@ -16,7 +16,7 @@ const VELO_BENEFIT_DEFAULT_VALUES = {
 }
 
 function filterInstitutionsByType(
-  institutions: Institution[]
+  institutions: Institution[],
 ): InstitutionsByType {
   return {
     région: institutions.filter((i) => i.type === "region"),
@@ -28,7 +28,7 @@ function filterInstitutionsByType(
 
 function findAidesVeloBenefitMatchingInstitution(
   benefit: AidesVeloBenefit,
-  institutionsByType: InstitutionsByType
+  institutionsByType: InstitutionsByType,
 ): string | undefined {
   const { collectivity } = benefit
   if (!collectivity) return undefined
@@ -94,7 +94,7 @@ function buildVeloBenefitLabel(benefit: AidesVeloBenefit): string {
 
 function formatAidesVeloToVeloBenefit(
   benefit: AidesVeloBenefit,
-  institutionsByType: InstitutionsByType
+  institutionsByType: InstitutionsByType,
 ): VeloBenefit {
   const benefitId = String(benefit.id)
   return {
@@ -109,16 +109,16 @@ function formatAidesVeloToVeloBenefit(
     link: benefit.url,
     institution: findAidesVeloBenefitMatchingInstitution(
       benefit,
-      institutionsByType
+      institutionsByType,
     ),
   }
 }
 
 export default function generateVeloBenefitList(
-  institutions: Institution[]
+  institutions: Institution[],
 ): VeloBenefit[] {
   const institutionsByType = filterInstitutionsByType(institutions)
   return aidesVelo.map((benefit: AidesVeloBenefit) =>
-    formatAidesVeloToVeloBenefit(benefit, institutionsByType)
+    formatAidesVeloToVeloBenefit(benefit, institutionsByType),
   )
 }

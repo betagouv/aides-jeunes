@@ -15,11 +15,11 @@ export default <{ [key: string]: any }>{
       return propertyData.simulation.enfants.map((enfantNumber: number) => {
         const enfant = IndividuMethods.getById(
           individus,
-          `enfant_${enfantNumber}`
+          `enfant_${enfantNumber}`,
         )
         return {
           text: `${capitalize(
-            enfant._firstName
+            enfant._firstName,
           )} a-t-il/elle perçu des ressources <strong>depuis ${
             propertyData.periods.twelveMonthsAgo.label
           }</strong> ?`,
@@ -47,7 +47,7 @@ export default <{ [key: string]: any }>{
       return [loyerData.loyerQuestion, loyerData.chargesQuestion]
         .filter(
           (question): question is QuestionLogement =>
-            typeof question !== "undefined"
+            typeof question !== "undefined",
         )
         .map((question) => {
           return {
@@ -63,7 +63,7 @@ export default <{ [key: string]: any }>{
     getRecap(
       propertyData: PropertyData,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      step: StepStrict
+      step: StepStrict,
     ): RecapPropertyLine[] {
       const loyerData = getLoyerData(propertyData.simulation.answers.all)
       const details = [
@@ -85,28 +85,28 @@ export default <{ [key: string]: any }>{
   "ressources/montants": {
     matcher(step: StepStrict) {
       return ressourceCategories.some(
-        (category: any) => category.id === step.variable
+        (category: any) => category.id === step.variable,
       )
     },
 
     getResourcesTypesByCategoryId(
       { entity, id }: { entity: string; id: string },
-      answers: []
+      answers: [],
     ) {
       return (getAnswer(answers, entity, "ressources", id) || []).map(
         (ressource: any) => {
           const ressourceType = ressourceTypes.find(
-            (r: any) => r.id === ressource
+            (r: any) => r.id === ressource,
           )
           return ressourceType
-        }
+        },
       )
     },
 
     getFormat(step: StepStrict, propertyData: PropertyData) {
       const answerFormat = this.getResourcesTypesByCategoryId(
         step,
-        propertyData.simulation.answers.all
+        propertyData.simulation.answers.all,
       ).map((resource: any) => {
         const period = resource.isMontantAnnuel ? "YYYY" : "YYYY-MM"
         return {
@@ -118,7 +118,7 @@ export default <{ [key: string]: any }>{
       })
 
       const category = ressourceCategories.find(
-        (category) => category.id === step.variable
+        (category) => category.id === step.variable,
       )
 
       return {
@@ -129,18 +129,18 @@ export default <{ [key: string]: any }>{
 
     getRecap(
       propertyData: PropertyData,
-      step: StepStrict
+      step: StepStrict,
     ): RecapPropertyLine[] {
       const answer = (
         getAnswer(
           propertyData.simulation.answers.all,
           step.entity,
           step.variable,
-          step.id
+          step.id,
         ) || []
       ).map((ressource: any) => {
         const ressourceType = ressourceTypes.find(
-          (ressourceType: any) => ressourceType.id === ressource.id
+          (ressourceType: any) => ressourceType.id === ressource.id,
         )
         return {
           ...ressourceType,
@@ -151,7 +151,7 @@ export default <{ [key: string]: any }>{
       let result: any = []
       if (answer.length) {
         const category = ressourceCategories.find(
-          (category: any) => category.id === step.variable
+          (category: any) => category.id === step.variable,
         )
         result = [
           {
@@ -169,7 +169,7 @@ export default <{ [key: string]: any }>{
                   accum[date] = displayCurrencyValue(value)
                   return accum
                 },
-                {}
+                {},
               ),
             }
           }),
@@ -183,7 +183,7 @@ export default <{ [key: string]: any }>{
     getRecap(
       propertyData: PropertyData,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      step: StepStrict
+      step: StepStrict,
     ): RecapPropertyLine[] {
       const answer = getAnswer(propertyData.simulation.answers.all, "enfants")
       return [

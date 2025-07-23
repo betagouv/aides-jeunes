@@ -58,7 +58,7 @@ export function displayValue(value, question, component) {
     case "enum":
       return displayEnumValue(
         value,
-        executeFunctionOrReturnValue(question, "items", component)
+        executeFunctionOrReturnValue(question, "items", component),
       )
     case "number":
       return question.unit ? `${value} ${question.unit}` : value

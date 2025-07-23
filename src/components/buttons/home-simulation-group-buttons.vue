@@ -16,7 +16,7 @@ const hasExistingSituation = computed(() => store.passSanityCheck)
 const ctaLabel = computed(() =>
   hasExistingSituation.value
     ? "Commencer une nouvelle simulation"
-    : "Commencer une simulation"
+    : "Commencer une simulation",
 )
 
 const initializeOpenfiscaParameters = () => {

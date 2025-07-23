@@ -22,7 +22,7 @@ const restoreLatestSimulation = async (resultsComputing = true) => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
       EventAction.Redirection,
-      router.currentRoute.value.fullPath
+      router.currentRoute.value.fullPath,
     )
 
     return store.redirection((route) => router.push(route))
@@ -31,7 +31,7 @@ const restoreLatestSimulation = async (resultsComputing = true) => {
   StatisticsMixin.methods.sendEventToMatomo(
     EventCategory.General,
     EventAction.CalculResultatsRestauration,
-    router.currentRoute.value.fullPath
+    router.currentRoute.value.fullPath,
   )
 
   await store.fetch(lastestSimulationId)

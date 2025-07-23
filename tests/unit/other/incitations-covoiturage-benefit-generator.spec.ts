@@ -32,7 +32,7 @@ describe("incitations benefit generator", function () {
       const missingEPCI: string[] = []
       benefitsCovoiturage.forEach((b) => {
         const institution = institutions.find(
-          (i) => i.code_siren === b.code_siren
+          (i) => i.code_siren === b.code_siren,
         )
         if (institution) {
           return
@@ -42,7 +42,7 @@ describe("incitations benefit generator", function () {
       if (missingEPCI.length) {
         console.log(
           "Incitation covoiturage sans institution reliée - ",
-          missingEPCI.map((b) => `code_siren : ${b}`).join("\n")
+          missingEPCI.map((b) => `code_siren : ${b}`).join("\n"),
         )
       }
       expect(missingEPCI.length).toEqual(0)
@@ -55,7 +55,7 @@ describe("incitations benefit generator", function () {
       const institutionAutre: Institution[] = []
       benefitsCovoiturage.forEach((b) => {
         const institution = institutions.find(
-          (i) => i.code_siren === b.code_siren
+          (i) => i.code_siren === b.code_siren,
         )
         if (institution && "autre" === institution.type) {
           institutionAutre.push(institution)
@@ -66,7 +66,7 @@ describe("incitations benefit generator", function () {
           "Incitation covoiturage reliée à une institution autre, il faut faire une incitation covoiturage manuelle/yaml\n",
           institutionAutre
             .map((i) => `- nom : ${i.label} / code_siren : ${i.code_siren}`)
-            .join("\n")
+            .join("\n"),
         )
       }
       expect(institutionAutre.length).toEqual(0)

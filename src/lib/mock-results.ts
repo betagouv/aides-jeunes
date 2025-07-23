@@ -7,7 +7,7 @@ const mockResultsNeeded = () => {
 const mock = (detail) => {
   if (mockResultsNeeded()) {
     useStore().mockResults(
-      detail || useRouter().currentRoute.value.query?.debug
+      detail || useRouter().currentRoute.value.query?.debug,
     )
   }
 }

@@ -37,7 +37,7 @@ export default (api: Express) => {
       }
 
       const parameters = await openfiscaController.getParametersAsync(
-        new Date(req.params.date)
+        new Date(req.params.date),
       )
       res.json(parameters)
     })

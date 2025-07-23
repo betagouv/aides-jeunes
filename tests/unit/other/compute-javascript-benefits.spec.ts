@@ -74,8 +74,8 @@ describe("computeAides", function () {
         {
           profils: [],
         },
-        { situation: {} }
-      )
+        { situation: {} },
+      ),
     ).toBe(true)
   })
 
@@ -89,7 +89,7 @@ describe("computeAides", function () {
       testProfileEligibility(benefit, {
         situation: studentSituation,
         openfiscaResponse: openfiscaRequest,
-      })
+      }),
     ).toBe(true)
   })
 
@@ -102,7 +102,7 @@ describe("computeAides", function () {
       testProfileEligibility(benefit, {
         situation: studentSituation,
         openfiscaResponse: openfiscaRequest,
-      })
+      }),
     ).toBe(false)
   })
 
@@ -126,14 +126,14 @@ describe("computeAides", function () {
           type: "departements",
           values: ["64", "45", "12"],
         },
-        { situation: situationMissingCommune }
-      )
+        { situation: situationMissingCommune },
+      ),
     ).toBe(false)
   })
 
   it("verify the result when no test are provided", function () {
     expect(
-      testGeographicalEligibility({}, { situation: situationMissingCommune })
+      testGeographicalEligibility({}, { situation: situationMissingCommune }),
     ).toBe(true)
   })
 
@@ -141,8 +141,8 @@ describe("computeAides", function () {
     expect(
       testGeographicalEligibility(
         { type: "departements", values: ["59"] },
-        { situation }
-      )
+        { situation },
+      ),
     ).toBe(false)
   })
 
@@ -153,8 +153,8 @@ describe("computeAides", function () {
           type: "regions",
           values: ["75"],
         },
-        { situation }
-      )
+        { situation },
+      ),
     ).toBe(true)
   })
 
@@ -165,8 +165,8 @@ describe("computeAides", function () {
           type: "epcis",
           values: ["244900015"],
         },
-        { situation }
-      )
+        { situation },
+      ),
     ).toBe(true)
   })
 
@@ -176,7 +176,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(200)
   })
 
@@ -187,7 +187,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(0)
   })
 
@@ -200,7 +200,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(0)
   })
 
@@ -211,7 +211,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(0)
   })
 
@@ -221,7 +221,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(200)
   })
 
@@ -232,7 +232,7 @@ describe("computeAides", function () {
     expect(
       openfiscaRequest.individus.demandeur.benefit_front_test[
         situation.dateDeValeur.slice(0, 7)
-      ]
+      ],
     ).toBe(0)
   })
 })
@@ -268,7 +268,7 @@ describe("Test condition taux_incapacite", function () {
     expect(
       testProfileEligibility(benefit_situation_handicap, {
         situation: situation_handicap,
-      })
+      }),
     ).toBe(false)
   })
 
@@ -278,7 +278,7 @@ describe("Test condition taux_incapacite", function () {
     expect(
       testProfileEligibility(benefit_situation_handicap, {
         situation: situation_handicap,
-      })
+      }),
     ).toBe(false)
   })
 
@@ -289,7 +289,7 @@ describe("Test condition taux_incapacite", function () {
     expect(
       testProfileEligibility(benefit_situation_handicap, {
         situation: situation_handicap,
-      })
+      }),
     ).toBe(false)
   })
 
@@ -310,7 +310,7 @@ describe("Test condition taux_incapacite", function () {
     expect(
       testProfileEligibility(benefit_situation_handicap, {
         situation: situation_handicap,
-      })
+      }),
     ).toBe(false)
   })
 })

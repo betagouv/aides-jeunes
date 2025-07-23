@@ -27,7 +27,7 @@ describe("Survey methods", () => {
       const newAnswers = [{ id: "wasUseful", value: true }]
       await mockFollowup.updateSurvey(
         SurveyType.TrackClickOnSimulationUsefulnessEmail,
-        newAnswers
+        newAnswers,
       )
       expect(mockFollowup.surveys[0].answers).toEqual(newAnswers)
       expect(mockFollowup.surveys[0].touchedAts).toHaveLength(1)
@@ -43,14 +43,14 @@ describe("Survey methods", () => {
       mockFollowup.surveys = [existingSurvey]
 
       const result = await mockFollowup.addSurveyIfMissing(
-        SurveyType.TrackClickOnSimulationUsefulnessEmail
+        SurveyType.TrackClickOnSimulationUsefulnessEmail,
       )
       expect(result.type).toEqual(
-        SurveyType.TrackClickOnSimulationUsefulnessEmail
+        SurveyType.TrackClickOnSimulationUsefulnessEmail,
       )
       expect(mockFollowup.surveys).toHaveLength(1)
       expect(mockFollowup.surveys[0].type).toEqual(
-        SurveyType.TrackClickOnSimulationUsefulnessEmail
+        SurveyType.TrackClickOnSimulationUsefulnessEmail,
       )
     })
   })
@@ -67,7 +67,7 @@ describe("Survey methods", () => {
       const newAnswers = [{ id: "wasUseful", value: true }]
       await mockFollowup.updateSurvey(
         SurveyType.TrackClickOnSimulationUsefulnessEmail,
-        newAnswers
+        newAnswers,
       )
       expect(mockFollowup.surveys[0].answers).toEqual(newAnswers)
       expect(mockFollowup.surveys[0].touchedAts).toHaveLength(1)

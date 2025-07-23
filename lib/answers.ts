@@ -12,7 +12,7 @@ export const getAnswer = (answers: Answer[], entity, variable?, id?) => {
     (answer) =>
       answer.id === id &&
       answer.entityName === entity &&
-      answer.fieldName === variable
+      answer.fieldName === variable,
   )
   return answer ? answer.value : undefined
 }
@@ -27,7 +27,7 @@ export function storeAnswer(answers: Answer[], newAnswer: Answer): Answer[] {
     (answer) =>
       answer.id === newAnswer.id &&
       answer.entityName === newAnswer.entityName &&
-      answer.fieldName === newAnswer.fieldName
+      answer.fieldName === newAnswer.fieldName,
   )
 
   if (existingAnswerIndex === -1) {

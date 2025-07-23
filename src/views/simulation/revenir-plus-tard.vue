@@ -27,7 +27,7 @@ const saveSimulationAndShowLink = async () => {
     StatisticsMixin.methods.sendEventToMatomo(
       EventCategory.General,
       EventAction.TemporarySimulationSave,
-      route.path
+      route.path,
     )
     store.setSaveSituationError("")
     await store.save()
@@ -47,7 +47,7 @@ const copyTemporarySimulationRecapUrlToClipboard = async () => {
   StatisticsMixin.methods.sendEventToMatomo(
     EventCategory.General,
     EventAction.CopyTemporarySimulationRecapUrlToClipboard,
-    route.path
+    route.path,
   )
   await navigator.clipboard.writeText(simulationRecapUrl.value)
   alert("Lien copié dans le presse papier : " + simulationRecapUrl.value)

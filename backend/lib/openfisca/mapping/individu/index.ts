@@ -68,7 +68,7 @@ const individuSchema: IndividuGenerator = {
 
       const jeuneCommune = findCommuneByInseeCode(situation.menage.depcom)
       const parentCommune = findCommuneByInseeCode(
-        individu._bourseCriteresSociauxCommuneDomicileFamilial
+        individu._bourseCriteresSociauxCommuneDomicileFamilial,
       )
       return computeDistanceCommunes(jeuneCommune, parentCommune)
     },
@@ -168,7 +168,7 @@ export default function buildOpenFiscaIndividu(mesAidesIndividu, situation) {
       ? definition.fn(
           mesAidesIndividu[definition.src],
           mesAidesIndividu,
-          situation
+          situation,
         )
       : definition.fn(mesAidesIndividu, situation)
 

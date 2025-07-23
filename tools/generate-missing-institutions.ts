@@ -62,17 +62,17 @@ const createEPCI = (EPCIMatch) => {
 }
 
 export const missingInstitutionsVeloBenefit = (
-  missingInstitutionBenefits: Omit<VeloBenefit, "amount">[]
+  missingInstitutionBenefits: Omit<VeloBenefit, "amount">[],
 ) => {
   const missingCommune = missingInstitutionBenefits.filter(
-    (b) => b.collectivity.kind === "code insee"
+    (b) => b.collectivity.kind === "code insee",
   )
   if (missingCommune.length) {
     missingCommune.forEach((b) => {
       let commune
       epci.some((item) => {
         commune = item.membres.find(
-          (membre) => membre.code === b.collectivity.value
+          (membre) => membre.code === b.collectivity.value,
         )
         return commune
       })
@@ -85,14 +85,14 @@ export const missingInstitutionsVeloBenefit = (
     })
   }
   const missingEPCI = missingInstitutionBenefits.filter(
-    (b) => b.collectivity.kind === "epci"
+    (b) => b.collectivity.kind === "epci",
   )
   if (missingEPCI.length) {
     missingEPCI.forEach((b) => {
       const EPCIMatch = epci.find(
         (e) =>
           e.code === b.collectivity.code ||
-          e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i"))
+          e.nom.match(new RegExp(b.collectivity.value.replace("’", "'"), "i")),
       )
       if (EPCIMatch) {
         const epci_slug = normalizeName(EPCIMatch.nom)
@@ -122,18 +122,18 @@ export const missingInstitutionsVeloBenefit = (
     missingInstitutionBenefits
       .filter((b) => !["code insee", "epci"].includes(b.collectivity.kind))
       .map((b) => `${b.description} | code_insee : ${b.collectivity.value}`)
-      .join("\n")
+      .join("\n"),
   )
 }
 
 export const missingInstitutionsCovoiturageBenefit = (
-  missingEPCI: CovoiturageJson[]
+  missingEPCI: CovoiturageJson[],
 ) => {
   const institutions = Object.values(all.institutionsMap)
   if (missingEPCI.length) {
     missingEPCI.forEach((b) => {
       const institution = institutions.find(
-        (i) => i.code_siren === b.code_siren
+        (i) => i.code_siren === b.code_siren,
       )
       if (!institution) {
         //si l'institution n'existe pas

@@ -15,7 +15,7 @@ import { Situation } from "@lib/types/situations.js"
 function isIndividuValid(individu: Individu, situation: Situation) {
   const age = dayjs(situation.dateDeValeur).diff(
     dayjs(individu.date_naissance),
-    "year"
+    "year",
   )
   return individu._role != "enfant" || age <= 25 || individu.handicap
 }
@@ -34,7 +34,7 @@ function getPeriods(dateDeValeur: Date): OpenfiscaPeriods {
 
 function appendExtraVariables(
   requestedVariables: OpenfiscaVariables,
-  extraVariables: BenefitExtra[] = []
+  extraVariables: BenefitExtra[] = [],
 ) {
   extraVariables.forEach(function (extra) {
     requestedVariables[extra.id] ??= { ...extra }
@@ -59,7 +59,7 @@ for (const condition in CONDITION_STRATEGY) {
   if (CONDITION_STRATEGY[condition].extra !== undefined) {
     appendExtraVariables(
       requestedVariables,
-      CONDITION_STRATEGY[condition].extra
+      CONDITION_STRATEGY[condition].extra,
     )
   }
 }

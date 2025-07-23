@@ -16,7 +16,7 @@ async function getPromise(item): Promise<any> {
     .then((response) => response.data)
     .catch((error) => {
       throw new Error(
-        `OF maybe offline - Failed to fetch data : ${error.message}`
+        `OF maybe offline - Failed to fetch data : ${error.message}`,
       )
     })
 }

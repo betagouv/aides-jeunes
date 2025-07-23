@@ -24,7 +24,7 @@ function getPeriodKeysForCurrentYear(dates: DatesRange, ressourceType) {
 function setDefaultValueForCurrentYear(
   dates: DatesRange,
   individu,
-  ressourceType
+  ressourceType,
 ) {
   const ressourceId = ressourceType.id
   individu[ressourceId] = individu[ressourceId] || {}
@@ -92,7 +92,7 @@ function isSelectedForCurrentYear(ressource, ressourceIdOrType) {
   // Multiple values means that current year values were specified
   if (
     ressourcesForTrailingMonthsAndFiscalYear.indexOf(
-      ressourceIdOrType.id || ressourceIdOrType
+      ressourceIdOrType.id || ressourceIdOrType,
     ) >= 0
   ) {
     return ressource && Object.keys(ressource).length > 1
@@ -112,7 +112,7 @@ function getIndividuRessourceTypes(individu, situation) {
     .reduce((accumulator, ressourceType) => {
       accumulator[ressourceType.id] = isSelectedForCurrentYear(
         individu[ressourceType.id],
-        ressourceType
+        ressourceType,
       )
       return accumulator
     }, {})
@@ -121,7 +121,7 @@ function getIndividuRessourceTypes(individu, situation) {
 export function getIndividuRessourceTypesByCategory(
   individu,
   category,
-  situation
+  situation,
 ) {
   return resources.ressourceTypes
     .filter((ressourceType) => {
@@ -134,7 +134,7 @@ export function getIndividuRessourceTypesByCategory(
     .reduce((accumulator, ressourceType) => {
       accumulator[ressourceType.id] = isSelectedForCurrentYear(
         individu[ressourceType.id],
-        ressourceType
+        ressourceType,
       )
       return accumulator
     }, {})

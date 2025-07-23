@@ -126,7 +126,7 @@ const showSocialLabel = computed(
       "rpns_micro_entreprise_CA_bnc_imp",
       "rpns_benefice_exploitant_agricole",
       "rpns_autres_revenus",
-    ].includes(props.type.meta.id)
+    ].includes(props.type.meta.id),
 )
 
 const onFocus = (monthIndex) => {

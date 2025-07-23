@@ -19,7 +19,7 @@ export function useLieux() {
 
   const currentLieu = computed(() => {
     return lieux.value.find(
-      (lieu: LieuProperties) => lieu.id === $route.params.lieu_id
+      (lieu: LieuProperties) => lieu.id === $route.params.lieu_id,
     )
   })
 
@@ -33,7 +33,7 @@ export function useLieux() {
       isRelevant: (demandeur: any, situation: any) => {
         const demandeurAge = IndividuMethods.age(
           demandeur,
-          situation.dateDeValeur
+          situation.dateDeValeur,
         )
         return demandeurAge <= 25 && demandeurAge >= 16
       },
@@ -67,7 +67,7 @@ export function useLieux() {
       const isRelevant = lieuTypeCriteria.isRelevant
         ? lieuTypeCriteria.isRelevant(
             store.situation.demandeur,
-            store.situation
+            store.situation,
           )
         : true
 
@@ -107,7 +107,7 @@ export function useLieux() {
     benefit.value =
       (storeBenefits &&
         (storeBenefits?.find(
-          (storeBenefit: any) => storeBenefit.id === benefitId
+          (storeBenefit: any) => storeBenefit.id === benefitId,
         ) as Benefit)) ||
       null
 

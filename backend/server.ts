@@ -27,8 +27,8 @@ const port = process.env.PORT
 app.listen(port, () => {
   console.log(
     `Aides Jeunes server listening on port ${port}, in ${app.get(
-      "env"
-    )} mode, expecting to be deployed on ${process.env.MES_AIDES_ROOT_URL}`
+      "env",
+    )} mode, expecting to be deployed on ${process.env.MES_AIDES_ROOT_URL}`,
   )
 })
 

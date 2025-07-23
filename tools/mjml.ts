@@ -99,15 +99,15 @@ app.route("/mjml/:id/:type").get(
         res.set({ "Content-Type": "text/plain" }).send(result[mode as string])
       }
     })
-  }
+  },
 )
 
 // Start server
 app.listen(port, function () {
   console.log(
     `Mes Aides MJML preview server listening on port ${port}, in ${app.get(
-      "env"
-    )} mode, http://localhost:${port}`
+      "env",
+    )} mode, http://localhost:${port}`,
   )
 })
 

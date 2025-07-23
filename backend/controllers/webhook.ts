@@ -9,7 +9,7 @@ import * as Sentry from "@sentry/node"
 export const verifyAuthentication = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   const signature = req.get("X-Lapin-Signature")
   if (!signature) {
@@ -62,7 +62,7 @@ const isValidData = (data: Data): boolean => {
 export const validateRequestPayload = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   req.body = JSON.parse(req.body.toString())
   if (!shouldProcessEvent(req.body)) {
@@ -82,7 +82,7 @@ export const validateRequestPayload = (
 
 export async function postOnMattermost(
   req: Request,
-  res: Response
+  res: Response,
 ): Promise<Response> {
   const { id: rdvId, organisation } = req.body.data || {}
   const { id: organisationId } = organisation || {}

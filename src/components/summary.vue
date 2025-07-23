@@ -79,7 +79,7 @@ export default {
       return this.$state.getChapters(
         this.$route.path,
         this.store.getAllSteps,
-        this.store.lastUnansweredStep?.path
+        this.store.lastUnansweredStep?.path,
       )
     },
     isRecapitulatif() {

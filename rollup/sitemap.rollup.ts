@@ -62,7 +62,7 @@ function formatXMLEntries(pages) {
         `  <url>
       <loc>${config.baseURL}/${entry.location}</loc>
       <priority>${entry.priority}</priority>
-    </url>`
+    </url>`,
     )
     .join("\n  ")}
 </urlset>
@@ -75,7 +75,7 @@ export default () => {
     closeBundle: () => {
       fs.writeFileSync(
         path.join(__dirname, `../dist/sitemap.xml`),
-        formatXMLEntries(pages)
+        formatXMLEntries(pages),
       )
     },
   }

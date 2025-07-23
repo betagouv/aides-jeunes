@@ -11,13 +11,13 @@ const moncompteproRoutes = function (api: Express) {
     "/login",
     cookieParser(),
     loginRateLimiter,
-    moncompteproController.login
+    moncompteproController.login,
   )
   api.get(
     "/auth/redirect",
     cookieParser(),
     moncompteproController.access,
-    moncompteproController.loginCallbackRedirect
+    moncompteproController.loginCallbackRedirect,
   )
   api.get("/logout", moncompteproController.logout)
 }

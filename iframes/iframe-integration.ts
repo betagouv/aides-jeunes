@@ -8,7 +8,7 @@ src.searchParams.set("utm_source", `iframe@${window.location.hostname}`)
 src.searchParams.set("utm_term", window.location.pathname)
 src.searchParams.set(
   "data-with-logo",
-  (script.dataset.withLogo !== undefined).toString()
+  (script.dataset.withLogo !== undefined).toString(),
 )
 if (script.dataset.theme !== undefined) {
   src.searchParams.set("theme", script.dataset.theme)

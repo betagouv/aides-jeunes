@@ -320,7 +320,8 @@ textarea {
     inset: auto 0 0 0;
     background: var(--background-default-grey);
     padding: 16px 16px 0;
-    box-shadow: inset 0 1px 0 0 var(--border-default-grey),
+    box-shadow:
+      inset 0 1px 0 0 var(--border-default-grey),
       inset 0 -1px 0 0 var(--border-default-grey);
     z-index: calc(var(--ground) + 100);
   }
@@ -604,7 +605,8 @@ textarea {
 }
 
 .fr-radio-rich input[type="radio"] + label:before {
-  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+  box-shadow:
+    inset 0 0 0 1px var(--border-action-high-grey),
     inset 0 0 0 8px var(--background-default-grey),
     inset 0 0 0 8px var(--background-action-high-blue-france);
   height: 1rem;
@@ -622,7 +624,8 @@ textarea {
 }
 
 .fr-radio-rich input[type="radio"]:checked + label:before {
-  box-shadow: inset 0 0 0 1px var(--border-action-high-grey),
+  box-shadow:
+    inset 0 0 0 1px var(--border-action-high-grey),
     inset 0 0 0 4px var(--background-default-grey),
     inset 0 0 0 8px var(--background-action-high-blue-france);
 }

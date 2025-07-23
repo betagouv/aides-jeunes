@@ -17,7 +17,7 @@ const today = dayjs().toDate()
 
 const statsFilePath = path.join(
   __dirname,
-  "/../../../dist/documents/stats.json"
+  "/../../../dist/documents/stats.json",
 )
 
 try {

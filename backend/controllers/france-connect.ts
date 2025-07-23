@@ -12,7 +12,7 @@ export async function login(request, response) {
   response.cookie(FranceConnectCookie.FcNonce, nonceToken)
 
   response.redirect(
-    FranceConnectService.generateLoginRedirectURL(stateToken, nonceToken)
+    FranceConnectService.generateLoginRedirectURL(stateToken, nonceToken),
   )
 }
 
@@ -32,7 +32,7 @@ export async function callback(request, response, next) {
     const { accessToken, idToken } =
       await FranceConnectService.retrieveAccessToken(
         request.query.code,
-        nonceToken
+        nonceToken,
       )
 
     response.cookie(FranceConnectCookie.FcIdTokenHint, idToken)
@@ -50,12 +50,11 @@ export async function fetchUserInfo(request, response) {
   try {
     const answers = await FranceConnectService.retrieveUserAnswers(
       request.FCToken,
-      request.FCIDToken
+      request.FCIDToken,
     )
 
-    const simulation = await FranceConnectService.createSimulationFromAnswer(
-      answers
-    )
+    const simulation =
+      await FranceConnectService.createSimulationFromAnswer(answers)
 
     response.json({ simulation })
   } catch (error) {
@@ -71,7 +70,7 @@ export async function logout(request, response) {
   const logoutStateToken = await utils.generateToken()
   response.cookie(FranceConnectCookie.FcLogoutState, logoutStateToken)
   response.redirect(
-    FranceConnectService.generateLogoutRedirectURL(idToken, logoutStateToken)
+    FranceConnectService.generateLogoutRedirectURL(idToken, logoutStateToken),
   )
 }
 

@@ -4,13 +4,13 @@ import { capitalize, uncapitalize } from "../../../lib/utils.js"
 import benefits from "./incitations-covoiturage.json" with { type: "json" }
 
 export default function buildIncitationsCovoiturage(
-  institutions: Institution[]
+  institutions: Institution[],
 ): CovoiturageBenefit[] {
   try {
     const formattedBenefits: CovoiturageBenefit[] = []
     benefits.forEach((b) => {
       const institution = institutions.find(
-        (i) => i.code_siren === b.code_siren
+        (i) => i.code_siren === b.code_siren,
       )
       if (!institution) {
         return null
@@ -72,7 +72,7 @@ export default function buildIncitationsCovoiturage(
           `. Vous êtes passagère ou passager ? ${benefitPassenger}`,
         id: `${institution?.slug.replace(
           /_/g,
-          "-"
+          "-",
         )}-incitations-covoiturage-eligibilite`,
         conditions: [
           `Télécharger l'application mobile ${operateur}`,
@@ -96,7 +96,7 @@ export default function buildIncitationsCovoiturage(
   } catch (error: any) {
     console.error(
       "Erreur lors de la construction des incitations co-voiturage",
-      error.message
+      error.message,
     )
     throw error
   }

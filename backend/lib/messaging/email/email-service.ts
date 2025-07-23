@@ -11,7 +11,7 @@ import { ErrorType } from "../../../../lib/enums/error.js"
 import dayjs from "dayjs"
 
 export async function sendSimulationResultsEmail(
-  followup: Followup
+  followup: Followup,
 ): Promise<Followup> {
   if (!followup.email) {
     throw new Error(ErrorType.MissingFollowupEmail)
@@ -38,12 +38,12 @@ export async function sendSimulationResultsEmail(
 
 export async function sendSurveyEmail(
   followup: Followup,
-  surveyType: SurveyType
+  surveyType: SurveyType,
 ): Promise<Survey> {
   if (!followup.email) {
     const date = dayjs().toString()
     throw new Error(
-      `${date} - Missing followup email (id : ${followup.get("_id")})`
+      `${date} - Missing followup email (id : ${followup.get("_id")})`,
     )
   }
   const survey = await followup.addSurveyIfMissing(surveyType)

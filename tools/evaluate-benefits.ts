@@ -23,14 +23,14 @@ function main() {
     calculate(situation, function (err, result) {
       const openfiscaResponse = Object.assign(
         { _id: simulation._id.toString() },
-        result
+        result,
       )
 
       const simulationResult = compute(
         situation,
         simulation._id,
         openfiscaResponse,
-        false
+        false,
       )
       console.log(simulationResult)
       process.exit()

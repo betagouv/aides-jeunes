@@ -94,7 +94,7 @@ describe("computeAides", function () {
       expect(
         ids.filter(function (d) {
           return d == "aah"
-        }).length
+        }).length,
       ).toEqual(1)
     })
   })
@@ -147,7 +147,7 @@ describe("computeAides", function () {
       expect(
         droits.droitsEligibles.filter(function (p) {
           return p.institution.label == "Rennes Métropole"
-        }).length
+        }).length,
       ).toBeFalsy()
     })
   })
@@ -176,7 +176,7 @@ describe("computeAides", function () {
       droits = compute(situation, "id", openfiscaResult)
 
       const css = droits.droitsEligibles.find(
-        (droit) => droit.id === "css_participation_forfaitaire"
+        (droit) => droit.id === "css_participation_forfaitaire",
       )
 
       expect(css.montant).toEqual(true)
@@ -189,7 +189,7 @@ describe("computeAides", function () {
       droits = compute(situation, "id", openfiscaResult)
 
       const css = droits.droitsEligibles.find(
-        (droit) => droit.id === "css_participation_forfaitaire"
+        (droit) => droit.id === "css_participation_forfaitaire",
       )
 
       expect(css.montant).toEqual(10)

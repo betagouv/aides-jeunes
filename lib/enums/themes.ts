@@ -3,6 +3,8 @@ export enum Theme {
   LightBlue = "light-blue",
   BordeauxMetropole = "bordeaux-metropole",
   Soliguide = "soliguide",
+  MesAidesOrg = "mes-aides-org",
+  ArcEnCiel = "arc-en-ciel",
 }
 
 export enum ThemeLabel {
@@ -10,4 +12,6 @@ export enum ThemeLabel {
   LightBlue = "Thème bleu clair",
   BordeauxMetropole = "Thème Bordeaux Métropole",
   Soliguide = "Thème Soliguide",
+  MesAidesOrg = "mes-aides.org",
+  ArcEnCiel = "Thème arc enciel",
 }

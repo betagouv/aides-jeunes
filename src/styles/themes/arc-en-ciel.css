@@ -1,0 +1,29 @@
+:root {
+  /* input focus */
+  --input-outline: red;
+
+  /* buttons */
+  --main-color: pink;
+  --main-color-hover: green;
+  --main-color-active: green;
+  --main-btn-text-color: green;
+  --border-radius: 0.1rem;
+
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
+  --secondary-color: green;
+
+  /* en savoir plus text */
+  --info-main-color: green;
+
+  /* en savoir plus background */
+  --info-secondary-color: green;
+  --info-secondary-color-hover: green;
+  --info-secondary-color-active: green;
+
+  /* Font */
+  --font-family: sans;
+}

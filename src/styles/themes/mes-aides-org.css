@@ -1,0 +1,45 @@
+:root {
+  /* input focus */
+  --input-outline: #40ceb3;
+
+  /* buttons */
+  --main-color: #2aa28bff;
+  --main-color-hover: #2aa28bff;
+  --main-color-active: #2aa28bff;
+  --main-btn-text-color: #fff;
+  --border-radius: 0.1rem;
+
+  /*
+    progress bar
+    home colored background
+    home main text
+    */
+  --secondary-color: #8ee2d2;
+
+  /* en savoir plus text */
+  --info-main-color: #322e5a;
+
+  /* en savoir plus background */
+  --info-secondary-color: #f2f5f9;
+  --info-secondary-color-hover: #f2f5f9;
+  --info-secondary-color-active: #f2f5f9;
+
+  /* Font */
+  --font-family: sans;
+}
+
+
+.mao-hero-image {
+  height: 300px;
+}
+
+.mao-hero-highlight {
+  background-image: linear-gradient(
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0) 56%,
+    rgba(43, 182, 115, 0.1) 0,
+    rgba(43, 182, 115, 0.1) 100%,
+    hsla(0, 0%, 100%, 0) 0
+  );
+  padding: 0 0.25rem;
+}

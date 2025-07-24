@@ -1,0 +1,9 @@
+<mj-section padding="0px 24px">
+  <mj-group>
+    <mj-column>
+      <mj-text>
+        <h1>mes-aides.org</h1>
+      </mj-text>
+    </mj-column>
+  </mj-group>
+</mj-section>

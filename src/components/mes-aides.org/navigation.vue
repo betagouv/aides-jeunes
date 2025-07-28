@@ -8,11 +8,11 @@
     >
       <ul class="fr-nav__list">
         <li class="fr-nav__item">
-          <a href="/" class="fr-nav__link">Accueil</a>
+          <router-link to="/" class="fr-nav__link">Accueil</router-link>
         </li>
         <li class="fr-nav__item">
-          <a href="questions-frequentes" class="fr-nav__link"
-            >Questions fréquentes</a
+          <router-link to="/mentions-legales" class="fr-nav__link"
+            >Mentions légales</router-link
           >
         </li>
       </ul>

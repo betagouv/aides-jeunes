@@ -10,6 +10,14 @@ export default {
       name: "iframe",
       component: () => import("@/views/iframe.vue"),
     },
+    {
+      path: "/mentions-legales",
+      name: "mentions-legales",
+      component: () => import("@/views/mes-aides.org/mentions-legales.vue"),
+      meta: {
+        headTitle: `Mentions légales - Simulateur d'aides ${name}`,
+      },
+    },
   ],
   name: "mes-aides.org",
   Layout: MesAidesLayout,

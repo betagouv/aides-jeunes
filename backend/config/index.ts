@@ -111,6 +111,8 @@ const config: Configuration = {
   mongodb_url:
     process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/dev-aides-jeunes",
   sentry: {
+    org: process.env.SENTRY_ORG,
+    url: process.env.SENTRY_URL,
     dsn: process.env.SENTRY_BACKEND_DSN,
     authToken: process.env.SENTRY_AUTH_TOKEN,
     project: process.env.SENTRY_BACKEND_PROJECT,

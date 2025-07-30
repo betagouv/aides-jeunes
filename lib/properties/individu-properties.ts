@@ -711,5 +711,7 @@ export default {
     question: () => {
       return `Travaillez-vous dans une agence de travail temporaire ?`
     },
+    moreInfo:
+      "L’intérim ou travail temporaire est un contrat de travail passé avec une agence d’intérim, qui met le salarié à disposition d’une entreprise pour une durée limitée, souvent pour remplacer un absent ou faire face à un besoin ponctuel.",
   }),
 }

@@ -19,3 +19,4 @@ entity: individus
 type: bool
 unit: null
 openfiscaPeriod: thisMonth
+private: true

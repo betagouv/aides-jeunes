@@ -51,7 +51,7 @@ profils:
   - type: service_civique
     conditions: []
 link: https://www.normandie.fr/atouts-pass-monde
-teleservice: https://atouts.normandie.fr/Beneficiaires/Views/Accueil.aspx
+teleservice: https://atouts.normandie.fr/my/dashboard
 prefix: le
 type: float
 unit: €
@@ -59,3 +59,4 @@ periodicite: annuelle
 legend: Maximum
 montant: 1440
 interestFlag: _interetEtudesEtranger
+is_teleservice_need_register: true

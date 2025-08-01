@@ -289,7 +289,7 @@ export const CONDITION_STRATEGY: Conditions = {
       }
 
       let enfantsEligibles = situation.enfants
-      if (condition.age_min !== undefined) {
+      if (condition.age_min !== undefined || condition.age_max !== undefined) {
         const dateDeValeur = dayjs(situation.dateDeValeur)
         enfantsEligibles = situation.enfants.filter((enfant) => {
           const ageEnfant = dateDeValeur.diff(

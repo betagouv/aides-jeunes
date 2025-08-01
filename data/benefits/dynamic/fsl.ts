@@ -350,7 +350,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
 
 function formatBenefit(
   { label, link, form, instructions, excludedEPCI }: any,
-  institutionId
+  institutionId,
 ) {
   const conditions_generales = [
     {
@@ -395,13 +395,13 @@ function formatBenefit(
       institution: institutionId,
       source: "javascript",
       conditions_generales,
-    }
+    },
   )
 }
 
 export function buildFSL() {
   return Object.entries(FSL_BY_INSTITUTION_SLUG).map(
     ([institutionSlug, customizationBenefit]) =>
-      formatBenefit(customizationBenefit, institutionSlug)
+      formatBenefit(customizationBenefit, institutionSlug),
   )
 }

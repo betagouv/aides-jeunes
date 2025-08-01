@@ -251,12 +251,14 @@ const getMatomoEventsData = async (
   const matomoEventData = await callMatomoAPI(piwikParameters)
   const dateKey = beginRange.format("YYYY-MM")
   return {
-    showAccompanimentCount: matomoEventData[dateKey].find(
-      (d) => d.label === "show-accompaniment-link",
-    )["nb_events"],
-    clickAccompanimentCount: matomoEventData[dateKey].find(
-      (d) => d.label === "click-accompaniment-link",
-    )["nb_events"],
+    showAccompanimentCount:
+      matomoEventData[dateKey].find(
+        (d) => d.label === "show-accompaniment-link",
+      )?.["nb_events"] || 0,
+    clickAccompanimentCount:
+      matomoEventData[dateKey].find(
+        (d) => d.label === "click-accompaniment-link",
+      )?.["nb_events"] || 0,
   }
 }
 

@@ -31,7 +31,7 @@
   <mj-column align="center">
     <mj-button
       width="130px"
-      background-color="#5770be"
+      background-color="{{&style.ctaBackgroundColor}}"
       color="white"
       href="{{&wasUsefulLinkYes}}"
     >
@@ -41,7 +41,7 @@
   <mj-column>
     <mj-button
       width="130px"
-      background-color="#5770be"
+      background-color="{{&style.ctaBackgroundColor}}"
       color="white"
       href="{{&wasUsefulLinkNo}}"
     >

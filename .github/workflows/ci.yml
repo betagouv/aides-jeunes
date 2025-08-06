@@ -19,6 +19,7 @@ concurrency:
 jobs:
   health-check:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Check Sentry Status
         id: sentry-check
@@ -432,7 +433,7 @@ jobs:
   check_benefit_link_improvements:
     name: Check benefit link improvements and update link table if necessary
     needs: [test_benefit_file_changes]
-    if: needs.test_benefit_file_changes.outputs.status == 'success'
+    if: needs.test_benefit_file_changes.outputs.status == 'success' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
@@ -469,7 +470,7 @@ jobs:
         iframe_build_control,
         test_e2e,
       ]
-    if: always() && github.ref == 'refs/heads/main' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure')
+    if: always() && github.ref == 'refs/heads/main' && (needs.install.result == 'failure' || needs.install_openfisca.result == 'failure' || needs.lint.result == 'failure' || needs.unit_tests.result == 'failure' || needs.build.result == 'failure' || needs.build_contribuer.result == 'failure' || needs.openfisca_test_generation.result == 'failure' || needs.iframe_build_control.result == 'failure' || needs.test_e2e.result == 'failure') && github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Send CI failed message
         shell: bash

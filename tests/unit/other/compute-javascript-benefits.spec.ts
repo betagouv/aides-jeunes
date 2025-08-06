@@ -314,3 +314,191 @@ describe("Test condition taux_incapacite", function () {
     ).toBe(false)
   })
 })
+
+describe("Checks the eligibility of parent's children", function () {
+  let situation_parent
+  let benefit_parent
+
+  beforeEach(() => {
+    situation_parent = {
+      dateDeValeur: "2024-01-01",
+      demandeur: {
+        id: "demandeur",
+        date_naissance: "1985-01-01",
+        activite: Activite.Salarie,
+      },
+      enfants: [
+        {
+          id: "enfant1",
+          date_naissance: "2010-01-01", // 14 years old
+        },
+        {
+          id: "enfant2",
+          date_naissance: "2015-01-01", // 9 years old
+        },
+        {
+          id: "enfant3",
+          date_naissance: "2008-01-01", // 16 years old
+        },
+      ],
+      menage: {},
+    }
+    benefit_parent = {
+      profils: [
+        {
+          type: "parent",
+          conditions: [
+            {
+              type: "enfants_eligibles",
+              operator: ">=",
+              value: 1,
+              age_min: 11,
+              age_max: 25,
+            },
+          ],
+        },
+      ],
+    }
+  })
+
+  it("Checks that a parent with 2 children between 11 and 25 years old is eligible", function () {
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(true)
+  })
+
+  it("Checks that a parent without children is not eligible", function () {
+    situation_parent.enfants = []
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(false)
+  })
+
+  it("Checks that a parent with only children under 11 years old is not eligible", function () {
+    situation_parent.enfants = [
+      {
+        id: "enfant1",
+        date_naissance: "2015-01-01", // 9 years old
+      },
+      {
+        id: "enfant2",
+        date_naissance: "2018-01-01", // 6 years old
+      },
+    ]
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(false)
+  })
+
+  it("Checks that a parent with only children over 25 years old is not eligible", function () {
+    situation_parent.enfants = [
+      {
+        id: "enfant1",
+        date_naissance: "1995-01-01", // 29 years old
+      },
+      {
+        id: "enfant2",
+        date_naissance: "1990-01-01", // 34 years old
+      },
+    ]
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(false)
+  })
+
+  it("Checks that a parent with 2 children between 11 and 25 years old is eligible", function () {
+    benefit_parent.profils[0].conditions[0].operator = "="
+    benefit_parent.profils[0].conditions[0].value = 2
+    situation_parent.enfants = [
+      {
+        id: "enfant1",
+        date_naissance: "2010-01-01", // 14 years old
+      },
+      {
+        id: "enfant2",
+        date_naissance: "2015-01-01", // 9 years old
+      },
+      {
+        id: "enfant3",
+        date_naissance: "2008-01-01", // 16 years old
+      },
+    ]
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(true)
+  })
+
+  it("Checks that a parent with 3 children between 11 and 25 years old is not eligible for = 2", function () {
+    benefit_parent.profils[0].conditions[0].operator = "="
+    benefit_parent.profils[0].conditions[0].value = 2
+    situation_parent.enfants = [
+      {
+        id: "enfant1",
+        date_naissance: "2010-01-01", // 14 years old
+      },
+      {
+        id: "enfant2",
+        date_naissance: "2008-01-01", // 16 years old
+      },
+      {
+        id: "enfant3",
+        date_naissance: "2006-01-01", // 18 years old
+      },
+    ]
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(false)
+  })
+
+  it("Checks that a parent with less than 3 children between 11 and 25 years old is not eligible for >= 3", function () {
+    benefit_parent.profils[0].conditions[0].operator = ">="
+    benefit_parent.profils[0].conditions[0].value = 3
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(false)
+  })
+
+  it("Checks that a parent with children without age filter is eligible", function () {
+    benefit_parent.profils[0].conditions[0].age_min = undefined
+    benefit_parent.profils[0].conditions[0].age_max = undefined
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(true)
+  })
+
+  it("Checks that a parent with children with only age_min is eligible", function () {
+    benefit_parent.profils[0].conditions[0].age_min = 10
+    benefit_parent.profils[0].conditions[0].age_max = undefined
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(true)
+  })
+
+  it("Checks that a parent with children with only age_max is eligible", function () {
+    benefit_parent.profils[0].conditions[0].age_min = undefined
+    benefit_parent.profils[0].conditions[0].age_max = 20
+    expect(
+      testProfileEligibility(benefit_parent, {
+        situation: situation_parent,
+      }),
+    ).toBe(true)
+  })
+})

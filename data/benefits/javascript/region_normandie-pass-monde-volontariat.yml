@@ -53,7 +53,6 @@ profils:
 link: https://www.normandie.fr/atouts-pass-monde
 teleservice: https://atouts.normandie.fr/my/dashboard
 is_teleservice_need_register: true
-
 prefix: le
 type: float
 unit: €
@@ -61,4 +60,3 @@ periodicite: annuelle
 legend: Maximum
 montant: 1440
 interestFlag: _interetEtudesEtranger
-is_teleservice_need_register: true

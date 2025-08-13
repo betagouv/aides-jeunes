@@ -598,24 +598,20 @@ textarea {
   background-image: url(/public/img/logo-proconnect.svg);
 }
 
-/* Custom code for allow `border-radius` on input radio (prevent using current background-image class on DSFR version > 1.12.1) */
+/* Custom code for allow `border-radius` on input radio (prevent using current background-image class on DSFR version >= 1.14.0) */
 .fr-radio-rich input[type="radio"] + label {
   background-image: none;
   box-shadow: inset 0 0 0 1px var(--border-default-grey);
 }
 
 .fr-radio-rich input[type="radio"] + label:before {
-  box-shadow:
-    inset 0 0 0 1px var(--border-action-high-grey),
-    inset 0 0 0 8px var(--background-default-grey),
-    inset 0 0 0 8px var(--background-action-high-blue-france);
   height: 1rem;
-  left: 1.75rem;
-  margin-top: -0.5rem;
-  position: absolute;
-  top: 50%;
   width: 1rem;
-  border-radius: 50%;
+  left: 1.25rem;
+  top: 50%;
+  margin-top: -0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-action-high-blue-france);
 }
 
 .fr-radio-rich input[type="radio"]:checked + label {
@@ -624,10 +620,12 @@ textarea {
 }
 
 .fr-radio-rich input[type="radio"]:checked + label:before {
-  box-shadow:
-    inset 0 0 0 1px var(--border-action-high-grey),
-    inset 0 0 0 4px var(--background-default-grey),
-    inset 0 0 0 8px var(--background-action-high-blue-france);
+  background: radial-gradient(
+    circle at center,
+    var(--background-action-high-blue-france) 0,
+    var(--background-action-high-blue-france) 4px,
+    white 4px
+  );
 }
 
 .aj-hero-highlight {
@@ -701,6 +699,24 @@ textarea {
 
 .aj-partner-link::after {
   display: none;
+}
+
+/* Fix pour les modales avec DSFR >= 1.13 */
+.fr-modal--opened {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.fr-modal--opened .fr-modal__body {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
 }
 
 @media (max-width: 767px) {

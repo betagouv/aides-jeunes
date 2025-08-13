@@ -26,4 +26,5 @@ periodicite: mensuelle
 legend: maximum
 montant: 420
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/erasmus-stage-enseignement-superieur
+is_teleservice_need_register: true
 teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET5_APP_25_26&state=80625f45-96b9-4b6c-a110-c15a1601e56f&login=true&scope=openid

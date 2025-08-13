@@ -15,6 +15,7 @@ conditions_generales:
       - "44"
 profils: []
 link: https://www.jeunest.fr/articles/46C4132D-E6C0-45EA-BE49-38DC418096B6
+is_teleservice_need_register: true
 teleservice: https://connexev3.grandest.fr/gecas/login?service=https%3A%2F%2Fconnexev3.grandest.fr%2Fgecas%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3DJEUNESTV3-WWW-PROD%26redirect_uri%3Dhttps%253A%252F%252Fwww.jeunest.fr%252Fsso_connect%26response_type%3Dcode%26client_name%3DCasOAuthClient
 prefix: l’aide
 type: bool

@@ -1,5 +1,5 @@
 <template>
-  <article class="fr-article">
+  <div>
     <h1>Détail de l'aide</h1>
     <BackButton to="/aides" size="small" as-link class="fr-mb-2w">
       Retour à la liste des aides
@@ -12,7 +12,7 @@
       :ressources-year-minus-two-captured="true"
     />
     <DroitsContributions :droit="benefit" :show-contribution-links="true" />
-  </article>
+  </div>
 </template>
 
 <script setup lang="ts">

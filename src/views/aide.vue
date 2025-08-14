@@ -1,5 +1,5 @@
 <template>
-  <article class="fr-article">
+  <div>
     <h1>Détail de l'aide</h1>
     <BackButton
       :to="route.query.from ? `/${route.query.from}` : '/aides'"
@@ -17,7 +17,7 @@
       :ressources-year-minus-two-captured="true"
     />
     <DroitsContributions :droit="benefit" :show-contribution-links="true" />
-  </article>
+  </div>
 </template>
 
 <script setup lang="ts">

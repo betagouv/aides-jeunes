@@ -128,7 +128,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.paysdesherbiers.fr/le-covoiturage-avec-klaxit/#:~:text=Pour%20continuer%20sur%20cette%20dynamique,à%20destination%20de%20sa%20population.",
+    "link": "https://www.paysdesherbiers.fr/covoiturage/",
     "code_siren": "248500621",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -272,7 +272,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.ccpom.fr/la-communaute-de-communes-du-pays-orne-moselle-lance-son-programme-de-covoiturage-avec-klaxit-par-blablacar-daily/",
+    "link": "https://www.ccpom.fr/en-voiture/",
     "code_siren": "245701271",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -352,7 +352,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.valleesduhautanjou.fr/le-covoiturage/",
+    "link": "https://www.valleesduhautanjou.fr/covoiturage/",
     "code_siren": "200071868",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -364,22 +364,6 @@
     "trajet_longueur_min": 5,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vos 10 premiers trajets sont offerts puis à partir du 11ème trajet, vous payez entre 0,75 € et 2 € en fonction de la distance parcourue.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://www.communaute.paysdechateaugiron.bzh/covoiturage/#:~:text=Covoiturages%20subventionnés%20pour%20tous%20les,fonction%20de%20la%20distance%20parcourue.",
-    "code_siren": "243500659",
-    "nom_plateforme": "",
-    "operateurs": "BlablaCarDaily",
-    "zone_sens_des_trajets": "et/ou",
-    "conducteur_montant_max_par_mois": 150,
-    "conducteur_montant_min_par_passager": 1.5,
-    "conducteur_montant_max_par_passager": 3,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Gratuité",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
   },
@@ -848,22 +832,6 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://www.cauxseine.fr/services/mobilite/covoiturage/",
-    "code_siren": "200010700",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "/ou",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 3,
-    "conducteur_montant_max_par_passager": 9,
-    "trajet_longueur_max": 20,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://www.saint-lo-agglo.fr/fr/slam-covoiturage",
     "code_siren": "200066389",
     "nom_plateforme": "",
@@ -880,22 +848,6 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://troyes-champagne-metropole.fr/habitervivre/se-deplacer-dans-tcm/covoiturage/",
-    "code_siren": "200069250",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 1,35 € par trajet.",
-    "si_zone_exclue_liste": "Noter que les trajets ayant pour origine et destination deux points situés à moins de 10 min à pied d'une ligne de transport en commun du réseau TCAT ne sont pas subventionnés.",
-    "passager_gratuite": "Non"
-  },
-  {
     "link": "https://ardecherhonecoiron.fr/grands-projets/plan-climat-air-energie-territorial/mobilite/",
     "code_siren": "200071405",
     "nom_plateforme": "",
@@ -905,22 +857,6 @@
     "conducteur_montant_min_par_passager": 2,
     "conducteur_montant_max_par_passager": 4,
     "trajet_longueur_max": 50,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": 60,
-    "passager_montant_ticket": "Vous ne payez que 1 € par trajet.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
-  },
-  {
-    "link": "https://www.ccaillantais.fr/covoiturage-karos/",
-    "code_siren": "248900524",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
     "trajet_longueur_min": 2,
     "passager_trajets_max_par_mois": 60,
     "passager_montant_ticket": "Vous ne payez que 1 € par trajet.",
@@ -1152,7 +1088,7 @@
     "passager_gratuite": "Non"
   },
   {
-    "link": "https://hautecorreze.fr/services/mobilite-transports/covoiturage-au-quotidien/",
+    "link": "https://hautecorreze.fr/services/mobilite-transports/covoiturez-au-quotidien/",
     "code_siren": "200066744",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -1216,7 +1152,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.yvetot-normandie.fr/vivre-in-yvetot-normandie/mobilite/covoiturage/",
+    "link": "https://mobilite.yvetot-normandie.fr/covoiturage/",
     "code_siren": "247600620",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -1408,7 +1344,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://www.coevrons.fr/actualite/covoiturage-en-pays-de-la-loire",
+    "link": "https://www.coevrons.fr/au-quotidien/mobilite/",
     "code_siren": "200033298",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -1424,7 +1360,7 @@
     "passager_gratuite": "Oui"
   },
   {
-    "link": "https://cdn.website-editor.net/s/04d2ba86dfed4628bf02baedb29ec80a/files/uploaded/CP%2520_%2520CC%2520Grand%2520Cha%25CC%2582teaudun%2520x%2520BlaBlaCar%2520Daily.pdf?Expires=1727016372&Signature=PMNaAkxF1zemVniLq1n~CvkWi8hccl97reyiynREW-pSYp3RxAnQoYYTRRzCJLY7HqszVGgriI3Hjw49TdP1G4riW-jwmhqnJ-oalMzAnZGYUnpAlZqAUdfnXbBvd4fd6fjQifyWYGWJ0WWdJ-uzo6D-qqGzyXo2Quve~kZMsHIeCldf~Tg9oDk0TGZqDoOShoWrxeMY~i1o1dN-n1-sTmkj1C-WotOwVQAXXMpvT7D3icfcguXjPyUJRUd43YoqN3OxhVOp-hgJTApl75n7HU0AG-cHmEZxWk1yxk9DXFR0wE18D8xkxHL9K1NADRMWPZIlkqKCrI~mI0EHb3vbSg__&Key-Pair-Id=K2NXBXLF010TJW",
+    "link": "https://www.grandchateaudun.fr/mobilite",
     "code_siren": "200069961",
     "nom_plateforme": "",
     "operateurs": "BlablaCarDaily",
@@ -1616,6 +1552,22 @@
     "passager_gratuite": "Oui"
   },
   {
+    "link": "https://www.pays-brie-champagne.fr/",
+    "code_siren": "245100888",
+    "nom_plateforme": "",
+    "operateurs": "BlablaCarDaily",
+    "zone_sens_des_trajets": "et/ou",
+    "conducteur_montant_max_par_mois": 120,
+    "conducteur_montant_min_par_passager": 2,
+    "conducteur_montant_max_par_passager": 3,
+    "trajet_longueur_max": 150,
+    "trajet_longueur_min": 2,
+    "passager_trajets_max_par_mois": 60,
+    "passager_montant_ticket": "Gratuité",
+    "si_zone_exclue_liste": "",
+    "passager_gratuite": "Oui"
+  },
+  {
     "link": "https://www.coeurhautesomme.fr/",
     "code_siren": "200037059",
     "nom_plateforme": "",
@@ -1710,22 +1662,6 @@
     "passager_montant_ticket": "Vous ne payez que 1,1 € par trajet + 0,10 € par kilomètre au delà de 40 kilomètres.",
     "si_zone_exclue_liste": "",
     "passager_gratuite": "Oui"
-  },
-  {
-    "link": "https://montauban.com/ma-ville-mon-agglo/communaute-dagglomeration",
-    "code_siren": "248200099",
-    "nom_plateforme": "",
-    "operateurs": "Karos",
-    "zone_sens_des_trajets": "et",
-    "conducteur_montant_max_par_mois": null,
-    "conducteur_montant_min_par_passager": 2,
-    "conducteur_montant_max_par_passager": 8,
-    "trajet_longueur_max": 80,
-    "trajet_longueur_min": 2,
-    "passager_trajets_max_par_mois": null,
-    "passager_montant_ticket": "Vous ne payez que 0,50 € par trajet + 0,10 € par kilomètre au delà de 20 kilomètres.",
-    "si_zone_exclue_liste": "",
-    "passager_gratuite": "Non"
   },
   {
     "link": "https://www.agglo-larochelle.fr/",

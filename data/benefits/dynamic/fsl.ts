@@ -305,8 +305,7 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   intercommunalite_toulon_provence_mediterranee: {
     label: "de la Métropole de Toulon Provence Méditerrannée",
-    link: "https://metropoletpm.fr/service/article/fonds-de-solidarite-logement-fsl",
-    form: "https://metropoletpm.fr/sites/new.tpm-agglo.fr/files/maintien_a4.pdf",
+    link: "https://metropoletpm.fr/demarches/fonds-de-solidarite-pour-le-logement",
   },
   departement_vaucluse: {
     label: "du département du Vaucluse",

@@ -1,8 +1,8 @@
 label: jeun'Est
 institution: grand_est
-description: Jeun'Est est un portail, une application et une carte virtuelle (ou
-  physique si vous êtes au lycée), qui vous donne droit à des avantages culture,
-  sport ou tourisme et à des bons plans.
+description:
+  Jeun'Est est un site et une appli, ainsi qu'une carte physique pour les lycéens,
+  qui vous donne droit à des avantages culture, sport et à des bons plans.
 conditions_generales:
   - type: age
     operator: ">="
@@ -14,10 +14,10 @@ conditions_generales:
     values:
       - "44"
 profils: []
-link: https://www.grandest.fr/vos-aides-regionales/jeunest-pour-les-15-29-ans/
-teleservice: https://connexev3.grandest.fr/gecas//login?service=https%3A%2F%2Fconnexev3.grandest.fr%2Fgecas%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3DJEUNESTV3-WWW-PROD%26redirect_uri%3Dhttps%253A%252F%252Fwww.jeunest.fr%252Fsso_connect%26response_type%3Dcode%26client_name%3DCasOAuthClient
+link: https://www.jeunest.fr/articles/46C4132D-E6C0-45EA-BE49-38DC418096B6
+teleservice: https://connexev3.grandest.fr/gecas/login?service=https%3A%2F%2Fconnexev3.grandest.fr%2Fgecas%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3DJEUNESTV3-WWW-PROD%26redirect_uri%3Dhttps%253A%252F%252Fwww.jeunest.fr%252Fsso_connect%26response_type%3Dcode%26client_name%3DCasOAuthClient
+is_teleservice_need_register: true
 prefix: l’aide
 type: bool
 unit: €
 periodicite: autre
-is_teleservice_need_register: true

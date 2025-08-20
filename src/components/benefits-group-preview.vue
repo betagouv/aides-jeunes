@@ -46,7 +46,7 @@ const formattedInstitutionsLabel = computed(() => {
                 </div>
                 <div>
                   <p
-                    class="fr-text--justify"
+                    class="fr-text--justify fr-mt-1w"
                     v-html="props.group.description"
                   />
                 </div>

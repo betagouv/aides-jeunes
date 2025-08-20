@@ -41,7 +41,10 @@ const askBenefitLabelButton = (benefit) => {
               >{{ capitalize(props.benefit.institution.label) }}
             </div>
             <div>
-              <p class="fr-text--justify" v-html="props.benefit.description" />
+              <p
+                class="fr-text--justify fr-mt-1w"
+                v-html="props.benefit.description"
+              />
               <WarningMessage
                 v-if="
                   benefit?.montant &&

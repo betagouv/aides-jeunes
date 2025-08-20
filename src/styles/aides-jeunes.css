@@ -236,8 +236,11 @@ textarea {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-
   gap: 32px;
+}
+
+.aj-benefit-header h2 {
+  margin-top: 0 !important;
 }
 
 .aj-benefit-name {

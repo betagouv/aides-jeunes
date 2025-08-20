@@ -704,24 +704,6 @@ textarea {
   display: none;
 }
 
-/* Fix pour les modales avec DSFR >= 1.13 */
-.fr-modal--opened {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-
-.fr-modal--opened .fr-modal__body {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
-}
-
 @media (max-width: 767px) {
   .aj-partners {
     grid-template-columns: repeat(2, 1fr);

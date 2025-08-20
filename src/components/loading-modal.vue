@@ -1,9 +1,23 @@
+<script setup lang="ts">
+import { onMounted, nextTick } from "vue"
+
+onMounted(async () => {
+  await nextTick()
+  const modal = document.getElementById("modal")
+  if (modal && window.dsfr) {
+    // DSFR API : https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/modale/code-de-la-modale
+    window.dsfr(modal).modal.disclose()
+  }
+})
+</script>
+
 <template>
   <dialog
-    aria-labelledby="Calcul des droits en cours"
+    id="modal"
     role="dialog"
-    class="fr-modal fr-modal--opened"
-    open="true"
+    class="fr-modal"
+    aria-labelledby="Calcul des droits en cours"
+    aria-modal="true"
     data-fr-concealing-backdrop="false"
   >
     <div class="fr-container fr-container--fluid fr-container-md">
@@ -23,9 +37,3 @@
     </div>
   </dialog>
 </template>
-
-<script lang="ts">
-export default {
-  name: "LoadingModal",
-}
-</script>

@@ -30,7 +30,7 @@ profils:
   - type: professionnalisation
     conditions: []
 link: https://www.normandie.fr/atouts-pass-monde
-teleservice: https://atouts.normandie.fr/Beneficiaires/Views/Accueil.aspx
+teleservice: https://atouts.normandie.fr/my/dashboard
 is_teleservice_need_register: true
 prefix: le
 type: float

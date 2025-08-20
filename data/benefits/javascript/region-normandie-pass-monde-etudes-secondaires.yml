@@ -34,7 +34,8 @@ profils:
   - type: stagiaire
     conditions: []
 link: https://www.normandie.fr/pass-monde-etudes-secondaires
-teleservice: https://atouts.normandie.fr/beneficiaires/Views/Accueil.aspx
+teleservice: https://atouts.normandie.fr/my/dashboard
+is_teleservice_need_register: true
 instructions: ""
 prefix: le
 type: float

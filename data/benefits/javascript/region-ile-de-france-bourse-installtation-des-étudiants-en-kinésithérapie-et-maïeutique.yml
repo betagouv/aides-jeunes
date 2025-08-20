@@ -24,3 +24,4 @@ unit: €
 periodicite: annuelle
 montant: 8400
 interestFlag: _interetAidesSanitaireSocial
+private: true

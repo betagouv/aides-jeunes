@@ -1,8 +1,13 @@
 <template>
   <article class="fr-article">
     <h1>Détail de l'aide</h1>
-    <BackButton to="/aides" size="small" as-link class="fr-mb-2w">
-      Retour à la liste des aides
+    <BackButton
+      :to="route.query.from ? `/${route.query.from}` : '/aides'"
+      size="small"
+      as-link
+      class="fr-mb-2w"
+    >
+      Retour à {{ getBackLabel() }}
     </BackButton>
     <DroitsDetails
       :droit="benefit"
@@ -25,4 +30,11 @@ import BackButton from "@/components/buttons/back-button.vue"
 const route = useRoute()
 const benefitId = route.params.benefitId as string
 const benefit = getBenefit(benefitId)
+
+const getBackLabel = () => {
+  const from = route.query.from as string
+  return from === "ville/lyon"
+    ? "la liste des aides de la ville de Lyon"
+    : "la liste des aides"
+}
 </script>

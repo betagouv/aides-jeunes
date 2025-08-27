@@ -1,21 +1,21 @@
 <template>
   <article class="fr-article">
     <div class="fr-grid-row fr-grid-row--gutters">
-      <div class="fr-col-12">
-        <h1> Aides pour les résidants de la ville de Lyon </h1>
-        <span
+      <h1> Aides pour les résidants de la ville de Lyon </h1>
+      <div class="fr-col-12 fr-mb-1w">
+        <div
           v-if="totalInstitutionsCount > 0"
-          class="fr-badge fr-badge--info"
+          class="fr-badge fr-badge--info fr-mr-1w"
           title="Nombre total d'institutions"
         >
           {{ formatTotalCount(totalInstitutionsCount, "institution") }}
-        </span>
-        <span
+        </div>
+        <div
           v-if="totalBenefitsCount > 0"
-          class="fr-badge fr-badge--new fr-ml-1w"
+          class="fr-badge fr-badge--new fr-mt-1w"
         >
           {{ formatTotalCount(totalBenefitsCount, "aide") }}
-        </span>
+        </div>
       </div>
 
       <div class="fr-col-12">
@@ -82,7 +82,11 @@
               </div>
               <div class="fr-card__footer">
                 <ul class="fr-links-group fr-list--no-bullet">
-                  <li v-for="benefit in institution.benefits" :key="benefit.id">
+                  <li
+                    v-for="benefit in institution.benefits"
+                    :key="benefit.id"
+                    class="fr-my-1w"
+                  >
                     <router-link
                       class="fr-link fr-icon-arrow-right-line fr-link--icon-right"
                       :to="{

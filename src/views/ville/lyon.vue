@@ -2,13 +2,30 @@
   <article class="fr-article">
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12">
-        <h1
-          >💰 Aides pour les jeunes à Lyon et dans la région
-          Auvergne-Rhône-Alpes</h1
+        <h1> Aides pour les résidants de la ville de Lyon </h1>
+        <span
+          v-if="totalInstitutionsCount > 0"
+          class="fr-badge fr-badge--info"
+          title="Nombre total d'institutions"
         >
-        <p class="fr-text--lead">
-          Découvrez toutes les aides financières disponibles pour les jeunes
-          lyonnais : logement, études, transport, emploi et bien plus encore.
+          {{ formatTotalCount(totalInstitutionsCount, "institution") }}
+        </span>
+        <span
+          v-if="totalBenefitsCount > 0"
+          class="fr-badge fr-badge--new fr-ml-1w"
+        >
+          {{ formatTotalCount(totalBenefitsCount, "aide") }}
+        </span>
+      </div>
+
+      <div class="fr-col-12">
+        <p class="fr-text--md fr-mb-3w">
+          Toutes les aides financières proposées aux résidants de la ville de
+          Lyon en matière de
+          <b
+            >logement, transport, santé, formation, emploi, culture, sport et
+            alimentation</b
+          >.
         </p>
       </div>
     </div>
@@ -16,7 +33,7 @@
     <div class="fr-mb-4w">
       <BackButton
         size="small"
-        class="fr-mb-2w"
+        class="fr-my-2w"
         as-link
         to="/"
         aria-label="Retour à la page d'accueil"
@@ -25,51 +42,56 @@
       </BackButton>
     </div>
 
-    <div v-for="(institutions, type) in institutionsGroups" :key="String(type)">
-      <h2 :id="`liste_${String(type)}`">{{ types[type] }}</h2>
-      <p>
-        Nombre d'aides :
-        {{
-          Array.isArray(institutions)
-            ? institutions.reduce(
-                (acc, institution) => acc + institution.benefits.length,
-                0,
-              )
-            : 0
-        }}
-        <br />
-        Nombre d'institutions :
-        {{ Array.isArray(institutions) ? institutions.length : 0 }}
-      </p>
-      <div v-for="institution in institutions" :key="institution.id">
-        <h3 :id="institution.id" class="aj-question">
-          <router-link
-            :title="`Lien vers la liste des aides de l'institution ${institution.label}`"
-            :to="{
-              path: `/aides`,
-              hash: `#${institution.id}`,
-            }"
-            aria-current="none"
-          >
-            {{ institution.label }}
-          </router-link>
-        </h3>
-        <p
-          >{{
-            institution.benefits.length > 1
-              ? institution.benefits.length + " aides :"
-              : institution.benefits.length + " aide :"
-          }}
-        </p>
-        <ul>
-          <li v-for="benefit in institution.benefits" :key="benefit.id">
-            <router-link
-              :to="{ name: 'aide', params: { benefitId: benefit.id } }"
-            >
-              {{ capitalize(benefit.label) }}
-            </router-link>
-          </li>
-        </ul>
+    <div
+      v-for="(institutions, type) in institutionsGroups"
+      :key="String(type)"
+      class="fr-mb-6w"
+    >
+      <h2 :id="`liste_${String(type)}`">
+        {{ types[type] }}
+        <span class="fr-badge fr-badge--info fr-ml-1w">
+          {{ formatCount(countInstitutions(institutions), "institution") }}
+        </span>
+        <span class="fr-badge fr-badge--new fr-ml-1w">
+          {{ formatCount(countBenefits(institutions), "aide") }}
+        </span>
+      </h2>
+
+      <div class="fr-grid-row fr-grid-row--gutters">
+        <div
+          v-for="institution in institutions"
+          :key="institution.id"
+          class="fr-col-12"
+        >
+          <div class="fr-card">
+            <div class="fr-card__body">
+              <div class="fr-card__content">
+                <h3
+                  :id="institution.id"
+                  class="fr-card__title fr-mb-n2w fr-mt-1w"
+                >
+                  {{ institution.label }}
+                </h3>
+              </div>
+              <div class="fr-card__footer">
+                <ul class="fr-links-group fr-list--no-bullet">
+                  <li v-for="benefit in institution.benefits" :key="benefit.id">
+                    <router-link
+                      class="fr-link fr-icon-arrow-right-line fr-link--icon-right"
+                      :to="{
+                        name: 'aide',
+                        params: { benefitId: benefit.id },
+                        query: { from: 'ville/lyon' },
+                      }"
+                    >
+                      {{ capitalize(benefit.label) }}
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </article>
@@ -86,7 +108,7 @@ import { Commune } from "@lib/types/commune"
 const selectedCommune = ref<Commune | null>(null)
 
 const types = {
-  europeen: "Aides européeennes",
+  europeen: "Aides européennes",
   national: "Aides nationales",
   region: "Aides régionales",
   departement: "Aides départementales",
@@ -122,6 +144,34 @@ const institutionsGroups = computed(() => {
     ),
   }
 })
+
+const countInstitutions = (institutions) => institutions.length
+
+const countBenefits = (institutions) =>
+  institutions.reduce(
+    (total, institution) => total + (institution?.benefits?.length || 0),
+    0,
+  )
+
+const formatCount = (count: number, label: string) =>
+  `${count} ${label}${count > 1 ? "s" : ""}`
+
+const formatTotalCount = (count: number, label: string) =>
+  `${count} ${label}${count > 1 ? "s" : ""} au total`
+
+const totalInstitutionsCount = computed(() =>
+  Object.values(institutionsGroups.value).reduce(
+    (total, institutions) => total + countInstitutions(institutions || []),
+    0,
+  ),
+)
+
+const totalBenefitsCount = computed(() =>
+  Object.values(institutionsGroups.value).reduce(
+    (total, institutions) => total + countBenefits(institutions || []),
+    0,
+  ),
+)
 
 onMounted(async () => {
   const res = await CommuneMethods.get("69001")

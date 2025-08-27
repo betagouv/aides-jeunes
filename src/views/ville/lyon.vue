@@ -30,16 +30,23 @@
       </div>
     </div>
 
-    <div class="fr-mb-4w">
-      <BackButton
+    <div class="aj-home-group-buttons-container">
+      <div class="fr-mb-2w fr-mr-2w">
+        <BackButton
+          data-testid="benefits-liste-back-button"
+          as-link
+          to="/"
+          size="small"
+          btn-type="tertiary"
+        >
+          Retour à l'accueil
+        </BackButton>
+      </div>
+      <HomeSimulationGroupButtons
+        :horizontal="true"
         size="small"
-        class="fr-my-2w"
-        as-link
-        to="/"
-        aria-label="Retour à la page d'accueil"
-      >
-        Retour à l'accueil
-      </BackButton>
+        :reverse="true"
+      />
     </div>
 
     <div
@@ -104,6 +111,7 @@ import { computed, ref, onMounted } from "vue"
 import institutionsBenefits from "generator:institutions"
 import { capitalize } from "@lib/utils"
 import { Commune } from "@lib/types/commune"
+import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
 
 const selectedCommune = ref<Commune | null>(null)
 

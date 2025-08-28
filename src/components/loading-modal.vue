@@ -5,8 +5,11 @@ onMounted(async () => {
   await nextTick()
   const modal = document.getElementById("modal")
   if (modal && window.dsfr) {
-    // DSFR API : https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/modale/code-de-la-modale
-    window.dsfr(modal).modal.disclose()
+    const dsfrModal = window.dsfr(modal)
+    if (dsfrModal?.modal) {
+      // DSFR API : https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/modale/code-de-la-modale
+      dsfrModal.modal.disclose()
+    }
   }
 })
 </script>

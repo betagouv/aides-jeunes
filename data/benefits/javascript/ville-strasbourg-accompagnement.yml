@@ -8,6 +8,6 @@ conditions_generales:
       - "67100"
 type: bool
 periodicite: autre
-teleservice: https://mon.strasbourg.eu/bienvenue
-link: https://mon.strasbourg.eu/bienvenue
+teleservice: https://demarches.strasbourg.eu/rdv-tel-1jeune1solution/  
+link: https://demarches.strasbourg.eu/rdv-tel-1jeune1solution/  
 top: -1

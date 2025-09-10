@@ -170,12 +170,12 @@ describe("computeAides", function () {
     ).toBe(true)
   })
 
-  it("verify the result when a codespostaux is in benefit's EPCI", function () {
+  it("verify the result when a postcode is in benefit's codes_postaux", function () {
     situation.menage._codePostal = "67100"
     expect(
       testGeographicalEligibility(
         {
-          type: "codespostaux",
+          type: "codes_postaux",
           values: ["67100"],
         },
         { situation },

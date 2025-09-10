@@ -3,7 +3,7 @@ institution: strasbourg_eurometropole
 description: Vous avez besoin d’aide pour comprendre votre résultat de simulation et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone par un agent chargé d’accès aux droits de la ville de Strasbourg.
 prefix: le
 conditions_generales:
-  - type: codespostaux
+  - type: codes_postaux
     values:
       - "67100"
 type: bool

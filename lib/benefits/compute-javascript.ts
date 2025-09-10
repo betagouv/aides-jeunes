@@ -197,7 +197,7 @@ export const CONDITION_STRATEGY: Conditions = {
   regions: {
     test: testGeographicalEligibility,
   },
-  codespostaux: {
+  codes_postaux: {
     test: testGeographicalEligibility,
   },
   departements: {

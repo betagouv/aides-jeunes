@@ -90,7 +90,7 @@ const COMMUNE_PARAMETERS = {
   departements: "_departement",
   communes: "depcom",
   epcis: "_epci",
-  codespostaux: "_codePostal",
+  codes_postaux: "_codePostal",
 }
 
 export function testGeographicalEligibility(

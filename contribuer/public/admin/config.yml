@@ -145,6 +145,15 @@ fields:
         name: values
         widget: list
         hint: Pour saisir plusieurs communes, séparez les codes INSEE des communes par une virgule.
+  field_codespostaux: &field_codespostaux
+    label: Condition géographique codes postaux
+    name: codespostaux
+    widget: object
+    fields:
+      - label: Code postaux des communes
+        name: values
+        widget: list
+        hint: Pour saisir plusieurs codes postaux, séparez les codes des communes par une virgule.
   field_boursier: &field_boursier
     <<: *field_empty
     label: Boursier
@@ -829,6 +838,7 @@ fields:
       - *field_epcis
       - *field_excluded_epcis
       - *field_communes
+      - *field_codespostaux
       - *field_regime_securite_sociale
       - *field_quotient_familial
       - *field_formation_sanitaire_social

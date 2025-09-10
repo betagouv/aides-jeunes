@@ -1,0 +1,13 @@
+label: rendez-vous téléphonique d’accompagnement personnalisé
+institution: strasbourg_eurometropole
+description: Vous avez besoin d’aide pour comprendre votre résultat de simulation et effectuer vos démarches ? Prenez un rendez-vous pour être rappelé au téléphone par un agent chargé d’accès aux droits de la ville de Strasbourg.
+prefix: le
+conditions_generales:
+  - type: codes_postaux
+    values:
+      - "67100"
+type: bool
+periodicite: autre
+teleservice: https://demarches.strasbourg.eu/rdv-tel-1jeune1solution/
+link: https://demarches.strasbourg.eu/rdv-tel-1jeune1solution/
+top: -1

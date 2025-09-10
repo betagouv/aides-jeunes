@@ -170,6 +170,19 @@ describe("computeAides", function () {
     ).toBe(true)
   })
 
+  it("verify the result when a postcode is in benefit's codes_postaux", function () {
+    situation.menage._codePostal = "67100"
+    expect(
+      testGeographicalEligibility(
+        {
+          type: "codes_postaux",
+          values: ["67100"],
+        },
+        { situation },
+      ),
+    ).toBe(true)
+  })
+
   it("adds the benefit amount when eligible", function () {
     const openfiscaRequest = buildOpenFiscaRequest(situation)
     computeJavascriptBenefits(benefits, situation, openfiscaRequest)

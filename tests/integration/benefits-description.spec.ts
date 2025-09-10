@@ -205,6 +205,7 @@ describe("benefit descriptions", function () {
                       condition.type === "departements" ||
                       condition.type === "communes" ||
                       condition.type === "epcis" ||
+                      condition.type === "codes_postaux" ||
                       condition.type === "attached_to_institution"
                     )
                   },

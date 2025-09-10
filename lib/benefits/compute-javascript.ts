@@ -90,6 +90,7 @@ const COMMUNE_PARAMETERS = {
   departements: "_departement",
   communes: "depcom",
   epcis: "_epci",
+  codes_postaux: "_codePostal",
 }
 
 export function testGeographicalEligibility(
@@ -194,6 +195,9 @@ export const CONDITION_STRATEGY: Conditions = {
     },
   },
   regions: {
+    test: testGeographicalEligibility,
+  },
+  codes_postaux: {
     test: testGeographicalEligibility,
   },
   departements: {

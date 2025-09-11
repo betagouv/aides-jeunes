@@ -304,6 +304,14 @@ const router = createRouter({
       },
     },
     {
+      path: "/ville/lyon",
+      name: "ville-lyon",
+      component: () => import("./views/ville/lyon.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur Lyon`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

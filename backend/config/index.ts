@@ -29,7 +29,7 @@ const config: Configuration = {
     errorPath: "/accompagnement?error",
   },
   aideJeuneExperimentationURL: isProduction
-    ? "https://betagouv.github.io/aides-jeunes-experimentations"
+    ? "https://mes-aides.github.io/interconnexions/"
     : "http://127.0.0.1:3000",
   contactEmail: process.env.EMAIL_CONTACT || "aides-jeunes@beta.gouv.fr",
   contextName,

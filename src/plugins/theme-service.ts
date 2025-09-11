@@ -31,11 +31,11 @@ const options = [
 export default {
   install: (app) => {
     const styleElement = document.createElement("style")
-    styleElement.textContent = DefaultDsfr
+    styleElement.textContent = options[0].value
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {
-      current: Theme.Default,
+      current: options[0].label,
       options,
       update(newThemeLabel) {
         const match = options.find((option) => option.label === newThemeLabel)

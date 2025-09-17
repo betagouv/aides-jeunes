@@ -1,18 +1,18 @@
 <template>
   <article class="fr-article">
     <div class="fr-grid-row fr-grid-row--gutters">
-      <h1> Aides pour les résidants de la ville de Lyon </h1>
-      <div class="fr-col-12">
+      <h1>
+        Aides pour les résidants de la ville de Lyon
         <div
           v-if="totalBenefitsCount > 0"
-          class="fr-badge fr-badge--success fr-mt-1w"
+          class="fr-badge fr-badge--success fr-p-1v fr-px-2v"
         >
           {{ formatTotalCount(totalBenefitsCount, "aide") }}
         </div>
-      </div>
+      </h1>
 
       <div class="fr-col-12">
-        <p class="fr-text--md fr-mb-3w">
+        <p class="fr-text--md fr-mb-1w">
           Toutes les aides financières proposées aux résidants de la ville de
           Lyon en matière de
           <b
@@ -21,25 +21,6 @@
           >.
         </p>
       </div>
-    </div>
-
-    <div class="aj-home-group-buttons-container">
-      <div class="fr-mb-2w fr-mr-2w">
-        <BackButton
-          data-testid="benefits-liste-back-button"
-          as-link
-          to="/"
-          size="small"
-          btn-type="tertiary"
-        >
-          Retour à l'accueil
-        </BackButton>
-      </div>
-      <HomeSimulationGroupButtons
-        :horizontal="true"
-        size="small"
-        :reverse="true"
-      />
     </div>
 
     <div

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BackButton from "@/components/buttons/back-button.vue"
 import { EventAction, EventCategory } from "@lib/enums/event"
+import StartSimulationCta from "@/components/start-simulation-cta.vue"
 
 const contactEmail = process.env.VITE_CONTACT_EMAIL
 
@@ -503,23 +504,7 @@ const mailAnalytics = {
       financiers.</p
     >
 
-    <div class="fr-callout fr-mt-4w fr-mb-4w">
-      <h3 class="fr-callout__title">Prêt à calculer vos aides ?</h3>
-      <p class="fr-callout__text">
-        Simulez vos droits aux bourses sur critères sociaux, aux aides au
-        logement et découvrez toutes les autres aides disponibles pour votre vie
-        étudiante.
-      </p>
-      <div class="fr-callout__footer">
-        <a
-          class="fr-btn fr-btn--primary"
-          href="/simulation/individu/demandeur/date_naissance"
-          title="Accéder au simulateur d'aides"
-        >
-          Je commence ma simulation
-        </a>
-      </div>
-    </div>
+    <StartSimulationCta />
 
     <h2 id="ressources">Pour aller plus loin</h2>
 

@@ -95,6 +95,7 @@
         </div>
       </div>
     </div>
+    <StartSimulationCta />
   </article>
 </template>
 
@@ -106,6 +107,7 @@ import institutionsBenefits from "generator:institutions"
 import { capitalize } from "@lib/utils"
 import { Commune } from "@lib/types/commune"
 import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
+import StartSimulationCta from "@/components/start-simulation-cta.vue"
 
 const selectedCommune = ref<Commune | null>(null)
 

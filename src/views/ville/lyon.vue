@@ -2,17 +2,10 @@
   <article class="fr-article">
     <div class="fr-grid-row fr-grid-row--gutters">
       <h1> Aides pour les résidants de la ville de Lyon </h1>
-      <div class="fr-col-12 fr-mb-1w">
-        <div
-          v-if="totalInstitutionsCount > 0"
-          class="fr-badge fr-badge--info fr-mr-1w"
-          title="Nombre total d'institutions"
-        >
-          {{ formatTotalCount(totalInstitutionsCount, "institution") }}
-        </div>
+      <div class="fr-col-12">
         <div
           v-if="totalBenefitsCount > 0"
-          class="fr-badge fr-badge--new fr-mt-1w"
+          class="fr-badge fr-badge--success fr-mt-1w"
         >
           {{ formatTotalCount(totalBenefitsCount, "aide") }}
         </div>
@@ -56,10 +49,7 @@
     >
       <h2 :id="`liste_${String(type)}`">
         {{ types[type] }}
-        <span class="fr-badge fr-badge--info fr-ml-1w">
-          {{ formatCount(countInstitutions(institutions), "institution") }}
-        </span>
-        <span class="fr-badge fr-badge--new fr-ml-1w">
+        <span class="fr-badge fr-badge--success fr-ml-1w">
           {{ formatCount(countBenefits(institutions), "aide") }}
         </span>
       </h2>
@@ -157,8 +147,6 @@ const institutionsGroups = computed(() => {
   }
 })
 
-const countInstitutions = (institutions) => institutions.length
-
 const countBenefits = (institutions) =>
   institutions.reduce(
     (total, institution) => total + (institution?.benefits?.length || 0),
@@ -170,13 +158,6 @@ const formatCount = (count: number, label: string) =>
 
 const formatTotalCount = (count: number, label: string) =>
   `${count} ${label}${count > 1 ? "s" : ""} au total`
-
-const totalInstitutionsCount = computed(() =>
-  Object.values(institutionsGroups.value).reduce(
-    (total, institutions) => total + countInstitutions(institutions || []),
-    0,
-  ),
-)
 
 const totalBenefitsCount = computed(() =>
   Object.values(institutionsGroups.value).reduce(

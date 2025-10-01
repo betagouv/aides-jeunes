@@ -85,30 +85,35 @@ const ctas = computed(() => {
           >
           <li>Créer un compte ou se connecter sur la plateforme ci-dessous</li>
         </ol>
-        <BenefitCtaLink
-          v-if="ctaTeleservice"
-          :analytics-name="benefit.id"
-          :benefit="benefit"
-          :link="ctaTeleservice.link"
-          :type="ctaTeleservice.type"
-          class="fr-btn fr-btn--sm"
-        />
-        <BenefitCtaLink
-          v-if="ctaTeleservicePrefill"
-          :analytics-name="benefit.id"
-          :benefit="benefit"
-          :link="ctaTeleservicePrefill.link"
-          :type="ctaTeleservicePrefill.type"
-          class="fr-btn fr-btn--sm"
-        />
-        <BenefitCtaLink
-          v-if="ctaForm"
-          :analytics-name="benefit.id"
-          :benefit="benefit"
-          :link="ctaForm.link"
-          :type="ctaForm.type"
-          class="fr-btn fr-btn--secondary fr-btn--sm"
-        />
+        <ul class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--sm">
+          <li v-if="ctaTeleservice">
+            <BenefitCtaLink
+              :analytics-name="benefit.id"
+              :benefit="benefit"
+              :link="ctaTeleservice.link"
+              :type="ctaTeleservice.type"
+              class="fr-btn fr-btn--sm"
+            />
+          </li>
+          <li v-if="ctaTeleservicePrefill">
+            <BenefitCtaLink
+              :analytics-name="benefit.id"
+              :benefit="benefit"
+              :link="ctaTeleservicePrefill.link"
+              :type="ctaTeleservicePrefill.type"
+              class="fr-btn fr-btn--sm"
+            />
+          </li>
+          <li v-if="ctaForm">
+            <BenefitCtaLink
+              :analytics-name="benefit.id"
+              :benefit="benefit"
+              :link="ctaForm.link"
+              :type="ctaForm.type"
+              class="fr-btn fr-btn--secondary fr-btn--sm"
+            />
+          </li>
+        </ul>
       </div>
       <div class="fr-col fr-my-1w">
         <BenefitCtaLink

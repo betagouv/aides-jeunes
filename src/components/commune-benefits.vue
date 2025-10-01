@@ -68,6 +68,12 @@
                       >
                         {{ capitalize(benefit.label) }}
                       </router-link>
+                      <span
+                        v-if="getBenefitAmount(benefit.id)"
+                        class="fr-badge fr-badge--info fr-badge--no-icon fr-badge--sm fr-m-1w"
+                      >
+                        {{ getBenefitAmount(benefit.id) }}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -85,9 +91,12 @@
 import CommuneMethods from "@/lib/commune"
 import { computed, ref, onMounted } from "vue"
 import institutionsBenefits from "generator:institutions"
+import benefitsMap from "generator:benefits"
 import { capitalize } from "@lib/utils"
 import { Commune } from "@lib/types/commune"
 import StartSimulationCta from "@/components/start-simulation-cta.vue"
+import { getBenefitLegend } from "@lib/benefits/details.js"
+import { OpenfiscaParameters } from "@lib/types/parameters.d.js"
 
 interface Props {
   postalCode: string
@@ -147,6 +156,17 @@ const formatCount = (count: number, label: string) =>
 
 const formatTotalCount = (count: number, label: string) =>
   `${count} ${label}${count > 1 ? "s" : ""} au total`
+
+const getBenefitAmount = (benefitId: string) => {
+  const benefit = benefitsMap[benefitId]
+  if (!benefit?.montant) return null
+
+  const { montant, unit = "" } = benefit
+  const legend = getBenefitLegend(benefit, {} as OpenfiscaParameters)
+
+  const parts = [montant, unit, legend].filter(Boolean)
+  return parts.length > 1 ? parts.join(" ") : null
+}
 
 const totalBenefitsCount = computed(() =>
   Object.values(institutionsGroups.value).reduce(

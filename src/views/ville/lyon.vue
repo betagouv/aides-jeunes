@@ -81,13 +81,11 @@
 </template>
 
 <script setup lang="ts">
-import BackButton from "@/components/buttons/back-button.vue"
 import CommuneMethods from "@/lib/commune"
 import { computed, ref, onMounted } from "vue"
 import institutionsBenefits from "generator:institutions"
 import { capitalize } from "@lib/utils"
 import { Commune } from "@lib/types/commune"
-import HomeSimulationGroupButtons from "@/components/buttons/home-simulation-group-buttons.vue"
 import StartSimulationCta from "@/components/start-simulation-cta.vue"
 
 const selectedCommune = ref<Commune | null>(null)

@@ -304,6 +304,94 @@ const router = createRouter({
       },
     },
     {
+      path: "/ville/lyon",
+      name: "ville-lyon",
+      component: () => import("./views/villes/lyon.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Lyon`,
+      },
+    },
+    {
+      path: "/ville/paris",
+      name: "ville-paris",
+      component: () => import("./views/villes/paris.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Paris`,
+      },
+    },
+    {
+      path: "/ville/marseille",
+      name: "ville-marseille",
+      component: () => import("./views/villes/marseille.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Marseille`,
+      },
+    },
+    {
+      path: "/ville/lille",
+      name: "ville-lille",
+      component: () => import("./views/villes/lille.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Lille`,
+      },
+    },
+    {
+      path: "/ville/bordeaux",
+      name: "ville-bordeaux",
+      component: () => import("./views/villes/bordeaux.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Bordeaux`,
+      },
+    },
+    {
+      path: "/ville/toulouse",
+      name: "ville-toulouse",
+      component: () => import("./views/villes/toulouse.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Toulouse`,
+      },
+    },
+    {
+      path: "/ville/nantes",
+      name: "ville-nantes",
+      component: () => import("./views/villes/nantes.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Nantes`,
+      },
+    },
+    {
+      path: "/ville/nice",
+      name: "ville-nice",
+      component: () => import("./views/villes/nice.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Nice`,
+      },
+    },
+    {
+      path: "/ville/strasbourg",
+      name: "ville-strasbourg",
+      component: () => import("./views/villes/strasbourg.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Strasbourg`,
+      },
+    },
+    {
+      path: "/ville/montpellier",
+      name: "ville-montpellier",
+      component: () => import("./views/villes/montpellier.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Montpellier`,
+      },
+    },
+    {
+      path: "/ville/rouen",
+      name: "ville-rouen",
+      component: () => import("./views/villes/rouen.vue"),
+      meta: {
+        headTitle: `Aides disponibles sur la ville de Rouen`,
+      },
+    },
+    {
       path: "/init-ci",
       name: "init-ci",
       redirect: () => {

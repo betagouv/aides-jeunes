@@ -35,12 +35,12 @@ class MyDocument extends Document {
           <footer>
             <p>
               Dans tous les cas, nous sommes à votre disposition par{" "}
-              <a href="mailto:aides-jeunes@beta.gouv.fr&subject=Contribuer">
+              <a href="mailto:aides-jeunes@beta.gouv.fr?subject=Contribuer">
                 email
               </a>
               .
             </p>
-            <p>L’équipe du simulateur d’aides pour les jeunes</p>
+            <p>L’équipe du simulateur d’Aides Jeunes.</p>
           </footer>
         </body>
       </Html>

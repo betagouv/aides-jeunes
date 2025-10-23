@@ -21,9 +21,9 @@ conditions:
 interestFlag: _interetEtudesEtranger
 type: float
 unit: €
-periodicite: ponctuelle
+periodicite: mensuelle
 legend: maximum
-montant: 4500
+montant: 440
 link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/sejours-detudes-letranger-post-bac-annee-academique-2025-2026
 is_teleservice_need_register: true
 teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET3_25&state=67ca7cb5-42d6-4172-9c3f-a56ae5995925&login=true&scope=openid

@@ -1,11 +1,14 @@
 label: stages à l'étranger (post-bac)
 institution: region_nouvelle_aquitaine
-description: La Région finance une partie de votre stage à l'étranger de 2 semaines minimum.
+description: La Région Nouvelle-Aquitaine finance une partie de votre stage à l'étranger d'une durée minimale de 2 semaines et d'une durée maximale de 26 semaines.
 prefix: les
 conditions_generales:
   - type: regions
     values:
       - "75"
+  - type: age
+    operator: "<"
+    value: 31
 profils:
   - type: enseignement_superieur
     conditions: []
@@ -15,13 +18,15 @@ profils:
     conditions: []
 conditions:
   - Ne pas bénéficier, pour le même stage, d’une autre aide à la mobilité de la
-    Région ou d’une indemnisation mensuelle de stage supérieure à 700 €.
+    Région Nouvelle-Aquitaine, ou d'une aide à la mobilité internationale (AMI), ou d'une aide Erasmus+.
+  - Ne pas bénéficier d’une indemnisation mensuelle de stage supérieure à 700 €.
   - Ne pas dépasser le plafond de revenus fixé à 50 000 €.
 interestFlag: _interetEtudesEtranger
 type: float
 unit: €
 periodicite: mensuelle
 legend: maximum
-montant: 400
-link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/stages-letranger-public-post-bac-annee-academique-2022-2023#:~:text=Crit%C3%A8res%20de%20s%C3%A9lection&text=Dur%C3%A9e%20de%202%20semaines%20cons%C3%A9cutives,sera%20faite%20pour%20les%20BTS).
-teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET2_22&state=61cd21dd-94b3-4a63-8bfd-da973b579f9b&login=true&scope=openid
+montant: 440
+link: https://les-aides.nouvelle-aquitaine.fr/jeunesse/stages-letranger-post-bac-annee-academique-2025-2026
+is_teleservice_need_register: true
+teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET2_25&state=1ae97feb-4ce2-489f-9724-57bf1b4e3102&login=true&scope=openid

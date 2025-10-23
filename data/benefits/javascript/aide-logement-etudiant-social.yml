@@ -21,6 +21,16 @@ conditions:
 prefix: le
 profils:
   - type: enseignement_superieur
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
 link: https://monlogementetudiant.beta.gouv.fr/
 periodicite: ponctuelle
 type: bool

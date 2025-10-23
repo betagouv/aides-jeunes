@@ -64,9 +64,9 @@ export const FSL_BY_INSTITUTION_SLUG = {
   },
   departement_calvados: {
     label: "du département du Calvados",
-    link: "https://www.calvados.fr/accueil/le-departement/solidarite---familles/aide-au-logement/fsl.html",
+    link: "https://www.calvados.fr/accueil/le-departement/solidarite-familles/aide-au-logement/fsl.html",
     instructions:
-      "https://www.calvados.fr/contents/fiche/fiches-aide--services/maintien-dans-votre-logement--la.html",
+      "https://www.calvados.fr/accueil/le-departement/solidarite-familles/aide-au-logement/fsl.html",
   },
   departement_cantal: {
     label: "du département du Cantal",

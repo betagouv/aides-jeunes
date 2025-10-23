@@ -1,12 +1,15 @@
 label: stages à lʼétranger pour les lycéens, stagiaires et apprentis (public infra-bac)
 institution: region_nouvelle_aquitaine
 description: La Région finance une partie de votre stage à lʼétranger d'une
-  durée de 2 à 4 semaines.
+  durée de 2 à 4 semaines. Cette aide est cumulable avec le dispositif Erasmus +.
 prefix: les
 conditions_generales:
   - type: regions
     values:
       - "75"
+  - type: age
+    operator: "<"
+    value: 31
 profils:
   - type: lyceen
     conditions: []
@@ -21,5 +24,6 @@ unit: €
 periodicite: mensuelle
 legend: maximum
 montant: 400
-link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-public-infra-bac
+link: https://les-aides.nouvelle-aquitaine.fr/amenagement-du-territoire/stages-letranger-infra-bac-annee-academique-2025-2026
+is_teleservice_need_register: true
 teleservice: https://rnaconnect.nouvelle-aquitaine.pro/realms/external/protocol/openid-connect/auth?response_type=code&client_id=mes-demarches.nouvelle-aquitaine.fr&redirect_uri=https%3A%2F%2Fmes-demarches.nouvelle-aquitaine.fr%2FcraPortailFO%2Fsso%2Flogin?codeDispositif%3DMI_VOLET1&state=84e5e705-4c28-40a0-bbad-34bbd3d37848&login=true&scope=openid

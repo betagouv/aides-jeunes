@@ -1,0 +1,36 @@
+label: Résidences étudiantes à loyer modéré
+institution: etat
+description: >
+  Certains bailleurs sociaux et associations proposent des logements étudiants à loyer modéré : studios, T2 ou colocations meublées, souvent situés près des campus.
+  Ces résidences sont destinées aux étudiants et apprentis aux revenus modestes et peuvent donner droit aux aides au logement.
+  La demande se fait directement auprès des gestionnaires de ces résidences.
+conditions_generales:
+  - type: age
+    operator: ">="
+    value: 18
+  - type: age
+    operator: <=
+    value: 30
+  - type: difficultes_acces_ou_frais_logement
+    value: true
+conditions:
+  - Vous renseigner sur les critères d’admission et prendre contact directement avec les gestionnaires de ces résidences via leurs sites internet pour plus d'informations.
+  - Noter que certaines résidences demandent aux étudiants d'avoir effectué <a target="_blank" title="Faire une demande de logement social - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/index">une demande de logement social</a>
+    et d'avoir obtenu leur numéro unique d'enregistrement avant de déposer un dossier de demande dans la résidence.
+prefix: les
+profils:
+  - type: enseignement_superieur
+    conditions: []
+  - type: apprenti
+    conditions: []
+  - type: stagiaire
+    conditions: []
+  - type: lyceen
+    conditions:
+      - type: annee_etude
+        values:
+          - terminale
+link: https://monlogementetudiant.beta.gouv.fr/
+periodicite: ponctuelle
+type: bool
+top: 2

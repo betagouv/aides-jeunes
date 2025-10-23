@@ -18,7 +18,7 @@ conditions:
   - Se renseigner sur les critères d’admission et prendre contact directement avec les gestionnaires de ces résidences pour plus d'information.
   - Noter que certaines résidences demandent aux étudiants d'avoir effectué <a target="_blank" title="Faire une demande de logement social - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/index">une demande de logement social</a>
     et d'avoir obtenu leur numéro unique d'enregistrement avant de déposer un dossier de demande dans la résidence.
-prefix: le
+prefix: les
 profils:
   - type: enseignement_superieur
     conditions: []

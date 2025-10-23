@@ -31,3 +31,4 @@ type: bool
 unit: €
 periodicite: autre
 interestFlag: _interetAidesSanitaireSocial
+private: true

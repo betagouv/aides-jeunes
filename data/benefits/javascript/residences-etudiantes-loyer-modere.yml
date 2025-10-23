@@ -14,8 +14,7 @@ conditions_generales:
   - type: difficultes_acces_ou_frais_logement
     value: true
 conditions:
-  - Déterminer les logements à loyer modérés adaptés à sa situation avec <a target="_blank" title="Mon Logement Etudiant - Nouvelle fenêtre" rel="noopener" href="https://monlogementetudiant.beta.gouv.fr/trouver-un-logement-etudiant">Mon Logement Etudiant</a>.
-  - Se renseigner sur les critères d’admission et prendre contact directement avec les gestionnaires de ces résidences pour plus d'informations.
+  - Vous renseigner sur les critères d’admission et prendre contact directement avec les gestionnaires de ces résidences via leurs sites internet pour plus d'informations.
   - Noter que certaines résidences demandent aux étudiants d'avoir effectué <a target="_blank" title="Faire une demande de logement social - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/index">une demande de logement social</a>
     et d'avoir obtenu leur numéro unique d'enregistrement avant de déposer un dossier de demande dans la résidence.
 prefix: les

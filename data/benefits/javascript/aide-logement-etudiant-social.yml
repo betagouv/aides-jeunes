@@ -34,4 +34,4 @@ profils:
 link: https://monlogementetudiant.beta.gouv.fr/
 periodicite: ponctuelle
 type: bool
-top: -1
+top: 2

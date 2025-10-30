@@ -252,8 +252,8 @@ const sendRecapByEmail = async (surveyOptin) => {
             name="survey-optin"
           />
           <label class="fr-label fr-hint-text" for="survey-optin">
-            J'accepte de recevoir des sondages par email ou SMS pour améliorer
-            le service (optionnel)
+            J'accepte d'être recontacté dans une semaine pour dire si j’ai pu
+            demander mes aides (optionnel)
           </label>
         </div>
       </div>

@@ -1,7 +1,7 @@
 label: Dispositif d’aide financière au BAFA
 institution: ville_lille
-description: Une bourse de 300€ pour soutenir les jeunes Lillois(es) de moins de
-  25 ans dans leur formation au BAFA.
+description: Une bourse de 300€ pour soutenir les jeunes Lillois(es) de 16 ans à
+  moins de 25 ans dans leur formation au BAFA.
 prefix: le
 conditions_generales:
   - type: communes

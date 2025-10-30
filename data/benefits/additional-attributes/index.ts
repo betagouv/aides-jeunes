@@ -98,10 +98,11 @@ export const additionalBenefitAttributes = {
     labelFunction: function (b) {
       return `${b.label} avec un taux de ${b.montant}% / an ${b.legend}`
     },
-    legend: (parameters: OpenfiscaParameters) =>
-      `au lieu de ${
-        parameters["taxation_capital.epargne.livret_a.taux"] * 100
-      }%`,
+    legend: (parameters: OpenfiscaParameters) => {
+      const tauxLivretA = parameters["taxation_capital.epargne.livret_a.taux"]
+      const tauxLivretAPourcent = Number((tauxLivretA * 100).toFixed(2))
+      return `au lieu de ${tauxLivretAPourcent} %`
+    },
   },
   occitanie_carte_transport_scolaire_lio,
 }

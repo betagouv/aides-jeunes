@@ -1,4 +1,4 @@
-label: logement social
+label: demande de logement social
 institution: etat
 description: Le logement social est destiné aux personnes
   et aux familles dont les ressources ne dépassent pas un revenu maximum.
@@ -6,18 +6,16 @@ description: Le logement social est destiné aux personnes
   du logement (Île-de-France, province, outre-mer). Aucun frais de dossier n’est
   réclamé lors de la demande ni lors de la signature du bail.
   Il n’est pas obligatoire de résider dans une commune pour y déposer un dossier.
-prefix: le
+prefix: la
 conditions_generales:
   - type: difficultes_acces_ou_frais_logement
     value: true
 profils: []
 conditions:
-  - Effectuer votre demande de logement social via le téléservice ou avec le
-    formulaire papier à déposer au guichet.
-  - Consulter la liste des guichets existants en <a target="_blank" title="Trouver un guichet - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/guichetsParCommune.afficher">vous rendant sur le site internet de l’Union Sociale pour l’Habitat.</a>.
-  - Renouveler chaque année votre demande jusqu’à obtention d’un logement.
+  - Effectuer votre demande de logement social en ligne ou en remplissant le formulaire papier à déposer au guichet.
+  - Consulter <a target="_blank" title="Trouver un guichet - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/guichetsParCommune.afficher">la liste des guichets</a> dans lesquels vous pourrez être aidé pour effectuer votre demande de logement social.
 type: bool
 periodicite: autre
-link: https://www.service-public.fr/particuliers/vosdroits/F869
+link: https://www.service-public.gouv.fr/particuliers/vosdroits/F10007
 form: https://www.service-public.fr/particuliers/vosdroits/R149
 teleservice: https://www.demande-logement-social.gouv.fr/

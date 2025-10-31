@@ -1,19 +1,20 @@
-label: Résidences étudiantes à loyer modéré
+label: Résidences à loyer modéré pour les étudiants, stagiaires et apprentis
 institution: etat
 description: >
   Certains bailleurs sociaux et associations proposent des logements étudiants à loyer modéré : studios, T2 ou colocations meublées, souvent situés près des campus.
-  Ces résidences sont destinées aux étudiants et apprentis aux revenus modestes et peuvent donner droit aux aides au logement.
+  Ces résidences sont destinées aux étudiants, apprentis et stagiaires aux revenus modestes et peuvent donner droit aux aides au logement.
   La demande se fait directement auprès des gestionnaires de ces résidences.
 conditions_generales:
   - type: age
     operator: ">="
-    value: 18
+    value: 16
   - type: age
     operator: <=
     value: 30
   - type: difficultes_acces_ou_frais_logement
     value: true
 conditions:
+  - Effectuer une recherche sur la plateforme nationale dédiée au logement social pour étudiants. <a target="_blank" title="Rechercher un logement sur Mon Logement Etudiant - Nouvelle fenêtre" rel="noopener" href="https://monlogementetudiant.beta.gouv.fr/trouver-un-logement-etudiant?utm_source=mes-aides&utm_medium=referral&utm_campaign=logement-social&utm_content=decouvrir-mon-logement-etudiant">Découvrir Mon Logement Etudiant</a>.
   - Vous renseigner sur les critères d’admission et prendre contact directement avec les gestionnaires de ces résidences via leurs sites internet pour plus d'informations.
   - Noter que certaines résidences demandent aux étudiants d'avoir effectué <a target="_blank" title="Faire une demande de logement social - Nouvelle fenêtre" rel="noopener" href="https://www.demande-logement-social.gouv.fr/index">une demande de logement social</a>
     et d'avoir obtenu leur numéro unique d'enregistrement avant de déposer un dossier de demande dans la résidence.
@@ -30,7 +31,7 @@ profils:
       - type: annee_etude
         values:
           - terminale
-link: https://monlogementetudiant.beta.gouv.fr/
+link: https://monlogementetudiant.beta.gouv.fr/?utm_source=mes-aides&utm_medium=referral&utm_campaign=residences-etudiantes&utm_content=plus-d-informations
 periodicite: ponctuelle
 type: bool
 top: 2

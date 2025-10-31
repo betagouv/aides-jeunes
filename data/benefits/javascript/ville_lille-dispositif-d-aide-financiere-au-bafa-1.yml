@@ -1,0 +1,27 @@
+label: Dispositif d’aide financière au BAFA
+institution: ville_lille
+description: Une bourse de 300€ pour soutenir les jeunes Lillois(es) de moins de
+  25 ans dans leur formation au BAFA.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "59350"
+voluntary_conditions:
+  - "S’engager auprès d’une association lilloise, à concurrence de 25h00.
+    (Anticiper cet engagement ne garantit pas la validation du dossier). Pour
+    trouver une association : https://placedesassos.lille.fr."
+profils: []
+conditions:
+  - Être âgé-e de moins de 25 ans au jour du dépôt de la demande.
+  - Être non imposable sur les revenus ou rattaché-e à un foyer fiscal non
+    imposable.
+  - Ne pas avoir engagé son parcours de formation.
+interestFlag: _interetBafa
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://www.lille.fr/Jeune2/Dispositif-d-aide-financiere-au-BAFA
+teleservice: https://formulaires.mesdemarches.lille.fr/jeunesse/demander-une-aide-financiere-pour-le-bafa/?cancelurl=https%3A//mesdemarches.lille.fr/
+instructions: https://www.lille.fr/Jeune2/Dispositif-d-aide-financiere-au-BAFA

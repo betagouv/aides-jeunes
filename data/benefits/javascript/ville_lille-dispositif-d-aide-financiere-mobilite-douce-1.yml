@@ -1,0 +1,37 @@
+label: dispositif d’aide financière «mobilité douce
+institution: ville_lille
+description: "Le dispositif d’aide financière «mobilité douce» s’adresse aux
+  Lillois/ses en recherche active d’emploi, âgés de 16 à 25 ans. Pour trouver un
+  vélo :
+  https://www.lille.fr/Vivre-a-Lille/Me-deplacer/La-Maison-des-Mobilites-Durabl\
+  es/Evenements/Brocante-velos."
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "59350"
+voluntary_conditions:
+  - "S’engager auprès d’une association lilloise, à concurrence de 25h00.
+    (Anticiper cet engagement ne garantit pas la validation du dossier). Pour
+    trouver une association : https://placedesassos.lille.fr/."
+profils: []
+conditions:
+  - "Être âgé-e de 16 à 25 ans au jour du dépôt de la demande (ou moins de 30
+    ans dans les cas suivants : création d’entreprise, création de son propre
+    emploi, personne en situation de handicap)."
+  - Être non imposable sur les revenus ou rattaché-e à un foyer fiscal non
+    imposable.
+  - Être inscrit-e dans un parcours de formation relevant de l’alternance ou de
+    l’apprentissage (Fournir la copie des contrats d’alternance,
+    d’apprentissage).
+  - Être en situation professionnelle précaire (Fournir la copie des contrats,
+    CDD de moins de 6 mois, intérim).
+  - Être inscrit à Lille Avenirs (Mission Locale) dans le cadre d’un parcours
+    d’insertion professionnelle (Attestation de suivi datée, signée et tamponnée
+    ou la copie de votre contrat CEJ, PACEA…).
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-mobilite-douce
+instructions: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-mobilite-douce

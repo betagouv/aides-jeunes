@@ -13,7 +13,7 @@
   "author": "Thomas Guillet",
   "license": "AGPL-3.0",
   "dependencies": {
-    "eslint": "9.23.0",
+    "eslint": "^9.39.1",
     "eslint-config-next": "15.2.3",
     "netlify-identity-widget": "^1.9.2",
     "next": "15.4.7",

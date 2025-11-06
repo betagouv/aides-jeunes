@@ -16,6 +16,7 @@ const emailValue = ref(store.getFCUserInfoEmailValue)
 const emailRef = ref<HTMLFormElement>()
 const emailInputErrorMessage = ref<boolean>()
 const phoneInputErrorMessage = ref<boolean>()
+const surveyOptin = ref<boolean>(false)
 
 const recapPhoneState = computed(() => store.recapPhoneState)
 const recapEmailState = computed(() => store.recapEmailState)
@@ -37,18 +38,19 @@ const inputPhonePattern = computed(() => {
 
 const showSms = process.env.VITE_SHOW_SMS_TAB
 
-const sendRecap = async (surveyOptin) => {
+const sendRecap = async () => {
+  const optin = surveyOptin.value
   try {
     if (emailAndPhoneFilled.value) {
-      await sendRecapByEmailAndSms(surveyOptin)
+      await sendRecapByEmailAndSms(optin)
       store.setModalState(undefined)
     } else if (emailFilled.value && !phoneFilled.value) {
-      await sendRecapByEmail(surveyOptin)
+      await sendRecapByEmail(optin)
       phoneInputErrorMessage.value = false
       store.setFormRecapPhoneState(undefined)
       store.setModalState(undefined)
     } else if (!emailFilled.value && phoneFilled.value) {
-      await sendRecapBySms(surveyOptin)
+      await sendRecapBySms(optin)
       emailInputErrorMessage.value = false
       store.setFormRecapEmailState(undefined)
       store.setModalState(undefined)
@@ -171,7 +173,11 @@ const sendRecapByEmail = async (surveyOptin) => {
 
 <template>
   <div class="fr-modal__content">
-    <form class="fr-form fr-my-2w" @submit.prevent="sendRecap(true)">
+    <p class="fr-mb-2w">
+      Recevoir mon récapitulatif par email ou SMS me permettra de retrouver
+      facilement mes résultats plus tard.
+    </p>
+    <form class="fr-form fr-my-2w" @submit.prevent="sendRecap()">
       <div class="fr-form-group">
         <label class="fr-label" for="email"
           >Votre email
@@ -200,11 +206,7 @@ const sendRecapByEmail = async (surveyOptin) => {
         >Une adresse email valide doit être indiquée.
       </WarningMessage>
     </form>
-    <form
-      v-if="showSms"
-      class="fr-form fr-my-2w"
-      @submit.prevent="sendRecap(true)"
-    >
+    <form v-if="showSms" class="fr-form fr-my-2w" @submit.prevent="sendRecap()">
       <div class="fr-form-group">
         <label class="fr-label" for="phone"
           >Votre numéro de téléphone portable
@@ -240,12 +242,30 @@ const sendRecapByEmail = async (surveyOptin) => {
     </form>
   </div>
   <div class="fr-modal__footer">
-    <button
-      :disabled="recapPhoneState === 'waiting'"
-      class="fr-btn"
-      @click.prevent="sendRecap(false)"
-    >
-      Je souhaite recevoir mon récapitulatif
-    </button>
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-mb-2w">
+        <div class="fr-checkbox-group">
+          <input
+            id="survey-optin"
+            v-model="surveyOptin"
+            type="checkbox"
+            name="survey-optin"
+          />
+          <label class="fr-label fr-hint-text" for="survey-optin">
+            J'accepte d'être recontacté dans une semaine pour dire si j’ai pu
+            demander mes aides (optionnel)
+          </label>
+        </div>
+      </div>
+      <div class="fr-text--center">
+        <button
+          :disabled="recapPhoneState === 'waiting'"
+          class="fr-btn"
+          @click.prevent="sendRecap()"
+        >
+          Je souhaite recevoir mon récapitulatif
+        </button>
+      </div>
+    </div>
   </div>
 </template>

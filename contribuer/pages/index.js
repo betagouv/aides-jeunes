@@ -16,16 +16,16 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Comment contribuer à Aides Jeunes ?</title>
+        <title>Comment contribuer au simulateur d’Aides Jeunes ?</title>
         <meta
           name="description"
-          content="Comment contribuer à Aides Jeunes ?"
+          content="Comment contribuer au simulateur d’Aides Jeunes ?"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <main className="container">
-        <h1>Comment contribuer à AidesJeunes ?</h1>
+        <h1>Comment contribuer au simulateur d’Aides Jeunes&nbsp;?</h1>
         <h2>
           Prise en main de l’outil de contribution du simulateur Aides Jeunes
         </h2>
@@ -208,20 +208,35 @@ function Home() {
               </li>
               <li>
                 Cliquez sur “Se connecter avec Netlify Identity”.{" "}
-                <img src={ConnexionDecap} alt={""} />
+                <Image
+                  src={ConnexionDecap}
+                  alt="DecapCMS"
+                  width={800}
+                  height={450}
+                />
               </li>
               <li>
                 Sous “Sign up”, entrez votre nom, votre mail et créez un mot de
                 passe. Votre mail et votre mot de passe deviendront vos
                 identifiants de connexion.
-                <img src={Signup} alt={""} />
+                <Image
+                  src={Signup}
+                  alt="Capture d'écran du formulaire d'inscription avec les champs nom, email et mot de passe"
+                  width={800}
+                  height={450}
+                />
               </li>
             </ol>
             <p>
               Félicitations, votre compte a été créé et vous êtes arrivé sur
               l’outil de contribution. Vous pouvez désormais ajouter de
               nouvelles aides.
-              <img src={ListeAide} alt={""} />
+              <Image
+                src={ListeAide}
+                alt="Capture d'écran de l'interface principale de l’outil de contribution"
+                width={800}
+                height={450}
+              />{" "}
             </p>
           </section>
 
@@ -249,7 +264,7 @@ function Home() {
                   "https://app.claap.io/aides-jeunes/demonstration-de-l-ajout-d-une-aide-dans-l-outil-de-contribution-c-KaUHbGxVnO-Wwso7zjaazkm"
                 }
               >
-                tuto de 5 minutes
+                tutoriel de 5 minutes{" "}
               </Link>{" "}
               pour comprendre comment ajouter facilement une nouvelle aide au
               simulateur.
@@ -275,10 +290,15 @@ function Home() {
             </p>
             <p>
               Toujours avec l’exemple du prêt d’un vélo Freevélo’v, voici ce que
-              voient les jeunes à la fin d’une simulation s’ils/elles
-              correspondent aux critères.
+              voient les jeunes à la fin d’une simulation si leur situation
+              correspond aux critères d'éligibilité de l'aide.
             </p>
-            <img src={DetailAide} alt={""} />
+            <Image
+              src={DetailAide}
+              alt="Capture d'écran des détails d'une aide affichés dans les résultats de simulation"
+              width={800}
+              height={450}
+            />{" "}
           </section>
 
           <section id="evolutions" aria-labelledby="evolutions-title">
@@ -612,6 +632,11 @@ function Home() {
           cursor: pointer;
           font-weight: 600;
           outline: none;
+        }
+        .top-link {
+          margin-top: 3rem;
+          margin-bottom: 0rem;
+          text-align: center;
         }
       `}</style>
     </>

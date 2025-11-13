@@ -1,22 +1,28 @@
-label: Dispositif d’aide financière au BAFA
+label: dispositif d’aide financière au BAFA
 institution: ville_lille
-description: Une bourse de 300€ pour soutenir les jeunes Lillois(es) de moins de
+description:
+  Une bourse de 300 € pour soutenir les jeunes Lillois et Lilloises de moins de
   25 ans dans leur formation au BAFA.
 prefix: le
 conditions_generales:
   - type: communes
     values:
       - "59350"
-voluntary_conditions:
-  - "S’engager auprès d’une association lilloise, à concurrence de 25h00.
-    (Anticiper cet engagement ne garantit pas la validation du dossier). Pour
-    trouver une association : https://placedesassos.lille.fr."
+  - type: age
+    operator: ">="
+    value: 15
+  - type: age
+    operator: <=
+    value: 25
 profils: []
 conditions:
-  - Être âgé-e de moins de 25 ans au jour du dépôt de la demande.
-  - Être non imposable sur les revenus ou rattaché-e à un foyer fiscal non
+  - Être âgé de moins de 25 ans au jour du dépôt de la demande.
+  - Être non imposable sur les revenus ou rattaché à un foyer fiscal non
     imposable.
-  - Ne pas avoir engagé son parcours de formation.
+  - Ne pas avoir engagé son parcours de formation au BAFA.
+  - S’engager à effectuer 25 heures de bénévolat auprès d’une association lilloise
+    (Anticiper cet engagement ne garantit pas la validation du dossier).
+    Pour trouver une association, rendez-vous sur <a target="_blank" title="Place des assos - Nouvelle fenêtre" rel="noopener" href="https://placedesassos.lille.fr">Place des Assos</a>.
 interestFlag: _interetBafa
 type: float
 unit: €

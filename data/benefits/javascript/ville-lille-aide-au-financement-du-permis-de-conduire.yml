@@ -1,8 +1,8 @@
 label: dispositif d’aide financière Parcours permis
 institution: ville_lille
 description: Le dispositif d’aide financière Parcours permis s’adresse aux
-  Lillois(es) en recherche active d’emploi, âgé(e)s de 18 à 25 ans, sous
-  conditions. Cette aide n’est pas destinée aux étudiant(e)s en formation
+  Lillois et Lilloises en recherche active d’emploi, âgés de 18 à 25 ans, sous
+  conditions. Cette aide n’est pas destinée aux étudiants en formation
   initiale.
 prefix: le
 conditions_generales:
@@ -15,9 +15,6 @@ conditions_generales:
   - type: age
     operator: <=
     value: 30
-voluntary_conditions:
-  - "S’engager auprès d’une association lilloise, à concurrence de 25h00. Pour
-    trouver une association : https://placedesassos.lille.fr."
 profils:
   - type: apprenti
     conditions: []
@@ -27,24 +24,25 @@ profils:
     conditions: []
   - type: beneficiaire_rsa
     conditions: []
+  - type: agence_travail_temporaire
+    conditions: []
+  - type: inactif
+    conditions: []
 conditions:
-  - "Être résident-e lillois-e Être âgé-e de 18 à 25 ans au jour du dépôt de la
+  - "Résider à Lille et être âgé de 18 à 25 ans au jour du dépôt de la
     demande (ou moins de 30 ans dans les cas suivants : création d’entreprise,
-    création de son propre emploi, personne en situation de handicap) Être non
-    imposable sur les revenus ou rattaché-e à un foyer fiscal non imposable."
-  - Être inscrit-e dans un parcours de formation relevant de l’alternance ou de
-    l’apprentissage (Fournir la copie des contrats d’alternance,
-    d’apprentissage) Être en situation professionnelle précaire (Fournir la
-    copie des contrats, CDD de moins de 6 mois, intérim) Être inscrit à Lille
-    Avenirs (Mission Locale) dans le cadre d’un parcours d’insertion
-    professionnelle (Attestation de suivi datée, signée et tamponnée ou la copie
-    de votre contrat CEJ, PACEA…) ou à France Travail (Attestation
-    d’inscription).
+    création de son propre emploi, personne en situation de handicap)."
+  - "Être dans l'une des situations suivantes : être inscrit dans un parcours de formation relevant de l’alternance ou de
+    l’apprentissage, ou être en situation professionnelle précaire (CDD de moins de 6 mois, intérimaire), ou être inscrit à Lille
+    Avenirs (Mission Locale) dans le cadre d’un parcours d’insertion professionnelle, ou être inscrit à France Travail."
+  - "Être non imposable sur les revenus ou rattaché à un foyer fiscal non imposable."
+  - S’engager à effectuer 25 heures de bénévolat auprès d’une association lilloise.
+    Pour trouver une association, rendez-vous sur <a target="_blank" title="Place des assos - Nouvelle fenêtre" rel="noopener" href="https://placedesassos.lille.fr">Place des Assos</a>.
 interestFlag: _interetPermisDeConduire
 type: float
 unit: €
 periodicite: ponctuelle
-legend: Maximum
+legend: maximum
 montant: 1000
 link: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-Parcours-permis
 teleservice: https://formulaires.mesdemarches.lille.fr/jeunesse/demander-une-aide-financiere-parcours-permis/?cancelurl=https%3A//mesdemarches.lille.fr/

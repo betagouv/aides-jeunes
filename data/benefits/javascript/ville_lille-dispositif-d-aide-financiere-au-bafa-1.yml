@@ -16,7 +16,6 @@ conditions_generales:
     value: 25
 profils: []
 conditions:
-  - Être âgé de moins de 25 ans au jour du dépôt de la demande.
   - Être non imposable sur les revenus ou rattaché à un foyer fiscal non
     imposable.
   - Ne pas avoir engagé son parcours de formation au BAFA.

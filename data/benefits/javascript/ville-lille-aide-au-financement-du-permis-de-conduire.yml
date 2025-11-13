@@ -24,8 +24,6 @@ profils:
     conditions: []
   - type: beneficiaire_rsa
     conditions: []
-  - type: agence_travail_temporaire
-    conditions: []
   - type: inactif
     conditions: []
 conditions:

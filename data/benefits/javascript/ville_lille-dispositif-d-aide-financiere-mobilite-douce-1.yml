@@ -1,0 +1,46 @@
+label: dispositif d’aide financière « Mobilité Douce » pour l'achat d'un vélo
+institution: ville_lille
+description:
+  Avec le dispositif « Mobilité douce », les jeunes Lillois et Lilloises âgés
+  de 16 à 25 ans et en recherche d’emploi peuvent bénéficier d’un soutien financier
+  pour acheter leur vélo. Pour trouver un vélo à acheter, la ville de Lille vous
+  recommande de vous rendre à la Maison des Mobilités durables où est organisée
+  <a target="_blank" title="Brocante à vélo - Nouvelle fenêtre" rel="noopener" href="https://www.lille.fr/Vivre-a-Lille/Me-deplacer/La-Maison-des-Mobilites-Durables/Evenements/Brocante-velos">une brocante à vélo</a> chaque 1er mardi du mois.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "59350"
+  - type: age
+    operator: ">="
+    value: 16
+  - type: age
+    operator: <=
+    value: 30
+profils:
+  - type: apprenti
+    conditions: []
+  - type: professionnalisation
+    conditions: []
+  - type: beneficiaire_rsa
+    conditions: []
+  - type: inactif
+    conditions: []
+conditions:
+  - "Être âgé de 16 à 25 ans au jour du dépôt de la demande (ou moins de 30
+    ans dans les cas suivants : création d’entreprise, création de son propre
+    emploi, personne en situation de handicap)."
+  - Être non imposable sur les revenus ou rattaché à un foyer fiscal non
+    imposable.
+  - "Être dans l'une des situations suivantes : être inscrit dans un parcours de formation relevant de l’alternance ou de
+    l’apprentissage, ou être en situation professionnelle précaire (CDD de moins de 6 mois, intérimaire), ou être inscrit à Lille
+    Avenirs (Mission Locale) dans le cadre d’un parcours d’insertion professionnelle."
+  - S’engager à effectuer 25 heures de bénévolat auprès d’une association lilloise
+    (Anticiper cet engagement ne garantit pas la validation du dossier).
+    Pour trouver une association, rendez-vous sur <a target="_blank"title="Place des assos - Nouvelle fenêtre" rel="noopener" href="https://placedesassos.lille.fr">Place des Assos</a>.
+type: float
+unit: €
+periodicite: ponctuelle
+montant: 300
+link: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-mobilite-douce
+instructions: https://www.lille.fr/Jeune2/Le-dispositif-d-aide-financiere-mobilite-douce

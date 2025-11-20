@@ -180,10 +180,10 @@ async function assignMilestone(
   }
   await githubRequest(
     `https://api.github.com/repos/${OWNER}/${REPO}/issues/${prNumber}`,
-    { 
-      method: "PATCH", 
+    {
+      method: "PATCH",
       body: JSON.stringify({ milestone: milestoneNumber }),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     },
   )
   if (verbose) console.log(`Milestone appliqué à PR #${prNumber}`)
@@ -213,8 +213,8 @@ async function main() {
         `[DRY-RUN] #${pr.number} fin=${fin} créée=${creation} -> '${args.milestone}' | ${pr.title}`,
       )
     }
-    const didAssign = await assignMilestone(pr.number, milestoneId, args.dryRun, args.verbose)
-    if (didAssign) assigned++
+    await assignMilestone(pr.number, milestoneId, args.dryRun, args.verbose)
+    assigned++
     await delay(100)
   }
   console.log(

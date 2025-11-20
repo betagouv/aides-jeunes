@@ -51,7 +51,8 @@
     "tools:test-benefits-geographical-constraint-consistency": "node --loader ts-node/esm ./tools/test-benefits-geographical-constraint-consistency",
     "tools:test-definition-periods": "node --loader ts-node/esm ./tools/test-definition-periods",
     "tools:test-iframe-generation": "./tools/iframe-build-control.sh",
-    "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all"
+    "migrate": "node --loader ts-node/esm ./backend/lib/migrations/apply.ts --all",
+    "tools:add-milestone": "node --loader ts-node/esm ./tools/add-milestone-to-merged-prs.ts"
   },
   "dependencies": {
     "@betagouv/aides-velo": "^3.4.0",

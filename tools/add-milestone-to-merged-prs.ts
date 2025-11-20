@@ -125,6 +125,7 @@ async function findMilestoneId(title: string): Promise<number> {
     const found = milestones.find((m) => m.title === title)
     if (found) return found.number
     page++
+    await delay(200)
   }
   throw new Error(`Milestone '${title}' introuvable. Le créer puis relancer.`)
 }

@@ -179,7 +179,11 @@ async function assignMilestone(
   }
   await githubRequest(
     `https://api.github.com/repos/${OWNER}/${REPO}/issues/${prNumber}`,
-    { method: "PATCH", body: JSON.stringify({ milestone: milestoneNumber }) },
+    { 
+      method: "PATCH", 
+      body: JSON.stringify({ milestone: milestoneNumber }),
+      headers: { "Content-Type": "application/json" }
+    },
   )
   if (verbose) console.log(`Milestone appliqué à PR #${prNumber}`)
 }

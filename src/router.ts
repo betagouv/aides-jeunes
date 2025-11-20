@@ -16,6 +16,14 @@ const router = createRouter({
       component: context.Home,
     },
     {
+      path: "/contribuer",
+      name: "contribuer",
+      component: () => import("./views/contribuer.vue"),
+      meta: {
+        headTitle: `Proposer une nouvelle aide sur ${context.name}`,
+      },
+    },
+    {
       path: "/callback",
       name: "callback",
       component: () => import("./views/france-connect-callback.vue"),

@@ -208,8 +208,8 @@ async function main() {
         `[DRY-RUN] #${pr.number} fin=${fin} créée=${creation} -> '${args.milestone}' | ${pr.title}`,
       )
     }
-    await assignMilestone(pr.number, milestoneId, args.dryRun, args.verbose)
-    assigned++
+    const didAssign = await assignMilestone(pr.number, milestoneId, args.dryRun, args.verbose)
+    if (didAssign) assigned++
     await delay(100)
   }
   console.log(

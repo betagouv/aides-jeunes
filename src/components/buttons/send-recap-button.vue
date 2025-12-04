@@ -5,7 +5,7 @@ import { computed } from "vue"
 const props = defineProps({
   text: {
     type: String,
-    default: "Recevoir par email",
+    default: "Recevoir les résultats par email/SMS",
   },
 })
 

@@ -1,2 +1,4 @@
-scopeconfig:
-  - scope: node
+fileignoreconfig:
+- filename: src/views/contribuer.vue
+  checksum: 1622b9a480cbb6123a99cbb6d27c310af95f98ac5ac56ee1603a41e154574f6e
+version: ""

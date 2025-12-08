@@ -26,6 +26,34 @@ function sanitizeMultiline(str?: string) {
     .filter((l) => l.length)
 }
 
+async function checkInstitutionExists(
+  institutionSlug: string,
+  isDev: boolean,
+  outputDir?: string,
+  api?: any,
+): Promise<boolean> {
+  if (isDev) {
+    const institutionPath = path.join(
+      process.cwd(),
+      `data/institutions/${institutionSlug}.yml`,
+    )
+    return fs.existsSync(institutionPath)
+  } else {
+    const owner = "betagouv"
+    const repo = "aides-jeunes"
+    const institutionPath = `data/institutions/${institutionSlug}.yml`
+    try {
+      await api!.get(
+        `/repos/${owner}/${repo}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
+      )
+      return true
+    } catch (error: any) {
+      if (error.response?.status === 404) return false
+      throw error
+    }
+  }
+}
+
 const postBenefitLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute window
   max: 5, // limit each IP to 5 requests per windowMs
@@ -50,6 +78,7 @@ router.post("/benefit", postBenefitLimiter, async (req, res) => {
     const {
       contributorName,
       institutionName,
+      institutionSlug,
       title,
       description,
       typeCategorie = [],
@@ -67,15 +96,11 @@ router.post("/benefit", postBenefitLimiter, async (req, res) => {
       return res.status(400).json({ message: "Description > 420 caractères" })
     }
 
-    const institutionSlug = slugify(institutionName)
-    const benefitSlug = `${institutionSlug}-${slugify(title)}`
+    const benefitSlug = `${institutionSlug}_${slugify(title)}`
 
     if (isDev) {
       // Mode développement : générer les fichiers localement
-      const outputDir = path.join(process.cwd(), "generated-contributions")
-      if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true })
-      }
+      const outputDir = process.cwd()
 
       const files: { path: string; content: string }[] = []
 
@@ -89,7 +114,11 @@ router.post("/benefit", postBenefitLimiter, async (req, res) => {
         fs.mkdirSync(institutionDir, { recursive: true })
       }
 
-      const institutionExists = fs.existsSync(institutionPath)
+      const institutionExists = await checkInstitutionExists(
+        institutionSlug,
+        true,
+        outputDir,
+      )
       if (!institutionExists) {
         const institutionFile = yamlDump({
           name: institutionName,
@@ -170,15 +199,12 @@ router.post("/benefit", postBenefitLimiter, async (req, res) => {
 
     // check institution existence
     const institutionPath = `data/institutions/${institutionSlug}.yml`
-    let institutionExists = true
-    try {
-      await api.get(
-        `/repos/${owner}/${repo}/contents/${encodeURIComponent(institutionPath)}?ref=${mainBranch}`,
-      )
-    } catch (e: any) {
-      if (e.response?.status === 404) institutionExists = false
-      else throw e
-    }
+    const institutionExists = await checkInstitutionExists(
+      institutionSlug,
+      false,
+      undefined,
+      api,
+    )
 
     const files: { path: string; content: string }[] = []
     if (!institutionExists) {
@@ -224,7 +250,7 @@ router.post("/benefit", postBenefitLimiter, async (req, res) => {
     }
 
     const prResp = await api.post(`/repos/${owner}/${repo}/pulls`, {
-      title: `Ajout aide: ${title}`,
+      title: `[Contribution simplifiée] Ajout aide ${title}`,
       head: newBranch,
       base: mainBranch,
       body: `Contribution proposée par **${contributorName}**\n\nInstitution: ${institutionName}\nType: ${typeCategorie.join(", ")}\nPériodicité: ${periodicite.join(", ")}\n\nDescription:\n${description}\n\nConditions particulières:\n${Object.entries(

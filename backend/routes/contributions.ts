@@ -3,6 +3,7 @@ import axios from "axios"
 import { dump as yamlDump } from "js-yaml"
 import fs from "fs"
 import path from "path"
+import { rateLimit } from "express-rate-limit"
 
 const router = express.Router()
 router.use(express.json({ limit: "512kb" }))
@@ -25,7 +26,15 @@ function sanitizeMultiline(str?: string) {
     .filter((l) => l.length)
 }
 
-router.post("/benefit", async (req, res) => {
+const postBenefitLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute window
+  max: 5, // limit each IP to 5 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Trop de requêtes. Veuillez réessayer plus tard." },
+})
+
+router.post("/benefit", postBenefitLimiter, async (req, res) => {
   const isDev = process.env.NODE_ENV !== "production"
 
   if (!isDev) {

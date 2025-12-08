@@ -6,6 +6,7 @@ import axios from "axios"
 interface ContributionPayload {
   contributorName: string
   institutionName: string
+  institutionSlug?: string
   title: string
   description: string
   typeCategorie: string[]
@@ -38,6 +39,7 @@ const showInstitutionDropdown = ref(false)
 
 const contributorName = ref("")
 const institutionName = ref("")
+const institutionSlug = ref("")
 const title = ref("")
 const description = ref("")
 const descriptionMax = 420
@@ -137,12 +139,13 @@ function toggle(list: Ref<string[]> | string[], value: string) {
   else target.push(value)
 }
 
-function selectInstitution(inst: {
+function selectInstitution(institution: {
   slug: string
   label: string
   type: string
 }) {
-  institutionName.value = inst.label
+  institutionName.value = institution.label
+  institutionSlug.value = institution.slug
   showInstitutionDropdown.value = false
 }
 
@@ -240,6 +243,7 @@ async function submit() {
     const payload: ContributionPayload = {
       contributorName: contributorName.value.trim(),
       institutionName: institutionName.value.trim(),
+      institutionSlug: institutionSlug.value,
       title: title.value.trim(),
       description: description.value.trim(),
       typeCategorie: selectedTypes.value.slice(),
@@ -335,11 +339,11 @@ async function submit() {
               />
               <ul v-if="showInstitutionDropdown" class="institution-dropdown">
                 <li
-                  v-for="inst in filteredInstitutions"
-                  :key="inst.slug"
-                  @click="selectInstitution(inst)"
+                  v-for="institution in filteredInstitutions"
+                  :key="institution.slug"
+                  @click="selectInstitution(institution)"
                 >
-                  {{ inst.label }}
+                  {{ institution.label }}
                 </li>
               </ul>
             </div>

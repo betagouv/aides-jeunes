@@ -5,7 +5,7 @@ import path from "path"
 import { Request, Response } from "express"
 
 const owner = process.env.GITHUB_OWNER || "betagouv"
-
+const repository_name = process.env.GITHUB_REPOSITORY || "aides-jeunes"
 function slugify(input: string): string {
   const normalized = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   return normalized
@@ -27,8 +27,7 @@ function sanitizeMultiline(str?: string) {
 async function checkInstitutionExists(
   institutionSlug: string,
   isDev: boolean,
-  outputDir?: string,
-  api?: any,
+  githubApi?: any,
 ): Promise<boolean> {
   if (isDev) {
     const institutionPath = path.join(
@@ -37,11 +36,10 @@ async function checkInstitutionExists(
     )
     return fs.existsSync(institutionPath)
   } else {
-    const repo = "aides-jeunes"
     const institutionPath = `data/institutions/${institutionSlug}.yml`
     try {
-      await api!.get(
-        `/repos/${owner}/${repo}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
+      await githubApi!.get(
+        `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
       )
       return true
     } catch (error: any) {
@@ -106,7 +104,6 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       const institutionExists = await checkInstitutionExists(
         institutionSlug,
         true,
-        outputDir,
       )
       if (!institutionExists) {
         const institutionFile = yamlDump({
@@ -160,7 +157,7 @@ export async function handleBenefitContribution(req: Request, res: Response) {
 
     // Mode production : logique GitHub existante
     const token = process.env.GITHUB_TOKEN!
-    const api = axios.create({
+    const githubApi = axios.create({
       baseURL: "https://api.github.com",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -169,18 +166,17 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       },
     })
 
-    const repo = "aides-jeunes"
     const mainBranch = "main"
     const newBranch = `contribution/${benefitSlug}`
 
     // get main ref sha
-    const refResp = await api.get(
-      `/repos/${owner}/${repo}/git/ref/heads/${mainBranch}`,
+    const refResp = await githubApi.get(
+      `/repos/${owner}/${repository_name}/git/ref/heads/${mainBranch}`,
     )
     const baseSha = refResp.data.object.sha
 
     // create branch
-    await api.post(`/repos/${owner}/${repo}/git/refs`, {
+    await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
       ref: `refs/heads/${newBranch}`,
       sha: baseSha,
     })
@@ -190,8 +186,7 @@ export async function handleBenefitContribution(req: Request, res: Response) {
     const institutionExists = await checkInstitutionExists(
       institutionSlug,
       false,
-      undefined,
-      api,
+      githubApi,
     )
 
     const files: { path: string; content: string }[] = []
@@ -227,8 +222,8 @@ export async function handleBenefitContribution(req: Request, res: Response) {
     for (const f of files) {
       const message = `Contribution: ajout fichier ${f.path}`
       const contentB64 = Buffer.from(f.content, "utf8").toString("base64")
-      await api.put(
-        `/repos/${owner}/${repo}/contents/${encodeURIComponent(f.path)}`,
+      await githubApi.put(
+        `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(f.path)}`,
         {
           message,
           content: contentB64,
@@ -237,25 +232,28 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       )
     }
 
-    const prResp = await api.post(`/repos/${owner}/${repo}/pulls`, {
-      title: `[Contribution simplifiée] Ajout aide ${title}`,
-      head: newBranch,
-      base: mainBranch,
-      body: `Contribution proposée par **${contributorName}**\n\nInstitution: ${institutionName}\nType: ${typeCategorie.join(", ")}\nPériodicité: ${periodicite.join(", ")}\n\nDescription:\n${description}\n\nConditions particulières:\n${Object.entries(
-        req.body.criteres || {},
-      )
-        .filter(([, v]) => v)
-        .map(([k, v]) => `- ${k}: ${v}`)
-        .join(
-          "\n",
-        )}${autresConditions ? `\n\nAutres conditions:\n${autresConditions}` : ""}\n\nProfils: ${profils.join(", ")}\n\nURLs:\n${Object.entries(
-        urls,
-      )
-        .filter(([, v]) => v)
-        .map(([, v]) => `- ${v}`)
-        .join("\n")}`,
-      maintainer_can_modify: true,
-    })
+    const prResp = await githubApi.post(
+      `/repos/${owner}/${repository_name}/pulls`,
+      {
+        title: `[Contribution simplifiée] Ajout aide ${title}`,
+        head: newBranch,
+        base: mainBranch,
+        body: `Contribution proposée par **${contributorName}**\n\nInstitution: ${institutionName}\nType: ${typeCategorie.join(", ")}\nPériodicité: ${periodicite.join(", ")}\n\nDescription:\n${description}\n\nConditions particulières:\n${Object.entries(
+          req.body.criteres || {},
+        )
+          .filter(([, v]) => v)
+          .map(([k, v]) => `- ${k}: ${v}`)
+          .join(
+            "\n",
+          )}${autresConditions ? `\n\nAutres conditions:\n${autresConditions}` : ""}\n\nProfils: ${profils.join(", ")}\n\nURLs:\n${Object.entries(
+          urls,
+        )
+          .filter(([, v]) => v)
+          .map(([, v]) => `- ${v}`)
+          .join("\n")}`,
+        maintainer_can_modify: true,
+      },
+    )
 
     return res.json({ pullRequestUrl: prResp.data.html_url })
   } catch (err: any) {

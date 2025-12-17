@@ -132,6 +132,10 @@ const config: Configuration = {
     url: "https://europe.ipx.com/restapi/v1/sms/send",
     internationalDiallingCodes: ["33", "262", "508", "590", "594", "596"],
   },
+  dataInclusion: {
+    url: "https://api.data.inclusion.gouv.fr/api/v1",
+    token: process.env.DATA_INCLUSION_TOKEN || "",
+  },
 }
 
 export default Object.freeze(config)

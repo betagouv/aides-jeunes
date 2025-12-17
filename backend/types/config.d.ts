@@ -76,4 +76,8 @@ export interface Configuration {
     url: string
     internationalDiallingCodes: string[]
   }
+  dataInclusion: {
+    url: string
+    token: string
+  }
 }

@@ -1,12 +1,11 @@
 import axios from "axios"
 import { dump as yamlDump } from "js-yaml"
-import fs from "fs"
-import path from "path"
 import { Request, Response } from "express"
 import * as Sentry from "@sentry/node"
 
-const owner = process.env.GITHUB_OWNER || "betagouv"
-const repository_name = process.env.GITHUB_REPOSITORY || "aides-jeunes"
+const owner = process.env.GITHUB_OWNER
+const repository_name = process.env.GITHUB_REPOSITORY
+
 function slugify(input: string): string {
   const normalized = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
   return normalized
@@ -18,9 +17,6 @@ function slugify(input: string): string {
 }
 
 function isValidSlug(value?: string) {
-  // Strict validation to prevent path traversal attacks
-  // Only lowercase alphanumeric, underscore and hyphen allowed
-  // Must not contain '..' or start with '/' or contain path separators
   if (!value || typeof value !== "string") return false
   if (value.includes("..") || value.includes("/") || value.includes("\\")) {
     return false
@@ -36,184 +32,143 @@ function sanitizeMultiline(str?: string) {
     .filter((l) => l.length)
 }
 
-// Safely construct a file path preventing path traversal attacks
-function safePath(baseDir: string, relativePath: string): string {
-  const fullPath = path.normalize(path.join(baseDir, relativePath))
-
-  if (!fullPath.startsWith(baseDir + path.sep)) {
-    const error = new Error("Path traversal attempt detected")
-    Sentry.captureException(error, {
-      level: "warning",
-      tags: { security: "path_traversal" },
-      extra: { baseDir, relativePath, fullPath },
-    })
-    throw error
-  }
-
-  return fullPath
-}
-
 async function checkInstitutionExists(
   institutionSlug: string,
-  isDev: boolean,
-  githubApi?: any,
+  githubApi: any,
 ): Promise<boolean> {
-  if (isDev) {
-    const institutionPath = safePath(
-      process.cwd(),
-      `data/institutions/${institutionSlug}.yml`,
+  const institutionPath = `data/institutions/${institutionSlug}.yml`
+  try {
+    await githubApi.get(
+      `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
     )
-    return fs.existsSync(institutionPath)
-  } else {
-    const institutionPath = `data/institutions/${institutionSlug}.yml`
-    try {
-      await githubApi!.get(
-        `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
-      )
-      return true
-    } catch (error: any) {
-      if (error.response?.status === 404) return false
-      throw error
-    }
+    return true
+  } catch (error: any) {
+    if (error.response?.status === 404) return false
+    throw error
   }
+}
+
+function validateRequiredFields(body: any): string | null {
+  const {
+    contributorName,
+    institutionName,
+    institutionSlug,
+    title,
+    description,
+  } = body
+
+  if (
+    !contributorName ||
+    !institutionName ||
+    !institutionSlug ||
+    !title ||
+    !description
+  ) {
+    return "Champs obligatoires manquants"
+  }
+  if (!isValidSlug(institutionSlug)) {
+    return "Format institutionSlug invalide"
+  }
+  if (description.length > 420) {
+    return "Description > 420 caractères"
+  }
+  return null
+}
+
+function buildBenefitData(body: any) {
+  const {
+    title,
+    institutionSlug,
+    description,
+    criteres,
+    profils,
+    urls,
+    typeCategorie,
+    periodicite,
+    autresConditions,
+  } = body
+
+  return {
+    label: title,
+    institution: institutionSlug,
+    description,
+    conditions: sanitizeMultiline(autresConditions),
+    conditions_generales: Object.entries(criteres || {})
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`),
+    profils: profils || [],
+    link: urls?.information || undefined,
+    instructions: urls?.guide || undefined,
+    form: urls?.form || undefined,
+    teleservicePrefill: urls?.teleservice || undefined,
+    type: typeCategorie?.[0] || "bool",
+    periodicite: periodicite?.[0] || "ponctuelle",
+  }
+}
+
+function createInstitutionData(
+  institutionName: string,
+  institutionSlug: string,
+) {
+  return {
+    name: institutionName,
+    type: "autre",
+    imgSrc: "img/institutions/placeholder.png",
+    slug: institutionSlug,
+  }
+}
+
+function buildPullRequestBody(body: any): string {
+  const {
+    contributorName,
+    title,
+    institutionName,
+    typeCategorie,
+    periodicite,
+    description,
+  } = body
+
+  const sections = [
+    `Contributeur:  **${contributorName}**`,
+    `Aide : **${title}**`,
+    `Institution: ${institutionName}`,
+    `Type: ${typeCategorie}`,
+    `Périodicité: ${periodicite}`,
+    `Description: ${description}`,
+  ]
+  return sections.join("\n")
 }
 
 export async function handleBenefitContribution(req: Request, res: Response) {
-  const isDev = process.env.NODE_ENV !== "production"
-
-  if (!isDev) {
-    const token = process.env.GITHUB_TOKEN
-    if (!token) {
-      return res
-        .status(500)
-        .json({ message: "GITHUB_TOKEN manquant côté serveur" })
-    }
+  if (!process.env.GITHUB_TOKEN) {
+    return res
+      .status(500)
+      .json({ message: "GITHUB_TOKEN manquant côté serveur" })
   }
 
   try {
-    const {
-      contributorName,
-      institutionName,
-      institutionSlug,
-      title,
-      description,
-      typeCategorie = [],
-      periodicite = [],
-      urls = {},
-      criteres = {},
-      profils = [],
-      autresConditions,
-    } = req.body || {}
+    const { institutionName, institutionSlug, title } = req.body || {}
 
-    if (
-      !contributorName ||
-      !institutionName ||
-      !institutionSlug ||
-      !title ||
-      !description
-    ) {
-      return res.status(400).json({ message: "Champs obligatoires manquants" })
-    }
-    if (!isValidSlug(institutionSlug)) {
-      return res
-        .status(400)
-        .json({ message: "Format institutionSlug invalide" })
-    }
-    if (description.length > 420) {
-      return res.status(400).json({ message: "Description > 420 caractères" })
+    // Validation
+    const validationError = validateRequiredFields(req.body)
+    if (validationError) {
+      return res.status(400).json({ message: validationError })
     }
 
     // Generate and validate benefit slug
     const benefitSlug = `${institutionSlug}_${slugify(title)}`
-
     if (!isValidSlug(benefitSlug)) {
       return res.status(400).json({ message: "Format benefitSlug invalide" })
     }
 
-    if (isDev) {
-      // Mode développement : générer les fichiers localement
-      const outputDir = process.cwd()
+    // Build data
+    const benefitData = buildBenefitData(req.body)
 
-      const files: { path: string; content: string }[] = []
-
-      try {
-        // Vérifier si l'institution existe (simulé en dev)
-        const institutionPath = safePath(
-          outputDir,
-          `data/institutions/${institutionSlug}.yml`,
-        )
-        const institutionDir = path.dirname(institutionPath)
-        if (!fs.existsSync(institutionDir)) {
-          fs.mkdirSync(institutionDir, { recursive: true })
-        }
-
-        const institutionExists = await checkInstitutionExists(
-          institutionSlug,
-          true,
-        )
-        if (!institutionExists) {
-          const institutionFile = yamlDump({
-            name: institutionName,
-            type: "autre",
-            imgSrc: "img/institutions/placeholder.png",
-            slug: institutionSlug,
-          })
-          files.push({ path: institutionPath, content: institutionFile })
-        }
-
-        const yamlData: any = {
-          label: title,
-          institution: institutionSlug,
-          description,
-          conditions: sanitizeMultiline(autresConditions),
-          conditions_generales: Object.entries(criteres)
-            .filter(([, v]) => v)
-            .map(([k, v]) => `${k}: ${v}`),
-          profils: profils,
-          link: urls.information || undefined,
-          instructions: urls.guide || undefined,
-          form: urls.form || undefined,
-          teleservicePrefill: urls.teleservice || undefined,
-          type: typeCategorie[0] || "bool",
-          periodicite: periodicite[0] || "ponctuelle",
-        }
-
-        const benefitPath = safePath(
-          outputDir,
-          `data/benefits/javascript/${slugify(benefitSlug)}.yml`,
-        )
-        const benefitDir = path.dirname(benefitPath)
-        if (!fs.existsSync(benefitDir)) {
-          fs.mkdirSync(benefitDir, { recursive: true })
-        }
-        files.push({ path: benefitPath, content: yamlDump(yamlData) })
-
-        // Écrire les fichiers
-        for (const f of files) {
-          fs.writeFileSync(f.path, f.content, "utf8")
-          console.log(`Fichier généré : ${f.path}`)
-        }
-
-        return res.json({
-          message: "Fichiers générés localement en mode développement",
-          files: files.map((f) => f.path),
-          outputDir,
-        })
-      } catch (pathError: any) {
-        console.error("Path traversal attempt or filesystem error:", pathError)
-        Sentry.captureException(pathError)
-        return res.status(400).json({
-          message: "Erreur de sécurité : chemin invalide détecté",
-        })
-      }
-    }
-
-    // Mode production : logique GitHub existante
-    const token = process.env.GITHUB_TOKEN!
+    // GitHub API setup
     const githubApi = axios.create({
       baseURL: "https://api.github.com",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         Accept: "application/vnd.github+json",
         "User-Agent": "aides-jeunes-contribution-service",
       },
@@ -222,56 +177,39 @@ export async function handleBenefitContribution(req: Request, res: Response) {
     const mainBranch = "main"
     const newBranch = `contribution/${benefitSlug}`
 
-    // get main ref sha
+    // Get main branch SHA
     const refResp = await githubApi.get(
       `/repos/${owner}/${repository_name}/git/ref/heads/${mainBranch}`,
     )
     const baseSha = refResp.data.object.sha
 
-    // create branch
+    // Create new branch
     await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
       ref: `refs/heads/${newBranch}`,
       sha: baseSha,
     })
 
-    // check institution existence
-    const institutionPath = `data/institutions/${institutionSlug}.yml`
+    // Check if institution exists
     const institutionExists = await checkInstitutionExists(
       institutionSlug,
-      false,
       githubApi,
     )
 
+    // Prepare files to commit
     const files: { path: string; content: string }[] = []
+
     if (!institutionExists) {
-      const institutionFile = yamlDump({
-        name: institutionName,
-        type: "autre",
-        imgSrc: "img/institutions/placeholder.png",
-        slug: institutionSlug,
-      })
+      const institutionPath = `data/institutions/${institutionSlug}.yml`
+      const institutionFile = yamlDump(
+        createInstitutionData(institutionName, institutionSlug),
+      )
       files.push({ path: institutionPath, content: institutionFile })
     }
 
-    const yamlData: any = {
-      label: title,
-      institution: institutionSlug,
-      description,
-      conditions: sanitizeMultiline(autresConditions),
-      conditions_generales: Object.entries(criteres)
-        .filter(([, v]) => v)
-        .map(([k, v]) => `${k}: ${v}`),
-      profils: profils,
-      link: urls.information || undefined,
-      instructions: urls.guide || undefined,
-      form: urls.form || undefined,
-      teleservicePrefill: urls.teleservice || undefined,
-      type: typeCategorie[0] || "bool",
-      periodicite: periodicite[0] || "ponctuelle",
-    }
     const benefitPath = `data/benefits/javascript/${benefitSlug}.yml`
-    files.push({ path: benefitPath, content: yamlDump(yamlData) })
+    files.push({ path: benefitPath, content: yamlDump(benefitData) })
 
+    // Commit files to new branch
     for (const f of files) {
       const message = `Contribution: ajout fichier ${f.path}`
       const contentB64 = Buffer.from(f.content, "utf8").toString("base64")
@@ -285,25 +223,14 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       )
     }
 
+    // Create pull request
     const prResp = await githubApi.post(
       `/repos/${owner}/${repository_name}/pulls`,
       {
         title: `[Contribution simplifiée] Ajout aide ${title}`,
         head: newBranch,
         base: mainBranch,
-        body: `Contribution proposée par **${contributorName}**\n\nInstitution: ${institutionName}\nType: ${typeCategorie.join(", ")}\nPériodicité: ${periodicite.join(", ")}\n\nDescription:\n${description}\n\nConditions particulières:\n${Object.entries(
-          req.body.criteres || {},
-        )
-          .filter(([, v]) => v)
-          .map(([k, v]) => `- ${k}: ${v}`)
-          .join(
-            "\n",
-          )}${autresConditions ? `\n\nAutres conditions:\n${autresConditions}` : ""}\n\nProfils: ${profils.join(", ")}\n\nURLs:\n${Object.entries(
-          urls,
-        )
-          .filter(([, v]) => v)
-          .map(([, v]) => `- ${v}`)
-          .join("\n")}`,
+        body: buildPullRequestBody(req.body),
         maintainer_can_modify: true,
       },
     )

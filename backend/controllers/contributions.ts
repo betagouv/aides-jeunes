@@ -3,6 +3,7 @@ import { dump as yamlDump } from "js-yaml"
 import fs from "fs"
 import path from "path"
 import { Request, Response } from "express"
+import * as Sentry from "@sentry/node"
 
 const owner = process.env.GITHUB_OWNER || "betagouv"
 const repository_name = process.env.GITHUB_REPOSITORY || "aides-jeunes"
@@ -17,7 +18,14 @@ function slugify(input: string): string {
 }
 
 function isValidSlug(value?: string) {
-  return !!value && /^[a-z0-9_-]+$/.test(value)
+  // Strict validation to prevent path traversal attacks
+  // Only lowercase alphanumeric, underscore and hyphen allowed
+  // Must not contain '..' or start with '/' or contain path separators
+  if (!value || typeof value !== "string") return false
+  if (value.includes("..") || value.includes("/") || value.includes("\\")) {
+    return false
+  }
+  return /^[a-z0-9_-]+$/.test(value)
 }
 
 function sanitizeMultiline(str?: string) {
@@ -28,13 +36,30 @@ function sanitizeMultiline(str?: string) {
     .filter((l) => l.length)
 }
 
+// Safely construct a file path preventing path traversal attacks
+function safePath(baseDir: string, relativePath: string): string {
+  const fullPath = path.normalize(path.join(baseDir, relativePath))
+
+  if (!fullPath.startsWith(baseDir + path.sep)) {
+    const error = new Error("Path traversal attempt detected")
+    Sentry.captureException(error, {
+      level: "warning",
+      tags: { security: "path_traversal" },
+      extra: { baseDir, relativePath, fullPath },
+    })
+    throw error
+  }
+
+  return fullPath
+}
+
 async function checkInstitutionExists(
   institutionSlug: string,
   isDev: boolean,
   githubApi?: any,
 ): Promise<boolean> {
   if (isDev) {
-    const institutionPath = path.join(
+    const institutionPath = safePath(
       process.cwd(),
       `data/institutions/${institutionSlug}.yml`,
     )
@@ -98,6 +123,7 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       return res.status(400).json({ message: "Description > 420 caractères" })
     }
 
+    // Generate and validate benefit slug
     const benefitSlug = `${institutionSlug}_${slugify(title)}`
 
     if (!isValidSlug(benefitSlug)) {
@@ -110,68 +136,76 @@ export async function handleBenefitContribution(req: Request, res: Response) {
 
       const files: { path: string; content: string }[] = []
 
-      // Vérifier si l'institution existe (simulé en dev)
-      const institutionPath = path.join(
-        outputDir,
-        `data/institutions/${institutionSlug}.yml`,
-      )
-      const institutionDir = path.dirname(institutionPath)
-      if (!fs.existsSync(institutionDir)) {
-        fs.mkdirSync(institutionDir, { recursive: true })
-      }
+      try {
+        // Vérifier si l'institution existe (simulé en dev)
+        const institutionPath = safePath(
+          outputDir,
+          `data/institutions/${institutionSlug}.yml`,
+        )
+        const institutionDir = path.dirname(institutionPath)
+        if (!fs.existsSync(institutionDir)) {
+          fs.mkdirSync(institutionDir, { recursive: true })
+        }
 
-      const institutionExists = await checkInstitutionExists(
-        institutionSlug,
-        true,
-      )
-      if (!institutionExists) {
-        const institutionFile = yamlDump({
-          name: institutionName,
-          type: "autre",
-          imgSrc: "img/institutions/placeholder.png",
-          slug: institutionSlug,
+        const institutionExists = await checkInstitutionExists(
+          institutionSlug,
+          true,
+        )
+        if (!institutionExists) {
+          const institutionFile = yamlDump({
+            name: institutionName,
+            type: "autre",
+            imgSrc: "img/institutions/placeholder.png",
+            slug: institutionSlug,
+          })
+          files.push({ path: institutionPath, content: institutionFile })
+        }
+
+        const yamlData: any = {
+          label: title,
+          institution: institutionSlug,
+          description,
+          conditions: sanitizeMultiline(autresConditions),
+          conditions_generales: Object.entries(criteres)
+            .filter(([, v]) => v)
+            .map(([k, v]) => `${k}: ${v}`),
+          profils: profils,
+          link: urls.information || undefined,
+          instructions: urls.guide || undefined,
+          form: urls.form || undefined,
+          teleservicePrefill: urls.teleservice || undefined,
+          type: typeCategorie[0] || "bool",
+          periodicite: periodicite[0] || "ponctuelle",
+        }
+
+        const benefitPath = safePath(
+          outputDir,
+          `data/benefits/javascript/${slugify(benefitSlug)}.yml`,
+        )
+        const benefitDir = path.dirname(benefitPath)
+        if (!fs.existsSync(benefitDir)) {
+          fs.mkdirSync(benefitDir, { recursive: true })
+        }
+        files.push({ path: benefitPath, content: yamlDump(yamlData) })
+
+        // Écrire les fichiers
+        for (const f of files) {
+          fs.writeFileSync(f.path, f.content, "utf8")
+          console.log(`Fichier généré : ${f.path}`)
+        }
+
+        return res.json({
+          message: "Fichiers générés localement en mode développement",
+          files: files.map((f) => f.path),
+          outputDir,
         })
-        files.push({ path: institutionPath, content: institutionFile })
+      } catch (pathError: any) {
+        console.error("Path traversal attempt or filesystem error:", pathError)
+        Sentry.captureException(pathError)
+        return res.status(400).json({
+          message: "Erreur de sécurité : chemin invalide détecté",
+        })
       }
-
-      const yamlData: any = {
-        label: title,
-        institution: institutionSlug,
-        description,
-        conditions: sanitizeMultiline(autresConditions),
-        conditions_generales: Object.entries(criteres)
-          .filter(([, v]) => v)
-          .map(([k, v]) => `${k}: ${v}`),
-        profils: profils,
-        link: urls.information || undefined,
-        instructions: urls.guide || undefined,
-        form: urls.form || undefined,
-        teleservicePrefill: urls.teleservice || undefined,
-        type: typeCategorie[0] || "bool",
-        periodicite: periodicite[0] || "ponctuelle",
-      }
-
-      const benefitPath = path.join(
-        outputDir,
-        `data/benefits/javascript/${slugify(benefitSlug)}.yml`,
-      )
-      const benefitDir = path.dirname(benefitPath)
-      if (!fs.existsSync(benefitDir)) {
-        fs.mkdirSync(benefitDir, { recursive: true })
-      }
-      files.push({ path: benefitPath, content: yamlDump(yamlData) })
-
-      // Écrire les fichiers
-      for (const f of files) {
-        fs.writeFileSync(f.path, f.content, "utf8")
-        console.log(`Fichier généré : ${f.path}`)
-      }
-
-      return res.json({
-        message: "Fichiers générés localement en mode développement",
-        files: files.map((f) => f.path),
-        outputDir,
-      })
     }
 
     // Mode production : logique GitHub existante
@@ -275,11 +309,12 @@ export async function handleBenefitContribution(req: Request, res: Response) {
     )
 
     return res.json({ pullRequestUrl: prResp.data.html_url })
-  } catch (err: any) {
-    console.error("Contribution error", err?.response?.data || err)
-    const status = err?.response?.status || 500
+  } catch (error: any) {
+    console.error("Contribution error", error?.response?.data || error)
+    Sentry.captureException(error)
+    const status = error?.response?.status || 500
     const message =
-      err?.response?.data?.message ||
+      error?.response?.data?.message ||
       "Erreur serveur lors de la création de la PR"
     return res.status(status).json({ message })
   }

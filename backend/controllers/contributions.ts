@@ -7,13 +7,14 @@ const owner = process.env.GITHUB_OWNER
 const repository_name = process.env.GITHUB_REPOSITORY
 
 function slugify(input: string): string {
-  const normalized = input.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-  return normalized
-    .toLowerCase()
-    .replace(/[^a-z0-9\s_-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .slice(0, 80)
+  return input
+    .normalize("NFD") // Decompose accented characters (é → e + ´)
+    .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
+    .toLowerCase() // Convert to lowercase
+    .replace(/[^a-z0-9\s_-]/g, "") // Keep only letters, digits, spaces, _ and -
+    .replace(/\s+/g, "-") // Replace multiple spaces with a single dash
+    .replace(/-+/g, "-") // Replace multiple dashes with a single dash
+    .slice(0, 80) // Limit to 80 characters
 }
 
 function isValidSlug(value?: string) {

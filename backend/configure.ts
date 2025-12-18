@@ -23,7 +23,9 @@ export default function (app: express.Application) {
   loadRoutes(app)
 
   app.use(express.urlencoded({ extended: true, limit: "1024kb" }))
-  app.set("trust proxy", true)
+  // Configure trust proxy with the number of hops instead of 'true'
+  // This ensures rate limiting works correctly
+  app.set("trust proxy", 1)
 
   // The error handler must be before any other error middleware and after all controllers
   Sentry.setupExpressErrorHandler(app)

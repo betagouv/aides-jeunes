@@ -16,6 +16,10 @@ function slugify(input: string): string {
     .slice(0, 80)
 }
 
+function isValidSlug(value?: string) {
+  return !!value && /^[a-z0-9_-]+$/.test(value)
+}
+
 function sanitizeMultiline(str?: string) {
   if (!str) return []
   return str
@@ -76,14 +80,29 @@ export async function handleBenefitContribution(req: Request, res: Response) {
       autresConditions,
     } = req.body || {}
 
-    if (!contributorName || !institutionName || !title || !description) {
+    if (
+      !contributorName ||
+      !institutionName ||
+      !institutionSlug ||
+      !title ||
+      !description
+    ) {
       return res.status(400).json({ message: "Champs obligatoires manquants" })
+    }
+    if (!isValidSlug(institutionSlug)) {
+      return res
+        .status(400)
+        .json({ message: "Format institutionSlug invalide" })
     }
     if (description.length > 420) {
       return res.status(400).json({ message: "Description > 420 caractères" })
     }
 
     const benefitSlug = `${institutionSlug}_${slugify(title)}`
+
+    if (!isValidSlug(benefitSlug)) {
+      return res.status(400).json({ message: "Format benefitSlug invalide" })
+    }
 
     if (isDev) {
       // Mode développement : générer les fichiers localement
@@ -134,7 +153,7 @@ export async function handleBenefitContribution(req: Request, res: Response) {
 
       const benefitPath = path.join(
         outputDir,
-        `data/benefits/javascript/${benefitSlug}.yml`,
+        `data/benefits/javascript/${slugify(benefitSlug)}.yml`,
       )
       const benefitDir = path.dirname(benefitPath)
       if (!fs.existsSync(benefitDir)) {

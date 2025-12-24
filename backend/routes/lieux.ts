@@ -6,6 +6,18 @@ export default function (api: Express) {
   api.route("/lieux/ccas/:codeCommune").get(async (req, res) => {
     try {
       const { codeCommune } = req.params
+
+      // Verify the data-inclusion token exists at runtime.
+      const token = config?.dataInclusion?.token
+      if (!token) {
+        console.warn(
+          "Missing Data Inclusion token: the /lieux/ccas endpoint requires a valid token",
+        )
+        return res
+          .status(503)
+          .json({ error: "Service unavailable - missing configuration" })
+      }
+
       const url = `${config.dataInclusion.url}/structures?sources=ma-boussole-aidants&reseaux_porteurs=ccas-cias&code_commune=${codeCommune}`
 
       const response = await axios.get(url, {

@@ -58,9 +58,7 @@ export async function fetchLieux(
   let ccasLieux: any[] = []
 
   if (ccasIndex !== -1) {
-    // Remove 'ccas' from types to avoid fetching it from the default API if it was there (though it seems it wasn't supported before or was different)
-    // Or keep it if we want to merge results. The prompt implies replacing/adding for CCAS.
-    // Let's fetch CCAS separately.
+    // CCAS are fetched from data-inclusion API (etablissements-publics API doesn't support them)
     try {
       const response = await axios.get(`/api/lieux/ccas/${depcom}`)
       if (response.data && response.data.items) {

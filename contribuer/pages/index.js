@@ -140,10 +140,10 @@ function Home() {
           </p>
           <p>
             Bien que la cible prioritaire de ce simulateur soit les personnes de
-            moins de 30 ans, il peut aussi être utilisé pour aider des
-            personnes plus âgées à connaître leurs droits. En effet,
-            tous les dispositifs nationaux et locaux sont intégrés au simulateur
-            ou peuvent l’être, à condition qu’ils n’excluent pas les jeunes.
+            moins de 30 ans, il peut aussi être utilisé pour aider des personnes
+            plus âgées à connaître leurs droits. En effet, tous les dispositifs
+            nationaux et locaux sont intégrés au simulateur ou peuvent l’être, à
+            condition qu’ils n’excluent pas les jeunes.
           </p>
 
           <h3>À quoi sert ce simulateur&nbsp;?</h3>

@@ -37,12 +37,13 @@ export function normalizeDataInclusion(structure: any) {
     telephone: structure.telephone,
     url: structure.site_web,
     pivotLocal: "ccas",
-    horaires: [], // Data Inclusion API doesn't seem to provide structured hours in the example
+    horaires: [],
     adresse: {
       codePostal: structure.code_postal,
       commune: structure.commune,
       lignes: [structure.adresse, structure.complement_adresse].filter(Boolean),
     },
+    source: "boussoleaidants",
   }
 }
 

@@ -113,5 +113,10 @@ const partners: Partner[] = [
     name: "étudiants.gouv.fr",
     link: "https://etudiants.gouv.fr/",
   },
+  {
+    id: "boussoleaidants",
+    name: "Ma boussole Aidants",
+    link: "https://maboussoleaidants.fr/",
+  },
 ]
 </script>

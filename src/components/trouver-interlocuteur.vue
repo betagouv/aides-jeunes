@@ -17,7 +17,7 @@
               :to="{
                 name: 'resultatsLieuxGeneriques',
               }"
-              class="fr-btn fr-icon-map-pin-2-line fr-btn--icon-right fr-btn--icon-center fr-px-3v fr-btn--multiline"
+              class="fr-btn fr-icon-map-pin-2-line fr-btn--icon-right fr-btn--icon-center fr-px-2w fr-btn--multiline"
               data-testid="nearby-help"
             >
               Trouver de l'aide

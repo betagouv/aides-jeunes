@@ -30,6 +30,12 @@
                   minutes par une personne de notre équipe.</p
                 >
               </div>
+              <div
+                v-if="showFailedAnswerBlock"
+                class="fr-alert fr-alert--info fr-mt-4w fr-px-8w fr-py-3w"
+              >
+                <TrouverInterlocuteur />
+              </div>
             </div>
           </div>
         </div>
@@ -196,6 +202,7 @@ import StatisticsMixin from "@/mixins/statistics.js"
 import { EventAction, EventCategory } from "@lib/enums/event.js"
 import { useFollowupSurveyData } from "@/composables/use-followup-survey-data.js"
 import ABTestingService from "@/plugins/ab-testing-service"
+import TrouverInterlocuteur from "@/components/trouver-interlocuteur.vue"
 
 const choices = [
   { value: "already", label: "Rien, j'en bénéficiais déjà." },
@@ -243,6 +250,10 @@ const showAccompanimentBlock = computed(() => {
   // )
   return false
 })
+
+const showFailedAnswerBlock = computed(() =>
+  benefitsWithChoice.value.some((droit) => droit.choiceValue === "failed"),
+)
 
 const accompanimentClickEvent = computed(() => {
   return {

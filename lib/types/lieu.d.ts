@@ -17,4 +17,5 @@ export interface LieuProperties {
     commune: string
     lignes: string[]
   }
+  source?: string
 }

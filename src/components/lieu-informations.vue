@@ -88,6 +88,20 @@ const extractHHMM = (dateString: string) => {
       </div>
     </div>
   </div>
+
+  <div v-if="lieu.source === 'boussoleaidants'" class="fr-mb-3w">
+    <div class="fr-callout fr-callout--info fr-p-2w">
+      <div class="fr-grid-row fr-grid-row--middle">
+        <div class="fr-col">
+          Donnée fournie par
+          <a href="https://maboussoleaidants.fr/" target="_blank" rel="noopener"
+            >Ma boussole Aidants</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="fr-container">
     <ul
       v-if="hasContact"

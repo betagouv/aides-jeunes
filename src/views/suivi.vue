@@ -30,10 +30,8 @@
                   minutes par une personne de notre équipe.</p
                 >
               </div>
-              <div
-                v-if="showFailedAnswerBlock"
-                class="fr-alert fr-alert--info fr-mt-4w fr-px-8w fr-py-3w"
-              >
+              <div v-if="showFailedAnswerBlock">
+                <hr class="fr-my-4w" />
                 <TrouverInterlocuteur />
               </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="fr-container fr-px-0 fr-mb-0 fr-py-2w">
+  <div class="fr-container fr-px-0 fr-mb-0">
     <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--middle">
       <div class="fr-col-12 fr-col-lg-7">
         <h2 class="fr-text--lead">Trouver de l'aide près de chez moi ?</h2>
@@ -17,7 +17,7 @@
               :to="{
                 name: 'resultatsLieuxGeneriques',
               }"
-              class="fr-btn fr-icon-map-pin-2-line fr-btn--icon-right fr-btn--icon-center fr-px-2w"
+              class="fr-btn fr-icon-map-pin-2-line fr-btn--icon-right fr-btn--icon-center fr-px-3v fr-btn--multiline"
               data-testid="nearby-help"
             >
               Trouver de l'aide

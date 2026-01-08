@@ -31,8 +31,11 @@ app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
-app.route("/").get(function (req, res) {
-  const followups = Followups.find().sort({ createdAt: -1 }).limit(10).exec()
+app.route("/").get(async function (req, res) {
+  const followups = await Followups.find()
+    .sort({ createdAt: -1 })
+    .limit(10)
+    .exec()
   res.render("index", {
     followups,
     typeKeys,

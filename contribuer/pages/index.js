@@ -284,7 +284,7 @@ function Home() {
               3&nbsp;- Valider l’intégration de l’aide dans le simulateur
             </h3>
             <p>
-              Une fois les critères d’attribution indiqués grâce à l’outil de
+              Une fois les critères d'éligibilité indiqués grâce à l’outil de
               contribution, un membre de l’équipe relit et valide. L’aide est
               alors ajoutée et visible par les utilisateurs.
             </p>

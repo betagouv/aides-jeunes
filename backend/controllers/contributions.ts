@@ -103,7 +103,7 @@ function buildBenefitData(body: any) {
     form: urls?.form || undefined,
     teleservicePrefill: urls?.teleservice || undefined,
     type: typeCategorie?.[0] || "bool",
-    periodicite: periodicite?.[0] || "ponctuelle",
+    periodicite: periodicite || "ponctuelle",
   }
 }
 

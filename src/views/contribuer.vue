@@ -10,7 +10,7 @@ interface ContributionPayload {
   title: string
   description: string
   typeCategorie: string[]
-  periodicite: string[]
+  periodicite: string
   urls: {
     information?: string
     teleservice?: string
@@ -52,7 +52,7 @@ const typeOptions = [
 ]
 const periodiciteOptions = ["ponctuelle", "annuelle", "mensuelle", "autre"]
 const selectedTypes = ref<string[]>([])
-const selectedPeriodicites = ref<string[]>([])
+const selectedPeriodicite = ref("")
 
 const urls = ref({
   information: "",
@@ -154,9 +154,8 @@ function toggleType(type: string) {
   if (selectedTypes.value.length > 0) clearError("types")
 }
 
-function togglePeriodicite(periodicite: string) {
-  toggle(selectedPeriodicites, periodicite)
-  if (selectedPeriodicites.value.length > 0) clearError("periodicites")
+function onPeriodiciteChange() {
+  clearError("periodicite")
 }
 
 function toggleProfil(profil: string) {
@@ -208,9 +207,9 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     ef.push("types")
     if (!firstErrorField) firstErrorField = "type_" + typeOptions[0]
   }
-  if (!selectedPeriodicites.value.length) {
-    e.push("Au moins une périodicité doit être sélectionnée")
-    ef.push("periodicites")
+  if (!selectedPeriodicite.value) {
+    e.push("Une périodicité doit être sélectionnée")
+    ef.push("periodicite")
     if (!firstErrorField) firstErrorField = "period_" + periodiciteOptions[0]
   }
 
@@ -247,7 +246,7 @@ async function submit() {
       title: title.value.trim(),
       description: description.value.trim(),
       typeCategorie: selectedTypes.value.slice(),
-      periodicite: selectedPeriodicites.value.slice(),
+      periodicite: selectedPeriodicite.value,
       urls: { ...urls.value },
       criteres: { ...criteres.value },
       profils: profils.value.slice(),
@@ -390,61 +389,65 @@ async function submit() {
               @input="clearError('description')"
             />
           </div>
-          <div
-            class="fr-mt-4w"
-            :class="{
-              'fr-fieldset--error fr-pl-2w': errorFields.includes('types'),
-            }"
-          >
-            <p class="fr-h6 fr-mb-1w">Type de l'aide</p>
-            <div class="fr-grid-row fr-grid-row--gutters">
+          <div class="fr-grid-row fr-grid-row--gutters fr-mt-4w">
+            <div class="fr-col-12 fr-col-md-6">
               <div
-                v-for="type in typeOptions"
-                :key="type"
-                class="fr-col-12 fr-col-sm-6"
+                :class="{
+                  'fr-fieldset--error fr-pl-2w': errorFields.includes('types'),
+                }"
               >
-                <div class="fr-checkbox-group">
-                  <input
-                    :id="'type_' + type"
-                    name="typeCategorie"
-                    type="checkbox"
-                    :value="type"
-                    :checked="selectedTypes.includes(type)"
-                    @change="toggleType(type)"
-                  />
-                  <label :for="'type_' + type" class="fr-label">
-                    {{ type }}
-                  </label>
+                <p class="fr-h6 fr-mb-2w">Type de l'aide</p>
+                <div class="fr-grid-row fr-grid-row--gutters">
+                  <div
+                    v-for="type in typeOptions"
+                    :key="type"
+                    class="fr-col-12"
+                  >
+                    <div class="fr-checkbox-group">
+                      <input
+                        :id="'type_' + type"
+                        name="typeCategorie"
+                        type="checkbox"
+                        :value="type"
+                        :checked="selectedTypes.includes(type)"
+                        @change="toggleType(type)"
+                      />
+                      <label :for="'type_' + type" class="fr-label">
+                        {{ type }}
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="fr-mt-4w"
-            :class="{
-              'fr-fieldset--error fr-pl-2w':
-                errorFields.includes('periodicites'),
-            }"
-          >
-            <p class="fr-h6 fr-mb-1w">Périodicité</p>
-            <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12 fr-col-md-6">
               <div
-                v-for="periodicite in periodiciteOptions"
-                :key="periodicite"
-                class="fr-col-12 fr-col-sm-6"
+                :class="{
+                  'fr-fieldset--error fr-pl-2w':
+                    errorFields.includes('periodicite'),
+                }"
               >
-                <div class="fr-checkbox-group">
-                  <input
-                    :id="'period_' + periodicite"
-                    name="periodicite"
-                    type="checkbox"
-                    :value="periodicite"
-                    :checked="selectedPeriodicites.includes(periodicite)"
-                    @change="togglePeriodicite(periodicite)"
-                  />
-                  <label :for="'period_' + periodicite" class="fr-label">
-                    {{ periodicite }}
-                  </label>
+                <p class="fr-h6 fr-mb-2w">Périodicité</p>
+                <div class="fr-grid-row fr-grid-row--gutters">
+                  <div
+                    v-for="periodicite in periodiciteOptions"
+                    :key="periodicite"
+                    class="fr-col-12"
+                  >
+                    <div class="fr-radio-group">
+                      <input
+                        :id="'period_' + periodicite"
+                        v-model="selectedPeriodicite"
+                        name="periodicite"
+                        type="radio"
+                        :value="periodicite"
+                        @change="onPeriodiciteChange"
+                      />
+                      <label :for="'period_' + periodicite" class="fr-label">
+                        {{ periodicite }}
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

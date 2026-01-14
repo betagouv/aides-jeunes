@@ -336,14 +336,14 @@ async function submit() {
     <h1>Proposer une nouvelle aide</h1>
     <p class="fr-text--sm fr-mb-3w">
       Remplissez ce formulaire pour proposer une nouvelle aide à ajouter sur le
-      site. Les champs marqués d'une <span class="fr-text--error">*</span> sont
-      obligatoires. Un membre de l'équipe relira votre proposition avant
-      publication.
+      simulateur. Les champs marqués d'une étoile
+      <span class="fr-text--error">(*)</span> sont obligatoires. Un membre de
+      l'équipe relira votre proposition avant publication.
     </p>
     <div v-if="sent" class="fr-alert fr-alert--success fr-mb-4w">
       <p>
         Merci, votre proposition a bien été envoyée ! Elle sera relue par notre
-        équipe avant d’être publiée sur le site.
+        équipe avant d’être publiée sur le simulateur.
       </p>
     </div>
     <div v-if="errors.length" class="fr-alert fr-alert--error fr-mb-4w">
@@ -354,18 +354,6 @@ async function submit() {
     </div>
     <div v-if="generalError" class="fr-alert fr-alert--error fr-mb-4w">
       <p>{{ generalError }}</p>
-    </div>
-    <div v-if="!sent" class="fr-callout fr-callout--blue-ecume fr-mb-4w">
-      <h3 class="fr-callout__title">Champs obligatoires</h3>
-      <p class="fr-callout__text">
-        Pour soumettre une aide, vous devez remplir :<br />
-        • Votre nom et l'institution porteuse<br />
-        • Le titre de l'aide, sa description et l'article défini (le, la,
-        les...)<br />
-        • La périodicité (ponctuelle, mensuelle, annuelle, autre)<br />
-        • Au moins un lien (information, téléservice, formulaire ou
-        instructions)
-      </p>
     </div>
     <form v-if="!sent" class="fr-my-4w" novalidate @submit.prevent="submit">
       <fieldset class="fr-fieldset fr-mb-4w">

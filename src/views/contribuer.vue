@@ -3,32 +3,6 @@ import { ref, computed, onMounted, nextTick } from "vue"
 import type { Ref } from "vue"
 import axios from "axios"
 
-interface ContributionPayload {
-  contributorName: string
-  institutionName: string
-  institutionSlug?: string
-  title: string
-  description: string
-  periodicite: string
-  urls: {
-    information?: string
-    teleservice?: string
-    form?: string
-    guide?: string
-  }
-  criteres: {
-    age?: string
-    geographie?: string
-    regime?: string
-    quotientFamilial?: string
-    statutLogement?: string
-    difficultesLogement?: string
-    engagementBenevole?: string
-  }
-  profils: string[]
-  autresConditions?: string
-}
-
 const sending = ref(false)
 const sent = ref(false)
 const errors = ref<string[]>([])
@@ -39,62 +13,82 @@ const showInstitutionDropdown = ref(false)
 const contributorName = ref("")
 const institutionName = ref("")
 const institutionSlug = ref("")
-const title = ref("")
+const label = ref("")
 const description = ref("")
 const descriptionMax = 420
+const prefix = ref("")
 const periodiciteOptions = ["ponctuelle", "annuelle", "mensuelle", "autre"]
 const selectedPeriodicite = ref("")
+const montant = ref<number | undefined>(undefined)
+const legend = ref("")
+const unit = ref("€")
+const resultType = ref("float")
 
-const urls = ref({
-  information: "",
-  teleservice: "",
-  form: "",
-  guide: "",
-})
+const prefixOptions = ["le", "la", "les", "l'", "une", "un", "l'aide"]
+const unitOptions = ["€", "%", "séances"]
+const resultTypeOptions = [
+  { value: "float", label: "Valeur numérique" },
+  { value: "bool", label: "Éligibilité (Oui / Non)" },
+  { value: "mixed", label: "Autre" },
+]
 
-const criteres = ref({
-  age: "",
-  geographie: "",
-  regime: "",
-  quotientFamilial: "",
-  statutLogement: "",
-  difficultesLogement: "",
-  engagementBenevole: "",
-})
+const link = ref("")
+const teleservice = ref("")
+const form = ref("")
+const instructions = ref("")
 
-const criterePlaceholders: Record<string, string> = {
-  age: "Ex: 18-25 ans",
-  geographie: "Ex: Île-de-France",
-  regime: "Ex: régime général",
-  quotientFamilial: "Ex: QF < 600",
-  statutLogement: "Ex: locataire, hébergé",
-  difficultesLogement: "Ex: logement précaire",
-  engagementBenevole: "Ex: 50h/an de bénévolat",
-}
+const conditions = ref<string[]>([])
+const newCondition = ref("")
+const voluntaryConditions = ref<string[]>([])
+const newVoluntaryCondition = ref("")
 
-const profilKeys = [
-  "college",
-  "lycee",
-  "enseignement_superieur",
-  "stagiaire",
-  "apprentissage",
-  "formation_sanitaire_sociale",
-  "beneficiaire_rsa",
-  "recherche_emploi",
-  "salarie",
-  "interimaire",
-  "travailleur_independant",
-  "service_civique",
-  "mission_locale",
-  "handicap",
-  "parent",
-  "famille_monoparentale",
-  "sans_domicile",
-  "autre",
+const interestFlagOptions = [
+  { value: "", label: "Non" },
+  {
+    value: "_interetBafa",
+    label: "Oui, l'afficher en cas d'intérêt pour le BAFA ou le BAFD",
+  },
+  {
+    value: "_interetPermisDeConduire",
+    label: "Oui, l'afficher en cas d'intérêt pour passer le permis de conduire",
+  },
+  {
+    value: "_interetEtudesEtranger",
+    label:
+      "Oui, l'afficher en cas d'intérêt pour faire des études à l'étranger",
+  },
+  {
+    value: "_interetAidesSanitaireSocial",
+    label:
+      "Oui, l'afficher en cas d'intérêt pour faire une formation dans le sanitaire et social",
+  },
+]
+const selectedInterestFlag = ref("")
+
+const profilOptions = [
+  { value: "collegien", label: "Collégien ou collégienne" },
+  { value: "lyceen", label: "Lycéen ou lycéenne" },
+  { value: "enseignement_superieur", label: "Dans l'enseignement supérieur" },
+  { value: "etudiant", label: "Scolarisé ou scolarisée" },
+  { value: "stagiaire", label: "Stagiaire" },
+  { value: "apprenti", label: "Apprenti ou apprentie" },
+  {
+    value: "professionnalisation",
+    label: "En contrat de professionnalisation",
+  },
+  { value: "chomeur", label: "En recherche d'emploi" },
+  { value: "salarie", label: "Salarié ou salariée" },
+  {
+    value: "independant",
+    label: "Travailleur indépendant ou travailleuse indépendante",
+  },
+  { value: "service_civique", label: "En service civique" },
+  { value: "beneficiaire_rsa", label: "Bénéficiaire RSA" },
+  { value: "situation_handicap", label: "En situation de handicap" },
+  { value: "inactif", label: "Inactif ou inactive" },
+  { value: "parent", label: "Parent" },
 ]
 const profils = ref<string[]>([])
-
-const autresConditions = ref("")
 
 // Liste des institutions pour l'autocomplétion
 const institutions = ref<Array<{ slug: string; label: string; type: string }>>(
@@ -123,6 +117,12 @@ function clearError(field: string) {
   if (idx >= 0) errorFields.value.splice(idx, 1)
 }
 
+function clearLinkErrors() {
+  errorFields.value = errorFields.value.filter(
+    (f) => !["link", "teleservice", "form", "instructions"].includes(f),
+  )
+}
+
 function toggle(list: Ref<string[]> | string[], value: string) {
   const target = Array.isArray(list) ? list : list.value
   const idx = target.indexOf(value)
@@ -138,6 +138,7 @@ function selectInstitution(institution: {
   institutionName.value = institution.label
   institutionSlug.value = institution.slug
   showInstitutionDropdown.value = false
+  clearError("institutionName")
 }
 
 function onPeriodiciteChange() {
@@ -146,6 +147,28 @@ function onPeriodiciteChange() {
 
 function toggleProfil(profil: string) {
   toggle(profils, profil)
+}
+
+function addCondition() {
+  if (newCondition.value.trim()) {
+    conditions.value.push(newCondition.value.trim())
+    newCondition.value = ""
+  }
+}
+
+function removeCondition(index: number) {
+  conditions.value.splice(index, 1)
+}
+
+function addVoluntaryCondition() {
+  if (newVoluntaryCondition.value.trim()) {
+    voluntaryConditions.value.push(newVoluntaryCondition.value.trim())
+    newVoluntaryCondition.value = ""
+  }
+}
+
+function removeVoluntaryCondition(index: number) {
+  voluntaryConditions.value.splice(index, 1)
 }
 
 function hideInstitutionDropdown() {
@@ -173,10 +196,20 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     ef.push("institutionName")
     if (!firstErrorField) firstErrorField = "institutionName"
   }
-  if (!title.value.trim()) {
-    e.push("Le titre est requis")
-    ef.push("title")
-    if (!firstErrorField) firstErrorField = "title"
+  if (!institutionSlug.value) {
+    e.push("Vous devez sélectionner une institution dans la liste proposée")
+    ef.push("institutionName")
+    if (!firstErrorField) firstErrorField = "institutionName"
+  }
+  if (!label.value.trim()) {
+    e.push("Le titre de l'aide est requis")
+    ef.push("label")
+    if (!firstErrorField) firstErrorField = "label"
+  }
+  if (!prefix.value) {
+    e.push("L'article défini est requis")
+    ef.push("prefix")
+    if (!firstErrorField) firstErrorField = "prefix"
   }
   if (!description.value.trim()) {
     e.push("La description est requise")
@@ -192,6 +225,24 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     e.push("Une périodicité doit être sélectionnée")
     ef.push("periodicite")
     if (!firstErrorField) firstErrorField = "period_" + periodiciteOptions[0]
+  }
+
+  // Au moins un lien doit être renseigné
+  const hasAtLeastOneLink =
+    link.value.trim() ||
+    teleservice.value.trim() ||
+    form.value.trim() ||
+    instructions.value.trim()
+
+  if (!hasAtLeastOneLink) {
+    e.push(
+      "Au moins un lien doit être renseigné (information, téléservice, formulaire ou instructions)",
+    )
+    ef.push("link")
+    ef.push("teleservice")
+    ef.push("form")
+    ef.push("instructions")
+    if (!firstErrorField) firstErrorField = "link"
   }
 
   errors.value = e
@@ -220,24 +271,60 @@ async function submit() {
   }
   sending.value = true
   try {
-    const payload: ContributionPayload = {
+    // Adapter le payload au format attendu par le backend actuel
+    const payload: any = {
       contributorName: contributorName.value.trim(),
       institutionName: institutionName.value.trim(),
-      institutionSlug: institutionSlug.value,
-      title: title.value.trim(),
+      title: label.value.trim(), // Le backend attend 'title' pas 'label'
       description: description.value.trim(),
       periodicite: selectedPeriodicite.value,
-      urls: { ...urls.value },
-      criteres: { ...criteres.value },
+      typeCategorie: [], // Pour le moment vide car nous avons retiré cette section
+      urls: {
+        information: link.value.trim() || undefined,
+        teleservice: teleservice.value.trim() || undefined,
+        form: form.value.trim() || undefined,
+        guide: instructions.value.trim() || undefined,
+      },
+      criteres: {}, // Les critères complexes ne sont pas dans le formulaire simplifié
       profils: profils.value.slice(),
-      autresConditions: autresConditions.value.trim() || undefined,
     }
+
+    // Ajouter institutionSlug seulement s'il existe
+    if (institutionSlug.value) {
+      payload.institutionSlug = institutionSlug.value
+    }
+
+    // Ajouter autresConditions seulement si non vide
+    if (conditions.value.length > 0) {
+      payload.autresConditions = conditions.value.join("\n")
+    }
+
     await axios.post("/api/contributions/benefit", payload)
     sent.value = true
+
+    // Scroll vers le message de succès
+    await nextTick()
+    window.scrollTo({ top: 0, behavior: "smooth" })
   } catch (err: any) {
-    generalError.value =
-      err?.response?.data?.message ||
-      "Erreur lors de l'envoi de la contribution"
+    console.error("Erreur lors de l'envoi:", err.response?.data || err)
+
+    const data = err?.response?.data
+    if (data?.missingFields) {
+      generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
+      errorFields.value = data.missingFields
+    } else if (data?.errors) {
+      generalError.value = `Erreurs : ${JSON.stringify(data.errors)}`
+    } else {
+      generalError.value =
+        data?.message || "Erreur lors de l'envoi de la contribution"
+    }
+
+    // Scroll vers le message d'erreur
+    await nextTick()
+    const alertElement = document.querySelector(".fr-alert--error")
+    if (alertElement) {
+      alertElement.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
   } finally {
     sending.value = false
   }
@@ -249,8 +336,9 @@ async function submit() {
     <h1>Proposer une nouvelle aide</h1>
     <p class="fr-text--sm fr-mb-3w">
       Remplissez ce formulaire pour proposer une nouvelle aide à ajouter sur le
-      site. Les champs non appropriés peuvent être laissés vides. Un membre de
-      l'équipe relira votre proposition avant publication.
+      site. Les champs marqués d'une <span class="fr-text--error">*</span> sont
+      obligatoires. Un membre de l'équipe relira votre proposition avant
+      publication.
     </p>
     <div v-if="sent" class="fr-alert fr-alert--success fr-mb-4w">
       <p>
@@ -259,13 +347,25 @@ async function submit() {
       </p>
     </div>
     <div v-if="errors.length" class="fr-alert fr-alert--error fr-mb-4w">
-      <p>Erreurs dans le formulaire :</p>
+      <p class="fr-text--bold">Veuillez corriger les erreurs suivantes :</p>
       <ul>
         <li v-for="error in errors" :key="error">{{ error }}</li>
       </ul>
     </div>
     <div v-if="generalError" class="fr-alert fr-alert--error fr-mb-4w">
       <p>{{ generalError }}</p>
+    </div>
+    <div v-if="!sent" class="fr-callout fr-callout--blue-ecume fr-mb-4w">
+      <h3 class="fr-callout__title">Champs obligatoires</h3>
+      <p class="fr-callout__text">
+        Pour soumettre une aide, vous devez remplir :<br />
+        • Votre nom et l'institution porteuse<br />
+        • Le titre de l'aide, sa description et l'article défini (le, la,
+        les...)<br />
+        • La périodicité (ponctuelle, mensuelle, annuelle, autre)<br />
+        • Au moins un lien (information, téléservice, formulaire ou
+        instructions)
+      </p>
     </div>
     <form v-if="!sent" class="fr-my-4w" novalidate @submit.prevent="submit">
       <fieldset class="fr-fieldset fr-mb-4w">
@@ -282,7 +382,8 @@ async function submit() {
               }"
             >
               <label class="fr-label" for="contributorName"
-                >Votre nom (affiché publiquement)</label
+                >Votre nom (affiché publiquement)
+                <span class="fr-text--error">*</span></label
               >
               <input
                 id="contributorName"
@@ -304,7 +405,8 @@ async function submit() {
               style="position: relative"
             >
               <label class="fr-label" for="institutionName"
-                >Nom de l'institution porteuse</label
+                >Nom de l'institution porteuse
+                <span class="fr-text--error">*</span></label
               >
               <input
                 id="institutionName"
@@ -335,16 +437,18 @@ async function submit() {
           <div
             class="fr-input-group"
             :class="{
-              'fr-input-group--error': errorFields.includes('title'),
+              'fr-input-group--error': errorFields.includes('label'),
             }"
           >
-            <label class="fr-label" for="title">Titre de l'aide</label>
+            <label class="fr-label" for="label"
+              >Titre de l'aide <span class="fr-text--error">*</span></label
+            >
             <input
-              id="title"
-              v-model="title"
+              id="label"
+              v-model="label"
               class="fr-input"
               required
-              @input="clearError('title')"
+              @input="clearError('label')"
             />
           </div>
           <div
@@ -354,8 +458,9 @@ async function submit() {
             }"
           >
             <label class="fr-label" for="description"
-              >Description (max {{ descriptionMax }} caractères)<span
-                class="fr-hint-text"
+              >Description (max {{ descriptionMax }} caractères)
+              <span class="fr-text--error">*</span
+              ><span class="fr-hint-text"
                 >{{ descriptionCharsLeft }} restants</span
               ></label
             >
@@ -370,13 +475,47 @@ async function submit() {
             />
           </div>
           <div
+            class="fr-input-group"
+            :class="{
+              'fr-input-group--error': errorFields.includes('prefix'),
+            }"
+          >
+            <label class="fr-label" for="prefix"
+              >Article défini <span class="fr-text--error">*</span></label
+            >
+            <span class="fr-hint-text"
+              >L’ajout d’un article défini permet la formation de phrase
+              grammaticalement correcte. Par exemple, dans la phrase « Comment
+              obtenir l’aide exceptionnelle ? », on choisit le préfixe « l’
+              ».</span
+            >
+            <select
+              id="prefix"
+              v-model="prefix"
+              class="fr-select"
+              required
+              @change="clearError('prefix')"
+            >
+              <option value="">Sélectionner un article</option>
+              <option
+                v-for="option in prefixOptions"
+                :key="option"
+                :value="option"
+              >
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div
             class="fr-mt-4w"
             :class="{
               'fr-fieldset--error fr-pl-2w':
                 errorFields.includes('periodicite'),
             }"
           >
-            <p class="fr-h6 fr-mb-2w">Périodicité</p>
+            <p class="fr-h6 fr-mb-2w"
+              >Périodicité <span class="fr-text--error">*</span></p
+            >
             <div class="fr-grid-row fr-grid-row--gutters">
               <div
                 v-for="periodicite in periodiciteOptions"
@@ -398,60 +537,169 @@ async function submit() {
                 </div>
               </div>
             </div>
+          </div>
+          <div class="fr-grid-row fr-grid-row--gutters fr-mt-4w">
+            <div class="fr-col-12 fr-col-md-6">
+              <div class="fr-input-group">
+                <label class="fr-label" for="resultType"
+                  >Type du résultat</label
+                >
+                <select id="resultType" v-model="resultType" class="fr-select">
+                  <option
+                    v-for="option in resultTypeOptions"
+                    :key="option.value"
+                    :value="option.value"
+                  >
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-6">
+              <div class="fr-input-group">
+                <label class="fr-label" for="unit">Unité</label>
+                <span class="fr-hint-text"
+                  >Il s’agit de spécifier l’unité du montant</span
+                >
+                <select id="unit" v-model="unit" class="fr-select">
+                  <option
+                    v-for="option in unitOptions"
+                    :key="option"
+                    :value="option"
+                  >
+                    {{ option }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-6">
+              <div class="fr-input-group">
+                <label class="fr-label" for="montant"
+                  >Montant maximal de l'aide</label
+                >
+                <input
+                  id="montant"
+                  v-model="montant"
+                  type="number"
+                  step="any"
+                  class="fr-input"
+                  placeholder="Ex: 200"
+                />
+              </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-6">
+              <div class="fr-input-group">
+                <label class="fr-label" for="legend"
+                  >Légende associée au montant</label
+                >
+                <span class="fr-hint-text"
+                  >Par exemple, si vous écrivez "maximum" dans ce champ, et que
+                  vous avez indiqué "200 €" en montant, cela affichera "200 €
+                  maximum"</span
+                >
+                <input
+                  id="legend"
+                  v-model="legend"
+                  class="fr-input"
+                  placeholder="Ex: maximum, par mois, etc."
+                />
+              </div>
+            </div>
           </div> </div
         ><!-- fermeture .fr-fieldset__content -->
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Liens utiles</legend>
+        <legend class="fr-fieldset__legend fr-h4">
+          Liens utiles <span class="fr-text--error">*</span>
+        </legend>
+        <p class="fr-text--sm fr-mb-3w">
+          <strong>Au moins un lien doit être renseigné</strong> (information,
+          téléservice, formulaire ou instructions). Ces liens permettront aux
+          usagers de trouver plus d'informations ou de faire leur demande.
+        </p>
         <div class="fr-grid-row fr-grid-row--gutters">
           <div class="fr-col-12 fr-col-md-6">
-            <div class="fr-input-group">
-              <label class="fr-label" for="urlInfo">URL information</label>
-              <input
-                id="urlInfo"
-                v-model="urls.information"
-                class="fr-input"
-                type="url"
-                placeholder="https://..."
-              />
-            </div>
-          </div>
-          <div class="fr-col-12 fr-col-md-6">
-            <div class="fr-input-group">
-              <label class="fr-label" for="urlTele">URL téléservice</label>
-              <input
-                id="urlTele"
-                v-model="urls.teleservice"
-                class="fr-input"
-                type="url"
-                placeholder="URL du téléservice"
-              />
-            </div>
-          </div>
-          <div class="fr-col-12 fr-col-md-6">
-            <div class="fr-input-group">
-              <label class="fr-label" for="urlForm"
-                >URL formulaire à imprimer</label
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error': errorFields.includes('link'),
+              }"
+            >
+              <label class="fr-label" for="link"
+                >Lien vers la page d'informations de référence</label
+              >
+              <span class="fr-hint-text"
+                >Vers un site institutionnel de préférence (par exemple, pour
+                les aides nationales il s'agit souvent de
+                service-public.fr)</span
               >
               <input
-                id="urlForm"
-                v-model="urls.form"
+                id="link"
+                v-model="link"
                 class="fr-input"
                 type="url"
+                @input="clearLinkErrors"
               />
             </div>
           </div>
           <div class="fr-col-12 fr-col-md-6">
-            <div class="fr-input-group">
-              <label class="fr-label" for="urlGuide">
-                URL guide détaillé
-              </label>
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error': errorFields.includes('teleservice'),
+              }"
+            >
+              <label class="fr-label" for="teleservice"
+                >Lien vers un téléservice</label
+              >
+              <span class="fr-hint-text"
+                >Lorsqu'il y a la possibilité de faire la démarche en
+                ligne</span
+              >
               <input
-                id="urlGuide"
-                v-model="urls.guide"
+                id="teleservice"
+                v-model="teleservice"
                 class="fr-input"
                 type="url"
-                placeholder="URL du guide officiel"
+                @input="clearLinkErrors"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12 fr-col-md-6">
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error': errorFields.includes('form'),
+              }"
+            >
+              <label class="fr-label" for="form"
+                >Lien vers un formulaire à imprimer</label
+              >
+              <input
+                id="form"
+                v-model="form"
+                class="fr-input"
+                type="url"
+                @input="clearLinkErrors"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12 fr-col-md-6">
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error': errorFields.includes('instructions'),
+              }"
+            >
+              <label class="fr-label" for="instructions">
+                Lien vers des instructions à suivre
+              </label>
+              <input
+                id="instructions"
+                v-model="instructions"
+                class="fr-input"
+                type="url"
+                @input="clearLinkErrors"
               />
             </div>
           </div>
@@ -459,66 +707,170 @@ async function submit() {
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
         <legend class="fr-fieldset__legend fr-h4">
-          Critères d'éligibilité
+          Conditions non prises en compte par le simulateur
         </legend>
+        <p class="fr-text--sm fr-mb-3w">
+          Certains critères d’éligibilité ne peuvent pas être demandés (trop
+          précis) ni pris en compte (trop complexe) dans le cadre d’un
+          simulateur grand public. Cette liste permet d’informer les usagers sur
+          ces critères supplémentaires.
+        </p>
+        <div class="fr-input-group fr-mb-2w">
+          <label class="fr-label" for="newCondition"
+            >Ajouter une condition</label
+          >
+          <div style="display: flex; gap: 1rem">
+            <input
+              id="newCondition"
+              v-model="newCondition"
+              class="fr-input"
+              placeholder="Ex: Signer un contrat d'engagement réciproque (CER)"
+              @keyup.enter="addCondition"
+            />
+            <button
+              type="button"
+              class="fr-btn fr-btn--secondary"
+              @click="addCondition"
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+        <ul v-if="conditions.length > 0" class="fr-mb-2w">
+          <li
+            v-for="(condition, index) in conditions"
+            :key="index"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0.5rem;
+              background: var(--background-alt-grey);
+              margin-bottom: 0.5rem;
+              border-radius: 0.25rem;
+            "
+          >
+            <span>{{ condition }}</span>
+            <button
+              type="button"
+              class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+              @click="removeCondition(index)"
+            >
+              Supprimer
+            </button>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="fr-fieldset fr-mb-4w">
+        <legend class="fr-fieldset__legend fr-h4">
+          Conditions bénévoles à satisfaire
+        </legend>
+        <p class="fr-text--sm fr-mb-3w">
+          Un lien dynamique vers la plateforme jeveuxaider.gouv.fr s’ajoutera à
+          la suite de la dernière condition pour orienter l’utilisateur vers des
+          organismes de bénévolat à proximité.
+        </p>
+        <div class="fr-input-group fr-mb-2w">
+          <label class="fr-label" for="newVoluntaryCondition"
+            >Ajouter une condition bénévole</label
+          >
+          <div style="display: flex; gap: 1rem">
+            <input
+              id="newVoluntaryCondition"
+              v-model="newVoluntaryCondition"
+              class="fr-input"
+              placeholder="Ex: Réaliser 50 heures de bénévolat par an"
+              @keyup.enter="addVoluntaryCondition"
+            />
+            <button
+              type="button"
+              class="fr-btn fr-btn--secondary"
+              @click="addVoluntaryCondition"
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+        <ul v-if="voluntaryConditions.length > 0" class="fr-mb-2w">
+          <li
+            v-for="(condition, index) in voluntaryConditions"
+            :key="index"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0.5rem;
+              background: var(--background-alt-grey);
+              margin-bottom: 0.5rem;
+              border-radius: 0.25rem;
+            "
+          >
+            <span>{{ condition }}</span>
+            <button
+              type="button"
+              class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+              @click="removeVoluntaryCondition(index)"
+            >
+              Supprimer
+            </button>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="fr-fieldset fr-mb-4w">
+        <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
+        <p class="fr-text--xs fr-mb-1w">
+          Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s,
+          apprenti(e)s, en recherche d’emploi, etc.)
+        </p>
         <div class="fr-grid-row fr-grid-row--gutters">
           <div
-            v-for="(critereValue, critereKey) in criteres"
-            :key="critereKey"
-            class="fr-col-12 fr-col-md-6"
+            v-for="profilOption in profilOptions"
+            :key="profilOption.value"
+            class="fr-col-12 fr-col-sm-6 fr-col-md-4"
           >
-            <div class="fr-input-group">
-              <label class="fr-label" :for="'crit_' + critereKey">{{
-                critereKey
-              }}</label>
+            <div class="fr-checkbox-group">
               <input
-                :id="'crit_' + critereKey"
-                v-model="criteres[critereKey]"
-                class="fr-input"
-                :placeholder="criterePlaceholders[critereKey] || 'Préciser'"
+                :id="'profil_' + profilOption.value"
+                name="profils"
+                type="checkbox"
+                :checked="profils.includes(profilOption.value)"
+                @change="toggleProfil(profilOption.value)"
               />
+              <label class="fr-label" :for="'profil_' + profilOption.value">{{
+                profilOption.label
+              }}</label>
             </div>
           </div>
         </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
-        <p class="fr-text--xs fr-mb-1w">Cocher les profils éligibles.</p>
-        <div class="fr-grid-row fr-grid-row--gutters">
-          <div
-            v-for="profilKey in profilKeys"
-            :key="profilKey"
-            class="fr-col-12 fr-col-sm-6 fr-col-md-4"
+        <legend class="fr-fieldset__legend fr-h4">Intérêt particulier</legend>
+        <div class="fr-input-group">
+          <label class="fr-label" for="interestFlag"
+            >Faut-il limiter l’affichage de l’aide en fonction d’un intérêt
+            particulier ?</label
           >
-            <div class="fr-checkbox-group">
-              <input
-                :id="'profil_' + profilKey"
-                name="profils"
-                type="checkbox"
-                :checked="profils.includes(profilKey)"
-                @change="toggleProfil(profilKey)"
-              />
-              <label class="fr-label" :for="'profil_' + profilKey">{{
-                profilKey
-              }}</label>
-            </div>
-          </div>
+          <span class="fr-hint-text"
+            >En fin de parcours, des questions sont posées pour connaître
+            certains intérêts des usagers. Cela permet d’éviter d’afficher
+            certaines aides qui ne seraient pas pertinentes pour les
+            usagers.</span
+          >
+          <select
+            id="interestFlag"
+            v-model="selectedInterestFlag"
+            class="fr-select"
+          >
+            <option
+              v-for="option in interestFlagOptions"
+              :key="option.value"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
         </div>
       </fieldset>
-      <div class="fr-mb-4w">
-        <h2 class="fr-h4 fr-mb-2w">Autres conditions</h2>
-        <div class="fr-input-group">
-          <label class="fr-label" for="autresConditions">
-            Conditions particulières
-          </label>
-          <textarea
-            id="autresConditions"
-            v-model="autresConditions"
-            class="fr-input"
-            rows="5"
-          />
-        </div>
-      </div>
       <button class="fr-btn" :disabled="sending">Envoyer la proposition</button>
     </form>
   </div>

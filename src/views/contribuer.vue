@@ -859,7 +859,16 @@ async function submit() {
           </select>
         </div>
       </fieldset>
-      <button class="fr-btn" :disabled="sending">Envoyer la proposition</button>
+      <button class="fr-btn" :disabled="sending">
+        <span v-if="sending">
+          <span
+            class="fr-icon-refresh-line fr-icon--spin"
+            aria-hidden="true"
+          ></span>
+          Envoi en cours...
+        </span>
+        <span v-else>Envoyer la proposition</span>
+      </button>
     </form>
   </div>
 </template>

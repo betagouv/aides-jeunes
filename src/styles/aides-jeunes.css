@@ -662,27 +662,23 @@ textarea {
 }
 
 .aj-partners {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columns per line  */
-  gap: 1.5rem;
-  align-items: center;
-  justify-items: center;
-  max-width: 500px;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
-/* First line of partners section
- * 2 columns per logo => 3 logos on the first line
- */
-.aj-partners > *:nth-child(-n + 3) {
-  grid-column: span 2;
+.aj-partner-link {
+  flex: 0 0 auto;
+  min-width: 200px;
 }
 
-/* Next lines of partners section
- * 3 columns per logo => 2 logos per line
- */
-.aj-partners > *:nth-child(n + 4) {
-  grid-column: span 3;
+.aj-partner-link {
+  background-image: none;
+}
+
+.aj-partner-link::after {
+  display: none;
 }
 
 .aj-partner-logo {
@@ -696,22 +692,21 @@ textarea {
   opacity: 1;
 }
 
-.aj-partner-link {
-  background-image: none;
-}
-
-.aj-partner-link::after {
-  display: none;
-}
-
 @media (max-width: 767px) {
+  /* Consolidated partners styles for mobile */
   .aj-partners {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    justify-items: center;
   }
 
-  .aj-partners > *:nth-child(n) {
-    grid-column: span 1;
+  /* Specific fix to satisfy layout requests on mobile if needed, or keep standard grid */
+  .aj-partner-link {
+    min-width: auto; /* removing minimum width constraint on small screens */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .aj-partner-logo {

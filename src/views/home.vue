@@ -4,7 +4,6 @@ import FeaturesSection from "@/components/home/features-section.vue"
 import HowItWorksSection from "@/components/home/how-it-works-section.vue"
 import BenefitsShowcaseSection from "@/components/home/benefits-showcase-section.vue"
 import PartnersSection from "@/components/home/partners-section.vue"
-import ContributeBanner from "@/components/home/contribute-banner.vue"
 import FaqSection from "@/views/faq.vue"
 import { useIframeStore } from "@/stores/iframe.js"
 import { computed } from "vue"
@@ -18,7 +17,6 @@ const isIframe = computed(() => iframeStore.inIframe)
   <div data-testid="home-page">
     <HeroSection />
     <span v-if="!isIframe">
-      <ContributeBanner />
       <FeaturesSection />
       <HowItWorksSection />
       <BenefitsShowcaseSection />

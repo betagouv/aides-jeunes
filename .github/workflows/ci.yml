@@ -19,7 +19,7 @@ concurrency:
 jobs:
   health-check:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.repository == 'betagouv/aides-jeunes'
     steps:
       - name: Check Sentry Status
         id: sentry-check
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Cache Virtual Environment
         uses: actions/cache@v4
         id: python-dependencies
@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -110,7 +110,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Restore node modules
         uses: actions/cache@v4
         id: restore-dependencies
@@ -125,7 +125,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Restore node modules
         uses: actions/cache@v4
         id: restore-dependencies
@@ -169,7 +169,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -200,7 +200,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -231,7 +231,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -258,7 +258,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Restore node modules
         uses: actions/cache@v4
         id: restore-dependencies
@@ -287,7 +287,7 @@ jobs:
         test: [base, family, handicap, patrimoine, student]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -307,6 +307,12 @@ jobs:
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cache-cypress-${{ hashFiles('**/package-lock.json') }}
+      - name: Cypress install
+        if: steps.restore-cypress.outputs.cache-hit != 'true'
+        run: |
+          node_modules/.bin/cypress install
+          node_modules/.bin/cypress cache list
+          node_modules/.bin/cypress verify
       - name: Cache Virtual Environment
         uses: actions/cache@v4
         id: python-dependencies
@@ -331,13 +337,6 @@ jobs:
           source .venv/bin/activate
           nohup gunicorn api --chdir openfisca/ --config openfisca/config.py --preload --log-level debug --log-file=- &
           deactivate
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        if: steps.restore-cypress.outputs.cache-hit != 'true'
-        with:
-          browser: chrome
-          config-file: cypress.config.ts
-          runTests: false
       - name: Copy cypress env file
         run: cp .env.e2e .env
       - name: Cypress run
@@ -371,7 +370,7 @@ jobs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - id: stop-early
@@ -390,7 +389,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -436,7 +435,7 @@ jobs:
       status: ${{ steps.has-changes.outputs.status }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Restore node modules
@@ -453,12 +452,12 @@ jobs:
   check_benefit_link_improvements:
     name: Check benefit link improvements and update link table if necessary
     needs: [test_benefit_file_changes]
-    if: needs.test_benefit_file_changes.outputs.status == 'success' && github.event.pull_request.head.repo.full_name == github.repository
+    if: needs.test_benefit_file_changes.outputs.status == 'success' && github.event.pull_request.head.repo.full_name == github.repository && github.repository == 'betagouv/aides-jeunes'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

@@ -30,7 +30,7 @@ const {
   smsService,
 } = config
 
-function createSentryPlugin({authToken, url, org}, project) {
+function createSentryPlugin({ authToken, url, org }, project) {
   if (!authToken || !project) {
     return null
   }
@@ -131,10 +131,7 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
-      createSentryPlugin(
-        sentry,
-        viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT,
-      ),
+      createSentryPlugin(sentry, viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT),
       sitemapGenerator(),
     ],
     resolve: {

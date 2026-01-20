@@ -17,7 +17,12 @@ const label = ref("")
 const description = ref("")
 const descriptionMax = 420
 const prefix = ref("")
-const periodiciteOptions = ["ponctuelle", "annuelle", "mensuelle", "autre"]
+const periodiciteOptions = [
+  { value: "ponctuelle", label: "Ponctuelle" },
+  { value: "annuelle", label: "Annuelle" },
+  { value: "mensuelle", label: "Mensuelle" },
+  { value: "autre", label: "Autre" },
+]
 const selectedPeriodicite = ref("")
 const montant = ref<number | undefined>(undefined)
 const legend = ref("")
@@ -224,7 +229,8 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
   if (!selectedPeriodicite.value) {
     e.push("Une périodicité doit être sélectionnée")
     ef.push("periodicite")
-    if (!firstErrorField) firstErrorField = "period_" + periodiciteOptions[0]
+    if (!firstErrorField)
+      firstErrorField = "period_" + periodiciteOptions[0].value
   }
 
   // Au moins un lien doit être renseigné
@@ -495,36 +501,29 @@ async function submit() {
             </select>
           </div>
           <div
-            class="fr-mt-4w"
+            class="fr-input-group"
             :class="{
-              'fr-fieldset--error fr-pl-2w':
-                errorFields.includes('periodicite'),
+              'fr-input-group--error': errorFields.includes('periodicite'),
             }"
           >
-            <p class="fr-h6 fr-mb-2w"
-              >Périodicité <span class="fr-text--error">*</span></p
+            <label class="fr-label" for="periodicite"
+              >Périodicité <span class="fr-text--error">*</span></label
             >
-            <div class="fr-grid-row fr-grid-row--gutters">
-              <div
+            <select
+              id="periodicite"
+              v-model="selectedPeriodicite"
+              class="fr-select"
+              @change="onPeriodiciteChange"
+            >
+              <option value="" disabled>Sélectionnez une périodicité</option>
+              <option
                 v-for="periodicite in periodiciteOptions"
-                :key="periodicite"
-                class="fr-col-12 fr-col-md-6"
+                :key="periodicite.value"
+                :value="periodicite.value"
               >
-                <div class="fr-radio-group">
-                  <input
-                    :id="'period_' + periodicite"
-                    v-model="selectedPeriodicite"
-                    name="periodicite"
-                    type="radio"
-                    :value="periodicite"
-                    @change="onPeriodiciteChange"
-                  />
-                  <label :for="'period_' + periodicite" class="fr-label">
-                    {{ periodicite }}
-                  </label>
-                </div>
-              </div>
-            </div>
+                {{ periodicite.label }}
+              </option>
+            </select>
           </div>
           <div class="fr-grid-row fr-grid-row--gutters fr-mt-4w">
             <div class="fr-col-12 fr-col-md-6">

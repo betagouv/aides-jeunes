@@ -698,51 +698,46 @@ async function submit() {
           simulateur grand public. Cette liste permet d’informer les usagers sur
           ces critères supplémentaires.
         </p>
-        <div class="fr-input-group fr-mb-2w">
-          <label class="fr-label" for="newCondition"
-            >Ajouter une condition</label
-          >
-          <div style="display: flex; gap: 1rem">
-            <input
-              id="newCondition"
-              v-model="newCondition"
-              class="fr-input"
-              placeholder="Ex: Signer un contrat d'engagement réciproque (CER)"
-              @keyup.enter="addCondition"
-            />
-            <button
-              type="button"
-              class="fr-btn fr-btn--secondary"
-              @click="addCondition"
-            >
-              Ajouter
-            </button>
+        <div class="fr-container fr-px-0">
+          <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+            <div class="fr-input-group fr-col-md-10">
+              <input
+                id="newCondition"
+                v-model="newCondition"
+                class="fr-input"
+                placeholder="Ex: Signer un contrat d'engagement réciproque (CER)"
+                @keyup.enter="addCondition"
+              />
+            </div>
+            <div class="fr-col-md-2">
+              <button
+                type="button"
+                class="fr-btn fr-btn--secondary"
+                @click="addCondition"
+              >
+                Ajouter
+              </button>
+            </div>
           </div>
         </div>
-        <ul v-if="conditions.length > 0" class="fr-mb-2w">
-          <li
-            v-for="(condition, index) in conditions"
-            :key="index"
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 0.5rem;
-              background: var(--background-alt-grey);
-              margin-bottom: 0.5rem;
-              border-radius: 0.25rem;
-            "
-          >
-            <span>{{ condition }}</span>
-            <button
-              type="button"
-              class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
-              @click="removeCondition(index)"
+        <div class="fr-col-12">
+          <ul v-if="conditions.length > 0" class="fr-mb-2w fr-p-0">
+            <li
+              v-for="(condition, index) in conditions"
+              :key="index"
+              class="aj-contribuer-condition-item"
             >
-              Supprimer
-            </button>
-          </li>
-        </ul>
+              <span>{{ condition }}</span>
+              <button
+                type="button"
+                class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+                @click="removeCondition(index)"
+              >
+                Supprimer
+              </button>
+            </li>
+          </ul>
+        </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
         <legend class="fr-fieldset__legend fr-h4">
@@ -753,51 +748,46 @@ async function submit() {
           la suite de la dernière condition pour orienter l’utilisateur vers des
           organismes de bénévolat à proximité.
         </p>
-        <div class="fr-input-group fr-mb-2w">
-          <label class="fr-label" for="newVoluntaryCondition"
-            >Ajouter une condition bénévole</label
-          >
-          <div style="display: flex; gap: 1rem">
-            <input
-              id="newVoluntaryCondition"
-              v-model="newVoluntaryCondition"
-              class="fr-input"
-              placeholder="Ex: Réaliser 50 heures de bénévolat par an"
-              @keyup.enter="addVoluntaryCondition"
-            />
-            <button
-              type="button"
-              class="fr-btn fr-btn--secondary"
-              @click="addVoluntaryCondition"
-            >
-              Ajouter
-            </button>
+        <div class="fr-container fr-px-0">
+          <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+            <div class="fr-input-group fr-col-md-10">
+              <input
+                id="newVoluntaryCondition"
+                v-model="newVoluntaryCondition"
+                class="fr-input"
+                placeholder="Ex: Réaliser 50 heures de bénévolat par an"
+                @keyup.enter="addVoluntaryCondition"
+              />
+            </div>
+            <div class="fr-col-md-2">
+              <button
+                type="button"
+                class="fr-btn fr-btn--secondary"
+                @click="addVoluntaryCondition"
+              >
+                Ajouter
+              </button>
+            </div>
           </div>
         </div>
-        <ul v-if="voluntaryConditions.length > 0" class="fr-mb-2w">
-          <li
-            v-for="(condition, index) in voluntaryConditions"
-            :key="index"
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 0.5rem;
-              background: var(--background-alt-grey);
-              margin-bottom: 0.5rem;
-              border-radius: 0.25rem;
-            "
-          >
-            <span>{{ condition }}</span>
-            <button
-              type="button"
-              class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
-              @click="removeVoluntaryCondition(index)"
+        <div class="fr-col-12">
+          <ul v-if="voluntaryConditions.length > 0" class="fr-p-0 fr-mb-2w">
+            <li
+              v-for="(condition, index) in voluntaryConditions"
+              :key="index"
+              class="aj-contribuer-condition-item"
             >
-              Supprimer
-            </button>
-          </li>
-        </ul>
+              <span>{{ condition }}</span>
+              <button
+                type="button"
+                class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline"
+                @click="removeVoluntaryCondition(index)"
+              >
+                Supprimer
+              </button>
+            </li>
+          </ul>
+        </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
         <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
@@ -891,5 +881,20 @@ async function submit() {
 
 .institution-dropdown li:hover {
   background: var(--background-alt-grey);
+}
+
+.condition-list {
+  list-style: none;
+  padding: 0;
+}
+
+.condition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--background-alt-grey);
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
 }
 </style>

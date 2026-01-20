@@ -5,6 +5,7 @@ import configMongoose from "../backend/config/mongoose.js"
 import config from "../backend/config/index.js"
 import { EmailType } from "../lib/enums/messaging.js"
 import express from "express"
+import { rateLimit } from "express-rate-limit"
 import Followups from "../backend/models/followup.js"
 // To load the simulation model in mongoose
 import "../backend/models/simulation.js"
@@ -31,8 +32,17 @@ app.engine(".html", __express)
 app.set("views", new URL(".", import.meta.url).pathname + "/views")
 app.set("view engine", "html")
 
-app.route("/").get(function (req, res) {
-  const followups = Followups.find().sort({ createdAt: -1 }).limit(10).exec()
+// Rate limiting for database-heavy requests
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+})
+
+app.route("/").get(limiter, async function (req, res) {
+  const followups = await Followups.find()
+    .sort({ createdAt: -1 })
+    .limit(10)
+    .exec()
   res.render("index", {
     followups,
     typeKeys,

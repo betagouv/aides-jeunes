@@ -525,75 +525,69 @@ async function submit() {
               </option>
             </select>
           </div>
-          <div class="fr-grid-row fr-grid-row--gutters fr-mt-4w">
-            <div class="fr-col-12 fr-col-md-6">
-              <div class="fr-input-group">
-                <label class="fr-label" for="resultType"
-                  >Type du résultat</label
-                >
-                <select id="resultType" v-model="resultType" class="fr-select">
-                  <option
-                    v-for="option in resultTypeOptions"
-                    :key="option.value"
-                    :value="option.value"
-                  >
-                    {{ option.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="fr-col-12 fr-col-md-6">
-              <div class="fr-input-group">
-                <label class="fr-label" for="unit">Unité</label>
-                <span class="fr-hint-text"
-                  >Il s’agit de spécifier l’unité du montant</span
-                >
-                <select id="unit" v-model="unit" class="fr-select">
-                  <option
-                    v-for="option in unitOptions"
-                    :key="option"
-                    :value="option"
-                  >
-                    {{ option }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="fr-col-12 fr-col-md-6">
-              <div class="fr-input-group">
-                <label class="fr-label" for="montant"
-                  >Montant maximal de l'aide</label
-                >
-                <input
-                  id="montant"
-                  v-model="montant"
-                  type="number"
-                  step="any"
-                  class="fr-input"
-                  placeholder="Ex: 200"
-                />
-              </div>
-            </div>
-            <div class="fr-col-12 fr-col-md-6">
-              <div class="fr-input-group">
-                <label class="fr-label" for="legend"
-                  >Légende associée au montant</label
-                >
-                <span class="fr-hint-text"
-                  >Par exemple, si vous écrivez "maximum" dans ce champ, et que
-                  vous avez indiqué "200 €" en montant, cela affichera "200 €
-                  maximum"</span
-                >
-                <input
-                  id="legend"
-                  v-model="legend"
-                  class="fr-input"
-                  placeholder="Ex: maximum, par mois, etc."
-                />
-              </div>
-            </div>
-          </div> </div
-        ><!-- fermeture .fr-fieldset__content -->
+        </div>
+      </fieldset>
+      <fieldset class="fr-fieldset fr-mb-4w">
+        <legend class="fr-fieldset__legend fr-h4">Montant</legend>
+        <div class="fr-fieldset__content">
+          <div class="fr-input-group">
+            <label class="fr-label" for="resultType">Type du résultat</label>
+            <select id="resultType" v-model="resultType" class="fr-select">
+              <option
+                v-for="option in resultTypeOptions"
+                :key="option.value"
+                :value="option.value"
+              >
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+          <div v-if="resultType !== 'bool'" class="fr-input-group">
+            <label class="fr-label" for="unit">Unité</label>
+            <span class="fr-hint-text">
+              Il s'agit de spécifier l'unité du montant
+            </span>
+            <select id="unit" v-model="unit" class="fr-select">
+              <option
+                v-for="option in unitOptions"
+                :key="option"
+                :value="option"
+              >
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div v-if="resultType !== 'bool'" class="fr-input-group">
+            <label class="fr-label" for="montant"
+              >Montant maximal de l'aide</label
+            >
+            <span class="fr-hint-text">S'il s'agit d'une valeur numérique</span>
+            <input
+              id="montant"
+              v-model="montant"
+              type="number"
+              step="any"
+              class="fr-input"
+              placeholder="Ex: 200"
+            />
+          </div>
+          <div v-if="resultType !== 'bool'" class="fr-input-group">
+            <label class="fr-label" for="legend"
+              >Légende associée au montant</label
+            >
+            <span class="fr-hint-text"
+              >Par exemple, si vous écrivez "maximum" dans ce champ, et que vous
+              avez indiqué "200 €" en montant, cela affichera "200 €
+              maximum"</span
+            >
+            <input
+              id="legend"
+              v-model="legend"
+              class="fr-input"
+              placeholder="Ex: maximum, par mois, etc."
+            />
+          </div>
+        </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
         <legend class="fr-fieldset__legend fr-h4">
@@ -604,90 +598,92 @@ async function submit() {
           téléservice, formulaire ou instructions). Ces liens permettront aux
           usagers de trouver plus d'informations ou de faire leur demande.
         </p>
-        <div class="fr-grid-row fr-grid-row--gutters">
-          <div class="fr-col-12 fr-col-md-6">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error': errorFields.includes('link'),
-              }"
-            >
-              <label class="fr-label" for="link"
-                >Lien vers la page d'informations de référence</label
+        <div class="fr-fieldset__content">
+          <div class="fr-grid-row fr-grid-row--gutters">
+            <div class="fr-col-12 fr-col-md-6">
+              <div
+                class="fr-input-group"
+                :class="{
+                  'fr-input-group--error': errorFields.includes('link'),
+                }"
               >
-              <span class="fr-hint-text"
-                >Vers un site institutionnel de préférence (par exemple, pour
-                les aides nationales il s'agit souvent de
-                service-public.fr)</span
-              >
-              <input
-                id="link"
-                v-model="link"
-                class="fr-input"
-                type="url"
-                @input="clearLinkErrors"
-              />
+                <label class="fr-label" for="link"
+                  >Lien vers la page d'informations de référence</label
+                >
+                <span class="fr-hint-text"
+                  >Vers un site institutionnel de préférence (par exemple, pour
+                  les aides nationales il s'agit souvent de
+                  service-public.fr)</span
+                >
+                <input
+                  id="link"
+                  v-model="link"
+                  class="fr-input"
+                  type="url"
+                  @input="clearLinkErrors"
+                />
+              </div>
             </div>
-          </div>
-          <div class="fr-col-12 fr-col-md-6">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error': errorFields.includes('teleservice'),
-              }"
-            >
-              <label class="fr-label" for="teleservice"
-                >Lien vers un téléservice</label
+            <div class="fr-col-12 fr-col-md-6">
+              <div
+                class="fr-input-group"
+                :class="{
+                  'fr-input-group--error': errorFields.includes('teleservice'),
+                }"
               >
-              <span class="fr-hint-text"
-                >Lorsqu'il y a la possibilité de faire la démarche en
-                ligne</span
-              >
-              <input
-                id="teleservice"
-                v-model="teleservice"
-                class="fr-input"
-                type="url"
-                @input="clearLinkErrors"
-              />
+                <label class="fr-label" for="teleservice"
+                  >Lien vers un téléservice</label
+                >
+                <span class="fr-hint-text"
+                  >Lorsqu'il y a la possibilité de faire la démarche en
+                  ligne</span
+                >
+                <input
+                  id="teleservice"
+                  v-model="teleservice"
+                  class="fr-input"
+                  type="url"
+                  @input="clearLinkErrors"
+                />
+              </div>
             </div>
-          </div>
-          <div class="fr-col-12 fr-col-md-6">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error': errorFields.includes('form'),
-              }"
-            >
-              <label class="fr-label" for="form"
-                >Lien vers un formulaire à imprimer</label
+            <div class="fr-col-12 fr-col-md-6">
+              <div
+                class="fr-input-group"
+                :class="{
+                  'fr-input-group--error': errorFields.includes('form'),
+                }"
               >
-              <input
-                id="form"
-                v-model="form"
-                class="fr-input"
-                type="url"
-                @input="clearLinkErrors"
-              />
+                <label class="fr-label" for="form"
+                  >Lien vers un formulaire à imprimer</label
+                >
+                <input
+                  id="form"
+                  v-model="form"
+                  class="fr-input"
+                  type="url"
+                  @input="clearLinkErrors"
+                />
+              </div>
             </div>
-          </div>
-          <div class="fr-col-12 fr-col-md-6">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error': errorFields.includes('instructions'),
-              }"
-            >
-              <label class="fr-label" for="instructions">
-                Lien vers des instructions à suivre
-              </label>
-              <input
-                id="instructions"
-                v-model="instructions"
-                class="fr-input"
-                type="url"
-                @input="clearLinkErrors"
-              />
+            <div class="fr-col-12 fr-col-md-6">
+              <div
+                class="fr-input-group"
+                :class="{
+                  'fr-input-group--error': errorFields.includes('instructions'),
+                }"
+              >
+                <label class="fr-label" for="instructions">
+                  Lien vers des instructions à suivre
+                </label>
+                <input
+                  id="instructions"
+                  v-model="instructions"
+                  class="fr-input"
+                  type="url"
+                  @input="clearLinkErrors"
+                />
+              </div>
             </div>
           </div>
         </div>

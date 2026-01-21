@@ -30,6 +30,7 @@ export function normalize(lieu) {
   return normalizedLieu
 }
 
+// OSM = OpenStreetMap - Format standard pour les horaires d'ouverture
 const osmDayMapping: Record<string, string> = {
   Mo: "lundi",
   Tu: "mardi",
@@ -47,8 +48,10 @@ function parseOsmHours(osmHours: string | null) {
   const parts = osmHours.split(";").map((p) => p.trim())
 
   for (const part of parts) {
+    // PH off = Public Holidays off (fermé les jours fériés)
     if (part === "PH off") continue
 
+    // Exemple attendu : "Mo-Fr 08:30-12:30" ou "Mo 08:30-12:30"
     const match = part.match(/^([a-zA-Z]{2})(?:-([a-zA-Z]{2}))?\s+(.+)$/)
     if (match) {
       const [, start, end, timesStr] = match
@@ -84,7 +87,7 @@ export function normalizeDataInclusion(structure: any) {
     source: "boussoleaidants",
   }
 
-  const horaires = parseOsmHours("structure.horaires_accueil")
+  const horaires = parseOsmHours(structure.horaires_accueil)
   if (horaires) {
     lieu.horaires = horaires
   }

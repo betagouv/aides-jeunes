@@ -30,14 +30,52 @@ export function normalize(lieu) {
   return normalizedLieu
 }
 
+const osmDayMapping: Record<string, string> = {
+  Mo: "lundi",
+  Tu: "mardi",
+  We: "mercredi",
+  Th: "jeudi",
+  Fr: "vendredi",
+  Sa: "samedi",
+  Su: "dimanche",
+}
+
+function parseOsmHours(osmHours: string | null) {
+  if (!osmHours) return undefined
+
+  const result: any[] = []
+  const parts = osmHours.split(";").map((p) => p.trim())
+
+  for (const part of parts) {
+    if (part === "PH off") continue
+
+    const match = part.match(/^([a-zA-Z]{2})(?:-([a-zA-Z]{2}))?\s+(.+)$/)
+    if (match) {
+      const [, start, end, timesStr] = match
+      const du = osmDayMapping[start]
+      const au = end ? osmDayMapping[end] : du
+
+      if (du && au) {
+        const heures = timesStr.split(",").map((t) => {
+          const [de, a] = t.trim().split("-")
+          return { de, a }
+        })
+
+        result.push({ du, au, heures })
+      }
+    }
+  }
+
+  return result.length ? result : undefined
+}
+
 export function normalizeDataInclusion(structure: any) {
-  return {
+  const lieu: any = {
     id: structure.id,
     nom: structure.nom,
     telephone: structure.telephone,
     url: structure.site_web,
     pivotLocal: "ccas",
-    horaires: [],
     adresse: {
       codePostal: structure.code_postal,
       commune: structure.commune,
@@ -45,6 +83,13 @@ export function normalizeDataInclusion(structure: any) {
     },
     source: "boussoleaidants",
   }
+
+  const horaires = parseOsmHours("structure.horaires_accueil")
+  if (horaires) {
+    lieu.horaires = horaires
+  }
+
+  return lieu
 }
 
 export function getBenefitLieuxTypes(benefit: any): string[] {

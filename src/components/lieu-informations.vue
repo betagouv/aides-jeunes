@@ -70,7 +70,7 @@ const extractHHMM = (dateString: string) => {
         <div
           v-for="plage_jour in lieu.horaires"
           :key="plage_jour.du"
-          class="fr-col-6 fr-col-lg-4"
+          class="fr-col-12 fr-col-md-6 fr-col-lg-4"
         >
           <div v-if="plage_jour.du === plage_jour.au" class="fr-text--bold">
             Les {{ plage_jour.du }}s

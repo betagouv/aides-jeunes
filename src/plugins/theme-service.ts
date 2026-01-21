@@ -28,14 +28,16 @@ const options = [
   },
 ]
 
+const defaultTheme = options[0]
+
 export default {
   install: (app) => {
     const styleElement = document.createElement("style")
-    styleElement.textContent = DefaultDsfr
+    styleElement.textContent = defaultTheme.value
     document.head.appendChild(styleElement)
 
     app.config.globalProperties.$theme = {
-      current: Theme.Default,
+      current: defaultTheme.label,
       options,
       update(newThemeLabel) {
         const match = options.find((option) => option.label === newThemeLabel)

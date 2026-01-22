@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, nextTick } from "vue"
 import type { Ref } from "vue"
 import axios from "axios"
+import { EventAction, EventCategory } from "@lib/enums/event"
 
 const sending = ref(false)
 const sent = ref(false)
@@ -9,6 +10,22 @@ const errors = ref<string[]>([])
 const generalError = ref("")
 const errorFields = ref<string[]>([])
 const showInstitutionDropdown = ref(false)
+
+const contactEmail = process.env.VITE_CONTACT_EMAIL
+
+const mailContent = {
+  subject: "Question - demande d'ajout d'une nouvelle aide",
+  body: `Bonjour,
+
+J'ai besoin d'aide pour proposer une nouvelle aide sur le simulateur.
+
+[Décrivez ici votre question ou le problème rencontré]`,
+}
+
+const mailAnalytics = {
+  action: EventAction.ContactContribuer,
+  category: EventCategory.Contact,
+}
 
 const contributorName = ref("")
 const institutionName = ref("")
@@ -340,12 +357,23 @@ async function submit() {
 <template>
   <div class="fr-container fr-my-4w">
     <h1>Proposer une nouvelle aide</h1>
-    <p class="fr-text--sm fr-mb-3w">
+    <p class="fr-text--md fr-mb-3w">
       Remplissez ce formulaire pour proposer une nouvelle aide à ajouter sur le
       simulateur. Les champs marqués d'une étoile
       <span class="fr-text--error">(*)</span> sont obligatoires. Un membre de
       l'équipe relira votre proposition avant publication.
     </p>
+    <div class="fr-callout fr-callout--info">
+      <h6 class="fr-callout__title">Une question ?</h6>
+      <p class="fr-callout__text">
+        Si vous rencontrez des difficultés pour remplir ce formulaire ou si vous
+        avez des questions, n'hésitez pas à contacter notre équipe par email :
+        <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">{{
+          contactEmail
+        }}</a>
+      </p>
+    </div>
+    <hr class="fr-my-4w" />
     <div v-if="sent" class="fr-alert fr-alert--success fr-mb-4w">
       <p>
         Merci, votre proposition a bien été envoyée ! Elle sera relue par notre

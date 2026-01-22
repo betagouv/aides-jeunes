@@ -28,6 +28,7 @@ const mailAnalytics = {
 }
 
 const contributorName = ref("")
+const contributorEmail = ref("")
 const institutionName = ref("")
 const institutionSlug = ref("")
 const label = ref("")
@@ -213,6 +214,17 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
     ef.push("contributorName")
     if (!firstErrorField) firstErrorField = "contributorName"
   }
+  if (!contributorEmail.value.trim()) {
+    e.push("L'email du contributeur est requis")
+    ef.push("contributorEmail")
+    if (!firstErrorField) firstErrorField = "contributorEmail"
+  } else if (
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contributorEmail.value.trim())
+  ) {
+    e.push("L'email du contributeur n'est pas valide")
+    ef.push("contributorEmail")
+    if (!firstErrorField) firstErrorField = "contributorEmail"
+  }
   if (!institutionName.value.trim()) {
     e.push("Le nom de l'institution est requis")
     ef.push("institutionName")
@@ -297,6 +309,7 @@ async function submit() {
     // Adapter le payload au format attendu par le backend actuel
     const payload: any = {
       contributorName: contributorName.value.trim(),
+      contributorEmail: contributorEmail.value.trim(),
       institutionName: institutionName.value.trim(),
       title: label.value.trim(), // Le backend attend 'title' pas 'label'
       description: description.value.trim(),
@@ -411,8 +424,7 @@ async function submit() {
               }"
             >
               <label class="fr-label" for="contributorName"
-                >Votre nom (affiché publiquement)
-                <span class="fr-text--error">*</span></label
+                >Votre nom <span class="fr-text--error">*</span></label
               >
               <input
                 id="contributorName"
@@ -429,6 +441,28 @@ async function submit() {
               class="fr-input-group"
               :class="{
                 'fr-input-group--error':
+                  errorFields.includes('contributorEmail'),
+              }"
+            >
+              <label class="fr-label" for="contributorEmail"
+                >Votre email <span class="fr-text--error">*</span></label
+              >
+              <input
+                id="contributorEmail"
+                v-model="contributorEmail"
+                class="fr-input"
+                type="email"
+                placeholder="nom@exemple.fr"
+                required
+                @input="clearError('contributorEmail')"
+              />
+            </div>
+          </div>
+          <div class="fr-col-12">
+            <div
+              class="fr-input-group"
+              :class="{
+                'fr-input-group--error':
                   errorFields.includes('institutionName'),
               }"
               style="position: relative"
@@ -436,6 +470,10 @@ async function submit() {
               <label class="fr-label" for="institutionName"
                 >Nom de l'institution porteuse
                 <span class="fr-text--error">*</span></label
+              >
+              <span class="fr-hint-text"
+                >Si votre institution n'apparaît pas dans la liste, vous pouvez
+                l'ajouter ici.</span
               >
               <input
                 id="institutionName"

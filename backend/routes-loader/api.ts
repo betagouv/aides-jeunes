@@ -13,6 +13,7 @@ import supportRoutes from "../routes/support.js"
 import teleservicesRoutes from "../routes/teleservices.js"
 import webhookRoutes from "../routes/webhook.js"
 import moncompteproRoutes from "../routes/moncomptepro.js"
+import lieuxRoutes from "../routes/lieux.js"
 
 const api = express()
 
@@ -29,6 +30,7 @@ simulationRoutes(api)
 supportRoutes(api)
 teleservicesRoutes(api)
 webhookRoutes(api)
+lieuxRoutes(api)
 
 api.all("*", function (req, res) {
   res.sendStatus(404)

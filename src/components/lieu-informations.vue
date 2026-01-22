@@ -70,7 +70,7 @@ const extractHHMM = (dateString: string) => {
         <div
           v-for="plage_jour in lieu.horaires"
           :key="plage_jour.du"
-          class="fr-col-6 fr-col-lg-4"
+          class="fr-col-12 fr-col-md-6 fr-col-lg-4"
         >
           <div v-if="plage_jour.du === plage_jour.au" class="fr-text--bold">
             Les {{ plage_jour.du }}s
@@ -88,6 +88,20 @@ const extractHHMM = (dateString: string) => {
       </div>
     </div>
   </div>
+
+  <div v-if="lieu.source === 'boussoleaidants'" class="fr-mb-3w">
+    <div class="fr-callout fr-callout--info fr-p-2w">
+      <div class="fr-grid-row fr-grid-row--middle">
+        <div class="fr-col">
+          Donnée fournie par
+          <a href="https://maboussoleaidants.fr/" target="_blank" rel="noopener"
+            >Ma boussole Aidants</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="fr-container">
     <ul
       v-if="hasContact"

@@ -11,7 +11,7 @@ env:
   OPENFISCA_BIND_HOST: 127.0.0.1:2000
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
-  PYTHON_VERSION: 3.11.4
+  PYTHON_VERSION: 3.12
   EQUINOXE_SSH_HOST: equinoxe.mes-aides.1jeune1solution.beta.gouv.fr
   EQUINOXE_SSH_USER: debian
   ECLIPSE_SSH_HOST: monitor.eclipse.mes-aides.incubateur.net

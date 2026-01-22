@@ -357,11 +357,18 @@ async function submit() {
 <template>
   <div class="fr-container fr-my-4w">
     <h1>Proposer une nouvelle aide</h1>
+    <p class="fr-text--md">
+      Vous faites partie d'une <b>collectivité territoriale</b> (mairie,
+      département, région, EPCI) ou d'un
+      <b>établissement public local</b> (CCAS, Mission Locale, etc.) :
+      enrichissez le simulateur en ajoutant vos aides à destination des jeunes
+      de 15 à 30 ans.
+    </p>
     <p class="fr-text--md fr-mb-3w">
-      Remplissez ce formulaire pour proposer une nouvelle aide à ajouter sur le
-      simulateur. Les champs marqués d'une étoile
-      <span class="fr-text--error">(*)</span> sont obligatoires. Un membre de
-      l'équipe relira votre proposition avant publication.
+      Remplissez ce formulaire pour proposer une nouvelle aide. Les champs
+      marqués d'une étoile <span class="fr-text--error">(*)</span> sont requis.
+      Votre proposition sera relue par notre équipe avant d'être publiée sur le
+      simulateur. Merci pour votre contribution !
     </p>
     <div class="fr-callout fr-callout--info">
       <h6 class="fr-callout__title">Une question ?</h6>

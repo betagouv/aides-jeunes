@@ -473,7 +473,9 @@ async function submit() {
               >
               <span class="fr-hint-text"
                 >Si votre institution n'apparaît pas dans la liste, vous pouvez
-                l'ajouter ici.</span
+                <router-link to="/contribuer/institution"
+                  ><b>l'ajouter en cliquant ici</b></router-link
+                >.</span
               >
               <input
                 id="institutionName"

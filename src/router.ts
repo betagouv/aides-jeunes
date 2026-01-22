@@ -24,6 +24,14 @@ const router = createRouter({
       },
     },
     {
+      path: "/contribuer/institution",
+      name: "contribuer-institution",
+      component: () => import("./views/contribuer-institution.vue"),
+      meta: {
+        headTitle: `Ajouter une institution sur ${context.name}`,
+      },
+    },
+    {
       path: "/callback",
       name: "callback",
       component: () => import("./views/france-connect-callback.vue"),

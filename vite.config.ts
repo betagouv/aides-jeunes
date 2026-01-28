@@ -30,15 +30,15 @@ const {
   smsService,
 } = config
 
-function createSentryPlugin(authToken, project) {
+function createSentryPlugin({ authToken, url, org }, project) {
   if (!authToken || !project) {
     return null
   }
   return sentryVitePlugin({
-    org: "betagouv",
+    org: org || "betagouv",
     project,
     authToken,
-    url: "https://sentry.incubateur.net/",
+    url: url || "https://sentry.incubateur.net/",
     sourcemaps: {
       assets: `./dist/assets/${buildId}/js/*.{js,map}`,
     },
@@ -131,10 +131,7 @@ export default defineConfig(async ({ mode }) => {
         targets: ["defaults"],
       }),
       visualizer(),
-      createSentryPlugin(
-        sentry.authToken,
-        viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT,
-      ),
+      createSentryPlugin(sentry, viteEnvironment.VITE_SENTRY_FRONTEND_PROJECT),
       sitemapGenerator(),
     ],
     resolve: {

@@ -7,6 +7,7 @@ import revenu from "../utils/revenu.js"
 import projet from "../utils/projet.js"
 import results from "../utils/results.js"
 import "cypress-axe"
+import "../utils/accessibility.js"
 import comeBackLater from "../utils/come-back-later.js"
 
 context("Full simulation", () => {

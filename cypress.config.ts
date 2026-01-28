@@ -7,6 +7,18 @@ export default defineConfig({
     supportFile: false,
     setupNodeEvents(on) {
       setupSMTPProxy(on)
+      on("task", {
+        log(message) {
+          console.log(message)
+
+          return null
+        },
+        table(message) {
+          console.table(message)
+
+          return null
+        },
+      })
     },
   },
 })

@@ -31,6 +31,7 @@ export enum EventAction {
   CopyTemporarySimulationRecapUrlToClipboard = "copy-temporary-simulation-recap-url-to-clipboard",
   CodePostalIntrouvable = "Depcom introuvable",
   Contact = "Contact",
+  ContactContribuer = "Contact contribuer",
   Email = "email",
   ErreurInitStore = "Error",
   ErreurSauvegardeSimulation = "Erreur sauvegarde simulation",

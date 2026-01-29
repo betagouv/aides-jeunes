@@ -19,8 +19,6 @@ conditions:
     “Invalidité”.
   - Contacter le CCAS au 02 99 71 22 97 pour effectuer une réservation.
 type: bool
-unit: "%"
 periodicite: autre
-montant: ""
 link: https://www.redon.fr/transport-plus/
 instructions: https://www.redon.fr/transport-plus/

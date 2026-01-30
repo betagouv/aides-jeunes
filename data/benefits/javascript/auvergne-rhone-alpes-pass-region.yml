@@ -22,8 +22,8 @@ profils:
   - type: inactif
     conditions: []
 link: https://www.auvergnerhonealpes.fr/passregion
-teleservice: https://auvergnerhonealpes.zecarte.fr/ARA/Forms/InscriptionBeneficiaire/InfosCarte.aspx
-instructions: https://www.auvergnerhonealpes.fr/aides/beneficier-des-avantages-du-passregion
+teleservice: https://auvergnerhonealpes.zecarte.fr/Beneficiaire/Views/Accueil.aspx
+instructions: https://auvergnerhonealpes.zecarte.fr/Beneficiaire/views/Inscription/CharteEngagement.aspx
 prefix: le
 type: bool
 unit: null

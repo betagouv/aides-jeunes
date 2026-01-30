@@ -1,0 +1,24 @@
+label: Service Transport Plus Handicap
+institution: ccas-de-redon
+description: Le service Transport Plus facilite les déplacements des personnes à
+  mobilité réduite sur le territoire de Redon. Il permet de se rendre à des
+  rendez-vous médicaux, faire ses courses ou participer à des activités de
+  loisirs. Le service propose 6 trajets par mois au tarif de 2,50 €, disponibles
+  toute l’année, du lundi au samedi de 8h à 19h (hors jours fériés), avec la
+  possibilité de réserver un véhicule adapté.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "35236"
+profils:
+  - type: situation_handicap
+    conditions: []
+conditions:
+  - Être titulaires d’une Carte Mobilité Inclusion (CMI) avec la mention
+    “Invalidité”.
+  - Contacter le CCAS au 02 99 71 22 97 pour effectuer une réservation.
+type: bool
+periodicite: autre
+link: https://www.redon.fr/transport-plus/
+instructions: https://www.redon.fr/transport-plus/

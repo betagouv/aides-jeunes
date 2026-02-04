@@ -4,7 +4,6 @@ import dayjs from "dayjs"
 import MongoDB from "../backend/lib/stats/mongodb.js"
 import communes from "@etalab/decoupage-administratif/data/communes.json" with { type: "json" }
 
-const __dirname = new URL(".", import.meta.url).pathname
 const depcoms100k = communes
   .filter((city) => city.population >= 100000)
   .map((city) => city.code)
@@ -191,7 +190,7 @@ async function getSimulationStats(db, aggregate) {
 async function generateMongoStats() {
   try {
     const separator = ","
-    const documentFolder = path.join(__dirname, "../dist/documents/")
+    const documentFolder = path.join(process.cwd(), "dist/documents/")
     fs.mkdirSync(documentFolder, { recursive: true })
     const db = await MongoDB.connect()
 

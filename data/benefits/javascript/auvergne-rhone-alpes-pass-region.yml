@@ -24,6 +24,7 @@ profils:
 link: https://www.auvergnerhonealpes.fr/passregion
 teleservice: https://auvergnerhonealpes.zecarte.fr/Beneficiaire/Views/Accueil.aspx
 instructions: https://auvergnerhonealpes.zecarte.fr/Beneficiaire/views/Inscription/CharteEngagement.aspx
+is_teleservice_need_register: true
 prefix: le
 type: bool
 unit: null

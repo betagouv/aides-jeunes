@@ -11,3 +11,4 @@ legend: de réduction
 entity: individus
 openfiscaPeriod: thisMonth
 periodicite: ponctuelle
+is_teleservice_need_register: true

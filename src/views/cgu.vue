@@ -4,8 +4,8 @@
 
     <p>
       Les présentes conditions générales d’utilisation (dites « CGU ») fixent le
-      cadre juridique de “Mes-Aides Jeunes” et définissent les conditions
-      d’accès et d’utilisation des services par l’Utilisateur.
+      cadre juridique de "Aides Jeunes" et définissent les conditions d’accès et
+      d’utilisation des services par l’Utilisateur.
     </p>
 
     <h2>Article 1 - Champ d’application</h2>
@@ -19,7 +19,7 @@
     <h2>Article 2 - Objet</h2>
 
     <p>
-      Mes-Aides Jeunes a pour objectif d’améliorer l’accompagnement et la
+      Aides Jeunes a pour objectif d'améliorer l'accompagnement et la
       connaissance des aides auxquelles les jeunes ont droit. L’outil vise
       également à pallier au non-recours aux aides de la part des jeunes.
     </p>
@@ -29,8 +29,8 @@
     <div>
       <ul>
         <li>
-          « L'Utilisateur » est toute personne utilisant la plateforme Mes-Aides
-          Jeunes. Il ne peut s’agir que d’une personne physique.
+          « L'Utilisateur » est toute personne utilisant la plateforme
+          Aides Jeunes. Il ne peut s’agir que d’une personne physique.
         </li>
         <li>
           Les « Services » sont les fonctionnalités offertes par la plateforme
@@ -49,10 +49,10 @@
 
     <h2>Article 4 - Fonctionnalités</h2>
 
-    <h3>4.1 Répondre au questionnaire « Mes-Aides Jeunes »</h3>
+    <h3>4.1 Répondre au questionnaire « Aides Jeunes »</h3>
 
     <p>
-      Tout Utilisateur peut répondre au questionnaire « Mes-Aides Jeunes »
+      Tout Utilisateur peut répondre au questionnaire « Aides Jeunes »
       regroupant les aides auxquelles il peut prétendre. Les réponses au
       questionnaire vont ensuite permettre au simulateur de proposer à titre
       indicatif des aides et des montants qu’il reviendra à l’Utilisateur de
@@ -75,7 +75,7 @@
 
     <h2>Article 5 - Responsabilités</h2>
 
-    <h3>5.1 L’éditeur de « MES-AIDES JEUNES »</h3>
+    <h3>5.1 L'éditeur de « AIDES JEUNES »</h3>
 
     <p>
       Les sources des informations diffusées sur le site sont réputées fiables
@@ -116,8 +116,8 @@
       Particulièrement, il doit s’abstenir de tout propos injurieux, insultant,
       discriminant ou dénigrant à propos de lui-même ou d’une autre personne. Il
       doit également demeurer raisonnable dans les informations qu’il transmet à
-      « Mes-Aides Jeunes » notamment lorsqu’il a accepté d’être recontacté par
-      « Mes-Aides Jeunes » à la suite de sa réponse au questionnaire.
+      « Aides Jeunes » notamment lorsqu'il a accepté d'être recontacté par
+      « Aides Jeunes » à la suite de sa réponse au questionnaire.
     </p>
 
     <h2>Article 6 - Mise à jour des conditions d’utilisation</h2>

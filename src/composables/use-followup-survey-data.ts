@@ -14,6 +14,7 @@ export function useFollowupSurveyData(token: string) {
   const benefitsWithChoice = ref<BenefitWithChoice[]>([])
   const simulationWasUseful = ref<boolean>(false)
   const loading = ref<boolean>(true)
+  const simulationCommune = ref<string>("")
   const store = useStore()
   const router = useRouter()
 
@@ -26,6 +27,7 @@ export function useFollowupSurveyData(token: string) {
       "DD MMMM YYYY",
     )
     simulationWasUseful.value = followupSurveyData.simulationWasUseful
+    simulationCommune.value = followupSurveyData.simulationCommune || ""
     const benefits: StandardBenefit[] = followupSurveyData.benefits.map(
       (benefit) => ({
         ...getBenefit(benefit.id),
@@ -57,5 +59,6 @@ export function useFollowupSurveyData(token: string) {
     benefitsWithChoice,
     simulationWasUseful,
     loading,
+    simulationCommune,
   }
 }

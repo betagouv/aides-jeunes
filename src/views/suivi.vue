@@ -33,6 +33,22 @@
               <div v-if="showFailedAnswerBlock">
                 <hr class="fr-my-4w" />
                 <TrouverInterlocuteur />
+                <div v-if="showCityAccompanimentBlock">
+                  <hr class="fr-my-4w" />
+                  <p>
+                    {{ currentAccompanimentLink?.title }} peut aussi vous
+                    accompagner gratuitement dans vos démarches. N'hésitez pas à
+                    prendre rendez-vous :
+                  </p>
+                  <a
+                    class="fr-btn fr-btn--secondary fr-btn--lg"
+                    :href="currentAccompanimentLink?.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Je prends rendez-vous pour me faire aider dans mes démarches
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -224,8 +240,13 @@ function showReasonQuestion(droit) {
 
 const route = useRoute()
 const submitted = ref(false)
-const { followupCreatedAt, benefitsWithChoice, simulationWasUseful, loading } =
-  useFollowupSurveyData(route.query.token as string)
+const {
+  followupCreatedAt,
+  benefitsWithChoice,
+  simulationWasUseful,
+  loading,
+  simulationCommune,
+} = useFollowupSurveyData(route.query.token as string)
 
 const isComplete = computed(() => {
   const choiceValues = benefitsWithChoice.value.map(
@@ -240,6 +261,29 @@ const isComplete = computed(() => {
 const showPlansToAskQuestion = (choiceValue) =>
   choiceValue === "nothing" &&
   ABTestingService.getValues().plans_to_ask_question === "show"
+
+const accompanimentLinks: Record<string, { title: string; link: string }> = {
+  Montpellier: {
+    title: "Le CCAS de Montpellier",
+    link: "https://rdv.anct.gouv.fr/org/259/ccas-montpellier",
+  },
+  Strasbourg: {
+    title: "La ville de Strasbourg",
+    link: "https://demarches.strasbourg.eu/rdv-tel-1jeune1solution/",
+  },
+  Aubervilliers: {
+    title: "Le CCAS d'Aubervilliers",
+    link: "https://rdv.anct.gouv.fr/org/166/ccas-aubervilliers",
+  },
+}
+
+const showCityAccompanimentBlock = computed(() => {
+  return simulationCommune.value in accompanimentLinks
+})
+
+const currentAccompanimentLink = computed(() => {
+  return accompanimentLinks[simulationCommune.value]
+})
 
 const showAccompanimentBlock = computed(() => {
   // To restore when the budget will be back

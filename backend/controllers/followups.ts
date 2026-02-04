@@ -91,12 +91,18 @@ export function getFollowupDataForSurvey(req: Request, res: Response) {
     usefullnessSurvey?.answers.find((answer) => answer.id === "wasUseful")
       ?.value ?? true // La simulation est utile par défaut
 
+  const depcomAnswer = req.followup.simulation?.answers?.all?.find(
+    (answer) => answer.entityName === "menage" && answer.fieldName === "depcom",
+  )
+  const simulationCommune = depcomAnswer?.value._nomCommune || ""
+
   res.send({
     createdAt: req.followup.createdAt,
     benefits: req.followup.benefits.filter(
       (benefit) => benefit.id in Benefits.benefitsMap,
     ),
     simulationWasUseful,
+    simulationCommune,
   } as FetchSurvey)
 }
 
@@ -151,7 +157,7 @@ export async function followupByAccessToken(
 ) {
   const followup: Followup | null = await Followups.findOne({
     accessToken,
-  })
+  }).populate("simulation")
   if (!followup) return res.sendStatus(ErrorStatus.NotFound)
   req.followup = followup
   next()

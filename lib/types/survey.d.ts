@@ -34,4 +34,5 @@ interface FetchSurvey {
     amount: number | boolean
   }[]
   simulationWasUseful: boolean
+  simulationCommune?: string
 }

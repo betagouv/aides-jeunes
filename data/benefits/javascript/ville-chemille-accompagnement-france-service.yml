@@ -1,0 +1,13 @@
+label: rendez-vous d’accompagnement par la Maison France Services
+institution: ville_chemille_en_anjou
+description: Vous avez besoin d’aide pour comprendre votre résultat de simulation et demander vos aides ? Prenez un rendez-vous avec une agente de la Maison France Services de Chemillé-en-Anjou. Vous avez le choix entre un rendez-vous par téléphone ou sur place.
+prefix: le
+conditions_generales:
+  - type: communes
+    values:
+      - "49092"
+type: bool
+periodicite: autre
+teleservice: https://rdv.anct.gouv.fr/prendre_rdv?departement=&public_link_organisation_id=943
+link: https://rdv.anct.gouv.fr/prendre_rdv?departement=&public_link_organisation_id=943
+top: -1

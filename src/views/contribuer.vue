@@ -4,6 +4,7 @@ import type { Ref } from "vue"
 import axios from "axios"
 import { EventAction, EventCategory } from "@lib/enums/event"
 import InstitutionSelect from "@/components/institution-select.vue"
+import LoadingOverlay from "@/components/loading-overlay.vue"
 
 const sending = ref(false)
 const sent = ref(false)
@@ -326,6 +327,11 @@ async function submit() {
 
 <template>
   <div class="fr-container fr-my-4w">
+    <LoadingOverlay
+      :open="sending"
+      aria-label="Envoi de la proposition en cours"
+      message="Nous préparons votre proposition."
+    />
     <h1>Proposer une nouvelle aide</h1>
     <p class="fr-text--md">
       Vous faites partie d'une <b>collectivité territoriale</b> (mairie,

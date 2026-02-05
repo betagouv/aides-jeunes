@@ -3,6 +3,7 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
 import InstitutionLogoUpload from "@/components/institution-logo-upload.vue"
+import LoadingOverlay from "@/components/loading-overlay.vue"
 
 const router = useRouter()
 
@@ -142,28 +143,11 @@ function goBack() {
 
 <template>
   <div class="fr-container fr-my-4w">
-    <div
-      v-if="sending"
-      class="fr-modal fr-modal--opened"
-      role="dialog"
-      aria-modal="true"
+    <LoadingOverlay
+      :open="sending"
       aria-label="Envoi de la demande en cours"
-    >
-      <div class="fr-container fr-container--fluid fr-container-md">
-        <div class="fr-modal__body">
-          <div class="fr-modal__content fr-text--center">
-            <span
-              class="fr-icon-refresh-line fr-icon--lg fr-icon--spin"
-              aria-hidden="true"
-            ></span>
-            <h2 class="fr-h4 fr-mt-3w fr-mb-1w">Envoi en cours…</h2>
-            <p class="fr-text--sm fr-mb-0">
-              Nous préparons votre demande et la pull request sur GitHub.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+      message="Nous préparons votre proposition."
+    />
     <button class="fr-btn fr-btn--secondary fr-mb-3w" @click="goBack">
       <span class="fr-icon-arrow-left-line" aria-hidden="true"></span>
       Retour au formulaire de contribution

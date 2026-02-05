@@ -755,3 +755,36 @@ textarea {
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
 }
+
+.aj-institution-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-default-grey);
+  border: 1px solid var(--border-default-grey);
+  border-top: none;
+  max-height: calc(6 * 2.75rem);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.aj-institution-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.aj-institution-option:hover,
+.aj-institution-option:focus {
+  background: var(--background-alt-grey);
+}
+
+.aj-institution-empty {
+  padding: 0.75rem 1rem;
+  color: var(--text-mention-grey);
+}

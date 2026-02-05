@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from "vue"
+import { ref, computed, nextTick } from "vue"
 import type { Ref } from "vue"
 import axios from "axios"
 import { EventAction, EventCategory } from "@lib/enums/event"
+import InstitutionSelect from "@/components/institution-select.vue"
 
 const sending = ref(false)
 const sent = ref(false)
 const errors = ref<string[]>([])
 const generalError = ref("")
 const errorFields = ref<string[]>([])
-const showInstitutionDropdown = ref(false)
 
 const contactEmail = process.env.VITE_CONTACT_EMAIL
 
@@ -113,28 +113,6 @@ const profilOptions = [
 ]
 const profils = ref<string[]>([])
 
-// Liste des institutions pour l'autocomplétion
-const institutions = ref<Array<{ slug: string; label: string; type: string }>>(
-  [],
-)
-const filteredInstitutions = computed(() => {
-  if (!institutionName.value.trim()) return institutions.value.slice(0, 30)
-  const search = institutionName.value.toLowerCase()
-  return institutions.value
-    .filter((inst) => inst.label.toLowerCase().includes(search))
-    .slice(0, 30)
-})
-
-// Charger les institutions au montage du composant
-onMounted(async () => {
-  try {
-    const response = await axios.get("/api/institutions")
-    institutions.value = response.data
-  } catch (error) {
-    console.error("Erreur lors du chargement des institutions:", error)
-  }
-})
-
 function clearError(field: string) {
   const idx = errorFields.value.indexOf(field)
   if (idx >= 0) errorFields.value.splice(idx, 1)
@@ -151,17 +129,6 @@ function toggle(list: Ref<string[]> | string[], value: string) {
   const idx = target.indexOf(value)
   if (idx >= 0) target.splice(idx, 1)
   else target.push(value)
-}
-
-function selectInstitution(institution: {
-  slug: string
-  label: string
-  type: string
-}) {
-  institutionName.value = institution.label
-  institutionSlug.value = institution.slug
-  showInstitutionDropdown.value = false
-  clearError("institutionName")
 }
 
 function onPeriodiciteChange() {
@@ -192,12 +159,6 @@ function addVoluntaryCondition() {
 
 function removeVoluntaryCondition(index: number) {
   voluntaryConditions.value.splice(index, 1)
-}
-
-function hideInstitutionDropdown() {
-  setTimeout(() => {
-    showInstitutionDropdown.value = false
-  }, 200)
 }
 
 const descriptionCharsLeft = computed(
@@ -289,13 +250,11 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
 }
 
 async function submit() {
-  console.log("Submitting form")
   errors.value = []
   errorFields.value = []
   generalError.value = ""
   const validation = validate()
   if (!validation.isValid) {
-    console.log("errors", errors.value)
     await nextTick()
     // Scroll to top alert
     const alertElement = document.querySelector(".fr-alert--error")
@@ -342,8 +301,6 @@ async function submit() {
     await nextTick()
     window.scrollTo({ top: 0, behavior: "smooth" })
   } catch (err: any) {
-    console.error("Erreur lors de l'envoi:", err.response?.data || err)
-
     const data = err?.response?.data
     if (data?.missingFields) {
       generalError.value = `Champs manquants : ${data.missingFields.join(", ")}`
@@ -459,44 +416,22 @@ async function submit() {
             </div>
           </div>
           <div class="fr-col-12">
-            <div
-              class="fr-input-group"
-              :class="{
-                'fr-input-group--error':
-                  errorFields.includes('institutionName'),
-              }"
-              style="position: relative"
-            >
-              <label class="fr-label" for="institutionName"
-                >Nom de l'institution porteuse
-                <span class="fr-text--error">*</span></label
-              >
-              <span class="fr-hint-text"
-                >Si votre institution n'apparaît pas dans la liste, vous pouvez
-                <router-link to="/contribuer/institution"
-                  ><b>l'ajouter en cliquant ici</b></router-link
-                >.</span
-              >
-              <input
-                id="institutionName"
-                v-model="institutionName"
-                class="fr-input"
-                placeholder="Ex: CAF du Loiret"
-                required
-                @input="clearError('institutionName')"
-                @focus="showInstitutionDropdown = true"
-                @blur="hideInstitutionDropdown"
-              />
-              <ul v-if="showInstitutionDropdown" class="institution-dropdown">
-                <li
-                  v-for="institution in filteredInstitutions"
-                  :key="institution.slug"
-                  @click="selectInstitution(institution)"
-                >
-                  {{ institution.label }}
-                </li>
-              </ul>
-            </div>
+            <InstitutionSelect
+              :institution-slug="institutionSlug"
+              :institution-name="institutionName"
+              :has-error="errorFields.includes('institutionName')"
+              @update:institution-slug="
+                (val: string) => {
+                  institutionSlug = val
+                }
+              "
+              @update:institution-name="
+                (val: string) => {
+                  institutionName = val
+                }
+              "
+              @clear-error="() => clearError('institutionName')"
+            />
           </div>
         </div>
       </fieldset>
@@ -934,30 +869,6 @@ async function submit() {
 </template>
 
 <style scoped>
-.institution-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  border: 1px solid var(--border-default-grey);
-  max-height: 200px;
-  overflow-y: auto;
-  z-index: 1000;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.institution-dropdown li {
-  padding: var(--spacing-2v);
-  cursor: pointer;
-}
-
-.institution-dropdown li:hover {
-  background: var(--background-alt-grey);
-}
-
 .condition-list {
   list-style: none;
   padding: 0;

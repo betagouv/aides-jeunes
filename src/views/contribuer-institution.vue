@@ -2,6 +2,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
+import InstitutionLogoUpload from "@/components/institution-logo-upload.vue"
 
 const router = useRouter()
 
@@ -13,7 +14,9 @@ const errorFields = ref<string[]>([])
 
 const institutionName = ref("")
 const institutionType = ref("")
-const logoUrl = ref("")
+const logoUploadRef = ref<InstanceType<typeof InstitutionLogoUpload> | null>(
+  null,
+)
 const codeInsee = ref("")
 const codeSiren = ref("")
 const contributorEmail = ref("")
@@ -81,6 +84,17 @@ async function submit() {
 
   sending.value = true
   try {
+    // Process logo image if provided
+    let logoBase64: string | undefined
+    try {
+      logoBase64 = await logoUploadRef.value?.resizeAndExportLogo()
+    } catch {
+      generalError.value =
+        "Erreur lors du traitement de l'image du logo. Veuillez réessayer."
+      sending.value = false
+      return
+    }
+
     const payload: any = {
       institutionName: institutionName.value.trim(),
       institutionType: institutionType.value,
@@ -95,8 +109,8 @@ async function submit() {
       payload.codeSiren = codeSiren.value.trim()
     }
 
-    if (logoUrl.value.trim()) {
-      payload.logoUrl = logoUrl.value.trim()
+    if (logoBase64) {
+      payload.logoBase64 = logoBase64
     }
 
     await axios.post("/api/contributions/institution", payload)
@@ -128,6 +142,28 @@ function goBack() {
 
 <template>
   <div class="fr-container fr-my-4w">
+    <div
+      v-if="sending"
+      class="fr-modal fr-modal--opened"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Envoi de la demande en cours"
+    >
+      <div class="fr-container fr-container--fluid fr-container-md">
+        <div class="fr-modal__body">
+          <div class="fr-modal__content fr-text--center">
+            <span
+              class="fr-icon-refresh-line fr-icon--lg fr-icon--spin"
+              aria-hidden="true"
+            ></span>
+            <h2 class="fr-h4 fr-mt-3w fr-mb-1w">Envoi en cours…</h2>
+            <p class="fr-text--sm fr-mb-0">
+              Nous préparons votre demande et la pull request sur GitHub.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <button class="fr-btn fr-btn--secondary fr-mb-3w" @click="goBack">
       <span class="fr-icon-arrow-left-line" aria-hidden="true"></span>
       Retour au formulaire de contribution
@@ -238,21 +274,7 @@ function goBack() {
             </select>
           </div>
 
-          <div class="fr-input-group">
-            <label class="fr-label" for="logoUrl"
-              >URL du logo (optionnel)</label
-            >
-            <span class="fr-hint-text"
-              >Lien vers une image du logo de votre institution</span
-            >
-            <input
-              id="logoUrl"
-              v-model="logoUrl"
-              class="fr-input"
-              type="url"
-              placeholder="https://exemple.fr/logo.png"
-            />
-          </div>
+          <InstitutionLogoUpload ref="logoUploadRef" />
         </div>
       </fieldset>
 

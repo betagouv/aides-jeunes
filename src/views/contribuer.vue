@@ -93,7 +93,10 @@ const profilOptions = [
   { value: "collegien", label: "Collégien ou collégienne" },
   { value: "lyceen", label: "Lycéen ou lycéenne" },
   { value: "enseignement_superieur", label: "Dans l'enseignement supérieur" },
-  { value: "etudiant", label: "Scolarisé ou scolarisée" },
+  {
+    value: "etudiant",
+    label: "Scolarisé ou scolarisée (collège + lycée + enseignement supérieur)",
+  },
   { value: "stagiaire", label: "Stagiaire" },
   { value: "apprenti", label: "Apprenti ou apprentie" },
   {
@@ -109,7 +112,11 @@ const profilOptions = [
   { value: "service_civique", label: "En service civique" },
   { value: "beneficiaire_rsa", label: "Bénéficiaire RSA" },
   { value: "situation_handicap", label: "En situation de handicap" },
-  { value: "inactif", label: "Inactif ou inactive" },
+  {
+    value: "inactif",
+    label:
+      "Inactif ou inactive (personne ni scolarisée, ni en emploi, ni en formation, ni en recherche d’emploi)",
+  },
   { value: "parent", label: "Parent" },
 ]
 const profils = ref<string[]>([])
@@ -457,6 +464,7 @@ async function submit() {
               id="label"
               v-model="label"
               class="fr-input"
+              placeholder="Ex: Bourse de mobilité internationale Mermoz"
               required
               @input="clearError('label')"
             />
@@ -479,7 +487,7 @@ async function submit() {
               v-model="description"
               class="fr-input"
               rows="5"
-              placeholder="Résumé clair et concis de l'aide"
+              placeholder="Ex: La Région Hauts-de-France a mis en place ce dispositif afin d'aider les étudiants et étudiantes à suivre à l'étranger un parcours de formation dans un établissement d'enseignement supérieur, un stage, ou un séjour de recherche dans un laboratoire."
               required
               @input="clearError('description')"
             />
@@ -496,8 +504,8 @@ async function submit() {
             <span class="fr-hint-text"
               >L’ajout d’un article défini permet la formation de phrase
               grammaticalement correcte. Par exemple, dans la phrase « Comment
-              obtenir l’aide exceptionnelle ? », on choisit le préfixe « l’
-              ».</span
+              obtenir la Bourse de mobilité internationale Mermoz ? », on
+              choisit le préfixe « la ».</span
             >
             <select
               id="prefix"
@@ -525,6 +533,12 @@ async function submit() {
             <label class="fr-label" for="periodicite"
               >Périodicité <span class="fr-text--error">*</span></label
             >
+            <span class="fr-hint-text"
+              >Cette information est affichée avec le montant. Exemple :
+              « mensuelle » + 200 € donnera « 200 € par mois ». Si vous
+              sélectionnez « autre », aucune périodicité n’est affichée ;
+              précisez-la dans la description si besoin.</span
+            >
             <select
               id="periodicite"
               v-model="selectedPeriodicite"
@@ -548,6 +562,11 @@ async function submit() {
         <div class="fr-fieldset__content">
           <div class="fr-input-group">
             <label class="fr-label" for="resultType">Type du résultat</label>
+            <span class="fr-hint-text"
+              >« Valeur numérique » pour un montant (ex. 200 €), « Éligibilité »
+              pour un Oui/Non. « Autre » est réservé aux cas particuliers : si
+              vous n’êtes pas sûr, choisissez « Valeur numérique ».</span
+            >
             <select id="resultType" v-model="resultType" class="fr-select">
               <option
                 v-for="option in resultTypeOptions"
@@ -574,10 +593,11 @@ async function submit() {
             </select>
           </div>
           <div v-if="resultType !== 'bool'" class="fr-input-group">
-            <label class="fr-label" for="montant"
-              >Montant maximal de l'aide</label
+            <label class="fr-label" for="montant">Montant de l'aide</label>
+            <span class="fr-hint-text"
+              >Indiquez le montant maximal que le demandeur pourrait
+              obtenir.</span
             >
-            <span class="fr-hint-text">S'il s'agit d'une valeur numérique</span>
             <input
               id="montant"
               v-model="montant"
@@ -593,15 +613,51 @@ async function submit() {
             >
             <span class="fr-hint-text"
               >Par exemple, si vous écrivez "maximum" dans ce champ, et que vous
-              avez indiqué "200 €" en montant, cela affichera "200 €
-              maximum"</span
+              avez indiqué "200" en valeur numérique et "€" en unité, cela
+              affichera "200 € maximum."</span
             >
             <input
               id="legend"
               v-model="legend"
               class="fr-input"
-              placeholder="Ex: maximum, par mois, etc."
+              placeholder="Ex: maximum, montant plafond, etc."
             />
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="fr-fieldset fr-mb-4w">
+        <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
+        <p class="fr-text--xs fr-mb-1w">
+          Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s,
+          apprenti(e)s, en recherche d’emploi, etc.)
+        </p>
+        <p class="fr-text--xs fr-mb-2w">
+          Seuls les profils sélectionnés verront votre aide dans leurs résultats
+          de simulation. Vous ne trouvez pas le profil concerné ? Dites-le nous
+          :
+          <a v-mail="mailContent" :v-analytics="mailAnalytics" type="mailto">
+            {{ contactEmail }}
+          </a>
+          .
+        </p>
+        <div class="fr-grid-row fr-grid-row--gutters">
+          <div
+            v-for="profilOption in profilOptions"
+            :key="profilOption.value"
+            class="fr-col-12 fr-col-sm-6 fr-col-md-4"
+          >
+            <div class="fr-checkbox-group">
+              <input
+                :id="'profil_' + profilOption.value"
+                name="profils"
+                type="checkbox"
+                :checked="profils.includes(profilOption.value)"
+                @change="toggleProfil(profilOption.value)"
+              />
+              <label class="fr-label" :for="'profil_' + profilOption.value">{{
+                profilOption.label
+              }}</label>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -627,9 +683,8 @@ async function submit() {
                   >Lien vers la page d'informations de référence</label
                 >
                 <span class="fr-hint-text"
-                  >Vers un site institutionnel de préférence (par exemple, pour
-                  les aides nationales il s'agit souvent de
-                  service-public.fr)</span
+                  >Vers un site institutionnel (ex: site web de la mairie, du
+                  département, service-public.fr).</span
                 >
                 <input
                   id="link"
@@ -652,7 +707,7 @@ async function submit() {
                 >
                 <span class="fr-hint-text"
                   >Lorsqu'il y a la possibilité de faire la démarche en
-                  ligne</span
+                  ligne.</span
                 >
                 <input
                   id="teleservice"
@@ -673,6 +728,10 @@ async function submit() {
                 <label class="fr-label" for="form"
                   >Lien vers un formulaire à imprimer</label
                 >
+                <span class="fr-hint-text"
+                  >Vers un PDF à télécharger. Si besoin, nous pouvons
+                  l’héberger, précisez-le dans la description.</span
+                >
                 <input
                   id="form"
                   v-model="form"
@@ -690,7 +749,7 @@ async function submit() {
                 }"
               >
                 <label class="fr-label" for="instructions">
-                  Lien vers des instructions à suivre
+                  Lien vers des instructions à suivre pour demander l’aide
                 </label>
                 <input
                   id="instructions"
@@ -711,8 +770,9 @@ async function submit() {
         <p class="fr-text--sm fr-mb-3w">
           Certains critères d’éligibilité ne peuvent pas être demandés (trop
           précis) ni pris en compte (trop complexe) dans le cadre d’un
-          simulateur grand public. Cette liste permet d’informer les usagers sur
-          ces critères supplémentaires.
+          simulateur multi-prestations (plus de 1000 aides sont calculées
+          simultanément). Cette liste permet d’informer les usagers sur ces
+          critères supplémentaires.
         </p>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
@@ -760,9 +820,10 @@ async function submit() {
           Conditions bénévoles à satisfaire
         </legend>
         <p class="fr-text--sm fr-mb-3w">
-          Un lien dynamique vers la plateforme jeveuxaider.gouv.fr s’ajoutera à
-          la suite de la dernière condition pour orienter l’utilisateur vers des
-          organismes de bénévolat à proximité.
+          Votre aide est remise en échange d’un engagement bénévole et citoyen
+          du jeune dans des associations locales ? En complétant ce champ, un
+          lien dynamique vers la plateforme jeveuxaider.gouv.fr s’ajoutera pour
+          orienter l’utilisateur vers des organismes de bénévolat à proximité.
         </p>
         <div class="fr-container fr-px-0">
           <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
@@ -806,58 +867,34 @@ async function submit() {
         </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Profils concernés</legend>
-        <p class="fr-text--xs fr-mb-1w">
-          Cette aide est-elle destinée à des publics spécifiques ? (lycéen(ne)s,
-          apprenti(e)s, en recherche d’emploi, etc.)
-        </p>
-        <div class="fr-grid-row fr-grid-row--gutters">
-          <div
-            v-for="profilOption in profilOptions"
-            :key="profilOption.value"
-            class="fr-col-12 fr-col-sm-6 fr-col-md-4"
-          >
-            <div class="fr-checkbox-group">
-              <input
-                :id="'profil_' + profilOption.value"
-                name="profils"
-                type="checkbox"
-                :checked="profils.includes(profilOption.value)"
-                @change="toggleProfil(profilOption.value)"
-              />
-              <label class="fr-label" :for="'profil_' + profilOption.value">{{
-                profilOption.label
-              }}</label>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="fr-fieldset fr-mb-4w">
         <legend class="fr-fieldset__legend fr-h4">Intérêt particulier</legend>
         <div class="fr-input-group">
-          <label class="fr-label" for="interestFlag"
-            >Faut-il limiter l’affichage de l’aide en fonction d’un intérêt
-            particulier ?</label
-          >
-          <span class="fr-hint-text"
-            >En fin de parcours, des questions sont posées pour connaître
+          <p class="fr-label">
+            Faut-il limiter l’affichage de l’aide en fonction d’un intérêt
+            particulier ?
+          </p>
+          <p class="fr-hint-text"
+            >À la fin de la simulation, des questions sont posées pour connaître
             certains intérêts des usagers. Cela permet d’éviter d’afficher
-            certaines aides qui ne seraient pas pertinentes pour les
-            usagers.</span
+            certaines aides qui ne seraient pas pertinentes pour tous les
+            usagers.
+          </p>
+          <div
+            v-for="option in interestFlagOptions"
+            :key="option.value"
+            class="fr-radio-group"
           >
-          <select
-            id="interestFlag"
-            v-model="selectedInterestFlag"
-            class="fr-select"
-          >
-            <option
-              v-for="option in interestFlagOptions"
-              :key="option.value"
+            <input
+              :id="`interest_${option.value || 'none'}`"
+              v-model="selectedInterestFlag"
+              type="radio"
+              name="interestFlag"
               :value="option.value"
-            >
+            />
+            <label class="fr-label" :for="`interest_${option.value || 'none'}`">
               {{ option.label }}
-            </option>
-          </select>
+            </label>
+          </div>
         </div>
       </fieldset>
       <button class="fr-btn" :disabled="sending">

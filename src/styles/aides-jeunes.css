@@ -756,7 +756,7 @@ textarea {
   border-radius: 0.25rem;
 }
 
-.aj-institution-list {
+.aj-contribuer-institution-list {
   position: absolute;
   top: 100%;
   left: 0;
@@ -769,7 +769,7 @@ textarea {
   z-index: 1000;
 }
 
-.aj-institution-option {
+.aj-contribuer-institution-option {
   display: block;
   width: 100%;
   text-align: left;
@@ -779,17 +779,17 @@ textarea {
   cursor: pointer;
 }
 
-.aj-institution-option:hover,
-.aj-institution-option:focus {
+.aj-contribuer-institution-option:hover,
+.aj-contribuer-institution-option:focus {
   background: var(--background-alt-grey);
 }
 
-.aj-institution-empty {
+.aj-contribuer-institution-empty {
   padding: 0.75rem 1rem;
   color: var(--text-mention-grey);
 }
 
-.aj-loading-overlay {
+.aj-contribuer-loading-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -799,7 +799,7 @@ textarea {
   z-index: 2000;
 }
 
-.aj-loading-card {
+.aj-contribuer-loading-card {
   background: white;
   border-radius: 0.5rem;
   padding: 2rem;

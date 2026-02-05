@@ -28,17 +28,20 @@
         @focus="showDropdown = true"
         @blur="hideDropdown"
       />
-      <div v-if="showDropdown" class="aj-institution-list">
+      <div v-if="showDropdown" class="aj-contribuer-institution-list">
         <button
           v-for="institution in filteredInstitutions"
           :key="institution.slug"
           type="button"
-          class="aj-institution-option"
+          class="aj-contribuer-institution-option"
           @click="selectInstitution(institution)"
         >
           {{ institution.label }}
         </button>
-        <div v-if="!filteredInstitutions.length" class="aj-institution-empty">
+        <div
+          v-if="!filteredInstitutions.length"
+          class="aj-contribuer-institution-empty"
+        >
           Aucune institution trouvée
         </div>
       </div>

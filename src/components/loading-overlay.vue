@@ -1,13 +1,13 @@
 <template>
   <div
     v-if="open"
-    class="aj-loading-overlay"
+    class="aj-contribuer-loading-overlay"
     role="dialog"
     aria-modal="true"
     :aria-label="ariaLabel"
   >
     <div
-      class="aj-loading-card fr-container fr-container--fluid fr-container-md"
+      class="aj-contribuer-loading-card fr-container fr-container--fluid fr-container-md"
     >
       <div class="fr-modal__content fr-text--center">
         <span

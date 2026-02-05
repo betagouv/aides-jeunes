@@ -1,12 +1,16 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 import { dump as yamlDump } from "js-yaml"
 import { Request, Response } from "express"
 import * as Sentry from "@sentry/node"
+import type {
+  BenefitContributionBody,
+  InstitutionContributionBody,
+} from "../types/contributions.js"
 
 const owner = process.env.GITHUB_OWNER
 const repository_name = process.env.GITHUB_REPOSITORY
 
-function createGithubApi() {
+function createGithubApi(): AxiosInstance {
   return axios.create({
     baseURL: "https://api.github.com",
     headers: {
@@ -17,31 +21,48 @@ function createGithubApi() {
   })
 }
 
-async function getMainBranchSha(githubApi: any): Promise<string> {
+async function getMainBranchSha(githubApi: AxiosInstance): Promise<string> {
   const refResp = await githubApi.get(
     `/repos/${owner}/${repository_name}/git/ref/heads/main`,
   )
   return refResp.data.object.sha
 }
 
+function withTimestamp(branchName: string) {
+  return `${branchName}-${Date.now()}`
+}
+
 async function createBranch(
-  githubApi: any,
+  githubApi: AxiosInstance,
   branchName: string,
   baseSha: string,
-) {
-  await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
-    ref: `refs/heads/${branchName}`,
-    sha: baseSha,
-  })
+): Promise<string> {
+  try {
+    await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
+      ref: `refs/heads/${branchName}`,
+      sha: baseSha,
+    })
+    return branchName
+  } catch (error: any) {
+    if (error?.response?.status === 422) {
+      const fallbackBranch = withTimestamp(branchName)
+      await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
+        ref: `refs/heads/${fallbackBranch}`,
+        sha: baseSha,
+      })
+      return fallbackBranch
+    }
+    throw error
+  }
 }
 
 async function commitFile(
-  githubApi: any,
+  githubApi: AxiosInstance,
   filePath: string,
   content: string,
   branchName: string,
   commitMessage: string,
-) {
+): Promise<void> {
   const contentB64 = Buffer.from(content, "utf8").toString("base64")
   await githubApi.put(
     `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(filePath)}`,
@@ -53,8 +74,48 @@ async function commitFile(
   )
 }
 
+async function commitBinaryFile(
+  githubApi: AxiosInstance,
+  filePath: string,
+  base64Content: string,
+  branchName: string,
+  commitMessage: string,
+): Promise<void> {
+  await githubApi.put(
+    `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(filePath)}`,
+    {
+      message: commitMessage,
+      content: base64Content,
+      branch: branchName,
+    },
+  )
+}
+
+function parseDataUrl(
+  dataUrl: string,
+): { mimeType: string; base64: string } | null {
+  const match = dataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.*)$/)
+  if (!match) {
+    return null
+  }
+  return {
+    mimeType: match[1],
+    base64: match[2],
+  }
+}
+
+function getImageExtension(mimeType: string): string | undefined {
+  const mapping: Record<string, string> = {
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+  }
+  return mapping[mimeType]
+}
+
 async function createPullRequest(
-  githubApi: any,
+  githubApi: AxiosInstance,
   title: string,
   branchName: string,
   body: string,
@@ -101,7 +162,7 @@ function isValidSlug(value?: string) {
   return /^[a-z0-9_-]+$/.test(value)
 }
 
-function sanitizeMultiline(str?: string) {
+function sanitizeMultiline(str?: string): string[] {
   if (!str) return []
   return str
     .split(/\r?\n/)
@@ -111,7 +172,7 @@ function sanitizeMultiline(str?: string) {
 
 async function checkInstitutionExists(
   institutionSlug: string,
-  githubApi: any,
+  githubApi: AxiosInstance,
 ): Promise<boolean> {
   const institutionPath = `data/institutions/${institutionSlug}.yml`
   try {
@@ -125,7 +186,7 @@ async function checkInstitutionExists(
   }
 }
 
-function validateRequiredFields(body: any): string | null {
+function validateRequiredFields(body: BenefitContributionBody): string | null {
   const {
     contributorName,
     institutionName,
@@ -152,7 +213,7 @@ function validateRequiredFields(body: any): string | null {
   return null
 }
 
-function buildBenefitData(body: any) {
+function buildBenefitData(body: BenefitContributionBody) {
   const {
     title,
     institutionSlug,
@@ -195,7 +256,7 @@ function createInstitutionData(
   }
 }
 
-function buildPullRequestBody(body: any): string {
+function buildPullRequestBody(body: BenefitContributionBody): string {
   const {
     contributorName,
     title,
@@ -216,7 +277,10 @@ function buildPullRequestBody(body: any): string {
   return sections.join("\n")
 }
 
-export async function handleBenefitContribution(req: Request, res: Response) {
+export async function handleBenefitContribution(
+  req: Request<unknown, unknown, BenefitContributionBody>,
+  res: Response,
+) {
   if (!process.env.GITHUB_TOKEN) {
     return res
       .status(500)
@@ -243,11 +307,11 @@ export async function handleBenefitContribution(req: Request, res: Response) {
 
     // GitHub API setup
     const githubApi = createGithubApi()
-    const newBranch = `contribution/${benefitSlug}`
+    const branchBase = `contribution/${benefitSlug}`
 
     // Get main branch SHA and create new branch
     const baseSha = await getMainBranchSha(githubApi)
-    await createBranch(githubApi, newBranch, baseSha)
+    const newBranch = await createBranch(githubApi, branchBase, baseSha)
 
     // Check if institution exists
     const institutionExists = await checkInstitutionExists(
@@ -294,7 +358,7 @@ export async function handleBenefitContribution(req: Request, res: Response) {
 }
 
 export async function handleInstitutionContribution(
-  req: Request,
+  req: Request<unknown, unknown, InstitutionContributionBody>,
   res: Response,
 ) {
   if (!process.env.GITHUB_TOKEN) {
@@ -311,6 +375,7 @@ export async function handleInstitutionContribution(
       codeInsee,
       codeSiren,
       logoUrl,
+      logoBase64,
     } = req.body || {}
 
     // Validation
@@ -354,17 +419,36 @@ export async function handleInstitutionContribution(
       institutionData.code_siren = codeSiren
     }
 
-    if (logoUrl) {
+    let logoFilePath: string | undefined
+    let parsedLogo: { mimeType: string; base64: string } | null = null
+    if (logoBase64) {
+      parsedLogo = parseDataUrl(logoBase64)
+      if (!parsedLogo) {
+        return res.status(400).json({
+          message: "Format d'image invalide",
+          missingFields: ["logoBase64"],
+        })
+      }
+      const extension = getImageExtension(parsedLogo.mimeType)
+      if (!extension) {
+        return res.status(400).json({
+          message: "Type d'image non supporté",
+          missingFields: ["logoBase64"],
+        })
+      }
+      logoFilePath = `public/img/institutions/logo_${institutionSlug}.${extension}`
+      institutionData.imgSrc = `img/institutions/logo_${institutionSlug}.${extension}`
+    } else if (logoUrl) {
       institutionData.imgSrc = logoUrl
     }
 
     // GitHub API setup
     const githubApi = createGithubApi()
-    const newBranch = `contribution/institution/${institutionSlug}`
+    const branchBase = `contribution/institution/${institutionSlug}`
 
     // Get main branch SHA and create new branch
     const baseSha = await getMainBranchSha(githubApi)
-    await createBranch(githubApi, newBranch, baseSha)
+    const newBranch = await createBranch(githubApi, branchBase, baseSha)
 
     // Create institution file
     const institutionPath = `data/institutions/${institutionSlug}.yml`
@@ -375,6 +459,16 @@ export async function handleInstitutionContribution(
       newBranch,
       `Contribution: ajout institution ${institutionName}`,
     )
+
+    if (logoFilePath && parsedLogo) {
+      await commitBinaryFile(
+        githubApi,
+        logoFilePath,
+        parsedLogo.base64,
+        newBranch,
+        `Contribution: ajout logo institution ${institutionName}`,
+      )
+    }
 
     // Create pull request
     const prBody = [

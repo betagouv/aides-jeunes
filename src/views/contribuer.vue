@@ -558,7 +558,7 @@ async function submit() {
         </div>
       </fieldset>
       <fieldset class="fr-fieldset fr-mb-4w">
-        <legend class="fr-fieldset__legend fr-h4">Montant</legend>
+        <legend class="fr-fieldset__legend fr-h4">Résultat de l'aide</legend>
         <div class="fr-fieldset__content">
           <div class="fr-input-group">
             <label class="fr-label" for="resultType">Type du résultat</label>

@@ -28,3 +28,4 @@ prefix: l’
 type: bool
 unit: null
 periodicite: annuelle
+private: true

@@ -582,21 +582,6 @@ async function submit() {
             </select>
           </div>
           <div v-if="resultType !== 'bool'" class="fr-input-group">
-            <label class="fr-label" for="unit">Unité</label>
-            <span class="fr-hint-text">
-              Il s'agit de spécifier l'unité du montant
-            </span>
-            <select id="unit" v-model="unit" class="fr-select">
-              <option
-                v-for="option in unitOptions"
-                :key="option"
-                :value="option"
-              >
-                {{ option }}
-              </option>
-            </select>
-          </div>
-          <div v-if="resultType !== 'bool'" class="fr-input-group">
             <label class="fr-label" for="montant">Montant de l'aide</label>
             <span class="fr-hint-text"
               >Indiquez le montant maximal que le demandeur pourrait
@@ -610,6 +595,21 @@ async function submit() {
               class="fr-input"
               placeholder="Ex: 200"
             />
+          </div>
+          <div v-if="resultType !== 'bool'" class="fr-input-group">
+            <label class="fr-label" for="unit">Unité</label>
+            <span class="fr-hint-text">
+              Il s'agit de spécifier l'unité du montant
+            </span>
+            <select id="unit" v-model="unit" class="fr-select">
+              <option
+                v-for="option in unitOptions"
+                :key="option"
+                :value="option"
+              >
+                {{ option }}
+              </option>
+            </select>
           </div>
           <div v-if="resultType !== 'bool'" class="fr-input-group">
             <label class="fr-label" for="legend"

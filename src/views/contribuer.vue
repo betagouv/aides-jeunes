@@ -703,6 +703,35 @@ async function submit() {
               <div
                 class="fr-input-group"
                 :class="{
+                  'fr-input-group--error': errorFields.includes('form'),
+                }"
+              >
+                <label class="fr-label" for="form"
+                  >Lien vers un formulaire à imprimer</label
+                >
+                <span class="fr-hint-text"
+                  >Vers un PDF à télécharger. Si besoin, nous pouvons
+                  l’héberger : envoyez-le par email à notre équipe
+                  <a
+                    v-mail="mailContent"
+                    :v-analytics="mailAnalytics"
+                    type="mailto"
+                    >{{ contactEmail }} </a
+                  >.
+                </span>
+                <input
+                  id="form"
+                  v-model="form"
+                  class="fr-input"
+                  type="url"
+                  @input="clearLinkErrors"
+                />
+              </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-6">
+              <div
+                class="fr-input-group"
+                :class="{
                   'fr-input-group--error': errorFields.includes('teleservice'),
                 }"
               >
@@ -716,29 +745,6 @@ async function submit() {
                 <input
                   id="teleservice"
                   v-model="teleservice"
-                  class="fr-input"
-                  type="url"
-                  @input="clearLinkErrors"
-                />
-              </div>
-            </div>
-            <div class="fr-col-12 fr-col-md-6">
-              <div
-                class="fr-input-group"
-                :class="{
-                  'fr-input-group--error': errorFields.includes('form'),
-                }"
-              >
-                <label class="fr-label" for="form"
-                  >Lien vers un formulaire à imprimer</label
-                >
-                <span class="fr-hint-text"
-                  >Vers un PDF à télécharger. Si besoin, nous pouvons
-                  l’héberger, précisez-le dans la description.</span
-                >
-                <input
-                  id="form"
-                  v-model="form"
                   class="fr-input"
                   type="url"
                   @input="clearLinkErrors"

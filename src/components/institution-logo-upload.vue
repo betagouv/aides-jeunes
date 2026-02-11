@@ -26,14 +26,17 @@
     <div v-if="logoPreview" class="fr-callout fr-callout--info fr-mt-3w">
       <h3 class="fr-callout__title">Aperçu du logo</h3>
       <p class="fr-callout__text">
-        Votre logo sera redimensionné à 200x200 pixels au moment de l'envoi.
+        Votre logo sera redimensionné au moment de l'envoi (taille maxximale de
+        200x200 pixels).
       </p>
-      <img
-        :src="logoPreview"
-        alt="Aperçu du logo"
-        class="fr-responsive-img fr-mt-2w fr-mb-2w fr-mx-auto"
-        style="max-width: 200px; max-height: 200px"
-      />
+      <div class="fr-mt-2w fr-mb-2w">
+        <img
+          :src="logoPreview"
+          alt="Aperçu du logo"
+          class="fr-responsive-img"
+          style="max-width: 200px; max-height: 200px; object-fit: contain"
+        />
+      </div>
       <button
         type="button"
         class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line"

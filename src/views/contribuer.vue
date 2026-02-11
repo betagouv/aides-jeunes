@@ -563,9 +563,13 @@ async function submit() {
           <div class="fr-input-group">
             <label class="fr-label" for="resultType">Type du résultat</label>
             <span class="fr-hint-text"
-              >« Valeur numérique » pour un montant (ex. 200 €), « Éligibilité »
-              pour un Oui/Non. « Autre » est réservé aux cas particuliers : si
-              vous n’êtes pas sûr, choisissez « Valeur numérique ».</span
+              >Choisissez le format du résultat renvoyé par votre aide : «
+              Valeur numérique » pour afficher un montant (exemple : 200 €, 35 €
+              par mois, 12 séances gratuites, 100 repas offerts, 25% de
+              réduction) ; « Éligibilité Oui/Non » pour indiquer uniquement si
+              la personne a droit à l'aide ou non ; « Autre » uniquement pour
+              des cas spécifiques (texte personnalisé, message particulier,
+              format non standard)</span
             >
             <select id="resultType" v-model="resultType" class="fr-select">
               <option

@@ -23,7 +23,7 @@ profils:
   - type: enseignement_superieur
     conditions: []
 link: https://www.regionguadeloupe.fr/les-aides-les-services/guide-des-aides/detail/actualites/bourse-sociale/categorie/formation-enseignement-jeunesse/#_
-teleservice: https://aides.regionguadeloupe.fr/gesaides_web/jsp/nouveauContexte.action?codeAction=M42-ACCUEIL
+teleservice: https://mesaides.regionguadeloupe.fr/account-management/crgua-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmesaides.regionguadeloupe.fr%2Faides%2F%23%2Fcrgua%2Fconnecte%2Ftiers-selection&jwtKey=jwt-crgua-portail-depot-demande-aides&footer=https:%2F%2Fmesaides.regionguadeloupe.fr%2Faides%2F%23%2Fcrgua%2Faccessibilite,Accessibilit%C3%A9%20:%20partiellement%20conforme,_self;https:%2F%2Fmesaides.regionguadeloupe.fr%2Faides%2F%23%2Fcrgua%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Fmesaides.regionguadeloupe.fr%2Faides%2F%23%2Fcrgua%2Fdonnees-personnelles,Donn%C3%A9es%20personnelles,_self
 prefix: la
 type: float
 unit: €

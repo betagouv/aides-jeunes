@@ -473,7 +473,7 @@ export async function handleInstitutionContribution(
 
     // Create pull request
     const prBody = [
-      `Contributeur: ${contributorEmail}`,
+      `Contributeur: ${contributorName}`,
       `Institution: **${institutionName}**`,
       `Type: ${institutionType}`,
       codeInsee && `Code INSEE: ${codeInsee}`,

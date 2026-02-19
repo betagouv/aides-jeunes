@@ -379,14 +379,15 @@ export async function handleInstitutionContribution(
     } = req.body || {}
 
     // Validation
-    if (!contributorEmail || !institutionName || !institutionType) {
+    const missingFields: string[] = []
+    if (!contributorEmail) missingFields.push("contributorEmail")
+    if (!institutionName) missingFields.push("institutionName")
+    if (!institutionType) missingFields.push("institutionType")
+
+    if (missingFields.length > 0) {
       return res.status(400).json({
         message: "Champs obligatoires manquants",
-        missingFields: [
-          !contributorEmail && "contributorEmail",
-          !institutionName && "institutionName",
-          !institutionType && "institutionType",
-        ].filter(Boolean),
+        missingFields,
       })
     }
 

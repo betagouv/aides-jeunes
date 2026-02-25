@@ -2,10 +2,14 @@ import axios, { AxiosInstance } from "axios"
 import { dump as yamlDump } from "js-yaml"
 import { Request, Response } from "express"
 import * as Sentry from "@sentry/node"
+import Contributions from "../models/contribution.js"
 import type {
   BenefitContributionBody,
+  ContributionRecord,
+  ContributionType,
   InstitutionContributionBody,
-} from "../types/contributions.js"
+  InstitutionData,
+} from "../../lib/types/contributions.d.js"
 
 const owner = process.env.GITHUB_OWNER
 const repository_name = process.env.GITHUB_REPOSITORY
@@ -257,17 +261,10 @@ function createInstitutionData(
 }
 
 function buildPullRequestBody(body: BenefitContributionBody): string {
-  const {
-    contributorName,
-    title,
-    institutionName,
-    typeCategorie,
-    periodicite,
-    description,
-  } = body
+  const { title, institutionName, typeCategorie, periodicite, description } =
+    body
 
   const sections = [
-    `Contributeur:  **${contributorName}**`,
     `Aide : **${title}**`,
     `Institution: ${institutionName}`,
     `Type: ${typeCategorie}`,
@@ -275,6 +272,10 @@ function buildPullRequestBody(body: BenefitContributionBody): string {
     `Description: ${description}`,
   ]
   return sections.join("\n")
+}
+
+async function recordContribution(params: ContributionRecord) {
+  return Contributions.create(params)
 }
 
 export async function handleBenefitContribution(
@@ -351,6 +352,19 @@ export async function handleBenefitContribution(
       buildPullRequestBody(req.body),
     )
 
+    const contributionType = "benefit" satisfies ContributionType
+    try {
+      await recordContribution({
+        type: contributionType,
+        contributorName: req.body?.contributorName,
+        contributorEmail: req.body?.contributorEmail,
+        pullRequestUrl,
+      })
+    } catch (error) {
+      console.error("Failed to record benefit contribution", error)
+      Sentry.captureException(error)
+    }
+
     return res.json({ pullRequestUrl })
   } catch (error: any) {
     return handleContributionError(error, res, "Benefit contribution")
@@ -369,6 +383,7 @@ export async function handleInstitutionContribution(
 
   try {
     const {
+      contributorName,
       contributorEmail,
       institutionName,
       institutionType,
@@ -380,6 +395,7 @@ export async function handleInstitutionContribution(
 
     // Validation
     const missingFields: string[] = []
+    if (!contributorName) missingFields.push("contributorName")
     if (!contributorEmail) missingFields.push("contributorEmail")
     if (!institutionName) missingFields.push("institutionName")
     if (!institutionType) missingFields.push("institutionType")
@@ -407,7 +423,7 @@ export async function handleInstitutionContribution(
     }
 
     // Build institution data
-    const institutionData: any = {
+    const institutionData: InstitutionData = {
       name: institutionName,
       type: institutionType,
     }
@@ -473,7 +489,6 @@ export async function handleInstitutionContribution(
 
     // Create pull request
     const prBody = [
-      `Contributeur: ${contributorName}`,
       `Institution: **${institutionName}**`,
       `Type: ${institutionType}`,
       codeInsee && `Code INSEE: ${codeInsee}`,
@@ -488,6 +503,20 @@ export async function handleInstitutionContribution(
       newBranch,
       prBody,
     )
+
+    const contributionType = "institution" satisfies ContributionType
+    try {
+      await recordContribution({
+        type: contributionType,
+        contributorName,
+        contributorEmail,
+        pullRequestUrl,
+      })
+    } catch (recordError) {
+      console.error("Failed to record institution contribution", recordError)
+      Sentry.captureException(recordError)
+      // La PR est déjà créée, on ne fail pas la requête
+    }
 
     return res.json({ pullRequestUrl })
   } catch (error: any) {

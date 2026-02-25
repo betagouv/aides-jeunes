@@ -369,6 +369,9 @@ async function submit() {
         Merci, votre proposition a bien été envoyée ! Elle sera relue par notre
         équipe avant d’être publiée sur le simulateur.
       </p>
+      <p class="fr-mt-2w">
+        <a href="/contribuer" class="fr-link">Proposer une nouvelle aide</a>
+      </p>
     </div>
     <div v-if="errors.length" class="fr-alert fr-alert--error fr-mb-4w">
       <p class="fr-text--bold">Veuillez corriger les erreurs suivantes :</p>

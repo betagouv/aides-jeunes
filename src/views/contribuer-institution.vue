@@ -20,6 +20,7 @@ const logoUploadRef = ref<InstanceType<typeof InstitutionLogoUpload> | null>(
 )
 const codeInsee = ref("")
 const codeSiren = ref("")
+const contributorName = ref("")
 const contributorEmail = ref("")
 
 const institutionTypeOptions = [
@@ -51,6 +52,11 @@ function validate(): boolean {
   if (!institutionType.value) {
     e.push("Le type d'institution est requis")
     ef.push("institutionType")
+  }
+
+  if (!contributorName.value.trim()) {
+    e.push("Votre nom est requis")
+    ef.push("contributorName")
   }
 
   if (!contributorEmail.value.trim()) {
@@ -99,6 +105,7 @@ async function submit() {
     const payload: any = {
       institutionName: institutionName.value.trim(),
       institutionType: institutionType.value,
+      contributorName: contributorName.value.trim(),
       contributorEmail: contributorEmail.value.trim(),
     }
 
@@ -166,6 +173,11 @@ function goBack() {
         Merci ! Votre demande d'ajout d'institution a bien été envoyée. Elle
         sera traitée par notre équipe dans les meilleurs délais.
       </p>
+      <p class="fr-mt-2w">
+        <a href="/contribuer/institution" class="fr-link"
+          >Proposer une nouvelle institution</a
+        >
+      </p>
     </div>
 
     <div v-if="errors.length" class="fr-alert fr-alert--error fr-mb-4w">
@@ -185,6 +197,25 @@ function goBack() {
           Informations sur l'institution
         </legend>
         <div class="fr-fieldset__content">
+          <div
+            class="fr-input-group"
+            :class="{
+              'fr-input-group--error': errorFields.includes('contributorName'),
+            }"
+          >
+            <label class="fr-label" for="contributorName"
+              >Votre nom <span class="fr-text--error">*</span></label
+            >
+            <input
+              id="contributorName"
+              v-model="contributorName"
+              class="fr-input"
+              placeholder="Votre nom complet"
+              required
+              @input="clearError('contributorName')"
+            />
+          </div>
+
           <div
             class="fr-input-group"
             :class="{

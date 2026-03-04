@@ -191,21 +191,9 @@ async function checkInstitutionExists(
 }
 
 function validateRequiredFields(body: BenefitContributionBody): string | null {
-  const {
-    contributorName,
-    institutionName,
-    institutionSlug,
-    title,
-    description,
-  } = body
+  const { institutionName, institutionSlug, title, description } = body
 
-  if (
-    !contributorName ||
-    !institutionName ||
-    !institutionSlug ||
-    !title ||
-    !description
-  ) {
+  if (!institutionName || !institutionSlug || !title || !description) {
     return "Champs obligatoires manquants"
   }
   if (!isValidSlug(institutionSlug)) {
@@ -394,7 +382,6 @@ export async function handleInstitutionContribution(
 
     // Validation
     const missingFields: string[] = []
-    if (!contributorName) missingFields.push("contributorName")
     if (!contributorEmail) missingFields.push("contributorEmail")
     if (!institutionName) missingFields.push("institutionName")
     if (!institutionType) missingFields.push("institutionType")

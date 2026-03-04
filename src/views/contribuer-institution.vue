@@ -54,11 +54,6 @@ function validate(): boolean {
     ef.push("institutionType")
   }
 
-  if (!contributorName.value.trim()) {
-    e.push("Votre nom est requis")
-    ef.push("contributorName")
-  }
-
   if (!contributorEmail.value.trim()) {
     e.push("Votre email est requis")
     ef.push("contributorEmail")
@@ -105,7 +100,7 @@ async function submit() {
     const payload: any = {
       institutionName: institutionName.value.trim(),
       institutionType: institutionType.value,
-      contributorName: contributorName.value.trim(),
+      contributorName: contributorName.value?.trim() || undefined,
       contributorEmail: contributorEmail.value.trim(),
     }
 
@@ -203,15 +198,12 @@ function goBack() {
               'fr-input-group--error': errorFields.includes('contributorName'),
             }"
           >
-            <label class="fr-label" for="contributorName"
-              >Votre nom <span class="fr-text--error">*</span></label
-            >
+            <label class="fr-label" for="contributorName">Votre nom</label>
             <input
               id="contributorName"
               v-model="contributorName"
               class="fr-input"
               placeholder="Votre nom complet"
-              required
               @input="clearError('contributorName')"
             />
           </div>

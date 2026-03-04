@@ -5,8 +5,8 @@ export type ContributionType =
   | ContributionCategory.INSTITUTION
 
 export interface BenefitContributionBody {
-  contributorName: string
-  contributorEmail?: string
+  contributorName?: string
+  contributorEmail: string
   institutionName: string
   institutionSlug: string
   title: string
@@ -25,7 +25,7 @@ export interface BenefitContributionBody {
 }
 
 export interface InstitutionContributionBody {
-  contributorName: string
+  contributorName?: string
   contributorEmail: string
   institutionName: string
   institutionType: string
@@ -46,14 +46,14 @@ export interface InstitutionData {
 export interface ContributionRecord {
   type: ContributionType
   contributorName?: string
-  contributorEmail?: string
+  contributorEmail: string
   pullRequestUrl: string
 }
 
 export interface Contribution {
   type: ContributionType
   contributorName?: string
-  contributorEmail?: string
+  contributorEmail: string
   pullRequestUrl?: string
   createdAt?: Date
 }

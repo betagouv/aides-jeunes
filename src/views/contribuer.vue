@@ -178,11 +178,6 @@ function validate(): { isValid: boolean; firstErrorField?: string } {
   const ef: string[] = []
   let firstErrorField: string | undefined
 
-  if (!contributorName.value.trim()) {
-    e.push("Le nom du contributeur est requis")
-    ef.push("contributorName")
-    if (!firstErrorField) firstErrorField = "contributorName"
-  }
   if (!contributorEmail.value.trim()) {
     e.push("L'email du contributeur est requis")
     ef.push("contributorEmail")
@@ -275,7 +270,7 @@ async function submit() {
   try {
     // Adapter le payload au format attendu par le backend actuel
     const payload: any = {
-      contributorName: contributorName.value.trim(),
+      contributorName: contributorName.value?.trim() || undefined,
       contributorEmail: contributorEmail.value.trim(),
       institutionName: institutionName.value.trim(),
       title: label.value.trim(), // Le backend attend 'title' pas 'label'
@@ -396,15 +391,12 @@ async function submit() {
                   errorFields.includes('contributorName'),
               }"
             >
-              <label class="fr-label" for="contributorName"
-                >Votre nom <span class="fr-text--error">*</span></label
-              >
+              <label class="fr-label" for="contributorName">Votre nom</label>
               <input
                 id="contributorName"
                 v-model="contributorName"
                 class="fr-input"
                 placeholder="Votre nom complet"
-                required
                 @input="clearError('contributorName')"
               />
             </div>

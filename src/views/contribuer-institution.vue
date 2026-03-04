@@ -352,9 +352,3 @@ function goBack() {
     </form>
   </div>
 </template>
-
-<style scoped>
-.fr-toggle {
-  margin-bottom: 1rem;
-}
-</style>

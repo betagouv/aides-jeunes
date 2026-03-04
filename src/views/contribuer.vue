@@ -915,20 +915,3 @@ async function submit() {
     </form>
   </div>
 </template>
-
-<style scoped>
-.condition-list {
-  list-style: none;
-  padding: 0;
-}
-
-.condition-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  background: var(--background-alt-grey);
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-}
-</style>

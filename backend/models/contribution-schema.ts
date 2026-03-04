@@ -10,7 +10,7 @@ const ContributionSchema = new mongoose.Schema<Contribution, ContributionModel>(
       required: true,
     },
     contributorName: { type: String },
-    contributorEmail: { type: String },
+    contributorEmail: { type: String, required: true },
     pullRequestUrl: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
   },

@@ -1,5 +1,4 @@
 import { Model, HydratedDocument } from "mongoose"
-import { Contribution } from "@lib/types/contributions.d.js"
 import { Followup } from "@lib/types/followup.d.js"
 import { Simulation } from "@lib/types/simulation.d.js"
 
@@ -12,8 +11,6 @@ interface FollowupStaticMethods {
 }
 
 export interface FollowupModel extends Model<Followup>, FollowupStaticMethods {}
-
-export type ContributionModel = Model<Contribution>
 
 interface SimulationStaticMethods {
   cookiePrefix(): string

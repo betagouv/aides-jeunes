@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue"
 import axios from "axios"
-import { matchesAllTerms } from "@/lib/search"
+import { normalizeString } from "@lib/utils"
 
 interface Institution {
   slug: string
@@ -84,6 +84,13 @@ const filter = ref("")
 const showDropdown = ref(false)
 const debouncedFilter = ref("")
 let debounceTimer: number | undefined
+
+const matchesAllTerms = (value: string, query: string) => {
+  const normalizedValue = normalizeString(value)
+  const tokens = normalizeString(query).split(/\s+/).filter(Boolean)
+  if (!tokens.length) return true
+  return tokens.every((token) => normalizedValue.includes(token))
+}
 
 const filteredInstitutions = computed(() => {
   const list = institutions.value.filter((inst) =>

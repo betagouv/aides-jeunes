@@ -4,9 +4,8 @@ import {
   ContributionPullRequestStatus,
   ContributionCategory,
 } from "../../lib/enums/contribution.js"
-import { ContributionModel } from "../types/models.d.js"
 
-const ContributionSchema = new mongoose.Schema<Contribution, ContributionModel>(
+const ContributionSchema = new mongoose.Schema<Contribution>(
   {
     type: {
       type: String,

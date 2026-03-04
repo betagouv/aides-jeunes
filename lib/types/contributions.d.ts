@@ -47,6 +47,9 @@ export interface Contribution {
   type: ContributionType
   contributorName?: string
   contributorEmail: string
+  body: BenefitContributionBody | InstitutionContributionBody
+  status: "pending" | "succeeded" | "failed"
+  githubError?: string
   pullRequestUrl?: string
   createdAt?: Date
 }

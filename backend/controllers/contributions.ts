@@ -45,6 +45,7 @@ async function createPRAndRecordContribution(params: {
   title: string
   branchName: string
   body: string
+  requestBody: BenefitContributionBody | InstitutionContributionBody
   category: ContributionCategory
   contributorName?: string
   contributorEmail: string
@@ -54,31 +55,46 @@ async function createPRAndRecordContribution(params: {
     title,
     branchName,
     body,
+    requestBody,
     category,
     contributorName,
     contributorEmail,
   } = params
 
-  const pullRequestUrl = await createPullRequest(
-    githubApi,
-    title,
-    branchName,
-    body,
-  )
+  const contributionRecord = await Contributions.create({
+    type: category,
+    contributorName,
+    contributorEmail,
+    body: requestBody,
+    status: "pending",
+  })
 
   try {
-    await Contributions.create({
-      type: category,
-      contributorName,
-      contributorEmail,
-      pullRequestUrl,
-    })
-  } catch (error) {
-    console.error("Failed to record contribution", error)
-    Sentry.captureException(error)
-  }
+    const pullRequestUrl = await createPullRequest(
+      githubApi,
+      title,
+      branchName,
+      body,
+    )
 
-  return pullRequestUrl
+    await Contributions.updateOne(
+      { _id: contributionRecord._id },
+      { status: "succeeded", pullRequestUrl },
+    )
+
+    return pullRequestUrl
+  } catch (error: any) {
+    await Contributions.updateOne(
+      { _id: contributionRecord._id },
+      {
+        status: "failed",
+        githubError:
+          error?.response?.data?.message || error?.message || String(error),
+      },
+    )
+    Sentry.captureException(error)
+    throw error
+  }
 }
 
 export async function handleBenefitContribution(
@@ -145,6 +161,7 @@ export async function handleBenefitContribution(
       title: `[Contribution] Ajout aide - ${title}`,
       branchName: newBranch,
       body: buildBenefitPullRequestBody(req.body),
+      requestBody: req.body,
       category: ContributionCategory.BENEFIT,
       contributorName: req.body.contributorName,
       contributorEmail: req.body.contributorEmail,
@@ -256,6 +273,7 @@ export async function handleInstitutionContribution(
       title: `[Contribution] Ajout institution - ${institutionName}`,
       branchName: newBranch,
       body: prBody,
+      requestBody: req.body,
       category: ContributionCategory.INSTITUTION,
       contributorName,
       contributorEmail,

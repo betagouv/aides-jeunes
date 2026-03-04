@@ -57,28 +57,24 @@ function Home() {
           <h3>🗺️ Plan du document</h3>
           <ol>
             <li>
-              <a href="#apropos">01. À propos du simulateur</a>
+              <a href="#apropos">À propos du simulateur</a>
             </li>
             <li>
-              <a href="#ajouter">02. Vous souhaitez ajouter une aide&nbsp;?</a>
+              <a href="#ajouter">Vous souhaitez ajouter une aide&nbsp;?</a>
               <ol>
                 <li>
-                  <a href="#compte">1&nbsp;- Je me crée un compte</a>
+                  <a href="#compte">Je me crée un compte</a>
                 </li>
                 <li>
                   <a href="#integrer">
-                    2&nbsp;- Intégrer une nouvelle aide au simulateur
+                    Intégrer une nouvelle aide au simulateur
                   </a>
                 </li>
                 <li>
-                  <a href="#valider">
-                    3&nbsp;- Valider l’intégration de l’aide
-                  </a>
+                  <a href="#valider">Valider l’intégration de l’aide</a>
                 </li>
                 <li>
-                  <a href="#evolutions">
-                    4&nbsp;- Si l’aide évolue dans le temps
-                  </a>
+                  <a href="#evolutions">Si l’aide évolue dans le temps</a>
                 </li>
               </ol>
             </li>

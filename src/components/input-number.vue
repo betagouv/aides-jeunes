@@ -2,7 +2,7 @@
   <input
     :id="id"
     ref="result"
-    v-model.number="model"
+    v-model="model"
     v-select-on-click
     :data-testid="id"
     :name="name"
@@ -69,7 +69,7 @@ export default {
           this.$emit("update:modelValue", parseFloat(value))
         } else {
           this.error = true
-          this.$emit("update:modelValue", value)
+          this.$emit("update:modelValue", valid ? parseFloat(value) : value)
         }
 
         this.$emit("input-error", this.error)

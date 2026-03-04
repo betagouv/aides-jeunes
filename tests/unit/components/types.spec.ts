@@ -1,5 +1,5 @@
 import { expect } from "vitest"
-import { mount } from "@vue/test-utils"
+import { render } from "@testing-library/vue"
 import { createPinia, setActivePinia } from "pinia"
 import { createRouter, createMemoryHistory } from "vue-router"
 import Types from "@/components/ressource/types.vue"
@@ -25,7 +25,7 @@ describe("types.vue", () => {
   }
 
   const mountComponent = () => {
-    return mount(Types, {
+    return render(Types, {
       props: {
         individu: {},
       },
@@ -62,8 +62,8 @@ describe("types.vue", () => {
     ]
 
     it("should sort ressource types following multiple criterias", () => {
-      const wrapper = mountComponent()
-      expect(wrapper.vm.sort(categories)).toEqual(expectedResult)
+      mountComponent()
+      expect((Types as any).methods.sort(categories)).toEqual(expectedResult)
     })
   })
 
@@ -85,8 +85,10 @@ describe("types.vue", () => {
     }
 
     it("should group resources by their types", () => {
-      const wrapper = mountComponent()
-      expect(wrapper.vm.groupTypes(categories)).toEqual(expectedResult)
+      mountComponent()
+      expect((Types as any).methods.groupTypes(categories)).toEqual(
+        expectedResult,
+      )
     })
   })
 })

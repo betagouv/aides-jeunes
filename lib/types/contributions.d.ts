@@ -1,4 +1,8 @@
-export type ContributionType = "benefit" | "institution"
+import { ContributionCategory } from "../../lib/enums/contribution.js"
+
+export type ContributionType =
+  | ContributionCategory.BENEFIT
+  | ContributionCategory.INSTITUTION
 
 export interface BenefitContributionBody {
   contributorName: string

@@ -6,10 +6,10 @@ import Contributions from "../models/contribution.js"
 import type {
   BenefitContributionBody,
   ContributionRecord,
-  ContributionType,
   InstitutionContributionBody,
   InstitutionData,
 } from "../../lib/types/contributions.d.js"
+import { ContributionCategory } from "../../lib/enums/contribution.js"
 
 const owner = process.env.GITHUB_OWNER
 const repository_name = process.env.GITHUB_REPOSITORY
@@ -352,10 +352,9 @@ export async function handleBenefitContribution(
       buildPullRequestBody(req.body),
     )
 
-    const contributionType = "benefit" satisfies ContributionType
     try {
       await recordContribution({
-        type: contributionType,
+        type: ContributionCategory.BENEFIT,
         contributorName: req.body?.contributorName,
         contributorEmail: req.body?.contributorEmail,
         pullRequestUrl,
@@ -504,10 +503,9 @@ export async function handleInstitutionContribution(
       prBody,
     )
 
-    const contributionType = "institution" satisfies ContributionType
     try {
       await recordContribution({
-        type: contributionType,
+        type: ContributionCategory.INSTITUTION,
         contributorName,
         contributorEmail,
         pullRequestUrl,

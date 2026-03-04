@@ -43,13 +43,6 @@ export interface InstitutionData {
   imgSrc?: string
 }
 
-export interface ContributionRecord {
-  type: ContributionType
-  contributorName?: string
-  contributorEmail: string
-  pullRequestUrl: string
-}
-
 export interface Contribution {
   type: ContributionType
   contributorName?: string

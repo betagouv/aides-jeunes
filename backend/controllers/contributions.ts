@@ -1,141 +1,34 @@
-import axios, { AxiosInstance } from "axios"
 import { dump as yamlDump } from "js-yaml"
+import type { AxiosInstance } from "axios"
 import { Request, Response } from "express"
 import * as Sentry from "@sentry/node"
 import Contributions from "../models/contribution.js"
 import type {
   BenefitContributionBody,
-  ContributionRecord,
   InstitutionContributionBody,
-  InstitutionData,
 } from "../../lib/types/contributions.d.js"
 import { ContributionCategory } from "../../lib/enums/contribution.js"
-
-const owner = process.env.GITHUB_OWNER
-const repository_name = process.env.GITHUB_REPOSITORY
-
-function createGithubApi(): AxiosInstance {
-  return axios.create({
-    baseURL: "https://api.github.com",
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      Accept: "application/vnd.github+json",
-      "User-Agent": "aides-jeunes-contribution-service",
-    },
-  })
-}
-
-async function getMainBranchSha(githubApi: AxiosInstance): Promise<string> {
-  const refResp = await githubApi.get(
-    `/repos/${owner}/${repository_name}/git/ref/heads/main`,
-  )
-  return refResp.data.object.sha
-}
-
-function withTimestamp(branchName: string) {
-  return `${branchName}-${Date.now()}`
-}
-
-async function createBranch(
-  githubApi: AxiosInstance,
-  branchName: string,
-  baseSha: string,
-): Promise<string> {
-  try {
-    await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
-      ref: `refs/heads/${branchName}`,
-      sha: baseSha,
-    })
-    return branchName
-  } catch (error: any) {
-    if (error?.response?.status === 422) {
-      const fallbackBranch = withTimestamp(branchName)
-      await githubApi.post(`/repos/${owner}/${repository_name}/git/refs`, {
-        ref: `refs/heads/${fallbackBranch}`,
-        sha: baseSha,
-      })
-      return fallbackBranch
-    }
-    throw error
-  }
-}
-
-async function commitFile(
-  githubApi: AxiosInstance,
-  filePath: string,
-  content: string,
-  branchName: string,
-  commitMessage: string,
-): Promise<void> {
-  const contentB64 = Buffer.from(content, "utf8").toString("base64")
-  await githubApi.put(
-    `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(filePath)}`,
-    {
-      message: commitMessage,
-      content: contentB64,
-      branch: branchName,
-    },
-  )
-}
-
-async function commitBinaryFile(
-  githubApi: AxiosInstance,
-  filePath: string,
-  base64Content: string,
-  branchName: string,
-  commitMessage: string,
-): Promise<void> {
-  await githubApi.put(
-    `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(filePath)}`,
-    {
-      message: commitMessage,
-      content: base64Content,
-      branch: branchName,
-    },
-  )
-}
-
-function parseDataUrl(
-  dataUrl: string,
-): { mimeType: string; base64: string } | null {
-  const match = dataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.*)$/)
-  if (!match) {
-    return null
-  }
-  return {
-    mimeType: match[1],
-    base64: match[2],
-  }
-}
-
-function getImageExtension(mimeType: string): string | undefined {
-  const mapping: Record<string, string> = {
-    "image/jpeg": "jpg",
-    "image/jpg": "jpg",
-    "image/png": "png",
-    "image/webp": "webp",
-  }
-  return mapping[mimeType]
-}
-
-async function createPullRequest(
-  githubApi: AxiosInstance,
-  title: string,
-  branchName: string,
-  body: string,
-): Promise<string> {
-  const prResp = await githubApi.post(
-    `/repos/${owner}/${repository_name}/pulls`,
-    {
-      title,
-      head: branchName,
-      base: "main",
-      body,
-      maintainer_can_modify: true,
-    },
-  )
-  return prResp.data.html_url
-}
+import {
+  checkInstitutionExists,
+  commitBinaryFile,
+  commitFile,
+  createPullRequest,
+  ensureGithubToken,
+  initContributionBranch,
+} from "./contributions/github.js"
+import {
+  buildBenefitData,
+  buildBenefitPullRequestBody,
+  buildInstitutionData,
+  buildInstitutionPullRequestBody,
+  createDefaultInstitutionData,
+  getImageExtension,
+  isValidSlug,
+  parseDataUrl,
+  slugify,
+  validateRequiredBenefitFields,
+  validateRequiredInstitutionFields,
+} from "./contributions/contribution-data.js"
 
 function handleContributionError(error: any, res: Response, context: string) {
   console.error(`${context} error`, error?.response?.data || error)
@@ -147,140 +40,60 @@ function handleContributionError(error: any, res: Response, context: string) {
   return res.status(status).json({ message })
 }
 
-function slugify(input: string): string {
-  return input
-    .normalize("NFD") // Decompose accented characters (é → e + ´)
-    .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
-    .toLowerCase() // Convert to lowercase
-    .replace(/[^a-z0-9\s_-]/g, "") // Keep only letters, digits, spaces, _ and -
-    .replace(/\s+/g, "-") // Replace multiple spaces with a single dash
-    .replace(/-+/g, "-") // Replace multiple dashes with a single dash
-    .slice(0, 80) // Limit to 80 characters
-}
-
-function isValidSlug(value?: string) {
-  if (!value || typeof value !== "string") return false
-  if (value.includes("..") || value.includes("/") || value.includes("\\")) {
-    return false
-  }
-  return /^[a-z0-9_-]+$/.test(value)
-}
-
-function sanitizeMultiline(str?: string): string[] {
-  if (!str) return []
-  return str
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter((l) => l.length)
-}
-
-async function checkInstitutionExists(
-  institutionSlug: string,
-  githubApi: AxiosInstance,
-): Promise<boolean> {
-  const institutionPath = `data/institutions/${institutionSlug}.yml`
-  try {
-    await githubApi.get(
-      `/repos/${owner}/${repository_name}/contents/${encodeURIComponent(institutionPath)}?ref=main`,
-    )
-    return true
-  } catch (error: any) {
-    if (error.response?.status === 404) return false
-    throw error
-  }
-}
-
-function validateRequiredFields(body: BenefitContributionBody): string | null {
-  const { institutionName, institutionSlug, title, description } = body
-
-  if (!institutionName || !institutionSlug || !title || !description) {
-    return "Champs obligatoires manquants"
-  }
-  if (!isValidSlug(institutionSlug)) {
-    return "Format institutionSlug invalide"
-  }
-  if (description.length > 420) {
-    return "Description > 420 caractères"
-  }
-  return null
-}
-
-function buildBenefitData(body: BenefitContributionBody) {
+async function createPRAndRecordContribution(params: {
+  githubApi: AxiosInstance
+  title: string
+  branchName: string
+  body: string
+  category: ContributionCategory
+  contributorName?: string
+  contributorEmail: string
+}): Promise<string> {
   const {
+    githubApi,
     title,
-    institutionSlug,
-    description,
-    criteres,
-    profils,
-    urls,
-    typeCategorie,
-    periodicite,
-    autresConditions,
-  } = body
+    branchName,
+    body,
+    category,
+    contributorName,
+    contributorEmail,
+  } = params
 
-  return {
-    label: title,
-    institution: institutionSlug,
-    description,
-    conditions: sanitizeMultiline(autresConditions),
-    conditions_generales: Object.entries(criteres || {})
-      .filter(([, v]) => v)
-      .map(([k, v]) => `${k}: ${v}`),
-    profils: profils || [],
-    link: urls?.information || undefined,
-    instructions: urls?.guide || undefined,
-    form: urls?.form || undefined,
-    teleservicePrefill: urls?.teleservice || undefined,
-    type: typeCategorie?.[0] || "bool",
-    periodicite: periodicite || "ponctuelle",
+  const pullRequestUrl = await createPullRequest(
+    githubApi,
+    title,
+    branchName,
+    body,
+  )
+
+  try {
+    await Contributions.create({
+      type: category,
+      contributorName,
+      contributorEmail,
+      pullRequestUrl,
+    })
+  } catch (error) {
+    console.error("Failed to record contribution", error)
+    Sentry.captureException(error)
   }
-}
 
-function createInstitutionData(
-  institutionName: string,
-  institutionSlug: string,
-) {
-  return {
-    name: institutionName,
-    type: "autre",
-    imgSrc: "img/institutions/placeholder.png",
-    slug: institutionSlug,
-  }
-}
-
-function buildPullRequestBody(body: BenefitContributionBody): string {
-  const { title, institutionName, typeCategorie, periodicite, description } =
-    body
-
-  const sections = [
-    `Aide : **${title}**`,
-    `Institution: ${institutionName}`,
-    `Type: ${typeCategorie}`,
-    `Périodicité: ${periodicite}`,
-    `Description: ${description}`,
-  ]
-  return sections.join("\n")
-}
-
-async function recordContribution(params: ContributionRecord) {
-  return Contributions.create(params)
+  return pullRequestUrl
 }
 
 export async function handleBenefitContribution(
   req: Request<unknown, unknown, BenefitContributionBody>,
   res: Response,
 ) {
-  if (!process.env.GITHUB_TOKEN) {
-    return res
-      .status(500)
-      .json({ message: "GITHUB_TOKEN manquant côté serveur" })
+  if (!ensureGithubToken(res)) {
+    return
   }
 
   try {
     const { institutionName, institutionSlug, title } = req.body || {}
 
     // Validation
-    const validationError = validateRequiredFields(req.body)
+    const validationError = validateRequiredBenefitFields(req.body)
     if (validationError) {
       return res.status(400).json({ message: validationError })
     }
@@ -294,13 +107,8 @@ export async function handleBenefitContribution(
     // Build data
     const benefitData = buildBenefitData(req.body)
 
-    // GitHub API setup
-    const githubApi = createGithubApi()
     const branchBase = `contribution/${benefitSlug}`
-
-    // Get main branch SHA and create new branch
-    const baseSha = await getMainBranchSha(githubApi)
-    const newBranch = await createBranch(githubApi, branchBase, baseSha)
+    const { githubApi, newBranch } = await initContributionBranch(branchBase)
 
     // Check if institution exists
     const institutionExists = await checkInstitutionExists(
@@ -312,7 +120,7 @@ export async function handleBenefitContribution(
     if (!institutionExists) {
       const institutionPath = `data/institutions/${institutionSlug}.yml`
       const institutionFile = yamlDump(
-        createInstitutionData(institutionName, institutionSlug),
+        createDefaultInstitutionData(institutionName, institutionSlug),
       )
       await commitFile(
         githubApi,
@@ -332,25 +140,15 @@ export async function handleBenefitContribution(
       `Contribution: ajout fichier ${benefitPath}`,
     )
 
-    // Create pull request
-    const pullRequestUrl = await createPullRequest(
+    const pullRequestUrl = await createPRAndRecordContribution({
       githubApi,
-      `[Contribution] Ajout aide - ${title}`,
-      newBranch,
-      buildPullRequestBody(req.body),
-    )
-
-    try {
-      await recordContribution({
-        type: ContributionCategory.BENEFIT,
-        contributorName: req.body?.contributorName,
-        contributorEmail: req.body?.contributorEmail,
-        pullRequestUrl,
-      })
-    } catch (error) {
-      console.error("Failed to record benefit contribution", error)
-      Sentry.captureException(error)
-    }
+      title: `[Contribution] Ajout aide - ${title}`,
+      branchName: newBranch,
+      body: buildBenefitPullRequestBody(req.body),
+      category: ContributionCategory.BENEFIT,
+      contributorName: req.body.contributorName,
+      contributorEmail: req.body.contributorEmail,
+    })
 
     return res.json({ pullRequestUrl })
   } catch (error: any) {
@@ -362,10 +160,8 @@ export async function handleInstitutionContribution(
   req: Request<unknown, unknown, InstitutionContributionBody>,
   res: Response,
 ) {
-  if (!process.env.GITHUB_TOKEN) {
-    return res
-      .status(500)
-      .json({ message: "GITHUB_TOKEN manquant côté serveur" })
+  if (!ensureGithubToken(res)) {
+    return
   }
 
   try {
@@ -380,24 +176,9 @@ export async function handleInstitutionContribution(
       logoBase64,
     } = req.body || {}
 
-    // Validation
-    const missingFields: string[] = []
-    if (!contributorEmail) missingFields.push("contributorEmail")
-    if (!institutionName) missingFields.push("institutionName")
-    if (!institutionType) missingFields.push("institutionType")
-
-    if (missingFields.length > 0) {
-      return res.status(400).json({
-        message: "Champs obligatoires manquants",
-        missingFields,
-      })
-    }
-
-    if (!codeInsee && !codeSiren) {
-      return res.status(400).json({
-        message: "Au moins un code (INSEE ou SIREN) est requis",
-        missingFields: ["codeInsee", "codeSiren"],
-      })
+    const validationError = validateRequiredInstitutionFields(req.body)
+    if (validationError) {
+      return res.status(400).json(validationError)
     }
 
     // Generate institution slug
@@ -409,18 +190,12 @@ export async function handleInstitutionContribution(
     }
 
     // Build institution data
-    const institutionData: InstitutionData = {
-      name: institutionName,
-      type: institutionType,
-    }
-
-    if (codeInsee) {
-      institutionData.code_insee = codeInsee
-    }
-
-    if (codeSiren) {
-      institutionData.code_siren = codeSiren
-    }
+    const institutionData = buildInstitutionData({
+      institutionName,
+      institutionType,
+      codeInsee,
+      codeSiren,
+    })
 
     let logoFilePath: string | undefined
     let parsedLogo: { mimeType: string; base64: string } | null = null
@@ -445,13 +220,8 @@ export async function handleInstitutionContribution(
       institutionData.imgSrc = logoUrl
     }
 
-    // GitHub API setup
-    const githubApi = createGithubApi()
     const branchBase = `contribution/institution/${institutionSlug}`
-
-    // Get main branch SHA and create new branch
-    const baseSha = await getMainBranchSha(githubApi)
-    const newBranch = await createBranch(githubApi, branchBase, baseSha)
+    const { githubApi, newBranch } = await initContributionBranch(branchBase)
 
     // Create institution file
     const institutionPath = `data/institutions/${institutionSlug}.yml`
@@ -474,34 +244,22 @@ export async function handleInstitutionContribution(
     }
 
     // Create pull request
-    const prBody = [
-      `Institution: **${institutionName}**`,
-      `Type: ${institutionType}`,
-      codeInsee && `Code INSEE: ${codeInsee}`,
-      codeSiren && `Code SIREN: ${codeSiren}`,
-    ]
-      .filter(Boolean)
-      .join("\n")
+    const prBody = buildInstitutionPullRequestBody({
+      institutionName,
+      institutionType,
+      codeInsee,
+      codeSiren,
+    })
 
-    const pullRequestUrl = await createPullRequest(
+    const pullRequestUrl = await createPRAndRecordContribution({
       githubApi,
-      `[Contribution] Ajout institution - ${institutionName}`,
-      newBranch,
-      prBody,
-    )
-
-    try {
-      await recordContribution({
-        type: ContributionCategory.INSTITUTION,
-        contributorName,
-        contributorEmail,
-        pullRequestUrl,
-      })
-    } catch (recordError) {
-      console.error("Failed to record institution contribution", recordError)
-      Sentry.captureException(recordError)
-      // La PR est déjà créée, on ne fail pas la requête
-    }
+      title: `[Contribution] Ajout institution - ${institutionName}`,
+      branchName: newBranch,
+      body: prBody,
+      category: ContributionCategory.INSTITUTION,
+      contributorName,
+      contributorEmail,
+    })
 
     return res.json({ pullRequestUrl })
   } catch (error: any) {
